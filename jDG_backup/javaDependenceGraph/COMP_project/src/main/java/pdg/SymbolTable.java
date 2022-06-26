@@ -891,7 +891,7 @@ class SymbolTable {
             // //comment out the below and uncomment code in addNodeAndEdge and addEdgeBetween to write full graph
             // GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString());
             // writeTOFile("Vertex:: " + newNode.getData() + "\n", out);
-            // writeTOFile("Edge:: " + previousNode.getData() + " -> " + newNode.getData() + "[ CD ]\n", out); 
+            // writeTOFile("Edge:: " + previousNode.getData() + " --> " + newNode.getData() + "[ CD ]\n", out); 
 
 
 
@@ -1003,6 +1003,7 @@ class SymbolTable {
      * @param nodeToSend the node to send
      * @param loopScp the loop scope
      */
+     //need to look at this to figure out handling method express or function calls primarily and nested loops as well secondary 
     private void analyseVariablesInLoop(Node node, @SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph,
                                         GraphNode nodeToSend, LoopScope loopScp, FileOutputStream out) {
         loopScp.gn = nodeToSend;
@@ -1045,7 +1046,7 @@ class SymbolTable {
         try{
 
             System.out.println("$$$$ addEdgeBetweenNodes Called");
-            System.out.println(">> try " + "Edge:: " + graphNode.getData() + " -> " + node.getData() + "[ " + string + " ]");
+            System.out.println(">> try " + graphNode.getData() + " --> " + node.getData() + "[ " + string + " ]");
             
             
             
@@ -1067,7 +1068,7 @@ class SymbolTable {
 
                     hrefGraph.addEdge(graphNode, node, new RelationshipEdge(string));
 
-                    String s = "Edge:: " + graphNode.getData() + "->" + node.getData() + "[ " + string + " ]\n";
+                    String s = graphNode.getData() + "-->" + node.getData() + "[ " + string + " ]\n";
                     writeTOFile(s, out);
                     System.out.println("## Edge added between nodes");
                 }
@@ -1143,15 +1144,15 @@ class SymbolTable {
                     hrefGraph.addVertex(newNode);
                     System.out.println("## Vertex added " + newNode.getData());
 
-                    String s = "Vertex:: " + newNode.getData() + "[" + node.getClass().toString() + "]" + "\n";
-                    writeTOFile(s, out);
+                    //String s = "Vertex:: " + newNode.getData() + "[" + node.getClass().toString() + "]" + "\n";
+                    //writeTOFile(s, out);
                     //System.out.println("## Vertex added");
 
-                    System.out.println(">> Try Edge add" + ":: " + previousNode.getData() + "->" + newNode.getData() + "[ CD ]");
+                    System.out.println(">> Try Edge add" + ":: " + previousNode.getData() + "-->" + newNode.getData() + "[ CD ]");
                     hrefGraph.addEdge(previousNode, newNode);
 
 
-                    String s2 = "Edge:: " + previousNode.getData() + "->" + newNode.getData() + "[ CD ]\n";
+                    String s2 = previousNode.getData() + "-->" + newNode.getData() + "[ CD ]\n";
                     writeTOFile(s2, out);
                     System.out.println("## Edge added from prev to curr");
 
@@ -1163,7 +1164,7 @@ class SymbolTable {
 
             if(loop){
                 hrefGraph.addEdge(newNode, newNode);
-                writeTOFile("Edge:: " + newNode.getData() + " -> " + newNode.getData() + "[ CD ]\n", out);
+                writeTOFile( newNode.getData() + " --> " + newNode.getData() + "[ CD ]\n", out);
                 // if(!FilerON || .toString().equals("class com.github.javaparser.ast.expr.MethodCallExpr") ){
                 //     System.out.println("## Edge to be added by loop");
                 //     
