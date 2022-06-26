@@ -34,7 +34,7 @@ public class GraphNode {
     public String getData(){
         String ID = Integer.toString(this.id);
         String outS = "Line_" + ID;
-        outS += ":";
+        outS += " $$ ";
         outS += this.info;
         return outS; 
     }

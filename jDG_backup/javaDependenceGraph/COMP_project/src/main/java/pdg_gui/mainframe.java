@@ -34,6 +34,8 @@ public class mainframe extends JFrame {
 
     /** The selected file. */
     private File selectedFile;
+
+    private String selectedFileName;
     
     /** The href graph. */
     @SuppressWarnings("rawtypes")
@@ -133,16 +135,23 @@ public class mainframe extends JFrame {
         consoleScroll.setPreferredSize(new Dimension(19, 200));
         console.add(consoleScroll);
 
+        //call graph button executes runanalysisandMakegraph
         button.addActionListener(e -> {
             consoleText.setText("----------------------------------------------------\n");
             runAnalysisAndMakeGraph();
         });
 
+        //select file automation by bypassing gui and use some other functions
+        // get the file ptr to seletedFile var and filename to selectedFileName var for each file or each time
         button_1.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             int returnValue = fileChooser.showOpenDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 selectedFile = fileChooser.getSelectedFile();
+                selectedFileName = new String(fileChooser.getSelectedFile().getName());
+                System.out.println("***************");
+                System.out.println(selectedFileName);
+                System.out.println("***************");
 
                 try {
                     @SuppressWarnings("resource")
@@ -283,18 +292,18 @@ public class mainframe extends JFrame {
             hrefGraph.addVertex(gn);
 
 
-            FileOutputStream out;
-            GraphNode.exporting = true;
-            out = new FileOutputStream("dotOutputs/" + "stage1.dot");
-            @SuppressWarnings("rawtypes")
-				DOTExporter<GraphNode, RelationshipEdge> exporter = new DOTExporter<>(
-                        new StringNameProvider<>(), null,
-                        new StringEdgeNameProvider<>());
-            exporter.export(new OutputStreamWriter(out), hrefGraph);
-            out.close();
+            // FileOutputStream out;
+            // GraphNode.exporting = true;
+            // out = new FileOutputStream("dotOutputs/" + "stage1.dot");
+            // @SuppressWarnings("rawtypes")
+			// 	DOTExporter<GraphNode, RelationshipEdge> exporter = new DOTExporter<>(
+            //             new StringNameProvider<>(), null,
+            //             new StringEdgeNameProvider<>());
+            // exporter.export(new OutputStreamWriter(out), hrefGraph);
+            // out.close();
 
 
-            if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, consoleText,"null")){
+            if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, consoleText,"null", selectedFileName)){
 
                 updateGraph();
             }

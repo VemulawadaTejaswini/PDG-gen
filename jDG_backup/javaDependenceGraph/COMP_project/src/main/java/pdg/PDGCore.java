@@ -43,7 +43,7 @@ public class PDGCore {
 	 * @throws ParseException the parse exception
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public boolean addFile(FileInputStream inArg, @SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, GraphNode previousNode, JTextArea consoleText, String PrevClass) throws ParseException, IOException {
+	public boolean addFile(FileInputStream inArg, @SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, GraphNode previousNode, JTextArea consoleText, String PrevClass, String selectedFileName) throws ParseException, IOException {
 		CompilationUnit cu;
 		try {
 		// parse the file
@@ -62,13 +62,19 @@ public class PDGCore {
 		System.out.println(">>astPrint Done");
 
 
-        todot("stage2.dot", hrefGraph);
+        //todot("stage2.dot", hrefGraph);
 		
 		FileOutputStream out;
-		out = new FileOutputStream("dotOutputs/" + "graph_dump.txt");
+
+		String[] ParsedName = selectedFileName.split("\\.");
+		System.out.println("***************");
+		System.out.println(selectedFileName);
+        System.out.println(ParsedName[0]);
+        System.out.println("***************");
+		out = new FileOutputStream("dotOutputs/" + ParsedName[0]+ "_graph_dump.txt");
 		cv.semanticAnalysis(cu, hrefGraph, previousNode, new ArrayList<>(), out);
 		
-		todot("stage3.dot", hrefGraph);
+		//todot("stage3.dot", hrefGraph);
 
 		SymbolTable st = cv.st;
 		st.addDependencies(hrefGraph, out);
@@ -78,7 +84,7 @@ public class PDGCore {
 		out.close();
 
 
-		todot("stage4.dot", hrefGraph);
+		//todot("stage4.dot", hrefGraph);
 		System.out.println(">>Calling printSymbolTable");
 		st.printSymbolTable();
 		System.out.println(">>printSymbolTable Done");
