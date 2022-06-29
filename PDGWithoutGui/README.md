@@ -7,28 +7,24 @@ In order to install and run this App make sure you have **jdk** and **maven** in
 ```zsh
 cd COMP_project/
 mvn clean install
-mvn exec:java -Dexec.mainClass=pdg_gui.mainframe
+mvn exec:java -Dexec.mainClass=pdg_gui.WithoutGui -Dexec.args="'Path/filename.java'"
 ```
 This will promp the project's GUI. For testing please choose the *.java files in examples folder and "Call Graph", for instance.
 
 ## Summary
 
-This tool is a **Program Dependence Graph** generator for a given input file in the programming language _Java_ that can be outputed as a dot file. 
-It's wrapped around an easy to use GUI for a better analysis of the code provided to the application through the intermediate representation of a **PDG**.
+This tool is a **Program Dependence Graph** generator for a given input file in the programming language _Java_ that can be outputed as a dot file and an edge list in a txt file. 
 
-This project was devemoped as a project for the Compiler course @ FEUP.
+This project was modified from https://github.com/hpnog/javaDependenceGraph 
 
 ### Feature Set:
 
-* Syntactic checks of the given code(Error reporting through the GUI);
-* Semantic checks of the given code(Error reporting through the GUI);
 * Generation of a Program Dependence Graph(Control Flow edges and Data Dependecy edges) for the entire file provided;
 * Exporting the generated graph into a dot file format.
 
 ## Syntactic Analysis
 
 The analysis is performed by the _javaparser library_ used on this project. The execution of the program is terminated upon
-the first syntactic error and reported on the program's GUI. 
 The javaparser used provides an AST of the input code through the object CompilationUnit.
 
 ## Semantic Analysis
@@ -126,7 +122,7 @@ Overall we consider that all the group elements worked equally to the delivery o
 
 ## Cons
 
-The semantic analysis for the Java language is very complex, the error reporting is not very extensive as a result. The HashTable data structures used were a limitation when it came to the symbol table of method parameters, as type checking of arguments in a method call required an ordered set, this was only discovered very late into development and the amount of code restructuring needed was going to be too large to make the deadline, as a result type checking for method call arguments had to be scraped. 
+The semantic analysis for the Java language is very complex, the error reporting is not very extensive as a result. The HashTable data structures used were a limitation when it came to the symbol table of method parameters, **as type checking of arguments in a method call required an ordered set, this was only discovered very late into development and the amount of code restructuring needed was going to be too large to make the deadline, as a result type checking for method call arguments had to be scraped.** 
 
 
 ### Class 3MIEIC01 - Group 4
