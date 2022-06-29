@@ -41,7 +41,6 @@ def main():
   print(EdgeCount)
 
   # train_graph = {"directed": True, "multigraph": False, "graph": {}, "nodes": []}
-  nodes = []
   nodes_dict = dict()
   EdgeType = dict()
   # i is a counter for Nodes, j is a counter for Edges
@@ -68,15 +67,12 @@ def main():
         else:
           EdgeType[x]=1 
 
-  for x in nodes_dict:
-    nodes.append({x:nodes_dict[x]}) 
-  # train_graph['nodes'] = nodes  
+  nodes = [{x:nodes_dict[x]} for x in nodes_dict]
+  # print(nodes)
 
   EdgeTypes = list(EdgeType.keys())
-  with open(inTextFile) as fp:
-    Lines = fp.readlines()
-
   adjacency_lists = [[] for i in range(len(EdgeTypes))]
+  
   with open(inTextFile) as fp:
     Lines = fp.readlines()
     for line in Lines:
