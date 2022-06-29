@@ -88,8 +88,9 @@ public class WithoutGui {
         try {
             checkIfFolderExists();
             GraphNode.exporting = true;
-            filename = selectedFileName +  ".dot";
-            out = new FileOutputStream("./dotOutputs/" + filename);
+            String fn = selectedFileName.substring(0, selectedFileName.length()-5) +  ".dot";
+
+            out = new FileOutputStream("./dotOutputs/" + fn);
             @SuppressWarnings("rawtypes")
 				DOTExporter<GraphNode, RelationshipEdge> exporter = new DOTExporter<>(
                         new StringNameProvider<>(), null,

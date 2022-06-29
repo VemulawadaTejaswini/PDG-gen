@@ -754,7 +754,7 @@ class SymbolTable {
             if(!addParameter(node,param))
                 return  new ReturnObject("error:duplicated param identifier  : "+param.paramName+" in Method:"+lastMethod.Name+"");
         }
-
+        // If delt
         else if(node.getClass().equals(com.github.javaparser.ast.stmt.IfStmt.class)){
             nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
             for(Node child2 : node.getChildrenNodes())
@@ -1114,16 +1114,15 @@ class SymbolTable {
             if(newNode.getNodeClass().equals("class com.github.javaparser.ast.stmt.IfStmt")
             ||  newNode.getNodeClass().equals("class com.github.javaparser.ast.body.MethodDeclaration")
             || newNode.getNodeClass().equals("class com.github.javaparser.ast.body.ClassOrInterfaceDeclaration")
+            ||newNode.getNodeClass().equals("class com.github.javaparser.ast.stmt.WhileStmt")
+            ||newNode.getNodeClass().equals("class com.github.javaparser.ast.stmt.ForStmt")
             ){
                 //prune the node data into simplified form
                 String block = newNode.getNodeInfo();
-                
+                System.out.println("block: "+ block);
                 String[] arrSplit = block.split("\\{",2);
-                //System.out.println("pruned::" + arrSplit[0]);
                 newNode.ReAssign(arrSplit[0]);
-
-                System.out.println("!! prune IF Statment called");
-
+                System.out.println("After ReAassign:" + newNode.getNodeInfo());
             }
 
             
@@ -1142,19 +1141,19 @@ class SymbolTable {
 
                     hrefGraph.addVertex(previousNode);
                     hrefGraph.addVertex(newNode);
-                    System.out.println("## Vertex added " + newNode.getData());
+                    // System.out.println("## Vertex added " + newNode.getData());
 
                     //String s = "Vertex:: " + newNode.getData() + "[" + node.getClass().toString() + "]" + "\n";
                     //writeTOFile(s, out);
                     //System.out.println("## Vertex added");
 
-                    System.out.println(">> Try Edge add" + ":: " + previousNode.getData() + "-->" + newNode.getData() + "[ CD ]");
+                    // System.out.println(">> Try Edge add" + ":: " + previousNode.getData() + "-->" + newNode.getData() + "[ CD ]");
                     hrefGraph.addEdge(previousNode, newNode);
 
 
                     String s2 = previousNode.getData() + "-->" + newNode.getData() + "[ CD ]\n";
                     writeTOFile(s2, out);
-                    System.out.println("## Edge added from prev to curr");
+                    // System.out.println("## Edge added from prev to curr");
 
                 }
 
