@@ -1,5 +1,7 @@
-import json
-import pygraphviz
+# import json
+import jsonlines
+# import gzip
+# import pygraphviz
 from typing import Any, Dict, Iterable, List, Iterator, Tuple, Optional, Set
 
 import sys
@@ -30,15 +32,16 @@ print(name)
 # method of the parent GraphDataset with the correct batching implemented.
 # """
 
+
 def main():
   # G = pydot.graph_from_dot_file("dot/NestedLoops.dot")
-  G = pygraphviz.AGraph()
-  G.read(inDotFile)
+  # G = pygraphviz.AGraph()
+  # G.read(inDotFile)
 
-  NodeCount = G.number_of_nodes()
-  print(NodeCount)
-  EdgeCount = G.number_of_edges()
-  print(EdgeCount)
+  # NodeCount = G.number_of_nodes()
+  # print(NodeCount)
+  # EdgeCount = G.number_of_edges()
+  # print(EdgeCount)
 
   # train_graph = {"directed": True, "multigraph": False, "graph": {}, "nodes": []}
   nodes_dict = dict()
@@ -91,16 +94,17 @@ def main():
       adjacency_lists[i].append([n1,n2])
 
   print(adjacency_lists)
-  json_object_adj = json.dumps(adjacency_lists, indent = 4)
-  output1 = name + "adj.json"
-  with open(output1, "w") as outfile:
-    outfile.write(json_object_adj)
+  # json_object_adj = json.dumps(adjacency_lists, indent = 4)
+  output1 = name + "adj.jsonl"
+  with jsonlines.open(output1, "w") as outfile:
+    outfile.write_all(adjacency_lists)
 
   print(nodes)
-  json_object_nodes = json.dumps(nodes, indent=4)
-  output2 = name + "nodes.json"
-  with open(output2, "w") as outfile:
-    outfile.write(json_object_nodes)
+  print(type(nodes))
+  # # json_object_nodes = json.dumps(nodes, indent=4)
+  output2 = name + "nodes.jsonl"
+  with jsonlines.open(output2, "w") as outfile:
+    outfile.write_all(nodes)
 
 
 # "Line_3 $$ if (labelMap.containsKey(label))-->Line_5 $$ DBIDs exist = labelMap.get(label)[ CD ]"
