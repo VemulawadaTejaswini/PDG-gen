@@ -1,0 +1,570 @@
+﻿API recommendation system
+
+
+Motivation
+It is not always obvious which library to use. Developers need to spend some time understanding the API. In this work we automatically recommend relevant APIs to developers.
+After code is written the user may not be sure if the api usage is correct or  API is misused. We check if the current snippet is an outlier. We recommend the most frequent way of using  API.
+
+
+* Given a code snippet / api query suggests the user with the most common API usage.
+   * Can be extended to context based recommendation.
+* Take a representation of the code snippet.
+   *         
+* Generate the embedding at (code snippet level).
+   * Code2vec embeddings- (bag of AST paths)
+   * Replicate in similar manner
+   * LSTMs
+   * Use different neural model to generate 
+* Then we use clustering to cluster the snippets with similar usage of API.
+   * K-means
+   * Hierarchical ( cluster of clusters )
+   * Spectral
+   * Nearest neighbour search
+* During recommendation we take code embeddings and find the closest clusters.
+   * Single code may contain multiple APIs, we can try recommending for all the apis used in the code.
+   * Context will be the contents in the snippet itself.
+   * In case of api query each cluster should be given a label
+   *  Queries should be mapped to code snippet.
+* A representative from each of these clusters is selected.
+   * Which metrics???
+* These are ranked based 
+   * on the size and distance of the cluster.
+   * Which metrics?
+* We give top 5 recommendations.
+
+
+Dataset: 
+        Language: Java / python
+* Crypto APIs, 
+* Mining from stackoverflow or gitHub, should look into related papers.
+
+
+Previous works:
+* Database kind of approach is limited to only a few APIs.
+* The representation is a graph kernel.
+* Treated as a filtering problem rather than finding.
+* Only compilable code files can be preprocessed
+* How to Filter each preprocessed outputs for relevant apis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dataset : 
+Python: py150, java corpus, (crypto APi specifically)
+-
+
+
+Generating Embeddings:
+
+
+https://towardsdatascience.com/word-embeddings-with-code2vec-glove-and-spacy-5b26420bf632
+
+
+Code2vec
+
+
+Few papers on API learning and embeddings  Deep API learning (first 3 slides)
+
+
+Related papers for API recommendation: 
+
+
+LibREC
+
+
+Similar but lot more advanced (just skim through it)
+
+
+Arcode 
+
+
+domain specific category library recommendations
+
+
+
+
+
+
+Previous work :
+Typestate
+
+
+
+
+
+
+
+
+
+
+Jan 18
+
+
+Code2vec embeddings:
+Assessing the Generalizability of code2vec Token Embeddings
+
+
+
+
+
+
+
+
+Dataset:
+* Mobile apps 
+   * Androzoo
+   * playstore
+
+
+* Repo based search 
+   * On API
+   * On library
+   * On classes
+* Other domains:
+   * Crypto
+      * http://diffcode.ethz.ch/
+   * Os kernel
+   * SSH
+* Searching through classes, libraries, 
+* Generating AST, and extract method level paths
+   * Soot 
+   * https://github.com/JetBrains-Research/astminer
+   * https://tree-sitter.github.io/tree-sitter/using-parsers
+   * Javac
+   * 
+   * Stats in dataset: usage, misusages numbers, 
+   * Perturbations , what exactly are we dng.
+   * Can we get code back from cluster space
+
+
+
+
+
+
+Jan 22
+
+
+Check if we are able to convert Apk to java or AST
+
+
+
+
+Feb 1st
+
+
+   * We have gone through preprocess files to understand the steps of theprocessing 
+from code document, method snippets are segregated and its AST is made, In which some paths are dropped off maybe using some histogram and the path from nodes is hashed into an integer representation (preprocess.py & preprocess.sh ) 
+   * Histogram based path selection ???
+   * Hashing to store paths
+   * Yet to understand the criterion of decision making for the above
+
+
+
+
+Feb 7 th:
+   * Method name string filtering for relevant data points
+   * Random perturbations of single snippet
+   * Backtracking outliers from plot.
+   * Other visualization algos 
+
+
+Feb 8th:
+
+
+https://codekernel19.github.io/appendix.html 
+Calculate actual distance between the right examples, then wrong examples ( changing parameters, swapping api calls sequences, )
+Statements swapping (if else) won’t help much,
+Look at code refinement paper for other errors and manipulations.
+
+
+Feb 9th
+   * Relative distances using CVAE are not 100% accurate,
+   * Other alternative such as box plot with absolute distances can be used
+   * https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.boxplot.html
+   * https://seaborn.pydata.org/generated/seaborn.heatmap.html 
+   * Go through alpha code once  
+   * Check if we can do for python or java
+   * Look at CONALA (code snippet library) https://conala-corpus.github.io/ 
+
+
+Feb 10th:
+   * Visualisation using heat maps
+
+
+Feb 11th
+   * Code2vec focuses on syntactical structure, but it cannot capture minor diffreceses like api sequences. So need another context addtion like api sequence to improve
+   * Return statements seem more sensitive then new calls/function, then  parameters / lines order
+   * We cannot relly on parameters of functions surround the relevant objects
+   * Search for useful outliers which are not detected by static analysers or code editors
+
+
+
+
+
+
+
+
+
+
+Api mutant
+http://home.cse.ust.hk/~mwenaa/paper/ICSE2019A.pdf (useful)
+
+
+https://ieeexplore.ieee.org/document/9392977 (bad)
+
+
+https://ieeexplore.ieee.org/document/8880510 (good)
+
+
+https://ieeexplore.ieee.org/document/9519443  (conference is good but c++ dataset usage)
+
+
+https://ieeexplore.ieee.org/document/9230007 
+
+
+https://dl.acm.org/doi/10.1145/3296979.3192403 (don’t know ?)
+
+
+https://cwe.mitre.org/data/definitions/209.html
+
+
+https://arxiv.org/pdf/1812.08693.pdf 
+
+
+
+
+—--------
+https://ieeexplore.ieee.org/abstract/document/8816795 (MUDetect)
+
+
+( Investigating Next Steps in Static API-Misuse Detection) joke paper
+We compare MUDETECT against the four detectors JADET, GROUMINER, TIKANGA, and DMMC, which were empirically evaluated by Amann et al. [18]. As the ground-truth for the experiments, they used MUBENCH [7], a dataset of open source projects with 84 known API misuses
+https://ieeexplore.ieee.org/abstract/document/8338426 (MUcompare)
+
+
+https://ieeexplore.ieee.org/abstract/document/8901573 (ask maam )
+
+
+https://ieeexplore.ieee.org/abstract/document/9286105
+
+
+https://ieeexplore.ieee.org/document/9468420 (some patterns )
+
+
+https://link.springer.com/article/10.1007/s10515-021-00294-x ( Some interesting static analysis )
+
+
+https://dl.acm.org/doi/abs/10.1145/3293882.3330552 ( will check later)
+
+
+https://scholarworks.wm.edu/honorstheses/1739/ (will check later )
+
+
+
+
+https://arxiv.org/abs/2012.14078 ( complicated approach )
+
+
+
+
+
+
+Feb 15: 
+
+
+No comments
+Brain can't work anymore
+
+
+
+
+Feb 16:
+   * Dataset mining
+   * Look at example check authors to find the snippets
+   * Clustering algorithm to cluster these
+   * Hierarchical agglomerative clustering https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html 
+   * birch
+   * Dbscan
+
+
+Fec 21:
+https://homepages.inf.ed.ac.uk/csutton/publications/clamsFase2018.pdf —- similar motivation
+https://github.com/nikos912000/fase-presentation
+https://github.com/mast-group/clams
+
+
+https://tianyi-zhang.github.io/files/chi2018-examplore.pdf
+https://github.com/UCLA-SEAL/Examplore
+
+
+https://github.com/UCLA-SEAL/ExampleCheck
+http://web.cs.ucla.edu/~tianyi.zhang/examplecheck.html
+tianyi@purdue.edu
+
+
+
+
+
+
+
+
+Feb 23
+Some crazy stuff: https://arxiv.org/pdf/2104.07869.pdf 
+
+
+Feb 25
+https://ieeexplore.ieee.org/document/8812051 FOCUS: A Recommender System for Mining API Function Calls and Usage Patterns
+
+
+
+
+Not clean codes
+Inefficient codes
+Redundant Codes 
+
+
+
+
+
+
+
+
+Code2vec is able to capture code structure and give generalized embeddings which is good for us
+
+
+But for our task we need more context of API use cases
+To achieve that we an retrain code2vec on Api names as labels from scratch(resources constraint)
+Or
+Add additional context of def use chains/call graph or method call sequence
+        For this we need to use a static analyser to get this information.
+        After getting these chains/graphs we need their embeddings.
+        Fusing these embeddings with the code to vec embeddings or performing Joint learning.????
+Otherwise learn through rules/specification.
+
+
+
+
+Inspired by GNN, GCN, and GraphSAGE, we design an API dependency graph (ADG) based model, which can be used together with a Seq2Seq model for code generation.
+
+
+Node2vec
+
+
+We construct a API-constraint knowledge graph for Java APIs. Using the web page parser developed Liu et al. [ 19 ], we extract 72,337 API elements (including 59,991 API methods, 11,334 parameters and 1,012 exception), and 64,400 API declaration relations (including 45,247 return relations and 18,999 throw relations). Using the
+API-caveat sentence patterns developed by Li et al. [ 16 ], we extract 97,462 conditional and temporal API-caveat sentences. From these API-caveat sentences, our approach creates 1,938 call-order relations, 74,207 condition checking relations, and enrich 8,215 return relations with return-value conditions and 12,477 throw relations with exception triggers.
+
+
+
+
+
+
+Uses in assignment statement
+Tracking try/catch or conditional expressions
+Adding expression nodes
+
+
+
+
+
+
+Compare and update
+
+
+Gnn
+
+
+Code →graph -> vector
+Pytorch gnn lib
+
+
+Mar 26 meet
+   * Given an single input program say consisting of multiple methods foo1, foo2, foo3 create ADG’s for them
+   * Propose idea for graph structure ( control dependency edges, parameters dependency), new nodes for 
+
+
+Some points About the ADG code repo
+ADGmodelling.py handles the parsing of input code into method_list, call_relations, front_call_dict, behind_call_dict. For both python-like and java-like codes the same functions handles them
+( method list: list of Fnames encountered across the first 200 samples
+Call relations: list of lists of 
+Front_call_dict:
+behind_call_dict:
+
+
+)
+
+
+
+
+(description of the datasets is available in section 5 of the paper)
+It is basically a card game. In this corpus, each card is implemented in a separate class, and the imports and comments are stripped. The .in files have the card atrributes/parameters and its descriotion. The .out file should hold the codes for their respective card classes. 
+
+
+The SemanticNodeCheck method in the SymbolTable.java fills the href graph. 
+Node is a type from com.github.javaparser.ast.Node
+GraphNode is a defined class in 
+
+
+addEdgeBetweenNodes adds edge between two GraphNodes
+addNodeAndEdgeToGraph adds and new GraphNode from node type and connects to previosNode
+
+
+
+
+https://www.cs.mcgill.ca/~wlh/grl_book/files/GRL_Book-Chapter_5-GNNs.pdf   5.1.4
+https://arxiv.org/pdf/1802.04986.pdf
+
+
+GNN
+ https://arxiv.org/abs/1901.00596
+
+
+
+
+Rgcns if label edges closed set
+Message neural nets mpnn propagate aggregate
+GAT == transformers
+RGAT
+
+
+Papers and links
+https://openreview.net/forum?id=Bklzkh0qFm
+https://arxiv.org/pdf/2109.05922.pdf
+
+
+http://proceedings.mlr.press/v129/yang20a/yang20a.pdf
+https://www.youtube.com/watch?v=mdWQYYapvR8&t=103s
+
+
+
+
+
+
+
+
+https://link.springer.com/article/10.1007/s10515-022-00326-0
+https://www.sciencedirect.com/science/article/abs/pii/S0164121221002053?via%3Dihub
+https://arxiv.org/pdf/2203.11790.pdf
+https://graph-neural-networks.github.io/static/file/chapter22.pdf
+
+
+
+
+
+
+
+
+https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9340326
+https://dl.acm.org/doi/10.1145/3459637.3482477
+https://dl.acm.org/doi/10.1145/3468791.3468814
+ICLR 2020: Composition-Based Multi-Relational Graph Convolutional Networks
+https://github.com/graphdeeplearning/benchmarking-gnns/blob/master/docs/03_run_codes.md
+https://github.com/lukecavabarrett/pna
+Tf gnn
+https://github.com/Microsoft/gated-graph-neural-network-samples
+https://github.com/dmitrykazhdan/Representing-Programs-with-Graphs
+https://github.com/jingkai92/learning-program-representation
+
+
+
+
+Different rgat comparisons -the equations
+
+
+
+
+ADG update
+example1
+public class func{
+  public void assign(HashMap<String,DBIDs> labelMap,String label,DBIDRef id){
+      if (labelMap.containsKey(label)) 
+      {
+          DBIDs exist=labelMap.get(label);
+            
+          if (exist instanceof DBID) {        /        /line7
+              ModifiableDBIDs n=DBIDUtil.newHashSet();
+              n.add((DBID)exist);
+              n.add(id);
+              labelMap.put(label,n);
+              exist.get(label);                              //line12
+          }
+          else {
+              exist.addClassScope("DBIS");        //line15
+              assert (exist.size() > 1);     
+              ((ModifiableDBIDs)exist).add(id);
+          }   
+        //line 19
+      }
+      else {
+          labelMap.put(label,DBIDUtil.deref(id));
+          }
+      }
+}
+
+
+  
+
+Working features:
+Usual Syntactic checks of the given code(Error reporting through the GUI);
+Usual Semantic checks of the given code(Error reporting through the GUI);
+Pruned unnecessary  nodes
+Edges having method call (api calls) , variable declarations/expressions are kept
+
+
+Current issues
+
+
+Type casting not handled
+
+
+Instanceof expressions have not been handled
+
+
+Variables modification tracking from inside of conditional block to outside not working as intended
+[for example in line19 if we put some method expression using “exist” there is a CD edge from line7, but there should also be edges from line12 and line15 to line19, which i found to be missing]
+
+
+Aliases are not handled
+
+
+Assert statements currently only showing FD edges but should have CD edges
+
+
+
+
+If statements only called if it is reachable by the original node????
