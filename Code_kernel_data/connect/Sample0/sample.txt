@@ -1,0 +1,2463 @@
+
+Instance 0
+Class330.createSocket(InetAddress address,int port,InetAddress myAddress,int myPort)#0{
+        if (myAddress != null)
+        {
+            sock = new Socket(address, port, myAddress, myPort);
+        }
+        else if (port != 0)
+        {
+            // myAddress is null (i.e. any) but we have a port number
+            sock = new Socket();
+            sock.bind(new InetSocketAddress(port));
+            sock.connect(new InetSocketAddress(address, port));
+        }
+        else
+        {
+            sock = new Socket(address, port);
+        }
+        setTrafficClass(sock);
+}
+
+
+Instance 1
+Class190.connectSocket(Socket sock,String host,int port,InetAddress localAddress,int localPort,HttpParams params)#2{
+        if (this.nameResolver != null) {
+            remoteAddress = new InetSocketAddress(this.nameResolver.resolve(host), port); 
+        } else {
+            remoteAddress = new InetSocketAddress(host, port);            
+        }
+            sock.connect(remoteAddress, timeout);
+            throw new ConnectTimeoutException("Connect to " + remoteAddress + " timed out");
+}
+
+
+Instance 2
+Class280.connect(BusAddress address,int timeout)#1{
+            ss.bind(new InetSocketAddress(address.getParameter("host"), Integer.parseInt(address.getParameter("port"))));
+            s = ss.accept();
+            s.connect(new InetSocketAddress(address.getParameter("host"), Integer.parseInt(address.getParameter("port"))));
+         in = s.getInputStream();
+         out = s.getOutputStream();
+}
+
+
+Instance 3
+Class510.create(String host,int port,StringBuffer otherHeaders,BooleanHolder useFullURL)#0{
+                        baseSocket.connect(new InetSocketAddress(host, port), timeout);
+                        baseSocket.connect(new InetSocketAddress(host, port), timeout);
+                            int i = tunnelInputStream.read();
+                            if (i < 0) {
+                                throw new IOException("Unexpected EOF from proxy");
+                            }
+                            if (i == '\n') {
+                                headerDone = true;
+                                ++newlinesSeen;
+                            } else if (i != '\r') {
+                                newlinesSeen = 0;
+                                if (!headerDone) {
+                                    replyStr += String.valueOf((char) i);
+                                }
+                            }
+                        if (!(StringUtils.startsWithIgnoreWhitespaces("HTTP/1.0 200", replyStr)
+                                || StringUtils.startsWithIgnoreWhitespaces("HTTP/1.1 200", replyStr))) {
+                            throw new IOException();
+                        }
+                    if (baseSocket != null) {
+                        // End of condensed reflective tunnel handshake method
+                        s = sslFactory.createSocket(baseSocket, host, port, true);
+                        ((SSLSocket) s).startHandshake();
+                        break;
+                    }
+}
+
+
+Instance 4
+Class190.newClient(Connection connection)#0{
+      if (connection.isProxy()) {
+        Proxy proxy = new Proxy(Type.SOCKS, new InetSocketAddress(connection.getProxyHost(), connection.getProxyPort()));
+        socket = new Socket(proxy);
+      } else {
+        socket = new Socket();
+      }
+      socket.setTcpNoDelay(true);
+      socket.setSoTimeout(timeout);
+      socket.connect(new InetSocketAddress(host, port), timeout);
+      TSocket trans = new TSocket(socket);
+      proto = new TBinaryProtocol(new TFramedTransport(trans, _maxFrameSize));
+    return new WeightedClient(proto, getIdentifer(socket));
+}
+
+
+Instance 5
+Class450.test(InetAddress addr)#7{
+                s.bind(new InetSocketAddress(addr, 0));
+                s.connect(new InetSocketAddress(addr, port));
+                ss.accept().close();
+}
+
+
+Instance 6
+Class60.test(InetAddress addr)#6{
+                s.bind(new InetSocketAddress(addr, 0));
+                s.connect(new InetSocketAddress(addr, port));
+                ss.accept().close();
+}
+
+
+Instance 7
+Class100.test2()#1{
+        sock = new Socket();
+        sock.bind(new InetSocketAddress(sin, localport));
+            sock.connect(new InetSocketAddress(sin, port), 100);
+}
+
+
+Instance 8
+Class0.setupNetSocket(String addr,int port)#2{
+    InetSocketAddress address = new InetSocketAddress(addr, port);
+    if (address.isUnresolved()) {
+      Logger.logf(Logger.ERROR, "CommonIO.setupNetSocket(): ERROR: Could not resolve address: " + addr);
+      throw new UnresolvedAddressException();
+    }
+      newsock.connect(new InetSocketAddress(addr, port), NBConstants.SOCKET_TIMEOUT);
+}
+
+
+Instance 9
+Class90.createSocket(String host,int port,InetAddress localHost,int localPort)#0{
+        socket.bind(new InetSocketAddress(host, localPort));
+        socket.connect(new InetSocketAddress(host, port), socketTimeout);
+}
+
+
+Instance 10
+Class200.test_isBound()#0{
+        server.bind(new InetSocketAddress(InetAddress.getLocalHost(), 0));
+        InetSocketAddress boundAddress = new InetSocketAddress(server
+                .getInetAddress(), server.getLocalPort());
+        client.connect(boundAddress);
+        worker = server.accept();
+}
+
+
+Instance 11
+Class220.test_getRemoteSocketAddress()#5{
+        theSocket.connect(new InetSocketAddress(InetAddress.getLocalHost(),
+                sport));
+                                new InetSocketAddress(InetAddress
+                                        .getLocalHost(), sport)));
+}
+
+
+Instance 12
+Class210.openClearSocket(InetAddress ia,int port,int timeOut)#0{
+        SocketAddress addr = new InetSocketAddress(ia, port);
+        clear.connect(new InetSocketAddress(ia, port), timeOut);
+}
+
+
+Instance 13
+Class520.executeTestRun(final InetAddress stunServerAddress,final int stunServerPort)#0{
+            socket.connect(new InetSocketAddress(stunServerAddress, stunServerPort));
+            this.sendBindingRequestToStunServer(socket.getOutputStream());
+            final Message response = this.receiveBindingResponseFromStunServer(socket.getInputStream());
+            socket.close();
+}
+
+
+Instance 14
+Class120.downloadSocket(String[] prop_names,String[] prop_values,int length,ExternalSeedHTTPDownloaderListener listener,boolean con_fail_is_perm_fail)#1{
+        socket.connect( new InetSocketAddress( url.getHost(), url.getPort()==-1?url.getDefaultPort():url.getPort()), time_remaining );
+      time_remaining  = listener.getPermittedTime();
+      if ( time_remaining < 0 ){
+          
+        throw( new IOException( "Timeout during connect" ));
+        
+      }else if ( time_remaining > 0 ){
+        
+        socket.setSoTimeout( time_remaining );
+      }
+      OutputStream  os = socket.getOutputStream();
+}
+
+
+Instance 15
+Class590.startupFinished()#0{
+                clientSocket.connect(new InetSocketAddress(hostName, listenerPort), twoMinutes);
+                clientSocket.setSoTimeout(twoMinutes);
+                out = new DataOutputStream(clientSocket.getOutputStream());
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+}
+
+
+Instance 16
+Class50.getServerStats(String server,int timeout)#1{
+    InetSocketAddress sockAddr = new InetSocketAddress(host, port);
+    socket.connect(sockAddr, timeout);
+    socket.setSoTimeout(timeout);
+    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+    BufferedReader in = new BufferedReader(new InputStreamReader(socket
+        .getInputStream()));
+}
+
+
+Instance 17
+Class90.connect(final InetAddress host,final int port,final int timeout)#0{
+        socket.connect(new InetSocketAddress(host, port), timeout);
+        socket.setSoTimeout(timeout);
+        setInput(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+        setOutput(socket.getOutputStream());
+}
+
+
+Instance 18
+Class10.TestClient(Socket sock,InetAddress addr,int port,int connTimeout)#0{
+                sock.connect(new InetSocketAddress(addr, port), connTimeout);
+                if (sock instanceof SSLSocket)
+                    ((SSLSocket)sock).startHandshake();
+                out = sock.getOutputStream();
+                in = sock.getInputStream();
+}
+
+
+Instance 19
+Class610.sendArgs(String[] args,int max_millis_to_wait)#7{
+        sock.connect( new InetSocketAddress( "127.0.0.1", 6880 ), CONNECT_TIMEOUT );
+        sock.setSoTimeout( READ_TIMEOUT );
+           PrintWriter pw = new PrintWriter(new OutputStreamWriter(sock.getOutputStream(),"UTF-8"));
+}
+
+
+Instance 20
+Class590.main(String args[])#2{
+        int port = Integer.parseInt(portStr);
+        socket.connect(new InetSocketAddress("127.0.0.1", port), 9 * 1000);
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "utf-8"));
+        for(int i=0;i<90;i++)
+        {
+          out.write("{\"type\":\"getcommand\"}");
+          out.newLine();
+          out.flush();
+          String line = in.readLine();
+          if(line.equalsIgnoreCase("getelement"))
+          {
+            System.out.print("getelement");
+            break;
+          }
+          Thread.sleep(100);
+        }
+}
+
+
+Instance 21
+Class470.run(IProgressMonitor monitor)#0{
+              socket.connect(new InetSocketAddress(host, port), 10000);
+              boolean connected = socket.isConnected();
+              if (connected)
+              {
+                OutputStream os = socket.getOutputStream();
+                PrintWriter writer = new PrintWriter(os, true);
+                writer.println(request);
+                writer.flush();
+                InputStream is = socket.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                String line = reader.readLine();
+                if (line != null)
+                {
+                  setServerState(IServer.STATE_STARTED);
+                  serverChanged();
+                }
+                else
+                {
+                  setServerState(IServer.STATE_UNKNOWN);
+                  serverChanged();
+                }
+                reader.close();
+                writer.close();
+                socket.close();
+              }
+              else
+              {
+                setServerState(IServer.STATE_UNKNOWN);
+                serverChanged();
+              }
+}
+
+
+Instance 22
+Class310.load(String url,int max_millis_to_wait)#0{
+          sock.connect( new InetSocketAddress( "127.0.0.1", i ), 500 );
+          sock.setSoTimeout( 5000 );
+          PrintWriter  pw = new PrintWriter( sock.getOutputStream());
+          pw.println( "GET " + url + " HTTP/1.1" + NL + NL );
+          pw.flush();
+}
+
+
+Instance 23
+Class680.migrate()#3{
+                        sock.connect(new InetSocketAddress(brk.getHost(), Integer.parseInt(brk.getPort())));
+                        BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+                        for(wait_cnt = 0; wait_cnt < 20 && !in.ready(); wait_cnt++) {
+                            Utils.justSleep(500);
+                        }
+                        if(in.ready()) {
+                            if(brk.getBrokerType().equals("openmq")) {
+                                String line = in.readLine();
+                                if(line.startsWith("101 imqbroker"))
+                                    hasOld = true;
+                            }
+                        }
+}
+
+
+Instance 24
+Class670.checkAgentConnection(AgentInstallInfo info,int retries)#0{
+        if (info.getAgentPort() > 0) {
+            info.setConfirmedAgentConnection(false);
+            for (int attempt = 0; attempt < retries && !info.isConfirmedAgentConnection(); attempt++) {
+                Socket ping = new Socket();
+                try {
+                    ping.connect(new InetSocketAddress(info.getAgentAddress(), info.getAgentPort()), 5000);
+                    info.setConfirmedAgentConnection(ping.isConnected());
+                } catch (Exception e) {
+                    info.setConfirmedAgentConnection(false);
+                } finally {
+                    try {
+                        ping.close();
+                    } catch (Exception ignore) {
+                    }
+                }
+            }
+        } else {
+            info.setConfirmedAgentConnection(false);
+        }
+        return info.isConfirmedAgentConnection();
+}
+
+
+Instance 25
+Class670.execute(String command)#1{
+    socket.connect(new InetSocketAddress(_viewServerHost, _viewServerPort));
+      BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
+          socket.getOutputStream()));
+      BufferedReader in = new BufferedReader(new InputStreamReader(
+          socket.getInputStream(), "utf-8"));
+}
+
+
+Instance 26
+Class520.getJMXUrl(String broker)#1{
+            sock.connect(new InetSocketAddress(broker, 7676));
+            for(String line : IOUtils.toString(sock.getInputStream()).split("\n")) {
+                if(line.startsWith("jmxrmi rmi JMX")) {
+                    url = line.substring(line.indexOf('=') + 1, line.length() - 1);
+                    break;
+                }
+            }
+            logger.info("jmxurl of broker {} = {}", broker, url);
+}
+
+
+Instance 27
+Class420.testRunClient()#1{
+            sock.connect(new InetSocketAddress(HOSTNAME, PORT));
+            out = sock.getOutputStream();
+            in = new BufferedInputStream(sock.getInputStream());
+}
+
+
+Instance 28
+Class60.getName(final GSSCredential gssCredential)#1{
+            socket.connect(new InetSocketAddress(host, port), GSSTestConstants.SOCKET_TIMEOUT);
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            DataInputStream dis = new DataInputStream(socket.getInputStream());
+}
+
+
+Instance 29
+Class540.sendMessage(final String msg,final ResponseHandler<T> handler)#0{
+      socket.connect(new InetSocketAddress(hostname, port), timeout);
+      final InputStreamReader in = new InputStreamReader(
+          socket.getInputStream(), US_ASCII);
+      final OutputStreamWriter out = new OutputStreamWriter(
+          socket.getOutputStream(), US_ASCII);
+}
+
+
+Instance 30
+Class70.getStatus(String address)#8{
+      socket.connect(new InetSocketAddress(host, port), 3000);
+      dis = new DataInputStream(socket.getInputStream());
+      dos = new DataOutputStream(socket.getOutputStream());
+      dos.write(1);
+}
+
+
+Instance 31
+Class670.run()#3{
+                s.connect(new InetSocketAddress(host, port));
+                InputStream in = s.getInputStream();
+                OutputStream out = s.getOutputStream();
+                out.write(INITIAL_PACKET);
+}
+
+
+Instance 32
+Class290.testIsMockServerCanRespond()#1{
+            socket.connect(new InetSocketAddress("127.0.0.1", server.getAddress().getPort()));
+            InputStream is = socket.getInputStream();
+            OutputStream os = socket.getOutputStream();
+            os.write(mockClientData);
+}
+
+
+Instance 33
+Class200.testIsMockServerCanUpgradeConnectionToSsl()#1{
+            InetSocketAddress address = new InetSocketAddress("127.0.0.1", server.getAddress().getPort());
+            socket.connect(address);
+                InputStream is = socket.getInputStream();
+                OutputStream os = socket.getOutputStream();
+                os.write(mockClientData1);
+}
+
+
+Instance 34
+Class700.connect()#0{
+    socket.connect(new InetSocketAddress(port));
+    InputStream in = socket.getInputStream();
+    OutputStream out = socket.getOutputStream();
+    handle(in ,out);
+}
+
+
+Instance 35
+Class160.main(String[] args)#6{
+        socket.connect(new InetSocketAddress(host, port), 3000);
+        datainputstream = new DataInputStream(socket.getInputStream());
+        dataoutputstream = new DataOutputStream(socket.getOutputStream());
+        dataoutputstream.write(254);
+}
+
+
+Instance 36
+Class140.serverRunning(String host,int port,Consumer<Throwable> onError)#0{
+            socket.connect(new InetSocketAddress(host, port), 500);
+            if (socket.isConnected()) {
+                try {
+                    socket.close();
+                } catch (IOException ignored) {
+                    log.debug("[IGNORED] Exception closing server test socket: ", ignored);
+                }
+                return true;
+            }
+}
+
+
+Instance 37
+Class580.setTraceMask(String host,int port,String traceMaskStr)#5{
+            s.connect(new InetSocketAddress(host, port));
+            InputStream is = s.getInputStream();
+            OutputStream os = s.getOutputStream();
+            os.write(reqBytes);
+}
+
+
+Instance 38
+Class190.stat(String host,int port)#0{
+            s.connect(new InetSocketAddress(host, port));
+            InputStream is = s.getInputStream();
+            OutputStream os = s.getOutputStream();
+            os.write(reqBytes);
+}
+
+
+Instance 39
+Class680.isServiceSsl(String host,int port,boolean trustAllCerts)#1{
+            socket.connect(new InetSocketAddress(host, port), 1 * 1000);
+                InputStream in = socket.getInputStream();
+                OutputStream out = socket.getOutputStream();
+                out.write(1);
+}
+
+
+Instance 40
+Class550.transactRtspMessage(RtspMessage m)#0{
+      s.connect(new InetSocketAddress(context.serverAddress, PORT), RTSP_TIMEOUT);
+      RtspStream rtspStream = new RtspStream(s.getInputStream(), s.getOutputStream());
+        rtspStream.write(m);
+        return (RtspResponse) rtspStream.read();
+}
+
+
+Instance 41
+Class60.testConscryptSSLEngineNPNHandshakeBug()#7{
+        socket.connect(new InetSocketAddress("www.google.com", 443));
+        InputStream is = socket.getInputStream();
+        OutputStream os = socket.getOutputStream();
+}
+
+
+Instance 42
+Class620.run()#3{
+        outputSocket.connect(new InetSocketAddress(httpServer.getLocalAddress(), httpServer.getLocalPort()));
+        final InputStream outputSocketInputStream = outputSocket.getInputStream();
+        final OutputStream outputSocketOutputStream = outputSocket.getOutputStream();
+}
+
+
+Instance 43
+Class400.connectAndGetResponse(final InetAddress address,final Integer port,final int timeout)#0{
+                final InetSocketAddress inetSocketAddress = new InetSocketAddress(address, port.intValue());
+                socket.connect(inetSocketAddress, timeout);
+                socket.setSoTimeout(timeout);
+                isr = new InputStreamReader(socket.getInputStream());
+                lineRdr = new BufferedReader(isr);
+                final String banner = lineRdr.readLine();
+}
+
+
+Instance 44
+Class530.testCorrectSocketClose()#2{
+            s.connect(new InetSocketAddress(U.getLocalHost(), PORT), 1000);
+            if (!(s instanceof SSLSocket)) {
+                // These methods are not supported by SSL sockets.
+                s.shutdownInput();
+
+                s.shutdownOutput();
+            }
+            s.close();
+}
+
+
+Instance 45
+Class300.call()#0{
+                SocketAddress socketAddress = new InetSocketAddress(streamHost.getAddress(),
+                                streamHost.getPort());
+                socket.connect(socketAddress);
+                if (!establish(socket)) {
+
+                    // initialization failed, close socket
+                    socket.close();
+                    throw new XMPPException("establishing connection to SOCKS5 proxy failed");
+
+                }
+}
+
+
+Instance 46
+Class460.call()#1{
+            final SocketAddress socketAddress = new InetSocketAddress(
+                streamHost.getAddress(), streamHost.getPort());
+            socket.connect(socketAddress);
+            if (!establish(socket)) {
+
+              // initialization failed, close socket
+              socket.close();
+              throw new XMPPException(
+                  "establishing connection to SOCKS5 proxy failed");
+
+            }
+}
+
+
+Instance 47
+Class590.main(String args[])#4{
+        int port = Integer.parseInt(portStr);
+        socket.connect(new InetSocketAddress("127.0.0.1", port), 9 * 1000);
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        out.write(args[1]);
+        out.newLine();
+        out.flush();
+}
+
+
+Instance 48
+Class670.stop()#0{
+            socket.connect(new InetSocketAddress(InetAddress.getLoopbackAddress(), GSSTestConstants.PORT),
+                    GSSTestConstants.SOCKET_TIMEOUT);
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            dos.writeInt(GSSTestConstants.CMD_STOP);
+            dos.flush();
+}
+
+
+Instance 49
+Class280.testServerShutdown()#4{
+        s.connect(new InetSocketAddress(U.getLocalHost(), PORT), 1000);
+            s.getOutputStream().write(msg);
+}
+
+
+Instance 50
+Class650.testCloseSession()#9{
+            s.connect(new InetSocketAddress(U.getLocalHost(), PORT), 1000);
+            s.getOutputStream().write(new byte[1]);
+}
+
+
+Instance 51
+Class490.onHandleIntent(Intent intent)#7{
+                socket.connect((new InetSocketAddress(host, port)), SOCKET_TIMEOUT);
+                Log.d(WiFiDirectActivity.TAG, "Client socket - " + socket.isConnected());
+                OutputStream stream = socket.getOutputStream();
+}
+
+
+Instance 52
+Class540.main(String[] args)#3{
+      socket.connect(new InetSocketAddress(Server.port));
+      log("is connected:" + socket.isConnected());
+      OutputStream os = socket.getOutputStream();
+}
+
+
+Instance 53
+Class390.openConnection(final OperatedClientConnection conn,final HttpHost target,final InetAddress local,final HttpContext context,final HttpParams params)#0{
+            socket.connect(new InetSocketAddress(mProxyHost, mProxyPort), CONNECT_TIMEOUT_MILLISECONDS);
+            DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
+}
+
+
+Instance 54
+Class490.onHandleIntent(Intent intent)#0{
+        socket.connect((new InetSocketAddress(host, port)), SOCKET_TIMEOUT);
+        Log.d(WiFiDirectActivity.TAG, "Client socket - " + socket.isConnected());
+        OutputStream stream = socket.getOutputStream();
+}
+
+
+Instance 55
+Class650.validateSendMessage(byte[] msg)#1{
+            s.connect(new InetSocketAddress(U.getLocalHost(), PORT), 1000);
+                s.getOutputStream().write(msg);
+}
+
+
+Instance 56
+Class20.createDataOutputStream()#0{
+    SocketAddress socketAddress = new InetSocketAddress(address, port);
+    socket.connect(socketAddress, connectionTimeout);
+    OutputStream os = socket.getOutputStream();
+    TimeoutOutputStream tos = new TimeoutOutputStream(os, writeTimeout);
+    return new DataOutputStream(tos);
+}
+
+
+Instance 57
+Class250.connect(final int port,int tries)#0{
+            s.connect(new InetSocketAddress(this.host, port), connectTimeout);
+            s.getOutputStream().close();
+}
+
+
+Instance 58
+Class610.openSocket()#5{
+                    tempSocket.connect(new InetSocketAddress(remoteHost, port), acceptConnectionTimeout);
+                    tempOutputStream = new BufferedOutputStream(tempSocket.getOutputStream(), writeBufferSize);
+                    encoder.init(tempOutputStream);
+}
+
+
+Instance 59
+Class490.createManager(final String name,final FactoryData data)#0{
+                socket.connect(new InetSocketAddress(data.host, data.port), data.connectTimeoutMillis);
+                os = socket.getOutputStream();
+                return new TcpSocketManager(name, os, socket, inetAddress, data.host, data.port,
+                        data.connectTimeoutMillis, data.delayMillis, data.immediateFail, data.layout);
+                LOGGER.error("TcpSocketManager (" + name + ") " + ex);
+}
+
+
+Instance 60
+Class310.sendAndReceive(String input,int port)#4{
+        soc.connect(new InetSocketAddress("localhost", port));
+            os = soc.getOutputStream();
+}
+
+
+Instance 61
+Class500.disconnect(final int port,int tries)#4{
+            s.connect(new InetSocketAddress(this.host, port), connectTimeout);
+            s.getOutputStream().close();
+}
+
+
+Instance 62
+Class670.doInBackground(Void... params)#0{
+                socket.connect(new InetSocketAddress("tomorrowkey.github.io", 80));
+                OutputStream outputStream = socket.getOutputStream();
+}
+
+
+Instance 63
+Class150.bogusDataTest()#4{
+    socket.connect(new InetSocketAddress(HostUtil.getHostName(), oserver.getPort()));
+    OutputStream outstream = socket.getOutputStream();
+}
+
+
+Instance 64
+Class120.run()#0{
+            s.connect(new InetSocketAddress(host, PORT), TIMEOUT);
+            OutputStream out = s.getOutputStream();
+}
+
+
+Instance 65
+Class30.TcpTest(InetAddress ia)#0{
+            s.connect(new InetSocketAddress(ia, ss.getLocalPort()));
+            Socket s2 = ss.accept();
+            s2.close();
+}
+
+
+Instance 66
+Class400.getOrCreateSocket(boolean resend)#0{
+            Utilities.close(socket);
+        if (socket == null || socket.isClosed()) {
+            try {
+                if (proxy == null) {
+                    socket = factory.createSocket(host, port);
+                    logger.debug("Connected new socket {}", socket);
+                } else if (proxy.type() == Proxy.Type.HTTP) {
+                    TlsTunnelBuilder tunnelBuilder = new TlsTunnelBuilder();
+                    socket = tunnelBuilder.build((SSLSocketFactory) factory, proxy, proxyUsername, proxyPassword, host, port);
+                    logger.debug("Connected new socket through http tunnel {}", socket);
+                } else {
+                    boolean success = false;
+                    Socket proxySocket = null;
+                    try {
+                        proxySocket = new Socket(proxy);
+                        proxySocket.connect(new InetSocketAddress(host, port), connectTimeout);
+                        socket = ((SSLSocketFactory) factory).createSocket(proxySocket, host, port, false);
+                        success = true;
+                    } finally {
+                        if (!success) {
+                            Utilities.close(proxySocket);
+                        }
+                    }
+                    logger.debug("Connected new socket through socks tunnel {}", socket);
+                }
+
+                socket.setSoTimeout(readTimeout);
+                socket.setKeepAlive(true);
+
+                if (errorDetection) {
+                    monitorSocket(socket);
+                }
+
+                reconnectPolicy.reconnected();
+                logger.debug("Made a new connection to APNS");
+            } catch (IOException e) {
+                logger.error("Couldn't connect to APNS server", e);
+                // indicate to clients whether this is a resend or initial send
+                throw new NetworkIOException(e, resend);
+            }
+        }
+}
+
+
+Instance 67
+Class370.stopHTTPProxyServer()#1{
+        outputSocket.connect(new InetSocketAddress(APJP.APJP_LOCAL_HTTP_PROXY_SERVER_ADDRESS, APJP.APJP_LOCAL_HTTP_PROXY_SERVER_PORT));
+        outputSocket.close();
+}
+
+
+Instance 68
+Class60.run()#4{
+                    socket.connect(new InetSocketAddress(WEBSITE_HOST, 80), 3000);
+                    socket.close();
+}
+
+
+Instance 69
+Class670.test()#3{
+            socket.connect(new InetSocketAddress(this.address, this.port), 100);
+            socket.close();
+}
+
+
+Instance 70
+Class610.main(String[] args)#3{
+        s.connect(new InetSocketAddress(port));
+        s.close();
+}
+
+
+Instance 71
+Class730.run()#1{
+                                socket.connect(new InetSocketAddress(address, item.getValue()), SOCKET_TIMEOUT_MS);
+                                socket.close();
+}
+
+
+Instance 72
+Class540.isSshable()#1{
+                s.connect(new InetSocketAddress(getAddress(), getPort()), SSHABLE_CONNECT_TIMEOUT);
+                s.close();
+}
+
+
+Instance 73
+Class650.checkSocketConnectable(String host,int port)#0{
+            mySocket.connect(new InetSocketAddress(host, port), 4000);
+            mySocket.close();
+}
+
+
+Instance 74
+Class340.processCIFSServerConfig()#50{
+                        InetSocketAddress sockAddr = new InetSocketAddress(winsAddr, RFCNetBIOSProtocol.NAME_PORT);
+                        winsSocket.connect(sockAddr, 3000);
+                        winsSocket.close();
+}
+
+
+Instance 75
+Class140.main(String args[])#3{
+        s.connect( new InetSocketAddress(port) );
+        s.close();
+}
+
+
+Instance 76
+Class140.checkPortReady(int port,int timeout)#2{
+                socket.connect(new InetSocketAddress("localhost", port));
+                socket.close();
+}
+
+
+Instance 77
+Class170.agentmain(String args)#1{
+        s.connect( new InetSocketAddress(port) );
+        s.close();
+}
+
+
+Instance 78
+Class0.check()#2{
+            s.connect(new InetSocketAddress(host, port), timeout);
+            s.close();
+}
+
+
+Instance 79
+Class380.stopHTTPServer()#1{
+        outputSocket.connect(new InetSocketAddress(APJP.APJP_LOCAL_HTTP_SERVER_ADDRESS, serverSocket.getLocalPort()));
+        outputSocket.close();
+}
+
+
+Instance 80
+Class310.launch(final SlaveComputer computer,final TaskListener listener)#7{
+                s.connect(new InetSocketAddress(host,135),5000);
+                s.close();
+}
+
+
+Instance 81
+Class0.doInBackground(Void... params)#0{
+            s.connect(new InetSocketAddress(host, port), timeout);
+            BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()), BUF);
+            while ((banner = in.readLine()) != null) {
+                break;
+            }
+            in.close();
+}
+
+
+Instance 82
+Class660.ignoreIfDatabaseNotAvailable()#0{
+        socket.connect(new InetSocketAddress("localhost", databasePort));
+        socket.close();
+}
+
+
+Instance 83
+Class450.handle(Request req,Response resp)#14{
+              sock.connect(new InetSocketAddress(host, iport),
+                  10000);
+              sock.close();
+}
+
+
+Instance 84
+Class700.checkIfRemoteEndpointAccessible(String host,int port)#0{
+      discover.connect(new InetSocketAddress(host, port), 1000);
+      discover.close();
+}
+
+
+Instance 85
+Class710.isLocalHostAddressReachable(String hostAddress,int port)#2{
+        socket.connect(new InetSocketAddress(hostAddress, port), 500);
+        socket.close();
+}
+
+
+Instance 86
+Class710.call()#1{
+                    socket.connect(new InetSocketAddress(ip, port), timeout);
+                    socket.close();
+}
+
+
+Instance 87
+Class490.isPortFree(int port)#0{
+            socket.connect(new InetSocketAddress("localhost", port), 200);
+            socket.close();
+}
+
+
+Instance 88
+Class630.openConnection()#0{
+      s.connect(new InetSocketAddress(host, port), tms);
+        s.close();
+}
+
+
+Instance 89
+Class430.maybeCheckForLocalhostPeer()#2{
+                socket.connect(new InetSocketAddress(InetAddresses.forString("127.0.0.1"), params.getPort()), vConnectTimeoutMillis);
+                    socket.close();
+}
+
+
+Instance 90
+Class430.trySocketConnection(String host,int port)#0{
+      InetSocketAddress endpoint = new InetSocketAddress(host, port);
+      socket.connect(endpoint, 5000);
+      socket.close();
+}
+
+
+Instance 91
+Class460.run()#1{
+                InetSocketAddress addr = new InetSocketAddress(host, port);
+                socket.connect(addr);
+                socket.close();
+}
+
+
+Instance 92
+Class680.main(String args[])#1{
+        s.connect( new InetSocketAddress(port) );
+        s.close();
+}
+
+
+Instance 93
+Class420.loopUntilHMSReady(int port)#0{
+        socket.connect(new InetSocketAddress(port), 5000);
+        socket.close();
+}
+
+
+Instance 94
+Class530.stopProxyServer()#1{
+        outputSocket.connect(new InetSocketAddress(APJP.APJP_LOCAL_PROXY_SERVER_ADDRESS, APJP.APJP_LOCAL_PROXY_SERVER_PORT));
+        outputSocket.close();
+}
+
+
+Instance 95
+Class170.isOpen(String host,int port)#1{
+            socket.connect(new InetSocketAddress(host, port), (int) TimeUnit.MILLISECONDS.convert(1, TimeUnit.SECONDS));
+            socket.close();
+}
+
+
+Instance 96
+Class380.stopHTTPSProxyServer()#0{
+        outputSocket.connect(new InetSocketAddress(APJP.APJP_LOCAL_HTTPS_PROXY_SERVER_ADDRESS, APJP.APJP_LOCAL_HTTPS_PROXY_SERVER_PORT));
+        outputSocket.close();
+}
+
+
+Instance 97
+Class450.test(InetAddress addr)#13{
+                s.connect(new InetSocketAddress(addr, port));
+                Socket peer = ss.accept();
+                    testConnection(s.getOutputStream(), peer.getInputStream());
+}
+
+
+Instance 98
+Class60.test(InetAddress addr)#10{
+            Socket s = Sdp.openSocket();
+                s.connect(new InetSocketAddress(addr, port));
+                Socket peer = ss.accept();
+                    testConnection(s.getOutputStream(), peer.getInputStream());
+}
+
+
+Instance 99
+Class0.connect(Socket sock,SocketAddress dest,int sock_conn_timeout){
+        if(dest instanceof InetSocketAddress) {
+            InetAddress addr=((InetSocketAddress)dest).getAddress();
+            if(addr instanceof Inet6Address) {
+                Inet6Address tmp=(Inet6Address)addr;
+                if(tmp.getScopeId() != 0) {
+                    dest=new InetSocketAddress(InetAddress.getByAddress(tmp.getAddress()), ((InetSocketAddress)dest).getPort());
+                }
+            }
+        }
+        sock.connect(dest, sock_conn_timeout);
+}
+
+
+Instance 100
+Class50.connectUnconnected()#2{
+        sslSocket.connect(new java.net.InetSocketAddress("localhost",
+                                                         serverPort));
+        if (!sslSocket.isConnected())
+            throw new Exception("Client socket is not connected!");
+}
+
+
+Instance 101
+Class10.start()#1{
+            socket.connect(new InetSocketAddress(mHost, mPort), TIME_OUT);
+            if (isConnected = socket.isConnected())
+                mDelay = System.currentTimeMillis() - startTime;
+            else
+                mError = TCP_LINK_ERROR;
+}
+
+
+Instance 102
+Class410.openConnection()#0{
+      socket.connect(new InetSocketAddress(_host, _port), CONNECT_TIMEOUT);
+      InputStream is = socket.getInputStream();
+}
+
+
+Instance 103
+Class160.poll(MonitoredService svc,Map<String,Object> parameters)#6{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+                LOG.debug("TcpMonitor: connected to host: {} on port: {}", ipv4Addr, port);
+}
+
+
+Instance 104
+Class70.poll(MonitoredService svc,Map<String,Object> parameters)#4{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), timeoutTracker.getConnectionTimeout());
+                socket.setSoTimeout(timeoutTracker.getSoTimeout());
+                LOG.debug("CitrixMonitor: connected to host: {} on port: {}", host, port);
+}
+
+
+Instance 105
+Class620.poll(final MonitoredService svc,final Map<String,Object> parameters)#10{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+                LOG.debug("Connected to host: {} on port: {}", ipv4Addr, port);
+}
+
+
+Instance 106
+Class620.poll(MonitoredService svc,Map<String,Object> parameters)#7{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+                LOG.debug("Pop3Monitor: connected to host: {} on port: {}", ipv4Addr, port);
+}
+
+
+Instance 107
+Class260.poll(MonitoredService svc,Map<String,Object> parameters)#11{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+                LOG.debug("NrpeMonitor: connected to host: {} on port: {}", ipv4Addr, port);
+                socket = wrapSocket(socket, useSsl);
+}
+
+
+Instance 108
+Class280.poll(MonitoredService svc,Map<String,Object> parameters)#7{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+                LOG.debug("DominoIIOPMonitor: connected to host: {} on port: {}", ipv4Addr, port);
+}
+
+
+Instance 109
+Class210.poll(MonitoredService svc,Map<String,Object> parameters)#1{
+            socket.connect(new InetSocketAddress((InetAddress) iface.getAddress(), ldapPort), tracker.getConnectionTimeout());
+            socket.setSoTimeout(tracker.getSoTimeout());
+            LOG.debug("LdapMonitor: connected to host: {} on port: {}", address, ldapPort);
+}
+
+
+Instance 110
+Class260.poll(MonitoredService svc,Map<String,Object> parameters)#7{
+                socket.connect(new InetSocketAddress(ipAddr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+                LOG.debug("SmtpMonitor: connected to host: {} on port: {}", ipAddr, port);
+}
+
+
+Instance 111
+Class310.poll(MonitoredService svc,Map<String,Object> parameters)#4{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+                LOG.debug("FtpMonitor: connected to host: {} on port: {}", ipv4Addr, port);
+}
+
+
+Instance 112
+Class720.poll(MonitoredService svc,Map<String,Object> parameters)#7{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), timeoutTracker.getConnectionTimeout());
+                socket.setSoTimeout(timeoutTracker.getSoTimeout());
+                LOG.debug("connected to host: {} on port: {}", host, port);
+}
+
+
+Instance 113
+Class680.poll(MonitoredService svc,Map<String,Object> parameters)#2{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+}
+
+
+Instance 114
+Class680.pollTimeTcp(MonitoredService svc,Map<String,Object> parameters,PollStatus serviceStatus,TimeoutTracker tracker,InetAddress ipv4Addr,int port,int allowedSkew,boolean persistSkew)#7{
+                socket.connect(new InetSocketAddress(ipv4Addr, port), tracker.getConnectionTimeout());
+                socket.setSoTimeout(tracker.getSoTimeout());
+}
+
+
+Instance 115
+Class520.HttpConnection(Address config,int connectTimeout)#1{
+            socketCandidate = (config.proxy != null && config.proxy.type() != Proxy.Type.HTTP)
+                    ? new Socket(config.proxy)
+                    : new Socket();
+                socketCandidate.connect(
+                        new InetSocketAddress(addresses[i], config.socketPort), connectTimeout);
+                if (i == addresses.length - 1) {
+                    throw e;
+                }
+}
+
+
+Instance 116
+Class460.open(final String hostname,final int port,final ProxyData proxyData,final int connectTimeout)#4{
+            InetAddress addr = TransportManager.createInetAddress(pd.proxyHost);
+            sock.connect(new InetSocketAddress(addr, pd.proxyPort), connectTimeout);
+            sock.setSoTimeout(0);
+}
+
+
+Instance 117
+Class460.open(final String hostname,final int port,final ProxyData proxyData,final int connectTimeout)#9{
+            InetAddress addr = TransportManager.createInetAddress(hostname);
+            sock.connect(new InetSocketAddress(addr, port), connectTimeout);
+            sock.setSoTimeout(0);
+}
+
+
+Instance 118
+Class260.createSocket(String host,int port)#1{
+      socket.connect(new InetSocketAddress(host, port), CONNECT_MS);
+      socket.setSoTimeout(RESPONSE_TIMEOUT_MS);
+}
+
+
+Instance 119
+Class180.getWrappedSocket(final InetAddress address,final int port,final int timeout)#0{
+        socket.connect(new InetSocketAddress(address, port), timeout);
+        socket.setSoTimeout(timeout);
+            return SocketUtils.wrapSocketInSslContext(socket);
+}
+
+
+Instance 120
+Class720.stop(final Log LOG,final ProcessDescription cfg)#7{
+                            clientSocket.connect(new InetSocketAddress(hostName, controlPort), twoMinutes);
+                            clientSocket.setSoTimeout(twoMinutes);
+}
+
+
+Instance 121
+Class620.createSocketConnection(InetAddress host,int port,int timeout)#0{
+        socket.connect(new InetSocketAddress(host, port), timeout);
+        socket.setSoTimeout(timeout);
+}
+
+
+Instance 122
+Class370.testORBDoesNotOpenListenSocket()#2{
+            socket.connect(new InetSocketAddress("localhost", port), TestUtils.isWindows () ? 5000 : 1000);
+            if ( ! (socket instanceof SSLSocket) && ! socket.isClosed ())
+            {
+                socket.shutdownOutput ();
+            }
+}
+
+
+Instance 123
+Class570.makeObject()#0{
+       socket.setSoTimeout(this.getThriftProxy().getThriftTimeoutMillis());
+       socket.connect(new InetSocketAddress(this.getThriftProxy().getThriftServer(),  this.getThriftProxy().getThriftPort()));
+       LOGGER.info("Creating a new socket for server : {} at port : {}", this.getThriftProxy().getThriftServer(), this.getThriftProxy().getThriftPort());
+}
+
+
+Instance 124
+Class320.connectToHost(String host,int port,SocketAddress localAddress)#1{
+                    socket.connect(new InetSocketAddress(hostAddresses[i], port));
+                    if (i == (hostAddresses.length - 1)) throw e;
+}
+
+
+Instance 125
+Class590.connect()#4{
+                socket.connect(new InetSocketAddress(hostname, port));
+                channel = new PacketChannel(socket);
+                if (channel.getInputStream().peek() == -1) {
+                    throw new EOFException();
+                }
+}
+
+
+Instance 126
+Class150.performancePreferenceTest(int connectionTime,int latency,int bandwidth)#2{
+        InetSocketAddress clAddress = new InetSocketAddress(InetAddress
+                .getLocalHost(), portNumber);
+        clientSocket.connect(clAddress);
+        Socket servSock = theSocket.accept();
+}
+
+
+Instance 127
+Class70.test_bindLjava_net_SocketAddress()#5{
+        InetSocketAddress boundAddress = new InetSocketAddress(InetAddress
+                .getLocalHost(), sport);
+        theSocket.connect(boundAddress);
+        Socket worker = server.accept();
+                worker.getRemoteSocketAddress());
+}
+
+
+Instance 128
+Class130.test_bindLjava_net_SocketAddress()#6{
+        InetSocketAddress clAddress = new InetSocketAddress(InetAddress
+                .getLocalHost(), portNumber);
+        clientSocket.connect(clAddress);
+        Socket servSock = theSocket.accept();
+}
+
+
+Instance 129
+Class80.test_isConnected()#4{
+        server = new ServerSocket();
+        server.bind(theAddress);
+        InetSocketAddress boundAddress = new InetSocketAddress(server
+                .getInetAddress(), server.getLocalPort());
+        client.connect(boundAddress);
+        worker = server.accept();
+}
+
+
+Instance 130
+Class160.test_getInputStream()#2{
+            pingClient.connect(new InetSocketAddress(
+                    InetAddress.getLocalHost(), pingServer.getLocalPort()));
+            Socket worker = pingServer.accept();
+            pingServer.close();
+}
+
+
+Instance 131
+Class280.connectSocket(Socket sock,String host,int port,InetAddress localAddress,int localPort,HttpParams params)#0{
+        addresses.addAll(Arrays.asList(inetadrs));
+        Collections.shuffle(addresses);
+        for (InetAddress remoteAddress: addresses) {
+            try {
+                sock.connect(new InetSocketAddress(remoteAddress, port), timeout);
+                break;
+            } catch (SocketTimeoutException ex) {
+                throw new ConnectTimeoutException("Connect to " + remoteAddress + " timed out");
+            } catch (IOException ex) {
+                // create new socket
+                sock = new Socket();
+                // keep the last exception and retry
+                lastEx = ex;
+            }
+        }
+}
+
+
+Instance 132
+Class60.connectSocket(final Socket socket,final String host,final int port,final InetAddress localAddress,final int localPort,final HttpParams params)#0{
+        addresses.addAll(Arrays.asList(inetadrs));
+        Collections.shuffle(addresses);
+        for (final InetAddress remoteAddress: addresses) {
+            try {
+                sock.connect(new InetSocketAddress(remoteAddress, port), timeout);
+                break;
+            } catch (final SocketTimeoutException ex) {
+                throw new ConnectTimeoutException("Connect to " + remoteAddress + " timed out");
+            } catch (final IOException ex) {
+                // create new socket
+                sock = new Socket();
+                // keep the last exception and retry
+                lastEx = ex;
+            }
+        }
+}
+
+
+Instance 133
+Class630.isPortOpen(InetAddress pAddress,int pPort)#2{
+            SocketAddress sa = new InetSocketAddress(pAddress, pPort);
+            socket.connect(sa, 200);
+            return socket.isConnected();
+}
+
+
+Instance 134
+Class220.isLocalPortOccupied(int portNum)#0{
+            s.connect(new InetSocketAddress(portNum));
+            return s.isConnected();
+}
+
+
+Instance 135
+Class720.test_getRemoteSocketAddress()#1{
+        theSocket.connect(new InetSocketAddress(InetAddress.getLocalHost(),
+                serverPort));
+                theSocket.getRemoteSocketAddress());
+}
+
+
+Instance 136
+Class610.test_connectLjava_net_SocketAddress()#1{
+            theSocket.connect(new InetSocketAddress(InetAddress.getLocalHost(),
+                    0));
+}
+
+
+Instance 137
+Class630.connectWithTimeout(Socket socket){
+        socket.connect(new InetSocketAddress(InetAddress.getLocalHost(), 1234), 500);
+}
+
+
+Instance 138
+Class40.test_connectLjava_net_SocketAddressI()#1{
+            theSocket.connect(new InetSocketAddress(InetAddress.getLocalHost(),
+                    1), 200);
+}
+
+
+Instance 139
+Class250.test_connectLjava_net_SocketAddressI()#6{
+            theSocket.connect(new InetSocketAddress(InetAddress.getLocalHost(),
+                    0), 0);
+}
+
+
+Instance 140
+Class250.test_connectLjava_net_SocketAddressI()#12{
+        SocketAddress nonListeningAddress = new InetSocketAddress(InetAddress
+                .getLocalHost(), 42);
+            theSocket.connect(nonListeningAddress, 1000);
+}
+
+
+Instance 141
+Class160.validateRemoteDomain(Element doc,StreamID streamID)#4{
+                for (Iterator<DNSUtil.HostAddress> it = hosts.iterator(); it.hasNext();) {
+                    try {
+                        DNSUtil.HostAddress address = it.next();
+                        realHostname = address.getHost();
+                        realPort = address.getPort();
+                        Log.debug("ServerDialback: RS - Trying to connect to Authoritative Server: " + hostname +
+                                "(DNS lookup: " + realHostname + ":" + realPort + ")");
+                        // Establish a TCP connection to the Receiving Server
+                        socket.connect(new InetSocketAddress(realHostname, realPort),
+                                RemoteServerManager.getSocketTimeout());
+                        Log.debug("ServerDialback: RS - Connection to AS: " + hostname + " successful");
+                        break;
+                    }
+                    catch (Exception e) {
+                        Log.warn("Error trying to connect to remote server: " + hostname +
+                                "(DNS lookup: " + realHostname + ")", e);
+                    }
+                }
+}
+
+
+Instance 142
+Class690.getMediaIds(File[] pics,Twitter twitter)#0{
+                        socket.connect(
+                                new InetSocketAddress(host.getHostName(), host.getPort()), 0);
+                        conn.bind(socket, params);
+}
+
+
+Instance 143
+Class440.getDMPicture(String picUrl,Twitter twitter)#7{
+            socket.connect(
+                    new InetSocketAddress(host.getHostName(), host.getPort()), 0);
+            conn.bind(socket, params);
+}
+
+
+Instance 144
+Class250.getImageURLs(Status status,Twitter twitter)#7{
+            socket.connect(
+                    new InetSocketAddress(host.getHostName(), host.getPort()), 0);
+            conn.bind(socket, params);
+}
+
+
+Instance 145
+Class280.getJsonResponse()#9{
+            socket.connect(
+                    new InetSocketAddress(host.getHostName(), host.getPort()), 0);
+            conn.bind(socket, params);
+}
+
+
+Instance 146
+Class620.uploadPics(File[] pics,String text,Twitter twitter)#6{
+                    socket.connect(
+                            new InetSocketAddress(host.getHostName(), host.getPort()), 0);
+                    conn.bind(socket, params);
+}
+
+
+Instance 147
+Class180.create(final HttpHost host)#2{
+        socket.connect(new InetSocketAddress(host.getHostName(), host.getPort()), connectTimeout);
+        return create(socket, this.params);
+}
+
+
+Instance 148
+Class190.validateProxy(HttpHost p)#2{
+      InetSocketAddress endpointSocketAddr = new InetSocketAddress(p.getAddress().getHostAddress(), p.getPort());
+      socket.connect(endpointSocketAddr, 3000);
+}
+
+
+Instance 149
+Class330.createSocket(String host,int port,InetAddress localAddr,int localPort)#0{
+            s.connect(new InetSocketAddress(host, port));
+        return new Socket(host, port, localAddr, localPort);
+}
+
+
+Instance 150
+Class430.createSocket(String host,int port)#0{
+            s.connect(new InetSocketAddress(host, port));
+        return new Socket(host, port);
+}
+
+
+Instance 151
+Class240.createSocket(InetAddress address,int port)#1{
+            s.connect(new InetSocketAddress(address, port));
+        return new Socket(address, port);
+}
+
+
+Instance 152
+Class0.tryAllAddresses(Socket sock,String host,int port,int connectTimeout)#0{
+    InetAddress[] addresses = InetAddress.getAllByName(host);
+    for (InetAddress addr : addresses) {
+      try {
+        sock.connect(new InetSocketAddress(addr, port), connectTimeout);
+        return;
+      } catch (SocketTimeoutException e) {
+      }
+    }
+}
+
+
+Instance 153
+Class520.initializeDefaultSocketParameters(final InetSocketAddress bindAddress,final InetAddress connectAddress)#0{
+            socket.connect(new InetSocketAddress(connectAddress, ss.getLocalPort()), 10000);
+            initializeDefaultSocketParameters(socket);
+}
+
+
+Instance 154
+Class470.main(String[] args)#1{
+            new InetSocketAddress("127.0.0.1",
+                                  serverSocket.getLocalPort());
+        socket.connect(connectAddr);
+        log.println();
+}
+
+
+Instance 155
+Class50.test()#1{
+            sock.connect(new InetSocketAddress("localhost", ss.getLocalPort()));
+}
+
+
+Instance 156
+Class300.connect(Connection remoteConn)#8{
+                int proxyPort = ss.length > 1 ? Integer.parseInt(ss[1]) : 8080;
+                s.connect(new InetSocketAddress(ss[0], proxyPort), connectTimeout);
+                    doProxyHandshake(s, remoteHostname, remotePort, userauth,
+                            connectTimeout);
+                    SafeClose.close(s);
+}
+
+
+Instance 157
+Class700.issueRequest(String targetHost,int targetPort,String forPlayerName,String requestContent,int timeoutClock,Map<String,String> extraHeaders)#0{
+      InetAddress theHost = InetAddress.getByName(targetHost);
+      socket.connect(new InetSocketAddress(theHost.getHostAddress(), targetPort), 5000);
+      HttpWriter.writeAsClient(socket, theHost.getHostName(), requestContent, forPlayerName, extraHeaders);
+}
+
+
+Instance 158
+Class280.execute(SessionData data,Element command)#6{
+                    InetSocketAddress remoteAddress = new InetSocketAddress(address, adminPort > 0 ? adminPort : adminSecurePort);
+                        socket.connect(remoteAddress);
+                        bindInterface = address.getHostAddress();
+}
+
+
+Instance 159
+Class420.getServerInterfaces()#1{
+                        InetSocketAddress remoteAddress = new InetSocketAddress(address, adminPort > 0 ? adminPort : adminSecurePort);
+                            socket.connect(remoteAddress);
+                            bindInterfaces.add(address.getHostAddress());
+}
+
+
+Instance 160
+Class640.run()#2{
+                    InetSocketAddress remoteAddress = new InetSocketAddress(address, adminPort > 0 ? adminPort : adminSecurePort);
+                        socket.connect(remoteAddress);
+                        bindInterface = address.getHostAddress();
+}
+
+
+Instance 161
+Class70.createOutgoingSession(String localDomain,String remoteDomain,int port)#11{
+                    socket.connect(new InetSocketAddress(hostname, realPort),
+                            RemoteServerManager.getSocketTimeout());
+                    Log.debug("ServerDialback: OS - Connection to " + remoteDomain + ":" + port + " successful");
+                    Log.warn("Error trying to connect to remote server: " + remoteDomain +
+                            "(DNS lookup: " + hostname + ":" + realPort + ")", e);
+}
+
+
+Instance 162
+Class460.createOutgoingSession(String domain,String hostname,int port)#27{
+                socket.connect(new InetSocketAddress(realHostname, realPort),
+                        RemoteServerManager.getSocketTimeout());
+                Log.debug("LocalOutgoingServerSession: OS - Plain connection to " + hostname + ":" + port + " successful");
+}
+
+
+Instance 163
+Class250.test_connectLjava_net_SocketAddressI()#19{
+        SocketAddress nonConnectableAddress = new InetSocketAddress(InetAddress
+                .getByAddress(new byte[] { 0, 0, 0, 0 }), 0);
+            theSocket.connect(nonConnectableAddress, 1000);
+}
+
+
+Instance 164
+Class610.test_connectLjava_net_SocketAddress()#7{
+            theSocket.connect(new InetSocketAddress(InetAddress
+                    .getByAddress(new byte[] { 0, 0, 0, 0 }), 42));
+}
+
+
+Instance 165
+Class560.doExportUrlsFor1Protocol(ProtocolConfig protocolConfig,List<URL> registryURLs)#20{
+                                SocketAddress addr = new InetSocketAddress(registryURL.getHost(), registryURL.getPort());
+                                socket.connect(addr, 1000);
+                                host = socket.getLocalAddress().getHostAddress();
+}
+
+
+Instance 166
+Class710.newClient(Connection connection)#1{
+    socket.connect(new InetSocketAddress(host, port));
+    trans = new TSocket(socket);
+    TProtocol proto = new TBinaryProtocol(new TFramedTransport(trans));
+    Client client = new Client(proto);
+}
+
+
+Instance 167
+Class250.connect()#5{
+                connection.connect(new InetSocketAddress("localhost", servicePort), 1000);
+                logger.debug("Connected to native server on port " + servicePort);
+}
+
+
+Instance 168
+Class100.TcpRpcClient(InetAddress addr,int port,int maxRpcSize)#0{
+    sock.connect( new InetSocketAddress( addr, port));
+    m_client = new TcpRpcPacketHandler(sock, maxRpcSize);
+}
+
+
+Instance 169
+Class440.guessInetAddress(List<InetAddress> ips)#1{
+      s.connect(new InetSocketAddress("8.8.8.8", 53), 3000);
+      return s.getLocalAddress();
+}
+
+
+Instance 170
+Class300.setup(ManagementClient managementClient,String containerId)#4{
+            socket.connect(new InetSocketAddress(InetAddress.getLoopbackAddress(), GSSTestConstants.PORT), 20 * ADJUSTED_SECOND);
+}
+
+
+Instance 171
+Class110.TcpRpcClient(InetAddress addr,int port,InetAddress fromAddr,int fromPort,int maxRpcSize)#1{
+     sock.connect( new InetSocketAddress( addr, port));
+    m_client = new TcpRpcPacketHandler(sock, maxRpcSize);
+}
+
+
+Instance 172
+Class690.createTorSocket(InetAddress host,int port,String proxyHost,int proxyPort)#2{
+        socket.connect(new InetSocketAddress(host, port));
+        return (SSLSocket) mContext.getSocketFactory().createSocket(socket, host.getHostName(), port, true);
+}
+
+
+Instance 173
+Class320.doInBackground(String... strings)#5{
+                        s.connect(new InetSocketAddress(url.getHost(), checkPort), 1000);
+}
+
+
+Instance 174
+Class370.connect(String type,String host,int port)#1{
+      sk.connect(new InetSocketAddress(host, port));
+      Client cl = db.new Client(sk);
+      cl.setDaemon(true);
+      cl.start();
+}
+
+
+Instance 175
+Class180.connect(String connectionID,JID peer)#0{
+        final InetSocketAddress address = new InetSocketAddress("localhost",
+            4711);
+        socket.connect(address, 30000);
+        socket.setTcpNoDelay(true);
+}
+
+
+Instance 176
+Class660.createSocket()#1{
+        socket.connect(new InetSocketAddress(host, port), connectTimeoutMs);
+}
+
+
+Instance 177
+Class320.run()#5{
+                        so.connect(new InetSocketAddress(port));
+}
+
+
+Instance 178
+Class320.createSocket(InetAddress host,int port,InetAddress addr,int localPort,int connectTimeout)#4{
+    s.connect(new InetSocketAddress(host, port), connectTimeout);
+}
+
+
+Instance 179
+Class320.createSocket(String host,int port)#0{
+    socket.connect(new InetSocketAddress(host, port), connectionTimeout);
+}
+
+
+Instance 180
+Class370.isViewServerOpen()#0{
+            socket.connect(new InetSocketAddress("127.0.0.1", VIEWSERVER_PORT));
+}
+
+
+Instance 181
+Class570.connectSocket(Socket s,String host,int port,InetAddress localAddress,int localPort,HttpParams params){
+        s.connect(new InetSocketAddress(host, port));
+}
+
+
+Instance 182
+Class570.createSocket(String host,int port)#0{
+            sock.connect(new InetSocketAddress(host, port), connectTimeoutMs);
+}
+
+
+Instance 183
+Class570.createSocket(String host,int port)#1{
+        InetSocketAddress endpoint = new InetSocketAddress(host, port);
+        socket.connect(endpoint);
+}
+
+
+Instance 184
+Class450.isAccessibleSocket(String host,int port,int timeOutInMSec)#2{
+      InetSocketAddress inetSocketAddress = new InetSocketAddress( host , port );
+      socket.connect( inetSocketAddress , timeOutInMSec );
+}
+
+
+Instance 185
+Class60.lookupTCP(InetAddress address)#2{
+      socket.connect( new InetSocketAddress( WHOIS_ADDRESS, WHOIS_PORT ), timeout );
+}
+
+
+Instance 186
+Class250.test_connectLjava_net_SocketAddressI()#20{
+            theSocket.connect(new InetSocketAddress(0), -100);
+}
+
+
+Instance 187
+Class250.uploadMap(String map,String remote_map)#3{
+      socket.connect( new InetSocketAddress( hostname, port ), 2000 );
+}
+
+
+Instance 188
+Class250.createSocket(InetAddress address,int port,boolean ssl)#5{
+                socket.connect(new InetSocketAddress(address, port),
+                        SysProperties.SOCKET_CONNECT_TIMEOUT);
+}
+
+
+Instance 189
+Class670.debugEnabled(final int port)#0{
+        InetSocketAddress endPoint = new InetSocketAddress("localhost", port);
+            socket.connect(endPoint);
+}
+
+
+Instance 190
+Class610.run()#7{
+                        s.connect(new InetSocketAddress(addr, DPORTS[i]), getRate());
+                        Log.v(TAG, "found using TCP connect "+addr+" on port=" + DPORTS[i]);
+}
+
+
+Instance 191
+Class610.waitForSuccessfulConnectionToZap()#3{
+                socket.connect(new InetSocketAddress(HOST, port), connectionTimeoutInMs);
+                throw new RuntimeException("Unable to connect to ZAP's proxy after " + timeoutInMs + " milliseconds.");
+}
+
+
+Instance 192
+Class610.onConnect(final ProxyMessage msg)#1{
+      s.connect(new InetSocketAddress(msg.ip,msg.port));
+}
+
+
+Instance 193
+Class490.newSocket(String host,int port)#2{
+                    s.connect (
+                        new InetSocketAddress (host, port),
+                        connectTimeout
+                    );
+}
+
+
+Instance 194
+Class490.testRun()#3{
+        s.connect(new InetSocketAddress(listenerPort));
+}
+
+
+Instance 195
+Class300.check()#2{
+      final InetSocketAddress apiIpPort = new InetSocketAddress(H2O.SELF_ADDRESS, H2O.API_PORT);
+        s.connect (apiIpPort, timeoutMillis);
+}
+
+
+Instance 196
+Class300.PGStream(HostSpec hostSpec,int timeout)#1{
+        socket.connect(new InetSocketAddress(hostSpec.getHost(), hostSpec.getPort()), timeout);
+        changeSocket(socket);
+}
+
+
+Instance 197
+Class20.run()#2{
+                        socket.connect(new InetSocketAddress(host, port),
+                                       4000 /* ms timeout */);
+                        socketRef.set(socket);
+}
+
+
+Instance 198
+Class20.connect()#7{
+      socket.connect(new InetSocketAddress(this.host, this.port), this.getTimeout());
+}
+
+
+Instance 199
+Class20.doCreateSocket(String host,int port,int timeout)#1{
+        socket.connect(new InetSocketAddress(host, port), timeout);
+}
+
+
+Instance 200
+Class20.createSocket(String host,int port)#1{
+        newSocket.connect(new InetSocketAddress(host,port));
+}
+
+
+Instance 201
+Class630.isPortInUse(int port)#1{
+                pingSocket.connect(new InetSocketAddress(service.getHost(), port), 1000);
+}
+
+
+Instance 202
+Class630.test1()#2{
+            sock.connect(new InetSocketAddress(sin, port), 100);
+}
+
+
+Instance 203
+Class630.testRepeatedClosedConnections()#5{
+            s.connect(new InetSocketAddress("localhost", socketPort));
+}
+
+
+Instance 204
+Class480.createSocket(String host,int port,InetAddress localAddress,int localPort,HttpConnectionParams params)#2{
+            s.connect(new InetSocketAddress(host, port), timeout);
+}
+
+
+Instance 205
+Class480.run()#1{
+            socket.connect(new InetSocketAddress(host, Integer.valueOf(port)));            
+            socketCallback.setSocket(socket);
+}
+
+
+Instance 206
+Class480.doCreateSocket(String host,int port,int timeout)#0{
+        socket.connect(new InetSocketAddress(host, port), timeout);
+}
+
+
+Instance 207
+Class650.createSocket(String host,int port,InetAddress localHostAddr,int localPort)#0{
+    socket.connect(new InetSocketAddress(host, port));
+}
+
+
+Instance 208
+Class650.createSocket(String host,int port)#0{
+        s.connect(new InetSocketAddress(host, port), getTimeout());
+}
+
+
+Instance 209
+Class70.connect(String host,int port)#1{
+  sk.connect(new InetSocketAddress(host, port));
+  return(connect(sk, host, port, true));
+}
+
+
+Instance 210
+Class70.createSocket(String host,int port,InetAddress local,int localPort)#2{
+    s.connect(new InetSocketAddress(host, port), SO_CONNECT_TIMEOUT);
+}
+
+
+Instance 211
+Class430.createSocket(String host,int port)#0{
+        socket.connect(new InetSocketAddress(host, port), socketTimeout);
+}
+
+
+Instance 212
+Class190.SocketConnectionFacadeImpl(String host,int port,boolean ssl,int timeout,int readTimeout,Pattern lineDelimiter)#3{
+        socket.connect(new InetSocketAddress(host, port), timeout);
+        initialize(socket, lineDelimiter);
+}
+
+
+Instance 213
+Class90.createSocket(TcpSocketKey key)#1{
+        socket.connect(new InetSocketAddress(key.getInetAddress(), key.getPort()), timeout);
+}
+
+
+Instance 214
+Class230.doCallbackConnection(int callbackPort,ClassTransformer t)#0{
+      callback.connect(new InetSocketAddress("localhost", callbackPort));
+      AgentClientConnection clientConnection = new AgentClientConnection(
+                                                                         callback,
+                                                                         t);
+      AgentServer.addClientConnection(clientConnection);
+      clientConnection.start(1);
+      clientConnection.waitForTraceConn();
+}
+
+
+Instance 215
+Class230.tryConnection(String byConnecting,int port)#0{
+      socket.connect(new InetSocketAddress(byConnecting, port), 2000); // 2 seconds timeout
+}
+
+
+Instance 216
+Class400.run()#6{
+                                s.connect(new InetSocketAddress(host, port), st);
+}
+
+
+Instance 217
+Class400.run()#0{
+          socket.connect(new InetSocketAddress(hostname, PORT));
+}
+
+
+Instance 218
+Class400.isReachable(final InetAddress ip,final int port,final int timeout)#1{
+            socket.connect(new InetSocketAddress(ip, port), timeout);
+}
+
+
+Instance 219
+Class690.doConnect(String server,int port)#1{
+                s.connect(new InetSocketAddress(server, port),
+                        defaultConnectTimeout);
+}
+
+
+Instance 220
+Class690.doConnect(String server,int port)#2{
+                s.connect(new InetSocketAddress(server, port));
+}
+
+
+Instance 221
+Class690.doConnect(String server,int port)#8{
+            s.connect(new InetSocketAddress(server, port), connectTimeout);
+}
+
+
+Instance 222
+Class690.run()#0{
+                            socket.connect(new InetSocketAddress(port));
+}
+
+
+Instance 223
+Class690.testConnectCancellation()#0{
+            socket.connect(new InetSocketAddress(BAD_HOST, BAD_PORT), 10);
+}
+
+
+Instance 224
+Class600.passTcpFileDescriptor(LocalSocket fdSocket,OutputStream outputStream,String dstIp,int dstPort,int connectTimeout)#5{
+                    sock.connect(new InetSocketAddress(dstIp, dstPort), connectTimeout);
+}
+
+
+Instance 225
+Class180.handleConnectionRequestMessage(final Message connectionRequestMessage)#4{
+            socket.connect(new InetSocketAddress(hostName, portNumber));
+            this.blockingSocketQueue.add(socket);
+}
+
+
+Instance 226
+Class680.respond(final Request request)#14{
+      serverSocket.connect(new InetSocketAddress(host, port));
+}
+
+
+Instance 227
+Class680.doConnect(String server,int port)#3{
+                s.connect(new InetSocketAddress(server, port), defaultConnectTimeout);
+}
+
+
+Instance 228
+Class680.doConnect(String server,int port)#5{
+                s.connect(new InetSocketAddress(server, port));
+}
+
+
+Instance 229
+Class680.doConnect(String server,int port)#7{
+            s.connect(new InetSocketAddress(server, port), connectTimeout);
+}
+
+
+Instance 230
+Class680.createSocket(String host,int port)#3{
+                socket.connect(new InetSocketAddress(host, port));
+}
+
+
+Instance 231
+Class360.create(Address addr)#2{
+            socket.connect(new InetSocketAddress(hostName, portNumber),
+                    connectionTimeout);
+            return create(socket);
+            quietTrySocketClose(socket);
+}
+
+
+Instance 232
+Class340.createConnection(URI theUri)#0{
+    SocketAddress socketAddress = new InetSocketAddress(theUri.getHost(), port);
+    socket.connect(socketAddress, timeOut);
+    return new TcpSenderConnection(socket);
+}
+
+
+Instance 233
+Class210.agentmain(String args,Instrumentation inst)#2{
+        s.connect( new InetSocketAddress(port) );
+}
+
+
+Instance 234
+Class420.createSocket(final String host,final int port,final InetAddress localAddress,final int localPort,final HttpConnectionParams params)#4{
+    SocketAddress remoteAddr = new InetSocketAddress(host, port);
+    socket.connect(remoteAddr, timeout);
+}
+
+
+Instance 235
+Class720.tryToContactRunningLimeWire(String handoffLink)#6{
+            socket.connect(new InetSocketAddress("127.0.0.1", port), 10000);
+}
+
+
+Instance 236
+Class560.runSupport()#8{
+            target.connect( new InetSocketAddress(  target_host, target_port  ));
+}
+
+
+Instance 237
+Class560.tunnel()#2{
+      clientSocket.connect(new InetSocketAddress(targetHost, targetPort));
+      request.host(targetHost);
+      request.port(targetPort);
+      request.setHostHeader();
+      onRequest(request);
+}
+
+
+Instance 238
+Class390.createSocket(String host,int port)#0{
+            socket.connect(new InetSocketAddress(host, port), _connectTimeout);
+}
+
+
+Instance 239
+Class160.ensureConnected()#1{
+      masterSocket.connect(new InetSocketAddress(host, masterPort), timeout);
+}
+
+
+Instance 240
+Class160.run()#11{
+                        s.connect(new InetSocketAddress(host, channel), CONNECT_WAIT_TIMEOUT);
+}
+
+
+Instance 241
+Class590.test_connect_unknownhost()#0{
+        InetSocketAddress socketAddress = new InetSocketAddress("unknownhost", 12345);
+            socket.connect(socketAddress);
+}
+
+
+Instance 242
+Class10.getSocket(Context context,String proxyHost,int proxyPort)#0{
+        sock.connect(new InetSocketAddress(proxyHost, proxyPort), 10000);
+}
+
+
+Instance 243
+Class10.test_connect_unknownhost()#0{
+            socket.connect(new InetSocketAddress("unknownhost.invalid", 12345));
+}
+
+
+Instance 244
+Class10.create(String host,int port,StringBuffer otherHeaders,BooleanHolder useFullURL)#0{
+                        s.connect(new InetSocketAddress(host, port), timeout);
+}
+
+
+Instance 245
+Class10.create(String host,int port,StringBuffer otherHeaders,BooleanHolder useFullURL)#6{
+                        s.connect(new InetSocketAddress(host, port), timeout);
+}
+
+
+Instance 246
+Class10.create(final HttpHost host)#1{
+        socket.connect(new InetSocketAddress(hostname, port), this.connectTimeout);
+}
+
+
+Instance 247
+Class40.createSocket(StarterNode host,int port)#2{
+        s.connect(new InetSocketAddress(r.getInetAddress(), port), getTimeout());
+}
+
+
+Instance 248
+Class40.connect(InetAddress ipAddress,int port,int i,ConnectionWatcher watcher,boolean clientToServer)#1{
+    SocketAddress addr = new InetSocketAddress(ipAddress, port);
+    socket.connect(addr);
+}
+
+
+Instance 249
+Class350.newAuthedSocket(String hostname,int port)#1{
+      socket.connect(new InetSocketAddress(hostname, port), CONNECT_TIMEOUT);
+}
+
+
+Instance 250
+Class350.checkConnectTimeForAddress(String address)#7{
+      socket.connect(new InetSocketAddress(address, PORT_FOR_TEST),
+          TIME_OUT);
+}
+
+
+Instance 251
+Class350.openSocket(InetAddress addr,int port)#0{
+        sock.connect(new InetSocketAddress(addr, port), 1);
+        X.println("Socket [timeout=" + sock.getSoTimeout() + ", linger=" + sock.getSoLinger() +
+            ", sndBuf=" + sock.getSendBufferSize() + ", sndBuf=" + sock.getSendBufferSize() + ']');
+}
+
+
+Instance 252
+Class530.createSocket(InetAddress address,int port,boolean ssl)#0{
+        socket.connect(new InetSocketAddress(address, port),
+                //SysProperties.SOCKET_CONNECT_TIMEOUT);
+                2000);
+}
+
+
+Instance 253
+Class530.tryConnection(String byConnecting,int port,Socket socket){
+      socket.connect(new InetSocketAddress(byConnecting, port), 2000); // 2 seconds timeout
+}
+
+
+Instance 254
+Class530.create(SocketConnectionInfos connectionInfos)#1{
+        socket.connect(new InetSocketAddress(connectionInfos.getHost(), connectionInfos.getPort()), socketConnectTimeoutInMillis);
+        return new SocketOutputStream(socket);
+}
+
+
+Instance 255
+Class530.doCreateSocket(String host,int port,int timeout)#6{
+                socket.connect(new InetSocketAddress(host, port), timeout);
+}
+
+
+Instance 256
+Class170.create(HostAndPort hostAndPort)#0{
+        socket.connect(new InetSocketAddress(hostAndPort.getHost(), hostAndPort.getPort()), socketConnectTimeoutInMillis);
+        return new SocketWriter(socket, charset);
+}
+
+
+Instance 257
+Class240.isPortActive(String host,int port)#1{
+            SocketAddress sa = new InetSocketAddress(host, port);
+            s.connect(sa, 3000);
+}
+
+
+Instance 258
+Class240.createSocket(InetAddress host,int port)#0{
+    newSocket.connect(new InetSocketAddress(host, port));
+}
+
+
+Instance 259
+Class240.createSocket(InetAddress addr,int port)#1{
+    socket.connect(new InetSocketAddress(addr, port));
+}
+
+
+Instance 260
+Class150.sendRequestToServiceUsingEureka()#6{
+        int serverPort = nextServerInfo.getPort();
+            s.connect(new InetSocketAddress(nextServerInfo.getHostName(), serverPort));
+                    + nextServerInfo.getHostName() + " at port " + serverPort);
+                    + nextServerInfo.getHostName() + " at port " + serverPort + "due to Exception " + e);
+}
+
+
+Instance 261
+Class150.isKdcReachableViaTCP(String server,int port)#1{
+      socket.connect(new InetSocketAddress(server, port), config.getKdcConnectionCheckTimeout());
+}
+
+
+Instance 262
+Class100.isPortOccupied(final int port)#1{
+    logger.fine("Checking port " + port);
+      sock.connect(new InetSocketAddress("127.0.0.1", port));
+      logger.fine("Connected to port " + port);
+}
+
+
+Instance 263
+Class0.run()#2{
+                    s.connect(new InetSocketAddress(host, sensorPort));
+}
+
+
+Instance 264
+Class0.getInactiveDevicesImpl()#3{
+                proxySocket.connect(new InetSocketAddress(host, port), connectTimeout);
+}
+
+
+Instance 265
+Class510.createSocket(String host,int port)#1{
+                        socket.connect( new InetSocketAddress( host, port ), timeoutMillis );
+}
+
+
+Instance 266
+Class510._openDataConnection_(String command,String arg)#20{
+            socket.connect(new InetSocketAddress(__passiveHost, __passivePort), connectTimeout);
+}
+
+
+Instance 267
+Class510.launch(ILaunchConfiguration configuration,String mode,ILaunch launch,IProgressMonitor monitor)#10{
+        socket.connect(new InetSocketAddress(host, port), DebugConnection.SOCKET_TIMEOUT);
+}
+
+
+Instance 268
+Class260.startClient()#2{
+            s.connect(new InetSocketAddress(oc.address, oc.port), SOCKET_TIMEOUT);
+            openSocketStreams(s);
+            log(LOG_VERBOSE, "Client connected,");
+            startThread("capsule-comm", "receiveLoop");
+            log(LOG_QUIET, "Client connection failed.");
+            printError(e);
+            closeComm();
+}
+
+
+Instance 269
+Class260.createSocket(final String host,final int port,final InetAddress localAddress,final int localPort,final HttpConnectionParams params)#2{
+                s.connect(new InetSocketAddress(host, port), timeout);
+}
+
+
+Instance 270
+Class260.createSocket(String host,int port,InetAddress localHost,int localPort)#1{
+            sock.connect(new InetSocketAddress(host, port), connectTimeoutMs);
+}
+
+
+Instance 271
+Class260.createSocket(InetAddress address,int port,InetAddress localAddress,int localPort)#2{
+        socket.connect(new InetSocketAddress(localAddress, port), socketTimeout);
+}
+
+
+Instance 272
+Class260.run()#0{
+              outputSocket.connect(new InetSocketAddress(httpsServer.getLocalAddress(), httpsServer.getLocalPort()));
+}
+
+
+Instance 273
+Class120.getLanIpAddress()#7{
+            final InetSocketAddress sa = new InetSocketAddress(serverHost, serverPort);
+                socket.connect(sa, 3000); // 3 second timeout
+}
+
+
+Instance 274
+Class120.createAsync(SocketDestination dest,KeyedResourcePool<SocketDestination,SocketAndStreams> pool)#1{
+        socket.connect(new InetSocketAddress(dest.getHost(), dest.getPort()), soTimeoutMs);
+        recordSocketCreation(dest, socket);
+        SocketAndStreams sands = new SocketAndStreams(socket, dest.getRequestFormatType());
+        negotiateProtocol(sands, dest.getRequestFormatType());
+        pool.checkin(dest, sands);
+}
+
+
+Instance 275
+Class120.portReachable()#2{
+            socket.connect(
+                new InetSocketAddress(componentConfiguration.getAddress(), componentConfiguration.getPort()),
+                CONNECTION_TIMEOUT);
+}
+
+
+Instance 276
+Class120.createSocket(InetAddress host,int port)#0{
+    s.connect(new InetSocketAddress(host, port), SO_CONNECT_TIMEOUT);
+}
+
+
+Instance 277
+Class120.createSocket(InetAddress host,int port)#1{
+        socket.connect(new InetSocketAddress(host, port));
+}
+
+
+Instance 278
+Class200.testNetwork()#19{
+            final InetSocketAddress socketAddress = new InetSocketAddress(address, port);
+                Thread t = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            socket.connect(socketAddress, 2000);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                t.start();
+                t.join(5000);
+}
+
+
+Instance 279
+Class200.testNetwork()#24{
+                    final InetSocketAddress localhostAddress = new InetSocketAddress(
+                            "localhost", port);
+                    socket.connect(localhostAddress, 2000);
+}
+
+
+Instance 280
+Class130.createSocket(InetAddress address,int port,InetAddress localAddress,int localPort)#2{
+            sock.connect(new InetSocketAddress(address, port), connectTimeoutMs);
+}
+
+
+Instance 281
+Class130.IdentClient(String clientAddress,int clientPort,int serverPort)#3{
+                socket.connect(new InetSocketAddress(clientAddress, 113),
+                        CONNECT_TIMEOUT);
+}
+
+
+Instance 282
+Class130.streamFromSocket(SourceContext<String> ctx,Socket socket)#6{
+              socket.connect(new InetSocketAddress(hostname, port),
+                  CONNECTION_TIMEOUT_TIME);
+}
+
+
+Instance 283
+Class210.HttpResponse(Http http,URL url,CrawlDatum datum)#1{
+      socket.setSoTimeout(http.getTimeout());
+      String sockHost = http.useProxy(url) ? http.getProxyHost() : host;
+      int sockPort = http.useProxy(url) ? http.getProxyPort() : port;
+      InetSocketAddress sockAddr = new InetSocketAddress(sockHost, sockPort);
+      socket.connect(sockAddr, http.getTimeout());
+      OutputStream req = socket.getOutputStream();
+}
+
+
+Instance 284
+Class330.sendcmd(String cmd)#0{
+      InetSocketAddress local = new InetSocketAddress(0);
+      s.bind(local);
+      s.connect(server, PROXY_CONNECT_TIMEOUT);
+      InputStream is = s.getInputStream();
+      OutputStream os = s.getOutputStream();
+}
+
+
+Instance 285
+Class460.HttpResponse(HttpBase http,URL url,CrawlDatum datum)#7{
+      socket.setSoTimeout(http.getTimeout());
+      String sockHost = http.useProxy(url) ? http.getProxyHost() : host;
+      int sockPort = http.useProxy(url) ? http.getProxyPort() : port;
+      InetSocketAddress sockAddr = new InetSocketAddress(sockHost, sockPort);
+      socket.connect(sockAddr, http.getTimeout());
+}
+
+
+Instance 286
+Class690.HttpResponse(HttpBase http,URL url,CrawlDatum datum)#4{
+      socket.setSoTimeout(http.getTimeout());
+      String sockHost = http.useProxy() ? http.getProxyHost() : host;
+      int sockPort = http.useProxy() ? http.getProxyPort() : port;
+      InetSocketAddress sockAddr= new InetSocketAddress(sockHost, sockPort);
+      socket.connect(sockAddr, http.getTimeout());
+      this.conf = http.getConf();
+}
+
+
+Instance 287
+Class110.canConnect(Socket socket,String host,String port)#0{
+            InetSocketAddress local = new InetSocketAddress( 0 );
+            socket.bind( local );
+            socket.connect( address );
+            in = socket.getInputStream();
+}
+
+
+Instance 288
+Class80.tryToConnect(InetAddress fromAddress,SocketAddress toSocket,int timeout,boolean logFailed)#2{
+      SocketAddress bindP = new InetSocketAddress(fromAddress, 0);
+      socket.bind(bindP);
+      socket.connect(toSocket, timeout);
+}
+
+
+Instance 289
+Class440.tryToConnect(InetAddress fromAddress,SocketAddress toSocket,int timeout)#2{
+      SocketAddress bindP = new InetSocketAddress(fromAddress, 0); // 0 = let the OS choose the port on this
+      socket.bind(bindP);
+      socket.connect(toSocket, timeout);
+}
+
+
+Instance 290
+Class480.pingDrivers(DriverInfo[] driverInfos)#0{
+            InetSocketAddress locAddress = new InetSocketAddress("127.0.0.1", 0);
+            socket.bind(locAddress);
+            socket.connect(reAddress,3000);
+}
+
+
+Instance 291
+Class630.createSocket(String host,int port,InetAddress localAddress,int localPort,HttpConnectionParams params)#5{
+            socket.bind(new InetSocketAddress(localAddress, localPort));
+            socket.connect(endpoint, timeout);
+}
+
