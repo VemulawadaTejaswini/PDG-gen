@@ -40,7 +40,7 @@ import java.util.Scanner;
 public class WithoutGui {
 
      /** The Constant serialVersionUID. */
-     private static final long serialVersionUID = 1L;
+    //  private static final long serialVersionUID = 1L;
 
      /** The selected file. */
      private File selectedFile;
