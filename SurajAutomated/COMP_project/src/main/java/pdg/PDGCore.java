@@ -14,6 +14,7 @@ import org.jgrapht.DirectedGraph;
 import org.jgrapht.ext.DOTExporter;
 import org.jgrapht.ext.StringEdgeNameProvider;
 import org.jgrapht.ext.StringNameProvider;
+import graphStructures.TextArea;
 
 import javax.swing.*;
 import java.io.FileInputStream;
