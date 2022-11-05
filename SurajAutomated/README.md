@@ -7,7 +7,7 @@ In order to install and run this App make sure you have **jdk** and **maven** in
 ```zsh
 cd COMP_project/
 mvn clean install
-mvn exec:java -Dexec.mainClass=pdg_gui.WithoutGui -Dexec.args="'Path/filename.java'"
+mvn exec:java -Dexec.mainClass=pdg_gui.mainframe -Dexec.args="'Path/filename.java'"
 ```
 This will promp the project's GUI. For testing please choose the *.java files in examples folder and "Call Graph", for instance.
 
