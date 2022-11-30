@@ -23,7 +23,11 @@ public class mainframe {
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
     private JTextArea consoleText;
-    static String files[] = {"./examples/example2.java","./examples/example1.java"};
+    static String files[] = {"./examples/getTime/example1.java",
+                             "./examples/getTime/example2.java",
+                             "./examples/getTime/example3.java",
+                             "./examples/getTime/example4.java",
+                             "./examples/getTime/example5.java"};
 
     // constructor
     private mainframe(){
