@@ -1,290 +1,142 @@
 package pdg_gui;
 
 import com.github.javaparser.ParseException;
-import com.jgraph.layout.JGraphFacade;
-import com.jgraph.layout.hierarchical.JGraphHierarchicalLayout;
 import graphStructures.GraphNode;
 import graphStructures.RelationshipEdge;
-import org.jgraph.JGraph;
 import org.jgrapht.DirectedGraph;
-import org.jgrapht.ListenableGraph;
+import org.jgrapht.graph.DefaultDirectedGraph;
+import pdg.PDGCore;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 import org.jgrapht.ext.DOTExporter;
-import org.jgrapht.ext.JGraphModelAdapter;
 import org.jgrapht.ext.StringEdgeNameProvider;
 import org.jgrapht.ext.StringNameProvider;
-import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.ListenableDirectedGraph;
-import pdg.PDGCore;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import java.awt.*;
-import java.io.*;
-import java.util.Map;
-import java.util.Scanner;
 
-/**
- * The Class mainframe - Main GUI.
- */
-public class mainframe extends JFrame {
+import graphStructures.TextArea;
 
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 1L;
+import java.util.Random;
 
-    /** The selected file. */
-    private File selectedFile;
-    
-    /** The href graph. */
+public class mainframe {
+    private File selectedFile;// from java.io
+    private String selectedFileName;
     @SuppressWarnings("rawtypes")
-	private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
-    
-    /** The ast printer. */
+    private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
-
-    /** The panel. */
-    private JPanel panel;
-    
-    /** The graph scroll. */
-    private JScrollPane graphScroll;
-    
-    /** The console text. */
     private JTextArea consoleText;
+    static String outputFolder = "./../../test-examples/temp/";
+    static String inputFolder = "./../../Code_kernel_data/readline/";
+    static int randomNumber = -1;
+    static Random rand = new Random();
 
-    /**
-     * Instantiates a new mainframe and initializes all the containers as well as their needed listeners.
-     */
+    // Get all .java files
+    static private ArrayList<String> getListOfFiles(String dirPath) {
+        ArrayList<String> listOfFiles = new ArrayList<String>();
+        File directory = new File(dirPath);
+        File foldersList[] = directory.listFiles();
+        for (File folder : foldersList) {
+            if (folder.isDirectory()) {
+                File filesList[] = folder.listFiles();
+                for (File file : filesList) {
+                    if (file.getAbsolutePath().endsWith(".java")) {
+                        listOfFiles.add(file.getAbsolutePath());
+                    }
+                }
+            }
+        }
+        System.out.println("Number Of Files: " + listOfFiles.size());
+        return listOfFiles;
+    }
+
+    // constructor
     private mainframe() {
-        final JFrame frame = new JFrame();
-        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-        frame.setMinimumSize(new Dimension(1000, 400));
-        frame.setPreferredSize(new Dimension(1300, 800));
-        frame.setTitle("Java PDG Generator");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //FRAME CONTENT PANE
-        JPanel contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(contentPane);
-        contentPane.setLayout(new BorderLayout(0, 0));
-
-        //CONTENT PANELS
-        JPanel codePanel = new JPanel();
-        codePanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-
-        contentPane.add(codePanel, BorderLayout.WEST);
-
         createGraph();
-        resetGraph();
-        codePanel.setLayout(new BorderLayout(0, 0));
+    }
+
+    private void methods(String filename) {
+        // TextArea txtCodeGoesHere = new TextArea();
+        // consoleText = new TextArea();
 
         JTextArea txtCodeGoesHere = new JTextArea();
-        txtCodeGoesHere.setTabSize(2);
-        txtCodeGoesHere.setFont(new Font("Monospaced", Font.PLAIN, 11));
-        txtCodeGoesHere.setEditable(false);
-        txtCodeGoesHere.setBorder(codePanel.getBorder());
-
-        JScrollPane scroll = new JScrollPane(txtCodeGoesHere, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scroll.setPreferredSize(new Dimension(300, 725));
-        codePanel.add(scroll);
-        txtCodeGoesHere.setText("Code goes here");
-
-        JPanel graphPane = new JPanel();
-        contentPane.add(graphPane, BorderLayout.CENTER);
-        graphPane.setLayout(new BorderLayout(0, 0));
-
-        JPanel optionsPane = new JPanel();
-        graphPane.add(optionsPane, BorderLayout.NORTH);
-        optionsPane.setLayout(new BorderLayout(0, 0));
-
-        JPanel buttonsPane = new JPanel();
-        optionsPane.add(buttonsPane, BorderLayout.EAST);
-
-        JButton button = new JButton("Call Graph");
-        buttonsPane.add(button);
-
-        JButton button_1 = new JButton("Choose File");
-        buttonsPane.add(button_1);
-
-        JButton btnExportTodot = new JButton("Export to .dot file");
-        buttonsPane.add(btnExportTodot);
-
-        panel = new JPanel();
-        panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-        graphPane.add(panel);
-        panel.setLayout(new BorderLayout(0, 0));
-
-        JGraph graph = getJGraph();
-
-        graphScroll = new JScrollPane(graph, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-        panel.add(graphScroll);
-
-        JPanel console = new JPanel();
-        contentPane.add(console, BorderLayout.SOUTH);
-        console.setLayout(new BorderLayout(0, 0));
-
         consoleText = new JTextArea();
-        consoleText.setTabSize(2);
-        consoleText.setEditable(false);
-        consoleText.setBorder(codePanel.getBorder());
 
-        JScrollPane consoleScroll = new JScrollPane(consoleText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        consoleScroll.setPreferredSize(new Dimension(19, 200));
-        console.add(consoleScroll);
+        selectedFile = new File(filename);
+        selectedFileName = selectedFile.getName();
 
-        button.addActionListener(e -> {
-            consoleText.setText("----------------------------------------------------\n");
-            runAnalysisAndMakeGraph();
-        });
+        System.out.println("***************");
+        System.out.println(selectedFileName);
+        System.out.println("***************");
 
-        button_1.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            int returnValue = fileChooser.showOpenDialog(null);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                selectedFile = fileChooser.getSelectedFile();
+        try {
+            @SuppressWarnings("resource")
+            String content = new Scanner(selectedFile).useDelimiter("\\Z").next();
+            txtCodeGoesHere.setText(content);
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }
 
-                try {
-                    @SuppressWarnings("resource")
-					String content = new Scanner(selectedFile).useDelimiter("\\Z").next();
-                    txtCodeGoesHere.setText(content);
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+        consoleText.setText("----------------------------------------------------\n");
+        randomNumber = rand.nextInt(1000);
+        runAnalysisAndMakeGraph();
 
-        btnExportTodot.addActionListener(e -> {
-            FileOutputStream out;
-            try {
-                checkIfFolderExists();
-                GraphNode.exporting = true;
-                String filename = JOptionPane.showInputDialog(frame, "What name do you want to give the file (must write .dot)?");
-                if (filename == null) {
-                    GraphNode.exporting = false;
-                    return;
-                }
-                out = new FileOutputStream("dotOutputs/" + filename);
-                @SuppressWarnings("rawtypes")
-				DOTExporter<GraphNode, RelationshipEdge> exporter = new DOTExporter<>(
-                        new StringNameProvider<>(), null,
-                        new StringEdgeNameProvider<>());
-                exporter.export(new OutputStreamWriter(out), hrefGraph);
-                out.close();
-                consoleText.setText(consoleText.getText() + "Exoprted Graph to *.dot file\n");
-                JOptionPane.showMessageDialog(frame, "File saved in 'dotOutpus' folder as " + filename);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            GraphNode.exporting = false;
-        });
+        // ExportToDot
+        FileOutputStream out;
+        try {
+            checkIfFolderExists();
+            GraphNode.exporting = true;
+            String fn = selectedFileName.substring(0, selectedFileName.length() - 5) + "_" + randomNumber + ".dot";
 
-        //FINALIZE THE FRAME
-        frame.pack();
-        frame.setVisible(true);
+            out = new FileOutputStream(outputFolder + fn);
+            @SuppressWarnings("rawtypes")
+            DOTExporter<GraphNode, RelationshipEdge> exporter = new DOTExporter<>(
+                    new StringNameProvider<>(), null,
+                    new StringEdgeNameProvider<>());
+            exporter.export(new OutputStreamWriter(out), hrefGraph);
+            out.close();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        GraphNode.exporting = false;
     }
 
-    /**
-     * The main method.
-     *
-     * @param args the arguments
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            new PDGCore();
-            try {
-                new mainframe();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    /**
-     * Check if folder exists.
-     *
-     * @return true, if successful
-     */
     private boolean checkIfFolderExists() {
-        File theDir = new File("dotOutputs");
+        File theDir = new File(outputFolder);
         return !theDir.exists() && theDir.mkdir();
     }
 
-    /**
-     * Reset graph.
-     */
-    private void resetGraph() {
-    }
-
-    /**
-     * Creates the graph.
-     */
     private void createGraph() {
         hrefGraph = new DefaultDirectedGraph<>(RelationshipEdge.class);
     }
 
-    /**
-     * Gets the j graph.
-     *
-     * @return the j graph
-     */
-    private JGraph getJGraph() {
-        @SuppressWarnings("rawtypes")
-		ListenableGraph<GraphNode, RelationshipEdge> g = new ListenableDirectedGraph<>(hrefGraph);
-
-        JGraph jgraph = new JGraph(new JGraphModelAdapter<>(g));
-        jgraph.setGridEnabled(true);
-        jgraph.setGridVisible(true);
-        jgraph.setGridSize(10.0);
-        jgraph.setDragEnabled(true);
-        jgraph.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jgraph.setVolatileOffscreen(true);
-
-        JGraphFacade facade = new JGraphFacade(jgraph);
-
-        facade.setIgnoresUnconnectedCells(false);
-        JGraphHierarchicalLayout layout = new JGraphHierarchicalLayout();
-        layout.setOrientation(SwingConstants.NORTH);
-        layout.setIntraCellSpacing(150.0);
-        layout.setLayoutFromSinks(false);
-        layout.run(facade);
-        Map<?, ?> nested = facade.createNestedMap(true, true);
-        if (nested != null)
-            jgraph.getGraphLayoutCache().edit(nested);
-
-        System.out.println("Layout complete");
-
-        return jgraph;
-    }
-
-    /**
-     * Update graph.
-     */
-    private void updateGraph() {
-        JGraph graph = getJGraph();
-        graph.setAutoResizeGraph(true);
-        panel.removeAll();
-
-        graphScroll = new JScrollPane(graph, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        panel.add(graphScroll);
-
-        panel.revalidate();
-        panel.repaint();
-    }
-
-    /**
-     * Run analysis and make graph.
-     */
     private void runAnalysisAndMakeGraph() {
         try {
             createGraph();
-            GraphNode gn = new GraphNode(0, "Entry");
+            GraphNode gn = new GraphNode(0, "Entry", "null");
             hrefGraph.addVertex(gn);
-            if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, consoleText))
-                updateGraph();
-        } catch (ParseException | IOException e1) {
+
+            if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, consoleText, "null",
+                    selectedFileName, outputFolder, randomNumber)) {
+                System.out.println("astPrinter called");
+            }
+
+        } catch (ParseException | com.github.javaparser.TokenMgrError | IOException e1) {
             e1.printStackTrace();
+        }
+    }
+
+    public static void main(String args[]) {
+        new PDGCore();
+        try {
+            mainframe obj = new mainframe();
+            //ArrayList<String> files = getListOfFiles(inputFolder);
+            String files[] = {"D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/test-examples/example 2/readline-example5.java"};
+            for (String file : files) {
+                obj.methods(file);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
