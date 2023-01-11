@@ -1,7 +1,10 @@
 package pdg;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+
 
 import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.ast.expr.NameExpr;
@@ -18,6 +21,7 @@ import graphStructures.GraphNode;
 import graphStructures.RelationshipEdge;
 import graphStructures.ReturnObject;
 import graphStructures.VarChanges;
+
 
 /**
  * The Class SymbolTable.
@@ -45,7 +49,11 @@ class SymbolTable {
     
     /** The last scope. */
     private Scope lastScope = null;
+
     
+    boolean FilerON = true;
+    
+
     /**
      * The Class MethodNode.
      */
@@ -711,10 +719,15 @@ class SymbolTable {
      * @param hrefGraph the href graph
      * @param previousNode the previous node
      * @param ls the scope array
+     * @param FileOutputStream output file handel
      * @return the return object
      */
-    ReturnObject SemanticNodeCheck(Node node, @SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, GraphNode previousNode, ArrayList<Scope> ls) {
+    // byte[] strToBytes = str.getBytes(); outputStream.write(strToBytes);
+    
+
+    ReturnObject SemanticNodeCheck(Node node, @SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, GraphNode previousNode, ArrayList<Scope> ls, FileOutputStream out) {
         GraphNode nodeToSend = null;
+        
         updateScopes(ls);
 
         if(node.getClass().equals(com.github.javaparser.ast.body.ClassOrInterfaceDeclaration.class)){
@@ -723,7 +736,7 @@ class SymbolTable {
             if(!addClassScope(classScp, ls))
                 return new ReturnObject("error:repeated class/interface declaration of "+classScp.Name+" ");
 
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
         }
 
         else if(node.getClass().equals(com.github.javaparser.ast.body.MethodDeclaration.class)){
@@ -733,7 +746,7 @@ class SymbolTable {
             if(!addMethodScope(methodScp, ls))
                 return  new ReturnObject("error:repeated method declaration of "+methodScp.Name+", please use different identifiers for methods in same class");
 
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
         }
 
         else if(node.getClass().equals(com.github.javaparser.ast.body.Parameter.class)){
@@ -741,9 +754,9 @@ class SymbolTable {
             if(!addParameter(node,param))
                 return  new ReturnObject("error:duplicated param identifier  : "+param.paramName+" in Method:"+lastMethod.Name+"");
         }
-
+        // If delt
         else if(node.getClass().equals(com.github.javaparser.ast.stmt.IfStmt.class)){
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
             for(Node child2 : node.getChildrenNodes())
                 for(Node child: child2.getChildrenNodes()){
                     if(child.getClass().equals(com.github.javaparser.ast.expr.NameExpr.class)) {
@@ -754,7 +767,7 @@ class SymbolTable {
                             ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
                             for (VarChanges aVc : vc)
                                 if (aVc.getVar().equals(variable))
-                                    addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph);
+                                    addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out );
                         }
                     }
                 }
@@ -774,7 +787,7 @@ class SymbolTable {
                 }
                 return  new ReturnObject(returnString);
             }
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
             for(Node child: node.getChildrenNodes()){
                 if(child.getClass().equals(com.github.javaparser.ast.expr.NameExpr.class)) {
                     lastScope.varAccesses.add(new VarChanges(nodeToSend, child.toString()));
@@ -784,7 +797,7 @@ class SymbolTable {
                         ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
                         for (VarChanges aVc : vc)
                             if (aVc.getVar().equals(variable))
-                                addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph);
+                                addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out );
                     }
                 }
             }
@@ -821,7 +834,7 @@ class SymbolTable {
                 returnstring = returnstring.concat("in Method:"+lastMethod.Name+"");
                 return  new ReturnObject(returnstring);
             }
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
 
             for(Node child: node.getChildrenNodes()){
                 if(child.getClass().equals(com.github.javaparser.ast.body.VariableDeclarator.class)) {
@@ -840,7 +853,7 @@ class SymbolTable {
             if(!addField(node,fld))
                 return  new ReturnObject("error:duplicated fields: "+fld.fieldName+" in class : "+lastClass.Name+"");
 
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
         }
 
         else if (node.getClass().equals(com.github.javaparser.ast.stmt.ForStmt.class)) {
@@ -848,8 +861,8 @@ class SymbolTable {
             fillLoopScope(node,loopScp);
             addLoopScope(loopScp, ls);
 
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, true);
-            analyseVariablesInLoop(node, hrefGraph, nodeToSend, loopScp);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, true, out);
+            analyseVariablesInLoop(node, hrefGraph, nodeToSend, loopScp, out);
         }
 
         else if (node.getClass().equals(com.github.javaparser.ast.stmt.DoStmt.class)) {
@@ -857,8 +870,8 @@ class SymbolTable {
             fillLoopScope(node,loopScp);
             addLoopScope(loopScp, ls);
 
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, true);
-            analyseVariablesInLoop(node, hrefGraph, nodeToSend, loopScp);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, true, out);
+            analyseVariablesInLoop(node, hrefGraph, nodeToSend, loopScp, out);
         }
 
         else if (node.getClass().equals(com.github.javaparser.ast.stmt.WhileStmt.class)) {
@@ -866,12 +879,22 @@ class SymbolTable {
             fillLoopScope(node,loopScp);
             addLoopScope(loopScp, ls);
 
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, true);
-            analyseVariablesInLoop(node, hrefGraph, nodeToSend, loopScp);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, true, out);
+            analyseVariablesInLoop(node, hrefGraph, nodeToSend, loopScp, out);
         }
 
         else if(node.getClass().equals(com.github.javaparser.ast.expr.MethodCallExpr.class)){
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
+
+
+
+            // //comment out the below and uncomment code in addNodeAndEdge and addEdgeBetween to write full graph
+            // GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString());
+            // writeTOFile("Vertex:: " + newNode.getData() + "\n", out);
+            // writeTOFile("Edge:: " + previousNode.getData() + " --> " + newNode.getData() + "[ CD ]\n", out); 
+
+
+
             for(Node childNode : node.getChildrenNodes()) {
                 if(childNode.getClass().equals(com.github.javaparser.ast.expr.NameExpr.class)){
                     String variable = childNode.toString();
@@ -880,7 +903,7 @@ class SymbolTable {
                         ArrayList<VarChanges> vc = scopes.get(i).varChanges;
                         for (VarChanges aVc : vc) {
                             if (aVc.getVar().equals(variable)) {
-                                addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph);
+                                addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out );
                             }
                         }
                     }
@@ -921,7 +944,7 @@ class SymbolTable {
 
                 return  new ReturnObject(returnString);
             }
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
             int counter = 0;
             for(Node child: node.getChildrenNodes()){
                 if(child.getClass().equals(com.github.javaparser.ast.expr.NameExpr.class)){
@@ -936,7 +959,7 @@ class SymbolTable {
                         ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
                         for (VarChanges aVc : vc)
                             if (aVc.getVar().equals(variable))
-                                addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph);
+                                addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out);
                     }
                 }
                 else if(child.getClass().equals(com.github.javaparser.ast.expr.BinaryExpr.class)){
@@ -953,7 +976,7 @@ class SymbolTable {
                                 ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
                                 for (VarChanges aVc : vc)
                                     if (aVc.getVar().equals(variable))
-                                        addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph);
+                                        addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out);
                             }
                         }
                     }
@@ -963,7 +986,7 @@ class SymbolTable {
         }
 
         else if(node.getClass().equals(com.github.javaparser.ast.stmt.ReturnStmt.class)){
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false);
+            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
             ReturnObject returnObject;
             if((returnObject=checkReturn(node))!=null)
                 return returnObject;
@@ -980,8 +1003,9 @@ class SymbolTable {
      * @param nodeToSend the node to send
      * @param loopScp the loop scope
      */
+     //need to look at this to figure out handling method express or function calls primarily and nested loops as well secondary 
     private void analyseVariablesInLoop(Node node, @SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph,
-                                        GraphNode nodeToSend, LoopScope loopScp) {
+                                        GraphNode nodeToSend, LoopScope loopScp, FileOutputStream out) {
         loopScp.gn = nodeToSend;
         loopScp.node = node;
 
@@ -995,9 +1019,19 @@ class SymbolTable {
                         String variable = childNode.toString();
                         for(int i = scopes.size() - 1; i >= 0; i--) {
                             ArrayList<VarChanges> vc = scopes.get(i).varChanges;
-                            vc.stream().filter(aVc -> aVc.getVar().equals(variable)).forEach(aVc -> addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph));
+                            vc.stream().filter(aVc -> aVc.getVar().equals(variable)).forEach(aVc -> addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out));
                         }
                     }
+    }
+
+    private void writeTOFile(String S, FileOutputStream out){
+        byte[] strToBytes = S.getBytes(); 
+        try {
+            out.write(strToBytes);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -1009,12 +1043,28 @@ class SymbolTable {
      * @param hrefGraph the href graph
      */
     @SuppressWarnings("rawtypes")
-	private void addEdgeBetweenNodes(GraphNode graphNode, GraphNode node, String string, DirectedGraph<GraphNode, RelationshipEdge> hrefGraph) {
+	private void addEdgeBetweenNodes(GraphNode graphNode, GraphNode node, String string, DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, FileOutputStream out) {
         try{
+            // For Debugging
+            System.out.println("$$$$ addEdgeBetweenNodes Called");
+            System.out.println(">> try " + graphNode.getData() + " --> " + node.getData() + "[ " + string + " ]");
+            System.out.println("##<< graphNodeClass " + graphNode.getNodeClass());
+            System.out.println("##<<  node.getclass " + node.getNodeClass());
+
             hrefGraph.addEdge(graphNode, node, new RelationshipEdge(string));
+
+            String s1 = graphNode.getData();
+            String s2 = node.getData();
+            String s1tokens[]=s1.split("\\{",2);
+            String s2tokens[]=s2.split("\\{",2);
+            String s = s1tokens[0]+"-->"+s2tokens[0]+ "[ " + string + " ]\n";
+            System.out.println(s);
+            writeTOFile(s, out);
+            System.out.println("$$$$ addEdgeBetweenNodes Done Successfully");
         } catch (Exception e) {
             System.out.println("ERROR in graph - " + e.getMessage());
             e.printStackTrace();
+            
         }
     }
 
@@ -1025,26 +1075,46 @@ class SymbolTable {
      * @param hrefGraph the href graph
      * @param previousNode the previous node
      * @param loop the loop
+     * @param out filehandle
      * @return the graph node
      */
     private GraphNode addNodeAndEdgeToGraph(Node node, @SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph,
-                                            GraphNode previousNode, boolean loop) {
+                                            GraphNode previousNode, boolean loop,FileOutputStream out) {
         GraphNode nodeToSend = null;
         try{
-            GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString());
+            GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString(), node.getClass().toString());
             hrefGraph.addVertex(newNode);
-            if(previousNode == null)
+            System.out.println("$$ addNodeAndEdgeToGraph Called");
+            
+            if(previousNode == null){
+                System.out.println("!! previousNode == null ");
                 nodeToSend = newNode;
+            }
             nodeToSend = newNode;
+
             hrefGraph.addEdge(previousNode, newNode);
 
-            if(loop)
+            String s1 = previousNode.getData();
+            String s2 = newNode.getData();
+            String s1tokens[]=s1.split("\\{",2);
+            String s2tokens[]=s2.split("\\{",2);
+            String S = s1tokens[0]+"-->"+s2tokens[0]+"[ CD ]\n";
+            System.out.println(S);
+            writeTOFile(S, out);
+
+            if(loop){
                 hrefGraph.addEdge(newNode, newNode);
+                s1 = previousNode.getData();
+                s1tokens = s1.split("\\{",2);
+                String S1 = s1tokens[0]+"-->"+s1tokens[0]+"[ CD ]\n";
+                System.out.println(S1);
+                writeTOFile( S1, out);
+            }
+            System.out.println("$$ addNodeAndEdgeToGraph Done Successfully");   
         } catch (Exception e) {
             System.out.println("ERROR in graph - " + e.getMessage());
             e.printStackTrace();
         }
-
         return nodeToSend;
     }
 
@@ -1053,15 +1123,15 @@ class SymbolTable {
      *
      * @param hrefGraph the href graph
      */
-    void addDependencies(@SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph) {
+    void addDependencies(@SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, FileOutputStream out) {
         scopes.stream().filter(scope -> scope instanceof LoopScope).forEach(scope -> {
             LoopScope ls = (LoopScope) scope;
             (ls.node.getChildrenNodes()).stream().filter(child -> child.getClass().equals(BinaryExpr.class)).forEach(child -> child.getChildrenNodes().stream().filter(childNode -> childNode.getClass().equals(NameExpr.class)).forEach(childNode -> {
                 String variable = childNode.toString();
-                ls.varChanges.stream().filter(vc -> vc.getVar().equals(variable)).forEach(vc -> addEdgeBetweenNodes(vc.getGraphNode(), ls.gn, "FD", hrefGraph));
+                ls.varChanges.stream().filter(vc -> vc.getVar().equals(variable)).forEach(vc -> addEdgeBetweenNodes(vc.getGraphNode(), ls.gn, "FD", hrefGraph, out));
             }));
             for (VarChanges va : ls.varAccesses)
-                ls.varChanges.stream().filter(vc -> va.getVar().equals(vc.getVar())).forEach(vc -> addEdgeBetweenNodes(vc.getGraphNode(), va.getGraphNode(), "FD", hrefGraph));
+                ls.varChanges.stream().filter(vc -> va.getVar().equals(vc.getVar())).forEach(vc -> addEdgeBetweenNodes(vc.getGraphNode(), va.getGraphNode(), "FD", hrefGraph, out));
         });
     }
 
