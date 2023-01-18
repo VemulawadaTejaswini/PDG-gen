@@ -26,8 +26,8 @@ public class mainframe {
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
     private JTextArea consoleText;
-    static String outputFolder = "./../../test-examples/temp/";
-    static String inputFolder = "./../../Code_kernel_data/readline/";
+    static String outputFolder = "./../../Processed Dataset/new/PreparedStatement.executeQuery/";
+    static String inputFolder = "./../../Code_kernel_data/PreparedStatement.executeQuery/";
     static int randomNumber = -1;
     static Random rand = new Random();
 
@@ -130,8 +130,8 @@ public class mainframe {
         new PDGCore();
         try {
             mainframe obj = new mainframe();
-            //ArrayList<String> files = getListOfFiles(inputFolder);
-            String files[] = {"D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/test-examples/example 4/openconnection - example1.java"};
+            ArrayList<String> files = getListOfFiles(inputFolder);
+            //String files[] = {"D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/test-examples/example 4/openconnection - example1.java"};
             for (String file : files) {
                 obj.methods(file);
             }
