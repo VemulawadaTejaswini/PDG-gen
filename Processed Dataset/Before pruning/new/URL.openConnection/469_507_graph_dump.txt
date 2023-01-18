@@ -1,0 +1,25 @@
+Line_0 $$ Entry-->Line_2 $$ //468
+public class func [ CD ]
+Line_2 $$ //468
+public class func -->Line_3 $$ public void initConnection(HttpRequest request) [ CD ]
+Line_3 $$ public void initConnection(HttpRequest request) -->Line_4 $$ URL url = request.getEndpoint().toURL()[ CD ]
+Line_4 $$ URL url = request.getEndpoint().toURL()-->Line_4 $$ request.getEndpoint().toURL()[ CD ]
+Line_3 $$ public void initConnection(HttpRequest request) -->Line_5 $$ HttpURLConnection connection = (HttpURLConnection) url.openConnection(proxyForURI.apply(request.getEndpoint()))[ CD ]
+Line_4 $$ URL url = request.getEndpoint().toURL()-->Line_5 $$ url.openConnection(proxyForURI.apply(request.getEndpoint()))[ FD ]
+Line_3 $$ public void initConnection(HttpRequest request) -->Line_6 $$ if (connection instanceof HttpsURLConnection) [ CD ]
+Line_5 $$ HttpURLConnection connection = (HttpURLConnection) url.openConnection(proxyForURI.apply(request.getEndpoint()))-->Line_6 $$ if (connection instanceof HttpsURLConnection) [ FD ]
+Line_6 $$ if (connection instanceof HttpsURLConnection) -->Line_7 $$ HttpsURLConnection sslCon = (HttpsURLConnection) connection[ CD ]
+Line_6 $$ if (connection instanceof HttpsURLConnection) -->Line_8 $$ if (utils.relaxHostname())
+    sslCon.setHostnameVerifier(verifier);[ CD ]
+Line_8 $$ if (utils.relaxHostname())
+    sslCon.setHostnameVerifier(verifier);-->Line_8 $$ utils.relaxHostname()[ CD ]
+Line_8 $$ if (utils.relaxHostname())
+    sslCon.setHostnameVerifier(verifier);-->Line_9 $$ sslCon.setHostnameVerifier(verifier)[ CD ]
+Line_7 $$ HttpsURLConnection sslCon = (HttpsURLConnection) connection-->Line_9 $$ sslCon.setHostnameVerifier(verifier)[ FD ]
+Line_6 $$ if (connection instanceof HttpsURLConnection) -->Line_10 $$ if (sslContextSupplier != null) [ CD ]
+Line_10 $$ if (sslContextSupplier != null) -->Line_13 $$ sslCon.setSSLSocketFactory(sslContextSupplier.get().getSocketFactory())[ CD ]
+Line_7 $$ HttpsURLConnection sslCon = (HttpsURLConnection) connection-->Line_13 $$ sslCon.setSSLSocketFactory(sslContextSupplier.get().getSocketFactory())[ FD ]
+Line_10 $$ if (sslContextSupplier != null) -->Line_14 $$ if (utils.trustAllCerts()) [ CD ]
+Line_14 $$ if (utils.trustAllCerts()) -->Line_14 $$ utils.trustAllCerts()[ CD ]
+Line_14 $$ if (utils.trustAllCerts()) -->Line_15 $$ sslCon.setSSLSocketFactory(untrustedSSLContextProvider.get().getSocketFactory())[ CD ]
+Line_7 $$ HttpsURLConnection sslCon = (HttpsURLConnection) connection-->Line_15 $$ sslCon.setSSLSocketFactory(untrustedSSLContextProvider.get().getSocketFactory())[ FD ]
