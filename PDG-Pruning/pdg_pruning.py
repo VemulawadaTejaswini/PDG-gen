@@ -14,8 +14,9 @@ e. Add the rest of the edges(CD/FD) in the current subgraph.
 """
 
 PRUNING_ERROR_COUNT, GOOD_DATA_POINTS, TOTAL_DATA_POINTS = 0, 0, 0
+PRUNING_ERROR_COUNT_IN_DATASET, GOOD_DATA_POINTS_IN_DATASET, TOTAL_DATA_POINTS_IN_DATASET = 0, 0, 0
 
-def get_pruned_pdg(pdg_file, output_pdg_file):
+def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
     
     global PRUNING_ERROR_COUNT, GOOD_DATA_POINTS, TOTAL_DATA_POINTS
     
@@ -59,7 +60,7 @@ def get_pruned_pdg(pdg_file, output_pdg_file):
     # Consider only FDs between the API node and other nodes
     api_nodes = []
     for line in line_mapping:
-        if line_mapping[line].find("." + API_NAME) != -1:
+        if line_mapping[line].find("." + api_name) != -1:
             api_nodes.append(line)
     #print("API NODES : \n")
     #print(api_nodes, "\n")
@@ -121,31 +122,44 @@ def get_pruned_pdg(pdg_file, output_pdg_file):
 
     return output_pdg_file
 
+PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/new_all"
+OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/new_all"
+pdg_folders_list = glob.glob(PDG_FOLDER_LOCATION + "/*/")
+print("\nNumber of total APIs: {}\n".format(len(pdg_folders_list)))
+for folder in tqdm.tqdm(pdg_folders_list):
+    print("\nProcessing: {}\n".format(folder))
+    api_name = folder[folder.rindex("/", 0, len(folder) - 1) + 1 : -1]
+    pdg_files_list = glob.glob(os.path.join(folder, '*.txt'))
+    if not os.path.exists(OUTPUT_FOLDER_LOCATION + "/" + api_name):
+        os.makedirs(OUTPUT_FOLDER_LOCATION + "/" + api_name)
+    for pdg_file_location in pdg_files_list:
+        pdg_file = open(pdg_file_location, 'r')
+        output_file_location = OUTPUT_FOLDER_LOCATION + \
+            "/" + api_name + "/" + pdg_file_location[pdg_file_location.rindex("/")+1:]
+        output_pdg_file = open(output_file_location, "w")
+        try:
+            output_pdg_file = get_pruned_pdg(pdg_file, output_pdg_file, api_name[api_name.rindex(".") + 1 :].strip())
+        except Exception as e:
+            PRUNING_ERROR_COUNT += 1
+            #print("\nERROR WHILE PRUNING PDG\n")
+            #print("\nFile: {}\n".format(pdg_file_location))
+            #print("\nERROR: {}\n".format(e))
+            pdg_file.close()
+            output_pdg_file.close()
+            os.remove(output_file_location)
+        else:
+            pdg_file.close()
+            output_pdg_file.close()
 
-API_NAME = "openConnection"
-PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/new/URL.openConnection"
-OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/URL.openConnection"
-pdg_files_list = glob.glob(os.path.join(PDG_FOLDER_LOCATION, '*.txt'))
-print("\nNumber of total files: {}\n".format(len(pdg_files_list)))
-for filename in tqdm.tqdm(pdg_files_list):
-    pdg_file = open(filename, 'r')
-    output_file_location = OUTPUT_FOLDER_LOCATION + \
-        "/" + filename[filename.rindex("/")+1:]
-    output_pdg_file = open(output_file_location, "w")
-    try:
-        output_pdg_file = get_pruned_pdg(pdg_file, output_pdg_file)
-    except Exception as e:
-        PRUNING_ERROR_COUNT += 1
-        print("\nERROR WHILE PRUNING PDG\n")
-        print("\nFile: {}\n".format(filename))
-        print("\nERROR: {}\n".format(e))
-        pdg_file.close()
-        output_pdg_file.close()
-        os.remove(output_file_location)
-    else:
-        pdg_file.close()
-        output_pdg_file.close()
-
-print("\nGOOD PDG DATA POINTS: {}\n".format(GOOD_DATA_POINTS))
-print("\nTOTAL PDG DATA POINTS: {}\n".format(TOTAL_DATA_POINTS))
-print("\nTOTAL PRUNING ERROR: {}\n".format(PRUNING_ERROR_COUNT))
+    print("\nGOOD PDG DATA POINTS: {}\n".format(GOOD_DATA_POINTS))
+    print("\nTOTAL PDG DATA POINTS: {}\n".format(TOTAL_DATA_POINTS))
+    print("\nTOTAL PRUNING ERROR: {}\n".format(PRUNING_ERROR_COUNT))
+    print("\n=================================================================\n")
+    PRUNING_ERROR_COUNT_IN_DATASET += PRUNING_ERROR_COUNT
+    GOOD_DATA_POINTS_IN_DATASET += GOOD_DATA_POINTS
+    TOTAL_DATA_POINTS_IN_DATASET += TOTAL_DATA_POINTS
+    PRUNING_ERROR_COUNT, GOOD_DATA_POINTS, TOTAL_DATA_POINTS = 0, 0, 0
+    
+print("\nTOTAL GOOD PDG DATA POINTS IN DATASET: {}\n".format(GOOD_DATA_POINTS_IN_DATASET))
+print("\nTOTAL PDG DATA POINTS IN DATASET: {}\n".format(TOTAL_DATA_POINTS_IN_DATASET))
+print("\nTOTAL PRUNING ERROR IN DATASET: {}\n".format(PRUNING_ERROR_COUNT_IN_DATASET))
