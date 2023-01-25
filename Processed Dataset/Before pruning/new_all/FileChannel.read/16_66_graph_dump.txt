@@ -1,0 +1,78 @@
+Line_0 $$ Entry-->Line_2 $$ //15
+public class func [ CD ]
+Line_2 $$ //15
+public class func -->Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) [ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_4 $$ buffer.rewind()[ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_5 $$ int read = channel.read(buffer, start)[ CD ]
+Line_5 $$ int read = channel.read(buffer, start)-->Line_5 $$ channel.read(buffer, start)[ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_6 $$ if (read < 4)
+    return -1;[ CD ]
+Line_5 $$ int read = channel.read(buffer, start)-->Line_6 $$ if (read < 4)
+    return -1;[ FD ]
+Line_6 $$ if (read < 4)
+    return -1;-->Line_6 $$ return -1;[ CD ]
+Line_6 $$ return -1;-->Line_6 $$ -1[ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_7 $$ int size = buffer.getInt(0)[ CD ]
+Line_7 $$ int size = buffer.getInt(0)-->Line_7 $$ buffer.getInt(0)[ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_8 $$ if (size < Message.MinHeaderSize)
+    return -1;[ CD ]
+Line_7 $$ int size = buffer.getInt(0)-->Line_8 $$ if (size < Message.MinHeaderSize)
+    return -1;[ FD ]
+Line_8 $$ if (size < Message.MinHeaderSize)
+    return -1;-->Line_8 $$ return -1;[ CD ]
+Line_8 $$ return -1;-->Line_8 $$ -1[ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_9 $$ if (next > len)
+    return -1;[ CD ]
+Line_9 $$ if (next > len)
+    return -1;-->Line_9 $$ return -1;[ CD ]
+Line_9 $$ return -1;-->Line_9 $$ -1[ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_10 $$ ByteBuffer messageBuffer = ByteBuffer.allocate(size)[ CD ]
+Line_10 $$ ByteBuffer messageBuffer = ByteBuffer.allocate(size)-->Line_10 $$ ByteBuffer.allocate(size)[ CD ]
+Line_7 $$ int size = buffer.getInt(0)-->Line_10 $$ ByteBuffer.allocate(size)[ FD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_11 $$ while (messageBuffer.hasRemaining()) [ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) [ CD ]
+Line_11 $$ while (messageBuffer.hasRemaining()) -->Line_11 $$ messageBuffer.hasRemaining()[ CD ]
+Line_10 $$ ByteBuffer messageBuffer = ByteBuffer.allocate(size)-->Line_11 $$ messageBuffer.hasRemaining()[ FD ]
+Line_11 $$ while (messageBuffer.hasRemaining()) -->Line_12 $$ read = channel.read(messageBuffer, curr)[ CD ]
+Line_12 $$ read = channel.read(messageBuffer, curr)-->Line_12 $$ read = channel.read(messageBuffer, curr)[ FD ]
+Line_5 $$ int read = channel.read(buffer, start)-->Line_12 $$ read = channel.read(messageBuffer, curr)[ FD ]
+Line_12 $$ read = channel.read(messageBuffer, curr)-->Line_12 $$ channel.read(messageBuffer, curr)[ CD ]
+Line_10 $$ ByteBuffer messageBuffer = ByteBuffer.allocate(size)-->Line_12 $$ channel.read(messageBuffer, curr)[ FD ]
+Line_11 $$ while (messageBuffer.hasRemaining()) -->Line_13 $$ if (read < 0)
+    throw new IllegalStateException("File size changed during recovery!");
+else
+    curr += read;[ CD ]
+Line_12 $$ read = channel.read(messageBuffer, curr)-->Line_13 $$ if (read < 0)
+    throw new IllegalStateException("File size changed during recovery!");
+else
+    curr += read;[ FD ]
+Line_5 $$ int read = channel.read(buffer, start)-->Line_13 $$ if (read < 0)
+    throw new IllegalStateException("File size changed during recovery!");
+else
+    curr += read;[ FD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_16 $$ messageBuffer.rewind()[ CD ]
+Line_10 $$ ByteBuffer messageBuffer = ByteBuffer.allocate(size)-->Line_16 $$ messageBuffer.rewind()[ FD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_17 $$ Message message = new Message(messageBuffer)[ CD ]
+Line_3 $$ public void validateMessage(FileChannel channel, long start, long len, ByteBuffer buffer) -->Line_18 $$ if (!message.isValid())
+    return -1;
+else
+    return next;[ CD ]
+Line_18 $$ if (!message.isValid())
+    return -1;
+else
+    return next;-->Line_18 $$ !message.isValid()[ CD ]
+Line_18 $$ !message.isValid()-->Line_18 $$ message.isValid()[ CD ]
+Line_17 $$ Message message = new Message(messageBuffer)-->Line_18 $$ message.isValid()[ FD ]
+Line_18 $$ if (!message.isValid())
+    return -1;
+else
+    return next;-->Line_18 $$ return -1;[ CD ]
+Line_18 $$ return -1;-->Line_18 $$ -1[ CD ]
+Line_18 $$ if (!message.isValid())
+    return -1;
+else
+    return next;-->Line_19 $$ return next;[ CD ]
+Line_12 $$ read = channel.read(messageBuffer, curr)-->Line_13 $$ if (read < 0)
+    throw new IllegalStateException("File size changed during recovery!");
+else
+    curr += read;[ FD ]

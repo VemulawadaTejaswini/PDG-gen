@@ -1,0 +1,18 @@
+Line_0 $$ Entry-->Line_2 $$ //11
+public class func [ CD ]
+Line_2 $$ //11
+public class func -->Line_3 $$ public void testChooseSmallerTable() [ CD ]
+Line_3 $$ public void testChooseSmallerTable() -->Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())[ CD ]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())-->Line_4 $$ DriverManager.getConnection(getUrl())[ CD ]
+Line_3 $$ public void testChooseSmallerTable() -->Line_5 $$ conn.createStatement().execute("CREATE TABLE t (k INTEGER NOT NULL PRIMARY KEY, v1 VARCHAR, v2 VARCHAR) IMMUTABLE_ROWS=true")[ CD ]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())-->Line_5 $$ conn.createStatement()[ FD ]
+Line_3 $$ public void testChooseSmallerTable() -->Line_6 $$ conn.createStatement().execute("CREATE INDEX idx ON t(v1)")[ CD ]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())-->Line_6 $$ conn.createStatement()[ FD ]
+Line_3 $$ public void testChooseSmallerTable() -->Line_7 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class)[ CD ]
+Line_7 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class)-->Line_7 $$ conn.createStatement().unwrap(PhoenixStatement.class)[ CD ]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())-->Line_7 $$ conn.createStatement()[ FD ]
+Line_3 $$ public void testChooseSmallerTable() -->Line_8 $$ QueryPlan plan = stmt.optimizeQuery("SELECT count(*) FROM t")[ CD ]
+Line_8 $$ QueryPlan plan = stmt.optimizeQuery("SELECT count(*) FROM t")-->Line_8 $$ stmt.optimizeQuery("SELECT count(*) FROM t")[ CD ]
+Line_7 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class)-->Line_8 $$ stmt.optimizeQuery("SELECT count(*) FROM t")[ FD ]
+Line_3 $$ public void testChooseSmallerTable() -->Line_9 $$ assertEquals("IDX", plan.getTableRef().getTable().getTableName().getString())[ CD ]
+Line_8 $$ QueryPlan plan = stmt.optimizeQuery("SELECT count(*) FROM t")-->Line_9 $$ plan.getTableRef()[ FD ]

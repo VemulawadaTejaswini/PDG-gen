@@ -1,0 +1,16 @@
+Line_0 $$ Entry-->Line_2 $$ //35
+public class func [ CD ]
+Line_2 $$ //35
+public class func -->Line_3 $$ public void testOrderByNotDroppedCompositeKey() [ CD ]
+Line_3 $$ public void testOrderByNotDroppedCompositeKey() -->Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())[ CD ]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())-->Line_4 $$ DriverManager.getConnection(getUrl())[ CD ]
+Line_3 $$ public void testOrderByNotDroppedCompositeKey() -->Line_5 $$ conn.createStatement().execute("CREATE TABLE foo (j INTEGER NOT NULL, k BIGINT NOT NULL, v VARCHAR CONSTRAINT pk PRIMARY KEY (j,k)) IMMUTABLE_ROWS=true")[ CD ]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())-->Line_5 $$ conn.createStatement()[ FD ]
+Line_3 $$ public void testOrderByNotDroppedCompositeKey() -->Line_6 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class)[ CD ]
+Line_6 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class)-->Line_6 $$ conn.createStatement().unwrap(PhoenixStatement.class)[ CD ]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl())-->Line_6 $$ conn.createStatement()[ FD ]
+Line_3 $$ public void testOrderByNotDroppedCompositeKey() -->Line_7 $$ QueryPlan plan = stmt.optimizeQuery("SELECT * FROM foo ORDER BY k,j")[ CD ]
+Line_7 $$ QueryPlan plan = stmt.optimizeQuery("SELECT * FROM foo ORDER BY k,j")-->Line_7 $$ stmt.optimizeQuery("SELECT * FROM foo ORDER BY k,j")[ CD ]
+Line_6 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class)-->Line_7 $$ stmt.optimizeQuery("SELECT * FROM foo ORDER BY k,j")[ FD ]
+Line_3 $$ public void testOrderByNotDroppedCompositeKey() -->Line_8 $$ assertFalse(plan.getOrderBy().getOrderByExpressions().isEmpty())[ CD ]
+Line_7 $$ QueryPlan plan = stmt.optimizeQuery("SELECT * FROM foo ORDER BY k,j")-->Line_8 $$ plan.getOrderBy()[ FD ]
