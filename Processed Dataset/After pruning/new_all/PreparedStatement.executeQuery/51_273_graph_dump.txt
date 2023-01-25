@@ -1,0 +1,7 @@
+Line_6 $$ ResultSet rs = pstmt.executeQuery() --> Line_7 $$ if (rs.next() && (rs.getInt(1) > 0))  [FD]
+Line_6 $$ ResultSet rs = pstmt.executeQuery() --> Line_8 $$ errors.append("Error: Found " + rs.getInt(1) + " template/ISO usage records which are created after it is removed")  [FD]
+Line_3 $$ public void checkTemplateISOUsage(Connection conn) --> Line_6 $$ ResultSet rs = pstmt.executeQuery()  [CD]
+Line_4 $$ PreparedStatement pstmt = conn.prepareStatement("select count(*) from cloud_usage.cloud_usage cu inner join cloud.template_zone_ref tzr " + "where cu.usage_id = tzr.template_id and cu.zone_id = tzr.zone_id and cu.usage_type in (7,8) and cu.start_date > tzr.removed" + lastCheckId) --> Line_6 $$ ResultSet rs = pstmt.executeQuery()  [FD]
+Line_3 $$ public void checkTemplateISOUsage(Connection conn) --> Line_4 $$ PreparedStatement pstmt = conn.prepareStatement("select count(*) from cloud_usage.cloud_usage cu inner join cloud.template_zone_ref tzr " + "where cu.usage_id = tzr.template_id and cu.zone_id = tzr.zone_id and cu.usage_type in (7,8) and cu.start_date > tzr.removed" + lastCheckId)  [CD]
+Line_3 $$ public void checkTemplateISOUsage(Connection conn) --> Line_7 $$ if (rs.next() && (rs.getInt(1) > 0))  [CD]
+Line_7 $$ if (rs.next() && (rs.getInt(1) > 0)) --> Line_8 $$ errors.append("Error: Found " + rs.getInt(1) + " template/ISO usage records which are created after it is removed")  [CD]
