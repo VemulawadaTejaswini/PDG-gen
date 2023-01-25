@@ -8,11 +8,13 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import pdg.PDGCore;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import org.jgrapht.ext.DOTExporter;
 import org.jgrapht.ext.StringEdgeNameProvider;
 import org.jgrapht.ext.StringNameProvider;
 
+import javax.sql.rowset.spi.SyncProvider;
 import javax.swing.*;
 
 import graphStructures.TextArea;
@@ -26,8 +28,8 @@ public class mainframe {
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
     private JTextArea consoleText;
-    static String outputFolder = "./../../Processed Dataset/new/PreparedStatement.executeQuery/";
-    static String inputFolder = "./../../Code_kernel_data/PreparedStatement.executeQuery/";
+    static String outputFolder = "./../../Processed Dataset/Before pruning/new_all/";
+    static String inputFolder = "./../../Code_kernel_data/";
     static int randomNumber = -1;
     static Random rand = new Random();
 
@@ -46,8 +48,21 @@ public class mainframe {
                 }
             }
         }
-        System.out.println("Number Of Files: " + listOfFiles.size());
+        System.out.println("\n\nNumber Of Files: " + listOfFiles.size());
         return listOfFiles;
+    }
+
+    // Get all folders inside a folder
+    static private ArrayList<String> getListOfFolders(String dirPath) {
+        ArrayList<String> listOfFolders = new ArrayList<String>();
+        File directory = new File(dirPath);
+        for (File folder : directory.listFiles()) {
+            if(!folder.getAbsolutePath().endsWith("DS_Store")){
+                listOfFolders.add(folder.getAbsolutePath());
+            }
+        }
+        System.out.println("\n\nNumber Of folders: " + listOfFolders.size());
+        return listOfFolders;
     }
 
     // constructor
@@ -55,7 +70,7 @@ public class mainframe {
         createGraph();
     }
 
-    private void methods(String filename) {
+    private void methods(String filename, String apiName) {
         // TextArea txtCodeGoesHere = new TextArea();
         // consoleText = new TextArea();
 
@@ -79,16 +94,16 @@ public class mainframe {
 
         consoleText.setText("----------------------------------------------------\n");
         randomNumber = rand.nextInt(1000);
-        runAnalysisAndMakeGraph();
+        runAnalysisAndMakeGraph(apiName);
 
         // ExportToDot
         FileOutputStream out;
         try {
-            checkIfFolderExists();
+            checkIfFolderExists(outputFolder + apiName + "/");
             GraphNode.exporting = true;
             String fn = selectedFileName.substring(0, selectedFileName.length() - 5) + "_" + randomNumber + ".dot";
 
-            out = new FileOutputStream(outputFolder + fn);
+            out = new FileOutputStream(outputFolder + apiName + "/" + fn);
             @SuppressWarnings("rawtypes")
             DOTExporter<GraphNode, RelationshipEdge> exporter = new DOTExporter<>(
                     new StringNameProvider<>(), null,
@@ -101,8 +116,8 @@ public class mainframe {
         GraphNode.exporting = false;
     }
 
-    private boolean checkIfFolderExists() {
-        File theDir = new File(outputFolder);
+    private boolean checkIfFolderExists(String folderLocation) {
+        File theDir = new File(folderLocation);
         return !theDir.exists() && theDir.mkdir();
     }
 
@@ -110,14 +125,14 @@ public class mainframe {
         hrefGraph = new DefaultDirectedGraph<>(RelationshipEdge.class);
     }
 
-    private void runAnalysisAndMakeGraph() {
+    private void runAnalysisAndMakeGraph(String apiName) {
         try {
             createGraph();
             GraphNode gn = new GraphNode(0, "Entry", "null");
             hrefGraph.addVertex(gn);
 
             if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, consoleText, "null",
-                    selectedFileName, outputFolder, randomNumber)) {
+                    selectedFileName, outputFolder + apiName + "/", randomNumber)) {
                 System.out.println("astPrinter called");
             }
 
@@ -130,10 +145,16 @@ public class mainframe {
         new PDGCore();
         try {
             mainframe obj = new mainframe();
-            ArrayList<String> files = getListOfFiles(inputFolder);
-            //String files[] = {"D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/test-examples/example 4/openconnection - example1.java"};
-            for (String file : files) {
-                obj.methods(file);
+            ArrayList<String> folders = getListOfFolders(inputFolder);
+            System.out.println("\n\nAPI Folders: " + folders);
+            for(String folder : folders){
+                int lastIndex = folder.lastIndexOf("\\");
+                String apiName = folder.substring(lastIndex + 1);
+                System.out.println("\n\nAPI Name: " + apiName);
+                ArrayList<String> files = getListOfFiles(folder);
+                for (String file : files) {
+                    obj.methods(file, apiName);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

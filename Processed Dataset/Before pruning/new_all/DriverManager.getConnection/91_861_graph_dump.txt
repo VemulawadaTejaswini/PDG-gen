@@ -1,0 +1,17 @@
+Line_0 $$ Entry-->Line_2 $$ //90
+public class func [ CD ]
+Line_2 $$ //90
+public class func -->Line_3 $$ public void testBlackListedUdfUsage() [ CD ]
+Line_3 $$ public void testBlackListedUdfUsage() -->Line_4 $$ Connection hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user1", "bar")[ CD ]
+Line_4 $$ Connection hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user1", "bar")-->Line_4 $$ DriverManager.getConnection(miniHS2.getJdbcURL(), "user1", "bar")[ CD ]
+Line_3 $$ public void testBlackListedUdfUsage() -->Line_5 $$ Statement stmt = hs2Conn.createStatement()[ CD ]
+Line_5 $$ Statement stmt = hs2Conn.createStatement()-->Line_5 $$ hs2Conn.createStatement()[ CD ]
+Line_4 $$ Connection hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user1", "bar")-->Line_5 $$ hs2Conn.createStatement()[ FD ]
+Line_3 $$ public void testBlackListedUdfUsage() -->Line_6 $$ stmt.execute("create table " + tableName1 + "(i int) ")[ CD ]
+Line_5 $$ Statement stmt = hs2Conn.createStatement()-->Line_6 $$ stmt.execute("create table " + tableName1 + "(i int) ")[ FD ]
+Line_3 $$ public void testBlackListedUdfUsage() -->Line_7 $$ verifyUDFNotAllowed(stmt, tableName1, "sqrt(1)", "sqrt")[ CD ]
+Line_5 $$ Statement stmt = hs2Conn.createStatement()-->Line_7 $$ verifyUDFNotAllowed(stmt, tableName1, "sqrt(1)", "sqrt")[ FD ]
+Line_3 $$ public void testBlackListedUdfUsage() -->Line_8 $$ stmt.execute("SELECT reflect('java.lang.String', 'valueOf', 1) from " + tableName1)[ CD ]
+Line_5 $$ Statement stmt = hs2Conn.createStatement()-->Line_8 $$ stmt.execute("SELECT reflect('java.lang.String', 'valueOf', 1) from " + tableName1)[ FD ]
+Line_3 $$ public void testBlackListedUdfUsage() -->Line_9 $$ stmt.close()[ CD ]
+Line_5 $$ Statement stmt = hs2Conn.createStatement()-->Line_9 $$ stmt.close()[ FD ]
