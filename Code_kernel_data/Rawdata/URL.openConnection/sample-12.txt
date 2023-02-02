@@ -1,0 +1,318 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1500.findSource(URL location){
+    URLConnection connection = location.openConnection();
+    if (connection instanceof JarURLConnection) {
+      return new File(((JarURLConnection) connection).getJarFile().getName());
+    }
+    return new File(location.getPath());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.copyResourcesRecursively(URL originUrl,File destination){
+        URLConnection urlConnection = originUrl.openConnection();
+        if (urlConnection instanceof JarURLConnection) {
+            copyJarResourcesRecursively(destination, (JarURLConnection) urlConnection);
+        } else if (urlConnection instanceof FileURLConnection) {
+            FileUtils.copyDirectory(new File(originUrl.getPath()), destination);
+        } else {
+            die("Unsupported URL type: " + urlConnection);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class880.copyConfResources(URL confUrl,String confResourcePath,File confDir){
+        URLConnection urlConnection = confUrl.openConnection();
+        if (urlConnection instanceof JarURLConnection) {
+            copyFromJar(confDir, confResourcePath, (JarURLConnection)urlConnection);
+        } else {
+            FileUtils.copyDirectory(new File(confUrl.toURI()), confDir);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.getContextRoot(URL webXml)#0{
+        if (webXml != null) {
+            URLConnection connection = webXml.openConnection();
+            if (connection instanceof JarURLConnection) {
+                URL war = ((JarURLConnection) connection).getJarFileURL();
+                return new URL("jar", "", war.toExternalForm() + "!/WEB-INF/content");
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.copyResourcesRecursively(URL originUrl,File destination)#1{
+        URLConnection urlConnection = originUrl.openConnection();
+        if (urlConnection instanceof JarURLConnection) {
+            copyResourcesFromJar((JarURLConnection) urlConnection, destination);
+        } else if (urlConnection instanceof FileURLConnection) {
+            // I know that this is not so beatiful... I'll try to change in a future...
+            if (operatingSystem == OperatingSystem.Mac || operatingSystem == OperatingSystem.Linux) {
+                destination = defaultUserConfDir;
+            }
+            FileUtils.copyDirectoryToDirectory(new File(originUrl.getPath()), destination);
+        } else {
+            throw new Exception("URLConnection[" + urlConnection.getClass().getSimpleName() +
+                    "] is not a recognized/implemented connection type.");
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.forJarUrl(URL url)#0{
+      URLConnection urlConnection = url.openConnection();
+      if (urlConnection instanceof JarURLConnection) {
+        return forJarFile(((JarURLConnection) urlConnection).getJarFile());
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.copyResourcesRecursively(final URL originUrl,final File destination,FilenameFilter filter)#0{
+      final URLConnection urlConnection = originUrl.openConnection();
+      if (urlConnection instanceof JarURLConnection) {
+        return copyJarResourcesRecursively(destination, (JarURLConnection) urlConnection, filter);
+      } else {
+        return copyFilesRecusively(new File(originUrl.getPath()), destination, filter);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.getManifest()#0{
+    URL base = BeeLine.class.getResource("/META-INF/MANIFEST.MF");
+    URLConnection c = base.openConnection();
+    if (c instanceof JarURLConnection) {
+      return ((JarURLConnection) c).getManifest();
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.createDir(URL url)#0{
+                    URLConnection urlConnection = url.openConnection();
+                    if (urlConnection instanceof JarURLConnection) {
+                            return new ZipDir(((JarURLConnection) urlConnection).getJarFile());
+                    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class880.makeSourceModules(String dir,String name,ClassLoader loader){
+    URL script = getURLforFile(dir, name, loader);
+        (script.openConnection() instanceof JarURLConnection)? new SourceURLModule(script): makeSourceModule(script, dir, name), 
+        getPrologueFile("prologue.js")
+}
+    
+   
+  
+   
+
+
+
+
+

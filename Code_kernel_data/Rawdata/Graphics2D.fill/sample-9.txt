@@ -1,0 +1,243 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.drawWeights(Graphics graphics,int pixWidth,int pixHeight)#0{
+        for (int i = 0; i < columnMapping.length; i++) {
+            g.setColor(getWeightColor(this.dataTable.getColumnWeight(columnMapping[i]), this.maxWeight));
+            Rectangle2D weightRect = null;
+            if (i == 0) {
+                weightRect = new Rectangle2D.Double(currentX, 0.0d, columnDistance / 2.0d, pixHeight);
+            } else if (i == columnMapping.length - 1) {
+                weightRect = new Rectangle2D.Double(currentX - (columnDistance / 2.0d), 0.0d, columnDistance / 2.0d, pixHeight);                
+            } else {
+                weightRect = new Rectangle2D.Double(currentX - (columnDistance / 2.0d), 0.0d, columnDistance, pixHeight);
+            }
+            g.fill(weightRect);
+            currentX += columnDistance;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.paintSurveyColumn(Graphics graphics,int column,float currentX,float columnDistance)#0{
+        if (dataTable.isSupportingColumnWeights()) {
+            Color weightColor = getWeightColor(dataTable.getColumnWeight(column), this.maxWeight);
+            Rectangle2D weightRect = new Rectangle2D.Double(0, MARGIN, columnDistance, this.dataTable.getNumberOfRows());
+            g.setColor(weightColor);
+            g.fill(weightRect);
+        }
+    if (this.dataTable.getNumberOfColumns() <= 10)
+      g.drawString(this.dataTable.getColumnName(column), 0, MARGIN - 3);
+    g.translate(0, MARGIN);
+    g.setColor(GRID_COLOR);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.paintImage(Graphics2D g2d,Color color1,Color color2,Color color3)#0{
+        g2d.setColor(color1);
+        g2d.translate(dim, dim);
+        g2d.fill(new Ellipse2D.Double(0, 0, dim, dim));
+        g2d.setColor(color2);
+        g2d.translate(0, 16);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.paintImage(Graphics2D g2d,Color color)#0{
+        g2d.setColor(color);
+        g2d.translate(dim, dim);
+        g2d.fill(new Ellipse2D.Double(0, 0, dim, dim));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.drawBackground(Graphics2D g)#2{
+    BuggleWorld w = (BuggleWorld)world;
+    if (w.getVisibleGrid() == false) {
+      g.setColor(Color.white);
+      g.fill(new Rectangle2D.Double(padx,pady ,(w.getWidth()-1)*cellW,(w.getHeight()-1)*cellW));        
+    }
+    for (int x=0; x<w.getWidth(); x++) {
+      for (int y=0; y<w.getHeight(); y++) {
+        g.setColor(getCellColor(x, y));
+        
+        BuggleWorldCell cell = (BuggleWorldCell) w.getCell(x, y);
+
+        g.fill(new Rectangle2D.Double(padx+x*cellW, pady+y*cellW, cellW, cellW));  
+        
+        if (cell.hasBaggle())
+          drawBaggle(g, cell);
+        if (cell.hasContent())
+          drawMessage(g, cell, cell.getContent());
+      }
+    }
+    if (((BuggleWorld) world).getVisibleGrid()) {
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.paintIcon(java.awt.Component c,java.awt.Graphics gr,int x,int y)#0{
+        Color color = (Color) editor.getDefaultAttribute(key);
+        if (color != null) {
+            g.setColor(color);
+            g.translate(x, y);
+            g.fill(colorShape);
+            g.translate(-x, -y);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.drawLight2D(Graphics2D g,LightBotWorldCell cell)#1{
+    g.setColor(cell.isLightOn()?LIGHT_ON_COLOR:LIGHT_OFF_COLOR);
+    g.fill(new Arc2D.Double(dx + 0.1 * CELL_WIDTH - dz, dy + 0.1 * CELL_WIDTH - dz, 0.8 * CELL_WIDTH,
+        0.8 * CELL_WIDTH, 0, 360, Arc2D.OPEN));
+}
+    
+   
+  
+   
+
+
+
+
+

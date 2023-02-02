@@ -1,0 +1,2747 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.testArrayToStringFunctionWithNulls8(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(ARRAY[NULL, NULL, 'a', 'b', NULL, 'c', 'd', NULL, 'e', NULL, NULL], ', ') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.testArrayToStringFunctionWithNulls7(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(ARRAY[NULL, NULL, 'a', 'b', NULL, 'c', 'd', NULL, 'e', NULL, NULL], ', ', '*') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class810.testUpsertValuesOnlyUpsertsTenantData(){
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL);
+            conn.setAutoCommit(true);
+            int count = conn.createStatement().executeUpdate("upsert into " + TENANT_TABLE_NAME + " (id, user) values (1, 'Bon Scott')");
+            assertEquals("Expected 1 row to have been inserted", 1, count);
+            ResultSet rs = conn.createStatement().executeQuery("select count(*) from " + TENANT_TABLE_NAME);
+            rs.next();
+            assertEquals(1, rs.getInt(1));
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.testArrayToStringFunctionDouble1(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(doubles, ', ') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1170.testArrayToStringFunctionWithNestedFunctions3(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(ARRAY[ARRAY_ELEM(doubles, 1), ARRAY_ELEM(doubles, 1)], ', ') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.testArrayAppendFunctionInWhere4(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE ARRAY[23.45,4634.5,2.3234,123.4]=ARRAY_APPEND(ARRAY[23.45,4634.5,2.3234],123.4)");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.testArrayPrependFunctionInWhere5(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE ARRAY['foo','2345','46345','23234']=ARRAY_PREPEND('foo',varchars)");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.testArrayToStringFunctionBigint(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(bigints, ', ') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.testArrayToStringFunctionDouble2(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(ARRAY[2.3, 4.5], ', ') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.testArrayToStringFunctionInWhere6(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE ARRAY_TO_STRING(ARRAY[1,2,3], varchar1) = '1, 2, 3'");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.testArrayToStringFunctionWithNulls5(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(ARRAY['a', 'b', NULL], ', ', '*') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.testArrayToStringFunctionVarchar1(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(varchars, ',','*') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.testCeilDate()#3{
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT CEIL(dt, 'day', 1), CEIL(dt, 'hour', 1), CEIL(dt, 'minute', 1), CEIL(dt, 'second', 1) FROM t1");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.testNullReverse(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ASC", s);
+        rs = conn.createStatement().executeQuery("SELECT reverse(kv) FROM REVERSE_TEST");
+        assertTrue(rs.next());
+        assertNull(rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.testArrayToStringFunctionInWhere2(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE 'a,b,c' = ARRAY_TO_STRING(ARRAY['a', 'b', 'c'], ',')");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1270.testArrayFillFunctionInWhere4(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE ARRAY[23.45, 23.45, 23.45]=ARRAY_FILL(23.45, 3)");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.testArrayToStringFunctionChar1(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(chars, ', ') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.testSettingsAsProperties()#1{
+        String url = getURL("driver", true);
+        Connection conn = DriverManager.getConnection(url, prop);
+        rs = conn.createStatement().executeQuery(
+                "select * from information_schema.settings where name='MAX_COMPACT_TIME'");
+        rs.next();
+        assertEquals(1234, rs.getInt(2));
+        conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.testFloorDateInWhere(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM t1 WHERE FLOOR(dt, 'hour') = to_date('2012-01-01 14:00:00')");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testCeilDouble(){
+    Connection conn = DriverManager.getConnection(getUrl());
+    ResultSet rs = conn.createStatement().executeQuery("SELECT CEIL(doub), CEIL(doub, 1), CEIL(doub, 2), CEIL(doub, 3) FROM t1");
+    assertTrue(rs.next());
+    assertEquals(0, Doubles.compare(2, rs.getDouble(1)));
+    assertEquals(0, Doubles.compare(1.3, rs.getDouble(2)));
+    assertEquals(0, Doubles.compare(1.27, rs.getDouble(3)));
+    assertEquals(0, Doubles.compare(1.264, rs.getDouble(4)));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.testCeilDateInWhere(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM ROUND_DATE_TIME_TS_DECIMAL WHERE CEIL(dt, 'second') = to_date('2012-01-01 14:25:29')");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testSplit_InFilter(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ONE,TWO,THREE");
+        ResultSet rs = conn.createStatement().executeQuery(
+                "SELECT ID FROM SPLIT_TEST WHERE (REGEXP_SPLIT(VAL, ','))[1] = 'ONE'");
+        assertTrue(rs.next());
+        assertEquals(1, rs.getInt(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.testArrayToStringFunctionInWhere5(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE 'a, bbbb, c, ddd, e' = ARRAY_TO_STRING(ARRAY['a', 'bbbb', 'c' , 'ddd', 'e'], ', ')");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.testArrayToStringFunctionInWhere3(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE '1.1,2.2,3.3' = ARRAY_TO_STRING(ARRAY[1.1, 2.2, 3.3], ',')");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testSplit_ArrayReference(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ONE,TWO,THREE");
+        ResultSet rs = conn.createStatement().executeQuery(
+                "SELECT REGEXP_SPLIT(VAL, ',')[1] FROM SPLIT_TEST");
+        assertTrue(rs.next());
+        assertEquals("ONE", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.testSplit_NullDynamicSeparator(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ONE,TWO,THREE", null);
+        ResultSet rs = conn.createStatement().executeQuery(
+                "SELECT REGEXP_SPLIT(VAL, SEP) FROM SPLIT_TEST");
+        assertTrue(rs.next());
+        assertNull(rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.testArrayFillFunctionInWhere3(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT region_name FROM regions WHERE ARRAY['2345', '2345', '2345', '2345']=ARRAY_FILL('2345', 4)");
+        assertTrue(rs.next());
+        assertEquals("SF Bay Area", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testArrayToStringFunctionWithNulls3(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(ARRAY[NULL, 'a', 'b'], ', ', '*') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.testArrayToStringFunctionWithNulls1(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_TO_STRING(ARRAY['a', NULL, 'b'], ', ','*') FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.testRoundingUpDate()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT ROUND(dt, 'day'), ROUND(dt, 'hour', 1), ROUND(dt, 'minute', 1), ROUND(dt, 'second', 1), ROUND(dt, 'millisecond', 1) FROM ROUND_DATE_TIME_TS_DECIMAL");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.testRoundingUpTimestamp()#5{
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT ROUND(ts, 'day'), ROUND(ts, 'hour', 1), ROUND(ts, 'minute', 1), ROUND(ts, 'second', 1), ROUND(ts, 'millisecond', 1) FROM ROUND_DATE_TIME_TS_DECIMAL");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.testRoundingUpDecimal()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT ROUND(dec), ROUND(dec, 1), ROUND(dec, 2), ROUND(dec, 3) FROM t1");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1180.testFalseOrFalse()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        ResultSet rs = conn.createStatement().executeQuery("SELECT (FALSE OR FALSE) AS B FROM SYSTEM.CATALOG LIMIT 1");
+        assertTrue(rs.next());
+        assertFalse(rs.getBoolean(1));
+        conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class810.testRoundingUpDecimalInWhere(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM t1 WHERE ROUND(dec, 2) = 1.26");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testArrayPrependFunctionNulls1()#1{
+        conn = DriverManager.getConnection(getUrl());
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_PREPEND(b,a) FROM t WHERE k = 'a'");
+        assertTrue(rs.next());
+        assertEquals(array2, rs.getArray(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.testFloorDate()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT FLOOR(dt, 'day', 1), FLOOR(dt, 'hour', 1), FLOOR(dt, 'minute', 1), FLOOR(dt, 'second', 1) FROM t1");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testFloorDouble(){
+    Connection conn = DriverManager.getConnection(getUrl());
+    ResultSet rs = conn.createStatement().executeQuery("SELECT FLOOR(doub), FLOOR(doub, 1), FLOOR(doub, 2), FLOOR(doub, 3) FROM t1");
+    assertTrue(rs.next());
+    assertEquals(0, Doubles.compare(1, rs.getDouble(1)));
+    assertEquals(0, Doubles.compare(1.2, rs.getDouble(2)));
+    assertEquals(0, Doubles.compare(1.26, rs.getDouble(3)));
+    assertEquals(0, Doubles.compare(1.264, rs.getDouble(4)));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testRoundFloat(){
+    Connection conn = DriverManager.getConnection(getUrl());
+    ResultSet rs = conn.createStatement().executeQuery("SELECT ROUND(fl), ROUND(fl, 1), ROUND(fl, 2), ROUND(fl, 3) FROM t1");
+    assertTrue(rs.next());
+    assertEquals(0, Floats.compare(1, rs.getFloat(1)));
+    assertEquals(0, Floats.compare(1.3f, rs.getFloat(2)));
+    assertEquals(0, Floats.compare(1.26f, rs.getFloat(3)));
+    assertEquals(0, Floats.compare(1.264f, rs.getFloat(4)));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1070.testFloorTimestamp()#5{
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT FLOOR(ts, 'day'), FLOOR(ts, 'hour', 1), FLOOR(ts, 'minute', 1), FLOOR(ts, 'second', 1), FLOOR(ts, 'millisecond', 1) FROM ROUND_DATE_TIME_TS_DECIMAL");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.testFloorDoubleInWhere(){
+    Connection conn = DriverManager.getConnection(getUrl());
+    ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM t1 WHERE FLOOR(doub, 2) = 1.26");
+    assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.testRoundingUpDateInWhere(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM t1 WHERE ROUND(dt, 'day') = to_date('2012-01-02 00:00:00')");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.testRoundingUpTime()#2{
+        Connection conn = DriverManager.getConnection(getUrl());
+        ResultSet rs = conn.createStatement().executeQuery("SELECT ROUND(t, 'day', 1), ROUND(t, 'hour', 1), ROUND(t, 'minute', 1), ROUND(t, 'second', 1) FROM t1");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class810.testCount()#0{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 1));
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select count(1) from " + GROUPBYTEST_NAME);
+        assertTrue(rs.next());
+        assertEquals(8, rs.getInt(1));
+        assertFalse(rs.next());
+        conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.testArrayFillFunctionTimestamp()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_FILL(timestamp,3) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testArrayAppendFunctionBigIntDesc()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTablesDesc(conn, "BIGINT", "1112");
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_APPEND(bigints,pk) FROM regions");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("BIGINT", longs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.testArrayFillFunctionDouble()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_FILL(double,4) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("DOUBLE", objects);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.testArrayFillFunctionInteger()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_FILL(integer,4) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("INTEGER", objects);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.testSplit_AlternateSeparator(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ONE:TWO:THREE");
+        ResultSet rs = conn.createStatement().executeQuery(
+                "SELECT REGEXP_SPLIT(VAL, ':') FROM SPLIT_TEST");
+        assertTrue(rs.next());
+        Array array = rs.getArray(1);
+        String[] values = (String[]) array.getArray();
+        assertArrayEquals(new String[] { "ONE", "TWO", "THREE" }, values);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.testSplit_NoSplitString(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "CANNOT BE SPLIT");
+        ResultSet rs = conn.createStatement().executeQuery(
+                "SELECT REGEXP_SPLIT(VAL, ',') FROM SPLIT_TEST");
+        assertTrue(rs.next());
+        Array array = rs.getArray(1);
+        String[] values = (String[]) array.getArray();
+        assertArrayEquals(new String[] { "CANNOT BE SPLIT" }, values);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.testArrayFillFunctionWithNestedFunctions3()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_FILL(3.4, ARRAY_LENGTH(ARRAY[34, 45])) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.testArrayPrependFunctionDouble()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_PREPEND(double1,doubles) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("DOUBLE", doubles);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.testArrayConcatFunctionDouble()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_CAT(doubles,doubles) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("DOUBLE", doubles);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testArrayConcatFunctionChar2(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_CAT(chars,ARRAY['facfacfacfacfacfacfac','facfacfacfacfacfacfac']) FROM regions WHERE region_name = 'SF Bay Area'");
+        rs.next();
+        rs.getArray(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.testSelectAfterUpsertInQuery(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initSelectAfterUpsertTable(conn);
+            ResultSet rs = conn.createStatement().executeQuery(query);
+            assertTrue(rs.next());
+            assertEquals(0, rs.getInt(1));
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.testArrayConcatFunctionChar()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_CAT(chars,chars) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("CHAR", strings);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.testArrayAppendFunctionBooleanDesc()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTablesDesc(conn, "BOOLEAN", "false");
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_APPEND(bools,pk) FROM regions");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("BOOLEAN", booleans);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.testArrayPrependFunctionVarchar()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_PREPEND('34567',varchars) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("VARCHAR", strings);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testArrayAppendFunctionVarcharDesc()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTablesDesc(conn, "VARCHAR", "'e'");
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_APPEND(varchars,pk) FROM regions");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("VARCHAR", strings);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.testArrayPrependFunctionIntegerDesc()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTablesDesc(conn, "INTEGER", "23");
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_PREPEND(pk,integers) FROM regions");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("INTEGER", integers);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.testArrayConcatFunctionBigint()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_CAT(bigints,bigints) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("BIGINT", longs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.testArrayPrependFunctionInteger()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_PREPEND(1234,integers) FROM regions WHERE region_name = 'SF Bay Area'");
+        assertTrue(rs.next());
+        Array array = conn.createArrayOf("INTEGER", integers);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.test_4()#0{
+        Connection conn = DriverManager.getConnection("jdbc:mock:");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT 'ABCDE' FROM DUAL");
+        Assert.assertTrue(rs.next());
+        Assert.assertEquals("ABCDE", rs.getString(1));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.assertConnection(int port)#1{
+        final Connection conn = DriverManager.getConnection(connectionStr);
+            final Statement stmt = conn.createStatement();
+            final ResultSet rs = stmt.executeQuery("values(1)"); // Derby doesn't like "SELECT 1" as validation query
+            while (rs.next()) {
+                valueFound = true;
+                Assert.assertEquals("1", rs.getString(1));
+            }
+            Assert.assertTrue("No value found.", valueFound);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.getDateAsString(){
+    Connection conn = DriverManager
+        .getConnection("jdbc:default:connection");
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery("SELECT CURRENT_DATE");
+      if (rs.next())
+        return rs.getDate(1).toString();
+      if (rs != null)
+        rs.close();
+      if (stmt != null)
+        stmt.close();
+      conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.test_0()#0{
+        Connection conn = DriverManager.getConnection("jdbc:mock:");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT 2");
+        Assert.assertTrue(rs.next());
+        Assert.assertEquals(2, rs.getInt(1));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class880.countRows(String schema,String table)#0{
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement s = conn.createStatement();
+    ResultSet rs = s.executeQuery("SELECT COUNT(*) FROM " + schema + "." + table);
+    rs.next();
+    int count = rs.getInt(1);
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.currentPatches(String database){
+        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:orders", "sa", "");
+        Statement stmt = conn.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM patches");
+        while (resultSet.next()) {
+            log.info("Result " + resultSet.getInt(2));
+        }
+        SqlUtil.close(conn, stmt, null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.getNumOfEventsInStore()#0{
+        con = DriverManager.getConnection(URL);
+        Statement stmt = con.createStatement();
+        ResultSet resultSet = stmt.executeQuery(countQuery);
+        resultSet.next();
+        return resultSet.getInt(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.countTestRecords(int[] count)#1{
+        Connection conn = DriverManager.getConnection("jdbc:default:connection");
+            Statement ps1 = conn.createStatement();
+            ResultSet resultSet = ps1.executeQuery("SELECT COUNT(*) FROM PLANET");
+            resultSet.next();
+            count[0] = resultSet.getInt(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.test_2()#0{
+        Connection conn = DriverManager.getConnection("jdbc:mock:");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT NOW()");
+        Assert.assertTrue(rs.next());
+        Assert.assertTrue(rs.getObject(1) instanceof Timestamp);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.main(String args[])#0{
+          Connection conn = DriverManager.getConnection
+              ("jdbc:oracle:thin:@localhost:1521:orcl", "scott", "tiger");
+          Statement stmt = conn.createStatement();
+          ResultSet rset = stmt.executeQuery("select* from belli");
+          while (rset.next())
+                System.out.println (rset.getString(1));   // Print col 1
+          stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.POSTGRESCollector(String oriDBUrl,String username,String password)#0{
+            Connection conn = DriverManager.getConnection(oriDBUrl, username, password);
+            Catalog.setSeparator(conn);
+            Statement s = conn.createStatement();
+            ResultSet out = s.executeQuery("SHOW ALL;");
+            while(out.next()) {
+                dbConf.put(out.getString("name"), out.getString("setting"));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.getVarcharFromDb(int id)#0{
+        Connection con = DriverManager.getConnection("jdbc:default:connection");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT CHARDATA FROM CSDATA " +
+                "WHERE ID = " + id);
+        rs.next();
+        String chardata = rs.getString(1);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.getSchemaTransition(String nextSchema)#0{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery("VALUES CURRENT SCHEMA");
+        rs.next();
+        String prevSchema = rs.getString(1);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.main2(String[] args)#0{
+    Connection conn = DriverManager.getConnection(
+        "jdbc:h2:tcp://localhost:9092/mydb", "sa", "");
+    Statement stmt = conn.createStatement();
+    stmt.executeUpdate("INSERT INTO my_table(name) VALUES('zhh')");
+    ResultSet rs = stmt.executeQuery("SELECT name FROM my_table");
+    rs.next();
+    System.out.println(rs.getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.test_1()#0{
+        Connection conn = DriverManager.getConnection("jdbc:mock:");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT NULL");
+        Assert.assertTrue(rs.next());
+        Assert.assertEquals(0, rs.getInt(1));
+        Assert.assertEquals(null, rs.getObject(1));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1030.exists(final int id)#0{
+        final Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        final Statement statement = connection.createStatement();
+        final ResultSet result = statement.executeQuery("SELECT count(*) AS NB FROM " + TABLE + " WHERE ID = " + id);
+            assertTrue(result.next());
+            return result.getInt(1) == 1;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.accessSql(){
+                DriverManager.getConnection(
+                    "jdbc:default:connection");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("values 777");
+            rs.next();
+            return rs.getInt(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.count(final String where)#0{
+        final Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        final Statement statement = connection.createStatement();
+        final ResultSet result = statement.executeQuery("SELECT count(*) AS NB FROM " + TABLE + where);
+            assertTrue(result.next());
+            return result.getInt(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.run()#0{
+                    Connection conn = DriverManager.getConnection(getUrl());
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery("select * from test where name = 'name2'");
+                    while (rs.next()) {
+                        // Just make sure we run over all records
+                    }
+                    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.testConnectionUrl()#0{
+        Connection c = DriverManager.getConnection(url, this.username, this.password);
+        ResultSet rs = c.createStatement().executeQuery("select user()");
+        rs.next();
+        String userFromDb = rs.getString(1).split("@")[0];
+        assertEquals(this.username, userFromDb);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.getNumOfEventsInStore()#0{
+        con = DriverManager.getConnection(URL);
+        Statement stmt = con.createStatement();
+        ResultSet resultSet = stmt.executeQuery(countQuery);
+        while(resultSet.next()) {
+          count++;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.MYSQLCollector(String oriDBUrl,String username,String password)#1{
+        String dbUrl = oriDBUrl.substring(0, oriDBUrl.lastIndexOf('/'));
+            Connection conn = DriverManager.getConnection(dbUrl, username, password);
+            Catalog.setSeparator(conn);
+            Statement s = conn.createStatement();
+            ResultSet out = s.executeQuery("SELECT * FROM GLOBAL_VARIABLES;");
+            while(out.next()) {
+                dbConf.put(out.getString("VARIABLE_NAME"), out.getString("VARIABLE_VALUE"));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.shouldPingDatabase()#1{
+    Connection conn = DriverManager.getConnection("jdbc:derby:memory:chapter02DB;create=true", "APP2", "APP");
+    conn.createStatement().executeQuery("SELECT 1 FROM SYSIBM.SYSDUMMY1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.retrieveExternalResult(String dbName,String user,String password,ResultSet[] external){
+        Connection conn = DriverManager.getConnection(url, user, password);
+            conn.createStatement().executeQuery("VALUES(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.testFailNoFromClauseSelect()#0{
+         Connection conn = DriverManager.getConnection(getUrl());
+             conn.createStatement().executeQuery("SELECT foo, bar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.retrieveExternalResult(String dbName,String user,String password,ResultSet[] external){
+        Connection conn = DriverManager.getConnection(create_url);
+        external[0] = conn.createStatement().executeQuery("VALUES(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.testArrayConcatFunctionIntToCharArray(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTables(conn);
+        rs = conn.createStatement().executeQuery("SELECT ARRAY_CAT(varchars,ARRAY[23,45]) FROM regions WHERE region_name = 'SF Bay Area'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 88
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.testSplit_Upsert()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ONE,TWO,THREE");
+        conn.createStatement().executeUpdate("UPSERT INTO SPLIT_TEST (ID, ARR) SELECT ID, " +
+                "REGEXP_SPLIT(VAL, ',') FROM SPLIT_TEST");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 89
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.setUp()#0{
+        Connection connection = DriverManager.getConnection(Framework.getProperty(URL_PROPERTY),
+                Framework.getProperty(USER_PROPERTY), Framework.getProperty(PASSWORD_PROPERTY));
+            doOnAllTables(connection, null, "public", "DROP TABLE \"%s\" CASCADE");
+            Statement st = connection.createStatement();
+            executeSql(st, "DROP SEQUENCE IF EXISTS hierarchy_seq");
+            st.close();
+}
+    
+   
+  
+   
+
+
+
+
+

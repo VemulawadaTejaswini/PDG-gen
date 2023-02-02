@@ -1,0 +1,200 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.testPkPrepared(){
+    PreparedStatement stmt = conn.prepareStatement("select ta.attname, ia.attnum, ic.relname, n.nspname, tc.relname " +//$NON-NLS-1$
+        "from pg_catalog.pg_attribute ta, pg_catalog.pg_attribute ia, pg_catalog.pg_class tc, pg_catalog.pg_index i, " +//$NON-NLS-1$
+        "pg_catalog.pg_namespace n, pg_catalog.pg_class ic where tc.relname = E'pg_attribute' AND n.nspname = E'pg_catalog'");
+    ResultSet rs = stmt.executeQuery();
+    TestMMDatabaseMetaData.compareResultSet(rs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.testColumnMetadataWithAlias(){
+    PreparedStatement stmt = conn.prepareStatement("select ta.attname as x from pg_catalog.pg_attribute ta limit 1");
+    ResultSet rs = stmt.executeQuery();
+    TestMMDatabaseMetaData.compareResultSet(rs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.testImplicitPortalClosing()#0{
+    PreparedStatement s = conn.prepareStatement("select 1");
+    s.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.testPreparedError1()#1{
+    PreparedStatement stmt = conn.prepareStatement("select");
+      stmt.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.testCallTablePrepared(){
+    PreparedStatement prep = conn.prepareStatement("call table(x int = (1))");
+    prep.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.testExecuteQueryWithoutParameters()#2{
+    PreparedStatement pstmt = conn.prepareStatement("INSERT INTO streamtable (bin,str) VALUES (?,?)");
+      pstmt.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.getResults(String query)#1{
+          PreparedStatement statement = conn.prepareStatement(query);
+          ResultSet set = statement.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+

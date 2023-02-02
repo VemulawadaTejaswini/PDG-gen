@@ -1,0 +1,269 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.testCaseCS4595B_NonUniqueIndex(){
+        Statement st = createStatement();
+        st.executeUpdate("set ISOLATION to RR");
+        st.execute("call SYSCS_UTIL.SYSCS_SET_RUNTIMESTATISTICS(1)");
+        st.executeUpdate("insert into foo values (1, 1)");
+        doTestCaseCS4595B(st, "Index");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.testCS4595B_PrimaryKey(){
+        Statement st = createStatement();
+        st.executeUpdate("set ISOLATION to RR");
+        st.execute("call SYSCS_UTIL.SYSCS_SET_RUNTIMESTATISTICS(1)");
+        st.executeUpdate("insert into foo values (1, 1)");
+        doTestCaseCS4595B(st, "Constraint");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.testCS4595A_PrimaryKey(){
+        Statement st = createStatement();
+        st.executeUpdate("set ISOLATION to RR");
+        st.execute("call SYSCS_UTIL.SYSCS_SET_RUNTIMESTATISTICS(1)");
+        st.executeUpdate(
+            "create table foo (a int not null primary key, b int)");
+        doTestCaseCS4595A(st, "Constraint");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.testCS4595A_UniqueIndex(){
+        Statement st = createStatement();
+        st.executeUpdate("set ISOLATION to RR");
+        st.execute("call SYSCS_UTIL.SYSCS_SET_RUNTIMESTATISTICS(1)");
+        st.executeUpdate("create unique index foox on foo (a)");
+        doTestCaseCS4595A(st, "Index");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.testCS4595B_UniqueIndex(){
+        Statement st = createStatement();
+        st.executeUpdate("set ISOLATION to RR");
+        st.execute("call SYSCS_UTIL.SYSCS_SET_RUNTIMESTATISTICS(1)");
+        st.executeUpdate("create unique index foox on foo (a)");
+        doTestCaseCS4595B(st, "Index");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.setUp()#1{
+        Statement stmt = createStatement();
+        stmt.execute("create table tab1 (i integer)");
+        stmt.executeUpdate("alter table tab1 add constraint con1 unique (i)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.decorateSQL(Statement stmt){
+                stmt.execute("create table t (i int)");
+                stmt.executeUpdate("insert into t values (3)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.decorateSQL(Statement stmt){
+                stmt
+                        .execute("create table tab1 (COL1 int, COL2 smallint, COL3 real)");
+                stmt.executeUpdate("insert into tab1 values(2, 2, 3.1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.test_10_NextValue(){
+        Statement s = createStatement();
+        s.executeUpdate("CREATE SEQUENCE mySeq1");
+        s.execute("DROP SEQUENCE mySeq1 restrict");
+}
+    
+   
+  
+   
+
+
+
+
+

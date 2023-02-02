@@ -1,0 +1,205 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.testReadFrames()#1{
+        List<MkvBlock> bs = MKVMuxerTest.getBlocksByTrackNumber(me[0], 1);
+        Assert.assertNotNull(bs);
+        Assert.assertEquals(1, bs.size());
+        MkvBlock videoBlock = bs.get(0);
+        ByteBuffer source = ByteBuffer.allocate((int) videoBlock.size());
+        channel.position(videoBlock.dataOffset);
+        channel.read(source);
+        source.flip();
+        ByteBuffer[] frames = videoBlock.getFrames(source);
+        byte[] frameBytes = MKVMuxerTest.bufferToArray(byteBuffer);
+        Assert.assertNotNull(frames);
+        Assert.assertEquals(1, frames.length);
+        Assert.assertArrayEquals(rawFrame, frameBytes);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.testRead10Frames()#7{
+            for (int i = 5; i < 10; i++) {
+                ByteBuffer bb = ByteBuffer.allocate(bs.get(i-5).dataLen);
+                frameReadingChannel.position(bs.get(i-5).dataOffset);
+                frameReadingChannel.read(bb);
+                ByteBuffer[] frames = bs.get(i - 5).getFrames(bb);
+                Assert.assertNotNull(frames);
+                Assert.assertEquals(1, frames.length);
+                Assert.assertArrayEquals(rawFrames[i], MKVMuxerTest.bufferToArray(frames[0]));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.testXiphLacing()#3{
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ByteBuffer source = ByteBuffer.allocate(fileInputStream.available());
+            FileChannel channel = fileInputStream.getChannel();
+            channel.position(be.dataOffset);
+            channel.read(source);
+            source.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.testRead10Frames()#1{
+            for (int i = 0; i < 5; i++) {
+                FileChannel channel = frameReadingChannel;
+                ByteBuffer bb = ByteBuffer.allocate(bs.get(i).dataLen);
+                frameReadingChannel.position(bs.get(i).dataOffset);
+                frameReadingChannel.read(bb);
+                ByteBuffer[] frames = bs.get(i).getFrames(bb);
+                
+                Assert.assertNotNull(frames);
+                Assert.assertEquals(1, frames.length);
+                Assert.assertArrayEquals(rawFrames[i], MKVMuxerTest.bufferToArray(frames[0]));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.testFixedLacing()#1{
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ByteBuffer source = ByteBuffer.allocate(fileInputStream.available());
+            FileChannel channel = fileInputStream.getChannel();
+            channel.position(be.dataOffset);
+            channel.read(source);
+            source.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.readAllFromFile(long from,long to,Envelope datasetEnvelope,ICRS baseCRS)#0{
+            ByteBuffer objectBuffer = ByteBuffer.allocate( (int) ( to - from ) );
+            channel.position( from );
+            channel.read( objectBuffer );
+}
+    
+   
+  
+   
+
+
+
+
+

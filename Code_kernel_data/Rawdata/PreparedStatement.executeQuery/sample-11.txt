@@ -1,0 +1,158 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.openResultSet(InspectionContext inspectionContext,I inspectionScope,PreparedStatement statement,Query query)#0{
+            for (Object parameter : ((ParameterizedQuery) query).getParameters()) {
+                statement.setObject(index++, parameter);
+            }
+        return statement.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.execute(String query,Object... params)#0{
+    for (int index = 0; index < params.length; index++) {
+      preparedStatement.setObject(index + 1, params[index]);
+    }
+    return preparedStatement.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.find(Connection conn,String sql,Object... paras)#0{
+    for (int i=0; i<paras.length; i++) {
+      pst.setObject(i + 1, paras[i]);
+    }
+    ResultSet rs = pst.executeQuery();
+    List<Record> result = RecordBuilder.build(rs);
+    DbKit.closeQuietly(rs, pst);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.execute()#0{
+            for (int i = 0; i < values.size(); ++i) {
+                stmt.setObject(
+                    i + 1,
+                    values.get(i));
+            }
+            return stmt.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.assertIndexUsed(Connection conn,String query,List<Object> binds,String indexName,boolean expectedToBeUsed)#0{
+            for (int i = 0; i < binds.size(); i++) {
+                stmt.setObject(i+1, binds.get(i));
+            }
+            ResultSet rs = stmt.executeQuery();
+            String explainPlan = QueryUtil.getExplainPlan(rs);
+            assertEquals(expectedToBeUsed, explainPlan.contains(" SCAN OVER " + indexName));
+}
+    
+   
+  
+   
+
+
+
+
+

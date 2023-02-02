@@ -1,0 +1,6 @@
+//558
+public class func{
+public void setUp(){
+        conn = DriverManager.getConnection(url, user, password);
+}
+}

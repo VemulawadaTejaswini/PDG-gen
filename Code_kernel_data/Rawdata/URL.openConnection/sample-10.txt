@@ -1,0 +1,415 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.resolveModuleEntriesFromJar(URL url,String _prefix)#0{
+        JarURLConnection conn = (JarURLConnection) url.openConnection();
+        Enumeration entries = conn.getJarFile().entries();
+        while (entries.hasMoreElements())
+        {
+            JarEntry entry = (JarEntry) entries.nextElement();
+            String name = entry.getName();
+            if (name.startsWith(prefix) && !entry.isDirectory())
+            {
+                resourceList.add(name);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.getWARFile()#0{
+        URL url = ExecutableWARServerLauncherMain.class.getClassLoader().getResource(classResourceName);
+        if (url == null)
+            throw new IOException("URL for class resource not found: " + classResourceName);
+        File warFile = new File(((JarURLConnection) url.openConnection()).getJarFile().getName());
+        return warFile.getAbsoluteFile();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.doExists(String name,Locale locale,String path){
+            URL url = new URL(name);
+            String pr = url.getProtocol();
+            if (pr.equals("jar")) {
+                JarURLConnection connection = (JarURLConnection) url.openConnection();
+                return connection.getJarEntry() != null;
+            } else if (pr.equals("file")) {
+                return new File(url.toURI()).exists();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.isFolder(URL url){
+    String protocol = url.getProtocol();
+    if ("file".equals(protocol)) {
+      File f = new File(url.getPath());
+      isFolder = f.isDirectory();
+    } else if ("jar".equals(protocol)) {
+      JarURLConnection conn = (JarURLConnection) url.openConnection();
+      isFolder = conn.getJarEntry().isDirectory();
+    } else {
+      throw new IllegalArgumentException(url + " is not a File.");
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1380.readFromJar(URL jarUrl,List resources){
+        JarURLConnection jarConnection = (JarURLConnection) jarUrl.openConnection();
+        Enumeration entries = jarConnection.getJarFile().entries();
+        while (entries.hasMoreElements())
+        {
+            JarEntry entry = (JarEntry) entries.nextElement();
+            String name = new File(entry.getName()).getName();
+            if (name.startsWith(MULE) && name.endsWith(XSD))
+            {
+                logger.debug("entry: " + entry);
+                resources.add(new URL(jarUrl, entry.getName()));
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.readJarDirectoryEntries(URL location,String basePath,Set<String> resources){
+        JarURLConnection conn = (JarURLConnection) location.openConnection();
+        jarfile = conn.getJarFile();
+        Enumeration<JarEntry> entries = jarfile.entries();
+        while (entries != null && entries.hasMoreElements()) {
+            JarEntry entry = entries.nextElement();
+            String name = entry.getName();
+
+            if (entry.isDirectory() && StringUtils.startsWith(name, basePath)) {
+                resources.add(name);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.resolveModuleEntriesFromJar(URL url,String _prefix)#0{
+        JarURLConnection conn=(JarURLConnection)url.openConnection();
+        Enumeration entries=conn.getJarFile().entries();
+        while (entries.hasMoreElements())
+        {
+            JarEntry entry = (JarEntry) entries.nextElement();
+            String name=entry.getName();
+            if(name.startsWith(prefix) && !entry.isDirectory())
+            {
+                resourceList.add(name);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.readDefinitionsFromJar(URL url)#1{
+        JarURLConnection con = (JarURLConnection) url.openConnection();
+        JarFile archive = con.getJarFile();
+        Enumeration<JarEntry> entries = archive.entries();
+        while (entries.hasMoreElements()) {
+            JarEntry entry = entries.nextElement();
+            if (entry.getName().endsWith(".gplot")) {
+                String filename = entry.getName().substring(entry.getName().lastIndexOf("/") + 1);
+                String plotName = filename.substring(0, filename.indexOf("."));
+                URL resource = GPlotParser.class.getResource(filename);
+                result.put(plotName, parse(Resources.toString(resource, Charsets.UTF_8)));
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.visitJar(URL url){
+    if (_logger.isLoggable(Level.FINE)) {
+      _logger.log(Level.FINE, "Scanning JAR-File: " + url);
+    }
+    JarURLConnection conn = (JarURLConnection) url.openConnection();
+    _visitJar(conn.getJarFile());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.getJarFile(URL jarFileUrl){
+        if (jarFileUrl != null) {
+            JarURLConnection conn = (JarURLConnection) jarFileUrl.openConnection();
+            conn.setUseCaches(false);
+            conn.connect();
+            jarFile = conn.getJarFile();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getParentURL(URL url)#1{
+            URL fileURL = ((JarURLConnection) url.openConnection()).getJarFileURL();
+            String file = fileURL.getFile();
+            String parentFile = new File(file).getParent();
+            parentFile = parentFile.replace(File.separatorChar, '/');
+            if (parentFile.charAt(0) != '/') {
+                parentFile = "/" + parentFile;
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.loadJarContent(URL url)#0{
+        final JarURLConnection uc = (JarURLConnection) url.openConnection();
+        final JarEntry jarEntry = uc.getJarEntry();
+        if (jarEntry != null)
+        {
+            if (logger.isLoggable(Level.FINEST))
+                logger.finest(dump(jarEntry));
+
+            return NetworkUtil.download(uc.getInputStream(), jarEntry.getSize(), null);
+        }
+        throw new IOException("JarResources.loadJarContent(" + url.toString() + ") error:\nEntry not found !");
+}
+    
+   
+  
+   
+
+
+
+
+

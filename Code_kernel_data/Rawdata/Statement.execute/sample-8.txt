@@ -1,0 +1,263 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.testControl(){
+        Statement stat = conn.createStatement();
+        stat.execute("create alias overload0 for \"" + ME + ".overload0\"");
+        ResultSet rs = stat.executeQuery("select overload0() from dual");
+        assertTrue(rs.next());
+        assertEquals("0 args", 0, rs.getInt(1));
+        assertFalse(rs.next());
+        rs = meta.getProcedures(null, null, "OVERLOAD0");
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testMultibatchSelect()#1{
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select * from tables, columns limit 7000"));
+    ResultSet rs = s.getResultSet();
+    while (rs.next()) {
+      i++;
+      rs.getString(1);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testClob(){
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select cast('abc' as clob)"));
+    ResultSet rs = s.getResultSet();
+    assertTrue(rs.next());
+    String clob = rs.getString(1);
+    assertEquals("abc", clob);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testClientIp(){
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select * from objecttable('teiid_context' COLUMNS y string 'teiid_row.session.IPAddress') as X"));
+    ResultSet rs = s.getResultSet();
+    assertTrue(rs.next());
+    String value = rs.getString(1);
+    assertNotNull(value);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testBlob()#0{
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select to_bytes('abc', 'UTF-16')"));
+    ResultSet rs = s.getResultSet();
+    assertTrue(rs.next());
+    byte[] bytes = rs.getBytes(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.test(){
+    Statement stmt = conn.createStatement();
+    stmt.execute(sql);
+    ResultSet rs = stmt.getResultSet();
+    if (rs != null) {
+      // read the first column from each row in the result set
+      while (rs.next()) {
+        rs.getObject(1);
+      }
+      rs.close();
+    }
+    stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.test_pg_client_encoding(){
+    Statement s = conn.createStatement();
+    ResultSet rs = s.executeQuery("select pg_client_encoding()");
+    rs.next();
+    assertEquals("UTF8", rs.getString(1));
+    s.execute("set client_encoding UTF8");
+    rs = s.executeQuery("select pg_client_encoding()");
+    rs.next();
+    assertEquals("UTF8", rs.getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.testGeneratedKeys(){
+    Statement s = conn.createStatement();
+    assertFalse(s.execute("insert into x (z) values (1)", Statement.RETURN_GENERATED_KEYS));
+    ResultSet rs = s.getGeneratedKeys();
+    rs.next();
+    assertEquals(1, rs.getInt(1));
+}
+    
+   
+  
+   
+
+
+
+
+

@@ -1,0 +1,1155 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.readBufferFully(FileChannel fc,ByteBuffer buf,int startPos)#0{
+        while (buf.hasRemaining()) {
+            int read = fc.read(buf, pos);
+            if (read == -1) {
+                throw new EOFException();
+            }
+            pos += read;
+        }
+        buf.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.loadDataFromFile(File file)#0{
+    FileInputStream fis = new FileInputStream(file);
+    FileChannel fc = fis.getChannel();
+    ByteBuffer bb = ByteBuffer.allocateDirect((int) fc.size());
+    while (bb.remaining() > 0) fc.read(bb);
+    fc.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.preadHeader(FileChannel fc)#1{
+    final byte arr[] = new byte[getHeaderSize()];
+    ByteBuffer buf = ByteBuffer.wrap(arr);
+    while (buf.hasRemaining()) {
+      if (fc.read(buf, 0) <= 0) {
+        throw new EOFException("unexpected EOF while reading " +
+            "metadata file header");
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.readAllFromChannel(FileChannel channel)#0{
+    channel.position(0);
+    final ByteBuffer buffer = createBufferForChannel(channel);
+    while(buffer.hasRemaining()) {
+      if(channel.read(buffer) == -1) {
+        logger.warning("Unexpected EOF reading from cache file");
+        return EMPTY_BUFFER;
+      }
+    }
+    buffer.rewind();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.readHgtFile(String file)#0{
+    CheckParameterUtil.ensureParameterNotNull(file);
+      fc = new FileInputStream(file).getChannel();
+      ByteBuffer bb = ByteBuffer.allocateDirect((int) fc.size());
+      while (bb.remaining() > 0) fc.read(bb);
+      bb.flip();
+      sb = bb.order(ByteOrder.BIG_ENDIAN).asShortBuffer();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.OopTable(String baseDir)#0{
+            ByteBuffer bb = ByteBuffer.allocateDirect(64 * 1024).order(ByteOrder.nativeOrder());
+            while (fc.read(bb) > 0) {
+                bb.flip();
+                while (bb.remaining() >= RowEntry.SIZE)
+                    list.add(new RowEntry(bb));
+                bb.compact();
+            }
+            fc.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.getMD5(File file)#0{
+            fileInputStream = new FileInputStream(file);
+            FileChannel fileChannel = fileInputStream.getChannel();
+            while (fileChannel.read(byteBuffer) != -1) {
+                byteBuffer.flip();
+                m.update(byteBuffer);
+                byteBuffer.clear();
+            }
+            if (fileInputStream != null) {
+                fileInputStream.close();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.appendSitemapIndex(String sitemap)#0{
+        while ((len = channel.read(byteBuf, tailIdx)) > 0) {
+            byteBuf.rewind();
+            byte[] dst = new byte[len];
+            byteBuf.get(dst, 0, len);
+            header.append(new String(dst, "UTF8"));
+            headIdx = header.indexOf(SITEMAP_INDEX_TAIL_FLAG);
+            if (headIdx != -1) {
+                headPos = channel.size() - header.substring(headIdx).getBytes().length;
+                break;
+            }
+        }
+        FileLock lock = channel.tryLock(headPos, content.length, false);
+            channel.write(ByteBuffer.wrap(content), headPos);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.main(String... args)#0{
+        ByteBuffer buffer = ByteBuffer.allocateDirect(4096).order(ByteOrder.nativeOrder());
+        while (fc.read(buffer) > 0) {
+            for (int i = 0; i < buffer.capacity(); i += 4 * 16) {
+                long indexStart = buffer.getLong(i);
+                if (indexStart == 0 && zeros++ > 2) {
+                    continue;
+                }
+                System.out.print(count + ": ");
+                count += 14;
+                System.out.print(HEX ? Long.toHexString(indexStart) : String.valueOf(indexStart));
+                for (int j = i + 8; j < i + 64; j += 4) {
+                    System.out.print(' ');
+                    int offset = buffer.getInt(j);
+                    System.out.print(HEX ? Integer.toHexString(offset) : String.valueOf(offset));
+                }
+                System.out.println();
+            }
+            buffer.clear();
+        }
+        fc.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.moveSubRootContents(File fromSubRoot,File toSubRoot)#2{
+                    BBContainer bufC = DBBPool.allocateDirect(8192);
+                    ByteBuffer buf = bufC.b();
+                        while (inputChannel.read(buf) != -1) {
+                            buf.flip();
+                            outputChannel.write(buf);
+                            buf.clear();
+                        }
+                        inputChannel.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.decodeLargeFile(FileChannel channel,final int isize,String encoding)#0{
+    final Charset charset = Charset.forName(encoding);
+    final CharsetDecoder decoder = charset.newDecoder().onMalformedInput(CodingErrorAction.REPLACE)
+        .onUnmappableCharacter(CodingErrorAction.REPLACE);
+    int n = (int) (isize * (double) decoder.averageCharsPerByte()); // avoid rounding errors.
+    CharBuffer out = CharBuffer.allocate(n);
+    while (offset < isize) {
+      channel.read(in);
+      in.flip();
+      offset += in.limit();
+
+      CoderResult cr = decoder.decode(in, out, offset >= isize);
+      final int remainingBytes = in.remaining();
+      if (cr.isOverflow()) {
+        int totalRemainingBytes= isize-offset + remainingBytes;
+        if (totalRemainingBytes > 0) {
+          n+= (int) (totalRemainingBytes * (double) decoder.maxCharsPerByte()); // avoid rounding errors.
+          CharBuffer o = CharBuffer.allocate(n);
+          out.flip();
+          o.put(out);
+          out = o;
+        }
+      } else if (!cr.isUnderflow()) {
+        cr.throwException();
+      }
+
+      if (remainingBytes == 0) {
+        in.clear();
+      } else {
+        byte[] rest = new byte[remainingBytes];
+        in.get(rest);
+        in.clear();
+        in.put(rest);
+        offset -= remainingBytes;
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.fullRead(FileChannel fc,ByteBuffer bb){
+        while(bb.remaining() > 0) {
+            int rc = fc.read(bb);
+            if (rc <= 0) {
+                return total;
+            }
+            total += rc;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.sendFile(String filename,SocketChannel sock)#1{
+        ByteBuffer sendBuf = ByteBuffer.allocateDirect(fileSendingChunk);
+        while (source.read(sendBuf) > 0) {
+            sendBuf.flip();
+            if (log.isDebugEnabled()) {
+                log.debug("Sending " + sendBuf);
+            }
+            sock.write(sendBuf);
+            sendBuf.rewind();
+        }
+        source.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.read(FileChannel channel,long position,ByteBuffer byteBuffer)#1{
+        while (!endOfChannel && byteBuffer.hasRemaining())
+            endOfChannel = (channel.read(byteBuffer) == -1);
+        byteBuffer.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.read(@Nonnull final FileChannel src,@Nonnull final ByteBuffer dst,@Nonnegative final long position){
+        while(dst.remaining() > 0) {
+            int n = src.read(dst, offset);
+            if(n == -1) {
+                break;
+            }
+            offset += n;
+            count += n;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.readFileChannelFully(FileChannel fileChannel,byte buf[],int off,int len)#0{
+    ByteBuffer byteBuffer = ByteBuffer.wrap(buf, off, len);
+    while (toRead > 0) {
+      int ret = fileChannel.read(byteBuffer);
+      if (ret < 0) {
+        throw new IOException("Premature EOF from inputStream");
+      }
+      toRead -= ret;
+      off += ret;
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.readFileChannelFully(FileChannel fileChannel,byte buf[],int off,int len,long offset,boolean throwOnEof)#1{
+    ByteBuffer byteBuffer = ByteBuffer.wrap(buf, off, len);
+    while (toRead > 0) {
+      int ret = fileChannel.read(byteBuffer, offset);
+      if (ret < 0) {
+        if (throwOnEof) {
+          throw new IOException( "Premeture EOF from inputStream");
+        } else {
+          return dataRead;
+        }
+      }
+      toRead -= ret;
+      offset += ret;
+      dataRead += ret;
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.getByteArrayFromFile(File file)#0{
+      FileChannel fc = new FileInputStream(file).getChannel();
+      while( (numRead = fc.read( inBuf )) >= 0 ) {
+        inBuf.flip();
+        outBuf.write( inBuf.array() );
+        inBuf.clear();
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.calculateMD5Hash(FileChannel ch)#0{
+        while ((nRead = ch.read(bb)) != -1)
+        {
+            if (nRead == 0)
+            {
+                continue;
+            }
+            bb.position(0);
+            bb.limit(nRead);
+            d.update(bb);
+            bb.clear();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.readFile(ByteBuffer buffer)#2{
+            raf = (RandomAccessFile)
+                java.security.AccessController.doPrivileged(
+                    new java.security.PrivilegedAction() {
+                        public Object run() {
+                            try {
+                                return new RandomAccessFile(platName, "r");
+                            } catch (FileNotFoundException fnfe) {
+                            }
+                            return null;
+                    }
+            });
+            fc = raf.getChannel();
+            while (buffer.remaining() > 0 && fc.read(buffer) != -1) {}
+                if (raf != null) {
+                    raf.close();
+                    raf = null;
+                }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.runTests()#2{
+        while( fc.position() < fc.size() ) {
+         fc.read( buffer );
+         buffer.flip();
+         
+         byte[] raw = new byte[ buffer.limit() ];
+         System.arraycopy( buffer.array(), 0, raw, 0, raw.length );
+
+         sha1Gudy.update( buffer );
+         sha1Gudy.saveState();
+         ByteBuffer bb = ByteBuffer.wrap( new byte[56081] );
+         sha1Gudy.digest( bb );
+         sha1Gudy.restoreState();
+         
+         sha1Sun.update( raw );
+         
+         buffer.clear();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.setContent(File file)#1{
+        byte[] array = new byte[(int) newsize];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(array);
+        while (read < newsize) {
+            read += fileChannel.read(byteBuffer);
+        }
+        fileChannel.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.build(final FileChannel original)#31{
+        while ( in.read(( ByteBuffer) buffer.rewind()) > 0) {
+          total += compressor.write(( ByteBuffer) buffer.flip());
+          buffer.compact();
+        }
+        total += header.skip( compressor, total);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.readFrom(File src)#1{
+        byte[] array = new byte[(int) srcsize];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(array);
+        while (read < srcsize) {
+            read += fileChannel.read(byteBuffer);
+        }
+        fileChannel.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.setContent(File file)#0{
+        byte[] array = new byte[(int) newsize];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(array);
+        while (read < newsize) {
+            read += fileChannel.read(byteBuffer);
+        }
+        fileChannel.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.readFrom(File file,ByteBuffer buffer)#1{
+            while (needed>0 && buffer.hasRemaining())
+                needed=needed-channel.read(buffer);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.readBuffer(FileChannel chan,ByteBuffer buf,long pos){
+        while (buf.hasRemaining()) {
+            cpos += chan.read(buf, cpos);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.writeRequest(final OutputStream out)#0{
+            while ((readResult = channel.read(tmp)) >= 0) {
+                out.write(tmp.array(), 0, readResult);
+                tmp.clear();
+                transferred += readResult;
+                synchronized (mDataTransferListeners) {
+                    it = mDataTransferListeners.iterator();
+                    while (it.hasNext()) {
+                        it.next().onTransferProgress(readResult, transferred, size, mFile.getAbsolutePath());
+                    }
+                }
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.convert(FileChannel nodesChannel,FileChannel triasChannel,FileChannel soupChannel)#3{
+    while(triasChannel.read(trias)>0)
+    {
+      trias.rewind();
+      for(int i=0; i<3; i++)
+      {
+        int nodeId=trias.getInt();
+        nodesChannel.read(nodes, 3*8*nodeId);
+        nodes.rewind();
+        for(int j=0; j<3; j++)
+          toWrite.putDouble(nodes.getDouble());
+        nodes.rewind();
+      }
+      trias.rewind();
+      toWrite.rewind();
+      soupChannel.write(toWrite);
+      toWrite.rewind();
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.readFile(File file,FileUser fileuser)#2{
+        while(len!= -1){
+            len=channel.read(bytebuffer);
+            fileuser.readable(bytebuffer, len);
+            bytebuffer=ensureBufferBigEnough(bytebuffer);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.readFile(File file,ByteBuffer bytebuffer)#1{
+        while(len!= -1){
+            len=channel.read(bytebuffer);
+            bytebuffer=ensureBufferBigEnough(bytebuffer);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.pRead(TestFileInfo testInfo,int start,int len)#2{
+        while (cnt < len) {
+          cnt += fc.read(buffer, start);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.copyFromChannel(FileChannel channel,TableStats stats)#3{
+      buffer.clear();
+      channel.read(buffer);
+      memorySize = buffer.position();
+      while (position < memorySize) {
+        long recordPtr = address + position;
+
+        if (remain() < SizeOf.SIZE_OF_INT) {
+          channel.position(channel.position() - remain());
+          memorySize = (int) (memorySize - remain());
+          return true;
+        }
+
+        int recordSize = UNSAFE.getInt(recordPtr);
+
+        if (remain() < recordSize) {
+          channel.position(channel.position() - remain());
+          memorySize = (int) (memorySize - remain());
+          return true;
+        }
+
+        position += recordSize;
+        rowNum++;
+      }
+}
+    
+   
+  
+   
+
+
+
+
+

@@ -1,0 +1,1828 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.getHeapUtilizationStats(){
+        final Runtime runtime = Runtime.getRuntime();
+        return "Used Memory: " + (runtime.totalMemory() - runtime.freeMemory()) / mb + "M" +
+               "\nFree Memory: " + runtime.freeMemory() / mb  + "M" +
+               "\nTotal Memory: " + runtime.totalMemory() / mb  + "M" +
+               "\nMax Memory: " + runtime.maxMemory() / mb  + "M";
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.reportMem(){
+  Runtime r = Runtime.getRuntime();
+  r.gc();
+  return "used: "+((r.totalMemory()-r.freeMemory())/1024L)+"kB (free: "+r.freeMemory()+" of "+r.totalMemory()+")";
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.getCurrentVertex()#2{
+        Runtime runtime = Runtime.getRuntime();
+        timedLogger.info(
+            "read " + recordCount + " records. Memory: " +
+            (runtime.totalMemory() / gb) +
+            "GB total = " +
+            ((runtime.totalMemory() - runtime.freeMemory()) / gb) +
+            "GB used + " + (runtime.freeMemory() / gb) +
+            "GB free, " + (runtime.maxMemory() / gb) + "GB max");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.dumpMemoryInfo(String msg){
+        Runtime rt = Runtime.getRuntime();
+        long free = rt.freeMemory();
+        rt.gc();
+        long freeMemory = rt.freeMemory() / (1024 * 1024);
+        long totalMemory = rt.totalMemory() / (1024 * 1024);
+        long usedMemory = rt.totalMemory() - rt.freeMemory();
+        if (usedMemory > maxUsed) {
+            maxUsed = usedMemory;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.doGetSystemProps(ReqState rs)#0{
+        Runtime rt = Runtime.getRuntime();
+        pw.println("JVM Max Memory:   " + (rt.maxMemory() / 1024) / 1000. + " MB (JVM Maximum Allowable Heap)<br>");
+        pw.println("JVM Total Memory: " + (rt.totalMemory() / 1024) / 1000. + " MB (JVM Heap size)<br>");
+        pw.println("JVM Free Memory:  " + (rt.freeMemory() / 1024) / 1000. + " MB (Unused part of heap)<br>");
+        pw.println("JVM Used Memory:  " + ((rt.totalMemory() - rt.freeMemory()) / 1024) / 1000. + " MB (Currently active memory)<br>");
+        pw.println("</html>");
+        pw.flush();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.populateStats(Statistics stats)#0{
+    Runtime rt = Runtime.getRuntime();
+    long used = rt.totalMemory() - rt.freeMemory();
+    stats.addBytes("Max memory", rt.maxMemory());
+    stats.addBytes("Used memory", used, critical);
+    stats.addBytes("Free memory", rt.freeMemory());
+    stats.addBytes("Total memory", rt.totalMemory());
+    stats.add("Number of processors", rt.availableProcessors());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.endProcessing()#0{
+      Runtime r = Runtime.getRuntime();
+      System.out.println("Total memory: " + r.totalMemory() + ", " +
+                         "free memory: " + r.freeMemory() + ", " +
+                         "used memory: " + (r.totalMemory() - r.freeMemory()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.run()#1{
+                Runtime runtime = Runtime.getRuntime();
+                String s = String.format("free:%s%% %sKB total:%sKB max:%sKB ", runtime.freeMemory() * 100f / runtime.totalMemory(), runtime.freeMemory(), runtime.totalMemory() / 1024,
+                        runtime.maxMemory() / 1024);
+                Log.d("memory", s);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.print(String msg){
+        Runtime runtime = Runtime.getRuntime();
+        System.out.println(String.format("### %s %.2fMB used, %.2fMB free, %.2fMB total, %.2fMB max",
+                                         msg,
+                                         1.0
+                                                 * (runtime.totalMemory() - runtime.freeMemory())
+                                                 / mb,
+                                         1.0 * runtime.freeMemory() / mb,
+                                         1.0 * runtime.totalMemory() / mb,
+                                         1.0 * runtime.maxMemory() / mb));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.main(String[] args)#0{
+    Runtime r = Runtime.getRuntime();
+    r.gc();
+    String mem = String.format("Total %dMB, Used %dMB, Free %dMB, Max %dMB", 
+        r.totalMemory() / 1048576,
+        (r.totalMemory() - r.freeMemory()) / 1048576, 
+        r.freeMemory() / 1048576,
+        r.maxMemory() / 1048576);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.saveErrorReport(LogRecord record)#10{
+            Runtime rt = Runtime.getRuntime();
+            error_report_pb.setHeapSize(rt.totalMemory());
+            error_report_pb.setHeapFree(rt.freeMemory());
+            error_report_pb.setHeapAllocated(rt.totalMemory() - rt.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.refresh(){
+        final Runtime rt = Runtime.getRuntime();
+        addStringln("Memory size: \n\t" + NumberUtils.toBinaryByte(rt.totalMemory()));
+        addStringln("Used memory: \n\t" +
+                NumberUtils.toBinaryByte((rt.totalMemory() - rt.freeMemory())));
+        addStringln("Free memory: \n\t" + NumberUtils.toBinaryByte(rt.freeMemory()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.execute()#0{
+        final Runtime rt = Runtime.getRuntime();
+        out.format(fmt_info, str_total, NumberUtils.toBinaryByte(rt.totalMemory()));
+        out.format(fmt_info, str_used, NumberUtils.toBinaryByte(rt.totalMemory() - rt.freeMemory()));
+        out.format(fmt_info, str_free, NumberUtils.toBinaryByte(rt.freeMemory()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.jvm()#1{
+        return SystemJVMResponse.create(
+                bytesToValueMap(runtime.freeMemory()),
+                bytesToValueMap(runtime.maxMemory()),
+                bytesToValueMap(runtime.totalMemory()),
+                bytesToValueMap(runtime.totalMemory() - runtime.freeMemory()),
+                serverStatus.getNodeId().toString(),
+                Tools.getPID(),
+                Tools.getSystemInformation());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.forceGCAction()#4{
+            info += decimalFormatter.format(runtime.maxMemory()) + " max, ";
+            info += decimalFormatter.format(runtime.totalMemory()) + " total, ";
+            info += decimalFormatter.format(runtime.totalMemory()-runtime.freeMemory()) + " used, ";
+            info += decimalFormatter.format(runtime.freeMemory()) + " free\n";
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.forceGCAction()#2{
+            info += decimalFormatter.format(runtime.maxMemory()) + " max, ";
+            info += decimalFormatter.format(runtime.totalMemory()) + " total, ";
+            info += decimalFormatter.format(runtime.totalMemory()-runtime.freeMemory()) + " used, ";
+            info += decimalFormatter.format(runtime.freeMemory()) + " free\n";
+            result.setValue(info);
+            log.info("GC forced\n"+info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.generateFrozenDump(String indent)#0{
+        p.printf ("%s   processors: %d%n", indent, r.availableProcessors());
+        p.printf ("%s       drift : %d%n", indent, delay);
+        p.printf ("%smemory(t/u/f): %d/%d/%d%n", indent,
+                r.totalMemory()/MB, (r.totalMemory() - r.freeMemory())/MB, r.freeMemory()/MB);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.onActionFromRunGC()#0{
+        Runtime runtime = Runtime.getRuntime();
+        long initialFreeMemory = runtime.freeMemory();
+        runtime.gc();
+        long delta = runtime.freeMemory() - initialFreeMemory;
+        alertManager.info(String.format("Garbage collection freed %,.2f Kb of memory.",
+                ((double) delta) / 1024.0d));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.forceGC(int maxLoop)#0{
+        Runtime runtime = Runtime.getRuntime();
+        long isFree = runtime.freeMemory();
+        do {
+            wasFree = isFree;
+            runtime.gc();
+            isFree = runtime.freeMemory();
+            i++;
+        } while (isFree > wasFree && (maxLoop<=0 || i<maxLoop) );
+        runtime.runFinalization(); //TODO: should this be inside the loop?
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.showMemoryUsage(String msg)#7{
+      if(rt.freeMemory() == last) {
+        break;
+      }
+      last = rt.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.test_gc()#1{
+        while(rt.freeMemory() < beforeTest * 2/3) {
+             vec.add(new StringBuffer(1000));
+        }
+        long beforeGC = rt.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.build()#2{
+            int freeMem = (int) (runtime.freeMemory() / 1048576);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.testCachingMemoryConsumption()#5{
+  long usedBytesAfter = runtime.totalMemory() - runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.testCachingMemoryConsumption()#6{
+  long usedBytesBefore = runtime.totalMemory() - runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.gc()#2{
+            freeMem0 = rt.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.almostOutOfMemory(Runtime runtime)#0{
+    return runtime.totalMemory() - runtime.freeMemory() > CANDIDATE_MEMORY_PERCENTAGE * runtime.maxMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.cache(final Parser parser)#3{
+    return fl > (max - rt.freeMemory()) / 2;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.process(WycsFile module,Transform<WycsFile> stage)#2{
+    long memory = runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.process(WycsFile module,Transform<WycsFile> stage)#3{
+          memory - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.process(WycsFile module,Transform<WycsFile> stage)#4{
+          - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.process(WycsFile module,Transform<WycsFile> stage)#11{
+          memory - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.showmem()#1{
+        + rt.freeMemory() + " " + d.toString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.build(Collection<Pair<Entry<?>,Path.Root>> delta)#3{
+    long startMemory = runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.build(Collection<Pair<Entry<?>,Path.Root>> delta)#6{
+        endTime - startTime, startMemory - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.testAlmostOutOfMemory(float freeFactor,boolean expected)#1{
+    expect(runtime.fre
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.testLifecycle()#3{
+    System.out.printf("Free mem diff at end: %s\n", Math.abs(startFreeMem - rt.freeMemory()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.test_gc()#0{
+        long afterGC = rt.freeMemory();
+        assertTrue("memory was not released after calling System.gc()." +
+                "before gc: " + beforeGC + "; after gc: " + afterGC,
+                beforeGC < afterGC);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.checkFullConf()#3{
+                + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.checkFullConf()#6{
+                + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.checkFullConf()#12{
+                + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.checkFullConf()#14{
+                + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.runGetFeaturesParsing()#9{
+        long endMem = runtime.totalMemory() - runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.checkValid(WycsFile.Assert stmt,int number)#7{
+    builder.logTimedMessage("[" + filename + "] Verified assertion #" + number,
+        endTime - startTime, startMemory - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.checkValid(WycsFile.Assert stmt,int number)#9{
+    long startMemory = runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testMessageEfficiency()#3{
+    long consumedMemory1 = (currentMemory - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testMessageEfficiency()#4{
+    currentMemory = runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testMessageEfficiency()#8{
+    long currentMemory = runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testMessageEfficiency()#10{
+    long consumedMemory2 = (currentMemory - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.main(String[] args)#5{
+    after = rt.totalMemory() - rt.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.timerLoop()#3{
+                System.out.println("Used memory: " + asMemoryString(runtime.totalMemory() - runtime.freeMemory()) + " Free memory: " + asMemoryString(runtime.freeMemory()) + " Total memory: "
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.main(String[] args)#2{
+            System.out.printf("Unique Puts = %s keyCount : Free Memory (MB) = %s\n",keyCount,runtime.freeMemory()/mb);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.betweenBenchmarks()#2{
+      System.out.println("freeMemory after gc : " + runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.runSynchronizedAspectPerformance(final FileAccessor accessor,int threads)#2{
+            long endTime = System.nanoTime(), endFree = RUNTIME.freeMemory();
+                    Integer.valueOf(NUM_CALLS), Long.valueOf(endTime - startTime),
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.runSynchronizedAspectPerformance(final FileAccessor accessor,int threads)#8{
+            long startTime = System.nanoTime(), startFree = RUNTIME.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.totalFreeMemory(final Runtime runtime)#0{
+        return runtime.maxMemory() - runtime.totalMemory() + runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.getMemory()#2{
+      presentMemory = (runtime.totalMemory() - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.runGCUsedMemory()#4{
+        usedMem1 = runtime.totalMemory() - runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.showMemoryUsage(String msg)#11{
+      usedHeap = rt.totalMemory() - rt.freeMemory() - memoryInit;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.showMemoryUsage(String msg)#12{
+      memoryInit = usedHeap = rt.totalMemory() - rt.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.benchLargeMap()#8{
+                    (i + 1) + ": " + (runtime.totalMemory() - runtime.freeMemory()) /
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.get(Runtime runtime){
+                        return runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.testMemoryReclamation()#5{
+            freeMem = rt.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.memoryUse(Environmental E,int number)#9{
+      final long m1 =rt.totalMemory() - rt.freeMemory() ;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.memoryUsed()#4{
+      newMem= runtime.totalMemory()-runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.build(Collection<Pair<Path.Entry<?>,Path.Root>> delta)#3{
+    long memory = runtime.freeMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.build(Collection<Pair<Path.Entry<?>,Path.Root>> delta)#7{
+        + " file(s)", endTime - start, memory - runtime.freeMemory());
+}
+    
+   
+  
+   
+
+
+
+
+

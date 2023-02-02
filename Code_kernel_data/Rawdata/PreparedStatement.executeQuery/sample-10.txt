@@ -1,0 +1,147 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.signersTests(Connection conn){
+        PreparedStatement ps = conn.prepareStatement("VALUES EMC.GETSIGNERS(?)");
+        ps.setString(1, "org.apache.derbyTesting.databaseclassloader.emc");    
+        JDBC.assertSingleValueResultSet(ps.executeQuery(),
+                "CN=EMC CTO, OU=EMC APP, O=Easy Mail Company, C=US");
+        ps.setString(1, "org.apache.derbyTesting.databaseclassloader.addon.vendor.util");
+        JDBC.assertSingleValueResultSet(ps.executeQuery(), null);
+        ps.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.verifyReturnType(String functionName,String expectedReturnType){
+        println( functionName + " should have return type = " + expectedReturnType );
+        PreparedStatement ps = prepareStatement(ddl);
+        ps.setString(1, functionName);
+        JDBC.assertSingleValueResultSet(ps.executeQuery(), expectedReturnType);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.expectNullResult(PreparedStatement ps){
+        JDBC.assertSingleValueResultSet(ps.executeQuery(), null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.countConglomerates(String tableName,PreparedStatement countCongloms,int expected)#1{
+        JDBC.assertSingleValueResultSet(
+            countCongloms.executeQuery(), String.valueOf(expected));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.testNegativeZeroFloatJvmBug()#2{
+            JDBC.assertSingleValueResultSet(ps.executeQuery(), "0.0");
+}
+    
+   
+  
+   
+
+
+
+
+

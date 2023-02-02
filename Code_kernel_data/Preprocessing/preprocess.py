@@ -5,26 +5,22 @@ import glob
 import tqdm
 
 def snippetCopy(line, fptr,  wptr):
-
-    """
-    curr_path = path.split('/')[0]
-    completeName = os.path.join(curr_path, file_name)
-    print(completeName)
-    newfile = open(completeName, "w+")
-    """
-
+    
     line = fptr.readline()  # read first line of snippet
+    while "Class" not in line:
+        line = fptr.readline()
+        
     # removal of class\d\d and #\d
     line = re.sub('Class\d+\.', '', line)
     line = re.sub('#\d+', '', line)
-
     wptr.write("public class func{\n")
     wptr.write("public void ")
+    line = line.replace('\u00A0', " ")
     wptr.write(line)
 
     while True:
         line = fptr.readline()
-
+        line = line.replace('\u00A0', " ")
         wptr.write(line)
         if line == "}\n":
             break
@@ -52,6 +48,7 @@ def readfile(path, output_folder):
 
 RAWDATA_PATH = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Code_kernel_data/Rawdata"
 OUTPUT_PATH = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Code_kernel_data/Dataset/NEW"
+
 api_folders_list = glob.glob(RAWDATA_PATH + "/*/")
 for folder in tqdm.tqdm(api_folders_list):
     api_name = folder[folder.rindex("/", 0, len(folder) - 1) + 1 : -1]

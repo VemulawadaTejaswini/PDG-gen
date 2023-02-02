@@ -1,0 +1,662 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.readsCharactersOneByOne(){
+        BufferedReader reader = new BufferedReader(new StringReader(str));
+        assertEquals('f', reader.read());
+        assertEquals('o', reader.read());
+        assertEquals('o', reader.read());
+        assertEquals(-1, reader.read());
+        assertEquals(-1, reader.read());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.test_markI()#0{
+        BufferedReader br = new BufferedReader(new StringReader("01234"), 2);
+        br.mark(3);
+        int result = br.read(carray);
+        assertEquals("Assert 2:", '2', carray[2]);
+        assertEquals("Assert 3:", '3', br.read());
+        br = new BufferedReader(new StringReader("01234"), 2);
+        br.mark(3);
+        result = br.read(carray);
+        assertEquals("Assert 8:", '3', carray[3]);
+        assertEquals("Assert 9:", '4', br.read());
+        assertEquals("Assert 10:", -1, br.read());
+        BufferedReader reader = new BufferedReader(new StringReader("01234"));
+        reader.mark(Integer.MAX_VALUE);
+        reader.read();
+        reader.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.detectLineSeparator(File f)#2{
+      fis = new FileInputStream(f);
+      BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+      while((c = (char) br.read()) != null)
+      {
+        if(c == '\n')
+          return LineSeparator.UNIX;
+        if(c == '\r')
+        {
+          if(br.read() == '\n')
+            return LineSeparator.WINDOWS;
+          else
+            return LineSeparator.OLDMAC; //This seems very unlikely
+        }
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.readBase(final BufferedReader r)#0{
+      r.mark(1);
+      int c = r.read();
+      if (c < 0) {
+        throw new IOException("Unexpected end of config file.");
+      } else if (']' == c) {
+        r.reset();
+        break;
+      } else if (' ' == c || '\t' == c) {
+        for (;;) {
+          r.mark(1);
+          c = r.read();
+          if (c < 0) {
+            throw new IOException("Unexpected end of config file.");
+          } else if ('"' == c) {
+            r.reset();
+            break;
+          } else if (' ' == c || '\t' == c) {
+            // Skipped...
+          } else {
+            throw new IOException("Bad base entry. : " + base + "," + c);
+          }
+        }
+        break;
+      } else if (Character.isLetterOrDigit((char) c) || '.' == c || '-' == c) {
+        base.append((char) c);
+      } else {
+        throw new IOException("Bad base entry. : " + base + ", " + c);
+      }
+    return base.toString();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.expandToTemplate(Properties props,InputStream is,OutputStream os,char marker,File file)#0{
+            while ((ch = r.read()) != -1) {
+                if (ch == marker) {
+                    StringBuffer sb = new StringBuffer(20);
+                    while ((ch = r.read()) != marker) {
+                        switch (ch) {
+                            case -1:
+                                throw new ConfigureException("Encountered EOF in a " + marker +
+                                        "..." + marker + " sequence: at " + file +
+                                        " line " + lineNo);
+                            case '\r':
+                            case '\n':
+                                throw new ConfigureException("Encountered end-of-line in a " +
+                                        marker + "..." + marker + " sequence: at " + file +
+                                        " line " + lineNo);
+                            default:
+                                sb.append((char) ch);
+                        }
+                    }
+                    if (sb.length() == 0) {
+                        w.write(marker);
+                    } else {
+                        Matcher matcher = AT_AT_CONTENTS_PATTERN.matcher(sb);
+                        if (!matcher.matches()) {
+                            throw new ConfigureException("Malformed @...@ sequence: at " + file +
+                                    " line " + lineNo);
+                        }
+                        String name = matcher.group(1);
+                        String modifiers = matcher.group(2);
+                        modifiers = (modifiers == null) ? "" : modifiers;
+                        String propValue = props.getProperty(name);
+                        w.write(codec.encodeProperty(name, propValue, modifiers));
+                    }
+                } else {
+                    // FIXME ... make this aware of the host OS newline
+                    // sequence.
+                    if (ch == '\n') {
+                        lineNo++;
+                    }
+                    w.write((char) ch);
+                }
+            }
+            w.flush();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.readLine(BufferedReader r)#0{
+        while (!eol && (c = r.read()) >= 0) {
+            sb.append((char) c);
+            eol = (c == '\r' || c == '\n');
+
+            // check for \r\n
+            if (c == '\r') {
+                r.mark(1);
+                c = r.read();
+
+                if (c != '\n') {
+                    r.reset();
+                } else {
+                    sWindowsLineBreaks = true;
+                    sb.append((char) c);
+                }
+            }
+        }
+        return sb.length() == 0 ? null : sb.toString();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.readLine(BufferedReader r)#0{
+    while(!eol && (c = r.read()) >= 0) {
+      sb.append((char)c);
+      eol = (c == '\r' || c == '\n');
+      
+      // check for \r\n
+      if (c == '\r') {
+        r.mark(1);
+        c = r.read();
+        if (c != '\n') {
+          r.reset();
+        } else {
+          sWindowsLineBreaks = true;
+          sb.append((char)c);
+        }
+      }
+    }
+    return sb.length() == 0 ? null : sb.toString();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.convertWindowsScriptToUnix(File windowsScriptFile)#1{
+    String windowsScriptFilename = windowsScriptFile.getName();
+    String unixScriptFilename = getUnixScriptNameFor(windowsScriptFilename);
+    if (windowsScriptFile.getParent() != null) {
+      unixScriptFile = new File(windowsScriptFile.getParent() + "/" + unixScriptFilename);
+    } else {
+      unixScriptFile = new File(unixScriptFilename);
+    }
+    BufferedWriter writer = new BufferedWriter(new FileWriter(unixScriptFile));
+      BufferedReader reader = new BufferedReader(new FileReader(windowsScriptFile));
+        int next = reader.read();
+        while( prev != -1 ) {
+          if ( prev != -1 && ( prev != '\r' || next != '\n' ) ) {
+            writer.write(prev);
+          }
+          prev = next;
+          next = reader.read();
+        }
+        reader.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.getTextInfos()#0{
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                getClass().getClassLoader().getResourceAsStream("SparqlTest.test"),
+                Charset.forName("UTF8")));
+        while (in.ready()) {
+            if (in.read() == '<' && in.ready() && in.read() == '<') {
+                in.readLine();
+                textInfos.add(parseText(in));
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.readOldContent(File target,String charset)#0{
+        reader = new BufferedReader(new FileReader(target));
+        final InputStream fileInputStream = new FileInputStream(target);
+        final InputStreamReader fileReader = new InputStreamReader(fileInputStream, charset);
+        reader = new BufferedReader(fileReader);
+      int length = reader.read(buf);
+      while (length > 0) {
+        oldContent.append(buf, 0, length);
+        length = reader.read(buf);
+      }
+      if (reader != null) {
+        reader.close();
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.readLine(BufferedReader file)#1{
+        int aByte = file.read();
+        while (aByte != -1) {
+            if (aByte == '"') {
+                inString = !inString;
+            } else {
+                if (!inString && aByte == '\n') {
+                    break;
+                } 
+                retValue.append((char)aByte);
+            }
+            aByte = file.read();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.skipWhitespace(BufferedReader reader){
+            int ch = reader.read();
+            while (ch >= 0) {
+                if (!Character.isWhitespace(ch)) {
+                    return ch;
+                }
+                ch = reader.read();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.transformDirect(Object value)#7{
+            int chr = reader.read();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.serverAccept(Socket s)#4{
+        in.read(cbuf);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.getSourceCode(PhasedUnit pu,Node node)#5{
+                int c = sourceCodeReader.read();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.streamFromSocket(SourceContext<String> ctx,Socket socket)#1{
+          data = reader.read();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.doRequest(int port,boolean addCookie)#4{
+            rdr.read();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.readWithMaxBuffer(BufferedReader inFromServer)#2{
+        int readcnt = inFromServer.read(recvbuffer);
+}
+    
+   
+  
+   
+
+
+
+
+

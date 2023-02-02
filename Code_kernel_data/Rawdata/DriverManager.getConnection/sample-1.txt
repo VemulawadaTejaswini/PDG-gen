@@ -1,0 +1,5336 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.testDisallowDropOfColumnOnParentTable()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+            conn.createStatement().execute("ALTER TABLE tp DROP COLUMN v1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.testLeadingPKWithTrailingRVC2()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().execute("CREATE TABLE in_test ( user VARCHAR, tenant_id VARCHAR(5) NOT NULL,tenant_type_id VARCHAR(3) NOT NULL,  id INTEGER NOT NULL CONSTRAINT pk PRIMARY KEY (tenant_id, tenant_type_id, id))");
+        conn.createStatement().execute("upsert into in_test (tenant_id, tenant_type_id, id, user) values ('a', 'a', 1, 'BonA')");
+        conn.createStatement().execute("upsert into in_test (tenant_id, tenant_type_id, id, user) values ('a', 'a', 2, 'BonB')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class990.testViewAddsPKColumn()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.testDeleteFromImmutableWithKV()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(ddl);
+            conn.createStatement().execute(indexDDL);
+            conn.createStatement().execute("DELETE FROM t");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testChooseIndexFromHint(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k INTEGER NOT NULL PRIMARY KEY, v1 VARCHAR, v2 VARCHAR) IMMUTABLE_ROWS=true");
+        conn.createStatement().execute("CREATE INDEX idx1 ON t(v1) INCLUDE(v2)");
+        conn.createStatement().execute("CREATE INDEX idx2 ON t(v1,v2)");
+        PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+        QueryPlan plan = stmt.optimizeQuery("SELECT /*+ INDEX(t  idx1) */ k FROM t WHERE v1 = 'foo' AND v2 = 'bar'");
+        assertEquals("IDX1", plan.getTableRef().getTable().getTableName().getString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.testViewAddsNotNullPKColumn()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testSortOrderForLeadingDescVarLengthColWithNonNullFollowing()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k1 VARCHAR, k2 VARCHAR NOT NULL, CONSTRAINT pk PRIMARY KEY (k1 DESC,k2))");
+        conn.createStatement().execute("UPSERT INTO t VALUES ('a','x')");
+        conn.createStatement().execute("UPSERT INTO t VALUES ('ab', 'x')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.testIsNullInCompositeKey()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE T(k1 VARCHAR, k2 VARCHAR, CONSTRAINT pk PRIMARY KEY (k1,k2))");
+        conn.createStatement().execute("UPSERT INTO T VALUES (null,'a')");
+        conn.createStatement().execute("UPSERT INTO T VALUES ('a','a')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.testIndexPlanSelectionIfBothGlobalAndLocalIndexesHasSameColumnsAndOrder()#1{
+        createBaseTable(TestUtil.DEFAULT_DATA_TABLE_NAME, null, "('e','i','o')");
+        Connection conn1 = DriverManager.getConnection(getUrl());
+        conn1.createStatement().execute("UPSERT INTO "+TestUtil.DEFAULT_DATA_TABLE_NAME+" values('b',1,2,4,'z')");
+        conn1.createStatement().execute("UPSERT INTO "+TestUtil.DEFAULT_DATA_TABLE_NAME+" values('f',1,2,3,'a')");
+        conn1.createStatement().execute("UPSERT INTO "+TestUtil.DEFAULT_DATA_TABLE_NAME+" values('j',2,4,3,'a')");
+        conn1.createStatement().execute("UPSERT INTO "+TestUtil.DEFAULT_DATA_TABLE_NAME+" values('q',3,1,1,'c')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testAddColumnsUsingNewConnection()#0{
+        Connection conn1 = DriverManager.getConnection(getUrl(), props);
+        conn1.createStatement().execute(ddl);
+        conn1.createStatement().execute(ddl);
+        conn1.createStatement().execute(ddl);
+        conn1.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testSortOrderForSingleDescVarLengthCol()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k VARCHAR PRIMARY KEY DESC)");
+        conn.createStatement().execute("UPSERT INTO t VALUES ('a')");
+        conn.createStatement().execute("UPSERT INTO t VALUES ('ab')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.testChooseSmallerTable(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k INTEGER NOT NULL PRIMARY KEY, v1 VARCHAR, v2 VARCHAR) IMMUTABLE_ROWS=true");
+        conn.createStatement().execute("CREATE INDEX idx ON t(v1)");
+        PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+        QueryPlan plan = stmt.optimizeQuery("SELECT count(*) FROM t");
+        assertEquals("IDX", plan.getTableRef().getTable().getTableName().getString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.testChooseTableForSelection(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k INTEGER NOT NULL PRIMARY KEY, v1 VARCHAR, v2 VARCHAR) IMMUTABLE_ROWS=true");
+        conn.createStatement().execute("CREATE INDEX idx ON t(v1)");
+        PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+        QueryPlan plan = stmt.optimizeQuery("SELECT v1,v2 FROM t WHERE v1 = 'bar'");
+        assertEquals("T", plan.getTableRef().getTable().getTableName().getString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testRVCUsingPkColsReturnedByPlanShouldUseIndex(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE T (k VARCHAR NOT NULL PRIMARY KEY, v1 CHAR(15), v2 VARCHAR)");
+        conn.createStatement().execute("CREATE INDEX IDX ON T(v1, v2)");
+        PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+        QueryPlan plan = stmt.optimizeQuery(query);
+        assertEquals("IDX", plan.getTableRef().getTable().getTableName().getString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.testViewAddsClashingPKColumn(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testChooseIndexFromOrderBy(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k INTEGER NOT NULL PRIMARY KEY, v1 VARCHAR, v2 VARCHAR) IMMUTABLE_ROWS=true");
+        conn.createStatement().execute("CREATE INDEX idx ON t(v1)");
+        PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+        QueryPlan plan = stmt.optimizeQuery("SELECT k FROM t WHERE k = 30 ORDER BY v1 LIMIT 5");
+        assertEquals("IDX", plan.getTableRef().getTable().getTableName().getString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.testOrderByOptimizedOut()#1{
+        conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().execute("CREATE VIEW v(v2 VARCHAR) AS SELECT * FROM t WHERE k1 = 'a'");
+        conn.createStatement().execute("CREATE INDEX i1 ON v(v2) INCLUDE(v1)");
+        ResultSet rs = conn.createStatement().executeQuery("EXPLAIN SELECT v1,v2 FROM v WHERE v2 > 'a' ORDER BY v2");
+        assertEquals("CLIENT PARALLEL 1-WAY RANGE SCAN OVER _IDX_T ['me',-32768,'a'] - ['me',-32768,*]",
+                QueryUtil.getExplainPlan(rs));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testDropVarCols()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.setAutoCommit(false);
+            conn.createStatement().execute(ddl);
+            conn.createStatement().execute(ddl);
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.makeImmutableAndDeleteData()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES));
+            conn.setAutoCommit(true);
+            conn.createStatement().execute("DELETE FROM " + TestUtil.DEFAULT_DATA_TABLE_FULL_NAME);
+            conn.createStatement().execute("ALTER TABLE " + TestUtil.DEFAULT_DATA_TABLE_FULL_NAME + " SET IMMUTABLE_ROWS=true");
+            conn.createStatement().executeQuery("SELECT COUNT(*) FROM " + TestUtil.DEFAULT_DATA_TABLE_FULL_NAME).next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1170.testOrderByDropped(){
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute("CREATE TABLE foo (k VARCHAR NOT NULL PRIMARY KEY, v VARCHAR) IMMUTABLE_ROWS=true");
+            PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+            QueryPlan plan = stmt.optimizeQuery("SELECT * FROM foo ORDER BY 'a','b','c'");
+            assertTrue(plan.getOrderBy().getOrderByExpressions().isEmpty());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.testNullEncodingType(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM TEST_TABLE WHERE pk = ENCODE(1, NULL)");
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.testOrderByOptimizedOut(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE foo (k VARCHAR NOT NULL PRIMARY KEY, v VARCHAR) IMMUTABLE_ROWS=true");
+        PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+        QueryPlan plan = stmt.optimizeQuery("SELECT * FROM foo ORDER BY k");
+        assertEquals(OrderBy.FWD_ROW_KEY_ORDER_BY,plan.getOrderBy());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.nullInFirstTimezoneParameter()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(dml);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class990.testCreateViewDefinesPKConstraint()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.nullEncoding(){
+    Connection conn = DriverManager.getConnection(getUrl());
+    conn.createStatement().execute(ddl);
+    ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM test_table WHERE some_column = DECODE('8', NULL)");
+    assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testSetPropertyAndAddColumnFailsForColumnFamilyNotPresentInAddCol()#3{
+      Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().execute(ddl);
+          conn.createStatement().execute("ALTER TABLE ADDCOLNOTPRESENT ADD col4 integer CF1.REPLICATION_SCOPE=1, XYZ.IN_MEMORY=true ");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.testFloatingPointUpsert()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(dml);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.testColumnDisplaySize()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(
+                "CREATE TABLE T (pk1 CHAR(15) not null, pk2 VARCHAR not null,  v1 VARCHAR(15), v2 DATE, v3 VARCHAR " +
+                "CONSTRAINT pk PRIMARY KEY (pk1, pk2)) ");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT pk1, pk2, v1, v2, NULL FROM T");
+        assertEquals(15, rs.getMetaData().getColumnDisplaySize(1));
+        assertEquals(PhoenixResultSetMetaData.DEFAULT_DISPLAY_WIDTH, rs.getMetaData().getColumnDisplaySize(2));
+        assertEquals(15, rs.getMetaData().getColumnDisplaySize(3));
+        assertEquals(conn.unwrap(PhoenixConnection.class).getDatePattern().length(), rs.getMetaData().getColumnDisplaySize(4));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.testCastingOnConstantAddInArithmeticEvaluation()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(dml);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.testSystemTableHasDoubleForExponentialNumber()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(dml);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1140.testInvalidArrayInQuery()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k VARCHAR PRIMARY KEY, a INTEGER[10], B INTEGER[10])");
+            conn.createStatement().execute("SELECT * FROM t ORDER BY a");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.testInvalidArrayElemRefInUpsert()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k VARCHAR PRIMARY KEY, a INTEGER[10], B INTEGER[10])");
+            conn.createStatement().execute("UPSERT INTO t(k,a[2]) VALUES('A', 5)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.initTable()#0{
+            conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(ddl);
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.testUnsupportedEncodingType()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+            conn.createStatement().executeQuery("SELECT * FROM TEST_TABLE WHERE pk = ENCODE(1, 'HEX')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.invalidCharacters()#2{
+    Connection conn = DriverManager.getConnection(getUrl());
+    conn.createStatement().execute(ddl);
+      conn.createStatement().executeQuery("SELECT * FROM test_table WHERE some_column = DECODE('zzxxuuyyzzxxuuyy', 'hex')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testOrderByNotDroppedCompositeKey(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE foo (j INTEGER NOT NULL, k BIGINT NOT NULL, v VARCHAR CONSTRAINT pk PRIMARY KEY (j,k)) IMMUTABLE_ROWS=true");
+        PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class);
+        QueryPlan plan = stmt.optimizeQuery("SELECT * FROM foo ORDER BY k,j");
+        assertFalse(plan.getOrderBy().getOrderByExpressions().isEmpty());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.testInvalidEncodingType()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+            conn.createStatement().executeQuery(
+                "SELECT * FROM test_table WHERE some_column = ENCODE(1, 'invalidEncodingFormat')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.testSelectForceRangeScanForEH(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("create table eh (organization_id char(15) not null,parent_id char(15) not null, created_date date not null, entity_history_id char(15) not null constraint pk primary key (organization_id, parent_id, created_date, entity_history_id))");
+        ResultSet rs = conn.createStatement().executeQuery("explain select /*+ RANGE_SCAN */ ORGANIZATION_ID, PARENT_ID, CREATED_DATE, ENTITY_HISTORY_ID from eh where ORGANIZATION_ID='111111111111111' and SUBSTR(PARENT_ID, 1, 3) = 'foo' and TO_DATE ('2012-0-1 00:00:00') <= CREATED_DATE and CREATED_DATE <= TO_DATE ('2012-11-31 00:00:00') order by ORGANIZATION_ID, PARENT_ID, CREATED_DATE DESC, ENTITY_HISTORY_ID limit 100");
+        assertEquals("CLIENT PARALLEL 1-WAY RANGE SCAN OVER EH ['111111111111111','foo','2011-12-01 00:00:00.000'] - ['111111111111111','fop','2012-12-01 00:00:00.000']\n" + 
+                "    SERVER FILTER BY (CREATED_DATE >= 2011-11-30 AND CREATED_DATE <= 2012-11-30)\n" + 
+                "    SERVER TOP 100 ROWS SORTED BY [ORGANIZATION_ID, PARENT_ID, CREATED_DATE DESC, ENTITY_HISTORY_ID]\n" + 
+                "CLIENT MERGE SORT",QueryUtil.getExplainPlan(rs));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.testAddColsIntoSystemTable()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().executeUpdate("ALTER TABLE " + PhoenixDatabaseMetaData.SYSTEM_CATALOG +
+          " ADD IF NOT EXISTS testNewColumn integer");
+          conn.createStatement().executeQuery(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.testNewerTableDisallowed()#0{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 5));
+        Connection conn5 = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+        conn5.createStatement().executeUpdate("ALTER TABLE " + ATABLE_NAME + " DROP COLUMN x_integer");
+            conn5.createStatement().executeUpdate("ALTER TABLE " + ATABLE_NAME + " DROP COLUMN y_integer");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testSpecifyingColumnFamilyForHTablePropertyFails()#0{
+        Connection conn1 = DriverManager.getConnection(getUrl(), props);
+        conn1.createStatement().execute(ddl);
+            conn1.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testLocalIndexRoundTrip()#0{
+        createBaseTable(TestUtil.DEFAULT_DATA_TABLE_NAME, null, null);
+        Connection conn1 = DriverManager.getConnection(getUrl());
+        conn1.createStatement().execute("CREATE LOCAL INDEX " + TestUtil.DEFAULT_INDEX_TABLE_NAME + " ON " + TestUtil.DEFAULT_DATA_TABLE_NAME + "(v1)");
+        conn1.createStatement().executeQuery("SELECT * FROM " + TestUtil.DEFAULT_DATA_TABLE_FULL_NAME).next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.dynamicResults(ResultSet[] rs1,ResultSet[] rs2){
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        rs1[0] = c.createStatement().executeQuery("VALUES(1)");
+        rs2[0] = c.createStatement().executeQuery("VALUES(2)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class900.testAddTTLToExistingColumnFamily()#0{
+      Connection conn = DriverManager.getConnection(getUrl(), props);
+      conn.setAutoCommit(false);
+        conn.createStatement().execute(ddl);
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.testArrayUpsertDateWithNulls1()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t9 ( k VARCHAR PRIMARY KEY, a DATE[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.testArrayUpsertDoubleWithNulls()#3{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t8 ( k VARCHAR PRIMARY KEY, a DOUBLE[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.testArrayUpsertFloatWithNulls()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t4 ( k VARCHAR PRIMARY KEY, a FLOAT[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testDuplicatePKColumn()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testStartKeyStopKey()#2{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE start_stop_test (pk char(2) not null primary key)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testArrayUpsertTimeStampWithNulls1()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t13 ( k VARCHAR PRIMARY KEY, a TIMESTAMP[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1140.opened()#1{
+            conn = DriverManager.getConnection(databaseUrl, getUser(), getPassword());
+            conn.createStatement().execute("CREATE TABLE IF NOT EXISTS TEST2(ID INT)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.testInvalidNullCompositePrimaryKey()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t (k1 varchar, k2 varchar, constraint pk primary key(k1,k2))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.testKeyValueColumnInPKConstraint()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.testInvalidNegativeArrayIndex()#0{
+      Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.testRetrieve()#5{
+      Connection conn = DriverManager.getConnection(getUrl());
+      conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.getTableTester(String normalizedName,String sqlStatementName)#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute("CREATE TABLE " + sqlStatementName + " (k VARCHAR PRIMARY KEY)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.testDecodeValues(boolean nullFixedWidth,boolean nullVariableWidth)#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(
+                "CREATE TABLE T(pk1 CHAR(15) not null, pk2 VARCHAR not null, CF1.v1 DATE, CF2.v2 VARCHAR, CF2.v1 VARCHAR " +
+                "CONSTRAINT pk PRIMARY KEY (pk1, pk2)) ");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.testArrayUpsertTimeWithNulls1()#2{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t11 ( k VARCHAR PRIMARY KEY, a TIME[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.testArrayUpsertDateWithNulls2()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t10 ( k VARCHAR PRIMARY KEY, a DATE[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.createIndex(String indexName,String tableName,String columns)#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class900.testUpperCaseEncodingType()#2{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.initTable()#1{
+            conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.testOverallQueryMetricsForSelect(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.init()#0{
+            Connection conn = DriverManager.getConnection("jdbc:h2:mem:db1",
+                    "sa", "");
+            conn.createStatement().execute(
+                    "RUNSCRIPT FROM 'classpath:/world.sql'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.doBeforeTestSetup()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class980.testUnknownColumnInPKConstraint()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.testStartKeyStopKey()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE start_stop_test (pk char(2) not null primary key)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.testDeletionOfParentTableFailsOnTenantSpecificConnection()#4{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().execute("DROP TABLE TEMP_PARENT");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.testVarbinaryArrayNotSupported()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute("CREATE TABLE t (k VARCHAR PRIMARY KEY, a VARBINARY[10])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.testAlterMultiTenantWithViewsToGlobal()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+            conn.createStatement().execute("alter table " + PARENT_TABLE_NAME + " set MULTI_TENANT=false");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.testNotNullConstraintForWithSinglePKCol()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+            conn.createStatement().execute(ddl);    
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.createBaseTable(String tableName,Integer saltBuckets)#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.testLocalIndexCreationWithDefaultFamilyOption(){
+        Connection conn1 = DriverManager.getConnection(getUrl());
+            Statement statement = conn1.createStatement();
+            statement.execute("upsert into example values(2,'fn1','ln1')");
+            ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM my_idx");
+            assertTrue(rs.next());
+            conn1.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1430.testStartKeyStopKey()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().execute("CREATE TABLE start_stop_test (pk char(2) not null primary key) SPLIT ON ('EA','EZ')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.createBaseTable(String tableName,Integer saltBuckets,String splits)#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.testArrayUpsertCharWithNulls1()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t15 ( k VARCHAR PRIMARY KEY, a CHAR(15)[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.createPhoenixTable()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testDuplicateKVColumn()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.testArrayUpsertTimeStampWithNulls2()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t14 ( k VARCHAR PRIMARY KEY, a TIMESTAMP[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testSingleBinaryPaddedKeyExpression()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES));
+        conn.createStatement().execute("create table bintable (k BINARY(15) PRIMARY KEY)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1140.closingDatabase()#1{
+            conn = DriverManager.getConnection(databaseUrl, getUser(), getPassword());
+            conn.createStatement().execute("DROP TABLE TEST2");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.testSetStoreNullsDefaultViaConfig()#0{
+        Connection storeNullsConn = DriverManager.getConnection(getUrl(), props);
+        Statement stmt = storeNullsConn.createStatement();
+        stmt.execute("CREATE TABLE with_nulls_default (" +
+                "id smallint primary key," +
+                "name varchar)");
+        ResultSet rs = stmt.executeQuery("SELECT store_nulls FROM SYSTEM.CATALOG " +
+                "WHERE table_name = 'WITH_NULLS_DEFAULT' AND store_nulls is not null");
+        assertTrue(rs.next());
+        assertTrue(rs.getBoolean(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.testMultiCFProjection()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.initTable()#4{
+            Connection conn = DriverManager.getConnection(getUrl(), props);
+            conn.createStatement().execute(indexDDL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.testOrderByOptimizedOut()#2{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t(t_id VARCHAR NOT NULL, k1 VARCHAR, k2 VARCHAR, v1 VARCHAR," +
+            " CONSTRAINT pk PRIMARY KEY(t_id, k1, k2)) multi_tenant=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.createTableAndInsertRows(String tableName,int numRows,boolean salted,boolean addTableNameToKey)#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute(ddl);
+        PreparedStatement stmt = conn.prepareStatement(dml);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.testArrayUpsertIntWithNulls()#2{
+        Connection conn = DriverManager.getConnection(getUrl());
+        conn.createStatement().execute("CREATE TABLE t1 ( k VARCHAR PRIMARY KEY, a INTEGER[])");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.testSameColumnNameInPKAndNonPK()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+            conn.createStatement().execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 88
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.getConnection(String jdbcURL,String user,String pwd){
+    Connection conn = DriverManager.getConnection(jdbcURL, user, pwd);
+    conn.createStatement().execute("set hive.support.concurrency = false");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 89
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.testBaseTableCannotBeUsedInStatementsInMultitenantConnections()#1{
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL);
+                conn.createStatement().execute("select * from " + PARENT_TABLE_NAME);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 90
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.testBlackListedUdfUsage()#0{
+    Connection hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user1", "bar");
+    Statement stmt = hs2Conn.createStatement();
+    stmt.execute("create table " + tableName1 + "(i int) ");
+    verifyUDFNotAllowed(stmt, tableName1, "sqrt(1)", "sqrt");
+    stmt.execute("SELECT reflect('java.lang.String', 'valueOf', 1) from " + tableName1);
+    stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 91
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.createTable()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T_PRE_STMT_TEST (ID INTEGER GENERATED BY DEFAULT AS IDENTITY, NAME VARCHAR(50), BIRTHDATE TIMESTAMP)");
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 92
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class880.createTable()#0{
+        Connection conn = DriverManager.getConnection(jdbcUrl, user, password);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T (FID INT, FNAME VARCHAR2(4000), FDESC CLOB)");
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 93
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.setSchema(String schemaName){
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement();
+        s.execute("SET SCHEMA " + schemaName);
+        s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 94
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.createDb()#0{
+    Connection conn = DriverManager.
+        getConnection(miniHS2.getJdbcURL(), System.getProperty("user.name"), "bar");
+    Statement stmt2 = conn.createStatement();
+    stmt2.execute("CREATE DATABASE " + dbName);
+    stmt2.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 95
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.setIsolationSQL(String sqlName){
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement();
+        s.execute("SET ISOLATION " + sqlName);
+        s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 96
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.createTable()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T_BLOB (ID INTEGER, DATA BLOB)");
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 97
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.dropTable()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("DROP PROCEDURE BASIC_CALL_0");
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 98
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.createTable()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T_PRE_STMT_TEST (ID SMALLINT, NAME VARCHAR(50), BIRTHDATE TIMESTAMP)");
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 99
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.clear()#0{
+      String url = "jdbc:mysql://" + address.split(":")[0] + ":50001/nn_state";
+      Connection client = DriverManager.getConnection(url, "root", "root");
+      Statement statement = client.createStatement();
+      statement.execute(sql);
+      statement.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 100
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.setUp()#0{
+        Connection conn = DriverManager.getConnection(url, "sa", "");
+          Statement stmt = conn.createStatement();
+              stmt.execute("create table test (id int)");
+              stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 101
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.createTable()#1{
+        final Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        final Statement statement = connection.createStatement();
+        statement.execute("CREATE TABLE " + TABLE + "(ID INTEGER)");
+        statement.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 102
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.createScript()#0{
+        Connection conn = DriverManager.getConnection("jdbc:h2:mem:test");
+        Statement stat = conn.createStatement();
+        stat.execute("SCRIPT TO 'script.sql'");
+        stat.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 103
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.executeScript(String dataSourceName,String query)#0{
+    Connection connection = DriverManager.getConnection(dataSourceName, USER, PASSWORD);
+    Statement stmt = connection.createStatement();
+    stmt.execute(query);
+    stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 104
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.dropTable()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("DROP TABLE T_PRE_STMT_TEST");
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 105
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testEncryption()#1{
+        conn.close();
+        conn = DriverManager.getConnection(url, user, password);
+        stat = conn.createStatement();
+        stat.execute("drop table test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 106
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.testConnectRepeatedly()#1{
+        con.close();
+        con = DriverManager.getConnection(url);
+        st = con.createStatement();
+        JDBC.assertSingleValueResultSet(st.executeQuery("values 1"), "1");
+        st.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 107
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.main(String args[])#0{
+        Connection c = DriverManager.getConnection("jdbc:mysql://" + hostname + ":" + port + "/mysql", username, password);
+        Statement statement = c.createStatement();
+        statement.executeUpdate("create database if not exists employees");
+        statement.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 108
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.setup()#1{
+      Connection con = DriverManager.getConnection(StatefulUniqueCountTest.INMEM_DB_URL, new Properties());
+      Statement stmt = con.createStatement();
+      stmt.execute("CREATE TABLE IF NOT EXISTS " + StatefulUniqueCountTest.TABLE_NAME + " (col1 INTEGER, col2 INTEGER, col3 BIGINT)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 109
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.setup()#0{
+    Connection con = DriverManager.getConnection(INMEM_DB_URL, new Properties());
+    Statement stmt = con.createStatement();
+    stmt.execute("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (col1 INTEGER, col2 INTEGER, col3 BIGINT)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 110
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.MyMethodWithNoInsert()#0{
+            DriverManager.getConnection("jdbc:default:connection");
+        Statement s = conn.createStatement();
+        s.executeQuery("select * from t11_AutoGen");
+        s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 111
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1430.testStartKeyStopKey()#0{
+        conn = DriverManager.getConnection(getUrl(), props);
+        Statement statement = conn.createStatement();
+        statement.execute(query);
+        PhoenixStatement pstatement = statement.unwrap(PhoenixStatement.class);
+        List<KeyRange>splits = pstatement.getQueryPlan().getSplits();
+        assertTrue(splits.size() > 0);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 112
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.execSQL(String sql)#1{
+        Connection conn = DriverManager.getConnection(url, "sa", "");
+        Statement st = conn.createStatement();
+        st.executeUpdate(sql);
+        st.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 113
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.getConnectionH2()#1{
+        final Connection connection = DriverManager.getConnection("jdbc:h2:mem:Log4j", "sa", "");
+        final Statement statement = connection.createStatement();
+        statement
+                .executeUpdate("CREATE TABLE jpaBasicLogEntry ( "
+                        + "id INTEGER IDENTITY, timemillis BIGINT, level NVARCHAR(10), loggerName NVARCHAR(255), "
+                        + "message NVARCHAR(1024), thrown NVARCHAR(1048576), contextMapJson NVARCHAR(1048576),"
+                        + "loggerFQCN NVARCHAR(1024), contextStack NVARCHAR(1048576), marker NVARCHAR(255), source NVARCHAR(2048),"
+                        + "threadName NVARCHAR(255)" + " )");
+        statement.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 114
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.executeSql(String sql){
+            DriverManager.getConnection(
+                "jdbc:default:connection");
+        Statement stmt = conn.createStatement();
+        if (stmt.execute(sql)) {
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            return rs.getString(1);
+        } else {
+            return Integer.toString(stmt.getUpdateCount());
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 115
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.testDivideByZeroExpressionIndex()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+            stmt = conn.createStatement();
+            stmt.execute("CREATE INDEX i ON t (k1/0)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 116
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.tearDown(){
+        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:race", "sa", "");
+        Statement stmt = conn.createStatement();
+        stmt.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 117
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.proc_5280()#0{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement();
+            s.execute("drop table this_table_does_not_exist");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 118
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.doGet(HttpServletRequest req,HttpServletResponse resp)#1{
+            con = DriverManager.getConnection(MicroTestCase.CONNECTION_STRING);
+            Statement stmt = con.createStatement();
+            stmt.execute("select * from Users where name=" + name);     /* BAD */
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 119
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class980.createDB()#0{
+        Connection conn = DriverManager.getConnection(getLocalJdbcUri(), "sa", "");
+        Statement st = conn.createStatement();
+        st.executeUpdate("INSERT INTO TT (I, S) VALUES (3, 'a')");
+        st.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 120
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.getConnectionHSQLDB()#0{
+        final Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:Log4j", "sa", "");
+        final Statement statement = connection.createStatement();
+        statement.executeUpdate("CREATE TABLE jpaBasicLogEntry ( "
+                + "id INTEGER IDENTITY, timemillis BIGINT, level VARCHAR(10), loggerName VARCHAR(255), "
+                + "message VARCHAR(1024), thrown VARCHAR(1048576), contextMapJson VARCHAR(1048576),"
+                + "loggerFQCN VARCHAR(1024), contextStack VARCHAR(1048576), marker VARCHAR(255), source VARCHAR(2048),"
+                + "threadName VARCHAR(255)" + " )");
+        statement.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 121
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.addMe(int p1)#0{
+            DriverManager.getConnection("jdbc:default:connection");
+        Statement s = conn.createStatement();
+        s.executeQuery("select * from t11_AutoGen");
+        s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 122
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.testConnectRepeatedly()#0{
+        Connection con = DriverManager.getConnection(url);
+        Statement st = con.createStatement();
+        JDBC.assertSingleValueResultSet(st.executeQuery("values 1"), "1");
+        st.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 123
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.spTestBuiltins()#0{
+        c = DriverManager.getConnection("jdbc:default:connection");
+        Statement cStmt = c.createStatement();
+        ResultSet rs = cStmt.executeQuery(
+            "values (user, current_user, current schema, " +
+            "        session_user, current_role)");
+        JDBC.assertFullResultSet(
+            rs,
+            new String[][]{{"TEST_DBO", "TEST_DBO", "TEST_DBO", "PHB", null}});
+        cStmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 124
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.destroyDatabase(String database){
+        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + database, "sa", "");
+        Statement stmt = conn.createStatement();
+        stmt.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 125
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testEncryption()#0{
+        String url = getURL(dbName + ";CIPHER=AES", true);
+        conn = DriverManager.getConnection(url, user, password);
+        stat = conn.createStatement();
+        stat.execute("create table test(id int primary key)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 126
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.processRunscript(String url,String user,String password,String fileName,String options)#0{
+            conn = DriverManager.getConnection(url, user, password);
+            stat = conn.createStatement();
+            stat.execute(sql);
+            JdbcUtils.closeSilently(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 127
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.createTable()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T_CLOB (ID INTEGER, DATA CLOB)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 128
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.doConnStmtNoRS(String text){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement stmt = conn.createStatement();
+    stmt.execute(text);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 129
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.createDDL()#2{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T_BASIC_TYPE (F1 FLOAT, F2 DOUBLE, F3 REAL, F4 DATE, F5 TIME, F6 SMALLINT, F7 SMALLINT, F8 INTEGER, F9 BIGINT, F10 DECIMAL(9,2), F11 TIMESTAMP, F12 BLOB, F13 VARCHAR(256), F14 VARCHAR(256), F15 VARCHAR(256), F16 VARCHAR(256), F17 SMALLINT)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 130
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.openConnection()#0{
+        Connection conn = DriverManager.getConnection(URL, "sa", "sa");
+        Statement stat = conn.createStatement();
+            stat.execute("CREATE INDEX IDX_TEST_D ON TEST(D)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 131
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.testInit()#0{
+        deleteDb("databaseEventListener");
+        String url = getURL("databaseEventListener", true);
+        url += ";DATABASE_EVENT_LISTENER='" + Init.class.getName() + "'";
+        Connection conn = DriverManager.getConnection(url, "sa", "sa");
+        Statement stat = conn.createStatement();
+        stat.execute("select * from test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 132
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1140.createAsSelect(String url,boolean optimize)#1{
+        Connection conn = DriverManager.getConnection(url +
+                ";OPTIMIZE_INSERT_FROM_SELECT=" + optimize);
+        Statement stat = conn.createStatement();
+        stat.execute("DROP TABLE IF EXISTS TEST2");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 133
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1270.insert(String sql)#3{
+      conn = DriverManager.getConnection(url);
+      stmt = conn.createStatement();
+      stmt.executeUpdate(sql);
+      stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 134
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.createConnection(){
+    Connection connection = DriverManager.getConnection(miniHS2.getJdbcURL(dbName),
+      System.getProperty("user.name"), "bar");
+    Statement statement = connection.createStatement();
+    localConnection.set(connection);
+    localStatement.set(statement);
+    statement.execute("USE " + dbName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 135
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.main(String args[])#0{
+            Connection conn = DriverManager.getConnection("jdbc:derby:hibernateDB;create=true", new Properties());
+            Statement st = conn.createStatement();
+            st.executeUpdate("create table EMPLOYEE( id         INT         PRIMARY KEY NOT NULL, " +
+                                                    "first_name VARCHAR(20) default NULL," +
+                                                    "last_name  VARCHAR(20) default NULL," +
+                                                    "salary     INT         default NULL)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 136
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.accessDataBase()#1{
+      Connection con = DriverManager
+          .getConnection("jdbc:sqlite:stodoitem");
+      Statement stat = con.createStatement();
+      ResultSet rs = stat.executeQuery(sql);
+      parse(rs);
+      con.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 137
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.calledNestedFk()#0{
+            DriverManager.getConnection("jdbc:default:connection");
+        final Statement cStmt = c.createStatement();
+        cStmt.executeUpdate("insert into t select i*2, j*2 from t");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 138
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.runLiquibase()#3{
+        Connection conn = DriverManager
+                .getConnection(MYSQL_TEST_DB_URL, "root", "root");
+        Statement statement = conn.createStatement();
+        statement.executeUpdate("use zanata_unit_test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 139
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.updateParameterizedTestType1(String name)#1{
+        Connection conn = DriverManager.getConnection("jdbc:default:connection");
+            Statement ps1 = conn.createStatement();
+            ps1.executeUpdate("UPDATE PLANET SET NAME='" + name + "' WHERE POSITION=4");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 140
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.updateTestType1()#0{
+        Connection conn = DriverManager.getConnection("jdbc:default:connection");
+            Statement ps1 = conn.createStatement();
+            ps1.executeUpdate("UPDATE PLANET SET NAME='Mercury' WHERE POSITION=4");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 141
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.createDb()#3{
+        Connection connection = DriverManager.getConnection(url);
+        Statement s = connection.createStatement();
+        s.executeUpdate("create table ProcessProperties ( \"property\" varchar(256), \"value\" varchar(256))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 142
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.executeSql(String sql){
+            DriverManager.getConnection(
+                "jdbc:default:connection");
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 143
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.teardown()#0{
+      Connection con = DriverManager.getConnection(CASSANDRA_DB_URL);
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(dropKeyspace);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 144
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.testBasicUpsertSelect()#0{
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL);
+            conn.setAutoCommit(false);
+            conn.createStatement().executeUpdate("upsert into " + TENANT_TABLE_NAME + " (id, tenant_col) values (1, 'Cheap Sunglasses')");
+            conn.createStatement().executeUpdate("upsert into " + TENANT_TABLE_NAME + " (id, tenant_col) values (2, 'Viva Las Vegas')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 145
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.setLabel(String labelName)#1{
+            DriverManager.getConnection("jdbc:default:connection");
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("alter session set \"label\" = " + labelName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 146
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1290.cleanTable()#0{
+      Connection con = DriverManager.getConnection(URL);
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(cleanTable);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 147
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.calledNested(final boolean isCheckConstraint)#0{
+            DriverManager.getConnection("jdbc:default:connection");
+        final Statement cStmt = c.createStatement();
+        cStmt.executeUpdate("set constraints c deferred");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 148
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.setup()#0{
+      Connection con = DriverManager.getConnection(URL);
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(createTable);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 149
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.cleanTable()#0{
+      Connection con = DriverManager.getConnection(URL);
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(cleanTable);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 150
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.getConnection()#0{
+            DriverManager.getConnection("jdbc:sqlite:pushbot.db");
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS config (member text, config text, PRIMARY KEY (member)); ");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 151
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.BIG_COL_491(int i,ResultSet[] rs1,ResultSet[] rs2)#0{
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement st1 = conn.createStatement();
+    rs1[0] = st1.executeQuery(
+      "select int1, varchar32k from jira491 where int1 < " + i + " order by 1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 152
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.getResultSetWithHoldability(int holdability,ResultSet[] rs)#1{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                                        ResultSet.CONCUR_READ_ONLY,
+                                        holdability);
+        rs[0] = s.executeQuery("values (1), (2), (3)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 153
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.selectFootSoldiers(){
+        c = DriverManager.getConnection("jdbc:default:connection");
+        Statement cStmt = c.createStatement();
+        ResultSet rs = cStmt.executeQuery(
+            "select * from s1.wages where category = " +
+            FOOTSOLDIER);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 154
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.selectRows(String table,ResultSet[] rs)#0{
+        Connection conn = DriverManager.getConnection("jdbc:default:connection");
+        Statement stmt = conn.createStatement();
+        rs[0] = stmt.executeQuery("SELECT * FROM " + table);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 155
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.executeRead(String db,String query)#0{
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db,"root", "");
+            Statement stmt = conn.createStatement();
+            return stmt.executeQuery(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 156
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.main(String[] args)#0{
+    Connection con = DriverManager.getConnection("jdbc:hive2://xd-hive.xdata.data-tactics-corp.com:10000/default", "", "");
+    Statement stmt = con.createStatement();
+    ResultSet res = stmt.executeQuery(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 157
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.showSuppliers(ResultSet[] rs){
+        Connection con = DriverManager.getConnection("jdbc:default:connection");
+        Statement stmt = con.createStatement();
+        rs[0] = stmt.executeQuery(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 158
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.getData(String dataDir,String query)#0{
+                  "DBQ=" + new File(dataDir, "Customers.mdb") + ";UID=Admin";
+    Connection connection = DriverManager.getConnection(connectionString);
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        return statement.executeQuery(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 159
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.getTotalSavedBlocks(ZoneVolume volume,String zoneName)#0{
+    File databaseFile = new File(War.war.getDataFolder(), String.format("/dat/warzone-%s/volume-%s.sl3", zoneName, volume.getName()));
+    Connection databaseConnection = DriverManager.getConnection("jdbc:sqlite:" + databaseFile.getPath());
+    Statement stmt = databaseConnection.createStatement();
+    ResultSet sizeQuery = stmt.executeQuery("SELECT COUNT(*) AS total FROM blocks");
+    int size = sizeQuery.getInt("total");
+    sizeQuery.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 160
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.deleteFromATable()#3{
+    Connection con = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = con.createStatement();
+        ResultSet rs = s.executeQuery("SELECT c1 from new org.apache.derby.catalog.TriggerOldTransitionRows() AS EQ");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 161
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.selectRows(String table,ResultSet[] rs)#0{
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement stmt = conn.createStatement();
+    rs[0] = stmt.executeQuery("SELECT * FROM " + table);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 162
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.learn(String sqlQuery,String dbConnectString){
+        Connection conn = DriverManager.getConnection(dbConnectString);
+        Statement stmt = conn.createStatement(); 
+        ResultSet rs = stmt.executeQuery(sqlQuery); 
+    learn(rs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 163
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1080.f_testExecuteQueryWithNoDynamicResultSets()#0{
+        Connection connect = DriverManager.getConnection(create_url);
+        Statement stmt = connect.createStatement();
+            stmt.executeQuery("CALL RETRIEVE_DYNAMIC_RESULTS(0)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 164
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.sqlControl2(String[] e1,String[] e2,String[] e3,String[] e4,String[] e5,String[] e6,String[] e7){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement s = conn.createStatement();
+    executeStatement(s, "DROP SCHEMA SQLC_M RESTRICT", e7);
+    conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 165
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.sqlControl3(String[] e1,String[] e2,String[] e3,String[] e4,String[] e5,String[] e6,String[] e7){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement s = conn.createStatement();
+    executeStatement(s, "VALUES 1", e7);
+    conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 166
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.sqlControl(String[] e1,String[] e2,String[] e3,String[] e4,String[] e5,String[] e6,String[] e7){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement s = conn.createStatement();
+    executeStatement(s, "DROP TABLE SQLC.SQLCONTROL_DML", e7);
+    conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 167
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.getConnectionProc(){
+                Connection conn = DriverManager.getConnection("jdbc:default:connection");
+                Statement s = conn.createStatement();
+                conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 168
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.runJdbc(){
+    final Connection connection = DriverManager.getConnection(
+        "jdbc:calcite:model=core/src/test/resources/mysql-foodmart-lattice-model.json");
+    final ResultSet resultSet = connection.createStatement()
+        .executeQuery("select * from \"adhoc\".\"m{27, 31}\"");
+    System.out.println(CalciteAssert.toString(resultSet));
+    connection.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 169
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.testDisallowDropParentTableWithExistingTenantTable()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+            conn.createStatement().executeUpdate("drop table " + PARENT_TABLE_NAME);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 170
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.testDropSystemTable()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+                conn.createStatement().executeUpdate(
+                        "DROP TABLE " + PhoenixDatabaseMetaData.SYSTEM_CATALOG);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 171
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.retrieveClosedResult(ResultSet[] closed)#0{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        closed[0] = c.createStatement().executeQuery("VALUES(1)");
+        closed[0].close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 172
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1080.retrieveClosedResult(ResultSet[] closed)#0{
+        Connection connect = DriverManager.getConnection(create_url);
+        closed[0] = connect.createStatement().executeQuery("VALUES(1)");
+        closed[0].close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 173
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.testDropPKColumn()#1{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 5));
+        Connection conn1 = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            conn1.createStatement().executeUpdate("ALTER TABLE " + ATABLE_NAME + " DROP COLUMN entity_id");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 174
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.tableIsEmpty(String table)#0{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 175
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.DERBY_3304(ResultSet[] rs1)#0{
+            DriverManager.getConnection("jdbc:default:connection");
+        Statement stm = conn.createStatement();
+        conn.commit();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 176
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.tearDownDatabase(String url)#0{
+        Connection connection = DriverManager.getConnection(url, user, password);
+            Statement st = connection.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 177
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.tearDown()#0{
+         DriverManager.registerDriver( new org.h2.Driver() );
+         Connection connection = DriverManager.getConnection( url , user , passwd );
+         connection.createStatement( ).execute( "DROP TABLE IF EXISTS " + streamName );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 178
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.init()#1{
+        Connection conn = DriverManager
+        .getConnection("jdbc:default:connection");
+        Statement s = conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 179
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.tstInterruptLongQuery()#4{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 180
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.testLinkOtherSchema()#1{
+        Connection cb = DriverManager.getConnection("jdbc:h2:mem:two", "sa", "sa");
+        Statement sa = ca.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 181
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.getCycleIsolationSQL()#1{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        Statement s = c.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 182
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.executeScriptFile(String filename)#3{
+        Connection con = DriverManager.getConnection(url, "societies", "societies");
+        java.sql.Statement statement = con.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 183
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.testMissingPKColumn()#0{
+        Properties props = new Properties(TEST_PROPERTIES);
+        Connection conn = DriverManager.getConnection(url, props);
+        conn.setAutoCommit(true);
+        Statement stmt = conn.createStatement();
+            stmt.execute("upsert into PTSDB(INST,HOST,VAL) VALUES ('abc', 'abc-def-ghi', 0.5)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 184
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.addDatabaseUserWithPassword()#0{
+        Connection conn = DriverManager.getConnection(DATASOURCE_URL, "sa", "");
+        conn.setAutoCommit(true);
+        Statement st = conn.createStatement();
+        st.executeUpdate("CREATE USER " + USER + " PASSWORD '" + PASSWORD + "';");
+        st.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 185
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.testDeleteFilter(boolean autoCommit)#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTableValues(conn);
+        assertTableCount(conn, "IntIntKeyTest", NUMBER_OF_ROWS);
+        conn.setAutoCommit(autoCommit);
+        assertEquals(1,conn.createStatement().executeUpdate(deleteStmt));
+}
+    
+   
+  
+   
+
+
+
+
+

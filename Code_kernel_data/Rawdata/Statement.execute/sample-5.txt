@@ -1,0 +1,599 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.tearDown(SQLExecutor sqlExec){
+            stmt = conn.createStatement();
+            stmt.execute(dropTableSql);
+            JdbcUtils.close(stmt);
+        conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testLobStreaming1()#0{
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select cast('' as clob) from tables"));
+    s.getResultSet().next();
+    assertEquals("", s.getResultSet().getString(1));
+    toggleInline(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testLobStreaming()#0{
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select xmlelement(name \"root\") from tables"));
+    s.getResultSet().next();
+    assertEquals("<root></root>", s.getResultSet().getString(1));
+    toggleInline(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.testSelect(){
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select * from tables order by name"));
+    TestMMDatabaseMetaData.compareResultSet(s.getResultSet());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.testVarbinary()#2{
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select X'aab1'"));
+    s.getResultSet().next();
+    byte[] bytes = s.getResultSet().getBytes(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.setUp(SQLExecutor sqlExec){
+        conn = sqlExec.getConnection();
+            stmt = conn.createStatement();
+            stmt.execute(createTableSql);
+            JdbcUtils.close(stmt);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.testIsClosed(){
+        assertFalse(conn.isClosed());
+        conn.close();
+        assertTrue(conn.isClosed());
+        conn = DriverManager.getConnection("jdbc:sqlite:/" + dbFile.getPath());
+        assertFalse(conn.isClosed());
+        Statement st = conn.createStatement();
+        st.execute("select * from zoo");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.run()#1{
+                    Statement statement = conn.createStatement();
+                    statement.execute(updateQuery);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.run()#0{
+                    Statement statement = conn.createStatement();
+                    statement.execute(insertQuery);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.shutdown()#0{
+        Statement st = conn.createStatement();
+        st.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.shutdown()#0{
+          Statement st = conn.createStatement();
+          st.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.test_pg_client_encoding1(){
+    Statement s = conn.createStatement();
+    s.execute("set client_encoding LATIN1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.postConnect(){
+        Statement stmt = conn.createStatement();
+        stmt.execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.shutdown()#1{
+        Statement st = conn.createStatement();
+        st.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testPostgreSQL()#1{
+        Statement stat = conn.createStatement();
+        stat.execute("SET MODE PostgreSQL");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.run()#0{
+                    Statement statement = conn.createStatement();
+                    statement.execute(updateQuery);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testTransactionCycleDisabled()#2{
+    Statement s = conn.createStatement();
+    s.execute("set disableLocalTxn true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testTransactionCycle(){
+    conn.setAutoCommit(false); 
+    Statement s = conn.createStatement();
+    assertTrue(s.execute("select * from tables order by name"));
+    conn.setAutoCommit(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.setUp(){
+        conn = SqlTools.openConnection("jdbc:h2:mem:test");
+        Statement stmt = conn.createStatement();
+        stmt.execute(sql);        
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testPreparedUpdate(){
+    Statement stmt = conn.createStatement();
+    assertFalse(stmt.execute("create local temporary table x (y string)"));
+    PreparedStatement ps = conn.prepareStatement("delete from x");
+    assertFalse(ps.execute());
+    assertNull(ps.getMetaData());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.run()#0{
+                    Statement statement = conn.createStatement();
+                    statement.execute("DELETE FROM "
+                            + DatabaseCreator.TEST_TABLE1 + " WHERE id=" + id);
+}
+    
+   
+  
+   
+
+
+
+
+

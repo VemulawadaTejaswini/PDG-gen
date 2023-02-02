@@ -1,0 +1,211 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.TabletServerResourceManager(TabletServer tserver,VolumeManager fs)#4{
+    Runtime runtime = Runtime.getRuntime();
+    if (!usingNativeMap && maxMemory + dCacheSize + iCacheSize + totalQueueSize > runtime.maxMemory()) {
+      throw new IllegalArgumentException(String.format(
+          "Maximum tablet server map memory %,d block cache sizes %,d and mutation queue size %,d is too large for this JVM configuration %,d", maxMemory,
+          dCacheSize + iCacheSize, totalQueueSize, runtime.maxMemory()));
+    }
+    runtime.gc();
+    if (!usingNativeMap && maxMemory > runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory())) {
+      log.warn("In-memory map may not fit into local memory space.");
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.doSystemExit()#0{
+        LOG.debug("doSystemExit called");
+        if (LOG.isDebugEnabled()) {
+            dumpThreads();
+            
+            Runtime r = Runtime.getRuntime();
+            LOG.debug("memory usage (free/used/total/max allowed): {}/{}/{}/{}", r.freeMemory(), (r.totalMemory() - r.freeMemory()), r.totalMemory(), (r.maxMemory() == Long.MAX_VALUE ? "infinite" : r.maxMemory()));
+        }
+        LOG.info("calling System.exit(0)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.getMemoryFreeStatPercentage(){
+        Runtime runtime = Runtime.getRuntime();
+        if (runtime.maxMemory() != 0) {
+            long usedMem = runtime.totalMemory() - runtime.freeMemory();
+            return (1 - (1.0f*usedMem)/runtime.maxMemory())*100;
+        } else {
+            return -1;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.logMemoryConsumption(Level level)#0{
+      maxMemory = runtime.maxMemory() / 1048576;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.logMemoryConsumption(Level level)#5{
+      percentageUsed = ((double) runtime.totalMemory()) / runtime.maxMemory() * 100;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.almostOutOfMemory(Runtime runtime)#0{
+    return runtime.totalMemory() - runtime.freeMemory() > CANDIDATE_MEMORY_PERCENTAGE * runtime.maxMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.get(Runtime runtime){
+                        return runtime.maxMemory();
+}
+    
+   
+  
+   
+
+
+
+
+
