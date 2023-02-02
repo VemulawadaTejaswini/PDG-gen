@@ -28,8 +28,8 @@ public class mainframe {
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
     private JTextArea consoleText;
-    static String outputFolder = "./../../Processed Dataset/Before pruning/new_all/";
-    static String inputFolder = "./../../Code_kernel_data/";
+    static String outputFolder = "./../../Processed Dataset/Before pruning/new_automated/";
+    static String inputFolder = "./../../Code_kernel_data/Dataset/NEW/";
     static int randomNumber = -1;
     static Random rand = new Random();
 
