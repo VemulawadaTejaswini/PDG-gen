@@ -1,0 +1,652 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.exportTableGeometryCollection(){
+        Statement stat = connection.createStatement();
+        stat.execute("CALL SHPWrite('target/geomcoll_export.shp', 'GEOM_COLL')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.setUp()#1{
+      connection = DatabaseConfig.getMemoryConnection();
+        Statement statement = connection.createStatement();
+        statement.execute("CREATE TABLE table_name(" +
+                "id INTEGER PRIMARY KEY, name VARCHAR(255), long_value BIGINT," +
+                "float_value REAL, double_value DOUBLE, blob_value BINARY, clob_value CLOB );");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.executeStatement(String statementStr,int resultFlags){
+    if (resultFlags == DatabaseConnection.DEFAULT_RESULT_FLAGS) {
+      resultFlags = ResultSet.TYPE_FORWARD_ONLY;
+    }
+    Statement statement = connection.createStatement(resultFlags, ResultSet.CONCUR_READ_ONLY);
+    statement.execute(statementStr);
+    return statement.getUpdateCount();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testSetSRID(){
+        Statement st = connection.createStatement();
+        st.execute("insert into testSrid values (ST_GeomFromText('POINT( 15 25 )',27572))");
+        ResultSet rs = st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid");
+        assertTrue(rs.next());
+        assertEquals(27572, rs.getInt("original"));
+        assertEquals(5321, rs.getInt("trans"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.test_ST_AccumCollection(){
+        Statement st = connection.createStatement();
+        st.execute("DROP TABLE IF EXISTS TESTACCUMCOLLECT;" +
+                "CREATE TABLE TESTACCUMCOLLECT AS SELECT 'MULTIPOLYGON (((50 31, 54 31, 54 29, 50 29, 50 31))," +
+                " ((66 34, 62 34, 62 32, 66 32, 66 34)))'::geometry the_geom");
+        ResultSet rs = st.executeQuery("SELECT ST_Accum(the_geom) FROM TESTACCUMCOLLECT");
+        assertTrue(rs.next());
+        assertEquals("MULTIPOLYGON (((50 31, 54 31, 54 29, 50 29, 50 31)), ((66 34, 62 34, 62 32, 66 32, 66 34)))", rs.getString(1));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.execute(final String command)#2{
+        Statement statement = connection.createStatement();
+        statement.execute(command);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.shutdown()#0{
+    Statement st = connection.createStatement();
+    st.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.stop()#1{
+                Statement statement = connection.createStatement();
+                statement.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.LineStringInPoint(){
+        Statement st = connection.createStatement();
+        st.execute("insert into test values (ST_LineFromText('LINESTRING( 0 18, 10 21, 16 23, 28 26, 44 31 )' ,101))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.exportTableWithNullGeom(){
+        Statement stat = connection.createStatement();
+        stat.execute("CALL SHPWrite('target/area_export3.shp', 'AREA')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.addSumforWeekAndProfile(int week,int profile,int sum)#0{
+      Statement st = connection.createStatement();
+      st.execute("INSERT into total_info (week,profile,number_actions) values ("+week +","+profile+","+sum+") " +
+          "on duplicate key update number_actions="+sum+";");
+      logger.debug("error while adding sum into total info for week "+week+" , profile "+profile+" Reason: "+e);
+      e.printStackTrace();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.testZConstraintError(){
+        Statement st = connection.createStatement();
+        st.execute("drop table LIDAR_PTS IF EXISTS");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.testZConstraintOk(){
+        Statement st = connection.createStatement();
+        st.execute("drop table LIDAR_PTS IF EXISTS");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.exportUnknownhSRIDPRJ(){
+        Statement stat = connection.createStatement();
+        stat.execute("CALL SHPWrite('target/area_export10.shp', 'AREA')");        
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.test_ST_Buffer7()#1{
+        Statement st = connection.createStatement();
+        st.execute("SELECT ST_Buffer("
+                + " ST_GeomFromText('LINESTRING (100 250, 200 250, 150 350)'),"
+                + " 10, 'quad_segs=2 endcap=flated');");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.tearUp()#0{
+        connection = SpatialH2UT.createSpatialDataBase(DB_NAME);
+        Statement st = connection.createStatement();
+        st.execute("drop table if exists spatial_ref_sys;");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.addUserToDatabase(String current_id,String ca_Name)#2{
+      Statement st = connection.createStatement();
+      st.execute("INSERT into users (facebook_id,ca_id) values ("+current_id +",'"+ca_Name+"') " +
+          "on duplicate key update ca_id='"+ca_Name+"';");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.deleteUserFromDatabase(String current_id)#1{
+      Statement st = connection.createStatement();
+      st.execute("Delete from users where facebook_id ="+current_id +";");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.stop()#1{
+                Statement statement = connection.createStatement();
+                statement.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.copySHPTestAutomaticTableName()#0{
+        Statement st = connection.createStatement();
+        st.execute("DROP TABLE IF EXISTS WATERNETWORK");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.close()#1{
+                Statement statement = connection.createStatement();
+                statement.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.copySHPTest()#0{
+        Statement st = connection.createStatement();
+        st.execute("DROP TABLE IF EXISTS WATERNETWORK");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.readSHPConstraintTest()#2{
+        Statement st = connection.createStatement();
+        st.execute("drop table if exists shptable");
+}
+    
+   
+  
+   
+
+
+
+
+

@@ -1,0 +1,2188 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.doConnStmtNoRS(String text){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    Statement stmt = conn.createStatement();
+    stmt.execute(text);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.createDDL()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T_BASIC_TYPE (F1 FLOAT, F2 DOUBLE, F3 REAL, F4 DATE, F5 TIME, F6 SMALLINT, F7 SMALLINT, F8 INTEGER, F9 BIGINT, F10 DECIMAL(9,2), F11 TIMESTAMP, F12 BLOB, F13 VARCHAR(256), F14 VARCHAR(256), F15 VARCHAR(256), F16 VARCHAR(256), F17 SMALLINT)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.destroyDatabase(String database){
+        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + database, "sa", "");
+        Statement stmt = conn.createStatement();
+        stmt.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testCountDistinctNotNull(){
+        deleteDb("cases");
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+        stat.execute("create table test(id int not null) as " +
+                "select 1 from system_range(1, 10)");
+        ResultSet rs = stat.executeQuery("select count(distinct id) from test");
+        rs.next();
+        assertEquals(1, rs.getInt(1));
+        conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.verifyTableColumnContents(Connection connection,String table,String column,ColumnGenerator gen)#0{
+    Statement st = connection.createStatement();
+    assertTrue(st.execute("SELECT " + column + " FROM " + table));
+    ResultSet rs = st.getResultSet();
+    for (int row = 0; rs.next(); ++row) {
+      assertEquals(gen.getVerifyText(row), rs.getString(1));
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.tearDown(){
+        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:race", "sa", "");
+        Statement stmt = conn.createStatement();
+        stmt.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.createTable()#2{
+        Connection conn = DriverManager.getConnection(create_url);
+        Statement stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE T_CLOB (ID INTEGER, DATA CLOB)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testDeleteGroup()#0{
+        deleteDb("cases");
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+        stat.execute("delete from test where id not in " +
+                "(select min(x) from test group by id)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.shutdown(DataSource dataSource,String databaseName)#1{
+      Connection connection = dataSource.getConnection();
+      Statement stmt = connection.createStatement();
+      stmt.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testEmptyStatements()#0{
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+        stat.execute(" ;");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.wrappedService(HttpServletRequest request,HttpServletResponse response,String[] path,java.util.LinkedHashMap<String,String> query)#0{
+        InitialContext jndiContext = new InitialContext();
+        DataSource ds = (DataSource) jndiContext.lookup("java:comp/env/jdbc/connPool");
+        Connection conn = ds.getConnection("root", "password");
+        Statement stmt = conn.createStatement();
+        boolean results = stmt.execute("SELECT NOW();");
+        out.println("<br>results: " + results + "<br>");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.shutdown(DataSource dataSource,String databaseName){
+        java.sql.Connection connection = dataSource.getConnection();
+        Statement stmt = connection.createStatement();
+        stmt.execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.onRelease(JDBCDataStore store,Connection cx)#0{
+                st = cx.createStatement();
+                st.execute(command);
+                store.closeSafe(st);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.onBorrow(JDBCDataStore store,Connection cx){
+                st = cx.createStatement();
+                st.execute("SET @MYVAR = " + value);
+                store.closeSafe(st);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.onBorrow(JDBCDataStore store,Connection cx)#0{
+                st = cx.createStatement();
+                st.execute(command);
+                store.closeSafe(st);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.before(){
+        final Connection connection = dataSource.getConnection();
+        final Statement statement = connection.createStatement();
+        statement.execute("RUNSCRIPT FROM 'classpath:/backup.sql'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.f_test_createIndex()#0{
+        Connection conn = dataSource.getConnection();
+        Statement stmt = conn.createStatement();
+        stmt.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.execute(String sql){
+            conn = dataSource.getConnection();
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            JdbcUtils.close(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testDefaultMinMax()#0{
+        deleteDb("sequence");
+        Connection conn = getConnection("sequence");
+        Statement stat = conn.createStatement();
+        stat.execute("create sequence b START WITH 7320917853639540658 INCREMENT -1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testAlterSequenceColumn()#1{
+        deleteDb("sequence");
+        Connection conn = getConnection("sequence");
+        Statement stat = conn.createStatement();
+        stat.execute("INSERT INTO TEST (name) VALUES('Other World')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testSchemaSearchPath()#0{
+        deleteDb("sequence");
+        Connection conn = getConnection("sequence");
+        Statement stat = conn.createStatement();
+        stat.execute("CALL TEST_SEQ.CURRVAL");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testRunscriptFromClasspath()#0{
+        deleteDb("runscript");
+        conn = getConnection("runscript");
+        Statement stat = conn.createStatement();
+        stat.execute("select * from version");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.testLobUpdateMany()#0{
+        deleteDb("lob");
+        Connection conn = getConnection("lob");
+        Statement stat = conn.createStatement();
+        stat.execute("create table post(id int primary key, text clob) as " +
+                "select x, space(96) from system_range(1, 329)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.testCreateAsSelect()#0{
+        deleteDb("lob");
+        conn = getConnection("lob");
+        stat = conn.createStatement();
+        stat.execute("create table test(id int, data clob) as select 1, space(10000)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.dropTable()#0{
+        Connection connection = createConnection();
+        Statement statement = connection.createStatement();
+        statement.execute("drop table ACCOUNT");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.tearDown()#0{
+        Connection connection = createConnection();
+        Statement statement = connection.createStatement();
+        statement.execute("drop table ACCOUNT");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.migrate(Connection connection){
+            statement = connection.createStatement();
+            statement.execute("CREATE TRIGGER clinics_history_trigger AFTER INSERT ON clinics FOR EACH ROW CALL\n" +
+                    "\"org.flywaydb.core.internal.dbsupport.h2.TestTrigger\";");
+            JdbcUtils.closeStatement(statement);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.execute(Connection connection){
+                            statement = connection.createStatement();
+                            statement.execute("INSERT INTO test_user (name) VALUES ('Resolvix')");
+                            JdbcUtils.closeStatement(statement);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.testKeyAsColumnInMySQLMode()#0{
+        Connection c = getConnection("compatibility;MODE=MYSQL");
+        Statement stat = c.createStatement();
+        stat.execute("drop table test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.testConstraintAlterTable()#0{
+        deleteDb("cases");
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+        stat.execute("alter table parent add column p2 varchar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.createDatabase()#0{
+        Connection conn = getConnection();
+        conn.setAutoCommit(false);
+        Statement st = conn.createStatement();
+        st.execute("DROP TABLE T1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.testViewParameters()#1{
+        deleteDb("cases");
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+        stat.execute(
+                "create view test as select 0 value, 'x' name from dual");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.testReferenceableIndexUsage()#1{
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+        stat.execute("drop table if exists a, b");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.testInsertRollback()#0{
+        Connection conn = getConnection();
+        conn.setAutoCommit(false);
+        Statement stmt = conn.createStatement();
+        stmt.execute(CREATE_TABLE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.executeSQL(Connection con,String sql){
+        Statement stmt = con.createStatement();
+        stmt.execute(sql);
+        return stmt.getResultSet();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.fillSimpleTable3(Connection conn){
+        Statement statement = conn.createStatement();
+        statement.execute("INSERT INTO " + SIMPLE_TABLE3 + " VALUES(3, 4)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.fillSimpleTable1(Connection conn){
+        Statement statement = conn.createStatement();
+        statement.execute("INSERT INTO " + SIMPLE_TABLE1 + " VALUES(2, 5, 7)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.doInConnection(java.sql.Connection connection){
+                Statement statement = connection.createStatement();
+                statement.execute("set constraints all deferred;");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.createTable()#0{
+        Connection connection = createConnection();
+        Statement statement = connection.createStatement();
+        statement.execute("create table ACCOUNT ( ACC_ID INTEGER , ACC_FIRST_NAME VARCHAR(255), ACC_LAST_NAME VARCHAR(255), ACC_EMAIL VARCHAR(255)  )");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.runSql(ConnectionProvider provider,String sql)#0{
+    Connection connection = provider.getConnection();
+      Statement statement = connection.createStatement();
+      statement.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.testLobServerMemory()#0{
+        deleteDb("lob");
+        Connection conn = getConnection("lob");
+        Statement stat = conn.createStatement();
+        stat.execute("CREATE TABLE TEST(ID INT, DATA CLOB)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.fillCustomersTable(Connection conn){
+        Statement statement = conn.createStatement();
+        statement.execute(DatabaseCreator.INSERT_CUSTOMERS7);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.execute(String sql)#0{
+        MyBatisComponent component = camelContext.getComponent("mybatis", MyBatisComponent.class);
+        Connection con = component.getSqlSessionFactory().getConfiguration().getEnvironment().getDataSource().getConnection();
+        Statement stm = con.createStatement();
+        stm.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.setupDatabase()#0{
+    basicDataSource.setDriverClassName(jdbcDriver.class.getName());
+    basicDataSource.setUrl("jdbc:hsqldb:mem:db");
+    basicDataSource.setUsername("sa");
+    basicDataSource.setPassword("");
+    Connection connection = basicDataSource.getConnection();
+    Statement statement = connection.createStatement();
+    statement.execute("create table licenses (license varchar(512))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.fillTestTable5(Connection conn){
+        Statement statement = conn.createStatement();
+        statement.execute("INSERT INTO " + TEST_TABLE5 + " VALUES(3, '4')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.fillOrdersTable(Connection conn){
+        Statement statement = conn.createStatement();
+        statement.execute(DatabaseCreator.INSERT_ORDERS10);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.dropTable(Connection con,String table){
+        Statement stmt = con.createStatement();
+        stmt.execute("DROP TABLE " + table + " IF EXISTS;");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.initializeConnection(Connection connection)#0{
+    Statement stmt = connection.createStatement();
+      stmt.execute("ALTER SESSION SET NLS_TIMESTAMP_FORMAT = 'SYYYY-MM-DD HH24:MI:SS'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.fillFKStrictTable(Connection conn){
+        Statement statement = conn.createStatement();
+        statement.execute("INSERT INTO " + FKSTRICT_TABLE
+                + " VALUES(3, 1, '3')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.removeTable(Connection conn,String name)#0{
+    Statement stat = conn.createStatement();
+    stat.execute("DROP TABLE "+name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testReadOnlyConnect()#1{
+        deleteDb("readonlyConnect");
+        Connection conn = getConnection("readonlyConnect;OPEN_NEW=TRUE");
+        Statement stat = conn.createStatement();
+        stat.execute("insert into test select x from system_range(1, 11)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.runStatement(VersionedPostgisDataStore dataStore,String sqlStatement){
+            conn = dataStore.getConnection(Transaction.AUTO_COMMIT);
+            st = conn.createStatement();
+            st.execute(sqlStatement);
+            JDBCUtils.close(conn, Transaction.AUTO_COMMIT, null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.forceQuery(Connection c,String query)#1{
+            Statement stmt = c.createStatement();
+            stmt.execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.fillSalesPeopleTable(Connection conn){
+        Statement statement = conn.createStatement();
+        statement.execute(DatabaseCreator.INSERT_SALESPEOPLE6);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.testSortedSelect()#0{
+        deleteDb("cases");
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+        stat.execute("drop table test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.setupDatabase(Connection con)#1{
+        Statement stmt = con.createStatement();
+        stmt.execute("CREATE TABLE " + TABLE_INDEX
+                + "(name text, statement text, category text)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.testClearSyntaxException()#2{
+        Connection conn = getConnection("cases");
+        Statement stat = conn.createStatement();
+            stat.execute("select t.x, t.x t.y from dual t");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.runConsistencyChecker(Connection con,String tableName)#0{
+    Statement stmt = con.createStatement();
+    stmt.execute("values SYSCS_UTIL.SYSCS_CHECK_TABLE('APP',  'EMP')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.truncate()#1{
+      connection = SymfonyDbFactory.getInstance().createConnection();
+      Statement statement = connection.createStatement();
+      statement.execute(QUERY_TRUNCATE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.setup(Connection conn){
+    Statement stmt = conn.createStatement ();
+      stmt.execute("delete from departments where department_id >= 300");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.tablesExist(Connection c)#0{
+        final Statement stmt = c.createStatement();
+            stmt.execute("SELECT count(*) FROM COP_WORKFLOW_INSTANCE");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.initializeConnection(Connection cx){
+        Statement st = cx.createStatement();
+        st.execute("set lockmode session where level=mvcc");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.initDatabaseAccess(Connection con){
+        Statement stmt = con.createStatement();
+        stmt.execute("CREATE ALIAS IF NOT EXISTS NOW_MILLIS FOR \"java.lang.System.currentTimeMillis\";");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.testQueryTimeout()#0{
+        deleteDb("cancel");
+        Connection conn = getConnection("cancel");
+        Statement stat = conn.createStatement();
+        stat.execute("SET QUERY_TIMEOUT 10");
+        assertThrows(ErrorCode.STATEMENT_WAS_CANCELED, stat).
+                executeQuery("SELECT MAX(RAND()) " +
+                        "FROM SYSTEM_RANGE(1, 100000000)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.executeSql(String sql,Connection connection){
+      Statement statement = connection.createStatement();
+      statement.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.dropAll(Connection conn)#1{
+        Statement stat = conn.createStatement();
+        stat.execute("DROP SCHEMA IF EXISTS " + SCHEMA);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.fillParentTable(Connection conn){
+        Statement statement = conn.createStatement();
+        statement
+                .execute("INSERT INTO " + PARENT_TABLE + " VALUES(3, 'test3')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.work(Connection conn)#0{
+                    Statement stat = conn.createStatement();
+                    stat.execute(
+                            "insert into temp values(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.testEmptyColumn()#0{
+        deleteDb("view");
+        Connection conn = getConnection("view");
+        Statement stat = conn.createStatement();
+        stat.execute("select * from test_view where a between 1 and 2 and b = 2");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.runSQL(String sql,Connection cx){
+        Statement st = cx.createStatement();
+            st.execute(sql);
+            close(st);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.dropDataIdsTempTable(Connection connection,String dataIdsTableName)#3{
+        Statement stmt = connection.createStatement();
+        stmt.execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.truncate(Connection con){
+            st = con.createStatement();
+            st.execute(sql);
+            close(st);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.setupTestTableWithData(String tableName,Path dataFilePath,Connection hs2Conn)#1{
+    Statement stmt = hs2Conn.createStatement();
+    stmt.execute("create table " + tableName
+        + " (under_col int comment 'the under column', value string)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.dropTab1(final Connection c)#0{
+        final Statement stmt = c.createStatement();
+            stmt.execute("drop table tab1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.getExecutedStatementWhereLoginName(String loginName){
+    Connection conn = getConnection();
+    Statement stmt = conn.createStatement();
+    stmt.execute("select * from users where "+COLUMN_LOGIN+"='"+loginName+"'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.dumpTable(Connection conn)#0{
+    Statement stmt = conn.createStatement ();
+    ResultSet rset = stmt.executeQuery ("select region_id, region_name from regions order by region_id");
+    while (rset.next ())
+      System.out.println (rset.getInt(1) + " " + rset.getString (2));
+    stmt.execute ("delete from regions where region_id > 100");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.testNoBegin()#2{
+        Connection connection = ConnectionHelper.getConnection(null);
+            Statement st = connection.createStatement();
+            String sql = getValidationQuery(connection);
+            st.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+

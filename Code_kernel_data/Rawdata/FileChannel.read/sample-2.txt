@@ -1,0 +1,1574 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testReadOnlyByteArrays()#1{
+        File tmp = File.createTempFile("FileChannelTest", "tmp");
+        FileChannel fc = new FileInputStream(tmp).getChannel();
+            fc.read(readOnly);
+            fc.read(new ByteBuffer[] { readOnly });
+            fc.read(new ByteBuffer[] { readOnly }, 0, 1);
+            fc.read(readOnly, 0L);
+        fc.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.testReadsInWriteOnlyMode()#2{
+    FileChannel channel = channel(regularFile(0), WRITE);
+      channel.read(buffer("111"));
+      channel.read(buffer("111"), 10);
+      channel.read(new ByteBuffer[] {buffer("111"), buffer("111")});
+      channel.read(new ByteBuffer[] {buffer("111"), buffer("111")}, 0, 2);
+      channel.transferTo(0, 10, new ByteBufferChannel(buffer("111")));
+      channel.lock(0, 10, true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.readValue(byte[] key,int chunk,int valueLocation)#1{
+                    ByteBuffer sizeBuffer = ByteBuffer.allocate(headerSize);
+                    dataFile.read(sizeBuffer, valueLocation);
+                    short numKeyValues = sizeBuffer.getShort(0);
+                    int valueSize = sizeBuffer.getInt(ByteUtils.SIZE_OF_SHORT
+                                                      + ByteUtils.SIZE_OF_INT);
+                    do {
+
+                        if(keySize == -1 && valueSize == -1) {
+                            sizeBuffer.clear();
+                            // Reads an extra short, but that is fine since
+                            // collisions are rare. Also we save the unnecessary
+                            // overhead of allocating a new byte-buffer
+                            dataFile.read(sizeBuffer, valueLocation);
+                            keySize = sizeBuffer.getInt(0);
+                            valueSize = sizeBuffer.getInt(ByteUtils.SIZE_OF_INT);
+                            valueLocation += (2 * ByteUtils.SIZE_OF_INT);
+                        }
+
+                        // Read key + value
+                        ByteBuffer buffer = ByteBuffer.allocate(keySize + valueSize);
+                        dataFile.read(buffer, valueLocation);
+
+                        // Compare key
+                        if(ByteUtils.compare(key, buffer.array(), 0, keySize) == 0) {
+                            return ByteUtils.copy(buffer.array(), keySize, keySize + valueSize);
+                        }
+                        valueLocation += (keySize + valueSize);
+                        keySize = valueSize = -1;
+
+                    } while(--numKeyValues > 0);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.testClose()#0{
+    assertTrue(channel.isOpen());
+    channel.close();
+    assertFalse(channel.isOpen());
+      channel.position();
+      channel.position(0);
+      channel.lock();
+      channel.lock(0, 10, true);
+      channel.tryLock();
+      channel.tryLock(0, 10, true);
+      channel.force(true);
+      channel.write(buffer("111"));
+      channel.write(buffer("111"), 10);
+      channel.write(new ByteBuffer[] {buffer("111"), buffer("111")});
+      channel.write(new ByteBuffer[] {buffer("111"), buffer("111")}, 0, 2);
+      channel.transferFrom(new ByteBufferChannel(bytes("1111")), 0, 4);
+      channel.truncate(0);
+      channel.read(buffer("111"));
+      channel.read(buffer("111"), 10);
+      channel.read(new ByteBuffer[] {buffer("111"), buffer("111")});
+      channel.read(new ByteBuffer[] {buffer("111"), buffer("111")}, 0, 2);
+      channel.transferTo(0, 10, new ByteBufferChannel(buffer("111")));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.read(File file,MatFileFilter filter,int policy)#3{
+                    buf = ByteBuffer.allocateDirect( (int)roChannel.size() );
+                    roChannel.read(buf, 0);
+                    buf.rewind();
+                    int filesize = (int)roChannel.size();
+                    buf = ByteBuffer.allocate( filesize );
+                    if (numberOfBlocks > 1) {
+                        ByteBuffer tempByteBuffer = ByteBuffer.allocateDirect(DIRECT_BUFFER_LIMIT);
+                        for (int block=0; block<numberOfBlocks; block++) {
+                            tempByteBuffer.clear();
+                            roChannel.read(tempByteBuffer, ((long)block)*DIRECT_BUFFER_LIMIT);
+                            tempByteBuffer.flip();
+                            buf.put(tempByteBuffer);
+                        }
+                        tempByteBuffer = null;
+                    } else
+                    roChannel.read(buf, 0);
+                    buf.rewind();
+                    buf = roChannel.map(FileChannel.MapMode.READ_ONLY, 0, (int)roChannel.size());
+                    bufferWeakRef = new WeakReference<MappedByteBuffer>((MappedByteBuffer)buf);
+            readHeader(buf);
+            while ( buf.remaining() > 0 )
+            {
+                readData( buf );
+            }
+            return getContent();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.testPositionedReadWrite(String fsBase)#2{
+        buff = ByteBuffer.allocate(1);
+        assertEquals(-1, fc.read(buff, 8000));
+        assertEquals(1, fc.read(buff, 4000));
+        buff.flip();
+        assertEquals(1, fc.read(buff, 2000));
+        fc.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.testPositionedReadWrite(String fsBase)#0{
+            assertEquals((byte) i, buff.get());
+        buff = ByteBuffer.allocate(0);
+        assertTrue(fc.read(buff, 8000) <= 0);
+        assertEquals(0, fc.position());
+        assertTrue(fc.read(buff, 4000) <= 0);
+        assertEquals(0, fc.position());
+        assertTrue(fc.read(buff, 2000) <= 0);
+        assertEquals(0, fc.position());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.testChannelFollowsHandle()#2{
+    assertEquals(4, ch.read(buf));
+    buf.flip();
+    assertEquals(4, ch.read(buf));
+    buf.flip();
+    assertEquals(4, ch.read(buf));
+    assertEquals("ytes", new String(buf.array()));
+    buf.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.testReadNegative()#1{
+    FileChannel channel = channel(regularFile(0), READ, WRITE);
+      channel.read(buffer("111"), -1);
+    ByteBuffer[] bufs = {buffer("111"), buffer("111")};
+      channel.read(bufs, -1, 10);
+      channel.read(bufs, 0, -1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.fileChannel()#0{
+ByteBuffer buf = ByteBuffer.allocate(48);
+int bytesRead = inChannel.read(buf);
+while (bytesRead != -1) {
+  System.out.println("Read " + bytesRead);
+  buf.flip();
+
+  while(buf.hasRemaining()){
+      System.out.print((char) buf.get());
+  }
+
+  buf.clear();
+  bytesRead = inChannel.read(buf);
+}
+file.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.telnet(Channel channel,String message)#1{
+                if (file != null && file.exists()) {
+                    try{
+                        FileInputStream fis = new FileInputStream(file);
+                        try {
+                          FileChannel filechannel = fis.getChannel();
+                          try {
+                            size = filechannel.size();
+                            ByteBuffer bb;
+                            if (size <= SHOW_LOG_LENGTH) {
+                                bb = ByteBuffer.allocate((int) size);
+                                filechannel.read(bb, 0);
+                            } else {
+                                int pos = (int) (size - SHOW_LOG_LENGTH);
+                                bb = ByteBuffer.allocate(SHOW_LOG_LENGTH);
+                                filechannel.read(bb, pos);
+                            }
+                            bb.flip();
+                            String content = new String(bb.array()).replace("<", "&lt;")
+                            .replace(">", "&gt;").replace("\n", "<br/><br/>");
+                            buf.append("\r\ncontent:"+content);
+                            
+                            buf.append("\r\nmodified:"+(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                            .format(new Date(file.lastModified()))));
+                            buf.append("\r\nsize:"+size +"\r\n");
+                          } finally {
+                            filechannel.close();
+                          }
+                        } finally {
+                          fis.close();
+                        }
+                    }catch (Exception e) {
+                        buf.append(e.getMessage());
+                    }
+                }else {
+                    size = 0;
+                    buf.append("\r\nMESSAGE: log file not exists or log appender is console .");
+                }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.index(Map<String,Object> context)#1{
+        File file = LoggerFactory.getFile();
+        if (file != null && file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            FileChannel channel = fis.getChannel();
+            size = channel.size();
+            ByteBuffer bb;
+            if (size <= SHOW_LOG_LENGTH) {
+                bb = ByteBuffer.allocate((int) size);
+                channel.read(bb, 0);
+            } else {
+                int pos = (int) (size - SHOW_LOG_LENGTH);
+                bb = ByteBuffer.allocate(SHOW_LOG_LENGTH);
+                channel.read(bb, pos);
+            }
+            bb.flip();
+            content = new String(bb.array()).replace("<", "&lt;").replace(">", "&gt;");
+            modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(file.lastModified()));
+        } else {
+            size = 0;
+            content = "";
+            modified = "Not exist";
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.handle(URL url)#2{
+    if (file != null && file.exists()) {
+      try {
+        FileInputStream fis = new FileInputStream(file);
+        FileChannel channel = fis.getChannel();
+        size = channel.size();
+        ByteBuffer bb;
+        if (size <= SHOW_LOG_LENGTH) {
+          bb = ByteBuffer.allocate((int) size);
+          channel.read(bb, 0);
+        } else {
+          int pos = (int) (size - SHOW_LOG_LENGTH);
+          bb = ByteBuffer.allocate(SHOW_LOG_LENGTH);
+          channel.read(bb, pos);
+        }
+        bb.flip();
+        content = new String(bb.array()).replace("<", "&lt;")
+            .replace(">", "&gt;").replace("\n", "<br/><br/>");
+        modified = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            .format(new Date(file.lastModified()));
+      } catch (IOException e) {
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.create(FileChannel fc,ByteOrder tiffFileOrder)#1{
+        ByteBuffer header = ByteBuffer.wrap(new byte[12]).order( tiffFileOrder );
+            fc.read( header );
+            header.flip();
+            int type = getUnsignedShort( header );
+            long count = getUnsignedInt( header );
+            if ( type == Tiff.Type.SHORT && count == 1 )
+            {
+                // these get packed left-justified in the bytes...
+                int upper = getUnsignedShort( header );
+                int lower = getUnsignedShort( header );
+                long value = (MASK_USHORT & upper) << 16 | (MASK_USHORT & lower);
+
+                return new TiffIFDEntry(tag, type, value );
+            }
+            else if( count == 1 && (type == Tiff.Type.LONG || type == Tiff.Type.FLOAT))
+            {
+                long value = header.getInt();
+                return new TiffIFDEntry(tag, type, value );
+            }
+            else
+            {
+                long offset = getUnsignedInt( header );
+                int size = MASK_USHORT & (int)calcSize( type, count );
+
+                if( size > 0L )
+                {
+                    ByteBuffer data = ByteBuffer.allocateDirect( size ).order( tiffFileOrder );
+                    savedPosition = fc.position();
+                    fc.position( offset );
+                    fc.read( data );
+                    data.flip();
+
+                    fc.position( savedPosition );
+                    savedPosition = 0;
+
+                    return new TiffIFDEntry(tag, type, count, offset, data );
+                }
+                else
+                    return new TiffIFDEntry(tag, type, count, offset );
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.readFromFileChannel(final FileChannel fileChannel,final Buffer buffer){
+        if (!buffer.isComposite()) {
+            final ByteBuffer bb = buffer.toByteBuffer();
+            final int oldPos = bb.position();
+            bytesRead = fileChannel.read(bb);
+            bb.position(oldPos);
+        } else {
+            final ByteBufferArray array = buffer.toByteBufferArray();
+            bytesRead = fileChannel.read(
+                    array.getArray(), 0, array.size());
+
+            array.restore();
+            array.recycle();
+        }
+        if (bytesRead > 0) {
+            buffer.position(buffer.position() + (int) bytesRead);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.validateMessage(FileChannel channel,long start,long len,ByteBuffer buffer)#0{
+        buffer.rewind();
+        int read = channel.read(buffer, start);
+        if (read < 4) return -1;
+        int size = buffer.getInt(0);
+        if (size < Message.MinHeaderSize) return -1;
+        if (next > len) return -1;
+        ByteBuffer messageBuffer = ByteBuffer.allocate(size);
+        while (messageBuffer.hasRemaining()) {
+            read = channel.read(messageBuffer, curr);
+            if (read < 0) throw new IllegalStateException("File size changed during recovery!");
+            else curr += read;
+        }
+        messageBuffer.rewind();
+        Message message = new Message(messageBuffer);
+        if (!message.isValid()) return -1;
+        else return next;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.load(ByteBasedSortedMap m,File f)#0{
+      ByteBuffer buf0 = ByteBuffer.allocate(hdr);
+      while (buf0.hasRemaining())
+        fc.read(buf0);
+      buf0.flip();
+      m.currentSize = buf0.getInt();
+      m.lastModified = buf0.getLong();
+      ByteBuffer bytesB = ByteBuffer.allocate(m.bytesUsed);
+      while (fc.read(bufs) > 0);
+      keyoffsetB.flip();
+      IntBuffer iB = keyoffsetB.asIntBuffer();
+      iB.get(m.keyOffsetsArray);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.load(ByteBasedList l,File f)#2{
+      ByteBuffer buf0 = ByteBuffer.allocate(hdr);
+      while (buf0.hasRemaining())
+        fc.read(buf0);
+      buf0.flip();
+      l.currentSize = buf0.getInt();
+      l.lastModified = buf0.getLong();
+      ByteBuffer bytesB = ByteBuffer.allocate(l.bytesUsed);
+      while (fc.read(bufs) > 0);
+      offsetB.flip();
+      IntBuffer iB = offsetB.asIntBuffer();
+      iB.get(l.offsetsArray);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.testFilePath()#0{
+            long pos = ch.size();
+            p("size=" + pos);
+            ch.write(buff);
+            buff.clear();
+            ch.read(buff, 0);
+            buff.clear();
+            ch.read(buff, 0);
+            if (ch != null)
+                ch.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.readEdges(MeshVisu mesh,OEMM.Node current)#4{
+          LOGGER.log(Level.FINE, "Reading " + (nbrOfEdgesComponents / 2) + " edges from " + MeshVisuBuilder.getEdgesFile(oemm, current));
+        byteBuffer = ByteBuffer.allocate((Integer.SIZE / 8) * nbrOfEdgesComponents);
+        bufferInteger = byteBuffer.asIntBuffer();
+        byteBuffer.rewind();
+        fc.read(byteBuffer);
+        bufferInteger.rewind();
+        bufferInteger.get(temp);
+      ByteBuffer byteBuffer = ByteBuffer.allocate(Integer.SIZE / 8);
+      IntBuffer bufferInteger = byteBuffer.asIntBuffer();
+      byteBuffer.rewind();
+      fc.read(byteBuffer);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.testChannelFollowsHandle()#1{
+    assertEquals(4, ch.read(buf));
+    buf.flip();
+    assertEquals(4, ch.read(buf));
+    buf.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.testReadFully_ReadableByteChannel()#0{
+        final FileInputStream fileInputStream = new FileInputStream(m_testFile);
+        final FileChannel input = fileInputStream.getChannel();
+            IOUtils.readFully(input, buffer);
+            assertEquals(FILE_SIZE, buffer.position());
+            assertEquals(0, buffer.remaining());
+            assertEquals(0, input.read(buffer));
+            IOUtils.readFully(input, buffer);
+            assertEquals(FILE_SIZE, buffer.position());
+            assertEquals(0, buffer.remaining());
+            assertEquals(0, input.read(buffer));
+            IOUtils.readFully(input, buffer);
+            buffer.clear();
+                IOUtils.readFully(input, buffer);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.transferTo()#6{
+            assertEquals (8, sourceChannel.transferTo(0, 8, fileChannel));
+            assertEquals (10, sourceChannel.transferTo(8, 11, fileChannel));
+            fileChannel.position(0);
+            assertEquals(6, fileChannel.read(transferedMessage1));
+            assertEquals(12, fileChannel.read(transferedMessage2));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.transfer(FileChannel source,WritableByteChannel destination,long position,long length)#1{
+      _transferByteBuffer.limit((int)length);
+      source.read(_transferByteBuffer, position);
+      _transferByteBuffer.flip();
+      destination.write(_transferByteBuffer);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testUTF16BOMMultipleFieldSeperators()#0{
+        FileChannel fc = new RandomAccessFile(testFile,"r").getChannel();
+        fc.read(bb);
+        assertEquals('T',bb.get(10) & 0xFF);
+        assertEquals('P',bb.get(11) & 0xFF);
+        assertEquals('E',bb.get(12) & 0xFF);
+        assertEquals('2',bb.get(13) & 0xFF);
+        assertEquals(0xFF,bb.get(21) & 0xFF);
+        assertEquals(0xFE,bb.get(22) & 0xFF);
+        assertEquals(0xDE,bb.get(23) & 0xFF);
+        assertEquals(0x03,bb.get(24) & 0xFF);
+        assertEquals(0x00,bb.get(25) & 0xFF);
+        assertEquals(0x00,bb.get(26) & 0xFF);
+        assertEquals(0xFF,bb.get(27) & 0xFF);
+        assertEquals(0xFE,bb.get(28) & 0xFF);
+        assertEquals(0xDE,bb.get(29) & 0xFF);
+        assertEquals(0x03,bb.get(30) & 0xFF);
+        assertEquals(0x54,bb.get(31) & 0xFF);
+        assertEquals(0x58,bb.get(32) & 0xFF);
+        assertEquals(0x58,bb.get(33) & 0xFF);
+        assertEquals(0x58,bb.get(34) & 0xFF);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.test1()#3{
+            long bytesRead = fc.read(dstBuffers);
+            for (int i=0; i<NUM_BUFFERS; i++) {
+                for (int j=0; j<BUFFER_CAP; j++) {
+                    byte b = dstBuffers[i].get(j);
+                    if (b != expectedResult++)
+                        throw new RuntimeException("Test failed");
+                }
+                dstBuffers[i].flip();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.call(FileChannel channel){
+            channel.read(bufArray, 0, 1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.doOp(FileChannel channel){
+          return channel.read(dst);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.call(FileChannel channel){
+            channel.read(buf);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doTestForIOOBException(FileChannel channel,ByteBuffer[] buffer)#2{
+            channel.read(buffer, -1, 0);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doTestForIOOBException(FileChannel channel,ByteBuffer[] buffer)#3{
+            channel.read(buffer, 1, 2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doTestForIOOBException(FileChannel channel,ByteBuffer[] buffer)#5{
+            channel.read(buffer, 0, -1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doTestForIOOBException(FileChannel channel,ByteBuffer[] buffer)#8{
+            channel.read(buffer, 0, 3);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doTestForIOOBException(FileChannel channel,ByteBuffer[] buffer)#10{
+            channel.read(buffer, 2, 1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doTestForIOOBException(FileChannel channel,ByteBuffer[] buffer)#11{
+            channel.read(buffer, 3, 0);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.findAndValidateKeystone()#1{
+                _readBuffer.limit(JH.MAX_LENGTH);
+                readChannel.read(_readBuffer, 0);
+                _readBuffer.flip();
+                final int recordSize = JH.getLength(_readBuffer);
+                final long version = JH.getVersion(_readBuffer);
+                _blockSize = JH.getBlockSize(_readBuffer);
+                _baseAddress = JH.getBaseJournalAddress(_readBuffer);
+                _journalCreatedTime = JH.getJournalCreatedTime(_readBuffer);
+                _keystoneAddress = JH.getCurrentJournalAddress(_readBuffer);
+                validate(_baseAddress, candidate, 0, 0, _keystoneAddress,
+                        "Base address %3$,d after current address %4$,d:  at %1$s:%2$,d");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.doOp(FileChannel channel){
+          return channel.read(dsts, offset, length);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.read(FileChannel handle,int bytes)#1{
+            handle.read (chunk.data);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.test_read$LByteBuffer_mock(){
+        FileChannel mockChannel = new MockFileChannel();
+        mockChannel.read(buffers);
+        assertTrue(((MockFileChannel)mockChannel).isReadCalled);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testChannelRead_exceptionWhenAlreadyInterrupted(ChannelReader.Method method)#10{
+        fileInputChannel.read(buffer);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.ScrollingBuffer(FileChannel channel,ByteOrder order,boolean useMemoryMapping)#2{
+                this.buffer = NIOUtilities.allocate(8 * 1024);
+                this.buffer.order(order);
+                channel.read(buffer);
+                buffer.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.testFastMd50BytesReturned()#0{
+        FileChannel f = mock(FileChannel.class);
+        when(f.read(any(ByteBuffer.class))).thenReturn(0).thenReturn(-1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.call(FileChannel channel){
+            channel.read(buf, 0);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.testConcurrentReadWrite()#1{
+        countRead = channelRead.read(bufferRead);
+        assertEquals("Expected full read", 26, countRead);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.read(byte subsystem,FileChannel chan)#0{
+      return( chan.read(buffer ));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.testChannelRead_exceptionWhenAlreadyClosed(ChannelReader.Method method)#3{
+        fileInputChannel.read(buffer);
+}
+    
+   
+  
+   
+
+
+
+
+

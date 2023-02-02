@@ -1,0 +1,8014 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.execute(Connection connection)#1{
+                    while (testGroups.next()) {
+                        testIdsStatement.setString(1, testGroups.getString(1));
+                        ResultSet testExecutions = testIdsStatement.executeQuery();
+                        while (testExecutions.next()) {
+                            testNames.add(testExecutions.getString(1));
+                        }
+                        testExecutions.close();
+                    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.testArray(Connection conn)#0{
+        prep.setObject(1, new Object[] { new BigDecimal("1"), "2" });
+        ResultSet rs = prep.executeQuery();
+        rs.next();
+        assertEquals("1", rs.getString(1));
+        rs.next();
+        assertEquals("2", rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.testReverse(Connection conn,String s)#0{
+        rs = conn.createStatement().executeQuery("SELECT reverse(pk) FROM REVERSE_TEST");
+        assertTrue(rs.next());
+        assertEquals(reverse, rs.getString(1));
+        assertFalse(rs.next());
+        PreparedStatement stmt = conn.prepareStatement("SELECT pk FROM REVERSE_TEST WHERE pk=reverse(?)");
+        stmt.setString(1, reverse);
+        rs = stmt.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(s, rs.getString(1));
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.addAllocatedVMs(AsyncRequest asyncRequest,Connection c)#0{
+        pstmt.setString(1, asyncRequest.getId());
+        ResultSet rs = pstmt.executeQuery();
+        if (rs == null || !rs.next()) {
+            return;
+        }
+        do {
+            asyncRequest.addAllocatedVM(rs.getInt(1));
+        } while (rs.next());
+        pstmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.testCreateArrayWithNonStandardDelimiter()#0{
+        PreparedStatement pstmt = _conn.prepareStatement("SELECT ?::box[]");
+        pstmt.setArray(1, _conn.createArrayOf("box", in));
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        Array arr = rs.getArray(1);
+        ResultSet arrRs = arr.getResultSet();
+        assertTrue(arrRs.next());
+        assertEquals(in[0], arrRs.getObject(2));
+        assertTrue(arrRs.next());
+        assertEquals(in[1], arrRs.getObject(2));
+        assertFalse(arrRs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.testGroupByPlusOne(){
+        Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES);
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, tenantId);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(6, rs.getInt(1));
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.testSelectWithSubtractionExpression()#0{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(rs.getString(1), ROW8);
+            assertEquals(rs.getInt(2), 0);
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.testCoerceTinyIntToSmallInt(){
+        Properties props = new Properties(TEST_PROPERTIES);
+        Connection conn = DriverManager.getConnection(url, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, tenantId);
+            ResultSet rs = statement.executeQuery();
+            assertTrue(rs.next());
+            assertEquals(ROW9, rs.getString(1));
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.getCharacterIdAndNameFromDatabase(String name)#0{
+    Connection con = DatabaseConnection.getConnection();
+    PreparedStatement ps = con.prepareStatement("SELECT id, name, buddyCapacity FROM characters WHERE name LIKE ?");
+    ps.setString(1, name);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+      ret = new CharacterIdNameBuddyCapacity(rs.getInt("id"), rs.getString("name"), rs.getInt("buddyCapacity"));
+    }
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.testColumnOnBothSides(){
+        Properties props = new Properties(TEST_PROPERTIES);
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, tenantId);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(rs.getString(1), ROW7);
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.testFoundIndexOnPartialEvalCaseStatement()#0{
+        Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES);
+        Connection conn = DriverManager.getConnection(url, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, tenantId);
+            ResultSet rs = statement.executeQuery();
+            assertTrue(rs.next());
+            assertEquals(ROW9, rs.getString(1));
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.check(Connection conn,int len,String expectedCluster)#0{
+        for (int i = 0; i < len; i++) {
+            prep.setInt(1, i);
+            ResultSet rs = prep.executeQuery();
+            rs.next();
+            assertEquals("Data" + i, rs.getString(2));
+            assertFalse(rs.next());
+        }
+        ResultSet rs = conn.createStatement().executeQuery(
+                "SELECT VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE NAME='CLUSTER'");
+        String cluster = rs.next() ? rs.getString(1) : "''";
+        assertEquals(expectedCluster, cluster);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.testOptimizeInJoinSelect()#0{
+        PreparedStatement prep = conn.prepareStatement(
+                "select * from item where id in (select x from opt())");
+        ResultSet rs = prep.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(1, rs.getInt(1));
+        assertFalse(rs.next());
+        conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.testDecimalSubtraction2Expression(){
+        Properties props = new Properties(TEST_PROPERTIES);
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(rs.getString(1), ROW8);
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.testDoubleMultiplyExpression()#0{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(ROW1, rs.getString(1));
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.testLongSubtractionExpression()#1{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(rs.getString(1), ROW8);
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doRun(Connection cx){
+                String sql = format("SELECT count(*) FROM %s WHERE namespace = ?", CONFLICTS);
+                PreparedStatement ps = open(cx.prepareStatement(log(sql, LOG, namespace)));
+                ps.setString(1, namespace);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    count = rs.getInt(1);
+                }
+                rs.close();
+                return Integer.valueOf(count);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.testUngroupedAggregationNoWhere(){
+        Properties props = new Properties(TEST_PROPERTIES);
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(url, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue(rs.next());
+            assertEquals(9, rs.getLong(1));
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.testCountIsNull()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(6, rs.getLong(1));
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.getUserById(int id){
+        Connection conn = DriverManager.getConnection("jdbc:default:connection");
+        PreparedStatement prep = conn.prepareStatement("SELECT USENAME FROM PG_CATALOG.PG_USER WHERE OID=?");
+        prep.setInt(1, id);
+        ResultSet rs = prep.executeQuery();
+        if (rs.next()) 
+        {
+            res = rs.getString(1);
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testSumDouble()#1{
+        Properties props = new Properties(TEST_PROPERTIES);
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertTrue(Doubles.compare(rs.getDouble(1), 0.015)==0);
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testSumFloat()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertTrue(Floats.compare(rs.getFloat(1), 0.15f)==0);
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.existsSequence(String schemaName,String seqName,Connection con)#0{
+    PreparedStatement ps = con.prepareStatement(
+        "select seqschema,seqname from syscat.sequences where seqschema = ? and seqname = ?");
+    ps.setString(2,seqName);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next())
+      retval = true;
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.getTableRowCount(Connection conn,String table)#1{
+    PreparedStatement statement = conn.prepareStatement("SELECT COUNT(*) FROM " + table);
+      ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+          return rs.getInt(1);
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.testDateInList()#0{
+            statement.setDate(1, new Date(0));
+            statement.setDate(2, date);
+            ResultSet rs = statement.executeQuery();
+            assertTrue(rs.next());
+            assertEquals(ROW1, rs.getString(1));
+            assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getCurrrentSchemaName(Connection con)#0{
+    PreparedStatement ps= con.prepareStatement("select current schema from sysibm.sysdummy1");
+    ResultSet rs = ps.executeQuery();
+    if (rs.next())
+      result=rs.getString(1);
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.existsTable(String schemaName,String tableName,Connection con)#0{
+    PreparedStatement ps = con.prepareStatement(
+        "SELECT TABNAME FROM SYSCAT.TABLES WHERE TABSCHEMA = ? AND TABNAME = ?");
+    ps.setString(2,tableName);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next())
+      retval = true;
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.aliasExists(Connection conn,String aliasName)#0{
+        PreparedStatement   ps = conn.prepareStatement( "select count(*) from sys.sysaliases where alias = ?" );
+        ps.setString( 1, aliasName );
+        ResultSet   rs = ps.executeQuery();
+        rs.next();
+        int retval = rs.getInt( 1 );
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.main(String[] args)#0{
+     Connection c = DriverManager.getConnection("jdbc:hsqldb:file:target/test-classes/hsql/test_dj_db", "sa", "");
+     PreparedStatement ps = c.prepareStatement("SELECT * FROM Customer");
+     ResultSet rs = ps.executeQuery();
+     while (rs.next()) {
+       log.info(rs.getString("firstname")+ ", " + rs.getString("lastname"));
+    }
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.containsTable(String table,Connection connection)#1{
+    PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) AS ct FROM sqlite_master WHERE type = ? AND name = ?");
+    stmt.setString(2, table);
+    ResultSet resultSet = stmt.executeQuery();
+      return resultSet.next() && resultSet.getInt("ct") > 0;
+      resultSet.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.readRows(String dataSourceURL,String dataSourceName)#1{
+    Connection connection = DriverManager.getConnection(dataSourceURL, USER, PASSWORD);    
+    PreparedStatement stmt = connection.prepareStatement(QUERY_SELECT);
+    ResultSet rs = stmt.executeQuery();
+    while(rs.next()) {
+      int id = rs.getInt(1);
+      list.add(id);
+      LOGGER.info("read {} from {}", id, dataSourceName);
+    }
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.run(Connection conn,int location,String sub_nbr)#1{
+      PreparedStatement stmt = this.getPreparedStatement(conn, getSubscriber);
+      stmt.setString(1, sub_nbr);
+      ResultSet results = stmt.executeQuery();
+      if (results.next()) {
+        long s_id = results.getLong(1);
+        results.close();
+        stmt = this.getPreparedStatement(conn, updateSubscriber);
+        stmt.setInt(1, location);
+        stmt.setLong(2, s_id);
+        return stmt.executeUpdate();
+        }
+      results.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.upgradeGuestOs(Connection conn)#2{
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * from guest_os WHERE id=138");
+            ResultSet rs = pstmt.executeQuery();
+            if (!rs.next()) {
+                pstmt = conn.prepareStatement("INSERT INTO `cloud`.`guest_os` (id, category_id, display_name) VALUES (138, 7, 'None')");
+                pstmt.executeUpdate();
+                s_logger.debug("Inserted NONE category to guest_os table");
+            }
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.dropIndexIfExists(Connection conn)#2{
+            PreparedStatement pstmt = conn.prepareStatement("SHOW INDEX FROM domain WHERE KEY_NAME = 'path'");
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                pstmt = conn.prepareStatement("ALTER TABLE `cloud`.`domain` DROP INDEX `path`");
+                pstmt.executeUpdate();
+                s_logger.debug("Unique key 'path' is removed successfully");
+            }
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.getDatabaseProperty(String propertyName,Connection conn){
+        PreparedStatement getDBP =  conn.prepareStatement(
+        "VALUES SYSCS_UTIL.SYSCS_GET_DATABASE_PROPERTY(?)");
+        getDBP.setString(1, propertyName);
+        ResultSet rs = getDBP.executeQuery();
+        rs.next();
+        String value = rs.getString(1);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.loadAll()#1{
+      Connection con = (Connection) DatabaseConnection.getConnection();
+      PreparedStatement ps = con.prepareStatement("SELECT * FROM maplestocks ORDER BY stockid");
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+        stocks.add(new MapleStock(rs.getString("name"), rs.getString("ticker"), rs.getInt("count"), rs.getInt("value"), rs.getInt("change")));
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.getAgreProductList(String sqlStr,Connection nuodbConnection,PreparedStatement stmt2)#1{
+            stmt2 = nuodbConnection.prepareStatement(sqlStr);
+            rs2 = stmt2.executeQuery();
+            while (rs2.next()) {
+                map.put(rs2.getString(2), rs2.getInt(1));
+            }
+            Assert.assertNotNull(rs2);
+            closeAll(rs2, stmt2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.getNXCodeValid(String code,boolean validcode)#0{
+      PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT `valid` FROM nxcode WHERE code = ?");
+      ps.setString(1, code);
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+        validcode = rs.getInt("valid") != 0;
+      }
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.loadMacsIfNescessary()#0{
+      PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT macs FROM accounts WHERE id = ?");
+      ps.setInt(1, accId);
+      ResultSet rs = ps.executeQuery();
+      if (rs.next()) {
+        for (String mac : rs.getString("macs").split(", ")) {
+          if (!mac.equals("")) {
+            macs.add(mac);
+          }
+        }
+      }
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.dumpScenarios(PrintStream ps,String pattern)#0{
+        PreparedStatement stmt= fConnection.prepareStatement("select NAME from SCENARIO where NAME like ? order by NAME"); //$NON-NLS-1$
+        stmt.setString(1, pattern);
+        ResultSet rs= stmt.executeQuery();
+        while (rs.next())
+            ps.println(rs.getString(1));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.i_getMostRecentRebuild(Connection conn){
+        PreparedStatement stmt = conn.prepareStatement(GET_MOST_RECENT_REBUILD);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                mostRecent = rs.getLong(1);
+            }
+            if (rs != null) rs.close();
+            stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.select(Connection conn,String key)#0{
+        PreparedStatement stmt = conn.prepareStatement(upsert);
+            stmt.setString(1, key);
+            results = stmt.executeQuery();
+            if(results.next())
+                return results.getString(1);
+            else
+                return null;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.hasBannedIP()#1{
+      ps.setString(1, session.getRemoteAddress().toString());
+      ResultSet rs = ps.executeQuery();
+      rs.next();
+      if (rs.getInt(1) > 0) {
+        ret = true;
+      }
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.fire(Connection conn,ResultSet oldCont,ResultSet newCont)#0{
+        smt.setString(1, oldCont.getString("identifier"));
+        ResultSet rs=smt.executeQuery();
+        rs.next();
+        int versions=rs.getInt(1);
+        rs.close(); smt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.getNXCode(String code,String type)#0{
+      PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT `" + type + "` FROM nxcode WHERE code = ?");
+      ps.setString(1, code);
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+        item = rs.getInt(type);
+      }
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.getGlobalProperty(Connection connection,String gp)#0{
+    PreparedStatement select = connection
+            .prepareStatement("select property_value from global_property where property = ?");
+      select.setString(1, gp);
+      ResultSet resultSet = select.executeQuery();
+      if (resultSet.next()) {
+        return resultSet.getString(1);
+      } else {
+        throw new IllegalArgumentException("Global property not found " + gp);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.routineExists(Connection conn,String functionName)#0{
+        PreparedStatement ps = chattyPrepare( conn, "select count (*) from sys.sysaliases where alias = ?" );
+        ps.setString( 1, functionName );
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        boolean retval = rs.getInt( 1 ) > 0 ? true : false;
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.getCustomersCount()#2{
+        stmt.setInt(1, partner.getId());
+        ResultSet result = stmt.executeQuery();
+        if (result.next()) {
+            retValue = result.getInt(1);
+        }
+        result.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.checkSnapshotUsage(Connection conn){
+        PreparedStatement pstmt = conn.prepareStatement("select count(*) from cloud_usage.cloud_usage cu inner join cloud.snapshots s " +
+            "where cu.usage_id = s.id and cu.usage_type = 9 and cu.start_date > s.removed"+lastCheckId);
+        ResultSet rs = pstmt.executeQuery();
+        if(rs.next() && (rs.getInt(1) > 0)){
+            errors.append("Error: Found "+rs.getInt(1)+" snapshot usage records which are created after snapshot is removed");
+            errors.append("\n");
+            return false;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.getOrderFrequencyIdForConceptId(Connection connection,Integer conceptIdForFrequency){
+    PreparedStatement orderFrequencyIdQuery = connection
+            .prepareStatement("select order_frequency_id from order_frequency where concept_id = ?");
+    orderFrequencyIdQuery.setInt(1, conceptIdForFrequency);
+    ResultSet orderFrequencyIdResultSet = orderFrequencyIdQuery.executeQuery();
+    if (!orderFrequencyIdResultSet.next()) {
+      return null;
+    }
+    return orderFrequencyIdResultSet.getInt("order_frequency_id");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.checkTemplateISOUsage(Connection conn){
+        PreparedStatement pstmt = conn.prepareStatement("select count(*) from cloud_usage.cloud_usage cu inner join cloud.template_zone_ref tzr " +
+            "where cu.usage_id = tzr.template_id and cu.zone_id = tzr.zone_id and cu.usage_type in (7,8) and cu.start_date > tzr.removed"+lastCheckId);
+        ResultSet rs = pstmt.executeQuery();
+        if(rs.next() && (rs.getInt(1) > 0)){
+            errors.append("Error: Found "+rs.getInt(1)+" template/ISO usage records which are created after it is removed");
+            errors.append("\n");
+            return false;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.load(int cid)#3{
+      Connection con = (Connection) DatabaseConnection.getConnection();
+      PreparedStatement ps = con.prepareStatement("SELECT * FROM maplestocks_data WHERE cid = ?");
+      ps.setInt(1, cid);
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+        ret.add(new Pair<String ,Integer>(MapleStocks.getInstance().tickerOf(rs.getInt("stockid")), rs.getInt("shares")));
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.getTableName(Connection conn,int tableId)#0{
+          conn.prepareStatement("SELECT " + COL_TABLES_NAME + " FROM " + TB_TABLES + " WHERE " + COL_TABLES_PK + "=?");
+      pstmt.setInt(1, tableId);
+      res = pstmt.executeQuery();
+      if (!res.next()) {
+        throw new TajoInternalError("Cannot get any table name from TID");
+      }
+      return res.getString(1);
+      CatalogUtil.closeQuietly(pstmt, res);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.isSatisified(){
+               java.sql.Connection c = dataSource.getConnection();
+                    PreparedStatement s = c.prepareStatement("SELECT LAST_ACKED_ID FROM ACTIVEMQ_ACKS WHERE PRIORITY=" + priority);
+                    ResultSet rs = s.executeQuery();
+                    if (rs.next()) {
+                        id = rs.getInt(1);
+                    }
+                    if (c!=null) {
+                        c.close();
+                    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getUserNameInternal(){
+            connection = getPooledConnectionProvider().getPooledConnection();
+            statement = connection.prepareStatement(FIND_ROLE_BY_OID);
+            statement.setLong(1, pgRoleOid);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("rolname");
+            }
+            safeClose(connection, statement, resultSet);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.messageTableCount(){
+        java.sql.Connection c = dataSource.getConnection();
+            PreparedStatement s = c.prepareStatement("SELECT COUNT(*) FROM ACTIVEMQ_MSGS");
+            ResultSet rs = s.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            if (c!=null) {
+                c.close();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.getUserById(Connection conn,int id){
+        PreparedStatement prep = conn.prepareStatement("SELECT NAME FROM INFORMATION_SCHEMA.USERS WHERE ID=?");
+        prep.setInt(1, id);
+        ResultSet rs = prep.executeQuery();
+        if (rs.next()) {
+            return rs.getString(1);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.getConceptUuid(Connection connection,int conceptId)#0{
+    PreparedStatement select = connection.prepareStatement("select uuid from concept where concept_id = ?");
+      select.setInt(1, conceptId);
+      ResultSet resultSet = select.executeQuery();
+      if (resultSet.next()) {
+        return resultSet.getString(1);
+      } else {
+        throw new IllegalArgumentException("Concept not found " + conceptId);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.run(PreparedStatement stm)#0{
+                            stm.setInt(1, profile.getUserId());
+                            ResultSet rs = stm.executeQuery();
+                            while (rs.next()) {
+                                String bagName = rs.getString("sharer");
+                                if (!ret.containsKey(bagName)) {
+                                    ret.put(bagName, new HashSet<String>());
+                                }
+                                ret.get(bagName).add(rs.getString("bagname"));
+                            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.get(String id){
+    PreparedStatement stmt = connection.prepareStatement("SELECT " + FIELDS + " FROM " + TABLE_NAME + " WHERE ID = ?");
+    stmt.setString(1, id);
+    ResultSet rs = stmt.executeQuery();
+    if (rs.next()) {
+      result = buildHeaderFromResultSet(rs);
+    } 
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.getMessage(String messageId,Clob[] returnedData){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    PreparedStatement stmt = conn.prepareStatement("select MESSAGE_JSON from JSON_MESSAGE where MESSAGE_ID = ?");
+    stmt.setString( 1, messageId);
+    ResultSet results = stmt.executeQuery();
+    if (results.next()) {
+      returnedData[0] = results.getClob(1);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getUserOid(String user,PooledConnectionProvider pooledConnectionProvider){
+            connection = pooledConnectionProvider.getPooledConnection();
+            statement = connection.prepareStatement(FIND_ROLE_BY_NAME);
+            statement.setString(1, user);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong("oid");
+            }
+            safeClose(connection, statement, resultSet);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.find(String stockDatabaseId)#0{
+    ResultSet rs = stmt.executeQuery();
+    while (rs.next()) {
+      Date date = new Date(rs.getTimestamp(1).getTime());
+      DataType dataType = DataType.valueOf(rs.getString(2));
+      Double price = rs.getDouble(3);
+      Integer size = rs.getInt(4);
+      TickPoint point = new TickPoint(date, dataType, price, size);
+      result.add(point);
+    }
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.reportLeasOwnerShipAndDuration(Connection connection){
+            statement = connection.prepareStatement(getStatements().getLeaseOwnerStatement());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                LOG.info(getLeaseHolderId() + " Lease held by " + resultSet.getString(1) + " till " + new Date(resultSet.getLong(2)));
+            }
+            close(statement);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.checkInstanceGroup(Connection conn,String groupName,long accountId){
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM  instance_group WHERE name = ? and account_id = ?");
+        pstmt.setString(1, groupName);
+        pstmt.setLong(2, accountId);
+        ResultSet rs = pstmt.executeQuery();
+        if (!rs.next()) {
+            return false;
+        } else {
+            return true;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.testWrap()#0{
+        Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, "xxx");
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.call()#0{
+                        int x = (int) (Math.random() * 2);
+                        prep.setInt(1, x);
+                        ResultSet rs = prep.executeQuery();
+                        rs.next();
+                        String data = rs.getString(2);
+                        if (data.length() != 10000 + x) {
+                            throw new Exception(data.length() + " != " + x);
+                        }
+                        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.countSamples(PrintStream ps,Variations v)#0{
+        stmt.setString(1, v.toExactMatchString());
+        ResultSet set= stmt.executeQuery();
+        if (set.next())
+            n= set.getInt(1);
+        ps.println("samples with variation " + v + ": " + n); //$NON-NLS-1$ //$NON-NLS-2$
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.executeStatement(PreparedStatement statement){
+                            Table table = index.getTable();
+                            statement.setString(1, table.getSchema().getName());
+                            statement.setString(2, table.getName());
+                            statement.setString(3, index.getName());
+                            ResultSet expressions = statement.executeQuery();
+                            if (expressions.next()) {
+                                expression = expressions.getString(1);
+                            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.fire(Connection conn,ResultSet oldIdent,ResultSet newIdent)#3{
+            smt.setString(1, newIdent.getString("host_inode"));
+            smt.setString(2, newParentPath);
+            smt.setString(3, newIdent.getString("id"));
+            ResultSet rs=smt.executeQuery();
+            boolean found=rs.next();
+            rs.close(); smt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.isPrivateIPAllocated(String ip,long podId,long zoneId,PreparedStatement stmt)#0{
+      stmt.clearParameters();
+          stmt.setString(1, ip);
+          stmt.setLong(3, podId);
+          ResultSet rs = stmt.executeQuery();
+          if (rs.next()) {
+                return (rs.getString("taken") != null);
+            } else {
+                return false;
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.getTextID(String text){
+        PreparedStatement prep = connection.prepareStatement(sql);
+        prep.setString(1, text);
+        ResultSet resultSet = prep.executeQuery();
+        if (resultSet.next()) {
+            id = resultSet.getInt("id");
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.select(Set<String> atts,PreparedStatement pstmt){
+    ResultSet row=pstmt.executeQuery();
+    while(row.next())
+      {
+      String s=this.expression.eval(row);
+      if(s==null || s.isEmpty()) continue;
+      atts.add(s);
+      }
+    row.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.executeStatement(PreparedStatement statement)#1{
+                        for (String parameter : parameters) {
+                            statement.setString(index++, parameter);
+                        }
+                        ResultSet columns = statement.executeQuery();
+                        while (columns.next()) {
+                            Table table = addTable(inspectionResults, columns.getString("TABLE_SCHEMA"), null,
+                                    columns.getString("TABLE_NAME"));
+                            Column column = table.addColumn(columns.getString("COLUMN_NAME"));
+                            column.setJdbcType(getJdbcType(column.getJdbcType(), columns.getString("COLUMN_TYPE")));
+                        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.checkIsolationLevel(Connection conn){
+        PreparedStatement pstmt = conn.prepareStatement("SELECT @@global.tx_isolation, @@session.tx_isolation;");
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            s_logger.info("global isolation = " + rs.getString(1));
+            s_logger.info("session isolation = " + rs.getString(2));
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.countDatapoints(PrintStream ps,Variations v)#1{
+        stmt.setString(1, v.toExactMatchString());
+        ResultSet set= stmt.executeQuery();
+        if (set.next())
+            ps.println("datapoints with variation " + v + ": " + set.getInt(1)); //$NON-NLS-1$ //$NON-NLS-2$
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.countScalars(PrintStream ps,Variations v)#0{
+        stmt.setString(1, v.toExactMatchString());
+        ResultSet set= stmt.executeQuery();
+        if (set.next())
+            ps.println("scalars with variation " + v + ": " + set.getInt(1)); //$NON-NLS-1$ //$NON-NLS-2$
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.count(PrintStream ps)#0{
+        PreparedStatement stmt= fConnection.prepareStatement("select count(*) from SCALAR where DATAPOINT_ID not in (select DATAPOINT.ID from DATAPOINT)"); //$NON-NLS-1$
+        ResultSet set= stmt.executeQuery();
+        if (set.next())
+            ps.println("count: " + set.getInt(1)); //$NON-NLS-1$
+        set.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.run(PreparedStatement stm){
+                stm.setString(2, value);
+                ResultSet rs = stm.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.traceMarker(){
+                    connection.prepareStatement("select * from employee where name like ?");
+                preparedStatement.setString(1, "john%");
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    rs.getString(1);
+                }
+                preparedStatement.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.print()#0{
+            PreparedStatement statement = persistenceManager.getConnection().prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                logger.log(result.getInt("players") + "\t" + result.getString("number1")
+                        + "\t" + result.getString("number2") + "\t" + result.getString("type") + "\t"
+                        + result.getDouble("wins"));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.noOfNodes()#0{
+        ps.setString(1, getQuery());
+        ResultSet results = ps.executeQuery();
+        results.next();
+        int no = results.getInt(1);
+        results.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.showCompareData(PreparedStatement psS,String[] expectedValues)#0{
+    ResultSet rs = psS.executeQuery();
+    while (rs.next()) {
+                        String actualValue = rs.getInt(1) + " " + showData(rs.getBytes(2)) + "  " + rs.getInt(3) + " " + showData(rs.getBytes(4));
+      assertEquals(expectedValues[i],actualValue);
+      i++;
+    }
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.run(Connection conn,int keyname,Map<Integer,String> results){
+        PreparedStatement stmt = this.getPreparedStatement(conn, readStmt);
+        stmt.setInt(1, keyname);          
+        ResultSet r=stmt.executeQuery();
+        while(r.next())
+        {
+          for(int i=1;i<11;i++)
+            results.put(i, r.getString(i));
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.countAllDimensions(PrintStream ps){
+        PreparedStatement stmt= fConnection.prepareStatement("select distinct DIM_ID from SCALAR"); //$NON-NLS-1$
+        ResultSet set= stmt.executeQuery();
+        while (set.next()) {
+            Dim dimension= Dim.getDimension(set.getInt(1));
+            if (dimension != null)
+                countDimension(ps, dimension);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.checkDbName(Connection conn,String expectedDbName)#0{
+        PreparedStatement ps = conn.prepareStatement("values syscs_util.SYSCS_GET_DATABASE_NAME()");
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        assertEquals( rs.getString( 1 ),  expectedDbName);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.getDomainCount(String macAddress)#0{
+    PreparedStatement prep = dbInstance.prepareStatement("select count(distinct d.name) as num_domains from domains d inner join requests r on d.id = r.domain_id inner join clients c on c.id = r.client_id where c.mac_address = ?;");
+    prep.setString(1, macAddress);
+    ResultSet rs = prep.executeQuery();
+      rs.next();
+      int numDomains = rs.getInt("num_domains");
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.getStringValue(String table,String fieldToGet,String fieldToMatchAgainst,String valueToMatchAgainst)#0{
+      PreparedStatement prep = dbInstance.prepareStatement("select " + fieldToGet + " from " + table + " where " + fieldToMatchAgainst + " = ?;");
+      prep.setString(1, valueToMatchAgainst);
+      ResultSet rs = prep.executeQuery();
+      rs.next();
+      String value = rs.getString(fieldToGet);
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 88
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.ConfigDao(){
+        this.connection = getConnection();
+            this.connection.prepareStatement("SELECT * FROM config;");
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            System.out.println(rs.getString("member") + "\t" + rs.getString("config"));
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 89
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.testCachingResultsCheckResult(PreparedStatement ps,int expected,String value){
+        ps.setString(1, value);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            counter++;
+            String result = rs.getString(1);
+            assertEquals(result, value);
+        }
+        assertEquals(expected, counter);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 90
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.verifyPatchTableNotLocked(String database){
+        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + database, "sa", "");
+        PreparedStatement stmt = conn.prepareStatement("SELECT patch_in_progress FROM patches WHERE system_name = ? AND ( patch_in_progress <> 'F' OR patch_level in ( SELECT MAX(patch_level) FROM patches WHERE system_name = ? ))");
+        stmt.setString(2, database);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        assertEquals("F", rs.getString("patch_in_progress"));
+        SqlUtil.close(conn, stmt, rs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 91
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.getUnionNames(String sqlStr,Connection nuodbConnection,PreparedStatement stmt2)#0{
+            stmt2 = nuodbConnection.prepareStatement(sqlStr);
+            rs2 = stmt2.executeQuery();
+            while (rs2.next()) {
+                list.add(rs2.getString(1));
+            }
+            Assert.assertNotNull(rs2);
+            closeAll(rs2, stmt2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 92
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.fire(Connection conn,ResultSet oldTemplate,ResultSet newTemplate)#1{
+        smt.setString(1, newTemplate.getString("template_id"));
+        ResultSet rs=smt.executeQuery();
+        boolean found=rs.next();
+        rs.close(); smt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 93
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testMultibatchSelectPrepared()#2{
+    s.setFetchSize(100);
+    s.setString(1, "0");
+    ResultSet rs = s.executeQuery();
+    while (rs.next()) {
+      i++;
+      rs.getString(1);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 94
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.getIdentitySequenceName(Connection conn,String tableName)#0{
+        ps.setString( 1, tableName.toUpperCase() );
+        ResultSet   rs = ps.executeQuery();
+        rs.next();
+        String  uuidString = rs.getString( 1 );
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 95
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.run(Connection conn,int keyname,String fields[],Map<Integer,String> results)#1{
+        PreparedStatement stmt = this.getPreparedStatement(conn, selectStmt);
+        stmt.setInt(1, keyname);          
+        ResultSet r = stmt.executeQuery();
+        while (r.next()) {
+          for (int i = 1; i < 11; i++)
+              results.put(i, r.getString(i));
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 96
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.prepare(DataSource dataSource){
+    final Connection connection = dataSource.getConnection();
+    PreparedStatement preparedStatement = connection
+        .prepareStatement("SELECT * FROM user_tables WHERE table_name = 'JTA_TEST'");
+    final ResultSet resultSet = preparedStatement.executeQuery();
+    if (resultSet.next()) {
+      connection.prepareStatement("DROP TABLE jta_test").execute();
+    }
+    connection.prepareStatement(
+        "CREATE TABLE jta_test (some_string VARCHAR2(10))").execute();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 97
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getSubSpaces(Connection con,int spaceId)#0{
+      stmt = con.prepareStatement(querySortedSubSpaces);
+      stmt.setInt(1, spaceId);
+      rs = stmt.executeQuery();
+      while (rs.next()) {
+        spaces.add(fetchSpace(rs));
+      }
+      DBUtil.close(rs, stmt);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 98
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.findLookupId(Connection connection)#1{
+        PreparedStatement statement = connection.prepareStatement("select LOOKUP_ID "
+                + "from financial_action where fin_action_id = ?");
+        statement.setInt(1, action);
+        ResultSet results = statement.executeQuery();
+        if (results.next()) {
+            short lookupId = results.getShort("lookup_id");
+            statement.close();
+            return lookupId;
+        } else {
+            statement.close();
+            throw new RuntimeException("unable to downgrade: no activity with id " + action);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 99
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.closestZoom(long zoomLevel)#0{
+            PreparedStatement ps = prepare(
+                    cx, format("SELECT zoom_level FROM %s ORDER BY abs(zoom_level - ?)", TABLE_TILES)).set(zoomLevel).statement();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                zoom = rs.getLong(1);
+            }
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 100
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.determineTimeDifference(Connection connection)#0{
+        PreparedStatement statement = connection.prepareStatement(getStatements().getCurrentDateTime());
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            Timestamp timestamp = resultSet.getTimestamp(1);
+            long diff = System.currentTimeMillis() - timestamp.getTime();
+            if (Math.abs(diff) > maxAllowableDiffFromDBTime) {
+                // off by more than maxAllowableDiffFromDBTime so lets adjust
+                result = (-diff);
+            }
+            LOG.info(getLeaseHolderId() + " diff adjust from db: " + result + ", db time: " + timestamp);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 101
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.varchar10(){
+        PreparedStatement ps = getOrPrepareStatement(
+                "SELECT VC10 FROM T --DERBY-PROPERTIES index=T_VC10");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            assertNotNull(rs.getString(1));
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 102
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.MapleFamily(int cid)#0{
+      PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT familyid FROM family_character WHERE cid = ?");
+      ps.setInt(1, cid);
+      ResultSet rs = ps.executeQuery();
+      if (rs.next()) {
+        MapleFamily.id = rs.getInt("familyid");
+      }
+      ps.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 103
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.countDimension(PrintStream ps,Dim dim)#0{
+        stmt.setInt(1, dim.getId());
+        ResultSet set= stmt.executeQuery();
+        if (set.next())
+            ps.println("dimension " + dim + ": " + set.getInt(1)); //$NON-NLS-1$ //$NON-NLS-2$
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 104
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.getResourceMeta(PreparedStatement statement){
+    ResultSet results = statement.executeQuery();
+      if (results.next()) {
+        return metaFromResult(results);
+      }
+      results.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 105
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.getCurrentScn(Connection connection)#0{
+    PreparedStatement statement = connection.prepareStatement(sql);
+    ResultSet resultSet = statement.executeQuery();
+    resultSet.next();
+    long result = resultSet.getLong(1);
+    resultSet.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 106
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testModifySmallBlobs()#0{
+        PreparedStatement ps = prepareStatement(
+                "select dBlob, length from smallBlobs");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Blob Blob = rs.getBlob(1);
+            int length = rs.getInt(2);
+            Blob.setBytes(length, "X".getBytes("US-ASCII"));
+            byte[] content = Blob.getBytes(1, 100);
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 107
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.minColumn(long zoomLevel)#0{
+            PreparedStatement ps = prepare(
+                    cx, format("SELECT MIN(tile_column) FROM %s WHERE zoom_level=?", TABLE_TILES)).set(zoomLevel).statement();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                size = rs.getLong(1);
+            }
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 108
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.append(PreparedStatement pstmt,StringBuilder newFields,@Nullable String projectKey){
+    if (projectKey != null) {
+      pstmt.setString(1, projectKey);
+      ResultSet rs = null;
+      try {
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+          String projectUuid = DatabaseUtils.getString(rs, "uuid");
+          if (projectUuid != null) {
+            newFields.append("projectUuids=").append(projectUuid);
+          }
+        }
+      } finally {
+        DbUtils.closeQuietly(rs);
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 109
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.loadFromDb(DB db)#1{
+    PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM page");
+    ResultSet res = ps.executeQuery();
+    while(res.next()) {
+      pageMap.forcePut(res.getString("page_title"), res.getInt("page_id"));
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 110
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.getConcept(int i)#0{
+      PreparedStatement srcConceptPs = db.getConnection().prepareStatement("SELECT concept_id FROM concept_mapping WHERE page_id = ?");
+      srcConceptPs.setInt(1, i);
+      ResultSet res = srcConceptPs.executeQuery();
+      if (res.next()) {
+        return res.getInt("concept_id");
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 111
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.getMostRecentEvent(Connection conn)#1{
+            pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 112
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.run(Connection conn)#0{
+        PreparedStatement stmt = this.getPreparedStatement(conn, minStmt);
+        ResultSet r=stmt.executeQuery();
+        while(r.next())
+        {
+          minId = r.getInt(1);
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 113
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.testDecimalRounding(int id,String input,String output)#0{
+        String stringdata = String.format("My Nuncle Vanya says: case %d: (%s -> %s)",
+                                          id, input, output);
+        ps.setBigDecimal(1, new BigDecimal(input));
+        ps.setString(2, stringdata);
+        ps.executeUpdate();
+        ps = conn.prepareStatement("select ID from T_DECIMAL where value = ?;");
+        ps.setString(1, stringdata);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            BigDecimal value = rs.getBigDecimal(1);
+            assertEquals(new BigDecimal(output), value);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 114
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.testFetchSmallClobsInaccurateLength()#0{
+        PreparedStatement ps = prepareStatement(
+                "select dClob, length from smallClobs");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Clob clob = rs.getClob(1);
+            int unusedLength = rs.getInt(2);
+            String content = clob.getSubString(1, 100);
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 115
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.getLatestModificationDate(Connection conn)#1{
+            st = conn.prepareStatement("SELECT MAX(mDate) FROM doFields ");
+            ResultSet results = st.executeQuery();
+            if (results.next()) {
+                return results.getLong(1);
+            } else {
+                return 0L;
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 116
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.isExpired(String cacheEntryName)#0{
+      PreparedStatement stmt = conn
+          .prepareStatement("SELECT expiration_date FROM " + TABLE_NAME + " WHERE key = ?;");
+      stmt.setString(1, cacheEntryName);
+      ResultSet result = stmt.executeQuery();
+      if (result.next()) {
+        Timestamp timestamp = result.getTimestamp("expiration_date");
+        long expirationDate = timestamp.getTime();
+        stmt.close();
+        return expirationDate < System.currentTimeMillis();
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 117
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.checkInstanceGroupVmMap(Connection conn,long groupId,long vmId){
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM  instance_group_vm_map WHERE group_id = ? and instance_id = ?");
+        pstmt.setLong(2, vmId);
+        ResultSet rs = pstmt.executeQuery();
+        if (!rs.next()) {
+            return false;
+        } else {
+            return true;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 118
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.varcharAll(){
+        PreparedStatement ps = getOrPrepareStatement(
+          "SELECT VC10,VC100,VC1000 FROM T --DERBY-PROPERTIES index=T_VC_ALL");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            for (int col = 1; col <= 3; col++) {
+                assertNotNull(rs.getString(col));
+            }
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 119
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testFetchSmallBlobs(){
+        PreparedStatement ps = prepareStatement(
+                "select dBlob, length from smallBlobs");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Blob Blob = rs.getBlob(1);
+            int blobLength = rs.getInt(2);
+            byte[] content = Blob.getBytes(1, blobLength);
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 120
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.testModifySmallClobs(){
+        PreparedStatement ps = prepareStatement(
+                "select dClob, length from smallClobs");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Clob clob = rs.getClob(1);
+            int length = rs.getInt(2);
+            clob.setString(length, "X");
+            String content = clob.getSubString(1, 100);
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 121
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.isPublicIPAllocated(long ip,long vlanDbId,PreparedStatement stmt)#0{
+          stmt.clearParameters();
+          stmt.setLong(2, vlanDbId);
+          ResultSet rs = stmt.executeQuery();
+          if (rs.next()) {
+                return (rs.getString("allocated") != null);
+            } else {
+                return false;
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 122
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.loadFromDb(DB db)#0{
+    PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM concept_mapping");
+    ResultSet res = ps.executeQuery();
+    while (res.next()) {
+      long conceptId = res.getLong("concept_id");
+      long pageId = res.getLong("page_id");
+      if (!conceptMap.containsKey(conceptId)) {
+        conceptMap.forcePut(conceptId, pageId);
+      }
+      conceptMapX.put(conceptId, pageId);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 123
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.showData(PreparedStatement psS,int id,byte[] original,String expectedValue){
+    psS.setInt(2, id + 10);
+    ResultSet rs = psS.executeQuery();
+    while (rs.next()) {
+      String actualValue = "ORG " + showData(original) + "";
+      actualValue += "CHR " + showData(rs.getBytes(1)) + "";
+      actualValue += "VAR " + showData(rs.getBytes(2)) + "";
+      actualValue += "LVC " + showData(rs.getBytes(3)) + "";
+      actualValue += "BLOB " + showData(rs.getBytes(4));
+      assertEquals(expectedValue, actualValue);
+    }
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 124
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.findColumn(PreparedStatement query,String label){
+        ResultSet rs = query.executeQuery();
+        if (rs.next())
+        {
+            try 
+            {
+                returnValue = rs.findColumn(label);
+            }
+            catch (SQLException sqle)
+            {} //consume exception to allow  cleanup of resource.
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 125
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getMaxId(DBConfiguration conf,Connection conn,String tableName,String col)#0{
+                conn.prepareStatement("SELECT MAX(" + col + ") FROM " + tableName);
+            ResultSet rs = s.executeQuery();
+            rs.next();
+            long ret = rs.getLong(1);
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 126
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.getBucketByKey(Object key)#0{
+            ps.setString(1, String.valueOf(keyHash));
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    result = rs.getObject(dataColumnName);
+                }
+                factory.releaseConnection(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 127
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.addMissingOvsAccount(Connection conn)#0{
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * from ovs_tunnel_account");
+            ResultSet rs = pstmt.executeQuery();
+            if (!rs.next()) {
+                s_logger.debug("Adding missing ovs tunnel account");
+                pstmt =
+                    conn.prepareStatement("INSERT INTO `cloud`.`ovs_tunnel_account` (`from`, `to`, `account`, `key`, `port_name`, `state`) VALUES (0, 0, 0, 0, 'lock', 'SUCCESS')");
+                pstmt.executeUpdate();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 128
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.doSelect(PreparedStatement stmt,String key)#0{
+        stmt.setString(1, key);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return getVersionedList(rs);
+        } else {
+            return new ArrayList<Versioned<byte[]>>(0);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 129
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.getOfferingCount()#2{
+          statement = conn.prepareStatement ( "SELECT count(*) FROM offering_bundle" );
+            ResultSet rs = statement.executeQuery();
+          if (rs.next()) result = rs.getInt(1);
+            statement.close();  
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 130
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.testFloatMAX_VALUE(Connection conn)#0{
+        PreparedStatement ps = conn.prepareStatement("select * from jira1136");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            assertEquals(3.4028235E38, rs.getFloat(1), .00001);
+
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 131
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.getQuoteForUpdate(Connection conn,String symbol)#0{
+        PreparedStatement stmt = getStatement(conn, getQuoteForUpdateSQL);
+        stmt.setString(1, symbol); // symbol
+        ResultSet rs = stmt.executeQuery();
+        if (!rs.next())
+            Log.error("TradeJdbc:getQuote -- failure no result.next()");
+
+        else
+            quoteData = getQuoteDataFromResultSet(rs);
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 132
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.getQuoteData(Connection conn,String symbol)#1{
+        PreparedStatement stmt = getStatement(conn, getQuoteSQL);
+        stmt.setString(1, symbol);
+        ResultSet rs = stmt.executeQuery();
+        if (!rs.next())
+            Log.error("TradeJdbc:getQuoteData -- could not find quote for symbol=" + symbol);
+        else
+            quoteData = getQuoteDataFromResultSet(rs);
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 133
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.getQuote(Connection conn,String symbol)#0{
+        PreparedStatement stmt = getStatement(conn, getQuoteSQL);
+        stmt.setString(1, symbol); // symbol
+        ResultSet rs = stmt.executeQuery();
+        if (!rs.next())
+            Log.error("TradeJdbc:getQuote -- failure no result.next() for symbol: " + symbol);
+
+        else
+            quoteData = getQuoteDataFromResultSet(rs);
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 134
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.is_duplicate_update(Receipt inReceipt)#0{
+      stmt.setString(1, new String(inReceipt.getSHA1()));
+      ResultSet rs = stmt.executeQuery();
+      if( rs.next() )
+        return true;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 135
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.getNewestRequestID(int client_id,int domain_id)#0{
+      PreparedStatement prep = dbInstance.prepareStatement("select id from requests where client_id = ? and domain_id = ? order by id desc limit 1;");
+      prep.setInt(2, domain_id);
+      ResultSet rs = prep.executeQuery();
+      rs.next();
+      int value = rs.getInt("id");
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 136
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.run(Connection conn,long uid){
+        PreparedStatement stmt = this.getPreparedStatement(conn, getReviewUser);
+        stmt.setLong(1, uid);
+        ResultSet r= stmt.executeQuery();
+        while (r.next()) {
+            continue;
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 137
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.testCastOperatorInSelect()#0{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 2)); // Execute at timestamp 2
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, tenantId);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+            assertEquals(BigDecimal.valueOf(2.5), rs.getBigDecimal(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 138
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.selectAuthorViaOutParams(int id,String[] username,String[] password,String[] email,String[] bio)#1{
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    PreparedStatement ps = conn.prepareStatement("select * from author where id = ?");
+    ps.setInt(1, id);
+    ResultSet rs = ps.executeQuery();
+    rs.next();
+    bio[0] = rs.getString("bio");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 139
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.readBytesJDBC(String key)#0{
+    Connection conn = getConnection();
+    PreparedStatement ps = conn
+        .prepareStatement("select value from hs4jtest where id = ?");
+      ps.setString(1, key);
+      ResultSet rs = ps.executeQuery();
+      assertTrue(rs.next());
+      byte[] bytes = rs.getBytes(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 140
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.findLookupId(Connection connection,short activityId)#0{
+        PreparedStatement statement = connection.prepareStatement("select activity_name_lookup_id "
+                + "from activity where activity_id = ?");
+        statement.setShort(1, activityId);
+        ResultSet results = statement.executeQuery();
+        if (results.next()) {
+            short lookupId = results.getShort("activity_name_lookup_id");
+            statement.close();
+            return lookupId;
+        }
+        statement.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 141
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.run(PreparedStatement stm){
+            stm.setString(1, token);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return toIntermediateReps(rs);
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 142
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.getBufferedImage(int level,Connection con)#0{
+        PreparedStatement ps = con.prepareStatement(stmt);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        byte[] bytes = rs.getBytes(1);
+        BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytes));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 143
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.run(Connection conn,int start,int count,List<Map<Integer,String>> results)#1{
+        PreparedStatement stmt = this.getPreparedStatement(conn, scanStmt);
+        stmt.setInt(2, start+count); 
+        ResultSet r=stmt.executeQuery();
+        while(r.next())
+        {
+          HashMap<Integer,String> m=new HashMap<Integer,String>();
+          for(int i=1;i<11;i++)
+            m.put(i, r.getString(i));
+          results.add(m);
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 144
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.exec()#0{
+        stmt.setLong(1, new Random().nextInt(1000 * 100)
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 145
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.firstInt(PreparedStatement stmt)#1{
+    ResultSet rs = stmt.executeQuery();
+    int i = rs.next() ? rs.getInt(1) : Integer.MIN_VALUE;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 146
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.isTriggerGroupPaused(Connection conn,String groupName){
+            ps = conn.prepareStatement(rtp(SELECT_PAUSED_TRIGGER_GROUP.toLowerCase()));
+            ps.setString(1, groupName);
+            rs = ps.executeQuery();
+            return rs.next();
+            closeResultSet(rs);
+            closeStatement(ps);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 147
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.testReceiveBinary()#0{
+        for (int i = 0; i < 10; i++)
+        {
+            ps.setInt(1, 42 + i);
+            ResultSet rs = ps.executeQuery();
+            assertEquals("One row should be returned", true, rs.next());
+            assertEquals(42 + i, rs.getInt(1));
+            rs.close();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 148
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.testSearchStringEscape()#0{
+    PreparedStatement pstmt = con.prepareStatement("SELECT 'a' LIKE ?, '_' LIKE ?");
+    pstmt.setString(2, pattern);
+    ResultSet rs = pstmt.executeQuery();
+    assertTrue(rs.next());
+    assertTrue(!rs.getBoolean(1));
+    assertTrue(rs.getBoolean(2));
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 149
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.exists2(Connection con,String columnName1,String columnValue1,String columnName2,String columnValue2){
+            ps = con.prepareStatement("SELECT 1 FROM " + indexTableName + " WHERE " + columnName1 + " = ? AND " + columnName2 + " = ?");
+            ps.setString(2, columnValue2);
+            rs = ps.executeQuery();
+            return rs.next();
+            close(ps);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 150
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.exists(Connection con,String columnName,String columnValue){
+            ps = con.prepareStatement("SELECT 1 FROM " + indexTableName + " WHERE " + columnName + " = ?");
+            ps.setString(1, columnValue);
+            rs = ps.executeQuery();
+            return rs.next();
+            close(ps);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 151
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.existsTable(Connection con,String tableName){
+            ps = con.prepareStatement("SELECT table_name FROM information_schema.tables " +
+                    "WHERE table_schema = 'public' " +
+                    "AND lower(table_name) = lower(?)");
+            ps.setString(1, tableName);
+            rs = ps.executeQuery();
+            return rs.next();
+            close(ps);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 152
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.run(Connection conn,long iid,long uid){
+        PreparedStatement stmt = this.getPreparedStatement(conn, getAverageRating);
+        stmt.setLong(2, uid);
+        ResultSet r= stmt.executeQuery();
+        while (r.next()) {
+            continue;
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 153
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.runCompareTables(Connection connection,String table1,String table2){
+    stmt = connection.prepareStatement(
+        "select count(*) from (select * from (select * from "
+                + table1
+                + " minus select * from "
+                + table2
+                + ") union all select * from (select * from "
+                + table2
+                + " minus select * from " + table1 + "))");
+    ResultSet results = stmt.executeQuery();
+    results.next();
+    int numDifferences = results.getInt(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 154
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.doWork()#0{
+        ps.setInt(1, r.nextInt(tableSize));
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        rs.getInt(1);
+        fetchTextColumn(rs, 2);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 155
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.getNumberOfRegistrations()#0{
+      con = DbConnectionManager.getConnection();
+      pstmt = con.prepareStatement(GET_SESSION_COUNT);
+      ResultSet rs = pstmt.executeQuery();
+      rs.next();
+      result = rs.getInt(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 156
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.run(Connection conn,long iid,long uid)#0{
+        PreparedStatement stmt = this.getPreparedStatement(conn, getReview);
+        stmt.setLong(1, iid);
+        ResultSet r= stmt.executeQuery();
+        while (r.next()) {
+            continue;
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 157
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.run(Connection conn,long iid,long uid)#1{
+        stmt = this.getPreparedStatement(conn, getTrust);
+        stmt.setLong(1, uid);
+        r= stmt.executeQuery();
+        while (r.next()) {
+            continue;
+        }
+        r.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 158
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.getInt(Connection connection,String queryString,String[] args)#0{
+  for( int i = 0; i < args.length; ++i )
+    {
+    pStatement.setString( i + 1, args[ i ] );
+    }
+ResultSet resultSet = pStatement.executeQuery();
+resultSet.next();
+return resultSet.getInt( 1 );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 159
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.test_getNCharacterStream_1()#0{
+        Connection conn = dataSource.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("select ?");
+        stmt.setNull(1, Types.VARCHAR);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        Assert.assertNull(rs.getNCharacterStream("1"));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 160
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getProxyLoadMatrix()#0{
+        Transaction txn = Transaction.currentTxn();;
+            pstmt = txn.prepareAutoCloseStatement(PROXY_ASSIGNMENT_MATRIX);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+              l.add(new Pair<Long, Integer>(rs.getLong(1), rs.getInt(2)));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 161
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.getMode()#0{
+            PreparedStatement prep = conn.prepareStatement(
+                    "SELECT VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE NAME=?");
+            prep.setString(1, "MODE");
+            ResultSet rs = prep.executeQuery();
+            rs.next();
+            mode = rs.getString(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 162
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.run(PreparedStatement stm)#1{
+                        stm.setInt(1, bag.getSavedBagId());
+                        ResultSet rs = stm.executeQuery();
+                        while (rs.next()) {
+                            usersWithAccess.add(rs.getString(1));
+                        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 163
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.testQueryCacheTimestamp()#0{
+        deleteDb("optimizations");
+        Connection conn = getConnection("optimizations");
+        PreparedStatement prep = conn.prepareStatement(
+                "SELECT CURRENT_TIMESTAMP()");
+        ResultSet rs = prep.executeQuery();
+        rs.next();
+        String a = rs.getString(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 164
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.getDatabaseProperty(Connection conn,String key)#0{
+        PreparedStatement   ps = chattyPrepare( conn, "values( syscs_util.syscs_get_database_property( '" + key + "' ) )" );
+        ResultSet   rs = ps.executeQuery();
+            rs.next();
+            return rs.getString( 1 );
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 165
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.fire(Connection conn,ResultSet oldSt,ResultSet newSt)#0{
+            smt.setString(1, newSt.getString("folder"));
+            ResultSet rs=smt.executeQuery();
+            boolean found=rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 166
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testInstrFilter(Connection conn,String queryToExecute,String expected){
+        PreparedStatement stmt = conn.prepareStatement(queryToExecute);
+        rs = stmt.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(expected, rs.getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 167
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.countAll(){
+    PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM " + TABLE_NAME);
+    ResultSet rs = stmt.executeQuery();
+    rs.next();
+    int number = rs.getInt(1);
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 168
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.testFetchLargeClobs()#0{
+        PreparedStatement ps = prepareStatement(
+                "select dClob, length from largeClobs");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Clob clob = rs.getClob(1);
+            Reader content = clob.getCharacterStream();
+            long remaining = rs.getInt(2);
+            while (remaining > 0) {
+                remaining -= content.read(charBuf);
+            }
+            content.close();
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 169
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.find(PreparedStatement stmt)#0{
+    ResultSet rs = stmt.executeQuery();
+    while (rs.next()) {
+      result.add(buildHeaderFromResultSet(rs));
+    }
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 170
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.getTotalUsersCommon(PreparedStatement p)#0{
+    ResultSet rs = p.executeQuery();
+    rs.next();
+    int total = rs.getInt(1);
+    rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 171
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.getSecHostId(long volumeId){
+        TransactionLegacy txn = TransactionLegacy.currentTxn();
+            pstmt = txn.prepareAutoCloseStatement(sql);
+            pstmt.setLong(1, volumeId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 172
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.decimal10columns(){
+        PreparedStatement ps = getOrPrepareStatement(
+                "SELECT DEC1,DEC2,DEC3,DEC4,DEC5,DEC6,DEC7,DEC8,DEC9,DEC10 " +
+                "FROM T --DERBY-PROPERTIES index=T_DEC_ALL");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            for (int col = 1; col <= 10; col++) {
+                assertNotNull(rs.getBigDecimal(col));
+            }
+        }
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 173
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.getOrderData(Connection conn,int orderID)#1{
+        PreparedStatement stmt = getStatement(conn, getOrderSQL);
+        stmt.setInt(1, orderID);
+        ResultSet rs = stmt.executeQuery();
+        if (!rs.next())
+            Log.error("TradeJdbc:getOrderData -- no results for orderID:" + orderID);
+        else
+            orderData = getOrderDataFromResultSet(rs);
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 174
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.getPages()#0{
+      PreparedStatement psPages = evalDb.getConnection().prepareStatement("SELECT t.page_id FROM "
+        + truthTableName + " t GROUP BY page_id");
+      ResultSet res = psPages.executeQuery();
+      while (res.next()) {
+        pages.add(res.getInt("page_id"));
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 175
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.retrieve_long(long inID,String inField)#0{
+      PreparedStatement stmt = mDB.prepareStatement("SELECT " + inField + " FROM state WHERE remote_id = ?");
+      stmt.setLong(1, inID);
+      ResultSet rs = stmt.executeQuery();
+      if( rs.next() == false )
+        return -1;
+      return rs.getLong(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 176
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.getHoldingData(Connection conn,int holdingID)#0{
+        PreparedStatement stmt = getStatement(conn, getHoldingSQL);
+        stmt.setInt(1, holdingID);
+        ResultSet rs = stmt.executeQuery();
+        if (!rs.next())
+            Log.error("TradeJdbc:getHoldingData -- no results -- holdingID=" + holdingID);
+        else
+            holdingData = getHoldingDataFromResultSet(rs);
+        stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 177
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testLargeClobTruncateLengthMinusOne(){
+        PreparedStatement ps = prepareStatement(
+                "select dClob, length from largeClobs where id = 8");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Clob clob = rs.getClob(1);
+            int length = rs.getInt(2);
+            clob.truncate(length -1);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 178
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.testBooleanIntegerBind()#0{
+        pstmt.setObject(1, new Boolean(true), java.sql.Types.INTEGER);
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(1, rs.getInt(1));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 179
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.numberOfTiles(long zoomLevel)#0{
+            PreparedStatement ps = prepare(
+                    cx, format("SELECT COUNT(*) FROM %s WHERE zoom_level=?", TABLE_TILES)).set(zoomLevel).statement();
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            size = rs.getInt(1);
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 180
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.testStatementDescribe()#0{
+      ResultSet rs = pstmt.executeQuery();
+      assertTrue(rs.next());
+      assertEquals(2, rs.getInt(1));
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 181
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.testPreparedSetSchemaFunctionLarge(){
+        PreparedStatement ps = prepareStatement("SELECT X, " +
+                "APP.GET_SCHEMA_TRANSITION(SCHEMANAME), " +
+                "Y FROM APP.LARGE");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            assertTrue(rs.getString(2).length() > 2);
+            verifyCachedSchema(getConnection());
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 182
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.readMinusCounter(Connection conn)#0{
+        PreparedStatement   ps = chattyPrepare( conn, "values ( f_readMinusCounter() )" );
+        ResultSet                   rs = ps.executeQuery();
+        rs.next();
+        int     result = rs.getInt( 1 );
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 183
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.assertScalarResult(String queryText,int expectedValue)#0{
+        PreparedStatement ps = chattyPrepare( queryText );
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        assertEquals( expectedValue, rs.getInt( 1 ) );
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 184
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.testPreparedSetSchemaFunction(){
+        PreparedStatement ps = prepareStatement("SELECT " +
+                "APP.GET_SCHEMA_TRANSITION(SCHEMANAME) FROM SYS.SYSSCHEMAS");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            assertTrue(rs.getString(1).length() > 2);
+            verifyCachedSchema(getConnection());
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 185
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.testBooleanBind()#0{
+        assertTrue(((PGStatement)pstmt).isUseServerPrepare());
+        pstmt.setBoolean(1, false);
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(9, rs.getInt(1));
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 186
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.getLastAccountId()#0{
+        Transaction txn = Transaction.currentTxn();
+            pstmt = txn.prepareAutoCloseStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return Long.valueOf(rs.getLong(1));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 187
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.executeScalar(PreparedStatement ps,Long defaultValue){
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+            closeQuietly(rs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 188
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.testDateFuncWithParam(){
+        if (!TestUtil.haveMinimumServerVersion(con, "8.0"))
+            return;
+        PreparedStatement ps = con.prepareStatement("SELECT {fn timestampadd(SQL_TSI_QUARTER, ? ,{fn now()})}, {fn timestampadd(SQL_TSI_MONTH, ?, {fn now()})} ");
+        ps.setInt(2, 12);
+        ResultSet rs = ps.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(rs.getTimestamp(1), rs.getTimestamp(2));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 189
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.getLastVmDiskStatsId()#0{
+        TransactionLegacy txn = TransactionLegacy.currentTxn();
+            pstmt = txn.prepareAutoCloseStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return Long.valueOf(rs.getLong(1));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 190
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testEmptyResults()#1{
+            pstmt.setInt(1, -1);
+            ResultSet rs = pstmt.executeQuery();
+            assertFalse(rs.next());
+            rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 191
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.selectData(Connection connection,long fileSourceId){
+    PreparedStatement pstmt = connection.prepareStatement("select binary_data from file_sources where id=?");
+      pstmt.setLong(1, fileSourceId);
+      rs = pstmt.executeQuery();
+      rs.next();
+      InputStream data = rs.getBinaryStream(1);
+      return FileSourceDto.decodeSourceData(data);
+      DbUtils.closeQuietly(pstmt);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 192
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.existRaterRating(Connection con,RaterRatingPK pk)#0{
+    prepStmt.setString(1, pk.getInstanceId());
+    prepStmt.setString(2, pk.getContributionId());
+    prepStmt.setString(3, pk.getContributionType());
+    prepStmt.setString(4, pk.getRater().getId());
+      rs = prepStmt.executeQuery();
+      return (rs.next());
+      DBUtil.close(rs, prepStmt);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 193
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510._assertResourceBlockReferenceCount(long resourceBlockId,long expectedCountValue){
+    Connection connection = DataAccess.getConnection();
+    PreparedStatement preparedStatement = connection.prepareStatement(
+      "SELECT referenceCount FROM ResourceBlock WHERE " +
+        "resourceBlockId = " + resourceBlockId);
+    ResultSet resultSet = preparedStatement.executeQuery();
+    Assert.assertTrue(resultSet.next());
+    Assert.assertEquals(expectedCountValue, resultSet.getLong(1));
+    DataAccess.cleanUp(connection, preparedStatement, resultSet);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 194
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190._assertNoSuchResourceBlock(long resourceBlockId){
+    Connection connection = DataAccess.getConnection();
+    PreparedStatement preparedStatement = connection.prepareStatement(
+      "SELECT * FROM ResourceBlock WHERE resourceBlockId = ?");
+    preparedStatement.setLong(1, resourceBlockId);
+    ResultSet resultSet = preparedStatement.executeQuery();
+    Assert.assertFalse(resultSet.next());
+    DataAccess.cleanUp(connection, preparedStatement, resultSet);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 195
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.tableExists(ResourceContext<PostgresDatabaseComponent> context)#0{
+            statement.setString(1, getSchemaNameFromContext(context));
+            statement.setString(2, getTableNameFromContext(context)); // Do not use quoted name here
+            resultSet = statement.executeQuery();
+            return resultSet.next();
+            safeClose(connection, statement, resultSet);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 196
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.runOneRowQueryTest(String oneRowQuery,Integer pkValue,String projectedValue)#0{
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL);
+            PreparedStatement statement = conn.prepareStatement(oneRowQuery);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 197
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.checkPasswordSecure(String pwd){
+        PreparedStatement prep = conn.prepareStatement(sql);
+        prep.setString(1, pwd);
+        ResultSet rs = prep.executeQuery();
+        return rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 198
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.contains(String cacheEntryName)#0{
+      PreparedStatement stmt = conn.prepareStatement("SELECT key FROM " + TABLE_NAME + " WHERE key = ?;");
+      stmt.setString(1, cacheEntryName);
+      ResultSet result = stmt.executeQuery();
+      boolean b = result.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 199
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testNegativeAgainstUnsignedNone()#0{
+        Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES);
+        Connection conn = DriverManager.getConnection(url, props);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            assertFalse(rs.next());
+            conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 200
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.isAuthAvailable(String user)#0{
+            pst = con.prepareStatement("SELECT * FROM " + tableName + " WHERE LOWER(" + columnName + ")=LOWER(?);");
+            pst.setString(1, user);
+            rs = pst.executeQuery();
+            return rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 201
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.runOneRowQueryTest(String oneRowQuery,boolean isIntegerColumn,Integer expectedIntValue,BigDecimal expectedDecimalValue)#2{
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL);
+            PreparedStatement statement = conn.prepareStatement(oneRowQuery);
+            ResultSet rs = statement.executeQuery();
+            assertTrue (rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 202
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.testPreparedFunction(){
+    PreparedStatement pstmt = con.prepareStatement("SELECT {fn concat('a', ?)}");
+    pstmt.setInt(1, 5);
+    ResultSet rs = pstmt.executeQuery();
+    assertTrue(rs.next());
+    assertEquals("a5", rs.getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 203
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.prepareAndExecuteQuery(Connection conn,String sql){
+    PreparedStatement ps = conn.prepareStatement(sql);
+    ResultSet rs = ps.executeQuery();
+    rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 204
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.exists(Postgres9Connection pcon,String id)#0{
+        Connection con = pcon.getConnection();
+            ps = con.prepareStatement("SELECT 1 FROM " + tableName + " WHERE id = ?");
+            ps.setObject(1, id, Types.OTHER);
+            rs = ps.executeQuery();
+            return rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 205
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.vetBytes_5679(Connection conn,byte[][] expected)#2{
+        PreparedStatement   ps = conn.prepareStatement( "select * from t_5679_2" );
+        ResultSet   rs = ps.executeQuery();
+        rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 206
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.reserveSlotsInBulkUsingBindsAndAssertValue(int expectedValue,long numSlotToAllocate){
+        PreparedStatement ps = conn.prepareStatement("SELECT NEXT ? VALUES FOR bulkalloc.alpha FROM SYSTEM.\"SEQUENCE\"");
+        ps.setLong(1, numSlotToAllocate);
+        ResultSet rs = ps.executeQuery();
+        assertTrue(rs.next());
+        int retValue = rs.getInt(1);
+        assertEquals(expectedValue, retValue);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 207
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.bindExecute(HrPreparedStatement state){
+      st.setInt(1, state.id);
+      rs = st.executeQuery();
+      rs.next();
+      ename = rs.getString(1);
+      close(rs, null); // Statement is not closed
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 208
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.getScalarLong(PreparedStatement ps)#0{
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        long retval = rs.getLong( 1 );
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 209
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.testBinaryFetch()#0{
+        PreparedStatement stmt = con.prepareStatement("declare test_cursor binary cursor for select * from test_fetch");
+        stmt.execute();
+        stmt = con.prepareStatement("fetch forward from test_cursor");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next())
+        {
+            //there should only be one row returned
+            byte[] dataBytes = rs.getBytes(2);
+            assertEquals("binary data got munged", DATA_STRING, new String(dataBytes, "UTF8"));
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 210
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testPrepareSetDate()#0{
+      PreparedStatement ps = con.prepareStatement(sql);
+      ps.setDate(1, dtValue);
+      ResultSet res = ps.executeQuery();
+      assertTrue(res.next());
+      assertEquals("2013-01-01", res.getString(20));
+      ps.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 211
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.assertCharacterPadding(PreparedStatement statement,String rowKey,String testString){
+        ResultSet rs = statement.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(rowKey, rs.getString(1));
+        assertEquals(testString, rs.getString(2));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 212
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.testPreparedStatementFetch()#0{
+        PreparedStatement statement = connection.prepareStatement(FETCH_QUERY);
+        statement.setQueryTimeout(1);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 213
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.listUpdatedStats()#0{
+        TransactionLegacy txn = TransactionLegacy.currentTxn();
+            pstmt = txn.prepareAutoCloseStatement(UPDATED_VM_NETWORK_STATS_SEARCH);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                vmDiskStats.add(toEntityBean(rs, false));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 214
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.listUpdatedStats()#0{
+        TransactionLegacy txn = TransactionLegacy.currentTxn();
+            pstmt = txn.prepareAutoCloseStatement(UPDATED_STATS_SEARCH);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                userStats.add(toEntityBean(rs, false));
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 215
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getTentativeJournalHeadersForUser(Connection con,String userId)#0{
+      prepStmt = getTentativePreparedStatement(con, userId);
+      rs = prepStmt.executeQuery();
+      while (rs.next()) {
+        JournalHeader journal = getJournalHeaderFromResultSet(rs);
+        list.add(journal);
+      }
+      DBUtil.close(rs, prepStmt);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 216
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.getHighestCurrKey(String table,String keyName){
+            stmt = conn.prepareStatement("SELECT MAX(" + keyName + 
+                ") FROM " + table);
+            rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt(1);  
+            DBUtil.closeJDBCObjects(ctx, null, stmt, rs);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 217
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testRemotePrepareExecute()#1{
+        remoteConnection.prepareStatement("select * from \"hr\".\"emps\"");
+    ResultSet resultSet = preparedStatement.executeQuery();
+    while (resultSet.next()) {
+      ++count;
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 218
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.hasResults(PreparedStatement statement){
+    ResultSet rs = statement.executeQuery();
+      return rs.next();
+      rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 219
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.getValue(PreparedStatement ps,double value){
+        ps.setDouble(1, value);
+        ResultSet rs = ps.executeQuery();
+        rs.next(); // we know a single value will be returned.
+        double rValue = rs.getDouble(1);
+        rs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 220
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.displayMultipleRangeQueryTime(Connection con,long now)#1{
+    ResultSet rs = ps.executeQuery();
+    while (rs.next())
+      count++;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 221
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.count(final String sql)#0{
+        LOG.debug("SQL: " + sql);
+            statement = connection.prepareStatement(sql);
+            final ResultSet result = statement.executeQuery();
+            result.next();
+            final int count = result.getInt(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 222
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.testQueryCacheTimestamp()#1{
+        rs = prep.executeQuery();
+        rs.next();
+        String b = rs.getString(1);
+        assertFalse(a.equals(b));
+        conn.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 223
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.testCachingResultsCheckResult(PreparedStatement ps,int expected){
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        assertEquals(expected, rs.getInt(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 224
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.getAndCreatePartition(final String tableName,final Date time,final Connection conn)#0{
+            ps.setTimestamp(2, new Timestamp(time.getTime()));
+            final ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 225
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.testDateFuncWithParam(){
+    PreparedStatement ps = con.prepareStatement("SELECT {fn timestampadd(SQL_TSI_QUARTER, ? ,{fn now()})}, {fn timestampadd(SQL_TSI_MONTH, ?, {fn now()})} ");
+    ps.setInt(2, 12);
+    ResultSet rs = ps.executeQuery();
+    assertTrue(rs.next());
+    assertEquals(rs.getTimestamp(1), rs.getTimestamp(2));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 226
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.isUserManager(Connection con,String userId)#0{
+      prepStmt.setInt(1, Integer.parseInt(userId));
+      rs = prepStmt.executeQuery();
+      return (rs.next());
+      DBUtil.close(rs, prepStmt);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 227
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.testExecutePreparedStatement()#2{
+        final PreparedStatement ps = conn.prepareStatement("start n=node({1}) return ID(n) as id");
+        ps.setLong(1,0L);
+        final ResultSet rs = ps.executeQuery();
+        assertTrue(rs.next());
+        assertEquals(0, ((Number)rs.getObject("id")).intValue());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 228
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.doRun(Connection cx){
+                String sql = format("SELECT nid FROM %s WHERE alias = ?", MAPPINGS);
+                PreparedStatement ps = open(cx.prepareStatement(log(sql, LOG, node)));
+                ps.setString(1, node);
+                ResultSet rs = open(ps.executeQuery());
+                return rs.next() ? rs.getString(1) : null;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 229
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.doRun(Connection cx){
+                String sql = format("SELECT val FROM %s WHERE nid = ? AND key = ?", PROPS);
+                PreparedStatement ps = open(cx.prepareStatement(log(sql, LOG, node, key)));
+                ps.setString(2, key);
+                ResultSet rs = open(ps.executeQuery());
+                if (rs.next()) {
+                    return rs.getString(1);
+                } else {
+                    return null;
+                }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 230
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.queryLong(){
+        final PreparedStatement preparedStatement = conn.prepareStatement("SELECT count(*) FROM DomainEventEntry e");
+        final ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getLong(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 231
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.doRun(Connection cx){
+                PreparedStatement ps = open(cx.prepareStatement(log(sql, LOG, s, k)));
+                ps.setString(2, k);
+                ResultSet rs = open(ps.executeQuery());
+                return rs.next() ? rs.getString(1) : null;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 232
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.getNextLobId()#0{
+        reuse(sql, prep);
+        prep = prepare(sql);
+        rs = prep.executeQuery();
+        rs.next();
+        x = Math.max(x, rs.getLong(1) + 1);
+        reuse(sql, prep);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 233
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.getNextLobId()#1{
+        PreparedStatement prep = prepare(sql);
+        ResultSet rs = prep.executeQuery();
+        rs.next();
+        long x = rs.getLong(1) + 1;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 234
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.testCreateEmptyArrayOfIntViaAlias()#0{
+    PreparedStatement pstmt = conn.prepareStatement("SELECT ?::int[]");
+    pstmt.setArray(1, conn.createArrayOf("integer", in));
+    ResultSet rs = pstmt.executeQuery();
+    assertTrue(rs.next());
+    Array arr = rs.getArray(1);
+    Integer[] out = (Integer[]) arr.getArray();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 235
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testDate(Connection conn)#0{
+        Timestamp ts = Timestamp.valueOf("2001-02-03 04:05:06");
+        prep.setObject(1, new java.util.Date(ts.getTime()));
+        ResultSet rs = prep.executeQuery();
+        rs.next();
+        Timestamp ts2 = rs.getTimestamp(1);
+        assertEquals(ts.toString(), ts2.toString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 236
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.testSimpleArgumentSelect()#0{
+        PGobject pgo = new PGobject();
+        pgo.setType("simplecompositetest");
+        pgo.setValue("(1,2.2,)");
+        pstmt.setObject(1, pgo);
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        PGobject pgo2 = (PGobject)rs.getObject(1);
+        assertEquals(pgo, pgo2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 237
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.testPreparedStatementMissingParameter(){
+        final PreparedStatement ps = conn.prepareStatement("start n=node({1}) return ID(n) as id");
+        final ResultSet rs = ps.executeQuery();
+        rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 238
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.testComplexSelect(){
+        PreparedStatement pstmt = _conn.prepareStatement("SELECT '(\"{1,2}\",{},\"(1,2.2,)\")'::\"Composites\".\"ComplexCompositeTest\"");
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        PGobject pgo = (PGobject)rs.getObject(1);
+        assertEquals("\"Composites\".\"ComplexCompositeTest\"", pgo.getType());
+        assertEquals("(\"{1,2}\",{},\"(1,2.2,)\")", pgo.getValue());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 239
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.testCreateEmptyArrayOfIntViaAlias()#0{
+        PreparedStatement pstmt = _conn.prepareStatement("SELECT ?::int[]");
+        pstmt.setArray(1, _conn.createArrayOf("integer", in));
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        Array arr = rs.getArray(1);
+        Integer out[] = (Integer [])arr.getArray();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 240
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.testSimpleSelect(){
+        PreparedStatement pstmt = _conn.prepareStatement("SELECT '(1,2.2,)'::simplecompositetest");
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        PGobject pgo = (PGobject)rs.getObject(1);
+        assertEquals("simplecompositetest", pgo.getType());
+        assertEquals("(1,2.2,)", pgo.getValue());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 241
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.testPreparedByte()#4{
+        pstmt.setObject(2, new Byte((byte)2));
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        assertEquals((byte)1, rs.getByte(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 242
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.expectException(PreparedStatement ps,Object obj1,Object obj2,String expectedSQLState,String label)#0{
+      ps.setObject(2, obj2);
+      rs = ps.executeQuery();
+      rs.next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 243
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testNullArrayElement()#0{
+        PreparedStatement pstmt = _conn.prepareStatement("SELECT array[NULL, NULL]::compositetabletest[]");
+        ResultSet rs = pstmt.executeQuery();
+        assertTrue(rs.next());
+        Array arr = rs.getArray(1);
+        assertEquals("compositetabletest", arr.getBaseTypeName());
+        Object[] items = (Object[])arr.getArray();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 244
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.hasTentativeJournalsForUser(Connection con,String userId){
+      prepStmt = getTentativePreparedStatement(con, userId);
+      rs = prepStmt.executeQuery();
+      return rs.next();
+      DBUtil.close(rs, prepStmt);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 245
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.doRun(Connection cx){
+                String sql = format("SELECT object FROM %s WHERE id = ?", OBJECTS);
+                PreparedStatement ps = open(cx.prepareStatement(log(sql, LOG, id)));
+                ps.setString(1, id);
+                ResultSet rs = open(ps.executeQuery());
+                if (!rs.next()) {
+                    return null;
+                }
+                byte[] bytes = rs.getBytes(1);
+                return new ByteArrayInputStream(bytes);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 246
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.doRun(Connection cx){
+                String sql = format("SELECT count(*) FROM %s WHERE id = ?", OBJECTS);
+                PreparedStatement ps = open(cx.prepareStatement(log(sql, LOG, id)));
+                ps.setString(1, id);
+                ResultSet rs = open(ps.executeQuery());
+                rs.next();
+                return rs.getInt(1) > 0;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 247
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.selectBlob(Connection con,int key){
+    PreparedStatement stmt = con.prepareStatement("SELECT value,key FROM blobtest where key = ?");
+    stmt.setInt(1, key);
+    ResultSet rs = stmt.executeQuery();
+    assertTrue ("Executed", rs != null);
+    rs.next();
+    System.err.println ("blob record \"" + rs.getBlob(1).toString() + "\" key " + rs.getString(2) );
+    assertTrue (" Only one record ", rs.isLast());
+    Blob b = rs.getBlob(1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 248
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.testIsClosed()#0{
+            Connection conn = newConnection();
+            assertNotNull(conn);
+            assertTrue(!conn.isClosed());
+            PreparedStatement stmt = conn.prepareStatement("select * from dual");
+            assertNotNull(stmt);
+            ResultSet rset = stmt.executeQuery();
+            assertNotNull(rset);
+            assertTrue(rset.next());
+            rset.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 249
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.testSimple()#1{
+        Connection conn = pcds.getPooledConnection().getConnection();
+        assertNotNull(conn);
+        PreparedStatement stmt = conn.prepareStatement("select * from dual");
+        assertNotNull(stmt);
+        ResultSet rset = stmt.executeQuery();
+        assertNotNull(rset);
+        assertTrue(rset.next());
+        rset.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 250
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.executeStmt(PreparedStatement stmt)#2{
+            ResultSet rs = stmt.executeQuery();
+            d.watch(rs);
+            while (rs.next()) {
+                m_rowProcessor.processRow(rs);
+                m_count++;
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 251
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.getProxyActiveLoad(long proxyVmId){
+        Transaction txn = Transaction.currentTxn();
+            pstmt = txn.prepareAutoCloseStatement(GET_PROXY_ACTIVE_LOAD);
+            pstmt.setLong(1, proxyVmId);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs != null && rs.first()) {
+                return rs.getInt(1);
+            }
+}
+    
+   
+  
+   
+
+
+
+
+

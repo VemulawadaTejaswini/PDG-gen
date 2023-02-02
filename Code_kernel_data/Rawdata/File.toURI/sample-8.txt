@@ -1,0 +1,202 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.getResource(String ref){
+          URL url = Util.class.getClassLoader().getResource(ref);
+          if (url==null) {
+              try { 
+                  File f = createFile(ref);
+                  if (f.exists())
+                      return f.toURI().toURL();
+              } catch (IOException e) {}
+          }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.addExtraClassPath(File path){
+    if(!path.exists()) {
+      return; // do not add if it doesn't exist.
+    }
+    URL url = path.toURI().toURL();
+    if(this.extraClassPath.contains(url)) {
+      return; // do not add a second copy.
+    }
+    this.extraClassPath.add(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.getFiles(File base,List<URL> urls){
+        for (File f : base.listFiles()) {
+            if (f.isDirectory()) {
+                getFiles(f, urls);
+            } else if (f.getName().endsWith(".jar")) {
+                urls.add(f.toURI().toURL());
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.collectAllFiles(ArrayList<String> files,URI root,File directory,String suffix){
+    for (final File file : directory.listFiles()) {
+      if (file.isDirectory())
+        collectAllFiles(files, root, file, suffix);
+      else {
+        if ((suffix != null) && !file.getName().endsWith(suffix))
+          continue;
+        files.add(root.relativize(file.toURI()).getPath());
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.openNewFile(){
+    fc.setFilterSet(openFs);
+    fc.setAccessory(null);
+    if (fc.showOpenDialog(LGM.frame) != CustomFileChooser.APPROVE_OPTION) return;
+    File f = fc.getSelectedFile();
+    if (f == null) return;
+    open(f.toURI());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.loadExistingDataMap(File dataMapFile){
+        if (dataMapFile != null && dataMapFile.exists() && dataMapFile.canRead()) {
+            DataMap dataMap = mapLoader.loadDataMap(new InputSource(dataMapFile.getCanonicalPath()));
+            dataMap.setNamespace(new EntityResolver(Collections.singleton(dataMap)));
+            dataMap.setConfigurationSource(new URLResource(dataMapFile.toURI().toURL()));
+
+            return dataMap;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+

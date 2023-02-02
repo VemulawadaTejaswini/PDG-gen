@@ -1,0 +1,20321 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.getConnection(){
+        if (username == null && password == null) {
+            log.log(Level.FINE, "connect to {0}", connectionUrl);
+            conn = DriverManager.getConnection(connectionUrl);
+        } else {
+            log.log(Level.FINE, "connect to {0} with ''{1}''/''{2}''",
+                    new Object[] { connectionUrl, username, password });
+            conn = DriverManager.getConnection(connectionUrl, username, password);
+        }
+        return new DatabaseConnection(conn, schema);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.init(){
+        DriverManager.registerDriver(new Driver());
+        connCell = DriverManager.getConnection("jdbc:h2:~/" + NAMESPACE_CELL + ";DATABASE_TO_UPPER=FALSE", "sa", "");
+        createTables(connCell, NAMESPACE_CELL, INPUT_TABLE, OUTPUT_CELLS_TABLE);
+        deleteData(connCell, NAMESPACE_CELL, INPUT_TABLE, OUTPUT_CELLS_TABLE);
+        connEntity = DriverManager.getConnection("jdbc:h2:~/" + NAMESPACE_ENTITY + ";DATABASE_TO_UPPER=FALSE", "sa", "");
+        createTables(connEntity, NAMESPACE_ENTITY, INPUT_TABLE, OUTPUT_ENTITY_TABLE);
+        deleteData(connEntity, NAMESPACE_ENTITY, INPUT_TABLE, OUTPUT_ENTITY_TABLE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.testReadOnly(){
+    Connection con = DriverManager.getConnection(TestUtil.getURL("readOnly", true), TestUtil.getUser(), TestUtil.getPassword());
+    assertNotNull(con);
+    assertTrue(con.isReadOnly());
+    con.close();
+    con = DriverManager.getConnection(TestUtil.getURL("readOnly", false), TestUtil.getUser(), TestUtil.getPassword());
+    assertNotNull(con);
+    assertFalse(con.isReadOnly());
+    con.close();
+    con = DriverManager.getConnection(TestUtil.getURL(), TestUtil.getUser(), TestUtil.getPassword());
+    assertNotNull(con);
+    assertFalse(con.isReadOnly());
+    con.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.getConnection(){
+    Class.forName(job.get(DBConfiguration.DRIVER_CLASS_PROPERTY));
+    if(job.get(DBConfiguration.USERNAME_PROPERTY) == null) {
+      return DriverManager.getConnection(job.get(DBConfiguration.URL_PROPERTY));
+    } else {
+      return DriverManager.getConnection(
+          job.get(DBConfiguration.URL_PROPERTY), 
+          job.get(DBConfiguration.USERNAME_PROPERTY), 
+          job.get(DBConfiguration.PASSWORD_PROPERTY));
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.testReadOnly(){
+        TestUtil.initDriver(); // Set up log levels, etc.
+        Connection con = DriverManager.getConnection(TestUtil.getURL() + "&readOnly=true", TestUtil.getUser(), TestUtil.getPassword());
+        assertNotNull(con); 
+        assertTrue(con.isReadOnly());
+        con.close();
+        con = DriverManager.getConnection(TestUtil.getURL() + "&readOnly=false", TestUtil.getUser(), TestUtil.getPassword());
+        assertNotNull(con); 
+        assertFalse(con.isReadOnly());
+        con.close();
+        con = DriverManager.getConnection(TestUtil.getURL(), TestUtil.getUser(), TestUtil.getPassword());
+        assertNotNull(con); 
+        assertFalse(con.isReadOnly());
+        con.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testClearOtherConnection(){
+    JdbcPooledConnectionSource pooled = new JdbcPooledConnectionSource(DEFAULT_DATABASE_URL);
+          new JdbcDatabaseConnection(DriverManager.getConnection(DEFAULT_DATABASE_URL));
+          new JdbcDatabaseConnection(DriverManager.getConnection(DEFAULT_DATABASE_URL));
+      pooled.saveSpecialConnection(conn1);
+      pooled.clearSpecialConnection(conn2);
+      pooled.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testSaveOtherConnection(){
+    JdbcPooledConnectionSource pooled = new JdbcPooledConnectionSource(DEFAULT_DATABASE_URL);
+          new JdbcDatabaseConnection(DriverManager.getConnection(DEFAULT_DATABASE_URL));
+          new JdbcDatabaseConnection(DriverManager.getConnection(DEFAULT_DATABASE_URL));
+      pooled.saveSpecialConnection(conn2);
+      pooled.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.testCloseDelay()#3{
+            conn = DriverManager.getConnection(url, user, password);
+            conn.close();
+        conn = DriverManager.getConnection(url, user, password);
+        conn.createStatement().execute("SHUTDOWN");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.getConnection(String postfix)#1{
+      con1 = DriverManager.getConnection("jdbc:hive2://localhost:10000/" + postfix,
+          "", "");
+      con1 = DriverManager.getConnection("jdbc:hive2:///" + postfix, "", "");
+    assertNotNull("Connection is null", con1);
+    assertFalse("Connection should not be closed", con1.isClosed());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.getConnection()#0{
+      if(jdbcUsername == null || jdbcUsername.length() == 0) {
+        connection = DriverManager.getConnection(jdbcUrl);
+      } else {
+        connection = DriverManager.getConnection(jdbcUrl, jdbcUsername,
+            jdbcPassword);
+      }
+      connection.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.connect()#0{
+        m_c = (m_suser == null && m_spassword == null)
+        ? DriverManager.getConnection(m_surl)
+        : DriverManager.getConnection(m_surl, m_suser, m_spassword);         
+        m_c.setAutoCommit(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.createConnection(DbPoolConfig singleConfig){
+      if(MyStringUtil.isBlank(singleConfig.getUser())){
+        con = DriverManager.getConnection(singleConfig.getUrl());
+      }else{
+        con = DriverManager.getConnection(singleConfig.getUrl(), singleConfig.getUser(), singleConfig.getPassword());
+      }
+      System.out.println("è¿žæŽ¥æ± " + singleConfig.getName() + "åˆ›å»ºä¸€ä¸ªæ–°çš„è¿žæŽ¥");
+      System.out.println("æ— æ³•åˆ›å»ºä¸‹åˆ—URLçš„è¿žæŽ¥: " + singleConfig.getUrl() + " user: " + singleConfig.getUser() + " pd: " + singleConfig.getPassword());
+    return new Conn(con,singleConfig.getType());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.testLocalIndexCreationWithSaltingShouldFail()#2{
+        createBaseTable(TestUtil.DEFAULT_DATA_TABLE_NAME, null, null);
+        Connection conn1 = DriverManager.getConnection(getUrl());
+        Connection conn2 = DriverManager.getConnection(getUrl());
+            conn2.createStatement().executeQuery("SELECT * FROM " + TestUtil.DEFAULT_DATA_TABLE_FULL_NAME).next();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1170.testQueryOptimizerShouldSelectThePlanWithMoreNumberOfPKColumns()#1{
+        Connection conn1 = DriverManager.getConnection(getUrl());
+        Connection conn2 = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1180.getConnection(){
+        if (url.startsWith("jdbc:hsqldb:")) {
+            // Hsqldb requires a username, but doesn't support username as part
+            // of the URL, durn it. Assume that the username is "sa".
+            return DriverManager.getConnection(url, "sa", "");
+        } else {
+            return DriverManager.getConnection(url);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.testLocalIndexTableRegionSplitPolicyAndSplitKeys()#3{
+        createBaseTable(TestUtil.DEFAULT_DATA_TABLE_NAME, null,"('e','i','o')");
+        Connection conn1 = DriverManager.getConnection(getUrl());
+        Connection conn2 = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.MergeDatabase(){
+        mergedConn = DriverManager.getConnection("jdbc:h2:/home/cruise/projects/cruise-dbs/merged/db/h2db/cruise", "sa", null);
+        printScalar(mergedConn, "SELECT MAX(id) FROM buildStateTransitions");
+        fromConn = DriverManager.getConnection("jdbc:h2:/home/cruise/projects/cruise-dbs/mingle/db/h2db/cruise", "sa", null);
+        printScalar(fromConn, "SELECT MAX(id) FROM buildStateTransitions");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.bad9(){
+        Connection connection = DriverManager.getConnection("url", "user", PWD1);
+        System.out.println(connection.getCatalog());
+        connection = DriverManager.getConnection("url", "user", pass);
+        System.out.println(connection.getCatalog());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.getConnection()#0{
+      prop.setProperty("user", JDBCProfileStore.databaseUser(dbName));
+      prop.setProperty("password", JDBCProfileStore.databasePassword(dbName));
+      Class driverClass = Class.forName(JDBCProfileStore.driver(dbName, 0));
+      DriverManager.registerDriver((java.sql.Driver) driverClass.newInstance());
+      Connection conn = DriverManager.getConnection(JDBCProfileStore.databaseURL(dbName), prop);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.setup()#0{
+    conn = DriverManager.getConnection(getUrl(), props);
+    Statement stmt = conn.createStatement();
+    stmt.execute("UPSERT INTO test VALUES ('FA')");    
+    stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.cleanUpDerbyDatabases()#0{
+        conn = DriverManager.getConnection(dbURL);
+        Statement stat = conn.createStatement();
+        stat.executeUpdate("DROP TABLE books");
+        stat.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.cleanUpDerbyDatabases()#3{
+       conn = DriverManager.getConnection(dbURL);
+       Statement stat = conn.createStatement();
+       stat.executeUpdate("DROP TABLE newbooks");
+       stat.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.cleanUpDerbyDatabases()#1{
+      conn = DriverManager.getConnection(dbURL);
+      Statement stat = conn.createStatement();
+      stat.executeUpdate("DROP TABLE books");
+      stat.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.CreateTable()#1{
+      conn=DriverManager.getConnection("jdbc:sqlite"+FILENAME);
+      Statement st = (Statement) conn.createStatement();
+      st.executeUpdate("create table goods_tm(_id integer primary key autoincrement,goodsCategoryTid text,goodsid text,goodsname text,memberprice text,pictureurl text)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.setUp(){
+        conn = DriverManager.getConnection(getUrl());
+        conn.setAutoCommit(true);
+        stmt = conn.createStatement();
+        stmt.execute("CREATE TABLE without_nulls (" +
+                        "id SMALLINT NOT NULL PRIMARY KEY, " +
+                        "name VARCHAR) " +
+                "VERSIONS = 1000, KEEP_DELETED_CELLS = false");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class830.init(Partition p)#0{
+        conn = DriverManager.getConnection(jdbcNeo4JDeepJobConfig.getConnectionUrl(),
+                jdbcNeo4JDeepJobConfig.getUsername(),
+                jdbcNeo4JDeepJobConfig.getPassword());
+        Statement statement = conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.main(String[] args)#0{
+    properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("META-INF/dbconfig.properties"));
+    DBConfig config = new DBConfig(properties);
+    DriverManager.registerDriver((Driver)Class.forName(config.getDriverClass()).newInstance());
+    Connection connection = DriverManager.getConnection(config.getUrl(), config.getUsername(), config.getPassword());
+    DatabaseMetadata metadata = new DatabaseMetadata(connection);
+    TableMetadata tableMetadata = metadata.getTableMetadata(null, null, "schema_version");
+    for (ColumnMetadata columnMetadata : tableMetadata.getColumns().values()) {
+      System.out.println(columnMetadata.getName() + " " + columnMetadata.getTypeName() + " " + columnMetadata.getTypeCode());
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.setUpBeforeClass(){
+    conn = DriverManager.getConnection("jdbc:h2:tcp://localhost:9092/mydb", "sa", "");
+    stmt = conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.setUp()#0{
+        conn = DriverManager.getConnection(url, "sa", "");
+        stmt = conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.setUp()#1{
+        conn = DriverManager.getConnection(url, "querydsl", "querydsl");
+        stmt = conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.initialize()#0{
+      conn = DriverManager.getConnection(this.path, this.username,
+          this.password);
+      stmt = conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.run()#0{
+        conn = DriverManager.getConnection(
+                "jdbc:h2:mem:", "sa", "");
+        stat = conn.createStatement();
+        stat.execute(
+                "create table test(id int primary key, name varchar)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.HigoQueryService(Map conf)#1{
+      conn = DriverManager.getConnection(url, "", "");
+      stmt = conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.getInstance()#2{
+           conn = DriverManager.getConnection(GlobalVar.db, GlobalVar.username, GlobalVar.password);
+           stmt=conn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.assertInvalidLDAPDrvMgrConnectionFails(String dbName,String user,String password)#0{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+            DriverManager.getConnection(url, user, password).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.assertConnectionOK(String dbName,String user,String password){
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+        DriverManager.getConnection(url, user, password).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testIsClosed(){
+        assertFalse(conn.isClosed());
+        conn.close();
+        assertTrue(conn.isClosed());
+        conn = DriverManager.getConnection("jdbc:sqlite:/" + dbFile.getPath());
+        assertFalse(conn.isClosed());
+        Statement st = conn.createStatement();
+        st.execute("select * from zoo");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.setUp(){
+    hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(dbName),
+        System.getProperty("user.name"), "bar");
+    stmt = hs2Conn.createStatement();
+    stmt.execute("USE " + dbName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.openConnect()#0{
+      DriverManager.setLoginTimeout(waittime);
+      conn = DriverManager.getConnection(url, this.prop);
+      LOG.info(" get Connection ok: " + url);
+      LOG.error(" get Connection failed: " + url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.freeze()#0{
+        log.debug(String.format("Freezing database [%s]", getUrl()));
+            Statement s = DriverManager.getConnection(getUrl()).createStatement();
+            s.executeUpdate("CALL SYSCS_UTIL.SYSCS_FREEZE_DATABASE()");
+            s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.init()#0{
+        properties.load(BarChartSample.class.getResourceAsStream("/config.properties"));
+        Class.forName(properties.getProperty("db.driver"));
+        connection = DriverManager.getConnection(
+            properties.getProperty("db.url"),
+            properties.getProperty("db.username"),
+            properties.getProperty("db.password")
+        );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.setup(){
+        connection = DriverManager.getConnection(dbURL);
+        connection.setAutoCommit(true);
+        stmt = connection.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.start(){
+    String driver = dbConfig.getDriver();
+    Class.forName(driver);
+    String url = Utils.replaceParams(dbConfig.getDbURL(), metaData);
+    Properties prop = Utils.replaceParams(dbConfig.getConfigProperty(), metaData);
+    conn = DriverManager.getConnection(url, prop);
+    conn.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.assertShutdownWOUPFail(String expectedSqlState,String dbName,String user,String password)#1{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+            DriverManager.getConnection(url2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.assertConnectionWOUPOK(String dbName,String user,String password){
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+        DriverManager.getConnection(url2).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.assertConnectionFail(String dbName)#0{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+            DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.assertShutdownFail(String expectedSqlState,String dbName,String user,String password)#0{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName) +
+            DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.assertConnectionFail(String expectedSqlState,String dbName,String user,String password)#0{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+            DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.assertShutdownWOUPOK(String dbName,String user,String password)#0{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+            DriverManager.getConnection(url, null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.assertShutdownOK(String dbName,String user,String password)#0{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName) +
+        DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.assertConnectionWOUPFail(String expectedSqlState,String dbName,String user,String password)#0{
+        String url = TestConfiguration.getCurrent().getJDBCUrl(dbName);
+            DriverManager.getConnection(url2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.testFairSchedulerPrimaryQueueMapping()#0{
+    miniHS2.setConfProperty(FairSchedulerConfiguration.ALLOCATION_FILE, "fair-scheduler-test.xml");
+    hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user2", "bar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1380.testFairSchedulerSecondaryQueueMapping()#0{
+    miniHS2.setConfProperty(FairSchedulerConfiguration.ALLOCATION_FILE, "fair-scheduler-test.xml");
+    hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user3", "bar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.testQueueMappingCheckDisabled()#1{
+    miniHS2.setConfProperty(
+        HiveConf.ConfVars.HIVE_SERVER2_MAP_FAIR_SCHEDULER_QUEUE.varname, "false");
+    hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user1", "bar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.getConnection(String userName){
+    return DriverManager.getConnection(miniHS2.getJdbcURL(), userName, "bar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testConnection()#2{
+    hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.testConnection(){
+    hs2Conn = DriverManager.getConnection(
+        miniHS2.getJdbcURL() + ";auth=noSasl", sessionUserName, "foo");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getConnection(String userName)#0{
+    return DriverManager.getConnection(miniHS2.getJdbcURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.testFairSchedulerQueueMapping()#1{
+    hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL(), "user1", "bar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.testProxyAuth()#0{
+    hs2Conn = DriverManager.getConnection(miniHS2.getJdbcURL("default",
+        ";hive.server2.proxy.user=" + MiniHiveKdc.HIVE_TEST_USER_1));
+    verifyProperty(SESSION_USER_NAME, MiniHiveKdc.HIVE_TEST_USER_1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.thaw()#0{
+        log.debug(String.format("Derby thawing database [%s]", getUrl()));
+            Statement s = DriverManager.getConnection(getUrl()).createStatement();
+            s.executeUpdate("CALL SYSCS_UTIL.SYSCS_UNFREEZE_DATABASE()");
+            s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.connect()#0{
+        String url = (String)getSession().getDatasourceLogin().getProperty("url");
+        connection = DriverManager.getConnection(url, "aquser", "aquser");
+        connection.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.openConnection(){
+    Class.forName(SystemGlobals.getValue(ConfigKeys.DATABASE_DRIVER));
+    return DriverManager.getConnection(SystemGlobals.getValue(ConfigKeys.DATABASE_JFORUM_URL));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.getConnection(String usr,String passwd)#0{
+      Class.forName(System.getProperty("driver")).newInstance();
+      Connection con = DriverManager.getConnection(System
+          .getProperty("database"), usr, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.testSimple2()#0{
+        DriverManager.getConnection("jdbc:calcite:");
+        connection.unwrap(CalciteConnection.class);
+    SchemaPlus rootSchema = calciteConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.getConnectionWithMultiplyFunction()#0{
+        DriverManager.getConnection("jdbc:calcite:");
+        connection.unwrap(CalciteConnection.class);
+    SchemaPlus rootSchema = calciteConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testDifferentTypesSameFields()#0{
+    Connection connection = DriverManager.getConnection("jdbc:optiq:");
+        connection.unwrap(OptiqConnection.class);
+    final SchemaPlus rootSchema = optiqConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.getConnectionWithMultiplyFunction()#1{
+        DriverManager.getConnection("jdbc:optiq:");
+        connection.unwrap(OptiqConnection.class);
+    SchemaPlus rootSchema = optiqConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.testSimple()#1{
+        DriverManager.getConnection("jdbc:calcite:");
+        connection.unwrap(CalciteConnection.class);
+    SchemaPlus rootSchema = calciteConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.setUp()#0{
+    Connection connection = DriverManager.getConnection("jdbc:calcite:");
+        connection.unwrap(CalciteConnection.class);
+    SchemaPlus rootSchema = calciteConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.createConnection()#1{
+                  DriverManager.getConnection("jdbc:optiq:");
+                  connection.unwrap(OptiqConnection.class);
+                  optiqConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.setUp()#0{
+    Connection connection = DriverManager.getConnection("jdbc:optiq:");
+    OptiqConnection optiqConnection = connection.unwrap(OptiqConnection.class);
+    SchemaPlus rootSchema = optiqConnection.getRootSchema();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.openConnect(String url,String user,String pass)#2{
+    DriverManager.setLoginTimeout(timeout);
+    conn = DriverManager.getConnection(url, user, pass);
+    LOG.debug(" get Connection ok: " + url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testGetSplitsWithSkipScanFilter()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        PhoenixConnection pconn = conn.unwrap(PhoenixConnection.class);
+        PTable table = pconn.getMetaDataCache().getTable(new PTableKey(pconn.getTenantId(), TABLE_NAME));
+        TableRef tableRef = new TableRef(table);
+        List<HRegionLocation> regions = pconn.getQueryServices().getAllTableRegions(tableRef.getTable().getPhysicalName().getBytes());
+        List<KeyRange> ranges = getSplits(tableRef, scan, regions, scanRanges);
+        assertEquals("Unexpected number of splits: " + ranges.size(), expectedSplits.size(), ranges.size());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.getConnection()#2{
+            int oldTimeout = DriverManager.getLoginTimeout();
+            DriverManager.setLoginTimeout(m_timeout);
+            Connection conn = DriverManager.getConnection(m_url, m_properties);
+            DriverManager.setLoginTimeout(oldTimeout);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.SqliteHelper(File f)#0{
+    connection = DriverManager.getConnection("jdbc:sqlite:" + f.getAbsolutePath());
+    statement = connection.createStatement();
+    statement.setQueryTimeout(30);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class820.getConnection()#0{
+    String password = PROPERTIES.getProperty("jdbc.password");
+      Class.forName(driver);
+      connection = DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.canConnect(String url,String username,String password)#0{
+        String type = getTypeForUrl( url );
+            Class.forName( getDriver( type ) );
+            Connection conn = DriverManager.getConnection( url, username, password );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.createConnection()#1{
+              for (Map.Entry<String, String> entry : map.entrySet()) {
+                info.setProperty(entry.getKey(), entry.getValue());
+              }
+              return (OptiqConnection) DriverManager.getConnection(
+                  "jdbc:optiq:", info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.createConnection()#0{
+      for (Map.Entry<String, String> entry : map.entrySet()) {
+        info.setProperty(entry.getKey(), entry.getValue());
+      }
+          DriverManager.getConnection("jdbc:calcite:", info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.openConnection()#1{
+        Class.forName(drvSettings.getClassName());
+        openedConnection = DriverManager.getConnection(drvSettings.getJDBCUrl(), drvSettings.
+            getAccessLogin(), drvSettings.getAccessPasswd());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.connect(final ConnectionInfo connectionInfo,final Boolean readOnly)#2{
+      Class.forName(jdbcInfo.getDriverClass());
+      jdbcConnection = DriverManager.getConnection(jdbcInfo.getConnectionString(), jdbcInfo.getProperties());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.JdbcWriter(JdbcDeepJobConfig jdbcDeepJobConfig){
+        Class.forName(jdbcDeepJobConfig.getDriverClass());
+        this.conn = DriverManager.getConnection(jdbcDeepJobConfig.getConnectionUrl(),
+                jdbcDeepJobConfig.getUsername(),
+                jdbcDeepJobConfig.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.testConnectionNeg()#1{
+      String url = miniHS2.getJdbcURL().replaceAll(";principal.*", "");
+      hs2Conn = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.startConnection()#0{
+            String url = getUrl();
+                DriverManager.setLoginTimeout(getTimeout());
+                con = DriverManager.getConnection(url , user, passwd);
+                log(Level.ERROR, e, "Sql error for %s: %s" , url, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.createConnection(String user,String password)#1{
+    DriverManager.setLoginTimeout(0);
+    Connection connection =  DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.connect(Configuration hiveconf)#0{
+      DriverManager.setLoginTimeout(3); // stats should not block
+      conn = DriverManager.getConnection(connectionString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.start()#3{
+        DriverManager.setLoginTimeout(10);
+        con = DriverManager.getConnection(url , user, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 88
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.getConnection(String driver,String url,Properties prop)#0{
+    DriverManager.setLoginTimeout(1);
+    return DriverManager.getConnection(url, prop);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 89
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.setConnection()#0{
+        String host = "jdbc:" + TARDIS.plugin.getConfig().getString("storage.mysql.url") + "?autoReconnect=true";
+        String user = TARDIS.plugin.getConfig().getString("storage.mysql.user");
+        String pass = TARDIS.plugin.getConfig().getString("storage.mysql.password");
+            connection = DriverManager.getConnection(host, user, pass);
+            connection.setAutoCommit(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 90
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.createConnection(String driverClassName,String url)#0{
+    connection = DriverManager.getConnection(url);
+    connection.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 91
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.setConnection(String path)#1{
+        connection = DriverManager.getConnection("jdbc:sqlite:" + path);
+        connection.setAutoCommit(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 92
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.initDatabase()#1{
+        connection = DriverManager.getConnection(DATABASE_URL, "sa", "pwd");
+        connection.setAutoCommit(false);
+        createTweetTable(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 93
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.createConnection(String driverClassName,String url)#1{
+    connection = DriverManager.getConnection(url);
+    connection.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 94
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.createConnection(String driverClassName,String url)#1{
+    connection = DriverManager.getConnection(url);
+    connection.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 95
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class810.loadData(long ts)#2{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts));
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 96
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.nextConnection(String url)#0{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(nextTimestamp()));
+        return DriverManager.getConnection(url, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 97
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1290.testGroupByCase()#3{
+        props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(ts + 1));
+        Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
+            gbt.executeQuery(conn,GROUPBY3);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 98
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.init()#0{
+    connection = DriverManager.getConnection("jdbc:h2:~/ehcache-demo-peeper", "sa", "");
+    Statement statement = connection.createStatement();
+      statement.execute("CREATE TABLE IF NOT EXISTS PEEPS (" +
+          "id bigint auto_increment primary key," +
+          "PEEP_TEXT VARCHAR(142) NOT NULL" +
+          ")");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 99
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.getConnection0(boolean readonly)#1{
+        if (readonly) props.setProperty("hsqldb.files_readonly", "true");
+        return DriverManager.getConnection(databaseUrl, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 100
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.MySqlClient(String hostport,String user,String pass)#3{
+            con = DriverManager.getConnection(url, user, pass);
+            stmt = con.createStatement();
+            stmt.execute("create table data(transaction_id bigint PRIMARY KEY AUTO_INCREMENT, content TEXT);");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 101
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.createDatabase(File dbHome,String user,String password)#0{
+    DriverManager.registerDriver(new Driver());
+    DriverManager.getConnection(url).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 102
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.should_start_and_stop()#2{
+      DriverManager.registerDriver(new Driver());
+      DriverManager.getConnection(driverUrl).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 103
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.test_OpenCloseJDBC()#0{
+      DriverManager.registerDriver(new Driver());
+      Connection c = DriverManager.getConnection("jdbc:mysql://localhost/TEST");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 104
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.connect(SQLiteConfig config)#0{
+            connection = DriverManager.getConnection("jdbc:sqlite:".concat(db), config.toProperties());
+            statement = connection.createStatement();
+            statement.setQueryTimeout(queryTimeout);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 105
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.shouldCreateConnectionWithDriverManagerAfterRegisteringDriver()#2{
+        DriverManager.registerDriver(driver);
+        Connection connection = DriverManager.getConnection(validUrl, validProperties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 106
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.JDBCAdapter(String url,String driverName,String user,String passwd)#0{
+            connection = DriverManager.getConnection(url, user, passwd);
+            statement = connection.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 107
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.setUp()#0{
+        connection = DriverManager.getConnection(url, "sa", "");
+        statement = connection.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 108
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.destroyTable()#0{
+        ConnectionQueryServices services = DriverManager.getConnection(getUrl(), props).unwrap(PhoenixConnection.class).getQueryServices();
+        HBaseAdmin admin = services.getAdmin();
+                admin.disableTable(PRODUCT_METRICS_NAME);
+                admin.deleteTable(PRODUCT_METRICS_NAME);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 109
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.destroyIndexTable()#0{
+        ConnectionQueryServices services = DriverManager.getConnection(getUrl(), props).unwrap(PhoenixConnection.class).getQueryServices();
+        HBaseAdmin admin = services.getAdmin();
+            admin.disableTable(INDEX_TABLE_FULL_NAME);
+            admin.deleteTable(INDEX_TABLE_FULL_NAME);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 110
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class980.testWorkingWithDates(){
+        Connection conn = DriverManager.getConnection("jdbc:derby:target/temp_derby;create=true");
+        final JdbcDataContext dc = new JdbcDataContext(conn);
+        final Schema schema = dc.getDefaultSchema();
+        JdbcTestTemplates.createInsertAndUpdateDateTypes(dc, schema, "test_table");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 111
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.testWorkingWithDates(){
+        Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:working_with_dates", USERNAME, PASSWORD);
+        final JdbcDataContext dc = new JdbcDataContext(connection);
+        final Schema schema = dc.getDefaultSchema();
+        JdbcTestTemplates.createInsertAndUpdateDateTypes(dc, schema, "test_table");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 112
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.testSuccessfulConnect()#0{
+        String user = getTestConfiguration().getUserName();
+        String password = getTestConfiguration().getUserPassword();
+        DriverManager.getConnection(url, user, password).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 113
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.testUnsuccessfulConnect()#0{
+        String url = getTestConfiguration().getJDBCUrl("nonexistentDatabase");
+        String user = getTestConfiguration().getUserName();
+        String password = getTestConfiguration().getUserPassword();
+            DriverManager.getConnection(url, user, password).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 114
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.createConnection()#0{
+      con = DriverManager.getConnection("jdbc:mysql://"
+          + "localhost" + "/" + "moparclassic",
+          "root", "");
+      statement = con.createStatement();
+      statement.setEscapeProcessing(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 115
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.createConnection()#0{
+      con = DriverManager.getConnection("jdbc:mysql://"
+          + Config.MYSQL_HOST + "/" + Config.MYSQL_DB,
+          Config.MYSQL_USER, Config.MYSQL_PASS);
+      statement = con.createStatement();
+      statement.setEscapeProcessing(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 116
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.testCreateInsertAndUpdate(){
+        Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:" + getName(), USERNAME, PASSWORD);
+        JdbcDataContext dc = new JdbcDataContext(connection);
+        JdbcTestTemplates.simpleCreateInsertUpdateAndDrop(dc, "metamodel_test_simple");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 117
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.testCreateInsertAndUpdate(){
+        Connection conn = DriverManager.getConnection("jdbc:derby:target/temp_derby;create=true");
+        JdbcDataContext dc = new JdbcDataContext(conn);
+        JdbcTestTemplates.simpleCreateInsertUpdateAndDrop(dc, "metamodel_test_simple");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 118
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.PersonMapStore()#2{
+            con = DriverManager.getConnection("jdbc:hsqldb:mydatabase", "SA", "");
+            con.createStatement().executeUpdate(
+                    "create table if not exists person (id bigint not null, name varchar(45), primary key (id))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 119
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.ConnectToDB()#0{
+        con = DriverManager.getConnection(connectionname,dbUser,dbPassword);
+        stmt= con.createStatement();  ///// changed 20.03.2013
+        meta= this.con.getMetaData();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 120
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.testSelectColumnMoreThanOnce()#0{
+        initEntityHistoryTableValues("abcd", getDefaultSplits("abcd"), date, 100l);
+        ResultSet rs = DriverManager.getConnection(getUrl()).createStatement().executeQuery(query);
+        assertTrue(rs.next());
+        rs.getObject("NEW_VALUE");
+        assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 121
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.testCompositePrimaryKeyCreation(){
+        Connection conn = DriverManager.getConnection("jdbc:derby:target/temp_derby;create=true");
+        JdbcDataContext dc = new JdbcDataContext(conn);
+        JdbcTestTemplates.compositeKeyCreation(dc, "metamodel_test_composite_keys");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 122
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.testPerformance()#5{
+            DriverManager.getConnection(url, user, password).close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 123
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.testInvalidUpsertSelect()#0{
+        PhoenixConnection conn = DriverManager.getConnection(getUrl(), props).unwrap(PhoenixConnection.class);
+        conn.createStatement().execute("CREATE TABLE t1 (k1 INTEGER NOT NULL, k2 VARCHAR, v VARCHAR, CONSTRAINT pk PRIMARY KEY (k1,k2))");
+        conn.createStatement().execute("CREATE TABLE t2 (k3 INTEGER NOT NULL, v VARCHAR, CONSTRAINT pk PRIMARY KEY (k3))");
+        conn.createStatement().execute("CREATE VIEW v1 AS SELECT * FROM t1 WHERE k1 = 1");
+            conn.createStatement().executeUpdate("UPSERT INTO v1 SELECT k3,'foo',v FROM t2");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 124
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1140.assertViewType(String[] views,ViewType viewType)#1{
+        PhoenixConnection conn = DriverManager.getConnection(getUrl(), props).unwrap(PhoenixConnection.class);
+        conn.createStatement().execute(ct);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 125
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.createConnection(Properties p)#1{
+      Connection conn = DriverManager.getConnection(p.getProperty("db_uri").trim(), p.getProperty("db_user")
+          .trim(), p.getProperty("db_password").trim());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 126
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.getConnection(Properties props)#0{
+        String pass = props.getProperty("db2.jdbc.password");
+        return DriverManager.getConnection(url, user, pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 127
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.connectionOK(Properties props){
+        String password = props.getProperty("password");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://prod.company.com/production", username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 128
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.run()#0{
+                    Connection conn = DriverManager.getConnection(getUrl());
+                    ResultSet tablesRs = conn.getMetaData().getTables(null, null, null, null);
+                    while (tablesRs.next()) {
+                        // Just make sure we run over all records
+                    }
+                    tablesRs.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 129
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.testToDate_CustomTimeZoneViaQueryServicesAndCustomFormat()#0{
+        Connection customTimeZoneConn = DriverManager.getConnection(getUrl(), props);
+        assertEquals(
+                -ONE_HOUR_IN_MILLIS,
+                callToDateFunction(
+                        customTimeZoneConn, "TO_DATE('1970-01-01', 'yyyy-MM-dd')").getTime());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 130
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.testToDate_CustomTimeZoneViaQueryServices()#0{
+        Connection customTimeZoneConn = DriverManager.getConnection(getUrl(), props);
+        assertEquals(
+                -ONE_HOUR_IN_MILLIS,
+                callToDateFunction(customTimeZoneConn, "TO_DATE('1970-01-01 00:00:00.000')").getTime());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 131
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.testByteInstrAscendingFilter(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ASC", "abcdefghijkl","fgh");
+        testInstrFilter(conn, queryToExecute,"abcdefghijkl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 132
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.testMultiByteInstrDecending(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "DESC", "AÉšÉ¦FGH","ÉšÉ¦");
+        testInstr(conn, queryToExecute, 2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 133
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.createConnection(int port,String user,String password,String schema){
+                (Connection) DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + schema,
+                                                         user,
+                                                         password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 134
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.doConnCommitInt(){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    conn.commit();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 135
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.doConnCommitInt(){
+                Connection conn = DriverManager.getConnection("jdbc:default:connection");
+                conn.commit();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 136
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.doConnCommit(){
+                Connection conn = DriverManager.getConnection("jdbc:default:connection");
+                conn.commit();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 137
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.doConnCommit(){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    conn.commit();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 138
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.test_o()#3{
+        Connection conn = DriverManager.getConnection(jdbcUrl, user, password);
+        com.mysql.jdbc.Connection mysqlConn = (com.mysql.jdbc.Connection) conn;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 139
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1170.newInstance(File dir)#1{
+    String path = dir.getAbsolutePath() + "/index";
+    Connection connection = DriverManager
+        .getConnection(url, user, password);
+    return new ConnectionManager(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 140
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.getMySqlConnection()#1{
+          connection = (Connection) DriverManager.getConnection(m_url, m_username, m_password);       
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 141
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.setUp()#2{
+        _connection = DriverManager.getConnection("jdbc:derby:jar:(" + dbFile.getAbsolutePath()
+                + ")derby_testdb;territory=en");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 142
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.setUpCubeConn()#1{
+        cubeConnection = DriverManager.getConnection("jdbc:calcite:model=" + olapTmp.getAbsolutePath(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 143
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.getConnectionInstance()#0{
+      connection = (Connection) DriverManager.getConnection(url, user, pwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 144
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.getConnection(boolean tenantSpecific,String tenantId)#0{
+            checkNotNull(tenantId);
+            return createTenantConnection(tenantId);
+        return DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 145
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class870.testSingleByteInstrDescendingNoString(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "DESC", "abcde fghijkl","lmn");
+        testInstr(conn, queryToExecute, 0);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 146
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.nextConnection(String url)#1{
+        return DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 147
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.testForcingRowKeyOrderNotUseRoundRobinIterator()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        testForceRowKeyOrder(conn, true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 148
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.setUp(){
+        conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 149
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.testLpadZeroPadding()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 150
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.testDefaultFill()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 151
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.testEmptyFillExpr()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 152
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.connect(){
+        conn = DriverManager.getConnection(connectionString);
+        conn.setAutoCommit(false);
+        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        updatePreviewReplyStmt = conn.prepareStatement(updatePreviewReplyQuery);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 153
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getConnection(final String url,final String user,final String password)#0{
+            LOG.info("Connecting to " + url + " with no credentials");
+            return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 154
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.DesktopSQLiteDBLogStorage(String dbName)#2{
+            LOG.info("Connecting to db by url: {}", dbURL);
+            connection = DriverManager.getConnection(dbURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 155
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.testConnectionMySqlDriver()#0{
+        String fullConnectionStr = String.format("jdbc:google:mysql://%s?user=%s&password=%s", connectionStr, user, pw);
+        Connection conn = DriverManager.getConnection(fullConnectionStr);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 156
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.init()#2{
+                DriverManager.getConnection(String.format("jdbc:mysql://%s:%s/?%s", host, port, params), user, password);
+        DefaultDatabaseLoader defaultDatabaseLoader = new DefaultDatabaseLoader(jdbcConnection, dbName, dbPentahoDW);
+        defaultDatabaseLoader.createDatabase();
+        defaultDatabaseLoader.populateDatabase();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 157
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.getConnection(String url,String user,String password){
+        Connection jdbcConnection = DriverManager.getConnection(url, user, password);
+        return new DatabaseConnection(jdbcConnection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 158
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.createConnection()#0{
+    Connection jdbcConnection = DriverManager.getConnection(
+        PropertiesUtil.JDBC_URL, PropertiesUtil.JDBC_USERNAME,
+        PropertiesUtil.JDBC_PASSWD);
+    return new DatabaseConnection(jdbcConnection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 159
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.loadDataFromFile(String fileName)#3{
+            jdbcConnection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/" + databaseName + "?sessionVariables=FOREIGN_KEY_CHECKS=0", user, password);
+            IDatabaseConnection databaseConnection = new DatabaseConnection(jdbcConnection);
+            databaseConnection.getConfig().setProperty(DatabaseConfig.FEATURE_CASE_SENSITIVE_TABLE_NAMES, Boolean.TRUE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 160
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.testBadConnectionAttribute()#0{
+      Connection c = DriverManager.getConnection(
+          "jdbc:derby://" + getTestConfiguration().getHostName()
+                    + ":" + getTestConfiguration().getPort() + "/badAttribute;upgrade=notValidValue");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 161
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.testDatabaseNotFound()#1{
+      Connection c = DriverManager.getConnection(
+          "jdbc:derby://" + getTestConfiguration().getHostName()
+                    + ":" + getTestConfiguration().getPort() + "/testbase", p);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 162
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.testNoUserOrPassword()#0{
+      Connection c = DriverManager.getConnection(
+          "jdbc:derby://" + getTestConfiguration().getHostName()
+                    + ":" + getTestConfiguration().getPort() + "/testbase");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 163
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.connectToDB(DBStrings dbstrings)#2{
+        Connection conn = DriverManager.getConnection(url,
+                dbstrings.getUsername(), dbstrings.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 164
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.connectToDB(DBStrings dbstrings)#1{
+        return DriverManager.getConnection(url,
+                dbstrings.getUsername(), dbstrings.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 165
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.connectToDB(DBStrings dbstrings)#0{
+        Connection conn = DriverManager.getConnection (url,
+                           dbstrings.getUsername(), dbstrings.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 166
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.testNullDividend()#2{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, SMALL_VALUE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 167
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.testDividend(long dividend)#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, dividend);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 168
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.getConnection(Properties props,Configuration conf){
+        String url = getConnectionUrl(props, conf);
+        LOG.info("Creating connection with the jdbc url: " + url);
+        PropertiesUtil.extractProperties(props, conf);
+        return DriverManager.getConnection(url, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 169
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1180.testSignedNumber(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        for (double d : new double[] { 0.0, 1.0, 123.1234}) {
+            testSignedNumberSpec(conn, d);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 170
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.getConnection()#0{
+    conn = DriverManager.getConnection(QueryUtil.getUrl(this.conf.get(SERVER_NAME)), props).unwrap(PhoenixConnection.class);
+    conn.setAutoCommit(false);
+    setup(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 171
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.main(String[] args)#0{
+      Connection conn = DriverManager.getConnection("jdbc:mdbtools:" + filename);
+      ResultSet rset = conn.getMetaData().getTables(null,null,null,null);
+      while (rset.next())
+        System.out.println(rset.getString("table_name"));
+      rset.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 172
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.open()#0{
+      conn = DriverManager.getConnection(url, username, password);
+      LOG.error(url+","+username+","+password,e);
+      LOG.error(url+","+username+","+password,e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 173
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testNestedConnection(){
+    JdbcPooledConnectionSource pooled = new JdbcPooledConnectionSource(DEFAULT_DATABASE_URL);
+          new JdbcDatabaseConnection(DriverManager.getConnection(DEFAULT_DATABASE_URL));
+      pooled.saveSpecialConnection(conn1);
+      pooled.releaseConnection(conn1);
+      pooled.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 174
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.testReleaseUnknown(){
+    JdbcPooledConnectionSource pooled = new JdbcPooledConnectionSource(DEFAULT_DATABASE_URL);
+          new JdbcDatabaseConnection(DriverManager.getConnection(DEFAULT_DATABASE_URL));
+      pooled.releaseConnection(conn1);
+      pooled.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 175
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class880.init()#0{
+                create = DSL.using(DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD), JOOQ_DIALECT);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 176
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.getConnection()#1{
+        return DriverManager.getConnection((String) url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 177
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.getConnection()#2{
+            String passwd = (String) p.get("password");
+            return DriverManager.getConnection(url, user, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 178
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.setUp(){
+      con = DriverManager.getConnection("jdbc:derby:memory:" + dbName);
+      context = DSL.using(con, SQLDialect.DERBY);
+      jinq = JinqJooqContext.using(context, App.APP);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 179
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.beforeClass()#0{
+    ctx = DSL.using(DriverManager.getConnection("jdbc:h2:mem:test"), SQLDialect.H2);
+    ctx.execute("INSERT INTO orders values (456, 789, '123 Main Street', 'SF', null)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 180
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.setIsolationJDBC(int isolation){
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+        c.setTransactionIsolation(isolation);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 181
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.getConnection(String driverClass,String url,String userName,String password)#2{
+        logger.info("Connecting to database on " + url);
+        conn = DriverManager.getConnection(url, userName, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 182
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.doConnectionSetIsolation(){
+                Connection conn = DriverManager.getConnection("jdbc:default:connection");
+                conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 183
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.connect(String url,String login,String password){
+            logger.info("Connecting: url=" + url + ", userID=" + login);
+            return new Connection(DriverManager.getConnection(url, login, password));
+            throw new DatabaseException("Failed to connect: url=" + url + ", userID=" + login, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 184
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testLpadZeroOutputStringLength()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 185
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testLpadTrucate()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 186
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testMultiByteReverseAscending(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "DESC", s);
+        testReverse(conn, s);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 187
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.nextConnection()#2{
+        conn = DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 188
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.testLpadFillLengthGreaterThanPadLength()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 189
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.test()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 190
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.setUpTestCase()#0{
+        DriverManager.getDriver(
+            "jdbc:proxy:org.apache.drill.jdbc.Driver:jdbc:drill:zk=local" );
+        DriverManager.getConnection( "jdbc:proxy::jdbc:drill:zk=local" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 191
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.doConnectionSetIsolation(){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    conn.setTransactionIsolation(conn.TRANSACTION_SERIALIZABLE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 192
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.createConnection(String dbname,String host,String port,String user,String passwd,boolean profileSQL)#1{
+        String url = makeURL(dbname, host, port, user, passwd, profileSQL);
+        connection = DriverManager.getConnection(url);
+        logger.info("opening ConnectionURL: " + url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 193
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.newInstance(String url){
+        Connection connection = DriverManager.getConnection(url);
+        return new Sql(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 194
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.runTest()#0{
+        Driver d2 = DriverManager.getDriver("jdbc:h2v1_1:mem:test");
+        connection = DriverManager.getConnection("jdbc:h2:mem:test");
+        DriverManager.deregisterDriver(d2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 195
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.DB(String connURL,Properties connProperties)#0{
+        _conn = DriverManager.getConnection(connURL, connProperties);
+        _driverName = DriverManager.getDriver(connURL).getClass().getName();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 196
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.setUp(){
+        conn = DriverManager.getConnection(getUrl());
+        converter = new StringToArrayConverter(conn, ":", PVarchar.INSTANCE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 197
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.setUp()#0{
+        upsertListener = mock(CsvUpsertExecutor.UpsertListener.class);
+        conn = DriverManager.getConnection(getUrl());
+        upsertExecutor = new CsvUpsertExecutor(conn, columnInfoList, preparedStatement, upsertListener, ":");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 198
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.createTenantConnection(String tenantId)#0{
+        return DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 199
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.newInstance(String url,String user,String password){
+        Connection connection = DriverManager.getConnection(url, user, password);
+        return new Sql(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 200
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.newInstance(String url,Properties properties){
+        Connection connection = DriverManager.getConnection(url, properties);
+        return new Sql(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 201
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.initTable()#0{
+        testConn = DriverManager.getConnection(getUrl(), props);
+        assertEquals(Consistency.STRONG, ((PhoenixConnection)testConn).getConsistency());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 202
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.createConnection(String catalog){
+        String url = format("jdbc:presto://%s/%s", server.getAddress(), catalog);
+        return DriverManager.getConnection(url, "test", null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 203
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.createConnection(){
+        String url = format("jdbc:presto://%s", server.getAddress());
+        return DriverManager.getConnection(url, "test", null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 204
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getConnection(String url,String user,String password){
+      return DriverManager.getConnection(url, user, password);
+      LOG.error("%s, %s, %s", e, url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 205
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.getDiskDatabase(String path){
+      return DriverManager.getConnection("jdbc:h2:" + path);
+      throw new RuntimeException(
+          "Could not connect to database: " + path, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 206
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.MatchDatabase(String dbUrl,String dbUser,String dbPassword){
+      conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+      throw new RuntimeException("Could not get database connection to " + dbUrl, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 207
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1070.openConnection(){
+            connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFile.getAbsolutePath());
+            throw new RuntimeException("Error reading sqlite file " + sqliteFile.getAbsolutePath(), e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 208
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1380.shutdownDerby(int nDatabaseType)#1{
+        log.debug("about to shutdonw DerbyDB with: {}", sURL);
+        DriverManager.getConnection(sURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 209
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.createConnection(String catalog,String schema){
+        String url = format("jdbc:presto://%s/%s/%s", server.getAddress(), catalog, schema);
+        return DriverManager.getConnection(url, "test", null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 210
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.open()#0{
+      String url = "jdbc:sqlserver://" + getHostname() + ":" + getPort() + ";databaseName=" + getDatabase() + ";user=" + getUsername() + ";password=" + getPassword();
+        this.connection = DriverManager.getConnection(url, getUsername(), getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 211
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.open()#1{
+      String url = "jdbc:derby:net://" + getHostname() + ":" + getPort() + "/" + getDatabase();
+        connection = DriverManager.getConnection(url, getUsername(), getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 212
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.JdbcNeo4JWriter(JdbcNeo4JDeepJobConfig config)#0{
+        this.conn = DriverManager.getConnection(jdbcNeo4JDeepJobConfig.getConnectionUrl(),
+                jdbcNeo4JDeepJobConfig.getUsername(),
+                jdbcNeo4JDeepJobConfig.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 213
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class860.createConnection(final int index){
+        final DatabasePlatform dbPlatform = DatabasePlatformFactory.FACTORY.getDatabasePlatform();
+        return DriverManager.getConnection(
+                dbPlatform.getUrl(index),
+                dbPlatform.getUser(),
+                dbPlatform.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 214
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.getConnection(final DatabasePlatform dbPlatform){
+        return DriverManager.getConnection(
+                dbPlatform.getUrl(0),
+                dbPlatform.getUser(),
+                dbPlatform.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 215
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.setUp()#3{
+        Properties props = ConnectionUtil.getProperties();
+        connection = DriverManager.getConnection(ConnectionUtil.getURL(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 216
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.setUp(){
+        Properties props = ConnectionUtil.getProperties();
+        connection = DriverManager.getConnection(ConnectionUtil.getURL(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 217
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600._failOver(String serverHost,int serverPort,String databasePath,String dbSubPath,String replicatedDb)#1{
+        util.DEBUG(connectionURL);
+            Connection conn = DriverManager.getConnection(connectionURL);
+            util.DEBUG("failOver Unexpectedly connected as: " + connectionURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 218
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class880.getConnection(String serverHost,int serverPort,String databasePath,String dbSubPath,String replicatedDb){
+        String connectionURL = serverURL( db, serverHost, serverPort );
+        util.DEBUG(connectionURL);
+        return DriverManager.getConnection(connectionURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 219
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.open(String driver,String url,Properties props)#2{
+            Connection connection = DriverManager.getConnection(url, props);
+            ConnectionsAccess.attach(name, connection, url);
+            throw new InitException("Failed to connect to JDBC URL: " + url, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 220
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.open(String driver,String url,String user,String password)#0{
+            Connection connection = DriverManager.getConnection(url, user, password);
+            ConnectionsAccess.attach(name, connection, url);
+            throw new InitException("Failed to connect to JDBC URL: " + url, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 221
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.getConnection()#1{
+      return DriverManager.getConnection(SystemGlobals.getValue(ConfigKeys.DATABASE_CONNECTION_STRING));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 222
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.getConnection(String connectionUrl,String username,String passwd){
+        String url = connectionUrl.substring(connectionUrl.indexOf("//") + 2);
+        connectionUrl = "jdbc:sqlite:" + url.substring(0, url.length() - 2);
+        return DriverManager.getConnection(connectionUrl, username, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 223
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.connectWithOldVersion(String url,Properties info){
+        url = "jdbc:h2v1_1:" + url.substring("jdbc:h2:".length()) +
+        return DriverManager.getConnection(url, info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 224
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.createConnectionWithUserPassword(Properties props)#4{
+        return DriverManager.getConnection(getURL(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 225
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.createConnection()#0{
+            DriverManager.getConnection(
+                getURL(),
+                info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 226
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.creatConnection()#0{
+      con = DriverManager.getConnection(url, userName, password); // ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½urlï¿½ï¿½Ö·ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
+      con.setAutoCommit(true); // ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 227
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.creatConnection()#0{
+      con = DriverManager.getConnection(url);
+      con.setAutoCommit(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 228
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.createOracleConnection(){
+        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//localhost/orcl",
+                "glowroot", "glowroot");
+        insertRecords(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 229
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.createPostgresConnection(){
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/glowroot",
+                "glowroot", "glowroot");
+        insertRecords(connection, "bytea", "text");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 230
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.doConnRollback(){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    conn.rollback();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 231
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.getConnection()#2{
+            connection = DriverManager.getConnection(url);
+            connection.setReadOnly(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 232
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.getConnection()#4{
+            connection = DriverManager.getConnection(url, userName, (password != null) ? password : "");
+            connection.setReadOnly(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 233
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.setUp()#0{
+        firstConnection = DriverManager.getConnection(getConnectionURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 234
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.setUp()#1{
+        secondConnection = DriverManager.getConnection(getConnectionURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 235
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.nextConnection()#5{
+            this.conn =  DriverManager.getConnection(getUrl() + ';' + TENANT_ID_ATTRIB + '=' + "tenant1", props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 236
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.nextConnection()#6{
+            conn = DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 237
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.getConnection()#1{
+        return DriverManager.getConnection(dbUrl(), user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 238
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.getConnection()#2{
+        return DriverManager.getConnection(dbUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 239
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testNullInputStringSB()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 240
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testArrayPrependFunctionNulls1()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTableWithVarArray(conn, "VARCHAR", s, null);
+        PhoenixArray array2 = (PhoenixArray) conn.createArrayOf("VARCHAR", s2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 241
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testCharOfSizeOn(){
+        Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:char_of_size_one", USERNAME, PASSWORD);
+        JdbcTestTemplates.meaningOfOneSizeChar(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 242
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.testInterpretationOfNull(){
+        Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:interpretation_of_null", USERNAME, PASSWORD);
+        JdbcTestTemplates.interpretationOfNulls(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 243
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.getConnection()#0{
+    LOG.debug("Metric store connection url: " + url);
+      return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 244
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.doConnRollback(){
+                Connection conn = DriverManager.getConnection("jdbc:default:connection");
+                conn.rollback();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 245
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.getSQLiteConnection()#1{
+        conn = DriverManager.getConnection("jdbc:sqlite:/" + dbFile.getPath());
+        assertNotNull("Connection created ", conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 246
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.makeConnection(){
+    String connUri = buildConnectionUri(tajoMasterAddress.getHostName(), tajoMasterAddress.getPort(),
+        DEFAULT_DATABASE_NAME);
+    Connection conn = DriverManager.getConnection(connUri);
+    assertTrue(conn.isValid(100));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 247
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.setUpBeforeClass()#1{
+        conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 248
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.setUpBeforeClass()#0{
+        conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 249
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.testSetConsistencyInURL()#3{
+            Connection conn = DriverManager.getConnection(getUrl() + PhoenixRuntime.JDBC_PROTOCOL_TERMINATOR +
+                    "Consistency=TIMELINE", props);
+            assertEquals(Consistency.TIMELINE, ((PhoenixConnection)conn).getConsistency());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 250
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.testGetConnection(){
+    DriverManager.getConnection("jdbc:taju://" + tajoMasterAddress.getHostName() + ":" + tajoMasterAddress.getPort()
+      + "/default");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 251
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.testInterpretationOfNull(){
+        Connection conn = DriverManager.getConnection("jdbc:derby:target/temp_derby;create=true");
+        JdbcTestTemplates.interpretationOfNulls(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 252
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.testCharOfSizeOne(){
+        Connection conn = DriverManager.getConnection("jdbc:derby:target/temp_derby;create=true");
+        JdbcTestTemplates.meaningOfOneSizeChar(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 253
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1080.openConnection()#0{
+        Connection conn = DriverManager.getConnection(url, user, password);
+        connections.add(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 254
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.testUnsignedNumber(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        testUnsignedNumberSpec(conn, 123.1234, 1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 255
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.testGroupByScanWithRegexpSubstr()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+        testGroupByScanWithRegexpSubstr(conn, null, "Report");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 256
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.openConnection(){
+        Connection conn = DriverManager.getConnection(url, USER, PASSWORD);
+        connections.add(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 257
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.initTable()#6{
+            Connection conn = DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 258
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.getConnection()#0{
+    Connection conn = DriverManager.getConnection(props
+        .getProperty("jdbc.url")+"?useUnicode=true&characterEncoding=utf-8", props.getProperty("jdbc.user"), props
+        .getProperty("jdbc.password"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 259
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.openDB(Properties props)#1{
+        return DriverManager.getConnection(getURL(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 260
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.openPrivilegedDB()#0{
+        return DriverManager.getConnection(getURL(), properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 261
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.testSignedNumber(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        testSignedNumberSpec(conn, -123.1234);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 262
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.connectMysql()#2{
+        String password = props.getProperty(PWD); //"";
+        connection = DriverManager.getConnection(url+dbName,userName,password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 263
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.createConnection(){
+    return DriverManager.getConnection(getDSN(), getUserName(), getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 264
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.createConnection(){
+            return DriverManager.getConnection(getUrl(), getUsername(), getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 265
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.getConnection(String connStr,String user,String pass)#1{
+                return new ConnectionProxy(new StateFactory(), DriverManager.getConnection(connStr));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 266
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.getConnection(String dbType,String url,String dbSchema,String username,String password)#1{
+    return new ConnectionProxy(dbType, DriverManager.getConnection(url.trim(), username.trim(), StringUtils.trim(password)), StringUtils.trim(dbSchema));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 267
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1030.getResultSet(){
+    m_statement = DriverManager.getConnection("jdbc:default:connection")
+        .prepareStatement("SELECT * FROM propertyExample()");
+    return m_statement.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 268
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.getResultSet(){
+    m_statement = DriverManager.getConnection("jdbc:default:connection")
+        .createStatement();
+    return m_statement.executeQuery("SELECT * FROM pg_user WHERE "
+        + m_filter);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 269
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1070.openSlaveDB()#1{
+        return DriverManager.getConnection(TestUtil.getURL(getSlaveServer(), getSlavePort()), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 270
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.testConnect()#0{
+                Connection c = jDriver.connect(getConnectionURL(), null);
+                assertFalse(c.isClosed());
+                DriverManager.getConnection(getConnectionURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 271
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.testCatalogsLocal()#5{
+    final Connection connection = DriverManager.getConnection(
+        "jdbc:avatica:remote:factory=" + LJS);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 272
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.getConnection()#1{
+        return DriverManager.getConnection(HSQL_CONNECTION_URL, HSQL_USER, "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 273
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.getHiveConnection(){
+        return DriverManager.getConnection("jdbc:hive2://localhost:10000/default", "hive", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 274
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.connect()#1{
+            log.info("Connecting to " + jdbcUrl);
+            connect = DriverManager.getConnection(jdbcUrl);
+            statement = connect.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 275
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.getcon()#1{
+      con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;DatabaseName=db_Cars","sa","");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 276
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.connect()#0{
+        String dbPath = "jdbc:sqlite:" + dbFile.getAbsolutePath();
+        return DriverManager.getConnection(dbPath);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 277
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.setup()#1{
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test?user=root");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 278
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.createConnection()#0{
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://" + m_dbSvr + ":5432/"+m_dbName, m_dbUser, m_dbPass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 279
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.call(){
+                    DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 280
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.reinitSequences()#0{
+            conn = DriverManager.getConnection(jdbcUrl, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 281
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.createConnection(String dbURL)#4{
+      conn = DriverManager.getConnection(dbURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 282
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.run()#1{
+                    DriverManager.getConnection(url, user, pw);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 283
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.createConnection()#2{
+            Connection conn = DriverManager.getConnection(dbServer, dbLogin, dbPassword);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 284
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.testInvalidPrimaryKeyDecl()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 285
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.testExecute(){
+        remover.setConnection(DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD));
+        remover.setUpgradeDir(UPGRADE_DIR);
+        remover.execute();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 286
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.getConnection(final String url,final String username,final String password,final String driverClass)#0{
+    return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 287
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.getConnection()#1{
+            return DriverManager.getConnection(_jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 288
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.checkConnectionExists(String url,String user,String password){
+    String  driver = JDBC.getDriverString(url);
+      JDBC.loadDriver(driver);
+      DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 289
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.simpleOpenCon(String conString,Properties properties)#1{
+    Connection con = DriverManager.getConnection(conString, properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 290
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.makeConnection(){
+        Connection conn = DriverManager.getConnection(workConf.getDBConnection(),
+                workConf.getDBUsername(),
+                workConf.getDBPassword());
+        Catalog.setSeparator(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 291
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.init()#1{
+    connection = DriverManager.getConnection(URL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 292
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.getConnection()#0{
+        return DriverManager.getConnection(connectionString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 293
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.newConnection()#0{
+      return DriverManager.getConnection("jdbc:derby:memory:derbyDB;territory=en_US");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 294
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.newConnection()#1{
+      return DriverManager.getConnection("jdbc:hsqldb:mem:.");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 295
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.getConnection(){
+        return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 296
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.getConnection(){
+    return DriverManager.getConnection(dbLocation + "?host="+host+ "&user="
+      + dbusername + "&password=" + dbpassword + "&characterEncoding=utf-8&"
+      + "useUnicode=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 297
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.createDB(String dbName){
+      return DriverManager.getConnection("jdbc:derby:"+dbName+";create=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 298
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.getConnection(String url,String user,String password)#1{
+      connection = DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 299
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.getDerbyConnection(String sDatabaseName)#1{
+    Connection connection = DriverManager.getConnection(databaseURL + sDatabaseName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 300
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.getConnection()#1{
+    final Connection c = DriverManager.getConnection( proxoolAlias );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 301
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.connect(String database,String host,int port,String user,String pass)#1{
+            return DriverManager.getConnection(
+                "jdbc:mysql://"+host+":"+port+"/"+database+"?useUnicode=true&characterEncoding=UTF8", user, pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 302
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.getConnection()#1{
+        this.jdbcMasterConnection = DriverManager.getConnection("jdbc:mysql://" + masterServer + "/" + dbRelease, dbUser, dbPassword);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 303
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.shutdownDb(String jvmVersion,String serverHost,int serverPort,String dbPath,String replicatedDb,String clientHost)#2{
+            DriverManager.getConnection(dbURL+";shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 304
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.doshutdown()#1{
+      conn = DriverManager.getConnection(dbURL +
+        ";shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 305
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.getConnection()#1{
+            return DriverManager.getConnection(m_url, m_properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 306
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.tearDown(){
+                DriverManager.getConnection( "jdbc:derby:sessions;shutdown=true" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 307
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.isro(){
+        DriverManager.getConnection(
+        "jdbc:default:connection").getMetaData().isReadOnly();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 308
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.connect()#0{
+            connection = DriverManager.getConnection(protocol + ":" + Mediator.getRuntimeDirectory() + database + ";create=true;"
+                    + "user=" + username + ";password=" + password + "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 309
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.getConnection(String driverClass,String url,String username,String password)#1{
+            return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 310
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.openConnection()#2{
+            conn = DriverManager.getConnection( "jdbc:mysql://localhost:3306/"+dbName, dbUser, dbPassword );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 311
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1430.testCSVUpsertWithAllColumn()#5{
+        PhoenixConnection conn = DriverManager.getConnection(getUrl()).unwrap(PhoenixConnection.class);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 312
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.buildConnection()#1{
+        return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 313
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.getConnection()#1{
+            return DriverManager.getConnection(url, dbProperties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 314
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.getConnection(String dbName)#1{
+      return DriverManager.getConnection(DBCP_DRIVER + dbName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 315
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1070.init()#0{
+    final String dataDirName = ApplicationSettings.instance().getApplicationDataDirectory().getAbsolutePath();
+    connection = DriverManager.getConnection("jdbc:h2:" + dataDirName + "/baralga;DB_CLOSE_ON_EXIT=FALSE", "baralga-user", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 316
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1070.connect(){
+        return DriverManager.getConnection(getJdbcUrl(), getJdbcUsername(), getJdbcPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 317
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.getConnection()#0{
+    conn = DriverManager.getConnection("jdbc:derby:"+DB_NAME+";create=true",SCHEMA_NAME, this.getDbkey());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 318
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.getJdbcConnection(){
+    return DriverManager.getConnection(getProperty(TAJO_JDBC_URI));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 319
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class860.makeConnection(String jdbcURL)#1{
+            return DriverManager.getConnection(jdbcURL,
+                                               Access.getUser(),
+                                               Access.getPassword()) ;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 320
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class860.buildConnection()#0{
+        return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 321
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class860.newCleanup(){
+            DriverManager.getConnection(
+                "jdbc:default:connection");
+        return new LucidDbTestCleanup(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 322
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.ImportConfigurationJDBC(String url,String user,String password,String table){
+        this.connection = DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 323
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.ImportConfigurationJDBC(String url,String table){
+        this.connection = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 324
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.connect(String jdbcUrl,String usr,String psw){
+        return DriverManager.getConnection(jdbcUrl, usr, psw);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 325
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.getConnection()#3{
+              _conn = DriverManager.getConnection (url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 326
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.tearDown()#2{
+            DriverManager.getConnection("jdbc:derby:target/testdb;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 327
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.getConnection(){
+    return DriverManager.getConnection(jdbcUrl, "", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 328
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.shutdownDerby()#1{
+            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 329
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.getConnection(){
+        return DriverManager.getConnection(url, user, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 330
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.getConnection()#0{
+    Connection c = DriverManager.getConnection(
+     "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=c:/tech97.mdb"
+      );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 331
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.startH2()#1{
+        DriverManager.getConnection("jdbc:h2:tcp://localhost/mem:test;USER=foo;PASSWORD=bar");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 332
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.connectToDatabase(String databasePropertiesFile)#1{
+        connection = DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 333
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.buildConnection()#0{
+        return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 334
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.connect(String connectionString,Properties info)#2{
+        currentConnection = DriverManager.getConnection(connectionString, info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 335
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.getConnection()#0{
+        return DriverManager.getConnection(connectionString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 336
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.getConnection(String url){
+    ConnectionInfo info = new ConnectionInfo(url);
+    return DriverManager.getConnection(info.getUri(), info.getProperties());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 337
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.createConnectionWithUserPassword(){
+        return DriverManager.getConnection(
+            getURL(), USER, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 338
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.getJdbcConnection(String url,Properties props)#0{
+        return DriverManager.getConnection(url, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 339
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.connectClients(String URL)#0{
+        Connection conn = DriverManager.getConnection(URL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 340
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.getConnection(String url,String login,String password){
+        return DriverManager.getConnection(url, login, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 341
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.main(String[] args)#3{
+        Connection conn = DriverManager.getConnection(url, "querydsl", "querydsl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 342
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.prepareDerbyDatabase()#4{
+    conn = DriverManager.getConnection(dbURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 343
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.establishConnection()#0{
+      dbConn = DriverManager.getConnection(dbURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 344
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.testSignedNumber(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        testSignedNumberSpec(conn, -123.1234, -1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 345
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class880.DbAdapter()#0{
+    mConn = DriverManager.getConnection("jdbc:sqlite:assets/pokemon.db");
+    mStat = mConn.createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 346
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.getConnection()#0{
+    return DriverManager.getConnection(this.getJDBCUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 347
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.testNoFactory()#4{
+        DriverManager.getConnection("jdbc:avatica:remote:");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 348
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.ljs(){
+    return DriverManager.getConnection("jdbc:avatica:remote:factory=" + QRJS);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 349
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.mjs(){
+    return DriverManager.getConnection("jdbc:avatica:remote:factory=" + MJS);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 350
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.getConn(String dbHost,String dbPort,String dbName,String dbUser,String dbPassword)#1{
+    Connection conn = DriverManager.getConnection(connStr);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 351
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.getMasterConnection()#0{
+            String url = masterURL(replicatedDb);
+            masterConn = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 352
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.initJdbc()#0{
+            conn = (PGConnection) DriverManager.getConnection("jdbc:pgsql://" + this.getHost() + ":" + this.getPort() + "/" + this.getDatabase(), this.getUser(), this.getPass());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 353
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.openConnection(String connString){
+        Connection conn = DriverManager.getConnection( connString );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 354
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.connection()#1{
+            return DriverManager.getConnection("jdbc:h2:~/jool-test", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 355
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.HsqlDB(String uri,String loadFile)#2{
+        this.connection = DriverManager.getConnection(uri, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 356
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.DBWrapper()#1{
+    connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 357
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.setUpConnection()#1{
+    connection = DriverManager.getConnection( "jdbc:drill:zk=local" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 358
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.initDatabase(){
+        connection = DriverManager.getConnection(DATABASE_URL, "sa", "pwd");
+        createTweetTable(connection);
+        populateTweetTable(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 359
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.getConnection()#1{
+            return DriverManager.getConnection(_connectionUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 360
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.getDerbyConnection(){
+        return DriverManager.getConnection( "jdbc:default:connection" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 361
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.testSingleByteInstrAscending(){
+        Connection conn = DriverManager.getConnection(getUrl());
+        initTable(conn, "ASC", "abcdefghijkl","fgh");
+        testInstr(conn, queryToExecute, 6);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 362
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.initDatabase()#0{
+        connection = DriverManager.getConnection(DATABASE_URL, "sa", "pwd");
+        createTweetTable(connection);
+        populateTweetTable(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 363
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.initConenction()#0{
+            return DriverManager.getConnection("jdbc:phoenix");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 364
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.newConnection()#2{
+            return dataSource != null ? dataSource.getConnection() : DriverManager.getConnection(connectionURL, username,
+                                                                                                 password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 365
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.getConnection(String connectionUrl,String username,String passwd){
+        return DriverManager.getConnection(connectionUrl, username, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 366
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.ArchiveVTI(String archiveSuffix){
+        _connection = DriverManager.getConnection( "jdbc:default:connection" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 367
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.getSlaveConnection()#0{
+        this.jdbcSlaveConnection = DriverManager.getConnection("jdbc:mysql://" + slaveServer + "/" + dbRelease, dbUser, dbPassword);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 368
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.connect(String url,String dbuser,String dbpass)#0{
+        conn = DriverManager.getConnection(url, dbuser, dbpass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 369
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.setupDatabase()#2{
+        connection = DriverManager.getConnection("jdbc:h2:mem:simplepush", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 370
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.getConnectionHSQLDB()#0{
+        return DriverManager.getConnection("jdbc:hsqldb:mem:Log4j", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 371
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.getConnectionInternal(String url,String user,String password)#1{
+        return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 372
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.testDifferentOperators(){
+        Connection conn = DriverManager.getConnection("jdbc:derby:target/temp_derby;create=true");
+        JdbcTestTemplates.differentOperatorsTest(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 373
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.getConnection()#0{
+        String url = "jdbc:h2:" + getBaseDir() + "/halt";
+        return DriverManager.getConnection(url, "sa", "sa");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 374
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.HsqlDB(String uri,String databaseDriver,String loadFile)#2{
+        this.connection = DriverManager.getConnection(uri, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 375
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.getSqlSessionFactoryJavaConfig()#2{
+    Connection c = DriverManager.getConnection("jdbc:hsqldb:mem:xmlextref", "sa", "");
+    initDb(c);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 376
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.open(String host,String dbname,String user,String passwd)#0{
+      Connection con = DriverManager.getConnection(dburl, user, passwd);
+      setConnection(con);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 377
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.getFirebird()#0{
+        return DriverManager.getConnection(url, "querydsl", "querydsl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 378
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1270.getConnection(){
+        return DriverManager.getConnection(driverProperties.getDatabaseConnectionUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 379
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1270.getConnection(){
+        return DriverManager.getConnection(this.getUrl(), properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 380
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1270.canon(){
+    return DriverManager.getConnection(CONNECTION_SPEC.url,
+        CONNECTION_SPEC.username, CONNECTION_SPEC.password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 381
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1270.getConnection(String tenantId,boolean testEnabled)#4{
+        return DriverManager.getConnection(url, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 382
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1290.testUngroupedAggregation()#3{
+        Connection conn = DriverManager.getConnection(url, TEST_PROPERTIES);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 383
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1290.singleSpan()#1{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        sink.initForTesting(conn);
+                createAndFlush(sink, traceid, Span.ROOT_SPAN_ID, 10, "root", 12, 13,
+                    "host-name.value", "test annotation for a span");
+        validateTraces(Collections.singletonList(record), conn, traceid);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 384
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.connectJdbc(String driverName,String url,String login,String password)#3{
+      result = DriverManager.getConnection(url, login, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 385
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.createConnection(MolgenisOptions options)#2{
+      Connection conn = DriverManager.getConnection(options.db_uri.trim(), options.db_user.trim(),
+          options.db_password.trim());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 386
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.getConnectionWithProps(Properties props){
+        return DriverManager.getConnection(dbUrl, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 387
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.getConnection(){
+    return DriverManager.getConnection(this.url, this.user, this.pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 388
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.getConnection(final String username,final String password){
+  return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 389
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.JDBCPyramidIO(String driverClassName,String dbUrl)#0{
+    _connection = DriverManager.getConnection(dbUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 390
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.geH2Connection()#0{
+        return DriverManager.getConnection("jdbc:h2:mem:my_test;", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 391
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.openConnection()#2{
+    connection = DriverManager.getConnection("jdbc:mysql://"
+        + this.hostname + ":" + this.port + "/" + this.database,
+        this.user, this.password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 392
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.createConnection()#0{
+        return DriverManager.getConnection("jdbc:h2:~/todo", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 393
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.USQL(String databaseFilename)#2{
+      connection = DriverManager.getConnection("jdbc:sqlite:"+databaseFilename);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 394
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.getConnection(String url,String user,String password){
+        return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 395
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.getConnection(String url,String user,String pass){
+        getLog().debug("[getConnection] url='" + url + "' user='" + user + "' pass='******'");
+        return DriverManager.getConnection(url, user, pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 396
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testAutomaticConversionWhenInsertingString(){
+        Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:auto_conversion", USERNAME, PASSWORD);
+        JdbcTestTemplates.automaticConversionWhenInsertingString(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 397
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.MySQL()#1{
+      return DriverManager.getConnection(db, user, pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 398
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.closeConnection(Connection conn)#4{
+                DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 399
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.HsqlBackend(int siteId)#1{
+            final String connectionURL = "jdbc:hsqldb:mem:x" + String.valueOf(siteId);
+            dbconn = DriverManager.getConnection(connectionURL, "sa", "");
+            dbconn.setAutoCommit(true);
+            dbconn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 400
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.createConnection(){
+        return DriverManager.getConnection("jdbc:h2:mem:", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 401
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.getHsqldbConnection(String user,WebgoatContext context){
+    String url = context.getDatabaseConnectionString().replaceAll("\\$\\{USER\\}", user);
+    return DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 402
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.makeConnection()#2{
+      con = DriverManager.getConnection(url, uid, pwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 403
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.start(){
+        connection = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 404
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.connect()#0{
+        con = DriverManager.getConnection("jdbc:sqlite:plugins/AuthMe/" + database + ".db");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 405
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.ConnectionPool()#2{
+                    conn = DriverManager.getConnection(url, username, password);
+                    pool.add(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 406
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.setUp()#0{
+        conn = DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 407
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.connectDatabase()#3{
+            _con = DriverManager.getConnection(_url, _userName, _password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 408
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.testConnection(String driver,String url,String user,String password)#2{
+            conn = DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 409
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.openConnection(File path,String name,boolean createIfNotExists)#1{
+                sb.append(";ifexists=true");
+            return DriverManager.getConnection(sb.toString(), "SA", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 410
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.open(String url)#0{
+        return DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 411
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.open()#1{
+        connection = DriverManager.getConnection("jdbc:h2:file:" + getFile().getAbsolutePath());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 412
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.shutdown(){
+        DriverManager.getConnection(shutdownDatabaseCommand);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 413
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.getConnection()#1{
+    return DriverManager.getConnection(databaseUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 414
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.PostgresConnector(String connectionURL,String driverName,String username,String password)#1{
+      db = DriverManager.getConnection(connectionURL, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 415
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.getConnection(String url)#1{
+    Connection conn = DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 416
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.getConnection()#1{
+            return DriverManager.getConnection(getJdbcConnectionURL(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 417
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.dump(String fileName)#0{
+        Connection jdbcConnection = DriverManager.getConnection(getUrl(databaseName, port, params), user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 418
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.testCustomAuthentication()#1{
+      DriverManager.getConnection(url, "wronguser", "pwd");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 419
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.createConnection(boolean autocommit)#1{
+        conn = DriverManager.getConnection(this.getConnectionString(), this.getUsername(), this.getPassword());    
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 420
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.getConnection(){
+        return DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 421
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.doCreateConnection(String driver,String url,String username,String password)#1{
+        return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 422
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.doCreateConnection(String driver,String url,String username,String password)#1{
+        return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 423
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.initTable()#1{
+            Connection conn = DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 424
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.open(String dbServer,String port,String databaseName,String dbUserName,String dbPassword)#0{
+            conn = DriverManager.getConnection(connectionString, dbUserName, dbPassword);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 425
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.shutdownEmbeddedDB(String username,String password)#3{
+            DriverManager.getConnection("jdbc:derby:;shutdown=true",
+                                        username,
+                                        password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 426
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.openConnection(){
+                return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 427
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.testSignedNumber()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 428
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.createSQLConnection()#1{
+       con = DriverManager.getConnection("jdbc:hsqldb:file:target/test-classes/hsql/test_dj_db", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 429
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.getConnection(){
+      return DriverManager.getConnection(url,username,password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 430
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.getMySqlConnection()#1{
+      conn = DriverManager.getConnection("jdbc:mysql://" + host + "/"
+          + database + "?" + "user=" + login + "&" + "password="
+          + password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 431
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.getCon(String url,String user,String passwd){
+    Connection theCon = DriverManager.getConnection(url, user, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 432
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.getConnectionWithTracingFrequency(Properties props,Tracing.Frequency frequency)#0{
+        return DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 433
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.setUp()#2{
+        zkQuorum = "localhost:" + hbaseTestUtil.getZkCluster().getClientPort();
+        conn = DriverManager.getConnection(PhoenixRuntime.JDBC_PROTOCOL
+                + PhoenixRuntime.JDBC_PROTOCOL_SEPARATOR + zkQuorum);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 434
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.test_0()#2{
+        DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 435
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.testShutdown()#2{
+            DriverManager.getConnection(
+                    "jdbc:derby:memory:/tmp/myDB;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 436
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.getCon()#1{
+            con = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 437
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.getConnection()#3{
+     con=DriverManager.getConnection(uri,user,password);           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 438
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.getConnection(String driver,String url,String username,String pwd)#1{
+    localConn = DriverManager.getConnection(url, username, pwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 439
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.getConnection(String driver,String connectString)#1{
+    localConn = DriverManager.getConnection(connectString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 440
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.getTransactionIsolationJDBC(){
+        return DriverManager.getConnection("jdbc:default:connection").
+                getTransactionIsolation();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 441
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.QueryExecuter(String connectionString,String username,String password){
+        connection = DriverManager.getConnection(connectionString, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 442
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.nextGenericConnection()#3{
+        conn = DriverManager.getConnection(getUrl(), props);    
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 443
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.connect()#2{
+        this.con = DriverManager.getConnection("jdbc:sqlite:plugins/AuthMe/" + database + ".db");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 444
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.getConnection(String user,String password,String url)#1{
+            cx = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 445
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.createConnection(String driver,String url,String user,String password)#0{
+        return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 446
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.getConnectionByUrl(String dbPoolUrl){
+        return DriverManager.getConnection(dbPoolUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 447
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390._getSQLConnection()#1{
+            return DriverManager.getConnection(db + "?autoReconnect=true&user=" + username + "&password=" + password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 448
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.openConnection()#2{
+            conn = DriverManager.getConnection( "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName, dbUser, dbPassword );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 449
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.tearDownCluster()#1{
+                DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 450
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.setUpH2Conn(){
+        h2Connection = DriverManager.getConnection("jdbc:h2:mem:db" + (h2InstanceCount++), "sa", "");
+        H2Database h2DB = new H2Database(h2Connection, config);
+        h2DB.loadAllTables(joinType);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 451
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.setUp(){
+        connection = DriverManager.getConnection(DATABASE_URL, "sa", "pwd");
+        createPersonTable(connection);
+        populatePersonTable(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 452
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.getNestedConnection(){
+        return DriverManager.getConnection( "jdbc:default:connection" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 453
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.testEncodeNullInput()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 454
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.Condb()#0{
+      con = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 455
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.connDB()#0{
+       conn = DriverManager.getConnection(URL,user,pwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 456
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.main(String[] args)#1{
+        c = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432", "jon", "jon");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 457
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.openConnections()#0{
+        m_conn = DriverManager.getConnection(m_jdbc, m_user, m_password);
+        m_conn.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 458
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.createSqlServerConnection()#1{
+                DriverManager.getConnection("jdbc:sqlserver://localhost", "sa", "password");
+        insertRecords(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 459
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.initialize()#2{
+            connection = DriverManager.getConnection("jdbc:mysql://" + host + "/" + database, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 460
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.newSpecialSQliteIndex()#1{
+    conn = DriverManager.getConnection("jdbc:sqlite::memory:");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 461
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.createConnection(IString connectString)#2{
+      Connection conn = DriverManager.getConnection(connectString.getValue());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 462
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.testNoSCNInConnectionProps()#0{
+        DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 463
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.setUpConnection()#1{
+    connection = DriverManager.getConnection( "jdbc:drill:zk=local" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 464
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.getConnection(ConnectionInfo info)#0{
+        return DriverManager.getConnection(info.getUrl(), info.getParamsAsProperties());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 465
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.beforeClass()#0{
+    start = Main.start(new String[]{Factory.class.getName()});
+    final int port = start.getPort();
+    remoteConnection = DriverManager.getConnection(
+        "jdbc:avatica:remote:url=http://localhost:" + port);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 466
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class980.getConnection(){
+        Connection conn = DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 467
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class980.testConnectWithHash()#0{
+        String pwd = StringUtils.convertBytesToHex(
+                SHA256.getKeyPasswordHash("SA", "sa".toCharArray()));
+        Connection conn2 = DriverManager.getConnection(
+                "jdbc:h2:mem:test;PASSWORD_HASH=TRUE", "sa", pwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 468
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class980.testConnectWithHash()#2{
+        Connection conn = DriverManager.getConnection(
+                "jdbc:h2:mem:test", "sa", "sa");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 469
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.getConnection()#2{
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/simple_service_book", "root", "root");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 470
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.openSQLiteConn()#1{
+      conn=DriverManager.getConnection("jdbc:sqlite:"+FILENAME);    
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 471
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.createConnection(boolean autocommit)#0{
+    conn = DriverManager.getConnection(this.getConnectionString()+";create=true",this.getSchemaName(), this.getPassword());   
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 472
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.getTenantConnection(String tenantId)#0{
+        return DriverManager.getConnection(getUrl(), tenantProps);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 473
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.getConnection(){
+        return DriverManager.getConnection(url, prop);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 474
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.getConnection(Properties info)#4{
+    return DriverManager.getConnection(url, info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 475
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1180.prepareDatabase(String sqlFile,DbImportConfiguration dbImportConfiguration)#2{
+    Statement stmt = DriverManager.getConnection(dbImportConfiguration.getUrl()).createStatement();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 476
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1180.prepareConnection(String dbURL){
+    dbConn = DriverManager.getConnection(dbURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 477
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1180.test()#1{
+            DriverManager.getConnection("jdbc:teiid:Parts@invalidConfig.properties;version=1"); //$NON-NLS-1$
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 478
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1180.createConnection()#1{
+      return DriverManager.getConnection(connectionURL, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 479
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.getConnection()#1{
+      conn = DriverManager.getConnection(CONN_URL, USERNAME, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 480
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.createConnection(String dbSchema){
+        return DriverManager.getConnection(cloudDbUrl, properties.getProperty("db."+dbSchema+".username"),
+                properties.getProperty("db."+dbSchema+".password"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 481
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.getConnection()#0{
+            return DriverManager.getConnection(url(), user(), password());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 482
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.getConnection()#0{
+            Connection conn = DriverManager.getConnection(url, user, password);
+            setAutoCommit(conn, autoCommit);
+            setIsolation(conn, isolation);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 483
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.getConnection(String url,String username,String password)#0{
+        return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 484
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.startServer()#2{
+        conn = DriverManager.getConnection("jdbc:voltdb://localhost:21212", "defaultadmin", "admin");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 485
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1030.getConnection(final String username,final String password){
+        return DriverManager.getConnection(jdbcUrl, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 486
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1030.TableBuilder()#1{
+    m_conn = DriverManager.getConnection("jdbc:postgresql://localhost/thhal", "thhal", null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 487
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1030.run()#0{
+      Connection connection = DriverManager.getConnection(url, user, password);
+        availableConnections.add(new ConnectionData(connection));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 488
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1030.openClient(){
+    connection = DriverManager.getConnection("jdbc:drill:zk=local", null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 489
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1030.getConnection(){
+    return DriverManager.getConnection(this.url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 490
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.getDefaultConnection(){
+    return DriverManager.getConnection( "jdbc:default:connection" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 491
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.finalize()#0{
+                DriverManager.getConnection("jdbc:derby:;shutdown=true").close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 492
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class820.SQLValidator()#1{
+    session=org.h2.engine.Engine.getInstance().createSession(connInfo);
+    this.connection = DriverManager.getConnection(URL,properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 493
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class820.getConnection()#1{
+            return DriverManager.getConnection(jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 494
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class820.checkTableExists(String url,String user,String password,String table)#0{
+      conn = DriverManager.getConnection(url, user, password);
+      return checkTableExists(conn, table);
+      DBUtil.closeConnection(log, conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 495
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class820.getDatabaseConnection()#2{
+      return DriverManager.getConnection(JdbcStudentService.URL, 
+                        JdbcStudentService.USERNAME, 
+                        JdbcStudentService.PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 496
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.createConnection()#0{
+            DriverManager.getConnection(
+                getURL(),
+                new Properties());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 497
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.setUp()#0{
+        Connection conn = DriverManager.getConnection(create_url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 498
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.initializeJdbcDriverAndConnection(ScrutineerCommandLineOptions options)#2{
+            return DriverManager.getConnection(options.jdbcURL, options.jdbcUser, options.jdbcPassword);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 499
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.dropDatabase()#1{
+      DriverManager.getConnection(DROP_DERBY_URL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 500
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.getSlaveConnection()#0{
+            String url = slaveURL(replicatedDb);
+            slaveConn = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 501
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.getConnection()#1{
+        return DriverManager.getConnection(url, properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 502
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.connect(){
+        return DriverManager.getConnection("jdbc:derby:scan;create=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 503
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.createConnection()#2{
+            return DriverManager.getConnection("jdbc:h2:data/data", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 504
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.getConnection(final String sqlDBUrl,final String sqlUser,final String sqlPassword)#3{
+    con = DriverManager.getConnection (dbUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 505
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.connectClients()#2{
+            m_connections[i] = DriverManager.getConnection("jdbc:voltdb://localhost:21212");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 506
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.getConnection()#3{
+      _conn = DriverManager.getConnection(_url, _username, _pw);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 507
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.createDatabase()#0{
+    Connection con = DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 508
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.newConnection(){
+        return DriverManager.getConnection("jdbc:hsqldb:mem:Log4j", USER_ID, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 509
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.getDB2()#1{
+        return DriverManager.getConnection(url, "db2inst1", "a3sd!fDj");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 510
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.setUpBeforeClass()#0{
+      Connection con = DriverManager.getConnection("jdbc:derby:memory:" + dbName + ";create=true");
+      new CreateJdbcDb(con).createDatabase();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 511
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.MySQLDriver(String dbFileNamePrefix,String username,String password)#1{
+          conn = DriverManager.getConnection("jdbc:mysql:" + dbFileNamePrefix,
+              username,                     // username
+              password);                    // password
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 512
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.getTestDbConnection()#2{
+      _connection = DriverManager
+          .getConnection("jdbc:hsqldb:res:metamodel");
+      _connection.setReadOnly(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 513
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testNoConnectionInfo()#1{
+            DriverManager.getConnection(PhoenixRuntime.JDBC_PROTOCOL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 514
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.nextConnection()#2{
+    conn = DriverManager.getConnection(getUrl(), props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 515
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.getConnection(String url,String username,String password,String driver)#2{
+        return DriverManager.getConnection(url, username, myPass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 516
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.startServer()#2{
+        VoltDBConn = DriverManager
+                .getConnection("jdbc:voltdb://localhost:21212");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 517
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.getConnection()#1{
+    Connection conn = DriverManager.getConnection(url, user, password);
+    c = new JDCConnection(conn, this);
+    c.lease();
+    connections.addElement(c);
+    return c.getConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 518
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.getConnection(String p0,String p1,String p2){
+    return DriverManager.getConnection(p0, p1, p2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 519
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.getTenantSpecificConnection(String tenantId)#1{
+        Connection conn = DriverManager.getConnection(getUrl(), tenantProps);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 520
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.getOracle()#0{
+        return DriverManager.getConnection(url, "querydsl", "querydsl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 521
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.getMySQL()#0{
+        return DriverManager.getConnection(url, "querydsl", "querydsl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 522
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.testRegister()#1{
+        DriverManager.getConnection("jdbc:avatica:remote:");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 523
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.shutdownDatabase()#2{
+                DriverManager.getConnection(url + ";shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 524
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.get()#1{
+                return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 525
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.getConnectionH2()#1{
+        return DriverManager.getConnection("jdbc:h2:mem:Log4j", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 526
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.checkInvalidTerritoryFormat(String territory){
+            String url = getReadWriteJDBCURL("fail3");
+            DriverManager.getConnection(url);
+            fail("connection without territory: " + url + "should have failed");
+          assertSQLState("XJ041", se);
+          assertSQLState("XBM0X", se.getNextException());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 527
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.testConnection(String driver,String url,String username,String password)#2{
+        connection = DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 528
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.createConnection(boolean isServer)#2{
+        return DriverManager.getConnection(link,
+                            DBProperties.USER_NAME.toString(), DBProperties.PASSWORD.toString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 529
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.stop(BundleContext context){
+      DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 530
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.openConnection()#3{
+        connection = DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 531
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.getConnection()#2{
+        conn = DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 532
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.getConnection(String dbUrl,Properties properties)#1{
+      pw.println("[NsSampleWork] Thread id - "+thread_id + "; requests database connection, dbUrl ="+dbUrl);
+      conn = DriverManager.getConnection(dbUrl, properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 533
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.triggerDBFault()#6{
+          cons[i] = DriverManager
+              .getConnection("proxool.eucalyptus_walrus:net.sf.hajdbc.sql.Driver:jdbc:ha-jdbc:eucalyptus_walrus");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 534
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.testPlanForOrderByOrGroupByNotUseRoundRobin()#0{
+        Connection conn = DriverManager.getConnection(getUrl(), props);
+        testOrderByOrGroupByDoesntUseRoundRobin(conn, false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 535
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.getConnection()#2{
+          return DriverManager.getConnection(connectionString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 536
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.getConnection()#1{
+            return DriverManager.getConnection(proxoolURL, settings);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 537
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.tearDownAfterClass()#1{
+         DriverManager.getConnection("jdbc:derby:memory:demoDB;drop=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 538
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.shutdownDB(String url)#0{
+            DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 539
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.SQLDB(String name)#0{
+        conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + name, 
+                                           "SA", 
+                                           "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 540
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.getConnection()#2{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/nutch", "nutch", "nutch");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 541
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.createConnection()#1{
+        return DriverManager.getConnection(conf.get("url"), conf.get("user"), conf.get("password"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 542
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.buildConnection(Configuration pluginConfig)#1{
+        String credentials = pluginConfig.getSimple(CREDENTIALS_CONFIGURATION_PROPERTY).getStringValue();
+        return DriverManager.getConnection(url, principal, credentials);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 543
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.init()#0{
+                    setConnection(DriverManager.getConnection(getUrl()));
+                    createTables();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 544
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.createConnection(String dataDir)#1{
+        File dataBase = new File(dataDir, "InvoiceDB.mdb");
+        mConnection = DriverManager.getConnection(connectionString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 545
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.setConnection()#1{
+        conn = DriverManager.getConnection(sUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 546
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.deleteDerby()#1{
+                DriverManager.getConnection("jdbc:derby:" +
+                        getBaseDir() + "/derby/test;shutdown=true", "sa", "sa");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 547
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.openSpatialDataBase(String dbName)#2{
+        return DriverManager.getConnection(databasePath,
+                "sa", "sa");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 548
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.getConnection(String username,String password){
+      return DriverManager.getConnection(url,username,password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 549
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.connectionWithHardCodePassword2(){
+        Connection conn = DriverManager.getConnection("jdbc:mysql://prod.company.com/production", "dba", MYSQL_PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 550
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.connectionWithHardCodePassword1(){
+        Connection conn = DriverManager.getConnection("jdbc:mysql://prod.company.com/production", "root", "lamepassword");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 551
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.establishConnection()#3{
+            connection = DriverManager.getConnection("jdbc:sqlite:db/" + HibernateUtil.getActiveDatabase() + ".cre");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 552
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.retrieveDynamicResults(int number,ResultSet[] rs1,ResultSet[] rs2,ResultSet[] rs3,ResultSet[] rs4)#5{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 553
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.f_testExecuteQueryWithNoDynamicResultSets_callable()#0{
+        Connection connect = DriverManager.getConnection(create_url);
+        CallableStatement cs = connect.prepareCall("CALL RETRIEVE_DYNAMIC_RESULTS(?)");
+        cs.setInt(1, 0);
+            cs.executeQuery();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 554
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.getConnection()#2{
+        return DriverManager.getConnection(jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 555
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.newConnection(){
+    return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 556
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.connect(String path_to_dbfile)#1{
+        String db_url = "jdbc:hsqldb:file:" + path_to_dbfile + ";crypt_key=" + getCryptKey() + ";crypt_type=blowfish";
+        this.aConnection = DriverManager.getConnection(db_url, db_user, db_password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 557
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.test_o()#0{
+        Connection conn = DriverManager.getConnection(jdbcUrl, user, password);
+        OracleConnection oracleConn = (OracleConnection) conn;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 558
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.setUp()#0{
+        conn = DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 559
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.connect(){
+    this.connection = DriverManager.getConnection(info.url, info.username,
+        info.password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 560
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1170.shutdown()#4{
+        DriverManager.getConnection("jdbc:derby:tasks;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 561
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.connect()#1{
+      connection = DriverManager.getConnection(databaseUrl, connectionProperties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 562
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.MySQLConnection(String hostname,int port,String username,String password)#1{
+            this.connection = DriverManager.getConnection("jdbc:mysql://" + hostname + ":" + port,
+                    username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 563
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.initSqlSessionFactory()#3{
+      conn = DriverManager.getConnection("jdbc:hsqldb:mem:heavy_initial_load", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 564
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.Testdb(String dbname)#0{
+          conn = DriverManager.getConnection("jdbc:hsqldb:"
+                                             + "mem:" + dbname ,       // filenames
+                                             "sa",                     // username
+                                             "");                      // password
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 565
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.initMysqlClient(final String jdbcConf)#3{
+            this.connect = DriverManager.getConnection(jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 566
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.getPooledConnection()#0{
+            (JDBCConnection) DriverManager.getConnection(url, connProperties);
+        return createPooledConnection(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 567
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testLpadFillLengthLessThanPadLength()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 568
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.setUp()#3{
+    Connection c = DriverManager.getConnection("jdbc:hsqldb:mem:annots", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 569
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.setUp()#2{
+    Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:attest", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 570
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.getConnection()#2{
+      connection = DriverManager.getConnection(driverUrl, username, password);  
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 571
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.getConnection(){
+        Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES);
+        return DriverManager.getConnection(URL, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 572
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.createConnection(String vdb,String propsFile,String addtionalStuff){
+        return DriverManager.getConnection(url); 
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 573
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.getDriverConnection(String driver,String url,String user,String pass)#1{
+        return DriverManager.getConnection(url, user, pass); 
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 574
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.getNewtMySqlConnection()#1{
+          return DriverManager.getConnection(m_url, m_username, m_password);           
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 575
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.spinUpEmbeddedDB(Path randomTempDirectory,String driver,String protocol)#0{
+        Connection connection = DriverManager.getConnection(protocol + randomTempDirectory.toString() + "/tempDB;create=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 576
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.getConnection(){
+        return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 577
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.makeNewConnection()#0{
+                DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 578
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.connect(){
+        return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 579
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.connection(){
+    return DriverManager.getConnection("jdbc:hsqldb:mem:db", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 580
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.testEncode()#1{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 581
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.setUp()#0{
+        _connection = DriverManager.getConnection(CONNECTION_STRING, USERNAME, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 582
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1090.setUp()#0{
+        conn = DriverManager.getConnection("jdbc:h2:mem:");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 583
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.open()#2{
+      this.c = DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":" + this.port + "/" + this.database + "?autoReconnect=true", this.user, this.password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 584
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.getCycleIsolationJDBC()#1{
+        Connection c = DriverManager.getConnection("jdbc:default:connection");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 585
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.createConnection()#1{
+    Connection conn = DriverManager.getConnection(m_jdbcUrl, m_dbUser, m_dbPass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 586
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.setUp()#0{
+        cx = DriverManager.getConnection("jdbc:h2:target/geodb");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 587
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.call(Context cx,Scriptable scope,Scriptable thisObj,Object[] params)#3{
+        return DriverManager.getConnection((String)params[1]);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 588
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.openConnection()#0{
+    return DriverManager.getConnection(connectionString, DATABASE_USERNAME, DATABASE_PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 589
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.getConnection()#1{
+        return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 590
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.setUp()#4{
+    conn = DriverManager.getConnection("jdbc:hsqldb:mem:mirage_test", "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 591
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.stop(BundleContext context){
+      DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 592
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.shutdown(String catalog)#1{
+      DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 593
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.reset(String catalog)#1{
+      DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 594
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.getConnection(){
+        return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 595
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.getConnection()#1{
+                return DriverManager.getConnection(dbUrl, dbProperties);
+                throw BatchMessages.MESSAGES.failToObtainConnection(e, dbUrl, dbProperties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 596
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.getConnection()#4{
+            conn = DriverManager.getConnection(jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 597
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.tearDownJDBC()#3{
+      DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 598
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.createConnection(Configuration conf){
+    return DriverManager.getConnection(getCatalogUri(), this.connectionId, this.connectionPassword);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 599
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.dropDerbyDB()#1{
+      DriverManager.getConnection("jdbc:derby:memory:coopr;drop=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 600
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.getConnection(){
+  return DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 601
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.setUp()#1{
+    inConnection = DriverManager.getConnection("jdbc:hsqldb:mem:originalDb", "SA", "");
+    inConnection.createStatement().executeUpdate(CREATE_STATEMENT);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 602
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.setUp()#2{
+    outConnection = DriverManager.getConnection("jdbc:hsqldb:mem:copiedDb", "SA", "");
+    outConnection.createStatement().executeUpdate(CREATE_STATEMENT);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 603
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.getConnection(String userName,String passWord)#1{
+    Connection c = DriverManager.getConnection(dbURL, userName, passWord);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 604
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.createConnection(String user,String password)#0{
+    LOGGER.info("url: " + url);
+    return DriverManager.getConnection(url, oProps);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 605
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.shouldAttachDetachConnection()#2{
+        Connection connection = DriverManager.getConnection(url(), user(), password());
+        Base.attach(connection);
+        a(Base.connection()).shouldNotBeNull();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 606
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1080.stop(BundleContext context)#2{
+            DriverManager.getConnection(getDerbyJDBC_Shutdown("db"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 607
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1080.setupHive()#1{
+        connection = DriverManager.getConnection("jdbc:hive2://", "", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 608
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1080.openConnection(){
+        return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 609
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.createConnection()#0{
+    Connection conn = DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 610
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.createConnection()#2{
+      conn = DriverManager.getConnection("jdbc:derby:memory:chapter02DB;create=true", "APP", "APP");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 611
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.getConnection()#1{
+    return ( auditDs != null ? auditDs.getConnection() : DriverManager.getConnection( AuditConnection.DRIVER_URL,
+        AuditConnection.DRIVER_USERID, AuditConnection.DRIVER_PASSWORD ) );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 612
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.CandlepinLiquibaseResource(String changelogFile)#1{
+            String connectionUrl = getJdbcUrl("testing");
+            Connection jdbcConnection = DriverManager.getConnection(connectionUrl, "sa", "");
+            DatabaseConnection conn = new JdbcConnection(jdbcConnection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 613
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.DatabaseStoredIndexTest(){
+      connection = DriverManager.getConnection(DB_URL, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 614
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testExternallyConfiguredLog4J()#2{
+    Connection con = DriverManager.getConnection("jdbc:p6spy:h2:mem:p6spy", "sa", null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 615
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.testUnsignedNumber()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 616
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testLpadFillLengthEqualPadLength()#0{
+        Connection conn = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 617
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.connectToEPSGdatabase()#3{
+            EPSGdbConn = DriverManager.getConnection( epsgPath );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 618
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getConnection()#0{
+        return DriverManager.getConnection(url, user, pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 619
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.internalGetConnection(String userName,String password){
+        return DriverManager.getConnection(this.url, userName, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 620
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.getDBConn(){
+        return DriverManager.getConnection(DBURL,USERNAME,PASSWORD);  
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 621
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.getConnectionWithProps(String url,Properties props){
+        return DriverManager.getConnection(url, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 622
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.foo(){
+        DriverManager.getConnection("foo");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 623
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.start(BundleContext context)#1{
+        DriverManager.getConnection(getDerbyJDBC_Create("db"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 624
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.using(String url)#1{
+            Connection connection = DriverManager.getConnection(url);
+            return using(new DefaultConnectionProvider(connection, true), JDBCUtils.dialect(connection));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 625
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.getConnection()#4{
+        conn = DriverManager.getConnection(connectionString, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 626
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.prepareDerbyInputDatabase()#4{
+      conn = DriverManager.getConnection(dbURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 627
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1210.getCon(){
+    Connection theCon = DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 628
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.getH2()#1{
+        return DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 629
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.getHSQL()#1{
+        return DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 630
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.buildConnection()#2{
+        return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 631
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.createConnection(String url,String user,String password)#2{
+            return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 632
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.fromParams(ConfigurationParams params){
+    String connectionString = params.getString(TransformationsConfigurationParametersNames.CONNECTION_STRING_LIN_REUTERS_PARAMETER_NAME);
+    Connection connection = DriverManager.getConnection(connectionString);
+    return new LinReutersFromDBLexicalResource(
+        connection,
+        params.getInt(TransformationsConfigurationParametersNames.LIMIT_LIN_REUTERS_PARAMETER_NAME)
+        );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 633
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.getDefaultConnection(){
+        return DriverManager.getConnection( "jdbc:default:connection" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 634
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.open()#0{
+            return DriverManager.getConnection("jdbc:h2:mem:" + name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 635
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.getResultConnection()#0{
+        return DriverManager.getConnection("jdbc:h2:./data/results");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 636
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.getCubrid()#1{
+        return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 637
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.getPostgreSQL()#1{
+        return DriverManager.getConnection(url, "querydsl", "querydsl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 638
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.getConnection()#1{
+      return DriverManager.getConnection(instance.url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 639
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.connect(String userName,String password,String fullurl,DriverType driver)#1{
+  Connection conn = DriverManager.getConnection(fullurl, userName,
+      password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 640
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.getConfigConnection(){
+        return DriverManager.getConnection("jdbc:h2:mem:Log4j", USER_ID, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 641
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.SQLValidator()#3{
+    this.connection = DriverManager.getConnection(URL,properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 642
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.doGetConnection(Properties properties)#1{
+    Connection connection = DriverManager.getConnection(url, properties);
+    configureConnection(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 643
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.getConnection(String username,String password){
+    return DriverManager.getConnection(this.url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 644
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.getConnectionFromDriverManager()#0{
+      return DriverManager.getConnection(
+        "jdbc:postgresql://" + loginCredentials.getHost() + "/"
+        + loginCredentials.getDatabase(),
+          // + "?logLevel=2"
+          loginCredentials.getUser(),
+          loginCredentials.getPassword()
+        );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 645
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.tearDown(){
+      DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 646
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.testDefaultConn(){
+        DriverManager.getConnection("jdbc:default:connection");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 647
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.getConnection()#1{
+      connection = DriverManager.getConnection( getConnectionString() );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 648
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.getDBConnection(){
+        return DriverManager.getConnection( jdbcUrl );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 649
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1380.getResultSetMetaData(String query){
+        return new RSMDWrapper( DriverManager.getConnection( "jdbc:default:connection" ), query );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 650
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.urlTest3()#0{
+            Connection conn = DriverManager.getConnection("jdbc:hbql;maxtablerefs=44");
+            ConnectionImpl connimpl = (ConnectionImpl)conn;
+            maxrefs = connimpl.getHConnectionImpl().getMaxTablePoolReferencesPerTable();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 651
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.JdbcDAO(final String location,final JPasswordField pfield)#0{
+      conn = DriverManager.getConnection(location);
+    DatabaseLocationParser dlp = new DatabaseLocationParser(location);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 652
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.JdbcDAO(final String location,final JPasswordField pfield)#1{
+    conn = DriverManager.getConnection(dlp.getConnectionString(),
+                                       dlp.getUsername(),
+                                       new String(pfield.getPassword()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 653
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.closeHibernateDerby()#2{
+            DriverManager.getConnection(JDBC_DERBY_URL + ";shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 654
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.setUp()#0{
+        final String jdbcUrl = constructJdbcUrl();
+        logger.debug("Using JDBC URL: " + jdbcUrl);
+        DriverManager.getConnection(jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 655
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.main(String[] args)#1{
+    Connection con = DriverManager.getConnection("jdbc:hive2://localhost:10000/default", "hive", "");
+    createTables(con);
+    runQueries(con, numberOfQueryIterations);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 656
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.contextDestroyed(ServletContextEvent sce)#1{
+                DriverManager.getConnection( derbyUrl + ";shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 657
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.getBestRowId(String schema,String tableName,int scope,String nullable,ResultSet[] rs)#2{
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 658
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.initialValue()#0{
+                return DriverManager.getConnection(connectionURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 659
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.getConnection(){
+        return DriverManager.getConnection(dsn, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 660
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.checkBadUrl(String url)#1{
+      DriverManager.getConnection(url, "", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 661
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.getConnection()#1{
+      conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 662
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.setup()#0{
+        this.conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/orbit", "postgres", null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 663
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.openConn()#0{
+            this.connection = DriverManager.getConnection(toConnString(), username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 664
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.getConfigConnection(){
+        return DriverManager.getConnection("jdbc:hsqldb:mem:Log4j;ifexists=true", USER_ID, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 665
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.openConnection(String driver,String url,String username,String password)#0{
+            attach(DriverManager.getConnection(url, username, password));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 666
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.createConnection()#1{
+                return DriverManager.getConnection(_connectUri);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 667
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.makeConnection(String url,Properties connectionProps)#0{
+      return DriverManager.getConnection( url, connectionProps );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 668
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.connectToDB(String host,int port,String db,String user,String pass)#0{
+            conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db, user, pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 669
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.shutdown(){
+            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 670
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.getConnection()#2{
+        conn = DriverManager.getConnection(dbUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 671
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.cleanup()#1{
+      DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 672
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.getConnection()#0{
+                String pass = cfg.get ("jdbc.password");
+                return DriverManager.getConnection(url,user,pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 673
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.getDerby()#0{
+        return DriverManager.getConnection(url, "", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 674
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.getJdbcConnection(){
+    String password = getProperty(HIVESERVER_PASSWORD);
+    return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 675
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.getConnection(String url)#1{
+      return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 676
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.createConnection(String driver,String url,String user,String password)#1{
+        return DriverManager.getConnection(url, user, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 677
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.load(String filename)#1{
+      connection = DriverManager.getConnection("jdbc:sqlite:" + filename);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 678
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.getConnection(){
+            return DriverManager.getConnection(Support_SQL.sqlUrl,
+                    Support_SQL.sqlLogin, Support_SQL.sqlPassword);
+            throw new SQLException("Failed to connect. url=" + Support_SQL.sqlUrl + ", sqlLogin="
+                    + Support_SQL.sqlLogin + ", sqlPassword=" + Support_SQL.sqlPassword, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 679
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.createNewBootstrapConnection(){
+    _bootstrapConn = DriverManager.getConnection(_url);
+    _bootstrapConn.setAutoCommit(_autoCommit);
+    _bootstrapConn.setTransactionIsolation(_isolationLevel);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 680
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.createCmsConn()#2{
+    connection = DriverManager.getConnection(conn_url,username,password ); 
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 681
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.deleteDatabase(String name)#0{
+            DriverManager.getConnection(shutdownUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 682
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class990.getConnection()#1{
+            return DriverManager.getConnection(url_, user_, password_);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 683
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class990.getConnection(LogChannelInterface log,DatabaseMeta dbMeta,String partitionId,int initialSize,int maximumSize)#3{
+    return DriverManager.getConnection( "jdbc:apache:commons:dbcp:" + buildPoolName( dbMeta, partitionId ) );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 684
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class990.createTemplate(String url){
+        Connection conn = DriverManager.getConnection(url, "auser", "sa");
+        SingleConnectionDataSource dataSource = new SingleConnectionDataSource(conn, false);
+        return new JdbcTemplate(dataSource);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 685
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class990.nextConnection()#1{
+        Connection con = DriverManager.getConnection(DatabaseCreator.nextUrl());
+        DatabaseCreator.createDatabase(con);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 686
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class990.afterClassDihJdbcTest(){
+      DriverManager.getConnection("jdbc:derby:;shutdown=true;territory=en_US");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 687
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.setUpConnection()#0{
+    connection = DriverManager.getConnection( "jdbc:drill:zk=local" );
+    dbMetadata = connection.getMetaData();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 688
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.installRoutines(){
+    Connection conn = DriverManager.getConnection("jdbc:default:connection");
+    TestRoutines.installRoutines(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 689
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.connect()#3{
+                this.connection = DriverManager.getConnection(this.url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 690
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.openConnection(boolean autocommit)#4{
+            DriverManager.getConnection(connUrl, user, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 691
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.getConnection(){
+        final String url = "jdbc:h2:" + getBaseDir() +
+        Connection conn = DriverManager.getConnection(url, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 692
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.getTeradata()#0{
+        return DriverManager.getConnection("jdbc:teradata://teradata/dbc", "querydsl", "querydsl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 693
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.getSQLite()#1{
+        return DriverManager.getConnection("jdbc:sqlite:target/sample.db");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 694
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.getConnection()#0{
+            DriverShim.loadAndRegister(getDriver(), _opts
+                    .getValue(InstallOptions.DATABASE_DRIVERCLASS));
+                    DriverManager.getConnection(_opts
+                            .getValue(InstallOptions.DATABASE_JDBCURL), _opts
+                            .getValue(InstallOptions.DATABASE_USERNAME), _opts
+                            .getValue(InstallOptions.DATABASE_PASSWORD));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 695
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.getMemoryConnection()#0{
+            return DriverManager.getConnection(dbMap.getConnectionString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 696
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.newConnection(){
+        return DriverManager.getConnection(H2_URL, USER_ID, PASSWORD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 697
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.dropInMemoryDb()#0{
+        StringBuffer sb = constructUrl().append(";drop=true");
+            DriverManager.getConnection(sb.toString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 698
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.createConnection()#2{
+                return DriverManager.getConnection(_jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 699
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.getConnection()#0{
+      return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 700
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.getConnection()#1{
+      return DriverManager.getConnection(url, getUser(), getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 701
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.prepareConnection(){
+    dbConn = DriverManager.getConnection(dbURL, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 702
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.getConnection(){
+      return DriverManager.getConnection( jdbcConnectString, jdbcProperties );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 703
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.getConnection(){
+        return DriverManager.getConnection(getURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 704
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.prepareDerbyDatabase()#1{
+    conn = DriverManager.getConnection(dbURL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 705
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.bad14()#1{
+        return DriverManager.getConnection("url", "user", pwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 706
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.getConnection()#6{
+                _connection = DriverManager.getConnection(_url, _username, _password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 707
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.getConnection()#3{
+      conn = DriverManager.getConnection(url, this.userName, this.password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 708
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.open()#3{
+        userDB = DriverManager.getConnection(USER_DB_URI, "webgoat_admin", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 709
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.createConnection(Configuration conf){
+    return DriverManager.getConnection(getCatalogUri());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 710
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getConnection(){
+        return DriverManager.getConnection(uri, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 711
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getJdbcConnection()#0{
+        return DriverManager.getConnection("jdbc:hsqldb:mem:testdb");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 712
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.onShutdown(ApplicationEvent event)#1{
+        DriverManager.getConnection("jdbc:derby:;shutdown=true");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 713
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getHiveConnection(){
+        return DriverManager.getConnection("jdbc:hive2:///", "", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 714
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.testInvalidateConnection()#1{
+        Connection conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:test");
+        assertNotNull(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 715
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.getForeignConnection(String connectionURL){
+        return DriverManager.getConnection( connectionURL );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 716
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.HSQLDatabase(String databaseName)#3{
+      conn = DriverManager.getConnection(jdbcURL + ";create=true", 
+          HSQL_USER, HSQL_PASS);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 717
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.JDBCConnection()#0{
+    this.conn = DriverManager.getConnection(PropertiesUtil.JDBC_URL, PropertiesUtil.JDBC_USERNAME, PropertiesUtil.JDBC_PASSWD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 718
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.getConnection()#0{
+        return DriverManager.getConnection(getUrl(), getUserName(), getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 719
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360._getConnection(){
+    return DriverManager.getConnection(
+      "jdbc:hsqldb:file:" + _fileName, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 720
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.connectDatabase()#1{
+            _con = DriverManager.getConnection(_url, _userName, _password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 721
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.getNewConnection()#1{
+      return DriverManager.getConnection(configuration.getDatabaseUrl(),
+              configuration.getDatabaseUser(),
+              configuration.getDatabasePassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 722
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.getConnection()#0{
+                  connection = DriverManager.getConnection(getUrl());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 723
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.getConnection(String driver,String jdbcURL,String user,String pass)#0{
+    return DriverManager.getConnection(jdbcURL, user, pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 724
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.runscript(File scriptFile)#2{
+            Connection connection = DriverManager.getConnection(__dbURL, "", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 725
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.createConnection()#0{
+      return DriverManager.getConnection("jdbc:mysql://"
+          + plugin.MySqlDir + "", "" + plugin.MySqlUser + "", ""
+          + plugin.MySqlPass + "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 726
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.beforeClass()#4{
+        connection = DriverManager.getConnection("jdbc:h2:mem:events-jpa-quickstart", "sa", "sa");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 727
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.call(){
+                return DriverManager.getConnection(dbURL, info);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 728
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.getConn()#1{
+      m_conn = DriverManager.getConnection(m_url, m_username, m_passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 729
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.getMySQLConnection()#0{
+    return DriverManager.getConnection(url, id, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 730
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.run()#0{
+                            conn = DriverManager.getConnection(
+                                    url, user, password);
+                            work(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 731
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.test1()#1{
+        c = DriverManager.getConnection( "mongodb://localhost/test" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 732
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.test1()#3{
+            c = DriverManager.getConnection( "mongodb://localhost/test" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 733
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.urlTest1()#1{
+            Connection conn = DriverManager.getConnection("jdbc:hbql;unknown=44");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 734
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.HSQLDriver(String dbFileNamePrefix,String username,String password)#0{
+        conn = DriverManager.getConnection("jdbc:hsqldb:" + dbFileNamePrefix,
+            username,                     // username
+            password);                    // password
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 735
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.getConnection()#1{
+            return DriverManager.getConnection(url, user, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 736
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.getConnection(){
+    return DriverManager.getConnection(
+        _tool.getDbServerHost() + "/" + _tool.getTestCatalog(), _tool.getUser(), _tool.getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 737
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.getConnection()#0{
+      return DriverManager.getConnection(
+          "jdbc:mysql://127.0.0.1:3306/showcase", "root", "123456");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 738
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.getConnection()#2{
+      return DriverManager.getConnection(
+          "jdbc:mysql://127.0.0.1:3306/showcase", "root", "root");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 739
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.getCon()#1{
+      con=DriverManager.getConnection(url,user,password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 740
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.MSSqlIO()#2{
+      m_connection = DriverManager.getConnection(url, "sa", "admin");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 741
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.createConnection()#1{
+    return DriverManager.getConnection(URL);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 742
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.getConnection(){
+        return DriverManager.getConnection("jdbc:apache:commons:dbcp:test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 743
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.createConnection(String testDB)#1{
+    return DriverManager.getConnection(
+            "jdbc:mysql://"+ MySqlTestConfig.host + ":" +
+                    MySqlTestConfig.port + "/" + testDB +
+            "?elideSetAutoCommits=true" +
+            "&useLocalTransactionState=true" +
+            "&allowMultiQueries=true" +
+            "&useLocalSessionState=true",
+            MySqlTestConfig.user, MySqlTestConfig.pass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 744
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.openConn(boolean autoCommit)#2{
+      conn = DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 745
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.connectToRemoteRepository(){
+        Connection connection = DriverManager.getConnection(getRepositoryUrl(), driverProperties);
+        assertNotNull(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 746
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.shouldNotConnectWithInvalidRepositoryName(){
+        DriverManager.getConnection(getContextPathUrl() + "/dummy", driverProperties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 747
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.getConnectionWithProps(String url,Properties props){
+    return DriverManager.getConnection(url, props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 748
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.getConnection(final String username,final String password)#1{
+        return DriverManager.getConnection(jdbcUrl, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 749
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.openConnection(){
+                return DriverManager.getConnection(url, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 750
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.setup()#0{
+        JdbcDataSource ds = new JdbcDataSource();
+    ds.setURL("jdbc:h2:./h2/foo");
+        dbProperties.put(TransactionalDriver.XADataSource, ds);
+        conn2 = DriverManager.getConnection(url, dbProperties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 751
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.setUp()#3{
+        Connection connection = DriverManager.getConnection(Framework.getProperty(URL_PROPERTY));
+            doOnAllTables(connection, null, null, "DROP TABLE [%s]"); // no CASCADE...
+            checkSupports(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 752
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.open()#0{
+        this.connection = DriverManager.getConnection(url, getUsername(), getPassword());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 753
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1420.getConnection()#0{
+            connStr=connStr.trim();
+            Connection conn=DriverManager.getConnection(connStr, userName, userPass);
+}
+    
+   
+  
+   
+
+
+
+
+

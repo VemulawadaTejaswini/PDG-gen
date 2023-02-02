@@ -1,0 +1,242 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.paintGradient(Graphics2D g2d,Color gradientStartColor,Color gradientEndColor,int length,boolean vertical)#1{
+            if(vertical) g2d.setPaint(new GradientPaint(0, 0, gradientStartColor, 0, length, gradientEndColor));
+            else g2d.setPaint(new GradientPaint(0, 0, gradientStartColor, length, 0, gradientEndColor));
+            g2d.fill(g2d.getClip());
+            g2d.setPaint(oldPainter);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.drawSomething(final BufferedImage image){
+        Graphics2D g = image.createGraphics();
+            int width = image.getWidth();
+            int height = image.getHeight();
+            g.clearRect(0, 0, width, height);
+            g.setPaint(new LinearGradientPaint(0, 0, width, 0, new float[] {0.2f, 1}, new Color[] {new Color(0x0, true), Color.BLUE}));
+            g.fillRect(0, 0, width, height);
+            g.setPaint(new LinearGradientPaint(0, 0, 0, height, new float[] {0.2f, 1}, new Color[] {new Color(0x0, true), Color.RED}));
+            g.fillRect(0, 0, width, height);
+            g.setPaint(new LinearGradientPaint(0, 0, 0, height, new float[] {0, 1}, new Color[] {new Color(0x00ffffff, true), Color.WHITE}));
+            g.fill(new Polygon(new int[] {0, width, width}, new int[] {0, height, 0}, 3));
+            g.dispose();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.fillDomainGridBand(Graphics2D g2,XYPlot plot,ValueAxis axis,Rectangle2D dataArea,double start,double end){
+        double x1 = axis.valueToJava2D(start, dataArea,
+                plot.getDomainAxisEdge());
+        double x2 = axis.valueToJava2D(end, dataArea,
+                plot.getDomainAxisEdge());
+        if (plot.getOrientation() == PlotOrientation.VERTICAL) {
+            band = new Rectangle2D.Double(Math.min(x1, x2), dataArea.getMinY(),
+                    Math.abs(x2 - x1), dataArea.getWidth());
+        }
+        else {
+            band = new Rectangle2D.Double(dataArea.getMinX(), Math.min(x1, x2),
+                    dataArea.getWidth(), Math.abs(x2 - x1));
+        }
+        Paint paint = plot.getDomainTickBandPaint();
+        if (paint != null) {
+            g2.setPaint(paint);
+            g2.fill(band);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.paintTexture(String textureFile,Shape shape)#1{
+        if (textureFile != null) {
+            img = ResourcesManager.getResource(textureFile);
+
+            if (img != null) {
+                Rectangle2D replicationPath = new Rectangle2D.Double(0,
+                        0,
+                        img.getWidth(),
+                        img.getHeight());
+                TexturePaint texture = new TexturePaint(img, replicationPath);
+                g2.setPaint(texture);
+                g2.fill(shape);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.primitivePaint(Graphics2D g2d){
+        if (backgroundPaint != null) {
+            g2d.setPaint(backgroundPaint);
+            g2d.fill(g2d.getClip()); // Fast paint for huge background area
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.paintComponent(final Graphics g)#1{
+                g2d.setPaint ( new LinearGradientPaint ( 0, 0, 0, getHeight (), new float[]{ 0f, 0.4f, 0.6f, 1f },
+                        new Color[]{ StyleConstants.bottomBgColor, Color.WHITE, Color.WHITE, StyleConstants.bottomBgColor } ) );
+                g2d.fill ( g2d.getClip () != null ? g2d.getClip () : getVisibleRect () );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.fillPaintedShape(Graphics2D graphics,Shape shape,Paint paint,Rectangle2D paintBounds)#2{
+    AffineTransform tx = AffineTransform.getScaleInstance(
+        1.0/paintBounds.getWidth(), 1.0/paintBounds.getHeight());
+    tx.translate(-paintBounds.getX(), -paintBounds.getY());
+    graphics.fill(tx.createTransformedShape(shape));
+    if (paintOld != null) {
+      graphics.setPaint(paintOld);
+    }
+    graphics.setTransform(txOrig);
+}
+    
+   
+  
+   
+
+
+
+
+

@@ -1,0 +1,4934 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testPayload(){
+    Statement s = conn.createStatement();
+    assertFalse(s.execute("SET PAYLOAD x y"));
+    assertTrue(s.execute("SELECT commandpayload('x')"));
+    ResultSet rs = s.getResultSet();
+    assertTrue(rs.next());
+    String str = rs.getString(1);
+    assertEquals("y", str);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.testSetNonString(){
+    Statement s = conn.createStatement();
+    assertFalse(s.execute("SET extra_float_digits TO 2"));
+    assertTrue(s.execute("SHOW extra_float_digits"));
+    ResultSet rs = s.getResultSet();
+    assertTrue(rs.next());
+    assertEquals("2", rs.getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testSetEmptyLiteral(){
+    Statement s = conn.createStatement();
+    assertFalse(s.execute("SET min_client_messages TO ''"));
+    assertTrue(s.execute("SHOW min_client_messages"));
+    ResultSet rs = s.getResultSet();
+    assertTrue(rs.next());
+    assertEquals("", rs.getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.testDistinctPaddingInVarcharIgnored(){
+    Statement s = createStatement();
+    s.execute("insert into v values ('hello      ')");
+    assertRowCount(1, s.executeQuery("select distinct v from v"));
+    JDBC.assertSingleValueResultSet(s.executeQuery("select {fn length(c)} from (select distinct v from v) as t(c)"), "5");
+    s.execute("drop table v");
+    s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testShowPlan(){
+    Statement s = conn.createStatement();
+    assertFalse(s.execute("SET SHOWPLAN ON"));
+    assertTrue(s.execute("SELECT 1"));
+    assertTrue(s.execute("SHOW PLAN"));
+    ResultSet rs = s.getResultSet();
+    assertTrue(rs.next());
+    String str = rs.getString(1);
+    assertTrue(str.startsWith("ProjectNode\n  + Relational Node ID:0\n  + Output Columns:expr1 (integer)\n  + Statistics:\n    0: Node Output Rows: 1"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.createTestTable(String name,String signature,String src){
+        Statement s = createStatement();
+        s.execute(CT+name+signature);
+        s.execute(insertFrom(name, src));
+        s.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testIdentityIndexUsage()#0{
+        Connection conn = getConnection("optimizations");
+        Statement stat = conn.createStatement();
+        stat.execute("insert into test values()");
+        ResultSet rs = stat.executeQuery("explain select * from test where a = 1");
+        rs.next();
+        assertContains(rs.getString(1), "PRIMARY_KEY");
+        stat.execute("drop table test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.testPrepareExecute(Connection conn){
+        Statement stat = conn.createStatement();
+        stat.execute("prepare test(int, int) as select ?1*?2");
+        ResultSet rs = stat.executeQuery("execute test(3, 2)");
+        rs.next();
+        assertEquals(6, rs.getInt(1));
+        stat.execute("deallocate test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testCacheHint(){
+    Statement s = conn.createStatement();
+    s.execute("set showplan on");
+    ResultSet rs = s.executeQuery("/* cache */ select 1");
+    assertTrue(rs.next());
+    s.execute("set noexec on");
+    rs = s.executeQuery("/* cache */ select 1");
+    assertTrue(rs.next());
+    rs = s.executeQuery("select 1");
+    assertFalse(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testNoExec(){
+    Statement s = conn.createStatement();
+    s.execute("set noexec on");
+    ResultSet rs = s.executeQuery("select * from all_tables");
+    assertFalse(rs.next());
+    s.execute("SET NOEXEC off");
+    rs = s.executeQuery("select * from all_tables");
+    assertTrue(rs.next());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testCacheHintTtl()#0{
+    Statement s = conn.createStatement();
+    s.execute("set showplan on");
+    ResultSet rs = s.executeQuery("/*+ cache(ttl:50) */ select 1");
+    assertTrue(rs.next());
+    s.execute("set noexec on");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.doRun(Connection cx){
+                Statement st = open(cx.createStatement());
+                st.execute(log(sql, LOG));
+                st.execute(log(sql, LOG));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.createSchemaObjects(Connection conn){
+    Statement stmt = conn.createStatement ();
+      stmt.execute ("drop table jdbc_demo_lob_table");
+    stmt.execute (sql);
+    stmt.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.decorateSQL(Statement s){
+                for (int i = 0; i < PROCEDURES.length; i++) {
+                    s.execute(PROCEDURES[i]);
+                }
+                for (int i = 0; i < TABLES.length; i++) {
+                    s.execute(TABLES[i][1]);
+                }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.decorateSQL(Statement s){
+                for (int i = 0; i < ROUTINES.length; i++) {
+                    s.execute(ROUTINES[i]);
+                }
+                for (int i = 0; i < TABLES.length; i++) {
+                    s.execute(TABLES[i][1]);
+                }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testTransactionalMultibatch()#0{
+    assertTrue(s.execute("select tables.name from tables, columns limit 1025"));
+    while (s.getResultSet().next()) {
+      count++;
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testLobStreaming()#1{
+    assertTrue(s.execute("select xmlelement(name \"root\") from tables"));
+    s.getResultSet().next();
+    assertEquals("<root></root>", s.getResultSet().getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testLobStreaming1()#1{
+    assertTrue(s.execute("select cast('' as clob) from tables"));
+    s.getResultSet().next();
+    assertEquals("", s.getResultSet().getString(1));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.testDistinctMixedNullRows()#1{
+        Statement s = createStatement();
+        s.execute("insert into t values (1, null, 3, null, '1992-01-02', null, '1992-01-01 19:01:01.000', null, 'planet')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.testDistinctTwoVaryingRows()#2{
+        Statement s = createStatement();
+        s.execute("insert into t values (1, 1, 3, 4, '1992-01-02', '19:01:01', '1992-01-01 19:01:01.000', 'goodbye', 'planet')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.testDistinctIdenticalAndDifferingRows()#1{
+        Statement s = createStatement();
+        s.execute("insert into t values (2, 1, 4, 3, '1992-01-01', '19:01:01', '1992-01-01 19:01:01.000', 'hello', 'planet')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.test5DeleteAfterTriggerNoReferencingClause()#0{
+        basicSetup();
+        Statement s = createStatement();
+    s.execute("create trigger trigger1 AFTER DELETE on table1 " +
+        "delete from table2 where id=1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.test5InsertAfterTriggerNoReferencingClause()#0{
+        basicSetup();
+        Statement s = createStatement();
+    s.execute("create trigger trigger1 AFTER INSERT on table1 " +
+      "insert into table2(id, updates) values (100, -1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.test5InsertBeforeTriggerNoReferencingClause()#0{
+        basicSetup();
+        Statement s = createStatement();
+    s.execute("create trigger trigger1 NO CASCADE BEFORE INSERT on table1 " +
+      "select updates from table2 where table2.id = 1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.copySHPTestAutomaticTableName()#1{
+        final String path = StringUtils.quoteStringSQL(SHPEngineTest.class.getResource("waternetwork.shp").getPath());
+        st.execute("CALL SHPRead(" + path + ", 'waternetwork');");
+        checkSHPReadResult(st);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.copySHPTest()#1{
+        final String path = StringUtils.quoteStringSQL(SHPEngineTest.class.getResource("waternetwork.shp").getPath());
+        st.execute("CALL SHPRead(" + path + ", 'WATERNETWORK');");
+        checkSHPReadResult(st);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.readSHPConstraintTest()#1{
+        st.execute("CALL FILE_TABLE('"+SHPEngineTest.class.getResource("waternetwork.shp").getPath()+"', 'SHPTABLE');");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testDERBY_6317_value2(){
+        Statement stmt = createStatement();
+        stmt.execute(testSelect + 6035610);
+        confirmIndexScanUsage(stmt, 6035610);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testDERBY_6317_value1(){
+        Statement stmt = createStatement();
+        stmt.execute(testSelect + 5189284);
+        confirmIndexScanUsage(stmt, 5189284);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.testDERBY_6317_value6(){
+        Statement stmt = createStatement();
+        stmt.execute(testSelect + 6035609);
+        confirmIndexScanUsage(stmt, 6035609);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.testSelectNoGenKeys(){
+        Statement stmt = createStatement();
+        stmt.execute("select * from tab1", Statement.NO_GENERATED_KEYS);
+        assertNull("Expected NULL ResultSet after stmt.execute()", stmt
+                .getGeneratedKeys());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.setUp()#1{
+        Statement s = createStatement();
+        s.execute("truncate table t2");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.assertSentrySemanticException(Statement statement,String query,String exceptionType)#2{
+      statement.execute(query);
+      Assert.fail("Expected SQLException for '" + query + "'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.assertAuthzExecHookException(Statement statement,String query,String expectedMsg)#1{
+      statement.execute(query);
+      Assert.fail("Expected SQLException for '" + query + "'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testStatementSeverityErrorInProcedure(){
+        Statement s = createStatement();
+                  getClass().getName() + ".proc_5280' reads sql data");
+        s.execute("call proc_5280()");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.assertAuthzException(Statement statement,String query)#0{
+      statement.execute(query);
+      Assert.fail("Expected SQLException for '" + query + "'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testSetSchemaProcedure()#0{
+        Statement s = createStatement();
+        s.execute("CALL APP.SET_SCHEMA('FOO')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.onDeleteCascadeWithLogQueryPlan(){
+        setAutoCommit(false);
+        Statement s = createStatement();
+        s.execute("delete from a");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.testDistinctSomeNullRows()#1{
+        Statement s = createStatement();
+        s.execute("insert into t (i) values (null)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.testDistinctIdenticalNullRows()#0{
+        Statement s = createStatement();
+        s.execute("insert into t (i) values (null)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testTransactionCycleDisabled()#1{
+    assertTrue(s.execute("select * from tables order by name"));
+    conn.setAutoCommit(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.dropTables()#1{
+            s.execute("drop table " + table.get("table_name") + " cascade constraints");
+            System.out.println("Dropping table: " + table.get("table_name"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.dropSequences()#1{
+            s.execute("drop sequence " + sequence.get("sequence_name"));
+            System.out.println("Dropping sequence: " + sequence.get("sequence_name"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.test_recycle()#2{
+        DruidPooledConnection conn = dataSource.getConnection();
+        Statement stmt = conn.createStatement();
+        stmt.execute("select 1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.test_recycle()#0{
+        DruidPooledConnection conn = dataSource.getConnection();
+        conn.setAutoCommit(false);
+        conn.setReadOnly(false);
+        Statement stmt = conn.createStatement();
+        stmt.execute("select 1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.test5UpdateAfterTriggerNoReferencingClause()#1{
+        basicSetup();
+        Statement s = createStatement();
+    s.execute("create trigger trigger1 AFTER UPDATE of status on table1 " +
+        "update table2 set updates = updates + 1 where table2.id = 1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.dropTrigger(Statement s,String launchId){
+    String triggerName = launchId.replace(" ", "_");
+    triggerName = triggerName.replace(".", "_");
+    triggerName = triggerName.toUpperCase();
+      s.execute("DROP TRIGGER " + triggerName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.dropAllTriggerPlans(){
+        Statement s = createStatement();
+                + getClass().getName()
+        s.execute("drop procedure clear_sps_plans");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.testDefaultConnection()#0{
+                TestFunctions.class.getName()+".testDefaultConn\"");
+        stat.execute("drop alias test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.testFunctionTable()#2{
+                TestFunctions.class.getName() + ".simpleFunctionTable\"");
+        stat.execute("select * from simple_function_table() " +
+                "where a>0 and b in ('x', 'y')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.setupTable(String tableName)#0{
+    statement.execute("LOAD DATA LOCAL INPATH '"
+      + dataFilePath.toString() + "' INTO TABLE " + tableName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.execute(PageContext pc,Statement stat,boolean createGeneratedKeys,SQL sql)#2{
+    return createGeneratedKeys?stat.execute(sql.getSQLString(),Statement.RETURN_GENERATED_KEYS):stat.execute(sql.getSQLString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.execute(PageContext pc,Statement stat,boolean createGeneratedKeys,SQL sql)#3{
+    return createGeneratedKeys?stat.execute(sql.getSQLString(),Statement.RETURN_GENERATED_KEYS):stat.execute(sql.getSQLString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.testIdenticalRows()#1{
+        Statement s = createStatement();
+        s.execute("insert into t values (1, 2, 3, 4, '1992-01-01', '19:01:01', '1992-01-01 19:01:01.000', 'hello', 'planet')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.testOneRow()#1{
+        Statement s = createStatement();
+        s.execute("insert into t values (1, 2, 3, 4, '1992-01-01', '19:01:01', '1992-01-01 19:01:01.000', 'hello', 'planet')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testSetSchema()#3{
+        Statement s = createStatement();
+        s.execute("SET SCHEMA FOO");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testChangeIsoLevelFunctionJDBC()#4{
+        Statement s = createStatement();
+        s.execute("CREATE TABLE T1(ISOLEVEL INT)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.assertTableExists(String table)#0{
+            st.execute(String.format("SELECT count(*) FROM %s;", table));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.tearDown()#3{
+            final String sql = String.format("delete from casusers;");
+            s.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.executeCanonicalizedSQL(Statement mS,String statement)#1{
+      statement = statement.replace(" clob,", " text,");
+    return mS.execute(statement);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.setupKv1Tabs(String tableName)#0{
+    stmt.execute("load data local inpath '"
+        + dataFilePath.toString() + "' into table " + tableName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.tearDown()#0{
+        _conn.setSchema(null);
+        Statement stmt = _conn.createStatement();
+        stmt.execute("DROP SCHEMA \"UpperCase\" CASCADE");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.call(){
+                    Statement stmt = _conn.createStatement();
+                    stmt.execute("SELECT pg_sleep(" + SLEEP_SECONDS + ")");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.execute(PushbackReader reader)#2{
+        while ((sql = readNextStatement(reader)) != null) {
+            try {
+                logger.fine("Executing SQL: " + sql);
+                statement.execute(sql);
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.dropProcedures(Statement statement){
+    statement.execute( "DROP PROCEDURE deleteAllUsers" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.waitForPostCommit(Statement stmt){
+        stmt.execute("CALL WAIT_FOR_POST_COMMIT()");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.enableXplainOnlyMode(Statement s){
+        s.execute("call syscs_util.syscs_set_xplain_mode(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.enableXplainStyleWithTiming(Statement s){
+        enableXplainStyle(s);
+        s.execute("call syscs_util.syscs_set_statistics_timing(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testDERBY_6317_value4(){
+        Statement stmt = createStatement();
+        stmt.execute(testSelect + 5189285);
+        confirmIndexScanUsage(stmt, 5189285);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.decorateSQL(Statement s){
+        s.execute("create table t1 (s int)");  
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.importFileWithBadExtension()#1{
+        stat.execute("CALL KMLRead('target/area_export.blabla', 'BLABLA')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.checkPoint()#0{
+            st = createStatement();
+            st.execute("CALL SYSCS_UTIL.SYSCS_CHECKPOINT_DATABASE()");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.decorateSQL(Statement s)#1{
+                s.execute("create table t2 (c11 int)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.decorateSQL(Statement s){
+                            s.execute("grant b to donald");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.isClosed(Statement s){
+      s.execute("SELECT 1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.adminCreate(String db,String table)#0{
+    Connection connection = context.createConnection(ADMIN1);
+    Statement statement = context.createStatement(connection);
+    statement.execute("CREATE DATABASE " + db);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.shutdown()#3{
+                Statement stmt = dbconn.createStatement();
+                stmt.execute("SHUTDOWN;");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.call()#0{
+                stat.execute("update test set counter = " +
+                        random.nextInt(10) + " where id = " + random.nextInt(1000));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.dropProcedures(Statement statement){
+    statement.execute( "DROP PROCEDURE retrieveTimestamp" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.dropDatabases()#1{
+        statement.execute("drop database if exists " + defaultDatabaseLoader.getDbName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.dropDatabases()#2{
+            statement.execute("drop database if exists " + defaultDatabaseLoader.getDbPentahoDW());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.isSuccessful(String sql)#1{
+            statement.execute(substitute(sql));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.decorateSQL(Statement s){
+                    s.execute("create table abort_table( a int )");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.decorateSQL(Statement s){
+                s.execute("create table foo.set_schema_table( a int )");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.createUsersTable(Statement s)#1{
+      s.execute(USER_TABLE_NET_NET_UID_INDEX);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.dropTables()#2{
+      s = mDB.createStatement();
+      s.execute("DROP TABLE messages");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.clear()#0{
+            Statement statement = persistenceManager.getConnection().createStatement();
+            statement.execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.testSFSUtilities()#2{
+            stat.execute("create table blah.testSFSUtilities(id integer, the_geom point)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 88
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.testTableExists()#1{
+    String tableName = getFreeTableName();
+    statement.execute("Create table " + tableName + " (id VARCHAR(255))");
+    Assert.assertTrue(dbAccessor.tableExists(tableName));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 89
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.setupTable(String tableName)#1{
+    Statement statement = localStatement.get();
+    statement.execute("CREATE TABLE " + tableName
+      + " (under_col INT COMMENT 'the under column', value STRING)"
+      + " COMMENT ' test table'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 90
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.decorateSQL(Statement stmt){
+                stmt.execute("create table " + LONGVARCHAR  +
+                        " (sno int, dLongVarchar LONG VARCHAR)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 91
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.execute(PageContext pc,Statement stat,String sql,int autoGeneratedKeys)#2{
+    if(pc==null) return stat.execute(sql,autoGeneratedKeys);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 92
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.createUsersTable(Statement s)#1{
+      s.execute(USER_TABLE_NET_NET_UID_INDEX);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 93
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.expectError(Statement stat,String sql,String error)#1{
+            stat.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 94
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.decorateSQL(Statement s)#1{
+                s.execute("create table TEST_TABLE( TEST_COL blob( 65536 ))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 95
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testNoTablePrivileges()#2{
+        stmt.execute("REVOKE ALL ON metadatatest FROM " + TestUtil.getUser());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 96
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.tearDown()#1{
+      stmt.execute("DROP TABLE " + getTableName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 97
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.dropTable(Statement stmt,String name)#0{
+      stmt.execute("DROP TABLE " + name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 98
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.importFileWithBadExtension()#1{
+        stat.execute("CALL SHPRead('target/area_export.blabla', 'BLABLA')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 99
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.exec(final AbstractClassMetaData cmd,final Statement statement){
+        final String sql = buildSqlToExec(cmd);
+        return statement.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 100
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.unlockTable()#0{
+                Statement s = conn1.createStatement();
+                s.execute(myCommit);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 101
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.decorateSQL(Statement s){
+                s.execute("grant role1 to user1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 102
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.executeDDL(IDatabaseConnection databaseConnection,String filename)#2{
+      st.execute(loadDDL(filename));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 103
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.dropTable(Statement s,String name){
+            s.execute("drop table "+name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 104
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.emptyStatementCache(){
+        Statement s = createStatement();
+        s.execute("CALL SYSCS_UTIL.SYSCS_EMPTY_STATEMENT_CACHE()");
+        closeStatement(s);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 105
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.createDerby2041Triggers(Statement s){
+        s.execute("create trigger d2041_tr5 after insert on d2041_t "
+                + "for each row mode db2sql call d2041_proc()");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 106
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.decorateSQL(Statement stmt){
+        stmt.execute("create view tab1_view (a,b) as select y,y+1 from tab1");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 107
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.hiveInitializeDatabase(HiveStore hiveStore,String tablename)#0{
+    hiveStore.connect();
+    Statement stmt = hiveStore.getConnection().createStatement();
+    stmt.execute("CREATE TABLE IF NOT EXISTS " + tablename + " (col1 string) PARTITIONED BY(dt STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\n'  \n"
+            + "STORED AS TEXTFILE ");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 108
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.constructIndexedHeap(Statement st)#1{
+        st.execute("insert into indexed_heap (a) values (2)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 109
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.testDERBY_6317_value3(){
+        Statement stmt = createStatement();
+        stmt.execute(testSelect + 6031628);
+        confirmIndexScanUsage(stmt, 6031628);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 110
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.enableRuntimeStatistics(Statement s){
+        s.execute("call syscs_util.syscs_set_runtimestatistics(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 111
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.dropStatement(String sql,Statement statement){
+      statement.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 112
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.createProcedureDeleteAllUsers(Statement statement){
+    statement.execute(
+        "CREATE PROCEDURE deleteAllUsers() " +
+            "language java " +
+            "external name 'org.hibernate.jpa.test.procedure.JpaTckUsageTest.deleteAllUsers' " +
+            "parameter style java"
+    );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 113
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.createProcedureFindOneUser(Statement statement){
+    statement.execute(
+        "CREATE PROCEDURE findOneUser() " +
+            "language java " +
+            "dynamic result sets 1 " +
+            "external name 'org.hibernate.jpa.test.procedure.JpaTckUsageTest.findOneUser' " +
+            "parameter style java"
+    );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 114
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.decorateSQL(Statement s){
+        s.execute("CREATE UNIQUE INDEX " +tableName +"x on "+ tableName+"(i1,i3)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 115
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.createXATransactionView(Statement s){
+        s.execute(
+                "create view XATESTUTIL.global_xactTable as " +
+                "select  cast(global_xid as char(2)) as gxid," +
+                " status, " +
+                " CAST (case when first_instant is NULL then 'NULL' else 'false' end AS VARCHAR(8)) as readOnly, " +
+                " cast (username as char(10)) as username, type " +
+                " from syscs_diag.transaction_table");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 116
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.executeDDL(String ddl)#1{
+        Statement statement = getConnection().createStatement();
+        statement.execute(ddl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 117
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.doInStatement(Statement stmt){
+        stmt.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 118
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.testDERBY_6317_value5(){
+        Statement stmt = createStatement();
+        stmt.execute(testSelect + 1);
+        confirmIndexScanUsage(stmt, 1);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 119
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.decorateSQL(Statement stmt){
+                stmt.execute("create procedure CREATEARCHIVE(jarName VARCHAR(20)" +
+                        " , path VARCHAR(20), dbName VARCHAR(20))" +
+                        " LANGUAGE JAVA PARAMETER STYLE JAVA" +
+                        " NO SQL" +
+                        " EXTERNAL NAME 'org.apache.derbyTesting.functionTests.tests.lang.dbjarUtil.createArchive'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 120
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.testExecuteWithSelect()#1{
+        Statement stat = getProxyConnectionForSelect().createStatement();
+        boolean result = stat.execute("SELECT name FROM foo");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 121
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.verifyUDFNotAllowed(Statement stmt,String tableName,String udfcall,String udfname)#0{
+      stmt.execute("SELECT " + udfcall + " from " + tableName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 122
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.execute(PageContext pc,Statement stat,String sql)#1{
+    if(pc==null) return stat.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 123
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.testMetaDataGetTablesHive()#3{
+    stmt.execute("set " + HiveConf.ConfVars.HIVE_SERVER2_TABLE_TYPE_MAPPING.varname +
+        " = " + TableTypeMappings.HIVE.toString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 124
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.orientBySlope(Statement st,TableLocation nodesName,TableLocation edgesName)#0{
+        st.execute("UPDATE " + edgesName + " c " +
+                    "SET START_NODE=END_NODE, " +
+                    "    END_NODE=START_NODE " +
+                    "WHERE (SELECT ST_Z(A.THE_GEOM) < ST_Z(B.THE_GEOM) " +
+                            "FROM " + nodesName + " A, " + nodesName + " B " +
+                            "WHERE C.START_NODE=A.NODE_ID AND C.END_NODE=B.NODE_ID);");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 125
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.testGetSRID()#0{
+        st.execute("CREATE TABLE noindex (id INT AUTO_INCREMENT PRIMARY KEY, geom BLOB)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 126
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.testGetSRID()#3{
+        Statement st = cx.createStatement();
+        st.execute("CALL CreateSpatialIndex(null, 'SPATIAL', 'GEOM', '4326')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 127
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.traceMarker()#1{
+            Statement statement = delegatingConnection.createStatement();
+                statement.execute("select * from employee");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 128
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.testConnectionRollback()#2{
+        stat.execute("INSERT INTO TEST VALUES(1, 'Hello')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 129
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.setUpClass(){
+        Connections.initH2();
+        Statement stmt = Connections.getStatement();
+        stmt.execute("create table if not exists " +
+                "newschema.SURVEY(ID2 int auto_increment, NAME2 varchar(30), NAME3 varchar(30))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 130
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.setDatabaseProperty(Statement s,String key,String value)#1{
+        s.execute( command );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 131
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.decorateSQL(Statement s){
+                s.execute("create table setMaxFieldSize(id int unique, " +
+                        "dVarchar VARCHAR(32672), dClob clob)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 132
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.createTestTable(){
+    Statement stat = this.dataSource.getConnection().createStatement();
+    stat.execute("CREATE TABLE TEST(" +
+      "ID INT PRIMARY KEY, " +
+      "COLUMN1 VARCHAR, " +
+      "COLUMN2 VARCHAR " +
+    ")");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 133
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.constructHeap(Statement st)#2{
+        st.execute("create table heap_only (a int)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 134
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.constructHeap(Statement st)#3{
+        st.execute("insert into heap_only values (1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 135
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.constructHeap(Statement st)#5{
+        st.execute("insert into heap_only values (2)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 136
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.createTableAandUniqueIndex(Statement st)#0{
+        st.execute("insert into a values (4, 'd')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 137
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.decorateSQL(Statement s)#2{
+                    s.execute("insert into app.a (a) values(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 138
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testSetSchema()#2{
+        s.execute("SET SCHEMA \"\u00bbMY\u20ac\u00ab\"");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 139
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testChangeIsoLevelProcedureJDBC()#0{
+            s.execute("CALL SET_ISOLATION_JDBC(" + isoLevels[i].getIsoLevel() + ")");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 140
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.testChangeIsoLevelFunctionJDBC()#5{
+            s.execute("INSERT INTO T1 VALUES GET_CYCLE_ISOLATION_JDBC()");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 141
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.execute(Statement statement){
+                statement.execute("create table mbcj_test_isolated.bikini_bottom (name varchar(255) primary key)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 142
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.testSubqueryInWhenClauseNPE(){
+        Statement s = createStatement();
+        s.execute("insert into t1 values 1,2,3");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 143
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.testLog(double expected,Statement stat)#7{
+        assertEquals((int) (Math.log(10) * 100), (int) (rs.getDouble(1) * 100));
+        stat.execute("drop table log");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 144
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.dontrun_testDERBY_6317()#0{
+        Statement stmt = createStatement();
+        stmt.execute("call SYSCS_UTIL.SYSCS_SET_RUNTIMESTATISTICS(1)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 145
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.createTable(Connection conn,ByteString topic)#1{
+            String tableName = getTableNameForTopic(topic);
+            stmt.execute("CREATE TABLE " + tableName + " (" + ID_FIELD_NAME + " BIGINT NOT NULL CONSTRAINT ID_PK_"
+                         + tableName + " PRIMARY KEY," + MSG_FIELD_NAME + " BLOB(2M) NOT NULL)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 146
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.doExecuteStatement(Statement statement){
+    statement.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 147
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.testLargeUpdateDelete()#1{
+        int len = getSize(10000, 100000);
+        stat.execute("DELETE FROM TEST");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 148
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.setup()#3{
+        s.execute(getSqlInsertStatementToCreateUserAccount(0));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 149
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.decorateSQL(Statement stmt){
+                stmt.execute("CREATE TABLE MB_CLOBTABLE " +
+                        "(K INT CONSTRAINT PK PRIMARY KEY, C CLOB(" +
+                        LONG_CLOB_LENGTH + "))");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 150
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.execute(String query)#0{
+      s = getSQLConnection().createStatement();
+      s.execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 151
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.dropType(Statement stmt,String type)#0{
+            stmt.execute("drop type " + type);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 152
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.decorateSQL(Statement s){
+                                s.execute("insert into t4 (c1) values (1),(2),(3)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 153
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.commit()#0{
+            st = createStatement();
+            st.execute("CHECKPOINT");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 154
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.executeSql(Statement st,String sql){
+        log.trace("SQL: " + sql);
+        st.execute(sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 155
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.setRowCountBase(Statement stmt,boolean onClient,long rowCountBase)#2{
+            stmt.execute( "call setRowCountBase( " + rowCountBase + " )" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 156
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testCompressTableWithDoubleQuoteInName(){
+        Statement s = createStatement();
+        s.execute("drop table app.\"abc\"\"def\"");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 157
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testConstraints(Connection conn1,Connection conn2)#0{
+        s2.execute("create local temporary table test(id int unique)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 158
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testConstraints(Connection conn1,Connection conn2)#3{
+        s1.execute("drop table test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 159
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testConstraints(Connection conn1,Connection conn2)#4{
+        s2.execute("drop table test");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 160
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testConstraints(Connection conn1,Connection conn2)#5{
+        s1.execute("alter table test add constraint a unique(id)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 161
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testConstraints(Connection conn1,Connection conn2)#6{
+        s1.execute("create local temporary table test(id int unique)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 162
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.testConstraints(Connection conn1,Connection conn2)#7{
+        s2.execute("alter table test add constraint a unique(id)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 163
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.initFullText(Statement stat,boolean lucene)#1{
+        stat.execute("CALL " + prefix + "_INIT()");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 164
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.flushRowCount(Statement stmt){
+        stmt.execute("CALL SYSCS_UTIL.SYSCS_CHECKPOINT_DATABASE()");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 165
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.testNoData()#1{
+        Statement s = createStatement();
+        s.execute("delete from t");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 166
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.createTableAndInsertData(Statement s,String tableName,String column1,String column2){
+        s.execute("INSERT INTO " + tableName + " VALUES (1,11)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 167
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.execute(PageContext pc,Statement stat,String sql,int[] columnIndexes)#0{
+    if(pc==null) return stat.execute(sql,columnIndexes);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 168
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.decorateSQL(Statement s)#1{
+                s.execute("CREATE FUNCTION  PADSTRING (DATA VARCHAR(32000), "
+                        + "LENGTH INTEGER) RETURNS VARCHAR(32000) EXTERNAL NAME " +
+                        "'org.apache.derbyTesting.functionTests.util.Formatters" +
+                ".padString' LANGUAGE JAVA PARAMETER STYLE JAVA");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 169
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.executeStatement(String sql,Connection con)#0{
+      Logger.info(this, "Executing " + sql);
+      boolean ret=stmt.execute(sql);
+      Logger.info(this, "Finished Executing " + sql);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 170
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.createSampleDbTable(Statement statement,String db,String table)#0{
+    statement.execute("LOAD DATA LOCAL INPATH '" + dataFile.getPath() + "' INTO TABLE " + table);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 171
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.createSampleDbTable(Statement statement,String db,String table)#1{
+    statement.execute("CREATE TABLE " + table + "(a STRING)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 172
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.readSHPConstraintTest()#3{
+        st.execute("drop table shptable");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 173
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.testInsertRollback()#2{
+        stmt.execute(INSERT);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 174
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.testChangeIsoLevelPreparedFunctionJDBC()#1{
+        Statement s = createStatement();
+        s.execute("CREATE TABLE T1(ISOLEVEL INT)");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 175
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testSetSchemaProcedure()#2{
+        s.execute("CALL APP.SET_SCHEMA('\"\u00bbMY\u20ac\u00ab\"')");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 176
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.testChangeIsoLevelStatementSQL()#2{
+            s.execute("SET ISOLATION "+isoLevels[i].getSqlName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 177
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.finishedProcessing(Connection connection,Map<Integer,FeatureData> featureDataMap)#0{
+        LOG.info("executing: " + query);
+        stmt.execute(query);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 178
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.setupKv1Tabs(String tableName)#1{
+    Statement stmt = hs2Conn.createStatement();
+    stmt.execute("CREATE TABLE " + tableName
+        + " (under_col INT COMMENT 'the under column', value STRING)"
+        + " COMMENT ' test table'");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 179
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.clearXplainOnlyMode(Statement s){
+        s.execute("call syscs_util.syscs_set_xplain_mode(0)");
+}
+    
+   
+  
+   
+
+
+
+
+

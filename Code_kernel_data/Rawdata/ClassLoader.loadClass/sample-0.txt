@@ -1,0 +1,4683 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.testClassManager_GetClassLoaderFromDirs()#1{
+        ClassLoader cl = ClassManager.getClassLoaderFromDirs(
+            new File[]{new File("./target/classes")},
+            Thread.currentThread().getContextClassLoader()
+        );
+        Assert.assertNotNull(cl);
+        Assert.assertNotNull(cl.loadClass("org.clamshellcli.core.Clamshell"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.testClassManager_GetClassLoaderFromFiles()#1{
+        ClassLoader cl = ClassManager.getClassLoaderFromFiles(
+            new File[]{new File("../mock-env/plugins")}, 
+            Pattern.compile(".*\\.jar"), 
+            Thread.currentThread().getContextClassLoader());
+        Assert.assertNotNull(cl);
+        Assert.assertNotNull(cl.loadClass("org.clamshellcli.test.MockShell"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.assertClassPresent(ClassLoader cl,String name){
+      Class<?> clazz = cl.loadClass(name);
+      Assert.assertNotNull("Should have found class: " + name, clazz);
+      Assert.fail("Counld not load class: " + name + " from " + cl.getClass().getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.run()#0{
+                    ClassLoader cl = Thread.currentThread().getContextClassLoader();
+                    if (cl != null)
+                        try {
+                            return (Class<AsyncHttpClient>) cl.loadClass(asyncImplClassName);
+                        } catch (ClassNotFoundException e) {
+                            AsyncHttpClientFactory.logger.info("Couldn't find class : " + asyncImplClassName + " in thread context classpath " + "checking system class path next",
+                                    e);
+                        }
+                    cl = ClassLoader.getSystemClassLoader();
+                    return (Class<AsyncHttpClient>) cl.loadClass(asyncImplClassName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.testTryCatchFinally(){
+        ClassLoader loader = mergeAndLoad(
+                "/testdata/Basic.dex",
+                "/testdata/TryCatchFinally.dex");
+        Class<?> basic = loader.loadClass("testdata.Basic");
+        assertEquals(1, basic.getDeclaredMethods().length);
+        Class<?> tryCatchFinally = loader.loadClass("testdata.TryCatchFinally");
+        tryCatchFinally.getDeclaredMethod("method").invoke(null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testClassLoaderDoesNotNeedToSeeInvocationHandlerLoader()#0{
+        ClassLoader loaderB = new ClassLoaderBuilder().withPrivateCopy(prefix).build();
+        InvocationHandler invocationHandlerB = (InvocationHandler) loaderB.loadClass(
+                prefix + "$TestInvocationHandler").newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.setUp()#0{
+        ClassLoader loader = new ClassLoaderBuilder().withPrivateCopy(prefix).build();
+        bStringClass = loader.loadClass(prefix + "$BString");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.setUp()#1{
+        ClassLoader cl = new ClassLoaderBuilder()
+                .withPrivateCopy(prefix + "$Loadable")
+                .without(prefix + "$Unloadable")
+                .build();
+        loadableClass = cl.loadClass(prefix + "$Loadable");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.getResolver(String className){
+                ClassLoader cl = Configuration.class.getClassLoader();
+                return (DependencyResolver) cl.loadClass(className).newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.getResolver(String className)#0{
+            ClassLoader cl = Configuration.class.getClassLoader();
+            DependencyResolver resolver = (DependencyResolver) cl.loadClass(className).newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.loadClass(final ClassName className)#0{
+        String cn = getClassName(className.toString());
+            return classLoader.loadClass(cn);
+            throw new PicoClassNotFoundException(cn, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.loadClass(final ClassLoader classLoader,final String typeName){
+                return classLoader.loadClass(typeName);
+                throw new PicoClassNotFoundException(typeName, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.loadClass(final ClassLoader classLoader,final String className){
+            return classLoader.loadClass(className);
+            throw new PicoClassNotFoundException(className, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.loadGroupClasses(ClassLoader cloader){
+            enabledClass = cloader.loadClass( enabled );
+            throw new RuntimeException( "Unable to load category: " + enabled, e );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.loadTestClass(ClassLoader testClassLoader,TestFile testFile){
+            return testClassLoader.loadClass(testFile.getClassName());
+            throw new RuntimeException("Cannot load class: " + testFile, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.loadClass(ClassLoader classLoader,String className){
+            testClass = classLoader.loadClass( className );
+            throw new RuntimeException( "Unable to create test class '" + className + "'", e );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.newActivity(ClassLoader cl,String className,Intent intent){
+        return (Activity) cl.loadClass(className)
+                            .newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.pathWithSpacesInTheNameDoesNotFail()#1{
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/regression/spaces in path.json", "com.example", Collections.<String, Object>emptyMap());
+        Class generatedType = resultsClassLoader.loadClass("com.example.SpacesInPath");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.useJodaLocalDatesCausesJodaLocalDateDates(){
+        ClassLoader classLoader = generateAndCompile("/schema/format/formattedProperties.json", "com.example", config
+                ("useJodaLocalDates", true));
+        Class<?> classWithDate = classLoader.loadClass("com.example.FormattedProperties");
+        assertTypeIsExpected(classWithDate, "stringAsDate", "org.joda.time.LocalDate");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.disablingJodaDatesCausesJavaUtilDates(){
+        ClassLoader classLoader = generateAndCompile("/schema/format/formattedProperties.json", "com.example",
+                config("useJodaDates", false));
+        Class<?> classWithDate = classLoader.loadClass("com.example.FormattedProperties");
+        assertTypeIsExpected(classWithDate, "stringAsDateTime", "java.util.Date");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.disablingJodaLocalTimesCausesStrings(){
+        ClassLoader classLoader = generateAndCompile("/schema/format/formattedProperties.json", "com.example",
+                config("useJodaLocalTimes", false));
+        Class<?> classWithDate = classLoader.loadClass("com.example.FormattedProperties");
+        assertTypeIsExpected(classWithDate, "stringAsTime", "java.lang.String");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.useJodaLocalTimesCausesJodaLocalTimeDates(){
+        ClassLoader classLoader = generateAndCompile("/schema/format/formattedProperties.json", "com.example",
+                config("useJodaLocalTimes", true));
+        Class<?> classWithDate = classLoader.loadClass("com.example.FormattedProperties");
+        assertTypeIsExpected(classWithDate, "stringAsTime", "org.joda.time.LocalTime");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.shouldUseDefaultExcludesWithoutIncludesAndExcludes(){
+        ClassLoader resultsClassLoader = generateAndCompile(subSchemaUrl, "com.example.sub",
+                config("includes", new String[] {}, "excludes", new String[] {}));
+        resultsClassLoader.loadClass("com.example.sub.sub2.Sub");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.shouldIncludeNestedFilesWithFiltering(){
+        ClassLoader resultsClassLoader = generateAndCompile(filteredSchemaUrl, "com.example",
+                config("includes", new String[] { "**/*.json" }, "excludes", new String[] { "excluded.json" }));
+        resultsClassLoader.loadClass("com.example.sub.Sub");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.generateAndCompileClass(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/media/mediaProperties.json", "com.example", config("customAnnotator", QuotedPrintableAnnotator.class.getName()));
+        classWithMediaProperties = resultsClassLoader.loadClass("com.example.MediaProperties");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.arrayAtRootProducesNoJavaTypes(){
+        ClassLoader resultsClassLoader = generateAndCompile("/json/arrayAsRoot.json", "com.example",
+                config("sourceType", "json"));
+        resultsClassLoader.loadClass("com.example.ArrayAsRoot");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testClassLoaderDoesNotNeedToSeeInvocationHandlerLoader()#1{
+        Class[] interfacesA = { loaderA.loadClass(prefix + "$Echo") };
+        Object proxy = Proxy.newProxyInstance(loaderA, interfacesA, invocationHandlerB);
+        assertEquals(loaderA, proxy.getClass().getClassLoader());
+        assertEquals("foo", proxy.getClass().getMethod("echo", String.class).invoke(proxy, "foo"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.generateAndCompileEnum(){
+        ClassLoader relativeRefsClassLoader = generateAndCompile("/schema/ref/refsToA.json", "com.example");
+        relativeRefsClass = relativeRefsClassLoader.loadClass("com.example.RefsToA");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.generateAndCompileEnum(){
+        ClassLoader httpRefsClassLoader = generateAndCompile("/schema/ref/httpRefs.json", "com.example");
+        httpRefsClass = httpRefsClassLoader.loadClass("com.example.HttpRefs");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.doLazyInit()#0{
+        ClassLoader classLoader = getClassLoader();
+            getTypeName = classLoader.loadClass(TYPE_DESCRIPTOR_CLASS_NAME).getMethod("getTypeName", EMPTY_CLASS_ARRAY);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.doLazyInit()#0{
+        ClassLoader classLoader = getClassLoader();
+            accessDatum = classLoader.loadClass(ANY_DATA_CLASS_NAME).getMethod("accessDatum", EMPTY_CLASS_ARRAY);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.resolveClass(ObjectStreamClass objectStreamClass)#1{
+                    ? classLoader.loadClass( objectStreamClass.getName() )
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.simpleTypeAtRootProducesNoJavaTypes(){
+        ClassLoader resultsClassLoader = generateAndCompile("/json/simpleTypeAsRoot.json", "com.example",
+                config("sourceType", "json"));
+        resultsClassLoader.loadClass("com.example.SimpleTypeAsRoot");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.generateClasses(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/format/formattedProperties.json", "com.example");
+        classWithFormattedProperties = resultsClassLoader.loadClass("com.example.FormattedProperties");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.main(String[] args,File episode)#2{
+            ClassLoader cl = Runner.class.getClassLoader();
+            Class apt = cl.loadClass("com.sun.tools.apt.Main");
+            Method processMethod = apt.getMethod("process",AnnotationProcessorFactory.class, String[].class);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.testInheritancePositive()#0{
+        assertEquals(Bundle.class, testLoader.loadClass(Bundle.class.getName()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.classIsVisible(ClassLoader classLoader,Class klass){
+            return classLoader.loadClass(klass.getName()) == klass;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.isolate(String target){
+        ClassLoader il = createIsolatedClassLoader();
+        Class result = il.loadClass(target);
+        assertEquals(result.getName(), target);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.generateAndCompileEnum(){
+        ClassLoader fragmentRefsClassLoader = generateAndCompile("/schema/ref/fragmentRefs.json", "com.example");
+        fragmentRefsClass = fragmentRefsClassLoader.loadClass("com.example.FragmentRefs");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.generateAndCompileEnum(){
+        ClassLoader classpathRefsClassLoader = generateAndCompile("/schema/ref/classpathRefs.json", "com.example");
+        classpathRefsClass = classpathRefsClassLoader.loadClass("com.example.ClasspathRefs");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.main(String args[])#0{
+        Class c = loader.loadClass(YUICompressor.class.getName());
+        Method main = c.getMethod("main", new Class[]{String[].class});
+        main.invoke(null, new Object[]{args});
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.resolveClass(ObjectStreamClass desc)#1{
+        return loader.loadClass(desc.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.generateAndCompileEnum(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/enum/typeWithEnumProperty.json", "com.example",
+                config("propertyWordDelimiters", "_"));
+        enumClass = (Class<Enum>) resultsClassLoader.loadClass("com.example.TypeWithEnumProperty$EnumProperty");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.generateAndCompileClass(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/default/default.json", "com.example");
+        classWithDefaults = resultsClassLoader.loadClass("com.example.Default");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.getCompileMethod(ClassLoader cl){
+        return ScalaReflectionUtil.scalaMethod(
+                cl,
+                "play.router.RoutesCompiler",
+                "compile",
+                File.class,
+                File.class,
+                cl.loadClass("scala.collection.Seq"),
+                boolean.class,
+                boolean.class
+        );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.testLoadEntityClass()#0{
+        assertFalse(entity instanceof TestEntity);
+        assertTrue(entity.getClass().isAnnotationPresent(Entity.class));
+        assertTrue(entityClass == tempClassLoader.loadClass(className));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.getCompileMethod(ClassLoader cl){
+        return ScalaReflectionUtil.scalaMethod(
+            cl,
+            "play.routes.compiler.RoutesCompiler",
+            "compile",
+            cl.loadClass("play.routes.compiler.RoutesCompiler$RoutesCompilerTask"),
+            cl.loadClass("play.routes.compiler.RoutesGenerator"),
+            File.class
+        );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.testDiffClassloaders()#1{
+      Object key2 = cl2.loadClass(Key.class.getName()).getConstructor(String.class, Boolean.TYPE).newInstance("key1", false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.testDiffClassloaders()#3{
+      Object key1 = cl1.loadClass(Key.class.getName()).getConstructor(String.class, Boolean.TYPE).newInstance("key1", false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testInheritance()#1{
+        testLoader.loadClass(Bundle.class.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.extendsStringCausesNoNewTypeToBeGenerated(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/extends/extendsString.json", "com.example");
+        resultsClassLoader.loadClass("com.example.ExtendsString");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.multipleEnumArraysWithSameName(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/enum/multipleEnumArraysWithSameName.json", "com.example");
+        resultsClassLoader.loadClass("com.example.Status_");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.generateAndCompileEnum(){
+        ClassLoader selfRefsClassLoader = generateAndCompile("/schema/ref/selfRefs.json", "com.example");
+        selfRefsClass = selfRefsClassLoader.loadClass("com.example.SelfRefs");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.testCanMockTypesFromADynamicClassLoader(){
+    ClassLoader interfaceClassLoader = new SyntheticEmptyInterfaceClassLoader();
+    Class<?> interfaceClass = interfaceClassLoader
+        .loadClass("$UniqueTypeName$");
+    Object o = imposteriser.imposterise(mockObject, interfaceClass,
+        new Class[0]);
+    assertTrue(interfaceClass.isInstance(o));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.filesWithExtensionPrefixesAreNotTruncated()#1{
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/regression/foo.baz.json", "com.example", Collections.<String, Object>emptyMap());
+        Class generatedType = resultsClassLoader.loadClass("com.example.FooBaz");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.isType(JvmTypeReference type,Object object,ClassLoader classLoader)#1{
+      Class<?> typeGuard = classLoader.loadClass(type.getIdentifier());
+      return typeGuard.isInstance(object);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.setupBeforeClass()#2{
+    ClassLoader loader = ClassLoader.getSystemClassLoader();
+    loader.setDefaultAssertionStatus(true);
+    Class<?> c = loader
+        .loadClass("org.apache.hadoop.hdfs.server.namenode.INodeHardLinkFile");
+    Constructor<?> ctor = c.getDeclaredConstructor(INodeFile.class, Long.TYPE);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.getLogManagerClass(ClassLoader cl){
+            logManagerClass = cl.loadClass("org.apache.log4j.LogManager");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.setUp(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/properties/initializeCollectionProperties.json", "com.example", config("initializeCollections", false));
+        generatedType = resultsClassLoader.loadClass("com.example.InitializeCollectionProperties");
+        instance = generatedType.newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.assertJsonRoundTrip(ClassLoader resultsClassLoader,String className,String jsonResource)#1{
+        Class generatedType = resultsClassLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.initBValFiltering()#1{
+                final ClassLoader loader = ParentClassLoaderFinder.Helper.get();
+                final Object filter = loader.loadClass("org.apache.openejb.bval.BValCdiFilter").newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.initBValFiltering()#2{
+                loader.loadClass("org.apache.bval.cdi.BValExtension").getMethod("setAnnotatedTypeFilter").invoke(null, filter);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.checkMyFacesContextFactory()#0{
+    ClassLoader classLoader = JsfUtils.class.getClassLoader();
+      Class<?> clazz = classLoader.loadClass("org.apache.myfaces.context.FacesContextFactoryImpl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.enumWithUppercaseProperty(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/enum/enumWithUppercaseProperty.json", "com.example");
+        resultsClassLoader.loadClass("com.example.EnumWithUppercaseProperty$TimeFormat");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.isolated_class_loader_cannot_load_classes_when_no_given_prefix(){
+        ClassLoader cl = isolatedClassLoader().build();
+        cl.loadClass("org.mockito.Mockito");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.initMain()#1{
+        securityManagerClass = antClassloader.loadClass("org.apache.tools.ant.util.optional.NoExitSecurityManager");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.testSanity(){
+      ClassLoader loader = createIsolatedClassLoader();
+      assertFalse(ProviderMetadata.class.isAssignableFrom(loader
+            .loadClass("org.jclouds.providers.JcloudsTestComputeProviderMetadata")));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.isGroovyAvailable(){
+    ClassLoader classLoader = Loader.getClassLoaderOfClass(EnvUtil.class);
+      Class<?> bindingClass = classLoader.loadClass("groovy.lang.Binding");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.main(String[] args){
+        ClassLoader runclassClassLoader = run_class.getClassLoader();
+        System.err.println(runclassClassLoader.loadClass("javax.net.ssl.KeyManager"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.loadClass(String className,ClassLoader classLoader)#0{
+        return classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.testGetApplicationContextClassloader()#0{
+        CamelContext ctx = getOsgiService(CamelContext.class, "(camel.context.symbolicname=CamelBlueprintTestBundle22)", 10000);
+        assertNotNull("The application context classloader should not be null", ctx.getApplicationContextClassLoader());
+        ClassLoader cl = ctx.getApplicationContextClassLoader();
+        assertNotNull("It should load the TestRouteBuilder class", cl.getResource("OSGI-INF/blueprint/test.xml"));
+        assertNotNull("It should load the TestRouteBuilder class", cl.loadClass("org.apache.camel.itest.osgi.blueprint.TestRouteBuilder"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.findCompiler(ClassLoader loader)#2{
+        Class c = loader.loadClass("com.sun.tools.javac.Main");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getEjbClass(String className,ClassLoader cl)#1{
+            return cl.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.setUp()#0{
+    proxyTestClass = (Class<ProxyTest>) testClassLoader.loadClass(ProxyTest.class.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.setUp()#1{
+    realClass = (Class<ProxyTestImpl>) testClassLoader.loadClass(ProxyTestImpl.class.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.loadClass(String className,ClassLoader classLoader)#0{
+                return (ReferenceWithError<Class<? extends D>>)(ReferenceWithError) ReferenceWithError.newInstanceWithoutError((Class<? extends EntityDriver>)classLoader.loadClass(className));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.isPresent(final String className,final ClassLoader classLoader){
+      return classLoader.loadClass(className) != null;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.loadClass(final ClassLoader classLoader,final String className)#0{
+        return classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.getBuildDocHandlerClass(ClassLoader classLoader){
+        return classLoader.loadClass("play.core.SBTDocHandler");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.getBuildLinkClass(ClassLoader classLoader){
+        return classLoader.loadClass("play.core.SBTLink");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.doLazyInit()#1{
+            stringValue = classLoader.loadClass(DATUM_CLASS_NAME).getMethod("stringValue", EMPTY_CLASS_ARRAY);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.isClassAvailable(final ClassLoader loader,final String name){
+            loader.loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.loadPluginClass(ClassLoader classLoader)#0{
+        String pluginClassName = pluginPropertiesReader.getPluginClassName(classLoader);
+        logger.info("Loading plugin class {}", pluginClassName);
+            return (Class<? extends Plugin>) classLoader.loadClass(pluginClassName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.loadSessionPackage(ClassLoader loader){
+        loader.loadClass
+            (basePackage + "StandardManager$PrivilegedDoUnload");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.loadClass(String className,ClassLoader classLoader){
+            return cast(classLoader.loadClass(className));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.loadSessionPackage(ClassLoader loader){
+        loader.loadClass(basePackage + "StandardManager$PrivilegedDoUnload");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.getClass(ClassLoader classLoader,String typeName)#0{
+            return classLoader.loadClass(typeName + "$");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.testLoadEntityClassPackage()#1{
+        String className = TestEntity.class.getName();
+        Class<?> entityClass = tempClassLoader.loadClass(className);
+        assertNotNull("could not load package for entity class that came from NewTempClassLoader", entityClass.getPackage());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 88
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.getFilter(String expression,ClassLoader classLoader){
+        return new AnnotationTypeFilter((Class<Annotation>) classLoader.loadClass(expression));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 89
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.getFilter(String expression,ClassLoader classLoader){
+        return new AssignableTypeFilter(classLoader.loadClass(expression));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 90
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.newInstance(final String fqcn,final ClassLoader classLoader){
+        return newInstance(classLoader.loadClass(fqcn));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 91
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.forName(ClassLoader cl,String className){
+            return cl.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 92
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.Jdk6JavaProcessManager(ClassLoader classLoader){
+        Validate.notNull( classLoader, "ClassLoader can't be NULL" );
+        Class<?> originalClass = classLoader.loadClass( LocalVirtualMachine.ORIGINAL_CLASS_NAME );
+        staticVm = WeakCastUtils.staticCast( originalClass, StaticLocalVirtualMachine.class );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 93
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.resolveClass(ClassLoader classLoader,String className)#1{
+      return classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 94
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.test_find_file_in_jar(){
+        URL url = getClass().getResource("/org/nutz/lang/one.jar");
+        assertNotNull(url);
+        ClassLoader classLoader = URLClassLoader.newInstance(new URL[]{url});
+        InputStream is = Files.findFileAsStream("org/nutz/plugin/Plugin.w",
+                                                classLoader.loadClass("org.nutz.lang.XXXX"));
+        assertNotNull(is);
+        assertEquals(is.available(), 133);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 95
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.getLoggerClass(ClassLoader cl){
+            loggerClass = cl.loadClass("org.apache.log4j.Logger");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 96
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.testTutorialGettingStartedTypePool()#0{
+        assertThat(classLoader.loadClass(UnloadedBar.class.getName()).getDeclaredField("qux"), notNullValue(java.lang.reflect.Field.class));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 97
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.load(ClassLoader classLoader)#1{
+                return new Loaded(classLoader.loadClass(componentTypeReference.lookup()), loadedValues);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 98
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.getServerLoader(final ClassLoader loader){
+            return loader.loadClass("org.apache.catalina.Container").getClassLoader();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 99
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.doLazyInit()#0{
+        ClassLoader classLoader = getClassLoader();
+            refClass = classLoader.loadClass(REF);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 100
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.getClassBy(String className){
+      ClassLoader loader = JwbfException.class.getClassLoader();
+      return loader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 101
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.HessianServer(final ClassLoader classLoader)#0{
+            serializerFactoryClass = classLoader.loadClass("com.caucho.hessian.io.SerializerFactory");
+            serializerFactory = serializerFactoryClass.getConstructor(ClassLoader.class).newInstance(loader);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 102
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.Run()#0{
+      final ClassLoader classpath = JavaCompiler.newClasspath(this.jar);
+      final Class<?> clazz = classpath.loadClass("helloworld.HelloWorld");
+      ClassExtensions.runMain(clazz);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 103
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.isClassPresent(String className){
+      ClassLoader classLoader = SampleApplication.class.getClassLoader();
+      classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 104
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.process(@Nonnull ClassLoader classLoader,@Nonnull Class<?> type,@Nonnull String line)#2{
+                String transformationClassName = parts[1].trim();
+                    Class<?> transformationClass = classLoader.loadClass(transformationClassName);
+                    transformations.put(annotationClassName, (Class<? extends ASTTransformation>) transformationClass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 105
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.call()#0{
+      ClassLoader classLoader = ClassLoaderPool.getClassLoader(
+        _servletContextName);
+        return installSkeleton(
+          classLoader, classLoader.loadClass(_skeletonId),
+          _targetLocator);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 106
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.loadClass(String className)#1{
+            return cl.loadClass(className.replace('/', '.'));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 107
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.getActualRemoteControlClientClass(ClassLoader classLoader){
+        return classLoader.loadClass("android.media.RemoteControlClient");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 108
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.findClass(ClassLoader classLoader,String name)#0{
+      return classLoader.loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 109
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.findParentClass(Vector parents,String name)#2{
+                return ((ClassLoader) parents.elementAt(i)).loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 110
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.getDocHandlerFactoryClass(ClassLoader docsClassLoader){
+        return docsClassLoader.loadClass("play.docs.SBTDocHandlerFactory");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 111
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.loadAsClass()#1{
+                clazz = loader.loadClass(getClassName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 112
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.testJavaCoreNotOnClassPath()#0{
+      ClassLoader classLoader = org.eclipse.xtext.xbase.XbaseRuntimeModule.class.getClassLoader();
+      classLoader.loadClass("org.eclipse.jdt.core.JavaCore");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 113
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.loadClass(final ClassLoader classLoader,final String className)#1{
+            ejbClass = classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 114
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.canLoad(final ClassLoader classLoader,final String type){
+            classLoader.loadClass(type);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 115
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.getDriver(ClassLoader cl)#1{
+            driverClass = cl.loadClass("org.h2.Driver");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 116
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.loadClass(ClassLoader classLoader,String className)#0{
+            return classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 117
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.load(ClassLoader classLoader)#1{
+                return new Loaded<V>((Class<V>) classLoader.loadClass(componentType.getName()), loadedValues);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 118
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.shouldAllowEmptyPackageName(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/emptyPackageName", "",
+                config("includes", new String[] {}, "excludes", new String[] {}));
+        resultsClassLoader.loadClass("levelOne.levelTwo.LevelTwoType");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 119
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.classOrNull(ClassLoader loader,String className){
+            return loader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 120
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.testNonLinkingClass()#0{
+            classLoader.loadClass(ClassA.class.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 121
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.getLevelClass(ClassLoader cl){
+            levelClass = cl.loadClass("org.apache.log4j.Level");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 122
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.loadClass(String clazz,Context context){
+    ClassLoader cl = getClassLoaderOfObject(context);
+    return cl.loadClass(clazz);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 123
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.createPlugin(String classNameCheck,String pluginName){
+            ClassLoader loader = VMPluginFactory.class.getClassLoader();
+            return (VMPlugin) loader.loadClass(pluginName).newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 124
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.callSendSystemOutAndErrToSLF4JInClassLoader(ClassLoader classLoader)#3{
+        Class<?> sysOutOverSLF4JClass = classLoader.loadClass(SysOutOverSLF4J.class.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 125
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.loadAndCompareClasses(String originalClassName,String delegateClassName)#0{
+            ClassLoader classLoader = TestDelegates.class.getClassLoader();
+            Class<?> delegateClass = classLoader.loadClass(delegateClassName);
+            compare(originalClass, delegateClass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 126
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.getSeparateClassLoadedPdx(boolean field1First)#0{
+    Class clazz1 = loader1.loadClass(getClass().getPackage().getName() + ".SeparateClassloaderPdx");
+    Constructor constructor = clazz1.getConstructor(boolean.class);
+    constructor.setAccessible(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 127
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.loadServletsPackage(ClassLoader loader){
+        loader.loadClass(basePackage + "DefaultServlet");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 128
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.loadTestClass(String className){
+               ClassLoader classLoader = JMXTestRunner.class.getClassLoader();
+               return classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 129
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.isClassAvailable(final ClassLoader loader,final String name){
+            loader.loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 130
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.canLoadClass(ClassLoader classloader,String classname){
+      classloader.loadClass(classname);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 131
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.loadTomcatPackage(ClassLoader loader)#0{
+        loader.loadClass(basePackage + "util.security.PrivilegedSetTccl");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 132
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.testWithoutPatch()#1{
+                appClassLoader.loadClass(AnonymousClassInfo.class.getName()).getClassLoader());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 133
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.getLoggingEvents(ClassLoader classLoader)#1{
+        Class<?> testLoggerFactoryClass = classLoader.loadClass(TestLoggerFactory.class.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 134
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.type(final ClassLoader loader,final Injection next){
+            return loader.loadClass(next.getClassname()).getDeclaredField(next.getName()).getGenericType();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 135
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.doLazyInit()#2{
+            createXML = classLoader.loadClass(XML_TYPE_CLASS_NAME).getMethod("createXML", Connection.class,
+                    String.class);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 136
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.loadUtilPackage(ClassLoader loader){
+        loader.loadClass(basePackage + "ParameterMap");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 137
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.CommonReflector(@Nonnull ClassLoader surefireClassLoader)#0{
+            startupReportConfiguration = surefireClassLoader.loadClass( StartupReportConfiguration.class.getName() );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 138
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.loadClassFromClassloader(ClassLoader loader,String beanClassName){
+      return loader.loadClass( beanClassName );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 139
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.loadLoaderPackage(ClassLoader loader){
+        loader.loadClass
+            (basePackage +
+             "loader.WebappClassLoader$PrivilegedFindResourceByName");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 140
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.process(@Nonnull ClassLoader classLoader,@Nonnull String line){
+                line = line.trim();
+                    classes.add(classLoader.loadClass(line));
+                    LOG.warn("'" + line + "' could not be resolved as a Class");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 141
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.getFileFromJBossVfsURL(URL url,ClassLoader loader)#0{
+        Class<?> virtualFileClass = loader.loadClass("org.jboss.vfs.VirtualFile");
+        Method getNameMethod = Reflections.getMethod(virtualFileClass, "getName");
+        File physicalFile = (File) Reflections.invoke(getPhysicalFileMethod, virtualFile);
+        checkNotNull(physicalFile, "org.jboss.vfs.VirtualFile.getPhysicalFile() returned null");
+        String name = (String) Reflections.invoke(getNameMethod, virtualFile);
+        checkNotNull(name, "org.jboss.vfs.VirtualFile.getName() returned null");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 142
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.loadJavaxPackage(ClassLoader loader){
+        loader.loadClass("javax.servlet.http.Cookie");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 143
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.isClassPresent(String name){
+         ClassLoader classLoader = getThreadContextClassLoader();
+         classLoader.loadClass(name); 
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 144
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.invokeMain(ClassLoader classloader,String classname,String[] args)#1{
+        Class<?> invoked_class = classloader.loadClass(classname);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 145
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.addClasses(WebArchive war,String clazz,ClassLoader cl)#0{
+            Class<?> current = cl.loadClass(clazz);
+            addClasses(war, current);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 146
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.antTaskExecutesSuccessfullyWithValidSchemas()#1{
+        File outputDirectory = invokeAntBuild("/ant/build.xml");
+        ClassLoader resultsClassLoader = compile(outputDirectory, buildCustomClasspath());
+        Class<?> generatedClass = resultsClassLoader.loadClass("com.example.WordDelimit");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 147
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.additionalPropertiesAreNotDeserializableWhenDisallowed(){
+        ClassLoader resultsClassLoader = generateAndCompile("/schema/additionalProperties/noAdditionalProperties.json", "com.example");
+        Class<?> classWithNoAdditionalProperties = resultsClassLoader.loadClass("com.example.NoAdditionalProperties");
+        mapper.readValue("{\"a\":\"1\", \"b\":2}", classWithNoAdditionalProperties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 148
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.loadJobExecutorClass(ClassLoader processApplicationClassloader,String jobExecutorClassname)#1{
+      return (Class<? extends JobExecutor>) processApplicationClassloader.loadClass(jobExecutorClassname);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 149
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.getClazz(ClassLoader builtProjectClassLoader,String className){
+      return builtProjectClassLoader.loadClass(className);
+      throw new JavascriptClassGenerationException(className, "Cannot load class:" + e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 150
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.buildAndTest(InjectionNode delegateInjectionNode)#0{
+        Class<Provider<MockDelegate>> generatedFactoryClass = (Class<Provider<MockDelegate>>) classLoader.loadClass(TEST_PACKAGE_FILENAME.getCanonicalName());
+        assertNotNull(generatedFactoryClass);
+        Provider<MockDelegate> provider = generatedFactoryClass.newInstance();
+        runMockDelegateTests(provider.get());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 151
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.loadExtension(String serviceClassName,final ClassLoader loader)#0{
+            return (Class<Extension>) loader.loadClass(serviceClassName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 152
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.isJaninoAvailable(){
+    ClassLoader classLoader = EnvUtil.class.getClassLoader();
+      Class<?> bindingClass = classLoader.loadClass("org.codehaus.janino.ScriptEvaluator");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 153
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.loadClassSilently(ClassLoader cl,String name){
+      clz = cl.loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 154
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.loadClass(String name){
+        ClassLoader cls = new MyClassLoader();
+        return cls.loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 155
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.loadClass(String name,ClassLoader loader)#0{
+            return loader.loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 156
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.startCodeGen(String[] args,ClassLoader classLoader){
+      Class<?> codeGenRunner = classLoader.loadClass(serviceCodeGenClassName);
+      startCodeGen(args, codeGenRunner);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 157
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.loadRuntimeClass(ClassLoader loader){
+            return (Class<? extends Qi4jRuntime>) loader.loadClass( "org.qi4j.runtime.Qi4jRuntimeImpl" );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 158
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.loadClass(ClassLoader targetClassLoader,String className)#1{
+            return (Class<? extends T>) targetClassLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 159
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.findClass(String clazz){
+        ClassLoader loader = new InVivoClassLoader(clazz, context);
+        return loader.loadClass(clazz);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 160
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.resetPropetyCache()#0{
+            ClassLoader classLoader = ResetSpringStaticCaches.class.getClassLoader();
+            Map annotationCache = (Map) ReflectionHelper.get(null,
+                    classLoader.loadClass("org.springframework.core.convert.Property"), "annotationCache");
+            annotationCache.clear();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 161
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.isOnClasspath(String className,ClassLoader classLoader){
+            classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 162
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.getPluginClass(String packageName,String className){
+        Context pluginContext = mContext.createPackageContext(packageName,
+                Context.CONTEXT_INCLUDE_CODE |
+                Context.CONTEXT_IGNORE_SECURITY);
+        ClassLoader pluginCL = pluginContext.getClassLoader();
+        return pluginCL.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 163
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.assertStored(ClassLoader loader,Object expected)#1{
+            Class<?> store = loader.loadClass("com.example.Store");
+            Field field = store.getDeclaredField("result");
+            Object result = field.get(null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 164
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.dependencyJarsAreLoadedInThePluginClassLoader(){
+        ClassLoader classLoader = plugin.getClass().getClassLoader();
+        classLoader.loadClass("org.apache.commons.math.random.RandomGenerator");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 165
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.loadUtilPackage(ClassLoader loader){
+        loader.loadClass(basePackage + "util.DefaultAnnotationProcessor$4");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 166
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.checkHibernateEjb(ClassLoader classLoader){
+            classLoader.loadClass("org.hibernate.ejb.HibernatePersistence");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 167
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.newInstanceInClassLoader(Class<E> classToReturn,ClassLoader classLoader,Class<? extends E> classToGetInstanceOf,Class<?>[] constructorArgTypes,Object... constructorArgs){
+        Class<?> class1 = classLoader.loadClass(classToGetInstanceOf.getName());
+        Object newInstance = Whitebox.invokeConstructor(class1, constructorArgTypes, constructorArgs);
+        return CrossClassLoaderTestUtils.moveToCurrentClassLoader(classToReturn, newInstance);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 168
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.loadClassAtPath(String baseDir,String path)#1{
+      return classLoader.loadClass(getBinaryName(path));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 169
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.initializeNMS(ClassLoader loader,String nmsPackage){
+            READ_LIMITER_CLASS = loader.loadClass(nmsPackage + ".NBTReadLimiter");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 170
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class540.getPOJOInterfaces(TargetMetaDef targetMetaDef)#0{
+      pojoClass = classLoader.loadClass(targetMetaDef.getClassName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 171
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.interfaceClass(final ClassLoader classLoader){
+        getLog().debug("generating command line interface report for " + interfac3);
+            return classLoader.loadClass(interfac3);
+            throw new MavenReportException("Unable to load interface class " + interfac3, e);
+}
+    
+   
+  
+   
+
+
+
+
+

@@ -1,0 +1,732 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.parseHeader(String responseString){
+        BufferedReader br = new BufferedReader(new StringReader(responseString));
+        assertEquals("HTTP/1.1 200 OK",br.readLine());
+        br.readLine();// empty
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.test_readLine_interaction_with_array_read_2(){
+        BufferedReader r = new BufferedReader(new StringReader("1\r\n2"));
+        assertEquals("1", r.readLine());
+        assertEquals(1, r.read(chars, 0, 1)); // This read skips the '\n'.
+        assertEquals('2', chars[0]);
+        assertNull(r.readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.readObject(InputStream stream){
+      BufferedReader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
+      String prolog = reader.readLine();
+      if ("Yes, this is MySerializationStrategy!".equals(prolog)) {
+        String contents = reader.readLine();
+        return new StringBuffer(contents);
+      } else {
+        throw new AssertionFailedError("got prolog=" + prolog);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.answer(){
+                InputStreamSource contentStream = (InputStreamSource)EasyMock.getCurrentArguments()[1];
+                BufferedReader reader = new BufferedReader(new InputStreamReader(contentStream.getInputStream()));
+                Assert.assertEquals(reader.readLine(), "This is a SOAP attachment");
+                Assert.assertEquals(reader.readLine(), "with multi-line");
+                reader.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.verifyOutput(FileSystem fs,Path outDir)#0{
+    InputStream is = fs.open(outputFiles[0]);
+    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+    String s = reader.readLine().split("\t")[1];
+    assertEquals("b a",s);
+    assertNull(reader.readLine());
+    reader.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.assertContent(String expected,Reader source){
+    assertNotNull(source);
+    final BufferedReader buffer = new BufferedReader(source);
+    assertEquals(expected, buffer.readLine());
+    assertNull(buffer.readLine());
+    buffer.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.assertContent(Reader source){
+    assertNotNull(source);
+    final BufferedReader buffer = new BufferedReader(source);
+    assertEquals("Source", buffer.readLine());
+    assertNull(buffer.readLine());
+    buffer.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.test_readLine_interaction_with_array_read_1(){
+        BufferedReader r = new BufferedReader(new StringReader("1\r\n2"));
+        assertEquals(2, r.read(new char[2], 0, 2));
+        assertEquals("", r.readLine()); // The '\r' we read() didn't count.
+        assertEquals("2", r.readLine());
+        assertNull(r.readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.test_readLine_interaction_with_read(){
+        BufferedReader r = new BufferedReader(new StringReader("1\r\n2"));
+        assertEquals('1', r.read());
+        assertEquals('\r', r.read());
+        assertEquals("", r.readLine()); // The '\r' we read() didn't count.
+        assertEquals("2", r.readLine());
+        assertNull(r.readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.test_readLine_interaction_with_skip(){
+        BufferedReader r = new BufferedReader(new StringReader("1\r\n2"));
+        assertEquals(2, r.skip(2));
+        assertEquals("", r.readLine()); // The '\r' we skip()ed didn't count.
+        assertEquals("2", r.readLine());
+        assertNull(r.readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testWithUnsupportedPayload(){
+    StringBuffer buffer = new StringBuffer(docString);
+    StringSource source = (StringSource)sourceFactory.createSource(buffer);
+    BufferedReader reader = new BufferedReader(source.getReader());
+    String docAsString =reader.readLine();
+    assertXMLEqual("Wrong content in StringSource","<?xml version=\"1.0\" encoding=\"UTF-8\"?><item>one</item>", docAsString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.testWithString(){
+    StringSource source = (StringSource)sourceFactory.createSource(docString);
+    BufferedReader reader = new BufferedReader(source.getReader());
+    String docAsString =reader.readLine();
+    assertXMLEqual("Wrong content in StringSource","<?xml version=\"1.0\" encoding=\"UTF-8\"?><item>one</item>", docAsString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.testWithDocument(){
+    Document doc = XmlTestUtil.getDocumentForString(docString);
+    StringSource source = (StringSource)sourceFactory.createSource(doc);
+    BufferedReader reader = new BufferedReader(source.getReader());
+    String docAsString =reader.readLine();
+    assertXMLEqual("Wrong content in StringSource","<?xml version=\"1.0\" encoding=\"UTF-8\"?><item>one</item>", docAsString);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.testRead(){
+        final StringReader stringReader = new StringReader("hello");
+        final JavaCCReader javaccReader = new JavaCCReader(stringReader);
+        final BufferedReader reader = new BufferedReader(javaccReader);
+        assertEquals("hello", reader.readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.message(Reader reader)#0{
+                message.set(new BufferedReader(reader).readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.message(InputStream reader)#1{
+                message.set(new BufferedReader(new InputStreamReader(reader)).readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.newOutputStream()#2{
+        final String roundtrip = new BufferedReader(new InputStreamReader(this.getArchive().get(path).getAsset()
+            .openStream())).readLine();
+        Assert.assertEquals("Contents not read as expected from the outstream", contents, roundtrip);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.readData(Reader rdr)#0{
+        if (rdr != null) {
+            BufferedReader br = new BufferedReader(rdr);
+            buf.append(br.readLine());
+        }
+        return buf.toString();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.readLine(Charset charset){
+      BufferedReader reader = new BufferedReader(readerFromScanBufferList(
+          _buffers, charset));
+      return reader.readLine();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.getFirstLine(String text)#1{
+      return new BufferedReader(new StringReader(text)).readLine();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.doit(){
+        URL r = Thread.currentThread().getContextClassLoader().getResource("/org/apache/aries/spifly/test/blah.txt");
+        System.out.println("*** First line of content: " + new BufferedReader(new InputStreamReader(r.openStream())).readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.testReaderOnClientAsResponseEntity(){
+        Response response = target().path("test/getReader").request().get();
+        assertEquals(200, response.getStatus());
+        final Reader reader = response.readEntity(Reader.class);
+        assertNotNull(reader);
+        BufferedReader br = new BufferedReader(reader);
+        assertEquals(GET_READER_RESPONSE, br.readLine());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.toString(InputStream stream)#0{
+            return new BufferedReader(new InputStreamReader(stream)).readLine();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.read_shouldReturnResponseStream(){
+    engine.sendRequest(new Tile(1, 2, new Integer(3).byteValue()));
+    InputStream responseStream = engine.read();
+    String response = new BufferedReader(new InputStreamReader(responseStream)).readLine();
+    assertThat(response).isEqualTo("TEST RESPONSE");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.testUnresolvablePlaceholdersDontCrash()#0{
+    ClassLoader classLoader = ModuleUtils.createModuleRuntimeClassLoader(definition, options, ModuleUtilsTests.class.getClassLoader());
+    String value = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream("a_file"))).readLine();
+}
+    
+   
+  
+   
+
+
+
+
+

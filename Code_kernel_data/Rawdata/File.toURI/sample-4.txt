@@ -1,0 +1,582 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.getUrlForFile(File possibleFileInSrc)#0{
+        if (possibleFileInSrc.exists() && !possibleFileInSrc.isDirectory()) {
+          try {
+            return possibleFileInSrc.toURI().toURL();
+          } catch(MalformedURLException malformedURLException) {
+            logger.error("Error in dev mode while streaming files from src dir. ", malformedURLException);
+          }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.setProperties(File file){
+    if (!file.isFile())
+      error("No such file %s", file);
+    else {
+      setProperties(file.toURI());
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.generateRecursive(GenerationConfig config,SchemaMapper mapper,JCodeModel codeModel,String packageName,List<File> schemaFiles)#1{
+        Collections.sort(schemaFiles);
+        for (File child : schemaFiles) {
+            if (child.isFile()) {
+                mapper.generate(codeModel, getNodeName(child.toURI().toURL()), defaultString(packageName), child.toURI().toURL());
+            } else {
+                generateRecursive(config, mapper, codeModel, childQualifiedName(packageName, child.getName()), Arrays.asList(child.listFiles(config.getFileFilter())));
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30._write(File file,String content)#0{
+    File parentFile = file.getParentFile();
+    if (!parentFile.exists()) {
+      parentFile.mkdirs();
+    }
+    Path path = Paths.get(file.toURI());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.toURLs(Vector<File> files){
+        Vector<URL> r = new Vector<URL>(files.size());
+        for (File f : files) {
+            if(!f.exists()) return null;    // abort
+            r.add(f.toURI().toURL());
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.toUrl(final File root){
+        if (!root.isFile() && root.getPath().startsWith("jar:file:")) {
+            try {
+                return new URL(root.getPath());
+            } catch (final MalformedURLException me) {
+                // no-op keep previous behavior
+            }
+        }
+        return root.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.getResource(ServletContext context,String path){
+        File source = getWebappSource(context, path);
+        return source != null && source.exists() ? source.toURI().toURL() : context.getResource(path);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getSigilFileURI()#0{
+        if (!file.isFile())
+        {
+            throw new BuildException("File not found " + file.getAbsolutePath());
+        }
+        return file.toURI();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.filesToUrls(File jarFile,File[] libFiles)#0{
+        for (File libFile : libFiles) {
+            if (libFile.getName().endsWith(".jar")) {
+                urls.add(libFile.toURI().toURL());
+            }
+        };
+        return urls.toArray(new URL[0]);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.addFolder(File folder)#1{
+        if (folder.isDirectory()) {
+            try {
+                super.addURL(folder.toURI().toURL());
+            } catch (MalformedURLException e) {
+                throw new IllegalArgumentException(e.getMessage(), e);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.url(File fil)#0{
+        if( fil == null ) {
+            return null;
+        }
+            return fil.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.addWSDLSchemaImport(Schema wsdlSchema,String tns,File file)#0{
+            if (file != null && !ignoreImports) {
+                schemaimport.setSchemaLocationURI(file.toURI().toString());
+            }
+            wsdlSchema.addImport(schemaimport);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.ZipArchiveWrapper(File zipFile)#0{
+        if (zipFile == null) {
+            throw new FileNotFoundException("Zip file was null!");
+        }
+        zipUrl = zipFile.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.uri(final URI uri,final File location,final String name)#1{
+            if (location != null) {
+                return location.toURI();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.parentPath()#0{
+      final File parent = file().getAbsoluteFile().getParentFile();
+      if(parent != null)
+        return parent.toURI().toString();
+      else
+        return getAbsolutePath();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getRelativeUri(URI rootURI,File file)#0{
+        if (file == null) {
+            return null;
+        }
+        URI uri = file.toURI();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.getParent(){
+        File parent = file.getParentFile();
+        if (parent == null) {
+            return null;
+        }
+        return fs.resolveFile(parent.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.addFile(Set<URI> urls,File f,Log log,boolean verbose)#0{
+    if (f != null) {
+      URI fileUri = f.toURI();
+      if (verbose) {
+        log.info("  artifact: " + fileUri);
+      }
+      urls.add(fileUri);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.testGitDirPathNoGit(){
+    createWorkspace(SimpleMetaStore.DEFAULT_WORKSPACE_NAME);
+    JSONObject project = createProjectOrLink(workspaceLocation, getMethodName().concat("Project"), null);
+    String location = project.getString(ProtocolConstants.KEY_CONTENT_LOCATION);
+    URI uri = URI.create(location);
+    File dir = GitUtils.getGitDir(new Path(uri.getPath()));
+    assertNull(dir == null ? "N/A" : dir.toURI().toURL().toString(), dir);
+}
+    
+   
+  
+   
+
+
+
+
+

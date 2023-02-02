@@ -1,0 +1,461 @@
+
+Instance 0
+Class60.getContents(File file)#1{
+      int nextChar = reader.read();
+      while (nextChar >= 0) {
+        builder.append((char) nextChar);
+        nextChar = reader.read();
+      }
+}
+
+
+Instance 1
+Class620.processFlagFile()#1{
+    while ((c = buffer.read()) != -1) {
+
+      // Ignoring the BOM.
+      if (isFirstCharacter) {
+        isFirstCharacter = false;
+        if (c == UTF8_BOM_CODE) {
+          continue;
+        }
+      }
+
+      if (c == 32 || c == 9 || c == 10 || c == 13) {
+        if (quoted) {
+          builder.append((char) c);
+        } else if (builder.length() != 0) {
+          tokens.add(builder.toString());
+          builder.setLength(0);
+        }
+      } else if (c == 34) {
+        if (escaped) {
+          if (quoted) {
+            builder.setCharAt(builder.length()-1, (char) c);
+          } else {
+            builder.append((char) c);
+          }
+        } else {
+          quoted = !quoted;
+        }
+      } else {
+        builder.append((char) c);
+      }
+
+      escaped = c == 92;
+    }
+    buffer.close();
+}
+
+
+Instance 2
+Class600.run()#2{
+      while (ch != -1) {
+        while ((ready = reader.ready()) && (ch = reader.read()) != -1) {
+          sb.append((char)ch);
+          if ((char)ch == '\n') {
+            this.inputListener.notifyInputLine(sb.toString());
+            sb = new StringBuilder();
+          }
+        }
+        if (!ready) {
+          if (!ProcessUtils.isProcessAlive(process)) {
+            if (!continueReading.isRunning()) {
+              continueReading.start();
+            } else if (continueReading.elapsedTimeMillis() > continueReadingMillis) {
+              return;
+            }
+          }
+          Thread.sleep(10);
+        }
+      }
+}
+
+
+Instance 3
+Class20.readMessages()#1{
+                if (reader != null) {
+                    int ch;
+                    
+                    while((ch = reader.read()) != -1 && isStarted()) {
+                        rawMessageBuilder.append((char)ch);
+                        
+                        if((char)ch == ';') {
+                            createAndQueueTl1Message(rawMessageBuilder);
+                            rawMessageBuilder.setLength(0);
+                        }
+                    }
+                    rawMessageBuilder = null;
+                    
+                    LOG.warn("readMessages: resetting socket reader to c
+}
+
+
+Instance 4
+Class480.loadFile(File f)#0{
+            while ((c = br.read()) != -1) {
+                if (c == '\n') {
+                    sb.append((char) c);
+                    ls.add(sb);
+                    sb = new StringBuilder();
+                } else {
+                    sb.append((char) c);
+                }
+            }
+            if (sb.length() > 0)
+                ls.add(sb);
+}
+
+
+Instance 5
+Class420.checkResponseCode(HttpURLConnection urlc)#3{
+          while ((ch = br.read()) != -1) {
+            response.append((char) ch);
+          }
+          warn(response.toString().trim());
+}
+
+
+Instance 6
+Class130.readFile(File f)#1{
+        while ((c = r.read()) != -1) {
+            builder.append((char) c);
+        }
+        return builder.toString();
+}
+
+
+Instance 7
+Class40.findProcessNameInLinuxWay()#1{
+            while ((c = cmdlineReader.read()) > 0) {
+                processName.append((char) c);
+            }
+            return processName.toString();
+}
+
+
+Instance 8
+Class210.DustColorSettingsPage()#0{
+      while ((c = br.read()) != -1) {
+        sb.append((char) c);
+      }
+      demo = sb.toString();
+}
+
+
+Instance 9
+Class650.readName(final BufferedReader buffered_reader)#0{
+    while ((current_char = buffered_reader.read ()) != -1) {
+      if (Character.isLetter ((char) current_char) ||
+          Character.isDigit ((char) current_char) ||
+          '_' == current_char ||
+          '+' == current_char) {
+
+        read_name_string_buffer.append ((char) current_char);
+
+        // save the new position and go around the loop again
+        buffered_reader.mark (1);
+        continue;
+      } else {
+        // we have read one character too many
+        buffered_reader.reset ();
+        break;
+      }
+    }
+}
+
+
+Instance 10
+Class650.readFile(File fileName)#2{
+                while ((c = in.read()) != -1) {
+                    resultString.append((char)c);
+                }
+                in.close();
+}
+
+
+Instance 11
+Class210.getContentsOfUrlAsString(URL requestUrl)#2{
+    while ((cp = br.read()) != -1) {
+      output.append((char) cp);
+    }
+    br.close();
+}
+
+
+Instance 12
+Class660.getSqlStatements(InputStream stream)#0{
+            while ((r = reader.read()) != END_OF_STREAM) {
+                char character = (char) r;
+                sb.append(character);
+            }
+            return COMMENT_PATTERN.matcher(sb)
+                    .replaceAll(Strings.EMPTY)
+                    .split(STATEMENT_DELIMITER);
+}
+
+
+Instance 13
+Class550.getSQLStatements(InputStream stream)#0{
+            while ((r = reader.read()) != -1) sb.append((char) r);
+            return COMMENT_PATTERN.matcher(sb).replaceAll(Strings.EMPTY).split(";");
+}
+
+
+Instance 14
+Class370.convertStreamToString(InputStream is)#2{
+            while ((cp = reader.read()) != -1) {
+                sb.append((char) cp);
+            }
+}
+
+
+Instance 15
+Class440.doEncodingTest(String rootElementName,String rootElementText,String encoding)#1{
+    int intValue = in.read();
+    while ( intValue != -1 ) {
+      stringBuffer.append( (char) intValue );
+      intValue = in.read();
+    }
+}
+
+
+Instance 16
+Class310.read(final BufferedReader source)#1{
+      while (ch != -1) {
+        script.append((char) ch);
+        ch = source.read();
+      }
+}
+
+
+Instance 17
+Class160.readText(Reader in)#1{
+    while ((c = br.read()) >= 0) {
+      sb.append((char) c);
+    }
+    return sb.toString();
+}
+
+
+Instance 18
+Class580.readFile(File fileName)#0{
+                while ((c = in.read()) != -1) {
+                    resultString.append((char)c);
+                }
+                in.close();
+}
+
+
+Instance 19
+Class650.compileFile(final File grammarFile,final String targetLanguage,final File destinationDirectory,final String destinationPackage,final boolean generateCode,final Strictness strictness,final Trace trace)#2{
+            while ((c = br.read()) != -1) {
+                sb.append((char) c);
+            }
+            br.close();
+}
+
+
+Instance 20
+Class160.main(String argv[])#1{
+    while((ch = is.read()) != -1) buffer.append((char) ch);
+    RobustTokenizer<Word> t = new RobustTokenizer<Word>(buffer.toString());
+    List<Word> tokens = t.tokenize();
+    for(int i = 0; i < tokens.size(); i ++){
+      System.out.println(tokens.get(i));
+    }
+}
+
+
+Instance 21
+Class610.generateGraph(String dotFile)#1{
+            while((c = br.read()) != -1) {
+                if(c == '\n') {
+                    if(pc == '\\') {
+                        // Remove the last \ if it was part of the DOT wrapping character
+                        line.deleteCharAt(line.length()-1);
+                    } else {
+                        GElement element = parseLine(line.toString());
+                        if(element != null) {
+                            if(graph == null)
+                                graph = element;
+                            else
+                                graph.addElement(element);
+                        }
+                        line.delete(0, line.length());
+                    }
+                } else if(c != '\r') {
+                    line.append((char)c);
+                } else if(c == '\r') {
+                    continue;
+                }
+                pc = c;
+            }
+            br.close();
+}
+
+
+Instance 22
+Class430.outPutChar(Writer out,BufferedReader buffer)#2{
+    while ((ch = buffer.read()) != -1) {
+      charr = (char) ch;
+      switch (ch) {
+        case '%':
+          if (para == 0) {
+            buffer.readLine();
+          } else {
+            out.write(charr);
+          }
+        case '\n':
+          if (last == 1) {
+            out.write("");
+            out.write('\n');
+            last = 0;
+          }
+          break;
+        case '(':
+          if (para++ > 0) {
+            out.write(charr);
+          }
+          break;
+        case ')':
+          if (para-- > 1) {
+            out.write(charr);
+          } else {
+            out.write(' ');
+          }
+          last = 1;
+          break;
+        case '\\':
+          if (para > 0)
+            switch (charr = (char) buffer.read()) {
+              case '(':
+              case ')':
+                out.write(charr);
+                break;
+              case 't':
+                out.write('\t');
+                break;
+              case 'n':
+                out.write('\n');
+                break;
+              case '\\':
+                out.write('\\');
+                break;
+              case '0':
+              case '1':
+              case '2':
+              case '3':
+              case '4':
+              case '5':
+              case '6':
+              case '7':
+                out.write('\\');
+              default:
+                out.write(charr);
+                break;
+            }
+          break;
+        default:
+          if (para > 0) {
+            out.write(charr);
+          }
+      }
+
+    }
+}
+
+
+Instance 23
+Class140.getStartOfSelected(String val)#6{
+      while ((cur = in.read()) != -1) {
+        char c = (char) cur;
+        
+        if (c == '\n' || ("" + c).equals(System.getProperty("line.separator"))) {
+          int index = line.indexOf(search);
+          if (index != -1) {
+            return count - line.length() + index;
+          }
+          
+          line = "";
+        }
+
+        line += c;
+        count += 1;
+      }
+}
+
+
+Instance 24
+Class570.readUserInput()#1{
+            while ((charOut = bufReader.read()) != -1) {
+                output = output.concat(String.valueOf(Character.valueOf((char) charOut)));
+            }
+}
+
+
+Instance 25
+Class440.transformDirect(Object value)#0{
+            while (chr != -1 && contents.length() < DataTypeManager.MAX_STRING_LENGTH) {
+                contents.append((char)chr);
+                chr = reader.read();
+            }
+            return contents.toString();         
+}
+
+
+Instance 26
+Class10.readTag(BufferedReader is)#0{
+         while (theChar != '>' && ((theChar = (char)is.read()) != -1)) {
+           theTag.append(theChar);
+         } // end while
+}
+
+
+Instance 27
+Class310.read()#2{
+            while (ch != '\r' && ch != '\n')
+            {
+                ch = (char) reader.read ();
+                if (ch != (char) -1 && ch != '\r' && ch != '\n')
+                {
+                    buff.append (ch);
+                }
+            }
+}
+
+
+Instance 28
+Class10.load(File dir,String fileName)#0{
+                for (int c = r.read(); c >= 0; c = r.read()) {
+                    sb.append((char) c);
+                }
+                return sb.toString();
+}
+
+
+Instance 29
+Class470.readResource(BufferedReader reader)#0{
+            for (int c = reader.read(); c > -1; c = reader.read()) {
+                resource.append((char) c);
+            }
+            return resource.toString();
+}
+
+
+Instance 30
+Class320.readResponse(BufferedReader reader)#5{
+                char c = (char)reader.read();
+                body.append(c);
+        return new Response(code, headers, body.toString().trim());
+}
+
+
+Instance 31
+Class150.readFile()#1{
+      for (int c = input.read(); c != -1; c = input.read()) {
+        result.append((char)c);
+      }
+      return result.toString();
+}
+

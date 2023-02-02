@@ -1,0 +1,1245 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.parse(CharSequence text)#1{
+                        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+                        if(cl!=null)
+                            return cl.loadClass(name);
+                        else
+                            return Class.forName(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.getCustomizeInstance(final String className){
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        if (loader == null) {
+            loader = ClassLoader.getSystemClassLoader();
+        }
+        Class<?> c = loader.loadClass(className);
+        return c.newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.loadStrategyFromClassName(String strategyClassName)#0{
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader != null) {
+            try {
+                Class<?> clazz = classLoader.loadClass(strategyClassName);
+                return (CellMappingStrategy) clazz.newInstance();
+            } catch (Throwable e) {
+                LOG.warn("Failed to load HBase cell mapping strategy from class {}.", strategyClassName);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.loadClass(String className){
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = getClass().getClassLoader();
+        }
+        c = classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.getCollectionClass(String collectionType)#0{
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = SelectManyRendererBase.class.getClassLoader();
+        }
+            collectionClass = classLoader.loadClass(collectionType).asSubclass(Collection.class);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.getValidator(String validator){
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+        if (cl == null) {
+            cl = ConfigureCxfSecurity.class.getClassLoader();
+        }
+        return cl.loadClass(validator).newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class680.loadClass(String className)#0{
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            return Class.forName(className);
+        } else {
+            return classLoader.loadClass(className);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.loadClass(final String classname){
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = MonitoringUtils.class.getClassLoader();
+        }
+        return classLoader.loadClass(classname);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.loadType(String fullName)#0{
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        return loader != null ? loader.loadClass(fullName) : Class.forName(fullName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.getClass(String name){
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            return classLoader != null ? classLoader.loadClass( name ) : null;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.findClass(String className,Class referencePoint){
+            ClassLoader cl = referencePoint.getClassLoader();
+            if (cl == null) {
+                cl = ClassLoader.getSystemClassLoader();
+            }
+            return cl.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.newApplication(String str,ClassLoader classLoader){
+        Class loadClass = classLoader.loadClass(str);
+        if (loadClass == null) {
+            throw new ClassNotFoundException(str);
+        }
+        Application application = (Application) loadClass.newInstance();
+        OpenAtlasHacks.Application_attach.invoke(application,
+                RuntimeVariables.androidApplication);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class570.getImplementationNamed(String className,Class<T> pluginClass){
+        final ClassLoader classLoader = implementationToClassLoader.get(className);
+        if (classLoader == null) {
+            throw new ClassNotFoundException("Couldn't find a class loader for " + className);
+        }
+        return classLoader.loadClass(className).asSubclass(pluginClass);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.wire(ClassLoader classLoader,String className,Object invoker)#1{
+        final Class clazz = classLoader.loadClass( className );
+        if (clazz != null) {
+            if (invoker instanceof Wireable) {
+                ( (Wireable) invoker ).wire( clazz.newInstance() );
+            }
+        } else {
+            throw new ClassNotFoundException( className );
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.loadClass(ClassLoader loader,String className){
+        if (loader == null || osgiVersion >= OSGI_1_5 && !checkValidLoader(loader)) {
+            throw new ClassNotFoundException(className);
+        }
+        return loader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.exec(File jarFile,String[] args,ClassLoader classLoader){
+    String mainClassName = getMainClassName(jarFile);
+    if (mainClassName == null) {
+      throw new ClassNotFoundException("Unable to extract name of Main-Class of " + jarFile.getAbsolutePath() );
+    }
+    Class mainClass = classLoader.loadClass(mainClassName);
+    Method mainMethod = mainClass.getMethod("main", new Class[]{ String[].class } );
+    mainMethod.invoke(null, new Object[]{ args } );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.DBToasterEngine(String queryClass)#0{
+            ClassLoader cl = this.getClass().getClassLoader();
+            if (cl == null) cl = ClassLoader.getSystemClassLoader();
+            _query = (IQuery) cl.loadClass(queryClass).newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.canLoadClass(ClassLoader loader,String className){
+    if (loader == null) {
+      loader = ClassLoader.getSystemClassLoader();
+    }
+      loader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.relFindClass(Class home,String name)#0{
+            ClassLoader loader = home.getClassLoader();
+            if (loader != null)
+                return loader.loadClass(name);
+            else
+                return Class.forName(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.createVerticle(String verticleName,ClassLoader classLoader){
+    verticleName = VerticleFactory.removePrefix(verticleName);
+    if (verticleName.endsWith(".java")) {
+      CompilingClassLoader compilingLoader = new CompilingClassLoader(classLoader, verticleName);
+      String className = compilingLoader.resolveMainClassName();
+      clazz = compilingLoader.loadClass(className);
+    } else {
+      clazz = classLoader.loadClass(verticleName);
+    }
+    return (Verticle) clazz.newInstance();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.tryLoadClass(String className,ClassLoader classLoader){
+        if (className.startsWith("[")) {
+            return Class.forName(className, false, classLoader);
+        } else {
+            return classLoader.loadClass(className);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.loadClass(String className,ClassLoader classLoader){
+        if (classLoader == null) {
+            return Class.forName(className);
+        }
+        return classLoader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.loadClass(ClassLoader classLoader,String className){
+        Class cls = primitivesMap.get( className );
+        if ( cls == null ) {
+            cls = classLoader.loadClass( className );
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.loadClass(ClassLoader loader,String className){
+      if (loader.getClass() == MLet.class) return ((MLet)loader).loadClass(className, null);
+      return loader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.loadClass(String className,ClassLoader loader){
+      RmiConnectorActivator.log(LogService.LOG_DEBUG,"Loading class: " + className +" From "+loader,null);
+      if (loader == null){
+         loader= ProviderHelper.class.getClassLoader();
+         RmiConnectorActivator.log(LogService.LOG_DEBUG,"a new loader "+loader,null);
+         
+           //Thread.currentThread().getContextClassLoader();
+      }
+      return loader.loadClass(className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.forName0(String arg1,boolean arg2,ClassLoader arg3)#1{
+        return (arg3 == null) ? VmSystem.forName(arg1) : arg3.loadClass(arg1, arg2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.try2Load(String newName,ClassLoader loader)#0{
+            if (loader == null)
+                return (Class<T>) getClass().getClassLoader().loadClass(newName);
+            return (Class<T>) loader.loadClass(newName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.locateParserClass(GrammarInfo grammarInfo,ClassLoader classLoader){
+        String parserClassName = grammarInfo.getGrammarName() + "Parser";
+        if ( grammarInfo.getGrammarPackage() != null ) {
+            parserClassName = grammarInfo.getGrammarPackage()+ "." + parserClassName;
+        }
+        return classLoader.loadClass( parserClassName );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.loadClass(ClassLoader classLoader,String classname){
+            if (classLoader == null || classname == null) {
+                return null;
+            }
+                return classLoader.loadClass(classname);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.loadClass(String fqcn)#0{
+            ClassLoader cl = getClassLoader();
+            if (cl != null) {
+                try {
+                    clazz = cl.loadClass(fqcn);
+                } catch (ClassNotFoundException e) {
+                    if (log.isTraceEnabled()) {
+                        log.trace("Unable to load clazz named [" + fqcn + "] from class loader [" + cl + "]");
+                    }
+                }
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.load(ClassLoader classLoader){
+            if (type != null) {
+                return type;
+            }
+            return classLoader.loadClass(typeName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.getClass(final ClassLoader classLoader,final String className)#0{
+        if (!isEmpty(className)) {
+            try {
+                return classLoader.loadClass(className);
+            } catch (ClassNotFoundException e) {
+                throw new DeploymentUnitProcessingException(e);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.loadClass(String className,ClassLoader loader)#0{
+        if (loader == null) {
+            return ClassLoaderUtils.loadClass(className, getClass());
+        } else {
+            return loader.loadClass(className);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.delegateToParent(String classname)#0{
+        ClassLoader cl = getParent();
+        if (cl != null)
+            return cl.loadClass(classname);
+        else
+            return findSystemClass(classname);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.classIsPresent(String className,ClassLoader classLoader)#1{
+      if (classLoader == null) {
+        Class.forName(className);
+      } else {
+        classLoader.loadClass(className);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.createProviderInstance(final String providerClass,final ClassLoader classLoader)#0{
+        if (providerClass != null && providerClass.length() > 0 && !providerClass.equals(ProviderWrapper.class.getName())) {
+            try {
+                final Class<? extends Provider> clazz = classLoader.loadClass(providerClass).asSubclass(Provider.class);
+                return clazz.newInstance();
+            } catch (final Throwable e) {
+                logger.warning("Unable to construct provider implementation " + providerClass, e);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.loadClass(Storage storage,String name)#1{
+        ClassLoader loader = storage.getClassLoader();
+        if (loader != null) { 
+            try { 
+                return loader.loadClass(name);
+            } catch (ClassNotFoundException x) {}
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.createExclusion(ClassLoader cl,File root)#1{
+        if (exclusion != null) {
+            Class<MethodExclusion> clazz = (Class<MethodExclusion>) cl.loadClass(exclusion);
+            return clazz.getConstructor(File.class).newInstance(root);
+        } else {
+            return FileMethodExclusion.create(root);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.addClassLoader(final ClassLoadingPicoContainer parentContainer,final Element childElement,final ClassLoadingPicoContainer metaContainer)#0{
+        if (parentClass != null && !EMPTY.equals(parentClass)) {
+            parentClassLoader = parentClassLoader.loadClass(parentClass).getClassLoader();
+        }
+        ClassLoadingPicoContainer scripted = new DefaultClassLoadingPicoContainer(parentClassLoader, parentContainer);
+        addComponentsAndChildContainers(scripted, childElement, metaContainer);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.loadClass(String name,boolean resolve)#0{
+          ClassLoader parent = getParent();
+          return parent == null ? ClassLoader.getSystemClassLoader().loadClass(name) : parent.loadClass(name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.load(ClassLoader classLoader,String ejbClass)#0{
+        if (ejbClass != null) {
+            try {
+                return classLoader.loadClass(ejbClass);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+

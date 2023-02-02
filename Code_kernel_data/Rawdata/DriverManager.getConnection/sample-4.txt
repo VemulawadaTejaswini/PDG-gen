@@ -1,0 +1,1262 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.createConnection(){
+        if(null == _props) {
+            if(_uname == null && _passwd == null) {
+                return DriverManager.getConnection(_connectUri);
+            }
+            return DriverManager.getConnection(_connectUri,_uname,_passwd);
+        }
+        return DriverManager.getConnection(_connectUri,_props);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.getAdminConnectionWithProps(Properties props){
+        String adminUrl = System.getProperty(ADMIN_CONNECTION_PROPERTY_NAME);
+        if (adminUrl != null) {
+            return DriverManager.getConnection(adminUrl, props);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.getAdminConnectionWithProps(Properties props){
+    String adminUrl = System.getProperty(ADMIN_CONNECTION_PROPERTY_NAME);
+    if (adminUrl != null) {
+      return DriverManager.getConnection(adminUrl, props);
+    } else {
+      return null;
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class950.setupConnection(){
+        if (connection == null) {
+            Connection newConnection = DriverManager.getConnection(url, username, password);
+            newConnection.setAutoCommit(false);
+            connection = newConnection;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.getForeignConnection(String connectionURL,Connection foreignConnection)#1{
+        Connection  conn = _connections.get( connectionURL );
+        if ( conn == null )
+        {
+            conn = DriverManager.getConnection( connectionURL );
+
+            if ( conn != null ) { _connections.put( connectionURL, conn ); }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.getConnection(boolean fresh)#0{
+        if (this.connection == null) {
+            this.connection =
+                DriverManager.getConnection(this.connectString, null);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.shutdownDatabase(String url){
+        if (url.startsWith("jdbc:derby:") || url.startsWith("jdbc:hsqldb:")) {
+            try {
+                DriverManager.getConnection(url + ";shutdown=true");
+            } catch (SQLException e) {
+                // ignore
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.getConnection(String connectionUrl,String username,String passwd){
+        if (!connectionUrl.contains(";databaseName=")) {
+            String dbname = connectionUrl.substring(connectionUrl.lastIndexOf('/') + 1);
+            String url = connectionUrl.substring(0, connectionUrl.lastIndexOf('/'));
+            connectionUrl = url + ";databaseName=" + dbname;
+        }
+        return DriverManager.getConnection(connectionUrl, username, passwd);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.ensureConnection()#1{
+        if (databaseUrl != null) {
+          conn = DriverManager.getConnection(databaseUrl);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.initConnection()#1{
+      final Connection connection = DriverManager.getConnection(String.format("jdbc:sqlite:%s", myDbFile.getPath()));
+      if (! existed && myInitDbScript != null) {
+        // ok to run under lock => no read is possible until initialized
+        myInitDbScript.consume(connection);
+      }
+      connection.setAutoCommit(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.getDefaultConnection(){
+    if (m_conn == null)
+    {
+      m_conn = DriverManager.getConnection("jdbc:default:connection");
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1160.establishConnection()#1{
+    if (username == null) {
+      dbConn = DriverManager.getConnection(dbURL);
+    } else {
+      dbConn = DriverManager.getConnection(dbURL, username, password);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.getReadWriteConnection()#0{
+    if (connection == null) {
+      connection = new H2DatabaseConnection(DriverManager.getConnection(databaseUrl));
+      if (connectionProxyFactory != null) {
+        connection = connectionProxyFactory.createProxy(connection);
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.init()#1{
+        if(dbFile.exists()) {
+            dbFile.delete();
+        }
+        connection = DriverManager.getConnection(databasePath,
+                "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.getConnection()#1{
+    if (conn == null) {
+
+      try {
+        Connection con = DriverManager.getConnection(HOST_URL,
+            DATABASE_USER, DATABASE_PASSWORD);
+        conn = con;
+        return con;
+      } catch (SQLException e) {
+        LOG.error("Get SQLException during setting up connection: " + StringUtils.stringifyException(e));
+        return null;
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.getConnection(String user,String password,String url)#0{
+        if(user != null) {
+            cx = DriverManager.getConnection(url, user, password);
+        } else {
+            cx = DriverManager.getConnection(url);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.openDBCon()#0{
+            if (con == null || con.isClosed()) {
+                con = DriverManager.getConnection("jdbc:sqlite:" + dbPath); // NON-NLS
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.getConnectionInternal(String url,Properties properties)#0{
+    Enumeration<java.sql.Driver> drivers =  DriverManager.getDrivers();
+    while (drivers.hasMoreElements()) {
+      java.sql.Driver driver = (java.sql.Driver) drivers.nextElement();
+      if(!(driver instanceof Driver)) {
+        DriverManager.deregisterDriver(driver);
+      }
+    }
+    return DriverManager.getConnection(url, properties);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.start()#3{
+        if (url == null)
+            url = "jdbc:h2:tcp://lo
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.get()#2{
+            if (username != null || password != null)
+                return DriverManager.getConnection(url, username, password);
+            else
+                return DriverManager.getConnection(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.getConnection()#3{
+      if (username != null) {
+        conn = DriverManager.getConnection(url, username, password);
+      } else {
+        conn = DriverManager.getConnection(url);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.getConnection(){
+        if ( _conn != null ) { return _conn; }
+        _conn = DriverManager.getConnection( connectionURL );
+        _conn.setAutoCommit( false );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.getConnection()#0{
+        if (conn == null) {
+            final Connection originalConn = DriverManager.getConnection("jdbc:log4jdbc:hsqldb:mem:test", "sa", "");
+            conn = Mockito.spy(originalConn);
+            Mockito.doAnswer(new Answer<PreparedStatement>() {
+                @Override
+                public PreparedStatement answer(InvocationOnMock invocation)
+                        throws Throwable {
+                    String originalSQL = (String) invocation.getArguments()[0];
+                    String replacedSQL = originalSQL.replaceAll("(\\S+) ~ \\?", "regexp_matches($1, ?)");
+                    replacedSQL = replacedSQL.replaceAll("(\\S+) !~ \\?", "regexp_matches($1, ?) = FALSE");
+                    return originalConn.prepareStatement(replacedSQL);
+                }
+            }).when(conn).prepareStatement(Mockito.anyString());
+            executeDDL(conn, "drop schema public cascade;");
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class290.getConnection()#2{
+      if (connection == null) {
+        connection = DriverManager.getConnection(databaseURL, databaseUser,
+          databasePassword);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.getCon()#1{
+    if(con==null){
+      try {
+        con=DriverManager.getConnection(url,user,password);
+      } catch (SQLException e) {
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
+        con=null;
+        e.printStackTrace();
+      }      
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.getConnection()#3{
+        if (username != null)
+            conn = DriverManager.getConnection(jdbcUrl, username, password);
+        else
+            conn = DriverManager.getConnection(jdbcUrl);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.getConnection()#0{
+         Connection connection = DriverManager.getConnection(connectionUrl, userName, password);
+         if (connection == null)
+            throw new PersistenceException("Received null connection from the DriverManager!");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class470.createConnection(String url,String user,String password)#1{
+        if ( password == null )
+            password = Access.getPassword() ;
+        return DriverManager.getConnection(url, user, password) ;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.getConnection(){
+    if (connection ==null || connection.isClosed())
+     connection = DriverManager.getConnection(dbUrl, "sa", "");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1380.getTestEnvConnection(){
+    if (this.conn == null) {
+      this.conn =
+          DriverManager.getConnection(OracleUtils.CONNECT_STRING,
+              OracleUtils.ORACLE_USER_NAME, OracleUtils.ORACLE_USER_PASS);
+      this.conn.setAutoCommit(false);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.createConnection()#0{
+        if(null == _props) {
+            if((_uname == null) && (_passwd == null)) {
+                return DriverManager.getConnection(_connectUri);
+            } else {
+                return DriverManager.getConnection(_connectUri,_uname,_passwd);
+            }
+        } else {
+            return DriverManager.getConnection(_connectUri,_props);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.createConnection()#2{
+            if((_uname == null) && (_passwd == null)) {
+                return DriverManager.getConnection(_connectUri);
+            } else {
+                return DriverManager.getConnection(_connectUri,_uname,_passwd);
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.connect()#2{
+        if (this.user != null && !this.user.isEmpty()) {
+            try {
+                this.connection = DriverManager.getConnection(this.url, this.user, this.pwd);
+            } catch (SQLException ex) {
+                throw new IllegalStateException("Cannot fetch connection", ex);
+            }
+        } else {
+            try {
+                this.connection = DriverManager.getConnection(this.url);
+            } catch (SQLException ex) {
+                throw new IllegalStateException("Cannot fetch connection", ex);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.createConnection()#3{
+            if (_username != null && _password != null) {
+                return DriverManager.getConnection(_jdbcUrl, _username, _password);
+            } else {
+                return DriverManager.getConnection(_jdbcUrl);
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1340.getConnection()#0{
+      Connection c = currentConnection.get();
+      if(c == null) {
+        try {
+          c = DriverManager.getConnection(url, user, pass);
+        } catch (SQLException e) {
+          throw new SienaException(e);
+        }
+        currentConnection.set(c);
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.getConnection(){
+        if ( conn == null)
+        {
+            System.out.println("dbUrl="+dbUrl);
+            conn = DriverManager.getConnection(dbUrl);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.getConnection(){
+        if (conn == null || conn.isClosed()) {
+            conn = DriverManager.getConnection(dsn, user, pass);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.getConnection(){
+    if (this.connection==null || this.connection.isClosed())
+      this.connection=DriverManager.getConnection(url,user,password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.assertSystemShutdownOK(String dbName,String user,String password)#1{
+        if (usingDerbyNetClient() && dbName=="")
+            // The junit test harness that kicked off the test will hang when 
+            // we attempt to shutdown the system - most likely because we're
+            // shutting down the system while the network server thread is
+            // still alive, so it gets confused...
+            return;
+            DriverManager.getConnection(url2);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.setUpJDBC()#1{
+    conn = DriverManager.getConnection("jdbc:derby:"+testDatabasePath.toUri().getPath()+"/db;create=true");
+    if (conn == null) {
+      throw new InitializationError("JDBC connection is null.");
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.getConnection(String id){
+    Connection conn = connectionCache.getIfPresent(id);
+    if (conn == null) {
+      conn = DriverManager.getConnection(url, info);
+      connectionCache.put(id, conn);
+    }
+}
+    
+   
+  
+   
+
+
+
+
+

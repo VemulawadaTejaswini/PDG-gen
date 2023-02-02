@@ -1,0 +1,4155 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.test_getContentType(){
+        URL u = copyAndOpenResourceStream("lf.jar", "");
+        assertEquals("Returned incorrect type for jar file", "x-java/jar",
+                u.openConnection().getContentType());
+        u = copyAndOpenResourceStream("lf.jar", "plus.bmp");
+        assertEquals("Returned incorrect type for the entry with known type",
+                "image/x-ms-bmp", u.openConnection().getContentType());
+        u = copyAndOpenResourceStream("lf.jar", "Manifest.mf");
+        assertEquals("Returned incorrect type for the entry with known type",
+                "content/unknown", u.openConnection().getContentType());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.test_getEntryName()#0{
+        URL u = copyAndOpenResourceStream("lf.jar", "plus.bmp");
+        juc = (JarURLConnection) u.openConnection();
+        assertEquals("Returned incorrect entryName", "plus.bmp", juc
+                .getEntryName());
+        u = copyAndOpenResourceStream("lf.jar", "");
+        juc = (JarURLConnection) u.openConnection();
+        assertNull("Returned incorrect entryName", juc.getEntryName());
+        URL url = copyAndOpenResourceStream("lf.jar", "foo.jar!/Bugs/HelloWorld.class");
+        assertEquals("foo.jar!/Bugs/HelloWorld.class", ((JarURLConnection) url.openConnection()).getEntryName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class80.testUrlFactory(){
+        URL url = UrlFactory.getUrl("https://www.google.com", null);
+        Assert.assertEquals(HttpsUrlHandler.HTTPS, url.getProtocol());
+        Assert.assertTrue(url.openConnection() instanceof HttpUrlConnection);
+        url = UrlFactory.getUrl("HTTP://www.opennms.org", null);
+        Assert.assertEquals(HttpUrlHandler.HTTP, url.getProtocol());
+        Assert.assertTrue(url.openConnection() instanceof HttpUrlConnection);
+        url = UrlFactory.getUrl("sftp://www.opennms.org", null);
+        Assert.assertEquals(SftpUrlHandler.PROTOCOL, url.getProtocol());
+        Assert.assertTrue(url.openConnection() instanceof SftpUrlConnection);
+        url = UrlFactory.getUrl("sftp.3GPP://junier-router.local/opt/3gpp/data", null);
+        Assert.assertEquals(Sftp3gppUrlHandler.PROTOCOL, url.getProtocol());
+        Assert.assertTrue(url.openConnection() instanceof Sftp3gppUrlConnection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class910.testGzipCompression(){
+    final URL url = new URL("http://localhost:" + port + "/default");
+    final HttpURLConnection get = (HttpURLConnection) url.openConnection();
+    get.setRequestProperty("Accept-Encoding", "gzip");
+    Assert.assertEquals("gzip", get.getContentEncoding());
+    final HttpURLConnection post = (HttpURLConnection) url.openConnection();
+    post.setRequestProperty("Accept-Encoding", "gzip");
+    post.setRequestMethod("POST");
+    Assert.assertEquals("gzip", post.getContentEncoding());
+    final HttpURLConnection getNoGzip = (HttpURLConnection) url.openConnection();
+    Assert.assertNotEquals("gzip", getNoGzip.getContentEncoding());
+    final HttpURLConnection postNoGzip = (HttpURLConnection) url.openConnection();
+    postNoGzip.setRequestMethod("POST");
+    Assert.assertNotEquals("gzip", postNoGzip.getContentEncoding());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.testRequestCacheControlNoCache()#0{
+        server.enqueue(new MockResponse()
+                .addHeader("Last-Modified: " + formatDate(-120, TimeUnit.SECONDS))
+                .addHeader("Date: " + formatDate(0, TimeUnit.SECONDS))
+                .addHeader("Cache-Control: max-age=60")
+                .setBody("A"));
+        server.enqueue(new MockResponse().setBody("B"));
+        server.play();
+        URL url = server.getUrl("/");
+        assertEquals("A", readAscii(url.openConnection()));
+        URLConnection connection = url.openConnection();
+        connection.setRequestProperty("Cache-Control", "no-cache");
+        assertEquals("B", readAscii(connection));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.lastModified(URL url,String libfile)#1{
+  if(url.getProtocol().equals("jar")) {
+    return ((JarURLConnection) url.openConnection()).getJarFile().getEntry(libfile).getTime();
+  }
+  else {
+    return url.openConnection().getLastModified();
+  }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.testVaryMatchesUnchangedRequestHeaderField(){
+        server.enqueue(new MockResponse()
+                .addHeader("Cache-Control: max-age=60")
+                .addHeader("Vary: Accept-Language")
+                .setBody("A"));
+        server.enqueue(new MockResponse().setBody("B"));
+        server.play();
+        URL url = server.getUrl("/");
+        URLConnection connection1 = url.openConnection();
+        connection1.addRequestProperty("Accept-Language", "fr-CA");
+        assertEquals("A", readAscii(connection1));
+        URLConnection connection2 = url.openConnection();
+        connection2.addRequestProperty("Accept-Language", "fr-CA");
+        assertEquals("A", readAscii(connection2));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.testVaryMultipleFieldValuesWithMatch(){
+        server.enqueue(new MockResponse()
+                .addHeader("Cache-Control: max-age=60")
+                .addHeader("Vary: Accept-Language")
+                .setBody("A"));
+        server.enqueue(new MockResponse().setBody("B"));
+        server.play();
+        URL url = server.getUrl("/");
+        URLConnection connection1 = url.openConnection();
+        connection1.addRequestProperty("Accept-Language", "en-US");
+        assertEquals("A", readAscii(connection1));
+        URLConnection connection2 = url.openConnection();
+        connection2.addRequestProperty("Accept-Language", "en-US");
+        assertEquals("A", readAscii(connection2));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.testDefaultExpirationDateFullyCachedForLessThan24Hours()#0{
+        server.enqueue(new MockResponse()
+                .addHeader("Last-Modified: " + formatDate(-105, TimeUnit.SECONDS))
+                .addHeader("Date: " + formatDate(-5, TimeUnit.SECONDS))
+                .setBody("A"));
+        server.play();
+        URL url = server.getUrl("/");
+        assertEquals("A", readAscii(url.openConnection()));
+        URLConnection connection = url.openConnection();
+        assertEquals("A", readAscii(connection));
+        assertNull(connection.getHeaderField("Warning"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.testAuthorizationRequestHeaderPreventsCaching()#1{
+        server.enqueue(new MockResponse()
+                .addHeader("Last-Modified: " + formatDate(-2, TimeUnit.MINUTES))
+                .addHeader("Cache-Control: max-age=60")
+                .setBody("A"));
+        server.enqueue(new MockResponse().setBody("B"));
+        server.play();
+        URL url = server.getUrl("/");
+        URLConnection connection = url.openConnection();
+        connection.addRequestProperty("Authorization", "password");
+        assertEquals("A", readAscii(connection));
+        assertEquals("B", readAscii(url.openConnection()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1320.testPartialRangeResponsesDoNotCorruptCache()#0{
+        server.enqueue(new MockResponse().setBody("AA")
+                .setResponseCode(HttpURLConnection.HTTP_PARTIAL)
+                .addHeader("Expires: " + formatDate(1, TimeUnit.HOURS))
+                .addHeader("Content-Range: bytes 1000-1001/2000"));
+        server.enqueue(new MockResponse().setBody("BB"));
+        server.play();
+        URL url = server.getUrl("/");
+        URLConnection range = url.openConnection();
+        range.addRequestProperty("Range", "bytes=1000-1001");
+        assertEquals("AA", readAscii(range));
+        assertEquals("BB", readAscii(url.openConnection()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.assertAuthorizationRequestFullyCached(MockResponse response)#0{
+        server.enqueue(new MockResponse().setBody("B"));
+        server.play();
+        URL url = server.getUrl("/");
+        URLConnection connection = url.openConnection();
+        connection.addRequestProperty("Authorization", "password");
+        assertEquals("A", readAscii(connection));
+        assertEquals("A", readAscii(url.openConnection()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.main(String[] args)#0{
+        URL url = new URL(getSpec());
+        URLConnection connection = url.openConnection();
+        String contentType = connection.getContentType();
+        if (!contentType.equals(JAR_MIME_TYPE)) {
+            throw new RuntimeException("invalid MIME type for JAR archive");
+        }
+        url = new URL(url, "image.gif");
+        connection = url.openConnection();
+        contentType = connection.getContentType();
+        if (!contentType.equals(GIF_MIME_TYPE)) {
+            throw new RuntimeException("invalid MIME type for JAR entry");
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.testNoDefaultExpirationForUrlsWithQueryString()#0{
+        server.enqueue(new MockResponse()
+                .addHeader("Last-Modified: " + formatDate(-105, TimeUnit.SECONDS))
+                .addHeader("Date: " + formatDate(-5, TimeUnit.SECONDS))
+                .setBody("A"));
+        server.enqueue(new MockResponse().setBody("B"));
+        server.play();
+        URL url = server.getUrl("/?foo=bar");
+        assertEquals("A", readAscii(url.openConnection()));
+        assertEquals("B", readAscii(url.openConnection()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.assertNotCached(MockResponse response)#0{
+        server.enqueue(new MockResponse().setBody("B"));
+        server.play();
+        URL url = server.getUrl("/");
+        assertEquals("A", readAscii(url.openConnection()));
+        assertEquals("B", readAscii(url.openConnection()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.assertFullyCached(MockResponse response){
+        server.enqueue(response.setBody("A"));
+        server.enqueue(response.setBody("B"));
+        server.play();
+        URL url = server.getUrl("/");
+        assertEquals("A", readAscii(url.openConnection()));
+        assertEquals("A", readAscii(url.openConnection()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testServerReturnsDocumentOlderThanCache()#1{
+        server.enqueue(new MockResponse().setBody("B")
+                .addHeader("Last-Modified: " + formatDate(-4, TimeUnit.HOURS)));
+        server.play();
+        URL url = server.getUrl("/");
+        assertEquals("A", readAscii(url.openConnection()));
+        assertEquals("A", readAscii(url.openConnection()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1310.testCachePlusCookies()#1{
+        server.enqueue(new MockResponse()
+                .addHeader("Set-Cookie: a=SECOND; domain=" + server.getCookieDomain() + ";")
+                .setResponseCode(HttpURLConnection.HTTP_NOT_MODIFIED));
+        server.play();
+        URL url = server.getUrl("/");
+        assertEquals("A", readAscii(url.openConnection()));
+        assertCookies(url, "a=FIRST");
+        assertEquals("A", readAscii(url.openConnection()));
+        assertCookies(url, "a=SECOND");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.getConnection(final URL url){
+        if (url.getProtocol().startsWith("https")) {
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setReadTimeout(10000); // 10 seconds
+            // printHttpsCert(con);
+            con.connect();
+            return con;
+        } else {
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setReadTimeout(10000); // 10 seconds
+            con.connect();
+            return con;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.getInputStream(URL url){
+        URLConnection connection = url.openConnection();
+        if (connection instanceof JarURLConnection) {
+            url = ((JarURLConnection) connection).getJarFileURL();
+        }
+        URLConnection con = url.openConnection();
+        return con.getInputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class940.prepareHttpUrlConnection(URL url){
+    Proxy proxy = setupProxy(url);
+    Authenticator proxyAuthentication = setupProxyAuthentication(url, proxy);
+    if (proxyAuthentication != null) {
+      Authenticator.setDefault(proxyAuthentication);
+    }
+    HttpURLConnection connection = (HttpURLConnection) (proxy != null ?  url.openConnection(proxy) : url.openConnection());
+    connection.setConnectTimeout(5000);
+    connection.setReadTimeout(5000);
+    connection.setUseCaches(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1290.create(String url,@Nullable Proxy proxy)#0{
+        URLConnection urlConnection = proxy == null ? _url.openConnection() : _url.openConnection(proxy);
+        urlConnection.setDoOutput(true);
+        urlConnection.setDoInput(true);
+        if (urlConnection instanceof HttpURLConnection) {
+            HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+            httpURLConnection.setRequestMethod("GET");
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.authenticate(LegacySession session,String serverId,ProxyData proxy)#1{
+    URLConnection connection = wrappedProxy == null ? url.openConnection() : url.openConnection(wrappedProxy);
+    connection.setConnectTimeout(30000);
+    connection.setReadTimeout(30000);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.connect(URL targetURL){
+    URLConnection connection = httpProxy == null ? targetURL.openConnection() : targetURL.openConnection(httpProxy);
+    return (HttpURLConnection) connection;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class840.createConnection()#0{
+      connection = (HttpURLConnection) (proxy == null ?
+          url.openConnection() : url.openConnection(proxy));
+      connection.setConnectTimeout(connectTimeout);
+      connection.setReadTimeout(readTimeout);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.openConnection(URL url,Proxy proxy){
+    URLConnection urlConnection = (proxy != null ? url.openConnection(proxy) : url.openConnection());
+    Assert.isInstanceOf(HttpURLConnection.class, urlConnection);
+    return (HttpURLConnection) urlConnection;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.getConnection(String urlString)#0{
+      conn = connURL.openConnection(m_httpProxy);
+      conn = connURL.openConnection();
+    conn.setConnectTimeout(60000);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.openConnection(URL scriptURL){
+        URLConnection urlConnection = scriptURL.openConnection();
+        verifyInputStream(urlConnection);
+        return scriptURL.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.test_getEntryName()#1{
+        URL u = createContent("lf.jar", "plus.bmp");
+        juc = (JarURLConnection) u.openConnection();
+        assertEquals("Returned incorrect entryName", "plus.bmp", juc
+                .getEntryName());
+        u = createContent("lf.jar", "");
+        juc = (JarURLConnection) u.openConnection();
+        assertNull("Returned incorrect entryName", juc.getEntryName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class360.test_getMainAttributes()#1{
+        URL u = createContent("lf.jar", "swt.dll");
+        juc = (JarURLConnection) u.openConnection();
+        java.util.jar.Attributes a = juc.getMainAttributes();
+        assertEquals("Returned incorrect Attributes", "1.0", a
+                .get(java.util.jar.Attributes.Name.MANIFEST_VERSION));
+        URL invURL = createContent("InvalidJar.jar", "Test.class");
+        JarURLConnection juConn = (JarURLConnection) invURL.openConnection();
+            juConn.getMainAttributes();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1230.test_getJarEntry(){
+        URL u = copyAndOpenResourceStream("lf.jar", "plus.bmp");
+        juc = (JarURLConnection) u.openConnection();
+        assertEquals("Returned incorrect JarEntry", "plus.bmp", juc
+                .getJarEntry().getName());
+        u = copyAndOpenResourceStream("lf.jar", "");
+        juc = (JarURLConnection) u.openConnection();
+        assertNull("Returned incorrect JarEntry", juc.getJarEntry());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1410.test_getContentLength(){
+        URL u = copyAndOpenResourceStream("lf.jar", "");
+        assertEquals("Returned incorrect size for jar file", 33095,
+                u.openConnection().getContentLength());
+        u = copyAndOpenResourceStream("lf.jar", "plus.bmp");
+        assertEquals("Returned incorrect size for the entry", 190,
+                u.openConnection().getContentLength());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.testSetIfModifiedSince()#2{
+        server.enqueue(new MockResponse().setBody("A"));
+        server.play();
+        URL url = server.getUrl("/");
+        URLConnection connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1500.getOutputStream(URI uri){
+                URL url = getServletContext().getResource(uri.toASCIIString());
+                return url.openConnection().getOutputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1440.service(HttpServletRequest req,HttpServletResponse resp)#1{
+            URL resource = getServletContext().getResource(path);
+            URLConnection conn = resource.openConnection();
+            resp.setContentType(conn.getContentType());
+            StreamUtil.io(conn.getInputStream(), resp.getOutputStream(), true, false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.service(HttpServletRequest req,HttpServletResponse resp)#0{
+                URL resource = getServletContext().getResource(path);
+                URLConnection conn = resource.openConnection();
+                resp.setContentType(conn.getContentType());
+                StreamUtil.io(conn.getInputStream(), resp.getOutputStream(), true, false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.sendSessionRequest(String par1Str,String par2Str,String par3Str)#0{
+      InputStream var5 = var4.openConnection(this.mc.getProxy()).getInputStream();
+      BufferedReader var6 = new BufferedReader(new InputStreamReader(var5));
+      String var7 = var6.readLine();
+      var6.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.getLastModified(URI location,IProgressMonitor monitor)#0{
+      URL url = location.toURL();
+        return url.openConnection().getLastModified();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.getLastUpdateTimestampFor(final URL url){
+        return url.openConnection().getLastModified();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.timestampForNonFileURL(URL url)#1{
+            timestamp = url.openConnection().getLastModified();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.getPluginDir()#1{
+      URL pluginUrl = EditorsJunitPlugin.getDefault().getBundle().getEntry("/"); //$NON-NLS-1$
+        BundleURLConnection conn = (BundleURLConnection)pluginUrl.openConnection();
+        URL fileUrl = conn.getFileURL();
+        String file = fileUrl.getFile();
+        pluginDir = new File(file);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.getPermission(){
+        URL jarFileUrl = new File(jarFile.getName()).toURI().toURL();
+        return jarFileUrl.openConnection().getPermission();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.compress()#0{
+    cx.evaluateReader(scope, new InputStreamReader(cssmin.openConnection()
+        .getInputStream()), cssmin.getFile(), 1, null);
+    Scriptable exports = (Scriptable) scope.get("exports", scope);
+    Scriptable compressor = (Scriptable) exports.get("compressor", exports);
+    Function fn = (Function) compressor.get("cssmin", compressor);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.createConnection(URL url)#1{
+    URLConnection connection = url.openConnection();
+    connection.addRequestProperty("User-Agent", "HockeySDK/Android");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.like(URL u){
+        return like(new InputStreamReader(u.openConnection().getInputStream()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.test_ConstructorLjava_io_InputStream()#0{
+            Support_Resources.copyFile(resources, null, "hyts_gInput.txt.gz");
+            final URL gInput = new File(resources.toString() + "/hyts_gInput.txt.gz").toURL();
+            TestGZIPInputStream inGZIP = new TestGZIPInputStream(gInput
+                    .openConnection().getInputStream());
+            assertNotNull("the constructor for GZIPInputStream is null",
+                    inGZIP);
+            assertEquals("the CRC value of the inputStream is not zero", 0, inGZIP
+                    .getChecksum().getValue());
+            inGZIP.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.read(URL url)#2{
+        con = url.openConnection();
+        con.setRequestProperty("User-Agent", Constants.USER_AGENT);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.createConnection(URL url){
+        URLConnection con = url.openConnection();
+        con.setRequestProperty("User-Agent", USER_AGENT);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.deploy(URL resource,boolean xhrCompatible)#0{
+    String fileName = ResourceGeneratorUtil.baseName(resource);
+    byte[] bytes = Util.readURLAsBytes(resource);
+      return deploy(fileName, resource.openConnection().getContentType(),
+          bytes, xhrCompatible);
+      getLogger().log(TreeLogger.ERROR,
+          "Unable to determine mime type of resource", e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.deploy(URL resource,String mimeType,boolean forceExternal)#1{
+          ? mimeType : resource.openConnection().getContentType();
+      return deploy(fileName, finalMimeType, bytes, forceExternal);
+      getLogger().log(TreeLogger.ERROR,
+          "Unable to determine mime type of resource", e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.testConnection(){
+        URL url = getIndexUrl();
+        URLConnection urlConn = url.openConnection();
+        urlConn.getContentLength();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.exists(URL url)#0{
+            return url != null && url.openConnection() != null && url.openConnection().getContentLength() > 0;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1010.write(URL url,FontPackDocument doc){
+    OutputStreamWriter wr = new OutputStreamWriter(url.openConnection().getOutputStream());
+    json.toJson(doc, FontPackDocument.class, wr);
+    wr.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.getFileFromJBossVfsURL(URL url,ClassLoader loader)#2{
+        Object virtualFile = url.openConnection().getContent();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1110.TestURLInputStream(){
+        URL url = getTestURL();
+        testResourceSize = url.openConnection().getContentLength();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.getResourceSize(ClassLoader loader,String resource){
+        URL url = loader.getResource(resource);
+        URLConnection con = url.openConnection();
+        return (long)con.getContentLength();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.createDir(URL url)#1{
+                Object content = url.openConnection().getContent();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.openConnection(URL u){
+            URL resourceUrl = getClass().getClassLoader().getResource(u.getPath());
+            return resourceUrl.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.mockingURLWorks()#1{
+    URLConnection urlConnectionMock = mock(URLConnection.class);
+    when(url.openConnection()).thenReturn(urlConnectionMock);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.fileConnection(final File file){
+    final URL url = file.toURI().toURL();
+    final URLConnection connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class900.getReader(URL path){
+    return new BufferedReader(new InputStreamReader(path.openConnection().getInputStream()));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.openShouldOpenAHttpURLConnectionAndInjectItIntoAHttpURLConnectionHttpChannel()#3{
+        when(url.openConnection()).thenReturn(httpURLConnection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.openConnection(URL u){
+    final URL resourceUrl = classLoader.getResource(u.getPath());
+    return resourceUrl.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.testHeader_BoundaryCheck(){
+        URL url = createTempFileWithContent(RESOURCE_NAME);
+        URLConnection urlConnection = url.openConnection();
+        assertNull(urlConnection.getHeaderField(Integer.MIN_VALUE));
+        assertNull(urlConnection.getHeaderField(Integer.MAX_VALUE));
+        assertNull(urlConnection.getHeaderFieldKey(Integer.MIN_VALUE));
+        assertNull(urlConnection.getHeaderFieldKey(Integer.MAX_VALUE));
+        assertNull(urlConnection.getHeaderField(null));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.test503()#1{
+        HttpURLConnection httpURLConnection = EasyMock.createMock(HttpURLConnection.class);
+        EasyMock.expect(mock.openConnection()).andReturn(httpURLConnection);
+        httpURLConnection.connect();
+        EasyMock.expect(httpURLConnection.getContentEncoding()).andReturn("");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1470.resolveFromNested()#1{
+    assertThat(resource.openConnection().getInputStream().read(), equalTo(3));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class160.connectionFromUri(String uri)#0{
+        URL url = urlFromUri(uri);
+            conn = (TDURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.retrieveFeed(URL feedUrl)#0{
+    Assert.notNull(feedUrl, "feedUrl must not be null");
+    URLConnection connection = feedUrl.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1120.createFromURL(URL location){
+    return createFromStream(location.openConnection().getInputStream());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.readBytes(URL url){
+        URLConnection conn = url.openConnection();
+            return readBytes(conn);
+            close(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class810.main(String[] args)#3{
+        (new URL("http://localhost/")).openConnection().setDefaultUseCaches(false);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class760.openURL(final URL url){
+        return openURL(url.openConnection());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.getRemoteContent(URL url,JSONObject data)#5{
+    URLConnection con = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1060.goTo(URL url)#1{
+                        url = url.openConnection().getURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.exists(URL url)#1{
+            return url != null && url.openConnection() != null && url.openConnection().getContentLength() > 0;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1510.dumpFields(String url)#0{
+        URLConnection conn = (new URL(url)).openConnection();
+        Map<String, List<String>> headerFields = conn.getHeaderFields();
+        for (Map.Entry<String, List<String>> entry : headerFields.entrySet()) {
+            System.out.print(entry.getKey() + "  ");
+            for (String v : entry.getValue()) {
+                System.out.println(v + "  ");
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.UrlExternalResource(URI uri,URL url){
+        connection = url.openConnection();
+        metaData = new DefaultExternalResourceMetaData(uri, connection.getLastModified(), connection.getContentLength(), connection.getContentType(), null, null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1500.copy(URL url,File file){
+    URLConnection c = url.openConnection();
+    copy(c, file);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.getURLConnection(){
+            return URL.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1250.open(URL url){
+        return url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1000.openConnectionForceNoProxy(URL url){
+    return url.openConnection(Proxy.NO_PROXY);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class220.create(final URL url){
+    return url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class590.openConnection(URL url)#2{
+    return (HttpURLConnection) (proxy == null ? url.openConnection() : url.openConnection(proxy));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1430.getStreamForURL(URL url)#2{
+            URLConnection connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1430.openConnection(final URL url)#2{
+            connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1190.testTransferInputStreamToFile()#0{
+        URL u = TestIOUtilities.class.getClassLoader().getResource("io-test.txt");
+        IOUtilities.transfer(u.openConnection(), f, null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.safelyOpenConnection(URL url)#1{
+      conn = url.openConnection();
+      Log.w(TAG, "Bad URI? " + url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.pageContains(String page,String contains)#0{
+    String content = StreamUtils.readToString(appUrl.openConnection().getInputStream());
+    assertThat(content).contains(contains);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 88
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class60.openUrlConnection(URL url){
+    return url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 89
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.sendResource(final WebScriptRequest request,final WebScriptResponse response,final URL resource)#1{
+    final String contentType = getContentType(resource);
+    response.setContentType(contentType);
+    response.setContentEncoding(getContentEncoding(resource));
+    final URLConnection connection = resource.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 90
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.createDocSource(URL docSource,String contentType,String href,KMLDoc parent)#2{
+    URLConnection conn = docSource.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 91
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1220.getUrlStream()#0{
+    URL url = this.jarFile.getUrl();
+    url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 92
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class900.getImage(URL url)#2{
+      {  url.openConnection().connect();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 93
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1020.getInputStreamWithRetry(URL file)#1{
+                reader = file.openConnection().getInputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 94
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.connect(){
+            URL res = getURL();
+            return res.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 95
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.openDownloadStream(String targetfile){
+        URL url = makeURL(targetfile);
+        urlc = url.openConnection();
+        InputStream is = urlc.getInputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 96
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class0.openUploadStream(String targetfile){
+        URL url = makeURL(targetfile);
+        urlc = url.openConnection();
+        OutputStream os = urlc.getOutputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 97
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.NetworkFile(URL u){
+    name = u.toExternalForm();
+    conn = u.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 98
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.URLScript(URL url){
+        conn = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 99
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.URLTemplateSource(URL url,Boolean useCaches)#0{
+        this.conn = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 100
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.newResource(File file){
+        file = file.getCanonicalFile();
+        URL url = Resource.toURL(file);
+        URLConnection connection = url.openConnection();
+        FileResource fileResource = new FileResource(url, connection, file);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 101
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.mozOpenConnection(URL l_url)#2{
+            return l_url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 102
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.readOutput(URL url){
+    return readConnection(url.openConnection());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 103
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.testDefaultUseCachesSetsInitialValueOnly()#1{
+            assertTrue(c2.getUseCaches());
+            URLConnection c3 = url.openConnection();
+            assertFalse(c3.getUseCaches());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 104
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1040.UrlResourceContent(URL url,String entryName)#1{
+          con = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 105
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class960.testNewURLWithoutHandler_open()#0{
+    URL noHandlerUrl = JWBF.newURLWithoutHandler("http://www.google.com");
+      noHandlerUrl.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 106
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.loadImage(URL url){
+            URLConnection connection = url.openConnection();
+            return (Bitmap) mBitmapContentHandler.getContent(connection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 107
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.HTTPRequest(URL url){
+    this(url.openConnection());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 108
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.XmlStreamReader(URL url){
+        this(url.openConnection(), null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 109
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.toByteArray(final URL url){
+        final URLConnection conn = url.openConnection();
+            return IOUtils.toByteArray(conn);
+            close(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 110
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1460.makeRequest(URL source,String cookie)#0{
+      JConfig.log().logDebug("makeRequest: " + source.toString());
+    URLConnection uc = source.openConnection();
+    setConnectionInfo(uc);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 111
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.loadFromText(final URL url){
+        return loadFromText(url.openConnection());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 112
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.openConnection(final URL url)#1{
+      connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 113
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.AbstractFileWatcher(long checkPeriod,URL u){
+        this(checkPeriod, null, u);
+        data = doLoad(u.openConnection());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 114
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1240.WarURLConnection(URL url,Manifest mf)#1{
+        _conn = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 115
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class770.toUrlConnection(@ServiceName URL service){
+        return service.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 116
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.contentType()#2{
+    Files.write(path, ImmutableList.of("Hello World"), UTF_8);
+    URL url = path.toUri().toURL();
+    URLConnection conn = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 117
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class30.openURLStream(final URL url)#1{
+        URLConnection connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 118
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.OnDemandUrlStream(URL source)#1{
+        this.source = source.openConnection();
+        this.sourceStream = this.source.getInputStream();
+        contentLength = this.source.getContentLength();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 119
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.urlGet(URL url)#2{
+    URLConnection conn = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 120
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.ClientHttpRequest(URL url){
+  public ClientHttpRequest(URL url) throws IOException { this(url.openConnection()); }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 121
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.createConnection(URL url)#2{
+        URLConnection connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 122
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.URLResource(URL url){
+      this(url, url.openConnection());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 123
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.validResourceUrl()#0{
+        URL resourceUrl = this.resourceUrl();
+            resourceUrl.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 124
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.DirectoryInsideJarURLArchive(URL url,String descriptorLocation,Logger logger)#1{
+                JarURLConnection.class.cast(url.openConnection());
+        jarFile = conn.getJarFile();
+        logger.logp(Level.FINER, "DirectoryInsideJarURLArchive",
+                "DirectoryInsideJarURLArchive", "jarFile = {0}", jarFile);
+        relativeRootPath = conn.getEntryName();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 125
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1400.openURLStream(final URL url)#1{
+        URLConnection connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 126
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class190.getLastModifiedOfResource(RC request,URL resource,boolean template)#0{
+            return resource.openConnection().getLastModified();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 127
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1360.openConnection(URL url)#0{
+    final URLConnection urlConnection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 128
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.mockingURLWorks()#0{
+    URLConnection openConnection = url.openConnection();
+    assertSame(openConnection, urlConnectionMock);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 129
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.remoteResume(URL url,long position,long lastFetchTime,String userAgent,String username,String password){
+        URLConnection con = url.openConnection();
+        URLConnectionHolder holder = new URLConnectionHolder(con, null);
+        return remoteResume(holder, position, lastFetchTime, userAgent, username, password);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 130
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.mockingInstanceMethodOfFinalSystemClassWorks()#0{
+        URLConnection urlConnection = createMock(URLConnection.class);
+        expect(url.openConnection()).andStubReturn(urlConnection);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 131
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.run()#1{
+                    (new URL(url)).openConnection().getInputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 132
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class660.testLoadResource(){
+        final VFSClassLoader loader = createClassLoader();
+        final URL resource = loader.getResource("read-tests/file1.txt");
+        assertNotNull(resource);
+        final URLConnection urlCon = resource.openConnection();
+        assertSameURLContent(FILE1_CONTENT, urlCon);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 133
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.prepareInputStream(final URL url,final boolean acceptAnyCertificate)#2{
+        final URLConnection conn = url.openConnection();
+        prepareForAuthentication(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 134
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.getResourceStream(@NotNull final URL url)#1{
+    val connection = url.openConnection();
+    int length = connection.getContentLength();
+    val is = connection.getInputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 135
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.testAttachmentJarURLWithEncodedChars()#4{
+        url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 136
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class120.readURLAsBytes(URL url){
+      URLConnection conn = url.openConnection();
+      conn.setUseCaches(false);
+      return readURLConnectionAsBytes(conn);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 137
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.JarCacheResource(URL classpath){
+        this.connection = classpath.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 138
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.mockingURLWorks()#0{
+        URLConnection urlConnectionMock = createMock(URLConnection.class);
+        expect(url.openConnection()).andReturn(urlConnectionMock);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 139
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.mockingURLWorks()#1{
+        assertSame(url.openConnection(), urlConnectionMock);
+        verifyAll();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 140
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class970.openConnectionThrowIOException()#0{
+    expect(url.openConnection()).andThrow(new IOException());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 141
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.openConnection(ServerListPlusCore core,URL url,String type)#1{
+        URLConnection con = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 142
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1520.useURL(URL url){
+        return url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 143
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1520.download(String resource)#1{
+      URL url = parseURL(resource);
+      URLConnection urlConnection = url.openConnection();
+      String destination = calculateDesintationFile(url, urlConnection);
+      downloadData(urlConnection, destination);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 144
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1200.openConnection(URL arg0){
+                return arg0.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 145
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.isModified(String url,long lastAccess)#2{
+            URL uri = getResource(url);
+            URLConnection con = uri.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+

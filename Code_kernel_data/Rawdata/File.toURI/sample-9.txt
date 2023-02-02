@@ -1,0 +1,159 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class530.createFileWriter(File outBase,File inBase,URI file)#0{
+    URI base = inBase.toURI();
+    URI relative = base.relativize(base.resolve(file));
+    if (relative.isAbsolute()) {
+      outFile = new File(outBase, new File(relative).getName());
+    } else {
+      outFile = new File(outBase, relative.getPath());
+    }
+    outFile.getParentFile().mkdirs();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.testConsumerModifiedFileInComplexDirectorySetup(){
+    File dir = createTempDirectory();
+    File subdir = new File( dir.getAbsolutePath() + "/subDirectory/" );
+    subdir.mkdir();
+    FileUtils.write( new File( subdir, "project.xml" ), "data" );
+    List<ScmFile> changedFiles = getChangedFiles( "M  subDirectory/project.xml", subdir, dir.toURI() );
+    assertNotNull( changedFiles );
+    assertEquals( 1, changedFiles.size() );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.before()#0{
+        File parentDir = new File("parent");
+        parentDir.mkdir();
+        FileUtils.writeStringToFile(new File(parentDir,"touch"),"hello");
+        conf.set(ConfigurableSentenceIterator.ROOT_PATH,parentDir.toURI().toString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.makeURIFromFilespec(final String filespec,final String relativePrefix){
+    File file = new File(filespec);
+    if (relativePrefix != null && !file.isAbsolute()) {
+      file = new File(relativePrefix, filespec);
+    }
+    return file.toURI();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class320.addCustomProfileArg(EquinoxLaunchConfiguration cli)#0{
+            File profileFile = new File(new File(project.getBuild().getDirectory()), "custom.profile");
+            storeProperties(customProfileProps, profileFile);
+            cli.addVMArguments("-D" + EquinoxConfiguration.PROP_OSGI_JAVA_PROFILE + "=" + profileFile.toURI());
+}
+    
+   
+  
+   
+
+
+
+
+

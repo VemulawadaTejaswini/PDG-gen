@@ -1,0 +1,957 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.getPluginResource(String pluginName,String resourceUrl){
+        URL url = getPluginResourceURL(pluginName, resourceUrl);
+        if (url != null) {
+            // get inputstream from url
+            if (url != null) {
+                result = url.openConnection().getInputStream();
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1070.getLastModified(){
+    if (lastModified == null || !cache) {
+      if (resource instanceof URL) {
+        lastModified = ((URL) resource).openConnection()
+            .getLastModified();
+        logger.debug("getLastModified(), URL resource: " + lastModified
+            + " - for resource: " + resource);
+      } else {
+        lastModified = ((File) resource).lastModified();
+        logger.debug("getLastModified(), File resource: "
+            + lastModified + " - for resource: " + resource);
+      }
+    }
+    logger.debug("getLastModified(): " + lastModified);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1350.getLastModified(K src)#0{
+    if (src instanceof URL) {
+      try {
+        final long v = ((URL)src).openConnection().getLastModified();
+        return v != -1 ? v: 0; //not to reload if unknown (5.0.6 for better performance)
+      } catch (Throwable ex) {
+        return -1; //reload (might be removed)
+      }
+    } else if (src instanceof File) {
+      final long v = ((File)src).lastModified();
+      return v == -1 ? 0: //not to reload if unknown (5.0.6 for better performance)
+        v == 0 ? -1: v; //0 means nonexistent so reload
+    } else if (src == null) {
+      throw new NullPointerException();
+    } else {
+      throw new IllegalArgumentException("Unknown soruce: "+src+"\nOnly File and URL are supported");
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.lastModified(URL url){
+        if (url != null) {
+            URLConnection connection = url.openConnection();
+            if (connection instanceof JarURLConnection) {
+                JarEntry entry = ((JarURLConnection)connection).getJarEntry();
+                if (entry != null)
+                    lastModified = entry.getTime();
+            }
+            if (lastModified == -1L)
+                lastModified = connection.getLastModified();
+        }
+        return (lastModified == 0L ? -1L : lastModified);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.openZipUsingUrl(URL url){
+    URLConnection uc = url.openConnection();
+    InputStream in = uc.getInputStream();
+    ZipInputStream zis = new ZipInputStream(in);
+    ZipEntry entry = zis.getNextEntry();
+    if (entry==null) {
+      zis.close();
+      return null;
+    }
+    String name = entry.getName();
+    if (!(name.endsWith(".tif")||name.endsWith(".dcm")))
+      throw new IOException("This ZIP archive does not appear to contain a .tif or .dcm file\n"+name);
+    if (name.endsWith(".dcm"))
+      return openDicomStack(zis, entry);
+    else
+      return openTiff(zis, name);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.getTotalSize()#1{
+      for ( Object object : sources.values()) {
+        if ( object instanceof File) total += (( File) object).length();
+        else if ( object instanceof URL) total += (( URL) object).openConnection().getContentLength();
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class860.getLastModified(String src)#0{
+      final URL url = getExtendletContext().getResource(src);
+      if (url != null) {
+        final long v = url.openConnection().getLastModified();
+        return v != -1 ? v: 0; //not to reload (5.0.6 for better performance)
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1280.readReaderFromString(String textFileOrUrl,String encoding){
+    if (textFileOrUrl.matches("https?://")) {
+      URL u = new URL(textFileOrUrl);
+      URLConnection uc = u.openConnection();
+      is = uc.getInputStream();
+    } else {
+      is = new FileInputStream(textFileOrUrl);
+    }
+    if (textFileOrUrl.endsWith(".gz")) {
+      is = new GZIPInputStream(is);
+    }
+    return new BufferedReader(new InputStreamReader(is, encoding));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1260.read(final URL url)#0{
+        final URLConnection connection = url.openConnection();
+        if (!connection.getContentType().equals("image/bmp")) {
+            throw new DataFormatException(BAD_FORMAT);
+        }
+        final int length = connection.getContentLength();
+        if (length < 0) {
+            throw new FileNotFoundException(url.getFile());
+        }
+        read(url.openStream());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.output(URL url,File configDir){
+        if ("file".equalsIgnoreCase(url.getProtocol())) {
+            File f = DataUtilities.urlToFile(url);
+            if (!f.isAbsolute()) {
+                //make relative to config dir
+                f = new File(configDir, f.getPath());
+            }
+            return new FileOutputStream(f);
+        }
+        else {
+            URLConnection cx = url.openConnection();
+            cx.setDoOutput(true);
+            return cx.getOutputStream();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.contentLength()#0{
+        URL url = getURL();
+        if (GrailsResourceUtils.isFileURL(url)) {
+            // Proceed with file system resolution...
+            return getFile().length();
+        }
+        URLConnection con = url.openConnection();
+        useCachesIfNecessary(con);
+        if (con instanceof HttpURLConnection) {
+            ((HttpURLConnection) con).setRequestMethod("HEAD");
+        }
+        return con.getContentLength();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class490.readStreamFromString(String filenameOrUrl){
+    if (filenameOrUrl.matches("https?://")) {
+      URL u = new URL(filenameOrUrl);
+      URLConnection uc = u.openConnection();
+      is = uc.getInputStream();
+    } else {
+      is = new FileInputStream(filenameOrUrl);
+    }
+    if (filenameOrUrl.endsWith(".gz")) {
+      in = new ObjectInputStream(new GZIPInputStream(new BufferedInputStream(is)));
+    } else {
+      in = new ObjectInputStream(new BufferedInputStream(is));
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class510.read(final URL url){
+        final URLConnection connection = url.openConnection();
+        final int fileSize = connection.getContentLength();
+        if (fileSize < 0) {
+            throw new FileNotFoundException(url.getFile());
+        }
+        read(url.openStream());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.getLastModified(final Object templateSource)#1{
+    if (templateSource instanceof URL) {
+      try {
+        final URL url = (URL) templateSource;
+        lastModified = url.openConnection().getLastModified();
+      } catch (final IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class980.execute(){
+        for (Resource r : resources) {
+            URLProvider up = r.as(URLProvider.class);
+            if (up != null) {
+                URL u = up.getURL();
+                try {
+                    FileUtils.close(u.openConnection());
+                } catch (IOException ex) {
+                    // ignore
+                }
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1150.openGetTaskConnection()#0{
+            if (logger.isFinestEnabled()) {
+                logger.finest("Opening getTask connection:" + url);
+            }
+            URLConnection connection = url.openConnection();
+            connection.setRequestProperty("Connection", "keep-alive");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1300.copy(TreeLogger logger,URL in,File out)#0{
+      URLConnection conn = in.openConnection();
+      if (conn.getLastModified() > out.lastModified()) {
+        copy(logger, in.openStream(), out);
+        return true;
+      } else {
+        return false;
+      }
+      logger.log(TreeLogger.ERROR, "Unable to open '" + in.toExternalForm()
+          + "'", e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class670.openConnection(URL url)#3{
+            URLConnection con = url.openConnection();
+            if ("HTTPS".equalsIgnoreCase(url.getProtocol())) {
+                HttpsURLConnection scon = (HttpsURLConnection) con;
+                try {
+                    scon.setSSLSocketFactory(SSLUtil.getSSLSocketFactory(ks, password, alias));
+                    scon.setHostnameVerifier(SSLUtil.getHostnameVerifier(SSLUtil.HOSTCERT_MIN_CHECK));
+                } catch (GeneralException e) {
+                    throw new IOException(e.getMessage());
+                } catch (GeneralSecurityException e) {
+                    throw new IOException(e.getMessage());
+                }
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.readFileInformation(URL url)#2{
+            urlConnection = url.openConnection();
+            if (url.getProtocol().startsWith("http")) {
+                ((HttpURLConnection)urlConnection).setRequestMethod("HEAD");
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class810.getModified(URL url){
+            URLConnection conn = url.openConnection();
+            long lastMod = conn.getLastModified();
+            if (lastMod != 0) {
+                logger.log(Level.INFO, "Found getLastModified of {0}", lastMod);
+                return lastMod;
+            } else {
+                logger.log(Level.INFO, "Returning hash code of content", lastMod);
+                String content = getContent(conn);
+                return content.hashCode();
+            }
+            logger.log(Level.INFO, "Loading welcome page modified date from web failed", ex);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1050.parseProperties(final URL url,final FreeplaneVersion currentVersion)#0{
+        versionProperties.load(new InputStreamReader(url.openConnection().getInputStream()));
+        if (versionProperties.getProperty("version") != null) {
+            remoteVersion = FreeplaneVersion.getVersion(versionProperties.getProperty("version"));
+            successful = true;
+            // optional properties
+            remoteVersionDownloadUrl = parseUrl(versionProperties.getProperty("downloadUrl"));
+            remoteVersionChangelogUrl = parseUrl(versionProperties.getProperty("changelogUrl"));
+            return remoteVersion.compareTo(currentVersion) > 0;
+        } else {
+            LogUtils.warn("add-on update: no version found in " + url);
+            return false;
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.main(String[] args)#0{
+        File tmp = File.createTempFile("bug4975103", null);
+        tmp.deleteOnExit();
+        URL url = tmp.toURL();
+        URLConnection conn = url.openConnection();
+        conn.connect();
+        String s1 = conn.getContentType();
+        String s2 = conn.getHeaderField("content-type");
+        if (!s1.equals(s2))
+            throw new RuntimeException("getContentType() differs from getHeaderField(\"content-type\")");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.openConnection(URL url)#1{
+    String property = ResourceController.getResourceController().getProperty(propertyName);  
+    if (property!=null && property.length()>0) {
+      File file = new File(property);
+      URL ret = file.toURI().toURL();          
+      return ret.openConnection();
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.resetStream()#0{
+    conn = (new URL(url)).openConnection();
+    stream = new DataInputStream(new BufferedInputStream(
+      conn.getInputStream(), RandomAccessInputStream.MAX_OVERHEAD));
+    length = conn.getContentLength();
+    if (stream != null) stream.mark(RandomAccessInputStream.MAX_OVERHEAD);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class930.openConnection(URL url){
+    String projectID = url.getAuthority();
+    AWorkspaceProject project = WorkspaceController.getCachedProjectByID(projectID);
+    if(project == null) {
+      throw new IOException("project with id="+projectID+" is missing");
+    }
+    URL absolutePath = resolve(project, url);
+    return absolutePath.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1430.GroovyCodeSource(URL url)#1{
+        this.codeSource = new CodeSource(url, (java.security.cert.Certificate[]) null);
+            String contentEncoding = url.openConnection().getContentEncoding();
+            if (contentEncoding != null) {
+                this.scriptText = ResourceGroovyMethods.getText(url, contentEncoding);
+            } else {
+                this.scriptText = ResourceGroovyMethods.getText(url); // falls-back on default encoding
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1490.login()#0{
+    Matcher m = re.matcher(postPage(url.openConnection(), req));
+    if (m.find()) {
+      token = m.group(1);
+      tokenAge = System.currentTimeMillis();
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.checkConnect(URL url)#0{
+                    url.openConnection().getPermission();
+                if (perm != null)
+                    security.checkPermission(perm);
+                else
+                    security.checkConnect(url.getHost(), url.getPort());
+                    security.checkConnect(url.getHost(), url.getPort());
+}
+    
+   
+  
+   
+
+
+
+
+

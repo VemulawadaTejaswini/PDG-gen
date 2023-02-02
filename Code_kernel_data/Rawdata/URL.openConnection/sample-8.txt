@@ -1,0 +1,473 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.getBufferedReader(URL source){
+        URLConnection conn = source.openConnection();
+        boolean isGzipped = conn.getContentType() != null && conn.getContentType().equalsIgnoreCase("application/x-gzip")
+                || conn.getContentEncoding() != null && conn.getContentEncoding().equalsIgnoreCase("gzip");
+        InputStream uis = conn.getInputStream();
+        return new BufferedReader(isGzipped?
+            new InputStreamReader(new GZIPInputStream(uis)):
+            new InputStreamReader(uis));    
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1390.read(final URL url){
+        final URLConnection connection = url.openConnection();
+        final int contentLength = connection.getContentLength();
+        if (contentLength < 0) {
+            throw new FileNotFoundException(url.getFile());
+        }
+        final InputStream stream = connection.getInputStream();
+            read(stream);
+            if (stream != null) {
+                stream.close();
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.readClassFile(Class<?> templateClass){
+        String templateName = templateClass.getName();
+        int lastDot = templateName.lastIndexOf('.');
+        java.net.URL url = templateClass.getResource(templateName.substring(lastDot+1)+".class");
+        java.net.URLConnection connection = url.openConnection();
+        int contentLength = connection.getContentLength();
+        if (contentLength < 0)
+            throw new IOException("invalid content length "+contentLength);
+        return IOUtils.readFully(connection.getInputStream(), contentLength, true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class850.readReaderFromString(String textFileOrUrl){
+    if (textFileOrUrl.matches("https?://.*")) {
+      URL u = new URL(textFileOrUrl);
+      URLConnection uc = u.openConnection();
+      is = uc.getInputStream();
+    } else {
+      is = new FileInputStream(textFileOrUrl);
+    }
+    if (textFileOrUrl.endsWith(".gz")) {
+      in = new BufferedReader(new InputStreamReader(new GZIPInputStream(is)));
+    } else {
+      in = new BufferedReader(new InputStreamReader(is));
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.urlToInputStream(URL url){
+    URLConnection conn = url.openConnection();
+    conn.setRequestProperty("Accept-Encoding", "gzip, deflate");
+    conn.connect();
+    String encoding = conn.getContentEncoding();
+    if ((encoding != null) && encoding.equalsIgnoreCase("gzip"))
+      return new GZIPInputStream(conn.getInputStream());
+    else if ((encoding != null) && encoding.equalsIgnoreCase("deflate"))
+      return new InflaterInputStream(conn.getInputStream(), new Inflater(
+        true));
+    else
+      return conn.getInputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.createHttpReader(@NotNull URL url)#0{
+    httpConfigurable.prepareURL(url.toString());
+    URLConnection urlConnection = url.openConnection();
+    String contentEncoding = urlConnection.getContentEncoding();
+    InputStream inputStream = urlConnection.getInputStream();
+    InputStreamReader inputStreamReader = contentEncoding != null
+      ? new InputStreamReader(inputStream, contentEncoding)
+      : new InputStreamReader(inputStream);
+    return new BufferedReader(inputStreamReader);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.openStream(){
+                URL url = configBundle.toURL();
+                URLConnection connection = url.openConnection();
+                if (connection instanceof HttpURLConnection) {
+                    HttpURLConnection httpConnection = (HttpURLConnection) connection;
+                    httpConnection.addRequestProperty("User-Agent", "User-Agent: Apache-Maven/3.0.3 (Java 1.6.0_29; Mac OS X 10.7.2)");
+                }
+                InputStream in = connection.getInputStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.readModel(URL url)#1{
+        final URLConnection conn = url.openConnection();
+        final InputStream in = conn instanceof HttpURLConnection
+                        ? HttpUrlConnectionHelper.openInputStream((HttpURLConnection)conn, HttpUrlConnectionHelper.GZIP)
+                        : conn.getInputStream();
+        final DataReader reader = factory.getDataReader(in);
+        final GCModel model = reader.read();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getLastModifiedTime(URL url){
+      urlConnection = url.openConnection();
+      return urlConnection.getLastModified();
+      if (urlConnection != null) {
+        try {
+          InputStream inputStream = urlConnection.getInputStream();
+
+          inputStream.close();
+        }
+        catch (IOException ioe) {
+        }
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.create(AssetManager assetManager,AssetKey key,URL url){
+        URLConnection conn = url.openConnection();
+        conn.setUseCaches(false);
+        InputStream in = conn.getInputStream();
+        if (in == null){
+            return null;
+        }else{
+            return new UrlAssetInfo(assetManager, key, url, in);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1370.create(URL file)#0{
+            URLConnection conn = file.openConnection();
+            jar = new JarInputStream(conn.getInputStream());
+            Manifest manifest = jar.getManifest();
+            if (manifest == null) {
+                throw new IOException(file + " is not a valid JAR file: Manifest not first entry");
+            }
+            return new Resource(file, manifest.getMainAttributes(),
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1330.addDLFileEntry(String resourcePath)#0{
+    Long parentFolderId = _folderIds.get(
+      FileUtil.getPath(resourcePath) + StringPool.SLASH);
+    if (parentFolderId == null) {
+      parentFolderId = 0L;
+    }
+    URL url = servletContext.getResource(resourcePath);
+    URLConnection urlConnection = url.openConnection();
+      urlConnection.getInputStream(), urlConnection.getContentLength());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.getStream(URL page){
+        URLConnection conn = Utils.setupURLConnection(page.openConnection());
+        InputStream result = conn.getInputStream();
+        String type = conn.getContentType();
+        if (type != null) {
+            setContentType(type);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.MimeTypeUploadPlugin(InitParams initParams,ConfigurationManager configurationService){
+        ValueParam param = initParams.getValueParam(MIMETYPE_PATH);
+        URL filePath = configurationService.getURL(param.getValue());
+        URLConnection connection = filePath.openConnection();
+        mimeTypes.load(connection.getInputStream());
+        param = initParams.getValueParam(DEFAULT_MIMETYPE);
+        if (param != null)
+            mimetypeDefault = param.getValue();
+}
+    
+   
+  
+   
+
+
+
+
+

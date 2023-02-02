@@ -1,0 +1,309 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.testScanCaching_Default()#1{
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = newPreparedStatement(pconn, query);
+        QueryPlan plan = pstmt.optimizeQuery();
+        Scan scan = plan.getContext().getScan();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testPaddedStartStopKey()#1{
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = newPreparedStatement(pconn, query);
+        bindParams(pstmt, binds);
+        QueryPlan plan = pstmt.optimizeQuery();
+        Scan scan = plan.getContext().getScan();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1130.testScanCaching_CustomFetchSizeOnStatement()#0{
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = newPreparedStatement(pconn, query);
+        pstmt.setFetchSize(FETCH_SIZE);
+        QueryPlan plan = pstmt.optimizeQuery();
+        Scan scan = plan.getContext().getScan();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1170.compileStatement(String query){
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = new PhoenixPreparedStatement(pconn, query);
+        QueryPlan plan = pstmt.compileQuery();
+        return plan.getContext().getScan().getFilter();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.compileStatement(String query,List<Object> binds)#0{
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = new PhoenixPreparedStatement(pconn, query);
+        TestUtil.bindParams(pstmt, binds);
+        QueryPlan plan = pstmt.compileQuery();
+        assertTrue(plan instanceof AggregatePlan);
+        Filter filter = plan.getContext().getScan().getFilter();
+        assertTrue(filter == null || filter instanceof BooleanExpressionFilter);
+        BooleanExpressionFilter boolFilter = (BooleanExpressionFilter)filter;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.testOrTrueFilter()#0{
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = newPreparedStatement(pconn, query);
+        QueryPlan plan = pstmt.optimizeQuery();
+        Scan scan = plan.getContext().getScan();
+        Filter filter = scan.getFilter();
+        assertNull(filter);
+        byte[] startRow = PVarchar.INSTANCE.toBytes(tenantId);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class1100.testRHSLiteral()#0{
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = newPreparedStatement(pconn, query);
+        QueryPlan plan = pstmt.optimizeQuery();
+        Scan scan = plan.getContext().getScan();
+        Filter filter = scan.getFilter();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class920.testAndFalseFilter(){
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = newPreparedStatement(pconn, query);
+        QueryPlan plan = pstmt.optimizeQuery();
+        assertDegenerate(plan.getContext());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.compileStatement(String query,List<Object> binds,Integer limit){
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = new PhoenixPreparedStatement(pconn, query);
+        TestUtil.bindParams(pstmt, binds);
+        QueryPlan plan = pstmt.compileQuery();
+        assertEquals(limit, plan.getLimit());
+        return plan.getContext();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class890.compileStatement(String query,List<Object> binds){
+        PhoenixConnection pconn = DriverManager.getConnection(getUrl(), PropertiesUtil.deepCopy(TEST_PROPERTIES)).unwrap(PhoenixConnection.class);
+        PhoenixPreparedStatement pstmt = new PhoenixPreparedStatement(pconn, query);
+        TestUtil.bindParams(pstmt, binds);
+        return pstmt.compileQuery();
+}
+    
+   
+  
+   
+
+
+
+
+

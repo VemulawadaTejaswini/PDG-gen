@@ -1,0 +1,383 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.getWsdlURI(GenericWsdlOption option,URI baseURI)#0{
+        String wsdlLocation = option.getUri();
+        if (wsdlLocation == null) {
+            throw new MojoExecutionException("No wsdl available for base URI " + baseURI);
+        }
+        File wsdlFile = new File(wsdlLocation);
+        return wsdlFile.exists() ? wsdlFile.toURI() 
+            : baseURI.resolve(URIParserUtil.escapeChars(wsdlLocation));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.resolveWebRoot(){
+        File result = new File(webRoot);
+        if (!result.exists()) {
+            result = new File(project.getBasedir(), webRoot);
+        }
+        if (!result.exists()) {
+            return null;
+        }
+        return result.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.Client(String wsdl){
+        if (wsdl != null) {
+            wsdlLocation = wsdl;
+        }
+        File wsdlFile = new File(wsdlLocation);
+        if (wsdlFile.exists()) {
+            wsdlURL = wsdlFile.toURI().toURL();
+        } else {
+            wsdlURL = new URL(wsdlLocation);
+        }
+        soapService = new SOAPService(wsdlURL, SERVICE_NAME);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.uri(final String uri){
+        if (!uri.startsWith("file") && !uri.startsWith("jar") && !uri.isEmpty()) {
+            final File f = new File(uri);
+            if (f.exists()) {
+                return f.toURI();
+            }
+        }
+        return URI.create(uri.replace(" ", "%20").replace("#", "%23"));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class410.getSource(){
+            if (problem instanceof DefaultProblem) {
+              File f = new File(new String(((DefaultProblem) problem).getOriginatingFileName()));
+              if (f.exists()) {
+                return new EclipseFileObject(null, f.toURI(), JavaFileObject.Kind.SOURCE, null);
+              }
+              return null;
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class740.isPatternFoundInClasspath(List<String> elements,Pattern pattern){
+        if (elements != null) {
+            for (String e : elements) {
+                Matcher m = pattern.matcher(new File(e).toURI().toString());
+                if (m.matches())
+                    return true;
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class710.getURI(String path){
+    if (path == null) {
+      return null;
+    }
+      URI uri = new URI(path);
+      if (uri.getScheme() == null) {
+        // if no file schema in path, we assume it's file on local fs.
+        uri = new File(path).toURI();
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.getLocalUrl(MavenArtifact artifact){
+        if (isInstalledLocally(artifact)) return new File(getLocalPath(artifact)).toURI().toString();
+        if (artifact.isSnapshot()) return snapshotUrlGenerator.apply(artifact);
+        else return releaseUrlGenerator.apply(artifact);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.jarBundles()#0{
+        for (File bundle : new File("target", "test-bundles").listFiles()) {
+            if (bundle.getName().endsWith(".jar") && bundle.isFile()) {
+                composite.add(bundle(bundle.toURI().toURL().toString()));
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.getResource(final String name){
+    final File f = new File(this.root, name);
+    if (f.canRead()) {
+      // magically work around encoding issues
+      return f.toURI().toURL();
+    } else {
+      return null;
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.findFirstLombokDirectory(File file)#0{
+    File current = new File(file.toURI().normalize());
+    if (file.isFile()) current = current.getParentFile();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.toBaseDir(File toDir){
+    String path = toDir.toURI().getPath();
+    if (!path.endsWith(myRoot)) {
+      throw new IOException("The patch must be applied to the root folder " + myRoot);
+    }
+    return new File(path.substring(0, path.length() - myRoot.length()));
+}
+    
+   
+  
+   
+
+
+
+
+

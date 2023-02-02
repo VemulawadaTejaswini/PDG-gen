@@ -1,0 +1,2451 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.fromFilename(String filename)#0{
+        if (filename == null) return null;
+        File file = new File(filename);
+            if (file.exists()) url = file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.getResource(String resourcePath){
+        File file = new File(resourcePath);
+        if (file.exists() && file.isFile()) {
+            return file.toURI().toURL();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class330.findInPaths(String iconPath)#0{
+        for(String dataDir : DEFAULT_XDG_DATA_DIRS) {
+            File file = new File(dataDir + iconPath);
+            if(file.exists()) {
+                try {
+                    return file.toURI().toURL();
+                } catch (MalformedURLException e) {
+                    LoggerFactory.getLogger().warn(e.toString());
+                }
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class310.getLocation(File file){
+        if (file.isDirectory()) {
+            return "jardir:" + file.getPath();
+        } else {
+            return file.toURI().toURL().toExternalForm();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class100.loadImages(File iconRootDirectory,String parent,ImageRegistry registry){
+    File icons = new File(iconRootDirectory, parent);
+    File[] files = icons.listFiles();
+    for (File file : files) {
+      if (file.isFile() && file.getName().endsWith(".gif")) { //$NON-NLS-1$
+        URL url = file.toURI().toURL();
+        String name = getResourceName(url);
+        ImageDescriptor id = ImageDescriptor.createFromURL(url);
+        registry.put(parent + "_" + name, id); //$NON-NLS-1$
+      }
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.getResource(String path){
+        if (File.separatorChar != '/') {
+            path = path.replace('/', File.separatorChar);
+        }
+        File file = new File(themeDir, "/resources/" + path);
+        return file.isFile() ? file.toURI().toURL() : null;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.asFile(final String path)#1{
+        File file = new File(path);
+        if (file.exists()) {
+            try {
+                return file.toURI().toURL();
+            } catch (MalformedURLException ignored) {
+                EmptyStatement.ignore(ignored);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class110.getURL(gov.nasa.worldwind.util.Tile tile,String imageFormat)#0{
+      File file = new File(directory, tile.getLevelNumber()
+          + File.separator + paddedInt(tile.getRow(), 4)
+          + File.separator + paddedInt(tile.getRow(), 4) + "_"
+          + paddedInt(tile.getColumn(), 4) + ".bil");
+      if (file.exists())
+        return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class650.resolveFile(File file)#0{
+        if (!file.isFile()) {
+            throw new ViewNotFoundException(null, null, file.getAbsolutePath());
+        }
+            return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.toURL(File file){
+        if (file.exists() && file.canRead()) {
+            try {
+                return file.toURI().toURL();
+            }
+            catch (MalformedURLException e) {
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class70.getURL(String filename)#0{
+    File file = new File( filename );
+    if ( file.exists() ) {
+      url = file.toURI().toURL();
+    } else {
+      ClassLoader classLoader = getClass().getClassLoader();
+      url = classLoader.getResource( filename );
+    }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.getURL(String name){
+            File file = getFile(name);
+            if (file.exists()) {
+                return file.toURI().toURL();
+            }
+            log.error("Failed to transform file to URL: " + name, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.findUrl(String suffix){
+        File file = findFile(suffix);
+        if (file != null) {
+            return file.toURI().toURL();
+        }
+        return Main.class.getResource("/" + suffix);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 13
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.create(final File file)#1{
+            return file != null ? file.toURI().toURL() : null;
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 14
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class40.createFallbackClassLoader(Collection<File> files){
+        List<URL> urls = new ArrayList<URL>(files.size());
+        for (File file : files) {
+            urls.add(file.toURI().toURL());
+        }
+        return new URLClassLoader(urls.toArray(new URL[urls.size()]), null);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 15
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.toUrls(FileCollection collection)#0{
+        for (File file : collection.getFiles())
+            urls.add(file.toURI().toURL());
+        return urls.toArray(new URL[urls.size()]);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 16
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.getAsURLs()#0{
+        for (File file : files) {
+            try {
+                urls.add(file.toURI().toURL());
+            } catch (MalformedURLException e) {
+                throw UncheckedException.throwAsUncheckedException(e);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 17
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.toUrls(File... files)#0{
+        for (File file : files) {
+            try {
+                urls.add(file.toURI().toURL());
+            } catch (MalformedURLException e) {
+                // intentionally left empty
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 18
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.toUrl(Collection<File> cp){
+        final URL[] urls = new URL[cp.size()];
+        for (File file : cp) {
+            urls[i++] = file.toURI().toURL();
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 19
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class420.FileClassLoader(ClassLoader parent,List<File> files)#0{
+            for (File file : files) {
+                // I guess here we have to quetly ignore invalid URLs...
+                try {
+                    addURL(file.toURI().toURL());
+                } catch (MalformedURLException ex) {
+                }
+            }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 20
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class350.exposeClassPath(ClassPathLoader classPathLoader)#0{
+        for (File file : dir.listFiles(getFileFilter())) {
+            try {
+                classPathLoader.addUrl(file.toURI().toURL());
+            } catch (IOException exception) {
+                throw new ClassPathException(exception);
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 21
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.addFiles(List<File> files)#0{
+      for (File file : files) {
+        addURL(file.toURI().toURL());
+      }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 22
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.addURLs(Classpath cp){
+        for (final File file : cp) {
+            try {
+                addURL(file.toURI().toURL());
+            } catch (final MalformedURLException e) {
+            }
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 23
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.buildClassLoaderFromDirectory(File dir)#0{
+        for (File file : listFiles(dir)) {
+            log.debug("    %s", file);
+            urls.add(file.toURI().toURL());
+        }
+        return createClassLoader(urls);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 24
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.testURLStringConstructor(){
+        Map<ShpFileType, File> expected = createFiles(
+                "testURLStringConstructor", ShpFileType.values(), false);
+        File file = expected.values().iterator().next();
+        ShpFiles shapefiles = new ShpFiles(file.toURI().toURL()
+                .toExternalForm());
+        assertEqualMaps(expected, shapefiles.getFileNames());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 25
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.parse(File file)#0{
+            InputSource src = new InputSource(file.toURI().toURL().toExternalForm());
+            parse(src);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 26
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class400.relative(final File file)#1{
+        final String urlPath = file.toURI().toURL().toExternalForm();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 27
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.relative(File file)#0{
+        String urlPath = file.toURI().toURL().toExternalForm();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 28
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.BoxRenderer(File file,int width){
+    this(file.toURI().toURL().toExternalForm(), width);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 29
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class610.BoxRenderer(File file,int width,int height){
+    this(file.toURI().toURL().toExternalForm(), width, height);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 30
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class210.shouldFailIfResourceFileCouldNotBeFoundAsUrl()#0{
+        assertThat(file.exists(), is(false));
+        URL url = file.toURI().toURL();
+        nodeTypeManager.registerNodeTypes(url, true);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 31
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.checkHtmlFile(File file,boolean asUTF8)#1{
+        InputSource is = new InputSource(new FileInputStream(file));
+        is.setSystemId(file.toURI().toURL().toString());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 32
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class780.lex(File file){
+    checkNotNull(file, "file cannot be null");
+    checkArgument(file.isFile(), "file \"%s\" must be a file", file.getAbsolutePath());
+      return lex(file.toURI().toURL());
+      throw new LexerException("Unable to lex file: " + file.getAbsolutePath(), e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 33
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class180.convert(File file)#0{
+      return file.toURI().toURL().toString();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 34
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.asUrl(File file)#0{
+      return file.toURI().toURL().toString();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 35
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class300.createObjectResource(final String contents)#1{
+    return file.toURI().toURL().toString();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 36
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.testFileURLs(){
+        Map<ShpFileType, File> expected = createFiles("testShapefileFilesAll",
+                ShpFileType.values(), false);
+        File file = expected.values().iterator().next();
+        ShpFiles shapefiles = new ShpFiles(file.toURI().toURL());
+        assertEqualMaps(expected, shapefiles.getFileNames());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 37
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class620.add(ArrayList<URL> urls,File file)#0{
+           urls.add(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 38
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.addResource(URLClassLoader classLoader,File file)#0{
+      addURL.invoke(classLoader, new Object[] { file.toURI().toURL() });
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 39
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.addClasspath(String path)#3{
+            method.invoke(urlClassLoader, new Object[] { file.toURI().toURL() });
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 40
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.load(File file){
+      return load(file.toURI().toURL(), false);
+      generalErrorMessage(ex, file.getPath());
+      generalErrorMessage(ex, file.getPath());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 41
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class130.getFeatureSource(File file)#1{
+        map.put(ShapefileDataStoreFactory.URLP.key, file.toURI().toURL());
+        map.put(ShapefileDataStoreFactory.CREATE_SPATIAL_INDEX.key, Boolean.TRUE);
+        DataStore shapefileStore = DataStoreFinder.getDataStore(map);
+        String typeName = shapefileStore.getTypeNames()[0]; // Shape files do only have one type name
+        featureSource = shapefileStore.getFeatureSource(typeName);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 42
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class260.FileDeletingInputStream(File file){
+            super(file.toURI().toURL().openStream());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 43
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class90.fileToDataStore(File file,String encoding)#0{
+            map.put("url", file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 44
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.validate(final File file)#1{
+        final InputStream openStream = file.toURI().toURL().openStream();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 45
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class720.actionPerformed(final ActionEvent event)#0{
+                final File file = daeFiles.get(fileIndex);
+                    loadColladaModel(new URLResourceSource(file.toURI().toURL()));
+                    t1.setText(file.getName());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 46
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.loadCustomMod(File file,String className)#0{
+            URLClassLoader loader = new URLClassLoader(new URL[]{file.toURI().toURL()}, getClass().getClassLoader());
+            return loadCustomMod(loader, className);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 47
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.createInstance(File file){
+        return createInstance(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 48
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class480.FileStream(SoundManager soundmgr,File file,boolean loop){
+        super(soundmgr, file.toURI().toURL(), loop);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 49
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class700.addToSrcUrls(File file){
+         srcDirectories.add(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 50
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class450.read(File file,Drawing drawing,boolean replace)#1{
+        this.url = file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 51
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class630.source(final File file)#1{
+            return source( file.toURI().toURL() );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 52
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.storeAsJson(final Object o,final File file)#1{
+            return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 53
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class500.toURL(File file){
+      return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 54
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.createPermutationsXML(final TestManifestServlet servlet,final String fileContent)#2{
+    final File file = createFile( "permutations", "xml", fileContent );
+      thenReturn( file.toURI().toURL() );
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 55
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.testFileUrl()#1{
+    URL url = file.toURI().toURL();
+    validateResource(url);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 56
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.testDuplicateColumnNames(){
+        File file = TestData.file(TestCaseSupport.class, "bad/state.shp");
+        ShapefileDataStore dataStore = new ShapefileDataStore(file.toURI().toURL());
+        SimpleFeatureSource states = dataStore.getFeatureSource();
+        SimpleFeatureType schema = states.getSchema();
+        assertEquals(6, schema.getAttributeCount());
+        assertTrue(states.getCount(Query.ALL) > 0);
+        dataStore.dispose();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 57
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class750.chooseImage(){
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.showOpenDialog(this);
+    File file = fileChooser.getSelectedFile();
+    Icon imageIcon = new ImageIcon(file.toURI().toURL());
+    setSize(imageIcon.getIconWidth(), imageIcon.getIconHeight() + 100);
+    imageLabel.setIcon(imageIcon);
+    String decodeText = getDecodeText(file);
+    textArea.setText(decodeText);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 58
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class560.toURL(File file){
+    return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 59
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class640.detect(File file){
+        return detect(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 60
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.fileConnection(final File file){
+    final URL url = file.toURI().toURL();
+    final URLConnection connection = url.openConnection();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 61
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class430.DirectoryResourceHandle(String name,File file,File codeSource,Manifest manifest)#0{
+        url = file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 62
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class340.textOf(File file)#0{
+      return textOf(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 63
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.SaxReader(File file,DSLHandler dslHandler)#1{
+            xmlFile = file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 64
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class140.handleAsFile(File file){
+            handleAsURL(file.toURI().toURL());
+            throw illegalValue(file, URL.class, e);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 65
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class170.fileToURL(File file)#0{
+      return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 66
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class800.toURL(File file){
+        return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 67
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.open(File file)#0{
+      String cmd = String.format(opencmd, file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 68
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class150.defaultArchive()#1{
+            final File file = JarLocation.jarLocation(reference);
+            return ClasspathArchive.archive(reference.getClassLoader(), file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 69
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class730.addClasspath(File file)#0{
+                loader.addURL(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 70
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.fetchFileName(File file){
+        URL pathUrl = file.toURI().toURL();
+        String[] pathArray = pathUrl.getFile().split("/");
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 71
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.buildOther()#1{
+        return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 72
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.dml(String contents)#1{
+        return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 73
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class50.urlFor(File file)#0{
+            return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 74
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class580.getFeatureCollection(File file)#0{
+            featureCollection = FeatureUtils.getFeatureSource(file.toURI().toURL()).getFeatures();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 75
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.toURL(File file)#0{
+            url = file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 76
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.toURL(File file){
+        return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 77
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class600.ClassMirror(File file)#1{
+    this(new FileInputStream(file), file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 78
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.parse(File file){
+        return parse(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 79
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class20.IndexLocation(File file){
+      tempUrl = file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 80
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class380.getContents(File file){
+            return getContents(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 81
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class790.returnsTrueForRealStaticResources()#2{
+  when(context.getResource(key)).thenReturn(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 82
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class240.ShpFiles(File file){
+        init(file.toURI().toURL());
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 83
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.loadJar(File file)#2{
+            method.invoke(ClassLoader.getSystemClassLoader(), new Object[]{file.toURI().toURL()});
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 84
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.getURL(File file)#1{
+            return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 85
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.main(String args[])#0{
+        splitStream(file, aligner.align(file.toURI().toURL(), args[3]));
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 86
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.eval(File file)#1{
+        return file.toURI().toURL();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 87
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class690.testGetAllContentFromURL()#0{
+        final File file = File.createTempFile("test", "test");
+        IOUtil.writeContentToFile("theContent\nVeryGreatContent", file);
+        assertArrayEquals("theContent\nVeryGreatContent".getBytes(), IOUtil.getAllContentFrom(file.toURI().toURL()));
+}
+    
+   
+  
+   
+
+
+
+
+

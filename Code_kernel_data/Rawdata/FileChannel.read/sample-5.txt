@@ -1,0 +1,464 @@
+
+  
+CodeKernel
+  
+     h3{color:#800; font-family: "Courier New", Courier, monospace; font-size: 20pt}
+  
+
+
+
+ Instance 0
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class460.transferTo(FileChannel fc,long pos,long len){
+        ByteBuffer buf = ByteBuffer.allocate(bufferSize);
+        while((i = fc.read(buf, pos)) != -1) {
+          if(i > 0) {
+            ret += i;
+            pos += i;
+            buf.flip();
+            write0(buf);
+            buf = ByteBuffer.allocate(bufferSize);
+          }
+//          log.info("write file ret {} | len {}", ret, len);
+          if(ret >= len)
+            break;
+        }
+        fc.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 1
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class550.transferTo(FileChannel fc,long pos,long len)#1{
+        ByteBuffer buf = ByteBuffer.allocate(bufferSize);
+        while((i = fc.read(buf, pos)) != -1) {
+          if(i > 0) {
+            ret += i;
+            pos += i;
+            buf.flip();
+            write(buf);
+            buf = ByteBuffer.allocate(bufferSize);
+          }
+          if(ret >= len)
+            break;
+        }
+        fc.close();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 2
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class440.getUploadData()#0{
+        if (uploadResource_ == null)
+            return null;
+        File file = new File(uploadResource_.getStoreLocation());
+        FileInputStream inputStream = new FileInputStream(file);
+        FileChannel fchan = inputStream.getChannel();
+        long fsize = fchan.size();
+        ByteBuffer buff = ByteBuffer.allocate((int) fsize);
+        fchan.read(buff);
+        buff.rewind();
+        byte[] data = buff.array();
+        buff.clear();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 3
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class370.delete(RandomAccessFile file)#0{
+        fc = file.getChannel();
+        if (file.length() < TAG_LENGTH) {
+            throw new IOException("File not not appear large enough to contain a tag");
+        }
+        fc.position(file.length() - TAG_LENGTH);
+        byteBuffer = ByteBuffer.allocate(TAG_LENGTH);
+        fc.read(byteBuffer);
+        byteBuffer.rewind();
+        if (AbstractID3v1Tag.seekForV1OrV11Tag(byteBuffer)) {
+            logger.config("Deleted ID3v1 tag");
+            file.setLength(file.length() - TAG_LENGTH);
+        } else {
+            logger.config("Unable to find ID3v1 tag to deleteField");
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 4
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.retrieveParts(int contentId,int[] start,int[] end)#0{
+          for (int j = firstBlock; j <= lastBlock; j++) {
+            long readStartOffset = e.getBlockStartOffset(j);
+            int bytesToRead = (int) (e.getBlockEndOffset(j) - readStartOffset);
+            ByteBuffer buffer = ByteBuffer.allocate(bytesToRead);
+            int bytesRead = fileChannel.read(buffer, readStartOffset);
+            if (bytesRead < bytesToRead) {
+              // Apparently, something went wrong.
+              throw new RuntimeException("Not enough bytes read, " + bytesRead
+                  + " < " + bytesToRead);
+            }
+            decoded.append(decodeBlock(buffer.array(), 0, bytesRead));
+          }
+          result[i] = decoded.toString().substring(firstChar, firstChar + b - a);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 5
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class280.readFromFile(String filename)#2{
+        File f = new File(filename);
+        if(!f.exists()){  
+            throw new FileNotFoundException(filename);  
+        }  
+            fis = new FileInputStream(f);  
+            channel = fis.getChannel();  
+            ByteBuffer byteBuffer = ByteBuffer.allocate((int)channel.size());  //may needn't convert from NBO to HBO as we use ByteBuffer here.
+            channel.read(byteBuffer); 
+            return byteBuffer.array();  
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 6
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class10.readString(String filePath)#0{
+        File file = new File(filePath);
+        if (!file.exists())
+            return null;
+            fileInput = new FileInputStream(filePath);
+            channel = fileInput.getChannel();
+            ByteBuffer buffer = ByteBuffer.allocate((int) channel.size());
+            channel.read(buffer);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 7
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class270.loadGeometryFromEsriShapeDbg(String file_name)#0{
+    if (file_name == null) {
+      throw new IllegalArgumentException();
+    }
+      FileInputStream stream = new FileInputStream(file_name);
+      FileChannel fchan = stream.getChannel();
+      ByteBuffer bb = ByteBuffer.allocate((int) fchan.size());
+      fchan.read(bb);
+      bb.order(ByteOrder.LITTLE_ENDIAN);
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 8
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class390.delete(RandomAccessFile file)#1{
+        ByteBuffer byteBuffer = ByteBuffer.allocate(TAG_HEADER_LENGTH);
+        fc.read(byteBuffer, 0);
+        byteBuffer.flip();
+        if (seek(byteBuffer))
+        {
+            file.seek(0L);
+            file.write(buffer);
+        }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 9
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class200.loadBuffer(FileChannel indexFile,long offset,int occupiedSpace){
+      ByteBuffer buffer = ByteBuffer.allocate(occupiedSpace);
+      do {
+         int nowRead = indexFile.read(buffer, offset + read);
+         if (nowRead < 0) {
+            throw new IOException("Cannot read record [" + offset + ":" + occupiedSpace + "] (already read "
+                  + read + "), file size is " + indexFile.size());
+         }
+         read += nowRead;
+      } while (read < occupiedSpace);
+      buffer.rewind();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 10
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class250.loadPage(PageWindow window)#0{
+        ByteBuffer buffer = ByteBuffer.allocate(window.getFilePartSize());
+          channel.read(buffer, window.getFilePartOffset());
+          if (buffer.hasArray())
+          {
+            result = buffer.array();
+          }
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 11
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class520.matchReplica(int blockIndex,Checksum.Header checksumHeader,FileChannel replica,FileChannel outFile,MessageDigest md)#0{
+            ByteBuffer.allocate(sizeForChecksumBlock(blockIndex,
+                                                     checksumHeader));
+        long fileOffset = (long) blockIndex * checksumHeader.blockLength();
+        int bytesRead = replica.read(replicaBuf, fileOffset);
+        if (replicaBuf.hasRemaining()) {
+            throw new IllegalStateException(String.format(
+                "truncated read from replica (%s), read %d " +
+                    "bytes but expected %d more bytes",
+                    replica, bytesRead, replicaBuf.remaining()));
+        }
+        replicaBuf.flip();
+}
+    
+   
+  
+   
+
+
+
+
+
+
+
+ Instance 12
+
+
+
+
+
+
+
+   
+  
+   
+    
+Class230.transferTo(FileChannel fc,long pos,long len)#2{
+        if (fileChannelBB == null) {
+            fileChannelBB = ByteBuffer.allocate(appBBSize);
+            fileChannelBB.limit(0);
+        }
+        fileChannelBB.compact();
+        int fileRead = fc.read(fileChannelBB);
+        fileChannelBB.flip();
+        doWrite(fileChannelBB);
+}
+    
+   
+  
+   
+
+
+
+
+
