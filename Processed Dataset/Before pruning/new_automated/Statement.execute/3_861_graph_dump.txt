@@ -1,0 +1,17 @@
+Line_0 $$ Entry-->Line_2 $$ //3
+public class func [ CD ]
+Line_2 $$ //3
+public class func -->Line_3 $$ public void testSetSRID() [ CD ]
+Line_3 $$ public void testSetSRID() -->Line_4 $$ Statement st = connection.createStatement()[ CD ]
+Line_4 $$ Statement st = connection.createStatement()-->Line_4 $$ connection.createStatement()[ CD ]
+Line_3 $$ public void testSetSRID() -->Line_5 $$ st.execute("insert into testSrid values (ST_GeomFromText('POINT( 15 25 )',27572))")[ CD ]
+Line_4 $$ Statement st = connection.createStatement()-->Line_5 $$ st.execute("insert into testSrid values (ST_GeomFromText('POINT( 15 25 )',27572))")[ FD ]
+Line_3 $$ public void testSetSRID() -->Line_6 $$ ResultSet rs = st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid")[ CD ]
+Line_6 $$ ResultSet rs = st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid")-->Line_6 $$ st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid")[ CD ]
+Line_4 $$ Statement st = connection.createStatement()-->Line_6 $$ st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid")[ FD ]
+Line_3 $$ public void testSetSRID() -->Line_7 $$ assertTrue(rs.next())[ CD ]
+Line_6 $$ ResultSet rs = st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid")-->Line_7 $$ rs.next()[ FD ]
+Line_3 $$ public void testSetSRID() -->Line_8 $$ assertEquals(27572, rs.getInt("original"))[ CD ]
+Line_6 $$ ResultSet rs = st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid")-->Line_8 $$ rs.getInt("original")[ FD ]
+Line_3 $$ public void testSetSRID() -->Line_9 $$ assertEquals(5321, rs.getInt("trans"))[ CD ]
+Line_6 $$ ResultSet rs = st.executeQuery("SELECT ST_SRID(ST_SETSRID(the_geom,5321)) trans,ST_SRID(the_geom) original  FROM testSrid")-->Line_9 $$ rs.getInt("trans")[ FD ]

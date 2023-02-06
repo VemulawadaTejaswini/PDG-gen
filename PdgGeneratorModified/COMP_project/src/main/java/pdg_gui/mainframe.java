@@ -29,7 +29,7 @@ public class mainframe {
     private PDGCore astPrinter = new PDGCore();
     private JTextArea consoleText;
     static String outputFolder = "./../../Processed Dataset/Before pruning/new_automated/";
-    static String inputFolder = "./../../Code_kernel_data/Dataset/NEW/";
+    static String inputFolder = "./../../Code_kernel_data/Dataset/NEW/temp/";
     static int randomNumber = -1;
     static Random rand = new Random();
 
