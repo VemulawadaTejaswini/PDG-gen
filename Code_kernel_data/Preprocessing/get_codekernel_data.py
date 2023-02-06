@@ -4,7 +4,7 @@ import tqdm
 import requests
 from bs4 import BeautifulSoup
 
-APIs_LIST = ["BufferedReader.readLine", 'Calander.getTime', 'Socket.connect', 'URL.openConnection', 
+APIs_LIST = ["BufferedReader.readLine", 'Calendar.getTime', 'Socket.connect', 'URL.openConnection', 
              'DriverManager.getConnection', 'Graphics2D.fill', 'DateFormat.format', 'Thread.start', 
              'BufferedReader.read', 'JPanel.add', 'ExecutorService.submit', 'ClassLoader.getResource', 
              'ClassLoader.loadClass', 'URL.openConnection', 'DataInputStream.readLine', 'URI.getFragment', 

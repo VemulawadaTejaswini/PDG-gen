@@ -15,6 +15,7 @@ e. Add the rest of the edges(CD/FD) in the current subgraph.
 
 PRUNING_ERROR_COUNT, GOOD_DATA_POINTS, TOTAL_DATA_POINTS = 0, 0, 0
 PRUNING_ERROR_COUNT_IN_DATASET, GOOD_DATA_POINTS_IN_DATASET, TOTAL_DATA_POINTS_IN_DATASET = 0, 0, 0
+DATASET_STATISTICS = {}
 
 def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
     
@@ -118,12 +119,13 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
         GOOD_DATA_POINTS += 1
         
     output_pdg_file.writelines(edge_data_list)
-    TOTAL_DATA_POINTS += 1
+    if len(edge_data_list) > 0:
+        TOTAL_DATA_POINTS += 1
 
-    return output_pdg_file
+    return output_pdg_file, len(edge_data_list)
 
-PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/new_all"
-OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/new_all"
+PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/new_automated"
+OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/new_automated"
 pdg_folders_list = glob.glob(PDG_FOLDER_LOCATION + "/*/")
 print("\nNumber of total APIs: {}\n".format(len(pdg_folders_list)))
 for folder in tqdm.tqdm(pdg_folders_list):
@@ -138,7 +140,7 @@ for folder in tqdm.tqdm(pdg_folders_list):
             "/" + api_name + "/" + pdg_file_location[pdg_file_location.rindex("/")+1:]
         output_pdg_file = open(output_file_location, "w")
         try:
-            output_pdg_file = get_pruned_pdg(pdg_file, output_pdg_file, api_name[api_name.rindex(".") + 1 :].strip())
+            output_pdg_file, no_of_edges = get_pruned_pdg(pdg_file, output_pdg_file, api_name[api_name.rindex(".") + 1 :].strip())
         except Exception as e:
             PRUNING_ERROR_COUNT += 1
             #print("\nERROR WHILE PRUNING PDG\n")
@@ -148,8 +150,10 @@ for folder in tqdm.tqdm(pdg_folders_list):
             output_pdg_file.close()
             os.remove(output_file_location)
         else:
-            pdg_file.close()
             output_pdg_file.close()
+            if no_of_edges == 0:
+                os.remove(output_file_location)
+            pdg_file.close()
 
     print("\nGOOD PDG DATA POINTS: {}\n".format(GOOD_DATA_POINTS))
     print("\nTOTAL PDG DATA POINTS: {}\n".format(TOTAL_DATA_POINTS))
@@ -158,8 +162,10 @@ for folder in tqdm.tqdm(pdg_folders_list):
     PRUNING_ERROR_COUNT_IN_DATASET += PRUNING_ERROR_COUNT
     GOOD_DATA_POINTS_IN_DATASET += GOOD_DATA_POINTS
     TOTAL_DATA_POINTS_IN_DATASET += TOTAL_DATA_POINTS
+    DATASET_STATISTICS[api_name] = [TOTAL_DATA_POINTS, GOOD_DATA_POINTS, PRUNING_ERROR_COUNT]
     PRUNING_ERROR_COUNT, GOOD_DATA_POINTS, TOTAL_DATA_POINTS = 0, 0, 0
     
 print("\nTOTAL GOOD PDG DATA POINTS IN DATASET: {}\n".format(GOOD_DATA_POINTS_IN_DATASET))
 print("\nTOTAL PDG DATA POINTS IN DATASET: {}\n".format(TOTAL_DATA_POINTS_IN_DATASET))
 print("\nTOTAL PRUNING ERROR IN DATASET: {}\n".format(PRUNING_ERROR_COUNT_IN_DATASET))
+print("\nDATASET STATISTICS: {}\n".format(DATASET_STATISTICS))

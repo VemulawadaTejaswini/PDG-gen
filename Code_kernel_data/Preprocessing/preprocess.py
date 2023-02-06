@@ -52,6 +52,8 @@ OUTPUT_PATH = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Code_
 api_folders_list = glob.glob(RAWDATA_PATH + "/*/")
 for folder in tqdm.tqdm(api_folders_list):
     api_name = folder[folder.rindex("/", 0, len(folder) - 1) + 1 : -1]
+    if api_name != 'Calendar.getTime':
+        continue
     OUTPUT_API_PATH = OUTPUT_PATH + "/" + api_name
     if not os.path.exists(OUTPUT_API_PATH):
         os.makedirs(OUTPUT_API_PATH)
