@@ -48,7 +48,7 @@ public class PDGCore {
 	 */
 	public boolean addFile(FileInputStream inArg,
 			@SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, GraphNode previousNode,
-			JTextArea consoleText, String PrevClass, String selectedFileName, String outputDir, int randomNumber) throws ParseException, IOException {
+			JTextArea consoleText, String PrevClass, String selectedFileName, String outputDir, String apiAndSampleName) throws ParseException, IOException {
 		CompilationUnit cu;
 		try {
 			// parse the file
@@ -74,7 +74,7 @@ public class PDGCore {
 		System.out.println(selectedFileName);
 		System.out.println(ParsedName[0]);
 		System.out.println("***************");
-		out = new FileOutputStream(outputDir + ParsedName[0] + "_" + randomNumber + "_graph_dump.txt");
+		out = new FileOutputStream(outputDir + ParsedName[0] + "_" + apiAndSampleName + "_graph_dump.txt");
 
 		cv.semanticAnalysis(cu, hrefGraph, previousNode, new ArrayList<>(), out);
 
