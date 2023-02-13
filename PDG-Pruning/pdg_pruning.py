@@ -7,7 +7,7 @@ import tqdm
 
 a. Clean the raw edge info (eg. remove wrongly formatted edges, class edges etc.)
 b. Merge same code-lines into a single line/node
-c. Consider only FDs between the API node and other nodes.
+c. Consider both CDs and FDs between the API node and other nodes.
 d. Add FD and CD from other nodes to the API node.
 e. Add the rest of the edges(CD/FD) in the current subgraph.
 
@@ -51,14 +51,17 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
                         line_mapping[line_number]) else line_mapping[line_number]
             else:
                 line_mapping[line_number] = line_code
-        edge_mapping[tuple(line_numbers)] = edge_type
+        if tuple(line_numbers) in edge_mapping:
+            edge_mapping[tuple(line_numbers)] = list(set(edge_mapping[tuple(line_numbers)] + [edge_type]))
+        else:
+            edge_mapping[tuple(line_numbers)] = [edge_type]
 
     #print("NODE MAPPING : \n")
     #print(line_mapping, "\n")
     #print("EDGE MAPPING : \n")
     #print(edge_mapping, "\n")
 
-    # Consider only FDs between the API node and other nodes
+    # Consider both FDs and CDs between the API node and other nodes
     api_nodes = []
     for line in line_mapping:
         if line_mapping[line].find("." + api_name) != -1:
@@ -68,18 +71,14 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     sub_graph_edges = {}
     for edge in edge_mapping:
-        if edge[0] in api_nodes and edge_mapping[edge] == "FD":
-            sub_graph_edges[edge] = edge_mapping[edge]
+        if edge[0] in api_nodes or edge[1] in api_nodes:
+            if edge in sub_graph_edges:
+                sub_graph_edges[edge] = list(set(sub_graph_edges[edge] + edge_mapping[edge]))
+            else:
+                sub_graph_edges[edge] = edge_mapping[edge]
     #print("API NODES TO OTHER NODES : \n")
     #print(sub_graph_edges, "\n")
-
-    # Add FD and CD from other nodes to the API node.
-    for edge in edge_mapping:
-        if edge[1] in api_nodes:
-            sub_graph_edges[edge] = edge_mapping[edge]
-    #print("OTHER NODES TO API NODES : \n")
-    #print(sub_graph_edges, "\n")
-
+    
     # Add the rest of the edges(CD/FD) in the current subgraph
     nodes_in_subgraph = set([])
     for edge in sub_graph_edges:
@@ -91,7 +90,10 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     for edge in edge_mapping:
         if edge[0] in nodes_in_subgraph and edge[1] in nodes_in_subgraph:
-            sub_graph_edges[edge] = edge_mapping[edge]
+            if edge in sub_graph_edges:
+                sub_graph_edges[edge] = list(set(sub_graph_edges[edge] + edge_mapping[edge]))
+            else:
+                sub_graph_edges[edge] = edge_mapping[edge]
     #print("AFTER ADDING REST OF THE EDGES : \n")
     #print(sub_graph_edges, "\n")
 
@@ -107,12 +109,13 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
     # Save the pruned PDG
     edge_data_list = []
     for edge in sub_graph_edges:
-        edge_data = edge[0].strip() + " $$ " + \
-            line_mapping[edge[0]].strip() + " --> " + \
-            edge[1].strip() + " $$ " + \
-            line_mapping[edge[1]].strip() + "  [" + \
-            sub_graph_edges[edge].strip() + "]\n"
-        edge_data_list.append(edge_data)
+        for edge_type in sub_graph_edges[edge]:
+            edge_data = edge[0].strip() + " $$ " + \
+                        line_mapping[edge[0]].strip() + " --> " + \
+                        edge[1].strip() + " $$ " + \
+                        line_mapping[edge[1]].strip() + " [" + \
+                        edge_type.strip() + "]\n"
+            edge_data_list.append(edge_data)
     #print("FINAL EDGE LIST: \n")
     #print(edge_data_list, "\n")
     if len(edge_data_list) >= 3:
@@ -124,21 +127,21 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     return output_pdg_file, len(edge_data_list)
 
-PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/new_automated"
-OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/new_automated"
+PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/final"
+OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/final"
 pdg_folders_list = glob.glob(PDG_FOLDER_LOCATION + "/*/")
 print("\nNumber of total APIs: {}\n".format(len(pdg_folders_list)))
 for folder in tqdm.tqdm(pdg_folders_list):
     print("\nProcessing: {}\n".format(folder))
     api_name = folder[folder.rindex("/", 0, len(folder) - 1) + 1 : -1]
     pdg_files_list = glob.glob(os.path.join(folder, '*.txt'))
-    if not os.path.exists(OUTPUT_FOLDER_LOCATION + "/" + api_name):
-        os.makedirs(OUTPUT_FOLDER_LOCATION + "/" + api_name)
+    OUTPUT_API_FOLDER_LOCATION = OUTPUT_FOLDER_LOCATION + "/" + api_name
+    if not os.path.exists(OUTPUT_API_FOLDER_LOCATION):
+        os.makedirs(OUTPUT_API_FOLDER_LOCATION)
     for pdg_file_location in pdg_files_list:
         pdg_file = open(pdg_file_location, 'r')
-        output_file_location = OUTPUT_FOLDER_LOCATION + \
-            "/" + api_name + "/" + pdg_file_location[pdg_file_location.rindex("/")+1:]
-        output_pdg_file = open(output_file_location, "w")
+        output_file_location = OUTPUT_API_FOLDER_LOCATION + "/" + pdg_file_location[pdg_file_location.rindex("/")+1:]
+        output_pdg_file = open(output_file_location, "+w")
         try:
             output_pdg_file, no_of_edges = get_pruned_pdg(pdg_file, output_pdg_file, api_name[api_name.rindex(".") + 1 :].strip())
         except Exception as e:
