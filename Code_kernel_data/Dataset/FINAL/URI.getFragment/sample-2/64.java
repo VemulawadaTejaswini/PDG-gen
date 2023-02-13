@@ -1,6 +1,6 @@
 public class func{
 public void execute(TestParam values,ExecutionContext context){
-            final URI uri = new URI("http://localhost:8080/path?query#fragment");
+            final URI uri = new URI("http:
             final ClientHttpRequest request = values.clientHttpRequestFactory.createRequest(uri, HttpMethod.GET);
             final URI finalUri = request.getURI();
             assertEquals("http", finalUri.getScheme());

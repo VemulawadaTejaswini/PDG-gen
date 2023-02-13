@@ -3,8 +3,6 @@ public void loadDataFromURL(URL url,String contentType,Sail sail){
         String lang = urlToModelLang(url, contentType);
         if (lang != null) {
             URLConnection conn = url.openConnection();
-            
-            
             conn.connect();
             InputStream stream = conn.getInputStream();
             try {

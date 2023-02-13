@@ -10,10 +10,8 @@ public void run(){
                                 } else {
                                     if (Debug.ENABLED)
                                         buff.lock(0);
-
                                     buff.recycle();
                                 }
-
                                 break;
                             } else if (buff.remaining() == 0) {
                                 buff.position(position);

@@ -1,19 +1,14 @@
 public class func{
 public void readMaze(String inputFileName){
             while((line = new DataInputStream(in).readLine()) != null) {
-                
                 String code;
-                int[] xy = new int[6];  // equivalent to x1,y1,z1,x2,y2,z2
+                int[] xy = new int[6];
                 int numToken = 0;
-                
                 StringTokenizer tok = new StringTokenizer(line);
-
                 if((numToken = tok.countTokens()) < 1 ) {
                     continue;
                 }
-
                 code = tok.nextToken();
-
                 if(code.equals("#")) {
                     /* comment line */
                     continue;
@@ -21,7 +16,6 @@ public void readMaze(String inputFileName){
                 for(int i=0;i<numToken-1;i++) {
                     xy[i] = Integer.parseInt(tok.nextToken());
                 }
-
                 if(code.equals("d")) {
                       /* dimensions (format: d x y z) */
                      if(numToken != 4) {
@@ -41,7 +35,6 @@ public void readMaze(String inputFileName){
                     else {
                         Coordinate srcPtr = Coordinate.alloc(xy[0],xy[1],xy[2]);
                         Coordinate dstPtr = Coordinate.alloc(xy[3],xy[4],xy[5]);
-
                         if(Coordinate.isEqual(srcPtr,dstPtr)) {
                             isParseError = true;
                         }
@@ -50,7 +43,6 @@ public void readMaze(String inputFileName){
                             boolean status = workListPtr.insert(coordinatePairPtr);
                             srcVectorPtr.vector_pushBack(srcPtr);
                             dstVectorPtr.vector_pushBack(dstPtr);
-                            
                         }
                     }
                 }else if(code.equals("w")) {
@@ -64,7 +56,6 @@ public void readMaze(String inputFileName){
                 }else { /* error */
                        isParseError = true;
                 }
-                
                 if(isParseError)  {/* Error */
                     System.out.println("Error: line " + lineNumber + " of " + inputFileName + "invalid");
                     System.exit(1);

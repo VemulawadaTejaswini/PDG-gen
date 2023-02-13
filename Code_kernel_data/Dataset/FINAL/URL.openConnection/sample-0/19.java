@@ -1,6 +1,6 @@
 public class func{
 public void getResponse(String requestMethod,String path,UrlResponse response){
-        URL url = new URL("http://localhost:" + PORT + path);
+        URL url = new URL("http:
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod(requestMethod);
         connection.connect();

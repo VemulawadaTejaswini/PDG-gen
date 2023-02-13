@@ -7,13 +7,13 @@ public void readUntilDelimiter(final BufferedReader inputStream){
         throw new IOException();
       } else {
         c = (char) ci;
-        if (c == '#' && canc == false) { // Found first #
+        if (c == '#' && canc == false) {
           response.append(c);
           canc = true;
-        } else if (c == '#') { // Found second # command terminated
+        } else if (c == '#') {
           response.append(c);
           break;
-        } else if (c != '#') { // Append char and start again finding
+        } else if (c != '#') {
           response.append(c);
           canc = false;
         }

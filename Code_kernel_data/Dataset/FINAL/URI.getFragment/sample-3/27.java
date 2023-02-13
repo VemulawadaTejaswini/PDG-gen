@@ -7,9 +7,7 @@ public void onResponse(EnhancedMockHttpServletResponse response){
                     try {
                         URI uri = new URI(response.getHeader("Location").toString());
                         assertNotNull(uri.getFragment(), "Fragment is null");
-
                         Map<String, String> params = QueryStringDecoder.decode(uri.getFragment());
-
                         assertNotNull(params.get(AuthorizeResponseParam.CODE), "The code is null");
                         assertNotNull(params.get(AuthorizeResponseParam.ACCESS_TOKEN), "The access token is null");
                         assertNotNull(params.get(AuthorizeResponseParam.TOKEN_TYPE), "The token type is null");

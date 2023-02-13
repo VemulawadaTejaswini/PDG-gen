@@ -6,7 +6,6 @@ public void rewriteURI(HttpServletRequest request){
                         && rewrittenPath.endsWith("/"))
                 {
                     rewrittenPath = rewrittenPath.substring(0, len - 1);
-
                     try
                     {
                         rewrittenURI

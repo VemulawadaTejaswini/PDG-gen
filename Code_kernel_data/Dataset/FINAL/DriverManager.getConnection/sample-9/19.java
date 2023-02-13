@@ -1,7 +1,7 @@
 public class func{
 public void test1(){
         Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/diamond?useUnicode=true&&characterEncoding=UTF-8" +
+                "jdbc:mysql:
                         "&connectTimeout=3000&socketTimeout=3000&autoReconnect=true",
                 "diamond", "diamond");
         connection.setAutoCommit(false);

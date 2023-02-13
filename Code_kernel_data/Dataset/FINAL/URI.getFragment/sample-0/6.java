@@ -26,7 +26,6 @@ public void findCredentials(URI target){
                         return null;
                     }
                 }
-
                 creds = this.getCredentials(target);
             }
 }

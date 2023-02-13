@@ -1,6 +1,6 @@
 public class func{
 public void testUrl(){
-      URI uri = new URI("sword://StrongsRealGreek/01909");
+      URI uri = new URI("sword:
       assertEquals("sword", uri.getScheme());
       assertEquals("StrongsRealGreek", uri.getHost());
       assertEquals("/01909", uri.getPath());

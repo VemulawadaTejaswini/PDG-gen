@@ -1,6 +1,6 @@
 public class func{
 public void doClientSide(){
-        URL url = new URL("https://localhost:"+serverPort+"/index.html");
+        URL url = new URL("https:
         HttpsURLConnection urlc = (HttpsURLConnection)url.openConnection();
         urlc.setHostnameVerifier(this);
         urlc.getInputStream();

@@ -64,7 +64,6 @@ public void outPutChar(Writer out,BufferedReader buffer){
             out.write(charr);
           }
       }
-
     }
 }
 }

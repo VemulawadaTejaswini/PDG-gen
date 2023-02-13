@@ -6,13 +6,13 @@ public void NeoStoreUtil(String storeDir){
                 throw new RuntimeException( "Unable to read neo store header information" );
             }
             buf.flip();
-            buf.get(); // in use byte
+            buf.get();
             creationTime = buf.getLong();
-            buf.get(); // in use byte
+            buf.get();
             storeId = buf.getLong();
             buf.get(); 
-            version = buf.getLong(); // skip log version
-            buf.get(); // in use byte
+            version = buf.getLong();
+            buf.get();
             txId = buf.getLong();
 }
 }

@@ -2,9 +2,9 @@ public class func{
 public void parseURI(String original,boolean mustBePath){
                 idxColon = original.indexOf(':');
             if (idxColon != -1) {
-                if ((idxSlash != -1) && idxSlash < idxColon)     // There's a slash, and it's before the colon â†’ everything OK
+                if ((idxSlash != -1) && idxSlash < idxColon)
                     ;
-                else    // No slash before the colon; we have to put it there
+                else
                     original = "./" + original;
             }
         String repaired = original

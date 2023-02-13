@@ -6,6 +6,6 @@ public void _mark(String s){
     out.printf("[%,18dns d %,18dns %,18d b mem]\t%s\n", cumulative, delta,
         umem, s);
     values.add("" + umem);
-    last = System.nanoTime(); // don't count gc time.
+    last = System.nanoTime();
 }
 }

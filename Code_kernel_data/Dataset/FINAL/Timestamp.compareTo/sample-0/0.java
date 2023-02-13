@@ -9,6 +9,5 @@ public void timestampInRange(Timestamp lowerBound,Timestamp upperBound,Timestamp
         }
         if ((lowerBound == null) || (timestamp.compareTo(lowerBound) > 0)) {
             if ((upperBound == null) || (timestamp.compareTo(upperBound) < 0)) {
-           
 }
 }

@@ -14,7 +14,6 @@ public void configureSentinel(URI uri){
             if (authority.indexOf('@') > -1) {
                 authority = authority.substring(authority.indexOf('@') + 1);
             }
-
             String[] hosts = authority.split("\\,");
             for (String host : hosts) {
                 HostAndPort hostAndPort = HostAndPort.fromString(host);
@@ -32,7 +31,6 @@ public void configureSentinel(URI uri){
                     }
                 }
             }
-
         }
         checkArgument(builder != null, "Invalid URI, cannot get host part");
 }

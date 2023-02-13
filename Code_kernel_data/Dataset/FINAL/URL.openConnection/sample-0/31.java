@@ -1,6 +1,6 @@
 public class func{
 public void isPutIntoOven(){
-            final URL url = new URL("https://www.google.com/search?q=potato");
+            final URL url = new URL("https:
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();

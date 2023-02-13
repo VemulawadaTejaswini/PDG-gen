@@ -1,6 +1,6 @@
 public class func{
 public void run(IAction action){
-      URL url = Platform.find(bundle, new Path("samples/manifest.txt")); //$NON-NLS-1$
+      URL url = Platform.find(bundle, new Path("samples/manifest.txt"));
       url = Platform.resolve(url);
       Object content = url.getContent();
       InputStream ins = (InputStream) content;

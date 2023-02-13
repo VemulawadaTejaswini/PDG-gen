@@ -13,16 +13,15 @@ public void parseAwfulCSV(BufferedReader reader,boolean header){
             reader.reset();
             insideQuote = false;
           }
-        } else {  // inside a quote, but the character isn't a quote
+        } else {
           if (count == c.length) {
             c = PApplet.expand(c);
           }
           c[count++] = (char) ch;
         }
-      } else {  // not inside a quote
+      } else {
         if (ch == '\"') {
           insideQuote = true;
-
         } else if (ch == '\r' || ch == '\n') {
           if (ch == '\r') {
             reader.mark(1);
@@ -38,14 +37,12 @@ public void parseAwfulCSV(BufferedReader reader,boolean header){
           }
           row++;
           col = 0;
-
         } else if (ch == ',') {
           setString(row, col, new String(c, 0, count));
           count = 0;
           col++;
           ensureColumn(col);
-
-        } else {  // just a regular character, add it
+        } else {
           if (count == c.length) {
             c = PApplet.expand(c);
           }

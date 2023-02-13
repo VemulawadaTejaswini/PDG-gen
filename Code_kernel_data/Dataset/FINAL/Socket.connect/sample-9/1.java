@@ -4,7 +4,7 @@ public void apply(HostAndPort socketA){
                .getPort());
          logger.trace("testing socket %s", socketAddress);
          socket = new Socket(
-               proxyForURI.apply(URI.create("socket://" + socketA.getHostText() + ":" + socketA.getPort())));
+               proxyForURI.apply(URI.create("socket:
          socket.setReuseAddress(false);
          socket.setSoLinger(false, 1);
          socket.setSoTimeout(timeout);

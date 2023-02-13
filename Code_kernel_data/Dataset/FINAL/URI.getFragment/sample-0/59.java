@@ -5,7 +5,6 @@ public void makeGetRequest(String urlString,HashMap<String,String> queryParams,b
         for (String paramName : queryParams.keySet()) {
           pairs.add(new BasicNameValuePair(paramName, queryParams.get(paramName)));
         }
-
         uri = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), uri.getPath(), URLEncodedUtils.format(pairs, "UTF-8"), uri.getFragment());
       }
       HttpGet request = new HttpGet(uri);

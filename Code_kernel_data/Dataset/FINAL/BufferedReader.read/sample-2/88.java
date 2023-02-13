@@ -8,7 +8,6 @@ public void readResponse(BufferedReader reader){
                     assertEquals("", line);
                     break;
                 }
-
                 int length = Integer.parseInt(line, 16);
                 for (int i = 0; i < length; ++i)
                 {

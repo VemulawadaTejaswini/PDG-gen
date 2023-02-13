@@ -1,14 +1,12 @@
 public class func{
 public void processFlagFile(){
     while ((c = buffer.read()) != -1) {
-
       if (isFirstCharacter) {
         isFirstCharacter = false;
         if (c == UTF8_BOM_CODE) {
           continue;
         }
       }
-
       if (c == 32 || c == 9 || c == 10 || c == 13) {
         if (quoted) {
           builder.append((char) c);
@@ -29,7 +27,6 @@ public void processFlagFile(){
       } else {
         builder.append((char) c);
       }
-
       escaped = c == 92;
     }
     buffer.close();

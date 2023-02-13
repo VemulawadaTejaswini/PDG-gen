@@ -1,6 +1,6 @@
 public class func{
 public void isLocalCommunityServerRunning(){
-            HttpURLConnection conn = (HttpURLConnection) new URL("http://" + TEST_COMMUNITY_SERVER
+            HttpURLConnection conn = (HttpURLConnection) new URL("http:
                     + "/community").openConnection();
             if (conn.getResponseCode() == HttpServletResponse.SC_BAD_REQUEST) {
                 return true;

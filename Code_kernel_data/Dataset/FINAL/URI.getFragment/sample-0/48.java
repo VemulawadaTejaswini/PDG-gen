@@ -1,7 +1,7 @@
 public class func{
 public void apply(Instance input){
                 checkNotNull(input);
-                final URI original = URI.create("http://" + input.getHostname());
+                final URI original = URI.create("http:
                     return new URI(
                            original.getScheme(),
                            original.getUserInfo(),

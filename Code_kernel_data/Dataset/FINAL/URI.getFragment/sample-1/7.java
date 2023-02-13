@@ -41,7 +41,6 @@ public void main(String args[]){
                                                uri.getPort() + " url's is " +
                                                url.getPort());
                 }
-
                 String path = uri.getPath();
                 boolean pathCheck = path == null? url.getPath() == null :
                     path.equals(url.getPath());

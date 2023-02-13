@@ -18,7 +18,6 @@ public void getTable(String[] names){
         if (table instanceof FemLocalTable) {
             int nColumnsTotal = rowType.getFieldCount();
             int nColumnsActual = nColumnsTotal;
-
             DependencySupplier supplier =
                 getRepos().getCorePackage().getDependencySupplier();
             for (CwmDependency dep : supplier.getSupplierDependency(table)) {
@@ -33,7 +32,6 @@ public void getTable(String[] names){
                     }
                 }
             }
-
             if (labelTimestamp != null) {
                 while (nColumnsActual > 1) {
                     FemStoredColumn column =
@@ -48,7 +46,6 @@ public void getTable(String[] names){
                     }
                 }
             }
-
             if (nColumnsActual < nColumnsTotal) {
                 rowType =
                     getFarragoTypeFactory().createStructType(

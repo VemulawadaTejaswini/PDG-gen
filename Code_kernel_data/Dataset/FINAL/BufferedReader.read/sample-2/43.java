@@ -8,7 +8,6 @@ public void getMediaType(BufferedReader br){
                         }else if (c == '<'){
                     return Constants.APPLICATION_XML;
                         }
-
                     }
                         br.reset();
 }

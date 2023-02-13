@@ -1,6 +1,6 @@
 public class func{
 public void reqDate(){
-    Locale locale = Locale.getDefault(); // to get the language of the system
+    Locale locale = Locale.getDefault();
     DateFormat dateFormatShort = DateFormat.getDateInstance(DateFormat.LONG, locale);
     return dateFormatShort.format(date);
 }

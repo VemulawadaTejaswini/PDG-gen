@@ -7,15 +7,12 @@ public void onResponse(EnhancedMockHttpServletResponse response){
                     try {
                         URI uri = new URI(response.getHeader("Location").toString());
                         assertNotNull(uri.getFragment(), "The fragment is null");
-
                         Map<String, String> params = QueryStringDecoder.decode(uri.getFragment());
-
                         assertTrue(params.containsKey(AuthorizeResponseParam.CODE));
                         assertTrue(params.containsKey(AuthorizeResponseParam.SCOPE));
                         assertTrue(params.containsKey(AuthorizeResponseParam.STATE));
                         assertTrue(params.containsKey(AuthorizeResponseParam.ID_TOKEN));
                         assertFalse(params.containsKey(AuthorizeResponseParam.ACCESS_TOKEN));
-
                         authorizationCode2 = params.get(AuthorizeResponseParam.CODE);
                     } catch (URISyntaxException e) {
                         e.printStackTrace();

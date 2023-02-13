@@ -4,16 +4,13 @@ public void accept(final File parentDir,final String fileName){
         if (PCGFile.isPCGenListFile(descriptionFile))
         {
           BufferedReader descriptionReader = null;
-
           try
           {
             if (descriptionFile.exists())
             {
               final char[] inputLine;
-
               descriptionReader = new BufferedReader(new InputStreamReader(new FileInputStream(
                   descriptionFile), "UTF-8"));
-
               final int length = (int) descriptionFile.length();
               inputLine = new char[length];
               descriptionReader.read(inputLine, 0, length);
@@ -34,7 +31,6 @@ public void accept(final File parentDir,final String fileName){
                 Logging.errorPrint(
                     "Couldn't close descriptionReader in PlayerCharacter.loadDescriptionFilesInDirectory",
                     e);
-
               }
             }
           }

@@ -12,7 +12,6 @@ public void updateState(){
           repaint();
         }
       });
-
       setToolTipText(UIBundle.message("memory.usage.panel.statistics.message", total, used));
     }
 }

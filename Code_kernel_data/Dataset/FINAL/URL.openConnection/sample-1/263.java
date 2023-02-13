@@ -8,7 +8,6 @@ public void actionPerformed(java.awt.event.ActionEvent actionEvent){
                             URLConnection connection = url.openConnection();
                             tufts.Util.openURL(fedoraUrl);
                             break;
-                            
                         }
 }
 }

@@ -4,7 +4,6 @@ public void main(String[] args){
       switch (args[i]) {
       case "-serializer:format":
         i++;
-
         switch (args[i]) {
         case "java":
           break;
@@ -14,11 +13,9 @@ public void main(String[] args){
         default:
           PrintUsageAndQuit(null);
         }
-
         break;
       case "-instances":
         readInstances = true;
-
         break;
       default:
         break OptArgLoop;

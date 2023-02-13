@@ -7,7 +7,7 @@ public void handleGetDiffs(HttpServletRequest request,HttpServletResponse respon
             diffLocation.getHost(),
             diffLocation.getPort(),
             diffPath.toString(),
-            "pageSize=" + pageSize + "&page=" + (page + 1), diffLocation.getFragment()); //$NON-NLS-1$ //$NON-NLS-2$
+            "pageSize=" + pageSize + "&page=" + (page + 1), diffLocation.getFragment());
         result.put(KEY_NEXT_LOCATION, nextLocation);
       }
       writeJSONResponse(request, response, result);

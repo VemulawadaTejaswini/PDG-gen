@@ -5,7 +5,7 @@ public void GroovyCodeSource(URL url){
             if (contentEncoding != null) {
                 this.scriptText = ResourceGroovyMethods.getText(url, contentEncoding);
             } else {
-                this.scriptText = ResourceGroovyMethods.getText(url); // falls-back on default encoding
+                this.scriptText = ResourceGroovyMethods.getText(url);
             }
 }
 }

@@ -4,7 +4,6 @@ public void loadFromClasspath(final URI uri){
                 if (fragment != null && !"".equals(fragment)) {
                     String[] nodes = fragment.split("/");
                     JsonObject subjson = json;
-
                     for (int i = "".equals(nodes[0]) ? 1 : 0 ; i < nodes.length; i++) {
                         if (subjson.containsField(nodes[i])) {
                             subjson = subjson.getObject(nodes[i]);
@@ -12,7 +11,6 @@ public void loadFromClasspath(final URI uri){
                             throw new RuntimeException("Fragment Node #" + nodes[i] + " not found!");
                         }
                     }
-
                     return subjson;
                 }
             throw new RuntimeException(ioe);

@@ -3,8 +3,7 @@ public void getWordsFromInput(String inputFile){
             BufferedReader input = new BufferedReader(new FileReader(inputFile));
             for (int charByte = input.read(); charByte >= 0; charByte = input.read()) {
                 char readChar = (char)charByte;
-
-                if (readChar == '\r') { // ignore \r
+                if (readChar == '\r') {
                 } else if (readFirstLine) {
                     lines.append(readChar);
                 } else {
@@ -12,7 +11,6 @@ public void getWordsFromInput(String inputFile){
                         readFirstLine = true;
                         continue;
                     }
-
                     firstLine.append(readChar);
                 }
             }

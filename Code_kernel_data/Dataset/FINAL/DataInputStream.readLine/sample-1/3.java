@@ -37,7 +37,7 @@ public void load(InputStream inStream){
                               (line.substring(pos, pos + 4), 16);
                             key.append(uni);
                             pos += 4;
-                          }        // else throw exception?
+                          }
                         break;
                       default:
                         key.append(c);
@@ -78,10 +78,8 @@ public void load(InputStream inStream){
                 if (pos == line.length())
                   {
                     line = reader.readLine();
-
                     if (line == null)
                       break;
-
                     pos = 0;
                     while (pos < line.length()
                            && Character.isWhitespace(c = line.charAt(pos)))
@@ -110,7 +108,7 @@ public void load(InputStream inStream){
                               (line.substring(pos, pos + 4), 16);
                             element.append(uni);
                             pos += 4;
-                          }        // else throw exception?
+                          }
                         break;
                       default:
                         element.append(c);

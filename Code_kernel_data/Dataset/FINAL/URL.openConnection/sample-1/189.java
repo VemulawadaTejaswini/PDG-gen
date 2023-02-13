@@ -1,6 +1,6 @@
 public class func{
 public void testStandardHost(){
-            URLConnection connection = new URL("http://" + TestSuiteEnvironment.formatPossibleIpv6Address(masterAddress) + ":8080").openConnection();
+            URLConnection connection = new URL("http:
             connection.connect();
 }
 }

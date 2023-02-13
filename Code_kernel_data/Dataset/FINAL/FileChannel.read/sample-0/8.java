@@ -15,11 +15,9 @@ public void hashFiles(List<File> files,int pieceLenght){
             buffer.clear();
             results.add(executor.submit(new CallableChunkHasher(buffer)));
           }
-
           if (results.size() >= threads) {
             pieces += accumulateHashes(hashes, results);
           }
-
           if (channel.position() / (double)channel.size() * 100f > step) {
             logger.info("  ... {}% complete", step);
             step += 10;

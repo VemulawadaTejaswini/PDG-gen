@@ -9,7 +9,7 @@ public void test_ConstructorLjava_lang_StringLjava_lang_StringLjava_lang_StringI
             assertEquals("wrong query", "qu?er#y", uri.getQuery());
             assertEquals("wrong fragment", "frag#me?nt", uri.getFragment());
             assertEquals("wrong SchemeSpecificPart",
-                    "//us:e@r@hostname:85/file/dir#/qu?e/?qu?er#y", uri
+                    "
                     .getSchemeSpecificPart());
             fail("Unexpected Exception: " + e);
 }

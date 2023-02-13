@@ -5,7 +5,6 @@ public void checkFeatureTimestamp(final String schema,final String uniquename,fi
       {
         final SimpleDateFormat date_format = 
                    new SimpleDateFormat("dd.MM.yyyy hh:mm:ss z");
-        
         int select = JOptionPane.showConfirmDialog(null, uniquename +
                                       " has been altered at :\n"+
                                       date_format.format(now)+"\nOverwite?", 

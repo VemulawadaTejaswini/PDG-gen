@@ -5,7 +5,7 @@ public void readLines(final InputStream is2,final String encoding){
                     break;
                 }
                 sb.append((char) c);
-                if (c == '\r') { // single CR or a CR followed by LF
+                if (c == '\r') {
                     c = reader.read();
                     if (c == -1) {
                         break;
@@ -15,7 +15,7 @@ public void readLines(final InputStream is2,final String encoding){
                         list.add(sb.toString());
                         sb = new StringBuffer();
                     }
-                } else if (c == '\n') { // a single LF
+                } else if (c == '\n') {
                     list.add(sb.toString());
                     sb = new StringBuffer();
                 }

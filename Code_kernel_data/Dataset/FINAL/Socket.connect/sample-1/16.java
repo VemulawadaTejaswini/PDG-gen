@@ -4,7 +4,6 @@ public void borrowSocket(){
     if (socket != null) {
       if (socket.isClosed() || !socket.isConnected() ||
         socket.isInputShutdown() || socket.isOutputShutdown()) {
-
         try {
           socket.close();
         }
@@ -13,13 +12,11 @@ public void borrowSocket(){
             _log.warn(ioe, ioe);
           }
         }
-
         socket = null;
       }
     }
     if (socket == null) {
       socket = new Socket();
-
       socket.connect(socketAddress);
     }
 }

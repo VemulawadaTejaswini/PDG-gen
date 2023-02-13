@@ -1,6 +1,6 @@
 public class func{
 public void useWireMock(){
-        URL uri = new URL("http://localhost:8080/blah");
+        URL uri = new URL("http:
         InputStream content = uri.openConnection().getInputStream();
         final String retrievedBody = IOUtils.toString(content);
         assertEquals("body", retrievedBody);

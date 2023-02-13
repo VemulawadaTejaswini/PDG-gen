@@ -3,14 +3,14 @@ public void getLastModified(K src){
     if (src instanceof URL) {
       try {
         final long v = ((URL)src).openConnection().getLastModified();
-        return v != -1 ? v: 0; //not to reload if unknown (5.0.6 for better performance)
+        return v != -1 ? v: 0;
       } catch (Throwable ex) {
-        return -1; //reload (might be removed)
+        return -1;
       }
     } else if (src instanceof File) {
       final long v = ((File)src).lastModified();
-      return v == -1 ? 0: //not to reload if unknown (5.0.6 for better performance)
-        v == 0 ? -1: v; //0 means nonexistent so reload
+      return v == -1 ? 0:
+        v == 0 ? -1: v;
     } else if (src == null) {
       throw new NullPointerException();
     } else {

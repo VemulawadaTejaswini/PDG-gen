@@ -7,7 +7,7 @@ public void getGMetric(String metricName){
         if (in_buff != -1) {
             System.out.println("End of file");
         }
-        CharArrayReader car = new CharArrayReader(charBuff, 0, in_buff); // these two lines have to be here.
+        CharArrayReader car = new CharArrayReader(charBuff, 0, in_buff);
         BufferedReader br_car = new BufferedReader(car);
 }
 }

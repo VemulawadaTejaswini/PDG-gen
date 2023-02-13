@@ -8,7 +8,7 @@ public void findColumn(PreparedStatement query,String label){
                 returnValue = rs.findColumn(label);
             }
             catch (SQLException sqle)
-            {} //consume exception to allow  cleanup of resource.
+            {}
         }
         rs.close();
 }

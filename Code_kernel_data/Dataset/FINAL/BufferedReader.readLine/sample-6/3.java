@@ -4,7 +4,7 @@ public void getFeatureUnit(BufferedReader featureReader){
     if (line == null)
       return null;
     if (line.trim().equals(""))
-      return ""; // empty line -- signal end of section
+      return "";
     StringTokenizer st = new StringTokenizer(line.trim());
     return st.nextToken();
 }

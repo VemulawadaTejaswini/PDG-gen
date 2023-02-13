@@ -6,7 +6,6 @@ public void testResourceAccessQueryInvalidToken(){
         if (c instanceof HttpURLConnection) {
             HttpURLConnection httpURLConnection = (HttpURLConnection)c;
             httpURLConnection.setRequestMethod("GET");
-
             testInvalidTokenResponse(httpURLConnection);
         }
 }

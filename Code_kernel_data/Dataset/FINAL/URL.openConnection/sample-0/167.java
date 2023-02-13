@@ -1,6 +1,6 @@
 public class func{
 public void doPost(String request){
-    URL url = new URL("http://localhost:8080/exist/rest" + XmldbURI.ROOT_COLLECTION);
+    URL url = new URL("http:
     HttpURLConnection connect = (HttpURLConnection) url.openConnection();
     connect.setRequestMethod("POST");
     connect.setDoOutput(true);

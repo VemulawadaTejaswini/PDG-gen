@@ -1,7 +1,6 @@
 public class func{
 public void getConnection(){
     if (conn == null) {
-
       try {
         Connection con = DriverManager.getConnection(HOST_URL,
             DATABASE_USER, DATABASE_PASSWORD);

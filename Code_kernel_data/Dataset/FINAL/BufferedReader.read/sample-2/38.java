@@ -11,7 +11,7 @@ public void parseAwfulCSV(BufferedReader reader,boolean header){
             reader.reset();
             insideQuote = false;
           }
-        } else {  // inside a quote, but the character isn't a quote
+        } else {
           if (count == c.length) {
             c = PApplet.expand(c);
           }

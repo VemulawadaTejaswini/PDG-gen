@@ -11,7 +11,6 @@ public void updateRowCounts(FemAbstractColumnSet table,List<RowCountStat> rowCou
             FemRowCountStatistics newRowCountStats =
                 repos.newFemRowCountStatistics();
             newRowCountStats.setColumnSet(table);
-
             newRowCountStats.setDmlTimestamp(rowCountStats.getDmlTimestamp());
             newRowCountStats.setRowCount(rowCountStats.getRowCount());
             newRowCountStats.setDeletedRowCount(
@@ -20,7 +19,6 @@ public void updateRowCounts(FemAbstractColumnSet table,List<RowCountStat> rowCou
                 rowCountStats.getAnalyzeTimestamp());
             newRowCountStats.setAnalyzeRowCount(
                 rowCountStats.getAnalyzeRowCount());
-
             setNewRowCounts(table, newRowCountStats, rowCounts);
         }
 }

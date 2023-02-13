@@ -1,6 +1,6 @@
 public class func{
 public void getInputStream(){
-        URL url = new URL("http://stream.meetup.com/2/rsvps");
+        URL url = new URL("http:
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
         return request.getInputStream();
 }

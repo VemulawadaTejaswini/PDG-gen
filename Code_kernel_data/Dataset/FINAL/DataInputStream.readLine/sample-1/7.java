@@ -26,10 +26,9 @@ public void decode(){
             throw new CorruptObjectException(commitId,
                 "malformed header:"+n);
         }
-        byte[] readBuf = new byte[br.available()]; // in-memory stream so this is all bytes left
+        byte[] readBuf = new byte[br.available()];
         br.read(readBuf);
         int msgstart = readBuf.length != 0 ? ( readBuf[0] == '\n' ? 1 : 0 ) : 0;
-
         if (encoding != null) {
           author = new PersonIdent(new String(rawAuthor.getBytes(),encoding.name()));
           committer = new PersonIdent(new String(rawCommitter.getBytes(),encoding.name()));

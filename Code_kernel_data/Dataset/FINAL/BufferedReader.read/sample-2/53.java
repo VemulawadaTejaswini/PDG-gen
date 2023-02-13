@@ -9,7 +9,7 @@ public void run(){
                                         log.debug("Client authorized");
                                         out.println(getSystemInfo());
                                         log.debug("SystemInfo returned");
-                                        setAccessToken(); // regenerate
+                                        setAccessToken();
                                      }
                                     else {
                                         log.debug("Invalid token recieved");

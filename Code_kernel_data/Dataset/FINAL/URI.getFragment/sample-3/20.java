@@ -1,9 +1,9 @@
 public class func{
 public void canonicalize(String uriString){
                 if (u.getFragment() == null) {
-                    u = new URI("//" + u.getSchemeSpecificPart());
+                    u = new URI("
                 } else {
-                    u = new URI("//" + u.getSchemeSpecificPart() + "#"
+                    u = new URI("
                                 + u.getFragment());
                 }
 }

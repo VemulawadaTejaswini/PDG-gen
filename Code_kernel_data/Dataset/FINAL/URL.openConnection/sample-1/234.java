@@ -1,6 +1,6 @@
 public class func{
 public void sendRequest(){
-        URLConnection connection = new URL("http://localhost:8181/cxf/HelloWorld")
+        URLConnection connection = new URL("http:
                 .openConnection();
         connection.setDoInput(true);
         connection.setDoOutput(true);

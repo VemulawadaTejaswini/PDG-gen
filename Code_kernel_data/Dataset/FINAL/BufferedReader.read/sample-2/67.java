@@ -6,7 +6,7 @@ public void getLines(File file,boolean keepDuplicates){
             list.add(line);
           line = "";
           if (current == -1)
-            break; // EOF
+            break;
         } else
           line += (char) current;
 }

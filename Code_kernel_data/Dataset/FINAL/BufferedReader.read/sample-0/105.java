@@ -5,7 +5,6 @@ public void agreementContents(){
       if (!file.exists()) {
         filename = SystemGlobals.getValue(ConfigKeys.AGREEMENT_DEFAULT_FILE);
         file = new File(directory + filename);
-        
         if (!file.exists()) {
           throw new FileNotFoundException("Could not locate any terms agreement file");
         }

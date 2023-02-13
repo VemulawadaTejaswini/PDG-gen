@@ -2,9 +2,8 @@ public class func{
 public void testFileChannelByLine(){
     do {
       int rd = in.read(buf);
-      read += (rd < 0 ? 0 : rd); // rd == -1 if at end of stream.
+      read += (rd < 0 ? 0 : rd);
       buf.flip();
-
       int start = buf.position();
       buf.mark();
       while (buf.hasRemaining()) {
@@ -13,16 +12,15 @@ public void testFileChannelByLine(){
           int end = buf.position();
           int sz = end - start;
           byte[] body = new byte[sz];
-          buf.reset(); // go back to mark
-          buf.get(body, 0, sz - 1); // read data
-          buf.get(); // read '\n'
-          buf.mark(); // new mark.
+          buf.reset();
+          buf.get(body, 0, sz - 1);
+          buf.get();
+          buf.mark();
           start = buf.position();
           String s = new String(body);
           LOG.info("=> " + s);
         }
       }
-
       buf.clear();
       loops++;
     } while (!done.await(5, TimeUnit.MILLISECONDS));

@@ -4,6 +4,6 @@ public void countSamples(PrintStream ps,Variations v){
         ResultSet set= stmt.executeQuery();
         if (set.next())
             n= set.getInt(1);
-        ps.println("samples with variation " + v + ": " + n); //$NON-NLS-1$ //$NON-NLS-2$
+        ps.println("samples with variation " + v + ": " + n);
 }
 }

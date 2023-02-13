@@ -10,6 +10,6 @@ public void nestURIForLocalJavaKeyStoreProvider(final URI localFile){
           JavaKeyStoreProvider.class.getName());
     }
     return new URI(LocalJavaKeyStoreProvider.SCHEME_NAME,
-        "//file" + localFile.getSchemeSpecificPart(), localFile.getFragment());
+        "
 }
 }

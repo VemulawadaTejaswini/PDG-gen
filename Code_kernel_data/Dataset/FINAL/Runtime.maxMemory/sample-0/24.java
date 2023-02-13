@@ -10,17 +10,14 @@ public void run(){
         avgFreeMemory = new SimpleRunningAverage(3, freeMemory);
       else
         avgFreeMemory.report(freeMemory);
-      
-      if (avgFreeMemory.countReports() >= 3 && avgFreeMemory.currentValue() < 4 * 1024 * 1024) {//  average free memory < 4 MB
+      if (avgFreeMemory.countReports() >= 3 && avgFreeMemory.currentValue() < 4 * 1024 * 1024) {
         Logger.normal(this, "Reached threshold, checking for low memory ...");
         System.gc();
         System.runFinalization();
-
         try {
-          Thread.sleep(10); // Force a context switch, finalization need a CS to complete
+          Thread.sleep(10);
         } catch (InterruptedException e) {
         }
-
         freeMemory = r.freeMemory();
         avgFreeMemory.report(freeMemory);
       }

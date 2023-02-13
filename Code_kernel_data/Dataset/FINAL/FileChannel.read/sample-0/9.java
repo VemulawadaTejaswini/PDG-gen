@@ -6,7 +6,6 @@ public void subsetObjectVector(File tabfile,int column,int varcount,int casecoun
                 if (columnBytes[bytecount] == '\n') {
                     /*
                     String token = new String(columnBytes, byteoffset, bytecount-byteoffset, "UTF8");
-
                     if (leftover != null) {
                         String leftoverString = new String (leftover, "UTF8");
                         token = leftoverString + token;
@@ -26,39 +25,30 @@ public void subsetObjectVector(File tabfile,int column,int varcount,int casecoun
                      *      -- L.A. 4.0
                      */
                     String token = null; 
-                    
                     if (leftover == null) {
                         token = new String(columnBytes, byteoffset, bytecount-byteoffset, "UTF8");
                     } else {
                         byte[] merged = new byte[leftover.length + bytecount-byteoffset];
-                        
                         System.arraycopy(leftover, 0, merged, 0, leftover.length);
                         System.arraycopy(columnBytes, byteoffset, merged, leftover.length, bytecount-byteoffset);
                         token = new String (merged, "UTF8");
                         leftover = null;
                         merged = null; 
                     }
-                    
                     if (isString) {
                         if ("".equals(token)) {
                             retVector[caseindex] = null;
                         } else {
                             token = token.replaceFirst("^\\\"", "");
                             token = token.replaceFirst("\\\"$", "");
-                            
-                            
                             String[] splitTokens = token.split(Matcher.quoteReplacement("\\\\"), -2);
-                            
-                            
                             for (int i = 0; i < splitTokens.length; i++) {
                                 splitTokens[i] = splitTokens[i].replaceAll(Matcher.quoteReplacement("\\\""), "\"");
                                 splitTokens[i] = splitTokens[i].replaceAll(Matcher.quoteReplacement("\\t"), "\t");
                                 splitTokens[i] = splitTokens[i].replaceAll(Matcher.quoteReplacement("\\n"), "\n");
                                 splitTokens[i] = splitTokens[i].replaceAll(Matcher.quoteReplacement("\\r"), "\r");
                             }
-                            
                             token = StringUtils.join(splitTokens, '\\');
-                            
                             if (compatmode && !"".equals(token)) {
                                 if (token.length() > 128) {
                                     if ("".equals(token.trim())) {
@@ -75,7 +65,6 @@ public void subsetObjectVector(File tabfile,int column,int varcount,int casecoun
                                     }
                                 }
                             }
-                            
                             retVector[caseindex] = token;
                         }
                     } else if (isDouble) {
@@ -91,14 +80,13 @@ public void subsetObjectVector(File tabfile,int column,int varcount,int casecoun
                             }
                         } catch (NumberFormatException ex) {
                             dbgLog.warning("NumberFormatException thrown for "+token+" as Double");
-
-                            retVector[caseindex] = null; // missing value
+                            retVector[caseindex] = null;
                         }
                     } else if (isLong) {
                         try {
                             retVector[caseindex] = new Long(token);
                         } catch (NumberFormatException ex) {
-                            retVector[caseindex] = null; // assume missing value
+                            retVector[caseindex] = null;
                         }
                     } else if (isFloat) {
                         try {
@@ -113,11 +101,10 @@ public void subsetObjectVector(File tabfile,int column,int varcount,int casecoun
                             }
                         } catch (NumberFormatException ex) {
                             dbgLog.warning("NumberFormatException thrown for "+token+" as Float");
-                            retVector[caseindex] = null; // assume missing value (TODO: ?)
+                            retVector[caseindex] = null;
                         }
                     }
                     caseindex++;
-                    
                     if (bytecount == bytesRead - 1) {
                         byteoffset = 0;
                     } else {
@@ -125,7 +112,6 @@ public void subsetObjectVector(File tabfile,int column,int varcount,int casecoun
                     }
                 } else {
                     if (bytecount == bytesRead - 1) {
-                        
                         if (leftover == null) {
                             leftover = new byte[(int)bytesRead - byteoffset];
                             System.arraycopy(columnBytes, byteoffset, leftover, 0, (int)bytesRead - byteoffset);
@@ -134,14 +120,12 @@ public void subsetObjectVector(File tabfile,int column,int varcount,int casecoun
                                 throw new IOException("Reached the end of the byte buffer, with some leftover left from the last read; yet the offset is not zero!");
                             }
                             byte[] merged = new byte[leftover.length + (int)bytesRead];
-
                             System.arraycopy(leftover, 0, merged, 0, leftover.length);
                             System.arraycopy(columnBytes, byteoffset, merged, leftover.length, (int)bytesRead);
                             leftover = merged;
                             merged = null;   
                         }
                         byteoffset = 0;
-
                     }
                 }
                 bytecount++;

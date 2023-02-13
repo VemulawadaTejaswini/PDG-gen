@@ -6,7 +6,7 @@ public void readFromFile(String filename){
         }  
             fis = new FileInputStream(f);  
             channel = fis.getChannel();  
-            ByteBuffer byteBuffer = ByteBuffer.allocate((int)channel.size());  //may needn't convert from NBO to HBO as we use ByteBuffer here.
+            ByteBuffer byteBuffer = ByteBuffer.allocate((int)channel.size());
             channel.read(byteBuffer); 
             return byteBuffer.array();  
 }

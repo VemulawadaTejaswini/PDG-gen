@@ -3,19 +3,18 @@ public void decodeLargeFile(FileChannel channel,final int isize,String encoding)
     final Charset charset = Charset.forName(encoding);
     final CharsetDecoder decoder = charset.newDecoder().onMalformedInput(CodingErrorAction.REPLACE)
         .onUnmappableCharacter(CodingErrorAction.REPLACE);
-    int n = (int) (isize * (double) decoder.averageCharsPerByte()); // avoid rounding errors.
+    int n = (int) (isize * (double) decoder.averageCharsPerByte());
     CharBuffer out = CharBuffer.allocate(n);
     while (offset < isize) {
       channel.read(in);
       in.flip();
       offset += in.limit();
-
       CoderResult cr = decoder.decode(in, out, offset >= isize);
       final int remainingBytes = in.remaining();
       if (cr.isOverflow()) {
         int totalRemainingBytes= isize-offset + remainingBytes;
         if (totalRemainingBytes > 0) {
-          n+= (int) (totalRemainingBytes * (double) decoder.maxCharsPerByte()); // avoid rounding errors.
+          n+= (int) (totalRemainingBytes * (double) decoder.maxCharsPerByte());
           CharBuffer o = CharBuffer.allocate(n);
           out.flip();
           o.put(out);
@@ -24,7 +23,6 @@ public void decodeLargeFile(FileChannel channel,final int isize,String encoding)
       } else if (!cr.isUnderflow()) {
         cr.throwException();
       }
-
       if (remainingBytes == 0) {
         in.clear();
       } else {

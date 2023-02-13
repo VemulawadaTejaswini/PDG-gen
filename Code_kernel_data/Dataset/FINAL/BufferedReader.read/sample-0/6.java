@@ -6,7 +6,6 @@ public void getStreamText(InputStream stream){
         while (numRead != -1)
         {
           sw.write(buf, 0, numRead);
-
           numRead = reader.read(buf);
         }
         if (stream != null)

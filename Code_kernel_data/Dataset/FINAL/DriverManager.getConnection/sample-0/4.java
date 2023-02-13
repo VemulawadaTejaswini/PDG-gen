@@ -1,6 +1,6 @@
 public class func{
 public void testReadOnly(){
-        TestUtil.initDriver(); // Set up log levels, etc.
+        TestUtil.initDriver();
         Connection con = DriverManager.getConnection(TestUtil.getURL() + "&readOnly=true", TestUtil.getUser(), TestUtil.getPassword());
         assertNotNull(con); 
         assertTrue(con.isReadOnly());

@@ -13,7 +13,7 @@ public void createFromURL(String url){
       catch (java.net.MalformedURLException e)
       {
         URISyntaxException uex = new URISyntaxException(url, e.getMessage());
-        uex.initCause(e); // keep the original exception
+        uex.initCause(e);
         throw uex;
       }
     }

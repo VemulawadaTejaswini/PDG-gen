@@ -4,7 +4,7 @@ public void hasOsmTileETag(String eTag){
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
             prepareHttpUrlConnection(urlConn);
             urlConn.setRequestMethod("HEAD");
-            urlConn.setReadTimeout(30000); // 30 seconds read timeout
+            urlConn.setReadTimeout(30000);
             String osmETag = urlConn.getHeaderField("ETag");
             if (osmETag == null)
                 return true;

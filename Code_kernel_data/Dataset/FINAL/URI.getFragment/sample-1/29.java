@@ -27,7 +27,6 @@ public void getIFile(URL url,boolean bCreateIfNotExists){
         throw new RuntimeException(e);
       }
       JarFileDirectoryImpl jarFileDirectory = new JarFileDirectoryImpl(jarFile);
-
       if( bCreateIfNotExists ) {
         return jarFileDirectory.getOrCreateFile( filePath );
       }

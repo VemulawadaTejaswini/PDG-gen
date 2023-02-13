@@ -24,11 +24,8 @@ public void setStatusFromFile(FileChannel channel){
                     {
                         throw new IOException("Invalid type " + indexTypeString);
                     }
-
                     String name = readString(buffer, crc32);
-
                     String parentName = readString(buffer, crc32);
-
                     String txStatus = readString(buffer, crc32);
                     TransactionStatus status;
                     try
@@ -39,21 +36,16 @@ public void setStatusFromFile(FileChannel channel){
                     {
                         throw new IOException("Invalid status " + txStatus);
                     }
-
                     String mergeId = readString(buffer, crc32);
-
                     long documentCount = buffer.getLong();
                     crc32.update((int) (documentCount >>> 32) & 0xFFFFFFFF);
                     crc32.update((int) (documentCount >>> 0) & 0xFFFFFFFF);
-
                     long deletions = buffer.getLong();
                     crc32.update((int) (deletions >>> 32) & 0xFFFFFFFF);
                     crc32.update((int) (deletions >>> 0) & 0xFFFFFFFF);
-
                     byte deleteOnlyNodesFlag = buffer.get();
                     crc32.update(deleteOnlyNodesFlag);
                     boolean isDeletOnlyNodes = deleteOnlyNodesFlag == 1;
-
                     if (!status.isTransient())
                     {
                         newIndexEntries.put(name, new IndexEntry(indexType, name, parentName, status, mergeId, documentCount, deletions, isDeletOnlyNodes));

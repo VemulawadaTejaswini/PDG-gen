@@ -1,6 +1,6 @@
 public class func{
 public void testScanNoSCN(){
-        Properties props = new Properties(); // Test with no CurrentSCN property set
+        Properties props = new Properties();
         Connection conn = DriverManager.getConnection(PHOENIX_JDBC_URL, props);
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, tenantId);

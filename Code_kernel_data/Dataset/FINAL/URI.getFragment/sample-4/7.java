@@ -5,7 +5,6 @@ public void chatLinkClicked(URI url){
         {
             currentMessageID = url.getQuery();
             currentLinkPosition = url.getFragment();
-
             this.setVisible(true);
             this.setLocationRelativeTo(chatPanel);
         }

@@ -1,6 +1,6 @@
 public class func{
 public void readStreamFromString(String filenameOrUrl){
-    if (filenameOrUrl.matches("https?://")) {
+    if (filenameOrUrl.matches("https?:
       URL u = new URL(filenameOrUrl);
       URLConnection uc = u.openConnection();
       is = uc.getInputStream();

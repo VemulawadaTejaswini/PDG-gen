@@ -7,9 +7,7 @@ public void onResponse(EnhancedMockHttpServletResponse response){
                     try {
                         URI uri = new URI(response.getHeader("Location").toString());
                         assertNotNull(uri.getFragment(), "Fragment is null");
-
                         Map<String, String> params = QueryStringDecoder.decode(uri.getFragment());
-
                         assertNotNull(params.get(AuthorizeResponseParam.ACCESS_TOKEN), "The access token is null");
                         assertNotNull(params.get(AuthorizeResponseParam.TOKEN_TYPE), "The token type is null");
                         assertNotNull(params.get(AuthorizeResponseParam.EXPIRES_IN), "The expires in value is null");
@@ -17,7 +15,6 @@ public void onResponse(EnhancedMockHttpServletResponse response){
                         assertNull(params.get("refresh_token"), "The refresh_token must be null");
                         assertNotNull(params.get(AuthorizeResponseParam.STATE), "The state is null");
                         assertEquals(params.get(AuthorizeResponseParam.STATE), state);
-
                         accessToken1 = params.get(AuthorizeResponseParam.ACCESS_TOKEN);
                     } catch (URISyntaxException e) {
                         e.printStackTrace();

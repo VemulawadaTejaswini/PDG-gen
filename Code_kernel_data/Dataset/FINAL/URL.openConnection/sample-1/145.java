@@ -6,7 +6,6 @@ public void testResourceAccessHeaderValidToken(){
         if (c instanceof HttpURLConnection) {
             HttpURLConnection httpURLConnection = (HttpURLConnection)c;
             httpURLConnection.setRequestMethod("GET");
-
             testValidTokenResponse(httpURLConnection);
         }
 }

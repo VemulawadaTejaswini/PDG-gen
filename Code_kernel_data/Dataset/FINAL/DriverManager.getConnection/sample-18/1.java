@@ -4,7 +4,6 @@ public void getConnection(){
             return DriverManager.getConnection(jdbcUrl);
         } else {
             String password = jdbcPassword;
-                        
             if (PropertyValueEncryptionUtils.isEncryptedValue(password)) {
                 log("Encryption key is " + encryptionKey);
                 password = decryptPassword(
@@ -12,7 +11,6 @@ public void getConnection(){
                                 encryptionKey,
                                 password);
             }
-            
             return DriverManager.getConnection(jdbcUrl, jdbcUser, password);
         }
 }

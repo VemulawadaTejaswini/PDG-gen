@@ -14,7 +14,7 @@ public void updateConsoleLog(File dest,InputStream in,LineListener lineListener)
                     overflowIndex = index;
                 }
                 if (overflowIndex == 0) {
-                    if (end == data.length) {//realloc if line is bigger than our buffer
+                    if (end == data.length) {
                         data = realloc(data);
                         overflow = realloc(overflow);
                         offset = end;

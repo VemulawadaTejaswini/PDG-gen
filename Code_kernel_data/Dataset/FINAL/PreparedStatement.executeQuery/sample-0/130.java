@@ -4,7 +4,6 @@ public void testFloatMAX_VALUE(Connection conn){
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             assertEquals(3.4028235E38, rs.getFloat(1), .00001);
-
         }
 }
 }

@@ -4,7 +4,6 @@ public void CalculatePercent(String inputFile,PrintWriter pw){
                 fRead = (char) inRead;
                 if ((!(fRead == 'A' || fRead == 'T' || fRead == 'C' || fRead == 'G' || fRead == 'N'))
                         && (!(fRead == 'a' || fRead == 't' || fRead == 'c' || fRead == 'g' || fRead == 'n'))) continue;
-
                 sequenceWindow.add(fRead);
                 if (sequenceWindow.size() == windowSize) {
                     inWindow = 0;

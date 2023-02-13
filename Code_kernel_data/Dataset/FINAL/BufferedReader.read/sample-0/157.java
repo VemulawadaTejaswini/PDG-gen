@@ -7,10 +7,8 @@ public void loadPlotData(TownBlock townBlock){
           case VER:
             int version = fin.read();
             plotBlockData.setVersion(version);
-            
             plotBlockData.setHeight(fin.read());
             break;
-            
           default:
             /*
              * no version field so set height
