@@ -5,7 +5,6 @@ public void readInputStreamToString(Socket socket){
                 contentLength = Integer.parseInt(line.split(":")[1].trim());
             }
             if (line.length() == 0) {
-
                 if (contentLength != null) {
                     result.append('\n');
                     for (int position = 0; position < contentLength; position++) {

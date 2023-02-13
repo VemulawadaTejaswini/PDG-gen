@@ -5,6 +5,6 @@ public void main(String args[]){
                     System.exit(0);
                 buf=line.getBytes();
                 packet=new DatagramPacket(buf, buf.length, mcast_addr, port);
-                send(packet, sockets); // send on all interfaces
+                send(packet, sockets);
 }
 }

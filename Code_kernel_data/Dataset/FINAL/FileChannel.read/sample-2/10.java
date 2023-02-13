@@ -20,7 +20,6 @@ public void telnet(Channel channel,String message){
                             String content = new String(bb.array()).replace("<", "&lt;")
                             .replace(">", "&gt;").replace("\n", "<br/><br/>");
                             buf.append("\r\ncontent:"+content);
-                            
                             buf.append("\r\nmodified:"+(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                             .format(new Date(file.lastModified()))));
                             buf.append("\r\nsize:"+size +"\r\n");

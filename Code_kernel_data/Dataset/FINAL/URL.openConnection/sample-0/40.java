@@ -4,7 +4,6 @@ public void run(){
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
         InputStream is = conn.getInputStream();
-
         is.read();
       }
 }

@@ -6,10 +6,8 @@ public void load(String prvkey,String pubkey){
           len = (int) fc.size();
           fc.read(ByteBuffer.wrap(buf = new byte[len]));
           fc.close();
-
-          if( buf.length > 4 && // FSecure's public key
+          if( buf.length > 4 &&
               buf[0] == '-' && buf[1] == '-' && buf[2] == '-' && buf[3] == '-' ) {
-
             boolean valid = true;
             i = 0;
             do {
@@ -18,7 +16,6 @@ public void load(String prvkey,String pubkey){
             if( buf.length <= i ) {
               valid = false;
             }
-
             while( valid ) {
               if( buf[i] == 0x0a ) {
                 boolean inheader = false;
@@ -41,7 +38,6 @@ public void load(String prvkey,String pubkey){
             if( buf.length <= i ) {
               valid = false;
             }
-
             start = i;
             while( valid && i < len ) {
               if( buf[i] == 0x0a ) {

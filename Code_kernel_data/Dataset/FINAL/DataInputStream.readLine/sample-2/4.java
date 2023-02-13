@@ -9,13 +9,11 @@ public void fetch(SSLSocketFactory socketFactory,String host,int port,boolean se
                             if (dot != -1) {
                                 String key = line.substring(0, dot).trim();
                                 String value = line.substring(dot + 1).trim();
-
                                 if ("Content-Length".equalsIgnoreCase(key)) {
                                     length = Integer.valueOf(value);
                                 } else if ("Transfer-Encoding".equalsIgnoreCase(key)) {
                                     chunked = "Chunked".equalsIgnoreCase(value);
                                 }
-
                             }
                             line = input.readLine();
                         }

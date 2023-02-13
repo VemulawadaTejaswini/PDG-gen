@@ -4,6 +4,6 @@ public void open(final URL url){
             return null;
         }
             final URLConnection c = url.openConnection();
-            c.connect(); // redundant
+            c.connect();
 }
 }

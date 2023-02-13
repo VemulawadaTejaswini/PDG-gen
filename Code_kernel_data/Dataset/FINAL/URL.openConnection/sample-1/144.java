@@ -10,7 +10,7 @@ public void exists(){
   if ( pathUrlConnection != null )
   try {
     int responseCode = ((HttpURLConnection)pathUrlConnection).getResponseCode();
-    if (responseCode >= 200 && responseCode < 300) // Successful
+    if (responseCode >= 200 && responseCode < 300)
       return true;
   } catch (IOException e) {
   }

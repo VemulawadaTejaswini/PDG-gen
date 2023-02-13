@@ -1,6 +1,6 @@
 public class func{
 public void testReqResp(){
-        URL url = new URL("http://localhost:" + port + path);
+        URL url = new URL("http:
         URLConnection conn = url.openConnection();
         conn.setDefaultUseCaches(false);
         BufferedReader in = new BufferedReader(

@@ -4,8 +4,6 @@ public void runFinalizerIfNeeded(){
         if (rt.freeMemory() < HALFMB){
             println("Waiting for finalizer ");
             rt.runFinalization();
-            
-
         }
 }
 }

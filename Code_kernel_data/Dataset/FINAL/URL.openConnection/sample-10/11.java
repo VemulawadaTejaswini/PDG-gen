@@ -6,7 +6,6 @@ public void loadJarContent(URL url){
         {
             if (logger.isLoggable(Level.FINEST))
                 logger.finest(dump(jarEntry));
-
             return NetworkUtil.download(uc.getInputStream(), jarEntry.getSize(), null);
         }
         throw new IOException("JarResources.loadJarContent(" + url.toString() + ") error:\nEntry not found !");

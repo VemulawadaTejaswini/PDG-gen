@@ -8,11 +8,9 @@ public void load(InputStream inStream){
         while (pos < line.length()
                && Character.isWhitespace(c = line.charAt(pos)))
           pos++;
-
         if ((line.length() - pos) == 0
             || line.charAt(pos) == '#' || line.charAt(pos) == '!')
           continue;
-
         int start = pos;
         boolean needsEscape = line.indexOf('\\', pos) != -1;
         StringBuilder key = needsEscape ? new StringBuilder() : null;
@@ -53,7 +51,7 @@ public void load(InputStream inStream){
                               (line.substring(pos, pos + 4), 16);
                             key.append(uni);
                             pos += 4;
-                          }        // else throw exception?
+                          }
                         break;
                       default:
                         key.append(c);
@@ -64,9 +62,7 @@ public void load(InputStream inStream){
             else if (needsEscape)
               key.append(c);
           }
-
         boolean isDelim = (c == ':' || c == '=');
-
         String keyString;
         if (needsEscape)
           keyString = key.toString();
@@ -74,11 +70,9 @@ public void load(InputStream inStream){
           keyString = line.substring(start, pos - 1);
         else
           keyString = line.substring(start, pos);
-
         while (pos < line.length()
                && Character.isWhitespace(c = line.charAt(pos)))
           pos++;
-
         if (! isDelim && (c == ':' || c == '='))
           {
             pos++;
@@ -86,13 +80,11 @@ public void load(InputStream inStream){
                    && Character.isWhitespace(c = line.charAt(pos)))
               pos++;
           }
-
         if (!needsEscape)
           {
             put(keyString, line.substring(pos));
             continue;
           }
-
         StringBuilder element = new StringBuilder(line.length() - pos);
         while (pos < line.length())
           {
@@ -102,10 +94,8 @@ public void load(InputStream inStream){
                 if (pos == line.length())
                   {
                     line = reader.readLine();
-
                     if (line == null)
                       break;
-
                     pos = 0;
                     while (pos < line.length()
                            && Character.isWhitespace(c = line.charAt(pos)))
@@ -134,7 +124,7 @@ public void load(InputStream inStream){
                               (line.substring(pos, pos + 4), 16);
                             element.append(uni);
                             pos += 4;
-                          }        // else throw exception?
+                          }
                         break;
                       default:
                         element.append(c);

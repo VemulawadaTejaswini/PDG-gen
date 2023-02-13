@@ -25,14 +25,11 @@ public void getOrCreateSocket(boolean resend){
                     }
                     logger.debug("Connected new socket through socks tunnel {}", socket);
                 }
-
                 socket.setSoTimeout(readTimeout);
                 socket.setKeepAlive(true);
-
                 if (errorDetection) {
                     monitorSocket(socket);
                 }
-
                 reconnectPolicy.reconnected();
                 logger.debug("Made a new connection to APNS");
             } catch (IOException e) {

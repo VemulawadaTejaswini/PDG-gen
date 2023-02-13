@@ -27,7 +27,7 @@ public void getFromMetaData(Reader xml){
                     pkg = readElementText(in);
                     if (pkg == null)
                         break read;
-                    ch = '<'; // reading element text reads to next '<'
+                    ch = '<';
                     break;
                 case TOKEN_CLASS:
                     name = readAttribute(in, _classAttr);
@@ -42,7 +42,7 @@ public void getFromMetaData(Reader xml){
                     name = readElementText(in);
                     if (name == null)
                         break read;
-                    ch = '<'; // reading element text reads to next '<'
+                    ch = '<';
                     if (pkg.length() > 0 && name.indexOf('.') == -1)
                         names.add(pkg + "." + name);
                     else

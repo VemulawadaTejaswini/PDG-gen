@@ -3,7 +3,6 @@ public void crs(Node node){
         if (node.getAttribute("srsName") != null) {
             URI srs = null;
             Object raw = node.getAttributeValue("srsName");
-
             if (raw instanceof URI) {
                 srs = (URI) raw;
             } else if (raw instanceof String) {
@@ -12,7 +11,6 @@ public void crs(Node node){
                 } catch (URISyntaxException e) {
                 }
             }
-
             if (srs != null) {
                 if ("http".equals(srs.getScheme()) && "www.opengis.net".equals(srs.getAuthority())
                         && "/gml/srs/epsg.xml".equals(srs.getPath()) && (srs.getFragment() != null)) {
@@ -26,7 +24,6 @@ public void crs(Node node){
                     }
                 }
             }
-
             try {
                 return CRS.decode(raw.toString());
             } catch (NoSuchAuthorityCodeException e) {

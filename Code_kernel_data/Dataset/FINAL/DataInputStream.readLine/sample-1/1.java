@@ -9,10 +9,9 @@ public void execute(String param){
             if (line == null)
                 throw new CGIServerException(
                     "unexpected EOF reading server response");
-
             if (line.toLowerCase().startsWith(key)) {
                 if (contentLengthFound)
-                    ; // what would we want to do in this case??
+                    ;
                 responseContentLength =
                     Integer.parseInt(line.substring(key.length()).trim());
                 contentLengthFound = true;

@@ -1,6 +1,6 @@
 public class func{
 public void computeExpiry(){
-        if (approvalExpiryInMillis == -1) { // use default of 1 month
+        if (approvalExpiryInMillis == -1) {
             expiresAt.add(Calendar.MONTH, 1);
         }
         else {

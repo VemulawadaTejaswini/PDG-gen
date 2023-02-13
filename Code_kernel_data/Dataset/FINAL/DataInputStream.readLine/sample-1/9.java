@@ -9,7 +9,7 @@ public void decode(){
             throw new CorruptObjectException(commitId,
                 "malformed header:"+n);
         }
-        byte[] readBuf = new byte[br.available()]; // in-memory stream so this is all bytes left
+        byte[] readBuf = new byte[br.available()];
         br.read(readBuf);
         if (encoding != null) {
           author = new PersonIdent(new String(rawAuthor.getBytes(),encoding.name()));

@@ -8,13 +8,13 @@ public void decodeHarURI(URI rawURI,Configuration conf){
     if (host == null) {
       throw new IOException("URI: " + rawURI
           + " is an invalid Har URI since host==null."
-          + "  Expecting har://<scheme>-<host>/<path>.");
+          + "  Expecting har:
     }
     int i = host.indexOf('-');
     if (i < 0) {
       throw new IOException("URI: " + rawURI
           + " is an invalid Har URI since '-' not found."
-          + "  Expecting har://<scheme>-<host>/<path>.");
+          + "  Expecting har:
     }
     final String underLyingScheme = host.substring(0, i);
     final String underLyingHost = i == host.length()? null: host.substring(i);

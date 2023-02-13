@@ -11,7 +11,7 @@ public void load(String prvkey,String pubkey){
             type = KeyType.SSH_DSS;
           } else if( buf[i] == 'R' && buf[i + 1] == 'S' && buf[i + 2] == 'A' ) {
             type = KeyType.SSH_RSA;
-          } else if( buf[i] == 'S' && buf[i + 1] == 'S' && buf[i + 2] == 'H' ) { // FSecure
+          } else if( buf[i] == 'S' && buf[i + 1] == 'S' && buf[i + 2] == 'H' ) {
             type = KeyType.UNKNOWN;
             vendor = VENDOR_FSECURE;
           } else {
@@ -54,7 +54,7 @@ public void load(String prvkey,String pubkey){
           }
           if( !inheader ) {
             i++;
-            encrypted = false;    // no passphrase
+            encrypted = false;
             break;
           }
         }

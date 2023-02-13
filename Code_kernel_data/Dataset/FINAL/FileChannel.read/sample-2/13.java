@@ -10,7 +10,6 @@ public void create(FileChannel fc,ByteOrder tiffFileOrder){
                 int upper = getUnsignedShort( header );
                 int lower = getUnsignedShort( header );
                 long value = (MASK_USHORT & upper) << 16 | (MASK_USHORT & lower);
-
                 return new TiffIFDEntry(tag, type, value );
             }
             else if( count == 1 && (type == Tiff.Type.LONG || type == Tiff.Type.FLOAT))
@@ -22,7 +21,6 @@ public void create(FileChannel fc,ByteOrder tiffFileOrder){
             {
                 long offset = getUnsignedInt( header );
                 int size = MASK_USHORT & (int)calcSize( type, count );
-
                 if( size > 0L )
                 {
                     ByteBuffer data = ByteBuffer.allocateDirect( size ).order( tiffFileOrder );
@@ -30,10 +28,8 @@ public void create(FileChannel fc,ByteOrder tiffFileOrder){
                     fc.position( offset );
                     fc.read( data );
                     data.flip();
-
                     fc.position( savedPosition );
                     savedPosition = 0;
-
                     return new TiffIFDEntry(tag, type, count, offset, data );
                 }
                 else

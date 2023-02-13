@@ -6,6 +6,6 @@ public void paintOffscreen(Graphics2D g,Rectangle rect){
         Color c = g.getColor();
         g.setColor(Color.darkGray);
         g.drawRect(rect.x, rect.y, rect.width, rect.height);
-        g.setColor(c);            //super.paintBorder(g);
+        g.setColor(c);
 }
 }

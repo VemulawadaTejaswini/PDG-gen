@@ -4,13 +4,11 @@ public void getWordCounts(InputStream inputStream){
             while ((current = bufferedReader.read()) != -1) {
                 wordCounts.byteCount++;
                 wordCounts.charCount++;
-
                 boolean isSkipNewlineFeed = skipNextLineFeed && current == '\n';
                 skipNextLineFeed = false;
                 if (isSkipNewlineFeed) {
                     continue;
                 }
-
                 boolean eol = (current == '\n' || current == '\r');
                 if (eol) {
                     wordCounts.lineCount++;
@@ -18,7 +16,6 @@ public void getWordCounts(InputStream inputStream){
                         skipNextLineFeed = true;
                     }
                 }
-
                 boolean isCurrentWhitespace = Character.isWhitespace(current);
                 if (!isCurrentWhitespace && previouslyWhitespace) {
                     wordCounts.wordCount++;

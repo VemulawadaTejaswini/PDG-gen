@@ -8,17 +8,14 @@ public void GenJCov(Environment env){
            String CurrLine = null;
            boolean first = true;
            String Class;
-
            CurrLine = JCovd.readLine();
            if ((CurrLine != null) && CurrLine.startsWith(JcovMagicLine)) {
-
                    while((CurrLine = JCovd.readLine()) != null ) {
                       if ( CurrLine.startsWith(JcovClassLine) ) {
                              first = true;
                              for(Enumeration e = SourceClassList.elements(); e.hasMoreElements();) {
                                  String clsName = CurrLine.substring(JcovClassLine.length());
                                  int idx = clsName.indexOf(' ');
-
                                  if (idx != -1) {
                                      clsName = clsName.substring(0, idx);
                                  }
@@ -29,7 +26,7 @@ public void GenJCov(Environment env){
                                  }
                              }
                       }
-                      if (first)        // re-write old class
+                      if (first)
                           TmpCovTable.addElement(CurrLine);
                    }
            }

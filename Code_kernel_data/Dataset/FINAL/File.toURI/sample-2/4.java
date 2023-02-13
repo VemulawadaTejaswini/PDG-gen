@@ -3,11 +3,11 @@ public void loadImages(File iconRootDirectory,String parent,ImageRegistry regist
     File icons = new File(iconRootDirectory, parent);
     File[] files = icons.listFiles();
     for (File file : files) {
-      if (file.isFile() && file.getName().endsWith(".gif")) { //$NON-NLS-1$
+      if (file.isFile() && file.getName().endsWith(".gif")) {
         URL url = file.toURI().toURL();
         String name = getResourceName(url);
         ImageDescriptor id = ImageDescriptor.createFromURL(url);
-        registry.put(parent + "_" + name, id); //$NON-NLS-1$
+        registry.put(parent + "_" + name, id);
       }
     }
 }

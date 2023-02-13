@@ -4,7 +4,6 @@ public void downloadAndUpdate(List<String> downloadList){
             URL url = new URL(URL_PREFIX + filename);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.connect();
-
             if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 FileHelper.downloadFile(filename, urlConnection);
             } else {

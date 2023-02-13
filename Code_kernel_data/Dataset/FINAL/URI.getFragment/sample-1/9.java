@@ -14,8 +14,8 @@ public void getAbsoluteUrl(final URI base,final URI uri){
     }
     final String scheme = uri.getScheme();
     if("file".equals(scheme)) {
-      if(sb.toString().startsWith("//") && !sb.toString().startsWith("////")) {
-        sb.insert(0, "//");
+      if(sb.toString().startsWith("
+        sb.insert(0, "
       }
     }
     if (!uri.isAbsolute() || uri.isOpaque() || uri.getScheme().length()>0) {

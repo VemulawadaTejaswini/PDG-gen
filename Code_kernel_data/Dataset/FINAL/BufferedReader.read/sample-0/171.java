@@ -6,7 +6,7 @@ public void testSplitMultiLine(){
         out = CSVSaveService.csvReadFile(br, ',');
         checkStrings(new String[]{"","","f","g",""}, out);
         out = CSVSaveService.csvReadFile(br, ',');
-        checkStrings(new String[]{""}, out); // Blank line
+        checkStrings(new String[]{""}, out);
         assertEquals("Expected to be at EOF",-1,br.read());
         out = CSVSaveService.csvReadFile(br, ',');
         checkStrings(new String[]{}, out);

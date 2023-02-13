@@ -8,11 +8,9 @@ public void connect(){
     line = dataInput.readLine();
     while (line != null && line.length() > 0) {
       String[] strs = line.split(":");
-
       if (strs.length >= 2) {
         putHeaderField(strs[0], strs[1]);
       }
-
       line = dataInput.readLine();
     }
 }

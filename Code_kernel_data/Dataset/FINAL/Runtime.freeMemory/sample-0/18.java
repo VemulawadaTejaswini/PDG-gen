@@ -5,9 +5,7 @@ public void getMemory(){
     while (presentMemory < memory)
     {
       memory = presentMemory;
-
             doGarbageCollection();
-
       presentMemory = (runtime.totalMemory() - runtime.freeMemory());
     }
 }

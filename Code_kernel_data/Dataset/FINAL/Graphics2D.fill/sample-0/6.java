@@ -4,11 +4,8 @@ public void paintComponent(Graphics g){
                 int channel = 224 - (128 / (i + 1));
                 g2.setColor(new Color(channel, channel, channel, 100));
                 g2.fill(ticker[i]);
-
-
                 try {
                     Rectangle2D bounds = ticker[i].getBounds2D();
-
                     if (bounds.getMaxY() > maxY) {
                         maxY = bounds.getMaxY();
                     }

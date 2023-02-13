@@ -3,10 +3,10 @@ public void upOne(URI uri){
         String tmpstr = uri.toString();
         String frag = uri.getFragment();
         if (frag != null && !frag.isEmpty()) index = tmpstr.length() - frag.length() - 1;
-        else {// Strip the query
+        else {
             frag = uri.getQuery();
             if (frag != null && !frag.isEmpty()) index = tmpstr.length() - frag.length() - 1;
-            else { // Strip the slash part
+            else {
                 frag = uri.getPath();
                 if (frag != null && !frag.isEmpty()) {
                     int i = frag.lastIndexOf('/');

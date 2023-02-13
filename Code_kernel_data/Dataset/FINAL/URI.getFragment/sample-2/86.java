@@ -1,8 +1,8 @@
 public class func{
 public void testRelativeFragmentOnQuery(){
-        URI base = new URI("http://host/file?query/x#fragment");
+        URI base = new URI("http:
         URI uri = base.resolve("#another");
-        assertEquals("http://host/file?query/x#another", uri.toString());
+        assertEquals("http:
         assertEquals("/file", uri.getPath());
         assertEquals("query/x", uri.getQuery());
         assertEquals("another", uri.getFragment());

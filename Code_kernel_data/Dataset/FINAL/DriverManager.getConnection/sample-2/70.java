@@ -5,7 +5,7 @@ public void main(String args[]){
           Statement stmt = conn.createStatement();
           ResultSet rset = stmt.executeQuery("select* from belli");
           while (rset.next())
-                System.out.println (rset.getString(1));   // Print col 1
+                System.out.println (rset.getString(1));
           stmt.close();
 }
 }

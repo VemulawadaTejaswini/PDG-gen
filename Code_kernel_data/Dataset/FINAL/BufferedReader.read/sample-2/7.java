@@ -5,7 +5,6 @@ public void parseMessage(BufferedReader reader){
                 if (ch < 0) {
                     throw new InvalidMessageException("Unexpected end-of-message.");
                 }
-
                 if (ch == '[') {
                     ArrayList<TalkMessageEntry> childEntries = parseMessage(reader);
                     entries.add(new TalkMessageEntry(MessageEntryKind.ME_TALKMESSAGE,
@@ -15,20 +14,18 @@ public void parseMessage(BufferedReader reader){
                     entries.add(new TalkMessageEntry(MessageEntryKind.ME_STRING, stringValue));
                 } else if (ch == ',') {
                     entries.add(new TalkMessageEntry(MessageEntryKind.ME_EMPTY, null));
-                } else if (ch == 'n' || ch == 'N') { //'n' as in "null" or "Null":
-                    ch=reader.read(); //'u'
-                    ch=reader.read(); //'l'
-                    ch=reader.read(); //'l'
+                } else if (ch == 'n' || ch == 'N') {
+                    ch=reader.read();
+                    ch=reader.read();
+                    ch=reader.read();
                     entries.add(new TalkMessageEntry(MessageEntryKind.ME_EMPTY, null));
                 } else {
                     long numValue = parseNumberValue(reader, (char) ch);
                     entries.add(new TalkMessageEntry(MessageEntryKind.ME_NUMBER, numValue));
                 }
-
                 if (ch != ',') {
                     ch = skipWhitespace(reader);
                 }
-
                 if (ch != ',' && ch != ']') {
                     throw new InvalidMessageException("Expected , or ], found "+((char) ch));
                 } else if (ch == ',') {

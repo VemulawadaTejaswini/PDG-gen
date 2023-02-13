@@ -5,10 +5,8 @@ public void downloadTempLocally(URL url){
                 java.io.File temp = java.io.File.createTempFile("urlToVfs", "tmp");
                 FileOutputStream out = new FileOutputStream(temp);
                 DataInputStream in = new DataInputStream(connection.getInputStream());
-
                 int len; byte ch[] = new byte[1024];
                 while ((len = in.read(ch)) != -1) {out.write(ch, 0, len);}
-
                 connection.disconnect();
                 return temp;
             }

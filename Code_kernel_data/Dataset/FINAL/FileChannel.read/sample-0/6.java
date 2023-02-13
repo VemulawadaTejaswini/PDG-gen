@@ -12,7 +12,6 @@ public void isNextFrameValid(File seekFile,long filePointerCount,ByteBuffer bb,F
             if (bb.limit() <= MIN_BUFFER_REMAINING_REQUIRED) {
                 return false;
             }
-
             if (bb.limit() <= MIN_BUFFER_REMAINING_REQUIRED + mp3FrameHeader.getFrameLength()) {
                 return false;
             }

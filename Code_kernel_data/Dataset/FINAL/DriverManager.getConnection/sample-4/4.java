@@ -4,7 +4,6 @@ public void getForeignConnection(String connectionURL,Connection foreignConnecti
         if ( conn == null )
         {
             conn = DriverManager.getConnection( connectionURL );
-
             if ( conn != null ) { _connections.put( connectionURL, conn ); }
         }
 }

@@ -4,7 +4,6 @@ public void getResource(BundleWiring bundleWiring,String name){
     URL url = bundle.getResource(name);
     if ((url == null) && (bundle.getBundleId() == 0)) {
       ClassLoader classLoader = bundleWiring.getClassLoader();
-
       return classLoader.getResource(name);
     }
     return bundle.getResource(name);

@@ -11,7 +11,7 @@ public void detectLineSeparator(File f){
           if(br.read() == '\n')
             return LineSeparator.WINDOWS;
           else
-            return LineSeparator.OLDMAC; //This seems very unlikely
+            return LineSeparator.OLDMAC;
         }
       }
 }

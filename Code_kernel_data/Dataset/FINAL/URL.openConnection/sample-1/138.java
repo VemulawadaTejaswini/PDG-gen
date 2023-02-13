@@ -1,6 +1,6 @@
 public class func{
 public void deleteWorksheet(Spreadsheet spreadsheet,Worksheet worksheet,String authToken){
-        String requestUrl= "https://spreadsheets.google.com/feeds/worksheets/" + spreadsheet.getId() + "/private/full/" + worksheet.getId() + "/0" + "?access_token=" + authToken;
+        String requestUrl= "https:
         URL url = new URL(requestUrl);
         HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
         conn.setRequestMethod("DELETE");

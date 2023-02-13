@@ -2,7 +2,7 @@ public class func{
 public void testFileChannel(){
     while (!done.await(5, TimeUnit.MILLISECONDS)) {
       int rd = in.read(buf);
-      read += (rd < 0 ? 0 : rd); // rd == -1 if at end of stream.
+      read += (rd < 0 ? 0 : rd);
       buf.flip();
       byte[] arr = new byte[buf.remaining()];
       buf.get(arr);

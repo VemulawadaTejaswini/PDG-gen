@@ -1,6 +1,6 @@
 public class func{
 public void testServerHello(){
-        URL url = new URL("http://localhost:5000/hello");
+        URL url = new URL("http:
         URLConnection conn = url.openConnection();
         InputStream is = conn.getInputStream();
         String contents = StreamUtility.readToEnd(is);

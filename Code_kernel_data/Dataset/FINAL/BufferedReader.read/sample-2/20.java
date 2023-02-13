@@ -9,7 +9,6 @@ public void compare(String file1,String file2,BufferedReader in1,BufferedReader 
         System.out.println("Other reads:[" + s2 + "].");
         outputFile(file1);
         outputFile(file2);
-
         return false;
       }
     if (in2.read() != -1) {
@@ -17,7 +16,6 @@ public void compare(String file1,String file2,BufferedReader in1,BufferedReader 
         "File [" + file2 + "] longer than file [" + file1 + "].");
       outputFile(file1);
       outputFile(file2);
-
       return false;
     }
 }

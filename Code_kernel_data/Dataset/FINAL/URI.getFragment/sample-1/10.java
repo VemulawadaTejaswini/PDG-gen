@@ -2,7 +2,6 @@ public class func{
 public void getMatchingPartitions(String graphId,URI locationToMatch){
     for (Map.Entry<Integer, URI> entry : _sliceMappings.get(graphId).entrySet()) {
       URI test = entry.getValue();
-
       if (scheme != null && !scheme.equalsIgnoreCase(test.getScheme())) {
         continue;
       }
@@ -21,18 +20,15 @@ public void getMatchingPartitions(String graphId,URI locationToMatch){
       if (fragment != null && !fragment.equals(test.getFragment())) {
         continue;
       }
-
       if (path != null) {
         if (test.getPath() == null) {
           continue;
         }
-
         URI testPath = URI.create(test.getPath());
         if (path.relativize(testPath) == testPath) {
           continue;
         }
       }
-
       matchingPartitions.add(entry.getKey());
     }
 }

@@ -11,7 +11,6 @@ public void seek(final File seekFile,long startByte){
                 }
                 if (MPEGFrameHeader.isMPEGFrame(bb)) {
                     try {
-
                         mp3FrameHeader = MPEGFrameHeader.parseMPEGHeader(bb);
                         syncFound = true;
                         if (XingFrame.isXingFrame(bb, mp3FrameHeader)) {
@@ -33,7 +32,6 @@ public void seek(final File seekFile,long startByte){
                                 break;
                             }
                         }
-
                     } catch (InvalidAudioFrameException ex) {
                     }
                 }

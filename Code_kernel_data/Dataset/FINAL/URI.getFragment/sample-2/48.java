@@ -13,11 +13,11 @@ public void testEncodingParts(){
         assertEquals("q=green%20robots", uri.getRawQuery());
         assertEquals("over 6\"", uri.getFragment());
         assertEquals("over%206%22", uri.getRawFragment());
-        assertEquals("//user:pa55w?rd@host:80/doc|search?q=green robots",
+        assertEquals("
                 uri.getSchemeSpecificPart());
-        assertEquals("//user:pa55w%3Frd@host:80/doc%7Csearch?q=green%20robots",
+        assertEquals("
                 uri.getRawSchemeSpecificPart());
-        assertEquals("http://user:pa55w%3Frd@host:80/doc%7Csearch?q=green%20robots#over%206%22",
+        assertEquals("http:
                 uri.toString());
 }
 }

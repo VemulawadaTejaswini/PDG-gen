@@ -5,7 +5,7 @@ public void getFile(URI absoluteURI){
         return null;
       }
       try {
-        if(absoluteURI.getRawPath().startsWith("//")) {
+        if(absoluteURI.getRawPath().startsWith("
           return new File("\\\\"+absoluteURI.normalize().getPath());
         }
         else {

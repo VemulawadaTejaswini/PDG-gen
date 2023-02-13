@@ -3,7 +3,7 @@ public void identifyNewDiffResource(HttpServletRequest request,HttpServletRespon
       for (int i = 0; i < p.segmentCount(); i++) {
         String s = p.segment(i);
         if (i == 2) {
-          s += ".."; //$NON-NLS-1$
+          s += "..";
           s += GitUtils.encode(requestObject.getString(GitConstants.KEY_COMMIT_NEW));
         }
         np = np.append(s);

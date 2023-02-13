@@ -1,7 +1,7 @@
 public class func{
 public void fromRangeReader(BufferedReader rangeFile){
             if(rangeFile.read() == 'x') {
-                rangeFile.readLine();    // pass the '\n' after 'x'
+                rangeFile.readLine();
                 String line = rangeFile.readLine();
                 if (line == null) {
                     line = "";
@@ -18,17 +18,15 @@ public void fromRangeReader(BufferedReader rangeFile){
                 while((restore_line = rangeFile.readLine())!=null)
                 {
                     StringTokenizer st2 = new StringTokenizer(restore_line);
-                    st2.nextToken(); //discard feature index
+                    st2.nextToken();
                     feature_min = Double.parseDouble(st2.nextToken());
                     feature_max = Double.parseDouble(st2.nextToken());
                     FeatureLimits newLimit = new FeatureLimits(feature_min, feature_max);
                     limits.add(newLimit);
                 }
-
                 FeatureVectorScalerImpl scaler = new FeatureVectorScalerImpl(limits.size(), scaledLowerBound, scaledUpperBound);
                 scaler.setStrategy(new LinearScaling());
                 scaler.setFeatureLimits(limits);
-
                 return scaler;
             } else {
                 throw new RuntimeException("y scaling not supported");

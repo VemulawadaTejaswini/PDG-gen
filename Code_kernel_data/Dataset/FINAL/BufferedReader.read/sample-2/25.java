@@ -1,7 +1,7 @@
 public class func{
 public void readName(final BufferedReader buffered_reader){
     while ((current_char = buffered_reader.read ()) != -1 &&
-           0 != current_char    // Kaffe 1.00 returns 0 at end of string
+           0 != current_char
            ) {
       if (' ' == current_char ||
           '\n' == current_char ||
@@ -20,7 +20,7 @@ public void readName(final BufferedReader buffered_reader){
       }
     }
     if (-1 == current_char ||
-        0 == current_char       // Kaffe 1.00 returns 0 at end of string
+        0 == current_char
         ) {
       return null;
     }

@@ -13,7 +13,6 @@ public void createStatistics(BufferedReader br,ArrayList<Integer> file){
             }
             charStats[tmp]++;
             tmp = br.read();
-
             if (tmp == -1) {
                 charStats[0]++;
                 file.add(0);

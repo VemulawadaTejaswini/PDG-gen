@@ -9,7 +9,6 @@ public void readFromFileChannel(final FileChannel fileChannel,final Buffer buffe
             final ByteBufferArray array = buffer.toByteBufferArray();
             bytesRead = fileChannel.read(
                     array.getArray(), 0, array.size());
-
             array.restore();
             array.recycle();
         }

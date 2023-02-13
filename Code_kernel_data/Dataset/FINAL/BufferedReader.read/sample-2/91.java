@@ -4,8 +4,7 @@ public void readTextFromFile(String fileName){
     if (!aFile.exists())
     {
       Logging.errorPrint("Could not find license at " + fileName);
-      aString = LanguageBundle.getString("in_licNoInfo"); //$NON-NLS-1$
-
+      aString = LanguageBundle.getString("in_licNoInfo");
       return aString;
     }
       BufferedReader theReader = new BufferedReader(new InputStreamReader(new FileInputStream(aFile), "UTF-8"));

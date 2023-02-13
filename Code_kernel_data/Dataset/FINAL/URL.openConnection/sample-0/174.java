@@ -1,6 +1,6 @@
 public class func{
 public void isConnectedToInternet(){
-        String pingServerURL = pingBackUrl.substring(0, pingBackUrl.indexOf("/", "http://url".length()));
+        String pingServerURL = pingBackUrl.substring(0, pingBackUrl.indexOf("/", "http:
             URL url = new URL(pingServerURL);
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
             urlConn.connect();

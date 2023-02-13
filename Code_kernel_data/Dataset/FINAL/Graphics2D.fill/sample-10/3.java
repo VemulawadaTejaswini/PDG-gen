@@ -2,7 +2,6 @@ public class func{
 public void paintTexture(String textureFile,Shape shape){
         if (textureFile != null) {
             img = ResourcesManager.getResource(textureFile);
-
             if (img != null) {
                 Rectangle2D replicationPath = new Rectangle2D.Double(0,
                         0,

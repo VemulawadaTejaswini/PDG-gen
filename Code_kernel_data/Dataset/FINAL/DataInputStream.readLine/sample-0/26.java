@@ -4,7 +4,6 @@ public void readConfiguration(File file){
             bis = new BufferedInputStream(fis);
             dis = new DataInputStream(bis);
             while (dis.available() != 0) {
-
                 buff.append(dis.readLine()).append("\n");
             }
             fis.close();

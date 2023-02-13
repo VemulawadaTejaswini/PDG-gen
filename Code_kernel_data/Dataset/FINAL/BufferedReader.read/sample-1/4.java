@@ -17,13 +17,11 @@ public void rewriteHeader(){
                     wr.write(description);
                     wr.write("\"\n");
                 }
-
                 if(!platformWritten) {
                     wr.write("PLATFORM ");
                     wr.write(platform);
                     wr.write("\n");
                 }
-
                 wr.write(line);
                 wr.append('\n');
                 break;

@@ -15,7 +15,6 @@ public void encode(final RestRequest request,RequestContext requestContext,int t
     }
     else
     {
-
       MimeMultipart multi = createMultiPartEntity(entity, request.getHeader(HEADER_CONTENT_TYPE), query);
       requestBuilder.setHeader(HEADER_CONTENT_TYPE, multi.getContentType());
       ByteArrayOutputStream os = new ByteArrayOutputStream();

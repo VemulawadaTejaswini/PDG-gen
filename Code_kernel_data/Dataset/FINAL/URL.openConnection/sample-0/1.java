@@ -1,6 +1,6 @@
 public class func{
 public void testExtensionAuthFilter(){
-    URL url = new URL("http://localhost:" + port + "/default");
+    URL url = new URL("http:
     HttpURLConnection get = (HttpURLConnection) url.openConnection();
     get.setRequestProperty(DummyAuthFilter.AUTH_HDR, DummyAuthFilter.SECRET_USER);
     Assert.assertEquals(HttpServletResponse.SC_OK, get.getResponseCode());

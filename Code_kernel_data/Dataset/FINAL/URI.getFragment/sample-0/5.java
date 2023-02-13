@@ -26,7 +26,6 @@ public void handleRedirect(UpgradeResponse upgradeResponse){
             if (!location.isAbsolute()) {
                 URI baseUri = redirectLocation == null ? connectToServerUriParam : redirectLocation;
                 location = baseUri.resolve(location.normalize());
-
                 if (LOGGER.isLoggable(Level.FINEST)) {
                     LOGGER.finest("HTTP Redirect - Base URI for resolving target location: " + baseUri);
                     LOGGER.finest("HTTP Redirect - Location URI header: " + locationString);

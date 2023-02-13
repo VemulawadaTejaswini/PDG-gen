@@ -4,7 +4,6 @@ public void actionPerformed(ActionEvent e){
           @Override
           public void run() {
             setVisible(false);
-
             doExport(false);
           }
         };

@@ -10,8 +10,7 @@ public void readLegacySites(InputStream input){
                     sites.add(new Subscription(name, url));
                 } else {
                     TraceUtil.report(new RuntimeException("invalid URL in line: '" + line + "'; URL was: " + url));
-                } // endif
-
+                }
             } else {
                 TraceUtil.report(new RuntimeException("missing equals in line: " + line));
             }

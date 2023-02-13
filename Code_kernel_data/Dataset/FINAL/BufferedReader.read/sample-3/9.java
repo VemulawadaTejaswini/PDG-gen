@@ -1,7 +1,7 @@
 public class func{
 public void parseStringField(BufferedReader reader){
         while(reader.read(tmp) > 0 ){
-            temp = Character.toString(tmp[0]);//new String(tmp);
+            temp = Character.toString(tmp[0]);
             if (temp.equals("/")){
                 break;
             } else {

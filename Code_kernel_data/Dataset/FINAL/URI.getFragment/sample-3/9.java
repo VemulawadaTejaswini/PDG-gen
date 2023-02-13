@@ -4,7 +4,6 @@ public void main(String[] args){
       switch (args[i]) {
       case "-serializer":
         i++;
-        
         switch (args[i]) {
         case "java":
           break;
@@ -14,21 +13,16 @@ public void main(String[] args){
         default:
           PrintUsageAndQuit(null);
         }
-        
         break;
       default:
         break OptArgLoop;
       }
     }
     while (i < args.length) {
-      
       Path partitionDirPath = null;
       UUID partitionUUID = null;
-  
-      
       try {
         URI location = new URI(args[i]);
-  
         try {
           if (location.getFragment() == null) {
             PrintUsageAndQuit("uri must have fragment for partition slice");
@@ -37,7 +31,6 @@ public void main(String[] args){
         } catch (IllegalArgumentException e) {
           PrintUsageAndQuit("uri fragment must be a valid uuid - " + e.getMessage());
         }
-  
         try {
           partitionDirPath = Paths.get(new URI(location.getScheme(), location.getSchemeSpecificPart(), null));
         } catch (URISyntaxException e) {
@@ -48,37 +41,26 @@ public void main(String[] args){
       } catch (URISyntaxException e) {
         PrintUsageAndQuit("partition location must be a valid uri - " + e.getMessage());
       }
-  
       SliceManager sliceManager = new SliceManager(partitionUUID, serializer, new FileStorageManager(partitionDirPath));
-  
       System.out.println("-----------------");
       System.out.print("Reading template... ");
-  
       long time = System.currentTimeMillis();
       IPartition partition = sliceManager.readPartition();
-  
       System.out.println("[" + (System.currentTimeMillis() - time) + "ms]");
-  
       int numInstances = 0;
-  
       System.out.println("Reading instances... ");
-  
       time = System.currentTimeMillis();
       for (ISubgraph subgraph : partition) {
         System.out.println("Reading instances for subgraph " + subgraph.getId());
         Iterable<? extends ISubgraphInstance> instances = subgraph.getInstances(Long.MIN_VALUE, Long.MAX_VALUE, subgraph.getVertexProperties(), subgraph.getEdgeProperties(), false);
         numInstances += IterableHelper.iterableCount(instances);
       }
-  
       System.out.println("Finished reading instances [" + (System.currentTimeMillis() - time) + "ms]");
-  
       System.out.println("-----------------");
-  
       System.out.println("Partition ID: " + partition.getId());
       System.out.println("Partition IsDirected: " + partition.isDirected());
       System.out.println("Partition Subgraphs: " + partition.size());
       System.out.println("Partition Instances: " + numInstances);
-  
       int v = 0;
       long e = 0;
       int r = 0;
@@ -87,11 +69,9 @@ public void main(String[] args){
         e += subgraph.getTemplate().numEdges();
         r += subgraph.getRemoteVertexMappings().size();
       }
-  
       System.out.println("Partition Vertices: " + v);
       System.out.println("Partition Edges: " + e);
       System.out.println("Partition Remote Vertices: " + r);
-      
       i++;
     }
 }

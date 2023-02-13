@@ -1,6 +1,6 @@
 public class func{
 public void dumpScenarios(PrintStream ps,String pattern){
-        PreparedStatement stmt= fConnection.prepareStatement("select NAME from SCENARIO where NAME like ? order by NAME"); //$NON-NLS-1$
+        PreparedStatement stmt= fConnection.prepareStatement("select NAME from SCENARIO where NAME like ? order by NAME");
         stmt.setString(1, pattern);
         ResultSet rs= stmt.executeQuery();
         while (rs.next())

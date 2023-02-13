@@ -4,7 +4,7 @@ public void main(String[] args){
             f.deleteOnExit();
             String s = f.getAbsolutePath();
             s = s.startsWith("/") ? s : "/" + s;
-            URL url = new URL("file://localhost"+s);
+            URL url = new URL("file:
             conn = url.openConnection();
             conn.connect();
             if (f.lastModified() != conn.getLastModified())

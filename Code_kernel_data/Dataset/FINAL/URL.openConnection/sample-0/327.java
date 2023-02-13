@@ -1,6 +1,6 @@
 public class func{
 public void call(Server server){
-                    url = new URL("http://" + server.getHost() + ":" + server.getPort() + path);
+                    url = new URL("http:
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     return Observable.just(conn.getResponseMessage());
                     return Observable.error(e);

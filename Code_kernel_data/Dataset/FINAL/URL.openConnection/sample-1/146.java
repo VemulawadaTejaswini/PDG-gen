@@ -1,6 +1,6 @@
 public class func{
 public void Modified(){
-        URL testURL = new URL("http://localhost:" + ss.getLocalPort() +
+        URL testURL = new URL("http:
                               "/index.html");
         URLConnection URLConn = testURL.openConnection();
         if (URLConn instanceof HttpURLConnection) {

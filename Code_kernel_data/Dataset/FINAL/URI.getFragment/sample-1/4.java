@@ -2,12 +2,10 @@ public class func{
 public void requestAuthorization(String scope,String responseType,String clientId,String redirectUri,String state,String respMode,String nonce,String display,String prompt,Integer maxAge,String uiLocalesStr,String idTokenHint,String loginHint,String acrValuesStr,String amrValuesStr,String request,String requestUri,String requestSessionId,String sessionId,String accessToken,String method,String originHeaders,HttpServletRequest httpRequest,HttpServletResponse httpResponse,SecurityContext securityContext){
                             if (StringUtils.isNotBlank(accessToken)) {
                                 AuthorizationGrant authorizationGrant = authorizationGrantList.getAuthorizationGrantByAccessToken(accessToken);
-
                                 if (authorizationGrant == null) {
                                     RedirectUri redirectUriResponse = new RedirectUri(redirectUri, responseTypes, responseMode);
                                     redirectUriResponse.parseQueryString(errorResponseFactory.getErrorAsQueryString(
                                             AuthorizeErrorResponseType.ACCESS_DENIED, state));
-
                                     builder = RedirectUtil.getRedirectResponseBuilder(redirectUriResponse.toString(), httpRequest);
                                     return builder.build();
                                 } else {
@@ -21,16 +19,12 @@ public void requestAuthorization(String scope,String responseType,String clientI
                                     URI reqUri = new URI(requestUri);
                                     String reqUriHash = reqUri.getFragment();
                                     String reqUriWithoutFragment = reqUri.getScheme() + ":" + reqUri.getSchemeSpecificPart();
-
                                     ClientRequest clientRequest = new ClientRequest(reqUriWithoutFragment);
                                     clientRequest.setHttpMethod(HttpMethod.GET);
-
                                     ClientResponse<String> clientResponse = clientRequest.get(String.class);
                                     int status = clientResponse.getStatus();
-
                                     if (status == 200) {
                                         request = clientResponse.getEntity(String.class);
-
                                         if (StringUtils.isBlank(reqUriHash)) {
                                             validRequestUri = true;
                                         } else {
@@ -38,14 +32,12 @@ public void requestAuthorization(String scope,String responseType,String clientI
                                             validRequestUri = StringUtils.equals(reqUriHash, hash);
                                         }
                                     }
-
                                     if (validRequestUri) {
                                         requestUri = null;
                                     } else {
                                         RedirectUri redirectUriResponse = new RedirectUri(redirectUri, responseTypes, responseMode);
                                         redirectUriResponse.parseQueryString(errorResponseFactory.getErrorAsQueryString(
                                                 AuthorizeErrorResponseType.INVALID_REQUEST_URI, state));
-
                                         builder = RedirectUtil.getRedirectResponseBuilder(redirectUriResponse.toString(), httpRequest);
                                         return builder.build();
                                     }
@@ -62,7 +54,6 @@ public void requestAuthorization(String scope,String responseType,String clientI
                             if (StringUtils.isNotBlank(request)) {
                                 try {
                                     jwtAuthorizationRequest = new JwtAuthorizationRequest(request, client);
-
                                     if (!jwtAuthorizationRequest.getResponseTypes().containsAll(responseTypes)
                                             || !responseTypes.containsAll(jwtAuthorizationRequest.getResponseTypes())) {
                                         throw new InvalidJwtException("The responseType parameter is not the same in the JWT");

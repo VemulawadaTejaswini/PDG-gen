@@ -1,7 +1,7 @@
 public class func{
 public void test_getJarFileURL(){
-        URL url = new URL("jar:file:///bar.jar!/foo.jar!/Bugs/HelloWorld.class");
+        URL url = new URL("jar:file:
         String jarFileUrl = ((JarURLConnection) url.openConnection()).getJarFileURL().toString();
-        assertTrue(jarFileUrl.equals("file:///ba
+        assertTrue(jarFileUrl.equals("file:
 }
 }

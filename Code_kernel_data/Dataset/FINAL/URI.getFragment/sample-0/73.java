@@ -10,11 +10,9 @@ public void safeRelativize(final URI baseURI,final URI toUri){
                 sb.append("../");
                 ellipsesCount--;
             }
-
             if (!Utility.isNullOrEmpty(toPath)) {
                 sb.append(toPath);
             }
-
             if (!Utility.isNullOrEmpty(toUri.getQuery())) {
                 sb.append("?");
                 sb.append(toUri.getQuery());
@@ -23,7 +21,6 @@ public void safeRelativize(final URI baseURI,final URI toUri){
                 sb.append("#");
                 sb.append(toUri.getRawFragment());
             }
-
             return sb.toString();
         }
 }

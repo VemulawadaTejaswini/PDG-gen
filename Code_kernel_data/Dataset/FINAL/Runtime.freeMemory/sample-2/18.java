@@ -8,6 +8,6 @@ public void forceGC(int maxLoop){
             isFree = runtime.freeMemory();
             i++;
         } while (isFree > wasFree && (maxLoop<=0 || i<maxLoop) );
-        runtime.runFinalization(); //TODO: should this be inside the loop?
+        runtime.runFinalization();
 }
 }

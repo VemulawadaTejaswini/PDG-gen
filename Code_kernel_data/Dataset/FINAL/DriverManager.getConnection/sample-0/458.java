@@ -1,6 +1,6 @@
 public class func{
 public void createSqlServerConnection(){
-                DriverManager.getConnection("jdbc:sqlserver://localhost", "sa", "password");
+                DriverManager.getConnection("jdbc:sqlserver:
         insertRecords(connection);
 }
 }

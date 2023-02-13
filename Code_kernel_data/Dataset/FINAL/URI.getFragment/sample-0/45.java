@@ -1,11 +1,11 @@
 public class func{
 public void findBaseLocationURI(URI fileURI,String relativeFileName){
-      if (lastSegment.length() > 0 && !lastSegment.equals(".")) { //$NON-NLS-1$
-        if (lastSegment.equals("..")) { //$NON-NLS-1$
+      if (lastSegment.length() > 0 && !lastSegment.equals(".")) {
+        if (lastSegment.equals("..")) {
           return null;
         } else {
-          if (path.endsWith("/" + lastSegment)) { //$NON-NLS-1$
-            int pos = path.lastIndexOf("/" + lastSegment); //$NON-NLS-1$
+          if (path.endsWith("/" + lastSegment)) {
+            int pos = path.lastIndexOf("/" + lastSegment);
             path = path.substring(0, pos);
             continue;
           } else {

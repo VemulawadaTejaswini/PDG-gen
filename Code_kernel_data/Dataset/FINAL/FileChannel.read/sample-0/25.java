@@ -7,7 +7,6 @@ public void readFull(ByteBuffer dstBuffer,FileChannel srcChannel,long position){
                     "Reached end of file while attempting to read a "
                     + "whole page.");
             }
-
             if (Thread.currentThread().isInterrupted() &&
                     !srcChannel.isOpen()) {
                 throw new ClosedByInterruptException();

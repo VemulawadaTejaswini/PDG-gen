@@ -12,6 +12,6 @@ public void getPath(URI uri){
             return fs.getPath(path);
         throw new IllegalArgumentException("URI: "
             + uri
-            + " does not contain path fragment ex. jar:///c:/foo.zip!/BAR");
+            + " does not contain path fragment ex. jar:
 }
 }

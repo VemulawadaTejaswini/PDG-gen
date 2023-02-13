@@ -4,7 +4,6 @@ public void launchTool(final String toolClassName,final IToolConfiguration confi
       public void run() {
         doLaunch(toolClassName, configuration, space);
       }
-      
     });
     launchThread.start();
 }

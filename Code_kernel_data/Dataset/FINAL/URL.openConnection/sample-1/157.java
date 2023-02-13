@@ -7,7 +7,6 @@ public void testResourceAccessBodyNoToken(){
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setAllowUserInteraction(false);
             httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
             testNoTokenResponse(httpURLConnection);
         }
 }

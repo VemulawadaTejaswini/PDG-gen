@@ -4,7 +4,6 @@ public void loadExistingDataMap(File dataMapFile){
             DataMap dataMap = mapLoader.loadDataMap(new InputSource(dataMapFile.getCanonicalPath()));
             dataMap.setNamespace(new EntityResolver(Collections.singleton(dataMap)));
             dataMap.setConfigurationSource(new URLResource(dataMapFile.toURI().toURL()));
-
             return dataMap;
         }
 }

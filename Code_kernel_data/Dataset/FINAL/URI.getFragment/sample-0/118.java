@@ -3,7 +3,6 @@ public void rewrite(JsonNode plan,Set<String> namesUsed,boolean debugMode,boolea
                 for (JsonNode file : job.path("cachedFiles"))
                 {
                     String filename = file.getTextValue();
-
                     filename = cleanLatestTag(filename);
                     URI uri = null;
                     String path, fragment;
@@ -12,7 +11,6 @@ public void rewrite(JsonNode plan,Set<String> namesUsed,boolean debugMode,boolea
                         uri = new URI(filename);
                         path = uri.getPath();
                         path = restoreLatestTag(path);
-
                         fragment = uri.getFragment();
                         if (path.contains("#LATEST"))
                         {
@@ -26,17 +24,11 @@ public void rewrite(JsonNode plan,Set<String> namesUsed,boolean debugMode,boolea
                     {
                         throw new PlanRewriteException(e);
                     }
-
                     if (fragment == null)
                         fragment = symlinkMap.get(path);
-
                     if (fragment == null)
                         fragment = "cached_" + (symlinkCounter++);
-
                     symlinkMap.put(path, fragment);
-                    
-
-
                     cachedFiles.add(path + "#" + fragment);
                 }
                 ((ObjectNode) job).put("cachedFiles", cachedFiles);

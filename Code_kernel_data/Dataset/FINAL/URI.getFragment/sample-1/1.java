@@ -23,14 +23,12 @@ public void fromUri(WindowsFileSystem fs,URI uri){
                 throw new IllegalArgumentException("URI authority component has user-info");
             if (uri.getPort() != -1)
                 throw new IllegalArgumentException("URI authority component has port number");
-
             if (host.startsWith("[")) {
                 host = host.substring(1, host.length()-1)
                            .replace(':', '-')
                            .replace('%', 's');
                 host += IPV6_LITERAL_SUFFIX;
             }
-
             path = "\\\\" + host + path;
         } else {
             if ((path.length() > 2) && (path.charAt(2) == ':')) {

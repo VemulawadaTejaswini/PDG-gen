@@ -6,7 +6,7 @@ public void start(){
         } else {
             ssock = new ServerSocket();
         }
-        ssock.setReuseAddress(true); // probably pointless for port '0'
+        ssock.setReuseAddress(true);
         ssock.bind(TEST_SERVER_ADDR);
 }
 }

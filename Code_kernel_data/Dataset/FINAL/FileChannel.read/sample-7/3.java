@@ -6,7 +6,6 @@ public void testRead10Frames(){
                 frameReadingChannel.position(bs.get(i).dataOffset);
                 frameReadingChannel.read(bb);
                 ByteBuffer[] frames = bs.get(i).getFrames(bb);
-                
                 Assert.assertNotNull(frames);
                 Assert.assertEquals(1, frames.length);
                 Assert.assertArrayEquals(rawFrames[i], MKVMuxerTest.bufferToArray(frames[0]));

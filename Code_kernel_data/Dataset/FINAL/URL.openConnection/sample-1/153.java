@@ -5,7 +5,6 @@ public void testResourceAccessQueryNoToken(){
         if (c instanceof HttpURLConnection) {
             HttpURLConnection httpURLConnection = (HttpURLConnection)c;
             httpURLConnection.setRequestMethod("GET");
-
             testNoTokenResponse(httpURLConnection);
         }
 }

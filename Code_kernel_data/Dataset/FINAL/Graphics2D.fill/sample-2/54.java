@@ -4,7 +4,6 @@ public void doPaint(Graphics2D g,JComponent c,int width,int height,Object[] exte
             Shape s = shapeGenerator.createRectangle(0, 0, width, height);
             g.setPaint(getTableHeaderPaint(s));
             g.fill(s);
-
             paintBorder(g, width, height);
         }
 }

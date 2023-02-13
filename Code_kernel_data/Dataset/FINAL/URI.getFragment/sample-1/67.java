@@ -7,14 +7,12 @@ public void annotate(Document document,AnnotationInfo[] annotations){
       for (int j = 0; j < length; j++) {
         Location location = list.item(j);
         Range    range;
-
         if (location.getType() == Location.RANGE)
           range = (Range) location.getLocation();
         else {
           range = ((DocumentRange) document).createRange();
           range.selectNode((Node) location.getLocation());
         }
-
         if (!range.getCollapsed())
           srl.insert(new SelectionRange(range, annotations[i]));
       }

@@ -8,10 +8,8 @@ public void absolutize(URI p_base){
           m_port = p_base.getPort();
           m_regAuthority = p_base.getRegBasedAuthority();
           m_path = p_base.getPath();
-
           if (m_queryString == null) {
               m_queryString = p_base.getQueryString();
-
               if (m_fragment == null) {
                   m_fragment = p_base.getFragment();
               }

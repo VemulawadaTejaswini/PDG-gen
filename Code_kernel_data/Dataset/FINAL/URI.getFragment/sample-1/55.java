@@ -3,7 +3,7 @@ public void identifyNewCommitResource(HttpServletRequest request,HttpServletResp
       for (int i = 0; i < p.segmentCount(); i++) {
         String s = p.segment(i);
         if (i == 2) {
-          s += ".." + GitUtils.encode(newCommit); //$NON-NLS-1$
+          s += ".." + GitUtils.encode(newCommit);
         }
         np = np.append(s);
       }

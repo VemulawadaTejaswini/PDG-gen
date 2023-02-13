@@ -1,6 +1,6 @@
 public class func{
 public void readCoreStatus(){
-        URL coreStatusURL = new URL("http://localhost:8983/solr/admin/cores?action=STATUS");
+        URL coreStatusURL = new URL("http:
         HttpURLConnection coreStatusConn = (HttpURLConnection) coreStatusURL.openConnection();
         coreStatusConn.connect();
         if (coreStatusConn.getResponseCode() != 200) {

@@ -11,7 +11,7 @@ public void test_ConstructorLjava_lang_StringLjava_lang_StringLjava_lang_String(
         assertEquals("wrong SchemeSpecificPart", "mduerst@ifi.unizh.ch", uri
                 .getSchemeSpecificPart());
             uri = new URI("mailto", null, null);
-            uri = new URI("3scheme", "//authority/path", "fragment");
-            uri = new URI("", "//authority/path", "fragment");
+            uri = new URI("3scheme", "
+            uri = new URI("", "
 }
 }

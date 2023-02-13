@@ -1,11 +1,11 @@
 public class func{
 public void addExtraClassPath(File path){
     if(!path.exists()) {
-      return; // do not add if it doesn't exist.
+      return;
     }
     URL url = path.toURI().toURL();
     if(this.extraClassPath.contains(url)) {
-      return; // do not add a second copy.
+      return;
     }
     this.extraClassPath.add(url);
 }

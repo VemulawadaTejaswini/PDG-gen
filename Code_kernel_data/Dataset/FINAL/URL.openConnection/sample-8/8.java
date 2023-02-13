@@ -5,7 +5,6 @@ public void getLastModifiedTime(URL url){
       if (urlConnection != null) {
         try {
           InputStream inputStream = urlConnection.getInputStream();
-
           inputStream.close();
         }
         catch (IOException ioe) {

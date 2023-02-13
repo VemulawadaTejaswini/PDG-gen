@@ -9,7 +9,6 @@ public void readSourceValues(BufferedReader reader,OpenIntIntHashMap sourceIndic
                     originalVarNames.put(r, r);
                     r = r * sign;
                     sourceValues.add(r);
-                    
                     r = 0;
                     sign = 1;
                 }
@@ -24,7 +23,6 @@ public void readSourceValues(BufferedReader reader,OpenIntIntHashMap sourceIndic
             {
                 sign = -1;
             }
-
             if ('0' <= ch && ch < '0' + 10)
             {
                 r = r * 10 + ch - '0';

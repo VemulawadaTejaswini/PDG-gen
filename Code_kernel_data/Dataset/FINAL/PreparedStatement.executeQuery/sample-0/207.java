@@ -4,6 +4,6 @@ public void bindExecute(HrPreparedStatement state){
       rs = st.executeQuery();
       rs.next();
       ename = rs.getString(1);
-      close(rs, null); // Statement is not closed
+      close(rs, null);
 }
 }

@@ -1,6 +1,6 @@
 public class func{
 public void makeRequest(){
-        HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:8092/").openConnection();
+        HttpURLConnection connection = (HttpURLConnection) new URL("http:
         connection.addRequestProperty("Connection", "keep-alive");
         InputStream in = connection.getInputStream();
         while (in.available() > 0) {

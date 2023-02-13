@@ -13,7 +13,6 @@ public void handlePost(HttpServletRequest request,HttpServletResponse response,S
       project = new ProjectInfo();
       project.setFullName(cloneName);
       project.setWorkspaceId(workspace.getUniqueId());
-
       try {
         metaStore.createProject(project);
       } catch (CoreException e) {
@@ -32,7 +31,6 @@ public void handlePost(HttpServletRequest request,HttpServletResponse response,S
         String msg = NLS.bind("Failed to create project: {0}", project.getFullName());
         return statusHandler.handleRequest(request, response, new ServerStatus(IStatus.ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, msg, e));
       }
-
       URI baseLocation = getURI(request);
       baseLocation = new URI(baseLocation.getScheme(), baseLocation.getUserInfo(), baseLocation.getHost(), baseLocation.getPort(), workspacePath,
           baseLocation.getQuery(), baseLocation.getFragment());

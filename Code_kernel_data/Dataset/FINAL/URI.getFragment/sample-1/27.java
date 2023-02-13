@@ -5,7 +5,6 @@ public void getElement(URI path,boolean loadIfAbsent){
             if (dia == null && loadIfAbsent)
             {
                 URL url = xmlBase.toURL();
-
                 loadSVG(url, false);
                 dia = (SVGDiagram) loadedDocs.get(xmlBase);
                 if (dia == null)

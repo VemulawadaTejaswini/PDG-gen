@@ -36,7 +36,7 @@ public void alterTable(RawStore msdb,Warehouse wh,String dbname,String name,Tabl
               + srcPath + ". This operation is not supported");
         }
         try {
-          srcFs.exists(srcPath); // check that src exists and also checks
+          srcFs.exists(srcPath);
           if (destFs.exists(destPath)) {
             throw new InvalidOperationException("New location for this table "
                 + newt.getDbName() + "." + newt.getTableName()

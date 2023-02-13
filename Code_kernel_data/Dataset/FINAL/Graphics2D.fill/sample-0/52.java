@@ -16,7 +16,6 @@ public void paintWorld(Graphics2D g){
       Shape shape=country2shape.get(country);
       g.setColor(Color.BLACK);
       g.draw(shape);
-        
       }
 }
 }

@@ -31,7 +31,6 @@ public void uri(String uriTemplate){
                     this.port = Integer.toString(uri.getPort());
                 }
             }
-
         }
         if (uri.getPath() != null) {
             this.path.setLength(0);

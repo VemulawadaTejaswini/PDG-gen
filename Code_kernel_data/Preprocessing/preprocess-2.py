@@ -9,8 +9,11 @@ def process_file(input_file_path, output_file_name, output_folder):
     with open(input_file_path, "r") as input_file:
         for line in input_file:
             line = line.replace('\u00A0', " ")
-            if line.strip().startswith("//"):
+            if line.strip().startswith("//") or line.strip() == "\n" or line.strip() == "":
                 continue
+            elif "//" in line:
+                line = line[:line.index("//")].rstrip() + "\n"
+                output_file.write(line)
             else:
                 output_file.write(line)
     input_file.close()

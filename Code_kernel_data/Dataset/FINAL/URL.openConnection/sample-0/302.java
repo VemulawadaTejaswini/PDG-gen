@@ -1,6 +1,6 @@
 public class func{
 public void updateMirrorsYMLCache(){
-        URL url = new URL("http://get.spout.org/mirrors.yml");
+        URL url = new URL("http:
         HttpURLConnection con = (HttpURLConnection) (url.openConnection());
 }
 }

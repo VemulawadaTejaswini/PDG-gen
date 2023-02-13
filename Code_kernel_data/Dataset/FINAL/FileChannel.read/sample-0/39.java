@@ -2,7 +2,7 @@ public class func{
 public void testFileChannelBlockRead(){
     do {
       int rd = in.read(buf);
-      read += (rd < 0 ? 0 : rd); // rd == -1 if at end of stream.
+      read += (rd < 0 ? 0 : rd);
       buf.flip();
       byte[] arr = new byte[buf.remaining()];
       buf.get(arr);

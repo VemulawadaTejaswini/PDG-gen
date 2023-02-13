@@ -5,7 +5,6 @@ public void cacheTile(String aURL){
             int status = uc.getResponseCode();
             if (status == 200) {
                 int contentLength = uc.getContentLength();
-
                 if (contentLength == -1) {
                 }
             } else if (LOGGER.isErrorEnabled()) {

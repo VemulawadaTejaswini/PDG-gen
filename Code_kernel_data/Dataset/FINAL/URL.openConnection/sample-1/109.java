@@ -1,6 +1,6 @@
 public class func{
 public void testGetBookAsArray(){
-        URL url = new URL("http://localhost:" + PORT + "/the/bookstore/books/list/123");
+        URL url = new URL("http:
         URLConnection connect = url.openConnection();
         connect.addRequestProperty("Accept", "application/json");
         InputStream in = connect.getInputStream();           

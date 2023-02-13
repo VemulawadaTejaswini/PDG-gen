@@ -6,7 +6,6 @@ public void readFromStream(InputStream is){
           {
             if ( negative ) n = -n;
             short val = n < -250 ? Short.MIN_VALUE : (short)(n*4);
-
             eval_array[ (nrows-1-row)*ncols + col ] = val;
             if (++col == ncols )
             {

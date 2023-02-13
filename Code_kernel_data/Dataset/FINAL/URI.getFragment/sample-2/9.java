@@ -1,6 +1,6 @@
 public class func{
 public void testUriParts(){
-        URI uri = new URI("http://username:password@host:8080/directory/file?query#ref");
+        URI uri = new URI("http:
         assertEquals("http", uri.getScheme());
         assertEquals("username:password@host:8080", uri.getAuthority());
         assertEquals("username:password@host:8080", uri.getRawAuthority());
@@ -14,9 +14,9 @@ public void testUriParts(){
         assertEquals("query", uri.getRawQuery());
         assertEquals("ref", uri.getFragment());
         assertEquals("ref", uri.getRawFragment());
-        assertEquals("//username:password@host:8080/directory/file?query",
+        assertEquals("
                 uri.getSchemeSpecificPart());
-        assertEquals("//username:password@host:8080/directory/file?query",
+        assertEquals("
                 uri.getRawSchemeSpecificPart());
 }
 }

@@ -1,6 +1,6 @@
 public class func{
 public void open(){
-      String url = "jdbc:sqlserver://" + getHostname() + ":" + getPort() + ";databaseName=" + getDatabase() + ";user=" + getUsername() + ";password=" + getPassword();
+      String url = "jdbc:sqlserver:
         this.connection = DriverManager.getConnection(url, getUsername(), getPassword());
 }
 }

@@ -6,7 +6,6 @@ public void readJarDirectoryEntries(URL location,String basePath,Set<String> res
         while (entries != null && entries.hasMoreElements()) {
             JarEntry entry = entries.nextElement();
             String name = entry.getName();
-
             if (entry.isDirectory() && StringUtils.startsWith(name, basePath)) {
                 resources.add(name);
             }

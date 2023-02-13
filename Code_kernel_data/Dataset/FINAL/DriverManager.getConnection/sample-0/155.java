@@ -1,6 +1,6 @@
 public class func{
 public void testConnectionMySqlDriver(){
-        String fullConnectionStr = String.format("jdbc:google:mysql://%s?user=%s&password=%s", connectionStr, user, pw);
+        String fullConnectionStr = String.format("jdbc:google:mysql:
         Connection conn = DriverManager.getConnection(fullConnectionStr);
 }
 }
