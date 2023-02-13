@@ -1,0 +1,6 @@
+Line_2 $$ public void verifyPatchTableNotLocked(String database) --> Line_3 $$ Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + database, "sa", "") [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + database, "sa", "") --> Line_4 $$ PreparedStatement stmt = conn.prepareStatement("SELECT patch_in_progress FROM patches WHERE system_name = ? AND ( patch_in_progress <> 'F' OR patch_level in ( SELECT MAX(patch_level) FROM patches WHERE system_name = ? ))") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + database, "sa", "") --> Line_9 $$ SqlUtil.close(conn, stmt, rs) [FD]
+Line_2 $$ public void verifyPatchTableNotLocked(String database) --> Line_4 $$ PreparedStatement stmt = conn.prepareStatement("SELECT patch_in_progress FROM patches WHERE system_name = ? AND ( patch_in_progress <> 'F' OR patch_level in ( SELECT MAX(patch_level) FROM patches WHERE system_name = ? ))") [CD]
+Line_2 $$ public void verifyPatchTableNotLocked(String database) --> Line_9 $$ SqlUtil.close(conn, stmt, rs) [CD]
+Line_4 $$ PreparedStatement stmt = conn.prepareStatement("SELECT patch_in_progress FROM patches WHERE system_name = ? AND ( patch_in_progress <> 'F' OR patch_level in ( SELECT MAX(patch_level) FROM patches WHERE system_name = ? ))") --> Line_9 $$ SqlUtil.close(conn, stmt, rs) [FD]
