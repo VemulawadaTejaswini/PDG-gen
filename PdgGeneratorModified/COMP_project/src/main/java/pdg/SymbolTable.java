@@ -1051,12 +1051,14 @@ class SymbolTable {
             System.out.println("##<< graphNodeClass " + graphNode.getNodeClass());
             System.out.println("##<<  node.getclass " + node.getNodeClass());
 
+            hrefGraph.addVertex(graphNode);
+            hrefGraph.addVertex(node);
             hrefGraph.addEdge(graphNode, node, new RelationshipEdge(string));
 
             String s1 = graphNode.getData();
             String s2 = node.getData();
-            String s1tokens[]=s1.split("\\{",2);
-            String s2tokens[]=s2.split("\\{",2);
+            String s1tokens[]=s1.split("\\{|\\R",2);
+            String s2tokens[]=s2.split("\\{|\\R",2);
             String s = s1tokens[0]+"-->"+s2tokens[0]+ "[ " + string + " ]\n";
             System.out.println(s);
             writeTOFile(s, out);
@@ -1083,7 +1085,7 @@ class SymbolTable {
         GraphNode nodeToSend = null;
         try{
             GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString(), node.getClass().toString());
-            hrefGraph.addVertex(newNode);
+            // hrefGraph.addVertex(newNode);
             System.out.println("$$ addNodeAndEdgeToGraph Called");
             
             if(previousNode == null){
@@ -1092,12 +1094,30 @@ class SymbolTable {
             }
             nodeToSend = newNode;
 
+            if(newNode.getNodeClass().equals("class com.github.javaparser.ast.stmt.IfStmt")
+            ||newNode.getNodeClass().equals("class com.github.javaparser.ast.body.MethodDeclaration")
+            ||newNode.getNodeClass().equals("class com.github.javaparser.ast.body.ClassOrInterfaceDeclaration")
+            ||newNode.getNodeClass().equals("class com.github.javaparser.ast.stmt.WhileStmt")
+            ||newNode.getNodeClass().equals("class com.github.javaparser.ast.stmt.ForStmt")
+            ){
+                //prune the node data into simplified form
+                String block = newNode.getNodeInfo();
+                System.out.println("block: "+ block);
+                String[] arrSplit = block.split("\\{|\\R",2);
+                newNode.ReAssign(arrSplit[0]);
+                System.out.println("After ReAassign:" + newNode.getNodeInfo());
+            }
+
+            System.out.println("##>>  newNodeClass " + newNode.getNodeClass());
+            System.out.println("##>> PrevNodeClass " + previousNode.getNodeClass());
+            hrefGraph.addVertex(previousNode);
+            hrefGraph.addVertex(newNode);
             hrefGraph.addEdge(previousNode, newNode);
 
             String s1 = previousNode.getData();
             String s2 = newNode.getData();
-            String s1tokens[]=s1.split("\\{",2);
-            String s2tokens[]=s2.split("\\{",2);
+            String s1tokens[]=s1.split("\\{|\\R",2);
+            String s2tokens[]=s2.split("\\{|\\R",2);
             String S = s1tokens[0]+"-->"+s2tokens[0]+"[ CD ]\n";
             System.out.println(S);
             writeTOFile(S, out);
@@ -1105,7 +1125,7 @@ class SymbolTable {
             if(loop){
                 hrefGraph.addEdge(newNode, newNode);
                 s1 = previousNode.getData();
-                s1tokens = s1.split("\\{",2);
+                s1tokens = s1.split("\\{|\\R",2);
                 String S1 = s1tokens[0]+"-->"+s1tokens[0]+"[ CD ]\n";
                 System.out.println(S1);
                 writeTOFile( S1, out);
