@@ -9,7 +9,7 @@ def process_file(input_file_path, output_file_name, output_folder):
     with open(input_file_path, "r") as input_file:
         for line in input_file:
             line = line.replace('\u00A0', " ")
-            if line.strip().startswith("//") or line.strip() == "\n" or line.strip() == "":
+            if line.strip().startswith("//") or line.strip() in ["\n", "\t"] or line.strip() == "":
                 continue
             elif "//" in line:
                 line = line[:line.index("//")].rstrip() + "\n"
@@ -19,8 +19,8 @@ def process_file(input_file_path, output_file_name, output_folder):
     input_file.close()
     output_file.close()
 
-RAWDATA_PATH = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Code_kernel_data/Dataset/NEW"
-OUTPUT_PATH = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Code_kernel_data/Dataset/FINAL"
+RAWDATA_PATH = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/before_preprocessing"
+OUTPUT_PATH = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/after_preprocessing"
 
 api_folders_list = glob.glob(RAWDATA_PATH + "/*/")
 for folder in tqdm.tqdm(api_folders_list):
