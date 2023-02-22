@@ -75,8 +75,20 @@ public class PDGCore {
 		System.out.println(ParsedName[0]);
 		System.out.println("***************");
 		out = new FileOutputStream(outputDir + ParsedName[0] + "_" + apiAndSampleName + "_graph_dump.txt");
-
-		cv.semanticAnalysis(cu, hrefGraph, previousNode, new ArrayList<>(), out);
+		
+		try {
+			cv.semanticAnalysis(cu, hrefGraph, previousNode, new ArrayList<>(), out);
+		} catch (Exception e) {
+			System.out.println("Error for: " + ParsedName[0] + "_" + apiAndSampleName);
+			System.out.println("Error: " + e.getMessage());
+			String errorFileName = "./../error.txt";
+			BufferedWriter error_out = new BufferedWriter(
+                new FileWriter(errorFileName, true));
+			error_out.write("File: " + ParsedName[0] + "_" + apiAndSampleName + "\n");
+            error_out.write(e.getMessage() + "\n");
+			error_out.write("==============================================\n");
+            error_out.close();
+		}
 
 		// todot("stage3.dot", hrefGraph);
 
