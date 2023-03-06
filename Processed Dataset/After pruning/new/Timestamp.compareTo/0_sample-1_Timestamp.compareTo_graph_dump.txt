@@ -1,0 +1,6 @@
+Line_3 $$ FemLabel label --> Line_7 $$ String timestamp = label.getCreationTimestamp() [FD]
+Line_7 $$ String timestamp = label.getCreationTimestamp() --> Line_11 $$ Timestamp labelTimestamp = Timestamp.valueOf(timestamp) [FD]
+Line_11 $$ Timestamp labelTimestamp = Timestamp.valueOf(timestamp) --> Line_12 $$ int rc = referenceTimestamp.compareTo(labelTimestamp) [FD]
+Line_11 $$ Timestamp labelTimestamp = Timestamp.valueOf(timestamp) --> Line_15 $$ labelTimestamp.compareTo(lowerBound) [FD]
+Line_13 $$ if ((rc > 0) && ((lowerBound == null) || (labelTimestamp.compareTo(lowerBound) > 0))) --> Line_18 $$ if ((rc < 0) && ((upperBound == null) || (labelTimestamp.compareTo(upperBound) < 0))) [CD]
+Line_11 $$ Timestamp labelTimestamp = Timestamp.valueOf(timestamp) --> Line_21 $$ labelTimestamp.compareTo(upperBound) [FD]
