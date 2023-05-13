@@ -7,9 +7,9 @@ import tqdm
 
 a. Clean the raw edge info (eg. remove wrongly formatted edges, class edges etc.)
 b. Merge same code-lines into a single line/node
-c. Consider both CDs and FDs between the API node and other nodes.
-d. Add FD and CD from other nodes to the API node.
-e. Add the rest of the edges(CD/FD) in the current subgraph.
+c. Consider all nodes that are reachable from the API node
+d. Consider all nodes from which API node is reachable
+e. Add the all the edges(CD/FD) in the current subgraph
 
 """
 
@@ -61,35 +61,47 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
     #print("EDGE MAPPING : \n")
     #print(edge_mapping, "\n")
 
-    # Consider both FDs and CDs between the API node and other nodes
+    # Add all the nodes that are reachable to or from the API-NODE
     api_nodes = []
     for line in line_mapping:
-        if line_mapping[line].find("." + api_name) != -1:
+        if line_mapping[line].find("." + api_name + "(") != -1:
             api_nodes.append(line)
     #print("API NODES : \n")
     #print(api_nodes, "\n")
+    
+    # Get vertices that are reachable from the API-NODE
+    vertices_from_api_node, previous_vertices = set(api_nodes), set(api_nodes)
+    while(True):
+        next_vertices = set([])
+        for edge in edge_mapping:
+            if edge[0] in list(previous_vertices) and edge[1] not in list(vertices_from_api_node):
+                next_vertices.add(edge[1])
+        if len(next_vertices) == 0:
+            break
+        else:
+            vertices_from_api_node = vertices_from_api_node.union(next_vertices)
+            previous_vertices = next_vertices
+    
+    # Get vertices from which the API-NODE is reachable
+    vertices_to_api_node, next_vertices = set(api_nodes), set(api_nodes)
+    while(True):
+        previous_vertices = set([])
+        for edge in edge_mapping:
+            if edge[1] in list(next_vertices) and edge[0] not in list(vertices_to_api_node):
+                previous_vertices.add(edge[0])
+        if len(previous_vertices) == 0:
+            break
+        else:
+            vertices_to_api_node = vertices_to_api_node.union(previous_vertices)
+            next_vertices = previous_vertices
+    
+    # All nodes in the final sub-graph
+    subgraph_vertices = list(vertices_from_api_node.union(vertices_to_api_node))
 
+    # Add all the edges(CD/FD) between the subgraph vertices
     sub_graph_edges = {}
     for edge in edge_mapping:
-        if edge[0] in api_nodes or edge[1] in api_nodes:
-            if edge in sub_graph_edges:
-                sub_graph_edges[edge] = list(set(sub_graph_edges[edge] + edge_mapping[edge]))
-            else:
-                sub_graph_edges[edge] = edge_mapping[edge]
-    #print("API NODES TO OTHER NODES : \n")
-    #print(sub_graph_edges, "\n")
-    
-    # Add the rest of the edges(CD/FD) in the current subgraph
-    nodes_in_subgraph = set([])
-    for edge in sub_graph_edges:
-        nodes_in_subgraph.add(edge[0])
-        nodes_in_subgraph.add(edge[1])
-    nodes_in_subgraph = list(nodes_in_subgraph)
-    #print("NODES IN FINAL SUBGRAPH : \n")
-    #print(nodes_in_subgraph, "\n")
-
-    for edge in edge_mapping:
-        if edge[0] in nodes_in_subgraph and edge[1] in nodes_in_subgraph:
+        if edge[0] in subgraph_vertices and edge[1] in subgraph_vertices:
             if edge in sub_graph_edges:
                 sub_graph_edges[edge] = list(set(sub_graph_edges[edge] + edge_mapping[edge]))
             else:
@@ -127,8 +139,8 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     return output_pdg_file, len(edge_data_list)
 
-PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/final"
-OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/final"
+PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/before_pruning"
+OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/after_pruning/new"
 pdg_folders_list = glob.glob(PDG_FOLDER_LOCATION + "/*/")
 print("\nNumber of total APIs: {}\n".format(len(pdg_folders_list)))
 for folder in tqdm.tqdm(pdg_folders_list):
