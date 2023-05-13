@@ -1,0 +1,8 @@
+Line_2 $$ public void getLocation(final URL url) --> Line_3 $$ URLConnection connection = url.openConnection() [CD]
+Line_2 $$ public void getLocation(final URL url) --> Line_4 $$ if (connection instanceof HttpURLConnection) [CD]
+Line_3 $$ URLConnection connection = url.openConnection() --> Line_4 $$ if (connection instanceof HttpURLConnection) [FD]
+Line_4 $$ if (connection instanceof HttpURLConnection) --> Line_5 $$ int responseCode = ((HttpURLConnection) connection).getResponseCode() [CD]
+Line_4 $$ if (connection instanceof HttpURLConnection) --> Line_6 $$ if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_SEE_OTHER) [CD]
+Line_6 $$ if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_SEE_OTHER) --> Line_9 $$ String redirectUrl = connection.getHeaderField("Location") [CD]
+Line_3 $$ URLConnection connection = url.openConnection() --> Line_9 $$ String redirectUrl = connection.getHeaderField("Location") [FD]
+Line_6 $$ if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP || responseCode == HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_SEE_OTHER) --> Line_10 $$ return getLocation(new URL(redirectUrl)); [CD]
