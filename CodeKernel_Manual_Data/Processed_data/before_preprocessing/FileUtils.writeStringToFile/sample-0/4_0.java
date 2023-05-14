@@ -25,10 +25,7 @@ private void generateConfig(final FileInfo template, final FileInfo filter, fina
         }
 
         // Only write out the generated io if there were no errors or errors are specifically ignored
-        if (StringUtils.isNotBlank(configGeneratorParameters.getEncoding())) {
-            FileUtils.writeStringToFile(new File(outputFilename), processedTemplate,
-                    configGeneratorParameters.getEncoding());
-        } else {
+        if (!StringUtils.isNotBlank(configGeneratorParameters.getEncoding())) {
             FileUtils.writeStringToFile(new File(outputFilename), processedTemplate);
         }
     }
