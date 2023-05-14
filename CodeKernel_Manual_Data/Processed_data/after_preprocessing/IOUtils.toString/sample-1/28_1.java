@@ -1,6 +1,6 @@
 public class dummy {
 public Result<String> decode(byte[] img, YundamaType type) {
-    HttpPost request = new HttpPost("http:
+    HttpPost request = new HttpPost("http://api.yundama.com/api.php?method=upload");
     MultipartEntityBuilder builder =
         MultipartEntityBuilder.create()
             .addBinaryBody("file", img, ContentType.create("image/png"), "code.png")
@@ -16,7 +16,7 @@ public Result<String> decode(byte[] img, YundamaType type) {
       Integer ret = Result.parseInteger(jsonObject.get("ret"));
       if (ret == 0) {
         String url =
-            "http:
+            "http://api.yundama.com/api.php?method=result&cid="
                 + Result.toString(jsonObject.get("cid"));
         long start = System.currentTimeMillis();
         while (true) {

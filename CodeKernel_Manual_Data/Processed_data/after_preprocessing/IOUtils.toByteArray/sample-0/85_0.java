@@ -5,8 +5,8 @@ public byte[] getValidationCode() throws SocialException {
     params.add(new BasicNameValuePair("r", String.valueOf(Math.random())));
     params.add(new BasicNameValuePair("uin", email));
     HttpGet request =
-        new HttpGet("https:
-    request.addHeader(new BasicHeader("Referer", "https:
+        new HttpGet("https://ssl.captcha.qq.com/getimage?" + StringUtils.join(params, "&"));
+    request.addHeader(new BasicHeader("Referer", "https://mail.qq.com/cgi-bin/loginpage?lang=cn"));
     request.addHeader(new BasicHeader("Accept-Language", "zh-cn,zh"));
     try {
       HttpResponse response = http.execute(request);

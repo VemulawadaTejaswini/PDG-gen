@@ -2,7 +2,7 @@ public class dummy {
 public Result<NewT> addPicT(String accessToken, String oauthConsumerKey, String openId,
       String content, byte[] pic, String clientIp, Double lon, Double lat, Boolean sync,
       Boolean compatible) {
-    HttpPost request = new HttpPost("https:
+    HttpPost request = new HttpPost("https://graph.qq.com/t/add_pic_t");
     MultipartEntityBuilder builder = MultipartEntityBuilder.create().addBinaryBody("pic", pic);
     List<NameValuePair> params = new ArrayList<NameValuePair>();
     addParameter(params, "access_token", accessToken);

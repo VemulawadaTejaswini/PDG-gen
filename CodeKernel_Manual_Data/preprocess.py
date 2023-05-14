@@ -11,7 +11,7 @@ def process_file(input_file_path, output_file_name, output_folder):
             line = line.replace('\u00A0', " ")
             if line.strip().startswith("//") or line.strip() in ["\n", "\t"] or line.strip() == "":
                 continue
-            elif "//" in line:
+            elif "//" in line and "://" not in line:
                 line = line[:line.index("//")].rstrip() + "\n"
                 output_file.write(line)
             else:

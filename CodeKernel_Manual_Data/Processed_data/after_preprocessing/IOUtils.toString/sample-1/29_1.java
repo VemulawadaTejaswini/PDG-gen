@@ -2,7 +2,7 @@ public class dummy {
 public Result<com.belerweb.social.weixin.bean.Media> upload(String accessToken, MediaType type,
       com.belerweb.social.weixin.bean.Media media) {
     String url =
-        "http:
+        "http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=" + accessToken + "&type="
             + type.value();
     HttpPost request = new HttpPost(url);
     MultipartEntityBuilder builder =
