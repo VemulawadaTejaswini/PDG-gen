@@ -1,4 +1,4 @@
-public void dummy {
+public class dummy {
 
 protected String providePerfLoadVersion() {
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();

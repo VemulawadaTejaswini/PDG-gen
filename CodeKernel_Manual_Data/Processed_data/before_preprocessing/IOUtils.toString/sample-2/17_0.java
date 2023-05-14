@@ -1,4 +1,4 @@
-public void dummy {
+public class dummy {
 
 public String get(String fullProperty, Method method) {
     Connection conn = null;/*  ww w.  j a  v a2 s  .com*/
