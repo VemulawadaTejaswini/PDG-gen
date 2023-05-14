@@ -6,9 +6,9 @@ public byte[] getValidationCode2() throws SocialException {
     params.add(new BasicNameValuePair("ck", "1"));
     params.add(new BasicNameValuePair("r", String.valueOf(Math.random())));
     HttpGet request =
-        new HttpGet("https:
+        new HttpGet("https://mail.qq.com/cgi-bin/getverifyimage?" + StringUtils.join(params, "&"));
     request.addHeader(new BasicHeader("Referer",
-        "  https:
+        "  https://mail.qq.com/cgi-bin/loginpage?errtype=3"));
     request.addHeader(new BasicHeader("Accept-Language", "zh-cn,zh"));
     try {
       HttpResponse response = http.execute(request);

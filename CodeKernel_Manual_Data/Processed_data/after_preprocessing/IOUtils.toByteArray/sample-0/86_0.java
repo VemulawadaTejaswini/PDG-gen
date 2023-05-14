@@ -5,7 +5,7 @@ private byte[] getValidationCode() throws ClientProtocolException, IOException, 
     params.add(new BasicNameValuePair("aid", "549000912"));
     params.add(new BasicNameValuePair(String.valueOf(Math.random()), ""));
     HttpGet request =
-        new HttpGet("http:
+        new HttpGet("http://captcha.qq.com/getimage?" + StringUtils.join(params, "&"));
     request.addHeader(new BasicHeader("Referer", loginUi));
     request.addHeader(new BasicHeader("Accept-Language", "zh-cn,zh"));
     HttpResponse response = http.execute(request);

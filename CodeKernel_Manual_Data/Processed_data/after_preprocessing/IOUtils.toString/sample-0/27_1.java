@@ -1,15 +1,15 @@
 public class dummy {
 private List<Group> get(Group group) throws SocialException {
     HttpGet request =
-        new HttpGet("http:
+        new HttpGet("http://mail.qq.com/cgi-bin/laddr_list?sid=" + sid
             + "&operate=view&t=contact&view=" + group.getType()
             + (group.getId() != null ? ("&groupid=" + group.getId()) : "&loc=frame_html,,,23"));
     request.addHeader(new BasicHeader("Referer",
-        "http:
+        "http://mail.qq.com/cgi-bin/laddr_list?operate=view&t=contact&view=normal&loc=frame_html,,,23&sid="
             + sid));
     request.addHeader(new BasicHeader("Accept-Language", "zh-cn,zh"));
     request
-        .addHeader(new BasicHeader("Referer", "http:
+        .addHeader(new BasicHeader("Referer", "http://mail.qq.com/cgi-bin/frame_html?sid=" + sid));
     try {
       HttpResponse response = http.execute(request);
       StatusLine statusLine = response.getStatusLine();

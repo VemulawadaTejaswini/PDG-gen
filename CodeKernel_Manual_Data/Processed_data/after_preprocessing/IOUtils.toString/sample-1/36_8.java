@@ -1,7 +1,7 @@
 public class dummy {
 public Result<com.belerweb.social.weixin.bean.Media> get(String accessToken, String mediaId) {
     String url =
-        "http:
+        "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=" + accessToken
             + "&media_id=" + mediaId;
     try {
       HttpResponse response = Http.CLIENT.execute(new HttpGet(url));
