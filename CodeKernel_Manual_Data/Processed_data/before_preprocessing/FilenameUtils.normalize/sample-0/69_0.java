@@ -1,4 +1,4 @@
-public void dummy {
+public class dummy {
 
 public static String rewritePath(String oldValue, String newValue) {
 

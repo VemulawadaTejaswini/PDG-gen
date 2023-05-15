@@ -28,9 +28,7 @@ private void generateConfig(final FileInfo template, final FileInfo filter, fina
         if (StringUtils.isNotBlank(configGeneratorParameters.getEncoding())) {
             FileUtils.writeStringToFile(new File(outputFilename), processedTemplate,
                     configGeneratorParameters.getEncoding());
-        } else {
-            FileUtils.writeStringToFile(new File(outputFilename), processedTemplate);
-        }
+        } 
     }
 
 }

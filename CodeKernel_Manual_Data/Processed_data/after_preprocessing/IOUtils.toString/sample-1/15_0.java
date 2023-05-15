@@ -1,4 +1,4 @@
-public void dummy {
+public class dummy {
   private InputStream parseResponseGeneral(HttpResponse response) throws APIException {
     InputStream result;
     try {
