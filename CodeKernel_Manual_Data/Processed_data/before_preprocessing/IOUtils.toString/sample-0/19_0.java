@@ -1,4 +1,4 @@
-public void dummy {
+public class dummy {
 
 public String get(String get) {
     URL url;

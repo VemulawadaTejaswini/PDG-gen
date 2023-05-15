@@ -1,4 +1,4 @@
-public void dummy {
+public class dummy {
 public String tail() {
         if (!this.stable()) {
             throw new DeploymentException(

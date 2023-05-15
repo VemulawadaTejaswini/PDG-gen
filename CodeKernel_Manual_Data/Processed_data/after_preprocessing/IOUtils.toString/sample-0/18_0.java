@@ -1,4 +1,4 @@
-public void dummy {
+public class dummy {
   private String internalGet(URL get) throws IOException, ClientProtocolException, URISyntaxException {
     HttpUriRequest request = RequestBuilder.get().setUri(get.toURI()).setHeader("User-Agent", this.userAgent).build();
     CloseableHttpResponse execute = this.httpclient.execute(request);
@@ -17,5 +17,4 @@ public void dummy {
     contentIS.close();
     return content;
   }
-}
 }
