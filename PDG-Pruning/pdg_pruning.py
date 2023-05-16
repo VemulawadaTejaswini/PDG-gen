@@ -26,7 +26,7 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     # Remove unnecesssary edges("class" edge, wrongly formatted edges etc.)
     all_edges = [edge for edge in all_edges if edge.find(
-        "-->") != -1 and edge.find("$$") != -1]
+        "-->") != -1 and edge.count("$$") == 2]
     all_edges = [edge for edge in all_edges if len(edge.split("-->")) == 2 and
                  len(edge.split("-->")[0].split("$$")) == 2 and
                  len(edge.split("-->")[1].split("$$")) == 2]
@@ -139,8 +139,8 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     return output_pdg_file, len(edge_data_list)
 
-PDG_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/before_pruning"
-OUTPUT_FOLDER_LOCATION = "/raid/cs21mtech12001/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/after_pruning/new"
+PDG_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/before_pruning"
+OUTPUT_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/after_pruning"
 pdg_folders_list = glob.glob(PDG_FOLDER_LOCATION + "/*/")
 print("\nNumber of total APIs: {}\n".format(len(pdg_folders_list)))
 for folder in tqdm.tqdm(pdg_folders_list):
