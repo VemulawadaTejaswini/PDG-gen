@@ -1,5 +1,0 @@
-public class func{
-public void getTeradata(){
-        return DriverManager.getConnection("jdbc:teradata:
-}
-}
