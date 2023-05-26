@@ -1,6 +1,0 @@
-//598
-public class func{
-public void createConnection(Configuration conf){
-    return DriverManager.getConnection(getCatalogUri(), this.connectionId, this.connectionPassword);
-}
-}
