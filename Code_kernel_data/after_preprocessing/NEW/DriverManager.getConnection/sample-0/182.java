@@ -1,0 +1,7 @@
+//182
+public class func{
+public void doConnectionSetIsolation(){
+                Connection conn = DriverManager.getConnection("jdbc:default:connection");
+                conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+}
+}
