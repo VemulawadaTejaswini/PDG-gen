@@ -21,6 +21,8 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
     
     global PRUNING_ERROR_COUNT, GOOD_DATA_POINTS, TOTAL_DATA_POINTS
     
+    # all_edges = [bytes(l, 'utf-8').decode('utf-8', 'ignore').strip()
+    #              for l in pdg_file.readlines()]
     all_edges = [l.replace("\n", "").replace("\r", "").strip()
                  for l in pdg_file.readlines()]
 
@@ -139,8 +141,8 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     return output_pdg_file, len(edge_data_list)
 
-PDG_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/Before pruning/final"
-OUTPUT_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Processed Dataset/After pruning/new_new"
+PDG_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/before_pruning/NEW"
+OUTPUT_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/after_pruning/NEW"
 pdg_folders_list = glob.glob(PDG_FOLDER_LOCATION + "/*/")
 print("\nNumber of total APIs: {}\n".format(len(pdg_folders_list)))
 for folder in tqdm.tqdm(pdg_folders_list):
@@ -158,9 +160,9 @@ for folder in tqdm.tqdm(pdg_folders_list):
             output_pdg_file, no_of_edges = get_pruned_pdg(pdg_file, output_pdg_file, api_name[api_name.rindex(".") + 1 :].strip())
         except Exception as e:
             PRUNING_ERROR_COUNT += 1
-            #print("\nERROR WHILE PRUNING PDG\n")
-            #print("\nFile: {}\n".format(pdg_file_location))
-            #print("\nERROR: {}\n".format(e))
+            print("\nERROR WHILE PRUNING PDG\n")
+            print("\nFile: {}\n".format(pdg_file_location))
+            print("\nERROR: {}\n".format(e))
             pdg_file.close()
             output_pdg_file.close()
             os.remove(output_file_location)
