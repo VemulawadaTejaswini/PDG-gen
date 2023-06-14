@@ -1,6 +1,6 @@
 public class func{
 public void testQuery(){
-        URL url = new URL("http:
+        URL url = new URL("http://localhost:" + port + path);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setDefaultUseCaches(false);
         BufferedReader in = new BufferedReader(

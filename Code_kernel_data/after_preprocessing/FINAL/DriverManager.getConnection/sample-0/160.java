@@ -1,7 +1,7 @@
 public class func{
 public void testBadConnectionAttribute(){
       Connection c = DriverManager.getConnection(
-          "jdbc:derby:
+          "jdbc:derby://" + getTestConfiguration().getHostName()
                     + ":" + getTestConfiguration().getPort() + "/badAttribute;upgrade=notValidValue");
 }
 }

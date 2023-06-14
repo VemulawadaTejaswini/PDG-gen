@@ -33,15 +33,15 @@ public void canonicalize(String uriString){
                 if (c2index != c1index) {
                     /*
                      * this is the scheme:hostname:port case. Attempt to
-                     * transform this to scheme:
+                     * transform this to scheme://hostname:port. If a path
                      * part is part of the original strings, it will be
                      * included in the SchemeSpecificPart. however, the
                      * fragment part must be handled separately.
                      */
                     if (frag == null) {
-                        u2 = new URI(scheme + ":
+                        u2 = new URI(scheme + "://" + ssp);
                     } else {
-                        u2 = new URI(scheme + ":
+                        u2 = new URI(scheme + "://" + ssp + "#" + frag);
                     }
                     return u2;
                 }

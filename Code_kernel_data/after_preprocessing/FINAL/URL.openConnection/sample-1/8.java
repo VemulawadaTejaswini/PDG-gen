@@ -1,6 +1,6 @@
 public class func{
 public void testHttpCookie(){
-    URL base = new URL("http:
+    URL base = new URL("http://" + NetUtils.getHostPortString(server
             .getConnectorAddress(0)));
     HttpURLConnection conn = (HttpURLConnection) new URL(base,
             "/echo").openConnection();

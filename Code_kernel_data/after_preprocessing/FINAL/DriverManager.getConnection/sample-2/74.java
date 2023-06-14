@@ -1,7 +1,7 @@
 public class func{
 public void main2(String[] args){
     Connection conn = DriverManager.getConnection(
-        "jdbc:h2:tcp:
+        "jdbc:h2:tcp://localhost:9092/mydb", "sa", "");
     Statement stmt = conn.createStatement();
     stmt.executeUpdate("INSERT INTO my_table(name) VALUES('zhh')");
     ResultSet rs = stmt.executeQuery("SELECT name FROM my_table");

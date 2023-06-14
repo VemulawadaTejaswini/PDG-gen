@@ -17,10 +17,10 @@ public void test_ConstructorLjava_lang_StringLjava_lang_StringLjava_lang_StringL
                 .getRawSchemeSpecificPart());
         assertEquals(
                 "incorrect toString()",
-                "ht12-3+tp:
+                "ht12-3+tp:///p%23a%25E2%2582%25ACth?q%5Eu%2525ery#f/r\u00dfag",
                 uri.toString());
         assertEquals("incorrect toASCIIString()",
-                "ht12-3+tp:
+                "ht12-3+tp:///p%23a%25E2%2582%25ACth?q%5Eu%2525ery#f/r%C3%9Fag", uri
                 .toASCIIString());
 }
 }

@@ -11,7 +11,7 @@ public void testBuildFullValidFromEmpty(){
     assertTrue(result.getRawQuery().contains("param1=value1"));
     assertTrue(result.getRawQuery().contains("param2"));
     assertEquals("fragment", result.getFragment());
-    assertEquals("scheme:
+    assertEquals("scheme://user:pass@host.com:1000/test/path/item.foo?param1=value1&param2#fragment",
         result.toString());
 }
 }

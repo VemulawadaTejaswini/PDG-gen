@@ -1,5 +1,5 @@
 public class func{
 public void getHiveConnection(){
-        return DriverManager.getConnection("jdbc:hive2:
+        return DriverManager.getConnection("jdbc:hive2:///", "", "");
 }
 }

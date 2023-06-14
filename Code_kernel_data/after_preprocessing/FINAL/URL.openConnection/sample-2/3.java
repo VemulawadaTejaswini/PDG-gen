@@ -1,6 +1,6 @@
 public class func{
 public void testGzipCompression(){
-    final URL url = new URL("http:
+    final URL url = new URL("http://localhost:" + port + "/default");
     final HttpURLConnection get = (HttpURLConnection) url.openConnection();
     get.setRequestProperty("Accept-Encoding", "gzip");
     Assert.assertEquals("gzip", get.getContentEncoding());

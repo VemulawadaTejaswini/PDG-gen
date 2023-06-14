@@ -33,8 +33,8 @@ public void intParseURL(String str){
             host = "";
             try {
                 /*
-                 * With 2396 URI handling, forms such as 'rmi:
-                 * or 'rmi:
+                 * With 2396 URI handling, forms such as 'rmi://host:bar'
+                 * or 'rmi://:<port>' are parsed into a registry based
                  * authority. We only want to allow server based naming
                  * authorities.
                  */
