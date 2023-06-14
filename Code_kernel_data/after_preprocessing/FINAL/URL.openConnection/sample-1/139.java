@@ -1,6 +1,6 @@
 public class func{
 public void main(String[] args){
-        URL url = new URL("file:
+        URL url = new URL("file:///");
         URLConnection urlc = url.openConnection();
         urlc.connect();
         String type = urlc.getContentType();

@@ -1,6 +1,6 @@
 public class func{
 public void rewriteUrlIfNeeded(String value){
-            if (value.startsWith(this.serverProto.concat(":
+            if (value.startsWith(this.serverProto.concat("://")))
             {
                 uri = new URI (value);
             }

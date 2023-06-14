@@ -1,5 +1,5 @@
 public class func{
 public void main(String[] args){
-        (new URL("http:
+        (new URL("http://localhost/")).openConnection().setDefaultUseCaches(false);
 }
 }

@@ -17,7 +17,7 @@ public void testEncodingParts(){
                 uri.getSchemeSpecificPart());
         assertEquals("
                 uri.getRawSchemeSpecificPart());
-        assertEquals("http:
+        assertEquals("http://user:pa55w%3Frd@host:80/doc%7Csearch?q=green%20robots#over%206%22",
                 uri.toString());
 }
 }

@@ -1,7 +1,7 @@
 public class func{
 public void canonicalize(String uriString){
         if (uriString == null) {
-            uriString = "local:
+            uriString = "local://0@localhost";
             return new URI(uriString);
         }
         URI u = new URI(uriString);
@@ -9,7 +9,7 @@ public void canonicalize(String uriString){
             if (u.isOpaque()) {
                 /*
                  * rmi:1234@hostname/path#fragment converted to
-                 * rmi:
+                 * rmi://1234@hostname/path#fragment
                  */
                 u = new URI(u.getScheme(), "
                             u.getFragment());

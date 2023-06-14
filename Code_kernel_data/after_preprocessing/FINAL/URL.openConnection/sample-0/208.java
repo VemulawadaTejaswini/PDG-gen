@@ -7,6 +7,6 @@ public void testFoo(){
     assertEquals(302, conn.getResponseCode());
     Map<String, String> headers = Tools.responseHeaders(conn);
     assertTrue(headers.containsKey("Location"));
-    assertEquals("http:
+    assertEquals("http://www.foobar.com", headers.get("Location"));
 }
 }

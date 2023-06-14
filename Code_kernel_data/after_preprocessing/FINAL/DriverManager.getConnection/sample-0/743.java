@@ -1,7 +1,7 @@
 public class func{
 public void createConnection(String testDB){
     return DriverManager.getConnection(
-            "jdbc:mysql:
+            "jdbc:mysql://"+ MySqlTestConfig.host + ":" +
                     MySqlTestConfig.port + "/" + testDB +
             "?elideSetAutoCommits=true" +
             "&useLocalTransactionState=true" +

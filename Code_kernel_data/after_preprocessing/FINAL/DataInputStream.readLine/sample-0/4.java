@@ -16,7 +16,7 @@ public void run(){
                     }
                     String port = t3 + 1 < len ? ":" + s.substring(t3 + 1, len) : "";
                     String host = t2 + 1 < t3 ? s.substring(t2 + 1, t3) : u.getHost();
-                    ps.print("<dt><a href=\"gopher:
+                    ps.print("<dt><a href=\"gopher://" + host + port + "/"
                              + s.substring(0, 1) + encodePercent(s.substring(t1 + 1, t2)) + "\">\n");
                     ps.print("<img align=middle border=0 width=25 height=32 src=");
                     switch (key) {

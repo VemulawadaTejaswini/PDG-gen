@@ -1,6 +1,6 @@
 public class func{
 public void getLabelsFromOfbizComponents(){
-        List<File> componentsFiles = FileUtil.findXmlFiles(null, null, "ofbiz-component", "http:
+        List<File> componentsFiles = FileUtil.findXmlFiles(null, null, "ofbiz-component", "http://ofbiz.apache.org/dtds/ofbiz-component.xsd");
         for (File componentFile : componentsFiles) {
             String filePath = componentFile.getPath();
             Document menuDocument = UtilXml.readXmlDocument(componentFile.toURI().toURL());

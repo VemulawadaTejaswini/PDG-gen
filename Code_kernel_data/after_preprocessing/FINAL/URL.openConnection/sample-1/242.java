@@ -1,6 +1,6 @@
 public class func{
 public void testService(){
-        URL url = new URL("http:
+        URL url = new URL("http://localhost:" + RegressionTestSupport.HTTP_PORT + "/test/services");
         URLConnection conn = url.openConnection();
         conn.setDoOutput(true);
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
