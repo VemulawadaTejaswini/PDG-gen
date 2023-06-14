@@ -8,30 +8,18 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import pdg.PDGCore;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 import org.jgrapht.ext.DOTExporter;
 import org.jgrapht.ext.StringEdgeNameProvider;
 import org.jgrapht.ext.StringNameProvider;
 
-import javax.sql.rowset.spi.SyncProvider;
-import javax.swing.*;
-
-import graphStructures.TextArea;
-
-import java.util.Random;
-
 public class mainframe {
-    private File selectedFile;// from java.io
+    private File selectedFile;
     private String selectedFileName;
     @SuppressWarnings("rawtypes")
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
-    private JTextArea consoleText;
-    static String outputFolder = "./../../CodeKernel_Manual_Data/Processed_data/before_pruning/NEW/";
-    static String inputFolder = "./../../CodeKernel_Manual_Data/Processed_data/after_preprocessing/";
-    static int randomNumber = -1;
-    static Random rand = new Random();
+    static String outputFolder = "./../../Code_kernel_data/before_pruning/NEW/";
+    static String inputFolder = "./../../Code_kernel_data/after_preprocessing/FINAL/test/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
@@ -71,11 +59,6 @@ public class mainframe {
     }
 
     private void methods(String filename, String apiName, String sampleName) {
-        // TextArea txtCodeGoesHere = new TextArea();
-        // consoleText = new TextArea();
-
-        JTextArea txtCodeGoesHere = new JTextArea();
-        consoleText = new JTextArea();
 
         selectedFile = new File(filename);
         selectedFileName = selectedFile.getName();
@@ -84,16 +67,6 @@ public class mainframe {
         System.out.println(selectedFileName);
         System.out.println("***************");
 
-        try {
-            @SuppressWarnings("resource")
-            String content = new Scanner(selectedFile).useDelimiter("\\Z").next();
-            txtCodeGoesHere.setText(content);
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }
-
-        consoleText.setText("----------------------------------------------------\n");
-        randomNumber = rand.nextInt(1000);
         runAnalysisAndMakeGraph(apiName, sampleName);
 
         // ExportToDot
@@ -132,7 +105,7 @@ public class mainframe {
             GraphNode gn = new GraphNode(0, "Entry", "null");
             hrefGraph.addVertex(gn);
 
-            if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, consoleText, "null",
+            if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, "null",
                     selectedFileName, outputFolder + apiName + "/", sampleName + "_" + apiName)) {
                 System.out.println("astPrinter called");
             }

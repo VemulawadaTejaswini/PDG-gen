@@ -15,8 +15,6 @@ import org.jgrapht.DirectedGraph;
 import org.jgrapht.ext.DOTExporter;
 import org.jgrapht.ext.StringEdgeNameProvider;
 import org.jgrapht.ext.StringNameProvider;
-import graphStructures.TextArea;
-
 import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.*;
@@ -47,8 +45,8 @@ public class PDGCore {
 	 * @throws IOException    Signals that an I/O exception has occurred.
 	 */
 	public boolean addFile(FileInputStream inArg,
-			@SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, GraphNode previousNode,
-			JTextArea consoleText, String PrevClass, String selectedFileName, String outputDir, String apiAndSampleName) throws ParseException, IOException {
+			@SuppressWarnings("rawtypes") DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, GraphNode previousNode, 
+			String PrevClass, String selectedFileName, String outputDir, String apiAndSampleName) throws ParseException, IOException {
 		CompilationUnit cu;
 		try {
 			// parse the file
@@ -56,7 +54,7 @@ public class PDGCore {
 			inArg.close();
 			System.out.println("Input File Parsing Done");
 		} catch (Exception e) {
-			consoleText.setText(consoleText.getText() + "Syntatic Error - " + e.getMessage() + "\n");
+			System.out.println("Syntatic Error - " + e.getMessage() + "\n");
 			return false;
 		}
 
@@ -71,7 +69,7 @@ public class PDGCore {
 
 		String[] ParsedName = selectedFileName.split("\\.");
 		System.out.println("***************");
-		System.out.println(selectedFileName);
+		System.out.println("Processing: " + selectedFileName + " of " + apiAndSampleName);
 		System.out.println(ParsedName[0]);
 		System.out.println("***************");
 		File ofile = new File(outputDir + ParsedName[0] + "_" + apiAndSampleName + "_graph_dump.txt");
@@ -107,12 +105,6 @@ public class PDGCore {
 		st.printSymbolTable();
 		System.out.println(">>printSymbolTable Done");
 
-		// check for errors
-		if (cv.errorList.size() != 0) {
-			cv.printSemanticErrors(consoleText);
-		} else {
-			consoleText.setText(consoleText.getText() + "No semantic errors were found\n");
-		}
 		return true;
 	}
 
