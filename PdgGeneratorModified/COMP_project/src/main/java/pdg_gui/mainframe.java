@@ -57,7 +57,7 @@ public class mainframe {
         ArrayList<String> listOfFolders = new ArrayList<String>();
         File directory = new File(dirPath);
         for (File folder : directory.listFiles()) {
-            if(!folder.getAbsolutePath().endsWith("DS_Store")){
+            if (!folder.getAbsolutePath().endsWith("DS_Store")) {
                 listOfFolders.add(folder.getAbsolutePath());
             }
         }
@@ -101,7 +101,8 @@ public class mainframe {
         try {
             checkIfFolderExists(outputFolder + apiName + "/");
             GraphNode.exporting = true;
-            String fn = selectedFileName.substring(0, selectedFileName.length() - 5) + "_" + sampleName + "_" + apiName + ".dot";
+            String fn = selectedFileName.substring(0, selectedFileName.length() - 5) + "_" + sampleName + "_" + apiName
+                    + ".dot";
 
             out = new FileOutputStream(outputFolder + apiName + "/" + fn);
             @SuppressWarnings("rawtypes")
@@ -145,21 +146,30 @@ public class mainframe {
         new PDGCore();
         try {
             mainframe obj = new mainframe();
-            ArrayList<String> folders = getListOfFolders(inputFolder);
-            // System.out.println("\n\nAPI Folders: " + folders);
-            for(String folder : folders){
-                int lastIndex = folder.lastIndexOf("\\");
-                String apiName = folder.substring(lastIndex + 1);
-                // System.out.println("\n\nFolder Name: " + folder);
-                System.out.println("\n\nAPI Name: " + apiName);
-                ArrayList<String> files = getListOfFiles(folder);
-                for (String file : files) {
-                    // System.out.println("\n\nFile Name: " + file);
-                    int lastIndexInFile1 = file.lastIndexOf("\\");
-                    int lastIndexInFile2 = file.lastIndexOf("\\", lastIndexInFile1 - 1);
-                    String sampleName = file.substring(lastIndexInFile2 + 1, lastIndexInFile1);
-                    // System.out.println("\n\nsampleName: " + sampleName);
-                    obj.methods(file, apiName, sampleName);
+            boolean isOnlyFile = true;
+            if (isOnlyFile) {
+                outputFolder = "D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/PdgGeneratorModified/test_folder/";
+                String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\CodeKernel_Manual_Data\\Processed_data\\after_preprocessing\\FilenameUtils.normalize\\sample-0\\68_0.java"; 
+                String apiName = "FilenameUtils.normalize";
+                String sampleName = "sample-0";
+                obj.methods(file, apiName, sampleName);
+            } else {
+                ArrayList<String> folders = getListOfFolders(inputFolder);
+                // System.out.println("\n\nAPI Folders: " + folders);
+                for (String folder : folders) {
+                    int lastIndex = folder.lastIndexOf("\\");
+                    String apiName = folder.substring(lastIndex + 1);
+                    // System.out.println("\n\nFolder Name: " + folder);
+                    System.out.println("\n\nAPI Name: " + apiName);
+                    ArrayList<String> files = getListOfFiles(folder);
+                    for (String file : files) {
+                        // System.out.println("\n\nFile Name: " + file);
+                        int lastIndexInFile1 = file.lastIndexOf("\\");
+                        int lastIndexInFile2 = file.lastIndexOf("\\", lastIndexInFile1 - 1);
+                        String sampleName = file.substring(lastIndexInFile2 + 1, lastIndexInFile1);
+                        // System.out.println("\n\nsampleName: " + sampleName);
+                        obj.methods(file, apiName, sampleName);
+                    }
                 }
             }
         } catch (Exception e) {

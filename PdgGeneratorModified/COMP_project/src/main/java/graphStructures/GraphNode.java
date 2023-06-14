@@ -12,7 +12,7 @@ public class GraphNode {
     
     /** The id. */
     private int id;
-    
+
     /** The exporting. */
     public static boolean exporting = false;
 
@@ -75,5 +75,13 @@ public class GraphNode {
 
     public void ReAssign(String infor){
         this.info = infor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
