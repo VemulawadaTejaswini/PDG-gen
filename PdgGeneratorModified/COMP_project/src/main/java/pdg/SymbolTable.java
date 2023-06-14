@@ -747,6 +747,17 @@ class SymbolTable {
                 return  new ReturnObject("error:repeated method declaration of "+methodScp.Name+", please use different identifiers for methods in same class");
 
             nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
+            
+            // To process method parameters
+            for(Node child: node.getChildrenNodes()){
+                if(child.getClass().equals(com.github.javaparser.ast.body.Parameter.class)) {
+                    for(Node childNode : child.getChildrenNodes()){
+                        if(childNode.getClass().equals(com.github.javaparser.ast.body.VariableDeclaratorId.class)) {
+                            lastScope.varChanges.add(new VarChanges(nodeToSend, childNode.toString()));
+                        }
+                    }
+                }
+            }
         }
 
         else if(node.getClass().equals(com.github.javaparser.ast.body.Parameter.class)){
@@ -1070,6 +1081,25 @@ class SymbolTable {
         }
     }
 
+    // This method is to consider complete line by looking at STMT node in parents
+    private GraphNode getExpressionNode(Node node) {
+        GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString(), node.getClass().toString());
+        Node parentNode = node;
+        while (parentNode != null) {
+            if ((com.github.javaparser.ast.stmt.Statement.class).isAssignableFrom(parentNode.getClass())) {
+                newNode.setId(parentNode.getBeginLine());
+                String parentNodeCode = parentNode.toString().strip();
+                newNode.ReAssign(
+                        parentNodeCode.charAt(parentNodeCode.length() - 1) == ';'
+                                ? parentNodeCode.substring(0, parentNodeCode.length() - 1)
+                                : parentNodeCode);
+                break;
+            }
+            parentNode = parentNode.getParentNode();
+        }
+        return newNode;
+    }
+
     /**
      * Adds the node and edge to graph.
      *
@@ -1084,8 +1114,9 @@ class SymbolTable {
                                             GraphNode previousNode, boolean loop,FileOutputStream out) {
         GraphNode nodeToSend = null;
         try{
-            GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString(), node.getClass().toString());
+            //GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString(), node.getClass().toString());
             // hrefGraph.addVertex(newNode);
+            GraphNode newNode = getExpressionNode(node);
             System.out.println("$$ addNodeAndEdgeToGraph Called");
             
             if(previousNode == null){

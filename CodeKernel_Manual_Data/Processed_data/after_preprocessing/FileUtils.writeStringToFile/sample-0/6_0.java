@@ -1,5 +1,5 @@
 public class dummy {
-public Git(@NotNull final File key,
+public void Git(@NotNull final File key,
         @NotNull final File temp) throws IOException {
         if (!new File(Git.SSH).exists()) {
             throw new IllegalStateException(

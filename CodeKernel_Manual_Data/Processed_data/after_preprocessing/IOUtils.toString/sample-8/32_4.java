@@ -1,5 +1,5 @@
 public class dummy {
-public Phandom(@NotNull final InputStream stream) throws IOException {
-        this(IOUtils.toString(stream, CharEncoding.UTF_8));
+public void Phandom(@NotNull final InputStream stream) throws IOException {
+        String result = IOUtils.toString(stream, CharEncoding.UTF_8);
     }
 }

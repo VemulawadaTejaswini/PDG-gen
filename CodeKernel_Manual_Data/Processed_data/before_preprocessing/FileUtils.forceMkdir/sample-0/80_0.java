@@ -1,6 +1,6 @@
 public class dummy {
 
-public void start() {
+public void start(File dataDir) {
         super.start();
         Assert.notNull(dataDir);
         if (!dataDir.exists()) {

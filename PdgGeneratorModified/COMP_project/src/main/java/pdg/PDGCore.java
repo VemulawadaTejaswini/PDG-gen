@@ -74,7 +74,10 @@ public class PDGCore {
 		System.out.println(selectedFileName);
 		System.out.println(ParsedName[0]);
 		System.out.println("***************");
-		out = new FileOutputStream(outputDir + ParsedName[0] + "_" + apiAndSampleName + "_graph_dump.txt");
+		File ofile = new File(outputDir + ParsedName[0] + "_" + apiAndSampleName + "_graph_dump.txt");
+		ofile.getParentFile().mkdirs(); // Will create parent directories if not exists
+		ofile.createNewFile(); // if file already exists will do nothing
+		out = new FileOutputStream(ofile, false);
 		
 		try {
 			cv.semanticAnalysis(cu, hrefGraph, previousNode, new ArrayList<>(), out);
