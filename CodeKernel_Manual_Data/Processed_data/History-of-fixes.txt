@@ -1,0 +1,27 @@
+Manual data reduction reasons and fix
+
+18_0_sample-0_IOUtils.toString.dot - Fixed (some internal error was coming from Java parser, just caught and handled that)
+10_2_sample-0_FileUtils.writeStringToFile.dot - Fixed (For unknown reason, file I/O was giving error)
+75_0_sample-0_FileUtils.forceMkdir.dot - Fixed (For unknown reason, file I/O was giving error)
+68_0_sample-0_FilenameUtils.normalize.dot - Fixed (For unknown reason, file I/O was giving error)
+
+84_0_sample-0_IOUtils.toByteArray.dot - Fixed (Some unreadable chars were present in the original file) - Not fully fixed
+- FD between Line-2 to Line-8 is not right (inlining should fix the issue) - Fixed
+- For Line 18, complete code is not there (Along with inlining, during pruning, consider the complete code from actual java file)
+- Try-Catch is not being processed (is it right?)
+- Throw is also not processed (CD can be added with previous node)
+- Fix return statement processing (if some variable is returned, FD is not present)
+
+6_0_sample-0_FileUtils.writeStringToFile_graph_dump.txt (only entry to class edge is there) - Fixed (changed the constructor to method in the data)
+
+92_4_sample-4_IOUtils.toByteArray_graph_dump.txt (Usage is at return which is not processed)
+- Have to consider method parameters - Fixed (considering method parameters as normal variable changes in the scope)
+- Line-4 is not complete in PDG at times - Fixed (looking for return-stmt in parents)
+
+32_4_sample-8_IOUtils.toString_graph_dump.txt - Fixed (changed the constructor to method in the data and removed this() call)
+
+77_0_sample-0_FileUtils.forceMkdir_graph_dump.txt (No edge to API node) - Fixed (passing dataDir as parameter to method)
+80_0_sample-0_FileUtils.forceMkdir_graph_dump.txt - Fixed (passing dataDir as parameter to method)
+
+28_1_sample-1_IOUtils.toString_graph_dump.txt - Fixed (API call was coming but full line wasn't coming)
+34_6_sample-6_IOUtils.toString_graph_dump.txt - Fixed (Return statement processing and using the parameter of method call)
