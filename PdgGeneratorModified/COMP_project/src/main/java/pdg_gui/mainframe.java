@@ -28,7 +28,7 @@ public class mainframe {
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
     private JTextArea consoleText;
-    static String outputFolder = "./../../CodeKernel_Manual_Data/Processed_data/before_pruning/";
+    static String outputFolder = "./../../CodeKernel_Manual_Data/Processed_data/before_pruning/NEW/";
     static String inputFolder = "./../../CodeKernel_Manual_Data/Processed_data/after_preprocessing/";
     static int randomNumber = -1;
     static Random rand = new Random();
@@ -146,7 +146,7 @@ public class mainframe {
         new PDGCore();
         try {
             mainframe obj = new mainframe();
-            boolean isOnlyFile = true;
+            boolean isOnlyFile = false;
             if (isOnlyFile) {
                 outputFolder = "D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/PdgGeneratorModified/test_folder/";
                 String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\CodeKernel_Manual_Data\\Processed_data\\after_preprocessing\\FilenameUtils.normalize\\sample-0\\68_0.java"; 
