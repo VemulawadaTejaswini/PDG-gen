@@ -1,0 +1,5 @@
+Line_7 $$ HttpResponse response = Http.CLIENT.execute(new HttpGet(url)) --> Line_8 $$ Header disposition = response.getFirstHeader("Content-disposition") [FD]
+Line_7 $$ HttpResponse response = Http.CLIENT.execute(new HttpGet(url)) --> Line_9 $$ HttpEntity entity = response.getEntity() [FD]
+Line_8 $$ Header disposition = response.getFirstHeader("Content-disposition") --> Line_10 $$ if (disposition == null) [FD]
+Line_10 $$ if (disposition == null) --> Line_11 $$ return new Result<com.belerweb.social.weixin.bean.Media>(Error.parse(new JSONObject(IOUtils.toString(entity.getContent())))) [CD]
+Line_9 $$ HttpEntity entity = response.getEntity() --> Line_11 $$ return new Result<com.belerweb.social.weixin.bean.Media>(Error.parse(new JSONObject(IOUtils.toString(entity.getContent())))) [FD]

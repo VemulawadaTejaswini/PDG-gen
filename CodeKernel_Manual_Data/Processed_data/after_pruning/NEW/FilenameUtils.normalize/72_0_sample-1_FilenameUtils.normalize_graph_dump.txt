@@ -1,0 +1,7 @@
+Line_2 $$ public List<FileInfo> readFiles(final String path) throws IOException, InstantiationException, IllegalAccessException --> Line_5 $$ final File directory = new File(path) [CD]
+Line_2 $$ public List<FileInfo> readFiles(final String path) throws IOException, InstantiationException, IllegalAccessException --> Line_11 $$ final String canonicalBaseDirectory = directory.getCanonicalPath() [CD]
+Line_5 $$ final File directory = new File(path) --> Line_11 $$ final String canonicalBaseDirectory = directory.getCanonicalPath() [FD]
+Line_12 $$ for (final File file : allFiles) --> Line_14 $$ final String canonicalFilePath = FilenameUtils.getFullPathNoEndSeparator(file.getCanonicalPath()) [FD]
+Line_14 $$ final String canonicalFilePath = FilenameUtils.getFullPathNoEndSeparator(file.getCanonicalPath()) --> Line_15 $$ final String subDirectory = FilenameUtils.normalize(StringUtils.replaceOnce(canonicalFilePath, canonicalBaseDirectory, "") + pathSeparator) [FD]
+Line_11 $$ final String canonicalBaseDirectory = directory.getCanonicalPath() --> Line_15 $$ final String subDirectory = FilenameUtils.normalize(StringUtils.replaceOnce(canonicalFilePath, canonicalBaseDirectory, "") + pathSeparator) [FD]
+Line_15 $$ final String subDirectory = FilenameUtils.normalize(StringUtils.replaceOnce(canonicalFilePath, canonicalBaseDirectory, "") + pathSeparator) --> Line_17 $$ fileInfo.setRelativeSubDirectory(subDirectory) [FD]
