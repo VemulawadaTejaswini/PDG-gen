@@ -141,8 +141,8 @@ def get_pruned_pdg(pdg_file, output_pdg_file, api_name):
 
     return output_pdg_file, len(edge_data_list)
 
-PDG_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/before_pruning/NEW"
-OUTPUT_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/CodeKernel_Manual_Data/Processed_data/after_pruning/NEW"
+PDG_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Code_kernel_data/before_pruning/NEW"
+OUTPUT_FOLDER_LOCATION = "/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Code_kernel_data/after_pruning/NEW"
 pdg_folders_list = glob.glob(PDG_FOLDER_LOCATION + "/*/")
 print("\nNumber of total APIs: {}\n".format(len(pdg_folders_list)))
 for folder in tqdm.tqdm(pdg_folders_list):
