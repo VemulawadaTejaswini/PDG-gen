@@ -13,6 +13,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParserConfiguration;
@@ -34,6 +37,23 @@ public class App {
         // Set the output file path
         String outputFilePath = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Code2Seq-Data\\java-small\\processed-data\\";
 
+        // setup logger
+        Logger logger = Logger.getLogger("MyLog");
+        FileHandler fh;
+        try {
+            // This block configure the logger with handler and formatter
+            fh = new FileHandler("D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\Java_Method_Extractor\\java_method_extractor\\logger.log");
+            logger.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+            logger.setUseParentHandlers(false);
+            logger.info("Logger initialized!");
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try {
             FileWriter fileWriter = new FileWriter(outputFilePath + "output.txt");
             Set<String> set = new HashSet<String>();
@@ -49,10 +69,10 @@ public class App {
             // Get all files in the directory
             File directory = new File(directoryPath);
             try {
-                listFilesRecursive(directory, javaParser, set, function_set, outputFilePath);
+                listFilesRecursive(directory, javaParser, set, function_set, outputFilePath, logger);
                 //
             } catch (Exception e) {
-                System.out.println("10");
+                logger.info("10");
 
             }
 
@@ -63,15 +83,15 @@ public class App {
 
         } catch (Exception e) {
             // Handle the exception
-            System.out.println("Error writing to output file.");
+            logger.info("Error writing to output file.");
         }
 
-        // System.out.println(count_folder);
+        // logger.info(count_folder);
 
     }
 
     private static void processJavaFile(File javaFile, JavaParser javaParser, Set<String> set, Set<String> function_set,
-            String outputFilePath) throws IOException {
+            String outputFilePath, Logger logger) throws IOException {
         // Parse the Java file
         CompilationUnit cu = javaParser.parse(javaFile).getResult().orElse(null);
         if (cu == null) {
@@ -100,10 +120,10 @@ public class App {
                                 methodFolder.mkdir();
                                 count_generated_folders += 1;
                             }
-                            // System.out.println(fullyQualifiedName);
+                            // logger.info(fullyQualifiedName);
                             String newDataPointFile = outputFilePath + fullyQualifiedName + "\\" + method.getName()
                                     + ".java";
-                            // System.out.println(newDataPointFile);
+                            // logger.info(newDataPointFile);
                             if (function_set.contains(method.toString()) == false) {
                                 count_method_in_folders += 1;
                                 function_set.add(method.toString());
@@ -111,49 +131,49 @@ public class App {
                             writeFile(newDataPointFile, method.toString());
                         }
                     } catch (UnsolvedSymbolException e) {
-                        // System.out.println("1");
+                        // logger.info("1");
 
                     } catch (UnsupportedOperationException e) {
-                        // System.out.println("2");
+                        // logger.info("2");
                     } catch (java.lang.RuntimeException e) {
-                        // System.out.println("3");
+                        // logger.info("3");
                     } catch (Exception e) {
-                        // System.out.println("4");
+                        // logger.info("4");
 
                     }
                 }
             } catch (Exception e) {
-                // System.out.println("5");
+                // logger.info("5");
             }
         }
     }
 
     private static void listFilesRecursive(File directory, JavaParser javaParser, Set<String> set,
-            Set<String> function_set, String outputFilePath) throws IOException {
+            Set<String> function_set, String outputFilePath, Logger logger) throws IOException {
         try {
             for (File file : directory.listFiles()) {
                 try {
                     if (file.isDirectory()) {
                         try {
-                            listFilesRecursive(file, javaParser, set, function_set, outputFilePath);
+                            listFilesRecursive(file, javaParser, set, function_set, outputFilePath, logger);
                         } catch (Exception e) {
-                            System.out.println("helo" + file);
+                            logger.info("helo" + file);
                         }
                     } else if (file.getName().endsWith(".java")) {
                         try {
-                            System.out.println("Processing: " + file.getName());
-                            processJavaFile(file, javaParser, set, function_set, outputFilePath);
+                            logger.info("Processing: " + file.getAbsolutePath());
+                            processJavaFile(file, javaParser, set, function_set, outputFilePath, logger);
                         } catch (Exception e) {
-                            System.out.println("hell" + file);
+                            logger.info("hell" + file);
                         }
                     }
                 } catch (Exception e) {
-                    // System.out.println("7");
+                    // logger.info("7");
 
                 }
             }
         } catch (Exception e) {
-            System.out.println("8");
+            logger.info("8");
 
         }
     }
