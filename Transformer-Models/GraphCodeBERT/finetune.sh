@@ -1,0 +1,20 @@
+python3 run.py \
+    --output_dir=/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Transformer-Models/GraphCodeBERT/output/cryptoapi-bench \
+    --config_name=microsoft/graphcodebert-base \
+    --model_name_or_path=microsoft/graphcodebert-base \
+    --tokenizer_name=microsoft/graphcodebert-base \
+    --do_train \
+    --do_test \
+    --do_eval \
+    --train_data_file=/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Benchmarks/CryptoAPI-Bench/Processed-data/train_dataset.jsonl \
+    --eval_data_file=/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Benchmarks/CryptoAPI-Bench/Processed-data/valid_dataset.jsonl \
+    --test_data_file=/raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Benchmarks/CryptoAPI-Bench/Processed-data/test_dataset.jsonl \
+    --epoch 5 \
+    --code_length 512 \
+    --data_flow_length 128 \
+    --train_batch_size 8 \
+    --eval_batch_size 4 \
+    --learning_rate 2e-5 \
+    --max_grad_norm 1.0 \
+    --evaluate_during_training \
+    --seed 123456 2>&1| tee /raid/tamalm/API-Misuse-Research/PDG-Gen/Repository/Transformer-Models/GraphCodeBERT/output/cryptoapi-bench/train.log
