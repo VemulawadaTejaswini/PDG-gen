@@ -27,6 +27,10 @@ from torch_geometric.nn import global_add_pool, global_mean_pool, global_max_poo
 
 from tensorboardX import SummaryWriter
 
+## NEW IMPORTS
+import random
+import platform
+
 def pool_func(x, batch, mode = "sum"):
     if mode == "sum":
         return global_add_pool(x, batch)
@@ -134,16 +138,16 @@ def main():
     parser.add_argument('--dataset', type=str, default = 'zinc_standard_agent', help='root directory of dataset for pretraining')
     parser.add_argument('--output_model_file', type=str, default = '', help='filename to output the model')
     parser.add_argument('--gnn_type', type=str, default="gin")
-    parser.add_argument('--seed', type=int, default=0, help = "Seed for splitting dataset.")
+    parser.add_argument('--seed', type=int, default=seed, help = "Seed for splitting dataset.")
     parser.add_argument('--num_workers', type=int, default = 8, help='number of workers for dataset loading')
     args = parser.parse_args()
 
-    torch.manual_seed(0)
-    np.random.seed(0)
+    torch.manual_seed(seed)
+    np.random.seed(seed)
     os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
     if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(0)
+        torch.cuda.manual_seed_all(seed)
 
     l1 = args.num_layer - 1
     l2 = l1 + args.csize
@@ -152,7 +156,12 @@ def main():
     print("num layer: %d l1: %d l2: %d" %(args.num_layer, l1, l2))
 
     #set up dataset and transform function.
-    dataset = MoleculeDataset("/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/Pretrain-GNN/Repository/chem/dataset/" + args.dataset, dataset=args.dataset, transform = ExtractSubstructureContextPair(args.num_layer, l1, l2))
+    dataset_root = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/Pretrain-GNN/Repository/chem/dataset/" + args.dataset
+    
+    args.dataset = "pdg_training_data"
+    dataset_root = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/dataset"
+    
+    dataset = MoleculeDataset(dataset_root, dataset=args.dataset, transform = ExtractSubstructureContextPair(args.num_layer, l1, l2))
     loader = DataLoaderSubstructContext(dataset, batch_size=args.batch_size, shuffle=True, num_workers = args.num_workers)
 
     #set up models, one for pre-training and one for context embeddings
@@ -171,6 +180,23 @@ def main():
 
     if not args.output_model_file == "":
         torch.save(model_substruct.state_dict(), args.output_model_file + ".pth")
+
+
+# To ensure determinism
+seed = 1234
+def seed_everything(seed: int):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    torch.backends.cudnn.deterministic = True
+seed_everything(seed)
+
+# Check versions
+print("Torch version: ", torch.__version__)
+print("Torch cuda version: ", torch.version.cuda)
+print("Python version: ", platform.python_version())
 
 if __name__ == "__main__":
     #cycle_index(10,2)
