@@ -184,6 +184,39 @@ def graph_data_obj_to_nx_simple(data):
 
     return G
 
+def graph_data_obj_to_nx_simple_pdg(data):
+    """
+    Converts graph Data object required by the pytorch geometric package to
+    network x data object. NB: Uses simplified atom and bond features,
+    and represent as indices. NB: possible issues with recapitulating relative
+    stereochemistry since the edges in the nx object are unordered.
+    :param data: pytorch geometric Data object
+    :return: network x object
+    """
+    G = nx.Graph()
+
+    # node
+    node_features = data.x.cpu().numpy()
+    #node_inslength = data.ins_length.cpu().numpy()
+    num_nodes = node_features.shape[0]
+    for i in range(num_nodes):
+        feat = node_features[i]
+        G.add_node(i, feat = feat, ins_length = len(feat))
+        
+
+    # edge
+    edge_index = data.edge_index.cpu().numpy()
+    edge_attr = data.edge_attr.cpu().numpy()
+    num_edges = edge_index.shape[1]
+    for j in range(num_edges):
+        begin_idx = int(edge_index[0, j])
+        end_idx = int(edge_index[1, j])
+        label = edge_attr[j]
+        if not G.has_edge(begin_idx, end_idx):
+            G.add_edge(begin_idx, end_idx, label=label)
+
+    return G
+
 def nx_to_graph_data_obj_simple(G):
     """
     Converts nx graph to pytorch geometric Data object. Assume node indices
@@ -226,6 +259,49 @@ def nx_to_graph_data_obj_simple(G):
 
     data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
 
+    return data
+
+def nx_to_graph_data_obj_simple_pdg(G):
+    """
+    Converts nx graph to pytorch geometric Data object. Assume node indices
+    are numbered from 0 to num_nodes - 1. NB: Uses simplified atom and bond
+    features, and represent as indices. NB: possible issues with
+    recapitulating relative stereochemistry since the edges in the nx
+    object are unordered.
+    :param G: nx graph obj
+    :return: pytorch geometric Data object
+    """
+    # nodes, node feat, node type
+    node_features_list = []
+    ins_length_list = []
+    for _, node in G.nodes(data=True):
+        node_feature = node['feat']
+        node_features_list.append(node_feature)
+        ins_length_list.append( node["ins_length"] )
+      
+    x = torch.tensor(np.array(node_features_list), dtype=torch.long )
+    ins_length = torch.tensor( np.array( ins_length_list), dtype=torch.long )
+
+    # edges, edge type
+    if len(G.edges()) > 0:  
+        edges_list = []
+        edge_label_list = []
+        for i, j, edge in G.edges(data=True):
+            edge_type =  edge['label'] 
+            #edge_dir = edge['edge_dir']
+            edges_list.append((i, j))
+ 
+            edge_label_list.append([edge_type])
+                                  
+        edge_index = torch.tensor(np.array(edges_list).T, dtype=torch.long )
+        edge_attr = torch.tensor(np.array(edge_label_list), dtype=torch.long)
+    else:  
+        edge_index = torch.empty((2, 0), dtype=torch.long)
+        edge_attr = torch.empty((0, 2), dtype=torch.long)
+
+    assert edge_index.shape[-1] == len(edge_attr), f"{edge_index}, {edge_attr.shape}, {len(G.nodes()) }"
+    data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
+    data.ins_length = ins_length
     return data
 
 def get_gasteiger_partial_charges(mol, n_iter=12):
@@ -372,7 +448,7 @@ class MoleculeDataset(InMemoryDataset):
         for key in self.data.keys:
             item, slices = self.data[key], self.slices[key]
             s = list(repeat(slice(None), item.dim()))
-            s[data.cat_dim(key, item)] = slice(slices[idx],
+            s[data.__cat_dim__(key, item)] = slice(slices[idx],
                                                     slices[idx + 1])
             data[key] = item[s]
         return data
@@ -394,12 +470,11 @@ class MoleculeDataset(InMemoryDataset):
                                   'No download allowed')
 
     def process(self):
-        data_smiles_list = []
         data_list = []
-        
         if self.dataset == 'pdg_training_data':
             input_folder_paths = self.raw_paths
             count = 0
+            data_mapping = open("/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/dataset_mapping.txt","w")
             for label, folder in tqdm.tqdm(enumerate(input_folder_paths)):
                 print("\nProcessing: {}\n".format(folder))
                 files = glob.glob(os.path.join(folder, '*.txt'))
@@ -436,44 +511,20 @@ class MoleculeDataset(InMemoryDataset):
                     edge_index_CD = torch.tensor(edge_indices_CD, dtype=torch.long).t().contiguous()
                     edge_index_FD = torch.tensor(edge_indices_FD, dtype=torch.long).t().contiguous()
                     edge_index = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
-                    edge_type = torch.tensor(edge_type, dtype=torch.long).t().contiguous()
+                    edge_attr = torch.tensor(edge_type, dtype=torch.long).t().contiguous()
                     #print(edge_index_CD, edge_index_FD, edge_index, edge_type)
   
-                    data = Data(edge_index=edge_index, edge_type=edge_type, x=x)
+                    data = Data(edge_index=edge_index, edge_attr=edge_attr, x=x)
                     data.id = torch.tensor([count])
                     data.y = y
-                    data.num_nodes = len(nodes_dict)
-                    data.api = file_name
+                    # data.num_nodes = len(nodes_dict)
+                    # data.api = file_name
                     data_list.append(data)
+                    print("ID: {} and File Name: {}".format(count, file_name))
+                    data_mapping.write("ID: {} --> File Name: {}\n".format(count, file_name))
                     count += 1
-
-        elif self.dataset == 'zinc_standard_agent':
-            input_path = self.raw_paths[0]
-            input_df = pd.read_csv(input_path, sep=',', compression='gzip',
-                                   dtype='str')
-            smiles_list = list(input_df['smiles'])
-            zinc_id_list = list(input_df['zinc_id'])
-            for i in range(len(smiles_list)):
-                print(i)
-                s = smiles_list[i]
-                # each example contains a single species
-                try:
-                    rdkit_mol = AllChem.MolFromSmiles(s)
-                    if rdkit_mol != None:  # ignore invalid mol objects
-                        # # convert aromatic bonds to double bonds
-                        # Chem.SanitizeMol(rdkit_mol,
-                        #                  sanitizeOps=Chem.SanitizeFlags.SANITIZE_KEKULIZE)
-                        data = mol_to_graph_data_obj_simple(rdkit_mol)
-                        # manually add mol id
-                        id = int(zinc_id_list[i].split('ZINC')[1].lstrip('0'))
-                        data.id = torch.tensor(
-                            [id])  # id here is zinc id value, stripped of
-                        # leading zeros
-                        data_list.append(data)
-                        data_smiles_list.append(smiles_list[i])
-                except:
-                    continue
-                
+                    
+            data_mapping.close()
         else:
             raise ValueError('Invalid dataset name')
 

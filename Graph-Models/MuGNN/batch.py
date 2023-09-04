@@ -200,14 +200,18 @@ class BatchSubstructContext(Data):
                 cumsum_context += num_nodes_context
                 i += 1
 
-        for key in keys:
-            batch[key] = torch.cat(
-                batch[key], dim=batch.cat_dim(key))
-        #batch.batch = torch.cat(batch.batch, dim=-1)
-        batch.batch_overlapped_context = torch.cat(batch.batch_overlapped_context, dim=-1)
-        batch.overlapped_context_size = torch.LongTensor(batch.overlapped_context_size)
+        try:
+            for key in keys:
+                batch[key] = torch.cat(
+                    batch[key], dim=batch.cat_dim(key))
+            #batch.batch = torch.cat(batch.batch, dim=-1)
+            batch.batch_overlapped_context = torch.cat(batch.batch_overlapped_context, dim=-1)
+            batch.overlapped_context_size = torch.LongTensor(batch.overlapped_context_size)
 
-        return batch.contiguous()
+            return batch.contiguous()
+        except Exception as e:
+            print("\nERROR: ", e)
+            return None
 
     def cat_dim(self, key):
         return -1 if key in ["edge_index", "edge_index_substruct", "edge_index_context"] else 0

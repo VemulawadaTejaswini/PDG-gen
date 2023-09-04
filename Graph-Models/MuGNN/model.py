@@ -1,6 +1,6 @@
 import torch
 from torch_geometric.nn import MessagePassing
-from torch_geometric.utils import add_self_loops, degree, softmax
+from torch_geometric.utils import add_self_loops, degree, softmax, remove_self_loops
 from torch_geometric.nn import global_add_pool, global_mean_pool, global_max_pool, GlobalAttention, Set2Set
 import torch.nn.functional as F
 from torch_scatter import scatter_add
@@ -9,8 +9,8 @@ from torch_geometric.nn.inits import glorot, zeros
 num_atom_type = 120 #including the extra mask tokens
 num_chirality_tag = 3
 
-num_bond_type = 6 #including aromatic and self-loop edge, and extra masked tokens
-num_bond_direction = 3 
+num_bond_type = 3 #including aromatic and self-loop edge, and extra masked tokens
+num_bond_direction = 2
 
 class GINConv(MessagePassing):
     """
@@ -36,17 +36,18 @@ class GINConv(MessagePassing):
 
     def forward(self, x, edge_index, edge_attr):
         #add self loops in the edge space
-        edge_index = add_self_loops(edge_index, num_nodes = x.size(0))
-
+        edge_index, edge_attr = remove_self_loops(edge_index, edge_attr)
+        edge_index,_ = add_self_loops(edge_index, num_nodes = x.size(0))
+        #print(len(x), len(edge_index), len(edge_attr))
         #add features corresponding to self-loop edges.
-        self_loop_attr = torch.zeros(x.size(0), 2)
-        self_loop_attr[:,0] = 4 #bond type for self-loop edge
+        self_loop_attr = torch.zeros(x.size(0), 1)
+        self_loop_attr[:,0] = 2 # Cosidering self-loop = 2
         self_loop_attr = self_loop_attr.to(edge_attr.device).to(edge_attr.dtype)
         edge_attr = torch.cat((edge_attr, self_loop_attr), dim = 0)
 
-        edge_embeddings = self.edge_embedding1(edge_attr[:,0]) + self.edge_embedding2(edge_attr[:,1])
-
-        return self.propagate(self.aggr, edge_index, x=x, edge_attr=edge_embeddings)
+        edge_embeddings = self.edge_embedding1(edge_attr[:,0])
+        #print(edge_index)
+        return self.propagate(edge_index, x=x, edge_attr=edge_embeddings)
 
     def message(self, x_j, edge_attr):
         return x_j + edge_attr
@@ -261,7 +262,7 @@ class GNN(torch.nn.Module):
         else:
             raise ValueError("unmatched number of arguments.")
 
-        x = self.x_embedding1(x[:,0]) + self.x_embedding2(x[:,1])
+        # x = self.x_embedding1(x[:,0]) + self.x_embedding2(x[:,1])
 
         h_list = [x]
         for layer in range(self.num_layer):

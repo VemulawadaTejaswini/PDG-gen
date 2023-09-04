@@ -105,7 +105,7 @@ def train(args, model_substruct, model_context, loader, optimizer_substruct, opt
         balanced_loss_accum += float(loss_pos.detach().cpu().item() + loss_neg.detach().cpu().item())
         acc_accum += 0.5* (float(torch.sum(pred_pos > 0).detach().cpu().item())/len(pred_pos) + float(torch.sum(pred_neg < 0).detach().cpu().item())/len(pred_neg))
 
-    return balanced_loss_accum/step, acc_accum/step
+    return balanced_loss_accum/(step+1), acc_accum/(step+1)
 
 def main():
     # Training settings
@@ -124,7 +124,7 @@ def main():
                         help='number of GNN message passing layers (default: 5).')
     parser.add_argument('--csize', type=int, default=3,
                         help='context size (default: 3).')
-    parser.add_argument('--emb_dim', type=int, default=300,
+    parser.add_argument('--emb_dim', type=int, default=768,
                         help='embedding dimensions (default: 300)')
     parser.add_argument('--dropout_ratio', type=float, default=0,
                         help='dropout ratio (default: 0)')
@@ -149,11 +149,15 @@ def main():
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
+    args.num_layer = 2
+    args.csize = 3
     l1 = args.num_layer - 1
     l2 = l1 + args.csize
 
     print(args.mode)
     print("num layer: %d l1: %d l2: %d" %(args.num_layer, l1, l2))
+    
+    args.output_model_file = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/model"
 
     #set up dataset and transform function.
     dataset_root = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/Pretrain-GNN/Repository/chem/dataset/" + args.dataset

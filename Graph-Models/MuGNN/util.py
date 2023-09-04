@@ -4,7 +4,7 @@ import random
 import networkx as nx
 import numpy as np
 from torch_geometric.utils import convert
-from loader import graph_data_obj_to_nx_simple, nx_to_graph_data_obj_simple
+from loader import graph_data_obj_to_nx_simple, nx_to_graph_data_obj_simple, graph_data_obj_to_nx_simple_pdg, nx_to_graph_data_obj_simple_pdg
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from loader import mol_to_graph_data_obj_simple, \
@@ -93,61 +93,78 @@ class ExtractSubstructureContextPair:
         data.edge_index_context
         data.overlap_context_substruct_idx
         """
-        num_atoms = data.x.size()[0]
-        if root_idx == None:
+        retry = 0
+        while True:
+            
+            num_atoms = data.x.size()[0]
             root_idx = random.sample(range(num_atoms), 1)[0]
 
-        G = graph_data_obj_to_nx_simple(data)  # same ordering as input data obj
+            G = graph_data_obj_to_nx_simple_pdg(data)  # same ordering as input data obj
 
-        # Get k-hop subgraph rooted at specified atom idx
-        substruct_node_idxes = nx.single_source_shortest_path_length(G,
+            # Get k-hop subgraph rooted at specified atom idx
+            substruct_node_idxes = nx.single_source_shortest_path_length(G,
                                                                      root_idx,
                                                                      self.k).keys()
-        if len(substruct_node_idxes) > 0:
-            substruct_G = G.subgraph(substruct_node_idxes)
-            substruct_G, substruct_node_map = reset_idxes(substruct_G)  # need
-            # to reset node idx to 0 -> num_nodes - 1, otherwise data obj does not
-            # make sense, since the node indices in data obj must start at 0
-            substruct_data = nx_to_graph_data_obj_simple(substruct_G)
-            data.x_substruct = substruct_data.x
-            data.edge_attr_substruct = substruct_data.edge_attr
-            data.edge_index_substruct = substruct_data.edge_index
-            data.center_substruct_idx = torch.tensor([substruct_node_map[
+            if len(substruct_node_idxes) > 0:
+                substruct_G = G.subgraph(substruct_node_idxes)
+                substruct_G, substruct_node_map = reset_idxes(substruct_G)  # need
+                # to reset node idx to 0 -> num_nodes - 1, otherwise data obj does not
+                # make sense, since the node indices in data obj must start at 0
+                substruct_data = nx_to_graph_data_obj_simple_pdg(substruct_G)
+                data.x_substruct = substruct_data.x
+                data.edge_attr_substruct = substruct_data.edge_attr
+                data.edge_index_substruct = substruct_data.edge_index
+                data.center_substruct_idx = torch.tensor([substruct_node_map[
                                                           root_idx]])  # need
-            # to convert center idx from original graph node ordering to the
-            # new substruct node ordering
+                # to convert center idx from original graph node ordering to the
+                # new substruct node ordering
 
-        # Get subgraphs that is between l1 and l2 hops away from the root node
-        l1_node_idxes = nx.single_source_shortest_path_length(G, root_idx,
+            # Get subgraphs that is between l1 and l2 hops away from the root node
+            l1_node_idxes = nx.single_source_shortest_path_length(G, root_idx,
                                                               self.l1).keys()
-        l2_node_idxes = nx.single_source_shortest_path_length(G, root_idx,
+            l2_node_idxes = nx.single_source_shortest_path_length(G, root_idx,
                                                               self.l2).keys()
-        context_node_idxes = set(l1_node_idxes).symmetric_difference(
-            set(l2_node_idxes))
-        if len(context_node_idxes) > 0:
-            context_G = G.subgraph(context_node_idxes)
-            context_G, context_node_map = reset_idxes(context_G)  # need to
-            # reset node idx to 0 -> num_nodes - 1, otherwise data obj does not
-            # make sense, since the node indices in data obj must start at 0
-            context_data = nx_to_graph_data_obj_simple(context_G)
-            data.x_context = context_data.x
-            data.edge_attr_context = context_data.edge_attr
-            data.edge_index_context = context_data.edge_index
+            context_node_idxes = set(l1_node_idxes).symmetric_difference(
+                set(l2_node_idxes))
+            if len(context_node_idxes) > 0:
+                context_G = G.subgraph(context_node_idxes)
+                context_G, context_node_map = reset_idxes(context_G)  # need to
+                # reset node idx to 0 -> num_nodes - 1, otherwise data obj does not
+                # make sense, since the node indices in data obj must start at 0
+                context_data = nx_to_graph_data_obj_simple_pdg(context_G)
+                data.x_context = context_data.x
+                data.edge_attr_context = context_data.edge_attr
+                data.edge_index_context = context_data.edge_index
 
-        # Get indices of overlapping nodes between substruct and context,
-        # WRT context ordering
-        context_substruct_overlap_idxes = list(set(
-            context_node_idxes).intersection(set(substruct_node_idxes)))
-        if len(context_substruct_overlap_idxes) > 0:
-            context_substruct_overlap_idxes_reorder = [context_node_map[old_idx]
+            # Get indices of overlapping nodes between substruct and context,
+            # WRT context ordering
+            context_substruct_overlap_idxes = list(set(
+                context_node_idxes).intersection(set(substruct_node_idxes)))
+            if len(context_substruct_overlap_idxes) > 0:
+                context_substruct_overlap_idxes_reorder = [context_node_map[old_idx]
                                                        for
                                                        old_idx in
                                                        context_substruct_overlap_idxes]
-            # need to convert the overlap node idxes, which is from the
-            # original graph node ordering to the new context node ordering
-            data.overlap_context_substruct_idx = \
-                torch.tensor(context_substruct_overlap_idxes_reorder)
+                # need to convert the overlap node idxes, which is from the
+                # original graph node ordering to the new context node ordering
+                data.overlap_context_substruct_idx = \
+                    torch.tensor(context_substruct_overlap_idxes_reorder)
 
+                if(data.edge_attr_context.numel() != 0):
+                    if retry > 0:
+                        print("\nGraph ID: {} and Root Index after retry: {}".format(data.id, root_idx))
+                    break
+                else:
+                    print("\nNO EDGES IN THE CONTEXT")
+                    print("\nGraph ID: {} and Root Index: {}".format(data.id, root_idx))
+                    print("\nData object: ", data)
+                    print("\nsubstruct_node_idxes: ", set(substruct_node_idxes))
+                    print("\ncontext_node_idxes: ", context_node_idxes)
+                    print("\nkey: {} and data : {}".format("edge_attr", data.edge_attr))
+                    print("\nkey: {} and data : {}".format("edge_index", data.edge_index))
+                    print("\nkey: {} and data : {}".format("context_substruct_overlap_idxes_reorder", context_substruct_overlap_idxes_reorder))
+                    retry += 1
+                    continue
         return data
 
         # ### For debugging ###
