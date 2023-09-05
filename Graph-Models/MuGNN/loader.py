@@ -403,7 +403,7 @@ def get_node_embedding_from_codebert(nodes):
     list_of_embeddings = []
     for code_line in nodes.keys():
         code_line = code_line.split("$$")[1].strip()
-        code_tokens = tokenizer.tokenize(code_line)
+        code_tokens = tokenizer.tokenize(code_line, truncation=True, max_length=510)
         tokens = [tokenizer.cls_token]+code_tokens+[tokenizer.eos_token]
         tokens_ids = tokenizer.convert_tokens_to_ids(tokens)
         context_embeddings = codebert_model(torch.tensor(tokens_ids)[None,:])
