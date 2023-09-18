@@ -483,7 +483,13 @@ class MoleculeDataset(InMemoryDataset):
 
                     if(count % 5 == 0):
                         print("\nAt file: {}\n".format(count))
-                    nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name = get_nodes_edges(file, add_reverse_edges = True)
+                        
+                    try:
+                        nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name = get_nodes_edges(file, add_reverse_edges = True)
+                    except Exception as e:
+                        print("\nError: ", e)
+                        continue
+                    
                     if(len(nodes_dict) == 0):
                         print("\nNo Data: ", file)
                         continue
@@ -495,7 +501,7 @@ class MoleculeDataset(InMemoryDataset):
                     except Exception as e :
                         print("\nError: ", e)
                         print(nodes_dict)
-                        sys.exit()
+                        continue
                     #print(CodeEmbedding.shape)
 
                     # FIXING DATA FOTMATS AND SHAPE

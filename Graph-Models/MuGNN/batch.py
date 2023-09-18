@@ -146,6 +146,14 @@ class BatchSubstructContext(Data):
         #keys = list(set.union(*keys))
         #assert 'batch' not in keys
 
+        # For small graphs, some Data can be None
+        temp_data_list = []
+        for data in data_list:
+            if data != None:
+                temp_data_list.append(data)
+        #print("\nTotal data size : {} and Non-empty data size: {}".format(len(data_list), len(temp_data_list)))
+        data_list = temp_data_list
+        
         batch = BatchSubstructContext()
         keys = ["center_substruct_idx", "edge_attr_substruct", "edge_index_substruct", "x_substruct", "overlap_context_substruct_idx", "edge_attr_context", "edge_index_context", "x_context"]
 

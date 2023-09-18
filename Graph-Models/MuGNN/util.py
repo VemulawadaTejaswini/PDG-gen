@@ -151,20 +151,24 @@ class ExtractSubstructureContextPair:
                     torch.tensor(context_substruct_overlap_idxes_reorder)
 
                 if(data.edge_attr_context.numel() != 0):
-                    if retry > 0:
-                        print("\nGraph ID: {} and Root Index after retry: {}".format(data.id, root_idx))
+                    # if retry > 0:
+                    #     print("\nGraph ID: {} and Root Index after retry: {}".format(data.id, root_idx))
                     break
                 else:
-                    print("\nNO EDGES IN THE CONTEXT")
-                    print("\nGraph ID: {} and Root Index: {}".format(data.id, root_idx))
-                    print("\nData object: ", data)
-                    print("\nsubstruct_node_idxes: ", set(substruct_node_idxes))
-                    print("\ncontext_node_idxes: ", context_node_idxes)
-                    print("\nkey: {} and data : {}".format("edge_attr", data.edge_attr))
-                    print("\nkey: {} and data : {}".format("edge_index", data.edge_index))
-                    print("\nkey: {} and data : {}".format("context_substruct_overlap_idxes_reorder", context_substruct_overlap_idxes_reorder))
+                    # print("\nNO EDGES IN THE CONTEXT")
+                    # print("\nGraph ID: {} and Root Index: {}".format(data.id, root_idx))
+                    # print("\nRetry Number: ", retry)
+                    # print("\nData object: ", data)
+                    # print("\nsubstruct_node_idxes: ", set(substruct_node_idxes))
+                    # print("\ncontext_node_idxes: ", context_node_idxes)
+                    # print("\nkey: {} and data : {}".format("edge_attr", data.edge_attr))
+                    # print("\nkey: {} and data : {}".format("edge_index", data.edge_index))
+                    # print("\nkey: {} and data : {}".format("context_substruct_overlap_idxes_reorder", context_substruct_overlap_idxes_reorder))
                     retry += 1
-                    continue
+                    if(retry > 2):
+                        return None
+                    else:
+                        continue
         return data
 
         # ### For debugging ###
