@@ -149,15 +149,16 @@ def main():
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
-    args.num_layer = 2
-    args.csize = 3
-    l1 = args.num_layer - 1
+    args.num_layer = 3
+    args.csize = 4
+    l1 = args.num_layer - 2
     l2 = l1 + args.csize
 
-    print(args.mode)
+    print("mode: ", args.mode)
+    print("GNN type: ", args.gnn_type)
     print("num layer: %d l1: %d l2: %d" %(args.num_layer, l1, l2))
     
-    args.output_model_file = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/model"
+    args.output_model_file = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/saved_models"
 
     #set up dataset and transform function.
     dataset_root = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/Pretrain-GNN/Repository/chem/dataset/" + args.dataset
@@ -183,7 +184,7 @@ def main():
         print(train_loss, train_acc)
 
     if not args.output_model_file == "":
-        torch.save(model_substruct.state_dict(), args.output_model_file + ".pth")
+        torch.save(model_substruct.state_dict(), args.output_model_file + "/model.pth")
 
 
 # To ensure determinism

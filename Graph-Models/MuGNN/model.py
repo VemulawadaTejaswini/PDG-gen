@@ -85,21 +85,23 @@ class GCNConv(MessagePassing):
 
     def forward(self, x, edge_index, edge_attr):
         #add self loops in the edge space
-        edge_index = add_self_loops(edge_index, num_nodes = x.size(0))
-
+        edge_index, edge_attr = remove_self_loops(edge_index, edge_attr)
+        edge_index,_ = add_self_loops(edge_index, num_nodes = x.size(0))
+        #print(len(x), len(edge_index), len(edge_attr))
         #add features corresponding to self-loop edges.
-        self_loop_attr = torch.zeros(x.size(0), 2)
-        self_loop_attr[:,0] = 4 #bond type for self-loop edge
+        self_loop_attr = torch.zeros(x.size(0), 1)
+        self_loop_attr[:,0] = 2 # Cosidering self-loop = 2
         self_loop_attr = self_loop_attr.to(edge_attr.device).to(edge_attr.dtype)
         edge_attr = torch.cat((edge_attr, self_loop_attr), dim = 0)
 
-        edge_embeddings = self.edge_embedding1(edge_attr[:,0]) + self.edge_embedding2(edge_attr[:,1])
+        edge_embeddings = self.edge_embedding1(edge_attr[:,0])
 
         norm = self.norm(edge_index, x.size(0), x.dtype)
 
+        x = x.type(torch.FloatTensor).to(edge_attr.device)
         x = self.linear(x)
 
-        return self.propagate(self.aggr, edge_index, x=x, edge_attr=edge_embeddings, norm = norm)
+        return self.propagate(aggr = self.aggr, edge_index = edge_index, x=x, edge_attr=edge_embeddings, norm = norm)
 
     def message(self, x_j, edge_attr, norm):
         return norm.view(-1, 1) * (x_j + edge_attr)
