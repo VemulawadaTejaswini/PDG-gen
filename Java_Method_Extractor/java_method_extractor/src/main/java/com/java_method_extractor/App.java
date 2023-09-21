@@ -33,16 +33,16 @@ public class App {
     public static void main(String[] args) {
 
         // Set the directory path
-        String directoryPath = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Code2Seq-Data\\java-small\\train-test-valid-combined";
+        String directoryPath = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-large/train-test-valid-combined";
         // Set the output file path
-        String outputFilePath = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Code2Seq-Data\\java-small\\processed-data\\";
+        String outputFilePath = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-large/processed-data/";
 
         // setup logger
         Logger logger = Logger.getLogger("MyLog");
         FileHandler fh;
         try {
             // This block configure the logger with handler and formatter
-            fh = new FileHandler("D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\Java_Method_Extractor\\java_method_extractor\\logger.log");
+            fh = new FileHandler("/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Java_Method_Extractor/java_method_extractor/logger-large.log");
             logger.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
@@ -121,7 +121,7 @@ public class App {
                                 count_generated_folders += 1;
                             }
                             // logger.info(fullyQualifiedName);
-                            String newDataPointFile = outputFilePath + fullyQualifiedName + "\\" + method.getName()
+                            String newDataPointFile = outputFilePath + fullyQualifiedName + "/" + method.getName()
                                     + ".java";
                             // logger.info(newDataPointFile);
                             if (function_set.contains(method.toString()) == false) {
