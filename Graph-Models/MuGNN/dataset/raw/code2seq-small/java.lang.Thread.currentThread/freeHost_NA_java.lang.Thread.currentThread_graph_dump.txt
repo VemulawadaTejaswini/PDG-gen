@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void freeHost(MapHost host) -->Line_3 $$ if (host.getState() != State.PENALIZED) [ FD ]
+Line_2 $$ public synchronized void freeHost(MapHost host) -->Line_5 $$ pendingHosts.add(host)[ FD ]
+Line_3 $$ if (host.getState() != State.PENALIZED) -->Line_4 $$ if (host.markAvailable() == State.PENDING) [ CD ]
+Line_4 $$ if (host.markAvailable() == State.PENDING) -->Line_5 $$ pendingHosts.add(host)[ CD ]
+Line_2 $$ public synchronized void freeHost(MapHost host) -->Line_4 $$ if (host.markAvailable() == State.PENDING) [ FD ]
+Line_2 $$ public synchronized void freeHost(MapHost host) -->Line_3 $$ if (host.getState() != State.PENALIZED) [ CD ]
+Line_2 $$ public synchronized void freeHost(MapHost host) -->Line_9 $$ LOG.info(host + " freed by " + Thread.currentThread().getName() + " in " + (System.currentTimeMillis() - shuffleStart.get()) + "ms")[ CD ]
+Line_4 $$ if (host.markAvailable() == State.PENDING) -->Line_6 $$ notifyAll()[ CD ]

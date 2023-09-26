@@ -18,8 +18,10 @@ public class mainframe {
     @SuppressWarnings("rawtypes")
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
-    static String outputFolder = "./../../Code_kernel_data/before_pruning/NEW/";
-    static String inputFolder = "./../../Code_kernel_data/after_preprocessing/FINAL/test/";
+    // static String outputFolder = "./../../Code_kernel_data/before_pruning/NEW/";
+    // static String inputFolder = "./../../Code_kernel_data/after_preprocessing/FINAL/test/";
+    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/pdg-data/";
+    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
@@ -120,13 +122,14 @@ public class mainframe {
         try {
             mainframe obj = new mainframe();
             boolean isOnlyFile = false;
+            String generateFor = "code2seq"; // "code2seq" or "ck"
             if (isOnlyFile) {
                 outputFolder = "D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/PdgGeneratorModified/test_folder/";
                 String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\CodeKernel_Manual_Data\\Processed_data\\after_preprocessing\\FilenameUtils.normalize\\sample-0\\68_0.java"; 
                 String apiName = "FilenameUtils.normalize";
                 String sampleName = "sample-0";
                 obj.methods(file, apiName, sampleName);
-            } else {
+            } else if(generateFor.equals("ck")){
                 ArrayList<String> folders = getListOfFolders(inputFolder);
                 // System.out.println("\n\nAPI Folders: " + folders);
                 for (String folder : folders) {
@@ -142,6 +145,30 @@ public class mainframe {
                         String sampleName = file.substring(lastIndexInFile2 + 1, lastIndexInFile1);
                         // System.out.println("\n\nsampleName: " + sampleName);
                         obj.methods(file, apiName, sampleName);
+                    }
+                }
+            } else if(generateFor.equals("code2seq")){
+                ArrayList<String> folders = getListOfFolders(inputFolder);
+                // System.out.println("\n\nAPI Folders: " + folders);
+                for (String folder : folders) {
+                    int lastIndex = folder.lastIndexOf("/");
+                    String apiName = folder.substring(lastIndex + 1);
+                    // System.out.println("\n\nFolder Name: " + folder);
+                    System.out.println("\n\nAPI Name (processing for): " + apiName);
+
+                    // Get the files for the API
+                    ArrayList<String> listOfFiles = new ArrayList<String>();
+                    File directory = new File(folder);
+                    File filesList[] = directory.listFiles();
+                    for (File file : filesList) {
+                        if (file.getAbsolutePath().endsWith(".java")) {
+                            listOfFiles.add(file.getAbsolutePath());
+                        }
+                    }
+
+                    for (String file : listOfFiles) {
+                        System.out.println("\n\nFile Name: " + file);
+                        obj.methods(file, apiName, "NA");
                     }
                 }
             }

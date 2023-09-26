@@ -1,0 +1,7 @@
+Line_21 $$ for (FkSecondPass sp : dependencies) -->Line_28 $$ if (!orderedFkSecondPasses.contains(sp)) [ FD ]
+Line_22 $$ String dependentTable = sp.getValue().getTable().getQualifiedTableName().render()-->Line_23 $$ if (dependentTable.compareTo(startTable) == 0) [ FD ]
+Line_23 $$ if (dependentTable.compareTo(startTable) == 0) -->Line_24 $$ String sb = "Foreign key circularity dependency involving the following tables: "[ CD ]
+Line_21 $$ for (FkSecondPass sp : dependencies) -->Line_22 $$ String dependentTable = sp.getValue().getTable().getQualifiedTableName().render()[ FD ]
+Line_28 $$ if (!orderedFkSecondPasses.contains(sp)) -->Line_29 $$ orderedFkSecondPasses.add(0, sp)[ CD ]
+Line_22 $$ String dependentTable = sp.getValue().getTable().getQualifiedTableName().render()-->Line_27 $$ buildRecursiveOrderedFkSecondPasses(orderedFkSecondPasses, isADependencyOf, startTable, dependentTable)[ FD ]
+Line_21 $$ for (FkSecondPass sp : dependencies) -->Line_29 $$ orderedFkSecondPasses.add(0, sp)[ FD ]

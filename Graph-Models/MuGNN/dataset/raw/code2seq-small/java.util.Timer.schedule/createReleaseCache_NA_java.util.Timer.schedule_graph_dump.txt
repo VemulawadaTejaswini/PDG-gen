@@ -1,0 +1,6 @@
+Line_8 $$ for (SchedulerApplication<T> app : applications.values()) -->Line_9 $$ T attempt = app.getCurrentAppAttempt()[ FD ]
+Line_9 $$ T attempt = app.getCurrentAppAttempt()-->Line_12 $$ RMAuditLogger.logFailure(app.getUser(), AuditConstants.RELEASE_CONTAINER, "Unauthorized access or invalid container", "Scheduler", "Trying to release container not owned by app or with invalid id.", attempt.getApplicationId(), containerId)[ FD ]
+Line_11 $$ for (ContainerId containerId : attempt.getPendingRelease()) -->Line_12 $$ RMAuditLogger.logFailure(app.getUser(), AuditConstants.RELEASE_CONTAINER, "Unauthorized access or invalid container", "Scheduler", "Trying to release container not owned by app or with invalid id.", attempt.getApplicationId(), containerId)[ FD ]
+Line_9 $$ T attempt = app.getCurrentAppAttempt()-->Line_14 $$ attempt.getPendingRelease().clear()[ FD ]
+Line_9 $$ T attempt = app.getCurrentAppAttempt()-->Line_11 $$ for (ContainerId containerId : attempt.getPendingRelease()) [ FD ]
+Line_8 $$ for (SchedulerApplication<T> app : applications.values()) -->Line_12 $$ RMAuditLogger.logFailure(app.getUser(), AuditConstants.RELEASE_CONTAINER, "Unauthorized access or invalid container", "Scheduler", "Trying to release container not owned by app or with invalid id.", attempt.getApplicationId(), containerId)[ FD ]

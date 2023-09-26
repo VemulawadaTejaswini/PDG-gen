@@ -1,0 +1,8 @@
+Line_4 $$ ColumnFamilyStore cfs = MockSchema.newCFS(KEYSPACE)-->Line_6 $$ SSTableReader sstable = sstable(dataFolder, cfs, 0, 128)[ FD ]
+Line_7 $$ LogTransaction log = new LogTransaction(OperationType.COMPACTION)-->Line_10 $$ log.abort()[ FD ]
+Line_6 $$ SSTableReader sstable = sstable(dataFolder, cfs, 0, 128)-->Line_11 $$ sstable.selfRef().release()[ FD ]
+Line_5 $$ File dataFolder = new Directories(cfs.metadata).getDirectoryForNewSSTables()-->Line_12 $$ assertFiles(dataFolder.getPath(), new HashSet())[ FD ]
+Line_5 $$ File dataFolder = new Directories(cfs.metadata).getDirectoryForNewSSTables()-->Line_6 $$ SSTableReader sstable = sstable(dataFolder, cfs, 0, 128)[ FD ]
+Line_7 $$ LogTransaction log = new LogTransaction(OperationType.COMPACTION)-->Line_8 $$ assertNotNull(log)[ FD ]
+Line_6 $$ SSTableReader sstable = sstable(dataFolder, cfs, 0, 128)-->Line_9 $$ log.trackNew(sstable)[ FD ]
+Line_7 $$ LogTransaction log = new LogTransaction(OperationType.COMPACTION)-->Line_9 $$ log.trackNew(sstable)[ FD ]

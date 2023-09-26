@@ -1,0 +1,6 @@
+Line_5 $$ Session session = openSession()-->Line_6 $$ Transaction t = session.beginTransaction()[ FD ]
+Line_7 $$ List results = session.createQuery("select an.mother.id, max(an.bodyWeight) from Animal an group by an.mother.id").list()-->Line_10 $$ assertTrue("Incorrect return type", results.get(0) instanceof Object[])[ FD ]
+Line_5 $$ Session session = openSession()-->Line_13 $$ session.close()[ FD ]
+Line_6 $$ Transaction t = session.beginTransaction()-->Line_12 $$ t.commit()[ FD ]
+Line_7 $$ List results = session.createQuery("select an.mother.id, max(an.bodyWeight) from Animal an group by an.mother.id").list()-->Line_11 $$ assertEquals("Incorrect return dimensions", 2, ((Object[]) results.get(0)).length)[ FD ]
+Line_5 $$ Session session = openSession()-->Line_7 $$ List results = session.createQuery("select an.mother.id, max(an.bodyWeight) from Animal an group by an.mother.id").list()[ FD ]

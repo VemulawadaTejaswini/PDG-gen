@@ -1,0 +1,6 @@
+Line_11 $$ for (ThreadInfo info : infos) -->Line_12 $$ if (info == null)[ FD ]
+Line_11 $$ for (ThreadInfo info : infos) -->Line_14 $$ if (pattern.matcher(info.getThreadName()).matches()) [ FD ]
+Line_11 $$ for (ThreadInfo info : infos) -->Line_15 $$ Assert.fail("Leaked thread: " + info + "\n" + Joiner.on("\n").join(info.getStackTrace()))[ FD ]
+Line_8 $$ Pattern pattern = Pattern.compile(regex)-->Line_14 $$ if (pattern.matcher(info.getThreadName()).matches()) [ FD ]
+Line_9 $$ ThreadMXBean threadBean = ManagementFactory.getThreadMXBean()-->Line_10 $$ ThreadInfo[] infos = threadBean.getThreadInfo(threadBean.getAllThreadIds(), 20)[ FD ]
+Line_14 $$ if (pattern.matcher(info.getThreadName()).matches()) -->Line_15 $$ Assert.fail("Leaked thread: " + info + "\n" + Joiner.on("\n").join(info.getStackTrace()))[ CD ]

@@ -1,0 +1,5 @@
+Line_8 $$ Object object = socketWrapper.readObject()-->Line_12 $$ if (object instanceof MessageObject) [ FD ]
+Line_8 $$ Object object = socketWrapper.readObject()-->Line_9 $$ if (object == null) [ FD ]
+Line_8 $$ Object object = socketWrapper.readObject()-->Line_15 $$ return new MessageObject("?", object.toString(), null)[ FD ]
+Line_12 $$ if (object instanceof MessageObject) -->Line_13 $$ return (MessageObject) object[ CD ]
+Line_9 $$ if (object == null) -->Line_10 $$ return null[ CD ]

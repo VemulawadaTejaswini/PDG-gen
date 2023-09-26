@@ -1,0 +1,8 @@
+Line_11 $$ ColumnFamilyStore store = Keyspace.open(cfm.ksName).getColumnFamilyStore(cfm.cfName)-->Line_13 $$ store.forceBlockingFlush()[ FD ]
+Line_22 $$ success = false-->Line_24 $$ assertFalse("This mutation should have failed since the CF no longer exists.", success)[ FD ]
+Line_11 $$ ColumnFamilyStore store = Keyspace.open(cfm.ksName).getColumnFamilyStore(cfm.cfName)-->Line_14 $$ assertTrue(store.getDirectories().sstableLister(Directories.OnTxnErr.THROW).list().size() > 0)[ FD ]
+Line_11 $$ ColumnFamilyStore store = Keyspace.open(cfm.ksName).getColumnFamilyStore(cfm.cfName)-->Line_27 $$ for (File file : store.getDirectories().sstableLister(Directories.OnTxnErr.THROW).listFiles()) [ FD ]
+Line_11 $$ ColumnFamilyStore store = Keyspace.open(cfm.ksName).getColumnFamilyStore(cfm.cfName)-->Line_12 $$ assertNotNull(store)[ FD ]
+Line_27 $$ for (File file : store.getDirectories().sstableLister(Directories.OnTxnErr.THROW).listFiles()) -->Line_28 $$ if (file.getPath().endsWith("Data.db") && !new File(file.getPath().replace("Data.db", "Compacted")).exists())[ FD ]
+Line_28 $$ if (file.getPath().endsWith("Data.db") && !new File(file.getPath().replace("Data.db", "Compacted")).exists())-->Line_29 $$ return false[ CD ]
+Line_7 $$ final CFMetaData cfm = ks.tables.getNullable(TABLE1)-->Line_8 $$ assertNotNull(cfm)[ FD ]

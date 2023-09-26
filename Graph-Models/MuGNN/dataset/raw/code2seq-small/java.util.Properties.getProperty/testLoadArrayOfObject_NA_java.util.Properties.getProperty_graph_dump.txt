@@ -1,0 +1,7 @@
+Line_4 $$ YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean()-->Line_5 $$ factory.setResources(new ByteArrayResource("foo:\n- bar:\n    spam: crap\n- baz\n- one: two\n  three: four".getBytes()))[ FD ]
+Line_4 $$ YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean()-->Line_6 $$ Properties properties = factory.getObject()[ FD ]
+Line_6 $$ Properties properties = factory.getObject()-->Line_7 $$ assertThat(properties.getProperty("foo[0].bar.spam"), equalTo("crap"))[ FD ]
+Line_6 $$ Properties properties = factory.getObject()-->Line_8 $$ assertThat(properties.getProperty("foo[1]"), equalTo("baz"))[ FD ]
+Line_6 $$ Properties properties = factory.getObject()-->Line_10 $$ assertThat(properties.getProperty("foo[2].three"), equalTo("four"))[ FD ]
+Line_6 $$ Properties properties = factory.getObject()-->Line_9 $$ assertThat(properties.getProperty("foo[2].one"), equalTo("two"))[ FD ]
+Line_6 $$ Properties properties = factory.getObject()-->Line_11 $$ assertThat(properties.get("foo"), is(nullValue()))[ FD ]

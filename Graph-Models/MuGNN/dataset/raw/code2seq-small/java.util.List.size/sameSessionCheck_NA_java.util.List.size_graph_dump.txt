@@ -1,0 +1,8 @@
+Line_6 $$ EntityManager em = emf.createEntityManager()-->Line_28 $$ em.close()[ FD ]
+Line_7 $$ Statistics stats = em.unwrap(Session.class).getSessionFactory().getStatistics()-->Line_8 $$ stats.clear()[ FD ]
+Line_9 $$ SecondLevelCacheStatistics emp2LCStats = stats.getSecondLevelCacheStatistics(CACHE_REGION_NAME + "Employee")-->Line_18 $$ assertEquals("There are 2 entities in the 2LC" + generateEntityCacheStats(emp2LCStats), 2, emp2LCStats.getElementCountInMemory())[ FD ]
+Line_9 $$ SecondLevelCacheStatistics emp2LCStats = stats.getSecondLevelCacheStatistics(CACHE_REGION_NAME + "Employee")-->Line_24 $$ assertEquals("Expected 1 hit in cache" + generateEntityCacheStats(emp2LCStats), 1, emp2LCStats.getHitCount())[ FD ]
+Line_6 $$ EntityManager em = emf.createEntityManager()-->Line_7 $$ Statistics stats = em.unwrap(Session.class).getSessionFactory().getStatistics()[ FD ]
+Line_9 $$ SecondLevelCacheStatistics emp2LCStats = stats.getSecondLevelCacheStatistics(CACHE_REGION_NAME + "Employee")-->Line_14 $$ assertEquals("There are 2 puts in the 2LC" + generateEntityCacheStats(emp2LCStats), 2, emp2LCStats.getPutCount())[ FD ]
+Line_6 $$ EntityManager em = emf.createEntityManager()-->Line_13 $$ createEmployee(em, "Tom", "Brno", 3)[ FD ]
+Line_7 $$ Statistics stats = em.unwrap(Session.class).getSessionFactory().getStatistics()-->Line_9 $$ SecondLevelCacheStatistics emp2LCStats = stats.getSecondLevelCacheStatistics(CACHE_REGION_NAME + "Employee")[ FD ]

@@ -1,0 +1,7 @@
+Line_5 $$ List<Object> values = node.getOperands().stream().map( value -> processWithExceptionHandling(value, context)).filter( value -> value != null).collect(Collectors.toList())-->Line_6 $$ if ((!values.isEmpty() && !(values.get(0) instanceof Expression)) || values.size() == 1) [ FD ]
+Line_9 $$ List<Expression> expressions = values.stream().map( value -> toExpression(value, type)).collect(Collectors.toList())-->Line_10 $$ if (expressions.isEmpty()) [ FD ]
+Line_4 $$ Type type = type(node)-->Line_9 $$ toExpression(value, type)[ FD ]
+Line_5 $$ List<Object> values = node.getOperands().stream().map( value -> processWithExceptionHandling(value, context)).filter( value -> value != null).collect(Collectors.toList())-->Line_7 $$ return values.get(0)[ FD ]
+Line_10 $$ if (expressions.isEmpty()) -->Line_11 $$ return null[ CD ]
+Line_6 $$ if ((!values.isEmpty() && !(values.get(0) instanceof Expression)) || values.size() == 1) -->Line_7 $$ return values.get(0)[ CD ]
+Line_5 $$ List<Object> values = node.getOperands().stream().map( value -> processWithExceptionHandling(value, context)).filter( value -> value != null).collect(Collectors.toList())-->Line_9 $$ List<Expression> expressions = values.stream().map( value -> toExpression(value, type)).collect(Collectors.toList())[ FD ]

@@ -1,0 +1,6 @@
+Line_13 $$ if (writeable) -->Line_19 $$ return false[ CD ]
+Line_13 $$ if (writeable) -->Line_14 $$ LOG.debugf("putting key[%s] -> value[%s] into region[%s] success", key, value, getInternalRegion().getName())[ CD ]
+Line_13 $$ if (writeable) -->Line_16 $$ return true[ CD ]
+Line_11 $$ Lockable item = (Lockable) getInternalRegion().get(session, key)-->Line_12 $$ boolean writeable = item == null || item.isWriteable(txTimestamp, version, getVersionComparator())[ FD ]
+Line_13 $$ if (writeable) -->Line_15 $$ getInternalRegion().put(session, key, new Item(value, version, getInternalRegion().nextTimestamp()))[ CD ]
+Line_13 $$ if (writeable) -->Line_18 $$ LOG.debugf("putting key[%s] -> value[%s] into region[%s] fail due to it is unwriteable", key, value, getInternalRegion().getName())[ CD ]

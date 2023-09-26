@@ -1,0 +1,7 @@
+Line_5 $$ if (Config.getOutboundBindAny())-->Line_8 $$ return SSLFactory.getSocket(DatabaseDescriptor.getServerEncryptionOptions(), endpoint, DatabaseDescriptor.getSSLStoragePort(), FBUtilities.getLocalAddress(), 0)[ CD ]
+Line_10 $$ Socket socket = SocketChannel.open(new InetSocketAddress(endpoint, DatabaseDescriptor.getStoragePort())).socket()-->Line_11 $$ if (Config.getOutboundBindAny() && !socket.isBound())[ FD ]
+Line_11 $$ if (Config.getOutboundBindAny() && !socket.isBound())-->Line_12 $$ socket.bind(new InetSocketAddress(FBUtilities.getLocalAddress(), 0))[ CD ]
+Line_2 $$ public static Socket newSocket(InetAddress endpoint) throws IOException -->Line_6 $$ return SSLFactory.getSocket(DatabaseDescriptor.getServerEncryptionOptions(), endpoint, DatabaseDescriptor.getSSLStoragePort())[ FD ]
+Line_2 $$ public static Socket newSocket(InetAddress endpoint) throws IOException -->Line_8 $$ return SSLFactory.getSocket(DatabaseDescriptor.getServerEncryptionOptions(), endpoint, DatabaseDescriptor.getSSLStoragePort(), FBUtilities.getLocalAddress(), 0)[ FD ]
+Line_10 $$ Socket socket = SocketChannel.open(new InetSocketAddress(endpoint, DatabaseDescriptor.getStoragePort())).socket()-->Line_12 $$ socket.bind(new InetSocketAddress(FBUtilities.getLocalAddress(), 0))[ FD ]
+Line_5 $$ if (Config.getOutboundBindAny())-->Line_6 $$ return SSLFactory.getSocket(DatabaseDescriptor.getServerEncryptionOptions(), endpoint, DatabaseDescriptor.getSSLStoragePort())[ CD ]

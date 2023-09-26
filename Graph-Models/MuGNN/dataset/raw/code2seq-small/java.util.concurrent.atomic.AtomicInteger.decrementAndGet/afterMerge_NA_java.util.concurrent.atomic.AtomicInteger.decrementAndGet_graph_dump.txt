@@ -1,0 +1,7 @@
+Line_4 $$ int maxNumMerges = mergeScheduler.getMaxMergeCount()-->Line_7 $$ logger.info("stop throttling indexing: numMergesInFlight=[ FD ]
+Line_4 $$ int maxNumMerges = mergeScheduler.getMaxMergeCount()-->Line_5 $$ if (numMergesInFlight.decrementAndGet() < maxNumMerges) [ FD ]
+Line_5 $$ if (numMergesInFlight.decrementAndGet() < maxNumMerges) -->Line_6 $$ if (isThrottling.getAndSet(false)) [ CD ]
+Line_6 $$ if (isThrottling.getAndSet(false)) -->Line_8 $$ indexingService.throttlingDeactivated()[ CD ]
+Line_6 $$ if (isThrottling.getAndSet(false)) -->Line_9 $$ deactivateThrottling()[ CD ]
+Line_6 $$ if (isThrottling.getAndSet(false)) -->Line_7 $$ logger.info("stop throttling indexing: numMergesInFlight=[ CD ]
+Line_19 $$ if (isClosed.get() == false) -->Line_20 $$ logger.warn("failed to flush after merge has finished")[ CD ]

@@ -1,0 +1,6 @@
+Line_7 $$ if (!"POST".equals(exchange.getRequestMethod())) -->Line_8 $$ exchange.getResponseHeaders().set("Allow", "POST")[ CD ]
+Line_7 $$ if (!"POST".equals(exchange.getRequestMethod())) -->Line_9 $$ exchange.sendResponseHeaders(405, -1)[ CD ]
+Line_12 $$ ByteArrayOutputStream output = new ByteArrayOutputStream(1024)-->Line_14 $$ invoke(exchange.getRequestBody(), output)[ FD ]
+Line_7 $$ if (!"POST".equals(exchange.getRequestMethod())) -->Line_10 $$ return[ CD ]
+Line_12 $$ ByteArrayOutputStream output = new ByteArrayOutputStream(1024)-->Line_21 $$ exchange.sendResponseHeaders(200, output.size())[ FD ]
+Line_12 $$ ByteArrayOutputStream output = new ByteArrayOutputStream(1024)-->Line_22 $$ FileCopyUtils.copy(output.toByteArray(), exchange.getResponseBody())[ FD ]

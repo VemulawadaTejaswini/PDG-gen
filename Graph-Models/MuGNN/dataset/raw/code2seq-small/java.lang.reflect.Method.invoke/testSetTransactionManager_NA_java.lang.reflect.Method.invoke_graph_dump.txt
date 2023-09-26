@@ -1,0 +1,7 @@
+Line_5 $$ TransactionManager tm = mock(TransactionManager.class)-->Line_7 $$ lsfb.setJtaTransactionManager(tm)[ FD ]
+Line_6 $$ LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(ds)-->Line_7 $$ lsfb.setJtaTransactionManager(tm)[ FD ]
+Line_8 $$ Object jtaPlatform = lsfb.getProperties().get(AvailableSettings.JTA_PLATFORM)-->Line_9 $$ assertNotNull(jtaPlatform)[ FD ]
+Line_6 $$ LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(ds)-->Line_11 $$ assertTrue(lsfb.getProperties().get(AvailableSettings.TRANSACTION_STRATEGY) instanceof CMTTransactionFactory)[ FD ]
+Line_8 $$ Object jtaPlatform = lsfb.getProperties().get(AvailableSettings.JTA_PLATFORM)-->Line_10 $$ assertSame(tm, jtaPlatform.getClass().getMethod("retrieveTransactionManager").invoke(jtaPlatform))[ FD ]
+Line_6 $$ LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(ds)-->Line_8 $$ Object jtaPlatform = lsfb.getProperties().get(AvailableSettings.JTA_PLATFORM)[ FD ]
+Line_5 $$ TransactionManager tm = mock(TransactionManager.class)-->Line_10 $$ assertSame(tm, jtaPlatform.getClass().getMethod("retrieveTransactionManager").invoke(jtaPlatform))[ FD ]

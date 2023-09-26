@@ -1,0 +1,8 @@
+Line_14 $$ if (shardCanBeDeleted(event.state(), indexShardRoutingTable)) -->Line_16 $$ if (indicesService.canDeleteShardContent(shardId, indexSettings)) [ CD ]
+Line_10 $$ for (IndexRoutingTable indexRoutingTable : event.state().routingTable()) -->Line_11 $$ IndexSettings indexSettings = new IndexSettings(event.state().getMetaData().index(indexRoutingTable.index()), settings, Collections.emptyList())[ FD ]
+Line_4 $$ if (!event.routingTableChanged()) -->Line_5 $$ return[ CD ]
+Line_15 $$ ShardId shardId = indexShardRoutingTable.shardId()-->Line_16 $$ if (indicesService.canDeleteShardContent(shardId, indexSettings)) [ FD ]
+Line_14 $$ if (shardCanBeDeleted(event.state(), indexShardRoutingTable)) -->Line_15 $$ ShardId shardId = indexShardRoutingTable.shardId()[ CD ]
+Line_7 $$ if (event.state().blocks().disableStatePersistence()) -->Line_8 $$ return[ CD ]
+Line_16 $$ if (indicesService.canDeleteShardContent(shardId, indexSettings)) -->Line_17 $$ deleteShardIfExistElseWhere(event.state(), indexShardRoutingTable)[ CD ]
+Line_11 $$ IndexSettings indexSettings = new IndexSettings(event.state().getMetaData().index(indexRoutingTable.index()), settings, Collections.emptyList())-->Line_16 $$ if (indicesService.canDeleteShardContent(shardId, indexSettings)) [ FD ]

@@ -1,0 +1,7 @@
+Line_9 $$ AuditReader reader = AuditReaderFactory.get(em)-->Line_10 $$ List<Number> revs = reader.getRevisions(EntityWithEmbeddableWithDeclaredData.class, id)[ FD ]
+Line_10 $$ List<Number> revs = reader.getRevisions(EntityWithEmbeddableWithDeclaredData.class, id)-->Line_11 $$ Assert.assertEquals(1, revs.size())[ FD ]
+Line_8 $$ EntityWithEmbeddableWithDeclaredData entityLoaded = em.find(EntityWithEmbeddableWithDeclaredData.class, id)-->Line_14 $$ Assert.assertEquals(entityLoaded.getName(), entityRev1.getName())[ FD ]
+Line_12 $$ EntityWithEmbeddableWithDeclaredData entityRev1 = reader.find(EntityWithEmbeddableWithDeclaredData.class, id, revs.get(0))-->Line_14 $$ Assert.assertEquals(entityLoaded.getName(), entityRev1.getName())[ FD ]
+Line_9 $$ AuditReader reader = AuditReaderFactory.get(em)-->Line_12 $$ EntityWithEmbeddableWithDeclaredData entityRev1 = reader.find(EntityWithEmbeddableWithDeclaredData.class, id, revs.get(0))[ FD ]
+Line_12 $$ EntityWithEmbeddableWithDeclaredData entityRev1 = reader.find(EntityWithEmbeddableWithDeclaredData.class, id, revs.get(0))-->Line_18 $$ Assert.assertNull(entityRev1.getValue().getCode())[ FD ]
+Line_10 $$ List<Number> revs = reader.getRevisions(EntityWithEmbeddableWithDeclaredData.class, id)-->Line_12 $$ EntityWithEmbeddableWithDeclaredData entityRev1 = reader.find(EntityWithEmbeddableWithDeclaredData.class, id, revs.get(0))[ FD ]

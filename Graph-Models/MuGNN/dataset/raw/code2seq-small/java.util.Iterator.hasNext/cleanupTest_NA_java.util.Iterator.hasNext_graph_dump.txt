@@ -1,0 +1,8 @@
+Line_4 $$ Session s = openSession()-->Line_11 $$ s.close()[ FD ]
+Line_5 $$ Transaction t = s.beginTransaction()-->Line_10 $$ t.commit()[ FD ]
+Line_4 $$ Session s = openSession()-->Line_6 $$ List list = s.createQuery("from Parent").list()[ FD ]
+Line_6 $$ List list = s.createQuery("from Parent").list()-->Line_7 $$ for (Iterator i = list.iterator(); i.hasNext(); ) [ FD ]
+Line_7 $$ for (Iterator i = list.iterator(); i.hasNext(); ) -->Line_8 $$ s.delete(i.next())[ CD ]
+Line_4 $$ Session s = openSession()-->Line_8 $$ s.delete(i.next())[ FD ]
+Line_7 $$ for (Iterator i = list.iterator(); i.hasNext(); ) -->Line_8 $$ s.delete(i.next())[ FD ]
+Line_4 $$ Session s = openSession()-->Line_5 $$ Transaction t = s.beginTransaction()[ FD ]
