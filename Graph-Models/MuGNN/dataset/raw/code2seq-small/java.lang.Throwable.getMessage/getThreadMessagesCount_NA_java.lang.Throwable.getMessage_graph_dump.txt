@@ -1,0 +1,1 @@
+Line_2 $$ public static int getThreadMessagesCount(long groupId, long categoryId, long threadId, int status) throws RemoteException -->Line_4 $$ int returnValue = MBMessageServiceUtil.getThreadMessagesCount(groupId, categoryId, threadId, status)[ FD ]

@@ -1,0 +1,8 @@
+Line_10 $$ if (logger.isTraceEnabled()) -->Line_11 $$ logger.trace("[upgrade]: processing [" + stateFile.getFileName() + "]")[ CD ]
+Line_4 $$ final Path stateLocation = dataLocation.resolve(MetaDataStateFormat.STATE_DIR_NAME)-->Line_8 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(stateLocation)) [ FD ]
+Line_9 $$ for (Path stateFile : stream) -->Line_15 $$ throw new IllegalStateException("Detected pre 0.19 metadata file please upgrade to a version before " + Version.CURRENT.minimumCompatibilityVersion() + " first to upgrade state structures - metadata found: [" + stateFile.getParent().toAbsolutePath())[ FD ]
+Line_9 $$ for (Path stateFile : stream) -->Line_11 $$ logger.trace("[upgrade]: processing [" + stateFile.getFileName() + "]")[ FD ]
+Line_9 $$ for (Path stateFile : stream) -->Line_13 $$ final String name = stateFile.getFileName().toString()[ FD ]
+Line_13 $$ final String name = stateFile.getFileName().toString()-->Line_14 $$ if (name.startsWith("metadata-")) [ FD ]
+Line_4 $$ final Path stateLocation = dataLocation.resolve(MetaDataStateFormat.STATE_DIR_NAME)-->Line_5 $$ if (!Files.exists(stateLocation)) [ FD ]
+Line_3 $$ for (Path dataLocation : nodeEnv.nodeDataPaths()) -->Line_4 $$ final Path stateLocation = dataLocation.resolve(MetaDataStateFormat.STATE_DIR_NAME)[ FD ]

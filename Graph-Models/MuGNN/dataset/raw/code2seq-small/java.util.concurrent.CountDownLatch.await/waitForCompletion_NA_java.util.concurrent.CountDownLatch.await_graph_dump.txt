@@ -1,0 +1,7 @@
+Line_2 $$ public void waitForCompletion() throws MultipleBuildOperationFailures -->Line_5 $$ Queue<Throwable> failures = Queues.newConcurrentLinkedQueue()[ CD ]
+Line_4 $$ CountDownLatch finished = new CountDownLatch(operations.size())-->Line_10 $$ finished.await()[ FD ]
+Line_5 $$ Queue<Throwable> failures = Queues.newConcurrentLinkedQueue()-->Line_14 $$ if (!failures.isEmpty()) [ FD ]
+Line_6 $$ for (ListenableFuture operation : operations) -->Line_7 $$ Futures.addCallback(operation, new CompletionCallback(finished, failures))[ FD ]
+Line_2 $$ public void waitForCompletion() throws MultipleBuildOperationFailures -->Line_14 $$ if (!failures.isEmpty()) [ CD ]
+Line_2 $$ public void waitForCompletion() throws MultipleBuildOperationFailures -->Line_4 $$ CountDownLatch finished = new CountDownLatch(operations.size())[ CD ]
+Line_5 $$ Queue<Throwable> failures = Queues.newConcurrentLinkedQueue()-->Line_15 $$ throw new MultipleBuildOperationFailures(getFailureMessage(failures), failures, logLocation)[ FD ]

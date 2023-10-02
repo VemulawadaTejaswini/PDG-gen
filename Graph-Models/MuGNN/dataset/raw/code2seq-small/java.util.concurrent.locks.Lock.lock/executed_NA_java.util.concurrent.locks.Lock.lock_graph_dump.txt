@@ -1,0 +1,6 @@
+Line_2 $$ void executed(long rows, long time) -->Line_10 $$ executionRowCount.addAndGet(rows)[ FD ]
+Line_2 $$ void executed(long rows, long time) -->Line_11 $$ totalExecutionTime.addAndGet(time)[ FD ]
+Line_2 $$ void executed(long rows, long time) -->Line_5 $$ for (long old = executionMinTime.get(); (time < old) && !executionMinTime.compareAndSet(old, time); old = executionMinTime.get()) [ FD ]
+Line_2 $$ void executed(long rows, long time) -->Line_7 $$ for (long old = executionMaxTime.get(); (time > old) && !executionMaxTime.compareAndSet(old, time); old = executionMaxTime.get()) [ FD ]
+Line_5 $$ for (long old = executionMinTime.get(); (time < old) && !executionMinTime.compareAndSet(old, time); old = executionMinTime.get()) -->Line_7 $$ for (long old = executionMaxTime.get(); (time > old) && !executionMaxTime.compareAndSet(old, time); old = executionMaxTime.get()) [ FD ]
+Line_2 $$ void executed(long rows, long time) -->Line_3 $$ readLock.lock()[ CD ]

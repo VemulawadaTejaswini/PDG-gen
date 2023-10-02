@@ -1,0 +1,8 @@
+Line_2 $$ public void cleanup() -->Line_4 $$ if (leakedSplits == 0) [ CD ]
+Line_3 $$ int leakedSplits = localPartitionedSplitCount.getAndSet(0)-->Line_7 $$ log.error("BUG! %s for %s leaked with %s partitioned splits.  Cleaning up so server can continue to function.", getClass().getName(), taskId, leakedSplits)[ FD ]
+Line_2 $$ public void cleanup() -->Line_8 $$ nodeTotalPartitionedSplitCount.addAndGet(-leakedSplits)[ CD ]
+Line_3 $$ int leakedSplits = localPartitionedSplitCount.getAndSet(0)-->Line_4 $$ if (leakedSplits == 0) [ FD ]
+Line_3 $$ int leakedSplits = localPartitionedSplitCount.getAndSet(0)-->Line_8 $$ nodeTotalPartitionedSplitCount.addAndGet(-leakedSplits)[ FD ]
+Line_4 $$ if (leakedSplits == 0) -->Line_5 $$ return[ CD ]
+Line_2 $$ public void cleanup() -->Line_3 $$ int leakedSplits = localPartitionedSplitCount.getAndSet(0)[ CD ]
+Line_2 $$ public void cleanup() -->Line_7 $$ log.error("BUG! %s for %s leaked with %s partitioned splits.  Cleaning up so server can continue to function.", getClass().getName(), taskId, leakedSplits)[ CD ]

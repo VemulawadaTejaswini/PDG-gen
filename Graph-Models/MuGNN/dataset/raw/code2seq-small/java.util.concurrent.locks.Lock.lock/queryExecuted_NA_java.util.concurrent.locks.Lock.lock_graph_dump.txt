@@ -1,1 +1,5 @@
-Line_2 $$ void queryExecuted(long time) -->Line_15 $$ this.totalExecutionTime.addAndGet(time)[ FD ]
+Line_2 $$ void queryExecuted(long time) -->Line_7 $$ for (long old = this.executionMaxTime.get(); time > old && !this.executionMaxTime.compareAndSet(old, time); old = this.executionMaxTime.get()) [ FD ]
+Line_2 $$ void queryExecuted(long time) -->Line_5 $$ for (long old = this.executionMinTime.get(); time < old && !this.executionMinTime.compareAndSet(old, time); old = this.executionMinTime.get()) [ FD ]
+Line_2 $$ void queryExecuted(long time) -->Line_10 $$ this.totalExecutionTime.addAndGet(time)[ FD ]
+Line_5 $$ for (long old = this.executionMinTime.get(); time < old && !this.executionMinTime.compareAndSet(old, time); old = this.executionMinTime.get()) -->Line_7 $$ for (long old = this.executionMaxTime.get(); time > old && !this.executionMaxTime.compareAndSet(old, time); old = this.executionMaxTime.get()) [ FD ]
+Line_2 $$ void queryExecuted(long time) -->Line_3 $$ this.readLock.lock()[ CD ]

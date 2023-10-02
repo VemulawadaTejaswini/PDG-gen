@@ -1,0 +1,8 @@
+Line_2 $$ public void writeBlob(String blobName, InputStream inputStream, long blobSize) throws IOException -->Line_3 $$ final Path file = path.resolve(blobName)[ CD ]
+Line_4 $$ try (OutputStream outputStream = Files.newOutputStream(file)) -->Line_5 $$ Streams.copy(inputStream, outputStream, new byte[blobStore.bufferSizeInBytes()])[ FD ]
+Line_2 $$ public void writeBlob(String blobName, InputStream inputStream, long blobSize) throws IOException -->Line_7 $$ IOUtils.fsync(file, false)[ CD ]
+Line_2 $$ public void writeBlob(String blobName, InputStream inputStream, long blobSize) throws IOException -->Line_8 $$ IOUtils.fsync(path, true)[ CD ]
+Line_3 $$ final Path file = path.resolve(blobName)-->Line_7 $$ IOUtils.fsync(file, false)[ FD ]
+Line_3 $$ final Path file = path.resolve(blobName)-->Line_4 $$ try (OutputStream outputStream = Files.newOutputStream(file)) [ FD ]
+Line_2 $$ public void writeBlob(String blobName, InputStream inputStream, long blobSize) throws IOException -->Line_3 $$ final Path file = path.resolve(blobName)[ FD ]
+Line_2 $$ public void writeBlob(String blobName, InputStream inputStream, long blobSize) throws IOException -->Line_5 $$ Streams.copy(inputStream, outputStream, new byte[blobStore.bufferSizeInBytes()])[ FD ]
