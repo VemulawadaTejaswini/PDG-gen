@@ -1,4 +1,5 @@
 import os
+import glob
 import torch
 import pickle
 import collections
@@ -397,16 +398,24 @@ def get_nodes_edges(inTextFile, add_reverse_edges = False):
      
   return nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name
 
+#Set GPU
+os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+
+# Initialize the models
+codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
+codebert_model = AutoModel.from_pretrained("microsoft/codebert-base")
+codebert_model = codebert_model.to(device)
+
 def get_node_embedding_from_codebert(nodes):
-    tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
-    codebert_model = AutoModel.from_pretrained("microsoft/codebert-base")
     list_of_embeddings = []
     for code_line in nodes.keys():
         code_line = code_line.split("$$")[1].strip()
-        code_tokens = tokenizer.tokenize(code_line, truncation=True, max_length=510)
-        tokens = [tokenizer.cls_token]+code_tokens+[tokenizer.eos_token]
-        tokens_ids = tokenizer.convert_tokens_to_ids(tokens)
-        context_embeddings = codebert_model(torch.tensor(tokens_ids)[None,:])
+        code_tokens = codebert_tokenizer.tokenize(code_line, truncation=True, max_length=510)
+        tokens = [codebert_tokenizer.cls_token]+code_tokens+[codebert_tokenizer.eos_token]
+        tokens_ids = torch.tensor(codebert_tokenizer.convert_tokens_to_ids(tokens))
+        tokens_ids = tokens_ids.to(device)
+        context_embeddings = codebert_model(tokens_ids[None,:])
         cls_token_embedding = context_embeddings.last_hidden_state[0,0,:]
         list_of_embeddings.append(cls_token_embedding)
     return torch.stack(list_of_embeddings)
@@ -473,9 +482,15 @@ class MoleculeDataset(InMemoryDataset):
         data_list = []
         if self.dataset == 'pdg_training_data':
             input_folder_paths = self.raw_paths
+            all_api_folders = []
+            file_count = 0
+            for dataset_folder in input_folder_paths:
+                all_api_folders.extend(glob.glob(dataset_folder + "/*/"))
+                file_count += len(glob.glob(dataset_folder + "/*/*.txt"))
+            print("\nTotal pdg file count: ", file_count)
             count = 0
             data_mapping = open("/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/dataset_mapping.txt","w")
-            for label, folder in tqdm.tqdm(enumerate(input_folder_paths)):
+            for label, folder in tqdm.tqdm(enumerate(all_api_folders)):
                 print("\nProcessing: {}\n".format(folder))
                 files = glob.glob(os.path.join(folder, '*.txt'))
                 print("\nNumber of files: {}\n".format(len(files)))
@@ -534,6 +549,8 @@ class MoleculeDataset(InMemoryDataset):
         else:
             raise ValueError('Invalid dataset name')
 
+        data_list = [data.to(torch.device("cpu")) for data in data_list]
+        
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]
 

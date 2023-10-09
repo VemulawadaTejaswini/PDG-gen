@@ -93,6 +93,8 @@ class ExtractSubstructureContextPair:
         data.edge_index_context
         data.overlap_context_substruct_idx
         """
+        
+        #print("\nExtracting substruct-context pair for: ", data.id)
         retry = 0
         while True:
             
@@ -140,6 +142,7 @@ class ExtractSubstructureContextPair:
             # WRT context ordering
             context_substruct_overlap_idxes = list(set(
                 context_node_idxes).intersection(set(substruct_node_idxes)))
+            #print("\nNumber of nodes in Substruct, Context and Overlap: {}, {} and {}".format(len(substruct_node_idxes), len(context_node_idxes), len(context_substruct_overlap_idxes)))
             if len(context_substruct_overlap_idxes) > 0:
                 context_substruct_overlap_idxes_reorder = [context_node_map[old_idx]
                                                        for
@@ -169,6 +172,13 @@ class ExtractSubstructureContextPair:
                         return None
                     else:
                         continue
+            else:
+                retry += 1
+                if(retry > 2):
+                    return None
+                else:
+                    continue
+            
         return data
 
         # ### For debugging ###

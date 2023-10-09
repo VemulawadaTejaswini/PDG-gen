@@ -145,6 +145,7 @@ def main():
     torch.manual_seed(seed)
     np.random.seed(seed)
     os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
+    args.device = 1
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
@@ -167,6 +168,7 @@ def main():
     dataset_root = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/dataset"
     
     dataset = MoleculeDataset(dataset_root, dataset=args.dataset, transform = ExtractSubstructureContextPair(args.num_layer, l1, l2))
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
     loader = DataLoaderSubstructContext(dataset, batch_size=args.batch_size, shuffle=True, num_workers = args.num_workers)
 
     #set up models, one for pre-training and one for context embeddings
