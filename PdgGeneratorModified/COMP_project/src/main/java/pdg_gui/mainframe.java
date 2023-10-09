@@ -20,8 +20,10 @@ public class mainframe {
     private PDGCore astPrinter = new PDGCore();
     // static String outputFolder = "./../../Code_kernel_data/before_pruning/NEW/";
     // static String inputFolder = "./../../Code_kernel_data/after_preprocessing/FINAL/test/";
-    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/pdg-data/";
-    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
+    // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/pdg-data/";
+    // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
+    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/pdg-data/";
+    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/Processed-data-for-pdg/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
@@ -122,7 +124,7 @@ public class mainframe {
         try {
             mainframe obj = new mainframe();
             boolean isOnlyFile = false;
-            String generateFor = "code2seq"; // "code2seq" or "ck"
+            String generateFor = "crypto-api"; // "code2seq" or "ck" or "crypto-api"
             if (isOnlyFile) {
                 outputFolder = "D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/PdgGeneratorModified/test_folder/";
                 String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\CodeKernel_Manual_Data\\Processed_data\\after_preprocessing\\FilenameUtils.normalize\\sample-0\\68_0.java"; 
@@ -170,6 +172,20 @@ public class mainframe {
                         System.out.println("\n\nFile Name: " + file);
                         obj.methods(file, apiName, "NA");
                     }
+                }
+            } else if(generateFor.equals("crypto-api")){
+                ArrayList<String> listOfFiles = new ArrayList<String>();
+                File directory = new File(inputFolder);
+                File filesList[] = directory.listFiles();
+                for (File file : filesList) {
+                    if (file.getAbsolutePath().endsWith(".java") && !file.getAbsolutePath().contains("Http")) {
+                        listOfFiles.add(file.getAbsolutePath());
+                    }
+                }
+
+                for (String file : listOfFiles) {
+                    System.out.println("\n\nFile Name: " + file);
+                    obj.methods(file, "NA", "NA");
                 }
             }
         } catch (Exception e) {
