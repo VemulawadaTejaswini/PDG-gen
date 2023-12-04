@@ -228,6 +228,15 @@ def random_split(dataset, task_idx=None, null_value=0,
                                                             valid_smiles,
                                                             test_smiles)
 
+def custom_split(dataset):
+    train_dataset = [data for data in dataset if data.split == 1]
+    valid_dataset = [data for data in dataset if data.split == 2]
+    test_dataset = [data for data in dataset if data.split == 3]
+    random.shuffle(train_dataset)
+    random.shuffle(valid_dataset)
+    random.shuffle(test_dataset)
+    print("\nTrain dataset size: {}, valid dataset size: {} and test dataset size: {}".format(len(train_dataset), len(valid_dataset), len(test_dataset)))
+    return train_dataset, valid_dataset, test_dataset
 
 def cv_random_split(dataset, fold_idx = 0,
                    frac_train=0.9, frac_valid=0.1, seed=0,

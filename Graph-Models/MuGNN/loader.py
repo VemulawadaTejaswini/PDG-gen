@@ -546,6 +546,72 @@ class MoleculeDataset(InMemoryDataset):
                     count += 1
                     
             data_mapping.close()
+            
+            
+        elif self.dataset == 'crypto-api':
+            splits = [["train", 1], ["valid", 2], ["test", 3]]
+            input_folder_path = ""
+            for folder_path in self.raw_paths:
+                if self.dataset in folder_path:
+                    break
+            count = 0
+            for split in splits:
+                input_folder_path = folder_path + "/" + split[0]
+                print("\nProcessing: {}\n".format(input_folder_path))
+                files = glob.glob(os.path.join(input_folder_path, '*.txt'))
+                print("\nNumber of files: {}\n".format(len(files)))
+                for file in files:
+                    if(count % 5 == 0):
+                        print("\nAt file: {}\n".format(count))
+                        
+                    try:
+                        nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name = get_nodes_edges(file, add_reverse_edges = True)
+                    except Exception as e:
+                        print("\nError: ", e)
+                        continue
+                    
+                    if(len(nodes_dict) == 0):
+                        print("\nNo Data: ", file)
+                        continue
+                    #print(nodes_dict, edge_indices_CD, edge_indices_FD, edge_type)
+
+                    # Node feature matrix with shape [num_nodes, num_node_features]=(N, 768).
+                    try:
+                        CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
+                    except Exception as e :
+                        print("\nError: ", e)
+                        print(nodes_dict)
+                        continue
+                    #print(CodeEmbedding.shape)
+
+                    # FIXING DATA FOTMATS AND SHAPE
+                    x = torch.tensor(CodeEmbedding)
+                    # print(x.shape)
+  
+                    # data.y: Target to train against (may have arbitrary shape),
+                    # graph-level targets of shape [1, *]
+                    file_name = file[file.rindex("/", 0, len(file) - 1) + 1 :]
+                    label = int(file_name.strip().split("_")[1])
+                    y = torch.tensor([label], dtype=torch.long)
+                    #print(type(y))
+
+                    # edge_index (LongTensor, optional) – Graph connectivity in COO format with shape [2, num_edges]
+                    edge_index_CD = torch.tensor(edge_indices_CD, dtype=torch.long).t().contiguous()
+                    edge_index_FD = torch.tensor(edge_indices_FD, dtype=torch.long).t().contiguous()
+                    edge_index = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+                    edge_attr = torch.tensor(edge_type, dtype=torch.long).t().contiguous()
+                    #print(edge_index_CD, edge_index_FD, edge_index, edge_type)
+  
+                    data = Data(edge_index=edge_index, edge_attr=edge_attr, x=x)
+                    data.id = torch.tensor([count])
+                    data.y = y
+                    data.split = split[1]
+                    # data.num_nodes = len(nodes_dict)
+                    # data.api = file_name
+                    data_list.append(data)
+                    count += 1
+        
+        
         else:
             raise ValueError('Invalid dataset name')
 

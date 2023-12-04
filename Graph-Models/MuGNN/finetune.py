@@ -14,7 +14,7 @@ import numpy as np
 from model import GNN, GNN_graphpred
 from sklearn.metrics import roc_auc_score
 
-from splitters import scaffold_split
+from splitters import scaffold_split, random_scaffold_split, random_split, custom_split
 import pandas as pd
 
 import os
@@ -22,29 +22,52 @@ import shutil
 
 from tensorboardX import SummaryWriter
 
+## NEW IMPORTS
+import random
+import platform
+from sklearn.metrics import (
+    recall_score,
+    precision_score,
+    f1_score,
+    accuracy_score,
+    matthews_corrcoef,
+)
+
 criterion = nn.BCEWithLogitsLoss(reduction = "none")
+
+def performance(y, pred):
+    acc = accuracy_score(y, pred)
+    f = f1_score(y, pred)
+    re = recall_score(y, pred)
+    pre = precision_score(y, pred)
+    return acc, pre, re, f
 
 def train(args, model, device, loader, optimizer):
     model.train()
-
+    total_loss, count = 0, 0
     for step, batch in enumerate(tqdm(loader, desc="Iteration")):
         batch = batch.to(device)
         pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
         y = batch.y.view(pred.shape).to(torch.float64)
 
-        #Whether y is non-null or not.
-        is_valid = y**2 > 0
-        #Loss matrix
-        loss_mat = criterion(pred.double(), (y+1)/2)
-        #loss matrix after removing null target
-        loss_mat = torch.where(is_valid, loss_mat, torch.zeros(loss_mat.shape).to(loss_mat.device).to(loss_mat.dtype))
+        # #Whether y is non-null or not.
+        # is_valid = y**2 > 0
+        # #Loss matrix
+        # loss_mat = criterion(pred.double(), (y+1)/2)
+        # #loss matrix after removing null target
+        # loss_mat = torch.where(is_valid, loss_mat, torch.zeros(loss_mat.shape).to(loss_mat.device).to(loss_mat.dtype))
+        loss_mat = criterion(pred.double(), y)
             
         optimizer.zero_grad()
-        loss = torch.sum(loss_mat)/torch.sum(is_valid)
+        # loss = torch.sum(loss_mat)/torch.sum(is_valid)
+        loss = torch.sum(loss_mat)/len(loss_mat)
+        total_loss += loss
         loss.backward()
 
         optimizer.step()
+        count += 1
 
+    print("Training Loss:", total_loss/count)
 
 def eval(args, model, device, loader):
     model.eval()
@@ -62,19 +85,21 @@ def eval(args, model, device, loader):
 
     y_true = torch.cat(y_true, dim = 0).cpu().numpy()
     y_scores = torch.cat(y_scores, dim = 0).cpu().numpy()
+    y_pred = [1 if i > 0 else 0 for i in y_scores]
+    acc, prec, rec, f1 = performance(y_true, y_pred)
 
-    roc_list = []
-    for i in range(y_true.shape[1]):
-        #AUC is only defined when there is at least one positive data.
-        if np.sum(y_true[:,i] == 1) > 0 and np.sum(y_true[:,i] == -1) > 0:
-            is_valid = y_true[:,i]**2 > 0
-            roc_list.append(roc_auc_score((y_true[is_valid,i] + 1)/2, y_scores[is_valid,i]))
+    # roc_list = []
+    # for i in range(y_true.shape[1]):
+    #     #AUC is only defined when there is at least one positive data.
+    #     if np.sum(y_true[:,i] == 1) > 0 and np.sum(y_true[:,i] == -1) > 0:
+    #         is_valid = y_true[:,i]**2 > 0
+    #         roc_list.append(roc_auc_score((y_true[is_valid,i] + 1)/2, y_scores[is_valid,i]))
 
-    if len(roc_list) < y_true.shape[1]:
-        print("Some target is missing!")
-        print("Missing ratio: %f" %(1 - float(len(roc_list))/y_true.shape[1]))
+    # if len(roc_list) < y_true.shape[1]:
+    #     print("Some target is missing!")
+    #     print("Missing ratio: %f" %(1 - float(len(roc_list))/y_true.shape[1]))
 
-    return sum(roc_list)/len(roc_list) #y_true.shape[1]
+    return (acc, prec, rec, f1)
 
 
 
@@ -83,9 +108,9 @@ def main():
     parser = argparse.ArgumentParser(description='PyTorch implementation of pre-training of graph neural networks')
     parser.add_argument('--device', type=int, default=0,
                         help='which gpu to use if any (default: 0)')
-    parser.add_argument('--batch_size', type=int, default=32,
+    parser.add_argument('--batch_size', type=int, default=8,
                         help='input batch size for training (default: 32)')
-    parser.add_argument('--epochs', type=int, default=100,
+    parser.add_argument('--epochs', type=int, default=10,
                         help='number of epochs to train (default: 100)')
     parser.add_argument('--lr', type=float, default=0.001,
                         help='learning rate (default: 0.001)')
@@ -104,24 +129,26 @@ def main():
     parser.add_argument('--JK', type=str, default="last",
                         help='how the node features across layers are combined. last, sum, max or concat')
     parser.add_argument('--gnn_type', type=str, default="gin")
-    parser.add_argument('--dataset', type=str, default = 'tox21', help='root directory of dataset. For now, only classification.')
+    parser.add_argument('--dataset', type=str, default = 'crypto-api', help='root directory of dataset. For now, only classification.')
     parser.add_argument('--input_model_file', type=str, default = '', help='filename to read the model (if there is any)')
     parser.add_argument('--filename', type=str, default = '', help='output filename')
     parser.add_argument('--seed', type=int, default=42, help = "Seed for splitting the dataset.")
-    parser.add_argument('--runseed', type=int, default=0, help = "Seed for minibatch selection, random initialization.")
+    parser.add_argument('--runseed', type=int, default=seed, help = "Seed for minibatch selection, random initialization.")
     parser.add_argument('--split', type = str, default="scaffold", help = "random or scaffold or random_scaffold")
-    parser.add_argument('--eval_train', type=int, default = 0, help='evaluating training or not')
+    parser.add_argument('--eval_train', type=int, default = 1, help='evaluating training or not')
     parser.add_argument('--num_workers', type=int, default = 4, help='number of workers for dataset loading')
     args = parser.parse_args()
-
-
-    torch.manual_seed(args.runseed)
-    np.random.seed(args.runseed)
+        
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+    os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
+    args.device = 1
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
     if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(args.runseed)
+        torch.cuda.manual_seed_all(seed)
 
     #Bunch of classification tasks
+    args.dataset == "crypto-api"
     if args.dataset == "tox21":
         num_tasks = 12
     elif args.dataset == "hiv":
@@ -140,15 +167,24 @@ def main():
         num_tasks = 27
     elif args.dataset == "clintox":
         num_tasks = 2
+    elif args.dataset == "crypto-api":
+        num_tasks = 1
     else:
         raise ValueError("Invalid dataset name.")
 
+    #set up dataset and transform function.
+    dataset_root = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/dataset"
+    args.output_model_file = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/saved_models"
+    
     #set up dataset
-    dataset = MoleculeDataset("dataset/" + args.dataset, dataset=args.dataset)
-
+    dataset = MoleculeDataset(dataset_root, dataset=args.dataset)
     print(dataset)
     
-    if args.split == "scaffold":
+    args.split = "custom"
+    if args.split == "custom":
+        train_dataset, valid_dataset, test_dataset = custom_split(dataset)
+        print("custom split")
+    elif args.split == "scaffold":
         smiles_list = pd.read_csv('dataset/' + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
         train_dataset, valid_dataset, test_dataset = scaffold_split(dataset, smiles_list, null_value=0, frac_train=0.8,frac_valid=0.1, frac_test=0.1)
         print("scaffold")
@@ -169,9 +205,14 @@ def main():
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
 
     #set up model
+    args.num_layer = 3
+    args.emb_dim = 768
+    args.gnn_type = "gcn"
+    args.input_model_file = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/saved_models/gcn_1_3_5_e100_model_ck_code2seq.pth"
     model = GNN_graphpred(args.num_layer, args.emb_dim, num_tasks, JK = args.JK, drop_ratio = args.dropout_ratio, graph_pooling = args.graph_pooling, gnn_type = args.gnn_type)
     if not args.input_model_file == "":
         model.from_pretrained(args.input_model_file)
+        print("Loaded the model!!")
     
     model.to(device)
 
@@ -212,7 +253,7 @@ def main():
         val_acc = eval(args, model, device, val_loader)
         test_acc = eval(args, model, device, test_loader)
 
-        print("train: %f val: %f test: %f" %(train_acc, val_acc, test_acc))
+        print("train(acc, prec, rec, f1): {} val(acc, prec, rec, f1): {} test(acc, prec, rec, f1): {}".format(train_acc, val_acc, test_acc))
 
         val_acc_list.append(val_acc)
         test_acc_list.append(test_acc)
@@ -227,6 +268,23 @@ def main():
 
     if not args.filename == "":
         writer.close()
+        
+        
+# To ensure determinism
+seed = 1234
+def seed_everything(seed: int):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    torch.backends.cudnn.deterministic = True
+seed_everything(seed)
+
+# Check versions
+print("Torch version: ", torch.__version__)
+print("Torch cuda version: ", torch.version.cuda)
+print("Python version: ", platform.python_version())
 
 if __name__ == "__main__":
     main()
