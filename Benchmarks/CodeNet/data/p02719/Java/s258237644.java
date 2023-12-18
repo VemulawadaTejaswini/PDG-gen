@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class Main{
+  public static void main(String[] args){
+    Scanner scan = new Scanner(System.in);
+    int n = scan.nextInt();
+    int k = scan.nextInt();
+    int ans = n;
+    
+    while(true){
+      if(k == 1){
+        ans = 0;
+        break;
+      }
+      int temp = Math.abs(ans-k);
+      if(ans > temp){
+        ans = temp;
+      }else{
+        break;
+      }
+    }
+    System.out.println(ans);
+  }
+}
+

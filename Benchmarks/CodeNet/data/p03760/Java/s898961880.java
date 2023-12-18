@@ -1,0 +1,22 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	String O = scan.next();
+	String E = scan.next();
+
+	StringBuilder str = new StringBuilder();
+	for (int i = 0; i < E.length(); i++) {
+	    str.append(O.charAt(i));
+	    str.append(E.charAt(i));
+	}
+	if(O.length()-E.length() == 1) str.append(O.charAt(O.length()-1));
+
+	System.out.println(str.toString());
+	scan.close();
+    }
+}

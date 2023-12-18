@@ -1,0 +1,31 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+
+  public static void main(String args[]){
+
+    Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+  
+        int l = sc.nextInt();
+
+        String tinge[] = new String[n];
+
+     for(int i = 0; i < n; i++){
+ 
+        tinge[i] = sc.next();
+
+      }
+          
+    Arrays.sort(tinge);
+   
+        for(String t: tinge){
+             System.out.print(t);
+        }
+
+        
+  }
+
+}

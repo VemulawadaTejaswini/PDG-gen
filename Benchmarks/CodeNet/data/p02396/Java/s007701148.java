@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int i = 1;
+
+
+		while( i < 10000){
+			int x =sc.nextInt();
+			System.out.println("case" + " "+ i + ":" + x);
+			i++;
+			if ( x == 0) break;
+
+		}
+
+
+}
+}
+

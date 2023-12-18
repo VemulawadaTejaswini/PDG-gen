@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		// 整数の入力
+		// スペース区切りの整数の入力
+		int X = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		
+        if (b > a + X ){
+    		System.out.println("dangerous");
+	    }else if(a >= b){
+			System.out.println("delicious");
+	    }else{
+	    	System.out.println("safe");
+	    }
+	}
+}

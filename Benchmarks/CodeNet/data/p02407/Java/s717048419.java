@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+class Main{
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		String n =scan.nextLine();
+		while(scan.hasNextInt()){
+			int x = scan.nextInt();
+			list.add(x);
+		}
+		for(int i=0;i<list.size();i++){
+			int saizu = list.size();
+			saizu -= i;
+			System.out.print(list.get(saizu));
+			if(saizu == 0){
+				System.out.println("");
+				break;
+			}
+			else{
+				System.out.print(" ");
+				break;
+			}
+		
+		}
+	}
+}

@@ -1,0 +1,100 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main {
+	public static void main(String[] args) {
+		InputStream inputStream = System.in;
+		OutputStream outputStream = System.out;
+		FastScanner in = new FastScanner(inputStream);
+		PrintWriter out = new PrintWriter(outputStream);
+		D_Ears solver = new D_Ears();
+		solver.solve(1, in, out);
+		out.close();
+	}
+
+	static class D_Ears {
+		public void solve(int testNumber, FastScanner in, PrintWriter out) {
+			int n = in.nextInt();
+			int[] a = new int[n];
+			long[] s = new long[n + 1];
+			long[] sEven = new long[n + 1];
+			for (int i = 0; i < n; i++) {
+				a[i] = in.nextInt();
+				s[i + 1] = s[i] + a[i];
+				sEven[i + 1] = sEven[i] + (a[i] % 2 == 0 ? a[i] : 0);
+			}
+
+			long[] pref = new long[n];
+			for (int i = 1; i < n; i++) {
+				pref[i] = s[i];
+				pref[i] = Math.min(pref[i], f(a[i - 1]) + pref[i - 1]);
+			}
+
+			long[] suff = new long[n];
+			for (int i = n - 2; i >= 0; i--) {
+				suff[i] = s[n] - s[i + 1];
+				suff[i] = Math.min(suff[i], f(a[i + 1]) + suff[i + 1]);
+			}
+
+			long ans = Long.MAX_VALUE;
+			long best = Long.MAX_VALUE;
+			for (int i = 0; i < n; i++) {
+				best = Math.min(best, -sEven[i] + pref[i]);
+				ans = Math.min(ans, sEven[i + 1] + suff[i] + best);
+				ans = Math.min(ans, suff[i] + pref[i] + f(a[i]));
+			}
+
+			out.println(ans);
+		}
+
+		private long f(int x) {
+			x -= 2;
+			if (x < 0) {
+				return Math.abs(x);
+			}
+			return x % 2;
+		}
+
+	}
+
+	static class FastScanner {
+		private BufferedReader in;
+		private StringTokenizer st;
+
+		public FastScanner(InputStream stream) {
+			in = new BufferedReader(new InputStreamReader(stream));
+		}
+
+		public String next() {
+			while (st == null || !st.hasMoreTokens()) {
+				try {
+					String rl = in.readLine();
+					if (rl == null) {
+						return null;
+					}
+					st = new StringTokenizer(rl);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return st.nextToken();
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+	}
+}
+

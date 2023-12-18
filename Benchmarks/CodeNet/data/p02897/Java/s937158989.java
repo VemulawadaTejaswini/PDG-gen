@@ -1,0 +1,11 @@
+import java.util.Scanner;
+class Main{
+  public static void main(String args[]){
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    int num = n - n/2;
+    double ans = (double)num/n;
+    System.out.println(ans);
+  }
+}

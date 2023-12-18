@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+  
+  	String S,T;
+  	int A,B;
+  	String U;
+  	
+  	Scanner scan = new Scanner(System.in);
+  	S = scan.next();
+  	T = scan.next();
+  	A = scan.next();
+  	B = scan.next();
+  	U = scan.next();
+  	
+  	if(U == S){
+      A--;
+    } else if (U == T){
+      B--;
+    }
+  
+  	System.out.print(String.valueOf(A) + " " + String.valueOf(B));
+    }
+}
+  

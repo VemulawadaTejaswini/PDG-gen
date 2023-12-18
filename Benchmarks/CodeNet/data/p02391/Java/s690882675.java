@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+Public class Main{
+ public static void(String[] args){
+  Scanner sc = new Scanner(System.in);
+   int a = sc.nextInt();
+   int b = sc.nextInt();
+   if(a<b){
+    System.out.println("a < b");
+ }else if(a>b){
+    System.out.plintln("a > b");
+}else{
+    System.out.plintln(" a == b");
+}
+}
+}

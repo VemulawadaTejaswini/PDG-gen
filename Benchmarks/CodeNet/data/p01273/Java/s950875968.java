@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,m,i;(n=s.nextInt())>0;){int[][]a=new int[i=m=s.nextInt()+1][2];int[]b=new int[n+1];for(;i-->1;)a[s.nextInt()]=new int[]{s.nextInt(),s.nextInt()};for(b[++i]=1;i<m;++i)if(b[a[i][0]]>0)b[a[i][1]]=1;for(int c:b)b[0]+=c;System.out.println(b[0]);}}}

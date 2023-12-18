@@ -1,0 +1,49 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // ??\????????°?????????
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // ?????°????¨????
+        int cnt = Integer.parseInt(br.readLine());
+        // ????????????
+        String[] sarray = br.readLine().split(" ",cnt);
+        // ?????\??????????????????
+        selectionSort(sarray,cnt);
+    }
+    
+    public static void selectionSort(String[] sarray, int cnt){
+        int chgNum = 0;
+        // ???????????????????????????
+        for(int i = 0; i < cnt; i++){
+            // ????°????????????????
+            int minj = i;
+            // ?????????????????§??????
+            for(int j = i; j < cnt; j++){
+                if(Integer.parseInt(sarray[j]) < Integer.parseInt(sarray[minj])){
+                    minj = j;
+                }
+            }
+            // ????°?????????\?????????
+            if(minj != i){
+                String v = sarray[i];
+                sarray[i] = sarray[minj];
+                sarray[minj] = v;
+                chgNum = chgNum + 1;
+            }
+        }
+        outPrint(sarray,cnt);
+        System.out.println(chgNum);
+    }
+
+    public static void outPrint(String[] sarray, int cnt){
+        StringBuilder sb = new StringBuilder();
+        for(int n = 0; n < cnt ; n++){
+            if(n>0)sb.append(" ");
+            sb.append(sarray[n]);
+        } 
+        System.out.println(sb);
+        sb.setLength(0);
+    }
+};

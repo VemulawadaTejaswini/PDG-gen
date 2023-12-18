@@ -1,0 +1,60 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] line = bufferedReader.readLine().split(" ");
+        int N = Integer.parseInt(line[0]);
+        int M = Integer.parseInt(line[1]);
+        int capN = N * 4 / 3 + 1;
+        HashMap<Integer, HashSet<Integer>> P = new HashMap<>(capN);
+        for (int i = 0; i < M; i++) {
+            line = bufferedReader.readLine().split(" ");
+            int a = Integer.parseInt(line[0]);
+            int b = Integer.parseInt(line[1]);
+            if (a != 1) {
+                P.computeIfAbsent(a, k -> new HashSet<>());
+                P.get(a).add(b);
+            }
+            if (b != 1) {
+                P.computeIfAbsent(b, k -> new HashSet<>());
+                P.get(b).add(a);
+            }
+        }
+        HashMap<Integer, Integer> result = new HashMap<>(capN);
+        HashSet<Integer> toward = new HashSet<>();
+        HashSet<Integer> nextToward = new HashSet<>();
+        HashSet<Integer> removeKey = new HashSet<>();
+        toward.add(1);
+        while (true) {
+            for (int key : P.keySet()) {
+                HashSet p = P.get(key);
+                for (int tK : toward) {
+                    if (p.contains(tK)) {
+                        result.put(key, tK);
+                        removeKey.add(key);
+                        nextToward.add(key);
+                        break;
+                    }
+                }
+            }
+            for (int key : removeKey) P.remove(key);
+            removeKey.clear();
+            if (nextToward.isEmpty()) break;
+            toward.clear();
+            toward.addAll(nextToward);
+            nextToward.clear();
+        }
+        if (P.isEmpty()) {
+            System.out.println("Yes");
+            for (int i = 2; i <= N; i++) {
+                System.out.println(result.get(i));
+            }
+        } else {
+            System.out.println("No");
+        }
+    }
+}

@@ -1,0 +1,58 @@
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+ 
+
+//result = Math.pow(num1, num3)
+//StringBuffer str = new StringBuffer(hoge1);
+//String hoge2 = str.reverse().toString();
+//map.containsKey(A)
+//Map<String, Integer> map = new HashMap<String, Integer>(n);
+//ArrayList<String> cc = new ArrayList<>(n);
+
+public class Main {
+	private static Scanner sc = new Scanner(System.in);
+	static void p(String ans) {System.out.println(ans);};
+	static void p(int ans) {System.out.println(ans);};
+	static void p(long ans) {System.out.println(ans);};
+	static void p(double ans) {System.out.println(ans);};
+	//static String eikomoji[]={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+	
+	
+	public static void main(String[] args) {
+	String N=sc.next();
+	int k=sc.nextInt();
+	long g =(int) Math.pow(9, k);
+	long f=0;
+	f=(N.length()-k+1)*N.length()/2*g;
+	p(f);
+	int yojou=0;
+	int kk=k;
+	for(int i=0;i<kk;i++){
+		int t=N.charAt(i)-48;
+		if(i==kk-1&&N.length()!=kk) {
+			t++;
+		}
+		if(t!=0) {
+			k--;
+			yojou+=(9-t)*((int) Math.pow(9, k));
+			p("a"+(9-t));
+			p("b"+((int) Math.pow(9, k)));
+			p("yo"+yojou);
+		}
+	}
+	p(yojou);
+	p("ANS"+(f-yojou));
+
+	
+	
+	
+ }
+}

@@ -1,0 +1,218 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.ArrayDeque;
+import java.util.NoSuchElementException;
+import java.util.Queue;
+
+public class Main{
+	static FastScanner sc = new FastScanner();
+	static PrintWriter out = new PrintWriter(System.out);
+	//static String S;
+	//static String T;
+	static int H;
+	static int W;
+	static char a [][];
+	final static int mod = 1_000_000_007;
+	static int dx [] = {1, 0};
+	static int dy [] = {0, 1};
+	static long ans [][];
+	//static LinkedList <Integer> adj []; 
+	
+	public static void main(String[] args) {
+		H = sc.nextInt();
+		W = sc.nextInt();
+		a = new char [H+1][W+1];
+		
+		for (int i=0; i<H; i++) 
+			a[i] = sc.next().toCharArray();
+		
+		Point start = new Point (0, 0);
+		BFS(a, start);
+		
+		out.println(Math.max(0, ans[H-1][W-1]));
+		
+		out.flush();
+	}
+	
+	static boolean isValid (int y, int x) { 
+		return (y >= 0) && (y < H) && 
+			(x >= 0) && (x < W); 
+	} 
+
+	static class Point { 
+		int x; 
+		int y; 
+
+		public Point(int x, int y) { 
+			this.x = x; 
+			this.y = y; 
+		} 
+	}
+	
+	static class Node { 
+		Point pt; 
+		int dist; 
+
+		public Node(Point pt, int dist) { 
+			this.pt = pt; 
+			this.dist = dist; 
+		} 
+	}
+	
+	static void BFS(char map[][], Point s) { 	
+		ans = new long [H][W];
+		
+		Queue <Point> q = new ArrayDeque<>();
+		q.offer(s);
+		ans[s.y][s.x] = 1;
+		
+		boolean seen [][] = new boolean [H][W];
+		seen[0][0] = true;
+
+		while (!q.isEmpty()) { 
+			Point p = q.poll();
+
+			for (int i=0; i<2; i++) { 
+				int ny = p.y + dy[i]; 
+				int nx = p.x + dx[i]; 
+				
+				if (!isValid(ny,nx))
+					continue;
+
+				if (map[ny][nx]!='.')
+					continue;
+				
+				if (seen[ny][nx]) {
+					ans[ny][nx]+=ans[p.y][p.x];
+					ans[ny][nx]%=mod;
+				}
+				
+				else {
+					ans[ny][nx] = ans[p.y][p.x];
+					ans[ny][nx]%=mod;
+					seen[ny][nx] = true;
+					q.offer (new Point (nx,ny));	
+				}
+			}		
+		}
+	}
+	
+		static class FastScanner {
+		    private final InputStream in = System.in;
+		    private final byte[] buffer = new byte[1024];
+		    private int ptr = 0;
+		    private int buflen = 0;
+
+		    private boolean hasNextByte() {
+		      if (ptr < buflen) {
+		        return true;
+		      } else {
+		        ptr = 0;
+		        try {
+		          buflen = in.read(buffer);
+		        } catch (IOException e) {
+		          e.printStackTrace();
+		        }
+		        if (buflen <= 0) {
+		          return false;
+		        }
+		      }
+		      return true;
+		    }
+
+		    private int readByte() {
+		      if (hasNextByte()) return buffer[ptr++];
+		      else return -1;
+		    }
+
+		    private static boolean isPrintableChar(int c) {
+		      return 33 <= c && c <= 126;
+		    }
+
+		    private void skipUnprintable() {
+		      while (hasNextByte() && !isPrintableChar(buffer[ptr])) ptr++;
+		    }
+
+		    public boolean hasNext() {
+		      skipUnprintable();
+		      return hasNextByte();
+		    }
+
+		    public String next() {
+		      if (!hasNext()) throw new NoSuchElementException();
+		      StringBuilder sb = new StringBuilder();
+		      int b = readByte();
+		      while (isPrintableChar(b)) {
+		        sb.appendCodePoint(b);
+		        b = readByte();
+		      }
+		      return sb.toString();
+		    }
+
+		    public long nextLong() {
+		      if (!hasNext()) throw new NoSuchElementException();
+		      long n = 0;
+		      boolean minus = false;
+		      int b = readByte();
+		      if (b == '-') {
+		        minus = true;
+		        b = readByte();
+		      }
+		      if (b < '0' || '9' < b) {
+		        throw new NumberFormatException();
+		      }
+		      while (true) {
+		        if ('0' <= b && b <= '9') {
+		          n *= 10;
+		          n += b - '0';
+		        } else if (b == -1 || !isPrintableChar(b)) {
+		          return minus ? -n : n;
+		        } else {
+		          throw new NumberFormatException();
+		        }
+		        b = readByte();
+		      }
+		    }
+
+		    public int nextInt() {
+		      return (int) nextLong();
+		    }
+
+		    public int[] nextIntArray(int N, boolean oneBased) {
+		      if (oneBased) {
+		        int[] array = new int[N + 1];
+		        for (int i = 1; i <= N; i++) {
+		          array[i] = sc.nextInt();
+		        }
+		        return array;
+		      } else {
+		        int[] array = new int[N];
+		        for (int i = 0; i < N; i++) {
+		          array[i] = sc.nextInt();
+		        }
+		        return array;
+		      }
+		    }
+
+		    public long[] nextLongArray(int N, boolean oneBased) {
+		      if (oneBased) {
+		        long[] array = new long[N + 1];
+		        for (int i = 1; i <= N; i++) {
+		          array[i] = sc.nextLong();
+		        }
+		        return array;
+		      } else {
+		        long[] array = new long[N];
+		        for (int i = 0; i < N; i++) {
+		          array[i] = sc.nextLong();
+		        }
+		        return array;
+		      }
+		    }
+		  }
+
+		}	 
+
+
+

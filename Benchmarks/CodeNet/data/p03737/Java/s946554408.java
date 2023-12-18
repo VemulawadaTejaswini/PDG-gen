@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Here your code !
+        Scanner scan = new Scanner(System.in);
+        String a = scan.next();
+        String b = scan.next();
+        String c = scan.next();
+        String str1 = a.substring(0,1);
+        String str2 = b.substring(0,1);
+        String str3 = c.substring(0,1);
+        System.out.print(str1.toUpperCase());
+        System.out.print(str2.toUpperCase());
+        System.out.println(str3.toUpperCase());
+    }
+}

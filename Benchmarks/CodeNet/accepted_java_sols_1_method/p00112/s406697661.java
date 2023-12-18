@@ -1,0 +1,28 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) 
+	{
+		Scanner in=new Scanner(System.in);
+		for(;;)
+		{
+			int n=in.nextInt();
+			if(n==0)
+				return;
+			int a[]=new int[n];
+			for(int i=0;i<n;i++)
+				a[i]=in.nextInt();
+			Arrays.sort(a);
+			
+			long ans=0;
+			long wai=0;
+			for(int i=0;i<n;i++)
+			{
+				ans+=wai;
+				wai+=a[i];
+			}
+			System.out.println(ans);
+		}
+	}
+}

@@ -1,0 +1,64 @@
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws FileNotFoundException {
+		new Main().run();
+	}
+
+	void run() {
+		Scanner sc = new Scanner(System.in);
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		int C = sc.nextInt();
+		int D = sc.nextInt();
+		int E = sc.nextInt();
+		int F = sc.nextInt();
+		boolean[] b1 = new boolean[F + 1];
+		boolean[] b2 = new boolean[F + 1];
+		b1[0] = true;
+		b2[0] = true;
+		for (int i = 0; i < F; ++i) {
+			if (i + 100 * A < b1.length)
+				b1[i + 100 * A] |= b1[i];
+		}
+		for (int i = 0; i < F; ++i) {
+			if (i + 100 * B < b1.length)
+				b1[i + 100 * B] |= b1[i];
+		}
+		for (int i = 0; i < F; ++i) {
+			if (i + C < b1.length)
+				b2[i + C] |= b2[i];
+		}
+		for (int i = 0; i < F; ++i) {
+			if (i + D < b1.length)
+				b2[i + D] |= b2[i];
+		}
+		double r = 0;
+		double a = 0;
+		double b = 0;
+		for (int i = 100; i <= F; i += 100) {
+			if (!b1[i])
+				continue;
+			for (int j = 0; i + j <= F; ++j) {
+				if (!b2[j])
+					continue;
+				if (E * i < j * 100)
+					continue;
+				if (r < 100.0 * j / (i + j)) {
+					r = 100.0 * j / (i + j);
+					a = i;
+					b = j;
+				}
+			}
+		}
+		System.out.println((int) (a + b) + " " + (int) b);
+
+	}
+
+	static void tr(Object... objects) {
+		System.out.println(Arrays.deepToString(objects));
+	}
+
+}

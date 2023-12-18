@@ -1,0 +1,88 @@
+import java.io.*;
+import java.util.*;
+class Main
+{
+    static BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	static FastScanner sc=new FastScanner(br);
+    static PrintWriter out=new PrintWriter(System.out);
+	static Random rnd=new Random();
+	
+    public static void main(String args[]) throws Exception
+    {
+		int n=sc.nextInt(),m=sc.nextInt();
+		
+		Pair[] a=new Pair[n],b=new Pair[m];
+		
+		
+		for(int i=0;i<n;i++)
+		{
+			a[i]=new Pair(sc.nextInt(),sc.nextInt());
+		}
+		
+		for(int i=0;i<m;i++)
+		{
+			b[i]=new Pair(sc.nextInt(),sc.nextInt());
+			
+		}
+		
+		for(int i=0;i<n;i++)
+		{
+			long min=Long.MAX_VALUE;int res=-1;
+			
+			
+			for(int j=0;j<m;j++)
+			{
+				long curr=Math.abs(a[i].x-b[j].x)+Math.abs(a[i].y-b[j].y);
+				
+				if(curr<min)
+				{
+					min=curr;res=j;
+				}
+			}
+			
+			out.println(res+1);
+		}
+		
+		out.close();
+    }
+}
+class Pair
+{
+	int x,y;
+	public Pair(int x,int y)
+	{
+		this.x=x;this.y=y;
+	}
+}
+class FastScanner
+{
+    BufferedReader in;
+    StringTokenizer st;
+
+    public FastScanner(BufferedReader in) {
+        this.in = in;
+    }
+	
+    public String nextToken() throws Exception {
+        while (st == null || !st.hasMoreTokens()) {
+            st = new StringTokenizer(in.readLine());
+        }
+        return st.nextToken();
+    }
+	
+	public String next() throws Exception {
+		return nextToken().toString();
+	}
+	
+    public int nextInt() throws Exception {
+        return Integer.parseInt(nextToken());
+    }
+
+    public long nextLong() throws Exception {
+        return Long.parseLong(nextToken());
+    }
+
+    public double nextDouble() throws Exception {
+        return Double.parseDouble(nextToken());
+    }
+}

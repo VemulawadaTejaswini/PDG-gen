@@ -1,0 +1,82 @@
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+
+public class Main {
+    private static final ReadableByteChannel channel = Channels.newChannel(System.in);
+
+    public static void main(String[] args) throws IOException {
+	buf.clear();
+	channel.read(buf);
+	buf.flip();
+	int n;
+	while ((n = nextInt()) != 0) {
+	    int[][] map = new int[21][21];
+	    for (int i = 0; i < n; i++) {
+		map[nextInt()][nextInt()] = 1;
+
+	    }
+	    int m = nextInt();
+	    int x = 10;
+	    int y = 10;
+	    int count = 0;
+	    for (int i = 0; i < m; i++) {
+		char c = getChar();
+		int l = nextInt();
+		if (count != n) {
+		    int dx = 0;
+		    int dy = 0;
+		    if (c == 'N') {
+			dy = 1;
+		    } else if (c == 'E') {
+			dx = 1;
+		    } else if (c == 'S') {
+			dy = -1;
+		    } else if (c == 'W') {
+			dx = -1;
+		    }
+		    for (int j = 0; j < l; j++) {
+			count += map[x][y];
+			map[x][y] = 0;
+			x += dx;
+			y += dy;
+		    }
+		    count += map[x][y];
+		    map[x][y] = 0;
+		}
+	    }
+	    if (count == n) {
+		System.out.println("Yes");
+	    } else {
+		System.out.println("No");
+	    }
+	}
+    }
+
+    private static char getChar() throws IOException {
+	int c = ' ';
+	while (c < 'E' || 'W' < c) {
+	    c = buf.get();
+	}
+	return (char) c;
+    }
+
+    static ByteBuffer buf = ByteBuffer.allocate(10000000);
+
+    private static int nextInt() throws IOException {
+	char c = (char) buf.get();
+	while ((c < '0' || '9' < c) && c != '-') {
+	    c = (char) buf.get();
+	}
+	if (c == '-') {
+	    return -nextInt();
+	}
+	int result = 0;
+	while ('0' <= c && c <= '9') {
+	    result = result * 10 + (c - '0');
+	    c = (char) buf.get();
+	}
+	return result;
+    }
+}

@@ -1,0 +1,38 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int m = scan.nextInt();
+        if(n == 1 && m == 0){
+            System.out.println(0);
+            return;
+        }
+        int[] s = new int[m];
+        int[] c = new int[m];
+        int[] out = new int[n];
+        for(int i = 0; i < m; i++){
+            s[i] = scan.nextInt();
+            c[i] = scan.nextInt();
+        }
+        out[0] = 1;
+        boolean[] isExist = new boolean[n];
+        Arrays.fill(isExist, true);
+        for(int i = 0; i < m; i++){
+            if(isExist[s[i] - 1] || out[s[i] - 1] == c[i]) {
+                out[s[i] - 1] = c[i];
+                isExist[s[i] - 1] = false;
+            }else{
+                System.out.println(-1);
+                return;
+            }
+        }
+        if(out[0] == 0 && n != 1){
+            System.out.println(-1);
+            return;
+        }
+        for(int i = 0; i < n; i++) System.out.print(out[i]);
+        scan.close();
+    }
+}

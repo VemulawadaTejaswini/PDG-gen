@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    String S = sc.next();
+    String T = sc.next();
+    int g = gcd(N,M);
+    boolean is_ok = true;
+    int L = N*M/g;
+    if(g==1){
+      System.out.println(N*M);
+    }else{
+      for(int l=0;l<g;l++){
+        if(S.charAt(l*(N/g))!=T.charAt(l*(M/g))){
+          is_ok = false;
+          break;
+        }
+      }
+      if(is_ok){
+        System.out.println(L);
+      }else{
+        System.out.println(-1);
+      }
+    }
+
+  }
+
+  private static int gcd(int m, int n) {
+    if(m < n) return gcd(n, m);
+    if(n == 0) return m;
+    return gcd(n, m % n);
+  }
+
+}

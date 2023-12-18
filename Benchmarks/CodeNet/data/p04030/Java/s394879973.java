@@ -1,0 +1,36 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		solve(s);
+		s.close();
+	}
+
+	public static void solve(Scanner s) {
+		String str = s.next();
+
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
+
+			switch (c) {
+			case '0':
+				sb.append(c);
+				break;
+			case '1':
+				sb.append(c);
+				break;
+			case 'B':
+				if (sb.length() > 0) {
+					sb.deleteCharAt(sb.length() - 1);
+				}
+				break;
+			}
+		}
+
+		System.out.println(sb.toString());
+	}
+}

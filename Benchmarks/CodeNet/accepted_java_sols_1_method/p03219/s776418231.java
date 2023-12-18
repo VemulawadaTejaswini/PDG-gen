@@ -1,0 +1,13 @@
+import java.util.*;
+import java.util.stream.*;
+import java.util.function.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        
+        System.out.println(x + y / 2);
+    }
+}

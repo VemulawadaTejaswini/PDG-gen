@@ -1,0 +1,17 @@
+import java.util.Scanner;
+ 
+public class Main {
+	static Scanner in = new Scanner(System.in);
+	public static void main(String[] args){
+		int W = in.nextInt(), a = in.nextInt(), b = in.nextInt();
+		if(b <= a + W && a <= b + W){
+			System.out.println(0);
+		}else{
+			if(a < b){
+				System.out.println(b - a - W);
+			}else{
+				System.out.println(a - b - W);
+			}
+		}
+	}
+}

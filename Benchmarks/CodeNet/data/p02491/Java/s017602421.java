@@ -1,0 +1,15 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner cin = new Scanner(System.in);
+		int a,b;
+		a=cin.nextInt();
+		b=cin.nextInt();
+		System.out.print(a/b+" ");
+		System.out.print(a % b+" ");
+		double c;
+		c=(double)a/(double)b;
+		System.out.print(String.format("%f",c));
+	}
+}

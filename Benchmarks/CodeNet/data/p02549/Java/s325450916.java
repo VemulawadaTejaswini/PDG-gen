@@ -1,0 +1,105 @@
+/* package codechef; // don't place package name! */
+ 
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+/* Name of the class has to be "Main" only if the class is public. */
+public class Main
+{
+    static int MAX = 1000001; 
+    static int factor[]; 
+  
+    // function to generate all prime 
+    // factors of numbers from 1 to 10^6 
+    static void generatePrimeFactors() 
+    { 
+        factor[1] = 1; 
+  
+        // Initializes all the positions with 
+        // their value. 
+        for (int i = 2; i < MAX; i++) 
+            factor[i] = i; 
+  
+        // Initializes all multiples of 2 with 2 
+        for (int i = 4; i < MAX; i += 2) 
+            factor[i] = 2; 
+  
+        // A modified version of Sieve of 
+        // Eratosthenes to store the 
+        // smallest prime factor that 
+        // divides every number. 
+        for (int i = 3; i * i < MAX; i++) { 
+            // check if it has no prime factor. 
+            if (factor[i] == i) { 
+                // Initializes of j starting from i*i 
+                for (int j = i * i; j < MAX; j += i) { 
+                    // if it has no prime factor 
+                    // before, then stores the 
+                    // smallest prime divisor 
+                    if (factor[j] == j) 
+                        factor[j] = i; 
+                } 
+            } 
+        } 
+    } 
+  
+    // function to calculate number of factors 
+    static int calculateNoOFactors(int n) 
+    { 
+        if (n == 1) 
+            return 1; 
+  
+        int ans = 1; 
+  
+        // stores the smallest prime number 
+        // that divides n 
+        int dup = factor[n]; 
+  
+        // stores the count of number of times 
+        // a prime number divides n. 
+        int c = 1; 
+  
+         
+        int j = n / factor[n]; 
+  
+        // false when prime factorization is done 
+        while (j != 1) { 
+             
+            if (factor[j] == dup) 
+                c += 1; 
+  
+            
+            else { 
+                dup = factor[j]; 
+                ans = ans * (c + 1); 
+                c = 1; 
+            } 
+  
+            // prime factorizes a number 
+            j = j / factor[j]; 
+        } 
+  
+        // for the last prime factor 
+        ans = ans * (c + 1); 
+  
+        return ans; 
+    } 
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    factor = new int[MAX]; 
+        factor[0] = 0; 
+      // prime factorizes a number 
+         generatePrimeFactors(); 
+      // prime factorizes a number 
+	    Scanner sc=new Scanner(System.in);
+	    int n=sc.nextInt();
+      // prime factorizes a number 
+	    long sum=0;
+	    for(int i=1;i<n;i++)
+	    sum+=(long)calculateNoOFactors(i);
+	    System.out.println(sum);
+	        
+	}
+}

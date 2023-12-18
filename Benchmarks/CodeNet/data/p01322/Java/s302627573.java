@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,m,r;(n=s.nextInt())>0;System.out.println(r)){m=s.nextInt();Map<String,Long>a=new HashMap<String,Long>();for(;n-->0;)a.put(s.next().replaceAll("\\*",""),s.nextLong());for(r=0;m-->0;){String x=s.next();for(String y:a.keySet())if(x.matches(".*"+y+"$"))r+=a.get(y);}}}}

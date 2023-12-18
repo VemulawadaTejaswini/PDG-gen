@@ -1,0 +1,15 @@
+public class Main {
+  import java.util.Scanner;
+  public static void Main(String[] args) {
+    Scanner dataScanner = new Scanner(System.in);
+    String data = dataScanner.nextLine();
+    String[] dataList = data.split();
+    int a = Integer.parseInt(dataList[0]);
+    int b = Integer.parseInt(dataList[1]);
+    if (a*b % 2 == 0) {
+      System.out.println("Even");
+    } else {
+      System.out.println("Odd");
+    }
+  } 
+}

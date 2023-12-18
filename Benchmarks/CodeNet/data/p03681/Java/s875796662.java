@@ -1,0 +1,32 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		try{
+			Scanner sc = new Scanner(System.in);
+			int N = sc.nextInt();
+			int M = sc.nextInt();
+			BigInteger A = new BigInteger(Math.min(N, M) + "");
+			BigInteger B = new BigInteger(Math.max(N, M) + "");
+			if(B.add(A.negate()).intValue() > 1){
+				System.out.println(0);
+			}else{
+				BigInteger sub = new BigInteger((B.equals(A))? "2" : "1");
+				BigInteger result = mult(A).multiply(mult(B)).multiply(sub).mod(new BigInteger("1000000007"));
+				System.out.println(result.toString());
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	private static BigInteger mult(BigInteger x){
+		BigInteger result = new BigInteger("1");
+		while(x.intValue() > 1){
+			result = result.multiply(x).mod(new BigInteger("1000000007"));
+			x = x.add(new BigInteger("1").negate());
+		}
+		return result;
+	}
+}

@@ -1,0 +1,23 @@
+import java.util.*;
+
+// UVa 11504
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		int h = in.nextInt();
+		int w = in.nextInt();
+		String[] map = new String[h];
+		
+		for (int i = 0; i < h; i++) {
+			map[i] = in.next();
+		}
+		
+		for (int i = 0; i < h; i++) {
+			System.out.println(map[i]);
+			System.out.println(map[i]);
+		}
+	}
+}

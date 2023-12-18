@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner as = new Scanner(System.in);
+		int a = Integer.parseInt(as.next());
+		int b = Integer.parseInt(as.next());
+		String[] c;
+		c = new String[a];
+		for(int i=0;i<a;i++){
+			c[i]  = as.next();
+		}
+		for(int i=0;i<a+a;i++){
+			System.out.println(c[i/2]);
+		}
+	}
+}

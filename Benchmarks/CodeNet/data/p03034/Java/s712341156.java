@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    int N = scanner.nextInt();
+    int[] s = new int[N];
+    for (int i = 0; i < N; i++) s[i] = scanner.nextInt();
+    long[] t = new long[N / 2];
+    for (int i = 0; i < N / 2; i++) t[i] = (long) s[i] + s[N - i - 1];
+
+    long[] u = new long[N / 2];
+    long[] v = new long[N / 2];
+    for (int i = 1; i < N / 2; i++) {
+      for (int j = 1; j <= i; j++) {
+        if (i % j == 0) {
+          u[j] += t[i];
+          v[j] = Math.max(v[j], u[j]);
+          //if (i / j != j) {
+          //  u[i / j] += t[i];
+          //  v[i / j] = Math.max(v[i / j], u[i / j]);
+          //}
+        }
+      }
+    }
+    long max = 0;
+    for (int i = 0; i < N / 2; i++) max = Math.max(max, v[i]);
+    System.out.println(max);
+  }
+}

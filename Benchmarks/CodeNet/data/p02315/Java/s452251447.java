@@ -1,0 +1,35 @@
+
+import java.util.*;
+
+public class Main {
+	
+	static int Data[][];
+	
+	public static void main(String[] args) {
+		Scanner in=new Scanner(System.in);
+		int N=in.nextInt(),W=in.nextInt();
+		Data=new int[N][2];
+		
+		for(int i=0;i<N;i++) {
+			Data[i][0]=in.nextInt();
+			Data[i][1]=in.nextInt();
+		}		
+		System.out.println(DP(W));
+	}
+	
+	static int DP(int limit) {
+		int dp[][]=new int[Data.length+1][limit+1];
+		
+		for(int i=1;i<=Data.length;i++) {
+			for(int j=Data[i-1][1];j<=limit;j++) {
+				dp[i][j]=Math.max(dp[i-1][j], dp[i-1][j-Data[i-1][1]]+Data[i-1][0]);
+			}
+		}
+		
+		int max=0;
+		for(int i=0;i<=limit;i++)max=Math.max(max, dp[Data.length][i]);
+		return max;
+	}
+
+}
+

@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+
+		public static void main(String[] args){
+			Scanner sc = new Scanner(System.in);
+			// 整数の入力
+			// スペース区切りの整数の入力
+			int N = sc.nextInt();
+
+        	System.out.println("ABC" + N);
+		}
+
+}

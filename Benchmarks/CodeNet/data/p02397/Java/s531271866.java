@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		
+		Scanner sc = new Scanner(System.in);
+		int x=Integer.parseIntln(sc.next());
+		int y=Integer.parseIntln(sc.next());
+		while(x!=0 || y!=0){
+			if(x<y) System.out.print(x+" "+y);
+			else System.out.print(y+" "+x);
+			x=Integer.parseInt(sc.next());
+			y=Integer.parseInt(sc.next());
+		}
+
+	}
+
+}

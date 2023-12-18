@@ -1,0 +1,41 @@
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] input = scanner.nextLine().split(" ");
+        long n = Long.valueOf(input[0]);
+        long m = Long.valueOf(input[1]);
+
+        long[] a = StringArrToIntArr(scanner.nextLine().split(" "));
+
+        for(int i = 0; i < m; i++) {
+            Arrays.sort(a);
+
+            String[] in = scanner.nextLine(). split(" ");
+            long b = Long.valueOf(in[0]);
+            long c = Long.valueOf(in[1]);
+
+            for(int j = 0; j < b; j++) {
+                if(a[j] < c) a[j] = c;
+            }
+        }
+
+        long sum = 0;
+        for(long i : a) {
+            sum += i;
+        }
+        System.out.println(sum);
+
+    }
+
+    public static long[] StringArrToIntArr(String[] s) {
+        long[] result = new long[s.length];
+        for (int i = 0; i < s.length; i++) {
+            result[i] = Long.valueOf(s[i]);
+        }
+        return result;
+    }
+}

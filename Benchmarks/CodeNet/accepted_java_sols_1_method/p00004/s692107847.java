@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[] a){for(Scanner s=new Scanner(System.in);s.hasNext();){float[]d=new float[6];for(int i=0;i<6;)d[i++]=s.nextFloat();float x = (d[1]*d[5]-d[2]*d[4])/(d[1]*d[3]-d[0]*d[4]);x=x==0?0:x;float y=(d[0]*d[5]-d[2]*d[3])/(d[0]*d[4]-d[1]*d[3]);y=y==0?0:y;System.out.printf("%.3f %.3f\n",x,y);}}}

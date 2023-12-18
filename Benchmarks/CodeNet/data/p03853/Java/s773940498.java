@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+	void run() {
+		Scanner sc = new Scanner(System.in);
+
+		int h = sc.nextInt();
+		int w = sc.nextInt();
+		char[][] c = new char[h][];
+		for (int i = 0; i < h; i++) {
+			c[i] = sc.next().toCharArray();
+		}
+		for (int i = 0; i < h; i++) {
+			System.out.println(c[i]);
+			System.out.println(c[i]);
+		}
+	}
+
+	public static void main(String[] args) {
+		new Main().run();
+	}
+}

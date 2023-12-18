@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String S = sc.next();
+        String sub = S.substring(2);
+
+        if (sub.contains("ffee")) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+}

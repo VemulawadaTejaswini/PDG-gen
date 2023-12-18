@@ -1,0 +1,43 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+	static Map<Double, Double> map=new HashMap<>();//x座標とy座標
+	public static void main(String[] args) {
+		try(Scanner sc = new Scanner(System.in)){
+			int N=sc.nextInt();
+			double minx=-1000000000, maxx=1000000000;
+			double[] X=new double[N];
+			double[] R=new double[N];
+			for(int i=0; i<N; i++) {
+				double x=sc.nextDouble();
+				double r=sc.nextDouble();
+				X[i]=x;
+				R[i]=r;
+				if(minx<x-r) {
+					minx=x-r;
+				}
+				if(x+r<maxx) {
+					maxx=x+r;
+				}
+				for(double j=x-r; j<=x+r; j++) {
+					double h=Math.sqrt(r*r - (x-j)*(x-j));
+					if(map.get(j)==null) {
+						map.put(j, h);
+					}
+					else {
+						map.put(j, Math.min(h, map.get(j)));
+					}
+				}
+			}
+			double max=1000000000;
+			double mid=(minx+maxx)/2.0;
+			for(int i=0; i<N; i++) {
+				max=Math.min(max, Math.sqrt(R[i]*R[i]-(X[i]-mid)*(X[i]-mid)));
+			}
+			System.out.println(max);
+			
+		}
+	}
+}

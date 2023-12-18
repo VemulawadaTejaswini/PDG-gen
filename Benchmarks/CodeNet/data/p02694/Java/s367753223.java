@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[]args){Scanner s=new Scanner(System.in);int a=s.nextInt();int b=100;int c=0;while(true){c++;b=(int)Math.floor(b+b/100);if(b>=a)break;}System.out.println(c);}}

@@ -1,0 +1,24 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		
+		Scanner sc = new Scanner(System.in);
+		double a = Double.parseDouble(sc.next());
+		double b = Double.parseDouble(sc.next());
+		double c = Double.parseDouble(sc.next());
+		
+		String ans = "No";
+		
+		if(Math.sqrt(a) + Math.sqrt(b) < Math.sqrt(c)) {
+			ans = "Yes";
+			
+		}
+		
+		System.out.println(ans);
+		
+	}
+}

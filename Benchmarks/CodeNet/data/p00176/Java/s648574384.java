@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(String x,y="black blue lime aqua red fuchsia yellow white",r=y;(x=s.next()).length()>1;System.out.println(r))for(int i=8,j,v,m=1<<23,k;i-->0;){for(j=v=0;j<3;)v+=(k=(java.awt.Color.decode(x).getRGB()>>j*8&255)-((i>>j++&1)>0?255:0))*k;if(m>v){m=v;r=y.split(" ")[i];}}}}

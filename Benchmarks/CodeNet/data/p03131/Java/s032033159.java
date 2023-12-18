@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Main {
+public static void main(String[]srgs) {
+	Scanner scan=new Scanner(System.in);
+	int a=scan.nextInt();
+	int b=scan.nextInt();
+	int c=scan.nextInt();
+	long bis=1;
+	int money=0;
+	for(int i=0;i!=a;i++) {
+		if(i<a-2&&b+1<c&&money==0&&bis>=b){
+			money++;
+			bis-=b;
+		}
+		else if(money==1) {
+			bis+=c;
+			money--;
+		}
+		else {
+			bis++;
+		}
+	}
+	System.out.println(bis);
+}
+}

@@ -1,0 +1,55 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ *
+ * @author CodeMonk
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        Scanner in = new Scanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        TaskD solver = new TaskD();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class TaskD {
+        public void solve(int testNumber, Scanner in, PrintWriter out) {
+            int length = in.nextInt();
+            String s1 = in.next();
+            String s2 = in.next();
+            long x = 3, y = 6;
+            int mod = 1000000007;
+            int prev = s1.charAt(0) == s2.charAt(0) ? 0 : 1;
+            long ans = s1.charAt(0) == s2.charAt(0) ? x : y;
+            for (int i = 1; i < length; i++) {
+                if (s1.charAt(i - 1) == s1.charAt(i) && s2.charAt(i - 1) == s2.charAt(i)) {
+
+                    continue;
+                }
+                int curr = s1.charAt(i) == s2.charAt(i) ? 0 : 1;
+                if (prev == 0 && curr == 0) {
+                    ans = (ans % mod * 2) % mod;
+                } else if (prev == 1 && curr == 0) {
+                    ans = (ans % mod * 1) % mod;
+                } else if (prev == 0 && curr == 1) {
+                    ans = (ans % mod * 2) % mod;
+                } else if (prev == 1 && curr == 1) {
+                    ans = (ans % mod * 3) % mod;
+                }
+                prev = curr;
+            }
+            out.println(ans);
+        }
+
+    }
+}
+

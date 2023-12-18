@@ -1,0 +1,6 @@
+import java.util.*;
+public class Main {
+public static void main(String[] args){
+Scanner a=new Scanner(System.in);
+int n=a.nextInt();
+System.out.println(800*n-200*(n/15));}}

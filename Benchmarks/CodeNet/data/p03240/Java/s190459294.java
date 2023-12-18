@@ -1,0 +1,28 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] x = new int[n];
+        int[] y = new int[n];
+        int[] h = new int[n];
+        int j = 0;
+        for (int i = 0; i < n; i++) {
+            x[i] = sc.nextInt();
+            y[i] = sc.nextInt();
+            h[i] = sc.nextInt();
+            if (h[i] > 0) j = i;
+        }
+        for (int cx = 0; cx <= 100; cx++) for (int cy = 0; cy <= 100; cy++) {
+            int hgt = h[j] + Math.abs(x[j] - cx) + Math.abs(y[j] - cy);
+            boolean ok = true;
+            for (int i = 0; i < n; i++) {
+                if (h[i] != Math.max(hgt - Math.abs(x[i] - cx) - Math.abs(y[i] - cy), 0)) ok = false;
+            }
+            if (ok) {
+                System.out.println(cx + " " + cy + " " + hgt);
+                return;
+            }
+        }
+    }
+}

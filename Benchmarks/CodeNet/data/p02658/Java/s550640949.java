@@ -1,0 +1,31 @@
+import java.util.*;
+import java.lang.Math;
+public class Main {
+    public static void main (String [] args)
+    {
+        long max = (long)Math.pow(10,18);
+        Scanner s = new Scanner(System.in);
+        boolean tooLong = false;
+        int len = s.nextInt();
+        long result = 1;
+        for(int i = 0; i < len; i++)
+        {
+            result *= s.nextInt();
+            if(result > max)
+            {
+                tooLong = true;
+                break;
+            }
+        }
+        if(tooLong)
+        {
+            System.out.println(-1);
+
+        }
+        else
+        {
+            System.out.println(result);
+        }
+
+    }
+}

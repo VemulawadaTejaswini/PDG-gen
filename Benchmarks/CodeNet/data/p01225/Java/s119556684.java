@@ -1,0 +1,173 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+
+// ?????¨??????static????????????????????????????????£?????????
+class Card {
+
+  // ??????????????????
+  public int n;
+
+  // ???????????????
+  public String c;
+
+  // ???????????¨???????????????
+  // y??????x??????????????????, ??°????????§????????¨??£???????????????
+  static int sub(Card x, Card y) {
+    if(x.c.equals(y.c)) {
+      return x.n - y.n;
+    } else {
+      return x.c.charAt(0) - y.c.charAt(0);
+    }
+  }
+
+  // ?????????????????????????????????????????????
+  static void sort(Card[] cards) {
+    for(int i = 0; i < 9 - 1; i++) {
+      for(int j = 9 - 1; j > i; j--) {
+        if(sub(cards[j - 1], cards[j]) > 0) {
+          Card temp = cards[j - 1];
+          cards[j - 1] = cards[j];
+          cards[j] = temp;
+        }
+      }
+    }
+  }
+
+  // 3???????????????????????????????????§??°????????????????????????????????????????????????
+  static boolean isSameNumberSet(Card x, Card y, Card z) {
+    if(x.c.equals(y.c) && y.c.equals(z.c)) {
+      if(x.n == y.n && y.n == z.n) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // 3???????????????????????????????????§??°????????£??????????????????????????????????????????
+  static boolean isSerialNumberSet(Card x, Card y, Card z) {
+    if(x.c.equals(y.c) && y.c.equals(z.c)) {
+      if(z.n - y.n == 1 && y.n - x.n == 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // 3??????????????????????????????????????????????????????
+  // isSameNumberSet??¨isSerialNumberSet???or?????¨???
+  static boolean isSet(Card x, Card y, Card z) {
+    return isSameNumberSet(x, y, z) || isSerialNumberSet(x, y, z);
+  }
+}
+
+public class Main {
+  static int[][] devide() {
+    int[][] devision = new int[280][9];
+    int[] i = new int[9];
+    int p = 0;
+
+    for(i[0] = 0; i[0] < 3; i[0]++) {
+    for(i[1] = 0; i[1] < 3; i[1]++) {
+    for(i[2] = 0; i[2] < 3; i[2]++) {
+    for(i[3] = 0; i[3] < 3; i[3]++) {
+    for(i[4] = 0; i[4] < 3; i[4]++) {
+    for(i[5] = 0; i[5] < 3; i[5]++) {
+    for(i[6] = 0; i[6] < 3; i[6]++) {
+    for(i[7] = 0; i[7] < 3; i[7]++) {
+    for(i[8] = 0; i[8] < 3; i[8]++) {
+      int[] count = { 0, 0, 0 };
+      int[] constraints = { 0, 0, 0 };
+      for(int j = 0; j < 9; j++) {
+        if(count[i[j]] == 0) {
+          constraints[i[j]] = j;
+        }
+        count[i[j]]++;
+      }
+      if(count[0] == 3 && count[1] == 3 && count[2] == 3) {
+        if(constraints[0] < constraints[1] && constraints[1] < constraints[2]) {
+          int[] g = new int[9];
+          int[] c = { 0, 0, 0 };
+          for(int j = 0; j < 9; j++) {
+            g[i[j] * 3 + c[i[j]]] = j;
+            c[i[j]]++;
+          }
+          devision[p] = g;
+          p++;
+          printDebugInfo(Arrays.toString(g), null);
+        }
+      }
+    }}}}}}}}}
+
+    printDebugInfo("devision: " + p, null);
+    return devision;
+  }
+
+  public static void main(String args[]) {
+    Scanner sc = new Scanner(System.in);
+    int t = sc.nextInt();
+
+    int[][] devision = devide();
+
+    for(int i = 0; i < t; i++) {
+      int setCount = 0;
+
+      Card[] cards = new Card[9];
+      for(int j = 0; j < 9; j++) {
+        cards[j] = new Card();
+      }
+
+      printDebugInfo("-----------", null);
+      printDebugInfo(i + "??????", null);
+
+      // data input
+      for(int j = 0; j < 9; j++) {
+        cards[j].n = sc.nextInt();
+      }
+      for(int j = 0; j < 9; j++) {
+        cards[j].c = sc.next();
+      }
+      printDebugInfo("After Input.", cards);
+
+      // sort
+      Card.sort(cards);
+      printDebugInfo("After first sort.", cards);
+
+      boolean isVictory = false;
+      for(int j = 0; j < 280; j++) {
+        int[] d = devision[j];
+        boolean[] f = new boolean[3];
+        f[0] = Card.isSet(cards[d[0]], cards[d[1]], cards[d[2]]);
+        f[1] = Card.isSet(cards[d[3]], cards[d[4]], cards[d[5]]);
+        f[2] = Card.isSet(cards[d[6]], cards[d[7]], cards[d[8]]);
+        if(f[0] && f[1] && f[2]) {
+          printDebugInfo(Arrays.toString(d), cards);
+          isVictory = true;
+          break;
+        }
+      }
+
+      if(isVictory) {
+        System.out.println(1);
+      } else {
+        System.out.println(0);
+      }
+      printDebugInfo("", null);
+    }
+  }
+
+  static void printDebugInfo(String message, Card[] cards) {
+    boolean debug = false;
+    if(debug) {
+      System.out.println(message);
+      if(cards != null) {
+        for(int i = 0; i < 9; i++) {
+          System.out.print(cards[i].c);
+          System.out.print(cards[i].n);
+          System.out.println("");
+        }
+      }
+      System.out.println("");
+    }
+  }
+}

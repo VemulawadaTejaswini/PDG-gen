@@ -1,0 +1,15 @@
+public class Main {
+	public static void main(String[] args) throws IOException{
+		Scanner sc = new Scanner(System.in);
+		ArrayList<Integer> array = new ArrayList<Integer>();
+		for(int i=0;i<10000;i++) {
+			int tmp = sc.nextInt();
+			if(tmp==0) {
+				break;
+			}
+			array.add(tmp);
+			System.out.println("Case " + (i+1) + ": " + array.get(i));
+		}
+		sc.close();
+	}
+}

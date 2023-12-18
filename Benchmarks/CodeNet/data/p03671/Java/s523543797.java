@@ -1,0 +1,12 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+public class Main{
+  public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    Integer[] a = Arrays.stream(in.readLine().split(" ")).map(Integer::parseInt).toArray(Integer[]::new);
+    Arrays.sort(a);
+    System.out.println(a[0]+a[1]);
+  }
+}

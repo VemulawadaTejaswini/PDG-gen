@@ -1,0 +1,9 @@
+import java.util.*;
+public class Main {
+public static void main(String [] args) {
+  Scanner sc = new Scanner (System.in);
+  int masu = sc.nextInt();
+  masu = masu*masu;
+  int white = sc.nextInt();
+  System.out.println(masu - white);
+}}

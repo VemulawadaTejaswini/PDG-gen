@@ -1,0 +1,28 @@
+import java.util.*;
+public class Main{
+
+  static long maxx(int[] arr,int ind,int k){
+  	if(ind==arr.length-1){
+    	return 0;
+    }
+    if(aa[ind]!=-1){return aa[ind];}
+    long maxs=0;
+    for(int j=1;j<=k;j++){
+      if(ind+j>=arr.length){break;}
+    	maxs=Math.max( maxs, maxx(arr,ind+j,k )+Math.abs(arr[ind]-arr[ind+j] )  );
+    }
+    return aa[ind]=maxs;
+  }
+  
+  public static void main(String[] args){
+  
+    Scanner s=new Scanner(System.in);
+    int n=s.nextInt();
+    int k=s.nextInt();
+    int ss=s.nextInt();
+    if(  (int)(k/n) == (int)(ss/n)  ){
+    System.out.println("NG");}else{System.out.println("OK");}
+  
+  }
+  
+}

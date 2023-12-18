@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+class Main {
+    static final int MOD = 1000000007;
+    static final int INF = 1 << 30;
+
+    Main() {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        if (s.length() % 2 != 0) {
+            System.out.println("No");
+            return;
+        }
+        for (int i = 0; i < s.length(); i+=2) {
+            if (!s.substring(i, i + 2).equals("hi")) {
+                System.out.println("No");
+                return;
+            }
+        }
+        System.out.println("Yes");
+    }
+
+    public static void main(String[] args) {
+        new Main();
+    }
+}

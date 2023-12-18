@@ -1,0 +1,7 @@
+public class Main{
+    public static void main(String[] arg){
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        System.out.println( sc.nextLine().replaceAll(",", " ") );
+        sc.close();
+    }
+}

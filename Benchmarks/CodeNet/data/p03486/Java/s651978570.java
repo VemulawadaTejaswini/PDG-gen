@@ -1,0 +1,23 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		String t = sc.next();
+		sc.close();
+		char[]c1 = s.toCharArray();
+		char[]c2 = t.toCharArray();
+		Arrays.sort(c1);
+		Arrays.sort(c2);
+		StringBuilder sb = new StringBuilder(new String(c1));
+		sb.reverse();
+		String a = new String(c2);
+		if(sb.toString().compareTo(a) < 0) {
+			System.out.println("Yes");
+		}else {
+			System.out.println("No");
+		}
+	}
+}

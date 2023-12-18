@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+	private static Scanner sc = new Scanner(System.in);
+	private static int DIV = 1000000007;
+	public static void main(String[] args) {
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		long[] ax = new long[n];
+		long[] ay = new long[m];
+		for (int i = 0;i < n;i++) ax[i] = sc.nextLong();
+		for (int i = 0;i < m;i++) ay[i] = sc.nextLong();
+		Arrays.sort(ax);
+		Arrays.sort(ay);
+		long retx = 0;
+		for (int i = 0;i < n;i++) {
+			retx += (2*i-n+1)*ax[i];
+			retx %= DIV;
+		}
+		long rety = 0;
+		for (int i = 0;i < m;i++) {
+			rety += (2*i-m+1)*ay[i];
+			rety %= DIV;
+		}
+		System.out.println(retx*rety%DIV);
+	}
+}

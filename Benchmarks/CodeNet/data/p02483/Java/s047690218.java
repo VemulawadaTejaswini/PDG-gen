@@ -1,0 +1,26 @@
+public class Main {
+
+	public static void main(String[] args) {
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		int c = scan.nextInt();
+		int tmp = 0;
+		if(a > b) {
+			tmp = a;
+			a = b;
+			b = tmp;
+		}
+		if(b > c) {
+			tmp = b;
+			b = c;
+			c = tmp;
+		}
+		if(a > b) {
+			tmp = a;
+			a = b;
+			b = tmp;
+		}
+		System.out.println(a +" "+ b + " " + c);
+	}
+}

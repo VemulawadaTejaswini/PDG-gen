@@ -1,0 +1,15 @@
+import java.util.*;
+ 
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long N = Long.parseLong(sc.next());
+		long M = Long.parseLong(sc.next());
+		if (N * 2 > M) {
+			System.out.printf("%d", M / 2);
+		} else {
+			long mod = M - (N * 2);
+			System.out.printf("%d", N + (mod / 4));
+		}
+	}
+}

@@ -1,0 +1,72 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		MyScanner sc = new MyScanner(System.in);
+		int n = sc.nextInt();
+		int x = sc.nextInt();
+		int[] a = new int[n];
+		for(int i=0; i<n; i++) a[i] = sc.nextInt();
+		Arrays.sort(a);
+		int c=0;
+		for(int i=0; i<n-1; i++) {
+			if(x-a[i]>=0) {
+				x-=a[i];
+				c++;
+			}
+		}
+		if(x==a[n-1]) c++;
+		System.out.println(c);
+ 	}
+	
+	static void printArray(int[] a) {
+		int n=a.length;
+		for(int i=0; i<n; i++) {
+			if(i==0) System.out.print(a[i]);
+			else System.out.print(" "+a[i]);
+		}
+		System.out.println();
+	}
+
+	static class MyScanner
+	{
+		BufferedReader br;
+		StringTokenizer st;
+		public MyScanner(InputStream s) 
+		{
+			br=new BufferedReader(new InputStreamReader(s));
+		}
+		public String nextLine() throws IOException
+		{
+			return br.readLine();
+		}
+		public String next() throws IOException
+		{
+			while(st==null || !st.hasMoreTokens())
+				st=new StringTokenizer(br.readLine());
+			return st.nextToken();
+		}
+		public int nextInt() throws IOException
+		{
+			return Integer.parseInt(next());
+			
+		}
+		public double nextDouble() throws IOException
+		{
+			return Double.parseDouble(next());
+		}
+		public boolean ready() throws IOException
+		{
+			return br.ready();
+		}
+		public long nextLong() throws IOException
+		{
+			return Long.parseLong(next());
+		}
+	}
+}

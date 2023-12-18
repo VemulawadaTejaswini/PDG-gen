@@ -1,0 +1,28 @@
+public class Main {
+	public static void main(String[] args){
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		String str = scan.nextLine();
+		char[] arr = new char[1200];
+		String str2 ="abcdefghijklmnopqrstuvwxyz";
+		char[] arr2 = str2.toCharArray();
+		int[] line = new int[26];
+
+		arr = str.toCharArray();
+
+		for(int i = 0;i <arr.length;i++){
+			if(Character.isUpperCase(arr[i])){
+				arr[i] = Character.toLowerCase(arr[i]);
+			}
+			for(int j = 0; j< 26;j++){
+				if(arr[i] == arr2[j]){
+					line[j]++;
+				}
+			}
+		}
+
+		for(int i = 0;i < 26;i++){
+			System.out.println(arr2[i] + " : " +line[i]);
+		}
+	}
+
+}

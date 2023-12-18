@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int max = 1;
+        for (int i = 0; i < n - 1; i++) {
+            max = max * 2;
+        }
+        for (int i = 0; i < max; i++) {
+            String ansString = String.format("%" + n + "s", Integer.toBinaryString(i)).replace(" ", "0");
+            System.out.println(ansString.replace("0", "a").replace("1", "b"));
+        }
+    }
+}

@@ -1,0 +1,13 @@
+import java.util.*;
+
+public class Main {
+    void solve(){
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        System.out.println(48 - n);
+    }
+    
+    public static void main(String[] args){
+        new Main().solve();
+    }
+}

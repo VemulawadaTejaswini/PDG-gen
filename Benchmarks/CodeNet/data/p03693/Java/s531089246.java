@@ -1,0 +1,25 @@
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.LinkedList;
+
+public class Main {
+
+    public static void main(String[] args) {
+        new Main().solve();
+    }
+
+    void solve() {
+        Scanner sc = new Scanner(System.in);
+        int r=sc.nextInt();
+        int g=sc.nextInt();
+        int b=sc.nextInt();
+        int ans=r*100+g*10+b;
+        if(ans%4==0){
+            System.out.println("YES");
+        }else{
+            System.out.println("NO");
+        }
+    }
+}

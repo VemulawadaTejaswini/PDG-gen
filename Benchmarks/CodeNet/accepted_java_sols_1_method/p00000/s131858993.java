@@ -1,0 +1,1 @@
+class Main{public static void main(String[]_){for(int i=1,j=1;i*j<82;System.out.println(j+"x"+i+"="+i++*j))if(i>9){i=1;j++;}}}

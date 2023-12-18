@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			int m = sc.nextInt();
+			int f = sc.nextInt();
+			int r = sc.nextInt();
+			if (m == -1 && f == -1 && r == -1) {
+				break;
+			}
+			if (m == -1 || f == -1) {
+				System.out.println("F");
+			} else if (m + f >= 80) {
+				System.out.println("A");
+			} else if (m + f >= 65 && 80 > m + f) {
+				System.out.println("B");
+			} else if (m + f >= 50 && 65 > m + f) {
+				System.out.println("C");
+			} else if (m + f >= 30 && 50 > m + f && 50 > r) {
+				System.out.println("D");
+			}else if (m + f >= 30 && 50 > m + f && r >= 50) {
+					System.out.println("C");
+			} else if (30 > m + f) {
+				System.out.println("F");
+			}
+		}
+	}
+}

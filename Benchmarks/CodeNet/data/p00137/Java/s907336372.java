@@ -1,0 +1,157 @@
+
+import java.awt.geom.Point2D;
+import java.io.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Main {
+
+	static PrintWriter out = new PrintWriter(System.out);
+	static FastScanner sc = new FastScanner();
+	static Scanner stdIn = new Scanner(System.in);
+
+	static int INF = 2 << 29;
+	
+	static char[][] map;
+	static int[][] minmap;
+	static int sx;
+	static int sy;
+	static int gx;
+	static int gy;
+	static int h;
+	static int w;
+	static int t;
+	static int xx;
+	public static void main(String[] args) {
+		int n = sc.nextInt();
+		for(int i = 1; i <= n; i++) {
+			out.println("Case " + i + ":");
+			int s = sc.nextInt();
+			for(int j = 0; j < 10; j++) {
+				s = midrand(s);
+				out.println(s);
+			}
+		}
+		
+		out.flush();
+	}
+
+	static int midrand(int a) {
+		String tmp = String.valueOf(a*a);
+		String k   = kk(8 - tmp.length()) + tmp;
+		
+		return Integer.parseInt(k.substring(2, 6));
+	}
+	
+	static String kk(int a) {
+		StringBuffer buf = new StringBuffer();
+		for(int i = 0; i < a; i++) {
+			buf.append("0");
+		}
+		return buf.toString();
+	}
+}
+		
+//------------------------------//
+//-----------//
+class FastScanner {
+    private final InputStream in = System.in;
+    private final byte[] buffer = new byte[1024];
+    private int ptr = 0;
+    private int buflen = 0;
+    private boolean hasNextByte() {
+        if (ptr < buflen) {
+            return true;
+        }else{
+            ptr = 0;
+            try {
+                buflen = in.read(buffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (buflen <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private int readByte() { if (hasNextByte()) return buffer[ptr++]; else return -1;}
+    private static boolean isPrintableChar(int c) { return 33 <= c && c <= 126;}
+    private void skipUnprintable() { while(hasNextByte() && !isPrintableChar(buffer[ptr])) ptr++;}
+    public boolean hasNext() { skipUnprintable(); return hasNextByte();}
+    public String next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        StringBuilder sb = new StringBuilder();
+        int b = readByte();
+        while(isPrintableChar(b)) {
+            sb.appendCodePoint(b);
+            b = readByte();
+        }
+        return sb.toString();
+    }
+    public long nextLong() {
+        if (!hasNext()) throw new NoSuchElementException();
+        long n = 0;
+        boolean minus = false;
+        int b = readByte();
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+        if (b < '0' || '9' < b) {
+            throw new NumberFormatException();
+        }
+        while(true){
+            if ('0' <= b && b <= '9') {
+                n *= 10;
+                n += b - '0';
+            }else if(b == -1 || !isPrintableChar(b)){
+                return minus ? -n : n;
+            }else{
+                throw new NumberFormatException();
+            }
+            b = readByte();
+        }
+    }
+    
+    public int nextInt() {
+    	 if (!hasNext()) throw new NoSuchElementException();
+         int n = 0;
+         boolean minus = false;
+         int b = readByte();
+         if (b == '-') {
+             minus = true;
+             b = readByte();
+         }
+         if (b < '0' || '9' < b) {
+             throw new NumberFormatException();
+         }
+         while(true){
+             if ('0' <= b && b <= '9') {
+                 n *= 10;
+                 n += b - '0';
+             }else if(b == -1 || !isPrintableChar(b)){
+                 return minus ? -n : n;
+             }else{
+                 throw new NumberFormatException();
+             }
+             b = readByte();
+         }
+    }
+    
+    public double nextDouble() {
+    	return Double.parseDouble(next());
+    }
+    
+
+}

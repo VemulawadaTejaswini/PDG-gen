@@ -1,0 +1,30 @@
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+class Main {
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+
+		
+
+			int sum = 0;
+			String ans = "NO";
+
+			for (int i = 1; i <= a * b; i++) {
+				sum += (a * i) % b;
+				if (sum % b == c) {
+					ans = "YES";
+					break;
+				}
+			}
+
+			System.out.println(ans);
+	}
+}

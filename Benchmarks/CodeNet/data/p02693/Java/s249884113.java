@@ -1,0 +1,94 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		PrintWriter pw = new PrintWriter(System.out);
+		
+		int k = sc.nextInt();
+		int a = sc.nextInt(), b = sc.nextInt();
+		boolean flag = false;
+		for(int i = a; i <= b; i++)
+			if(i % k == 0)
+				flag = true;
+		
+		pw.println(flag ? "OK" : "NG");
+		pw.flush();
+	}
+
+	public static class Scanner {
+		StringTokenizer st;
+		BufferedReader br;
+
+		public Scanner(InputStream system) {
+			br = new BufferedReader(new InputStreamReader(system));
+		}
+
+		public Scanner(String file) throws Exception {
+			br = new BufferedReader(new FileReader(file));
+		}
+
+		public String next() throws IOException {
+			while (st == null || !st.hasMoreTokens())
+				st = new StringTokenizer(br.readLine());
+			return st.nextToken();
+		}
+
+		public String nextLine() throws IOException {
+			return br.readLine();
+		}
+
+		public int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+
+		public double nextDouble() throws IOException {
+			return Double.parseDouble(next());
+		}
+
+		public char nextChar() throws IOException {
+			return next().charAt(0);
+		}
+
+		public Long nextLong() throws IOException {
+			return Long.parseLong(next());
+		}
+
+		public int[] nextIntArray(int n) throws IOException {
+			int[] array = new int[n];
+			for (int i = 0; i < n; i++)
+				array[i] = nextInt();
+			return array;
+		}
+
+		public Integer[] nextIntegerArray(int n) throws IOException {
+			Integer[] array = new Integer[n];
+			for (int i = 0; i < n; i++)
+				array[i] = new Integer(nextInt());
+			return array;
+		}
+
+		public long[] nextLongArray(int n) throws IOException {
+			long[] array = new long[n];
+			for (int i = 0; i < n; i++)
+				array[i] = nextLong();
+			return array;
+		}
+
+		public double[] nextDoubleArray(int n) throws IOException {
+			double[] array = new double[n];
+			for (int i = 0; i < n; i++)
+				array[i] = nextDouble();
+			return array;
+		}
+
+		public boolean ready() throws IOException {
+			return br.ready();
+		}
+
+		public void waitForInput() throws InterruptedException {
+			Thread.sleep(3000);
+		}
+	}
+}

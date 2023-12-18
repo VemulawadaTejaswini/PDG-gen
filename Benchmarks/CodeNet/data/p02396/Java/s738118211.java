@@ -1,0 +1,28 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String[] args)throws IOException {
+
+		int num = 1;
+		int[] nums = new int[10001];
+		int cnt = 0;
+		for(int j = 0;j < 10001 && num != 0; j++) {
+			BufferedReader br =
+					new BufferedReader(new InputStreamReader(System.in));
+
+			String str= br.readLine();
+			num = Integer.parseInt(str);
+
+			nums[j] = num;
+			j++;
+		}
+
+		for(int i=0 ; i<cnt-1; i++) {
+			System.out.println("Case"  +" " + (i+1)  +": " + nums[i]);
+		}
+
+	}
+
+}

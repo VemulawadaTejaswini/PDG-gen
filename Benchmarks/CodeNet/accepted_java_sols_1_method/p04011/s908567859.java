@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int N, K, X, Y;
+		N = in.nextInt();
+		K = in.nextInt();
+		X = in.nextInt();
+		Y = in.nextInt();
+		
+		if (N > K) {
+			int temp = N - K;
+			System.out.println((X*K)+(Y*temp));
+		} else {
+			System.out.println((X*N));
+		}
+	}
+}

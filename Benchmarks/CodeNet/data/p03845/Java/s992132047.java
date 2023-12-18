@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Main {
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int N = in.nextInt();
+        int[] T = new int[N];
+        for (int i = 0; i < N; i++) {
+            T[i] = in.nextInt();
+        }
+        int M = in.nextInt();
+        int[] P = new int[M], X = new int[M];
+        for (int i = 0; i < M; i++) {
+            P[i] = in.nextInt();
+            X[i] = in.nextInt();
+        }
+
+        for (int i = 0; i < M; i++) {
+            int sum = 0;
+            for (int j = 0; j < N; j++) {
+                sum += j == P[i] - 1 ? X[i] : T[j];
+            }
+            System.out.println(sum);
+        }
+    }
+}

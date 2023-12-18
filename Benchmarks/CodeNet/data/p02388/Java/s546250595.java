@@ -1,0 +1,12 @@
+import java.io.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		BufferedReader r = new BufferedReader (new InputStreamReader (System.in));
+		String s = r.readLine();
+		Integer.parseInt(s);
+		System.out.println(x * x * x);
+	}
+}

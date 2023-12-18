@@ -1,0 +1,102 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char[] a = scanner.nextLine().toCharArray();
+        char[] b = scanner.nextLine().toCharArray();
+        int[][] dp = new int[a.length][b.length];
+        boolean flag = false;
+        Map<Pair<Integer, Integer>, Pair<Integer, Integer>> map = new HashMap<>();
+        for (int i = 0; i < a.length; i++) {
+            if(a[i] == b[0] || flag) {
+                if(flag) {
+                    map.put(new Pair<>(i, 0), new Pair<>(i - 1, 0));
+                }
+                flag =true;
+                dp[i][0] = 1;
+            }
+        }
+        for (int i = 0; i < b.length; i++) {
+            if(a[0] == b[i] || flag) {
+                if(flag) {
+                    map.put(new Pair<>(0, i), new Pair<>(0, i - 1));
+                }
+                flag =true;
+                dp[0][i] = 1;
+            }
+        }
+        for (int i = 1; i < a.length; i++) {
+            for (int j = 1; j < b.length; j++) {
+                if(a[i] == b[j]) {
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                    map.put(new Pair<>(i, j), new Pair<>(i - 1, j - 1));
+                } else {
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+                    if(dp[i-1][j] >= dp[i][j-1]) {
+                        map.put(new Pair<>(i, j), new Pair<>(i - 1, j));
+                    } else {
+                        map.put(new Pair<>(i, j), new Pair<>(i, j - 1));
+                    }
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        int i = a.length - 1, j = b.length - 1;
+        while(i >= 0 && j >= 0) {
+            if(a[i] == b[j]) {
+                sb.insert(0, a[i]);
+            }
+            Pair<Integer, Integer> pair = map.get(new Pair<>(i, j));
+            if(pair == null) {
+                break;
+            }
+            i = pair.getKey();
+            j = pair.getValue();
+        }
+        System.out.println(sb);
+    }
+
+    static class Pair<K, V> {
+        K a;
+        V b;
+
+
+        public K getKey() {
+            return a;
+        }
+        public V getValue() {
+            return b;
+        }
+
+        public Pair(K a, V b) {
+            this.a = a;
+            this.b = b;
+        }
+        @Override
+        public int hashCode() {
+            // name's hashCode is multiplied by an arbitrary prime number (13)
+            // in order to make sure there is a difference in the hashCode between
+            // these two parameters:
+            //  name: a  value: aa
+            //  name: aa value: a
+            return a.hashCode() * 13 + (b == null ? 0 : b.hashCode());
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o instanceof Pair) {
+                Pair pair = (Pair) o;
+                if (a != null ? !a.equals(pair.a) : pair.a != null) return false;
+                if (b != null ? !b.equals(pair.b) : pair.b != null) return false;
+                return true;
+            }
+            return false;
+        }
+    }
+
+}

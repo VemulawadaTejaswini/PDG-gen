@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]_){Scanner S=new Scanner(System.in);double t,a[]=new double[8];for(int i,b,f;S.hasNext();System.out.println(b>2||f>2?"YES":"NO")){for(i=0;i<8;)a[i++]=S.nextDouble();for(b=f=i=0;i<6;i+=2){t=a[6]*(a[i+1]-a[(i+3)%6])+a[i]*(a[(i+3)%6]-a[7])+a[(i+2)%6]*(a[7]-a[i+1]);if(t<0)b++;if(t>0)f++;}}}}

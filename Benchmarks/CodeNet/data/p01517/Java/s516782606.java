@@ -1,0 +1,140 @@
+import java.util.*;
+import java.lang.*;
+import java.math.*;
+import java.io.*;
+import static java.lang.Math.*;
+import static java.util.Arrays.*;
+import static java.util.Collections.*;
+
+public class Main{
+	Scanner sc=new Scanner(System.in);
+
+	int INF=1<<28;
+	double EPS=1e-12;
+
+	int n;
+	int[] pow;
+	String[] names;
+	HashSet<String>[] sets;
+
+	@SuppressWarnings("unchecked")
+	void run(){
+		for(;;){
+			n=sc.nextInt();
+			if(n==0){
+				break;
+			}
+			names=new String[n];
+			pow=new int[n];
+			sets=new HashSet[n];
+			for(int j=0; j<n; j++){
+				names[j]=sc.next();
+				pow[j]=sc.nextInt();
+				sets[j]=new HashSet<String>();
+				int m=sc.nextInt();
+				for(int i=0; i<m; i++){
+					sets[j].add(sc.next());
+				}
+			}
+			solve();
+		}
+	}
+
+	long[] g;
+	int ans;
+
+	void solve(){
+		HashMap<String, Integer> map=new HashMap<String, Integer>();
+		for(int i=0; i<n; i++){
+			map.put(names[i], i);
+		}
+		g=new long[n];
+		for(int i=0; i<n; i++){
+			for(String s : sets[i]){
+				int j=map.get(s);
+				g[i]|=1L<<j;
+			}
+		}
+		ans=0;
+		// mis(1, 1, pow[0]);
+		mais(1, 1|g[0], pow[0]);
+		println(ans+"");
+	}
+
+	void mais(long choosed, long removed, int sum){
+		int k=-1;
+		long remained=~removed&((1L<<n)-1);
+		for(; remained!=0;){
+			int i=Long.numberOfTrailingZeros(remained);
+			if(Long.bitCount(g[i]&~removed)==0){
+				k=i;
+				break;
+			}
+			if(k==-1||Long.bitCount(g[i]&~removed)>Long.bitCount(g[k]&~removed))
+				k=i;
+			remained^=1L<<i;
+		}
+		if(k==-1){
+			// String s=Long.toBinaryString(choosed);
+			// for(; s.length()<n; s="0"+s);
+			// debug(s, sum);
+			ans=max(ans, sum);
+			return;
+		}
+		if(Long.bitCount(g[k]&~removed)>=1)
+			mais(choosed, removed|(1L<<k), sum);
+		mais(choosed|(1L<<k), removed|(1L<<k)|g[k], sum+pow[k]); // choose k
+	}
+
+	void mis(int k, long choosed, int sum){
+		if(k==n){
+			// TODO
+			ans=max(ans, sum);
+			return;
+		}
+		if((choosed&g[k])==0){
+			mis(k+1, choosed|(1L<<k), sum+pow[k]);
+			long rem=0;
+			for(int i=k+1; i<n; i++)
+				if((choosed&g[i])==0)
+					rem|=g[i];
+			if((rem>>>k&1)==0)
+				return;
+		}
+		mis(k+1, choosed, sum);
+	}
+
+	void mis_(int k, long choosed, int sum){
+		if(k==n){
+			// TODO
+			ans=max(ans, sum);
+			return;
+		}
+		if((choosed&g[k])==0){
+			mis(k+1, choosed|(1L<<k), sum+pow[k]);
+			long rem=0;
+			for(int i=k+1; i<n; i++)
+				if((choosed&g[i])==0)
+					rem|=g[i];
+			if((rem>>>k&1)==0)
+				return;
+		}
+		mis(k+1, choosed, sum);
+	}
+
+	void debug(Object... os){
+		System.err.println(Arrays.deepToString(os));
+	}
+
+	void print(String s){
+		System.out.print(s);
+	}
+
+	void println(String s){
+		System.out.println(s);
+	}
+
+	public static void main(String[] args){
+		new Main().run();
+	}
+}

@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+public class Main
+{
+
+  private static int[] sArray;
+  public static void main(String[] args)
+  {
+    try (Scanner scanner = new Scanner(System.in))
+    {
+      while (scanner.hasNextLine())
+      {
+        String[] tmp = scanner.nextLine().split(" ");
+        final int L = Integer.valueOf(tmp[0]);
+        final int Q = Integer.valueOf(tmp[1]);
+        final String STR_S = scanner.nextLine();
+        sArray = new int[STR_S.length()];
+        for (int i = 0; i < sArray.length; i++)
+        {
+          sArray[i] = Integer.valueOf(STR_S.substring(i, i + 1));
+        }
+
+        String[] data = new String[Q];
+        for (int i = 0; i < Q; i++)
+        {
+          data[i] = scanner.nextLine();
+        }
+
+        solver(L, data);
+      }
+    }
+  }
+
+  private static void solver(int L, String[] data)
+  {
+    for (int i = 0; i < data.length; i++)
+    {
+      if (0 > data[i].indexOf('?'))
+      {
+        System.out.println(sArray[Integer.valueOf(data[i], 2)]);
+        continue;
+      }
+
+      if ((0 > data[i].indexOf('1')) && (0 > data[i].indexOf('0')))
+      {
+        int sum = 0;
+        for (int num : sArray)
+        {
+          sum += num;
+        }
+        System.out.println(sum);
+        continue;
+      }
+
+      System.out.println(solver2(new String(""), data[i]));
+    }
+  }
+
+  private static int solver2(String strA, String strB)
+  {
+    int sum = 0;
+    if (strB.length() == 1)
+    {
+      if (strB.equals("0") || strB.equals("1"))
+      {
+        return sArray[Integer.valueOf(strA + strB, 2)];
+      }
+      else
+      {
+        return sArray[Integer.valueOf(strA + "0", 2)] + sArray[Integer.valueOf(strA + "1", 2)];
+      }
+    }
+    else
+    {
+      String tmp = strB.substring(0, 1);
+      if (tmp.equals("0") || tmp.equals("1"))
+      {
+        return solver2(strA + tmp, strB.substring(1));
+      }
+      else
+      {
+        sum += solver2(strA + "0", strB.substring(1));
+        sum += solver2(strA + "1", strB.substring(1));
+      }
+    }
+
+    return sum;
+  }
+
+}
+

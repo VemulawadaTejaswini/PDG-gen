@@ -1,0 +1,23 @@
+package cf;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+/**
+ * Created by Olcia on 10.06.2017.
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner a = new Scanner(System.in);
+
+        int b = a.nextInt();
+        int[] tab = new int [b];
+        for (int i = 0; i < b ; i++) {
+            tab [i] = a.nextInt();
+        }
+        Arrays.sort(tab);
+        int r = tab[b-1] - tab[0];
+        System.out.println(r);
+
+    }
+}

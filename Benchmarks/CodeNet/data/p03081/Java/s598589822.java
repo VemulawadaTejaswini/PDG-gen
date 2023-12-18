@@ -1,0 +1,250 @@
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.NoSuchElementException;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		new Main().solve();
+	}
+
+	private void solve() throws IOException {
+		try {
+			//			solveA();
+			//			solveB();
+			solveC2();
+			//			 solveD();
+			//			 solveE();
+			//			 solveF();
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+			if (out != null) {
+				out.flush();
+				out.close();
+			}
+		}
+
+	}
+
+	private void solveA() {
+		int numA = nextInt();
+		int numB = nextInt();
+		int numC = nextInt();
+
+		if (numA == numB && numB == numC) {
+			out.println("Yes");
+		} else {
+			out.println("No");
+		}
+
+	}
+
+	private void solveB() {
+		int numN = nextInt();
+		char[] wk = next().toCharArray();
+
+		int rCnt = 0;
+		int bCnt = 0;
+		for (int i = 0; i < numN; i++) {
+			if (wk[i] == 'R') {
+				rCnt++;
+			} else if (wk[i] == 'B') {
+				bCnt++;
+			}
+		}
+
+		out.println(rCnt > bCnt ? "Yes" : "No");
+	}
+
+	private static class MagicComp implements Comparator<int[]> {
+
+		@Override
+		public int compare(int[] o1, int[] o2) {
+			if (o1[0] < o2[0]) {
+				return -1;
+			} else if (o1[0] < o2[0]) {
+				return 1;
+			} else if (o1[0] == o2[0]) {
+				return 0;
+
+			}
+			return 0;
+		}
+
+	}
+
+	private void solveC2() {
+		int boxNumN = nextInt();
+		int magicNumQ = nextInt();
+		char[] s = next().toCharArray();
+
+		int[] goremBox = new int[boxNumN]; //箱
+		int[] goremNum = new int[boxNumN]; //各箱のゴーレム
+		Arrays.fill(goremNum, 1);
+		for (int i = 0; i < goremBox.length; i++) {
+			goremBox[i] = s[i] - 'a';
+		}
+
+		int[][] magic = new int[magicNumQ][2];
+
+		for (int i = 0; i < magicNumQ; i++) {
+			magic[i][0] = next().toCharArray()[0] - 'a';
+			magic[i][1] = next().toCharArray()[0] == 'L' ? -1 : 1;
+		}
+
+		//		Arrays.sort(magic, new MagicComp());
+
+		long res = goremNum.length;
+		int moveCnt = 0;
+		for (int i = 0; i < magicNumQ; i++) {
+			int magicMove = 0;
+			if (i == magicNumQ - 1) {
+				moveCnt += magic[i][1];
+			} else {
+				moveCnt += magic[i][1];
+				if (magic[i][0] == magic[i + 1][0] && magic[i][1] == magic[i + 1][1]) {
+					continue;
+				}
+			}
+			magicMove = moveCnt;
+
+			if (magicMove > 0) {
+				for (int j = goremBox.length - 1; j >= 0; j--) {
+					if (goremBox[j] == magic[i][0]) {
+						if (j + 1 > goremNum.length - 1) {
+							res -= goremNum[j];
+						} else {
+							goremNum[j + 1] = goremNum[j + 1] + goremNum[j];
+						}
+						goremNum[j] = 0;
+					}
+				}
+			} else {
+				for (int j = 0; j < goremBox.length; j++) {
+					if (goremBox[j] == magic[i][0]) {
+						if (j - 1 < 0) {
+							res -= goremNum[j];
+						} else {
+							goremNum[j - 1] = goremNum[j - 1] + goremNum[j];
+						}
+						goremNum[j] = 0;
+					}
+				}
+			}
+			moveCnt = 0;
+
+		}
+
+		out.println(res);
+	}
+
+	private void solveD() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private void solveE() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private void solveF() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private final PrintWriter out = new PrintWriter(System.out);
+	private final InputStream in = System.in;
+	private final byte[] buffer = new byte[1024];
+	private int ptr = 0;
+	private int buflen = 0;
+
+	private boolean hasNextByte() {
+		if (ptr < buflen) {
+			return true;
+		} else {
+			ptr = 0;
+			try {
+				buflen = in.read(buffer);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (buflen <= 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private int readByte() {
+		if (hasNextByte())
+			return buffer[ptr++];
+		else
+			return -1;
+	}
+
+	private static boolean isPrintableChar(int c) {
+		return 33 <= c && c <= 126;
+	}
+
+	private void skipUnprintable() {
+		while (hasNextByte() && !isPrintableChar(buffer[ptr]))
+			ptr++;
+	}
+
+	public boolean hasNext() {
+		skipUnprintable();
+		return hasNextByte();
+	}
+
+	public int nextInt() {
+		return Integer.parseInt(next());
+	}
+
+	public String next() {
+		if (!hasNext())
+			throw new NoSuchElementException();
+		StringBuilder sb = new StringBuilder();
+		int b = readByte();
+		while (isPrintableChar(b)) {
+			sb.appendCodePoint(b);
+			b = readByte();
+		}
+		return sb.toString();
+	}
+
+	public long nextLong() {
+		if (!hasNext())
+			throw new NoSuchElementException();
+		long n = 0;
+		boolean minus = false;
+		int b = readByte();
+		if (b == '-') {
+			minus = true;
+			b = readByte();
+		}
+		if (b < '0' || '9' < b) {
+			throw new NumberFormatException();
+		}
+		while (true) {
+			if ('0' <= b && b <= '9') {
+				n *= 10;
+				n += b - '0';
+			} else if (b == -1 || !isPrintableChar(b)) {
+				return minus ? -n : n;
+			} else {
+				throw new NumberFormatException();
+			}
+			b = readByte();
+		}
+	}
+}

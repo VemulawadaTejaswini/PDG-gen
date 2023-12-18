@@ -1,0 +1,23 @@
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String x = br.readLine();
+		String[] cut = x.split(" ");
+		String a = cut[0];
+		String b = cut[1];
+		String c = cut[2];
+
+		char q = a.charAt(0);
+		char w = b.charAt(0);
+		char e = c.charAt(0);
+
+		System.out.println(q + "" + w + "" + e);
+
+	}
+}

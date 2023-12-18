@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+    	Scanner scanner = new Scanner(System.in);
+    	int  num = scanner.nextInt();
+    	String s = scanner.nextLine();
+    	int left = 0;
+    	for (int i = 0; i < num; i++) {
+    	    if(s.charAt(i) == '(') left++;
+    	    else left--;
+    	    if (left < 0) {
+    		s = "(" + s;
+    		num++;
+    		i++;
+    		left++;
+    	    }
+    	}
+    	for (int i = left ; i > 0; i--) {
+    	    s = s + ")";
+    	}
+    	System.out.println(s);
+    	scanner.close();
+    }
+}

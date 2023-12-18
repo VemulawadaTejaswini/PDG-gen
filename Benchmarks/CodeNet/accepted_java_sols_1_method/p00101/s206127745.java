@@ -1,0 +1,1 @@
+import java.util.*;public class Main {public static void main(String[] args){Scanner a=new Scanner(System.in);int i=a.nextInt();a.nextLine();for(;i-->0;)System.out.println(a.nextLine().replaceAll("Hoshino","Hoshina"));}}

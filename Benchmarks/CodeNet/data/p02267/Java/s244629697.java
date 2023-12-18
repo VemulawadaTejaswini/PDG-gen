@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		sc.useDelimiter(System.getProperty("line.separator"));
+        int n = sc.nextInt();
+        String SStr = sc.next();
+        int q = sc.nextInt();
+        String TStr = sc.next();
+
+        int[] S = toIntAry(SStr, n);
+        int[] T = toIntAry(TStr, q);
+
+        int cnt=0;
+        for(int i=0; i<n; i++){
+        	int key = S[i];
+        	if(linearSearch(T,q,key))cnt++;
+        }
+
+        System.out.println(cnt);
+
+	}
+
+
+
+	private static boolean linearSearch(int[] t, int q, int key) {
+		int i=0;
+		t[q] = key;				//?????????????°??????????
+		while(t[i]!=key)i++;	//????´?????????????????????§while?????????
+		if(i!=q){
+			return true;		//??????????´??????§?????????????????????NG
+		}else{
+			return false;		//??????????´?????????????OK
+		}
+	}
+
+
+
+	private static int[] toIntAry(String str, int n) {
+        String[] tmp = str.split(" ");
+        int[] A = new int[10000];
+        for (int i = 0; i < n; i++) {
+			A[i] = Integer.parseInt(tmp[i]);
+		}
+        return A;
+	}
+
+
+}

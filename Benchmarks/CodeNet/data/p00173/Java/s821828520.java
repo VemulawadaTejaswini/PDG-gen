@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Scanner cin = new Scanner(System.in);
+		int[][] a = new int[2][9];
+		int[][] sum = new int[2][9];
+		for(int i = 0; i < 9; i++){
+			String str = cin.next();
+			a[0][i]=cin.nextInt();
+			a[1][i]=cin.nextInt();
+			sum[0][i]=a[0][i] + a[1][i];
+			sum[1][i]=a[0][i]*200 + a[1][i]*300;
+		}
+		int cnt=0;
+		for(int i = 1; i < 4;i++){
+			for(int j = 1; j < 4;j++){
+				System.out.print(i);
+				System.out.print((char)('a'+j) + " " );
+				System.out.println(sum[0][cnt] + " " + sum[1][cnt++]);
+			}
+		}
+	}
+
+}

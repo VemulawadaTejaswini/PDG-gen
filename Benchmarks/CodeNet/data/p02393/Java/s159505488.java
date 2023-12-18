@@ -1,0 +1,20 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main{
+
+	public static void main(String[] args) {
+		//3っつの整数を昇順に並び替える
+		Scanner sc=new Scanner(System.in);
+		int[] num_ary=new int[3];
+		for(int i=0;i<3;i++){
+			num_ary[i]=sc.nextInt();
+		}
+		Arrays.sort(num_ary);
+		for(int i=0;i<3;i++){
+			System.out.println(num_ary[i]);
+		}
+	}
+
+}
+

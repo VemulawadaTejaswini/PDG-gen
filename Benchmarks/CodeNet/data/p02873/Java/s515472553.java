@@ -1,0 +1,22 @@
+import java.util.*;
+import java.math.RoundingMode;
+import java.math.BigDecimal;
+ 
+ 
+ 
+public class Main{
+	 public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		char[] s = sc.next().toCharArray();
+		int n = s.length;
+		long ans = 0;
+		long count = 0;
+		for(int i = 0; i < n; i++) {
+			if(s[i]=='>') {
+				count++;
+				ans+=count;
+			}
+		}
+		System.out.println(ans);
+	 }
+}

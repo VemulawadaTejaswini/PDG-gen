@@ -1,0 +1,54 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
+public class Main{
+
+	static class XandY{
+		int x;
+		int y; 
+		XandY(int a, int b)
+		{
+			this.x = a;
+			this.y = b;
+		}
+		
+	}
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
+        String s[] = reader.readLine().split(" ");
+		int m = Integer.parseInt(s[0]);
+        int n = Integer.parseInt(s[1]);
+
+		
+		XandY  edge[] = new XandY[n];
+		
+		for(int i=0;i<n;i++)
+		{
+			String str[] = reader.readLine().split(" ");
+			edge[i] = new XandY(Integer.parseInt(str[0]), Integer.parseInt(str[1]));
+		}
+	    
+		int arr[] = new int [n+1];
+		int max = Integer.MIN_VALUE;
+		for(int i=1; i<n; i++)
+		{
+			arr[i] = 1;
+			
+			for(int j = i-1; j>=0; j--)
+			{
+				if(edge[i].x == edge[j].y && arr[j] >= arr[i])
+					arr[i] = arr[i] + arr[j];
+			}
+			
+			if(max < arr[i])
+				max = arr[i];
+		}
+		
+		System.out.println(max);
+	}
+
+}

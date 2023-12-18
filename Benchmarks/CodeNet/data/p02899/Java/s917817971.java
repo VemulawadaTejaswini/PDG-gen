@@ -1,0 +1,20 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int ans[] = new int[n];
+		for(int i = 0; i < n;i++) {
+			int a = sc.nextInt();
+			ans[a - 1 ] = i + 1;
+		}
+		for(int i = 0;i < n;i++) {
+			System.out.print(ans[i] + " ");
+		}
+		System.out.println();
+		
+	}
+
+}

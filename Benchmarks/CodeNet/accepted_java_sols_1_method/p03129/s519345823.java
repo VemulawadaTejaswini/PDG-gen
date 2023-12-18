@@ -1,0 +1,28 @@
+/*
+* Author. Silviase(@silviasetitech)
+* For AtCoder
+*/
+
+import java.util.*;
+import java.lang.*;
+import java.math.*;
+
+
+public class Main {
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+
+        if (k <= (n+1)/2) {
+            System.out.println("YES");
+        }else{
+            System.out.println("NO");
+        }
+
+        sc.close();
+
+
+    }
+}

@@ -1,0 +1,68 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	static BufferedReader reader;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		reader = new BufferedReader(new InputStreamReader(System.in));
+		String[] s = readLine().split(" ");
+		int N = Integer.parseInt(s[0]);
+		int A = Integer.parseInt(s[1]);
+		int B = Integer.parseInt(s[2]);
+		boolean[] A_b = new boolean[N];
+		boolean[] B_b = new boolean[N];
+		int diff_cnt = 0;
+		for(int i=0;i<N;i++){
+			A_b[i] = ((A&bit(N-i-1))!=0);
+			B_b[i] = ((B&bit(N-i-1))!=0);
+			if(A_b[i]!=B_b[i]){diff_cnt++;}
+		}
+		if(diff_cnt%2==0){print("NO");}
+		else{
+			StringBuilder sb = new StringBuilder("YES\n");
+			for(int k=0;k<bit(N);k++){
+				int out = 0;
+				for(int i=0;i<N;i++){
+					out=out*2+(A_b[i]?1:0);
+				}
+				sb.append(out).append(" ");
+				int change_pointer = 0;
+				boolean changed = false;
+				for(int i=change_pointer+1;i<N;i++){
+					if(A_b[i]!=B_b[i]){
+						A_b[i]=B_b[i];
+						changed = true;
+						change_pointer = i;
+						break;
+					}
+				}
+				if(!changed){
+					A_b[0]=!A_b[0];
+				}
+			}
+			print(sb.toString().trim());
+		}
+	}
+	
+	private static int bit(int d){
+		if(d<=0){return 1;}
+		return bit(d-1)*2;
+	}
+
+	private static String readLine(){
+		try{
+			return reader.readLine();
+		}catch(Exception e){
+			return e.getMessage();
+		}
+	}
+	private static void print(Object o){
+		System.out.println(o);
+	}
+	private static void print(){
+		System.out.println();
+	}
+}

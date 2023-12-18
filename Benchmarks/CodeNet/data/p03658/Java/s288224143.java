@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = 0;
+		ArrayList array = new ArrayList();
+		for(int i = 0;i<a;i++){
+			array.add(sc.nextInt());
+		}
+		Collections.sort(array);
+		Collections.reverse(array);
+		for(int j=0;j<b;j++){
+			c += (int)array.get(j);
+		}
+		System.out.println(c);
+
+	}
+}

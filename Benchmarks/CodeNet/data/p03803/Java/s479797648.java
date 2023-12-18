@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+
+		int a = in.nextInt();
+		int b = in.nextInt();
+
+		if (a == 1)
+			a += 13;
+		if (b == 1)
+			b += 13;
+		if (a > b) {
+			System.out.println("Alice");
+		} else if (b > a) {
+			System.out.println("Bob");
+		} else {
+			System.out.println("Draw");
+		}
+
+	}
+}

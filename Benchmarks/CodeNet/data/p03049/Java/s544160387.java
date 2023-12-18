@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		String s = "";
+		int[] AB = new int[3];
+		int sum = 0;
+		
+		for(int i = 0; i < N; i++) {
+			s = sc.next();
+			if(s.charAt(0) == 'B' && s.charAt(s.length() - 1) != 'A') {
+				AB[0]++;
+			} else if(s.charAt(0) != 'B' && s.charAt(s.length() - 1) == 'A') {
+				AB[1]++;
+			} else if(s.charAt(0) == 'B' && s.charAt(s.length() - 1) == 'A') {
+				AB[2]++;
+			}
+			for(int j = 0; j < s.length() - 1; j++) {
+				if(s.substring(j, j + 2).equals("AB")) {
+					sum++;
+				}
+			}
+		}
+		int a = Math.min(AB[0], AB[1]);
+		AB[0] -= a;
+		AB[1] -= a;
+		sum += a;
+		
+		int b = 0;
+		if(AB[0] >= AB[1]) {
+			b = Math.min(AB[0], AB[2]);
+		} else {
+			b = Math.min(AB[1], AB[2]);
+		}
+		sum += b;
+		System.out.println(sum);
+	}
+}

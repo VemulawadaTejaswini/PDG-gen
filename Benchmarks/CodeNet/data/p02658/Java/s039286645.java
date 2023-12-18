@@ -1,0 +1,38 @@
+import java.math.BigDecimal;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+
+        long sum = 0;
+        boolean init = true;
+        boolean overflow = false;
+
+        for (int i = 0; i < n; i++) {
+            long val = scanner.nextLong();
+            if (val == 0) {
+                System.out.println("0");
+                System.exit(0);
+            }
+            if (init) {
+                sum = val;
+                init = false;
+            } else if (!overflow) {
+                sum = sum * val;
+                if (sum > (long) Math.pow(10, 18) || sum < 0) {
+                    overflow = true;
+                }
+            }
+        }
+
+        if (overflow) {
+            System.out.println("-1");
+        } else {
+            System.out.println(sum);
+        }
+
+
+    }
+}

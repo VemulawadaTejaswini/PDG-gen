@@ -1,0 +1,383 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class Main {
+    void solve(MyScanner in, MyWriter out) {
+        int h = in.nextInt();
+        int w = in.nextInt();
+        var map = new TreeMap<Integer, Integer>();
+        for (int i = 0; i < w; i++) {
+            map.put(i, i);
+        }
+        var mset = new SortedMultiset<Integer>();
+        mset.add(0, w);
+        for (int i = 1; i <= h; i++) {
+            int a = in.nextInt() - 1;
+            int b = in.nextInt();
+            var sub = map.subMap(a, true, b, true);
+            for (Map.Entry<Integer, Integer> e : sub.entrySet()) {
+                int to = e.getKey();
+                int from = e.getValue();
+                mset.remove(to - from);
+            }
+            OptionalInt rightest = sub.values().stream().mapToInt(e -> e).max();
+            sub.clear();
+            if (rightest.isPresent() && b < w) {
+                map.put(b, rightest.getAsInt());
+                mset.add(b - rightest.getAsInt());
+            }
+            final int j = i;
+            mset.first().ifPresentOrElse(ans -> {
+                out.println(j + ans);
+            }, () -> {
+                out.println(-1);
+            });
+        }
+    }
+    static final class SortedMultiset<E> extends Multiset<E> {
+        final NavigableMap<E, Long> navMap;
+        SortedMultiset() {
+            this(new TreeMap<>());
+        }
+        SortedMultiset(Comparator<? super E> c) {
+            this(new TreeMap<>(c));
+        }
+        private SortedMultiset(NavigableMap<E, Long> navMap) {
+            super(navMap);
+            this.navMap = navMap;
+        }
+        Optional<E> first() {
+            return navMap.isEmpty()
+                    ? Optional.empty()
+                    : Optional.of(navMap.firstKey());
+        }
+        Optional<E> last() {
+            return navMap.isEmpty()
+                    ? Optional.empty()
+                    : Optional.of(navMap.lastKey());
+        }
+        Optional<E> pollFirst() {
+            Optional<E> o = first();
+            if (o.isPresent())
+                remove(o.get());
+            return o;
+        }
+        Optional<E> pollLast() {
+            Optional<E> o = last();
+            if (o.isPresent())
+                remove(o.get());
+            return o;
+        }
+    }
+    static class Multiset<E> {
+        final Map<E, Long> map;
+        Multiset() {
+            this(new HashMap<>());
+        }
+        Multiset(Map<E, Long> map) {
+            this.map = map;
+        }
+        boolean add(E e) {
+            add(e, 1);
+            return true;
+        }
+        boolean add(E e, long count) {
+            Objects.requireNonNull(e);
+            if (count < 0)
+                throw new IllegalArgumentException();
+            if (count > 0) {
+                map.merge(e, count, Math::addExact);
+                return true;
+            }
+            return false;
+        }
+        boolean remove(E e) {
+            return remove(e, 1);
+        }
+        boolean remove(E e, long count) {
+            if (count < 0)
+                throw new IllegalArgumentException();
+            if (count == 0)
+                return false;
+            Long oldValue = map.get(e);
+            if (oldValue == null)
+                return false;
+            long newValue = oldValue - count;
+            if (newValue <= 0)
+                map.remove(e);
+            else
+                map.put(e, newValue);
+            return true;
+        }
+        boolean removeAll(E e) {
+            return remove(e, Long.MAX_VALUE);
+        }
+        long count(E e) {
+            return map.getOrDefault(e, 0L);
+        }
+        boolean contains(E e) {
+            return map.containsKey(e);
+        }
+        boolean isEmpty() {
+            return map.isEmpty();
+        }
+        Set<E> elementSet() {
+            return map.keySet();
+        }
+    }
+    public static void main(String[] args) {
+        MyWriter w = new MyWriter(System.out);
+        new Main().solve(new MyScanner(System.in), w);
+        w.flush();
+    }
+    static final class MyScanner {
+        static final int BUFFER_SIZE = 8192;
+        private final InputStream in;
+        private final byte[] buffer = new byte[BUFFER_SIZE];
+        private int point;
+        private int readLength;
+
+        MyScanner(InputStream in) {
+            this.in = in;
+        }
+        private int readByte() {
+            if (point < readLength) {
+                int result = buffer[point];
+                point += 1;
+                return result;
+            }
+            try {
+                readLength = in.read(buffer);
+            } catch (IOException e) {
+                throw new AssertionError(null, e);
+            }
+            if (readLength == -1) {
+                return -1;
+            }
+            point = 1;
+            return buffer[0];
+        }
+        private static boolean isVisibleChar(int c) {
+            return 33 <= c && c <= 126;
+        }
+        char nextChar() {
+            int c = readByte();
+            while (!(c == -1 || isVisibleChar(c))) {
+                c = readByte();
+            }
+            if (c == -1) {
+                throw new NoSuchElementException();
+            }
+            return (char)c;
+        }
+        String next() {
+            return next(16);
+        }
+        String next(int n) {
+            int c = readByte();
+            while (!(c == -1 || isVisibleChar(c))) {
+                c = readByte();
+            }
+            if (c == -1) {
+                throw new NoSuchElementException();
+            }
+            StringBuilder b = new StringBuilder(n);
+            do {
+                b.append((char)c);
+                c = readByte();
+            } while (c != -1 && isVisibleChar(c));
+            return b.toString();
+        }
+        long nextLong() {
+            int c = readByte();
+            while (!(c == -1 || isVisibleChar(c))) {
+                c = readByte();
+            }
+            if (c == -1) {
+                throw new NoSuchElementException();
+            }
+            boolean minus = false;
+            long limit = -Long.MAX_VALUE;
+            if (c == '-') {
+                minus = true;
+                limit = Long.MIN_VALUE;
+                c = readByte();
+            }
+            long n = 0L;
+            do {
+                if (c < '0' || c > '9') {
+                    throw new InputMismatchException();
+                }
+                if (n < limit / 10L) {
+                    throw new InputMismatchException();
+                }
+                n *= 10L;
+                int digit = c - '0';
+                if (n < limit + digit) {
+                    throw new InputMismatchException();
+                }
+                n -= digit;
+                c = readByte();
+            } while (c != -1 && isVisibleChar(c));
+            return minus ? n : -n;
+        }
+        int nextInt() {
+            long n = nextLong();
+            if (n < Integer.MIN_VALUE || n > Integer.MAX_VALUE) {
+                throw new InputMismatchException();
+            }
+            return (int)n;
+        }
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+        int[] nextIntArray(int n) {
+            int[] result = new int[n];
+            for (int i = 0; i < n; i++) {
+                result[i] = nextInt();
+            }
+            return result;
+        }
+        long[] nextLongArray(int n) {
+            long[] result = new long[n];
+            for (int i = 0; i < n; i++) {
+                result[i] = nextLong();
+            }
+            return result;
+        }
+        char[] nextCharArray(int n) {
+            char[] result = new char[n];
+            for (int i = 0; i < n; i++) {
+                result[i] = nextChar();
+            }
+            return result;
+        }
+        char[][] next2dCharArray(int h, int w) {
+            char[][] result = new char[h][w];
+            for (int i = 0; i < h; i++) {
+                for (int j = 0; j < w; j++) {
+                    result[i][j] = nextChar();
+                }
+            }
+            return result;
+        }
+        int[][] nextVerticalIntArrays(int arrayCount, int arrayLength) {
+            int[][] result = new int[arrayCount][arrayLength];
+            for (int i = 0; i < arrayLength; i++) {
+                for (int j = 0; j < arrayCount; j++) {
+                    result[j][i] = nextInt();
+                }
+            }
+            return result;
+        }
+        long[][] nextVerticalLongArrays(int arrayCount, int arrayLength) {
+            long[][] result = new long[arrayCount][arrayLength];
+            for (int i = 0; i < arrayLength; i++) {
+                for (int j = 0; j < arrayCount; j++) {
+                    result[j][i] = nextLong();
+                }
+            }
+            return result;
+        }
+        char[][] nextVerticalCharArrays(int arrayCount, int arrayLength) {
+            char[][] result = new char[arrayCount][arrayLength];
+            for (int i = 0; i < arrayLength; i++) {
+                for (int j = 0; j < arrayCount; j++) {
+                    result[j][i] = nextChar();
+                }
+            }
+            return result;
+        }
+        List<String> nextStringList(int n) {
+            var result = new ArrayList<String>(n);
+            for (int i = 0; i < n; i++) {
+                result.add(next());
+            }
+            return result;
+        }
+        List<Integer> nextIntList(int n) {
+            var result = new ArrayList<Integer>(n);
+            for (int i = 0; i < n; i++) {
+                result.add(nextInt());
+            }
+            return result;
+        }
+        List<Long> nextLongList(int n) {
+            var result = new ArrayList<Long>(n);
+            for (int i = 0; i < n; i++) {
+                result.add(nextLong());
+            }
+            return result;
+        }
+    }
+    static final class MyWriter extends PrintWriter {
+        MyWriter(OutputStream out) {
+            super(out);
+        }
+        void println(int[] x) {
+            println(x, " ");
+        }
+        void println(int[] x, String delimiter) {
+            if (x.length > 0) {
+                print(x[0]);
+                for (int i = 1; i < x.length; i++) {
+                    print(delimiter);
+                    print(x[i]);
+                }
+            }
+            println();
+        }
+        void println(long[] x) {
+            println(x, " ");
+        }
+        void println(long[] x, String delimiter) {
+            if (x.length > 0) {
+                print(x[0]);
+                for (int i = 1; i < x.length; i++) {
+                    print(delimiter);
+                    print(x[i]);
+                }
+            }
+            println();
+        }
+        void println(Iterable<?> iterable) {
+            println(iterable, " ");
+        }
+        void println(Iterable<?> iterable, String delimiter) {
+            Iterator<?> i = iterable.iterator();
+            if (i.hasNext()) {
+                print(i.next());
+                while (i.hasNext()) {
+                    print(delimiter);
+                    print(i.next());
+                }
+            }
+            println();
+        }
+        void printLines(int[] x) {
+            println(x, System.lineSeparator());
+        }
+        void printLines(long[] x) {
+            println(x, System.lineSeparator());
+        }
+        void printLines(Iterable<?> iterable) {
+            println(iterable, System.lineSeparator());
+        }
+    }
+}

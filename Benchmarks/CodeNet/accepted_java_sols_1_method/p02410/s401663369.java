@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] arges) {
+
+		Scanner sc = new Scanner(System.in);
+		String line = sc.nextLine();
+		String[] k = line.split(" ");
+		int v = Integer.parseInt(k[0]);// n
+		int v2 = Integer.parseInt(k[1]);// m
+
+		String[] n = new String[v];
+		String[] m0 = new String[v2];
+		int[] m = new int[v2];
+		for (int i = 0; i < v; i++) {
+			n[i] = sc.nextLine();// String??????n?????\??????????????¨???
+		}
+		for (int i = 0; i < v2; i++) {
+			m0[i] = sc.nextLine();
+			m[i] = Integer.parseInt(m0[i]);// int?????????????????????m?????\???
+		}
+		for (int i = 0; i < n.length; i++) {
+			String[] gyou = n[i].split(" ");// ????????¨???n?????°??????
+			int[] gyouv = new int[m.length];
+			for (int j = 0; j < gyou.length; j++) {
+				gyouv[j] = Integer.parseInt(gyou[j]);// 1????????°????????????
+			}
+			int sum = 0;
+			for (int j = 0; j < gyouv.length; j++) {
+				sum += gyouv[j] * m[j];
+
+			}
+			System.out.println(sum);
+
+		}
+	}
+
+}

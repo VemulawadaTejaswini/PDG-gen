@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException{
+		Scanner scan = new Scanner(System.in);
+		String[] ab = scan.nextLine().split(" ");
+		if("H".equals(ab[0])){
+			if("H".equals(ab[1])){
+				System.out.println("H");
+			}else{
+				System.out.println("D");
+			}
+		}else{
+			if("H".equals(ab[1])){
+				System.out.println("D");
+			}else{
+				System.out.println("H");
+			}
+		}
+	}
+
+}

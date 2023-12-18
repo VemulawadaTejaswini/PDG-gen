@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        long a=Integer.parseInt(sc.next());
+        long b=Integer.parseInt(sc.next());
+        long min=Math.min(a,b);
+        if(min==1){
+            System.out.println("1");
+            System.exit(0);
+        }
+        long max=Math.max(a,b);
+        int res=1;
+        for(long i=2;;i++){
+            if(min%i==0){
+                if(max%i==0){
+                    res++;
+                    max/=i;
+                }
+                min/=i;
+            }
+            if(i>Math.sqrt(min)){
+                break;
+            }
+        }
+        System.out.println(res);
+        sc.close();
+    }
+}

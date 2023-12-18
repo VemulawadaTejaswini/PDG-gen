@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main{
+  static long x;
+
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+
+    x = sc.nextLong();
+
+    if(x <= 6){
+      System.out.println(1);
+      return;
+    }
+
+    if(x <= 11){
+      System.out.println(2);
+      return;
+    }
+
+    long s = (x / 11) * 2 + 1;
+
+    System.out.println(s);
+  }
+}

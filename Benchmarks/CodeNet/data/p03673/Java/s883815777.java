@@ -1,0 +1,24 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			String str = br.readLine();
+			int N = Integer.parseInt(str);
+			str = br.readLine();
+			String[] s = str.split(" ",0);
+			for(int i = N-1;i>=0;i=i-2) {
+				System.out.print(s[i]+" ");
+			}
+			for(int i = N%2;i<N;i = i+2) {
+				System.out.print(s[i]+" ");
+			}
+
+		}catch (Exception e) {
+			System.exit(0);
+		}
+	}
+}

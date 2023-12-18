@@ -1,0 +1,33 @@
+import java.util.*;
+
+/* 階乗の素因数分解の仕方。参考: https://youtu.be/28IanD3lXGg */
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		int n = in.nextInt();
+	
+		int[] numExp = new int[n + 1];
+		for (int i = 2; i < n + 1; i++) {
+			int a = i;
+			while (1 < a) {
+				for (int j = 2; j < a + 1; j++) {
+					if (a % j == 0) {
+						numExp[j]++;
+						a /= j;
+						break;
+					}
+				}
+			}
+		}
+		
+		long answer = 1;
+		for (int i = 0; i <= n; i++) {
+			answer = answer * (numExp[i] + 1) % 1000000007; 
+		}
+		System.out.println(answer);
+	}
+	
+}

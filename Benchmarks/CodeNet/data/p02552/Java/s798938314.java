@@ -1,0 +1,13 @@
+import java.io.*;
+
+public class Not {
+    public static void main(String[] args) {
+        int input = 0;
+        Scanner sc = new Scanner(System.in);
+        input = sc.next();
+        if (input == 0)
+            System.out.println(1);
+        if (input == 1)
+            System.out.println(0);
+    }
+}

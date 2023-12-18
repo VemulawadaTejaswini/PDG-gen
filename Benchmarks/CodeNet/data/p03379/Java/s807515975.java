@@ -1,0 +1,33 @@
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> xx = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int tmp = sc.nextInt();
+            x.add(tmp);
+            xx.add(tmp);
+        }
+        Collections.sort(xx);
+        int r = xx.get(n / 2 - 1);
+        int l = xx.get(n / 2);
+        for (int i = 0; i < n; i++) {
+            int tmp = x.get(i);
+            int tmp3 = xx.indexOf(Integer.valueOf(tmp));
+            int tmp4 = 0;
+            if(tmp3 <= (n - 1) / 2) {
+                tmp4 = l;
+            } else if (tmp3 > (n - 1) / 2) {
+                tmp4 = r;
+            }
+            System.out.println(tmp4);
+        }
+    }
+}

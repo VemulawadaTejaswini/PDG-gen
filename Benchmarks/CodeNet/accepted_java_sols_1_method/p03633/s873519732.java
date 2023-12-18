@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			String str = br.readLine();
+			int n = Integer.parseInt(str);
+			long ans = 1;
+			for(int i = 0; i < n;i++) {
+				str = br.readLine();
+				long x;
+				long y;
+				long tmp;
+				long t = Long.parseLong(str);
+				if(i == 0) {
+					ans = t;
+				}else {
+					if(ans > t) {
+						x = ans;
+						y = t;
+					}else {
+						x = t;
+						y = ans;
+					}
+
+					while((tmp = x % y) != 0) {
+						x = y;
+						y = tmp;
+					}
+					ans = (ans / y)* t;
+				}
+			}
+			System.out.println(ans);
+
+//			long max  = 1000000007;
+		}catch (Exception e) {
+			System.exit(0);
+		}
+	}
+
+}

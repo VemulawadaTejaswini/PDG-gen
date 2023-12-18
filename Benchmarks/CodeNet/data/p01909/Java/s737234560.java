@@ -1,0 +1,314 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
+public class Main {
+
+  char[] S;
+  int N, K;
+  int NAN = -(int) (1e9 + 7);
+
+  private void solve(FastScanner in, PrintWriter out) {
+    S = in.next().toCharArray();
+    N = S.length;
+    K = in.nextInt();
+
+    //n, k, U=0,D=1, on-off, L=0,R=1, max
+    int[][][][] dp1 = new int[N + 1][K + 1][2][2];
+    dp(dp1, 'U', 'D');
+    int[][][][] dp2 = new int[N + 1][K + 1][2][2];
+    dp(dp2, 'L', 'R');
+
+    int ans = 0;
+    for (int max = 0; max <= K; max++) {
+      int h = 0;
+      for (int k = 0; k <= max; k++) {
+        for (int m = 0; m < 2; m++) {
+          for (int u = 0; u < 2; u++) {
+            h = Math.max(h, dp1[N][k][u][m]);
+          }
+        }
+      }
+
+      int v = 0;
+      for (int k = 0; k <= K - max; k++) {
+        for (int m = 0; m < 2; m++) {
+          for (int u = 0; u < 2; u++) {
+            v = Math.max(v, dp2[N][k][u][m]);
+          }
+        }
+      }
+      ans = Math.max(ans, v + h);
+    }
+    out.println(ans);
+  }
+
+  private void dp(int[][][][] dp1, char U, char D) {
+    for (int[][][] d : dp1) {
+      for (int[][] p : d) {
+        for (int[] dp : p) {
+          Arrays.fill(dp, NAN);
+        }
+      }
+    }
+
+    dp1[0][0][0][0] = 0;
+    dp1[0][0][1][0] = 0;
+
+    for (int i = 0; i < N; i++) {
+      for (int k = 0; k <= K; k++) {
+        for (int u = 0; u < 2; u++) {
+          for (int m = 0; m < 2; m++) {
+            if (dp1[i][k][u][m] == NAN) {
+              continue;
+            }
+
+            if (S[i] != U && S[i] != D) {
+              dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m]);
+              continue;
+            }
+
+            if (S[i] == U) {
+              if (u == 0) {
+                if (m == 0) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] + 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] - 1);
+                }
+              }
+              if (u == 1) {
+                if (m == 0) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] - 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] + 1);
+                }
+              }
+            }
+            if (S[i] == D) {
+              if (u == 0) {
+                if (m == 0) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] - 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] + 1);
+                }
+              }
+              if (u == 1) {
+                if (m == 0) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] + 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k][u][m] = Math.max(dp1[i + 1][k][u][m], dp1[i][k][u][m] - 1);
+                }
+              }
+            }
+
+            if (k == K) {
+              continue;
+            }
+
+            int n = m ^ 1;
+            if (S[i] == U) {
+              if (u == 0) {
+                if (m == 0) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] - 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] + 1);
+                }
+              }
+              if (u == 1) {
+                if (m == 0) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] + 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] - 1);
+                }
+              }
+            }
+            if (S[i] == D) {
+              if (u == 0) {
+                if (m == 0) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] + 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] - 1);
+                }
+              }
+              if (u == 1) {
+                if (m == 0) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] - 1);
+                }
+                if (m == 1) {
+                  dp1[i + 1][k + 1][u][n] = Math.max(dp1[i + 1][k + 1][u][n], dp1[i][k][u][m] + 1);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    PrintWriter out = new PrintWriter(System.out);
+    new Main().solve(new FastScanner(), out);
+    out.close();
+  }
+
+  private static class FastScanner {
+
+    private final InputStream in = System.in;
+    private final byte[] buffer = new byte[1024];
+    private int ptr = 0;
+    private int bufferLength = 0;
+
+    private boolean hasNextByte() {
+      if (ptr < bufferLength) {
+        return true;
+      } else {
+        ptr = 0;
+        try {
+          bufferLength = in.read(buffer);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        if (bufferLength <= 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    private int readByte() {
+      if (hasNextByte()) {
+        return buffer[ptr++];
+      } else {
+        return -1;
+      }
+    }
+
+    private static boolean isPrintableChar(int c) {
+      return 33 <= c && c <= 126;
+    }
+
+    private void skipUnprintable() {
+      while (hasNextByte() && !isPrintableChar(buffer[ptr])) {
+        ptr++;
+      }
+    }
+
+    boolean hasNext() {
+      skipUnprintable();
+      return hasNextByte();
+    }
+
+    public String next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
+      StringBuilder sb = new StringBuilder();
+      int b = readByte();
+      while (isPrintableChar(b)) {
+        sb.appendCodePoint(b);
+        b = readByte();
+      }
+      return sb.toString();
+    }
+
+    long nextLong() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
+      long n = 0;
+      boolean minus = false;
+      int b = readByte();
+      if (b == '-') {
+        minus = true;
+        b = readByte();
+      }
+      if (b < '0' || '9' < b) {
+        throw new NumberFormatException();
+      }
+      while (true) {
+        if ('0' <= b && b <= '9') {
+          n *= 10;
+          n += b - '0';
+        } else if (b == -1 || !isPrintableChar(b)) {
+          return minus ? -n : n;
+        } else {
+          throw new NumberFormatException();
+        }
+        b = readByte();
+      }
+    }
+
+    double nextDouble() {
+      return Double.parseDouble(next());
+    }
+
+    double[] nextDoubleArray(int n) {
+      double[] array = new double[n];
+      for (int i = 0; i < n; i++) {
+        array[i] = nextDouble();
+      }
+      return array;
+    }
+
+    double[][] nextDoubleMap(int n, int m) {
+      double[][] map = new double[n][];
+      for (int i = 0; i < n; i++) {
+        map[i] = nextDoubleArray(m);
+      }
+      return map;
+    }
+
+    public int nextInt() {
+      return (int) nextLong();
+    }
+
+    public int[] nextIntArray(int n) {
+      int[] array = new int[n];
+      for (int i = 0; i < n; i++) {
+        array[i] = nextInt();
+      }
+      return array;
+    }
+
+    public long[] nextLongArray(int n) {
+      long[] array = new long[n];
+      for (int i = 0; i < n; i++) {
+        array[i] = nextLong();
+      }
+      return array;
+    }
+
+    public String[] nextStringArray(int n) {
+      String[] array = new String[n];
+      for (int i = 0; i < n; i++) {
+        array[i] = next();
+      }
+      return array;
+    }
+
+    public char[][] nextCharMap(int n) {
+      char[][] array = new char[n][];
+      for (int i = 0; i < n; i++) {
+        array[i] = next().toCharArray();
+      }
+      return array;
+    }
+
+    public int[][] nextIntMap(int n, int m) {
+      int[][] map = new int[n][];
+      for (int i = 0; i < n; i++) {
+        map[i] = nextIntArray(m);
+      }
+      return map;
+    }
+  }
+}

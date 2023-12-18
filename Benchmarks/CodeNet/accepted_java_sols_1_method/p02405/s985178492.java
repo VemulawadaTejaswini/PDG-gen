@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.ArrayList;
+public class Main{
+	public static void main(String args[]){
+    int a=0,b=0,c=0,i=0,n=0;
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    while(true){
+    try{
+      String line = reader.readLine();
+      String[] splitted = line.split(" ");
+      a = Integer.parseInt(splitted[0]);
+      b = Integer.parseInt(splitted[1]);
+      if (a+b == 0) break;
+		}catch(Exception e){
+      break;
+    }
+
+    for (i = 0; i < a; i++){
+      for (n = 0; n < b; n++){
+        if (i%2 == 0) {
+          if (n%2 == 0) {
+            System.out.print("#");
+          }else{
+            System.out.print(".");
+          }
+        }else{
+          if (n%2 == 0) {
+            System.out.print(".");
+          }else{
+            System.out.print("#");
+          }
+          
+        }
+      }
+      System.out.print("\n");
+    }
+    System.out.print("\n");
+
+  }
+	}
+}

@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main{
+
+
+	public static void main(String[] args){
+
+		//?¨??????\???
+		Scanner scan=new Scanner(System.in);
+		int a=scan.nextInt();
+		int b=scan.nextInt();
+		int c=scan.nextInt();
+		result(a,b,c);
+
+	}
+
+	//???????????¨?????????????????????
+	private static void result(int a, int b, int c){
+		if(a<b&&b<c){
+			System.out.println("Yes");}
+		else{System.out.println("No");}
+	}
+
+
+}

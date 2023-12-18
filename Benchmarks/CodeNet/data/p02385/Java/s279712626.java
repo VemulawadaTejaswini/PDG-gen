@@ -1,0 +1,127 @@
+// ???????????? ??¢
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+
+		Scanner scan = new Scanner(System.in);
+		
+		// ???????????????2?????????
+		Dise3 dise = new Dise3();
+		// ?????¢?????°??????????????????
+		for(int i = 0; i < 6; i++) {
+			dise._values[i] = scan.nextInt();
+		}
+		Dise3 dise2 = new Dise3();
+		// ?????¢?????°??????????????????
+		for(int i = 0; i < 6; i++) {
+			dise2._values[i] = scan.nextInt();
+		}
+		
+		// ??????????????????????????????????´????????????°
+		boolean result = false;
+		
+		// ?¢????
+		for(int i2 = 0; i2 <= 6; i2++) {
+			// ?????¢????¢????
+			if (dise._values[Dise3.ValueType.Front.getId()] == dise2._values[Dise3.ValueType.Front.getId()]) {
+				// ?????¢????¢????
+				result = topVarueCheck(dise, dise2, result);
+			}
+			else {
+				dise2.MoveSouth();
+			}
+			if (result == true) break;
+			// 4?????????????????±??¨?????????????????????????????¢????????????
+			if (i2 == 3) {
+				dise2.MoveEast();
+				dise2.MoveSouth();
+			}
+		}
+		if (result == true) System.out.println("Yes");
+		else System.out.println("No");
+	}
+
+	private static boolean topVarueCheck(Dise3 dise, Dise3 dise2, boolean result) {
+		// ?????¢????????£????????????????????¢??????????????§??±?????????
+		for(int i3 = 0; i3 < 4; i3++) {
+			if (dise._values[Dise3.ValueType.Top.getId()] == dise2._values[Dise3.ValueType.Top.getId()]) {
+				// ????????¢????????£????????????
+				if ( (dise._values[Dise3.ValueType.Right.getId()] == dise2._values[Dise3.ValueType.Right.getId()]) &&
+					 (dise._values[Dise3.ValueType.Left.getId()] == dise2._values[Dise3.ValueType.Left.getId()]) &&
+					 (dise._values[Dise3.ValueType.Back.getId()] == dise2._values[Dise3.ValueType.Back.getId()]) &&
+					 (dise._values[Dise3.ValueType.Bottom.getId()] == dise2._values[Dise3.ValueType.Bottom.getId()]) ) {
+					result = true;
+					break;
+				}
+				// 6??¢????????´????????????????????°???????????????
+			}
+			else dise2.MoveEast();
+		}
+		return result;
+	}
+}
+
+// ??????????????????
+class Dise3 {
+
+	public int _values[] = new int[6];
+	
+	public void Dice(int values[]) {
+    	for (int i = 0; i < values.length; i++)
+    	this._values[i] = values[i];
+	}
+    
+    public enum ValueType {
+        Top(0),
+        Front(1),
+        Right(2),
+        Left(3),
+        Back(4),
+        Bottom(5);
+        private final int id;
+        private ValueType (final int id) {
+            this.id = id;
+        }
+        public int getId() {
+            return id;
+        }
+    }
+    
+    public void MoveWest()
+    {
+        int tmp = this._values[ValueType.Top.getId()];
+        this._values[ValueType.Top.getId()] = this._values[ValueType.Right.getId()];
+        this._values[ValueType.Right.getId()] = this._values[ValueType.Bottom.getId()];
+        this._values[ValueType.Bottom.getId()] = this._values[ValueType.Left.getId()];
+        this._values[ValueType.Left.getId()] = tmp;
+    }
+    public void MoveEast()
+    {
+        int tmp = this._values[ValueType.Top.getId()];
+        this._values[ValueType.Top.getId()] = this._values[ValueType.Left.getId()];
+        this._values[ValueType.Left.getId()] = this._values[ValueType.Bottom.getId()];
+        this._values[ValueType.Bottom.getId()] = this._values[ValueType.Right.getId()];
+        this._values[ValueType.Right.getId()] = tmp;
+    }
+    public void MoveNorth()
+    {
+        int tmp = this._values[ValueType.Top.getId()];
+        this._values[ValueType.Top.getId()] = this._values[ValueType.Front.getId()];
+        this._values[ValueType.Front.getId()] = this._values[ValueType.Bottom.getId()];
+        this._values[ValueType.Bottom.getId()] = this._values[ValueType.Back.getId()];
+        this._values[ValueType.Back.getId()] = tmp;
+    }
+    public void MoveSouth()
+    {
+        int tmp = this._values[ValueType.Top.getId()];
+        this._values[ValueType.Top.getId()] = this._values[ValueType.Back.getId()];
+        this._values[ValueType.Back.getId()] = this._values[ValueType.Bottom.getId()];
+        this._values[ValueType.Bottom.getId()] = this._values[ValueType.Front.getId()];
+        this._values[ValueType.Front.getId()] = tmp;
+    }
+
+
+}

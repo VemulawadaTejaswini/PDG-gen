@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int a=sc.nextInt();
+		int b=sc.nextInt();
+		int[] h=new int[n];
+		for(int i=0;i<n;i++) {
+			h[i]=sc.nextInt();
+		}
+		
+		int max=Integer.MAX_VALUE;
+		int min =0;
+		
+		while(max>min) {
+			int mid=min+(max-min)/2;
+			long count=0;
+			for (int i=0;i<n;i++) {
+				if(h[i]>(long)b*(long)mid) {
+					count+=((h[i]-b*mid)/(a-b));
+					if((h[i]-b*mid)%(a-b)>0){
+						count++;
+					}
+				}
+			}
+//			System.out.println(mid);
+			if(count<=mid) {
+				max=mid;
+			}
+			else {
+				min=mid+1;
+			}
+		}
+		System.out.println(max);
+	}
+}

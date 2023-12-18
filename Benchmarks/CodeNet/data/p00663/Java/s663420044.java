@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Scanner cin = new Scanner(System.in);
+		label:while(true){
+			String str = cin.next();
+			
+			if(str.equals("#")){
+				return;
+			}
+			
+			str = str.replace('|', '@');
+			str = str.toUpperCase();
+			String[] kou = str.split("@");
+			for(int i = 0; i < kou.length;i++){
+				
+				char[] chars = new char[3];
+				int cnt=0;
+				for(int j = 0; j  <kou[i].length();j++){
+					if(Character.isLetter(kou[i].charAt(j))){
+						chars[cnt++]=kou[i].charAt(j);
+					}
+				}
+				boolean contain=false;	
+				for(int j = 0; j < 3;j++){
+					if((kou[i].contains(String.valueOf(chars[j]))
+							&& kou[i].contains("~" + String.valueOf(chars[j])))){
+						contain = true;
+					}
+				}
+				if(!contain){
+					System.out.println( "yes");
+					continue label;
+				}
+			}
+			
+			System.out.println("no");
+
+		}
+	}
+
+}

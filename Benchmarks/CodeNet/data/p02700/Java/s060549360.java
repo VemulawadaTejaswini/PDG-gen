@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.util.Arrays;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int A = scan.nextInt();
+        int B = scan.nextInt();
+        int C = scan.nextInt();
+        int D = scan.nextInt();
+        int num1 = C / B;
+        int num2 = A / D;
+        if ( num2 < num1 ) {
+            System.out.println("Yes");
+        }
+        else {
+            System.out.println("No");
+        }
+        scan.close();
+    }
+}

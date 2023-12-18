@@ -1,0 +1,13 @@
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
+		Scanner sn = new Scanner(System.in);
+		int N = sn.nextInt();
+		int K = sn.nextInt();
+		int ans = K;
+		for(int i = 1; i < N; ++i){
+			ans *= K-1;
+		}
+		System.out.println(ans);
+	}
+}

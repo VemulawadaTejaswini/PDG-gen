@@ -1,0 +1,59 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(isr);
+        PrintWriter out = new PrintWriter(System.out);
+
+        try {
+    		String strData = br.readLine();
+    		String strDat[] = strData.split(" ", -1);
+
+    		int intCard = Integer.parseInt(strDat[0]);
+    		int intGate = Integer.parseInt(strDat[1]);
+
+    		int intL[] = new int [intGate];
+    		int intR[] = new int [intGate];
+
+    		for (int i=0 ; i<intGate ; i++) {
+        		strData = br.readLine();
+        		strDat = strData.split(" ", -1);
+
+        		intL[i] = Integer.parseInt(strDat[0]);
+        		intR[i] = Integer.parseInt(strDat[1]);
+
+    		}
+    		int ans = 0;
+
+    		for (int i=0 ; i<intCard ; i++) {
+    			int j;
+	    		for (j=0 ; j<intGate ; j++) {
+	    			if (!(intL[j] <= i+1 && i+1 <= intR[j])) break;
+	    		}
+
+	    		if (j == intGate) ans ++;
+    		}
+
+    		System.out.println(ans );
+
+
+
+
+    		out.flush();
+
+
+        } catch (IOException e) {
+
+        }
+
+
+    }
+
+
+}

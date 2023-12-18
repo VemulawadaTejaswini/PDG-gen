@@ -1,0 +1,79 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.stream.IntStream;
+import java.util.StringTokenizer;
+import java.io.IOException;
+import java.util.InputMismatchException;
+import java.io.BufferedReader;
+import java.util.OptionalInt;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        TaskB solver = new TaskB();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class TaskB {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int n = in.nextInt();
+            int m = in.nextInt();
+            int x = in.nextInt();
+            int y = in.nextInt();
+            int[] xCities = in.nextIntArray(n);
+            int[] yCities = in.nextIntArray(m);
+
+            int maxXCity = IntStream.of(xCities).max().getAsInt();
+            int minYCity = IntStream.of(yCities).min().getAsInt();
+            out.println(maxXCity < minYCity && x < minYCity && maxXCity < y ? "No War" : "War");
+        }
+
+    }
+
+    static class InputReader {
+        private BufferedReader br;
+        private StringTokenizer st;
+
+        public InputReader(InputStream inputStream) {
+            br = new BufferedReader(new InputStreamReader(inputStream));
+            st = new StringTokenizer("");
+        }
+
+        public String nextString() {
+            while (!st.hasMoreTokens()) {
+                try {
+                    st = new StringTokenizer(br.readLine(), " ");
+                } catch (IOException e) {
+                    throw new InputMismatchException();
+                }
+            }
+            return st.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(nextString());
+        }
+
+        public int[] nextIntArray(int n) {
+            int[] res = new int[n];
+            for (int i = 0; i < n; i++) {
+                res[i] = nextInt();
+            }
+            return res;
+        }
+
+    }
+}
+

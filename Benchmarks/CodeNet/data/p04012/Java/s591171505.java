@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // 標準入力
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(isr);
+            String w = br.readLine();
+            HashMap<String, Integer> map = new HashMap<String, Integer>();
+            for (int i = 0; i < w.length(); i++) {
+                String tmp = w.substring(i, i + 1);
+                if (map.containsKey(tmp)) {
+                    int val = map.get(tmp);
+                    map.put(tmp, val + 1);
+                } else {
+                    map.put(tmp, 1);
+                }
+            }
+            boolean flag = true;
+            for (Entry<String, Integer> ent : map.entrySet()) {
+                int val = ent.getValue();
+                if (val % 2 != 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                System.out.println("Yes");
+            } else {
+                System.out.println("No");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+           }
+    }
+}

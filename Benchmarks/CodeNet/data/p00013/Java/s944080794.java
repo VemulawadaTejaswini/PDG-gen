@@ -1,0 +1,1 @@
+import java.util.*;public class Main {public static void main(String[] args) {Scanner s = new Scanner(System.in);Stack data = new Stack();while(s.hasNext()){int in = s.nextInt();if(in != 0)data.push(in);elseSystem.out.println(data.pop());}}}

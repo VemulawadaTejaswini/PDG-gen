@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String s = sc.next();
+        int answer = 0;
+
+        while (true) {
+            s = s.substring(0, s.length() - 1);
+
+            int halfNum = s.length() / 2;
+
+            String beforeHalf = s.substring(0, halfNum);
+            String afterHalf = s.substring(halfNum, s.length());
+
+            // 前後半長さが違うと遇文字列にならない
+            if (beforeHalf.length() != afterHalf.length()) {
+                continue;
+            }
+
+            if (beforeHalf.equals(afterHalf)) {
+                answer = s.length();
+                break;
+            }
+        }
+
+        System.out.println(answer);
+    }
+
+}

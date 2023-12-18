@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try (Scanner sc = new Scanner(System.in)) {
+			String line = sc.nextLine();
+			String answer = "";
+			int length = line.length();
+			for (int i = 0; i < length; i++) {
+				char ch = line.charAt(i);
+				if (Character.isLowerCase(ch) == true) {
+					answer += Character.toUpperCase(ch);
+				} else {
+					answer += Character.toLowerCase(ch);
+				}
+			}
+			System.out.println(answer);
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int m,i,j,big,k;
+		int count = 0;
+		Scanner in = new Scanner(System.in);
+		int n = Integer.parseInt(in.nextLine());
+		int array[] = new int[n];
+
+		for(m=0;m<n;m++)array[m] = Integer.parseInt(in.next());
+
+	for (i=0; i<n-1; i++){               
+		for (j=n-1; j>=i+1; j--){        
+			if (array[j] < array[j-1]){
+				big = array[j-1];        
+				array[j-1] = array[j];   
+				array[j] = big;
+				count++;                 
+			}
+		}
+	}
+		for(k = 0;k<array.length;k++){
+			System.out.print(array[k]+" ");  
+		}
+		System.out.println("\n"+count);
+	}
+}

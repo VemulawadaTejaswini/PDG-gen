@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int m=50000,i,j,c,n;List<Integer>p=new Stack<Integer>();int[]b=new int[m+1];for(i=1;i++<m;)if(b[i]<1)for(p.add(j=i);j<=m;j+=i)b[j]=1;for(Scanner s=new Scanner(System.in);(n=s.nextInt())>0;System.out.println(c))for(i=c=0;i<p.size();++i)for(j=i;j<p.size()&&(m=p.get(i)+p.get(j))<=n;++j)if(m==n)++c;}}

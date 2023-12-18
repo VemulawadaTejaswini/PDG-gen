@@ -1,0 +1,226 @@
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Main {
+	private static int n, x, y;
+	private static int[] a;
+
+	public static void main(String[] args) {
+		n = ini();
+		x = ini()-1;
+		y = ini()-1;
+		
+		HashMap<Integer, ArrayList<Integer>> g = new HashMap<>();
+		
+		for(int i=0; i<n; i++) {
+			g.put(i, new ArrayList<>());
+		}
+		
+		g.get(x).add(y);
+		g.get(y).add(x);
+		
+		for(int i=0; i<n-1; i++) {
+			g.get(i).add(i+1);
+			g.get(i+1).add(i);
+		}
+		
+		Queue<Integer> queue = new LinkedList<>();
+		
+		int[] ans = new int[n];
+		
+		for(int i=0; i<n; i++) {
+			queue.add(i);
+			boolean[] mark = new boolean[n];
+			int[] dist = new int[n];
+			mark[i] = true;
+			
+			while(!queue.isEmpty()) {
+				int u = queue.poll();
+				
+				for(int v: g.get(u)) {
+					if (mark[v]) continue;
+					mark[v] = true;
+					queue.add(v);
+					dist[v] = dist[u]+1;
+				}
+			}
+			
+			for(int j=0; j<n; j++) {
+				ans[dist[j]]++;
+			}
+		}
+
+		
+		for(int x=1; x<n; x++) {
+			println(ans[x]/2);
+		}
+		out.flush();
+		out.close();
+
+	}
+
+	//NONPROBLEM CODE
+
+	private static InputReader in = new InputReader(System.in);
+	private static PrintWriter out = new PrintWriter(System.out);
+
+	private static class InputReader {
+
+		private final InputStream stream;
+		private final byte[] buf = new byte[8192];
+		private int curChar, snumChars;
+
+		public InputReader(InputStream st) {
+			this.stream = st;
+		}
+
+		public int read() {
+			if (snumChars == -1)
+				throw new InputMismatchException();
+			if (curChar >= snumChars) {
+				curChar = 0;
+				try {
+					snumChars = stream.read(buf);
+				} catch (IOException e) {
+					throw new InputMismatchException();
+				}
+				if (snumChars <= 0)
+					return -1;
+			}
+			return buf[curChar++];
+		}
+
+		public int nextInt() {
+			int c = read();
+			while (isSpaceChar(c)) {
+				c = read();
+			}
+			int sgn = 1;
+			if (c == '-') {
+				sgn = -1;
+				c = read();
+			}
+			int res = 0;
+			do {
+				res *= 10;
+				res += c - '0';
+				c = read();
+			} while (!isSpaceChar(c));
+			return res * sgn;
+		}
+
+		public long nextLong() {
+			int c = read();
+			while (isSpaceChar(c)) {
+				c = read();
+			}
+			int sgn = 1;
+			if (c == '-') {
+				sgn = -1;
+				c = read();
+			}
+			long res = 0;
+			do {
+				res *= 10;
+				res += c - '0';
+				c = read();
+			} while (!isSpaceChar(c));
+			return res * sgn;
+		}
+
+		public int[] nextIntArray(int n) {
+			int a[] = new int[n];
+			for (int i = 0; i < n; i++) {
+				a[i] = nextInt();
+			}
+			return a;
+		}
+
+		public String readString() {
+			int c = read();
+			while (isSpaceChar(c)) {
+				c = read();
+			}
+			StringBuilder res = new StringBuilder();
+			do {
+				res.appendCodePoint(c);
+				c = read();
+			} while (!isSpaceChar(c));
+			return res.toString();
+		}
+
+		public String nextLine() {
+			int c = read();
+			while (isSpaceChar(c))
+				c = read();
+			StringBuilder res = new StringBuilder();
+			do {
+				res.appendCodePoint(c);
+				c = read();
+			} while (!isEndOfLine(c));
+			return res.toString();
+		}
+
+		public boolean isSpaceChar(int c) {
+			return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+		}
+
+		private boolean isEndOfLine(int c) {
+			return c == '\n' || c == '\r' || c == -1;
+		}
+
+	}
+
+	//INPUT SHORTCUTS
+
+	private static int[] ina(int n) {
+		int[] temp = new int[n];
+		for (int i = 0; i < n; i++) {
+			temp[i] = in.nextInt();
+		}
+		return temp;
+	}
+
+	private static int ini() {
+		return in.nextInt();
+	}
+
+	//OTHER SHORTCUTS
+	public static void sort(int[] a) {
+		Arrays.sort(a);
+	}
+
+	//PRINT SHORTCUTS
+
+	private static void println(Object... o) {
+		for (Object x : o) {
+			out.write(x + " ");
+		}
+		out.write("\n");
+		out.flush();
+	}
+
+	private static void print(Object... o) {
+		for (Object x : o) {
+			out.write(x + " ");
+		}
+		out.flush();
+	}
+
+	private static void debug(Object... o) {
+		for (Object x : o) {
+			out.write(x + " ");
+		}
+		out.write("\n");
+		out.flush();
+	}
+}

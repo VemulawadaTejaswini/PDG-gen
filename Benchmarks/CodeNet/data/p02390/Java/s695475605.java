@@ -1,0 +1,18 @@
+import java.io.*;
+
+class Main {
+	public static void main(String[] args){
+		int S, h, m, s;
+			String buf;
+			try{
+			BufferedReader br = new BufferedReader(new InputStreamReader (System.in));
+				buf = br.readLine();
+				S = Integer.parseInt(buf);
+				h = S/3600;
+				m = (S % 3600) / 60;
+				s = (S % 3600) % 60;
+				System.out.print(h + ":" + m + ":" + s);
+		  } catch (Exception e){
+		  }
+	}
+}

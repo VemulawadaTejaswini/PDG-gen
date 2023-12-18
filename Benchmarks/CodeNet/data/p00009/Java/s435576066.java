@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]_){Scanner S=new Scanner(System.in);for(int f,i,j,n;S.hasNext();System.out.println(n))for(n=0,i=S.nextInt()+2;--i>1;n+=f>0?0:1)for(f=0,j=1;j*j<i;)if(i%++j<1){f=1;break;}}}

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+class Main{
+    public static void main(String args[]){
+
+    Scanner scan = new Scanner(System.in);
+
+    String s = scan.nextLine();
+    String t = scan.nextLine();
+
+      
+    String tt = t.substring(0, s.length());
+      
+  
+      if ( (s.length() == t.length() -1) && (s.equals(tt)) ){
+          System.out.println("yes");
+      } else {
+          System.out.println("no");
+      }
+
+      scan.close();
+    }
+  }

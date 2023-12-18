@@ -1,0 +1,105 @@
+import java.io.*;
+import java.math.*;
+import java.util.*;
+public class Main { 
+ 
+	public static void main(String[] args) { 
+		FastScanner I = new FastScanner(); //Input
+		OutPut O = new OutPut(); //Output
+		int R = I.nextInt();
+		int C = I.nextInt();
+		int[][] conv = new int[10][10];
+		int[][] ones = new int[10][2]; //Cheapest for each number to convert to 1 
+		//[price,OG number]
+		long[] cnts = new long[10];
+		long[] dp = new long[10];
+		boolean[] done = new boolean[10];
+		done[1]=true; //Never have to convert means already done boi
+		Arrays.fill(dp, (long)1e8);
+		dp[1]=0;
+		long ans = 0;
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				conv[i][j] = I.nextInt();
+				if (j==1) {
+					ones[i][0]=conv[i][j];
+					ones[i][1] = i;
+				}
+			}
+		}
+		//CODE dp
+		Arrays.sort(ones,(a,b)->Long.compare(a[0], b[0])); //Skip first since that value is 1-->1
+		dp[ones[1][1]]=ones[1][0]; //Just use cheapest portal to one step convert to 1
+		done[ones[1][1]]=true;
+		for (int i = 2; i < 10; i++) { //Going from cheapest portal to most expensive to 
+			//guarantee DP optimization
+			if (!done[ones[i][1]]) {
+				for (int chk = 0; chk<10; chk++) {
+					dp[ones[i][1]]=Math.min(dp[ones[i][1]],conv[ones[i][1]][chk]+dp[chk]); //
+				}
+			}
+		}
+		
+		/*for (int i = 0; i < 10; i++) {
+			O.pln(dp[i]);
+		}*/
+		
+		
+		for (int r = 0; r < R; r++) {
+			for (int c = 0; c < C; c++) {
+				int x = I.nextInt();
+				if (x!=-1) cnts[x]++;
+			}
+		}
+		for (int i = 0; i < 10; i++) {
+			ans+=dp[i]*cnts[i];
+		}
+		O.pln(ans);
+	}
+	public static long ceil(long num, long den) {long ans = num/den; if (num%den!=0) 
+	ans++; return ans;}
+	public static long GCD(long a, long b) {
+		if (a==0||b==0) return Math.max(a,b);
+		return GCD(Math.min(a, b),Math.max(a, b)%Math.min(a, b));
+	}
+	public static long FastExp(long base, long exp, long mod) {
+		long ans=1;
+		while (exp>0) {
+			if (exp%2==1) ans*=base;
+			exp/=2;
+			base*=base;
+			base%=mod;
+			ans%=mod;
+		}
+		return ans;
+	}
+	public static long ModInv(long num,long mod) {return FastExp(num,mod-2,mod);}
+	static class FastScanner {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st=new StringTokenizer("");
+		String next() {
+			while (!st.hasMoreTokens())
+				try {
+					st=new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			return st.nextToken();
+		}
+		int nextInt() {return Integer.parseInt(next());}
+		long nextLong() {return Long.parseLong(next());};
+	}
+	static class OutPut{
+		PrintWriter w = new PrintWriter(System.out);
+		void pln(int x) {w.println(x);w.flush();}
+		void pln(long x) {w.println(x);w.flush();}
+		void pln(String x) {w.println(x);w.flush();}
+		void pln(char x) {w.println(x);w.flush();}
+		void pln(StringBuilder x) {w.println(x);w.flush();}
+		void p(int x) {w.print(x);w.flush();}
+		void p(long x) {w.print(x);w.flush();}
+		void p(String x) {w.print(x);w.flush();}
+		void p(char x) {w.print(x);w.flush();}
+		void p(StringBuilder x) {w.print(x);w.flush();}
+	}
+}

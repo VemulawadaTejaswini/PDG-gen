@@ -1,0 +1,81 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.StringTokenizer;
+
+public class Main {
+	/**
+	 * ????§???¢??????????????\???????????¨???????§???¢????????\??????????????¨??????????±???????
+	 *
+	 * @param args
+	 *            ?????¨?????????
+	 * @throws IOException
+	 */
+	public static void main(String[] args) throws IOException {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+			int lineNum = Integer.parseInt(br.readLine());
+			for (int i = 0; i < lineNum; i++) {
+				String line = br.readLine();
+				StringTokenizer st = new StringTokenizer(line);
+				double x1 = Double.parseDouble(st.nextToken());
+				double y1 = Double.parseDouble(st.nextToken());
+				double x2 = Double.parseDouble(st.nextToken());
+				double y2 = Double.parseDouble(st.nextToken());
+				double x3 = Double.parseDouble(st.nextToken());
+				double y3 = Double.parseDouble(st.nextToken());
+				Circle circle = new Circle(x1, y1, x2, y2, x3, y3);
+				DecimalFormat df = new DecimalFormat("0.000");
+				df.setRoundingMode(RoundingMode.HALF_UP);
+				System.out.printf(df.format(circle.getCenterX()) + "" + df.format(circle.getCenterY()) + ""
+						+ df.format(circle.getRadius()));
+			}
+		}
+	}
+
+	public static class Circle {
+		private double centerX;
+		private double centerY;
+		private double radius;
+
+		public Circle(double x1, double y1, double x2, double y2, double x3, double y3) {
+
+			/**
+			 * ?¨???????????????????????????????(x1, y1)???????????¨????????§?¨???????????????????
+			 */
+			x2 = x2 - x1;
+			y2 = y2 - y1;
+
+			x3 = x3 - x1;
+			y3 = y3 - y1;
+
+			/**
+			 * X^2 + Y^2 - 2mX - 2nY + l = 0 ????§£?????????????????¨??????????±???????
+			 */
+			centerX = ((x3 * x3 + y3 * y3) * y2 - (x2 * x2 + y2 * y2) * y3) / (2.0 * (x3 * y2 - x2 * y3));
+			centerY = ((x3 * x3 + y3 * y3) * x2 - (x2 * x2 + y2 * y2) * x3) / (2.0 * (y3 * x2 - y2 * x3));
+
+			radius = Math.sqrt(centerX * centerX + centerY * centerY);
+
+			/**
+			 * ????????§?¨???????????????????
+			 */
+			centerX += x1;
+			centerY += y1;
+		}
+
+		public double getCenterX() {
+			return centerX;
+		}
+
+		public double getCenterY() {
+			return centerY;
+		}
+
+		public double getRadius() {
+			return radius;
+		}
+	}
+
+}

@@ -1,0 +1,87 @@
+import java.util.Scanner;
+
+
+public class Main{
+	
+	public static void main(String[] args){
+		PPoint[] ps = new PPoint[4];
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < 4; j++){
+				double x = sc.nextDouble();
+				double y = sc.nextDouble();
+				ps[j] = new PPoint(x, y);
+			}
+			PLine l1 = new PLine(ps[0], ps[1]);
+			PLine l2 = new PLine(ps[2], ps[3]);
+			System.out.println("L1: "+ l1);
+			System.out.println("L2: "+ l2);
+			System.out.println(PLine.areParallel(l1, l2) ? "YES": "NO");
+		}
+		sc.close();
+		
+
+	}
+	
+}
+
+/**
+ * ??´??????ax+by+c=0?????¢?????§??¨?????????
+ * @author T.Komi
+ *
+ */
+class PLine{
+	double a;
+	double b;
+	double c;
+	
+	/**
+	 * 2???p1, p2???????????´??????????????????
+	 * @param p1 1????????????
+	 * @param p2 2????????????
+	 */
+	public PLine(PPoint p1, PPoint p2) {
+		if(p1.y != p2.y) {
+			this.a = 1;
+			this.b = -(p1.x - p2.x)/(p1.y - p2.y);
+			this.c = - b * p1.y - a * p1.x;
+		}else {
+			this.a = 0;
+			this.b = 1;
+			this.c = -p1.y;
+		}
+	}
+	
+	static boolean areParallel(PLine l1, PLine l2) {
+		double ab = l1.a * l2.b - l1.b * l2.a;
+		double abs = ab > 0 ? ab: -ab;
+		if(abs < 1.0E-15) return true;
+		else return false;
+	}
+	
+	public String toString() {
+		return a + "x+" + b + "y+" + c + "=0";
+	}
+}
+
+/**
+ * ??§?¨??????¢?????????(x,y)?????¨?????????
+ * @author T.Komi
+ *
+ */
+class PPoint{
+	double x;
+	double y;
+	
+	/**
+	 * x, y??????????????????(x,y)???????????????
+	 * @param x x??§?¨?
+	 * @param y y??§?¨?
+	 */
+	public PPoint(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+}

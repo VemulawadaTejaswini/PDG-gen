@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		String s = sc.next();
+		StringBuilder ss = new StringBuilder();
+		StringBuilder sd = new StringBuilder();
+		sc.close();
+		ss.append(s);
+		sd.append(s);
+		int c = 0;
+		int d = 0;
+		for(int i =1; i<n; i++) {
+			if(ss.charAt(i)=='.'&&ss.charAt(i-1)=='#') {
+				c++;
+				ss.setCharAt(i, '#');
+			}
+		}
+	
+		for(int i =1; i<n; i++) {
+			if(sd.charAt(i)=='.'&&sd.charAt(i-1)=='#') {
+				d++;
+				sd.setCharAt(i-1, '.');
+			}
+		}
+
+	
+	System.out.println((Math.min(c, d)));
+	
+	
+	
+	}
+}

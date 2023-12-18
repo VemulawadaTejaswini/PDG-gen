@@ -1,0 +1,45 @@
+import java.util.*;
+import java.io.PrintWriter;
+public class Main{
+	static ArrayList<Integer>[] list;
+	static int[] a;
+	static int[] dp;
+	static int[] ans;
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		list=new ArrayList[n];
+		a=new int[n];
+		dp=new int[n+1];
+		ans=new int[n];
+		Arrays.fill(dp,1000000001);
+		dp[0]=0;
+		for(int i=0; i<n; i++){
+			a[i]=sc.nextInt();
+			list[i]=new ArrayList<>();
+		}
+		for(int i=1; i<n; i++){
+			int u=sc.nextInt()-1;
+			int v=sc.nextInt()-1;
+			list[u].add(v);
+			list[v].add(u);
+		}
+		dfs(0,0);
+		for(int i=0; i<n; i++){
+			System.out.println(ans[i]);
+		}
+	}
+	static void dfs(int now,int from){
+		int idx=-Arrays.binarySearch(dp,a[now])-1;
+		int tmp=idx;
+		int val=dp[idx];
+		dp[idx]=a[now];
+		ans[now]=idx;
+		for(int i:list[now]){
+			if(i!=from){
+				dfs(i,now);
+			}
+		}
+		dp[tmp]=val;
+	}
+}

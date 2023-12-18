@@ -1,0 +1,29 @@
+import java.math.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        List<Integer> num = new ArrayList<>();
+        for (int i = 0; i < n; i++)
+            num.add(sc.nextInt());
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            for (int k = 0; k < num.size(); k++) {
+                if (num.get(k) != k + 1) {
+                    System.out.print(k + 1);
+                    System.out.println(num.get(k));
+                    num.remove(k);
+                    cnt++;
+                    break;
+                }
+            }
+        }
+        if (cnt == n) {
+            System.out.println(-1);
+        } else {
+            System.out.println(cnt);
+        }
+    }
+}

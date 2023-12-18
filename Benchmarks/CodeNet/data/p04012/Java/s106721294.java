@@ -1,0 +1,23 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main{
+	public static void main(String[] args)throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String word = br.readLine();
+		int[] count = new int [30];
+		for(int i = 0 ; i < count.length ; i++){
+			count[i] = 0;
+		}
+		
+		for(int i = 0 ; i < word.length() ; i++){
+			count[word.charAt(i) - 'a']++;
+		}
+		boolean result = true;
+		for(int i = 0 ; i < count.length ; i++){
+			result = result && count[i]%2==0;
+		}
+		
+		System.out.println(result ? "Yes" : "No");
+	}
+}

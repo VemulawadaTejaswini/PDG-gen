@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner scan = new Scanner(System.in);
+        int A = scan.nextInt();
+        int B = scan.nextInt();
+        int C[] = new int[A];
+        int D[] = new int[A-1];
+        long ans =0;
+        for(int i=0;i<A;i++){
+	     C[i]=scan.nextInt();
+        }
+        for(int i=0;i<A-1;i++){
+        	D[i]=C[i+1]-C[i];
+        	if(D[i]<B){
+        		ans += D[i];
+        	}else {
+        		ans += B;
+        	}
+        }
+        System.out.println(ans+B);
+	}
+}

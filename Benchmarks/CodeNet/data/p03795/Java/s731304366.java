@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int sum, back;
+		
+		sum = n * 800;
+		back = (n / 15) * 200;
+		
+		System.out.println(sum - back);
+	}
+
+}

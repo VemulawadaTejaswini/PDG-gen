@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]_){Scanner S=new Scanner(System.in);double u,v,x,y,n,m;u=v=999;x=y=-u;for(;S.hasNext();System.out.println(x>n&&n>u&&y>m&&m>v?"YES":"NO")){for(int i=0;i++<3;){x=Math.max(x,n=S.nextDouble());y=Math.max(y,m=S.nextDouble());u=Math.min(u,n);v=Math.min(v,m);}n=S.nextDouble();m=S.nextDouble();}}}

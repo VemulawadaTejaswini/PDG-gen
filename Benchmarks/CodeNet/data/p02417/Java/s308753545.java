@@ -1,0 +1,39 @@
+import java.io.*;
+
+class Main {
+	public static void main(String[] args){
+		BufferedReader br = null;
+		StringBuilder sb = new StringBuilder();
+		final String lb = System.getProperty("line.separator");
+		int[] count = new int[26];
+		char[] ca = new char[1];
+		try {
+			br = new BufferedReader(new InputStreamReader(System.in));
+
+			while(br.read(ca, 0, 1) != -1){
+				final char ch = ca[0];
+				if('A' <= ch && ch <= 'Z'){
+					count[ch - 0x41]++;
+				} else if('a' <= ch && ch <= 'z'){
+					count[ch - 0x61]++;
+				} else {}
+			}
+
+			for(int i = 0; i < count.length; i++){
+				sb.append(String.valueOf((char)('a'+i))).append(": ").append(count[i]).append(lb);
+			}
+			System.out.print(sb.toString());
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(br != null){
+					br.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

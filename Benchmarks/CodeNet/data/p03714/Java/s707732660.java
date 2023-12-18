@@ -1,0 +1,89 @@
+import java.util.*;
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		Num[] array=new Num[3*n];
+		Num[] array2=new Num[3*n];
+		for(int i=0;i<3*n;i++) {
+			Num num=new Num();
+			num.position=i;
+			num.value=sc.nextInt();
+			array[i]=num;
+			array2[i]=num;
+		}
+		Arrays.sort(array2, new Comparator<Num>() {
+			public int compare(Num n1, Num n2) {
+				return n1.value-n2.value;
+			}
+		});
+		long sum=0;
+		int count=0;
+		int minPosiRank=0;
+		
+		for(int i=0;i<3*n;i++) {
+			array2[i].rank=i;
+			if(count<n && array2[i].position>n-1) {
+				sum-=array2[i].value;
+				array2[i].sign=-1;
+				count++;
+			}
+		}
+		count=0;
+		
+		for(int i=3*n-1;i>=0;i--) {
+			if(count<n && array2[i].position<=n-1) {
+				sum+=array2[i].value;
+				array2[i].sign=1;
+				minPosiRank=i;
+				count++;
+			}
+		}
+		
+		long maxsum=sum;
+		
+		for(int i=n;i<2*n;i++) {
+			if(array[i].sign==-1) {
+				array[i].sign=0;
+				sum+=array[i].value;
+				int j=array[i].rank;
+				while(true){
+					if(array2[j].sign==0 & array2[j].position>i) {
+						array2[j].sign=-1;
+						sum-=array2[j].value;
+						break;
+					}
+					j++;
+				}
+			}
+			
+			if(array[i].value>array2[minPosiRank].value) {
+				array2[minPosiRank].sign=0;
+				array[i].sign=0;
+				sum=sum+array[i].value-array2[minPosiRank].value;
+				int j=minPosiRank;
+				while(true) {
+					if(array2[j].sign==1) {
+						minPosiRank=j;
+						break;
+					}
+					j++;
+				}
+			}
+			maxsum=Math.max(maxsum, sum);
+		}
+		System.out.println(maxsum);
+	}
+}
+
+class Num {
+	int position;
+	int value;
+	int rank;
+	int sign=0;
+}

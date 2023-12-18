@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args){
+        Scanner scan = new java.util.Scanner(System.in);
+        int W = scan.nextInt(); 
+        int H = scan.nextInt();
+        int x = scan.nextInt();
+        int y = scan.nextInt();
+        int r = scan.nextInt();
+        if(H >= (x + r) && W >= (y + r) && (y - r) >= 0 && (x - r) >= 0){
+            System.out.println("No");
+        }else{
+            System.out.println("Yes");
+        }
+    }
+}

@@ -1,0 +1,19 @@
+    import java.io.*;
+    import java.math.*;
+    import java.util.*;
+    public class Main {
+        public static void main(String[] args) throws IOException {
+            Scanner sc = new Scanner(System.in);
+            long n = sc.nextLong();
+            long t = n,rem=0,a=0,b=0;
+            do {
+                double r = (-1 + Math.sqrt(1 + 4 * (2 * t))) / 2;
+                a = (long) Math.round(r);
+                b = (a * (a + 1)) / 2;
+                rem = b%n;
+                t = b+(n-rem);
+            }while(rem>0);
+            System.out.println(a);
+     
+        }
+    }

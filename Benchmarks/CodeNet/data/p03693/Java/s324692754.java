@@ -1,0 +1,18 @@
+import static java.lang.System.*;
+import java.util.Scanner;
+
+public class Main{
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(in);
+		int total = 0;
+		total+= s.nextInt()*100;
+		total+= s.nextInt()*10;
+		total+= s.nextInt();
+		
+		if(total%4==0)
+			out.println("YES");
+		else
+			out.println("NO");
+	}
+}

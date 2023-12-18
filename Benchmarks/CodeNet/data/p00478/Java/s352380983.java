@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);String a=s.next(),b;int r=0,n=s.nextInt();for(;n-->0;)r+=((b=s.next())+b).contains(a)?1:0;System.out.println(r);}}

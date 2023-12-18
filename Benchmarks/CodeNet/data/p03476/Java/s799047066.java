@@ -1,0 +1,45 @@
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		PriorityQueue<Integer> primes = new PriorityQueue<Integer>();
+		primes.add(2);
+		primes.add(3);
+		primes.add(5);
+		primes.add(7);
+		
+		boolean isPrime;
+		for (int i = 8; i < 100000;i++) {
+			isPrime = true;
+			for(Integer p:primes) {
+				if(i%p == 0) {
+					isPrime = false;
+					break;
+				} else if(p*p > i) {
+					break;
+				}
+			}
+			if(isPrime) primes.add(i);
+		}
+		
+		Scanner scan = new Scanner(System.in);
+		int q = scan.nextInt();
+		
+		for (int i = 0; i < q; i++) {
+			int a = scan.nextInt();
+			int b = scan.nextInt();
+			int counter = 0;
+			
+			for (int j = a; j <= b; j+=2) {
+				if(primes.contains(j) && primes.contains((j+1)/2)) counter++;
+			}
+			
+			System.out.println(counter);
+		}
+		scan.close();
+		
+	}
+
+}

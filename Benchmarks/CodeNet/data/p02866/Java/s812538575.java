@@ -1,0 +1,35 @@
+import java.util.*;
+public class Main {
+
+  private static int MOD = 998244353;
+
+  public static void main(String[] args) { 
+      Scanner sc = new Scanner(System.in);
+      int n = sc.nextInt();
+      Map<Integer, Integer> distMap = new HashMap<>();
+      for(int i = 0; i < n; i++)  {
+        int num = sc.nextInt();
+        distMap.put(num, distMap.getOrDefault(num, 0) + 1);
+      }
+
+      if(distMap.getOrDefault(0, 0) != 1) {
+        System.out.println(0);
+        return;
+      }
+
+      long res = 1;
+      long prev = 1;
+      for(int i = 1; i < distMap.size(); i++) {
+        int curCnt = distMap.getOrDefault(i, 0);
+        if(curCnt == 0) {
+          res = 0;
+          break;
+        }
+        long curRes = (long) Math.pow(prev, curCnt) % MOD;
+        res = res * curRes % MOD;
+        prev = curCnt;
+      }
+
+      System.out.println(res);
+  }
+}

@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class SolutionClass {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int radius = in.nextInt();
+
+        double circumference = (double) 2 * Math.PI * radius;
+        System.out.println(circumference);
+    }
+}

@@ -1,0 +1,113 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int[] result = new int[t];
+        for (int i=0; i<t; i++) {
+            int n = sc.nextInt();
+            long[] a = new long[n];
+            for (int j=0; j<n; j++) {
+                a[j] = sc.nextLong();
+            }
+            String s = sc.next();
+            int count1 = 0;
+            for (char b : s.toCharArray()) {
+                if (b == '1') {
+                    count1++;
+                }
+            }
+            long[] x0 = new long[n-count1+1];
+            int n0 = 0;
+            for (int j=0; j<n; j++) {
+                char sj = s.charAt(j);
+                if (sj == '0') {
+                    x0[n0] = a[j];
+                    n0++;
+                }
+            }
+            long[] x1 = new long[count1+1];
+            x1[0] = 0;
+            int n1 = 1;
+            for (int j=0; j<n; j++) {
+                boolean noHit = true;
+                char sj = s.charAt(j);
+                if (sj == '1') {
+                    for (int k=0; k<n1; k++) {
+                        x1[k] = x1[k] ^ a[j];
+                        noHit = true;
+                        Iterator<Long> iterator = new PatternItr(x0);
+                        while (iterator.hasNext()) {
+                            long y = iterator.next();
+                            if (x1[k] == y) {
+                                noHit = false;
+                                break;
+                            }
+                        }
+                        if (noHit) {
+                            result[i] = 1;
+                            break;
+                        }
+                    }
+                    if (noHit) {
+                        break;
+                    }
+                    x1[n1] = a[j];
+                    noHit = true;
+                    Iterator<Long> iterator = new PatternItr(x0);
+                    while (iterator.hasNext()) {
+                        long y = iterator.next();
+                        if (x1[n1] == y) {
+                            noHit = false;
+                            break;
+                        }
+                    }
+                    if (noHit) {
+                        result[i] = 1;
+                        break;
+                    }
+                    n1++;
+                }
+            }
+        }
+        for (int r : result) {
+            System.out.println(r);
+        }
+    }
+
+    public static class PatternItr implements Iterator<Long> {
+        long[] x;
+        public PatternItr(long[] x) {
+            this.x = x;
+            i = 0;
+            max = (int)Math.pow(2, x.length);
+        }
+        int i;
+        int max;
+
+        @Override
+        public boolean hasNext() {
+            return i < max;
+        }
+
+        @Override
+        public Long next() {
+            i++;
+            String s = Long.toBinaryString(i);
+            StringBuilder builder = new StringBuilder();
+            for (int j=0; j<x.length-s.length(); j++) {
+                builder.append("0");
+            }
+            builder.append(s);
+            s = builder.toString();
+            long y = 0;
+            for (int j=0; j<x.length; j++) {
+                if (s.charAt(j) == '1') {
+                    y = y ^ x[j];
+                }
+            }
+            return y;
+        }
+    }
+}

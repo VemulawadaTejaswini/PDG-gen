@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int[]a=new int[31];Scanner s=new Scanner(System.in);int i;for(i=28;i-->0;)++a[s.nextInt()];for(i=1;i<31;++i)if(a[i]<1)System.out.println(i);}}

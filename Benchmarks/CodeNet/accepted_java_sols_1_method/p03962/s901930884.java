@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args){
+		// TODO Auto-generated method stub
+		System.err.println("starts...");
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		if(a == b && a == c){
+			System.out.print("1\n");
+		}else if(a == b || b == c || c == a){
+			System.out.print("2\n");
+		}else{
+			System.out.print("3\n");
+		}
+	}
+
+}

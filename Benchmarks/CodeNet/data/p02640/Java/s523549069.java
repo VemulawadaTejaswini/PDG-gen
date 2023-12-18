@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try (Scanner scanner = new Scanner(System.in)) {
+			int x = scanner.nextInt(), y = scanner.nextInt();
+			System.out.println(((x * 2 <= y) && (x * 4 >= y) && (0 == (y & 1))) ? "Yes" : "No");
+		}
+	}
+}

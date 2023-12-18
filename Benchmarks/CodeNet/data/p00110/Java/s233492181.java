@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+class Main{
+    public static void main(String[] args){
+	BufferedReader sc=new BufferedReader(new InputStreamReader(System.in));
+	try {
+	    String st;
+	    while((st=sc.readLine())!=null){
+		String out = "NA";
+		for(int i=0; i<10; i++){
+		    String sp = st.replaceAll("X",String.valueOf(i));
+		    String[] sp1 = sp.split("[+=]");
+		    BigInteger a, b, c;
+		    a = new BigInteger(sp1[0]);
+		    b = new BigInteger(sp1[1]);
+		    c = new BigInteger(sp1[2]);
+		    if(a.add(b).equals(c)){
+			out = String.valueOf(i);
+			break;
+		    }
+		}
+		System.out.println(out);
+	    }
+	}catch(Exception e){
+	    System.out.println("Error");
+	}
+    }
+}

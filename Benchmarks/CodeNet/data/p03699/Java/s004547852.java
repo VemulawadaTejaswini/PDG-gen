@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		final int N = sc.nextInt();
+		final int[] scores = new int[N];
+		for(int i=0; i<N; i++){
+			scores[i] = sc.nextInt();
+		}
+		sc.close();
+		
+		Arrays.sort(scores);
+		int ans = 0;
+		for(int s: scores){
+			ans += s;
+		}
+		for(int i=0; i<N; i++){
+			if(ans%10!=0){
+				break;
+			}
+			ans = ans - scores[i];
+		}
+		
+		System.out.println(ans);
+
+	}
+
+}

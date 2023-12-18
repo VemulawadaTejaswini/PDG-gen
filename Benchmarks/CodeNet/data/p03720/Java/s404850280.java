@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args){
+
+		Scanner scan = new Scanner(System.in);
+		
+		int n = scan.nextInt();
+		int m = scan.nextInt();
+
+		int[] m_sum = new int[m];
+		
+		for(int i = 0 ; i < n ; i++){
+			
+			m_sum[(scan.nextInt() - 1)] += 1;
+			m_sum[(scan.nextInt() - 1)] += 1;
+			
+		}
+		
+		for(int i = 0 ; i < n ; i++){
+			
+			System.out.println(m_sum[i]);
+
+		}
+	}
+}

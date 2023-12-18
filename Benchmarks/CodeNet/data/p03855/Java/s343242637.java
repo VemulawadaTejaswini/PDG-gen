@@ -1,0 +1,131 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.stream.IntStream;
+import java.util.HashMap;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UncheckedIOException;
+import java.util.Objects;
+import java.util.StringTokenizer;
+import java.util.Map;
+import java.io.BufferedReader;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ *
+ * @author mikit
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        LightScanner in = new LightScanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        DConnectivity solver = new DConnectivity();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class DConnectivity {
+        public void solve(int testNumber, LightScanner in, PrintWriter out) {
+            int n = in.ints(), k = in.ints(), l = in.ints();
+            UnionFind road = new UnionFind(n);
+            for (int i = 0; i < k; i++) {
+                road.union(in.ints() - 1, in.ints() - 1);
+            }
+            UnionFind rail = new UnionFind(n);
+            for (int i = 0; i < l; i++) {
+                rail.union(in.ints() - 1, in.ints() - 1);
+            }
+            Map<Pair<Integer, Integer>, Integer> count = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+                count.merge(new Pair<>(road.find(i), rail.find(i)), 1, (x, y) -> x + y);
+            }
+            for (int i = 0; i < n; i++) {
+                out.println(count.get(new Pair<>(road.find(i), rail.find(i))));
+            }
+        }
+
+    }
+
+    static class Pair<K, V> {
+        public K key;
+        public V value;
+
+        public Pair(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Pair<?, ?> pair = (Pair<?, ?>) o;
+            return Objects.equals(key, pair.key) &&
+                    Objects.equals(value, pair.value);
+        }
+
+        public int hashCode() {
+            return Objects.hash(key, value);
+        }
+
+        public String toString() {
+            return "Pair{" +
+                    "key=" + key +
+                    ", value=" + value +
+                    '}';
+        }
+
+    }
+
+    static class UnionFind {
+        private final int[] groups;
+
+        public UnionFind(int size) {
+            groups = IntStream.range(0, size).toArray();
+        }
+
+        public int find(int i) {
+            int ans = groups[i];
+            while (ans != groups[ans]) {
+                ans = groups[ans];
+            }
+            return ans;
+        }
+
+        public int union(int a, int b) {
+            return groups[find(b)] = find(a);
+        }
+
+    }
+
+    static class LightScanner {
+        private BufferedReader reader = null;
+        private StringTokenizer tokenizer = null;
+
+        public LightScanner(InputStream in) {
+            reader = new BufferedReader(new InputStreamReader(in));
+        }
+
+        public String string() {
+            if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new UncheckedIOException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int ints() {
+            return Integer.parseInt(string());
+        }
+
+    }
+}
+

@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner cin = new Scanner(System.in);
+		long N = cin.nextLong();
+		System.out.println((int)Math.ceil((Math.sqrt(8*N+1) - 1)/2));
+	} 
+	
+}

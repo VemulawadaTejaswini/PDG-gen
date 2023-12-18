@@ -1,0 +1,23 @@
+public class ChooseIntegers {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in);) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			int c = sc.nextInt();
+			String text = "";
+			int mul = 0;
+			int i = 0;
+			for (i = 0; i < b; i++) {
+				mul = mul + a;
+				if (mul % b == c) {
+					text = "YES";
+					break;
+				}else {
+					text = "NO";
+				}
+			}
+			System.out.println(text);
+		}
+	}
+}

@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		s.next();
+		String S = s.next();
+		s.next();
+		
+		S = S.substring(0, 1);
+		System.out.println("A"+S+"C");
+	}	
+}

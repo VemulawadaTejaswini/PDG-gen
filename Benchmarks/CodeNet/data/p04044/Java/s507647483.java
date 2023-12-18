@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		ArrayList<String> a= new ArrayList<String>();
+		int n= in.nextInt();
+		int m= in.nextInt();
+		in.nextLine();
+		for (int i = 0; i < n; i++) {
+			a.add(in.nextLine());
+		}
+		Collections.sort(a);
+		for(String c: a){
+			System.out.print(c);
+		}
+		System.out.println();
+	}
+}

@@ -1,0 +1,67 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		int maxW = sc.nextInt();
+		int weight[] = new int[num];
+		int value[] = new int[num];
+		for(int i = 0; i < num; i ++) {
+			weight[i] = sc.nextInt();
+			value[i] = sc.nextInt();
+		}
+
+		int maxValue = 0;
+		for(int i = 0; i < num; i ++) {
+			maxValue += value[i];
+		}
+
+		long dpWeight[][] = new long[num + 1][maxValue + 1];
+		for(int j = 0; j <= maxValue; j ++) {
+			dpWeight[0][j] = Long.MAX_VALUE;
+		}
+		for(int i = 0; i <= num; i ++) {
+			dpWeight[i][0] = 0;
+		}
+		for(int i = 1; i <= num; i ++) {
+			for(int j = 1; j <= maxValue; j ++) {
+				long min2 = Long.MAX_VALUE;
+				for(int i2 = 0; i2 < i; i2 ++) {
+					min2 = Math.min(min2, dpWeight[i2][j]);
+				}
+				if(j - value[i - 1] < 0) {
+					dpWeight[i][j] = min2;
+				}else {
+					long min = Long.MAX_VALUE;
+					for(int i2 = 0; i2 < i; i2 ++) {
+						min = Math.min(min, dpWeight[i2][j - value[i - 1]]);
+					}
+					if(min == Long.MAX_VALUE && min2 == Long.MAX_VALUE) {
+						dpWeight[i][j] = Long.MAX_VALUE;
+					}else if(min == Long.MAX_VALUE) {
+						dpWeight[i][j] = min2;
+					}else if(min2 == Long.MAX_VALUE) {
+						dpWeight[i][j] = min + weight[i - 1];
+					}else {
+						dpWeight[i][j] = Math.min(min + weight[i - 1], min2);
+					}
+				}
+			}
+		}
+
+		long max = 0;
+		for(int i = 0; i <= num; i ++) {
+			for(int j = maxValue; j >= 0; j --) {
+				if(dpWeight[i][j] <= maxW) {
+					max = j;
+					break;
+				}
+			}
+		}
+		for(int i = 0; i <= num; i ++) {
+			for(int j = 0; j <= maxValue; j ++) {
+			}
+		}
+		System.out.println(max);
+	}
+}

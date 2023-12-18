@@ -1,0 +1,17 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		long x=sc.nextLong(),sum;
+		sum=x/11*2;
+		if(x%11!=0){
+			if(x%11>6){
+				sum+=2;
+			}
+			else {
+				sum++;
+			}
+		}
+		System.out.println(sum);
+	}
+}

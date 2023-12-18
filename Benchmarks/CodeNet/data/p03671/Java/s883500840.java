@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        
+    int minn = Math.min((a+b),(a+c));
+    int m = Math.min(minn,(b+c));
+        System.out.println(m);
+    }
+    
+
+}

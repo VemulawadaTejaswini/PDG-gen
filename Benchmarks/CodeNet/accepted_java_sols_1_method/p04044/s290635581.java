@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Scanner;
+
+/**
+ * Created by zzt on 17-1-17.
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int L = scanner.nextInt();
+        String[] strings = new String[N];
+        for (int i = 0; i < N; i++) {
+            strings[i] = scanner.next();
+        }
+        Arrays.sort(strings, (o1, o2) -> {
+            int min = Math.min(o1.length(), o2.length());
+            char[] c1 = o1.toCharArray();
+            char[] c2 = o2.toCharArray();
+            for (int i = 0; i < min; i++) {
+                if (c1[i]!=c2[i])
+                    return c1[i] - c2[i];
+            }
+            return o1.length() - o2.length();
+        });
+        for (int i = 0; i < N; i++) {
+            System.out.print(strings[i]);
+        }
+        System.out.println();
+    }
+}

@@ -1,0 +1,20 @@
+//ABC177_A
+
+import java.util.*;
+
+public class ABC177_A {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int D = sc.nextInt();
+		int T = sc.nextInt();
+		int S = sc.nextInt();
+
+		if(D / S <= T){
+			System.out.println("YES");
+		}else{
+			System.out.println("NO");
+		}
+		sc.close();
+	}
+}

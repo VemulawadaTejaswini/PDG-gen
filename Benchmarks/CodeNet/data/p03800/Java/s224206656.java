@@ -1,0 +1,174 @@
+import java.io.*;
+import java.math.BigInteger;
+import java.util.*;
+
+public class Main implements Runnable {
+
+
+    private void solve() throws IOException {
+        int N = nextInt();
+
+        String s = reader.readLine();
+
+        int[] q = new int[] { 1, 2 };
+
+        for(int first = 0; first < 2; ++first) {
+            for(int second = 0; second < 2; ++ second) {
+                int[] ans = new int[s.length()];
+                ans[0] = q[first];
+                ans[1] = q[second];
+                boolean isValid = true;
+                for(int i = 1; i < s.length()-1; ++i) {
+                    if(s.charAt(i) == 'o') {
+                        if(ans[i] == 1) {
+                            // sheep here
+                            int leftId = ( i - 1 + s.length()) % s.length();
+                            int rightId = (i + 1) % s.length();
+                            if(ans[rightId] == 0) {
+                                ans[rightId] = ans[leftId];
+                            } else {
+                                if(ans[leftId] != ans[rightId]) {
+                                    isValid = false;
+                                }
+                            }
+                        } else {
+                            // is wolf here
+                            int leftId = ( i - 1 + s.length()) % s.length();
+                            int rightId = (i + 1) % s.length();
+                            if(ans[rightId] == 0) {
+                                if(ans[leftId] == 1) {
+                                    ans[rightId] = 2;
+                                } else {
+                                    ans[rightId] = 1;
+                                }
+                            } else {
+                                if(ans[leftId] == ans[rightId]) {
+                                    isValid = false;
+                                }
+                            }
+                        }
+                    } else {
+                        // x
+                        if(ans[i] == 1) {
+                            // is sheep here
+                            int leftId = ( i - 1 + s.length()) % s.length();
+                            int rightId = ( i + 1 ) % s.length();
+                            if(ans[rightId] == 0) {
+                                if(ans[leftId] == 1) {
+                                    ans[rightId] = 2;
+                                } else {
+                                    ans[rightId] = 1;
+                                }
+                            } else {
+                                if(ans[leftId] == ans[rightId]) {
+                                    isValid = false;
+                                }
+                            }
+                        } else {
+                            // the wolf is here
+                            int leftId = ( i - 1 + s.length()) % s.length();
+                            int rightId = ( i + 1 ) % s.length();
+                            if(ans[rightId] == 0) {
+                                if(ans[leftId] == 1) {
+                                    ans[rightId] = 1;
+                                } else {
+                                    ans[rightId] = 2;
+                                }
+                            } else {
+                                if(ans[rightId] != ans[leftId]) {
+                                    isValid = false;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                for(int i = 0; i < s.length(); ++i) {
+                    int leftId = ( i - 1 + s.length()) % s.length();
+                    int rightId = ( i + 1 ) % s.length();
+                    if(ans[i] == 1) {
+                        if(s.charAt(i) == 'o') {
+                            isValid &= ( ans[leftId] == ans[rightId]);
+                        } else {
+                            isValid &= (ans[leftId] != ans[rightId]);
+                        }
+                    } else {
+                        if(s.charAt(i) == 'o') {
+                            isValid &= (ans[leftId] != ans[rightId]);
+                        } else {
+                            isValid &= (ans[leftId] == ans[rightId]);
+                        }
+                    }
+                }
+                if(isValid) {
+                    StringBuilder sb = new StringBuilder("");
+                    for(int i = 0; i < ans.length; ++i) {
+                        if(ans[i] == 1) sb.append("S");
+                        else sb.append("W");
+                    }
+                    writer.println(sb.toString());
+                    return;
+                }
+            }
+        }
+        writer.println(-1);
+
+    }
+
+
+
+    public static void main(String[] args) {
+        new Main().run();
+    }
+
+    BufferedReader reader;
+    //    BufferedReader reader2;
+    StringTokenizer tokenizer;
+    PrintWriter writer;
+    //    BufferedWriter writer;
+
+    public void run() {
+        try {
+            reader = new BufferedReader(new InputStreamReader(System.in));
+//            reader = new BufferedReader(new FileReader("highcard.in"));
+            //            reader2 = new BufferedReader(new FileReader("1.in"));
+            tokenizer = null;
+            writer = new PrintWriter(System.out);
+//            writer = new     PrintWriter("highcard.out");
+//                                                    writer = new BufferedWriter(System.out);
+            //                        writer = new BufferedWriter(new OutputStreamWriter(System.out));
+            solve();
+            reader.close();
+            //            reader2.close();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    int nextInt() throws IOException {
+        return Integer.parseInt(nextToken());
+    }
+
+    long nextLong() throws IOException {
+        return Long.parseLong(nextToken());
+    }
+
+    double nextDouble() throws IOException {
+        return Double.parseDouble(nextToken());
+    }
+
+    short nextShort() throws IOException {
+        return Short.parseShort(nextToken());
+    }
+
+    String nextToken() throws IOException {
+        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            tokenizer = new StringTokenizer(reader.readLine());
+        }
+
+        return tokenizer.nextToken();
+    }
+
+}

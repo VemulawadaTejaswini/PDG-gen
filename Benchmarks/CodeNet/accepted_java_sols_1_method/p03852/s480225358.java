@@ -1,0 +1,17 @@
+import java.util.*;
+
+// UVa 11504
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		char c = in.next().charAt(0);
+		if (c == 'a' || c == 'i' || c == 'o' || c == 'e' || c == 'u') {
+			System.out.println("vowel");
+		} else {
+			System.out.println("consonant");
+		}
+	}
+}

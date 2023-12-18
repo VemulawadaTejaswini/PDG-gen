@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Printer pr = new Printer(System.out);
+
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+
+		if (a == 5 && b == 7 && c == 5) {
+			pr.println("YES");
+		} else if (a == 7 && b == 5 && c == 5) {
+			pr.println("YES");
+		} else if (a == 5 && b == 5 && c == 7) {
+			pr.println("YES");
+		} else {
+			pr.println("NO");
+		}
+
+		pr.close();
+		sc.close();
+	}
+
+	private static class Printer extends PrintWriter {
+		Printer(PrintStream out) {
+			super(out);
+		}
+	}
+}

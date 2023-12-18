@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Insertion_Sort {
+	static void ALView(int A[]) {
+		for (int i = 0; i < A.length; i++) {
+			System.out.print(A[i] + " ");
+		}
+		System.out.println("\n");
+	}
+
+	public static void main(String[] args) throws IOException {
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+
+		int Alst[];
+		String buf;
+
+		try {
+			buf = br.readLine();
+			int num = Integer.parseInt(buf);
+
+			buf = br.readLine();
+			String[] tmp = buf.split(" ");
+
+			Alst = new int[num];
+
+			for (int i = 0; i <= num - 1; i++) {
+				Alst[i] = Integer.parseInt(tmp[i]);
+			}
+
+			for (int i = 1; i < num; i++) {
+
+				int v = Alst[i];
+				int j = i - 1;
+
+				ALView(Alst);
+
+				while (j >= 0 && Alst[j] > v) {
+					Alst[j + 1] = Alst[j];
+					j--;
+				}
+				Alst[j + 1] = v;
+			}
+			ALView(Alst);
+		} catch (NumberFormatException e) {
+			System.out.print("??°????????\????????????????????????");
+		}
+
+	}
+
+}

@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int h = sc.nextInt();
+		int m = sc.nextInt();
+		final double PI = Math.PI;
+		double ht = (double) (((h*60+m)/720 )*2*PI);
+		double mt = (double) ((m/60)*2*PI);
+		double hx = a*Math.cos(ht);
+		double hy = a*Math.sin(ht);
+		double mx = b*Math.cos(mt);
+		double my = b*Math.sin(mt);
+		double dx = hx-mx;
+		double dy = hy-my;
+		double ans = Math.sqrt(dx*dx+dy*dy);
+		System.out.printf("%.10f", ans);
+	}
+}

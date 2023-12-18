@@ -1,0 +1,1 @@
+import java.util.*;import java.awt.geom.*;class Main{public static void main(String[]_){Scanner S=new Scanner(System.in);double a[]=new double[8];for(Path2D P=new Path2D.Double();S.hasNext();System.out.println(P.contains(a[6],a[7])?"YES":"NO")){for(int i=0;i<8;)a[i++]=S.nextDouble();P.moveTo(a[0],a[1]);for(int i=2;i<8;i+=2)P.lineTo(a[i%6],a[(i+1)%6]);}}}

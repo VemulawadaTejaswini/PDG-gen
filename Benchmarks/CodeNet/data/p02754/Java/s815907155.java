@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main {
+public static void main(String[] args){
+	Scanner sc = new Scanner(System.in);
+	long N = sc.nextInt();
+ 	long A = sc.nextInt();
+ 	long B = sc.nextInt();
+	long sho = N/(A+B);
+  	long amari = N%(A+B);
+  	long ans=0;
+  	if(A==0) System.out.print("0");
+     
+  	ans += sho * A;
+  	if(amari<=A){
+     ans += amari; 
+    }else{
+      ans += A;
+    }
+  
+	System.out.print(ans);
+	}
+}

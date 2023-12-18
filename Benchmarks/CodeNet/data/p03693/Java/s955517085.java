@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+/**
+ * Created by Irka on 10.06.2017.
+ */
+public class A {
+    public static void main(String[] args) {
+        Scanner a = new Scanner(System.in);
+
+        char r = a.next().charAt(0);
+        char g = a.next().charAt(0);
+        char b = a.next().charAt(0);
+
+        String l =""+ r + g+ b ;
+        int w = Integer.valueOf(l);
+        if (w % 4 == 0 ){
+            System.out.println("YES");
+        }
+        else {
+            System.out.println("NO");
+        }
+    }
+}

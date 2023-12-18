@@ -1,0 +1,111 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int N = Integer.parseInt(sc.next());
+        int K = Integer.parseInt(sc.next());
+        String S = sc.next();
+        sc.close();
+
+        int[] Sn = new int[N];
+        List<Integer> LengthList = new ArrayList<>();
+
+        //連続する0、1の数を数える、0を-1で表す
+        for (int i=0; i < N; i++) {
+
+            Sn[i] = Integer.parseInt(String.valueOf(S.charAt(i)));
+
+            if (i == 0 || Sn[i-1] != Sn[i]) {
+
+                if(Sn[i] == 1) {
+
+                    LengthList.add(1);
+                } else {
+
+                    LengthList.add(-1);
+                }
+            } else {
+
+                if(Sn[i] == 1) {
+
+                    LengthList.set(LengthList.size()-1, LengthList.get(LengthList.size()-1) + 1);
+                } else {
+
+                    LengthList.set(LengthList.size()-1, LengthList.get(LengthList.size()-1) - 1);
+                }
+            }
+
+        }
+
+        int sum = 0;
+        int ans = 0;
+        int hitZeroArray = 0;
+        int i = 0;
+        int j = 0;
+
+        while ( i < LengthList.size()) {
+
+            if (hitZeroArray < K) {
+
+                if (LengthList.get(i) > 0) {
+
+                    sum += LengthList.get(i);
+                    i++;
+
+                    if (i == LengthList.size()) {
+
+                        if (ans < sum) {
+
+                            ans = sum;
+                        }
+                    }
+                } else {
+
+                    sum -= LengthList.get(i);
+                    hitZeroArray++;
+                    i++;
+
+                    if (i == LengthList.size()) {
+
+                        if (ans < sum) {
+
+                            ans = sum;
+                        }
+                    }
+                }
+            }  else {
+
+                sum += LengthList.get(i);
+                i++;
+
+                if (ans < sum) {
+
+                    ans = sum;
+                }
+
+                while(j < LengthList.size()) {
+
+
+                    sum -= Math.abs(LengthList.get(j));
+
+                    if (LengthList.get(j) < 0 ) {
+
+                        hitZeroArray--;
+                        j++;
+                        break;
+                    }
+
+                    j++;
+                }
+            }
+        }
+
+        System.out.println(ans);
+    }
+
+}

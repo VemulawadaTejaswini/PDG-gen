@@ -1,0 +1,1 @@
+class Main{public static void main(String[]a){long r=1,i=0,t=new java.util.Scanner(System.in).nextInt();for(;i++<t;r*=i);System.out.println(r);}}

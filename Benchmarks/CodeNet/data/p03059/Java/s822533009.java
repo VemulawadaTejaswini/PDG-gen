@@ -1,0 +1,15 @@
+public class main {
+
+	public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int a = scan.nextInt();
+        int b = scan.nextInt();
+        int t = scan.nextInt();
+
+        int ans = t / a * b;
+        System.out.println(ans);
+        scan.close();
+
+	}
+
+}

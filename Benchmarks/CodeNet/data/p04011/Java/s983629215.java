@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main {
+    public static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        long n = sc.nextLong();
+        long k = sc.nextLong();
+        long x = sc.nextLong();
+        long y = sc.nextLong();
+        
+        long sum = 0;
+        for (int i = 1; i <= n; i++) {
+            if (i <= k) {
+                sum += x;
+            } else {
+                sum += y;
+            }
+        }
+        
+        System.out.println(sum);
+    }
+}

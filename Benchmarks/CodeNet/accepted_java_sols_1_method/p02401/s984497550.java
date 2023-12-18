@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int a, b;
+		String op;
+		while(true){
+			a = sc.nextInt();
+			op = sc.next();
+			b = sc.nextInt();
+			if(op.equals("?"))break;
+			if( (0<=a) && (b<=20000) ){
+				if(op.equals("+")){
+					System.out.println(a+b);
+				} else if(op.equals("-")){
+					System.out.println(a-b);
+				} else if(op.equals("*")){
+					System.out.println(a*b);
+				} else if(op.equals("/")){
+					System.out.println(a/b);
+				} else{
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+class Main{
+	public static void main(String args[]){
+		
+		Scanner sc = new Scanner(System.in);
+		int x = sc.nextInt();
+		int t = sc.nextInt();
+
+		sc.close();
+
+		if((x-t)>0){
+			System.out.print(x-t);
+		}else if((x-t)<=0){
+			System.out.print(0);
+		}
+	}
+}

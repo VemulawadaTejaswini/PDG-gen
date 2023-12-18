@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		long X = sc.nextLong();
+		
+		for(int i=1; i*i<=X; i++) {
+			if(X%i==0) {
+				for(long A=0; A*A*A*A*A<=X; A++) {
+					long B = A-i;
+					if(A*A*A*A*A - B*B*B*B*B == X) {
+						System.out.println(A + " " + B);
+						sc.close();
+						return;
+					}
+				}
+			}
+		}
+		
+		sc.close();
+	}
+}

@@ -1,0 +1,17 @@
+import java.util.*;
+public class Main{
+  
+	public static void main(String[] args){
+      Scanner sc = new Scanner(System.in);
+      int h = sc.nextInt();
+      int n = sc.nextInt();
+      
+      for(int i = 0;i++;i<n){
+      	h =- sc.nextInt();
+      }
+      String answer = h<=0:"Yes"?"No";
+      
+      System.out.println(answer);
+	}
+ 
+}

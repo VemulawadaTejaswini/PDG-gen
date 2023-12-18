@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main (String[] args) throws IOException
+    {
+    	Scanner sc = new Scanner(System.in);
+    	
+    	int A = sc.nextInt();
+    	int B = sc.nextInt();
+    	int C = sc.nextInt();
+    	
+    	if (A+B+C == 17 && A*B + B*C + C*A == 95 && A*B*C == 175){
+    		System.out.println("YES");
+    	} else {
+    			System.out.println("NO");
+    		}
+    	}
+    	
+    }
+
+   

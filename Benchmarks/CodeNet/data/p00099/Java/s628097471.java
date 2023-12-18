@@ -1,0 +1,56 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		//?????°??¨??????????????°???????????????
+		int people = sc.nextInt();
+		int ivent = sc.nextInt();
+		
+		int num = Integer.MAX_VALUE;
+
+		//?????°??????????????????
+		int[] wakasagi = new int[people];
+		Arrays.fill(wakasagi, 0);
+
+		//????????¨???
+		for(int $ = 0; $ < ivent; $++) {
+			int entryNum = sc.nextInt(); //?????????????????????
+			int wakasagiNum = sc.nextInt(); //?????????????????°
+			int max = 0;
+
+			if(num == entryNum) {
+				wakasagi[entryNum - 1] += wakasagiNum;
+	
+				for(int i = 0; i < people; i++) {
+					max = Math.max(max, wakasagi[i]);
+				}
+				for(int i = 0; i < people; i++) {
+					if(wakasagi[i] == max) {
+						System.out.println((i + 1) + " " + max);
+						break;
+					}
+				}
+			} else {
+				if(max>wakasagi[entryNum]){
+                    System.out.println(num + " " + max);
+                }else if(max<wakasagi[entryNum]){
+                    max = wakasagi[entryNum];
+                    num = entryNum;
+                    System.out.println(num + " " + max);
+                }else if(max==wakasagi[entryNum]){
+                    if(num<entryNum){
+                        System.out.println(num + " " + max);
+                    }else{
+                        num = entryNum;
+                        System.out.println(num + " " + max);
+                    }
+                }
+
+			}
+
+		}
+	}
+}

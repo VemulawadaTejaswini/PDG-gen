@@ -1,0 +1,146 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int count = sc.nextInt();
+        Dice[] dices = new Dice[count];
+        for (int i = 0; i < count; i++) {
+            dices[i] = new Dice(new int[]{sc.nextInt(), sc.nextInt(), sc.nextInt(),
+                                          sc.nextInt(), sc.nextInt(), sc.nextInt()});
+        }
+        for (int i = 0; i < count - 1; i++) {
+            for (int j = i + 1; j < count; j++) {
+                if (test(dices[i], dices[j])) {
+                    System.out.println("No");
+                    return;
+                }
+            }
+        }
+        System.out.println("Yes");
+    }
+
+    static boolean test(Dice a, Dice b) {
+        if (!easyTest(a, b)) {
+            return false;
+        }
+
+        for (int i = 0; i < a.eyes.length; i++) {
+            for (int j = 0; j < 4; j++) {
+                boolean flag = true;
+                for (int k = 0; k < a.eyes.length; k++) {
+                    if (a.eyes[a.now[k]] != b.eyes[b.now[k]]) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    return true;
+                }
+
+                b.spin('R');
+            }
+            if (i < 3) {
+                b.move('N');
+            } else if (i == 3) {
+                b.move('N');
+                b.move('E');
+            } else {
+                b.move('W');
+                b.move('W');
+            }
+        }
+        return false;
+    }
+
+    static boolean easyTest(Dice a, Dice b) {
+        int[][] check = new int[][]{{a.eyes[0], a.eyes[1], a.eyes[2],
+                                     a.eyes[3], a.eyes[4], a.eyes[5]},
+                                    {b.eyes[0], b.eyes[1], b.eyes[2],
+                                     b.eyes[3], b.eyes[4], b.eyes[5]}};
+        Arrays.sort(check[0]);
+        Arrays.sort(check[1]);
+        for (int i = 0; i < check[0].length; i++) {
+            if (check[0][i] != check[1][i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static class Dice {
+
+        int[] eyes;
+        int[/*TOP N E S W BOT*/] now;
+
+        public Dice(int[] eyes) {
+            this.eyes = eyes;
+            this.now = new int[]{0, 4, 2, 1, 3, 5};
+        }
+
+        int find(int eye) {
+            for (int i = 0; i < now.length; i++) {
+                if (eyes[now[i]] == eye) {
+                    return i;
+                }
+            }
+            return -1; // never comes
+        }
+
+        void move(char way) {
+            int tmp;
+            switch (way) {
+                case 'N':
+                    tmp = now[0];
+                    now[0] = now[3];
+                    now[3] = now[5];
+                    now[5] = now[1];
+                    now[1] = tmp;
+                    break;
+                case 'E':
+                    tmp = now[0];
+                    now[0] = now[4];
+                    now[4] = now[5];
+                    now[5] = now[2];
+                    now[2] = tmp;
+                    break;
+                case 'S':
+                    tmp = now[0];
+                    now[0] = now[1];
+                    now[1] = now[5];
+                    now[5] = now[3];
+                    now[3] = tmp;
+                    break;
+                case 'W':
+                    tmp = now[0];
+                    now[0] = now[2];
+                    now[2] = now[5];
+                    now[5] = now[4];
+                    now[4] = tmp;
+                    break;
+            }
+        }
+
+        void spin(char way) {
+            int tmp;
+            switch (way) {
+                case 'R':
+                    tmp = now[1];
+                    now[1] = now[4];
+                    now[4] = now[3];
+                    now[3] = now[2];
+                    now[2] = tmp;
+                    break;
+                case 'L':
+                    tmp = now[1];
+                    now[1] = now[2];
+                    now[2] = now[3];
+                    now[3] = now[4];
+                    now[4] = tmp;
+                    break;
+            }
+        }
+    }
+}

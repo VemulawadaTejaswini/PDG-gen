@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Main {
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args){
+        String s = in.next();
+        int count = 0;
+        for(int i = 0; i < s.length(); i++){
+            count = (count + (s.charAt(i) - '0')) % 9;
+        }
+        if(count == 0)
+            System.out.println("YES");
+        else
+            System.out.println("NO");
+    }
+}

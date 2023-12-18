@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int i=9,a,b;i-->0;)System.out.printf("%s %d %d\n",s.next(),(a=s.nextInt())+(b=s.nextInt()),a*200+b*300);}}

@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+
+		double x1 = sc.nextDouble();
+		double y1 = sc.nextDouble();
+		double x2 = sc.nextDouble();
+		double y2 = sc.nextDouble();
+
+		double rr = (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2);
+		double r = Math.sqrt(rr);
+
+		System.out.printf("%.5f", r);
+
+	}
+
+}

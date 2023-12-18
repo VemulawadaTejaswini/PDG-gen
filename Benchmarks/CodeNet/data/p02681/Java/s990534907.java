@@ -1,0 +1,1 @@
+return T.substring(0,t.length()-1).equals(S);

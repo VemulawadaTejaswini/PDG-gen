@@ -1,0 +1,13 @@
+import java.util.*;
+import java.util.stream.*;
+class Main{
+	public static void main(String[]$){
+		Scanner s=new Scanner(System.in);
+		int n=s.nextInt(),k=s.nextInt();
+		System.out.println(
+				IntStream.range(0,n).map(o->s.nextInt())
+				.map(o->Math.min(o,k-o))
+				.sum()*2
+				);
+	}
+}

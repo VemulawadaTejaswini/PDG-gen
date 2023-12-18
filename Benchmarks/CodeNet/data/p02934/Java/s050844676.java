@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        int n = Integer.parseInt(in.nextLine());
+        String[] params = in.nextLine().split(" ");
+
+        int child = 1;
+        int[] as = new int[n];
+        for( int i = 0 ; i < n ; i++ ){
+            as[i] = Integer.parseInt(params[i]);
+            child *= as[i];
+        }
+        int parent = 0;
+
+        for( int i = 0 ; i < n ; i ++ ){
+            parent += child / as[i];
+        }
+
+        System.out.println( (double)child/parent );
+
+    }
+
+}

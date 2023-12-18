@@ -1,0 +1,14 @@
+import java.util.*;
+
+/**
+ * Base_version
+ */ 
+
+class Main { 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+      	int x = sc.nextInt();
+      	int t = sc.nextInt();
+        System.out.println(Math.max(x - t, 0));
+    }
+}

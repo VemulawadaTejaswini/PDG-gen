@@ -1,0 +1,13 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        String a = in.next();
+        String b = in.next();
+        String c = in.next();
+        System.out.println( a.toUpperCase().charAt(0) + "" + 
+                            b.toUpperCase().charAt(0) + "" +
+                            c.toUpperCase().charAt(0));
+    }
+}

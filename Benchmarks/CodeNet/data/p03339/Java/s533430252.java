@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main {
+public static void main(String[] args){
+Scanner sc = new Scanner(System.in);
+int N=sc.nextInt();
+int[] vec=new int[N+1];
+String S=sc.next();
+int WL=0,ER=0,Min=N;
+for(int s=0;s<N;s++){WL=0;ER=0;
+for(int t=0;t<s;t++){char P=S.charAt(t);
+
+if(P=='W'){
+    WL+=1;
+}
+}
+for(int r=(s+1);r<N;r++){char Q=S.charAt(r);
+  if(Q=='E'){
+    ER+=1;
+}
+
+    }
+vec[s]=(WL+ER);
+if(Min==0)break;
+if(vec[s]<(N/2))Min=Math.min(Min,vec[s]);
+
+}
+
+
+System.out.println(Min);
+}
+}

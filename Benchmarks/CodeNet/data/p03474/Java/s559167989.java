@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    String s = sc.next();
+
+    for (int i = 0; i < s.length(); i++) {
+      if (i == a && s.charAt(i) != '-') {
+        System.out.println("No");
+        return;
+      } else if (i != a && s.charAt(i) == '-') {
+        System.out.println("No");
+        return;
+      }
+    }
+
+    System.out.println("Yes");
+
+
+  }
+
+}

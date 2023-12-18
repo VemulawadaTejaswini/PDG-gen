@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Main main = new Main();
+		main.run();
+	}
+
+	int r;
+	int g;
+	int b;
+	public void run() {
+		Scanner sc = new Scanner(System.in);
+		r = sc.nextInt();
+		g = sc.nextInt();
+		b = sc.nextInt();
+		int ans = r*100 + g*10 + b;
+		if(ans % 4 == 0)System.out.println("Yes");
+		else System.out.println("No");
+		sc.close();
+	}
+}

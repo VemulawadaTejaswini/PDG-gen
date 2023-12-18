@@ -1,0 +1,38 @@
+import java.util.*;
+
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+        sc.nextLine();
+
+        double max = 0;
+        int[] list = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            list[i] = sc.nextInt();
+            if (i >= K-1) {
+                double tmp = 0;
+                for (int j = i; j > i - K; j--) {
+                    tmp += pre(list[j]);
+                }
+                if (tmp > max) {
+                    max = tmp;
+                }
+            }
+        }
+
+        System.out.println(max);
+    }
+
+    static double pre (int x) {
+        double sum = 0.0;
+        for (int i = 1; i <= x; i++) {
+            sum += i;
+        }
+        return sum / x;
+    }
+}

@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String[] str = in.nextLine().split(" ",0);
+		int num1 = Integer.parseInt(str[0]);
+		int num2 = Integer.parseInt(str[1]);
+		int num3 = Integer.parseInt(str[2]);
+
+		if(num3 >= num1 && num3 <= num2){
+			System.out.println("Yes");
+		}else{
+			System.out.println("No");
+		}
+	}
+
+}

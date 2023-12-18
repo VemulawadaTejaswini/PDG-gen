@@ -1,0 +1,21 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String num = br.readLine();
+		String[] str = num.split(" ", 0);
+		List<Integer> a = new ArrayList<>();
+		a.add(Integer.parseInt(str[0]));
+		a.add(Integer.parseInt(str[1]));
+		a.add(Integer.parseInt(str[2]));
+		Collections.sort(a);
+		System.out.println((a.get(0)+a.get(1)));
+	}
+}

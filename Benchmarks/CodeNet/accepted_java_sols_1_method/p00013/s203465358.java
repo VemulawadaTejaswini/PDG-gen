@@ -1,0 +1,1 @@
+import java.util.ArrayDeque;import java.util.Scanner;public class Main {public static void main(String[] args) {Scanner s = new Scanner(System.in);ArrayDeque<Integer> ad = new ArrayDeque<Integer>();while (s.hasNextInt()) {int n = s.nextInt();if (n == 0) {System.out.println(ad.pollLast());} else {ad.add(Integer.valueOf(n));}}}}

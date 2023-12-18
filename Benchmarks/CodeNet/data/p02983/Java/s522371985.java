@@ -1,0 +1,27 @@
+import java.util.*;
+import static java.lang.Integer.*;
+//import static java.lang.Long.*;
+//import static java.lang.Math.*;
+
+public class Main {
+	public static void main(String[] args) {
+		int i,j;
+		Scanner sc = new Scanner(System.in);
+		int l = parseInt(sc.next());
+		int r = parseInt(sc.next());
+		sc.close();
+		int min1 = 2000000000;
+		int min2 = 2000000000;
+		int a;
+		for(i=l;i<=r;i++) {
+			a = i % 2019;
+			if(a < min1) {
+				min2 = min1;
+				min1 = a;
+			} else if(a < min2) {
+				min2 = a;
+			}
+		}
+		System.out.println(min1*min2);
+	}
+}

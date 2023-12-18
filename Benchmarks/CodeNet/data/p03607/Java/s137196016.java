@@ -1,0 +1,27 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		HashMap<Integer,Boolean> map = new HashMap<Integer,Boolean>();
+		for(int i=0;i<n;i++){
+			int a = scanner.nextInt();
+			if(map.containsKey(a)){
+				map.put(a, !map.get(a));
+			}else{
+				map.put(a, true);
+			}
+		}
+		int count = 0;
+		for(Integer key : map.keySet()){
+			if(map.get(key)){
+				count++;
+			}
+		}
+		System.out.println(count);
+	}
+
+}

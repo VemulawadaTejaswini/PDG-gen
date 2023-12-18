@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main (String[] args){
+	    Scanner scan = new Scanner(System.in);
+	    int num = Integer.parseInt(scan.next());
+	    scan.nextLine();
+
+	    ArrayList<Integer> intList = new ArrayList<Integer>();
+	    for(int i = 0; i < num; i++){
+	    	intList.add(Integer.parseInt(scan.next()));
+	    }
+	    Collections.sort(intList);
+
+	    int max = intList.get(intList.size()-1);
+	    int min = intList.get(0);
+
+	    System.out.println(max - min);
+	}
+}

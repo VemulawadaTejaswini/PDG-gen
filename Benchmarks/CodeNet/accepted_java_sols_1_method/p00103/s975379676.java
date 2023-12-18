@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int n=s.nextInt();int[]p=new int[99];for(;n-->0;System.out.println(p['I']>>2))for(p['I']=0,p['U']=0;p['U']<3;){char c=s.next().charAt(1);p[c]++;if ((p[c]&3)==0)p[c]|=3;if(c=='O'){c='I';p[c]+=((p[c]&3)+1)<<2;p[c]&=~3;}}}}

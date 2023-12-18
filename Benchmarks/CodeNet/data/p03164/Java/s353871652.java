@@ -1,0 +1,149 @@
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.stream.IntStream;
+
+
+public class Main {
+    static final Scanner sc  = new Scanner(System.in);
+    static final int     MOD = (int) 1E9 + 7;
+    static final long INF_L = (long) 4E18;
+
+    public static void main(String[] args) {
+        
+        int N = nint();
+        int W = nint();
+        int[] ws = new int[N];
+        int[] vs = new int[N];
+        for (int i = 0; i < N; i++) {
+            ws[i] = nint();
+            vs[i] = nint();
+        }
+        
+        final int maxVi = 1000;
+        final int maxSumV = maxVi * N;
+        System.out.println(knapsack_withMaxSumVal(N, maxSumV, W, ws, vs));
+    }
+
+    static long knapsack_withMaxSumVal(int numItems, int maxSumVal, int capacity, int[] weights, int[] values) {
+        int N = numItems;
+        int V = maxSumVal;
+        int W = capacity;
+        
+        // 
+        int[] ws = new int[N + 1]; // weights が既に番兵を含んでいる場合は int[] ws = weights.clone();
+        System.arraycopy(weights, 0, ws, 1, N);
+        int[] vs = new int[N + 1]; // values が既に番兵を含んでいる場合は int[] vs = values.clone();
+        System.arraycopy(values, 0, vs, 1, N);
+        
+        long[][] sumW = new long[N+1][V+1];
+        for (long[] a : sumW) {
+            Arrays.fill(a, INF_L);
+        }
+        
+        for (int n = 0; n <= N; n++) {
+            sumW[n][0] = 0;
+        }
+        
+        for (int n = 1; n <= N; n++) {
+            for (int v = 1; v <= V; v++) {
+                long sumWithoutN = sumW[n-1][v];
+                long sumWithN = (v - vs[n] >= 0 ? sumW[n-1][v - vs[n]] : 0) + ws[n];
+                sumW[n][v] = min(sumWithN, sumWithoutN);
+            }
+        }
+        
+        int ans = IntStream.rangeClosed(0, V)
+                .map(l -> V - l)
+                .filter(l -> sumW[N][l] <= W)
+                .findFirst().getAsInt();
+        
+        return ans;
+    }
+
+    @Deprecated
+    static int nint() {
+        return sc.nextInt();
+    }
+
+    @Deprecated
+    private static int[] nints(int n) {
+        return nints(n, 0, 0);
+    }
+
+    @Deprecated
+    private static int[] nints(int n, int padL, int padR) {
+        int[] a = new int[padL + n + padR];
+        for (int i = 0; i < n; i++)
+            a[padL + i] = nint();
+        return a;
+    }
+
+    static long nlong() {
+        return sc.nextLong();
+    }
+
+    static long[] nlongs(int n) {
+        return nlongs(n, 0, 0);
+    }
+
+    static long[] nlongs(int n, int padL, int padR) {
+        long[] a = new long[padL + n + padR];
+        for (int i = 0; i < n; i++)
+            a[padL + i] = nlong();
+        return a;
+    }
+
+    static double ndouble() {
+        return sc.nextDouble();
+    }
+
+    static double[] ndoubles(int n) {
+        return ndoubles(n, 0, 0);
+    }
+
+    static double[] ndoubles(int n, int padL, int padR) {
+        double[] d = new double[n + padL + padR];
+        for (int i = 0; i < n; i++) {
+            d[padL + i] = ndouble();
+        }
+        return d;
+    }
+
+    static String nstr() {
+        return sc.next();
+    }
+
+    static char[] nchars() {
+        return sc.next().toCharArray();
+    }
+
+    static char[] nchars(int padL, int padR) {
+        char[] temp = sc.next().toCharArray();
+        char[] ret = new char[temp.length + padL + padR];
+        System.arraycopy(temp, 0, ret, padL, temp.length);
+        return ret;
+    }
+
+    static char[][] nchars2(int h, int w) {
+        return nchars2(h, w, 0, 0);
+    }
+
+    static char[][] nchars2(int h, int w, int padLU, int padRD) {
+        char[][] a2 = new char[h + padLU + padRD][w + padLU + padRD];
+        for (int i = 0; i < h; i++)
+            System.arraycopy(nchars(), 0, a2[padLU + i], padLU, w);
+        return a2;
+    }
+
+    static long min(long... ls) {
+        return Arrays.stream(ls).min().getAsLong();
+    }
+
+    static long max(long... ls) {
+        return Arrays.stream(ls).max().getAsLong();
+    }
+
+    static long abs(long a) {
+        return Math.abs(a);
+    }
+}

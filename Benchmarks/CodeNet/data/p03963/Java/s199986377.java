@@ -1,0 +1,12 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		int k = scanner.nextInt();
+			System.out.println((long)Math.pow(k-1, n-1)*k);
+	}
+}

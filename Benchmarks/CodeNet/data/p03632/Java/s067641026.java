@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		int C = sc.nextInt();
+		int D = sc.nextInt();
+		sc.close();
+		
+		A = A>C?A:C;
+		B = B<D?B:D;
+		A = B-A>0?B-A:0;
+		System.out.println(A);
+	}
+
+}

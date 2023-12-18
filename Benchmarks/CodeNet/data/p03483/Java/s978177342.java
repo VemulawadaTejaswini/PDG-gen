@@ -1,0 +1,68 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Scanner;
+
+public class Main {
+	public int solve(String line) {
+		int[] countAlphabets = new int['z'-'a'+1];
+		Arrays.fill(countAlphabets, 0);
+		
+		LinkedList<Character> list = new LinkedList<Character>();
+		for (int i=0; i<line.length(); i++) {
+			char c = line.charAt(i);
+			countAlphabets[c-'a']++;
+			list.addLast(c);
+		}
+		
+		// 回文にできるか確認
+		boolean existOdd = (line.length() == 0);
+		for (int i=0; i<countAlphabets.length; i++) {
+			if (countAlphabets[i] % 2 == 1) {
+				if (existOdd) {
+					return -1;
+				} else {
+					existOdd = true;
+				}
+			}
+		}
+		
+		// 最小回数を計算
+		int count = 0;
+		while(list.size() >= 2) {
+			// debugPrint(list);
+			char first = list.poll();
+			if (countAlphabets[first-'a'] == 1) {
+				// 最後に1個残る要素の場合は、次の要素と入れ替えてやり直し
+				list.add(1, first);
+				count++;
+				continue;
+			}
+			
+			// 先頭と同じ文字を末尾から探して、先頭と合わせて削除
+			for(ListIterator<Character> it=list.listIterator(list.size()); it.hasPrevious();){
+				  char last = it.previous();
+				  if (first == last) {
+					  it.remove();
+					  countAlphabets[first-'a'] -= 2;
+					  break;
+				  } else {
+					  count++;
+				  }
+			}
+		}
+		
+		return count;
+	}
+	
+	public static void main(String args[]) {
+		Scanner in = new Scanner(System.in);
+		String line = in.next();
+		in.close();
+		
+		Main main = new Main();
+		int result = main.solve(line);
+		System.out.println(Integer.toString(result));
+	}
+}

@@ -1,0 +1,72 @@
+import java.util.*;
+
+public class Main {
+
+  private static final int MOD = 1_000_000_007;
+
+  public static void main(String[] args) {
+    int n = scanner.nextInt();
+    int k = scanner.nextInt();
+    int[] A = new int[n];
+    for (int i = 0; i < n; i++) {
+      A[i] = scanner.nextInt();
+    }
+    List<Integer> pos = new ArrayList<>();
+    List<Integer> neg = new ArrayList<>();
+    int zero = 0;
+    long all = 1;
+    for (int i : A) {
+      if (i > 0) {
+        pos.add(i);
+      } else if (i < 0) {
+        neg.add(i);
+      } else {
+        zero++;
+      }
+      all = mul(all, i);
+    }
+    if (pos.size() + neg.size() < k || (n == k && zero > 0)) {
+      System.out.println(0);
+      return;
+    }
+    if (n == k) {
+      System.out.println(Math.floorMod(all, MOD));
+      return;
+    }
+    pos.sort(Comparator.reverseOrder());
+    neg.sort(Comparator.reverseOrder());
+    long[] posMulLft = new long[pos.size() + 1];
+    long[] negMulLft = new long[neg.size() + 1];
+    long[] negMulRgt = new long[neg.size() + 1];
+    posMulLft[0] = 1;
+    negMulLft[0] = 1;
+    negMulRgt[negMulRgt.length - 1] = 1;
+    for (int i = 1; i < posMulLft.length; i++) {
+      posMulLft[i] = mul(posMulLft[i - 1], pos.get(i - 1));
+    }
+    for (int i = 1; i < negMulLft.length; i++) {
+      negMulLft[i] = mul(negMulLft[i - 1], neg.get(i - 1));
+    }
+    for (int i = negMulRgt.length - 2; i >= 0; i--) {
+      negMulRgt[i] = mul(negMulRgt[i + 1], neg.get(i));
+    }
+    long res = Long.MIN_VALUE;
+    for (int i = 0; i < Math.min(k + 1, posMulLft.length); i++) {
+      if (k - i < negMulLft.length) {
+        res = Math.max(res, mul(posMulLft[i], negMulLft[k - i]));
+      }
+    }
+    for (int i = 0; i < Math.min(k + 1, negMulRgt.length); i++) {
+      if (k - i < posMulLft.length) {
+        res = Math.max(res, mul(negMulRgt[negMulRgt.length - 1 - i], posMulLft[k - i]));
+      }
+    }
+    System.out.println(Math.floorMod(res, MOD));
+  }
+
+  private static long mul(long a, long b) {
+    return ((a % MOD) * (b % MOD)) % MOD;
+  }
+
+  private static final Scanner scanner = new Scanner(System.in);
+}

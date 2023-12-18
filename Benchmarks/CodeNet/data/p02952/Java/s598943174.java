@@ -1,0 +1,31 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+
+		int count = 0;
+		int N1000 = 90;//Nが999までなら
+		int N10000 = 9090;//Nが9999までなら
+		int N100000 = 9091;//Nが100000なら
+
+		if(N < 10) {//0個が偶数
+			count = N;
+		}else if(N < 100) {
+			count = 9;
+		}else if(N < 1000) {//999までは90個が偶数
+			count = N - N1000;
+		}else if(N < 10000) {//1000~9999 = 9000個
+			count = N - N10000;
+		}else{	//100000なら1個
+			count = N - N100000;
+		}
+
+		System.out.println(count);
+	}
+
+}

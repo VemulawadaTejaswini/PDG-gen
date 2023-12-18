@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static long euclid(long x, long y) {
+		if (y == 0) {
+			return x;
+		} else {
+			return euclid(y, x%y);
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		long T[] = new long[N];
+		for (int i = 0; i < N; i++) {
+			T[i] = sc.nextLong();
+		}
+		long gcd=T[0];
+		long lcm=T[0];
+		for (int i = 1; i < N; i++) {
+			gcd=euclid(lcm,T[i]);
+			lcm=lcm/gcd*T[i];
+		}
+
+		System.out.println(lcm);
+	}
+}

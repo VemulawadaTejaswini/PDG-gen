@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int cases=sc.nextInt();
+		int[][] zahyo=new int[cases][3];
+
+		for(int i=0; i<cases; i++) {
+			zahyo[i][0]=sc.nextInt();		//x
+			zahyo[i][1]=sc.nextInt();		//y
+			zahyo[i][2]=sc.nextInt();		//h
+		}
+
+		int sum_height=0;
+		boolean onaji=true;
+		for(int i=0; i<=100; i++) {
+			for(int j=0; j<=100; j++) {
+				for(int k=0; k<cases; k++) {
+					if(k==0) {
+						sum_height=Math.abs(i-zahyo[k][0])+Math.abs(j-zahyo[k][1])+zahyo[k][2];
+						onaji=true;
+					}
+					else {
+						if(sum_height==Math.abs(i-zahyo[k][0])+Math.abs(j-zahyo[k][1])+zahyo[k][2]) {
+							//
+						}
+						else {
+							onaji=false;
+							break;
+						}
+					}
+				}
+				if(onaji==true) {
+					System.out.println(i+" "+j+" "+sum_height);
+					System.exit(0);
+				}
+			}
+		}
+
+	}
+}

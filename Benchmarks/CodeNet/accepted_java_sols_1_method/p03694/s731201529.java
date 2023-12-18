@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+	// write your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        List<Integer> points = new ArrayList<>();
+        for(int i=0; i<n; i++) {
+            points.add(sc.nextInt());
+        }
+
+        int min = points.get(0);
+
+        for(int p : points) {
+            min = Math.min(p, min);
+        }
+
+        int max = points.get(0);
+
+        for(int p : points) {
+            max = Math.max(p, max);
+        }
+
+        System.out.println(max - min);
+    }
+
+}

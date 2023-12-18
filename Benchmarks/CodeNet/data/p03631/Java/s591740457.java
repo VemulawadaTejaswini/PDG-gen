@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String n = sc.nextLine();
+		sc.close();
+		if (n.equals(new StringBuilder().append(n).reverse().toString())) {
+			System.out.println("Yes");
+		} else {
+			System.out.println("No");
+		}
+	}
+}

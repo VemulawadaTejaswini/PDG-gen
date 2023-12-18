@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[] a){Scanner sc=new Scanner(System.in);System.out.println(sc.nextLine().replace("apple","Ï").replace("peach","apple").replace("Ï","apple"));}}

@@ -1,0 +1,66 @@
+import java.util.*;
+
+public class Main{
+  static int H, W;
+  static char[][] field;
+  static int[][] var, hor;
+  static boolean[][] reached_v, reached_h;
+  public static void main(String[]args){
+    Scanner sc = new Scanner(System.in);
+    String[] S = sc.nextLine().split(" ");
+    H = Integer.parseInt(S[0]);
+    W = Integer.parseInt(S[1]);
+    
+    field = new char[H][W];
+    for(int i = 0; i < H; i++){
+      String T = sc.nextLine();
+      for(int j = 0; j < W; j++){
+        field[i][j] = T.charAt(j);
+      }
+    }
+    
+    var = new int[H][W];
+    hor = new int[H][W];
+    reached_v = new boolean[H][W];
+    reached_h = new boolean[H][W];
+    
+    for(int i = 0; i < H; i++){
+      for(int j = 0; j < W; j++){
+        if(!reached_v[i][j]){
+          var[i][j] = func(i,j,0,1);
+        }
+        
+        if(!reached_h[i][j]){
+          hor[i][j] = func(i,j,0,2);
+        }
+      }
+    }
+    int ans = 0;
+    for(int i = 0; i < H; i++){
+      for(int j = 0; j < W; j++){
+        int n = var[i][j] + hor[i][j];
+        ans = ans < n ? n : ans; 
+      }
+    }
+    System.out.println(ans-1);
+  }
+  
+  public static int func(int h, int w, int count, int swi){
+    if(h >= H || w >= W || h < 0 || w < 0){
+      return count;
+    }
+    if(swi == 1){
+      reached_v[h][w] = true;
+      if(field[h][w] == '#'){
+        return count;
+      }
+      return var[h][w] = func(h+1, w, count+1, 1);
+    }else{
+      reached_h[h][w] = true;
+      if(field[h][w] == '#'){
+        return count;
+      }
+      return hor[h][w] = func(h, w+1, count+1, 2);
+    }
+  }
+}

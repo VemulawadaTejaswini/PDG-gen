@@ -1,0 +1,47 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+    private static final long MOD = 1000_000_007L;
+
+    public static void main(String[] args) {
+	int N = Integer.parseInt(scan.next());
+	int[] A = new int[N];
+	for (int i = 0; i < N; i++) {
+	    A[i] = Integer.parseInt(scan.next());
+	}
+
+	int[] count = new int[N];
+	if(N % 2 == 0) {
+	    for (int i = 0; i < N; i++) {
+		if(i % 2 == 1) count[i] = 2;
+	    }
+	} else {
+	    for (int i = 0; i < N; i++) {
+		if(i % 2 == 0) count[i] = 2;
+	    }
+	    count[0] = 1;
+	}
+
+	for (int i = 0; i < N; i++) {
+	    count[A[i]]--;
+	    if(count[A[i]] < 0) {
+		System.out.println(0);
+		return;
+	    }
+	}
+
+	System.out.println(pow(2, N/2));
+	scan.close();
+    }
+
+    public static long pow(long x, long n) {
+	if(n == 0) return 1;
+
+	long x2 = pow(x, n/2);
+	long ans = (n % 2 == 0 ? 1 : x);
+	return ans * x2 % MOD * x2 % MOD;
+    }
+}

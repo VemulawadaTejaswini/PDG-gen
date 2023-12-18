@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.function.Consumer;
+
+public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Consumer<List<String>> consumer = solve();
+
+    public static void main(String[] args) {
+        consumer.accept(readInput());
+    }
+
+    private static List<String> readInput() {
+        final List<String> lineList = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            lineList.add(scanner.nextLine());
+        }
+        return lineList;
+    }
+
+    private static Consumer<List<String>> solve() {
+        return args -> {
+            int a = Integer.valueOf(args.get(0).split(" ")[0]);
+            int b = Integer.valueOf(args.get(0).split(" ")[1]);
+            System.out.println(a >= b ? "10" : "0");
+        };
+    }
+
+}

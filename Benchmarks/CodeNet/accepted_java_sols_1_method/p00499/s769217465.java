@@ -1,0 +1,1 @@
+public class Main{public static void main(String[] g){java.util.Scanner s=new java.util.Scanner(System.in);int l=s.nextInt();int a=s.nextInt();int b=s.nextInt();int c=s.nextInt();System.out.println(l-(int)(Math.ceil(Math.max(a*1.0/c,b*1.0/s.nextInt()))));}}

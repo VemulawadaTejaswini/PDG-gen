@@ -1,0 +1,21 @@
+import java.util.*;
+class Wandbox
+{
+    public static void main(String[] args)
+    {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        String a = sc.next();
+        
+        switch (a) {
+            case "Sunny":
+                System.out.println("Cloudy");
+            case "Cloudy":
+                System.out.println("Rainy");
+            case "Rainy":
+                System.out.println("Sunny");        
+        }
+       
+    }
+}

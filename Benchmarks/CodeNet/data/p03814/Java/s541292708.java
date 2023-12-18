@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main (String[] args){
+		String s;
+		int a,z;
+		Scanner sc = new Scanner(System.in);
+		s = sc.next();
+		a = s.indexOf("A");
+		z = s.lastIndexOf("Z");
+		System.out.println(z - a + 1);
+	}
+}

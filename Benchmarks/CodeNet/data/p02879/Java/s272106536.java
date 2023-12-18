@@ -1,0 +1,20 @@
+import java.util.Scanner.*;
+import static java.lang.System.*
+
+public class Main{
+
+public static void main{
+
+Scanner sc = new Scanner(System.in)
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    
+    if(A<=9){
+        if{(B<=9){
+        out.println(A*B);
+        }else
+        break;
+        }else
+        out.println("-1");
+}
+}

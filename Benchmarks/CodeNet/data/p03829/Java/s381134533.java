@@ -1,0 +1,41 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Main {
+	public static void main(String args[]) throws IOException {
+		@SuppressWarnings("resource")
+		Scanner cin = new Scanner(System.in);
+		ArrayList<String> inLines = new ArrayList<String>();
+		for (; cin.hasNext();) {
+			inLines.add(cin.nextLine());
+		}
+		Solver solver = new Solver();
+		solver.solve(inLines);
+	}
+}
+
+class Solver {
+
+	public void solve(ArrayList<String> inLines) {
+		String[] strArr = inLines.get(0).split(" ");
+		int N = Integer.parseInt(strArr[0]);
+		long A = Long.parseLong(strArr[1]);
+		long B = Long.parseLong(strArr[2]);
+		strArr = inLines.get(1).split(" ");
+		long[] town = new long[N];
+		for (int i = 0; i < N; i++)
+			town[i] = Long.parseLong(strArr[i]);
+
+		long ans = 0;
+		int cnt = 0;
+		for (int i = 0; i < N - 1; i++) {
+			if ((town[i + 1] - town[i]) * A < B) {
+				ans += (town[i + 1] - town[i]) * A;
+				cnt++;
+			}
+		}
+		ans += (N - 1 - cnt) * B;
+		System.out.println(ans);
+	}
+}

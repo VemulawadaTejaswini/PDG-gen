@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z)throws Exception{for(byte[]b=new byte[11];System.in.read(b)>0;System.out.println(b[0]%=10)){int i,l;for(i=l=10;i-->0;)b[i]-=48;for(;l-->0;)for(i=0;i<l;)b[i]+=b[++i]%10;}}}

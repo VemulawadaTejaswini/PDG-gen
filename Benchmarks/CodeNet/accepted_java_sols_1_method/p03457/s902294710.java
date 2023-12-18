@@ -1,0 +1,52 @@
+import java.util.*;
+ 
+public class Main {
+    public static void main(String args[] ) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int T = 0;
+        int X = 0;
+        int Y = 0;
+        int X_point = 0;
+        int Y_point = 0;
+        int T_now = 0;
+        for (int i = 0; i < N; i++) {
+            int dis = 0;
+            int X_len = 0;
+            int Y_len = 0;
+            
+            T = sc.nextInt();
+            if(i == 0){
+                T_now = T;
+            }else{
+                T_now = T -T_now;
+            }
+
+            X = sc.nextInt();
+            Y = sc.nextInt();
+            X_point = X - X_point;
+            Y_point = Y - Y_point;
+            
+
+            if(X_point < 0){
+                X_len = -1 * X_point;
+            }else{
+                X_len = X_point;
+            }
+            if(Y_point < 0){
+                Y_len = -1 * Y_point;
+            }else{
+                Y_len = Y_point;
+            }
+            dis = X_len + Y_len;
+            if(dis > T_now){
+                System.out.println("No");
+                System.exit(0);
+            }else if((T_now - dis) % 2 == 1){
+                System.out.println("No");
+                System.exit(0);
+            }
+        }
+        System.out.println("Yes");
+    }
+}

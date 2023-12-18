@@ -1,0 +1,59 @@
+import java.io.*;
+import java.math.*;
+import java.util.*;
+public class Main { 
+
+	public static void main(String[] args) { //Maybe use while loops if TLE
+		Scanner input = new Scanner(System.in); 
+		String S = input.next();
+		int N = S.length();
+		long ans = 0;
+		boolean[] vis = new boolean[N];
+		for (int i = 0; i < N-1; i++) {
+			if (S.charAt(i)=='<'&&S.charAt(i+1)=='>') {
+				long prev = 0;
+				long next = 0;
+				for (int back = i; back>=0; back--) {
+					if (S.charAt(back)!='<') break;
+					else {
+						prev++;
+						vis[back]=true;
+					} 
+				}
+				for (int up = i+1; up<N; up++) {
+					if (S.charAt(up)!='>') {
+						break;
+					} 
+					else {
+						next++;
+						vis[up]=true;
+					} 
+				}
+				long max = Math.max(prev, next); //0<1<2<6>5>4>3>2>1>0; max = 6 --> increases ans by 21 
+				long min = Math.min(prev, next);
+				min--;
+				ans+=max*(max+1)/2;
+				ans+=min*(min+1)/2;
+			}
+		}
+		//ERRORS BELOW for trivial cases like >>><<<
+		long L = 0;
+		char start = S.charAt(0);
+		char end = S.charAt(N-1);
+		for (int i = 0; i < N; i++) {
+			if (vis[i]||S.charAt(i)!=start) break;
+			else {
+				L++;
+				vis[i]=true;
+			} 
+		}
+		long R = 0;
+		for (int i = N-1; i >= 0; i--) {
+			if (vis[i]||S.charAt(i)!=end) break;
+			else R++;
+		}
+		ans+=L*(L+1)/2;
+		ans+=R*(R+1)/2;
+		System.out.println(ans);
+	}
+}

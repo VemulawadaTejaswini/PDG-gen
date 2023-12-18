@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+			Scanner sc = new Scanner(System.in);
+			int n = sc.nextInt();
+			long kazu[] = new long[n];
+			long jyo =1;
+			for(int i = 0; i < kazu.length; i++) {
+				kazu[i] = sc.nextLong();
+				jyo *= kazu[i];
+			}
+			long h = 1000000000000000000L;
+			if(jyo > h) {
+				jyo = -1;
+			}
+			System.out.println(jyo);
+	}
+
+}

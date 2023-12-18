@@ -1,0 +1,57 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.NoSuchElementException;
+
+import org.omg.CORBA.portable.InputStream;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+		int n = Integer.parseInt(in.readLine());
+
+		int a[] = new int[n];
+
+		long time = System.currentTimeMillis();
+		
+		String tempA[] = in.readLine().split(" ");
+
+		for (int i = 0; i < n; i++){
+			a[i] = Integer.parseInt(tempA[i]);
+		}
+
+		System.out.println(System.currentTimeMillis()- time);
+		time = System.currentTimeMillis();
+
+		int b[] = new int[n];
+		int bReverse[] = new int[n];
+
+		for (int i=0; i<n; i++){
+			b[i] = a[i];
+			for (int j=0; j<=i; j++){
+				bReverse[j] = b[i-j];
+			}
+			for (int j=0; j<=i; j++){
+				b[j] = bReverse[j];
+			}
+		}
+		System.out.println(System.currentTimeMillis()- time);
+		time = System.currentTimeMillis();
+
+		StringBuffer sb = new StringBuffer();
+		for (int i =0; i<n ;i++){
+			if (i>0){
+				sb.append(" ");
+			}
+			sb.append(b[i]);
+		}
+		System.out.println(System.currentTimeMillis()- time);
+		time = System.currentTimeMillis();
+		System.out.println(sb.toString());
+		System.out.println(System.currentTimeMillis()- time);
+	}
+
+}

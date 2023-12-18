@@ -1,0 +1,17 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader f = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter out = new PrintWriter(System.out);
+		Scanner s = new Scanner(System.in);
+		
+		String[] split = f.readLine().split("\\s+");
+		String res = "";
+		for(int i= 0; i < split.length; i++) {
+			res += Character.toUpperCase(split[i].charAt(0));
+		}
+		System.out.println(res);
+	}
+}

@@ -1,0 +1,11 @@
+n=int(input())
+ans=0
+if(n%2==1):
+    print("0")
+else:
+    n=n/2
+    i=1
+    while(n>=5**i):
+        ans=ans+(n/(5**i))
+        i=i+1
+    print(ans)

@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+
+		int[] a = new int[n];
+
+		for(int i=0; i<n; i++){
+			a[i] = sc.nextInt();
+		}
+
+		int[] a_sum = new int[n];
+
+		a_sum[0] = a[0];
+		for(int i=1; i<n; i++){
+			a_sum[i] = a_sum[i-1] + a[i];
+		}
+		
+		int[] a_sum_copy = new int[n];
+		for(int i=0; i<n; i++){
+			a_sum_copy[i] = a_sum[i];
+		}
+
+		//奇数番目までの和を正に、偶数番目までの和を負にする
+		int cnt1 = 0;
+		int cnt2 = 0;
+		for(int i=0; i<n; i++){
+			a_sum[i] += cnt1 + cnt2;
+			if(i%2==0){
+				if(a_sum[i]<0){
+					cnt1 += (-a_sum[i]) + 1;
+					a_sum[i] = 1;
+				}else if(a_sum[i]==0){
+					cnt1 += 1;
+					a_sum[i] = 1;
+				}
+			}else if(i%2==1){
+				if(a_sum[i]>0){
+					cnt2 -= a_sum[i] + 1;
+					a_sum[i] = -1;
+				}else if(a_sum[i]==0){
+					cnt2 -= 1;
+					a_sum[i] = -1;
+				}
+			}
+		}
+
+		//奇数番目までの和を負に、偶数番目までの和を正にする
+		int cnt3 = 0;
+		int cnt4 = 0;
+		for(int i=0; i<n; i++){
+			a_sum_copy[i] += cnt3 + cnt4;
+			if(i%2==1){
+				if(a_sum_copy[i]<0){
+					cnt3 += (-a_sum_copy[i]) + 1;
+					a_sum_copy[i] = 1;
+				}else if(a_sum_copy[i]==0){
+					cnt3 += 1;
+					a_sum_copy[i] = 1;
+				}
+			}else if(i%2==0){
+				if(a_sum_copy[i]>0){
+					cnt4 -= a_sum_copy[i] + 1;
+					a_sum_copy[i] = -1;
+				}else if(a_sum_copy[i]==0){					
+					cnt4 -= 1;
+					a_sum_copy[i] = -1;
+				}
+			}
+		}
+
+		if(cnt1-cnt2>cnt3-cnt4){
+			System.out.print(cnt3-cnt4);
+		}else{
+			System.out.print(cnt1-cnt2);
+		}
+
+	}
+
+}

@@ -1,0 +1,92 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+
+		int numOfGemsCollected = 0;
+
+		Robo robo = new Robo();
+
+		Scanner scan = new Scanner(System.in);
+		int numOfGems = scan.nextInt();
+
+		while (numOfGems != 0) {
+			Gem[] gemArray = new Gem[numOfGems];
+
+			for (int i = 0; i < numOfGems; i++) {
+				Gem gem = new Gem();
+				int xOfGem = scan.nextInt();
+				int yOfGem = scan.nextInt();
+
+				gem.setX(xOfGem);
+				gem.setY(yOfGem);
+
+				gemArray[i] = gem;
+			}
+
+			//動く回数を読み込み
+			int numOfMoves = scan.nextInt();
+
+			//動く回数分だけ、方向読み込み→距離読み込みを繰り返し
+			for (int m = 0; m < numOfMoves; m++) {
+				String direction = scan.next();
+				int distance = scan.nextInt();
+
+				//東ならX座標を＋１
+				if (direction.equals("E")) {
+					for (int j = 0; j <= distance; j++) {
+						robo.forwardX();
+						for (int i = 0; i < numOfGems; i++) {
+							if ((robo.getX() == gemArray[i].getX()) && (robo.getY() == gemArray[i].getY())) {
+								numOfGemsCollected++;
+							}
+						}
+					}
+				}
+
+				//西ならX座標をー１
+				if (direction.equals("W")) {
+					for (int j = 0; j < distance; j++) {
+						robo.backwardX();
+						for (int i = 0; i < numOfGems; i++) {
+							if ((robo.getX() == gemArray[i].getX()) && (robo.getY() == gemArray[i].getY())) {
+								numOfGemsCollected++;
+							}
+						}
+					}
+				}
+
+				//北ならY座標を＋１
+				if (direction.equals("N")) {
+					for (int j = 0; j < distance; j++) {
+						robo.forwardY();
+						for (int i = 0; i < numOfGems; i++) {
+							if ((robo.getX() == gemArray[i].getX()) && (robo.getY() == gemArray[i].getY())) {
+								numOfGemsCollected++;
+							}
+						}
+					}
+				}
+
+				//南ならY座標をー１
+				if (direction.equals("S")) {
+					for (int j = 0; j < distance; j++) {
+						robo.backwardY();
+						for (int i = 0; i < numOfGems; i++) {
+							if ((robo.getX() == gemArray[i].getX()) && (robo.getY() == gemArray[i].getY())) {
+								numOfGemsCollected++;
+							}
+						}
+					}
+				}
+			}
+
+			if (numOfGems == numOfGemsCollected) {
+				System.out.println("Yes");
+			} else {
+				System.out.println("No");
+			}
+		}
+	}
+}
+

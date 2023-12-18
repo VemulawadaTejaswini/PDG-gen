@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[]a){Scanner s=new Scanner(System.in);Set<Integer> h=new TreeSet<Integer>(Collections.reverseOrder());for(int i=0;i++<10;)h.add(s.nextInt());System.out.printf("%d\n%d\n%d\n",h.toArray());}}

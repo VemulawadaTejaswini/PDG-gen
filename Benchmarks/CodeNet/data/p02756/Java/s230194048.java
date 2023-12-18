@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		int q = sc.nextInt();
+		String mae = "";
+		String ato = "";
+		StringBuffer sb = new StringBuffer(s);
+		for (int i = 0; i < q; i++) {
+			int t = sc.nextInt();
+			if (t == 1) {
+				sb = sb.insert(0, mae).append(ato);
+				sb = sb.reverse();
+				mae = "";
+				ato = "";
+
+			} else {
+				int f = sc.nextInt();
+				String c = sc.next();
+				if (f == 1) {
+					mae = c + mae;
+					// sb = sb.insert(0, c);
+				} else {
+					ato = ato + c;
+					// sb = sb.append(c);
+				}
+			}
+		}
+		System.out.println(sb.toString());
+		sc.close();
+	}
+}

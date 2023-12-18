@@ -1,0 +1,23 @@
+import java.math.BigDecimal;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		BigDecimal a = sc.nextBigDecimal();
+		BigDecimal b = sc.nextBigDecimal();
+
+		if (a.compareTo(b) > 0){
+			System.out.println("GREATER");
+		} else if (a.compareTo(b) < 0){
+			System.out.println("LESS");
+		} else {
+			System.out.println("EQUAL");
+		}
+
+	}
+
+}

@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		new Main().solve();
+	}
+	int H,W;
+	void solve(){
+		Scanner sc=new Scanner(System.in);
+		H=sc.nextInt();
+		W=sc.nextInt();
+		String[] s=new String[H];
+		for(int i=0;i<H;i++){
+			s[i]=sc.next();
+		}
+		for(int i=0;i<W+2;i++)System.out.print("#");
+		System.out.println();
+		
+		for(int i=0;i<H;i++){
+			System.out.print("#");
+			System.out.print(s[i]);
+			System.out.println("#");
+		}
+		
+		for(int i=0;i<W+2;i++)System.out.print("#");
+		System.out.println();
+		
+	}
+	
+}

@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Main {
+	
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		
+		int result = a + b;
+		if(result >=24) result -= 24;
+		System.out.println(result);
+
+	}
+
+}

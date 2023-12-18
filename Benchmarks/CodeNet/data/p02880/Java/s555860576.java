@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int x = sc.nextInt();
+		sc.close();
+		for (int a = 1; a <= 9; a++) {
+			if (x % a == 0 && x / a < 10) {
+				System.out.println("Yes");
+				break;
+			} else {
+				System.out.println("No");
+				break;
+			}
+		}
+	}
+}

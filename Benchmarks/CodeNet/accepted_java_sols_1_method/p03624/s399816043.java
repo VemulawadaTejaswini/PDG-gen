@@ -1,0 +1,22 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		String[] str = new Scanner(System.in).next().split("");
+		List<String> each = Arrays.asList(str);
+		boolean found = false;
+
+		Collections.sort(each);
+		for(char word = 'a'; word <= 'z'; word++) {
+			if( !each.contains(String.valueOf(word)) ) {
+				System.out.println(word);
+				found = true;
+				break;
+			}
+		}
+		if( !found ) System.out.println("None");
+	}
+}

@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int x,a,b;
+        x = sc.nextInt();
+        a = sc.nextInt();
+        b = sc.nextInt();
+
+        int t = b - a;
+
+        String msg = null;
+
+        if(t <= 0)
+            msg = "delicious";
+        else if(t <= x)
+            msg = "safe";
+        else
+            msg = "dangerous";
+
+        System.out.println(msg);
+    }
+}

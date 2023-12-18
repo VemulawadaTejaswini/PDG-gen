@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Map<String,Set<Long>>m=new TreeMap<String,Set<Long>>();String k;for(Scanner s=new Scanner(System.in);s.hasNext();m.get(k).add(s.nextLong()))if(!m.containsKey(k=s.next()))m.put(k,new TreeSet<Long>());k="";for(String x:m.keySet()){k+=x+"\n";for(long i:m.get(x))k+=i+" ";k=k.replaceAll(" $","\n");}System.out.print(k);}}

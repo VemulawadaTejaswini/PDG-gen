@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){float t,s,v;for(Scanner S=new Scanner(System.in);S.hasNext();System.out.printf("%d\n",(int)(4.9*t*t-5)/5))for(t=0,s=0,v=S.nextFloat();s<=v;t++)s+=9.8;}}

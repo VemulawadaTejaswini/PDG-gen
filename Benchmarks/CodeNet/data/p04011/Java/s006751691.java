@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+	  
+	public static void main(String args[]) {
+		    Scanner scanner = new Scanner(System.in);
+		    
+		    int n = scanner.nextInt();
+		    int k = scanner.nextInt();
+		    int x = scanner.nextInt();
+		    int y = scanner.nextInt();
+		    
+		    if( n > k )
+		    {
+		    System.out.println(k * x + (n-k) * y);
+		    }
+		    else 
+		    {
+		    	System.out.println(n * x);
+		    }
+		    scanner.close(); }
+		  }

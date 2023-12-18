@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+ 
+public class Main {
+    public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		// get a integer
+		String s = sc.nextLine();
+		int times = 0;
+		int len = s.length();
+		
+		char c = s.charAt(0);
+		for (int i = 1; i < len; i++) {
+			char ch = s.charAt(i);
+			if (ch != c) {
+				times++;
+				c = ch;
+			}
+		}
+		System.out.println(times);
+		sc.close();
+	}
+}

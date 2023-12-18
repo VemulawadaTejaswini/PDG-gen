@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+ 
+ 
+public class Main {
+    public static void main(String[] args) {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            int n = Integer.parseInt(br.readLine());
+            String[] inputString = br.readLine().split(" ");
+            int[] input = new int[n];
+            for(int i = 0 ; i < n ; i++) {
+                input[i] = Integer.parseInt(inputString[i]);
+            }
+            int result = -1, keyValue = result;
+            while(keyValue == -1){
+            	keyValue = result;
+            	result = 0;
+            	int count = 0;
+            	for(int i = 0 ; i < n ; i++){
+            		if(i % 2 == 0 && (count + input[i]) * Math.signum(keyValue) >= 0){
+            			result += Math.abs(count + input[i]) + 1;
+            			count = (int)Math.signum(keyValue) * -1;
+            		}else if(i % 2 != 0 && (count + input[i]) * Math.signum(keyValue) <= 0){
+            			result += Math.abs(count + input[i]) + 1;
+            			count = (int)Math.signum(keyValue);
+            		}else{
+            			count += input[i];
+            		}
+            	}
+            	result = (keyValue != -1)? Math.min(result, keyValue): result;
+            }
+            System.out.println(result);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+}

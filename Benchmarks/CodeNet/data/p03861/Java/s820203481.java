@@ -1,0 +1,18 @@
+import java.io.*;
+
+class Main{
+	public static void main(String[] args)throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] str = br.readLine().split(" ");
+		long a = Long.parseLong(str[0]);
+		long b = Long.parseLong(str[1]);
+		long x = Long.parseLong(str[2]);
+		long ans1 = a / x;
+		long ans2 = b / x;
+		if(ans1 == 0 || ans2-ans1 == 0){
+			System.out.println(ans2-ans1);
+		}else{
+			System.out.println(ans2-ans1+1);
+		}
+	}
+}

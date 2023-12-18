@@ -1,0 +1,61 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    private void solve() {
+        int n = sc.nextInt();
+        String s = sc.next();
+        if (n == 2) {
+            out.println(Math.abs(s.charAt(0) - s.charAt(n - 1)));
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < n; i++) {
+            sb.append(Math.abs(s.charAt(i) - s.charAt(i - 1)));
+        }
+        out.println(Math.abs(sb.charAt(0) - sb.charAt(n - 2)));
+    }
+
+    private static PrintWriter out;
+    private static MyScanner sc;
+
+    private static class MyScanner {
+        BufferedReader br;
+        StringTokenizer st;
+
+        private MyScanner() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+    }
+
+    public static void main(String[] args) {
+        out = new PrintWriter(new BufferedOutputStream(System.out));
+        sc = new MyScanner();
+        new Main().solve();
+        out.close();
+    }
+}

@@ -1,0 +1,27 @@
+import java.util.*;
+ 
+public class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		for(int query=0;query<T;++query){
+			long A = sc.nextLong();
+			long B = sc.nextLong();
+			long C = sc.nextLong();
+			long D = sc.nextLong();
+			if(B>A || B>D) System.out.println("No");
+			else{
+				A -= (A/B)*B;
+				if(C<A) System.out.println("No");
+				else{
+					D = D%B;
+					//System.out.println(A+" "+B+" "+C+" "+D);
+					if(D==0) System.out.println("Yes");
+					else if((C-A)%D!=0) System.out.println("No");
+					else System.out.println("Yes");
+				}
+			}
+		}
+		return;
+	}
+}

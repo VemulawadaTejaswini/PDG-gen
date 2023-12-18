@@ -1,0 +1,1 @@
+import java.util.*;import java.math.*;class Main{public static void main(String[]e){int n,i,j;BigInteger c,r;for(Scanner s=new Scanner(System.in);(n=s.nextInt())>0;){BigInteger[]a=new BigInteger[n];for(i=n,r=a[--i]=s.nextBigInteger();i-->0;)r=r.min(a[i]=s.nextBigInteger());for(i=n;i-->0;)for(j=i+1,c=BigInteger.ZERO;j-->0;)r=r.max(c=c.add(a[j]));System.out.println(r);}}}

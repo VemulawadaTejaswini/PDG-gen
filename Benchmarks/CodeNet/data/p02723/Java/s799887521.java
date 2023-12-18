@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		String A = sc.next();
+
+		if (A.charAt(3) == A.charAt(4)) {
+
+			if ((A.substring(A.length() - 2, A.length() - 1)).equals(A.substring(A.length() - 1))) {
+				System.out.print("Yes");
+			}
+
+		} else {
+			System.out.print("No");
+		}
+	}
+}

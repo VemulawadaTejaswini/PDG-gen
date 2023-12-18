@@ -1,0 +1,11 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        String b = "aiueo";
+        if(b.indexOf(s) == -1) System.out.println("consonant");
+        else System.out.println("vowel");
+    }
+}

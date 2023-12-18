@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+	private static Scanner sc=new Scanner(System.in);
+	public static void main(String[] args){
+		int n=sc.nextInt();
+		long a=sc.nextLong();
+		long b=sc.nextLong();
+		long[] x=new long[n+1];
+		for(int i=1;i<=n;i++){
+			x[i]=sc.nextLong();
+		}
+		long tired=0;
+		for(int i=1;i<=n-1;i++){
+			if(a*(x[i+1]-x[i])>=b) tired=tired+b;
+			else tired=tired+a*(x[i+1]-x[i]);
+		}
+		System.out.println(tired);
+	}
+}

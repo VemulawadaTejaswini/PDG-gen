@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main 
+{
+	public static void main(String[] args) 
+	{
+		Scanner stdIn = new Scanner(System.in);
+		while(stdIn.hasNext())
+		{
+			int a = stdIn.nextInt();
+			int b = stdIn.nextInt();
+			System.out.println(a + b);
+		}
+	}
+}

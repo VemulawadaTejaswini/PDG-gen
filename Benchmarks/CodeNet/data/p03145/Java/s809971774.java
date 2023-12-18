@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try (Scanner scanner = new Scanner(System.in)) {
+			int ab = scanner.nextInt(), bc = scanner.nextInt();
+			@SuppressWarnings("unused")
+			int ac = scanner.nextInt();
+			System.out.println(ab * bc / 2);
+		}
+	}
+}

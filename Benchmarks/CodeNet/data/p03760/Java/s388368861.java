@@ -1,0 +1,26 @@
+import java.util.*;
+
+class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		
+		String a = sc.next();
+		String b = sc.next();
+		int al = a.length();
+		int bl = b.length();
+		
+		for(int i = 0;i<50;i++){
+			if(al!=i){
+				System.out.print(a.charAt(i));
+				}else{
+					break;
+				}
+				if(bl!=i){
+				System.out.print(b.charAt(i));
+				}else{
+					break;
+			}
+		}
+		
+	}
+}

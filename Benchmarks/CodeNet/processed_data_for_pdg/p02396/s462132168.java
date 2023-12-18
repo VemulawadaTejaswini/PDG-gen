@@ -1,0 +1,13 @@
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int i = 0;
+		while(sc.hasNext()) {
+		int x = sc.nextInt();
+		if (x == 0)
+			break;
+		i++;
+		System.out.println("Case "+ i + ": " + x);
+		}
+	}
+}	

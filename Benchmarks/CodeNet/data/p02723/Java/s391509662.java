@@ -1,0 +1,10 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        String S;
+        Scanner sc = new Scanner(System.in);
+        S = sc.next();
+        System.out.println((S.charAt(2)==S.charAt(3) && S.charAt(4) == S.charAt(5)) ? "Yes" : "No");
+    }
+}

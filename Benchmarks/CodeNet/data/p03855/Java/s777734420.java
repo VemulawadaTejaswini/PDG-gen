@@ -1,0 +1,123 @@
+//package com.beginner.b049;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String args[]) throws Exception
+    {
+        Scanner sc = new Scanner(System.in);
+
+        int N,K,L;
+        N = sc.nextInt();
+        K =sc.nextInt();
+        L = sc.nextInt();
+
+        UnionFind rail = new UnionFind(N);
+        UnionFind road = new UnionFind(N);
+
+        for(int i = 0 ;i < K;i++){
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            rail.union(x-1,y-1);
+        }
+
+        for(int i = 0 ;i < L;i++){
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            road.union(x-1,y-1);
+        }
+
+        //ot if doing as below
+//        for(int i=0; i < N; i++){
+//            int cnt = 0;
+//            for(int j=0; j< N; j++){
+//                if(road.isConnected(i,j)&&rail.isConnected(i,j)){
+//                    cnt++;
+//                }
+//            }
+//            if(i!=N-1)
+//                System.out.print(cnt+ " ");
+//            else
+//                System.out.println(cnt);
+//        }
+
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int i=0; i<N; i++){
+            int key = road.find(i)*N+rail.find(i);
+            if (map.containsKey(key)){
+                map.put(key, map.get(key)+1);
+            }
+            else {
+                map.put(key,1);
+            }
+        }
+
+        for(int i=0; i<N; i++){
+            int key = road.find(i)*N+rail.find(i);
+            if(i!=N-1)
+                System.out.print(map.get(key)+" ");
+            else
+                System.out.println(map.get(key));
+        }
+
+
+        sc.close();
+    }
+
+    private static class UnionFind{
+        int sz[];
+        int id[];
+        int count;
+
+        public UnionFind(int n){
+            create(n);
+        }
+
+        public void create (int n){
+            id = new int[n];
+            sz = new int [n];
+            for(int i=0;i<n;i++){
+                id[i] = i;
+                sz[i] = 1;
+            }
+            count = n;
+        }
+
+        public int find(int n){
+            int tmp = n ;
+            while(tmp!=id[tmp]){
+                id[tmp] = id[id[tmp]];
+                tmp = id[tmp];
+            }
+
+            return tmp;
+        }
+
+        public void union(int x,int y){
+
+            int xRoot = find(x);
+            int yRoot = find(y);
+
+            if(xRoot!=yRoot){
+                if (sz[xRoot]<sz[yRoot]){
+                    id[xRoot] = yRoot;
+                    sz[yRoot] += sz[xRoot];
+                }
+                else{
+                    id[yRoot] = xRoot;
+                    sz[xRoot] += sz[yRoot];
+                }
+                count --;
+            }
+
+        }
+
+        public boolean isConnected(int x, int y){
+            return find(x) == find(y) ;
+        }
+
+    }
+
+}

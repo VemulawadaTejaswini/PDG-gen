@@ -1,0 +1,24 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+
+		Scanner stdin = new Scanner(System.in);
+		int d = stdin.nextInt();
+		int l = stdin.nextInt();
+
+		int jump = d % l;
+		int jumpNumber = d / l;
+
+		if(jump == 0) {
+			System.out.println(jumpNumber);
+		} else {
+			int result = jump + jumpNumber;
+			System.out.println(result);
+		}
+	}
+
+}

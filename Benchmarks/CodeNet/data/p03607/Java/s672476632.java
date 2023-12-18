@@ -1,0 +1,27 @@
+import java.util.*;
+import java.util.stream.IntStream;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+
+        Map<Integer,Integer> map = new HashMap<>();
+        IntStream intStream = IntStream.range(0, N).map(i ->{
+            return sc.nextInt();
+        });
+
+        intStream.forEach(i -> {
+                  Integer v = map.getOrDefault(i, 0);
+                  map.put(i,v+1);
+        });
+
+        long result = map.entrySet().stream().filter(entry -> {
+            if(1 == entry.getValue() % 2){
+                return true;
+            }else {return false;}
+        }).count();
+
+        System.out.print(result);
+    }
+}

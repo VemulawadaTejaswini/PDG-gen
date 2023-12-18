@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO ?????????????????????????????????????????????
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		while(true){
+			double x = Double.parseDouble(br.readLine());
+			double h = Double.parseDouble(br.readLine());
+			
+			if(x == 0 && h == 0){
+				break;
+			}
+			
+			double result;
+			//??´??¢???????§???¢?????????
+			double h2 = Math.pow((h*h+x*x/4), 0.5);
+			
+			result = x*x + 4*(x*h2/2);
+			
+			System.out.printf("%.6f\n",result);
+		}
+	}
+
+}

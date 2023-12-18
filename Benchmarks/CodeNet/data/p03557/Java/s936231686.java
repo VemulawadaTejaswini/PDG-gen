@@ -1,0 +1,73 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+
+		int[] a = new int[n];
+		int[] b = new int[n];
+		int[] c = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			a[i] = sc.nextInt();
+		}
+		for (int i = 0; i < n; i++) {
+			b[i] = sc.nextInt();
+		}
+		for (int i = 0; i < n; i++) {
+			c[i] = sc.nextInt();
+		}
+
+		Arrays.sort(a);
+		Arrays.sort(b);
+		Arrays.sort(c);
+
+		rem(a, b);
+		rem(b, c);
+
+		// int x = 0;
+		// int y = 0;
+		// int z = 0;
+
+		int kind = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				for (int k = 0; k < n; k++) {
+					if (a[i] < b[j] && b[j] < c[k]) {
+						// if(a[i] != x || b[j] != y || c[k] != z) {
+						kind++;
+						// x = a[i];
+						// y = b[j];
+						// z = c[k];
+						// }
+					}
+				}
+			}
+		}
+		System.out.println(kind);
+		;
+
+	}
+
+	private static void rem(int[] x, int[] y) {
+		int i;
+		for (i = x.length - 1; i >= 0; i--) {
+			if (x[i] > y[y.length - 1]) {
+				break;
+			}
+		}
+		if (i > 1) {
+			int[] z = new int[i];
+
+			for (int j = 0; j < i; j++) {
+				z[j] = x[j];
+			}
+			x = z;
+		}
+	}
+
+}

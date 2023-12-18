@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args)throws Exception {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        char [] s = input.readLine().toCharArray();
+        char []  t = input.readLine().toCharArray();
+
+        boolean found = false;
+
+        for (int i = 0, j = t.length - 1; i < s.length && j > -1 && !found; i++, j--) {
+            if (s[i] < t[j]){
+                System.out.println("Yes");
+                found = true;
+            } else if (s[i] > t[j]) {
+                System.out.println("No");
+                found = true;
+            }
+        }
+
+        if (!found){
+            if (s.length < t.length){
+                System.out.println("Yes");
+            }else{
+                System.out.println("No");
+            }
+        }
+
+
+    }
+}

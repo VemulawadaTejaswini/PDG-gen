@@ -1,0 +1,13 @@
+import java.util.Scanner;
+class practice1 {
+
+	public static void main(String[] args){
+		Scanner stdIn=new Scanner(System.in);
+		int A=stdIn.nextInt();
+		int B=stdIn.nextInt();
+		if((A*B)%2==0)
+			System.out.println("No");
+		else
+			System.out.println("Yes");
+	}
+}

@@ -1,0 +1,1 @@
+import java.text.*;import java.util.*;class Main{public static void main(String[]z){for(Scanner s=new Scanner(System.in);s.hasNext();)System.out.println(new ChoiceFormat("0#light fly|48<fly|51<bantam|54<feather|57<light|60<light welter|64<welter|69<light middle|75<middle|81<light heavy|91<heavy").format(s.nextFloat()));}}

@@ -1,0 +1,37 @@
+package main;
+
+import java.io.*;
+import java.util.*;
+
+
+	public class Main {
+		public static void main(String[] args) {
+			int number=0;
+			int counter=0;
+			int previousCounter=0;
+			int number1=0;
+		Scanner sc = new Scanner(System.in);
+		int x = sc.nextInt();
+		while( x>100 || x<1)
+			{
+			x = sc.nextInt();
+			}
+		for( int i=0; i<= x; i++)
+		{
+			number=i;
+			while(number%2==0 && number!=0) 
+			{
+				number= number/2;
+				counter++;
+			}
+			if(counter>previousCounter)
+			{
+				previousCounter=counter;
+				number1=i;
+			}
+			counter=0;
+			
+		}
+		System.out.print(number1);
+		}
+}

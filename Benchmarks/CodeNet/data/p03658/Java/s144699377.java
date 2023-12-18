@@ -1,0 +1,19 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int k = scan.nextInt();
+        Integer[] l = new Integer[n];
+        for (int i=0; i < n; i++) {
+        	l[i] = scan.nextInt();
+        }
+        Arrays.sort(l,Collections.reverseOrder());
+        for (int j = 0; j < k; j++) {
+        	int sum += l[j];
+        }
+        System.out.println(sum);
+    }
+}

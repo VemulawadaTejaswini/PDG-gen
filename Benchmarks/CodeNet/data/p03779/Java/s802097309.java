@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main {
+	private void doit(){
+		Scanner sc = new Scanner(System.in);
+		while(sc.hasNext()){
+			int n = sc.nextInt();
+				int mid, left = 0, right = n;
+				while(left < right){
+					mid = (right + left) / 2;
+					long sum = (long)(1 + mid) * mid / 2;
+					
+					if(sum < n){
+						left = mid + 1;
+					}
+					else{
+						right = mid;
+					}
+				}
+				System.out.println(left);			
+		}
+	}
+
+	private void debug(Object... o) {
+		System.out.println("debug = " + Arrays.deepToString(o));
+	}
+
+	public static void main(String[] args) {
+		new Main().doit();
+	}
+
+}

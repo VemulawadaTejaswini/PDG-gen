@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Main{
+  public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int a=sc.nextInt();
+    int b=sc.nextInt();
+    int total=a;
+    int count=1;
+
+    if (a<=b) {
+      while (total<b) {
+        total+=a;
+        total-=1;
+        count++;
+        //System.out.println(total+" "+count);
+      }
+
+      System.out.println(count);
+    }else{
+      System.out.println(0);
+    }
+
+    // while (total<b) {
+    //   total+=a;
+    //   total-=1;
+    //   count++;
+    //   System.out.println(total+" "+count);
+    // }
+    //
+    // System.out.println(count);
+  }
+}

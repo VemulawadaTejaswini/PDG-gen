@@ -1,0 +1,42 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		int a[];
+		a = new int [n + 1];
+
+		for (int i = 1; i <= n; i++){
+			a[i] = sc.nextInt();
+		}
+
+		int idx = 1;
+		int cnt = 0;
+		Set<Integer> set = new HashSet<Integer>();
+		set.add(idx);
+		while (true){
+
+			idx = a[idx];
+			cnt++;
+
+			if (idx == 2){
+				break;
+			}
+			if (set.contains(idx)){
+				cnt = -1;
+				break;
+			}
+			set.add(idx);
+		}
+
+
+		System.out.println(cnt);
+	}
+
+}

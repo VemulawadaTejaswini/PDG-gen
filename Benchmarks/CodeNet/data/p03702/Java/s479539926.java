@@ -1,0 +1,57 @@
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
+
+public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Consumer<List<String>> consumer = solve();
+
+    public static void main(String[] args) {
+        consumer.accept(readInput());
+    }
+
+    private static List<String> readInput() {
+        final List<String> lineList = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            lineList.add(scanner.nextLine());
+        }
+        return lineList;
+    }
+
+    private static Consumer<List<String>> solve() {
+        return args -> {
+            final List<Long> NAB = Arrays.stream(args.get(0).split(" ")).map(Long::valueOf).collect(toList());
+            final Long A = NAB.get(1);
+            final Long B = NAB.get(2);
+            final List<Long> numList = args.stream().skip(1).map(Long::valueOf).collect(toList());
+
+            final PriorityQueue<Long> pque = new PriorityQueue<>(Comparator.reverseOrder());
+            pque.addAll(numList);
+
+            Long leftInc = 1L;
+            Long rightInc = 1_000_000_000L;
+
+            final Function<AbstractMap.SimpleEntry<Long, Long>, Long> ceil =
+                    (entry) -> Double.valueOf(Math.ceil(entry.getKey().doubleValue() / entry.getValue().doubleValue())).longValue();
+            while (leftInc < rightInc) {
+                Long ans = (rightInc + leftInc) / 2;
+                if (numList.stream().mapToLong(x -> ceil.apply(new AbstractMap.SimpleEntry<>(x - ans * B, A - B))).sum() <= ans) {
+                    rightInc = ans - 1;
+                } else {
+                    leftInc = ans + 1;
+                }
+            }
+
+            Long ans = leftInc;
+            if (numList.stream().mapToLong(x -> ceil.apply(new AbstractMap.SimpleEntry<>(x - ans * B, A - B))).sum() <= ans) {
+                System.out.println(leftInc);
+            } else {
+                System.out.println(leftInc + 1);
+            }
+        };
+    }
+
+}

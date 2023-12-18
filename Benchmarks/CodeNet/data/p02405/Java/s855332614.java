@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main{
+
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		int x,y,i=0,j=0;
+		
+		while(true){
+			x = sc.nextInt();
+			y = sc.nextInt();
+			if(x == 0){
+				sc.close();
+				System.exit(0);
+			}
+			else{
+				for(i=0;i<x;i++){
+				    if(i%2 == 0){
+				    	for(j=0;j<y;j++){
+				    	    if(j%2 == 0){
+				    		    System.out.print('#');
+				    	    }
+				    	    else{
+				    	        System.out.print('.');
+				    	    }
+				    	}
+				    }
+				    else{
+				    	for(j=0;j<y;j++){
+				    		if(j%2 == 0){
+				    			System.out.print('.');
+				    		}
+				    		else{
+				    			System.out.print('#');
+				    		}
+				    	}
+				    }
+				    System.out.println();
+				}
+			}
+			System.out.println();
+		}
+	}

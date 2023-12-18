@@ -1,0 +1,9 @@
+public class main {
+	public static void main(String[] args){
+		int a = new java.util.Scanner(System.in).nextInt();
+		int b = new java.util.Scanner(System.in).nextInt();
+		System.out.print(a * b );
+		System.out.print(" ");
+		System.out.print((a + b)* 2 );
+	}
+}

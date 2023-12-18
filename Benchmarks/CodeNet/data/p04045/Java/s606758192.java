@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        String[] ary = new String[k];
+        for (int i = 0; i < k; i++) {
+            String a = sc.next();
+            ary[i] = a;
+        }
+        for (int i = n; i < 10000; i++) {
+            String nStr = String.valueOf(i);
+            boolean isContains = false;
+            for (String str : ary) {
+                if (nStr.contains(str)) {
+                    isContains = true;
+                    break;
+                }
+            }
+            if (isContains) {
+                continue;
+            } else {
+                System.out.println(i);
+                break;
+            }
+        }
+    }
+}

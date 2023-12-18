@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args){
+		int x,y,s,i,j,max;	
+		Scanner in = new Scanner(System.in);
+		
+		x = in.nextInt(); //??§?¨????
+		y = in.nextInt(); //??°?¨????
+		s = in.nextInt(); //??§????¨???????
+		
+		while(x != 0){
+			max = 0;
+
+			for(i=1; i<s; i++){
+				for(j=1; j<s; j++){
+					if(TotalPrice.calcTotalPrice(x, i, j) != s){
+						continue;
+					}
+						max = Math.max(TotalPrice.calcTotalPrice(y, i, j), max);
+				}
+			}
+			
+			System.out.println(max);
+			
+			x = in.nextInt();
+			y = in.nextInt();
+			s = in.nextInt();
+		}
+		
+		in.close();
+	}
+}
+
+
+//??§?¨??????§????????????????¨???????????¨??????????????????????
+class TotalPrice{
+	public static int calcTotalPrice(int x, int i, int j){
+		double rate = (100+(double)x)/100;
+		return (int)(rate*i)+ (int)(rate*j);
+	}
+}

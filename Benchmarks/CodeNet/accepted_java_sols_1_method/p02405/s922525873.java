@@ -1,0 +1,51 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class Main { 
+	public static void main(String[] args) throws IOException{
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		while(true){
+			String[] arr = br.readLine().split(" ");
+			int h = Integer.parseInt(arr[0]);
+			int w = Integer.parseInt(arr[1]);
+
+			if (h==0&&w==0){
+				break;
+
+			}
+
+			for(int i = 0;i<h;i++){
+				
+				if(i%2==0){
+					for(int j=0;j<w;j++){
+						if(j%2==0){
+							System.out.print("#");
+						}else{
+							System.out.print(".");
+						}
+					}
+				}
+				
+				if(i%2!=0){
+					for(int j=0;j<w;j++){
+						if(j%2!=0){
+							System.out.print("#");
+						}else{
+							System.out.print(".");
+						}
+					}
+				}
+				System.out.println("");
+			}
+			System.out.println("");
+
+		}
+
+	}
+
+
+
+}

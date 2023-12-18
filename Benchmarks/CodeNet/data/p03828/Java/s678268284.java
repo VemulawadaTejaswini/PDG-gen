@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] fact = new int[n + 1];
+		 long ans = 1;
+		for (int j = 2; j <= n; j++) {
+			for (int i = 2; i <= j; i++) {
+				int m = j;
+				if (sosuu(i)) {
+					while (m % i == 0) {
+						m = m / i;
+						fact[i]++;
+					}
+				}
+			}
+		}
+		for (int i = 2; i <= n; i++) {
+			if (fact[i] > 0)
+				ans *= (fact[i] + 1);
+			ans=ans%(1000000000+7);
+		}
+
+		System.out.println(ans%(1000000000+7));
+	}
+
+	static boolean sosuu(int n) {
+		if (n == 1)
+			return false;
+		else {
+			for (int i = 2; i < n; i++) {
+				if (n % i == 0)
+					return false;
+			}
+			return true;
+		}
+	}
+}

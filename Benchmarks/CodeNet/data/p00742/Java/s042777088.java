@@ -1,0 +1,71 @@
+import java.util.*;
+
+class Main{
+
+    String[] s;
+    ArrayList<Character> list;
+    HashSet<Character> notZero;
+    int[] num;
+    boolean[] boo;
+    int cnt;
+
+    void solve(){
+        Scanner sc = new Scanner(System.in);
+
+        while(true){
+            int n = sc.nextInt();
+            if(n==0) break;
+            s = new String[n];
+            for(int i=0; i<n; i++) s[i] = sc.next();
+            
+            list = new ArrayList<Character>();
+            notZero = new HashSet<Character>();
+            HashSet<Character> appear = new HashSet<Character>();
+            for(int i=0; i<n; i++){
+                for(int j=0; j<s[i].length(); j++){
+                    char c = s[i].charAt(j);
+                    if(j==0 && s[i].length()!=1) notZero.add(c);
+                    if(appear.add(c)) list.add(c);
+                }
+            }
+            
+            num = new int[27];
+            boo = new boolean[10];
+            cnt = 0;
+            rec(0);
+            System.out.println(cnt);
+        }
+    }
+
+    void rec(int alpha){
+        if(alpha==list.size()){
+            int sum = 0;
+            for(int i=0; i<s.length-1; i++){
+                for(int j=0; j<s[i].length(); j++){
+                    sum += num[s[i].charAt(j)-'A'] * (int)Math.pow(10, s[i].length()-j-1);
+                }
+            }
+            int goal = 0;
+            for(int i=0; i<s[s.length-1].length(); i++){
+                goal += num[s[s.length-1].charAt(i)-'A'] 
+                    * (int)Math.pow(10, s[s.length-1].length()-i-1);
+            }
+            if(sum==goal) cnt++;
+            return;
+        }
+
+        for(int i=0; i<=9; i++){
+            if(boo[i]) continue;
+            char c = list.get(alpha);
+            if(i==0 && notZero.contains(c)) continue;
+            num[c-'A'] = i;
+            boo[i] = true;
+            rec(alpha+1);
+            boo[i] = false;
+        }
+    }
+
+    public static void main(String[] args){
+        new Main().solve();
+    }
+}

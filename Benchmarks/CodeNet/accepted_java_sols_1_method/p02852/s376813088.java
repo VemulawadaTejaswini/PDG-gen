@@ -1,0 +1,44 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		String s = sc.next();
+		boolean flag = true;
+		Deque<Integer> deq = new ArrayDeque<Integer>();
+		int now = n;
+
+		OUT:while(now > 0){
+			if(now-m>=0) {
+				for (int i = m; i > 0 ; i--) {
+					if(s.charAt(now-i) == '0') {
+						now -= i;
+						deq.addFirst(i);
+						break;
+					}else if(i == 1) {
+						flag = false;
+						break OUT;
+					}
+				}
+			}else {
+				deq.addFirst(now);
+				now = 0;
+			}
+		}
+
+		if(flag) {
+			while(!deq.isEmpty()) {
+				System.out.printf("%d ", deq.pollFirst());
+			}
+		}else{
+			System.out.println(-1);
+		}
+
+		sc.close();
+	}
+}

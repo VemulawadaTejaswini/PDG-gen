@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(String x;!(x=s.next()).equals("0");)System.out.println((x+=s.next()+s.next()).matches(".*bbb.*")||x.matches(".*b.{2}b.{2}b.*")?"b":x.matches(".*www.*")||x.matches(".*w.{2}w.{2}w.*")?"w":"NA");}}

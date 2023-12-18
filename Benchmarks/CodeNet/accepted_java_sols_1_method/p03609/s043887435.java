@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt(), t =in.nextInt();
+        int w = n-t ;
+            if (n < t) {
+                System.out.println(0);
+            } else if (n >= t)
+
+                System.out.println(w);
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+
+class Main{
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		String[] str = br.readLine().split(" ");
+		Set<Integer> S = new TreeSet<Integer>();
+		for(int i = 0; i < n; i++){
+			S.add(Integer.parseInt(str[i]));
+		}
+		int m = Integer.parseInt(br.readLine());
+		str = br.readLine().split(" ");
+		Set<Integer> S2 = new TreeSet<Integer>();
+		for(int i = 0; i < m; i++){
+			if(S.contains(Integer.parseInt(str[i]))) S2.add(Integer.parseInt(str[i]));
+		}
+		for(Integer num : S2) System.out.println(num);
+	}
+}
+

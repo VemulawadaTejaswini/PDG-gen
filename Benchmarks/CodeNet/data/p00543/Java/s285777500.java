@@ -1,0 +1,2 @@
+#include<iostream>
+using namespace std;int main(){int a[100];int b,c;cin>>b>>c;for (int d = 0; d < b; d++) cin>>a[d];for(int k=2;k<=c;k++)for(int g=0;g<b-1;g++)if(a[g]% k>a[g+1] % k)swap(a[g],a[g + 1]);for(int s=0;s<b;s++)cout<<a[s]<<endl;}

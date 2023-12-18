@@ -1,0 +1,22 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Here your code !
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String x = br.readLine();
+        String X[]=x.split(" ");
+        int a=Integer.parseInt(X[0]);
+        int b=Integer.parseInt(X[1]);
+        int c=Integer.parseInt(X[2]);
+        int m=Math.max(a,b);
+        m=Math.max(m,c);
+        if((a+b+c-m)==m){
+            System.out.println("Yes");
+        }
+        else{
+            System.out.println("No");
+        }
+    }
+}

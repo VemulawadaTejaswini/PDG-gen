@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+class X_Cubic{
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int x = scan.nextInt();
+    if(x==1) System.out.println(x);
+    else System.out.println(x*x*x);
+    return 0;
+  }
+}

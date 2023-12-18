@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class Main{
+
+	public static void main(String[] args){
+		Scanner s = new Scanner(System.in);
+		int a = s.nextInt();
+		int b = s.nextInt();
+		int c = s.nextInt();
+		
+		int tmp = a;
+		a =b;
+		b=tmp;
+		
+		tmp=a;
+		a=c;
+		c=tmp;
+		
+		System.out.println(a+" "+b+" "+c);
+		
+	}
+
+}

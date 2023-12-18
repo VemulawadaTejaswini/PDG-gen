@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		String S  = scan.nextLine();
+		int count = 0;
+		for(int i=0;i<S.length()-1;i++){
+			String s = S.substring(i,i+2);
+			//System.out.println(s);
+			if(s.equals("WB")||s.equals("BW")){
+				count++;
+			}
+		}
+		System.out.println(count);
+	}
+}

@@ -1,0 +1,17 @@
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+
+public class Main{
+	public static void main(String[] args){
+		Scanner scan= null;
+		try{
+			scan = new Scanner(new InputStreamReader(System.in));
+			int x = scan.nextInt();
+			int y = scan.nextInt();
+			System.out.printf("%d %d %f",x/y,x%y,(double)x / (double) y);
+		}finally{
+			scan.close();
+		}
+	}
+}

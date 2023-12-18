@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int x = scanner.nextInt();
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        String s = "delicisou";
+        if (b - a > 0 && b - a <= x) {
+            s = "safe";
+        } else if (x < b - a) {
+            s = "dangerous";
+        }
+        System.out.println(s);
+    }
+}

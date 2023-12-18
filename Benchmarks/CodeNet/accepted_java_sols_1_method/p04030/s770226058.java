@@ -1,0 +1,26 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String[] strings = scan.nextLine().split("");
+        LinkedList<String> list = new LinkedList<>();
+        for (int i = 0; i < strings.length; i++) {
+            if (strings[i].equals("B")) {
+                try {
+                    list.removeLast();
+
+                } catch (Exception e) {
+                }
+            } else {
+                list.add(strings[i]);
+            }
+        }
+        for (String string : list) {
+            System.out.print(string);
+        }
+        System.out.println("");
+    }
+}

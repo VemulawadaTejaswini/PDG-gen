@@ -1,0 +1,1 @@
+class Main{public static void main(String[]a){for(char c:new java.util.Scanner(System.in).nextLine().toCharArray())System.out.print((char)(c>95?c-32:c));System.out.println();}}

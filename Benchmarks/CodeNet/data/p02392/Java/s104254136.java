@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+class Main{
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		int number[] = new int[3];
+
+		String word = br.readLine();
+		String strArray[] = word.split(" ");
+
+		try{
+			for(int i=0;i<strArray.length;i++){
+				number[i] = Integer.parseInt(strArray[i]);
+			}
+
+			if(number[0] < number[1] && number[1] < number[2]){
+				System.out.println("YES");
+			}else{
+				System.out.println("NO");
+			}
+
+		}catch(ArrayIndexOutOfBoundsException e){
+
+		}
+	}
+}

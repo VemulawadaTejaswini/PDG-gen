@@ -1,0 +1,57 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        long[] nums = new long[n];
+        for(int i = 0; i < n; i++) {
+          nums[i] = sc.nextLong();
+        }
+
+        long[] prefixSum = new long[n];
+
+        long minCost = 0;
+        if(nums[0] == 0) {
+          nums[0] = 1;
+          minCost = 1 + count(nums);
+
+          nums[0] = -1;
+          minCost = Math.min(minCost, 1 + count(nums));
+        } else {
+          minCost = count(nums);
+          long org = nums[0];
+          if(org > 0) {
+            nums[0] = -1;
+            minCost = Math.min(minCost,count(nums) + org + 1);
+          } else {
+            nums[0] = 1;
+            minCost = Math.min(minCost,count(nums) + 1 - org);
+          }
+          
+        }
+        System.out.println(minCost);
+    }
+
+    private static long count(long[] nums) {
+      long cnt = 0;
+      long prev = nums[0];
+      long cur = 0;
+      for(int i = 1; i < nums.length; i++) {
+        cur = nums[i] + prev;
+        if(cur * prev < 0) {
+          prev = cur;
+          continue;
+        }
+
+        if(prev > 0) {
+          cnt += cur + 1;
+          prev = -1; 
+        } else {
+          cnt += 1 - cur;
+          prev = 1;
+        }
+      }
+      return cnt;
+    }
+}

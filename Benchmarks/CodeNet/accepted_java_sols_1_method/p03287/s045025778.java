@@ -1,0 +1,35 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class Main{
+
+	public static void main(String[] args) {
+
+
+		Scanner scan = new Scanner(System.in);
+		int N = scan.nextInt();
+		int M = scan.nextInt();
+
+
+		long [] A = new long[N+1];
+
+		for(int i= 1;i < N+1;i++){
+			A[i] = A[i-1]+scan.nextInt();
+		}
+		
+		
+		Map<Long, Long> map = new HashMap<>();
+		for(int i= 0;i<A.length;i++){
+			map.put(A[i]%M, map.getOrDefault(A[i]%M, 0l)+1);
+		}
+		
+		long  result = 0;
+		for(long key:map.keySet()){					//mapのkeyを全て呼び出す
+			long num = map.get(key);
+			result+=(num*(num-1))/2;
+		}	
+		
+		System.out.println(result);
+	}
+}

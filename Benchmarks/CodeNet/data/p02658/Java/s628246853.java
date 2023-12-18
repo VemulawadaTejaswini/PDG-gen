@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+			Scanner sc = new Scanner(System.in);
+			int n = sc.nextInt();
+			Long[] kazu = new Long[n];
+			long jyo =1L;
+			for(int i = 0; i < n; i++) {
+				kazu[i] = sc.nextLong();
+				jyo *= kazu[i];
+			}
+			if(jyo > 1000000000000000000L) {
+				System.out.println("-1");
+			}else {
+			System.out.println(jyo);
+			}
+	}
+
+}

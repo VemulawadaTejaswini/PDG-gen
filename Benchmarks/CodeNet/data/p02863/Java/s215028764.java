@@ -1,0 +1,73 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+
+        int N = in.nextInt();
+        int T = in.nextInt();
+        int[] A = new int[N];
+        int[] B = new int[N];
+        for (int i=0;i<N;i++) {
+            A[i] = in.nextInt();
+            B[i] = in.nextInt();
+        }
+        long[][][] dp = new long[N+1][T+1][2];
+        for (int i=1;i<=N;i++) {
+            for (int j=1;j<=T-1;j++) {
+                if (j-A[i-1]>=0) {
+                    dp[i][j][0]=Math.max(dp[i-1][j][0],dp[i-1][j-A[i-1]][0]+B[i-1]);
+                    dp[i][j][1]=Math.max(dp[i-1][j][1], dp[i-1][j][0]+B[i-1]);
+                    dp[i][j][1]=Math.max(dp[i][j][1], dp[i-1][j-A[i-1]][1]+B[i-1]);
+                } else {
+                    dp[i][j][0]=dp[i-1][j][0];
+                    dp[i][j][1]=Math.max(dp[i-1][j][1], dp[i-1][j][0]+B[i-1]);
+                }
+            }
+        }
+        out.println(dp[N][T-1][1]);
+        out.close();
+    }
+
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+
+    }
+}

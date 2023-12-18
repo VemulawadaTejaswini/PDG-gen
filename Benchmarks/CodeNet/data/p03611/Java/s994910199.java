@@ -1,0 +1,81 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        Scanner in = new Scanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        TaskC solver = new TaskC();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class TaskC {
+        public void solve(int testNumber, Scanner in, PrintWriter out) {
+
+            int N = in.nextInt();
+
+            int max = Integer.MIN_VALUE;
+
+            int a[] = new int[N];
+
+            for (int i = 1; i <= N; i++) {
+                int c = in.nextInt();
+                a[i - 1] = c;
+                if (c > max) {
+                    max = c;
+                }
+            }
+
+            int count[] = new int[max + 2];
+
+            for (int i = 0; i < N; i++) {
+                if (a[i] == 0) {
+                    count[a[i]]++;
+                    count[a[i] + 1]++;
+                } else {
+                    count[a[i] - 1]++;
+                    count[a[i]]++;
+                    count[a[i] + 1]++;
+                }
+            }
+
+            int ans = Integer.MIN_VALUE;
+
+            for (int i = 0; i < max + 2; i++) {
+                if (count[i] > ans) {
+                    ans = count[i];
+                }
+            }
+
+            out.println(ans);
+
+//        int n = in.nextInt();
+//        int[] a = in.nextIntArray(n);
+//        int[] ct = new int[100001];
+//        for (int i = 0; i < n; ++i) {
+//            ct[a[i]]++;
+//        }
+//        n = ct.length;
+//        int max = 0;
+//        for (int i = 0; i < n; ++i) {
+//            int value = ct[i];
+//            if (i - 1 >= 0) value += ct[i - 1];
+//            if (i + 1 < n) value += ct[i + 1];
+//            max = Math.max(max, value);
+//        }
+//        out.println(max);
+        }
+
+    }
+}
+

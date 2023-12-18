@@ -1,0 +1,28 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.math.*;
+ 
+public class Main {
+	public static void main(String[] args)throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		String a = br.readLine();
+		int l = a.length();
+		boolean[] flag = new boolean[27];
+		for(int i = 0; i < 27; i++){
+			flag[i] = true;
+		}
+		for(int i = 0; i < l; i++){
+			char c = a.charAt(i);
+			flag[c-97] = !flag[c-97];
+		}
+		boolean v = true;
+		for(int i = 0; i < 27; i++){
+			v = v && flag[i];
+		}
+		sb.append(v ? "Yes" : "No");
+		System.out.println(sb);
+	}
+}

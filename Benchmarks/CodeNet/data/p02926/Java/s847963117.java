@@ -1,0 +1,850 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
+public class Main {
+    public static void main(String[] args) {
+        FastScanner fsc = new FastScanner();
+        int n = fsc.nextInt();
+        Complex[] c = new Complex[n];
+        for (int i = 0; i < n; i++) {
+            int x = fsc.nextInt();
+            int y = fsc.nextInt();
+            c[i] = new Complex(x, y);
+        }
+        Geometry.argSort(c);
+        double ans = 0;
+        for (int i = 0; i < n; i++) {
+            double x = 0;
+            double y = 0;
+            for (int j = 0; j < n; j++) {
+                if (c[i].theta <= c[j].theta && c[j].theta < c[i].theta + Math.PI) {
+                    x += c[j].x;
+                    y += c[j].y;
+                } else if (c[i].theta <= c[j].theta + 2. * Math.PI && c[j].theta + 2. * Math.PI < c[i].theta + Math.PI) {
+                    x += c[j].x;
+                    y += c[j].y;
+                }
+            }
+            ans = Math.max(ans, Math.sqrt(x * x + y * y));
+        }
+        System.out.println(ans);
+    }
+}
+
+
+class Geometry {
+    private static double PI = Math.PI;
+
+    private Geometry() {
+    }
+
+    public static double innerProduct(Complex u, Complex v) {
+        return u.x * v.x + u.y + v.y;
+    }
+
+    public static double outerProductZ(Complex u, Complex v) {
+        return u.x * v.y - u.y * v.x;
+    }
+
+    public static Complex internalDivision(Complex a, Complex b, int m, int n) {
+        return Complex.div(Complex.add(Complex.mul(a, n), Complex.mul(b, m)), m + n);
+    }
+
+    public static Complex externalDivision(Complex a, Complex b, int m, int n) {
+        return internalDivision(a, b, -m, n);
+    }
+
+    public static Complex pM(Complex a, Complex b) {
+        return Complex.div(Complex.add(a, b), 2.);
+    }
+
+    public static Complex pG(Complex a, Complex b, Complex c) {
+        return new Triangle(a, b, c).pG();
+    }
+
+    public static Complex pH(Complex a, Complex b, Complex c) {
+        return new Triangle(a, b, c).pH();
+    }
+
+    public static Complex pI(Complex a, Complex b, Complex c) {
+        return new Triangle(a, b, c).pI();
+    }
+
+    public static Complex pO(Complex a, Complex b, Complex c) {
+        return new Triangle(a, b, c).pO();
+    }
+
+    public static Complex[] pIabc(Complex a, Complex b, Complex c) {
+        return new Triangle(a, b, c).pIabc();
+    }
+
+    public static double arg(Complex a, Complex b, Complex c) {
+        double arg = c.sub(b).div(a.sub(b)).arg();
+        if (arg < 0) {
+            arg *= -1.;
+        }
+        return arg;
+    }
+
+    public static boolean oneLine(Complex a, Complex b, Complex c) {
+        if (a.equals(b) || b.equals(c) || c.equals(a)) {
+            return true;
+        }
+        double arg = arg(a, b, c);
+        return arg <= Const.DELTA || arg >= PI - Const.DELTA;
+    }
+
+    public static boolean oneLine(Complex[] c) {
+        HashSet<Complex> set = new HashSet<>();
+        for (Complex z : c) {
+            set.add(z);
+        }
+        if (set.size() < 3) {
+            return true;
+        }
+        Iterator<Complex> iter = set.iterator();
+        Complex a = iter.next();
+        Complex b = iter.next();
+        while (iter.hasNext()) {
+            Complex z = iter.next();
+            if (!oneLine(a, b, z)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static Complex crossPoint(Line l1, Line l2) {
+        double p = l1.a * l2.b - l2.a * l1.b;
+        double qx = l1.b * l2.c - l2.b * l1.c;
+        double qy = l2.a * l1.c - l1.a * l2.c;
+        if (Math.abs(p) <= Const.DELTA) {
+            if (Math.abs(qx) <= Const.DELTA && Math.abs(qy) <= Const.DELTA) {
+                return Complex.NaN;
+            } else {
+                return null;
+            }
+        } else {
+            double x = qx / p;
+            double y = qy / p;
+            if (l1.begin.x - Const.DELTA <= x && x <= l1.end.x + Const.DELTA && l2.begin.x - Const.DELTA <= x
+                    && x <= l2.end.x + Const.DELTA) {
+                return new Complex(x, y);
+            } else {
+                return null;
+            }
+        }
+    }
+
+    public static Complex[] crossPoint(Circle c, Line l) {
+        double d = l.a * c.c.x + l.b * c.c.y + l.c;
+        double rt = c.r * c.r - d * d;
+        if (rt < 0) {
+            return new Complex[0];
+        }
+        rt = Math.sqrt(rt);
+        double x1 = -l.a * d + l.b * rt + c.c.x;
+        double x2 = -l.a * d - l.b * rt + c.c.x;
+        double y1 = -l.b * d - l.a * rt + c.c.y;
+        double y2 = -l.b * d + l.a * rt + c.c.y;
+        Complex[] ret = { new Complex(x1, y1), new Complex(x2, y2) };
+        return ret;
+    }
+
+    public static Complex[] crossPoint(Circle c1, Circle c2) {
+        double x = c2.c.x - c1.c.x;
+        double y = c2.c.y - c1.c.y;
+        double xsq = x * x;
+        double ysq = y * y;
+        double r1sq = c1.r * c1.r;
+        double r2sq = c2.r * c2.r;
+        double a = (xsq + ysq + r1sq - r2sq) / 2;
+        double rt = (xsq + ysq) * r1sq - a * a;
+        if (rt < 0) {
+            return new Complex[0];
+        }
+        rt = Math.sqrt(rt);
+        double cx1 = ((a * x) + y * rt) / (xsq + ysq);
+        double cx2 = ((a * x) - y * rt) / (xsq + ysq);
+        double cy1 = ((a * y) - x * rt) / (xsq + ysq);
+        double cy2 = ((a * y) + x * rt) / (xsq + ysq);
+
+        Complex[] ret = { new Complex(cx1 + c1.c.x, cy1 + c1.c.y), new Complex(cx2 + c1.c.x, cy2 + c1.c.y) };
+        return ret;
+    }
+
+    public static void argSort(Complex[] c) {
+        Arrays.sort(c, (w, z) -> Double.compare(w.theta, z.theta));
+    }
+
+    public static ArrayList<Integer> giftWrapping(Complex[] c) {
+        int n = c.length;
+        ArrayList<Integer> convexHull = new ArrayList<>();
+        double maxx = -Const.DINF;
+        double maxy = -Const.DINF;
+        int s = -1;
+        for (int i = 0; i < n; i++) {
+            if (maxx < c[i].x) {
+                maxx = c[i].x;
+                maxy = c[i].y;
+                s = i;
+            } else if (maxx == c[i].x && maxy < c[i].y) {
+                maxy = c[i].y;
+                s = i;
+            }
+        }
+        int a = s;
+        do {
+            convexHull.add(a);
+            int b = 0;
+            for (int i = 1; i < n; i++) {
+                if (b == a) {
+                    b = i;
+                } else {
+                    Complex u = c[b].sub(c[a]);
+                    Complex v = c[i].sub(c[a]);
+                    double op = outerProductZ(u, v);
+                    if (op < 0 || op == 0 && u.r < v.r) {
+                        b = i;
+                    }
+                }
+            }
+            a = b;
+        } while (s != a);
+        return convexHull;
+    }
+}
+
+
+class FastScanner {
+    private final InputStream in = System.in;
+    private final byte[] buffer = new byte[1024];
+    private int ptr = 0;
+    private int buflen = 0;
+
+    private boolean hasNextByte() {
+        if (ptr < buflen) {
+            return true;
+        } else {
+            ptr = 0;
+            try {
+                buflen = in.read(buffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (buflen <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private int readByte() {
+        if (hasNextByte()) {
+            return buffer[ptr++];
+        } else {
+            return -1;
+        }
+    }
+
+    private static boolean isPrintableChar(int c) {
+        return 33 <= c && c <= 126;
+    }
+
+    public boolean hasNext() {
+        while (hasNextByte() && !isPrintableChar(buffer[ptr])) {
+            ptr++;
+        }
+        return hasNextByte();
+    }
+
+    public String next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        StringBuilder sb = new StringBuilder();
+        int b = readByte();
+        while (isPrintableChar(b)) {
+            sb.appendCodePoint(b);
+            b = readByte();
+        }
+        return sb.toString();
+    }
+
+    public long nextLong() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        long n = 0;
+        boolean minus = false;
+        int b = readByte();
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+        if (b < '0' || '9' < b) {
+            throw new NumberFormatException();
+        }
+        while (true) {
+            if ('0' <= b && b <= '9') {
+                n *= 10;
+                n += b - '0';
+            } else if (b == -1 || !isPrintableChar(b)) {
+                return minus ? -n : n;
+            } else {
+                throw new NumberFormatException();
+            }
+            b = readByte();
+        }
+    }
+
+    public int nextInt() {
+        long nl = nextLong();
+        if (nl < Integer.MIN_VALUE || nl > Integer.MAX_VALUE) {
+            throw new NumberFormatException();
+        }
+        return (int) nl;
+    }
+
+    public double nextDouble() {
+        return Double.parseDouble(next());
+    }
+}
+
+class Polygon {
+    public int n;
+    public Complex[] p;
+    public double[] angle;
+    public double[] length;
+
+    public Polygon(Complex... p) {
+        this.n = p.length;
+        this.p = p;
+        this.angle = new double[n];
+        this.length = new double[n];
+        for(int i = 0; i < n; i++) {
+            this.angle[i] = Geometry.arg(this.p[(i - 1 + n) % n], this.p[i], this.p[(i + 1) % n]);
+            this.length[i] = Complex.dist(this.p[i], this.p[(i + 1) % n]);
+        }
+    }
+}
+
+class Circle {
+    public Complex c;
+    public double r;
+
+    public Circle(Complex center, double radius) {
+        this.c = center;
+        this.r = radius;
+    }
+
+    public Circle (double x, double y, double radius) {
+        this(new Complex(x, y), radius);
+    }
+
+    public boolean inon(Complex z) {
+        return Complex.distSq(c, z) <= r * r + Const.LDELTA;
+    }
+
+    public boolean in(Complex z) {
+        return Complex.distSq(c, z) < r * r - Const.LDELTA;
+    }
+
+    public boolean on(Complex z) {
+        return inon(z) && !in(z);
+    }
+}
+
+class Line {
+    // a^2 + b^2 = 1.
+    public double a, b, c;
+    public double t;
+    public double lx, rx, ly, ry;
+    public Complex begin, end;
+
+    public static Line create(Complex a, Complex b, boolean extendA, boolean extendB) {
+        if (a.x > b.x) {
+            return new Line(b, a, extendB, extendA);
+        } else {
+            return new Line(a, b, extendA, extendB);
+        }
+    }
+
+    public double dist(Complex c) {
+        return Math.abs(this.a * c.x + this.b * c.y + this.c);
+    }
+
+    public boolean onLine(Complex c) {
+        return inDomain(c) && Math.abs(this.a * c.x + this.b * c.y + this.c) < Const.DELTA;
+    }
+
+    public boolean inDomain(Complex c) {
+        return c.x >= this.lx && c.x <= this.rx && c.y >= this.ly && c.y <= this.ry;
+    }
+
+    private Line(Complex a, Complex b, boolean extendA, boolean extendB) {
+        this.a = b.y - a.y;
+        this.b = a.x - b.x;
+        this.c = -a.x * b.y + b.x * a.y;
+        double hp = Math.hypot(this.a, this.b);
+        this.a /= hp;
+        this.b /= hp;
+        this.c /= hp;
+        if (a.x == b.x) {
+            this.t = Const.DINF;
+            if (a.y < b.y) {
+                if (!extendA) {
+                    this.begin = a.clone();
+                    this.lx = a.x;
+                    this.ly = a.y;
+                } else {
+                    this.begin = new Complex(this.lx = a.x, this.ly = -Const.DINF);
+                }
+                if (!extendB) {
+                    this.end = b.clone();
+                    this.rx = b.x;
+                    this.ry = b.y;
+                } else {
+                    this.end = new Complex(this.rx = b.x, this.ry = Const.DINF);
+                }
+            }
+        } else {
+            this.t = (b.y - a.y) / (b.x - a.x);
+            if (!extendA) {
+                this.begin = a.clone();
+                this.lx = a.x;
+                this.ly = a.y;
+            } else {
+                if (t > 0) {
+                    if (t >= 1.) {
+                        this.begin = new Complex(this.lx = x(-Const.DINF), this.ly = -Const.DINF);
+                    } else {
+                        this.begin = new Complex(this.lx = -Const.DINF, this.ly = y(-Const.DINF));
+                    }
+                } else {
+                    if (t <= -1.) {
+                        this.begin = new Complex(this.lx = x(Const.DINF), this.ly = Const.DINF);
+                    } else {
+                        this.begin = new Complex(this.lx = -Const.DINF, this.ly = y(-Const.DINF));
+                    }
+                }
+            }
+            if (!extendB) {
+                this.end = b.clone();
+                this.rx = b.x;
+                this.ry = b.y;
+            } else {
+                if (t > 0) {
+                    if (t >= 1.) {
+                        this.begin = new Complex(this.rx = x(Const.DINF), this.ry = Const.DINF);
+                    } else {
+                        this.begin = new Complex(this.rx = Const.DINF, this.ry = y(Const.DINF));
+                    }
+                } else {
+                    if (t <= -1.) {
+                        this.begin = new Complex(this.rx = x(-Const.DINF), this.ry = -Const.DINF);
+                    } else {
+                        this.begin = new Complex(this.rx = Const.DINF, this.ry = y(Const.DINF));
+                    }
+                }
+            }
+        }
+    }
+
+    private double x(double y) {
+        return - (b * y + c) / a;
+    }
+
+    private double y(double x) {
+        return - (a * x + c) / b;
+    }
+}
+
+
+class Complex implements Cloneable {
+    public static final double PI = Math.PI;
+    public static final double E = Math.E;
+    public static final Complex ZERO = new Complex(0, 0);
+    public static final Complex ONE = new Complex(1, 0);
+    public static final Complex I = new Complex(0, 1);
+    public static final Complex NaN = new Complex(Double.NaN, Double.NaN);
+
+    public double x;
+    public double y;
+    public double r;
+    public double theta;
+
+    public Complex(double x, double y) {
+        this.x = x;
+        this.y = y;
+        this.r = Math.sqrt(x * x + y * y);
+        this.theta = Math.atan2(y, x);
+    }
+
+    public Complex(double r, double theta, boolean radian) {
+        this.r = r;
+        if (radian) {
+            this.theta = theta;
+        } else {
+            this.theta = Math.toRadians(theta);
+        }
+        this.x = this.r * Math.cos(this.theta);
+        this.y = this.r * Math.sin(this.theta);
+    }
+
+    public Complex(double theta, boolean radian) {
+        this(1., theta, radian);
+    }
+
+    public double re() {
+        return x;
+    }
+
+    public double im() {
+        return y;
+    }
+
+    public double abs() {
+        return r;
+    }
+
+    public double arg() {
+        return theta;
+    }
+
+    public Complex conj() {
+        return new Complex(x, -y);
+    }
+
+    public double sin() {
+        return Math.sin(arg());
+    }
+
+    public double cos() {
+        return Math.cos(arg());
+    }
+
+    public double tan() {
+        return Math.tan(arg());
+    }
+
+    public Complex rot(double phi, boolean radian) {
+        return new Complex(r, theta + (radian ? phi : Math.toRadians(phi)), true);
+    }
+
+    public Complex exp(int n) {
+        return new Complex(Math.pow(r, n), theta * n, true);
+    }
+
+    public double dist(Complex c) {
+        return abs(this.sub(c));
+    }
+
+    public double distSq(Complex c) {
+        return (c.x - x) * (c.x - x) + (c.y - y) * (c.y - y);
+    }
+
+    public Complex add(Complex c) {
+        return new Complex(x + c.x, y + c.y);
+    }
+
+    public Complex sub(Complex c) {
+        return new Complex(x - c.x, y - c.y);
+    }
+
+    public Complex mul(Complex c) {
+        return new Complex(x * c.x - y * c.y, x * c.y + y * c.x);
+    }
+
+    public Complex div(Complex c) {
+        double retx, rety;
+        if (c.equals(ZERO)) {
+            if (x > 0) {
+                retx = Double.POSITIVE_INFINITY;
+            } else if (x < 0) {
+                retx = Double.NEGATIVE_INFINITY;
+            } else {
+                retx = Double.NaN;
+            }
+            if (y > 0) {
+                rety = Double.POSITIVE_INFINITY;
+            } else if (y < 0) {
+                rety = Double.NEGATIVE_INFINITY;
+            } else {
+                rety = Double.NaN;
+            }
+            return new Complex(retx, rety);
+        }
+        return mul(div(this, c.r), new Complex(-c.theta, true));
+    }
+
+    public Complex add(double r) {
+        return new Complex(x + r, y);
+    }
+
+    public Complex sub(double r) {
+        return new Complex(x - r, y);
+    }
+
+    public Complex mul(double r) {
+        return new Complex(x * r, y * r);
+    }
+
+    public Complex div(double r) {
+        return new Complex(x / r, y / r);
+    }
+
+    public static Complex conj(Complex c) {
+        return c.conj();
+    }
+
+    public static double re(Complex c) {
+        return c.re();
+    }
+
+    public static double im(Complex c) {
+        return c.im();
+    }
+
+    public static double abs(Complex c) {
+        return c.abs();
+    }
+
+    public static double arg(Complex c) {
+        return c.arg();
+    }
+
+    public static double sin(Complex c) {
+        return c.sin();
+    }
+
+    public static double cos(Complex c) {
+        return c.cos();
+    }
+
+    public static double tan(Complex c) {
+        return c.tan();
+    }
+
+    public static Complex rot(Complex c, double phi, boolean radian) {
+        return c.rot(phi, radian);
+    }
+
+    public static Complex exp(Complex c, int n) {
+        return c.exp(n);
+    }
+
+    public static double dist(Complex a, Complex b) {
+        return a.dist(b);
+    }
+
+    public static double distSq(Complex a, Complex b) {
+        return a.distSq(b);
+    }
+
+    public static Complex[] nthRoot(int n) {
+        Complex[] ret = new Complex[n];
+        for (int i = 0; i < n; i++) {
+            ret[i] = new Complex(2. * PI * i / n, true);
+        }
+        return ret;
+    }
+
+    public static Complex add(Complex... c) {
+        Complex ret = ZERO;
+        for (Complex b : c) {
+            ret = ret.add(b);
+        }
+        return ret;
+    }
+
+    public static Complex sub(Complex a, Complex b) {
+        return a.sub(b);
+    }
+
+    public static Complex mul(Complex... c) {
+        Complex ret = ONE;
+        for (Complex b : c) {
+            ret = ret.mul(b);
+        }
+        return ret;
+    }
+
+    public static Complex div(Complex a, Complex b) {
+        return a.div(b);
+    }
+
+    public static Complex add(double r, Complex... c) {
+        return add(c).add(r);
+    }
+
+    public static Complex add(Complex c, double r) {
+        return c.add(r);
+    }
+
+    public static Complex sub(Complex a, double r) {
+        return a.sub(r);
+    }
+
+    public static Complex mul(double r, Complex... c) {
+        return mul(c).mul(r);
+    }
+
+    public static Complex mul(Complex c, double r) {
+        return c.mul(r);
+    }
+
+    public static Complex div(Complex a, double r) {
+        return a.div(r);
+    }
+
+    public boolean isNaN() {
+        return Double.isNaN(x) || Double.isNaN(y);
+    }
+
+    private Complex(double x, double y, double r, double theta) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.theta = theta;
+    }
+
+    @Override
+    public Complex clone() {
+        return new Complex(this.x, this.y, this.r, this.theta);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else if (o instanceof Complex) {
+            Complex c = (Complex) o;
+            if (c.x == this.x && c.y == this.y && c.r == this.r && c.theta == this.theta) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, r, theta);
+    }
+
+    @Override
+    public String toString() {
+        return "Re: " + x + ", Im: " + y + ", Radius: " + r + ", Argument: " + theta;
+    }
+}
+
+class Const {
+    public static final long MOD7 = 1_000_000_007;
+    public static final long MOD9 = 1_000_000_009;
+    public static final long MOD99 = 998_244_353;
+
+    public static final long LINF = 1_000_000_000_000_000_000l;
+    public static final int IINF = 1_000_000_000;
+    public static final double DINF = 1e150;
+
+    public static final double DELTA = 0.000_000_000_1;
+    public static final double LDELTA = 0.000_001;
+
+    public static final String YES = "YES";
+    public static final String NO = "NO";
+    public static final String Yes = "Yes";
+    public static final String No = "No";
+    public static final String POSSIBLE = "POSSIBLE";
+    public static final String IMPOSSIBLE = "IMPOSSIBLE";
+    public static final String Possible = "Possible";
+    public static final String Impossible = "Impossible";
+
+    public static final int[] dx8 = {1, 0, -1, 0, 1, -1, -1, 1};
+    public static final int[] dy8 = {0, 1, 0, -1, 1, 1, -1, -1};
+    public static final int[] dx = {1, 0, -1, 0};
+    public static final int[] dy = {0, 1, 0, -1};
+
+    public static long MOD = MOD7;
+
+    public static void setMod(long mod) {
+        MOD = mod;
+    }
+
+    private Const(){}
+}
+
+class Triangle extends Polygon {
+    public Triangle(Complex a, Complex b, Complex c) {
+        super(a, b, c);
+        double tmp = length[0];
+        length[0] = length[1];
+        length[1] = length[2];
+        length[2] = tmp;
+    }
+
+    public Complex pG() {
+        if (!isTriangle()) {
+            return null;
+        }
+        return Complex.div(Complex.add(p), 3.);
+    }
+
+    public Complex pH() {
+        if (!isTriangle()) {
+            return null;
+        }
+        Complex pO = pO();
+        return Complex.add(Complex.sub(p[0], pO), Complex.sub(p[1], pO), Complex.sub(p[2], pO), pO);
+    }
+
+    public Complex pI() {
+        if (!isTriangle()) {
+            return null;
+        }
+        double la = Complex.dist(p[1], p[2]);
+        double lb = Complex.dist(p[2], p[0]);
+        double lc = Complex.dist(p[0], p[1]);
+        return Complex.div(Complex.add(Complex.mul(p[0], la), Complex.mul(p[1], lb), Complex.mul(p[2], lc)), la + lb + lc);
+    }
+
+    public Complex pO() {
+        if (!isTriangle()) {
+            return null;
+        }
+        double la = Complex.distSq(p[1], p[2]);
+        double lb = Complex.distSq(p[2], p[0]);
+        double lc = Complex.distSq(p[0], p[1]);
+        double sa = la * (lb + lc - la);
+        double sb = lb * (lc + la - lb);
+        double sc = lc * (la + lb - lc);
+        return Complex.div(Complex.add(Complex.mul(p[0], sa), Complex.mul(p[1], sb), Complex.mul(p[2], sc)), sa + sb + sc);
+    }
+
+    public Complex[] pIabc() {
+        if (!isTriangle()) {
+            return null;
+        }
+        Complex[] pIabc = new Complex[3];
+        pIabc[0] = Geometry.pI(Complex.mul(p[0], -1.), p[1], p[2]);
+        pIabc[1] = Geometry.pI(p[0], Complex.mul(p[1], -1.), p[2]);
+        pIabc[2] = Geometry.pI(p[0], p[1], Complex.mul(p[2], -1.));
+        return pIabc;
+    }
+
+    public boolean isTriangle() {
+        return !Geometry.oneLine(p[0], p[1], p[2]);
+    }
+
+    public double area() {
+        return Math.abs(((p[0].x - p[2].x) * (p[1].y - p[2].y) - (p[1].x - p[2].x) * (p[0].y - p[2].y))/2.);
+    }
+}

@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		new Main().solve();
+	}
+	
+	void solve(){
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int[] a=new int[n];
+		for(int i=0;i<n;i++){
+			a[i]=sc.nextInt();
+		}
+		int[]b=new int[n];
+		for(int i=0;i<n;i++){
+			b[i]=check(a[i]);
+		}
+		int count2=0;
+		int count1=0;
+		int count0=0;
+		for(int i=0;i<n;i++){
+			if(b[i]==2)count2++;
+			else if(b[i]==1)count1++;
+			else if(b[i]==0)count0++;
+		}
+		if(count1==0){
+			if(count2>=count0-1){
+				System.out.println("Yes");
+			}else{
+				System.out.println("No");
+			}
+		}
+		else{
+			if(count2>=count0){
+				System.out.println("Yes");
+			}else{
+				System.out.println("No");
+			}
+		}
+	}
+	int check(int n){
+		int ret=0;
+		while(true){
+			if(ret>=2){
+				return ret;
+			}
+			if(n%2==0){
+				n/=2;
+				ret++;
+			}else{
+				break;
+			}
+		}
+		return ret;
+	}
+}

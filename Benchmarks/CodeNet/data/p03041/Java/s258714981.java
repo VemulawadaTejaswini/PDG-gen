@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
+public class Main
+{
+	public static void main(String args[]) throws java.lang.Exception,FileNotFoundException
+	{
+		Scanner sc = new Scanner(System.in);
+
+		// PrintStream obj = new PrintStream(new File("Output.txt"));
+		// System.setOut(obj);
+
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+
+		String S = sc.next();
+
+		StringBuffer str = new StringBuffer(S);
+
+		int index = K - 1;
+
+		for(int i = 0;i<N;i++)
+		{
+			Character c = S.charAt(i);
+
+			if(i == index)
+			{
+				str.replace(i,i+1,Character.toLowerCase(c)+"");
+			}
+		}
+		
+		sc.close();
+		System.out.flush();
+	}
+}

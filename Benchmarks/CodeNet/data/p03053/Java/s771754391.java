@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int H = sc.nextInt();
+		int W = sc.nextInt();
+		
+		String[] A = new String[H + 1];
+		
+		for(int i = 1; i <= H; i++) {
+			A[i] = sc.next();
+			
+		}
+		
+		String[][] a = new String[H + 2][W + 2];
+		int[][] b = new int[H + 2][W + 2];
+		
+		for(int i = 1; i <= H; i++) {
+			for(int j = 1; j <= W; j++) {
+				a[i][j] = A[i].substring(j - 1, j);
+				if(a[i][j].equals("#")) {
+					b[i][j] = 1;
+				}
+			}
+		}
+		
+		int count = 0;
+		for(int i = 1; i <= H; i++) {
+			for(int j = 1; j <= W; j++) {
+				if(b[i][j] == 1) {
+					count++;
+				}
+			}
+		}		
+		
+		int x = 2;	
+	
+		while(count != H * W) {
+			count = 0;
+			int y = x - 1;
+			for(int i = 1; i <= H; i++) {
+				for(int j = 1; j <= W; j++) {
+					if(b[i][j] == y) {
+						b[i][j] = x;
+						if(j > 1 && b[i][j - 1] != y) {
+							b[i][j - 1] = x;
+						}
+						if(i > 1 && b[i - 1][j] != y) {
+							b[i - 1][j] = x;
+						}
+						if(j < W && b[i][j + 1] != y) {
+							b[i][j + 1] = x;
+						}
+						if(i < H && b[i + 1][j] != y) {
+							b[i + 1][j] = x;
+						}
+					}	
+				}	
+			}
+			
+			for(int i = 1; i <= H; i++) {
+				for(int j = 1; j <= W; j++) {
+					if(b[i][j] == x) {
+						count++;
+					}
+				}
+			}
+			x++;
+		}
+		System.out.println(x - 2);
+	}
+}

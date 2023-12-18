@@ -1,0 +1,13 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        int[] group = {-1,0,2,0,1,0,1,0,0,1,0,1,0};
+        if(group[x]==group[y])System.out.println("Yes");
+        else System.out.println("No");
+    }
+}

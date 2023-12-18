@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
+    	Scanner sc = new Scanner(System.in);
+      int n = sc.nextInt();
+      long m = 0;
+      long a = 0;
+      long r = 0;
+      long c = 0;
+      long h = 0;
+      for(int i = 0;i < n;i++){
+      	String fi = sc.next().substring(0,1);
+        if(fi.equals("M"))m++;
+        else if(fi.equals("A"))a++;
+        else if(fi.equals("R"))r++;
+        else if(fi.equals("C"))c++;
+        else if(fi.equals("H"))h++;
+      }
+      long sum = m*a*r+m*a*c+m*a*h+m*r*c+m*r*h+m*c*h+a*r*c+a*r*h+a*c*h+r*c*h;
+      System.out.println(sum);
+    }
+}

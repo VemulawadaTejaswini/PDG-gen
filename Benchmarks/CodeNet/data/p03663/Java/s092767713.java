@@ -1,0 +1,58 @@
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		new Main().run();
+	}
+
+	public void run() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("? " + (long) 1e10);
+		String s = sc.next();
+		if (s.equals("Y")) {
+			int cnt = 0;
+			while (true) {
+				System.out.println("? " + (long) (2 * Math.pow(10, cnt)));
+				s = sc.next();
+				if (s.equals("Y")) {
+					System.out.println("! " + (long) Math.pow(10, cnt));
+					return;
+				}
+				++cnt;
+			}
+		} else {
+
+			int cnt = 10;
+			while (true) {
+				System.out.println("? " + (long) Math.pow(10, cnt));
+				s = sc.next();
+				if (s.equals("Y")) {
+					break;
+				}
+				--cnt;
+			}
+			// cnt+1桁
+			int left = (int) Math.pow(10, cnt);
+			int right = (int) Math.pow(10, cnt + 1) - 1;
+			// (left,right]の範囲
+			while (right - left > 1) {
+				int middle = (right + left) / 2;
+				tr(left, right, middle);
+				System.out.println("? " + middle * 10);
+				s = sc.next();
+				if (s.equals("Y")) {
+					right = middle;
+				} else {
+					left = middle;
+				}
+			}
+			System.out.println("! " + right);
+		}
+	}
+
+	void tr(Object... objects) {
+		System.out.println(Arrays.deepToString(objects));
+	}
+}

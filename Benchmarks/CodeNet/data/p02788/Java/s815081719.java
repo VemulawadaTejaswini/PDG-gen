@@ -1,0 +1,292 @@
+
+import java.io.*;
+import java.math.BigInteger;
+import java.util.*;
+
+public class Main {
+
+	static long sx = 0, sy = 0, m = (long) (1e9 + 7);
+
+	static ArrayList<Integer>[] a;
+	static int[] fa;
+
+	static boolean b = true;
+	static HashMap<Long, Integer> hm = new HashMap<>();
+	static ArrayList<Integer> p = new ArrayList<>();
+
+	public static void main(String[] args) throws IOException {
+
+		Reader scn = new Reader();
+
+		int n = scn.nextInt(), d = scn.nextInt(), a = scn.nextInt();
+
+		ArrayList<pair> p = new ArrayList<>();
+
+		fa = new int[n + 5];
+
+		for (int i = 0; i < n; i++) {
+
+			p.add(new pair(scn.nextInt(), scn.nextInt()));
+		}
+
+		Collections.sort(p);
+
+		long ans = 0;
+
+		for (int i = p.size() - 1; i >= 0; i--) {
+
+			int cleft = ceilleft(p, p.get(i).x - d, d);
+			int cright = floorright(p, p.get(i).x + d, d);
+
+			int avail = prefixsum(cright) - prefixsum(cleft - 1);
+
+			int req = (int) Math.ceil(p.get(i).h / (double) a);
+
+			int val = Math.max(req - avail, 0);
+			ans += val;
+
+			update(cleft, val);
+		}
+
+		System.out.println(ans);
+	}
+
+	public static int ceilleft(ArrayList<pair> p, int val, int d) {
+
+		if (val <= p.get(0).x + d)
+			return 0;
+
+		int lo = 0, hi = p.size() - 1;
+
+		int ans = 0;
+
+		while (lo <= hi) {
+
+			int mid = (lo + hi) / 2;
+
+			if (p.get(mid).x + d >= val) {
+				ans = mid;
+				hi = mid - 1;
+			}
+
+			else
+				lo = mid + 1;
+		}
+
+		return ans;
+
+	}
+
+	public static int floorright(ArrayList<pair> p, int val, int d) {
+
+		if (val >= p.get(p.size() - 1).x - d)
+			return p.size() - 1;
+
+		int lo = 0, hi = p.size() - 1;
+
+		int ans = 0;
+
+		while (lo <= hi) {
+
+			int mid = (lo + hi) / 2;
+
+			if (p.get(mid).x - d <= val) {
+				ans = mid;
+				lo = mid + 1;
+			}
+
+			else
+				hi = mid - 1;
+		}
+
+		return ans;
+
+	}
+
+	public static void update(int i, int delta) {
+		i++;
+		while (i < fa.length) {
+			fa[i] += delta;
+			i += i & (-i);
+		}
+
+	}
+
+	private static int prefixsum(int i) {
+		int sum = 0;
+		i++;
+		while (i > 0) {
+			sum += fa[i];
+			i -= i & (-i);
+		}
+		return sum;
+	}
+
+	// _________________________TEMPLATE_____________________________________________________________
+
+	// private static int gcd(int a, int b) {
+	// if(a== 0)
+	// return b;
+	//
+	// return gcd(b%a,a);
+	// }
+
+	// static class comp implements Comparator<pair> {
+	//
+	// @Override
+	// public int compare(pair o1, pair o2) {
+	//
+	// return (int) (o1.y - o1.y);
+	// }
+	//
+	// }
+
+	private static class pair implements Comparable<pair> {
+		int x;
+		int h;
+
+		pair(int a, int b) {
+			x = a;
+			h = b;
+		}
+
+		@Override
+		public int compareTo(pair o) {
+			return this.x - o.x;
+		}
+
+	}
+
+	public static class Reader {
+		final private int BUFFER_SIZE = 1 << 16;
+		private DataInputStream din;
+		private byte[] buffer;
+		private int bufferPointer, bytesRead;
+
+		public Reader() {
+			din = new DataInputStream(System.in);
+			buffer = new byte[BUFFER_SIZE];
+			bufferPointer = bytesRead = 0;
+		}
+
+		public Reader(String file_name) throws IOException {
+			din = new DataInputStream(new FileInputStream(file_name));
+			buffer = new byte[BUFFER_SIZE];
+			bufferPointer = bytesRead = 0;
+		}
+
+		public String readLine() throws IOException {
+			byte[] buf = new byte[100000 + 1]; // line length
+			int cnt = 0, c;
+			while ((c = read()) != -1) {
+				if (c == '\n')
+					break;
+				buf[cnt++] = (byte) c;
+			}
+			return new String(buf, 0, cnt);
+		}
+
+		public int nextInt() throws IOException {
+			int ret = 0;
+			byte c = read();
+			while (c <= ' ')
+				c = read();
+			boolean neg = (c == '-');
+			if (neg)
+				c = read();
+			do {
+				ret = ret * 10 + c - '0';
+			} while ((c = read()) >= '0' && c <= '9');
+
+			if (neg)
+				return -ret;
+			return ret;
+		}
+
+		public long nextLong() throws IOException {
+			long ret = 0;
+			byte c = read();
+			while (c <= ' ')
+				c = read();
+			boolean neg = (c == '-');
+			if (neg)
+				c = read();
+			do {
+				ret = ret * 10 + c - '0';
+			} while ((c = read()) >= '0' && c <= '9');
+			if (neg)
+				return -ret;
+			return ret;
+		}
+
+		public double nextDouble() throws IOException {
+			double ret = 0, div = 1;
+			byte c = read();
+			while (c <= ' ')
+				c = read();
+			boolean neg = (c == '-');
+			if (neg)
+				c = read();
+
+			do {
+				ret = ret * 10 + c - '0';
+			} while ((c = read()) >= '0' && c <= '9');
+
+			if (c == '.') {
+				while ((c = read()) >= '0' && c <= '9') {
+					ret += (c - '0') / (div *= 10);
+				}
+			}
+
+			if (neg)
+				return -ret;
+			return ret;
+		}
+
+		private void fillBuffer() throws IOException {
+			bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);
+			if (bytesRead == -1)
+				buffer[0] = -1;
+		}
+
+		private byte read() throws IOException {
+			if (bufferPointer == bytesRead)
+				fillBuffer();
+			return buffer[bufferPointer++];
+		}
+
+		public void close() throws IOException {
+			if (din == null)
+				return;
+			din.close();
+		}
+
+		public int[] nextIntArray(int n) throws IOException {
+			int[] arr = new int[n];
+			for (int i = 0; i < n; i++) {
+				arr[i] = nextInt();
+			}
+			return arr;
+		}
+
+		public long[] nextLongArray(int n) throws IOException {
+			long[] arr = new long[n];
+			for (int i = 0; i < n; i++) {
+				arr[i] = nextLong();
+			}
+			return arr;
+		}
+
+		public int[][] nextInt2DArray(int m, int n) throws IOException {
+			int[][] arr = new int[m][n];
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++)
+					arr[i][j] = nextInt();
+			}
+			return arr;
+		}
+		// kickstart - Solution
+		// atcoder - Main
+	}
+
+}

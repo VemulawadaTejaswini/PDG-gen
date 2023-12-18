@@ -1,0 +1,50 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+    void run() {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            int n = sc.nextInt();
+            if (n == 0)
+                break;
+            Map<String, Integer> price = new HashMap<String, Integer>();
+            String[] item = new String[n];
+            for (int i = 0; i < n; i++) {
+                price.put(item[i] = sc.next(), sc.nextInt());
+            }
+            int m = sc.nextInt();
+            Map<String, String[]> rs = new HashMap<String, String[]>();
+            for (int i = 0; i < m; i++) {
+                String o = sc.next();
+                int k = sc.nextInt();
+                String[] list = new String[k];
+                for (int j = 0; j < k; j++) {
+                    list[j] = sc.next();
+                }
+                rs.put(o, list);
+            }
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (!rs.containsKey(item[j])) {
+                        continue;
+                    }
+                    String list[] = rs.get(item[j]);
+                    int sum = 0;
+                    for (String name : list) {
+                        sum += price.get(name);
+                    }
+                    price.put(item[j], Math.min(price.get(item[j]), sum));
+                }
+            }
+            String ord = sc.next();
+            System.out.println(price.get(ord));
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        new Main().run();
+    }
+}

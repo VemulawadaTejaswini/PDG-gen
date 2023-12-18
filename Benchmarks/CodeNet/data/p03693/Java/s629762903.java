@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Main {    
+    
+    public static void main(String[] args){
+        
+        Scanner sc = new Scanner(System.in);                
+        
+        String S = sc.nextLine();
+        
+        System.out.println(S);
+        
+        String[] array2 = S.split(" ");               
+        
+        System.out.println((Integer.parseInt(array2[0] + array2[1] + array2[2])%4 == 0)?"YES":"NO");
+        
+    }                                      
+}

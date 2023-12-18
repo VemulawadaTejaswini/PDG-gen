@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int a[] = new int[n];
+        boolean error = false;
+        for(int i=0;i<m;i++){
+            int s = sc.nextInt();
+            int c = sc.nextInt();
+            if(a[s-1] == 0 ||a[s-1] == c){
+                a[s-1] = c;
+            }else{
+                error = true;
+                break;
+            }
+        }
+
+        if(error){
+            System.out.println(-1);
+            return;
+        }
+        if(a[a.length-1]==0 && n!=1){
+            a[a.length-1]=1;
+        }
+        String ans = "";
+        for(int i=0;a.length>i;i++){
+            ans += a[i];
+        }
+        System.out.println(ans);
+    }
+}

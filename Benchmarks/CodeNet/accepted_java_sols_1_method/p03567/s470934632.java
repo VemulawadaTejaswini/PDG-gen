@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+
+class Main{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s=sc.next();
+		for(int i=0;i<s.length()-1;i++){
+			if(s.substring(i,i+2).equals("AC")){
+				System.out.println("Yes");
+				return;
+			}
+		}
+		System.out.println("No");
+	}
+
+}

@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class a{
+        public  static void main(String[] args){
+                calc();
+        }
+        static int calc(){
+                Scanner sc = new Scanner(System.in);
+                int a=sc.nextInt();
+                int b=sc.nextInt();
+                int c,d;
+                if((a+b)%2==0){
+                        c=(a+b)/2;
+                        if(c>0){
+                        return c;
+                        }else{
+                                d =c*(-1);
+                                return d;
+                        }
+                }else{
+                        System.out.println("IMPOSSIBLE");
+                }
+                return 0;
+        }
+}

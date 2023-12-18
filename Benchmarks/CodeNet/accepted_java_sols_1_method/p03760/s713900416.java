@@ -1,0 +1,20 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        String[] a = line.split("");
+        line = br.readLine();
+        String[] b = line.split("");
+        String r = "";
+        for(int i = 0; i < b.length; i++) {
+            r = r + a[i] + b[i];
+        }
+        if(a.length != b.length) {
+            r = r + a[a.length - 1];
+        }
+        System.out.println(r);
+    }
+}

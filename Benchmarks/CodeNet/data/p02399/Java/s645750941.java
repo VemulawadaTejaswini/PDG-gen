@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	public static void main(String [] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		long a = sc.nextlong();
+		long b = sc.nextlong();
+		
+		long one = a / b;
+		long two = a % b;
+
+float x = a;
+float y = b;
+
+		float three = x / y;
+		
+		System.out.println(one + " " + two + " " + three);
+
+		
+				
+	}
+}
+

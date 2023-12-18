@@ -1,0 +1,11 @@
+import java.util.Scanner;
+class Restaurant {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int in = scan.nextInt();
+		System.out.println(in * 800 - (in/15)*200);
+		scan.close();
+	}
+
+}

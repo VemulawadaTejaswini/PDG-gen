@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner scan = new Scanner(System.in);
+		String A =scan.next();
+		String B =scan.next();
+		int a = 0;
+		int b = 0;
+		int count=0;
+		
+		if(A.length()>B.length()){
+			System.out.println("GREATER");
+			System.exit(0);
+		}else if (B.length()>A.length()){
+			System.out.println("LESS");
+			System.exit(0);
+		}else if(A.length()==B.length()){
+			for(int i =0;i<A.length();i++){
+				a= Character.getNumericValue(A.charAt(i));
+				b= Character.getNumericValue(B.charAt(i));
+				if(a>b){
+					System.out.println("GREATER");
+					System.exit(0);
+				}else if(b>a){
+					System.out.println("LESS");
+					System.exit(0);
+				}else{
+					count++;
+					if(count==A.length()){
+						System.out.println("EQUAL");
+					}
+				}
+			}
+		}

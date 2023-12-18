@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int N=sc.nextInt();
+		int Q=sc.nextInt();
+		String s=sc.next();
+		char[] ch=s.toCharArray();
+		for(int i=0;i<Q;i++){
+			int counter=0;
+			int a=sc.nextInt();
+			int b=sc.nextInt();
+			for(int j=a;j<b&&j<N;j++){
+				if(ch[j-1]!='A')continue;
+				if(ch[j]=='C')counter++;
+			}
+			ret[i]=counter;
+		}
+		for(int i=0;i<Q;i++)System.out.println(ret[i]);
+		sc.close();
+	}
+}

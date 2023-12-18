@@ -1,0 +1,26 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	static int[] mountains = new int[10];
+	static Scanner sc = new Scanner(System.in);
+
+
+	public static void main(String[] args) {
+
+		//10?????\?????????????????\??????
+		for(int count = 0; count < 10; count++) {
+			mountains[count] = sc.nextInt();
+		}
+
+		//???????????????
+		Arrays.sort(mountains);
+
+		//??¨?????????
+		System.out.println(mountains[9]);
+		System.out.println(mountains[8]);
+		System.out.println(mountains[7]);
+
+	}
+
+}

@@ -1,0 +1,18 @@
+import java.util.*;
+public class Main {
+	
+	private static List<String> hateList = new ArrayList<String>();
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String in = sc.nextLine();
+		int seito = Integer.parseInt(in);
+		int count = 0;
+		for (int i = 1;i <= seito; i++){
+			count = count + i;
+		}
+		System.out.println(count);
+
+	}
+ 
+}

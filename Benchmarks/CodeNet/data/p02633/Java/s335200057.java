@@ -1,0 +1,1 @@
+class Main{public static void main(String[] a){int n=new java.util.Scanner(System.in).nextInt();for(;;){n+=n;if(n%360==0)break;}System.out.println(n);}}

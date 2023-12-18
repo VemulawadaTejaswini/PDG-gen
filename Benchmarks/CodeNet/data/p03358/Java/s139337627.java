@@ -1,0 +1,147 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.TreeMap;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ *
+ * @author kessido
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        FMonochromeCat solver = new FMonochromeCat();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class FMonochromeCat {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int n = in.NextInt();
+            Node[] nodes = new Node[n];
+            for (int i = 0; i < n; i++) {
+                nodes[i] = new Node(i);
+            }
+            for (int i = 0; i < n - 1; i++) {
+                int u = in.NextInt() - 1;
+                int v = in.NextInt() - 1;
+                nodes[u].edges.add(nodes[v]);
+                nodes[v].edges.add(nodes[u]);
+            }
+            char[] colors = in.next().toCharArray();
+            for (int i = 0; i < n; i++) {
+                nodes[i].isWhite = colors[i] == 'W' ? 1 : 0;
+            }
+
+            long res = Long.MAX_VALUE;
+            for (Node node : nodes) res = Math.min(res, node.calculateCostWhenStartingHere(null, false));
+            out.println(res);
+        }
+
+        class Node implements Comparable<Node> {
+            int index;
+            ArrayList<Node> edges = new ArrayList<>();
+            int isWhite;
+            ArrayList<TreeMap<Node, Long>> costWithReturn = new ArrayList<>();
+            ArrayList<TreeMap<Node, Long>> costWithoutReturn = new ArrayList<>();
+
+            public Node(int index) {
+                this.index = index;
+                costWithReturn.add(new TreeMap<>());
+                costWithReturn.add(new TreeMap<>());
+                costWithoutReturn.add(new TreeMap<>());
+                costWithoutReturn.add(new TreeMap<>());
+            }
+
+
+            public int compareTo(Node o) {
+                return Integer.compare(index, o.index);
+            }
+
+            public long calculateCostWhenStartingHere(Node parent, boolean shouldReturn) {
+                TreeMap<Node, Long> toCheck = shouldReturn ? costWithReturn.get(isWhite) : costWithoutReturn.get(isWhite);
+                {
+                    if (parent != null) {
+                        Long res = toCheck.get(parent);
+                        if (res != null) return res;
+                    }
+                }
+
+                int isWhite = this.isWhite;
+                long sum = 0;
+                for (Node node : edges) {
+                    if (node != parent) {
+                        if (node.calculateCostWhenStartingHere(this, true) == 0) continue;
+                        node.isWhite ^= 1;
+                        sum += node.calculateCostWhenStartingHere(this, true) + 2;
+                        node.isWhite ^= 1;
+                        isWhite ^= 1;
+                    }
+                }
+                long res = sum;
+                if (isWhite == 1) res++;
+                if (!shouldReturn) {
+                    isWhite ^= 1;
+                    for (Node node : edges) {
+                        if (node != parent) {
+                            if (node.calculateCostWhenStartingHere(this, true) == 0) continue;
+                            long currentRes = sum;
+
+                            node.isWhite ^= 1;
+                            currentRes -= node.calculateCostWhenStartingHere(this, true) + 2;
+                            currentRes += node.calculateCostWhenStartingHere(this, false) + 1;
+                            node.isWhite ^= 1;
+
+                            if (isWhite == 1) currentRes++;
+                            res = Math.min(currentRes, res);
+                        }
+                    }
+                }
+                if (parent != null)
+                    toCheck.put(parent, res);
+                return res;
+            }
+
+        }
+
+    }
+
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine(), " \t\n\r\f,");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int NextInt() {
+            return Integer.parseInt(next());
+        }
+
+    }
+}
+

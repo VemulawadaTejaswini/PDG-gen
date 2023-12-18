@@ -1,0 +1,25 @@
+public class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		int[] d = {a,b,c};
+		if(d[0] > d[1]){
+			int e = d[0];
+			d[0] = d[1];
+			d[1] = e;
+		}
+		if(d[1] > d[2]){
+			int f = d[1];
+			d[1] = d[2];
+			d[2] = f;
+		}
+		if(d[0] > d[1]){
+			int e = d[0];
+			d[0] = d[1];
+			d[1] = e;
+		}
+		System.out.println(d[0] + " " + d[1] + " " + d[2]);
+	}
+}

@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[] a){new Main();}public Main(){for(int i=0,e=2;i<168;i++){for(;p(e)<1; e++);p[i]=e++;}for(Scanner s=new Scanner(System.in);s.hasNext();){int c=0;for(int n=s.nextInt();n>1;)c+=p(n--)>0?1:0;System.out.println(c);}}int p(int n){for(int e:p)if(e>0&&n!=e&&n%e<1)return 0;return 1;}int[]p=new int[168];}

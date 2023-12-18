@@ -1,0 +1,14 @@
+import java.util.Scanner;
+ 
+class Main{
+	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		while(sc.hasNext()){
+			int a=input.nextInt(); if(a==1) a+=13;
+			int b=input.nextInt(); if(b==1) b+=13;
+			if(a>b) System.out.println("Alice");
+			else if(a<b) System.out.println("Bob");
+			else System.out.println("Draw");
+		}
+	}
+}

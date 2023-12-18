@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class Main {
+
+    private static long[][] dp;
+    private static int[] w;
+    private static int[] v;
+
+    public static void main( String[] args ) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        long w1 = sc.nextLong();
+
+        dp = new long[n + 1][(int)w1];
+        w = new int[n + 1];
+        v = new int[n + 1];
+
+        w[0] = 0;
+        v[0] = 0;
+
+        for (int i = 1; i <= n; i++) {
+            w[i] = Integer.parseInt(sc.next());
+            v[i] = Integer.parseInt(sc.next());
+        }
+
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= w1; j++) {
+                dp[i][j] = -1;
+            }
+        }
+
+        System.out.println(nap(n, w1));
+        sc.close();
+    }
+
+    private static long nap( int i, long j ) {
+        if (dp[i][(int)j] >= 0)
+            return dp[i][(int)j];
+
+        long rem;
+
+        if (i == 0) {
+            rem = 0;
+        }
+        //if weight of item is more than remainingWeight then try next item by skipping current item
+        else if (j < w[i]) {
+            rem = nap(i - 1, j);
+        } else {  //try to get maximumValue of either by picking the currentItem or not picking currentItem
+            rem = Math.max(nap(i - 1, j - w[i]) + v[i], nap(i - 1, j));
+        }
+
+        dp[i][(int)j] = rem;
+
+        return rem;
+    }
+}

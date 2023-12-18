@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(final String[] args) throws Exception {
+
+        final Scanner scan = new Scanner(System.in);
+        final String line = scan.nextLine();
+        String[] cells = line.split(" ");
+
+        long tate = Integer.parseLong(cells[0]);
+        long yoko = Integer.parseLong(cells[1]);
+
+        long ans1 = (tate / 2) * (yoko/2);
+        long ans2 = (tate - (tate /2)) * (yoko/2 + 1);
+        
+        long ans = ans1 + ans2;
+
+        System.out.println(ans);
+        scan.close();
+    }
+}

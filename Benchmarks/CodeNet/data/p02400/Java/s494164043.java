@@ -1,0 +1,10 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		double a = sc.nextDouble();
+		System.out.printf("%f %f\n",a*a*Math.PI,(a*2)*Math.PI);
+		sc.close();
+	}
+}
+

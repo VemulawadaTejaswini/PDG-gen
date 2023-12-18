@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        long A = sc.nextLong();
+        String B = sc.next();
+        char[] bc = B.toCharArray();
+        long b = (bc[0]-'0');
+        if(bc.length <= 2){
+            System.out.println(A*b);
+        }else if(bc.length == 3){
+            long b1 = (bc[2]-'0');
+            String str = String.valueOf(A*(b*10+b1));
+            if(str.length() < 2){
+                System.out.println("0");
+                return;
+            }
+            System.out.println(str.substring(0, str.length()-1));
+        }else if(bc.length == 4){
+            long b1 = (bc[2]-'0');
+            long b2 = (bc[3]-'0');
+
+            String str = String.valueOf(A*(b*100+b1*10+b2));
+            if(str.length() < 3){
+                System.out.println("0");
+                return;
+            }
+            System.out.println(str.substring(0, str.length()-2));
+        }
+    }
+}

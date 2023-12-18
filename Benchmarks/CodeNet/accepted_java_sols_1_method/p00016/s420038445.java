@@ -1,0 +1,1 @@
+import java.io.*;class Main{public static void main(String[]_)throws Exception{BufferedReader B=new BufferedReader(new InputStreamReader(System.in));double x=0,y=0,a=0;for(Integer n=1,m=1;n>0||m!=0;){_=B.readLine().split(",");n=m.valueOf(_[0]);x+=n*Math.cos(Math.toRadians(a));y+=n*Math.sin(Math.toRadians(a));a+=m=n.valueOf(_[1]);}System.out.println((int)y+"\n"+(int)x);}}

@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+
+        int n = stdIn.nextInt();
+        int paper = n / 2 + n % 2;
+        System.out.println(paper);
+    }
+}

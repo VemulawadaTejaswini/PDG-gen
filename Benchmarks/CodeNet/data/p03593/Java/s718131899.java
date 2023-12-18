@@ -1,0 +1,105 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static final long mod = (long)1e9+7;
+    public static final long INF = Long.MAX_VALUE/4;
+    public static final int inf = Integer.MAX_VALUE/4;
+
+    static void solve(InputReader in, PrintWriter out){
+        int h = in.ni(), w = in.ni();
+        int[] alp = new int['z'-'a'+1];
+        for (int i = 0; i < h; i++) {
+            char[] s = in.ns().toCharArray();
+            for (int j = 0; j < w; j++) {
+                alp[s[j] - 'a']++;
+            }
+        }
+        boolean flag = true;
+        if(h%2==0&&w%2==0){
+
+            for(int i: alp) if(i%4!=0) flag = false;
+        }else if(h%2==1&&w%2==1){
+
+            int a=0,b=0,c=0;
+            for(int i: alp){
+                if(i==0) continue;
+                if(i%4==0) a++;
+                else if(i%2==0) b++;
+                else {
+                    if(c != 0) flag = false;
+                    c = i;
+                }
+            }
+            if(c>1&&(c-1)%4==0) a++;
+            else if(c>1)b++;
+            if(b>(h+w-2)/2) flag = false;
+        }else{
+
+            int a=0,b=0;
+            for(int i: alp){
+                if(i==0) continue;
+                if(i%4==0) a++;
+                else if(i%2==0) b++;
+                else flag = false;
+            }
+            if(w%2==0&&b>w/2||h%2==0&&b>h/2) flag = false;
+        }
+        out.println(flag?"Yes":"No");
+    }
+
+    public static void main(String[] args){
+        InputReader in = new InputReader(System.in);
+        PrintWriter out = new PrintWriter(System.out);
+        solve(in, out);
+        out.close();
+    }
+    public static class InputReader{
+        private BufferedReader br;
+        private StringTokenizer st;
+        public InputReader(InputStream is){
+            br = new BufferedReader(new InputStreamReader(is));
+            st = null;
+        }
+        public String ns(){
+            if(st == null || !st.hasMoreTokens()){
+                try{
+                    st = new StringTokenizer(br.readLine());
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
+            return st.nextToken();
+        }
+        public int ni(){
+            return Integer.parseInt(ns());
+        }
+        public long nl(){
+            return Long.parseLong(ns());
+        }
+        public Double nd(){
+            return Double.parseDouble(ns());
+        }
+        public int[] ni(int n){
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = ni();
+            }
+            return a;
+        }
+        public long[] nl(int n){
+            long[] a = new long[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = nl();
+            }
+            return a;
+        }
+        public double[] nd(int n){
+            double[] a = new double[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = nd();
+            }
+            return a;
+        }
+    }
+}

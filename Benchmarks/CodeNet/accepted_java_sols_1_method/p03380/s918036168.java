@@ -1,0 +1,24 @@
+import java.util.*;
+public class Main {
+
+  public static void main(String[] args) { 
+      Scanner sc = new Scanner(System.in);
+      int n = sc.nextInt();
+      int[] nums = new int[n];
+      for(int i = 0; i < n; i++)
+        nums[i] = sc.nextInt();
+      Arrays.sort(nums);
+      
+      int num = nums[n-1] / 2;
+      int maxIdx = 0;
+      for(int i = 0; i < n; i++) {
+        int a = nums[i];
+        if(nums[i] > num) {
+          a = nums[n-1] - nums[i];
+        }
+        if(a > nums[maxIdx])
+          maxIdx = i;
+      }
+      System.out.println(nums[n-1] + " " + nums[maxIdx]);
+  }
+}

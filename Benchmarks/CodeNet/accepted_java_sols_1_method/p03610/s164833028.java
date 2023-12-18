@@ -1,0 +1,12 @@
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+		String str = in.nextLine();
+		char[] charArray = str.toCharArray();
+		for (int i = 0; i < charArray.length; i+=2) {
+			System.out.print(charArray[i]);
+		}
+		System.out.println();
+	}
+}

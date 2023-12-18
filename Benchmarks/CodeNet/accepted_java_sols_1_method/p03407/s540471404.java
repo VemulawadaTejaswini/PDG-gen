@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner stdin = new Scanner(System.in);
+		int a, b, c;
+		a= stdin.nextInt();
+		b= stdin.nextInt();
+		c= stdin.nextInt();
+		if(a+b>=c) {
+			System.out.println("Yes");
+		}else {
+			System.out.println("No");
+		}
+
+	}
+
+}

@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]r){for(Scanner s = new Scanner(System.in);s.hasNext();){int i,x,y,b;List<Integer>a=new ArrayList<Integer>();for(i=4;i-->0;)a.add(s.nextInt());for(i=x=y=0;i<4;i++)if(a.get(i)==(b=s.nextInt()))++x;else if(a.contains(b))++y;System.out.println(x+" "+y);}}}

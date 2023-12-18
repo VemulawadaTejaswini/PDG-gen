@@ -1,0 +1,1 @@
+import java.util.Scanner;public class Main{static{Scanner s=new Scanner(System.in);int n;while(s.hasNext()){n=s.nextInt();System.out.println((n*n+n+2)/2);}System.exit(0);}}

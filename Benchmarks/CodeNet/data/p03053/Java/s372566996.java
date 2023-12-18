@@ -1,0 +1,192 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.*;
+import java.util.function.IntUnaryOperator;
+import java.util.function.LongUnaryOperator;
+
+public class Main {
+    static In in = new In();
+    static Out out = new Out();
+    static final long mod = 1000000007;
+    static final long inf = 0x1fffffffffffffffL;
+    static final int iinf = 0x3fffffff;
+    static final int[] da = {-1, 0, 1, 0, -1, 1, 1, -1, -1};
+
+    static int h, w;
+    void solve() {
+        h = in.nextInt();
+        w = in.nextInt();
+        char[][] a = in.nextCharGrid(h, w);
+        int[] dist = new int[h * w];
+        Set<Integer> visited = new HashSet<>();
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                int k = j * h + i;
+                if (a[i][j] == '#') {
+                    dist[k] = 0;
+                    visited.add(k);
+                    deque.addFirst(k);
+                } else {
+                    dist[k] = iinf;
+                }
+            }
+        }
+        int ans = 0;
+        while (!deque.isEmpty()) {
+            int v = deque.pollLast();
+            int z = v + h;
+            if (z < h * w && !visited.contains(z)) {
+                visited.add(z);
+                deque.addFirst(z);
+                dist[z] = dist[v] + 1;
+                ans = Math.max(ans, dist[z]);
+            }
+            z = v - h;
+            if (0 <= z && !visited.contains(z)) {
+                visited.add(z);
+                deque.addFirst(z);
+                dist[z] = dist[v] + 1;
+                ans = Math.max(ans, dist[z]);
+            }
+            z = v + 1;
+            if (z < h * w && z / h == v / h && !visited.contains(z)) {
+                visited.add(z);
+                deque.addFirst(z);
+                dist[z] = dist[v] + 1;
+                ans = Math.max(ans, dist[z]);
+            }
+            z = v - 1;
+            if (0 <= z && z / h == v / h && !visited.contains(z)) {
+                visited.add(z);
+                deque.addFirst(z);
+                dist[z] = dist[v] + 1;
+                ans = Math.max(ans, dist[z]);
+            }
+        }
+        out.println(ans);
+    }
+
+    public static void main(String[]$) {
+        new Main().solve();
+        out.flush();
+    }
+}
+
+class In {
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in), 0x10000);
+    private StringTokenizer tokenizer;
+
+    String next() {
+        try {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                tokenizer = new StringTokenizer(reader.readLine());
+            }
+        } catch (IOException ignored) {
+        }
+        return tokenizer.nextToken();
+    }
+
+    int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    long nextLong() {
+        return Long.parseLong(next());
+    }
+
+    char[] nextCharArray() {
+        return next().toCharArray();
+    }
+
+    char[][] nextCharGrid(int n, int m) {
+        char[][] a = new char[n][m];
+        for (int i = 0; i < n; i++) {
+            a[i] = next().toCharArray();
+        }
+        return a;
+    }
+
+    int[] nextIntArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = nextInt();
+        }
+        return a;
+    }
+
+    int[] nextIntArray(int n, IntUnaryOperator op) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = op.applyAsInt(nextInt());
+        }
+        return a;
+    }
+
+    long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = nextLong();
+        }
+        return a;
+    }
+
+    long[] nextLongArray(int n, LongUnaryOperator op) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = op.applyAsLong(nextLong());
+        }
+        return a;
+    }
+}
+
+class Out {
+    private PrintWriter out = new PrintWriter(System.out);
+    boolean autoFlush = false;
+
+    void println(Object... a) {
+        StringJoiner joiner = new StringJoiner(" ");
+        for (Object obj : a) {
+            joiner.add(String.valueOf(obj));
+        }
+        out.println(joiner);
+        if (autoFlush) {
+            out.flush();
+        }
+    }
+
+    void println(char[] s) {
+        out.println(String.valueOf(s));
+        if (autoFlush) {
+            out.flush();
+        }
+    }
+
+    void println(int[] a) {
+        StringJoiner joiner = new StringJoiner(" ");
+        for (int i : a) {
+            joiner.add(Integer.toString(i));
+        }
+        out.println(joiner);
+        if (autoFlush) {
+            out.flush();
+        }
+    }
+
+    void println(long[] a) {
+        StringJoiner joiner = new StringJoiner(" ");
+        for (long i : a) {
+            joiner.add(Long.toString(i));
+        }
+        out.println(joiner);
+        if (autoFlush) {
+            out.flush();
+        }
+    }
+
+    void flush() {
+        out.flush();
+    }
+}

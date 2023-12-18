@@ -1,0 +1,46 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main
+{
+    public static void main(String[] args)
+    {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        Scanner in = new Scanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        TaskA solver = new TaskA();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class TaskA
+    {
+        public void solve(int testNumber, Scanner in, PrintWriter out)
+        {
+            double afterTax = (double) in.nextInt();
+            double beforeTaxUp = Math.ceil(afterTax / 1.08);
+            double beforeTaxDown = Math.floor(afterTax / 1.08);
+
+            if (Math.floor(beforeTaxDown * 1.08) == afterTax)
+            {
+                out.print((int) beforeTaxDown);
+            } else if (Math.floor(beforeTaxUp * 1.08) == afterTax)
+            {
+                out.print((int) beforeTaxUp);
+            } else
+            {
+                out.print(":(");
+            }
+        }
+
+    }
+}
+

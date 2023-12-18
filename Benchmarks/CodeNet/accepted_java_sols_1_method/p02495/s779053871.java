@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        final char[] chars = {'#', '.'};
+        try(Scanner sc = new Scanner(System.in)){
+            while(true){
+                final int H = sc.nextInt();
+                final int W = sc.nextInt();
+                if(H == 0 && W ==0){
+                    break;
+                }
+                for(int y = 0; y<H; y++){
+                    for(int x =0; x <W; x++){
+                        System.out.print(chars[(x+y) & 1]);
+                    }
+                    System.out.println();
+                }
+                System.out.println();
+            }
+        }
+    }
+}

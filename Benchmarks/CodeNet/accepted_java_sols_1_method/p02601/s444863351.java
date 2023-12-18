@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		int k = sc.nextInt();
+
+		boolean can = false;
+
+		for (int i = 1; i <= k; i++) {
+			if (a >= b) {
+				b *= 2;
+			} else if (b >= c) {
+				c *= 2;
+			}
+
+		}
+
+		if (a < b && b < c) {
+			can = true;
+		}
+
+		if (can) {
+			System.out.println("Yes");
+		} else {
+			System.out.println("No");
+		}
+
+
+		sc.close();
+	}
+
+}

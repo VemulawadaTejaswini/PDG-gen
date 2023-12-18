@@ -1,0 +1,70 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.*;
+import java.lang.*;
+
+public class Main {
+
+    static class FastReader{
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader(){
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next(){
+            while(st==null || !st.hasMoreElements()){
+                try{
+                    st=new StringTokenizer(br.readLine());
+                }
+                catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt(){
+            return Integer.parseInt(next());
+        }
+
+        Long nextLong(){
+            return Long.parseLong(next());
+        }
+
+        double nextDouble(){
+            return Double.parseDouble(next());
+        }
+        String nextLine(){
+            String str="";
+            try{
+                str=br.readLine();
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+
+    public static void main(String[] args) {
+        FastReader in = new FastReader();
+     String s =in.next();
+     int n=s.length();
+     int count=0;
+     for(int i=0;i<n-3;i++){
+         for(int j=i+4;j<=n;j++){
+             if(Long.parseLong(s.substring(i,j))%(long)2019==0){
+                 count++;
+             }
+         }
+     }
+        System.out.println(count);
+    }
+}
+

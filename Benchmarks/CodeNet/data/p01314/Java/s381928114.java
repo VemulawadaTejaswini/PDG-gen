@@ -1,0 +1,1 @@
+import java.util.*;enum A{a;{Scanner s =new Scanner(System.in);while(true){int n,i=0,j=2,k=1;if((n=s.nextInt())==0)break;else while(true)if((k+=j)>n)break;else if((n-k)%j++==0)i++;System.out.println(i);}}}

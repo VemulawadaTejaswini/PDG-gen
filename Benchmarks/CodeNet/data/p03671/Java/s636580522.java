@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		int max = 0;
+		String text = sc.next();
+		for (int i = text.length(); i > 0; i-- ) {
+			if (i % 2 != 0) {
+				continue;
+			} else {
+				String a = text.substring(0, i / 2);
+				String b = text.substring(i / 2, i);
+				if (a.equals(b)) {
+					max = i;
+				}
+			}
+		}
+		
+		System.out.println(max);
+	}
+
+}

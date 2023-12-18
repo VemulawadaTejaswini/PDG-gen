@@ -1,0 +1,27 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		String S = sc.next();
+		String ans = "";
+
+		for (int i = 97; i < 123; i++){
+			String alphabet = String.valueOf((char)i);
+			if (!S.contains(alphabet)){
+				ans = alphabet;
+				break;
+			}
+		}
+		if ("".equals(ans)){
+			ans = "None";
+		}
+
+		System.out.println(ans);
+	}
+}
+

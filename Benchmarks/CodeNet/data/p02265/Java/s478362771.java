@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main{
+	private static final Scanner scan = new Scanner(System.in);
+
+	public static void main(String[] args){
+
+		Deque<Integer> list = new LinkedList<Integer>();
+		int n = scan.nextInt();
+		for(int i = 0; i < n; i++){
+			String str = scan.nextLine();
+			if(str.equals("deleteFirst"))
+				list.remove();
+			else if(str.equals("deleteLast"))
+				list.removeLast();
+			else{
+				if(str.startsWith("insert"))
+					list.addFirst(Integer.parseInt(str.substring(7)));
+				else if(str.startsWith("delete"))
+					list.remove(Integer.parseInt(str.substrig(7)));
+			}
+		}
+		for(int i = 0; i < list.size(); i++){
+			System.out.printf(i != list.size()-1? "%d " : "%d\n", list.get(i));
+		}
+	}
+}

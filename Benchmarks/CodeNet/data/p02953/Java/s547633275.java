@@ -1,0 +1,70 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        FastScanner scanner = new FastScanner();
+        PrintWriter out = new PrintWriter(System.out);
+        int N = scanner.nextInt();
+        int[] arr = new int[N];
+        arr[0] = scanner.nextInt()-1;
+        for(int i = 1; i < N; i++) {
+            int next = scanner.nextInt();
+            if (next > arr[i-1]) arr[i] = next-1;
+            else arr[i] = next;
+        }
+        boolean bad = false;
+        for(int i = 1; i < N; i++) {
+            if (arr[i-1] > arr[i]) bad = true;
+        }
+        if (bad) out.println("NO");
+        else out.println("YES");
+        out.flush();
+    }
+    
+    public static class FastScanner {
+        BufferedReader br;
+        StringTokenizer st;
+        
+        public FastScanner(Reader in) {
+            br = new BufferedReader(in);
+        }
+        
+        public FastScanner() {
+            this(new InputStreamReader(System.in));
+        }
+        
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+        
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+        
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+        
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+        
+        String readNextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+}

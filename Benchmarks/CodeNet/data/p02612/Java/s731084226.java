@@ -1,0 +1,9 @@
+import java.util.Scanner;
+
+public class A {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        System.out.println((1000 - (n % 1000)) % 1000);
+    }
+}

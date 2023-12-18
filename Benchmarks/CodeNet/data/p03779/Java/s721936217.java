@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        long x = sc.nextLong();
+        int c = 1;
+        while (true) {
+            long l = (c+1)*c/2;
+            if (l>=x) {
+                System.out.println(c);
+                break;
+            }
+            c++;
+        }
+    }
+}

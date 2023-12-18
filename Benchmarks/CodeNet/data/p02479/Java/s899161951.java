@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc = new Scanner(System.in);
+		double r = sc.nextDouble();
+		double a = r * r * Math.PI;
+		double l = 2.0 * r * Math.PI;
+		System.out.println(a+" "+ l);
+		
+	}
+
+}

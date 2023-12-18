@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String args[]){
+		
+		Scanner cin = new Scanner(System.in);
+		
+		long S = cin.nextLong();
+		long c = cin.nextLong();
+		
+		long count = 0L;
+		
+		if(S>=c/2){
+			count +=S;
+			c -=S;
+			count +=(long)c/4;
+		}else{
+			count +=(long)c/2;
+		}
+		
+		System.out.println(count);
+	}
+}

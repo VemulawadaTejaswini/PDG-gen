@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int n,r,m,p;for(Scanner s=new Scanner(System.in);(n=s.nextInt())+(r=s.nextInt())>0;System.out.println(n-p)){int[][]a=new int[r][2];for(m=r;m-->0;a[m][1]=s.nextInt())a[m][0]=s.nextInt();for(m=p=0;m<r;++m)if(p<a[m][1])p+=a[m][0]-1;else if(p<a[m][0]+a[m][1])p-=a[m][1];}}}

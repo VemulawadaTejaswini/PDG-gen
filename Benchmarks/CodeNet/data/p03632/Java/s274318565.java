@@ -1,0 +1,154 @@
+
+import java.util.*;
+import java.io.*;
+import java.lang.reflect.Array;
+
+public class Main {
+	public static void main(String[] args) {
+		FastReader r = new FastReader();		
+		int[] arr = r.ria();
+		if(arr[2] < arr[0]) {
+			swap(arr, 0, 2);
+			swap(arr, 1, 3);
+		}
+		if(arr[2] >= arr[1])
+			print(0);
+		else
+			print(Math.min(arr[1], arr[3])-arr[2]);
+	}
+
+	public static void rolling(int[] arr) {
+		if (arr.length < 2)
+			return;
+		for (int i = 1; i < arr.length; i++)
+			arr[i] += arr[i - 1];
+	}
+	
+	public static void rolling(long[] arr) {
+		if (arr.length < 2)
+			return;
+		for (int i = 1; i < arr.length; i++)
+			arr[i] += arr[i - 1];
+	}
+
+	public static void reverse(int[] arr) {
+		for (int i = 0; i < arr.length / 2; i++) {
+			int temp = arr[i];
+			arr[i] = arr[arr.length - 1 - i];
+			arr[arr.length - 1 - i] = temp;
+		}
+	}
+	
+	public static void swap(int[] arr, int pos1, int pos2) {
+		int temp = arr[pos1];
+		arr[pos1] = arr[pos2];
+		arr[pos2] = temp;
+	}
+	public static void swap(long[] arr, int pos1, int pos2) {
+		long temp = arr[pos1];
+		arr[pos1] = arr[pos2];
+		arr[pos2] = temp;
+	}
+	
+	public static String al(String s) {
+		return s + "\n";
+	}
+
+	public static void print(String s) {
+		System.out.println(s);
+	}
+
+	public static void print(long s) {
+		System.out.println(s);
+	}
+
+	public static void print(int s) {
+		System.out.println(s);
+	}
+
+	static class FastReader {
+		BufferedReader br;
+		StringTokenizer st;
+
+		public FastReader() {
+			br = new BufferedReader(new InputStreamReader(System.in));
+		}
+
+		int ri() {
+			return Integer.parseInt(str());
+		}
+
+		long rl() {
+			return Long.parseLong(str());
+		}
+
+		double rd() {
+			return Double.parseDouble(str());
+		}
+
+		String str() {
+			String str = "";
+			try {
+				str = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return str;
+		}
+
+		String[] rsa() {
+			return str().split(" ");
+		}
+
+		int[] ria() {
+			String[] s = rsa();
+			int[] arr = new int[s.length];
+			for (int i = 0; i < arr.length; i++)
+				arr[i] = Integer.parseInt(s[i]);
+			return arr;
+		}
+
+		long[] rla() {
+			String[] s = rsa();
+			long[] arr = new long[s.length];
+			for (int i = 0; i < arr.length; i++)
+				arr[i] = Long.parseLong(s[i]);
+			return arr;
+		}
+
+		char[] rca() {
+			String s = str();
+			char[] arr = new char[s.length()];
+			for (int i = 0; i < arr.length; i++)
+				arr[i] = s.charAt(i);
+			return arr;
+		}
+		
+		String[] rsaml(int m) {
+			String[] arr = new String[m];
+			for (int i = 0; i < arr.length; i++)
+				arr[i] = str();
+			return arr;
+		}
+
+		int[] riaml(int m) {
+			int[] arr = new int[m];
+			for (int i = 0; i < arr.length; i++)
+				arr[i] = Integer.parseInt(str());
+			return arr;
+		}
+
+		long[] rlaml(int m) {
+			long[] arr = new long[m];
+			for (int i = 0; i < arr.length; i++)
+				arr[i] = Long.parseLong(str());
+			return arr;
+		}
+	}
+}
+
+class Node {
+	public int val;
+	public boolean visited;
+	public Node(int v) { val=v; }
+}

@@ -1,0 +1,97 @@
+import java.util.*;
+
+public class Main {
+	// public static void printArray(int[] a) {
+	// 	for (int i = 0; i < a.length; i++) {
+	// 		System.out.print(a[i] + ", ");
+	// 	}
+	// 	System.out.println();
+	// }
+
+	// public static<T> void printArrayT(T[] a) {
+	// 	for (int i = 0; i < a.length; i++) {
+	// 		System.out.print(a[i] + ", ");
+	// 	}
+	// 	System.out.println();
+	// }
+
+	// public static class Triple implements Comparable<Triple> {
+	// 	public int A, B, C;
+	// 	Triple(int A, int B, int C) {
+	// 		this.A = A;
+	// 		this.B = B;
+	// 		this.C = C;
+	// 	}
+
+	// 	@Override
+	// 	public String toString() {
+	// 		return String.format("(%d, %d, %d)", A, B, C);
+	// 	}
+
+	// 	@Override
+	// 	public int compareTo(Triple o) {
+	// 		int a = this.A - o.A;
+	// 		if (a != 0) return a;
+	// 		int b = this.B - o.B;
+	// 		if (b != 0) return b;
+	// 		return this.C - o.C;
+	// 	}
+	// }
+
+	static int count(int N, int[] x, int[] y, long flag, HashMap<Long, Integer> cache) {
+		if (flag == (1 << N ) - 1) {
+			return 0;
+		}
+		if (cache.containsKey(flag)) {
+			return cache.get(flag);
+		}
+		boolean any = false;
+		int min = N;
+		for (int i = 0; i < N; i++) {
+			long flagI = 1 << i;
+			if ((flag & flagI) != 0) continue;
+			for (int j = i + 1; j < N; j++) {
+				long flagJ = 1 << j;
+				if ((flag & flagJ) != 0) continue;
+
+				any = true;
+				int dx = x[i] - x[j];
+				int dy = y[i] - y[j];
+
+				long copy = flag | flagI | flagJ;
+
+				for (int k = j + 1; k < N; k++) {
+					int flagK = 1 << k;
+					if ((flag & flagK) != 0) continue;
+					int dx2 = x[k] - x[j];
+					int dy2 = y[k] - y[j];
+					if (dx * dy2 == dy * dx2) {
+						copy |= flagK;
+					}
+				}
+				min = Math.min(min, count(N, x, y, copy, cache));
+			}
+		}
+		int ans;
+		if (any) {
+			ans = min + 1;
+		} else {
+			ans = 1;
+		}
+		cache.put(flag, ans);
+		return ans;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int[] x = new int[N];
+		int[] y = new int[N];
+		for (int i = 0; i < N; i++) {
+			x[i] = sc.nextInt();
+			y[i] = sc.nextInt();
+		}
+		int result = count(N, x, y, 0, new HashMap<>());
+		System.out.println(result);
+	}
+}

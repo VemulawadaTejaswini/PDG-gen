@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){Scanner S=new Scanner(System.in);float[]l=new float[8];for(int i,n=S.nextInt();n-->0;System.out.println((l[2]-l[0])*(l[7]-l[5])==(l[6]-l[4])*(l[3]-l[1])?"YES":"NO"))for(i=0;i<8;)l[i++]=S.nextFloat();}}

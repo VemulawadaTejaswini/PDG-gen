@@ -1,0 +1,55 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        Node W[] = new Node[n];
+        int s = Integer.MAX_VALUE, cost = 0;
+        for (int i = 0; i < n; i++) {
+            W[i] = new Node();
+            W[i].value = scan.nextInt();
+            W[i].place = -1;
+            if (s > W[i].value)
+                s = W[i].value;
+        }
+        for (int j = 0; j < n; j++) {
+            int min = Integer.MAX_VALUE, place = -1;
+            for (int i = 0; i < n; i++) {
+                if (W[i].place != -1)
+                    continue;
+                if (min > W[i].value) {
+                    min = W[i].value;
+                    place = i;
+                }
+            }
+            W[place].place = j;
+        }
+        for (int i = 0; i < n; i++) {
+            int j = W[i].place;
+            if (j != -1 && j != i) {
+                int cnt = 1, min, sum;
+                min = sum = W[i].value;
+                while (j != i) {
+                    int next = W[j].place;
+                    if (min > W[j].value)
+                        min = W[j].value;
+                    sum += W[j].value;
+                    cnt++;
+                    W[j].place = -1;
+                    j = next;
+                }
+                if(sum + (cnt - 2) * min < sum + min + (cnt + 1) * s){
+                    cost += sum + (cnt - 2) * min;
+                }
+                else{
+                    cost += sum + min + (cnt + 1) * s;
+                }
+            }
+        }
+        System.out.println(cost);
+    }
+}
+class Node {
+    int value;
+    int place;
+}

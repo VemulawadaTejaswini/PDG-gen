@@ -1,0 +1,78 @@
+import java.util.Scanner;
+public class Main {
+	static Node r;
+	
+	@SuppressWarnings("null")
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int x;
+		String com;
+		Node z = null;
+		
+		for(int i=0; i<n; i++){
+			com = sc.next();
+			if(com.equals("insert")){
+				x = sc.nextInt();
+				insert(new Node(x, null, null));
+			} else if (com.equals("print")){
+				inorder(r);
+				System.out.println();
+				preorder(r);
+				System.out.println();
+			}
+		}
+	}
+	
+	static void insert(Node z){
+		Node y = null;
+		Node x = r;
+		
+		while (x != null){
+			y = x;
+			if (z.key < x.key){
+				x =  x.l;
+			} else {
+				x = x.r;
+			}
+		}
+		z.p = y;
+		
+		if (y == null){
+			r = z;
+		} else {
+			if(z.key < y.key){
+				y.l = z;
+			} else {
+				y.r = z;
+			}
+		}
+	}
+
+	static void inorder(Node u){
+		if (u == null) return;
+		inorder(u.l);
+		System.out.print(" " + u.key);
+		inorder(u.r);
+	}
+	static void preorder(Node u) {
+		if (u == null) return;
+		System.out.print(" " + u.key);
+		preorder(u.l);
+		preorder(u.r);
+	}
+}
+
+
+class Node {
+    int key;
+    Node p;
+	Node l;
+	Node r;
+    public Node(int key, Node l, Node r) {
+    	this.key = key;
+        this.l = l;
+        this.r = r;
+        this.p = p;
+    }
+}

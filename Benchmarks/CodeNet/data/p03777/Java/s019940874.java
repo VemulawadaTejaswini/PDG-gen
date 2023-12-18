@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		if (sc.next().equals("H")) {
+			System.out.println(sc.next().equals("H") ? "H" : "D");
+		} else {
+			System.out.println(sc.next().equals("H") ? "D" : "H");
+		}
+	}
+}

@@ -1,0 +1,10 @@
+public class Main {
+	  public static void main(String[] args)throws IOException{
+		    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		    String inputValue = br.readLine();
+		    String[] inputArray = inputValue.split(" ");
+		    int a = Integer.valueOf(inputArray[0]);
+		    int b = Integer.valueOf(inputArray[1]);
+		    System.out.println(a * b + " " + 2*(a+b));
+		  }
+}

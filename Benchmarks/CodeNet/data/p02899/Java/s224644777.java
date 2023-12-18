@@ -1,0 +1,27 @@
+import java.util.*;
+import java.io.*;
+
+class Main {
+  public static void main(String argv[]) {
+    int n;
+    Scanner sc = new Scanner(System.in);
+    n = Integer.parseInt(sc.next());
+    int a[] = new int[n];
+    for (int i = 0;i < n;i++) {
+      a[i] = Integer.parseInt(sc.next());
+    }
+    
+    PrintWriter out = new PrintWriter(System.out);
+    for (int i = 1;i <= n;i++) {
+      for (int j = 0;j < n;j++) {
+        if (a[j] == i) {
+          out.print((j + 1) + " ");
+          break;
+        }
+      }
+    }
+    out.println();
+    out.flush();
+  }
+}
+    

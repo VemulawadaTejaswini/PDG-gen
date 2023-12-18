@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] a = new int[n];
+		for (int i = 0; i < n; i++) {
+			a[i] = sc.nextInt();
+		}
+		// 挿入ソート
+		for (int i = 1; i < n; i++) {
+			int v = a[i];
+			int j = i - 1;
+			for (; j >= 0 && a[j] > v; j--) {
+				a[j + 1] = a[j];
+			}
+			a[j + 1] = v;
+			// 表示
+			if (i > 1) {	// 初回以外は初めに改行する
+				System.out.println("");
+			}
+			for (int k = 0; k < a.length; k++) {
+				if (k < a.length - 1) {
+					System.out.print(a[k] + " ");
+				} else {
+					System.out.print(a[k]);
+				}
+			}
+		}
+
+	}
+
+}

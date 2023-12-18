@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+  	int N = sc.nextInt();
+    int W = sc.nextInt();
+    int[][] dp = new int[2][W + 1];
+    int[] w = new int[N];
+    int[] v = new int[N];
+    for (int i = 0; i < N; i++) {
+		w[i] = sc.nextInt();
+      	v[i] = sc.nextInt();
+    }
+    for (int i = 1; i <= N; i++) {
+      for (int j = 1; j <= S; j++) {
+      	dp[i % 2][j] = dp[(i - 1) % 2][j];
+        if (j >= w[i - 1]) {
+          dp[i % 2][j] = Math.max(dp[i % 2][j],dp[(i - 1) % 2][j - w[i - 1]] + v[i - 1]); 
+        }
+      }
+    }
+    System.out.println(dp[N % 2][W];
+  }
+}

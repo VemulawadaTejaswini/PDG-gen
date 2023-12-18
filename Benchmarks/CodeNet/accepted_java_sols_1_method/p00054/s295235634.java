@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){for(Scanner s = new Scanner(System.in);s.hasNext();){String d=""+s.nextDouble()/s.nextDouble();int r = 0,n=s.nextInt(),i=0;for(d=d.substring(d.indexOf('.')+1);i<n&&i<d.length();)r+=d.charAt(i++)-'0';System.out.println(r);}}}

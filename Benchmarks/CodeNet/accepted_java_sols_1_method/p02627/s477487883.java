@@ -1,0 +1,1 @@
+class Main{public static void main(String[]a){System.out.println(new java.util.Scanner(System.in).next().toCharArray()[0]>90?"a":"A");}}

@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+//AtCoder Beginner Contest 134
+//A	Dodecagon
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		sc.close();
+
+		System.out.println(3 * r * r);
+	}
+}

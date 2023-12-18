@@ -1,0 +1,69 @@
+import java.util.*;
+
+class Main{           
+
+   static int limit = 50;
+   
+   static int N;
+   static int M;
+   
+   
+   static int a[] = new int[limit];
+   static int b[] = new int[limit];
+   
+   static boolean graph[][] = new boolean[limit][limit];
+   static boolean visited[] = new boolean[limit];
+    
+   static void dfs(int v){
+       visited[v]= true;
+       for(int v2 = 0;v2 < N;v2++){          
+           if(visited[v2]){continue;};
+           if(!graph[v][v2]){
+              continue; 
+           }
+           dfs(v2);
+       }
+       
+   }
+   
+   public static void main(String[] args){
+       Scanner sc = new Scanner(System.in);  
+       
+       int N = sc.nextInt();
+       int M = sc.nextInt();
+       
+     for(int i =0;i < M;i++){
+              a[i] = sc.nextInt() - 1;
+              b[i] = sc.nextInt() - 1;
+              graph[a[i]][b[i]] = graph[b[i]][a[i]] = true;
+     }
+         
+     
+     int ans = 0;
+     
+     for(int i = 0;i < M;i++){
+         graph[a[i]][b[i]] = graph[b[i]][a[i]] = false;
+
+         for(int j = 0;j < N;j++) visited[j] = false;
+         
+         dfs(0);
+         
+         boolean bridge = false;
+         
+         for(int j = 0;j < N;j++){
+             if(!visited[i]){
+               bridge= true;
+             }             
+         }
+         
+         if(bridge){
+             ans++;
+         }
+         
+         graph[a[i]][b[i]] = graph[b[i]][a[i]] = true;
+     }
+    
+     System.out.println(ans);       
+ 
+   }            
+ }

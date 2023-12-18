@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner scan = new Scanner(System.in);
+		int[] a = new int[scan.nextInt()];
+		for(int i=0; i<a.length; i++){
+			a[i] = scan.nextInt();
+		}
+		for(int i=0; i<a.length; i++){
+			System.out.print(a[a.length-1-i]+" ");
+		}
+		System.out.println();
+
+	}
+
+}

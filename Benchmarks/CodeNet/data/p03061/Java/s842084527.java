@@ -1,0 +1,193 @@
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
+
+public class Main {
+	
+	//final boolean isDebug = true;
+	final boolean isDebug = false;
+	String fileName = "input.txt";
+	FastScanner sc;
+	PrintWriter out;
+	final int MOD = (int)1e9+7;
+	final int INF = Integer.MAX_VALUE / 2;
+	
+	void solve() throws Exception{
+		int N = sc.nextInt();
+		long[] a = new long[N+1];
+		for(int i = 1; i <= N; i++) a[i] = sc.nextInt();
+		long lcm = lcm(a);
+		long[] gcdLeft = new long[N+2];
+		long[] gcdRight = new long[N+2];
+		gcdLeft[0] = lcm; gcdRight[N+1] = lcm;
+		for(int i = 1; i <= N; i++) gcdLeft[i] = gcd(a[i], gcdLeft[i-1]);
+		for(int i = N; i >= 1; i--) gcdRight[i] = gcd(a[i], gcdRight[i+1]);
+		
+		long max = 0;
+		for(int i = 1; i <= N; i++){
+			max = Math.max(max, gcd(gcdLeft[i-1], gcdRight[i+1]));
+		}
+		System.out.println(max);
+	}
+	
+	long gcd(long a, long b){
+		return b == 0 ? a : gcd(b, a % b);
+	}
+	
+	/*
+	 * a,bの最小公倍数を求める
+	 */
+	long lcm(long a, long b){
+		return a / gcd(a, b) * b; //オーバーフローに注意
+	}
+	
+	/*
+	 * 配列listの最大公約数を求める
+	 */
+	long gcd(ArrayList<Long> list){
+		if(list.size() == 0) return -1;
+		if(list.size() == 1) return list.get(0);
+		
+		long result = list.get(0);
+		for(int i = 1; i < list.size(); i++){
+			result = gcd(list.get(i), result);
+		}
+		return result;
+	}
+	
+	/*
+	 *配列listの最小公倍数を求める
+	 */
+	long lcm(ArrayList<Long> list){
+		if(list.size() == 0) return -1;
+		if(list.size() == 1) return list.get(0);
+		
+		long result = list.get(0);
+		for(int i = 1; i < list.size(); i++){
+			result = lcm(list.get(i), result);
+		}
+		return result;
+	}
+	
+	long lcm(long[] list){
+		if(list.length == 0) return -1;
+		if(list.length == 1) return list[0];
+		
+		long result = list[0];
+		for(int i = 1; i < list.length; i++){
+			result = lcm(list[i], result);
+		}
+		return result;
+	}
+	
+	/* end solve */
+	
+	/* main */
+	public static void main(String[] args) throws Exception {
+		new Main().m();
+	}
+	
+	void m() throws Exception {
+		long S = System.currentTimeMillis();
+		sc = (isDebug) ? new FastScanner(new FileInputStream(fileName)) : new FastScanner(System.in);
+		out = new PrintWriter(System.out);
+		solve();
+		out.flush();
+		long G = System.currentTimeMillis();
+		if(isDebug){
+			System.out.println("---Debug---");
+			System.out.printf("%8d ms", (G-S));
+		}
+	}
+	/* end main */
+}
+/* end Main */
+
+class FastScanner {
+    private InputStream in;
+    private final byte[] buffer = new byte[1024];
+    private int ptr = 0;
+    private int buflen = 0;
+    public FastScanner(InputStream in) {
+		this.in = in;
+	}
+    private boolean hasNextByte() {
+        if (ptr < buflen) {
+            return true;
+        }else{
+            ptr = 0;
+            try {
+                buflen = in.read(buffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (buflen <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private int readByte() {
+    	if (hasNextByte()) return buffer[ptr++];
+    	else return -1;
+    }
+    private static boolean isPrintableChar(int c){
+    	return 33 <= c && c <= 126;
+    }
+    public boolean hasNext() {
+    	while(hasNextByte() && !isPrintableChar(buffer[ptr]))
+    		ptr++; return hasNextByte();
+    }
+    public String next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        StringBuilder sb = new StringBuilder();
+        int b = readByte();
+        while(isPrintableChar(b)) {
+            sb.appendCodePoint(b);
+            b = readByte();
+        }
+        return sb.toString();
+    }
+    public String nextLine() {
+        if (!hasNext()) throw new NoSuchElementException();
+        StringBuilder sb = new StringBuilder();
+        int b = readByte();
+        while(b != 10) {
+            sb.appendCodePoint(b);
+            b = readByte();
+        }
+        return sb.toString();
+    }
+    public long nextLong() {
+        if (!hasNext()) throw new NoSuchElementException();
+        long n = 0;
+        boolean minus = false;
+        int b = readByte();
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+        if (b < '0' || '9' < b) {
+            throw new NumberFormatException();
+        }
+        while(true){
+            if ('0' <= b && b <= '9') {
+                n *= 10;
+                n += b - '0';
+            }else if(b == -1 || !isPrintableChar(b)){
+                return minus ? -n : n;
+            }else{
+                throw new NumberFormatException();
+            }
+            b = readByte();
+        }
+    }
+    public int nextInt() {
+        long nl = nextLong();
+        if (nl < Integer.MIN_VALUE || nl > Integer.MAX_VALUE) throw new NumberFormatException();
+        return (int) nl;
+    }
+    public double nextDouble() {
+    	return Double.parseDouble(next());
+    }
+}

@@ -1,0 +1,31 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] min = new int[128];
+		Arrays.fill(min, 99999);
+		for(int i=0;i<n;i++) {
+			int[] count = new int[128];
+			String s = sc.next();
+			for(int j=0;j<s.length();j++) {
+				count[s.charAt(j)]++;
+			}
+//			System.out.println(Arrays.toString(count));
+			for(int j=0;j<128;j++) {
+				min[j] = Math.min(min[j], count[j]);
+			}
+		}
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<128;i++) {
+			for(int j=0;j<min[i];j++) {
+				sb.append((char) i);
+			}
+		}
+		System.out.println(sb);
+	}
+
+}

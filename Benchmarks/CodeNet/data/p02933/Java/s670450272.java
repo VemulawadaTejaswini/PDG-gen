@@ -1,0 +1,51 @@
+
+import java.io.*;
+import java.util.StringTokenizer;
+public class Main{
+    public static void main(String[] args) throws IOException {
+        scanner sc = new scanner(System.in);
+        PrintWriter out = new PrintWriter(System.out);
+
+        int a = sc.nextInt();
+        String s = sc.next();
+
+        out.println(a<3200?"red":s);
+
+        out.flush();
+
+    }
+}
+class scanner{
+    StringTokenizer st;
+    BufferedReader br;
+    public scanner(InputStream s){
+        br = new BufferedReader(new InputStreamReader(s));
+    }
+    public scanner (String s) throws FileNotFoundException { br = new BufferedReader(new FileReader(s));}
+
+    public String next() throws IOException {
+        while (st == null || !st.hasMoreTokens())
+            st = new StringTokenizer(br.readLine());
+        return st.nextToken();
+    }
+
+    public int nextInt() throws IOException {
+        return Integer.parseInt(next());
+    }
+
+    public long nextLong() throws IOException {
+        return  Long.parseLong(next());
+    }
+
+    public String nextLine() throws IOException {
+        return br.readLine();
+    }
+
+    public double nextDouble() throws IOException {
+        return Double.parseDouble(next());
+    }
+
+    public boolean ready() throws IOException {
+        return br.ready();
+    }
+}

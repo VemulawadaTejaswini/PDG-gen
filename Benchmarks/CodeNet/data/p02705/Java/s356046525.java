@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class CirclePond {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        double radius = scan.nextInt();
+        double result = 2 * 3.14 * radius;
+        
+        System.out.println(result);
+    }
+}

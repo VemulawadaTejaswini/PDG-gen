@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		long c=K;
+		for(int i=1;i<N;i++) {
+		      c = c*(K-1);
+	    }
+	    System.out.println(c);
+	  }
+
+}

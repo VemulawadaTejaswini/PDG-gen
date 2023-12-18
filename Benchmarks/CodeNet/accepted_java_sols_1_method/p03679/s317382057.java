@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] arg){
+		Scanner sc = new Scanner(System.in);
+		
+		int X,A,B;
+		
+		X = sc.nextInt();
+		A = sc.nextInt();
+		B = sc.nextInt();
+		
+		sc.close();
+		
+		if(A >= B ) System.out.println("delicious");
+		else if(B - A <= X) System.out.println("safe");
+		else System.out.println("dangerous");
+		
+	}
+}

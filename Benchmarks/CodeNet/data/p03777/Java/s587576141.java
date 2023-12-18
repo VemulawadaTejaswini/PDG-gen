@@ -1,0 +1,23 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main{
+  public static void main(String[] args) throws IOException{
+
+      BufferedReader br = new BufferedReader(
+        new InputStreamReader(System.in));
+      String[] input = br.readLine().split(" ");
+      String a = input[0];
+      String b = input[1];
+
+      if(a.equals("H")){
+        System.out.println(b);
+      }else if(b.equals("H")){
+        System.out.println("D");
+      }else{
+        System.out.println("H");
+      }
+      br.close();
+  }
+}

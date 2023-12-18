@@ -1,0 +1,39 @@
+//
+import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+class Main {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)){
+			int times = sc.nextInt();
+			TreeSet<Long> set = new TreeSet<Long>();  //自動ソートができるように
+			for (int i = 0; i<times; i++){
+				int query = sc.nextInt();
+				long x = sc.nextLong();
+				switch (query) {
+				case 0:
+					set.add(x);
+					System.out.println(set.size());
+					break;
+				case 1:
+					if (set.contains(x)) {
+						System.out.println(1);
+					} else System.out.println(0);
+					break;
+				case 2:
+					set.remove(x);
+					break;
+				case 3:
+					long large = sc.nextLong();
+					SortedSet<Long> subset = set.subSet(x,true,large,true);
+					for (long l :subset) {
+						System.out.println(l);
+					}
+					break;
+				}
+			}
+		}
+	}
+}

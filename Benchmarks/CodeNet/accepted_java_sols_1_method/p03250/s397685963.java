@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+
+		int A = a * 10 + b + c;
+		int B = a + b * 10 + c;
+		int C = a + b + c * 10;
+
+		if (A >= B && A >= C) {
+
+			System.out.println(A);
+
+		} else if (B >= A && B >= C) {
+
+			System.out.println(B);
+
+		} else {
+
+			System.out.println(C);
+
+		}
+
+	}
+
+}

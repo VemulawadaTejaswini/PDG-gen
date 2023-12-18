@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        long ans = (long)Math.ceil((double)(n-1)/(k-1));
+        System.out.println(ans);
+    
+    }
+}

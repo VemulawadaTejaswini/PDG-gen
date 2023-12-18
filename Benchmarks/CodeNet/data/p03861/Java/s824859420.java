@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner as = new Scanner(System.in);
+		long a = as.nextLong();
+		long b = as.nextLong();
+		long n = as.nextLong();
+		long l = 0;
+		if(a%n==0){
+			l = b/n-a/n+1;
+		}else{
+			l = b/n-a/n;
+		}
+		System.out.println(l);
+	}
+}

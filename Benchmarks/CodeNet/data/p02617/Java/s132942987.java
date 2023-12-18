@@ -1,0 +1,1 @@
+interface Main{static void main(String[]$){var s=new java.util.Scanner(System.in);long n=s.nextInt(),a=n++*n++*n--/6,m=n;while(m-->2){long u=s.nextInt(),v=s.nextInt();a-=(u<v?u:v)*n-u*v;}System.out.print(a);}}

@@ -1,0 +1,58 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		// TODO ?????????????????????????????????????????????
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+
+		while(true){
+			String[] tmpArray = br.readLine().split(" ");
+			int n = Integer.parseInt(tmpArray[0]);
+			int r = Integer.parseInt(tmpArray[1]);
+
+			if(n == 0 && r == 0){
+				break;
+			}
+			
+			//??±????????????
+			int[] hanafuda = new int[n];
+			for(int i = 0; i < n; i++){
+				hanafuda[i] = i + 1;
+			}
+			
+			for(int i = 0 ; i < r ; i++){
+				tmpArray = br.readLine().split(" ");
+				int p = Integer.parseInt(tmpArray[0]);
+				int c = Integer.parseInt(tmpArray[1]);
+				
+				shuffleDeck(hanafuda, p, c);
+			}
+			
+			System.out.println(hanafuda[hanafuda.length - 1]);
+
+		}
+	}
+	
+	static void shuffleDeck(int[] deck, int p, int c){
+		int[] tmpDeck;
+		
+		tmpDeck = Arrays.copyOfRange(deck, deck.length - p - c + 1, deck.length - p + 1);
+		
+		//???????????????????????????????????¨???
+		for(int i = deck.length - p - c + 1; i <= deck.length - c - 1 ; i++){
+			deck[i] = deck[i+c];
+		}
+		
+		//??????????????????????????????????????????
+		for(int i = deck.length - c; i < deck.length ; i++){
+			deck[i] = tmpDeck[i - deck.length + c];
+		}
+	}
+
+}

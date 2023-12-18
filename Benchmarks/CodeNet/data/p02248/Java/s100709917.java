@@ -1,0 +1,27 @@
+import java.io.IOException;
+import java.util.Scanner;
+class Main {
+  	public static void main(String[] args)throws IOException{
+		Scanner scan = new Scanner(System.in);
+		String str1 = scan.nextLine();
+		String str2 = scan.nextLine();
+		
+		int nt = str1.length();
+		int np = str2.length();
+		
+		if(nt < np) return;
+		
+		for(int i = 0; i < nt - np + 1; i++){
+			//?????????????????????????????????????????????????????????????????????
+			if(str1.charAt(i) == str2.charAt(0) && str1.charAt(i + np - 1) == str2.charAt(np - 1)){
+				if(np == 1){
+					System.out.println(i);
+				}else if(str1.substring(i, np + i).equals(str2)){
+					System.out.println(i);
+				}
+			}
+		}
+		
+		return;
+	}
+}  

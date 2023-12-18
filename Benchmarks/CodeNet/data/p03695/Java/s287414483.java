@@ -1,0 +1,44 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	static Scanner in = new Scanner(System.in);
+	public static void main(String[] args){
+		int n = in.nextInt();
+		int[] color = new int[9];
+		Arrays.fill(color, 0);
+
+		for(int i = 0; i < n; i++){
+			int a = in.nextInt();
+			if(a > 3199){
+				color[8]++;
+			}else if(a > 2799){
+				color[7]++;
+			}else if(a > 2399){
+				color[6]++;
+			}else if(a > 1999){
+				color[5]++;
+			}else if(a > 1599){
+				color[4]++;
+			}else if(a > 1199){
+				color[3]++;
+			}else if(a > 799){
+				color[2]++;
+			}else if(a > 399){
+				color[1]++;
+			}else{
+				color[0]++;
+			}
+		}
+		int s = 0;
+		for(int i = 0 ; i < 8; i++){
+			if(color[i] != 0){
+				s++;
+			}
+		}
+		int max = Math.min(s+color[8], 9);
+		System.out.println(s + " " + max);
+		
+	}
+
+}

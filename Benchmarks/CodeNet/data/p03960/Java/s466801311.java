@@ -1,0 +1,147 @@
+
+import java.io.*;
+import java.math.*;
+import java.util.*;
+
+import static java.util.Arrays.*;
+
+public class Main {
+	private static final int mod = (int)1e9+7;
+
+	final Random random = new Random(0);
+	final IOFast io = new IOFast();
+
+	/// MAIN CODE
+	public void run() throws IOException {
+//		int TEST_CASE = Integer.parseInt(new String(io.nextLine()).trim());
+		int TEST_CASE = 1;
+		while(TEST_CASE-- != 0) {
+			int h = io.nextInt();
+			int w = io.nextInt();
+			cs = new char[h][];
+			for (int y = 0; y < h; y++) {
+				cs[y] = io.next();
+			}
+			
+			List<Integer>[][] xs = new List[w][26];
+			for (int i = 0; i < w; i++) {
+				for (int j = 0; j < xs[i].length; j++) {
+					xs[i][j] = new ArrayList<>();
+				}
+				for (int j = 0; j < h; j++) {
+					xs[i][cs[j][i] - 'a'].add(j);
+				}
+			}
+			
+			long ans = 0;
+			memo = new int[300][300];
+			for (int x = 1; x < w; x++) {
+				for (int[] mo : memo) Arrays.fill(mo, -1);
+				for (int[] d : diff) Arrays.fill(d, 0);
+				for (int i = 0; i < 26; i++) {
+					for (int j : xs[x-1][i]) {
+						for (int k : xs[x][i]) {
+							diff[h-1-k][h-1-j]++;
+						}
+					}
+				}
+				for (int y1 = h - 2; y1 >= 0; y1--) {
+					for (int y2 = h - 2; y2 >= 0; y2--) {
+						diff[y1][y2] += diff[y1+1][y2+1];
+					}
+				}
+				
+				ans += rec(x, 0, 0);
+//				dump(x, rec(x, 0, 0));
+			}
+			io.out.println(ans);
+		}
+	}
+	
+	int[][] diff = new int[300][300];
+	int[][] memo;
+	char[][] cs;
+	int rec(int x, int y1, int y2) {
+		if (y1 >= cs.length || y2 >= cs.length) return 0;
+		if (memo[y1][y2] != -1) {
+			return memo[y1][y2];
+		}
+		
+//		int idx = Collections.binarySearch(diff[y1-y2+300], y1);
+//		if (idx < 0) idx = -idx - 1;
+//		int v1 = diff[y1-y2+300].size() - idx;
+		int v1 = diff[y2][y1];
+//		int v = 0;
+//		for (int y = Math.max(y1, y2); y < cs.length; y++) {
+//			if (cs[y-y1][x-1] == cs[y-y2][x]) {
+//				v++;
+//			}
+//		}
+//		if (v != v1) {
+//			dump(v, v1, x, y1, y2, diff[y1-y2+300]);
+//			throw new RuntimeException();
+//		}
+		int v = v1;
+		
+//		dump("rec", x, y1, y2, v, Math.min(rec(x, y1, y2 + 1), rec(x, y1 + 1, y2)) + v);
+		return memo[y1][y2] = Math.min(rec(x, y1, y2 + 1), rec(x, y1 + 1, y2)) + v;
+	}
+
+	/// TEMPLATE
+	static int gcd(int n, int r) { return r == 0 ? n : gcd(r, n%r); }
+	static long gcd(long n, long r) { return r == 0 ? n : gcd(r, n%r); }
+	
+	static <T> void swap(T[] x, int i, int j) { T t = x[i]; x[i] = x[j]; x[j] = t; }
+	static void swap(int[] x, int i, int j) { int t = x[i]; x[i] = x[j]; x[j] = t; }
+
+	void printArrayLn(int[] xs) { for(int i = 0; i < xs.length; i++) io.out.print(xs[i] + (i==xs.length-1?"\n":" ")); }
+	void printArrayLn(long[] xs) { for(int i = 0; i < xs.length; i++) io.out.print(xs[i] + (i==xs.length-1?"\n":" ")); }
+	
+	static void dump(Object... o) { System.err.println(Arrays.deepToString(o)); } 
+	
+	void main() throws IOException {
+		//		IOFast.setFileIO("rle-size.in", "rle-size.out");
+		try { run(); }
+		catch (EndOfFileRuntimeException e) { }
+		io.out.flush();
+	}
+	public static void main(String[] args) throws IOException { new Main().main(); }
+	
+	static class EndOfFileRuntimeException extends RuntimeException {
+		private static final long serialVersionUID = -8565341110209207657L; }
+
+	static
+	public class IOFast {
+		private BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		private PrintWriter out = new PrintWriter(System.out);
+
+		void setFileIn(String ins) throws IOException { in.close(); in = new BufferedReader(new FileReader(ins)); }
+		void setFileOut(String outs) throws IOException { out.flush(); out.close(); out = new PrintWriter(new FileWriter(outs)); }
+		void setFileIO(String ins, String outs) throws IOException { setFileIn(ins); setFileOut(outs); }
+
+		private static int pos, readLen;
+		private static final char[] buffer = new char[1024 * 8];
+		private static char[] str = new char[500*8*2];
+		private static boolean[] isDigit = new boolean[256];
+		private static boolean[] isSpace = new boolean[256];
+		private static boolean[] isLineSep = new boolean[256];
+
+		static { for(int i = 0; i < 10; i++) { isDigit['0' + i] = true; } isDigit['-'] = true; isSpace[' '] = isSpace['\r'] = isSpace['\n'] = isSpace['\t'] = true; isLineSep['\r'] = isLineSep['\n'] = true; }
+		public int read() throws IOException { if(pos >= readLen) { pos = 0; readLen = in.read(buffer); if(readLen <= 0) { throw new EndOfFileRuntimeException(); } } return buffer[pos++]; }
+		public int nextInt() throws IOException { int len = 0; str[len++] = nextChar(); len = reads(len, isSpace); int i = 0; int ret = 0; if(str[0] == '-') { i = 1; } for(; i < len; i++) ret = ret * 10 + str[i] - '0'; if(str[0] == '-') { ret = -ret; } return ret; }
+		public long nextLong() throws IOException { int len = 0; str[len++] = nextChar(); len = reads(len, isSpace); int i = 0; long ret = 0; if(str[0] == '-') { i = 1; } for(; i < len; i++) ret = ret * 10 + str[i] - '0'; if(str[0] == '-') { ret = -ret; } return ret; }
+		public char nextChar() throws IOException { while(true) { final int c = read(); if(!isSpace[c]) { return (char)c; } } }
+		int reads(int len, boolean[] accept) throws IOException { try { while(true) { final int c = read(); if(accept[c]) { break; } if(str.length == len) { char[] rep = new char[str.length * 3 / 2]; System.arraycopy(str, 0, rep, 0, str.length); str = rep; } str[len++] = (char)c; } } catch(EndOfFileRuntimeException e) { ; } return len; }
+		int reads(char[] cs, int len, boolean[] accept) throws IOException { try { while(true) { final int c = read(); if(accept[c]) { break; } cs[len++] = (char)c; } } catch(EndOfFileRuntimeException e) { ; } return len; }
+		public char[] nextLine() throws IOException { int len = 0; str[len++] = nextChar(); len = reads(len, isLineSep); try { if(str[len-1] == '\r') { len--; read(); } } catch(EndOfFileRuntimeException e) { ; } return Arrays.copyOf(str, len); }
+		public String nextString() throws IOException { return new String(next()); }
+		public char[] next() throws IOException { int len = 0; str[len++] = nextChar(); len = reads(len, isSpace); return Arrays.copyOf(str, len); }
+//		public int next(char[] cs) throws IOException { int len = 0; cs[len++] = nextChar(); len = reads(cs, len, isSpace); return len; }
+		public double nextDouble() throws IOException { return Double.parseDouble(nextString()); }
+		public long[] nextLongArray(final int n) throws IOException { final long[] res = new long[n]; for(int i = 0; i < n; i++) { res[i] = nextLong(); } return res; }
+		public int[] nextIntArray(final int n) throws IOException { final int[] res = new int[n]; for(int i = 0; i < n; i++) { res[i] = nextInt(); } return res; }
+		public int[][] nextIntArray2D(final int n, final int k) throws IOException { final int[][] res = new int[n][]; for(int i = 0; i < n; i++) { res[i] = nextIntArray(k); } return res; }
+		public int[][] nextIntArray2DWithIndex(final int n, final int k) throws IOException { final int[][] res = new int[n][k+1]; for(int i = 0; i < n; i++) { for(int j = 0; j < k; j++) { res[i][j] = nextInt(); } res[i][k] = i; } return res; }
+		public double[] nextDoubleArray(final int n) throws IOException { final double[] res = new double[n]; for(int i = 0; i < n; i++) { res[i] = nextDouble(); } return res; }
+	}
+}

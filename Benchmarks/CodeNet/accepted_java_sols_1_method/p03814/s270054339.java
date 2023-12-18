@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	
+
+	public static void main(String[] args)  {
+		
+		Scanner scan = new Scanner(System.in);
+		String str = scan.next();
+		
+		int start = str.indexOf("A");
+		int last = str.lastIndexOf("Z");
+		
+		
+		
+		System.out.println(last - start + 1);
+		
+
+	}
+
+}

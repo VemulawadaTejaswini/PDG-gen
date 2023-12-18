@@ -1,0 +1,65 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int a, b, c;
+		String buf = br.readLine();
+		StringTokenizer st = new StringTokenizer(buf, " ");
+
+		a = Integer.parseInt(st.nextToken());
+		b = Integer.parseInt(st.nextToken());
+		c = Integer.parseInt(st.nextToken());
+		ArrayList<Num> al = new ArrayList<Num>();
+		al.add(new Num(a));
+		al.add(new Num(b));
+		al.add(new Num(c));
+
+		Collections.sort(al,new NumComparator());
+
+		System.out.println( al.get(0).getNo() + " " + al.get(1).getNo() + " " + al.get(2).getNo());
+
+	}
+}
+
+class Num {
+	private int no;
+
+	public Num(int a) {
+		this.no = a;
+	}
+
+	public int getNo() {
+		return this.no;
+
+	}
+
+}
+
+class NumComparator implements Comparator<Num> {
+
+	// ??????????????????????????????????????????????????????-1, 0, 1???????????????????¨???°?????????
+	public int compare(Num a, Num b) {
+		int no1 = a.getNo();
+		int no2 = b.getNo();
+
+		// ??????????????¨???????????????????????§??????????????????
+		if (no1 > no2) {
+			return 1;
+
+		} else if (no1 == no2) {
+			return 0;
+
+		} else {
+			return -1;
+
+		}
+	}
+}

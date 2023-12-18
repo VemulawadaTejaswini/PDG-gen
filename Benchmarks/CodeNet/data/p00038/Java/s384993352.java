@@ -1,0 +1,104 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	static Scanner sc = new java.util.Scanner(System.in);
+
+	public static void main(String[] args) {
+
+		while (sc.hasNext()) {
+			String str = sc.next();
+			String[] st = str.split(",");
+			int[] stn = new int[st.length];
+			int[] num = new int[13];
+			String ans = "null";
+
+			Arrays.fill(num, 0);
+
+			// ??????????????°????????????
+			for (int i = 0; i < st.length; i++) {
+				stn[i] = Integer.parseInt(st[i]);
+			}
+
+			// ??°?????????????????????
+			for (int i = 0; i < stn.length; i++) {
+
+				num[stn[i] - 1]++;
+
+			}
+
+			// ??????
+			// ???????????¢
+			if (maxone(num) == 2 && maxtwo(num) == 1) {
+				ans = "one pair";
+			}
+			// ???????????¢
+			else if (maxone(num) == 2 && maxtwo(num) == 2) {
+				ans = "two pair";
+			}
+			// ??????????????¢
+			else if (maxone(num) == 3 && maxtwo(num) == 1) {
+				ans = "three card";
+			}
+			// ???????????????
+			else if (maxone(num) == 3 && maxtwo(num) == 2) {
+				ans = "hull house";
+			}
+			// ??????????????????
+			else if (maxone(num) == 4) {
+				ans = "four card";
+			}
+			// ????????¬??????
+			else {
+				for (int i = 0; i < 9; i++) {
+					if (num[i] == 1 && num[i + 1] == 1 && num[i + 2] == 1 && num[i + 3] == 1 && num[i + 4] == 1) {
+						ans = "straight";
+					}
+				}
+				if (num[9] == 1 && num[10] == 1 && num[11] == 1 && num[12] == 1 && num[0] == 1) {
+					ans = "straight";
+				}
+			}
+
+			System.out.println(ans);
+		}
+
+	}
+
+	// ??°????????????????????§????????????
+	public static int maxone(int[] num) {
+		int max = 0;
+		for (int i = 0; i < num.length; i++) {
+			if (max < num[i]) {
+				max = num[i];
+			}
+
+		}
+		return max;
+	}
+
+	// ??°???????????????2??????????????§?????°?????????
+	public static int maxtwo(int[] num) {
+		int max1 = 0;
+		int max2 = 0;
+		if (num[0] > num[1]) {
+			max1 = num[0];
+			max2 = num[1];
+		} else {
+			max1 = num[1];
+			max2 = num[0];
+		}
+		for (int i = 2; i < num.length; i++) {
+			if (max1 < num[i]) {
+				max2 = max1;
+				max1 = num[i];
+			} else if (max2 < num[i]) {
+				max2 = num[i];
+			}
+		}
+		return max2;
+
+	}
+
+}

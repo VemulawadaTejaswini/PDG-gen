@@ -1,0 +1,45 @@
+import java.io.IOException;
+import java.util.Scanner;
+public class Main {
+  public static void judge(int x,int y){
+	  if(x<0||x>10000||y<0||y>10000){
+		  System.out.println("???????????????0~10000??§??\?????????????????????.???????????????.");
+	      System.exit(0);;
+	  }
+  }
+	public static void main(String[] args) throws IOException{
+		int x,y;
+		int count=0; //?????????????????°
+		String str1,str2;
+
+		while(count<3000){
+			/*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			str = br.readLine();*/
+
+			Scanner scan = new Scanner(System.in);
+			str1 = scan.next();
+			x = Integer.parseInt(str1);
+			str2 = scan.next();
+			y = Integer.parseInt(str2);
+
+			//System.out.println("x:"+x+" "+"y:"+y); //?¢??????¨
+			judge(x,y);
+
+			if(x>y)
+				System.out.println(y+(" ")+x);
+			else if(x<y)
+				System.out.println(x+(" ")+y);
+			else if(x==y&&x!=0&&y!=0)
+				System.out.println(x+(" ")+y);
+			else if(x==0&&y==0)
+				break;
+
+			scan.close();
+			count++; //???????????????
+
+			//System.out.println(count); //?¢??????¨
+		}
+
+	}
+
+}

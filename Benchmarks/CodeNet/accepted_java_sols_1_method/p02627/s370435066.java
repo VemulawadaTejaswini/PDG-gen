@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[] a){char c=new Scanner(System.in).next().charAt(0);;System.out.println(Character.isUpperCase(c)?'A':'a');}}

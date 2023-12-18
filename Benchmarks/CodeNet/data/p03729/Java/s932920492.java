@@ -1,0 +1,20 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader input =new BufferedReader (new InputStreamReader (System.in));
+		String str = input.readLine( );
+		String[] list = str.split(" ");
+
+		if(list[0].endsWith(list[1].substring(0, 1)) && list[1].endsWith(list[2].substring(0, 1))){
+			System.out.println("YES");
+		}else{
+			System.out.println("NO");
+		}
+	}
+
+
+}

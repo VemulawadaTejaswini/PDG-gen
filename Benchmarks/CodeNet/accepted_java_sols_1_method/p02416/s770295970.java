@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		while (true) {
+
+			String str = scan.next();
+
+			if (str.equals("0")) {
+				break;
+			}
+
+			// strArry????????????????????????????´?
+			String[] strArry = str.split("");
+
+			
+			int x = 0;
+			int sum = 0;
+			for (int i = 0; i < strArry.length; i++) {
+				//??´??°???????????????x?????£??\
+				x = Integer.parseInt(strArry[i]);
+				sum = sum + x;
+			}
+			
+			System.out.println(sum);
+		}
+	}
+}

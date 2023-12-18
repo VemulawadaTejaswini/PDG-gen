@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    
+    long x = sc.nextLong();
+    long k = sc.nextLong();
+    long d = sc.nextLong();
+    
+    long a = k - x/d;
+    long b = x%d;
+    
+    if(x/k >= d){
+      while(k-- > 0){
+        x -= d;
+      }
+      System.out.println(Math.abs(x));
+      return;
+    }
+    
+    if(a%2 == 0) {
+      System.out.println(Math.abs(b));
+    } else {
+      if(Math.abs(b-d) > Math.abs(b+d)){
+        System.out.println(Math.abs(b+d));
+      } else {
+        System.out.println(Math.abs(b-d));
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]){
+		Scanner scan = new Scanner(System.in);
+		String s = scan.nextLine();
+		String[] ss = s.split("");
+		for(int i=0; i<ss.length; i++){
+			System.out.print(ss[i]);
+			i++;
+		}
+
+		scan.close();
+	}
+}

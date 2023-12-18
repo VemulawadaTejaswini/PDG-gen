@@ -1,0 +1,18 @@
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[]){
+        Scanner s = new Scanner(System.in);
+        double x = s.nextInt();
+        int max = (int) Math.pow(10, 18);
+        if (101 <= x && x <= max) {
+            int c = 0;
+            for (int b = 100; b < x; b++) {
+                b = (int) (b * 1.01);
+                c++;
+            }
+            System.out.println(c+1);
+        }
+    }
+}

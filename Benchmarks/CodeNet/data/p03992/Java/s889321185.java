@@ -1,0 +1,21 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
+public class Main {
+
+	/**
+	 * Q1
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String hoge = br.readLine();
+		hoge = hoge.substring(0, 3)+" "+hoge.substring(4,11);
+				
+		System.out.println();
+
+	}
+
+}

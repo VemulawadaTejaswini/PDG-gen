@@ -1,0 +1,23 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main{
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		String s = br.readLine();
+		String[] array = s.split(" ");
+		int a = Integer.parseInt(array[0]);
+		int b = Integer.parseInt(array[1]);
+		int c = Integer.parseInt(array[2]);
+		int d = Integer.parseInt(array[3]);
+
+		if ((a * b) >= (c * d)) {
+			System.out.println(a * b);
+		} else {
+			System.out.print(c * d);
+		}
+	}
+}

@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+
+        int ans = 0;
+
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int x = sc.nextInt();
+
+        for (int i = 0; i < a; i++) {
+            for (int j = 0; j < b; j++) {
+                for (int k = 0; k < c; k++) {
+                    if (x == i * 500 + j * 100 + k * 50)
+                        ans++;
+                }
+            }
+        }
+
+        System.out.println(ans);
+        sc.close();
+    }
+}

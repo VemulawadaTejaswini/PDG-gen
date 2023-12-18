@@ -1,0 +1,62 @@
+import java.util.*;
+
+// ABC 62-D
+// http://abc062.contest.atcoder.jp/tasks/arc074_b
+ 
+public class Main {
+
+	public static void main (String[] args) throws java.lang.Exception {
+		Scanner in = new Scanner(System.in);
+		
+		int N = in.nextInt();
+		int[] nums = new int[3 * N];
+		for (int i = 0; i < 3 * N; i++) {
+			nums[i] = in.nextInt();
+		}
+		
+		// Do left 
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+		long sum = 0;
+		for (int i = 0; i < N; i++) {
+			pq.add(nums[i]);
+			sum += nums[i];
+		}
+		
+		long[] maxInLeft = new long[N + 1];
+		maxInLeft[0] = sum;
+		
+		for (int i = N; i < 2 * N; i++) {
+			pq.add(nums[i]);
+			sum += nums[i];
+			sum -= pq.poll();
+			maxInLeft[i - N + 1] = sum;
+		}
+		
+		
+		// Do right
+		long[] minInRight = new long[N + 1];
+		sum = 0;
+		pq = new PriorityQueue<Integer>(Collections.reverseOrder());
+		for (int i = 3 * N - 1; i >= 2 * N; i--) {
+			sum += nums[i];
+			pq.add(nums[i]);
+		}
+		
+		minInRight[N] = sum;
+		
+		for (int i = 2 * N - 1; i >= N; i--) {
+			pq.add(nums[i]);
+			sum += nums[i];
+			sum -= pq.poll();
+			minInRight[i - N] = sum;
+		}
+		
+		
+		// Calculate max in left and min in right
+		long answer = Long.MIN_VALUE;
+		for (int i = 0; i < N + 1; i++) {
+			answer = Math.max(answer, maxInLeft[i] - minInRight[i]);
+		}
+		System.out.println(answer);
+	}
+}

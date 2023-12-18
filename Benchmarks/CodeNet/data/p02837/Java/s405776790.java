@@ -1,0 +1,49 @@
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.*;
+import java.util.Map.Entry;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        solve(System.in, System.out);
+    }
+
+    static void solve(InputStream is, PrintStream os) {
+        // Your code here!
+        Scanner scan = new Scanner(is);
+        HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();
+        int N = scan.nextInt();
+        for(int i = 0; i < N; i++) {
+            int A = scan.nextInt();
+            HashMap<Integer, Integer> subMap = new HashMap<>();
+            for(int j = 0; j < A; j++) {
+                int x = scan.nextInt() - 1;
+                int y = scan.nextInt();
+                subMap.put(x,y);
+            }
+            map.put(i, subMap);
+        }
+
+        int ans = 0;
+        long allPattern = (long)Math.pow(2.0, N);
+        out: for(long i = 0; i < allPattern; i++) {
+            int numOf1 = 0;
+            for(int j = 0; j < N; j++) {
+                if(((i >> j) & 1) == 1) {
+                    numOf1++;
+                    HashMap<Integer, Integer> subMap = map.get(j);
+                    for(Entry<Integer, Integer> entry :subMap.entrySet()) {
+                        if(((i >> entry.getKey()) & 1) != entry.getValue()) {
+                            continue out;
+                        }
+                    }
+                }
+            }
+            if(ans < numOf1)
+                ans = numOf1;
+        }
+
+        os.println(ans);
+    }
+
+}

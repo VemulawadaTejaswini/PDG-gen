@@ -1,0 +1,1 @@
+import java.util.*;class _{void main(){System.out.println(new StringBuffer(new Scanner(System.in).next()).reverse());}

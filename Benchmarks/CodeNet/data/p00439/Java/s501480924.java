@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		while (true) {
+			int n = stdIn.nextInt();
+			int k = stdIn.nextInt();
+			if(n == 0 && k == 0) {
+				break;
+			}
+			int[] a = new int[n];
+			for(int i = 0; i < n; i++) {
+				a[i] = stdIn.nextInt();
+			}
+			int max = 0;
+			int sum = 0;
+			for(int i = 0; i < k; i++) {
+				sum += a[i];
+				if(sum > max) {
+					max = sum;
+				}
+			}
+			for(int i = 0; i < n-k; i++) {
+				sum -= a[i];
+				sum += a[i+k];
+				if(sum > max) {
+					max = sum;
+				}
+			}
+			System.out.println(max);
+		}
+	}
+}

@@ -1,0 +1,133 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.AbstractMap;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		FastScanner sc = new FastScanner(System.in);
+		PrintWriter out = new PrintWriter(System.out);
+		
+		String s = sc.next();
+		
+		String res = "WA";
+		
+		int a = 0,c = 0;
+		
+		int acnt = 0;
+		int ccnt = 0;
+		
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) == 'A') {
+				acnt++;
+			}else if(s.charAt(i) == 'C'){
+				ccnt++;
+			}
+		}
+		
+		if(s.charAt(0) == 'A' && acnt == 1 && ccnt == 1) {
+			boolean b = false;
+			
+			for(int i = 2; i < s.length()-3; i++) {
+				if(s.charAt(i) == 'C') {
+					if(b == true) {
+						break;
+					}
+					c = i;
+					b = true;
+				}
+			}
+
+			if(b){
+				for(int i = 0; i < s.length(); i++) {
+					if(i != a && i != c) {
+						if(!Character.isLowerCase(s.charAt(i))) {
+							break;
+						}else{
+							res = "AC";
+						}
+					}
+				}
+			}
+		}
+		out.println(res);
+		
+		out.flush();
+	}
+
+	public static int gcd(int a, int b) {
+		if(a < b) return gcd(b, a);
+		if(b == 0) return a;
+		return gcd(b, a % b);
+	}
+}
+
+class Pair<K, V> extends AbstractMap.SimpleEntry<K, V> {
+
+    public Pair(final K key, final V value) {
+        super(key, value);
+    }
+ }
+
+class FastScanner {
+    private BufferedReader reader = null;
+    private StringTokenizer tokenizer = null;
+
+    public FastScanner(InputStream in) {
+        reader = new BufferedReader(new InputStreamReader(in));
+        tokenizer = null;
+    }
+
+    public String next() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                tokenizer = new StringTokenizer(reader.readLine());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken();
+    }
+
+    public String nextLine() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                return reader.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return tokenizer.nextToken("\n");
+    }
+
+    public long nextLong() {
+        return Long.parseLong(next());
+    }
+
+    public int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    public double nextDouble() {
+         return Double.parseDouble(next());
+     }
+
+    public int[] nextIntArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextInt();
+        return a;
+    }
+
+    public long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextLong();
+        return a;
+    }
+}

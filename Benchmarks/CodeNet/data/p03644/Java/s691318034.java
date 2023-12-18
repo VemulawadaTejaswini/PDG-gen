@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class ABC068B {
+
+	public static void main(String[] args) {
+		Scanner sc =new Scanner(System.in);
+		int N=sc.nextInt();
+		for(int i =1;i<=N;i++){
+			if(Math.pow(2, i)<=N&&N<Math.pow(2, i+1)){
+				System.out.println((int)Math.pow(2, i));
+				break;
+			}
+
+		}
+
+	}
+
+}

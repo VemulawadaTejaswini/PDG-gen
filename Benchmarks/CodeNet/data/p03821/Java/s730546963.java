@@ -1,0 +1,39 @@
+//package com.grand9;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        long A[] =new long [N];
+        long B[] = new long [N];
+
+        for(int i=0;i<N;i++){
+            A[i]= sc.nextInt();
+            B[i]=sc.nextInt();
+        }
+
+        long ans = 0;
+        for(int i =N-1;i>=0;i-- ){
+            if(A[i]%B[i]!=0L){
+                long plus = ((A[i]+ans)/B[i]+1L)*B[i]-A[i]-ans;
+                ans += plus;
+            }
+            if((A[i]+ans)==0L){
+                ans = B[i]; 
+            }
+                
+           // System.out.println(ans);
+        }
+
+
+        System.out.println(ans);
+
+
+        sc.close();
+
+    }
+
+ }

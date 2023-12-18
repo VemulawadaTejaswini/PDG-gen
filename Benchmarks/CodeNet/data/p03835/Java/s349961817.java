@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Day4H
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
+        int s = sc.nextInt();
+
+        int cnt = 0;
+        for(int i = 0; i <= k; i++)
+        {
+            if(i > s)
+                break;
+            if(i == s)
+            {
+                cnt++;
+                break;
+            }
+
+            for (int j = 0; j <= k; j++)
+            {
+                if (i + j > s)
+                    break;
+                if(i + j == s)
+                {
+                    cnt++;
+                    break;
+                }
+
+                for (int l = 0; l <= k; l++)
+                {
+                    if (i + j + l > s)
+                        break;
+                    if (i + j + l == s)
+                    {
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+        }
+
+        System.out.println(cnt);
+    }
+}

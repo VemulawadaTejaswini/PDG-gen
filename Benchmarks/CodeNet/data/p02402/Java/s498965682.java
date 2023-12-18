@@ -1,0 +1,27 @@
+import java.util.Scanner;
+import java.io.*;
+
+class Main {
+	public static void main(String args[]) throws IOException {
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		
+		int n = Integer.parseInt(br.readLine());
+		
+		Scanner scan = new Scanner(System.in);
+		int min = 0, max = 0, sum = 0;
+		for (int i = 0; i < n; i++) {
+			int input_num = Integer.parseInt(scan.next());
+			if (i == 0 || min > input_num) {
+				min = input_num;
+			}
+			if (max < input_num) {
+				max = input_num;
+			}
+			
+			sum += input_num;
+		}
+		
+		System.out.println(min +" "+ max +" "+ sum);
+	}
+}

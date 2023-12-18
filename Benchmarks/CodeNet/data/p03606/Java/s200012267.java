@@ -1,0 +1,19 @@
+import java.util.Scanner;
+ 
+public class Main {
+ 
+    Scanner scanner = new Scanner(System.in);
+ 
+    public static void main(String[] args) {
+        new Main().compute();
+    }
+ 
+    void compute() {
+        int N=scanner.nextInt();
+        int ans=0;
+        for(int i=0;i<N;i++){
+            ans+=-(scanner.nextInt()-scanner.nextInt()-1);
+        }
+        System.out.println(ans);
+    }
+}

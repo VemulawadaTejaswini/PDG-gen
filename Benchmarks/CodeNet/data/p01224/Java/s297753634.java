@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,c,i,j;(n=s.nextInt())>0;System.out.println(((n-=c)<0?"deficient":n>0?"abundant":"perfect")+" number"))for(c=n>1?1:0,i=2,j=n;i<j;i++)c+=n%i<1?i+(i!=(j=n/i)?j:0):0;}}

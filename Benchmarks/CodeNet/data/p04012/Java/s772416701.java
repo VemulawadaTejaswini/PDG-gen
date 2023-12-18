@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Main {
+    public static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        String s = sc.next();
+        Map<String, Integer> map = new HashMap<>();
+        
+        for (int i = 0; i < s.length(); i++) {
+            String temp = s.substring(i, i+1);
+            if (map.containsKey(s)) {
+                map.put(s, map.get(s)+1);
+            } else {
+                map.put(s, 1);
+            }
+        }
+        
+        for (Map.Entry<String, Integer> entry: map.entrySet()) {
+            if (entry.getValue()%2 != 0) {
+                System.out.println("No");
+                return;
+            }
+        }
+        System.out.println("Yes");
+    }
+}

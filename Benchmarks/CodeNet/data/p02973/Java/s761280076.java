@@ -1,0 +1,36 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int a[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+        int pos = 0;
+        int ans[] = new int[n];
+        Arrays.fill(ans, Integer.MAX_VALUE);
+        for (int i = 0; i < n; i++) {
+            int add = a[i];
+            int max = -1;
+            int maxpos = -1;
+            for (int j = 0; j < pos; j++) {
+                if (ans[j] < add && max < ans[j]) {
+                    max = ans[j];
+                    maxpos = j;
+                }
+            }
+            if (maxpos != -1) {
+                ans[maxpos] = add;
+            } else {
+                ans[pos] = add;
+                pos++;
+            }
+        }
+        System.out.println(pos);
+        sc.close();
+    }
+}

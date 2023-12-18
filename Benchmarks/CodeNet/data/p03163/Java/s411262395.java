@@ -1,0 +1,63 @@
+	import java.util.*;
+	import java.io.*;
+	public class Main {
+		static int n,wi[];
+		static long W,vi[];
+		static HashMap<Integer,HashMap<Integer,Long>> dp;
+		public static void main(String[] args) throws IOException{
+			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+			int t=1;
+	//		Integer.parseInt(br.readLine().trim());
+			StringBuilder printans=new StringBuilder();
+			while(t-->0)
+			{
+				StringTokenizer tok=new StringTokenizer(br.readLine()," ");
+				n=Integer.parseInt(tok.nextToken());
+				W=Integer.parseInt(tok.nextToken());
+				
+				wi=new int[n];
+				vi=new long[n];
+				int sm=0;
+				for(int i=0;i<n;i++) {
+					tok=new StringTokenizer(br.readLine()," ");
+					wi[i]=Integer.parseInt(tok.nextToken());
+					vi[i]=Long.parseLong(tok.nextToken());
+					sm+=wi[i];	
+				
+				}
+				dp=new HashMap<>();
+				memset();
+				printans.append(call(0,0,0));
+			    
+			}
+			System.out.println(printans);
+			
+		}
+		static void memset() {
+//			for(long a[]:dp) {
+//				Arrays.fill(a, -1);
+//			}
+		}
+		static long call(int i,long v,int w) {
+			
+			if(w>W) {
+				return 0;
+			}
+			if(w==W || i==n) {
+				
+				return v;
+			}
+			if(dp.containsKey(i) && dp.get(i).containsKey(w)) {
+				return dp.get(i).get(w);
+			}
+			HashMap<Integer,Long> tdp=new HashMap<>();
+			tdp.put(w,Math.max(call(i+1,v,w), call(i+1,v+vi[i],w+wi[i])));
+			dp.put(i,tdp);
+			
+			return tdp.get(w);
+			
+			
+		}
+			
+			
+	}

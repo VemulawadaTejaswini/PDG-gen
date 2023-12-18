@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){Stack<Integer>l=new Stack<Integer>();for(Scanner s=new Scanner(System.in);s.hasNext();){int i=s.nextInt();if(i<1)System.out.println(l.pop());else l.push(i);}}}

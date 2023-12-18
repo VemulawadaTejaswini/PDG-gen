@@ -1,0 +1,27 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        
+        int N = sc.nextInt();
+        int arr[] = new int;
+
+        int max = arr[0];
+        int maxLength = arr[0];
+        
+        for (i = 1; i < N; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+
+            maxLength += arr[i]
+        }
+
+        if (max >= maxLength) {
+            System.out.println("No");
+        } else if (
+            System.out.println("Yes");
+        )
+
+     }
+}

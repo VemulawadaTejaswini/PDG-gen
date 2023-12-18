@@ -1,0 +1,12 @@
+import java.util.*;
+public class Main{
+public static void main(String[] args){
+Scanner sc=new Scanner(System.in);
+int i=0;
+String rtn="";
+StringBuffer[] sb=new StringBuffer[3];
+for(i=0;i<3;i++){sb[i]=new StringBuffer(sc.next());}
+rtn=(sb[0].reverse().substring(0,1)==sb[1].substring(0,1)&&sb[1].reverse().substring(0,1)==sb[2].reverse().substring(0,1))?"YES":"NO";
+System.out.println(rtn);
+}
+}

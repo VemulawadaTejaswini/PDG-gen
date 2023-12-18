@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) throws Exception {
+    Scanner scanner = new Scanner(System.in);
+    int a = scanner.nextInt();
+    String s = scanner.next();
+    scanner.close();
+
+    if (a >= 3200) {
+      System.out.println(s);
+    } else {
+      System.out.println("red");
+    }
+  }
+}

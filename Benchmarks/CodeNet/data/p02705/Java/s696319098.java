@@ -1,0 +1,1 @@
+class Main{public static void main(String[]a){System.out.print(6.2831*new java.util.Scanner(System.in).nextInt());}}

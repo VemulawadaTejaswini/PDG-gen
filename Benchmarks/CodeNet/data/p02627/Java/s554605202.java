@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[] a){char c=new Scanner(System.in).nextChar();System.out.println(c>'z'?'A':'a');}}

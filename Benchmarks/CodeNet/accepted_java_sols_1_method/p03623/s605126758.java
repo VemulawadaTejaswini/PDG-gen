@@ -1,0 +1,16 @@
+import java.util.*;
+public class Main{
+  public static void main (String[] args){
+    Scanner sc = new Scanner(System.in);
+    int x = sc.nextInt();
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int distanceA = x - a;
+    int distanceB = x - b;
+    if (Math.abs(distanceA) < Math.abs(distanceB)){
+      System.out.println("A");
+    }else{
+      System.out.println("B");
+    }
+  }
+}

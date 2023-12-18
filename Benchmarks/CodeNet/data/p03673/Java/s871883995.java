@@ -1,0 +1,29 @@
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class Main {
+
+    public static final int MOD = (int) (Math.pow(10, 9) + 7);
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long n = Long.parseLong(sc.next());
+        ArrayDeque<Long> q = new ArrayDeque<>();
+        for (int i = 1; i < n + 1; i++) {
+            long a = Long.parseLong(sc.next());
+            if (i % 2 != 0) {
+                q.addLast(a);
+            } else {
+                q.addFirst(a);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(q.removeFirst());
+            sb.append(" ");
+        }
+        sb.setLength(sb.length() - 1);
+        sb.append("\n");
+        System.out.println(sb.toString());
+    }
+}

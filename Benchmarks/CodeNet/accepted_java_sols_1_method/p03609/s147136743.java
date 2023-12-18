@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			String str = br.readLine();
+			String[] s = str.split(" ",0);
+			int x = Integer.parseInt(s[0]);
+			int t = Integer.parseInt(s[1]);
+			int ans;
+			if(x - t >= 0) {
+				ans = x -t;
+			}else {
+				ans = 0;
+			}
+			System.out.println(ans);
+
+//			long max  = 1000000007;
+		}catch (Exception e) {
+			System.exit(0);
+		}
+	}
+
+}

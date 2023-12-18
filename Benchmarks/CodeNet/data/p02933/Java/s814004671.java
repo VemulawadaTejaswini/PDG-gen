@@ -1,0 +1,19 @@
+package TopCoder;
+
+import java.util.Scanner;
+
+class RedOrNot
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        sc.nextLine();
+        String s=sc.nextLine();
+        if (a<3200)
+            System.out.println("red");
+        else {
+            System.out.println(s);
+        }
+    }
+}

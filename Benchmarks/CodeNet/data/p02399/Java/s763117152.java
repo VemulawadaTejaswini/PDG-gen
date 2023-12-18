@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        int a=scanner.nextInt();
+        int b=scanner.nextInt();
+        int d=a/b;
+        int r=a%b;
+        double fa=a;
+        double fb=b;
+        double f=fa/fb;
+        System.out.printf("%d %d %f\n", d,r,f);
+        
+    }
+}

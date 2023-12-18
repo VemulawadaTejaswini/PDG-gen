@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+        int x = Integer.parseInt(s.next());
+        int k = Integer.parseInt(s.next());
+        int temp = 0;
+        int min = 0;
+        while(true) {
+            temp = x;
+            x = x - k;
+            
+            
+            if(x<=0) {
+                x = Math.abs(x);
+                temp = Math.abs(temp);
+                if(x<=temp) {
+                    System.out.println(String.valueOf(x));
+                } else {
+                    System.out.println(String.valueOf(temp));
+                }
+                break;
+            }
+            
+        }
+    }
+}

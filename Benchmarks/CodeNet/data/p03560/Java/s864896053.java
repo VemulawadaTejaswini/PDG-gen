@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int K = sc.nextInt();
+    int ans = 0;
+    for(int i = 13;i >= 0;i--){
+      if(K >= Math.pow(2, i)){
+        ans++;
+        K -= Math.pow(2, i);
+      }
+    }
+    System.out.println(ans);
+  }
+}

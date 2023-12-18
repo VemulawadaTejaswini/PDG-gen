@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){double[]d=new double[10];d[0]=1;for(int i=0;i<9;i++)d[0]+=d[i+1]=i%2<1?d[i]*2:d[i]/3;for(Scanner s=new Scanner(System.in);s.hasNext();)System.out.println(s.nextDouble()*d[0]);}}

@@ -1,0 +1,76 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ *
+ * @author Silviase
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        Scanner in = new Scanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        ADiverseWord solver = new ADiverseWord();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class ADiverseWord {
+        public void solve(int testNumber, Scanner in, PrintWriter out) {
+            String s = in.next();
+            String res = func(s);
+            out.println(res);
+        }
+
+        public static String func(String s) {
+            boolean f = true;
+            String suffix = new String();
+            for (int i = 0; i < 26; i++) {
+                f = f && s.contains(String.valueOf((char) ('a' + i)));
+                if (!s.contains(String.valueOf((char) ('a' + i)))) {
+                    suffix = String.valueOf((char) ('a' + i));
+                    break;
+                }
+            }
+            if (!f) {
+                return s + suffix;
+            } else {
+                if (s.equals("zyxwvutsrqponmlkjihgfedcba")) {
+                    return "-1";
+                } else {
+                    int cut = s.length();
+                    for (int i = 0; i < s.length() - 1; i++) {
+                        for (int j = i + 1; j < s.length(); j++) {
+                            if (s.charAt(i) < s.charAt(j)) {
+                                cut = i;
+                            }
+                        }
+                    }
+                    boolean[] usedsub = new boolean[26];
+                    String t = s.substring(0, cut);
+                    int cnt = 2;
+                    String newsuf = new String();
+                    for (int i = 0; i < 26; i++) {
+                        usedsub[i] = t.contains(String.valueOf((char) ('a' + i)));
+                        if (!usedsub[i]) {
+                            newsuf = String.valueOf((char) ('a' + i));
+                            cnt--;
+                        }
+                        if (cnt == 0) {
+                            break;
+                        }
+                    }
+                    return t + newsuf;
+                }
+            }
+        }
+
+    }
+}
+

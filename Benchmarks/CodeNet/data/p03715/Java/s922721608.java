@@ -1,0 +1,50 @@
+
+import java.util.*;
+import java.util.Collections;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+
+
+        if(h % 3 == 0 || w % 3 ==0){
+            System.out.print(0);
+            return;
+        }
+
+        int result = 100000;
+        for(int y = h / 3; y <= h/3+h%3 ; y++ ){
+            for(int x = w / 2; x <= w / 2 + w%2 ; x++ ){
+                int s1 = y*w;
+                int s2 = (h-y)*x;
+                int s3 = (h-y)*(w-x);
+                List<Integer> list = java.util.Arrays.asList(s1,s2,s3);
+
+                int max = Collections.max(list);
+                int min = Collections.min(list);
+                if( result > max - min){
+                    result = max - min;
+                }
+            }
+        }
+
+        for(int y = h / 2; y <= h/2+h%2 ; y++ ){
+            for(int x = w / 3; x <= w / 3 + w%3 ; x++ ){
+                int s1 = x*h;
+                int s2 = (w-x)*y;
+                int s3 = (w-x)*(h-y);
+                List<Integer> list = java.util.Arrays.asList(s1,s2,s3);
+
+                int max = Collections.max(list);
+                int min = Collections.min(list);
+                if( result > max - min){
+                    result = max - min;
+                }
+            }
+        }
+
+        System.out.print(result);
+    }
+}

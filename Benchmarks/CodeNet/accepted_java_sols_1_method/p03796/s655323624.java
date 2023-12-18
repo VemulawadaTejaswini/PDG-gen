@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int A = scanner.nextInt();
+		long p = 1;
+	    for(int i = 1; i <= A; i++){
+	    	p = p * i;
+	    	p = p % 1000000007;
+	    }
+		System.out.println(p);
+		// TODO Auto-generated method stub
+
+	}
+
+}

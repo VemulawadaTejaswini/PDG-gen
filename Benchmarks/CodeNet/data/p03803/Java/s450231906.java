@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int CardA = Integer.parseInt(sc.next());
+		int CardB = Integer.parseInt(sc.next());
+		String s;
+		if(CardA > CardB){
+			s="Alice";
+		}else if(CardB > CardA){
+			s="Bob";
+		}else{
+			s="Draw";
+		}
+		System.out.println(s);
+		sc.close();
+	}
+}

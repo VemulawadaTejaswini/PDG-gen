@@ -1,0 +1,91 @@
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        PrintWriter out=new PrintWriter(System.out);
+        FastReader in=new FastReader(); 
+        Solver s=new Solver();
+        int t=1;
+        while(t-- > 0) s.solve(in, out);
+        out.close();
+    }
+
+    static class Solver {
+        public void solve(FastReader in, PrintWriter out) throws IOException {
+            // solve
+            int n=in.nextInt();
+            int[] a=new int[n];
+            int[] b=new int[n];
+            int[] c=new int[n];
+            for(int i=0;i<n;i++){
+                a[i]=in.nextInt();
+                b[i]=in.nextInt();
+                c[i]=in.nextInt();
+            }
+            int[] dp=new int[] {a[0],b[0],c[0]};
+            //everyday toro has 3 choices
+            for(int i=1;i<n;i++){
+                int x=a[i]+Math.max(dp[1],dp[2]);
+                int y=b[i]+Math.max(dp[0],dp[2]);
+                int z=c[i]+Math.max(dp[0],dp[1]);
+                dp[0]=x;
+                dp[1]=y;
+                dp[2]=z;
+            }
+            int ans=0;
+            for(int i:dp) ans=Math.max(ans,i);
+            out.println(ans);
+        } 
+    }
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br=new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        public String next() {
+            while (st==null||!st.hasMoreElements()) {
+                try {
+                    st=new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        public double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        public char nextChar() {
+            return next().charAt(0);
+        }
+
+        public String nextLine() {
+            String str="";
+            try {
+                str=br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+}

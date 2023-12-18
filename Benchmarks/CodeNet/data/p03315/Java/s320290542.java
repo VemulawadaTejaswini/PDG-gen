@@ -1,0 +1,15 @@
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
+    	Scanner sc = new Scanner(System.in);
+      String str = sc.next();
+      int sum = 0;
+      String s;
+      for(int i = 0;i < 4; i++){
+      	String s =str.substring(i,i+1);
+        if(s.equals("+")) sum++;
+        else sum--;
+      }
+      sc.close();
+    }
+}

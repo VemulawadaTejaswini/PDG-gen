@@ -1,0 +1,41 @@
+import java.util.Scanner;
+public class Main {
+private static Scanner s;
+public static void main(String[] args) {
+	s = new Scanner(System.in);
+	int a = s.nextInt();
+	int[] b = new int[a];
+	int l = Integer.MIN_VALUE;
+	int[] c = new int[10001];
+
+	for(int i = 0;i < a;i++) {
+		int tmp = s.nextInt();
+		b[i] = tmp;
+		l = Math.max(l, b[i]);
+		c[tmp]++;
+	}
+
+	for(int i = 0;i < c.length;i++) {
+		if(i != 0) {
+			c[i] = c[i] + c[i-1];
+		}else {
+			c[i] = c[i];
+		}
+	}
+	int[] d = new int[a];
+
+	for(int i = a - 1;i >= 0;i--) {
+		d[c[b[i]]-1] = b[i];
+		c[b[i]]--;
+	}
+	for(int i = 0;i < a;i++) {
+		System.out.print(d[i]);
+		if(i != a-1) {
+			System.out.print(" ");
+		}else {
+			System.out.println("");
+		}
+	}
+}
+}
+

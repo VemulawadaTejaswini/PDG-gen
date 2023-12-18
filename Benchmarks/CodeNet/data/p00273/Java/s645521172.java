@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class Main{
+	
+	public void soleve(){
+		Scanner sc = new Scanner(System.in);
+		int ninzu,k;
+		int ban;
+		for(int i=1;i<=4;i++){
+			ban = sc.nextInt();
+			if(ban == 1){
+				k = 6000;
+			}else if(ban == 2){
+				k = 4000;
+			}else if(ban == 3){
+				k = 3000;
+			}else{
+				k = 2000;
+			}
+			ninzu = sc.nextInt();
+			int uriage = k * ninzu;
+			System.out.println(uriage);
+		}
+	}
+	public static void main(String[] args){
+		Main obj = new Main();
+		obj.soleve();
+	}
+}

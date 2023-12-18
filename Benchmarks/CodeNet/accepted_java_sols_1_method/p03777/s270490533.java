@@ -1,0 +1,31 @@
+import java.util.*;
+
+
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		
+		//入力
+		
+		String a=sc.next();
+		String b=sc.next();
+
+
+
+		//計算
+
+
+
+
+
+		//出力
+		if(a.equals("D")){
+			if(b.equals("D")) System.out.println("H");
+			else System.out.println("D");
+		}else{
+			if(b.equals("H")) System.out.println("H");
+			else System.out.println("D");
+		}
+		
+	}
+}

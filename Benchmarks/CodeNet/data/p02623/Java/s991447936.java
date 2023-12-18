@@ -1,0 +1,56 @@
+import java.util.*;
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        int K = sc.nextInt();
+
+        long[] A = new long[N+1];
+        long[] B = new long[M+1];
+        for (int i = 0; i < N; i++) {
+            A[i+1] = A[i]+sc.nextInt();
+        }
+        for (int i = 0; i < M; i++) {
+            B[i+1] = B[i]+sc.nextInt();
+        }
+
+        int ans = 0;
+        for (int i = 0; i <=N ; i++) {
+
+            if(A[i]>K){
+ //               ans = Math.max(ans,i);
+            }else if(A[i]==K){
+                  ans = Math.max(ans,i);
+            }else{
+                int books = binarySearch(A[i],K,B);
+                ans = Math.max(ans,books+i);
+            }
+        }
+
+        System.out.println(ans);
+    }
+
+    //a-B[i]<= K , find max books
+    static
+    int binarySearch(long a,int K, long[] B){
+
+        int l = 0;
+        int r = B.length;
+
+        while(l+1<r){
+            int mid = (l+r)/2;
+            if(a+B[mid]<=K){ //OK
+                l=mid;
+            }else{//NG
+                r=mid;
+            }
+        }
+
+
+        return l;
+
+    }
+}

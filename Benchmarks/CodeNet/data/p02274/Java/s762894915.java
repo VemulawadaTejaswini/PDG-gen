@@ -1,0 +1,75 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		// TODO ?????????????????????????????????????????????
+		BufferedReader br =
+				new BufferedReader( new InputStreamReader(System.in) );
+
+		int n = Integer.parseInt(br.readLine());
+
+		String[] data = br.readLine().split(" ");
+
+		int[] A = new int[n];
+		for (int i=0; i < n; i++) {
+			A[i] = Integer.parseInt(data[i]);
+		}
+
+		int h = mergeSort(A, 0, n);
+		System.out.println(h);
+
+	}
+
+	static int merge(int[] A, int l, int m, int r) { // l:left, m:mid, r:right
+		int n1 = m - l;
+		int n2 = r - m;
+
+		int max = Integer.MAX_VALUE; //bannpei
+		// L = {A[l], A[l+1], A[l+2], ... , A[m-2], A[m-1], bannpei}
+		int[] L = new int[n1+1];
+		for (int i=0; i < n1; i++) {
+			L[i] = A[l+i];
+		}
+
+		// R = {A[m], A[m+1], ... , A[r-1], bannpei}
+		int[] R = new int[n2+1];
+		for (int i=0; i < n2; i++) {
+			R[i] = A[m+i];
+		}
+
+		// bannpei?¨????
+		L[n1] = max;
+		R[n2] = max;
+
+		int i = 0;
+		int j = 0;
+		int count = 0;
+		for (int k = l; k < r; k++) {
+			if ( L[i] <= R[j] ) {
+				A[k] = L[i];
+				i++;
+			} else {
+				A[k] = R[j];
+				j++;
+				count += n1 - i;
+			}
+		}
+		return count;
+	}
+
+	/**
+	 * A????????????l <= index < r??¨????????¨?????????????????´????????????
+	 */
+	static int mergeSort(int[] A, int l, int r) {
+		int count = 0;
+		if ( l+1 < r ) {
+			int m = (l+r) / 2;
+			count += mergeSort(A, l, m);
+			count += mergeSort(A, m, r);
+			count += merge(A, l, m, r);
+		}
+		return count;
+	}
+}

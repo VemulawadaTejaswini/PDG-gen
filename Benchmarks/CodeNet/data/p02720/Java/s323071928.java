@@ -1,0 +1,30 @@
+import java.util.*;
+import java.math.*;
+public class Main {
+    static final int MOD = 1_000_000_007; // 10^9+7
+    //static final int MAX = 2_147_483_646; // intの最大値
+    static final int INF = 1_000_000_000; // 10^9
+    static final int MAX = 10_000_000;
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Deque<Long> que = new ArrayDeque();
+        for(long i = 1;i < 10;i++)que.add(i);
+        int count = 0;
+        for(int i = 0;i < n;i++){
+            long poyo = que.pollFirst();
+            if(poyo%10!=0)que.add(10*poyo-1+poyo%10);
+            que.add(10*poyo+poyo%10);
+            if(poyo%10!=9)que.add(10*poyo+1+poyo%10);
+            if(i==n-1)System.out.println(poyo);
+        }
+        
+    }    
+    
+    
+}
+
+
+
+
+

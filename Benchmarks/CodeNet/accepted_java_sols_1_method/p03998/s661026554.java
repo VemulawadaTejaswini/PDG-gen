@@ -1,0 +1,95 @@
+import java.util.*;
+public class Main{
+	public static void main(String args[]){
+		Scanner gio = new Scanner(System.in);
+		char[] alice = gio.nextLine().toCharArray();
+		char[] bob = gio.nextLine().toCharArray();
+		char[] charlie = gio.nextLine().toCharArray();
+		int currentPlayer = 0;//0 == alice, 1 == bob, 2 == charlie
+		char winner = 0;
+		while(true){
+			if(currentPlayer == 0){
+				//loop through alice's deck
+				boolean mayLaman = false;
+				for(int q = 0; q < alice.length; q++){
+					if(alice[q] != 0){
+						mayLaman = true;
+						if(alice[q] == 'a'){
+							currentPlayer = 0;
+						}
+						else if(alice[q] == 'b'){
+							currentPlayer = 1;
+						}
+						else if(alice[q] == 'c'){
+							currentPlayer = 2;
+						}
+						else{
+							System.out.println("wtf?");
+						}
+						alice[q] = 0;
+						break;
+					}
+				}
+				if(!mayLaman){
+					winner = 'A';
+					break;
+				}
+			}
+			else if(currentPlayer == 1){
+				//loop through bob's deck
+				boolean mayLaman = false;
+				for(int q = 0; q < bob.length; q++){
+					if(bob[q] != 0){
+						mayLaman = true;
+						if(bob[q] == 'a'){
+							currentPlayer = 0;
+						}
+						else if(bob[q] == 'b'){
+							currentPlayer = 1;
+						}
+						else if(bob[q] == 'c'){
+							currentPlayer = 2;
+						}
+						else{
+							System.out.println("wtf?");
+						}
+						bob[q] = 0;
+						break;
+					}
+				}
+				if(!mayLaman){
+					winner = 'B';
+					break;
+				}
+			}
+			else if(currentPlayer == 2){
+				//loop through charlie's deck
+				boolean mayLaman = false;
+				for(int q = 0; q < charlie.length; q++){
+					if(charlie[q] != 0){
+						mayLaman = true;
+						if(charlie[q] == 'a'){
+							currentPlayer = 0;
+						}
+						else if(charlie[q] == 'b'){
+							currentPlayer = 1;
+						}
+						else if(charlie[q] == 'c'){
+							currentPlayer = 2;
+						}
+						else{
+							System.out.println("wtf?");
+						}
+						charlie[q] = 0;
+						break;
+					}
+				}
+				if(!mayLaman){
+					winner = 'C';
+					break;
+				}
+			}
+		}
+		System.out.println(winner);
+	}
+}

@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+class Main{
+
+	public static void main(String[] args){
+		solve();
+	}
+	
+	public static void solve(){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		int count = 0;
+
+		if(k==0){
+			count = n*n;
+		}
+		else{
+			for(int i=2;i<=n;i++){
+				if(i>k){
+					count += (int)Math.max(0, n/i*(i-k));
+					count += (int)Math.max(0, (n%i)-k+1);
+				}
+			}
+		}
+
+		System.out.println(count);
+	}
+}

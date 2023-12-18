@@ -1,0 +1,27 @@
+import java.util.*; 
+
+class Main{
+public static void main(String[] args){
+	Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+		int[] p=new int[n];
+		for(int c=0;c<n;c++){
+    		p[c]=sc.nextInt();
+    	}
+  		
+ 		int c=0;
+    	for(int d=0;d<n-1;d++){
+          if(p[d]!=p[d+1]-1){
+   			c++;
+          }  
+        }
+  
+ 	if(c<=2){
+    		System.out.println("YES");
+    	}else{
+     		System.out.println("NO");
+   	 }
+
+    	
+    }
+}

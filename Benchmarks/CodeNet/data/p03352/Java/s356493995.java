@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String args[]) {
+    Scanner sc = new Scanner(System.in);
+
+    int x = sc.nextInt();
+    int tmp_p = x;
+    int res = 0;
+
+    for (int i = 0; i < x; i ++) {
+      for (int j = 2; j < tmp_p; j++) {
+        if ((int)Math.pow(i, j) <= x) {
+          System.out.println("i=" + i + ", j=" + j);
+          res = Math.max(res, (int)Math.pow(i, j));
+        } else {
+          tmp_p = j;
+          break;
+        }
+      }
+    }
+
+    System.out.println(res);
+  }
+}

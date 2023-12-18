@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void printArr(int[] arr) {
+        String[] ss = new String[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            ss[i] = String.valueOf(arr[i]);
+        }
+        System.out.println(String.join(" ", ss));
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] inputs = new int[n];
+        for (int i = 0; i < n; i++) {
+            inputs[i] = sc.nextInt();
+        }
+
+        int cnt = 0;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = n - 1; j > i ; j--) {
+                if(inputs[j - 1] > inputs[j]) {
+                    int tmp = inputs[j];
+                    inputs[j] = inputs[j - 1];
+                    inputs[j - 1] = tmp;
+                    cnt++;
+                }
+            }
+        }
+        printArr(inputs);
+        System.out.println(cnt);
+    }
+
+}

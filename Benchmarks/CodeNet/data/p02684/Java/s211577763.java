@@ -1,0 +1,33 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+    	int n = sc.nextInt();
+    	long k = sc.nextLong();
+    	Map<Integer,Integer> teleport = new HashMap<>();
+    	Map<Integer,Long> history = new HashMap<>();
+    	for(int i = 1 ; i <= n; i++){
+    		teleport.put(i, sc.nextInt());
+    	}
+    	long i;
+    	int now = 1;
+    	for(i = 0; i <= k; i++){
+    		if(history.containsKey(now)){
+    			break;
+    		}
+    		history.put(now, i);
+    		now = teleport.get(now);
+    	}
+    	if(i != k){
+    		long pastTime = history.get(now);
+    		i = pastTime + (k - pastTime) % (i - pastTime);
+    	}
+    	for(int p : history.keySet()){
+    		if(history.get(p) == i){
+    			System.out.println(p);
+    			return;
+    		}
+    	}
+    }
+}

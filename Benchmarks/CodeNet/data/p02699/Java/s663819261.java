@@ -1,0 +1,18 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		// 整数の入力(スペース改行関係なし)
+		int s = sc.nextInt();
+        int w = sc.nextInt();
+
+
+		if(s <= w ){
+			// 出力
+			System.out.println("unsafe");
+		}else{
+			System.out.println("safe");
+		}
+		
+	}
+}

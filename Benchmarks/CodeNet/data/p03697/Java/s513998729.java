@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner io = new Scanner(System.in);
+		int A = io.nextInt();
+		int B = io.nextInt();
+		
+		System.out.println((A+B<10)?A+B:"error");
+	}
+}

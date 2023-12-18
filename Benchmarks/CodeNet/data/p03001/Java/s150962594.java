@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main{
+
+    public static void main(String args[]){
+
+        // スキャナーの宣言
+        Scanner sc = new Scanner(System.in);
+        // 整数の入力
+		int w = sc.nextInt();
+        // スペース区切りの整数の入力
+        int h = sc.nextInt();
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+
+        double ans;
+        int b;
+
+        ans = Math.max(Math.min(x * h, (w - x) * h), Math.min(w * y, w * (h - y)));
+        if(x * h != (w - x) * h && x * h != w * y && x * h != w * (h - y) && (w - x) * h != w * y && (w - x) * h != w * (h - y) && w * y != w * (h - y)) b = 0;
+        else b = 1;
+
+        // 出力
+        System.out.println(String.format("%.9f", ans) + " " + b);
+
+    }
+
+}

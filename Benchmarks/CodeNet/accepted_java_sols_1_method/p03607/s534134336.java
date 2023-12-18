@@ -1,0 +1,24 @@
+
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			long n = sc.nextLong();
+			HashSet<Long> set = new HashSet<Long>();
+
+			for (int i = 0; i < n; i++) {
+				long tmp = sc.nextLong();
+				if (set.contains(tmp)) {
+					set.remove(tmp);
+				} else {
+					set.add(tmp);
+				}
+			}
+
+			System.out.println(set.size());
+		}
+	}
+}

@@ -1,0 +1,92 @@
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+
+		new Main().run();
+	}
+
+	private void run() throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			m = scanner.nextInt();
+			n = scanner.nextInt();
+			if ((m | n) == 0)
+				break;
+			M = new HashMap<Integer, Integer>(1000000);
+			h = 1;
+			a = new int[n][m];
+			pairs = new Pair[24];
+			for (int i = 0; i < n; i++)
+				for (int j = 0; j < m; j++) {
+					int t = scanner.nextInt();
+					if (t == 0) {
+						a[i][j] = -1;
+					} else if (t == 1) {
+						pairs[h] = new Pair(i, j);
+						a[i][j] = h++;
+					} else {
+						pairs[0] = new Pair(i, j);
+						a[i][j] = 0;
+					}
+				}
+			System.out.println(slove(0, 1));
+		}
+	}
+
+	private int slove(int cur, int bit) {
+		int k = cur << 24 | bit;
+		if (M.containsKey(k))
+			return M.get(k);
+		int res = 0;
+		for (int[] mo : move) {
+			int y = pairs[cur].y;
+			int x = pairs[cur].x;
+			while (true) {
+				y += mo[0];
+				x += mo[1];
+				if (!isOK(y, x))
+					break;
+				if (a[y][x] == 0)
+					if (Integer.bitCount(bit) == h) {
+						return res + 1;
+					}
+				if (a[y][x] >= 1) {
+					if ((bit >> a[y][x] & 1) == 1)
+						continue;
+					res += slove(a[y][x], bit | 1 << a[y][x]);
+					break;
+				}
+			}
+		}
+		M.put(k, res);
+		return res;
+	}
+
+	private boolean isOK(int y, int x) {
+		if (0 <= y && y < n && 0 <= x && x < m)
+			return true;
+		return false;
+	}
+	class Pair{
+		int y,x;
+
+		public Pair(int y, int x) {
+			super();
+			this.y = y;
+			this.x = x;
+		}
+		
+	}
+
+	int m, n, h;
+	Pair[] pairs;
+	int[][] a;
+	int[][] move = { { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 0 } };
+	Map<Integer, Integer> M;
+}

@@ -1,0 +1,190 @@
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/*
+ * AtCoder Grand Contest 028 A "Two Abbreviations"
+ *   https://agc028.contest.atcoder.jp/tasks/agc028_a/
+ */
+public class Main {
+
+	public static void main(String[] args) {
+
+		InputScanner in = new InputScanner(System.in);
+		PrintWriter out = new PrintWriter(System.out);
+
+		Task task = new Task();
+		task.run(in, out);
+
+		in.close();
+		out.close();
+	}
+
+	static class Task {
+
+		public void run(InputScanner in, PrintWriter out) {
+
+			int N = in.nextInt();
+			int M = in.nextInt();
+			String S = in.next();
+			String T = in.next();
+
+			int lcm = (int) lcm(N, M);
+
+			int ans = -1;
+			for (int L = lcm; L <= lcm; L += lcm) {
+
+				boolean ans2 = true;
+				int lcm2 = (int) lcm(L / N, L / M);
+				for (int i = 0; i < Math.min(N, M); i += lcm2) {
+					int si = i / (L / N);
+					int ti = i / (L / M);
+					if (S.charAt(si) != T.charAt(ti)) {
+						ans2 = false;
+						break;
+					}
+				}
+
+				if (ans2) {
+					ans = L;
+					break;
+				}
+			}
+
+			out.println(ans);
+		}
+
+	}
+
+	private static long lcm(long m, long n) {
+	    return m * n / gcd(m, n);
+	}
+
+	private static long gcd(long m, long n) {
+	    if(m < n) return gcd(n, m);
+	    if(n == 0) return m;
+	    return gcd(n, m % n);
+	}
+
+	/*
+	 * extends java.util.Scanner
+	 */
+	static class InputScanner {
+
+		Scanner scanner;
+
+		public InputScanner(InputStream inputStream) {
+			this.scanner = new Scanner(inputStream);
+		}
+
+		public boolean hasNext() {
+			return scanner.hasNext();
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(scanner.next());
+		}
+
+		public long nextLong() {
+			return Long.parseLong(scanner.next());
+		}
+
+		public double nextDouble() {
+			return Double.parseDouble(scanner.next());
+		}
+		public String next() {
+			return scanner.next();
+		}
+
+		public int[] nextIntArray(int n) {
+			int[] ret = new int[n];
+			for (int i = 0; i < n; i++) {
+				ret[i] = scanner.nextInt();
+			}
+			return ret;
+		}
+
+		public int[][] nextIntArray(int h, int w) {
+			int[][] ret = new int[h][w];
+			for (int i = 0; i < h; i++) {
+				for (int j = 0; j < w; j++) {
+					ret[i][j] = scanner.nextInt();
+				}
+			}
+			return ret;
+		}
+
+		public long[] nextLongArray(int n) {
+			long[] ret = new long[n];
+			for (int i = 0; i < n; i++) {
+				ret[i] = scanner.nextLong();
+			}
+			return ret;
+		}
+
+		public long[][] nextlongArray(int h, int w) {
+			long[][] ret = new long[h][w];
+			for (int i = 0; i < h; i++) {
+				for (int j = 0; j < w; j++) {
+					ret[i][j] = scanner.nextLong();
+				}
+			}
+			return ret;
+		}
+
+		public double[] nextDoubleArray(int n) {
+			double[] ret = new double[n];
+			for (int i = 0; i < n; i++) {
+				ret[i] = scanner.nextDouble();
+			}
+			return ret;
+		}
+
+		public double[][] nextDoubleArray(int h, int w) {
+			double[][] ret = new double[h][w];
+			for (int i = 0; i < h; i++) {
+				for (int j = 0; j < w; j++) {
+					ret[i][j] = scanner.nextLong();
+				}
+			}
+			return ret;
+		}
+
+		public String[] nextStringArray(int n) {
+			String[] ret = new String[n];
+			for (int i = 0; i < n; i++) {
+				ret[i] = scanner.next();
+			}
+			return ret;
+		}
+
+		public String[] nextStringArray(String split) {
+			String[] ret = scanner.next().split(split);
+			return ret;
+		}
+
+		public String[][] nextStringArray(int h, int w) {
+			String[][] ret = new String[h][w];
+			for (int i = 0; i < h; i++) {
+				for (int j = 0; j < w; j++) {
+					ret[i][j] = scanner.next();
+				}
+			}
+			return ret;
+		}
+
+		public String[][] nextStringArray(int h, String split) {
+			String[][] ret = new String[h][];
+			for (int i = 0; i < h; i++) {
+				ret[i] = scanner.next().split(split);
+			}
+			return ret;
+		}
+
+		public void close() {
+			scanner.close();
+		}
+
+	}
+
+}

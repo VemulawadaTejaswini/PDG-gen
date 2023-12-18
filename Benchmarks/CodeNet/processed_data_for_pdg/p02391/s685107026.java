@@ -1,0 +1,19 @@
+public class Main {
+	public static void main(String[] args) {
+			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+			  try{
+				  String ab = input.readLine();
+				  String[] strAry = ab.split(" ");
+				  int a = Integer.parseInt(strAry[0]);
+				  int b = Integer.parseInt(strAry[1]);
+				  if(a < b){
+					  System.out.println("a < b");
+				  }else if(a > b){
+					  System.out.println("a > b");
+				  }else if(a == b){
+					  System.out.println("a == b");
+				  }
+			    }catch(IOException e) {   System.out.println("Exception : " + e);
+			    }
+		}
+	}

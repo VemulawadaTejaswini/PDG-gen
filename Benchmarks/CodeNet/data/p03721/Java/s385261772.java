@@ -1,0 +1,55 @@
+public class Main {
+
+	public static void main(String[] args) {
+		java.util.Scanner scanner = new java.util.Scanner (System.in);
+		int N=scanner.nextInt() ;
+		int K=scanner.nextInt() ;
+		
+		int a[]=new int[N];
+		int b[]=new int[N];
+		
+		for(int i=0;i<N;i++){
+			a[i]=scanner.nextInt();
+			b[i]=scanner.nextInt();
+		}
+		
+		int sum=0;
+		for(int i=0;i<N;i++){
+			sum+=b[i];
+		}
+		
+		int array[]=new int[sum];
+		
+		int num=0;
+		for(int i=0;i<N;i++){
+			for(int a_time=0;a_time<b[i];a_time++){
+				array[num]=a[i];
+				//System.out.println(array[num]);
+				num+=1;
+			}
+		}
+		//ここまでOK
+		int min_k=0;
+		int minn=0;
+		int c=0;
+		int min=(int)Math.pow(10.0, 5.0);
+		while(min_k<K){
+			for(int i=0;i<sum;i++){
+				if(array[i]<=min&&minn<array[i]){
+					min_k+=1;
+					min=array[i];
+					c=array[i];
+					//minn=array[i];
+					//System.out.println(min);
+					if(min_k>=K){
+						System.out.println(min);
+						break;
+					}
+				}
+			}
+			minn=c;
+		}
+		
+	}
+
+}

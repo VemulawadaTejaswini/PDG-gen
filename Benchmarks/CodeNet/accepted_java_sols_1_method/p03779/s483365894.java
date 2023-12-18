@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long x = scanner.nextLong();
+        long time = 0;
+        while(true) {
+            if(time*(time+1)/2 >= x) {
+                System.out.println(time);
+                return;
+            } else {
+                time++;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+import java.util.*;
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int m = sc.nextInt();
+    int d = sc.nextInt();
+    int cnt = 0;
+    for(int i = 1;i <= m;i++){
+      for(int j = 22;j <= d;j++){
+        int x = d/10;
+        int y = d%10;
+        if(x>=2&&y>=2&&x*y==m)cnt++;
+      }
+    }
+    System.out.println(cnt);
+  }
+}

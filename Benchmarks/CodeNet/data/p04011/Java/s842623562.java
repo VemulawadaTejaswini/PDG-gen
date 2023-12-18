@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Main{
+	
+	static final Scanner s=new Scanner(System.in);
+	
+	public static void main(String[] __){
+		int n=s.nextInt(),k=s.nextInt(),x=s.nextInt(),y=s.nextInt();
+		System.out.println(n<=k?n*x:n*x-(n-k)*(x-y));
+	}
+}

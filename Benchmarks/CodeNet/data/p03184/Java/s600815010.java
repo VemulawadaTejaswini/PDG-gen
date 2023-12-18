@@ -1,0 +1,219 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.*;
+
+public class Main {
+	static final long MOD=1000000007;//998244353;
+	public static void main(String[] args) {
+		PrintWriter out = new PrintWriter(System.out);
+		InputReader sc=new InputReader(System.in);
+		int H=sc.nextInt();
+		int W=sc.nextInt();
+		int N=sc.nextInt();
+		ArrayList<Pair> arrayList=new ArrayList<>();
+		for (int i = 0; i < N; i++) {
+			int r=sc.nextInt()-1;
+			int c=sc.nextInt()-1;
+			arrayList.add(new Pair(r, c));
+		}
+		Binomial binomial=new Binomial();
+		arrayList.add(new Pair(H-1, W-1));
+		Collections.sort(arrayList);
+		long[] dp=new long[N+1];
+		for (int i = 0; i <= N; i++) {
+			int r=arrayList.get(i).x;
+			int c=arrayList.get(i).y;
+			dp[i]=binomial.nCk(r+c, r, MOD);
+			for (int j = 0; j < i; j++) {
+				int r_=arrayList.get(j).x;
+				int c_=arrayList.get(j).y;
+				if (r-r_<0||c-c_<0) {
+					continue;
+				}
+				dp[i]-=(dp[j]*binomial.nCk(r-r_+c-c_, c-c_, MOD))%MOD;
+				if (dp[i]<0) {
+					dp[i]+=MOD;
+				}
+			}
+		}
+		System.out.println(dp[N]);
+   	}
+	static class Pair implements Comparable<Pair>{
+    	public int x;
+    	public int y;
+    	public Pair(int x,int y) {
+    		this.x=x;
+    		this.y=y;
+    	}
+    	@Override
+    	public boolean equals(Object obj) {
+    		if(obj instanceof Pair) {
+    			Pair other = (Pair) obj;
+    			return other.x==this.x && other.y==this.y;
+    		}
+    		return false;
+    	}//同値の定義
+    	@Override
+    	public int hashCode() {
+    		return Objects.hash(this.x,this.y);
+    	}//これ書かないと正しく動作しない（要　勉強）
+    	@Override
+    	public int compareTo( Pair p){
+    		if (this.x+this.y>p.x+p.y) {
+    			return 1;
+    		}
+    		else if (this.x+this.y<p.x+p.y) {
+    			return -1;
+    		}
+    		else {
+    			return 0;
+    		}
+    	}
+    }
+	static class Binomial{
+		int MAX = 510000;//ほしいサイズ
+		long[] fac=new long[MAX];
+		long[] finv=new long[MAX];
+		long[] inv=new long[MAX];
+		public Binomial(){
+			fac[0] = fac[1] = 1;
+		    finv[0] = finv[1] = 1;
+		    inv[1] = 1;
+		    for (int i = 2; i < MAX; i++){
+		        fac[i] = fac[i - 1] * i % MOD;
+		        inv[i] = MOD - inv[(int) (MOD%i)] * (MOD / i) % MOD;
+		        finv[i] = finv[i - 1] * inv[i] % MOD;
+		    }//facがx!、finvがx!の逆元,10^7くらいまでのテーブル(MAXまで)
+		}
+		long nCk(int n,int k,long MOD) {
+		    if (n < k) return 0;
+		    if (n < 0 || k < 0) return 0;
+		    return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD;
+		}
+	}
+		static class InputReader { 
+		private InputStream in;
+		private byte[] buffer = new byte[1024];
+		private int curbuf;
+		private int lenbuf;
+		public InputReader(InputStream in) {
+			this.in = in;
+			this.curbuf = this.lenbuf = 0;
+		}
+ 
+		public boolean hasNextByte() {
+			if (curbuf >= lenbuf) {
+				curbuf = 0;
+				try {
+					lenbuf = in.read(buffer);
+				} catch (IOException e) {
+					throw new InputMismatchException();
+				}
+				if (lenbuf <= 0)
+					return false;
+			}
+			return true;
+		}
+ 
+		private int readByte() {
+			if (hasNextByte())
+				return buffer[curbuf++];
+			else
+				return -1;
+		}
+ 
+		private boolean isSpaceChar(int c) {
+			return !(c >= 33 && c <= 126);
+		}
+ 
+		private void skip() {
+			while (hasNextByte() && isSpaceChar(buffer[curbuf]))
+				curbuf++;
+		}
+ 
+		public boolean hasNext() {
+			skip();
+			return hasNextByte();
+		}
+ 
+		public String next() {
+			if (!hasNext())
+				throw new NoSuchElementException();
+			StringBuilder sb = new StringBuilder();
+			int b = readByte();
+			while (!isSpaceChar(b)) {
+				sb.appendCodePoint(b);
+				b = readByte();
+			}
+			return sb.toString();
+		}
+ 
+		public int nextInt() {
+			if (!hasNext())
+				throw new NoSuchElementException();
+			int c = readByte();
+			while (isSpaceChar(c))
+				c = readByte();
+			boolean minus = false;
+			if (c == '-') {
+				minus = true;
+				c = readByte();
+			}
+			int res = 0;
+			do {
+				if (c < '0' || c > '9')
+					throw new InputMismatchException();
+				res = res * 10 + c - '0';
+				c = readByte();
+			} while (!isSpaceChar(c));
+			return (minus) ? -res : res;
+		}
+ 
+		public long nextLong() {
+			if (!hasNext())
+				throw new NoSuchElementException();
+			int c = readByte();
+			while (isSpaceChar(c))
+				c = readByte();
+			boolean minus = false;
+			if (c == '-') {
+				minus = true;
+				c = readByte();
+			}
+			long res = 0;
+			do {
+				if (c < '0' || c > '9')
+					throw new InputMismatchException();
+				res = res * 10 + c - '0';
+				c = readByte();
+			} while (!isSpaceChar(c));
+			return (minus) ? -res : res;
+		}
+ 
+		public double nextDouble() {
+			return Double.parseDouble(next());
+		}
+ 
+		public int[] nextIntArray(int n) {
+			int[] a = new int[n];
+			for (int i = 0; i < n; i++)
+				a[i] = nextInt();
+			return a;
+		}
+ 
+		public long[] nextLongArray(int n) {
+			long[] a = new long[n];
+			for (int i = 0; i < n; i++)
+				a[i] = nextLong();
+			return a;
+		}
+ 
+		public char[][] nextCharMap(int n, int m) {
+			char[][] map = new char[n][m];
+			for (int i = 0; i < n; i++)
+				map[i] = next().toCharArray();
+			return map;
+		}
+	}
+	}

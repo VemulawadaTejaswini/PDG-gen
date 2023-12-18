@@ -1,0 +1,16 @@
+class Main{
+	static public void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder();
+		int idx = 0;
+		int i = 0;
+		while(true){
+			idx = sc.nextInt();
+			if(idx == 0)
+				break;
+			i++;
+			sb.append("Case " + i + ":" + " " + idx + "\n");
+		}
+		System.out.print(sb);
+	}
+}

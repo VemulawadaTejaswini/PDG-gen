@@ -1,0 +1,59 @@
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] d = new int[n];
+        for (int i = 0 ; i < n ; i++) {
+            d[i] = sc.nextInt();
+        }
+        if (d[0] != 0) {
+            System.out.println(0);
+            return;
+        }
+        for (int i = 1 ; i < n ; i++) {
+            if (d[i] == 0) {
+                System.out.println(0);
+                return;
+            }
+        }
+        Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
+        for (int i = 1 ; i < n ; i++) {
+            if (map.containsKey(d[i])) {
+                map.put(d[i], map.get(d[i]) + 1);
+            } else {
+                map.put(d[i], 1);
+            }
+        }
+        int[] a = new int[map.size()];
+        int b = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            a[b] = entry.getValue();
+            b++;
+        }
+
+        if (a[a.length - 1] != a.length) {
+            System.out.println(0);
+            return;
+        }
+
+        long ans = 1;
+        long mod = 998244353;
+        for (int i = 0 ; i < a.length - 1; i++) {
+            int a1 = a[i];
+            int a2 = a[i + 1];
+            for (int j = 0 ; j < a2 ; j++) {
+                ans *= (long) a1;
+                ans %= mod;
+            }
+        }
+
+        System.out.println(ans % mod);
+
+    }
+
+}

@@ -1,0 +1,79 @@
+/*
+ *created by Kraken on 04-04-2020 at 17:23
+ */
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) {
+		FastReader sc = new FastReader();
+		int n = sc.nextInt(), m = sc.nextInt();
+		Integer[] x = new Integer[n];
+		long total = 0;
+		for (int i = 0; i < n; i++) {
+			x[i] = sc.nextInt();
+			total += x[i];
+		}
+		long min = total / (4 * m);
+		int cnt = 0;
+		for (int i : x) {
+			if (i >= min) cnt++;
+		}
+		if (cnt >= m)
+			System.out.println("Yes");
+		else
+			System.out.println("No");
+	}
+
+	static class FastReader {
+
+		BufferedReader br;
+
+		StringTokenizer st;
+
+		public FastReader() {
+			br = new BufferedReader(new InputStreamReader(System.in));
+		}
+
+		String next() {
+			while (st == null || !st.hasMoreElements()) {
+				try {
+					st = new StringTokenizer(br.readLine());
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return st.nextToken();
+		}
+
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+
+		double nextDouble() {
+			return Double.parseDouble(next());
+		}
+
+		String nextLine() {
+			String str = "";
+			try {
+				str = br.readLine();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			return str;
+		}
+	}
+}

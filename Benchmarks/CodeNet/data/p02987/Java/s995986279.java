@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int count = 0;
+        Scanner sc = new Scanner(System.in);
+        String a = sc.nextLine();
+        String[] b = a.split("");
+        for (int i = 0; i <= 2; i++) {
+            for (int j =i+1; j <= b.length - i - 1; j++) {
+                if (b[i].equals(b[j])) {
+                    count++;
+                }
+            }
+        }
+        if (count == 2) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+}

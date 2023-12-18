@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(double q,x;(q=s.nextInt())>=0;System.out.printf("%.6f\n",x))for(x=q/2.;!(Math.abs(x*x*x-q)<0.00001*q);)x-=(x*x*x-q)/(3*x*x);}}

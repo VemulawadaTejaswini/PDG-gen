@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		int k = sc.nextInt();
+		sc.close();
+
+		int n = s.length();
+		long[][][] dp = new long[n + 1][k + 1][2];
+		dp[0][0][0] = 1;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j <= k; j++) {
+				int a = s.charAt(i) - '0';
+				if (a == 0) {
+					dp[i + 1][j][0] += dp[i][j][0];
+					dp[i + 1][j][1] += dp[i][j][1];
+				} else {
+					dp[i + 1][j][1] += dp[i][j][0] + dp[i][j][1];
+				}
+				if (j < k) {
+					dp[i + 1][j + 1][0] += dp[i][j][0];
+					dp[i + 1][j + 1][1] += dp[i][j][0] * Math.max(a - 1, 0);
+					dp[i + 1][j + 1][1] += dp[i][j][1] * 9;
+				}
+			}
+		}
+		System.out.println(dp[n][k][0] + dp[n][k][1]);
+	}
+}

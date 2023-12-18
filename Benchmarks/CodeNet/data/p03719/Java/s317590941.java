@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class ABC061A {
+    public static int solve() {
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a, b, c;
+        a = sc.nextInt();
+        b = sc.nextInt();
+        c = sc.nextInt();
+
+        if (c >= a && c <= b)
+            System.out.println("YES");
+        else
+            System.out.println("NO");
+
+    }
+}

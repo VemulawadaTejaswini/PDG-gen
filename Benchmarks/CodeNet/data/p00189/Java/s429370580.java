@@ -1,0 +1,115 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		while(true){
+			int n = Integer.parseInt(br.readLine());
+
+			if(n == 0){
+				break;
+			}
+
+			int[][] dist = new int[10][10];
+
+			for(int i = 0; i < n; i++){
+				String[] tmpArray = br.readLine().split(" ");
+
+				int a = Integer.parseInt(tmpArray[0]);
+				int b = Integer.parseInt(tmpArray[1]);
+				int c = Integer.parseInt(tmpArray[2]);
+
+				dist[a][b] = c;
+				dist[b][a] = c;
+
+			}
+
+			int[][] shortestPath = allPairsShortestPath(dist);
+
+			solve(shortestPath);
+		}
+	}
+
+	static void solve(int[][] matrix){
+		int n = matrix.length;
+
+		int minId = 0;
+		int minSum = Integer.MAX_VALUE;
+
+		for(int i = 0; i < n; i++){
+			int tmpSum = 0;
+			
+			if(matrix[i][0] == Integer.MAX_VALUE){
+				break;
+			}
+			for(int j = 0; j < n; j++){
+				if(matrix[i][j] != Integer.MAX_VALUE){
+					tmpSum += matrix[i][j];
+				}
+			}
+
+			if(minSum > tmpSum){
+				minId = i;
+				minSum = tmpSum;
+			}
+			
+//			System.out.println("i = "+ i+" "+minId+" "+minSum);
+		}
+
+		System.out.println(minId+" "+minSum);
+	}
+
+	static int[][] allPairsShortestPath(int[][] input){
+		int n = input[0].length;
+
+		int dist[][] = new int[n][n];
+
+		for(int u = 0; u < n; u++){
+			for(int v = 0; v < n; v++){
+				dist[u][v] = Integer.MAX_VALUE;
+			}
+			dist[u][u] = 0;
+
+			for(int v = 0; v < n; v++){
+				if(u != v && input[u][v] > 0){
+					dist[u][v] = input[u][v];
+				}
+			}
+		}
+
+		for(int k = 0; k < n; k++){
+			for(int u = 0; u < n; u++){
+				for(int v = 0; v < n; v++){
+					if(dist[u][k] == Integer.MAX_VALUE || dist[k][v] == Integer.MAX_VALUE){
+						continue;
+					}
+
+					long newLen = dist[u][k] + dist[k][v];
+					if(newLen < 0){
+						System.out.println(newLen);
+					}
+					if(newLen < dist[u][v]){
+						dist[u][v] = (int)newLen;
+					}
+				}
+			}
+		}
+
+
+		//debug
+//		for(int i = 0; i < n; i++){
+//			for(int j = 0; j < n; j++){
+//				System.out.print(dist[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		return dist;
+	}
+
+}
+

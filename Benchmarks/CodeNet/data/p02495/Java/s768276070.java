@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		int h = sc.nextInt(), w = sc.nextInt();
+		
+		while(h != 0 || w != 0){
+			if(h==1 || w==1){
+				System.out.print("#");
+			}
+			for(int i = 0; i<h; i++){
+				for(int j = 0; j<w/2; j++){
+					if(i%2==0){
+						System.out.print("#");
+						System.out.print(".");
+						if(w%2==1){
+							System.out.print("#");
+						}
+					}else{							
+						System.out.print(".");
+						System.out.print("#");
+						if(w%2==1){
+							System.out.print(".");
+						}
+					}
+				}
+				System.out.println("");
+			}
+			System.out.println("");
+			h = sc.nextInt();
+			w = sc.nextInt();
+		}
+	}
+}

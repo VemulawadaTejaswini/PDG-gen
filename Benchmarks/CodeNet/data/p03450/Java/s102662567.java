@@ -1,0 +1,85 @@
+import java.util.*;
+
+public class Main{
+    
+    static int n;
+    static int m;
+    static ArrayList<Integer>[] g;
+    static boolean[] used;
+    static boolean[] qued;
+    static int[] dis;
+    static final int INF = 1_000_000_000 + 1;
+    
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        
+        n = sc.nextInt();
+        m = sc.nextInt();
+        
+        g = new ArrayList[n];
+        for(int i=0; i<n; i++){
+            g[i]= new ArrayList<Integer>();
+        }
+        
+        used = new boolean[n];
+        Arrays.fill(used, false);
+        qued = new boolean[n];
+        Arrays.fill(qued, false);
+        
+        for(int i=0; i<m; i++){
+            int l = sc.nextInt();
+            int r = sc.nextInt();
+            int d = sc.nextInt();
+            g[l-1].add(r-1);
+            g[l-1].add(d);
+            g[r-1].add(l-1);
+            g[r-1].add(-d);
+        }
+        
+        dis = new int[n];
+        for(int i=0; i<n; i++){
+            dis[i] = INF;
+        }
+        
+        boolean ans = true;
+        for(int i=0; i<n; i++){
+            if(!used[i]){
+                boolean res = dfs(i);
+                if(!res){
+                    ans = false;
+                }
+            }
+        }
+        
+        System.out.println(ans ? "Yes" : "No");
+    }
+    
+    public static boolean dfs(int v){
+        boolean res =  true;
+        
+        Deque<Integer> q = new ArrayDeque<Integer>();
+        q.push(v);
+        dis[v] = 0;
+        
+        while(q.size()!=0){
+            int now = q.pop();
+            used[now] = true;
+            for(int i=0; i<g[now].size(); i+=2){
+                int next = g[now].get(i);
+                if(!used[next]){
+                    if(dis[next]==INF){
+                        dis[next] = dis[now] + g[now].get(i+1);
+                    }else if(dis[next] != dis[now] + g[now].get(i+1)){
+                        res = false;
+                    }
+                    if(!qued[next]){
+                        q.push(next);
+                        qued[next] = true;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+    
+}

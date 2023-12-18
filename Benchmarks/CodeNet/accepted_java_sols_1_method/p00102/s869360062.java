@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);String r="";for(int t,n,i,j;(t=s.nextInt())>0;){int[][]a=new int[t+1][t+1];for(i=0;i<t;++i,a[t][t]+=n)for(n=j=0;j<t;++j,n=a[i][t]+=n)a[t][j]+=n=a[i][j]=s.nextInt();for(i=0;i<=t;++i,r+="\n")for(j=0;j<=t;)r+=String.format("%5d",a[i][j++]);}System.out.print(r);}}

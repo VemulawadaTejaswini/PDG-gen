@@ -1,0 +1,1 @@
+class Main{public static void main(String[] a)throws Exception{System.out.println((char)(System.in.read()+1));}}

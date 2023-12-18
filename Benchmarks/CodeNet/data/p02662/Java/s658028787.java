@@ -1,0 +1,61 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+	public static void main(String[] args) throws Exception{
+		int num = 998244353;
+
+		// TODO Auto-generated method stub
+ 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+ 		PrintWriter out = new PrintWriter(System.out);
+ 		StringTokenizer st = new StringTokenizer(bf.readLine());
+ 		int n = Integer.parseInt(st.nextToken());
+ 		int s = Integer.parseInt(st.nextToken());
+ 		int[] array = new int[n];
+ 		StringTokenizer st1 = new StringTokenizer(bf.readLine());
+ 		for(int i = 0;i<n;i++){
+ 			array[i] = Integer.parseInt(st1.nextToken());
+ 		}
+ 		long[][] dp = new long[n+1][s+1];
+ 		dp[0][0] = power(2, n, num)%num;
+ 		for(int i = 1;i<n;i++)
+ 			dp[0][i] = (long)(0);
+ 		for(int i = 0;i<n;i++){
+ 			for(int j = 0;j<=s;j++){
+ 				dp[i+1][j]+= dp[i][j];
+ 				dp[i+1][j]%= num;
+ 				if (j+array[i] <=s){
+ 					dp[i+1][j+array[i]] += dp[i][j]*power(2, num-2, num);
+ 					dp[i+1][j+array[i]]%= num;
+ 				}
+ 			}
+ 			
+ 		}
+ 		out.println(dp[n][s]);
+ 		out.close();
+ 		
+	}
+	public static long power(long x, long y, long mod){
+		long ans = 1;
+		while(y>0){
+			if (y%2==1)
+				ans = (ans*x)%mod;
+			x = (x*x)%mod;
+			y/=2;
+		}
+		return ans;
+	}
+
+}
+ 	
+ 
+//StringJoiner sj = new StringJoiner(" "); 
+//sj.add(strings)
+//sj.toString() gives string of those stuff w spaces or whatever that sequence is
+
+ 		
+ 		
+ 		
+ 		
+	
+
+

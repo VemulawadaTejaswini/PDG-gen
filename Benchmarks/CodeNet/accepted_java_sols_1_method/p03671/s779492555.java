@@ -1,0 +1,24 @@
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws IOException{
+		ArrayList<Integer> list =new ArrayList<>(); 
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		
+		list.add(a);
+		list.add(b);
+		list.add(c);
+		
+		Collections.sort(list);
+		
+		System.out.println(list.get(0)+list.get(1));
+	}
+}

@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class Main {    
+    public static void main(String[] args){
+        
+        Scanner sc = new Scanner(System.in);          
+          
+        String A = sc.next();
+        String B = sc.next();
+        
+        if(A.charAt(0) == 'H' && B.charAt(0) == 'H' || A.charAt(0) == 'D' && B.charAt(0) == 'D'){
+            System.out.println('H');
+        }else{
+            System.out.println('D');
+        }        
+        
+    }            
+}
+        
+        

@@ -1,0 +1,26 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+ 
+public class Main {
+    public static void main(String[] args) throws Exception {
+        
+        int x = 0;
+        int y = 0;
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        
+        int n = Integer.parseInt(line);
+        
+        for (int i = 1;i <= n;i++){
+            x = x + 800;
+            
+                if (i / 15 != 0 && i % 15 == 0){
+                    y = y + 200;
+            } 
+        } 
+        
+		System.out.println("今までに支払った金額…　" + x + "円");
+		System.out.println("今までにもらった金額…　" + y + "円");
+	}
+}

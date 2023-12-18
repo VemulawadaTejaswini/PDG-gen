@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Printer pr = new Printer(System.out);
+
+		int n = sc.nextInt();
+		@SuppressWarnings("unused")
+		int l = sc.nextInt();
+
+		String[] s = new String[n];
+		for (int i = 0; i < n; i++) {
+			s[i] = sc.next();
+		}
+		Arrays.sort(s);
+
+		for (String e : s) {
+			pr.print(e);
+		}
+		pr.println();
+
+		pr.close();
+		sc.close();
+	}
+
+	private static class Printer extends PrintWriter {
+		Printer(PrintStream out) {
+			super(out);
+		}
+	}
+}

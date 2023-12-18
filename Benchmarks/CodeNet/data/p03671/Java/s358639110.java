@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static int a,b,c,Min,Mid,Max;
+    public static void main(String[] args)
+    {
+        Scanner scan=new Scanner(System.in);
+        a=scan.nextInt();
+        b=scan.nextInt();
+        c=scan.nextInt();
+
+        if(a<=b){
+            Min=a;
+            Mid=b;
+        }else{
+            Min=b;
+            Mid=a;
+        }
+        if(c<=Min){
+            Mid=Min;
+            Min=c;
+        }else if(Min<c && c<Mid){
+            Mid=c;
+        }
+
+        System.out.println(Min+Mid);
+    }
+}

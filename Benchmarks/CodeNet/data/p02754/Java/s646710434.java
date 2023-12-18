@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // ABC158B - Count Balls
+
+        Scanner sc = new Scanner(System.in);
+
+        long n = sc.nextLong();
+        long a = sc.nextLong();
+        long b = sc.nextLong();
+
+        if (a == 0) {
+            System.out.println(0);
+            return;
+        }
+        
+        long x = n / (a + b);
+        long y = n % (a + b);
+        y = (y > a) ? a : y;
+        long ans = x * a + y;
+
+        System.out.println(ans);
+    }
+}

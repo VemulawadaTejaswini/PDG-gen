@@ -1,0 +1,39 @@
+import java.util.*;
+
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        
+        int N = Integer.parseInt(sc.next());
+        
+        for(int n=0; n<N; n++){
+            String s = sc.next();
+            if(map.get(s) == null){
+                map.put(s, 1);
+            }else{
+                map.put(s, map.get(s) + 1);
+            }
+        }
+        
+        int M = Integer.parseInt(sc.next());
+        for(int m=0; m<M; m++){
+            String t = sc.next();
+            if(map.get(t) == null){
+                map.put(t, -1);
+            }else{
+                map.put(t, map.get(t) -1);
+            }
+        }
+        
+        int answer = 0;
+        for(String key : map.keySet()){
+            int value = map.get(key);
+            if(value > answer){
+                answer = value;
+            }
+        }
+        
+        System.out.println(answer);
+    }
+}

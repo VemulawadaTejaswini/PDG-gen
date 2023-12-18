@@ -1,0 +1,19 @@
+import java.util.*;
+public class Main{
+public static void main(String[] args){
+Scanner s=new Scanner(System.in);
+int a=s.nextInt();
+int b;
+int ans=1;
+int cnt=0;
+do{
+b=s.nextInt();
+ans*=b;
+cnt++;
+}while(cnt<a);
+if(ans%Math.pow(4,a/2)==0)
+System.out.println("Yes");
+else
+System.out.println("No");
+}
+}

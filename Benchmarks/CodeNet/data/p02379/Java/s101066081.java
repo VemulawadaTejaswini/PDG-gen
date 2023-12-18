@@ -1,0 +1,19 @@
+import java.io.IOException;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		// TODO ?????????????????????????????????????????????
+			Scanner sc = new Scanner(System.in);
+			double a = sc.nextInt();
+			int b = sc.nextInt();
+			int c = sc.nextInt();
+			int d = sc.nextInt();
+			a -= c;
+			b -= d;
+			a = a*a + b*b;
+			a = Math.sqrt(a);
+			System.out.println(a);
+	}
+
+}

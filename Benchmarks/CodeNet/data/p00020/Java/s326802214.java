@@ -1,0 +1,1 @@
+class Main{public static void main(String[]a){for(char c:new java.util.Scanner(System.in).nextLine().toCharArray())System.out.print(Character.toUpperCase(c));}}

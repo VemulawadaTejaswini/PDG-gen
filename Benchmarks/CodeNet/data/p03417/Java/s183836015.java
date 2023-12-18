@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main
+{
+  
+  public static void main(String[] args) throws IOException
+  {
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in), 1);
+    String s = r.readLine();
+    String[] sl = s.split("[\\s]+");
+    int a = Integer.parseInt(sl[0]);
+    int b = Integer.parseInt(sl[1]);
+    if (b < a)
+    {
+      int t = a;
+      a = b;
+      b = t;
+    }
+    
+    if(a == 1)
+    System.out.println(b - 2);
+    else if(a == 2)
+      System.out.println(0);
+    else
+      System.out.println((a - 2) * (b - 2));
+  }
+  
+}

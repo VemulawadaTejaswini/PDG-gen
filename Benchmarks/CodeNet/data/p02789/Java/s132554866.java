@@ -1,0 +1,15 @@
+import java.io.BufferedInputStream;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(new BufferedInputStream(System.in));
+        int m=sc.nextInt();
+        int n=sc.nextInt();
+        if(m==n)
+            System.out.println("Yes");
+        else
+            System.out.println("No");
+
+    }
+}

@@ -1,0 +1,50 @@
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    solve(System.in, System.out);
+  }
+
+  static void solve(InputStream is, PrintStream os) {
+    Scanner sc = new Scanner(is);
+
+    /* read */
+    int n = sc.nextInt();
+    String s = sc.next();
+    boolean[] b = new boolean[n];
+
+    for (int i = 0 ; i < n; i++) {
+      if (s.charAt(i) == '#') { // black
+        b[i] = false;
+      } else { // white
+        b[i] = true;
+      }
+    }
+
+    /* logic */
+
+    // first target is all false.
+    int answer = Integer.MAX_VALUE;
+    int count = 0;
+    for (int i = 0; i < n; i++){
+      if (b[i]) {
+        count++;
+      }
+    }
+    for (int i = 1; i <= n; i++){
+      // target is [0..i) is true, [i..n) is false
+      // i index should be true
+      if (!b[i - 1]) {
+        count++;
+      } else {
+        count--;
+      }
+      answer = Math.min(answer, count);
+    }
+    os.print(answer);
+
+  }
+}

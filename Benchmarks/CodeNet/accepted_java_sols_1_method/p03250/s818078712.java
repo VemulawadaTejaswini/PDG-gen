@@ -1,0 +1,16 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		int c = scan.nextInt();
+
+		int[] array = {a, b, c};
+		Arrays.sort(array);
+
+		System.out.println(array[2] * 10 + array[1] + array[0]);
+	}
+}

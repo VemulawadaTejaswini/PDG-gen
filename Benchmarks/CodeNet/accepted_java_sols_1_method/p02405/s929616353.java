@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+boolean check=true;
+while (true) {
+int H = sc.nextInt();
+int W= sc.nextInt();
+if (H == 0 && W == 0) {
+break;
+}
+for(int i=1; i<=H;i++){
+    for(int j=1; j<=W;j++){
+        if(check==true){
+            System.out.printf("#");
+            check=false;
+        }
+        else if(check==false){
+            System.out.printf(".");
+            check=true;
+        }
+    }
+    if(i==(i/2)*2)check=true;
+    else check=false;
+    System.out.printf("\n");
+    
+    }
+    System.out.printf("\n");
+    check = true;
+}
+}
+}

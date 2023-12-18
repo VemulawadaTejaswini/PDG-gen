@@ -1,0 +1,14 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int a = scanner.nextInt(),b = scanner.nextInt(),c = scanner.nextInt();
+		int[] x = {a,b,c};
+		Arrays.sort(x);
+		System.out.println(x[0]+x[1]);
+	}
+
+}

@@ -1,0 +1,1 @@
+import java.util.regex.*;class Main{public static void main(String[]z)throws Exception{String r;for(byte[]x=new byte[12];System.in.read(x)>11;System.out.println(r)){r="NA";for(String y:"b w".split(" "))for(int i=0;i<5;++i)if(i!=1&&Pattern.compile(String.format(".*%1$s.{%2$s}%1$s.{%2$s}%1$s.*",y,i),Pattern.DOTALL).matcher(new String(x)).matches())r=y;}}}

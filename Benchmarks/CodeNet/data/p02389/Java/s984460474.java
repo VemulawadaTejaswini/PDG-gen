@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args)  {
+
+		Scanner scaner = new Scanner( System.in );
+
+		int x1	= Integer.parseInt( scaner.next());
+		int x2	= Integer.parseInt( scaner.next());
+
+		System.out.println( Math.multiplyExact( x1, x2 ) );
+	}
+
+}

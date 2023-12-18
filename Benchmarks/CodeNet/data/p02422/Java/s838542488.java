@@ -1,0 +1,26 @@
+import java.io.*;
+
+class Main {
+    public static void main (String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder str = new StringBuilder(br.readLine());
+        int n = Integer.parseInt(br.readLine());
+        String[] operation;
+        int ope1, ope2;
+
+        for (int i = 0; i < n; i++) {
+            operation = br.readLine().split(" ");
+            ope1 = Integer.parseInt(operation[1]);
+            ope2 = Integer.parseInt(operation[2]) + 1;
+
+            if (operation[0].equals("print")) {
+                System.out.println(str.substring(ope1, ope2));
+            } else if (operation[0].equals("reverse")) {
+                String reverse = new StringBuilder(str.substring(ope1, ope2)).reverse().toString();
+                str.replace(ope1, ope2, reverse);
+            } else {
+                str.replace(ope1, ope2, operation[3]);
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+import java.io.*;
+class Main {
+    public static void main(String[] args) {
+        try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String str = br.readLine();
+            int n = Integer.parseInt(str.split(" ")[0]);
+            int k = Integer.parseInt(str.split(" ")[1]);
+            int[] nimotu = new int[n];
+            int totalWeight = 0;
+            for (int i = 0; i < n; i++) {
+                nimotu[i] = Integer.parseInt(br.readLine());
+                totalWeight += nimotu[i];
+            }
+            int aver = totalWeight / k;
+            int maxweight = aver;
+            int tracknum;
+            while(maxweight <= totalWeight){
+                int weight = 0;
+                tracknum = 1;
+                boolean flg = true;
+                for(int i = 0;i < n && tracknum <= k;) {
+                    if(weight + nimotu[i] <= maxweight){
+                        weight += nimotu[i];
+                        i++;
+                    } else if(weight > 0){
+                        if(maxweight < weight){
+                            maxweight = weight;
+                        }
+                        weight = 0;
+                        tracknum++;
+                    } else {
+                        flg = false;
+                        break;
+                    }
+                }
+                if(tracknum <= k && flg){
+                    System.out.println(maxweight);
+                    break;
+                }
+                maxweight++;
+            }
+        } catch (IOException e) {
+            System.out.println("error");
+        }
+    }
+}

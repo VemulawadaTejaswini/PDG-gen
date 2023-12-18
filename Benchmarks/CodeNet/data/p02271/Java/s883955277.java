@@ -1,0 +1,60 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO ?????????????????????????????????????????????
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		int[] A = new int[n];
+		
+		String[] tmpArray = br.readLine().split(" ");
+		for(int i = 0; i < n; i++){
+			A[i] = Integer.parseInt(tmpArray[i]);
+		}
+		
+		int m = Integer.parseInt(br.readLine());
+		int[] B = new int[m];
+		
+		tmpArray = br.readLine().split(" ");
+		for(int i = 0; i < m; i++){
+			B[i] = Integer.parseInt(tmpArray[i]);
+		}
+		
+		for(int i = 0; i < m; i++){
+			if(canMake(A, B[i], 0)){
+				System.out.println("yes");
+			}
+			
+			else{
+				System.out.println("no");
+			}
+		}
+	}
+
+	private static boolean canMake(int[] a, int n, int depth) {
+		// TODO ?????????????????????????????????????????????
+		if(a.length == depth){
+			return false;
+		}
+		
+		if(a[depth] == n){
+			return true;
+		}
+		
+		int nextN = n - a[depth];
+		//???????????¢???????¶????????????¨??????????????¢
+		if(canMake(a, n, depth + 1)){
+			return true;
+		}
+		
+		if(canMake(a, nextN, depth+1)){
+			return true;
+		}
+			
+		return false;
+	}
+
+}

@@ -1,0 +1,36 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		String i = sc.next();
+
+		if (i.equals("a")) {
+			System.out.print("vowel");
+
+		} else if (i.equals("i")) {
+
+			System.out.print("vowel");
+
+		} else if (i.equals("u")) {
+
+			System.out.print("vowel");
+
+		} else if (i.equals("e")) {
+
+			System.out.print("vowel");
+
+		} else if (i.equals("o")) {
+
+			System.out.print("vowel");
+		} else {
+
+			System.out.print("consonant");
+		}
+
+	}
+}

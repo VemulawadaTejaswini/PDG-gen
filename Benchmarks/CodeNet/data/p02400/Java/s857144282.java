@@ -1,0 +1,26 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+	public static void main(String[] args) throws IOException{
+		/**
+		 * ?????°?????£?¨?
+		 */
+		int r = 0;
+		float pi = (float) 3.141592653589;
+		/**
+		 * ?????????????????\?????¨int??????
+		 */
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		r = Integer.parseInt(br.readLine());
+		/**
+		 * ????????¨????????????
+		 */
+		float cir = 2*pi*r;
+		float area = pi*r*r;
+		System.out.print(cir+" ");
+		System.out.print(area);
+	}
+
+}

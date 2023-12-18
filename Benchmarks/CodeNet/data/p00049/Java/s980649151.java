@@ -1,0 +1,1 @@
+import java.util.*;public class Main{Scanner sc = new Scanner(System.in);void run(){int[] d = new int[4];String[] s={"A","B","AB","O"};for(;sc.hasNextLine();){String a=sc.nextLine().split(",")[1];for(int i=0;i<4;i++)if(a.equals(s[i]))d[i]++;}for(int i=0;i<4;i++)System.out.println(d[i]);}public static void main(String[] args){Main m = new Main();m.run();}}

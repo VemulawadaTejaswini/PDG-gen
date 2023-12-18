@@ -1,0 +1,107 @@
+import java.util.*;
+
+public class Main {
+    private static int N,Q;
+    private static List<Section> works;
+    private static TreeSet<People> people;
+    private static List<Section> vim;
+    private static Integer[] sum;
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        N = in.nextInt();
+        Q = in.nextInt();
+        int l,r,x;
+        works = new ArrayList<>();
+        people = new TreeSet<>(new Comparator<People>() {
+            @Override
+            public int compare(People o1, People o2) {
+                return o1.x - o2.x;
+            }
+        });
+        vim = new ArrayList<>();
+        sum = new Integer[Q];
+        Section section;
+        for(int i=0;i<N;i++){
+            l = in.nextInt();
+            r = in.nextInt();
+            x = in.nextInt();
+            l = (l-x)<0? 0:(l-x);
+            r = (r-x)>0? (r-x):0;
+            if(r > 0){
+                works.add(new Section(l,r,x));
+            }
+        }
+        for(int i=0;i<Q;i++){
+            people.add(new People(in.nextInt(),i));
+        }
+
+        Collections.sort(works, new Comparator<Section>() {
+            @Override
+            public int compare(Section o1, Section o2) {
+                return o1.dis - o2.dis;
+            }
+        });
+        People vis1 = new People(0,0);
+        People vis2 = new People(0,0);
+        People vis3,vis4;
+        //System.out.println(works);
+        for(int i=0;i<works.size();i++){
+            Section s = works.get(i);
+            Integer le = s.left;
+            Integer ri = s.right;
+            //System.out.println("le="+le+",ri="+ri);
+            vis1.x = le;
+            vis2.x = ri;
+            vis3 = people.lower(vis1) ;
+            vis4 = people.lower(vis2);
+            if(people.isEmpty()) break;
+            boolean flag = false;
+            if(vis3 == null) {vis3 = people.first();flag=true;}
+            if(vis4 == null) continue;
+            //System.out.println(vis3);
+            //System.out.println(vis4);
+
+            NavigableSet<People> navigableSet = people.subSet(vis3, flag, vis4, true);
+            Iterator<People> it = navigableSet.iterator();
+            while(it.hasNext()){
+                vis3 = it.next();
+                //System.out.println(vis3.x+"====="+vis3.dis);
+                sum[vis3.dis]=s.dis;
+            }
+            people.removeAll(navigableSet);
+        }
+        for(int i=0;i<Q;i++) {
+            if(sum[i]==null)
+                System.out.println(-1);
+            else
+                System.out.println(sum[i]);
+        }
+    }
+    public static class Section{
+        public Integer left;
+        public Integer right;
+        public Integer dis;
+        public Section(Integer left,Integer right,Integer dis){
+            this.left = left;
+            this.right = right;
+            this.dis = dis;
+        }
+        public String toString(){
+            return "["+left+","+right+")";
+        }
+    }
+    public static class People{
+        public Integer x;
+        public Integer dis;
+        public People(Integer x,Integer dis){
+            this.x = x;
+            this.dis = dis;
+        }
+
+        @Override
+        public String toString() {
+            return x+","+dis;
+        }
+    }
+}
+

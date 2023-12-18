@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		InputStreamReader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+		BufferedReader in = new BufferedReader(reader);
+		int N = Integer.parseInt(in.readLine());
+		long[] a = new long[N];
+		String[] tokens = in.readLine().split(" ");
+		for (int i = 0; i < N; ++i) {
+			a[i] = Long.parseLong(tokens[i]);
+		}
+		if (N % 3 != 0) {
+			System.out.println("No");
+			return;
+		}
+		Map<Long, Integer> counts = new HashMap<>();
+		for (int i = 0; i < N; ++i) {
+			if (!counts.containsKey(a[i])) {
+				counts.put(a[i], 1);
+			} else {
+				counts.put(a[i], counts.get(a[i]) + 1);
+			}
+		}
+		if (counts.size() != 3) {
+			System.out.println("No");
+			return;
+		}
+		List<Integer> nums = new ArrayList<>();
+		nums.addAll(counts.values());
+		Collections.sort(nums);
+		if (nums.get(0) != nums.get(2)) {
+			System.out.println("No");
+		}
+		List<Long> values = new ArrayList<>();
+		values.addAll(counts.keySet());
+		Collections.sort(values);
+		if ((values.get(0) ^ values.get(1)) != values.get(2)) {
+			System.out.println("No");
+		} else {
+			System.out.println("Yes");
+		}
+		in.close();
+	}
+
+}

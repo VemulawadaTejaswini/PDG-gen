@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        int a = s.nextInt();
+        int top = a/100;
+        int bottom = a%10;
+      if(top == bottom){
+		System.out.println("Yes");
+      }else{
+		System.out.println("No");
+      }
+	}
+}

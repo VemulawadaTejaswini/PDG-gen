@@ -1,0 +1,30 @@
+import java.util.*;
+ 
+public class Main {
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+	int A = sc.nextInt();
+	    int B = sc.nextInt();
+
+	    String str = sc.next();
+	    char[] c = str.toCharArray();
+	    for(int i=0; i<B; i++){
+	    	if(i<A){
+	    		if(Character.isDigit(c[0])==false){
+	    			System.out.println("No");
+	    			return;
+	    		}
+	    	}else if(i==A){
+	    		if(!(String.valueOf(c[i]).equals("-"))){
+	    			System.out.println("No");
+	    			return;
+	    		}
+	    	}else if(i<=A+B){
+	    		if(Character.isDigit(c[0])==false){
+	    			System.out.println("No");
+	    			return;
+	    		}
+	    	}
+	    }
+  }
+}

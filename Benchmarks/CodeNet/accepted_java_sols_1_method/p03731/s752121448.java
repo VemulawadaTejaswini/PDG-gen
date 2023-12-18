@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+/**
+ * https://abc060.contest.atcoder.jp/tasks/arc073_a
+ */
+public class Main {
+	 
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		final int N = sc.nextInt();
+		final int T = sc.nextInt();
+		int[] t = new int[N];
+		for(int i=0; i<N; i++){
+			t[i] = sc.nextInt();
+		}
+		sc.close();
+		
+		int ans = 0;
+		for(int i=1; i<N; i++){
+			ans += Math.min(t[i]-t[i-1], T);
+		}
+		ans += T;
+ 
+		System.out.println(ans);
+ 
+	}
+ 
+}

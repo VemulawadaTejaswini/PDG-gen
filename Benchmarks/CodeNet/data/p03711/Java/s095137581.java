@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+public class Main {
+	static Scanner in = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int[] g = {0, 1,3,1,2,1,2,1,1,2,1,2,1};
+		int a = in.nextInt(), b = in.nextInt();
+		System.out.println(g[a] == g[b] ? "Yes" : "No");
+		
+	}
+}

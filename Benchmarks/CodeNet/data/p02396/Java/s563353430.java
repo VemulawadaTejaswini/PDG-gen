@@ -1,0 +1,17 @@
+import java.util.*;
+       
+public class Main
+{
+    public static void main (String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
+       
+        for(int i = 1; i<=100; i++){
+         int x = scanner.nextInt();
+         if(0 < x && x <= 10000){
+          System.out.println("Case " + i +": "+ x);
+         }else{
+         }
+        }
+   }
+}

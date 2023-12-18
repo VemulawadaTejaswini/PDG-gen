@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){int a[]=new int[8],i,j,h,b;for(Scanner S=new Scanner(System.in);S.hasNext();System.out.println(h+" "+b)){for(h=b=i=0;i<8;)a[i++]=S.nextInt();for(i=0;i<4;i++)for(j=4;j<8;j++)if(i==j-4){if(a[i]==a[j])h++;}else{if(a[i]==a[j])b++;}}}}

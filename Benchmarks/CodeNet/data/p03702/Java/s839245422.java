@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Main main = new Main();
+		main.solveD();
+	}
+
+	private void solveD() {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		long A = sc.nextLong();
+		long B = sc.nextLong();
+		List<Integer> list = new ArrayList<Integer>();
+		int max = 0;
+		for (int i = 0; i < N; i++) {
+			int val = sc.nextInt();
+			list.add(val);
+			if (max < val) {
+				max = val;
+			}
+		}
+		long minNum = (max + A - 1) / A;
+		long maxNum = (max + B - 1) / B;
+		do {
+			long count = (minNum + maxNum) / 2;
+			if (isWin(count, A, B, list)) {
+				maxNum = count;
+			} else {
+				minNum = count + 1;
+			}
+		} while (minNum < maxNum);
+		System.out.println(maxNum);
+	}
+
+	private boolean isWin(long count, long A, long B, List<Integer> hps) {
+		long sum = 0;
+		for (int hp : hps) {
+			sum += (hp - count * B + A - B - 1) / (A - B);
+		}
+		return sum <= count;
+	}
+}

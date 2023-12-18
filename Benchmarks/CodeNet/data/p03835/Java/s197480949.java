@@ -1,0 +1,31 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str[]=br.readLine().split(" ");
+        int k=Integer.parseInt(str[0]);
+        int s=Integer.parseInt(str[1]);
+        
+        int result=0;
+        
+        if(s/3==k)
+            result++;
+        
+        for(int i=0;i<k;i++){
+            for(int j=0;j<k;j++){
+                for(int l=0;l<k;l++){
+                    if(i+j+k>s){
+                        break;
+                    }
+                    if(i+j+k==s){
+                        result+=3;     
+                    }
+                }
+            }
+        }
+        
+        System.out.println(result);
+    }
+}

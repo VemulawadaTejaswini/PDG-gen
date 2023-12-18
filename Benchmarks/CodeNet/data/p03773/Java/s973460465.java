@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int c1 = sc.nextInt();
+		int c2 = sc.nextInt();
+
+		int c3 = c1 + c2;
+
+		System.out.println(c3%24);
+
+		sc.close();
+	}
+
+}

@@ -1,0 +1,18 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			long x = sc.nextLong();
+			long t = sc.nextLong();
+
+			if (x < t) {
+				System.out.println(0);
+			} else {
+				System.out.println(x - t);
+			}
+		}
+	}
+}

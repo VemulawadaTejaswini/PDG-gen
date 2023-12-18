@@ -1,0 +1,14 @@
+public class main.java {
+
+	
+	public static void main(String[] args) {
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+	int x = scan.nextInt();
+	if(1<=x && x<=100){;
+	System.out.println(x*x*x);
+	}
+	}	
+		
+	
+
+}

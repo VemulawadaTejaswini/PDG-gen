@@ -1,0 +1,1 @@
+import java.math.*;import java.util.*;class Main{public static void main(String[]z){int p[]=new int[10001],i=0;for(BigInteger x=BigInteger.ONE;i++<10000;p[i]=p[i-1]+x.intValue())x=x.nextProbablePrime();for(Scanner s=new Scanner(System.in);(i=s.nextInt())>0;)System.out.println(p[i]);}}

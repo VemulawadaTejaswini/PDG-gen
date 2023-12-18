@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int c = sc.nextInt();
+    int[] b = new int[m];
+    for(int i = 0; i < m; i++) {
+      b[i] = sc.nextInt();
+    }
+    int ans = 0;
+    for(int i = 0; i < n; i++) {
+      int p = c;
+      for(int j = 0; j < m; j++) {
+        int a = sc.nextInt();
+        p += (a * b[j]);
+      }
+      if(p > 0) ans++;
+    }
+    System.out.println(ans);
+  }
+}

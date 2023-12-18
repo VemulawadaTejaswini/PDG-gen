@@ -1,0 +1,27 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		Set<String> set = new HashSet<>();
+		
+		for (int i = 0; i < n; i++) {
+			String s = sc.next();
+			set.add(s);
+		}
+		
+		if (set.size() == 3) {
+			System.out.println("Three");
+		} else {
+			System.out.println("Four");
+		}
+
+		sc.close();
+
+	}
+
+}

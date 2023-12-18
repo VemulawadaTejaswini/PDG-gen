@@ -1,0 +1,1 @@
+import java.awt.*;import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int t=s.nextInt(),n,c;t-->0;System.out.println(c)){Rectangle r=new Rectangle(s.nextInt()-1,s.nextInt()-1,s.nextInt()+2,s.nextInt()+2);for(n=s.nextInt(),c=0;n-->0;)c+=r.contains(s.nextInt(),s.nextInt())?1:0;}}}

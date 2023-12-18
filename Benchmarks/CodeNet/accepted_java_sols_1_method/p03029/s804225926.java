@@ -1,0 +1,17 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] in = br.readLine().split(" ");
+        int a = Integer.parseInt(in[0]);
+        int p = Integer.parseInt(in[1]);
+
+        System.out.println((a * 3 + p) / 2);
+
+        br.close();
+    }
+}

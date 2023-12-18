@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+class Main{
+ public static void main(String args[]){
+   Scanner sc = new Scanner(System.in);
+   int k = sc.nextInt();
+   int a = sc.nextInt();
+   int b = sc.nextInt();
+   
+   int c=b%k;
+   int d=b-k;
+
+   if(x<=d){
+     System.out.println("Yes");
+   }else{
+     System.out.println("No");
+   }
+ 
+ }
+}

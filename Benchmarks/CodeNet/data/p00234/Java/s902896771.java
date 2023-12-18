@@ -1,0 +1,117 @@
+
+import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		new Main().run();
+	}
+
+	private void run() {
+
+		Scanner sc = new Scanner(System.in);
+
+		int dir[][] = { { 0, -1 }, { 0, 1 }, { 1, 0 } };
+
+		while (true) {
+			final int w = sc.nextInt();
+			final int h = sc.nextInt();
+
+			if (w == 0 && h == 0) {
+				break;
+			}
+
+			final int amount = sc.nextInt();
+			final int capacity = sc.nextInt();
+			final int init = sc.nextInt();
+
+			int[][] map = new int[h][w];
+
+			for (int i = 0; i < h; i++) {
+				for (int j = 0; j < w; j++) {
+					map[i][j] = sc.nextInt();
+				}
+			}
+
+			PriorityQueue<Walk> queue = new PriorityQueue<Walk>();
+			for (int i = 0; i < w; i++) {
+				boolean[][] b = new boolean[h][w];
+				queue.offer(new Walk(0, init - 1, 0, i, b));
+			}
+
+			boolean flag = false;
+			loop: while (!queue.isEmpty()) {
+				Walk walk = queue.poll();
+				int y = walk.y;
+				int x = walk.x;
+
+				if (walk.sanso <= 0) {
+					continue;
+				}
+				if (y == h) {
+					flag = true;
+					System.out.println(walk.cost);
+					break loop;
+				}
+
+				walk.visited[y][x] = true;
+
+				if (map[y][x] <= 0) {
+					walk.cost += (-map[y][x]);
+				} else {
+					walk.sanso = Math.min(map[y][x] + walk.sanso, capacity);
+				}
+
+				if (walk.cost > amount) {
+					continue;
+				}
+
+				for (int i = 0; i < 3; i++) {
+					int ny = y + dir[i][0];
+					int nx = x + dir[i][1];
+					if (nx >= 0 && nx < w && ny >= 0 && ny <= h - 1
+							&& !walk.visited[ny][nx]) {
+						boolean[][] nb = new boolean[h][w];
+						for (int j = 0; j < h; j++) {
+							nb[j] = Arrays.copyOf(walk.visited[j], w);
+						}
+						queue.offer(new Walk(walk.cost, walk.sanso - 1, ny, nx,
+								nb));
+					} else if (i == 2 && walk.y == h - 1) {
+						boolean[][] nb = new boolean[h][w];
+						queue.offer(new Walk(walk.cost, walk.sanso, ny, nx, nb));
+					}
+				}
+			}
+
+			if (!flag) {
+				System.out.println("NA");
+			}
+
+		}
+	}
+}
+
+class Walk implements Comparable<Walk> {
+	int cost;
+	int sanso;
+	int x, y;
+	boolean[][] visited;
+
+	public Walk(int cost, int sanso, int y, int x, boolean[][] visited) {
+		super();
+		this.cost = cost;
+		this.sanso = sanso;
+		this.x = x;
+		this.y = y;
+		this.visited = visited;
+	}
+
+	@Override
+	public int compareTo(Walk arg0) {
+		return this.cost - arg0.cost;
+	}
+}

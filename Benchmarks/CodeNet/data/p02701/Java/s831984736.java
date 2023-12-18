@@ -1,0 +1,13 @@
+class Main
+{
+  Public static void main(String[] args)
+  {
+    int t;
+    Scanner sc=new Scanner(System.in);
+    Set<String> st=new HashSet<>();
+    t=sc.nextInt();
+    for(int i=0;i<t;i++)
+    {
+          st.add(sc.next());}
+    System.out.println(st.size());
+  }}

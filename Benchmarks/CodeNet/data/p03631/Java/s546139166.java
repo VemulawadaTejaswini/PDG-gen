@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class A {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String num = sc.next();
+
+        String revNum = "";
+
+        for (int i = num.length() - 1; i >= 0; i--) {
+            revNum = revNum + num.charAt(i);
+        }
+
+        if(revNum.equals(num)){
+            System.out.print("yes");
+        } else {
+            System.out.print("no");
+        }
+    }
+}

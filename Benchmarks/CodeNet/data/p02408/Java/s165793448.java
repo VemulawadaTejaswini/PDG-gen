@@ -1,0 +1,97 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Set<Card> exists = new HashSet<Card>();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		String[] tmp;
+		String suite;
+		int rank;
+		for(int i = 0;i < n;i++){
+			tmp = br.readLine().split(" ");
+			suite = tmp[0];
+			rank = Integer.parseInt(tmp[1]);
+			exists.add(new Card(suite, rank));
+		}
+		
+		String[] suiteTable = {"S", "H", "C", "D"};
+		for(int i = 0;i < suiteTable.length;i++){
+			for(int j = 0;j < 13;){
+				if(!exists.contains(new Card(suiteTable[i], ++j))){
+					StringBuilder sb = new StringBuilder();
+					sb.append(suiteTable[i]);
+					sb.append(" ");
+					sb.append(j);
+					System.out.println(sb.toString());
+					sb = null;
+				}
+			}
+		}
+	}
+
+}
+
+class Card {
+	private String suite;
+	private int rank;
+	
+	Card(){
+		
+	}
+	
+	Card(String suite, int rank){
+		setSuite(suite);
+		setRank(rank);
+	}
+
+	public String getSuite() {
+		return suite;
+	}
+
+	public void setSuite(String suite) {
+		this.suite = suite;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + rank;
+		result = prime * result + ((suite == null) ? 0 : suite.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Card other = (Card) obj;
+		if (rank != other.rank)
+			return false;
+		if (suite == null) {
+			if (other.suite != null)
+				return false;
+		} else if (!suite.equals(other.suite))
+			return false;
+		return true;
+	}
+
+}

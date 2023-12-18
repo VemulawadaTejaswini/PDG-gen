@@ -1,0 +1,1 @@
+import java.util.*;class Main{static int i,n,s,t;public static void main(String[]g){for(Scanner S=new Scanner(System.in);(n=S.nextInt())>0&&(s=S.nextInt())>0;System.out.println(t))for(t=i=0;i<10;i++)r(n-1,i,i);}static void r(int c,int k,int d){if(d>s)return;if(c<1){if(s==d)t++;return;}for(int j=k;++j<10;)r(c-1,j,d+j);}}

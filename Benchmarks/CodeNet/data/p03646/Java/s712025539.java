@@ -1,0 +1,8 @@
+import java.util.*;
+class Main{
+    public static void main(String[] a){
+        Scanner sc=new Scanner(System.in);
+        long k=sc.nextLong();
+        for(int i=0;i<51;i++) System.out.print(i<1?50+"\n":(k/50+(i<50-k%50?49:100)-k%50)+" ");
+    }
+}

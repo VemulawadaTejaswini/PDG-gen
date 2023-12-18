@@ -1,0 +1,15 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+
+		long start = sc.nextInt();
+        long time = sc.nextInt();
+
+        if(start < time){
+           System.out.println("0"); 
+        }else{
+            System.out.println(start-time);
+        }
+	}
+}

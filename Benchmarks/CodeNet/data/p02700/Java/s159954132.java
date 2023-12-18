@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		// 入力値の取得
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		int C = sc.nextInt();
+		int D = sc.nextInt();
+		
+		while (A > 0) {
+			C -= B;
+			if (C <= 0) {
+				System.out.println("Yes");
+				break;
+			}
+			A -= D;
+			if (A <= 0) {
+				System.out.println("No");
+			}
+		}
+		
+		sc.close();
+	}
+}

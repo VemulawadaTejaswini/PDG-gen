@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);int r=0,i=4;for(;i-->0;)r+=s.nextInt();System.out.println(r/60+"\n"+r%60);}}

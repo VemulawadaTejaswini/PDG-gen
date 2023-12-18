@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){for(Scanner s=new Scanner(System.in);s.hasNext();){char[]x=s.nextLine().toCharArray();for(;!new String(x).matches(".*th(e|is|at).*");)for(int i=x.length;i-->0;)if(x[i]!=32&&x[i]!=46)x[i]=(char)((x[i]-96)%26+97);System.out.println(new String(x));}}}

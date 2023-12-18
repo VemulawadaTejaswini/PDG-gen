@@ -1,0 +1,1 @@
+class Main{static{int j,k=9;for(;k<90;){j=k%9+1;System.out.println(k/9+"x"+j+"="+k++/9*j);}System.exit(0);}}

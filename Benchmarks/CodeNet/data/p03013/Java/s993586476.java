@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+ 
+class Main {
+	int n;
+	int m;
+	ArrayList<Integer> a;
+	long[] step;
+	
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		Main m = new Main(sc);
+		m.solve();
+	}
+	Main(Scanner sc){
+		n = sc.nextInt();
+		m = sc.nextInt();
+		a = new ArrayList<Integer>();
+		for(int i=0;i<m;i++){
+			a.add(sc.nextInt());
+		}
+		step = new long[n+1];
+		for(int i = 0; i <= n;i++){
+			step[i] = 0;
+		}
+		step[0] = 1;
+	}
+	void solve(){
+		for(int i = 0;i<n;i++){
+			for(int j = i + 1;j <= Math.min(i+2, n);j++){
+				if(!a.contains(j)){
+					step[j] += step[i];
+					step[j] %= 1000000007;
+				}
+			}
+		}
+		System.out.println(step[n]);
+	}
+}

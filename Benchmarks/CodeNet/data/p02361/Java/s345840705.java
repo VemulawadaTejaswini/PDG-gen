@@ -1,0 +1,242 @@
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.*;
+
+public class Main {
+
+    static InputStream is;
+    static PrintWriter out;
+    static String INPUT = "";
+
+    final int INF = Integer.MAX_VALUE;
+    final int MIN = Integer.MIN_VALUE;
+
+    static void solve() {
+        int V = ni();
+        int E = ni();
+        int start = ni();
+        int[][] map = new int[V][V];
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                map[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        DijkstraMatrix dij = new DijkstraMatrix(V);
+
+        for (int i = 0; i < E; i++) {
+            int s = ni();
+            int t = ni();
+            int d = ni();
+            map[s][t] = d;
+            dij.set(s, t, d);
+        }
+        for (int end = 0; end < V; end++) {
+            int cost = dij.getCost(start, end);
+            System.out.println(cost == -1 ? "INF" : cost);
+        }
+    }
+
+
+    public static void main(String[] args) throws Exception {
+        long S = System.currentTimeMillis();
+        is = INPUT.isEmpty() ? System.in : new ByteArrayInputStream(INPUT.getBytes());
+        out = new PrintWriter(System.out);
+
+        solve();
+        out.flush();
+        long G = System.currentTimeMillis();
+        tr(G - S + "ms");
+    }
+
+    private static boolean eof() {
+        if (lenbuf == -1) return true;
+        int lptr = ptrbuf;
+        while (lptr < lenbuf) if (!isSpaceChar(inbuf[lptr++])) return false;
+
+        try {
+            is.mark(1000);
+            while (true) {
+                int b = is.read();
+                if (b == -1) {
+                    is.reset();
+                    return true;
+                } else if (!isSpaceChar(b)) {
+                    is.reset();
+                    return false;
+                }
+            }
+        } catch (IOException e) {
+            return true;
+        }
+    }
+
+    private static byte[] inbuf = new byte[1024];
+    static int lenbuf = 0, ptrbuf = 0;
+
+    private static int readByte() {
+        if (lenbuf == -1) throw new InputMismatchException();
+        if (ptrbuf >= lenbuf) {
+            ptrbuf = 0;
+            try {
+                lenbuf = is.read(inbuf);
+            } catch (IOException e) {
+                throw new InputMismatchException();
+            }
+            if (lenbuf <= 0) return -1;
+        }
+        return inbuf[ptrbuf++];
+    }
+
+    private static boolean isSpaceChar(int c) {
+        return !(c >= 33 && c <= 126);
+    }
+
+    //	private static boolean isSpaceChar(int c) { return !(c >= 32 && c <= 126); }
+    private static int skip() {
+        int b;
+        while ((b = readByte()) != -1 && isSpaceChar(b)) ;
+        return b;
+    }
+
+    private static double nd() {
+        return Double.parseDouble(ns());
+    }
+
+    private static char nc() {
+        return (char) skip();
+    }
+
+    private static String ns() {
+        int b = skip();
+        StringBuilder sb = new StringBuilder();
+        while (!(isSpaceChar(b))) {
+            sb.appendCodePoint(b);
+            b = readByte();
+        }
+        return sb.toString();
+    }
+
+    private static char[] ns(int n) {
+        char[] buf = new char[n];
+        int b = skip(), p = 0;
+        while (p < n && !(isSpaceChar(b))) {
+            buf[p++] = (char) b;
+            b = readByte();
+        }
+        return n == p ? buf : Arrays.copyOf(buf, p);
+    }
+
+    private static char[][] nm(int n, int m) {
+        char[][] map = new char[n][];
+        for (int i = 0; i < n; i++) map[i] = ns(m);
+        return map;
+    }
+
+    private static int[] na(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = ni();
+        return a;
+    }
+
+    private static int ni() {
+        int num = 0, b;
+        boolean minus = false;
+        while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-')) ;
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+
+        while (true) {
+            if (b >= '0' && b <= '9') {
+                num = num * 10 + (b - '0');
+            } else {
+                return minus ? -num : num;
+            }
+            b = readByte();
+        }
+    }
+
+    private static long nl() {
+        long num = 0;
+        int b;
+        boolean minus = false;
+        while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-')) ;
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+
+        while (true) {
+            if (b >= '0' && b <= '9') {
+                num = num * 10 + (b - '0');
+            } else {
+                return minus ? -num : num;
+            }
+            b = readByte();
+        }
+    }
+
+    private static void tr(Object... o) {
+        if (INPUT.length() != 0) System.out.println(Arrays.deepToString(o));
+        // System.out.println(Arrays.deepToString(o));
+    }
+}
+
+class DijkstraMatrix {
+    int[][] a;
+    boolean[] b;
+    PriorityQueue<int[]> q;
+
+    public DijkstraMatrix(int n) {
+        a = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                a[i][j] = -1;
+            }
+        }
+        b = new boolean[n];
+        q = new PriorityQueue<int[]>(n, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[1] - o2[1];
+            }
+        });
+    }
+
+    public void set(int i, int j, int cost) {
+        a[i][j] = cost;
+    }
+
+    public int getCost(int s, int e) {
+        if (s == e) {
+            return 0;
+        }
+        Arrays.fill(b, false);
+        q.clear();
+        b[s] = true;
+        for (int i = 1; i < a.length; i++) {
+            if (a[s][i] >= 0) {
+                q.add(new int[] { i, a[s][i] });
+            }
+        }
+        int c = -1;
+        while (!q.isEmpty()) {
+            int[] t = q.poll();
+            if (t[0] == e) {
+                c = t[1];
+                break;
+            }
+            b[t[0]] = true;
+            for (int k = 0; k < a.length; k++) {
+                if (!b[k] && a[t[0]][k] >= 0) {
+                    q.add(new int[] { k, t[1] + a[t[0]][k] });
+                    set(s, k, t[1] + a[t[0]][k]);
+                }
+            }
+        }
+        return c;
+    }
+}

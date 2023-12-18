@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main{
+  public static void main(String[]args){
+    int pos;
+    int[] a=new int[4];
+    for(int i=0;i<n;i++){
+      a[i]=sc.nextInt();
+      if(a[i]==0)
+        pos=i;
+    }
+    System.out.println(pos+1);
+  }
+}

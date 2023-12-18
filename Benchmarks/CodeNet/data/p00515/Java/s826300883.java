@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+		int[] ten = new int[5];
+		int sum = 0;
+		for(int i= 0; i < 5; i++) {
+			ten[i] = sc.nextInt();
+			if(ten[i] < 40) {
+				ten[i] = 40;
+			}
+			sum = sum + ten[i];
+		}
+		int avg = 0;
+		avg = sum / 5;
+		System.out.println(avg);
+	}
+
+}

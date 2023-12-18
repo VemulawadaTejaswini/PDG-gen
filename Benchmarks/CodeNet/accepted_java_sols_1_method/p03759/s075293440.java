@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner io = new Scanner(System.in);
+		int a = io.nextInt();
+		int b = io.nextInt();
+		int c = io.nextInt();
+		
+		System.out.println(((b-a) == (c-b))?"YES":"NO");
+	}
+}

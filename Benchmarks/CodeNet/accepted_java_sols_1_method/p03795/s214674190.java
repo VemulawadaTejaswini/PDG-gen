@@ -1,0 +1,14 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws IOException{
+
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int x = 800 * n;
+		int y = ((n - n%15) /15) * 200;
+
+		System.out.println((x-y));
+	}
+}

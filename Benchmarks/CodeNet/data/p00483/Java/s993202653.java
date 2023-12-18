@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		while(sc.hasNext()){
+			int m = sc.nextInt();
+			int n = sc.nextInt();
+			int k = sc.nextInt();
+			int[][] map = new int[m][n];
+			
+			String t = "";
+			for(int i=0;i<m;i++){
+				t = sc.next();
+				for(int j=0;j<n;j++){
+					if(t.codePointAt(j)==74){
+						map[i][j] = 1;
+					}else if(t.codePointAt(j)==79){
+						map[i][j] = 2;
+					}else if(t.codePointAt(j)==73){
+						map[i][j] = 3;
+					}
+				}
+			}
+			
+			for(int i=0;i<k;i++){
+				int a = sc.nextInt();
+				int b = sc.nextInt();
+				int c = sc.nextInt();
+				int d = sc.nextInt();
+				int cj = 0;
+				int co = 0;
+				int ci = 0;
+				for(int p=a-1;p<c;p++){
+					for(int q=b-1;q<d;q++){
+						if(map[p][q]==1){
+							cj++;
+						}else if(map[p][q]==2){
+							co++;
+						}else if(map[p][q]==3){
+							ci++;
+						}
+					}
+				}
+				System.out.println(cj + " " + co + " " + ci);
+			}
+		}
+	
+	}	
+}

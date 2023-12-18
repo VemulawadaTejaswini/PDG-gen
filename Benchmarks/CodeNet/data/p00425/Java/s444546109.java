@@ -1,0 +1,119 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+
+    // エントリポイント
+    public static void main(String args[]) {
+        doLogic();
+    }
+
+    // 定数
+    private static final int TOP = 0;
+    private static final int NORTH = 1;
+    private static final int EAST = 2;
+    private static final int SOUTH = 3;
+    private static final int WEST = 4;
+
+    // フィールド
+    private static int sum = 1;
+    private static int[] dice = new int[5]; // TOP, NORTH, EAST, SOUTH, WEST を保持
+
+    /**
+     * サイコロに対するコマンドを実行する。
+     *
+     * @param command コマンド
+     */
+    private static void doCommand(String command) {
+        int tmp = 0;
+        if ("Right".equals(command)) {
+            tmp = dice[4];
+            for (int j = 3; j >= 1; j--) {
+                dice[j + 1] = dice[j];
+            }
+            dice[1] = tmp;
+
+        } else if ("Left".equals(command)) {
+            tmp = dice[1];
+            for (int j = 1; j <= 3; j++) {
+                dice[j] = dice[j + 1];
+            }
+            dice[4] = tmp;
+
+        } else if ("North".equals(command)) {
+            dice[NORTH] = dice[TOP];
+            dice[TOP] = dice[SOUTH];
+            dice[SOUTH] = 7 - dice[NORTH];
+
+        } else if ("South".equals(command)) {
+            dice[SOUTH] = dice[TOP];
+            dice[TOP] = dice[NORTH];
+            dice[NORTH] = 7 - dice[SOUTH];
+
+        } else if ("East".equals(command)) {
+            dice[EAST] = dice[TOP];
+            dice[TOP] = dice[WEST];
+            dice[WEST] = 7 - dice[EAST];
+
+        } else if ("West".equals(command)) {
+            dice[WEST] = dice[TOP];
+            dice[TOP] = dice[EAST];
+            dice[EAST] = 7 - dice[WEST];
+        }
+    }
+
+    /**
+     * 標準入力を1行読む（例外処理を切り出し）
+     *
+     * @param reader 入力ストリーム
+     * @return 1行分のデータ
+     */
+    private static String readLine(BufferedReader reader) {
+        String line = null;
+        try {
+            line = reader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+        return line;
+    }
+
+    /**
+     * メインロジック
+     *
+     */
+    private static void doLogic() {
+
+        // 標準入力のストリームを作成する
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        String input = null;
+        while (true) {
+            input = readLine(reader);
+            int loop = Integer.parseInt(input);
+
+            // 終了判定を行う
+            if (loop == 0) {
+                break;
+            }
+
+            // 初期化する
+            sum = 1;
+            dice[0] = 1;
+            dice[1] = 5;
+            dice[2] = 3;
+            dice[3] = 2;
+            dice[4] = 4;
+
+            // 指定された数だけコマンドを実行する
+            for (int i = 0; i < loop; i++) {
+                String command = readLine(reader);
+                doCommand(command);
+                sum += dice[0];
+            }
+            System.out.println(sum);
+
+        }
+    }
+}

@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner in = new Scanner(System.in);
+		
+		int n = in.nextInt();
+		int a[] = new int[n];
+		
+		for(int i = 0; i < n; i++){
+			a[i] = in.nextInt();
+		}
+		for(n = n - 1; n >= 0; n--){
+			System.out.println(a[n]);
+		}
+
+	}
+
+}
+

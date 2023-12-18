@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.List;
+public class Main {
+
+	static void solve() {
+		Scanner sc = new Scanner(System.in);
+	    int a = sc.nextInt();
+	    int b = sc.nextInt();
+	    int k = sc.nextInt();
+	    List<Integer> list = new ArrayList<>();
+	    for(int i = 1; i<Math.max(a, b);i++){
+	     	if(a%i==0&&b%i==0)
+	          list.add(i);
+	        
+	    }
+	    System.out.println(list.get(list.size()-k));
+	}
+	public static void main(String[] args) {
+			solve();
+	}
+}

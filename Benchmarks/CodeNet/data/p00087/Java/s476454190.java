@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){double[]l=new double[99];int p=0;for(Scanner s=new Scanner(System.in);s.hasNextLine();System.out.println(l[--p]))for(String x:s.nextLine().split(" "))if(x.matches("\\d+"))l[p++]=new Double(x);else{double a=l[--p],b=l[--p];l[p++]=new double[]{b*a,b+a,0,b-a,0,b/a}[x.charAt(0)-42];}}}

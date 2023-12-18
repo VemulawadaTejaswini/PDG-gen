@@ -1,0 +1,12 @@
+import java.util.*;
+import java.io.*;
+ 
+public class Main {
+    public static void main(String args[] ) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        String[] array = line.split(" ");
+        int gaiku = (Integer.parseInt(array[0]) - 1) * (Integer.parseInt(array[1]) - 1);
+        System.out.println(gaiku);
+    }
+}

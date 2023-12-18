@@ -1,0 +1,44 @@
+import java.util.Scanner;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Map<Integer,Integer> a = new TreeMap<>();
+        for(int i = 0;i < n;i++){
+            int x = sc.nextInt();
+            if(a.get(x) != null){
+                a.put(x,a.get(x)+1);
+                continue;
+            }
+            a.put(x,1);
+        }
+        List <Integer> list = new ArrayList<>(a.keySet());
+        Collections.sort(list,Collections.reverseOrder());
+        int edge1 = 0;
+        int edge2 = 0;
+        for(Integer it : list){
+            if(a.get(it) < 2){
+                continue;
+            }
+            if(a.get(it) >= 2 && a.get(it) < 4){
+                if(edge1 == 0){
+                    edge1 = it;
+                    continue;
+                }
+                edge2 = it;
+                break;
+            }
+            if(a.get(it) >= 4){
+                edge1 = it;
+                edge2 = it;
+                break;
+            }
+        }
+        System.out.println(edge1 * edge2);
+    }
+}

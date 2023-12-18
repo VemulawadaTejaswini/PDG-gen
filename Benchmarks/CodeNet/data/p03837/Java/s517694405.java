@@ -1,0 +1,91 @@
+import java.util.*;
+
+public class Main {
+    private static final long INF = 1145141919;
+
+    public void main(Scanner sc) {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        long map[][] = new long[n][n];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(map[i], 0);
+        }
+
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int c = sc.nextInt();
+            map[a - 1][b - 1] = c;
+            map[b - 1][a - 1] = c;
+        }
+
+        long mins[][] = new long[n][n];
+        for (int i = 0; i < n; i++) {
+            mins[i] = dijkstra(i, n, map);
+        }
+
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (map[i][j] != 0) {
+                    boolean use = false;
+                    for (int s = 0; s < n; s++) {
+                        if (mins[s][i] + map[i][j] == mins[s][j]) {
+                            use = true;
+                        }
+                    }
+                    if (!use) {
+                        cnt++;
+                    }
+                }
+            }
+        }
+        System.out.println(cnt);
+    }
+
+    public long[] dijkstra(int start, int n, long map[][]) {
+        long mins[] = new long[n];
+        Arrays.fill(mins, INF);
+        boolean flgs[] = new boolean[n];
+
+        Queue<Node> queue = new PriorityQueue<>((o1, o2) -> Long.compare(o1.cost, o2.cost));
+        queue.add(new Node(start, 0));
+        while (!queue.isEmpty()) {
+            Node src = queue.poll();
+            if (flgs[src.id]) {
+                continue;
+            }
+
+            flgs[src.id] = true;
+            mins[src.id] = src.cost;
+
+            for (int dst = 0; dst < n; dst++) {
+                if (!flgs[dst] && map[src.id][dst] != 0) {
+                    if (mins[dst] > mins[src.id] + map[src.id][dst]) {
+                        Node next = new Node(dst, mins[src.id] + map[src.id][dst]);
+                        queue.add(next);
+                    }
+                }
+            }
+        }
+
+        return mins;
+    }
+
+    private class Node {
+        int id;
+        long cost;
+
+        public Node(int id, long cost) {
+            this.id = id;
+            this.cost = cost;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        new Main().main(sc);
+        sc.close();
+    }
+}

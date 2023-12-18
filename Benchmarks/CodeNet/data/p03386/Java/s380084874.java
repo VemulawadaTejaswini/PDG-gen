@@ -1,0 +1,39 @@
+import java.util.*;
+import java.util.Collections;
+import java.util.ArrayList;
+ 
+public class Main{
+  
+  public static void main(String[] args){
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int K = sc.nextInt();
+ 
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    
+    if(B-A+1 > K && ((B-A+1) != (K+K-1))){
+      for(int i = A ; i < A+K ; i++){
+         list.add(i);
+      }
+      
+      for(int i = B ; i > B-K ; i--){
+          list.add(i);
+      }
+      
+      Collections.sort(list);
+
+       for(int i = 0 ; i < list.size() ; i++){     
+         System.out.println(list.get(i));      
+       }
+      
+    }else{
+      for(int i = A ; i <= B ; i++){
+         System.out.println(i);
+      }
+    }
+    
+  }
+}

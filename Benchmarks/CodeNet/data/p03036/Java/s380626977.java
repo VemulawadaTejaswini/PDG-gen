@@ -1,0 +1,21 @@
+import java.time.Instant;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+public class Main {
+	public static void main(String[] args){
+
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		int D = sc.nextInt();
+		int[] x = new int[11];
+		x[0] = sc.nextInt();
+
+		for(int i=1; i<11; i++){
+			x[i] = r* x[i-1] - D;
+			System.out.println(x[i]);
+		}
+
+	}
+}

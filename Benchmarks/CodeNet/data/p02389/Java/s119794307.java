@@ -1,0 +1,27 @@
+package test;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main{
+	public static void main(String[] args) throws IOException{
+		//System.out.println("hello world");
+		try{
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+
+		String str;
+		while((str=br.readLine())!=null){
+		String[] b=str.split(" ");
+		int a=Integer.parseInt(b[0]);
+		int c=Integer.parseInt(b[1]);
+		int d=(2*a)+(2*c);
+		System.out.println(a*c+" "+d);
+		}
+		br.close();
+	}catch(Exception e){
+		e.getStackTrace();
+		System.exit(0);
+	}
+}
+	}

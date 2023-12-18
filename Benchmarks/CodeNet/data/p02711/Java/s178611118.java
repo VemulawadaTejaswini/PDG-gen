@@ -1,0 +1,26 @@
+    import java.util.*;
+     
+    	public static void main(String[] args) {
+    		Scanner sc = new Scanner(System.in);
+    		int x = sc.nextInt();
+    		boolean y=0;
+    		for(int i=0;i<3;i++){
+    			if(x/100==7){
+    				y=true;
+    				break;
+    			}else if((x%100)/10==7) {
+    				y=true;
+    				break;
+    			}else if(x%10==7) {
+    				y=true;
+    				break;
+    			}
+    		}
+    		if(y) {
+    			System.out.print("Yes");
+    		}else {
+    			System.out.print("No");
+    		}
+    		
+     
+    	}

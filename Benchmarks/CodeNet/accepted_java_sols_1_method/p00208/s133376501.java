@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[] args){Scanner scan = new Scanner(System.in);int n;while((n=scan.nextInt())!=0)System.out.println(Integer.toOctalString(n).replace('7','9').replace('6','8').replace('5','7').replace('4','5'));}}

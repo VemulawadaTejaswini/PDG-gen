@@ -1,0 +1,21 @@
+import java.util.*;
+ 
+public class Main{
+  public void main(String[] args){
+    Scanner stdIn = new Scanner(System.in);
+    int[] a = new int[3];
+    count5 = 0;
+    count7 = 0;
+    for(int i = 0;i < 3;i++){
+      a[i] = stdIn.nextInt();
+      if(a[i] == 5)
+        count5 += 1;
+      else if(a[i] ==7)
+        count7 += 1;
+    }
+    if(count5 ==2 && count7 == 1)
+      System.out.println("Yes");
+    else 
+      System.out.println("No");
+  }
+}

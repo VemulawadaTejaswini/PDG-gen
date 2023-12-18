@@ -1,0 +1,38 @@
+import java.io.*;
+
+public class main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] input = br.readLine().split(" ");
+        
+        int n = Integer.parseInt(input[0]);
+        if(n < 1 || n > 50000){
+            System.out.println("Error");
+        }
+        int m = Integer.parseInt(input[1]);
+        if(m < 1 || m > 10000){
+            System.out.println("Error");
+        }
+        
+        String[] buf = br.readLine().split(" ");
+        int ne[] = new int[m];
+        for(int i = 0; i < m; i++){
+            ne[i] = Integer.parseInt(buf[i]);
+        }
+        
+        int min[] = new int[m];
+        for(int i = 0; i < m; i++){
+            min[i] = n / ne[i];
+        }
+        
+        int mmin = min[0];
+        if(int i = 0; i < m; i++){
+            if(mmin > min[i]){
+                mmin = min[i];
+            }
+        }
+        
+        System.out.println(mmin);
+    }
+
+}

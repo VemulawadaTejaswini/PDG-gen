@@ -1,0 +1,2 @@
+import java.util.Scanner;
+class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);long N=s.nextLong();long M=s.nextLong();long G=M/N;while(m%g!=0){G--;System.out.println(G);break;}}}

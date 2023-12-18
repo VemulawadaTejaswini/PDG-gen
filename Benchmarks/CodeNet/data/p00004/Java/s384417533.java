@@ -1,0 +1,28 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = 
+                new BufferedReader(new InputStreamReader(System.in));
+        String line;
+
+        while ((line = br.readLine())!=null) {
+
+            String[] splited = line.split(" ", 6);
+            int a = Integer.parseInt(splited[0]);
+            int b = Integer.parseInt(splited[1]);
+            int c = Integer.parseInt(splited[2]);
+            int d = Integer.parseInt(splited[3]);
+            int e = Integer.parseInt(splited[4]);
+            int f = Integer.parseInt(splited[5]);
+
+            double y = (a * f / d - c ) / (a * e / d - b);
+            double x = x = (c - b * y) / a;
+
+            String output = String.format("%.3f %.3f", x, y);
+            System.out.println(output);
+        }
+    }
+}

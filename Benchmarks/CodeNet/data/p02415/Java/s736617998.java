@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		
+		Scanner scan = new Scanner(System.in);
+		scan.useDelimiter("?\?\r?\?\n");
+		// ??\???
+		String s = scan.next();
+		// ??????????????????
+		int s1 = s.length();
+		
+		String S = "";
+		for(int i=0; i<s1; i++){
+			String s2 = s.substring(i, i+1);
+			String s3;
+			if( s2.matches( "[a-z]+" ) ){
+				String upper_s2 = s2.toUpperCase();
+				S = S + upper_s2;
+			}
+			/*
+			else if (s2 == a){
+				
+				S = S + s3;
+			}
+			*/
+			else {
+				String lower_s2 = s2.toLowerCase();
+				S = S + lower_s2;
+			}
+		}
+		
+		System.out.print(S);
+
+	}
+
+}

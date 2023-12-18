@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int t;(t=s.nextInt())>0;){int[]f=new int[7];for(;t-->0;)++f[Math.min(s.nextInt()/10,6)];for(int a:f)System.out.println(a);}}}

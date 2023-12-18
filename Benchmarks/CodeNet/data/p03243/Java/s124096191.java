@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+    	Scanner input = new Scanner(System.in);
+      	String N = input.next();
+      	int[] ns = new int[3];
+      	for (int i = 0; i < 3; i++) {
+          	int num = Character.getNumericValue(N.charAt(i));
+        	ns[i] = num * 100 + num * 10 + num;
+        }
+      	int ans = 1000;
+      	
+      	for (int i = 0; i < 3; i++) {
+          if (ns[i] > Integer.parseInt(N) && ns[i] < ans) {
+              ans = ns[i];
+          }
+        }
+		System.out.print(ans);
+
+    }
+  	
+}

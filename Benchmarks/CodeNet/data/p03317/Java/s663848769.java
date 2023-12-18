@@ -1,0 +1,14 @@
+import java.util.*;
+ 
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        if (k == 2) {
+            System.out.println(n - 1);
+        } else {
+            System.out.println(n / (k - 1));
+        }    
+    }    
+}

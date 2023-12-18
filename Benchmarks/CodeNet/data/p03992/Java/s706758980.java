@@ -1,0 +1,26 @@
+import java.util.Scanner;
+ 
+public class Main {
+ 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+ 
+        char[] str_a = str.toCharArray();
+        boolean flag = true;
+        char[] str_1 = new char[4];
+        char[] str_2 = new char[str.length()-4-1];
+        for (int i=0;i<4;i++){
+        	str_1[i] = str_a[i];
+        }
+        for (int i=4;i<str_a.length-1;i++){
+        	str_2[i-4] = str_a[i];
+        }
+        String a = new String(str_1);
+        String b = new String(str_2);
+        String c = a+' '+b+'\n';
+        System.out.println(c);
+	}
+ 
+}

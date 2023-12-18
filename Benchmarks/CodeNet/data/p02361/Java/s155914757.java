@@ -1,0 +1,79 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	int datasize = 0;//????????°
+	int datasize2 = 0;//???????????°
+	int start = 0;
+	int distance[];//???????????¢
+	static ArrayList<Edge>[]G = new ArrayList[100000];
+	static int Infinity = 1500000000;
+	public static void main(String []args){
+		Main m = new Main();
+	}
+	public Main(){
+		try{
+			String input = reader.readLine();
+			String []get = input.split(" ");
+			datasize = Integer.parseInt(get[1]);
+			datasize2 = Integer.parseInt(get[0]);
+			start = Integer.parseInt(get[2]);
+			distance = new int[datasize2];
+			for(int z = 0;z < datasize2;z++){
+				G[z] = new ArrayList<Edge>(0);
+				this.distance[z] = Infinity;
+			}
+			for(int z = 0;z < datasize;z++){
+				input = reader.readLine();
+				get = input.split(" ");
+				G[Integer.parseInt(get[0])].add(new Edge(Integer.parseInt(get[1]),Integer.parseInt(get[2])));
+			}
+			Explore();
+			for(int z = 0;z < datasize2;z++){
+				System.out.println(distance[z]);
+			}
+		}catch(IOException e){
+			
+		}
+	}
+	public void Explore(){
+		
+		PriorityQueue<Candidate> candidates = new PriorityQueue<Candidate>();
+		candidates.offer(new Candidate(start,0));
+		distance[start] = 0;
+		while(!candidates.isEmpty()){
+			Candidate c = candidates.poll();
+			int number = c.number;
+			int d = c.d;
+			if(distance[number] < d){
+				continue;
+			}
+			List<Edge> edges = G[number];//No.????????????????????????????????´????????¢??????????????¨??????
+			for(Edge ed : edges){
+				if(distance[ed.go] > distance[number] + ed.cost){//?????????????????????????????¢>????????????+????????????????????????
+					distance[ed.go] = distance[number]+ed.cost;
+					candidates.offer(new Candidate(ed.go,distance[ed.go]));
+				}
+			}
+		}
+	}
+	static class Candidate implements Comparable<Candidate>{//???????????¢????£??????????
+		int number = -1;//?????????????????????
+		int d = 0;//?????¢
+		public Candidate(int number,int d){
+			this.number = number;
+			this.d = d;
+		}
+		@Override
+		public int compareTo(Candidate o) {
+			return d-o.d;
+		}
+	}static class Edge{
+		int go;//??????????????????
+		int cost;//?????¢
+		Edge(int go,int cost){
+			this.go = go;
+			this.cost = cost;
+		}
+	}
+}

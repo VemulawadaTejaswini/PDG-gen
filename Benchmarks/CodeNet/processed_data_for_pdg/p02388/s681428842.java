@@ -1,0 +1,9 @@
+public class Main
+{
+	public static void main(String a[])
+	{ 
+	    Scanner scanner = new Scanner(System.in);
+	    int n = scanner.nextInt();
+	    System.out.println(n*n*n);
+	}
+}

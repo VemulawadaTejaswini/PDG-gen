@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class atc {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		List<String> moji = new ArrayList<String>();
+		moji.add("a");
+		moji.add("i");
+		moji.add("u");
+		moji.add("e");
+		moji.add("o");
+		String c=sc.next();
+		if(moji.contains(c))System.out.println("vowel");
+		else System.out.println("consonant");
+		
+		
+		
+	
+	}
+	
+}

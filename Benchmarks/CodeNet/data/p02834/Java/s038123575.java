@@ -1,0 +1,293 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
+
+public class Main implements Runnable {
+    public static void main(String[] args) {
+        new Thread(null,new Main(), "" ,Runtime.getRuntime().maxMemory()).start();
+    }
+
+    // メイン処理
+    public void run() {
+        FastScanner sc = new FastScanner();
+        int n = sc.nextInt();
+        int u = sc.nextInt() - 1;
+        int v = sc.nextInt() - 1;
+        Map<Integer, Set<Integer>> routeMap = new HashMap<>(n);
+        for(int i = 0;i < n - 1;i++) {
+            int a = sc.nextInt() - 1;
+            int b = sc.nextInt() - 1;
+            Set<Integer> fromA = routeMap.get(Integer.valueOf(a));
+            if(fromA == null) fromA = new HashSet<>();
+            fromA.add(Integer.valueOf(b));
+            routeMap.put(Integer.valueOf(a), fromA);
+            Set<Integer> fromB = routeMap.get(Integer.valueOf(b));
+            if(fromB == null) fromB = new HashSet<>();
+            fromB.add(Integer.valueOf(a));
+            routeMap.put(Integer.valueOf(b), fromB);
+        }
+
+        Deque<int[]> que = new ArrayDeque<>();
+        Map<Integer, Set<Integer>> possibility1 = new HashMap<>(n);
+        int[] start = {u, 0};
+        que.offer(start);
+        Set<Integer> startSet = new HashSet<>();
+        startSet.add(Integer.valueOf(u));
+        possibility1.put(Integer.valueOf(0), startSet);
+        for(int i = 1;i <= 2*n;i++) {
+            int[] here = que.poll();
+            Set<Integer> route = routeMap.get(Integer.valueOf(here[0]));
+            Set<Integer> nextPossibility = possibility1.get(Integer.valueOf(here[1] + 1));
+            if(nextPossibility == null) nextPossibility = new HashSet<>();
+            for(Integer next : route) {
+                nextPossibility.add(next);
+                int[] tmp = {next.intValue(), here[1] + 1};
+                que.add(tmp);
+            }
+            possibility1.put(Integer.valueOf(here[1] + 1), nextPossibility);
+        }
+
+        que.clear();
+        Map<Integer, Set<Integer>> possibility2 = new HashMap<>(n);
+        int[] start2 = {v, 0};
+        que.offer(start2);
+        Set<Integer> startSet2 = new HashSet<>();
+        startSet2.add(Integer.valueOf(v));
+        possibility2.put(Integer.valueOf(0), startSet2);
+        for(int i = 1;i <= 2*n;i++) {
+            int[] here = que.poll();
+            Set<Integer> route = routeMap.get(Integer.valueOf(here[0]));
+            Set<Integer> nextPossibility = possibility2.get(Integer.valueOf(here[1] + 1));
+            if(nextPossibility == null) nextPossibility = new HashSet<>();
+            for(Integer next : route) {
+                nextPossibility.add(next);
+                int[] tmp = {next.intValue(), here[1] + 1};
+                que.add(tmp);
+            }
+            possibility2.put(Integer.valueOf(here[1] + 1), nextPossibility);
+        }
+
+        PrintWriter out =  new PrintWriter(System.out);
+        for(int i = 0;i < 2*n;i++) {
+            if(i != 0) {
+                Set<Integer> set1 = possibility1.get(Integer.valueOf(i));
+                Set<Integer> set2 = possibility2.get(Integer.valueOf(i - 1));
+                Set<Integer> tmp = new HashSet<>(set1);
+                tmp.removeAll(set2);
+                if(tmp.isEmpty()) {
+                    out.println(i - 1);
+                    break;
+                }
+            }
+            Set<Integer> tmp1 = possibility1.get(Integer.valueOf(i));
+            Set<Integer> tmp2 = possibility2.get(Integer.valueOf(i));
+            tmp1.removeAll(tmp2);
+            if(tmp1.isEmpty()) {
+                out.println(i);
+                break;
+            }
+        }
+        out.flush();
+    }
+
+    // 以下、ユーティリティ
+    Set<long[]> primeFactorize(long n){
+        // たとえnが10^18でも約数の個数は400を超えないため素因数はもっと少なくなる
+        Set<long[]> ret = new HashSet<>(500);
+        for(long p = 2;p * p <= n;p++) {
+            if(n % p != 0) continue;
+            long num = 0;
+            while(n % p == 0) {
+                ++num;
+                n /= p;
+            }
+            long[] arr = {p, num};
+            ret.add(arr);
+        }
+        if(n != 1) {
+            long[] arr = {n, 1};
+            ret.add(arr);
+        }
+
+        return ret;
+    }
+
+    // nの約数を求める
+    Set<Long> searchDivisor(long n){
+        Set<Long> ret = new HashSet<>(200);
+        for(long i = 1;i * i <= n;i++) {
+            if(n % i == 0) {
+                ret.add(Long.valueOf(i));
+                if(i * i != n) ret.add(Long.valueOf(n / i));
+            }
+        }
+
+        return ret;
+    }
+
+    // 素数判定
+    public static boolean isPrime(long num) {
+        if (num < 2) return false;
+        else if (num == 2) return true;
+        else if (num % 2 == 0) return false;
+
+        double sqrtNum = Math.sqrt(num);
+        for (int i = 3; i <= sqrtNum; i += 2) {
+            if (num % i == 0) return false;
+        }
+
+        return true;
+    }
+
+    long nCm(long n, long m) {
+        if(n < m) return 0l;
+        long c = 1l;
+        m = (n - m < m ? n - m : m);
+        for(long ns = n - m + 1, ms = 1;ms <= m;ns ++, ms++) {
+            c *= ns;
+            c /= ms;
+        }
+        return c;
+    }
+
+    long modnCm(long n, long m, long mod) {
+        if(n < m) return 0l;
+        long upper = 1l;
+        long downer = 1l;
+        m = (n - m < m ? n - m : m);
+        for(long ns = n - m + 1, ms = 1;ms <= m;ns ++, ms++) {
+            upper = upper * ns % mod;
+            downer = downer * ms % mod;
+        }
+        return upper * modInv(downer, mod) % mod;
+    }
+
+    // mod m での a の逆元 を計算する
+    long modInv(long a, long m) {
+        long b = m, u = 1, v = 0;
+        while(b > 0) {
+            long t = a / b;
+            a -= t * b;
+            long tmp = a;
+            a = b;
+            b = tmp;
+            u -= t * v;
+            tmp = u;
+            u = v;
+            v = tmp;
+        }
+        u %= m;
+        if (u < 0) u += m;
+        return u;
+    }
+
+    long modPow(long a, long n, long mod) {
+        long res = 1l;
+        while(n > 0l) {
+            if(n % 2l == 1l) res = res * a % mod;
+            a = a * a % mod;
+            n /= 2l;
+        }
+        return res;
+    }
+
+}
+
+class UnionFind {
+    protected int[] parent;
+
+    UnionFind(int n) {
+        parent = new int[n];
+        for(int i = 0;i < n;i++) parent[i] = i;
+    }
+
+    public int rootOf(int x) {
+        if(parent[x] == x) return x;
+        else return parent[x] = rootOf(parent[x]);
+    }
+
+    public boolean same(int x, int y) {
+        return rootOf(x) == rootOf(y);
+    }
+
+    public void unite(int x, int y) {
+        x = rootOf(x);
+        y = rootOf(y);
+        if(x == y) return;
+        parent[x] = y;
+        return;
+    }
+}
+
+class FastScanner {
+    private final InputStream in = System.in;
+    private final byte[] buffer = new byte[1024];
+    private int ptr = 0;
+    private int buflen = 0;
+    private boolean hasNextByte() {
+        if (ptr < buflen) {
+            return true;
+        }else{
+            ptr = 0;
+            try {
+                buflen = in.read(buffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (buflen <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private int readByte() { if (hasNextByte()) return buffer[ptr++]; else return -1;}
+    private static boolean isPrintableChar(int c) { return 33 <= c && c <= 126;}
+    public boolean hasNext() { while(hasNextByte() && !isPrintableChar(buffer[ptr])) ptr++; return hasNextByte();}
+    public String next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        StringBuilder sb = new StringBuilder();
+        int b = readByte();
+        while(isPrintableChar(b)) {
+            sb.appendCodePoint(b);
+            b = readByte();
+        }
+        return sb.toString();
+    }
+    public long nextLong() {
+        if (!hasNext()) throw new NoSuchElementException();
+        long n = 0;
+        boolean minus = false;
+        int b = readByte();
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+        if (b < '0' || '9' < b) {
+            throw new NumberFormatException();
+        }
+        while(true){
+            if ('0' <= b && b <= '9') {
+                n *= 10;
+                n += b - '0';
+            }else if(b == -1 || !isPrintableChar(b)){
+                return minus ? -n : n;
+            }else{
+                throw new NumberFormatException();
+            }
+            b = readByte();
+        }
+    }
+    public int nextInt() {
+        long nl = nextLong();
+        if (nl < Integer.MIN_VALUE || nl > Integer.MAX_VALUE) throw new NumberFormatException();
+        return (int) nl;
+    }
+    public double nextDouble() { return Double.parseDouble(next());}
+}

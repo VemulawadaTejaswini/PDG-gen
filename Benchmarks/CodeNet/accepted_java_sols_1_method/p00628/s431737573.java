@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(String x,r;!(x=s.nextLine()).equals("END OF INPUT");System.out.println(r)){r="";for(String y:x.split(" "))r+=y.length();}}}

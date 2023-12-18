@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		// 整数の入力
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		int[] x = new int[N];
+		for(int i=0;i<N;i++){
+			x[i] = sc.nextInt();
+		}
+		int cnt = 0;
+		int dis = 0;
+		for(int ind: x){
+		    int eql = ind;
+		    if(ind>K-ind)
+		        eql = K-ind;
+		    dis += eql*2;
+		}
+	    System.out.println(dis);
+	}
+}

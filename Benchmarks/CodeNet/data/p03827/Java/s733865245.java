@@ -1,0 +1,23 @@
+import java.util.*;
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args){
+		int x = 0, xi = 0;
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		String S = sc.next();
+		
+		for(int i=0;N > i;i++){
+			if('I'==S.charAt(i)){
+				x++;
+				if(x>xi){
+					xi = x;
+				}
+			}else{
+				x--;
+			}
+		}
+		System.out.println(xi);
+	}
+}

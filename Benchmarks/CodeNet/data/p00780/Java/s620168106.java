@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+public class Main{
+    public static void main(String[] args)throws IOException{
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(isr);
+        String string;
+        int n, count;
+        boolean[] primes = new boolean[50001];
+         
+        primes[0] = primes[1] = false;
+        for(int i = 2; i < 50000; i++){
+            boolean judge = true;
+            for(int j = 2; j <= Math.sqrt(i); j++){
+                if(i % j == 0){
+                    judge = false;
+                    break;
+                }
+            }
+            if(judge) primes[i] = true;
+            else      primes[i] = false;
+        }
+         
+        while(!(string = reader.readLine()).equals("0")){
+            n = Integer.parseInt(string);
+            count = 0;
+             
+            for(int i = 0; i <= n / 2; i++){
+                if(primes[i] && primes[n - i]) count++;
+            }
+            System.out.println(count);
+        }
+        reader.close();
+    }
+}

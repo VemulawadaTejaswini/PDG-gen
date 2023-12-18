@@ -1,0 +1,35 @@
+import java.util.*;
+ 
+public class Main {
+ 
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+	    int length = in.nextInt();
+      	String str = in.next();
+		int input = in.nextInt(); 
+      	char[] charArray = str.toCharArray();
+		Set<Character> testCount = new HashSet<>();      
+		for (int i = 0; i < input; i++) {
+          	int type = in.nextInt();  
+          	if (type == 1) {
+               	int pos = in.nextInt();
+              	String c = in.next();
+              	charArray[pos - 1] = c.charAt(0);              
+            } else if (type == 2) {
+				int start = in.nextInt() - 1;
+              	int end = in.nextInt() - 1;       
+              	if (start == end) {
+	              	System.out.println(1);  
+                } else {
+                    testCount.clear();
+                    for (int j = start; j <= end; j++) {
+                        testCount.add(charArray[j]);
+                    }
+                    System.out.println(testCount.size());
+                }
+            }
+        }      
+      
+    }
+ 
+}

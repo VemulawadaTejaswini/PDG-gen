@@ -1,0 +1,36 @@
+import java.io.*;
+
+class Main {
+	public static void main(String[] args) {
+		BufferedReader kb = new BufferedReader( new InputStreamReader( System.in ) );
+		try {
+			String str = kb.readLine();
+			int q = Integer.parseInt( kb.readLine() );
+			
+			StringBuilder output = new StringBuilder( 1000+1 );
+			int start, end;
+			while( 0 < q-- ) {
+				String[] instruction = kb.readLine().split( " " );
+				start = Integer.parseInt( instruction[1] );
+				end = Integer.parseInt( instruction[2] );
+				if( instruction[0].equals( "print" ) ) {
+		        	System.out.println( str.substring( start, end+1 ) );
+				} else if( instruction[0].equals( "reverse" ) ) {
+					output.append( str.substring( start, end+1 ) );
+					output.reverse();
+					output.insert( 0, str.substring( 0, start )  );
+					output.append( str.substring( end+1 ) );
+					str = output.toString();
+				} else if( instruction[0].equals( "replace" ) ) {
+					output.append( str );
+					output.replace( start, end+1, instruction[3]  );
+					str = output.toString();
+				}
+				output.setLength( 0 );
+			}
+				        
+		} catch( IOException e ) {
+			System.err.println( e );
+		}
+	}
+}

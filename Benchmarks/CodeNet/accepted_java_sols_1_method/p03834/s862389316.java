@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String args[]){
+		Scanner cin = new Scanner(System.in);
+		String text = cin.next();
+		cin.close();
+
+		for(int i=0;i<19;i++){
+			if(i==5||i==13){
+				System.out.print(" ");
+			}else{
+				System.out.print(text.charAt(i));
+			}
+		}
+		System.out.println("");
+	}
+}

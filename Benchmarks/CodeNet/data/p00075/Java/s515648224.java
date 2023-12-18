@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner stdin = new Scanner(System.in);
+
+		for(int i = 0; i < 5; i++) {
+		 int number =stdin.nextInt();
+		 double weight = stdin.nextDouble();
+		 double height = stdin.nextDouble();
+
+		double bmi = (weight / (Math.pow(height, 2)));
+
+		 if(bmi >= 25) {
+			 System.out.println(number);
+		 }
+		}
+	}
+
+}

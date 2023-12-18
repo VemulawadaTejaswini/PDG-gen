@@ -1,0 +1,26 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		InputStreamReader is = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(is);
+		String line1 = br.readLine();
+		String[]lineArr1 = line1.split(" ");
+		int num = Integer.parseInt(lineArr1[0]);
+		String[] strArr = new String[num];
+
+		for (int i = 0; i < num; i++) {
+			strArr[i] = br.readLine();
+		}
+		Arrays.asList(strArr).sort(null);;
+
+		String answer = String.join("", strArr);
+		System.out.println(answer);
+
+	}
+
+}

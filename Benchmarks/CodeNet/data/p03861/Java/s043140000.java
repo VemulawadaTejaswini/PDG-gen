@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long a = sc.nextLong();
+        long b = sc.nextLong();
+        long x = sc.nextLong();
+        long A=a/x;
+        if(a%x==0)A--;
+        long B=b/x;
+        long ans = B-A;
+        System.out.println(ans);
+    }
+}

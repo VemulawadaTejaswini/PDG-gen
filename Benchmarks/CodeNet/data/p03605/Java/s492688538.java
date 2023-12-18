@@ -1,0 +1,16 @@
+class Main {
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner in = new Scanner(System.in);
+
+        String m = in.nextLine();
+        for (int i = 0; i < m.length(); i++) {
+            char s = m.charAt(i);
+            if (s == '9') {
+                System.out.println("Yes");
+                return;
+            }
+        }
+        System.out.println("No");
+
+    }
+}

@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        if (n == 19 && n == 91 && n ==99) {
+            System.out.println("Yes");}
+        else 
+            System.out.println("No");
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+

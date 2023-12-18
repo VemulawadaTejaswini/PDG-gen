@@ -1,0 +1,17 @@
+import java.util.Scanner;
+import java.math.BigInteger; 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    BigInteger n = new BigInteger(Integer.toString(sc.nextInt()));
+    BigInteger b = new BigInteger(Integer.toString(sc.nextInt()));
+    BigInteger r = new BigInteger(Integer.toString(sc.nextInt()));
+    BigInteger x = new BigInteger("0");
+    if(b == 0) {
+      System.out.println(x);
+    } else {
+      x = n-r;
+      System.out.println(x);
+    }
+  }
+}

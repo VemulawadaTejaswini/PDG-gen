@@ -1,0 +1,24 @@
+import java.util.Scanner;
+import java.util.stream.IntStream;
+
+public class Main{
+	static final Scanner s=new Scanner(System.in);
+	public static void main(String[]__){
+		char[]in=s.next().toCharArray();
+		long buf=0,sum=0;
+		for(int b=0;b<1<<(in.length-1);b++) {
+			buf=in[0]-'0';
+			for(int i=1;i<in.length;i++) {
+				if((b&(1<<(i-1)))>0) {
+					sum+=buf;
+					buf=in[i]-'0';
+				}else{
+					buf*=10;
+					buf+=in[i]-'0';
+				}
+			}
+			sum+=buf;
+		}
+		System.out.println(sum);
+	}
+}

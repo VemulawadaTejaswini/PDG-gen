@@ -1,0 +1,18 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        Scanner sc = new Scanner(System.in);
+        int H = sc.nextInt();
+        int W = sc.nextInt();
+        String[] C = new String[H+1];
+        for(int i = 1; i <= H; i++){
+        	C[i] = sc.next();
+        }
+        for(int i = 1; i <= (H*2); i++){
+        	System.out.println(C[(i+1)/2]);
+        }
+	}
+
+}

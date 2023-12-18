@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while(scanner.hasNextInt()) {
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            System.out.println( (int)Math.floor( Math.log10(a+b) ) + 1 );
+        }
+    }
+}

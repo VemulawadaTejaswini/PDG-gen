@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z)throws Exception{char[]a={0,1,0,0};for(byte[]b=new byte[4];System.in.read(b)>-1;a[b[0]]=a[b[2]-=64],a[b[2]]=a[0])a[0]=a[b[0]-=64];System.out.println((char)(new String(a).indexOf(1)+64));}}

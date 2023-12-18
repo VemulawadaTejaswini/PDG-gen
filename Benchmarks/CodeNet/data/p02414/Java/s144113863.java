@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+
+		Scanner scan = new Scanner(System.in);
+
+		int intSumNum = 0;
+
+		int n = scan.nextInt();
+		int m = scan.nextInt();
+		int l = scan.nextInt();
+
+
+		//n*m?????????
+		int[][] aryA = new int[n][m];
+		//?????????????´?
+
+		for(int ai = 0; ai < n; ai++ ){
+			for(int aj = 0; aj < m; aj++){
+				aryA[ai][aj] = scan.nextInt();
+
+			}
+
+		}
+
+
+		//m*l?????????
+		int[][] aryB = new int[m][l];
+		//?????????????´?
+
+		for(int bi = 0; bi < m; bi++){
+			for(int bj = 0; bj < l; bj++){
+				aryB[bi][bj] = scan.nextInt();
+
+			}
+
+		}
+
+		int w = 0;
+		if(n < l){
+			w = l;
+		}else{
+			w = n;
+		}
+		System.out.println("w:" + w);
+		//?§£????????\????????????
+		int[][] aryC = new int[n][l];
+
+
+		for(int i = 0; i < w; i++){
+
+				for(int k = 0; k < w; k++){
+
+					int x = aryA[i][i-i] * aryB[i-i][k];
+					int y = aryA[i][1] * aryB[1][k];
+					aryC[i][k]= x + y;
+
+					System.out.print(aryC[i][k]);
+					if(k != w){
+						System.out.print(" ");
+					}
+				}
+				System.out.println();
+
+		}
+
+	}
+}

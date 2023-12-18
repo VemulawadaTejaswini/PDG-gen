@@ -1,0 +1,9 @@
+public class Main {
+	public static void main(String[] args) {
+		String input = new java.util.Scanner(System.in).nextLine();
+		String str1 = new String(input);
+		String[] str1Ary = str1.split(" ");
+		int b = Integer.parseInt(str1Ary[1]);
+		System.out.println(a * b + " " + (2 * a + 2 * b));
+	}
+}

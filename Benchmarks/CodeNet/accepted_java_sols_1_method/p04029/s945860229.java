@@ -1,0 +1,19 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		Scanner cin = new Scanner(System.in);
+		String line;
+		for (; cin.hasNext();) {
+			line = cin.nextLine();
+			String[] s = line.split(" ");
+			int N = Integer.valueOf(s[0]); // キャンディー
+
+			int result = (N * (N + 1))/2;
+
+			System.out.println(result);
+
+		}
+	}
+}

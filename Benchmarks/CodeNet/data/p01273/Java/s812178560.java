@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,m,i;(n=s.nextInt())>0;){Map<Integer,int[]>a=new TreeMap<Integer,int[]>();int[]b=new int[n+1];for(m=s.nextInt(),b[1]=1;m-->0;)a.put(s.nextInt(),new int[]{s.nextInt(),s.nextInt()});for(int[]k:a.values())if(b[k[0]]>0)b[k[1]]=1;for(int c:b)b[0]+=c;System.out.println(b[0]);}}}

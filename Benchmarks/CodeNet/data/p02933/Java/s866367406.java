@@ -1,0 +1,19 @@
+import java.io.PrintWriter;
+import java.util.*;
+
+public class Main{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+
+        int a = sc.nextInt();
+        String s = sc.next();
+
+        PrintWriter out = new PrintWriter(System.out);
+        if (a>=3200){
+            out.print(s);
+        }else{
+            out.print("red");
+        }
+    }
+
+}

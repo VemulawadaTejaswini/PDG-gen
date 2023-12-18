@@ -1,0 +1,94 @@
+import java.util.*;
+import java.math.*;
+import java.awt.geom.*;
+import java.io.*;
+    
+    
+public class Main {
+	static int INF = 2 << 27;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			int nm = sc.nextInt();
+			int ng = sc.nextInt();
+			int ngg = sc.nextInt();
+			int nd = sc.nextInt();
+			int nggg = sc.nextInt();
+			int no = sc.nextInt();
+			
+			if(nm + ng + ngg + nd + nggg + no == 0) break;
+			
+			int count = 0;
+			
+			while(true) {
+				if((nm != 0 || nd != 0) && (ng != 0 || nggg != 0) && (ngg != 0 || no != 0)) {
+					int MM = Math.min(nm + nd, Math.min(ng + nggg, ngg + no));
+					count += MM;
+					nm -= MM;
+					if(nm < 0) {
+						nd += nm;
+						nm = 0;
+					}
+					ng -= MM;
+					if(ng < 0) {
+						nggg += ng;
+						ng = 0;
+					}
+					ngg -= MM;
+					if(ngg < 0) {
+						no += ngg;
+						ngg = 0;
+					}
+					
+				}
+				else if(nm + nd >= 3) {
+					if(nm >= 3) {
+						count += nm / 3;
+						nm = nm % 3;
+					}
+					else if(nd >= 3) {
+						count += nd /3;
+						nd = nd % 3;
+					}
+					else {
+						count++;
+						nd = 0;
+						nm = 0;
+					}
+				}
+				else if(ng + nggg >= 3) {
+					if(ng >= 3) {
+						count += ng / 3;
+						ng = ng % 3;
+					}
+					else if(nggg >= 3) {
+						count += nggg /3;
+						nggg = nggg % 3;
+					}
+					else {
+						count++;
+						ng = 0;
+						nggg = 0;
+					}
+				}
+				else if(ngg + no >= 3) {
+					if(ngg >= 3) {
+						count += ngg / 3;
+						ngg = ngg % 3;
+					}
+					else if(no >= 3) {
+						count += no / 3;
+						no = no % 3;
+					}
+					else {
+						count++;
+						ngg = 0;
+						no = 0;
+					}
+				}
+				else break;
+			}
+			System.out.println(count);
+ 		}
+	}	
+}

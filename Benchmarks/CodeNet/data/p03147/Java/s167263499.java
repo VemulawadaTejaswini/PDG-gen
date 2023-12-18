@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] H = new int[N];
+        int count = 0;
+        int max = 0;
+        boolean key = false;
+        for (int i = 0 ; i < N ; i++) {
+            H[i] = sc.nextInt();
+            if (max < H[i]) {
+                max = H[i];
+            }
+        }
+        int[][] HN = new int[max][N];
+        for (int i = 0; i < max; i++) {
+            for (int j = 0; j < N ; j++) {
+                if (0 < H[j]) {
+                    HN[i][j] = 1;
+                    H[j]--;
+                } else {
+                    HN[i][j] = 0;
+                }
+            }
+        }
+        for (int[] line : HN) {
+            StringBuilder sb = new StringBuilder();
+            for (int i :line) {
+                if (i == 0 && !key) {
+                    sb.append(i);
+                    key = true;
+                } else if (i == 1) {
+                    sb.append(i);
+                    key = false;
+                } else {
+                    continue;
+                }
+            }
+            count += Integer.toString(Integer.parseInt(sb.toString())).split("0").length;
+        }
+        System.out.println(count);
+    }   
+}

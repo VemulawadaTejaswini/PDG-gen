@@ -1,0 +1,28 @@
+import java.util.Scanner;
+class Main{
+
+	public static void main(String[] args) {
+		int[] a= new int[3];
+		int t,i,flag=0;
+		Scanner kbd = new Scanner(System.in);
+		a[0] = kbd.nextInt();
+		a[1] = kbd.nextInt();
+		a[2]  = kbd.nextInt();
+//		System.out.println(a[0]+" "+a[1]+" "+a[2]+" " +flag);
+		for(;;){
+			flag = 0;
+			for( i=0;i<2;i++){
+				if(a[i] >a[i+1]) {
+					t=a[i];a[i] = a[i+1];a[i+1]=t;flag = 1;
+				}
+//				System.out.println("i = " + i +a[0]+" "+a[1]+" "+a[2]+" " +flag);
+			}
+			if(flag == 1) continue;	else break;
+		}
+		for( i=0;i<3;i++){
+			System.out.print(a[i] + " ");
+		}
+		System.out.println();
+	}
+
+}

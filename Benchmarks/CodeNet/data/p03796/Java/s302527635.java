@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+	void run() {
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		long MOD = 1_000_000_000 + 7;
+		long sum = 1;
+		for (int i = 1; i <= n; i++) {
+			sum *= i;
+			sum %= MOD;
+		}
+		System.out.println(sum);
+	}
+
+	public static void main(String[] args) {
+		new Main().run();
+	}
+}

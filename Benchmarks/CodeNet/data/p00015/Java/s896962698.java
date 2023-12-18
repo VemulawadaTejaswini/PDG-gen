@@ -1,0 +1,1 @@
+import java.math.*;import java.util.*;class Main{public static void main(String[]a){Scanner s=new Scanner(System.in);for(int t=s.nextInt();t-->0;){BigDecimal x=s.nextBigDecimal();BigDecimal y=s.nextBigDecimal();System.out.println((""+x).length()>80||(""+y).length()>80||(""+x.add(y)).length()>80?"overflow":x.add(y));}}}

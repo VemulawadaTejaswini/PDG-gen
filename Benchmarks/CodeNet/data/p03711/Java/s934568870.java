@@ -1,0 +1,22 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class Main {
+
+	public static void main(String[] args) {
+		int[] group = {0,1,3,1,2,1,2,1,1,2,1,2,1};
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		try{
+			String s = new String(in.readLine());
+			String[] spStr = s.split(" ",0);
+			int x = Integer.parseInt(spStr[0]);
+			int y = Integer.parseInt(spStr[1]);
+			if(group[x] == group[y]){
+				System.out.println("Yes");
+			}else{
+				System.out.println("No");
+			}
+			System.out.println();
+		}catch(Exception e){}
+
+	}
+}

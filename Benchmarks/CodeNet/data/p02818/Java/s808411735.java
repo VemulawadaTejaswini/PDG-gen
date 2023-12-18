@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+    public class Main extends PrintWriter {
+        Main() { super(System.out, true); }
+        Scanner sc = new Scanner(System.in);
+        public static void main(String[] $) {
+            Main o = new Main(); o.main(); o.flush();
+        }
+
+        void main(){
+            int A = Integer.parseInt(sc.next());
+            int B = Integer.parseInt(sc.next());
+            int K = Integer.parseInt(sc.next());
+            for(;K > 1;K--){
+                if(A > 0){
+                    A--;
+                }
+                else if(B > 0){
+                    B--;
+                }
+                else{
+
+                }
+            }
+            print(A + " "  + B);
+    }
+}

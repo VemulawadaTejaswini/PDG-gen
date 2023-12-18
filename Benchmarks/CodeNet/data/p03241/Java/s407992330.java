@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String firstLine[] = scanner.nextLine().split(" ", 2);
+
+        int n = Integer.parseInt(firstLine[0]);
+        long m = Long.parseLong(firstLine[1]);
+
+        long max = new Main().maxNum(n, m);
+        System.out.println(max);
+    }
+
+    public long maxNum(int n, long m) {
+        long max = 1;
+        for (long i = 2; i <= m; i++) {
+            long sum = n * i;
+            if (sum > m && (m - sum) % i == 0) {
+                max = i;
+            }
+        }
+        return max;
+    }
+}

@@ -1,0 +1,58 @@
+// 1分でも短針は動くんだった・・・
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        MyScanner sc = new MyScanner();
+
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int h = sc.nextInt();
+        int m = sc.nextInt();
+
+        if (h > 12)
+            h -= 12;
+
+        double angH = 30 * h + 0.5 * m;
+        double angM = 6 * m;
+        double disAng = Math.abs(angH - angM);
+
+        if (disAng == 180) {
+            System.out.println(a + b);
+            return;
+        } else if (disAng == 0) {
+            System.out.println(0);
+            return;
+        }
+
+        double angC = disAng % 180;
+        double cosC = Math.cos(Math.toRadians(angC));
+        double c = a * a + b * b - 2 * a * b * cosC;
+
+        System.out.println(Math.sqrt(c));
+    }
+
+    static class MyScanner {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in), 1 << 15);
+        StringTokenizer tokenizer;
+
+        String next() {
+            try {
+                while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                }
+            } catch (IOException ignored) {
+            }
+            return tokenizer.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+    }
+}

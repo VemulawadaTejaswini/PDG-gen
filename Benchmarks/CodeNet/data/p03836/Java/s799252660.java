@@ -1,0 +1,55 @@
+import java.math.BigInteger;
+import java.util.*;
+
+/**
+ * Created by Seiya on 2016/10/16.
+ */
+public class Main {
+     static final long MOD = 1000000007;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int sx, sy, gx, gy;
+        sx = scanner.nextInt();
+        sy = scanner.nextInt();
+        gx = scanner.nextInt();
+        gy = scanner.nextInt();
+
+        for (int i = 0; i < gx - sx; i++) {
+            System.out.print("R");
+        }
+        for (int i = 0; i < gy - sy; i++) {
+            System.out.print("U");
+        }
+        for (int i = 0; i < gx - sx; i++) {
+            System.out.print("L");
+        }
+        for (int i = 0; i < gy - sy + 1; i++) {
+            System.out.print("D");
+        }
+        for (int i = 0; i < gx - sx + 1; i++) {
+            System.out.print("R");
+        }
+        for (int i = 0; i < gy - sy + 1; i++) {
+            System.out.print("U");
+        }
+        System.out.print("LU");
+        for (int i = 0; i < gx - sx + 1; i++) {
+            System.out.print("L");
+        }
+        for (int i = 0; i < gy - sy + 1; i++) {
+            System.out.print("D");
+        }
+        System.out.print("R");
+
+
+    }
+
+
+
+
+
+}
+
+

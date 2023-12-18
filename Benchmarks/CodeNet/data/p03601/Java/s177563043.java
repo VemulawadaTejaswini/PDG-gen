@@ -1,0 +1,97 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+    	Main main=new Main();
+
+    	main.run();
+
+    }
+
+    void run() {
+
+    	Scanner sc=new Scanner(System.in);
+
+    	int A=sc.nextInt();
+    	int B=sc.nextInt();
+    	int C=sc.nextInt();
+    	int D=sc.nextInt();
+    	int E=sc.nextInt();
+    	int F=sc.nextInt();
+
+    	List<Integer> water=new ArrayList<Integer>();
+
+    	for(int i=0;i<=F/(100*A);i++) {
+    		for(int j=0;j<=F/(100*B);j++) {
+
+    			int buf=100*A*i+100*B*j;
+
+    			if(buf<=F) {
+    				water.add(buf);
+    			}
+
+    		}
+    	}
+
+    	List<Integer> sugar=new ArrayList<Integer>();
+
+    	for(int i=0;i<=F/C;i++) {
+    		for(int j=0;j<=F/D;j++) {
+
+    			int buf=C*i+D*j;
+
+    			if(buf<=F) {
+    				sugar.add(buf);
+    			}
+
+    		}
+    	}
+
+    	double max=-1;
+    	double den=0.0;
+
+    	int satoumizu=0;
+    	int satou=0;
+    	for(Integer w:water) {
+    		for(Integer s:sugar) {
+
+    			if(w+s<=F) {
+    				den=getD(w,s);
+
+    				if(den<=(double)E) {
+
+    					if(max<den) {
+    						max=den;
+
+    						satoumizu=w+s;
+    						satou=s;
+    					}
+    				}
+    			}
+
+
+    		}
+    	}
+
+    	System.out.println(satoumizu+" "+satou);
+
+
+
+
+
+
+    }
+
+    public static double getD(int water,int sugar) {
+
+    	double den=-1;
+    	if(water!=0) {
+    		den=(double)(100*sugar)/(double)(water+sugar);
+    	}
+    	return den;
+    }
+}

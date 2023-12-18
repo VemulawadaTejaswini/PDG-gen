@@ -1,0 +1,123 @@
+import java.io.*;
+import java.util.*;
+class Main{
+	static final long MOD = 1_000_000_007; // 10^9+7
+    static final int MAX = 2_147_483_646; // intMax 
+    static final int INF = 1_000_000_000; // 10^9  
+    public static void main(String[] args) throws Exception {
+		hayami saori = new hayami();
+		long a = saori.saorihayami()-1;
+		long b = saori.saorihayami();
+		int c = saori.saori_hayami();
+		int d = saori.saori_hayami();
+		long num1 = b - b/c - b/d + b/calcLcm(c, d);
+		long num2 = a - a/c - a/d + a/calcLcm(c, d);  
+		System.out.println(num1 - num2);
+		saori.close();
+	}
+	static int calcGcd(int m, int n) {
+        if (m <= 0 || n <= 0) {
+            throw new IllegalArgumentException("Arguments must be 1 and over.");
+        }
+        if(m < n) {
+            int tmp = m;
+            m = n;
+            n = tmp;
+        }
+        int remainder = 0;
+        while ((remainder = m % n) != 0) {
+            m = n;
+            n = remainder;
+        }
+        return n;
+    }
+
+    static int calcLcm(int m, int n) {
+        return m * n / calcGcd(m, n);
+    }
+}
+
+class hayami implements Closeable {
+	private final InputStream in = System.in;
+	private final byte[] hayami = new byte[1024];
+	private int Hayami = 0;
+	private int saori = 0;
+	private boolean HayamiSaori() {
+		if (Hayami < saori) {
+			return true;
+		}else{
+			Hayami = 0;
+			try {
+				saori = in.read(hayami);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (saori <= 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	private int SaoriHayami() { 
+		if (HayamiSaori()) {
+            return hayami[Hayami++];
+         }else{
+             return -1;
+         }
+	}
+	private static boolean hayami_saori(int hayami) { 
+		return 33 <= hayami && hayami <= 126;
+	}
+	public boolean hayamisaori() { 
+		while(HayamiSaori() && !hayami_saori(hayami[Hayami])) Hayami++; return HayamiSaori();
+	}
+	public String nextHayami() {
+		if (!hayamisaori()) throw new NoSuchElementException();
+		StringBuilder hayamin = new StringBuilder();
+		int saori = SaoriHayami();
+		while(hayami_saori(saori)) {
+			hayamin.appendCodePoint(saori);
+			saori = SaoriHayami();
+		}
+		return hayamin.toString();
+	}
+	public long saorihayami() {//nextLong
+		if (!hayamisaori()) throw new NoSuchElementException();
+		long hayami = 0;
+		boolean misao = false;
+		int saori = SaoriHayami();
+		if (saori == '-') {
+			misao = true;
+			saori = SaoriHayami();
+		}
+		if (saori < '0' || '9' < saori) {
+			throw new NumberFormatException();
+		}
+		while(true){
+			if ('0' <= saori && saori <= '9') {
+				hayami *= 10;
+				hayami += saori - '0';
+			}else if(saori == -1 || !hayami_saori(saori)){
+				return misao ? -hayami : hayami;
+			}else{
+				throw new NumberFormatException();
+			}
+			saori = SaoriHayami();
+		}
+	}
+	public int saori_hayami() {//nextInt
+		long hayami = saorihayami();
+		if (hayami < Integer.MIN_VALUE || hayami > Integer.MAX_VALUE) throw new NumberFormatException();
+		return (int) hayami;
+	}
+	public double Hayamin() { //nextDouble
+		return Double.parseDouble(nextHayami());
+	}
+	public void close() {
+		try {
+			in.close();
+		} catch (IOException e) {
+		}
+    }
+    
+}

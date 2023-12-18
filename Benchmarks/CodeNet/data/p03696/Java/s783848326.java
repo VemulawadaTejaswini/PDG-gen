@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        StringBuilder ans = new StringBuilder(s.next());
+        String str = ans.toString().replaceAll("\\(\\)", "");
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ')') {
+                ans.insert(0, "(");
+            } else {
+                ans.insert(ans.length(), ")");
+            }
+        }
+        System.out.println(ans);
+    }
+}

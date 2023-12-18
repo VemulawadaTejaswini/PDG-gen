@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int l = sc.nextInt();
+		
+		ArrayList<String> lt = new ArrayList<String>();
+		for (int i = 0; i < n; i++) {
+			lt.add(sc.next());
+		}
+		
+		Collections.sort(lt);
+		String result = "";
+		for (String str : lt) {
+			result += str;
+		}
+		System.out.println(result);
+	}
+}

@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(System.in);
+        int H = scan.nextInt();
+        int W = scan.nextInt();
+        
+        for(int i = 0; i < H+2; i++) {
+            if(i == 0 || i == H+1) {
+                for(int j = 0; j < W+2; j++) {
+                    System.out.print("#");
+                }
+                System.out.println();
+            } else {
+                System.out.println("#" + scan.next() + "#");
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main {
+    static Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        int[] c={0,0,0,0,0,0,0,0,0};
+        for(int i=in.nextInt(); i>0;c[Math.min(in.nextInt()/400, 8)]++,i--);
+        int s=(int)Arrays.stream(Arrays.copyOf(c, 8)).filter(a -> a > 0).count();
+        System.out.println((s>0?s:1)+" "+(s+c[8]));
+    }
+}

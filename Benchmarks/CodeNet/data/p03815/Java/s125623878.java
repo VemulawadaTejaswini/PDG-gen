@@ -1,0 +1,30 @@
+	import java.io.BufferedReader;
+	import java.io.IOException;
+	import java.io.InputStreamReader;
+	
+	public class Main {
+		public static void main(String[] args) {
+			InputStreamReader is = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(is);
+			String input = "2";
+			try {
+				input = br.readLine();
+			} catch (IOException e) {
+			}
+	
+			long K = Long.valueOf(input);
+			if(K <= 5) {
+				System.out.println(1);
+				return;
+				
+			}
+			long Km = K/11;
+			long Kr = K%11;
+			if(Kr == 0)
+				System.out.println(Km * 2);
+			else if (1 <= Kr && Kr <= 6)
+				System.out.println(Km * 2 + 1);
+			else
+				System.out.println(Km * 2 + 2);
+		}
+	}

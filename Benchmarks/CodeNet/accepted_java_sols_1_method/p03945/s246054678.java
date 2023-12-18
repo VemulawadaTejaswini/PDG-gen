@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		char [] s = sc.next().toCharArray();
+		char bw = s[0];
+		int count = 0;
+		
+		for(int i = 0; i < s.length; i++){
+		if(bw != s[i]){ bw = s[i]; count++; }	
+		}
+		
+		System.out.println(count);
+	}}

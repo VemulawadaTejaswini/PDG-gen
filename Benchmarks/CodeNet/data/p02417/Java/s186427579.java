@@ -1,0 +1,29 @@
+import java.io.*;
+
+class ITP1_8_C{
+    public static void main(String[] args) throws IOException
+    {
+        InputStreamReader is = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(is);
+
+        String str;
+        int[] numOfLetter = new int[26];  // initialize for 0.
+        int i; char c;
+  
+        while(true){
+            str = br.readLine();
+            if(str.length() == 0) break;
+            for(i = 0; i < str.length(); i++){
+                c = str.charAt(i);
+                if('a' <= c && c <= 'z'){ numOfLetter[c - 'a']++; }
+                else if('A' <= c && c <= 'Z'){ numOfLetter[c - 'A']++; }
+            }
+        }
+
+        c = 'a';
+        for(i = 0; i < 26; i++, c++){
+            System.out.print(c);
+            System.out.println(" : " + numOfLetter[i]);
+        }
+    }
+}

@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String args[]){
+		Scanner cin = new Scanner(System.in);
+
+		int A = cin.nextInt();
+		int B = cin.nextInt();
+		int C = cin.nextInt();
+		cin.close();
+		String result;
+		if(A*100+B*10+C%4==0){
+			result = "YES";
+		}else{
+			result = "NO";
+		}
+
+		System.out.println(result);
+	}
+}

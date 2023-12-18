@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+	Scanner in = new Scanner(System.in);
+
+	while(true){
+	    int a = in.nextInt();
+	    int b = in.nextInt();
+
+	    if(a == 0 &&  b == 0) break;
+	    if(a <= b) System.out.printf("%d %d\n" ,a ,b);
+	    else System.out.printf("%d %d\n" ,b ,a);
+	}
+
+    }
+}

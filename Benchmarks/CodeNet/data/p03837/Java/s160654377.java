@@ -1,0 +1,79 @@
+//package com.beginner.b051;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String args[]) throws Exception
+    {
+        Scanner sc = new Scanner(System.in);
+        int V = sc.nextInt();
+        int E = sc.nextInt();
+        int [][]dist = new int [V][V];
+        int [][]path = new int [V][V];
+        HashSet<Integer> set = new HashSet<>();
+
+
+        for(int i=0;i<V;i++){
+            for(int j=0;j<V;j++){
+                dist[i][j] = -1;
+                path[i][j] = j;
+            }
+        }
+
+        for(int i=0;i<E;i++){
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            dist[x-1][y-1] = sc.nextInt();
+            dist[y-1][x-1] = dist[x-1][y-1];
+            set.add((x-1)*V+y-1);
+        }
+
+        for(int i = 0;i< V;i++)
+        {
+            for(int j = 0;j< V;j++)
+            {
+                for(int k = 0;k< V;k++)
+                {
+                    int tmp = dist[j][i]+dist[i][k];
+                    if(dist[j][i]>=0&&dist[i][k]>=0) {
+                        if (tmp < dist[j][k]||dist[j][k]==-1) {
+                            dist[j][k] = tmp;
+                            path[j][k] = path[j][i];
+                        }
+                    }
+
+                }
+            }
+        }
+
+//        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<V;i++)
+        {
+            for(int j=0;j<V;j++)
+            {
+//               sb.append("("+i+","+j+"):");
+//                sb.append(i);
+                int tmp = i;
+                while (tmp!=j){
+
+                    tmp = path[tmp][j];
+//                    sb.append(tmp);
+                    if(set.contains(tmp*V+j))
+                        set.remove(tmp*V+j);
+                    if(set.contains(j*V+tmp))
+                        set.remove(j*V+tmp);
+                }
+//                System.out.println(sb.toString());
+//                sb = new StringBuilder();
+            }
+        }
+
+        System.out.println(set.size());
+        sc.close();
+    }
+
+
+
+}

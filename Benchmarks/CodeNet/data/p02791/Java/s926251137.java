@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scan=new Scanner(System.in);
+        int n=scan.nextInt(),total=1;
+      int ar[]=new int[n];
+      if (n==1){
+        System.out.println(total);
+      }
+      else{
+       for (int i=1;i<n;i++){
+       if (ar[i-1]>ar[i]){
+       total+=1;
+       }
+         else{
+         continue;}
+       }
+        System.out.println(total);
+      }
+        }
+    }
+    

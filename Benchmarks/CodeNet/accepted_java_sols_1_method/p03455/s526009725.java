@@ -1,0 +1,18 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int target = a * b;
+    
+    if(target % 2 == 1){
+      System.out.println("Odd");
+    }else{
+      System.out.println("Even");
+    }
+  }
+}

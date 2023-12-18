@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+	// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String A = sc.next();
+		String a = A.substring(0, 1);
+		String S = sc.next();
+		String s = S.substring(0, 1);
+		String C = sc.next();
+		String c = C.substring(0, 1);
+		System.out.println(a + s + c);
+	}
+}

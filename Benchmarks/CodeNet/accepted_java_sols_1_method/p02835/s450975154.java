@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		if (sc.nextInt() + sc.nextInt() + sc.nextInt() <= 21) {
+			System.out.println("win");
+		} else {
+			System.out.println("bust");
+		}
+	}
+}

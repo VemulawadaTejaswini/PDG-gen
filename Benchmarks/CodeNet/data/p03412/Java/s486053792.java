@@ -1,0 +1,74 @@
+
+import java.io.*;
+import java.util.*;
+
+class Main{
+	public static void main(String[] args){
+		solve();
+	}
+	public static void solve(){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] a = new int[n];
+		int[] b = new int[n];
+		int ans = 0;
+		for(int i=0;i<n;i++){
+			a[i] = sc.nextInt();
+		}
+		for(int i=0;i<n;i++){
+			b[i] = sc.nextInt();
+		}
+		for(int i=0;i<30;i++){
+			int[] aa = new int[n];
+			int[] bb = new int[n];
+			int x = (int)Math.pow(2, i+1);
+			boolean flag = false;
+
+			for(int j=0;j<n;j++){
+				aa[j] = a[j] % x;
+				bb[j] = b[j] % x; 
+			}
+			Arrays.sort(bb);
+			for(int j=0;j<n;j++){
+				int left = 0;
+				int right = n;
+				while(right-left>1){
+					int center = (right+left)/2;
+					if(aa[j]<x){
+						if(aa[j]+bb[center]<x){
+							left = center;
+						}
+						else if(aa[j]+bb[center]>=x){
+							right = center;
+						}
+					}
+					else{
+						if(aa[j]+bb[center]<3*x){
+							left = center;
+						}
+						else if(aa[j]+bb[center]>=3*x){
+							right = center;
+						}
+					}
+				}
+				//System.out.println(i+" "+j+" "+left+" "+right);
+				if(aa[j]<x){
+				if((n-right)%2==1){
+					flag = !flag;
+				}
+				}
+				else{
+					if((left+1)%2==1){
+						flag = !flag;
+					}
+				}
+
+			}
+			if(flag){
+				ans += x;
+			}
+		}
+		System.out.println(ans);
+	}
+}
+

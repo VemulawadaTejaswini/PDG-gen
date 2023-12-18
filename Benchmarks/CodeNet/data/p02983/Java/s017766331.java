@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Your code here!
+        Scanner sc = new Scanner(System.in);
+        int l = sc.nextInt();
+        int r = sc.nextInt();
+        
+        if (r - l >= 2018) {
+            System.out.println(0);
+            return;
+        }
+        
+        int min = 123785;
+        for (int i = l; i < r; i++) {
+            for (int j = l + 1; j <= r; j++) {
+                int tmp = i % 2019;
+                int tmp2 = j % 2019;
+                min = Math.min(min, tmp*tmp2);
+            }
+        }
+        System.out.println(min);
+    }
+}

@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // 標準入力
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(isr);
+            int n = Integer.parseInt(br.readLine());
+            String strArr[]= br.readLine().split(" ");
+            int init = 0;
+            int last = n - 1;
+            long arr[] = new long[n];
+            boolean flag = true;
+            for (int i = n - 1; i >= 0; i--) {
+                long num = Long.parseLong(strArr[i]);
+                if (flag) {
+                    arr[init] = num;
+                    init++;
+                } else {
+                    arr[last] = num;
+                    last--;
+                }
+                flag = !flag;
+            }
+            for (int i = 0; i < n; i++) {
+                if (i > 0) {
+                    System.out.print(" ");
+                }
+                System.out.print(arr[i]);
+            }
+            System.out.println();
+        } catch (IOException e) {
+            e.printStackTrace();
+           }
+    }
+}

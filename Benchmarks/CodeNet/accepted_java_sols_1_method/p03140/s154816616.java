@@ -1,0 +1,51 @@
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+ 
+class Main {
+  public static void main(String args[]) {
+    Scanner scanner = new Scanner(System.in);
+ 
+    String input1 = scanner.nextLine();
+    String A = scanner.nextLine();
+    String B = scanner.nextLine();
+    String C = scanner.nextLine();
+ 
+
+int N = Integer.parseInt(input1);
+
+int count = 0;
+
+String AN = "";
+String BN = "";
+String CN = "";
+
+for(int i=0; i<N;i++){
+AN = A.substring(i,i+1);
+BN = B.substring(i,i+1);
+CN = C.substring(i,i+1);
+
+if(!AN.equals(BN)){
+if(!BN.equals(CN)){
+count++;
+count++;
+if(AN.equals(CN)){
+count--;
+}
+}else{
+count++;
+}
+}else{
+if(!AN.equals(CN)){
+count++;
+}else if(!BN.equals(CN)){
+count++;
+}
+}
+}
+
+    System.out.print(count);
+    scanner.close();
+  }
+}

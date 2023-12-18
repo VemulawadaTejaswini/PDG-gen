@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Map<String,Integer>m=new TreeMap<String,Integer>();String t="",l="";for(Scanner s=new Scanner(System.in);s.hasNext();l=l.length()<t.length()?t:l)m.put(t=s.next(),m.containsKey(t)?m.get(t)+1:1);for(String i:m.keySet())if(m.get(i)==Collections.max(m.values()))t=i+" ";System.out.println(t+l);}}

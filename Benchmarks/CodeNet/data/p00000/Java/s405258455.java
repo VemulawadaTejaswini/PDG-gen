@@ -1,0 +1,14 @@
+class Main{
+    public static void main(String[] a){
+    
+    int[] x = new int[9];
+    int x[] = {1,2,3,4,5,6,7,8,9};
+    int[] y = new int[9];
+    int y[] = {1,2,3,4,5,6,7,8,9};
+??????for(int i=0;i<10;i++){
+     for(int j=0;j<10;j++){
+       System.out.println{x[i]+"x"+y[j]+"="+x[i]*y[j]};
+     }
+    }
+   }
+  }

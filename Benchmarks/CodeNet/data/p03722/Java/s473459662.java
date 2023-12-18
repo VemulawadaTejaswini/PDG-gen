@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+		int M = sc.nextInt();
+
+		int[] a = new int[M];
+		int[] b = new int[M];
+		int[] c = new int[M];
+
+		int[][] to = new int[N+1][M];
+		int[] cnt = new int[N+1];
+		for(int i=1; i<=N; i++){
+			cnt[i] = 0;
+		}
+
+		for(int i=0; i<M; i++){
+			a[i] = sc.nextInt();
+			b[i] = sc.nextInt();
+			c[i] = sc.nextInt();
+			to[a[i]][cnt[a[i]]++] = i;
+		}
+
+		long[] score = new long[N+1];
+		score[1] = 0;
+		for(int i=2; i<=N; i++){
+			score[i] = Long.MIN_VALUE;
+		}
+
+		boolean[] check = new boolean[N+1]
+		for(int i=2; i<=N; i++){
+			check[i] = false;
+		}
+
+		int now = 1;
+		int next;
+		int time = 0;
+		boolean inf = false;
+		while(true){
+			for(int j=0; j<cnt[now]; j++){
+				next = to[now][j];
+				Long x = score[b[next]];
+				Long y = score[now] + c[next];
+				if(x.compareTo(y)==-1){
+					score[b[next]] = score[now] + c[next];
+					if(cnt[b[next]]>0 && check[b[next]==false){
+						stock[stock_cnt++] = b[next];
+						check[b[next]] = true;
+					}
+				}
+			}
+			if(stock_cnt!=0){
+				now = stock[stock_cnt-1];
+				stock_cnt--;
+				check[now] = false;
+			}else{
+				break;
+			}
+			time++;
+			if(time>=M*M){
+				inf = true;
+				break;
+			}
+		}
+
+		if(inf==true){
+			System.out.print("inf");
+		}else{
+			System.out.print(score[N]);
+		}
+
+
+	}
+
+}

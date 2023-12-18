@@ -1,0 +1,19 @@
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		Map<Long,Integer> list = new HashMap<Long,Integer>();
+		int n = in.nextInt();
+		for(int i=0;i<n;i++){
+			long tmp = in.nextLong();
+			if(list.containsKey(tmp))
+				list.remove(tmp);
+			else
+				list.put(tmp,0);
+		}
+		System.out.print(list.size());
+	}
+}

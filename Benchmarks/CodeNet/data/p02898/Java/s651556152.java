@@ -1,0 +1,14 @@
+import java.util.*;
+import java.util.stream.*;
+
+class Main{
+	public static void main(String[] $){
+		//System.err.println();
+		Scanner s=new Scanner(System.in);
+		int n=s.nextInt(),k=s.nextInt();
+
+		System.out.println(
+				IntStream.range(0,n).map(i->s.nextInt()).filter(i->i>=k).count()
+				);
+	}
+}

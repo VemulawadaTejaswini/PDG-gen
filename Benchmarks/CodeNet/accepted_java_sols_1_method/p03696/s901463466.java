@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+	static Scanner in = new Scanner(System.in);
+	public static void main(String[] args){
+		int n = Integer.parseInt(in.nextLine());
+		String s = in.nextLine();
+		String t = s;
+		String tmp = s;
+		do{
+			s = tmp;
+			tmp = s.replace("()", "");
+		}while(s.length() != tmp.length());
+
+		String f = "", b = "";
+		for(int i = 0; i < tmp.length(); i++){
+			if(tmp.charAt(i) == '('){
+				b += ")";
+			}else{
+				f += "(";
+			}
+		}
+		System.out.println(f + t + b);
+	}
+
+}

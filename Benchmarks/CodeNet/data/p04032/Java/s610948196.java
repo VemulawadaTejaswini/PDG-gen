@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Main {
+
+	private void doit(){
+		Scanner sc = new Scanner(System.in);
+		long mod = 1000000007;
+		while(sc.hasNext()){
+			char [] data = sc.next().toCharArray();
+			int len = data.length;
+
+			boolean flg = false;
+			for(int i =0 ;i < len; i++){
+				int [] array = new int[26];
+				for(int j = i; j >= 0 && i - j < 3;j--){
+					array[data[j] - 'a']++;
+					if (j == i)continue;
+					
+					for(int k = 0; k < array.length; k++){
+						if(array[k] > (i - j + 1) / 2){
+							System.out.println(j + 1 + " " + (i + 1));
+							flg = true;
+							break;
+						}
+					}
+					if(flg)break;
+					
+				}
+				if(flg)break;
+				
+			}
+			if(! flg){
+				System.out.println("-1 -1");
+			}
+		}
+
+	}
+
+	private void debug(Object... o) {
+		System.out.println("debug = " + Arrays.deepToString(o));
+	}
+
+	public static void main(String[] args) {
+		new Main().doit();
+	}
+
+}

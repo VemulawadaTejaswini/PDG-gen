@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Main {
+	public static void main(String args[]) {
+		Scanner scn = new Scanner(System.in);
+		int H = Integer.parseInt(scn.next());
+		scn.next();
+		ArrayList<String> strs = new ArrayList<>();
+		for (int i = 0; i < H; i++) {
+			strs.add(scn.next());
+		}
+		for (int i = 0; i < H; i++) {
+			System.out.println(strs.get(i));
+			System.out.println(strs.get(i));
+		}
+	}
+}

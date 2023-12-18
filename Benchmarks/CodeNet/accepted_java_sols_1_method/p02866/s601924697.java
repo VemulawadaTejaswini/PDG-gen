@@ -1,0 +1,43 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int A[] = new int[N];
+		for (int i=0;i<N;i++) {
+			A[i] = sc.nextInt();
+		}
+		if (A[0]!=0) {
+			System.out.println(0);
+			return ;
+		}
+		Arrays.parallelSort(A);
+		if (N==1) {
+			System.out.println(1);
+			return ;
+		}
+		if (A[1]==0) {
+			System.out.println(0);
+			return ;
+		}
+		long B[] = new long[N];
+		for (int i=1;i<N;i++) {
+			if (A[i]!=A[i-1]&&A[i]!=A[i-1]+1) {
+				System.out.println(0);
+				return;
+			}
+			B[A[i]]++;
+		}
+		long count =1l;
+		B[0]=1;
+		for (int i=1;i<N;i++) {
+			for (int j=0;j<B[i];j++) {
+				count = (count *B[i-1])%998244353l;
+			}
+		}
+		System.out.println(count);
+	}
+}

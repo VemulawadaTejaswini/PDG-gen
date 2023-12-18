@@ -1,0 +1,1 @@
+class Main{public static void main(String[] s){System.out.println(10-new java.util.Scanner(System.in).nextInt()/200);}}

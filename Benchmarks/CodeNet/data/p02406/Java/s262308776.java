@@ -1,0 +1,28 @@
+import java.util.Scanner;
+class Main {
+	int n,i,x;
+	public void suzuki(){
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		for(i = 3;i < n;i++){
+			x = i;
+			if(x % 3 == 0){
+				System.out.print(i);
+				System.out.print(" ");
+			}else{
+				while(x >= 3){
+					if(x % 10 == 3){
+						System.out.print(i);
+						System.out.print(" ");
+						x = 0;
+					}else{
+						x /= 10;
+					}
+				}
+			}
+		}
+	}
+	public static void main(String[] args){
+		new Main().suzuki();
+	}
+}

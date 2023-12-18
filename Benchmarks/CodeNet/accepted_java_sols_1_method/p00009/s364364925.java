@@ -1,0 +1,33 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String line = "";
+
+		int N = 999999;
+		boolean[] primes = new boolean[N + 1];
+		int[] counts = new int[N + 1];
+
+		for (int i = 2; i < N / 2 + 1; i++) {
+			if (!primes[i]) {
+				for (int j = 2; j < N / i + 1; j++) {
+					primes[i * j] = true;
+				}
+			}
+		}
+		int count = 0;
+		for (int i = 2; i < N + 1; i++) {
+			if (!primes[i]) {
+				count++;
+			}
+			counts[i] = count;
+		}
+
+		while ((line = br.readLine()) != null && !line.isEmpty()) {
+			System.out.println(counts[Integer.parseInt(line)]);
+		}
+	}
+}

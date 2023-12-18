@@ -1,0 +1,26 @@
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(System.in);
+        int x = scan.nextInt();
+        int y = scan.nextInt();
+        
+        HashMap<Integer, Integer> group = new HashMap<Integer, Integer>();
+        group.put(1, 1);
+        group.put(2, 3);
+        group.put(3, 1);
+        group.put(4, 2);
+        group.put(5, 1);
+        group.put(6, 2);
+        group.put(7, 1);
+        group.put(8, 1);
+        group.put(9, 2);
+        group.put(10, 1);
+        group.put(11, 2);
+        group.put(12, 1);
+        
+        System.out.println(group.get(x) == group.get(y) ? "Yes" : "No");
+    }
+}

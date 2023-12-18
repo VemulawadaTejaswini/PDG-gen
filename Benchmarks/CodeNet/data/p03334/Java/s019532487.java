@@ -1,0 +1,105 @@
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    static class Pos {
+        final long x;
+        final long y;
+
+        public Pos(final long x, final long y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return x + " " + y;
+        }
+
+        public long getX() {return this.x;}
+
+        public long getY() {return this.y;}
+
+        @Override
+        public boolean equals(final Object o) {
+            if (o == this) { return true; }
+            if (!(o instanceof Pos)) { return false; }
+            final Pos other = (Pos) o;
+            if (!other.canEqual((Object) this)) { return false; }
+            if (this.getX() != other.getX()) { return false; }
+            if (this.getY() != other.getY()) { return false; }
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            final int PRIME = 59;
+            int result = 1;
+            final long $x = this.getX();
+            result = result * PRIME + (int) ($x >>> 32 ^ $x);
+            final long $y = this.getY();
+            result = result * PRIME + (int) ($y >>> 32 ^ $y);
+            return result;
+        }
+
+        protected boolean canEqual(final Object other) {return other instanceof Pos;}
+    }
+
+    public static void main(final String[] args) {
+        final Scanner scanner = new Scanner(System.in);
+        final int n = scanner.nextInt();
+        final long d1 = scanner.nextLong();
+        final long d2 = scanner.nextLong();
+
+        final long d1arr[] = new long[n * 2];
+        final long d2arr[] = new long[n * 2];
+
+        final int[][] ints = new int[n * 2][n * 2];
+        for (int i = 0; i < ints.length; ++i) {
+            ints[i] = new int[n * 2];
+        }
+
+        for (int i = 0; i < n * 2; ++i) {
+            final long intsqrt1 = intsqrt(d1 - i * i);
+            d1arr[i] = intsqrt1;
+
+            final long intsqrt2 = intsqrt(d2 - i * i);
+            d2arr[i] = intsqrt2;
+        }
+
+        final List<Pos> positions = new ArrayList<>();
+        for (int x = 0; x < n * 2; ++x) {
+            for (int y = 0; y < n * 2; ++y) {
+                if (ints[x][y] < 0) {
+                    continue;
+                }
+                positions.add(new Pos(x, y));
+
+                for (int yd = 0; yd < n * 2 - y; yd++) {
+                    if (d1arr[yd] >= 0 && (x + d1arr[yd] < n * 2)) {
+                        ints[x + (int) d1arr[yd]][y + yd] = -1;
+                    }
+                    if (d2arr[yd] >= 0 && (x + d2arr[yd] < n * 2)) {
+                        ints[x + (int) d2arr[yd]][y + yd] = -1;
+                    }
+                }
+            }
+        }
+
+        positions.forEach(item -> System.out.println(item));
+    }
+
+    static long intsqrt(final long i) {
+        for (long k = 0; k < i + 1; ++k) {
+            if (i == k * k) {
+                return k;
+            }
+            if (i < k * k) {
+                return -1;
+            }
+        }
+        return -1;
+    }
+}

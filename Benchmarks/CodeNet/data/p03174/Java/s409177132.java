@@ -1,0 +1,162 @@
+/**
+ * @author derrick20
+ */
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String args[]) throws Exception {
+        FastScanner sc = new FastScanner();
+        PrintWriter out = new PrintWriter(System.out);
+
+        N = sc.nextInt();
+        compatible = new boolean[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (sc.nextInt() == 1) {
+                    compatible[i][j] = true;
+                }
+            }
+        }
+        memo = new HashMap<>();
+        BitSet initial = new BitSet();
+        out.println(solve(initial));
+        out.close();
+    }
+
+    static int N;
+    static long mod = (long) 1e9 + 7;
+    static boolean[][] compatible;
+    static HashMap<BitSet, Long> memo = new HashMap<>();
+    // Store for some set of remaining things to be paired,
+    // how many ways that can be paired off
+
+    static long addSelf(long x, long delta) {
+        long ans = x + delta;
+        if (ans >= mod) {
+            ans -= mod;
+        }
+        return ans;
+    }
+
+    // Key Optimization: Let's have the boys be fixed and the girls be varying.
+    // There should only be 1 degree of freedom since that still allows for
+    // all combinations
+    // So, let curr be the set of girls matched with SOME boy currently.
+    // For organization solution bag, suppose they've matched with the first
+    // boys possible
+    // Each 1 represents a matched woman.
+    static long solve(BitSet curr) {
+        if (curr.cardinality() == N) {
+            return 1;
+        }
+        else if (memo.containsKey(curr)) {
+            return memo.get(curr);
+        }
+        else {
+            long ways = 0;
+            int man = curr.cardinality();
+            for (int i = 0; i < N; i++) {
+                // If not set, and compatible with the man of interest, then try it
+                // O(N transitions * 2^N states)
+                if (!curr.get(i) && compatible[man][i]) {
+                    // If both haven't been matched yet, do it
+                    BitSet next = (BitSet) curr.clone();
+                    next.set(i);
+                    ways = addSelf(ways, solve(next));
+                }
+            }
+            memo.put(curr, ways);
+            return ways;
+        }
+    }
+
+    static class FastScanner {
+        public int BS = 1<<16;
+        public char NC = (char)0;
+        byte[] buf = new byte[BS];
+        int bId = 0, size = 0;
+        char c = NC;
+        double cnt = 1;
+        BufferedInputStream in;
+
+        public FastScanner() {
+            in = new BufferedInputStream(System.in, BS);
+        }
+
+        public FastScanner(String s) {
+            try {
+                in = new BufferedInputStream(new FileInputStream(new File(s)), BS);
+            }
+            catch (Exception e) {
+                in = new BufferedInputStream(System.in, BS);
+            }
+        }
+
+        private char getChar(){
+            while(bId==size) {
+                try {
+                    size = in.read(buf);
+                }catch(Exception e) {
+                    return NC;
+                }
+                if(size==-1)return NC;
+                bId=0;
+            }
+            return (char)buf[bId++];
+        }
+
+        public int nextInt() {
+            return (int)nextLong();
+        }
+
+        public long nextLong() {
+            cnt=1;
+            boolean neg = false;
+            if(c==NC)c=getChar();
+            for(;(c<'0' || c>'9'); c = getChar()) {
+                if(c=='-')neg=true;
+            }
+            long res = 0;
+            for(; c>='0' && c <='9'; c=getChar()) {
+                res = (res<<3)+(res<<1)+c-'0';
+                cnt*=10;
+            }
+            return neg?-res:res;
+        }
+
+        public double nextDouble() {
+            double cur = nextLong();
+            return c!='.' ? cur:cur+nextLong()/cnt;
+        }
+
+        public String next() {
+            StringBuilder res = new StringBuilder();
+            while(c<=32)c=getChar();
+            while(c>32) {
+                res.append(c);
+                c=getChar();
+            }
+            return res.toString();
+        }
+
+        public String nextLine() {
+            StringBuilder res = new StringBuilder();
+            while(c<=32)c=getChar();
+            while(c!='\n') {
+                res.append(c);
+                c=getChar();
+            }
+            return res.toString();
+        }
+
+        public boolean hasNext() {
+            if(c>32)return true;
+            while(true) {
+                c=getChar();
+                if(c==NC)return false;
+                else if(c>32)return true;
+            }
+        }
+    }
+}

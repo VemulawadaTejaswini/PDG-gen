@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(String a;!(a=s.nextLine()).equals("#");){int i=0,r=0;for(char c:a.toCharArray())if(103<c&&c<113||c==121||c==117){r+=i<0?1:0;i=1;}else{r+=i>0?1:0;i=-1;}System.out.println(r);}}}

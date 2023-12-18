@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		new Main().solve();
+	}
+	int r,g,b;
+	
+	void solve(){
+		Scanner sc=new Scanner(System.in);
+		r=sc.nextInt();
+		g=sc.nextInt();
+		b=sc.nextInt();
+		int sum=r*100+g*10+b;
+		
+		if(sum%4==0)System.out.println("YES");
+		else System.out.println("NO");
+	}
+
+}

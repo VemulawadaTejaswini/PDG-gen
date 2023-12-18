@@ -1,0 +1,17 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] zahyo = new int[n];
+		for(int i=0; i<n; i++)
+			zahyo[i] = sc.nextInt();
+		sc.close();
+
+		Arrays.sort(zahyo);
+		System.out.println(zahyo[n-1] - zahyo[0]);
+	}
+}

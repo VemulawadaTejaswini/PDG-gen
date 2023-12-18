@@ -1,0 +1,1 @@
+import java.util.Scanner;class Main{public static void main(String[] q){Scanner c=new Scanner(System.in);for(;;){int n=c.nextInt(),s=c.nextInt();if(n==0&&s==0)break;System.out.println(f(0, 0, s, n));}}static int f(int x,int a,int t,int n){if(n==0)return x==t?1:0;if(a>9)return 0;return f(x+a,a+1,t,n-1)+f(x,a+1,t,n);}}

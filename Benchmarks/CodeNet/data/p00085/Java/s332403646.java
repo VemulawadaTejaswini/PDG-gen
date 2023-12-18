@@ -1,0 +1,44 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		while(true) {
+			int people = sc.nextInt();
+			int m = sc.nextInt();
+			
+			if(people == 0 && m == 0) {
+				break;
+			}
+			
+			int num = people - 1;
+			int jugh = people;
+			boolean[] ans = new boolean[people];
+			Arrays.fill(ans, true);
+			while(jugh > 1) { //?????£??????????????°???1?????????????????§??°?????????
+				int count = 0;
+				
+				while(jugh < m) { //?????£??¬?????¢?????????
+					
+					num = (num + 1) % people;
+					if(ans[num]) {
+						count++;
+					}
+					ans[num] = false;
+					jugh--;
+				}
+			}
+			
+			//????????¨???
+			for(int $ = 0; $ < people; $++) {
+				if(ans[$]) {
+					System.out.println($ + 1);
+				}
+			}
+		}
+
+	}
+
+}

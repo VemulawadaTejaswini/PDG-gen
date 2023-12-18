@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		// 入力値
+		int n = sc.nextInt();
+		int[] p = new int[n];
+		for(int i=0;i<n;i++){
+			p[i] = sc.nextInt();
+		}
+		sc.close();
+		int r = n;
+		for(int i=0;i<n;i++){
+			for(int j=0;j<i;j++){
+				if(p[i]>p[j]){
+					r--;
+					break;
+				}
+			}
+		}
+		System.out.println(r);
+	}
+}

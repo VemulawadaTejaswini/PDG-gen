@@ -1,0 +1,20 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		
+		
+		String text = sc.next();
+		for(int i = 0; i<n; i++) {
+			if(i == k-1) {
+				System.out.print(Character.toLowerCase(text.charAt(i)));
+			} else {
+				System.out.print(text.charAt(i));
+			}
+		}
+//		long n= sc.nextLong();
+	}
+}

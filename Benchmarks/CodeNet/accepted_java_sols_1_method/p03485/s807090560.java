@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        double a = sc.nextInt();
+        double b = sc.nextInt();
+        System.out.println(Math.round((a+b)/2));
+    }
+}

@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException{
+        abc042a();
+        //abc042b();
+        //abc042c();        
+    }
+    public static void abc042a() throws IOException{
+        Scanner scan = new Scanner(System.in);
+ 
+        int a = scan.nextInt();
+        int b = scan.nextInt();
+        int c = scan.nextInt();
+        
+        if(a*b*c == 175 && a+b+c == 17){
+            System.out.println("YES");
+        }
+        else{
+            System.out.println("NO");
+        }
+    }
+}

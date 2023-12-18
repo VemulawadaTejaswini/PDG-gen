@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main
+{
+
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+
+		String text = sc.next();
+
+		String first = text.substring(0, 1);
+		String end = text.substring(text.length()-1, text.length());
+		System.out.println(first + (text.length() - 2) + end);
+	}
+
+}

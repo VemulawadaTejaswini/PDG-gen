@@ -1,0 +1,23 @@
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class Main {
+	public static void main(String args[]){
+		Scanner in=new Scanner(System.in);
+    HashMap<Integer,Integer> map =new HashMap<Integer,Integer>();
+		int counter = 0;
+		int n=in.nextInt();
+    int tmp=0;
+    int ans=0;
+    for (int i=0;i<n;i++) {
+      tmp=in.nextInt();
+      if (!map.containsKey(tmp)) {
+        map.put(tmp,i);
+      }else{
+        map.remove(tmp);
+      }
+    }
+
+		System.out.printf("%d%n",map.size());
+	}
+}

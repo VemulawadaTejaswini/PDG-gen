@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String x = br.readLine();
+		String[] cut = x.split(" ");
+		int a = Integer.parseInt(cut[0]);
+		int b = Integer.parseInt(cut[1]);
+		int c = Integer.parseInt(cut[2]);
+
+		ArrayList<Integer> array = new ArrayList<>();
+		array.add(a);
+		array.add(b);
+		array.add(c);
+
+		Collections.sort(array);
+
+		int q = array.get(0);
+		int p = array.get(1);
+
+		System.out.println(q + p);
+
+	}
+}

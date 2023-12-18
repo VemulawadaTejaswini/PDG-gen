@@ -1,0 +1,62 @@
+import java.util.Map.Entry;
+import java.util.*;
+import java.math.*;
+import org.w3c.dom.css.Counter;
+  
+public class Main{
+    public static void main(String[] args){
+ 
+        Scanner sc = new Scanner(System.in);
+        int H1 = sc.nextInt();
+        int M1 = sc.nextInt();
+        int H2 = sc.nextInt();
+        int M2 = sc.nextInt();
+        int K = sc.nextInt();
+
+        int BigH2 = H2-H1;
+        int BigH2M2 = BigH2*60+M2;
+        int clearTime = BigH2M2-M1;
+        int answer = clearTime - K ;
+        System.out.println(answer);
+
+/**
+        int n = sc.nextInt();
+        long k = sc.nextLong();
+        int[] a = new int[n];
+ 
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+ 
+        // 通った街を記録する配列
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(1);    // 一つ目の町
+ 
+        // ループの先頭の町がリストの何番目にあるかを格納する変数
+        int check = -1;
+ 
+        // 転送先を格納する変数。
+        int temp = 1;   // 計算のため初期値１
+ 
+        for (long i = 0; i < k; i++) {
+            temp = a[temp-1];   //　転送先設定
+            // 訪れた町かチェック
+            // 訪れていた場合、ループ前のイントロ部分の長さを求める
+            if (list.contains(temp)) {
+                check = list.indexOf(temp);
+            	break;
+            }
+            list.add(temp);
+        }
+        if(check == -1){
+            System.out.println(temp);
+        }else{
+ 
+        // 合計移動回数をループ長で割った余りを求める
+        int std = (int)(k-check) % (list.size() - check);
+ 
+        System.out.println(list.get((int)(std + check)));
+        }
+        **/
+    }
+}

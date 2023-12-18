@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int line1 = sc.nextInt();
+		int line2 = sc.nextInt();
+		sc.close();
+		long sum = line1 + line2;
+		if (sum >= 10) {
+			System.out.println("error");
+		} else {
+			System.out.println(sum);
+		}
+	}
+}

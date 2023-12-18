@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Abc114a{
+  public static void main(String [] args){
+    Scanner scanner = new Scanner(System.in);
+    int number = Integer.parseInt( scanner.nextLine() );
+    
+    if (number == 3 || number ==5 || number == 7){
+      System.out.println("OK");
+    }
+    else{
+      System.out.println("NG");
+    }
+
+    scanner.close();
+  }
+}

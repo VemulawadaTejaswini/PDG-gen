@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		//入力部
+		Scanner sc = new Scanner(System.in);
+
+		int problemCount = sc.nextInt();
+		int[] problemSolveSpeed = new int[problemCount];
+
+		for (int i = 0; i < problemCount; i++) {
+			problemSolveSpeed[i] = sc.nextInt();
+		}
+
+		int drinkCount = sc.nextInt();
+
+		int[] ans = new int[drinkCount];
+		for (int i = 0; i < drinkCount; i++) {
+			int total = 0;
+			int[] tmp = problemSolveSpeed.clone();//クローンにしないとproblemSolveSpeedも変わる
+
+			int p = sc.nextInt();
+			int x = sc.nextInt();
+			tmp[p - 1] = x;
+			for (int k : tmp) {
+				total += k;
+			}
+			ans[i] = total;
+		}
+		sc.close();
+		for (int i : ans) {
+			System.out.println(i);
+		}
+	}
+}

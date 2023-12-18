@@ -1,0 +1,72 @@
+//????????????
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br =
+				new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		
+		//??????A??¨??????B????????°????????°?????????
+		String[] matrixStr = br.readLine().split(" ");
+		
+		int rowA = Integer.parseInt(matrixStr[0]);		//??????A????????°rowA
+		int colA = Integer.parseInt(matrixStr[1]);		//??????A????????°colA
+		int colB = Integer.parseInt(matrixStr[2]);		//??????A????????°colA
+		int[][] arrayA = new int[rowA][colA];
+		int[][] arrayB = new int[colA][colB];
+		int[][] arrayC = new int[rowA][colB];
+		int flg=0;
+		
+		if(rowA<=100 || colA<=100 || colB<=100) {
+			flg = 1;
+		}
+			
+		//??????A???????´??????????
+		for(int i=0; i<rowA; i++) {
+			String[] arrayStrA = br.readLine().split(" ");
+			for(int j=0; j<colA; j++) {
+				arrayA[i][j] = Integer.parseInt(arrayStrA[j]);
+				if(10000 <= arrayA[i][j]) {
+						flg = 1;
+					}
+				}
+			}
+			
+		//??????B???????´??????????
+		for(int i=0; i<colA; i++) {
+			String[] arrayStrB = br.readLine().split(" ");
+			for(int j=0; j<colB; j++) {
+				arrayB[i][j] = Integer.parseInt(arrayStrB[j]);
+				if(10000 <= arrayB[i][j]) {
+					flg = 1;
+				}
+			}
+		}
+			
+		if(flg==0) {
+		//???????????????????????????
+		for(int i=0; i<rowA; i++) {
+			for(int j=0; j<colB; j++) {
+				for(int k=0; k<colA; k++) {
+					arrayC[i][j]= arrayC[i][j] + (arrayA[i][k]*arrayB[k][j]);
+				}
+				if(j==(colB-1)) {
+					sb.append(arrayC[i][j]);
+				}
+				else {
+					sb.append(arrayC[i][j] + " ");
+				}
+			}
+			sb.append("\n");
+		}
+		if(flg ==1) {
+			System.out.print("Too Large");
+		}
+		else
+		System.out.print(sb.toString());
+		}
+	}
+}

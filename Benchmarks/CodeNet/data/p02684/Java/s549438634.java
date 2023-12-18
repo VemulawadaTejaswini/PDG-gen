@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+問題文
+
+*/
+
+public class Main {
+    public static void main(String[] args){
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        long k = sc.nextLong();
+        int[] a = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(1);
+        // ループの先頭の町がリストの何番目にあるかを格納する変数
+        int check = 0;
+
+        // 転送先を格納する変数。
+        int temp = 1;
+        for (int i = 0; i <= n; i++) {
+        	temp = a[temp-1];
+            // 訪れた町かチェック
+            // 訪れていた場合、ループ前のイントロ部分の長さを求める
+            if (list.contains(temp)) {
+                check = list.indexOf(temp);
+            	break;
+            }
+            list.add(temp);
+        }
+
+        // ループが存在しない場合、町の移動数とリストのサイズは一致
+        if ((long)list.size() + 1 > k){
+            System.out.println(temp);
+        } else {
+            // 合計移動回数をループ長で割った余りを求める
+            int std = (int)((k-check) % (list.size() - check -1));
+
+            System.out.println(list.get(std + check));
+        }
+    }
+}

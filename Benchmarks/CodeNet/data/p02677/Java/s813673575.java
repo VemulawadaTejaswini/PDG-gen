@@ -1,0 +1,37 @@
+import java.math.BigDecimal;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String args[]) {
+
+
+        Scanner scan = new Scanner(System.in);
+
+        int a = scan.nextInt();
+        int b = scan.nextInt();
+        int h = scan.nextInt();
+        int m = scan.nextInt();
+        double c;
+
+        int x = 30 * h;
+        int y = 6 * m;
+        double z = Math.abs(x - y);
+
+        BigDecimal r = BigDecimal.valueOf(2.0 * a * b * Math.cos(z));
+        BigDecimal a2 = BigDecimal.valueOf(a * a);
+        BigDecimal b2 = BigDecimal.valueOf(b * b);
+        BigDecimal c2 = a2.add(b2).subtract(r);
+        c = Math.sqrt(c2.doubleValue());
+
+        System.out.println(c);
+
+
+
+
+
+
+    }
+
+
+}

@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+  public static void main(String[] args) {
+	Scanner in = new Scanner(System.in);
+
+	int N = in.nextInt();
+	int A[] = new int[N+1];
+	int sum = 0;
+	Arrays.fill(A, -1);
+
+	for(int cnt = 0; cnt < N; cnt++){
+		A[cnt] = in.nextInt();
+	}
+	Arrays.sort(A);
+	for(int cnt = 0; cnt < N ; cnt++){
+		if(A[cnt] == A[cnt + 1]){
+			A[cnt] = 0;
+			A[cnt + 1] = 0;
+		}
+	}
+	for(int cnt = 0; cnt < N; cnt++){
+		if(A[cnt] == 0){
+			sum++;
+		}
+	}
+	in.close();
+	System.out.println(N - sum);
+	}
+}

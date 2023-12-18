@@ -1,0 +1,115 @@
+import java.io.*;
+import java.text.*;
+import java.util.*;
+
+public class Main {
+
+    static InputReader sc = new InputReader(System.in);
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) throws IOException {
+        solver s = new solver();
+        int t = 1;
+        while (t > 0) {
+            s.solve();
+            t--;
+        }
+        out.close();
+    }
+
+    static class InputReader {
+
+        public BufferedReader br;
+        public StringTokenizer token;
+
+        public InputReader(InputStream stream) {
+            br = new BufferedReader(new InputStreamReader(stream), 32768);
+            token = null;
+        }
+
+        public String sn() {
+            while (token == null || !token.hasMoreTokens()) {
+                try {
+                    token = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return token.nextToken();
+        }
+
+        public int ni() {
+            return Integer.parseInt(sn());
+        }
+
+        public String snl() throws IOException {
+            return br.readLine();
+        }
+
+        public long nlo() {
+            return Long.parseLong(sn());
+        }
+
+        public double nd() {
+            return Double.parseDouble(sn());
+        }
+
+        public int[] na(int n) {
+            int a[] = new int[n];
+            for (int i = 0; i < n; i++)
+                a[i] = sc.ni();
+            return a;
+        }
+
+        public long[] nal(int n) {
+            long a[] = new long[n];
+            for (int i = 0; i < n; i++)
+                a[i] = sc.nlo();
+            return a;
+        }
+    }
+
+    static int inf = 5000013;
+
+    static class solver {
+        DecimalFormat df = new DecimalFormat("0.00000000");
+        int maxi = 200000000;
+
+        void solve() {
+            char c[] = sc.sn().toCharArray();
+            char t[] = sc.sn().toCharArray();
+            int n = c.length;
+            int m = t.length;
+            int dp[][] = new int[n + 1][m + 1];
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= m; j++) {
+                    if (c[i - 1] == t[j - 1])
+                        dp[i][j] = dp[i - 1][j - 1] + 1;
+                    else
+                        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+            build(dp, n, m, c,t);
+            out.println(ans.reverse());
+        }
+
+        StringBuilder ans = new StringBuilder();
+
+        void build(int a[][], int i, int j, char s[],char t[]) {
+            if(i==0 || j==0)
+                return;
+            if(s[i-1]==t[j-1])
+            {
+                ans.append(s[i-1]);
+                build(a,i-1,j-1,s,t);
+            }
+            else
+            {
+                if(a[i-1][j]>a[i][j-1])
+                    build(a,i-1,j,s,t);
+                else
+                    build(a,i,j-1,s,t);
+            }
+        }
+    }
+}

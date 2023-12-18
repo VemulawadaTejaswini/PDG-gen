@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+class Main {
+    public static void main(String[] args) {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String line = br.readLine();
+            setXY(line);
+
+       } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void getGcb(int x, int y) {
+    	if(x < y) {
+            x = x + y;
+            y = x - y;
+            x = x - y;
+       }
+    	while(y > 0) {
+            int r = x % y;
+            x = y;
+            y = r;
+        }
+        System.out.println(x);
+    }
+
+    private static void setXY(String line) {
+    	if(line !=null) {
+    		StringTokenizer st = new StringTokenizer(line, " ");
+            while(st.hasMoreTokens()) {
+                int x = Integer.parseInt(st.nextToken());
+                int y = Integer.parseInt(st.nextToken());
+                getGcb(x, y);
+            }
+    	}
+    }
+}

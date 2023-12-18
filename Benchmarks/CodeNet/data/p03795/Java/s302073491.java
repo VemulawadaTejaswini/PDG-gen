@@ -1,0 +1,23 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		int a = sc.nextInt();
+		int i = a * 800;
+
+		if (i <= 12000) {
+
+			System.out.println(i);
+
+		} else {
+
+			System.out.println(i - (200 * (a / 15)));
+
+		}
+	}
+}

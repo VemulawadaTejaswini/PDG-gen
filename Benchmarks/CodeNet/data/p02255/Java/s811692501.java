@@ -1,0 +1,228 @@
+
+
+
+
+
+import java.io.*;
+public class Main {
+
+    public static void main(String[] args) throws IOException  {
+
+        // ?¨??????\??????????????????????????????
+    	//??£?¨?
+        int c;
+        int keta;
+        int j;
+        int deru;
+        int koumoku_suu = 1000;//?????????????????????????????°?????\???
+        int hairetsu_keta[] = new int[koumoku_suu];//??°???????????°?????\???
+        int hairetsu[] = new int[koumoku_suu];//1???????????°????????\???
+        int hairetsu_fugou[] = new int[koumoku_suu];//?¬???????????????¨??????????????¨????????? ???????¬???????????????????????????\???
+        int hairetsu_suuchi[] = new int[koumoku_suu];//?¬???????????????¨??????????????¨????????? ???????¬???????????????????????????\???
+        int k;
+        int m;
+        int n;
+        
+      //?????????
+        keta = 0;
+        j = 0;
+        deru = 0;
+        k = 0;
+        m = 0;
+        n = 0;
+        
+        for (int ii = 0; ii < koumoku_suu; ii++)
+        {
+        	hairetsu_keta[ii] = 0;
+        	hairetsu[ii] = 0;
+        	hairetsu_fugou[ii] = 1;
+        }
+        //???????????????
+        int i= 0;
+        while ((c = System.in.read()) != -1  )
+        {
+            // System.out.println(c);
+            if ( c > 47 && c < 58) // suuji ga kita
+               {
+                hairetsu[i] = c-48;
+                i++;
+                keta++;
+               }
+            if ( c == 45) // minus ga kita
+               {
+                hairetsu_fugou[j] = -1;
+               }
+
+            if ( c == 10) // return ga kita
+            {
+                hairetsu_keta[j] = keta;
+                deru++; //return ga  kitara while wo deru
+                j++;
+            }
+            if ( c == 32) //space ga kita
+            {
+
+                hairetsu_keta[j] = keta;
+                keta = 0;//space ga kitara tsugi no moji no tame keta ha sokomade
+                j++;
+            }
+            if (deru > 0)
+            {
+                break;
+                }
+        }
+           // ?¨??????\?????????????????????????????????????????????
+
+        // ??°??????????????\??????
+        //int hairetsu_suuchi[] = new int[4]; hairetsu_suuchi[0] = 0; hairetsu_suuchi[1] = 0; hairetsu_suuchi[2] = 0; hairetsu_suuchi[3] = 0;
+        
+        
+     
+
+
+        while( n < (j + 1))
+        {
+        while(j > 0 && hairetsu_keta[n] > 0 )
+        {
+            hairetsu_suuchi[k] = hairetsu_suuchi[k]*10 + hairetsu[m];
+            hairetsu_keta[n] = hairetsu_keta[n] - 1;
+            m++;
+        }
+        if (hairetsu_keta[n] == 0)
+        {
+            if(hairetsu_fugou[n] == -1)
+            {
+                hairetsu_suuchi[k] = hairetsu_suuchi[k]*(-1);
+
+            }
+            n++;
+            k++;
+        }
+        }
+
+        //??°??????????????\???????????????
+        /*
+          for (int p = 0; p < k - 1 ; p++)
+
+        {
+        System.out.println("???????????°??????" + hairetsu_suuchi[p]);
+        }
+
+        */
+        int n_gyou = 0;
+        n_gyou = hairetsu_suuchi[0];
+        // System.out.println("n_gyou???" + n_gyou);
+        
+        // 2???????????????
+      //?????????
+        keta = 0;
+        j = 0;
+        deru = 0;
+        for (int ii = 0; ii < koumoku_suu; ii++)
+        {
+        	hairetsu_keta[ii] = 0;
+        	hairetsu[ii] = 0;
+        	hairetsu_fugou[ii] = 1;
+        	hairetsu_suuchi[ii] = 0;
+        }
+        //???????????????
+         i= 0;
+        while ((c = System.in.read()) != -1  )
+        {
+            // System.out.println(c);
+            if ( c > 47 && c < 58) // suuji ga kita
+               {
+                hairetsu[i] = c-48;
+                i++;
+                keta++;
+               }
+            if ( c == 45) // minus ga kita
+               {
+                hairetsu_fugou[j] = -1;
+               }
+
+            if ( c == 10) // return ga kita
+            {
+                hairetsu_keta[j] = keta;
+                deru++; //return ga  kitara while wo deru
+                j++;
+            }
+            if ( c == 32) //space ga kita
+            {
+
+                hairetsu_keta[j] = keta;
+                keta = 0;//space ga kitara tsugi no moji no tame keta ha sokomade
+                j++;
+            }
+            if (deru > 0)
+            {
+                break;
+                }
+        }
+           // ?¨??????\?????????????????????????????????????????????
+
+        // ??°??????????????\??????
+        //int hairetsu_suuchi[] = new int[4]; hairetsu_suuchi[0] = 0; hairetsu_suuchi[1] = 0; hairetsu_suuchi[2] = 0; hairetsu_suuchi[3] = 0;
+        
+        
+        
+        k = 0;
+        m = 0;
+        n = 0;
+
+
+        while( n < (j + 1))
+        {
+        while(j > 0 && hairetsu_keta[n] > 0 )
+        {
+            hairetsu_suuchi[k] = hairetsu_suuchi[k]*10 + hairetsu[m];
+            hairetsu_keta[n] = hairetsu_keta[n] - 1;
+            m++;
+        }
+        if (hairetsu_keta[n] == 0)
+        {
+            if(hairetsu_fugou[n] == -1)
+            {
+                hairetsu_suuchi[k] = hairetsu_suuchi[k]*(-1);
+
+            }
+            n++;
+            k++;
+        }
+        }
+
+        //??°??????????????\???????????????
+       int p;
+          for ( p = 0; p < k - 1 ; p++)
+
+        {
+        System.out.print(hairetsu_suuchi[p] + " ");
+        }
+          System.out.println("");
+        // insert sort
+         
+          int i2;
+          int v;
+          int j2;
+          
+          for (i2 = 1;i2 < n_gyou;i2++)
+          {
+        		  v =  hairetsu_suuchi[i2];
+        		  j2 = i2 - 1;
+        		  while( j2 >= 0 && hairetsu_suuchi[j2] > v)
+        		  {
+        		  hairetsu_suuchi[j2+1]	 = hairetsu_suuchi[j2];
+        		  j2--;
+        		  hairetsu_suuchi[j2 + 1] = v;
+        		  }
+        		  System.out.print(hairetsu_suuchi[0]);
+        	  	for (p = 1; p < k - 1 ; p++)
+        	  		{
+        		  		System.out.print(" " + hairetsu_suuchi[p]);
+        	  		}
+        	  System.out.println();
+          	}
+    }
+        
+        
+    }

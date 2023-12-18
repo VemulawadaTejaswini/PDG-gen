@@ -1,0 +1,1 @@
+import java.util.Scanner;public class Main {static{Scanner s = new Scanner(System.in);while(s.hasNext()){double x = s.nextDouble();System.out.println(x<=48?"light fly":x<=51?"fly":x<=54?"bantam":x<=57?"feather":x<=60?"light":x<=64?"light welter":x<=69?"welter":x<=75?"light middle":x<=81?"middle":x<=91?"light heavy":"heavy");}System.exit(0);}}

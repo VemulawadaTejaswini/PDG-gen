@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]){
+
+		Scanner cin = new Scanner(System.in);
+		
+		int A = cin.nextInt();
+		int B = cin.nextInt();
+		int C = cin.nextInt();
+		cin.close();
+		
+		String result = "NO";
+		
+		if(A<=C&&C<=B){
+			result = "YES";
+		}
+
+
+		System.out.println(result);
+	}
+}

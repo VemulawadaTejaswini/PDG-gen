@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner scan = new Scanner(System.in);
+        int A = scan.nextInt();
+        int B = scan.nextInt();
+        int C = scan.nextInt();
+        for(int i=1;i<=B;i++){
+        	if(A*i%B==C){
+        		System.out.println("YES");
+        		System.exit(0);
+        	}
+        }
+        System.out.println("NO");
+	}
+}

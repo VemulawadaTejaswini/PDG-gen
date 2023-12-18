@@ -1,0 +1,19 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+
+		// 整数の入力
+		int p = sc.nextInt();
+		int q = sc.nextInt();
+		int r = sc.nextInt();
+
+		int ans = p+q;
+
+		if(p>q&&p>r)ans = q+r;
+		if(q>p&&q>r)ans = p+r;
+
+		// 出力
+		System.out.println(ans);
+	}
+}

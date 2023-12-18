@@ -1,0 +1,104 @@
+
+
+import java.util.*;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner scan = new Scanner(System.in);
+		char c;
+		int tim;
+
+		// ??????1~6???????????????????????????????????°????????\??????
+		int num_top = scan.nextInt();
+		int num_S = scan.nextInt();
+		int num_E = scan.nextInt();
+		int num_W = scan.nextInt();
+		int num_N = scan.nextInt();
+		int num_bot = scan.nextInt();
+
+		// ??????1~6????????????????????????????????????????????\??????
+		String str_top = "top";
+		String str_S = "S";
+		String str_E = "E";
+		String str_W = "W";
+		String str_N = "N";
+		String str_bot = "bot";
+
+		// ?????¶???????????????
+		String str = scan.next();
+
+		// ?????¶??°???????????????
+		for (int count = 0; count < str.length(); count++) {
+			c = str.charAt(count);
+			String s = String.valueOf(c);
+			switch (s) {
+			case "S":
+				// ??°????????????????¨???¶????????????
+				tim = num_S;
+
+				num_S = num_top;
+				str_S = str_top;
+
+				num_top = num_N;
+				str_top = str_N;
+				
+				num_N = num_bot;
+				str_N = str_bot;
+				
+				num_bot = tim;
+				str_bot = "S";
+
+				break;
+			case "E":
+				tim = num_E;
+
+				num_E = num_top;
+				str_E = str_top;
+
+				num_top = num_W;
+				str_top = str_W;
+				
+				num_W = num_bot;
+				str_W = str_bot;
+				
+				num_bot = tim;
+				str_bot = "E";
+
+				break;
+			case "W":
+				tim = num_W;
+
+				num_W = num_top;
+				str_W = str_top;
+
+				num_top = num_E;
+				str_top = str_E;
+				
+				num_E = num_bot;
+				str_E = str_bot;
+				
+				num_bot = tim;
+				str_bot = "W";
+
+				break;
+			case "N":
+				tim = num_N;
+
+				num_N = num_top;
+				str_N = str_top;
+
+				num_top = num_S;
+				str_top = str_S;
+				
+				num_S = num_bot;
+				str_S = str_bot;
+				
+				num_bot = tim;
+				str_bot = "N";
+				break;
+			}
+		}
+		System.out.println(num_top);
+
+	}
+}

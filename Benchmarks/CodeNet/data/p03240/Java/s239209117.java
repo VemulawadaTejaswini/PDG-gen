@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+
+		int count = 101 * 101;
+		long[][] possibility = new long[101][101];
+
+		int xp = 0;
+		int yp = 0;
+		long hp = 0;
+		for (int i = 0; i < n; i++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			long h = sc.nextLong();
+			if (h > 0) {
+				xp = x;
+				yp = y;
+				hp = h;
+			}
+			// h = max(H - |x - cx| - |y - cy|, 0)
+			// H = h + |x - cx| + |y - cy|
+			for (int j = 0; j < 101; j++) {
+				for (int k = 0; k < 101; k++) {
+					if (possibility[j][k] == -1) continue;
+					long H = h + Math.abs(x - j) + Math.abs(y - k);
+					if (possibility[j][k] == 0 || possibility[j][k] == H) {
+						possibility[j][k] = H;
+						continue;
+					}
+					possibility[j][k] = -1;
+					count--;
+				}
+			}
+			if (count == 1) break;
+		}
+
+		for (int i = 0; i < possibility.length; i++) {
+			for (int j = 0; j < possibility.length; j++) {
+				if (possibility[i][j] > 0) {
+					System.out.print(i);
+					System.out.print(" ");
+					System.out.print(j);
+					System.out.print(" ");
+					System.out.println(hp + Math.abs(xp - i) + Math.abs(yp - j));
+					return;
+				}
+			}
+		}
+	}
+}

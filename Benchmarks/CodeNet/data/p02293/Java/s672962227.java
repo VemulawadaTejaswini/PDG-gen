@@ -1,0 +1,76 @@
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.util.*;
+public class Main {
+	Scanner in = new Scanner(System.in);
+	public static void main(String[] args) {
+		new Main();
+	}
+
+	public Main() {
+		int q = in.nextInt();
+		for(int i=0;i<q;i++)new CGL_2A().doIt();
+	}
+
+	class CGL_2A{
+		final double EPS=1.0e-8;
+		void doIt(){
+			Line2D l1 = new Line2D.Double(in.nextDouble(),in.nextDouble(),in.nextDouble(),in.nextDouble());
+			Line2D l2 = new Line2D.Double(in.nextDouble(),in.nextDouble(),in.nextDouble(),in.nextDouble());
+			System.out.println(isParallel(l1, l2));
+		}
+
+		double cross(Point2D p1,Point2D p2){
+			return p1.getX()*p2.getY()-p1.getY()*p2.getX();
+		}
+
+		Point2D diff(Point2D p1,Point2D p2){
+			return new Point2D.Double(p1.getX()-p2.getX(),p1.getY()-p2.getY());
+		}
+		boolean intersectLL(Line2D l1,Line2D l2){
+			return intersectLL(l1.getP1(),l1.getP2(),l2.getP1(),l2.getP2());
+		}
+		boolean intersectLL(Point2D a1,Point2D a2,Point2D b1,Point2D b2){
+			return (Math.abs(cross(diff(a2, a1), diff(b2, b1)))>EPS)||(Math.abs(cross(diff(a2, a1), diff(a1, b1)))<EPS);
+		}
+		
+		private Point2D projection(Line2D l,Point2D p2){
+			double kyori = l.getP1().distance(l.getP2());
+			double angle = angle(l.getP1(),l.getP2(), p2);
+			double t = l.getP1().distance(p2) * Math.cos(angle);
+			Point2D result = new Point2D.Double(l.getP1().getX()+(l.getP2().getX()-l.getP1().getX())*t/kyori,
+					l.getP1().getY()+(l.getP2().getY()-l.getP1().getY())*t/kyori);
+			return result;
+		}
+
+		private double angle(Point2D p0, Point2D p1, Point2D p2){
+			return Math.atan2(p2.getY()-p0.getY(),p2.getX()-p0.getX())-
+					Math.atan2(p1.getY()-p0.getY(),p1.getX()-p0.getX());
+		}
+		
+		Point2D intersectionPoint(Line2D l1,Line2D l2){
+			return intersectionPoint(l1.getP1(), l1.getP2(), l2.getP1(), l2.getP2()); 
+		}
+		Point2D intersectionPoint(Point2D a1,Point2D a2,Point2D b1,Point2D b2){
+			Point2D a=diff(a2,a1),
+					b=diff(b2,b1);
+			return sum(a1, mul(cross(b, diff(b1,a1))/cross(b,a), a));
+		}
+		
+		Point2D mul(double n,Point2D p1){
+			return new Point2D.Double(p1.getX()*n,p1.getY()*n);
+		}
+		Point2D sum(Point2D p1,Point2D p2){
+			return new Point2D.Double(p1.getX()+p2.getX(),p1.getY()+p2.getY());
+		}
+
+		int isParallel(Line2D l1,Line2D l2){
+			if(intersectLL(l1, l2)==false)return 2;
+			Point2D n = projection(l1, l2.getP1());
+			Point2D s = intersectionPoint(l1, l2);
+			if(Math.abs(n.getX()-s.getX())<EPS&&Math.abs(n.getY()-s.getY())<EPS)return 1;
+			return 0;
+		}
+	}
+
+}

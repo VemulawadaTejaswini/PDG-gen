@@ -1,0 +1,31 @@
+import java.util.*;
+
+
+public class Main{    
+    
+    public static void main(String[] args){            
+       
+        Scanner sc = new Scanner(System.in);        
+                      
+        int N = sc.nextInt();
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        
+        int count = 0;
+        
+        int a[] = new int [N];
+        
+        for(int i = 0;i < N;i++){
+            a[i]  = sc.nextInt();           
+        }
+        
+        int sum = 0;
+        for(int j = 0;j <= N-2;j++){
+            sum += Math.min(A*(a[j+1] - a[j]),B);
+        }
+        
+        System.out.println(sum);
+                
+                        
+    }                                       
+}

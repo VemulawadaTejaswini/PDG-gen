@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int k = scan.nextInt();
+		int[] x = new int[n];
+		for (int i = 0; i < n; i++) {
+			x[i] = scan.nextInt();
+		}
+		int min = Integer.MAX_VALUE/10;
+
+		if (x[0] >= 0) {
+			System.out.println(x[k-1]);
+			return;
+		}
+		if (x[n-1] < 0) {
+			System.out.println(Math.abs(x[n-k]));
+			return;
+		}
+      
+		for (int i = 0; i < n-k+1; i++) {
+			if (x[i+k-1] < 0) {
+				int ans = Math.abs(x[i]);
+				if (ans < min) min = ans;
+			}
+			else if (x[i] < 0 && x[i+k-1] >= 0) {
+				int ans1 = Math.abs(x[i])*2 + x[i+k-1];
+				int ans2 = x[i+k-1]*2 + Math.abs(x[i]);
+				int ans = Math.min(ans1, ans2);
+				if (ans < min) min = ans;
+			}
+			else if (0 <= x[i]) {
+				int ans = x[i+k-1];
+				if (ans < min) min = ans;
+			}
+		}
+		System.out.println(min);
+	}
+}

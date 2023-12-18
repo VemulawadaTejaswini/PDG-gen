@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			String str = br.readLine();
+			int N = Integer.parseInt(str);
+			str = br.readLine();
+			String[] s = str.split(" ",0);
+			int max = 0;
+			int min = 0;
+			for(int i = 0;i < N; i++) {
+				int a = Integer.parseInt(s[i]);
+				if(i == 0) {
+					max = a;
+					min = a;
+				}
+				if(max < a) max = a;
+				if(min > a) min = a;
+			}
+			System.out.println(max-min);
+//			long max  = 1000000007;
+		}catch (Exception e) {
+			System.exit(0);
+		}
+	}
+}

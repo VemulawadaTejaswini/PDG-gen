@@ -1,0 +1,76 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) {
+		double dbD1 = 0.0;
+		double dbD2 = 0.0;
+		double dbD3 = 0.0;
+		double dbMax = 0.0;
+
+
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+			String str = br.readLine();
+			//str = br.readLine();
+
+			String[] arrX = br.readLine().split(" ");
+
+			int[][] intArrX = new int[2][arrX.length];
+
+
+			//str = br.readLine();
+			String[] arrY = br.readLine().split(" ");
+
+			for(int i=0; i<arrY.length; i++){
+				intArrX[0][i] = Integer.parseInt(arrX[i]);
+				intArrX[1][i] = Integer.parseInt(arrY[i]);
+			}
+			//System.out.println(arrX.length);
+			for (int i = 0; i < arrY.length; i++) {
+
+				dbD1 += (double)Math.abs(intArrX[0][i] - intArrX[1][i]);
+
+				dbD2 += (double)Math.abs(intArrX[0][i] - intArrX[1][i])
+						* (double)Math.abs(intArrX[0][i] - intArrX[1][i]);
+
+				dbD3 += (double)Math.abs(intArrX[0][i] - intArrX[1][i])
+						* (double)Math.abs(intArrX[0][i] - intArrX[1][i])
+						* (double)Math.abs(intArrX[0][i] - intArrX[1][i]);
+
+				//if (i == 0) {
+
+				//	dbMax = Math.abs(intArrX[0][i] - intArrX[1][i]);
+				//} else {
+
+
+					if (dbMax < (double)Math.abs(intArrX[0][i] - intArrX[1][i])) {
+						dbMax = intArrX[0][i] - intArrX[1][i];
+					}
+				//}
+
+			}
+
+			dbD2 = Math.sqrt(dbD2);
+			dbD3 = Math.cbrt(dbD3);
+			System.out.printf("%.6f",dbD1);
+			System.out.println();
+			System.out.printf("%.6f",dbD2);
+			System.out.println();
+			System.out.printf("%.6f",dbD3);
+			System.out.println();
+			System.out.printf("%.6f",dbMax);
+
+
+
+		} catch (IOException e) {
+			System.out.println(e);
+		} catch (NumberFormatException e) {
+			System.out.println("??°?????§??\??????????????????");
+		}
+	}
+}

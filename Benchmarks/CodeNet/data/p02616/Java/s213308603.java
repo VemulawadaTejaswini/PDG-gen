@@ -1,0 +1,110 @@
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    private static int mod = 1000000000 + 7;
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = Integer.parseInt(scan.next());
+        int k = Integer.parseInt(scan.next());
+        List<Long> plus = new ArrayList<Long>();
+        List<Long> minus = new ArrayList<Long>();
+        List<Long> zero = new ArrayList<Long>();
+        for (int i = 0; i < n; i++) {
+            long a = Long.parseLong(scan.next());
+            if (a > 0) {
+                plus.add(a);
+            } else if (a < 0) {
+                minus.add(a);
+            } else {
+                zero.add(a);
+            }
+        }
+        scan.close();
+
+        if (n == k) {
+            long ans = 1;
+            for (long a : plus) {
+                ans *= a;
+                ans %= mod;
+            }
+            for (long a : minus) {
+                ans *= -a;
+                ans %= mod;
+                if (minus.size() % 2 == 1) {
+                    ans = mod - ans;
+                }
+            }
+            for (long a : zero) {
+                ans *= a;
+            }
+            System.out.println(ans);
+            return;
+        }
+
+        if (plus.size() == 0 && k % 2 == 1) {
+            if (zero.size() != 0) {
+                System.out.println(0);
+                return;
+            }
+            Collections.sort(minus, Collections.reverseOrder());
+            long ans = 1;
+            for (int i = 0; i < k; i++) {
+                ans *= -minus.get(i);
+                ans %= mod;
+            }
+            if (k % 2 == 1) {
+                ans = mod - ans;
+            }
+
+            System.out.println(ans);
+            return;
+        }
+
+        if (plus.size() + minus.size() < k) {
+            System.out.println(0);
+            return;
+        }
+
+        Collections.sort(plus, Collections.reverseOrder());
+        Collections.sort(minus);
+        int minusCount;
+        int plusCount;
+        if (k <= minus.size()) {
+            minusCount = k;
+        } else {
+            minusCount = minus.size();
+        }
+        if (minusCount % 2 != 0) {
+            minusCount -= 1;
+        }
+        plusCount = k - minusCount;
+
+        while (minusCount >= 2 && plusCount <= plus.size() - 2 &&
+                minus.get(minusCount - 1) * minus.get(minusCount - 2) < plus.get(plusCount) * plus.get(plusCount + 1)) {
+            minusCount -= 2;
+            plusCount += 2;
+        }
+
+        long ans = 1;
+        for (int i = 0; i < plusCount; i++) {
+            ans *= plus.get(i);
+            ans %= mod;
+        }
+        long minusAns = 1;
+        for (int i = 0; i < minusCount; i++) {
+            minusAns *= -minus.get(i);
+            minusAns %= mod;
+        }
+
+        ans *= minusAns;
+        ans %= mod;
+
+        System.out.println(ans);
+    }
+}

@@ -1,0 +1,48 @@
+
+
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main{
+
+	public static void main(String[] args) throws IOException {
+		/*
+		 * ?????? ???.length < 10 ?????? ??´.length < 1000
+		 *
+		 * T.contains " " or Enter Ti
+		 *
+		 * All Ti -> T.contains cnt?
+		 *
+		 * Example) input- W : computer
+		 *
+		 * T1: Nurtures computer scientists and highly-skilled computerengineers
+		 * T2: who will create and exploit "knowledge" for the newera.
+		 * T3: Provides an outstanding computer environment.
+		 * T4: END_OF_TEXT if(t4.equl("END_OF_TEXT"))break;
+		 *
+		 * output- 3
+		 */
+
+		Scanner sc = new Scanner(System.in);
+
+		// sample input
+		final String infoW = sc.next();
+		// Count variable declear
+		int cnt = 0;
+		// while section
+
+		while (true) {
+			final String  strT = sc.next();
+			// break condition
+			if ("END_OF_TEXT".equals(strT)) {
+				break;
+				// equlas() ?°?????????¨??§??????????????\
+				// equalsignorecase() ?°?????????¨??§??????????????\?????????
+				// ????????????????????????????????????
+			} else if (infoW.equalsIgnoreCase(strT)) {
+				cnt++;
+			}
+		}
+		System.out.println(cnt);
+	}
+}

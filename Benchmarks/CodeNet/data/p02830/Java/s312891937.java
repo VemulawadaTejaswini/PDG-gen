@@ -1,0 +1,13 @@
+import java.util.*;
+import java.math.*;
+public class Solution {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String s = in.next();
+		String t = in.next();
+		for(int i = 0; i < s.length(); i++) {
+			System.out.print(s.charAt(i) + t.charAt(i));
+		}
+		System.out.print("\n");
+	}
+}

@@ -1,0 +1,19 @@
+import java.util.*;
+import java.io.*;
+
+public class Main{
+  public static void main(String[] args) {
+    try(BufferedReader in = new BufferedReader(new InputStreamReader(System.in))){
+      String[] sArr = in.readLine().split(" ");
+      int num = 10*Integer.parseInt(sArr[1])+Integer.parseInt(sArr[2]);
+      if(num%4==0){
+        System.out.println("YES");
+      }else{
+        System.out.println("NO");
+      }
+
+    }catch(IOException e){
+      e.printStackTrace();
+    }
+  }
+}

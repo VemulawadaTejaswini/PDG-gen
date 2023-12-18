@@ -1,0 +1,14 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int[] array = new int[]{s.nextInt(), s.nextInt(), s.nextInt()};
+        Arrays.sort(array);
+
+        System.out.println(Arrays.equals(array, new int[]{5, 5, 7}) ? "YES" : "NO");
+    }
+
+}

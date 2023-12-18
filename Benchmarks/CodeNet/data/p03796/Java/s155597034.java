@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        
+        long power = 1;
+        
+        for(int i = 1; i <= N; i++) {
+            power *= i;
+            power %= 1000000007;
+        }
+        
+        System.out.println(power);
+    }
+}

@@ -1,0 +1,202 @@
+import java.util.Scanner;
+
+class Main {
+	static StringBuilder sb = new StringBuilder("");
+	static Node root = null;	//根っこ
+	
+	//名ばかりメイン
+	public static void main(String args[]) {
+		run();
+	}
+	
+	//実質メイン
+	public static void run() {
+		Scanner scanner = new Scanner(System.in);
+		int  num = scanner.nextInt();//要素数
+		String ope;
+		
+		//入力
+		for (int i = 0; i < num; i++) {
+			ope = scanner.next();
+			//命令分岐
+			switch( Operate.getEnumName(ope) ){
+			case in:
+				insert( new Node( scanner.nextInt() ) );
+				break;
+			case find:
+				if(find( scanner.nextInt() ) ){
+					sb.append("yes\n");
+				}else{
+					sb.append("no\n");
+				}
+				break;
+			case delete:
+				deleteNode( scanner.nextInt() );
+				break;
+			case print:
+				print();
+			}
+		}
+		
+		output();//出力関数
+		
+		scanner.close();
+	}
+	
+	//挿入処理
+	public static void insert(Node node){
+		Node parent = null;				// x の親
+		Node child = root;
+		while (child != null) {
+			parent = child;				// 親を設定
+			if (node.key < child.key) {
+				child = child.left;		// 左の子へ移動
+			} else {
+				child = child.right;	// 右の子へ移動
+			}
+		}
+		
+		//親か子か
+		if (parent == null) {
+			root = node;
+		} else if (node.key < parent.key) {
+			parent.left = node;
+		} else {
+			parent.right = node;
+		}
+	}
+	
+	//先行巡回
+	public static void preParse(Node node) {
+		if (node == null) return;
+		
+		sb.append(" ").append(node.key);
+		preParse(node.left);
+		preParse(node.right);
+	}
+	//中間巡回
+	public static void inParse(Node node) {
+		if (node == null) return;
+		
+		inParse(node.left);
+		sb.append(" ").append(node.key);
+		inParse(node.right);
+	}
+	
+	//見つける
+	public static boolean find(int key) {
+		Node node = root;
+		//見つかるまで掘る
+		while (node != null) {
+			if (key == node.key) {
+				return true;
+			} else if (key < node.key) {
+				node = node.left;
+			} else {
+				node = node.right;
+			}
+		}
+		//なければfalse
+		return false;
+	}
+	
+	//Node削除して子を親にする削除処理
+	public static void deleteNode(int key ) {
+		Node parent = null;
+		Node child = root;
+		
+		//keyに子がいたのか検索
+		while (child != null && key != child.key) {
+			parent = child;
+			if (key < child.key) {
+				child = child.left;
+			} else {
+				child = child.right;
+			}
+		}
+		//そもそも要素がなければそのまま
+		if (child == null) return;
+		
+		//子がいないならそのまま繰り上げ
+		if (child.left == null) {
+			if (key < parent.key){ 
+				parent.left = child.right;
+			}else{
+				parent.right = child.right;
+			}
+		} else if (child.right == null) {
+			if (key < parent.key){
+				parent.left = child.left;
+			}else{
+				parent.right = child.left;
+			}
+		} else {	//子がいたら入れ替え続ける
+			parent = child;
+			Node nextNode = child.right;
+			while (nextNode.left != null) {
+				parent = nextNode;
+				nextNode = nextNode.left;
+			}
+			child.key = nextNode.key;
+			if (nextNode.key < parent.key){
+				parent.left = nextNode.right;
+			}else{
+				parent.right = nextNode.right;
+			}
+		}
+	}
+	
+	//出力準備
+	public static void print() {
+		inParse(root);
+		sb.append("\n");
+		preParse(root);
+		sb.append("\n");
+	}
+	
+	//出力
+	public static void output(){
+		System.out.print(sb);
+	}
+	
+	//enum宣言
+	public static enum Operate{
+		in("insert"),
+		find("find"),
+		delete ("delete"),
+		print("print");
+		
+		private final String name;
+		
+		Operate(String name){
+			this.name = name;
+		}
+		
+		String getName(){
+			return this.name;
+		}
+
+		public static Operate getEnumName(String str){
+			for(Operate v : values()){
+				if(v.getName().equals(str)){
+					return v;
+				}
+			}
+			throw new IllegalArgumentException("undefined : " + str);
+		}
+	}
+
+}
+//クラス
+class Node{
+	public int key;
+	public Node left;
+	public Node right;
+	
+	public Node(int key) {
+		this.key = key;
+		left = right = null;
+	}
+	
+}
+

@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Here your code !
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        StringBuilder b = new StringBuilder();
+
+        int size = s.length();
+        
+        for(int i=0;i<size;i++){
+            String x = s.substring(i,i+1);
+            if(x.equals("B")){
+                int a = b.length();
+                if(a>0){
+                    b.deleteCharAt(a-1);
+                }
+            }else{
+                b.append(x);
+            }
+        }
+        
+        String result = b.toString();
+        System.out.println(result);
+    }
+    
+    
+}

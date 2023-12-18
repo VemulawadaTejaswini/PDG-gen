@@ -1,0 +1,15 @@
+import java.util.Scanner;
+//import java.util.Map;
+//import java.util.HashMap;
+
+public class Main{
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		String s = in.nextLine();
+		int x = s.length()-2;
+		char[] letters = s.toCharArray();
+		System.out.print(letters[0]);
+		System.out.print(x);
+		System.out.print(letters[s.length()-1]);
+	}
+}

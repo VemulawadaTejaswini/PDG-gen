@@ -1,0 +1,59 @@
+import java.util.*;
+import java.lang.*;
+import java.math.*;
+import java.io.*;
+
+import static java.lang.Math.*;
+import static java.util.Arrays.*;
+
+public class Main{
+
+	Scanner sc;
+
+	static final int INF=1<<28;
+	static final double EPS=1e-9;
+
+	void run(){
+		sc=new Scanner(System.in);
+		for(;;){
+			int n=sc.nextInt();
+			if(n==0)
+				break;
+			HashMap<Integer, Long> map=new HashMap<Integer, Long>();
+			LinkedList<Integer> list=new LinkedList<Integer>();
+			for(int i=0; i<n; i++){
+				int id=sc.nextInt();
+				int a=sc.nextInt();
+				int b=sc.nextInt();
+				if(!map.containsKey(id)){
+					list.add(id);
+					map.put(id, 0l);
+				}
+				map.put(id, min(map.get(id)+a*b,1000000));
+			}
+			boolean f=false;
+			for(int id:list){
+//				println(w.id+":"+w.m+":"+w.order);
+				if(map.get(id)>=1000000){
+					println(id+"");
+					f=true;
+				}
+			}
+			if(!f)
+				println("NA");
+		}
+		sc.close();
+	}
+
+	void print(String s){
+		System.out.print(s);
+	}
+
+	void println(String s){
+		System.out.println(s);
+	}
+
+	public static void main(String[] args){
+		new Main().run();
+	}
+}

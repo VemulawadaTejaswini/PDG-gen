@@ -1,0 +1,36 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException,
+			IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+				System.in));
+		StringBuilder builder = new StringBuilder();
+		String line;
+
+		while ((line = reader.readLine()) != null) {
+			if (line.isEmpty())
+				break;
+			StringTokenizer tokenizer = new StringTokenizer(line);
+			double[] x = new double[4];
+			double[] y = new double[4];
+			for (int i = 0; i < 4; i++) {
+				x[i] = Double.parseDouble(tokenizer.nextToken());
+				y[i] = Double.parseDouble(tokenizer.nextToken());
+			}
+			double abx = x[1] - x[0];
+			double aby = y[1] - y[0];
+			double bbx = x[3] - x[2];
+			double bby = y[3] - y[2];
+
+			double ad = Math.toDegrees(Math.atan2(aby, abx));
+			double bd = Math.toDegrees(Math.atan2(bby, bbx));
+			System.out.println(Math.abs(ad - bd) == 90 ? "YES" : "NO");
+		}
+	}
+}

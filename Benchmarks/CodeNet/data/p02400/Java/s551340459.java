@@ -1,0 +1,23 @@
+import java.math.BigDecimal;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+
+		double r = scan.nextDouble();//r = ??????
+		double men = (double)r * r *  3.141592;
+		double ensyu = (double)r * 2 * 3.141592;
+
+	    BigDecimal bi_men = new BigDecimal(String.valueOf(men));
+	    BigDecimal bi_en = new BigDecimal(String.valueOf(ensyu));
+	    
+	    men = bi_men.setScale(6, BigDecimal.ROUND_HALF_UP).doubleValue();
+	    ensyu = bi_en.setScale(6, BigDecimal.ROUND_HALF_UP).doubleValue();
+		
+		System.out.println(men + " " + ensyu);
+        scan.close();
+    }
+
+}

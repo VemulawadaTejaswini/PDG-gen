@@ -1,0 +1,17 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        long a = sc.nextLong();
+        long b = sc.nextLong();
+        long x = sc.nextLong();
+        long ans = 0;
+        if(a % x !=0){
+         ans = b/x - a/x;
+        }else{
+         ans = b/x - a/x + 1;
+        }
+        System.out.println(ans);
+
+    }
+}

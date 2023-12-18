@@ -1,0 +1,22 @@
+import java.util.Scanner;
+class Main{
+	public static void main(String[]agrs){
+		Scanner sc = new Scanner(System.in);
+		while(sc.hasNext()){
+			int n = sc.nextInt();
+			int x = sc.nextInt();
+			if((n & x) == 0) break;
+			int count = 0;
+			for(int i = 1; i <= n; i++){
+				for(int j = 1; j <= n; j++){
+					for(int k = 1; k <= n; k++){
+						if(i != j && j != k && i != k){
+							if(i + j + k == x) count++;
+						}
+					}
+				}
+			}
+			System.out.println(count/6);
+		}
+	}
+}

@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+
+public class Main {
+	
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        
+        int X = sc.nextInt();
+        int max = 1;
+        
+        for(int i=2;i*i<X;i++){
+        	
+        	int pow = i*i;
+        	
+        	for(;pow<X;pow *= i)
+        		if(max<pow)
+        			max = pow;
+        	
+        }
+        
+        System.out.println(max);
+		
+	}
+
+
+		
+
+    
+}

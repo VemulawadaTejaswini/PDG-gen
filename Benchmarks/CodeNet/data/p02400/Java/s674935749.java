@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        double r = sc.nextDouble();
+        double s = r*r*Math.PI;
+        double l = r*2*Math.PI;
+        System.out.printf("%f %f", s, l);
+    }
+}

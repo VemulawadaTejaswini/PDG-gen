@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[] a){int i=Scanner(System.in).nextInt();System.out.println(i+i*i+i*i*i);}}

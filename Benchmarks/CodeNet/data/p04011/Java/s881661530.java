@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int N = scan.nextInt();
+		int K = scan.nextInt();
+		int X = scan.nextInt();
+		int Y = scan.nextInt();
+
+		int result = 0;
+		result = X*K;
+		result += Y*(N-K);
+		System.out.println(result);
+	}
+
+}

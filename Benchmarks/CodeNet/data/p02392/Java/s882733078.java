@@ -1,0 +1,25 @@
+package abc;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Lab {
+	 public static void main(String[] args) throws Exception {
+
+		        // Here your code !
+		        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		       System.out.println("A ?????\?????????????????????");
+		       int a = Integer.parseInt(br.readLine());
+		       System.out.println("B ?????\?????????????????????");
+		       int b = Integer.parseInt(br.readLine());
+		       System.out.println("C ?????\?????????????????????");
+		       int c = Integer.parseInt(br.readLine());
+
+		       if ( (a <b) && (b < c)){
+		    	   System.out.println("yes");
+
+		       }else {
+		    	   System.out.println("no");
+		       }
+}
+}

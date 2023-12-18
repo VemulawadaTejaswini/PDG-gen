@@ -1,0 +1,41 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+	Main m = new Main();
+	m.answer();
+    }
+
+    private Scanner scan = new Scanner(System.in);
+    private final long K;
+
+    public Main() {
+	K = Long.parseLong(scan.next());
+
+	scan.close();
+    }
+
+    public final void answer() {
+	int N = (int)(K < 2 ? 2 : (K < 50 ? K : 50));
+	long[] a = new long[N];
+	long q = K / N;
+	long r = K % N;
+
+	StringBuilder str = new StringBuilder();
+	
+	for (int i = 0; i < N; i++) {
+	    if(i > 0) str.append(' ');
+	    
+	    a[i] = N-1 + q;
+	    if(i < r) a[i] += (N-r+1);
+	    else a[i] -= r;
+
+	    str.append(a[i]);
+	}
+	
+	System.out.println(N);
+	System.out.println(str.toString());
+    }
+}

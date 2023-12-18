@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a, b, s, r;
+		a = sc.nextInt();
+		b = sc.nextInt();
+		s = a * b;
+		r = 2 * a + 2 * b;
+		System.out.println(s+" "+r);
+	}
+}

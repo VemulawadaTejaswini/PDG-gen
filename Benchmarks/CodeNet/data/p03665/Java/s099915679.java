@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args)
+    {
+        Scanner scan =new Scanner(System.in);
+        //scan number of P&A
+        long N=scan.nextInt();
+        long P=scan.nextInt();
+        long A;
+        long odd=0,even=0;
+        long count=0;
+        long select_odd=0,select_even=1;
+        long deno=1,mole_even=1,mole_odd=1;
+
+        for(long i=0;i<N;i++){
+            //scan A
+            A=scan.nextInt();
+            if(A%2==0) even++;
+            else odd++;
+        }
+
+        //select_even
+        for(long i=1;i<=even;i++){
+            if(even>=5 && i>(double)even/2) i=even-i;
+            for(long j=1;j<=i;j++) deno*=j;
+            for(long j=even-i+1;j<=even;j++) mole_even*=j;
+            select_even+=mole_even/deno;
+        }
+
+        for(long i=P;i<=odd;i+=2){
+            if(odd>=5 && i>(double)odd/2) i=odd-i;
+            for(long j=1;j<=i;j++) deno*=j;
+            for(long j=odd-i+1;j<=odd;j++) mole_odd*=j;
+            select_odd+=mole_odd/deno;
+        }
+
+        count=select_odd*select_even;
+        //print num of count
+        System.out.println(count);
+
+    }
+}

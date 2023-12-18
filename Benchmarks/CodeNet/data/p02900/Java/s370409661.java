@@ -1,0 +1,50 @@
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+
+    int MAX = 1000000;
+    boolean[] primes;
+
+    void run() {
+        Scanner sc = new Scanner(System.in);
+        long A = sc.nextLong(), B = sc.nextLong();
+
+        long x = gcd(A, B);
+
+        HashSet<Long> y = new HashSet<>();
+
+        for (long i = 2; i * i <= x; i++) if (x % i == 0){
+            y.add(i);
+            y.add(x / i);
+        }
+
+        int ans = 0;
+        for (long i : y) {
+            boolean ok = true;
+            for (long j : y) if (i < j) {
+                if (i % j == 0) ok = false;
+            }
+            if (ok) ans++;
+        }
+
+        System.out.println(ans + 1);
+    }
+
+    long gcd(long a, long b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+    void debug(Object... os) {
+        System.err.println(Arrays.deepToString(os));
+    }
+
+    public static void main(String[] args) {
+        new Main().run();
+    }
+
+}

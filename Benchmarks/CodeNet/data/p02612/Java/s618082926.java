@@ -1,0 +1,18 @@
+import java.util.Scanner;
+ 
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int num = scanner.nextInt();
+    
+    for (int i = 1; i < 11; i++) {
+      int bill = 1000*i;
+      if (num > bill) {
+      	continue;  
+      } else {
+        int answer = bill-num;
+        return answer;
+      }
+    }
+  }
+}

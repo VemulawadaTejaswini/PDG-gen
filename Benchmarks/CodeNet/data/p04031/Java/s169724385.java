@@ -1,0 +1,31 @@
+import java.util.Scanner;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		solve(s);
+		s.close();
+	}
+
+	public static void solve(Scanner s) {
+		int n = s.nextInt();
+		int[] an = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			an[i] = s.nextInt();
+		}
+
+		long ans = Long.MAX_VALUE;
+
+		for (int i = -100; i <= 100; i++) {
+			long tmp = 0;
+			for (int j = 0; j < n; j++) {
+				tmp += Math.pow(i - an[j], 2);
+			}
+			ans = Long.min(ans, tmp);
+		}
+
+		System.out.println(ans);
+	}
+}

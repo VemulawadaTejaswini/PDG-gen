@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        try (
+            Scanner sc = new Scanner(System.in);
+        ) {
+            String[] hw = sc.nextLine().split("\\s");
+            int h = Integer.parseInt(hw[0]);
+            int w = Integer.parseInt(hw[1]);
+            List<String> lineList = new ArrayList<>();
+            for (int i = 0; i < h; i++) {
+                lineList.add(sc.nextLine());
+            }
+            
+            for (int i = 0; i < w + 2; i++) {
+                System.out.print('#');
+            }
+            System.out.println();
+            
+            for (String line : lineList) {
+                System.out.print('#');
+                System.out.print(line);
+                System.out.println('#');
+            }
+            
+            for (int i = 0; i < w + 2; i++) {
+                System.out.print('#');
+            }
+            System.out.println();
+        }
+    }
+
+}

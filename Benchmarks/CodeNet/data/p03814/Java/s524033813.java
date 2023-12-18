@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		String[] m = s.split("",0);
+		int x = 0,y = 0;
+	for(int i = 0; i < m.length;i++){
+		if(m[i].equals("A")){
+			x = i;
+			break;
+		}
+	}
+	for(int t = 0; t < m.length;t++){
+		if(m[t].equals("Z")){
+			y = t;
+		}
+	}
+	System.out.print(""+(y-x+1));
+	}
+}

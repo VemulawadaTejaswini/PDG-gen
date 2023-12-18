@@ -1,0 +1,66 @@
+import java.util.*;
+
+
+public class Main {
+	int [] dx = {0,1,1,1,0,-1,-1,-1};
+	int [] dy = {1,1,0,-1,-1,-1,0,1};
+	
+	
+	private void doit(){
+		Scanner sc = new Scanner(System.in);
+		while(sc.hasNext()){
+			int h = sc.nextInt();
+			int w = sc.nextInt();
+			char [][] data = new char[h][w];
+			for(int i = 0; i < h; i++){
+				data[i] = sc.next().toCharArray();
+			}
+			
+			int [][] calc = new int[h][w];
+			for(int i = 0; i < h; i++){
+				for(int j = 0; j < w; j++){
+					if(data[i][j] == '#'){
+						for(int k = 0; k < dx.length; k++){
+							int yy = i + dy[k];
+							int xx = j + dx[k];
+							if(0<= xx && xx < w && 0<= yy && yy < h){
+								calc[yy][xx]++;
+							}
+						}
+					}
+				}
+			}
+			
+			for(int i = 0; i < h; i++){
+				for(int j = 0; j < w; j++){
+					if(data[i][j] == '#'){
+						calc[i][j] = -1;
+					}
+				}
+			}
+			
+			for(int i = 0; i < h; i++){
+				for(int j = 0; j < w; j++){
+					if(calc[i][j] >= 0){
+						System.out.print(calc[i][j]);
+					}
+					else{
+						System.out.print("#");
+					}
+				}
+				System.out.println("");
+			}
+		}
+	}
+
+
+
+	private void debug(Object... o) {
+		System.out.println("debug = " + Arrays.deepToString(o));
+	}
+
+	public static void main(String[] args) {
+		new Main().doit();
+	}
+
+}

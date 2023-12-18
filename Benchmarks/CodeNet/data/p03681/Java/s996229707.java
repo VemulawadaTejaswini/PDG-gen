@@ -1,0 +1,15 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		long n = scanner.nextInt();
+		long m = scanner.nextInt();
+		int ans = 1;
+		if(Math.abs(n-m) >= 2){
+			System.out.println(0);
+		}
+	}
+}

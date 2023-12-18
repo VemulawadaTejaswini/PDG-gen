@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while(true){
+            int H= scanner.nextInt();
+            int W= scanner.nextInt();
+            if(H==0&&W==0) break;
+            System.out.print("\n");
+            for(int i=0;i<H;i++){
+                for(int j=0;j<W;j++){
+                    if((j+i)%2==0) System.out.print("#");
+                    else System.out.print(".");
+                }
+                System.out.print("\n");
+            }
+        }
+    }
+}

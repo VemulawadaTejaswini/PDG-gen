@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		while(sc.hasNext()){
+			double a = sc.nextDouble();
+			int k = 1;
+			double s = a;
+			while(++k<=10){
+			      if(k%2==0)a*=2;
+			      else a=a/3;
+			      s+=a;
+			}
+			System.out.println(s);
+		}
+	}
+}

@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Main {
+    public static void main (String[] args) {
+        
+        System.out.println(answer());
+    }
+
+    static String answer () {
+        Scanner sc = new Scanner(System.in);
+        int total = 0;
+        int[] number = new int[3];
+        for (int i = 0; i < number.length; i++) {
+            number[i] = sc.nextInt();
+            if (number[i] != 5 && number[i] != 7) {
+                return "NO";
+            } else {
+                total += number[i];
+            }
+        }
+        
+        if (total == 17) {
+            return "YES";
+        } else {
+            return "NO";
+        }
+    }
+}

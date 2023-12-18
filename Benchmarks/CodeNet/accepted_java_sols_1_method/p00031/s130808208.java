@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){Scanner S=new Scanner(System.in);String s;for(int i,t;S.hasNext();System.out.println(s.replaceAll("0 ","").trim()))for(s="",t=S.nextInt(),i=0;i<10;)s+=(t&1<<i++)+" ";}}

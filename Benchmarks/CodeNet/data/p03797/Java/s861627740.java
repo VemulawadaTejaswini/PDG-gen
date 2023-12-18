@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long N = sc.nextInt();
+		long M = sc.nextInt();
+		long i;
+		for(i = 0 ;; i++) {
+			if(N >= 1 && M >= 2) {
+				N--;
+				M -= 2;
+			} else if(M >= 4){
+				M -= 4;
+			} else {
+				System.out.println(i);
+				break;
+			}
+		}
+	}
+}

@@ -1,0 +1,127 @@
+
+import java.util.Scanner;
+
+class???main{
+
+	// declear
+	static final int DICEDESIGN = 6;
+    static final int TOP = 0; //?????¢ ex:1
+    static final int FRONT = 1;//??£??¢ ex:2
+    static final int RIGHT = 2;// ex:3 order:East
+    static final int LEFT = 3;// ex:4???order:West
+    static final int BACK = 4;//?£???¢ ex:5 order:North
+    static final int BOTTOM = 5;// ex:6 order:South
+
+    int[][] dice = new int[DICEDESIGN][2];
+
+    public Dice1(){
+    	for (int i = 0; i < DICEDESIGN; i++) {
+    		// [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]
+    		/*for (int j = 0; j < 3; j++) {
+    			dice[i][j] = dice[i+1][j+1]; // error
+			}*/
+			 dice [i][0] = i+1;
+			 dice[i][1] = dice [i][0];
+		}
+    }
+
+	/*
+	 * Sample Input
+	 * 1 1 2 4 8 16 32
+	 * SE
+	 * Sample Output
+	 * 1 8
+	 */
+
+	public Dice1(int[] diceNum) {
+		this();
+
+		for(int i = 0; i < DICEDESIGN; i++){
+			//[[1, 1], [2, 2], [3, 4], [4, 8], [5, 16], [6, 32]]
+            dice[i][1] = diceNum[i];
+        }
+	}
+
+	public void orderN() {//clear
+
+		// logic T - T ->F, B ->F, BA ->BT, T ->BA
+		int[] temp = dice[TOP];
+        dice[TOP] = dice[FRONT];
+        dice[FRONT] = dice[BOTTOM];
+        dice[BOTTOM] = dice[BACK];
+        dice[BACK] = temp;
+	}
+
+	public  void orderS() {// clear
+
+		// logic BT - F -> BT, T ->F, BA -> T, BT ->BA
+		int [] temp = dice[BOTTOM];
+		dice[BOTTOM] = dice[FRONT];
+		dice[FRONT] = dice[TOP];
+		dice[TOP] = dice[BACK];
+		dice[BACK] = temp;
+	}
+
+	public void orderE() {// chk
+
+		// logic E - R ->F, L ->F, BA -> L, BA -> R
+		int[] temp = dice[RIGHT];
+		dice[RIGHT] = dice[FRONT];
+		dice[FRONT] = dice[LEFT];
+		dice[LEFT] = dice[BACK];
+		dice[BACK] = temp;
+
+	}
+
+	public void orderW() {// chk
+
+		// logic W - F -> L, R->F, BA->R, L -> BA
+		int[] temp = dice[LEFT];
+		dice[LEFT] = dice[FRONT];
+				dice[FRONT] = dice[RIGHT];
+				dice[RIGHT] = dice[BACK];
+				dice[BACK] = temp;
+    }
+
+	public int outputTOP(int top ){
+		//TOP?
+		return dice[top][1] ;
+	}
+
+
+	public static void main(String[] args) {
+
+		// Operation Dice1 simulation
+		Scanner sc = new Scanner(System.in);
+
+		// dice space save
+		String[] tmp = sc.nextLine().split(" ");
+		int[] diceNum = new int[Dice1.DICEDESIGN];
+		for (int i = 0; i < Dice1.DICEDESIGN; i++) {
+			diceNum[i] = Integer.parseInt(tmp[i]);
+		}
+		Dice1 diceSpace = new Dice1(diceNum);
+
+		// order save
+		String[] order = sc.nextLine().split("");
+
+		// order run
+		for (int i = 0; i < order.length; i++) {
+			switch (order[i]) {
+			case "N":
+				diceSpace.orderN();
+				break;
+			case "S":
+				diceSpace.orderS();
+				break;
+			case "E":
+				diceSpace.orderE();
+				break;
+			case "W":
+				diceSpace.orderS();
+				break;
+			}
+		}
+		System.out.println(diceSpace.outputTOP(diceSpace.TOP));
+	}
+}

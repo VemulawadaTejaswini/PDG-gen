@@ -1,0 +1,24 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static String repeat(String piece, int times){
+		String r = "";
+		for(int i=0;i<times;i++) r = r+piece;
+		return r;
+	}
+	
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int H = sc.nextInt();
+        int W = sc.nextInt();
+        sc.nextLine();
+        
+        System.out.println(repeat("#",W+2));
+        for(int h=0;h<H;h++){
+        	String pic = sc.nextLine();
+        	System.out.println("#"+pic+"#");
+        }
+        System.out.println(repeat("#",W+2));
+    }
+}

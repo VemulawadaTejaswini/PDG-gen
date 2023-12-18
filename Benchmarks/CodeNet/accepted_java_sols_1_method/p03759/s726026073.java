@@ -1,0 +1,27 @@
+import java.io.InputStream;
+import java.util.Scanner;
+
+public class Main{
+	static Scanner sc;
+
+	public static void main(String[] args) throws Exception {
+		//InputStream in = new FileInputStream("src/input.txt");
+		InputStream in = System.in;
+		//PrintStream out = new PrintStream("src/output.txt");
+
+		//System.setOut(out);
+
+		sc = new Scanner(in);
+
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		if(b - a == c - b){
+			System.out.println("YES");
+		}else{
+			System.out.println("NO");
+		}
+
+		//out.close();
+	}
+}

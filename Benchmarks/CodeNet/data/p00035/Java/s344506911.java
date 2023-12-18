@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int a,i,j,k;for(Scanner s=new Scanner(System.in);s.hasNext();System.out.println(a<1?"YES":"NO")){z=s.next().split(",");float[]p=new float[8];for(a=i=0;i<8;)p[i]=new Float(z[i++]);for(i=0;i<8;i+=2)if((p[i]-p[j=(i+2)%8])*(p[k=(i+4)%8]-p[j])+(p[i+1]-p[j+1])*(p[k+1]-p[j+1])<0)a=1;}}}

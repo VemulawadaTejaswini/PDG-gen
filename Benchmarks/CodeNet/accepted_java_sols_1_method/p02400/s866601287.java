@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        double r = scan.nextDouble();
+        double s,o;
+        s=r*r*Math.PI;
+        o=2*r*Math.PI;
+
+        System.out.printf("%f %f",s,o);
+    }
+}

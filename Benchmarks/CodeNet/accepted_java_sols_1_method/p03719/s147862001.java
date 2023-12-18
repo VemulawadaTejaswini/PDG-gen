@@ -1,0 +1,16 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int A = scan.nextInt();
+	int B = scan.nextInt();
+	int C = scan.nextInt();
+
+	System.out.println(C >= A && C <= B ? "Yes" : "No");
+	scan.close();
+    }
+}

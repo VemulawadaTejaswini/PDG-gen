@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z)throws Exception{byte[]b=new byte[81],c=b.clone();System.in.read(b);String s="";int t,j,i,x;for(t=0;t++<3;b=c.clone())for(s+=t*90+"\n",j=-1;j++<7;s+="\n")for(i=8;i-->0;s+=(char)c[x])c[x=j*9+7-i]=b[i*9+j];System.out.print(s);}}

@@ -1,0 +1,1 @@
+We are developing the world's coolest AI robot product. After the long struggle, we finally managed to send our product at revision 

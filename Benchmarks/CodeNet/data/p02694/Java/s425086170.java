@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        long origin = 100;
+        long x = scanner.nextLong();
+
+        int year = 0;
+
+        while (origin <= x) {
+            origin = (long)(origin * 1.01);
+            year++;
+        }
+
+        System.out.println(year);
+
+
+    }
+}

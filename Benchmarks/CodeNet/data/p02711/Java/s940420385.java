@@ -1,0 +1,13 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String n = sc.next();
+        System.out.println(n.indexOf("7") > -1 ? "Yes" : "No");
+        sc.close();
+
+    }
+
+}

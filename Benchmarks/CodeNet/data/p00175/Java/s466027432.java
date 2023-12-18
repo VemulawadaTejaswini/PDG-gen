@@ -1,0 +1,1 @@
+import java.util.*;class Main {public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n;(n=s.nextInt())>=0;)System.out.println(Integer.toString(n,4));}}

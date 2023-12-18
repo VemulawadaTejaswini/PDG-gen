@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+	Scanner scan = new Scanner(System.in);
+
+	/* 入力 */
+	int w = scan.nextInt();
+	int a = scan.nextInt();
+	int b = scan.nextInt();
+
+	/* 赤が左 */
+	if(a < b){
+	    if(a+w < b){
+		System.out.println(b-(a+w));
+	    }else{
+		System.out.println(0);
+	    }
+	}
+	/* 赤が右 */
+	else if(b < a){
+	    if(b+w < a){
+		System.out.println(a-(b+w));
+	    }else{
+		System.out.println(0);
+	    }
+	}
+	/* 始点が重なる */
+	else{
+	    System.out.println(0);
+	}
+    }
+}

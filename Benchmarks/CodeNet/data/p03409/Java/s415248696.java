@@ -1,0 +1,242 @@
+import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class Main
+{
+
+
+  public static void main
+  (
+    String[] args
+  )
+  {
+    BufferedReader in_stream;
+    String         in_str;
+    String[]       in_str_split;
+
+    int   in_N;
+    ArrayList<Point> in_red;
+    ArrayList<Point> in_blue;
+
+    ArrayList<Point> tmp1;
+    ArrayList<Point> tmp2;
+
+    int tmp_x;
+    int tmp_y;
+    Point tmp_point;
+
+    int cnt;
+    int num;
+    int cnt2;
+    int num2;
+    int ans;
+
+    try
+    {
+      in_stream = new BufferedReader(new InputStreamReader(System.in));
+
+      /*----------------
+       * 引数
+       *----------------*/
+      in_str = new String(in_stream.readLine());
+      in_N   = Integer.parseInt(in_str);
+
+      in_red = new ArrayList<Point>();
+      for(cnt=0; cnt<in_N; cnt++)
+      {
+        in_str       = new String(in_stream.readLine());
+        in_str_split = in_str.split(" ");
+
+        in_red.add( new Point(Integer.parseInt(in_str_split[0]), Integer.parseInt(in_str_split[1])) );
+      }
+
+      in_blue = new ArrayList<Point>();
+      for(cnt=0; cnt<in_N; cnt++)
+      {
+        in_str       = new String(in_stream.readLine());
+        in_str_split = in_str.split(" ");
+
+        in_blue.add( new Point(Integer.parseInt(in_str_split[0]), Integer.parseInt(in_str_split[1])) );
+      }
+
+      /*----------------
+       * 計算
+       *----------------*/
+//      System.out.println("---------------------------------------------");
+//      for(cnt=0; cnt<in_red.size(); cnt++)
+//      {
+//        System.out.println( String.format("%3d(a,b, args)=(%3d,%3d)", cnt, in_red.get(cnt).x, in_red.get(cnt).y) );
+//      }
+//
+//      System.out.println("----------------------");
+//      sort_x(in_red);
+//      for(cnt=0; cnt<in_red.size(); cnt++)
+//      {
+//        System.out.println( String.format("%3d(a,b, args)=(%3d,%3d)", cnt, in_red.get(cnt).x, in_red.get(cnt).y) );
+//      }
+//
+//      System.out.println("----------------------");
+//      tmp1 = sub_array_x(in_red, in_red.get(1));
+//      for(cnt=0; cnt<tmp1.size(); cnt++)
+//      {
+//        System.out.println( String.format("%3d(a,b, args)=(%3d,%3d)", cnt, tmp1.get(cnt).x, tmp1.get(cnt).y) );
+//      }
+
+//      System.out.println("---------------------------------------------");
+//      for(cnt=0; cnt<in_blue.size(); cnt++)
+//      {
+//        System.out.println( String.format("%3d(c,d, args)=(%3d,%3d)", cnt, in_blue.get(cnt).x, in_blue.get(cnt).y) );
+//      }
+//
+//      System.out.println("----------------------");
+//      sort_x(in_blue);
+//      for(cnt=0; cnt<in_blue.size(); cnt++)
+//      {
+//        System.out.println( String.format("%3d(c,d, args)=(%3d,%3d)", cnt, in_blue.get(cnt).x, in_blue.get(cnt).y) );
+//      }
+
+
+
+
+
+      ans = 0;
+
+      /* まず、xでソート */
+      sort_x(in_red);
+      sort_x(in_blue);
+
+      /* 赤い点をベースに、ペアの青い点を探す */
+      num = in_red.size();
+      for(cnt=0; cnt<num; cnt++)
+      {
+        tmp_point = in_red.get(cnt);
+
+        /* 青い点群から、赤のxより大きい部分のみ抽出 */
+        tmp1 = sub_array_x(in_blue, tmp_point);
+
+        /* 見つかれば、一番若い部分をペアに */
+        if(null != tmp1)
+        {
+          num2 = tmp1.size();
+          for(cnt2=0; cnt2<num2; cnt2++)
+          {
+            if(tmp_point.y < tmp1.get(cnt2).y)
+            {
+              ans++;
+              in_blue.remove(tmp1.get(cnt2));
+              break;
+            }
+          }
+        }
+      }
+
+
+
+      System.out.println("" + ans);
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+
+
+  public static void sort_x
+  (
+    ArrayList<Point> array
+  )
+  {
+    Collections.sort
+    (
+      array,
+      new Comparator<Point>()
+      {
+        public int compare
+        (
+          Point obj1,
+          Point obj2
+        )
+        {
+          return obj1.x - obj2.x;
+        }
+      }
+    );
+  }
+
+
+
+  public static void sort_y
+  (
+    ArrayList<Point> array
+  )
+  {
+    Collections.sort
+    (
+      array,
+      new Comparator<Point>()
+      {
+        public int compare
+        (
+          Point obj1,
+          Point obj2
+        )
+        {
+          return obj1.y - obj2.y;
+        }
+      }
+    );
+  }
+
+
+
+  public static ArrayList<Point> sub_array_x
+  (
+    ArrayList<Point> array,
+    Point            point
+  )
+  {
+    ArrayList<Point> ret;
+    int              x;
+    int              num;
+    int              cnt;
+
+
+    x   = point.x;
+    ret = null;
+
+    num = array.size();
+    for(cnt=0; cnt<num; cnt++)
+    {
+      if(x < array.get(cnt).x)
+      {
+        ret = new ArrayList<Point>(array.subList(cnt, num));
+        break;
+      }
+    }
+
+    return ret;
+  }
+
+
+  static class Point
+  {
+    public int x;
+    public int y;
+
+    public Point
+    (
+      int x,
+      int y
+    )
+    {
+      this.x = x;
+      this.y = y;
+    }
+  }
+
+}

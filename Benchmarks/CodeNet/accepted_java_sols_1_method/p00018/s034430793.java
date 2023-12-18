@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){for(Scanner s=new Scanner(System.in);s.hasNext();){Integer[]i=new Integer[5];for(int t=5;t-->0;i[t]=s.nextInt());Arrays.sort(i,Collections.reverseOrder());System.out.println(Arrays.toString(i).replaceAll("[\\[\\],]",""));}}}

@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int dataset = scanner.nextInt();
+		double[] input = new double[8];
+		double tmp1,tmp2;
+		for(int i=0; i<dataset; i++){
+			for(int j=0; j<8; j++){
+				input[j] = scanner.nextDouble();
+			}
+			if(input[1] == input[3] || input[5] == input[7]){
+
+			}else{
+				tmp1 = (input[0]-input[2])/(input[1]-input[3]);
+				tmp2 = (input[4]-input[6])/(input[5]-input[7]);
+				if(equal(tmp1, tmp2)){
+					if(tmp1*(input[4]-input[0])+input[1] == input[5]){
+						System.out.println("NO");
+					}else{
+						System.out.println("YES");
+					}
+				}else{
+					System.out.println("NO");
+				}
+			}
+		}
+	}
+
+	private static boolean equal(double tmp1, double tmp2) {
+		if(Math.abs(tmp1-tmp2) < 0.000001){
+			return true;
+		}else{
+			return false;
+		}
+	}
+}

@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int X = sc.nextInt();
+		int max = 0;
+		for(int t=1; t<100000; t++) {
+			max += t;
+			if(X<=max) {
+				System.out.println(t);
+				break;
+			}
+		}
+		
+		sc.close();
+	}
+}

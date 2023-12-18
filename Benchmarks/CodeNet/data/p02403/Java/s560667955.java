@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int H;
+        int W;
+        
+        while(true) {
+            if (H == 0 || W == 0) {
+                break;   
+            }
+            for (int i = 0; i < h; i++) {
+                for (int j = 0; j < w; j++) {
+                    System.out.println("#");
+                }
+                System.out.println();
+            }
+        }
+    }
+}

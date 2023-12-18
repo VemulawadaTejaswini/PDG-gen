@@ -1,0 +1,22 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main{
+	public static void main (String[] args) throws  IOException{
+		BufferedReader buf = new BufferedReader( new InputStreamReader(System.in));
+				
+		//??°????????????(n)?????????
+		int length = Integer.parseInt(buf.readLine());
+		
+		//??°????????????
+		String[] inputSequence = buf.readLine().split(" ", 0);
+		
+		//??\???????????????????????¨???
+		System.out.print(inputSequence[length - 1]);
+		for(int i = 1; i < length; i++){
+			System.out.print(" ");
+			System.out.print(inputSequence[length - 1 -i]);
+		}
+	}
+}

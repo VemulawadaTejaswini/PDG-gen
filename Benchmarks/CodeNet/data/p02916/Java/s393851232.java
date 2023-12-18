@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args){
+        int index;
+
+        Scanner scan = new Scanner(System.in);
+        index = Integer.valueOf(scan.next());
+        int[] a = new int[index];
+        int[] b =new int[index];
+        int[] c =new int[index];
+
+        for(int i=0;i<index;i++)
+            a[i] = Integer.valueOf(scan.next());
+        for(int i=0;i<index;i++)
+            b[i] = Integer.valueOf(scan.next());
+        for(int i=0;i<index-1;i++)
+            c[i] = Integer.valueOf(scan.next());
+
+        int answer= 0;
+        int preeat = -1;
+        for(int i=0;i<index;i++){
+            answer += b[a[i] - 1];
+            if(preeat != -1 && preeat !=(index - 1)){
+                answer += c[preeat];
+            }
+            preeat = a[i] - 1;
+
+        }
+        System.out.println(answer);
+
+    }
+}

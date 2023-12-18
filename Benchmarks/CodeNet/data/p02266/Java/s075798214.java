@@ -1,0 +1,72 @@
+
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+// stack
+public class Main {
+
+	// ?°´?????????
+	static class Pool {
+		// ????????????'\'?????????
+		int start;
+		// ??????????????§?????¢???
+		int area;
+
+		public Pool(int start, int area) {
+			this.start = start;
+			this.area = area;
+		}
+
+		public String toString() {
+			return "(" + start + ", " + area + ")";
+		}
+	}
+
+	public static void main(String[] args) {
+
+		// ??\??????????????????
+		ArrayDeque<Integer> s1 = new ArrayDeque<>();
+		// ?°´??????????????¢???
+		ArrayDeque<Pool> s2 = new ArrayDeque<>();
+
+		Scanner sc = new Scanner(System.in);
+		String line = sc.nextLine();
+		// ?°´????????????????¨???¢???
+		int sum = 0;
+
+		for (int i = 0; i < line.length(); i++) {
+
+			if (line.charAt(i) == '\\') {
+				s1.offerFirst(i);
+			} else if (line.charAt(i) == '/' && s1.size() > 0) {
+				int j = s1.pollFirst();
+				sum += i - j;
+				// ?±?????°´?????????
+				int a = i - j;
+				// ??±???
+				while (s2.size() > 0 && s2.getFirst().start > j) {
+					a += s2.pollFirst().area;
+				} 
+				Pool pool = new Pool(j, a);
+				s2.offerFirst(pool);
+			}
+			// ???????????°
+			// System.out.println(s2);
+		}
+		
+		System.out.println(sum);
+		int loop = s2.size();
+		System.out.print(loop + " ");	
+		for (int i = 0; i < loop; i++) {
+			if (i == loop - 1) {
+				System.out.println(s2.pollLast().area);	
+			}else{
+				System.out.print(s2.pollLast().area + " ");
+			}
+			
+		}
+
+		sc.close();
+	}
+
+}

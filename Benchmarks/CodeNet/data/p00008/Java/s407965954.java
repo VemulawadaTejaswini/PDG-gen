@@ -1,0 +1,1 @@
+import java.util.*;class Main{static int n,cnt;public static void main(String[]_){for(Scanner S=new Scanner(System.in);S.hasNext();System.out.println(n<0?0:(long)Math.pow(4,n))){n=S.nextInt();n=n>36?-1:n;n=n>18?36-n:n;}}}

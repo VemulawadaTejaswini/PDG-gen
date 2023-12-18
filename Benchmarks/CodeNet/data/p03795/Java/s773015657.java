@@ -1,0 +1,11 @@
+import java.util.Scanner;
+public class A_Restaurant {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int x = N * 800;
+		int y = (N / 15) * 200;
+		int sum = x-y;
+		System.out.print("合計金額＝"+sum);
+	}
+}

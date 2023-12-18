@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class EasyMod 
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		
+		int a = in.nextInt();
+		int b = in.nextInt();
+		
+		int res = a * b;
+		if(res % 2 == 0)
+		{
+			System.out.print("Even");
+		}
+		else
+		{
+			System.out.print("Odd");
+		}
+	}
+}

@@ -1,0 +1,29 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner cin=new Scanner(System.in);
+		int n=cin.nextInt();
+		Deque<Integer> list=new ArrayDeque<>();
+		for(int i=0;i<n;i++) {
+			String str=cin.next();
+			if(str.equals("insert")) {
+				int x=cin.nextInt();
+				list.push(x);
+			}
+			else if(str.equals("delete")) {
+				int x=cin.nextInt();
+				list.removeFirstOccurrence(x);
+			}
+			else if(str.equals("deleteFirst"))list.removeFirst();
+			else if(str.equals("deleteLast"))list.removeLast();
+		}
+		
+		int lim=list.size();
+		for(int i=0;i<lim;i++) {
+			if(i==lim-1)System.out.println(list.remove());
+			else System.out.print(list.remove()+" ");
+		}
+	}
+
+}

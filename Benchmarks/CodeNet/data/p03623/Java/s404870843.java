@@ -1,0 +1,28 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+public class Main
+{
+ 
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    	
+    	String[] posArr = br.readLine().split(" ");
+    	
+    	int atox = Math.max(Integer.parseInt(posArr[0]), Integer.parseInt(posArr[1]))
+    			   - Math.min(Integer.parseInt(posArr[0]), Integer.parseInt(posArr[1]));
+    	int btox = Math.max(Integer.parseInt(posArr[0]), Integer.parseInt(posArr[2]))
+    			   - Math.min(Integer.parseInt(posArr[0]), Integer.parseInt(posArr[2]));
+    	if (atox > btox) {
+    		System.out.println("B");
+    	} else {
+    		System.out.println("A");
+    	}
+		
+		
+		
+ 
+    }
+ 
+}

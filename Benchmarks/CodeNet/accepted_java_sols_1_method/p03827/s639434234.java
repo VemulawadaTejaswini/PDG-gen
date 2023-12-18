@@ -1,0 +1,20 @@
+import java.util.Scanner;
+ 
+class Main{
+    static Scanner in = new Scanner(System.in);
+     public static void main(String[] args){
+         int i = Integer.parseInt(in.nextLine());
+         String s = in.nextLine();
+         int max = 0;
+         i = 0;
+         for(char c : s.toCharArray()){
+             if(c == 'I'){
+                 i++;
+             }else{
+                 i--;
+             }
+             max = Math.max(max, i);
+         }
+         System.out.println(max);
+     }
+}

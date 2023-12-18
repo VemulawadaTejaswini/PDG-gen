@@ -1,0 +1,43 @@
+import java.util.*;
+import java.math.BigDecimal;
+public class Main {
+	public static void main(String[] args){
+	    
+	    
+		Scanner sc = new Scanner(System.in);
+        
+      	double num = sc.nextInt();
+      	int resultx=0;
+      	int answer =0;
+      	int result =0;
+      	
+      	if(num==1||num==2||num==3){
+      	    System.out.println(1);
+      	}else{
+      	    for(int n=2; 2.0<=Math.pow(num,1.0/n);n++){
+      	        double num1=Math.pow(num,1.0/n);
+      	        double numfloor = Math.floor(num1);
+      	        
+      	        BigDecimal bd1 = new BigDecimal(num1);
+      	        BigDecimal bd2 = new BigDecimal(numfloor);
+      	        BigDecimal bd3 = bd1.setScale(10, BigDecimal.ROUND_HALF_UP);
+      	        BigDecimal bd4 = bd2.setScale(10, BigDecimal.ROUND_HALF_UP);
+      	        
+      	    
+      	        if(result==0){
+      	            int pownum =(int)Math.pow(num1,n);
+      	            if(pownum>resultx){
+      	            
+      	                resultx = pownum;
+      	            
+      	        }  
+      	       
+      	    }
+      	}
+      	System.out.println(resultx);
+      	
+      	
+      	}	
+ 
+    }
+}

@@ -1,0 +1,51 @@
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class Main {
+
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		int n;//????????????????????°
+		int e;//????????????
+		BigDecimal p;//????£???????
+		BigDecimal q;//?£??????°???
+
+
+		//?????????????????????????????§??????????¶??¶??????????????????¢????????§??????????????\
+		while(sc.hasNext()){
+			Map<Integer,BigDecimal> saleResultMap=new HashMap<Integer,BigDecimal>();
+			List<Integer> eDataList=new ArrayList<Integer>();
+			n=sc.nextInt();
+			if(n==0)break;
+			for(int i=0;i<n;i++){
+				e=sc.nextInt();
+				p=new BigDecimal(sc.nextInt());
+				q=new BigDecimal(sc.nextInt());
+
+				if(saleResultMap.get(e)==null){
+					saleResultMap.put(e, p.multiply(q));
+					eDataList.add(e);
+				}else{
+					saleResultMap.put(e, saleResultMap.get(e).add(p.multiply(q)));
+				}
+			}
+			boolean existMillionSeller=false;
+			for(int eValue:eDataList){
+				BigDecimal result=saleResultMap.get(eValue);
+				if(result.compareTo(new BigDecimal(1000000))!=-1){
+					existMillionSeller=true;
+					System.out.println(eValue);
+				}
+			}
+			if(!existMillionSeller)
+				System.out.println("NA");
+		}
+
+	}
+}

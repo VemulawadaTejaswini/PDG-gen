@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[]a){Scanner sc=new Scanner(System.in);int s=sc.next().length();Set<Character>t=new HashSet<>();for(int i=0;i<s;i++){t.add(S.charAt(i));}System.out.println(t.size()==s?"yes":"no");}}

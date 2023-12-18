@@ -1,0 +1,24 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
+			String[] spl = br.readLine().split(" ");
+			int a = Integer.parseInt(spl[0]);
+			int b = Integer.parseInt(spl[1]);
+			int c = Integer.parseInt(spl[2]);
+			Set<Integer> set = new HashSet<>();
+			set.add(a);
+			set.add(b);
+			set.add(c);
+			System.out.println(set.size());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

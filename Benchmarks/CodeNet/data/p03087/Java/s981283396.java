@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int Q = sc.nextInt();
+		String S = sc.next();
+
+		int l[] = new int[N];
+		int r[] = new int[N];
+
+		for (int i = 0; i < Q; i++) {
+			l[i] = sc.nextInt();
+			r[i] = sc.nextInt();
+		}
+
+		int ans[] = new int[Q];
+
+		for (int i = 0; i < Q; i++) {
+			int cnt = 0;
+			String s = S.substring(l[i]-1, r[i]);
+			for (int j = 0; j < s.length(); j++) {
+				char c = s.charAt(j);
+				if (c == 'A' && j != s.length()-1) {
+					if (s.charAt(j+1) =='C') {
+						cnt++;
+					}
+				}
+			}
+			ans[i] = cnt;
+		}
+		for (int i = 0; i < ans.length; i++) {
+			System.out.println(ans[i]);
+		}
+	}
+}

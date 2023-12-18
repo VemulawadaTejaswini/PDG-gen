@@ -1,0 +1,56 @@
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    static List<List<Integer>> edge_;
+
+    static int[] answer_;
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Integer n = Integer.parseInt(scan.next());
+        Integer q = Integer.parseInt(scan.next());
+
+        edge_ = new ArrayList<List<Integer>>();
+        for (int i = 0; i <= n; i++) {
+            edge_.add(new ArrayList<Integer>());
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            Integer a = Integer.parseInt(scan.next());
+            Integer b = Integer.parseInt(scan.next());
+            edge_.get(a).add(b);
+            edge_.get(b).add(a);
+        }
+
+        answer_ = new int[n + 1];
+        for (int i = 0; i < q; i++) {
+            Integer p = Integer.parseInt(scan.next());
+            Integer x = Integer.parseInt(scan.next());
+            answer_[p] += x;
+        }
+        scan.close();
+
+        dfs(1, 0);
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print(answer_[i]);
+            if (i != n) {
+                System.out.print(" ");
+            }
+        }
+    }
+
+    private static void dfs(int node, int parent) {
+        for (Integer i : edge_.get(node)) {
+            if (i == parent) {
+                continue;
+            }
+            answer_[i] += answer_[node];
+            dfs(i, node);
+        }
+    }
+}

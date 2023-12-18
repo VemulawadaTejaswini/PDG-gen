@@ -1,0 +1,26 @@
+//package atcoder.yahoo;
+
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int k = s.nextInt();
+        if(n % 2 == 0) {
+            if(k <= n/2) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+        } else {
+            if(k <= n/2 + 1) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+        }
+    }
+}

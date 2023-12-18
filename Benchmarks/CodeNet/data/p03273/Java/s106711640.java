@@ -1,0 +1,66 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        Main m = new Main(sc);
+        m.show(m.solve());
+    }
+    
+    Scanner sc;
+    int H;
+    int W;
+    String[] a;
+    
+    //入力
+    Main(Scanner sc) {
+        this.sc = sc;
+        H = sc.nextInt();
+        W = sc.nextInt();
+        a = new String[H];
+        for (int i=0; i<H; i++){
+            a[i] = sc.next();
+        }
+    }
+    
+    //解答処理
+    String[][] solve() {
+        boolean[] result1 = new boolean[H];
+        boolean[] result2 = new boolean[W];
+        
+        String[][] answer = new String[H][W];
+        
+        for (int i=0; i<H; i++){
+            for (int j=0; j<W; j++){
+                if (a[i].charAt(j) == '#'){
+                    result1[i] = true;
+                    result2[j] = true;
+                }
+            }
+        }
+        
+        for(int i=0; i<H; i++){
+            if(result1[i] == false){
+                continue;
+            }
+            for(int j=0; j<W; j++){
+                if(result2[j] == false){
+                    continue;
+                }
+                answer[i][j] = String.valueOf(a[i].charAt(j));
+            }
+        }
+        
+        return answer;
+    }
+    
+    //出力
+    void show(String[][] answer) {
+        for (int i=0; i<H; i++){
+            for (int j=0; j<W; j++){
+                System.out.print(answer[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+}

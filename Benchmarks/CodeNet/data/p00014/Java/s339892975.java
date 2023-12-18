@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+
+		while (sc.hasNext()) {
+			int d = sc.nextInt();
+			System.out.println(integ(d));
+		}
+	}
+
+	public static long integ(int d) {
+		int x = d;
+		long ans = 0;
+		do {
+			ans += x*x * d;
+			x = x + d;
+		} while (x != 600);
+		return ans;
+	}
+}

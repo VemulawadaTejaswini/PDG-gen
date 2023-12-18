@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        HashMap<Character,Integer> counters = new HashMap<>();
+        HashMap<Character,Integer> indexes = new HashMap<>();
+        boolean flag = false;
+        String s;
+        s = in.nextLine();
+        if(s.charAt(0) == s.charAt(1)){
+            System.out.print(1);
+            System.out.print(" ");
+            System.out.print(2);
+        }
+        else if(s.length() == 2 || s.length() == 1){
+            System.out.print(-1);
+            System.out.print(" ");
+            System.out.print(-1);
+        }
+        else {
+            for (int i = 0; i<s.length();i++){
+                if(!counters.containsKey(s.charAt(i))){
+                    counters.put(s.charAt(i),1);
+                    indexes.put(s.charAt(i),i);
+                }else{
+                    counters.replace(s.charAt(i),counters.get(s.charAt(i)) + 1);
+                    int count = counters.get(s.charAt(i));
+                    int index = indexes.get(s.charAt(i));
+                    int diff = i-index;
+                    if(diff > (count/2)){
+                        System.out.print(index+1);
+                        System.out.print(" ");
+                        System.out.print(i+1);
+                        flag = true;
+                        break;
+                    }
+
+                }
+            }
+            if(flag == false){
+                System.out.print(-1);
+                System.out.print(" ");
+                System.out.print(-1);
+            }
+        }
+
+
+    }
+}

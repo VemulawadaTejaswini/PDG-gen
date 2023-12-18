@@ -1,0 +1,13 @@
+import java.util.Scanner;
+class Main {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    Long a  = sc.nextLong();
+    double b  = sc.nextDouble();
+    long ans =(long)Math.floor(a*b);
+    System.out.println(ans);
+
+  }
+}

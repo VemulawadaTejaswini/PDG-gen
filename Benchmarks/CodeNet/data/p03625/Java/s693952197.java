@@ -1,0 +1,32 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int max1 = 0;
+    int max2 = 0;
+    int[] a = new int[n];
+    for(int i = 0; i<n; i++){
+      a[i] = sc.nextInt();
+    }
+    Arrays.sort(a);
+    for(int i = n-1; i>0; i -= 1){
+      if(a[i-1] == a[i]){
+        max1 = a[i];
+        for(int j = i-2; j > 0; j--){
+          if(a[j-1] == a[j]){
+            max2 = a[j];
+            System.out.println(max1*max2);
+            return;
+          }
+          if(j ==1){
+            System.out.println(0);
+            return;
+          }
+        }
+      }
+    }
+    System.out.println(0);
+  }
+}

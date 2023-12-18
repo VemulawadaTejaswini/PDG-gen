@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int W = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int ans = b - a - w;
+		if (b > a + w) {
+			System.out.printf("%d\n", b - a - w);
+		} else if (b + w < a) {
+			System.out.printf("%d\n", a - b - w);
+		} else {
+			System.out.println("0");
+		}
+	}
+}

@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]_){String s;Scanner S=new Scanner(System.in);for(int n=S.nextInt();n-->0;System.out.println(s.length()>79?"overflow":s))s=S.nextBigInteger().add(S.nextBigInteger()).toString();}}

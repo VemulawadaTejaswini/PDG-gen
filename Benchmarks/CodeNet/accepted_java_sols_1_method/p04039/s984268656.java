@@ -1,0 +1,32 @@
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		HashSet<Integer> set = new HashSet<>();
+		for (int i = 0; i < K; ++i) {
+			set.add(sc.nextInt());
+		}
+		for (int i = N;; ++i) {
+			boolean ok = true;
+			int p = i;
+			while (p > 0) {
+				if (set.contains(p % 10)) {
+					ok = false;
+					break;
+				}
+				p /= 10;
+			}
+			if (ok) {
+				System.out.println(i);
+				return;
+			}
+		}
+	}
+
+}

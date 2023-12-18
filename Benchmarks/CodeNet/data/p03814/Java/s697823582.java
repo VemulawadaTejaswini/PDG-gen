@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		String s = in.next();
+		int start = 0;
+		while (s.charAt(start) != 'A') {
+			start++;
+		}
+		int end = s.length() - 1;
+		while (s.charAt(end) != 'Z') {
+			end--;
+		}
+		System.out.println(end - start + 1);
+	}
+}

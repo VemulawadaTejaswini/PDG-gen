@@ -1,0 +1,30 @@
+import java.util.*;
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();
+		int ans = 0;
+		int max = -1;
+		for(int i = 1; i <= N; i++) {
+			int cc = 0;
+			int ck = i;
+			while(ck % 2 == 0) {
+				ck /= 2;
+				cc++;
+			}
+			if(max < cc) {
+				ans = i;
+				max = cc;
+			}
+		}
+		System.out.println(ans);
+	}
+}

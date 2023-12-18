@@ -1,0 +1,50 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int[] T = new int[N];
+		for (int i = 0; i < N; i++) {
+			T[i] = sc.nextInt();
+		}
+		int M = sc.nextInt();
+
+		int[] P = new int[M];
+		int[] X = new int[M];
+		int a =0;
+
+		for (int i = 0; i < M; i++) {
+			P[i] = sc.nextInt();
+			X[i] = sc.nextInt();
+		}
+
+		for (int i = 0; i < M; i++) {
+
+			for (int j = 0; j < N; j++) {
+				
+				if (P[i] == (j + 1)) {
+					a = T[j];
+					T[j] = X[i];
+					int sum = 0;
+					
+					for (int k = 0; k < N; k++) {
+						sum += T[k];
+					}
+					
+					System.out.println(sum);
+					T[j]=a;
+
+				}
+				
+				else {
+					// 何もしない
+				}
+			}
+
+		}
+	}
+}

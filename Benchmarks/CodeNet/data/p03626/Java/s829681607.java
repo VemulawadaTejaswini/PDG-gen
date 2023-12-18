@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        new Main().compute();
+    }
+
+    void compute() {
+        int N = scanner.nextInt();
+        String S1 = scanner.next();
+        String S2 = scanner.next();
+
+        List<Boolean> dirs = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            if (S1.charAt(i) == S2.charAt(i)) {
+                dirs.add(true);
+            } else {
+                dirs.add(false);
+                i++;
+            }
+        }
+        int ans;
+        if (dirs.get(0)) {
+            ans = 3;
+        } else {
+            ans = 6;
+        }
+        for (int i = 1; i < dirs.size(); i++) {
+            if (dirs.get(i - 1)) {
+                ans = (int) ((long) ans * 2 % 1000000007);
+            } else if (!dirs.get(i)) {
+                ans = (int) ((long) ans * 3 % 1000000007);
+            }
+        }
+
+        System.out.println(ans);
+    }
+}

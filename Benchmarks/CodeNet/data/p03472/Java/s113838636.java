@@ -1,0 +1,33 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Katana implements Comparable<Katana>{
+	long a, b;
+	public Katana(long _a, long _b) {
+		a = _a; b = _b;
+	}
+	public int compareTo(Katana k) {
+		return (int)(k.b - b);
+	}
+}
+public class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		long H = sc.nextInt();
+		long max_A = 0, sum_B = 0;
+		Katana[] kt = new Katana[N];
+		for(int i = 0; i < N; i++) {
+			kt[i] = new Katana(sc.nextInt(), sc.nextInt());
+			max_A = Math.max(max_A, kt[i].a);
+		}
+		long ans = (H + max_A - (long)1) / max_A; // 何も投げない
+		Arrays.sort(kt);
+
+		for(int i = 0; i < N; i++) {
+			sum_B += kt[i].b;
+			ans = Math.min(ans, (H - sum_B + max_A - (long)1) / max_A + (long)(i + 1));
+		}
+		System.out.println(ans);
+	}
+}

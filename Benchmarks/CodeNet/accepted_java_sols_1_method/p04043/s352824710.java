@@ -1,0 +1,21 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] line = br.readLine().split(" ");
+		Arrays.sort(line);
+		int A = Integer.parseInt(line[0]);
+		int B = Integer.parseInt(line[1]);
+		int C = Integer.parseInt(line[2]);
+		
+		if(A==5 && B==5 && C==7){
+			System.out.println("YES");
+		}else{
+			System.out.println("NO");
+		}
+	}
+}

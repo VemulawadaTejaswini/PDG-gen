@@ -1,0 +1,20 @@
+package project;
+import java.util.Scanner;
+public class b0502 {
+
+	public static void main(String[] args) {
+		Scanner stdIn =new Scanner(System.in);
+		int X =stdIn.nextInt();
+		int Y=100;
+		int i;
+		
+		for(i=0;Y<X;i++) {
+			Y=(int) (Y*1.01);
+			Y=Y/1;
+		}
+		System.out.println(i);
+		
+		
+	}
+
+}

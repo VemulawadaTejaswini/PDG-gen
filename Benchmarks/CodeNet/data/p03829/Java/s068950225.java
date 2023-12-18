@@ -1,0 +1,15 @@
+import java.util.*;
+public class Main{
+	static Scanner s = new Scanner(System.in);
+	public static void main(String[] args) {
+		long N=s.nextInt(),A=s.nextInt(),B=s.nextInt();
+		int curx=s.nextInt(),x;
+		long sum=0;
+		for(int i=0;i<N-1;i++) {
+			x=s.nextInt();
+			sum+=Math.min((x-curx)*A,B);
+			curx=x;
+		}
+		System.out.println(sum);
+	}
+}

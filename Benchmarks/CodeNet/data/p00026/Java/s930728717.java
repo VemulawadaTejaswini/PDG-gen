@@ -1,0 +1,128 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+class Main {
+
+	// ?????°
+	static final int n = 10;
+
+	// ?????°
+	static final int m = 10;
+
+	// ???????????´????°?
+	static final String INK_SIZE_SMALL = "1";
+
+	// ???????????´??????
+	static final String INK_SIZE_MEDIUM = "2";
+
+	// ???????????´?????§
+	static final String INK_SIZE_LARGE = "3";
+
+	public static void main(String[] args) throws IOException {
+
+		int[][] paper = new int[n][m];
+
+		// 1.?¨?????????????????????????
+		BufferedReader bufferedReader = new BufferedReader(
+				new InputStreamReader(System.in), 1);
+
+		// 2.??????????????????
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			// 2-1.??????????????????
+			String inkSize = line.split(",")[2];
+			int x = Integer.parseInt(line.split(",")[0]);
+			int y = Integer.parseInt(line.split(",")[1]);
+
+			// 2-2.????????????
+			if (INK_SIZE_SMALL.equals(inkSize)) {
+				paper = smallInk(x, y, paper);
+			} else if (INK_SIZE_MEDIUM.equals(inkSize)) {
+				paper = mediumInk(x, y, paper);
+			} else if (INK_SIZE_LARGE.equals(inkSize)) {
+				paper = largeInk(x, y, paper);
+			}
+		}
+
+		// 3.????????????????????????????????°?????????
+		// 4.????????????
+
+		int colorless = 0;
+		int depth = 0;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				// ????????????????????????????????°???????????????
+				if (paper[i][j] == 0) {
+					colorless++;
+				}
+				// ???????????????????????¢???
+				if (depth < paper[i][j]) {
+					depth = paper[i][j];
+				}
+			}
+		}
+		System.out.println(colorless);
+		System.out.println(depth);
+	}
+
+	private static int[][] smallInk(int x, int y, int[][] array) {
+		if (x - 1 >= 0) {
+			array[y][x - 1]++;
+		}
+
+		if (y - 1 >= 0) {
+			array[y - 1][x]++;
+		}
+		array[y][x]++;
+		if (y + 1 < n) {
+			array[y + 1][x]++;
+		}
+
+		if (x + 1 < m) {
+			array[y][x + 1]++;
+		}
+		return array;
+	}
+
+	private static int[][] mediumInk(int x, int y, int[][] array) {
+		array = smallInk(x, y, array);
+		if (y - 1 >= 0) {
+			if (x - 1 >= 0)
+				array[y - 1][x - 1]++;
+			if (x + 1 < m)
+				array[y - 1][x + 1]++;
+		}
+		if (y + 1 < n) {
+			if (x - 1 >= 0)
+				array[y + 1][x - 1]++;
+			if (x + 1 < m)
+				array[y + 1][x + 1]++;
+		}
+
+		return array;
+	}
+
+	private static int[][] largeInk(int x, int y, int[][] array) {
+		array = mediumInk(x, y, array);
+		if (x - 2 >= 0) {
+			array[y][x - 2]++;
+		}
+
+		if (y - 2 >= 0) {
+			array[y - 2][x]++;
+		}
+		if (y + 2 < n) {
+			array[y + 2][x]++;
+		}
+
+		if (x + 2 < m) {
+			array[y][x + 2]++;
+		}
+
+		return array;
+	}
+
+}

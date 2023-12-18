@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int x[] = new int[3];
+		int ans = 0;
+		
+		x[0] = sc.nextInt();
+		x[1] = sc.nextInt();
+		x[2] = sc.nextInt();
+		
+		Arrays.sort(x);
+ 		
+		ans = Integer.parseInt(String.valueOf(x[2])+String.valueOf(x[1])) + x[0];
+		System.out.println(ans);			
+		
+		
+		// 入力
+		/*
+		String S = sc.next();                
+		String T = sc.next();                
+		
+		for (int i = 0; i < S.length(); i++) {
+			if (!S.substring(i,i+1).equals(T.substring(i,i+1))) {
+				if (S.indexOf(T.substring(i,i+1)) == -1) {
+					S = S.replace(S.substring(i,i+1), T.substring(i,i+1));
+				} else {
+					String s = S.substring(0, S.length());
+					StringBuilder sb = new StringBuilder("");
+					for (int j = 0; j < s.length(); j++) {
+						if (s.substring(j, j+1).equals(S.substring(i, i+1))) {
+							sb.append(T.substring(i, i+1));
+						} else if (s.substring(j, j+1).equals(T.substring(i, i+1))) {
+							sb.append(S.substring(i, i+1));							
+						} else {
+							sb.append(s.substring(j, j+1)); 
+						}
+					}
+					S = sb.toString();
+				}
+			}
+		}
+		if(S.equals(T)){
+			System.out.println("Yes");			
+		} else {
+			System.out.println("No");			
+		}
+	*/
+	}	
+}

@@ -1,0 +1,89 @@
+import javax.sound.midi.Soundbank;
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ *
+ * @author rizhiy
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        TaskC solver = new TaskC();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class TaskC {
+        PrintWriter out;
+        InputReader in;
+        int n;
+        void rec(int i, String u, int pr) {
+//            System.out.println(i + " " + pr);
+            if (u.equals("Vacant")) return;
+            System.out.println((i+pr+1)/2);
+            System.out.flush();
+            String p = in.next();
+            if (p.equals(u)){
+//                if (Math.abs(i-pr) <= 1){
+//                    rec(Math.max(i,pr)+1,p,i);
+//                }else
+                    rec((i+pr+1)/2,p,i);
+            } else {
+                if (pr > i)
+                    rec((i+1)/2,p,i);
+                else
+                    rec(Math.min(n-1,i*2),p,i);
+            }
+        }
+
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            n = in.nextInt();
+            this.out = out;
+            this.in = in;
+            System.out.println(0);
+            System.out.flush();
+            rec(n-1, in.next(),0);
+        }
+
+    }
+
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+    }
+}
+

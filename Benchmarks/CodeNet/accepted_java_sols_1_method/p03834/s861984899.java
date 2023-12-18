@@ -1,0 +1,14 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	String[] word = scan.next().split(",");
+	
+	System.out.println(word[0] + ' ' + word[1] + ' ' + word[2]);
+	scan.close();
+    }
+}

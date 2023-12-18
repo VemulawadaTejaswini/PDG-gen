@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main{
+	static final Scanner s=new Scanner(System.in);
+	static int getInt(){
+		return Integer.parseInt(s.next());
+	}
+	public static void main(String[]__){
+		int n=getInt();
+		boolean[]dp=new boolean[114514];
+		dp[0]=true;
+		for(int i=0;i<n;i++) {
+			int v=getInt();
+			for(int j=114513;j>=0;j--) {
+				if(dp[j]&&j+v<114514)
+					dp[j+v]=true;
+			}
+		}
+		for(int i=114513;i>0;i--)
+			if(i%10!=0&&dp[i]) {
+				System.out.println(i);
+				return;
+			}
+		System.out.println(0);
+	}
+}

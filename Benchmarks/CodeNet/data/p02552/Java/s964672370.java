@@ -1,0 +1,1 @@
+class Main{public static void main(String[] s){System.out.println((int)(Math.random()*2));}}

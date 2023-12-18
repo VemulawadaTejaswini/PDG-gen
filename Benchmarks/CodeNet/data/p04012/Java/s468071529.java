@@ -1,0 +1,21 @@
+
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		char[] c = sc.next().toCharArray();
+		int[] occ = new int[26];
+		for (int i = 0; i < c.length; i++)
+			occ[c[i] - 'a']++;
+		for(int i = 0;i < 26;i++)
+			if((occ[i] & 1) != 0){
+				System.out.println("No");
+				return;
+			}
+		System.out.println("Yes");
+	}
+
+}

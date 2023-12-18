@@ -1,0 +1,26 @@
+package SD;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+		int[] score = new int[10];
+		int ave,sum = 0;
+
+		for(int i = 0; i < 5; i++){
+			score[i] = sc.nextInt();
+			if(score[i] < 40){
+				score[i] = 40;
+			}
+			sum = sum+score[i];
+		}
+
+		ave = sum/5;
+		sc.close();
+
+		System.out.println(ave);
+
+	}
+
+}

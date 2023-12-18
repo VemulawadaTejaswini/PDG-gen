@@ -1,0 +1,15 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String line = br.readLine();
+		String a = line.substring(0, 1);
+		String c = line.substring(line.length() - 1);
+		int b = line.length() - 2;
+
+		System.out.println(a + b + c);
+
+	}
+}

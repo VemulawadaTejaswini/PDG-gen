@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		int n=sc.nextInt();
+		int[] a=new int[n];
+		int[] b=new int[n];
+		for(int i=0;i<n;i++){
+			a[i]=sc.nextInt();
+			b[i]=sc.nextInt();
+		}
+		int[] dp=new int[n]; 
+		dp[0]=1;
+		for(int i=1;i<n;i++){
+			int ga;
+			int gb;
+			if(a[i-1]*dp[i-1]%a[i]==0)ga=a[i-1]*dp[i-1]/a[i];
+			else ga=a[i-1]*dp[i-1]/a[i]+1;
+			if(b[i-1]*dp[i-1]%b[i]==0)gb=b[i-1]*dp[i-1]/b[i];
+			else gb=b[i-1]*dp[i-1]/b[i]+1;
+			dp[i]=Math.max(ga,gb);
+		}
+		System.out.println((a[n-1]+b[n-1])*dp[n-1]);
+	}
+}

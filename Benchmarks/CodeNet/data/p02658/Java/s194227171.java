@@ -1,0 +1,24 @@
+import java.util.*;
+ 
+public class Main {
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args){
+        int intN = sc.nextInt();
+        long A[] = new long[intN];
+        long ans =1;
+        for(int i=0; i<intN; i++){
+            A[i] = sc.nextLong();
+            if(A[i]==0){
+                ans=0;
+            }
+        }
+        for(int i=0; i<intN; i++){
+            ans *= A[i];    
+            if(ans >= Math.pow(10,18)){
+                ans = -1;
+            }        
+        }
+        
+        System.out.println(ans);
+    }
+}

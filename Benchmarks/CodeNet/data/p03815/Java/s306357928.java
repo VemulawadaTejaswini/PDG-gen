@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner as = new Scanner(System.in);
+		long n=as.nextLong();
+		long l=0;
+		if(n%11==0){
+			l+=(n/11)*2;
+		}else if(n%11>6){
+			l+=(n/11)*2+2;
+		}else{
+			l+=(n/11)*2+1;
+		}
+		System.out.println(l);
+	}
+}

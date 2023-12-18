@@ -1,0 +1,46 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		long k = sc.nextLong();
+		boolean flag = false;
+		long ans = 0;
+		if(s.length() != 1 && s.charAt(0) == s.charAt(1) && s.charAt(0) == s.charAt(s.length() - 1)) {
+			boolean corner = false;
+			int i = 2;
+			while(i < s.length()) {
+				if(s.charAt(0) != s.charAt(i)) {
+					break;
+				}
+				i++;
+			}
+			if(i % 2 == 0) {
+				if(s.charAt(0) == 'a') {
+					s = 'b' + s.substring(1);
+				} else {
+					s = 'a' + s.substring(1);
+				}
+			}
+		}
+		char front = s.charAt(0);
+		for(int i = 1; i < s.length(); i++) {
+			if(flag) {
+				flag = false;
+			} else if(front == s.charAt(i)) {
+				flag = true;
+				ans++;
+			}
+			front = s.charAt(i);
+		}
+		ans *= k;
+		if(!flag && s.charAt(0) == s.charAt(s.length() - 1)) {
+			ans += k - 1;
+		}
+		System.out.println(ans);
+	}
+
+}

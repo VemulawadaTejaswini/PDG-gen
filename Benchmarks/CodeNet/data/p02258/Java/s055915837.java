@@ -1,0 +1,22 @@
+import java.io.*;
+               
+class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        int[] R = new int[t];
+        int i, j, a;
+               
+        for(i=0; i<t; i++) R[i] = Integer.parseInt(br.readLine());
+        int bnf = R[1] - R[0];
+               
+        for(i=0; i<t-1; i++){
+            for(j=i+1; j<t; j++){
+                a = R[j] - R[i];
+                if(bnf < a) bnf = a;
+            }
+        }
+                
+        System.out.println(bnf);
+    }
+}

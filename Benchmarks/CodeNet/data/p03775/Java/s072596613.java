@@ -1,0 +1,11 @@
+import java.util.*;
+public class Main {
+	static Scanner s = new Scanner(System.in);
+	public static void main(String __[]){
+		long n=s.nextLong(),result=1145141919;
+		for(int i=1;i<=100000;i++)if(n%i==0) {
+			result=Math.min(result, Math.max(i, n/i));
+		}
+		System.out.println(String.valueOf(result).length());
+	}
+}

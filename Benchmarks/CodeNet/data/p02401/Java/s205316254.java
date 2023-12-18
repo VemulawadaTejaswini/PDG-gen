@@ -1,0 +1,26 @@
+import java.util.Scanner;
+ 
+class Main{
+  public static void main(String[] arg){
+    int a, b, ans;
+    String op;
+    Scanner in = new Scanner(System.in);
+    a = in.nextInt();
+    op = in.next();
+    b = in.nextInt();
+
+    if("?".equals(op)){
+        return;
+    }else if("+".equals(op)){
+        ans = a + b;
+    }else if("-".equals(op)){
+        ans = a - b;
+    }else if("*".equals(op)){
+        ans = a * b;
+    }else if("/".equals(op)){
+        ans = a / b;
+    }
+
+    System.out.println(ans);
+  }
+}

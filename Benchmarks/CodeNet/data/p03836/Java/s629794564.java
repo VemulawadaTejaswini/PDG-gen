@@ -1,0 +1,57 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+        int sx = sc.nextInt();
+        int sy = sc.nextInt();
+        int tx = sc.nextInt();
+        int ty = sc.nextInt();
+        
+        int gapx = tx -sx;
+        int gapy = ty -sy;
+        
+        ArrayList<String> list = new ArrayList<String>();
+        
+      	//1週目
+        for(int i = 0; i < gapy; i++){
+            list.add("U");
+        }
+        for(int i = 0; i < gapx; i++){
+            list.add("R");
+        }
+        for(int i = 0; i < gapy; i++){
+            list.add("D");
+        }
+        for(int i = 0; i < gapx; i++){
+            list.add("L");
+        }
+
+        //2週目 
+        list.add("L");
+        for(int i = 0; i < gapy+1; i++){
+            list.add("U");
+        }
+        for(int i = 0; i < gapx+1; i++){
+            list.add("R");
+        }
+        list.add("D");
+        list.add("R");
+        for(int i = 0; i < gapy+1; i++){
+            list.add("D");
+        }
+        for(int i = 0; i < gapx+1; i++){
+            list.add("L");
+        }
+        list.add("U");
+
+        //全要素抽出
+        String route = "";
+      	int num = list.size();
+        for(int i = 0; i < num; i++){
+            route = route + list.get(i);
+        }
+        System.out.print(route);
+    }
+}

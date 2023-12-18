@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int [] v = new int[n];
+        int [] c = new int[n];
+        
+        if(n > 0){
+            for(int i = 0; i<n; i++){
+                v[i] = sc.nextInt();
+            }
+            
+            for(int i = 0; i<n; i++){
+                c[i] = sc.nextInt();
+            }
+            
+            int x = 0;
+            int y = 0;
+            
+            for(int i = 0; i<n; i++){
+                x += v[i];
+                y += c[i];
+            }
+            
+            if((x-y) > 0){
+                System.out.println(x-y);
+            }else{
+                System.out.println(0);
+            }
+        }else{
+            System.out.println(0);
+        }
+    }
+}

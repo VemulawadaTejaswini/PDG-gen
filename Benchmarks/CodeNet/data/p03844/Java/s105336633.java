@@ -1,0 +1,19 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        String[] firstLine = input.readLine().split(" ");
+        long A = Long.parseLong(firstLine[0]);
+        String op = firstLine[1];
+        long B = Long.parseLong(firstLine[2]);
+
+        if (op.equals("+")) {
+            System.out.println(A+B);
+        } else {
+            System.out.println(A-B);
+        }
+    }
+}

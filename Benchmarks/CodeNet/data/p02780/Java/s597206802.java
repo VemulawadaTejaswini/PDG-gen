@@ -1,0 +1,141 @@
+import java.io.*;
+import java.io.IOException;
+import java.util.*;
+
+@SuppressWarnings({"rawtypes", "unchecked"})
+class Main {
+    final static int INF = 1 << 28;
+    final static long LNF = 1L << 60;
+    final static double EPS = 1e-9;
+    final static double GOLDEN_RATIO = (1.0 + Math.sqrt(5)) / 2.0;
+
+    static final long MOD = 1_000_000_007;
+
+    public static void main(String[] args) throws Exception {
+        final MyScanner sc = new MyScanner();
+        long N;
+        N = sc.nextLong();
+        long K;
+        K = sc.nextLong();
+        long[] p = new long[(int)(N)];
+        for(int i = 0 ; i < N ; i++){
+                p[i] = sc.nextLong();
+        }
+        solve(N, K, p);
+    }
+
+    static void solve(long N, long K, long[] p){
+        long sum = 0;
+        long max = 0;
+        int ind = 0;
+
+        for (int i = 0; i < K; i++) {
+           sum += p[i]; 
+        }
+        max = sum;
+
+        for (int i = (int)K; i < p.length; i++) {
+            sum -= p[i-(int)K];
+            sum += p[(int)K];
+            if(max < sum) {
+                max = sum;
+                ind = i - (int)K + 1;
+            }
+        }
+
+        double ans = 0;
+        for (int i = ind; i < K; i++) {
+            ans += (1+p[i])/2;
+        }
+        System.out.println(ans);
+    }
+
+
+    static class MyScanner {
+ 
+        BufferedReader br;
+        StringTokenizer st;
+ 
+        MyScanner(FileReader fileReader) {
+            br = new BufferedReader(fileReader);
+        }
+ 
+        MyScanner() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+ 
+        String nn() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+ 
+        String next() {
+            return nn();
+        }
+
+        String nextLine() {
+            String ans = "";
+            try {
+                ans = br.readLine();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            return ans;
+        }
+ 
+        char nextChar() {
+            return nn().charAt(0);
+        }
+ 
+        int nextInt() {
+            return Integer.parseInt(nn());
+        }
+ 
+        long nextLong() {
+            return Long.parseLong(nn());
+        }
+ 
+        double nextDouble() {
+            return Double.parseDouble(nn());
+        }
+ 
+        Integer[] niArr0(int n) {
+            Integer[] ar = new Integer[n];
+            for (int i = 0; i < n; i++) {
+                ar[i] = nextInt();
+            }
+            return ar;
+        }
+ 
+        Integer[] niArr1(int n) {
+            Integer[] ar = new Integer[n + 1];
+            for (int i = 1; i <= n; i++) {
+                ar[i] = nextInt();
+            }
+            return ar;
+        }
+ 
+        Long[] nlArr0(int n) {
+            Long[] ar = new Long[n];
+            for (int i = 0; i < n; i++) {
+                ar[i] = nextLong();
+            }
+            return ar;
+        }
+ 
+        Long[] nlArr1(int n) {
+            Long[] ar = new Long[n + 1];
+            for (int i = 1; i <= n; i++) {
+                ar[i] = nextLong();
+            }
+            return ar;
+        }
+    }
+
+}

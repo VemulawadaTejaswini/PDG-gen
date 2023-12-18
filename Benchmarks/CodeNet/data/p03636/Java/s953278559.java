@@ -1,0 +1,14 @@
+import java.util.*;
+public class i18n {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		char head = str.charAt(0);
+		int body = str.length() - 2;
+		char leg = str.charAt(body+1);
+		System.out.print(head);
+		System.out.print(body);
+		System.out.println(leg);
+	}
+}

@@ -1,0 +1,21 @@
+import java.util.*;
+
+
+class Test
+{
+	public static void main (String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int d = sc.nextInt();
+	    int t = sc.nextInt();
+	    int s = sc.nextInt();
+	    
+	    int time = d/s;
+	    
+	    if(time <= t)
+	      System.out.println("Yes");
+	    else
+	      System.out.println("No");
+		
+	}
+}

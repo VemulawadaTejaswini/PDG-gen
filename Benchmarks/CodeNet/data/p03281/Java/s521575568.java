@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int N = scanner.nextInt();
+		int count = 0;
+		int sum = 1;
+		
+		for (int j = 106; j <= N; j++) {
+			for (int i = 1; i <= j; i++) {
+				if (j % i == 0) {
+					count++;
+				}
+			}
+			
+			if (count == 8) {
+				sum++;
+			}
+			count = 0;
+		}
+		System.out.println(sum);
+		scanner.close();
+	}
+}

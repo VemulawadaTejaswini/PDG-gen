@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main{
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		
+		int S [] = new int [N];
+		for (int i=0; i<N; i++)
+			S[i]=sc.nextInt();
+		
+		
+		int temp =0;
+		int ans = 1000000000;
+		
+		for (int i=0; i<N-K; i++){
+			int min = S[i];
+			int max = S[i+K-1];
+			
+			if (min<0 && max>0)
+				temp = Math.min(2*(-min)+max, (-min)+2*max);
+			
+			else
+				temp = Math.max(-min, max);
+			ans = Math.min(ans, temp);
+		}
+		if (N-K!=0)
+			System.out.println(ans);
+		
+		else {
+			int min = S[0];
+			int max = S[N-1];
+			if (min<0 && max>0)
+				System.out.println(Math.min(2*(-min)+max, (-min)+2*max));
+			
+			else
+				System.out.println(Math.max(-min, max));
+		}
+		sc.close();
+		
+		
+	}
+
+}

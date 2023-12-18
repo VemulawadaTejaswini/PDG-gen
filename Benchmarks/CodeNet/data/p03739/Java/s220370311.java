@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		long[] a = new long[n];
+		
+		for(int i = 0; i < n; i++) {
+			a[i] = sc.nextLong();
+		}
+		
+		long sum = a[0];
+		long x = 0;
+		
+		if(a[0] == 0) {
+			if(a[1] >= 0) {
+				sum = -1;
+				x++;
+			} else {
+				sum = 1;
+				x++;
+			}
+		}
+		
+		long count = 0;
+		
+		for(int i = 1; i < n; i++) {
+			sum += a[i];
+			if((sum - a[i]) * a[i] < 0) {
+				if(Math.abs(a[i]) - Math.abs(sum - a[i]) < 0) {
+					if(sum - a[i] < 0) {
+						count = Math.abs(sum - a[i]) - Math.abs(a[i]) + 1;
+					} else {
+						count = -1 * (Math.abs(sum - a[i]) - Math.abs(a[i]) + 1);
+					}
+					sum -= a[i];
+					a[i] += count;
+					sum += a[i];
+					x += Math.abs(count);
+				} else if(Math.abs(a[i]) - Math.abs(sum - a[i]) == 0) {
+					if(a[i] > 0) {
+						count = 1;
+					} else {
+						count = -1;
+					}
+					sum -= a[i];
+					a[i] += count;
+					sum += a[i];
+					x += Math.abs(count);
+				}
+			} else if((sum - a[i]) * a[i] > 0) {
+				if(a[i] < 0) {
+					count = -a[i] + 1;
+				} else if(a[i] > 0) {
+					count = -a[i] - 1;
+				} else {
+					if(sum < 0) {
+						count = sum + 1;
+					} else {
+						count = -sum - 1;
+					}
+				}
+				sum -= a[i];
+				a[i] += count;
+				sum += a[i];
+				x += Math.abs(count);
+			} else {
+				if(sum - a[i] < 0) {
+					count = -(sum - a[i]) + 1;
+				} else {
+					count = -(sum - a[i]) - 1;
+				}
+				sum -= a[i];
+				a[i] += count;
+				sum += a[i];
+				x += Math.abs(count);				
+			}
+		}
+		System.out.println(x);
+	}
+}

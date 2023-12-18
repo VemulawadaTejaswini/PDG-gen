@@ -1,0 +1,21 @@
+import java.util.Scanner;
+ 
+public class Main {
+ 
+	public static void main(String[] args){
+		
+		Scanner input = new Scanner(System.in);
+		long N = input.nextInt();
+        long D = input.nextInt();
+        long remain = (long)(2 * Math.pow(10,9)) * 2;
+        a:for (long i = N; i < D; i++) {
+            for (long j = i + 1; j <= D; j++) {
+                if((i*j)%2019 < remain)
+                    remain = (i*j)%2019;
+                if(remain == 0)
+                    break a;
+            }
+        }
+		System.out.println(remain);
+	}
+}

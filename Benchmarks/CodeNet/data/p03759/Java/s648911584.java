@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int a = in.nextInt(), b = in.nextInt(), c = in.nextInt();
+		if (Math.abs(a - b) == Math.abs(b - c)) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+		}
+	}
+
+}

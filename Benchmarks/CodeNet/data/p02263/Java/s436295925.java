@@ -1,0 +1,61 @@
+package aoj;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class RoundRobinScheduling {
+
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] firstRow = br.readLine().split("\\s");
+
+        // 要素数
+        int elementNum = Integer.parseInt(firstRow[0]);
+        // 減算する値
+        int quantum = Integer.parseInt(firstRow[1]);
+
+       
+        Queue<Process> que = new LinkedList<Process>();
+        for (int i = 0; i < elementNum; i++) {
+            String[] stringArray = br.readLine().split("\\s");
+            Process process = new Process(stringArray[0],
+                    Integer.parseInt(stringArray[1]));
+            que.offer(process);
+        }
+
+        // 処理合計時間
+        int resultTime = 0;
+        while (que.size() > 0) {
+            Process process = que.poll();
+            // 合計処理時間として加算
+            resultTime += quantum;
+            // 処理時間を減算する
+            if ((process.processTime = process.processTime - quantum) > 0) {
+               
+                que.offer(process);
+                continue; 
+            }
+           
+            resultTime += process.processTime;
+           
+            System.out.println(process.name + " " + resultTime);
+        }
+
+    }  
+     // Process管理クラス
+     
+    private final static class Process {
+        // めんどいからpublicに。。。
+        public String name = null;
+        public int processTime = 0;
+
+        public Process(String name, int processTime) {
+            this.name = name;
+            this.processTime = processTime;
+        }
+    }
+}
+

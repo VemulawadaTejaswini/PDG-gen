@@ -1,0 +1,24 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String args[]) {
+	int N = scan.nextInt();
+	int T = scan.nextInt();
+	int[] t = new int[N];
+	for(int i=0; i<N; i++) {
+	    t[i] = scan.nextInt();
+	}
+
+	int ans = t[N-1] - t[0] + T;
+	for(int i=1; i<N; i++) {
+	    int delta = t[i] - t[i-1] - T;
+	    ans = ans - ( delta > 0 ? delta : 0);
+	}
+	System.out.println(ans);
+	scan.close();
+    }
+}

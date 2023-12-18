@@ -1,0 +1,121 @@
+import java.util.*;
+
+import java.lang.*;
+
+import java.math.*;
+
+
+
+public class Main {
+
+	Scanner sc = new Scanner(System.in);
+
+
+
+	class rect {
+
+		double xa;
+
+		double ya;
+
+		double xb;
+
+		double yb;
+
+
+
+		rect(double xa, double ya, double xb, double yb) {
+
+			this.xa = xa;
+
+			this.xb = xb;
+
+			this.ya = ya;
+
+			this.yb = yb;
+
+		}
+
+
+
+		boolean in(double x, double y) {
+
+			if ((xa - x) * (xb - x) <= 0)
+
+				if ((ya - y) * (yb - y) <= 0)
+
+					return true;
+
+			return false;
+
+		}
+
+	}
+
+
+
+	void run() {
+
+		for (; sc.hasNextDouble();) {
+
+			double xa = sc.nextDouble();
+
+			double ya = sc.nextDouble();
+
+			double xb = sc.nextDouble();
+
+			double yb = sc.nextDouble();
+
+			rect a = new rect(xa, ya, xb, yb);
+
+			xa = sc.nextDouble();
+
+			ya = sc.nextDouble();
+
+			xb = sc.nextDouble();
+
+			yb = sc.nextDouble();
+
+			rect b = new rect(xa, ya, xb, yb);
+
+			boolean in = false;
+
+			in |= a.in(b.xa, b.ya);
+
+			in |= a.in(b.xb, b.yb);
+
+			in |= a.in(b.xa, b.yb);
+
+			in |= a.in(b.xb, b.ya);
+
+			in |= a.in((b.xa+b.xb)/2, (b.ya+b.yb)/2);
+
+			in |= b.in(a.xa, a.ya);
+
+			in |= b.in(a.xb, a.yb);
+
+			in |= b.in(a.xa, a.yb);
+
+			in |= b.in(a.xb, a.ya);
+
+			in |= b.in((a.xa+a.xb)/2, (a.ya+a.yb)/2);			
+
+			System.out.println(in?"YES":"NO");
+
+		}
+
+	}
+
+
+
+	public static void main(String[] args) {
+
+		Main m = new Main();
+
+		m.run();
+
+
+
+	}
+
+}

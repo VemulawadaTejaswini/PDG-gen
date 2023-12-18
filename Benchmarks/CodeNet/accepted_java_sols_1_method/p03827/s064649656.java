@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		String s = sc.next();
+		int max = 0;
+		int sum = 0;
+		for(int i = 0; i < n; i++){
+			if(s.charAt(i)== 'I'){
+				sum += 1;
+			}else if(s.charAt(i)== 'D'){
+				sum -= 1;
+			}
+		    max = Math.max(max, sum);
+	    }
+	    System.out.println(max);
+	}
+}

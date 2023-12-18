@@ -1,0 +1,165 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+
+public class Main {
+
+
+    public static void main(String[] args) throws IOException {
+        new Main().run();
+    }
+
+    void run() {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] array = new int[n];
+
+        for(int i=0; i<n; i++){
+            array[i] = sc.nextInt();
+        }
+
+        int iSum = 0;
+        int jSum = 0;
+        int kSum = 0;
+        int lSum = 0;
+
+        int ans = 10000;
+
+        for(int i=0; i<n-3; i++){
+            int iFlug=i;
+            while(iFlug != 0){
+                iSum += array[iFlug];
+                iFlug--;
+            }
+            for(int j=i; j<n-2; j++){
+                int jFlug=j;
+                while(jFlug != i){
+                    jSum += array[jFlug];
+                    jFlug--;
+                }
+                for(int k=j; k<n-1; k++){
+                    int kFlug=k;
+                    while(kFlug != j){
+                        kSum += array[kFlug];
+                        kFlug--;
+                    }
+                    for(int l=k; l<n; l++){
+                        int lFlug=l;
+                        while(lFlug != k){
+                            lSum += array[lFlug];
+                            lFlug--;
+                        }
+
+                        int max = 0;
+                        int min = 10000;
+
+                        max = Math.max(iSum, jSum);
+                        max = Math.max(max, kSum);
+                        max = Math.max(max, lSum);
+
+                        min = Math.min(iSum, jSum);
+                        min = Math.min(min, kSum);
+                        min = Math.min(min, lSum);
+
+                        int abs = max - min;
+
+                        System.out.println(abs);
+
+                        if(abs < ans){
+                            ans = abs;
+                        }
+                        lSum = 0;
+                    }
+                    kSum = 0;
+                }
+                jSum = 0;
+
+            }
+            iSum = 0;
+
+        }
+
+
+        System.out.println(ans);
+
+    }
+
+//    void dfs(int from, List<Integer> list, boolean[] reachedNodes){
+////        System.out.println(eachCount);
+//        int eachCount = 0;
+//        for(boolean b: reachedNodes){
+//            if(b){
+//                eachCount++;
+//            }
+//        }
+//        if(eachCount == N){
+//            count++;
+//            return;
+//        }
+////
+//        for(int i: list){
+//            if(reachedNodes[i]){
+//                continue;
+//            }
+//            reachedNodes[i] = true;
+////            System.out.println(String.format("%s %s", from+1, i+1));
+//            dfs(i, map.get(i), reachedNodes);
+//            reachedNodes[i] = false;
+//        }
+//    }
+
+//    void dfs(int from, List<Integer> toList, boolean[] eachReachedNode, boolean[][] threwEdge, boolean countedFlug) {
+//
+//        reachedNode[from] = true;
+//        eachReachedNode[from] = true;
+//
+//        for (int i : toList) {
+//            if ((threwEdge[from][i] || threwEdge[i][from])) {
+//                continue;
+//            } else if(eachReachedNode[i] && !countedFlug){
+////                System.out.println(String.format("%s %s", from , i));
+//                count++;
+//                countedFlug = true;
+//                threwEdge[from][i] = true;
+//                threwEdge[i][from] = true;
+////                return;
+//            } else {
+//                if(map.get(i) == null){
+//                    return;
+//                } else {
+//                    threwEdge[from][i] = true;
+//                    threwEdge[i][from] = true;
+//                    dfs(i, map.get(i), eachReachedNode, threwEdge, countedFlug);
+//                }
+//            }
+//        }
+//    }
+//    void dfs(int from, int to) {
+//
+//        if (from > 100 || to > 100 || reachedArray[from][to]) {
+//            return;
+//        }
+//
+//        reachedArray[from][to] = true;
+//
+//        if (hasArray[from][to]) {
+//            count++;
+//        }
+//        dfs(to, to + 1);
+//        dfs(to + 1, to);
+//    }
+}
+
+
+//class Gcd {
+//    public static int gcd(int a, int b){
+//        if (b == 0) return a;
+//        return gcd(b, a % b);
+//    }
+//
+//    public static int lcm(int a, int b){
+//        return a * b / gcd(a, b);
+//    }
+//}

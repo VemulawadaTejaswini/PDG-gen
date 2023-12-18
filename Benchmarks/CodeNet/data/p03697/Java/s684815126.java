@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+
+		int x = scan.nextInt();
+		int y = scan.nextInt();
+   
+		if(x+y <10){
+			System.out.println(x+y);
+		} else if(x+y>=10){
+			System.out.println("error");
+		}
+	}
+
+}

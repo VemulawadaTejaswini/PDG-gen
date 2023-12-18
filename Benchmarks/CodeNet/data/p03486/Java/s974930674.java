@@ -1,0 +1,82 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // 標準入力
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(isr);
+            char sArr[] = makeCharArr(br.readLine());
+            sArr = charSortAsc(sArr);
+            char tArr[] = makeCharArr(br.readLine());
+            tArr = charSortDesc(tArr);
+            int length;
+            String longStr = "";
+            if (sArr.length > tArr.length) {
+                length = tArr.length;
+                longStr = "s";
+            } else {
+                length = sArr.length;
+                longStr = "t";
+            }
+            String ans = "";
+            for (int i = 0; i < length; i++) {
+                char s = sArr[i];
+                char t = tArr[i];
+                if (t > s) {
+                    ans = "Yes";
+                    break;
+                } else {
+                    ans = "No";
+                    break;
+                }
+            }
+            if ("".equals(ans)) {
+                if ("t".equals(longStr)) {
+                    ans = "Yes";
+                } else {
+                    ans = "No";
+                }
+            }
+            System.out.println(ans);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static char[] makeCharArr(String str) {
+        char charArr[] = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            charArr[i] = str.charAt(i);
+        }
+        return charArr;
+    }
+
+    public static char[] charSortAsc(char charArr[]) {
+        for (int i = 0; i < charArr.length - 1; i++) {
+            for (int j = 1; j < charArr.length; j++) {
+                if (charArr[i] > charArr[j]) {
+                    char tmp = charArr[i];
+                    charArr[i] = charArr[j];
+                    charArr[j] = tmp;
+                }
+            }
+        }
+        return charArr;
+    }
+
+    public static char[] charSortDesc(char charArr[]) {
+        for (int i = 0; i < charArr.length - 1; i++) {
+            for (int j = 1; j < charArr.length; j++) {
+                if (charArr[i] < charArr[j]) {
+                    char tmp = charArr[i];
+                    charArr[i] = charArr[j];
+                    charArr[j] = tmp;
+                }
+            }
+        }
+        return charArr;
+    }
+}

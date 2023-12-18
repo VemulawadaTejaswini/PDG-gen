@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner scanner = new Scanner(System.in);
+
+       		String initailString = scanner.nextLine();
+		String[] strStdIn = initailString.split(" ", 0);
+		int verticalNum = Integer.parseInt(strStdIn[0]);
+
+		String[] strPixel = new String[verticalNum];
+
+		for (int i=0; i < verticalNum; i++) {
+			strPixel[i] = scanner.nextLine();
+		}
+
+		for (int m=0; m < verticalNum; m++) {
+			System.out.println(strPixel[m]);
+		}
+
+		for (int n=0; n < verticalNum; n++) {
+			System.out.println(strPixel[n]);
+		}
+	}
+}

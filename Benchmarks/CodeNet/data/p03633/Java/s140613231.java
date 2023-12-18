@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+/**
+ * https://beta.atcoder.jp/contests/abc070/tasks/abc070_c
+ */
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		final int N = sc.nextInt();
+		long[] time = new long[N];
+		for(int i=0; i<N; i++)  time[i] = sc.nextLong();
+		sc.close();
+		
+		long ans = time[0];
+		for(int i=1; i<N; i++){
+			ans = (ans/getGcd(ans,time[i]))*time[i];
+		}
+		
+		System.out.println(ans);
+
+	}
+	
+	private static long getGcd(long a, long b){
+	    while (b > 0)
+	    {
+	        long temp = b;
+	        b = a % b;
+	        a = temp;
+	    }
+	    return a;
+	}
+
+}

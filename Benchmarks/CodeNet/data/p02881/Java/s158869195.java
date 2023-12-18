@@ -1,0 +1,25 @@
+
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		long n=sc.nextLong();
+		long x=1;
+		long y=n;
+		long h=n;
+		for(long i=1;i<h/2;i++) {
+
+			if(n%i==0) {
+				x=i;
+				y=n/i;
+			}
+			h=n/i;
+
+		}
+
+		System.out.println(x-1+y-1);
+
+	}
+
+}

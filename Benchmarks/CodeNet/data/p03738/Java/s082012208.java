@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Tester {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+
+		String s1 = in.next();
+		String s2 = in.next();
+		in.close();
+
+		if(s1.length() > s2.length()) {
+			System.out.println("Greater");
+		} else if(s1.length() < s2.length()) {
+			System.out.println("LESS");
+		}
+
+		else if(s1.compareTo(s2) > 0) {
+			System.out.println("Greater");
+		} else if(s1.compareTo(s2) < 0) {
+			System.out.println("LESS");
+		} else {
+			System.out.println("EQUAL");
+		}
+	}
+}

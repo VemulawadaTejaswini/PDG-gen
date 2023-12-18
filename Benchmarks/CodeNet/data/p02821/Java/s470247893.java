@@ -1,0 +1,487 @@
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+public class Main {
+
+    static void solve() {
+        // 参考サイト
+        // http://kmjp.hatenablog.jp/entry/2019/12/30/0900
+        // 公式解説
+        // https://img.atcoder.jp/abc149/editorial.pdf
+        //
+        // まず、増える幸福度が、ある定数 X 以上になる握手の方法が何通りあるか、を求めることを考えま
+        // す。左手で握手する人を先に決めたとき、右手で握手できる人が何人いるかは累積和を用いることで
+        // O(1) で求まるのでトータルで O(N) で計算できます。
+        // 後は、X を二分探索することで、M 通り以上の握手ができる最小の X が求まるので、もう一度累
+        // 積和を用いて最終的な幸福度が計算できます。時間計算量は O(NlogN) です。
+
+        // 1. 入力の読み込み O(n)
+        // 2. sort（昇順） O(nlogn)
+        // 3. 累積和(?)の作成 ⇒ x以上の幸福度のパワーの数の配列 num[int]= intの作成 O(n)
+        // 4. 増える幸福度を下限としてXを仮決めした時の握手の総数 O(n)
+        // 5. 4.を利用して二分探索し、M回以上の握手をする時のXを決定.
+        // 6. 結果の算出
+        // 6-1. 個数の累積和 -> ex) 3以上の数の個数 (手順3と同じ)
+        // 6-2. 合計の累積和 -> ex) 3以下の数の合計
+        // 6-3. 6-1,6-2を使用し、合計を算出したあと、足し過ぎの部分を減産する -> (sum-M) * X
+
+        final int MAX = 1_00_000;
+
+        // 1. 入力の読み込み O(n)
+        int n = nextInt();
+        int m = nextInt();
+//        int[] a = nextIntArray(n);
+        List<Integer> a = nextIntList(n);
+
+        // 2. sort（昇順） O(nlogn)
+        sort(a);
+//        sortDesc(a);
+
+        // 3. 累積和(?)の作成 ⇒ x以上の幸福度のパワーの数の配列 num[int]= intの作成 O(n)
+        int[] num = new int[MAX + 1];
+        int counter = 0;
+        int index = n - 1;
+        for (int i = MAX; i >= 0; i--) {
+            while (true) {
+                if (index >= 0 && a.get(index) == i) {
+                    counter++;
+                    index--;
+                } else {
+                    break;
+                }
+            }
+            num[i] = counter;
+        }
+        debug(a.toString());
+        for (int i = 0; i < 40; i++) {
+            debug(i + ":" + num[i]);
+        }
+
+        // 4. 増える幸福度を下限としてXを仮決めした時の握手の総数 O(n)
+        // 5. 4.を利用して二分探索し、M回以上の握手をする時のXを決定.
+        int min = 0;
+        int max = MAX * 2;
+        while (true) {
+            int mid = (min + max) / 2;
+            if (cal(a, num, mid) < m) {
+                max = mid;
+            } else {
+                min = mid;
+            }
+            debug("min=" + min + ", mid=" + mid + ", max=" + max);
+            if ((max - min) <= 1)
+                break;
+        }
+        int x = min;
+        debug("X=" + x);
+
+        // 6. 結果の算出
+        // 6-1. 個数の累積和 -> ex) 3以上の数の個数 (手順3と同じ)
+        // 6-2. 合計の累積和 -> ex) 3以下の数の合計
+        // 6-3. 6-1,6-2を使用し、合計を算出したあと、足し過ぎの部分を減産する -> (sum-M) * X
+
+        // x以上となった組み合わせの個数
+        int num2 = cal(a, num, x);
+        debug("num2=" + num2);
+
+        // sum[i] : i以上のa[i]の合計値
+        int[] sum = new int[MAX + 1];
+        index = n - 1;
+        for (int i = MAX; i >= 0; i--) {
+            if (i < MAX)
+                sum[i] = sum[i + 1];
+
+            while (true) {
+                if (index >= 0 && a.get(index) == i) {
+                    index--;
+                    sum[i] += i;
+                } else {
+                    break;
+                }
+            }
+        }
+        debug(a.toString());
+        for (int i = 0; i < 40; i++) {
+            debug(i + ":" + sum[i]);
+        }
+
+        int ans = 0;
+        for (int i : a) {
+            int secondA = Math.max(0, x - i);
+            ans += i * num[secondA];
+            ans += sum[secondA];
+        }
+        // Mより多い分を減算
+//        debug("" + (num2 - m));
+        ans -= (num2 - m) * x;
+        out.println(ans);
+    }
+
+    static int cal(List<Integer> a, int[] num, int mid) {
+        int ret = 0;
+        for (int i : a) {
+            if (mid - i < 0) {
+                ret += a.size();
+            } else {
+                ret += num[mid - i];
+            }
+        }
+        return ret;
+    }
+
+    static int cal2(List<Integer> a, int[] num, int mid) {
+        int ret = 0;
+        for (int i : a) {
+            for (int j : a) {
+                if (i + j >= mid) {
+                    ret++;
+                }
+            }
+        }
+        return ret;
+    }
+
+    static final int MOD = 1_000_000_007;
+    static long[] fac, finv, inv;
+
+    // 階乗(n!)
+    static long factorial(long n) {
+        long ans = 1;
+        for (long i = n; i > 0; i--) {
+            ans = ans * i % MOD;
+        }
+        return ans;
+    }
+
+    // nCkの初期化
+    static void comInit(int max) {
+        fac = new long[max];
+        finv = new long[max];
+        inv = new long[max];
+        fac[0] = fac[1] = 1;
+        finv[0] = finv[1] = 1;
+        inv[1] = 1;
+
+        for (int i = 2; i < max; i++) {
+            fac[i] = fac[i - 1] * i % MOD;
+            inv[i] = MOD - inv[MOD % i] * (MOD / i) % MOD;
+            finv[i] = finv[i - 1] * inv[i] % MOD;
+        }
+    }
+
+    // nCkの計算
+    static long com(int n, int k) {
+        if (n < k)
+            return 0;
+        if (n < 0 || k < 0)
+            return 0;
+        return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD;
+    }
+
+    static Map<Integer, List<Integer>> primeFactors = new HashMap<>();
+
+    // 素因数分解
+    static List<Integer> primeFactorize(int n) {
+        if (primeFactors.containsKey(n))
+            return primeFactors.get(n);
+
+        List<Integer> list = new ArrayList<>();
+        if (n % 2 == 0) {
+            list.addAll(primeFactorize(n / 2));
+            list.add(2);
+        } else {
+            boolean ok = true;
+            for (int j = 3; j * j <= n; j += 2) {
+                if (n % j == 0) {
+                    list.addAll(primeFactorize(n / j));
+                    list.addAll(primeFactorize(j));
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                if (n != 1)
+                    list.add(n);
+            }
+        }
+
+        primeFactors.put(n, Collections.unmodifiableList(list));
+        return list;
+    }
+
+    // 2〜nまでの数値を素因数分解したmapを返す.
+    // map: 数値 -> (素因数)
+    // ex)
+    // 2 -> (2)
+    // 4 -> (2,2)
+    // 12 -> (2,2,3)
+    @Deprecated // primeFactorizeを使うべき
+    static Map<Integer, List<Integer>> primeFactorizeTo(int n) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 2; i <= n; i++) {
+            List<Integer> list = new ArrayList<>();
+            int tmp = i;
+            for (int j = i - 1; j > 1; j--) {
+                if (tmp % j == 0) {
+                    if (map.containsKey(j)) {
+                        list.addAll(map.get(j));
+                    } else {
+                        list.add(j);
+                    }
+                    tmp /= j;
+                }
+            }
+            if (tmp != 1)
+                list.add(tmp);
+            map.put(i, list);
+        }
+        return map;
+    }
+
+    static PrintWriter out;
+    static Scanner sc;
+    static boolean debugEnabled;
+    static long start;
+    static long end;
+
+    static int[][] newIntArray(int h, int w, int value) {
+        int[][] ret = new int[h][w];
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                ret[i][j] = value;
+            }
+        }
+        return ret;
+    }
+
+    static int nextInt() {
+        return Integer.parseInt(sc.next());
+    }
+
+    static long nextLong() {
+        return Long.parseLong(sc.next());
+    }
+
+    static String nextString() {
+        return sc.next();
+    }
+
+    static int[] nextIntArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = nextInt();
+        }
+        return a;
+    }
+
+    static long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = nextLong();
+        }
+        return a;
+    }
+
+    static List<Integer> nextIntList(int n) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(nextInt());
+        }
+        return list;
+    }
+
+    static List<Double> nextDoubleList(int n) {
+        List<Double> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add((double) nextInt());
+        }
+        return list;
+    }
+
+    static List<Long> nextLongList(int n) {
+        List<Long> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(nextLong());
+        }
+        return list;
+    }
+
+    static char[][] nextCharArray(int h, int w) {
+        char[][] c = new char[h][w];
+        for (int i = 0; i < h; i++) {
+            String str = nextString();
+            for (int j = 0; j < w; j++) {
+                c[i][j] = str.charAt(j);
+            }
+        }
+        return c;
+    }
+
+    // 昇順
+    static <T extends Comparable<? super T>> List<T> sort(List<T> list) {
+        return sortAsc(list);
+    }
+
+    // 昇順
+    static <T extends Comparable<? super T>> List<T> sortAsc(List<T> list) {
+        Collections.sort(list);
+        return list;
+    }
+
+    // 降順
+    static <T extends Comparable<? super T>> List<T> sortDesc(List<T> list) {
+        Collections.sort(list, (e1, e2) -> e2.compareTo(e1));
+        return list;
+    }
+
+    // greatest common divisor
+    // 最大公約数
+    static long gcd(long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+    // least common multiple
+    // 最小公倍数
+    static long lcm(long a, long b) {
+        if (a > b) {
+            return (a / gcd(a, b)) * b;
+        } else {
+            return (b / gcd(a, b)) * a;
+        }
+    }
+
+    // least common multiple
+    // 最小公倍数
+    // 素因数分解されたListを引数とした場合
+    static List<Integer> lcm(List<Integer> a, List<Integer> b) {
+        List<Integer> ret = new ArrayList<>(a);
+        List<Integer> tmp = new ArrayList<>(b);
+        for (Integer i : a) {
+            if (tmp.contains(i))
+                tmp.remove(i);
+        }
+        ret.addAll(tmp);
+        return ret;
+    }
+
+    // baseのn乗を計算を返す
+    static int pow(int base, int n) {
+        int ret = 1;
+        for (int i = 0; i < n; i++) {
+            ret *= base;
+        }
+        return ret;
+    }
+
+    // return n^k mod m
+    static long powMod(long n, long k, long m) {
+        if (k == 0) {
+            return 1;
+        } else if (k % 2 == 1) {
+            return powMod(n, k - 1, m) * n % m;
+        } else {
+            long tmp = powMod(n, k / 2, m);
+            return tmp * tmp % m;
+        }
+    }
+
+    // intをlength桁のbit文字列に変換
+    static String toBitString(int length, int n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = length - 1; i >= 0; i--) {
+            if ((n >> i) % 2 == 1) {
+                sb.append("1");
+            } else {
+                sb.append("0");
+            }
+        }
+        return sb.toString();
+    }
+
+    static void setDebugEnabled() {
+        String className = new Object() {
+        }.getClass().getEnclosingClass().getSimpleName();
+
+        if (!className.equals("Main"))
+            debugEnabled = true;
+    }
+
+    static void debug(String msg) {
+        if (debugEnabled)
+            System.err.println(msg);
+    }
+
+    static void debug(Supplier<String> msg) {
+        if (debugEnabled)
+            System.err.println(msg.get());
+    }
+
+    static class UnionFind {
+        int[] parent;
+
+        UnionFind(int n) {
+            parent = new int[n];
+            init();
+        }
+
+        void init() {
+            for (int i = 0; i < parent.length; i++) {
+                parent[i] = i;
+            }
+        }
+
+        int getRoot(int i) {
+            if (parent[i] == i) {
+                return i;
+            } else {
+                return parent[i] = getRoot(parent[i]);
+            }
+        }
+
+        boolean isSame(int x, int y) {
+            return getRoot(x) == getRoot(y);
+        }
+
+        void unit(int x, int y) {
+            x = getRoot(x);
+            y = getRoot(y);
+            if (x != y) {
+                parent[x] = y;
+            }
+
+        }
+    }
+
+    public static void main(String[] args) {
+        preProcess();
+        // System.exit(0)で終了した場合も、解答を出力するためにはshutdown hookの設定が必要
+        // しかし、これを有効化すると100[msec]程度処理時間が長くなる
+        // Runtime.getRuntime().addShutdownHook(new Thread(() -> postProcess()));
+        solve();
+        postProcess();
+    }
+
+    static void preProcess() {
+        start = System.nanoTime();
+        setDebugEnabled();
+        out = new PrintWriter(System.out);
+        sc = new Scanner(System.in);
+    }
+
+    static void postProcess() {
+        out.flush();
+        sc.close();
+        end = System.nanoTime();
+        debug(() -> "elapsed time: " + (end - start) / 1_000_000 + "[msec]");
+    }
+
+}

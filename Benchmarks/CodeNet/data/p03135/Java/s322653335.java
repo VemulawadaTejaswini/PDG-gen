@@ -1,0 +1,12 @@
+import java.io.*;
+import java.util.*;
+
+Class EntranceExam {
+	public static void main(String args[]) {
+    	Scanner sc = new Scanner(System.in());	
+	    int t = sc.nextInt();
+      	int x = sc.nextInt();
+      	Double res = t/x;
+      	System.out.println(res);
+    }
+}

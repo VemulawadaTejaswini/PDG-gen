@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Printer pr = new Printer(System.out);
+
+		char[] s = sc.next().toCharArray();
+		int n = s.length;
+
+		Deque<Character> q = new ArrayDeque<>();
+		for (int i = 0; i < n; i++) {
+			if (s[i] == 'B') {
+				if (q.size() > 0) {
+					q.removeLast();
+				}
+			} else {
+				q.add(s[i]);
+			}
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (Character ch : q) {
+			sb.append(ch);
+		}
+
+		pr.println(sb);
+
+		pr.close();
+		sc.close();
+	}
+
+	private static class Printer extends PrintWriter {
+		Printer(PrintStream out) {
+			super(out);
+		}
+	}
+}

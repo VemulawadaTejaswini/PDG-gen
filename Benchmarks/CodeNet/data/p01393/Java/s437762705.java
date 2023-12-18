@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+	static int N, K;
+	static double[][] a;
+
+	public static void main(String[] args) {
+		N = sc.nextInt();
+		K = sc.nextInt();
+		a = new double[N][2];
+		for (int i = 0; i < N; ++i) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			int r = sc.nextInt();
+			double angle = Math.atan2(y, x);
+			double diff = Math.asin(r / Math.sqrt(x * x + y * y));
+			a[i][0] = Math.max(angle - diff, 0);
+			a[i][1] = Math.min(angle + diff, Math.PI);
+		}
+		ArrayList<Range> ranges = new ArrayList<Range>();
+		for (int i = 0; i < N; ++i) {
+			boolean ok = true;
+			for (int j = 0; j < N; ++j) {
+				if (a[i][0] > a[j][0] && a[i][1] < a[j][1]) {
+					ok = false;
+					break;
+				}
+			}
+			if (ok) ranges.add(new Range(a[i][0], a[i][1]));
+		}
+		Collections.sort(ranges);
+		double[][] dp1 = new double[N][K + 1];
+		double[][] dp2 = new double[N][K + 1];
+		for (int i = 0; i < N; ++i) {
+			Arrays.fill(dp1[i], -1);
+			Arrays.fill(dp2[i], -1);
+			dp1[i][0] = dp2[i][0] = 0;
+		}
+		dp1[0][1] = dp2[0][1] = ranges.get(0).length();
+		for (int i = 1; i < N; ++i) {
+			int prev = i;
+			for (int j = i - 1; j >= 0; --j) {
+				if (ranges.get(j).e < ranges.get(i).s) break;
+				prev = j;
+			}
+			if (prev != i) {
+				for (int j = 1; j <= K; ++j) {
+					dp1[i][j] = Math.max(dp1[i][j], dp1[prev][j - 1] + ranges.get(i).length(ranges.get(prev).e));
+				}
+			}
+			if (prev != 0) {
+				for (int j = 1; j <= K; ++j) {
+					dp1[i][j] = Math.max(dp1[i][j], dp2[prev - 1][j - 1] + ranges.get(i).length());
+				}
+			}
+			for (int j = 0; j <= K; ++j) {
+				dp2[i][j] = Math.max(dp2[i - 1][j], dp1[i][j]);
+			}
+		}
+		double ans = 0;
+		for (int j = 0; j <= K; ++j) {
+			ans = Math.max(ans, dp2[N - 1][j]);
+		}
+		System.out.printf("%.8f\n", ans / Math.PI);
+	}
+
+	static class Range implements Comparable<Range> {
+		double s, e;
+
+		public Range(double s, double e) {
+			this.s = s;
+			this.e = e;
+		}
+
+		double length() {
+			return e - s;
+		}
+
+		double length(double prev) {
+			if (prev > e) return 0;
+			return e - Math.max(s, prev);
+		}
+
+		public int compareTo(Range o) {
+			return this.s < o.s ? -1 : 1;
+		}
+	}
+
+}

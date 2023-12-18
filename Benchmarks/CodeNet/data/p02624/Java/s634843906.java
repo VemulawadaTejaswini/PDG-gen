@@ -1,0 +1,65 @@
+import java.io.*;
+import java.math.*;
+import java.util.*;
+public class Main { //FILTER PRIMES
+ 
+	public static void main(String[] args) { 
+		FastScanner input = new FastScanner();
+		PrintWriter w = new PrintWriter(System.out);
+		long ans = 0;
+		long N = input.nextLong();
+		long[] cnts = new long[(int)(N+1)];
+		for (long f = 1; f <= N; f++) {
+			for (long s = f; s <= N; s+=f) {
+				cnts[(int)s]++;
+			}
+		}
+		for (int i = 1; i <= N; i++) {
+			ans+=cnts[i]*i;
+		}
+		//CODE
+		w.println(ans);
+		w.flush();
+	}
+	public static long GCD(long a, long b) {
+		if (a==0||b==0) return Math.max(a,b);
+		return GCD(Math.min(a, b),Math.max(a, b)%Math.min(a, b));
+	}
+	public static long FastExp(long base, long exp, long mod) {
+		long ans=1;
+		while (exp>0) {
+			if (exp%2==1) ans*=base;
+			exp/=2;
+			base*=base;
+			base%=mod;
+			ans%=mod;
+		}
+		return ans;
+	}
+	public static long ModInv(long num,long mod) {return FastExp(num,mod-2,mod);}
+	static class FastScanner {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st=new StringTokenizer("");
+		String next() {
+			while (!st.hasMoreTokens())
+				try {
+					st=new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			return st.nextToken();
+		}
+		
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+		int[] readArray(int n) {
+			int[] a=new int[n];
+			for (int i=0; i<n; i++) a[i]=nextInt();
+			return a;
+		}
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+	}
+}

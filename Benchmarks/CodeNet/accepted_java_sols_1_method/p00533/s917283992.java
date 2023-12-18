@@ -1,0 +1,35 @@
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+        int ans[][] = new int[1000][1000]; 
+        int time;
+        for(int i = 0; i < h; i++){
+            char[] hw = sc.next().toCharArray();
+            time = -1;
+            for(int j = 0; j < w; j++){
+                if(hw[j] == 'c'){
+                    time = 0;
+                }
+                ans[i][j] = time;
+                if(time != -1){ 
+                    time++;
+                }
+            }
+        }
+         
+        for(int i = 0; i < h; i++){
+            for(int j = 0; j < w; j++){
+                if(j == w - 1){
+                    System.out.println(ans[i][j]);
+                }else{
+                    System.out.print(ans[i][j]);
+                    System.out.print(" ");
+                }
+            }
+        }
+    }
+}

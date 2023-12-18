@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main
+{	
+	public static void main(String[] args)
+	{
+		Scanner scan = new Scanner(System.in);
+	
+		int tot = scan.nextInt();
+		String s = scan.next();
+		int current = 0 , ans = 0;
+		for (int i = 0;i < s.length();i ++)
+		{
+			char ch = s.charAt(i);
+			if (ch == 'I')
+				current ++;
+			else
+				current --;
+			if (current > ans)
+				ans = current;
+		}
+		System.out.println(ans);
+	}
+    
+}
+
+
+
+
+
+
+
+

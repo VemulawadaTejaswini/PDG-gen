@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+
+public class Main {
+	static String Sa, Sb, Sc;
+	static StringBuilder a, b, c;
+	static Map<Character, StringBuilder> map;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Sa = br.readLine();
+		Sb = br.readLine();
+		Sc = br.readLine();
+		a = new StringBuilder(Sa);
+		b = new StringBuilder(Sb);
+		c = new StringBuilder(Sc);
+		map = new HashMap<Character, StringBuilder>();
+		map.put('a', a);
+		map.put('b', b);
+		map.put('c', c);
+		char turn = 'a';
+		while (true) {
+			map.put(turn, map.get(turn).deleteCharAt(0));
+			if (map.get(turn).length() == 0) {
+				System.out.println(Character.toUpperCase(turn));
+				return;
+			}
+			turn = map.get(turn).charAt(0);
+		}
+	}
+}

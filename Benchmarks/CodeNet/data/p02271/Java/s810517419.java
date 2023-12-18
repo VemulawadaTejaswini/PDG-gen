@@ -1,0 +1,108 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main
+{
+
+	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	public static void main(String[] args) throws IOException
+	{
+		// TODO 自動生成されたメソッド・スタブ
+
+		/*
+		String str[] = input(2);
+		System.out.println(GCD(Integer.parseInt(str[0]), Integer.parseInt(str[1])));
+		//*/
+
+
+		String str1[] = input(1);
+		String str2[] = input(Integer.parseInt(str1[0]));
+		String str3[] = input(1);
+		String str4[] = input(Integer.parseInt(str3[0]));
+
+		int ai[] = new int[Integer.parseInt(str1[0])];
+		int bi[] = new int[Integer.parseInt(str3[0])];
+
+		for(int i = 0; i < ai.length; i++)
+		{
+			ai[i] = Integer.parseInt(str2[i]);
+		}
+
+		for(int i = 0; i < bi.length; i++)
+		{
+			bi[i] = Integer.parseInt(str4[i]);
+		}
+
+		//boolean DP[][] = new boolean[][];
+
+		//System.out.println(bi.length);
+
+		Map<Integer, Boolean> map = new HashMap<>();
+
+		//for(int i = 0; i < bi.length; i++)
+		{
+			boolean b = false;
+			for(int j = 0; j < Math.pow(2, ai.length); j++)
+			{
+				//System.out.println("J    : " + Integer.toBinaryString(j));
+				int sum = 0;
+				for(int k = 0; k < ai.length; k++)
+				{
+					//System.out.println("J>>>K: " + ((j>>>k) & 0x1));
+					if(((j >>> k) & 0x1) == 0x1)
+					{
+						//if(ai[k] > bi[i]) break;
+						sum += ai[k];
+					}
+				}
+				map.put(sum, true);
+			}
+		}
+
+		for(int i = 0; i < bi.length; i++)
+		{
+			try
+			{
+				if(map.get(bi[i])) System.out.println("yes");
+			}
+			catch (NullPointerException e)
+			{
+				System.out.println("no");
+			}
+		}
+		//*/
+	}
+
+	public static int GCD(int x, int y)
+	{
+		int z = Math.max(x, y) % Math.min(x, y);
+		if(z == 0) return Math.min(x, y);
+		return GCD(z, Math.min(y, x));
+	}
+
+	public static String[] input(int Num) throws IOException
+	{
+		String str[] = new String[Num];
+		String str2 = br.readLine();
+		int j = 0;
+		for(int i = 0; i < Num; i++)
+		{
+			if(i < Num - 1)
+			{
+				str[i] = str2.substring(j, str2.indexOf(" ", j));
+				j = str2.indexOf(" ", j) + 1;
+			}
+			else
+			{
+				str[i] = str2.substring(j);
+			}
+		}
+		return str;
+	}
+
+}
+

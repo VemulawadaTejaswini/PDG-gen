@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);String x;for(int t;(t=s.nextInt())>0;System.out.print(x.isEmpty()?"NA\n":x)){Map<String,Long>map=new TreeMap<String, Long>();for(;t-->0;)map.put(x=s.next(), s.nextLong()*s.nextLong()+(map.get(x)!=null?map.get(x):0));x="";for(String y:map.keySet())if(map.get(y)>999999)x+=y+"\n";}}}

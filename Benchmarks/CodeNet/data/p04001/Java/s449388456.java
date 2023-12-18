@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        String S = sc.nextLine();
+        sc.close();
+
+        int n = S.length() - 1;
+        long ans = 0;
+
+        for (int i = 0; i < Math.pow(2, n); i++) {
+
+            StringBuilder sb = new StringBuilder(S);
+            for(int j = 0; j < n; j++) {
+                if( (1 & i >> j) == 1) {
+                    sb.insert(j + 1, "+"); 
+                }
+            }
+
+            String[] str = sb.toString().split("\\+", 0);
+            for(int j = 0; j < str.length; j++) {
+                ans += Long.parseLong(str[j]);
+            }
+
+        }
+        System.out.println(ans);
+
+    }
+}

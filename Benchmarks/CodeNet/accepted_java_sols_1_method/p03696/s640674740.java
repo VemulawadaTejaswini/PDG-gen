@@ -1,0 +1,36 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int N = Integer.parseInt(scan.next());
+	String S = scan.next();
+	StringBuilder str = new StringBuilder(N);
+
+	int stock = 0;
+	for (int i = 0; i < N; i++) {
+	    char c = S.charAt(i);
+	    str.append(c);
+
+	    switch(c) {
+		case '(':
+		    stock++;
+		    break;
+		case ')':
+		    if(stock > 0) stock--;
+		    else str.insert(0, '(');
+		    break;
+	    }
+	}
+	
+	for (int i = 0; i < stock; i++) {
+	    str.append(')');
+	}
+	    
+	System.out.println(str.toString());
+	scan.close();
+    }
+}

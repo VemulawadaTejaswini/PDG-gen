@@ -1,0 +1,20 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String a[])
+	{
+		Scanner sc = new Scanner(System.in);
+
+		long n = sc.nextInt(), p = 1;
+
+		sc.close();
+
+		for (int i = 1; i <= n; ++i)
+		{
+			p = p * i % 1000000007;
+		}
+
+		System.out.println(p);
+	}
+}

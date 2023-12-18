@@ -1,0 +1,22 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class CopyOfMain01_08A {
+
+	public static void main(String[] args) throws IOException {
+		// 入力導入部
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String st=br.readLine();
+		String[] str=st.split("");
+
+		for(int i=0;i<str.length;i++){
+			if(str[i].equals(str[i].toLowerCase())){
+				System.out.print(str[i].toUpperCase());
+			}else System.out.print(str[i].toLowerCase());
+		}
+
+
+
+}}

@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z)throws Exception{byte[]a=new byte[157];for(int i,j,c=0;System.in.read(a)>0;System.out.println(c),c=0){for(i=0;i<12;++i)for(j=0;j<12;++j)if(a[i*13+j]==49)f(a,i*13+j,c++);}}static void f(byte[]a,int x,int c){if(0<=x&&x<157&&a[x]==49){a[x]=(byte)-c;for(int i:new int[]{-13,-1,1,13})f(a,x+i,c);}}}

@@ -1,0 +1,18 @@
+import java.util.*;
+import java.lang.Math;
+
+class Main {
+public static void main(String[] args){
+
+Scanner sc = new Scanner(System.in);
+int n = sc.nextInt();
+int ans = 1;
+for(int i = 1;i <= n;i++){
+  ans *= i;
+  ans = ans % (1000000000+ 7);
+}
+
+System.out.println(ans);
+
+}
+}

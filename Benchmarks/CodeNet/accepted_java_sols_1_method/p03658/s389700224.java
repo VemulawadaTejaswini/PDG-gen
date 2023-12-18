@@ -1,0 +1,28 @@
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+
+		int l[] = new int [n];
+		int total =0;
+
+		for (int i=0; i<n; i++){
+			l[i] = sc.nextInt();
+		}
+
+		Arrays.sort(l);
+		for (int i=0; i<k; i++){
+			total += l[n-1-i];
+		}
+		System.out.println(total);
+	}
+
+}

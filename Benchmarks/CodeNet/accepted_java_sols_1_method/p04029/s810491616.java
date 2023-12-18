@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+      //子供の人数
+      int n = sc.nextInt();
+      int total = 0;
+      
+      for(int i = 1;i <= n;i++){
+        total += i;
+      }
+      System.out.print(total);
+	}
+}

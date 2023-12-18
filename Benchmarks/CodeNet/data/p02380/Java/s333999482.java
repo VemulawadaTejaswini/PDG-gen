@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		double a = sc.nextDouble();
+		double b = sc.nextDouble();
+		double C = sc.nextDouble();
+		System.out.println(a*(b*Math.sin(C*Math.PI/180.0))/2);
+		System.out.println(a+b+Math.sqrt(a*a+b*b-2*a*b*Math.cos(C*Math.PI/180.0)));
+		System.out.println(b*Math.sin(C*Math.PI/180.0));
+	}
+}

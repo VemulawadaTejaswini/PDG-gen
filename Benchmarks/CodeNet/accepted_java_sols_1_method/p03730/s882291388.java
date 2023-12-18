@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner io = new Scanner(System.in);
+		int A = io.nextInt();
+		int B = io.nextInt();
+		int C = io.nextInt();
+		
+		int uq = 101;
+		while(uq!=0){
+			uq = A%B;
+			A = B;
+			B = uq;
+		}
+		
+		System.out.println((C%A==0)?"YES":"NO");
+		
+	}
+		
+}	

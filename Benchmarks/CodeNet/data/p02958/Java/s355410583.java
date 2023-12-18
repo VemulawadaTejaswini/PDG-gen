@@ -1,0 +1,26 @@
+
+import java.util.Scanner;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner (System.in);
+         int n = input.nextInt();
+    int[] array = new int[n];
+    int count =0;
+    for(int i=0;i<n;i++){
+      array[i] = input.nextInt();
+    }
+    for(int j=0;j<n;j++){
+      if(array [j] != j+1){
+        count++;
+      }
+    }
+    if(count == 2 || count == 0){
+      System.out.println("YES");
+    } else {
+      System.out.println("NO");
+    }
+    }
+          
+}

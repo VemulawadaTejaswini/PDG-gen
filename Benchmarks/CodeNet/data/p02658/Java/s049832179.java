@@ -1,0 +1,28 @@
+import java.util.*;
+
+class Main {
+
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int n = sc.nextInt();
+		int ans = 1;
+		long ansl = 1;
+		try {
+			for (int i = 0; i < n; i++) {
+				int temp = sc.nextInt();
+				ansl *= temp;
+				ans = (int) ansl;
+			}
+
+		} catch (InputMismatchException e) {
+			System.out.println(-1);
+		}
+		if (ansl <= (long) Math.pow(10, 18)) {
+			System.out.println(ansl);
+		} else {
+			System.out.println(-1);
+		}
+
+	}
+}

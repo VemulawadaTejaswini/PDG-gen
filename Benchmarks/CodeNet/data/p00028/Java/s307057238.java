@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){Set<Integer> T=new TreeSet<Integer>();int a[]=new int[101],I=0,M=0;for(Scanner S=new Scanner(System.in);S.hasNext();a[S.nextInt()]++);for(;I++<100;)if(a[I]>M){M=a[I];T.clear();T.add(I);}else if(M==a[I])T.add(I);for(int r:T)System.out.println(r);}}

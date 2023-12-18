@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main {
+    public static void main (String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] counter = new int[100];
+        int maxIdx = 0;
+        int maxCnt = 0;
+        
+        for (int i = 0; i < counter.length; i++) {
+            counter[i] = 0;
+        }
+        
+        while (scanner.hasNext()) {
+            int n = scanner.nextInt();
+            counter[n]++;
+            if (counter[n] > counter[maxIdx]) {
+                maxIdx = n;
+                maxCnt = counter[n];
+            } 
+        }
+        
+        for (int i = 0; i < counter.length; i++) {
+            if (counter[i] == maxCnt) {
+                System.out.println(i);
+            }
+        }
+    }
+}

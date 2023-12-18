@@ -1,0 +1,51 @@
+
+import java.util.Scanner;
+
+public class Main {
+    public static void debug(String str) {
+        System.out.println(str);
+    }
+
+    public static void main(String[] args) {
+
+        int N;
+        long[] Di;
+        long E =998244353;
+
+        try (Scanner sc = new Scanner(System.in)) {
+            N = sc.nextInt();
+            Di = new long[N];
+            for (int i = 0; i < Di.length; i++) {
+                Di[i] = sc.nextLong();;
+            }
+        }
+        long[] Num = new long[N];
+        long maxDis = 1;
+        for(long l :Di){
+            Num[(int)l]++;
+            if(l > maxDis){
+                maxDis = l;
+            }
+        }
+        //System.out.println(Arrays.toString(Num));
+        //System.out.println(maxDis);
+        long result = 1;
+        for(int i =1;i <= maxDis;i++){
+            long up = Num[i-1];
+            long down = Num[i];
+            if(up ==0 || down==0){
+                System.out.println(0);
+                return;
+            }
+            long temp =1;
+            while(down>0){
+                temp = temp * up;
+                temp = temp%E;
+                down--;
+            }
+            result = result *temp;
+            result = result%E;
+        }
+        System.out.println(result);
+    }
+}

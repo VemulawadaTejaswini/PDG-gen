@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws Exception{
+		Scanner scan = new Scanner(System.in);
+		Main main = new Main();
+		// 桁数
+		int l;
+		// 答え
+		int N = 0;
+
+		for(l = 1; l < 10;l++) {
+			main.output(false, (int)Math.pow(10,l));
+			if(main.input(scan) == 0) {
+				break;
+			}
+		}
+
+		if(l != 10) {
+			int nMin = (int)Math.pow(10, l - 1);
+			int nMax = (int)Math.pow(10, l) - 1;
+
+			while(nMin != nMax) {
+				int n = (nMin + nMax) / 2;
+				main.output(false, n);
+				if(main.input(scan) == 0) {
+					nMin = n + 1;
+				} else {
+					nMax = n;
+				}
+			}
+			N = nMin;
+		} else {
+			for(l = 0; l < 10;l++) {
+				main.output(false, (int)Math.pow(10,l) * 2);
+				if(main.input(scan) == 1) {
+					N = (int)Math.pow(10,l);
+					break;
+				}
+			}
+		}
+		main.output(true, N);
+	}
+
+	private void output(boolean answerFlag,int n) {
+		if(answerFlag) {
+			System.out.println("! " + n);
+		} else {
+			System.out.println("? " + n);
+		}
+		System.out.flush();
+	}
+
+	private int input(Scanner scan) throws Exception {
+		if(scan.next() == "Y") {
+			return 1;
+		} else
+		if(scan.next() == "N") {
+			return 0;
+		} else {
+			throw new Exception();
+		}
+	}
+}

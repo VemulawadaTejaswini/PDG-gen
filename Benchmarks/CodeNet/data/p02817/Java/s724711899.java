@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){Scannse s=new Scanner(System.in);String p=s.next();System.out.println(s.next()+p);}}

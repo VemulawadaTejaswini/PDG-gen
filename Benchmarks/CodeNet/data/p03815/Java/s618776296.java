@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        try (Scanner in = new Scanner(System.in)) {
+            solve(in);
+        }
+    }
+
+    private static void solve(Scanner in) {
+        long x = in.nextLong();
+        long mod11 = x % 11L;
+        long div11 = x / 11L;
+        final long ans;
+        if (mod11 == 0) {
+            ans = div11 * 2L;
+        } else {
+            if (mod11 <= 6) {
+                ans = (div11) * 2L + 1;
+            } else {
+                ans = div11 * 2L + 2;
+            }
+        }
+        System.out.println(ans);
+    }
+}

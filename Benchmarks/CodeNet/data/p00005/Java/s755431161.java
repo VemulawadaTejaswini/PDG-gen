@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+
+		while (sc.hasNext()) {
+			long a = sc.nextLong();
+			long b = sc.nextLong();
+
+			System.out.print(greatestcommondivisor(a, b) + " ");
+			System.out.println(leastcommonmultiple(a, b));
+		}
+
+	}
+
+	public static long greatestcommondivisor(long a, long b) {
+		if (a > b) {
+			long tmp;
+			tmp = a;
+			a = b;
+			b = tmp;
+		}
+
+		while (a != 0) {
+			long tmp = a;
+			a = b % a;
+			b = tmp;
+		}
+		return b;
+	}
+
+	public static long leastcommonmultiple(long a, long b) {
+		long c = greatestcommondivisor(a, b);
+
+		long d = a * b / c;
+
+		return d;
+	}
+
+}

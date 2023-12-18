@@ -1,0 +1,41 @@
+import java.util.*;
+
+import static java.lang.System.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+
+        // a % K = b % K = c % K == 0 or A % K = b % K = c % K = (K / 2) のみ
+        int[] cand = new int[2];
+        for (int i = 1; i <= N; i++) {
+            if (i % K == 0) {
+                cand[0]++;
+            }
+
+            if (K % 2 == 0 && i % K == (K / 2)) {
+                cand[1]++;
+            }
+        }
+
+        long comb = 0;
+        for (int i = 0; i < 2; i++) {
+            // all same
+            comb += cand[i];
+
+            // two same
+            if(cand[i] - 1 > 0 ) {
+                comb += cand[i] * (cand[i] - 1) * 3;
+            }
+
+            // all difference
+            if(cand[i] - 2 > 0 ) {
+                comb += cand[i] * (cand[i] - 1) * (cand[i] - 2);
+            }
+        }
+
+        out.println(comb);
+    }
+}

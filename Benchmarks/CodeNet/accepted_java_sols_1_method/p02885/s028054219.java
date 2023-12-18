@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+/**
+ * Curtain
+ */
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        try (Scanner sc = new Scanner(System.in)) {
+            int A = sc.nextInt();
+            int B = sc.nextInt();
+
+            int ans = Math.max(A - B * 2, 0);
+
+            System.out.println(ans);
+        }
+    }
+
+}

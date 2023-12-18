@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        Scanner sn = new Scanner(System.in);
+        String s = sn.nextLine();
+        ArrayList<Character> a = new ArrayList();
+        
+        for(int i=0;i<s.length();i++){
+            if(!a.contains(s.charAt(i))){
+                a.add(s.charAt(i));
+            }
+        }
+        boolean perfect = true;
+        for(int i=0;i<a.size();i++){
+            char x = a.get(i);
+            int count=0;
+            for(int j=0;j<s.length();j++){
+                if(x==s.charAt(i))
+                    count++;
+            }
+            if(count%2!=0){
+                perfect=false;
+                break;
+            }
+        }
+        if(perfect)
+            System.out.println("Yes");
+        else
+            System.out.println("No");
+    }
+    
+}

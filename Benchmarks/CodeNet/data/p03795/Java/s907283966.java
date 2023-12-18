@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args){
+		int n, price;
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		price = n*800 - n%15 * 200;
+		System.out.println(price);
+	}
+}

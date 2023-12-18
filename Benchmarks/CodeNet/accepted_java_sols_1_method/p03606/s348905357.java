@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int a = 0;
+        for (int i = 0; i < n; i++) {
+            a += (Math.abs(in.nextInt() - in.nextInt()) + 1);
+        }
+        System.out.println(a);
+    }
+}
+
+
+
+
+
+
+
+
+
+

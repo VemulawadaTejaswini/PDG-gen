@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long A = sc.nextLong();
+		String op = sc.next();
+		long B = sc.nextLong();
+		System.out.println(op.equals("+")?A+B:A-B);
+		sc.close();
+	}
+
+}

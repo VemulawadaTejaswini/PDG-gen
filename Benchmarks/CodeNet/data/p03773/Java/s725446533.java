@@ -1,0 +1,20 @@
+import java.util.Scanner;
+import java.util.Random;
+import java.util.Arrays;
+
+class Main {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		
+		int ans = a + b;
+		
+		if (ans >= 24) {
+			System.out.println(ans - 24);
+		} else {
+			System.out.println(ans);
+		}
+	}
+}

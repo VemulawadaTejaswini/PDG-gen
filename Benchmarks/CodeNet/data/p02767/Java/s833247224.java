@@ -1,0 +1,26 @@
+import java.util.*;
+ 
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    List<Integer> list = new ArrayList<>();
+    int N = sc.nextInt();
+    while(sc.hasNext()){
+    	list.add(sc.nextInt());
+    }
+    
+    int sum = 100000000;
+    int challengeSum;
+    for(int i = 0; i<101; i++){
+     challengeSum = 0;
+      for(int j=0; j<N; j++){
+        challengeSum += (list.get(i) - i)^2;
+      }
+      if(sum>challengeSum){
+        sum = challengeSum;
+      }
+    }
+
+    System.out.println(sum);
+  }
+}

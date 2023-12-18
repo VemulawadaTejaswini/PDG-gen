@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);String x;for(int t=s.nextInt(),r,p,o,b;t-->0;System.out.println(p))for(r=p=o=0;!(x=s.next()).equals("OUT")||++o<3;){if(x.equals("HIT")){b=r>2?1:0;p+=b;r+=1-b;}if(x.matches("H.+N")){p+=r>2?4:r+1;r=0;}}}}

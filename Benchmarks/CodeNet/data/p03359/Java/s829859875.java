@@ -1,0 +1,14 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int a = in.nextInt();
+		int b = in.nextInt();
+		
+		if ( b >= a )
+			System.out.println(a);
+		else
+			System.out.println(a-1);
+	}
+}

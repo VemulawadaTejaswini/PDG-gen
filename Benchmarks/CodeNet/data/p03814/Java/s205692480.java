@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 Scanner s = new Scanner(System.in);
+		 int indexOfA = 0, indexOfZ = 0;
+		 String str = s.nextLine();
+		 for(int i = 0; i < str.length(); i++){
+			 if(str.charAt(i)=='A'){
+				 indexOfA = i;
+				 break;
+			 }
+		 };
+		 for(int i = str.length()-1; i >=0 ; i--){
+			 if(str.charAt(i)=='Z'){
+				 indexOfZ = i;
+				 break;
+			 }
+		 };
+		 System.out.println(indexOfZ - indexOfA + 1);
+	}
+}

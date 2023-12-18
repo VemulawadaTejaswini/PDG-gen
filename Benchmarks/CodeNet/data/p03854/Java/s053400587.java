@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc =new Scanner(System.in);
+		StringBuffer s=new StringBuffer();
+		s.append(sc.next());
+		String str=s.reverse().toString();
+		str=str.replaceAll("resare","");
+		str=str.replaceAll("esare","");
+		str=str.replaceAll("maerd","");
+		str=str.replaceAll("remaerd","");
+		
+		
+		if(str.equals(""))System.out.println("YES");
+		else System.out.println("NO");
+	}
+
+}

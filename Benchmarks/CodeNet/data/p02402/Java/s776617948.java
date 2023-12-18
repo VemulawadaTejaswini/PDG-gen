@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int ati[]=new int[sc.nextInt()];
+		int sum=0,max=0,min=10000000;
+		for(int i=0;i<ati.length;i++) {
+			ati[i]=sc.nextInt();
+			if(ati[i]>max) {
+				max=ati[i];
+			}else if(ati[i]<min) {
+				min=ati[i];
+			}
+			sum+=ati[i];
+		}
+			System.out.print(min+" "+max+" "+sum);
+			sc.close();
+	}
+}

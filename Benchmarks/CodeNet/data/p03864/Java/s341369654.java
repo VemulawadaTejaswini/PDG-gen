@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in);) {
+            new Main().solve(sc);
+        }
+    }
+
+    void solve(Scanner sc) {
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+
+        long a0 = sc.nextLong();
+        long count = 0;
+        for (int i = 1; i < n; i++) {
+            long a1 = sc.nextLong();
+            if (a0 + a1 > x) {
+                if (a1 >= x - a0) {
+                    count += x - a0;
+                    a1 -= x - a0;
+                } else {
+                    count += a1;
+                    count += x - a1;
+                    a1 = 0;
+                }
+            }
+            
+            a0 = a1;
+        }
+        System.out.println(count);
+    }
+}

@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int K = sc.nextInt();
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+
+        for (int i = 1; i <= 1000; i++) {
+            int val = i * K;
+            if (A <= val && val <= B) {
+                System.out.println("OK");
+                return;
+            }
+        }
+        
+        System.out.println("NG");
+    }
+}

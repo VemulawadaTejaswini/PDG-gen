@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    String[] line = scanner.nextLine().split("");
+    
+    if (line.length == 1) {
+      System.out.println("1");
+    }
+    
+    int curr = Integer.parseInt(line[0]);
+    int change = 0;
+    for(int i = 1; i < line.length - 1; i++) {
+      if (curr == Integer.parseInt(line[i])) {
+        change++;
+        curr = Integer.parseInt(line[i]) == 0 ? 1 : 0;
+      }
+    }
+    System.out.println(change);
+  }
+}

@@ -1,0 +1,85 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Main{
+
+	//static long[] a;
+	static	int N ;
+	static	int M ;
+	static long[][] dp;
+	static int ans = 100000000;
+	static	boolean[] flag ;
+
+	public static void main(String[] args) {
+
+
+		Scanner sc = new Scanner(System.in);			//文字の入力
+		String S = sc.next();
+		String T = sc.next();
+		char[] ansc = S.toCharArray();
+		
+		for(int i = S.length()-1;i >= T.length();i--){
+			ansc = S.toCharArray();
+//			System.out.println("i " + i);
+
+			if(S.charAt(i) == '?' || S.charAt(i) == T.charAt(T.length()-1)){				//Sのi文字目が?かTの後ろの文字と一緒ならそこから判定
+				int c = T.length()-1;
+				for(int j = i;c >= 0;j--){
+//					System.out.println("j " + j);
+//					System.out.println("c " + c);
+
+					if(S.charAt(j) != '?' && S.charAt(j) != T.charAt(c)){			//もしSのj文字めが?でもTのc文字目でもないのなら無理
+						System.out.println("break ");
+
+						break;
+					}else{
+						ansc[j] = T.charAt(c);
+					}
+
+					if(c == 0){
+						for(int k = 0;k < S.length();k++){				//?にaを入れていく
+							if(ansc[k] == '?'){
+								ansc[k] = 'a';
+							}
+						}
+						String aString = new String(ansc);
+						System.out.println(aString);
+						return;
+					}
+					c--;
+				}
+				
+			}
+
+		}
+
+
+		System.out.println("UNRESTORABLE");
+
+
+
+
+	}
+
+}
+class Bridge{
+	int p;			//自分の場所
+	ArrayList<Integer> town = new ArrayList<Integer>();				//辺でつながっている町
+	public Bridge(int n) {
+		p = n;
+	}
+	void addtown(int t){
+		town.add(t);
+	}
+
+	int townnum(){
+		return town.size();
+	}
+
+
+
+
+
+}
+
+

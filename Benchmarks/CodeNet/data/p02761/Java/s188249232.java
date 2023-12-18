@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+
+	public static void main(String[] args) throws Exception {
+		final Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		int[] a = new int[3];
+		Arrays.fill(a, -1);
+
+		for (int i = 0; i < M; i++) {
+			int s = sc.nextInt() - 1;
+			int c = sc.nextInt();
+			if (a[s] != -1 && a[s] != c) {
+				System.out.println(-1);
+				return;
+			}
+			a[s] = c;
+		}
+
+		if (a[0] == 0 && N > 2) {
+			System.out.println(-1);
+			return;
+		}
+
+		if (N == 1) {
+			System.out.println((a[0] != -1) ? a[0] : 0);
+			return;
+		}
+
+		if (a[0] == -1) {
+			a[0] = 1;
+		}
+
+		for (int i = 1; i < N; i++) {
+			if (a[i] == -1) a[i] = 0;
+		}
+
+		System.out.print(a[0]);
+		System.out.print(a[1]);
+		System.out.print(a[2]);
+		System.out.println();
+	}
+}

@@ -1,0 +1,29 @@
+import java.io.InputStream;
+import java.util.Scanner;
+
+public class Main{
+	static Scanner sc;
+
+	public static void main(String[] args) throws Exception {
+		//InputStream in = new FileInputStream("src/input.txt");
+		InputStream in = System.in;
+
+		sc = new Scanner(in);
+
+		String str = sc.next();
+		char c = str.charAt(0);
+
+		switch(c){
+		case 'a':
+		case 'e':
+		case 'i':
+		case 'o':
+		case 'u':
+			System.out.println("vowel");
+			break;
+		default:
+			System.out.println("consonant");
+			break;
+		}
+	}
+}

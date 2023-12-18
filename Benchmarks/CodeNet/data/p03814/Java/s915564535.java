@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.*;
+
+public class Main { // "Main" should be used for most online judges
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		int index = str.indexOf('A');
+		int count = 1;
+		for (int i = index; i < str.length(); i++ )
+		{
+			if(str.charAt(i)=='Z')
+			{
+				count = i -index +1;
+
+			}
+		}
+		System.out.print(count);
+	}
+}

@@ -1,0 +1,92 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+
+public class Main {
+
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+//		String[] tmpArray = br.readLine().split(" ");
+		
+		String command = br.readLine();
+		
+		String[] tmpArray = br.readLine().split(" ");
+		
+		int destX = Integer.parseInt(tmpArray[0]);
+		int destY = Integer.parseInt(tmpArray[1]);
+		
+		String f[] = command.split("T", -1);
+		int dist[] = new int[f.length];
+		
+		for(int i = 0; i < f.length; i++){
+			dist[i] = f[i].length();
+			
+			//debug
+//			System.out.print(dist[i] + " ");
+		}
+		
+//		System.out.println();
+		
+		int currentX = dist[0];
+		int currentY = 0;
+		int x = destX;
+		if(destX >= 0 && currentX > x){
+			x = currentX + (currentX - x);
+		}
+		int y = Math.abs(destY);
+		
+		int vecX = 1;
+		if(destX < 0){
+			vecX = -1;
+		}
+		
+		for(int i = 1; i < dist.length ; i++){
+			//横移動
+			if(i % 2 == 0){
+				currentX += dist[i]*vecX;
+				
+				if(destX >= 0 && currentX > x){
+					x = currentX + (currentX - x);
+				}
+				else if(destX < 0 && currentX < x){
+					x = currentX + (currentX - x);
+				}
+			}
+			//縦移動
+			else {
+				currentY += dist[i];
+				
+				if(currentY > y){
+					y = currentY + (currentY - y);
+				}
+				
+			}
+			
+			//debug
+//			System.out.println("current; "+currentX+","+currentY);
+//			System.out.println("next dest; "+x+","+y);
+		}
+		
+		if(x == currentX && y == currentY){
+			System.out.println("Yes");
+		}
+		else {
+			System.out.println("No");
+		}
+	}
+
+}

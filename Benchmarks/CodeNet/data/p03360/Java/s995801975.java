@@ -1,0 +1,19 @@
+import java.util.Scanner;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int C = sc.nextInt();
+        int K = sc.nextInt();
+        if (A > B && A > C) {
+            System.out.println(A * (int)Math.pow(2, K) + B + C);
+        }
+        if (B > A && B > C) {
+            System.out.println(B * (int)Math.pow(2, K) + A + C);
+        }
+        if (C > A && C > B) {
+            System.out.println(C * (int)Math.pow(2, K) + A + B);
+        }
+    }
+}

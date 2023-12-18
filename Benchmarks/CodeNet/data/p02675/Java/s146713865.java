@@ -1,0 +1,17 @@
+import java.math.*;
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        n = n - n/100*100;
+        n = n - n/10*10;
+        if(n==3){
+            System.out.println("bon");
+        } else if(n==2||n==4||n==5||n==7||n==9){
+            System.out.println("hon");
+        } else {
+            System.out.println("pon");
+        }
+    }
+}

@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] a = new int[n + 1];
+		for (int i = 0; i < a.length; i++) {
+			a[i] = sc.nextInt();
+		}
+		sc.close();
+
+		long inf = 1000000000000000L;
+		long[] max = new long[n + 1];
+		max[0] = 1 - a[0];
+		if (max[0] < 0) {
+			System.out.println(-1);
+			return;
+		}
+		for (int i = 1; i <= n; i++) {
+			max[i] = max[i - 1] * 2 - a[i];
+			if (max[i] < 0) {
+				System.out.println(-1);
+				return;
+			}
+			if (max[i] >= inf) {
+				for (int j = i; j <= n; j++) {
+					max[j] = inf;
+				}
+				break;
+			}
+		}
+
+		long ans = 0;
+		long sum = 0;
+		for (int i = n; i >= 0; i--) {
+			sum = Math.min(sum, max[i]);
+			ans += a[i] + sum;
+			sum += a[i];
+		}
+		System.out.println(ans);
+	}
+}

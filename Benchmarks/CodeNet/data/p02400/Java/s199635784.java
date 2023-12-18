@@ -1,0 +1,16 @@
+import java.io.PrintWriter;
+import java.util.*;
+
+
+public class Main{
+
+	public static void main(String[] args) {
+		Scanner in=new Scanner(System.in);
+		PrintWriter out=new PrintWriter(System.out);
+		double r=in.nextDouble();
+		out.printf("%f %f ",r*r*Math.PI,2*r*Math.PI);
+		out.flush();
+	}
+
+}
+

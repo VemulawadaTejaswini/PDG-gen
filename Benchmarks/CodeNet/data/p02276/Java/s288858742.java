@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main{
+    
+    static void dfs(int num, int den, int x, int k){
+	if(p*den==q*num){
+	    c++;
+	    return;
+	}
+	if(k==n)return;
+	if(p*den<q*num)return;
+	for(int i=x;i*den<=a;i++){
+	    int nn = num*i+den;
+	    int nd = i*den;
+	    dfs(nn, nd, i, k+1);
+	}
+    }
+	
+    public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	while(true){
+	    static int p = sc.nextInt();
+	    static int q = sc.nextInt();
+	    static int a = sc.nextInt();
+	    static int n = sc.nextInt();
+	    if((p|q|a|n)==0)break;
+	    static int c = 0;
+	    dfs(0,1,1,0);
+	    System.out.println(c);
+	}
+    }
+}
+

@@ -1,0 +1,27 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class Main{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = scan.nextInt();
+		long[] data = new long[n];
+		long max = 0;
+		for(int i = 0 ; i < n ; i++){
+			data[i]=scan.nextLong();
+		}
+		for(int i = n-1 ; i > 0 ; i --){
+			for(int j = 0 ; j < i ; j ++){
+				if(i==n-1&&j==0){
+					max=data[i]-data[j];
+				}
+				if(max<(data[i]-data[j])){
+					max= data[i]-data[j];
+				}
+				//System.out.println(data[i]-data[j]);
+			}
+		}
+		System.out.println(max);
+	}
+}

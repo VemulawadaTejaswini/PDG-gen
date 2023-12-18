@@ -1,0 +1,12 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int time = 1;
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.print((int)(a / b) + " ");
+        System.out.print((int)(a % b) + " ");
+        System.out.println(String.format("%.5f", (float)a / b));
+    }
+}

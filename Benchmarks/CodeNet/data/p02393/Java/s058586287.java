@@ -1,0 +1,22 @@
+import java.io.*;
+
+public class Main {
+    public static void main (String[] args) throws java.lang.Exception {
+    
+    BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
+    String A   = input.readLine();
+    BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
+    String B   = input.readLine();
+    BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
+    String C   = input.readLine();
+    
+    int aa = Integer.parseInt(A);
+    int bb = Integer.parseInt(B);
+    int cc = Integer.parseInt(C);
+    
+    int[] output = new int[]{aa, bb, cc};
+    for(int i = 0; i < output.length; i++)
+    System.out.println(output[i]);
+    
+    }
+}

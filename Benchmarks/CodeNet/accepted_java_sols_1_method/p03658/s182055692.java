@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		int[] l = new int[N];
+		for(int i=0; i<N; i++){
+			l[i] = sc.nextInt();
+		}
+		for(int i=0;i<N;i++){
+			for(int j=N-1;j>i;j--){
+				if(l[i] < l[j] ){
+					int swap = l[i];
+					l[i] = l[j];
+					l[j] = swap;
+				}
+			}
+		}
+		int ans = 0;
+		for(int i=0;i<K;i++){
+			ans += l[i];
+		}
+		System.out.println(ans);
+	}
+
+}
+

@@ -1,0 +1,194 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        ENEQ solver = new ENEQ();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class ENEQ {
+        NumberTheory.Mod107 mod = new NumberTheory.Mod107();
+
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int n = in.nextInt(), m = in.nextInt();
+
+            long answer = 0;
+
+            // include k=0 to get total - #(bad >= 1)
+            for (int k = 0; k <= n; k++) {
+                long sign = mod.paritySign(k);
+                long matchIndices = mod.ncr(n, k);
+                long topValues = mod.nPermuteR(m, n);
+                long nonmatchValues = mod.nPermuteR(m - k, n - k);
+                long term = mod.mult(sign, matchIndices, topValues, nonmatchValues);
+                answer = mod.add(answer, term);
+            }
+
+            out.println(answer);
+        }
+
+    }
+
+    static class NumberTheory {
+        private static void ASSERT(boolean assertion) {
+            if (!assertion)
+                throw new AssertionError();
+        }
+
+        public abstract static class Modulus<M extends NumberTheory.Modulus<M>> {
+            final ArrayList<Long> factorial = new ArrayList<>();
+            final ArrayList<Long> invFactorial = new ArrayList<>();
+
+            public abstract long modulus();
+
+            public Modulus() {
+                super();
+                factorial.add(1L);
+                invFactorial.add(1L);
+            }
+
+            public long fact(int n) {
+                while (factorial.size() <= n) {
+                    factorial.add(mult(factorial.get(factorial.size() - 1), factorial.size()));
+                }
+
+                return factorial.get(n);
+            }
+
+            public long fInv(int n) {
+                int lastKnown = invFactorial.size() - 1;
+
+                if (lastKnown < n) {
+                    long[] fInv = new long[n - lastKnown];
+                    fInv[0] = inv(fact(n));
+                    for (int i = 1; i < fInv.length; i++) {
+                        fInv[i] = mult(fInv[i - 1], n - i + 1);
+                    }
+                    for (int i = fInv.length - 1; i >= 0; i--) {
+                        invFactorial.add(fInv[i]);
+                    }
+                }
+
+                return invFactorial.get(n);
+            }
+
+            public long paritySign(long k) {
+                return (k & 1) == 0 ? 1 : modulus() - 1;
+            }
+
+            public long ncr(int n, int r) {
+                ASSERT(n >= 0);
+                if (r < 0 || n < r)
+                    return 0;
+                return mult(fact(n), mult(fInv(r), fInv(n - r)));
+            }
+
+            public long nPermuteR(int n, int r) {
+                ASSERT(n >= 0);
+                if (r < 0 || n < r)
+                    return 0;
+                return mult(fact(n), fInv(n - r));
+            }
+
+            public long normalize(long x) {
+                x %= modulus();
+                if (x < 0)
+                    x += modulus();
+                return x;
+            }
+
+            public long add(long a, long b) {
+                long v = a + b;
+                return v < modulus() ? v : v - modulus();
+            }
+
+            public long mult(long... x) {
+                long r = 1;
+                for (long i : x)
+                    r = mult(r, i);
+                return r;
+            }
+
+            public long mult(long a, long b) {
+                return (a * b) % modulus();
+            }
+
+            public long inv(long value) {
+                long g = modulus(), x = 0, y = 1;
+                for (long r = value; r != 0; ) {
+                    long q = g / r;
+                    g %= r;
+
+                    long temp = g;
+                    g = r;
+                    r = temp;
+
+                    x -= q * y;
+
+                    temp = x;
+                    x = y;
+                    y = temp;
+                }
+
+                ASSERT(g == 1);
+                ASSERT(y == modulus() || y == -modulus());
+
+                return normalize(x);
+            }
+
+        }
+
+        public static class Mod107 extends NumberTheory.Modulus<NumberTheory.Mod107> {
+            public long modulus() {
+                return 1_000_000_007L;
+            }
+
+        }
+
+    }
+
+    static class InputReader {
+        public final BufferedReader reader;
+        public StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+    }
+}
+

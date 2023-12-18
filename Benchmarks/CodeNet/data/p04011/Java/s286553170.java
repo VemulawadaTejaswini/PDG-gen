@@ -1,0 +1,22 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main{
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+String  a= br.readLine();
+String  b= br.readLine();
+String  c= br.readLine();
+String  d= br.readLine();
+
+int n =Integer. parseInt(a);
+int k =Integer. parseInt(b);
+int x =Integer. parseInt(c);
+int y =Integer. parseInt(d);
+int z =n-k;
+
+System. out. println(k*x+y*z);
+}}

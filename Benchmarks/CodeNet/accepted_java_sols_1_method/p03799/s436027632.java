@@ -1,0 +1,16 @@
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long N = sc.nextLong();// s
+		long M = sc.nextLong();// c
+		long ans = 0;
+		long tmp = Math.min(N, M / 2);
+		ans += tmp;
+		N -= tmp;
+		M -= tmp * 2;
+		ans += M / 4;
+		System.out.println(ans);
+	}
+}

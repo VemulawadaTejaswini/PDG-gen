@@ -1,0 +1,1 @@
+class Main{public static void main(String[]a){System.out.print((int)(Math.pow(new java.util.Scanner(System.in).nextInt(),2)));}}

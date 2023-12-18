@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        if (n == 10 || n == 100 || n == 1000 || n == 10000 || n == 100000 || n == 1000000) {
+            System.out.println(10);
+        } else {
+            int res = 0;
+            while ( n > 0) {
+                res += n%10;
+                n/=10;
+            }
+            System.out.println(res);
+        }
+    }
+}

@@ -1,0 +1,11 @@
+
+import java.util.Scanner;
+
+class Main{
+        public static void main(String[] args){
+                Scanner scanner=new Scanner(System.in);
+                String s=scanner.next();
+                int i=s.length();
+                System.out.println(s.substring(0,1)+(i-2)+s.substring(i-1,i));
+        }
+}

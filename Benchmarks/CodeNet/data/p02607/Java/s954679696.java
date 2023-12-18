@@ -1,0 +1,27 @@
+
+import java.util.*;
+
+public class Main{
+  
+  
+  public static void main(String[] args)
+  {
+    Scanner sc = new Scanner();
+    int N = sc.nextInt();
+    List<Integer> list = ArrayList<Integer>();
+    
+    for(int i = 0; i < N; i++)
+    {
+      if(i % 2 == 1)
+      {
+      	list.add(sc.nextInt());
+      }
+    }
+    
+    int s = list.stream.filter(v -> v % 2 == 1).count();
+    
+    System.out.println(s);
+    
+  }
+  
+}

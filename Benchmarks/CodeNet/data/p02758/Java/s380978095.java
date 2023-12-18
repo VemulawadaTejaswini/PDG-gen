@@ -1,0 +1,65 @@
+import java.util.*;
+
+public class Main {
+
+	static final int mod = 998244353;
+	// 木の集合
+	static List<Integer> tree[];
+
+	static class Pair<K, V> extends AbstractMap.SimpleEntry<K, V> {
+		private static final long serialVersionUID = 6411527075103472113L;
+
+		public Pair(final K key, final V value) {
+			super(key, value);
+		}
+	}
+
+	public static int dfs(int value) {
+		int res = 1;
+		for (int v : tree[value]) {
+			res *= dfs(v);
+			res %= mod;
+		}
+		return (res + 1) % mod;
+	}
+
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		Pair<Integer, Integer> robot[] = new Pair[n];
+		tree = new List[n];
+		for (int i = 0; i < n; ++i) {
+			int x = sc.nextInt();
+			int d = sc.nextInt();
+			robot[i] = new Pair<Integer, Integer>(x, d);
+		}
+		sc.close();
+		Arrays.sort(robot, new Comparator<Pair<Integer, Integer>>() {
+			public int compare(Pair<Integer, Integer> o1, Pair<Integer, Integer> o2) {
+				return o1.getKey() - o2.getKey();
+			}
+		});
+
+		// 木の頂点集合
+		Set<Pair<Integer, Integer>> set = new HashSet<Pair<Integer, Integer>>();
+		for (int i = n - 1; i >= 0; --i) {
+			int x = robot[i].getKey(), d = robot[i].getValue();
+			tree[i] = new ArrayList<Integer>();
+			while (!set.isEmpty()) {
+				Pair<Integer, Integer> next = set.iterator().next();
+				if (next.getKey() >= x + d)
+					break;
+				tree[i].add(next.getValue());
+				set.remove(next);
+			}
+			set.add(new Pair<Integer, Integer>(x, i));
+		}
+		int ans = 1;
+		for (Pair<Integer, Integer> p : set) {
+			int v = p.getValue();
+			ans *= dfs(v);
+			ans %= mod;
+		}
+		System.out.println(ans);
+	}
+}

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public final class Main{
+    public static void main(String[] args){
+        Scanner stdIn = new Scanner(System.in);
+
+        int n = stdIn.nextInt();
+        String s = stdIn.next();
+        int k = stdIn.nextInt();
+
+        char[] ca = s.toCharArray();
+
+        for(int i=0; i<n; i++){
+            if(ca[i] != ca[k]){
+                ca[i] = '*';
+            }
+        }
+
+        String ans = ca.toString();
+
+        System.out.println(ans);
+    }
+}

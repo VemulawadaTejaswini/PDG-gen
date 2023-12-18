@@ -1,0 +1,43 @@
+import java.util.*;
+import java.math.*;
+import java.lang.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] s = new String[n];
+
+    for (int i = 0; i < n; i++) {
+      s[i] = sc.next();
+    }
+
+    int a = 0;
+    int w = 0;
+    int t = 0;
+    int r = 0;
+
+    for (int i = 0; i < n; i++) {
+      if (s[i].equals("AC")) {
+        a++;
+      }
+      if (s[i].equals("WA")) {
+        w++;
+      }
+      if (s[i].equals("TLE")) {
+        t++;
+      }
+      if (s[i].equals("RE")) {
+        r++;
+      }
+    }
+
+    System.out.println("AC x "+a);
+    System.out.println("WA x "+w);
+    System.out.println("TLE x "+t);
+    System.out.println("RE x "+r);
+
+  }
+
+}

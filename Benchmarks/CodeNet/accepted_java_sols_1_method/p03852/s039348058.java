@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main (String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String c = scanner.next();
+		if (c.equals("a") || c.equals("e") || c.equals("i") || c.equals("u") || c.equals("o")) {
+			System.out.println("vowel");
+		}else {
+			System.out.println("consonant");
+		}
+	}
+} 

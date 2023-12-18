@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+
+    final long INF = 10_000_000_000_000L;
+    long[] dist = new long[N];
+    for (int i = 1; i < N; i++) dist[i] = INF;
+    int[][] edges = new int[M][2];
+    int[] costs = new int[M];
+
+    for (int i = 0; i < M; i++) {
+      int a = scanner.nextInt() - 1;
+      int b = scanner.nextInt() - 1;
+      edges[i][0] = a;
+      edges[i][1] = b;
+      costs[i] = -scanner.nextInt();
+    }
+
+    for (int i = 0; i < N - 1; i++) {
+      for (int j = 0; j < M; j++) {
+        int from = edges[j][0];
+        int to = edges[j][1];
+        int cost = costs[j];
+        if (dist[from] < INF) {
+          long newValue = dist[from] + cost;
+          if (newValue < dist[to]) {
+            dist[to] = newValue;
+          }
+        }
+      }
+    }
+
+    for (int i = 0; i < M; i++) {
+      int from = edges[i][0];
+      int to = edges[i][1];
+      int cost = costs[i];
+      if (dist[from] + cost < dist[to]) {
+        System.out.println("inf");
+        return;
+      }
+    }
+    System.out.println(-dist[N - 1]);
+  }
+}

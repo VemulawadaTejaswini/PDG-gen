@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Main {
+
+	private void doit(){
+		Scanner sc = new Scanner(System.in);
+		long mod = 1000000007;
+		while(sc.hasNext()){
+			int n = sc.nextInt();
+			int [] data = new int[n];
+			int sum = 0;
+			for(int i = 0; i < data.length; i++){
+				data[i] = sc.nextInt();
+				sum += data[i];
+			}
+			
+			double ave = (double)sum / n;
+			
+			int ans = Integer.MAX_VALUE;
+			int [] comp = {(int) Math.ceil(ave), (int) Math.floor(ave)};
+			
+			for(int i =0 ;i < comp.length; i++){
+				int now = 0;
+				for(int j = 0; j < data.length; j++){
+					now += (data[j] - comp[i]) * (data[j] - comp[i]);
+				}
+				ans = Math.min(now, ans);
+			}
+			
+			System.out.println(ans);
+		}
+
+	}
+
+	private void debug(Object... o) {
+		System.out.println("debug = " + Arrays.deepToString(o));
+	}
+
+	public static void main(String[] args) {
+		new Main().doit();
+	}
+
+}

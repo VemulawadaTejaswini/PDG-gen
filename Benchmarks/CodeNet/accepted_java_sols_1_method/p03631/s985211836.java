@@ -1,0 +1,20 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String num = br.readLine();
+		int n = Integer.parseInt(num);
+		int x = n / 100;
+		int z = n % 10;
+
+		if (x == z) {
+			System.out.println("Yes");
+		} else {
+			System.out.println("No");
+		}
+	}
+}

@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		int max = 0,min = Integer.MAX_VALUE;
+		for(int i=0;i<n;i++){
+			int a = scanner.nextInt();
+			max = Math.max(max, a);
+			min = Math.min(min, a);
+		}
+		System.out.println(max - min);
+	}
+
+}

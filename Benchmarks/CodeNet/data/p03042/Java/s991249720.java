@@ -1,0 +1,25 @@
+import java.util.Scanner;
+ 
+public class Main{
+		
+	public static void main(String args[]){
+		  
+		Scanner sc = new Scanner(System.in);
+		
+		int in = sc.nextInt();
+		
+		int l = in%100;
+		int r = in/100;
+		
+		if(l == 00 || r == 00) {
+			System.out.println("NA");
+		}else if((l > 0 && l <= 12) && r > 12) {
+			System.out.println("YYMM");
+		}else if((r > 0 && r <= 12) && l > 12) {
+			System.out.println("MMYY");
+		}else {
+			System.out.println("AMBIGUOUS");
+		}
+		
+	}
+}

@@ -1,0 +1,13 @@
+import java.util.*;
+import java.io.*;
+ 
+public class Main {
+    public static void main(String args[] ) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        char cs = line.charAt(0);
+        char ce = line.charAt(line.length() - 1);
+        int len = line.length() - 2;
+        System.out.println(String.valueOf(cs) + len + String.valueOf(ce));
+    }
+}

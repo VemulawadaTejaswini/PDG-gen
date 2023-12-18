@@ -1,0 +1,65 @@
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		List<Long> list_p = new LinkedList<>();
+		List<Long> list_n = new LinkedList<>();
+		long ans = 0;
+		long p_min = Integer.MAX_VALUE;
+		long n_max = Integer.MIN_VALUE;
+		for(int i=0;i<n;i++) {
+			long tmp = in.nextInt();
+			if(tmp>=0) {
+				if(tmp<p_min) p_min = tmp;
+				list_p.add(tmp);
+				ans += tmp;
+			}else {
+				if(tmp>n_max) n_max = tmp;
+				list_n.add(tmp);
+				ans -= tmp;
+			}
+		}
+		if(list_p.size()==0) ans += 2*n_max;
+		if(list_n.size()==0) ans -= 2*p_min;
+		System.out.println(ans);
+		while(list_n.size()+list_p.size()>1) {
+			if(list_n.size()==0 && n!=2) {
+				long b = list_p.remove(list_p.indexOf(p_min));
+				long a = list_p.remove(0);
+				list_n.add(-a+b);
+				System.out.println(b + " " + a);
+			}else if(list_n.size()==0 && n==2){
+				long b = list_p.remove(list_p.indexOf(p_min));
+				long a = list_p.remove(0);
+				list_p.add(a-b);
+				System.out.println(a + " " + b);
+			}else if(list_p.size()==0) {
+				long b = list_n.remove(list_n.indexOf(n_max));
+				long a = list_n.remove(0);
+				list_p.add(-a+b);
+				System.out.println(b + " " + a);
+			}else {
+				long a = list_p.get(0);
+				long b = list_n.get(0);
+				if(list_p.size()<=list_n.size()) {
+					list_p.add(a-b);
+					System.out.println(a + " " + b);
+				}else {
+					list_n.add(-a+b);
+					System.out.println(b + " " + a);
+				}
+				list_p.remove(0);
+				list_n.remove(0);
+			}
+		}
+		
+		in.close();
+
+	}
+
+}

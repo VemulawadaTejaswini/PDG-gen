@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan =new Scanner(System.in);
+        String s=scan.next();
+        char[] str= new char[100];
+        int finalnumber;
+        for(int i=0;i<s.length();i++)
+        {
+            str[i]=s.charAt(i);
+        }
+        finalnumber=s.length();
+        System.out.print(str[0]);
+        System.out.print(finalnumber-2);
+        System.out.println(str[finalnumber-1]);
+    }
+}

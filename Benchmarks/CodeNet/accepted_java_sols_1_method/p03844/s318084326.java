@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner as = new Scanner(System.in);
+		int n = Integer.parseInt(as.next());
+		String t = as.next();
+		int b = Integer.parseInt(as.next());
+		int a;
+		if(t.equals("+")){
+			a=n+b;
+		}else{
+			a=n-b;
+		}
+		System.out.println(a);
+	}
+}

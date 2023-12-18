@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String out = "";
+		Scanner scan = new Scanner(System.in);
+		scan.useDelimiter(",|\n");
+		out = out +  scan.next() + " ";
+		out = out +  scan.next() + " ";
+		out = out +  scan.next();
+		System.out.println(out);
+		scan.close();
+	}
+}

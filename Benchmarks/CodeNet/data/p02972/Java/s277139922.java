@@ -1,0 +1,54 @@
+import java.util.*;
+
+public class Main {
+
+  public static void main (String[] args) {
+
+    Scanner sc = new Scanner(System.in);
+
+    int N = sc.nextInt();
+
+    int[] a = new int[N+1];
+    for (int i = 1; i < N+1; i++) {
+      a[i] = sc.nextInt();
+    }
+
+    sc.close();
+
+    int[] b = new int[N+1];
+
+    for (int i = N; 1 <= i; i--) {
+      int count = 0;
+      for (int j = i; j <= N; j += i) {
+        if (b[j] == 1) {
+          count++;
+        }
+      }
+      if (count % 2 == a[i]) {
+        b[i] = 0;
+      } else {
+        b[i] = 1;
+      }
+    }
+
+    Deque<Integer> result = new ArrayDeque<>();
+    for (int i = 1; i < N+1; i++) {
+      if (b[i] == 1) {
+        result.addLast(i);
+      }
+    }
+
+    System.out.println(result.size());
+
+    for (int i = 0; i < result.size(); i++) {
+      System.out.print(result.poll());
+      if (result.size() != 0) {
+        System.out.print(" ");
+      } else {
+        System.out.println("");
+      }
+    }
+
+  }
+
+}

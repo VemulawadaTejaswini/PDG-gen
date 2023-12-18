@@ -1,0 +1,22 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader input =new BufferedReader (new InputStreamReader (System.in));
+		String stra = input.readLine( );
+		int a = Integer.parseInt(stra);
+		String strb = input.readLine( );
+		int b = Integer.parseInt(strb);
+		String strh = input.readLine( );
+		int h = Integer.parseInt(strh);
+
+		int answer = (a + b) * h / 2;
+		System.out.print(answer);
+
+	}
+
+}

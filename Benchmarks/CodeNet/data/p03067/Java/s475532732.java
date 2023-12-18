@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+class Main {
+	public static void main(String[] $) {
+		Scanner sc = new Scanner(System.in);
+		int a=sc.nextInt(),b=sc.nextInt(),c=sc.nextInt();
+		if(c>=Math.min(a, b)&&c<=Math.max(a, b)) {
+			System.out.println("Yes");
+		}else {
+			System.out.println("No");
+		}
+	}
+}

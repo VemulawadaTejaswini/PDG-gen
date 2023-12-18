@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int t=s.nextInt();t-->0;System.out.println(z[0])){z=s.next().split("");Stack<String>l=new Stack<String>();l.add(z[1]);for(int i=2;i<z.length;i+=3)if(!l.contains(z[i+2]))l.insertElementAt(z[i+2],l.indexOf(z[i-1])+(z[i].equals("-")?1:0));for(String e:l)z[0]+=e;}}}

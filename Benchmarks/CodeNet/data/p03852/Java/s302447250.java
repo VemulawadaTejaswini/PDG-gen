@@ -1,0 +1,14 @@
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int hight = sc.nextInt();
+		int wide = sc.nextInt();
+		for (int i = 0; i < hight; i++) {
+			String output = sc.next();
+			System.out.print("\n" + output);
+			System.out.print("\n" + output);
+		}
+		sc.close();
+	}
+}

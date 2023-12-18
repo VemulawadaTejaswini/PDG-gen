@@ -1,0 +1,2 @@
+import java.util.*;
+public class Main{public static void main(String[] args){Scanner c = new Scanner(System.in);String[] a = c.nextLine().split("[ ,\\.]");int i=0,j;for(String o : a){j=o.length();if(j>2&&j<7){if(i==0)i=1;else System.out.print(" ");System.out.print(o);}}System.out.println();}}

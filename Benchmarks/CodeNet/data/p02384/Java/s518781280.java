@@ -1,0 +1,86 @@
+package tst;
+
+import java.util.Scanner;
+
+class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int[] N = new int[6];
+			for(int i=0;i<6;i++)N[i]=Integer.parseInt(sc.next());
+		//String order = sc.next();
+		//char[] charOrder = order.toCharArray();
+		Dice dice = new Dice(N);
+		
+		int q = Integer.parseInt(sc.next());
+		
+		for(int i=0;i<q;i++){
+			int roll = Integer.parseInt(sc.next());
+			int front = Integer.parseInt(sc.next());
+			int answer=dice.getRightRoll(roll,front);
+			System.out.println(answer);
+		}
+		
+		sc.close();
+	}
+
+}
+
+class Dice{
+	private int[] roll=new int[6];
+	private int[] nowRoll= new int[6];
+	Dice(int[] N){
+		for(int i = 0;i<6;i++){
+			this.roll[i]=N[i];
+			this.nowRoll[i]=N[i];
+		}
+	}
+
+	public int getNow(){
+		return nowRoll[0];
+	}
+
+	public void roll(char c){
+		//int dir;
+		int[] tmpRoll=new int[6];
+		for(int i=0;i<6;i++)tmpRoll[i]=this.nowRoll[i];
+
+		if(c=='E'){
+			this.nowRoll[0]=tmpRoll[3];
+			//this.nowRoll[1]=tmpRoll[1];
+			this.nowRoll[2]=tmpRoll[0];
+			this.nowRoll[3]=tmpRoll[5];
+			//this.nowRoll[4]=tmpRoll[4];
+			this.nowRoll[5]=tmpRoll[2];
+		}
+		if(c=='N'){
+			this.nowRoll[0]=tmpRoll[1];
+			this.nowRoll[1]=tmpRoll[5];
+			//this.nowRoll[2]=tmpRoll[2];
+			//this.nowRoll[3]=tmpRoll[3];
+			this.nowRoll[4]=tmpRoll[0];
+			this.nowRoll[5]=tmpRoll[4];
+		}
+		if(c=='S'){
+			this.nowRoll[0]=tmpRoll[4];
+			this.nowRoll[1]=tmpRoll[0];
+			//this.nowRoll[2]=tmpRoll[2];
+			//this.nowRoll[3]=tmpRoll[3];
+			this.nowRoll[4]=tmpRoll[5];
+			this.nowRoll[5]=tmpRoll[1];
+		}
+		if(c=='W'){
+			this.nowRoll[0]=tmpRoll[2];
+			//this.nowRoll[1]=tmpRoll[1];
+			this.nowRoll[2]=tmpRoll[5];
+			this.nowRoll[3]=tmpRoll[0];
+			//this.nowRoll[4]=tmpRoll[4];
+			this.nowRoll[5]=tmpRoll[3];
+		}
+
+	}
+	public int getRightRoll(int roll,int front){
+		int[][] a={{-1,2,4,1,3,-1},{3,-1,0,5,-1,2},{1,5,-1,-1,0,4},{4,0,-1,-1,5,1},{2,-1,5,0,-1,3},{-1,3,1,4,2,-1}};
+		int r=a[roll-1][front-1];
+		return this.nowRoll[r];
+	}
+}

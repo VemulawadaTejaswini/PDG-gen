@@ -1,0 +1,11 @@
+import java.io.*;
+public class Main {
+
+	public static void main(String[] args)throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String in = br.readLine();
+		String out =new String();
+		out = in.substring(0, 5)+' '+in.substring(6,13)+' '+in.substring(14);
+		System.out.println(out);
+	}
+}

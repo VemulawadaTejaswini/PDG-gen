@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+/**
+ * @author yoshizaki
+ *131
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner= new Scanner(System.in);
+        long min = scanner.nextLong();
+        long max = scanner.nextLong();
+        long divider1 = scanner.nextLong();
+        long divider2 = scanner.nextLong();
+        
+        long min1 = min / divider1;
+        long max1 = max / divider1;
+        
+        long min2 = min / divider2;
+        long max2 = max / divider2;
+        
+        long crossDivider = lcm(divider1, divider2);
+        long crossmin = min / crossDivider;
+        long crossmax = max / crossDivider;
+        
+        long mm = max1 -min1;
+        long nn = max2 - min2;
+        long cc = crossmax - crossmin;
+        long ans = (max - min) -(mm + nn) + cc + 1;
+        if(min == max && (min == divider1 || min == divider2)) {
+            ans = 0;
+        }
+        System.out.println(ans);
+    }
+    private static long lcm(long m, long n) {
+        return m * n / gcd(m, n);
+    }
+    
+    private static long gcd(long m, long n) {
+        if(m < n) return gcd(n, m);
+        if(n == 0) return m;
+        return gcd(n, m % n);
+    }
+}

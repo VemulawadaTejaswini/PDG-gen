@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+class Main{
+	public static void main(String[] args){
+		Scanner scn = new Scanner(System.in);
+		long s = Integer.parseInt(scn.next());
+		long c = Integer.parseInt(scn.next());
+
+		long countScc = 0;
+		if(c - s * 2 >= 0){
+			countScc += s;
+			countScc += (c - 2*s) / 4;
+		}else{
+			countScc += c/2;
+		}
+		System.out.println(countScc);
+	}
+}

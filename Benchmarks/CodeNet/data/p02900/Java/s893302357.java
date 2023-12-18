@@ -1,0 +1,110 @@
+
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+
+
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        TaskT solver = new TaskT();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class TaskT {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int A = in.nextInt();
+            int B = in.nextInt();
+            // if we find the greatest common divisor of both A and B we have the number upto which we need to consider 
+            //and then for coprimes we find all number from 1 to GCD which are primes 
+            // if the prime number divides both A and B then we can increment our counter 
+            
+            int gcd = GCD(A, B);
+            boolean[] primes = prime_sieve(gcd);  // find all primes till GCD
+            int result = 0;
+            for(int i = 1; i < primes.length; i++){
+            	if(primes[i]){  // if a number is prime and is a divisor of A and B then it suits our output criteria
+            		if(A%i == 0 && B%i == 0)
+            			result ++;
+            	}
+            }
+            out.print(result);
+        }
+        
+        public int GCD(int a, int b){
+        	int dividend = Math.max(a, b);
+        	int divisor = Math.min(a, b);
+        	int remainder = dividend % divisor;      	
+        	while(remainder != 0){
+        		remainder = dividend % divisor;
+        		dividend = divisor;
+        		divisor = remainder;
+        	}
+        	return dividend;
+        }
+        
+        public boolean[] prime_sieve(int n){
+        	boolean[] isPrime = new boolean[n+1];
+        	isPrime[0] = false;
+        	isPrime[1] = false;
+        	isPrime[2] = true;
+        	Arrays.fill(isPrime, true);
+        	for(int i = 2 ; i < Math.sqrt(n); i++){
+        		for(int j = 2*i; j <= n; j = j+i ){
+        			isPrime[j] = false;
+        		}
+        	}
+        	
+        	return isPrime;
+        }
+
+    }
+
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+        
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+    }
+}
+

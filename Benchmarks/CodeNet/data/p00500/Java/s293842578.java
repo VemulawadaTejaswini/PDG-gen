@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main {
+	void check(int a,int b,int n,int i) {
+		for(int k=1;k<=n;k++){
+	    	if(point[j][i]==point[k][i] && ) s+=1;
+	    }
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc =new Scanner(System.in);
+		int[][] point=new int[300][10];
+		int[] score=new int[102];
+		for(int i=1;i<=101;i++) score[i]=0; 
+		int n=sc.nextInt();
+		int k=0;
+		boolean check=false;
+		for(int i=0;i<n;i++){
+			for(int j=0;j<3;j++){
+			    point[i][j]=sc.nextInt();
+			}
+		}
+		for(int i=0;i<3;i++){
+			for(int j=0;j<n;j++){
+				check=false;
+			    for( k=0;k<n;k++){
+			    	if(point[k][i]==point[j][i] && j!=k) check=true;
+			    }
+			    if(check==false) score[j]=score[j]+point[k][i];
+			}
+		}
+		for(int j=0;j<n;j++){
+			System.out.println(score[j]);
+		}
+	}
+}

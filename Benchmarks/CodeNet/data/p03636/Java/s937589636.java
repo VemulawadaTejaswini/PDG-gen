@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String moji = sc.next();
+
+		String amoji = moji.substring(0,1) + (moji.length()-2) + moji.substring(moji.length()-1, moji.length());
+
+		System.out.println(amoji);
+
+		sc.close();
+	}
+
+
+}

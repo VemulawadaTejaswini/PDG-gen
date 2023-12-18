@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String str=sc.nextLine();
+            StringBuilder sb = new StringBuilder();
+            for (char ch : str.toCharArray()) {
+                if (ch=='0' || ch=='1')
+                    sb.append(ch);
+                else if (ch == 'B') {
+                    if (sb.length()!=0)
+                        sb.deleteCharAt(sb.length() - 1);
+                }
+            }
+            System.out.println(sb.toString());
+        }
+    }
+}

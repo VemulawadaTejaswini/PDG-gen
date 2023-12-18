@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int K = sc.nextInt();
+        int X = sc.nextInt();
+        int upper = X + K - 1;
+        int lower = X - K - 1;
+        for (int i = lower; i <= upper; i++) {
+                System.out.print(i + " ");
+            }
+        
+
+    }
+}

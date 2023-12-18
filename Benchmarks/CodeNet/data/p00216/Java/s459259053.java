@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,m;(n=s.nextInt())>=0;)System.out.println(3130-(m=Math.min(10,n-=Math.min(10,n)))*125+Math.min(10,n-=m)*20-n*160);}}

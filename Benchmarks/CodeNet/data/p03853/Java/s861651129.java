@@ -1,0 +1,63 @@
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+// *** at 2018/**/**
+
+public class Main {
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.solveB();
+    }
+
+    private void solveA() {
+        Scanner sc = new Scanner(System.in);
+        String N = sc.nextLine();
+        String word = "aiueo";
+        if (-1 < word.indexOf(N)) {
+            System.out.println("vowel");
+        } else {
+            System.out.println("consonant");
+        }
+    }
+
+    private void solveB() {
+        Scanner sc = new Scanner(System.in);
+        int H = sc.nextInt();
+        int W = sc.nextInt();
+        sc.nextLine();
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < H; i++) {
+            list.add(sc.nextLine());
+        }
+        for (String string : list) {
+            System.out.println(string);
+            System.out.println(string);
+        }
+    }
+
+    private void solveC() {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        System.out.println(N);
+    }
+
+    private void solveD() {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        System.out.println(N);
+    }
+
+    private void solveE() {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        System.out.println(N);
+    }
+
+    private void solveF() {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        System.out.println(N);
+    }
+
+}

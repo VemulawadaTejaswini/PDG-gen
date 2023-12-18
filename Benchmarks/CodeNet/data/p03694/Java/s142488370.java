@@ -1,0 +1,21 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int count = sc.nextInt();
+		sc.nextLine();
+		int[] array = new int[count];
+		
+		for (int i = 0; i < count; i++) {
+			array[i] = sc.nextInt();
+		}
+		sc.close();
+		
+		Arrays.sort(array);
+		
+		System.out.println(array[count - 1] - array[0]);
+	}
+}

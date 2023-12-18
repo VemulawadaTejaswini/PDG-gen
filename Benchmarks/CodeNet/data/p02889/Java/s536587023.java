@@ -1,0 +1,187 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    solve(System.in, System.out);
+  }
+
+  private static class Edge {
+    int fr;
+    int to;
+    int cost;
+  }
+
+  static void solve(InputStream is, PrintStream os) {
+    Scanner sc = new Scanner(is);
+
+    /* read */
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int l = sc.nextInt();
+
+    // key : from city, value : edge
+    List<List<Edge>> lists = new ArrayList<>(n);
+    for (int i = 0; i < n; i++){
+      lists.add(new LinkedList<>());
+    }
+
+    // exclude the expensive edge (than L) in advance
+    for (int i = 0; i < m; i++) {
+      int a = sc.nextInt() - 1;
+      int b = sc.nextInt() - 1;
+      int c = sc.nextInt();
+      if (c <= l) {
+        Edge edge1 = new Edge();
+        edge1.fr = a;
+        edge1.to = b;
+        edge1.cost = c;
+        lists.get(edge1.fr).add(edge1);
+
+        Edge edge2 = new Edge();
+        edge2.fr = b;
+        edge2.to = a;
+        edge2.cost = c;
+        lists.get(edge2.fr).add(edge2);
+      }
+    }
+    Move[][] dijkstras = new Move[n][];
+    for (int i = 0; i < n; i++) {
+      dijkstras[i] = dijkstra(i, lists, n, l);
+    }
+
+    int q = sc.nextInt();
+    for (int i = 0; i < q; i++) {
+      int s = sc.nextInt() - 1;
+      int t = sc.nextInt() - 1;
+      if (dijkstras[s][t] == null) {
+        os.println(-1);
+      } else {
+        os.println(dijkstras[s][t].refill);
+      }
+    }
+  }
+
+  private static class Move implements Comparable<Move> {
+    private final int max;
+
+    int usedFuel = 0;
+    int refill = 0;
+
+    private Move(int max) {
+      this.max = max;
+    }
+
+    @Override
+    public int compareTo(Move other) {
+      return this.refill != other.refill ? Integer.compare(this.refill, other.refill) :
+              Integer.compare(this.usedFuel, other.usedFuel);
+    }
+
+    Move run(int cost) {
+      Move move = new Move(max);
+      move.usedFuel = usedFuel;
+      move.refill = refill;
+      if (max < move.usedFuel + cost) {
+        move.refill++;
+        move.usedFuel = 0;
+      }
+      move.usedFuel += cost;
+      return move;
+    }
+  }
+
+  private static Move[] dijkstra(int s, List<List<Edge>> edges, int n, int l) {
+    Move[] d = new Move[n + 1];
+    d[s] = new Move(l);
+    d[s].usedFuel = 0;
+    d[s].refill = 0;
+
+    Queue<Integer> queue = new PriorityQueue<>((i1, i2) ->
+            d[i1] == null ? i2 :
+                    d[i2] == null ? i1 :
+                            d[i1].compareTo(d[i2]));
+    queue.add(s);
+
+    while(!queue.isEmpty()) {
+      int fr = queue.remove();
+      for (Edge edge : edges.get(fr)) {
+        int to = edge.to;
+        Move alt = d[fr].run(edge.cost);
+        if (d[to] == null || alt.compareTo(d[to]) < 0) {
+          d[to] = alt;
+          queue.add(to);
+        }
+      }
+    }
+    return d;
+  }
+
+  private static class Scanner {
+    private final BufferedReader reader;
+    private StringTokenizer tokenizer;
+
+    private Scanner(InputStream is) {
+      this.reader = new BufferedReader(new InputStreamReader(is), 1 << 15);
+    }
+
+    String next() {
+      try {
+        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+          tokenizer = new StringTokenizer(reader.readLine());
+        }
+      } catch (IOException ignored) {
+      }
+      return tokenizer.nextToken();
+    }
+
+    int nextInt() {
+      return Integer.parseInt(next());
+    }
+
+    long nextLong() {
+      return Long.parseLong(next());
+    }
+
+    char[][] nextCharArray(int n, int m) {
+      char[][] a = new char[n][m];
+      for (int i = 0; i < n; i++) {
+        a[i] = next().toCharArray();
+      }
+      return a;
+    }
+
+    int[] nextIntArray(int n, java.util.function.IntUnaryOperator op) {
+      int[] a = new int[n];
+      for (int i = 0; i < n; i++) {
+        a[i] = op.applyAsInt(nextInt());
+      }
+      return a;
+    }
+
+    int[] nextIntArray(int n) {
+      int[] a = new int[n];
+      for (int i = 0; i < n; i++) {
+        a[i] = nextInt();
+      }
+      return a;
+    }
+
+    long[] nextLongArray(int n) {
+      long[] a = new long[n];
+      for (int i = 0; i < n; i++) {
+        a[i] = nextLong();
+      }
+      return a;
+    }
+
+    long[] nextLongArray(int n, java.util.function.LongUnaryOperator op) {
+      long[] a = new long[n];
+      for (int i = 0; i < n; i++) {
+        a[i] = op.applyAsLong(nextLong());
+      }
+      return a;
+    }
+  }
+}

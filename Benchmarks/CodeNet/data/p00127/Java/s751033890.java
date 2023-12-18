@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){String r;int n,v,i;for(Scanner s=new Scanner(System.in);s.hasNext();System.out.println(r)){char[]c=s.next().toCharArray(),k={46,63,33,32};r="";if((n=c.length)%2>0)r="NA";else for(i=0;i<n;r+=v<26?(char)(97+v):k[v-26])if((v=c[i++]*5+c[i]-294)<0||29<v||c[i]<49||c[i++]>53){r="NA";break;}}}}

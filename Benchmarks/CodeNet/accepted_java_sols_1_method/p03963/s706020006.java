@@ -1,0 +1,15 @@
+//Main.java
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		long n = sc.nextLong();
+		long k = sc.nextLong();
+		long a = k;
+		for (long i = 1; i < n; i++) {
+			a *= k - 1;
+		}
+		System.out.println(a);
+	}
+}

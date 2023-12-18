@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Maina {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int[] chars = new int[256];
+		while(sc.hasNextLine()) {
+			String line = sc.nextLine();
+			for(int i = 0; i < line.length(); i++){
+				char ch = Character.toLowerCase(line.charAt(i));
+				for(char cha = 'a'; cha <= 'z'; cha++){
+					if(cha == ch){
+						chars[cha]++;
+					}
+				}
+			}
+		}
+		for(char ch = 'a'; ch <= 'z'; ch++){
+			System.out.println(ch + ":" + chars[ch]);
+		}
+	}
+}

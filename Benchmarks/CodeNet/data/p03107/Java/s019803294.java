@@ -1,0 +1,63 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String args[]) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		Solver solver = new Solver();
+		solver.init();
+		solver.readHead(in.readLine());
+		// for (; solver.hasNext();) {
+		// solver.readBody(in.readLine());
+		// }
+		// solver.solve();
+	}
+}
+
+class Solver {
+	int N;
+	int cnt;
+
+	public void init() {
+		N = 0;
+		cnt = 0;
+	}
+
+	public void readHead(String str) {
+		String[] strArr = str.split(" ");
+		// N = Integer.parseInt(strArr[0]);
+		// System.out.println(N);
+		int ans = 0;
+		for (; str.length() > 1;) {
+			int idx = -1;
+			for (int i = 0; i < str.length() - 1; i++) {
+				if (str.charAt(i) != str.charAt(i + 1)) {
+					idx = i;
+					break;
+				}
+			}
+			if (idx >= 0) {
+				str = str.substring(0, idx) + str.substring(idx + 2);
+				ans += 2;
+			} else {
+				break;
+			}
+		}
+		System.out.println(ans);
+
+	}
+
+	public boolean hasNext() {
+		return cnt < N;
+	}
+
+	public void readBody(String str) {
+		// System.out.println(str);
+		cnt++;
+	}
+
+	public void solve() {
+
+	}
+}

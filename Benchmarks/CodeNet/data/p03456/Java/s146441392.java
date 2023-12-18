@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        int a = s.nextInt();
+        int b = s.nextInt();
+        int x=0;
+        if(b/10==0){
+            x=a*10+b;
+
+        }else if(b/100==0) {
+
+            x = a*100+b;
+        }else{
+            x = a*1000+b;
+        }
+        //System.out.println(x);
+        double y = Math.sqrt(x);
+        if(y%1==0) System.out.println("Yes");
+        else System.out.println("No");
+    }
+}

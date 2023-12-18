@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Main {
+
+	private void doit(){
+		Scanner sc = new Scanner(System.in);
+		long mod = 1000000007;
+		while(sc.hasNext()){
+			String s = sc.next();
+			char [] data = s.toCharArray();
+			
+			int ind = 0;
+			StringBuilder sb = new StringBuilder();
+			
+			for(int i = 0; i < data.length; i++){
+				char c = data[i];
+				if(c == '0'){
+					sb.append(c);
+					ind++;
+				}
+				else if(c == '1'){
+					sb.append(c);
+					ind++;
+				}
+				else{
+					ind--;
+					if(ind < 0){
+						ind++;
+						continue;
+					}
+					
+					sb.deleteCharAt(ind);
+				}
+			}
+			
+			System.out.println(sb.toString());
+
+		}
+
+	}
+
+	private void debug(Object... o) {
+		System.out.println("debug = " + Arrays.deepToString(o));
+	}
+
+	public static void main(String[] args) {
+		new Main().doit();
+	}
+
+}

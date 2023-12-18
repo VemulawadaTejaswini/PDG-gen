@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		
+		Scanner scan = new Scanner(System.in);
+		String W = scan.next();
+		String w = W.toLowerCase();
+		
+		int i = 0;
+		while(true){
+			String Ti = scan.next();
+			if (Ti.equals("END_OF_TEXT")) break;
+			String ti = Ti.toLowerCase();
+			if (ti.equals(w)) i++;
+		}
+		System.out.println(i);
+		
+
+	}
+
+}

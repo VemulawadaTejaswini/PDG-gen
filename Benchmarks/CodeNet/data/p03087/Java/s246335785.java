@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		int q = sc.nextInt();
+		String str = sc.next();
+		int count =0;
+		int s=0;
+		int l=0;
+		char check=' ';
+		String subStr="";
+		for(int k =0;k<q;k++) {
+			 s = sc.nextInt();
+			 l = sc.nextInt();
+			  subStr = str.substring(s-1,l);
+			  count=( subStr.length()-subStr.replaceAll("AC", "").length())/2;
+			  System.out.println(count);
+			  count=0;
+		}
+
+	}
+}

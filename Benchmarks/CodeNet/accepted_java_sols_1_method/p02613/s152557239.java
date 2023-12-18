@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int countAC = 0;
+        int countWA= 0;
+        int countTLE = 0;
+        int countRE = 0;
+        for(int i =0; i < N; i++){
+            String str = sc.next();
+            if(str.equals("AC")){
+                countAC++;
+            }else if(str.equals("WA")){
+                countWA++;
+            }else if (str.equals("TLE")){
+                countTLE++;
+            }else{
+                countRE++;
+            }
+        }
+        System.out.println("AC x " + countAC );
+        System.out.println("WA x " + countWA );
+        System.out.println("TLE x " + countTLE );
+        System.out.println("RE x " + countRE );
+    }
+}

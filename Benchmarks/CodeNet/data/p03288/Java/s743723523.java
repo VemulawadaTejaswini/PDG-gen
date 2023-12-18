@@ -1,0 +1,16 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String arg[])throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int R = Integer.parseInt(br.readLine());
+        if(R<1200){
+            System.out.println("ABC");
+        }else if(R<2800){
+            System.out.println("ARC");
+        }else{
+            System.out.println("AGC");
+        }
+    }
+}

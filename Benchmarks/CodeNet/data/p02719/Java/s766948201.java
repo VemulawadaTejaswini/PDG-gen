@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main79 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long n = sc.nextLong();
+        long k = sc.nextLong();
+
+        double c = (double)n / k;
+        long d = (long) Math.floor(c);
+        long e = Math.abs(n - (k * d));
+        long f = Math.abs(n - (k * (d +1)));
+        System.out.println(Math.min(e, f));
+    }
+}

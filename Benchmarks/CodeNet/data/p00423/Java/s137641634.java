@@ -1,0 +1,74 @@
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+public class Main {
+	private static int n; // ?????????????????°
+	private static int sumA, sumB; // A???B???????¨???????
+	private static int cardA, cardB; // A???B?????????????????????
+
+	// ??????????????????
+	private static int isWinner;
+	private static final int A_WIN = 0;
+	private static final int B_WIN = 1;
+	private static final int DRAW = 2;
+
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(new InputStreamReader(System.in));
+
+		while ((n = sc.nextInt()) != 0) {
+			// ???????????????
+			init();
+			// ????±???????
+			for (int i = 0; i < n; i++) {
+				cardA = sc.nextInt();
+				cardB = sc.nextInt();
+				battle();
+			}
+			// ???????????????
+			System.out.println(String.format("%d %d", sumA, sumB));
+		}
+	}
+
+	/**
+	 * ???????????????
+	 */
+	private static void init() {
+		sumA = 0;
+		sumB = 0;
+	}
+
+	/**
+	 * ????±???????
+	 */
+	private static void battle() {
+		if (cardA > cardB) {
+			isWinner = 0;
+		} else if (cardB > cardA) {
+			isWinner = 1;
+		} else if (cardA == cardB) {
+			isWinner = 2;
+		}
+		calculate();
+	}
+
+	/**
+	 * ???????¨????
+	 */
+	private static void calculate() {
+		switch (isWinner) {
+		case A_WIN:
+			sumA += (cardA + cardB);
+			break;
+		case B_WIN:
+			sumB += (cardA + cardB);
+			break;
+		case DRAW:
+			sumA += cardA;
+			sumB += cardB;
+			break;
+		}
+	}
+}

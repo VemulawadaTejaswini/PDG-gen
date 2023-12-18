@@ -1,0 +1,9 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		final Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt(), b = sc.nextInt(),c = sc.nextInt(), d = sc.nextInt();
+		System.out.println(Math.min(a, b)+Math.min(c, d));
+	}
+}

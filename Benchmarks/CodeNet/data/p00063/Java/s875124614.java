@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int c=0;for(Scanner s=new Scanner(System.in);s.hasNext();){String x=s.next();c+=x.equals(new StringBuffer(x).reverse().toString())?1:0;}System.out.println(c);}}

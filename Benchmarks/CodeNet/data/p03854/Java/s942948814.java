@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+/**
+ *
+ * @author psygn
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String str = scanner.nextLine();
+        StringBuilder sb = new StringBuilder(str);
+        String rev = sb.reverse().toString();
+        String ans = "NO";
+
+        while (true) {
+            System.out.println(rev);
+            if ("".equals(rev)) {
+                ans = "YES";
+                break;
+            }
+            try {
+                if ("esare".equals(rev.substring(0, 5))) {
+                    rev = rev.substring(5);
+                } else if ("maerd".equals(rev.substring(0, 5))) {
+                    rev = rev.substring(5);
+                }  else if ("resare".equals(rev.substring(0, 6))) {
+                    rev = rev.substring(6);
+                } else if ("remaerd".equals(rev.substring(0, 7))) {
+                    rev = rev.substring(7);
+                } else {
+                    break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                break;
+            }
+        }
+        System.out.println(ans);
+    }
+}

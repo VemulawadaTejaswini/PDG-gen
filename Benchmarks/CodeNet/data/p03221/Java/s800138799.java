@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+
+		List<String> NUM = new ArrayList<String>();
+		Map<Integer, ArrayList> map = new TreeMap<Integer, ArrayList>();
+
+		for (int i = 0; i < M; i++) {
+			int p = sc.nextInt();
+			int y = sc.nextInt();
+			map.put(y,new ArrayList<Integer>(Arrays.asList(p,i)));
+		}
+
+		int[] cnt = new int[N + 1];
+
+		int i = 0;
+		for (List<Integer> ii: map.values()) {
+			NUM.add(String.format("%06d%06d",ii.get(0),++cnt[ii.get(0)]));
+			i++;
+		}
+
+		for(i = 0; i < M; i++){
+			System.out.println(NUM.get(i));
+		}
+	}
+}

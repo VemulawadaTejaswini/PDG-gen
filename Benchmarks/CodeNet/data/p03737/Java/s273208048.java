@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+
+		String a = scan.next();
+	    String a2 = null;
+	    a2 =a.toUpperCase();
+	    char a_front = a2.charAt(0);
+
+
+		
+		
+		String b = scan.next();
+	    String b2 = null;
+	    b2 =b.toUpperCase();
+	    char b_front = b2.charAt(0);
+
+
+		String c = scan.next();
+	    String c2 = null;
+	    c2 =c.toUpperCase();
+	    char c_front = c2.charAt(0);
+
+		
+		System.out.println("" + a_front + b_front + c_front + "");
+
+		
+	}
+
+}

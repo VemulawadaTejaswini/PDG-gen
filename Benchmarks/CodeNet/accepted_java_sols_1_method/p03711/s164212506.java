@@ -1,0 +1,14 @@
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args){
+		int group[] = {1,1,3,1,2,1,2,1,1,2,1,2,1};
+		Scanner scanner = new Scanner(System.in);
+		int x = Integer.parseInt(scanner.next());
+		int y = Integer.parseInt(scanner.next());
+		if(group[x] == group[y]){
+			System.out.println("Yes");
+		}else{
+			System.out.println("No");
+		}
+	}
+}

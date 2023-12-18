@@ -1,0 +1,29 @@
+import java.awt.print.Printable;
+import java.util.Scanner;
+import javax.sound.midi.SysexMessage;
+  
+public class Main{      
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int w = sc.nextInt();
+        int n = sc.nextInt();
+        int amidaArray = new int[n];
+
+        for(int i=0;i<n;i++){
+            amidaArray[i] = i;
+        }
+        for(int i=0;i<w;i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+
+            int temp = amidaArray[a];
+
+            amidaArray[a]=amidaArray[b];
+
+            amidaArray[b]=temp;
+        }
+        for(int i=0;i<n;i++){
+            System.out.println(amidaArray[i]);
+        }
+    }   
+}

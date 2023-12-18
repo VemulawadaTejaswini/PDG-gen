@@ -1,0 +1,1 @@
+import java.io.*;class Main{public static void main(String[]g)throws Exception{BufferedReader B=new BufferedReader(new InputStreamReader(System.in));for(Integer m,i=0,j,n,a[],b[];(n=i.valueOf(B.readLine()))>0;System.out.println(m)){for(a=new Integer[n+1],m=i=0;i++<n;m=Math.max(m,a[i]=i.valueOf(B.readLine())));b=a.clone();for(i=0;i++<n;)for(j=i;j++<n;)m=Math.max(m,b[i]+=a[j]);}}}

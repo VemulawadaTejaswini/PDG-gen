@@ -1,0 +1,20 @@
+import java.util.*;
+
+class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int C = sc.nextInt();
+
+        if(Math.max(A, B) > C){
+            System.out.println(A + 1);
+        }else if(Math.max(A, B) < C){
+            System.out.println(C + 1);
+        }else{
+            System.out.println(0);
+        }
+
+    }
+}

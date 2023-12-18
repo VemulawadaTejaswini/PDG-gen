@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class Main {
+	static int N;
+	static int W;
+	static int[] w;
+	static int[] v;
+	static long[][] memo;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		W = sc.nextInt();
+
+		w = new int[N];
+		v = new int[N];
+		memo = new long[N][100001];
+
+		for(int i = 0; i < N; i++) {
+			w[i] = sc.nextInt();
+			v[i] = sc.nextInt();
+			for(int j = 0; j <= 100000; j++)
+				memo[i][j] = -1;
+		}
+
+		long value = dp(0, W);
+
+		System.out.println(value);
+	}
+	static long dp(int i, int u) {
+		if(i >= N)
+			return 0;
+		if(memo[i][u] != -1)
+			return memo[i][u];
+		long value;
+		long v1 = 0;
+		long v2 = 0;
+		if(u >= w[i]) {
+			v1 = dp(i + 1, u - w[i]) + v[i];
+		}
+		value = v2 = dp(i + 1, u);
+		if(v1 > v2) {
+			value = v1;
+		}
+		memo[i][u] = value;
+		return value;
+	}
+}

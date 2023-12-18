@@ -1,0 +1,35 @@
+import java.util.*;
+public class Main{
+  static class Store implements Comparable<Store>{
+    long price, cans;
+    Store(long price, cans){
+      this.price = price;
+      this.cans = cans;
+    }
+    public int compareTo(Store obj){
+      return this.price - obj.price;
+    }
+  }
+  
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    long M = sc.nextLong();
+    List<Store> stores = new ArrayList<>();
+    for(int i=0; i<N; i++){
+      stores.add(new Store(sc.nextLong(), sc.nextLong()));
+    }
+    long sum = 0;
+    for(int i=0; i<N; i++){
+      Store si = stores.get(i);
+      if(si.cans < M){
+        sum += si.price*si.cans;
+        M -= si.cans;
+      }else{
+        sum += si.price*M;
+        break;
+      }
+    }
+    System.out.print(sum);
+  }
+}

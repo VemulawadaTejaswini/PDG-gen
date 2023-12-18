@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+/**
+ *
+ * @author sysPlan3
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner  scanner = new Scanner(System.in);
+        
+        int a = scanner.nextInt(); 
+        int b = scanner.nextInt();
+        
+        if(a>b){
+        System.out.println("a>b");
+        }
+        if(a<b){
+            System.err.println("a<b");
+        }
+        else{
+            System.err.println("a==b");
+        }
+        
+    }
+        
+    
+}

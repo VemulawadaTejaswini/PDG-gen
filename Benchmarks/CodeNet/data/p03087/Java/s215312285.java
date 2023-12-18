@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int q = sc.nextInt();
+        char[] s = sc.next().toCharArray();
+        int[] ac = new int[n+1];
+        ArrayList<Integer> acl = new ArrayList<>();
+        int i = 1;
+        boolean prevA = false;
+        for(char c : s){
+            if(c == 'A'){
+                prevA = true;
+            }else if(c == 'C' && prevA){
+                ac[i-1]++;
+                prevA = false;
+            }else{
+                prevA = true;
+            }
+            i++;
+        }
+        System.out.print(ac[0] + " ");
+        for(int j = 1; j <= n; j++){
+            ac[j] += ac[j-1];
+            System.out.print(ac[j] + " ");
+        }
+        System.out.println();
+        for(int j = 0; j < q; j++){
+            int left = sc.nextInt();
+            int right = sc.nextInt();
+            System.out.println(ac[right-1] - ac[left-1]);
+        }
+    }
+}

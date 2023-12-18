@@ -1,0 +1,28 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try{
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			BigInteger first = new BigInteger(br.readLine());
+			BigInteger second = new BigInteger(br.readLine());
+			switch(first.compareTo(second)){
+			case 1:
+				System.out.println("GREATER");
+				break;
+			case 0:
+				System.out.println("EQUAL");
+				break;
+			case -1:
+				System.out.println("LESS");
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,16 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String lineA = br.readLine();
+		String lineB = br.readLine();
+		String lineH = br.readLine();
+		int a = Integer.parseInt(lineA);
+		int b = Integer.parseInt(lineB);
+		int h = Integer.parseInt(lineH);
+		System.out.println((a + b) * h / 2);
+	}
+}

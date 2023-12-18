@@ -1,0 +1,69 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author otsuhata
+ */
+import java.util.Scanner;
+
+public class Main{
+    
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        //System.out.println("???H * ?¨?W ?????§???????????????????????????????????°????????§??????");
+        //System.out.println("H??¨W?????????3??????300?????????????????\????????????????????????");
+        
+        for(int i = 0; i < 3000; i ++) {
+            //System.out.print("??????????§????????????????????????§??\?????????????????????(0 0??§???????????????):");
+            int H = sc.nextInt();
+            int W = sc.nextInt();
+            
+            if(printJudge(H,W)) {
+                printUpBtm(W);
+                
+                for(int height = 0; height < (H - 2) ; height++) {
+                    printFrame(W);
+                }
+                
+                printUpBtm(W);
+            }else {
+                //System.out.println("##### GAME OVER #####");
+                break;
+            }
+            
+            //printUpBtm(W);
+            
+            System.out.print("\n");
+        }
+    }    
+
+    public static void printFrame(int W) { 
+        System.out.print("#"); 
+	for(int i = 0; i < (W - 2); i++) {
+		System.out.print(".");                
+	}
+        System.out.print("#"); 
+        System.out.print("\n");    
+    }
+    
+     public static void printUpBtm(int W) {  
+	for(int i = 0; i < W; i++) {
+		System.out.print("#");                
+	}
+        System.out.print("\n");    
+    }
+    
+    
+    public static boolean printJudge(int H, int W) {
+        if((H == 0 && W == 0)) {
+            return false;
+        }else return !(H < 3 || H > 300 || W < 3 || W > 300);
+    }
+    
+}

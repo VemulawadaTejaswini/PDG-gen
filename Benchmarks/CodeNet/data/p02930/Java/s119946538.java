@@ -1,0 +1,16 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        for (int i=N-1;i>=1;i--) {
+            StringBuilder sb = new StringBuilder();
+            for (int j=0;j<i;j++) {
+                sb.append(N-i);
+                if (j!=i-1) sb.append(" ");
+            }
+            System.out.println(sb);
+        }
+    }
+}

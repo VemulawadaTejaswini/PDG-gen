@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+/**
+ * Created by nakatsukatakahiro on 2017/06/10.
+ */
+class Main {
+
+
+
+    public static void main(String[] args) {
+        boolean[] color = new boolean[8];
+        int overer = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        int N = Integer.parseInt(scanner.next());
+
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < N; i++) {
+            int tmp = Integer.parseInt(scanner.next());
+            if (tmp < 400) {
+                color[0] = true;
+            } else if (tmp < 800) {
+                color[1] = true;
+            } else if (tmp < 1200) {
+                color[2] = true;
+            } else if (tmp < 1600) {
+                color[3] = true;
+            } else if (tmp < 2000) {
+                color[4] = true;
+            } else if (tmp < 2400) {
+                color[5] = true;
+            } else if (tmp < 2800) {
+                color[6] = true;
+            } else if (tmp < 3200) {
+                color[7] = true;
+            } else {
+                overer++;
+            }
+        }
+
+        int ans = 0;
+        int counter = 0;
+
+        for (int i = 0; i < 8; i++) {
+            if (color[i]) {
+                ans++;
+                counter++;
+            }
+        }
+
+        int maxAns = ans;
+
+        if (8 - counter >= overer) {
+            maxAns += overer;
+        } else {
+            maxAns = 8;
+        }
+
+        System.out.println(ans + " " + maxAns);
+
+    }
+}

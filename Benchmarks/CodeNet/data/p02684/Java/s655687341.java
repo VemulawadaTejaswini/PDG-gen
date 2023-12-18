@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class Main {
+	Scanner sc = new Scanner(System.in);
+	final int MOD = 1000000007;
+	final int MAX = Integer.MAX_VALUE;
+	final long LMAX = Long.MAX_VALUE;
+	int len = (int)1e6 + 1;
+	
+	void doIt() {
+		int N = sc.nextInt();
+		long K = sc.nextLong();
+		int A[] = new int[N];
+		for(int i = 0; i < N; i++) {
+			A[i] = sc.nextInt() - 1;
+		}
+		Set<Integer> used = new HashSet<>();
+		int idx[] = new int[N];
+		int pos[] = new int[N];
+		int next = 0, cur = 0;
+		while(!used.contains(next)) {
+			used.add(next);
+			idx[next] = cur;
+			pos[cur] = next;
+			next = A[next];
+			cur++;
+		}
+		//System.out.println(next + " " + cur);
+		long a = cur - idx[next];
+		long b = idx[next];
+		//System.out.println(a + " " + b);
+		int ans = (int) ((K - b) % a + b);
+		System.out.println(pos[ans] + 1);
+		//System.out.println(Arrays.toString(idx));
+	}
+	
+	public static void main(String[] args) {
+		new Main().doIt();
+	}
+
+}

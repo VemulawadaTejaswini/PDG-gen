@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+
+		long N = scan.nextLong();
+		long M = scan.nextLong();
+		long rest = 0;
+		
+		if(M > 2*N){
+			rest = M - 2 * N;
+		}
+		
+		long quo = rest / 4;
+		
+		System.out.println(N + quo);
+	}
+
+}

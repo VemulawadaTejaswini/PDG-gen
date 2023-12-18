@@ -1,0 +1,39 @@
+import java.util.Scanner;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        int l=sc.nextInt();
+        int[][] nm=new int[n][m];
+        int[][] ml=new int[m][l];
+        int[][] nl=new int[n][l];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                nm[i][j]=sc.nextInt();
+            }
+        }
+        for(int k=0;k<m;k++){
+            for(int p=0;p<l;p++){
+                ml[k][p]=sc.nextInt();
+            }
+        }for(int a=0;a<m;a++){
+            for(int b=0;b<m;b++){
+                int sum=0;
+                for(int c=0;c<l;c++){
+                    sum+=nm[a][c]*ml[c][b];
+                }
+                nl[a][b]=sum;
+            }
+        }
+        for(int d=0;d<=n;d++){
+            for(int e=0;e<=l;e++){
+                System.out.print(nl[d][e]);
+                if(e!=l){
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}

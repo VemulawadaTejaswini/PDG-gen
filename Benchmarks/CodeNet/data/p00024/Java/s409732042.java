@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){for(Scanner s=new Scanner(System.in);s.hasNext();)System.out.printf("%.0f\n",Math.ceil(4.9*Math.pow(s.nextDouble()/9.8,2)/5.+1.));}}

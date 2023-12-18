@@ -1,0 +1,66 @@
+import java.util.*;
+ 
+class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] a = new int[n];
+    int a = 0;
+    
+    for(int i=0;i<n;i++){
+      a[i] = sc.nextInt();
+      a = a+a[i];
+    }
+    
+    Arrays.sort(a);
+    
+    int ms = 0;
+    
+    for(int j=0;j<m;j++){
+      ms = ms+a[n-m+j];
+    }
+    
+    int line = 1/(4*m);
+    
+    if(ms<a*line){
+      System.out.println("No");
+    }else{
+      System.out.println("Yes");
+    }
+  }
+}
+import java.util.*;
+ 
+class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int[] a = new int[n];
+    int a = 0;
+    
+    for(int i=0;i<n;i++){
+      a[i] = sc.nextInt();
+      b = b+a[i];
+    }
+    
+    Arrays.sort(a);
+    
+    int ms = 0;
+    
+    for(int j=0;j<m;j++){
+      ms = ms+a[n-m+j];
+    }
+    
+    int line = 1/(4*m);
+    
+    if(ms<b*line){
+      System.out.println("No");
+    }else{
+      System.out.println("Yes");
+    }
+  }
+}

@@ -1,0 +1,12 @@
+import java.util.*;
+
+class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    int a2 = Math.pow(a, 2);
+    int a3 = Math.pow(a, 3);
+    System.out.println(a+a2+a3);
+    
+  }
+}

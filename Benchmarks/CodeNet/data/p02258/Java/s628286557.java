@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+import static java.util.Arrays.*;
+import static java.util.Collections.*;
+import static java.lang.Math.*;
+
+public class Main {
+  public static void main(String[] args) {
+    int i, j;
+    Scanner sc = new Scanner(System.in); 
+    int n = Integer.parseInt(sc.next());;
+    int r[] = new int[n];
+    for (i=0; i<n; i++)
+      r[i] = Integer.parseInt(sc.next());;
+
+    //res???max-min???????????????(???????????????mini?????´??°??§???????????¨???????????????)
+    int res = r[1] - r[0];
+    int mini = r[0];
+    for (j=1; j<n; j++) {
+      if (res < r[j] - mini) res = r[j] - mini;
+      if (r[j] < mini) mini = r[j];
+    }
+
+    System.out.println(res);
+  }
+}
+
+/*
+  //O(n^2):TLE
+  int res = r[1] - r[0];
+  for (i=0; i<n-1; i++)
+  for (j=i+1; j<n; j++)
+    res = (res < r[j] - r[i]) ? r[j] - r[i] : res; 
+  printf("%d\n", res);
+*/
+   
+/*
+  //WA(mini???????¨??????´??°?????????maxj-mini????????????????????¨?????????)
+  int maxj = r[1];
+  int mini = r[0];
+  for (j=1; j<n; j++) {
+    if (maxj-mini < r[j]-mini) {
+    maxj = r[j];
+    if (j < n-1 && r[j] < mini) mini = r[j];
+    }
+  //    if (j < n-1 && r[j] < mini) mini = r[j];
+  }
+  printf("%d\n", maxj-mini);
+*/

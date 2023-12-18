@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){g=new Scanner(System.in).nextLine().split(" ");int m=0,l=0,t,i=0,c=0,x=0,y=0;for(Arrays.sort(g);++i<g.length;g[0]=g[i]){if(g[0].equals(g[i])){if(++c>m){m=c;x=i;}}else c=0;t=g[i].length();if(t>l){l=t;y=i;}}System.out.println(g[x]+" "+g[y]);}}

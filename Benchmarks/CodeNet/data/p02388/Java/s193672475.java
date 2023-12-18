@@ -1,0 +1,15 @@
+import java.io.*;
+
+public class X_Cubic
+{
+	public static void main(String[] args) throws IOException
+	{
+		int x,x_3;
+		//System.out.println("x=");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		String line =reader.readLine();
+		x = Integer.parseInt(line);
+		x_3 = x*x*x;
+		System.out.println("x^3 = " + x_3);
+	}
+}

@@ -1,0 +1,34 @@
+import java.util.*;
+
+
+public class Main {
+  int N, K;
+  boolean[] D;
+  int A;
+
+  public static boolean isOK() {
+    int a = A;
+    while(A > 0) {
+      if(D[a % 10]) return false;
+      a = a / 10;
+    }
+    return true;
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    N = sc.nextInt();
+    K = sc.nextInt();
+    D = new int[10];
+    for(int i = 0; i < K; i++) {
+      int d = sc.nextInt();
+      D[d] = true;
+    }
+
+    A = N;
+    while(!isOK()) A++;
+
+    System.out.println(A);
+  }
+}

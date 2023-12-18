@@ -1,0 +1,139 @@
+import java.util.*;
+
+public class Main
+{
+    private static final int MAX_N = 100000 + 16;
+    private static int[] id = new int[MAX_N];   // ??¨??\????????¶??\????????????
+    private static int[] sz = new int[MAX_N];   // ??¨??\????????¶??\???????????§?°?
+    private static int[] parentTree = new int[MAX_N];   // ??¨??\????????¶??????
+    private static int[] ancestors = new int[MAX_N];     // ??¨??\??????????????????????????¶??????
+    private static boolean[] marked = new boolean[MAX_N];   // ??¨??\???????????????????????¶???
+    private static ArrayList<ArrayList<Integer>> childrenTree = new ArrayList<>(MAX_N);    // ??¨??\???????????????
+    private static Stack<String> ops = new Stack<String>();                     // ??¨??\????????????
+    private static Stack<Integer> point = new Stack<Integer>();                 // ??¨??\???????¢????????????°
+
+    //======================================================
+    // ??¶??\?????¨??°?????????
+    private static void init(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            id[i] = i;
+            sz[i] = 0;
+            childrenTree.add(new ArrayList<>());
+        }
+    }
+
+    private static int find(int p)
+    {
+        if (id[p] == p) return p;
+        return  id[p] = find(id[p]);
+    }
+
+    private static void union(int p, int q)
+    {
+        int pRoot = find(p);
+        int qRoot = find(q);
+
+        if (pRoot == qRoot) return;
+
+        if (sz[pRoot] > sz[qRoot])
+        {
+            id[qRoot] = pRoot;
+        }
+        else
+        {
+            id[pRoot] = qRoot;
+            if (sz[pRoot] == sz[qRoot]) sz[qRoot]++;
+        }
+    }
+    //====================================================
+
+    // ?????¨??????????????´??°???????????¶??????
+    private static void bsf(int index, int ancestor)
+    {
+        Queue<Integer> qIndex = new LinkedList<Integer>();
+        Queue<Integer> qAncestor = new LinkedList<Integer>();
+
+        qIndex.add(index);
+        qAncestor.add(ancestor);
+
+        while (!qIndex.isEmpty())
+        {
+            index = qIndex.poll();
+            ancestor = qAncestor.poll();
+
+            if (marked[index])
+            {
+                ancestor = index;   // ????????\???????????????????????´??°??¶??¶??????
+            }
+            ancestors[index] = ancestor;
+            for (int i: childrenTree.get(index))
+            {
+                qIndex.add(i);
+                qAncestor.add(ancestor);
+            }
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+
+        while (true)
+        {
+            int n = in.nextInt();
+            int m = in.nextInt();
+            if (n == m && n == 0) break;
+
+            // ?????????
+            init(n);
+            for (int i = 1; i < n; i++)
+            {
+                int q = in.nextInt();
+                q--;
+
+                childrenTree.get(q).add(i);
+                parentTree[i] = q;
+
+            }
+            marked[0] = true;
+            for (int i = 0; i < m; i++)
+            {
+                String q = in.next();
+                int k = in.nextInt(); k--;
+
+                if (q.equals("M"))
+                {
+                    if (marked[k]) continue;
+                    marked[k] = true;
+                }
+
+                ops.push(q);
+                point.push(k);
+            }
+            bsf(0, 0);
+            for (int i = 0; i < n; i++)
+            {   // ?°??????????????????¶??¶???????????\???????????\???
+                union(i, ancestors[i]);
+            }
+            long sum = 0;
+            while (!ops.isEmpty())
+            {
+                String q = ops.pop();
+                int k = point.pop();
+                if (q.equals("Q"))
+                {   // ?????°??¶?????????
+                    sum += ancestors[find(k)] + 1;  // ?¢????????§??????????1
+                }
+                else
+                {   // ??????????¨?????°???¶?\????????????¶??¶??????????\????
+                    int p = ancestors[find(parentTree[k])];
+                    union(k, parentTree[k]);
+                    ancestors[find(k)] = p;
+                }
+            }
+            System.out.println(sum);
+        }
+    }
+}

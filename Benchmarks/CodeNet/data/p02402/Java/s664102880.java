@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+class Main{
+    public static void main(String[] args){
+        int n,total;
+        int min = 1000000;
+        int max = ???1000000;
+    	//?¨??????\??????????????????????????§????????????
+		Scanner scanner = new Scanner(System.in);
+		a = scanner.nextInt();
+		int a[] = new int[n];
+		
+		for(int i = 0;i < n;i++){
+			total += a[i];
+			
+			if(min > a[i]){
+				min = a[i];
+			}
+			
+			if(max < a[i]){
+				max = a[i]
+			}
+		}
+		
+		System.out.println(min+" "+max+" "+total);
+    	scanner.close();
+    }
+}

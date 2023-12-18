@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+
+	private static Scanner scan;
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+
+		scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		if( a < b ) {
+			System.out.println( a < b );
+		}else if( a > b ) {
+			System.out.println( a > b );
+		}else if( a == b) {
+			System.out.println( a == b );
+		}
+		
+	}
+
+}

@@ -1,0 +1,23 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+
+public class Main {
+	public static void main(String[] args) {
+
+		try {
+			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+			String[] x = bf.readLine().trim().split(" ");
+			int a = Integer.parseInt(x[0]);
+			int b = Integer.parseInt(x[1]);
+			
+			int c = a - b * 2;
+			if ( c< 0 ) c=0;
+			System.out.println(c);
+		}catch(Exception e) {
+			
+		}
+	}
+}

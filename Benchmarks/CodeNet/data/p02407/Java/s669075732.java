@@ -1,0 +1,25 @@
+import java.util.Scanner;
+class Main {
+	private static int[] k = new int[100];
+	public void kami() {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+
+			for(int x = 1; x <= n; x++){
+				 k[x] = sc.nextInt();
+			}
+
+			for(int i = n; i >= 2; i--){
+				System.out.print(k[i] + " ");
+			}
+			System.out.print(k[1]);
+
+		System.out.println();
+	}
+
+	public static void main(String[] args) {
+
+		new Main().kami();
+	}
+
+}

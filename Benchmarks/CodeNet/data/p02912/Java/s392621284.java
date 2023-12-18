@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+		(new Main()).execute();
+	}
+	public void execute() {
+		// TODO 自動生成されたメソッド・スタブ
+//		Scanner sc = new Scanner(System.in);
+		// 整数の入力
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+
+		long sum = getAnswer(N,M) ;
+		System.out.println(sum);
+	}
+
+	public long getAnswer(int N, int M) {
+		List<Long> A = new ArrayList<Long>() ;
+
+
+		for(int i = 0 ; i < N; i ++) {
+			A.add(sc.nextLong());
+		}
+
+
+		for(int i = 0 ; i < M ; i ++) {
+			Long max = Collections.max(A) ;
+			int idx = A.indexOf(max);
+			A.set(idx, A.get(idx)/2);
+		}
+
+		long sum = 0 ;
+		for(int i = 0 ; i <N ; i ++) {
+			sum += A.get(i);
+		}
+
+		return sum ;
+	}
+
+	void sort(long[] array) {
+		for (int i = array.length - 1; 0 < i; i--) {
+			if (array[i - 1] > array[i]) {
+				// 入れ替え
+				long tmp = array[i - 1];
+				array[i - 1] = array[i];
+				array[i] = tmp;
+			}else {
+				break ;
+			}
+		}
+	}
+}

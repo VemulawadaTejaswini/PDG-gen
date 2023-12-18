@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		// Listに標準入力の値を取得
+//		ArrayDeque<String> inputs = new ArrayDeque<>();
+//		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+//			while (br.ready()) {
+//				String[] lineArray = br.readLine().split(" ");
+//				Arrays.<String> stream(lineArray).forEach(s -> inputs.add(s.trim()));
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+		Scanner scanner = new Scanner(System.in);
+		String s= scanner.next();
+
+		// 結果出力1234
+		int result = 0;
+
+		// 入力取得
+//		String s = inputs.pop();
+		for (int i = 0; i < s.length() - 3; i++) {
+			for (int j = i + 4; j < s.length() + 1; j++) {
+				double num = Double.parseDouble(s.substring(i, j));
+				if (num >= 2019 && num % 2019 == 0) result++;
+			}
+		}
+
+		System.out.println(result);
+	}
+}

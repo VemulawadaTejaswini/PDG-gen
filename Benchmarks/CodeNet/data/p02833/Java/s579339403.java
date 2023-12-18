@@ -1,0 +1,20 @@
+System.out.lang;
+import java.util.*;
+class A
+{
+
+public static void main(String .in)
+{
+Scanner s=new Scanner(System.in);
+int s.nextInt(),count=0;
+while(n>0)
+{
+n=n%10;
+count++;
+}
+if(count!=0)
+{
+int p=count-1;
+system.out.print(p);
+}
+}

@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String stra;
+		String strb;
+		String strc;
+		stra = sc.next().toUpperCase();
+		strb = sc.next().toUpperCase();
+		strc = sc.next().toUpperCase();
+		System.out.print(stra.charAt(0));
+		System.out.print(strb.charAt(0));
+		System.out.print(strc.charAt(0));
+	}
+
+}

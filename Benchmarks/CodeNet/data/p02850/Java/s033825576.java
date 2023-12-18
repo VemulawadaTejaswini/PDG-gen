@@ -1,0 +1,152 @@
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class Main {
+	public static void main(String[]args) {
+		try(Scanner scan = new Scanner(System.in)){
+
+			int N = scan.nextInt();
+
+			int[]a = new int[N-1];
+			int[]b = new int[N-1];
+
+			int []c = new int[N+1];
+			GM[]map = new GM[N];
+
+
+			for(int i = 0;i<N;i++) {
+				map[i] = new GM(i+1);
+			}
+
+			for(int i = 0;i<N-1;i++) {
+				a[i] = scan.nextInt();
+				b[i] = scan.nextInt();
+				c[a[i]]++;
+				c[b[i]]++;
+				map[a[i]-1].hen.put(b[i], 0);
+				map[b[i]-1].hen.put(a[i], 0);
+			}
+
+
+
+
+
+			int max = 0;
+			int maxi = 0;
+			for(int i = 1;i<=N;i++) {
+				if(max<c[i]) {
+					max = c[i];
+					maxi = i;
+					//System.out.println(max);
+				}
+			}
+
+
+			dfs(maxi,max,map,1);
+
+
+
+			//System.out.println(maxi);
+
+
+
+
+			/*
+			Deque<GM>queue = new ArrayDeque<GM>();
+			queue.addFirst(map[maxi]);
+			map[maxi].ch = true;
+
+			//System.out.println(maxi);
+			//System.out.println();
+
+
+			int i = 0;
+			while(!queue.isEmpty()) {
+				GM p  =queue.removeLast();
+				for(Integer key:p.hen.keySet()) {
+					if(map[key-1].ch==false) {
+						//System.out.println(p.num+" "+key);
+						//System.out.println(p.pre);
+						map[key-1].ch=true;
+						queue.addFirst(map[key-1]);
+						if(p.pre==i) {
+							i++;
+							if(i>max)i = 1;
+							p.hen.put(key, i);
+							map[key-1].hen.put(p.num, i);
+							map[key-1].pre=i;
+						}else {
+							i++;
+							if(i>max)i=1;
+							if(p.pre==1)i++;
+							p.hen.put(key, i);
+							map[key-1].hen.put(p.num, i);
+							map[key-1].pre=i;
+
+						}
+
+					}
+				}
+			}
+
+			*/
+
+			System.out.println(max);
+
+
+			for(int k = 0;k<N-1;k++) {
+				int p = map[a[k]-1].hen.get(b[k]);
+				System.out.println(p);
+
+			}
+
+
+
+
+
+
+		}
+
+
+	}
+
+	private static void dfs(int num,int max,GM[] map,int count) {
+
+		int a = count++;
+		if(a>max)a%=max;
+
+		map[num-1].ch = true;
+
+		for(Integer key:map[num-1].hen.keySet()) {
+			//System.out.println(num+" "+key);
+			if(map[key-1].ch==false) {
+				map[num-1].hen.put(key, a);
+				map[key-1].hen.put(num, a);
+				a++;
+				if(a>max)a%=max;
+				//map[key-1].ch = true;
+				dfs(key,max,map,a);
+
+			}
+		}
+
+
+
+	}
+
+	private static  class GM{
+		int num = 0;
+		boolean ch = false;
+		int pre = 0;
+		Map<Integer,Integer>hen = new TreeMap<Integer,Integer>();
+
+
+		GM(int n){
+			num = n;
+		}
+	}
+
+
+
+}

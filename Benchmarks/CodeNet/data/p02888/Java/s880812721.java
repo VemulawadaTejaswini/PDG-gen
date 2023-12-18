@@ -1,0 +1,256 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        long startTime = System.nanoTime();
+        int t = 1;
+        while (t-- > 0) {
+            solve();
+        }
+        long endTime = System.nanoTime();
+        err.println("Execution Time : +" + (endTime - startTime) / 1000000 + " ms");
+        exit(0);
+    }
+
+    static void solve() {
+        int N = in.nextInt();
+        int[] data = ArrayUtils.MegreSort(in.readAllInts(N));
+        long ans = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = i + 1; j < N; j++) {
+                int t = data[i] + data[j];
+                int low = 0;
+                int high = data.length - 1;
+                int mid = 0;
+                int ind = 0;
+                while (low <= high) {
+                    mid = (low + high) / 2;
+                    if (data[mid] < t) {
+                        low = mid + 1;
+                        ind = mid;
+                    } else if (data[mid] >= t) {
+                        high = mid - 1;
+                    }
+                }
+                if (ind > 0) {
+                    ans += (ind - j);
+                }
+            }
+        }
+        out.println(ans);
+    }
+
+    static class ArrayUtils {
+
+        static int[] reverse(int[] data) {
+            int[] p = new int[data.length];
+            for (int i = 0, j = data.length - 1; i < data.length; i++, j--) {
+                p[i] = data[j];
+            }
+            return p;
+        }
+
+        static long[] reverse(long[] data) {
+            long[] p = new long[data.length];
+            for (int i = 0, j = data.length - 1; i < data.length; i++, j--) {
+                p[i] = data[j];
+            }
+            return p;
+        }
+
+        static char[] reverse(char[] data) {
+            char[] p = new char[data.length];
+            for (int i = 0, j = data.length - 1; i < data.length; i++, j--) {
+                p[i] = data[j];
+            }
+            return p;
+        }
+
+        static int[] MegreSort(int[] A) {
+            if (A.length > 1) {
+                int q = A.length / 2;
+                int[] left = new int[q];
+                int[] right = new int[A.length - q];
+                System.arraycopy(A, 0, left, 0, q);
+                System.arraycopy(A, q, right, 0, A.length - q);
+                int[] left_sorted = MegreSort(left);
+                int[] right_sorted = MegreSort(right);
+                return Megre(left_sorted, right_sorted);
+            } else {
+                return A;
+            }
+        }
+
+        static int[] Megre(int[] left, int[] right) {
+            int[] A = new int[left.length + right.length];
+            int i = 0;
+            int j = 0;
+            for (int k = 0; k < A.length; k++) {
+                // To handle left becoming empty
+                if (i == left.length && j < right.length) {
+                    A[k] = right[j];
+                    j++;
+                    continue;
+                }
+                // To handle right becoming empty
+                if (j == right.length && i < left.length) {
+                    A[k] = left[i];
+                    i++;
+                    continue;
+                }
+                if (left[i] <= right[j]) {
+                    A[k] = left[i];
+                    i++;
+                } else {
+                    A[k] = right[j];
+                    j++;
+                }
+            }
+            return A;
+        }
+
+        static long[] MegreSort(long[] A) {
+            if (A.length > 1) {
+                int q = A.length / 2;
+                long[] left = new long[q];
+                long[] right = new long[A.length - q];
+                System.arraycopy(A, 0, left, 0, q);
+                System.arraycopy(A, q, right, 0, A.length - q);
+                long[] left_sorted = MegreSort(left);
+                long[] right_sorted = MegreSort(right);
+                return Megre(left_sorted, right_sorted);
+            } else {
+                return A;
+            }
+        }
+
+        static long[] Megre(long[] left, long[] right) {
+            long[] A = new long[left.length + right.length];
+            int i = 0;
+            int j = 0;
+            for (int k = 0; k < A.length; k++) {
+                // To handle left becoming empty
+                if (i == left.length && j < right.length) {
+                    A[k] = right[j];
+                    j++;
+                    continue;
+                }
+                // To handle right becoming empty
+                if (j == right.length && i < left.length) {
+                    A[k] = left[i];
+                    i++;
+                    continue;
+                }
+                if (left[i] <= right[j]) {
+                    A[k] = left[i];
+                    i++;
+                } else {
+                    A[k] = right[j];
+                    j++;
+                }
+            }
+            return A;
+        }
+    }
+
+    static void debug(Object... args) {
+        for (Object a : args) {
+            out.println(a);
+        }
+    }
+
+    static void y() {
+        out.println("YES");
+    }
+
+    static void n() {
+        out.println("NO");
+    }
+
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public int[] readAllInts(int n) {
+            int[] p = new int[n];
+            for (int i = 0; i < n; i++) {
+                p[i] = in.nextInt();
+            }
+            return p;
+        }
+
+        public int[] readAllInts(int n, int s) {
+            int[] p = new int[n + s];
+            for (int i = s; i < n + s; i++) {
+                p[i] = in.nextInt();
+            }
+            return p;
+        }
+
+        public long[] readAllLongs(int n) {
+            long[] p = new long[n];
+            for (int i = 0; i < n; i++) {
+                p[i] = in.nextInt();
+            }
+            return p;
+        }
+
+        public long[] readAllLongs(int n, int s) {
+            long[] p = new long[n + s];
+            for (int i = s; i < n + s; i++) {
+                p[i] = in.nextInt();
+            }
+            return p;
+        }
+
+        public double nextDouble() {
+            return Double.parseDouble(next());
+        }
+    }
+
+    static void exit(int a) {
+        out.close();
+        err.close();
+        System.exit(a);
+    }
+
+    static InputStream inputStream = System.in;
+    static OutputStream outputStream = System.out;
+    static OutputStream errStream = System.err;
+    static InputReader in = new InputReader(inputStream);
+    static PrintWriter out = new PrintWriter(outputStream);
+    static PrintWriter err = new PrintWriter(errStream);
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+}

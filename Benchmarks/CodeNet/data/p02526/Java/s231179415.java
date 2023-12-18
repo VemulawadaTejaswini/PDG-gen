@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class Main {
+	static void search(){
+		Scanner sc = new Scanner(System.in);
+		int m, n, num2, number = 0;
+		m = sc.nextInt();
+		int[] num = new int[m];
+		for(int i = 0; i < m; i++){
+			num[i] = sc.nextInt();
+		}
+		n = sc.nextInt();
+		for(int i = 0; i < n; i++){
+			num2 = sc.nextInt();
+			int j = 0;
+			while(j < m){
+				if(num[j] == num2){
+					number++;
+					break;
+				}
+				j++;
+			}
+		}
+		System.out.println(number);
+	}
+	public static void main(String[] args) {
+		search();
+	}
+}

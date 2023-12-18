@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n;(n=s.nextInt())>0;){String r=s.next();for(;n-->0;)r=f(r+" ");System.out.println(r);}}static String f(String s){String r="";char[]a=s.toCharArray();for(int c=1,i=1;i<a.length;++i)if(a[i]!=a[i-1]){r+=c+""+a[i-1];c=1;}else++c;return r;}}

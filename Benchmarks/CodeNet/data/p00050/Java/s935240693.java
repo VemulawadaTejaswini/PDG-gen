@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[] a)throws java.io.IOException{Scanner s=new Scanner(System.in);System.out.println(s.nextLine().replaceAll("apple","orange").replaceAll("peach","apple").replaceAll("orange","peach"));}}

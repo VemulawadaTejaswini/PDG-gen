@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+	void run() {
+		Scanner sc = new Scanner(System.in);
+
+		int sx = sc.nextInt();
+		int sy = sc.nextInt();
+		int gx = sc.nextInt();
+		int gy = sc.nextInt();
+
+		for (int i = 0; i < gy - sy; i++) {
+			System.out.print("U");
+		}
+		for (int i = 0; i < gx - sx; i++) {
+			System.out.print("R");
+		}
+		for (int i = 0; i < gy - sy; i++) {
+			System.out.print("D");
+		}
+		for (int i = 0; i < gx - sx; i++) {
+			System.out.print("L");
+		}
+		System.out.print("L");
+		for (int i = 0; i < gy - sy + 1; i++) {
+			System.out.print("U");
+		}
+		for (int i = 0; i < gx - sx + 1; i++) {
+			System.out.print("R");
+		}
+		System.out.print("DR");
+		for (int i = 0; i < gy - sy + 1; i++) {
+			System.out.print("D");
+		}
+		for (int i = 0; i < gx - sx + 1; i++) {
+			System.out.print("L");
+		}
+		System.out.println("U");
+	}
+
+	public static void main(String[] args) {
+		new Main().run();
+	}
+}

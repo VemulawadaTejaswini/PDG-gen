@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+
+class Main{
+    public static void main(String[] args){
+	Scanner sc = new Scanner(System.in);
+	int y, t = sc.nextInt(), count=0;
+	int[] x = new int[t];
+	
+	for(int i=0; i<t; i++)
+	    x[sc.nextInt()]=1;
+	Arrays.sort(x);
+	
+	int p = sc.nextInt();
+	for(int i=0; i<p; i++)
+	    if(x[sc.nextInt()]==1)
+		count++;
+	
+	System.out.println(count);
+    }
+}

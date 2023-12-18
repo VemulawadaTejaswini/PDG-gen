@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner scan = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder();
+
+		while (true) {
+			long x = scan.nextLong();
+			if (x == 0) {break;}
+			int sum = 0;
+			while (x != 0) {
+				sum += x % 10;
+				x /= 10;
+			}
+			sb.append(sum + "\n");
+		}
+		System.out.print(sb);
+	}
+
+}

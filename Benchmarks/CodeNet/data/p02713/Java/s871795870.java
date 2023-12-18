@@ -1,0 +1,81 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class Main
+{
+	public static void main(String[] args) {
+		new Thread(null, new Runnable() {
+			public void run() {
+                solve();
+            }
+        }, "1", 1 << 26).start();
+	}
+	static void solve () {
+		FastReader fr =new FastReader();	PrintWriter op =new PrintWriter(System.out);
+ 
+		long n =fr.nextLong() ,i ,j ,k ,sm =0 ;
+		for (i =1 ; i<=n ; ++i) {
+		 	for (j =1 ; j<=n ; ++j) {
+		 		for (k =1 ; k<=n ; ++k) {
+		 			sm += gcd (i , gcd(j,k)) ;
+		 		}
+		 	}
+		 } 
+		 op.println(sm) ;
+		op.flush();	op.close();
+	}
+	static long gcd (long num , long den) {
+		if (num<den)	{	num^=den ;	den^=num ;	num^=den ;	}
+		return (num%den == 0l ? den : gcd (den,num%den)) ;
+	}
+	static class FastReader {
+		BufferedReader br;
+		StringTokenizer st;
+
+		public FastReader() {
+			br =new BufferedReader(new InputStreamReader(System.in));
+		}
+
+		String next() {
+			while (st==null || (!st.hasMoreElements())) 
+			{
+				try
+				{
+					st =new StringTokenizer(br.readLine());
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
+				}
+				
+			}
+			return st.nextToken();
+		}
+
+		String nextLine() {
+			String str ="";
+
+			try
+			{
+				str =br.readLine();
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+
+			return str;
+		}
+
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		long nextLong() {
+			return Long.parseLong(next()) ;
+		}
+	}
+}

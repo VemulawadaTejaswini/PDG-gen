@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+class Main {
+	public static void main(String[] args)
+			throws Exception {
+
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader(System.in));
+
+		String s = br.readLine();
+		StringTokenizer st;
+
+		while (!("EOF".equals(s)) or s != null) {
+			st = new StringTokenizer(s, " ");
+			int p = Integer.parseInt(st
+					.nextToken()) + Integer
+							.parseInt(st
+									.nextToken());
+
+			System.out.println((int) Math.log10(p)
+					+ 1);
+			s = br.readLine();
+		}
+
+	}
+}

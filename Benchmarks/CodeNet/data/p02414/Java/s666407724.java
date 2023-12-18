@@ -1,0 +1,42 @@
+import java.util.Scanner;
+	class Main {
+	public static void main(String[] args){
+        
+		Scanner s = new Scanner(System.in);
+		int i,j,k,m,n,l;
+        
+                  n=s.nextInt();
+      			  m=s.nextInt();
+        		  l=s.nextInt();
+        long[][] A=new long[n][m];
+        long[][] B=new long[m][l];
+        long[][] C=new long[n][l];
+        
+      
+        for(i=0;i<n;i++)
+            for(j=0;j<m;j++)
+                A[i][j]=s.nextInt();
+        
+        for(i=0;i<m;i++)
+            for(j=0;j<l;j++)
+                B[i][j]=s.nextInt();
+        
+        for(i=0;i<n;i++){
+            for(j=0;j<l;j++){
+                for(k=0;k<m;k++){
+               C[i][j]+=A[i][k]*B[k][j];
+                }
+            }
+        }
+        for(i=0;i<n;i++){
+            for(j=0;j<l;j++){
+                System.out.print(C[i][j]);
+                if(j!=l-1)System.out.print(" ");
+            }
+            System.out.println();
+        }
+        
+
+            
+	}
+}

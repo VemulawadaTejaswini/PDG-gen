@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[]args){
+        
+        Scanner sc = new Scanner(System.in);
+        
+        long num = 0;
+        long min =  1000000;  
+        long max = -1000000;  
+        long sum = 0; 
+       
+        int n = sc.nextInt();
+         
+      
+        for(int i = 0; i < n; i++){
+            num = sc.nextLong();
+         
+     
+        if(num < min )
+            min = num;
+             
+
+        if(max < num)
+            max = num;
+         
+      
+        sum += num;
+        }
+       
+        System.out.println(min + " " + max + " " + sum);
+    }
+
+	}

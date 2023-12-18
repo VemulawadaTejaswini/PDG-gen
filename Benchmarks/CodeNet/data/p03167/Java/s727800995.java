@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int H = sc.nextInt();
+        int W = sc.nextInt();
+
+        boolean[][] grid = new boolean[H][W];
+        for (int i = 0; i < H; i++) {
+            String row = sc.next();
+            int j = 0;
+            for (char ch : row.toCharArray()) {
+                grid[i][j] = ch == '.';
+                j++;
+            }
+        }
+
+        long[][] dp = new long[H][W];
+        dp[0][0] = 1;
+
+        for (int i = 0; i < W; i++) {
+            if (grid[0][i]) {
+                dp[0][i] = 1;
+            } else {
+                break;
+            }
+        }
+        for (int i = 0; i < H; i++) {
+            if (grid[i][0]) {
+                dp[i][0] = 1;
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 1; i < H; i++) {
+            for (int j = 1; j < W; j++) {
+                if (grid[i][j]) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                } else {
+                    dp[i][j] = 0;
+                }
+            }
+        }
+
+      	long res = dp[H - 1][W - 1];
+        System.out.println(res % 1000_000_009);
+    }
+}
+

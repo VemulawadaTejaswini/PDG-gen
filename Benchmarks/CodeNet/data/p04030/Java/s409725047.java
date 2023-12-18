@@ -1,0 +1,27 @@
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        char[] chars = s.toCharArray();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (char chars2 : chars) {
+            if (chars2 != 'B') {
+                sb.append(String.valueOf(chars2));
+            } else {
+                int index = sb.length();
+                if (index != 0) {
+                    sb.delete(index - 1, index);
+                }
+            }
+        }
+
+        System.out.println(sb.toString());
+    }
+}

@@ -1,0 +1,59 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
+		String Triangle_line = input.readLine();
+
+		String[] Triangle_line_array = Triangle_line.split(" ");
+
+		// ??????a
+		double base_a = Double.parseDouble(Triangle_line_array[0]);
+
+		// ???b
+		double side_b = Double.parseDouble(Triangle_line_array[1]);
+
+		// ?§????C
+		int angle_C = Integer.parseInt(Triangle_line_array[2]);
+
+		// ??¢??????????????????????§????C???????§???¢??°????±???????
+		double trigonometric_function_sin = Math.sin(Math.toRadians(angle_C));
+
+		// ????????????????????????
+		double trigonometric_function_cos = Math.cos(Math.toRadians(angle_C));
+
+		double area_S = base_a * side_b * trigonometric_function_sin / 2;
+
+		// ????????????
+		double side_c_square = base_a * base_a + side_b * side_b - 2 * base_a * side_b * trigonometric_function_cos;
+
+		// ??????
+		double side_c = Math.sqrt(side_c_square);
+
+		// ????§???¢???????????????,??¨
+		double three_sum_L = base_a + side_b + side_c;
+
+		// ??????
+		double height_h = 2 * area_S / base_a;
+
+
+
+		System.out.println(area_S);
+
+
+
+		System.out.println(three_sum_L);
+
+
+
+		System.out.println(height_h);
+
+
+	}
+
+}

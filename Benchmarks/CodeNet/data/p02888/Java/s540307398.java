@@ -1,0 +1,88 @@
+import java.io.*;
+import java.util.*;
+ 
+/**
+ * Only By Abhi_Valani
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        Unstoppable solver = new Unstoppable();
+	//	int t=in.nextInt();
+	//	while(t-->0)
+        solver.solve(in, out);
+        out.close();
+    }
+ 
+    static class Unstoppable {
+        public static long c(int n,int k)
+        {
+            long mul=n;
+            while(k-1>0)
+            {
+                
+                mul=(mul*(--n))/k;
+                k--;
+            }
+            return mul;
+        }
+        public void solve(InputReader in, PrintWriter out) {
+          //from here...
+		  //int[] a = readArray(in, n);
+		  int n=in.nextInt();
+		  int abc[]=new int[n];
+		  for(int i=0;i<n;i++)
+		       abc[i]=in.nextInt();
+		       Arrays.sort(abc);
+		        int ans=0;
+	
+		         for(int i=0;i<n-2;i++){
+		       int a=abc[i];    
+		      for(int j=i+1;j<n-1;j++)
+		      {
+		        int b=abc[j];
+		        for(int k=j+1;k<n;k++)
+		        {
+		            int c=abc[k];
+		            if(a<b+c&&b<a+c&&c<a+b) ans++;
+		            else break;
+		        }
+		         
+		      }
+		  }
+		 
+		  out.println(ans);
+        }
+ 
+    }
+ 
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+ 
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+ 
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+ 
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+ 
+    }
+}
+ 

@@ -1,0 +1,37 @@
+import java.util.*;
+import java.math.*; 
+
+public class Main {
+  
+  static BigDecimal a = new BigDecimal("2");
+  static BigDecimal b = new BigDecimal("2");
+  static BigDecimal c = new BigDecimal("1000000007");
+  
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N= sc.nextInt();
+    int check =0, total =0;
+    int[] a = new int[N];
+    for (int i =0; i<N; i++) {
+      int b = sc.nextInt();
+      if (b * N % 2 != 0 || b >= N) {
+        break;
+      }
+      a[b]++;
+      total += b;
+    }
+    if (total != N * N / 2) check++;
+    for (int i=N-1; i>0; i -=2) {
+      if (a[i] != 2) check++;
+    }
+    if (check != 0) {
+      System.out.println(0);
+    } else {
+      for (int i =2; i<= N/2; i++) {
+        a = a.multiply(b);
+      }
+      a = a.remainder(c);
+      System.out.println(a);
+    }
+  } 
+}

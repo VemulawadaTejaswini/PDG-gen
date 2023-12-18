@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int tate = sc.nextInt();
+		int yoko = sc.nextInt();
+
+		System.out.println((tate-1)*(yoko-1));
+
+		sc.close();
+	}
+
+
+}

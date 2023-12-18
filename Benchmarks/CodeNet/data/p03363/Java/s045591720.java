@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+
+        int N = in.nextInt();
+
+        int number[] = new int[N];
+        int DP[] = new int[N];
+        
+        for(int i=0;i<number.length;i++)
+        	number[i] = in.nextInt();
+
+        long ans = 0;
+        int sum=0;
+        
+        for(int i=0;i<number.length-1;i++){
+        	sum =number[i];
+        	for(int j=i+1;j<number.length;j++){
+        		sum+=number[j];
+
+        		if(sum==0){
+        			if(i!=0){
+        				ans+=(DP[i-1]+1);
+        				DP[j]+=DP[i-1]+1;
+        			}else{
+        				ans++;
+        				DP[j]++;
+        			}
+        			
+        			break;
+        		}
+        		
+        	}
+        }
+        		
+        		
+
+        System.out.println(ans);
+
+        in.close();
+    }
+
+}

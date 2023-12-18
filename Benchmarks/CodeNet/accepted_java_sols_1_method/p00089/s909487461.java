@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int[]n=new int[100];int x=0,y,i,j;for(Scanner s=new Scanner(System.in);s.hasNext();x=y)for(z=s.next().split(","),i=0;i<(y=z.length);n[j+(x<y?1:0)]=Math.max(n[j],n[j+1])+new Integer(z[j-(x>y?1:0)]),i++)j=x<y?y-1-i:i+1;Arrays.sort(n);System.out.println(n[99]);}}

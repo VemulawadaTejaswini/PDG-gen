@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+	void run() {
+		Scanner sc = new Scanner(System.in);
+		
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		
+		if (c < b) {
+			int tmp = b;
+			b = c;
+			c = tmp;
+		}
+		
+		int ans = Math.max(0, c - a - b);
+		System.out.println(ans);
+	}
+	
+	public static void main(String[] args) {
+		new Main().run();
+	}
+}

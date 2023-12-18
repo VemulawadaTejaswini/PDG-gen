@@ -1,0 +1,18 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char[] chars = scanner.next().toCharArray();
+        Set<Character> charSet = new HashSet<>();
+        for (char c : chars) {
+            if (!charSet.add(c)) {
+                System.out.println("no");
+                return;
+            }
+        }
+        System.out.println("yes");
+    }
+}

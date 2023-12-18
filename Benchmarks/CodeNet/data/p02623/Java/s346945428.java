@@ -1,0 +1,81 @@
+import java.io.*;
+import java.math.*;
+import java.util.*;
+public class Main { //USE LONGS TO AVOID OVERFLOW THEN CAST
+ 
+	public static void main(String[] args) { 
+		FastScanner input = new FastScanner();
+		PrintWriter w = new PrintWriter(System.out);
+		int ans = 0;
+		int N = input.nextInt();
+		int M = input.nextInt();
+		int K = input.nextInt();
+		Queue<Long> minA = new LinkedList<Long>();
+		long curmin = 0;
+		Queue<Long> minB = new LinkedList<Long>();
+		for (int i = 0; i < N; i++) {
+			minA.add(input.nextLong());
+		}
+		for (int i = 0; i < M; i++) {
+			minB.add(input.nextLong());
+		}
+		while (true) {
+			if (minA.size()==0&&minB.size()==0) break;
+			if (minA.size()>0&&minA.peek()<minB.peek()) {
+				curmin+=minA.poll();
+			}else {
+				curmin+=minB.poll();
+			}
+			ans++;
+			if (curmin>K) {
+				ans--;
+				break;
+			}
+			
+		}
+		//CODE
+		w.println(ans);
+		w.flush();
+	}
+	public static long GCD(long a, long b) {
+		if (a==0||b==0) return Math.max(a,b);
+		return GCD(Math.min(a, b),Math.max(a, b)%Math.min(a, b));
+	}
+	public static long FastExp(long base, long exp, long mod) {
+		long ans=1;
+		while (exp>0) {
+			if (exp%2==1) ans*=base;
+			exp/=2;
+			base*=base;
+			base%=mod;
+			ans%=mod;
+		}
+		return ans;
+	}
+	public static long ModInv(long num,long mod) {return FastExp(num,mod-2,mod);}
+	static class FastScanner {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st=new StringTokenizer("");
+		String next() {
+			while (!st.hasMoreTokens())
+				try {
+					st=new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			return st.nextToken();
+		}
+		
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+		int[] readArray(int n) {
+			int[] a=new int[n];
+			for (int i=0; i<n; i++) a[i]=nextInt();
+			return a;
+		}
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+	}
+}

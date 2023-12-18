@@ -1,0 +1,1 @@
+class Main{public static void main(String[]s){for(int i=8,p;++i<90;)System.out.printf(i/9+"x%d=%d\n",p=i%9+1,i/9*p);}}

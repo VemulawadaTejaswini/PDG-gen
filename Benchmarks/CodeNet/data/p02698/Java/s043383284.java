@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+public final class Main {
+
+    public static int upper_bound(long[] array, long key) {
+        int lower = -1, upper = array.length;
+        while (upper - lower > 1) {
+            final int mid = (lower + upper) / 2;
+            final int comp = Long.compare(array[mid], key);
+            if (comp <= 0) {
+                lower = mid;
+            } else {
+                upper = mid;
+            }
+        }
+        return upper;
+    }
+
+    public static void dfs(int node, int parent, long[] vs, long[] lis, int lis_max,
+                           List<List<Integer>> adj, int[] answer) {
+        final int lis_index = upper_bound(lis, vs[node]);
+        boolean updated = false;
+        long updated_lis = 0;
+        if (lis[lis_index] > vs[node] && lis[lis_index - 1] < vs[node]) {
+            updated = true;
+            updated_lis = lis[lis_index];
+            lis[lis_index] = vs[node];
+            lis_max = Math.max(lis_max, lis_index);
+        }
+        answer[node] = lis_max;
+        for (final int next : adj.get(node)) {
+            if (next == parent) {
+                continue;
+            }
+            dfs(next, node, vs, lis, lis_max, adj, answer);
+        }
+        if (updated) {
+            lis[lis_index] = updated_lis;
+        }
+    }
+
+    public static void main(String[] args) {
+        try (final Scanner sc = new Scanner(System.in)) {
+            final int N = sc.nextInt();
+            final List<List<Integer>> adj = new ArrayList<>();
+            for (int i = 0; i < N; i++) {
+                adj.add(new ArrayList<>());
+            }
+            final long[] as = new long[N];
+            for (int i = 0; i < N; i++) {
+                as[i] = sc.nextLong();
+            }
+            for (int i = 0; i < N - 1; i++) {
+                final int u = sc.nextInt() - 1;
+                final int v = sc.nextInt() - 1;
+                adj.get(u).add(v);
+                adj.get(v).add(u);
+            }
+            final long[] lis = new long[N + 1];
+            Arrays.fill(lis, Long.MAX_VALUE);
+            lis[0] = 0;
+            final int[] answer = new int[N];
+            dfs(0, -1, as, lis, 0, adj, answer);
+            for (int i = 0; i < N; i++) {
+                System.out.println(answer[i]);
+            }
+        }
+    }
+}

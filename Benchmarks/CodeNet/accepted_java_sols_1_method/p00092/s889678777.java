@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int i,j,n=1001,r=0;char[]c;int[][]a=new int[n][n];for(Scanner s=new Scanner(System.in);(n=s.nextInt())>0;System.out.println(r),r=0)for(i=0;i++<n;)for(c=s.next().toCharArray(),j=0;j++<n;)r=Math.max(r,a[i][j]=c[j-1]>45?Math.min(a[i-1][j-1],Math.min(a[i-1][j],a[i][j-1]))+1:0);}}

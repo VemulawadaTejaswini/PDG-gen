@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]c){String a=new Scanner(System.in).nextLine();System.out.print(a.length()==2?a:new StringBuffer(a).reverse());}}

@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int i = 1;
+
+		if (n >= 3 && n <= 10000) {
+			while (i <= n) {
+				int A = i / 10;
+				if (i % 3 == 0) {
+					System.out.printf(" %d", i);
+				} else if (i % 10 == 3) {
+					System.out.printf(" %d", i);
+				}
+
+				i++;
+			}
+		}
+		System.out.printf("\n", i);
+
+	}
+
+}

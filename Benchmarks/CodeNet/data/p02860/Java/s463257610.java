@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		String s = scan.nextLine();
+		scan.close();
+		int m;
+		boolean b = false;
+		if(n % 2 == 0) {
+			m = n/2;
+			String s2 = s.substring(0,m);
+			String s3 = s.substring(m,n);
+			if(s2.equals(s3)) {
+				b = true;
+			}
+		}
+		if(b) {
+			System.out.println("Yes");
+		}else {
+			System.out.println("No");
+		}
+	}
+}

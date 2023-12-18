@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){Integer i,n,f=0,a[]=new Integer[10];Scanner S=new Scanner(System.in);for(n=S.nextInt();n-->0;System.out.println(f>0?"NO":"YES")){for(i=0;i<10;)a[i++]=S.nextInt();for(f=i=0;i<8;)f+=a[i]<a[i+++2]?0:1;}}}

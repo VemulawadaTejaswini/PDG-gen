@@ -1,0 +1,124 @@
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		// TODO 自動生成されたメソッド・スタブ
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		String[] tmpArray = br.readLine().split(" ");
+		int n = Integer.parseInt(tmpArray[0]);
+		int m = Integer.parseInt(tmpArray[1]);
+		int k = Integer.parseInt(tmpArray[2]);
+
+		@SuppressWarnings("unchecked")
+		HashSet<Integer>[] friends = new HashSet[n];
+		@SuppressWarnings("unchecked")
+		HashSet<Integer>[] block = new HashSet[n];
+
+		DisjointSet unionFind = new DisjointSet(n);
+
+		for(int i = 0; i < n; i++){
+			friends[i] = new HashSet<Integer>();
+			block[i] = new HashSet<Integer>();
+		}
+
+		for(int i = 0; i < m; i++){
+			tmpArray = br.readLine().split(" ");
+			int a = Integer.parseInt(tmpArray[0]) - 1;
+			int b = Integer.parseInt(tmpArray[1]) - 1;
+
+			friends[a].add(b);
+			friends[b].add(a);
+
+			unionFind.union(a, b);
+		}
+
+		for(int i = 0; i < k; i++){
+			tmpArray = br.readLine().split(" ");
+			int c = Integer.parseInt(tmpArray[0]) - 1;
+			int d = Integer.parseInt(tmpArray[1]) - 1;
+
+			block[c].add(d);
+			block[d].add(c);
+		}
+
+		for(int i = 0; i < n; i++){
+			int count = 0;
+			for(int j = 0; j < n; j++){
+				if(i == j){
+					continue;
+				}
+//				System.out.println("i = "+i+" j = "+j);
+				if(block[i].contains(j) || friends[i].contains(j)){
+//					System.out.println("friend or block");
+					continue;
+				}
+
+				if(unionFind.isSameSet(i, j)){
+					count++;
+				}
+			}
+			System.out.print(count);
+			if(i != n - 1){
+				System.out.print(" ");
+			}
+		}
+		System.out.println();
+	}
+
+}
+
+class DisjointSet {
+	private int n;
+	private int[] p;
+	private int[] rank;
+
+	public DisjointSet(int n){
+		this.n = n;
+
+		p = new int[n + 1];
+		rank = new int[n + 1];
+
+		for(int i = 1; i <= n; i++){
+			makeSet(i);
+		}
+	}
+
+	private void makeSet(int x){
+		p[x] = x;
+		rank[x] = 0;
+	}
+
+	public void union(int x, int y){
+		link (findSet(x), findSet(y));
+	}
+
+	private int findSet(int x){
+		if(x != p[x]){
+			p[x] = findSet( p[x]);
+		}
+		return p[x];
+	}
+
+	public boolean isSameSet(int x, int y){
+		return findSet(x) == findSet(y);
+	}
+
+	private void link(int x, int y){
+		if(rank[x] > rank[y]){
+			p[y] = x;
+		}
+		else {
+			p[x] = y;
+			if(rank[x] == rank[y]){
+				rank[y]++;
+			}
+		}
+	}
+}

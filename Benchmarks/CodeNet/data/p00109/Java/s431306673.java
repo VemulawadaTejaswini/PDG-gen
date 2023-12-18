@@ -1,0 +1,8 @@
+import javax.script.*;
+class Main{
+	public static void main(String[]z)throws Exception{
+		ScriptEngineManager factory = new ScriptEngineManager();
+		ScriptEngine engine = factory.getEngineByName("JavaScript");
+		
+	}
+}

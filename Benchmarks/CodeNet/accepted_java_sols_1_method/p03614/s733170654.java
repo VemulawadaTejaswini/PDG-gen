@@ -1,0 +1,27 @@
+import java.util.*;
+import java.lang.*;
+public class Main{
+  public static void main(String[]args){
+    Scanner sn=new Scanner(System.in);
+     int n=sn.nextInt();
+    int[] arr=new int[n];
+    int[] place=new int[n];            
+    for(int i=0;i<n;i++)
+            {
+              arr[i]=sn.nextInt();}
+    int ans=0;
+    for(int i=0;i<arr.length-1;i++)
+    {
+     if((i+1)==arr[i])
+     {
+       ans++;
+       int x=arr[i];
+       int y=arr[i+1];
+       arr[i]=y;
+       arr[i+1]=x;
+    }}
+    if(arr[n-1]==n)
+      ans++;
+    
+    System.out.println(ans);
+   }}

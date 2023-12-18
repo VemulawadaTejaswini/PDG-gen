@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        int N = sc.nextInt();
+        String S = sc.next();
+        int ans = 0;
+        char[] s = new char[N];
+        for(int i = 0; i < N; i++){
+          s[i] = S.charAt(i);
+        }
+        for(int i = 0; i < N-2; i++){
+          char a = s[i];
+          for(int j = i+1; j < N-1; j++){
+            char b = s[j];
+            if(a == b){
+              continue;
+            }
+            for(int k = j+1; k < N; k++){
+              char c = s[k];
+              if(j-i != k-j){
+                if(a != b && b != c && a != c){
+                  ans+=1;
+                }
+              }
+            }
+          }
+        }
+        System.out.println(ans);
+      }
+}

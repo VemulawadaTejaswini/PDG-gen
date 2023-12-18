@@ -1,0 +1,17 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String boin = scan.next();
+		if(boin.equals("a") || boin.equals("i") || boin.equals("u") || boin.equals("e") || boin.equals("o")){
+			System.out.println("vowel");
+		}else{
+			System.out.println("consonant");
+		}
+
+	}
+
+}

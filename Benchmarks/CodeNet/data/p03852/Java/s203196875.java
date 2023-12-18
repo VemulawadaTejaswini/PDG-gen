@@ -1,0 +1,36 @@
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main(String[] args) throws Exception{    
+        Scanner sc = new Scanner(System.in);
+        // code
+       
+        String s = sc.next();
+        
+        char c = s.charAt(0);
+        
+        String ans;
+        if(c == 'a'){
+        	ans = "vowel";
+        }else  if(c == 'i'){
+        	ans = "vowel";
+        }else  if(c == 'u'){
+        	ans = "vowel";
+        }else  if(c == 'e'){
+        	ans = "vowel";
+        }else  if(c == 'o'){
+        	ans = "vowel";
+        }else{
+        	ans = "consonant";
+        }
+        
+        System.out.println(ans);
+        
+        sc.close();
+    }
+    
+    
+    
+    
+ 
+}

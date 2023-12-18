@@ -1,0 +1,37 @@
+import java.util.Scanner;  
+
+class Main
+{
+public static void main(String[] args)
+    {
+	Scanner In = new Scanner(System.in);
+
+	int n = In.nextInt();
+	int []S =  new int[n];
+
+	for(int i = 0; i < n; i++)
+	    {
+	        S[i] = In.nextInt();
+	    }
+
+	int q = In.nextInt();
+	int []T  = new int[q];
+
+	for(int i = 0; i < q; i++)
+	    {
+	       T[i] = In.nextInt();
+	    }
+
+	int count = 0;
+
+	for(int i = 0; i < n; i++){
+	    for(int j = 0; j < q; j++){
+
+		if(S[i] == T[j])
+		    count++;
+
+	    }
+	}
+	System.out.println(count);
+    }
+}

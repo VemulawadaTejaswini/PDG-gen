@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z)throws Exception{int n,b=0,s=0,r=0;for(;(n=System.in.read())>0;){n-=48;if(b>0&&!(0<=n&&n<=9)){r+=s;b=0;}if(0<=n&&n<=9)if(b>0)s=10*s+n;else{s=n;b=1;}}System.out.println(r);}}

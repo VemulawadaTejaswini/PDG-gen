@@ -1,0 +1,42 @@
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.lang.Math;
+import java.util.Arrays;
+import java.util.Collections;
+
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        int k = sc.nextInt();
+        int n = sc.nextInt();
+        int[] A = new int[n];
+
+        for(int i=0;i <n;i++){
+            A[i]=sc.nextInt();
+        }
+        sc.close();
+
+        Arrays.sort(A);
+
+        int[] B = new int[n];
+        
+        for(int i=1;i<n-1;i++){
+            B[i]=A[i+1]-A[i];
+        }
+        B[n-1] = A[n-1]-k+A[0];
+
+        Arrays.sort(B);
+        k=k-B[n-1];
+        System.out.print(k);
+        
+        // int[] A = {8,7,456,54,7,42,47,5};
+        // A = sort(A);
+        for(int i=0;i<A.length;i++){
+            System.out.println(A[i]);
+        }
+        for(int i=0;i<B.length;i++){
+            System.out.println(B[i]);
+        }
+    }
+}

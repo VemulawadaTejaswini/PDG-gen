@@ -1,0 +1,33 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader input =new BufferedReader (new InputStreamReader (System.in));
+		String str = input.readLine( );
+		String answer = "";
+
+		if(str.equals("a")){
+			answer = "vowel";
+		}else if(str.equals("i")){
+			answer = "vowel";
+		}else if(str.equals("u")){
+			answer = "vowel";
+		}else if(str.equals("e")){
+			answer = "vowel";
+		}else if(str.equals("o")){
+			answer = "vowel";
+		}else{
+			answer = "consonant";
+		}
+
+
+		System.out.println(answer);
+
+
+	}
+
+}

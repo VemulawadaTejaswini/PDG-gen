@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){int n;for(Scanner S=new Scanner(System.in);(n=S.nextInt())>0;)System.out.println(new java.text.SimpleDateFormat("EEEE",Locale.US).format(new GregorianCalendar(2004,n-1,S.nextInt()).getTime()));}}

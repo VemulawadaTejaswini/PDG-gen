@@ -1,0 +1,108 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	//?????°
+	private static int valueOfCard = 9; //?????????????????°
+	private static int numberOfCard = 9; //?????????????????????????¨??????°(1???9 = 9)
+	private static int colorOfCard = 3; //??????????????????????¨??????°(RGB = 3)
+	private static int winSetCount = 3; //???????????????????????¢?????°
+
+	/**
+	 * 1??????????????????????????¨???????????????????????????
+	 * @author SS
+	 *
+	 */
+	static class Card {
+		private int number;
+		private String color;
+
+		public int getNumber() {
+			return number;
+		}
+		public void setNumber(int number) {
+			this.number = number;
+		}
+		public String getColor() {
+			return color;
+		}
+		public void setColor(String color) {
+			this.color = color;
+		}
+	}
+
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		//??\????????°?????????
+		int intLoop = scan.nextInt();
+		//????¨?????´???´????¢????
+		ArrayList<Integer> ansList = new ArrayList<Integer>();
+		ArrayList<Card> cards = new ArrayList<Card>();
+
+		//??\?????????
+		for(int i = 0; i < intLoop; i++){
+
+			for(int j = 0; j < valueOfCard; j++){
+				Card card = new Card();
+				card.setNumber(scan.nextInt());
+				cards.add(card);
+			}
+			for(int j = 0; j < valueOfCard; j++){
+				Card card = cards.get(j + i * valueOfCard);
+				card.setColor(scan.next());
+				cards.set(j + i * valueOfCard, card);
+			}
+		}
+		scan.close();
+		for(int i = 0; i < intLoop; i++){
+			int setCount = 0; //??¢????????°
+			int[][] arrayRGB = new int[colorOfCard][numberOfCard];
+			//RGB???????????\?????????
+			for(int j = 0; j < valueOfCard; j++){
+				Card card = cards.get(j + i * valueOfCard);
+				String color = card.getColor();
+				if("R".equals(color)){
+					arrayRGB[0][card.getNumber() - 1]++;
+				}else if("G".equals(color)){
+					arrayRGB[1][card.getNumber() - 1]++;
+				}else if("B".equals(color)){
+					arrayRGB[2][card.getNumber() - 1]++;
+				}
+			}
+			//???????????§??????
+			for(int j = 0; j < colorOfCard; j++){
+				for(int k = 0; k < valueOfCard - 2; k++){
+					boolean isReplay = false;
+					if(arrayRGB[j][k] != 0 && arrayRGB[j][k+1] != 0 && arrayRGB[j][k+2] !=0){
+						arrayRGB[j][k]--;
+						arrayRGB[j][k+1]--;
+						arrayRGB[j][k+2]--;
+						setCount++;
+						isReplay = true;
+					}
+					if(isReplay && arrayRGB[j][k] != 0){
+						k--;
+					}
+				}
+			}
+			//???????????§??????
+			for(int j = 0; j < colorOfCard; j++){
+				for(int k = 0; k < valueOfCard; k++){
+					if(arrayRGB[j][k] == winSetCount){
+						setCount++;
+						arrayRGB[j][k] -= winSetCount;
+					}
+				}
+			}
+			if(setCount == winSetCount){
+				ansList.add(1);
+			}else{
+				ansList.add(0);
+			}
+		}
+		//??????
+		for(int i = 0; i < ansList.size(); i++){
+			System.out.println(ansList.get(i));
+		}
+	}
+}

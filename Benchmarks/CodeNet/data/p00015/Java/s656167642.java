@@ -1,0 +1,42 @@
+import java.util.*;
+import java.lang.*;
+import java.math.*;
+import java.io.*;
+
+import static java.lang.Math.*;
+import static java.util.Arrays.*;
+
+public class Main{
+
+	Scanner sc;
+
+	static final int INF=1<<28;
+	static final double EPS=1e-9;
+
+	void run(){
+		sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		for(int i=0; i<n; i++){
+			BigInteger b1=sc.nextBigInteger();
+			BigInteger b2=sc.nextBigInteger();
+			BigInteger b=b1.add(b2);
+			if(b.toString().length()>80)
+				println("overflow");
+			else
+				println(b.toString());
+		}
+		sc.close();
+	}
+
+	void print(String s){
+		System.out.print(s);
+	}
+
+	void println(String s){
+		System.out.println(s);
+	}
+
+	public static void main(String[] args){
+		new Main().run();
+	}
+}

@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+
+// write your code here.
+Scanner scn=new Scanner (System.in);
+int x=scn.nextInt();
+int n=scn.nextInt();
+int []arr=new int[n];
+for(int i=0;i<n;i++){
+    arr[i]=scn.nextInt();
+}
+Arrays.sort(arr);
+int idx=0;
+for(int i=0;i<arr.length;i++){
+    if(arr[i]==x){
+        idx=i;
+    }
+    
+}
+
+int p1=idx+1;
+int p2=idx-1;
+int val=1;
+while(p1!=arr.length && p2!=-1){
+    if(arr[p2]!=x-val){
+        System.out.println(x-val);
+        return;
+    }
+    if(arr[p1]!=x+val){
+        System.out.println(x+val);
+        return;
+    }
+    val++;
+    p2--;
+    p1++;
+}
+while(p2!=-1){
+     if(arr[p2]!=x-val){
+        System.out.println(x-val);
+        return;
+    }
+    val++;
+    p2--;
+}
+while(p1!=arr.length){
+     if(arr[p1]!=x+val){
+        System.out.println(x+val);
+        return;
+    }
+    val++;
+    p1++;
+}
+
+ }
+}

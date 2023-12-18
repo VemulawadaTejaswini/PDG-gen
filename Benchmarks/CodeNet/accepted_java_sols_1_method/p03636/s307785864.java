@@ -1,0 +1,15 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.IntStream;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        byte[] a = scan.next().getBytes();
+        System.out.println((char)a[0]  + "" + (a.length - 2) + (char) a[a.length-1]);
+    }
+
+}

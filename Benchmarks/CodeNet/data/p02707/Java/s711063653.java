@@ -1,0 +1,17 @@
+import java.util.Scanner;
+import java.lang.Math;
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] A = new int[n];
+        int j;
+        for(int i=1;i<n;i++){
+            j = sc.nextInt();
+            A[j] = A[j]+1;
+        }
+        for(int i=1;i<n;i++){
+            System.out.println(A[i]);
+        }
+    }
+}

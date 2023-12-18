@@ -1,0 +1,33 @@
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		// 入力
+		final String[] s = new String[3];
+		try(Scanner scan = new Scanner(System.in)) {
+			s[0] = scan.next();
+			s[1] = scan.next();
+			s[2] = scan.next();
+		}
+		
+		int[] index = {0, -1, -1};
+		
+
+		int next = 0;
+		while (s[next].length() > index[next]) {
+			next = (int) (s[next].charAt(index[next]) - 'a');
+			index[next]++;
+		}
+		
+		char result = (char) (next + 'A');
+		
+		// 出力
+		try (PrintWriter out = new PrintWriter(System.out)) {
+			out.println(result);
+		}
+
+	}
+
+}

@@ -1,0 +1,27 @@
+import java.util.*;
+
+
+class Main{
+    public static void main(String[]args){
+        Scanner sc = new Scanner(System.in);
+ for(;;){
+        int s=sc.nextInt();
+        if(s==0)break;
+   
+    String tn[] =new String[s];
+    int tp[]=new int[s]; 
+    int tpc[]=new int[s];
+    for(int i=0;i<s;i++){ //??\???
+    	tn[i]=sc.next();
+    	tp[i]=(sc.nextInt()*3+sc.nextInt()*0+sc.nextInt());
+        tpc[i]=tp[i];
+    }
+    Arrays.sort(tpc);
+    for(int i=s-1;i>-1;i--){ //??????
+    	for(int j=0;j<s;j++) if(tpc[i]==tp[j])
+    	System.out.println(tn[j]+","+tp[j]);
+    }
+    System.out.println();
+    }
+    }
+}

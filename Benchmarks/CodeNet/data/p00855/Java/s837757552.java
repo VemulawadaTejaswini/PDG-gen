@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);int i=0,e=2,x=195,y;int[]p=new int[x];for(;i<x;p[i++]=e++)for(;f(p,e)<1;e++);for(;(x=y=s.nextInt())>0;System.out.println(x-y)){for(;f(p,x)<1;++x);for(;f(p,y)<1;--y);}}static int f(int[]s,int n){for(int e:s)if(e>0&&n!=e&&n%e<1)return 0;return 1;}}

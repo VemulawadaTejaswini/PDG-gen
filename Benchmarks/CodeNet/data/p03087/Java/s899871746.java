@@ -1,0 +1,227 @@
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.NoSuchElementException;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		new Main().solve();
+	}
+
+	private void solve() throws IOException {
+		try {
+			//			solveA();
+			//			solveB();
+			solveC();
+			// solveD();
+			// solveE();
+			// solveF();
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+			if (out != null) {
+				out.flush();
+				out.close();
+			}
+		}
+
+	}
+
+	private void solveA() {
+		String wk = next();
+		if (wk.equals("A")) {
+			System.out.println("T");
+		} else if (wk.equals("T")) {
+			System.out.println("A");
+		} else if (wk.equals("G")) {
+			System.out.println("C");
+		} else if (wk.equals("C")) {
+			System.out.println("G");
+		}
+
+	}
+
+	private int getLength(String wk, int currentI, int total) {
+		if (currentI >= wk.length()) {
+			return total;
+		}
+		String wkS = wk.substring(currentI, currentI + 1);
+		if (wkS.equals("A") || wkS.equals("T") || wkS.equals("G") || wkS.equals("C")) {
+			return getLength(wk, currentI + 1, total) + 1;
+		} else {
+			return total;
+		}
+	}
+
+	private void solveB() {
+		String s = next();
+		int res = 0;
+		for (int i = 0; i < s.length(); i++) {
+			int wkRes = getLength(s, i, 0);
+			res = Math.max(wkRes, res);
+		}
+
+		out.println(res);
+	}
+
+	private int getLengthC(String wk, int currentI, int total) {
+		if (currentI >= wk.length() - 1) {
+			return total;
+		}
+		String wkS = wk.substring(currentI, currentI + 2);
+		if (wkS.equals("AC")) {
+			return getLengthC(wk, currentI + 2, total) + 1;
+		} else {
+			return getLengthC(wk, currentI + 1, total);
+		}
+	}
+
+	private int getLengthC2(String wk) {
+		int total = 0;
+		int num = 0;
+		while (num != -1) {
+			num = wk.indexOf("AC");
+			if (num != -1) {
+				total++;
+				wk = wk.substring(2, wk.length());
+			}
+		}
+		return total;
+	}
+
+	private void solveC() {
+		int numN = nextInt();
+		int numQ = nextInt();
+		String strS = next();
+		int[][] wk = new int[numQ][2];
+
+		for (int i = 0; i < wk.length; i++) {
+			wk[i][0] = nextInt();
+			wk[i][1] = nextInt();
+		}
+
+		for (int[] is : wk) {
+			String wkS = strS.substring(is[0] - 1, is[1]);
+			int res = 0;
+			//			for (int i = 0; i < wkS.length(); i++) {
+			//				String firstS = wkS.substring(i, i + 1);
+			//				boolean isNextA = firstS.equals("A");
+			//				int wkRes = 0;
+			//				if (isNextA) {
+			//					wkRes = getLengthC(wkS, i, 0);
+			//				}
+			//				res = Math.max(wkRes, res);
+			//			}
+			res = getLengthC2(wkS);
+			System.out.println(res);
+		}
+
+	}
+
+	private void solveD() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private void solveE() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private void solveF() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private final PrintWriter out = new PrintWriter(System.out);
+	private final InputStream in = System.in;
+	private final byte[] buffer = new byte[1024];
+	private int ptr = 0;
+	private int buflen = 0;
+
+	private boolean hasNextByte() {
+		if (ptr < buflen) {
+			return true;
+		} else {
+			ptr = 0;
+			try {
+				buflen = in.read(buffer);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (buflen <= 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private int readByte() {
+		if (hasNextByte())
+			return buffer[ptr++];
+		else
+			return -1;
+	}
+
+	private static boolean isPrintableChar(int c) {
+		return 33 <= c && c <= 126;
+	}
+
+	private void skipUnprintable() {
+		while (hasNextByte() && !isPrintableChar(buffer[ptr]))
+			ptr++;
+	}
+
+	public boolean hasNext() {
+		skipUnprintable();
+		return hasNextByte();
+	}
+
+	public int nextInt() {
+		return Integer.parseInt(next());
+	}
+
+	public String next() {
+		if (!hasNext())
+			throw new NoSuchElementException();
+		StringBuilder sb = new StringBuilder();
+		int b = readByte();
+		while (isPrintableChar(b)) {
+			sb.appendCodePoint(b);
+			b = readByte();
+		}
+		return sb.toString();
+	}
+
+	public long nextLong() {
+		if (!hasNext())
+			throw new NoSuchElementException();
+		long n = 0;
+		boolean minus = false;
+		int b = readByte();
+		if (b == '-') {
+			minus = true;
+			b = readByte();
+		}
+		if (b < '0' || '9' < b) {
+			throw new NumberFormatException();
+		}
+		while (true) {
+			if ('0' <= b && b <= '9') {
+				n *= 10;
+				n += b - '0';
+			} else if (b == -1 || !isPrintableChar(b)) {
+				return minus ? -n : n;
+			} else {
+				throw new NumberFormatException();
+			}
+			b = readByte();
+		}
+	}
+}

@@ -1,0 +1,20 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+	Scanner sc = new Scanner(System.in);
+		String a1 = sc.next();
+
+		double a = Double.parseDouble(a1);
+		double pi = Math.PI;
+
+		double area = a*a*pi;
+		System.out.println(area);
+
+		double circumference = 2*a*pi;
+		System.out.println(circumference);
+
+	}
+
+}

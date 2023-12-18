@@ -1,0 +1,90 @@
+import java.util.*;
+import java.io.*;
+ 
+public class Main {
+    static boolean[][] used;
+    static int[] ans;
+    public static void main(String[] args) throws Exception {
+        FastScanner sc = new FastScanner(System.in);
+        PrintWriter out = new PrintWriter(System.out);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int ans = 0;
+        String tmp = "R"+sc.next()+"L";
+        char[] s = tmp.toCharArray();
+        for(int i = 1; i < n; i++){
+            if(s[i-1] == 'L' && s[i] == 'L'){
+                ans++;
+            }
+        }
+        for(int i = 0; i < n-1; i++){
+            if(s[i] == 'R' && s[i+1] == 'R'){
+                ans++;
+            }
+        }
+        int cnt = 0;
+        for(int i = 0; i < n-1; i++){
+            if(s[i] == 'R' && s[i+1] == 'L'){
+                cnt++;
+            }
+        }
+        System.out.println(ans + Math.min(k*2,cnt*2));
+    }
+}
+
+class FastScanner {
+    private BufferedReader reader = null;
+    private StringTokenizer tokenizer = null;
+    public FastScanner(InputStream in) {
+        reader = new BufferedReader(new InputStreamReader(in));
+        tokenizer = null;
+    }
+
+    public String next() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                tokenizer = new StringTokenizer(reader.readLine());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken();
+    }
+
+    public String nextLine() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                return reader.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken("\n");
+    }
+
+    public long nextLong() {
+        return Long.parseLong(next());
+    }
+
+    public int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    public double nextDouble() {
+         return Double.parseDouble(next());
+    }
+
+    public int[] nextIntArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextInt();
+        return a;
+    }
+
+    public long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextLong();
+        return a;
+    } 
+}

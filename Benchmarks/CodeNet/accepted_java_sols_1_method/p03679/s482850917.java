@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        final int MIN = 1;
+        final int MAX = 1000000000;
+        Scanner sc = new Scanner(System.in);
+        String x = sc.next();
+        String a = sc.next();
+        String b = sc.next();
+        int X;
+        int A;
+        int B;
+        // 文字チェック
+        try {
+            X = Integer.parseInt(x);
+            A = Integer.parseInt(a);
+            B = Integer.parseInt(b);
+        } catch (Exception e) {
+            return;
+        }
+
+        // 範囲チェック
+        if (X < MIN || MAX < X
+                || A < MIN || MAX < A
+                || B < MIN || MAX < B) {
+            return;
+        }
+
+        // 食品チェック
+        int days = A-B;
+        int abs_num = Math.abs(days);
+        if (days < 0 && X < abs_num) {
+            System.out.println("dangerous");
+        } else if (days < 0 && abs_num <= X) {
+            System.out.println("safe");
+        } else if (0 <= days) {
+            System.out.println("delicious");
+        }
+    }
+}

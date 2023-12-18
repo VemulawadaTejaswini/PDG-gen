@@ -1,0 +1,71 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class MAIN {
+
+	static Scanner br = new Scanner(System.in);
+	static List<Integer> tmp = new ArrayList<Integer>();
+
+	public static void main(String[] args) throws IOException {
+		int yamahuda[];
+
+		while (true) {
+			// ?±±???????????°n
+			int n = br.nextInt();
+			yamahuda = new int[n];
+			// ??????????????°r
+			int r = br.nextInt();
+
+			// 0 0?????´???break;
+			if (n == 0 && r == 0) {
+				break;
+			}
+
+			// ?±±????????????n????????????
+			for (int i = 0; i < n; i++) {
+				yamahuda[i] = n - i;
+			}
+			// ?±±???????????£?????????
+			for (int i = 0; i < r; i++) {
+				shuffle(yamahuda);
+			}
+			System.out.println(yamahuda[0]);
+
+		}
+	}
+
+	public static int[] shuffle(int[] yamahuda) throws IOException {
+		// p??¨c?????\???
+		int p = br.nextInt();
+		int c = br.nextInt();
+		tmp.clear();
+		if (p - 1 < c) {
+
+			// ?????????????±±???????????????????????????tmp???????´?
+			for (int i = 0; i < c; i++) {
+				tmp.add(yamahuda[p - 1 + i]);
+			}
+			for (int i = 0; i < p - 1; i++) {
+				yamahuda[c + i] = yamahuda[i];
+			}
+			for (int i = 0; i < c; i++) {
+				yamahuda[i] = tmp.get(i);
+			}
+		} else {
+			// ???????????????
+			for (int i = 0; i < p - 1; i++) {
+				tmp.add(yamahuda[i]);
+			}
+			for (int i = 0; i < c; i++) {
+				yamahuda[i] = yamahuda[p - 1 + i];
+			}
+			for (int i = 0; i < p - 1; i++) {
+				yamahuda[c + i] = tmp.get(i);
+			}
+		}
+		return yamahuda;
+	}
+
+}

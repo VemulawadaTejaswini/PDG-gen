@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Main {
+
+    public static void main(String[] args) {
+        new Main().compute();
+    }
+
+    void compute() {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int T = sc.nextInt();
+        int ans = 0;
+        int prev = sc.nextInt();
+        for (int i = 0; i < N - 1; i++) {
+            int cur = sc.nextInt();
+            if (cur - prev < T) {
+                ans += cur - prev;
+            } else {
+                ans += T;
+            }
+            prev = cur;
+        }
+        ans += T;
+        System.out.println(ans);
+    }
+}

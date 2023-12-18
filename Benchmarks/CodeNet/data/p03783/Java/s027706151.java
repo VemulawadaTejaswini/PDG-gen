@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+
+class Main{
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        long lbase = 0;
+        long rbase = 0;
+        TreeSet<Long> lindex = new TreeSet<>();
+        TreeSet<Long> rindex = new TreeSet<>();
+        long[] l = new long[N];
+        long[] w = new long[N];
+        for(int i=0;i<N;++i){
+            l[i] = scan.nextLong();
+            w[i] = scan.nextLong()-l[i];
+        }
+        lindex.add(l[0]);rindex.add(l[0]);
+        long ans = 0;
+        for(int i=1;i<N;++i){
+            lbase += w[i];
+            rbase += w[i-1];
+
+            if(lindex.ceiling(l[i]+lbase+1) != null){
+                lindex.add(l[i]+lbase);
+                long top = lindex.pollLast();
+                ans += Math.abs(top-(l[i]+lbase));
+                rindex.add(top-lbase - rbase);
+            }else if(rindex.floor(l[i]-rbase-1) != null){
+                rindex.add(l[i]-rbase);
+                long bot = rindex.pollFirst();
+
+                ans += Math.abs(bot-(l[i]-rbase));
+                lindex.add(bot+rbase+lbase);
+            }else{
+                lindex.add(l[i]+lbase);
+                rindex.add(l[i]-rbase);
+            }
+        }
+        System.out.println(ans);
+    }
+}

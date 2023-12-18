@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static Scanner scanner;
+	public static void main(String[] args) {
+	    scanner = new Scanner(System.in);
+
+	    String o=gs();
+	    String e=gs();
+	    
+	    StringBuilder sb=new StringBuilder();
+	    for (int i=0; i<e.length();i++) {
+	    	sb.append(o.charAt(i));
+	    	sb.append(e.charAt(i));
+	    }
+	    
+	    
+
+	    if (o.length() != e.length()) {
+	    	sb.append(o.charAt(o.length()-1));
+	    }
+
+        System.out.println(sb.toString());
+//        if (a<b) {
+//        	System.out.print(Math.max(b-a-w, 0));
+//        }else {
+//        	System.out.print(Math.max(a-b-w, 0));
+//        }
+
+
+	}
+
+	// 文字列として入力を取得
+	public static String gs() {
+		return scanner.next();
+	}
+
+	// intとして入力を取得
+	public static int gi() {
+		return Integer.parseInt(scanner.next());
+	}
+
+	// longとして入力を取得
+	public static long gl() {
+		return Long.parseLong(scanner.next());
+	}
+
+	// doubleとして入力を取得
+	public static double gd() {
+		return Double.parseDouble(scanner.next());
+	}
+}

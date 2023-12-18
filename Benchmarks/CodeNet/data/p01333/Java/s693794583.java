@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int a,b;(a=s.nextInt())+(b=s.nextInt())>0;System.out.println((b/=100)%5+" "+b%10/5+" "+b/10))b-=a;}}

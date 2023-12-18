@@ -1,0 +1,16 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner io = new Scanner(System.in);
+		int n = io.nextInt();
+		char[] a = io.next().toCharArray(), b = io.next().toCharArray();
+		for(int i = 0; i < n; i++)
+			System.out.print(a[i]+""+b[i]);
+		System.out.println();
+	}
+}

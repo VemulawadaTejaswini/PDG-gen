@@ -1,0 +1,24 @@
+import java.util.Scanner;
+//import java.util.Arrays;
+public class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		String a = sc.next();
+		String b = sc.next();
+		String result = "";
+		if(a.equals(b)){
+			result = "EQUAL";
+		}else if(a.length() > b.length()){
+			result = "GREATER";
+		}else if(a.length() < b.length()){
+			result = "LESS";
+		}else{
+			if(a.compareTo(b) < 0){
+				result = "LESS";
+			}else{
+				result = "GREATER";
+			}
+		}
+		System.out.println(result);
+	}
+}

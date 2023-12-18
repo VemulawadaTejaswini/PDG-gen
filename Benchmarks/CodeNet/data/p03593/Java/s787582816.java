@@ -1,0 +1,127 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	final static long MOD = 1000000007L;
+	public static String[] Ws = null;
+	public static int wsIndx = 0;
+	public static BufferedReader in = null;
+	public static ArrayList<int[]> list = new ArrayList<>();
+	public static void main(String[] args) throws Exception {
+
+
+		int H=nextInt();
+		int W=nextInt();
+
+		String[][] a = new String[H][];
+		for(int i=0;i<H;i++){
+			a[i]=toStringArray(nextString());
+		}
+		int[] alph = new int['z'-'a'+1];
+		Arrays.fill(alph, 0);
+		for(int i=0;i<a.length;i++){
+			for(int k=0;k<a[i].length;k++){
+				alph['z'-a[i][k].charAt(0)]++;
+			}
+		}
+		int n4=0;
+		int n2=0;
+		int n=0;
+
+		for(int i=0;i<alph.length;i++){
+			if(alph[i]==0){
+				continue;
+			}
+			n4+=alph[i]/4;
+			if(alph[i]%4==2){
+				n2++;
+			}else if(alph[i]%4==0){
+
+			}else{
+				n++;
+			}
+		}
+		if(n>1){
+			System.out.println("No");
+			return ;
+		}
+
+		if(H%2==0&&W%2==0){
+			if(n2==0&&n==0){
+				System.out.println("Yes");
+			}else{
+				System.out.println("No");
+			}
+		}else {
+			int x = H*W-n4*4;
+			if(x == n2*2+n){
+				System.out.println("Yes");
+			}else{
+				System.out.println("No");
+			}
+		}
+	}
+
+
+	public static String[] toStringArray(String s) {
+		String[] tmp = new String[s.length()];
+		char[] c = s.toCharArray();
+		for (int i = 0; i < tmp.length; i++) {
+			tmp[i] = String.valueOf(c[i]);
+		}
+		return tmp;
+	}
+
+	public static void check() throws Exception{
+		if(in == null){
+			in = new BufferedReader(new InputStreamReader(System.in));
+		}
+		if(Ws==null || Ws.length<=wsIndx){
+			Ws = in.readLine().split(" ");
+			wsIndx=0;
+		}
+	}
+	public static int nextInt()throws Exception{
+		check();
+		return Integer.parseInt(Ws[wsIndx++]);
+	}
+
+	public static long nextLong()throws Exception{
+		check();
+		return Long.parseLong(Ws[wsIndx++]);
+	}
+
+	public static String nextString()throws Exception{
+		check();
+		return Ws[wsIndx++];
+	}
+
+	public static int[] nextInts()throws Exception{
+		check();
+		int[] tmp = new int[Ws.length];
+		for(int i=0;i<tmp.length;i++){
+			tmp[i]=Integer.parseInt(Ws[i]);
+		}
+		wsIndx=Ws.length;
+		return tmp;
+	}
+
+	public static long[] nextLongs()throws Exception{
+		check();
+		long[] tmp = new long[Ws.length];
+		for(int i=0;i<tmp.length;i++){
+			tmp[i]=Long.parseLong(Ws[i]);
+		}
+		wsIndx=Ws.length;
+		return tmp;
+	}
+
+	public static String[] nextStrings()throws Exception{
+		check();
+		wsIndx=Ws.length;
+		return Ws;
+	}
+
+
+}

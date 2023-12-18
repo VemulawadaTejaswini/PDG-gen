@@ -1,0 +1,14 @@
+package atcoder;
+
+import java.util.Scanner;
+
+/**
+ * Created by Abhilash on 28-01-2017.
+ */
+class SubString {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        System.out.println(str.lastIndexOf('Z')-str.indexOf('A')+1);
+    }
+}

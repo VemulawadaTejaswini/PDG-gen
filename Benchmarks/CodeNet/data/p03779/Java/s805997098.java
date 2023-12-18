@@ -1,0 +1,17 @@
+import java.util.Scanner;
+class Main{
+	
+	
+	public static void main(String[] args){
+		try(Scanner sc = new Scanner(System.in)){
+			//Input
+			int X=11;//Integer.parseInt(sc.next());
+			int A=1;
+			while(2*X>A*(A-1)){
+				A++;
+			}
+			System.out.println(A-1);
+			
+		}
+	}
+}

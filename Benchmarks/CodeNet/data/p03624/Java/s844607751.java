@@ -1,0 +1,17 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String S = sc.next();
+		int N = S.length();
+		for(char c = 'a' ; c <= 'z' ; c++) {
+			if(S.indexOf(c) == -1) {
+				System.out.println(c);
+				return;
+			}
+		}
+		System.out.println("None");
+	}
+}

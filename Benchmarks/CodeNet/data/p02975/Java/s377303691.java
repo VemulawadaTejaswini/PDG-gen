@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        new Main().run();
+    }
+
+    private void run() {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int[] a = new int[N];
+        for(int i = 0; i < N; i ++) {
+            a[i] = scanner.nextInt();
+        }
+        boolean ans = true;
+
+        for(int i = 0; i < N; i ++) {
+            int hoge = a[(N+i-1) % N] ^ a[(i+1) % N];
+            if(hoge != a[i]){
+                ans = false;
+                break;
+            }
+        }
+
+        if(ans) {
+            System.out.println("YES");
+        }else{
+            System.out.println("NO");
+        }
+
+    }
+}

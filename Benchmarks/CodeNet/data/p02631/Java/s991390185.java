@@ -1,0 +1,90 @@
+import java.io.*;
+import java.util.*;
+import static java.lang.Math.min;
+import static java.lang.Math.max;
+public class Main {
+
+    private static void solver(InputReader sc, PrintWriter out) throws Exception {
+           int n = sc.nextInt();
+           int arr[] = new int[n]; int xor=0;
+           for(int i=0; i<n; i++){
+               arr[i] = sc.nextInt();
+               xor ^= arr[i];
+           }
+           for(int i=0; i<n; i++){
+               out.print((xor ^ arr[i])+" ");
+           }
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        solver(in,out);
+        out.close();
+    }
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+        public double nextDouble(){
+            return Double.parseDouble(next());
+        }
+    }
+}
+class Pair implements Comparable<Pair>{
+    int x,y;
+    Pair(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    public int compareTo(Pair p){
+        return (int)(this.x - p.x);
+    }
+}
+class Tuple{
+    String s;
+    int x, y;
+
+    public Tuple(String s, int x, int y) {
+        this.s = s;
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tuple tuple = (Tuple) o;
+        return x == tuple.x &&
+                y == tuple.y &&
+                s.equals(tuple.s);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(s, x, y);
+    }
+}

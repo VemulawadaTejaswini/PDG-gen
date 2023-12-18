@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){int i=0;Scanner s=new Scanner(System.in);for(;;){String t=s.nextLine(),r="";if(t.equals("."))break;for(char c:t.toCharArray()){i="()[]".indexOf(c);r+=i<0?"":i;}for(;i<99;i++)r=r.replace("01","").replace("23","");System.out.println(r.equals("")?"yes":"no");}}}

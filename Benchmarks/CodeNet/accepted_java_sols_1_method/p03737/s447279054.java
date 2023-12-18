@@ -1,0 +1,18 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String line = br.readLine();
+		String[] ana = new String[6];
+		char[] c = new char[3];
+		ana=line.split(" ");
+		for(int i=0;i<3;i++){
+		c[i]=ana[i].charAt(0);
+		System.out.print(Character.toUpperCase(c[i]));
+		}
+
+	}
+}

@@ -1,0 +1,16 @@
+class Main{
+    public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int[] array;
+    	array = new int[3];
+		array[0] = sc.nextInt();
+		array[1] = sc.nextInt();
+		array[2] = sc.nextInt();
+    	Arrays.sort(array);
+    	for(int i = 0; i < array.length; i++){
+    		if(i == array.length -1 ) System.out.printf("%d",array[i]);
+    		else System.out.printf("%d ",array[i]);
+    	}
+    	System.out.printf("\n");
+    }
+}

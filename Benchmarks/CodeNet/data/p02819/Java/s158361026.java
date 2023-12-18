@@ -1,0 +1,75 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.Stack;
+import java.util.TreeMap;
+import java.util.TreeSet;
+ 
+
+
+
+
+
+import static java.util.Comparator.*;
+ 
+public class Main {
+    public static void main(String[] args) {
+        PrintWriter out = new PrintWriter(System.out);
+        Solver solver = new Solver(System.in, out);
+        solver.solve();
+//        solver.test();
+        out.close();
+    }
+}
+class Solver {
+	Scanner sc;
+	PrintWriter out;
+    public Solver(InputStream in, PrintWriter out) {
+    	sc = new Scanner(in);
+    	this.out = out;
+    }
+    //================================================================================
+    // エラトステネスの篩(ふるい）　→　素数の表を作る（大体　O(N) らしい）									
+    boolean[] arr = new boolean[110100];					// 初期値 false(素数なら false　[2] = false  2は素数)				
+    void eratosthenes(long n){									
+        	arr[0] = arr[1] = true;				// １　は素数でない				
+        	for(int i = 2; i * i <= n; i++){								
+       		 if( !arr[i] ) {							
+        			for(int j = i + i; j <= n; j += i){			// j は i の倍数となる			
+       				 arr[j] = true;		// i の倍数は素数でない			
+        			}						
+        		}							
+        	}								
+    }									
+
+    public void solve() {
+    	long X = Long.parseLong(sc.next());
+    	eratosthenes(110000);
+    	for (int i = (int)X; i < 110000; i++) {
+			if(!arr[i]) {
+				out.println(i);
+				return;
+			}
+		}
+    }
+}

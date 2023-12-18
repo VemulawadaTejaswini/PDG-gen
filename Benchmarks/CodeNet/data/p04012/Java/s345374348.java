@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Printer pr = new Printer(System.out);
+
+		char[] w = sc.next().toCharArray();
+
+		int[] cnt = new int[26];
+
+		for (char c : w) {
+			cnt[c - 'a']++;
+		}
+
+		for (int i = 0; i < 26; i++) {
+			if (cnt[i] % 2 != 0) {
+				pr.println("No");
+
+				pr.close();
+				sc.close();
+				return;
+			}
+		}
+
+		pr.println("Yes");
+
+		pr.close();
+		sc.close();
+	}
+
+	private static class Printer extends PrintWriter {
+		Printer(PrintStream out) {
+			super(out);
+		}
+	}
+}

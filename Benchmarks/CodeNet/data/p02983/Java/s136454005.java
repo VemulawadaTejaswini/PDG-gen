@@ -1,0 +1,52 @@
+	import java.util.ArrayList;
+	import java.util.Arrays;
+	import java.util.Collections;
+	import java.util.Comparator;
+	import java.util.HashMap;
+	import java.util.HashSet;
+	import java.util.List;
+	import java.util.Map;
+	import java.util.Map.Entry;
+	import java.util.PriorityQueue;
+	import java.util.Queue;
+	import java.util.Scanner;
+	import java.util.Set;
+
+	public class Main {
+
+		public static void main(String[] args) {
+
+			Scanner scanner = new Scanner(System.in);
+			String[] t = scanner.nextLine().split(" ");
+			long l = Long.parseLong(t[0]);
+			long r = Long.parseLong(t[1]);
+
+			long d = Math.min(r - l, 2019);
+
+			long min = Integer.MAX_VALUE;
+			long mini = l;
+
+			for(int i = 0; i <= d; i++) {
+
+				min = Math.min(min, (i + l) % 2019);
+				mini = min == (i + l) % 2019 ? i + l : mini;
+			}
+
+
+			long temp = 0;
+			if(mini + 1 <= r) {
+
+				temp = min * ((mini + 1) % 2019);
+			}
+			if(mini - 1 >= l) {
+
+				temp = Math.min(temp,min * ((mini - 1) % 2019));
+			}
+
+
+
+
+			System.out.println(temp);
+
+		}
+	}

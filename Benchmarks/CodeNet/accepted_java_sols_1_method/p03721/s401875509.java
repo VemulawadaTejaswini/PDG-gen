@@ -1,0 +1,28 @@
+import java.util.*;
+import java.io.*;
+
+public class Main{
+	public static final int NMAX = 100000;
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		long k = sc.nextLong();
+	
+		long[] arr = new long[NMAX+1];
+		
+		for(int i=0; i<n; i++){
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			
+			arr[a] += b;
+		}
+		
+		for(int i=1; i<NMAX+1; i++){
+			if(k <= arr[i]){
+				System.out.println(i);
+				break;
+			}
+			k -= arr[i]; 	
+		}
+	}
+}

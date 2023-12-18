@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N;
+        int b=0;
+        N = sc.nextInt();
+        int [] list = new int [N*2];
+        for(int a=2;b<N*2;a++){
+                int num=0;
+                if(a==2){
+                    list[b]=a;
+                    b++;
+                }
+                else {
+                    for (int c = 0; c < b; c++) {
+                        if (a % list[c] == 0) num++;
+                    }
+                    if (num == 0) {
+                        list[b] = a;
+                        b++;
+                    }
+                }
+            }
+        for(int a=0;a<N;a++){
+            System.out.print(list[2*a]);
+            if(a!=N-1) System.out.print(" ");
+        }
+         }
+
+}

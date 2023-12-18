@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args){
+		int a,b,W,H;
+		Scanner br=new Scanner(System.in);
+		H=br.nextInt();
+		W=br.nextInt();
+		for(a=1;a<=H;a++){
+			for(b=1;b<=W;b++){
+				System.out.print("#");
+			}
+			System.out.println();
+		}
+	}
+}

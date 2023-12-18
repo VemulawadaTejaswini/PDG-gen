@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Main {
+
+	private void doit(){
+		Scanner sc = new Scanner(System.in);
+		long mod = 1000000007;
+		while(sc.hasNext()){
+			char [] c = sc.next().toCharArray();
+			int [] data = new int[26];
+			
+			for(int i = 0; i < c.length; i++){
+				data[c[i] - 'a']++;
+			}
+			
+			boolean flg = true;
+			for(int i = 0;i <data.length; i++){
+				if(data[i] % 2 != 0){
+					flg = false;
+					break;
+				}
+			}
+			
+			System.out.println(flg ? "Yes" : "No");
+		}
+
+	}
+
+	private void debug(Object... o) {
+		System.out.println("debug = " + Arrays.deepToString(o));
+	}
+
+	public static void main(String[] args) {
+		new Main().doit();
+	}
+
+}

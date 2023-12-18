@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class Main {
+
+	private static Scanner sc;
+
+	public static void main(String[] args) {
+		sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		long max=k;
+		for(int i=1;i<n;i++) {
+			max=max*(k-1);
+		}
+		System.out.println(max);
+
+	}
+
+}

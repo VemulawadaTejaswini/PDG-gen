@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		long n = sc.nextLong();
+		sc.close();
+		int ans = 0;
+		boolean endflag = false;
+		for (long l = 2;l *l <=n; l++) {
+			if (n == 1) {
+				break;
+			}
+			long l2 = l;
+			while (true) {
+				if (n % l2 == 0) {
+					ans +=1;
+					n = n / l2;
+					l2 = l2 * l;
+				} else if (n % l ==0) {
+					endflag = true;
+					break;
+				} else {
+					break;
+				}
+			}
+			if (n == 1) {
+				break;
+			}
+		}
+		if (n >1 && !endflag) ans++;
+		System.out.println(ans);
+	}
+}

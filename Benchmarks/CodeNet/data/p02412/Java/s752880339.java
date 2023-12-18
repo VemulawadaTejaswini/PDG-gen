@@ -1,0 +1,20 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+class Main{
+  public static void main(String args[]) throws IOException{
+   
+   BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+   
+   while(true){
+   String[] token = br.readLine().split(" ");
+    int n = Integer.parseInt(token[0]);      
+    int x = Integer.parseInt(token[1]);
+    if(n == 0 && x == 0) {break;}
+
+   
+   }
+ 
+ }
+}

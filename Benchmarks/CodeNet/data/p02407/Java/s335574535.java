@@ -1,0 +1,21 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+Scanner kb=new Scanner(System.in);
+int n=kb.nextInt();
+ArrayList<Integer> al=new ArrayList<Integer>(n);
+for(int i=0;i<n;i++){
+	al.add(kb.nextInt());
+}
+for(int i=n-1;i>=0;i--){
+	System.out.printf("%d",al.get(i));
+	if(i!=0){
+    System.out.print(" ");	
+	}
+}
+System.out.println("");	
+	}
+
+}

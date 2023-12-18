@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try (Scanner scanner = new Scanner(System.in)) {
+			long x = scanner.nextLong();
+			System.out.println((int) ((Math.sqrt(8 * x + 1) - 1.0) / 2.0));
+		}
+	}
+}

@@ -1,0 +1,24 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] p = br.readLine().split(" ");
+		Integer X = Integer.valueOf(p[0]);
+		Integer A = Integer.valueOf(p[1]);
+		Integer B = Integer.valueOf(p[2]);
+		int C = B-A;
+		if((C) > 0){
+			if(C <= X){
+				System.out.println("safe");
+			} else {
+				System.out.println("dangerous");
+			}
+		} else {
+			System.out.println("delicious");
+		}
+	}
+}

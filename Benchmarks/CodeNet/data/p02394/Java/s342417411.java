@@ -1,0 +1,17 @@
+import java.io.*;
+import java.util.Arrays;
+   
+public class Main {
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String[] inputs = br.readLine().split(" ");
+    int w = Integer.parseInt(inputs[0]), h = Integer.parseInt(inputs[0]);
+    int x = Integer.parseInt(inputs[0]), y = Integer.parseInt(inputs[0]), r = Integer.parseInt(inputs[0]);
+
+    if (x + r <= w && y + r <= h) {
+      System.out.println("Yes");
+    } else {
+      System.out.println("No");
+    }
+  }
+}

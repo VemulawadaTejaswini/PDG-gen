@@ -1,0 +1,14 @@
+int main () {
+
+	Scanner scan = new Scanner(System.in);
+    String a = scan.next();
+    String b = scan.next();
+  	
+  	if ((a * b ) % 2 == 0 ) {
+      System.out.printf("Even");
+    } else {
+         System.out.printf("Odd"); 
+    }
+  
+ 
+}

@@ -1,0 +1,33 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.stream.IntStream;
+
+public class Main{
+	static final Scanner s=new Scanner(System.in);
+	static IntStream REPS(int v){return IntStream.range(0,v);}
+	static IntStream REPS(int l,int r){return IntStream.rangeClosed(l,r);}
+	static IntStream INS(int n){return REPS(n).map(i->getInt());}
+	static int getInt(){return Integer.parseInt(s.next());}
+
+	public static void main(String[]$){
+		int n=getInt(),m=getInt();
+		HashSet<Integer> ione=new HashSet<>(),in=new HashSet<>();
+
+		for(int i=0;i<m;++i) {
+			int a=getInt(),b=getInt();
+			if(a==1)
+				ione.add(b);
+			if(b==1)
+				ione.add(a);
+			if(a==n)
+				in.add(b);
+			if(b==n)
+				in.add(a);
+		}
+
+		System.out.println(
+				ione.stream().anyMatch(in::contains)
+				?"POSSIBLE":"IMPOSSIBLE"
+				);
+	}
+}

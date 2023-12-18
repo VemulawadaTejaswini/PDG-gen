@@ -1,0 +1,129 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        String[] params = in.nextLine().split(" ");
+        int h = Integer.parseInt(params[0]);
+        int w = Integer.parseInt(params[1]);
+        String[][] ss = new String[h][];
+        for (int i = 0; i < h; i++) {
+            ss[i] = new String[w];
+            params = in.nextLine().split("");
+            for (int j = 0; j < w; j++) {
+                ss[i][j] = params[j];
+            }
+        }
+
+        // 全ての場所をスタート地点として最長距離を回答とする
+        int maxDistance = 0;
+        String[][] copy = new String[h][];
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+
+                // 探索の中で配列を操作するので、コピーを渡す
+                for( int k = 0 ; k < h ; k++ ){
+                    copy[k] = new String[w];
+                    System.arraycopy( ss[k] , 0 , copy[k] , 0 , w );
+                }
+
+                int distance = getMaxDistanceWithBfs( copy , i , j );
+                if (maxDistance < distance) {
+                    maxDistance = distance;
+                }
+
+            }
+        }
+
+        System.out.println(maxDistance);
+
+    }
+
+    /**
+     * 座標用クラス
+     */
+    public static class Position {
+        int x;
+        int y;
+        public Position( int x , int y ) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    /**
+     * 幅優先探索で最長距離を返す
+     * @param ss 迷路の配列
+     * @param startY スタート地点のY座標
+     * @param startX スタート地点のX座標
+     * @return 最長距離
+     */
+    private static int getMaxDistanceWithBfs( String[][] ss , int startY , int startX ) {
+
+        // 壁なら処理しない
+        if ("#".equals(ss[startY][startX])) {
+            return 0;
+        }
+
+        int distance = 0;
+
+        Queue<Position> queue = new ArrayDeque<>();
+
+        // スタート位置をキューに追加し探索済みにする
+        queue.add( new Position( startX , startY ) );
+        ss[startY][startX] = "0";
+
+        // キューが空になった時 = 探索できる場所がなくなった時
+        // ループ回数 = スタート位置からの距離
+        while( !queue.isEmpty()  ) {
+
+            distance++;
+
+            // キューを出し入れするから最初にループ回数を取得しておく
+            int queSize = queue.size();
+            for( int i = 0 ; i < queSize ; i++ ){
+
+                // 取り出した座標 = スタート位置からの同距離の各座標
+                Position p = queue.remove();
+                int x = p.x;
+                int y = p.y;
+
+                // ↓ 四方を確認して移動できるならキューに追加
+
+                // 上を確認
+                if( y != 0 && ".".equals( ss[y-1][x] ) ){
+                    queue.add( new Position( x , y-1 ) );
+                    ss[y-1][x] = "" + distance;
+                }
+                // 下を確認
+                if( y != ss.length - 1 && ".".equals( ss[y+1][x] ) ){
+                    queue.add( new Position( x , y+1 ) );
+                    ss[y+1][x] = "" + distance;
+                }
+                // 左を確認
+                if( x != 0 && ".".equals( ss[y][x-1] ) ){
+                    queue.add( new Position( x-1 , y ) );
+                    ss[y][x-1] = "" + distance;
+                }
+                // 右を確認
+                if( x != ss[0].length - 1 && ".".equals( ss[y][x+1] ) ){
+                    queue.add( new Position( x+1 , y ) );
+                    ss[y][x+1] = "" + distance;
+                }
+
+            }
+
+        }
+
+        // 処理順の問題で-1
+        // 1.終点につく( キューが空でない = while(true) )
+        // 2.distance++( 想定の距離より1多い )
+        // 3.四方を確認して移動できないことを確認( 終点なのでキューに値が入らない )
+        // 4.ループを抜ける
+        return distance - 1;
+
+    }
+
+}

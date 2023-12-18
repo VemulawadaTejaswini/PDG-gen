@@ -1,0 +1,89 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+ 
+public class Main
+{
+    static boolean max_log_size(int s, int arr[], int n, int k){
+        long cuts = 0l;
+
+        for(int i = 0; i < n; i++)
+            cuts += arr[i]/s + (arr[i] % s == 0 ? -1 : 0);
+
+        return cuts <= k;
+    }
+
+    public static void process(int test_number)throws IOException
+    {
+        int n = ni(), k = ni(), arr[] = new int[n];
+        for(int i = 0; i < n; i++)
+            arr[i] = ni();
+
+        int l = 1, r = 1000*1000*1000, mid, res = 0;
+
+        while(l <= r){
+            mid = l + (r - l)/2;
+
+            if(max_log_size(mid, arr, n, k)){
+                res = mid;
+                r = mid - 1;
+            }
+            else
+                l = mid + 1;
+        }   
+
+        pn(res);
+    }
+ 
+    static final long mod = (long)1e9+7l;
+    
+    static FastReader sc;
+    static PrintWriter out;
+    public static void main(String[]args)throws IOException
+    {
+        out = new PrintWriter(System.out);
+        sc = new FastReader();
+ 
+        long s = System.currentTimeMillis();
+        int t = 1;
+        //t = ni();
+        for(int i = 1; i <= t; i++)
+            process(i);
+ 
+        out.flush();
+        System.err.println(System.currentTimeMillis()-s+"ms");
+    }
+
+    static void trace(Object... o){ System.err.println(Arrays.deepToString(o)); };
+    static void pn(Object o){ out.println(o); }
+    static void p(Object o){ out.print(o); }
+    static int ni()throws IOException{ return Integer.parseInt(sc.next()); }
+    static long nl()throws IOException{ return Long.parseLong(sc.next()); }
+    static double nd()throws IOException{ return Double.parseDouble(sc.next()); }
+    static String nln()throws IOException{ return sc.nextLine(); }
+    static long gcd(long a, long b)throws IOException{ return (b==0)?a:gcd(b,a%b);}
+    static int gcd(int a, int b)throws IOException{ return (b==0)?a:gcd(b,a%b); }
+    static int bit(long n)throws IOException{ return (n==0)?0:(1+bit(n&(n-1))); }
+    
+    static class FastReader{ 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader(){ 
+            br = new BufferedReader(new InputStreamReader(System.in)); 
+        } 
+  
+        String next(){ 
+            while (st == null || !st.hasMoreElements()){ 
+                try{ st = new StringTokenizer(br.readLine()); } catch (IOException  e){ e.printStackTrace(); } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        String nextLine(){ 
+            String str = ""; 
+            try{ str = br.readLine(); } catch (IOException e) { e.printStackTrace(); } 
+            return str; 
+        } 
+    } 
+}

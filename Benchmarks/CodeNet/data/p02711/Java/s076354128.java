@@ -1,0 +1,16 @@
+import java.util.*;
+
+class Main{
+ public static void main(String[] args){
+   Scanner sc = new Scanner(System.in);
+   int n = sc.nextInt();
+   int n1 = n/100;
+   int n2 = (n-n1)/10;
+   int n3 = n-n1-n2;
+   if(n1==7||n2==7||n3==7){
+		System.out.println("Yes");
+   }else{
+     System.out.println("No");
+   }
+ }
+}

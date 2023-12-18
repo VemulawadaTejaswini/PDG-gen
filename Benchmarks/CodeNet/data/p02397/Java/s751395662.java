@@ -1,0 +1,24 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+public class Main{
+    public static void main(String[] args)throws IOException{
+        BufferedReader br =new BufferedReader(
+            new InputStreamReader(System.in));
+        StringBuffer str =new StringBuffer();
+        while(true){
+            String data =br.readLine();
+            String array[]=data.split(" ",0);
+            int number[]={0,0};
+             number[0]=Integer.parseInt(array[0]);
+             number[1]=Integer.parseInt(array[1]);
+            
+            if(number[0]>number[1]){
+            System.out.println(number[1]+" "+number[0]); 
+            }else{
+            System.out.println(number[0]+" "+number[1]); 
+            }
+        }
+    }
+}

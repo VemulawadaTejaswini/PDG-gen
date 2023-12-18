@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,c,i;(n=s.nextInt())>0;System.out.println(c-1)){for(a=new int[n*n],l=a.clone(),i=0;i<n*n;)a[i++]=s.nextInt()+s.nextInt()*n;for(c=1;i-->0;)if(f(a[i],c)==c)l[i]=f(a[i],c++);}}static int[]l,a;static int f(int x,int c){return l[x]>0?l[x]:(l[x]=f(a[x],l[x]=c));}}

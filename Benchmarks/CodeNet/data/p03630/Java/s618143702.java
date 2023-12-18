@@ -1,0 +1,103 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int h = sc.nextInt();
+    int w = sc.nextInt();
+    int[][] mat = new int[h][w];
+    int max = Math.max(h, w);
+
+    for (int i=0; i<h; i++) {
+      char[] tmp = sc.next().toCharArray();
+      for (int j=0; j<w; j++) {
+        if (tmp[j]=='#')
+          mat[i][j] = 1;
+        else
+          mat[i][j] = 0;
+      }
+    }
+    sc.close();
+
+    boolean[][] n_mat = new boolean[h-1][w-1];
+    for (int i=0; i<h-1; i++) {
+      for (int j=0; j<w-1; j++) {
+        if ((mat[i][j]+mat[i+1][j]+mat[i][j+1]+mat[i+1][j+1])%2==0)
+          n_mat[i][j]=true;
+        else
+          n_mat[i][j]=false;
+      }
+    }
+
+    int[][] hist = new int[h-1][w-1];
+    for (int i=0; i<h-1; i++) {
+      for (int j=0; j<w-1; j++) {
+        if (n_mat[i][j]) {
+          if (i==0) {
+            hist[i][j]=1;
+          } else {
+            hist[i][j]=hist[i-1][j]+1;
+          }
+        } else {
+          hist[i][j]=0;
+        }
+      }
+    }
+
+    Stack<int[]> stack = new Stack<>();
+    for (int i=1; i<h-1; i++) {
+      if (!stack.isEmpty()) {
+        for (int[] tmp: stack) {
+          max = Math.max(max, (tmp[0]+1)*(w-tmp[1]));
+        }
+        stack.clear();
+      }
+
+      for (int j=0; j<w-1; j++) {
+        if (!n_mat[i][j]) {
+          for (int[] tmp: stack) {
+            max = Math.max(max, (tmp[0]+1)*(j-tmp[1]+1));
+          }
+          stack.clear();
+          continue;
+        }
+
+        int th = hist[i][j];
+        if (stack.isEmpty()) {
+          stack.push(new int[]{th,j});
+        } else {
+          Stack<int[]> mini = new Stack<>();
+          while (!stack.isEmpty()) {
+            int[] tmp = stack.pop();
+            if (tmp[0]<th) {
+              stack.push(tmp);
+              stack.push(new int[]{th,j});
+              break;
+            } else if (tmp[0]==th) {
+              stack.push(tmp);
+              break;
+            } else {
+              mini.push(tmp);
+            }
+          }
+          if (!mini.isEmpty()) {
+            int tw = mini.peek()[1];
+            stack.push(new int[]{th,tw});
+            for (int[] tmp: mini) {
+              max = Math.max(max, (tmp[0]+1)*(j-tmp[1]+1));
+            }
+          }
+        }
+      }
+    }
+    if (!stack.isEmpty()) {
+      for (int[] tmp: stack) {
+        max = Math.max(max, (tmp[0]+1)*(w-tmp[1]));
+      }
+      stack.clear();
+    }
+
+    System.out.println(max);
+  }
+}

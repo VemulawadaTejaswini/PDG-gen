@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void debug(String str) {
+        boolean debug = false;
+        if (debug == false) {
+            return;
+        }
+        System.out.println(str);
+    }
+
+
+    public static void main(String[] args) {
+
+        int N;
+        long[] aList;
+
+        HashSet<Long> checkset = new HashSet<>();
+        try (Scanner sc = new Scanner(System.in)) {
+            N = sc.nextInt();
+            aList = new long[N];
+            for(int i = 0; i < N ;i++){
+                aList[i] = sc.nextLong();
+            }
+        }
+
+        if(N % 3 != 0){
+            System.out.println("No");
+            return;
+        }
+        for(Long l : aList){
+            checkset.add(l);
+        }
+        if(checkset.size() != 3){
+            System.out.println("No");
+            return;
+        }
+
+        List<Long> list = new  ArrayList<>(3);
+        for(Long l : checkset){
+            list.add(l);
+        }
+
+        long l1 = list.get(0);
+        long l2 = list.get(1);
+        long l3 = list.get(2);
+        if((l1 ^ l2) != l3){
+            System.out.println("No");
+            return;
+        }
+
+        for(long l: list){
+            int count = 0;
+            for(long target : aList){
+                if(l == target){
+                    count++;
+                }
+            }
+            if(count*3 != N){
+                System.out.println("No");
+                return;
+            }
+        }
+
+
+        System.out.println("Yes");
+        return;
+
+    }
+
+
+}

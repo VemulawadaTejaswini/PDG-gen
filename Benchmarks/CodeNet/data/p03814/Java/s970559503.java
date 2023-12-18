@@ -1,0 +1,12 @@
+import java.util.*;
+public class Main {
+	static Scanner sc=new Scanner(System.in);
+	public static void main(String[] args) {
+		String s=sc.next();
+		long start=s.indexOf('A');
+		long last=s.lastIndexOf('Z');
+		long result=last-start+1;
+		System.out.println(result);
+	}
+
+}

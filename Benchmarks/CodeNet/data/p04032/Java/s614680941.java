@@ -1,0 +1,34 @@
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Here your code !
+        Scanner sc = new Scanner(System.in);
+        String N = sc.next();
+        int size = N.length();
+        char[] a = N.toCharArray();
+        int result1 = -1;
+        int result2 = -1;
+        
+        for(int i=0;i<size-1;i++){
+            char x = a[i];
+            if(x == a[i+1]){
+                result1 = i;
+                result2 = i+1;
+                break;
+            }
+            if(i<=size-3&&x == a[i+2]){
+                result1 = i;
+                result2 = i+2;
+                break;
+            }
+        }
+        
+
+        System.out.println(result1+" "+result2);
+    }
+    
+    
+}

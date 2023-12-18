@@ -1,0 +1,11 @@
+import java.util.*;
+import java.math.*;
+
+public class Main {
+  public static void main (String[] args) {
+    Scanner sc = new Scanner(System.in);
+    BigDecimal A = sc.nextBigDecimal();
+    BigDecimal B = sc.nextBigDecimal();
+    System.out.println(A.multiply(B).setScale(0, BigDecimal.ROUND_DOWN));
+  }
+}

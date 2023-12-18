@@ -1,0 +1,7 @@
+import java.util.*;
+class Main{
+	public static void main(String[]$){
+		Scanner s=new Scanner(System.in);
+		System.out.println(Math.max(s.nextInt()-s.nextInt(),0));
+	}
+}

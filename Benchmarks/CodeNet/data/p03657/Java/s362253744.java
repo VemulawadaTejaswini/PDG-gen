@@ -1,0 +1,17 @@
+package abc067a;
+import java.util.Scanner;
+
+//Sharing Cookies
+public class Main {
+	private static Scanner sc;
+
+	public static void main(String[] args) {
+		sc = new Scanner (System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = a + b;
+		if((a%3) * (b%3) * (c%3) == 0)
+			System.out.printf("Possible");
+		else System.out.printf("Impossible");
+	}
+}

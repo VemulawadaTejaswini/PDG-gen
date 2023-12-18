@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class Main {
+	public static void main(String[] args) {
+	
+	Scanner stdIn = new Scanner(System.in);
+
+	int a = stdIn.nextInt();
+	int b = stdIn.nextInt();
+	int coin = 0;
+	
+	for (int i = 0; i < 2; i++) {
+		if (a >= b) {
+			coin += a;
+			a--;
+		} else {
+			coin += b;
+			b--;
+		}
+	}
+	
+	System.out.println(coin);
+	
+	}
+}

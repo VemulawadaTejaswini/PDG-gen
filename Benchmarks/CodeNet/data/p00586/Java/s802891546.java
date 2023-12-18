@@ -1,0 +1,1 @@
+main(c,d){while(scanf("%d%d",&c,&d)+1)printf("%d\n",c+d);}

@@ -1,0 +1,28 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+    	
+    	final int INF = 10000;
+    	
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int min = INF;
+        int sum = 0;
+        boolean canGetPoint = false;
+        
+        for(int n=0;n<N;n++){
+        	int point = sc.nextInt();
+        	sum += point;
+        	if(point%10 !=0){
+        		canGetPoint = true;
+        		if(min>point) min = point;
+        	}
+        }
+        
+        if(!canGetPoint)System.out.println(0);
+        else if(sum%10 ==0) System.out.println(sum-min);
+        else System.out.println(sum);
+    }
+}

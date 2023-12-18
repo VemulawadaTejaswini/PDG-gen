@@ -1,0 +1,12 @@
+class Main{
+    public static void main(String[] a){
+    int i,j;
+		for(i=1; i<=9; ){
+			for(j=1; j<=9; j++){
+				System.out.println(i+"x"+j);	
+			}
+	
+	i++; }
+    
+   }
+}

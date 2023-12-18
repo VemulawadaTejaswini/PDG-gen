@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+
+
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		String in = sc.nextLine();
+		String[] inArray = in.split(" ");
+		int a = Integer.parseInt(inArray[0]);
+		int b = Integer.parseInt(inArray[1]);
+		int ans = a + b;
+		if (ans < 10) {
+			System.out.println(ans);
+		} else {
+			System.out.println("error");
+		}
+
+
+
+		sc.close();
+	}
+
+
+
+}

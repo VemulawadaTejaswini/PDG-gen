@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class Main {
+    private static Scanner sc = new Scanner(System.in);  
+    public static void main(String[] args) throws Exception {
+        long x = sc.nextLong();
+        long ret = x/11*2;
+        long d = x%11;
+        if (0<d&&d<=6) {
+            ret++;
+        } else if (d>6) {
+            ret  += 2;
+        }
+        System.out.println(ret);
+    }
+}

@@ -1,0 +1,166 @@
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+import java.util.TreeSet;
+ 
+public class Main {
+	
+	public static void main(String[] args) throws IOException {
+		final Scanner sc = new Scanner(System.in);
+		
+		final long H = sc.nextLong();
+		final long W = sc.nextLong();
+		
+		final int N = sc.nextInt();
+		
+		long[] xs = new long[N];
+		long[] ys = new long[N];
+		
+		for(int i = 0; i < N; i++){
+			ys[i] = sc.nextLong() - 1;
+			xs[i] = sc.nextLong() - 1;
+		}
+		
+		TreeSet<Long> y_indexes_set = new TreeSet<Long>();
+		TreeSet<Long> x_indexes_set = new TreeSet<Long>();
+		
+		for(int i = 0; i < N; i++){
+			if(xs[i] > 0){
+				x_indexes_set.add(xs[i] - 1);
+			}
+			x_indexes_set.add(xs[i]);
+			if(xs[i] < W - 1){
+				x_indexes_set.add(xs[i] + 1);
+			}
+			
+			if(ys[i] > 0){
+				y_indexes_set.add(ys[i] - 1);
+			}
+			y_indexes_set.add(ys[i]);
+			if(ys[i] < H - 1){
+				y_indexes_set.add(ys[i] + 1);
+			}
+		}
+		
+		x_indexes_set.add(0l);
+		x_indexes_set.add(W - 1);
+		y_indexes_set.add(0l);
+		y_indexes_set.add(H - 1);
+		
+		ArrayList<Long> y_indexes_list = new ArrayList<Long>(y_indexes_set);
+		ArrayList<Long> x_indexes_list = new ArrayList<Long>(x_indexes_set);
+		
+		ArrayList<TreeMap<Integer, Integer>> adj_list = new ArrayList<TreeMap<Integer, Integer>>();
+		for(int i = 0; i < y_indexes_set.size(); i++){
+			adj_list.add(new TreeMap<Integer, Integer>());
+		}
+		for(int i = 0; i < N; i++){
+			final int prev_y_index = Collections.binarySearch(y_indexes_list, ys[i] - 1);
+			final int curr_y_index = Collections.binarySearch(y_indexes_list, ys[i]);
+			final int next_y_index = Collections.binarySearch(y_indexes_list, ys[i] + 1);
+			
+			final int prev_x_index = Collections.binarySearch(x_indexes_list, xs[i] - 1);
+			final int curr_x_index = Collections.binarySearch(x_indexes_list, xs[i]);
+			final int next_x_index = Collections.binarySearch(x_indexes_list, xs[i] + 1);
+			
+			for(final int y_index : new int[]{prev_y_index, curr_y_index, next_y_index}){
+				if(y_index < 0){ continue; }
+				
+				for(final int x_index : new int[]{prev_x_index, curr_x_index, next_x_index}){
+					if(x_index < 0){ continue; }
+					//System.out.println(curr_y_index +  " " + x_index);
+					
+					if(!adj_list.get(y_index).containsKey(x_index)){
+						adj_list.get(y_index).put(x_index, 0);
+					}
+					adj_list.get(y_index).put(x_index, adj_list.get(y_index).get(x_index) + 1);
+				}
+			}
+		}
+		
+		long[] sum = new long[10];
+		sum[0] = (H - 2) * (W - 2);
+		
+		for(int y_index = 1; y_index < y_indexes_list.size() - 1; y_index++){
+			for(final Entry<Integer, Integer> entry : adj_list.get(y_index).entrySet()){
+				if(entry.getKey() == 0 || entry.getKey() == (x_indexes_list.size() - 1)){ continue; }
+				
+				sum[entry.getValue()]++;
+			}
+		}
+		for(int i = 1; i < 10; i++){
+			sum[0] -= sum[i];
+		}
+		
+		/*
+		for(int y = 0; y < indexes_set.size(); y++){
+			System.out.print(indexes_list.get(y) + ":");
+			for(final Entry<Integer, Integer> entry : adj_list.get(y).entrySet()){
+				System.out.print(" " + "<" + entry.getKey() + ", " + adj_list.get(y).get(entry.getKey()) + ">");
+			}
+			System.out.println();
+		}
+		*/
+		
+		for(final long s : sum){
+			System.out.println(s);
+		}
+		
+		
+	}
+ 
+	public static class Scanner implements Closeable {
+		private BufferedReader br;
+		private StringTokenizer tok;
+ 
+		public Scanner(InputStream is) throws IOException {
+			br = new BufferedReader(new InputStreamReader(is));
+		}	
+ 
+		private void getLine() throws IOException {
+			while (!hasNext()) {
+				tok = new StringTokenizer(br.readLine());
+			}
+		}
+ 
+		private boolean hasNext() {
+			return tok != null && tok.hasMoreTokens();
+		}
+ 
+		public String next() throws IOException {
+			getLine();
+			return tok.nextToken();
+		}
+ 
+		public int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+ 
+		public long nextLong() throws IOException {
+			return Long.parseLong(next());
+		}
+ 
+		public double nextDouble() throws IOException {
+			return Double.parseDouble(next());
+		}
+ 
+		public void close() throws IOException {
+			br.close();
+		}
+	}
+}

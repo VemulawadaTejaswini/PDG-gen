@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        new Main().run();
+    }
+
+    private void run() {
+        Scanner scanner = new Scanner(System.in);
+        long L = scanner.nextInt();
+        long R = scanner.nextInt();
+        long ans = 0;
+        long min = Long.MAX_VALUE;
+        for(long i = L; i < R; i++){
+            for(long j = i+1; j <= R; j++) {
+                ans = ((i % 2019) * (j % 2019)) % 2019;
+                if(min > ans) min = ans;
+            }
+        }
+
+        System.out.println(min);
+    }
+}

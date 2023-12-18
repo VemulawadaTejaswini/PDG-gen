@@ -1,0 +1,25 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String N = sc.next();
+        String K = sc.next();
+        BigInteger Nsu = new BigInteger(N);
+        BigInteger Ksu = new BigInteger(K);
+        BigInteger ZERO = BigInteger.ZERO;
+
+
+        if (Nsu.compareTo(Ksu) == -1) {
+            System.out.println(N);
+            return;
+        }
+
+        while (Nsu.compareTo(ZERO) == 1) {
+            Nsu = Nsu.subtract(Ksu);
+        }
+
+        System.out.println(Nsu.abs());
+    }
+}

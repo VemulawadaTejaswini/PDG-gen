@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		// 整数の入力
+		// スペース区切りの整数の入力
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		
+        if((a == 2)|(b == 2)){
+			// 出力
+			System.out.println("No");
+			return;
+        }
+        if ((a == 1 ) | (a ==  3) | (a == 5) | ( a == 7 ) |
+           (a ==  8 ) | ( a == 10 ) | ( a == 12 )){
+            if ((b == 1 ) | (b ==  3) | (b == 5) | ( b == 7 ) |
+                    (b ==  8 ) | ( b == 10 ) | ( b == 12 )){
+			// 出力
+			System.out.println("Yes");
+            }else{
+    			System.out.println("No");
+            }
+        }else{
+            if ((b == 1 ) | (b ==  3) | (b == 5) | ( b == 7 ) |
+                    (b ==  8 ) | ( b == 10 ) | ( b == 12 )){
+			// 出力
+			System.out.println("No");
+            }else{
+    			System.out.println("Yes");
+            }
+
+        }
+
+	}
+}

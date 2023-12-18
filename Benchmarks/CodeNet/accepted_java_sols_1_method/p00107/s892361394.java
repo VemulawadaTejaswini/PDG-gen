@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);int i,d;for(int[]a=new int[3];;){for(i=0;i<3;a[i]*=a[i],++i)a[i]=s.nextInt();Arrays.sort(a);if((d=a[0]+=a[1])<1)return;for(int t=s.nextInt(),r;t-->0;)System.out.println((r=s.nextInt()*2)*r>d?"OK":"NA");}}}

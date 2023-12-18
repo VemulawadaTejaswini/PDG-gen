@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
+    	Scanner sc = new Scanner(System.in);
+      	int a = sc.nextInt();
+      	int b = sc.nextInt();
+      	int c = sc.nextInt();
+      	int d = sc.nextInt();
+      	int e = sc.nextInt();
+      	int k = sc.nextInt();
+      	boolean go = true;
+      
+      	if(Math.abs(a-b) > k) go = false;
+        if(Math.abs(a-c) > k) go = false;
+        if(Math.abs(a-d) > k) go = false;
+        if(Math.abs(a-e) > k) go = false;
+        if(Math.abs(b-c) > k) go = false;
+        if(Math.abs(b-d) > k) go = false;
+        if(Math.abs(b-e) > k) go = false;
+        if(Math.abs(c-d) > k) go = false;
+        if(Math.abs(c-e) > k) go = false;
+        if(Math.abs(d-e) > k) go = false;
+      
+      	if(go){
+        	System.out.println("Yay!");
+        }else{
+        	System.out.println(":(");
+        }
+    }
+}

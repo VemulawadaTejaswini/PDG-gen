@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+class Main{
+  public static void main(String args[]) throws IOException{
+   
+   BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+   String[] token = br.readLine().split(" ");
+   int r = Integer.parseInt(token[0]);      
+   int c = Integer.parseInt(token[1]);   
+   int[] Columnsum = new int[c];
+
+   for(int i = 0;i < r; i++){
+      String[] token2 = br.readLine().split(" ");
+      int sum = 0;
+      for(int j = 0;j < c; j++){      
+        System.out.print(token2[j] + " ");
+        sum += Integer.parseInt(token2[j]);
+      }
+      System.out.println(sum);
+   }
+
+
+
+
+    
+  }
+}

@@ -1,0 +1,44 @@
+import java.util.*;
+import java.util.stream.Collectors;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		InputStreamReader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+		BufferedReader in = new BufferedReader(reader);
+		Main ins = new Main(in);
+		ins.calc();
+		ins.showResult();
+	}
+
+	int N;
+	long[] A;
+
+	Main(BufferedReader in) throws IOException {
+		N = Integer.parseInt(in.readLine());
+		A = new long[N];
+		String[] tokens = in.readLine().split(" ");
+		for (int i = 0; i < N; ++i) {
+			A[i] = Long.parseLong(tokens[i]);
+		}
+		Arrays.sort(A);
+	}
+
+	void calc() {
+		long result = 0;
+		if (N == 2) {
+			result += A[N - 1];
+		} else {
+			for (int i = N - 1; i >= 2; --i) {
+				result += A[i];
+			}
+			result += A[N - 2];
+		}
+		System.out.println(result);
+	}
+
+	void showResult() {
+	}
+}

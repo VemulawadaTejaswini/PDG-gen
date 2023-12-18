@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		if((a+b)%3 == 0){
+			System.out.println("Possible");
+		}else if((a+b)%3 != 0){
+			System.out.println("Impossible");
+		}
+		
+		
+	}
+}

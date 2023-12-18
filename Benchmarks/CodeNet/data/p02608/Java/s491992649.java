@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for(int i=1; i<=n; i++) {
+            int ans = 0;
+            for(int x=1; x<=1000; x++) {
+                for(int y=1; y<=1000; y++) {
+                    int x2 = (int) Math.pow(x, 2);
+                    int y2 = (int) Math.pow(y, 2);
+                    int z2 = (int) Math.pow(1, 2);
+                    int xy2 = x * y;
+                    int yz2 = y * 1;
+                    int zx2 = 1 * x;
+                    int sum2 = x2 + y2 + z2 + xy2 + yz2 + zx2;
+                    if(i < sum2)break;
+                    for(int z=1; z<=1000; z++) {
+                        int x3 = (int) Math.pow(x, 2);
+                        int y3 = (int) Math.pow(y, 2);
+                        int z3 = (int) Math.pow(z, 2);
+                        int xy3 = x * y;
+                        int yz3 = y * z;
+                        int zx3 = z * x;
+                        int sum3 = x3 + y3 + z3 + xy3 + yz3 + zx3;
+                        if(i == sum3) ans++;
+                        if(i < sum3)break;
+                    }
+                }
+            }
+            System.out.println(ans);
+        }
+    }
+}

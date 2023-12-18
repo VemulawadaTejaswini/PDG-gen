@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int[]c=new int[6];int t;Scanner s=new Scanner(System.in);for(t=s.nextInt();t-->0;)++c[(int)Math.max(0,Math.min(s.nextFloat()/5-32,5))];String r="";for(t=0;t++<6;System.out.println(r))for(r=t+":";c[t-1]-->0;)r+="*";}}

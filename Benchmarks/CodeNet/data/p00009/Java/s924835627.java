@@ -1,0 +1,1 @@
+import java.util.*;import java.math.*;class Main{public static void main(String[]_){Scanner S=new Scanner(System.in);for(Integer i,n;S.hasNext();System.out.println(n))for(n=0,i=S.nextInt();--i>1;n+=new BigInteger(i.toString()).isProbablePrime(9)?1:0);}}

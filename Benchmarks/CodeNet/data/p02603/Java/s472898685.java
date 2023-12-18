@@ -1,0 +1,82 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class Main {
+    public static void main(final String[] args) {
+        final FastScanner scanner = new FastScanner(System.in);
+        final int n = scanner.nextInt();
+        final List<Integer> list = IntStream.range(0, n)
+            .mapToObj(i -> scanner.nextInt())
+            .collect(Collectors.toList());
+
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1000);
+        for (int i = 0; i < n; i++) {
+            final Map<Integer, Integer> tmp = new HashMap<>();
+            final int stock = list.get(i);
+            for (final Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                tmp.compute(0, (k, v) -> v == null ? entry.getValue() + entry.getKey() * stock : Math.max(v, entry.getValue() + entry.getKey() * stock));
+                tmp.compute(entry.getKey() + entry.getValue() / stock, (k, v) -> v == null ? entry.getValue() % stock : Math.max(v, entry.getValue() % stock));
+            }
+            map = tmp;
+        }
+
+        map.values().stream()
+            .mapToInt(Integer::intValue)
+            .max()
+            .ifPresent(System.out::println);
+    }
+
+    private static class FastScanner {
+        private final BufferedReader reader;
+        private StringTokenizer tokenizer;
+
+        FastScanner(final InputStream in) {
+            reader = new BufferedReader(new InputStreamReader(in));
+        }
+
+        String next() {
+            if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (final IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    return reader.readLine();
+                } catch (final IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            return tokenizer.nextToken("\n");
+        }
+    }
+}

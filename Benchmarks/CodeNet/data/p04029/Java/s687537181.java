@@ -1,0 +1,22 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        char[] charArray = scan.next().toCharArray();
+        if(charArray.length < 1 || charArray.length > 10) {
+            System.exit(-1);
+        }
+        List<String> list = new ArrayList<String>();
+        for(char ch: charArray) {
+            if( ch != 'B') {
+                list.add(String.valueOf(ch));
+            } else if ( ch == 'B' && list.size() > 0) {
+                list.remove(list.size()-1);
+            }
+        }
+        System.out.println(String.join("", list));
+    }
+}

@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+class TaskA {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt(), b = sc.nextInt(), c = sc.nextInt();
+        long k = sc.nextLong();
+        if (k % 2 == 0) {
+            System.out.println(a - c);
+        } else {
+            System.out.println(c - a);
+        }
+    }
+}

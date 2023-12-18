@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+class Main{
+
+	static char[][] map;
+	static int H;
+	static int W;
+	static	int D ;
+	static	int G ;
+	static	int[] p;
+	static	int[] c;
+	static int ans = 100000000;
+
+	public static void main(String[] args) {
+
+
+
+		Scanner sc = new Scanner(System.in);			//文字の入力
+		String S = sc.next();
+		String T = sc.next();
+		
+		for(int i = 0;i < S.length();i++){
+			
+			int[] data = new int[1000000];
+			for(int j = i;j < S.length();j++){
+				if(S.charAt(i) == S.charAt(j))
+				data[j] = 1;
+			}
+			StringBuilder sb = new StringBuilder(S);
+			sb.deleteCharAt(i);
+			S = sb.toString();
+			
+			
+			
+			for(int j = i;j < S.length();j++){
+				if(data[j] == 1){
+					if(T.charAt(i) != T.charAt(j)){
+//						System.out.println("1");
+//
+						System.out.println("No");
+						return;
+					}
+				}else{
+					
+					if(T.charAt(i) == T.charAt(j)){
+//						System.out.println("i  "+i+" j "+j);
+//
+						System.out.println("No");
+						return;
+					}
+				}
+			}
+			
+			StringBuilder st = new StringBuilder(T);
+			st.deleteCharAt(i);
+			T = st.toString();
+			
+			i--;
+			
+			
+		}
+		System.out.println("Yes");
+
+
+	}
+
+
+
+}
+
+
+

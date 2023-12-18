@@ -1,0 +1,47 @@
+import java.util.Scanner;
+public class Main{
+	public static void main(String[]args){
+	Scanner sc = new Scanner(System.in);
+	while(true){
+		int a = 0;
+		int b = 0;
+		int x = sc.nextInt();
+		if(x == 0 || x > 1000){
+			break;
+			}
+			else if(x < 10 && x > 0){
+			System.out.printf("%d\n",x);
+			}
+			else if(x <100 && x >= 10){
+				while(true){
+					x = x-10;
+					a++;
+					if(x < 10){
+						break;
+					}
+				}
+				System.out.printf("%d\n",a+x);
+			}
+			else if(x < 1000 && x >= 100){
+				while(true){
+					x = x-100;
+					b++;
+					if(x < 100){
+						break;
+					}
+				}
+				while(true){
+					x = x-10;
+					a++;
+					if(x < 10){
+						break;
+					}
+				}
+				System.out.printf("%d\n",a+b+x);
+			}
+			else{
+				System.out.println("1");
+			}
+		}
+	}
+}

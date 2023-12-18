@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args)throws IOException{
+        Scanner scan = new Scanner(System.in);
+        int w = scan.nextInt();
+        int a = scan.nextInt();
+        int b = scan.nextInt();
+
+        if(a<b){
+            if(a+w>b){
+                System.out.println(0);
+            }
+            else{
+                System.out.println(b-a-w);
+            }
+        }
+        else{
+            if(b+w>a){
+                System.out.println(0);
+            }
+            else{
+                System.out.println(a-b-w);
+            }
+        }
+    }
+}

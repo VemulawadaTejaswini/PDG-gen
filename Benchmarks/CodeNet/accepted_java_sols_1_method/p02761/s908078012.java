@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int M = sc.nextInt();
+    int[] dataA = new int[N+1];
+    int[] dataB = new int[N+1];
+    boolean t = true;
+    for(int i=0;i<M;i++){
+      int s = sc.nextInt();
+      int c = sc.nextInt();
+      if(N>1&&s==1&& c==0) {
+    	  t = false;
+      }
+      if(dataB[s]==0){
+        dataA[s]=c;
+        dataB[s]++;
+      }else{
+        if(dataA[s] ==c){
+          dataB[s]++;
+        }else{
+          t = false;
+          break;
+        }
+      }
+    }
+   if(t ==false){
+     System.out.print("-1");
+     
+   }else if(N==1 && dataB[1]==0){
+	   System.out.print("0");		 
+   }else{
+     for(int i =1 ;i<N+1;i++){
+    	  if(dataB[i] ==0 && i!=1 &&N>1){
+    		       dataA[i]=0;
+    		  }else if(dataB[i] ==0 && i==1 && N>1) {
+    			  dataA[i]=1;
+       }
+       System.out.print(dataA[i]);
+     }
+   }
+    
+  }
+}

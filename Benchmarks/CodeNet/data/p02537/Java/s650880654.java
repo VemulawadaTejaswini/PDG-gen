@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+import static java.lang.Math.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		
+		// 入力
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		int[] a = new int[n];
+		for(int i = 0; i < n; i++){
+		    a[i] = sc.nextInt();
+		}
+		
+		// 計算
+		int result = 0;
+		boolean[] flg = new boolean[n];
+		for(int i = 0; i < n; i++){
+		    int cnt = 1;
+		    int tmp = a[i];
+		    flg[i] = true;
+		    for(int j = i+1; j < n; j++){
+		        if(flg[j]) break;
+		        if(abs(tmp-a[j]) <= k){
+		            cnt++;
+		            tmp = a[j];
+		            flg[j] = true;
+		        }
+		    }
+		    result = max(result, cnt);
+		}
+		
+		// 出力
+		System.out.println(result);
+	}
+	
+	public static class Scanner {
+		private BufferedReader br; private StringTokenizer tok;
+		public Scanner(InputStream is) throws IOException { br = new BufferedReader(new InputStreamReader(is));}
+		private void getLine() throws IOException { while(!hasNext()) tok = new StringTokenizer(br.readLine());}
+		private boolean hasNext() { return tok != null && tok.hasMoreTokens();}
+		public String next() throws IOException { getLine(); return tok.nextToken();}
+		public int nextInt() throws IOException { return Integer.parseInt(next());}
+		public long nextLong() throws IOException { return Long.parseLong(next());}
+		public double nextDouble() throws IOException { return Double.parseDouble(next());}
+	}
+}

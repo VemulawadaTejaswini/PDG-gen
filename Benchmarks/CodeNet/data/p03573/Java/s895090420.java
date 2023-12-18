@@ -1,0 +1,18 @@
+//ｺｯwwｺｯwwｺｹｯwwwｺｯwwｺｹｯwwwｺｹｯｺｯwwwｺｯwwｺｯwwｺｹｯwwwｺｯwwｺｹｯwwwｺｹｯｺｯwwwｺｹｰｰｰｰｯ!!!wwwwwｺｯwwｺｯwwｺｹｯwwwｺｯwwｺｹｯwwwｺｹｯｺｯwwwｺｯwwｺｯwwｺｹｯwwwｺｯwwwｺｹｯwwwｺｹｯｺｯwwwｺｹｰｰｰｰｯ!!!wwwwwｺｹｯｺｯｯｺｰｰｰｰ!!!!!!wwwwwwwwwww
+import java.util.*;
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int[] a = new int[3];
+        for(int i = 0 ; i < 3 ; i++){
+            a[i] = sc.nextInt();
+        }
+        sc.close();
+        Arrays.sort(a);
+        if(a[0] == a[1]){
+            System.out.println(a[2]);
+        }else{
+            System.out.println(a[0]);
+        }
+    }
+}

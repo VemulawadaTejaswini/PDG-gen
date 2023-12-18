@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int C = sc.nextInt();
+        int K = sc.nextInt();
+        int point = 0;
+
+        if (A >= K) {
+            point = A;
+        } else if ((A + B) >= K) {
+            point = A;
+        } else {
+            point = A - (K - A - B);
+        }
+
+        System.out.println(point);
+    }
+}

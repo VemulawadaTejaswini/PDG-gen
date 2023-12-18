@@ -1,0 +1,1 @@
+import java.util.Scanner;class Main{public static void main(String[]a){Scanner sc = new Scanner(System.in);while(sc.hasNext()){System.out.println(sc.nextInt() + sc.nextInt());}}}

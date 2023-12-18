@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class PrintTestCases{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int num[] = new int[1000];
+    int i = -1;
+
+    do{
+      i++;
+      num[i] = sc.nextInt();
+    }while(num[i] != 0);
+    
+    for(int j = 0; j < i; j++){
+      System.out.println("Case " + (j + 1) + ": " + num[j]);
+    }
+  }
+}

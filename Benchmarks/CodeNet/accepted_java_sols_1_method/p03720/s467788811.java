@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+/**
+ * Created by sonetsuyoshi on 2016/07/31.
+ */
+public class Main {
+
+    static public void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+
+        int[] counts = new int[N];
+
+        for(int i = 0; i < M; i++) {
+            int a = sc.nextInt() - 1;
+            int b = sc.nextInt() - 1;
+            counts[a]++;
+            counts[b]++;
+        }
+
+        for(int count: counts) System.out.println(count);
+    }
+}

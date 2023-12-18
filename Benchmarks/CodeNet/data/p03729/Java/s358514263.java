@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// ここにコードを挿入
+		Scanner s = new Scanner(System.in);
+		String[] str = s.nextLine().split(" ");
+		String a = str[0];
+		String b = str[1];
+		String c = str[2];
+		boolean ans = false;
+		if(a.charAt(a.length() - 1) == b.charAt(0) && b.charAt(b.length() - 1) == c.charAt(0)) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+		}
+	}
+
+}import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// ここにコードを挿入
+		Scanner s = new Scanner(System.in);
+		String[] str = s.nextLine().split(" ");
+		String a = str[0];
+		String b = str[1];
+		String c = str[2];
+		boolean ans = false;
+		if(a.charAt(a.length() - 1) == b.charAt(0) && b.charAt(b.length() - 1) == c.charAt(0)) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+		}
+	}
+
+}

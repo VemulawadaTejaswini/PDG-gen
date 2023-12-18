@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+class Main
+{
+  public static void main(String[] args)
+  {
+	  int l,w;
+	  Scanner in=new Scanner(System.in);
+          boolean t=true;
+	  
+	  while(t)
+      { l=in.nextInt();
+	    w=in.nextInt();
+		if(l==0 && w==0)
+		{
+			break;
+		}
+        for(int i=0;i<l;i++)
+        {
+		    for(int j=0;j<w;j++)
+		    {
+			    System.out.print("#");
+		    }
+		    System.out.println("");
+	    }
+	  }		
+
+    
+  }
+
+}

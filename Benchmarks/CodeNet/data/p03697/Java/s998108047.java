@@ -1,0 +1,16 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		int m = scanner.nextInt();
+		if(n+m >= 10){
+			System.out.println("error");
+		}else {
+			System.out.println(n+m);
+		}
+	}
+}

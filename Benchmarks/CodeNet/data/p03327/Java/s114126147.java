@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class ABD {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		if(N < 1000)System.out.println("ABC");
+		else System.out.println("ABD");
+	}
+
+}

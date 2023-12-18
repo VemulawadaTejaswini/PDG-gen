@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+        int n = stdIn.nextInt();
+        int m = stdIn.nextInt();
+        int ans = (n-1) * (m-1);
+        System.out.println(ans);
+    }
+}

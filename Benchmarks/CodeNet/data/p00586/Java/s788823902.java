@@ -1,0 +1,1 @@
+class Main{public static void main(String[]_)throws Exception{int i=0,j,a=0,b;for(;i++<2;a+=b)for(b=0;(j=System.in.read())>32;b=(b*10)+j-48);System.out.println(a);}}

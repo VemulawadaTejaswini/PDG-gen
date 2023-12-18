@@ -1,0 +1,14 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int ball = sc.nextInt();
+		int color = sc.nextInt();
+		System.out.print((int)Math.pow(color - 1,ball - 1) * color);
+	}
+}

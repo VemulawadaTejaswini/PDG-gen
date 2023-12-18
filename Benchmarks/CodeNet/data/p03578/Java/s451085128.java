@@ -1,0 +1,104 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+
+public class Main {
+	public static void main(String[] args) {
+		FastScanner sc = new FastScanner(System.in);
+		int n = sc.nextInt();
+
+		Map<Long, Integer> map1 = new TreeMap<>();
+		for(int i = 0; i < n; i++) {
+			long x = sc.nextLong();
+			if(map1.containsKey(x)) {
+				map1.put(x, map1.get(x)+1);
+			}else {
+				map1.put(x, 1);
+			}
+		}
+		int m = sc.nextInt();
+		Map<Long, Integer> map2 = new TreeMap<>();
+		for(int i = 0; i < m; i++) {
+			long x = sc.nextLong();
+			if(map2.containsKey(x)) {
+				map2.put(x, map2.get(x)+1);
+			}else {
+				map2.put(x, 1);
+			}
+		}
+		boolean check = true;
+		for(Long d : map2.keySet()) {
+			if(!map1.containsKey(d) || (map1.get(d) < map2.get(d))) {
+				check = false;
+				break;
+			}
+		}
+		if(check) {
+			System.out.println("YES");
+		}else {
+			System.out.println("NO");
+		}
+	}
+
+	static class FastScanner {
+		private BufferedReader reader = null;
+	    private StringTokenizer tokenizer = null;
+	    public FastScanner(InputStream in) {
+	        reader = new BufferedReader(new InputStreamReader(in));
+	        tokenizer = null;
+	    }
+
+	    public String next() {
+	        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+	            try {
+	                tokenizer = new StringTokenizer(reader.readLine());
+	            } catch (IOException e) {
+	                throw new RuntimeException(e);
+	            }
+	        }
+	        return tokenizer.nextToken();
+	    }
+
+	    public String nextLine() {
+	        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+	            try {
+	                return reader.readLine();
+	            } catch (IOException e) {
+	                throw new RuntimeException(e);
+	            }
+	        }
+
+	        return tokenizer.nextToken("\n");
+	    }
+
+	    public long nextLong() {
+	        return Long.parseLong(next());
+	    }
+
+	    public int nextInt() {
+	        return Integer.parseInt(next());
+	    }
+
+	    public double nextDouble() {
+	         return Double.parseDouble(next());
+	     }
+
+	    public int[] nextIntArray(int n) {
+	        int[] a = new int[n];
+	        for (int i = 0; i < n; i++)
+	            a[i] = nextInt();
+	        return a;
+	    }
+
+	    public long[] nextLongArray(int n) {
+	        long[] a = new long[n];
+	        for (int i = 0; i < n; i++)
+	            a[i] = nextLong();
+	        return a;
+	    }
+	}
+}

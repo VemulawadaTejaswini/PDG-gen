@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class Main{
+  public static void main(String[] args) {
+
+
+      Scanner s  = new Scanner(System.in);
+      // System.out.print("[??°???????????????????????§2?????\?????????????????????] >");
+      String line = s.nextLine();
+      String[] array = line.split(" ");
+      int a = Integer.parseInt(array[0]);
+      int b = Integer.parseInt(array[1]);
+      int square = a * b;
+      int length = (2*a) + (2*b);
+      System.out.println(square + " " + length);
+
+
+
+  }
+}

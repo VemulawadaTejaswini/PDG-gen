@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args)  {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt(), x = sc.nextInt();
+		int a[] = new int[n];
+		for(int i=0;i<n;i++)a[i] = sc.nextInt();
+		long ans = 0;
+		for(int i=0;i<n-1;i++) {
+			if(a[i]+a[i+1]>x) {
+				long t = (long)a[i] + a[i+1] - x;
+				ans += t;
+				a[i+1] = (int)Math.max((long)a[i+1]-t, 0);
+			}
+		}
+		System.out.println(ans);
+	}
+}

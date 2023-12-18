@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] argst) {
+
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+
+		String a = scan.next();
+
+		String b = scan.next();
+
+		String c = scan.next();
+
+		char a_back = a.charAt(a.length() - 1); // aの後ろ
+
+		char b_front = b.charAt(0); // bの前
+		char b_back = b.charAt(b.length() - 1); // bの前
+
+		char c_front = c.charAt(0);
+
+		if (a_back == b_front) {
+			if (b_back == c_front) {
+				System.out.println("YES");
+			} else {
+				System.out.println("NO");
+			}
+		} else {
+			System.out.println("NO");
+		}
+
+	}
+}

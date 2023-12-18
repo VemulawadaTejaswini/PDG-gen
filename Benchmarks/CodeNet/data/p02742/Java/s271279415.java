@@ -1,0 +1,16 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long h = Long.parseLong(sc.next());
+        long w = Long.parseLong(sc.next());
+
+        long a = h*w;
+        if(a%2==0){
+            System.out.println(a/2);
+        }else{
+            System.out.println(a/2+1);
+        }
+    }
+}
+

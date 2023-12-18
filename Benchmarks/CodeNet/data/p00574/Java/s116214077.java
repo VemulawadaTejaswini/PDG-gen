@@ -1,0 +1,86 @@
+import java.util.Scanner;
+
+public class Main
+{
+
+  private static int[] sArray;
+
+  public static void main(String[] args)
+  {
+    try (Scanner scanner = new Scanner(System.in))
+    {
+      while (scanner.hasNextLine())
+      {
+        String[] tmp = scanner.nextLine().split(" ");
+        final int L = Integer.valueOf(tmp[0]);
+        final int Q = Integer.valueOf(tmp[1]);
+        final String STR_S = scanner.nextLine();
+        sArray = new int[STR_S.length()];
+        for (int i = 0; i < sArray.length; i++)
+        {
+          sArray[i] = Integer.valueOf(STR_S.substring(i, i + 1));
+        }
+
+        for (int i = 0; i < Q; i++)
+        {
+          System.out.println(solver(L, scanner.nextLine()));
+        }
+      }
+    }
+  }
+
+  private static int solver(int L, String data)
+  {
+    if (0 > data.indexOf('?'))
+    {
+      return sArray[Integer.valueOf(data, 2)];
+    }
+
+    return solver2(L, data);
+  }
+
+  private static int solver2(int L, String str)
+  {
+    int sum = 0;
+    final double MAX_NUM = Math.pow(2, L);
+
+    for (int i = 0; i < MAX_NUM; i++)
+    {
+      if (isMatch(i, str))
+      {
+        sum += sArray[i];
+      }
+    }
+
+    return sum;
+  }
+
+  private static boolean isMatch(int numDec, String strBin)
+  {
+    String bin = LPAD(String.format(Integer.toBinaryString(numDec)), '0', strBin.length());
+    for (int i = 0; i < bin.length(); i++)
+    {
+      if (!strBin.substring(i, i + 1).equals("?"))
+      {
+        if (!strBin.substring(i, i + 1).equals(bin.substring(i, i + 1)))
+        {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  private static String LPAD(String str, char c, int length)
+  {
+    final int count = Math.max(0, length - str.length());
+    String padStr = "";
+    for (int i = 0; i < count; i++)
+    {
+      padStr += c;
+    }
+    return padStr + str;
+  }
+
+}
+

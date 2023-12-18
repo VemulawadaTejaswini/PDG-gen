@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main {
+	private static Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+		int n = sc.nextInt();
+		long ret = 1;
+		for (int i = 1;i <= n;i++) {
+			ret = (ret*i)%1000000007;
+		}
+		System.out.println(ret);
+	}
+}

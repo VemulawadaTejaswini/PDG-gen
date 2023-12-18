@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);String e="",r;for(int a,b;(a=s.nextInt())+(b=s.nextInt())>0;e+="\n"){r="";for(;a<=b;a++)r+=(a%100<1?a%400<1?1:0:a%4<1?1:0)<1?"":a+"\n";e+=r.isEmpty()?"NA\n":r;}System.out.println(e.replaceAll("\n$",""));}}

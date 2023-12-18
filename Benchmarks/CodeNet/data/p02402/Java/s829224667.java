@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Main {
+	public void kami() {
+		Scanner sc = new Scanner(System.in);
+		int gou = 0;
+		int min = 1000000;
+		int max = -1000000;
+		int n = sc.nextInt();
+		for(int i = 1; i <= n; i++){
+			int ai = sc.nextInt();
+			gou = ai + gou;
+			
+			if(ai < min){
+				min = ai;
+			}else if(ai > max){
+				max = ai;
+			}
+		}
+		System.out.println(min + " " + max + " " + gou);
+	}
+
+    public static void main(String[] args) {
+		new Main().kami();
+	}
+
+}

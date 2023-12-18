@@ -1,0 +1,28 @@
+public class Main {
+	public static void main(String[] args){
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+		String str = scan.next();
+		int q = scan.nextInt();
+		String order;
+		int a;
+		int b;
+
+		for(int i = 0;i < q;i++){
+			int n = str.length();
+			order = scan.next();
+			a = scan.nextInt();
+			b = scan.nextInt();
+			if("reverse".equals(str)){
+				StringBuffer sb = new StringBuffer(str.substring(a,b+1)) ;
+				String str2 = sb.reverse().toString();
+				str = str.substring(0,a)+str2+str.substring(b+1,n);
+			}else if("replace".equals(str)){
+				String  str3 = scan.next();
+				str = str.substring(0,a)+str3+str.substring(b+1,n);
+			}else if("print".equals(str)){
+				System.out.println(str.substring(a, b+1));
+			}
+		}
+	}
+
+}

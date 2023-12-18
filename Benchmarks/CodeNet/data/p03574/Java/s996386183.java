@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Main {
+    int h, w;
+    char[][] cs;
+    public static void main(String[] args) {
+        Main m = new Main();
+        m.read();
+        m.solve();
+    }
+
+    private void read() {
+        Scanner sc = new Scanner(System.in);
+        h = sc.nextInt();
+        w = sc.nextInt();
+        cs = new char[h][];
+        sc.nextLine();
+        for (int i = 0; i < h; i++) {
+            cs[i] = sc.nextLine().toCharArray();
+        }
+    }
+
+    private void solve() {
+        int[][] ans = new int[h][w];
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                int cnt = 0;
+                for (int dx = -1; dx <= 1; dx++) {
+                    for (int dy = -1; dy <= 1; dy++) {
+                        if (dx == dy && dx == 0)
+                            continue;
+                        int x = dx + j;
+                        int y = dy + i;
+                        if (x >= 0 && x < w && y >= 0 && y < h) {
+                            if (cs[y][x] == '#')
+                                cnt++;
+                        }
+                    }
+                }
+                ans[i][j] = cnt;
+            }
+        }
+
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (cs[i][j] == '#')
+                    System.out.print('#');
+                else
+                    System.out.printf("%d", ans[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}

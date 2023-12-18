@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);String l;for(int r=0,x[]={95,63,7,2,3,-3},i;!(l=s.nextLine()).equals("0 0 0 0 0 0");System.out.println(r+100))for(r=i=0;i<6;)r+=new Integer(l.split(" ")[i])*x[i++];}}

@@ -1,0 +1,2 @@
+import java.io.*;
+public class Main {public static void main(String[] args) throws Exception{BufferedReader bf =new BufferedReader(new InputStreamReader(System.in));String t;double v;while((t=bf.readLine())!=null){v=Double.parseDouble(t);System.out.println((int)Math.ceil(v*v/98+1.0));	}}}

@@ -1,0 +1,44 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		
+		int n = sc.nextInt();
+		int[] a = new int[n];
+		for(int i = 0; i < n; i++) {
+			a[i] = sc.nextInt();
+		}
+		
+		
+		java.util.Arrays.parallelSort(a);
+		
+		/*for(int i = 0; i< n;i++) {
+			System.out.println(a[i]);
+		}*/
+		int ans = 0;
+		if(a[0] != a[1]) {
+			ans++;
+		}
+		boolean over = true;
+		for(int i = 0; i < n; i++) {
+			for(int m = 0; m < i; m++) {
+				if(a[m] > 500000) {
+					over = false;
+				}
+				if(a[i] % a[m] == 0 ||  a[i] == a[i-1] || (i != n-1 && a[i] == a[i+1])) {
+					//System.out.println(a[i]);
+					break;
+				}else if(m == i -1) {
+					ans++;
+				}
+			}
+		if(!over) {
+			break;
+		}
+		}
+		System.out.println(ans);
+	}
+}

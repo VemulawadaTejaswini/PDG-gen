@@ -1,0 +1,29 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(final String[] args) {
+        final Scanner sc = new Scanner(System.in);
+        // 整数の入力
+        // final int a = sc.nextInt();
+        // 文字列の入力
+        // final String s1 = sc.next();
+        final int a = sc.nextInt();
+        final int b = sc.nextInt();
+        final int h = sc.nextInt();
+        final int m = sc.nextInt();
+        double h_deg = h * 30;
+        double m_deg = m * 6;
+        sc.close();
+        double result = 0;
+        double sankou = 2 * a * b * Math.cos(Math.toRadians(Math.abs(h_deg - m_deg)));
+        double nikou = Math.pow(b, 2);
+        double ichikou = Math.pow(a, 2);
+        System.out.println(ichikou);
+        System.out.println(nikou);
+        System.out.println(sankou);
+        result = Math.pow((ichikou + nikou - sankou), 0.5);
+
+        System.out.println(result);
+    }
+}

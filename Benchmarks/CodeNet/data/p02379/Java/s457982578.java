@@ -1,0 +1,19 @@
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+
+		long x1 = scan.nextInt();
+		long y1 = scan.nextInt();
+
+		long x2 = scan.nextInt();
+		long y2 = scan.nextInt();
+
+		long kyoriX2 = (x1 - x2) * (x1 - x2);
+		long kyoriY2 = (y1 - y2) * (y1 - y2);
+
+		System.out.println(Math.sqrt(kyoriX2 + kyoriY2));
+	}
+
+}

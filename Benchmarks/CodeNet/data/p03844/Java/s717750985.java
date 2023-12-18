@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int buf = 0;
+		Scanner scan = new Scanner(System.in);
+		buf = buf + scan.nextInt();
+		if(scan.next().equals("+")){
+			buf = buf + scan.nextInt();
+		}else{
+			buf = buf - scan.nextInt();
+		}
+		System.out.println(Integer.toString(buf));
+		scan.close();
+	}
+}

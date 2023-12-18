@@ -1,0 +1,14 @@
+package beginner080;
+import java.util.Scanner;
+
+public class Main {
+	public static Scanner sc = new Scanner(System.in);
+	//A
+	public static void main(String[] args){
+		int N = sc.nextInt();
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		System.out.println(Math.min(N*A,B));
+	}
+
+}

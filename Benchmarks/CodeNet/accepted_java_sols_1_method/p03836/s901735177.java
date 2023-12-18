@@ -1,0 +1,35 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int sx = Integer.parseInt(scan.next());
+	int sy = Integer.parseInt(scan.next());
+	int tx = Integer.parseInt(scan.next());
+	int ty = Integer.parseInt(scan.next());
+
+	int h = ty - sy;
+	int w = tx - sx;
+
+	StringBuilder str = new StringBuilder();
+	for (int i = 0; i < h; i++) str.append('U');
+	for (int i = 0; i < w; i++) str.append('R');
+	for (int i = 0; i < h; i++) str.append('D');
+	for (int i = 0; i < w; i++) str.append('L');
+
+	str.append('L');
+	for (int i = 0; i < h+1; i++) str.append('U');
+	for (int i = 0; i < w+1; i++) str.append('R');
+	str.append('D');
+	str.append('R');
+	for (int i = 0; i < h+1; i++) str.append('D');
+	for (int i = 0; i < w+1; i++) str.append('L');
+	str.append('U');
+
+	System.out.println(str.toString());
+	scan.close();
+    }
+}

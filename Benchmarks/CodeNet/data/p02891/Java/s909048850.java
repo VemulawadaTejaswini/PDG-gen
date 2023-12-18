@@ -1,0 +1,31 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			String s = sc.next();
+			long k = sc.nextLong();
+
+			int count = 0;
+			int tmp = 1;
+			char before = ' ';
+			for (char c : s.toCharArray()) {
+				if (before == c) {
+					tmp++;
+				} else {
+					count += tmp / 2;
+					tmp = 1;
+				}
+				before = c;
+			}
+			if (1 < tmp) {
+				count += tmp / 2;
+			}
+
+			long result = count * k;
+			System.out.println(result);
+		}
+	}
+}

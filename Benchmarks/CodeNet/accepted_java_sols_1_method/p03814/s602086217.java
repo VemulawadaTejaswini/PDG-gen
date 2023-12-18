@@ -1,0 +1,15 @@
+import java.util.*;
+public class Main{
+	static Scanner s = new Scanner(System.in);
+	public static void main(String[] args){
+		String in = s.next();
+		int s=-1,g=-1;
+		for(int i=0;s==-1;i++) {
+			if(in.charAt(i)=='A') s=i;
+		}
+		for(int i=in.length()-1;g==-1;i--) {
+			if(in.charAt(i)=='Z') g=i;
+		}
+		System.out.println(g-s+1);
+	}
+}

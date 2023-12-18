@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);int h,b,i;for(String x;(x=s.next()).length()>1;System.out.println(h+" "+b)){char[]y=s.next().toCharArray();for(h=b=i=0;i<4;++i)if(x.charAt(i)==y[i])++h;else if(x.contains(""+y[i]))++b;}}}

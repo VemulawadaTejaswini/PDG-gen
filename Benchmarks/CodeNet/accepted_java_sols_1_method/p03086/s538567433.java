@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Main{
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		String s = sc.next();
+		int ans =0;
+		int k=0;
+		for(int i = 0; i<s.length(); i++){
+			if(s.charAt(i)=='A'){
+				k++;
+			}else if(s.charAt(i)=='T'){
+				k++;
+			}else if(s.charAt(i)=='C'){
+				k++;
+			}else if(s.charAt(i)=='G'){
+				k++;
+			}else{
+				ans=Math.max(ans,k);
+				k=0;
+			}
+			
+		}
+		ans=Math.max(ans,k);
+		System.out.println(ans);
+	}
+}

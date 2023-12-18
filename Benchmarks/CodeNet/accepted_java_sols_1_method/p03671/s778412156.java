@@ -1,0 +1,7 @@
+import java.util.Scanner;
+class Main{
+	public static void main(String[]$){
+		Scanner s=new Scanner(System.in);
+		System.out.println(java.util.stream.IntStream.range(0,3).map(i->s.nextInt()).sorted().limit(2).sum());
+	}
+}

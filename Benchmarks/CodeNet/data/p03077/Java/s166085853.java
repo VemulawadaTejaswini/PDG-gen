@@ -1,0 +1,23 @@
+import java.util.*; 
+
+class Main{
+public static void main(String[] args){
+	Scanner sc=new Scanner(System.in);
+        long n=sc.nextLong();
+       
+  		long ans=0;
+  
+  		long[] a=new long[5];
+		for(int c=0;c<5;c++){
+    		a[c]=sc.nextInt();
+    	}
+  		Arrays.sort(a);
+  if(n>a[0]){
+    	ans=n/a[0]+n%a[0]+4;
+  }else{
+  ans=5;
+  }
+
+    	System.out.println(ans);
+    }
+}

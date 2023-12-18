@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main {
+	
+
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+
+		int N = sc.nextInt();
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+
+		for (int i = A; i<B+1; i++){
+			if(i%N==0){
+				System.out.println("OK");
+				return;
+			}
+			continue;
+		}
+		System.out.println("NG");
+		return;
+	}
+
+
+}

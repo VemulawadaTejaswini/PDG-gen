@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+
+        String s=scan.next();
+        int []cnt=new int [26];
+        for(int i=0;i<s.length();i++){
+            cnt[s.charAt(i)-'a']++;
+        }
+
+        String ans="Yes";
+        for(int i=0;i<cnt.length;i++){
+            if(cnt[i]%2!=0){
+                ans="No";
+            }
+        }
+
+        System.out.println(ans);
+    }
+}

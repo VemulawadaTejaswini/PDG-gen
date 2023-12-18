@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Ex {
+public static void main(String[] args){
+		
+		{
+	         int a,b ;
+	         
+	      
+	         Scanner sc = new Scanner(System.in);
+	         
+	     
+		a = sc.nextInt();
+        b = sc.nextInt();
+	
+        int d=a/b;
+        int r=a%b;
+        double f=(double)a/(double)b;
+   
+        System.out.println(d+" "+r+" "+f);
+     
+        sc.close();
+	}
+	}
+}
+	
+

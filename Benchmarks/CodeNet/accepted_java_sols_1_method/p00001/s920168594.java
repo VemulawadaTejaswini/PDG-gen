@@ -1,0 +1,33 @@
+import java.util.*;
+import java.io.*;
+
+class Main {
+    public static void main (String args[]) {
+		try {
+			int[] mountain = new int[10];
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			for (int i = 0; i < 10; i++) {
+				mountain[i] = Integer.parseInt(br.readLine());
+			}
+			Arrays.sort(mountain);
+			for (int i = 9; i > 6; i--) {
+				System.out.println(mountain[i]);
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		catch (NumberFormatException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		finally {
+			System.exit(0);
+		}
+    }
+}

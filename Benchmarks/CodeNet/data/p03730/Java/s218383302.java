@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int a = scanner.nextInt(),b = scanner.nextInt(),c = scanner.nextInt();
+		for(int i=0;i<b;i++){
+			if((a*i) % b == c){
+				System.out.println("YES");
+				return;
+			}
+		}
+		System.out.println("NO");
+	}
+
+}

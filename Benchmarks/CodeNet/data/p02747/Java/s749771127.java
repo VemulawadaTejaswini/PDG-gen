@@ -1,0 +1,40 @@
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		Integer[] line = parseIntArray(sc.nextLine());
+		int aSpeceis = line[0];
+		int bSpeceis = line[1];
+		int m = line[2];
+		Integer[] aPrices = parseIntArray(sc.nextLine());
+		Integer[] bPrices = parseIntArray(sc.nextLine());
+		
+		Integer[][] discount = new Integer[m][3];
+		for(int i=0;i<m;i++) {
+			String d = sc.nextLine();
+			discount[i] = parseIntArray(d);
+		}
+		sc.close();
+		
+		List<Integer> payment = new ArrayList<Integer>();
+		for(int i=0;i<m;i++) {
+			payment.add(aPrices[discount[i][0]-1]+bPrices[discount[i][1]-1]-discount[i][2]);
+		}
+		
+		Collections.sort(payment);
+		System.out.print(payment.get(0));
+	}
+	
+	private static Integer[] parseIntArray(String line) {
+		String[] arr = line.split(" ");
+		Integer [] intArr = new Integer[arr.length];
+		for(int i=0;i<arr.length;i++) {
+			intArr[i] = Integer.parseInt(arr[i]);
+		}
+		return intArr;
+	}
+}

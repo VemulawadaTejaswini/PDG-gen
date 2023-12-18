@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		sc.close();
+		
+		boolean eat = A%3==0 || B%3==0 || (A+B)%3==0;
+		String ans = eat ? "Possible" : "Impossible";
+		
+		System.out.println(ans);;
+		
+
+	}
+
+}

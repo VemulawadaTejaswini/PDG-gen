@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc=new Scanner(System.in);
+		int x,i=1;
+		while(true){
+			x=sc.nextInt();
+			if(x == 0)
+				break;
+			i++;
+			System.out.println("case "+i+" "+x);
+		}
+	}
+
+}

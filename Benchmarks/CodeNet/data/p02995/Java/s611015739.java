@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		long A = scan.nextLong();
+		long B = scan.nextLong();
+		long C = scan.nextLong();
+		long D = scan.nextLong();
+
+		long tmp = (C * D) / gcd(C, D);
+
+		System.out.println(((B - (B / C + B / D)) + (B / tmp)) - ((A - (A / C + A / D)) + (A / tmp)));
+	}
+
+	static long gcd(long a, long b) {
+		if (b == 0) {
+			return a;
+		}
+		a = a % b;
+		return gcd(b, a);
+	}
+}

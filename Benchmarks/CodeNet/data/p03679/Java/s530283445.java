@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+public static void main(String[] args) throws IOException {
+
+BufferedReader br =new BufferedReader (new InputStreamReader (System.in));
+
+String line = br.readLine( );
+String[] list = line.split(" ");
+int x = Integer.parseInt(list[0]);
+int a = Integer.parseInt(list[1]);
+int b = Integer.parseInt(list[2]);
+
+
+int n=b-a;
+String z = "safe";
+
+
+if(n>=0&&x>n){
+z ="safe";
+}else if(n<=0){
+z="delicious";
+}else if(x+1<=n){
+z="dangerous";
+}
+System. out. println(z);
+}}

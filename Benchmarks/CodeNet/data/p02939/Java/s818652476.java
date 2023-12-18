@@ -1,0 +1,28 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		int n = s.length();
+		boolean passed = false;
+		boolean afterpass = true;
+		int count = 1;
+		for(int i=1;i<n;i++) {
+			if (!passed && !afterpass && (s.charAt(i-1) == s.charAt(i))) {
+				afterpass = true;
+			} else {
+				count++;
+				afterpass = passed;
+				passed = false;
+			}
+		}
+		System.out.println(count);
+	}
+
+
+
+}

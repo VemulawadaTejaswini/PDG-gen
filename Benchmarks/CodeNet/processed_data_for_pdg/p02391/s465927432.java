@@ -1,0 +1,21 @@
+class Main {
+    public static void main(String[] args) {
+	try {
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		if (a < b) {
+			System.out.println("a < b");
+		}
+		if (b < a) {
+			System.out.println("a > b");
+		}
+		if (a == b) {
+			System.out.println("a == b");
+		}
+		scan.close();
+	} catch (InputMismatchException e) {
+		System.out.println("??????????????????????????????");
+	}
+    }
+}

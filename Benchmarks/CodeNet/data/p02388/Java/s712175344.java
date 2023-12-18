@@ -1,0 +1,16 @@
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int x = 0;
+
+        try {
+            x = Integer.parseInt(in.readLine());
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println((int) Math.pow((double) x, 3d));
+    }
+}

@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int y;(y=s.nextInt())>=0;)System.out.println(-(new GregorianCalendar(y,s.nextInt(),s.nextInt()).getTimeInMillis()-new GregorianCalendar(s.nextInt(),s.nextInt(),s.nextInt()).getTimeInMillis())/86400000);}}

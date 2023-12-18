@@ -1,0 +1,20 @@
+import java.util.Scanner;
+import java.io.FileInputStream;
+
+class Main{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int X=sc.nextInt();
+		int A=sc.nextInt();
+		int B=sc.nextInt();
+
+
+		if ((A+X)<=B) {
+			System.out.println("dangerous");
+		}else if (A>=B) {
+			System.out.println("delicious");
+		}else{
+			System.out.println("safe");
+		}
+	}
+}

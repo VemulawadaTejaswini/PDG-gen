@@ -1,0 +1,17 @@
+import java.util.*;
+public class Main{
+public static void main(String[]args){
+Scanner sc=new Scanner(System.in);
+  int N=sc.nextInt();
+int[]NN={11,13,17,19,22,23,26,29,31,33,34,37,38,39,41,43,44,46,47,50,51,52,53,55,57,58,59,60,61,62,65,66,67,68,69,70,71,73,74,75,76,
+77,78,79,80,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100};
+  
+  myLabel:for(int i=0;i<=NN.length;i++){
+if(NN[i]==N){
+  System.out.println("No");
+  break myLabel;
+}else if(NN[65]!=N){
+System.out.println("Yes");
+  }
+}
+}

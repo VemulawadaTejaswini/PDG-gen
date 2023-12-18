@@ -1,0 +1,17 @@
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
+    	Scanner sc = new Scanner(System.in);
+      int n = sc.nextInt();
+      char[] a = sc.next().toCharArray();
+      char[] b = sc.next().toCharArray();
+      char[] c = sc.next().toCharArray();
+      int cnt = 0;
+      for(int i = 0;i < n;i++){
+        if(a[i]!=b[i]&&b[i]!=c[i]&&c[i]!=a[i])cnt+=2;
+        else if(a[i]==b[i]&&b[i]==c[i]){}
+        else cnt++;
+      }
+      System.out.println(cnt);
+    }
+}

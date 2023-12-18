@@ -1,0 +1,1 @@
+import java.util.*;public class Main{public static void main(String[] args){Scanner s=new Scanner(System.in);int n=0,x=s.nextInt();while(x>0){x-=++n;}System.out.print(n);}}

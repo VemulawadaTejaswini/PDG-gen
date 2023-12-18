@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){String r="",c=r;for(Scanner s=new Scanner(System.in);s.hasNext();){z=s.next().split(",");if(25<=new Double(z[1])/Math.pow(new Double(z[2]),2))r+=z[0]+"\n";}System.out.print(r==c?"ツ該ツ督鳴づ按つオ":r);}}

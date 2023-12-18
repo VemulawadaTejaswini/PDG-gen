@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		long k = sc.nextLong();
+		long aSum[] = new long[n];
+		long bSum[] = new long[m];
+		aSum[0] = sc.nextLong();
+		for(int i = 1 ; i < n ; i++) {
+			aSum[i] = aSum[i - 1] + sc.nextLong();
+		}
+		int max = 0;
+
+		for(int i = 0 ; i < m ; i++) {
+			if(i == 0)
+				bSum[0] = sc.nextLong();
+			else {
+			bSum[i] = bSum[i - 1] + sc.nextLong();
+			}
+			long test = k - bSum[i];
+			for(int j = max - i >= 0 && max - i < n ? max - i : n ; j < n && test >= aSum[j] ; j++) {
+				max = Math.max(j + i , max);
+			}
+		}
+
+		if(max == 0) {
+			if(aSum[0] + bSum[0] <= k)
+				System.out.println(2);
+			else
+				if(aSum[0] <= k || bSum[0] <= k)
+					System.out.println(1);
+				else
+					System.out.println(0);
+		}
+		else
+		System.out.println(max + 2);
+
+	}
+}
+

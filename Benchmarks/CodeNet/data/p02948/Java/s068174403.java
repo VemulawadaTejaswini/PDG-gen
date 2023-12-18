@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static final Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
+    public static final PrintStream out = System.out;
+
+    public static void main(String[] args) {
+        int N = in.nextInt();
+        int M = in.nextInt();
+
+        NavigableSet<Map.Entry<Integer, Integer>> T = new TreeSet<>(
+                Comparator.comparing(Map.Entry<Integer, Integer>::getValue)
+                        .thenComparing(Map.Entry<Integer, Integer>::getKey).reversed());
+
+        for (int i = 0; i < N; i++) {
+            T.add(new AbstractMap.SimpleEntry<>(in.nextInt(), in.nextInt()));
+        }
+
+        int cost = 0;
+        for (int i = 1; i <= M; i++) {
+            for (Iterator<Map.Entry<Integer, Integer>> iterator = T.iterator(); iterator.hasNext(); ) {
+                Map.Entry<Integer, Integer> V = iterator.next();
+                Integer A = V.getKey();
+                Integer B = V.getValue();
+
+                if (i < A) {
+                    continue;
+                }
+
+                cost += B;
+                iterator.remove();
+                break;
+            }
+        }
+
+        out.println(cost);
+    }
+}

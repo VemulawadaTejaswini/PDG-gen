@@ -1,0 +1,20 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	scan.next();
+	String s = scan.next();
+	scan.next();
+
+	StringBuilder str = new StringBuilder();
+	str.append('A');
+	str.append(s.charAt(0));
+	str.append('C');
+	System.out.println(str.toString());
+	scan.close();
+    }
+}

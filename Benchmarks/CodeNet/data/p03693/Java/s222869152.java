@@ -1,0 +1,17 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		int a = scanner.nextInt();
+		int b = scanner.nextInt();
+		int c = scanner.nextInt();
+		if((a*100 + b*10 + c) % 4 == 0){
+			System.out.println("YES");
+		}else {
+			System.out.println("NO");
+		}
+	}
+}

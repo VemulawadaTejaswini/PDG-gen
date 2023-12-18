@@ -1,0 +1,20 @@
+
+import java.util.Scanner;
+
+public class Main {
+ 
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			long a = sc.nextInt();
+			long b = sc.nextInt();
+			long c = sc.nextInt();
+ 
+			if (a == b) 
+				System.out.println(c);
+			else if(b == c) 
+				System.out.println(a);
+			else
+				System.out.println(b);
+		}
+	}
+}

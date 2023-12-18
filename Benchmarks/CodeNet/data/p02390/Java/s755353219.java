@@ -1,0 +1,10 @@
+import java.util.Scanner;
+
+class Main{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt();
+        int h = s / 3600, m = (s % 3600) / 60;
+        System.out.println(h+":"+m+":"+(s%60));
+    }
+}

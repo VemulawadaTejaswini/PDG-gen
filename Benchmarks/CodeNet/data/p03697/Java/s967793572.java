@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+
+        int a=scan.nextInt();
+        int b=scan.nextInt();
+        String ans;
+        ans=a+b<10?Integer.toString(a+b):"error";
+
+        System.out.println(ans);
+    }
+}

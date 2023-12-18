@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.List;
+
+public class Main {
+	static List<Integer> path;
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		long n = Long.parseLong(br.readLine());
+		br.close();
+
+		if (n <= 2) {
+			System.out.println(0);
+			return;
+		}
+
+		long ans = 0;
+		long n2 = (long) Math.sqrt(n);
+		for (long i = n2 + 1; i > 0; i--) {
+			if (n % i == 0) {
+				long d = n / i - 1;
+				if (n / d == n % d) {
+					ans += d;
+				}
+			}
+		}
+		System.out.println(ans);
+	}
+}

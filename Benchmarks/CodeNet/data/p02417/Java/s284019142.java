@@ -1,0 +1,41 @@
+
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		String strInput = sc.nextLine();
+
+		char chA ='a';
+		char[] arrayAlpha = new char[26];
+		int[] arrayCount = new int[26];
+
+		for(int i = 0; i <= ('z'-'a'); i++) {
+			//System.out.println(chA++);
+			arrayAlpha[i] = chA;
+			chA++;
+		//	System.out.println("arrayAlpha[i]"+arrayAlpha[i]);
+		}
+
+		String strKarioki ="";
+		char chKarioki1 =' ';
+
+		for(int i = 0; i < strInput.length(); i++) {
+
+			//??\?????????????????????????§£????????????
+			strKarioki = strInput.substring(i,i+1);
+			//String??????char??????????????????
+			chKarioki1 = strKarioki.charAt(0);
+
+			for(int j = 0; j <= ('z'-'a'); j++) {
+				if(chKarioki1 == arrayAlpha[j]) {
+					arrayCount[j] += 1;
+				}
+			}
+		}
+		for(int j = 0; j <= ('z'-'a'); j++) {
+			System.out.println(arrayAlpha[j] +" : "+arrayCount[j]);
+		}
+	}
+}

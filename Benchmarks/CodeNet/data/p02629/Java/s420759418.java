@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long n = sc.nextInt();
+        String ans = "";
+        while (true) {
+            long c = n % 26;
+            ans = String.valueOf((char)(0x60 + c)) + ans;
+            if (n < 26) {
+                break;
+            }
+            n -= c;
+            n /= 26;
+        }
+        System.out.println(ans);
+    }
+}

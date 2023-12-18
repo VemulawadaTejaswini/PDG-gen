@@ -1,0 +1,21 @@
+import java.util.Scanner;
+class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    
+    String s = sc.next();
+    String t = sc.next();
+    byte a = sc.nextByte();
+    byte b = sc.nextByte();
+    String u = sc.next();
+    
+    if(s == u){
+      a--;
+    }else if(t == u){
+      b--;
+    }
+    System.out.print(a);
+    System.out.print(" ");
+    System.out.print(b);
+  }
+}

@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc=new Scanner(System.in);
+		
+		int x=sc.nextInt();		//高橋X円持ってる
+		
+		int a=x/500;
+		int b=(x%500)/5;
+		
+		System.out.println(a*1000+b*5);
+		sc.close();
+
+	}
+
+}

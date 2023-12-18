@@ -1,0 +1,70 @@
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+	void run() {
+		Scanner sc = new Scanner(System.in);
+
+		char[] c = sc.next().toCharArray();
+		int n = c.length;
+		int size = 0;
+		int s = 0;
+		int t = 0;
+
+		Map<Character, Integer> map = new HashMap<>();
+		boolean f = false;
+		boolean flag = true;
+
+		// 尺取り法
+		while (s <= t) {
+			while (t < n) {
+				char key = c[t];
+				size = (t - s + 1) / 2;
+				if (map.containsKey(key)) {
+					int v = map.get(key);
+					map.put(key, v + 1);
+				} else {
+					map.put(key, 1);
+				}
+				int v = map.get(key);
+				if (v > size && size >= 1) {
+					f = true;
+					break;
+				}
+				t++;
+			}
+			if (f) {
+				break;
+			}
+			char key = c[s];
+			int v = map.get(key);
+			map.put(key, v - 1);
+			s++;
+			size = (t - s + 1) / 2;
+			if (s == n) {
+				flag = false;
+				break;
+			}
+			key = c[s];
+			v = map.get(key);
+			if (v > size) {
+				break;
+			}
+		}
+
+		if (flag) {
+			System.out.println((s + 1) + " " + (t + 1));
+		} else {
+			System.out.println(-1 + " " + -1);
+		}
+
+	}
+
+	public static void main(String[] args) {
+		new Main().run();
+	}
+
+}

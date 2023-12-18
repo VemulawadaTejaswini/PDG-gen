@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			int X = sc.nextInt();
+
+			int goal = X;
+			int result = 0;
+
+			for (int i = 0; i < X; i++) {
+				if (goal - i > 0) {
+					goal = goal - i;
+					result++;
+					if (goal <= 0) {
+						break;
+					}
+				}
+			}
+			System.out.println(result);
+		}
+	}
+}

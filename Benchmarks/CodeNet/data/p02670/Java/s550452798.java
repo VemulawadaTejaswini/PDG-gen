@@ -1,0 +1,104 @@
+import java.util.*;
+import java.io.*;
+ 
+public class Main {
+    static int[] mx = {1,0,0,-1};
+    static int[] my = {0,1,-1,0};
+    public static void main(String[] args) throws Exception {
+        FastScanner sc = new FastScanner(System.in);
+        int n = sc.nextInt();
+        int[][] step = new int[n][n];
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                step[i][j] = Math.min(i,Math.min(j,Math.min(n-1-i,n-1-j)));
+            }
+        }
+        long ans = 0;
+        boolean[][] removed = new boolean[n][n];
+        Deque<Integer> q = new ArrayDeque<Integer>();
+        for(int i = 0; i < n*n; i++){
+            int now = sc.nextInt()-1;
+            int h = now/n;
+            int w = now%n;
+            ans += step[h][w];
+            removed[h][w] = true;
+            q.add(now);
+            while(q.size() > 0){
+                int p = q.poll();
+                int Y = p/n;
+                int X = p%n;
+                int cnt = removed[Y][X] ? step[Y][X] : step[Y][X]+1;
+                for(int j = 0; j < 4; j++){
+                    int nx = X+mx[j];
+                    int ny = Y+my[j];
+                    if(check(ny,nx,n) && step[ny][nx] > cnt){
+                        step[ny][nx] = cnt;
+                        q.add(ny*n+nx);
+                    }
+                }
+            }
+        }
+        System.out.println(ans);
+    }
+    
+    public static boolean check(int y, int x, int n){
+        return (0 <= y && y < n && 0 <= x && x < n);
+    }
+}
+
+class FastScanner {
+    private BufferedReader reader = null;
+    private StringTokenizer tokenizer = null;
+    public FastScanner(InputStream in) {
+        reader = new BufferedReader(new InputStreamReader(in));
+        tokenizer = null;
+    }
+
+    public String next() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                tokenizer = new StringTokenizer(reader.readLine());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken();
+    }
+
+    public String nextLine() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                return reader.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken("\n");
+    }
+
+    public long nextLong() {
+        return Long.parseLong(next());
+    }
+
+    public int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    public double nextDouble() {
+         return Double.parseDouble(next());
+    }
+
+    public int[] nextIntArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextInt();
+        return a;
+    }
+
+    public long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextLong();
+        return a;
+    } 
+}

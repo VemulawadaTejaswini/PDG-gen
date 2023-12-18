@@ -1,0 +1,88 @@
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class Main {
+    private static final int MAXN = 2 * (int)10e5, MAXA = (int)10e9;
+    private static int[] data = new int[3];
+    private final static String[] str = {"A", "B", "C"};
+
+    private static String calc(int i, int j, String next, String comp) {
+        if (data[i] == 0) {
+            ++data[i];
+            --data[j];
+            return str[i];
+        } else if(data[j] == 0){
+            --data[i];
+            ++data[j];
+            return str[j];
+        } else {
+            if(data[i] == 1 && data[j] == 1) {
+                if (next.equals(comp)) {
+                    --data[i];
+                    ++data[j];
+                    return str[j];
+                } else {
+                    ++data[i];
+                    --data[j];
+                    return str[i];
+                }
+            } else if (data[i] > data[j]) {
+                --data[i];
+                ++data[j];
+                return str[j];
+            } else {
+                ++data[i];
+                --data[j];
+                return str[i];
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        var scanner = new Scanner(System.in);
+        var n = scanner.nextInt();
+
+        boolean ans = false;
+
+        int count = 0;
+        for (int i = 0; i < 3; ++i) {
+            data[i] = scanner.nextInt();
+            if (data[i] == 0) {
+                ++count;
+            }
+        }
+        if (count <= 1) {
+            ans = true;
+        }
+
+        var strs = new String[n];
+        for (int i = 0; i < n; ++i) {
+            strs[i] = scanner.next();
+        }
+
+        if (ans) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+            return;
+        }
+
+        for (int i = 0; i < n; ++i) {
+            String next = "";
+            if (i + 1 < n) {
+                next = strs[i + 1];
+            }
+
+            if (strs[i].equals("AB")) {
+                System.out.println(calc(0, 1, next, "BC"));
+            }
+            if (strs[i].equals("BC")) {
+                System.out.println(calc(1, 2, next, "AC"));
+            }
+            if (strs[i].equals("AC")) {
+                System.out.println(calc(0, 2, next, "BC"));
+            }
+        }
+
+    }
+}

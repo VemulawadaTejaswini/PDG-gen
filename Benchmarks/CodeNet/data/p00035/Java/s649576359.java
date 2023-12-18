@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){for(Scanner s=new Scanner(System.in);s.hasNext();){z=s.next().split(",");float[]p=new float[8];for(int i=0;i<8;++i)p[i]=new Float(z[i])-(i>1?i%2<1?p[0]:p[1]:0);float a=(p[2]*p[5]-p[4]*p[7])/(p[2]*p[3]-p[6]*p[7]),b=(p[5]-p[3]*a)/p[7];System.out.println(a<0||b<0||a+b<1?"NO":"YES");}}}

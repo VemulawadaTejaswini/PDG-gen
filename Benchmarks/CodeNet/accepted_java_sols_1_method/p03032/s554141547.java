@@ -1,0 +1,31 @@
+import java.util.*;
+class Main{
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int k=sc.nextInt();
+		int[] v=new int[n];
+		for(int i=0;i<n;i++){
+			v[i]=sc.nextInt();
+		}
+		int ans=0;
+		for(int i=1;i<=k&&i<=n;i++){
+			for(int l=0;l<=i;l++){
+				List<Integer>list=new ArrayList<>();
+				for(int j=0;j<l;j++) list.add(v[j]);
+				for(int j=n-i+l;j<n;j++) list.add(v[j]);
+				Collections.sort(list);
+				int j=0;
+				for(;j<list.size();j++){
+					if(i+j==k||n+j==k||list.get(j)>0)break;
+				}
+				int tmp=0;
+				for(;j<list.size();j++){
+					tmp+=list.get(j);
+				}
+				if(tmp>ans) ans=tmp;
+			}
+		}
+		System.out.println(ans);
+	}
+}

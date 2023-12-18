@@ -1,0 +1,14 @@
+import java.util.*;
+
+public class Main  {
+	  
+      public static void main(String[]args){
+    	  Scanner scan = new Scanner (System.in);
+          String line = scan.next();
+    	  
+    	  int start = line.indexOf("A");
+    	  int end = line.lastIndexOf("Z");
+    	  System.out.print(end-start+1);
+
+}
+}

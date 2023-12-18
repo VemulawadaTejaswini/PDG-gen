@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+
+		Scanner sc = new Scanner(System.in);
+		int x = 1;
+		int n = sc.nextInt();
+		for(int i = x; i <= n; i++){
+			if(i % 3 == 0){
+				System.out.print( i );
+				if(i != n){
+					System.out.print(" ");
+				}
+			}else if(i % 10 == 3){
+				System.out.print( i );
+				if(i != n){
+					System.out.print(" ");
+				}
+			}
+		}
+		sc.close();
+	}
+}

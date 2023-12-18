@@ -1,0 +1,64 @@
+import java.util.*;
+import java.io.*;
+//atcoder
+public class Main {
+    public static void main(String[] args) {
+        FastScanner scanner = new FastScanner();
+        PrintWriter out = new PrintWriter(System.out);
+        char[] line = scanner.next().toCharArray();
+        int b= 0;
+        long ans = 0;
+        for(int i = 0; i < line.length; i++) {
+            if (line[i] == 'B') b++;
+            else ans += b;
+        }
+        out.println(ans);
+        out.flush();
+    }
+    
+    public static class FastScanner {
+        BufferedReader br;
+        StringTokenizer st;
+        
+        public FastScanner(Reader in) {
+            br = new BufferedReader(in);
+        }
+        
+        public FastScanner() {
+            this(new InputStreamReader(System.in));
+        }
+        
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+        
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+        
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+        
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+        
+        String readNextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+}

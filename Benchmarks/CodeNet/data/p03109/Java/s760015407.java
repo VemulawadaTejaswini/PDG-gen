@@ -1,0 +1,22 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Main  {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+      
+      	String sdate = sc.next();
+      
+      	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
+ 
+        Date formatDate = sdf.parse(sdate);
+            	Date heiseiDate = sdf.parse("2019/04/30");
+ 
+      	if(formatDate.before(heiseiDate)){
+        	System.out.println("Heisei");
+        }else{
+        	System.out.println("TBD");
+        } 
+    }
+};

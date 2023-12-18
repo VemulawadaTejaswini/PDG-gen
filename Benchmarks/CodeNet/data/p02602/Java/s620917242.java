@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int b = sc.nextInt();
+
+        int array[] = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            array[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < n - b; i++) {
+            if (array[b + i] > array[i]){
+                System.out.println("Yes");
+            } else {
+                System.out.println("No");
+            }
+        }
+
+        sc.close();
+
+    }
+
+}

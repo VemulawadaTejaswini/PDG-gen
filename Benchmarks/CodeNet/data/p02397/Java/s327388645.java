@@ -1,0 +1,26 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args){
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		while(true){
+			String input = br.readLine();
+			String[] str = input.split(" ");
+			int a = Integer.parseInt(str[0]);
+			int b = Integer.parseInt(str[0]);
+			if ((a == 0) && (b == 0)){
+				break;
+			} else {
+				if (a > b){
+					int temp;
+					temp = a;
+					a = b;
+					b = temp;
+				}
+				System.out.println(a + " " + b);
+			}
+		}
+	}
+}

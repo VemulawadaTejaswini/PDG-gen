@@ -1,0 +1,82 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String args[]) {
+		FastScanner cin = new FastScanner();
+		PrintWriter cout = new PrintWriter(System.out);
+		solve(cin, cout);
+		cout.flush();
+	}
+
+	private static void solve(FastScanner cin, PrintWriter cout) {
+		assert solve(4, 4, 6) == 5;
+		assert solve(5, 4, 3) == 0;
+		assert solve(1, 7, 10) == 0;
+		assert solve(1, 3, 3) == 1;
+
+		long n = cin.nextInt();
+		long a = cin.nextInt();
+		long b = cin.nextInt();
+		long ans = solve(n, a, b);
+		cout.println(ans);
+	}
+
+	private static long solve(long n, long a, long b) {
+		long min = a * (n - 1) + b;
+		long max = b * (n - 1) + a;
+		long ans = Math.max(max - min + 1, 0);
+		return ans;
+	}
+
+	/**
+	 * How to read input in Java — tutorial <br />
+	 * By Flatfoot<br />
+	 * http://codeforces.com/blog/entry/7018
+	 */
+	static class FastScanner {
+		private BufferedReader br;
+		private StringTokenizer st;
+
+		FastScanner() {
+			br = new BufferedReader(new InputStreamReader(System.in));
+		}
+
+		String next() {
+			while (st == null || !st.hasMoreElements())
+				try {
+					st = new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					throw new IllegalStateException(e);
+				}
+			return st.nextToken();
+		}
+
+		double nextDouble() {
+			return Double.parseDouble(next());
+		}
+
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		String nextLine() {
+			String str = "";
+			try {
+				str = br.readLine();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
+			return str;
+		}
+
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+	}
+
+}

@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class Solver {
+    public void Solve() {
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        int z = sc.nextInt();
+        System.out.println(z + " " + x + " " + y);
+    }
+
+    Scanner sc;
+
+    Solver(Scanner in) {
+        this.sc = in;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Solver s = new Solver(sc);
+        s.Solve();
+        sc.close();
+    }
+}

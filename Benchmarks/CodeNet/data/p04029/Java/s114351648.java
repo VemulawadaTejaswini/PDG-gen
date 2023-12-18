@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            int a=sc.nextInt();
+            int sum=0;
+            int curvalue=1;
+            for (int i = 0; i < a; i++) {
+                sum+=curvalue++;
+            }
+            System.out.println(sum);
+        }
+    }
+}

@@ -1,0 +1,18 @@
+public Main() throws IOException {
+		Scanner input = new Scanner(System.in);
+		
+		int r = input.nextInt();
+		int g = input.nextInt();
+		int b = input.nextInt();
+		
+		int newNum = r * 100 + g * 10 + b;
+		
+		if (newNum % 4 == 0)
+		{
+			System.out.println("YES");
+		}
+		else
+		{
+			System.out.println("NO");
+		}
+	}

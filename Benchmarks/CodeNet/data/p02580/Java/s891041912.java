@@ -1,0 +1,51 @@
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+        int m = sc.nextInt();
+
+
+        List<Point> list = new ArrayList<>();
+        int[] hcount = new int[h];
+        int[] wcount = new int[w];
+
+        for (int i = 0; i < m; i++) {
+            int h1 = sc.nextInt() - 1;
+            int w1 = sc.nextInt() - 1;
+            list.add(new Point(h1, w1));
+            hcount[h1]++;
+            wcount[w1]++;
+        }
+
+
+        int hmax = 0;
+        for (int i = 0; i < h; i++) {
+            hmax = Math.max(hmax, hcount[i]);
+        }
+        int wmax = 0;
+        for (int i = 0; i < w; i++) {
+            wmax = Math.max(wmax, wcount[i]);
+        }
+
+        //System.out.println("hmax = " + hmax);
+        //System.out.println("wmax = " + wmax);
+
+        for (int i = 0; i < list.size(); i++) {
+            Point p = list.get(i);
+            if(hcount[p.x] == hmax && wcount[p.y] == wmax){
+                System.out.println(hmax + wmax - 1);
+                return;
+            }
+        }
+
+        System.out.println(hmax + wmax);
+
+    }
+
+}

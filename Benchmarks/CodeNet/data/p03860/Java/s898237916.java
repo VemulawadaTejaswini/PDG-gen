@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class Main {
+    private static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0;i < 3;i++) {
+            sb.append(sc.next().charAt(0));
+        }
+        System.out.println(sb.toString());
+    }
+}

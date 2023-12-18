@@ -1,0 +1,19 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	String s = scan.next();
+	int point = 0;
+	for (int i = 0; i < s.length(); i++) {
+	    if(s.charAt(i) == 'p') point--;
+	}
+	point = point + s.length()/2;
+
+	System.out.println(point);
+	scan.close();
+    }
+}

@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Printer pr = new Printer(System.out);
+
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		int x = sc.nextInt();
+		int y = sc.nextInt();
+
+		pr.println(Math.min(n, k) * x + Math.max(0, n - k) * y);
+
+		pr.close();
+		sc.close();
+	}
+
+	private static class Printer extends PrintWriter {
+		Printer(PrintStream out) {
+			super(out);
+		}
+	}
+}

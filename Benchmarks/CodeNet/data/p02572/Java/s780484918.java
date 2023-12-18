@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+
+    var m = 1000000000 + 7;
+
+    var sc = new Scanner(System.in);
+
+    var n = sc.nextInt();
+    var a = new int[n];
+    for (int i = 0; i < n; i++) {
+      a[i] = sc.nextInt() % m;
+    }
+
+    long sum1 = 0;
+    long sum2 = 0;
+    for (int i = 0; i < n; i++) {
+      sum1 += a[i];
+      sum2 += (long)a[i] * a[i];
+    }
+
+    var answer = (sum1 * sum1 - sum2) / 2 % m;
+
+    System.out.println(answer);
+  }
+}

@@ -1,0 +1,45 @@
+
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+public final class Main {
+
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
+        final int n = in.nextInt();
+        long k = in.nextLong();
+        in.nextLine();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = in.nextInt();
+        }
+        in.nextLine();
+        int slow = 1;
+        int fast = 1;
+        do {
+            slow = arr[slow - 1];
+            fast = arr[arr[fast - 1] - 1];
+        } while (slow != fast);
+        int cycle = 0;
+        do {
+            slow = arr[slow - 1];
+            cycle++;
+        } while (slow != fast);
+        slow = 1;
+        int initial = 0;
+        while (slow != fast) {
+            slow = arr[slow - 1];
+            fast = arr[fast - 1];
+            initial++;
+        }
+        k -= initial;
+        k %= cycle;
+        int res;
+        for (res = slow; k > 0; k--) {
+            res = arr[res - 1];
+        }
+        System.out.println(res);
+    }
+}

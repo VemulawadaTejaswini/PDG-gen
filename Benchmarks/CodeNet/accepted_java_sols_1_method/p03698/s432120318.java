@@ -1,0 +1,31 @@
+import java.util.HashMap;
+import java.util.Scanner;
+/**
+ * Created by maxmo on 19.06.2017.
+ */
+public class Main {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        String S = scanner.next();
+        HashMap<Character, Integer> counter = new HashMap<>();
+
+        for(int i = 0; i < S.length(); i++){
+            try{
+                counter.put(S.charAt(i), counter.get(S.charAt(i)) +1);
+            }
+            catch (Exception e) {
+                counter.put(S.charAt(i),1);
+            }
+        }
+
+        boolean doubledChar = false;
+        for(Character characters : counter.keySet()){
+            if(counter.get(characters) > 1){
+                doubledChar = true;
+            }
+        }
+        System.out.println((doubledChar)? "no" : "yes");
+    }
+
+
+}

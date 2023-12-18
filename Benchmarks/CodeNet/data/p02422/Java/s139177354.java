@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		StringBuilder str = new StringBuilder();
+		StringBuilder reverse = new StringBuilder();
+		String line;
+		String[] imperative;
+		
+		str.append(scan.nextLine());
+		int turns = Integer.parseInt(scan.nextLine());
+		
+		for (int i = 0; i < turns; i++) {
+			line = scan.nextLine();
+			imperative = line.split(" ");
+			
+			if(imperative[0].equals("print")){
+				System.out.println(str.substring(Integer.parseInt(imperative[1]), Integer.parseInt(imperative[2]) + 1));
+			}else if(imperative[0].equals("reverse")){
+				reverse.append((str.substring(Integer.parseInt(imperative[1]), Integer.parseInt(imperative[2]) + 1)));
+				str.replace(Integer.parseInt(imperative[1]), Integer.parseInt(imperative[2])+1, reverse.reverse().toString());
+			}else{
+				str.replace(Integer.parseInt(imperative[1]), Integer.parseInt(imperative[2])+1, imperative[3]);
+			}
+		}
+		
+	}
+}

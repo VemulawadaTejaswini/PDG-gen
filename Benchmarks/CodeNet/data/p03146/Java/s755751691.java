@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main {
+
+		static void solve() {
+			Scanner sc = new Scanner(System.in);
+			int n = sc.nextInt();
+			int n1, n2;
+			List<Integer> list = new ArrayList<>();
+			sc.close();
+			do {
+			if(n%2==1) {
+				n1 = n*3+1;
+				list.add(n1);
+				n = n1;
+			}
+			else if(n%2==0) {
+				n2 = n/2;
+				list.add(n2);
+				n = n2;
+			}
+		}while(n!=1);
+			int res = list.size()+2;
+			System.out.println(res);
+		
+	}
+	public static void main(String[] args) {
+		solve();
+
+	}
+
+}

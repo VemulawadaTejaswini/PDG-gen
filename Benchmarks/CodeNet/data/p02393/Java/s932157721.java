@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Azo_1_2_c {
+
+    public static void main(String[] args) {
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String inputData;
+            inputData = reader.readLine();
+            String[] strArray = inputData.split(" ");
+            List<Integer> list = new ArrayList<Integer>();
+            for(int i=0;i<strArray.length;i++){
+                list.add(Integer.valueOf(strArray[i]));
+            }
+            Collections.sort(list);
+
+            StringBuilder sb = new StringBuilder();
+            for(int i=0 ; i<list.size() ; i++){
+                if(i != 0){
+                    sb.append(" ");
+                }
+                sb.append(String.valueOf(list.get(i)));
+            }
+            System.out.println(sb.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+thow e;
+        }
+
+    }
+
+}

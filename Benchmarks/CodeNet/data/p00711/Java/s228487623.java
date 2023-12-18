@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Main {
+	static final char CHECKED = 'C';
+	static final char BLACK = '.';
+	static final char START = '@';
+	void run(){
+		Scanner s = new Scanner(System.in);
+		while(true){
+			int w = s.nextInt();
+			int h = s.nextInt();
+			if(w == 0 && h == w)break;
+			int x = 0;
+			int y = 0;
+			char tile[][] = new char[h][w];
+			for(int i = 0;i < h;i++){
+				String row = s.next();
+				for(int j = 0;j < w;j++){
+					tile[i][j] = row.charAt(j);
+					if(tile[i][j] == START){
+						y = i;
+						x = j;
+						tile[i][j] = BLACK;
+					}
+				}
+			}
+			System.out.println(cntTile(tile,y,x));
+		}
+	}
+
+	int cntTile(char[][] panel,int y,int x){
+		//??????????????´??????????????\????????¢?´¢???????????????0????????´?????????
+		if(y >= panel.length)return 0;
+		if(y < 0)return 0;
+		if(x >= panel[0].length)return 0;
+		if(x < 0)return 0;
+		int cnt = 0;
+		if(panel[y][x] == BLACK){
+			panel[y][x] = CHECKED;
+			cnt++;
+			//??±???????????¢?´¢????????????????????¢?´¢??????????????°?????????
+			cnt += cntTile(panel,y + 1,x);
+			cnt += cntTile(panel,y - 1,x);
+			cnt += cntTile(panel,y,x + 1);
+			cnt += cntTile(panel,y,x - 1);
+			return cnt;
+		}else{
+			return 0;
+		}
+	}
+
+public static void main(String args[]){
+		new Main().run();
+	}
+}

@@ -1,0 +1,13 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long a = sc.nextInt();
+		long b = sc.nextInt();
+		int cnt = 0;
+		if(a == 0) System.out.println(b);
+		else if(a == 1) System.out.println(100 * b);
+		else System.out.println(10000 * b);
+		
+	}
+}

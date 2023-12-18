@@ -1,0 +1,14 @@
+package test;
+
+import java.util.*;
+import java.io.*;
+public class Main {// Main
+    public static void main(String[] args){
+       String Str = new String(args[0]);
+       String a = Str.substring(0,4);
+       String b = Str.substring(3);
+       a = a.concat(" ");
+       b = b.concat("\n");
+       System.out.println(a.concat(b));
+    }
+}	

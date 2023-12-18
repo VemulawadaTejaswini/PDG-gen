@@ -1,0 +1,15 @@
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String a[])
+	{
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+
+		sc.close();
+
+		System.out.println(n * 800 - 200 * (n / 15));
+	}
+}

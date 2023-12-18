@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+         
+        String num[] = new String[3];
+        int total;
+ for(int i = 0; i < 3;i++) {
+	   total  =+ Integer.parseInt(sc.next());
+ }
+if(total <= 21) {
+	System.out.println("win");
+}else {
+	System.out.println("burst");
+}
+        
+        
+       
+        }
+ 
+     
+    }

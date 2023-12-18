@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner stdIn= new Scanner(System.in);
+
+        int a =stdIn.nextInt();
+        int b =stdIn.nextInt();
+
+        int x=a*b;
+        int y =2*(a+b);
+        System.out.println(x +" " + y);
+    }
+
+}
+

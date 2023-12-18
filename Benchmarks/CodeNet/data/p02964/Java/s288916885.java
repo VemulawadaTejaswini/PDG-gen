@@ -1,0 +1,39 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        Scanner in = new Scanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        A solver = new A();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class A {
+        public void solve(int testNumber, Scanner in, PrintWriter out) {
+            long S = in.nextLong();
+            long x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+            if (S > (long) 1e9) {
+                x1 = y2 = (long) Math.floor(Math.sqrt(S));
+                y1 = (x1 * y2) - S;
+                x2 = 1;
+            } else {
+                x1 = 1;
+                y2 = S;
+            }
+            out.println("0 0 " + x1 + " " + y1 + " " + x2 + " " + y2);
+        }
+
+    }
+}
+

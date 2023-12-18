@@ -1,0 +1,113 @@
+import java.util.*;
+
+public class Main {
+	
+	/*
+	 * default function
+	 * */	
+	int ni() {
+		return cin.nextInt();
+	}
+	
+	long nl() {
+		return cin.nextLong();
+	}
+	
+	String line() {
+		return cin.nextLine();
+	}
+	
+	void println(String str) {	
+		System.out.println(str);
+	}
+	
+	void print(String str) {
+		System.out.print(str);
+	}
+	
+	/*
+	 * default variable
+	 */
+	
+	static final int MOD = 1000000007;
+	
+	Scanner cin = new Scanner(System.in);	
+	String  output;
+	
+	public static void main(String[] args) {			
+		new Main().run();						
+	}
+	/* default above */
+		
+	public void run() {
+			
+		input();
+		/* 
+		 * start
+		 */	
+		
+		int res = solve();
+		
+		/*
+		 * finish
+		 */
+		
+		output = res +"";
+		println(output);
+			
+	}
+	/* 
+	 * define variable
+	 */
+	
+	int H, W;
+	
+	void input() {
+		H = ni();
+		W = ni();
+		
+		if (W > H) {
+			W = H + W;
+			H = W - H;
+			W = W - H;
+		}
+	}
+	
+	int solve() {
+		
+		if (H % 3 == 0 || W % 3 == 0) {
+			return 0;
+		}
+		
+		if (W == 2) {
+			return 1;
+		}
+		
+		return cal(H, W);		
+	}
+	
+	int cal(long h, long w) {
+		
+		long res = Long.MAX_VALUE;
+		
+		
+		long a[] = new long[3];
+		a[0] = (h / 2) * w;
+		a[1] = (h - h/2) * (w / 2);
+		a[2] = (h - h/2) * (w - w/2);
+		Arrays.sort(a);
+		res = Math.min(res, a[2] - a[0]);
+		
+		
+		a[0] = (h/3) * w;
+		a[1] = (h - h/3) * (w/2);
+		a[2] = (h - h/3) * (w - w/2);
+		Arrays.sort(a);
+		res = Math.min(res, a[2] - a[0]);
+		
+		
+		return (int)res;
+	}
+	
+	
+}

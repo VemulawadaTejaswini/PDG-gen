@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Rectangle rectangle = null;
+		try (Scanner sc = new Scanner(System.in)) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+			rectangle = new Rectangle(a, b);
+		}
+		System.out.println(rectangle.getArea() + " " + rectangle.getEdgeLength());
+	}
+
+	static class Rectangle {
+		private final int a;
+		private final int b;
+
+		Rectangle(int a, int b) {
+			this.a = a;
+			this.b = b;
+		}
+
+		/**
+		 * ????????¢?????¢????????????
+		 *
+		 * @return ??¢???
+		 */
+		public int getArea() {
+			return (a * b);
+		}
+
+		/**
+		 * ????????¢?????¨?????????????????????
+		 *
+		 * @return ??¨????????????
+		 */
+		public int getEdgeLength() {
+			return (a * 2 + b * 2);
+		}
+
+	}
+
+}

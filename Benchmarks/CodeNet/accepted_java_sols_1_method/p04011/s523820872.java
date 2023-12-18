@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+
+        int n=scan.nextInt();
+        int k=scan.nextInt();
+        int x=scan.nextInt();
+        int y=scan.nextInt();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            if(i<k)
+                sum+=x;
+            else
+                sum+=y;
+        }
+        System.out.println(sum);
+
+    }
+}

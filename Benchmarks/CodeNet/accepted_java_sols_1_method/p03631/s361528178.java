@@ -1,0 +1,23 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		int N = sc.nextInt();
+		String strN = Integer.toString(N);
+		StringBuffer sb = new StringBuffer(strN);
+		
+		if (strN.equals(sb.reverse().toString())){
+			System.out.println("Yes");
+		} else {
+			System.out.println("No");
+		}
+		
+
+	}
+
+}

@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Your code here!
+        Scanner scan = new Scanner(System.in);
+        int wake_h = scan.nextInt();
+        int wake_m = scan.nextInt();
+        int sleep_h = scan.nextInt();
+        int sleep_m = scan.nextInt();
+        int study = scan.nextInt();
+        int total;
+        
+        if(wake_m - sleep_m < 0){
+            total = (sleep_h - wake_h -1)*60 + (60-(wake_m - sleep_m));
+        }else{
+            total = (sleep_h - wake_h)*60 + (wake_m - sleep_m);
+        }
+        
+        System.out.println(total-study);
+    }
+}

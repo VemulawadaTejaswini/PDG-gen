@@ -1,0 +1,171 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        MyScanner scan = new MyScanner();
+        NodeList node = new NodeList();
+        //char n = scan.judgeQuery();
+        //long l = scan.nextLong();
+        //System.out.println(n);
+        //System.out.println(l);
+        long n = scan.nextLong();
+        long x;
+        char[] query = new char[15];
+        for(long i=0; i<n; i++) {
+            switch(scan.judgeQuery()){
+                case 'i':
+                    x = scan.nextLong();
+                    node.Insert(x);
+                    break;
+                case 'd':
+                    x = scan.nextLong();
+                    node.SearchDelete(x);
+                    break;
+                case 'f':
+                    node.DeleteFirst();
+                    break;
+                case 'l':
+                    node.DeleteLast();
+                    break;
+            }
+        }
+        node.Print();
+    }
+}
+
+class MyScanner{
+    InputStream in = System.in;
+    StringBuilder sb = new StringBuilder();
+    int tmp;
+    public char judgeQuery(){
+        try {
+            int q = in.read();
+            //for(tmp=0; tmp<5; tmp++) tmp = in.read();
+            in.skip(5);
+            if(q=='i'){ in.skip(1); return 'i';}
+            q = in.read();
+            if(q==' ') return 'd';
+            in.skip(4);
+            if(q=='L') return 'l';
+            in.skip(1);
+            return 'f';
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return '0';
+    }
+
+    public long nextLong() {
+        long n = 0;
+        int nx = 0;
+        try {
+            nx = in.read();
+            while('0'<=nx&&nx<='9'){
+                n *= 10;
+                n += nx - '0';
+                nx = in.read();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return n;
+    }
+}
+
+class NodeList{
+    NodeList.Node head;
+
+    class Node{
+        long key ;
+        NodeList.Node right;
+        NodeList.Node left;
+
+        Node(long key){
+            this.key = key;
+        }
+
+        Node(){
+            this.key = -1;
+        }
+
+        public String toString(){
+            return Long.toString(key);
+        }
+
+        public void printDetail(){
+            System.out.println(this.left.key + ' ' + this.key +' ' + this.right.key);
+        }
+    }
+
+    NodeList(){
+        this.head = new NodeList.Node();
+        this.head.right = this.head;
+        this.head.left = this.head;
+    }
+
+    public void Insert(long x){
+        NodeList.Node newNode = new NodeList.Node(x);
+        newNode.right = this.head.right;
+        newNode.right.left = newNode;
+        this.head.right = newNode;
+        newNode.left = this.head;
+    }
+
+    public void Print(){
+        NodeList.Node point = this.head.right;
+        NodeList.Node start = this.head.right;
+        boolean flag = false;
+        while(point != this.head) {
+            System.out.print(point.toString());
+            point = point.right;
+            if (flag && point == start) {
+                break;
+            }
+            if (point != this.head) {
+                System.out.print(' ');
+            }
+            flag = true;
+        }
+        System.out.println("");
+    }
+
+    public void PrintAll() {
+        System.out.println(this.head);
+        NodeList.Node point = this.head.right;
+        while(point != this.head) {
+            point.printDetail();
+            point = point.right;
+        }
+        System.out.println('\n');
+    }
+
+    public void Delete(NodeList.Node point){
+        point.right.left = point.left;
+        point.left.right = point.right;
+    }
+
+    public void SearchDelete(long x){
+        NodeList.Node point = this.head.right;
+        while(point != this.head) {
+            if(point.key == x) break;
+            point = point.right;
+        }
+        this.Delete(point);
+    }
+
+    public void DeleteFirst(){
+        this.Delete(this.head.right);
+    }
+
+    public void DeleteLast(){
+        this.Delete(this.head.left);
+    }
+
+}
+

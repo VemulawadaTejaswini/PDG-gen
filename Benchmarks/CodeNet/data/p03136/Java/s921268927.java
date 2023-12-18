@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int L[] = new int[N];
+        for(int i=0; i<N; i++) {
+            L[i] = sc.nextInt();
+        }
+        Arrays.sort(L);
+        long sum = 0;
+        for(int i=0; i<N-1; i++) {
+            sum+=L[i];
+        }
+//        System.out.println(String.format("%d %d", sum, L[N-1]));
+        System.out.println((sum > L[N-1]) ? "Yes" : "No");
+    }
+}

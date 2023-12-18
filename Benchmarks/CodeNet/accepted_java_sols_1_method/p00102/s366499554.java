@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO ?????????????????????????????????????????????
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		while(true){
+			int n = Integer.parseInt(br.readLine());
+			
+			if(n == 0) break;
+			
+			int[][] input = new int[n+1][n+1];
+			
+			//????°????????????????
+			for(int i = 0; i < n ;i++){
+				input[i][n] = 0;
+			}
+			
+			int sum = 0;
+			//??§????????°??\?????¨?¨???????????????????
+			for(int i = 0; i < n; i++){
+				String[] tmpArray = br.readLine().split(" ");
+				for(int j = 0; j < n; j++){
+					input[i][j] = Integer.parseInt(tmpArray[j]);
+					input[i][n] += input[i][j];
+					input[n][j] += input[i][j];
+					sum += input[i][j];
+				}
+			}
+			input[n][n] = sum;
+			
+			//??????
+			for(int i = 0; i <= n; i++){
+				for(int j = 0; j <= n; j++){
+					System.out.printf("%5d", input[i][j]);
+				}
+				System.out.println();
+			}
+		}
+	}
+
+}

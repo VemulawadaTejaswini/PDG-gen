@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        new Main().compute();
+    }
+
+    void compute() {
+        int N = scanner.nextInt();
+        List<Integer> A = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            A.add(scanner.nextInt());
+        }
+        A.sort((o1, o2) -> o2 - o1);
+        int[] max = new int[2];
+        max[0] = 0;
+        max[1] = 0;
+        int twin = 0, prev = -1;
+        for (int Ai : A) {
+            if (Ai == prev) {
+                max[twin] = Ai;
+                twin++;
+                prev = -1;
+                if (twin == 2) {
+                    break;
+                }
+            } else {
+                prev = Ai;
+            }
+        }
+        System.out.println(max[0] * max[1]);
+
+    }
+}

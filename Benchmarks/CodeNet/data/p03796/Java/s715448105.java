@@ -1,0 +1,16 @@
+import java.util.*;
+import java.io.*;
+
+public class TrsainingCamp{
+	public static final int MODULO= 1000000007;
+	public static void main(String[] args){
+	Scanner sc = new Scanner(System.in);
+	int n = sc.nextInt();
+
+	long power = 1;
+	for(int i=1; i<=n; i++){
+	power = (power*i)%MODULO;
+		}
+		System.out.println(power);		
+	}
+}

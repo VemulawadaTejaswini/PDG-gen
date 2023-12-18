@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+    static int[] w;
+    static int k;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+            k = sc.nextInt();
+            w = new int[n];
+
+        int minP = 0;
+        int maxP = (int) 1E9;
+        for (int i = 0; i < n; i++) {
+            w[i] = sc.nextInt();
+        }
+
+        // f(p) が初めてn以上になるpを求める。
+        int midP = 0;
+        while (maxP > minP) {
+            midP = (maxP + minP) / 2;
+            int tempN = f(midP);
+            
+            if (tempN >= n) maxP = midP;
+            else if (tempN < n) minP = midP + 1;
+        }
+        System.out.println(maxP);
+    }
+    
+    // 最大積載量pのトラックk台に、wの要素はいくつ載せられるか?
+    static int f(int p) {
+        int i = 0;
+        for (int iK = 0; iK < k; iK++) {
+            int pK = 0;
+            while (pK + w[i] <= p) {
+                pK += w[i];
+                i++;
+                if (i == w.length) return w.length;
+            }
+        }
+        return i;
+    }
+}

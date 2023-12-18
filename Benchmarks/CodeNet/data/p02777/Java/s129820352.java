@@ -1,0 +1,23 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Atcoder{
+public static void main(String []args){
+	Scanner sc=new Scanner(System.in);
+  	String red=sc.next();
+  	String blue=sc.next();
+	int r=sc.nextInt();
+  	int b=sc.nextInt();
+  	String rb=sc.next();
+  	if(red==rb){
+    r--;
+    }
+  else{
+  b--;
+  }
+  System.out.print(r);
+  System.out.print(" ");
+  System.out.println(b);
+}
+}

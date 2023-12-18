@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main
+{	
+	public static void main(String[] args)
+	{
+		Scanner scan = new Scanner(System.in);
+	
+		long a , b , c , d;
+		a = scan.nextLong();
+		b = scan.nextLong();
+		c = scan.nextLong();
+		d = scan.nextLong();
+		
+		long area1 = a * b , area2 = c * d;
+		System.out.println(Math.max(area1 , area2));
+	}
+    
+}
+
+
+
+
+
+
+
+

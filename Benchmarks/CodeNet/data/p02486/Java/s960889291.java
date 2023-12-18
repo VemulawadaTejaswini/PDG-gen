@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Main {
+    public static void main (String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n, x;
+        int numOfPair = 0;
+        int sum = 0;
+        
+        
+        while (true) {        
+            n = scanner.nextInt();
+            x = scanner.nextInt();
+            
+            if (n == 0 && x == 0) {
+                break;
+            }
+            if (n < 3 || n > 100) {
+                break;
+            }
+            
+            for (int k = n; k > 2; k--) {
+                if (k > x) {
+                    continue;
+                }
+                for(int j = k-1; j > 1; j--) {
+                    if (k+j > x) {
+                        continue;
+                    }
+                    for(int i = j-1; i > 0; i--) {
+                        if (k+j+i > x) {
+                            continue;
+                        }
+                        if (k+j+i == x) {
+                            numOfPair++;
+                        }
+                    }
+                }
+            }
+             System.out.println(numOfPair);
+        }  
+    }
+}

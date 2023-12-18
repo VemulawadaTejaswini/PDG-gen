@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s=new Scanner(System.in);
+		String c=s.next();
+		
+		if(c.charAt(0)=='a'||
+		   c.charAt(0)=='i'||
+		   c.charAt(0)=='u'||
+		   c.charAt(0)=='e'||
+		   c.charAt(0)=='o')System.out.print("vowel");
+		else System.out.print("consonant");
+
+	}
+
+}

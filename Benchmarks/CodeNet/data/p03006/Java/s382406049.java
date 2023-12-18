@@ -1,0 +1,57 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		Main main = new Main();
+		int x[]= new int[N];
+		int y[] = new int[N];
+		for (int i=0;i<N;i++) {
+			x[i] = sc.nextInt();
+			y[i] = sc.nextInt();
+		}
+		int max =1;
+		Map<Point,Integer> map = new HashMap<Point,Integer>();
+		for (int i=0;i<N;i++) {
+			for (int j=i+1;j<N;j++) {
+				Point t = main.new Point();
+				t.p=x[j]-x[i];
+				t.q=y[j]-y[i];
+				if (map.containsKey(t)==false) {
+					map.put(t, 1);
+				} else {
+					Integer in = map.get(t);
+					map.put(t, in+1);
+					if (in +1>max) {
+						max = in +1;
+					}
+				}
+			}
+		}
+		System.out.println(N-max);
+	}
+
+	public class Point extends Object{
+		int p;
+		int q;
+
+		@Override
+		public boolean equals(Object o) {
+			Point p = (Point)o;
+			if (p.p==this.p&&p.q==this.q) {
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public int hashCode() {
+			return this.p+this.q;
+		}
+	}
+
+}

@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+/**
+ * Created by nakatsukatakahiro on 2017/06/10.
+ */
+class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int r = Integer.parseInt(scanner.next());
+        int g = Integer.parseInt(scanner.next());
+        int b = Integer.parseInt(scanner.next());
+
+        String rgb =  r + "" + g + "" + b;
+
+        if (Integer.parseInt(rgb) % 4 == 0) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+}

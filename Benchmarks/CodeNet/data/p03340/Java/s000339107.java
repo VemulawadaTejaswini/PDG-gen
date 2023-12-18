@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[]){
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        int[] A = new int[N];
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<N;i++){
+            A[i] = in.nextInt();
+            max = Math.max(max, A[i]);
+        }
+        int highest = 0; // 为1的最高位
+        while(max!=0){
+            highest ++;
+            max = max >> 1;
+        }
+
+/*
+        long[] sum = new long[N];
+        int[] xorSum = new int[N];
+        sum[0]=(long) A[0];
+        xorSum[0] = A[0];
+
+
+        for(int i=1;i<N;i++){
+            sum[i] = sum[i-1]+A[i];
+            xorSum[i] = xorSum[i-1]^A[i];
+        }
+        long result = (long) N;
+        // l = 0 case
+        int xorSum = A[0];
+        int xorSum = A[];
+        for(int r=1;r<N;r++){
+            long sum = A[0];
+
+            if(sum[r]>=(1<<(highest+1))) break;
+            if(sum[r]==xorSum[r]) result ++;
+        }*/
+        // l >= 1 case
+        long result = (long) N;
+        for(int l=0;l<N-1;l++){
+            long sum = A[l];
+            int xorSum = A[l];
+            for(int r=l+1;r<N;r++){
+                sum += A[r];
+                xorSum ^= A[r];
+                if((sum)>xorSum) break;
+                if(sum==xorSum) result ++;
+            }
+        }
+        System.out.println(result);
+
+    }
+}

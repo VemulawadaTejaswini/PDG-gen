@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		int N = s.length();
+		for(int i = 0 ; i < N ; i++) {
+			for(int j = i + 1 ; j < N ; j++) {
+				if(s.charAt(i) != s.charAt(j)) {
+					System.out.println("no");
+					break;
+				}
+			}
+		}
+		System.out.println("yes");
+	}
+}

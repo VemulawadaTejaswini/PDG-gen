@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        String S = sc.next();
+
+        long R = 0;
+        long G = 0;
+        long B = 0;
+        long ans;
+        for (int i = 0; i < N; i++) {
+            if (S.charAt(i) == 'R') {
+                R++;
+            } else if (S.charAt(i) == 'G') {
+                G++;
+            } else if (S.charAt(i) == 'B') {
+                B++;
+            }
+        }
+        ans = R * B * G;
+
+        for (int i = 0; i < N - 2; i++) {
+            for (int j = i + 1; j < N - 1; j++) {
+                if (2 * j - i >= N) {
+                    continue;
+                }
+                ans--;
+            }
+        }
+
+        System.out.println(ans);
+        sc.close();
+    }
+}

@@ -1,0 +1,13 @@
+import java.util.*;
+public class Coffee
+{
+  public void main()
+  {
+    Scanner sc=new Scanner(System.in);
+    String S=sc.nextLine();
+    if(S.charAt(2)==S.charAt(3)&&S.charAt(4)==S.charAt(5))
+      System.out.println("YES");
+    else
+      System.out.println("NO");
+  }
+}

@@ -1,0 +1,60 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ *
+ * @author EDGE
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        FastReader in = new FastReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        Task160A solver = new Task160A();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class Task160A {
+        public void solve(int testNumber, FastReader in, PrintWriter out) {
+
+            char[] s = in.nextLine().trim().toCharArray();
+
+            if (s[2] == s[3] && s[5] == s[4])
+                out.println("Yes");
+            else
+                out.println("No");
+        }
+
+    }
+
+    static class FastReader {
+        BufferedReader br;
+
+        public FastReader(InputStream inputStream) {
+            br = new BufferedReader(new
+                    InputStreamReader(inputStream));
+        }
+
+        public String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+
+    }
+}
+

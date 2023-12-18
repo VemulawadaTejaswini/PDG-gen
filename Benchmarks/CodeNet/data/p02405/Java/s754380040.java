@@ -1,0 +1,52 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class PrintCheckboatd {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st=new StringTokenizer(br.readLine());
+        int H=Integer.parseInt(st.nextToken());
+        int W=Integer.parseInt(st.nextToken());
+
+        while(H!=0 || W!=0) {
+
+            int i=0;
+            int j=0;
+
+            while(j<H) {
+                if(j%2==1){
+                	while(i<W) {
+                        if(i%2==1){
+                        	System.out.print("#");
+                        }else{
+                        	System.out.print(".");
+                        }
+                        i++;
+                    }
+                }else{
+                	while(i<W) {
+                        if(i%2==1){
+                        	System.out.print(".");
+                        }else{
+                        	System.out.print("#");
+                        }
+                        i++;
+                    }
+                }
+                System.out.println("");
+                i=0;
+                j++;
+            }
+            System.out.println("");
+            StringTokenizer sa=new StringTokenizer(br.readLine());
+            H=Integer.parseInt(sa.nextToken());
+            W=Integer.parseInt(sa.nextToken());
+        }
+	}
+
+}
+

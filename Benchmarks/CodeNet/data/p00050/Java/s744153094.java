@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){String a="apple",p="peach";System.out.println(new Scanner(System.in).nextLine().replaceAll(p,":").replaceAll(a,p).replaceAll(":",a));}}

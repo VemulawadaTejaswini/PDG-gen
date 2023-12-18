@@ -1,0 +1,101 @@
+import java.util.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		InputStreamReader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+		BufferedReader in = new BufferedReader(reader);
+		Main ins = new Main(in);
+		ins.calc();
+		ins.showResult();
+	}
+
+	int N;
+	int[] A;
+	Set<Integer>[] sets;
+	boolean isSetWise = false;
+
+	Main(BufferedReader in) throws IOException {
+		N = Integer.parseInt(in.readLine());
+		String[] tokens = in.readLine().split(" ");
+		A = new int[N];
+		for (int i = 0; i < N; ++i) {
+			A[i] = Integer.parseInt(tokens[i]);
+		}
+		Arrays.sort(A);
+		sets = new Set[N];
+		for (int i = 0; i < N; ++i) {
+			sets[i] = getYakusuu(A[i]);
+		}
+	}
+
+	Set<Integer> getYakusuu(int val) {
+		boolean isPrime = true;
+		Set<Integer> result = new HashSet<>();
+		for (int i = 2; i < Math.sqrt((double) val) + 0.1; ++i) {
+			if (val % i == 0) {
+				isPrime = false;
+				result.add(i);
+				result.addAll(getYakusuu(val / i));
+			}
+		}
+		if (isPrime) {
+			result.add(val);
+		}
+		return result;
+	}
+
+	int gcd(int large, int small) {
+		if (large < small) {
+			return gcd(small, large);
+		}
+		if (large % small == 0) {
+			return small;
+		} else {
+			return gcd(small, large % small);
+		}
+	}
+
+	boolean isSetwise() {
+		int gcd = gcd(A[0], A[1]);
+		for (int i = 2; i < N; ++i) {
+			gcd = gcd(gcd, A[i]);
+		}
+		if (gcd == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	boolean isPairwise() {
+		int count = 0;
+		Set<Integer> set = new HashSet<>();
+		for (int i = 0; i < N; ++i) {
+			count += sets[i].size();
+			set.addAll(sets[i]);
+		}
+		if (count == set.size()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	void calc() {
+		if (isSetwise()) {
+			if (isPairwise()) {
+				System.out.println("pairwise coprime");
+			} else {
+				System.out.println("setwise coprime");
+			}
+		} else {
+			System.out.println("not coprime");
+		}
+	}
+
+	void showResult() {
+	}
+}

@@ -1,0 +1,9 @@
+class Main{
+    public static void main(String[] a){
+     for(int i=0;i<10;i++){
+     for(int j=0;j<10;j++){
+       System.out.println{x[i]+"x"+y[j]+"="+x[i]*y[j]};
+     }
+    }
+   }
+  }

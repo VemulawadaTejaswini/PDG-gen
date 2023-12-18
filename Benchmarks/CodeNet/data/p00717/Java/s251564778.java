@@ -1,0 +1,115 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+class Main{
+	static int points0[][];
+	public static void main(String args[]){
+		// 標準入力準備
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//Scanner sc = new Scanner(System.in);
+		//String str = new String();
+
+		try{
+			while(true){
+				// 折れ線の数
+				int n = Integer.parseInt(br.readLine());
+				if(n == 0) return;
+
+				// 最初のひとつ
+				points0 = input(br);
+				//printPoints(points0);
+
+				//比較
+				for(int i = 1; i <= n; i++){
+					int pointsi[][] = input(br);
+					//printPoints(points0);
+					if(compare(points0, pointsi)) System.out.println(i);
+				}
+				System.out.println("+++++");
+
+			}
+
+		}catch(Exception e){
+			System.err.println(e);
+		}
+	}
+
+	static boolean compare(int points1[][], int points2[][]){
+		return compareAsce(points1, points2); // ||  compareDsce(points1, points2);
+	}
+
+	static boolean compareAsce(int points1[][], int points2[][]){
+		return compare0(points1, points2); // || compare90(points1, points2) || compare180(points1, points2);
+	}
+
+	static boolean compareDsce(int points1[][], int points2[][]){
+		// 逆向きにする
+		int points2_reverse[][] = new int[points2.length][2];
+		int originx = points2[points2.length - 1][0];
+		int originy = points2[points2.length - 1][1];
+		points2_reverse[0][0] = 0;
+		points2_reverse[0][1] = 0;
+		for(int i = 1; i < points2.length; i++){
+			points2_reverse[i][0] = points2[points2.length - 1 - i][0] - originx;
+			points2_reverse[i][1] = points2[points2.length - 1 - i][1] - originy;
+		}
+		return compareAsce(points1, points2_reverse);
+	}
+
+	static boolean compare0(int points1[][], int points2[][]){
+		/*
+		for(int i = 0; i < points1.length; i++){
+			if(points1[i][0] != points2[i][0] || points1[i][1] != points2[i][1]) return false;
+		}
+		*/
+		return true;
+	}
+
+	static boolean compare90(int points1[][], int points2[][]){
+		for(int i = 0; i < points1.length; i++){
+			if(points1[i][0] != points2[i][1] || points1[i][1] != 0 - points2[i][0]) return false;
+		}
+		return true;
+	}
+
+	static boolean compare180(int points1[][], int points2[][]){
+		for(int i = 0; i < points1.length; i++){
+			if(points1[i][0] != 0 - points2[i][0] || points1[i][1] != 0 - points2[i][1]) return false;
+		}
+		return true;
+	}
+
+	static boolean compare270(int points1[][], int points2[][]){
+		for(int i = 0; i < points1.length; i++){
+			if(points1[i][0] != 0 - points2[i][1] || points1[i][1] != points2[i][0]) return false;
+		}
+		return true;
+	}
+
+	static int[][] input(BufferedReader br) throws Exception{
+		int m = Integer.parseInt(br.readLine());
+		int points[][] = new int[m][2];
+
+		// 原点を0に
+		String strs[] = br.readLine().split(" ");
+		int originx = Integer.parseInt(strs[0]);
+		int originy = Integer.parseInt(strs[1]);
+		//System.out.println("原点: (" + originx + ", " + originy + ")");
+		points[0][0] = 0;
+		points[0][1] = 0;
+
+		for(int i = 1; i < m; i++){
+			strs = br.readLine().split(" ");
+			points[i][0] = Integer.parseInt(strs[0]) - originx;
+			points[i][1] = Integer.parseInt(strs[1]) - originy;
+		}
+		return points;
+	}
+
+	static void printPoints(int points[][]){
+		for(int i = 0; i < points.length; i++){
+			System.out.print("(" + points[i][0] + ", " + points[i][1] + ")\t");
+		}
+		System.out.println();
+	}
+}

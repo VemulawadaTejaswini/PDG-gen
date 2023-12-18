@@ -1,0 +1,18 @@
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] color = new int[9];
+		int ans = 0;
+		for(int i = 0; i < n; i++) {
+			int a = sc.nextInt();
+			color[Math.min(a/400, 8)]++;
+		}
+		for(int i = 0; i < 8; i++) {
+			if(color[i] > 0) ans++;
+		}
+		System.out.printf("%d %d", ans, ans+color[8]);
+		sc.close();
+	}
+}

@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+  Scanner scan = new Scanner(System.in);
+  int a = scan.nextInt();
+  String s = scan.next();
+  
+  if (a < 3200) {
+    System.out.println("red");
+  } else { 
+    System.out.println(a);
+    System.out.println("pink");
+  }
+}

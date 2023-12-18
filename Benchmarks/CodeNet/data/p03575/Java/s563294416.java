@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class Main {
+
+	static int n;
+	static int m;
+	static int a[], b[];
+	static boolean visited[];
+	static boolean graph[][];
+
+	static void DFS(int v) {
+		visited[v] = true;
+		for (int v2 = 0; v2 < n; v2++) {
+			if (graph[v][v2] == false)
+				continue;
+			if (visited[v2] == true)
+				continue;
+			DFS(v2);
+		}
+		return;
+	}
+
+	public static void main(String[] args) {
+ｓ		int count = 0;
+		try (Scanner sc = new Scanner(System.in)) {
+			n = sc.nextInt();
+			m = sc.nextInt();
+			visited = new boolean[n];
+			graph = new boolean[n][n];
+			a = new int[m];
+			b = new int[m];
+
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					graph[i][j] = false;
+				}
+			}
+
+			for (int i = 0; i < m; i++) {
+				a[i] = sc.nextInt() - 1;
+				b[i] = sc.nextInt() - 1;
+				graph[a[i]][b[i]] = graph[b[i]][a[i]] = true;
+			}
+			sc.close();
+		}
+		
+		for (int i = 0; i < m; i++) {
+			graph[a[i]][b[i]] = graph[b[i]][a[i]] = false;
+			for (int j = 0; j < n; j++) {
+				visited[j] = false;
+			}
+			DFS(0);
+			boolean eval = true;
+			for (int j = 0; j < n; j++) {
+				if (visited[j] == false) {
+					eval = false;
+					break;
+				}
+			}
+			if (!eval) {
+				count++;
+			}
+			graph[a[i]][b[i]] = graph[b[i]][a[i]] = true;
+		}
+		System.out.println(count);
+	}
+}

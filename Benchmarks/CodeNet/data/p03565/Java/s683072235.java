@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String S = sc.nextLine();
+		char[] T = sc.nextLine().toCharArray();
+		sc.close();
+		String result = "UNRESTORABLE";
+		StringBuilder sb = new StringBuilder();
+		int indexS = 0;
+		if (T.length <= S.length()) {
+			for (int i = 0; i < T.length; i++) {
+				indexS = S.indexOf(T[i]);
+				if (S.length() - (indexS + 1) >= (T.length - (i + 1))
+						&& indexS >= i) {
+					boolean isTarget = true;
+					int count = indexS;
+					for (int j = i; j < T.length; j++) {
+						if (S.charAt(count) != T[j] && S.charAt(count) != '?') {
+							isTarget = false;
+							break;
+						}
+						count++;
+					}
+					if (isTarget) {
+						count = indexS - i;
+						for (int j = 0; j < i; j++) {
+							if (S.charAt(count) != T[j] && S.charAt(count) != '?') {
+								isTarget = false;
+								break;
+							}
+						}
+						count++;
+					} else {
+						continue;
+					}
+					
+					if (isTarget) {
+						for (int k = 0; k < S.length(); k++) {
+							if (k == indexS) {
+								sb.append(T);
+								k += T.length - 1;
+							} else if (S.charAt(k) == '?') {
+								sb.append('a');
+							} else {
+								sb.append(S.charAt(k));
+							}
+						}
+						result = sb.toString();
+						break;
+					}
+				}
+			}
+		}
+		System.out.println(result);
+	}
+}

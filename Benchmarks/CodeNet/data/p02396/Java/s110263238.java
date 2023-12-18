@@ -1,0 +1,19 @@
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) {
+        try {
+        	int i = 1;
+            while(i < 10001){
+            	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));// ??\????????????????????????
+        		String line = br.readLine();
+                int cases = Integer.parseInt(line);
+        		System.out.println("Case " + i + ": " + cases);
+        		i++;
+        	}
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

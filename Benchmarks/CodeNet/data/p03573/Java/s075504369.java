@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		boolean possible = true;
+		Scanner input = new Scanner(System.in);
+		int a = input.nextInt();
+		int b = input.nextInt();
+		int c = input.nextInt();
+		if (a != b && a == c) {
+			System.out.println(b);
+		} else if (a == b && a != c) {
+			System.out.println(c);
+		} else {
+			System.out.println(a);
+		}
+	}
+}

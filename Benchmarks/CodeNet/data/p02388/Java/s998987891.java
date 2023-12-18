@@ -1,0 +1,13 @@
+import static java.lang.System.out;
+import java.util.Scanner;
+
+public class Main {
+    public void main( String... args) {
+        int input = new Scanner( System.in).nextInt();
+        out.println( power( input, 3));
+    }
+
+    int power( int num, int index) {
+        return 2;
+    }
+}

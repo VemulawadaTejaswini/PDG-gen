@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		int c = 0;
+		boolean flag = true;
+		if (s.charAt(0) != 'A') {
+			flag = false;
+		}
+		for(int i = 2; i < s.length() - 2; i++) {
+			if(s.charAt(i) == 'C') {
+				c++;
+			}
+			else if (Character.isUpperCase(s.charAt(i))) {
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag && c == 1) {
+			System.out.println("AC");
+		}else {
+			System.out.println("WA");
+		}
+
+	}
+
+}

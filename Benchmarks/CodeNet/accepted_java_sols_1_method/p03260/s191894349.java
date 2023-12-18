@@ -1,0 +1,13 @@
+import java.util.Scanner;
+class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    byte a = sc.nextByte();
+    byte b = sc.nextByte();
+    if(a != 2 && b != 2){
+      System.out.println("Yes");
+    }else{
+      System.out.println("No");
+    }
+  }
+}

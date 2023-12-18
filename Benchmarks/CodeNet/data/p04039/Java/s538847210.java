@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Printer pr = new Printer(System.out);
+
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+
+		boolean[] ng = new boolean[10];
+		for (int i = 0; i < k; i++) {
+			ng[sc.nextInt()] = true;
+		}
+
+		out:
+		for (int i = n; true; i++) {
+			int tmp = i;
+			while (tmp > 0) {
+				if (ng[tmp % 10]) {
+					continue out;
+				}
+				tmp /= 10;
+			}
+
+			pr.println(i);
+			break;
+		}
+
+		pr.close();
+		sc.close();
+	}
+
+	private static class Printer extends PrintWriter {
+		Printer(PrintStream out) {
+			super(out);
+		}
+	}
+}

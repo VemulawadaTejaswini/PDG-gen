@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int x = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		sc.close();
+		int xa = a - x;
+		int xb = b - x;
+		if (xa < 0) {
+			xa = -xa;
+		}
+		if (xb < 0) {
+			xb = -xb;
+		}
+		if (xa < xb) {
+			System.out.println("A");
+		} else {
+			System.out.println("B");
+		}
+	}
+}

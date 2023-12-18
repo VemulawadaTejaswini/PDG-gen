@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        char[] a = in.next().toCharArray();
+        int l = a.length;
+        for (int i = 0; i < l; ++i) {
+            if (a[i] == 'B') {
+                for (int j = i; j >= 0; --j) {
+                    if (a[j] != 'B' && a[j] != '.') {
+                        a[j] = '.';
+                        break;
+                    }
+                }
+            }
+        }
+        for (char x : a) {
+            if (Character.isDigit(x)) System.out.print(x);
+        }
+    }
+}

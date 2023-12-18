@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		int result;
+		int a, b;
+		Scanner scanner = new Scanner(System.in);
+		a = scanner.nextInt();
+		b = scanner.nextInt();
+		scanner.close();
+		result = (a + b)%24;
+		System.out.print(result);
+	}
+
+}

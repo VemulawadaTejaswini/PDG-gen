@@ -1,0 +1,19 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		// 整数の入力
+		int a = sc.nextInt();
+      	int n = 0;
+      	for (i=0; i<51; i++) {
+          int x = 10^(50-i);
+          n += a/x;
+          a = a%x;
+        }
+		// 出力
+      	if (n%9 == 0) {
+			System.out.println("Yes");
+		} else {
+          	System.out.println("No");
+        }
+}

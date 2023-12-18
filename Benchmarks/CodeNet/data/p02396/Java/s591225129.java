@@ -1,0 +1,15 @@
+import java.util.Scanner;
+   
+class Main{
+    public static void main(String[] args){
+        Scanner stdIn = new Scanner(System.in);
+        int s;
+        int i = 0;
+        do{
+            s = stdIn.nextInt();
+            if(s == 0) return;
+            else{
+                System.out.println("Case " +(i+1)+ ": " +s);
+        }while(s!=0);
+    }
+}

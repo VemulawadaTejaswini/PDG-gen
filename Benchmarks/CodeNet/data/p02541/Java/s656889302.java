@@ -1,0 +1,21 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		 Scanner sc =new Scanner (System.in);
+        long k=sc.nextLong();
+        long a=0;
+        long i=1;
+        for(i=1;i<k;i++)
+        {
+            a=a+i;
+            // System.out.println(a);
+            if(a%k==0)
+            {
+                // System.out.println(a);
+                break;
+            }
+        }
+        System.out.println(i);
+	}
+}

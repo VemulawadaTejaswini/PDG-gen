@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // write your code here
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        for (int i = 0; i < m; i++) {
+            n -= sc.nextInt();
+        }
+
+        System.out.println(Math.max(n, - 1));
+    }
+}

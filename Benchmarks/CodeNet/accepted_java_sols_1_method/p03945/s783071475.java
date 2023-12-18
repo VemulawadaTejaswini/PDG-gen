@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String S = sc.nextLine();
+		int count = 0;
+		int leng = S.length();
+		char N[] = new char[leng];
+		
+		for (int i = 0; i< leng; i++){
+			N[i]= S.charAt(i);
+		}
+		
+		for(int i=0; i<(leng-1); i++){
+			char n = N[i+1];
+			if(N[i+1]!=N[i]){
+				count++;
+			}
+		}
+		
+		System.out.println(count);
+			
+	}
+}

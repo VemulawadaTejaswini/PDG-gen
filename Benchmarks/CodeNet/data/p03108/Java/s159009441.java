@@ -1,0 +1,95 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Main main = new Main();
+		main.solve();
+	}
+
+	void solve() {
+		Scanner sc = new Scanner(System.in);
+		int n = Integer.parseInt(sc.next());
+		int m = Integer.parseInt(sc.next());
+		int[] A = new int[m];
+		int[] B = new int[m];
+		//int[] hashi = new int [n+1];//各島にある橋の数
+		//int[] hashiKobun = new int [n+1];//各島へいける数
+		long[] badP = new long[m+1];//逆順 不便度
+
+		for(int i=0;i<m;i++) {
+			A[i] = Integer.parseInt(sc.next())-1;
+			B[i] = Integer.parseInt(sc.next())-1;
+		}
+		sc.close();
+		if(n==1) {System.out.println(1);return;}
+
+		UnionFind uf = new UnionFind(n);
+		badP[m]=n*(n-1)/2;
+
+        for (int i = m - 1; i >= 1; i--) {
+            if (uf.same(A[i], B[i])) {
+                badP[i] = badP[i+1];
+            } else {
+                int sx = uf.size(A[i]);
+                int sy = uf.size(B[i]);
+                uf.union(A[i], B[i]);
+                badP[i] = badP[i+1] - sx * sy;
+            }
+        }
+		for(int i=1;i<=m;i++)System.out.println(badP[i]);
+	}
+
+    class UnionFind {
+        @SuppressWarnings("unused")
+		private int n, t;
+        private int[] parent, rank, size;
+
+        public UnionFind(int n) {
+            this.n = n;
+            this.parent = new int[n];
+            this.rank = new int[n];
+            this.size = new int[n];
+            Arrays.fill(rank, 1);
+            Arrays.fill(size, 1);
+            for (int i = 0; i < n; i++) parent[i] = i;
+        }
+
+        public void union(int x, int y) {
+            t++;
+            int _x = find(x);
+            int _y = find(y);
+
+            if (_x > _y) {
+                parent[_y] = _x;
+                size[_y] += size[_x];
+                size[_x] = size[_y];
+            } else if (_x < _y) {
+                parent[_x] = _y;
+                size[_x] += size[_y];
+                size[_y] = size[_x];
+            } else {
+                parent[_y] = _x;
+                rank[_y]++;
+                size[_x] += size[_y];
+                size[_y] = size[_x];
+            }
+        }
+
+        public int find(int x) {
+            if (x != parent[x]) {
+                parent[x] = find(parent[x]);
+            }
+            return parent[x];
+        }
+
+        public int size(int x) {
+            return size[find(x)];
+        }
+
+        public boolean same(int x, int y) {
+            return find(x) == find(y);
+        }
+    }
+}

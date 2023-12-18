@@ -1,0 +1,12 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args) {
+	Scanner scan = new Scanner(System.in);
+	String a = scan.next();
+	int x = Integer.parseInt(a);
+	if (x == 1 || x == 0) {
+	    System.out.println(x);
+	}
+	System.out.println(x*x*x);
+    }
+}

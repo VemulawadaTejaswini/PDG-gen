@@ -1,0 +1,19 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int[] total = new int[3];
+
+		total[0] = sc.nextInt();
+		total[1] = sc.nextInt();
+		total[2] = sc.nextInt();
+
+		sc.close();
+
+		Arrays.sort(total);
+
+		System.out.println(total[0] + total[1]);
+	}
+}

@@ -1,0 +1,21 @@
+import java.util.*;
+import java.lang.*;
+public class Main{
+	  public static void main(String args[])
+	  {
+	    Scanner sc=new Scanner(System.in);
+	    int K=sc.nextInt();
+        String S=sc.nextLine();
+	    if(S.length()<=K1)
+	    {
+	      System.out.println("S");
+	    }
+	    else
+	    {
+	      String str=S.substring(0,K1);
+	      str=str+"...";
+	      System.out.println(" "+str);
+	    }
+	  }
+	}
+

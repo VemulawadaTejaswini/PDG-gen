@@ -1,0 +1,93 @@
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) {
+        FastReader s = new FastReader();
+        int T = s.nextInt();
+        String s1;
+        int ac,wa,tle,re;
+        ac=tle=re=wa=0;
+        while (T-- > 0) {
+            s1=s.next();
+
+            if(s1.equals("AC"))
+                ac++;
+            else if(s1.equals("WA"))
+                wa++;
+            else if(s1.equals("RE"))
+                re++;
+            else
+                tle++;
+        }
+        System.out.println("AC x "+ac);
+        System.out.println("WA x "+wa);
+        System.out.println("TLE x "+tle);
+        System.out.println("RE x "+re);
+
+    }
+
+    private static boolean isPrime(int n) {
+        if (n == 2)
+            return true;
+        else if ((n % 2 == 0 && n > 2) || n < 2)
+            return false;
+        else {
+            for (int i = 3; i <= (int) Math.sqrt(n); i += 2) {
+                if (n % i == 0)
+                    return false;
+            }
+            return true;
+        }
+
+
+    }
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new
+                    InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+
+}

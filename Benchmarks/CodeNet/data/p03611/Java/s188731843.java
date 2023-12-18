@@ -1,0 +1,28 @@
+import java.util.*;
+import static java.lang.System.*;
+
+class Main {
+  public static final int MOD = 1000000007;
+  public static final int INF = 1000000000;
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(in);
+    int N = sc.nextInt();
+    int count[] = new int[100010];
+    Arrays.fill(count, 0);
+    for(int i=0; i<N; i++){
+      int a = sc.nextInt();
+      count[a]++;
+    }
+    int ans = 0;
+    for(int i=0; i<count.length-2; i++){
+      int tmp = count[i] + count[i+1] + count[i+2];
+      ans = Math.max(ans, tmp);
+    }
+    out.println(ans);
+  }
+
+  public static int gcd(int a, int b){
+    if(b == 0) return a;
+    return gcd(b, a%b);
+  }
+}

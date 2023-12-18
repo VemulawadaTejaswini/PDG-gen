@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		long n=sc.nextInt();
+		long m=sc.nextInt();
+		long count=0;
+		count+=n;
+		m-=2*n;
+		count+=m/4;
+		System.out.println(count);
+	}
+}

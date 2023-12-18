@@ -1,0 +1,25 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int[] candy = new int[3];
+		int a=sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		candy[0]=a;
+		candy[1]=b;
+		candy[2]=c;
+		Arrays.sort(candy);
+		if (candy[2]==candy[0]+candy[1]){
+			System.out.println("Yes");
+		}
+		else{
+			System.out.println("No");
+		}
+	}
+
+}

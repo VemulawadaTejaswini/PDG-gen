@@ -1,0 +1,19 @@
+
+import java.io.*;
+
+class Main {
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader input  = new BufferedReader(new InputStreamReader(System.in));
+		String str = input.readLine();
+		
+		int x=Integer.parseInt(str);
+		int i=1;
+		while (x != 0) { 
+				System.out.println("Case "+ i + ": " + str);
+				i++;
+		}
+		
+	}
+
+}

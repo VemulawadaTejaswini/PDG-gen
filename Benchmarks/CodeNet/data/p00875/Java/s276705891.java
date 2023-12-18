@@ -1,0 +1,157 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.*;
+
+
+
+public class Main {
+	static final int INF = 2 << 28;
+	static final long INF_L = 2L << 60;
+	static final int  MOD = 1000000007;
+	static final long MOD_L = 1000000007L;
+	static final int[] vx_4 = {1,0,-1,0};
+	static final int[] vy_4 = {0,-1,0,1};
+	static final int[] vx_5 = {1,0,-1,0,0};
+	static final int[] vy_5 = {0,1,0,-1,0};
+	static final int[] vx_8 = {1,1,1,0,0,-1,-1,-1};
+	static final int[] vy_8 = {1,0,-1,1,-1,1,0,-1};
+	static final int[] vx_9 = {1,1,1,0,0,0,-1,-1,-1};
+	static final int[] vy_9 = {1,0,-1,1,0,-1,1,0,-1};
+
+	public static void main(String[] args) {	
+		//FastScanner sc = new FastScanner();
+		Scanner sc = new Scanner(System.in);
+		PrintWriter out = new PrintWriter(System.out);
+		while(true) {
+			int n = sc.nextInt();
+			if(n == 0) break;
+			String[] a = new String[n];
+			String[] b = new String[n];
+			for(int i = 0; i < n; i++) {
+				a[i] = sc.next();
+				b[i] = sc.next();
+			}
+			String g = sc.next();
+			String d = sc.next();
+			
+			int min = dfs(a,b,g,d,0);
+			if(min == INF) min = -1;
+			System.out.println(min);
+		}
+	}
+	static int dfs(String[] a, String[] b, String g, String d, int cost) {
+		if(g.length() > d.length()) return INF;
+		if(g.length() == d.length() && g.equals(d)) return cost;
+		int ret = INF;
+		for(int i = 0; i < a.length; i++) {
+			StringBuffer next = new StringBuffer();
+			StringBuffer tmp  = new StringBuffer(g);
+			boolean ok = false;
+			while(tmp.length() != 0) {
+				if(tmp.length() >= a[i].length() && tmp.substring(0, a[i].length()).equals(a[i])) {
+					next.append(b[i]);
+					tmp.delete(0, a[i].length());
+					ok = true;
+				}
+				else {
+					next.append(tmp.substring(0, 1));
+					tmp.delete(0, 1);
+				}
+			}
+			if(ok) ret = Math.min(dfs(a,b,next.toString(),d,cost+1),ret);
+		}
+		return ret;
+		
+	}
+
+}
+
+
+
+
+
+class FastScanner {
+    private final InputStream in = System.in;
+    private final byte[] buffer = new byte[1024];
+    private int ptr = 0;
+    private int buflen = 0;
+    private boolean hasNextByte() {
+        if (ptr < buflen) {
+            return true;
+        }else{
+            ptr = 0;
+            try {
+                buflen = in.read(buffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (buflen <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private int readByte() { if (hasNextByte()) return buffer[ptr++]; else return -1;}
+    private static boolean isPrintableChar(int c) { return 33 <= c && c <= 126;}
+    private void skipUnprintable() { while(hasNextByte() && !isPrintableChar(buffer[ptr])) ptr++;}
+    public boolean hasNext() { skipUnprintable(); return hasNextByte();}
+    public String next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        StringBuilder sb = new StringBuilder();
+        int b = readByte();
+        while(isPrintableChar(b)) {
+            sb.appendCodePoint(b);
+            b = readByte();
+        }
+        return sb.toString();
+    }
+    public long nextLong() {
+        if (!hasNext()) throw new NoSuchElementException();
+        long n = 0;
+        boolean minus = false;
+        int b = readByte();
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+        if (b < '0' || '9' < b) {
+            throw new NumberFormatException();
+        }
+        while(true){
+            if ('0' <= b && b <= '9') {
+                n *= 10;
+                n += b - '0';
+            }else if(b == -1 || !isPrintableChar(b)){
+                return minus ? -n : n;
+            }else{
+                throw new NumberFormatException();
+            }
+            b = readByte();
+        }
+    }
+    public int nextInt() {
+    	if (!hasNext()) throw new NoSuchElementException();
+        int n = 0;
+        boolean minus = false;
+        int b = readByte();
+        if (b == '-') {
+            minus = true;
+            b = readByte();
+        }
+        if (b < '0' || '9' < b) {
+            throw new NumberFormatException();
+        }
+        while(true){
+            if ('0' <= b && b <= '9') {
+                n *= 10;
+                n += b - '0';
+            }else if(b == -1 || !isPrintableChar(b)){
+                return minus ? -n : n;
+            }else{
+                throw new NumberFormatException();
+            }
+            b = readByte();
+        }
+    }
+}

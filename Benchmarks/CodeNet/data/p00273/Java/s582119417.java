@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Main{
+        public static void main(String[] args){
+	        Scanner sc = new Scanner(System.in);
+	        int N;
+	        int[] x = new int[366];//??\??´????????????
+	        int[] y = new int[366];//?????????????????????
+	        int[] b = new int[366];//??\??´???????????°
+	        int[] p = new int[366];//????????????????????°
+		N = sc.nextInt();
+		for(int i = N; i>0; i--){
+			x[i] = sc.nextInt();
+			y[i] = sc.nextInt();
+			b[i] = sc.nextInt();
+			p[i] = sc.nextInt();
+		}
+		for(int j = N; j>0; j--){
+			if(b[j] >= 5 && p[j] >= 2){
+				System.out.printf("%.0f %n",(x[j]*b[j]+y[j]*p[j])*0.8);
+			}else{
+				System.out.printf("%d %n",(x[j]*b[j]+y[j]*p[j]));
+			}
+		}
+	}
+}

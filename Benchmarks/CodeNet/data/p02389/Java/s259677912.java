@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String[] args)
+    {
+               
+        int a = scan.nextInt(3);
+
+        int b = scan.nextInt(5);
+        
+
+        System.out.println(a * b);
+
+        System.out.println(a * 2 + b * 2);
+    }  
+}
+

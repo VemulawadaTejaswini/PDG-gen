@@ -1,0 +1,32 @@
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner cin = new Scanner(System.in);
+        int n = cin.nextInt();
+        BigInteger[] a = new BigInteger[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = BigInteger.valueOf(cin.nextLong());
+        }
+        BigInteger[] summaries = new BigInteger[n];
+        summaries[0] = a[0];
+        long count = a[0].equals(BigInteger.ZERO) ? 1L : 0L;
+        for (int i = 1; i < n; i++) {
+            summaries[i] = summaries[i - 1].add(a[i]);
+            if (summaries[i].equals(BigInteger.ZERO)) count++;
+        }
+        Arrays.sort(summaries);
+        for (int i = 0, j = 1; i < n - 1; i = j) {
+            int sameNumCount = 1;
+            BigInteger si = summaries[i];
+            for (j = i + 1; j < n && summaries[j].equals(si); j++) {
+                sameNumCount++;
+            }
+            count += sameNumCount * (sameNumCount - 1) / 2;
+        }
+        System.out.println(count);
+    }
+}

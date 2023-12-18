@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		String N = new Scanner(System.in).next();
+		String[] eachNum = N.split("");
+
+		if( eachNum[0].equals(eachNum[2]) ) {
+			System.out.println("Yes");
+		} else {
+			System.out.println("No");
+		}
+	}
+}

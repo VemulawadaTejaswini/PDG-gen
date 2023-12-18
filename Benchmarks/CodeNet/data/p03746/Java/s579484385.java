@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		int[] A = new int[M];
+		int[] B = new int[M];
+		int[] count = new int[N+1];
+		for(int i=0; i<=N; i++){
+			count[i] = 0;
+		}
+		for(int i=0; i<M; i++){
+			A[i]  = sc.nextInt();
+			B[i]  = sc.nextInt();
+			count[A[i]]++;
+			count[B[i]]++;
+		}
+		int[][] dp = new int[N+1][];
+		for(int i=0; i<=N; i++){
+			dp[i] = new int[count[i]];			
+		}
+		for(int i=0; i<=N; i++){
+			count[i] = 0;
+		}
+		for(int i=0; i<M; i++){
+			dp[A[i]][count[A[i]]] = B[i];
+			dp[B[i]][count[B[i]]] = A[i];
+			count[A[i]]++;
+			count[B[i]]++;
+		}
+
+		int start = N+1;
+		for(int i=1; i<=N; i++){
+			if(count[i]==1){
+				start = i;
+				break;
+			}
+		}
+		if(start==N+1){
+			for(int i=1; i<=N; i++){
+				if(count[i]>=2){
+					start = i;
+					break;
+				}
+			}
+		}
+
+		int[] ans = new int[N];
+		ans[0] = start;
+		ans[1] = dp[ans[0]][0];
+		int min = 0;
+		int max = 1;
+		int true_false = 1;
+		while(max!=N-1){
+			if(count[ans[max]]==1){
+				break;
+			}
+			for(int i=0; i<count[ans[max]]; i++){
+				true_false = 1;
+				for(int j=max; j>=min; j--){
+					if(dp[ans[max]][i]==ans[j]){
+						true_false = -1;
+						break;
+					}
+				}
+				if(true_false==1){
+					ans[max+1] = dp[ans[max]][i];
+					max++;
+					break;
+				}
+			}
+			if(true_false==-1){
+				break;
+			}
+		}
+
+		System.out.println(max-min+1);
+		for(int j=min; j<max; j++){
+			System.out.print(ans[j] + " ");
+		}
+		System.out.print(ans[max]);
+
+	}
+
+}

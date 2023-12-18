@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int t=s.nextInt(),n,x,y,u,d;t-->0;System.out.println(u+" "+-d))for(u=d=0,n=s.nextInt(),x=s.nextInt();n-->1;d=Math.min(d,y-x),x=y)u=Math.max(u,(y=s.nextInt())-x);}}

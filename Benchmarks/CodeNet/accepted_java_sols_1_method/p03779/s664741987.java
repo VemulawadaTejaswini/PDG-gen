@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int x = Math.abs(scanner.nextInt());
+		int t = 0;
+		long sum = 0;
+		while(true){
+			sum += t;
+			if(sum >= x){
+				System.out.println(t);
+				break;
+			}
+			t++;
+		}
+
+	}
+
+}

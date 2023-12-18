@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){int x,y,z,w;x=y=z=0;for(Scanner s=new Scanner(System.in).useDelimiter("[\\s,]");s.hasNext();++z,y+=w)x+=s.nextInt()*(w=s.nextInt());System.out.println(x+"\n"+Math.round(y/(float)z));}}

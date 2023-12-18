@@ -1,0 +1,26 @@
+
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		ArrayList<Integer> cnd = new ArrayList();
+		for(int i = 1 ;i<=b;i++){
+			int tmp = a*i%(b);
+			if(cnd.contains(tmp) == false){
+				cnd.add(tmp);
+			}
+		}
+		if(cnd.contains(c)){
+			System.out.println("YES");
+		}
+		else{
+			System.out.println("NO");
+		}
+		
+	}
+
+}

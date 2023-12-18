@@ -1,0 +1,26 @@
+import java.lang.reflect.Array;
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) 
+	{
+		Scanner in=new Scanner(System.in);
+		int t=in.nextInt();
+		while(t-->0)
+		{
+			int n=in.nextInt();//家の数
+			int k=in.nextInt();//発電機
+			int a[]=new int[n];//家の位置
+			int cnt=0;
+			for(int i=0;i<n;i++)
+				a[i]=in.nextInt();
+			int dis[]=new int[n-1];
+			for(int i=0;i<n-1;i++)
+				dis[i]=a[i+1]-a[i];
+			Arrays.sort(dis);
+			for(int i=0;i<dis.length-k+1;i++)
+				cnt+=dis[i];
+			System.out.println(cnt);
+		}
+	}
+}

@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            int N = readInt(reader);
+            int[] A = readIntArray(reader);
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < N; i++) {
+                int s = 0;
+                for (int j = 0; j < N; j++) {
+                    int a = A[(i + j) % N];
+                    s += (j % 2 == 0) ? a : -a;
+                }
+                sb.append(s).append(" ");
+            }
+
+            sb.delete(sb.length() - 1, sb.length());
+            System.out.println(sb.toString());
+        }
+    }
+
+    public static int readInt(BufferedReader reader) throws Exception {
+        return Integer.parseInt(reader.readLine());
+    }
+
+    public static int[] readIntArray(BufferedReader reader) throws Exception {
+        String[] str = reader.readLine().split(" ");
+        int[] array = new int[str.length];
+        for (int i = 0; i < str.length; i++) {
+            array[i] = Integer.parseInt(str[i]);
+        }
+        return array;
+    }
+
+}

@@ -1,0 +1,24 @@
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int N = Integer.parseInt(scan.next());
+	int L = Integer.parseInt(scan.next());
+	String[] S = new String[N];
+	for (int i = 0; i < N; i++) {
+	    S[i] = scan.next();
+	}
+
+	Arrays.sort(S);
+	for (int i = 0; i < N; i++) {
+	    System.out.print(S[i]);
+	}
+	System.out.println();
+	scan.close();
+    }
+}

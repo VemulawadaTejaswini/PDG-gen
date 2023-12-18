@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		switch(N%10) {
+			case 0:
+				System.out.println("pon");
+				break;
+			case 1:
+				System.out.println("pon");
+				break;
+			case 3:
+				System.out.println("bon");
+				break;
+			case 6:
+				System.out.println("pon");
+				break;
+			case 8:
+				System.out.println("pon");
+				break;
+			default:
+				System.out.println("hon");
+				break;
+		}
+	}
+
+}

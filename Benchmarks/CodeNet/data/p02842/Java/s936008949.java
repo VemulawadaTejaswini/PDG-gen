@@ -1,0 +1,20 @@
+import java.util.Scanner;
+ 
+
+public class Main {
+	
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        double x = Math.ceil(n / 1.08);
+        if (Math.floor(x*1.08) == n) {
+        	System.out.println((int)x);
+        } else {
+        	System.out.println(":(");
+        }
+
+        sc.close();
+	}
+	
+}

@@ -1,0 +1,19 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		long N = sc.nextLong();
+
+		long[] a = new long[5];
+		long min = 1000000000;
+		for (int i = 0; i < 5; i++) {
+			a[i] = sc.nextLong();
+		}
+		Arrays.sort(a);
+		System.out.println(Math.ceil((double)N/a[0])+4);
+	}
+}

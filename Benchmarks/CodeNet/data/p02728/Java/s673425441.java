@@ -1,0 +1,281 @@
+import java.util.*;
+import java.io.*;
+
+class Main{
+  static class Scnr{
+    private final InputStream ins;
+    private final byte[] buffer = new byte[1024];
+    private int ptr = 0;
+    private int buflen = 0;
+    Scnr(){
+      this(System.in);
+    }
+    Scnr(InputStream in){
+      ins = in;
+    }
+    private boolean hasNextByte(){
+      if(ptr<buflen){
+        return true;
+      }else{
+        ptr = 0;
+        try{
+          buflen = ins.read(buffer);
+        }catch(IOException e){
+          e.printStackTrace();
+        }
+        if(buflen<=0){
+          return false;
+        }
+      }
+      return true;
+    }
+    private int readByte(){
+      if(hasNextByte()){
+        return buffer[ptr++];
+      }else{
+        return -1;
+      }
+    }
+    private static boolean isPrintableChar(int c){
+      return 33<=c&&c<=126;
+    }
+    public boolean hasNext(){
+      while(hasNextByte()&&!isPrintableChar(buffer[ptr])){
+        ptr++;
+      }
+      return hasNextByte();
+    }
+    public long nextLong(){
+      if(!hasNext()){
+        throw new NoSuchElementException();
+      }
+      long n = 0;
+      boolean minus = false;
+      int b = readByte();
+      if(b=='-'){
+        minus=true;
+        b=readByte();
+      }
+      if(b<'0'||'9'<b){
+        throw new NumberFormatException();
+      }
+      while(true){
+        if('0'<=b&&b<='9'){
+          n*=10;
+          n+=b-'0';
+        }else if(b==-1||!isPrintableChar(b)){
+          return minus?-n:n;
+        }else{
+          throw new NumberFormatException();
+        }
+        b=readByte();
+      }
+    }
+    public int nextInt(){
+      long nl=nextLong();
+      if(nl<Integer.MIN_VALUE||Integer.MAX_VALUE<nl){
+        throw new NumberFormatException();
+      }
+      return (int) nl;
+    }
+  }
+  static class NCK{
+    int max;
+    long mod;
+    long[] fac;
+    long[] finv;
+    long[] inv;
+    NCK(int max,long mod){
+      this.max=max;
+      this.mod=mod;
+      pre();
+    }
+    private void pre(){
+      fac=new long[max];
+      finv=new long[max];
+      inv=new long[max];
+      fac[0]=fac[1]=1;
+      finv[0]=finv[1]=1;
+      inv[1]=1;
+      for(int i=2;i<max;i++){
+        fac[i]=fac[i-1]*i%mod;
+        inv[i]=mod-inv[(int)(mod%i)]*(mod/i)%mod;
+        finv[i]=finv[i-1]*inv[i]%mod;
+      }
+    }
+    long nCk(int n,int k){
+      if(n<k){
+        return 0;
+      }
+      if(n<0||k<0){
+        return 0;
+      }
+      return fac[n]*(finv[k]*finv[n-k]%mod)%mod;
+    }
+    long inv(long i){
+      return inv[(int)i];
+    }
+  }
+  static Scnr sc=new Scnr();
+  static PrintWriter out = new PrintWriter(System.out);
+  static long mod=1_000_000_007;
+  static NCK nck;
+  
+  public static void main(String[] args){
+    int n=sc.nextInt();
+    nck=new NCK(n+2,mod);
+    Node[] nodes=new Node[n];
+    for(int i=0;i<n;i++){
+      nodes[i]=new Node(i);
+    }
+    for(int i=0;i<n-1;i++){
+      int a=sc.nextInt()-1;
+      int b=sc.nextInt()-1;
+      Edge e1=new Edge(nodes[a],nodes[b]);
+      Edge e2=new Edge(nodes[b],nodes[a]);
+      e1.inv=e2;
+      e2.inv=e1;
+      nodes[a].add(e1);
+      nodes[b].add(e2);
+    }
+    aaaa(nodes[0],null);
+    for(int i=0;i<n;i++){
+      out.println(nodes[i].ele.pat);
+    }
+    out.flush();
+  }
+  static Ele calc(Edge e){
+    if(e.ele!=null){
+      return e.ele;
+    }
+    Ele res=new Ele();
+    for(Edge ne:e.to.edges){
+      if(ne.to==e.fr){
+        continue;
+      }
+      res.add(calc(ne));
+    }
+    res.st();
+    e.ele=res;
+    return res;
+  }
+  
+  static void aaaa(Node root,Node saki){
+    ListIterator<Edge> lit=root.edges.listIterator();
+    Ele[] fro=new Ele[root.edges.size()];
+    Ele[] bac=new Ele[root.edges.size()];
+    fro[0]=new Ele();
+    for(int i=1;i<fro.length;i++){
+      fro[i]=new Ele(fro[i-1]).add(calc(lit.next()));
+    }
+    root.ele=new Ele(fro[fro.length-1]);
+    root.ele.add(calc(lit.next()));
+    root.ele.st();
+    
+    bac[bac.length-1]=new Ele();
+    for(int i=bac.length-2;i>=0;i--){
+      bac[i]=new Ele(bac[i+1]).add(calc(lit.previous()));
+    }
+    lit.previous();
+    
+    for(int i=0;i<fro.length;i++){
+      fro[i].add(bac[i]);
+      fro[i].st();
+    }
+    
+    for(int i=0;i<fro.length;i++){
+      Edge inv=lit.next().inv;
+      inv.ele=fro[i];
+    }
+    for(Edge e:root.edges){
+      if(e.to==saki){
+        continue;
+      }
+      aaaa(e.to,root);
+    }
+  }
+  
+  static class Node{
+    int idx;
+    List<Edge> edges;
+    Ele ele;
+    Node(int i){
+      idx=i;
+      edges=new LinkedList<>();
+    }
+    void add(Edge e){
+      edges.add(e);
+    }
+    public String toString(){
+      return "("+idx+")";
+    }
+  }
+  static class Edge{
+    Node fr;
+    Node to;
+    Edge inv;
+    Ele ele;
+    Edge(Node fr,Node to){
+      this.fr=fr;
+      this.to=to;
+    }
+    public String toString(){
+      return "("+fr+"->"+to+")";
+    }
+  }
+  static class Ele{
+    long pat;
+    int stp;
+    Ele(){
+      pat=1;
+      stp=0;
+    }
+    Ele(Ele o){
+      this(o.pat,o.stp);
+    }
+    Ele(long p,int s){
+      pat=p;
+      stp=s;
+    }
+    Ele add(Ele o){
+      return add(o.pat,o.stp);
+    }
+    Ele add(long p,int s){
+      pat=(((pat*p)%mod*nck.nCk(stp+s,stp))%mod);
+      stp+=s;
+      return this;
+    }
+    static Ele add(Ele s1,Ele s2){
+      Ele res=new Ele(s1);
+      res.add(s2);
+      return res;
+    }
+    Ele sub(Ele o){
+      return sub(o.pat,o.stp);
+    }
+    Ele sub(long p,int s){
+      pat=((pat*nck.inv(p))%mod*nck.inv(nck.nCk(stp,s))%mod);
+      stp-=s;
+      return this;
+    }
+    static Ele sub(Ele s1,Ele s2){
+      Ele res=new Ele(s1);
+      res.sub(s1);
+      return res;
+    }
+    Ele as(Ele o){
+      return as(o.pat,o.stp);
+    }
+    Ele as(long p,int s){
+      pat=p;stp=s;
+      return this;
+    }
+    Ele st(){
+      stp=stp+1;
+      return this;
+    }
+    public String toString(){
+      return "["+pat+":"+stp+"]";
+    }
+  }
+}

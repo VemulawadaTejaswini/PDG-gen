@@ -1,0 +1,37 @@
+import java.util.*; 
+import java.io.*; 
+
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt(), m = scan.nextInt();
+        int[] num = new int[n];
+        boolean[] found = new boolean[n];
+   
+        for (int i = 0; i < m; i ++){
+            int a = scan.nextInt(), b = scan.nextInt();
+            if (found[a - 1]){
+                if (num[a - 1] != b){
+                    System.out.println("-1");
+                    return;
+                }
+            }
+            else{
+                found[a - 1] = true;
+                num[a - 1] = b;
+            }
+        }
+        if (num[0] == 0 && n != 1 && found[0]){
+            System.out.println("-1");
+            return;
+        }
+        if (num[0] == 0 && n != 1){
+            num[0] = 1;
+        }
+        for (int i : num)
+            System.out.print(i);
+        
+
+    }
+}

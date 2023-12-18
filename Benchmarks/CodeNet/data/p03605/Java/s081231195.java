@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class September_9 {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int first = N%10;
+        int tenth = (N-first)/10;
+        sc.close();
+            
+        if(first == 9 || tenth == 9){
+            System.out.println("Yes");
+        }else{
+            System.out.println("No");
+        }
+    }
+}

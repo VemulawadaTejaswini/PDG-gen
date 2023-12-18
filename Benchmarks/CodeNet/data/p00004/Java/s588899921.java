@@ -1,0 +1,18 @@
+import java.io.*;
+
+public class Main{
+	public static void main(String[] argv) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] line;
+		while((line = br.readLine().split(" ")) != null){
+			int[] f = new int[line.length];
+			for(int i=0; i<line.length; i++){
+				f[i] = Integer.parseInt(line[i]);
+			}
+			double x = (f[4]*f[2]-f[1]*f[5])/(f[0]*f[4]-f[1]*f[3]);
+			double y = (-f[2]*f[3]+f[0]*f[5])/(f[0]*f[4]-f[1]*f[3]);
+			
+			System.out.print(String.format("%.3f %.3f", x, y));
+		}
+	}
+}

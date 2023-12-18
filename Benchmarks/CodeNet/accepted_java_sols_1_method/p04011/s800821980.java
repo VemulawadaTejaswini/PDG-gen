@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        int shuku = 0;
+        if (k > n) {
+            shuku = x * n;
+        } else {
+            shuku = x * k;
+            shuku += (n - k) * y;
+        }
+        System.out.println(shuku);
+    }
+
+}

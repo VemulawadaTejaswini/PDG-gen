@@ -1,0 +1,14 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		Scanner scanner = new Scanner(System.in);
+		String aString = scanner.next();
+		String xString = scanner.next();
+		String cString = scanner.next();
+
+		System.out.println("A" + xString.charAt(0) + "C");
+	}
+}

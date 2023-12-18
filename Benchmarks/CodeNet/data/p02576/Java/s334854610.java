@@ -1,0 +1,1 @@
+import java.util.Scanner;class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);System.out.print((int)Math.ceil(s.nextInt()/s.nextInt())*s.nextInt());}}

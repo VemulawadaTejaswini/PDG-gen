@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        
+        List<Long> list = new ArrayList<Long>();
+        Scanner scan = new Scanner(System.in);
+        long n = (long)scan.nextLong();
+
+        for(int i = 0 ; i < 5; i++) {
+            list.add(scan.nextLong());
+        }
+        long p = 0;
+        long min = Collections.min(list);
+
+        if (min > 1) {
+            p = n / min;
+        } else {
+            p = n;
+        }
+        if (min > n / 2) {
+            p += 1;
+        }
+        System.out.println(5 + p);
+    }
+}

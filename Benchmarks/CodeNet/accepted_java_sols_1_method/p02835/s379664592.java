@@ -1,0 +1,13 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int sum = 0;
+		for (int i = 0; i < 3; i++)
+			sum += in.nextInt();
+		if (sum >= 22)
+			System.out.println("bust");
+		else
+			System.out.println("win");
+	}
+}

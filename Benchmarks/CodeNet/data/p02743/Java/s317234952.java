@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    double a = sc.nextDouble();
+    double b = sc.nextDouble();
+    double c = sc.nextDouble();
+    boolean result = a+b+(2*Math.sqrt(a)*Math.sqrt(b)) < Math.pow(c,2);
+    if(result){
+      System.out.println("Yes");
+    }
+    else{
+      System.out.println("No");
+    }
+  }
+}

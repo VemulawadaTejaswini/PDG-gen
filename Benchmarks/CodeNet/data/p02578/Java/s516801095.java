@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner scan = new Scanner(System.in);
+		
+		long total = 0;
+		
+		int n = scan.nextInt();
+		long[] a = new long[n];
+		
+		long tall = 0;
+		int x = 0;
+		int same = 1;
+		
+		for(int i = 0; i < n; i++) {
+			a[i] = scan.nextLong();
+			
+			if(tall < a[i]) {
+				tall = a[i];
+				x = i;
+			}
+			else if(tall == a[i]) {
+				same++;
+			}
+		}
+		
+		if(same == n) {
+			System.out.print(0);
+			return;
+		}
+		if(x == n-1) {
+			System.out.print(0);
+			return;
+		}
+		
+		while(true) {
+			long big = 0;
+			int index = 0;
+			for(int i = 0; i < n; i++) {
+				if(big < a[i]) {
+					big = a[i];
+					index = i;
+				}
+			}
+			for( int i = index; i < n; i++) {
+				total += big - a[i];
+			}
+			n = index;
+			
+			if( index == 0 && n == 0) {
+				break;
+			}
+		}
+		System.out.print(total);
+	}
+
+}

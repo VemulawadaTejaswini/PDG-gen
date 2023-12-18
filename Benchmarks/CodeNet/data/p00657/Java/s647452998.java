@@ -1,0 +1,26 @@
+import java.util.*;
+public class Main {
+	Scanner in = new Scanner(System.in);
+	public static void main(String[] args) {
+		new Main();
+	}
+	public Main() {
+		while(true){
+			int x = in.nextInt();
+			int y = in.nextInt();
+			if(x==0&&y==0)break;
+			new AOJ1072().doIt(x,y);
+		}
+	}
+
+	class AOJ1072{
+		void doIt(int x,int y){
+			if(x%2!=0||y%2!=0){
+				System.out.println("no");
+			}else{
+				System.out.println("yes");
+			}
+		}
+	}
+
+}

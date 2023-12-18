@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String args[]){
+
+		Scanner cin = new Scanner(System.in);
+		int A = cin.nextInt();
+		int B = cin.nextInt();
+		int C = cin.nextInt();
+		int D = cin.nextInt();
+
+		int result = Math.max(A*B, C*D);
+
+		System.out.println(result);
+	}
+}

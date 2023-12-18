@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+class Main {
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int n = Integer.parseInt((in.nextLine().split(" "))[0]);
+        String[] s = new String[n];
+        for(int i = 0; i < n; i++){
+            s[i] = in.nextLine();
+        }
+        for(int i = 0; i < n * 2; i++){
+            System.out.println(s[i / 2]);
+        }
+        
+    }
+}

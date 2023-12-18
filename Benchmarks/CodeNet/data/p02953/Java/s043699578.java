@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		    Scanner sc = new Scanner(System.in);
+
+		   int n = sc.nextInt();
+		   int[] h = new int[n];
+		   int flg = 0;
+		   for(int i=0;i<n;i++) {
+			   h[i] = sc.nextInt();
+		   }
+		   for(int i=0;i<n;i++) {
+			   if(i == n-1) {
+				   flg = 0;
+				   break;
+			   }
+			   if(h[i]-h[i+1]==1) {
+				   if(flg == 2) {
+					   flg = 1;
+					   break;
+				   }else {
+					   h[i] -= 1;
+					   flg = 2;
+				   }
+			   }else if(h[i]-h[i+1]>=2) {
+				   flg = 1;
+				   break;
+			   }else {
+				   flg = 0;
+			   }
+		   }
+		   if(flg == 1) {
+			   System.out.println("No");
+		   }else {
+			   System.out.println("Yes");
+		   }
+
+		    sc.close();
+	}
+}

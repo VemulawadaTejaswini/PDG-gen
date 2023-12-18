@@ -1,0 +1,10 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		String s=sc.next();
+		int x=s.indexOf("A");
+		int y=s.lastIndexOf("Z");
+		System.out.println(y-x+1);
+	}
+}

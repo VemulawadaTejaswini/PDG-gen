@@ -1,0 +1,19 @@
+public class Main {
+	
+
+	public static void main(String args[]) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			int result = 100000;
+			int rishi   = 5;
+			int n  = Integer.parseInt(br.readLine());
+			
+			for(int i = 0; i < n; i++){
+				result = result + (result*rishi/100);
+			}
+			while(result % 10000 != 0){
+				result++;
+			}
+			System.out.println(result);
+	}
+	
+}

@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+
+		// 整数の入力
+		int a = sc.nextInt();//整数の数
+		int cnt = a;
+		
+		List<Integer> list = new ArrayList<>();
+		
+		for (int i = 0; i < a; i++) {
+			list.add(sc.nextInt());
+		}
+		Collections.sort(list);
+		Collections.reverse(list);
+		
+		for (int i = 0; i < a; i++) {
+			int b = list.get(i);
+			for (int j = i + 1; j < a; j++) {
+				int c = list.get(j);
+              				if (b < c) {
+					break;
+				}
+				if (b % c == 0) {
+					cnt--;
+					break;
+				}
+			}
+		}
+		System.out.println(cnt);
+	}
+}

@@ -1,0 +1,39 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void solveTravelingAtCoDeer() throws IOException {
+		int n;
+		int aMin;
+		int aMax;
+		int ai;
+		String line;
+		String[] split;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		line = br.readLine();
+		n = Integer.parseInt(line);
+		line = br.readLine();
+		split = line.split(" ");
+		aMin = Integer.MAX_VALUE;
+		aMax = 0;
+		for (int i = 0; i < n; i++) {
+			ai = Integer.parseInt(split[i]);
+			if (aMin > ai)
+				aMin = ai;
+			if (aMax < ai)
+				aMax = ai;
+		}
+		br.close();
+		System.out.println(aMax - aMin);
+	}
+
+	public static void main(String[] args) {
+		try {
+			solveTravelingAtCoDeer();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

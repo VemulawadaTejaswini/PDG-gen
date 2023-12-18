@@ -1,0 +1,11 @@
+import java.util.*;
+public class Main {
+	    public static void main(String[] args) {
+	        Scanner sc = new Scanner("happy,newyear,enjoy");
+	        String[] a = sc.nextLine().split("");
+	        for(int i = 0; i < a.length; i++){
+	            if(",".equals(a[i])) a[i] = " ";
+	            System.out.print(a[i]);
+	        }
+	    }
+}

@@ -1,0 +1,16 @@
+import java.math.*;
+import java.util.*;
+
+public class Main {
+    static long gcd(long a, long b) {
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long n = sc.nextLong();
+        long k = sc.nextLong();
+        System.out.println(gcd(n,k));
+        }
+    }

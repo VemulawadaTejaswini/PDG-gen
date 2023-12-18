@@ -1,0 +1,36 @@
+import java.util.*;
+ 
+public class Main{
+  
+  public static void main(String[] args){
+   
+    Scanner sc = new Scanner(System.in);
+    
+    int tH = sc.nextInt();
+    int tA = sc.nextInt();
+    int aH = sc.nextInt();
+    int aA = sc.nextInt();
+   
+    int tCount =0;
+    while(tH > 0){ 
+     tH -= aA;
+     tCount++;
+    }
+    System.out.println(tCount);
+      
+    int aCount =0;
+    while(aH > 0){ 
+      aH -= tA;
+      aCount++;
+    }
+    System.out.println(aCount);
+    
+    if(aCount > tCount){
+      System.out.println("No");
+    }else{
+       System.out.println("Yes");
+    }
+   
+  }
+  
+}

@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int s = sc.nextInt();
+        int[] a = new int[n];
+        for (int i = 0 ; i < n ; i++) {
+            a[i] = sc.nextInt();
+
+        }
+
+        int mod = 998244353;
+        int[][] dp = new int[3003][3003];
+        dp[0][0] = 1;
+        for (int i = 0 ; i < n ; i++) {
+            for (int j = 0 ; j <= s ; j++) {
+              dp[i + 1][j] += dp[i][j] % mod;
+              dp[i + 1][j] *= 2 % mod;
+              if (j >= a[i]) {
+                  dp[i + 1][j] += dp[i][j-a[i]] % mod;
+              }
+            }
+        }
+
+        System.out.println(dp[n][s]);
+    }
+
+}

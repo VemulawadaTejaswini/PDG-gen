@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.StringBuilder;
+public class Main {
+	public static void main(String[] args) throws Exception{
+		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		String[] st = sc.readLine().split(" ");
+		int n = Integer.parseInt(st[0]);
+		int m = Integer.parseInt(st[1]);
+		int l = Integer.parseInt(st[2]);
+		int[][] a = new int[n][m];
+		int[][] b = new int[m][l];
+		int t = 0;
+		for(int i = 0;i < n;i++){
+			st = sc.readLine().split(" ");
+			for(int k = 0;k < m;k++){
+				a[i][k] = Integer.parseInt(st[k]);
+			}
+		}
+		for(int i = 0;i < m;i++){
+			st = sc.readLine().split(" ");
+			for(int k = 0;k < l;k++){
+				b[i][k] = Integer.parseInt(st[k]);
+			}
+		}
+		for(int i = 0;i < l;i++){
+			for(int k = 0;k < m;k++){
+				for(int j = 0;j < n;j++){
+					t += a[i][j]*b[j][k];
+				}
+				sb.append(t);
+				t = 0;
+				if(k!=l-1)
+					sb.append(" ");
+			}
+			sb.append("\n");
+		}
+		System.out.print(sb);
+	}
+}

@@ -1,0 +1,153 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main {
+    public static void main(String[] args) {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        FastReader in = new FastReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        GLongestPath solver = new GLongestPath();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class GLongestPath {
+        public void solve(int testNumber, FastReader s, PrintWriter out) {
+            int n = s.nextInt();
+            int m = s.nextInt();
+
+            ArrayList[] list = new ArrayList[n];
+            for (int i = 0; i < m; i++) {
+                int from = s.nextInt() - 1;
+                int to = s.nextInt() - 1;
+                if (list[from] == null) {
+                    list[from] = new ArrayList<Integer>();
+                }
+
+                list[from].add(to);
+            }
+
+//        dfs(n, list);
+//        out.println(dfs1(0, list, -1));
+            int[] in = dfs(n, list);
+            int max = Integer.MIN_VALUE;
+//        out.println(arrays.printArr(in));
+            for (int i = 0; i < n; i++) {
+                max = Math.max(max, in[i]);
+            }
+            out.println(max);
+        }
+
+        private int[] dfs(int n, ArrayList[] list) {
+            int[] in = new int[n];
+            Arrays.fill(in, -1);
+            for (int i = 0; i < n; i++) {
+                if (in[i] == -1) {
+                    dfs1(i, list, -1, in);
+                }
+            }
+            return in;
+        }
+
+        private int dfs1(int curr, ArrayList[] list, int par, int[] in) {
+            ArrayList<Integer> list1 = list[curr];
+            if (list1 == null) {
+                return in[curr] = 0;
+            }
+
+            if (in[curr] != -1) {
+                return in[curr];
+            }
+            int ans = 0;
+            for (int i = 0; i < list1.size(); i++) {
+                int next = list1.get(i);
+                ans = Math.max(1 + dfs1(next, list, curr, in), ans);
+            }
+
+            return in[curr] = ans;
+        }
+
+    }
+
+    static class FastReader {
+        private InputStream stream;
+        private byte[] buf = new byte[1024];
+        private int curChar;
+        private int numChars;
+        private FastReader.SpaceCharFilter filter;
+
+        public FastReader(InputStream stream) {
+            this.stream = stream;
+        }
+
+        public int read() {
+            if (numChars == -1) {
+                throw new InputMismatchException();
+            }
+            if (curChar >= numChars) {
+                curChar = 0;
+                try {
+                    numChars = stream.read(buf);
+                } catch (IOException e) {
+                    throw new InputMismatchException();
+                }
+                if (numChars <= 0) {
+                    return -1;
+                }
+            }
+            return buf[curChar++];
+        }
+
+        public int nextInt() {
+            int c = read();
+            while (isSpaceChar(c)) {
+                c = read();
+            }
+            int sgn = 1;
+            if (c == '-') {
+                sgn = -1;
+                c = read();
+            }
+            int res = 0;
+            do {
+                if (c < '0' || c > '9') {
+                    throw new InputMismatchException();
+                }
+                res *= 10;
+                res += c - '0';
+                c = read();
+            } while (!isSpaceChar(c));
+            return res * sgn;
+        }
+
+        public boolean isSpaceChar(int c) {
+            if (filter != null) {
+                return filter.isSpaceChar(c);
+            }
+            return isWhitespace(c);
+        }
+
+        public static boolean isWhitespace(int c) {
+            return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+        }
+
+        public interface SpaceCharFilter {
+            public boolean isSpaceChar(int ch);
+
+        }
+
+    }
+}
+

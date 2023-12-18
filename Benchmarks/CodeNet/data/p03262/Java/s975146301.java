@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+	    Scanner scanner = new Scanner(System.in);
+
+	    int N = Integer.parseInt(scanner.next());
+	    long X = Long.parseLong(scanner.next());
+	    long[] Y = new long[N];
+
+	    for (int i=0; i<N; i++) {
+	    	Y[i] = Math.abs(X - Long.parseLong(scanner.next()));
+	    }
+
+	    long a=Y[0];
+	    for (int i=1; i<N; i++) {
+	    	a=f(a,Y[i]);
+	    }
+        System.out.print(a);
+	}
+
+	public static long f(long m, long n) {
+		if (m<n) {
+			m= m^n;
+			n=m^n;
+			m=m^n;
+		}
+
+		while (true) {
+		     long t = m%n;
+		     if(t == 0) {
+		    	 break;
+		     }
+		     m=n;
+		     n=t;
+
+		}
+
+		return n;
+	}
+
+}

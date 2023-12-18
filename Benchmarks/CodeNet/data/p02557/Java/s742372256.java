@@ -1,0 +1,110 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.*;
+
+public class Main {
+    private static FastReader fr = new FastReader();
+    private static PrintWriter out=new PrintWriter(System.out);
+
+    public static void main(String[] args) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        // code goes here
+        int n = fr.nextInt();
+        int[] a = fr.nextIntArray(n);
+        int[] b = fr.nextIntArray(n);
+        int[] counts1 = new int[n + 1];
+        int[] counts2 = new int[n + 1];
+        for(int i = 0; i < n; i++){
+            counts1[a[i]]++;
+            counts2[b[i]]++;
+        }
+        boolean allowed = true;
+        for(int i = 1; i <= n; i++){
+            int min = Math.min(counts1[i], counts2[i]);
+            if(min > n/2){
+                allowed = false;
+                break;
+            }
+        }
+        if(!allowed){
+            sb.append("No");
+        } else {
+            TreeMap<Integer, Integer> map = new TreeMap<>();
+            for(int i = 0; i < n; i++){
+                map.put(b[i], map.getOrDefault(b[i], 0) + 1);
+            }
+            int[] c = new int[n];
+            for(int i = 0; i < n; i++){
+                int first = map.firstKey();
+                if(a[i] != first){
+                    c[i] = first;
+                    int val = map.get(first);
+                    if(val == 1) map.remove(first);
+                    else map.put(first, val - 1);
+                } else if(map.lastKey() != a[i]){
+                    int last = map.lastKey();
+                    c[i] = last;
+                    int val = map.get(last);
+                    if(val == 1) map.remove(last);
+                    else map.put(last, val - 1);
+                } else {
+                    System.out.println("No");
+                    return;
+                }
+            }
+
+            sb.append("Yes\n");
+            for(int i = 0; i < n; i++){
+                sb.append(c[i]).append(" ");
+            }
+        }
+        System.out.print(sb.toString());
+    }
+
+    static class FastReader{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st=new StringTokenizer("");
+
+        public String next() {
+            while (!st.hasMoreTokens())
+                try {
+                    st=new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            return st.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public int[] nextIntArray(int n) {
+            int[] a=new int[n];
+            for (int i=0; i<n; i++) a[i]=nextInt();
+            return a;
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        public long[] nextLongArray(int n) {
+            long[] a=new long[n];
+            for (int i=0; i<n; i++) a[i]=nextLong();
+            return a;
+        }
+    }
+
+    static class Pair<A, B>{
+        A first;
+        B second;
+        public Pair(A first, B second){
+            this.first = first;
+            this.second = second;
+        }
+    }
+}

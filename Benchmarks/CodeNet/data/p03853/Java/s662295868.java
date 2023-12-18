@@ -1,0 +1,19 @@
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);		
+  		int h = in.nextInt();		
+  		int gomi = in.nextInt();		
+		String[] hw = new String[h];
+		in.nextLine();
+		for (int i = 0; i < h; i++) {
+			hw[i] = in.nextLine();
+		}
+
+		for (int i = 0; i < h; i++) {
+			System.out.println(hw[i]);
+			System.out.println(hw[i]);
+		}
+	}
+}

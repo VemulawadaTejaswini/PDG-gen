@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+        int d = sc.nextInt();
+        int a[][] = new int[h][w];
+        Point[] pos = new Point[h * w];
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                a[i][j] = sc.nextInt();
+                Point p = new Point(i + 1, j + 1);
+                pos[a[i][j] - 1] = p;
+            }
+        }
+        int q = sc.nextInt();
+        int mv[][] = new int[q][2];
+        for (int i = 0; i < q; i++) {
+            for (int j = 0; j < 2; j++) {
+                mv[i][j] = sc.nextInt();
+            }
+        }
+        for (int i = 0; i < q; i++) {
+            Point s = pos[mv[i][0]];
+            Point g = pos[mv[i][1]];
+            long ans = 0;
+            for (int j = mv[i][0]; j < mv[i][1]; j += d) {
+                long sax = Math.abs(pos[j + d - 1].x - pos[j - 1].x);
+                long say = Math.abs(pos[j + d - 1].y - pos[j - 1].y);
+                ans += sax;
+                ans += say;
+
+            }
+            System.out.println(ans);
+        }
+
+    }
+}
+
+class Point {
+    public int x;
+    public int y;
+
+    Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+}

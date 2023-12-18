@@ -1,0 +1,25 @@
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String s = sc.next();
+        int k = sc.nextInt();
+
+        char c = s.charAt(k-1);
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < n;i++){
+            if(s.charAt(i) == c){
+                sb.append(c);
+            } else {
+                sb.append("*");
+            }
+        }
+        System.out.println(sb.toString());
+
+    }
+
+}

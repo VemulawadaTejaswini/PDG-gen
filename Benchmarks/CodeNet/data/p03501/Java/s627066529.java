@@ -1,0 +1,29 @@
+package jp.co.ccpa.app.chart;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		// N
+
+		int n = sc.nextInt();
+
+		// A
+		int a = sc.nextInt();
+
+		// B
+		int b = sc.nextInt();
+
+		if (n * a > b) {
+
+			System.out.println("駐車料金は" + b + "円です。");
+		} else {
+
+			System.out.println("駐車料金は" + n * a + "円です。");
+		}
+
+	}
+}

@@ -1,0 +1,9 @@
+import java.util.Scanner;
+
+class Main{
+public static void main(String[] args){
+Scanner scn=new Scanner(System.in);
+int i=scn.next().indexOf("9");
+System.out.println(i==-1?"No":"Yes");
+}
+}

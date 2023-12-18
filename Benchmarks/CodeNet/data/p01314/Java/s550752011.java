@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int i,j,t,b;Scanner s=new Scanner(System.in);for(;(t=s.nextInt())>0;System.out.println(b))for(b=i=0;i++<t;)for(j=1;j++<t-i;)b+=j*(2*i+j-1)==t*2?1:0;}}

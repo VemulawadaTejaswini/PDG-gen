@@ -1,0 +1,13 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        double W = sc.nextDouble();
+        double H = sc.nextDouble();
+        double x = sc.nextDouble();
+        double y = sc.nextDouble();
+        int assess =0;
+        if(x*2 ==W&&y*2==H) assess =1;
+        System.out.println(W*H/2+" "+assess);
+    }
+}

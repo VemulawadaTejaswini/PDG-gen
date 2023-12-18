@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);int[]h=new int[10];for(int i=10;i-->0;)h[i]=s.nextInt();Arrays.sort(h);System.out.printf("%d\n%d\n%d\n",h[9],h[8],h[7]);}}

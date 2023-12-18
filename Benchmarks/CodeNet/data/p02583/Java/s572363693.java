@@ -1,0 +1,48 @@
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		Integer n = sc.nextInt();
+
+		if (n < 3) {
+			System.out.println(0);
+			return;
+		}
+
+		List<Integer> l = new ArrayList<Integer>();
+
+		for (Integer i = 0; i < n; i++) {
+			Integer a = sc.nextInt();
+			l.add(a);
+		}
+
+		Integer count = 0;
+
+		for (Integer i = 0; i < n - 2; i++) {
+			for (Integer j = 0; j < n - 1; j++) {
+				if (i >= j) {
+					j = i + 1;
+				}
+				for (Integer k = 0; k < n; k++) {
+					if (j >= k) {
+						k = j + 1;
+					}
+					if (l.get(i) != l.get(j) && l.get(j) != l.get(k) && l.get(k) != l.get(i)) {
+						if (l.get(k) < l.get(i) + l.get(j) && l.get(i) < l.get(j) + l.get(k)
+								&& l.get(j) < l.get(k) + l.get(i)) {
+							count++;
+						}
+					}
+				}
+			}
+		}
+		System.out.println(count);
+	}
+}

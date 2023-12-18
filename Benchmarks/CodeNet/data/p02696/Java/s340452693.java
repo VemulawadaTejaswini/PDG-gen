@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc = new Scanner(System.in);
+		long a = sc.nextLong();
+		long b = sc.nextLong();
+		long n = sc.nextLong();
+		System.out.println(outResult(a,b,n));
+	}
+
+	public static long outResult(long a,long b,long n) {
+		long finalresult = 0;
+		for(long i = 1;i <= n;i++) {
+			long result = (a * i / b) - (a * (i / b));
+			finalresult = Math.max(finalresult, result);
+		}
+		return finalresult;
+
+	}
+
+}

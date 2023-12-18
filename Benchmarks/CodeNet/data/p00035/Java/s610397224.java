@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){for(Scanner s=new Scanner(System.in);s.hasNext();){z=s.next().split(",");float[]p=new float[8];for(int i=0;i<8;)p[i]=new Float(z[i++])-(i%2<1?p[0]:p[1]);System.out.println(((p[3]-p[7])*(p[2]*p[5]-p[4]*p[7])<(p[5]-p[7])*(p[2]*p[3]-p[6]*p[7]))?"NO":"YES");}}}

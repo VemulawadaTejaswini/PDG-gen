@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	private void solve() {
+		Scanner io = new Scanner(System.in);
+		long K = io.nextLong();
+		System.out.println(50);
+		long first = 49 + K/50 - K%50;
+		long second = 100 + K/50 - K%50;
+		for(int i=0;i<50-K%50;i++){
+			System.out.print(first);
+			if(i!=49) System.out.print(" ");
+		}
+		for(int i=0;i<K%50;i++){
+			System.out.print(second);
+			if(i!=K%50-1) System.out.print(" ");
+		}
+	}
+
+	public static void main(String[] args) {
+		new Main().solve();
+	}
+}

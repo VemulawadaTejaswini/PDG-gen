@@ -1,0 +1,1 @@
+import java.util.*;class Main{Scanner s=new Scanner(System.in);public static void main(String[] a){System.out.println(s.nextInt()<s.nextInt()*2?"unsafe":"safe");}}

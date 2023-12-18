@@ -1,0 +1,41 @@
+import java.util.*;
+ 
+class Main{
+  public static void main(String args[]){
+    Scanner sc = new Scanner(System.in);
+    String n = sc.next();
+    String hun = n.substring(0);
+    String ten = n.substring(1);
+    String one = n.substring(2);
+    int num = 0;
+    if(one == null){
+      if(ten == null){
+        num = Interger.paserInt(hun);
+        if(num == 3){
+          System.out.println("bon");
+        }else if(num == 0 && num == 1 && num == 6 && num == 8){
+          System.out.print("pon");
+        }else{
+          System.out.print("hon");
+        }
+      }else if(one != null) {
+        num = Interger.parseInt(ten);
+        if(num == 3){
+          System.out.println("bon");
+        }else if(num == 0 && num == 1 && num == 6 && num == 8){
+          System.out.print("pon");
+        }else{
+          System.out.print("hon");
+        }
+      }else{
+        num = Interger.parseInt(one);
+        if(num == 3){
+          System.out.println("bon");
+        }else if(num == 0 && num == 1 && num == 6 && num == 8){
+          System.out.print("pon");
+        }else{
+          System.out.print("hon");
+        }
+    }
+    }
+  }

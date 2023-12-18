@@ -1,0 +1,90 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
+		String first_lines = input.readLine();
+
+		String[] dice_num_array = first_lines.split(" ");
+
+		// ??\????????????????????????????´???????
+		int[] dice_array = new int[6];
+
+		for (int num_array_spot = 0; num_array_spot < dice_num_array.length; num_array_spot++) {
+
+			int dice_num = Integer.parseInt(dice_num_array[num_array_spot]);
+
+			dice_array[num_array_spot] = dice_num;
+
+		}
+
+		String second_lines = input.readLine();
+
+		//??????????????§???????????????for??§?¢????????????????
+		String[] direction_array = second_lines.split("");
+
+		// ????????????????????¢???????????¨???dice_array???[???]???????????°????????´??°????????????
+		for (int direction_spot = 0; direction_spot < direction_array.length; direction_spot++) {
+
+			if (direction_array[direction_spot].equals("N")) {
+
+				int num = dice_array[0];
+
+				//1??¢?????°??????2??¢?????°???????????´??????????????????
+				dice_array[0] = dice_array[1];
+
+				dice_array[1] = dice_array[5];
+
+				dice_array[5] = dice_array[4];
+
+				dice_array[4] = num;
+
+			} else if (direction_array[direction_spot].equals("S")) {
+
+				int num = dice_array[0];
+
+				dice_array[0] = dice_array[4];
+
+				dice_array[4] = dice_array[5];
+
+				dice_array[5] = dice_array[1];
+
+				dice_array[1] = num;
+
+			} else if (direction_array[direction_spot].equals("E")) {
+
+				int num = dice_array[0];
+
+				dice_array[0] = dice_array[3];
+
+				dice_array[3] = dice_array[5];
+
+				dice_array[5] = dice_array[2];
+
+				dice_array[2] = num;
+
+			} else if (direction_array[direction_spot].equals("W")) {
+
+				int num = dice_array[0];
+
+				dice_array[0] = dice_array[2];
+
+				dice_array[2] = dice_array[5];
+
+				dice_array[5] = dice_array[3];
+
+				dice_array[3] = num;
+
+			}
+
+		}
+
+		System.out.println(dice_array[0]);
+
+	}
+}

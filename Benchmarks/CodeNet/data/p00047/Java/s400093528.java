@@ -1,0 +1,1 @@
+import java.util.*;public class Main{Scanner s=new Scanner(System.in);void run(){char n='A';for(;s.hasNextLine();){String c=s.nextLine();if(c.charAt(0)==n)n=c.charAt(2);else if(c.charAt(2)==n)n=c.charAt(0);}System.out.println(n);}public static void main(String[] a){Main m=new Main();m.run();}}

@@ -1,0 +1,1 @@
+import java.util.*;class Main {public static void main(String[]z){Scanner s=new Scanner(System.in);String x,y="";for(int t,m;(t=s.nextInt())>0;){Map<String,String>map=new HashMap<String,String>();for(;t-->0;)map.put(s.next(), s.next());for(m=s.nextInt();m-->0;)y+=map.containsKey(x=s.next())?map.get(x):x;y+="\n";}System.out.print(y);}}

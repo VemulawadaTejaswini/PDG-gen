@@ -1,0 +1,102 @@
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Scanner;
+import java.util.TreeMap;
+ 
+ 
+public class Main{
+	public static class File{
+		int identifer;
+		int start;
+		int size;
+		
+		public File(int identifer, int start, int size) {
+			super();
+			this.identifer = identifer;
+			this.start = start;
+			this.size = size;
+		}
+		
+		public String toString(){
+			return this.identifer + " " + this.start + "->" + (this.start + this.size);
+		}
+	}
+	
+    public static void main(String[] args) throws IOException {
+    	Scanner sc = new Scanner(System.in);
+    	
+    	while(true){
+    		final int N = sc.nextInt();
+    		LinkedList<File> files = new LinkedList<File>();
+    		
+    		for(int i = 0; i < N; i++){
+    			String ops = sc.next();
+    			
+    			//System.out.println(files);
+    			
+    			if("W".equals(ops)){
+    				final int l = sc.nextInt();
+    				final int S = sc.nextInt();
+    				
+    				int rest = S;
+    				int pos = 0;
+    				for(ListIterator<File> iter = files.listIterator(); iter.hasNext(); ){
+    					File file = iter.next();
+    					
+    					if(pos < file.start){
+    						iter.previous();
+    						iter.add(new File(l, pos, file.start - pos));
+    						rest -= file.start - pos;
+    					}
+    					
+    					pos = file.start + file.size;
+    				}
+    				
+    				if(rest > 0){
+    					files.add(new File(l, pos, rest));
+    				}
+    				
+    			}else if("D".equals(ops)){
+    				final int l = sc.nextInt();
+    				
+    				for(ListIterator<File> iter = files.listIterator(); iter.hasNext(); ){
+    					File file = iter.next();
+    					
+    					if(file.identifer == l){
+    						iter.remove();
+    					}
+    				}
+    				
+    			}else if("R".equals(ops)){
+    				final int l = sc.nextInt();
+    				
+    				boolean found = false;
+    				for(ListIterator<File> iter = files.listIterator(); iter.hasNext(); ){
+    					File file = iter.next();
+    					
+    					if(file.start <= l && l < file.start + file.size){
+    						System.out.println(file.identifer);
+    						found = true;
+    						break;
+    					}else if(file.start > l){
+    						break;
+    					}
+    				}
+    				
+    				if(!found){
+    					System.out.println(-1);
+    				}
+    			}
+    		}
+    		
+    		System.out.println();
+    		
+    	}
+    	
+    	
+    	
+    }
+     
+}

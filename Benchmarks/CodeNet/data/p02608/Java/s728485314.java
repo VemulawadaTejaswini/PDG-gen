@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] ans = new int[10000];
+		for(int x = 1; x < 100; x++){
+			for(int y = 1; y < 100; y++){
+				for(int z = 1; z < 100; z++){
+					if((x* x)+(y*y)+(z*z)+(x*y)+(y*z)+(x*z)-1 < 10000)
+						ans[(x* x)+(y*y)+(z*z)+(x*y)+(y*z)+(x*z)-1]++;
+				}
+			}
+		}
+		for(int i = 0; i< n - 1;i++){
+			System.out.println(ans[i]);
+		}
+	}
+
+	public static boolean isInteger(double number){
+		return Math.ceil(number) == Math.floor(number);
+	}
+
+}

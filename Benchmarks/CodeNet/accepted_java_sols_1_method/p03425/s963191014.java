@@ -1,0 +1,18 @@
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner c=new Scanner(System.in);
+        long[] s=new long[5];
+        int n=c.nextInt();
+        int a;
+        for(int i=0;i<n;i++){
+            a=0;
+            switch(c.next().charAt(0)){
+                case 'M':a++;case 'A':a++;case 'R':a++;case 'C':a++;case 'H':s[a]++;
+            }
+        }
+        long m=0;
+        for(int i=0;i<3;i++)for(int j=i+1;j<4;j++)for(int k=j+1;k<5;k++)m+=s[i]*s[j]*s[k];
+        System.out.println(m);
+    }
+}

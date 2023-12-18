@@ -1,0 +1,37 @@
+import java.util.*;
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    String S = next();
+    String T = next();
+    int s_ = S.length();
+    int t_ = T.length();
+    char s[s_];
+    char t[t_];
+    char a;
+    for(int j = 0; j < S.lengh(); j++){
+      s[j] = S.charAt(j);
+      t[j] = T.charAt(j);
+    }
+    boolean p = true;
+    int i = 0;
+    while(i < S.length()){
+      for(int j = 0; j < S.length(); j++){
+        if(s[j] != t[j])
+          p = false;
+      }
+      if(p)
+        break;
+      i++;
+      if(!p){
+        a = s[S.length - 1];
+        s[S.lengh - 1] = s[0];
+        s[0] = a;
+      }
+    }
+    if(p)
+      System.out.println("Yes");
+    else
+      System.out.println("No");
+  }
+}      

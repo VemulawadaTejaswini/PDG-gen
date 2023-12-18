@@ -1,0 +1,26 @@
+import java.io.*;
+
+class Main{
+	public static void main(String[]args)throws IOException{
+		
+		BufferedReader br=
+			new BufferedReader(new InputStreamReader(System.in));
+		
+		String str=br.readLine();
+
+		String[] num=str.split(" ");
+
+		int W=Integer.parseInt(num[0]);
+		int H=Integer.parseInt(num[1]);
+		int x=Integer.parseInt(num[2]);
+		int y=Integer.parseInt(num[3]);
+		int r=Integer.parseInt(num[4]);
+		
+		if((x+r)>W || (x-r)<0 || (y+r)>H || (y-r)<0){
+			System.out.println("No");
+		}
+		else{
+			System.out.println("Yes");
+		}
+	}
+}

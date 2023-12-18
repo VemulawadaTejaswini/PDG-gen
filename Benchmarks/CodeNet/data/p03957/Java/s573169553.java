@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s=sc.next();
+		int countc=0,countf=0;
+		for(int i=0;i<s.length();i++) {
+			if(s.substring(i, i+1).equals("C"))countc++;
+			if(countc!=0&&s.substring(i, i+1).equals("F"))countf++;
+		}
+		if(countc!=0&&countf!=0) {
+			System.out.println("Yes");
+		}else {
+			System.out.println("No");
+		}
+	}
+}
+

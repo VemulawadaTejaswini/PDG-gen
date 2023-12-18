@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = Integer.parseInt(sc.nextLine());
+		String[] spl = sc.nextLine().split(" ");
+		long[] h = new long[N];
+		for(int i = 0;i < N;i++){
+			h[i] = Long.parseLong(spl[i]);
+		}
+		sc.close();
+
+		long[] d = new long[100010];
+		for(int i = 0;i < N - 1;i++){
+			if(h[i] < h[i-1]){
+				h[i-1]--;
+				d[i-1]--;
+				d[i] = h[i] - h[i-1];
+			}else{
+				d[i] = h[i] - h[i-1];
+			}
+		}
+		for(int i = 0;i < N - 1;i++){
+			if(d[i] < -1){
+				System.out.println("No");
+				return;
+			}
+		}
+		System.out.println("Yes");
+	}
+}

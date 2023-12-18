@@ -1,0 +1,48 @@
+import java.io.*;
+
+public class Main{
+	public static void main(String[] args){
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try{
+			String str[] = new String[200];
+			str[0] = br.readLine();
+			int i = 0;
+			while(str[i] != null){
+				i++;
+				str[i] = br.readLine();
+			}
+
+			double a[] = new double[6];
+
+			for(int j=0;j<i+1;j++){
+				String str2[] = str[j].split(" ",0);
+				for(int k=0;k<6;k++){
+					a[k] = Double.parseDouble(str2[k]);
+				}
+
+				double x,y;
+
+				if(a[0]==0 && a[4]==0){
+					y=a[2]/a[1];
+					x=a[5]/a[3];
+				}else if(a[1]==0 && a[3]==0){
+					x=a[2]/a[0];
+					y=a[5]/a[4];
+				}else if(a[4]==0){
+					x=a[5]/a[3];
+					y=(a[2]-a[0]*x)/a[1];	
+				}else if(a[3]==0){
+					y=a[5]/a[4];
+					x=(a[2]-a[1]*y)/a[0];
+				}else{
+					x = (a[2]-a[1]*a[5]/a[4])/(a[0]-a[1]*a[3]/a[4]);
+					y = (a[2]-a[0]*a[5]/a[3])/(a[1]-a[0]*a[4]/a[3]);
+				}
+				System.out.println(String.format("%.3f",x)+" "+String.format("%.3f",y));
+			}
+
+		}catch(IOException e){
+			System.out.println("fail");
+		}
+	}
+}

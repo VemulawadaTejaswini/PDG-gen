@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);float m,n,v;for(m=n=s.nextFloat();s.hasNext();m=Math.max(m,v),n=Math.min(n,v))v=s.nextFloat();System.out.println(m-n);}}

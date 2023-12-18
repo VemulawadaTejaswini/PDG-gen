@@ -1,0 +1,59 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String args[]) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		Solver solver = new Solver();
+		solver.init();
+		solver.readHead(in.readLine());
+		for (; solver.hasNext();) {
+			solver.readBody(in.readLine());
+		}
+		solver.solve();
+	}
+}
+
+class Solver {
+	int N;
+	int X;
+	int cnt;
+
+	public void init() {
+		N = 0;
+		cnt = 0;
+	}
+
+	public void readHead(String str) {
+		String[] strArr = str.split(" ");
+		N = Integer.parseInt(strArr[0]);
+		X = Integer.parseInt(strArr[1]);
+		// System.out.println(N);
+		M = new int[N];
+		MinM = Integer.MAX_VALUE;
+	}
+
+	public boolean hasNext() {
+		return cnt < N;
+	}
+
+	int[] M;
+	int MinM;
+
+	public void readBody(String str) {
+		// System.out.println(str);
+		M[cnt] = Integer.parseInt(str);
+		if (M[cnt] < MinM)
+			MinM = M[cnt];
+		cnt++;
+	}
+
+	public void solve() {
+		int x = X;
+		for (int i = 0; i < N; i++)
+			x -= M[i];
+		int ans = N + x / MinM;
+		System.out.println(ans);
+	}
+}

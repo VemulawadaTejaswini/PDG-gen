@@ -1,0 +1,19 @@
+import java.io.*;
+
+public class Main{
+  public static void main(String[] args){
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try{
+      String line = reader.readLine();
+      double r = Integer.parseInt(line);
+      double pi = Math.PI;
+      double area = pi * r * r;
+      double length = 2 * pi * r;
+      System.out.printf("%f %f\n", area, length);
+    }catch(IOException e){
+      System.out.println(e);
+    }catch(NumberFormatException e){
+      System.out.println("Input correct radius.");
+    }
+  }
+}

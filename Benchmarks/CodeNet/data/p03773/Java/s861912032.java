@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+
+		int n = Integer.parseInt(scn.next());
+		int m = Integer.parseInt(scn.next());
+
+		System.out.println((n + m) % 24);
+
+		scn.close();
+	}
+}

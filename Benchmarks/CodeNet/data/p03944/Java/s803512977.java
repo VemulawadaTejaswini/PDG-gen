@@ -1,0 +1,66 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Integer;
+import java.lang.StringBuilder;
+import java.lang.Math;
+
+class Point {
+  public int x;
+  public int y;
+  public Point(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+public class Main {
+  private static int W;
+  private static int H;
+  private static int N;
+  private static Point[] p;
+  private static int[] a;
+
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+
+    W = in.nextInt();
+    H = in.nextInt();
+    N = in.nextInt();
+
+    int minX = 0;
+    int minY = 0;
+    int maxX = W;
+    int maxY = H;
+
+    p = new Point[N];
+    a = new int[N];
+    for (int i = 0; i < N; i++) {
+      p[i] = new Point(in.nextInt(), in.nextInt());
+      a[i] = in.nextInt();
+      switch(a[i]) {
+        case 1:
+          minX = Math.max(p[i].x, minX);;
+          break;
+        case 2:
+          maxX = Math.min(p[i].x, maxX);;
+          break;
+        case 3:
+          minY = Math.max(p[i].y, minY);;
+          break;
+        case 4:
+          maxY = Math.min(p[i].y, maxY);;
+          break;
+        default:
+          System.exit(1);
+      }
+    }
+
+
+    int area = (maxX - minX) * (maxY - minY);
+    if (area >= 0) {
+      System.out.println(area);
+    } else {
+      System.out.println(0);
+    }
+  }
+}

@@ -1,0 +1,89 @@
+//package code;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+/**
+ *
+ * @author Milo
+ */
+public class Main {
+    
+    static FastReader in = new FastReader();
+    public static void main(String[] args) {
+        int t = 1; //in.nextInt();
+        while (t-- > 0)
+            solve();
+    }
+ 
+    public static void solve() {
+        int n = in.nextInt() % 10;
+        switch(n){
+            case 2:
+            case 4:
+            case 5:
+            case 7:
+            case 9: System.out.println("hon"); break;
+            case 0:
+            case 1:
+            case 6:
+            case 8: System.out.println("pon"); break;
+            case 3: System.out.println("bon"); break;
+        }
+    }
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+ 
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+ 
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+ 
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+ 
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+ 
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+ 
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+ 
+    public static int max(int a, int b) {
+        return a > b ? a : b;
+    }
+ 
+    public static int min(int a, int b) {
+        return a < b ? a : b;
+    }
+ 
+    public static int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, (a % b));
+    }
+}

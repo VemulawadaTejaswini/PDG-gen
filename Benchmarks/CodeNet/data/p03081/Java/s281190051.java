@@ -1,0 +1,176 @@
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.Stack;
+
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+	static Properties pps = System.getProperties();
+	static boolean dbg = true;
+	static List<int[]> l = new ArrayList();
+
+	public static void main(String[] args) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		// setOut();
+
+		int a=ni();
+		int b=ni();
+		ns();
+		String str=ns();
+		String[] step=ns(b);
+		System.out.println(solve(a,b,str,step));
+
+	}
+	private static int solve(int a, int b, String str, String[] step) {
+		// TODO Auto-generated method stub
+		Stack<Character> s=new Stack();
+		char target=str.charAt(0);
+		int pos=0;
+		int max=0;
+	
+		
+		for(int i=step.length-1;i>=0;i--) {
+			String st=step[i];
+			if( st.charAt(2)=='L'&&st.charAt(0)==target) {
+				s.add(target);
+				pos++;
+				
+				target=str.charAt(pos);
+				max=Math.max(max, s.size());
+			}
+			if(st.charAt(2)=='R' && !s.empty()&&st.charAt(0)==s.peek()) {
+				pos--;
+		
+				target=s.pop();
+			}
+		}
+		
+
+		int pos2=str.length()-1;
+		char target2=str.charAt(pos2);
+		int max2=0;
+		Stack<Character> s2=new Stack();
+		for(int i=step.length-1;i>=0;i--) {
+			String st=step[i];
+			if( st.charAt(2)=='R'&&st.charAt(0)==target2) {
+				s2.add(target2);
+				pos2--;
+			
+				target2=str.charAt(pos2);
+				max2=Math.max(max2, s2.size());
+			}
+			if(st.charAt(2)=='L' && !s2.empty()&&st.charAt(0)==s2.peek()) {
+				pos2++;
+		
+				target2=s2.pop();
+			}
+		}
+
+		int k=str.length()-max-max2;
+		return k<0?0:k;
+	}
+
+
+
+
+	private static void out(int[][] dist2) {
+		// TODO Auto-generated method stub
+		for (int[] i : dist2) {
+			for (int j : i) {
+				System.out.print(j + " ");
+			}
+			out("");
+		}
+
+	}
+
+
+	private static void setOut() throws FileNotFoundException {
+		sc = new Scanner(new FileInputStream("in.txt"));
+		System.setOut(new PrintStream(new FileOutputStream("out.txt")));
+
+	}
+
+	private static void out(char[][] b) {
+		// TODO Auto-generated method stub
+		for (char[] c : b) {
+			out(c);
+		}
+
+	}
+
+	private static void out(char[] c) {
+		// TODO Auto-generated method stub
+		for (char cc : c)
+			System.out.print(cc + " ");
+		System.out.println();
+	}
+
+	private static void out(int[] b) {
+		// TODO Auto-generated method stub
+		for (int i : b)
+			System.out.print(i + " ");
+		System.out.println();
+
+	}
+
+	public static void out(String str) {
+
+		if (dbg)
+			System.out.println(str);
+	}
+
+	public static void out(int str) {
+
+		if (dbg)
+			System.out.println(str);
+	}
+
+	public static int ni() {
+
+		return sc.nextInt();
+
+	}
+
+	public static String ns() {
+
+		return sc.nextLine();
+	}
+
+	public static int[] ni(int k) {
+		int[] res = new int[k];
+		for (int i = 0; i < k; i++)
+			res[i] = sc.nextInt();
+		sc.nextLine();
+		return res;
+	}
+
+	public static String[] ns(int k) {
+		String[] res = new String[k];
+		for (int i = 0; i < k; i++)
+			res[i] = sc.nextLine();
+		return res;
+	}
+
+	public static int[][] ni(int a, int b) {
+		int[][] res = new int[a][b];
+		for (int i = 0; i < a; i++)
+			for (int j = 0; j < b; j++)
+				res[i][j] = sc.nextInt();
+		sc.nextLine();
+		return res;
+	}
+}

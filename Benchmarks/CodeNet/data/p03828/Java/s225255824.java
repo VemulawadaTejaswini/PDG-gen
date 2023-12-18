@@ -1,0 +1,254 @@
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		new Main().solve();
+	}
+
+	private void solve() throws IOException {
+		try {
+			//			solveA();
+			//			solveB();
+			solveC();
+			//			solveC2();
+			// solveD();
+			// solveE();
+			// solveF();
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+			if (out != null) {
+				out.flush();
+				out.close();
+			}
+		}
+
+	}
+
+	private void solveA() {
+		int numA = nextInt();
+		int numB = nextInt();
+		int numC = nextInt();
+		int numD = nextInt();
+
+		out.println(numA * numB > numC * numD ? numA * numB : numC * numD);
+
+	}
+
+	private void solveB() {
+		int numN = nextInt();
+		char[] strS = next().toCharArray();
+
+		int x = 0;
+		int res = 0;
+		for (int i = 0; i < strS.length; i++) {
+			if (strS[i] == 'I') {
+				x++;
+			} else if (strS[i] == 'D') {
+				x--;
+			}
+			res = Math.max(res, x);
+		}
+
+		out.println(res);
+	}
+
+	private void solveC2() {
+
+		long CONST = (long) Math.pow(10, 9) + 7;
+		int numN = nextInt();
+
+		BigDecimal kaijou = BigDecimal.ONE;
+		for (int i = 1; i <= numN; i++) {
+			kaijou = kaijou.multiply(new BigDecimal(i));
+		}
+
+		BigDecimal result = BigDecimal.ONE;
+		BigDecimal index = new BigDecimal("2");
+		BigDecimal lKaijou = new BigDecimal(kaijou.toString());
+		while (index.compareTo(lKaijou) < 0) {
+
+			//約数
+			BigDecimal yakusu = BigDecimal.ZERO;
+			while (kaijou.remainder(index).equals(BigDecimal.ZERO)) {
+				yakusu = yakusu.add(BigDecimal.ONE);
+				kaijou = kaijou.divide(index);
+			}
+			if (!yakusu.equals(BigDecimal.ZERO)) {
+				yakusu = yakusu.add(BigDecimal.ONE);
+				result = result.multiply(yakusu);
+			}
+			index = index.add(BigDecimal.ONE);
+		}
+
+		out.println(result.remainder(new BigDecimal(CONST)));
+	}
+
+	/**
+	 * 1
+	 *  1
+	 * 2
+	 *  2^1
+	 * 3
+	 *  3^1
+	 * 4
+	 *  2^2
+	 * 5
+	 *  5^1
+	 * 6
+	 *  2^1*3^1
+	 *
+	 *  2^4 + 3^2 + 5^1
+	 *  約数の個数なので、 (4+1)*(2+1)*(1+1) =30
+	 *  ex: modを求めている場合、合計のmodは各値のmodの責に等しい
+	 *   (4 * 8 * 10)%3 = 2
+	 *   4%3 * 8%3 * 10%3 = 1 * 2 * 1
+	 *  約数の総和なら、(2^0 + 2^1 + 2^2 + 2^3)*(3^0 + 3^1 + 3^2)*(5^0 + 5^1)
+	 */
+	private void solveC() {
+		long CONST = (long) Math.pow(10, 9) + 7;
+		int numN = nextInt();
+
+		BigDecimal res = BigDecimal.ONE;
+		//全てを合算してからではオーバーフローするので、各値を素因数分解して合計とする。
+		Map<Integer, Integer> wkMap = new HashMap<Integer, Integer>();
+		for (int i = 2; i <= numN; i++) {
+			int temp = i;
+			int yakusu = 0;
+			for (int j = 2; j <= i;) {
+				if (temp % j == 0) {
+					yakusu++;
+					temp /= j;
+				} else {
+					if (yakusu != 0) {
+						wkMap.merge(j, yakusu, (x, y) -> x + y);
+					}
+					j++;
+					yakusu = 0;
+				}
+			}
+		}
+
+		//すべてを合算してから余りを求めるとオーバーフローするので
+		//合計のmodは各値のmodの責に等しいを利用
+		for (Integer b : wkMap.values()) {
+			//			res = ((b + 1) * res) % CONST;
+			res = res.multiply(new BigDecimal(b).add(BigDecimal.ONE));
+		}
+
+		out.println(res.remainder(new BigDecimal(CONST)));
+	}
+
+	private void solveD() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private void solveE() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private void solveF() {
+		int numN = nextInt();
+
+		out.println("");
+	}
+
+	private final PrintWriter out = new PrintWriter(System.out);
+	private final InputStream in = System.in;
+	private final byte[] buffer = new byte[1024];
+	private int ptr = 0;
+	private int buflen = 0;
+
+	private boolean hasNextByte() {
+		if (ptr < buflen) {
+			return true;
+		} else {
+			ptr = 0;
+			try {
+				buflen = in.read(buffer);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (buflen <= 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private int readByte() {
+		if (hasNextByte())
+			return buffer[ptr++];
+		else
+			return -1;
+	}
+
+	private static boolean isPrintableChar(int c) {
+		return 33 <= c && c <= 126;
+	}
+
+	private void skipUnprintable() {
+		while (hasNextByte() && !isPrintableChar(buffer[ptr]))
+			ptr++;
+	}
+
+	public boolean hasNext() {
+		skipUnprintable();
+		return hasNextByte();
+	}
+
+	public int nextInt() {
+		return Integer.parseInt(next());
+	}
+
+	public String next() {
+		if (!hasNext())
+			throw new NoSuchElementException();
+		StringBuilder sb = new StringBuilder();
+		int b = readByte();
+		while (isPrintableChar(b)) {
+			sb.appendCodePoint(b);
+			b = readByte();
+		}
+		return sb.toString();
+	}
+
+	public long nextLong() {
+		if (!hasNext())
+			throw new NoSuchElementException();
+		long n = 0;
+		boolean minus = false;
+		int b = readByte();
+		if (b == '-') {
+			minus = true;
+			b = readByte();
+		}
+		if (b < '0' || '9' < b) {
+			throw new NumberFormatException();
+		}
+		while (true) {
+			if ('0' <= b && b <= '9') {
+				n *= 10;
+				n += b - '0';
+			} else if (b == -1 || !isPrintableChar(b)) {
+				return minus ? -n : n;
+			} else {
+				throw new NumberFormatException();
+			}
+			b = readByte();
+		}
+	}
+}

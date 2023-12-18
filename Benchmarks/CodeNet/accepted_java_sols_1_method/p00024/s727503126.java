@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){for(Scanner s=new Scanner(System.in);s.hasNext();)System.out.println((int)Math.ceil((Math.pow(s.nextDouble(),2)/19.6+5)/5));}}

@@ -1,0 +1,363 @@
+import java.io.*;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    try{
+      MyGraph graph = new MyGraph();
+      
+      int s = graph.read();
+      for(int i = 0; i < graph.edges.size(); i++){
+        ArrayList<MyEdge<Integer>> path = 
+            graph.getShortestPath(s, i);
+
+        Collections.reverse(path);
+        if(!path.isEmpty()){
+          System.out.println(path.stream().collect(Collectors.summingInt((e)->e.weight)));
+        } else {
+          if(i == s){
+            System.out.println(0);
+          }else{
+            System.out.println("INF");
+          }
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      System.err.println("Error "+ e.getClass() +" "+ e.getMessage());
+    }
+  }
+}
+/**
+ * ???????????´??°??§????????°??????
+ *
+ */
+class MyGraph extends GenericsGraph<Integer>{
+  /**
+   * ????????????????????????????????§??°????????????????????????
+   * @param filename ???????????????
+   * @throws FileNotFoundException ????????????????????¨???????????´???
+   */
+  public MyGraph(){
+    super(Integer::sum, 0);
+  }
+  public MyGraph(String filename) throws IOException{
+    super(Integer::sum, 0);
+    this.readFromFile(filename);
+  }
+  public void readFromFile(String filename) throws IOException{
+    readFromFile(filename, FastScanner::nextInt);
+    if(this.edges.size() > 50){
+      throw new UnsupportedOperationException("many vertexes are given ");
+    }
+    int edgenum = 0;
+    for(ArrayList<MyEdge<Integer>> ed : this.edges){
+      for(MyEdge<Integer> e : ed) {
+        if(e.weight<0 || e.weight>1000){
+          throw new UnsupportedOperationException("some big weights are given ");
+        }
+        edgenum++;
+      }
+    }
+    if(edgenum > 100){
+      throw new UnsupportedOperationException("many edges are given ");
+    }
+  }
+  public int read() throws IOException{
+      FastScanner scanner = new FastScanner(System.in);
+      int v = scanner.nextInt();
+      int e = scanner.nextInt();
+      int s = scanner.nextInt();
+      edges = new ArrayList<>();
+      for(int i = 0 ; i < v; i++){
+        edges.add(new ArrayList<>());
+      }
+      for(int i = 0; i < e; i++){
+        int from = scanner.nextInt();
+        int to = scanner.nextInt();
+        int weight = scanner.nextInt();
+        edges.get(from).add(new MyEdge<>(from, to, weight));
+      }
+      return s;
+  }
+}
+
+/**
+ * ????????????????????§??????????????????????????°??????
+ * @param <T> ???????????????????????????????????????
+ */
+class GenericsGraph<T extends Comparable<T>> {
+  /**
+   * ??£??\?????????
+   */
+  protected ArrayList<ArrayList<MyEdge<T>>> edges;
+  /**
+   * ?????????????????¢??°
+   */
+  protected final BinaryOperator<T> add;
+  /**
+   * ????????¢??°????????????
+   */
+  protected final T mempty;
+  /**
+   * ??°????????????????????????
+   * @param add_ ?????????????????¢??°
+   * @param mempty_ ????????¢??°????????????
+   */
+  public GenericsGraph(BinaryOperator<T> add_, T mempty_){
+    this.add = add_;
+    this.mempty = mempty_;
+  }
+  /**
+   * ????????????????????°?????????????????????
+   */
+  public void readFromFile(String filename, Function<FastScanner, T> nextWeight) throws IOException{
+    try(FileInputStream stream = new FileInputStream(filename)){
+      FastScanner scanner = new FastScanner(stream);
+      int v = scanner.nextInt();
+      int e = scanner.nextInt();
+      edges = new ArrayList<>();
+      for(int i = 0 ; i < v; i++){
+        edges.add(new ArrayList<>());
+      }
+      for(int i = 0; i < e; i++){
+        int from = scanner.nextInt();
+        int to = scanner.nextInt();
+        T weight = nextWeight.apply(scanner);
+        edges.get(from).add(new MyEdge<>(from, to, weight));
+        edges.get(to).add(new MyEdge<>(to, from, weight));
+      }
+    }
+  }
+  /**
+   * ??????????????£??\??????????????????
+   * @param id ????????????
+   * @return ??£??\?????????
+   */
+  public ArrayList<MyEdge<T>> getEdges(int id){
+    return edges.get(id);
+  }
+
+  /**
+   * ?±???¨??¢?´¢
+   * @param start ??¢?´¢????§???????
+   * @param goal ??¢?´¢????????????
+   * @param route ??´????????????
+   * @param data ??¢?´¢?????¨????????????????§????
+   * @return ??¢?´¢????????????
+   */
+  private <S extends InOutData<CostNode<T>>> ArrayList<Integer> genericSearch (
+      int start, int goal, HashMap<Integer, MyEdge<T>> route , S data){
+    ArrayList<Integer> res = new ArrayList<>();
+    data.in(new CostNode<>(this.mempty, new MyEdge<T>(start, start, this.mempty)));
+    while(!data.isEmpty()){
+      CostNode<T> here = data.out();
+      if(res.contains(here.edge.to)){ continue; }
+      res.add(here.edge.to);
+      route.put(here.edge.to, here.edge);
+      if(here.edge.to == goal) { break; }
+      for(MyEdge<T> edge: edges.get(here.edge.to)){
+        if(!res.contains(edge.to)){
+          data.in(new CostNode<>(this.add.apply(here.cost,edge.weight), edge));
+        }
+      };
+    }
+    return res;
+  }
+
+  /**
+   * ????????????
+   * @param from ?§????
+   * @param to ??????
+   * @param route ??´????????????
+   * @return ????????????
+   */
+  private ArrayList<MyEdge<T>> restration(
+      int from, int to, HashMap<Integer, MyEdge<T>> route){
+    ArrayList<MyEdge<T>> res = new ArrayList<>();
+    int here = to;
+    while(here != from){
+      MyEdge<T> edge = route.get(here);
+      res.add(edge);
+      here = edge.from;
+    }
+    return res;
+  }
+  /**
+   * ???????????¢?´¢
+   * @param start ??¢?´¢????§???????
+   * @return ??¢?´¢????????????
+   */
+  public ArrayList<Integer> bfs(int start){
+    return genericSearch(start, -1, new HashMap<>(), new MyFIFO<>());
+  }
+  /**
+   * ??±???????????¢?´¢
+   * @param start ??¢?´¢????§???????
+   * @return ??¢?´¢????????????
+   */
+  public ArrayList<Integer> dfs(int start){
+    return genericSearch(start, -1, new HashMap<>(), new MyLIFO<>());
+  }
+  /**
+   * ?????????????¨????
+   * @param start ??????????§????
+   * @param goal ???????????????
+   * @return ?????????????????????
+   */
+  public ArrayList<MyEdge<T>> getShortestPath(int start, int goal){
+    HashMap<Integer, MyEdge<T>> route = new HashMap<>();
+    genericSearch(start, goal, route, new MyPriority<>());
+    if(!route.containsKey(goal)){
+      return new ArrayList<>();
+    }
+    return restration(start, goal, route);
+  }
+  
+}
+
+/**
+ * ??????????????¨?????\??????????±??????????
+ * @param <T> ?????????????????????
+ */
+interface InOutData<T>{
+  public void in(T n);
+  public T out();
+  public boolean isEmpty();
+}
+
+class MyFIFO<T> implements InOutData<T> {
+  private LinkedList<T> queue = new LinkedList<>();
+  public MyFIFO(){ }
+  @Override public void in(T n){ queue.addLast(n); }
+  @Override public T out(){ return queue.removeFirst(); }
+  @Override public boolean isEmpty(){ return queue.isEmpty(); }
+}
+
+class MyLIFO<T> implements InOutData<T> {
+  private LinkedList<T> stack = new LinkedList<>();
+  public MyLIFO(){ }
+  @Override public void in(T n){ stack.addLast(n); }
+  @Override public T out(){ return stack.removeLast(); }
+  @Override public boolean isEmpty(){ return stack.isEmpty(); }
+}
+
+class MyPriority<T extends Comparable<T>> implements InOutData<T> {
+  private PriorityQueue<T> queue = new PriorityQueue<>();
+  public MyPriority(){ }
+  @Override public void in(T n){ queue.add(n); }
+  @Override public T out(){ return queue.remove(); }
+  @Override public boolean isEmpty(){ return queue.isEmpty(); }
+}
+
+/**
+ * ???????????¨?????????????????´????????????
+ * @param <T> ?????????????????????
+ */
+class CostNode<T extends Comparable<T>> implements Comparable<CostNode<T>>{
+  /**
+   * ?????????
+   */
+  public final T cost;
+  /**
+   * ????????????
+   */
+  public final MyEdge<T> edge;
+  /**
+   * @param cost????????????
+   * @param edge ????????????
+   */
+  public CostNode(T cost_, MyEdge<T> edge_) {
+    this.cost = cost_;
+    this.edge = edge_;
+  }
+  @Override public int compareTo(CostNode<T> that){
+    return this.cost.compareTo(that.cost);
+  }
+}
+
+class MyEdge<T> {
+  public int from;
+  public int to;
+  public T weight;
+
+  public MyEdge(int from_, int to_, T weight_) {
+    this.from = from_;
+    this.to = to_;
+    this.weight = weight_;
+  }
+}
+//http://qiita.com/p_shiki37/items/a0f6aac33bf60f5f65e4
+//??¬????????§????????¨???????????§piroz?????????????????????????????????????????????
+
+class FastScanner {
+// ????????¨???
+public FastScanner(InputStream in_){in = in_;}
+// ????????¨??????????????§
+private final InputStream in;
+private final byte[] buffer = new byte[1024];
+private int ptr = 0;
+private int buflen = 0;
+private boolean hasNextByte() {
+ if (ptr < buflen) {
+   return true;
+ }else{
+   ptr = 0;
+   try {
+     buflen = in.read(buffer);
+   } catch (IOException e) {
+     e.printStackTrace();
+   }
+   if (buflen <= 0) {
+     return false;
+   }
+ }
+ return true;
+}
+private int readByte() { if (hasNextByte()) return buffer[ptr++]; else return -1;}
+private static boolean isPrintableChar(int c) { return 33 <= c && c <= 126;}
+public boolean hasNext() { while(hasNextByte() && !isPrintableChar(buffer[ptr])) ptr++; return hasNextByte();}
+public String next() {
+ if (!hasNext()) throw new NoSuchElementException();
+ StringBuilder sb = new StringBuilder();
+ int b = readByte();
+ while(isPrintableChar(b)) {
+   sb.appendCodePoint(b);
+   b = readByte();
+ }
+ return sb.toString();
+}
+public long nextLong() {
+ if (!hasNext()) throw new NoSuchElementException();
+ long n = 0;
+ boolean minus = false;
+ int b = readByte();
+ if (b == '-') {
+   minus = true;
+   b = readByte();
+ }
+ if (b < '0' || '9' < b) {
+   throw new NumberFormatException();
+ }
+ while(true){
+   if ('0' <= b && b <= '9') {
+     n *= 10;
+     n += b - '0';
+   }else if(b == -1 || !isPrintableChar(b)){
+     return minus ? -n : n;
+   }else{
+     throw new NumberFormatException();
+   }
+   b = readByte();
+ }
+}
+public int nextInt() {
+ long nl = nextLong();
+ if (nl < Integer.MIN_VALUE || nl > Integer.MAX_VALUE) throw new NumberFormatException();
+ return (int) nl;
+}
+public double nextDouble() { return Double.parseDouble(next());}
+}

@@ -1,0 +1,1 @@
+import java.util.*;public class Main {public static void main(String[]h){Scanner s=new Scanner(System.in);while(s.hasNext()){int n=s.nextInt();if(n==0){break;}int[] a=new int[n];for(int i=0;i<n;i++){a[i]=s.nextInt();}Arrays.sort(a);int o=0;for(int i=1;i<n-1;i++){o+=a[i];}System.out.println(o/(n-2));}}}

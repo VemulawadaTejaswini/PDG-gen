@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int[]c=new int[4];String x;for(Scanner s=new Scanner(System.in);s.hasNext();)++c[(x=s.next()).contains("AB")?2:x.contains("A")?0:x.contains("B")?1:3];for(int i:c)System.out.println(i);}}

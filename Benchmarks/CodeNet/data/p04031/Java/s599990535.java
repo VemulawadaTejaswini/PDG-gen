@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		String[] n = br.readLine().split(" ");
+		Integer[] num = new Integer[N];
+
+		double sum = 0;
+
+		for (int i = 0; i < N; i++) {
+			n.toString().split(" ");
+			num[i] = Integer.parseInt(n[i]);
+			sum += num[i];
+		}
+
+		for (int i = 0; i < N; i++) {
+		}
+
+		double ave = Math.round(sum / N);
+
+		int cost = 0;
+
+		for (int i = 0; i < N; i++) {
+			cost +=  Math.pow((num[i] - ave), 2);
+		}
+		System.out.println(cost);
+
+	}
+
+}

@@ -1,0 +1,75 @@
+import static java.lang.Integer.*;
+import static java.lang.Long.*;
+import static java.lang.System.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    static void solve() throws Exception {
+        long A = scanLong(), B = scanLong(), N = scanLong();
+        long ans = (long)(A * N / B);
+        if (N < B) {
+            out.print(ans);
+//            return;
+        } else {
+//            if ()
+            long tmp = B-1;
+            ans = (long)(A * tmp / B) - (long)(A * (long)(tmp / B));
+            out.print(ans);
+        }
+
+
+//
+//        for (long i = 1; i <= N; i++) {
+//            long t = (long)(A * i / B) - (long)(A * (long)(i / B));
+//            long j = (A * i / B);
+//            long k = (A * (long)(i / B));
+////            long t = j - k;
+//            System.out.println(i+":"+j +":"+k+":"+t);
+//            if (ans <= t) {
+//                ans = t;
+//            } else {
+////                break;
+//            }
+//        }
+//        out.print("sita" + ans);
+    }
+
+    static int scanInt() throws IOException {
+        return parseInt(scanString());
+    }
+
+    static long scanLong() throws IOException {
+        return parseLong(scanString());
+    }
+
+    static String scanString() throws IOException {
+        while (tok == null || !tok.hasMoreTokens()) {
+            tok = new StringTokenizer(in.readLine());
+        }
+        return tok.nextToken();
+    }
+
+    static BufferedReader in;
+    static PrintWriter out;
+    static StringTokenizer tok;
+
+    public static void main(String[] args) {
+        try {
+            in = new BufferedReader(new InputStreamReader(System.in));
+            out = new PrintWriter(System.out);
+            solve();
+            in.close();
+            out.close();
+        }
+        catch (Throwable e) {
+            e.printStackTrace();
+            exit(1);
+        }
+    }
+}

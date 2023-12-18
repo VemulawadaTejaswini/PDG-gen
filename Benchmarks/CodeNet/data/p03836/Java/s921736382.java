@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int sx = sc.nextInt();
+		int sy = sc.nextInt();
+		int tx = sc.nextInt();
+		int ty = sc.nextInt();
+
+		int dx, dy;
+		if(sx*tx > 0){
+			dx = Math.max(Math.abs(sx), Math.abs(tx))-Math.min(Math.abs(sx), Math.abs(tx));
+		}else{
+			dx = tx-sx;
+		}
+
+		if(sy*ty > 0){
+			dy = Math.max(Math.abs(sy), Math.abs(ty))-Math.min(Math.abs(sy), Math.abs(ty));
+		}else{
+			dy = ty-sy;
+		}
+		String answer = "";
+
+		for (int i = 0; i < 4; i++) {
+			if (i % 2 == 0) {
+				if(i == 2){
+					answer += "LU";
+				}
+				for (int j = 0; j < dx; j++) {
+					answer += "U";
+				}
+
+				for (int j = 0; j < dy; j++) {
+					answer += "R";
+				}
+
+				if(i == 2){
+					answer += "RD";
+				}
+			} else {
+				if(i == 3){
+					answer += "RD";
+				}
+				for (int j = 0; j < dy; j++) {
+					answer += "D";
+				}
+
+				for (int j = 0; j < dx; j++) {
+					answer += "L";
+				}
+				if(i == 3){
+					answer += "LU";
+				}
+			}
+		}
+
+		System.out.println(answer);
+	}
+}

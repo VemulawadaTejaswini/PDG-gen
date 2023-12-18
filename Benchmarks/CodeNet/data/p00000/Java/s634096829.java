@@ -1,0 +1,1 @@
+class Main{public static void main(String[]s){int i,j;for(i=1;i++<9;)for(j=0;j++<9;)System.out.println(i+"x"+j+"="+i*j);}}

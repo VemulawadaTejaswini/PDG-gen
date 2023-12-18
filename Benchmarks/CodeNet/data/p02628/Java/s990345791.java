@@ -1,0 +1,19 @@
+import java.util.*;
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		// スペース区切りの整数の入力
+        int N=sc.nextInt();
+        int K=sc.nextInt();
+        int[] p=new int[N];
+		for(for int i=0;i<N;i++){
+          p[i]=sc.nextInt();
+        }
+        Arrays.sort(p,Collections.reverseOrder());
+        int syutu=0;
+        for(for int i=0;i<K;i++){
+          syutu=syutu+p[i];
+        }
+        System.out.println(syutu);
+}
+}

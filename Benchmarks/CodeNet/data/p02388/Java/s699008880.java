@@ -1,0 +1,14 @@
+import java.io.IOException;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException{
+        int x;
+        if (args[0] == null) {
+            x = 0;
+        } else {
+            x = Integer.parseInt(args[0]);
+        }
+        System.out.println(x * x * x);
+    }
+}

@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        sc.close();
+        System.out.println(s.replaceAll(",", " "));
+    }
+}

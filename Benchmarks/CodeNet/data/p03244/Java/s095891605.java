@@ -1,0 +1,57 @@
+import java.util.Arrays;
+import java.util.Scanner;
+ 
+import javax.net.ssl.SSLContext;
+ 
+public class Main {
+ 
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int[] a = new int[n];
+		int[] obuget = new int[100010];
+		int[] ebuget = new int[100010];
+		int[] o = new int[100010];
+		int[] e = new int[100010];
+		int E = 0;
+		int O = 0;
+		int E2 = 0;
+		int O2 = 0;
+		int m = n/2;
+		boolean f  = true;
+		for (int i = 0; i < n; i++) {
+			a[i] = scan.nextInt();
+		}
+ 
+		for (int i = 0; i < n; i++) {
+			if (i % 2 == 0) {
+				ebuget[a[i]]++;
+			} else {
+				obuget[a[i]]++;
+			}
+		}
+		System.arraycopy(ebuget, 0, e, 0, 100010);
+		System.arraycopy(obuget, 0, o, 0, 100010);
+		Arrays.sort(ebuget);
+		Arrays.sort(obuget);
+		E = ebuget[100009];
+		O = obuget[100009];
+		E2 = ebuget[100008];
+		O2 = obuget[100008];
+		
+		for (int i = 0; i < 100010; i++) {
+			if (e[i] == E && o[i] == O) {
+				f = false;
+			}
+		}
+		if (f) {
+			int ans = (m-E)+(m-O);
+			System.out.println(ans);
+			return;
+		} else {
+			int ans1 = (m-E2)+(m-O);
+			int ans2 = (m-E)+(m-O2);
+			System.out.println(Math.min(ans1, ans2));
+		}
+	}
+}

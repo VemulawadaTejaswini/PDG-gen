@@ -1,0 +1,118 @@
+import java.util.*;
+import java.io.*;
+ 
+public class Main {
+    public static void main(String[] args) throws Exception {
+        FastScanner sc = new FastScanner(System.in);
+        PrintWriter pw = new PrintWriter(System.out);
+        long mod = 998244353L;
+        long[][] dp = new long[3001][3001];
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        dp[a][b] = 1;
+        for(int h = a; h <= c; h++){
+            for(int w = b; w <= d; w++){
+                if (a < h) dp[h][w] += dp[h - 1][w] * (long)w;
+                dp[h][w] %= mod;
+                if (b < w) dp[h][w] += dp[h][w - 1] * (long)h;
+                dp[h][w] %= mod;
+                if (a < h && b < w) dp[h][w] -= dp[h - 1][w - 1] * (long)(w - 1) * (long)(h - 1);
+                if(dp[h][w] < 0){
+                    dp[h][w] += mod;
+                }
+                dp[h][w] %= mod;
+            }
+        }
+        if(dp[c][d] < 0){
+            dp[c][d] += mod;
+        }
+        pw.println(dp[c][d]%mod);
+        pw.flush();
+    }
+
+    static class GeekInteger {
+        public static void save_sort(int[] array) {
+            shuffle(array);
+            Arrays.sort(array);
+        }
+ 
+        public static int[] shuffle(int[] array) {
+            int n = array.length;
+            Random random = new Random();
+            for (int i = 0, j; i < n; i++) {
+                j = i + random.nextInt(n - i);
+                int randomElement = array[j];
+                array[j] = array[i];
+                array[i] = randomElement;
+            }
+            return array;
+        }
+ 
+    }
+}
+
+class FastScanner {
+    private BufferedReader reader = null;
+    private StringTokenizer tokenizer = null;
+    public FastScanner(InputStream in) {
+        reader = new BufferedReader(new InputStreamReader(in));
+        tokenizer = null;
+    }
+
+    public String next() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                tokenizer = new StringTokenizer(reader.readLine());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken();
+    }
+
+    public String nextLine() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                return reader.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken("\n");
+    }
+
+    public long nextLong() {
+        return Long.parseLong(next());
+    }
+
+    public int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    public double nextDouble() {
+         return Double.parseDouble(next());
+    }
+    
+    public String[] nextArray(int n) {
+        String[] a = new String[n];
+        for (int i = 0; i < n; i++)
+            a[i] = next();
+        return a;
+    }
+
+    public int[] nextIntArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextInt();
+        return a;
+    }
+
+    public long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextLong();
+        return a;
+    } 
+}

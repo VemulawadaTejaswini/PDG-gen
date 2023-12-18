@@ -1,0 +1,30 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int H = sc.nextInt();
+        int W = sc.nextInt();
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+
+        if (W < 2 * A || H < 2 * B) {
+            System.out.println(-1);
+            return;
+        }
+
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                if ((i < B && j < A) || (i >= B) && (j >= A)) bw.write("0");
+                else bw.write("1");
+            }
+            bw.newLine();
+        }
+
+        bw.flush();
+    }
+}

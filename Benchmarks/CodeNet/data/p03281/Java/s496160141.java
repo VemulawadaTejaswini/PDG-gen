@@ -1,0 +1,23 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n;
+		n=sc.nextInt();
+		int cnt=0;
+		for(int i=1;i<=n;i++) {
+			if(div(i)==8)
+				cnt++;
+		}
+		System.out.println(cnt);
+	}
+	
+	public static int div(int n) {
+		int cnt=0;
+		for(int i=1;i<n;i++) {
+			if(n%1==0)
+				cnt++;
+		}
+		return cnt;
+	}
+}

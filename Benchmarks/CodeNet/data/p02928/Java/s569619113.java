@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+      	int k = sc.nextInt();
+      	sc.nextLine();
+      	
+      	int a[] = new int[n];
+      	int b[] = new int[n*k];
+      	for(int i = 0; i < n; i++)
+        	a[i] = sc.nextInt();
+      
+      	for(int i = 0; i < k; i++)
+          for(int j = 0; j < a.length; j++)
+            b[i*n + j] = a[j];
+      
+      	int count = 0;
+      	for(int i = 0; i < b.length; i++)
+          for(int j = i+1; j < b.length; j++)
+            if(b[i]> b[j]) count++;
+            
+		System.out.println(count);
+	}
+}

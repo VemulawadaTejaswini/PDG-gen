@@ -1,0 +1,143 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.Random;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.io.InputStream;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main {
+	public static void main(String[] args) {
+		InputStream inputStream = System.in;
+		OutputStream outputStream = System.out;
+		FastScanner in = new FastScanner(inputStream);
+		PrintWriter out = new PrintWriter(outputStream);
+		ProblemD solver = new ProblemD();
+		solver.solve(1, in, out);
+		out.close();
+	}
+
+	static class ProblemD {
+		int n;
+		Point[] ans;
+		int k;
+		boolean[][] used;
+		List<Point> forbidden;
+		Random random = new Random(0);
+
+		public void solve(int testNumber, FastScanner in, PrintWriter out) {
+			n = in.nextInt();
+			int d1 = in.nextInt();
+			int d2 = in.nextInt();
+			forbidden = new ArrayList<>();
+			for (int x = -2 * n; x <= 2 * n; x++) {
+				for (int y = -2 * n; y <= 2 * n; y++) {
+					Point p = new Point(x, y);
+					int d = x * x + y * y;
+					if (d == d1 || d == d2) {
+						forbidden.add(p);
+					}
+				}
+			}
+
+			ans = new Point[n * n];
+			used = new boolean[2 * n][2 * n];
+			for (double prob = 0; ; prob += 0.05) {
+				solve(prob);
+				if (k == ans.length) {
+					break;
+				}
+			}
+			for (int i = 0; i < k; i++) {
+				out.println(ans[i].x + " " + ans[i].y);
+			}
+		}
+
+		private void solve(double prob) {
+			for (int i = 0; i < k; i++) {
+				used[ans[i].x][ans[i].y] = false;
+			}
+			k = 0;
+			for (int it = 0; it < 2; it++) {
+				for (int x = 0; x < 2 * n; x++) {
+					for (int y = 0; y < 2 * n; y++) {
+						if (k == ans.length) {
+							return;
+						}
+						if (random.nextDouble() < prob) {
+							continue;
+						}
+						if (used[x][y]) {
+							continue;
+						}
+						boolean ok = true;
+						for (Point p : forbidden) {
+							int nx = x + p.x;
+							int ny = y + p.y;
+							if (nx >= 0 && nx < 2 * n && ny >= 0 && ny < 2 * n && used[nx][ny]) {
+								ok = false;
+								break;
+							}
+						}
+
+						if (ok) {
+							used[x][y] = true;
+							ans[k++] = new Point(x, y);
+						}
+					}
+				}
+			}
+		}
+
+		class Point {
+			int x;
+			int y;
+
+			Point(int x, int y) {
+				this.x = x;
+				this.y = y;
+			}
+
+		}
+
+	}
+
+	static class FastScanner {
+		private BufferedReader in;
+		private StringTokenizer st;
+
+		public FastScanner(InputStream stream) {
+			in = new BufferedReader(new InputStreamReader(stream));
+		}
+
+		public String next() {
+			while (st == null || !st.hasMoreTokens()) {
+				try {
+					String rl = in.readLine();
+					if (rl == null) {
+						return null;
+					}
+					st = new StringTokenizer(rl);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+			return st.nextToken();
+		}
+
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+	}
+}
+

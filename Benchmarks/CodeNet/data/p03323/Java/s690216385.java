@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+           
+            int A = sc.nextInt();
+            int B = sc.nextInt();
+            
+            if (A-B >= 0) {
+                if (A <= 8) {
+                    System.out.println("Yay!");
+                } else {
+                    System.out.println(":(");
+                }
+            }
+    
+            else if (B <= 8) {
+                System.out.println("Yay!");
+            }
+            else {
+                System.out.println(":(");
+            }
+        
+    }
+}

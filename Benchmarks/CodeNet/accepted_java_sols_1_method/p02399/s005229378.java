@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int a=Integer.parseInt(st.nextToken());
+		int b=Integer.parseInt(st.nextToken());
+
+		int d=a/b;
+		int r=a%b;
+
+		double da=(double)a;
+		double db=(double)b;
+		double f=da/db;
+
+		double befor=f;
+		String after=String.format("%.5f",befor);
+
+		System.out.println(d+" "+r+" "+after);
+	}
+
+}
+

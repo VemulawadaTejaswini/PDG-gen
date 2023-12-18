@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+
+        int X = in.nextInt();
+        int A = in.nextInt();
+        int B = in.nextInt();
+
+        in.close();
+        if(Math.abs(X - A) < Math.abs(X - B)){
+        	System.out.println("A");
+        }
+        else System.out.println("B");
+    }
+}

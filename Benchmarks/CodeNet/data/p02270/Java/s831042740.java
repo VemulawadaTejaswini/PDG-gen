@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Main {
+	public static int n;
+	public static int k;
+	public static int []w;
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		n = scan.nextInt();
+		k = scan.nextInt();
+		w = new int[n];
+		for(int i = 0; i < n; i++) {
+			w[i] = scan.nextInt();
+		}
+		scan.close();
+		long ans = solve();
+		System.out.println(ans);
+	}
+	
+	/*
+	 * トラックに詰め込めるかどうかのチェック
+	 */
+	public static int check(long p) {
+		int i = 0;
+		for(int j = 0; j < k; j++) {
+			long s = 0;
+			while(s + w[i] <= p) {
+				s += w[i];
+				i++;
+				if(i == n) {
+					return n;
+				}
+			}
+		}
+		return i;
+	}
+	/**
+	 * 二分探索木でトラックに乗せる最大積載量Pを求める
+	 * @return
+	 */
+	public static long solve() {     
+		long left = 0;
+	long right = 100000000;
+	long mid;
+	while(right - left > 1) {
+		mid = (left + right) / 2;
+		int v = check(mid);
+		if(v >= n) {
+			right = mid;
+		}else{
+			left = mid;
+		}
+	}
+	return right;
+	}
+}

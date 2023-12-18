@@ -1,0 +1,21 @@
+import java.util.*;
+
+// ABC 27-C
+// http://abc027.contest.atcoder.jp/tasks/abc027_c
+ 
+public class Main {
+	
+	public static void main (String[] args) throws java.lang.Exception {
+		Scanner in = new Scanner(System.in);
+
+		char[] a = in.next().toCharArray();
+		char[] b = in.next().toCharArray();
+		char[] c = in.next().toCharArray();
+		
+		if (a[a.length - 1] == b[0] && b[b.length - 1] == c[0]) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+		}
+	}
+}

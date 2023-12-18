@@ -1,0 +1,31 @@
+import java.util.*;
+import static java.lang.System.*;
+import static java.lang.Integer.*;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(in);
+    int N = parseInt(sc.next());
+    int M = parseInt(sc.next());
+    int P[] = new int[M];
+    int Y[] = new int[M];
+    List<List> A = new ArrayList<List>(N);
+    for(int i=0; i<N; i++){
+      List<Integer> B = new ArrayList<Integer>();
+      A.add(B);
+    }      
+    for(int i=0; i<M; i++){
+      P[i] = parseInt(sc.next());
+      Y[i] = parseInt(sc.next());
+      A.get(P[i]-1).add(Y[i]);
+    }
+    for(int i=0; i<N; i++){
+      Collections.sort(A.get(i));
+    }
+    for(int i=0; i<M; i++){
+      int x = Collections.binarySearch(A.get(P[i]-1), Y[i]) + 1;
+      out.printf("%06d%06d\n",P[i],x);
+    }
+    
+  }
+}

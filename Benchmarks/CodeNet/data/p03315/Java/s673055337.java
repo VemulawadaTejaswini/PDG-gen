@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+		String str = args[0];
+		int num = 0;
+		for(int i=0;i<4;i++) {
+			char nowChar = str.charAt(i);
+			if(nowChar=='+') {
+				num++;
+			}else if(nowChar=='-') {
+				num--;
+			}
+		}
+		System.out.println(num);
+	}

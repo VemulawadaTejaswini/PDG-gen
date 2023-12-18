@@ -1,0 +1,25 @@
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		List<Integer> list = new ArrayList<Integer>();
+		int sum = 0;
+		for (int i=0; i<N; i++) {
+			int a = sc.nextInt();
+			sum += a;
+			list.add(a);
+		}
+		int ave = new BigDecimal((double)sum/N).setScale(0,  BigDecimal.ROUND_HALF_UP).intValue();
+		int cost = 0;
+		for (int v: list) cost += (v-ave)*(v-ave);
+		System.out.println(cost);
+		sc.close();
+	}
+
+}

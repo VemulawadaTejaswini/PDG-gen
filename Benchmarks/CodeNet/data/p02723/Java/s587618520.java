@@ -1,0 +1,14 @@
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        String s = scn.next();
+      	if(s.charAt(3) == s.charAt(4) && s.charAt(5) == s.charAt(6)){
+          System.out.println("Yes");
+        }else{
+          System.out.println("No");
+        }
+        
+    }
+}
+

@@ -1,0 +1,23 @@
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.IntStream;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+
+        int N = scan.nextInt();
+        int K = scan.nextInt();
+        List<Integer> l = new ArrayList<>();
+        for (int i : IntStream.range(0, N).toArray()){
+            l.add(scan.nextInt());
+        }
+        System.out.println(l.stream().sorted(Comparator.reverseOrder()).mapToInt(Integer::valueOf).limit(K).sum());
+    }
+
+}

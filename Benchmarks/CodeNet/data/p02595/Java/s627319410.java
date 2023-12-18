@@ -1,0 +1,1 @@
+import java.util.Scanner;class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int n=s.nextInt();int d=s.nextInt();int k=0;for(;n>0;n--){if(Math.sqrt(Math.pow(s.nextInt(),2)+Math.pow(s.nextInt(),2))<=d)k++;}System.out.print(k);}}

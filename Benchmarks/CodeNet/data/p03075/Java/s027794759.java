@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Main{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        int e = sc.nextInt();
+        int k = sc.nextInt();
+
+        if(b-a > k){
+          System.out.println(":(");
+          break;
+        }else if(c-b > k){
+          System.out.println(":(");
+          break;
+        }else if(d-c > k){
+          System.out.println(":(");
+          break;
+        }else if(e-d > k){
+          System.out.println(":(");
+          break;
+        }else{
+        System.out.println("Yay!");
+      }
+    }
+}

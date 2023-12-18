@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class Main {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try {
+			String str1 = br.readLine();
+			String str2 = br.readLine();
+			if(str1.length() > str2.length()) {
+				System.out.println("GREATER");
+			}else if(str1.length() < str2.length()) {
+				System.out.println("LESS");
+			}else {
+				for(int i = 0;i < str1.length();i++) {
+					if(str1.charAt(i) > str2.charAt(i)) {
+						System.out.println("GREATER");
+						break;
+					}else if(str1.charAt(i) < str2.charAt(i)) {
+						System.out.println("LESS");
+						break;
+					}
+
+					if(i == str1.length()-1) {
+						System.out.println("EQUAL");
+					}
+				}
+			}
+//			long max  = 1000000007;
+		}catch (Exception e) {
+			System.exit(0);
+		}
+	}
+}

@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+public class Main {
+	int L;
+	long[] Ai = null;
+
+	long[] totalLeftAi1 = null;
+	long[] totalLeftAi2 = null;
+	long[] totalRightAi2 = null;
+	
+	private void prepare() {
+		Scanner in = new Scanner(System.in);
+		L = in.nextInt();
+		Ai = new long[L+1];
+		for (int i=1; i<=L; i++) {
+			Ai[i] = in.nextInt();
+		}
+		in.close();
+
+		long totalLeftAi = 0;
+		totalLeftAi1 = new long[L+1];
+		totalLeftAi2 = new long[L+1];
+		totalLeftAi1[0] = 0;
+		totalLeftAi2[0] = 0;
+		for (int i=1; i<=L; i++) {
+			totalLeftAi += Ai[i];
+			if (Ai[i] < 1) {
+				totalLeftAi1[i] = totalLeftAi1[i-1] + (1 - Ai[i]);
+			} else {
+				totalLeftAi1[i] = totalLeftAi1[i-1] + (Ai[i] + 1) % 2;
+			}
+			if (Ai[i] < 2) {
+				totalLeftAi2[i] = totalLeftAi2[i-1] + (2 - Ai[i]);
+			} else {
+				totalLeftAi2[i] = totalLeftAi2[i-1] + (Ai[i] % 2);
+			}
+			if (totalLeftAi2[i] > totalLeftAi) {
+				totalLeftAi2[i] = totalLeftAi;
+			}
+		}
+		
+		long totalRightAi = 0;
+		totalRightAi2 = new long[L+2];
+		totalRightAi2[L+1] = 0;
+		
+		for (int i=L; i>=1; i--) {
+			totalRightAi += Ai[i];
+			if (Ai[i] < 2) {
+				totalRightAi2[i] = totalRightAi2[i+1] + (2 - Ai[i]);
+			} else {
+				totalRightAi2[i] = totalRightAi2[i+1] + (Ai[i] % 2);
+			}
+			if (totalRightAi2[i] > totalRightAi) {
+				totalRightAi2[i] = totalRightAi;
+			}
+		}
+		totalRightAi2[0] = totalRightAi2[1];
+		
+	}
+	
+	public long solve() {
+		prepare();
+		long min = Long.MAX_VALUE;
+
+		long leftMin = Long.MAX_VALUE;
+		
+		long rightMins[] = new long[L+1];
+		for (int right=L; right>=0; right--) {
+			long rightScore = totalLeftAi1[right] + totalRightAi2[right+1];
+			if (right==L) {
+				rightMins[right] = rightScore;
+			} else {
+				if (rightMins[right+1] < rightScore) {
+					rightMins[right] = rightMins[right+1];
+				} else {
+					rightMins[right] = rightScore;
+				}
+			}
+		}
+		
+		for (int left=0; left<=L; left++) {
+			long leftScore = totalLeftAi2[left] - totalLeftAi1[left];
+
+			if (leftScore < leftMin) {
+				leftMin = leftScore;
+			} else {
+				continue;
+			}
+			
+			long rightScore = rightMins[left];
+			
+			if (min > leftScore + rightScore) {
+				min = leftScore + rightScore;
+			}
+		}
+		return min;
+	}
+	
+	public static void main(String[] args) {
+		Main main = new Main();
+		System.out.println(main.solve());
+	}
+}

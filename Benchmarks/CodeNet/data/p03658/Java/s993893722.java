@@ -1,0 +1,26 @@
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		solve(scanner);
+		scanner.close();
+	}
+	
+	public static void solve(Scanner scanner) {
+		int size = scanner.nextInt();
+		int n = scanner.nextInt();
+		int[] array = new int[size];
+		for (int i = 0; i < array.length; i++) {
+			array[i] = scanner.nextInt();
+		}
+		Arrays.sort(array);
+		int sum = 0;
+		for (int i = size-1; i >= size - n; i--) {
+			sum += array[i];
+		}
+		System.out.println(sum);
+	}
+}

@@ -1,0 +1,23 @@
+import java.util.Scanner;
+class Main{
+  public static void main(String... args){
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int x[] = new int[N];
+    int y[] = new int[N];
+
+    for(int i = 0; i < N; i++){
+      x[i] = sc.nextInt();
+      y[i] = sc.nextInt();
+    }
+
+    double sum = 0;
+    //組み合わせ
+    for(int i = 0; i < N-1; i++){
+      for(int j = i+1; j < N; j++){
+        sum += Math.sqrt(Math.pow(x[i]-x[j], 2) + Math.pow(y[i]-y[j], 2));
+      }
+    }
+    System.out.println(2*sum/N);
+  }
+}

@@ -1,0 +1,1 @@
+class Main{static{int i=0,j;for(;i<9;)for(i++,j=0;j<9;)System.out.println(i+"x"+ ++j+"="+i*j);System.exit(0);}}

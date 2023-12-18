@@ -1,0 +1,97 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+	new Main().run();
+    }
+    Scanner sc = new Scanner(System.in);
+
+    int x, y;
+    int[][] map;
+    int[][] encX; // 種類/x
+    int[][] encY; // 種類/y
+    int[] pachi;
+    int p, gp;
+    int sx, sy, gx, gy;
+    int ans, num;
+    int MAX = Integer.MAX_VALUE;
+    String s;
+
+    void run(){
+	while(sc.hasNext()){
+	    x = sc.nextInt();
+	    y = sc.nextInt();
+	    if(x==0 && y==0) break;
+	    input();
+	    
+	    for(int i=0; i<5; i++){
+		p = i;
+		gp = p; // ここに戻ったらおしまい
+		p++; // 次に捕まえる！
+		int dis = search(sx, sy, p, 0);
+		if(ans>dis){
+		    ans = dis;
+		    num = p;
+		}
+	    }
+	    
+	    System.out.println(ans!=MAX ?
+			       (num+" "+ans) : "NA");
+	}
+    }
+
+    int search(int x, int y, int p, int sum){
+	//System.out.println("*"+gp+" "+x+" "+y+" "+p+" "+sum);
+	if(p==5) p=0;
+	if(p==gp) return sum+Math.abs(x-gx)+Math.abs(y-gy);
+	if(pachi[p]==0) return MAX;
+	int[] f = new int[pachi[p]];
+	for(int i=0; i<pachi[p]; i++){
+	    int a = encX[p][i];
+	    int b = encY[p][i];
+	    int w = Math.abs(a-x)+Math.abs(b-y);	    
+	    f[i] = search(a, b, p+1, sum+w);
+	}
+	Arrays.sort(f);
+	return f[0]; 
+    }
+
+    void input(){
+	map = new int[y][x];
+	pachi = new int[5];
+	encX = new int[5][1000];
+	encY = new int[5][1000];
+	for(int i=0; i<5; i++){
+	    Arrays.fill(encX[i], MAX);
+	    Arrays.fill(encY[i], MAX);
+	}
+	ans = MAX;
+	num = MAX;
+	for(int i=0; i<y; i++){
+	    s = sc.next();
+	    for(int k=0; k<x; k++){
+		String t = s.substring(k, k+1);
+		if(t.equals("S")){
+		    sx = k;
+		    sy = i;
+		}
+		else if(t.equals("G")){
+		    gx = k;
+		    gy = i;
+		}
+		else if(t.equals("."))
+		    ;
+		else {
+		    int a = Integer.parseInt(t)-1;
+		    pachi[a]++;
+		    map[i][k] = a;
+		    int c = 0;
+		    while(encX[a][c]!=MAX)c++;
+		    encX[a][c] = k;
+		    encY[a][c] = i;
+		}
+	    }
+	}
+    }
+}
+			
+       

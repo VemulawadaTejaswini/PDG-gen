@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[] g){Scanner s=new Scanner(System.in);System.out.println(s.nextInt()^s.nextInt()^s.nextInt()>6?"YES":"NO");}}

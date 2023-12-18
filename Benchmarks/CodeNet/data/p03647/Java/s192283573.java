@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Main{
+
+	private static boolean[] vis1 = new boolean[200010];
+	private static boolean[] vis2 = new boolean[200010];
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		int i , j , n , m;
+		n = scan.nextInt();
+		m = scan.nextInt();
+		for (i = 0;i < m;i ++) {
+			int a , b;
+			a = scan.nextInt();
+			b = scan.nextInt();
+			if (a == 1) {
+				vis1[b] = true;
+			}
+			if (b == n) {
+				vis2[a] = true;
+			}
+		}
+		for (i = 2;i < n;i ++) {
+			if (vis1[i] && vis2[i]) {
+				break;
+			}
+		}
+		if (i == n) {
+			System.out.println("IMPOSSIBLE");
+		} else {
+			System.out.println("POSSIBLE");
+		}
+		
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

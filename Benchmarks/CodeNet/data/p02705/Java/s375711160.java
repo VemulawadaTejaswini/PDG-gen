@@ -1,0 +1,16 @@
+import java.math.BigDecimal;
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    int r = sc.nextInt();
+
+    BigDecimal l = new BigDecimal(r);
+    BigDecimal ret = l.multiply(new BigDecimal(2))
+        .multiply(new BigDecimal("3.141592"));
+
+    System.out.println(ret.toString());
+  }
+}

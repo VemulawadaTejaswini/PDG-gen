@@ -1,0 +1,30 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Ideone
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str = br.readLine();
+		String[] array = str.split(" ");
+        int[] a =new int[3];
+        int sum = 0;;
+
+        for(int i = 0; i < 3; i++){
+            a[i] = Integer.parseInt(array[i]);
+            sum = sum + a[i];
+        }
+        
+        if(a[0]>a[1] && a[0]>a[2]){
+        	sum = sum - a[0];
+        } else if(a[1]>a[0] && a[1]>a[2]){
+        	sum = sum - a[1];
+        } else{
+        	sum = sum - a[2];
+        }
+        
+        System.out.println(sum);
+
+	}
+}

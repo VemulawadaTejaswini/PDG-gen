@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+		new Main().solver();
+	}
+
+	void solver() {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		int n = s.length();
+		for (int i = 0; i < n - 1; i++) {
+			if (s.charAt(i) == s.charAt(i + 1)) {
+				System.out.println((i + 1) + " " + (i + 2));
+				return;
+			}
+		}
+		
+		for (int i = 0; i < n - 2; i++) {
+			if (s.charAt(i) == s.charAt(i + 2)) {
+				System.out.println((i + 1) + " " + (i + 3));
+				return;
+			}
+		}
+		System.out.println((-1+" "+-1));
+	}
+}

@@ -1,0 +1,35 @@
+import java.util.*;
+ 
+public class Main {
+	public static void main(String[] args) {
+ 
+		Scanner sc  = new Scanner(System.in);
+
+		Double o= 0.0 ,p = 0.0,q = 0.0;
+		int a = 0, b = 0, c = 0;
+		char ch;
+		String str="";
+		
+
+//      String s1 = sc.next();
+        int s = Integer.parseInt(sc.next());
+        int t = Integer.parseInt(sc.next());
+        String[] test  = new String[s];
+        while(true){
+            test[a] = sc.next();
+            a++;
+            if(s==a)break;
+        }
+        
+        Arrays.sort(test);
+
+//	    int[] test  = new int[100000];
+//      char[] c1 = s1.toCharArray();
+        for(int i = 0; i < s ; i++){
+            str += test[i];
+        } 
+
+        System.out.print(str);
+        System.out.println();
+	}
+}

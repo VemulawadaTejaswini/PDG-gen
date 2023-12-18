@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String[] s = new String[3];
+		for (int i = 0; i < 3; i++) {
+			s[i] = sc.next();
+		}
+		int i = 0;
+
+		while (s[i].length()!=0) {
+			int n = s[i].charAt(0) - 'a';
+			s[i] = s[i].substring(1);
+			i=n;
+		}
+		System.out.println((char)('A'+i));
+
+	}
+
+}

@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		int[] a = new int[m];
+		int[] b = new int[m];
+		int[] road = new int[n];
+
+		for(int i = 0 ; i < n ; i++) {
+			road[i] = 0;
+		}
+
+		for(int i = 0 ; i < m ; i++) {
+			a[i] = sc.nextInt();
+			b[i] = sc.nextInt();
+		}
+
+		for(int i = 0 ; i < m ; i++) {
+			for(int j = 0 ; j < n ; j++) {
+				if(a[i] == j + 1) {
+					road[j] += 1;
+				}
+				if(b[i] == j + 1) {
+					road[j] += 1;
+				}
+			}
+		}
+
+		for(int i = 0 ; i < n ; i++) {
+			System.out.println(road[i]);
+		}
+	}
+}

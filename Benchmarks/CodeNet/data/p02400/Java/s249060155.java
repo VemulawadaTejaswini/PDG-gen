@@ -1,0 +1,21 @@
+// ITP_1_4-B
+
+import java.util.Scanner;
+
+class Main
+{
+	public static void main ( String[] args ) {
+		Scanner sc = new Scanner ( System.in );
+
+		final double PI = 3.14159265;
+		double r = 0.0;
+		double en_menseki = 0.0;
+		double en_shu = 0.0;
+
+		r = sc.nextInt ();
+		en_menseki = r * r * PI;
+		en_shu = 2 * PI * r;
+
+		System.out.println ( String.format ( "%.6f", en_menseki ) + " " + String.format ( "%.6f", en_shu ) );
+	}
+}

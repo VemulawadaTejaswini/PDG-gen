@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int y = sc.nextInt();
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        if(y<2019 || (y==2019&&m<5)){
+          System.out.println("Heisei");
+        }else{
+          System.out.println("TBD");
+        }
+    }
+}

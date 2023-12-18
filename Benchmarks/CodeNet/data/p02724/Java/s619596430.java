@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+//AtCoder Beginner Contest 160
+// B - Golden Coins
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int X = Integer.parseInt(sc.next());
+		sc.close();
+		int ans = 0;
+		ans += (X/500) * 1000;
+		X = X%500;
+		ans += X/5 * 5;
+
+		System.out.println(ans);
+	};
+}

@@ -1,0 +1,1 @@
+import java.awt.geom.*;import java.util.*;class Main{public static void main(String[]z){int i;double[]d=new double[8];for(Scanner s=new Scanner(System.in);s.hasNext();System.out.println(new Rectangle2D.Double(d[0],d[1],d[2]-d[0],d[3]-d[1]).intersects(d[4],d[5],d[6]-d[4],d[7]-d[5])?"YES":"NO"))for(z=s.nextLine().split(" "),i=0;i<8;++i)d[i]=new Double(z[i]);}}

@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]_){String s="";int h,l,a,f=0;GregorianCalendar G=new GregorianCalendar();for(Scanner S=new Scanner(System.in);(l=S.nextInt())+(h=S.nextInt())>0;){s+=f>0?"\nNA\n\n":"";for(f=0,a=l;a<=h;a++)if(G.isLeapYear(a)){s+=a+"\n";f=1;}}System.out.print(s);}}

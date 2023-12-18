@@ -1,0 +1,13 @@
+import java.io.*;
+
+public class Str_Reverse{
+	public static void main(String[] args){
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		while((line=br.readLine())!=null){
+			StringBuffer reverse = new StringBuffer().append(line);
+			System.out.print(reverse.reverse()+"\n");
+		}
+	}
+}

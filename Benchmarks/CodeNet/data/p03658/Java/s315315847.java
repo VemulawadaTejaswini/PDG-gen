@@ -1,0 +1,28 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		new Main().solve();
+	}
+	
+	void solve(){
+		Scanner sc=new Scanner(System.in);
+		
+		int N=sc.nextInt();
+		int K=sc.nextInt();
+		int len[]=new int[N];
+		for(int i=0;i<N;i++){
+			len[i]=sc.nextInt();
+		}
+		Arrays.sort(len);
+		int sum=0;
+		for(int i=0;i<K;i++){
+			sum+=len[N-1-i];
+		}
+		System.out.println(sum);
+		
+	}
+
+}

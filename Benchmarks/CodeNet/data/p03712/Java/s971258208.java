@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String line;
+		int H=0;
+		int W=0;
+		int resultW =0;
+		int end = 0;
+		boolean first = true;
+		try{
+			while(in.hasNext()){
+				line = in.nextLine();
+				if(first){
+					String[] spStr = line.split(" ",0);
+					 H = Integer.parseInt(spStr[0]);
+					 W = Integer.parseInt(spStr[1]);
+					resultW = W + 2;
+					printSharp(resultW);
+					System.out.println();
+					first = false;
+				}else{
+					System.out.println("#"+line+"#");
+					end++;
+				}
+				if(end == H){
+					break;
+				}
+			}
+			printSharp(resultW);
+			System.out.println();
+		}catch(Exception e){}
+
+	}
+
+	public static void printSharp(int count){
+		for(int i=0;i<count;i++){
+			System.out.print("#");
+		}
+	}
+
+}

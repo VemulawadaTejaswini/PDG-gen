@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+class Main{
+public static void main(String[] args){
+ 
+Scanner scan = new Scanner(System.in);
+ 
+int a = scan.nextInt();
+int b = scan.nextInt();
+ 
+int d,r;
+double f;
+
+d = a / b ;
+r = a % b ;
+f = (double)a / b;
+ 
+System.out.printf("%d %d %.5f\n",d,r,f);
+
+    }
+}

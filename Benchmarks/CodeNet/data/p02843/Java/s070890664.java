@@ -1,0 +1,112 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main
+{
+  public static void main(String[] args) throws IOException
+  {
+    BufferedReader r = new BufferedReader(new InputStreamReader(System.in), 1);
+    String s;
+    String sl[];
+
+    s = r.readLine();
+    sl = s.split(" ");
+    int n = Integer.parseInt(sl[0]);
+//    int t = Integer.parseInt(sl[1]);
+//
+//    for(int i = 0; i < n; i++)
+//    {
+//      s = r.readLine();
+//      sl = s.split(" ");
+//      time[i] = Integer.parseInt(sl[0]);
+//      deli[i] = Integer.parseInt(sl[1]);
+//    }
+//
+//    int dp[][] = new int[3001][3001];
+//
+//    for(int i = 1; i <= t; i++)
+//    {
+//      dp[i][0] = deli[0];
+//    }
+//
+//    for(int j = 0; j <= n; j++)
+//    {
+//      for(int i = time[j]; i <= t; i++)
+//      {
+//          dp[i][j] = Math.max(dp[i - time[j]][j - 1] + deli[j], dp[i - 1][j]);
+//      }
+//    }
+    
+    boolean f[] = new boolean[100001];
+    f[100] = true;
+    f[101] = true;
+    f[102] = true;
+    f[103] = true;
+    f[104] = true;
+    f[105] = true;
+    
+
+    for(int i = 106; i <= 100000; i++)
+    {
+      f[i] = f[i - 100] || f[i - 101] || f[i - 102] ||  f[i - 103] || f[i - 104] || f[i - 105];
+    }
+    
+    System.out.println(f[n] ? 1 : 0);
+  }
+
+}
+
+
+
+
+class RemRing
+{
+ long module;
+ public RemRing(long module)
+ {
+   this.module = module;
+ }
+
+ public long sum(long a, long b)
+ {
+   return (a + b + module) % module;
+ }
+
+ public long sub(long a, long b)
+ {
+   return (a - b + module) % module;
+ }
+
+ public long prod(long a, long b)
+ {
+   return (a * b) % module;
+ }
+
+ public long div(long a, long b)
+ {
+   return (a * inv(b)) % module;
+ }
+
+ public long inv(long a)
+ {
+   long b = this.module;
+   long u = 1;
+   long v = 0;
+   while(b > 0)
+   {
+     long t = a / b;
+     a -= t * b;
+     u -= t * v;
+     long z = a;
+     a = b;
+     b = z;
+     z = u;
+     u = v;
+     v = z;
+   }
+   u %= this.module;
+   if(u < 0) u += this.module;
+   return u;
+ }
+}

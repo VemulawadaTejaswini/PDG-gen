@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int S = sc.nextInt();
+		int W = sc.nextInt();
+		
+        if(S>W){
+        	System.out.println("safe");
+        	return;
+        }
+        System.out.println("unsafe");
+        	return;
+		
+	}
+}

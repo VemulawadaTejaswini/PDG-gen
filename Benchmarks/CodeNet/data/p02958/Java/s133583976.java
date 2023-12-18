@@ -1,0 +1,31 @@
+import java.awt.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.ArrayList;
+
+public class CandidateCode{
+    public static void main(String args[] ) throws Exception {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] a=new int[n];
+
+        for(int i=0;i<n;i++){
+            a[i]=sc.nextInt();
+        }
+
+        int invCount=0;
+
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                if(a[i]>a[j]){
+                    invCount++;
+                }
+            }
+        }
+        if(invCount<=1) System.out.println("YES");
+        else System.out.println("NO");
+    }
+
+}

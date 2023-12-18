@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), K = sc.nextInt();
+        sc.nextLine();
+        String s = sc.nextLine();
+        int ans = 0;
+        List<Integer> lbs = new ArrayList<>(), rbs = new ArrayList<>();
+        for (int i = 0; i < n; ++i) {
+            if (s.charAt(i) == '0') {
+                lbs.add(i);
+                for (; i < n && s.charAt(i) == '0'; ++i);
+                rbs.add(i-1);
+            }
+        }
+        if (lbs.size() <= K) {
+            ans = n;
+        } else {
+            ans = Math.max(lbs.get(K), n - rbs.get(rbs.size() - K - 1) - 1);
+            for (int i = K + 1; i < lbs.size(); ++i) {
+                ans = Math.max(ans, lbs.get(i) - rbs.get(i - K - 1) - 1);
+            }
+        }
+        System.out.println(ans);
+    }
+}

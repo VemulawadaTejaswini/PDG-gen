@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+	static Scanner sc = new Scanner(System.in);
+	private static final String HEADER = "3C"; //????????????????????????????????????
+	private static final int STUDENT = 39; //???????????°
+
+	public static void main(String[] args) {
+		while(sc.hasNext()) {
+			int candy = sc.nextInt();
+			int ans = candy % STUDENT;
+
+			if(ans == 0) {
+				ans = STUDENT;
+			}
+			System.out.println(HEADER + String.format("%02d", ans));
+		}
+	}
+}

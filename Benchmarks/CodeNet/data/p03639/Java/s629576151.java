@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class C {
+	private int i=100100;
+	private int four=0,two=0,one=0;
+	private long a[] =new long[i];
+	public static void main(String[] args) {
+		C c=new C();
+		Scanner sc =new Scanner (System.in);
+		int  n=sc.nextInt();
+		c.read_in(n);
+		c.check();
+	}
+	public void read_in(int n){
+		for(i=n;n>=1;n--){
+			Scanner sc =new Scanner (System.in);
+			a[i]= sc.nextInt();
+			if(a[i]%4==0){
+				four++;
+			}
+			else if(a[i]%2==0){
+				two++;
+			}
+			else	one++;
+		}
+	}
+	public void check(){
+		 if(one>four+1||(one==four+1&&two!=0)) System.out.print("No\n");
+	        else System.out.print("Yes\n");
+
+	}
+}

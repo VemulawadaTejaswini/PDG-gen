@@ -1,0 +1,27 @@
+
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		char[] s = sc.next().toCharArray();
+		int n = s.length;
+		int[] tmp = new int[n];
+		int count = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (s[i] == s[j]) {
+					count++;
+				}
+			}
+			tmp[i] = count;
+			if (tmp[i] % 2 != 0) {
+				System.out.println("NO");
+				return;
+			}
+		}
+		System.out.println("YES");
+	}
+}

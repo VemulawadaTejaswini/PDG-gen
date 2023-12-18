@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+         Scanner sc = new Scanner(System.in);
+        
+        while(true){
+            int sum = 0;
+            double a = 0.0, m = 0.0, sum2 = 0.0;
+
+            int n = sc.nextInt();
+            int score[] = new int[n];
+
+            if(n==0){break;}
+            else{
+                for(int i=0;i<n;i++){
+                    score[i] = sc.nextInt();
+                    sum += score[i];
+                }
+                m = sum / n;
+
+                for(int i=0;i<n;i++){
+                    sum2 += (score[i] - m)*(score[i] - m);
+                }
+                a = sum2 / n;
+
+                System.out.println(Math.sqrt(a));
+            }
+        }
+        sc.close();
+    }
+}

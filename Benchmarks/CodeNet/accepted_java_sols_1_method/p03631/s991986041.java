@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+/**
+ * https://beta.atcoder.jp/contests/abc070/tasks/abc070_a
+ */
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		final int n = sc.nextInt();
+		sc.close();
+		
+		boolean ans = n/100 == n%10;
+		System.out.println(ans ? "Yes" : "No");
+
+	}
+
+}

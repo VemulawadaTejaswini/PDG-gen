@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int n,i;for(Scanner s=new Scanner(System.in);(n=s.nextInt())>0;){int[]a=new int[n];for(i=n;i-->0;)a[i]=s.nextInt();Arrays.sort(a);for(i=--n;i-->2;)a[1]+=a[i];System.out.println(a[1]/--n);}}}

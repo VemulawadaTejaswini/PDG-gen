@@ -1,0 +1,30 @@
+import java.util.*;
+class Main{
+	static int a,b;
+	static boolean s;
+	public static void main(String[]$){
+		Scanner c=new Scanner(System.in);
+		int k=c.nextInt(),x=c.nextInt(),y=c.nextInt();
+		x*=a=x<0?-1:1;
+		y*=b=y<0?-1:1;
+		if(s=x<y)x^=y^(y=x);
+		int n=(x+y+k-1)/k,m=(k*n-x-y)/2,i=0;
+		if(k%2==0&&(x+y)%2==1){
+			System.out.println(-1);
+			return;
+		}else if(x+y<k)if((x+y)%(n=2)==1){
+			System.out.println(3);
+			p(x,x-k);
+			p(x+(k+x-y)/2,x-k+(k-x+y)/2);
+			p(x,y);
+			return;
+		}else if((k-(x+y)%k)%k%2==1)n++;
+		System.out.println(n);
+		while(++i<=n)if(m>k*i)p(0,-k*i);
+			else if(x+m>k*i) p(k*i-m,-m);
+			else p(x,k*i-2*m-x);
+	}
+	static void p(int x,int y){
+		System.out.println(a*(s?y:x)+" "+b*(s?x:y));
+	}
+}

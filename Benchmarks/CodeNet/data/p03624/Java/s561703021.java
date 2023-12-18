@@ -1,0 +1,27 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+	private static final String alpha = "abcdefghijklmnopqrstuvwxyz";
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String s = scanner.next();
+		char[] c = s.toCharArray();
+		Arrays.sort(c);
+		HashSet<Character> cstr = new HashSet<Character>();
+		for(int i=0;i<c.length;i++){
+			cstr.add(c[i]);
+		}
+		char[] alphabet = alpha.toCharArray();
+		for(int i=0;i<alphabet.length;i++){
+			if(cstr.add(alphabet[i])){
+				System.out.println(alphabet[i]);
+				return;
+			}
+		}
+		System.out.println("None");
+	}
+
+}

@@ -1,0 +1,1 @@
+class Main{public static void main(String[]_)throws Exception{int a,i,j=0;char c[][]=new char[26][80];String s="";for(;(a=System.in.read())>31;j++)for(i=0;i<26;i++)if(a>96&&a<123)c[i][j]=(char)((a-96+i)%26+96);else c[i][j]=(char)a;for(i=0;i<26;i++)if((s=new String(c[i])).matches(".*th(e|at|is).*"))break;System.out.print(s);}}

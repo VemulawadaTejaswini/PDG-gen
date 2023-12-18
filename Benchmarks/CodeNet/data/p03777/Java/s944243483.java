@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Sample {
+
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+	Scanner scan = new Scanner(System.in);
+	String a = scan.next();
+	String b =scan.next();
+	int c = 0;
+	int d = 0;
+	if(a.equals("H")){
+		c =0;
+	} else if(a.equals("D")){
+		 c = 1;
+	}
+	if(b.equals("H")){
+		 d = 0;
+	}else if(b.equals("D")){
+		 d = 1;
+	}
+	if((c+d)%2==0){
+		System.out.println("H");
+	}else{
+		System.out.println("D");
+	}
+ }
+}

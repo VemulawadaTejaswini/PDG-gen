@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner s = new Scanner(System.in);
+        int N = s.nextInt();
+        char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        //int[] foo = new int[N];
+        int amari;
+        String str = "";
+         for(int i = 0; N != 0; i++) {
+             amari = N %26;
+            str = alphabet[amari -1] + str;
+            N = N /26;
+            
+        }
+        
+        // int sum = 0; 
+        // Arrays.sort(foo);
+        
+        // for(int i = 0; i < K;i++) {
+        //     sum+= foo[i];
+        // }
+        System.out.println(str);
+    }
+}

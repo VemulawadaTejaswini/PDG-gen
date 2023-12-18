@@ -1,0 +1,1 @@
+import java.util.*;import java.awt.geom.*;class Main{public static void main(String[]g){Scanner S=new Scanner(System.in);double x,d[]=new double[6];for(int i,r,n=S.nextInt();n-->0;System.out.println(r)){for(r=i=0;i<6;)d[i++]=S.nextDouble();x=Math.hypot(d[0]-d[3],d[1]-d[4]);if(x<=d[2]+d[5])r=1;if(x+d[2]<d[5])r=-2;if(x+d[5]<d[2])r=2;}}}

@@ -1,0 +1,57 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	
+	public static class Packet implements Comparable<Packet>{
+		int time, source, dest;
+
+		public Packet(int time, int source, int dest) {
+			super();
+			this.time = time;
+			this.source = source;
+			this.dest = dest;
+		}
+
+		@Override
+		public int compareTo(Packet arg0) {
+			return this.time - arg0.time;
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			final int n = sc.nextInt();
+			final int m = sc.nextInt();
+			
+			if (n == 0 && m == 0) {
+				break;
+			}
+			
+			boolean[] is_infected = new boolean[n];
+			is_infected[0] = true;
+			
+			Packet[] packets = new Packet[m];
+			
+			for(int i = 0; i < m; i++){
+				packets[i] = new Packet(sc.nextInt(), sc.nextInt() - 1, sc.nextInt() - 1); 
+			}
+			
+			Arrays.sort(packets);
+			
+			int count = 1;
+			for(int i = 0; i < m; i++){
+				if(is_infected[packets[i].source]){
+					is_infected[packets[i].dest] = true;
+					count++;
+				}
+			}
+			
+			System.out.println(count);
+		}
+
+	}
+
+}

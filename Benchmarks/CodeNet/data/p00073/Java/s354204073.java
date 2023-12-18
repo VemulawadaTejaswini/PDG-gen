@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int x,h;for(Scanner s=new Scanner(System.in);(x=s.nextInt())>0;System.out.println(x*(x+Math.sqrt(x*x+4*h*h))))h=s.nextInt();}}

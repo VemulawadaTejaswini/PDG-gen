@@ -1,0 +1,9 @@
+import java.util.*;
+class Main{
+	public static void main(String[] args) {
+	Scanner sn=new Scanner(System.in);
+	int n=sn.nextInt();
+	int m=sn.nextInt();
+	System.out.println((n-1)*(m-1));
+}
+}

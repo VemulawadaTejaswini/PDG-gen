@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+
+
+public class Main
+{
+    public static void main(String [] args)
+    {
+        Scanner key = new Scanner(System.in);
+        int num = key.nextInt();
+        key.nextLine();
+        String s = key.nextLine();
+        int ca =0;
+        int cb = 0;
+        int cc = 0;
+        
+        for(int i = 0; i<num ; i++)
+        {
+            char c = s.charAt(i);
+            if(c == 'R')
+                ca ++;
+            else if(c == 'G')
+                cb ++;
+            else
+                cc++;
+
+        }
+        int total = ca * cb * cc;
+
+        for(int j = 0; j<num; j++)
+        {
+            for(int k = 0; k<num; k++)
+            {
+                int a = j + k;
+                int b = a + k;
+                if(b>=num) 
+                    break;
+                else
+                {
+                    if(s.charAt(j) != s.charAt(a) && s.charAt(j) != s.charAt(b) && s.charAt(a) != s.charAt(b))
+                        total = total - 1;
+                }
+                
+            }
+        }
+
+        System.out.println(total);
+        
+    }
+}

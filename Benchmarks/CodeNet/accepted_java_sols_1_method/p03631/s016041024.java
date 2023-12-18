@@ -1,0 +1,17 @@
+
+
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws IOException{
+	Scanner sc	= new Scanner(System.in);
+	
+	String[] x = sc.next().split("");
+	if(x[0].equals(x[2])){
+		System.out.println("Yes");
+	}else {
+		System.out.println("No");
+	}
+	}
+}

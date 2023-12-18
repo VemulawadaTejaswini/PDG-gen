@@ -1,0 +1,18 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String S = sc.next();
+		LinkedList<String> list = new LinkedList<String>();
+		for (char c: S.toCharArray()) {
+			if (c=='B') list.pollLast();
+			else list.addLast(String.valueOf(c));
+		}
+		for (String c: list) System.out.print(c);
+		sc.close();
+	}
+
+}

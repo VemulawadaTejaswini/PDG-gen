@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,p,d,i;(n=s.nextInt())>0;){int[][]a=new int[2][n];int[]b={-1,0,0,1,1,0,0,-1};for(i=1;i<n;a[1][i++]=a[1][p]+b[d+1])a[0][i]=a[0][p=s.nextInt()]+b[d=2*s.nextInt()];Arrays.sort(a[0]);Arrays.sort(a[1]);System.out.println((a[0][--n]-a[0][0]+1)+" "+(a[1][n]-a[1][0]+1));}}}

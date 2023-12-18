@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main{
+  public static void main(String[] args){
+    Scanner scanner = new Scanner(System.in);
+    int N = scanner.nextInt();
+    int M = scanner.nextInt();
+    long Nx = 1;
+    long Mx = 1;
+    long ans = 0;
+    for (int i = 1; i <= N; i++){
+      Nx = Nx * i % 100000007;
+    }
+    for (int i = 1; i <= M; i++){
+      Mx = Mx * i % 100000007;
+    }
+    if(N == M){
+      ans = 2 * Nx * Mx;
+    } else if (N == M - 1 || N == M + 1){
+      ans =  Nx * Mx;
+    } else {
+      ans = 0;
+    }
+    System.out.println(ans);
+  }
+}

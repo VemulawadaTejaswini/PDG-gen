@@ -1,0 +1,13 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        short a = sc.nextShort();
+        short b = sc.nextShort();
+        if ((a * b) % 2 == 0)
+            System.out.println("Even");
+        else
+            System.out.println("Odd");
+    }
+}

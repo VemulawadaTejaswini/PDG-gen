@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+	public static Scanner sc;
+	public static void main(String[] args){
+		sc=new Scanner(System.in);
+		String yama;
+		int m,h;
+		while((yama=sc.nextLine()).equals("-")){
+			m=sc.nextInt();
+			for(int i=0;i<m;i++){
+				h=sc.nextInt();
+				yama=yama.substring(h)+yama.substring(0,h-1);
+			}
+			System.out.println(yama);
+		}
+	}
+}

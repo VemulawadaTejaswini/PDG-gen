@@ -1,0 +1,37 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        String[] lines = getStdin();
+        for( int i = 0; i < 50; i++){
+            String[] str = lines[i].split(" ");
+            int m = Integer.parseInt(str[0]);
+            int f = Integer.parseInt(str[1]);
+            int r = Integer.parseInt(str[2]);
+             if (m == - 1 && f == - 1 && r == -1){
+                    break;
+                }
+                if( m == - 1 || f == -1){
+                    System.out.println("F");
+                } else if ( m + f >= 80){
+                    System.out.println("A");
+                } else if ( m + f >= 65 && m + f < 80){
+                    System.out.println("B");
+                } else if (( m + f  >= 50 && m + f < 65) || r >= 50){
+                    System.out.println("C");
+                } else if ( m + f >= 30 && m + f < 50){
+                    System.out.println("D");
+                } else if ( m + f < 30){
+                    System.out.println("F");
+                } 
+               
+        }
+   }
+  private static String[] getStdin() {
+    Scanner scanner = new Scanner(System.in);
+    ArrayList<String> lines = new ArrayList<>();
+    while (scanner.hasNext()) {
+      lines.add(scanner.nextLine());
+    }
+    return lines.toArray(new String[lines.size()]);
+  }
+}

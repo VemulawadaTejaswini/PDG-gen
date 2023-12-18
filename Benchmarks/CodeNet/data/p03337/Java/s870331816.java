@@ -1,0 +1,16 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		try (Scanner in = new Scanner(System.in)) {
+			int A = in.nextInt();
+			int B = in.nextInt();
+
+			int[] a = new int[] { A + B, A - B, A * B, };
+			Arrays.sort(a);
+
+			System.out.println(a[2]);
+		}
+	}
+}

@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args){
+		String a, b;
+		Scanner sc = new Scanner(System.in);
+		a = sc.next();
+		b = sc.next();
+
+		if(a.equals("H")){
+			System.out.println(b);
+		}else if(a.equals("D") && b.equals("H")){
+			System.out.println("D");
+		}else{
+			System.out.println("H");
+		}
+	}
+}
+

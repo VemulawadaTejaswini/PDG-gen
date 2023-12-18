@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Administrator
+ */
+public class Main {
+    
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        
+        String n = sc.nextLine();
+        
+        String []in = n.split(" ");
+        
+        long x = Long.parseLong(in[0]);
+        long a = Long.parseLong(in[1]);
+        long b = Long.parseLong(in[2]);
+        
+        if(-a + b <= 0){
+            System.out.println("delicious");
+        } else if(-a + b <= x){
+            System.out.println("safe");
+        } else {
+            System.out.println("dangerous");
+        }
+                
+    }
+    
+}

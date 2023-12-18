@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){int w=90,l;double x=0,y=0;for(Scanner s=new Scanner(System.in);s.hasNext();){String[] e=s.next().split(",");l=new Integer(e[0]);x+=l*Math.cos(Math.PI*w/180);y+=l*Math.sin(Math.PI*w/180);w-=new Integer(e[1]);}System.out.printf("%d\n%d\n",(int)x,(int)y);}}

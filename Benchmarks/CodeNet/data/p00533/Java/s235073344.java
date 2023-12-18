@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int H = sc.nextInt();
+		int W = sc.nextInt();
+		char[] weather = new char[W];
+		int[][] p = new int[H][W];
+		
+	    
+	    for(int i = 0; i < H; i++){
+	    	weather = sc.next().toCharArray();
+	    	int cnt = -1;
+	    	for(int k = 0; k < W; k++){
+	    		if(weather[k] == 'c'){
+	    			cnt = 0;
+	    		}
+	    		else if(cnt != -1 && weather[k] == '.'){
+	    			cnt++;
+	    		}
+	    		//System.out.print(cnt);
+	    		p[i][k] = cnt;
+	    	}
+	    }
+	    for(int i = 0; i < H; i++){
+	    	for(int k = 0; k < W; k++ ){
+	    		System.out.println(p[i][k]);
+	    	}
+	    }
+	    sc.close();
+	}
+
+}

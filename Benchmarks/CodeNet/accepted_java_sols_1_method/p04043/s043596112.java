@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+/**
+ * Created by wild on 2016/07/23.
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int[] iroha = new int[3];
+        for (int i = 0; i < iroha.length; i++) {
+            iroha[i] = scan.nextInt();
+        }
+
+        int count = 0;
+        int counttwo = 0;
+        for (int tmp : iroha) {
+            if (tmp == 7) count++;
+            if (tmp == 5) counttwo++;
+        }
+
+        if (count == 1 && counttwo == 2){
+            System.out.println("YES");
+        }else {
+            System.out.println("NO");
+        }
+    }
+}

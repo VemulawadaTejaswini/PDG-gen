@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int h = sc.nextInt();
+        int w = sc.nextInt();
+        char s[][] = new char[h][w];
+
+        for (int i = 0; i < h; i++) {
+            s[i] = sc.next().toCharArray();
+        }
+
+        int max = 0;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (s[i][j] == '#') continue;
+                int tmp = 1;
+
+                for (int n = i - 1; 0 <= n; n--) {
+                    if (s[n][j] == '#') break;
+                    tmp++;
+                }
+
+                for (int n = j + 1; n < w; n++) {
+                    if (s[i][n] == '#') break;
+                    tmp++;
+                }
+
+                for (int n = i + 1; n < h; n++) {
+                    if (s[n][j] == '#') break;
+                    tmp++;
+                }
+
+                for (int n = j - 1; 0 <= n; n--) {
+                    if (s[i][n] == '#') break;
+                    tmp++;
+                }
+
+                max = Math.max(max, tmp);
+            }
+        }
+
+        System.out.println(max);
+    }
+}

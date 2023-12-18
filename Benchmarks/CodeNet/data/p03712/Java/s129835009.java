@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		// 整数の入力
+		// スペース区切りの整数の入力
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = b + 2;
+		
+		String stArray[] = new String[a];
+		for (int i = 0; i < a;i ++ ){
+				
+				stArray[i] = sc.next();
+		}
+
+		String s = "";
+		
+		for (int i = 0; i < c ;i ++ ){
+			s = s + "#" ;
+		}
+		System.out.println(s);
+		
+		String t = "";		
+		for (int i = 0; i < a ;i ++ ){
+			t = t + "#" + stArray[i] + "#" ;
+			System.out.println(t);
+			t = "" ;
+		}
+		System.out.println(s);
+
+	}
+}

@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+
+public class Main{
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(
+			new InputStreamReader(System.in));
+		String[] input = br.readLine().split(" ");
+		int a = Integer.parseInt(input[0]);
+		int b = Integer.parseInt(input[1]);
+
+		if(a<=0|b<=0){
+			System.out.println("error");
+		} else if(a>=10|b>=10){
+			System.out.println("error");
+
+		}else{
+			int sum = a + b;
+			if(sum >= 10){
+				System.out.println("error");
+
+			}else{
+				System.out.println(sum);
+			}
+		}
+		br.close();
+	}
+}

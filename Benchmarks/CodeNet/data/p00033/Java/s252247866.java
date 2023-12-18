@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);int a,b,n,t,i;for(t=s.nextInt();t-->0;System.out.println(n<1?"NO":"YES"),s.nextLine())for(a=b=n=i=0;i++<10;)if((n=s.nextInt())>a)a=n;else if(n>b)b=n;else{n=0;break;}}}

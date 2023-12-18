@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.nextLine();
+		sc.close();
+		char[] array = s.toCharArray();
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < array.length; i++) {
+			if (i % 2 == 0) {
+				sb.append(array[i]);
+			}
+		}
+		System.out.println(sb.toString());
+	}
+}

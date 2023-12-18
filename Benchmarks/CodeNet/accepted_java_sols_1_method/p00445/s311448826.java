@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int a,b,i;for(Scanner s=new Scanner(System.in);s.hasNext();System.out.println(a+"\n"+b)){String x=s.next();for(i=a=0;0<(i=x.indexOf("JOI",i)+1);)++a;for(i=b=0;0<(i=x.indexOf("IOI",i)+1);)++b;}}}

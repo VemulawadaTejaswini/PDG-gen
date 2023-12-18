@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class Main{
+//public class abc166_a{
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		String s = scan.next();
+		
+		if(s.equals("ABC")){
+			System.out.println("ARC");
+		}else{
+			System.out.println("ABC");
+		}
+	}
+
+}

@@ -1,0 +1,1 @@
+class Main{public static void main(String[] a){System.out.println(999-(new java.util.Scanner(System.in).nextInt()-1)%1000);}}

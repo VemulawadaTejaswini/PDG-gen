@@ -1,0 +1,17 @@
+import java.util.Scanner;
+class Main
+public static void main(String[] args){
+Scanner scan=new Scanner(System.in);
+int b=scan.next();
+int min=100000,max=0,sum=0;
+for(int a=0;a<b;a++){
+int c=scan.next();
+if(min>c)
+min=c;
+if(max<c)
+max=c;
+sum=sum+c;
+}
+System.out.println(min+" "+max+" "+sum);
+}
+}

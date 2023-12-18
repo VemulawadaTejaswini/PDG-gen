@@ -1,0 +1,1 @@
+public class Main{public static void main(String[]a){for(int i=0,j;i++<9;)for(j=0;j++<9;)System.out.printf("%dx%d=%d\n",i,j,i*j);}}

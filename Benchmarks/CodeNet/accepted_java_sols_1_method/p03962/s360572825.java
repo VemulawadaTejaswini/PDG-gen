@@ -1,0 +1,13 @@
+import java.util.Scanner;
+import java.util.TreeSet;
+
+class Main{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		while(sc.hasNext()){
+			TreeSet<Integer> set=new TreeSet<Integer>();
+			for(int i=0;i<3;i++) set.add(sc.nextInt());
+			System.out.println(set.size());
+		}
+	}
+}

@@ -1,0 +1,15 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        String[] str = br.readLine().split(" ");
+        String str = br.readLine();
+        char f = str.charAt(0);
+        char e = str.charAt(str.length()-1);
+        System.out.println(f + Integer.toString(str.length()-2) + e);
+    }
+}

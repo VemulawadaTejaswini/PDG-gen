@@ -1,0 +1,20 @@
+ublic class Main {
+
+	public static void main(String[] args) {
+
+		java.util.Scanner scan = new java.util.Scanner(System.in);
+	
+	
+		int x = scan.nextInt();
+		int m = 100;
+		
+		for(int i = 1 ; m < x; i++) {
+			m = m/100+m;
+			if (m >= x) {
+				System.out.println(i);
+			}
+		}
+
+	}
+
+}

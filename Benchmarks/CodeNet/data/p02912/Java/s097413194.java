@@ -1,0 +1,43 @@
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+      int n = read.nextInt(); int m = read.nextInt(); 
+      ArrayList<Integer> array = new ArrayList<Integer>();
+      for(int i = 0; i<n; i++){
+          array.add(read.nextInt());
+      }
+      Collections.sort(array);
+      for(int i = 0; i<m; i++){
+          int t = Math.round(array.get(n-1)/2);
+          array.add(t);
+          array.remove(n-1);
+          int lo = 0;
+          int hi = n-2;
+          int mid = 0;
+          while(lo<=hi){
+              mid = (lo+hi) /2;
+              if(array.get(n-1) == array.get(mid)){
+                  hi = mid;
+                  break;
+              }
+              else if(array.get(n-1)>mid){
+                  lo = mid+1;
+              }
+              else{
+                  hi = mid-1;
+              }
+          }
+          array.add(mid, array.get(n-1));
+          array.remove(n);
+      }
+      long sum = 0;
+      for(int i = 0; i<n; i++){
+          sum+=array.get(i);
+      }
+      System.out.println(sum);
+        // TODO code application logic here
+    }
+    
+}

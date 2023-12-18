@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		
+		int dividedValue = N;
+		int sum = 0;
+		while (dividedValue > 0) {
+			sum += dividedValue % 10;
+			dividedValue /= 10;
+		}
+		
+		if ((N % sum) == 0)  {
+			System.out.println("yes");
+		} else {
+			System.out.println("no");
+		}
+		
+	}
+}
+
+
+

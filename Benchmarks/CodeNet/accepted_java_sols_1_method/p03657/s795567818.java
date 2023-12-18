@@ -1,0 +1,18 @@
+
+import java.util.Scanner;
+
+class Main{
+        public static void main(String[] args){
+                Scanner scanner=new Scanner(System.in);
+                int a=scanner.nextInt();
+                int b=scanner.nextInt();
+                boolean b1=a%3==0;
+                boolean b2=b%3==0;
+                boolean b3=(a+b)%3==0;
+                if(b1||b2||b3){
+                        System.out.println("Possible");
+                }else{
+                        System.out.println("Impossible");
+                }
+        }
+}

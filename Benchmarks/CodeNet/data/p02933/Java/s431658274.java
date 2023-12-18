@@ -1,0 +1,13 @@
+import java.util.*;
+
+public class Solution{
+	public void main(String[] args){
+    	Scanner sc = new Scanner(System.in);
+      	int a = sc.sc.nextInt;
+      
+    }
+  String s = sc.next();
+  if(a< 3200){
+    System.out.println("red");
+  }else System.out.println(s);
+}

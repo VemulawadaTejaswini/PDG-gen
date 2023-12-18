@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Main{
+public static void main(String[] args) {
+  String a = "AAA";
+  String b = "BBB";
+  Scanner sc = new Scanner(System.in);
+  System.out.println("S: ");
+  String s = sc.next();
+
+  if(s.equals(a) || s.equals(b)){
+    System.out.println("Yes");
+  }else{
+    System.out.println("No");
+  }
+}
+}

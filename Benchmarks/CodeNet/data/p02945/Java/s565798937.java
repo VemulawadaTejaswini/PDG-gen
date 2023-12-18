@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		int x = Math.max(a + b, a - b);
+		x = Math.max(a * b, x);
+		System.out.println(x);
+	}
+}

@@ -1,0 +1,9 @@
+import java.util.*;
+public class Main {
+        Scanner sc = new Scanner(System.in);
+        String[] a = sc.nextLine().split("");
+        for(int i = 0; i < a.length; i++){
+            if(",".equals(a[i])) a[i] = " ";
+            System.out.print(a[i]);
+        }
+}

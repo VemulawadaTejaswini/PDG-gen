@@ -1,0 +1,13 @@
+import java.util.*;
+class Main {
+  public static void main(String args[]) {
+    Scanner sc = new Scanner(System.in);
+    final int A = sc.nextInt();
+    final int B = sc.nextInt();
+
+    if(A % 3 == 0 || B % 3 == 0 || (A + B) % 3 == 0)
+      System.out.println("Possible");
+    else
+      System.out.println("Impossible");
+  }
+}

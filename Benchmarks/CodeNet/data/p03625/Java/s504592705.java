@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+public class Major {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        HashMap<Integer, Integer>map = new HashMap<>();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i = 0;i < n;i++){
+            int a = Integer.parseInt(st.nextToken());
+            if(map.containsKey(a))
+                map.put(a, map.get(a) + 1);
+            else map.put(a, 1);
+        }
+        long ans = 0;
+        int max1 = -1, max2 = -1;
+        for(Integer key : map.keySet()){
+            int val = map.get(key);
+            //System.out.println(key + " " + val);
+            if(val >= 4){
+                ans = Math.max(ans, key*1L*key);
+            }
+            if(val >= 2){
+                //System.out.println(max1 + " " + max2);
+                if(key > max1){
+                    max2 = max1;
+                    max1 = key;
+                }
+                else if(key > max2){
+                    max2 = key;
+                }
+                //System.out.println(max1 + " " + max2);
+            }
+        }
+        //System.out.println(max1 + " " + max2);
+        ans = Math.max(ans, max1*1L*max2);
+        System.out.println(ans);
+    }
+}

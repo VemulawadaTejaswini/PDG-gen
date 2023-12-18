@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+  
+  public static void main(String[] args){
+    
+    try {
+      
+      //local変数
+      String jadge = "Yes";
+      int    atack;
+      
+      //標準入力受け取り
+      Scanner      scan = new Scanner(System.in);
+      List<Integer> strs = new arrayList<>();
+      
+      while (scan.hasNext()){
+      	strs.add(scan.nextInt());
+      }
+      
+      for (int i=2; i<strs.length; i++) {
+      	atack += strs[i];
+      }
+      
+      if (strs[0] > atack) {
+      	jadge = "No";
+      }
+
+      System.out.println(jadge);
+      
+    } catch (Exception e) {
+      
+      System.out.println("error");
+
+    }
+  }
+}

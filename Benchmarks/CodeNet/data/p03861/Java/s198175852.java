@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		long a = sc.nextLong();
+		long b = sc.nextLong();
+		long x = sc.nextLong();
+		long sum1 = b / x + 1;
+		if(a == 0) {
+			System.out.println(sum1);
+		} else {
+			long sum2 = (a - 1) / x + 1;
+			System.out.println(sum1 - sum2);
+		}
+	}
+}

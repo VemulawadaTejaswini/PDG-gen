@@ -1,0 +1,38 @@
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    static Deque<String> list = new ArrayDeque<>();
+
+    public static void main(String[] args) throws IOException{
+        StringBuilder ans = new StringBuilder();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] sp = new String[2];
+        
+            int n = Integer.parseInt(br.readLine());
+            for (int i = 0; i < n; i++) {
+                sp = br.readLine().split(" ");
+                if (sp[0].equals("insert")) {
+                    list.addFirst(sp[1]);
+                } else if (sp[0].equals("delete")) {
+                    list.remove(sp[1]);
+                } else if (sp[0].equals("deleteFirst")) {
+                    list.removeFirst();
+                } else if (sp[0].equals("deleteLast")) {
+                    list.removeLast();
+                }
+            }
+            ans.append(list.poll());
+            for (String s : list) {
+                ans.append(" ");
+                ans.append(s);
+            }
+            System.out.println(ans.toString());
+       
+    }
+}
+

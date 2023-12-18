@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int number = Integer.parseInt(sc.next());
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < number; i++) {
+            arrayList.add(Integer.parseInt(sc.next()));
+        }
+        arrayList.sort(Collections.reverseOrder());
+        int sum = 0;
+        for (int i = 0; i < number; i++) {
+            int max = arrayList.remove(0);
+            if (i % 2 == 0) {
+                sum += max;
+            } else {
+                sum -= max;
+            }
+        }
+        System.out.println(sum);
+    }
+}

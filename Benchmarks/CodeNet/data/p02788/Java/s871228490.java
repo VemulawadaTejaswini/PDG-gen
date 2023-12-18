@@ -1,0 +1,98 @@
+
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		int d = sc.nextInt();
+		int a = sc.nextInt();
+
+		Fox foxes[] = new Fox[n];
+		for(int i = 0; i < n; i++){
+			foxes[i] = new Fox(sc.nextInt(), sc.nextInt());
+		}
+
+		SqrtDecomposition sq = new SqrtDecomposition(n);
+
+		for(int i = 0; i < n; i++){
+			sq.add(i + 1, i + 2, foxes[i].hp);
+		}
+
+		long count = 0;
+		int j = 1;
+		for(int i = 0; i < n; i++){
+			if(sq.get(i + 1) <= 0){
+//				System.out.println(sq.get(i + 1));
+				j = Math.max(j, i + 2);
+				continue;
+			}
+			while(j < n && foxes[i].pos <= (long)foxes[i].pos + 2*d){
+				j++;
+			}
+
+			int tmpNum = ((int)sq.get(i + 1) + a - 1)/a;
+			count += tmpNum;
+//			System.out.println("bomb : "+i+" "+j+" " + tmpNum +" times");
+			sq.add(i + 1, j + 1, -d*tmpNum);
+		}
+
+		System.out.println(count);
+	}
+
+}
+
+
+class SqrtDecomposition {
+	int N, K;
+	long[] data;
+	long[] bucketAdd;
+	static final int sqrtN = 512;
+
+	public SqrtDecomposition(int n) {
+		N = n;
+		K = (N + sqrtN - 1) / sqrtN;
+		data = new long[K * sqrtN];
+		bucketAdd = new long[K];
+	}
+
+	void add(int s, int t, int x) {
+		for (int k = 0; k < K; ++k) {
+			int l = k * sqrtN, r = (k + 1) * sqrtN;
+			if (r <= s || t <= l)
+				continue;
+			if (s <= l && r <= t) {
+				bucketAdd[k] += x;
+			} else {
+				for (int i = Math.max(s, l); i < Math.min(t, r); ++i) {
+					data[i] += x;
+				}
+			}
+		}
+	}
+
+	long get(int s) {
+		int k = s / sqrtN;
+		return data[s] + bucketAdd[k];
+	}
+}
+
+class Fox implements Comparable<Fox> {
+	int pos;
+	int hp;
+
+	Fox(int pos, int hp){
+		this.pos = pos;
+		this.hp = hp;
+	}
+
+	@Override
+	public int compareTo(Fox f) {
+		// TODO 自動生成されたメソッド・スタブ
+		return this.pos - f.pos;
+	}
+}

@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int l = sc.nextInt();
+
+        String[] chars = new String[n];
+        for (int i = 0; i < n; i++) {
+            chars[i] = sc.next();
+        }
+
+        for(int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                int k = 0;
+                char jchar = chars[j].charAt(k);
+                char jpchar = chars[j + 1].charAt(k);
+
+                boolean isTarget = false;
+                boolean isCompleted = false;
+
+                while(!isCompleted && k < l - 1) {
+                    if(jchar > jpchar) {
+                        isCompleted = true;
+                        isTarget = true;
+                    } else if(jchar < jpchar) {
+                        isCompleted = true;
+                    }
+                    k++;
+                    jchar = chars[j].charAt(k);
+                    jpchar = chars[j + 1].charAt(k);
+                }
+
+                if(isTarget) {
+                    String tmp = chars[j];
+                    chars[j] = chars[j + 1];
+                    chars[j + 1] = tmp;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(chars[i]);
+        }
+    }
+}

@@ -1,0 +1,20 @@
+import java.util.*;
+
+class Main{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		boolean flag = false;
+		
+		if(a == b && b == c && c == a) flag = true;
+		if(a != b && b != c && c != a) flag = true;
+		
+		if(flag == true){
+			System.out.println("No");
+		}else{
+			System.out.println("Yes");
+		}
+	}
+}	

@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		int N = scn.nextInt();
+		long[] A = new long[N];
+		long[] sum = new long[N+1];
+		for(int i = 0;i < N;i++) {
+			long k = scn.nextLong();
+			A[i] = k;
+			sum[i+1] = sum[i]+k;
+		}
+		long L = sum[N];
+		long b = L/2;
+		long ans = Long.MAX_VALUE;
+		for(int i=0;i<N+1;i++) {
+			ans = Math.min(ans, Math.abs(b-sum[i]));
+		}
+		System.out.println(ans);
+	}
+
+}

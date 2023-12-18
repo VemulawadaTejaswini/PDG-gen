@@ -1,0 +1,9 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner io = new Scanner(System.in);
+		int x = io.nextInt();
+		System.out.println((x<1200)?"ABC":"ARC");
+	}
+}

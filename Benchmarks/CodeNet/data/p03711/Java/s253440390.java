@@ -1,0 +1,16 @@
+import java.util.*;
+
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int[] num = {1,3,1,2,1,2,1,1,2,1,2,1};
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+
+        if(num[x-1] == num[y-1]){
+            System.out.println("Yes");
+        }else{
+            System.out.println("No");
+        }
+    }
+}

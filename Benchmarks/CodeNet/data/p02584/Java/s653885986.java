@@ -1,0 +1,35 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    Long X = sc.nextLong();
+    Long K = sc.nextLong();
+    Long D = sc.nextLong();
+    if(X>=0){
+      if(X >= K*D){
+        System.out.println(X - K*D);
+        return;
+      }
+      Long A = X % D;
+      Long B = X / D;
+      if((K-B)%2==0){
+        System.out.println(A);
+      }else{
+        System.out.println(Math.abs(A-D));
+      }
+    }else{
+      if((-X) >= K*D){
+        System.out.println(-X - K*D);
+        return;
+      }
+      Long A = (-X) % D;
+      Long B = (-X) / D;
+      if((K-B)%2==0){
+        System.out.println(Math.abs(A));
+      }else{
+        System.out.println(-A+D);
+      }
+    }
+  }
+}
+

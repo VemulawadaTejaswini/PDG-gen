@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){Scanner s=new Scanner(System.in);for(int t=s.nextInt();t-->0;)System.out.println(s.nextBigDecimal().add(s.nextBigDecimal()));}}

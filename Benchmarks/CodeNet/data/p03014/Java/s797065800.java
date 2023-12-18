@@ -1,0 +1,98 @@
+import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Scanner;
+        import java.util.function.Consumer;
+
+        import static java.util.stream.Collectors.toList;
+
+public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Consumer<List<String>> consumer = solve();
+
+    public static void main(String[] args) {
+        consumer.accept(readInput());
+    }
+
+    private static List<String> readInput() {
+        final List<String> lineList = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            lineList.add(scanner.nextLine());
+        }
+        return lineList;
+    }
+
+    private static Consumer<List<String>> solve() {
+        return args -> {
+            int H = Integer.valueOf(args.get(0).split(" ")[0]);
+            int W = Integer.valueOf(args.get(0).split(" ")[1]);
+            List<String> table = args.stream().skip(1).collect(toList());
+            Point[] points = new Point[H * W];
+            for (int i = 0; i < H; i++) {
+                for (int j = 0; j < W; j++) {
+                    boolean open = table.get(i).charAt(j) == '.';
+                    points[W * i + j] = new Point(open);
+                }
+            }
+
+            for (int i = 0; i < H; i++) {
+                // left
+                for (int j = 1; j < W; j++) {
+                    if (table.get(i).charAt(j - 1) == '.') {
+                        points[W * i + j].left = points[W * i + j - 1].left + 1;
+                    }
+                }
+                // right
+                for (int j = W - 2; j >= 0; j--) {
+                    if (table.get(i).charAt(j + 1) == '.') {
+                        points[W * i + j].right = points[W * i + j + 1].right + 1;
+                    }
+                }
+            }
+
+            for (int i = 0; i < W; i++) {
+                // up
+                for (int j = 1; j < H; j++) {
+                    if (table.get(j - 1).charAt(i) == '.') {
+                        points[W * j + i].up = points[W * (j - 1) + i].up + 1;
+                    }
+                }
+                // down
+                for (int j = H - 2; j >= 0; j--) {
+                    if (table.get(j + 1).charAt(i) == '.') {
+                        points[W * j + i].down = points[W * (j + 1) + i].down + 1;
+                    }
+                }
+            }
+
+            int ans = 0;
+            for (int i = 0; i < H; i++) {
+                for (int j = 0; j < W; j++) {
+                    ans = Math.max(ans, points[H * i + j].score());
+                }
+            }
+
+            System.out.println(ans);
+        };
+    }
+
+    static class Point {
+        boolean open;
+        int left;
+        int right;
+        int up;
+        int down;
+
+        Point(boolean open) {
+            left = 0;
+            right = 0;
+            up = 0;
+            down = 0;
+            this.open = open;
+        }
+
+        int score() {
+            return open ? left + right + up + down + 1 : 0;
+        }
+    }
+
+}

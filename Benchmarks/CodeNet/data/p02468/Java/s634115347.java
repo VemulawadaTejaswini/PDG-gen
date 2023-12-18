@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+
+public class Main {
+	static BigInteger ZERO = new BigInteger("0");
+	static BigInteger ONE = new BigInteger("1");
+	static BigInteger TWO = new BigInteger("2");
+	
+	static BigInteger pos(BigInteger m, long n) {
+	    BigInteger res;
+	    if(n == 0) return ONE;
+	   
+	    res = pos(m.multiply(m), n/2);
+	    if(n % 2 == 1) {
+	        res = res.multiply(m);
+	    }
+	    return res;
+	}
+	
+	public static void main(String[] args) {
+		BigInteger d12 = new BigInteger("100000000700000000000000000000000000000000000000000000");
+		BigInteger d11 = new BigInteger("10000000070000000000000000000000000000000000000000");
+		BigInteger d10 = new BigInteger("1000000007000000000000000000000000000000000000");
+		BigInteger d9 = new BigInteger("100000000700000000000000000000000000000000");
+		BigInteger d8 = new BigInteger("10000000070000000000000000000000000000");
+		BigInteger d7 = new BigInteger("1000000007000000000000000000000000");
+		BigInteger d6 = new BigInteger("100000000700000000000000000000");
+		BigInteger d5 = new BigInteger("10000000070000000000000000");
+		BigInteger d4 = new BigInteger("1000000007000000000000");
+		BigInteger d3 = new BigInteger("100000000700000000");
+		BigInteger d2 = new BigInteger("10000000070000");
+		BigInteger d1 = new BigInteger("1000000007");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String a[] = null;
+		try {
+			a = br.readLine().split(" ");
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+		BigInteger n = new BigInteger(a[0]);
+		n = pos(n, Integer.parseInt(a[1]));
+		System.out.println(n.mod(d12).mod(d11).mod(d10).mod(d9).mod(d8).mod(d7).mod(d6).mod(d5).mod(d4).mod(d3).mod(d2).mod(d1).toString());
+	}
+}

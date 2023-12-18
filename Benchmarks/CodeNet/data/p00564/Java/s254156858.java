@@ -1,0 +1,25 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int c = scanner.nextInt();
+        int d = scanner.nextInt();
+        int x = 0;
+        int y = 0;
+        x = (n / a) * b;
+        y = (n / c) * d;
+        if (x >= y) {
+            System.out.println(x);
+        } else {
+            System.out.println(y);
+        }
+
+    }
+}
+

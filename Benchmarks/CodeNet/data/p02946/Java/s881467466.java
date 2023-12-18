@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner scanner = new Scanner(System.in);
+		int K,X;
+		K = scanner.nextInt();
+		X= scanner.nextInt();
+		int xplus=X+K;
+		int xminus=X-K;
+		System.out.println(xplus+","+xminus);
+		for(int i=xminus+1;i<xplus;i++) {
+			System.out.print(i);
+			if(i != xplus) {
+			System.out.print(" ");
+			}
+		}
+	}
+}

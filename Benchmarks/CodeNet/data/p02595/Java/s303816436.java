@@ -1,0 +1,18 @@
+import java.util.*;
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int D = sc.nextInt();
+    int counts = 0;
+    for (int i = 0; i < N; i++) {
+      int X = sc.nextInt();
+      int Y = sc.nextInt();
+      int A = X * X + Y * Y;
+      if (A <= D * D) {
+        counts++;
+      }
+    }
+    System.out.println(counts);
+  }
+}

@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int x1 = sc.nextInt();
+        int y1 = sc.nextInt();
+        int x2 = sc.nextInt();
+        int y2 = sc.nextInt();
+
+        int a = x2 - x1;
+        int b = y2 - y1;
+
+        int x3 = x2 - b;
+        int y3 = y2 + a;
+
+        int x4 = x3 - a;
+        int y4 = y3 - b;
+
+        System.out.print(x3 + " ");
+        System.out.print(y3 + " ");
+        System.out.print(x4 + " ");
+        System.out.println(y4);
+
+    }
+}

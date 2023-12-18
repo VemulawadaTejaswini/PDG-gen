@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String c = sc.next();
+    String ans = String.valueOf(c.charAt(0) + 1);
+    System.out.println(ans);
+  }
+}

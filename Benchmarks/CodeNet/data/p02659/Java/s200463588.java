@@ -1,0 +1,12 @@
+import java.util.*;
+import java.util.function.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Long A = sc.nextLong();
+        double B = sc.nextDouble();
+        System.out.println((long)(A*B));
+    }
+}

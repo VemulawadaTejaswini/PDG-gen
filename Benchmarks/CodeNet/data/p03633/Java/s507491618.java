@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    long[] T = new long[n];
+    for(int i = 0; i<n; i++) {
+      T[i] = sc.nextLong();
+    }
+    for(int i = 0; i<n-1; i++) {
+      T[i+1] =T[i] / gcd(T[i],T[i+1]) * T[i+1];
+    }
+    System.out.println(T[n-1]);
+  }
+  public static long gcd(long a, long b) {
+    if(b == 0) return a;
+    else return gcd(b, a%b);
+  }
+}

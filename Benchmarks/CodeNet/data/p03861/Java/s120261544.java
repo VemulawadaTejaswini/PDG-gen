@@ -1,0 +1,13 @@
+import java.util.*;
+public class ABC048_B {
+	public static void main(String[] args){
+		Scanner sc=new Scanner(System.in);
+		int a=sc.nextInt(),b=sc.nextInt(),x=sc.nextInt(),c=0;
+		for(;a<=b;a++){
+			if(a%x==0){
+				c++;
+			}
+		}
+		System.out.println(c);
+	}
+}

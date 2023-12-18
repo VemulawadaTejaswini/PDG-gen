@@ -1,0 +1,28 @@
+import java.util.*;
+import static java.lang.Math.*;
+public class Main{
+    
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        long n = sc.nextLong();
+        long t = 0;
+        long ans = 1;
+        for(int i=0; i<n; i++){
+            t = sc.nextLong();
+            ans = lcm(ans, t);
+        }
+        System.out.println(ans);
+    }
+    public static long gcd(long a, long b){
+        if(a < b) return gcd(b , a);
+        if(b == 0) return a;
+        else return gcd(b , a%b);
+    }
+    public static long lcm(long a, long b){
+        if(gcd(a, b) > 0){
+            return a*b/gcd(a,b);
+        }else{
+            return 0;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+import java.util.*;
+import java.util.*;
+
+class test{
+	public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		int x = scan.nextInt();
+		System.out.println(Math.pow(x,3));
+	}	
+}

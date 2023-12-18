@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+	void run() {
+		Scanner sc = new Scanner(System.in);
+
+		char[] c = sc.next().toCharArray();
+		int n = c.length;
+		int[] count = new int['z' + 1];
+		for (int i = 0; i < n; i++) {
+			count[c[i]]++;
+		}
+		for (int i = 'A'; i <= 'Z'; i++) {
+			if (count[i] % 2 != 0) {
+				System.out.println("No");
+				return;
+			}
+		}
+		System.out.println("Yes");
+	}
+
+	public static void main(String[] args) {
+		new Main().run();
+	}
+}

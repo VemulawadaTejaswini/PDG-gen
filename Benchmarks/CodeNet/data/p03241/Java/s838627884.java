@@ -1,0 +1,27 @@
+package Biginner112D;
+
+import java.util.*;
+ 
+
+public class main {
+	public static void main (String[] args){
+     Scanner scan = new Scanner(System.in);
+     
+     int N = scan.nextInt();
+     int M = scan.nextInt();
+     
+     int sqrtM = (int)Math.sqrt((double)M);
+     int k = (int)M/N;
+     
+     int base = Math.min(k,sqrtM);
+     int ans=1;
+     
+     for(int i=2;i<=base;i++){
+    	 if(M%i==0){
+    		 ans=i;
+    	 }
+     }	 
+     System.out.println(ans);
+}
+}
+

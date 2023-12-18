@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z){for(char c:new java.util.Scanner(System.in).next().toCharArray())System.out.print((char)((c-36)%26+65));}}

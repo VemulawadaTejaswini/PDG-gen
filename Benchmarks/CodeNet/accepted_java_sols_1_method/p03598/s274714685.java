@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int minhalf=0;
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		int map[][]=new int[N+1][K+1];
+		for(int i=1;i<=N;i++) 
+			map[i][sc.nextInt()]=1;
+		
+		for(int i=1;i<=N;i++) 
+			for(int j=1;j<=K;j++) 
+				if		(	map[i][j]==1 && j <  (K - j)  )	minhalf += j;
+				else	 if	(	map[i][j]==1 && j >= (K - j)  )	minhalf += (K-j);
+		System.out.println(minhalf * 2);
+	}
+
+}

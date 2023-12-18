@@ -1,0 +1,55 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main{
+
+	static	int count = 0;
+	public static void main(String[] args) {
+
+
+
+		Scanner scanner = new Scanner(System.in);
+		int N = scanner.nextInt();
+		int[] A = new int[N];		
+
+		int ans = 0;
+		for(int i = 0;i < N;i++){
+			A[i] = scanner.nextInt();
+
+		}
+		Arrays.sort(A);			
+
+		int c= 0;
+		for(int i = 0;i < N-1;i++){
+			if(A[i] != A[i+1]){
+				if(c % 2 == 0){
+					ans++;
+				}
+				c = 0;
+				
+			}else{
+				c++;
+			}
+		}
+
+		System.out.println(ans);
+
+
+
+	}
+
+}
+
+class Pair implements Comparable{
+	int from;
+	int middle;
+	int end;
+	@Override
+	public int compareTo(Object other) {
+		Pair otherpair = (Pair)other;
+
+		return end - otherpair.end;
+	}
+}
+
+

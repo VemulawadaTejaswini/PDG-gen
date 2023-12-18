@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+		String line = "";
+		try {
+			line = sc.readLine();
+		} catch (IOException e1) {
+			// TODO ????????????????????? catch ????????????
+			e1.printStackTrace();
+		}
+		String[] lineAry = new String[2];
+		int a = 0;
+		int b = 0;
+		while (line != null) {
+			lineAry = line.split(" ");
+			a = Integer.parseInt(lineAry[0]);
+			b = Integer.parseInt(lineAry[1]);
+			System.out.println(a + b);
+			try {
+				line = sc.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

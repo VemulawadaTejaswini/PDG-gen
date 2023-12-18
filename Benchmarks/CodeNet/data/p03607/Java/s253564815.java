@@ -1,0 +1,26 @@
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		Scanner sc = new Scanner(System.in);
+
+		int N = sc.nextInt();
+		int a;
+		
+		HashSet<Integer>writeNum = new HashSet<Integer>();
+		
+		for (int i=0; i<N; i++){
+			a = sc.nextInt();
+			if (writeNum.contains(a)){
+				writeNum.remove(a);
+			} else {
+				writeNum.add(a);
+			}
+		}
+		System.out.println(writeNum.size());
+	}
+}

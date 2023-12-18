@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]_){String s="";int h,l,a,f;for(Scanner S=new Scanner(System.in);(l=S.nextInt())+(h=S.nextInt())>0;s+=f<1?"NA\n\n":"\n"){for(f=0,a=l;a<=h;a++)if(a%4<1&&(a%100>0||a%400<1)){s+=a+"\n";f=1;}}System.out.println(s.trim());}}

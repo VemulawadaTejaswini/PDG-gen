@@ -1,0 +1,20 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str = br.readLine();
+		String[] odd = str.split("");
+		str = br.readLine();
+		String[] even = str.split("");
+		for (int i = 0; i < even.length; i++) {
+			System.out.print(odd[i] + even[i]);
+		}
+		if (odd.length > even.length)
+			System.out.println(odd[odd.length - 1]);
+		else
+			System.out.println();
+	}
+}

@@ -1,0 +1,47 @@
+
+public class Main {
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
+        final int n = in.nextInt();
+        final int a = in.nextInt();
+        final int b = in.nextInt();
+        final int c = in.nextInt();
+        final int d = in.nextInt();
+
+        final String input = in.next();
+        if (input.indexOf("##", a) != -1
+                || input.indexOf("##", b) != -1) {
+            System.out.println("No");
+            return;
+        }
+        final char[] line = input.toCharArray();
+        if (d > c) {
+            System.out.println("Yes");
+            return;
+        }
+
+        if (line[d - 2] == '.') {
+            if (c == d + 1) {
+                System.out.println("Yes");
+                return;
+            }
+            if (line[d] == '.') {
+                System.out.println("Yes");
+                return;
+            }
+        }
+
+
+        if (line[b] == '.') {
+            if (a == b - 3 || line[b - 2] == '.') {
+                System.out.println("Yes");
+                return;
+            }
+        }
+        if (input.indexOf("...", b - 1) != -1) {
+            System.out.println("Yes");
+            return;
+        }
+        System.out.println("No");
+    }
+}

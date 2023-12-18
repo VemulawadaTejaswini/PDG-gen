@@ -1,0 +1,19 @@
+import java.util.*;
+
+class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    
+    int a = sc.nextInt();
+    int b = sc.nextInt();
+    int n = 0;
+    int cnt = 0;
+    
+    while(n<b){
+      n += a;
+      cnt++;
+    }
+    
+    System.out.println(cnt);
+  }
+}

@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String args[]){
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt(); 
+        int b = scanner.nextInt();
+        
+        int d = a / b;
+        int r = a % b;
+        double f = (double)a / b;
+        
+        System.out.println(Integer.toString(d) + " " + Integer.toString(r) + " " + String.format("%.8f", f));
+    }
+}

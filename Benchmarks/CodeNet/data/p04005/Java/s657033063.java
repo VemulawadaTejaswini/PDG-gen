@@ -1,0 +1,16 @@
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int a = scanner.nextInt(),b = scanner.nextInt(),c = scanner.nextInt();
+		if(a % 2 == 0 || b % 2 == 0 || c % 2 == 0){
+			System.out.println("0");
+		}else{
+			long ans = 0;
+			ans = Math.min(a*c,a*c);
+			ans = Math.min(ans, b*c);
+			System.out.println(ans);
+		}
+	}
+
+}

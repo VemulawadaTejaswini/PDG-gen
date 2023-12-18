@@ -1,0 +1,24 @@
+import java.util.*;
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		int Num = (s.length())-1;//終わりのIndex
+		int i,j;
+		for(i = 0;i < Num;i++){
+			char head = s.charAt(i);
+			if(head == 'A'){
+				break;
+			}
+		}
+		for(j = Num;0 < j;j--){
+			char tail = s.charAt(j);
+			if(tail == 'Z'){
+				break;
+			}
+		}
+		j = j - i + 1;
+		System.out.println(j);
+	}
+}

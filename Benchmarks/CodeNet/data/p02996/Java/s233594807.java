@@ -1,0 +1,83 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+public class Main {
+	private static final int MOD = (int)Math.pow(10, 9);
+	public static void main(String[] args) {
+		FastReader sc = new FastReader();
+		int n = sc.nextInt();
+		int[][] ab = new int[n][2];
+		
+		for (int i = 0; i < n; i++) {
+			ab[i][0] = sc.nextInt();
+			ab[i][1] = sc.nextInt();
+		}
+		
+		Arrays.sort(ab, (a, b) -> Integer.compare(a[1], b[1]));
+		/* for (int i = 0; i < n; i++) {
+			System.out.println(ab[i][0] + " " + ab[i][1]);
+		}*/
+		
+		String res = "Yes";
+		int total = 0;
+		
+		for (int i = 0; i < n; i++) {
+			total += ab[i][0];
+			if (total > ab[i][1]) {
+				res = "No";
+			}
+		}
+		System.out.println(res);
+	}
+	
+	static class FastReader {
+	    BufferedReader br;
+	    StringTokenizer st;
+	
+	    public FastReader() {
+	      br = new BufferedReader(new InputStreamReader(System.in));
+	    }
+	  
+	    String next() { 
+	      while (st == null || !st.hasMoreElements()) {
+	        try {
+	          st = new StringTokenizer(br.readLine());
+	        } catch (IOException  e) {
+	          e.printStackTrace();
+	        }
+	      }
+	      return st.nextToken();
+	    }
+	
+	    int nextInt() {
+	      return Integer.parseInt(next());
+	    }
+	
+	    long nextLong() {
+	      return Long.parseLong(next());
+	    }
+	
+	    double nextDouble() { 
+	      return Double.parseDouble(next());
+	    }
+	
+	    String nextLine() {
+	      String str = "";
+	        try{
+	            str = br.readLine();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        return str;
+	      }
+	  }
+}

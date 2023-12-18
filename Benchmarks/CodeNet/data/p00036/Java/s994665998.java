@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z)throws Exception{String s;for(byte[]b=new byte[73];System.in.read(b)>-1;)for(char i=64;i++<71;)if((s=new String(b)).lastIndexOf(49)-s.indexOf(49)==new int[]{10,27,3,17,11,19,9}[i-65])System.out.println(i);}}

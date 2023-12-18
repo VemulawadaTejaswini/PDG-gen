@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int W = sc.nextInt(),H=sc.nextInt(),N=sc.nextInt();
+		int[] arrayx = new int[N];
+		int[] arrayy = new int[N];
+		int[] arraya = new int[N];
+		int maxX=W,minX=0,maxY=H,minY=0;
+
+		for(int i=0;i<N;i++) {
+			arrayx[i] = sc.nextInt();
+			arrayy[i] = sc.nextInt();
+			arraya[i] = sc.nextInt();
+			if(arraya[i]==1) {
+				minX=arrayx[i];
+			}else if(arraya[i]==2) {
+				maxX=arrayx[i];
+			}else if(arraya[i]==3) {
+				maxY=arrayy[i];
+			}else{
+				minY=arrayy[i];
+			}
+		}
+
+		if((maxX-minX)*(maxY-minY)>=0) {
+			System.out.println((maxX-minX)*(maxY-minY));
+		}else {
+			System.out.println(0);
+		}
+
+
+	}
+	public static int sample(int n) {
+		return n;
+	}
+
+}

@@ -1,0 +1,11 @@
+public class Main {
+    private static java.util.Scanner scanner = new java.util.Scanner(System.in);
+ 
+    public static void main(String[] args) {
+        long n = scanner.nextLong();
+        long k = scanner.nextLong();
+        long a = n / k;
+        long b = n / (k / 2) - a;
+        System.out.println(a * a * a + ((k & 1) == 0 ? b * b * b : 0));
+    }
+}

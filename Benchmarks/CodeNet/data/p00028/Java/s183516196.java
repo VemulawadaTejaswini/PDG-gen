@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+		int[] a = new int[101];
+		while (sc.hasNext()) {
+			int i = sc.nextInt();
+			a[i]++;
+			if (a[i] > a[0]) {
+				a[0] = a[i];
+			}
+		}
+
+		for (int i=1; i <= 100; i++) {
+			if (a[i] == a[0]) {
+				System.out.println(i);
+			}
+		}
+	}
+
+}

@@ -1,0 +1,1 @@
+import java.util.*;public class Main {public static void main(String[] args) {Scanner yomi = new Scanner(System.in);int suuzi;suuzi = yomi.nextInt();for (int i=9;i>=1;i--){for (int y=9;y>=1;y--){if (i*y==suuzi){System.out.println("Yes");System.exit(0);}}}System.out.println("No");}}

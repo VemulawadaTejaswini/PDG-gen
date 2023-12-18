@@ -1,0 +1,24 @@
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+
+		TreeSet<Integer> all = new TreeSet<Integer>();
+		int cnt = 0;
+
+		while (n > 0) {
+			int k = sc.nextInt();
+			cnt += (all.tailSet(k)).size();
+			all.add(k);
+			n--;
+		}
+		
+		System.out.println(cnt);
+	}
+
+}

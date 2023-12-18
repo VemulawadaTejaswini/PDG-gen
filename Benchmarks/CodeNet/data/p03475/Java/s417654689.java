@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = getInt(sc.nextLine());
+
+        int[] c = new int[n];
+        int[] s = new int[n];
+        int[] f = new int[n];
+
+        for(int i = 1;i < n;i++) {
+            String[] vals = sc.nextLine().split(" ");
+            c[i] = Integer.parseInt(vals[0]);
+            s[i] = Integer.parseInt(vals[1]);
+            f[i] = Integer.parseInt(vals[2]);
+        }
+
+        for(int j = 1;j < n;j++){
+            int t = 0;
+            for(int k = j;k < n;k++){
+                if(t <= s[k]){
+                    t = s[k] + c[k];
+                }else{
+                    t = (t-s[k])%f[k]+t+c[k];
+                }
+            }
+            System.out.println(t);
+        }
+        System.out.println(0);
+        sc.close();
+    }
+
+    static int getInt(String val) {
+        return Integer.parseInt(val);
+    }
+
+}
+

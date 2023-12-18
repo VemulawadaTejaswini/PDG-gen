@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){for(Scanner s=new Scanner(System.in);s.hasNext();System.out.println(Math.round(Math.pow(s.nextDouble(),2)/98+1)));}}

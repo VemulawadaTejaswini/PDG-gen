@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		List<Long> memo = new ArrayList<>();
+		memo.add(0L);
+		for (int i = 1; i < 200001; i++) {
+			long before = memo.get(i - 1);
+			memo.add(before + i - 1);
+		}
+
+		List<Integer> list = new ArrayList<>();
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < n; i++) {
+			int in = sc.nextInt();
+			list.add(in);
+			int count = map.getOrDefault(in, 0) + 1;
+			map.put(in, count);
+		}
+		sc.close();
+		int[] memo2 = new int[200001];
+		Arrays.fill(memo2, -1);
+		for (Integer i : list) {
+			if (memo2[i] == -1) {
+				long sum = 0;
+				for (Entry<Integer, Integer> entry : map.entrySet()) {
+					int key = entry.getValue();
+					if (entry.getKey() == i) {
+						key = key - 1;
+					}
+					sum = sum + memo.get(key);
+				}
+				System.out.println(sum);
+			} else {
+				System.out.println(memo2[i]);
+			}
+		}
+	}
+}

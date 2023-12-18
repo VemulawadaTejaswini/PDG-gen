@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int N = scan.nextInt();
+		int M = scan.nextInt();
+		
+		int com;
+		
+		for ( com = M/N ; com > 0 ; com--){
+			if( M%com == 0){	
+				break;
+			}
+		}
+		if(com != 1){
+			System.out.println(com);
+		}
+		else{
+			System.out.println(1);
+		}
+	}
+}

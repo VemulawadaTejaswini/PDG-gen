@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        final long MOD = 1000000007;
+        int big = Math.max(n, m);
+        int small = Math.min(n, m);
+        long ans = 0L;
+        if (big - small > 1) {
+            ans = 0L;
+        } else if (big == small){
+            long tmp = calc(big);
+            ans = (tmp * tmp) % MOD;
+            ans = (ans * 2) % MOD;
+        } else {
+            long tmp = calc(small);
+            ans = (((tmp * big) % MOD) * tmp) % MOD;
+        }
+        System.out.println(ans);
+    }
+
+    static long calc(int n) {
+        long ret = 1L;
+        final long MOD = 1000000007;
+        for (int i = 2; i <= n; i++) {
+            ret = (ret * i) % MOD;
+        }
+        return ret;
+    }
+}

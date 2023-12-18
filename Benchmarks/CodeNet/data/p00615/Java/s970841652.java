@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int t,i,m;(t=s.nextInt()+s.nextInt())>0;System.out.println(m)){int[]a=new int[t];for(i=t;i-->0;)a[i]=s.nextInt();Arrays.sort(a);for(m=a[0];t-->1;)m=Math.max(m, a[t]-a[t-1]);}}}

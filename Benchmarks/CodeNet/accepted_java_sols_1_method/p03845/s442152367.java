@@ -1,0 +1,39 @@
+import java.util.*;
+import java.math.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] t = new int[n];
+
+    for (int i = 0; i < n; i++) {
+      t[i] = sc.nextInt();
+    }
+
+    int m = sc.nextInt();
+    int[] p = new int[m];
+    int[] x = new int[m];
+
+    for (int i = 0; i < m; i++) {
+      p[i] = sc.nextInt();
+      x[i] = sc.nextInt();
+    }
+
+    for (int i = 0; i < m; i++) {
+      int sum = 0;
+      for (int j = 0; j < n; j++) {
+        if (p[i]-1 == j) {
+          sum += x[i];
+          // System.out.println("drink   "+sum);
+          continue;
+        }
+        sum += t[j];
+      }
+      System.out.println(sum);
+    }
+
+  }
+
+}

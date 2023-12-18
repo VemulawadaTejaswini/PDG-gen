@@ -1,0 +1,27 @@
+import java.util.*;
+import java.math.BigInteger;
+ public class Main {
+ public static void main(String args[]){
+     Scanner sc=new Scanner(System.in);
+     int n;
+     int a[]= new int[200000+5];
+     n = sc.nextInt();
+     String x2 = "0";
+     BigInteger sum = new BigInteger(x2);
+     BigInteger temp,two = new BigInteger("2");
+     BigInteger sum2 = new BigInteger(x2);
+     BigInteger cha=new BigInteger("200000000000000000");
+     for(int i = 1;i<=n;++i){
+         a[i] = sc.nextInt();
+         temp = new BigInteger(""+a[i]);
+         sum.add(temp);
+     }
+     for(int i = 1;i<=n;++i){
+         temp = new BigInteger(""+a[i]);
+         sum2.add(temp);
+         temp = sum2.multiply(two).subtract(sum);
+         if(temp.abs().compareTo(cha)== -1)cha = temp.abs();
+     }
+     System.out.print(cha);
+    }
+ }

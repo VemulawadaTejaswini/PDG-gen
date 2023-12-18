@@ -1,0 +1,13 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int d = Integer.parseInt(sc.next());
+		sc.close();
+		System.out.print("Christmas");
+		for(int i = d;i <25;i++) {
+			System.out.print(" Eve");
+		}
+	}
+}

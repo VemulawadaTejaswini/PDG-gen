@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws java.lang.Exception {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int a[][][] = new int[4][3][10];
+
+		for(int i=0; i<n; i++) {
+			int b = sc.nextInt();
+			int f = sc.nextInt();
+			int r = sc.nextInt();
+			int v = sc.nextInt();
+
+			a[b-1][f-1][r-1] += v;
+
+		}
+
+		for(int i=0; i<4; i++) {
+			if(i != 0) System.out.println("####################");
+			for(int j=0; j<3; j++) {
+				for(int k=0; k<10; k++) {
+					System.out.print(" ");
+					System.out.print(a[i][j][k]);
+				}
+				System.out.println();
+			}
+		}
+	}
+
+}
+

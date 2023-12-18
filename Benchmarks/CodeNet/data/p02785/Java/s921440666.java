@@ -1,0 +1,43 @@
+
+    import java.util.*;
+    public class Main {
+    	public static void main(String[] args){
+    	int[] a=new int[200000];
+    		Scanner sc = new Scanner(System.in);
+    		
+    		  int b = sc.nextInt();
+    		  int c = sc.nextInt();
+    		  long count=0;
+    		  int max=0;
+    		  int num=0;
+    		  boolean con=true;
+    	   for(int i=0;i<b;i++){
+    	   
+    	      a[i]=sc.nextInt();
+    	     
+    	   }
+    
+    	       while(c>0){
+    	       for(int i=0;i<b;i++){
+    	         if(a[i]<max){
+    	         }else{
+    	         max=a[i];
+    	         num=i;
+    	         }
+    	         
+    	         }
+    	         a[num]=0;
+    	         max=0;
+    	        c--;
+    	       
+    	       }
+    	       
+    	       for(int val : a){
+    	       count=count+val;
+    	      
+    	       }
+    	       
+    	       System.out.println(count);
+    		
+    	}
+    }

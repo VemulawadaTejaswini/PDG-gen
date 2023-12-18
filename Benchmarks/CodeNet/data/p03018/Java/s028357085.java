@@ -1,0 +1,112 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UncheckedIOException;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+	static int[] ary;
+	public static void main(String[] args) {
+		SC sc = new SC(System.in);
+		String s=sc.next();
+		ary=new int[s.length()];
+		Arrays.fill(ary,0);
+		for(int i=0; i<s.length(); i++) {
+			ary[i]=s.charAt(i)-'A'+1;
+		}
+		int pointer=0;
+		long kaisu=0L;
+		if(s.length()<=2) {
+			pl(0);
+			System.exit(0);
+		}
+		else {
+			/*while(pointer<s.length()-2) {
+				if(ary[pointer]==1 && ary[pointer+1]==2 && ary[pointer+2]==3) {
+					kaisu++;
+					ary[pointer]=2;
+					ary[pointer+1]=3;
+					ary[pointer+2]=1;
+					if(pointer==0) {
+						pointer++;
+					}
+					else {
+						pointer--;
+					}
+				}
+				else {
+					pointer++;
+				}
+			}*/
+			for(int i=0; i<s.length()-2; i++) {
+				if(ary[i]==1 && ary[i+1]==2 && ary[i+2]==3) {
+					kaisu++;
+					ary[i]=2;
+					ary[i+1]=3;
+					ary[i+2]=1;
+				}
+			}
+			for(int i=0; i<s.length()-2; i++) {
+				if(ary[i]==1 && ary[i+1]==2 && ary[i+2]==3) {
+					kaisu++;
+					ary[i]=2;
+					ary[i+1]=3;
+					ary[i+2]=1;
+				}
+			}
+			for(int i=0; i<s.length()-2; i++) {
+				if(ary[i]==1 && ary[i+1]==2 && ary[i+2]==3) {
+					kaisu++;
+					ary[i]=2;
+					ary[i+1]=3;
+					ary[i+2]=1;
+				}
+			}
+			pl(kaisu);
+		}
+	}
+	static class SC {
+		private BufferedReader reader = null;
+		private StringTokenizer tokenizer = null;
+		public SC(InputStream in) {
+			reader = new BufferedReader(new InputStreamReader(in));
+		}
+		public String next() {
+			if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+				try {
+					tokenizer = new StringTokenizer(reader.readLine());
+				} catch (IOException e) {
+					throw new UncheckedIOException(e);
+				}
+			}
+			return tokenizer.nextToken();
+		}
+		public int nextInt() {
+			return Integer.parseInt(next());
+		}
+		public long nextLong() {
+			return Long.parseLong(next());
+		}
+		public double nextDouble() {
+			return Double.parseDouble(next());
+		}
+		public String nextLine() {
+			try {
+				return reader.readLine();
+			} catch (IOException e) {
+				throw new UncheckedIOException(e);
+			}
+		}
+	}
+	public static void pl(Object o) {
+		System.out.println(o);
+	}
+	public static void pl() {
+		System.out.println();
+	}
+	public static void p(Object o) {
+		System.out.print(o);
+	}
+}

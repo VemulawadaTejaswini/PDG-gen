@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(final String[] args) {
+        final Scanner scanner = new Scanner(System.in);
+        final int x = scanner.nextInt();
+        final int divide = x / 100;
+        final int mod = x % 100;
+        if(mod <= divide*5) {
+            System.out.println(1);
+            return;
+        }
+        final boolean[][] table = new boolean[6][x + 1];
+
+        for (int i = 0; i < 6; i++) {
+            final int price = 100 + i;
+            if (x % price == 0) {
+                System.out.println(1);
+                return;
+            }
+
+            for (int j = 0; j <= x; j += price) {
+                table[i][j] = true;
+            }
+
+            if (i == 0) {
+                continue;
+            }
+
+            for (int j = price; j <= x; j++) {
+                table[i][j] |= table[i - 1][j - (price)];
+            }
+        }
+
+        System.out.println(table[5][x] ? 1 : 0);
+    }
+}

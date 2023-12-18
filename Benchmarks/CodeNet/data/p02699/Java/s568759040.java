@@ -1,0 +1,19 @@
+
+public class Main{
+
+    public static void main(String[] args) {
+        int n1 = 0;
+        int n2 = 0;
+        
+        if(args != null){
+            n1 = Integer.parseInt(args[0]);
+            n2 = Integer.parseInt(args[1]);
+        }
+
+        if (n2 >= n1) {
+            System.out.println("unsafe");
+        } else {
+            System.out.println("safe");
+        }
+    }
+}

@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		int n;
+		int[] a;
+		int o;
+		int i;
+		boolean flag;
+		
+		while(true){
+			n = scan.nextInt();
+			if(n == 0)break;
+			
+			a = new int[n];
+			
+			for(int j = 0;j < n; j++){
+				a[j] = scan.nextInt(); 
+			}
+			
+			o = 32;
+			i = 0;
+			flag = true;
+			while(o > 0){
+				if(flag){
+					o -= (o-1)%5;
+				}else{
+					o = Math.max(0, o - a[i]);
+					i = (i + 1) % n;
+				}
+				System.out.println(o);
+				flag =! flag;
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+	private static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int N = scanner.nextInt();
+		int K = scanner.nextInt();
+		int X = scanner.nextInt();
+		int Y = scanner.nextInt();
+		int a = (N - K) * (X - Y);
+		if (a < 0) a = 0;
+		System.out.println(N * X - a);
+	}
+}

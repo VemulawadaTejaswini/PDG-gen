@@ -1,0 +1,16 @@
+import java.util.*;
+import java.io.*;
+
+class Main{
+  public static void main(String[] args){
+    int n,x,l,sum=0,cnt=0;
+    Scanner sc=new Scanner(System.in);
+    n=sc.nextInt();
+    x=sc.nextInt();
+    while(sum + (l=sc.nextInt()) <=x){
+      sum+=l;
+      cnt++;
+    }
+    System.out.println(cnt);
+  }
+}

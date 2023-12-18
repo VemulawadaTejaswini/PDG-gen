@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public Main() {
+    }
+
+    private static Scanner sc;
+
+    public static void main(String[] args) {
+        sc = new Scanner(System.in);
+        new Main().solve();
+    }
+
+    private void solve() {
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        int t = a + b;
+
+        if (t >= 24) {
+            System.out.println(t - 24);
+        } else {
+            System.out.println(t);
+        }
+    }
+}

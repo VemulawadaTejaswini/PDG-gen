@@ -1,0 +1,18 @@
+import java.util.Scanner;
+ 
+public class Main {
+ 
+	public static void main(String[] args) {
+ 
+		// 読み込み
+		Scanner sc = new Scanner(System.in);
+		String S = sc.next();
+		
+      	if (S.substring(2,3).equals(S.substring(3,4)) && S.substring(4,5).equals(S.substring(5,6))) {
+			System.out.println("Yes");
+		}
+		else {
+			System.out.println("No");
+		}
+	}
+}

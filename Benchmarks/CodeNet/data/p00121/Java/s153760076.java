@@ -1,0 +1,201 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		// TODO ?????????????????????????????????????????????
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		Arrays.fill(times, Byte.MAX_VALUE);
+
+		int id = 0;
+		ArrayList<StringWrapper> list = new ArrayList<StringWrapper>();
+		ArrayList<StringWrapper> sorted = new ArrayList<StringWrapper>();
+		
+		while(true){
+			String str = br.readLine();
+
+			if(str == null){
+				break;
+			}
+
+//			int[] puzzle = new int[8];
+
+			String[] tmpArray = str.split(" ");
+			char[] carray = new char[8];
+			for(int i = 0; i < 8 ; i++){
+//				puzzle[i] = Integer.parseInt(tmpArray[i]);
+				carray[i] = tmpArray[i].charAt(0);
+			}
+
+			StringWrapper tmpSW = new StringWrapper(id, new String(carray));
+			list.add(tmpSW);
+			sorted.add(tmpSW);
+			id++;
+//			String input = new String(carray);
+
+//			int result = bfs(input);
+
+//			System.out.println(result);
+
+//			System.gc();
+		}
+		
+		Collections.sort(sorted);
+		
+		Iterator<StringWrapper> it = sorted.iterator();
+		while(it.hasNext()){
+			StringWrapper sw = it.next();
+			sw.time = bfs(sw.str);
+//			System.out.println(it.next().str);
+		}
+		
+		it = list.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next().time);
+		}
+	}
+
+//	static HashMap<String, Integer> ans = new HashMap<String, Integer>();
+	static byte[] times = new byte[76543211];
+
+	static int bfs(String puzzle){
+//		System.out.println("input "+puzzle);
+		if(times[Integer.parseInt(puzzle)] < Byte.MAX_VALUE){
+			return times[Integer.parseInt(puzzle)];
+		}
+
+		ArrayDeque<State> queue = new ArrayDeque<State>();
+		HashSet<String> checked = new HashSet<String>();
+
+		queue.push(new State(new String("01234567"), 0, -1));
+//		int time = 0;
+
+		while(!queue.isEmpty()){
+			State tmp = queue.poll();
+//			if(ans.containsKey(tmp.state)){
+////				System.out.println("I know the answer");
+//				return tmp.time + ans.get(tmp.state);
+//			}
+//			int tmpInt = Integer.parseInt(tmp.state);
+//			if(times[tmpInt] < Integer.MAX_VALUE){
+//				return times[tmpInt];
+//			}
+
+			if(!checked.contains(tmp.state)){
+				checked.add(tmp.state);
+				times[Integer.parseInt(tmp.state)] = (byte) tmp.time;
+			}
+			else {
+				continue;
+			}
+
+//			System.out.println("tmp "+tmp);
+			if(tmp.state.equals(puzzle)){
+//				ans.put(new String(puzzle), (int)tmp.time);
+				return tmp.time;
+			}
+
+			int zeroPos = tmp.state.indexOf('0');
+
+
+			String swapped;
+			//???
+			if(zeroPos >= 4 && tmp.prevDir != 1){
+				swapped = swap(tmp.state, zeroPos, zeroPos - 4);
+				if(!checked.contains(swapped)){
+					queue.add(new State(swapped, tmp.time + 1, 0));
+				}
+			}
+
+			//???
+			if(zeroPos < 4 && tmp.prevDir != 0){
+				swapped = swap(tmp.state, zeroPos, zeroPos + 4);
+				if(!checked.contains(swapped)){
+					queue.add(new State(swapped, tmp.time + 1, 1));
+				}
+			}
+
+			//???
+			if(zeroPos != 0 && zeroPos != 4 && tmp.prevDir != 3){
+				swapped = swap(tmp.state, zeroPos, zeroPos - 1);
+				if(!checked.contains(swapped)){
+					queue.add(new State(swapped, tmp.time + 1, 2));
+				}
+			}
+
+			//???
+			if(zeroPos != 3 && zeroPos != 7 && tmp.prevDir != 2){
+				swapped = swap(tmp.state, zeroPos, zeroPos + 1);
+				if(!checked.contains(swapped)){
+					queue.add(new State(swapped, tmp.time + 1, 3));
+				}
+			}
+
+//			System.out.println("now time "+tmp.time + "queue size "+queue.size()+" hash size "+checked.size());
+
+		}
+
+//		Iterator<String> it = checked.iterator();
+//		while(it.hasNext()){
+//			System.out.println(it.next());
+//		}
+
+		return -1;
+	}
+
+	static String swap(String str, int index1, int index2){
+		char[] carray = str.toCharArray();
+
+		char tmp = carray[index1];
+		carray[index1] = carray[index2];
+		carray[index2] = tmp;
+
+		String result = new String(carray);
+
+//		System.out.println("in "+str+" out "+result);
+
+		return result;
+	}
+
+
+}
+
+class StringWrapper implements Comparable<StringWrapper>{
+
+	String str;
+	int id;
+	int time = -1;
+
+	public StringWrapper(int id, String str) {
+		// TODO ?????????????????????????????????????????????????????????
+		this.id = id;
+		this.str = new String(str);
+	}
+	@Override
+	public int compareTo(StringWrapper o) {
+		// TODO ?????????????????????????????????????????????
+		return -(this.str.compareTo(o.str));
+	}
+
+}
+
+class State{
+	String state;
+	short time;
+	short prevDir;
+
+	public State(String state, int time, int dir){
+		this.state = state;
+		this.time = (short)time;
+		this.prevDir = (short)dir;
+	}
+}

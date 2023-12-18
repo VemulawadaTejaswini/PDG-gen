@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]r){Scanner s=new Scanner(System.in);int n=s.nextInt(),i=n,m=s.nextInt(),b=999999999;int[]a=new int[n];for(;i>0;)a[--i]=s.nextInt();Arrays.sort(a);for(;i+m-1<n;i++)b=Math.min(b,a[i+m-1]-a[i]);System.out.print(b);}}

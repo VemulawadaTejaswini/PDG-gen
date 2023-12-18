@@ -1,0 +1,62 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        boolean f=true;
+        while(true){
+            
+            int sum = sc.nextInt();
+            if(sum==0)break;
+            if(!f)System.out.println();
+            f=false;
+            int[] c = new int[4];
+            for (int i = 0; i < c.length; i++) {
+                c[i]=sc.nextInt();
+            }
+            int[] ans=new int[4];
+            int[] p = {10,50,100,500};
+            int min = 1<<29;
+            for (int i = 0; i <= c[0]; i++) {
+                for (int j = 0; j <= c[1]; j++) {
+                    for (int j2 = 0; j2 <= c[2]; j2++) {
+                        for (int k = 0; k <= c[3]; k++) {
+                            int s = 0;
+                            s+=i*p[0];
+                            s+=j*p[1];
+                            s+=j2*p[2];
+                            s+=k*p[3];
+                            if(s<sum)continue;
+                            int change = change(sum,s);
+                            if(min>i+j+j2+k-change){
+                                ans[0]=i;
+                                ans[1]=j;
+                                ans[2]=j2;
+                                ans[3]=k;
+                                min=change;
+                            }
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < p.length; i++) {
+                if(ans[i]==0)continue;
+                System.out.println(p[i]+" "+ans[i]);
+            }
+        }
+    }
+    static int change(int sum,int s){
+        int[] p = {10,50,100,500};
+        s = s-sum;
+        int res = 0;
+        for (int i = 3; i >= 0; i--) {
+            while(s-p[i]>=0){
+                s-=p[i];
+                res++;
+            }
+        }
+        return res;
+    }
+}

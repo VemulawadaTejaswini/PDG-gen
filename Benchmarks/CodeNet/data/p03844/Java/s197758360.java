@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader input =new BufferedReader (new InputStreamReader (System.in));
+		String str = input.readLine( );
+		String[] strlist = str.split(" ");
+		int a = Integer.parseInt(strlist[0]);
+		int b = Integer.parseInt(strlist[2]);
+		int answer = 0;
+
+		if(strlist[1].equals("+")){
+			answer = a + b;
+		}else {
+			answer = a - b;
+		}
+
+
+		System.out.println(answer);
+
+
+	}
+
+}

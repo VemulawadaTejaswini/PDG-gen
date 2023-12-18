@@ -1,0 +1,19 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int[] num = {1, 2, 1, 4, 1, 4, 1, 1, 4, 1, 4, 1};
+	
+	int x = Integer.parseInt(scan.next());
+	int y = Integer.parseInt(scan.next());
+
+	String ans = (num[x-1] == num[y-1] ? "Yes" : "No");
+	System.out.println(ans);
+	
+	scan.close();
+    }
+}

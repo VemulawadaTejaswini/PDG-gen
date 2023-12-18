@@ -1,0 +1,86 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) {
+		FastScanner sc = new FastScanner(System.in);
+		int n = sc.nextInt(), k = sc.nextInt();
+		double[] c = new double[n];
+		double[] a = new double[n-k+1];
+		Arrays.fill(a, 0);
+		for(int i = 0; i < n; i++) {
+			int x = sc.nextInt();
+			double u = ((x+1)*(x/2))+((x%2)*((x/2)+1));
+			c[i] = u/(double)x;
+		}
+		for(int i = 0; i <= n-k; i++) {
+			for(int j = i; j < i+k; j++) {
+				a[i] += c[j];
+			}
+		}
+		Arrays.sort(a);
+		System.out.println(a[a.length-1]);
+	}
+
+	static class FastScanner {
+		private BufferedReader reader = null;
+	    private StringTokenizer tokenizer = null;
+	    public FastScanner(InputStream in) {
+	        reader = new BufferedReader(new InputStreamReader(in));
+	        tokenizer = null;
+	    }
+
+	    public String next() {
+	        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+	            try {
+	                tokenizer = new StringTokenizer(reader.readLine());
+	            } catch (IOException e) {
+	                throw new RuntimeException(e);
+	            }
+	        }
+	        return tokenizer.nextToken();
+	    }
+
+	    public String nextLine() {
+	        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+	            try {
+	                return reader.readLine();
+	            } catch (IOException e) {
+	                throw new RuntimeException(e);
+	            }
+	        }
+
+	        return tokenizer.nextToken("\n");
+	    }
+
+	    public long nextLong() {
+	        return Long.parseLong(next());
+	    }
+
+	    public int nextInt() {
+	        return Integer.parseInt(next());
+	    }
+
+	    public double nextDouble() {
+	         return Double.parseDouble(next());
+	     }
+
+	    public int[] nextIntArray(int n) {
+	        int[] a = new int[n];
+	        for (int i = 0; i < n; i++)
+	            a[i] = nextInt();
+	        return a;
+	    }
+
+	    public long[] nextLongArray(int n) {
+	        long[] a = new long[n];
+	        for (int i = 0; i < n; i++)
+	            a[i] = nextLong();
+	        return a;
+	    }
+	}
+}

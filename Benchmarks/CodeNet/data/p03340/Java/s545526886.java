@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Main {
+	public static int[] sum1to;
+	public static int[] sumtoN;
+	public static int[] xor1to;
+	public static int[] xortoN;
+	public static int sumA;
+	public static int xorA;
+	public static int N;
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		N = scan.nextInt();
+		int[] A = new int[N + 1];
+		sum1to = new int[N + 1];
+		sumtoN = new int[N + 1];
+		xor1to = new int[N + 1];
+		xortoN = new int[N + 1];
+		for (int i = 1; i < A.length; i++) {
+			A[i] = scan.nextInt();
+			sumA += A[i];
+			xorA ^= A[i];
+			sum1to[i] = sumtoN[i] = xor1to[i] = xortoN[i] = -1;
+		}
+		int count = 0;
+		for (int r = 1; r <= N; r++) {
+			for (int l = 1; l <= r; l++) {
+				// System.out.println("r:" + r + ", l:" + l);
+				// System.out.println(left(r, l, A)==left0(r, l, A));
+				if (left(r, l, A) == right(r, l, A)) {
+					count++;
+				}
+			}
+		}
+		System.out.println(count);
+	}
+
+	public static int left(int r, int l, int[] A) {
+		if (xor1to[l - 1] == -1) {
+			xor1to[l - 1] = 0;
+			for (int i = 1; i <= l - 1; i++) {
+				xor1to[l - 1] ^= A[i];
+			}
+		}
+		if (r == N) {
+			return xorA ^ xor1to[l - 1];
+		}
+		if (xortoN[r + 1] == -1) {
+			xortoN[r + 1] = 0;
+			for (int i = r + 1; i <= N; i++) {
+				xortoN[r + 1] ^= A[i];
+			}
+		}
+		return xorA ^ xor1to[l - 1] ^ xortoN[r + 1];
+	}
+
+	public static int right(int r, int l, int[] A) {
+
+		if (sum1to[l - 1] == -1) {
+			sum1to[l - 1] = 0;
+			for (int i = 1; i <= l - 1; i++) {
+				sum1to[l - 1] += A[i];
+			}
+		}
+		if (r == N) {
+			return sumA - sum1to[l - 1];
+		}
+		if (sumtoN[r + 1] == -1) {
+			sumtoN[r + 1] = 0;
+			for (int i = r + 1; i <= N; i++) {
+				sumtoN[r + 1] += A[i];
+			}
+		}
+		return sumA - sum1to[l - 1] - sumtoN[r + 1];
+	}
+
+}

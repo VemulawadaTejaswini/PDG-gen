@@ -1,0 +1,9 @@
+import java.util.*;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int R = sc.nextInt();
+    System.out.println((R >= 2800) ? "AGC" : (R >= 1200) ? "ARC" : "ABC");
+  }
+}

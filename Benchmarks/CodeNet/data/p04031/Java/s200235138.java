@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String args[]) {
+        FastScanner cin = new FastScanner();
+        int n = cin.nextInt();
+        int[] a = new int[n];
+
+        for (int i = 0; i < n; ++i)
+            a[i] = cin.nextInt();
+
+        int res = 2000000000;
+
+        for (int i = -100; i <= 100; ++i) {
+            int s = 0;
+
+            for (int j = 0; j < n; ++j)
+                s += (i - a[j]) * (i - a[j]);
+
+            res = Math.min(res, s);
+        }
+
+        System.out.println(res);
+    }
+
+    static class FastScanner {
+        StringTokenizer tokenizer;
+        Scanner scanner;
+
+        FastScanner() {
+            tokenizer = null;
+            scanner = new Scanner(System.in);
+        }
+
+        int nextInt() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens())
+                tokenizer = new StringTokenizer(scanner.nextLine());
+
+            return Integer.parseInt(tokenizer.nextToken());
+        }
+
+        String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens())
+                tokenizer = new StringTokenizer(scanner.nextLine());
+
+            return tokenizer.nextToken();
+        }
+    }
+}
+

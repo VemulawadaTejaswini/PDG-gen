@@ -1,0 +1,27 @@
+//package com.beginner.b053;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String args[]) throws Exception
+    {
+        Scanner sc = new Scanner(System.in);
+        long target = sc.nextLong();
+
+        long ans = 1;
+
+
+        long base = (target-1)/11;
+        long rest = (target-1)%11;
+
+        if(rest<=5) ans = base*2+1;
+        else ans = base*2+2;
+
+
+
+        System.out.println(ans);
+
+        sc.close();
+    }
+
+}

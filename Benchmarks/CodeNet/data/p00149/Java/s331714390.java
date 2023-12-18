@@ -1,0 +1,1 @@
+import java.text.*;import java.util.*;class Main{public static void main(String[]z){ChoiceFormat f = new ChoiceFormat("0#3|0.2#2|0.6#1|1.1#0");int[][]c=new int[4][2];for(Scanner s=new Scanner(System.in);s.hasNext();++c[new Integer(f.format(s.nextFloat()))][1])++c[new Integer(f.format(s.nextFloat()))][0];for(int[]b:c)System.out.println(b[0]+" "+b[1]);}}

@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long N = sc.nextLong();
+        long K = sc.nextLong();
+        List<Long> arrayA = new ArrayList<>();
+        for (long i=0; i<N; i++) {
+            arrayA.add(sc.nextLong());
+        }
+        sc.close();
+        List<Long> temp = new ArrayList<>(arrayA);
+        for (int i=0; i<K; i++) {
+            arrayA.addAll(temp);
+        }
+        List<Long> arrayS = new ArrayList<>();
+        long count = 0;
+        long d = 0;
+        for (int i=0; i<N*K; i++) {
+            if (!arrayS.contains(arrayA.get(i))) {
+                arrayS.add(arrayA.get(i));
+            }
+            else {
+                while (arrayS.contains(arrayA.get(i))) {
+                    arrayS.remove(arrayS.size()-1);
+                }
+            }
+            if (arrayS.size() == 0) {
+                count = i+1 / N;
+                d = K % count;
+                break;
+            }
+        }
+        for (int i=0; i<d*N; i++) {
+            if (!arrayS.contains(arrayA.get(i))) {
+                arrayS.add(arrayA.get(i));
+            }
+            else {
+                while (arrayS.contains(arrayA.get(i))) {
+                    arrayS.remove(arrayS.size()-1);
+                }
+            }
+        }
+        for (int i=0; i<arrayS.size(); i++) {
+            System.out.print(arrayS.get(i) + " ");
+        }
+
+    }
+}

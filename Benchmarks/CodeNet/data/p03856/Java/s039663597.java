@@ -1,0 +1,115 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.NoSuchElementException;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		FastScanner sc = new FastScanner();
+		PrintWriter out = new PrintWriter(System.out);
+		
+		String s = sc.next();
+		boolean flag = false;
+		
+		int len;
+		while ((len = s.length()) > 0) {
+			if (len < 5) {
+				break;
+			} else if (len == 5) {
+				if (s.equals("dream") || s.equals("erase")) {
+					flag = true;
+				}
+				break;
+			} else if (len == 6) {
+				if (s.equals("eraser")) {
+					flag = true;
+				}
+				break;
+			} else if (len == 7) {
+				if (s.equals("dreamer")) {
+					flag = true;
+				}
+				break;
+			} else {
+				if (s.substring(0, 7).equals("dreamer")) {
+					if (s.charAt(7) == 'a') {
+						s = s.substring(5, len);
+					} else {
+						s = s.substring(7, len);
+					}
+				} else if (s.substring(0, 6).equals("eraser")) {
+					s = s.substring(6, len);
+				} else if (s.substring(0, 5).equals("dream")) {
+					s = s.substring(5, len);
+				} else if (s.substring(0, 5).equals("erase")) {
+					s = s.substring(5, len);
+				}
+			}
+		}
+		
+		out.println(flag ? "YES" : "NO");
+		out.flush();
+	}
+	
+}
+
+class FastScanner {
+	private final InputStream in = System.in;
+	private final byte[] buffer = new byte[1024];
+	private int ptr = 0;
+	private int buflen = 0;
+	
+	private boolean hasNextByte() {
+		if (ptr < buflen) {
+			return true;
+		} else {
+			ptr = 0;
+			try {
+				buflen = in.read(buffer);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (buflen <= 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private byte readByte() {
+		if (hasNextByte()) {
+			return buffer[ptr++];
+		} else {
+			return -1;
+		}
+	}
+	
+	private boolean isPrintableChar(int c) {
+		return '!' <= c && c <= '~';
+	}
+	
+	private void skipUnprintable() {
+		while (hasNextByte() && !isPrintableChar(buffer[ptr])) {
+			ptr++;
+		}
+	}
+	
+	public boolean hasNext() {
+		skipUnprintable();
+		return hasNextByte();
+	}
+	
+	public String next() {
+		if (!hasNext()) {
+			throw new NoSuchElementException();
+		}
+		StringBuilder sb = new StringBuilder();
+		byte b = readByte();
+		while (isPrintableChar(b)) {
+			sb.appendCodePoint(b);
+			b = readByte();
+		}
+		return sb.toString();
+	}
+}

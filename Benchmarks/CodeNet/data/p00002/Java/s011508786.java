@@ -1,0 +1,15 @@
+import java.util.*;
+
+class Main{
+public static void main(String[] args){
+int a;
+int b;
+Scanner sc=new Scanner(System.in);
+while(sc.hasNextInt()){
+a=sc.nextInt();
+b=sc.nextInt();
+int d=Math.log10(a+b);
+System.out.println(d);
+}
+}
+}

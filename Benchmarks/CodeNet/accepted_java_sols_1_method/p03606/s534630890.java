@@ -1,0 +1,18 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+  public static void main(String[] args) throws Exception {
+    // Here your code !
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String N = br.readLine();
+
+    int sum = 0;
+    String line;
+    while((line = br.readLine()) != null) {
+      String[] l = line.split(" ");
+      sum += (Integer.parseInt(l[1]) - Integer.parseInt(l[0])) + 1;
+    }
+    System.out.println(sum);
+  }
+}

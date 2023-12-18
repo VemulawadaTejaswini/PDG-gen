@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,c;(n=s.nextInt())>0;System.out.println(c))for(c=0;n>1;++c)n=n%2<1?n/2:n*3+1;}}

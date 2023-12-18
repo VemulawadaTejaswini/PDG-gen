@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        long N = scanner.nextLong();
+        long A = scanner.nextLong();
+        long B = scanner.nextLong();
+        long answer = N / (A + B) * A;
+        answer += Math.min(N % (A + B), A);
+        System.out.println(answer);
+    }
+}

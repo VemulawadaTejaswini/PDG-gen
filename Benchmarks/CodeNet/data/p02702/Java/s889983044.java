@@ -1,0 +1,43 @@
+
+import java.util.*;
+
+import java.math.*;
+
+
+public class Main { 
+	static int[] dp;
+    static int mod=(int)1e9+7;
+    public static  long help(String s, int k) {
+    //  dp=new int[200000];
+      
+      
+     return fun(s,k,0);
+    }
+    
+    
+     public static long fun(String s, int k,int i) {
+         
+         long cc=0;
+        
+         for (int j = 0; j <s.length(); j++) {
+			for (int j2 = j+1; j2 <s.length(); j2++) {
+				if(j2-j>=1 && new BigInteger(s.substring(j, j2+1)).mod(new BigInteger("2019")).equals(new BigInteger("0")))
+					cc++;
+				
+			}
+		}
+         return cc;
+         
+     }
+	    	
+	    
+	public static void main(String args[] ) throws Exception {
+		Scanner s=new Scanner(System.in);
+	//	String hs="1817181712114";
+		String hs=s.next();
+		 System.out.println(help(hs,2019));
+		
+}
+
+
+} 

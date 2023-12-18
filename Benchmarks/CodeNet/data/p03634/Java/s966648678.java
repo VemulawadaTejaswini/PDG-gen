@@ -1,0 +1,107 @@
+import java.util.*;
+
+@SuppressWarnings("unchecked")
+public class Main {
+	public static class Pair implements Comparable<Pair> {
+		public final long first;
+		public final long second;
+	
+		public Pair(long first, long second) {
+			this.first = first;
+			this.second = second;
+		}
+	
+		@Override
+		public int compareTo(Pair o) {
+			int ord = Long.compare(this.first, o.first);
+			if (ord != 0) return ord;
+			ord = Long.compare(this.second, o.second);
+			return ord;
+		}
+	}
+
+	// public static void printArray(int[] a) {
+	// 	for (int i = 0; i < a.length; i++) {
+	// 		System.out.print(a[i] + ", ");
+	// 	}
+	// 	System.out.println();
+	// }
+
+	// public static<T> void printArrayT(T[] a) {
+	// 	for (int i = 0; i < a.length; i++) {
+	// 		System.out.print(a[i] + ", ");
+	// 	}
+	// 	System.out.println();
+	// }
+
+	public static String joinInt(int[] a, String separator) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < a.length; i++) {
+			if (i > 0) {
+				sb.append(separator);
+			}
+			sb.append(a[i]);
+		}
+		return sb.toString();		
+	}
+
+	static int[] nextIntArray(Scanner sc, int N) {
+		int[] arr = new int[N];
+		for (int i = 0; i < N; i++) {
+			arr[i] = sc.nextInt();
+		}
+		return arr;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		ArrayList<Pair>[] edge = new ArrayList[N];
+		for (int i = 0; i < N - 1; i++) {
+			int a = sc.nextInt() - 1;
+			int b = sc.nextInt() - 1;
+			long c = sc.nextLong();
+			add(edge, a, b, c);
+			add(edge, b, a, c);
+		}
+		int Q = sc.nextInt();
+		int K = sc.nextInt() - 1;
+		int[] X = new int[Q];
+		int[] Y = new int[Q];
+		for (int i = 0; i < Q; i++) {
+			X[i] = sc.nextInt() - 1;
+			Y[i] = sc.nextInt() - 1;
+		}
+		long[] table = new long[N];
+		Arrays.fill(table, Integer.MAX_VALUE);
+		PriorityQueue<Pair> q = new PriorityQueue<>();
+		q.add(new Pair(0, K));
+		while (q.size() > 0) {
+			Pair p = q.poll();
+			long cost = p.first;
+			int pos = (int)p.second;
+			if (table[pos] != Integer.MAX_VALUE) continue;
+
+			table[pos] = cost;
+			if (edge[pos] != null) {
+				for (Pair next : edge[pos]) {
+					int nextPos = (int)next.first;
+					long nextCost = next.second;
+					if (table[nextPos] == Integer.MAX_VALUE) {
+						q.add(new Pair(cost + nextCost, nextPos));
+					}
+				}
+			}
+		}
+		for (int i = 0; i < Q; i++) {
+			System.out.println(table[X[i]] + table[Y[i]]);
+		}
+	}
+
+	static void add(ArrayList<Pair>[] edge, int a, int b, long c) {
+		if (edge[a] == null) {
+			edge[a] = new ArrayList<>();
+		}
+		edge[a].add(new Pair(b, c));
+	}
+}

@@ -1,0 +1,68 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner in = new Scanner(System.in);
+		long a = in.nextLong();
+		long b = in.nextLong();
+
+		// a >= b にする
+		if ( a < b ) {
+			long temp = a;
+			a = b;
+			b = temp;
+		}
+
+		long gcd = getGCD(a, b);
+		boolean primeNumber[] = new boolean[(int) gcd + 1];
+		Arrays.fill(primeNumber, true);
+		primeNumber[0] = primeNumber[1] = false;
+
+		int idx = 0;
+		while ( idx <= gcd ) {
+			while ( idx < gcd && primeNumber[idx] == false ) {
+				idx++;
+			}
+			for ( int i = idx * 2; i <= gcd; i += idx ) {
+				primeNumber[i] = false;
+			}
+			idx++;
+		}
+
+		HashSet<Long> set = new HashSet<>();
+		set.add((Long) 1L);
+		long cnt = 1;
+		long div = 2L;
+		while ( div <= gcd ) {
+			// System.out.println(div);
+			while ( div < gcd && primeNumber[(int) div] == false ) {
+				div++;
+			}
+
+			if ( a % div == 0 && b % div == 0 ) cnt++;
+			else continue;
+
+			while ( a % div == 0 && b % div == 0 ) {
+				a /= div;
+				b /= div;
+				gcd /= div;
+			}
+			div++;
+		}
+		System.out.println(cnt);
+		in.close();
+	}
+
+	private static long getGCD(long a, long b) {
+		long r = a % b;
+		if ( r == 0 ) {
+			return b;
+		} else {
+			return getGCD(b, r);
+		}
+	}
+}

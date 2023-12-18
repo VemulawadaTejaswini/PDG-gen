@@ -1,0 +1,32 @@
+import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.util.*;
+public class Main{
+	
+	public static void main(String[]args) {
+		 Scanner sc = new Scanner(System.in);
+         Map hs = new HashMap();
+         PrintWriter out = new PrintWriter(System.out);
+         int n = Integer.parseInt(sc.next());
+         int k = Integer.parseInt(sc.next());
+         int[] a = new int[n];
+         for(int i = 0 ; i < n ; i++){
+                 a[i] = Integer.parseInt(sc.next());
+         }
+         sc.close();
+         double le = 0;
+         double ri = Math.pow(10 , 9);
+         while(ri - le > 0.000001){
+                 double now = (le + ri) / 2;
+                 int yono = 0;
+                 for(int i = 0 ; i < n ; i++){
+                         yono += (int)(a[i] / now);
+                 }
+                 if(yono > k) le = now;
+                 else ri = now;
+         }
+         if(ri % 1 < 0.000001 || ri % 1 > 0.99999) out.print((int)Math.round(ri) + "\n");
+         else out.print((int)Math.ceil(ri)+ "\n");
+		out.close();
+	}
+}

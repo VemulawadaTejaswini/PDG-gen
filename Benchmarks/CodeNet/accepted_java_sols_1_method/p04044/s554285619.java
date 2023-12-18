@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();
+		int L = sc.nextInt();
+		String S[] = new String[N];
+		
+		for(int i=0; i<N; i++){
+			S[i] = sc.next();
+		}
+		
+		Arrays.sort(S);
+//		System.out.println(Arrays.toString(S));
+		
+		StringBuffer x = new StringBuffer();
+		for(int i=0; i<N; i++){
+			x.append(S[i]);
+		}
+		
+		
+		
+		
+		System.out.println(x);
+
+
+	}
+}

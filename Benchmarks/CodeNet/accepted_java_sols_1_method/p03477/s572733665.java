@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+
+
+        Scanner sc = new Scanner(System.in);
+ 
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        String result = "";
+        int ab = a + b;
+        int cd = c + d;
+        if(ab < cd) {
+        	result = "Right";
+        } else if(ab == cd) {
+        	result = "Balanced";
+        } else if(ab > cd) {
+        	result = "Left";
+        }
+        System.out.println(result);
+    }
+}

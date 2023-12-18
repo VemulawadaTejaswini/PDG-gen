@@ -1,0 +1,103 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Main {
+
+    private static FastReader in = new FastReader(System.in);
+    private static PrintWriter out = new PrintWriter(System.out);
+
+    private static final long MOD = (long) 1e9 + 7;
+
+    public static void main(String[] args) {
+        solve();
+        out.flush();
+    }
+
+    private static void solve() {
+        int n = in.nextInt();
+
+        Map<Integer, Integer> counts = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            int next = in.nextInt();
+            counts.put(next, counts.getOrDefault(next, 0) + 1);
+        }
+
+        long sum = 0;
+        for (Map.Entry<Integer, Integer> e : counts.entrySet()) {
+            sum += e.getKey() * e.getValue();
+        }
+
+        int q = in.nextInt();
+        for (int i = 0; i < q; i++) {
+            int from = in.nextInt();
+            int to = in.nextInt();
+
+            int count = counts.getOrDefault(from, 0);
+            counts.remove(from);
+            counts.put(to, counts.getOrDefault(to, 0) + count);
+
+            sum += count * (to - from);
+            out.println(sum);
+        }
+    }
+
+    // https://www.geeksforgeeks.org/fast-io-in-java-in-competitive-programming/
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        FastReader(InputStream inputStream) {
+            br = new BufferedReader(new
+                    InputStreamReader(inputStream));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException  e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+
+        // https://qiita.com/masakinpo/items/5f77f2a879578a85a0bb
+        public int[] nextIntArray(int n) {
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++)
+                a[i] = nextInt();
+            return a;
+        }
+
+        public long[] nextLongArray(int n) {
+            long[] a = new long[n];
+            for (int i = 0; i < n; i++)
+                a[i] = nextLong();
+            return a;
+        }
+    }
+}

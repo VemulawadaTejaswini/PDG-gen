@@ -1,0 +1,1 @@
+import java.util.*;public class Main{static int f(int n){return n<2?0:(n%3==0?f(n/3):f(n/3+1))+1;}public static void main(String[]s){System.out.print(f(new Scanner(System.in).nextInt()));}}

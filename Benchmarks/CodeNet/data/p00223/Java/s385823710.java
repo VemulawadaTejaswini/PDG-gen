@@ -1,0 +1,348 @@
+
+import java.util.*;
+import static java.lang.Math.*;
+
+public class Main {
+	final Scanner sc=new Scanner(System.in);
+	public static void main(String[] args) {
+		new Main().init();
+	}
+	void init(){
+		//new F();
+		final long STACK_SIZE=8*1024*1024;
+		new Thread(null, new AOJ0223(), "RUN!!", STACK_SIZE).start();
+	}
+	
+	class AOJ0223 implements Runnable{
+		@Override public void run(){
+			while(sc.hasNext()){
+				int X=sc.nextInt(),Y=sc.nextInt();
+				if((X|Y)==0)	break;
+				solve(X,Y);
+			}
+		}
+		final int[] vx={0,1,0,-1},vy={-1,0,1,0};
+		final int INF=1<<29;
+		void solve(int X,int Y){
+			int x1=sc.nextInt(),y1=sc.nextInt(),x2=sc.nextInt(),y2=sc.nextInt();
+			boolean[][] map=new boolean[X+1][Y+1];
+			for(int y=1; y<=Y; y++)for(int x=1; x<=X; x++)map[x][y]=sc.nextInt()==0;
+			State init=new State(x1,y1,x2,y2,0);
+			PriorityQueue<State> open=new PriorityQueue<State>();
+			open.add(init);
+			//int[][][][] closed=new int[X+1][Y+1][X+1][Y+1];
+			//for(int i=0; i<=X; i++)for(int j=0; j<=Y; j++)for(int k=0; k<=X; k++)for(int m=0; m<=Y; m++)closed[i][j][k][m]=INF;
+			//closed[x1][y1][x2][y2]=0;
+			HashMap<State,Integer> closed=new HashMap<State,Integer>();
+			closed.put(init, 0);
+			int ans=-1;
+			while(!open.isEmpty()){
+				State now=open.poll();
+				if(now.eq()){
+					ans=now.step;
+					break;
+				}
+				for(int i=0; i<4; i++){
+					int xx1=now.x1+vx[i],yy1=now.y1+vy[i],xx2=now.x2-vx[i],yy2=now.y2-vy[i];
+					if(!(1<=xx1&&xx1<=X) || !(1<=yy1&&yy1<=Y) || !map[xx1][yy1]){
+						xx1=now.x1;	yy1=now.y1;
+					}
+					if(!(1<=xx2&&xx2<=X) || !(1<=yy2&&yy2<=Y) || !map[xx2][yy2]){
+						xx2=now.x2;	yy2=now.y2;
+					}
+					//if(closed[xx1][yy1][xx2][yy2]<=now.step+1)	continue;
+					State next=new State(xx1,yy1,xx2,yy2,now.step+1);
+					if(closed.containsKey(next) && closed.get(next)<=now.step+1)	continue;
+					open.add(next);
+					//closed[xx1][yy1][xx2][yy2]=now.step+1;
+					closed.put(next, now.step+1);
+				}
+			}
+			System.out.println(ans<0?"NA":ans);
+		}
+		class State implements Comparable<State>{
+			int x1,y1,x2,y2,step;
+			State(int x1,int y1,int x2,int y2,int step){
+				this.x1=x1;	this.y1=y1;
+				this.x2=x2;	this.y2=y2;
+				this.step=step;
+			}
+			@Override public int compareTo(State o){
+				return this.step-o.step;
+			}
+			boolean eq(){
+				return x1==x2 && y1==y2;
+			}
+			@Override public int hashCode(){
+				int h=17;
+				h=h*31+x1;
+				h=h*31+y1;
+				h=h*31+x2;
+				h=h*31+y2;
+				return h;
+			}
+			@Override public boolean equals(Object obj){
+				if(obj==this)	return true;
+				if(!(obj instanceof State))	return false;
+				State s=(State)obj;
+				if(this.x1==s.x1 && this.x2==s.x2 && this.y1==s.y1 && this.y2==s.y2)	return true;
+				return false;
+			}
+		}
+	}
+	
+	class AOJ0221 implements Runnable{
+		@Override public void run(){
+			while(sc.hasNext()){
+				int m=sc.nextInt(),n=sc.nextInt();
+				if((m|n)==0)	break;
+				solve(m,n);
+			}
+		}
+		void solve(int M,int N){
+			ArrayList<Integer> player=new ArrayList<Integer>(M);
+			for(int i=1; i<=M; i++)	player.add(i);
+			int idx=0;
+			for(int i=1; i<=N; i++){
+				String in=sc.next();
+				if(player.size()<=1)	continue;
+				if(i%3==0 && i%5==0){
+					if(in.equals("FizzBuzz"))	++idx;
+					else	player.remove(idx);
+				}else if(i%3==0){
+					if(in.equals("Fizz"))	++idx;
+					else	player.remove(idx);
+				}else if(i%5==0){
+					if(in.equals("Buzz"))	++idx;
+					else	player.remove(idx);
+				}else{
+					try{
+						int n=Integer.parseInt(in);
+						if(i==n)	++idx;
+						else	player.remove(idx);
+					}catch(Exception e){
+						player.remove(idx);
+					}
+				}
+				idx%=player.size();
+			}
+			for(int i=0; i<player.size(); i++)	System.out.print(player.get(i)+(i+1<player.size()?" ":"\n"));
+		}
+	}
+	
+	class D implements Runnable{
+		final int INF=1<<29;
+		int N;
+		int[][] map;
+		boolean[] leaf;
+		@Override public void run(){
+			while(sc.hasNext()){
+				N=sc.nextInt();
+				if(N==0)	break;
+				solve();
+			}
+		}
+		D(){}
+//		D(){
+//			while(sc.hasNext()){
+//				N=sc.nextInt();
+//				if(N==0)	break;
+//				solve();
+//			}
+//		}
+		void solve(){
+			map=new int[N+1][N+1];
+			leaf=new boolean[N+1];
+			for(int i=0; i<=N; i++)for(int j=0; j<=N; j++)map[i][j]=INF;
+			for(int i=0; i<N-1; i++){
+				int a=sc.nextInt(),b=sc.nextInt(),t=sc.nextInt();
+				map[a][b]=t;
+			}
+			int sum=DFS(1,0);
+//			System.out.println(DFS(1,0));
+			int[][] map2=new int[N+1][N+1];
+			for(int i=0; i<=N; i++)for(int j=0; j<=N; j++)map2[i][j]=map[i][j];
+			for(int i=0; i<=N; i++){
+				for(int j=0; j<=N; j++){
+					for(int k=0; k<=N; k++){
+						map2[j][k]=min(map2[j][k], map2[j][i]+map2[i][k]);
+					}
+				}
+			}
+//			System.out.println(Arrays.toString(map2[1]));
+			int max=0;
+			for(int i=2; i<=N; i++){
+				if(map2[1][i]>=INF || leaf[i])	continue;
+				max=max(max,map2[1][i]);
+			}
+//			System.out.println("sum:"+sum+" max:"+max);
+			System.out.println(2*sum-max);
+		}
+		int DFS(int now,int last){
+			int ret=0,n=0;
+			for(int i=1; i<=N; i++){
+				if(i==now)	continue;
+				if(!(map[now][i]<INF))	continue;
+				int tmp=DFS(i,now);
+				ret+=map[now][i]+tmp;
+				++n;
+//				System.out.println("now:"+now+" to:"+i+" tmp:"+tmp+" map"+map[now][i]);
+			}
+			ret-=n>0?0:map[last][now];
+			if(n<=0)	leaf[now]=true;
+			return ret;
+		}
+	}
+	
+	class E implements Runnable{
+		@Override public void run(){
+			while(sc.hasNext()){
+				int N=sc.nextInt();
+				if(N==0)	break;
+				solve(N);
+			}
+		}
+		E(){}
+//		E(){
+//			while(sc.hasNext()){
+//				int N=sc.nextInt();
+//				if(N==0)	break;
+//				solve(N);
+//			}
+//		}
+		void solve(int N){
+			int[] d=new int[N],v=new int[N];
+			for(int i=0; i<N; i++){
+				d[i]=sc.nextInt();
+				v[i]=sc.nextInt();
+			}
+			long vvv=v[0],ddd=d[0];
+			for(int i=1; i<N; i++){
+				long vv=v[i]*vvv;
+				long d1=d[i]*vvv,d2=ddd*v[i];
+				long d3=lcm(min(d1,d2),max(d1,d2));
+				long gcd=gcd(d3,vv);
+				vvv=vv/gcd;
+				ddd=d3/gcd;
+			}
+			for(int i=0; i<N; i++){
+				System.out.println(((long)v[i]*ddd/vvv)/(long)d[i]);
+			}
+		}
+		long gcd(long x,long y){
+			if(y==0)	return x;
+			return gcd(y,x%y);
+		}
+		long lcm(long x,long y){
+			return x/gcd(x,y)*y;
+		}
+	}
+	class F implements Runnable{
+		@Override public void run() {
+			while(sc.hasNext()){
+				int N=sc.nextInt();
+				if(N==0)	break;
+				System.out.println(solve(N)?"OK":"NG");
+			}
+		}
+		F(){}
+//		F(){
+//			while(sc.hasNext()){
+//				int N=sc.nextInt();
+//				if(N==0)	break;
+//				System.out.println(solve(N)?"OK":"NG");
+//			}
+//		}
+		
+		boolean solve(int N){
+			String[] s=new String[N];
+			for(int i=0; i<N; i++)	s[i]=sc.next();
+			ArrayList<ArrayList<State1>> head=new ArrayList<ArrayList<State1>>(),
+										tail=new ArrayList<ArrayList<State1>>();
+			for(int i=0; i<(int)'z'-'a'; i++){
+				head.add(new ArrayList<State1>());
+				tail.add(new ArrayList<State1>());
+			}
+			for(int i=0; i<N; i++){
+				head.get(s[i].charAt(0)-'a').add(new State1(i,s[i]));
+				tail.get(s[i].charAt(s[i].length()-1)-'a').add(new State1(i,s[i]));
+			}
+			
+			// TODO ok
+			//System.out.println("head\n"+head);
+			//System.out.println("tail\n"+tail);
+			
+			for(int i=0; i<(int)'z'-'a'; i++){
+				boolean[] used=new boolean[N];
+				for(int j=0; j<head.get(i).size(); j++){
+					State1 h=head.get(i).remove(0);
+					used[h.idx]=true;
+					for(int k=0; k<tail.get(h.str.charAt(0)-'a').size(); k++){
+						State1 t=tail.get(h.str.charAt(0)-'a').remove(0);
+						// TODO ok
+						//System.out.println("START2"+h+" "+t);
+						if(!used[t.idx]){
+							used[t.idx]=true;
+							// TODO ok
+							//System.out.println("START"+h+" "+t);
+							if(DFS(N-2,head,tail,h.str.charAt(h.str.length()-1),t.str.charAt(0),used)){
+								return true;
+							}
+							used[t.idx]=false;
+						}
+						tail.get(h.str.charAt(0)-'a').add(t);
+					}
+					head.get(i).add(h);
+					used[h.idx]=false;
+				}
+			}
+			return false;
+		}
+		boolean DFS(int remain,ArrayList<ArrayList<State1>> head,
+						ArrayList<ArrayList<State1>> tail,char e,char s,boolean[] used){
+			if(remain<=2){
+				// TODO ok
+				//System.out.println("END r:"+remain+" e:"+e+" s:"+s);
+				if(head.get(e-'a').size()<=0)	return false;
+				if(tail.get(s-'a').size()<=0)	return false;
+				return true;
+			}
+			int N=head.get(e-'a').size(),M=tail.get(s-'a').size();
+			LinkedList<State1> hstack=new LinkedList<State1>();
+			for(int i=0; i<N; i++){
+				hstack.push(head.get(e-'a').remove(0));
+				if(used[hstack.peek().idx])	continue;
+				char ee=hstack.peek().str.charAt(hstack.peek().str.length()-1);
+				used[hstack.peek().idx]=true;
+				LinkedList<State1> tstack=new LinkedList<State1>();
+				for(int j=0; j<M; j++){
+					tstack.push(tail.get(s-'a').remove(0));
+					if(used[tstack.peek().idx])		continue;
+					char ss=tstack.peek().str.charAt(0);
+					used[tstack.peek().idx]=true;
+					if(DFS(remain-2,head,tail,ee,ss,used))	return true;
+					tail.get(s-'a').add(tstack.peek());
+					used[tstack.pop().idx]=false;
+				}
+				for(State1 s1:tstack)	tail.get(s-'a').add(s1);
+				head.get(e-'a').add(hstack.peek());
+				used[hstack.pop().idx]=false;
+			}
+			for(State1 s1:hstack) head.get(e-'a').add(s1);
+			return false;
+		}
+		class State1{
+			int idx;
+			String str;
+			State1(int idx,String str){
+				this.idx=idx;
+				this.str=str;
+			}
+			@Override public String toString(){
+				return "("+idx+":"+str+")";
+			}
+		}
+	}
+	
+
+}

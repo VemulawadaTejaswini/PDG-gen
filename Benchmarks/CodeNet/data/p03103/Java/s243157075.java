@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+	public static long count;
+	public static int m;
+	public static long[] a;
+	public static int[] b;
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		m = sc.nextInt();
+		
+		
+		a = new long[n];
+		b = new int[n];
+		
+		for (int i = 0; i < n; i++) {
+			a[i] = sc.nextLong();
+			b[i] = sc.nextInt();
+		}
+		
+		long[][] c = new long[n][2];
+		
+		List<Integer> used = new ArrayList<>();
+		
+		for (int i = 0; i < a.length; i++) {
+			int index = 0;
+			long min = Long.MAX_VALUE / 2;
+			for (int j = 0; j < a.length; j++) {
+				if (min > a[j] && !used.contains(j)) {
+					min = a[j];
+					index = j;
+				}
+			}
+			c[i][0] = a[index];
+			c[i][1] = b[index];
+			used.add(index);
+		}
+		
+		count = 0;
+		long money = 0L;
+		
+		while (count < m) {
+			for (int i = 0; i < c.length; i++) {
+				if (c[i][1] > 0) {
+					++count;
+					money += c[i][0];
+					c[i][1]--;
+					break;
+				}
+			}
+		}
+		
+		System.out.println(money);
+	}
+}

@@ -1,0 +1,1 @@
+import java.util.*;class Serach{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,i,a[]=new int[101],v,c,x;(n=s.nextInt())>0;System.out.println(c)){for(i=x=c=0;i<=n;++i)a[i]=s.nextInt();for(v=a[n];x<n&&++c>0&&a[i=(x+n-1)/2]!=v;)if(a[i]<v)x=i+1;else n=i;}}}

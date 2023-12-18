@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int[] a = new int[N];
+        int countfour = 0;
+        int counttwo = 0;
+        int countelse = 0;
+        for (int i = 0; i < a.length; i++) {
+            a[i] = scanner.nextInt();
+        }
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 4 == 0) {
+//                System.out.println(a[i]);
+                countfour++;
+            } else if (a[i] % 2 == 0) {
+                counttwo++;
+            } else {
+                countelse++;
+            }
+        }
+//        System.out.println("4:" + countfour);
+//        System.out.println("2:" + counttwo);
+//        System.out.println("else:" + countelse);
+//
+        if (countelse == 0){
+            System.out.println("Yes");
+        }else if(countfour >= N / 2){
+            System.out.println("Yes");
+        }else if(countfour >= countelse){
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+    }
+}

@@ -1,0 +1,96 @@
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    FastScanner in;
+    PrintWriter out;
+
+    public static void main(String[] args) {
+        new Main().run();
+    }
+
+    void solve() {
+        int H = in.nextInt();
+        int W = in.nextInt();
+        int[][] c = new int[10][10];
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                c[i][j] = in.nextInt();
+            }
+        }
+        for (int k = 0; k < 10; k++) {
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    c[i][j] = Math.min(c[i][j], c[i][k] + c[k][j]);
+                }
+            }
+        }
+        int result = 0;
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                int temp = in.nextInt();
+                if (temp >= 0) {
+                    result += c[temp][1];
+                }
+            }
+        }
+        System.out.println(result);
+
+
+    }
+
+
+    void run() {
+        in = new FastScanner();
+        out = new PrintWriter(System.out);
+        solve();
+        out.close();
+    }
+
+    public class FastScanner {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastScanner() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        public FastScanner(String s) {
+            try {
+                br = new BufferedReader(new FileReader(s));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public String nextToken() {
+            while (st == null || !st.hasMoreTokens()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                }
+            }
+            return st.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(nextToken());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(nextToken());
+        }
+
+        public double nextDouble() {
+            return Double.parseDouble(nextToken());
+        }
+    }
+
+}

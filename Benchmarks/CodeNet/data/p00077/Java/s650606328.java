@@ -1,0 +1,1 @@
+class Main{public static void main(String[]z)throws Exception{for(int n,b;0<(b=System.in.read());){n=1;if(b==64){n=System.in.read()-49;b=System.in.read();}for(;n-->0;)System.out.print((char)b);}}}

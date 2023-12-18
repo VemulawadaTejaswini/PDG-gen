@@ -1,0 +1,26 @@
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] values = reader.readLine().split(" ");
+        long first = Integer.valueOf(values[0])*Integer.valueOf(values[1]);
+        long second = Integer.valueOf(values[2])*Integer.valueOf(values[3]);
+
+        if (first <= second) {
+            System.out.print(second);
+        } else {
+            System.out.println(first);
+        }
+
+//        PrintWriter writer = new PrintWriter(new OutputStreamWriter(System.out));
+//
+//
+//
+//        writer.close();
+
+    }
+}

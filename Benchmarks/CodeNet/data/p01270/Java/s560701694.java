@@ -1,0 +1,84 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+///Restrictive Filesystem
+public class Main{
+
+	class R implements Comparable<R>{
+		int id, s, t;
+		public R(int id, int s, int t) {
+			this.id = id;
+			this.s = s;
+			this.t = t;
+		}
+		public int compareTo(R o) {
+			return s-o.s;
+		}
+	}
+	
+	void run(){
+		Scanner sc = new Scanner(System.in);
+		for(;;){
+			int n = sc.nextInt();
+			if(n==0)break;
+			List<R> l = new LinkedList<R>();
+			l.add(new R(-1, 0, 1000000000));
+			Map<Integer, Integer> tail = new HashMap<Integer, Integer>();
+			while(n--!=0){
+//				Collections.sort(l);
+				char cmd = sc.next().charAt(0);
+				if(cmd=='R'){
+					int p = sc.nextInt();
+					for(R r:l){
+						if(r.s<=p&&p<=r.t){
+							System.out.println(r.id); break;
+						}
+					}
+				}
+				else if(cmd=='W'){
+					int id = sc.nextInt(), len = sc.nextInt();
+					for(int i=0;i<l.size();i++){
+						R r = l.get(i);
+						if(r.id!=-1)continue;
+						int L = r.t-r.s+1;
+						if(L<len){
+							r.id = id;
+							len-=L;
+						}
+						else{
+							l.remove(i);
+							l.add(i, new R(id, r.s, r.s+len-1));
+							l.add(i+1, new R(r.id, r.s+len, r.t));
+							tail.put(id, r.s+len-1);
+							break;
+						}
+					}
+				}
+				else{
+					int id = sc.nextInt();
+					for(int i=0;i<l.size();i++){
+						R r = l.get(i);
+						if(r.id!=id)continue;
+						if(tail.get(id)<r.s)break;
+						r.id = -1;
+					}
+				}
+				for(int i=0;i+1<l.size();i++){
+					R r1 = l.get(i), r2 = l.get(i+1);
+					if(r1.id!=r2.id)continue;
+					R r = new R(r1.id, r1.s, r2.t);
+					l.remove(i); l.remove(i); l.add(i, r);
+					i--;
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new Main().run();
+	}
+}

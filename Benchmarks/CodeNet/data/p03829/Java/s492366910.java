@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+	void run() {
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		long a = sc.nextInt();
+		long b = sc.nextInt();
+		long sum = 0;
+		long pre = sc.nextInt();
+		for (int i = 0; i < n - 1; i++) {
+			long cur = sc.nextInt();
+			sum += Math.min(a * (cur - pre), b);
+			pre = cur;
+		}
+		System.out.println(sum);
+	}
+
+	public static void main(String[] args) {
+		new Main().run();
+	}
+}

@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		// standard input
+		String s = sc.next();
+
+		// process
+		boolean isEvenNumber = (s.length() % 2 == 0);
+		boolean isSameFirstAndLast = s.charAt(0) == s.charAt(s.charAt(s.length() - 1));
+
+		// standard output
+		System.out.println((isEvenNumber && isSameFirstAndLast) || (!isEvenNumber && !isSameFirstAndLast)? "Second": "First");
+	}
+}

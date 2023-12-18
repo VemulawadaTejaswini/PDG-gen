@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main{
+ public static void main(String[] args){
+  char[] chars = { '#', '.' };
+  Scanner sc = new Scanner(System.in);
+  while(true){
+   int H = sc.nextInt();
+   int W = sc.nextInt();
+   if(H==0 && W==0){
+    break;
+   }
+   else{
+    for(int h=0;h<H;h++){
+     for(int w=0;w<W;w++){ 
+      System.out.print(chars[(h+w) & 1]);
+     }  
+     System.out.printf("\n");
+    }
+   }
+   System.out.printf("\n");
+  }
+ }
+}

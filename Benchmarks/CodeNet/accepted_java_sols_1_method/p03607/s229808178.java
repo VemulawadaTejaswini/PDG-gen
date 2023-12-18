@@ -1,0 +1,22 @@
+import java.util.Scanner;
+import java.util.HashSet;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        HashSet<Integer> hs = new HashSet<Integer>();
+        int n = sc.nextInt();
+        for(int i=0;i<n;i++){
+            Integer a = new Integer(sc.nextInt());
+            if(hs.contains(a)){
+                hs.remove(a);
+            }else{
+                hs.add(a);
+            }
+        }
+
+        System.out.println(hs.size());
+    }
+}

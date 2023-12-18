@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+    	Scanner sc = new Scanner(System.in);
+    	
+    	int a = sc.nextInt(), b = sc.nextInt(), c = sc.nextInt(),
+    		ans = 3;
+    	
+    	if(a == b)	ans--;
+    	if(b == c)	ans--;
+    	if(a == c)	ans--;
+    	if((a == b) && (b == c) && (a == c))	ans++;
+    	
+    	System.out.println(ans);
+    }
+}

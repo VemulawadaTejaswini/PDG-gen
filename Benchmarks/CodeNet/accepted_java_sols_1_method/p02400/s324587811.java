@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+		String line = sc.nextLine();
+		double r = Double.parseDouble(line);
+		double pi = Math.PI;
+		double menseki = r * r * pi;
+		double enshuu = 2 * r * pi;
+		System.out.printf("%.8f", menseki);
+		System.out.print(" ");
+		System.out.printf("%.8f", enshuu);
+	}
+
+}

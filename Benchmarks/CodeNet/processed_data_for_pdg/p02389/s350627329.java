@@ -1,0 +1,10 @@
+public class Main{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int intTate = sc.nextInt();
+		int intYoko = sc.nextInt();
+		int intArea = intTate * intYoko;
+		int intSyuu = (intTate + intYoko) * 2;
+		System.out.println(intArea + " " + intSyuu);
+	}
+}

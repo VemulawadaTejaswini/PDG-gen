@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){new Main();}public Main(){f(3,0);for(Scanner s=new Scanner(System.in);s.hasNext();){Object i=m.get(s.nextInt());System.out.println(i==null?0:i);}}Map<Integer,Integer>m=new HashMap<Integer,Integer>();void f(int n,int s){for(int i=0,r;i<10;i++){r=s+i;if(n<1)m.put(r,m.get(r)!=null?m.get(r)+1:1);else f(n-1,r);}}}

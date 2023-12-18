@@ -1,0 +1,94 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		FastReader scan = new FastReader();
+		PrintWriter out = new PrintWriter(System.out);
+		Task solver = new Task();
+		solver.solve(1, scan, out);
+		out.close();
+	}
+	
+	static class Task {
+		public void solve(int testNumber, FastReader scan, PrintWriter out) {
+			int n = scan.nextInt();
+			PriorityQueue<Double> pq = new PriorityQueue<>();
+			for(int i = 0; i < n; i++) pq.add(scan.nextDouble());
+			for(int i = 0; i < n-1; i++) {
+				double a = pq.poll();
+				double b = pq.poll();
+				pq.add((a+b)/2);
+			}
+			out.println(pq.poll());
+		}
+	}
+	
+	static void shuffle(int[] a) {
+		Random get = new Random();
+		for(int i = 0; i < a.length; i++) {
+			int r = get.nextInt(a.length);
+			int temp = a[i];
+			a[i] = a[r];
+			a[r] = temp;
+		}
+	}
+	
+	static void shuffle(long[] a) {
+		Random get = new Random();
+		for(int i = 0; i < a.length; i++) {
+			int r = get.nextInt(a.length);
+			long temp = a[i];
+			a[i] = a[r];
+			a[r] = temp;
+		}
+	}
+	
+
+	static class FastReader {
+		BufferedReader br;
+		StringTokenizer st;
+
+		public FastReader() {
+			br = new BufferedReader(new InputStreamReader(System.in));
+		}
+		public FastReader(String s) throws FileNotFoundException {
+			br = new BufferedReader(new FileReader(new File(s)));
+		}
+
+		String next() {
+			while (st == null || !st.hasMoreElements()) {
+				try {
+					st = new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return st.nextToken();
+		}
+
+		int nextInt() {
+			return Integer.parseInt(next());
+		}
+
+		long nextLong() {
+			return Long.parseLong(next());
+		}
+
+		double nextDouble() {
+			return Double.parseDouble(next());
+		}
+
+		String nextLine() {
+			String str = "";
+			try {
+				str = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return str;
+		}
+	}
+
+}

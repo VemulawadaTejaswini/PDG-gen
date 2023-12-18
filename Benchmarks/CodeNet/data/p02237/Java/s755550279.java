@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int size = scanner.nextInt();
+		Graph[] graphs = new Graph[size]; 
+		for (int i = 0; i < size; i++) {
+			int id = scanner.nextInt();
+			int num = scanner.nextInt();
+			graphs[i] = new Graph(size);
+			for (int j = 0; j < num; j++) {
+				graphs[i].tmpElement(scanner.nextInt() - 1);
+			}
+		}
+		
+		for (Graph graph : graphs) {
+			System.out.println(graph.print());
+		}
+	}
+}
+class Graph {
+	/** ?????????????????????????????§?????? */
+	public int[] iArrays;
+	
+	/** ??°??????????????¨???StringBuilder??§?????? */
+	StringBuilder stringBuilder = new StringBuilder();
+	
+	public Graph(int size) {
+		iArrays = new int[size];
+		for (int i = 0; i < size; i++) {
+			iArrays[i] = 0;
+		}
+	}
+	
+	/** ????´??????\??????????????? */
+	public void tmpElement(int e) {
+		iArrays[e] = 1;
+	}
+	
+	/** ??°??????????????????????????? */
+	public String print() {
+		int i = 0;
+		for (i = 0; i < iArrays.length - 1; i++) {
+			stringBuilder.append(iArrays[i] + " ");
+		}
+		stringBuilder.append(iArrays[i]);
+		return stringBuilder.toString();
+	}
+}

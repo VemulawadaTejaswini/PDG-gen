@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){for(Scanner s=new Scanner(System.in);s.hasNext();){int n=10;l:for(String b=s.next();n-->0;){for(String p:(a=b.replaceAll("X",""+n).split("[\\+=]")))if(p.startsWith("0"))continue l;if(new Long(a[0])+new Long(a[1])==new Long(a[2]))break;}System.out.println(n>=0?n:"NA");}}}}

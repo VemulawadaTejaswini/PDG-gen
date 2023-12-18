@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int n,a[],i,p,r;(n=p=s.nextInt())>0;){for(a=new int[n],i=0;i<n;)a[i++]=s.nextInt();String x="31";for(--p,r=31;r>1;)x+="\n"+(r-a[p=(p+1)%n])+"\n"+(r-=5);System.out.println(x+"\n0");}}}

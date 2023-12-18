@@ -1,0 +1,66 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
+
+//AtCoder Beginner Contest 157
+//C	Guess The Number
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int N = Integer.parseInt(sc.next());
+		int M = Integer.parseInt(sc.next());
+		int ans = -1;
+		if (M == 0) {
+			sc.close();
+			if (N == 1) ans = 0;
+			else if (N == 2) ans = 10;
+			else ans = 100;
+			System.out.println(ans);
+		} else {
+			Map<Integer,Integer> m = new HashMap<>();
+			for (int i = 0; i < M; i++) {
+				Integer s = Integer.valueOf(sc.next());
+				if (m.containsKey(s)) {
+					Integer c = Integer.valueOf(sc.next());
+					if (!m.get(s).equals(c)) {
+						sc.close();
+						System.out.println(ans);
+						return;
+					}
+				} else {
+					Integer c = Integer.valueOf(sc.next());
+					if ((N == 3 || N == 2) && s == 1 && c == 0) {
+						sc.close();
+						System.out.println(ans);
+						return;
+					}
+					m.put(s, c);
+				}
+			}
+			sc.close();
+
+			int[] aaa = new int[N];
+			for (Entry<Integer, Integer> e : m.entrySet()) {
+				aaa[e.getKey()-1] = e.getValue();
+			}
+			if (N == 3) {
+				if (aaa[0] == 0) {
+					aaa[0] = 1;
+				}
+				System.out.print(aaa[0]);
+				System.out.print(aaa[1]);
+				System.out.print(aaa[2]);
+			} else if (N == 2) {
+				if (aaa[0] == 0) {
+					aaa[0] = 1;
+				}
+				System.out.print(aaa[0]);
+				System.out.print(aaa[1]);
+			} else {
+				System.out.print(aaa[0]);
+			}
+		}
+	}
+}

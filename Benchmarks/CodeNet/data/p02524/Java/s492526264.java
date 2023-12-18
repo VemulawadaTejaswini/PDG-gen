@@ -1,0 +1,12 @@
+import java.util.Scanner;
+class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    Double a = sc.nextDouble();
+    Double b = sc.nextDouble();
+    Double c = sc.nextDouble();
+    System.out.println(a*b*Math.sin(c));
+    System.out.println(a+b+c);
+    System.out.println(b*Math.sin(c));
+  }
+}

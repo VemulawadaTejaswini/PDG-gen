@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		new Main().solve();
+	}
+	
+	int a,b;
+	
+	void solve(){
+		Scanner sc=new Scanner(System.in);
+		a=sc.nextInt();
+		b=sc.nextInt();
+		int c=a+b;
+		if(a+b>24)System.out.println(c-24);
+		else System.out.println(c);
+	}
+}

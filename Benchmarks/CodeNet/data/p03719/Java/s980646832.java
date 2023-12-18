@@ -1,0 +1,21 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String line = br.readLine();
+		String result = "No";
+		String[] chars = line.split(" ");
+		int a,b,c;
+		a = Integer.parseInt(chars[0]);
+		b = Integer.parseInt(chars[1]);
+		c = Integer.parseInt(chars[2]);
+		if(c >= a && c <= b){
+			result = "Yes";
+		}
+
+		System.out.println(result);
+	}
+}

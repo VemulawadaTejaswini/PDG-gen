@@ -1,0 +1,30 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		Set<Integer> s = new HashSet<>();
+		for(int i = 0;i < n; i++) {
+			s.add(sc.nextInt());
+		}
+		int q = sc.nextInt();
+		Set<Integer> t = new HashSet<>();
+		for(int i = 0; i < q; i++) {
+			t.add(sc.nextInt());
+		}
+		int count = 0;
+		for(Integer e : t) {
+			for(Integer f : s) {
+				if(e == f) {
+					count++;
+					break;
+				}
+			}
+		}
+		System.out.println(count);
+	}
+}
+

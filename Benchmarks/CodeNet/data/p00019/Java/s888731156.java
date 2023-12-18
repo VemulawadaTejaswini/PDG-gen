@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class Main {
+    public static void main (String[] args) {
+	Scanner scan = new Scanner(System.in);
+	int n = Integer.parseInt(scan.nextLine());
+	int factorial = 1;
+	if (n == 0) {
+	    factorial = 0;
+	}
+	for (int i = 2; i <= n; i++) {
+	    factorial *= i;
+	}
+	System.out.println(factorial);
+    }
+}

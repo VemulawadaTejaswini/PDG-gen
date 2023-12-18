@@ -1,0 +1,67 @@
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        ArrayList<D> arrayList = new ArrayList<>();
+        for (int i = 0;i < n;++i) {
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            int h = sc.nextInt();
+            D d = new D();
+            d.x = x;
+            d.y = y;
+            d.h = h;
+            arrayList.add(d);
+        }
+
+        for (int cx = 0;cx <= 100;++cx){
+            for (int cy = 0;cy <= 100;++cy){
+                long last = -1;
+                boolean flag = false;
+                for (int i = 0;i < n;++i){
+                    if(arrayList.get(i).h == 0)continue;
+                    long a = Math.abs(arrayList.get(i).x - cx) + Math.abs(arrayList.get(i).y - cy) + arrayList.get(i).h;
+                    if(last >= 0){
+                        if(last != a){
+                            flag = true;
+                            break;
+                        }
+                    }
+                    last = a;
+                }
+                if(!flag){
+                    for (int i = 0;i < n;++i){
+                        long h = last - Math.abs(arrayList.get(i).x - cx) - Math.abs(arrayList.get(i).y - cy);
+                        if(h < 0)h = 0;
+                        if(arrayList.get(i).h != h){
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if(!flag){
+                        System.out.println(cx + " " + cy + " " + last);
+                        return;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
+    static class D{
+        long x;
+        long y;
+        long h;
+    }
+
+
+
+}
+
+

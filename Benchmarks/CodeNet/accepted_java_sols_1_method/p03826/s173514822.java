@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        int area1 = a * b;
+        int area2 = c * d;
+        int larger = area1 > area2 ? area1 : area2;
+        System.out.println(larger);
+    }
+}

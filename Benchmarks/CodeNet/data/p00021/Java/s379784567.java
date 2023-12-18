@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){Scanner s=new Scanner(System.in);for(int t=s.nextInt(),i,j;t-->0;){double[][]p=new double[2][4];for(j=0;j<2;++j)for(i=0;i<4;++i)p[j][i]=s.nextDouble();System.out.println((p[1][0]-p[1][1])/(p[0][0]-p[0][1])==(p[1][2]-p[1][3])/(p[0][2]-p[0][3])?"YES":"NO");}}}

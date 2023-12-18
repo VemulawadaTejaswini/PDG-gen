@@ -1,0 +1,33 @@
+
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) throws IOException{
+
+		Scanner sc = new Scanner(System.in);
+
+		int w = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		int x = w + a;
+		int y = w + b;
+
+		if(a<b){
+			if(b<=x){
+				System.out.println("0");
+			}else {
+				System.out.println((b-x));
+			}
+		}else if(a>b){
+			if(a<=y){
+				System.out.println("0");
+			}else {
+				System.out.println((a-y));
+			}
+		}else {
+			System.out.println("0");
+		}
+	}
+}

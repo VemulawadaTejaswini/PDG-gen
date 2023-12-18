@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner as = new Scanner(System.in);
+		if(as.next().equals("H")){
+			System.out.println(as.next());
+		}else{
+			if(as.next().equals("H")){
+				System.out.println("D");
+			}else{
+				System.out.println("H");
+			}
+		}
+	}
+}

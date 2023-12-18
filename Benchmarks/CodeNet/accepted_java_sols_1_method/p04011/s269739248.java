@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+/**
+ * Created by sonetsuyoshi on 2016/07/31.
+ */
+public class Main {
+
+    static public void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
+
+        int ans;
+        if(k < n) {
+            ans = k * x + (n - k) * y;
+        }
+        else {
+            ans = n * x;
+        }
+
+        System.out.println(ans);
+    }
+}

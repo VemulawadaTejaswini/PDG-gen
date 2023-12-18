@@ -1,0 +1,24 @@
+import java.util.*;
+
+
+public class Main {
+    public static void main(String[] args) {
+        // 自分の得意な言語で
+        // Let's チャレンジ！！
+
+        Scanner sc = new Scanner(System.in);
+        String line = sc.nextLine();
+      String[]s=line.split(" ",0);
+      int n=s.length;
+      int num[]=new int[n];
+      for(int i=0;i<n;i++){
+        num[i]=Integer.parseInt(s[i]);
+      }
+      Arrays.sort(num);
+      int ans=0;
+      for(int i=0;i<n-1;i++){
+      	ans+=num[i+1]-num[i];
+      }
+        System.out.println(ans);
+    }
+}

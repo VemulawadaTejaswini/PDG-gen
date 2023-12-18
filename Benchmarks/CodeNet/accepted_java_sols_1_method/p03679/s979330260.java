@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args){
+		Scanner in = new java.util.Scanner(System.in);
+		long x = in.nextLong();
+		long a = in.nextLong();
+		long b = in.nextLong();
+		if(a >= b){
+			System.out.println("delicious");
+		}else if(x >= b - a){
+			System.out.println("safe");
+		}else{
+			System.out.println("dangerous");
+		}
+	}
+}

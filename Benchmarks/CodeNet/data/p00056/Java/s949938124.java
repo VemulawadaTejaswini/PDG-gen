@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]z){int m=50001,i,j,n,v,x=5133,c=0;int[]b=new int[m+1],r=b.clone(),p=b.clone();for(i=1;i++<m;)if(b[i]<1)for(p[c++]=j=i;j<=m;j+=i)b[j]=1;for(i=0;i<x;++i)for(j=i;j<x;++j)if((v=p[i]+p[j])<m)++r[v];else break;for(Scanner s=new Scanner(System.in);(n=s.nextInt())>0;)System.out.println(r[n]);}}

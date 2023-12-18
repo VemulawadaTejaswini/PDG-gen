@@ -1,0 +1,73 @@
+import java.util.*;
+import java.awt.geom.Point2D;
+import java.awt.*;
+import static java.lang.System.*;
+import static java.lang.Math.*;
+//Loopで使う文字列の長さは固定！
+//intで大丈夫？オーバーフローしない？
+//Loop回数は本当に10⁹以内になってる？Loopは回る？？
+public class Main {
+    public static void main(String[]$){
+        Scanner sc = new Scanner(in);
+        int H=sc.nextInt();
+        int W=sc.nextInt();
+        int[][] a=new int[H][W];
+        for (int i = 0; i < H; i++) {
+            String s=sc.next();
+            for (int j = 0; j < W; j++) {
+                if(s.charAt(j)=='#')a[i][j]=1;
+            }
+        }
+        int[] t=new int[W];
+        for (int i = 0; i < H; i++) {
+            int c=0;
+            for (int j = 0; j < W; j++) {
+                t[j]+=a[i][j];
+                c+=a[i][j];
+            }
+            if(c==0){
+                for (int j = 0; j < W; j++) {
+                    a[i][j]=2;
+                }
+            }
+        }
+        for (int i = 0; i < W; i++) {
+            if(t[i]==0){
+                for (int j = 0; j < H; j++) {
+                    a[j][i]=2;
+                }
+            }
+        }
+        for (int i = 0; i <H; i++) {
+            int c=0;
+            for (int j = 0; j < W; j++) {
+                if(a[i][j]==0)out.print(".");
+                if(a[i][j]==1)out.print("#");
+                c+=a[i][j];
+            }
+            if(c!=2*W)out.println();
+        }
+    }
+    static long power(long x,int n){
+        long mod=1000000007;
+        long ans=1;
+        while (n>0) {
+            if((n&1)==1){
+                ans=(ans*x)%mod;
+            }
+            x=(x*x)%mod;
+            n>>=1;
+        }
+        return ans;
+    }
+    //最大公約数
+    static int gcd (int a, int b) {
+        int temp;
+        while((temp = a%b)!=0) {
+            a = b;
+            b = temp;
+        }
+        return b;
+    }
+//※最小公倍数はa*b/gcd(a,b)である
+}

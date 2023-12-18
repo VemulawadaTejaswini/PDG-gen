@@ -1,0 +1,1 @@
+ to QA team as a release candidate. However, they reported that some tests failed! Because we were too lazy to set up a continuous integration system, we have no idea when our software corrupted. We only know that the software passed all the test at the past revision 

@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+	Scanner scan = new Scanner(System.in);
+
+	int N = scan.nextInt();
+	int Y = scan.nextInt();
+
+	int fukuzawa = -1;
+	int higuchi = -1;
+	int noguchi = -1;
+	int flag = 0;
+	loop: for(int i = 0; i < N; i++){
+	    for(int j = 0; j < N-i; j++){
+		for(int k = 0; k < N-i-j; k++){
+		    int money = 10000*i+5000*j+1000*k;
+		    System.out.println(money);
+		    if(money == Y){
+			fukuzawa = i;
+			higuchi = j;
+			noguchi = k;
+			System.out.println("debug!!!!!!");
+			break loop;
+		    }
+		}
+	    }
+	}
+
+	System.out.println(fukuzawa+" "+higuchi+" "+noguchi);
+    }
+}

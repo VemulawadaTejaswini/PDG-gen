@@ -1,0 +1,20 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    private static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+	String A = scan.next();
+	String B = scan.next();
+	String C = scan.next();
+
+	String ans = "NO";
+	if(A.charAt(A.length()-1) == B.charAt(0) && B.charAt(B.length()-1) == C.charAt(0))
+	    ans = "YES";
+	System.out.println(ans);
+	scan.close();
+    }
+}

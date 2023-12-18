@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main{
+  static int warizan(int p){
+    int n = p;
+    int c = 0;//カウント
+    while(true){
+      n = n/100;
+      if(n==0){
+        break;
+      }
+      c += 1;
+    }
+    if(p%Math.pow(100,c)==0){
+      return c;
+    }else{
+      return -1;
+    }
+
+  }
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    int i =1;
+    int count =0;
+
+    while(true){
+      if(warizan(i)==n){
+        count +=1;
+      }
+      if(count ==m){
+        break;
+      }
+      i++;
+    }
+
+    System.out.println(i);
+  }
+}

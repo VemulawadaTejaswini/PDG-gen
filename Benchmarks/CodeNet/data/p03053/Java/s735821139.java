@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class Main {
+	static int[][] DIR = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+	public static final int Y = 1024;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int H = sc.nextInt();
+		int W = sc.nextInt();
+		char[][] A = new char[W][];
+		int num_w = 0;
+		HashSet<Integer> black = new HashSet<Integer>();
+
+		for (int i = 0; i < H; i++) {
+			String s = sc.next();
+			char[] cs = s.toCharArray();
+			A[i] = cs;
+			for (int j = 0; j < cs.length; j++) {
+				if (cs[j] == '.') {
+					num_w ++;
+				}
+				else {
+					black.add(i * Y + j);
+				}
+			}
+		}
+		int turn = 0;
+		while (num_w > 0) {
+			turn++;
+
+			HashSet<Integer> black2 = new HashSet<Integer>();
+			for(int pair : black) {
+				int _y = pair / Y;
+				int _x = pair % Y;
+				for (int d = 0; d < DIR.length; d++) {
+					int x = _x + DIR[d][0];
+					int y = _y + DIR[d][1];
+
+					if (0 <= x && x < W && 0 <= y && y < H && A[y][x] == '.') {
+						A[y][x] = '#';
+						black2.add(y * Y + x);
+						num_w--;
+					}
+				}
+			}
+			black = black2;
+		}
+		// System.out.println(A[1]);
+		System.out.println(turn);
+	}
+}

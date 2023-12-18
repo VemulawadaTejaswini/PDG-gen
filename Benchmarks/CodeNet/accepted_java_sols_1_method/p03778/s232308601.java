@@ -1,0 +1,32 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		int W = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		int answer = 0;
+		sc.close();
+		if( a == b ){
+			System.out.println(0);
+		} else {
+			if( a < b ){
+				answer = b - a - W;
+			} else {
+				answer = a - b - W;
+			}
+
+			if( answer < 0 ){
+				System.out.println(0);
+			} else {
+				System.out.println( answer );
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Main {
+    private static int terminal = 0;
+    private static int numConsist = 0;
+
+    public void nextFor(int iteration, List<Byte> integerList, int constant, int sum){
+
+        for( int i = 0; i <integerList.size(); i++){
+            List<Byte> tmpIntegerList = new ArrayList<Byte>(integerList);
+            sum += tmpIntegerList.get(i) * (constant + 1);
+            tmpIntegerList.remove(i);
+            if(sum >= terminal && (iteration > 1 || tmpIntegerList.size() > 0)){
+            	tmpIntegerList.clear();
+                i = integerList.size();
+            } else {
+                if (tmpIntegerList.size() != 0 && iteration > 1)
+                    nextFor(iteration -1, tmpIntegerList, constant + 1, sum);
+                if((iteration == 1 && sum == terminal) || (tmpIntegerList.size() == 0 && sum == terminal)){
+                    numConsist++;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args){
+
+        Main cNS = new Main();
+        List<Byte> integerList = new ArrayList<Byte>();
+        for(short i = 0; i < 10; i++){
+            integerList.add(i);
+        }
+
+        Scanner input = new Scanner(System.in);
+        while(input.hasNext()){
+            int iteration = input.nextInt();
+            terminal = input.nextInt();
+
+            if(iteration >= 1 && iteration <=10 && terminal >= 0 && terminal <= 330){
+                numConsist = 0;
+                cNS.nextFor(iteration, integerList, 0, 0);
+                System.out.println(numConsist);
+            } else if(iteration >= 1 && iteration <=10 && terminal > 330 && terminal <= 10000){
+                System.out.println(0);
+            }
+
+        }
+        input.close();
+    }
+}

@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+class Main{
+public static void main(String[] args){
+Scanner sc=new Scanner(System.in);
+int x=0;
+int y=0;
+double rad=Math.PI/2;
+while(sc.hasNext()){
+String[] s=sc.next().split(",");
+int dis=Integer.parseInt(s[0]);
+x+=dis*Math.cos(rad);
+y+=dis*Math.sin(rad);
+int deg=Integer.parseInt(s[1]);
+rad-=Math.toRadians(deg);
+}
+}
+}

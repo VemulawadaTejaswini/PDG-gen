@@ -1,0 +1,14 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main{
+	
+	static final Scanner s=new Scanner(System.in);
+	
+	public static void main(String[] __){
+		int[] ar=new int[26];
+		for(char c:s.next().toCharArray())
+			ar[c-'a']++;
+		System.out.println(Arrays.stream(ar).anyMatch(i->i%2==1)?"No":"Yes");
+	}
+}

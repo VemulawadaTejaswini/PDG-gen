@@ -1,0 +1,45 @@
+import java.util.*;
+import java.io.*;
+public class Main{
+/// functions
+static long gcd(long a,long b){if(b==0){return a;}return gcd(b,a%b);}
+static long Modpow(long a,long p,long m){long res=1;while(p>0){if((p&1)!=0){res=(res*a)%m;}p >>=1;a=(a*a)%m;}return res;}
+static long Modmul(long a,long b,long m){return ((a%m)*(b%m))%m;}
+static long ModInv(long a,long m){return Modpow(a,m-2,m);}
+static long nck(int n,int r,long m){if(r>n){return 0l;}return Modmul(f[n],ModInv(Modmul(f[n-r],f[r],m),m),m);}
+// end
+static long[] f;
+// taking inputs
+static BufferedReader s;
+static BufferedWriter out;
+static String read() throws IOException{String line="";while(line.length()==0){line=s.readLine();continue;}return line;}
+static int int_v (String s1){return Integer.parseInt(s1);}
+static long long_v(String s1){return Long.parseLong(s1);}
+static int[] int_arr() throws IOException{String[] a=read().split(" ");int[] b=new int[a.length];for(int i=0;i<a.length;i++){b[i]=int_v(a[i]);}return b;}
+static long[] long_arr() throws IOException{String[] a=read().split(" ");long[] b=new long[a.length];for(int i=0;i<a.length;i++){b[i]=long_v(a[i]);}return b;}
+static void assign(){s=new BufferedReader(new InputStreamReader(System.in));out=new BufferedWriter(new OutputStreamWriter(System.out));}
+// ends
+//......................................@uthor_Alx..............................................
+static boolean check(String s){
+	int i=0,j=s.length()-1;
+	while(i<j){
+		if(s.charAt(i)!=s.charAt(j)){return false;}
+		i++;j--;
+	}
+	return true;
+}
+public static void main(String[] args) throws  IOException{
+       assign();
+       String ss=read();
+       boolean b1=check(ss);
+       int n=ss.length();
+       boolean b2=check(ss.substring(0,(n-1)/2));
+       boolean b3=check(ss.substring((n-1)/2+1));
+       //out.write(ss.substring(0,(n-1)/2)+"  ");
+       //out.write(ss.substring((n-1)/2+1,ss.length()));       
+       if(b1&&b2&&b3){out.write("Yes");}
+       else{out.write("No");}
+             
+        out.flush();
+  }
+}

@@ -1,0 +1,38 @@
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author cs18097
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner(System.in);
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        int count=0;
+        
+        if(A > B){
+            count +=A;
+            A--;
+        }else{
+            count +=B;
+            B--;
+        }
+        if(A > B){
+            count +=A;
+            A--;
+        }else{
+            count +=B;
+            B--;
+        }
+        System.out.print(count);
+        
+    }
+    
+}

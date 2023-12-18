@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+//?´??????°????§£?????????????????°??????
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+		Scanner sc = new Scanner(System.in);
+		long n = Long.parseLong(sc.nextLine());
+		System.out.print(n + ":");
+		List<Long> pf = new ArrayList<>();
+		while (true) {
+			if (n == 1) {
+				break;
+			}
+			for (long i = 2; i <= Math.ceil(Math.sqrt(n)); i++) {
+				if (n % i == 0) {
+					n = n / i;
+					pf.add(i);
+					break;
+				}
+				if (i == Math.ceil(Math.sqrt(n))) {
+					pf.add(n);
+					n = 1;
+					break;
+				}
+			}
+		}
+		for (long i : pf) {
+			System.out.print(" " + i);
+		}
+		System.out.print("\n");
+	}
+
+}

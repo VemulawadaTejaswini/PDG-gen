@@ -1,0 +1,66 @@
+import java.util.*;
+
+public class Main {
+	final int INF = Integer.MAX_VALUE / 2;
+	private void doit(){
+		Scanner sc = new Scanner(System.in);
+		while(true){
+			int n = sc.nextInt();
+			int m = sc.nextInt();
+			if(n == 0 && m == 0) break;
+			int [] nlist = new int[n];
+			int [] mlist = new int[m];
+			for(int i=0; i < m; i++){
+				mlist[i] = sc.nextInt();
+			}
+			for(int i = 0; i < n; i++){
+				nlist[i] = sc.nextInt();
+			}
+			int [][] dp = new int[n+1][256];
+			for(int i=0; i <= n; i++){
+				for(int j=0; j < 256; j++){
+				dp[i][j] = INF;
+				}
+			}
+			dp[0][128] = 0;
+			for(int i=0; i < n; i++){
+				for(int j=0; j < 256;j++){
+					//if(dp[i][j] == INF) continue;
+					
+					for(int k=0; k < m; k++){
+						int ind = j +mlist[k];
+						if(ind < 0) ind = 0;
+						if(ind > 255) ind = 255;
+						
+						int diff = ind - nlist[i];
+						int value = dp[i][j] + (diff * diff);
+						dp[i+1][ind] = Math.min(dp[i+1][ind], value);
+						//System.out.println("dp=" + dp[i+1][ind] + " " + (i+1));
+					}
+				}
+			}
+//			for(int i=0; i <= n; i++){
+//				for(int j=0; j < 255; j++){
+//					if(dp[i][j] == INF){
+//						System.out.print("INF ");
+//					}
+//					else{
+//						System.out.print(dp[i][j] + " ");
+//					}
+//					
+//				}
+//				System.out.println();
+//			}
+			int ans = INF;
+			for(int i=0; i < 256; i++){
+				ans = Math.min(ans, dp[n][i]);
+			}
+			System.out.println(ans);
+		}
+	}
+
+	public static void main(String[] args) {
+		Main obj = new Main();
+		obj.doit();
+	}
+}

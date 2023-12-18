@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner scn =  new Scanner(System.in);
+		String str = scn.nextLine();
+		String key = "keyence";
+		String buf,buf2;
+		for(int i = 0;i <= 7;i++) {
+			buf = str.substring(0, i);
+			if(buf.equals(key.substring(0, i))) {
+			}else {
+				key = key.substring(i);
+				break;
+			}
+		}
+		boolean ans = key.equals(str.substring(str.length() - key.length()));
+		System.out.println(ans?"YES":"NO");
+	}
+}

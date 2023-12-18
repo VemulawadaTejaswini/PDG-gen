@@ -1,0 +1,39 @@
+import java.math.*;
+import java.util.Scanner;
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		ArrayList<Long> arr=new ArrayList<Long>();
+		long a = scn.nextLong();
+		if(prime(a)) {
+			System.out.println(a-1);
+			return;
+		}
+		long min=Integer.MAX_VALUE;
+		for(long i=1;i<=Math.sqrt(a);i++) {
+			if(a%i==0) {
+				if(i + a/i < min) {
+					min = i + a/i;
+				}
+			}
+		}System.out.println(min-2);
+	}
+	public static boolean prime(long n) {
+		 if (n <= 1) 
+	            return false; 
+	        if (n <= 3) 
+	            return true; 
+	  
+	        // This is checked so that we can skip 
+	        // middle five numbers in below loop 
+	        if (n % 2 == 0 || n % 3 == 0) 
+	            return false; 
+	  
+	        for (long i = 5; i * i <= n; i = i + 6) 
+	            if (n % i == 0 || n % (i + 2) == 0) 
+	                return false; 
+	  
+	        return true; 
+	}
+}

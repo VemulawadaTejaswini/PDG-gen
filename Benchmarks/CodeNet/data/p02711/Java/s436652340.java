@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int n=sc.nextInt();
+	int flag=0;
+	while(n>0){
+	    if(n%10==7){
+	        flag=1;
+	    }
+	    n=n/10;
+	    
+	}
+	if(flag==1){
+	    System.out.println("Yes");
+	}else{
+	    System.out.println("No");
+	}
+	    
+	}
+}

@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int d = sc.nextInt();
+        int n = sc.nextInt();
+        switch(d){
+            case 0:
+                System.out.println(n);
+                break;
+            case 1:
+                System.out.println(100*n);
+                break;
+            case 2:
+                System.out.println(10000*n);
+                break;
+        }
+            
+    }
+}
