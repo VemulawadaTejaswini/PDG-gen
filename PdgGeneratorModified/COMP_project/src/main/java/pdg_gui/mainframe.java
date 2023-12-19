@@ -12,6 +12,12 @@ import org.jgrapht.ext.DOTExporter;
 import org.jgrapht.ext.StringEdgeNameProvider;
 import org.jgrapht.ext.StringNameProvider;
 
+/*  STEPS TO RUN
+
+cd COMP_project/
+mvn clean install
+mvn exec:java -Dexec.mainClass=pdg_gui.mainframe */
+
 public class mainframe {
     private File selectedFile;
     private String selectedFileName;
@@ -22,8 +28,10 @@ public class mainframe {
     // static String inputFolder = "./../../Code_kernel_data/after_preprocessing/FINAL/test/";
     // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/pdg-data/";
     // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
-    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/pdg-data/";
-    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/Processed-data-for-pdg/";
+    // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/pdg-data/";
+    // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/Processed-data-for-pdg/";
+    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/pdg_data/";
+    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
@@ -124,7 +132,7 @@ public class mainframe {
         try {
             mainframe obj = new mainframe();
             boolean isOnlyFile = false;
-            String generateFor = "crypto-api"; // "code2seq" or "ck" or "crypto-api"
+            String generateFor = "codenet"; // "code2seq" or "ck" or "crypto-api" or "codenet"
             if (isOnlyFile) {
                 outputFolder = "D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/PdgGeneratorModified/test_folder/";
                 String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\CodeKernel_Manual_Data\\Processed_data\\after_preprocessing\\FilenameUtils.normalize\\sample-0\\68_0.java"; 
@@ -149,7 +157,7 @@ public class mainframe {
                         obj.methods(file, apiName, sampleName);
                     }
                 }
-            } else if(generateFor.equals("code2seq")){
+            } else if(generateFor.equals("code2seq") || generateFor.equals("codenet")){
                 ArrayList<String> folders = getListOfFolders(inputFolder);
                 // System.out.println("\n\nAPI Folders: " + folders);
                 for (String folder : folders) {
