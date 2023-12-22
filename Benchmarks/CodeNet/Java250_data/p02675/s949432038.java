@@ -1,0 +1,29 @@
+import java.io.*;
+ 
+public class Main{
+	public static void main(String[] args)throws IOException{
+    	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+      
+      int n;
+      n=Integer.parseInt(br.readLine());
+      n=n%10;
+      switch(n){
+        case 2:
+        case 4: 
+        case 5:
+        case 7:
+        case 9:
+          System.out.println("hon");
+          break;
+        case 0:
+        case 1:
+        case 6:
+        case 8:
+          System.out.println("pon");
+          break;
+        case 3:
+          System.out.println("bon");
+          break;
+      }
+    }	
+}

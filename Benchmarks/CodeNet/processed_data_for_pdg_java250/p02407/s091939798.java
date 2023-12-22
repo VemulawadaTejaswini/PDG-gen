@@ -1,0 +1,25 @@
+public class Main {
+	public static void main(String[] args) throws IOException {
+		int n = 0;
+		int temp = 0;
+		ArrayList<Integer> reverse = new ArrayList<Integer>();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		n = Integer.parseInt(br.readLine()); 
+		String box[] = new String[n];
+		String str = br.readLine();
+		box = str.split(" ");
+		for(int i = 0; i < n; ++i){
+			temp = Integer.parseInt(box[i]);
+			reverse.add(temp);
+		}
+		for (int j = n-1; j >= 0; --j) {
+			System.out.print(reverse.get(j));
+			if (j != 0) {
+				System.out.printf(" ");
+			}
+			else{
+				System.out.println("");
+			}
+		}
+	}
+}

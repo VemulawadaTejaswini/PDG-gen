@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Deque;//push poll peek
+import java.util.ArrayDeque;
+import java.util.Queue;//add poll peek
+import java.util.ArrayDeque;
+import java.math.BigDecimal;
+
+class Main{
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		int[] a = new int[n];
+		for(int i = 0;i < n;i++){
+			a[i] = Integer.parseInt(br.readLine());
+		}
+		int count = 0;
+		int k = 0;
+		int l;
+		boolean flag = false;
+		l = a[0] - 1;
+		count += 1;
+		while(count <= n){
+			if(l == 1){
+				flag = true;
+				System.out.println(count);
+				break;
+			}
+			l = a[l] - 1;
+			count += 1;
+		}
+		if(!flag){
+			System.out.println(-1);
+		}
+	}
+}

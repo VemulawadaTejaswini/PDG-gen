@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+
+		String Sa = sc.next();
+		String Sb = sc.next();
+		String Sc = sc.next();
+
+		int a = 0;
+		int b = 0;
+		int c = 0;
+		int flag = -1;
+		String A[] = Sa.split("");
+		String B[] = Sb.split("");
+		String C[] = Sc.split("");
+		String str = "X";
+
+		while(true){
+			String X[];
+			int x;
+			if(flag == -1){
+				X = A;
+				if(A.length == a){
+					str = "A";
+				}
+				x = a;
+				a++;
+				//System.out.println("a");
+			}else if(flag == 0){
+				X = B;
+				if(B.length == b){
+					str = "B";
+				}
+				x = b;
+				b++;
+				//System.out.println("b");
+			}else{
+				X = C;
+				if(C.length == c){
+					str = "C";
+				}
+				x = c;
+				c++;
+				//System.out.println("c");
+			}//ここでlengthと同じになる
+
+			if(!str.equals("X")){
+				break;
+			}
+
+			if(X[x].equals("a")){
+				flag = -1;
+			}else if(X[x].equals("b")){
+				flag = 0;
+			}else{
+				flag = 1;
+			}
+
+			//System.out.println(X + ":" + x);
+		}
+
+		System.out.println(str);
+	}
+}

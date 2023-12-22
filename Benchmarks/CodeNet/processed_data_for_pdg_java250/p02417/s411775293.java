@@ -1,0 +1,34 @@
+public class Main{
+	public static void main(String[] args) throws IOException {
+		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+		int[] count_array = new int[26];
+		char word_a = 'a';
+		while (true) {
+			String Strings = input.readLine();
+			if (Strings==null) {
+				break;
+			}
+			char[] String_array = Strings.toCharArray();
+			int count = 0;
+			for (int String_spot = 0; String_spot < String_array.length; String_spot++) {
+				if (Character.isUpperCase(String_array[String_spot])) {
+					String_array[String_spot] = Character.toLowerCase(String_array[String_spot]);
+				}
+				char one_word = String_array[String_spot];
+				word_a = 'a';
+				for (int word_spot = 0; word_spot <= ('z' - 'a'); word_spot++) {
+					if (one_word == word_a) {
+						count = 1;
+						count_array[word_spot] += count;
+					}
+					word_a++;
+				}
+			}
+		}
+		word_a = 'a';
+		for (int word_spot = 0; word_spot < 26; word_spot++) {
+			System.out.println(word_a + " " + ":" + " " + count_array[word_spot]);
+			word_a++;
+		}
+	}
+}

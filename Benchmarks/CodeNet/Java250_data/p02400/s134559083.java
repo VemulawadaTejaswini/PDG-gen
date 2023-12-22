@@ -1,0 +1,28 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO ?????????????????????????????????????????????
+
+
+		Scanner scan = new Scanner(System.in);
+
+		double r = scan.nextDouble();
+
+		scan.close();
+
+		double dbPi = Math.PI;
+
+		//System.out.println("??" + dbPi);
+
+		double outLine = 2 * dbPi * r;
+		double area = dbPi * (r * r);
+		System.out.printf("%.6f",area);
+		System.out.printf(" " + "%.6f",outLine);
+
+
+
+	}
+}

@@ -1,0 +1,55 @@
+import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+/**
+ * Built using CHelper plug-in
+ * Actual solution is at the top
+ */
+public class Main
+{
+    public static void main(String[] args)
+    {
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        Scanner in = new Scanner(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        TaskA solver = new TaskA();
+        solver.solve(1, in, out);
+        out.close();
+    }
+
+    static class TaskA
+    {
+        public void solve(int testNumber, Scanner in, PrintWriter out)
+        {
+            int n = in.nextInt();
+            int h[] = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                h[i] = in.nextInt();
+            }
+            int max = 0;
+            int localMax = 0;
+            int current = h[0];
+            for (int i = 1; i < h.length; i++)
+            {
+                if (current < h[i])
+                {
+                    max = Math.max(max, localMax);
+                    localMax = 0;
+                } else
+                {
+                    localMax++;
+                }
+                current = h[i];
+            }
+            max = Math.max(max, localMax);
+            out.print(max);
+        }
+
+    }
+}
+

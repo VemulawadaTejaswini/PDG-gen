@@ -1,0 +1,13 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int a = scan.nextInt();
+        int b = scan.nextInt();
+        for(int i = 0; i < Math.max(a, b); i++){
+            System.out.print(Math.min(a, b));
+        }
+        scan.close();
+    }
+}

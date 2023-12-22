@@ -1,0 +1,15 @@
+public class Main{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int intA = sc.nextInt();
+		int intB = sc.nextInt();
+		int intD = 0;
+		int intE = 0;
+		double dbF = 0;
+		intD = intA / intB;
+		intE = intA % intB;
+		dbF = (double)intA / (double)intB;
+		String stF = String.format("%.5f", dbF);
+		System.out.println(intD + " " + intE + " " + stF);
+	}
+}

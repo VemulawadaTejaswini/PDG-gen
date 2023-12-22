@@ -1,0 +1,33 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		// ???????????????????????°
+		int num = sc.nextInt();
+
+		for (int i = 0; i < num; i++) {
+			int[] inputNumList = new int[3];
+
+			inputNumList[0] = sc.nextInt();
+			inputNumList[1] = sc.nextInt();
+			inputNumList[2] = sc.nextInt();
+
+			// ?????????????????????inputNumList[2]?????§?????????????????£?????????
+			Arrays.sort(inputNumList);
+
+			if (inputNumList[0] * inputNumList[0] + inputNumList[1]
+					* inputNumList[1] == inputNumList[2] * inputNumList[2]) {
+				System.out.println("YES");
+
+			} else {
+				System.out.println("NO");
+			}
+		}
+
+	}
+
+}

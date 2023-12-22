@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+class Main {
+	public static void main(String[] args) throws IOException {
+		Scanner in = new Scanner(System.in);
+		int N = in.nextInt();
+		int M = in.nextInt();
+		int table[][] = new int[N+2][N+2];
+		for(int i=0;i<M;i++) {
+			int ai = in.nextInt();
+			int bi = in.nextInt();
+			table[ai][bi] += 1;
+			table[bi][ai] += 1;
+		}
+
+		for(int i=1;i<=N;i++) {
+			int ans = 0;
+			for(int j=1;j<=N;j++) {
+				ans += table[i][j];
+			}
+			System.out.println(ans);
+		}
+	}
+}

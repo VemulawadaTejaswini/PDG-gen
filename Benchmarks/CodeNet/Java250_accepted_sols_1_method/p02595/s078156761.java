@@ -1,0 +1,1 @@
+import java.util.*; public class Main { public static void main(String[] args) { int n,c,d; long x,y; Scanner sc = new Scanner(System.in); n = sc.nextInt(); d = sc.nextInt(); c=0; for(int i=0; i<n; i++) { x = sc.nextInt(); y = sc.nextInt(); double dist = Math.sqrt( x*x + y*y ); if(dist <= d) c++; } System.out.println(c); } }

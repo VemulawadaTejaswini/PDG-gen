@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){Scanner s=new Scanner(System.in);int n=s.nextInt(),m=s.nextInt();System.out.print((s.nextInt()/n*n)>=m?"OK":"NG");}}

@@ -1,0 +1,1 @@
+import java.util.Scanner;class Main{public static void main(String[] args){Scanner s=new Scanner(System.in);int i=s.nextInt();String str=s.next();if(str.length()<=i){System.out.println(str);}else{System.out.println(str.substring(0,i)+"...");}}}

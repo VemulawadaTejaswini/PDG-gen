@@ -1,0 +1,84 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+ 
+ 
+public class Main {
+ 
+    static int len;
+    static int[] arr;
+     
+    /**
+     * @param args
+     * @throws IOException 
+     */
+    public static void main(String[] args) throws IOException {
+         
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+         
+        int len = Integer.parseInt(reader.readLine());
+        int[] arr = new int[len];
+         
+        String arrStr = reader.readLine();
+        StringTokenizer tokenizer = new StringTokenizer(arrStr, " ");
+         
+        int i = 0;
+        while (tokenizer.hasMoreElements()) {
+           arr[i++] = Integer.parseInt((String) tokenizer.nextElement());
+        }
+         
+//        System.out.println("len" + len);
+//        System.out.println("arr" + Arrays.toString(arr));
+         
+        reader.close();
+         
+         
+        sort(arr);
+    }
+     
+    public static void sort(int[] arr){
+         
+        printArr(arr);
+         
+        for (int i = 1; i < arr.length; i++) {
+             
+            for (int j = i; j >= 1; j--) {
+                 
+                int current = arr[j];
+                int prev = arr[j - 1];
+                 
+                if(current < prev){
+                    swap(arr, j - 1, j);                
+                }
+                else{
+                    break;
+                }
+            }
+             
+            printArr(arr);
+        }
+    }
+     
+    public static void swap(int[] arr, int from, int to){
+        int temp = arr[from];
+        arr[from] =  arr[to];
+        arr[to] = temp;
+     }
+     
+     
+    static void printArr(int[] arr){
+        String msg = "";
+        for (int i = 0; i < arr.length; i++) {
+            msg += arr[i];
+            if(i == arr.length -1){
+                break;
+            }
+            msg += " ";
+        }
+         
+        System.out.println(msg);
+    }
+     
+     
+}

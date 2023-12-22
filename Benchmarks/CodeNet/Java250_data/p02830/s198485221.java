@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    String S = sc.next();
+    String T = sc.next();
+    String ans = "";
+
+    char[] cS = S.toCharArray();
+    char[] cT = T.toCharArray();
+
+    for(int i = 0; i < N ; i++) {
+    	ans += cS[i];
+    	ans += cT[i];
+    }
+    System.out.println(ans);
+  }
+}

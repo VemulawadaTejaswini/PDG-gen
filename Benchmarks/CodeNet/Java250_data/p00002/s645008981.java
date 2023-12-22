@@ -1,0 +1,22 @@
+
+import java.util.Scanner;
+
+
+public class Main{
+	
+	public static void main(String[] args){
+
+		Scanner sc = new Scanner(System.in);
+		int a, b;
+		while(sc.hasNextInt()) {
+			a = sc.nextInt();
+			b = sc.nextInt();
+			System.out.println(numOfDigit(a+b));
+		}
+		sc.close();
+	}
+	
+	static int numOfDigit(int n) {
+		return (int) Math.log10(n) + 1;
+	}
+}

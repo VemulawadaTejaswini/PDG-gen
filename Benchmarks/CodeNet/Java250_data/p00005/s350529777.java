@@ -1,0 +1,1 @@
+import java.math.*;import java.util.*;public class Main{public static void main(String[]a){for(Scanner s=new Scanner(System.in);s.hasNext();){BigInteger x=s.nextBigInteger(),y=s.nextBigInteger();System.out.println(x.gcd(y)+" "+x.multiply(y).divide(x.gcd(y)));}}}

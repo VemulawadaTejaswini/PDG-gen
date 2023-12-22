@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String Sa = scan.next();
+        String Sb = scan.next();
+        String Sc = scan.next();
+ 
+        boolean ok = true;
+        char turn = 'a';
+        char win = 'a';
+ 
+        while (ok) {
+            switch (turn) {
+                case 'a':
+                    if (Sa.equals(" ")){
+                        win = 'A';
+                        ok = false;
+                    }else {
+                        turn = Sa.charAt(0);
+                        Sa = ret(Sa);
+                    }
+                    break;
+                case 'b':
+                    if (Sb.equals(" ")){
+                        win = 'B';
+                        ok = false;
+                    }else {
+                        turn = Sb.charAt(0);
+                        Sb = ret(Sb);
+                    }
+                    break;
+                case 'c':
+                    if (Sc.equals(" ")){
+                        win = 'C';
+                        ok = false;
+                    }else {
+                        turn = Sc.charAt(0);
+                        Sc = ret(Sc);
+                    }
+                    break;
+            }
+ 
+        }
+        System.out.println(win);
+    }
+ 
+    public static String ret(String str) {
+        if (str.length() != 1) {
+            return str.substring(1);
+        } else {
+            return " ";
+        }
+    }
+}

@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]a){System.out.println(f(new Scanner(System.in).nextInt())*1000);}static int f(int n){return n<1?100:(int)Math.ceil(f(n-1)*1.05);}}

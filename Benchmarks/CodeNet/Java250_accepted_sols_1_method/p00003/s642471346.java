@@ -1,0 +1,1 @@
+import java.util.*;class Main{public static void main(String[]g){Scanner S=new Scanner(System.in);for(int i=S.nextInt(),j,x,y,z,a[]=new int[3];i-->0;System.out.println(a[2]*a[2]==a[1]*a[1]+a[0]*a[0]?"YES":"NO")){for(j=0;j<3;)a[j++]=S.nextInt();Arrays.sort(a);}}}

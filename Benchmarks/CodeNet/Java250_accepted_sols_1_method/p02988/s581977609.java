@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Main{
+      public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            int N = sc.nextInt();
+            int ans = 0;
+        	int[] line = new int[N];
+            for(int i = 0; i < N; i++){
+              line[i] = sc.nextInt();
+            }
+        	for(int i = 1; i < N -1;i++){
+              if( line[i-1] < line[i] && line[i] < line[i+1] || line[i+1] < line[i] && line[i] < line[i-1]){
+                ans++;
+              }
+            }
+            System.out.println(ans);
+              }
+}

@@ -1,0 +1,21 @@
+public class Main {
+	public static void main(String[] args)throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder data = new StringBuilder();
+        while(true){
+    		int sum = 0;                   
+            String str = br.readLine();    
+            int strsize = str.length();    
+                if(str.equals("0")) break;
+                else if(strsize >= 1) {
+                int i = 0;
+                while(i < strsize){
+                    sum += Integer.parseInt(String.valueOf(str.charAt(i))); 
+                    i++;
+                }
+            }
+              data.append(sum).append("\n"); 
+        } 
+        System.out.print(data);
+	}
+}

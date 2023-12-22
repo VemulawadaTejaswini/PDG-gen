@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Scanner scan = new Scanner(System.in);
+		String[] NM = scan.nextLine().split(" ");
+		String[] tmp;
+		int[] road = new int[Integer.parseInt(NM[0])];
+		for(int i = 0; i < road.length; i++){
+			road[i] = 0;
+		}
+		for(int i = 0; i < Integer.parseInt(NM[1]); i++){
+			tmp = scan.nextLine().split(" ");
+			road[Integer.parseInt(tmp[0])-1]++;
+			road[Integer.parseInt(tmp[1])-1]++;
+		}
+		for(int i = 0; i < road.length; i++){
+			System.out.println(road[i]);
+		}
+	}
+}

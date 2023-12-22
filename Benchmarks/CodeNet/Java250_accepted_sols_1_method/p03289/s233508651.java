@@ -1,0 +1,1 @@
+import java.util.*;import java.io.*;public class Main{public static void main(String[]a){System.out.print(new Scanner(System.in).next().matches("^A[a-z]+C[a-z]+$")?"AC":"WA");}}
