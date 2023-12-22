@@ -547,8 +547,7 @@ class MoleculeDataset(InMemoryDataset):
                     
             data_mapping.close()
             
-            
-        elif self.dataset == 'crypto-api':
+        elif self.dataset in ["crypto-api", "codenet-5-class"] :
             splits = [["train", 1], ["valid", 2], ["test", 3]]
             input_folder_path = ""
             for folder_path in self.raw_paths:
@@ -590,8 +589,11 @@ class MoleculeDataset(InMemoryDataset):
   
                     # data.y: Target to train against (may have arbitrary shape),
                     # graph-level targets of shape [1, *]
-                    file_name = file[file.rindex("/", 0, len(file) - 1) + 1 :]
-                    label = int(file_name.strip().split("_")[1])
+                    file_name = file[file.rindex("/", 0, len(file) - 1) + 1 : -4]
+                    if self.dataset == "crypto-api":
+                        label = int(file_name.strip().split("_")[1])
+                    else:
+                        label = int(file_name.strip().split("_")[-1])
                     y = torch.tensor([label], dtype=torch.long)
                     #print(type(y))
 
@@ -610,7 +612,6 @@ class MoleculeDataset(InMemoryDataset):
                     # data.api = file_name
                     data_list.append(data)
                     count += 1
-        
         
         else:
             raise ValueError('Invalid dataset name')

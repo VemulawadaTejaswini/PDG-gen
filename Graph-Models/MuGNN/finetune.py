@@ -18,6 +18,7 @@ from splitters import scaffold_split, random_scaffold_split, random_split, custo
 import pandas as pd
 
 import os
+import sys
 import shutil
 
 from tensorboardX import SummaryWriter
@@ -33,16 +34,33 @@ from sklearn.metrics import (
     matthews_corrcoef,
 )
 
-criterion = nn.BCEWithLogitsLoss(reduction = "none")
+def accuracy(y, pred):
+    return accuracy_score(y, pred)
 
-def performance(y, pred):
-    acc = accuracy_score(y, pred)
-    f = f1_score(y, pred)
-    re = recall_score(y, pred)
-    pre = precision_score(y, pred)
+def f1(y, pred, average=None):
+    if average:
+        return f1_score(y, pred, average=average, zero_division=0)
+    return f1_score(y, pred, average="weighted", zero_division=0)
+
+def recall(y, pred, average=None):
+    if average:
+        return recall_score(y, pred, average=average, zero_division=0)
+    return recall_score(y, pred, average="weighted", zero_division=0)
+
+def precision(y, pred, average=None):
+    if average:
+        return precision_score(y, pred, average=average, zero_division=0)
+    return precision_score(y, pred, average="weighted", zero_division=0)
+
+def performance(y, pred, average=None):
+    acc = accuracy(y, pred)
+    f = f1(y, pred, average=average)
+    re =recall(y, pred, average=average)
+    pre = precision(y, pred, average=average)
     return acc, pre, re, f
 
-def train(args, model, device, loader, optimizer):
+def train_binary_classification(args, model, device, loader, optimizer):
+    criterion = nn.BCEWithLogitsLoss(reduction = "none")
     model.train()
     total_loss, count = 0, 0
     for step, batch in enumerate(tqdm(loader, desc="Iteration")):
@@ -68,8 +86,36 @@ def train(args, model, device, loader, optimizer):
         count += 1
 
     print("Training Loss:", total_loss/count)
+    
+def train_multiclass_classification(args, model, device, loader, optimizer):
+    criterion = nn.CrossEntropyLoss()
+    model.train()
+    total_loss, count = 0, 0
+    for step, batch in enumerate(tqdm(loader, desc="Iteration")):
+        batch = batch.to(device)
+        pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+        #y = batch.y.view(pred.shape).to(torch.float64)
 
-def eval(args, model, device, loader):
+        # #Whether y is non-null or not.
+        # is_valid = y**2 > 0
+        # #Loss matrix
+        # loss_mat = criterion(pred.double(), (y+1)/2)
+        # #loss matrix after removing null target
+        # loss_mat = torch.where(is_valid, loss_mat, torch.zeros(loss_mat.shape).to(loss_mat.device).to(loss_mat.dtype))
+        loss = criterion(pred.double(), batch.y)
+            
+        optimizer.zero_grad()
+        # loss = torch.sum(loss_mat)/torch.sum(is_valid)
+        # loss = torch.sum(loss_mat)/len(loss_mat)
+        total_loss += loss
+        loss.backward()
+
+        optimizer.step()
+        count += 1
+
+    print("Training Loss:", total_loss/count)
+
+def eval_binary_classification(args, model, device, loader):
     model.eval()
     y_true = []
     y_scores = []
@@ -101,7 +147,29 @@ def eval(args, model, device, loader):
 
     return (acc, prec, rec, f1)
 
+def eval_multiclass_classification(args, model, device, loader):
+    model.eval()
+    y_true = []
+    y_scores = []
 
+    for step, batch in enumerate(tqdm(loader, desc="Iteration")):
+        batch = batch.to(device)
+
+        with torch.no_grad():
+            pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+
+        # y_true.append(batch.y.view(pred.shape))
+        # y_scores.append(pred)
+        
+        y_true.append(batch.y.cpu())
+        _, predicted_label = torch.max(pred, dim=1)
+        y_scores.append(predicted_label.cpu())
+
+    y_true = torch.cat(y_true, dim = 0).cpu().numpy()
+    y_scores = torch.cat(y_scores, dim = 0).cpu().numpy()
+    #y_pred = [1 if i > 0 else 0 for i in y_scores]
+    acc, prec, rec, f1 = performance(y_true, y_scores)
+    return (acc, prec, rec, f1)
 
 def main():
     # Training settings
@@ -148,7 +216,7 @@ def main():
         torch.cuda.manual_seed_all(seed)
 
     #Bunch of classification tasks
-    args.dataset == "crypto-api"
+    args.dataset = "codenet-5-class" # Possible values: "crypto-api", "codenet-5-class"
     if args.dataset == "tox21":
         num_tasks = 12
     elif args.dataset == "hiv":
@@ -169,6 +237,8 @@ def main():
         num_tasks = 2
     elif args.dataset == "crypto-api":
         num_tasks = 1
+    elif args.dataset == "codenet-5-class":
+        num_tasks = 5
     else:
         raise ValueError("Invalid dataset name.")
 
@@ -178,6 +248,7 @@ def main():
     
     #set up dataset
     dataset = MoleculeDataset(dataset_root, dataset=args.dataset)
+    print("Dataset Loaded!!!")
     print(dataset)
     
     args.split = "custom"
@@ -230,7 +301,6 @@ def main():
     val_acc_list = []
     test_acc_list = []
 
-
     if not args.filename == "":
         fname = 'runs/finetune_cls_runseed' + str(args.runseed) + '/' + args.filename
         #delete the directory if there exists one
@@ -242,16 +312,34 @@ def main():
     for epoch in range(1, args.epochs+1):
         print("====epoch " + str(epoch))
         
-        train(args, model, device, train_loader, optimizer)
+        if args.dataset == "codenet-5-class":
+            train_multiclass_classification(args, model, device, train_loader, optimizer)
+        elif args.dataset == "crypto-api":
+            train_binary_classification(args, model, device, train_loader, optimizer)
+        else:
+            train_binary_classification(args, model, device, train_loader, optimizer)
 
         print("====Evaluation")
         if args.eval_train:
-            train_acc = eval(args, model, device, train_loader)
+            if args.dataset == "codenet-5-class":
+                train_acc = eval_multiclass_classification(args, model, device, train_loader)
+            elif args.dataset == "crypto-api":
+                train_acc = eval_binary_classification(args, model, device, train_loader)
+            else:
+                train_acc = eval_binary_classification(args, model, device, train_loader)
         else:
             print("omit the training accuracy computation")
             train_acc = 0
-        val_acc = eval(args, model, device, val_loader)
-        test_acc = eval(args, model, device, test_loader)
+            
+        if args.dataset == "codenet-5-class":
+            val_acc = eval_multiclass_classification(args, model, device, val_loader)
+            test_acc = eval_multiclass_classification(args, model, device, test_loader)
+        elif args.dataset == "crypto-api":
+            val_acc = eval_binary_classification(args, model, device, val_loader)
+            test_acc = eval_binary_classification(args, model, device, test_loader)
+        else:
+            val_acc = eval_binary_classification(args, model, device, val_loader)
+            test_acc = eval_binary_classification(args, model, device, test_loader)
 
         print("train(acc, prec, rec, f1): {} val(acc, prec, rec, f1): {} test(acc, prec, rec, f1): {}".format(train_acc, val_acc, test_acc))
 

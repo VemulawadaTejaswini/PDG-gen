@@ -14,7 +14,7 @@ import numpy as np
 from model import GNN, GNN_graphpred
 from sklearn.metrics import roc_auc_score
 
-from splitters import scaffold_split
+from splitters import scaffold_split, random_split, random_scaffold_split
 import pandas as pd
 
 import os
@@ -122,6 +122,7 @@ def main():
         torch.cuda.manual_seed_all(args.runseed)
 
     #Bunch of classification tasks
+    args.dataset = "tox21"
     if args.dataset == "tox21":
         num_tasks = 12
     elif args.dataset == "hiv":
@@ -144,19 +145,20 @@ def main():
         raise ValueError("Invalid dataset name.")
 
     #set up dataset
-    dataset = MoleculeDataset("dataset/" + args.dataset, dataset=args.dataset)
+    dataset_folder = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/Pretrain-GNN/Repository/chem/dataset/"
+    dataset = MoleculeDataset(dataset_folder + args.dataset, dataset=args.dataset)
 
     print(dataset)
     
     if args.split == "scaffold":
-        smiles_list = pd.read_csv('dataset/' + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
+        smiles_list = pd.read_csv(dataset_folder + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
         train_dataset, valid_dataset, test_dataset = scaffold_split(dataset, smiles_list, null_value=0, frac_train=0.8,frac_valid=0.1, frac_test=0.1)
         print("scaffold")
     elif args.split == "random":
         train_dataset, valid_dataset, test_dataset = random_split(dataset, null_value=0, frac_train=0.8,frac_valid=0.1, frac_test=0.1, seed = args.seed)
         print("random")
     elif args.split == "random_scaffold":
-        smiles_list = pd.read_csv('dataset/' + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
+        smiles_list = pd.read_csv(dataset_folder + args.dataset + '/processed/smiles.csv', header=None)[0].tolist()
         train_dataset, valid_dataset, test_dataset = random_scaffold_split(dataset, smiles_list, null_value=0, frac_train=0.8,frac_valid=0.1, frac_test=0.1, seed = args.seed)
         print("random scaffold")
     else:

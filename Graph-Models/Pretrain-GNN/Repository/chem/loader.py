@@ -440,6 +440,7 @@ class MoleculeDataset(InMemoryDataset):
                     [i])  # id here is the index of the mol in
                 # the dataset
                 data.y = torch.tensor(labels[i, :])
+                print(labels.shape, data.y.shape)
                 data_list.append(data)
                 data_smiles_list.append(smiles_list[i])
 
