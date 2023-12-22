@@ -207,38 +207,18 @@ def main():
     parser.add_argument('--num_workers', type=int, default = 4, help='number of workers for dataset loading')
     args = parser.parse_args()
         
-    torch.manual_seed(seed)
-    np.random.seed(seed)
     os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
     args.device = 1
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
 
     #Bunch of classification tasks
-    args.dataset = "codenet-5-class" # Possible values: "crypto-api", "codenet-5-class"
-    if args.dataset == "tox21":
-        num_tasks = 12
-    elif args.dataset == "hiv":
-        num_tasks = 1
-    elif args.dataset == "pcba":
-        num_tasks = 128
-    elif args.dataset == "muv":
-        num_tasks = 17
-    elif args.dataset == "bace":
-        num_tasks = 1
-    elif args.dataset == "bbbp":
-        num_tasks = 1
-    elif args.dataset == "toxcast":
-        num_tasks = 617
-    elif args.dataset == "sider":
-        num_tasks = 27
-    elif args.dataset == "clintox":
-        num_tasks = 2
-    elif args.dataset == "crypto-api":
+    args.dataset = "codenet-10-class" # Possible values: "crypto-api", "codenet-5-class"
+    if args.dataset == "crypto-api":
         num_tasks = 1
     elif args.dataset == "codenet-5-class":
         num_tasks = 5
+    elif args.dataset == "codenet-10-class":
+        num_tasks = 10
     else:
         raise ValueError("Invalid dataset name.")
 
@@ -312,18 +292,18 @@ def main():
     for epoch in range(1, args.epochs+1):
         print("====epoch " + str(epoch))
         
-        if args.dataset == "codenet-5-class":
+        if args.dataset in ["codenet-5-class", "codenet-10-class"]:
             train_multiclass_classification(args, model, device, train_loader, optimizer)
-        elif args.dataset == "crypto-api":
+        elif args.dataset in ["crypto-api"]:
             train_binary_classification(args, model, device, train_loader, optimizer)
         else:
             train_binary_classification(args, model, device, train_loader, optimizer)
 
         print("====Evaluation")
         if args.eval_train:
-            if args.dataset == "codenet-5-class":
+            if args.dataset in ["codenet-5-class", "codenet-10-class"]:
                 train_acc = eval_multiclass_classification(args, model, device, train_loader)
-            elif args.dataset == "crypto-api":
+            elif args.dataset in ["crypto-api"]:
                 train_acc = eval_binary_classification(args, model, device, train_loader)
             else:
                 train_acc = eval_binary_classification(args, model, device, train_loader)
@@ -331,10 +311,10 @@ def main():
             print("omit the training accuracy computation")
             train_acc = 0
             
-        if args.dataset == "codenet-5-class":
+        if args.dataset in ["codenet-5-class", "codenet-10-class"]:
             val_acc = eval_multiclass_classification(args, model, device, val_loader)
             test_acc = eval_multiclass_classification(args, model, device, test_loader)
-        elif args.dataset == "crypto-api":
+        elif args.dataset in ["crypto-api"]:
             val_acc = eval_binary_classification(args, model, device, val_loader)
             test_acc = eval_binary_classification(args, model, device, test_loader)
         else:

@@ -547,7 +547,7 @@ class MoleculeDataset(InMemoryDataset):
                     
             data_mapping.close()
             
-        elif self.dataset in ["crypto-api", "codenet-5-class"] :
+        elif self.dataset in ["crypto-api", "codenet-5-class", "codenet-10-class"] :
             splits = [["train", 1], ["valid", 2], ["test", 3]]
             input_folder_path = ""
             for folder_path in self.raw_paths:
