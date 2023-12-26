@@ -30,8 +30,8 @@ public class mainframe {
     // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
     // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/pdg-data/";
     // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/Processed-data-for-pdg/";
-    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/pdg_data_java250/";
-    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg_java250/";
+    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/pdg_data_java250_100_class/";
+    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg_java250_100_class/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
