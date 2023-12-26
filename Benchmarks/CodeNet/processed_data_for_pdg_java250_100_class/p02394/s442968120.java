@@ -1,0 +1,24 @@
+class Main{
+    public static void main(String[] args){
+        int W,H,x,y,r;
+        boolean result = true;
+    	Scanner scanner = new Scanner(System.in);
+    	W = scanner.nextInt();
+    	H = scanner.nextInt();
+    	x = scanner.nextInt();
+    	y = scanner.nextInt();
+    	r = scanner.nextInt();
+    	if((x+r) > W || (x-r) <0){
+    		result = false;
+    	}
+    	if((y+r) > H || (y-r) <0){
+    		result = false;
+    	}
+    	if(result){
+    		System.out.println("Yes");
+    	}
+    	else{
+    		System.out.println("No");
+    	}
+    }
+}

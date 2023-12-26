@@ -1,0 +1,25 @@
+public class Main {
+    public static void main(String args[]) {
+    	Scanner sc = new Scanner(System.in);
+    	int n = sc.nextInt(); 
+        StringBuilder NewBuilder = new StringBuilder(); 
+        int x = 0;
+        for (int j = 3; j <= n; j++) {
+            if (j % 3 == 0) {
+            	NewBuilder .append(" " + j);
+            } else {
+                x = j;
+                while (x != 0) {
+                    if (x % 10 == 3) {
+                    	NewBuilder .append(" " + j);
+                        break;
+                    } else {
+                        x = x / 10;
+                    }
+                }
+            }
+        }
+        System.out.println(NewBuilder );
+        sc.close();
+    }
+}

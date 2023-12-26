@@ -1,0 +1,8 @@
+public class Main{
+ public static void main(String[] args){
+   Scanner sc = new Scanner(System.in);
+   String S = sc.next();
+   String ans = "2018"+S.substring(4,S.length()); 
+   System.out.println(ans);
+ }
+}

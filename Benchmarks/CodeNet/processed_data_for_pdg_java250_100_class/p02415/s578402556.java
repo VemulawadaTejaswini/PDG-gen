@@ -1,0 +1,20 @@
+public class Main {
+	public static void main(String[] args)throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String  str = br.readLine() ;
+		char result = 0 ;  
+		StringBuilder data = new StringBuilder(str);
+		for(int i = 0; i < str.length(); i++) {
+		   char msg = str.charAt(i);
+		   if(Character.isLowerCase(msg)){
+			    result = Character.toUpperCase(msg);
+			 	data.setCharAt(i, result);
+		   }
+		   else if(Character.isUpperCase(msg)) {
+			    result = Character.toLowerCase(msg);
+				data.setCharAt(i, result);    
+		   }
+		}
+		System.out.println(data);
+	}
+}

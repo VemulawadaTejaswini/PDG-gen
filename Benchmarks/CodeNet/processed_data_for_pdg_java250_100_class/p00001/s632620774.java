@@ -1,0 +1,13 @@
+class Main{
+    public static void main(String[] a){
+        int[] h = new int[10]; 
+        Scanner s = new Scanner(System.in);
+        for(int i = 0; i < h.length; i++){
+            h[i] = s.nextInt();
+        }
+        Arrays.sort(h);
+        for(int i = 9; i >= 7; i--){
+            System.out.println(h[i]);
+        }
+    }
+}

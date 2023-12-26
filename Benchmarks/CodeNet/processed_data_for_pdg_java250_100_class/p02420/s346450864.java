@@ -1,0 +1,22 @@
+public class Main{
+	public static void main(String[] args) throws IOException{
+		BufferedReader insBR = new BufferedReader(new InputStreamReader(System.in));
+		String strLine = null;
+		while(true){
+			strLine = insBR.readLine();
+			if("-".equals(strLine)){
+				break;
+			}
+			String strNum =insBR.readLine();
+			int m = Integer.parseInt(strNum);
+			for(int i = 0; i < m; i++){
+				String strH = insBR.readLine();
+				int h = Integer.parseInt(strH);
+				String strCutLine = strLine.substring(0,h);
+				String strTemp = strLine.substring(h,strLine.length());
+				strLine = strTemp + strCutLine;
+			}
+			System.out.println(strLine);
+		}
+	}
+}

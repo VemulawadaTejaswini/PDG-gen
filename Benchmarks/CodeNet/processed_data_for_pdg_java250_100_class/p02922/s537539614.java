@@ -1,0 +1,18 @@
+public class Main {
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		int result = 1;
+		int tap = A;
+		while(B > tap) {
+			tap += A - 1;
+			result++;
+		}
+		if(B == 1) {
+			result = 0;
+		}
+		System.out.println(result);
+		sc.close();
+	}
+}

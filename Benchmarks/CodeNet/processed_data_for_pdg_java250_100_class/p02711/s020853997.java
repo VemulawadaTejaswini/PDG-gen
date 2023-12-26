@@ -1,0 +1,12 @@
+public class Main {
+     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String n = sc.nextLine();
+        sc.close();
+        if(n.contains("7")){
+            System.out.println("Yes");
+        }else{
+            System.out.println("No");
+        }
+    }
+}

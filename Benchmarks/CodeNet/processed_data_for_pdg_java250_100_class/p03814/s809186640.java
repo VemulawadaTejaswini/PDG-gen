@@ -1,0 +1,8 @@
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String a = sc.next();
+		System.out.println(a.lastIndexOf("Z") - a.indexOf("A") + 1);
+		sc.close();
+	}
+}

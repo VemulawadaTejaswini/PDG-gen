@@ -1,0 +1,29 @@
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int maisu = Integer.parseInt(br.readLine());
+		String[] cards = new String[52];
+		boolean[] cardsCheck = new boolean[52];
+		String[] suit = { "S", "H", "C", "D" };
+		for (int a = 0; a < suit.length; a++) {
+			for (int b = 1; b <= 13; b++) {
+				cards[a * 13 + b - 1] = suit[a] + " " + b;
+				cardsCheck[a * 13 + b - 1] = false;
+			}
+		}
+		for (int c = 0; c < maisu; c++) {
+			String nyuryokuCard = br.readLine();
+			for(int d = 0; d < cards.length; d++){
+				if(nyuryokuCard.equals(cards[d])){
+					cardsCheck[d] = true;
+					break;
+				}
+			}
+		}
+		for(int e = 0; e < cards.length; e++){
+			if(cardsCheck[e] == false){
+				System.out.println(cards[e]);
+			}
+		}
+	}
+}

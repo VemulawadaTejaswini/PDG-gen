@@ -1,0 +1,37 @@
+public class Main {
+	public static void main(String[] args) {
+		StringBuilder card = new StringBuilder();
+		StringBuilder answer = new StringBuilder();
+		Scanner scan = new Scanner(System.in);
+		card.append(scan.nextLine());
+		int shuffle = Integer.parseInt(scan.nextLine());
+		String h = scan.nextLine();
+		int i = 0;
+		int w = 0;
+		String hoge = "";
+		while(true) {
+			while(i < shuffle) {
+				card.append( card.substring(0, Integer.parseInt(h)) );
+				card.delete(0, Integer.parseInt(h));
+				if(h.equals("-") || i == (shuffle - 1)){
+					answer.append(card.toString() + "\n");
+					break;
+				}else{
+					h = scan.nextLine();
+				}
+				i++;
+			}
+			hoge = scan.nextLine();
+			if( i == (shuffle - 1) && hoge.equals("-")){
+				break;
+			}else{
+				i = 0;
+				card.delete(0, card.length());
+				card.append(hoge);
+				shuffle = Integer.parseInt(scan.nextLine());
+				h = scan.nextLine();
+			}
+		}
+		System.out.print(answer.toString());
+	}
+}

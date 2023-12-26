@@ -1,0 +1,8 @@
+public class Main {
+	public static void main(String args[]) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String strInput = br.readLine();
+		int numInput = Integer.parseInt(strInput);
+		System.out.println(numInput*numInput*numInput);
+	}
+}

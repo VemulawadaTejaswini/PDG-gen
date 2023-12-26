@@ -1,0 +1,21 @@
+public class Main {
+	public static void main(String[] args) {
+		 Scanner scan = new Scanner(System.in);
+		 int H;	
+		 int W;	
+		 while(true){
+			 H = Integer.parseInt(scan.next());
+			 W = Integer.parseInt(scan.next());
+			 if(H == 0 && W == 0){
+				 break;
+			 }
+			 for (int i = 0; i < H; i++ ){
+				 for (int j = 0; j < W; j++ ){
+					 System.out.print("#");
+				 }
+				 System.out.println();
+			 }
+			 System.out.println();
+		 }
+	}
+}

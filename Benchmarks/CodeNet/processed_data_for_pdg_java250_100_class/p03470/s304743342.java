@@ -1,0 +1,12 @@
+public class Main {
+	public static void main(String[] args) throws IOException {
+		InputStreamReader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+		BufferedReader in = new BufferedReader(reader);
+		int N = Integer.parseInt(in.readLine());
+		Set<Integer> set = new HashSet<>();
+		for(int i = 0; i < N; ++i) {
+			set.add(Integer.parseInt(in.readLine()));
+		}
+		System.out.println(set.size());
+	}
+}

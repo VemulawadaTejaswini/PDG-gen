@@ -1,0 +1,12 @@
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int N = Integer.parseInt(st.nextToken());
+		int x = N / 500;
+		int sum = x * 1000;
+		N %= 500;
+		sum += (N / 5) * 5;
+		System.out.println(sum);
+	}
+}

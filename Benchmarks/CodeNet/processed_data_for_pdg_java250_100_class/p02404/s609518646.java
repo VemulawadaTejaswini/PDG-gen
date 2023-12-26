@@ -1,0 +1,27 @@
+public class Main {
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in); 
+		StringBuilder out = new StringBuilder(); 
+		StringBuilder output = new StringBuilder(); 
+		while (true) { 
+			int H = sc.nextInt(); 
+			int W = sc.nextInt(); 
+			if (H + W == 0) 
+				break;
+			for (int i = 0; i < H; i++) {
+				for (int j = 0; j < W; j++) {
+					if ((i == 0 || i == H - 1) || (j == 0 || j == W - 1)) { 
+						out = out.append("#");
+					} else {
+						out = out.append(".");
+					}
+				}
+				out = out.append("\n");
+			}
+			output = output.append(out + "\n"); 
+			out.delete(0, out.length()); 
+		}
+		System.out.print(output); 
+		sc.close();
+	}
+}

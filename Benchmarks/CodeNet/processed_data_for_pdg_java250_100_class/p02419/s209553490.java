@@ -1,0 +1,20 @@
+class Main {
+    public static void main(String [] args){
+        Scanner sc = new Scanner(System.in);
+        String W = sc.next();
+        int count = 0;
+        while(true){
+        	String T = sc.next();
+        	if(T.equals("END_OF_TEXT")){
+        		break;
+        	}
+        	String[] str = T.split(" ");
+        	for(int i=0; i<str.length; i++){
+        		if(str[i].equalsIgnoreCase(W)){
+        			count++;
+        		}
+        	}
+        }
+         System.out.println(count);
+    }
+}

@@ -1,0 +1,15 @@
+public class Main {
+    public static void main(String[] srgs) {
+        Scanner sc = new Scanner(System.in); 
+        while (true) {
+            int x = sc.nextInt();
+            String op = sc.next();
+            int y = sc.nextInt();
+            if (op.equals("?")) { break; }
+            if (op.equals("+")) { System.out.println(x + y); }
+            if (op.equals("-")) { System.out.println(x - y); }
+            if (op.equals("*")) { System.out.println(x * y); }
+            if (op.equals("/")) { System.out.println(x / y); }
+        }
+    }
+}

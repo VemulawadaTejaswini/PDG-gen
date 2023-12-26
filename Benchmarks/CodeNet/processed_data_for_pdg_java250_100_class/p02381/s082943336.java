@@ -1,0 +1,28 @@
+public class Main {
+	public static void main(String[] args) {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String x = "";
+		try {
+			while ((x = in.readLine()).equals("0") == false) {
+				int n = Integer.parseInt(x);
+				String[] data = in.readLine().split(" ");
+				double sum = 0;
+				int[] score = new int[n];
+				for (int i = 0; i < n; i++) {
+					score[i] = Integer.parseInt(data[i]);
+					sum = sum + score[i];
+				}
+				double m = sum / n;
+				sum = 0;
+				for (int i = 0; i < n; i++) {
+					sum = sum + (score[i] - m) * (score[i] - m);
+				}
+				System.out.println(Math.sqrt(sum / n));
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,13 @@
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int X = sc.nextInt();
+		int Y = sc.nextInt();
+		boolean answer = true;
+		if (Y % 2 == 1 || X * 4 < Y || X * 2 > Y) {
+			answer = false;
+		}
+		System.out.println(answer? "Yes" : "No");
+		sc.close();
+	}
+}

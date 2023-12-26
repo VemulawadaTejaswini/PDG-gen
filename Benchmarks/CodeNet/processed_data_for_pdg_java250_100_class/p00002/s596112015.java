@@ -1,0 +1,12 @@
+public class Main {
+	public static void main(String args[] ) throws Exception {
+		Scanner scanner = new Scanner(System.in);
+		while(scanner.hasNext()){	
+			int a = scanner.nextInt();
+			int b = scanner.nextInt();
+			int ans = a+b;
+			ans = String.valueOf( ans ).length();
+			System.out.println(ans);
+		}
+    }
+}

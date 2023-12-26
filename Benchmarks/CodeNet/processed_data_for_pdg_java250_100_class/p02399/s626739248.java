@@ -1,0 +1,15 @@
+class Main{
+	public static void main(String[] args){
+		int a,b,d,r;
+		double f;
+		Scanner sc = new Scanner(System.in);
+		a = sc.nextInt();
+		b = sc.nextInt();
+		if(1 <= a && a <= Math.pow(10,9)){
+			d = a / b;
+			r = a % b;
+			f = (double)a/b;
+			System.out.printf(d + " " + r + " " + "%f",(double)f);
+		}
+	}
+}

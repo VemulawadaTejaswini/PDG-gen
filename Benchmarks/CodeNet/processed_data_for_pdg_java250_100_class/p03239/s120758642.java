@@ -1,0 +1,24 @@
+public class Main {
+	public static void main(String[] args){
+       Scanner sc = new Scanner(System.in);
+	  int N = sc.nextInt();
+      int T = sc.nextInt();
+      int[] A = new int[N*2]; 
+      int min = 10001;
+      int cost = 0;
+      for(int i=0;i<2*N;i++){
+       A[i] = sc.nextInt();
+       if(i%2==1){
+         if(A[i]<=T){
+           cost = A[i-1];
+           min = Math.min(min,cost);
+         }
+       }
+      }
+      if(min==10001){
+        System.out.println("TLE");
+      }else{
+        System.out.println(min);
+      }
+    }
+}

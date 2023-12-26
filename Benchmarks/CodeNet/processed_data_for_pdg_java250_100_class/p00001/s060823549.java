@@ -1,0 +1,13 @@
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int datas[] = new int[10];
+        for(int i = 0;i < 10;i++){
+            datas[i] =  Integer.parseInt(br.readLine());
+        }
+        Arrays.sort(datas);
+        for(int i = 1;i <= 3;i++){
+            System.out.println(datas[10 - i]);
+        }
+    }
+}

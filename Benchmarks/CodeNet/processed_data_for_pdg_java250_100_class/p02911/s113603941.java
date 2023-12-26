@@ -1,0 +1,26 @@
+public class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		int q = sc.nextInt();
+		int cnt = 0;
+		int corres[] = new int[q];
+		int apps[] = new int[n];
+		Arrays.fill(apps, k-q);
+		while(sc.hasNext()){
+			corres[cnt] = sc.nextInt();
+			cnt++;
+		}
+		for(int cor:corres){
+			apps[cor-1] +=1;
+		}
+		for(int app:apps){
+			if(app <= 0){
+				System.out.println("No");
+			}else{
+				System.out.println("Yes");
+			}
+		}		
+	}
+}

@@ -1,0 +1,34 @@
+public class Main{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int list [][];
+		int r = sc.nextInt();
+		int c = sc.nextInt();
+		list = new int[r][c];
+		for(int i = 0; i < r; i++){
+			for(int j = 0; j < c; j++){
+				list[i][j] = sc.nextInt();
+			}
+		}
+		for(int i = 0; i < r; i++){
+			int rsum = 0;
+			String a = "";
+			for(int j = 0; j < c; j++){
+				rsum += list[i][j];
+				a += (list[i][j] +" ");
+			}
+			System.out.println(a + (rsum));
+		}
+		int sum = 0;
+		for(int i = 0 ; i < c; i++){
+			int csum = 0;
+			for(int j = 0 ; j < r; j++){
+				csum += list[j][i];
+			}
+			System.out.print(csum + " ");
+			sum += csum;
+		}
+		System.out.println(sum);
+		sc.close();
+	}
+}

@@ -1,0 +1,13 @@
+public class Main {
+	public static void main(String args[]){
+		Scanner scan = new Scanner(System.in);
+		String str;
+		double r;
+		r = scan.nextDouble();
+		BigDecimal x = new BigDecimal(r * r * Math.PI);
+		str = String.valueOf(x.setScale(5, BigDecimal.ROUND_UP)) + " ";
+		BigDecimal y = new BigDecimal(2 * r * Math.PI);
+		str = str + String.valueOf(y.setScale(5, BigDecimal.ROUND_HALF_UP));
+		System.out.println(str);
+	}
+}

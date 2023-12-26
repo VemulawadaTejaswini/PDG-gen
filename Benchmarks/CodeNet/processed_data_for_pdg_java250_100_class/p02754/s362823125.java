@@ -1,0 +1,21 @@
+public class Main {
+    public static void main(String[] args) throws Exception {
+        InputStreamReader is = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(is);
+        List<String> mylist = new ArrayList<>();
+        String strinput = reader.readLine();
+        while (strinput != null) {
+            mylist.add(strinput);
+            strinput = reader.readLine();
+        }
+        String arr01[] = mylist.get(0).split(" ");
+        long n = Long.valueOf(arr01[0]);
+        long a = Long.valueOf(arr01[1]);
+        long b = Long.valueOf(arr01[2]);
+        long sho = n / (a + b);
+        long amari = n % (a + b);
+        long ball1 = a * sho;
+        long ball2 = Math.min(amari, a);
+        System.out.println(ball1 + ball2);
+    }
+}

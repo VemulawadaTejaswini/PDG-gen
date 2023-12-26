@@ -1,0 +1,1 @@
+public class Main{public static void main(String[]z){int a=new java.util.Scanner(System.in).nextInt();System.out.println(a/3600+":"+a/60%60+":"+a%60);}}

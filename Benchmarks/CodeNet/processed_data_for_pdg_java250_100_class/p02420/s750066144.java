@@ -1,0 +1,21 @@
+class Main {
+	public static void main(String args[]){	
+		Scanner scan = new Scanner(System.in);
+		int m, n, h;
+		String str;
+		while(true){
+			str = scan.next();
+			if(str.equals("-"))break;
+			n = str.length(); 
+			m = scan.nextInt(); 
+			for(int i = 0; i < m; i++){
+				h = scan.nextInt(); 
+				String sub = str.substring(0, h); 
+				String sub2 = str.substring(h);
+				str = sub2;
+				str += sub;
+			}
+			System.out.println(str);
+		}
+	}
+}

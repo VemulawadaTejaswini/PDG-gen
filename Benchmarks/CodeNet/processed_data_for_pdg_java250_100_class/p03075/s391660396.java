@@ -1,0 +1,14 @@
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+int[] num=new int[6];
+for(int i=0;i<6;i++){
+num[i]=Integer.parseInt(sc.nextLine());
+}
+if(num[4]-num[0]<num[5]+1){
+System.out.println("Yay!");
+}else{
+System.out.println(":"+"(");
+}
+	}
+}

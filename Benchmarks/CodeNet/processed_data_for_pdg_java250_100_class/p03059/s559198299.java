@@ -1,0 +1,11 @@
+public class Main {
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str = br.readLine();
+		int A = Integer.parseInt(str.split(" ")[0]);
+		int B = Integer.parseInt(str.split(" ")[1]);
+		int t = Integer.parseInt(str.split(" ")[2]);
+		int bcount = (t-(t%A))/A;
+		System.out.println(bcount*B);
+	}
+}

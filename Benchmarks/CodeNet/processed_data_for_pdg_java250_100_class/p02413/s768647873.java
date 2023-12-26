@@ -1,0 +1,30 @@
+class Main {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br =
+				new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		String[] matrixStr = br.readLine().split(" ");		
+		int rowNum = Integer.parseInt(matrixStr[0]);		
+		int colNum = Integer.parseInt(matrixStr[1]);		
+		int[][] resultArray = new int[rowNum+1][colNum+1];
+		int lastNum = 0;
+		for(int i=0; i<rowNum; i++) {						
+			String[] inputStr = br.readLine().split(" ");	
+			for(int j=0; j<colNum; j++) {					
+				resultArray[i][j] = Integer.parseInt(inputStr[j]);
+				resultArray[i][colNum] = resultArray[i][colNum] + resultArray[i][j];
+					sb.append(resultArray[i][j] + " ");		
+			}
+			sb.append(resultArray[i][colNum] + "\n");
+		}
+		for(int j=0; j<colNum; j++) {
+			for(int i=0; i<rowNum; i++) {
+				resultArray[rowNum][j] = resultArray[rowNum][j] + resultArray[i][j];
+			}
+				sb.append(resultArray[rowNum][j] + " ");
+			lastNum = lastNum + resultArray[rowNum][j];
+		}
+			sb.append(lastNum + "\n");
+			System.out.print(sb.toString());
+	}
+}

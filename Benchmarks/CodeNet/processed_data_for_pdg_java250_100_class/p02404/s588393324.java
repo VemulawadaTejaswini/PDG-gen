@@ -1,0 +1,27 @@
+public class Main {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		while (true) {
+			int height = in.nextInt();
+			int width = in.nextInt();
+			if (height == 0 && width == 0) {
+				break;
+			} else {
+				for (int count_h = 0; count_h < height; count_h++) {
+					if(count_h == 0 || count_h == (height-1)) {
+						for (int count_w = 0; count_w < width; count_w++) {
+							System.out.print("#");
+						}
+					}else{
+						System.out.print("#");
+						for (int count_w = 0; count_w < (width-2); count_w++) {
+							System.out.print(".");
+						}
+						System.out.print("#");
+					}
+					System.out.println();
+				}
+			}
+		}
+	}
+}

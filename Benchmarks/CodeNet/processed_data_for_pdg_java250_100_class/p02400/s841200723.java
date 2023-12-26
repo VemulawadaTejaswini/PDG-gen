@@ -1,0 +1,13 @@
+public class Main {
+	private static final int PI = 0;
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		double P=Math.PI;
+		double dbR = sc.nextDouble();
+		double dbS =dbR * dbR * P;
+		double dbC =(dbR + dbR) * P;
+		 String f1 = String.format("%.6f", dbS);
+		 String f2 = String.format("%.6f", dbC);
+		System.out.println(f1 + " " + f2);
+	}
+}

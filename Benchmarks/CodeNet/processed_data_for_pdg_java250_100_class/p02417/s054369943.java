@@ -1,0 +1,20 @@
+public class Main {
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		String str;
+		int[] listA = new int[26];
+		while(sc.hasNext()){
+			String SS = sc.nextLine();
+			str = SS.toLowerCase();
+			for(int i = 0;i < str.length();i++){
+				char c = str.charAt(i);
+				if(Character.isLetter(c)){
+					listA[c - 'a']++;
+				}
+			}
+		}
+		for(int i = 0; i < listA.length; i++){
+			System.out.println((char)( 'a' + i ) + " : " + listA[i]);
+		}
+	}
+}

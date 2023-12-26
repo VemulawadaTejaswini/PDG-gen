@@ -1,0 +1,9 @@
+public class Main {
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		String a = sc.next();
+		String b = sc.next();
+		int num = Integer.parseInt(a + b);
+		System.out.println(Math.pow((int)Math.sqrt(num), 2) == num ? "Yes" : "No");
+	}
+}

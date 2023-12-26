@@ -1,0 +1,10 @@
+public class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        s+=sc.nextLine();
+        System.out.println((s.substring((s.indexOf('A')),(s.lastIndexOf('Z'))).length())+1);
+    }
+}

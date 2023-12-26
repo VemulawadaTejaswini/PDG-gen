@@ -1,0 +1,27 @@
+public class Main{
+    public static void main(String[] args){
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int m = scan.nextInt();
+		int retu[][] = new int[n][m];
+		int beku_b[] = new int[m];
+		int beku_c[] = new int[n];
+		for (int cnt_n = 0; cnt_n < n; cnt_n++){
+			for (int cnt_m = 0; cnt_m < m; cnt_m++) {
+				retu[cnt_n][cnt_m] = scan.nextInt();
+			}
+		}
+		for (int cnt_m = 0; cnt_m < m; cnt_m++) {
+			beku_b[cnt_m] = scan.nextInt();
+		}
+		for (int cnt_n = 0; cnt_n < n; cnt_n++){
+			for (int cnt_m = 0; cnt_m < m; cnt_m++) {
+				beku_c[cnt_n] += retu[cnt_n][cnt_m] * beku_b[cnt_m];
+			}
+		}
+		for (int cnt_c = 0; cnt_c < n; cnt_c++){
+					System.out.println(beku_c[cnt_c]);
+			}
+		scan.close();
+	}
+}

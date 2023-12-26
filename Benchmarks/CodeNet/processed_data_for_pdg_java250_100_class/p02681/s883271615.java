@@ -1,0 +1,11 @@
+public class Main {
+	public static final int MOD = 1000000007;
+	public static void main(String[] args) {
+		int i,j;
+		Scanner sc = new Scanner(in);
+		String s = sc.next();
+		String t = sc.next();
+		sc.close();
+		out.println(s.equals(t.substring(0,s.length()))?"Yes":"No");
+	}
+}

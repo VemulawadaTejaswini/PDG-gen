@@ -1,0 +1,26 @@
+public class Main{
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		int m = in.nextInt();
+		int[][] aryA = new int[n][m];
+		int[] aryB = new int[m];
+		int[] result = new int[n];
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				aryA[i][j] = in.nextInt();
+			}
+		}
+		for(int i=0; i<m; i++){
+			aryB[i] = in.nextInt();
+		}
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				result[i] += aryA[i][j]*aryB[j];
+			}
+		}
+		for(int i:result){
+			System.out.println(i);
+		}
+	}
+}

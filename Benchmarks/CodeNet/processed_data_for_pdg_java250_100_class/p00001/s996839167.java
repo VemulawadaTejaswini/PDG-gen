@@ -1,0 +1,16 @@
+public class Main {
+	public static void main(String[] a) {
+		Scanner scan = new Scanner(System.in);
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for(int i =0; i<10; i++){
+			String stra = scan.next();
+			int str = Integer.parseInt(stra);
+			 list.add(str);
+		}
+		scan.close();
+		Collections.sort(list);
+		System.out.println(list.get(9));
+		System.out.println(list.get(8));
+		System.out.println(list.get(7));
+	}
+}

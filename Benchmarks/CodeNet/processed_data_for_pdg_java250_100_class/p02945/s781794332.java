@@ -1,0 +1,14 @@
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		sc.close();
+		int[] max = new int[3];
+		max[0] = A * B;
+		max[1] = A - B;
+		max[2] = A + B;
+		Arrays.sort(max);
+		System.out.println(max[2]);
+	}
+}

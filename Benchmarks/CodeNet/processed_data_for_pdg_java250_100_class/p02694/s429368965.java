@@ -1,0 +1,13 @@
+public class Main {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		long X = sc.nextLong();
+        long money=100;
+      	int s=0;
+        while(money<X){
+        	money+=money/100;
+        	s++;
+        }
+		System.out.println(s);
+	}
+}
