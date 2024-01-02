@@ -212,13 +212,15 @@ def main():
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
 
     #Bunch of classification tasks
-    args.dataset = "codenet-10-class" # Possible values: "crypto-api", "codenet-5-class"
+    args.dataset = "crypto-api" # Possible values: "crypto-api", "codenet-5-class", "codenet-10-class", "codenet-100-class"
     if args.dataset == "crypto-api":
         num_tasks = 1
     elif args.dataset == "codenet-5-class":
         num_tasks = 5
     elif args.dataset == "codenet-10-class":
         num_tasks = 10
+    elif args.dataset == "codenet-100-class":
+        num_tasks = 100
     else:
         raise ValueError("Invalid dataset name.")
 
@@ -289,10 +291,11 @@ def main():
             print("removed the existing file.")
         writer = SummaryWriter(fname)
 
+    args.epochs = 20
     for epoch in range(1, args.epochs+1):
         print("====epoch " + str(epoch))
         
-        if args.dataset in ["codenet-5-class", "codenet-10-class"]:
+        if args.dataset in ["codenet-5-class", "codenet-10-class", "codenet-100-class"]:
             train_multiclass_classification(args, model, device, train_loader, optimizer)
         elif args.dataset in ["crypto-api"]:
             train_binary_classification(args, model, device, train_loader, optimizer)
@@ -301,7 +304,7 @@ def main():
 
         print("====Evaluation")
         if args.eval_train:
-            if args.dataset in ["codenet-5-class", "codenet-10-class"]:
+            if args.dataset in ["codenet-5-class", "codenet-10-class", "codenet-100-class"]:
                 train_acc = eval_multiclass_classification(args, model, device, train_loader)
             elif args.dataset in ["crypto-api"]:
                 train_acc = eval_binary_classification(args, model, device, train_loader)
@@ -311,7 +314,7 @@ def main():
             print("omit the training accuracy computation")
             train_acc = 0
             
-        if args.dataset in ["codenet-5-class", "codenet-10-class"]:
+        if args.dataset in ["codenet-5-class", "codenet-10-class", "codenet-100-class"]:
             val_acc = eval_multiclass_classification(args, model, device, val_loader)
             test_acc = eval_multiclass_classification(args, model, device, test_loader)
         elif args.dataset in ["crypto-api"]:
