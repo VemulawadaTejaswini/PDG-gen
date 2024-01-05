@@ -30,8 +30,10 @@ public class mainframe {
     // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
     // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/pdg-data/";
     // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/Processed-data-for-pdg/";
-    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/pdg_data_java250_100_class/";
-    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg_java250_100_class/";
+    // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/pdg_data_java250_100_class/";
+    // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg_java250_100_class/";
+    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Perturbed_Code/pdg_data/";
+    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Perturbed_Code/source_code/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
@@ -132,7 +134,7 @@ public class mainframe {
         try {
             mainframe obj = new mainframe();
             boolean isOnlyFile = false;
-            String generateFor = "codenet"; // "code2seq" or "ck" or "crypto-api" or "codenet"
+            String generateFor = "perturbed-code"; // "code2seq" or "ck" or "crypto-api" or "codenet" or "perturbed-code"
             if (isOnlyFile) {
                 outputFolder = "D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/PdgGeneratorModified/test_folder/";
                 String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\CodeKernel_Manual_Data\\Processed_data\\after_preprocessing\\FilenameUtils.normalize\\sample-0\\68_0.java"; 
@@ -157,7 +159,7 @@ public class mainframe {
                         obj.methods(file, apiName, sampleName);
                     }
                 }
-            } else if(generateFor.equals("code2seq") || generateFor.equals("codenet")){
+            } else if(generateFor.equals("code2seq") || generateFor.equals("codenet") || generateFor.equals("perturbed-code")){
                 ArrayList<String> folders = getListOfFolders(inputFolder);
                 // System.out.println("\n\nAPI Folders: " + folders);
                 for (String folder : folders) {
