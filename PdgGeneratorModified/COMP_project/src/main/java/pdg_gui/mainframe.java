@@ -135,12 +135,12 @@ public class mainframe {
         new PDGCore();
         try {
             mainframe obj = new mainframe();
-            boolean isOnlyFile = false;
+            boolean isOnlyFile = true;
             String generateFor = "perturbed-code"; // "code2seq" or "ck" or "crypto-api" or "codenet" or "perturbed-code"
             if (isOnlyFile) {
-                outputFolder = "D:/IIT Hyderabad/Research/API misuse prediction/PDG-Gen/Repository/PdgGeneratorModified/test_folder/";
-                String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\PDG-Gen\\Repository\\CodeKernel_Manual_Data\\Processed_data\\after_preprocessing\\FilenameUtils.normalize\\sample-0\\68_0.java"; 
-                String apiName = "FilenameUtils.normalize";
+                outputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\PdgGeneratorModified\\test_folder\\";
+                String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Code_kernel_data\\after_relabeling\\ExecutorService.submit\\sample-0\\0.java"; 
+                String apiName = "ExecutorService.submit";
                 String sampleName = "sample-0";
                 obj.methods(file, apiName, sampleName);
             } else if(generateFor.equals("ck")){
