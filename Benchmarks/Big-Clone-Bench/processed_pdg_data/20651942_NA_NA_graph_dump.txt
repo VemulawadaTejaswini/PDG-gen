@@ -1,0 +1,6 @@
+Line_9 $$ if (Options.password.trim().equals("")) --> Line_10 $$ System.err.println("No default password set. Shutdown not allowed.") [CD]
+Line_13 $$ if (e.message.get("pwhash") == null) --> Line_14 $$ System.err.println("Shutdown message without password received. Shutdown not allowed.") [CD]
+Line_18 $$ java.security.MessageDigest hash = java.security.MessageDigest.getInstance("SHA-1") --> Line_19 $$ hash.update(Options.password.getBytes("UTF-8")) [FD]
+Line_18 $$ java.security.MessageDigest hash = java.security.MessageDigest.getInstance("SHA-1") --> Line_20 $$ if (!java.security.MessageDigest.isEqual(hash.digest(), (byte[]) e.message.get("pwhash"))) [FD]
+Line_20 $$ if (!java.security.MessageDigest.isEqual(hash.digest(), (byte[]) e.message.get("pwhash"))) --> Line_21 $$ System.err.println("Wrong shutdown password. Shutdown not allowed.") [CD]
+Line_20 $$ if (!java.security.MessageDigest.isEqual(hash.digest(), (byte[]) e.message.get("pwhash"))) --> Line_24 $$ System.out.println("Valid shutdown password received.") [CD]

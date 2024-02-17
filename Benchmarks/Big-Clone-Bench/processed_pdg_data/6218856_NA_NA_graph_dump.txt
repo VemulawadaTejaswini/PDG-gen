@@ -1,0 +1,8 @@
+Line_4 $$ final HttpClient httpClient = getHttpClient() --> Line_5 $$ final HttpResponse resp = httpClient.execute(new HttpGet(url)) [FD]
+Line_5 $$ final HttpResponse resp = httpClient.execute(new HttpGet(url)) --> Line_6 $$ final HttpEntity entity = resp.getEntity() [FD]
+Line_5 $$ final HttpResponse resp = httpClient.execute(new HttpGet(url)) --> Line_7 $$ final int statusCode = resp.getStatusLine().getStatusCode() [FD]
+Line_8 $$ if (statusCode != HttpStatus.SC_OK || entity == null) --> Line_9 $$ return null [CD]
+Line_6 $$ final HttpEntity entity = resp.getEntity() --> Line_11 $$ final byte[] respBytes = EntityUtils.toByteArray(entity) [FD]
+Line_11 $$ final byte[] respBytes = EntityUtils.toByteArray(entity) --> Line_14 $$ return BitmapFactory.decodeByteArray(respBytes, 0, respBytes.length, decodeOptions) [FD]
+Line_12 $$ BitmapFactory.Options decodeOptions = new BitmapFactory.Options() --> Line_14 $$ return BitmapFactory.decodeByteArray(respBytes, 0, respBytes.length, decodeOptions) [FD]
+Line_2 $$ public static Bitmap loadBitmap(String url) --> Line_18 $$ return null [CD]

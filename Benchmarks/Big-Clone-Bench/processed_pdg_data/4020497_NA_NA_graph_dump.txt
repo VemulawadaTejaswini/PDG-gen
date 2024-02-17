@@ -1,0 +1,8 @@
+Line_4 $$ FileInputStream inputStream = new FileInputStream(sourceFile) --> Line_6 $$ FileChannel readableChannel = inputStream.getChannel() [FD]
+Line_5 $$ FileOutputStream outputStream = new FileOutputStream(targetFile) --> Line_7 $$ FileChannel writableChannel = outputStream.getChannel() [FD]
+Line_7 $$ FileChannel writableChannel = outputStream.getChannel() --> Line_8 $$ writableChannel.truncate(0) [FD]
+Line_7 $$ FileChannel writableChannel = outputStream.getChannel() --> Line_9 $$ writableChannel.transferFrom(readableChannel, 0, readableChannel.size()) [FD]
+Line_6 $$ FileChannel readableChannel = inputStream.getChannel() --> Line_9 $$ writableChannel.transferFrom(readableChannel, 0, readableChannel.size()) [FD]
+Line_4 $$ FileInputStream inputStream = new FileInputStream(sourceFile) --> Line_10 $$ inputStream.close() [FD]
+Line_5 $$ FileOutputStream outputStream = new FileOutputStream(targetFile) --> Line_11 $$ outputStream.close() [FD]
+Line_2 $$ public static void copyFile(File sourceFile, File targetFile) throws FileCopyingException --> Line_13 $$ String exceptionMessage = "An error occurred when copying from the file \"" + sourceFile.getAbsolutePath() + "\" to the file \"" + targetFile.getAbsolutePath() + "\"." [FD]
