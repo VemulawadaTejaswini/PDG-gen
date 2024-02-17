@@ -38,8 +38,8 @@ public class mainframe {
     // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Perturbed_Code/source_code/";
     // static String outputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Benchmarks\\Code-Kernel-Relabelled\\before_pruning\\";
     // static String inputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Benchmarks\\Code-Kernel-Relabelled\\after_preprocessing\\";
-    static String outputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Benchmarks\\Big-Clone-Bench\\pdg_data\\";
-    static String inputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Benchmarks\\Big-Clone-Bench\\java_files\\";
+    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/Big-Clone-Bench/pdg_data/";
+    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/Big-Clone-Bench/java_files/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
