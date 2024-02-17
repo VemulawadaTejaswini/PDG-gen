@@ -43,6 +43,10 @@ class GINConv(MessagePassing):
         self_loop_attr = torch.zeros(x.size(0))
         self_loop_attr[:] = 2 # Cosidering self-loop = 2
         self_loop_attr = self_loop_attr.to(edge_attr.device).to(edge_attr.dtype)
+        
+        edge_attr = edge_attr.ravel()
+        # print(edge_attr.shape, self_loop_attr.shape)
+        # print(edge_attr[:5], self_loop_attr[:5])
         edge_attr = torch.cat((edge_attr, self_loop_attr), dim = 0)
 
         edge_embeddings = self.edge_embedding1(edge_attr[:])
@@ -92,6 +96,10 @@ class GCNConv(MessagePassing):
         self_loop_attr = torch.zeros(x.size(0))
         self_loop_attr[:] = 2 # Cosidering self-loop = 2
         self_loop_attr = self_loop_attr.to(edge_attr.device).to(edge_attr.dtype)
+        
+        edge_attr = edge_attr.ravel()
+        # print(edge_attr.shape, self_loop_attr.shape)
+        # print(edge_attr[:5], self_loop_attr[:5])
         edge_attr = torch.cat((edge_attr, self_loop_attr), dim = 0)
 
         edge_embeddings = self.edge_embedding1(edge_attr[:])

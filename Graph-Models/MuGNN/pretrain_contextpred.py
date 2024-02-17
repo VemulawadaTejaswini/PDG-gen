@@ -31,6 +31,8 @@ from tensorboardX import SummaryWriter
 import random
 import platform
 
+from plot_results import single_line_plot
+
 def pool_func(x, batch, mode = "sum"):
     if mode == "sum":
         return global_add_pool(x, batch)
@@ -43,6 +45,11 @@ def cycle_index(num, shift):
     arr = torch.arange(num) + shift
     arr[-shift:] = torch.arange(shift)
     return arr
+
+def plot_training_loss_and_accuracy(training_loss, training_accuracy, epochs, location):
+    training_accuracy = [float("{:.2f}".format(acc * 100)) for acc in training_accuracy]
+    single_line_plot(epochs, training_loss, "Epoch", "Loss", "Training Loss vs Epoch", location + "/pre_training_loss.jpg")
+    single_line_plot(epochs, training_accuracy, "Epoch", "Accuracy", "Training Accuracy vs Epoch", location + "/pre_training_accuracy.jpg")
 
 criterion = nn.BCEWithLogitsLoss()
 
@@ -137,7 +144,7 @@ def main():
     parser.add_argument('--mode', type=str, default = "cbow", help = "cbow or skipgram")
     parser.add_argument('--dataset', type=str, default = 'zinc_standard_agent', help='root directory of dataset for pretraining')
     parser.add_argument('--output_model_file', type=str, default = '', help='filename to output the model')
-    parser.add_argument('--gnn_type', type=str, default="gin")
+    parser.add_argument('--gnn_type', type=str, default="gcn")
     parser.add_argument('--seed', type=int, default=seed, help = "Seed for splitting dataset.")
     parser.add_argument('--num_workers', type=int, default = 8, help='number of workers for dataset loading')
     args = parser.parse_args()
@@ -155,6 +162,7 @@ def main():
     l1 = args.num_layer - 2
     l2 = l1 + args.csize
 
+    args.gnn_type = "gin"
     print("mode: ", args.mode)
     print("GNN type: ", args.gnn_type)
     print("num layer: %d l1: %d l2: %d" %(args.num_layer, l1, l2))
@@ -179,14 +187,22 @@ def main():
     optimizer_substruct = optim.Adam(model_substruct.parameters(), lr=args.lr, weight_decay=args.decay)
     optimizer_context = optim.Adam(model_context.parameters(), lr=args.lr, weight_decay=args.decay)
 
+    args.epochs = 50
+    training_accuracy_list, training_loss_list, epochs_list = [], [], []
     for epoch in range(1, args.epochs+1):
         print("====epoch " + str(epoch))
         
         train_loss, train_acc = train(args, model_substruct, model_context, loader, optimizer_substruct, optimizer_context, device)
         print(train_loss, train_acc)
+        training_accuracy_list.append(train_acc)
+        training_loss_list.append(train_loss)
+        epochs_list.append(epoch)
 
     if not args.output_model_file == "":
         torch.save(model_substruct.state_dict(), args.output_model_file + "/model.pth")
+    
+    args.output_plots = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/plots"
+    plot_training_loss_and_accuracy(training_loss_list, training_accuracy_list, epochs_list, args.output_plots)
 
 
 # To ensure determinism

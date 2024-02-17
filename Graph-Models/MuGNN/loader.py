@@ -472,7 +472,7 @@ class MoleculeDataset(InMemoryDataset):
 
     @property
     def processed_file_names(self):
-        return 'geometric_data_processed.pt'
+        return 'geometric_data_processed_new_code2seq_and_ck.pt'
 
     def download(self):
         raise NotImplementedError('Must indicate valid location of raw data. '
