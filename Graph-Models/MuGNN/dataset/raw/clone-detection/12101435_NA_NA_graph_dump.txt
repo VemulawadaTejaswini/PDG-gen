@@ -1,0 +1,8 @@
+Line_2 $$ private void invokeTest(String queryfile, String target) --> Line_4 $$ String query = IOUtils.toString(XPathMarkBenchmarkTest.class.getResourceAsStream(queryfile)).trim() [FD]
+Line_5 $$ String args = EXEC_CMD + " \"" + query + "\" \"" + target + '"' --> Line_7 $$ Process proc = Runtime.getRuntime().exec(args, null, benchmarkDir) [FD]
+Line_7 $$ Process proc = Runtime.getRuntime().exec(args, null, benchmarkDir) --> Line_8 $$ InputStream is = proc.getInputStream() [FD]
+Line_8 $$ InputStream is = proc.getInputStream() --> Line_10 $$ IOUtils.copy(is, new FileOutputStream(outFile)) [FD]
+Line_8 $$ InputStream is = proc.getInputStream() --> Line_11 $$ is.close() [FD]
+Line_7 $$ Process proc = Runtime.getRuntime().exec(args, null, benchmarkDir) --> Line_12 $$ int ret = proc.waitFor() [FD]
+Line_12 $$ int ret = proc.waitFor() --> Line_13 $$ if (ret != 0) [FD]
+Line_13 $$ if (ret != 0) --> Line_14 $$ System.out.println("process exited with value : " + ret) [CD]

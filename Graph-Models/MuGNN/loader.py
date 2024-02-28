@@ -1,4 +1,5 @@
 import os
+import gc
 import glob
 import torch
 import pickle
@@ -399,8 +400,9 @@ def get_nodes_edges(inTextFile, add_reverse_edges = False):
   return nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name
 
 #Set GPU
-os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+#device = torch.device("cpu")
 
 # Initialize the models
 codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
@@ -417,8 +419,30 @@ def get_node_embedding_from_codebert(nodes):
         tokens_ids = tokens_ids.to(device)
         context_embeddings = codebert_model(tokens_ids[None,:])
         cls_token_embedding = context_embeddings.last_hidden_state[0,0,:]
-        list_of_embeddings.append(cls_token_embedding)
+        list_of_embeddings.append(cls_token_embedding.to("cpu"))
+        del tokens_ids
+        del context_embeddings
+        del cls_token_embedding
+    gc.collect()
+    torch.cuda.empty_cache()
     return torch.stack(list_of_embeddings)
+
+def downsample(datapoints, pdg_folder_path):
+    positive_points, negative_points = [], []
+    for data in datapoints:
+        id1, id2, label = data.strip().split("\t")
+        pdg_code_1_path = pdg_folder_path + "/" + id1 + "_NA_NA_graph_dump.txt"
+        pdg_code_2_path = pdg_folder_path + "/" + id2 + "_NA_NA_graph_dump.txt"
+        if int(label) == 1:
+            if os.path.exists(pdg_code_1_path) and os.path.exists(pdg_code_2_path): 
+                positive_points.append([id1, id2, label])
+        else:
+            if os.path.exists(pdg_code_1_path) and os.path.exists(pdg_code_2_path):
+                negative_points.append([id1, id2, label])
+    print("Positive points: {} and Negative points: {}".format(len(positive_points), len(negative_points)))
+    min_of_pos_neg = min(len(positive_points), len(negative_points))
+    balanced_dataset = positive_points[:min_of_pos_neg] + negative_points[:min_of_pos_neg]
+    return balanced_dataset
 
 class MoleculeDataset(InMemoryDataset):
     def __init__(self,
@@ -472,7 +496,7 @@ class MoleculeDataset(InMemoryDataset):
 
     @property
     def processed_file_names(self):
-        return 'geometric_data_processed_new_code2seq_and_ck.pt'
+        return 'geometric_data_processed_clone_detection.pt'
 
     def download(self):
         raise NotImplementedError('Must indicate valid location of raw data. '
@@ -613,6 +637,131 @@ class MoleculeDataset(InMemoryDataset):
                     data_list.append(data)
                     count += 1
         
+        elif self.dataset in ["clone-detection"] :
+            splits = [["train", 1, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/train.txt"], 
+                      ["valid", 2, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/valid.txt"], 
+                      ["test", 3, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/test.txt"]]
+            input_folder_path = ""
+            for folder_path in self.raw_paths:
+                if self.dataset in folder_path:
+                    input_folder_path = folder_path
+                    break
+            count = 0
+            for split_name, split_no, mapping_file_location in splits:
+                print("\nProcessing: {}\n".format(split_name))
+                mapping_file = open(mapping_file_location, 'r')
+                datapoints = mapping_file.readlines()
+                positive_count, negative_count = 0, 0
+
+                # Downsample as +ve and -ve datapoints count can vary
+                datapoints = downsample(datapoints, input_folder_path)
+                print("Dataset Size: ", len(datapoints))
+                
+                # Populate the cache first to reuse the data
+                dataset_cache = {}
+                unique_files = set([])
+                for datapoint in datapoints:
+                    id1, id2, label = datapoint
+                    unique_files.add(id1)
+                    unique_files.add(id2)
+                print("Number of unique pdg files: ", len(unique_files))
+                for id in tqdm.tqdm(list(unique_files)):
+                    try:
+                        pdg_code_path = input_folder_path + "/" + id + "_NA_NA_graph_dump.txt"
+                        nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name = get_nodes_edges(pdg_code_path, add_reverse_edges = True)
+                        dataset_cache[id] = {}
+                        dataset_cache[id]["nodes_dict"] = nodes_dict
+                        dataset_cache[id]["edge_indices_FD"] = edge_indices_FD
+                        dataset_cache[id]["edge_indices_CD"] = edge_indices_CD
+                        dataset_cache[id]["edge_indices"] = edge_indices
+                        dataset_cache[id]["edge_type"] = edge_type
+                        dataset_cache[id]["file_name"] = file_name
+                    except Exception as e:
+                        print("\nError: ", e)
+                        continue
+                    
+                    if(len(nodes_dict) == 0):
+                        print("\nNo Node Data")
+                        continue
+                    
+                    try:
+                        CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
+                        dataset_cache[id]["CodeEmbedding"] = CodeEmbedding
+                    except Exception as e :
+                        print("\nError in generating CodeBERT embedding: ", e)
+                        print(nodes_dict)
+                        continue
+                
+                # Craete Data() objects
+                for datapoint in datapoints:
+                    id1, id2, label = datapoint
+                    if id1 not in dataset_cache or id2 not in dataset_cache or len(dataset_cache[id1]) != 7 or len(dataset_cache[id2]) != 7:
+                        continue
+                    
+                    nodes_dict_1 = dataset_cache[id1]["nodes_dict"]
+                    edge_indices_FD_1 = dataset_cache[id1]["edge_indices_FD"]
+                    edge_indices_CD_1 = dataset_cache[id1]["edge_indices_CD"]
+                    edge_indices_1 = dataset_cache[id1]["edge_indices"]
+                    edge_type_1 = dataset_cache[id1]["edge_type"]
+                    file_name_1 = dataset_cache[id1]["file_name"]
+                    
+                    nodes_dict_2 = dataset_cache[id2]["nodes_dict"]
+                    edge_indices_FD_2 = dataset_cache[id2]["edge_indices_FD"]
+                    edge_indices_CD_2 = dataset_cache[id2]["edge_indices_CD"]
+                    edge_indices_2 = dataset_cache[id2]["edge_indices"]
+                    edge_type_2 = dataset_cache[id2]["edge_type"]
+                    file_name_2 = dataset_cache[id2]["file_name"]
+                    
+                    if(len(nodes_dict_1) == 0 or len(nodes_dict_2) == 0):
+                        print("\nNo Node Data")
+                        continue
+
+                    # Node feature matrix with shape [num_nodes, num_node_features]=(N, 768).
+                    try:
+                        CodeEmbedding_1 = dataset_cache[id1]["CodeEmbedding"]
+                        CodeEmbedding_2 = dataset_cache[id2]["CodeEmbedding"]
+                    except Exception as e :
+                        print("\nError in generating CodeBERT embedding: ", e)
+                        print(nodes_dict_1)
+                        print(nodes_dict_2)
+                        continue
+
+                    # FIXING DATA FOTMATS AND SHAPE
+                    x_1 = torch.tensor(CodeEmbedding_1)
+                    x_2 = torch.tensor(CodeEmbedding_2)
+                        
+                    y = torch.tensor([int(label)], dtype=torch.long)
+                    if int(label) == 1:
+                        positive_count += 1
+                    else:
+                        negative_count += 1
+
+                    # edge_index (LongTensor, optional) – Graph connectivity in COO format with shape [2, num_edges]
+                    edge_index_CD_1 = torch.tensor(edge_indices_CD_1, dtype=torch.long).t().contiguous()
+                    edge_index_FD_1 = torch.tensor(edge_indices_FD_1, dtype=torch.long).t().contiguous()
+                    edge_index_1 = torch.tensor(edge_indices_1, dtype=torch.long).t().contiguous()
+                    edge_attr_1 = torch.tensor(edge_type_1, dtype=torch.long).t().contiguous()
+                        
+                    edge_index_CD_2 = torch.tensor(edge_indices_CD_2, dtype=torch.long).t().contiguous()
+                    edge_index_FD_2 = torch.tensor(edge_indices_FD_2, dtype=torch.long).t().contiguous()
+                    edge_index_2 = torch.tensor(edge_indices_2, dtype=torch.long).t().contiguous()
+                    edge_attr_2 = torch.tensor(edge_type_2, dtype=torch.long).t().contiguous()
+  
+                    data = Data()
+                    data.edge_index1 = edge_index_1
+                    data.edge_attr1 = edge_attr_1
+                    data.x1 = x_1
+                    data.edge_index2 = edge_index_2
+                    data.edge_attr2 = edge_attr_2
+                    data.x2 = x_2
+                    data.id = torch.tensor([count])
+                    data.y = y
+                    data.split = split_no
+                    # data.num_nodes = len(nodes_dict)
+                    # data.api = file_name
+                    data_list.append(data)
+                    count += 1
+                print("{} Split - Positive Count: {} and Negative Count: {}".format(split_name, positive_count, negative_count))
         else:
             raise ValueError('Invalid dataset name')
 
@@ -623,12 +772,6 @@ class MoleculeDataset(InMemoryDataset):
 
         if self.pre_transform is not None:
             data_list = [self.pre_transform(data) for data in data_list]
-
-        # write data_smiles_list in processed paths
-        # data_smiles_series = pd.Series(data_smiles_list)
-        # data_smiles_series.to_csv(os.path.join(self.processed_dir,
-        #                                        'smiles.csv'), index=False,
-        #                           header=False)
 
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[0])

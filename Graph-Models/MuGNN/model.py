@@ -264,10 +264,10 @@ class GNN(torch.nn.Module):
 
     #def forward(self, x, edge_index, edge_attr):
     def forward(self, *argv):
-        if len(argv) == 3:
-            x, edge_index, edge_attr = argv[0], argv[1], argv[2]
-        elif len(argv) == 1:
-            data = argv[0]
+        if len(argv) == 4:
+            x, edge_index, edge_attr, pooling_needed = argv[0], argv[1], argv[2], argv[3]
+        elif len(argv) == 2:
+            data, pooling_needed = argv[0], argv[1]
             x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
         else:
             raise ValueError("unmatched number of arguments.")
@@ -298,7 +298,13 @@ class GNN(torch.nn.Module):
             h_list = [h.unsqueeze_(0) for h in h_list]
             node_representation = torch.sum(torch.cat(h_list, dim = 0), dim = 0)[0]
 
-        return node_representation
+        # Pooling is added in case needed
+        if(pooling_needed):
+            batch=torch.zeros(x.size(0),dtype=torch.long).to(self.device)
+            hg=self.pool(x,batch=batch)
+            return hg
+        else:
+            return node_representation
 
 
 class GNN_graphpred(torch.nn.Module):
