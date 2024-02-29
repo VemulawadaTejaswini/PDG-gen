@@ -178,7 +178,7 @@ def main():
     parser.add_argument("--threshold", default=0)
     args = parser.parse_args()
         
-    os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
     args.device = 1
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
 

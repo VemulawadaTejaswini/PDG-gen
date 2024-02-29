@@ -672,9 +672,9 @@ class MoleculeDataset(InMemoryDataset):
                     count += 1
         
         elif self.dataset in ["clone-detection"] :
-            splits = [["train", 1, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/train.txt"], 
-                      ["valid", 2, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/valid.txt"], 
-                      ["test", 3, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/test.txt"]]
+            splits = [["train", 1, "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/train.txt"], 
+                      ["valid", 2, "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/valid.txt"], 
+                      ["test", 3, "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/test.txt"]]
             input_folder_path = ""
             for folder_path in self.raw_paths:
                 if self.dataset in folder_path:
@@ -719,7 +719,7 @@ class MoleculeDataset(InMemoryDataset):
                         continue
                     
                     try:
-                        CodeEmbedding = get_node_embedding_from_codebert_with_batching(nodes_dict)
+                        CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
                         dataset_cache[id]["CodeEmbedding"] = CodeEmbedding
                     except Exception as e :
                         print("\nError in generating CodeBERT embedding: ", e)
