@@ -1,6 +1,7 @@
 import os
 import gc
 import glob
+import math
 import torch
 import pickle
 import collections
@@ -405,7 +406,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #device = torch.device("cpu")
 
 # Initialize the models
-codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
+codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base", use_fast=False)
 codebert_model = AutoModel.from_pretrained("microsoft/codebert-base")
 codebert_model = codebert_model.to(device)
 
@@ -425,6 +426,39 @@ def get_node_embedding_from_codebert(nodes):
         del cls_token_embedding
     gc.collect()
     torch.cuda.empty_cache()
+    return torch.stack(list_of_embeddings)
+
+def get_node_embedding_from_codebert_with_batching(nodes, batch_size = 16):
+    list_of_embeddings = []
+    code_lines = []
+    for code_line in nodes.keys():
+        code_line = code_line.split("$$")[1].strip()
+        code_lines.append(code_line)
+    batches = []
+    batch_length  = int(math.ceil(len(code_lines) / batch_size))
+    starting_index = 0
+    for i in range(1, batch_length + 1):
+        current_batch = code_lines[starting_index: min(len(code_lines), i*batch_size)]
+        starting_index = min(len(code_lines), i*batch_size)
+        batches.append(current_batch)
+        
+    for batch in batches:
+        batch_tokens = codebert_tokenizer.batch_encode_plus(batch, 
+                                                       return_tensors='pt',
+                                                       padding='max_length', 
+                                                       truncation=True, 
+                                                       max_length=512)
+        batch_token_ids, attention_masks = batch_tokens["input_ids"], batch_tokens["attention_mask"]
+        batch_token_ids = batch_token_ids.to(device)
+        context_embeddings = codebert_model(batch_token_ids)
+        cls_token_embedding = context_embeddings.last_hidden_state[:,0,:]
+        list_of_tensors = [cls_token_embedding[i, :] for i in range(cls_token_embedding.size()[0])]
+        list_of_embeddings.extend(list_of_tensors)
+        del batch_token_ids
+        del context_embeddings
+        del cls_token_embedding
+        gc.collect()
+        torch.cuda.empty_cache()
     return torch.stack(list_of_embeddings)
 
 def downsample(datapoints, pdg_folder_path):
@@ -685,7 +719,7 @@ class MoleculeDataset(InMemoryDataset):
                         continue
                     
                     try:
-                        CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
+                        CodeEmbedding = get_node_embedding_from_codebert_with_batching(nodes_dict)
                         dataset_cache[id]["CodeEmbedding"] = CodeEmbedding
                     except Exception as e :
                         print("\nError in generating CodeBERT embedding: ", e)
