@@ -401,14 +401,15 @@ def get_nodes_edges(inTextFile, add_reverse_edges = False):
   return nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name
 
 #Set GPU
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 #device = torch.device("cpu")
 
 # Initialize the models
-codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base", use_fast=False)
+codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
 codebert_model = AutoModel.from_pretrained("microsoft/codebert-base")
 codebert_model = codebert_model.to(device)
+codebert_model.eval()
 
 def get_node_embedding_from_codebert(nodes):
     list_of_embeddings = []
@@ -428,7 +429,7 @@ def get_node_embedding_from_codebert(nodes):
     torch.cuda.empty_cache()
     return torch.stack(list_of_embeddings)
 
-def get_node_embedding_from_codebert_with_batching(nodes, batch_size = 16):
+def get_node_embedding_from_codebert_with_batching(nodes, batch_size = 8):
     list_of_embeddings = []
     code_lines = []
     for code_line in nodes.keys():
@@ -450,10 +451,12 @@ def get_node_embedding_from_codebert_with_batching(nodes, batch_size = 16):
                                                        max_length=512)
         batch_token_ids, attention_masks = batch_tokens["input_ids"], batch_tokens["attention_mask"]
         batch_token_ids = batch_token_ids.to(device)
-        context_embeddings = codebert_model(batch_token_ids)
+        attention_masks = attention_masks.to(device)
+        context_embeddings = codebert_model(batch_token_ids, attention_masks)
         cls_token_embedding = context_embeddings.last_hidden_state[:,0,:]
         list_of_tensors = [cls_token_embedding[i, :] for i in range(cls_token_embedding.size()[0])]
         list_of_embeddings.extend(list_of_tensors)
+        del attention_masks
         del batch_token_ids
         del context_embeddings
         del cls_token_embedding
@@ -719,7 +722,8 @@ class MoleculeDataset(InMemoryDataset):
                         continue
                     
                     try:
-                        CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
+                        with torch.no_grad():
+                            CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
                         dataset_cache[id]["CodeEmbedding"] = CodeEmbedding
                     except Exception as e :
                         print("\nError in generating CodeBERT embedding: ", e)
@@ -727,9 +731,10 @@ class MoleculeDataset(InMemoryDataset):
                         continue
                 
                 # Craete Data() objects
-                for datapoint in datapoints:
+                for datapoint in tqdm.tqdm(datapoints):
                     id1, id2, label = datapoint
                     if id1 not in dataset_cache or id2 not in dataset_cache or len(dataset_cache[id1]) != 7 or len(dataset_cache[id2]) != 7:
+                        print("ERROR: Data is not in cache or all parameters not found!")
                         continue
                     
                     nodes_dict_1 = dataset_cache[id1]["nodes_dict"]
@@ -761,8 +766,8 @@ class MoleculeDataset(InMemoryDataset):
                         continue
 
                     # FIXING DATA FOTMATS AND SHAPE
-                    x_1 = torch.tensor(CodeEmbedding_1)
-                    x_2 = torch.tensor(CodeEmbedding_2)
+                    x_1 = CodeEmbedding_1.clone().detach()
+                    x_2 = CodeEmbedding_2.clone().detach()
                         
                     y = torch.tensor([int(label)], dtype=torch.long)
                     if int(label) == 1:

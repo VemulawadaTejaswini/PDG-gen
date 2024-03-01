@@ -21,8 +21,6 @@ import os
 import sys
 import shutil
 
-from tensorboardX import SummaryWriter
-
 ## NEW IMPORTS
 import random
 import platform
@@ -178,8 +176,8 @@ def main():
     parser.add_argument("--threshold", default=0)
     args = parser.parse_args()
         
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
-    args.device = 1
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
+    args.device = 0
     device = torch.device("cuda:" + str(args.device)) if torch.cuda.is_available() else torch.device("cpu")
 
     #Bunch of classification tasks
@@ -190,14 +188,13 @@ def main():
         raise ValueError("Invalid dataset name.")
 
     #set up dataset and transform function.
-    dataset_root = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/dataset"
-    args.output_plots = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/plots"
-    args.output_model_file = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/saved_models"
+    dataset_root = "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Graph-Models/MuGNN/dataset"
+    args.output_plots = "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Graph-Models/MuGNN/output/plots"
+    args.output_model_file = "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Graph-Models/MuGNN/output/saved_models"
     
     #set up dataset
     dataset = MoleculeDataset(dataset_root, dataset=args.dataset)
     print("Dataset Loaded!!!")
-    sys.exit()
     print(dataset)
     
     args.split = "custom"
