@@ -675,132 +675,61 @@ class MoleculeDataset(InMemoryDataset):
                     count += 1
         
         elif self.dataset in ["clone-detection"] :
-            splits = [["train", 1, "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/train.txt"], 
-                      ["valid", 2, "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/valid.txt"], 
-                      ["test", 3, "/u/student/2021/cs21mtech12001/API-Minsuse/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/test.txt"]]
             input_folder_path = ""
             for folder_path in self.raw_paths:
                 if self.dataset in folder_path:
                     input_folder_path = folder_path
                     break
-            count = 0
-            for split_name, split_no, mapping_file_location in splits:
-                print("\nProcessing: {}\n".format(split_name))
-                mapping_file = open(mapping_file_location, 'r')
-                datapoints = mapping_file.readlines()
-                positive_count, negative_count = 0, 0
+            print("\nProcessing: {}\n".format(input_folder_path))
+            files = glob.glob(os.path.join(input_folder_path, '*.txt'))
+            print("\nNumber of files: {}\n".format(len(files)))
+            for file in tqdm.tqdm(files):
+                try:
+                    nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name = get_nodes_edges(file, add_reverse_edges = True)
+                except Exception as e:
+                    print("\nError: ", e)
+                    continue
+                    
+                if(len(nodes_dict) == 0):
+                    print("\nNo Data: ", file)
+                    continue
+                #print(nodes_dict, edge_indices_CD, edge_indices_FD, edge_type)
 
-                # Downsample as +ve and -ve datapoints count can vary
-                datapoints = downsample(datapoints, input_folder_path)
-                print("Dataset Size: ", len(datapoints))
-                
-                # Populate the cache first to reuse the data
-                dataset_cache = {}
-                unique_files = set([])
-                for datapoint in datapoints:
-                    id1, id2, label = datapoint
-                    unique_files.add(id1)
-                    unique_files.add(id2)
-                print("Number of unique pdg files: ", len(unique_files))
-                for id in tqdm.tqdm(list(unique_files)):
-                    try:
-                        pdg_code_path = input_folder_path + "/" + id + "_NA_NA_graph_dump.txt"
-                        nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name = get_nodes_edges(pdg_code_path, add_reverse_edges = True)
-                        dataset_cache[id] = {}
-                        dataset_cache[id]["nodes_dict"] = nodes_dict
-                        dataset_cache[id]["edge_indices_FD"] = edge_indices_FD
-                        dataset_cache[id]["edge_indices_CD"] = edge_indices_CD
-                        dataset_cache[id]["edge_indices"] = edge_indices
-                        dataset_cache[id]["edge_type"] = edge_type
-                        dataset_cache[id]["file_name"] = file_name
-                    except Exception as e:
-                        print("\nError: ", e)
-                        continue
-                    
-                    if(len(nodes_dict) == 0):
-                        print("\nNo Node Data")
-                        continue
-                    
-                    try:
-                        with torch.no_grad():
-                            CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
-                        dataset_cache[id]["CodeEmbedding"] = CodeEmbedding
-                    except Exception as e :
-                        print("\nError in generating CodeBERT embedding: ", e)
-                        print(nodes_dict)
-                        continue
-                
-                # Craete Data() objects
-                for datapoint in tqdm.tqdm(datapoints):
-                    id1, id2, label = datapoint
-                    if id1 not in dataset_cache or id2 not in dataset_cache or len(dataset_cache[id1]) != 7 or len(dataset_cache[id2]) != 7:
-                        print("ERROR: Data is not in cache or all parameters not found!")
-                        continue
-                    
-                    nodes_dict_1 = dataset_cache[id1]["nodes_dict"]
-                    edge_indices_FD_1 = dataset_cache[id1]["edge_indices_FD"]
-                    edge_indices_CD_1 = dataset_cache[id1]["edge_indices_CD"]
-                    edge_indices_1 = dataset_cache[id1]["edge_indices"]
-                    edge_type_1 = dataset_cache[id1]["edge_type"]
-                    file_name_1 = dataset_cache[id1]["file_name"]
-                    
-                    nodes_dict_2 = dataset_cache[id2]["nodes_dict"]
-                    edge_indices_FD_2 = dataset_cache[id2]["edge_indices_FD"]
-                    edge_indices_CD_2 = dataset_cache[id2]["edge_indices_CD"]
-                    edge_indices_2 = dataset_cache[id2]["edge_indices"]
-                    edge_type_2 = dataset_cache[id2]["edge_type"]
-                    file_name_2 = dataset_cache[id2]["file_name"]
-                    
-                    if(len(nodes_dict_1) == 0 or len(nodes_dict_2) == 0):
-                        print("\nNo Node Data")
-                        continue
+                # Node feature matrix with shape [num_nodes, num_node_features]=(N, 768).
+                try:
+                    with torch.no_grad():
+                        CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
+                except Exception as e :
+                    print("\nError: ", e)
+                    print(nodes_dict)
+                    continue
+                #print(CodeEmbedding.shape)
 
-                    # Node feature matrix with shape [num_nodes, num_node_features]=(N, 768).
-                    try:
-                        CodeEmbedding_1 = dataset_cache[id1]["CodeEmbedding"]
-                        CodeEmbedding_2 = dataset_cache[id2]["CodeEmbedding"]
-                    except Exception as e :
-                        print("\nError in generating CodeBERT embedding: ", e)
-                        print(nodes_dict_1)
-                        print(nodes_dict_2)
-                        continue
-
-                    # FIXING DATA FOTMATS AND SHAPE
-                    x_1 = CodeEmbedding_1.clone().detach()
-                    x_2 = CodeEmbedding_2.clone().detach()
-                        
-                    y = torch.tensor([int(label)], dtype=torch.long)
-                    if int(label) == 1:
-                        positive_count += 1
-                    else:
-                        negative_count += 1
-
-                    # edge_index (LongTensor, optional) – Graph connectivity in COO format with shape [2, num_edges]
-                    edge_index_CD_1 = torch.tensor(edge_indices_CD_1, dtype=torch.long).t().contiguous()
-                    edge_index_FD_1 = torch.tensor(edge_indices_FD_1, dtype=torch.long).t().contiguous()
-                    edge_index_1 = torch.tensor(edge_indices_1, dtype=torch.long).t().contiguous()
-                    edge_attr_1 = torch.tensor(edge_type_1, dtype=torch.long).t().contiguous()
-                        
-                    edge_index_CD_2 = torch.tensor(edge_indices_CD_2, dtype=torch.long).t().contiguous()
-                    edge_index_FD_2 = torch.tensor(edge_indices_FD_2, dtype=torch.long).t().contiguous()
-                    edge_index_2 = torch.tensor(edge_indices_2, dtype=torch.long).t().contiguous()
-                    edge_attr_2 = torch.tensor(edge_type_2, dtype=torch.long).t().contiguous()
+                # FIXING DATA FOTMATS AND SHAPE
+                x = CodeEmbedding.clone().detach()
+                # print(x.shape)
   
-                    data = Data()
-                    data.edge_index1 = edge_index_1
-                    data.edge_attr1 = edge_attr_1
-                    data.x1 = x_1
-                    data.edge_index2 = edge_index_2
-                    data.edge_attr2 = edge_attr_2
-                    data.x2 = x_2
-                    data.id = torch.tensor([count])
-                    data.y = y
-                    data.split = split_no
-                    # data.num_nodes = len(nodes_dict)
-                    # data.api = file_name
-                    data_list.append(data)
-                    count += 1
-                print("{} Split - Positive Count: {} and Negative Count: {}".format(split_name, positive_count, negative_count))
+                # data.y: Target to train against (may have arbitrary shape),
+                # graph-level targets of shape [1, *]
+                file_name = file[file.rindex("/", 0, len(file) - 1) + 1 : -4]
+                id = int(file_name.split("_")[0])
+                y = torch.tensor([1], dtype=torch.long)
+                #print(type(y))
+
+                # edge_index (LongTensor, optional) – Graph connectivity in COO format with shape [2, num_edges]
+                edge_index_CD = torch.tensor(edge_indices_CD, dtype=torch.long).t().contiguous()
+                edge_index_FD = torch.tensor(edge_indices_FD, dtype=torch.long).t().contiguous()
+                edge_index = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+                edge_attr = torch.tensor(edge_type, dtype=torch.long).t().contiguous()
+                #print(edge_index_CD, edge_index_FD, edge_index, edge_type)
+  
+                data = Data(edge_index=edge_index, edge_attr=edge_attr, x=x)
+                data.id = torch.tensor([id])
+                data.y = y
+                # data.num_nodes = len(nodes_dict)
+                # data.api = file_name
+                data_list.append(data)
+
         else:
             raise ValueError('Invalid dataset name')
 

@@ -1,3 +1,4 @@
+import tqdm
 import torch
 import random
 import numpy as np
@@ -5,6 +6,7 @@ from itertools import compress
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from collections import defaultdict
 from sklearn.model_selection import StratifiedKFold
+from torch_geometric.data import Data
 
 # splitter function
 
@@ -228,10 +230,82 @@ def random_split(dataset, task_idx=None, null_value=0,
                                                             valid_smiles,
                                                             test_smiles)
 
-def custom_split(dataset):
-    train_dataset = [data for data in dataset if data.split == 1]
-    valid_dataset = [data for data in dataset if data.split == 2]
-    test_dataset = [data for data in dataset if data.split == 3]
+def downsample(datapoints, dataset_cache, take_subset = False, split_name = "train"):
+    positive_points, negative_points = [], []
+    for data in datapoints:
+        id1, id2, label = data.strip().split("\t")
+        id1 = int(id1)
+        id2 = int(id2)
+        label = 1 if int(label) == 1 else -1
+        if int(label) == 1:
+            if id1 in dataset_cache and id2 in dataset_cache: 
+                positive_points.append([id1, id2, label])
+        else:
+            if id1 in dataset_cache and id2 in dataset_cache:
+                negative_points.append([id1, id2, label])
+    print("Positive points: {} and Negative points: {}".format(len(positive_points), len(negative_points)))
+    min_of_pos_neg = min(len(positive_points), len(negative_points))
+    if take_subset:
+        if split_name == "train":
+            balanced_dataset = positive_points[:10000] + negative_points[:10000]
+        else:
+            balanced_dataset = positive_points[:1000] + negative_points[:1000]
+    else:
+        balanced_dataset = positive_points[:min_of_pos_neg] + negative_points[:min_of_pos_neg]
+    return balanced_dataset
+
+def custom_split(dataset, dataset_name = None):
+    if dataset_name in ["clone-detection"]:
+        splits = [["train", 1, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/train.txt"], 
+                  ["valid", 2, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/valid.txt"], 
+                  ["test", 3, "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Benchmarks/Big-Clone-Bench/raw_dataset/test.txt"]]
+        count = 0
+        dataset_cache = {}
+        for data in dataset:
+            dataset_cache[int(data.id)] = data
+        train_dataset, valid_dataset, test_dataset = [], [], []
+        
+        for split_name, split_no, mapping_file_location in splits:
+            print("\nProcessing: {}\n".format(split_name))
+            mapping_file = open(mapping_file_location, 'r')
+            datapoints = mapping_file.readlines()
+            positive_count, negative_count = 0, 0
+            
+            # Make number of positive and negative pairs balanced
+            datapoints = downsample(datapoints, dataset_cache, take_subset = True, split_name = split_name)
+            print("Dataset Size: ", len(datapoints))
+            
+            for datapoint in tqdm.tqdm(datapoints):
+                id1, id2, label = datapoint
+                if id1 not in dataset_cache or id2 not in dataset_cache or len(dataset_cache[id1]) != 5 or len(dataset_cache[id2]) != 5:
+                    print("ERROR: Data is not in cache or all parameters not found!")
+                    continue
+  
+                edge_index1 = dataset_cache[id1].edge_index
+                edge_attr1 = dataset_cache[id1].edge_attr
+                x1 = dataset_cache[id1].x
+                edge_index2 = dataset_cache[id2].edge_index
+                edge_attr2 = dataset_cache[id2].edge_attr
+                x2 = dataset_cache[id2].x
+                
+                if split_name == "train":
+                    train_dataset.append([x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label])
+                elif split_name == "valid":
+                    valid_dataset.append([x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label])
+                else:
+                    test_dataset.append([x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label])
+                    
+                if int(label) == 1:
+                    positive_count += 1
+                else:
+                    negative_count += 1
+                count += 1
+            print("{} Split - Positive Count: {} and Negative Count: {}".format(split_name, positive_count, negative_count))
+    else:
+        train_dataset = [data for data in dataset if data.split == 1]
+        valid_dataset = [data for data in dataset if data.split == 2]
+        test_dataset = [data for data in dataset if data.split == 3]
+        
     random.shuffle(train_dataset)
     random.shuffle(valid_dataset)
     random.shuffle(test_dataset)
