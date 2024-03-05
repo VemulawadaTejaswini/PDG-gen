@@ -247,9 +247,9 @@ def downsample(datapoints, dataset_cache, take_subset = False, split_name = "tra
     min_of_pos_neg = min(len(positive_points), len(negative_points))
     if take_subset:
         if split_name == "train":
-            balanced_dataset = positive_points[:10000] + negative_points[:10000]
+            balanced_dataset = positive_points[:50000] + negative_points[:50000]
         else:
-            balanced_dataset = positive_points[:1000] + negative_points[:1000]
+            balanced_dataset = positive_points[:5000] + negative_points[:5000]
     else:
         balanced_dataset = positive_points[:min_of_pos_neg] + negative_points[:min_of_pos_neg]
     return balanced_dataset

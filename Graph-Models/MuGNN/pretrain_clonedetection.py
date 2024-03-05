@@ -44,8 +44,8 @@ def plot_training_and_test_results(training_result, test_result, epochs, locatio
     training_f1 = [float("{:.2f}".format(res[3] * 100)) for res in training_result]
     testing_acc = [float("{:.2f}".format(res[0] * 100)) for res in test_result]
     testing_f1 = [float("{:.2f}".format(res[3] * 100)) for res in test_result]
-    two_lines_plot(epochs, training_acc, epochs, testing_acc, "Training Accuracy", "Test Accuracy", "Epoch", "Accuracy", "Training and Test Accuracy", location + "/traing_test_accuracy.jpg")
-    two_lines_plot(epochs, training_f1, epochs, testing_f1, "Training F1", "Test F1", "Epoch", "F1 Score", "Training and Test F1 Scores", location + "/traing_test_f1.jpg")
+    two_lines_plot(epochs, training_acc, epochs, testing_acc, "Training Accuracy", "Validation Accuracy", "Epoch", "Accuracy", "Training and Validation Accuracy", location + "/traing_validation_accuracy.jpg")
+    two_lines_plot(epochs, training_f1, epochs, testing_f1, "Training F1", "Validation F1", "Epoch", "F1 Score", "Training and Validation F1 Scores", location + "/traing_validation_f1.jpg")
 
 def accuracy(y, pred):
     return accuracy_score(y, pred)
@@ -219,7 +219,7 @@ def main():
         
     os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
     args.device = 0
-    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
 
     #Bunch of classification tasks
     args.dataset = "clone-detection" # Possible values: "clone-detection"
@@ -285,37 +285,53 @@ def main():
 
     train_acc_list = []
     val_acc_list = []
-    test_acc_list = []
     training_loss_list = []
     epochs_list = []
     validation_loss_list = []
-
+    
+    patience = 0
+    best_f1 = 0
     args.epochs = 10
     for epoch in range(0, args.epochs):
-        print("====epoch " + str(epoch+1))
         
+        print("====epoch " + str(epoch+1))
         if args.dataset in ["clone-detection"]:
             train_acc, training_loss = train_code_clone_detection(args, model, device, train_loader, optimizer)
 
         print("====Evaluation")
         if args.dataset in ["clone-detection"]:
             val_acc, val_loss = eval_code_clone_detection(args, model, device, val_loader)
-            test_acc, test_loss = eval_code_clone_detection(args, model, device, test_loader)
 
-        print("train(acc, prec, rec, f1): {} val(acc, prec, rec, f1): {} test(acc, prec, rec, f1): {}".format(train_acc, val_acc, test_acc))
-        print("Training Loss: {}, Validation Loss: {} and Test Loss: {}".format(training_loss, val_loss, test_loss))
+        print("train(acc, prec, rec, f1): {} val(acc, prec, rec, f1): {}".format(train_acc, val_acc))
+        print("Training Loss: {} and Validation Loss: {}".format(training_loss, val_loss))
 
         val_acc_list.append(val_acc)
-        test_acc_list.append(test_acc)
         train_acc_list.append(train_acc)
         epochs_list.append(epoch+1)
         training_loss_list.append(training_loss)
         validation_loss_list.append(val_loss)
         
+        if val_acc[3] > best_f1:
+            best_f1 = val_acc[3]
+            print("\n======F1 score improved, saving the model")
+            if not args.output_model_file == "":
+                torch.save(model.state_dict(), args.output_model_file + "/model.pth")
+            patience = 0
+        else:
+            patience += 1
+            if patience == 2:
+                print("\nStopping training after {} epochs as the score didn't improve in consecutive {} epochs".format(epoch+1, patience))
+                break
+        
+    print("========= Evaluation (Best Model) on Test Data =========")
     if not args.output_model_file == "":
-        torch.save(model.state_dict(), args.output_model_file + "/clone_detection_L3_e10_20k_model.pth")
+        model.load_state_dict(torch.load(args.output_model_file + "/model.pth"))
+    if args.dataset in ["clone-detection"]:
+        test_acc, test_loss = eval_code_clone_detection(args, model, device, test_loader)
+    print("Test(acc, prec, rec, f1): {}".format(test_acc))
+    
     plot_training_and_validation_loss(training_loss_list, validation_loss_list, epochs_list, args.output_plots)
-    plot_training_and_test_results(train_acc_list, test_acc_list, epochs_list, args.output_plots)
+    plot_training_and_test_results(train_acc_list, val_acc_list, epochs_list, args.output_plots)
         
 # To ensure determinism
 seed = 1234
