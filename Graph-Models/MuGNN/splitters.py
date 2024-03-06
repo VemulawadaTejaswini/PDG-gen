@@ -272,7 +272,7 @@ def custom_split(dataset, dataset_name = None):
             positive_count, negative_count = 0, 0
             
             # Make number of positive and negative pairs balanced
-            datapoints = downsample(datapoints, dataset_cache, take_subset = True, split_name = split_name)
+            datapoints = downsample(datapoints, dataset_cache, take_subset = False, split_name = split_name)
             print("Dataset Size: ", len(datapoints))
             
             for datapoint in tqdm.tqdm(datapoints):
@@ -288,12 +288,22 @@ def custom_split(dataset, dataset_name = None):
                 edge_attr2 = dataset_cache[id2].edge_attr
                 x2 = dataset_cache[id2].x
                 
+                data1 = Data()
+                data1.x = x1
+                data1.edge_index = edge_index1
+                data1.edge_attr = edge_attr1
+                
+                data2 = Data()
+                data2.x = x2
+                data2.edge_index = edge_index2
+                data2.edge_attr = edge_attr2
+                
                 if split_name == "train":
-                    train_dataset.append([x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label])
+                    train_dataset.append([data1, data2, label])
                 elif split_name == "valid":
-                    valid_dataset.append([x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label])
+                    valid_dataset.append([data1, data2, label])
                 else:
-                    test_dataset.append([x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label])
+                    test_dataset.append([data1, data2, label])
                     
                 if int(label) == 1:
                     positive_count += 1

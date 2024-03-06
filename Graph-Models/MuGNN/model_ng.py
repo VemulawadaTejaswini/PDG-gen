@@ -16,12 +16,12 @@ class CustomGCN(torch.nn.Module):
         self.conv3 = GCNConv(64, 32)
         self.device = device
 
-    def forward(self, x, edge_index):
+    def forward(self, x, edge_index, batch):
         x = self.conv1(x, edge_index)
         x = x.relu()
         x = self.conv2(x, edge_index)
         x = x.relu()
         x = self.conv3(x, edge_index)
-        batch = torch.zeros(x.size(0), dtype=torch.long).to(self.device)
-        graph_embedding = global_mean_pool(x, batch = batch)
+        #batch = torch.zeros(x.size(0), dtype=torch.long).to(self.device)
+        graph_embedding = global_mean_pool(x, batch = batch) # [batch_size, hidden_channels]
         return graph_embedding

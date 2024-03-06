@@ -76,45 +76,41 @@ def create_batches(dataset, args):
     batches = [dataset[graph : min(graph + args.batch_size, len(dataset))] for graph in range(0, len(dataset), args.batch_size)]
     return batches
 
-def train_code_clone_detection(args, model, device, loader, optimizer):
+def train_code_clone_detection(args, model, device, train_loader_1, train_loader_2, train_loader_label, optimizer):
     criterion = nn.MSELoss()
     model.train()
     total_loss, count = 0, 0
     tp, tn, fp, fn, correct = 0, 0, 0, 0, 0
-    for step, batch in enumerate(tqdm(loader, desc="Iteration")):
+    for step, (batch_1, batch_2, label_batch) in enumerate(tqdm(zip(train_loader_1, train_loader_2, train_loader_label), total = len(train_loader_1))):
         optimizer.zero_grad()
-        batchloss = 0
-        for data in batch:
-            x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label = data
-            label = torch.tensor([label], dtype=torch.float, device=device)
-            x1 = x1.clone().detach().to(device)
-            x2 = x2.clone().detach().to(device)
-            edge_index1 = edge_index1.clone().detach().to(device)
-            edge_index2 = edge_index2.clone().detach().to(device)
-            edge_attr1 = edge_attr1.clone().detach().to(device)
-            edge_attr2 = edge_attr2.clone().detach().to(device)
-            prediction_1 = model(x1, edge_index1)
-            prediction_2 = model(x2, edge_index2)
-            cosine_similarity = F.cosine_similarity(prediction_1, prediction_2)
-            batchloss = batchloss + criterion(cosine_similarity, label)
-            
-            prediction = torch.sign(cosine_similarity).item()
-            if prediction > args.threshold and int(label.item()) == 1:
-                tp+=1
-                correct += 1
-            if prediction <= args.threshold and int(label.item()) == -1:
-                tn+=1
-                correct += 1
-            if prediction > args.threshold and int(label.item()) == -1:
-                fp+=1
-            if prediction <= args.threshold and int(label.item()) == 1:
-                fn+=1
-            count += 1
-
+        
+        batch_1 = batch_1.to(device)
+        batch_2 = batch_2.to(device)
+        label_batch = label_batch.float()
+        label_batch = label_batch.to(device)
+        
+        prediction_1 = model(batch_1.x, batch_1.edge_index, batch_1.batch)
+        prediction_2 = model(batch_2.x, batch_2.edge_index, batch_2.batch)
+        cosine_similarity = F.cosine_similarity(prediction_1, prediction_2)
+        batchloss = criterion(cosine_similarity, label_batch)
         batchloss.backward()
         optimizer.step()
         loss = batchloss.item()
         total_loss += loss
+        
+        for i in range(len(cosine_similarity)):
+            prediction = torch.sign(cosine_similarity[i]).item()
+            if prediction > args.threshold and int(label_batch[i]) == 1:
+                tp+=1
+                correct += 1
+            if prediction <= args.threshold and int(label_batch[i]) == -1:
+                tn+=1
+                correct += 1
+            if prediction > args.threshold and int(label_batch[i]) == -1:
+                fp+=1
+            if prediction <= args.threshold and int(label_batch[i]) == 1:
+                fn+=1
+            count += 1
 
     p,r,f1,acc = 0.0, 0.0, 0.0, 0.0
     if tp+fp==0:
@@ -127,45 +123,40 @@ def train_code_clone_detection(args, model, device, loader, optimizer):
     r=tp/(tp+fn)
     f1=2*p*r/(p+r)
     acc = correct / count
-    print("Training Loss: ", total_loss/len(loader))
-    return (acc, p, r, f1), total_loss/len(loader)
+    print("Training Loss: ", total_loss/len(train_loader_1))
+    return (acc, p, r, f1), total_loss/len(train_loader_1)
 
-def eval_code_clone_detection(args, model, device, loader):
+def eval_code_clone_detection(args, model, device, loader_1, loader_2, loader_label):
     criterion = nn.MSELoss()
     model.eval()
     total_loss, count = 0, 0
     tp, tn, fp, fn, correct = 0, 0, 0, 0, 0
     results = []
-    for step, batch in enumerate(tqdm(loader, desc="Iteration")):
-        batchloss= 0
-        for data in batch:
-            x1, x2, edge_index1, edge_index2, edge_attr1, edge_attr2, label = data
-            label = torch.tensor([label], dtype=torch.float, device=device)
-            x1 = x1.clone().detach().to(device)
-            x2 = x2.clone().detach().to(device)
-            edge_index1 = edge_index1.clone().detach().to(device)
-            edge_index2 = edge_index2.clone().detach().to(device)
-            edge_attr1 = edge_attr1.clone().detach().to(device)
-            edge_attr2 = edge_attr2.clone().detach().to(device)
-            prediction_1 = model(x1, edge_index1)
-            prediction_2 = model(x2, edge_index2)
-            cosine_similarity = F.cosine_similarity(prediction_1, prediction_2)
-            results.append(cosine_similarity.item())
-            prediction = torch.sign(cosine_similarity).item()
-            batchloss = batchloss + criterion(cosine_similarity, label)
+    for step, (batch_1, batch_2, label_batch) in enumerate(tqdm(zip(loader_1, loader_2, loader_label), total = len(loader_1))):
+        batch_1 = batch_1.to(device)
+        batch_2 = batch_2.to(device)
+        label_batch = label_batch.float()
+        label_batch = label_batch.to(device)
+        
+        prediction_1 = model(batch_1.x, batch_1.edge_index, batch_1.batch)
+        prediction_2 = model(batch_2.x, batch_2.edge_index, batch_2.batch)
+        cosine_similarity = F.cosine_similarity(prediction_1, prediction_2)
+        batchloss = criterion(cosine_similarity, label_batch)
+        total_loss += batchloss.item()
             
-            if prediction > args.threshold and int(label.item()) == 1:
+        for i in range(len(cosine_similarity)):
+            prediction = torch.sign(cosine_similarity[i]).item()
+            if prediction > args.threshold and int(label_batch[i]) == 1:
                 tp+=1
                 correct += 1
-            if prediction <= args.threshold and int(label.item()) == -1:
+            if prediction <= args.threshold and int(label_batch[i]) == -1:
                 tn+=1
                 correct += 1
-            if prediction > args.threshold and int(label.item()) == -1:
+            if prediction > args.threshold and int(label_batch[i]) == -1:
                 fp+=1
-            if prediction <= args.threshold and int(label.item()) == 1:
+            if prediction <= args.threshold and int(label_batch[i]) == 1:
                 fn+=1
             count += 1
-        total_loss += batchloss.item()
 
     p,r,f1,acc = 0.0, 0.0, 0.0, 0.0
     if tp+fp==0:
@@ -178,7 +169,7 @@ def eval_code_clone_detection(args, model, device, loader):
     r=tp/(tp+fn)
     f1=2*p*r/(p+r)
     acc = correct / count
-    return (acc, p, r, f1), total_loss/len(loader)
+    return (acc, p, r, f1), total_loss/len(loader_1)
 
 def main():
     # Training settings
@@ -257,11 +248,40 @@ def main():
         raise ValueError("Invalid split option.")
 
     if args.dataset == "clone-detection":
-        train_loader = create_batches(train_dataset, args)
-        val_loader = create_batches(valid_dataset, args)
-        test_loader = create_batches(test_dataset, args)
+        train_loader_1, train_loader_2, train_loader_label = [], [], []
+        for data1, data2, label in train_dataset:
+            train_loader_1.append(data1)
+            train_loader_2.append(data2)
+            train_loader_label.append(label)
+        train_loader_1 = DataLoader(train_loader_1, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        train_loader_2 = DataLoader(train_loader_2, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        train_loader_label = DataLoader(train_loader_label, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        if(len(train_loader_1) == len(train_loader_2) and len(train_loader_1) == len(train_loader_label)):
+            print("\nTraining dataset loader size: ", len(train_loader_1))
+        
+        valid_loader_1, valid_loader_2, valid_loader_label = [], [], []
+        for data1, data2, label in valid_dataset:
+            valid_loader_1.append(data1)
+            valid_loader_2.append(data2)
+            valid_loader_label.append(label)
+        valid_loader_1 = DataLoader(valid_loader_1, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        valid_loader_2 = DataLoader(valid_loader_2, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        valid_loader_label = DataLoader(valid_loader_label, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        if(len(valid_loader_1) == len(valid_loader_2) and len(valid_loader_1) == len(valid_loader_label)):
+            print("\nValidation dataset loader size: ", len(valid_loader_1))
+        
+        test_loader_1, test_loader_2, test_loader_label = [], [], []
+        for data1, data2, label in test_dataset:
+            test_loader_1.append(data1)
+            test_loader_2.append(data2)
+            test_loader_label.append(label)
+        test_loader_1 = DataLoader(test_loader_1, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        test_loader_2 = DataLoader(test_loader_2, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        test_loader_label = DataLoader(test_loader_label, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
+        if(len(test_loader_1) == len(test_loader_2) and len(test_loader_1) == len(test_loader_label)):
+            print("\nTest dataset loader size: ", len(test_loader_1))
     else:
-        train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers = args.num_workers)
+        train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
         val_loader = DataLoader(valid_dataset, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
         test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
 
@@ -277,6 +297,10 @@ def main():
     
     
     model = CustomGCN(num_node_features= 768, device = device)
+    #args.input_model_file = "/home/siddharthsa/cs21mtech12001-Tamal/API-Misuse-Prediction/PDG-gen/Repository/Graph-Models/MuGNN/output/saved_models/model.pth"
+    if not args.input_model_file == "":
+        model.load_state_dict(torch.load(args.input_model_file))
+        print("Loaded the model!!")
     model.to(device)
 
     #set up optimizer
@@ -291,16 +315,16 @@ def main():
     
     patience = 0
     best_f1 = 0
-    args.epochs = 10
+    args.epochs = 20
     for epoch in range(0, args.epochs):
         
         print("====epoch " + str(epoch+1))
         if args.dataset in ["clone-detection"]:
-            train_acc, training_loss = train_code_clone_detection(args, model, device, train_loader, optimizer)
+            train_acc, training_loss = train_code_clone_detection(args, model, device, train_loader_1, train_loader_2, train_loader_label, optimizer)
 
         print("====Evaluation")
         if args.dataset in ["clone-detection"]:
-            val_acc, val_loss = eval_code_clone_detection(args, model, device, val_loader)
+            val_acc, val_loss = eval_code_clone_detection(args, model, device, valid_loader_1, valid_loader_2, valid_loader_label)
 
         print("train(acc, prec, rec, f1): {} val(acc, prec, rec, f1): {}".format(train_acc, val_acc))
         print("Training Loss: {} and Validation Loss: {}".format(training_loss, val_loss))
@@ -319,7 +343,7 @@ def main():
             patience = 0
         else:
             patience += 1
-            if patience == 2:
+            if patience == 3:
                 print("\nStopping training after {} epochs as the score didn't improve in consecutive {} epochs".format(epoch+1, patience))
                 break
         
@@ -327,7 +351,7 @@ def main():
     if not args.output_model_file == "":
         model.load_state_dict(torch.load(args.output_model_file + "/model.pth"))
     if args.dataset in ["clone-detection"]:
-        test_acc, test_loss = eval_code_clone_detection(args, model, device, test_loader)
+        test_acc, test_loss = eval_code_clone_detection(args, model, device, test_loader_1, test_loader_2, test_loader_label)
     print("Test(acc, prec, rec, f1): {}".format(test_acc))
     
     plot_training_and_validation_loss(training_loss_list, validation_loss_list, epochs_list, args.output_plots)
