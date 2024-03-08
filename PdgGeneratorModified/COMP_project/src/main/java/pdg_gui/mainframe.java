@@ -139,7 +139,7 @@ public class mainframe {
         new PDGCore();
         try {
             mainframe obj = new mainframe();
-            boolean isOnlyFile = true;
+            boolean isOnlyFile = false;
             String generateFor = "big-code-bench"; // "code2seq" or "ck" or "crypto-api" or "codenet" or "perturbed-code" or "big-code-bench"
             if (isOnlyFile) {
                 outputFolder = "/home/tejaswini/Desktop/pdgtool/PDG-gen/PdgGeneratorModified/test_folder";

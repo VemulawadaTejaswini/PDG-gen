@@ -829,32 +829,32 @@ class SymbolTable {
 
                 return  new ReturnObject(returnString);
             }
-            nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
-            int counter=0;
-            for(Node child: node.getChildrenNodes()){
-                if(child.getClass().equals(com.github.javaparser.ast.expr.BinaryExpr.class)){
-                    for(Node childNode : child.getChildrenNodes()) {
-                        if(childNode.getClass().equals(com.github.javaparser.ast.expr.NameExpr.class)){
+        //     nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
+        //     int counter=0;
+        //     for(Node child: node.getChildrenNodes()){
+        //         if(child.getClass().equals(com.github.javaparser.ast.expr.BinaryExpr.class)){
+        //             for(Node childNode : child.getChildrenNodes()) {
+        //                 if(childNode.getClass().equals(com.github.javaparser.ast.expr.NameExpr.class)){
     
-                            if(counter == 0)
-                                lastScope.varChanges.add(new VarChanges(nodeToSend, childNode.toString()));
-                            else
-                                lastScope.varAccesses.add(new VarChanges(nodeToSend, childNode.toString()));
+        //                     if(counter == 0)
+        //                         lastScope.varChanges.add(new VarChanges(nodeToSend, childNode.toString()));
+        //                     else
+        //                         lastScope.varAccesses.add(new VarChanges(nodeToSend, childNode.toString()));
     
-                            String variable = childNode.toString();
-                            for(int i1 = scopes.size() - 1; i1 >= 0; i1--) {
-                                ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
-                                for (VarChanges aVc : vc)
-                                    if (aVc.getVar().equals(variable))
-                                        addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out);
-                                }
-                            }
-                        }
-                counter++;
+        //                     String variable = childNode.toString();
+        //                     for(int i1 = scopes.size() - 1; i1 >= 0; i1--) {
+        //                         ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
+        //                         for (VarChanges aVc : vc)
+        //                             if (aVc.getVar().equals(variable))
+        //                                 addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out);
+        //                         }
+        //                     }
+        //                 }
+        //         counter++;
                         
-                }
+        //         }
+        //     }
             }
-        }
 
             // for(Node childNode : node.getChildrenNodes()){
             //     if(childNode.getClass().equals(com.github.javaparser.ast.expr.BinaryExpr.class)){
