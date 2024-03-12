@@ -1,0 +1,8 @@
+Line_2 $$ public void testRunAsyncWithoutFencing() throws Exception --> Line_3 $$ final CompletableFuture<UUID> resultFuture = new CompletableFuture() [CD]
+Line_2 $$ public void testRunAsyncWithoutFencing() throws Exception --> Line_4 $$ final UUID newFencingToken = UUID.randomUUID() [CD]
+Line_2 $$ public void testRunAsyncWithoutFencing() throws Exception --> Line_5 $$ testRunAsync( endpoint -> [CD]
+Line_4 $$ final UUID newFencingToken = UUID.randomUUID() --> Line_5 $$ testRunAsync( endpoint -> [FD]
+Line_3 $$ final CompletableFuture<UUID> resultFuture = new CompletableFuture() --> Line_6 $$ resultFuture.complete(endpoint.getFencingToken()) [FD]
+Line_2 $$ public void testRunAsyncWithoutFencing() throws Exception --> Line_9 $$ assertEquals(newFencingToken, resultFuture.get(timeout.toMilliseconds(), TimeUnit.MILLISECONDS)) [CD]
+Line_4 $$ final UUID newFencingToken = UUID.randomUUID() --> Line_9 $$ assertEquals(newFencingToken, resultFuture.get(timeout.toMilliseconds(), TimeUnit.MILLISECONDS)) [FD]
+Line_3 $$ final CompletableFuture<UUID> resultFuture = new CompletableFuture() --> Line_9 $$ assertEquals(newFencingToken, resultFuture.get(timeout.toMilliseconds(), TimeUnit.MILLISECONDS)) [FD]

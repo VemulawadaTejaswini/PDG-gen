@@ -1,0 +1,7 @@
+Line_2 $$ private static BiFunction<Query, Version, Result> termInSetQuery() --> Line_3 $$ return ( query,  version) -> [CD]
+Line_4 $$ TermInSetQuery termInSetQuery = (TermInSetQuery) query --> Line_6 $$ PrefixCodedTerms.TermIterator iterator = termInSetQuery.getTermData().iterator() [FD]
+Line_6 $$ PrefixCodedTerms.TermIterator iterator = termInSetQuery.getTermData().iterator() --> Line_7 $$ for (BytesRef term = iterator.next(); term != null; term = iterator.next()) [FD]
+Line_7 $$ for (BytesRef term = iterator.next(); term != null; term = iterator.next()) --> Line_8 $$ terms.add(new QueryExtraction(new Term(iterator.field(), term))) [CD]
+Line_5 $$ Set<QueryExtraction> terms = new HashSet() --> Line_8 $$ terms.add(new QueryExtraction(new Term(iterator.field(), term))) [FD]
+Line_6 $$ PrefixCodedTerms.TermIterator iterator = termInSetQuery.getTermData().iterator() --> Line_8 $$ terms.add(new QueryExtraction(new Term(iterator.field(), term))) [FD]
+Line_5 $$ Set<QueryExtraction> terms = new HashSet() --> Line_10 $$ return new Result(true, terms, Math.min(1, terms.size())) [FD]

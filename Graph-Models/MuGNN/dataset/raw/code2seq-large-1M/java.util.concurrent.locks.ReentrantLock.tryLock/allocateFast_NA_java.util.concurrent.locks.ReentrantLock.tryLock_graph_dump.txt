@@ -1,0 +1,8 @@
+Line_2 $$ private int allocateFast(int freeListIx, MemoryBuffer[] dest, long[] destHeaders, int destIx, int destCount, int allocSize) --> Line_3 $$ if (data == null) [CD]
+Line_3 $$ if (data == null) --> Line_4 $$ return -1 [CD]
+Line_2 $$ private int allocateFast(int freeListIx, MemoryBuffer[] dest, long[] destHeaders, int destIx, int destCount, int allocSize) --> Line_5 $$ FreeList freeList = freeLists[freeListIx] [CD]
+Line_2 $$ private int allocateFast(int freeListIx, MemoryBuffer[] dest, long[] destHeaders, int destIx, int destCount, int allocSize) --> Line_6 $$ if (!freeList.lock.tryLock()) [FD]
+Line_2 $$ private int allocateFast(int freeListIx, MemoryBuffer[] dest, long[] destHeaders, int destIx, int destCount, int allocSize) --> Line_6 $$ if (!freeList.lock.tryLock()) [CD]
+Line_6 $$ if (!freeList.lock.tryLock()) --> Line_7 $$ return destIx [CD]
+Line_5 $$ FreeList freeList = freeLists[freeListIx] --> Line_9 $$ return allocateFromFreeListUnderLock(freeList, freeListIx, dest, destHeaders, destIx, destCount, allocSize) [FD]
+Line_2 $$ private int allocateFast(int freeListIx, MemoryBuffer[] dest, long[] destHeaders, int destIx, int destCount, int allocSize) --> Line_9 $$ return allocateFromFreeListUnderLock(freeList, freeListIx, dest, destHeaders, destIx, destCount, allocSize) [FD]

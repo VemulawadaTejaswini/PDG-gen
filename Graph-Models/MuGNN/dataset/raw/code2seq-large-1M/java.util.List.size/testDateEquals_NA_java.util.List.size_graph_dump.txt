@@ -1,0 +1,6 @@
+Line_2 $$ public void testDateEquals() --> Line_3 $$ Date val = getBogusDate(2001, 1, 1) [CD]
+Line_2 $$ public void testDateEquals() --> Line_4 $$ List<String> sales = streams.streamAll(em, Sale.class).where( s -> s.getDate().equals(val)).select( s -> s.getCustomer().getName()).toList() [CD]
+Line_3 $$ Date val = getBogusDate(2001, 1, 1) --> Line_4 $$ List<String> sales = streams.streamAll(em, Sale.class).where( s -> s.getDate().equals(val)).select( s -> s.getCustomer().getName()).toList() [FD]
+Line_2 $$ public void testDateEquals() --> Line_5 $$ assertEquals("SELECT A.customer.name FROM org.jinq.hibernate.test.entities.Sale A WHERE A.date = :param0", query) [CD]
+Line_2 $$ public void testDateEquals() --> Line_6 $$ assertEquals(1, sales.size()) [CD]
+Line_2 $$ public void testDateEquals() --> Line_7 $$ assertEquals("Dave", sales.get(0)) [CD]

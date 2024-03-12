@@ -1,0 +1,8 @@
+Line_2 $$ public void comparePerformance() throws Exception --> Line_3 $$ long baselineTimes = randomSingleObjectPerformance(() -> compare.writeValueAsString(testObject())) [CD]
+Line_2 $$ public void comparePerformance() throws Exception --> Line_4 $$ long jsonViewTimes = randomSingleObjectPerformance(() -> sut.writeValueAsString(JsonView.with(testObject()).onClass(TestObject.class, match().exclude("int1")))) [CD]
+Line_2 $$ public void comparePerformance() throws Exception --> Line_5 $$ String difference = divide(jsonViewTimes * 100L, baselineTimes) [CD]
+Line_3 $$ long baselineTimes = randomSingleObjectPerformance(() -> compare.writeValueAsString(testObject())) --> Line_5 $$ String difference = divide(jsonViewTimes * 100L, baselineTimes) [FD]
+Line_2 $$ public void comparePerformance() throws Exception --> Line_6 $$ System.out.printf("[%-8s]: | Baseline: %-8s | JsonView: %-8s | Difference: %-6s |\n", repetitions, divide(baselineTimes, 1000000L) + "ms", divide(jsonViewTimes, 1000000L) + "ms", difference + "%") [CD]
+Line_3 $$ long baselineTimes = randomSingleObjectPerformance(() -> compare.writeValueAsString(testObject())) --> Line_6 $$ System.out.printf("[%-8s]: | Baseline: %-8s | JsonView: %-8s | Difference: %-6s |\n", repetitions, divide(baselineTimes, 1000000L) + "ms", divide(jsonViewTimes, 1000000L) + "ms", difference + "%") [FD]
+Line_2 $$ public void comparePerformance() throws Exception --> Line_7 $$ if (((double) jsonViewTimes / (double) baselineTimes) > 10) [CD]
+Line_7 $$ if (((double) jsonViewTimes / (double) baselineTimes) > 10) --> Line_8 $$ fail("Performance delta is greater than 10x slower than basic Jackson (" + difference + "% slower)") [CD]

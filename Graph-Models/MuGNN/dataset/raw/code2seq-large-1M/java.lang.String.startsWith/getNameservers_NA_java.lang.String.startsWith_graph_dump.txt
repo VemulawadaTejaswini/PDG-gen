@@ -1,0 +1,8 @@
+Line_2 $$ public static String[] getNameservers() throws IOException, InterruptedException --> Line_3 $$ String[] nameservers = ExecUtil.execute("cat /etc/resolv.conf") [CD]
+Line_2 $$ public static String[] getNameservers() throws IOException, InterruptedException --> Line_4 $$ List<String> result = new ArrayList() [CD]
+Line_5 $$ for (String nameserver : nameservers) --> Line_6 $$ if (nameserver.startsWith("nameserver")) [FD]
+Line_6 $$ if (nameserver.startsWith("nameserver")) --> Line_7 $$ result.add(nameserver.substring(11).trim()) [CD]
+Line_4 $$ List<String> result = new ArrayList() --> Line_7 $$ result.add(nameserver.substring(11).trim()) [FD]
+Line_5 $$ for (String nameserver : nameservers) --> Line_7 $$ result.add(nameserver.substring(11).trim()) [FD]
+Line_2 $$ public static String[] getNameservers() throws IOException, InterruptedException --> Line_10 $$ return result.toArray(new String[result.size()]) [CD]
+Line_4 $$ List<String> result = new ArrayList() --> Line_10 $$ return result.toArray(new String[result.size()]) [FD]

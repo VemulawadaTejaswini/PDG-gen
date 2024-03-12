@@ -1,0 +1,7 @@
+Line_2 $$ public List<String> listCachedTableNames(String catName, String dbName, String pattern, TableType tableType) --> Line_3 $$ List<String> tableNames = new ArrayList() [CD]
+Line_6 $$ for (TableWrapper wrapper : tableCache.values()) --> Line_7 $$ if (wrapper.sameDatabase(catName, dbName) && CacheUtils.matches(wrapper.getTable().getTableName(), pattern) && wrapper.getTable().getTableType().equals(tableType.toString())) [FD]
+Line_2 $$ public List<String> listCachedTableNames(String catName, String dbName, String pattern, TableType tableType) --> Line_7 $$ if (wrapper.sameDatabase(catName, dbName) && CacheUtils.matches(wrapper.getTable().getTableName(), pattern) && wrapper.getTable().getTableType().equals(tableType.toString())) [FD]
+Line_7 $$ if (wrapper.sameDatabase(catName, dbName) && CacheUtils.matches(wrapper.getTable().getTableName(), pattern) && wrapper.getTable().getTableType().equals(tableType.toString())) --> Line_8 $$ tableNames.add(StringUtils.normalizeIdentifier(wrapper.getTable().getTableName())) [CD]
+Line_3 $$ List<String> tableNames = new ArrayList() --> Line_8 $$ tableNames.add(StringUtils.normalizeIdentifier(wrapper.getTable().getTableName())) [FD]
+Line_6 $$ for (TableWrapper wrapper : tableCache.values()) --> Line_8 $$ tableNames.add(StringUtils.normalizeIdentifier(wrapper.getTable().getTableName())) [FD]
+Line_2 $$ public List<String> listCachedTableNames(String catName, String dbName, String pattern, TableType tableType) --> Line_14 $$ return tableNames [CD]

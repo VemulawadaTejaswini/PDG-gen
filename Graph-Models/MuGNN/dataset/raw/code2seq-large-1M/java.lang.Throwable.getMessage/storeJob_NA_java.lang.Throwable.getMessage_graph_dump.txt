@@ -1,0 +1,8 @@
+Line_2 $$ protected void storeJob(Connection conn, JobDetail newJob, boolean replaceExisting) throws JobPersistenceException --> Line_3 $$ boolean existingJob = jobExists(conn, newJob.getKey()) [FD]
+Line_2 $$ protected void storeJob(Connection conn, JobDetail newJob, boolean replaceExisting) throws JobPersistenceException --> Line_3 $$ boolean existingJob = jobExists(conn, newJob.getKey()) [CD]
+Line_5 $$ if (existingJob) --> Line_6 $$ if (!replaceExisting) [CD]
+Line_2 $$ protected void storeJob(Connection conn, JobDetail newJob, boolean replaceExisting) throws JobPersistenceException --> Line_6 $$ if (!replaceExisting) [FD]
+Line_5 $$ if (existingJob) --> Line_9 $$ getDelegate().updateJobDetail(conn, newJob) [CD]
+Line_2 $$ protected void storeJob(Connection conn, JobDetail newJob, boolean replaceExisting) throws JobPersistenceException --> Line_9 $$ getDelegate().updateJobDetail(conn, newJob) [FD]
+Line_5 $$ if (existingJob) --> Line_11 $$ getDelegate().insertJobDetail(conn, newJob) [CD]
+Line_2 $$ protected void storeJob(Connection conn, JobDetail newJob, boolean replaceExisting) throws JobPersistenceException --> Line_11 $$ getDelegate().insertJobDetail(conn, newJob) [FD]

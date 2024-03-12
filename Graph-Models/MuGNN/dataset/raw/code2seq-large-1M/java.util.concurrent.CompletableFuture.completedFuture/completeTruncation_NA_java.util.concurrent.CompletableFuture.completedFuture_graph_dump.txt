@@ -1,0 +1,7 @@
+Line_2 $$ public CompletableFuture<Void> completeTruncation() --> Line_3 $$ return getTruncationData(true).thenCompose( truncationData -> [CD]
+Line_5 $$ StreamTruncationRecord current = StreamTruncationRecord.parse(truncationData.getData()) --> Line_6 $$ if (current.isUpdating()) [FD]
+Line_6 $$ if (current.isUpdating()) --> Line_7 $$ StreamTruncationRecord completedProp = StreamTruncationRecord.complete(current) [CD]
+Line_5 $$ StreamTruncationRecord current = StreamTruncationRecord.parse(truncationData.getData()) --> Line_7 $$ StreamTruncationRecord completedProp = StreamTruncationRecord.complete(current) [FD]
+Line_6 $$ if (current.isUpdating()) --> Line_8 $$ return setTruncationData(new Data(completedProp.toByteArray(), truncationData.getVersion())) [CD]
+Line_7 $$ StreamTruncationRecord completedProp = StreamTruncationRecord.complete(current) --> Line_8 $$ return setTruncationData(new Data(completedProp.toByteArray(), truncationData.getVersion())) [FD]
+Line_6 $$ if (current.isUpdating()) --> Line_10 $$ return CompletableFuture.completedFuture(null) [CD]

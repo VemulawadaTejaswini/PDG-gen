@@ -1,0 +1,6 @@
+Line_2 $$ public void writeLine(String channel, String line) --> Line_3 $$ boolean added = queue.offer(new LogItem(channel, line)) [CD]
+Line_2 $$ public void writeLine(String channel, String line) --> Line_4 $$ if (!added) [CD]
+Line_3 $$ boolean added = queue.offer(new LogItem(channel, line)) --> Line_4 $$ if (!added) [FD]
+Line_4 $$ if (!added) --> Line_5 $$ int current = errors.incrementAndGet() [CD]
+Line_4 $$ if (!added) --> Line_6 $$ if (current % 20 == 0) [CD]
+Line_6 $$ if (current % 20 == 0) --> Line_7 $$ LOGGER.warning("Log: Failed writing " + errors + " lines (queue full)") [CD]

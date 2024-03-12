@@ -1,0 +1,8 @@
+Line_2 $$ public void testLineNumbers() throws Exception --> Line_3 $$ assertThat(linenums("foo = 1\nbar = 2\n\nwiz = 3")).isEqualTo("1 1 1 1 2 2 2 2 4 4 4 4 4") [CD]
+Line_2 $$ public void testLineNumbers() throws Exception --> Line_4 $$ assertThat(values(tokens("foo = 1\nbar = 2\n\nwiz = $\nbar = 2"))).isEqualTo("IDENTIFIER(foo) EQUALS INT(1) NEWLINE " + "IDENTIFIER(bar) EQUALS INT(2) NEWLINE " + "IDENTIFIER(wiz) EQUALS NEWLINE " + "IDENTIFIER(bar) EQUALS INT(2) NEWLINE EOF") [CD]
+Line_2 $$ public void testLineNumbers() throws Exception --> Line_5 $$ assertThat(lastError.toString()).isEqualTo("/some/path.txt:4: invalid character: '$'") [CD]
+Line_2 $$ public void testLineNumbers() throws Exception --> Line_6 $$ String s = "1\n'foo\\nbar'\3" [CD]
+Line_2 $$ public void testLineNumbers() throws Exception --> Line_7 $$ assertThat(values(tokens(s))).isEqualTo("INT(1) NEWLINE STRING(foo\nbar) NEWLINE EOF") [CD]
+Line_6 $$ String s = "1\n'foo\\nbar'\3" --> Line_7 $$ assertThat(values(tokens(s))).isEqualTo("INT(1) NEWLINE STRING(foo\nbar) NEWLINE EOF") [FD]
+Line_2 $$ public void testLineNumbers() throws Exception --> Line_8 $$ assertThat(linenums(s)).isEqualTo("1 1 2 2 2") [CD]
+Line_6 $$ String s = "1\n'foo\\nbar'\3" --> Line_8 $$ assertThat(linenums(s)).isEqualTo("1 1 2 2 2") [FD]

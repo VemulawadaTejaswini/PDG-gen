@@ -1,0 +1,8 @@
+Line_4 $$ MysqlIO mysql = this.connection.getIO() --> Line_5 $$ Buffer packet = mysql.getSharedSendPacket() [FD]
+Line_5 $$ Buffer packet = mysql.getSharedSendPacket() --> Line_6 $$ packet.clear() [FD]
+Line_5 $$ Buffer packet = mysql.getSharedSendPacket() --> Line_7 $$ packet.writeByte((byte) MysqlDefs.COM_RESET_STMT) [FD]
+Line_5 $$ Buffer packet = mysql.getSharedSendPacket() --> Line_8 $$ packet.writeLong(this.serverStatementId) [FD]
+Line_4 $$ MysqlIO mysql = this.connection.getIO() --> Line_10 $$ mysql.sendCommand(MysqlDefs.COM_RESET_STMT, null, packet, !this.connection.versionMeetsMinimum(4, 1, 2), null, 0) [FD]
+Line_5 $$ Buffer packet = mysql.getSharedSendPacket() --> Line_10 $$ mysql.sendCommand(MysqlDefs.COM_RESET_STMT, null, packet, !this.connection.versionMeetsMinimum(4, 1, 2), null, 0) [FD]
+Line_14 $$ SQLException sqlEx = SQLError.createSQLException(ex.toString(), SQLError.SQL_STATE_GENERAL_ERROR, getExceptionInterceptor()) --> Line_15 $$ sqlEx.initCause(ex) [FD]
+Line_4 $$ MysqlIO mysql = this.connection.getIO() --> Line_18 $$ mysql.clearInputStream() [FD]

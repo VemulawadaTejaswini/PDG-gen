@@ -1,0 +1,8 @@
+Line_2 $$ public User createUser(String username, String password, String fullName) --> Line_3 $$ if (username == null || username.length() == 0) [FD]
+Line_2 $$ public User createUser(String username, String password, String fullName) --> Line_3 $$ if (username == null || username.length() == 0) [CD]
+Line_3 $$ if (username == null || username.length() == 0) --> Line_4 $$ String msg = sm.getString("memoryUserDatabase.nullUser") [CD]
+Line_3 $$ if (username == null || username.length() == 0) --> Line_5 $$ log.warn(msg) [CD]
+Line_4 $$ String msg = sm.getString("memoryUserDatabase.nullUser") --> Line_5 $$ log.warn(msg) [FD]
+Line_2 $$ public User createUser(String username, String password, String fullName) --> Line_8 $$ MemoryUser user = new MemoryUser(this, username, password, fullName) [CD]
+Line_8 $$ MemoryUser user = new MemoryUser(this, username, password, fullName) --> Line_10 $$ users.put(user.getUsername(), user) [FD]
+Line_2 $$ public User createUser(String username, String password, String fullName) --> Line_12 $$ return (user) [CD]

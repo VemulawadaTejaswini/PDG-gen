@@ -1,0 +1,7 @@
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_4 $$ try (PreparedStatement statement = db.statement("" + "INSERT INTO environment_subscription (subscription_id,environemtn_id) VALUES (?,?) " + "ON CONFLICT(subscription_id) DO UPDATE SET environemtn_id=EXCLUDED.environemtn_id ")) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("" + "INSERT INTO environment_subscription (subscription_id,environemtn_id) VALUES (?,?) " + "ON CONFLICT(subscription_id) DO UPDATE SET environemtn_id=EXCLUDED.environemtn_id ")) --> Line_5 $$ statement.setLong(1, subscriptionId) [FD]
+Line_2 $$ public void saveEnvironmentSubscription(long subscriptionId, long environmentId) --> Line_5 $$ statement.setLong(1, subscriptionId) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("" + "INSERT INTO environment_subscription (subscription_id,environemtn_id) VALUES (?,?) " + "ON CONFLICT(subscription_id) DO UPDATE SET environemtn_id=EXCLUDED.environemtn_id ")) --> Line_6 $$ statement.setLong(2, environmentId) [FD]
+Line_2 $$ public void saveEnvironmentSubscription(long subscriptionId, long environmentId) --> Line_6 $$ statement.setLong(2, environmentId) [FD]
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_7 $$ db.updateWithStatement(statement) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("" + "INSERT INTO environment_subscription (subscription_id,environemtn_id) VALUES (?,?) " + "ON CONFLICT(subscription_id) DO UPDATE SET environemtn_id=EXCLUDED.environemtn_id ")) --> Line_7 $$ db.updateWithStatement(statement) [FD]

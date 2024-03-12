@@ -1,0 +1,6 @@
+Line_2 $$ public void testHTTPHelperPost() --> Line_3 $$ createMockServer("POST", SERVER_PATH, DEFAULT_HTTP_RESPONSE) [CD]
+Line_5 $$ String expr = String.format("HTTP.post(\'%s\', 'Test', --> Line_6 $$ Blob resultBlob = (Blob) Scripting.newExpression(expr).eval(ctx) [FD]
+Line_6 $$ Blob resultBlob = (Blob) Scripting.newExpression(expr).eval(ctx) --> Line_7 $$ String result = IOUtils.toString(resultBlob.getStream(), "utf-8") [FD]
+Line_8 $$ ObjectMapper mapper = new ObjectMapper() --> Line_9 $$ Map<String, String> jsonResult = mapper.readValue(result, Map.class) [FD]
+Line_7 $$ String result = IOUtils.toString(resultBlob.getStream(), "utf-8") --> Line_9 $$ Map<String, String> jsonResult = mapper.readValue(result, Map.class) [FD]
+Line_10 $$ String message = jsonResult.get("message") --> Line_11 $$ assertEquals("Default answer to requests.", message) [FD]

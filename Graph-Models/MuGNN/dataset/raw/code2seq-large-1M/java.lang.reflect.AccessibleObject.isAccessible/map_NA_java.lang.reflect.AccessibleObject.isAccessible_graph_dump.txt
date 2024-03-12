@@ -1,0 +1,8 @@
+Line_2 $$ public Map<Field, T> map() --> Line_3 $$ Collection<Field> set = retrieve() [CD]
+Line_2 $$ public Map<Field, T> map() --> Line_4 $$ Map<Field, T> results = new LinkedHashMap<Field, T>() [CD]
+Line_5 $$ for (Field field : set) --> Line_6 $$ if (!field.isAccessible()) [FD]
+Line_6 $$ if (!field.isAccessible()) --> Line_7 $$ field.setAccessible(true) [CD]
+Line_5 $$ for (Field field : set) --> Line_7 $$ field.setAccessible(true) [FD]
+Line_4 $$ Map<Field, T> results = new LinkedHashMap<Field, T>() --> Line_10 $$ results.put(field, (T) field.get(object)) [FD]
+Line_5 $$ for (Field field : set) --> Line_10 $$ results.put(field, (T) field.get(object)) [FD]
+Line_2 $$ public Map<Field, T> map() --> Line_14 $$ return results [CD]

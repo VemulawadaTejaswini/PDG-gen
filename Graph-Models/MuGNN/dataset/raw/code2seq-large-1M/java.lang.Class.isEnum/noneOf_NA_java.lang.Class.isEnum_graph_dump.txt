@@ -1,0 +1,8 @@
+Line_2 $$ public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) --> Line_3 $$ if (!elementType.isEnum()) [FD]
+Line_2 $$ public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) --> Line_3 $$ if (!elementType.isEnum()) [CD]
+Line_2 $$ public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) --> Line_4 $$ throw new ClassCastException(elementType.getClass().getName() + " is not an Enum") [FD]
+Line_2 $$ public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) --> Line_6 $$ E[] enums = Enum.getSharedConstants(elementType) [FD]
+Line_2 $$ public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) --> Line_6 $$ E[] enums = Enum.getSharedConstants(elementType) [CD]
+Line_2 $$ public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) --> Line_7 $$ if (enums.length <= 64) [CD]
+Line_7 $$ if (enums.length <= 64) --> Line_8 $$ return new MiniEnumSet<E>(elementType, enums) [CD]
+Line_2 $$ public static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType) --> Line_10 $$ return new HugeEnumSet<E>(elementType, enums) [CD]

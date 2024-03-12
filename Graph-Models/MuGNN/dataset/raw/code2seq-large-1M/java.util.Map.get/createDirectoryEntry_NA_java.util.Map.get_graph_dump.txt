@@ -1,0 +1,8 @@
+Line_3 $$ String dirName = currentDirectoryInfo.getName() --> Line_4 $$ try (Session dirSession = dirService.open(dirName)) [FD]
+Line_3 $$ String dirName = currentDirectoryInfo.getName() --> Line_5 $$ String schema = dirService.getDirectorySchema(dirName) [FD]
+Line_3 $$ String dirName = currentDirectoryInfo.getName() --> Line_6 $$ String idField = dirService.getDirectoryIdField(dirName) [FD]
+Line_5 $$ String schema = dirService.getDirectorySchema(dirName) --> Line_7 $$ Object id = creationDirectoryEntry.getProperty(schema, idField) [FD]
+Line_6 $$ String idField = dirService.getDirectoryIdField(dirName) --> Line_7 $$ Object id = creationDirectoryEntry.getProperty(schema, idField) [FD]
+Line_4 $$ try (Session dirSession = dirService.open(dirName)) --> Line_8 $$ if (id instanceof String && dirSession.hasEntry((String) id)) [FD]
+Line_4 $$ try (Session dirSession = dirService.open(dirName)) --> Line_13 $$ dirSession.createEntry(creationDirectoryEntry) [FD]
+Line_3 $$ String dirName = currentDirectoryInfo.getName() --> Line_16 $$ Events.instance().raiseEvent(EventNames.DIRECTORY_CHANGED, dirName) [FD]

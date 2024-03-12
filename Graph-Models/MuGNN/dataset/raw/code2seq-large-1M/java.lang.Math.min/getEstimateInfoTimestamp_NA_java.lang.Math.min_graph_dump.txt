@@ -1,0 +1,7 @@
+Line_2 $$ public Long getEstimateInfoTimestamp() throws SQLException --> Line_3 $$ Long estInfoTimestamp = Long.MAX_VALUE [CD]
+Line_4 $$ for (MutationPlan plan : plans) --> Line_5 $$ Long timestamp = plan.getEstimateInfoTimestamp() [FD]
+Line_5 $$ Long timestamp = plan.getEstimateInfoTimestamp() --> Line_6 $$ if (timestamp == null) [FD]
+Line_6 $$ if (timestamp == null) --> Line_7 $$ return timestamp [CD]
+Line_3 $$ Long estInfoTimestamp = Long.MAX_VALUE --> Line_9 $$ estInfoTimestamp = Math.min(estInfoTimestamp, timestamp) [FD]
+Line_5 $$ Long timestamp = plan.getEstimateInfoTimestamp() --> Line_9 $$ estInfoTimestamp = Math.min(estInfoTimestamp, timestamp) [FD]
+Line_2 $$ public Long getEstimateInfoTimestamp() throws SQLException --> Line_11 $$ return estInfoTimestamp [CD]

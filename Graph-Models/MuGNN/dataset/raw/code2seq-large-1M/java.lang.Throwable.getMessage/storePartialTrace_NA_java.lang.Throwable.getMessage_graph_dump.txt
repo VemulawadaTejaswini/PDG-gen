@@ -1,0 +1,6 @@
+Line_2 $$ public void storePartialTrace(Transaction transaction) --> Line_4 $$ TraceReader traceReader = TraceCreator.createTraceReaderForPartial(transaction, clock.currentTimeMillis(), ticker.read()) [FD]
+Line_2 $$ public void storePartialTrace(Transaction transaction) --> Line_5 $$ if (!transaction.isCompleted()) [FD]
+Line_5 $$ if (!transaction.isCompleted()) --> Line_6 $$ transaction.setPartiallyStored() [CD]
+Line_2 $$ public void storePartialTrace(Transaction transaction) --> Line_6 $$ transaction.setPartiallyStored() [FD]
+Line_5 $$ if (!transaction.isCompleted()) --> Line_7 $$ collector.collectTrace(traceReader) [CD]
+Line_4 $$ TraceReader traceReader = TraceCreator.createTraceReaderForPartial(transaction, clock.currentTimeMillis(), ticker.read()) --> Line_7 $$ collector.collectTrace(traceReader) [FD]

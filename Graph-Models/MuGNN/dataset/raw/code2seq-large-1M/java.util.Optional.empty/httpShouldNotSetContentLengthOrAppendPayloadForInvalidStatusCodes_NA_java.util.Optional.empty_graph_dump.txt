@@ -1,0 +1,6 @@
+Line_2 $$ public void httpShouldNotSetContentLengthOrAppendPayloadForInvalidStatusCodes() throws Exception --> Line_3 $$ List<StatusType> invalid = ImmutableList.of(Status.createForCode(100), NO_CONTENT, NOT_MODIFIED) [CD]
+Line_5 $$ CompletableFuture<Response<ByteString>> future = new CompletableFuture() --> Line_7 $$ future.complete(Response.of(status, ByteString.of((byte) 14, (byte) 19))) [FD]
+Line_4 $$ for (StatusType status : invalid) --> Line_7 $$ future.complete(Response.of(status, ByteString.of((byte) 14, (byte) 19))) [FD]
+Line_8 $$ Response<ByteString> result = getResult(Middlewares.httpPayloadSemantics(delegate)) --> Line_9 $$ Optional<String> header = result.headers().get("Content-Length") [FD]
+Line_9 $$ Optional<String> header = result.headers().get("Content-Length") --> Line_10 $$ assertThat("no content-length for " + status, header, is(Optional.empty())) [FD]
+Line_8 $$ Response<ByteString> result = getResult(Middlewares.httpPayloadSemantics(delegate)) --> Line_11 $$ assertThat("no payload for " + status, result.payload(), is(Optional.<ByteString>empty())) [FD]

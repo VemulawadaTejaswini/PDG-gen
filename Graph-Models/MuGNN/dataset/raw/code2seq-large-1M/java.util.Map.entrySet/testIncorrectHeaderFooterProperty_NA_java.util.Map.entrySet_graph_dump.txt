@@ -1,0 +1,6 @@
+Line_2 $$ public void testIncorrectHeaderFooterProperty() throws Exception --> Line_3 $$ Map<String, String> testData = ImmutableMap.<String, String>builder().put("hive.skipper.kv_incorrect_skip_header", "skip.header.line.count").put("hive.skipper.kv_incorrect_skip_footer", "skip.footer.line.count").build() [CD]
+Line_2 $$ public void testIncorrectHeaderFooterProperty() throws Exception --> Line_4 $$ String query = "select * from %s" [CD]
+Line_2 $$ public void testIncorrectHeaderFooterProperty() throws Exception --> Line_5 $$ String exceptionMessage = "Hive table property %s value 'A' is non-numeric" [CD]
+Line_3 $$ Map<String, String> testData = ImmutableMap.<String, String>builder().put("hive.skipper.kv_incorrect_skip_header", "skip.header.line.count").put("hive.skipper.kv_incorrect_skip_footer", "skip.footer.line.count").build() --> Line_6 $$ for (Map.Entry<String, String> entry : testData.entrySet()) [FD]
+Line_4 $$ String query = "select * from %s" --> Line_8 $$ test(String.format(query, entry.getKey())) [FD]
+Line_5 $$ String exceptionMessage = "Hive table property %s value 'A' is non-numeric" --> Line_10 $$ assertThat(e.getMessage(), containsString(String.format(exceptionMessage, entry.getValue()))) [FD]

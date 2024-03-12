@@ -1,0 +1,6 @@
+Line_2 $$ public static BgReading readingNearTimeStamp(double startTime) --> Line_3 $$ final double margin = (4 * 60 * 1000) [CD]
+Line_2 $$ public static BgReading readingNearTimeStamp(double startTime) --> Line_4 $$ final DecimalFormat df = new DecimalFormat("#") [CD]
+Line_2 $$ public static BgReading readingNearTimeStamp(double startTime) --> Line_5 $$ df.setMaximumFractionDigits(1) [CD]
+Line_4 $$ final DecimalFormat df = new DecimalFormat("#") --> Line_5 $$ df.setMaximumFractionDigits(1) [FD]
+Line_2 $$ public static BgReading readingNearTimeStamp(double startTime) --> Line_6 $$ return new Select().from(BgReading.class).where("timestamp >= " + df.format(startTime - margin)).where("timestamp <= " + df.format(startTime + margin)).where("calculated_value != 0").where("raw_data != 0").executeSingle() [CD]
+Line_4 $$ final DecimalFormat df = new DecimalFormat("#") --> Line_6 $$ return new Select().from(BgReading.class).where("timestamp >= " + df.format(startTime - margin)).where("timestamp <= " + df.format(startTime + margin)).where("calculated_value != 0").where("raw_data != 0").executeSingle() [FD]

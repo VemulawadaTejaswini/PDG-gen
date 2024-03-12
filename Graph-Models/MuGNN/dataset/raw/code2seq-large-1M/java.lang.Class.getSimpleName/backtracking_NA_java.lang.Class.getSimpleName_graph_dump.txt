@@ -1,0 +1,8 @@
+Line_2 $$ private void backtracking(ObservableValue value, Set<ObservableValue> effected) throws PinException, BacktrackException --> Line_3 $$ if (!effected.contains(value)) [FD]
+Line_2 $$ private void backtracking(ObservableValue value, Set<ObservableValue> effected) throws PinException, BacktrackException --> Line_3 $$ if (!effected.contains(value)) [CD]
+Line_3 $$ if (!effected.contains(value)) --> Line_4 $$ effected.add(value) [CD]
+Line_2 $$ private void backtracking(ObservableValue value, Set<ObservableValue> effected) throws PinException, BacktrackException --> Line_4 $$ effected.add(value) [FD]
+Line_2 $$ private void backtracking(ObservableValue value, Set<ObservableValue> effected) throws PinException, BacktrackException --> Line_5 $$ for (Observer o : value.getObservers()) [FD]
+Line_6 $$ if ((o instanceof NodeInterface)) --> Line_7 $$ ObservableValues outputs = ((NodeInterface) o).getOutputs() [CD]
+Line_2 $$ private void backtracking(ObservableValue value, Set<ObservableValue> effected) throws PinException, BacktrackException --> Line_8 $$ for (ObservableValue co : outputs) backtracking(co, effected) [FD]
+Line_5 $$ for (Observer o : value.getObservers()) --> Line_10 $$ throw new BacktrackException(Lang.get("err_backtrackOf_N_isImpossible", o.getClass().getSimpleName())) [FD]

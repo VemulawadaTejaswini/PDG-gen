@@ -1,0 +1,5 @@
+Line_2 $$ private void replaceAllConstructorsWithStaticCalls(Class<?> mockClass, Class<?> target) throws IllegalArgumentException --> Line_3 $$ for (Constructor<?> constructor : target.getConstructors()) [FD]
+Line_3 $$ for (Constructor<?> constructor : target.getConstructors()) --> Line_4 $$ String desc = Type.getConstructorDescriptor(constructor) [FD]
+Line_4 $$ String desc = Type.getConstructorDescriptor(constructor) --> Line_5 $$ String replacementDesc = desc.substring(0, desc.length() - 1) + Type.getDescriptor(target) [FD]
+Line_2 $$ private void replaceAllConstructorsWithStaticCalls(Class<?> mockClass, Class<?> target) throws IllegalArgumentException --> Line_5 $$ String replacementDesc = desc.substring(0, desc.length() - 1) + Type.getDescriptor(target) [FD]
+Line_2 $$ private void replaceAllConstructorsWithStaticCalls(Class<?> mockClass, Class<?> target) throws IllegalArgumentException --> Line_6 $$ addReplacementCall(new MethodCallReplacement(target.getCanonicalName().replace('.', '/'), "<init>", desc, Opcodes.INVOKESPECIAL, mockClass.getCanonicalName().replace('.', '/'), target.getSimpleName(), replacementDesc, true, true)) [FD]

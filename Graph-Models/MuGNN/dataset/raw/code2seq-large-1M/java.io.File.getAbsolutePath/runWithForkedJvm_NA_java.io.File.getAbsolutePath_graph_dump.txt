@@ -1,0 +1,8 @@
+Line_2 $$ protected void runWithForkedJvm(File archive, File workingDirectory, String... args) throws MojoExecutionException --> Line_5 $$ List<String> cmd = new ArrayList(Arrays.asList(new JavaExecutable().toString(), "-Dmaven.repo.local=" + localRepo, "-Dthin.dryrun", "-Dthin.root=.", "-jar", archive.getAbsolutePath())) [FD]
+Line_4 $$ String localRepo = this.settings.getLocalRepository() --> Line_6 $$ if (localRepo != null) [FD]
+Line_6 $$ if (localRepo != null) --> Line_7 $$ cmd.add(1, "-Dmaven.repo.local=" + localRepo) [CD]
+Line_5 $$ List<String> cmd = new ArrayList(Arrays.asList(new JavaExecutable().toString(), "-Dmaven.repo.local=" + localRepo, "-Dthin.dryrun", "-Dthin.root=.", "-jar", archive.getAbsolutePath())) --> Line_7 $$ cmd.add(1, "-Dmaven.repo.local=" + localRepo) [FD]
+Line_5 $$ List<String> cmd = new ArrayList(Arrays.asList(new JavaExecutable().toString(), "-Dmaven.repo.local=" + localRepo, "-Dthin.dryrun", "-Dthin.root=.", "-jar", archive.getAbsolutePath())) --> Line_9 $$ RunProcess runProcess = new RunProcess(workingDirectory, cmd.toArray(new String[0])) [FD]
+Line_9 $$ RunProcess runProcess = new RunProcess(workingDirectory, cmd.toArray(new String[0])) --> Line_12 $$ int exitCode = runProcess.run(true, args) [FD]
+Line_2 $$ protected void runWithForkedJvm(File archive, File workingDirectory, String... args) throws MojoExecutionException --> Line_12 $$ int exitCode = runProcess.run(true, args) [FD]
+Line_13 $$ if (exitCode == 0 || exitCode == EXIT_CODE_SIGINT) --> Line_14 $$ return [CD]

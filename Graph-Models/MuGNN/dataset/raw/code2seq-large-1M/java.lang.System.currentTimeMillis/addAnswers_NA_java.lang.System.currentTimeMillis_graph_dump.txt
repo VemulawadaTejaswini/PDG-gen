@@ -1,0 +1,6 @@
+Line_2 $$ protected DNSOutgoing addAnswers(DNSOutgoing out) throws IOException --> Line_3 $$ DNSOutgoing newOut = out [CD]
+Line_2 $$ protected DNSOutgoing addAnswers(DNSOutgoing out) throws IOException --> Line_4 $$ long now = System.currentTimeMillis() [CD]
+Line_5 $$ for (String type : this.getDns().getServiceTypes().keySet()) --> Line_6 $$ ServiceTypeEntry typeEntry = this.getDns().getServiceTypes().get(type) [FD]
+Line_3 $$ DNSOutgoing newOut = out --> Line_7 $$ newOut = this.addAnswer(newOut, new DNSRecord.Pointer("_services._dns-sd._udp.local.", DNSRecordClass.CLASS_IN, DNSRecordClass.NOT_UNIQUE, DNSConstants.DNS_TTL, typeEntry.getType()), now) [FD]
+Line_4 $$ long now = System.currentTimeMillis() --> Line_7 $$ newOut = this.addAnswer(newOut, new DNSRecord.Pointer("_services._dns-sd._udp.local.", DNSRecordClass.CLASS_IN, DNSRecordClass.NOT_UNIQUE, DNSConstants.DNS_TTL, typeEntry.getType()), now) [FD]
+Line_2 $$ protected DNSOutgoing addAnswers(DNSOutgoing out) throws IOException --> Line_9 $$ return newOut [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void collectToSet() --> Line_3 $$ Mono<Set<Integer>> source = Flux.just(1).repeat(5).collect(Collectors.toSet()) [CD]
+Line_2 $$ public void collectToSet() --> Line_4 $$ for (int i = 0; i < 5; i++) [CD]
+Line_4 $$ for (int i = 0; i < 5; i++) --> Line_5 $$ AssertSubscriber<Set<Integer>> ts = AssertSubscriber.create() [CD]
+Line_4 $$ for (int i = 0; i < 5; i++) --> Line_6 $$ source.subscribe(ts) [CD]
+Line_3 $$ Mono<Set<Integer>> source = Flux.just(1).repeat(5).collect(Collectors.toSet()) --> Line_6 $$ source.subscribe(ts) [FD]
+Line_5 $$ AssertSubscriber<Set<Integer>> ts = AssertSubscriber.create() --> Line_6 $$ source.subscribe(ts) [FD]
+Line_4 $$ for (int i = 0; i < 5; i++) --> Line_7 $$ ts.assertValues(Collections.singleton(1)).assertNoError().assertComplete() [CD]
+Line_5 $$ AssertSubscriber<Set<Integer>> ts = AssertSubscriber.create() --> Line_7 $$ ts.assertValues(Collections.singleton(1)).assertNoError().assertComplete() [FD]

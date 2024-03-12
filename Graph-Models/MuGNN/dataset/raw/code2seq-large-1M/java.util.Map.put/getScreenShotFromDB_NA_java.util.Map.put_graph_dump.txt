@@ -1,0 +1,8 @@
+Line_5 $$ Map results = new HashMap() --> Line_7 $$ results.put("BLOB", blobBytes) [FD]
+Line_6 $$ InputStream blobBytes = lobHandler.getBlobAsBinaryStream(rs, "screenshot") --> Line_7 $$ results.put("BLOB", blobBytes) [FD]
+Line_4 $$ List l = getJdbcTemplate().query("select id, screenshot from sakuli_cases where id=" + dbPrimaryKey, ( rs,  i) -> --> Line_10 $$ HashMap<String, InputStream> map = (HashMap<String, InputStream>) l.get(0) [FD]
+Line_10 $$ HashMap<String, InputStream> map = (HashMap<String, InputStream>) l.get(0) --> Line_11 $$ BufferedImage picBuffer = ImageIO.read(map.get("BLOB")) [FD]
+Line_12 $$ File png = new File(testSuite.getAbsolutePathOfTestSuiteFile().substring(0, testSuite.getAbsolutePathOfTestSuiteFile().lastIndexOf(File.separator)) + File.separator + "temp_junit_test.png") --> Line_13 $$ png.createNewFile() [FD]
+Line_11 $$ BufferedImage picBuffer = ImageIO.read(map.get("BLOB")) --> Line_14 $$ ImageIO.write(picBuffer, "png", png) [FD]
+Line_12 $$ File png = new File(testSuite.getAbsolutePathOfTestSuiteFile().substring(0, testSuite.getAbsolutePathOfTestSuiteFile().lastIndexOf(File.separator)) + File.separator + "temp_junit_test.png") --> Line_14 $$ ImageIO.write(picBuffer, "png", png) [FD]
+Line_12 $$ File png = new File(testSuite.getAbsolutePathOfTestSuiteFile().substring(0, testSuite.getAbsolutePathOfTestSuiteFile().lastIndexOf(File.separator)) + File.separator + "temp_junit_test.png") --> Line_15 $$ png.deleteOnExit() [FD]

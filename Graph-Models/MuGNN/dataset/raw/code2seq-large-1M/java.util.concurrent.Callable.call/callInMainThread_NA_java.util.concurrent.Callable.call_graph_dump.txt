@@ -1,0 +1,8 @@
+Line_2 $$ public static <T> T callInMainThread(Callable<T> call) throws Exception --> Line_3 $$ if (isMainThread()) [CD]
+Line_3 $$ if (isMainThread()) --> Line_4 $$ return call.call() [CD]
+Line_2 $$ public static <T> T callInMainThread(Callable<T> call) throws Exception --> Line_4 $$ return call.call() [FD]
+Line_3 $$ if (isMainThread()) --> Line_6 $$ FutureTask<T> task = new FutureTask<T>(call) [CD]
+Line_3 $$ if (isMainThread()) --> Line_7 $$ getHandler().post(task) [CD]
+Line_6 $$ FutureTask<T> task = new FutureTask<T>(call) --> Line_7 $$ getHandler().post(task) [FD]
+Line_3 $$ if (isMainThread()) --> Line_8 $$ return task.get() [CD]
+Line_6 $$ FutureTask<T> task = new FutureTask<T>(call) --> Line_8 $$ return task.get() [FD]

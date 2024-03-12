@@ -1,0 +1,6 @@
+Line_2 $$ static <T extends Type> int getSingleElementLength(String input, int offset, Class<T> type) --> Line_3 $$ if (input.length() == offset) [FD]
+Line_2 $$ static <T extends Type> int getSingleElementLength(String input, int offset, Class<T> type) --> Line_3 $$ if (input.length() == offset) [CD]
+Line_3 $$ if (input.length() == offset) --> Line_4 $$ return 0 [CD]
+Line_3 $$ if (input.length() == offset) --> Line_5 $$ if (DynamicBytes.class.isAssignableFrom(type) || Utf8String.class.isAssignableFrom(type)) [CD]
+Line_2 $$ static <T extends Type> int getSingleElementLength(String input, int offset, Class<T> type) --> Line_5 $$ if (DynamicBytes.class.isAssignableFrom(type) || Utf8String.class.isAssignableFrom(type)) [FD]
+Line_2 $$ static <T extends Type> int getSingleElementLength(String input, int offset, Class<T> type) --> Line_6 $$ return (decodeUintAsInt(input, offset) / Type.MAX_BYTE_LENGTH) + 2 [FD]

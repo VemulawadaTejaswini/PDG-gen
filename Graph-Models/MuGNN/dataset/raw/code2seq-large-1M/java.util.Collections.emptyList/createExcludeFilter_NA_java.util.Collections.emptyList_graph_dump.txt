@@ -1,0 +1,7 @@
+Line_2 $$ public static Predicate<String> createExcludeFilter(List<String> excludedClasses, List<String> excludedClassPatterns) --> Line_3 $$ final Set<String> names = new LinkedHashSet(excludedClasses != null ? excludedClasses : Collections.<String>emptyList()) [CD]
+Line_2 $$ public static Predicate<String> createExcludeFilter(List<String> excludedClasses, List<String> excludedClassPatterns) --> Line_4 $$ final List<Pattern> patterns = Utils.globsToRegexps(excludedClassPatterns != null ? excludedClassPatterns : Collections.<String>emptyList()) [CD]
+Line_2 $$ public static Predicate<String> createExcludeFilter(List<String> excludedClasses, List<String> excludedClassPatterns) --> Line_5 $$ return new Predicate<String>() [CD]
+Line_5 $$ return new Predicate<String>() --> Line_7 $$ return names.contains(className) || Utils.classNameMatches(className, patterns) [CD]
+Line_5 $$ return new Predicate<String>() --> Line_7 $$ return names.contains(className) || Utils.classNameMatches(className, patterns) [FD]
+Line_3 $$ final Set<String> names = new LinkedHashSet(excludedClasses != null ? excludedClasses : Collections.<String>emptyList()) --> Line_7 $$ return names.contains(className) || Utils.classNameMatches(className, patterns) [FD]
+Line_4 $$ final List<Pattern> patterns = Utils.globsToRegexps(excludedClassPatterns != null ? excludedClassPatterns : Collections.<String>emptyList()) --> Line_7 $$ return names.contains(className) || Utils.classNameMatches(className, patterns) [FD]

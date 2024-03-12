@@ -1,0 +1,7 @@
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPreview() throws Exception --> Line_3 $$ String jobId = "privs-preview-job" [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPreview() throws Exception --> Line_4 $$ String job = " [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPreview() throws Exception --> Line_5 $$ client().performRequest("put", MachineLearning.BASE_PATH + "anomaly_detectors/" + jobId, Collections.emptyMap(), new StringEntity(job, ContentType.APPLICATION_JSON)) [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPreview() throws Exception --> Line_6 $$ String datafeedId = "datafeed-" + jobId [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPreview() throws Exception --> Line_7 $$ new DatafeedBuilder(datafeedId, jobId, "airline-data-aggs", "response").build() [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPreview() throws Exception --> Line_8 $$ ResponseException e = expectThrows(ResponseException.class, () -> client().performRequest("get", MachineLearning.BASE_PATH + "datafeeds/" + datafeedId + "/_preview", new BasicHeader("Authorization", BASIC_AUTH_VALUE_ML_ADMIN))) [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPreview() throws Exception --> Line_9 $$ assertThat(e.getMessage(), containsString("[indices:data/read/field_caps] is unauthorized for user [ml_admin]")) [CD]

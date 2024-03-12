@@ -1,0 +1,6 @@
+Line_2 $$ private boolean onlyLiveAssigned(final Map<String, Integer> partitionsPerNode) --> Line_3 $$ for (final Entry<String, Integer> nodeState : partitionsPerNode.entrySet()) [FD]
+Line_4 $$ boolean isLive = _liveSet.contains(nodeState.getKey()) --> Line_6 $$ if (!isLive && !isEmpty) [FD]
+Line_5 $$ boolean isEmpty = nodeState.getValue() == 0 --> Line_6 $$ if (!isLive && !isEmpty) [FD]
+Line_6 $$ if (!isLive && !isEmpty) --> Line_7 $$ logger.error("ERROR: Node " + nodeState.getKey() + " is not live, but has " + nodeState.getValue() + " replicas!") [CD]
+Line_6 $$ if (!isLive && !isEmpty) --> Line_8 $$ return false [CD]
+Line_2 $$ private boolean onlyLiveAssigned(final Map<String, Integer> partitionsPerNode) --> Line_11 $$ return true [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ protected LettuceConnectionProvider doCreateConnectionProvider(AbstractRedisClient client, RedisCodec<?, ?> codec) --> Line_3 $$ ReadFrom readFrom = getClientConfiguration().getReadFrom().orElse(null) [CD]
+Line_2 $$ protected LettuceConnectionProvider doCreateConnectionProvider(AbstractRedisClient client, RedisCodec<?, ?> codec) --> Line_4 $$ if (isStaticMasterSlaveAware()) [CD]
+Line_4 $$ if (isStaticMasterSlaveAware()) --> Line_5 $$ List<RedisURI> nodes = ((RedisStaticMasterSlaveConfiguration) configuration).getNodes().stream().map( it -> createRedisURIAndApplySettings(it.getHostName(), it.getPort())).peek( it -> it.setDatabase(getDatabase())).collect(Collectors.toList()) [CD]
+Line_4 $$ if (isStaticMasterSlaveAware()) --> Line_9 $$ return new StaticMasterSlaveConnectionProvider((RedisClient) client, codec, nodes, readFrom) [CD]
+Line_2 $$ protected LettuceConnectionProvider doCreateConnectionProvider(AbstractRedisClient client, RedisCodec<?, ?> codec) --> Line_11 $$ if (isClusterAware()) [CD]
+Line_11 $$ if (isClusterAware()) --> Line_12 $$ return new ClusterConnectionProvider((RedisClusterClient) client, codec, readFrom) [CD]
+Line_2 $$ protected LettuceConnectionProvider doCreateConnectionProvider(AbstractRedisClient client, RedisCodec<?, ?> codec) --> Line_14 $$ return new StandaloneConnectionProvider((RedisClient) client, codec, readFrom) [CD]

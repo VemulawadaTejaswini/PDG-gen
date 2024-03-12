@@ -1,0 +1,6 @@
+Line_2 $$ public static Multimap<String, String> decodeDimensions(List<String> filterStrings) --> Line_3 $$ Multimap<String, String> filters = TreeMultimap.create() [CD]
+Line_4 $$ for (String filterString : filterStrings) --> Line_5 $$ if (StringUtils.isBlank(filterString)) [FD]
+Line_4 $$ for (String filterString : filterStrings) --> Line_8 $$ String[] parts = EntityUtils.decodeURNComponent(filterString).split("!=|<=|>=|<|>|=", 2) [FD]
+Line_4 $$ for (String filterString : filterStrings) --> Line_10 $$ throw new IllegalArgumentException(String.format("Could not parse filter string '%s'", filterString)) [FD]
+Line_3 $$ Multimap<String, String> filters = TreeMultimap.create() --> Line_12 $$ filters.put(parts[0], parts[1]) [FD]
+Line_2 $$ public static Multimap<String, String> decodeDimensions(List<String> filterStrings) --> Line_14 $$ return filters [CD]

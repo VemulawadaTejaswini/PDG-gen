@@ -1,0 +1,8 @@
+Line_2 $$ public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) --> Line_3 $$ if (mFieldNames.contains(name)) [CD]
+Line_2 $$ public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) --> Line_3 $$ if (mFieldNames.contains(name)) [FD]
+Line_3 $$ if (mFieldNames.contains(name)) --> Line_4 $$ if ((access & ACC_PUBLIC) == 0) [CD]
+Line_4 $$ if ((access & ACC_PUBLIC) == 0) --> Line_5 $$ access = (access & ACC_NOT_PUBLIC) | ACC_PUBLIC [CD]
+Line_2 $$ public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) --> Line_5 $$ access = (access & ACC_NOT_PUBLIC) | ACC_PUBLIC [FD]
+Line_2 $$ public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) --> Line_8 $$ return super.visitField(access, name, desc, signature, value) [CD]
+Line_2 $$ public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) --> Line_8 $$ return super.visitField(access, name, desc, signature, value) [FD]
+Line_5 $$ access = (access & ACC_NOT_PUBLIC) | ACC_PUBLIC --> Line_8 $$ return super.visitField(access, name, desc, signature, value) [FD]

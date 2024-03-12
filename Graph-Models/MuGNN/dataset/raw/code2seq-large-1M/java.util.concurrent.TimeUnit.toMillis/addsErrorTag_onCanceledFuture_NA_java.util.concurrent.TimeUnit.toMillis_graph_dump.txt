@@ -1,0 +1,7 @@
+Line_2 $$ public void addsErrorTag_onCanceledFuture() throws Exception --> Line_3 $$ server.enqueueDelay(TimeUnit.SECONDS.toMillis(1)) [CD]
+Line_2 $$ public void addsErrorTag_onCanceledFuture() throws Exception --> Line_4 $$ ListenableFuture<HelloReply> resp = GreeterGrpc.newFutureStub(client).sayHello(HELLO_REQUEST) [CD]
+Line_2 $$ public void addsErrorTag_onCanceledFuture() throws Exception --> Line_5 $$ assumeTrue("lost race on cancel", resp.cancel(true)) [CD]
+Line_4 $$ ListenableFuture<HelloReply> resp = GreeterGrpc.newFutureStub(client).sayHello(HELLO_REQUEST) --> Line_5 $$ assumeTrue("lost race on cancel", resp.cancel(true)) [FD]
+Line_2 $$ public void addsErrorTag_onCanceledFuture() throws Exception --> Line_6 $$ Span span = spans.take() [CD]
+Line_2 $$ public void addsErrorTag_onCanceledFuture() throws Exception --> Line_7 $$ assertThat(span.tags()).containsExactly(entry("error", "CANCELLED"), entry("grpc.status_code", "CANCELLED")) [CD]
+Line_6 $$ Span span = spans.take() --> Line_7 $$ assertThat(span.tags()).containsExactly(entry("error", "CANCELLED"), entry("grpc.status_code", "CANCELLED")) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void nestedPathMatchedByRegexWhenPlaceholderCannotBeResolvedShouldReturnUnresolvedProperty() --> Line_3 $$ Map<String, Object> map = new HashMap() [CD]
+Line_2 $$ public void nestedPathMatchedByRegexWhenPlaceholderCannotBeResolvedShouldReturnUnresolvedProperty() --> Line_4 $$ map.put("my.foo", "$ [CD]
+Line_3 $$ Map<String, Object> map = new HashMap() --> Line_4 $$ map.put("my.foo", "$ [FD]
+Line_2 $$ public void nestedPathMatchedByRegexWhenPlaceholderCannotBeResolvedShouldReturnUnresolvedProperty() --> Line_5 $$ context.getEnvironment().getPropertySources().addFirst(new MapPropertySource("unresolved-placeholder", map)) [CD]
+Line_2 $$ public void nestedPathMatchedByRegexWhenPlaceholderCannotBeResolvedShouldReturnUnresolvedProperty() --> Line_6 $$ client.get().uri("/actuator/env?pattern=my.*").exchange().expectStatus().isOk().expectBody().jsonPath("propertySources[?(@.name=='unresolved-placeholder')].properties.['my.foo'].value").isEqualTo("$ [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static Optional<TableState> getTableState(Result r) throws IOException --> Line_3 $$ Cell cell = r.getColumnLatestCell(getTableFamily(), getStateColumn()) [CD]
+Line_2 $$ private static Optional<TableState> getTableState(Result r) throws IOException --> Line_3 $$ Cell cell = r.getColumnLatestCell(getTableFamily(), getStateColumn()) [FD]
+Line_2 $$ private static Optional<TableState> getTableState(Result r) throws IOException --> Line_4 $$ if (cell == null) [CD]
+Line_3 $$ Cell cell = r.getColumnLatestCell(getTableFamily(), getStateColumn()) --> Line_4 $$ if (cell == null) [FD]
+Line_4 $$ if (cell == null) --> Line_5 $$ return Optional.empty() [CD]
+Line_2 $$ private static Optional<TableState> getTableState(Result r) throws IOException --> Line_7 $$ return Optional.of(TableState.parseFrom(TableName.valueOf(r.getRow()), Arrays.copyOfRange(cell.getValueArray(), cell.getValueOffset(), cell.getValueOffset() + cell.getValueLength()))) [FD]
+Line_3 $$ Cell cell = r.getColumnLatestCell(getTableFamily(), getStateColumn()) --> Line_7 $$ return Optional.of(TableState.parseFrom(TableName.valueOf(r.getRow()), Arrays.copyOfRange(cell.getValueArray(), cell.getValueOffset(), cell.getValueOffset() + cell.getValueLength()))) [FD]

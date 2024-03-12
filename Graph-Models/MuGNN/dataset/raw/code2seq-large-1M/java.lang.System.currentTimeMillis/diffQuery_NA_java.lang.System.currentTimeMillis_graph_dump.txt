@@ -1,0 +1,7 @@
+Line_2 $$ private void diffQuery() throws Exception --> Line_3 $$ Long start = System.currentTimeMillis() [CD]
+Line_2 $$ private void diffQuery() throws Exception --> Line_4 $$ Date startDate = Calendar.getInstance().getTime() [CD]
+Line_2 $$ private void diffQuery() throws Exception --> Line_5 $$ String newCSV = queryVerifier.exportCSV(query) [CD]
+Line_2 $$ private void diffQuery() throws Exception --> Line_6 $$ boolean verifyResult = queryVerifier.doDiff(query, newCSV) [CD]
+Line_5 $$ String newCSV = queryVerifier.exportCSV(query) --> Line_6 $$ boolean verifyResult = queryVerifier.doDiff(query, newCSV) [FD]
+Line_2 $$ private void diffQuery() throws Exception --> Line_7 $$ String explainPlan = pUtil.getExplainPlan(query) [CD]
+Line_2 $$ private void diffQuery() throws Exception --> Line_8 $$ getThreadTime().getRunTimesInMs().add(new RunTime(verifyResult == true ? PherfConstants.DIFF_PASS : PherfConstants.DIFF_FAIL, explainPlan, startDate, -1L, (int) (System.currentTimeMillis() - start))) [CD]

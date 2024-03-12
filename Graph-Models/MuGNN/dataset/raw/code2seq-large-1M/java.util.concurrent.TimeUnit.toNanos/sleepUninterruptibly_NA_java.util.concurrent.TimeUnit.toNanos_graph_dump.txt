@@ -1,0 +1,8 @@
+Line_2 $$ public static void sleepUninterruptibly(long sleepFor, TimeUnit unit) --> Line_3 $$ boolean interrupted = false [CD]
+Line_2 $$ public static void sleepUninterruptibly(long sleepFor, TimeUnit unit) --> Line_5 $$ long remainingNanos = unit.toNanos(sleepFor) [FD]
+Line_5 $$ long remainingNanos = unit.toNanos(sleepFor) --> Line_9 $$ NANOSECONDS.sleep(remainingNanos) [FD]
+Line_3 $$ boolean interrupted = false --> Line_12 $$ interrupted = true [FD]
+Line_5 $$ long remainingNanos = unit.toNanos(sleepFor) --> Line_13 $$ remainingNanos = end - System.nanoTime() [FD]
+Line_6 $$ long end = System.nanoTime() + remainingNanos --> Line_13 $$ remainingNanos = end - System.nanoTime() [FD]
+Line_17 $$ if (interrupted) --> Line_18 $$ Thread.currentThread().interrupt() [CD]
+Line_13 $$ remainingNanos = end - System.nanoTime() --> Line_9 $$ NANOSECONDS.sleep(remainingNanos) [FD]

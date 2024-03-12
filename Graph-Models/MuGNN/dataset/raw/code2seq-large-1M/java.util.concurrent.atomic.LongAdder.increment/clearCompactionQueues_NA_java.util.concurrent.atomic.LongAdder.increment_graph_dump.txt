@@ -1,0 +1,8 @@
+Line_2 $$ public ClearCompactionQueuesResponse clearCompactionQueues(RpcController controller, ClearCompactionQueuesRequest request) throws ServiceException --> Line_3 $$ LOG.debug("Client=" + RpcServer.getRequestUserName().orElse(null) + "/" + RpcServer.getRemoteAddress().orElse(null) + " clear compactions queue") [CD]
+Line_2 $$ public ClearCompactionQueuesResponse clearCompactionQueues(RpcController controller, ClearCompactionQueuesRequest request) throws ServiceException --> Line_4 $$ ClearCompactionQueuesResponse.Builder respBuilder = ClearCompactionQueuesResponse.newBuilder() [CD]
+Line_2 $$ public ClearCompactionQueuesResponse clearCompactionQueues(RpcController controller, ClearCompactionQueuesRequest request) throws ServiceException --> Line_5 $$ requestCount.increment() [CD]
+Line_2 $$ public ClearCompactionQueuesResponse clearCompactionQueues(RpcController controller, ClearCompactionQueuesRequest request) throws ServiceException --> Line_6 $$ if (clearCompactionQueues.compareAndSet(false, true)) [CD]
+Line_2 $$ public ClearCompactionQueuesResponse clearCompactionQueues(RpcController controller, ClearCompactionQueuesRequest request) throws ServiceException --> Line_10 $$ for (String queueName : request.getQueueNameList()) [FD]
+Line_6 $$ if (clearCompactionQueues.compareAndSet(false, true)) --> Line_31 $$ LOG.warn("Clear compactions queue is executing by other admin.") [CD]
+Line_2 $$ public ClearCompactionQueuesResponse clearCompactionQueues(RpcController controller, ClearCompactionQueuesRequest request) throws ServiceException --> Line_33 $$ return respBuilder.build() [CD]
+Line_4 $$ ClearCompactionQueuesResponse.Builder respBuilder = ClearCompactionQueuesResponse.newBuilder() --> Line_33 $$ return respBuilder.build() [FD]

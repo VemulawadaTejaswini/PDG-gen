@@ -1,0 +1,8 @@
+Line_2 $$ public List<Runnable> shutdownNow() --> Line_3 $$ List<Runnable> tasks [CD]
+Line_2 $$ public List<Runnable> shutdownNow() --> Line_4 $$ final ReentrantLock mainLock = this.mainLock [CD]
+Line_2 $$ public List<Runnable> shutdownNow() --> Line_5 $$ mainLock.lock() [CD]
+Line_4 $$ final ReentrantLock mainLock = this.mainLock --> Line_5 $$ mainLock.lock() [FD]
+Line_3 $$ List<Runnable> tasks --> Line_10 $$ tasks = drainQueue() [FD]
+Line_4 $$ final ReentrantLock mainLock = this.mainLock --> Line_12 $$ mainLock.unlock() [FD]
+Line_2 $$ public List<Runnable> shutdownNow() --> Line_14 $$ tryTerminate() [CD]
+Line_2 $$ public List<Runnable> shutdownNow() --> Line_15 $$ return tasks [CD]

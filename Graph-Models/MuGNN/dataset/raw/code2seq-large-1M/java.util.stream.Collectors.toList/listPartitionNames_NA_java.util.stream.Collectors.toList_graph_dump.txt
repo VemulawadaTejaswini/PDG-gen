@@ -1,0 +1,4 @@
+Line_2 $$ public List<String> listPartitionNames(final String topicId) --> Line_3 $$ final Producer<String, String> producer = kafkaFactory.takeProducer() [CD]
+Line_3 $$ final Producer<String, String> producer = kafkaFactory.takeProducer() --> Line_5 $$ return unmodifiableList(producer.partitionsFor(topicId).stream().map( partitionInfo -> KafkaCursor.toNakadiPartition(partitionInfo.partition())).collect(toList())) [FD]
+Line_2 $$ public List<String> listPartitionNames(final String topicId) --> Line_5 $$ return unmodifiableList(producer.partitionsFor(topicId).stream().map( partitionInfo -> KafkaCursor.toNakadiPartition(partitionInfo.partition())).collect(toList())) [FD]
+Line_3 $$ final Producer<String, String> producer = kafkaFactory.takeProducer() --> Line_7 $$ kafkaFactory.releaseProducer(producer) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void handleUnsubscribeMessage(UnsubscribeMessage unsubscribeMessage) --> Line_4 $$ List<String> topicFilterSet = unsubscribeMessage.topicFilters() [FD]
+Line_6 $$ if (subscriptions != null) --> Line_7 $$ subscriptions.remove(topicFilter) [CD]
+Line_5 $$ for (String topicFilter : topicFilterSet) --> Line_7 $$ subscriptions.remove(topicFilter) [FD]
+Line_6 $$ if (subscriptions != null) --> Line_8 $$ matchingSubscriptionsCache.clear() [CD]
+Line_6 $$ if (subscriptions != null) --> Line_9 $$ PromMetrics.mqtt_unsubscribe_total.inc() [CD]
+Line_6 $$ if (subscriptions != null) --> Line_10 $$ PromMetrics.mqtt_unsubscribe.labels(topicFilter).inc() [CD]
+Line_5 $$ for (String topicFilter : topicFilterSet) --> Line_10 $$ PromMetrics.mqtt_unsubscribe.labels(topicFilter).inc() [FD]

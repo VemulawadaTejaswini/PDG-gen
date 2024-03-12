@@ -1,0 +1,8 @@
+Line_2 $$ public void testUpcastToMultipleTypes() --> Line_3 $$ Object a = "a", b = "b", c = "c" [CD]
+Line_2 $$ public void testUpcastToMultipleTypes() --> Line_4 $$ Upcaster<Object> testSubject = new GenericUpcasterChain(new MultipleTypesUpcaster(), new AToBUpcaster(b, c)) [CD]
+Line_2 $$ public void testUpcastToMultipleTypes() --> Line_5 $$ Stream<Object> result = testSubject.upcast(Stream.of(a, b, c)) [CD]
+Line_4 $$ Upcaster<Object> testSubject = new GenericUpcasterChain(new MultipleTypesUpcaster(), new AToBUpcaster(b, c)) --> Line_5 $$ Stream<Object> result = testSubject.upcast(Stream.of(a, b, c)) [FD]
+Line_3 $$ Object a = "a", b = "b", c = "c" --> Line_5 $$ Stream<Object> result = testSubject.upcast(Stream.of(a, b, c)) [FD]
+Line_2 $$ public void testUpcastToMultipleTypes() --> Line_6 $$ assertEquals(Arrays.asList(a, a, c, c, c, c), result.collect(toList())) [CD]
+Line_3 $$ Object a = "a", b = "b", c = "c" --> Line_6 $$ assertEquals(Arrays.asList(a, a, c, c, c, c), result.collect(toList())) [FD]
+Line_5 $$ Stream<Object> result = testSubject.upcast(Stream.of(a, b, c)) --> Line_6 $$ assertEquals(Arrays.asList(a, a, c, c, c, c), result.collect(toList())) [FD]

@@ -1,0 +1,7 @@
+Line_4 $$ PooledDb db = threadDb.get() --> Line_5 $$ if (db != null) [FD]
+Line_5 $$ if (db != null) --> Line_6 $$ return db [CD]
+Line_8 $$ PooledDb pdb = total >= maximumConnections ? pool.take() : pool.poll() --> Line_9 $$ if (pdb != null) [FD]
+Line_9 $$ if (pdb != null) --> Line_11 $$ pdb = new PooledDb(this, connectionString, properties) [CD]
+Line_8 $$ PooledDb pdb = total >= maximumConnections ? pool.take() : pool.poll() --> Line_11 $$ pdb = new PooledDb(this, connectionString, properties) [FD]
+Line_8 $$ PooledDb pdb = total >= maximumConnections ? pool.take() : pool.poll() --> Line_14 $$ threadDb.set(pdb) [FD]
+Line_11 $$ pdb = new PooledDb(this, connectionString, properties) --> Line_14 $$ threadDb.set(pdb) [FD]

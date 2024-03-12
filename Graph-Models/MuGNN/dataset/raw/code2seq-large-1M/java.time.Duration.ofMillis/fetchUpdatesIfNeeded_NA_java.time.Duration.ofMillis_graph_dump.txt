@@ -1,0 +1,6 @@
+Line_2 $$ private void fetchUpdatesIfNeeded() --> Line_3 $$ if (!fetchStateTimer.hasRemaining()) [CD]
+Line_3 $$ if (!fetchStateTimer.hasRemaining()) --> Line_4 $$ sync.fetchUpdates() [CD]
+Line_3 $$ if (!fetchStateTimer.hasRemaining()) --> Line_5 $$ long groupRefreshTimeMillis = sync.getState().getConfig().getGroupRefreshTimeMillis() [CD]
+Line_3 $$ if (!fetchStateTimer.hasRemaining()) --> Line_6 $$ fetchStateTimer.reset(Duration.ofMillis(groupRefreshTimeMillis)) [CD]
+Line_5 $$ long groupRefreshTimeMillis = sync.getState().getConfig().getGroupRefreshTimeMillis() --> Line_6 $$ fetchStateTimer.reset(Duration.ofMillis(groupRefreshTimeMillis)) [FD]
+Line_3 $$ if (!fetchStateTimer.hasRemaining()) --> Line_7 $$ compactIfNeeded() [CD]

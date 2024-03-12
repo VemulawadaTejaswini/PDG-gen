@@ -1,0 +1,6 @@
+Line_4 $$ try (final Connection nc = newDefaultConnection()) --> Line_5 $$ try (SyncSubscription sub = nc.subscribeSync("foo")) [FD]
+Line_7 $$ exec.submit(new Runnable() --> Line_9 $$ sleep(5) [CD]
+Line_7 $$ exec.submit(new Runnable() --> Line_10 $$ nc.close() [CD]
+Line_4 $$ try (final Connection nc = newDefaultConnection()) --> Line_10 $$ nc.close() [FD]
+Line_4 $$ try (final Connection nc = newDefaultConnection()) --> Line_16 $$ assertTrue(nc.isClosed()) [FD]
+Line_5 $$ try (SyncSubscription sub = nc.subscribeSync("foo")) --> Line_17 $$ sub.nextMessage(50, TimeUnit.MILLISECONDS) [FD]

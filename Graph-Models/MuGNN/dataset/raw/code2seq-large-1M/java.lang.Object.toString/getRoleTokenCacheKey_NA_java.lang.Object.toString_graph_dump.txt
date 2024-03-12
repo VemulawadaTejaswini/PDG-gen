@@ -1,0 +1,8 @@
+Line_2 $$ String getRoleTokenCacheKey(String domainName, String roleName, String proxyForPrincipal) --> Line_3 $$ String tenantDomain = domain [CD]
+Line_2 $$ String getRoleTokenCacheKey(String domainName, String roleName, String proxyForPrincipal) --> Line_4 $$ if (domain == null && sslContext != null) [CD]
+Line_4 $$ if (domain == null && sslContext != null) --> Line_5 $$ tenantDomain = sslContext.toString() [CD]
+Line_3 $$ String tenantDomain = domain --> Line_5 $$ tenantDomain = sslContext.toString() [FD]
+Line_2 $$ String getRoleTokenCacheKey(String domainName, String roleName, String proxyForPrincipal) --> Line_7 $$ return getRoleTokenCacheKey(tenantDomain, service, domainName, roleName, proxyForPrincipal) [FD]
+Line_2 $$ String getRoleTokenCacheKey(String domainName, String roleName, String proxyForPrincipal) --> Line_7 $$ return getRoleTokenCacheKey(tenantDomain, service, domainName, roleName, proxyForPrincipal) [CD]
+Line_3 $$ String tenantDomain = domain --> Line_7 $$ return getRoleTokenCacheKey(tenantDomain, service, domainName, roleName, proxyForPrincipal) [FD]
+Line_5 $$ tenantDomain = sslContext.toString() --> Line_7 $$ return getRoleTokenCacheKey(tenantDomain, service, domainName, roleName, proxyForPrincipal) [FD]

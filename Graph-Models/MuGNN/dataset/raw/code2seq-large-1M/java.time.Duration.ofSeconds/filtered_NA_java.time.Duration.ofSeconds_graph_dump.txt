@@ -1,0 +1,7 @@
+Line_2 $$ public void filtered() --> Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() [CD]
+Line_2 $$ public void filtered() --> Line_4 $$ Flux.range(1, 2_000_000).hide().publishOn(Schedulers.fromExecutorService(exec)).filter( v -> (v & 1) == 0).subscribe(ts) [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_4 $$ Flux.range(1, 2_000_000).hide().publishOn(Schedulers.fromExecutorService(exec)).filter( v -> (v & 1) == 0).subscribe(ts) [FD]
+Line_2 $$ public void filtered() --> Line_5 $$ ts.await(Duration.ofSeconds(5)) [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_5 $$ ts.await(Duration.ofSeconds(5)) [FD]
+Line_2 $$ public void filtered() --> Line_6 $$ ts.assertValueCount(1_000_000).assertNoError().assertComplete() [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_6 $$ ts.assertValueCount(1_000_000).assertNoError().assertComplete() [FD]

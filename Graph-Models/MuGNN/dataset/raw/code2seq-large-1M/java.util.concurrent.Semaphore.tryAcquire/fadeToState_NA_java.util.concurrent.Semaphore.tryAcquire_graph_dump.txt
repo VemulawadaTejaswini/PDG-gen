@@ -1,0 +1,8 @@
+Line_2 $$ private synchronized void fadeToState(final InternalLedState newTargetState) throws IOException --> Line_3 $$ if (ledUpdateSyncSemaphore.tryAcquire(1)) [CD]
+Line_3 $$ if (ledUpdateSyncSemaphore.tryAcquire(1)) --> Line_23 $$ ledfaderThread.init() [CD]
+Line_3 $$ if (ledUpdateSyncSemaphore.tryAcquire(1)) --> Line_24 $$ final int period = fadeDurationInMs / totalFadingSteps [CD]
+Line_3 $$ if (ledUpdateSyncSemaphore.tryAcquire(1)) --> Line_25 $$ final Future<?> future = faderExecutor.scheduleAtFixedRate(ledfaderThread, 0, period < 1 ? 1 : period, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ if (ledUpdateSyncSemaphore.tryAcquire(1)) --> Line_26 $$ waiterExecutor.schedule(() -> [CD]
+Line_25 $$ final Future<?> future = faderExecutor.scheduleAtFixedRate(ledfaderThread, 0, period < 1 ? 1 : period, TimeUnit.MILLISECONDS) --> Line_28 $$ future.get() [FD]
+Line_3 $$ if (ledUpdateSyncSemaphore.tryAcquire(1)) --> Line_38 $$ ledfaderThread.setToState(newTargetState) [CD]
+Line_2 $$ private synchronized void fadeToState(final InternalLedState newTargetState) throws IOException --> Line_38 $$ ledfaderThread.setToState(newTargetState) [FD]

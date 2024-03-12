@@ -1,0 +1,8 @@
+Line_2 $$ public void testGetContextEnvironmentUnexistingCA_SSL() --> Line_3 $$ String username = "username" [CD]
+Line_2 $$ public void testGetContextEnvironmentUnexistingCA_SSL() --> Line_4 $$ String secretPhrase = "secret-phrase" [CD]
+Line_2 $$ public void testGetContextEnvironmentUnexistingCA_SSL() --> Line_5 $$ String wrongCAPath = String.format("%s/this/cannot/be/existing", System.getProperty("user.dir")) [CD]
+Line_5 $$ String wrongCAPath = String.format("%s/this/cannot/be/existing", System.getProperty("user.dir")) --> Line_7 $$ LdapBasicAuthenticator blankStrategyAuthenticator = new LdapBasicAuthenticator(getSSLPreSettings().setCertificateAbsolutePath(wrongCAPath)) [FD]
+Line_7 $$ LdapBasicAuthenticator blankStrategyAuthenticator = new LdapBasicAuthenticator(getSSLPreSettings().setCertificateAbsolutePath(wrongCAPath)) --> Line_8 $$ blankStrategyAuthenticator.getContextEnvironment(username, secretPhrase).get(Context.SECURITY_AUTHENTICATION) [FD]
+Line_3 $$ String username = "username" --> Line_8 $$ blankStrategyAuthenticator.getContextEnvironment(username, secretPhrase).get(Context.SECURITY_AUTHENTICATION) [FD]
+Line_4 $$ String secretPhrase = "secret-phrase" --> Line_8 $$ blankStrategyAuthenticator.getContextEnvironment(username, secretPhrase).get(Context.SECURITY_AUTHENTICATION) [FD]
+Line_5 $$ String wrongCAPath = String.format("%s/this/cannot/be/existing", System.getProperty("user.dir")) --> Line_11 $$ Assert.assertEquals("unexpected exception message", String.format("The file specified not existing: %s", wrongCAPath), e.getMessage()) [FD]

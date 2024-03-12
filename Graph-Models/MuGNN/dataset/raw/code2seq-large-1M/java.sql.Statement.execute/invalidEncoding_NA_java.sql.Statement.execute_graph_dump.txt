@@ -1,0 +1,7 @@
+Line_2 $$ public void invalidEncoding() throws Exception --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_2 $$ public void invalidEncoding() throws Exception --> Line_4 $$ String testTable = generateUniqueName() [CD]
+Line_2 $$ public void invalidEncoding() throws Exception --> Line_5 $$ String ddl = "CREATE TABLE " + testTable + " ( some_column BINARY(12) NOT NULL CONSTRAINT PK PRIMARY KEY (some_column))" [CD]
+Line_2 $$ public void invalidEncoding() throws Exception --> Line_6 $$ conn.createStatement().execute(ddl) [CD]
+Line_5 $$ String ddl = "CREATE TABLE " + testTable + " ( some_column BINARY(12) NOT NULL CONSTRAINT PK PRIMARY KEY (some_column))" --> Line_6 $$ conn.createStatement().execute(ddl) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_6 $$ conn.createStatement().execute(ddl) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_8 $$ conn.createStatement().executeQuery("SELECT * FROM " + testTable + " WHERE some_column = DECODE('8', 'someNonexistFormat')") [FD]

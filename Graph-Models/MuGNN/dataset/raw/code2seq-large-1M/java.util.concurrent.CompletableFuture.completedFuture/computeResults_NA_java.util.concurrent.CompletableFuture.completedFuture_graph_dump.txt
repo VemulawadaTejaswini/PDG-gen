@@ -1,0 +1,7 @@
+Line_2 $$ public CompletableFuture<Iterable<TableHealth>> computeResults() --> Line_3 $$ if (clusterService.localNode() == null) [CD]
+Line_3 $$ if (clusterService.localNode() == null) --> Line_4 $$ logger.debug("Could not retrieve tables health information. localNode is not fully available yet.") [CD]
+Line_3 $$ if (clusterService.localNode() == null) --> Line_5 $$ return completedFuture(Collections.emptyList()) [CD]
+Line_2 $$ public CompletableFuture<Iterable<TableHealth>> computeResults() --> Line_7 $$ if (clusterService.state().getBlocks().hasGlobalBlock(RestStatus.SERVICE_UNAVAILABLE)) [CD]
+Line_7 $$ if (clusterService.state().getBlocks().hasGlobalBlock(RestStatus.SERVICE_UNAVAILABLE)) --> Line_8 $$ return completedFuture(allAsUnavailable()) [CD]
+Line_12 $$ HealthResultReceiver resultReceiver = new HealthResultReceiver(future) --> Line_13 $$ session().quickExec(STMT,  stmt -> PARSED_STMT, resultReceiver, Row.EMPTY) [FD]
+Line_11 $$ CompletableFuture<Map<TablePartitionIdent, ShardsInfo>> future = new CompletableFuture() --> Line_14 $$ return future.thenApply(this::<>buildTablesHealth) [FD]

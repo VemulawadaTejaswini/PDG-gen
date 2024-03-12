@@ -1,0 +1,6 @@
+Line_2 $$ public void destroy() --> Line_4 $$ new ArrayList(interfacesInUse.values()).parallelStream().forEach(RPCServer::<>stop) [CD]
+Line_2 $$ public void destroy() --> Line_5 $$ CompletableFuture<RPCServer> cf = activeServerFuture.getAndSet(null) [CD]
+Line_2 $$ public void destroy() --> Line_6 $$ if (cf != null) [CD]
+Line_5 $$ CompletableFuture<RPCServer> cf = activeServerFuture.getAndSet(null) --> Line_6 $$ if (cf != null) [FD]
+Line_6 $$ if (cf != null) --> Line_7 $$ cf.completeExceptionally(new DHTException("could not obtain active server, DHT was shut down")) [CD]
+Line_5 $$ CompletableFuture<RPCServer> cf = activeServerFuture.getAndSet(null) --> Line_7 $$ cf.completeExceptionally(new DHTException("could not obtain active server, DHT was shut down")) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void waitForSessionBound() throws InterruptedException, TimeoutException --> Line_3 $$ GridHubConfiguration configuration = getRegistry().getHub().getConfiguration() [CD]
+Line_2 $$ public void waitForSessionBound() throws InterruptedException, TimeoutException --> Line_4 $$ Integer newSessionWaitTimeout = configuration.newSessionWaitTimeout != null ? configuration.newSessionWaitTimeout : 0 [CD]
+Line_2 $$ public void waitForSessionBound() throws InterruptedException, TimeoutException --> Line_5 $$ if (newSessionWaitTimeout > 0) [CD]
+Line_4 $$ Integer newSessionWaitTimeout = configuration.newSessionWaitTimeout != null ? configuration.newSessionWaitTimeout : 0 --> Line_5 $$ if (newSessionWaitTimeout > 0) [FD]
+Line_5 $$ if (newSessionWaitTimeout > 0) --> Line_6 $$ if (!sessionAssigned.await(newSessionWaitTimeout.longValue(), TimeUnit.MILLISECONDS)) [CD]
+Line_4 $$ Integer newSessionWaitTimeout = configuration.newSessionWaitTimeout != null ? configuration.newSessionWaitTimeout : 0 --> Line_6 $$ if (!sessionAssigned.await(newSessionWaitTimeout.longValue(), TimeUnit.MILLISECONDS)) [FD]
+Line_5 $$ if (newSessionWaitTimeout > 0) --> Line_10 $$ sessionAssigned.await() [CD]

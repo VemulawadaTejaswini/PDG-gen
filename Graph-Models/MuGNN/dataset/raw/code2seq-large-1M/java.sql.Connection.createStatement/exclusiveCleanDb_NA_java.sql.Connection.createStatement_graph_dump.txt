@@ -1,0 +1,8 @@
+Line_2 $$ private LockWrapper exclusiveCleanDb(Connection c) throws SQLException --> Line_3 $$ final LockWrapper wrapper = LockWrapper.lock(LOCK) [CD]
+Line_2 $$ private LockWrapper exclusiveCleanDb(Connection c) throws SQLException --> Line_4 $$ try (Statement statement = c.createStatement()) [FD]
+Line_4 $$ try (Statement statement = c.createStatement()) --> Line_7 $$ statement.executeUpdate(dSql) [FD]
+Line_5 $$ final String dSql = "DELETE FROM \"foodmart\".\"expense_fact\"" + " WHERE \"store_id\"=666\n" --> Line_7 $$ statement.executeUpdate(dSql) [FD]
+Line_4 $$ try (Statement statement = c.createStatement()) --> Line_8 $$ int rowCount = statement.executeUpdate(iSql) [FD]
+Line_6 $$ final String iSql = "INSERT INTO \"foodmart\".\"expense_fact\"(\n" + " \"store_id\", \"account_id\", \"exp_date\", \"time_id\"," + " \"category_id\", \"currency_id\", \"amount\")\n" + " VALUES (666, 666, TIMESTAMP '1997-01-01 00:00:00'," + " 666, '666', 666, 666)" --> Line_8 $$ int rowCount = statement.executeUpdate(iSql) [FD]
+Line_8 $$ int rowCount = statement.executeUpdate(iSql) --> Line_9 $$ assertThat(rowCount, is(1)) [FD]
+Line_3 $$ final LockWrapper wrapper = LockWrapper.lock(LOCK) --> Line_12 $$ wrapper.close() [FD]

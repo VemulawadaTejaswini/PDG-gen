@@ -1,0 +1,7 @@
+Line_2 $$ protected InstanceInfo createInstanceInfo(int port) --> Line_3 $$ final HashSet<ServicePort> ports = new HashSet(Arrays.asList(new ServicePort(port, false))) [CD]
+Line_2 $$ protected InstanceInfo createInstanceInfo(int port) --> Line_4 $$ String hostAddress = "unknown" [CD]
+Line_4 $$ String hostAddress = "unknown" --> Line_6 $$ hostAddress = InetAddress.getLocalHost().getHostAddress() [FD]
+Line_4 $$ String hostAddress = "unknown" --> Line_9 $$ hostAddress = "unknown-" + UUID.randomUUID() [FD]
+Line_6 $$ hostAddress = InetAddress.getLocalHost().getHostAddress() --> Line_9 $$ hostAddress = "unknown-" + UUID.randomUUID() [FD]
+Line_2 $$ protected InstanceInfo createInstanceInfo(int port) --> Line_11 $$ return new InstanceInfo.Builder().withId(hostAddress + "-" + port).withApp("reactive-lab").withStatus(InstanceInfo.Status.UP).withVipAddress(eurekaVipAddress).withPorts(ports).withDataCenterInfo(BasicDataCenterInfo.fromSystemData()).build() [CD]
+Line_3 $$ final HashSet<ServicePort> ports = new HashSet(Arrays.asList(new ServicePort(port, false))) --> Line_11 $$ return new InstanceInfo.Builder().withId(hostAddress + "-" + port).withApp("reactive-lab").withStatus(InstanceInfo.Status.UP).withVipAddress(eurekaVipAddress).withPorts(ports).withDataCenterInfo(BasicDataCenterInfo.fromSystemData()).build() [FD]

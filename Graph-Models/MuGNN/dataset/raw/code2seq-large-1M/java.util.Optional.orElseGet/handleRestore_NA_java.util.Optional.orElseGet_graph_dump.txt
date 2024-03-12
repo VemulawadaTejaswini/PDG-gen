@@ -1,0 +1,8 @@
+Line_2 $$ public void handleRestore(InternalActionContext ac) --> Line_3 $$ db.asyncTx(() -> [CD]
+Line_2 $$ public void handleRestore(InternalActionContext ac) --> Line_4 $$ if (!ac.getUser().hasAdminRole()) [FD]
+Line_7 $$ File backupDir = new File(Mesh.mesh().getOptions().getStorageOptions().getBackupDirectory()) --> Line_8 $$ File latestFile = Arrays.asList(backupDir.listFiles()).stream().filter( file -> file.getName().endsWith(".zip")).sorted(comparing(File::<>lastModified)).reduce(( first,  second) -> second).orElseGet(() -> null) [FD]
+Line_8 $$ File latestFile = Arrays.asList(backupDir.listFiles()).stream().filter( file -> file.getName().endsWith(".zip")).sorted(comparing(File::<>lastModified)).reduce(( first,  second) -> second).orElseGet(() -> null) --> Line_9 $$ if (latestFile == null) [FD]
+Line_7 $$ File backupDir = new File(Mesh.mesh().getOptions().getStorageOptions().getBackupDirectory()) --> Line_10 $$ throw error(INTERNAL_SERVER_ERROR, "error_backup", backupDir.getAbsolutePath()) [FD]
+Line_8 $$ File latestFile = Arrays.asList(backupDir.listFiles()).stream().filter( file -> file.getName().endsWith(".zip")).sorted(comparing(File::<>lastModified)).reduce(( first,  second) -> second).orElseGet(() -> null) --> Line_12 $$ db.restoreGraph(latestFile.getAbsolutePath()) [FD]
+Line_2 $$ public void handleRestore(InternalActionContext ac) --> Line_17 $$ return Single.just(message(ac, "restore_finished")) [FD]
+Line_2 $$ public void handleRestore(InternalActionContext ac) --> Line_18 $$ ac.send(model, OK) [FD]

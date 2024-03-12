@@ -1,0 +1,8 @@
+Line_2 $$ public void saveConstraints() --> Line_3 $$ final Thread callingThread = Thread.currentThread() [CD]
+Line_3 $$ final Thread callingThread = Thread.currentThread() --> Line_5 $$ final ITrxConstraints constraints = getConstraints(callingThread) [FD]
+Line_5 $$ final ITrxConstraints constraints = getConstraints(callingThread) --> Line_6 $$ if (isDisabled(constraints)) [FD]
+Line_6 $$ if (isDisabled(constraints)) --> Line_7 $$ return [CD]
+Line_3 $$ final Thread callingThread = Thread.currentThread() --> Line_9 $$ final Deque<ITrxConstraints> stack = thread2TrxConstraint.get(callingThread) [FD]
+Line_9 $$ final Deque<ITrxConstraints> stack = thread2TrxConstraint.get(callingThread) --> Line_11 $$ Check.assume(!stack.isEmpty(), "Stack for thread " + callingThread + " is not empty") [FD]
+Line_9 $$ final Deque<ITrxConstraints> stack = thread2TrxConstraint.get(callingThread) --> Line_13 $$ stack.push(constraintsNew) [FD]
+Line_12 $$ final TrxConstraints constraintsNew = new TrxConstraints(constraints) --> Line_13 $$ stack.push(constraintsNew) [FD]

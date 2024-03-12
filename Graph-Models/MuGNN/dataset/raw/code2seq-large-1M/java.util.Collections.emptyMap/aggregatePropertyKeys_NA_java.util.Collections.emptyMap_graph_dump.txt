@@ -1,0 +1,8 @@
+Line_3 $$ if (!entries.iterator().hasNext()) --> Line_4 $$ return Collections.emptyMap() [CD]
+Line_5 $$ Map<String, List<Map<String, Object>>> result = new HashMap() --> Line_8 $$ result.compute(entry.key(), ( k,  v) -> [FD]
+Line_9 $$ if (v == null) --> Line_10 $$ v = new ArrayList(100) [CD]
+Line_6 $$ String entityType = nodes ? "node" : "relationship" --> Line_11 $$ Map<String, Object> map = map("key", k, entityType, entry.entity(), "old", entry.previouslyCommitedValue()) [FD]
+Line_12 $$ if (!removed) --> Line_13 $$ map.put("new", entry.value()) [CD]
+Line_11 $$ Map<String, Object> map = map("key", k, entityType, entry.entity(), "old", entry.previouslyCommitedValue()) --> Line_13 $$ map.put("new", entry.value()) [FD]
+Line_10 $$ v = new ArrayList(100) --> Line_14 $$ v.add(map) [FD]
+Line_11 $$ Map<String, Object> map = map("key", k, entityType, entry.entity(), "old", entry.previouslyCommitedValue()) --> Line_14 $$ v.add(map) [FD]

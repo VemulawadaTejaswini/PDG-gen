@@ -1,0 +1,7 @@
+Line_2 $$ public Map<Hash, Long> patchedDiff(Map<Hash, Long> diff) --> Line_3 $$ Map<Hash, Long> patch [CD]
+Line_2 $$ public Map<Hash, Long> patchedDiff(Map<Hash, Long> diff) --> Line_4 $$ rwlock.readLock().lock() [CD]
+Line_2 $$ public Map<Hash, Long> patchedDiff(Map<Hash, Long> diff) --> Line_5 $$ patch = diff.entrySet().stream().map( hashLongEntry -> new HashMap.SimpleEntry(hashLongEntry.getKey(), state.getOrDefault(hashLongEntry.getKey(), 0L) + hashLongEntry.getValue())).collect(Collectors.toMap(Map.Entry::<>getKey, Map.Entry::<>getValue)) [CD]
+Line_2 $$ public Map<Hash, Long> patchedDiff(Map<Hash, Long> diff) --> Line_5 $$ patch = diff.entrySet().stream().map( hashLongEntry -> new HashMap.SimpleEntry(hashLongEntry.getKey(), state.getOrDefault(hashLongEntry.getKey(), 0L) + hashLongEntry.getValue())).collect(Collectors.toMap(Map.Entry::<>getKey, Map.Entry::<>getValue)) [FD]
+Line_3 $$ Map<Hash, Long> patch --> Line_5 $$ patch = diff.entrySet().stream().map( hashLongEntry -> new HashMap.SimpleEntry(hashLongEntry.getKey(), state.getOrDefault(hashLongEntry.getKey(), 0L) + hashLongEntry.getValue())).collect(Collectors.toMap(Map.Entry::<>getKey, Map.Entry::<>getValue)) [FD]
+Line_2 $$ public Map<Hash, Long> patchedDiff(Map<Hash, Long> diff) --> Line_6 $$ rwlock.readLock().unlock() [CD]
+Line_2 $$ public Map<Hash, Long> patchedDiff(Map<Hash, Long> diff) --> Line_7 $$ return patch [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public boolean waitForActiveAndReadyMaster(long timeout) throws IOException --> Line_3 $$ List<JVMClusterUtil.MasterThread> mts [CD]
+Line_2 $$ public boolean waitForActiveAndReadyMaster(long timeout) throws IOException --> Line_4 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ public boolean waitForActiveAndReadyMaster(long timeout) throws IOException --> Line_5 $$ while (!(mts = getMasterThreads()).isEmpty() && (System.currentTimeMillis() - start) < timeout) [CD]
+Line_3 $$ List<JVMClusterUtil.MasterThread> mts --> Line_5 $$ while (!(mts = getMasterThreads()).isEmpty() && (System.currentTimeMillis() - start) < timeout) [FD]
+Line_6 $$ for (JVMClusterUtil.MasterThread mt : mts) --> Line_7 $$ if (mt.getMaster().isActiveMaster() && mt.getMaster().isInitialized()) [FD]
+Line_7 $$ if (mt.getMaster().isActiveMaster() && mt.getMaster().isInitialized()) --> Line_8 $$ return true [CD]
+Line_5 $$ while (!(mts = getMasterThreads()).isEmpty() && (System.currentTimeMillis() - start) < timeout) --> Line_11 $$ Threads.sleep(100) [CD]
+Line_2 $$ public boolean waitForActiveAndReadyMaster(long timeout) throws IOException --> Line_13 $$ return false [CD]

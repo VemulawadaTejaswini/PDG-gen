@@ -1,0 +1,7 @@
+Line_2 $$ public void usesReadSessionIds() throws Exception --> Line_3 $$ String sessionId = "sessionId" [CD]
+Line_2 $$ public void usesReadSessionIds() throws Exception --> Line_4 $$ given(this.cookieSerializer.readCookieValues(any(HttpServletRequest.class))).willReturn(Collections.singletonList(sessionId)) [CD]
+Line_3 $$ String sessionId = "sessionId" --> Line_4 $$ given(this.cookieSerializer.readCookieValues(any(HttpServletRequest.class))).willReturn(Collections.singletonList(sessionId)) [FD]
+Line_2 $$ public void usesReadSessionIds() throws Exception --> Line_5 $$ given(this.sessionRepository.findById(anyString())).willReturn(new MapSession(sessionId)) [CD]
+Line_2 $$ public void usesReadSessionIds() throws Exception --> Line_6 $$ this.sessionRepositoryFilter.doFilter(this.request, this.response, this.chain) [CD]
+Line_2 $$ public void usesReadSessionIds() throws Exception --> Line_7 $$ assertThat(getRequest().getRequestedSessionId()).isEqualTo(sessionId) [CD]
+Line_3 $$ String sessionId = "sessionId" --> Line_7 $$ assertThat(getRequest().getRequestedSessionId()).isEqualTo(sessionId) [FD]

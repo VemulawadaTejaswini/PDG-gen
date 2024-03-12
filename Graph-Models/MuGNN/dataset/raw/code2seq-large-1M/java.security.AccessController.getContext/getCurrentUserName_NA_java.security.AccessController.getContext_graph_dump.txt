@@ -1,0 +1,8 @@
+Line_2 $$ private String getCurrentUserName() --> Line_3 $$ AccessControlContext acc = AccessController.getContext() [CD]
+Line_2 $$ private String getCurrentUserName() --> Line_4 $$ final Subject subject = Subject.getSubject(acc) [CD]
+Line_3 $$ AccessControlContext acc = AccessController.getContext() --> Line_4 $$ final Subject subject = Subject.getSubject(acc) [FD]
+Line_2 $$ private String getCurrentUserName() --> Line_5 $$ if (subject != null && subject.getPrincipals().iterator().hasNext()) [CD]
+Line_4 $$ final Subject subject = Subject.getSubject(acc) --> Line_5 $$ if (subject != null && subject.getPrincipals().iterator().hasNext()) [FD]
+Line_5 $$ if (subject != null && subject.getPrincipals().iterator().hasNext()) --> Line_6 $$ return subject.getPrincipals(UserPrincipal.class).iterator().next().getName() [CD]
+Line_4 $$ final Subject subject = Subject.getSubject(acc) --> Line_6 $$ return subject.getPrincipals(UserPrincipal.class).iterator().next().getName() [FD]
+Line_5 $$ if (subject != null && subject.getPrincipals().iterator().hasNext()) --> Line_8 $$ return null [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void purgeRequests() --> Line_3 $$ List<PeerDiscoveryRequest> oldPingRequests = this.removeExpiredRequests(this.pendingPingRequests) [CD]
+Line_2 $$ public void purgeRequests() --> Line_4 $$ this.resendExpiredPing(oldPingRequests) [CD]
+Line_3 $$ List<PeerDiscoveryRequest> oldPingRequests = this.removeExpiredRequests(this.pendingPingRequests) --> Line_4 $$ this.resendExpiredPing(oldPingRequests) [FD]
+Line_2 $$ public void purgeRequests() --> Line_5 $$ this.removeConnections(oldPingRequests.stream().filter( r -> r.getAttemptNumber() >= 3).collect(Collectors.toList())) [CD]
+Line_3 $$ List<PeerDiscoveryRequest> oldPingRequests = this.removeExpiredRequests(this.pendingPingRequests) --> Line_5 $$ this.removeConnections(oldPingRequests.stream().filter( r -> r.getAttemptNumber() >= 3).collect(Collectors.toList())) [FD]
+Line_2 $$ public void purgeRequests() --> Line_6 $$ removeExpiredRequests(this.pendingFindNodeRequests) [CD]

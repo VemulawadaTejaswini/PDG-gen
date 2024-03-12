@@ -1,0 +1,8 @@
+Line_2 $$ private void setUpTable() throws Exception --> Line_3 $$ TableConfig tableConfig = new TableConfig.Builder(CommonConstants.Helix.TableType.OFFLINE).setTableName(TABLE_NAME).setNumReplicas(2).setSegmentAssignmentStrategy("RandomAssignmentStrategy").build() [CD]
+Line_2 $$ private void setUpTable() throws Exception --> Line_4 $$ _helixResourceManager.addTable(tableConfig) [CD]
+Line_3 $$ TableConfig tableConfig = new TableConfig.Builder(CommonConstants.Helix.TableType.OFFLINE).setTableName(TABLE_NAME).setNumReplicas(2).setSegmentAssignmentStrategy("RandomAssignmentStrategy").build() --> Line_4 $$ _helixResourceManager.addTable(tableConfig) [FD]
+Line_2 $$ private void setUpTable() throws Exception --> Line_5 $$ while (!_helixResourceManager.hasOfflineTable(TABLE_NAME)) [CD]
+Line_5 $$ while (!_helixResourceManager.hasOfflineTable(TABLE_NAME)) --> Line_6 $$ Thread.sleep(100) [CD]
+Line_2 $$ private void setUpTable() throws Exception --> Line_8 $$ ReplicaGroupTestUtils.uploadMultipleSegmentsWithPartitionNumber(TABLE_NAME, INITIAL_NUM_SEGMENTS, PARTITION_COLUMN, _helixResourceManager, 1) [CD]
+Line_2 $$ private void setUpTable() throws Exception --> Line_9 $$ while (!allSegmentsPushedToIdealState(TABLE_NAME, INITIAL_NUM_SEGMENTS)) [CD]
+Line_9 $$ while (!allSegmentsPushedToIdealState(TABLE_NAME, INITIAL_NUM_SEGMENTS)) --> Line_10 $$ Thread.sleep(100) [CD]

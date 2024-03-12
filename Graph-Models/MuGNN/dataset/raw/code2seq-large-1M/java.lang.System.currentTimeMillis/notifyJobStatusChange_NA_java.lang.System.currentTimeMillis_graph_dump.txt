@@ -1,0 +1,7 @@
+Line_2 $$ private void notifyJobStatusChange(JobStatus newState, Throwable error) --> Line_3 $$ if (jobStatusListeners.size() > 0) [CD]
+Line_3 $$ if (jobStatusListeners.size() > 0) --> Line_4 $$ final long timestamp = System.currentTimeMillis() [CD]
+Line_3 $$ if (jobStatusListeners.size() > 0) --> Line_5 $$ final Throwable serializedError = error == null ? null : new SerializedThrowable(error) [CD]
+Line_6 $$ for (JobStatusListener listener : jobStatusListeners) --> Line_8 $$ listener.jobStatusChanges(getJobID(), newState, timestamp, serializedError) [FD]
+Line_2 $$ private void notifyJobStatusChange(JobStatus newState, Throwable error) --> Line_8 $$ listener.jobStatusChanges(getJobID(), newState, timestamp, serializedError) [FD]
+Line_4 $$ final long timestamp = System.currentTimeMillis() --> Line_8 $$ listener.jobStatusChanges(getJobID(), newState, timestamp, serializedError) [FD]
+Line_5 $$ final Throwable serializedError = error == null ? null : new SerializedThrowable(error) --> Line_8 $$ listener.jobStatusChanges(getJobID(), newState, timestamp, serializedError) [FD]

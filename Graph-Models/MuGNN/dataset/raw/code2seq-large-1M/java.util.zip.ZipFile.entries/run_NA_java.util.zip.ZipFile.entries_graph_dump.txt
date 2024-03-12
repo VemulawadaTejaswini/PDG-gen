@@ -1,0 +1,5 @@
+Line_4 $$ ZipFile zipFile = new ZipFile(packageFilePath) --> Line_5 $$ Enumeration<? extends ZipEntry> entries = zipFile.entries() [FD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_7 $$ ZipEntry zipEntry = entries.nextElement() [CD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_8 $$ if (!zipEntry.isDirectory() && !zipEntry.getName().equals("AndroidManifest.xml") && FilenameUtils.getExtension(zipEntry.getName()).equals("xml")) [CD]
+Line_4 $$ ZipFile zipFile = new ZipFile(packageFilePath) --> Line_13 $$ writeFile(zipFile.getInputStream(zipEntry), zipEntry.getName()) [FD]
+Line_4 $$ ZipFile zipFile = new ZipFile(packageFilePath) --> Line_16 $$ zipFile.close() [FD]

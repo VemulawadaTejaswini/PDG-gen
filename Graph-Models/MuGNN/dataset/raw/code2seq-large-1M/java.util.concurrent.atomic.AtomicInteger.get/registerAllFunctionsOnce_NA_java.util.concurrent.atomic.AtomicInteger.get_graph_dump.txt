@@ -1,0 +1,8 @@
+Line_2 $$ private void registerAllFunctionsOnce() throws HiveException --> Line_3 $$ boolean breakLoop = false [CD]
+Line_2 $$ private void registerAllFunctionsOnce() throws HiveException --> Line_4 $$ while (!breakLoop) [CD]
+Line_3 $$ boolean breakLoop = false --> Line_4 $$ while (!breakLoop) [FD]
+Line_4 $$ while (!breakLoop) --> Line_5 $$ int val = didRegisterAllFuncs.get() [CD]
+Line_5 $$ int val = didRegisterAllFuncs.get() --> Line_9 $$ if (didRegisterAllFuncs.compareAndSet(val, REG_FUNCS_PENDING)) [FD]
+Line_9 $$ if (didRegisterAllFuncs.compareAndSet(val, REG_FUNCS_PENDING)) --> Line_10 $$ breakLoop = true [CD]
+Line_3 $$ boolean breakLoop = false --> Line_10 $$ breakLoop = true [FD]
+Line_10 $$ breakLoop = true --> Line_4 $$ while (!breakLoop) [FD]

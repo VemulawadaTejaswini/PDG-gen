@@ -1,0 +1,8 @@
+Line_2 $$ boolean allow(final String from, final long now) --> Line_4 $$ if (now > clearTime) [FD]
+Line_4 $$ if (now > clearTime) --> Line_5 $$ messageCount.clear() [CD]
+Line_2 $$ boolean allow(final String from, final long now) --> Line_8 $$ if (!messageCount.containsKey(from)) [FD]
+Line_8 $$ if (!messageCount.containsKey(from)) --> Line_9 $$ messageCount.put(from, 1) [CD]
+Line_2 $$ boolean allow(final String from, final long now) --> Line_9 $$ messageCount.put(from, 1) [FD]
+Line_8 $$ if (!messageCount.containsKey(from)) --> Line_11 $$ messageCount.put(from, messageCount.get(from) + 1) [CD]
+Line_2 $$ boolean allow(final String from, final long now) --> Line_11 $$ messageCount.put(from, messageCount.get(from) + 1) [FD]
+Line_2 $$ boolean allow(final String from, final long now) --> Line_13 $$ return messageCount.get(from) <= EVENTS_PER_WINDOW [FD]

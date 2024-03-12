@@ -1,0 +1,7 @@
+Line_2 $$ public void testFindAllByIdQuery() --> Line_3 $$ Mockito.when(solrOperationsMock.count(Mockito.any(), Mockito.any(SolrDataQuery.class))).thenReturn(12345l) [CD]
+Line_2 $$ public void testFindAllByIdQuery() --> Line_4 $$ repository.findAllById(Arrays.asList("id-1", "id-2", "id-3")) [CD]
+Line_2 $$ public void testFindAllByIdQuery() --> Line_5 $$ ArgumentCaptor<Query> captor = ArgumentCaptor.forClass(Query.class) [CD]
+Line_2 $$ public void testFindAllByIdQuery() --> Line_6 $$ Mockito.verify(solrOperationsMock, Mockito.times(1)).count(Mockito.any(), captor.capture()) [CD]
+Line_2 $$ public void testFindAllByIdQuery() --> Line_7 $$ Mockito.verify(solrOperationsMock, Mockito.times(1)).queryForPage(Mockito.any(), captor.capture(), Mockito.eq(ExampleSolrBean.class)) [CD]
+Line_2 $$ public void testFindAllByIdQuery() --> Line_8 $$ Assert.assertThat(captor.getAllValues().get(0).getPageRequest().isUnpaged(), is(true)) [CD]
+Line_2 $$ public void testFindAllByIdQuery() --> Line_9 $$ Assert.assertEquals(12345, captor.getAllValues().get(1).getPageRequest().getPageSize()) [CD]

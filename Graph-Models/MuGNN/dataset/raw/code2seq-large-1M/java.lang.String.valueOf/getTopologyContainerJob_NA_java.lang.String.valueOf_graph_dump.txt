@@ -1,0 +1,5 @@
+Line_2 $$ static Job getTopologyContainerJob(NomadApiClient apiClient, String topologyName, int containerIndex) --> Line_3 $$ List<Job> jobs = getTopologyJobs(apiClient, topologyName) [FD]
+Line_2 $$ static Job getTopologyContainerJob(NomadApiClient apiClient, String topologyName, int containerIndex) --> Line_3 $$ List<Job> jobs = getTopologyJobs(apiClient, topologyName) [CD]
+Line_4 $$ for (Job job : jobs) --> Line_5 $$ if (job.getMeta().get(NomadConstants.NOMAD_TOPOLOGY_CONTAINER_INDEX).equals(String.valueOf(containerIndex))) [FD]
+Line_2 $$ static Job getTopologyContainerJob(NomadApiClient apiClient, String topologyName, int containerIndex) --> Line_5 $$ if (job.getMeta().get(NomadConstants.NOMAD_TOPOLOGY_CONTAINER_INDEX).equals(String.valueOf(containerIndex))) [FD]
+Line_5 $$ if (job.getMeta().get(NomadConstants.NOMAD_TOPOLOGY_CONTAINER_INDEX).equals(String.valueOf(containerIndex))) --> Line_6 $$ return job [CD]

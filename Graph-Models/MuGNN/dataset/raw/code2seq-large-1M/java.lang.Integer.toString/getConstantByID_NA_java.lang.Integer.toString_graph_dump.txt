@@ -1,0 +1,5 @@
+Line_2 $$ public String getConstantByID(final int id) --> Line_3 $$ final Object[] results = getConnection().createStatement("select String, DisplayName from Constants where ConstID = ?").executeMultiColumnQuery(new Integer(id)) [CD]
+Line_2 $$ public String getConstantByID(final int id) --> Line_5 $$ if (results == null) [CD]
+Line_3 $$ final Object[] results = getConnection().createStatement("select String, DisplayName from Constants where ConstID = ?").executeMultiColumnQuery(new Integer(id)) --> Line_5 $$ if (results == null) [FD]
+Line_2 $$ public String getConstantByID(final int id) --> Line_6 $$ throw new LookupFailedException(MessageFormat.format(Messages.getString("ConstantsTableImpl.NoConstantExistsWithConstIDFormat"), Integer.toString(id))) [FD]
+Line_2 $$ public String getConstantByID(final int id) --> Line_9 $$ return (String) (results[1] != null ? results[1] : results[0]) [CD]

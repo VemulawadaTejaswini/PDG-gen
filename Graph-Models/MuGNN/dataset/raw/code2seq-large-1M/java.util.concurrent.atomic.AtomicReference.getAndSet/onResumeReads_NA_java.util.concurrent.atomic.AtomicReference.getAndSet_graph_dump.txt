@@ -1,0 +1,6 @@
+Line_2 $$ public GridNioFuture<?> onResumeReads(GridNioSession ses) throws IgniteCheckedException --> Line_3 $$ CountDownLatch latch = latchRef.getAndSet(null) [CD]
+Line_2 $$ public GridNioFuture<?> onResumeReads(GridNioSession ses) throws IgniteCheckedException --> Line_4 $$ if (latch != null) [CD]
+Line_3 $$ CountDownLatch latch = latchRef.getAndSet(null) --> Line_4 $$ if (latch != null) [FD]
+Line_4 $$ if (latch != null) --> Line_5 $$ latch.countDown() [CD]
+Line_3 $$ CountDownLatch latch = latchRef.getAndSet(null) --> Line_5 $$ latch.countDown() [FD]
+Line_2 $$ public GridNioFuture<?> onResumeReads(GridNioSession ses) throws IgniteCheckedException --> Line_6 $$ return new GridNioFinishedFuture<Object>(latch != null) [CD]

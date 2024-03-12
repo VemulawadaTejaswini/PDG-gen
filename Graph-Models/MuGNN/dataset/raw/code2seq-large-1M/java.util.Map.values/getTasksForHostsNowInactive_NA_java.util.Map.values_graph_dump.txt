@@ -1,0 +1,8 @@
+Line_2 $$ private static Set<String> getTasksForHostsNowInactive(Map<String, String> previousAssignments, Map<String, ServiceKeyValue> hosts) --> Line_3 $$ SetView<String> inactiveHosts = Sets.difference(new HashSet(previousAssignments.values()), hosts.keySet()) [FD]
+Line_2 $$ private static Set<String> getTasksForHostsNowInactive(Map<String, String> previousAssignments, Map<String, ServiceKeyValue> hosts) --> Line_3 $$ SetView<String> inactiveHosts = Sets.difference(new HashSet(previousAssignments.values()), hosts.keySet()) [CD]
+Line_2 $$ private static Set<String> getTasksForHostsNowInactive(Map<String, String> previousAssignments, Map<String, ServiceKeyValue> hosts) --> Line_4 $$ Set<String> removedTaskIds = new HashSet() [CD]
+Line_2 $$ private static Set<String> getTasksForHostsNowInactive(Map<String, String> previousAssignments, Map<String, ServiceKeyValue> hosts) --> Line_5 $$ for (Entry<String, String> assignment : previousAssignments.entrySet()) [FD]
+Line_3 $$ SetView<String> inactiveHosts = Sets.difference(new HashSet(previousAssignments.values()), hosts.keySet()) --> Line_6 $$ if (inactiveHosts.contains(assignment.getValue())) [FD]
+Line_6 $$ if (inactiveHosts.contains(assignment.getValue())) --> Line_7 $$ removedTaskIds.add(assignment.getKey()) [CD]
+Line_4 $$ Set<String> removedTaskIds = new HashSet() --> Line_7 $$ removedTaskIds.add(assignment.getKey()) [FD]
+Line_2 $$ private static Set<String> getTasksForHostsNowInactive(Map<String, String> previousAssignments, Map<String, ServiceKeyValue> hosts) --> Line_10 $$ return removedTaskIds [CD]

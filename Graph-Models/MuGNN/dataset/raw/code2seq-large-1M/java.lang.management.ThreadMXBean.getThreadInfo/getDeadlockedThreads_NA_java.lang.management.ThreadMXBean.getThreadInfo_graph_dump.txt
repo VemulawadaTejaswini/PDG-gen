@@ -1,0 +1,6 @@
+Line_2 $$ public List<String> getDeadlockedThreads() --> Line_3 $$ List<String> deadlockedThreads = new ArrayList() [CD]
+Line_2 $$ public List<String> getDeadlockedThreads() --> Line_4 $$ if (null != threadIds) [CD]
+Line_5 $$ for (long threadId : threadIds) --> Line_6 $$ ThreadInfo threadInfo = bean.getThreadInfo(threadId) [FD]
+Line_3 $$ List<String> deadlockedThreads = new ArrayList() --> Line_7 $$ deadlockedThreads.add(threadInfo.getThreadId() + ": " + threadInfo.getThreadName() + " state: " + threadInfo.getThreadState()) [FD]
+Line_6 $$ ThreadInfo threadInfo = bean.getThreadInfo(threadId) --> Line_7 $$ deadlockedThreads.add(threadInfo.getThreadId() + ": " + threadInfo.getThreadName() + " state: " + threadInfo.getThreadState()) [FD]
+Line_2 $$ public List<String> getDeadlockedThreads() --> Line_10 $$ return deadlockedThreads [CD]

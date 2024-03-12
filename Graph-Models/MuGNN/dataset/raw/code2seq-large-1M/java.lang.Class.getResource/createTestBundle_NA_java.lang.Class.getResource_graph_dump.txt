@@ -1,0 +1,7 @@
+Line_2 $$ private TestBundle createTestBundle(long bundleId, int state, String dir, String name) throws IOException, BundleException --> Line_3 $$ URL loc = getClass().getResource(dir + "/" + name + ".mf") [CD]
+Line_2 $$ private TestBundle createTestBundle(long bundleId, int state, String dir, String name) throws IOException, BundleException --> Line_4 $$ Manifest man = new Manifest(loc.openStream()) [CD]
+Line_3 $$ URL loc = getClass().getResource(dir + "/" + name + ".mf") --> Line_4 $$ Manifest man = new Manifest(loc.openStream()) [FD]
+Line_2 $$ private TestBundle createTestBundle(long bundleId, int state, String dir, String name) throws IOException, BundleException --> Line_5 $$ Hashtable<String, String> headers = new Hashtable() [CD]
+Line_4 $$ Manifest man = new Manifest(loc.openStream()) --> Line_6 $$ for (Map.Entry<Object, Object> attr : man.getMainAttributes().entrySet()) [FD]
+Line_5 $$ Hashtable<String, String> headers = new Hashtable() --> Line_7 $$ headers.put(attr.getKey().toString(), attr.getValue().toString()) [FD]
+Line_2 $$ private TestBundle createTestBundle(long bundleId, int state, String dir, String name) throws IOException, BundleException --> Line_9 $$ return new TestBundle(bundleId, name, state, headers) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void bufferSizeIsAlsoPrefetch() --> Line_3 $$ AtomicLong requested = new AtomicLong() [CD]
+Line_2 $$ public void bufferSizeIsAlsoPrefetch() --> Line_4 $$ Flux.range(1, 10).hide().doOnRequest( r -> requested.compareAndSet(0, r)).filterWhen( v -> Mono.just(v % 2 == 0), 5).subscribe().dispose() [CD]
+Line_3 $$ AtomicLong requested = new AtomicLong() --> Line_4 $$ Flux.range(1, 10).hide().doOnRequest( r -> requested.compareAndSet(0, r)).filterWhen( v -> Mono.just(v % 2 == 0), 5).subscribe().dispose() [FD]
+Line_2 $$ public void bufferSizeIsAlsoPrefetch() --> Line_5 $$ assertThat(requested.get()).isEqualTo(5) [CD]
+Line_3 $$ AtomicLong requested = new AtomicLong() --> Line_5 $$ assertThat(requested.get()).isEqualTo(5) [FD]

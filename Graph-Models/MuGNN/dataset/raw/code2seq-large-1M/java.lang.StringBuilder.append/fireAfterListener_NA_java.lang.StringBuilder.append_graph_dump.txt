@@ -1,0 +1,7 @@
+Line_2 $$ public void fireAfterListener(T prev, K evt, T curr, Object... args) --> Line_3 $$ _listenersTmp.clear() [CD]
+Line_7 $$ for (StateMachineListener<T, K> l : _listenersTmp) --> Line_9 $$ l.after(prev, evt, curr, args) [FD]
+Line_2 $$ public void fireAfterListener(T prev, K evt, T curr, Object... args) --> Line_9 $$ l.after(prev, evt, curr, args) [FD]
+Line_7 $$ for (StateMachineListener<T, K> l : _listenersTmp) --> Line_11 $$ StringBuilder err = new StringBuilder("Unhandled exception while calling listener: " + l.getClass().getCanonicalName()) [FD]
+Line_11 $$ StringBuilder err = new StringBuilder("Unhandled exception while calling listener: " + l.getClass().getCanonicalName()) --> Line_12 $$ err.append(" after state changing.").append("[").append("previous state:" + prev).append(" event: " + evt) [FD]
+Line_11 $$ StringBuilder err = new StringBuilder("Unhandled exception while calling listener: " + l.getClass().getCanonicalName()) --> Line_13 $$ err.append(" current state: " + curr).append("]") [FD]
+Line_11 $$ StringBuilder err = new StringBuilder("Unhandled exception while calling listener: " + l.getClass().getCanonicalName()) --> Line_14 $$ _logger.warn(err.toString(), e) [FD]

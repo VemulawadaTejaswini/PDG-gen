@@ -1,0 +1,5 @@
+Line_3 $$ for (ConnectionDefDescriptor aConnectionDefs_ : connectionDefs_) --> Line_4 $$ String connectionDefName = aConnectionDefs_.getConnectionFactoryIntf() [FD]
+Line_4 $$ String connectionDefName = aConnectionDefs_.getConnectionFactoryIntf() --> Line_5 $$ String resourceJndiName = connectorRuntime_.getDefaultResourceName(moduleName_, connectionDefName) [FD]
+Line_7 $$ ResourceInfo resourceInfo = new ResourceInfo(resourceJndiName) --> Line_8 $$ connectorRuntime_.deleteConnectorResource(resourceInfo) [FD]
+Line_5 $$ String resourceJndiName = connectorRuntime_.getDefaultResourceName(moduleName_, connectionDefName) --> Line_10 $$ _logger.log(Level.WARNING, "rar.undeployment.default_resource_delete_fail", resourceJndiName) [FD]
+Line_11 $$ if (_logger.isLoggable(Level.FINE)) --> Line_12 $$ _logger.log(Level.FINE, "Error while trying to delete the default connector resource", cre) [CD]

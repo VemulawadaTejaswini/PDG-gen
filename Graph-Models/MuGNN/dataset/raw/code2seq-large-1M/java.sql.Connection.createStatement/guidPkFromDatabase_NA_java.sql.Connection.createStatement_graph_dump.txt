@@ -1,0 +1,6 @@
+Line_2 $$ protected String guidPkFromDatabase(DataNode node, DbEntity entity) throws SQLException --> Line_3 $$ try (Connection con = node.getDataSource().getConnection()) [FD]
+Line_3 $$ try (Connection con = node.getDataSource().getConnection()) --> Line_4 $$ try (Statement st = con.createStatement()) [FD]
+Line_4 $$ try (Statement st = con.createStatement()) --> Line_6 $$ try (ResultSet rs = st.executeQuery(SELECT_NEW_GUID)) [FD]
+Line_6 $$ try (ResultSet rs = st.executeQuery(SELECT_NEW_GUID)) --> Line_7 $$ if (!rs.next()) [FD]
+Line_2 $$ protected String guidPkFromDatabase(DataNode node, DbEntity entity) throws SQLException --> Line_8 $$ throw new CayenneRuntimeException("Error generating pk for DbEntity %s", entity.getName()) [FD]
+Line_6 $$ try (ResultSet rs = st.executeQuery(SELECT_NEW_GUID)) --> Line_10 $$ return rs.getString(1) [FD]

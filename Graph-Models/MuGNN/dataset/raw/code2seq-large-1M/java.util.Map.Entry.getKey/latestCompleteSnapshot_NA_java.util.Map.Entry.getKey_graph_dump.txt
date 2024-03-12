@@ -1,0 +1,8 @@
+Line_2 $$ Long latestCompleteSnapshot(long jobId) --> Line_3 $$ IMapJet<Long, Object> snapshotMap = getSnapshotMap(jobId) [FD]
+Line_2 $$ Long latestCompleteSnapshot(long jobId) --> Line_3 $$ IMapJet<Long, Object> snapshotMap = getSnapshotMap(jobId) [CD]
+Line_2 $$ Long latestCompleteSnapshot(long jobId) --> Line_4 $$ MaxByAggregator<Entry<Long, Object>> entryMaxByAggregator = maxByAggregator() [CD]
+Line_2 $$ Long latestCompleteSnapshot(long jobId) --> Line_5 $$ Predicate<Long, Object> completedSnapshots = (Predicate<Long, Object>)  e -> [CD]
+Line_2 $$ Long latestCompleteSnapshot(long jobId) --> Line_9 $$ Entry<Long, Object> entry = snapshotMap.aggregate(entryMaxByAggregator, completedSnapshots) [CD]
+Line_3 $$ IMapJet<Long, Object> snapshotMap = getSnapshotMap(jobId) --> Line_9 $$ Entry<Long, Object> entry = snapshotMap.aggregate(entryMaxByAggregator, completedSnapshots) [FD]
+Line_5 $$ Predicate<Long, Object> completedSnapshots = (Predicate<Long, Object>)  e -> --> Line_9 $$ Entry<Long, Object> entry = snapshotMap.aggregate(entryMaxByAggregator, completedSnapshots) [FD]
+Line_2 $$ Long latestCompleteSnapshot(long jobId) --> Line_10 $$ return entry != null ? entry.getKey() : null [CD]

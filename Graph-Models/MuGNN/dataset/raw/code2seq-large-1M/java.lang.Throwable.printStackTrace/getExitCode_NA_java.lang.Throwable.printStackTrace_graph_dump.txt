@@ -1,0 +1,8 @@
+Line_2 $$ public int getExitCode() --> Line_3 $$ int exitCode = 0 [CD]
+Line_4 $$ for (ExitCodeGenerator generator : this.generators) --> Line_6 $$ int value = generator.getExitCode() [FD]
+Line_7 $$ if (value > 0 && value > exitCode || value < 0 && value < exitCode) --> Line_8 $$ exitCode = value [CD]
+Line_3 $$ int exitCode = 0 --> Line_8 $$ exitCode = value [FD]
+Line_6 $$ int value = generator.getExitCode() --> Line_8 $$ exitCode = value [FD]
+Line_3 $$ int exitCode = 0 --> Line_11 $$ exitCode = (exitCode != 0 ? exitCode : 1) [FD]
+Line_8 $$ exitCode = value --> Line_11 $$ exitCode = (exitCode != 0 ? exitCode : 1) [FD]
+Line_2 $$ public int getExitCode() --> Line_15 $$ return exitCode [CD]

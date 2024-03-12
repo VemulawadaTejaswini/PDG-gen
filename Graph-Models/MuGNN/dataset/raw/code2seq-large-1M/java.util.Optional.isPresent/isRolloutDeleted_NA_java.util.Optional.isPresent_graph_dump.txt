@@ -1,0 +1,8 @@
+Line_2 $$ private boolean isRolloutDeleted() --> Line_3 $$ final Optional<Long> rolloutIdInState = rolloutUIState.getRolloutId() [CD]
+Line_2 $$ private boolean isRolloutDeleted() --> Line_4 $$ if (!rolloutIdInState.isPresent()) [CD]
+Line_3 $$ final Optional<Long> rolloutIdInState = rolloutUIState.getRolloutId() --> Line_4 $$ if (!rolloutIdInState.isPresent()) [FD]
+Line_4 $$ if (!rolloutIdInState.isPresent()) --> Line_5 $$ return true [CD]
+Line_2 $$ private boolean isRolloutDeleted() --> Line_7 $$ final Optional<Rollout> rollout = rolloutManagement.get(rolloutIdInState.get()) [CD]
+Line_3 $$ final Optional<Long> rolloutIdInState = rolloutUIState.getRolloutId() --> Line_7 $$ final Optional<Rollout> rollout = rolloutManagement.get(rolloutIdInState.get()) [FD]
+Line_2 $$ private boolean isRolloutDeleted() --> Line_8 $$ return !rollout.isPresent() || rollout.get().isDeleted() [CD]
+Line_7 $$ final Optional<Rollout> rollout = rolloutManagement.get(rolloutIdInState.get()) --> Line_8 $$ return !rollout.isPresent() || rollout.get().isDeleted() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void shutdownChild() throws Exception --> Line_3 $$ ConfigurableApplicationContext context = new SpringApplicationBuilder(EmptyConfig.class).child(EndpointConfig.class).web(WebApplicationType.NONE).run() [CD]
+Line_2 $$ public void shutdownChild() throws Exception --> Line_4 $$ CountDownLatch latch = context.getBean(EndpointConfig.class).latch [CD]
+Line_2 $$ public void shutdownChild() throws Exception --> Line_5 $$ assertThat(context.getBean(ShutdownEndpoint.class).shutdown().get("message")).startsWith("Shutting down") [CD]
+Line_2 $$ public void shutdownChild() throws Exception --> Line_6 $$ assertThat(context.isActive()).isTrue() [CD]
+Line_2 $$ public void shutdownChild() throws Exception --> Line_7 $$ assertThat(latch.await(10, TimeUnit.SECONDS)).isTrue() [CD]

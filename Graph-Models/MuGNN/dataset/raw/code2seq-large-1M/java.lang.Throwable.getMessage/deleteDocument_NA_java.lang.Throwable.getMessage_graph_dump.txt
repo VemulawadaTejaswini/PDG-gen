@@ -1,0 +1,6 @@
+Line_2 $$ public void deleteDocument(String documentId) throws FileNotFoundException --> Line_4 $$ final Identifier identifier = mDatabase.createIdentifier(documentId) [FD]
+Line_2 $$ public void deleteDocument(String documentId) throws FileNotFoundException --> Line_6 $$ final Identifier parentIdentifier = mDatabase.getParentIdentifier(documentId) [FD]
+Line_2 $$ public void deleteDocument(String documentId) throws FileNotFoundException --> Line_8 $$ mDatabase.deleteDocument(documentId) [FD]
+Line_6 $$ final Identifier parentIdentifier = mDatabase.getParentIdentifier(documentId) --> Line_9 $$ getDocumentLoader(parentIdentifier).cancelTask(parentIdentifier) [FD]
+Line_11 $$ if (parentIdentifier.mDocumentType == MtpDatabaseConstants.DOCUMENT_TYPE_STORAGE) --> Line_12 $$ final Identifier deviceIdentifier = mDatabase.getParentIdentifier(parentIdentifier.mDocumentId) [CD]
+Line_11 $$ if (parentIdentifier.mDocumentType == MtpDatabaseConstants.DOCUMENT_TYPE_STORAGE) --> Line_13 $$ notifyChildDocumentsChange(deviceIdentifier.mDocumentId) [CD]

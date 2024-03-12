@@ -1,0 +1,8 @@
+Line_4 $$ while (!stop.get()) --> Line_5 $$ int cnt = folder.getMessageCount() [CD]
+Line_4 $$ while (!stop.get()) --> Line_6 $$ for (int i = 1; i <= cnt; i++) [CD]
+Line_5 $$ int cnt = folder.getMessageCount() --> Line_6 $$ for (int i = 1; i <= cnt; i++) [FD]
+Line_6 $$ for (int i = 1; i <= cnt; i++) --> Line_7 $$ Message msg = folder.getMessage(i) [CD]
+Line_6 $$ for (int i = 1; i <= cnt; i++) --> Line_7 $$ Message msg = folder.getMessage(i) [FD]
+Line_6 $$ for (int i = 1; i <= cnt; i++) --> Line_8 $$ dumpEnvelope(msg) [CD]
+Line_7 $$ Message msg = folder.getMessage(i) --> Line_8 $$ dumpEnvelope(msg) [FD]
+Line_6 $$ for (int i = 1; i <= cnt; i++) --> Line_9 $$ msgProgress.incrementAndGet() [CD]

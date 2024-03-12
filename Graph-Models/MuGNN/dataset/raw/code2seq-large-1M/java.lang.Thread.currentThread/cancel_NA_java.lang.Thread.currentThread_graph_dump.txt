@@ -1,0 +1,8 @@
+Line_2 $$ void cancel(boolean mayInterruptIfRunning) --> Line_3 $$ Preconditions.checkState(Thread.currentThread() == partitionerDecorator.thread, String.format("PartitionerTask can be cancelled only from the main %s thread", partitionerDecorator.thread.getName())) [CD]
+Line_2 $$ void cancel(boolean mayInterruptIfRunning) --> Line_4 $$ if (runner.compareAndSet(null, partitionerDecorator.thread)) [CD]
+Line_4 $$ if (runner.compareAndSet(null, partitionerDecorator.thread)) --> Line_5 $$ if (partitionerDecorator.executor instanceof ThreadPoolExecutor) [CD]
+Line_5 $$ if (partitionerDecorator.executor instanceof ThreadPoolExecutor) --> Line_6 $$ ((ThreadPoolExecutor) partitionerDecorator.executor).remove(this) [CD]
+Line_4 $$ if (runner.compareAndSet(null, partitionerDecorator.thread)) --> Line_8 $$ count.decrementAndGet() [CD]
+Line_4 $$ if (runner.compareAndSet(null, partitionerDecorator.thread)) --> Line_10 $$ if (mayInterruptIfRunning) [CD]
+Line_10 $$ if (mayInterruptIfRunning) --> Line_11 $$ if (state.compareAndSet(STATE.NEW, STATE.INTERRUPTING)) [CD]
+Line_10 $$ if (mayInterruptIfRunning) --> Line_19 $$ state.compareAndSet(STATE.NEW, STATE.CANCELLED) [CD]

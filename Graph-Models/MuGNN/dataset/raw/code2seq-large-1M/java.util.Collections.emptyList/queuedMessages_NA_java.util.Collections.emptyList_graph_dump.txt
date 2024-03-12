@@ -1,0 +1,8 @@
+Line_2 $$ protected List<EventMessage<?>> queuedMessages() --> Line_3 $$ if (!CurrentUnitOfWork.isStarted()) [CD]
+Line_3 $$ if (!CurrentUnitOfWork.isStarted()) --> Line_4 $$ return Collections.emptyList() [CD]
+Line_2 $$ protected List<EventMessage<?>> queuedMessages() --> Line_6 $$ List<EventMessage<?>> messages = new ArrayList() [CD]
+Line_2 $$ protected List<EventMessage<?>> queuedMessages() --> Line_7 $$ for (UnitOfWork<?> uow = CurrentUnitOfWork.get(); uow != null; uow = uow.parent().orElse(null)) [CD]
+Line_7 $$ for (UnitOfWork<?> uow = CurrentUnitOfWork.get(); uow != null; uow = uow.parent().orElse(null)) --> Line_8 $$ messages.addAll(0, uow.getOrDefaultResource(eventsKey, Collections.emptyList())) [CD]
+Line_7 $$ for (UnitOfWork<?> uow = CurrentUnitOfWork.get(); uow != null; uow = uow.parent().orElse(null)) --> Line_8 $$ messages.addAll(0, uow.getOrDefaultResource(eventsKey, Collections.emptyList())) [FD]
+Line_6 $$ List<EventMessage<?>> messages = new ArrayList() --> Line_8 $$ messages.addAll(0, uow.getOrDefaultResource(eventsKey, Collections.emptyList())) [FD]
+Line_2 $$ protected List<EventMessage<?>> queuedMessages() --> Line_10 $$ return messages [CD]

@@ -1,0 +1,7 @@
+Line_4 $$ if (shouldFailSetSystemStateRequests()) --> Line_5 $$ req.setError(ErrorCode.GENERAL_ERROR, "Dummy node configured to fail setSystemState2() calls") [CD]
+Line_2 $$ public void rpc_setSystemState2(Request req) --> Line_5 $$ req.setError(ErrorCode.GENERAL_ERROR, "Dummy node configured to fail setSystemState2() calls") [FD]
+Line_4 $$ if (shouldFailSetSystemStateRequests()) --> Line_6 $$ return [CD]
+Line_2 $$ public void rpc_setSystemState2(Request req) --> Line_8 $$ ClusterState newState = new ClusterState(req.parameters().get(0).asString()) [FD]
+Line_8 $$ ClusterState newState = new ClusterState(req.parameters().get(0).asString()) --> Line_10 $$ updateStartTimestamps(newState) [FD]
+Line_8 $$ ClusterState newState = new ClusterState(req.parameters().get(0).asString()) --> Line_11 $$ clusterStateBundles.add(0, ClusterStateBundle.ofBaselineOnly(AnnotatedClusterState.withoutAnnotations(newState))) [FD]
+Line_2 $$ public void rpc_setSystemState2(Request req) --> Line_18 $$ req.setError(ErrorCode.METHOD_FAILED, e.getMessage()) [FD]

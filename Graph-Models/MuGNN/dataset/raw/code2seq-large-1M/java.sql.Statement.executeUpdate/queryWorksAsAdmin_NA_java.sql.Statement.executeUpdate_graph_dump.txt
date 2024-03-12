@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_5 $$ h2.createStatement().executeUpdate("CREATE TABLE test (a BIGINT, b BIGINT, c BIGINT)") [FD]
+Line_3 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_6 $$ h2.createStatement().executeUpdate("INSERT INTO test (a, b, c) VALUES (1, 2, 3), (4, 5, 6)") [FD]
+Line_3 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_7 $$ ResultSet expected = h2.createStatement().executeQuery("SELECT * FROM test ORDER BY a") [FD]
+Line_7 $$ ResultSet expected = h2.createStatement().executeQuery("SELECT * FROM test ORDER BY a") --> Line_8 $$ assertResultSets(expected, es.createStatement().executeQuery("SELECT * FROM test ORDER BY a")) [FD]
+Line_3 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_8 $$ assertResultSets(expected, es.createStatement().executeQuery("SELECT * FROM test ORDER BY a")) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static TestDurableDataLog create(int containerId, int maxAppendSize, int appendDelayMillis, ScheduledExecutorService executorService) --> Line_4 $$ if (appendDelayMillis > 0) [FD]
+Line_4 $$ if (appendDelayMillis > 0) --> Line_5 $$ Duration delay = Duration.ofMillis(appendDelayMillis) [CD]
+Line_2 $$ public static TestDurableDataLog create(int containerId, int maxAppendSize, int appendDelayMillis, ScheduledExecutorService executorService) --> Line_5 $$ Duration delay = Duration.ofMillis(appendDelayMillis) [FD]
+Line_4 $$ if (appendDelayMillis > 0) --> Line_6 $$ factory.setAppendDelayProvider(() -> delay) [CD]
+Line_3 $$ try (InMemoryDurableDataLogFactory factory = new InMemoryDurableDataLogFactory(maxAppendSize, executorService)) --> Line_6 $$ factory.setAppendDelayProvider(() -> delay) [FD]
+Line_3 $$ try (InMemoryDurableDataLogFactory factory = new InMemoryDurableDataLogFactory(maxAppendSize, executorService)) --> Line_8 $$ DurableDataLog log = factory.createDurableDataLog(containerId) [FD]
+Line_2 $$ public static TestDurableDataLog create(int containerId, int maxAppendSize, int appendDelayMillis, ScheduledExecutorService executorService) --> Line_8 $$ DurableDataLog log = factory.createDurableDataLog(containerId) [FD]
+Line_8 $$ DurableDataLog log = factory.createDurableDataLog(containerId) --> Line_9 $$ return create(log) [FD]

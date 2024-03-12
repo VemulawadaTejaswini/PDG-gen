@@ -1,0 +1,8 @@
+Line_2 $$ public static String encodeHexString(byte[] bytes, int bundleSize) --> Line_3 $$ char[] hexChars = new char[(bytes.length * 2) + (bundleSize > 0 ? (bytes.length / bundleSize) : 0)] [CD]
+Line_2 $$ public static String encodeHexString(byte[] bytes, int bundleSize) --> Line_4 $$ for (int j = 0, k = 1; j < bytes.length; j++, k++) [CD]
+Line_4 $$ for (int j = 0, k = 1; j < bytes.length; j++, k++) --> Line_5 $$ int v = bytes[j] & 0xFF [CD]
+Line_4 $$ for (int j = 0, k = 1; j < bytes.length; j++, k++) --> Line_6 $$ int start = (j * 2) + (bundleSize > 0 ? j / bundleSize : 0) [CD]
+Line_4 $$ for (int j = 0, k = 1; j < bytes.length; j++, k++) --> Line_7 $$ hexChars[start] = HEX_ARRAY[v >>> 4] [CD]
+Line_4 $$ for (int j = 0, k = 1; j < bytes.length; j++, k++) --> Line_8 $$ hexChars[start + 1] = HEX_ARRAY[v & 0x0F] [CD]
+Line_4 $$ for (int j = 0, k = 1; j < bytes.length; j++, k++) --> Line_9 $$ if (bundleSize > 0 && (k % bundleSize) == 0) [CD]
+Line_2 $$ public static String encodeHexString(byte[] bytes, int bundleSize) --> Line_13 $$ return new String(hexChars).trim() [CD]

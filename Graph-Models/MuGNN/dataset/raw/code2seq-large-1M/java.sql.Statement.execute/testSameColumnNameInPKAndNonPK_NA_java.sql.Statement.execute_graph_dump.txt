@@ -1,0 +1,6 @@
+Line_2 $$ public void testSameColumnNameInPKAndNonPK() throws Exception --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_5 $$ String query = "CREATE TABLE t1 (k integer not null primary key, a.k decimal, b.k decimal)" --> Line_6 $$ conn.createStatement().execute(query) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_6 $$ conn.createStatement().execute(query) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_7 $$ PhoenixConnection pconn = conn.unwrap(PhoenixConnection.class) [FD]
+Line_8 $$ PColumn c = pconn.getTable(new PTableKey(pconn.getTenantId(), "T1")).getColumnForColumnName("K") --> Line_9 $$ assertTrue(SchemaUtil.isPKColumn(c)) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_11 $$ conn.close() [FD]

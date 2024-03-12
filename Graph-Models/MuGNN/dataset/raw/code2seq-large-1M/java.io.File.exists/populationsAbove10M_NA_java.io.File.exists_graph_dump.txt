@@ -1,0 +1,7 @@
+Line_2 $$ public void populationsAbove10M() throws IOException, TimeoutException, InterruptedException --> Line_3 $$ Assume.assumeTrue(new File(MONGO_IMPORT).exists()) [CD]
+Line_2 $$ public void populationsAbove10M() throws IOException, TimeoutException, InterruptedException --> Line_4 $$ installSampleData() [CD]
+Line_2 $$ public void populationsAbove10M() throws IOException, TimeoutException, InterruptedException --> Line_5 $$ Query<Object> query = getDs().getQueryFactory().createQuery(getDs()) [CD]
+Line_2 $$ public void populationsAbove10M() throws IOException, TimeoutException, InterruptedException --> Line_6 $$ AggregationPipeline pipeline = getDs().createAggregation(City.class).group("state", grouping("totalPop", sum("pop"))).match(query.field("totalPop").greaterThanOrEq(10000000)) [CD]
+Line_5 $$ Query<Object> query = getDs().getQueryFactory().createQuery(getDs()) --> Line_6 $$ AggregationPipeline pipeline = getDs().createAggregation(City.class).group("state", grouping("totalPop", sum("pop"))).match(query.field("totalPop").greaterThanOrEq(10000000)) [FD]
+Line_2 $$ public void populationsAbove10M() throws IOException, TimeoutException, InterruptedException --> Line_7 $$ validate(pipeline.aggregate(Population.class), "CA", 29754890) [CD]
+Line_2 $$ public void populationsAbove10M() throws IOException, TimeoutException, InterruptedException --> Line_8 $$ validate(pipeline.aggregate(Population.class), "OH", 10846517) [CD]

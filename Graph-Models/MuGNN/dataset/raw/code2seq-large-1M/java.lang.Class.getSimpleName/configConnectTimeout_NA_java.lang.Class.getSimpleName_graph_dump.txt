@@ -1,0 +1,7 @@
+Line_2 $$ public BaseDownloadConfigBuilder configConnectTimeout(int connectTimeout) --> Line_3 $$ if (connectTimeout >= MIN_CONNECT_TIMEOUT && connectTimeout <= MAX_CONNECT_TIMEOUT) [CD]
+Line_3 $$ if (connectTimeout >= MIN_CONNECT_TIMEOUT && connectTimeout <= MAX_CONNECT_TIMEOUT) --> Line_5 $$ if (connectTimeout > MAX_CONNECT_TIMEOUT) [CD]
+Line_2 $$ public BaseDownloadConfigBuilder configConnectTimeout(int connectTimeout) --> Line_5 $$ if (connectTimeout > MAX_CONNECT_TIMEOUT) [FD]
+Line_5 $$ if (connectTimeout > MAX_CONNECT_TIMEOUT) --> Line_7 $$ if (connectTimeout < MIN_CONNECT_TIMEOUT) [CD]
+Line_2 $$ public BaseDownloadConfigBuilder configConnectTimeout(int connectTimeout) --> Line_7 $$ if (connectTimeout < MIN_CONNECT_TIMEOUT) [FD]
+Line_7 $$ if (connectTimeout < MIN_CONNECT_TIMEOUT) --> Line_10 $$ Log.i(getClass().getSimpleName(), "configConnectTimeout 配置连接超时时间失败，connectTimeout：" + connectTimeout) [CD]
+Line_2 $$ public BaseDownloadConfigBuilder configConnectTimeout(int connectTimeout) --> Line_12 $$ return this [CD]

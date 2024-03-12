@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection connection = setConnection("&rewriteBatchedStatements=true")) --> Line_4 $$ PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO MultiTestt10 VALUES (1)") [FD]
+Line_5 $$ for (int i = 0; i < 100; i++) --> Line_6 $$ preparedStatement.addBatch() [CD]
+Line_4 $$ PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO MultiTestt10 VALUES (1)") --> Line_6 $$ preparedStatement.addBatch() [FD]
+Line_4 $$ PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO MultiTestt10 VALUES (1)") --> Line_8 $$ preparedStatement.executeBatch() [FD]
+Line_3 $$ try (Connection connection = setConnection("&rewriteBatchedStatements=true")) --> Line_9 $$ ResultSet rs = connection.createStatement().executeQuery("SELECT COUNT(*) FROM MultiTestt10") [FD]
+Line_9 $$ ResultSet rs = connection.createStatement().executeQuery("SELECT COUNT(*) FROM MultiTestt10") --> Line_10 $$ assertTrue(rs.next()) [FD]
+Line_9 $$ ResultSet rs = connection.createStatement().executeQuery("SELECT COUNT(*) FROM MultiTestt10") --> Line_11 $$ assertEquals(100, rs.getInt(1)) [FD]

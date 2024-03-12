@@ -1,0 +1,8 @@
+Line_3 $$ for (String workPackage : workPackages) --> Line_4 $$ List<String> workClassesName = getClassNameByPackage(workPackage) [FD]
+Line_5 $$ for (String workClassName : workClassesName) --> Line_6 $$ Class<?> workClass = Class.forName(workClassName) [FD]
+Line_6 $$ Class<?> workClass = Class.forName(workClassName) --> Line_7 $$ TranslatorComponent component = workClass.getAnnotation(TranslatorComponent.class) [FD]
+Line_8 $$ if (component != null) --> Line_9 $$ String id = component.id() [CD]
+Line_8 $$ if (component != null) --> Line_10 $$ if (translatorMap.containsKey(id)) [CD]
+Line_9 $$ String id = component.id() --> Line_10 $$ if (translatorMap.containsKey(id)) [FD]
+Line_10 $$ if (translatorMap.containsKey(id)) --> Line_13 $$ translatorMap.put(component.id(), (Translator) workClass.newInstance()) [CD]
+Line_6 $$ Class<?> workClass = Class.forName(workClassName) --> Line_13 $$ translatorMap.put(component.id(), (Translator) workClass.newInstance()) [FD]

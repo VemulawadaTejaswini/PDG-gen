@@ -1,0 +1,7 @@
+Line_2 $$ void broadcastProgress(String progress, boolean notTooOften) --> Line_3 $$ if (notTooOften) [CD]
+Line_3 $$ if (notTooOften) --> Line_4 $$ if (!RelativeTime.moreSecondsAgoThan(lastProgressBroadcastAt, MIN_PROGRESS_BROADCAST_PERIOD_SECONDS)) [CD]
+Line_4 $$ if (!RelativeTime.moreSecondsAgoThan(lastProgressBroadcastAt, MIN_PROGRESS_BROADCAST_PERIOD_SECONDS)) --> Line_5 $$ return [CD]
+Line_2 $$ void broadcastProgress(String progress, boolean notTooOften) --> Line_8 $$ MyLog.v(this, "Progress: " + progress) [CD]
+Line_2 $$ void broadcastProgress(String progress, boolean notTooOften) --> Line_9 $$ lastProgressBroadcastAt = System.currentTimeMillis() [CD]
+Line_2 $$ void broadcastProgress(String progress, boolean notTooOften) --> Line_10 $$ MyServiceEventsBroadcaster.newInstance(MyContextHolder.get(), MyServiceState.RUNNING).setCommandData(execContext.getCommandData()).setProgress(progress).setEvent(MyServiceEvent.PROGRESS_EXECUTING_COMMAND).broadcast() [FD]
+Line_2 $$ void broadcastProgress(String progress, boolean notTooOften) --> Line_10 $$ MyServiceEventsBroadcaster.newInstance(MyContextHolder.get(), MyServiceState.RUNNING).setCommandData(execContext.getCommandData()).setProgress(progress).setEvent(MyServiceEvent.PROGRESS_EXECUTING_COMMAND).broadcast() [CD]

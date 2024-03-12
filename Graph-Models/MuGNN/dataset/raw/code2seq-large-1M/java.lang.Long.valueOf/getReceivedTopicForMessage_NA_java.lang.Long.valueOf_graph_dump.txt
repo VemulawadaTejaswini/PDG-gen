@@ -1,0 +1,8 @@
+Line_2 $$ public String getReceivedTopicForMessage(String msgId) --> Line_3 $$ if (msgId != null && getPvtAreaEnabled()) [CD]
+Line_4 $$ for (Topic topic : pvtTopics) --> Line_5 $$ String typeUuid = getPrivateMessageTypeFromContext(topic.getTitle()) [FD]
+Line_5 $$ String typeUuid = getPrivateMessageTypeFromContext(topic.getTitle()) --> Line_6 $$ List<Message> topicMessages = prtMsgManager.getMessagesByType(typeUuid, PrivateMessageManager.SORT_COLUMN_DATE, PrivateMessageManager.SORT_DESC) [FD]
+Line_7 $$ for (Message dMsg : topicMessages) --> Line_8 $$ if (dMsg.getId().equals(Long.valueOf(msgId))) [FD]
+Line_2 $$ public String getReceivedTopicForMessage(String msgId) --> Line_8 $$ if (dMsg.getId().equals(Long.valueOf(msgId))) [FD]
+Line_8 $$ if (dMsg.getId().equals(Long.valueOf(msgId))) --> Line_9 $$ return topic.getUuid() [CD]
+Line_4 $$ for (Topic topic : pvtTopics) --> Line_9 $$ return topic.getUuid() [FD]
+Line_2 $$ public String getReceivedTopicForMessage(String msgId) --> Line_14 $$ return null [CD]

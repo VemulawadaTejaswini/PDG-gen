@@ -1,0 +1,7 @@
+Line_7 $$ for (URL url : getURLs()) --> Line_9 $$ URLConnection connection = url.openConnection() [FD]
+Line_9 $$ URLConnection connection = url.openConnection() --> Line_10 $$ if (connection instanceof JarURLConnection) [FD]
+Line_10 $$ if (connection instanceof JarURLConnection) --> Line_11 $$ JarFile jarFile = ((JarURLConnection) connection).getJarFile() [CD]
+Line_10 $$ if (connection instanceof JarURLConnection) --> Line_12 $$ if (jarFile.getEntry(classEntryName) != null && jarFile.getEntry(packageEntryName) != null && jarFile.getManifest() != null) [CD]
+Line_11 $$ JarFile jarFile = ((JarURLConnection) connection).getJarFile() --> Line_12 $$ if (jarFile.getEntry(classEntryName) != null && jarFile.getEntry(packageEntryName) != null && jarFile.getManifest() != null) [FD]
+Line_7 $$ for (URL url : getURLs()) --> Line_13 $$ definePackage(packageName, jarFile.getManifest(), url) [FD]
+Line_11 $$ JarFile jarFile = ((JarURLConnection) connection).getJarFile() --> Line_13 $$ definePackage(packageName, jarFile.getManifest(), url) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Task createCopyTask(ContainerProxy container, Set<String> children, Runnable preWriteTask, Runnable postWriteTask) --> Line_3 $$ SubGraphTransferable empty = new SubGraphTransferable("") [CD]
+Line_2 $$ public Task createCopyTask(ContainerProxy container, Set<String> children, Runnable preWriteTask, Runnable postWriteTask) --> Line_4 $$ getClipboard().setContents(empty, empty) [CD]
+Line_3 $$ SubGraphTransferable empty = new SubGraphTransferable("") --> Line_4 $$ getClipboard().setContents(empty, empty) [FD]
+Line_2 $$ public Task createCopyTask(ContainerProxy container, Set<String> children, Runnable preWriteTask, Runnable postWriteTask) --> Line_5 $$ SyncTask sync = new SyncTask(children.stream().map(container::<>getChild).filter( cmp -> cmp != null).collect(Collectors.toSet()), 250) [CD]
+Line_2 $$ public Task createCopyTask(ContainerProxy container, Set<String> children, Runnable preWriteTask, Runnable postWriteTask) --> Line_5 $$ SyncTask sync = new SyncTask(children.stream().map(container::<>getChild).filter( cmp -> cmp != null).collect(Collectors.toSet()), 250) [FD]
+Line_2 $$ public Task createCopyTask(ContainerProxy container, Set<String> children, Runnable preWriteTask, Runnable postWriteTask) --> Line_6 $$ WriteClipboardTask write = new WriteClipboardTask(container, children, preWriteTask, postWriteTask) [CD]
+Line_2 $$ public Task createCopyTask(ContainerProxy container, Set<String> children, Runnable preWriteTask, Runnable postWriteTask) --> Line_7 $$ return new SerialTasks(sync, write) [CD]

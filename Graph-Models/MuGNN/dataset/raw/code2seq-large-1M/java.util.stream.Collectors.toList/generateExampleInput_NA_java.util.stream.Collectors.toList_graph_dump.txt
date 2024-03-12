@@ -1,0 +1,7 @@
+Line_2 $$ public SQLInput generateExampleInput() --> Line_3 $$ final TableSchema table = randomElementIn(tables) [CD]
+Line_2 $$ public SQLInput generateExampleInput() --> Line_4 $$ final String cols = commaSeparatedList(table.getColumns().stream().map(ColumnSchema::<>getId).collect(toList())) [CD]
+Line_3 $$ final TableSchema table = randomElementIn(tables) --> Line_4 $$ final String cols = commaSeparatedList(table.getColumns().stream().map(ColumnSchema::<>getId).collect(toList())) [FD]
+Line_2 $$ public SQLInput generateExampleInput() --> Line_5 $$ final String query = format("select %s from %s;", cols, table.getId()) [CD]
+Line_4 $$ final String cols = commaSeparatedList(table.getColumns().stream().map(ColumnSchema::<>getId).collect(toList())) --> Line_5 $$ final String query = format("select %s from %s;", cols, table.getId()) [FD]
+Line_3 $$ final TableSchema table = randomElementIn(tables) --> Line_5 $$ final String query = format("select %s from %s;", cols, table.getId()) [FD]
+Line_2 $$ public SQLInput generateExampleInput() --> Line_6 $$ return new SQLInput(query) [CD]

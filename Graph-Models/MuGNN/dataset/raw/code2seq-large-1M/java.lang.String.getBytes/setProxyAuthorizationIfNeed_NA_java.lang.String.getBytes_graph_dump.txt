@@ -1,0 +1,8 @@
+Line_2 $$ private void setProxyAuthorizationIfNeed(HttpRequestBase httpRequest) --> Line_3 $$ if (this.credentialsProvider != null) [CD]
+Line_3 $$ if (this.credentialsProvider != null) --> Line_4 $$ String auth = this.config.getProxyUsername() + ":" + this.config.getProxyPassword() [CD]
+Line_3 $$ if (this.credentialsProvider != null) --> Line_5 $$ byte[] encodedAuth = Base64.encodeBase64(auth.getBytes()) [CD]
+Line_4 $$ String auth = this.config.getProxyUsername() + ":" + this.config.getProxyPassword() --> Line_5 $$ byte[] encodedAuth = Base64.encodeBase64(auth.getBytes()) [FD]
+Line_3 $$ if (this.credentialsProvider != null) --> Line_6 $$ String authHeader = "Basic " + new String(encodedAuth) [CD]
+Line_3 $$ if (this.credentialsProvider != null) --> Line_7 $$ httpRequest.addHeader(AUTH.PROXY_AUTH_RESP, authHeader) [CD]
+Line_2 $$ private void setProxyAuthorizationIfNeed(HttpRequestBase httpRequest) --> Line_7 $$ httpRequest.addHeader(AUTH.PROXY_AUTH_RESP, authHeader) [FD]
+Line_6 $$ String authHeader = "Basic " + new String(encodedAuth) --> Line_7 $$ httpRequest.addHeader(AUTH.PROXY_AUTH_RESP, authHeader) [FD]

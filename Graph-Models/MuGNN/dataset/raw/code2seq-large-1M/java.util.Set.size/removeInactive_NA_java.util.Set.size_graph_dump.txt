@@ -1,0 +1,8 @@
+Line_2 $$ public static void removeInactive() --> Line_3 $$ Set<Integer> serverIdSet = ServerManager.getInstance().getOpenServerIdList() [CD]
+Line_2 $$ public static void removeInactive() --> Line_4 $$ if (serverIdSet.size() > 0) [CD]
+Line_3 $$ Set<Integer> serverIdSet = ServerManager.getInstance().getOpenServerIdList() --> Line_4 $$ if (serverIdSet.size() > 0) [FD]
+Line_4 $$ if (serverIdSet.size() > 0) --> Line_5 $$ Integer[] serverIds = serverIdSet.toArray(new Integer[serverIdSet.size()]) [CD]
+Line_3 $$ Set<Integer> serverIdSet = ServerManager.getInstance().getOpenServerIdList() --> Line_5 $$ Integer[] serverIds = serverIdSet.toArray(new Integer[serverIdSet.size()]) [FD]
+Line_6 $$ for (int serverId : serverIds) --> Line_7 $$ TcpProxy proxy = TcpProxy.getTcpProxy(serverId) [FD]
+Line_7 $$ TcpProxy proxy = TcpProxy.getTcpProxy(serverId) --> Line_9 $$ proxy.process(RequestCmd.OBJECT_REMOVE_INACTIVE, null) [FD]
+Line_7 $$ TcpProxy proxy = TcpProxy.getTcpProxy(serverId) --> Line_11 $$ TcpProxy.close(proxy) [FD]

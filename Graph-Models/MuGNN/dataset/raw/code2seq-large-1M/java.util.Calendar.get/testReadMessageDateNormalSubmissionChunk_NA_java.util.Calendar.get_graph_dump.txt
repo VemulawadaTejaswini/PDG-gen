@@ -1,0 +1,7 @@
+Line_2 $$ public void testReadMessageDateNormalSubmissionChunk() throws ChunkNotFoundException --> Line_3 $$ final Calendar date = mapiMessageNormalSubmissionChunk.getMessageDate() [CD]
+Line_2 $$ public void testReadMessageDateNormalSubmissionChunk() throws ChunkNotFoundException --> Line_4 $$ TestCase.assertNotNull(date) [CD]
+Line_3 $$ final Calendar date = mapiMessageNormalSubmissionChunk.getMessageDate() --> Line_4 $$ TestCase.assertNotNull(date) [FD]
+Line_2 $$ public void testReadMessageDateNormalSubmissionChunk() throws ChunkNotFoundException --> Line_5 $$ final int year = date.get(Calendar.YEAR) [CD]
+Line_3 $$ final Calendar date = mapiMessageNormalSubmissionChunk.getMessageDate() --> Line_5 $$ final int year = date.get(Calendar.YEAR) [FD]
+Line_2 $$ public void testReadMessageDateNormalSubmissionChunk() throws ChunkNotFoundException --> Line_6 $$ TestCase.assertEquals(2007, year) [CD]
+Line_5 $$ final int year = date.get(Calendar.YEAR) --> Line_6 $$ TestCase.assertEquals(2007, year) [FD]

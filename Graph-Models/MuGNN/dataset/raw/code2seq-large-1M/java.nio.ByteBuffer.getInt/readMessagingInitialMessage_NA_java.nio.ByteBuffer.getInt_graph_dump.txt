@@ -1,0 +1,7 @@
+Line_2 $$ private String readMessagingInitialMessage(ByteBuffer buffer) --> Line_3 $$ int nodeIdLength = buffer.getInt() [FD]
+Line_2 $$ private String readMessagingInitialMessage(ByteBuffer buffer) --> Line_3 $$ int nodeIdLength = buffer.getInt() [CD]
+Line_2 $$ private String readMessagingInitialMessage(ByteBuffer buffer) --> Line_4 $$ byte[] stringBytes = new byte[nodeIdLength] [CD]
+Line_2 $$ private String readMessagingInitialMessage(ByteBuffer buffer) --> Line_5 $$ buffer.get(stringBytes) [FD]
+Line_2 $$ private String readMessagingInitialMessage(ByteBuffer buffer) --> Line_5 $$ buffer.get(stringBytes) [CD]
+Line_4 $$ byte[] stringBytes = new byte[nodeIdLength] --> Line_5 $$ buffer.get(stringBytes) [FD]
+Line_2 $$ private String readMessagingInitialMessage(ByteBuffer buffer) --> Line_6 $$ return new String(stringBytes) [CD]

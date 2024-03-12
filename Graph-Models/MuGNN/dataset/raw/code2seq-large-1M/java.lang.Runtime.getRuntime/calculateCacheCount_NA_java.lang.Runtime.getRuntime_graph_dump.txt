@@ -1,0 +1,8 @@
+Line_2 $$ private int calculateCacheCount() --> Line_3 $$ Runtime runtime = Runtime.getRuntime() [CD]
+Line_2 $$ private int calculateCacheCount() --> Line_4 $$ long freeBytes = runtime.maxMemory() - runtime.totalMemory() - runtime.freeMemory() [CD]
+Line_3 $$ Runtime runtime = Runtime.getRuntime() --> Line_4 $$ long freeBytes = runtime.maxMemory() - runtime.totalMemory() - runtime.freeMemory() [FD]
+Line_2 $$ private int calculateCacheCount() --> Line_5 $$ long cacheUseBytes = (long) (freeBytes * CACHE_FREE_MEMORY_PERCENTAGE) [CD]
+Line_2 $$ private int calculateCacheCount() --> Line_6 $$ long perBitmapBytes = THUMBNAIL_EDGE * THUMBNAIL_EDGE * 4 [CD]
+Line_2 $$ private int calculateCacheCount() --> Line_7 $$ int cacheCount = (int) (cacheUseBytes / perBitmapBytes) [CD]
+Line_2 $$ private int calculateCacheCount() --> Line_8 $$ Log.i(TAG, "free bytes: " + freeBytes + ", use " + (int) (CACHE_FREE_MEMORY_PERCENTAGE * 100) + "% for cache: " + cacheUseBytes + ", per bitmap occupy: " + perBitmapBytes + ", cache count: " + cacheCount) [CD]
+Line_2 $$ private int calculateCacheCount() --> Line_9 $$ return cacheCount [CD]

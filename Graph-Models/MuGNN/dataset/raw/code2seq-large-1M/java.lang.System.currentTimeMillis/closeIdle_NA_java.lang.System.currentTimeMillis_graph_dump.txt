@@ -1,0 +1,6 @@
+Line_2 $$ synchronized void closeIdle(boolean scanAll) --> Line_3 $$ long minLastContact = System.currentTimeMillis() - maxIdleTime [CD]
+Line_2 $$ synchronized void closeIdle(boolean scanAll) --> Line_4 $$ int closed = 0 [CD]
+Line_2 $$ synchronized void closeIdle(boolean scanAll) --> Line_6 $$ if (!scanAll && size() < idleScanThreshold) [FD]
+Line_5 $$ for (SimpleServerRpcConnection connection : connections) --> Line_9 $$ if (connection.isIdle() && connection.getLastContact() < minLastContact && close(connection) && !scanAll && (++closed == maxIdleToClose)) [FD]
+Line_2 $$ synchronized void closeIdle(boolean scanAll) --> Line_9 $$ if (connection.isIdle() && connection.getLastContact() < minLastContact && close(connection) && !scanAll && (++closed == maxIdleToClose)) [FD]
+Line_4 $$ int closed = 0 --> Line_9 $$ if (connection.isIdle() && connection.getLastContact() < minLastContact && close(connection) && !scanAll && (++closed == maxIdleToClose)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void prepareRedis(Map<String, List<String>> campaigns) --> Line_3 $$ jedis.select(0) [CD]
+Line_2 $$ public void prepareRedis(Map<String, List<String>> campaigns) --> Line_4 $$ jedis.flushAll() [CD]
+Line_2 $$ public void prepareRedis(Map<String, List<String>> campaigns) --> Line_5 $$ for (Map.Entry<String, List<String>> entry : campaigns.entrySet()) [FD]
+Line_6 $$ String campaign = entry.getKey() --> Line_7 $$ jedis.sadd("campaigns", campaign) [FD]
+Line_8 $$ for (String ad : entry.getValue()) --> Line_9 $$ jedis.set(ad, campaign) [FD]
+Line_6 $$ String campaign = entry.getKey() --> Line_9 $$ jedis.set(ad, campaign) [FD]
+Line_2 $$ public void prepareRedis(Map<String, List<String>> campaigns) --> Line_12 $$ jedis.close() [CD]

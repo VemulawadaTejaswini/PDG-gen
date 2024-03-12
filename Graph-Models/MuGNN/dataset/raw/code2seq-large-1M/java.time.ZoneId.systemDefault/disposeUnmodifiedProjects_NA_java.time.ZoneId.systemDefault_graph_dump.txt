@@ -1,0 +1,6 @@
+Line_4 $$ for (long id : _projectsMetadata.keySet()) --> Line_5 $$ ProjectMetadata metadata = getProjectMetadata(id) [FD]
+Line_4 $$ for (long id : _projectsMetadata.keySet()) --> Line_6 $$ Project project = _projects.get(id) [FD]
+Line_6 $$ Project project = _projects.get(id) --> Line_7 $$ if (project != null && !project.getProcessManager().hasPending() && metadata.getModified().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() < project.getLastSave().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()) [FD]
+Line_5 $$ ProjectMetadata metadata = getProjectMetadata(id) --> Line_7 $$ if (project != null && !project.getProcessManager().hasPending() && metadata.getModified().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() < project.getLastSave().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()) [FD]
+Line_7 $$ if (project != null && !project.getProcessManager().hasPending() && metadata.getModified().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() < project.getLastSave().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()) --> Line_8 $$ _projects.remove(id).dispose() [CD]
+Line_4 $$ for (long id : _projectsMetadata.keySet()) --> Line_8 $$ _projects.remove(id).dispose() [FD]

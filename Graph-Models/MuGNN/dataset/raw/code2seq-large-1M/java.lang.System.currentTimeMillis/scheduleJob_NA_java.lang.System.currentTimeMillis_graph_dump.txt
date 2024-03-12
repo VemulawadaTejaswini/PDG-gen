@@ -1,0 +1,8 @@
+Line_2 $$ public void scheduleJob() --> Line_3 $$ log.info("schedule job to send message...") [CD]
+Line_2 $$ public void scheduleJob() --> Line_4 $$ List<QMessage> messages = null [CD]
+Line_4 $$ List<QMessage> messages = null --> Line_6 $$ messages = qMessageService.selectAllQMessage(System.currentTimeMillis()) [FD]
+Line_2 $$ public void scheduleJob() --> Line_10 $$ if (messages == null || messages.size() == 0) [CD]
+Line_4 $$ List<QMessage> messages = null --> Line_10 $$ if (messages == null || messages.size() == 0) [FD]
+Line_6 $$ messages = qMessageService.selectAllQMessage(System.currentTimeMillis()) --> Line_10 $$ if (messages == null || messages.size() == 0) [FD]
+Line_10 $$ if (messages == null || messages.size() == 0) --> Line_11 $$ return [CD]
+Line_13 $$ for (QMessage message : messages) --> Line_14 $$ disruptorQueue.publish(message) [FD]

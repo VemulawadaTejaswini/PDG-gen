@@ -1,0 +1,8 @@
+Line_10 $$ Object existingUuid = primaryIndexField.read(entity) --> Line_11 $$ if (existingUuid == null) [FD]
+Line_11 $$ if (existingUuid == null) --> Line_12 $$ IdStrategy strategy = classInfo.idStrategy() [CD]
+Line_11 $$ if (existingUuid == null) --> Line_13 $$ Object id = strategy.generateId(entity) [CD]
+Line_11 $$ if (existingUuid == null) --> Line_14 $$ if (strategy instanceof UuidStrategy && primaryIndexField.isTypeOf(String.class)) [CD]
+Line_13 $$ Object id = strategy.generateId(entity) --> Line_15 $$ id = id.toString() [FD]
+Line_11 $$ if (existingUuid == null) --> Line_17 $$ primaryIndexField.writeDirect(entity, id) [CD]
+Line_13 $$ Object id = strategy.generateId(entity) --> Line_17 $$ primaryIndexField.writeDirect(entity, id) [FD]
+Line_15 $$ id = id.toString() --> Line_17 $$ primaryIndexField.writeDirect(entity, id) [FD]

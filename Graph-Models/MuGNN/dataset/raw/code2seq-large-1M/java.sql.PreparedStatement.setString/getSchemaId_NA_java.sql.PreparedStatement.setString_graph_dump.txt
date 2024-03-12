@@ -1,0 +1,6 @@
+Line_3 $$ try (PreparedStatement stmt = SQLUtils.getDefaultConnection().prepareStatement("SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = ?")) --> Line_4 $$ stmt.setString(1, schemaName) [FD]
+Line_2 $$ private static Oid getSchemaId(String schemaName) throws SQLException --> Line_4 $$ stmt.setString(1, schemaName) [FD]
+Line_3 $$ try (PreparedStatement stmt = SQLUtils.getDefaultConnection().prepareStatement("SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = ?")) --> Line_5 $$ try (ResultSet rs = stmt.executeQuery()) [FD]
+Line_5 $$ try (ResultSet rs = stmt.executeQuery()) --> Line_6 $$ if (!rs.next()) [FD]
+Line_6 $$ if (!rs.next()) --> Line_7 $$ return null [CD]
+Line_5 $$ try (ResultSet rs = stmt.executeQuery()) --> Line_8 $$ return (Oid) rs.getObject(1) [FD]

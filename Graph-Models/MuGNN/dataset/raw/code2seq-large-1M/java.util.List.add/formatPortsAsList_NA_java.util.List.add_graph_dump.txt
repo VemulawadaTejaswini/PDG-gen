@@ -1,0 +1,8 @@
+Line_2 $$ private String formatPortsAsList(List<ServicePort> ports) --> Line_3 $$ List<String> p = new ArrayList() [CD]
+Line_4 $$ for (ServicePort port : ports) --> Line_5 $$ String targetPort = getPortValue(port.getTargetPort()) [FD]
+Line_4 $$ for (ServicePort port : ports) --> Line_6 $$ String servicePort = port.getPort() != null ? Integer.toString(port.getPort()) : targetPort [FD]
+Line_3 $$ List<String> p = new ArrayList() --> Line_7 $$ p.add(targetPort.equals(servicePort) ? targetPort : servicePort + ":" + targetPort) [FD]
+Line_5 $$ String targetPort = getPortValue(port.getTargetPort()) --> Line_7 $$ p.add(targetPort.equals(servicePort) ? targetPort : servicePort + ":" + targetPort) [FD]
+Line_6 $$ String servicePort = port.getPort() != null ? Integer.toString(port.getPort()) : targetPort --> Line_7 $$ p.add(targetPort.equals(servicePort) ? targetPort : servicePort + ":" + targetPort) [FD]
+Line_2 $$ private String formatPortsAsList(List<ServicePort> ports) --> Line_9 $$ return StringUtils.join(p.iterator(), ",") [CD]
+Line_3 $$ List<String> p = new ArrayList() --> Line_9 $$ return StringUtils.join(p.iterator(), ",") [FD]

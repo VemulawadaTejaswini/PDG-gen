@@ -1,0 +1,5 @@
+Line_2 $$ private int chooseRpcBatchSize(RowIndex rowIndex) --> Line_3 $$ PartitionKey part = PSAgentContext.get().getMatrixMetaManager().getPartitions(rowIndex.getMatrixId()).get(0) [FD]
+Line_2 $$ private int chooseRpcBatchSize(RowIndex rowIndex) --> Line_3 $$ PartitionKey part = PSAgentContext.get().getMatrixMetaManager().getPartitions(rowIndex.getMatrixId()).get(0) [CD]
+Line_2 $$ private int chooseRpcBatchSize(RowIndex rowIndex) --> Line_4 $$ int rowNumInPart = part.getEndRow() - part.getStartRow() [CD]
+Line_3 $$ PartitionKey part = PSAgentContext.get().getMatrixMetaManager().getPartitions(rowIndex.getMatrixId()).get(0) --> Line_4 $$ int rowNumInPart = part.getEndRow() - part.getStartRow() [FD]
+Line_2 $$ private int chooseRpcBatchSize(RowIndex rowIndex) --> Line_5 $$ return Math.max(rowNumInPart / 4, 10) [CD]

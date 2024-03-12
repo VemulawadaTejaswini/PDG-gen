@@ -1,0 +1,8 @@
+Line_3 $$ Class cl = getClass() --> Line_4 $$ if (cl == ObjectInputStream.class) [FD]
+Line_7 $$ SecurityManager sm = System.getSecurityManager() --> Line_8 $$ if (sm == null) [FD]
+Line_8 $$ if (sm == null) --> Line_9 $$ return [CD]
+Line_14 $$ if (result == null) --> Line_15 $$ result = Boolean.valueOf(auditSubclass(cl)) [CD]
+Line_3 $$ Class cl = getClass() --> Line_15 $$ result = Boolean.valueOf(auditSubclass(cl)) [FD]
+Line_14 $$ if (result == null) --> Line_16 $$ Caches.subclassAudits.putIfAbsent(key, result) [CD]
+Line_18 $$ if (result.booleanValue()) --> Line_19 $$ return [CD]
+Line_7 $$ SecurityManager sm = System.getSecurityManager() --> Line_21 $$ sm.checkPermission(SUBCLASS_IMPLEMENTATION_PERMISSION) [FD]

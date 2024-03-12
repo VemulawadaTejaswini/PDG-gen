@@ -1,0 +1,8 @@
+Line_2 $$ private void onTimelinesChanged() throws NakadiException, InvalidCursorException --> Line_3 $$ final Set<String> eventTypes = latestOffsets.values().stream().map(NakadiCursor::<>getEventType).collect(Collectors.toSet()) [CD]
+Line_2 $$ private void onTimelinesChanged() throws NakadiException, InvalidCursorException --> Line_4 $$ final List<String> toRemove = eventTypeTimelines.keySet().stream().filter( et -> !eventTypes.contains(et)).collect(Collectors.toList()) [CD]
+Line_3 $$ final Set<String> eventTypes = latestOffsets.values().stream().map(NakadiCursor::<>getEventType).collect(Collectors.toSet()) --> Line_4 $$ final List<String> toRemove = eventTypeTimelines.keySet().stream().filter( et -> !eventTypes.contains(et)).collect(Collectors.toList()) [FD]
+Line_5 $$ for (final String item : toRemove) --> Line_6 $$ eventTypeTimelines.remove(item) [FD]
+Line_8 $$ for (final String eventType : eventTypes) --> Line_9 $$ final List<Timeline> newActiveTimelines = timelineService.getActiveTimelinesOrdered(eventType) [FD]
+Line_8 $$ for (final String eventType : eventTypes) --> Line_10 $$ eventTypeTimelines.put(eventType, newActiveTimelines) [FD]
+Line_9 $$ final List<Timeline> newActiveTimelines = timelineService.getActiveTimelinesOrdered(eventType) --> Line_10 $$ eventTypeTimelines.put(eventType, newActiveTimelines) [FD]
+Line_2 $$ private void onTimelinesChanged() throws NakadiException, InvalidCursorException --> Line_12 $$ electTopicRepositories() [CD]

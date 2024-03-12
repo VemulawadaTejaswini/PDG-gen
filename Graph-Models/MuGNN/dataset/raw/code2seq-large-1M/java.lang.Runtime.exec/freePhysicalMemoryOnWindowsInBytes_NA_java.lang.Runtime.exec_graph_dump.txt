@@ -1,0 +1,8 @@
+Line_2 $$ public static long freePhysicalMemoryOnWindowsInBytes() throws IOException --> Line_3 $$ if (!isWindows()) [CD]
+Line_2 $$ public static long freePhysicalMemoryOnWindowsInBytes() throws IOException --> Line_6 $$ Process pr = Runtime.getRuntime().exec("wmic OS get FreePhysicalMemory /Value") [CD]
+Line_6 $$ Process pr = Runtime.getRuntime().exec("wmic OS get FreePhysicalMemory /Value") --> Line_8 $$ int result = pr.waitFor() [FD]
+Line_6 $$ Process pr = Runtime.getRuntime().exec("wmic OS get FreePhysicalMemory /Value") --> Line_9 $$ String output = convertStreamToString(pr.getInputStream()) [FD]
+Line_8 $$ int result = pr.waitFor() --> Line_10 $$ if (result != 0) [FD]
+Line_10 $$ if (result != 0) --> Line_11 $$ String errorOutput = convertStreamToString(pr.getErrorStream()) [CD]
+Line_6 $$ Process pr = Runtime.getRuntime().exec("wmic OS get FreePhysicalMemory /Value") --> Line_11 $$ String errorOutput = convertStreamToString(pr.getErrorStream()) [FD]
+Line_9 $$ String output = convertStreamToString(pr.getInputStream()) --> Line_14 $$ String[] parts = output.trim().split("=") [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void instant() --> Line_3 $$ Instant i = Instant.now() [CD]
+Line_2 $$ public void instant() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", i) [CD]
+Line_3 $$ Instant i = Instant.now() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", i) [FD]
+Line_2 $$ public void instant() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(Instant.class).findOnly()).isEqualTo(i) [CD]
+Line_3 $$ Instant i = Instant.now() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(Instant.class).findOnly()).isEqualTo(i) [FD]

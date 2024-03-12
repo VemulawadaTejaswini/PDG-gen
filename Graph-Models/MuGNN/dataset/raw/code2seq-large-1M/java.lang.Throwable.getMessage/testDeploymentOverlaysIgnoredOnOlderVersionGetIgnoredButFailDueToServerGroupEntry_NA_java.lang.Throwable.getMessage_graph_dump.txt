@@ -1,0 +1,7 @@
+Line_3 $$ if (modelVersion.getMajor() > 1 || modelVersion.getMinor() >= 4) --> Line_4 $$ return [CD]
+Line_6 $$ KernelServicesBuilder builder = createKernelServicesBuilder(TestModelType.DOMAIN).setModelInitializer(StandardServerGroupInitializers.XML_MODEL_INITIALIZER, StandardServerGroupInitializers.XML_MODEL_WRITE_SANITIZER).createContentRepositoryContent("12345678901234567890").setXmlResource("domain.xml") --> Line_7 $$ StandardServerGroupInitializers.addServerGroupInitializers(builder.createLegacyKernelServicesBuilder(modelVersion, testControllerVersion)).setDontUseBootOperations().skipReverseControllerCheck() [FD]
+Line_6 $$ KernelServicesBuilder builder = createKernelServicesBuilder(TestModelType.DOMAIN).setModelInitializer(StandardServerGroupInitializers.XML_MODEL_INITIALIZER, StandardServerGroupInitializers.XML_MODEL_WRITE_SANITIZER).createContentRepositoryContent("12345678901234567890").setXmlResource("domain.xml") --> Line_9 $$ KernelServices mainServices = builder.build() [FD]
+Line_9 $$ KernelServices mainServices = builder.build() --> Line_10 $$ Assert.assertTrue(mainServices.isSuccessfulBoot()) [FD]
+Line_9 $$ KernelServices mainServices = builder.build() --> Line_11 $$ KernelServices legacyServices = mainServices.getLegacyServices(modelVersion) [FD]
+Line_11 $$ KernelServices legacyServices = mainServices.getLegacyServices(modelVersion) --> Line_12 $$ Assert.assertTrue(legacyServices.isSuccessfulBoot()) [FD]
+Line_9 $$ KernelServices mainServices = builder.build() --> Line_14 $$ mainServices.applyMasterDomainModel(modelVersion, null) [FD]

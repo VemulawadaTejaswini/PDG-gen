@@ -1,0 +1,7 @@
+Line_2 $$ public void noopReplaceAsWarning() throws Exception --> Line_3 $$ options.workflowOptions.ignoreNoop = true [CD]
+Line_2 $$ public void noopReplaceAsWarning() throws Exception --> Line_4 $$ writeFile(checkoutDir.resolve("foo"), "") [CD]
+Line_2 $$ public void noopReplaceAsWarning() throws Exception --> Line_5 $$ transform(eval("core.replace(\n" + "  before = \"BEFORE this string doesn't appear anywhere in source\",\n" + "  after = 'lulz',\n" + ")")) [CD]
+Line_2 $$ public void noopReplaceAsWarning() throws Exception --> Line_6 $$ console.assertThat().onceInLog(MessageType.WARNING, ".*BEFORE.*lulz.*was a no-op because it didn't change any of the matching files[.]") [CD]
+Line_2 $$ public void noopReplaceAsWarning() throws Exception --> Line_7 $$ console.clearMessages() [CD]
+Line_2 $$ public void noopReplaceAsWarning() throws Exception --> Line_8 $$ transform(eval("core.replace(\n" + "  before = \"BEFORE this string doesn't appear anywhere in source\",\n" + "  after = 'lulz',\n" + "  paths = glob(['bad_path/**'])\n" + ")")) [CD]
+Line_2 $$ public void noopReplaceAsWarning() throws Exception --> Line_9 $$ console.assertThat().onceInLog(MessageType.WARNING, ".*BEFORE.*lulz.*was a no-op because it didn't match any file[.]") [CD]

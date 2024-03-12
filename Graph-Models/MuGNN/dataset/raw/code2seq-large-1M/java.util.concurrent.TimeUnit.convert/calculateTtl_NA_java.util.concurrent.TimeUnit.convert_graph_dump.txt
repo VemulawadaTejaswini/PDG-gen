@@ -1,0 +1,6 @@
+Line_2 $$ private int calculateTtl(final long cadence) --> Line_3 $$ final long timeInCadence = clock.currentTimeMillis() % cadence [CD]
+Line_2 $$ private int calculateTtl(final long cadence) --> Line_4 $$ final long timeUntilExpiry = cadence - timeInCadence [CD]
+Line_2 $$ private int calculateTtl(final long cadence) --> Line_5 $$ final int candidate = (int) TimeUnit.SECONDS.convert(timeUntilExpiry, TimeUnit.MILLISECONDS) [CD]
+Line_4 $$ final long timeUntilExpiry = cadence - timeInCadence --> Line_5 $$ final int candidate = (int) TimeUnit.SECONDS.convert(timeUntilExpiry, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ private int calculateTtl(final long cadence) --> Line_6 $$ return maxTtlSeconds.map( max -> Math.min(max, candidate)).orElse(candidate) [CD]
+Line_5 $$ final int candidate = (int) TimeUnit.SECONDS.convert(timeUntilExpiry, TimeUnit.MILLISECONDS) --> Line_6 $$ return maxTtlSeconds.map( max -> Math.min(max, candidate)).orElse(candidate) [FD]

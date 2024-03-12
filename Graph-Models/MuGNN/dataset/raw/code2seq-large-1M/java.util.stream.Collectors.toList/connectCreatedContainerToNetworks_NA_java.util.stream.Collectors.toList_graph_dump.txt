@@ -1,0 +1,8 @@
+Line_2 $$ private void connectCreatedContainerToNetworks(RequestContext context) --> Line_3 $$ ensurePropertyExists(( retryCountProperty) -> [CD]
+Line_2 $$ private void connectCreatedContainerToNetworks(RequestContext context) --> Line_5 $$ return new RetriableTaskBuilder<Void>(String.format("connect-created-container-%s-to-networks", context.containerState.id)).withMaximumRetries(retryCountProperty).withRetryDelays(CONNECT_NETWORK_RETRY_AFTER_SECONDS).withRetryDelaysTimeUnit(TimeUnit.SECONDS).withServiceHost(getHost()).withTaskFunction(prepareConnectContainerToNetworkFunction(context, entry.getKey(), entry.getValue())).execute() [FD]
+Line_4 $$ List<DeferredResult<Void>> tasks = context.containerState.networks.entrySet().stream().map(( entry) -> --> Line_7 $$ DeferredResult.allOf(tasks).whenComplete(( ignore,  ex) -> [FD]
+Line_8 $$ if (ex == null) --> Line_9 $$ processStartContainer(context) [CD]
+Line_2 $$ private void connectCreatedContainerToNetworks(RequestContext context) --> Line_9 $$ processStartContainer(context) [FD]
+Line_8 $$ if (ex == null) --> Line_10 $$ return [CD]
+Line_2 $$ private void connectCreatedContainerToNetworks(RequestContext context) --> Line_14 $$ processInspectContainer(context) [FD]
+Line_15 $$ Throwable cause = ex instanceof CompletionException ? ex.getCause() : ex --> Line_16 $$ fail(context.request, cause) [FD]

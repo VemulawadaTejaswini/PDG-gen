@@ -1,0 +1,7 @@
+Line_2 $$ private ReaderBucket createReaderBucket(int readerId) --> Line_3 $$ String index = readerIdToIndex.floorEntry(readerId).getValue() [FD]
+Line_2 $$ private ReaderBucket createReaderBucket(int readerId) --> Line_3 $$ String index = readerIdToIndex.floorEntry(readerId).getValue() [CD]
+Line_2 $$ private ReaderBucket createReaderBucket(int readerId) --> Line_4 $$ RelationName relationName = indexToTable.get(index) [CD]
+Line_2 $$ private ReaderBucket createReaderBucket(int readerId) --> Line_5 $$ FetchSource fetchSource = tableToFetchSource.get(relationName) [CD]
+Line_4 $$ RelationName relationName = indexToTable.get(index) --> Line_5 $$ FetchSource fetchSource = tableToFetchSource.get(relationName) [FD]
+Line_2 $$ private ReaderBucket createReaderBucket(int readerId) --> Line_7 $$ return new ReaderBucket(!fetchSource.references().isEmpty(), partitionValues(index, fetchSource.partitionedByColumns())) [CD]
+Line_5 $$ FetchSource fetchSource = tableToFetchSource.get(relationName) --> Line_7 $$ return new ReaderBucket(!fetchSource.references().isEmpty(), partitionValues(index, fetchSource.partitionedByColumns())) [FD]

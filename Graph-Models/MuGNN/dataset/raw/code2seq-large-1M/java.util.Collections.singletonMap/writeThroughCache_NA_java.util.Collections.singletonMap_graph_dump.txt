@@ -1,0 +1,8 @@
+Line_2 $$ public void writeThroughCache() --> Line_3 $$ CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build(true) [CD]
+Line_2 $$ public void writeThroughCache() --> Line_4 $$ Cache<Long, String> writeThroughCache = cacheManager.createCache("writeThroughCache", CacheConfigurationBuilder.newCacheConfigurationBuilder(Long.class, String.class, ResourcePoolsBuilder.heap(10)).withLoaderWriter(new SampleLoaderWriter(singletonMap(41L, "zero"))).build()) [CD]
+Line_3 $$ CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build(true) --> Line_4 $$ Cache<Long, String> writeThroughCache = cacheManager.createCache("writeThroughCache", CacheConfigurationBuilder.newCacheConfigurationBuilder(Long.class, String.class, ResourcePoolsBuilder.heap(10)).withLoaderWriter(new SampleLoaderWriter(singletonMap(41L, "zero"))).build()) [FD]
+Line_2 $$ public void writeThroughCache() --> Line_6 $$ assertThat(writeThroughCache.get(41L), is("zero")) [CD]
+Line_2 $$ public void writeThroughCache() --> Line_7 $$ writeThroughCache.put(42L, "one") [CD]
+Line_2 $$ public void writeThroughCache() --> Line_8 $$ assertThat(writeThroughCache.get(42L), equalTo("one")) [CD]
+Line_2 $$ public void writeThroughCache() --> Line_9 $$ cacheManager.close() [CD]
+Line_3 $$ CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build(true) --> Line_9 $$ cacheManager.close() [FD]

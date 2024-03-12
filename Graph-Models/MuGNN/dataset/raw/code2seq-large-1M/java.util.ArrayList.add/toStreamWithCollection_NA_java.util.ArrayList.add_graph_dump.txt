@@ -1,0 +1,7 @@
+Line_2 $$ void toStreamWithCollection() --> Line_3 $$ AtomicBoolean collectionStreamClosed = new AtomicBoolean(false) [CD]
+Line_2 $$ void toStreamWithCollection() --> Line_4 $$ Collection<String> input = new ArrayList<String>() [CD]
+Line_4 $$ Collection<String> input = new ArrayList<String>() --> Line_10 $$ return super.stream().onClose(() -> collectionStreamClosed.set(true)) [CD]
+Line_3 $$ AtomicBoolean collectionStreamClosed = new AtomicBoolean(false) --> Line_10 $$ return super.stream().onClose(() -> collectionStreamClosed.set(true)) [FD]
+Line_4 $$ Collection<String> input = new ArrayList<String>() --> Line_13 $$ try (Stream<String> stream = (Stream<String>) CollectionUtils.toStream(input)) [FD]
+Line_2 $$ void toStreamWithCollection() --> Line_17 $$ assertThat(collectionStreamClosed.get()).describedAs("collectionStreamClosed").isTrue() [CD]
+Line_3 $$ AtomicBoolean collectionStreamClosed = new AtomicBoolean(false) --> Line_17 $$ assertThat(collectionStreamClosed.get()).describedAs("collectionStreamClosed").isTrue() [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private static void configureImplicitDataSource(final ResourceInfo copy) --> Line_3 $$ if (copy != null && copy.properties != null) [CD]
+Line_4 $$ for (final String key : copy.properties.stringPropertyNames()) --> Line_5 $$ if ("InitialSize".equalsIgnoreCase(key)) [FD]
+Line_7 $$ final int value = Integer.parseInt(copy.properties.getProperty("InitialSize")) --> Line_8 $$ if (MAX_IMPLICIT_POOL_SIZE < value) [FD]
+Line_8 $$ if (MAX_IMPLICIT_POOL_SIZE < value) --> Line_9 $$ copy.properties.setProperty(key, Integer.toString(MAX_IMPLICIT_POOL_SIZE)) [CD]
+Line_4 $$ for (final String key : copy.properties.stringPropertyNames()) --> Line_9 $$ copy.properties.setProperty(key, Integer.toString(MAX_IMPLICIT_POOL_SIZE)) [FD]
+Line_8 $$ if (MAX_IMPLICIT_POOL_SIZE < value) --> Line_10 $$ logger.warning("Adjusting " + key + " to " + MAX_IMPLICIT_POOL_SIZE + " for " + copy.id + " DataSource to avoid too much network bandwidth usage." + " If you want to keep it please define the DataSource explicitely.") [CD]

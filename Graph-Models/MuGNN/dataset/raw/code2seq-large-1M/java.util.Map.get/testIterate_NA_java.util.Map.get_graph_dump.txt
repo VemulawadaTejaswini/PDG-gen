@@ -1,0 +1,6 @@
+Line_2 $$ public void testIterate() throws Exception --> Line_3 $$ db.execute("UNWIND range(1,100) AS x CREATE (:Person [CD]
+Line_2 $$ public void testIterate() throws Exception --> Line_4 $$ testResult(db, "CALL apoc.periodic.iterate('match (p:Person) return p', 'SET p.lastname =p.name REMOVE p.name', [CD]
+Line_5 $$ Map<String, Object> row = Iterators.single(result) --> Line_6 $$ assertEquals(10L, row.get("batches")) [FD]
+Line_5 $$ Map<String, Object> row = Iterators.single(result) --> Line_7 $$ assertEquals(100L, row.get("total")) [FD]
+Line_2 $$ public void testIterate() throws Exception --> Line_9 $$ testCall(db, "MATCH (p:Person) where p.lastname is not null return count(p) as count",  row -> assertEquals(100L, row.get("count"))) [CD]
+Line_5 $$ Map<String, Object> row = Iterators.single(result) --> Line_9 $$ testCall(db, "MATCH (p:Person) where p.lastname is not null return count(p) as count",  row -> assertEquals(100L, row.get("count"))) [FD]

@@ -1,0 +1,8 @@
+Line_4 $$ Accessor accessor = ((JpaEntityManagerFactory) getFactory()).getServerSession().getReadConnectionPool().acquireConnection() --> Line_5 $$ Connection connection = accessor.getConnection() [FD]
+Line_5 $$ Connection connection = accessor.getConnection() --> Line_6 $$ Statement statement = connection.createStatement() [FD]
+Line_7 $$ if (isSchema) --> Line_8 $$ statement.executeUpdate("DROP SCHEMA " + database + " CASCADE") [CD]
+Line_6 $$ Statement statement = connection.createStatement() --> Line_8 $$ statement.executeUpdate("DROP SCHEMA " + database + " CASCADE") [FD]
+Line_7 $$ if (isSchema) --> Line_10 $$ statement.executeUpdate("DROP DATABASE " + database) [CD]
+Line_6 $$ Statement statement = connection.createStatement() --> Line_10 $$ statement.executeUpdate("DROP DATABASE " + database) [FD]
+Line_6 $$ Statement statement = connection.createStatement() --> Line_12 $$ statement.close() [FD]
+Line_4 $$ Accessor accessor = ((JpaEntityManagerFactory) getFactory()).getServerSession().getReadConnectionPool().acquireConnection() --> Line_13 $$ ((JpaEntityManagerFactory) getFactory()).getServerSession().getReadConnectionPool().releaseConnection(accessor) [FD]

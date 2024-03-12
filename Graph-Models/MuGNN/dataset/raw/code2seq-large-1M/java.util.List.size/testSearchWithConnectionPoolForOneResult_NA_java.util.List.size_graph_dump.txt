@@ -1,0 +1,7 @@
+Line_2 $$ public void testSearchWithConnectionPoolForOneResult() throws Exception --> Line_3 $$ final LDAPURL ldapurl = new LDAPURL(ldapUrls()[0]) [CD]
+Line_3 $$ final LDAPURL ldapurl = new LDAPURL(ldapUrls()[0]) --> Line_4 $$ try (LDAPConnectionPool pool = LdapUtils.privilegedConnect(() -> new LDAPConnectionPool(new SingleServerSet(ldapurl.getHost(), ldapurl.getPort()), new SimpleBindRequest("cn=Horatio Hornblower,ou=people,o=sevenSeas", "pass"), 0, 20))) [FD]
+Line_6 $$ final SearchGroupsResolver resolver = new SearchGroupsResolver(settings) --> Line_8 $$ resolver.resolve(pool, "cn=Moultrie Crystal,ou=people,o=sevenSeas", TimeValue.timeValueSeconds(30), logger, null, future) [FD]
+Line_4 $$ try (LDAPConnectionPool pool = LdapUtils.privilegedConnect(() -> new LDAPConnectionPool(new SingleServerSet(ldapurl.getHost(), ldapurl.getPort()), new SimpleBindRequest("cn=Horatio Hornblower,ou=people,o=sevenSeas", "pass"), 0, 20))) --> Line_8 $$ resolver.resolve(pool, "cn=Moultrie Crystal,ou=people,o=sevenSeas", TimeValue.timeValueSeconds(30), logger, null, future) [FD]
+Line_7 $$ final PlainActionFuture<List<String>> future = new PlainActionFuture() --> Line_8 $$ resolver.resolve(pool, "cn=Moultrie Crystal,ou=people,o=sevenSeas", TimeValue.timeValueSeconds(30), logger, null, future) [FD]
+Line_7 $$ final PlainActionFuture<List<String>> future = new PlainActionFuture() --> Line_9 $$ List<String> resolvedDNs = future.actionGet() [FD]
+Line_9 $$ List<String> resolvedDNs = future.actionGet() --> Line_10 $$ assertEquals(1, resolvedDNs.size()) [FD]

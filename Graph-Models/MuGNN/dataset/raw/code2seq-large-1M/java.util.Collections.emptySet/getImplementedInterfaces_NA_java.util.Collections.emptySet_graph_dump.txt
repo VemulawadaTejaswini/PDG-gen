@@ -1,0 +1,8 @@
+Line_2 $$ public Set<ClassInfo> getImplementedInterfaces() --> Line_3 $$ if (!isStandardClass()) [CD]
+Line_3 $$ if (!isStandardClass()) --> Line_4 $$ return Collections.<ClassInfo>emptySet() [CD]
+Line_3 $$ if (!isStandardClass()) --> Line_6 $$ final Set<ClassInfo> superclasses = filterClassInfo(getReachableClasses(RelType.SUPERCLASSES), true, scanSpec, ClassType.STANDARD_CLASS) [CD]
+Line_3 $$ if (!isStandardClass()) --> Line_8 $$ final Set<ClassInfo> allInterfaces = new HashSet() [CD]
+Line_3 $$ if (!isStandardClass()) --> Line_9 $$ allInterfaces.addAll(getReachableClasses(RelType.IMPLEMENTED_INTERFACES)) [CD]
+Line_8 $$ final Set<ClassInfo> allInterfaces = new HashSet() --> Line_9 $$ allInterfaces.addAll(getReachableClasses(RelType.IMPLEMENTED_INTERFACES)) [FD]
+Line_8 $$ final Set<ClassInfo> allInterfaces = new HashSet() --> Line_11 $$ allInterfaces.addAll(superClass.getReachableClasses(RelType.IMPLEMENTED_INTERFACES)) [FD]
+Line_3 $$ if (!isStandardClass()) --> Line_13 $$ return allInterfaces [CD]

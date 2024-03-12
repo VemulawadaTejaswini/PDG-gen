@@ -1,0 +1,5 @@
+Line_2 $$ public void readMethodTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, IOException --> Line_3 $$ Method readMethod = HttpConnection.class.getDeclaredMethod("read", BufferedReader.class) [CD]
+Line_2 $$ public void readMethodTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, IOException --> Line_4 $$ readMethod.setAccessible(true) [CD]
+Line_2 $$ public void readMethodTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, IOException --> Line_5 $$ BufferedReader br = null [CD]
+Line_2 $$ public void readMethodTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, IOException --> Line_6 $$ readMethod.invoke(connection, br) [CD]
+Line_5 $$ BufferedReader br = null --> Line_6 $$ readMethod.invoke(connection, br) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Map<String, String> getToolbarsButtons() --> Line_3 $$ final Map<String, String> result = new HashMap() [CD]
+Line_2 $$ public Map<String, String> getToolbarsButtons() --> Line_4 $$ final Map<String, List<String>> temp = new HashMap() [CD]
+Line_4 $$ final Map<String, List<String>> temp = new HashMap() --> Line_6 $$ temp.computeIfAbsent(descriptor.getToolbarName(),  key -> new ArrayList()).add(descriptor.getPluginButtonName()) [FD]
+Line_5 $$ for (final HtmlEditorPluginDescriptor descriptor : pluginsDescriptors.values()) --> Line_6 $$ temp.computeIfAbsent(descriptor.getToolbarName(),  key -> new ArrayList()).add(descriptor.getPluginButtonName()) [FD]
+Line_4 $$ final Map<String, List<String>> temp = new HashMap() --> Line_8 $$ for (final Map.Entry<String, List<String>> entry : temp.entrySet()) [FD]
+Line_3 $$ final Map<String, String> result = new HashMap() --> Line_9 $$ result.put(entry.getKey(), String.join(",", entry.getValue())) [FD]
+Line_2 $$ public Map<String, String> getToolbarsButtons() --> Line_11 $$ return result [CD]

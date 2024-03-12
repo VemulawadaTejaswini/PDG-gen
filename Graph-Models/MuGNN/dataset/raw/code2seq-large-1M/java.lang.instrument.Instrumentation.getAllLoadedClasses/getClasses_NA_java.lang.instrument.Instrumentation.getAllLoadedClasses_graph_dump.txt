@@ -1,0 +1,8 @@
+Line_3 $$ for (Class<?> c : ins.getAllLoadedClasses()) --> Line_4 $$ String name = c.getName().replace('.', '/') [FD]
+Line_4 $$ String name = c.getName().replace('.', '/') --> Line_5 $$ if (!isRT(name) && !classes.containsKey(name)) [FD]
+Line_4 $$ String name = c.getName().replace('.', '/') --> Line_10 $$ ClassNode cn = Loader.classToNode(name) [FD]
+Line_11 $$ if (cn != null) --> Line_12 $$ classes.put(name, cn) [CD]
+Line_4 $$ String name = c.getName().replace('.', '/') --> Line_12 $$ classes.put(name, cn) [FD]
+Line_11 $$ if (cn != null) --> Line_13 $$ output.put(name, ASMUtils.getNodeBytes0(cn)) [CD]
+Line_4 $$ String name = c.getName().replace('.', '/') --> Line_13 $$ output.put(name, ASMUtils.getNodeBytes0(cn)) [FD]
+Line_2 $$ public Map<String, ClassNode> getClasses() --> Line_20 $$ return classes [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void write(final ChannelHandlerContext ctx, final Object msg, final ChannelPromise promise) throws Exception --> Line_3 $$ final Reply reply = (Reply) msg [CD]
+Line_2 $$ public void write(final ChannelHandlerContext ctx, final Object msg, final ChannelPromise promise) throws Exception --> Line_4 $$ final Request request = outstanding.remove(reply.id()) [CD]
+Line_3 $$ final Reply reply = (Reply) msg --> Line_4 $$ final Request request = outstanding.remove(reply.id()) [FD]
+Line_2 $$ public void write(final ChannelHandlerContext ctx, final Object msg, final ChannelPromise promise) throws Exception --> Line_5 $$ if (request == null) [CD]
+Line_4 $$ final Request request = outstanding.remove(reply.id()) --> Line_5 $$ if (request == null) [FD]
+Line_5 $$ if (request == null) --> Line_6 $$ System.err.println("Unexpected reply: " + reply) [CD]
+Line_5 $$ if (request == null) --> Line_8 $$ super.write(ctx, msg, promise) [CD]
+Line_2 $$ public void write(final ChannelHandlerContext ctx, final Object msg, final ChannelPromise promise) throws Exception --> Line_8 $$ super.write(ctx, msg, promise) [FD]

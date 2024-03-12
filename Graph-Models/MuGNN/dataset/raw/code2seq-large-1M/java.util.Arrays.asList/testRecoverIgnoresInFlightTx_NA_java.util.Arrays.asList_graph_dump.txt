@@ -1,0 +1,6 @@
+Line_2 $$ public void testRecoverIgnoresInFlightTx() throws Exception --> Line_3 $$ EhcacheXAResource<Long, String> xaResource = new EhcacheXAResource(underlyingStore, journal, xaTransactionContextFactory) [CD]
+Line_2 $$ public void testRecoverIgnoresInFlightTx() throws Exception --> Line_4 $$ when(journal.recover()).thenReturn(Collections.singletonMap(new TransactionId(new TestXid(0, 0)), (Collection<Long>) Arrays.asList(1L, 2L, 3L))) [CD]
+Line_2 $$ public void testRecoverIgnoresInFlightTx() throws Exception --> Line_5 $$ when(xaTransactionContextFactory.contains(eq(new TransactionId(new TestXid(0, 0))))).thenReturn(true) [CD]
+Line_2 $$ public void testRecoverIgnoresInFlightTx() throws Exception --> Line_6 $$ Xid[] recovered = xaResource.recover(XAResource.TMSTARTRSCAN | XAResource.TMENDRSCAN) [CD]
+Line_3 $$ EhcacheXAResource<Long, String> xaResource = new EhcacheXAResource(underlyingStore, journal, xaTransactionContextFactory) --> Line_6 $$ Xid[] recovered = xaResource.recover(XAResource.TMSTARTRSCAN | XAResource.TMENDRSCAN) [FD]
+Line_2 $$ public void testRecoverIgnoresInFlightTx() throws Exception --> Line_7 $$ assertThat(recovered.length, is(0)) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testReadMessageDate1981() throws ChunkNotFoundException --> Line_3 $$ final Calendar date = mapiMessage1981.getMessageDate() [CD]
+Line_2 $$ public void testReadMessageDate1981() throws ChunkNotFoundException --> Line_4 $$ final int year = date.get(Calendar.YEAR) [CD]
+Line_3 $$ final Calendar date = mapiMessage1981.getMessageDate() --> Line_4 $$ final int year = date.get(Calendar.YEAR) [FD]
+Line_2 $$ public void testReadMessageDate1981() throws ChunkNotFoundException --> Line_5 $$ TestCase.assertEquals(1981, year) [CD]
+Line_4 $$ final int year = date.get(Calendar.YEAR) --> Line_5 $$ TestCase.assertEquals(1981, year) [FD]

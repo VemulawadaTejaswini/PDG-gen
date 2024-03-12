@@ -1,0 +1,8 @@
+Line_2 $$ public static <T extends Serializable> T clone(final T object) --> Line_3 $$ if (object == null) [FD]
+Line_2 $$ public static <T extends Serializable> T clone(final T object) --> Line_3 $$ if (object == null) [CD]
+Line_3 $$ if (object == null) --> Line_4 $$ return null [CD]
+Line_2 $$ public static <T extends Serializable> T clone(final T object) --> Line_6 $$ final byte[] objectData = serialize(object) [FD]
+Line_2 $$ public static <T extends Serializable> T clone(final T object) --> Line_6 $$ final byte[] objectData = serialize(object) [CD]
+Line_2 $$ public static <T extends Serializable> T clone(final T object) --> Line_7 $$ final ByteArrayInputStream bais = new ByteArrayInputStream(objectData) [CD]
+Line_2 $$ public static <T extends Serializable> T clone(final T object) --> Line_8 $$ try (ClassLoaderAwareObjectInputStream in = new ClassLoaderAwareObjectInputStream(bais, object.getClass().getClassLoader())) [FD]
+Line_8 $$ try (ClassLoaderAwareObjectInputStream in = new ClassLoaderAwareObjectInputStream(bais, object.getClass().getClassLoader())) --> Line_9 $$ final T readObject = (T) in.readObject() [FD]

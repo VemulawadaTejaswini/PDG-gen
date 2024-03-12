@@ -1,0 +1,7 @@
+Line_2 $$ private synchronized void reportHeartbeatFailure() --> Line_3 $$ Stats.incr(String.format("heartbeat_failures_%s_%d", host, port)) [CD]
+Line_2 $$ private synchronized void reportHeartbeatFailure() --> Line_6 $$ if (!isLive) [CD]
+Line_6 $$ if (!isLive) --> Line_7 $$ Stats.incr(String.format("healthcheck_dead_%s_%d", host, port)) [CD]
+Line_6 $$ if (!isLive) --> Line_8 $$ return [CD]
+Line_2 $$ private synchronized void reportHeartbeatFailure() --> Line_10 $$ if (currentConsecutiveFailures >= consecutiveFailures) [CD]
+Line_10 $$ if (currentConsecutiveFailures >= consecutiveFailures) --> Line_11 $$ LOG.info(String.format("Server %s:%d is determined as dead by health check.", host, port)) [CD]
+Line_10 $$ if (currentConsecutiveFailures >= consecutiveFailures) --> Line_12 $$ Stats.incr(String.format("healthcheck_dead_%s_%d", host, port)) [CD]

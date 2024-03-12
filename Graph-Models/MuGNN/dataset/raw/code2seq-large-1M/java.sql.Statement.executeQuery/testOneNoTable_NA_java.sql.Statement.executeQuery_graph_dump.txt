@@ -1,0 +1,7 @@
+Line_2 $$ public void testOneNoTable() throws Exception --> Line_3 $$ createTable("testOneNoTable", "`id1` INT NOT NULL AUTO_INCREMENT," + "`t1` VARCHAR(50) NULL," + "PRIMARY KEY (`id1`)") [CD]
+Line_2 $$ public void testOneNoTable() throws Exception --> Line_4 $$ Statement stmt = sharedConnection.createStatement() [CD]
+Line_2 $$ public void testOneNoTable() throws Exception --> Line_5 $$ stmt.executeQuery("INSERT INTO testOneNoTable(t1) values ('1')") [CD]
+Line_4 $$ Statement stmt = sharedConnection.createStatement() --> Line_5 $$ stmt.executeQuery("INSERT INTO testOneNoTable(t1) values ('1')") [FD]
+Line_6 $$ try (PreparedStatement preparedStatement = sharedConnection.prepareStatement("SELECT *, now() FROM testOneNoTable", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) --> Line_7 $$ ResultSet rs = preparedStatement.executeQuery() [FD]
+Line_7 $$ ResultSet rs = preparedStatement.executeQuery() --> Line_8 $$ assertTrue(rs.next()) [FD]
+Line_7 $$ ResultSet rs = preparedStatement.executeQuery() --> Line_10 $$ rs.updateString("t1", "new value") [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public List<String> getTopLevelGroups(DocumentModel context) --> Line_3 $$ try (Session groupDir = dirService.open(groupDirectoryName, context)) [FD]
+Line_3 $$ try (Session groupDir = dirService.open(groupDirectoryName, context)) --> Line_5 $$ DocumentModelList groups = groupDir.query(Collections.<String, Serializable>emptyMap(), null, null, true) [FD]
+Line_6 $$ for (DocumentModel group : groups) --> Line_7 $$ List<String> parents = (List<String>) group.getProperty(groupSchemaName, groupParentGroupsField) [FD]
+Line_7 $$ List<String> parents = (List<String>) group.getProperty(groupSchemaName, groupParentGroupsField) --> Line_8 $$ if (parents == null || parents.isEmpty()) [FD]
+Line_8 $$ if (parents == null || parents.isEmpty()) --> Line_9 $$ topLevelGroups.add(group.getId()) [CD]
+Line_4 $$ List<String> topLevelGroups = new LinkedList() --> Line_9 $$ topLevelGroups.add(group.getId()) [FD]
+Line_6 $$ for (DocumentModel group : groups) --> Line_9 $$ topLevelGroups.add(group.getId()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_3 $$ outer.onPrepareCommit( u -> [CD]
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_9 $$ outer.start() [CD]
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_10 $$ outer.commit() [CD]
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_11 $$ assertTrue("The middle UnitOfWork hasn't been correctly marked as rolled back", middle.isRolledBack()) [CD]
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_12 $$ assertTrue("The inner UnitOfWork hasn't been correctly marked as rolled back", inner.isRolledBack()) [CD]
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_13 $$ assertFalse("The out UnitOfWork has been incorrectly marked as rolled back", outer.isRolledBack()) [CD]
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_14 $$ assertFalse("The UnitOfWork hasn't been correctly cleared", CurrentUnitOfWork.isStarted()) [CD]
+Line_2 $$ public void testRollbackOfMiddleUnitOfWorkRollsBackInner() --> Line_15 $$ assertEquals(Arrays.asList(new PhaseTransition(outer, UnitOfWork.Phase.PREPARE_COMMIT), new PhaseTransition(inner, UnitOfWork.Phase.PREPARE_COMMIT), new PhaseTransition(inner, UnitOfWork.Phase.COMMIT), new PhaseTransition(inner, UnitOfWork.Phase.ROLLBACK), new PhaseTransition(middle, UnitOfWork.Phase.ROLLBACK), new PhaseTransition(outer, UnitOfWork.Phase.COMMIT), new PhaseTransition(outer, UnitOfWork.Phase.AFTER_COMMIT), new PhaseTransition(inner, UnitOfWork.Phase.CLEANUP), new PhaseTransition(middle, UnitOfWork.Phase.CLEANUP), new PhaseTransition(outer, UnitOfWork.Phase.CLEANUP)), phaseTransitions) [CD]

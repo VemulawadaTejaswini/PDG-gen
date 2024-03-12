@@ -1,0 +1,5 @@
+Line_2 $$ public static CallSite catchBootstrap(Lookup ignored, String name, MethodType type) throws Throwable --> Line_3 $$ Lookup lookup = lookup() [CD]
+Line_2 $$ public static CallSite catchBootstrap(Lookup ignored, String name, MethodType type) throws Throwable --> Line_4 $$ MethodHandle add = lookup.findStatic(BootstrapMethods.class, "add", methodType(int.class, int.class, int.class)) [CD]
+Line_3 $$ Lookup lookup = lookup() --> Line_4 $$ MethodHandle add = lookup.findStatic(BootstrapMethods.class, "add", methodType(int.class, int.class, int.class)) [FD]
+Line_2 $$ public static CallSite catchBootstrap(Lookup ignored, String name, MethodType type) throws Throwable --> Line_5 $$ MethodHandle catchHandle = catchException(add, RuntimeException.class, throwException(add.type().returnType(), RuntimeException.class)) [CD]
+Line_2 $$ public static CallSite catchBootstrap(Lookup ignored, String name, MethodType type) throws Throwable --> Line_6 $$ return new MutableCallSite(catchHandle) [CD]

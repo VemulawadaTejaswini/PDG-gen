@@ -1,0 +1,7 @@
+Line_2 $$ private static Pair<List<Result>, ScanMetrics> doScanWithAsyncTableScanner(Scan scan) throws IOException --> Line_3 $$ try (ResultScanner scanner = CONN.getTable(TABLE_NAME, ForkJoinPool.commonPool()).getScanner(scan)) [FD]
+Line_3 $$ try (ResultScanner scanner = CONN.getTable(TABLE_NAME, ForkJoinPool.commonPool()).getScanner(scan)) --> Line_5 $$ for (Result result; (result = scanner.next()) != null; ) [FD]
+Line_5 $$ for (Result result; (result = scanner.next()) != null; ) --> Line_6 $$ results.add(result) [FD]
+Line_5 $$ for (Result result; (result = scanner.next()) != null; ) --> Line_6 $$ results.add(result) [CD]
+Line_4 $$ List<Result> results = new ArrayList() --> Line_6 $$ results.add(result) [FD]
+Line_4 $$ List<Result> results = new ArrayList() --> Line_8 $$ return Pair.newPair(results, scanner.getScanMetrics()) [FD]
+Line_3 $$ try (ResultScanner scanner = CONN.getTable(TABLE_NAME, ForkJoinPool.commonPool()).getScanner(scan)) --> Line_8 $$ return Pair.newPair(results, scanner.getScanMetrics()) [FD]

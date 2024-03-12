@@ -1,0 +1,7 @@
+Line_2 $$ private AccessTokenProvider createAccessTokenProvider() --> Line_3 $$ String providerClassName = Strings.emptyToNull(System.getProperty(AccessTokenProvider.SYSTEM_PROPERTY_NAME)) [CD]
+Line_2 $$ private AccessTokenProvider createAccessTokenProvider() --> Line_4 $$ if (providerClassName != null) [CD]
+Line_3 $$ String providerClassName = Strings.emptyToNull(System.getProperty(AccessTokenProvider.SYSTEM_PROPERTY_NAME)) --> Line_4 $$ if (providerClassName != null) [FD]
+Line_3 $$ String providerClassName = Strings.emptyToNull(System.getProperty(AccessTokenProvider.SYSTEM_PROPERTY_NAME)) --> Line_6 $$ Class<AccessTokenProvider> providerClass = (Class<AccessTokenProvider>) Class.forName(providerClassName) [FD]
+Line_6 $$ Class<AccessTokenProvider> providerClass = (Class<AccessTokenProvider>) Class.forName(providerClassName) --> Line_7 $$ return providerClass.newInstance() [FD]
+Line_3 $$ String providerClassName = Strings.emptyToNull(System.getProperty(AccessTokenProvider.SYSTEM_PROPERTY_NAME)) --> Line_9 $$ logger.warning(String.format("Unable to create AccessTokenProvider '%s'; falling back to default. Exception: %s\b", providerClassName, e)) [FD]
+Line_2 $$ private AccessTokenProvider createAccessTokenProvider() --> Line_12 $$ return new AppIdentityAccessTokenProvider() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testCreate() throws Exception --> Line_3 $$ CacheConfigurationBuilder<Long, String> configBuilder = CacheConfigurationBuilder.newCacheConfigurationBuilder(Long.class, String.class, ResourcePoolsBuilder.newResourcePoolsBuilder().with(ClusteredResourcePoolBuilder.clusteredShared("primary"))) [CD]
+Line_2 $$ public void testCreate() throws Exception --> Line_4 $$ ClusteringServiceConfiguration configuration = ClusteringServiceConfigurationBuilder.cluster(URI.create(CLUSTER_URI_BASE + "my-application")).autoCreate().build() [CD]
+Line_2 $$ public void testCreate() throws Exception --> Line_5 $$ DefaultClusteringService service = new DefaultClusteringService(configuration) [CD]
+Line_2 $$ public void testCreate() throws Exception --> Line_6 $$ PersistableResourceService.PersistenceSpaceIdentifier spaceIdentifier = service.getPersistenceSpaceIdentifier("cacheAlias", configBuilder.build()) [CD]
+Line_5 $$ DefaultClusteringService service = new DefaultClusteringService(configuration) --> Line_6 $$ PersistableResourceService.PersistenceSpaceIdentifier spaceIdentifier = service.getPersistenceSpaceIdentifier("cacheAlias", configBuilder.build()) [FD]
+Line_2 $$ public void testCreate() throws Exception --> Line_7 $$ assertThat(spaceIdentifier, instanceOf(ClusteredCacheIdentifier.class)) [CD]
+Line_6 $$ PersistableResourceService.PersistenceSpaceIdentifier spaceIdentifier = service.getPersistenceSpaceIdentifier("cacheAlias", configBuilder.build()) --> Line_7 $$ assertThat(spaceIdentifier, instanceOf(ClusteredCacheIdentifier.class)) [FD]
+Line_2 $$ public void testCreate() throws Exception --> Line_8 $$ assertThat(((ClusteredCacheIdentifier) spaceIdentifier).getId(), is("cacheAlias")) [CD]

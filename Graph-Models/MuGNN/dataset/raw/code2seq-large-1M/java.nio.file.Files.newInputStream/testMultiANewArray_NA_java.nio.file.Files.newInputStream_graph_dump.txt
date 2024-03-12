@@ -1,0 +1,8 @@
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_3 $$ JavaSourceFromString usesMultiANewArray = new JavaSourceFromString("UsesMultiANewArray", createSource("public class UsesMultiANewArray [CD]
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_4 $$ JavaSourceFromString usesMultiANewArrayAndExplicitArrayCall = new JavaSourceFromString("UsesMultiANewArrayAndExplicitArrayCall", createSource("import java.lang.reflect.Array;", "public class UsesMultiANewArrayAndExplicitArrayCall [CD]
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_5 $$ compileSources(outputDir, usesMultiANewArray, usesMultiANewArrayAndExplicitArrayCall) [CD]
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_6 $$ ClassReader usesImplicitOnly = new ClassReader(Files.newInputStream(new File(outputDir, "UsesMultiANewArray.class").toPath())) [CD]
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_7 $$ DalvikStatsTool.Stats implicitStats = DalvikStatsTool.getEstimateInternal(usesImplicitOnly) [CD]
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_8 $$ ClassReader usesBoth = new ClassReader(Files.newInputStream(new File(outputDir, "UsesMultiANewArrayAndExplicitArrayCall.class").toPath())) [CD]
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_9 $$ DalvikStatsTool.Stats bothStats = DalvikStatsTool.getEstimateInternal(usesBoth) [CD]
+Line_2 $$ public void testMultiANewArray() throws IOException --> Line_10 $$ assertEquals(implicitStats.methodReferences.size(), bothStats.methodReferences.size()) [CD]

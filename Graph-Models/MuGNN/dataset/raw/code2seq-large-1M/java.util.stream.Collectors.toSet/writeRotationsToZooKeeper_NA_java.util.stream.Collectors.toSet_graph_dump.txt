@@ -1,0 +1,7 @@
+Line_2 $$ public void writeRotationsToZooKeeper(ApplicationId application, Set<Rotation> rotations) --> Line_3 $$ if (rotations.isEmpty()) [FD]
+Line_2 $$ public void writeRotationsToZooKeeper(ApplicationId application, Set<Rotation> rotations) --> Line_3 $$ if (rotations.isEmpty()) [CD]
+Line_3 $$ if (rotations.isEmpty()) --> Line_4 $$ return [CD]
+Line_2 $$ public void writeRotationsToZooKeeper(ApplicationId application, Set<Rotation> rotations) --> Line_6 $$ Set<String> rotationIds = rotations.stream().map(Rotation::<>getId).collect(Collectors.toSet()) [FD]
+Line_6 $$ Set<String> rotationIds = rotations.stream().map(Rotation::<>getId).collect(Collectors.toSet()) --> Line_7 $$ byte[] data = new ObjectMapper().writeValueAsBytes(rotationIds) [FD]
+Line_7 $$ byte[] data = new ObjectMapper().writeValueAsBytes(rotationIds) --> Line_8 $$ curator.set(rotationsOf(application), data) [FD]
+Line_2 $$ public void writeRotationsToZooKeeper(ApplicationId application, Set<Rotation> rotations) --> Line_8 $$ curator.set(rotationsOf(application), data) [FD]

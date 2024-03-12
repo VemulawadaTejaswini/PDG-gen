@@ -1,0 +1,6 @@
+Line_2 $$ private void copyPartsInParallel(CopyPartRequestFactory requestFactory) --> Line_3 $$ while (requestFactory.hasMoreRequests()) [FD]
+Line_2 $$ private void copyPartsInParallel(CopyPartRequestFactory requestFactory) --> Line_3 $$ while (requestFactory.hasMoreRequests()) [CD]
+Line_3 $$ while (requestFactory.hasMoreRequests()) --> Line_4 $$ if (threadPool.isShutdown()) [CD]
+Line_3 $$ while (requestFactory.hasMoreRequests()) --> Line_6 $$ CopyPartRequest request = requestFactory.getNextCopyPartRequest() [CD]
+Line_2 $$ private void copyPartsInParallel(CopyPartRequestFactory requestFactory) --> Line_6 $$ CopyPartRequest request = requestFactory.getNextCopyPartRequest() [FD]
+Line_3 $$ while (requestFactory.hasMoreRequests()) --> Line_7 $$ futures.add(threadPool.submit(new CopyPartCallable(s3, request))) [CD]

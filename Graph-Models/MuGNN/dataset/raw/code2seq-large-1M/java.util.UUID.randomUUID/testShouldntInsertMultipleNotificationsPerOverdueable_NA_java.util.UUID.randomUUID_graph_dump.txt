@@ -1,0 +1,8 @@
+Line_2 $$ public void testShouldntInsertMultipleNotificationsPerOverdueable() throws Exception --> Line_3 $$ final UUID accountId = UUID.randomUUID() [CD]
+Line_2 $$ public void testShouldntInsertMultipleNotificationsPerOverdueable() throws Exception --> Line_4 $$ final Account overdueable = Mockito.mock(Account.class) [CD]
+Line_2 $$ public void testShouldntInsertMultipleNotificationsPerOverdueable() throws Exception --> Line_5 $$ Mockito.when(overdueable.getId()).thenReturn(accountId) [CD]
+Line_3 $$ final UUID accountId = UUID.randomUUID() --> Line_5 $$ Mockito.when(overdueable.getId()).thenReturn(accountId) [FD]
+Line_2 $$ public void testShouldntInsertMultipleNotificationsPerOverdueable() throws Exception --> Line_6 $$ insertOverdueCheckAndVerifyQueueContent(overdueable, 10, 10) [CD]
+Line_2 $$ public void testShouldntInsertMultipleNotificationsPerOverdueable() throws Exception --> Line_7 $$ insertOverdueCheckAndVerifyQueueContent(overdueable, 5, 5) [CD]
+Line_2 $$ public void testShouldntInsertMultipleNotificationsPerOverdueable() throws Exception --> Line_8 $$ insertOverdueCheckAndVerifyQueueContent(overdueable, 15, 5) [CD]
+Line_2 $$ public void testShouldntInsertMultipleNotificationsPerOverdueable() throws Exception --> Line_9 $$ Assert.assertEquals(Iterables.<NotificationEventWithMetadata>size(overdueQueue.getFutureNotificationForSearchKeys(internalCallContext.getAccountRecordId(), internalCallContext.getTenantRecordId())), 1) [CD]

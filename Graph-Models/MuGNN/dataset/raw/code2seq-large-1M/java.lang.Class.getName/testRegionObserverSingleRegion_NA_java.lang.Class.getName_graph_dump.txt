@@ -1,0 +1,7 @@
+Line_2 $$ public void testRegionObserverSingleRegion() throws IOException --> Line_3 $$ final TableName tableName = TableName.valueOf(name.getMethodName()) [CD]
+Line_4 $$ try (Connection connection = ConnectionFactory.createConnection(UTIL.getConfiguration()); --> Line_6 $$ admin.createTable(new HTableDescriptor(tableName).addFamily(new HColumnDescriptor(foo)).addCoprocessor(CustomRegionObserver.class.getName())) [FD]
+Line_4 $$ try (Connection connection = ConnectionFactory.createConnection(UTIL.getConfiguration()); --> Line_8 $$ try (Table table = connection.getTable(tableName)) [FD]
+Line_3 $$ final TableName tableName = TableName.valueOf(name.getMethodName()) --> Line_8 $$ try (Table table = connection.getTable(tableName)) [FD]
+Line_8 $$ try (Table table = connection.getTable(tableName)) --> Line_9 $$ table.get(new Get(foo)) [FD]
+Line_8 $$ try (Table table = connection.getTable(tableName)) --> Line_10 $$ table.get(new Get(foo)) [FD]
+Line_2 $$ public void testRegionObserverSingleRegion() throws IOException --> Line_13 $$ assertPreGetRequestsCounter(CustomRegionObserver.class) [CD]

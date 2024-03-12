@@ -1,0 +1,7 @@
+Line_2 $$ public void createTable(ByteBuffer in_tableName, List<ColumnDescriptor> columnFamilies) throws IOError, IllegalArgument, AlreadyExists --> Line_3 $$ TableName tableName = getTableName(in_tableName) [FD]
+Line_2 $$ public void createTable(ByteBuffer in_tableName, List<ColumnDescriptor> columnFamilies) throws IOError, IllegalArgument, AlreadyExists --> Line_3 $$ TableName tableName = getTableName(in_tableName) [CD]
+Line_3 $$ TableName tableName = getTableName(in_tableName) --> Line_5 $$ if (getAdmin().tableExists(tableName)) [FD]
+Line_9 $$ for (ColumnDescriptor col : columnFamilies) --> Line_10 $$ HColumnDescriptor colDesc = ThriftUtilities.colDescFromThrift(col) [FD]
+Line_8 $$ HTableDescriptor desc = new HTableDescriptor(tableName) --> Line_11 $$ desc.addFamily(colDesc) [FD]
+Line_10 $$ HColumnDescriptor colDesc = ThriftUtilities.colDescFromThrift(col) --> Line_11 $$ desc.addFamily(colDesc) [FD]
+Line_8 $$ HTableDescriptor desc = new HTableDescriptor(tableName) --> Line_13 $$ getAdmin().createTable(desc) [FD]

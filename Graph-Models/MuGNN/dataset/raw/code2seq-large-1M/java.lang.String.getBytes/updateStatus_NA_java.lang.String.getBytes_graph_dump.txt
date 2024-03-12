@@ -1,0 +1,8 @@
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, id) [CD]
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, id) [FD]
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_4 $$ byte[] contents = jedisClient.get(redisKey.getBytes()) [CD]
+Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, id) --> Line_4 $$ byte[] contents = jedisClient.get(redisKey.getBytes()) [FD]
+Line_4 $$ byte[] contents = jedisClient.get(redisKey.getBytes()) --> Line_6 $$ CoordinatorRepositoryAdapter adapter = objectSerializer.deSerialize(contents, CoordinatorRepositoryAdapter.class) [FD]
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_7 $$ adapter.setStatus(status) [FD]
+Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, id) --> Line_8 $$ jedisClient.set(redisKey, objectSerializer.serialize(adapter)) [FD]
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_13 $$ return 1 [CD]

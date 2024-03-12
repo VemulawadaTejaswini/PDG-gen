@@ -1,0 +1,6 @@
+Line_4 $$ if (closed.get() && deletionPolicy.pendingTranslogRefCount() == 0) --> Line_5 $$ logger.trace("closing files. translog is closed and there are no pending retention locks") [CD]
+Line_4 $$ if (closed.get() && deletionPolicy.pendingTranslogRefCount() == 0) --> Line_6 $$ ArrayList<Closeable> toClose = new ArrayList(readers) [CD]
+Line_4 $$ if (closed.get() && deletionPolicy.pendingTranslogRefCount() == 0) --> Line_7 $$ toClose.add(current) [CD]
+Line_6 $$ ArrayList<Closeable> toClose = new ArrayList(readers) --> Line_7 $$ toClose.add(current) [FD]
+Line_4 $$ if (closed.get() && deletionPolicy.pendingTranslogRefCount() == 0) --> Line_8 $$ IOUtils.close(toClose) [CD]
+Line_6 $$ ArrayList<Closeable> toClose = new ArrayList(readers) --> Line_8 $$ IOUtils.close(toClose) [FD]

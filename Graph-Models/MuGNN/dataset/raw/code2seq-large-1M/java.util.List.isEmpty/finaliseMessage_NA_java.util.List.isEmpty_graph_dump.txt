@@ -1,0 +1,7 @@
+Line_2 $$ private ProtectedPKIMessage finaliseMessage(PKIHeader header, DERBitString protection) --> Line_3 $$ if (!extraCerts.isEmpty()) [CD]
+Line_3 $$ if (!extraCerts.isEmpty()) --> Line_4 $$ CMPCertificate[] cmpCerts = new CMPCertificate[extraCerts.size()] [CD]
+Line_3 $$ if (!extraCerts.isEmpty()) --> Line_5 $$ for (int i = 0; i != cmpCerts.length; i++) [CD]
+Line_5 $$ for (int i = 0; i != cmpCerts.length; i++) --> Line_6 $$ cmpCerts[i] = new CMPCertificate(((X509CertificateHolder) extraCerts.get(i)).toASN1Structure()) [CD]
+Line_5 $$ for (int i = 0; i != cmpCerts.length; i++) --> Line_6 $$ cmpCerts[i] = new CMPCertificate(((X509CertificateHolder) extraCerts.get(i)).toASN1Structure()) [FD]
+Line_3 $$ if (!extraCerts.isEmpty()) --> Line_8 $$ return new ProtectedPKIMessage(new PKIMessage(header, body, protection, cmpCerts)) [CD]
+Line_3 $$ if (!extraCerts.isEmpty()) --> Line_10 $$ return new ProtectedPKIMessage(new PKIMessage(header, body, protection)) [CD]

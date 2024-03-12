@@ -1,0 +1,8 @@
+Line_2 $$ private static Stream<Path> which(String program, String pathEnvVar) --> Line_3 $$ if (program == null || "".equals(program.trim()) || pathEnvVar == null || "".equalsIgnoreCase(pathEnvVar)) [CD]
+Line_2 $$ private static Stream<Path> which(String program, String pathEnvVar) --> Line_3 $$ if (program == null || "".equals(program.trim()) || pathEnvVar == null || "".equalsIgnoreCase(pathEnvVar)) [FD]
+Line_3 $$ if (program == null || "".equals(program.trim()) || pathEnvVar == null || "".equalsIgnoreCase(pathEnvVar)) --> Line_4 $$ return Stream.empty() [CD]
+Line_2 $$ private static Stream<Path> which(String program, String pathEnvVar) --> Line_6 $$ return Arrays.stream(pathEnvVar.split(File.pathSeparator)).map( path -> Paths.get(path)).filter( path -> Files.exists(path)).map( path -> [CD]
+Line_2 $$ private static Stream<Path> which(String program, String pathEnvVar) --> Line_6 $$ return Arrays.stream(pathEnvVar.split(File.pathSeparator)).map( path -> Paths.get(path)).filter( path -> Files.exists(path)).map( path -> [FD]
+Line_7 $$ try (Stream<Path> entries = Files.list(path)) --> Line_8 $$ return entries.filter( filePath -> program.equals(filePath.getFileName().toString())).filter( filePath -> Files.isRegularFile(filePath)).filter(Files::<>isExecutable).collect(Collectors.toList()).stream() [FD]
+Line_2 $$ private static Stream<Path> which(String program, String pathEnvVar) --> Line_9 $$ program.equals(filePath.getFileName().toString()) [FD]
+Line_2 $$ private static Stream<Path> which(String program, String pathEnvVar) --> Line_14 $$ LOG.error("Problem finding path for [FD]

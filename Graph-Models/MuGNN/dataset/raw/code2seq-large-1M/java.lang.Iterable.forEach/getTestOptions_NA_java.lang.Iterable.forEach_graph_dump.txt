@@ -1,0 +1,5 @@
+Line_2 $$ public TestOptions getTestOptions() --> Line_3 $$ Optional<Test> optionalTest = getProject().getTasks().withType(Test.class).stream().filter( test -> test.getName().equals(VariantType.UNIT_TEST.getPrefix() + StringUtils.capitalize(getName()) + VariantType.UNIT_TEST.getSuffix())).findFirst() [CD]
+Line_2 $$ public TestOptions getTestOptions() --> Line_4 $$ List<String> jvmArgs = optionalTest.map(Test::<>getAllJvmArgs).orElseGet(Collections::<String>emptyList) [CD]
+Line_2 $$ public TestOptions getTestOptions() --> Line_5 $$ Map<String, Object> env = optionalTest.map(Test::<>getEnvironment).orElseGet(Collections::<>emptyMap) [CD]
+Line_2 $$ public TestOptions getTestOptions() --> Line_6 $$ System.getenv().keySet().forEach(env::<>remove) [CD]
+Line_2 $$ public TestOptions getTestOptions() --> Line_7 $$ return new TestOptions(jvmArgs, env) [CD]

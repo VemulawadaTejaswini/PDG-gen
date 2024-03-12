@@ -1,0 +1,7 @@
+Line_2 $$ public void testPollWaitForRelease() throws Exception --> Line_3 $$ final SingleEndpointPool<SocketAddress> pool = SingleEndpointPool.builder(SocketAddress.class).connectorHandler(transport).endpointAddress(new InetSocketAddress("localhost", PORT)).maxPoolSize(2).build() [CD]
+Line_5 $$ final Connection c1 = pool.take().get() --> Line_6 $$ assertNotNull(c1) [FD]
+Line_8 $$ final Connection c2 = pool.take().get() --> Line_9 $$ assertNotNull(c2) [FD]
+Line_11 $$ final Thread t = new Thread() --> Line_17 $$ pool.release(c2) [CD]
+Line_8 $$ final Connection c2 = pool.take().get() --> Line_17 $$ pool.release(c2) [FD]
+Line_11 $$ final Thread t = new Thread() --> Line_20 $$ t.start() [FD]
+Line_5 $$ final Connection c1 = pool.take().get() --> Line_24 $$ pool.release(c1) [FD]

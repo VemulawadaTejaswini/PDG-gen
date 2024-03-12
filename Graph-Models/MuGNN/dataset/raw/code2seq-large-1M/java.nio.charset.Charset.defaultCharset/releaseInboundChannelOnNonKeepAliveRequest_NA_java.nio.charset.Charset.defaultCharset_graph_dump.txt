@@ -1,0 +1,7 @@
+Line_2 $$ public void releaseInboundChannelOnNonKeepAliveRequest() throws Exception --> Line_3 $$ NettyContext c = HttpServer.create(0).newHandler(( req,  resp) -> req.receive().then(resp.status(200).send())).block() [CD]
+Line_2 $$ public void releaseInboundChannelOnNonKeepAliveRequest() throws Exception --> Line_4 $$ Flux<ByteBuf> src = Flux.range(0, 3).map( n -> Unpooled.wrappedBuffer(Integer.toString(n).getBytes(Charset.defaultCharset()))) [CD]
+Line_2 $$ public void releaseInboundChannelOnNonKeepAliveRequest() throws Exception --> Line_5 $$ Flux.range(0, 100).concatMap( n -> HttpClient.create(c.address().getPort()).post("/return",  r -> r.keepAlive(false).send(src)).map( resp -> [CD]
+Line_3 $$ NettyContext c = HttpServer.create(0).newHandler(( req,  resp) -> req.receive().then(resp.status(200).send())).block() --> Line_5 $$ Flux.range(0, 100).concatMap( n -> HttpClient.create(c.address().getPort()).post("/return",  r -> r.keepAlive(false).send(src)).map( resp -> [FD]
+Line_4 $$ Flux<ByteBuf> src = Flux.range(0, 3).map( n -> Unpooled.wrappedBuffer(Integer.toString(n).getBytes(Charset.defaultCharset()))) --> Line_5 $$ Flux.range(0, 100).concatMap( n -> HttpClient.create(c.address().getPort()).post("/return",  r -> r.keepAlive(false).send(src)).map( resp -> [FD]
+Line_2 $$ public void releaseInboundChannelOnNonKeepAliveRequest() throws Exception --> Line_9 $$ c.dispose() [CD]
+Line_3 $$ NettyContext c = HttpServer.create(0).newHandler(( req,  resp) -> req.receive().then(resp.status(200).send())).block() --> Line_9 $$ c.dispose() [FD]

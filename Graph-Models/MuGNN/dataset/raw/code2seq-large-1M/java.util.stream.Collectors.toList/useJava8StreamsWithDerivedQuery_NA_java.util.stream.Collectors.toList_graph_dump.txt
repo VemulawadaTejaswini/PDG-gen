@@ -1,0 +1,5 @@
+Line_2 $$ public void useJava8StreamsWithDerivedQuery() --> Line_3 $$ Customer customer1 = repository.save(new Customer("Customer1", "Foo")) [CD]
+Line_2 $$ public void useJava8StreamsWithDerivedQuery() --> Line_4 $$ Customer customer2 = repository.save(new Customer("Customer2", "Bar")) [CD]
+Line_3 $$ Customer customer1 = repository.save(new Customer("Customer1", "Foo")) --> Line_6 $$ assertThat(stream.collect(Collectors.toList())).contains(customer1, customer2) [FD]
+Line_4 $$ Customer customer2 = repository.save(new Customer("Customer2", "Bar")) --> Line_6 $$ assertThat(stream.collect(Collectors.toList())).contains(customer1, customer2) [FD]
+Line_5 $$ try (Stream<Customer> stream = repository.findAllByLastnameIsNotNull()) --> Line_6 $$ assertThat(stream.collect(Collectors.toList())).contains(customer1, customer2) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public Metrics getTaskMetrics(final int jobId, final int stageId, final long taskId) --> Line_3 $$ Predicate<TaskInfo> filter = new Predicate<TaskInfo>() [CD]
+Line_3 $$ Predicate<TaskInfo> filter = new Predicate<TaskInfo>() --> Line_5 $$ return jobId == input.jobId && stageId == input.stageId && taskId == input.taskId [CD]
+Line_2 $$ public Metrics getTaskMetrics(final int jobId, final int stageId, final long taskId) --> Line_8 $$ lock.readLock().lock() [CD]
+Line_3 $$ Predicate<TaskInfo> filter = new Predicate<TaskInfo>() --> Line_10 $$ Iterator<TaskInfo> it = Collections2.filter(taskMetrics, filter).iterator() [FD]
+Line_11 $$ if (it.hasNext()) --> Line_12 $$ return it.next().metrics [CD]

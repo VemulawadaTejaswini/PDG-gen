@@ -1,0 +1,6 @@
+Line_2 $$ public void monoNotCancelledByMonoProcessor() --> Line_3 $$ AtomicLong cancelCounter = new AtomicLong() [CD]
+Line_2 $$ public void monoNotCancelledByMonoProcessor() --> Line_4 $$ MonoProcessor<String> monoProcessor = Mono.just("foo").doOnCancel(cancelCounter::<>incrementAndGet).toProcessor() [CD]
+Line_2 $$ public void monoNotCancelledByMonoProcessor() --> Line_5 $$ monoProcessor.subscribe() [CD]
+Line_4 $$ MonoProcessor<String> monoProcessor = Mono.just("foo").doOnCancel(cancelCounter::<>incrementAndGet).toProcessor() --> Line_5 $$ monoProcessor.subscribe() [FD]
+Line_2 $$ public void monoNotCancelledByMonoProcessor() --> Line_6 $$ assertThat(cancelCounter.get()).isEqualTo(0) [CD]
+Line_3 $$ AtomicLong cancelCounter = new AtomicLong() --> Line_6 $$ assertThat(cancelCounter.get()).isEqualTo(0) [FD]

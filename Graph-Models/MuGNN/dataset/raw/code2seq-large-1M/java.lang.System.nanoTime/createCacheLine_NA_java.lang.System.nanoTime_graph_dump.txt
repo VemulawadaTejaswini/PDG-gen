@@ -1,0 +1,8 @@
+Line_2 $$ private CacheLine<V> createCacheLine(K key, V value, long expireTimeNanos) --> Line_3 $$ long loadTimeNanos = expireTimeNanos > 0 ? System.nanoTime() : 0 [CD]
+Line_2 $$ private CacheLine<V> createCacheLine(K key, V value, long expireTimeNanos) --> Line_4 $$ if (useSoftReference) [CD]
+Line_4 $$ if (useSoftReference) --> Line_5 $$ return createSoftRefCacheLine(key, value, loadTimeNanos, expireTimeNanos) [CD]
+Line_2 $$ private CacheLine<V> createCacheLine(K key, V value, long expireTimeNanos) --> Line_5 $$ return createSoftRefCacheLine(key, value, loadTimeNanos, expireTimeNanos) [FD]
+Line_3 $$ long loadTimeNanos = expireTimeNanos > 0 ? System.nanoTime() : 0 --> Line_5 $$ return createSoftRefCacheLine(key, value, loadTimeNanos, expireTimeNanos) [FD]
+Line_4 $$ if (useSoftReference) --> Line_7 $$ return createHardRefCacheLine(key, value, loadTimeNanos, expireTimeNanos) [CD]
+Line_2 $$ private CacheLine<V> createCacheLine(K key, V value, long expireTimeNanos) --> Line_7 $$ return createHardRefCacheLine(key, value, loadTimeNanos, expireTimeNanos) [FD]
+Line_3 $$ long loadTimeNanos = expireTimeNanos > 0 ? System.nanoTime() : 0 --> Line_7 $$ return createHardRefCacheLine(key, value, loadTimeNanos, expireTimeNanos) [FD]

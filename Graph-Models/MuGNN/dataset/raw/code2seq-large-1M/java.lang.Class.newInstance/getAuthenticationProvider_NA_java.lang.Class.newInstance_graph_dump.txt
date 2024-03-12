@@ -1,0 +1,7 @@
+Line_2 $$ public AuthenticationProvider getAuthenticationProvider() throws InstantiationException, IllegalAccessException, ClassNotFoundException --> Line_3 $$ String authPolicy = config.getAuthenticationProvider() [CD]
+Line_3 $$ String authPolicy = config.getAuthenticationProvider() --> Line_5 $$ return (AuthenticationProvider) Class.forName(authPolicy).newInstance() [FD]
+Line_7 $$ if (Logging.isDebug()) --> Line_8 $$ Logging.logMessage(Logging.LEVEL_DEBUG, Category.misc, this, "no built-in policy '%s' exists, searching for plug-in policies...", config.getAuthenticationProvider()) [CD]
+Line_2 $$ public AuthenticationProvider getAuthenticationProvider() throws InstantiationException, IllegalAccessException, ClassNotFoundException --> Line_10 $$ Class cls = policyClassLoader.loadClass(authPolicy) [CD]
+Line_3 $$ String authPolicy = config.getAuthenticationProvider() --> Line_10 $$ Class cls = policyClassLoader.loadClass(authPolicy) [FD]
+Line_2 $$ public AuthenticationProvider getAuthenticationProvider() throws InstantiationException, IllegalAccessException, ClassNotFoundException --> Line_11 $$ return (AuthenticationProvider) cls.newInstance() [CD]
+Line_10 $$ Class cls = policyClassLoader.loadClass(authPolicy) --> Line_11 $$ return (AuthenticationProvider) cls.newInstance() [FD]

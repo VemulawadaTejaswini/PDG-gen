@@ -1,0 +1,7 @@
+Line_2 $$ private ReduceType executeMultiThreaded(final Iterator<InputType> inputReader, final NSMapFunction<InputType, MapType> map, final ReduceType initialValue, final NSReduceFunction<MapType, ReduceType> reduce) --> Line_3 $$ debugPrint("Executing nanoScheduler") [CD]
+Line_2 $$ private ReduceType executeMultiThreaded(final Iterator<InputType> inputReader, final NSMapFunction<InputType, MapType> map, final ReduceType initialValue, final NSReduceFunction<MapType, ReduceType> reduce) --> Line_4 $$ final MasterJob masterJob = new MasterJob(inputReader, map, initialValue, reduce) [CD]
+Line_2 $$ private ReduceType executeMultiThreaded(final Iterator<InputType> inputReader, final NSMapFunction<InputType, MapType> map, final ReduceType initialValue, final NSReduceFunction<MapType, ReduceType> reduce) --> Line_5 $$ final Future<ReduceType> reduceResult = masterExecutor.submit(masterJob) [CD]
+Line_4 $$ final MasterJob masterJob = new MasterJob(inputReader, map, initialValue, reduce) --> Line_5 $$ final Future<ReduceType> reduceResult = masterExecutor.submit(masterJob) [FD]
+Line_2 $$ private ReduceType executeMultiThreaded(final Iterator<InputType> inputReader, final NSMapFunction<InputType, MapType> map, final ReduceType initialValue, final NSReduceFunction<MapType, ReduceType> reduce) --> Line_6 $$ while (true) [CD]
+Line_6 $$ while (true) --> Line_7 $$ handleErrors() [CD]
+Line_5 $$ final Future<ReduceType> reduceResult = masterExecutor.submit(masterJob) --> Line_9 $$ final ReduceType result = reduceResult.get(100, TimeUnit.MILLISECONDS) [FD]

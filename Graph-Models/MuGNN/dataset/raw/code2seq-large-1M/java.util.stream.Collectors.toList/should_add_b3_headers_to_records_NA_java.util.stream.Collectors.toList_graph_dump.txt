@@ -1,0 +1,6 @@
+Line_2 $$ public void should_add_b3_headers_to_records() --> Line_3 $$ tracingProducer.send(new ProducerRecord(TEST_TOPIC, TEST_KEY, TEST_VALUE)) [CD]
+Line_2 $$ public void should_add_b3_headers_to_records() --> Line_4 $$ List<String> headerKeys = mockProducer.history().stream().flatMap( records -> Arrays.stream(records.headers().toArray())).map(Header::<>key).collect(Collectors.toList()) [CD]
+Line_2 $$ public void should_add_b3_headers_to_records() --> Line_5 $$ List<String> expectedHeaders = Arrays.asList("X-B3-TraceId", "X-B3-SpanId", "X-B3-Sampled") [CD]
+Line_2 $$ public void should_add_b3_headers_to_records() --> Line_6 $$ assertThat(headerKeys).containsAll(expectedHeaders) [CD]
+Line_5 $$ List<String> expectedHeaders = Arrays.asList("X-B3-TraceId", "X-B3-SpanId", "X-B3-Sampled") --> Line_6 $$ assertThat(headerKeys).containsAll(expectedHeaders) [FD]
+Line_4 $$ List<String> headerKeys = mockProducer.history().stream().flatMap( records -> Arrays.stream(records.headers().toArray())).map(Header::<>key).collect(Collectors.toList()) --> Line_6 $$ assertThat(headerKeys).containsAll(expectedHeaders) [FD]

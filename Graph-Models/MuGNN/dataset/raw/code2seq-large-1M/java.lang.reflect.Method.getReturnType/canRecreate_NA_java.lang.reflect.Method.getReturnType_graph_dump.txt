@@ -1,0 +1,7 @@
+Line_2 $$ protected boolean canRecreate(Object obj, String getter) --> Line_4 $$ Class objClass = obj.getClass().getMethod(getter).getReturnType() [FD]
+Line_4 $$ Class objClass = obj.getClass().getMethod(getter).getReturnType() --> Line_5 $$ if (Enum.class.isAssignableFrom(objClass)) [FD]
+Line_4 $$ Class objClass = obj.getClass().getMethod(getter).getReturnType() --> Line_9 $$ Constructor[] constructors = objClass.getConstructors() [FD]
+Line_10 $$ for (Constructor constructor : constructors) --> Line_11 $$ Class[] types = constructor.getParameterTypes() [FD]
+Line_4 $$ Class objClass = obj.getClass().getMethod(getter).getReturnType() --> Line_12 $$ if (types.length == 1 && types[0].isAssignableFrom(objClass)) [FD]
+Line_12 $$ if (types.length == 1 && types[0].isAssignableFrom(objClass)) --> Line_13 $$ return true [CD]
+Line_2 $$ protected boolean canRecreate(Object obj, String getter) --> Line_21 $$ return false [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private void grantRestrictedUserOnTheSchema(String schemaName) --> Line_3 $$ SecretProvider secrets = getDatabaseSecrets() [CD]
+Line_3 $$ SecretProvider secrets = getDatabaseSecrets() --> Line_4 $$ try (RedshiftConnection conn = RedshiftConnection.open(RedshiftConnectionConfig.configure(secrets, EMPTY_CONFIG))) [FD]
+Line_4 $$ try (RedshiftConnection conn = RedshiftConnection.open(RedshiftConnectionConfig.configure(secrets, EMPTY_CONFIG))) --> Line_5 $$ switchSearchPath(conn) [FD]
+Line_4 $$ try (RedshiftConnection conn = RedshiftConnection.open(RedshiftConnectionConfig.configure(secrets, EMPTY_CONFIG))) --> Line_6 $$ conn.executeUpdate(String.format("GRANT SELECT ON %s TO %s", SRC_TABLE, restrictedUser)) [FD]
+Line_4 $$ try (RedshiftConnection conn = RedshiftConnection.open(RedshiftConnectionConfig.configure(secrets, EMPTY_CONFIG))) --> Line_7 $$ conn.executeUpdate(String.format("GRANT INSERT ON %s TO %s", DEST_TABLE, restrictedUser)) [FD]

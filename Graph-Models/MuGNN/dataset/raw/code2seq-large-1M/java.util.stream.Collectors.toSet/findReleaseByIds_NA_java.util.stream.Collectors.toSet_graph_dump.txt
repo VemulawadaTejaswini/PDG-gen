@@ -1,0 +1,6 @@
+Line_2 $$ public List<ReleaseDTO> findReleaseByIds(@RequestParam("releaseIds") String releaseIds) --> Line_3 $$ Set<Long> releaseIdSet = RELEASES_SPLITTER.splitToList(releaseIds).stream().map(Long::<>parseLong).collect(Collectors.toSet()) [FD]
+Line_2 $$ public List<ReleaseDTO> findReleaseByIds(@RequestParam("releaseIds") String releaseIds) --> Line_3 $$ Set<Long> releaseIdSet = RELEASES_SPLITTER.splitToList(releaseIds).stream().map(Long::<>parseLong).collect(Collectors.toSet()) [CD]
+Line_2 $$ public List<ReleaseDTO> findReleaseByIds(@RequestParam("releaseIds") String releaseIds) --> Line_4 $$ List<Release> releases = releaseService.findByReleaseIds(releaseIdSet) [CD]
+Line_3 $$ Set<Long> releaseIdSet = RELEASES_SPLITTER.splitToList(releaseIds).stream().map(Long::<>parseLong).collect(Collectors.toSet()) --> Line_4 $$ List<Release> releases = releaseService.findByReleaseIds(releaseIdSet) [FD]
+Line_2 $$ public List<ReleaseDTO> findReleaseByIds(@RequestParam("releaseIds") String releaseIds) --> Line_5 $$ return BeanUtils.batchTransform(ReleaseDTO.class, releases) [CD]
+Line_4 $$ List<Release> releases = releaseService.findByReleaseIds(releaseIdSet) --> Line_5 $$ return BeanUtils.batchTransform(ReleaseDTO.class, releases) [FD]

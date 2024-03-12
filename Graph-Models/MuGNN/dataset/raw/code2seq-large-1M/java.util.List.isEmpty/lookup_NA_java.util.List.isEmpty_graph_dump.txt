@@ -1,0 +1,7 @@
+Line_2 $$ public List<ServiceNode> lookup(String serviceName) --> Line_3 $$ List<String> childrenKeys = client.getChildrenKeys(serviceName) [CD]
+Line_2 $$ public List<ServiceNode> lookup(String serviceName) --> Line_3 $$ List<String> childrenKeys = client.getChildrenKeys(serviceName) [FD]
+Line_2 $$ public List<ServiceNode> lookup(String serviceName) --> Line_4 $$ if (childrenKeys == null || childrenKeys.isEmpty()) [CD]
+Line_3 $$ List<String> childrenKeys = client.getChildrenKeys(serviceName) --> Line_4 $$ if (childrenKeys == null || childrenKeys.isEmpty()) [FD]
+Line_4 $$ if (childrenKeys == null || childrenKeys.isEmpty()) --> Line_5 $$ return Collections.emptyList() [CD]
+Line_2 $$ public List<ServiceNode> lookup(String serviceName) --> Line_7 $$ return childrenKeys.stream().map( key -> serviceName + PATH_SEPARATOR + key).map(client::<>get).filter(Objects::<>nonNull).map( childData -> Jsons.fromJson(childData, CommonServiceNode.class)).filter(Objects::<>nonNull).collect(Collectors.toList()) [CD]
+Line_3 $$ List<String> childrenKeys = client.getChildrenKeys(serviceName) --> Line_7 $$ return childrenKeys.stream().map( key -> serviceName + PATH_SEPARATOR + key).map(client::<>get).filter(Objects::<>nonNull).map( childData -> Jsons.fromJson(childData, CommonServiceNode.class)).filter(Objects::<>nonNull).collect(Collectors.toList()) [FD]

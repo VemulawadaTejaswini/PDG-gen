@@ -1,0 +1,8 @@
+Line_2 $$ public IndexFieldData.Builder fielddataBuilder() --> Line_3 $$ if (hasDocValues()) [CD]
+Line_3 $$ if (hasDocValues()) --> Line_4 $$ return new DocValuesIndexFieldData.Builder() [CD]
+Line_3 $$ if (hasDocValues()) --> Line_5 $$ if (fielddata) [CD]
+Line_5 $$ if (fielddata) --> Line_6 $$ return new PagedBytesIndexFieldData.Builder(TextFieldMapper.Defaults.FIELDDATA_MIN_FREQUENCY, TextFieldMapper.Defaults.FIELDDATA_MAX_FREQUENCY, TextFieldMapper.Defaults.FIELDDATA_MIN_SEGMENT_SIZE) [CD]
+Line_5 $$ if (fielddata) --> Line_8 $$ Function<MapperService, String> typeFunction =  mapperService -> [CD]
+Line_9 $$ Collection<String> types = mapperService.types() --> Line_10 $$ if (types.size() > 1) [FD]
+Line_9 $$ Collection<String> types = mapperService.types() --> Line_13 $$ String type = types.iterator().next() [FD]
+Line_5 $$ if (fielddata) --> Line_16 $$ return new ConstantIndexFieldData.Builder(typeFunction) [CD]

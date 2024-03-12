@@ -1,0 +1,7 @@
+Line_2 $$ private void checkAsyncListener(IgniteFutureImpl<String> fut) throws InterruptedException --> Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ private void checkAsyncListener(IgniteFutureImpl<String> fut) throws InterruptedException --> Line_4 $$ IgniteInClosure<? super IgniteFuture<String>> lsnr = createAsyncListener(latch, CUSTOM_THREAD_NAME, null) [CD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_4 $$ IgniteInClosure<? super IgniteFuture<String>> lsnr = createAsyncListener(latch, CUSTOM_THREAD_NAME, null) [FD]
+Line_2 $$ private void checkAsyncListener(IgniteFutureImpl<String> fut) throws InterruptedException --> Line_5 $$ fut.listenAsync(lsnr, customExec) [FD]
+Line_2 $$ private void checkAsyncListener(IgniteFutureImpl<String> fut) throws InterruptedException --> Line_5 $$ fut.listenAsync(lsnr, customExec) [CD]
+Line_4 $$ IgniteInClosure<? super IgniteFuture<String>> lsnr = createAsyncListener(latch, CUSTOM_THREAD_NAME, null) --> Line_5 $$ fut.listenAsync(lsnr, customExec) [FD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_6 $$ assert latch.await(1, TimeUnit.SECONDS) : latch.getCount() [FD]

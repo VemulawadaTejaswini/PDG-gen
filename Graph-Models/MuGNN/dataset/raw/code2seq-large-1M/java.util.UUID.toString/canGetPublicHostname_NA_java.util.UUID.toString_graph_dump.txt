@@ -1,0 +1,8 @@
+Line_2 $$ public void canGetPublicHostname() --> Line_3 $$ final RestTemplate restTemplate = Mockito.mock(RestTemplate.class) [CD]
+Line_2 $$ public void canGetPublicHostname() --> Line_4 $$ final String hostname = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void canGetPublicHostname() --> Line_5 $$ Mockito.when(restTemplate.getForObject(AwsMvcConfig.PUBLIC_HOSTNAME_GET, String.class)).thenReturn(hostname) [CD]
+Line_4 $$ final String hostname = UUID.randomUUID().toString() --> Line_5 $$ Mockito.when(restTemplate.getForObject(AwsMvcConfig.PUBLIC_HOSTNAME_GET, String.class)).thenReturn(hostname) [FD]
+Line_2 $$ public void canGetPublicHostname() --> Line_6 $$ Assert.assertThat(this.awsMvcConfig.hostName(restTemplate), Matchers.is(hostname)) [CD]
+Line_4 $$ final String hostname = UUID.randomUUID().toString() --> Line_6 $$ Assert.assertThat(this.awsMvcConfig.hostName(restTemplate), Matchers.is(hostname)) [FD]
+Line_2 $$ public void canGetPublicHostname() --> Line_7 $$ Mockito.verify(restTemplate, Mockito.times(1)).getForObject(AwsMvcConfig.PUBLIC_HOSTNAME_GET, String.class) [CD]
+Line_2 $$ public void canGetPublicHostname() --> Line_8 $$ Mockito.verify(restTemplate, Mockito.never()).getForObject(AwsMvcConfig.LOCAL_IPV4_HOSTNAME_GET, String.class) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ protected ClientDetails[] doProcessDeletes(ClientDetails[] details) --> Line_3 $$ ClientDetailsModification[] result = new ClientDetailsModification[details.length] [CD]
+Line_2 $$ protected ClientDetails[] doProcessDeletes(ClientDetails[] details) --> Line_4 $$ for (int i = 0; i < details.length; i++) [CD]
+Line_4 $$ for (int i = 0; i < details.length; i++) --> Line_5 $$ publish(new EntityDeletedEvent(details[i], SecurityContextHolder.getContext().getAuthentication())) [CD]
+Line_4 $$ for (int i = 0; i < details.length; i++) --> Line_6 $$ clientDeletes.incrementAndGet() [CD]
+Line_4 $$ for (int i = 0; i < details.length; i++) --> Line_7 $$ result[i] = removeSecret(details[i]) [CD]
+Line_4 $$ for (int i = 0; i < details.length; i++) --> Line_8 $$ result[i].setApprovalsDeleted(true) [CD]
+Line_2 $$ protected ClientDetails[] doProcessDeletes(ClientDetails[] details) --> Line_10 $$ return result [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public String getCloudAPIShutdown() --> Line_3 $$ final String servicePrincipal = System.getenv("AZURE_COMPUTE_SERVICE_PRINCIPAL") [CD]
+Line_2 $$ public String getCloudAPIShutdown() --> Line_4 $$ final String password = System.getenv("AZURE_COMPUTE_SERVICE_PRINCIPAL_PASSWORD") [CD]
+Line_2 $$ public String getCloudAPIShutdown() --> Line_5 $$ final String tenant = System.getenv("AZURE_COMPUTE_SERVICE_PRINCIPAL_TENANT") [CD]
+Line_2 $$ public String getCloudAPIShutdown() --> Line_6 $$ if (servicePrincipal == null || password == null || tenant == null) [CD]
+Line_6 $$ if (servicePrincipal == null || password == null || tenant == null) --> Line_7 $$ return super.getCloudAPIShutdown() [CD]
+Line_2 $$ public String getCloudAPIShutdown() --> Line_9 $$ return "echo eyAiJHNjaGVtYSI6ICJodHRwczovL3NjaGVtYS5tYW5hZ2VtZW50LmF6dXJlLmNvbS9zY2hlbWFzLzIwMTUtMDEtMDEvZGVwbG95bWVudFRlbXBsYXRlLmpzb24jIiwgImNvbnRlbnRWZXJzaW9uIjogIjEuMC4wLjAiLCAicGFyYW1ldGVycyI6IHt9LCAidmFyaWFibGVzIjoge30sICJyZXNvdXJjZXMiOiBbXSwgIm91dHB1dHMiOiB7fSB9Cg== | base64 -d > /tmp/rg.json" + " && " + "az login --service-principal -u \"" + servicePrincipal + "\" -p " + password + " --tenant " + tenant + " && " + "az group deployment create --resource-group $(hostname -s)" + " --template-file /tmp/rg.json --mode Complete" [CD]

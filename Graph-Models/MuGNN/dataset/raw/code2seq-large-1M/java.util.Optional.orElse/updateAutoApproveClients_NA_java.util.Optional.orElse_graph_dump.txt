@@ -1,0 +1,8 @@
+Line_2 $$ private void updateAutoApproveClients() --> Line_3 $$ List<String> slatedForDeletion = ofNullable(clientsToDelete).orElse(emptyList()) [CD]
+Line_2 $$ private void updateAutoApproveClients() --> Line_4 $$ Collection<String> autoApproveList = new LinkedList(ofNullable(autoApproveClients).orElse(emptyList())) [CD]
+Line_2 $$ private void updateAutoApproveClients() --> Line_5 $$ autoApproveList.removeIf( s -> slatedForDeletion.contains(s)) [CD]
+Line_4 $$ Collection<String> autoApproveList = new LinkedList(ofNullable(autoApproveClients).orElse(emptyList())) --> Line_5 $$ autoApproveList.removeIf( s -> slatedForDeletion.contains(s)) [FD]
+Line_3 $$ List<String> slatedForDeletion = ofNullable(clientsToDelete).orElse(emptyList()) --> Line_5 $$ autoApproveList.removeIf( s -> slatedForDeletion.contains(s)) [FD]
+Line_6 $$ for (String clientId : autoApproveList) --> Line_8 $$ BaseClientDetails base = (BaseClientDetails) clientRegistrationService.loadClientByClientId(clientId, IdentityZone.getUaa().getId()) [FD]
+Line_8 $$ BaseClientDetails base = (BaseClientDetails) clientRegistrationService.loadClientByClientId(clientId, IdentityZone.getUaa().getId()) --> Line_9 $$ base.addAdditionalInformation(ClientConstants.AUTO_APPROVE, true) [FD]
+Line_8 $$ BaseClientDetails base = (BaseClientDetails) clientRegistrationService.loadClientByClientId(clientId, IdentityZone.getUaa().getId()) --> Line_11 $$ clientRegistrationService.updateClientDetails(base, IdentityZone.getUaa().getId()) [FD]

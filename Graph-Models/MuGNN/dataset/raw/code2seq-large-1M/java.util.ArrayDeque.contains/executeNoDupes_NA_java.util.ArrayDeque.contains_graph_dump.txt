@@ -1,0 +1,7 @@
+Line_2 $$ public void executeNoDupes(Runnable job, int prio, String jobName) --> Line_4 $$ if (jobs[prio].contains(job)) [FD]
+Line_4 $$ if (jobs[prio].contains(job)) --> Line_5 $$ if (logMINOR) [CD]
+Line_5 $$ if (logMINOR) --> Line_6 $$ Logger.minor(this, "Not queueing job: Job already queued: " + job) [CD]
+Line_4 $$ if (jobs[prio].contains(job)) --> Line_7 $$ return [CD]
+Line_9 $$ if (logMINOR) --> Line_10 $$ Logger.minor(this, "Queueing " + jobName + " : " + job + " priority " + prio + ", executor state: running=" + running + " waiting=" + waiting) [CD]
+Line_2 $$ public void executeNoDupes(Runnable job, int prio, String jobName) --> Line_11 $$ jobs[prio].addLast(job) [FD]
+Line_13 $$ if (!running && realExecutor != null) --> Line_14 $$ reallyStart() [CD]

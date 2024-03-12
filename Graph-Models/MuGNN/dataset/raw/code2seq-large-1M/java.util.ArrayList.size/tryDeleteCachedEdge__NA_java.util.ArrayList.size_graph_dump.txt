@@ -1,0 +1,8 @@
+Line_2 $$ void tryDeleteCachedEdge_(int value) --> Line_3 $$ int ind = (value & NumberUtils.intMax()) % m_simple_edges_cache.size() [CD]
+Line_2 $$ void tryDeleteCachedEdge_(int value) --> Line_4 $$ SimpleEdge se = m_simple_edges_cache.get(ind) [CD]
+Line_3 $$ int ind = (value & NumberUtils.intMax()) % m_simple_edges_cache.size() --> Line_4 $$ SimpleEdge se = m_simple_edges_cache.get(ind) [FD]
+Line_2 $$ void tryDeleteCachedEdge_(int value) --> Line_5 $$ if (se != null && se.m_value == value) [CD]
+Line_5 $$ if (se != null && se.m_value == value) --> Line_6 $$ m_simple_edges_recycle.add(se) [CD]
+Line_4 $$ SimpleEdge se = m_simple_edges_cache.get(ind) --> Line_6 $$ m_simple_edges_recycle.add(se) [FD]
+Line_5 $$ if (se != null && se.m_value == value) --> Line_7 $$ m_simple_edges_cache.set(ind, null) [CD]
+Line_3 $$ int ind = (value & NumberUtils.intMax()) % m_simple_edges_cache.size() --> Line_7 $$ m_simple_edges_cache.set(ind, null) [FD]

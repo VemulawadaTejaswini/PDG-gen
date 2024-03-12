@@ -1,0 +1,4 @@
+Line_2 $$ private void retrieveOperations(RoutingContext context) --> Line_3 $$ Single<List<JsonObject>> result = jdbc.rxGetConnection().flatMap( conn -> conn.rxQuery(SELECT_STATEMENT).map( set -> set.getRows().stream().map( json -> new JsonObject(json.getString("OPERATION"))).collect(Collectors.toList())).doAfterTerminate(conn::<>close)) [CD]
+Line_2 $$ private void retrieveOperations(RoutingContext context) --> Line_7 $$ result.subscribe( operations -> [CD]
+Line_3 $$ Single<List<JsonObject>> result = jdbc.rxGetConnection().flatMap( conn -> conn.rxQuery(SELECT_STATEMENT).map( set -> set.getRows().stream().map( json -> new JsonObject(json.getString("OPERATION"))).collect(Collectors.toList())).doAfterTerminate(conn::<>close)) --> Line_7 $$ result.subscribe( operations -> [FD]
+Line_2 $$ private void retrieveOperations(RoutingContext context) --> Line_8 $$ context.response().setStatusCode(200).end(Json.encodePrettily(operations)) [FD]

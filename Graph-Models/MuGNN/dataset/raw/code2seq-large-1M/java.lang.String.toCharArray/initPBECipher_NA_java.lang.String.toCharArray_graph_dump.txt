@@ -1,0 +1,8 @@
+Line_2 $$ public static Cipher initPBECipher(String algorithm, String provider, String password, byte[] salt, int iterationCount, boolean encryptMode) throws IllegalArgumentException --> Line_4 $$ final PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray()) [FD]
+Line_2 $$ public static Cipher initPBECipher(String algorithm, String provider, String password, byte[] salt, int iterationCount, boolean encryptMode) throws IllegalArgumentException --> Line_5 $$ final SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm, provider) [FD]
+Line_5 $$ final SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm, provider) --> Line_6 $$ SecretKey tempKey = factory.generateSecret(pbeKeySpec) [FD]
+Line_4 $$ final PBEKeySpec pbeKeySpec = new PBEKeySpec(password.toCharArray()) --> Line_6 $$ SecretKey tempKey = factory.generateSecret(pbeKeySpec) [FD]
+Line_2 $$ public static Cipher initPBECipher(String algorithm, String provider, String password, byte[] salt, int iterationCount, boolean encryptMode) throws IllegalArgumentException --> Line_8 $$ Cipher cipher = Cipher.getInstance(algorithm, provider) [FD]
+Line_8 $$ Cipher cipher = Cipher.getInstance(algorithm, provider) --> Line_9 $$ cipher.init(encryptMode ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE, tempKey, parameterSpec) [FD]
+Line_6 $$ SecretKey tempKey = factory.generateSecret(pbeKeySpec) --> Line_9 $$ cipher.init(encryptMode ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE, tempKey, parameterSpec) [FD]
+Line_7 $$ final PBEParameterSpec parameterSpec = new PBEParameterSpec(salt, iterationCount) --> Line_9 $$ cipher.init(encryptMode ? Cipher.ENCRYPT_MODE : Cipher.DECRYPT_MODE, tempKey, parameterSpec) [FD]

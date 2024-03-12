@@ -1,0 +1,7 @@
+Line_3 $$ for (String eachPermission : REQUIRED_PERMISSION_LIST) --> Line_4 $$ if (ContextCompat.checkSelfPermission(this, eachPermission) != PackageManager.PERMISSION_GRANTED) [FD]
+Line_4 $$ if (ContextCompat.checkSelfPermission(this, eachPermission) != PackageManager.PERMISSION_GRANTED) --> Line_5 $$ missingPermission.add(eachPermission) [CD]
+Line_3 $$ for (String eachPermission : REQUIRED_PERMISSION_LIST) --> Line_5 $$ missingPermission.add(eachPermission) [FD]
+Line_2 $$ private void checkAndRequestPermissions() --> Line_8 $$ if (missingPermission.isEmpty()) [CD]
+Line_8 $$ if (missingPermission.isEmpty()) --> Line_9 $$ startSDKRegistration() [CD]
+Line_8 $$ if (missingPermission.isEmpty()) --> Line_10 $$ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) [CD]
+Line_10 $$ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) --> Line_11 $$ ActivityCompat.requestPermissions(this, missingPermission.toArray(new String[missingPermission.size()]), REQUEST_PERMISSION_CODE) [CD]

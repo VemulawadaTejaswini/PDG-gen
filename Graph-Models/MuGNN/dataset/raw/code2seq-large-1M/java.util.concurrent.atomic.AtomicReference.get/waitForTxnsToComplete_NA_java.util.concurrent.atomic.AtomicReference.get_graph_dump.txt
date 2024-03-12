@@ -1,0 +1,6 @@
+Line_2 $$ void waitForTxnsToComplete() --> Line_3 $$ log.info("Wait for txns to complete") [CD]
+Line_2 $$ void waitForTxnsToComplete() --> Line_4 $$ if (!Futures.await(Futures.allOf(testState.txnStatusFutureList))) [CD]
+Line_4 $$ if (!Futures.await(Futures.allOf(testState.txnStatusFutureList))) --> Line_5 $$ log.error("Transaction futures did not complete with exceptions") [CD]
+Line_2 $$ void waitForTxnsToComplete() --> Line_7 $$ if (testState.getTxnWriteException.get() != null) [CD]
+Line_7 $$ if (testState.getTxnWriteException.get() != null) --> Line_8 $$ log.info("Unable to commit transaction:", testState.getTxnWriteException.get()) [CD]
+Line_7 $$ if (testState.getTxnWriteException.get() != null) --> Line_9 $$ Assert.fail("Unable to commit transaction. Test failure") [CD]

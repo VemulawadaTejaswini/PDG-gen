@@ -1,0 +1,8 @@
+Line_3 $$ Project project = projectFactory.createTempProject() --> Line_4 $$ Git repo = gitUtils.init(project.getRoot().reify(DirectoryResource.class)) [FD]
+Line_3 $$ Project project = projectFactory.createTempProject() --> Line_8 $$ FileResource<?> file = (FileResource<?>) project.getRoot().getChild("test.txt") [FD]
+Line_8 $$ FileResource<?> file = (FileResource<?>) project.getRoot().getChild("test.txt") --> Line_9 $$ file.setContents("Foo bar baz contents").createNewFile() [FD]
+Line_5 $$ String commitMsg = "First commit" --> Line_11 $$ gitUtils.commitAll(repo, commitMsg) [FD]
+Line_12 $$ List<String> logs = gitUtils.getLogForCurrentBranch(repo) --> Line_13 $$ Assert.assertNotNull("log should not be null", logs) [FD]
+Line_12 $$ List<String> logs = gitUtils.getLogForCurrentBranch(repo) --> Line_14 $$ Assert.assertEquals("log should contain two items", 2, logs.size()) [FD]
+Line_5 $$ String commitMsg = "First commit" --> Line_15 $$ Assert.assertEquals("commit messages should be the same", commitMsg, logs.get(0)) [FD]
+Line_12 $$ List<String> logs = gitUtils.getLogForCurrentBranch(repo) --> Line_15 $$ Assert.assertEquals("commit messages should be the same", commitMsg, logs.get(0)) [FD]

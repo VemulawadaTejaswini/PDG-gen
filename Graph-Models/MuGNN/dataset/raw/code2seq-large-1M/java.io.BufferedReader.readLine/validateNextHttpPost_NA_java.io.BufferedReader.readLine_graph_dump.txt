@@ -1,0 +1,8 @@
+Line_2 $$ private void validateNextHttpPost(String documentId, String expectedBody) throws IOException, URISyntaxException --> Line_3 $$ ArgumentCaptor<HttpPost> capturedPost = ArgumentCaptor.forClass(HttpPost.class) [CD]
+Line_2 $$ private void validateNextHttpPost(String documentId, String expectedBody) throws IOException, URISyntaxException --> Line_4 $$ verify(httpClient).execute(capturedPost.capture()) [CD]
+Line_2 $$ private void validateNextHttpPost(String documentId, String expectedBody) throws IOException, URISyntaxException --> Line_5 $$ URI expectedURI = new URI(feedEndpoint + "/" + documentId) [CD]
+Line_2 $$ private void validateNextHttpPost(String documentId, String expectedBody) throws IOException, URISyntaxException --> Line_6 $$ assertEquals(expectedURI, capturedPost.getValue().getURI()) [CD]
+Line_5 $$ URI expectedURI = new URI(feedEndpoint + "/" + documentId) --> Line_6 $$ assertEquals(expectedURI, capturedPost.getValue().getURI()) [FD]
+Line_2 $$ private void validateNextHttpPost(String documentId, String expectedBody) throws IOException, URISyntaxException --> Line_7 $$ assertEquals("application/json", capturedPost.getValue().getHeaders(HttpHeaders.CONTENT_TYPE)[0].getValue()) [CD]
+Line_2 $$ private void validateNextHttpPost(String documentId, String expectedBody) throws IOException, URISyntaxException --> Line_8 $$ assertEquals(expectedBody, new BufferedReader(new InputStreamReader(capturedPost.getValue().getEntity().getContent())).readLine()) [FD]
+Line_2 $$ private void validateNextHttpPost(String documentId, String expectedBody) throws IOException, URISyntaxException --> Line_8 $$ assertEquals(expectedBody, new BufferedReader(new InputStreamReader(capturedPost.getValue().getEntity().getContent())).readLine()) [CD]

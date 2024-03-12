@@ -1,0 +1,8 @@
+Line_2 $$ public List<String> getLoggedPlayersWithEmptyMail() --> Line_3 $$ List<String> players = new ArrayList() [CD]
+Line_2 $$ public List<String> getLoggedPlayersWithEmptyMail() --> Line_4 $$ String sql = "SELECT " + col.REAL_NAME + " FROM " + tableName + " WHERE " + col.IS_LOGGED + " = 1" + " AND (" + col.EMAIL + " = 'your@email.com' OR " + col.EMAIL + " IS NULL);" [CD]
+Line_4 $$ String sql = "SELECT " + col.REAL_NAME + " FROM " + tableName + " WHERE " + col.IS_LOGGED + " = 1" + " AND (" + col.EMAIL + " = 'your@email.com' OR " + col.EMAIL + " IS NULL);" --> Line_5 $$ try (Statement st = con.createStatement(); [FD]
+Line_5 $$ try (Statement st = con.createStatement(); --> Line_7 $$ while (rs.next()) [FD]
+Line_7 $$ while (rs.next()) --> Line_8 $$ players.add(rs.getString(1)) [CD]
+Line_3 $$ List<String> players = new ArrayList() --> Line_8 $$ players.add(rs.getString(1)) [FD]
+Line_5 $$ try (Statement st = con.createStatement(); --> Line_8 $$ players.add(rs.getString(1)) [FD]
+Line_2 $$ public List<String> getLoggedPlayersWithEmptyMail() --> Line_13 $$ return players [CD]

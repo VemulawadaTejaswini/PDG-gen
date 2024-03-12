@@ -1,0 +1,7 @@
+Line_4 $$ if (!disableLogging) --> Line_5 $$ logger.info(query.toString()) [CD]
+Line_2 $$ protected void doExecuteAndSerialize(FulltextQuery query, OutputStream outputStream) --> Line_5 $$ logger.info(query.toString()) [FD]
+Line_2 $$ protected void doExecuteAndSerialize(FulltextQuery query, OutputStream outputStream) --> Line_7 $$ ModifiableSolrParams params = FulltextQuerySolrHelper.parameterize(query) [FD]
+Line_7 $$ ModifiableSolrParams params = FulltextQuerySolrHelper.parameterize(query) --> Line_8 $$ CommonsHttpSolrServer server = new CommonsHttpSolrServer(solrClient.getURL(), this.httpClient, new OutputstreamResponseWrapper(outputStream, params.get(Constants.OUTPUT_FORMAT_PARAMETER))) [FD]
+Line_8 $$ CommonsHttpSolrServer server = new CommonsHttpSolrServer(solrClient.getURL(), this.httpClient, new OutputstreamResponseWrapper(outputStream, params.get(Constants.OUTPUT_FORMAT_PARAMETER))) --> Line_9 $$ server.query(params) [FD]
+Line_7 $$ ModifiableSolrParams params = FulltextQuerySolrHelper.parameterize(query) --> Line_9 $$ server.query(params) [FD]
+Line_2 $$ protected void doExecuteAndSerialize(FulltextQuery query, OutputStream outputStream) --> Line_11 $$ logger.error("Can not execute query " + FulltextQuerySolrHelper.toQueryString(query) + "for URL : " + solrClient.getURL() + " : " + e.getCause().getMessage(), e) [FD]

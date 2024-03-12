@@ -1,0 +1,7 @@
+Line_2 $$ static MethodHandle[] populateMHs(Class<? extends VarHandleOperations> operationsClass, MethodType[] lookupTypes, MethodType[] exactTypes) --> Line_3 $$ MethodHandle[] operationMHs = new MethodHandle[AccessMode.values().length] [CD]
+Line_5 $$ for (AccessMode accessMode : AccessMode.values()) --> Line_6 $$ operationMHs[accessMode.ordinal()] = _lookup.findStatic(operationsClass, accessMode.methodName(), lookupTypes[accessMode.ordinal()]) [FD]
+Line_2 $$ static MethodHandle[] populateMHs(Class<? extends VarHandleOperations> operationsClass, MethodType[] lookupTypes, MethodType[] exactTypes) --> Line_6 $$ operationMHs[accessMode.ordinal()] = _lookup.findStatic(operationsClass, accessMode.methodName(), lookupTypes[accessMode.ordinal()]) [FD]
+Line_2 $$ static MethodHandle[] populateMHs(Class<? extends VarHandleOperations> operationsClass, MethodType[] lookupTypes, MethodType[] exactTypes) --> Line_8 $$ if (lookupTypes != exactTypes) [FD]
+Line_5 $$ for (AccessMode accessMode : AccessMode.values()) --> Line_10 $$ operationMHs[accessMode.ordinal()] = operationMHs[accessMode.ordinal()].cloneWithNewType(exactTypes[accessMode.ordinal()]) [FD]
+Line_14 $$ InternalError error = new InternalError(com.ibm.oti.util.Msg.getString("K0623")) --> Line_15 $$ error.initCause(e) [FD]
+Line_2 $$ static MethodHandle[] populateMHs(Class<? extends VarHandleOperations> operationsClass, MethodType[] lookupTypes, MethodType[] exactTypes) --> Line_18 $$ return operationMHs [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static void updateHeartbeatCache(Map<List<Integer>, Map<String, Object>> cache, Map<List<Integer>, Map<String, Object>> executorBeats, Set<List<Integer>> executors, Integer timeout) --> Line_3 $$ if (executorBeats == null) [FD]
+Line_2 $$ public static void updateHeartbeatCache(Map<List<Integer>, Map<String, Object>> cache, Map<List<Integer>, Map<String, Object>> executorBeats, Set<List<Integer>> executors, Integer timeout) --> Line_3 $$ if (executorBeats == null) [CD]
+Line_2 $$ public static void updateHeartbeatCache(Map<List<Integer>, Map<String, Object>> cache, Map<List<Integer>, Map<String, Object>> executorBeats, Set<List<Integer>> executors, Integer timeout) --> Line_4 $$ for (Map.Entry<List<Integer>, Map<String, Object>> executorbeat : cache.entrySet()) [FD]
+Line_5 $$ Map<String, Object> beat = executorbeat.getValue() --> Line_6 $$ beat.put("is-timed-out", Time.deltaSecs((Integer) beat.get("nimbus-time")) >= timeout) [FD]
+Line_3 $$ if (executorBeats == null) --> Line_8 $$ return [CD]
+Line_2 $$ public static void updateHeartbeatCache(Map<List<Integer>, Map<String, Object>> cache, Map<List<Integer>, Map<String, Object>> executorBeats, Set<List<Integer>> executors, Integer timeout) --> Line_11 $$ cache.put(executor, updateExecutorCache(cache.get(executor), executorBeats.get(executor), timeout)) [FD]
+Line_10 $$ for (List<Integer> executor : executors) --> Line_11 $$ cache.put(executor, updateExecutorCache(cache.get(executor), executorBeats.get(executor), timeout)) [FD]

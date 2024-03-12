@@ -1,0 +1,6 @@
+Line_2 $$ public Events<Event> get(Position start, int batchSize) throws InterruptedException, CanalStoreException --> Line_3 $$ final ReentrantLock lock = this.lock [CD]
+Line_2 $$ public Events<Event> get(Position start, int batchSize) throws InterruptedException, CanalStoreException --> Line_4 $$ lock.lockInterruptibly() [CD]
+Line_3 $$ final ReentrantLock lock = this.lock --> Line_4 $$ lock.lockInterruptibly() [FD]
+Line_2 $$ public Events<Event> get(Position start, int batchSize) throws InterruptedException, CanalStoreException --> Line_7 $$ while (!checkUnGetSlotAt((LogPosition) start, batchSize)) notEmpty.await() [FD]
+Line_2 $$ public Events<Event> get(Position start, int batchSize) throws InterruptedException, CanalStoreException --> Line_12 $$ return doGet(start, batchSize) [FD]
+Line_3 $$ final ReentrantLock lock = this.lock --> Line_14 $$ lock.unlock() [FD]

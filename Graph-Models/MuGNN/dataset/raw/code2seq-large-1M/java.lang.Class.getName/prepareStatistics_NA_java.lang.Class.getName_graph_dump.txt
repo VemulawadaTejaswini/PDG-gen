@@ -1,0 +1,5 @@
+Line_2 $$ private void prepareStatistics() --> Line_3 $$ List<Class> needReplyMsgs = new ArrayList(BeanUtils.reflections.getSubTypesOf(NeedReplyMessage.class)) [CD]
+Line_2 $$ private void prepareStatistics() --> Line_4 $$ needReplyMsgs = CollectionUtils.transformToList(needReplyMsgs, (Function<Class, Class>)  arg -> !APIMessage.class.isAssignableFrom(arg) || APISyncCallMessage.class.isAssignableFrom(arg) ? arg : null) [CD]
+Line_6 $$ MessageStatistic stat = new MessageStatistic() --> Line_7 $$ stat.setMessageClassName(clz.getName()) [FD]
+Line_5 $$ for (Class clz : needReplyMsgs) --> Line_7 $$ stat.setMessageClassName(clz.getName()) [FD]
+Line_6 $$ MessageStatistic stat = new MessageStatistic() --> Line_8 $$ statistics.put(stat.getMessageClassName(), stat) [FD]

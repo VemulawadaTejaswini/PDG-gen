@@ -1,0 +1,8 @@
+Line_2 $$ public <T> T parse(final ISystecCmd cmd, final String stringToParse, final String elementName, final Class<T> clazz) --> Line_4 $$ final SystecResultStringElement elementInfo = cmd.getResultElements().get(elementName) [FD]
+Line_2 $$ public <T> T parse(final ISystecCmd cmd, final String stringToParse, final String elementName, final Class<T> clazz) --> Line_5 $$ final String subString = stringToParse.substring(elementInfo.getStartByte() - 1, elementInfo.getStartByte() - 1 + elementInfo.getLength()).trim() [FD]
+Line_4 $$ final SystecResultStringElement elementInfo = cmd.getResultElements().get(elementName) --> Line_5 $$ final String subString = stringToParse.substring(elementInfo.getStartByte() - 1, elementInfo.getStartByte() - 1 + elementInfo.getLength()).trim() [FD]
+Line_4 $$ final SystecResultStringElement elementInfo = cmd.getResultElements().get(elementName) --> Line_6 $$ final Format format = elementInfo.getFormat() [FD]
+Line_6 $$ final Format format = elementInfo.getFormat() --> Line_7 $$ if (format == null) [FD]
+Line_7 $$ if (format == null) --> Line_8 $$ return (T) subString [CD]
+Line_6 $$ final Format format = elementInfo.getFormat() --> Line_10 $$ return (T) format.parseObject(subString) [FD]
+Line_5 $$ final String subString = stringToParse.substring(elementInfo.getStartByte() - 1, elementInfo.getStartByte() - 1 + elementInfo.getLength()).trim() --> Line_10 $$ return (T) format.parseObject(subString) [FD]

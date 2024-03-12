@@ -1,0 +1,7 @@
+Line_2 $$ private void setAcquired(HLock lock, Map<String, String> canBeEarlier) --> Line_3 $$ Future<Void> heartbeat = scheduler.schedule(new Heartbeat(lock), lockTtl / 2, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ private void setAcquired(HLock lock, Map<String, String> canBeEarlier) --> Line_4 $$ ((HLockImpl) lock).setHeartbeat(heartbeat) [CD]
+Line_3 $$ Future<Void> heartbeat = scheduler.schedule(new Heartbeat(lock), lockTtl / 2, TimeUnit.MILLISECONDS) --> Line_4 $$ ((HLockImpl) lock).setHeartbeat(heartbeat) [FD]
+Line_2 $$ private void setAcquired(HLock lock, Map<String, String> canBeEarlier) --> Line_5 $$ ((HLockImpl) lock).setAcquired(true) [CD]
+Line_2 $$ private void setAcquired(HLock lock, Map<String, String> canBeEarlier) --> Line_6 $$ if (logger.isDebugEnabled()) [CD]
+Line_6 $$ if (logger.isDebugEnabled()) --> Line_7 $$ logLock(lock, canBeEarlier.keySet()) [CD]
+Line_2 $$ private void setAcquired(HLock lock, Map<String, String> canBeEarlier) --> Line_7 $$ logLock(lock, canBeEarlier.keySet()) [FD]

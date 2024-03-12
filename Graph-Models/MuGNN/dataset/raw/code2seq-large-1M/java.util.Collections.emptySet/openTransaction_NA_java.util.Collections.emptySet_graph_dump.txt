@@ -1,0 +1,6 @@
+Line_2 $$ public Transaction openTransaction() --> Line_3 $$ AbstractTransaction tx = ((AbstractTransaction) TRANSACTION_THREAD_LOCAL.get()) [CD]
+Line_2 $$ public Transaction openTransaction() --> Line_4 $$ if (tx == null) [CD]
+Line_3 $$ AbstractTransaction tx = ((AbstractTransaction) TRANSACTION_THREAD_LOCAL.get()) --> Line_4 $$ if (tx == null) [FD]
+Line_4 $$ if (tx == null) --> Line_5 $$ return openTransaction(Transaction.Type.READ_WRITE, emptySet()) [CD]
+Line_4 $$ if (tx == null) --> Line_7 $$ return openTransaction(tx.type(), emptySet()) [CD]
+Line_3 $$ AbstractTransaction tx = ((AbstractTransaction) TRANSACTION_THREAD_LOCAL.get()) --> Line_7 $$ return openTransaction(tx.type(), emptySet()) [FD]

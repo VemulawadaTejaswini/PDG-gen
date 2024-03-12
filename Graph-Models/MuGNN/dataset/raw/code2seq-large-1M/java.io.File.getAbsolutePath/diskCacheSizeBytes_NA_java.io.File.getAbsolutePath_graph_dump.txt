@@ -1,0 +1,8 @@
+Line_2 $$ public static long diskCacheSizeBytes(File dir, long minSize) --> Line_3 $$ long size = minSize [CD]
+Line_2 $$ public static long diskCacheSizeBytes(File dir, long minSize) --> Line_5 $$ StatFs statFs = new StatFs(dir.getAbsolutePath()) [FD]
+Line_5 $$ StatFs statFs = new StatFs(dir.getAbsolutePath()) --> Line_6 $$ long availableBytes = ((long) statFs.getBlockCount()) * statFs.getBlockSize() [FD]
+Line_3 $$ long size = minSize --> Line_7 $$ size = availableBytes / 50 [FD]
+Line_6 $$ long availableBytes = ((long) statFs.getBlockCount()) * statFs.getBlockSize() --> Line_7 $$ size = availableBytes / 50 [FD]
+Line_2 $$ public static long diskCacheSizeBytes(File dir, long minSize) --> Line_11 $$ return Math.max(Math.min(size, MAX_DISK_CACHE_SIZE), MIN_DISK_CACHE_SIZE) [CD]
+Line_3 $$ long size = minSize --> Line_11 $$ return Math.max(Math.min(size, MAX_DISK_CACHE_SIZE), MIN_DISK_CACHE_SIZE) [FD]
+Line_7 $$ size = availableBytes / 50 --> Line_11 $$ return Math.max(Math.min(size, MAX_DISK_CACHE_SIZE), MIN_DISK_CACHE_SIZE) [FD]

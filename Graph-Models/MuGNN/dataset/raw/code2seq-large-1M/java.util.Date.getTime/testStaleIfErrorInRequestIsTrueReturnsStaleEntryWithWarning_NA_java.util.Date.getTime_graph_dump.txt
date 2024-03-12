@@ -1,0 +1,7 @@
+Line_3 $$ final Date tenSecondsAgo = new Date(new Date().getTime() - 10 * 1000L) --> Line_5 $$ final ClassicHttpResponse resp1 = HttpTestUtils.make200Response(tenSecondsAgo, "public, max-age=5") [FD]
+Line_5 $$ final ClassicHttpResponse resp1 = HttpTestUtils.make200Response(tenSecondsAgo, "public, max-age=5") --> Line_6 $$ backendExpectsAnyRequestAndReturn(resp1) [FD]
+Line_7 $$ final ClassicHttpRequest req2 = HttpTestUtils.makeDefaultRequest() --> Line_8 $$ req2.setHeader("Cache-Control", "public, stale-if-error=60") [FD]
+Line_9 $$ final ClassicHttpResponse resp2 = HttpTestUtils.make500Response() --> Line_10 $$ backendExpectsAnyRequestAndReturn(resp2) [FD]
+Line_4 $$ final ClassicHttpRequest req1 = HttpTestUtils.makeDefaultRequest() --> Line_12 $$ execute(req1) [FD]
+Line_7 $$ final ClassicHttpRequest req2 = HttpTestUtils.makeDefaultRequest() --> Line_13 $$ final ClassicHttpResponse result = execute(req2) [FD]
+Line_13 $$ final ClassicHttpResponse result = execute(req2) --> Line_15 $$ HttpTestUtils.assert110WarningFound(result) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private boolean serverNotRunning(IllegalStateException ex) --> Line_3 $$ NestedCheckedException nested = new NestedCheckedException("failed", ex) [CD]
+Line_2 $$ private boolean serverNotRunning(IllegalStateException ex) --> Line_5 $$ if (nested.contains(ConnectException.class)) [CD]
+Line_3 $$ NestedCheckedException nested = new NestedCheckedException("failed", ex) --> Line_5 $$ if (nested.contains(ConnectException.class)) [FD]
+Line_3 $$ NestedCheckedException nested = new NestedCheckedException("failed", ex) --> Line_6 $$ Throwable root = nested.getRootCause() [FD]
+Line_6 $$ Throwable root = nested.getRootCause() --> Line_7 $$ if (root.getMessage().contains("Connection refused")) [FD]
+Line_7 $$ if (root.getMessage().contains("Connection refused")) --> Line_8 $$ return true [CD]
+Line_2 $$ private boolean serverNotRunning(IllegalStateException ex) --> Line_11 $$ return false [CD]

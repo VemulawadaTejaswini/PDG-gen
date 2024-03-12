@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<LinkerProvider> getLinkerProvider(LinkerProvider.Type defaultType) --> Line_3 $$ Optional<ToolProvider> toolProvider = delegate.getView(ToolConfig.class).getToolProvider(cxxSection, LD) [CD]
+Line_2 $$ public Optional<LinkerProvider> getLinkerProvider(LinkerProvider.Type defaultType) --> Line_4 $$ if (!toolProvider.isPresent()) [CD]
+Line_4 $$ if (!toolProvider.isPresent()) --> Line_5 $$ return Optional.empty() [CD]
+Line_2 $$ public Optional<LinkerProvider> getLinkerProvider(LinkerProvider.Type defaultType) --> Line_7 $$ Optional<LinkerProvider.Type> type = delegate.getEnum(cxxSection, LINKER_PLATFORM, LinkerProvider.Type.class) [CD]
+Line_2 $$ public Optional<LinkerProvider> getLinkerProvider(LinkerProvider.Type defaultType) --> Line_8 $$ return Optional.of(new DefaultLinkerProvider(type.orElse(defaultType), toolProvider.get())) [CD]
+Line_2 $$ public Optional<LinkerProvider> getLinkerProvider(LinkerProvider.Type defaultType) --> Line_8 $$ return Optional.of(new DefaultLinkerProvider(type.orElse(defaultType), toolProvider.get())) [FD]

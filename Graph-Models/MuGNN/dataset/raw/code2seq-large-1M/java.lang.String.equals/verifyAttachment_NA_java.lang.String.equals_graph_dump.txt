@@ -1,0 +1,7 @@
+Line_3 $$ for (Element expElem : atts) --> Line_4 $$ String child = expElem.getFirstChild().getNodeValue() [FD]
+Line_3 $$ for (Element expElem : atts) --> Line_5 $$ String contentIdVal = expElem.getAttribute("contentId") [FD]
+Line_2 $$ private void verifyAttachment(List<Element> atts, String contentId, String value) --> Line_6 $$ if (contentId.equals(contentIdVal) && (Base64Utility.encode(value.getBytes()).equals(child) || Base64Utility.encode((value + "\n").getBytes()).equals(child))) [FD]
+Line_5 $$ String contentIdVal = expElem.getAttribute("contentId") --> Line_6 $$ if (contentId.equals(contentIdVal) && (Base64Utility.encode(value.getBytes()).equals(child) || Base64Utility.encode((value + "\n").getBytes()).equals(child))) [FD]
+Line_4 $$ String child = expElem.getFirstChild().getNodeValue() --> Line_6 $$ if (contentId.equals(contentIdVal) && (Base64Utility.encode(value.getBytes()).equals(child) || Base64Utility.encode((value + "\n").getBytes()).equals(child))) [FD]
+Line_6 $$ if (contentId.equals(contentIdVal) && (Base64Utility.encode(value.getBytes()).equals(child) || Base64Utility.encode((value + "\n").getBytes()).equals(child))) --> Line_7 $$ return [CD]
+Line_2 $$ private void verifyAttachment(List<Element> atts, String contentId, String value) --> Line_10 $$ fail("No encoded attachment with id " + contentId + " found") [CD]

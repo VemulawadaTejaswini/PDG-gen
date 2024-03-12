@@ -1,0 +1,8 @@
+Line_2 $$ static <T extends Authority> Set<T> getAuthoritiesOfActor(Actor actor, AuthorizationScope scope, Class<T> authorityClass) --> Line_3 $$ Set<T> results = new HashSet<T>() [CD]
+Line_2 $$ static <T extends Authority> Set<T> getAuthoritiesOfActor(Actor actor, AuthorizationScope scope, Class<T> authorityClass) --> Line_4 $$ for (Authorization authorization : findByActor(actor, scope)) [FD]
+Line_4 $$ for (Authorization authorization : findByActor(actor, scope)) --> Line_5 $$ Authority authority = authorization.getAuthority() [FD]
+Line_2 $$ static <T extends Authority> Set<T> getAuthoritiesOfActor(Actor actor, AuthorizationScope scope, Class<T> authorityClass) --> Line_6 $$ if (authorityClass.isInstance(authority)) [FD]
+Line_5 $$ Authority authority = authorization.getAuthority() --> Line_6 $$ if (authorityClass.isInstance(authority)) [FD]
+Line_6 $$ if (authorityClass.isInstance(authority)) --> Line_7 $$ results.add((T) authority) [CD]
+Line_3 $$ Set<T> results = new HashSet<T>() --> Line_7 $$ results.add((T) authority) [FD]
+Line_2 $$ static <T extends Authority> Set<T> getAuthoritiesOfActor(Actor actor, AuthorizationScope scope, Class<T> authorityClass) --> Line_10 $$ return results [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public Response stopTask(@QueryParam("job") String jobId, @QueryParam("task") int task, @QueryParam("user") String user, @QueryParam("token") String token, @QueryParam("sudo") String sudo) --> Line_4 $$ if (!spawn.getPermissionsManager().isExecutable(user, token, sudo, spawn.getJob(jobId))) [FD]
+Line_4 $$ if (!spawn.getPermissionsManager().isExecutable(user, token, sudo, spawn.getJob(jobId))) --> Line_5 $$ return Response.status(Response.Status.UNAUTHORIZED).entity("Insufficient privileges to fix directories for job " + jobId).build() [CD]
+Line_4 $$ if (!spawn.getPermissionsManager().isExecutable(user, token, sudo, spawn.getJob(jobId))) --> Line_7 $$ spawn.stopTask(jobId, task) [CD]
+Line_2 $$ public Response stopTask(@QueryParam("job") String jobId, @QueryParam("task") int task, @QueryParam("user") String user, @QueryParam("token") String token, @QueryParam("sudo") String sudo) --> Line_7 $$ spawn.stopTask(jobId, task) [FD]
+Line_4 $$ if (!spawn.getPermissionsManager().isExecutable(user, token, sudo, spawn.getJob(jobId))) --> Line_8 $$ return Response.ok().build() [CD]

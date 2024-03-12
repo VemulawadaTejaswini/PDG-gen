@@ -1,0 +1,8 @@
+Line_3 $$ try (KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer(extraProperties)) --> Line_4 $$ kafkaConsumer.subscribe(Collections.singletonList(topicName)) [FD]
+Line_2 $$ private void assertRecord(String topicName, String expectedKey, String expectedValue) --> Line_4 $$ kafkaConsumer.subscribe(Collections.singletonList(topicName)) [FD]
+Line_3 $$ try (KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer(extraProperties)) --> Line_5 $$ ConsumerRecords<String, String> records = kafkaConsumer.poll(10000) [FD]
+Line_5 $$ ConsumerRecords<String, String> records = kafkaConsumer.poll(10000) --> Line_6 $$ ConsumerRecord<String, String> record = Iterables.getOnlyElement(records) [FD]
+Line_2 $$ private void assertRecord(String topicName, String expectedKey, String expectedValue) --> Line_7 $$ assertEquals(expectedKey, record.key()) [FD]
+Line_6 $$ ConsumerRecord<String, String> record = Iterables.getOnlyElement(records) --> Line_7 $$ assertEquals(expectedKey, record.key()) [FD]
+Line_2 $$ private void assertRecord(String topicName, String expectedKey, String expectedValue) --> Line_8 $$ assertEquals(expectedValue, record.value()) [FD]
+Line_6 $$ ConsumerRecord<String, String> record = Iterables.getOnlyElement(records) --> Line_8 $$ assertEquals(expectedValue, record.value()) [FD]

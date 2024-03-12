@@ -1,0 +1,8 @@
+Line_2 $$ private Playback getPlayback(ReceiveStream receiveStream) --> Line_3 $$ Lock readLock = playbacksLock.readLock() [CD]
+Line_2 $$ private Playback getPlayback(ReceiveStream receiveStream) --> Line_4 $$ readLock.lock() [CD]
+Line_3 $$ Lock readLock = playbacksLock.readLock() --> Line_4 $$ readLock.lock() [FD]
+Line_2 $$ private Playback getPlayback(ReceiveStream receiveStream) --> Line_7 $$ if (playback.receiveStream == receiveStream) [FD]
+Line_6 $$ for (Playback playback : playbacks) --> Line_7 $$ if (playback.receiveStream == receiveStream) [FD]
+Line_7 $$ if (playback.receiveStream == receiveStream) --> Line_8 $$ return playback [CD]
+Line_3 $$ Lock readLock = playbacksLock.readLock() --> Line_11 $$ readLock.unlock() [FD]
+Line_2 $$ private Playback getPlayback(ReceiveStream receiveStream) --> Line_13 $$ return null [CD]

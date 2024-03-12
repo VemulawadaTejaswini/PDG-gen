@@ -1,0 +1,7 @@
+Line_2 $$ public void testOriginMethodHandle() throws Throwable --> Line_3 $$ Class<?> originMethodHandle = Class.forName(ORIGIN_METHOD_HANDLE) [CD]
+Line_2 $$ public void testOriginMethodHandle() throws Throwable --> Line_4 $$ DynamicType.Loaded<Foo> loaded = new ByteBuddy().subclass(Foo.class).method(isDeclaredBy(Foo.class)).intercept(MethodDelegation.to(originMethodHandle)).make().load(Foo.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_3 $$ Class<?> originMethodHandle = Class.forName(ORIGIN_METHOD_HANDLE) --> Line_4 $$ DynamicType.Loaded<Foo> loaded = new ByteBuddy().subclass(Foo.class).method(isDeclaredBy(Foo.class)).intercept(MethodDelegation.to(originMethodHandle)).make().load(Foo.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [FD]
+Line_2 $$ public void testOriginMethodHandle() throws Throwable --> Line_5 $$ Foo instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testOriginMethodHandle() throws Throwable --> Line_6 $$ assertThat(instance.foo(), instanceOf((Class<?>) originMethodHandle.getDeclaredField(TYPE).get(null))) [CD]
+Line_5 $$ Foo instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ assertThat(instance.foo(), instanceOf((Class<?>) originMethodHandle.getDeclaredField(TYPE).get(null))) [FD]
+Line_3 $$ Class<?> originMethodHandle = Class.forName(ORIGIN_METHOD_HANDLE) --> Line_6 $$ assertThat(instance.foo(), instanceOf((Class<?>) originMethodHandle.getDeclaredField(TYPE).get(null))) [FD]

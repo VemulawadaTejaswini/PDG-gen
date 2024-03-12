@@ -1,0 +1,8 @@
+Line_2 $$ public void returns_unique_urls() --> Line_3 $$ URL url = getClass().getResource(".") [CD]
+Line_2 $$ public void returns_unique_urls() --> Line_4 $$ ImmutableList<URL> redundantInput = ImmutableList.of(url, url) [CD]
+Line_3 $$ URL url = getClass().getResource(".") --> Line_4 $$ ImmutableList<URL> redundantInput = ImmutableList.of(url, url) [FD]
+Line_2 $$ public void returns_unique_urls() --> Line_5 $$ UrlSource source = UrlSource.From.iterable(redundantInput) [CD]
+Line_4 $$ ImmutableList<URL> redundantInput = ImmutableList.of(url, url) --> Line_5 $$ UrlSource source = UrlSource.From.iterable(redundantInput) [FD]
+Line_2 $$ public void returns_unique_urls() --> Line_6 $$ assertThat(source).hasSize(1).containsOnly(url) [CD]
+Line_3 $$ URL url = getClass().getResource(".") --> Line_6 $$ assertThat(source).hasSize(1).containsOnly(url) [FD]
+Line_5 $$ UrlSource source = UrlSource.From.iterable(redundantInput) --> Line_6 $$ assertThat(source).hasSize(1).containsOnly(url) [FD]

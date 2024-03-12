@@ -1,0 +1,8 @@
+Line_2 $$ synchronized void completed(final OperationResponse response) --> Line_4 $$ if (responseChannel != null) [CD]
+Line_4 $$ if (responseChannel != null) --> Line_5 $$ ControllerLogger.MGMT_OP_LOGGER.tracef("sending completed response %s for %d  --- interrupted: %s", response.getResponseNode(), getOperationId(), Thread.currentThread().isInterrupted()) [CD]
+Line_2 $$ synchronized void completed(final OperationResponse response) --> Line_5 $$ ControllerLogger.MGMT_OP_LOGGER.tracef("sending completed response %s for %d  --- interrupted: %s", response.getResponseNode(), getOperationId(), Thread.currentThread().isInterrupted()) [FD]
+Line_4 $$ if (responseChannel != null) --> Line_6 $$ streamSupport.registerStreams(operation.getOperationId(), response.getInputStreams()) [CD]
+Line_2 $$ synchronized void completed(final OperationResponse response) --> Line_6 $$ streamSupport.registerStreams(operation.getOperationId(), response.getInputStreams()) [FD]
+Line_2 $$ synchronized void completed(final OperationResponse response) --> Line_8 $$ sendResponse(responseChannel, ModelControllerProtocol.PARAM_OPERATION_COMPLETED, response.getResponseNode()) [FD]
+Line_2 $$ synchronized void completed(final OperationResponse response) --> Line_11 $$ ControllerLogger.MGMT_OP_LOGGER.failedSendingCompletedResponse(e, response.getResponseNode(), getOperationId()) [FD]
+Line_4 $$ if (responseChannel != null) --> Line_17 $$ ControllerLogger.MGMT_OP_LOGGER.tracef("received a post-prepare response for %d but no " + "COMPLETE_TX_REQUEST has been received; caching the response", getOperationId()) [CD]

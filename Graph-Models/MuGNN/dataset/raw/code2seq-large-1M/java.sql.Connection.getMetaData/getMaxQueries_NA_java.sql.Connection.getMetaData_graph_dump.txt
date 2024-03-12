@@ -1,0 +1,8 @@
+Line_2 $$ public int getMaxQueries() throws OdaException --> Line_3 $$ if (jdbcConn != null) [CD]
+Line_5 $$ DatabaseMetaData dbMetadata = jdbcConn.getMetaData() --> Line_6 $$ int maxstmts = dbMetadata.getMaxStatements() [FD]
+Line_5 $$ DatabaseMetaData dbMetadata = jdbcConn.getMetaData() --> Line_7 $$ int maxconns = dbMetadata.getMaxConnections() [FD]
+Line_8 $$ if (maxstmts == 0 && maxconns == 0) --> Line_9 $$ return 0 [CD]
+Line_8 $$ if (maxstmts == 0 && maxconns == 0) --> Line_10 $$ if (maxconns == 0 || maxstmts < maxconns) [CD]
+Line_10 $$ if (maxconns == 0 || maxstmts < maxconns) --> Line_11 $$ return 1 [CD]
+Line_10 $$ if (maxconns == 0 || maxstmts < maxconns) --> Line_13 $$ return maxstmts / maxconns [CD]
+Line_2 $$ public int getMaxQueries() throws OdaException --> Line_18 $$ return 0 [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void initKeySpace() --> Line_3 $$ if (startupCommands == null || startupCommands.length == 0) [CD]
+Line_3 $$ if (startupCommands == null || startupCommands.length == 0) --> Line_4 $$ return [CD]
+Line_2 $$ private void initKeySpace() --> Line_6 $$ Cluster cluster = Cluster.builder().withPort(CASSANDRA_CQL_PORT).addContactPoint(Constants.DEFAULT_CASSANDRA_HOST).build() [CD]
+Line_6 $$ Cluster cluster = Cluster.builder().withPort(CASSANDRA_CQL_PORT).addContactPoint(Constants.DEFAULT_CASSANDRA_HOST).build() --> Line_7 $$ try (Session session = cluster.connect()) [FD]
+Line_8 $$ for (String command : startupCommands) --> Line_10 $$ if (StringUtils.isNotEmpty(command)) [FD]
+Line_10 $$ if (StringUtils.isNotEmpty(command)) --> Line_11 $$ session.execute(command) [CD]
+Line_7 $$ try (Session session = cluster.connect()) --> Line_11 $$ session.execute(command) [FD]
+Line_8 $$ for (String command : startupCommands) --> Line_11 $$ session.execute(command) [FD]

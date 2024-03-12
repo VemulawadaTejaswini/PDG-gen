@@ -1,0 +1,8 @@
+Line_2 $$ private void connectToDevice(BluetoothDevice device) --> Line_3 $$ if (!connectionThreads.containsKey(device) || !connectionThreads.get(device).isAlive()) [FD]
+Line_2 $$ private void connectToDevice(BluetoothDevice device) --> Line_3 $$ if (!connectionThreads.containsKey(device) || !connectionThreads.get(device).isAlive()) [CD]
+Line_3 $$ if (!connectionThreads.containsKey(device) || !connectionThreads.get(device).isAlive()) --> Line_4 $$ Thread connectionThread = new Thread(new ClientConnect(device)) [CD]
+Line_3 $$ if (!connectionThreads.containsKey(device) || !connectionThreads.get(device).isAlive()) --> Line_5 $$ connectionThread.start() [CD]
+Line_4 $$ Thread connectionThread = new Thread(new ClientConnect(device)) --> Line_5 $$ connectionThread.start() [FD]
+Line_3 $$ if (!connectionThreads.containsKey(device) || !connectionThreads.get(device).isAlive()) --> Line_6 $$ connectionThreads.put(device, connectionThread) [CD]
+Line_2 $$ private void connectToDevice(BluetoothDevice device) --> Line_6 $$ connectionThreads.put(device, connectionThread) [FD]
+Line_4 $$ Thread connectionThread = new Thread(new ClientConnect(device)) --> Line_6 $$ connectionThreads.put(device, connectionThread) [FD]

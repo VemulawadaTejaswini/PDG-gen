@@ -1,0 +1,4 @@
+Line_2 $$ private void alterMySqlCommitDateColumn() --> Line_3 $$ ColumnType commitDateColType = getTypeOf(getCommitTableNameWithSchema(), "commit_date") [CD]
+Line_2 $$ private void alterMySqlCommitDateColumn() --> Line_4 $$ if (commitDateColType.typeName.equals("TIMESTAMP") && commitDateColType.precision == 19) [CD]
+Line_4 $$ if (commitDateColType.typeName.equals("TIMESTAMP") && commitDateColType.precision == 19) --> Line_5 $$ logger.info("migrating db schema from JaVers 3.9.2 to 3.9.3 (MySql only) ...") [CD]
+Line_4 $$ if (commitDateColType.typeName.equals("TIMESTAMP") && commitDateColType.precision == 19) --> Line_6 $$ executeSQL("ALTER TABLE " + getCommitTableNameWithSchema() + " MODIFY commit_date TIMESTAMP(3)") [CD]

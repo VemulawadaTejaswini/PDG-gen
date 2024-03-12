@@ -1,0 +1,7 @@
+Line_4 $$ for (GenericEntityStreamReader r : readers) --> Line_5 $$ r.register(l) [FD]
+Line_3 $$ for (EntityCreationListener l : listeners) --> Line_5 $$ r.register(l) [FD]
+Line_2 $$ public void readAsStream() throws Exception --> Line_8 $$ List<Future<Void>> futures = new ArrayList<Future<Void>>() [CD]
+Line_10 $$ SingleReader reader = new SingleReader(r) --> Line_11 $$ Future<Void> readFuture = EagleConfigFactory.load().getExecutor().submit(reader) [FD]
+Line_8 $$ List<Future<Void>> futures = new ArrayList<Future<Void>>() --> Line_12 $$ futures.add(readFuture) [FD]
+Line_11 $$ Future<Void> readFuture = EagleConfigFactory.load().getExecutor().submit(reader) --> Line_12 $$ futures.add(readFuture) [FD]
+Line_14 $$ for (Future<Void> future : futures) --> Line_16 $$ future.get() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ private Builder specBuilder() --> Line_3 $$ Builder builder = TypeSpec.classBuilder(className).addModifiers(modifiers).addFields(specs).addTypes(innerClasses.stream().map( s -> s.specBuilder().build()).collect(Collectors.toList())) [CD]
+Line_2 $$ private Builder specBuilder() --> Line_4 $$ if (superClass != null) [CD]
+Line_4 $$ if (superClass != null) --> Line_5 $$ builder.superclass(ClassName.get(superClass.packageName, superClass.className)) [CD]
+Line_6 $$ for (BiFunction<Builder, TestSource, Builder> function : builderTransformers) --> Line_7 $$ builder = function.apply(builder, this) [FD]
+Line_2 $$ private Builder specBuilder() --> Line_9 $$ return builder [CD]

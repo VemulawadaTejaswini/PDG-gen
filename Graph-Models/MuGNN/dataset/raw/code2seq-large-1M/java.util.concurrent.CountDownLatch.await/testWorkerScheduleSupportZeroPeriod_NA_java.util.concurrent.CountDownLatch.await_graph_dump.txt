@@ -1,0 +1,7 @@
+Line_3 $$ try (TaskCheckingScheduledExecutor executorService = new TaskCheckingScheduledExecutor()) --> Line_6 $$ Disposable disposable = Schedulers.workerSchedulePeriodically(executorService, tasks, latch::<>countDown, 0, 0, TimeUnit.MILLISECONDS) [FD]
+Line_5 $$ Disposable.Composite tasks = Disposables.composite() --> Line_6 $$ Disposable disposable = Schedulers.workerSchedulePeriodically(executorService, tasks, latch::<>countDown, 0, 0, TimeUnit.MILLISECONDS) [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_7 $$ latch.await() [FD]
+Line_6 $$ Disposable disposable = Schedulers.workerSchedulePeriodically(executorService, tasks, latch::<>countDown, 0, 0, TimeUnit.MILLISECONDS) --> Line_8 $$ disposable.dispose() [FD]
+Line_10 $$ int tasksBefore = executorService.tasks.size() --> Line_13 $$ assertThat(tasksAfter).isEqualTo(tasksBefore) [FD]
+Line_12 $$ int tasksAfter = executorService.tasks.size() --> Line_13 $$ assertThat(tasksAfter).isEqualTo(tasksBefore) [FD]
+Line_5 $$ Disposable.Composite tasks = Disposables.composite() --> Line_14 $$ assertThat(tasks.size()).isEqualTo(0) [FD]

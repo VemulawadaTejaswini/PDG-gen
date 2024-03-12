@@ -1,0 +1,6 @@
+Line_2 $$ private boolean shouldReboot(Node node) --> Line_3 $$ Optional<History.Event> lastReboot = node.history().event(History.Event.Type.rebooted) [FD]
+Line_2 $$ private boolean shouldReboot(Node node) --> Line_3 $$ Optional<History.Event> lastReboot = node.history().event(History.Event.Type.rebooted) [CD]
+Line_2 $$ private boolean shouldReboot(Node node) --> Line_4 $$ if (lastReboot.isPresent() && lastReboot.get().at().plus(rebootInterval).isAfter(clock.instant())) [CD]
+Line_3 $$ Optional<History.Event> lastReboot = node.history().event(History.Event.Type.rebooted) --> Line_4 $$ if (lastReboot.isPresent() && lastReboot.get().at().plus(rebootInterval).isAfter(clock.instant())) [FD]
+Line_4 $$ if (lastReboot.isPresent() && lastReboot.get().at().plus(rebootInterval).isAfter(clock.instant())) --> Line_5 $$ return false [CD]
+Line_4 $$ if (lastReboot.isPresent() && lastReboot.get().at().plus(rebootInterval).isAfter(clock.instant())) --> Line_7 $$ return random.nextDouble() < (double) interval().getSeconds() / (double) rebootInterval.getSeconds() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private String getStorageId(final ZooKeeperHolder zooKeeperHolder, final Environment environment) --> Line_3 $$ final CuratorFramework curator = zooKeeperHolder.get() [FD]
+Line_2 $$ private String getStorageId(final ZooKeeperHolder zooKeeperHolder, final Environment environment) --> Line_3 $$ final CuratorFramework curator = zooKeeperHolder.get() [CD]
+Line_3 $$ final CuratorFramework curator = zooKeeperHolder.get() --> Line_5 $$ curator.create().creatingParentsIfNeeded().forPath(StorageService.ZK_TIMELINES_DEFAULT_STORAGE, null) [FD]
+Line_3 $$ final CuratorFramework curator = zooKeeperHolder.get() --> Line_12 $$ final byte[] storageIdBytes = curator.getData().forPath(StorageService.ZK_TIMELINES_DEFAULT_STORAGE) [FD]
+Line_12 $$ final byte[] storageIdBytes = curator.getData().forPath(StorageService.ZK_TIMELINES_DEFAULT_STORAGE) --> Line_13 $$ if (storageIdBytes != null) [FD]
+Line_13 $$ if (storageIdBytes != null) --> Line_14 $$ return new String(storageIdBytes, Charsets.UTF_8) [CD]
+Line_2 $$ private String getStorageId(final ZooKeeperHolder zooKeeperHolder, final Environment environment) --> Line_19 $$ return environment.getProperty("nakadi.timelines.storage.default") [FD]
+Line_2 $$ private String getStorageId(final ZooKeeperHolder zooKeeperHolder, final Environment environment) --> Line_19 $$ return environment.getProperty("nakadi.timelines.storage.default") [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Map<Integer, Integer> getUserAttributes(long userId) --> Line_3 $$ Map<Integer, Integer> attributes = new HashMap() [CD]
+Line_2 $$ public Map<Integer, Integer> getUserAttributes(long userId) --> Line_4 $$ Query query = persistenceManager.newQuery("javax.jdo.query.SQL", "select a.attr_id,e.value_id from users u inner join user_attr a on u.user_id=? inner join user_map_enum ime on u.user_id=ime.user_id and a.attr_id=ime.attr_id inner join user_attr_enum e on ime.attr_id=e.attr_id and ime.value_id=e.value_id") [CD]
+Line_2 $$ public Map<Integer, Integer> getUserAttributes(long userId) --> Line_5 $$ Collection<Object[]> c = (Collection<Object[]>) query.execute(userId) [FD]
+Line_2 $$ public Map<Integer, Integer> getUserAttributes(long userId) --> Line_5 $$ Collection<Object[]> c = (Collection<Object[]>) query.execute(userId) [CD]
+Line_4 $$ Query query = persistenceManager.newQuery("javax.jdo.query.SQL", "select a.attr_id,e.value_id from users u inner join user_attr a on u.user_id=? inner join user_map_enum ime on u.user_id=ime.user_id and a.attr_id=ime.attr_id inner join user_attr_enum e on ime.attr_id=e.attr_id and ime.value_id=e.value_id") --> Line_5 $$ Collection<Object[]> c = (Collection<Object[]>) query.execute(userId) [FD]
+Line_3 $$ Map<Integer, Integer> attributes = new HashMap() --> Line_7 $$ attributes.put((Integer) array[0], (Integer) array[1]) [FD]
+Line_2 $$ public Map<Integer, Integer> getUserAttributes(long userId) --> Line_9 $$ return attributes [CD]

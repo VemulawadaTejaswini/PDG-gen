@@ -1,0 +1,8 @@
+Line_2 $$ private void unsafeClassHeaderSize64BitCompressedOops(Object instance) --> Line_3 $$ if (System.getProperty("useUnsafeClassHeaders") != null) [CD]
+Line_3 $$ if (System.getProperty("useUnsafeClassHeaders") != null) --> Line_4 $$ long narrowKlassPointer = UNSAFE.getInt(instance, NATIVE_WORD_SIZE) & UNSIGNED_INT_MASK [CD]
+Line_2 $$ private void unsafeClassHeaderSize64BitCompressedOops(Object instance) --> Line_4 $$ long narrowKlassPointer = UNSAFE.getInt(instance, NATIVE_WORD_SIZE) & UNSIGNED_INT_MASK [FD]
+Line_3 $$ if (System.getProperty("useUnsafeClassHeaders") != null) --> Line_5 $$ long wideKlassPointer = narrowKlassPointer << 3 [CD]
+Line_3 $$ if (System.getProperty("useUnsafeClassHeaders") != null) --> Line_6 $$ long sizeField = wideKlassPointer + 3 * UNSAFE.addressSize() [CD]
+Line_3 $$ if (System.getProperty("useUnsafeClassHeaders") != null) --> Line_7 $$ System.out.println(String.format("Size of %s is %s", instance.getClass().getName(), UNSAFE.getAddress(sizeField) & UNSIGNED_INT_MASK)) [CD]
+Line_2 $$ private void unsafeClassHeaderSize64BitCompressedOops(Object instance) --> Line_7 $$ System.out.println(String.format("Size of %s is %s", instance.getClass().getName(), UNSAFE.getAddress(sizeField) & UNSIGNED_INT_MASK)) [FD]
+Line_6 $$ long sizeField = wideKlassPointer + 3 * UNSAFE.addressSize() --> Line_7 $$ System.out.println(String.format("Size of %s is %s", instance.getClass().getName(), UNSAFE.getAddress(sizeField) & UNSIGNED_INT_MASK)) [FD]

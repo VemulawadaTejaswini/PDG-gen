@@ -1,0 +1,8 @@
+Line_2 $$ public static <R, E extends Throwable> R withContextClassLoader(final ClassLoader cl, final SupplierWithException<R, E> s) throws E --> Line_3 $$ final Thread currentThread = Thread.currentThread() [CD]
+Line_2 $$ public static <R, E extends Throwable> R withContextClassLoader(final ClassLoader cl, final SupplierWithException<R, E> s) throws E --> Line_4 $$ final ClassLoader oldClassLoader = currentThread.getContextClassLoader() [CD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_4 $$ final ClassLoader oldClassLoader = currentThread.getContextClassLoader() [FD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_6 $$ currentThread.setContextClassLoader(cl) [FD]
+Line_2 $$ public static <R, E extends Throwable> R withContextClassLoader(final ClassLoader cl, final SupplierWithException<R, E> s) throws E --> Line_6 $$ currentThread.setContextClassLoader(cl) [FD]
+Line_2 $$ public static <R, E extends Throwable> R withContextClassLoader(final ClassLoader cl, final SupplierWithException<R, E> s) throws E --> Line_7 $$ return s.get() [FD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_9 $$ currentThread.setContextClassLoader(oldClassLoader) [FD]
+Line_4 $$ final ClassLoader oldClassLoader = currentThread.getContextClassLoader() --> Line_9 $$ currentThread.setContextClassLoader(oldClassLoader) [FD]

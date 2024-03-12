@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized Collection<ModuleDeploymentStatus> getResults() throws InterruptedException --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public synchronized Collection<ModuleDeploymentStatus> getResults() throws InterruptedException --> Line_4 $$ long expiryTime = now + deploymentTimeout [CD]
+Line_2 $$ public synchronized Collection<ModuleDeploymentStatus> getResults() throws InterruptedException --> Line_5 $$ while (pending.size() > 0 && now < expiryTime) [CD]
+Line_5 $$ while (pending.size() > 0 && now < expiryTime) --> Line_6 $$ wait(expiryTime - now) [CD]
+Line_5 $$ while (pending.size() > 0 && now < expiryTime) --> Line_7 $$ now = System.currentTimeMillis() [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_7 $$ now = System.currentTimeMillis() [FD]
+Line_9 $$ for (ContainerModuleKey key : pending) --> Line_10 $$ results.put(key, new ModuleDeploymentStatus(key.container, Integer.valueOf(key.moduleSequence), key.moduleDescriptorKey, ModuleDeploymentStatus.State.failed, String.format("Deployment of module '%s' to container '%s' timed out after %d ms", key.moduleDescriptorKey, key.container, deploymentTimeout))) [FD]
+Line_2 $$ public synchronized Collection<ModuleDeploymentStatus> getResults() throws InterruptedException --> Line_12 $$ return results.values() [CD]

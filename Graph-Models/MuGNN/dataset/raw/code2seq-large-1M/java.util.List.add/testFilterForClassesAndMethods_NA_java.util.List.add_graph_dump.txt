@@ -1,0 +1,8 @@
+Line_2 $$ public static String testFilterForClassesAndMethods(Map<PsiClass, Collection<Location<?>>> methodsPerClass, JUnitVersion version) --> Line_3 $$ List<String> classFilters = new ArrayList() [CD]
+Line_2 $$ public static String testFilterForClassesAndMethods(Map<PsiClass, Collection<Location<?>>> methodsPerClass, JUnitVersion version) --> Line_4 $$ for (Entry<PsiClass, Collection<Location<?>>> entry : methodsPerClass.entrySet()) [FD]
+Line_2 $$ public static String testFilterForClassesAndMethods(Map<PsiClass, Collection<Location<?>>> methodsPerClass, JUnitVersion version) --> Line_5 $$ String filter = testFilterForClassAndMethods(entry.getKey(), version, extractMethodFilters(entry.getValue())) [FD]
+Line_5 $$ String filter = testFilterForClassAndMethods(entry.getKey(), version, extractMethodFilters(entry.getValue())) --> Line_6 $$ if (filter == null) [FD]
+Line_6 $$ if (filter == null) --> Line_7 $$ return null [CD]
+Line_5 $$ String filter = testFilterForClassAndMethods(entry.getKey(), version, extractMethodFilters(entry.getValue())) --> Line_9 $$ classFilters.add(filter) [FD]
+Line_2 $$ public static String testFilterForClassesAndMethods(Map<PsiClass, Collection<Location<?>>> methodsPerClass, JUnitVersion version) --> Line_11 $$ classFilters.sort(String::<>compareTo) [CD]
+Line_2 $$ public static String testFilterForClassesAndMethods(Map<PsiClass, Collection<Location<?>>> methodsPerClass, JUnitVersion version) --> Line_12 $$ return version == JUnitVersion.JUNIT_4 ? String.join("|", classFilters) : String.join(",", classFilters) [CD]

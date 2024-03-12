@@ -1,0 +1,5 @@
+Line_2 $$ public void sampleIncludesLastItem() --> Line_3 $$ Flux<Integer> source = Flux.concat(Flux.range(1, 5), Mono.delay(Duration.ofMillis(300)).ignoreElement().map(Long::<>intValue), Flux.just(80, 90, 100)).hide() [CD]
+Line_2 $$ public void sampleIncludesLastItem() --> Line_4 $$ Duration duration = StepVerifier.create(source.sample(Duration.ofMillis(250))).expectNext(5).expectNext(100).verifyComplete() [CD]
+Line_3 $$ Flux<Integer> source = Flux.concat(Flux.range(1, 5), Mono.delay(Duration.ofMillis(300)).ignoreElement().map(Long::<>intValue), Flux.just(80, 90, 100)).hide() --> Line_4 $$ Duration duration = StepVerifier.create(source.sample(Duration.ofMillis(250))).expectNext(5).expectNext(100).verifyComplete() [FD]
+Line_2 $$ public void sampleIncludesLastItem() --> Line_5 $$ assertThat(duration.toMillis()).isLessThan(500) [CD]
+Line_4 $$ Duration duration = StepVerifier.create(source.sample(Duration.ofMillis(250))).expectNext(5).expectNext(100).verifyComplete() --> Line_5 $$ assertThat(duration.toMillis()).isLessThan(500) [FD]

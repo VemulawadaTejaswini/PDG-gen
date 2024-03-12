@@ -1,0 +1,7 @@
+Line_4 $$ Class clazz = getHookedClass() --> Line_5 $$ if (clazz != null) [FD]
+Line_5 $$ if (clazz != null) --> Line_6 $$ Method[] methods = clazz.getDeclaredMethods() [CD]
+Line_4 $$ Class clazz = getHookedClass() --> Line_6 $$ Method[] methods = clazz.getDeclaredMethods() [FD]
+Line_5 $$ if (clazz != null) --> Line_7 $$ if (methods != null && methods.length > 0) [CD]
+Line_8 $$ for (Method method : methods) --> Line_9 $$ if (Modifier.isPublic(method.getModifiers()) && !sHookedMethodHandlers.containsKey(method.getName())) [FD]
+Line_9 $$ if (Modifier.isPublic(method.getModifiers()) && !sHookedMethodHandlers.containsKey(method.getName())) --> Line_10 $$ sHookedMethodHandlers.put(method.getName(), newBaseHandler()) [CD]
+Line_8 $$ for (Method method : methods) --> Line_10 $$ sHookedMethodHandlers.put(method.getName(), newBaseHandler()) [FD]

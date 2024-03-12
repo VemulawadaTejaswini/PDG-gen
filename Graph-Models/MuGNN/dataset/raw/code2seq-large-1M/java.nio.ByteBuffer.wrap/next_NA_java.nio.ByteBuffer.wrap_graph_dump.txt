@@ -1,0 +1,7 @@
+Line_5 $$ if (groupCommit && !decompressedFd.buffer().hasRemaining()) --> Line_6 $$ int sizeCompressed = 0 [CD]
+Line_6 $$ int sizeCompressed = 0 --> Line_8 $$ sizeCompressed = fd.readInt() [FD]
+Line_9 $$ byte[] b = new byte[sizeCompressed] --> Line_10 $$ fd.readFully(b) [FD]
+Line_9 $$ byte[] b = new byte[sizeCompressed] --> Line_11 $$ byte[] decompressed = CompressionService.decompressBytes(b) [FD]
+Line_11 $$ byte[] decompressed = CompressionService.decompressBytes(b) --> Line_12 $$ this.decompressedFd.setBuffer(ByteBuffer.wrap(decompressed)) [FD]
+Line_20 $$ if (groupCommit) --> Line_21 $$ _next = decompressedFd.readObject(LogEntry.class) [CD]
+Line_20 $$ if (groupCommit) --> Line_23 $$ _next = fd.readObject(LogEntry.class) [CD]

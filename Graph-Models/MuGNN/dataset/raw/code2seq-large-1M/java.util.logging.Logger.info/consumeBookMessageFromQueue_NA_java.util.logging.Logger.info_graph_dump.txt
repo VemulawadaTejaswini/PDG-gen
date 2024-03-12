@@ -1,0 +1,7 @@
+Line_2 $$ public Response consumeBookMessageFromQueue() --> Line_3 $$ log.info("entering consumeBookMessageFromQueue() xxx") [CD]
+Line_2 $$ public Response consumeBookMessageFromQueue() --> Line_4 $$ log.info("getting consumer") [CD]
+Line_6 $$ MessageConsumer consumer = session.createConsumer(bookQueue) --> Line_8 $$ TextMessage message = (TextMessage) consumer.receiveNoWait() [FD]
+Line_8 $$ TextMessage message = (TextMessage) consumer.receiveNoWait() --> Line_10 $$ if (message == null) [FD]
+Line_10 $$ if (message == null) --> Line_11 $$ return Response.serverError().build() [CD]
+Line_8 $$ TextMessage message = (TextMessage) consumer.receiveNoWait() --> Line_13 $$ log.info("message text: " + message.getText()) [FD]
+Line_8 $$ TextMessage message = (TextMessage) consumer.receiveNoWait() --> Line_14 $$ return Response.ok(message.getText()).build() [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void errorHandlingSideEffect() --> Line_3 $$ LongAdder failureStat = new LongAdder() [CD]
+Line_2 $$ public void errorHandlingSideEffect() --> Line_4 $$ Flux<String> flux = Flux.just("unknown").flatMap( k -> callExternalService(k).doOnError( e -> [CD]
+Line_3 $$ LongAdder failureStat = new LongAdder() --> Line_6 $$ failureStat.increment() [FD]
+Line_2 $$ public void errorHandlingSideEffect() --> Line_10 $$ StepVerifier.create(flux).expectNext("outdatedunknown").verifyComplete() [CD]
+Line_4 $$ Flux<String> flux = Flux.just("unknown").flatMap( k -> callExternalService(k).doOnError( e -> --> Line_10 $$ StepVerifier.create(flux).expectNext("outdatedunknown").verifyComplete() [FD]
+Line_2 $$ public void errorHandlingSideEffect() --> Line_11 $$ assertThat(failureStat.intValue()).isEqualTo(1) [CD]
+Line_3 $$ LongAdder failureStat = new LongAdder() --> Line_11 $$ assertThat(failureStat.intValue()).isEqualTo(1) [FD]

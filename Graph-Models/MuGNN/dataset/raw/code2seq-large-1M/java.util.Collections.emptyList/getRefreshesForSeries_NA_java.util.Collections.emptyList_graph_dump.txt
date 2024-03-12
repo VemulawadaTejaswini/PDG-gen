@@ -1,0 +1,7 @@
+Line_2 $$ public Iterable<Refresh> getRefreshesForSeries(ReflectionId id, Long seriesId) --> Line_3 $$ if (seriesId == null) [CD]
+Line_2 $$ public Iterable<Refresh> getRefreshesForSeries(ReflectionId id, Long seriesId) --> Line_3 $$ if (seriesId == null) [FD]
+Line_3 $$ if (seriesId == null) --> Line_4 $$ return Collections.emptyList() [CD]
+Line_2 $$ public Iterable<Refresh> getRefreshesForSeries(ReflectionId id, Long seriesId) --> Line_6 $$ final FindByCondition condition = new FindByCondition().setCondition(and(newTermQuery(REFRESH_REFLECTION_ID, id.getId()), newTermQuery(REFRESH_SERIES_ID, seriesId))) [CD]
+Line_2 $$ public Iterable<Refresh> getRefreshesForSeries(ReflectionId id, Long seriesId) --> Line_6 $$ final FindByCondition condition = new FindByCondition().setCondition(and(newTermQuery(REFRESH_REFLECTION_ID, id.getId()), newTermQuery(REFRESH_SERIES_ID, seriesId))) [FD]
+Line_2 $$ public Iterable<Refresh> getRefreshesForSeries(ReflectionId id, Long seriesId) --> Line_7 $$ return FluentIterable.from(refreshStore.get().find(condition)).transform(new Function<Entry<RefreshId, Refresh>, Refresh>() [CD]
+Line_6 $$ final FindByCondition condition = new FindByCondition().setCondition(and(newTermQuery(REFRESH_REFLECTION_ID, id.getId()), newTermQuery(REFRESH_SERIES_ID, seriesId))) --> Line_7 $$ return FluentIterable.from(refreshStore.get().find(condition)).transform(new Function<Entry<RefreshId, Refresh>, Refresh>() [FD]

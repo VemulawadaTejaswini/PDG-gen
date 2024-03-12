@@ -1,0 +1,8 @@
+Line_2 $$ void extractTextFromNode(NodeWithChildren node, StringBuffer textBufferOut) --> Line_3 $$ if (node.childNodes != null) [CD]
+Line_4 $$ for (Node childNode : node.childNodes) --> Line_5 $$ if (childNode.isTextNode()) [FD]
+Line_5 $$ if (childNode.isTextNode()) --> Line_6 $$ textBufferOut.append(((TextNode) childNode).text + " ") [CD]
+Line_2 $$ void extractTextFromNode(NodeWithChildren node, StringBuffer textBufferOut) --> Line_6 $$ textBufferOut.append(((TextNode) childNode).text + " ") [FD]
+Line_5 $$ if (childNode.isTextNode()) --> Line_7 $$ if (!childNode.isLeafNode()) [CD]
+Line_4 $$ for (Node childNode : node.childNodes) --> Line_7 $$ if (!childNode.isLeafNode()) [FD]
+Line_7 $$ if (!childNode.isLeafNode()) --> Line_8 $$ extractTextFromNode((NodeWithChildren) childNode, textBufferOut) [CD]
+Line_2 $$ void extractTextFromNode(NodeWithChildren node, StringBuffer textBufferOut) --> Line_8 $$ extractTextFromNode((NodeWithChildren) childNode, textBufferOut) [FD]

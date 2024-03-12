@@ -1,0 +1,8 @@
+Line_2 $$ public List<String> getGroups() --> Line_3 $$ List<String> groups = new ArrayList<String>() [CD]
+Line_5 $$ QueryParams queryParams = new QueryParams(dc) --> Line_6 $$ Map<String, List<String>> serviceMap = consulClient.getCatalogServices(queryParams).getValue() [FD]
+Line_6 $$ Map<String, List<String>> serviceMap = consulClient.getCatalogServices(queryParams).getValue() --> Line_7 $$ serviceMap.remove("consul") [FD]
+Line_6 $$ Map<String, List<String>> serviceMap = consulClient.getCatalogServices(queryParams).getValue() --> Line_8 $$ for (String service : serviceMap.keySet()) [FD]
+Line_3 $$ List<String> groups = new ArrayList<String>() --> Line_9 $$ groups.add(formatGroupName(dc, service)) [FD]
+Line_4 $$ for (String dc : getDatacenters()) --> Line_9 $$ groups.add(formatGroupName(dc, service)) [FD]
+Line_8 $$ for (String service : serviceMap.keySet()) --> Line_9 $$ groups.add(formatGroupName(dc, service)) [FD]
+Line_2 $$ public List<String> getGroups() --> Line_12 $$ return groups [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void startup() throws IOException --> Line_3 $$ if (state == Coprocessor.State.INSTALLED || state == Coprocessor.State.STOPPED) [CD]
+Line_3 $$ if (state == Coprocessor.State.INSTALLED || state == Coprocessor.State.STOPPED) --> Line_5 $$ Thread currentThread = Thread.currentThread() [CD]
+Line_3 $$ if (state == Coprocessor.State.INSTALLED || state == Coprocessor.State.STOPPED) --> Line_6 $$ ClassLoader hostClassLoader = currentThread.getContextClassLoader() [CD]
+Line_5 $$ Thread currentThread = Thread.currentThread() --> Line_6 $$ ClassLoader hostClassLoader = currentThread.getContextClassLoader() [FD]
+Line_5 $$ Thread currentThread = Thread.currentThread() --> Line_8 $$ currentThread.setContextClassLoader(this.getClassLoader()) [FD]
+Line_5 $$ Thread currentThread = Thread.currentThread() --> Line_12 $$ currentThread.setContextClassLoader(hostClassLoader) [FD]
+Line_6 $$ ClassLoader hostClassLoader = currentThread.getContextClassLoader() --> Line_12 $$ currentThread.setContextClassLoader(hostClassLoader) [FD]
+Line_3 $$ if (state == Coprocessor.State.INSTALLED || state == Coprocessor.State.STOPPED) --> Line_15 $$ LOG.warn("Not starting coprocessor " + impl.getClass().getName() + " because not inactive (state=" + state.toString() + ")") [CD]

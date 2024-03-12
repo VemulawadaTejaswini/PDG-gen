@@ -1,0 +1,5 @@
+Line_2 $$ private URI createGenericContainerUrl() --> Line_3 $$ URI uri = URI.create(SdkSystemSetting.AWS_CONTAINER_CREDENTIALS_FULL_URI.getStringValueOrThrow()) [CD]
+Line_2 $$ private URI createGenericContainerUrl() --> Line_4 $$ if (!ALLOWED_HOSTS.contains(uri.getHost())) [CD]
+Line_3 $$ URI uri = URI.create(SdkSystemSetting.AWS_CONTAINER_CREDENTIALS_FULL_URI.getStringValueOrThrow()) --> Line_4 $$ if (!ALLOWED_HOSTS.contains(uri.getHost())) [FD]
+Line_3 $$ URI uri = URI.create(SdkSystemSetting.AWS_CONTAINER_CREDENTIALS_FULL_URI.getStringValueOrThrow()) --> Line_5 $$ throw new SdkClientException(String.format("The full URI (%s) contained withing environment variable %s has an invalid host. " + "Host can only be one of [%s].", uri, SdkSystemSetting.AWS_CONTAINER_CREDENTIALS_FULL_URI.environmentVariable(), ALLOWED_HOSTS.stream().collect(joining(",")))) [FD]
+Line_2 $$ private URI createGenericContainerUrl() --> Line_7 $$ return uri [CD]

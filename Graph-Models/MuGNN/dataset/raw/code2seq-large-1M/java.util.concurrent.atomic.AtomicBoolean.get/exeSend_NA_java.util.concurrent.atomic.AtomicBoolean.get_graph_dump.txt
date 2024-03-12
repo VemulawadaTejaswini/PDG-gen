@@ -1,0 +1,8 @@
+Line_2 $$ public void exeSend() --> Line_3 $$ if (!inWrite.get() && this.isNeedToSend()) [CD]
+Line_3 $$ if (!inWrite.get() && this.isNeedToSend()) --> Line_4 $$ inWrite.compareAndSet(false, true) [CD]
+Line_3 $$ if (!inWrite.get() && this.isNeedToSend()) --> Line_5 $$ RpcObject rpc = this.getToSend() [CD]
+Line_3 $$ if (!inWrite.get() && this.isNeedToSend()) --> Line_6 $$ nioWriteBuffer.writeRpcObject(rpc) [CD]
+Line_5 $$ RpcObject rpc = this.getToSend() --> Line_6 $$ nioWriteBuffer.writeRpcObject(rpc) [FD]
+Line_3 $$ if (!inWrite.get() && this.isNeedToSend()) --> Line_7 $$ writeBuf.put(nioWriteBuffer.readBytes()) [CD]
+Line_3 $$ if (!inWrite.get() && this.isNeedToSend()) --> Line_8 $$ writeBuf.flip() [CD]
+Line_3 $$ if (!inWrite.get() && this.isNeedToSend()) --> Line_9 $$ channel.write(writeBuf, this, writeHandler) [CD]

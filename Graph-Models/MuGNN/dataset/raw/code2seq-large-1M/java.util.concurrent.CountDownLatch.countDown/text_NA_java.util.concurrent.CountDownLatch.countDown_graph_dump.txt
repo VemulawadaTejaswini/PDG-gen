@@ -1,0 +1,8 @@
+Line_3 $$ try (Watcher<String> watcher = dogma.client().fileWatcher("directory", "my-service", Query.ofText("/endpoints.txt"))) --> Line_5 $$ watcher.watch( unused -> latch.countDown()) [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_5 $$ watcher.watch( unused -> latch.countDown()) [FD]
+Line_3 $$ try (Watcher<String> watcher = dogma.client().fileWatcher("directory", "my-service", Query.ofText("/endpoints.txt"))) --> Line_6 $$ CentralDogmaEndpointGroup<String> endpointGroup = CentralDogmaEndpointGroup.ofWatcher(watcher, EndpointListDecoder.TEXT) [FD]
+Line_6 $$ CentralDogmaEndpointGroup<String> endpointGroup = CentralDogmaEndpointGroup.ofWatcher(watcher, EndpointListDecoder.TEXT) --> Line_7 $$ endpointGroup.awaitInitialEndpoints() [FD]
+Line_6 $$ CentralDogmaEndpointGroup<String> endpointGroup = CentralDogmaEndpointGroup.ofWatcher(watcher, EndpointListDecoder.TEXT) --> Line_8 $$ assertThat(endpointGroup.endpoints()).isEqualTo(ENDPOINT_LIST) [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_9 $$ assertThat(latch.getCount()).isOne() [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_11 $$ assertThat(latch.getCount()).isZero() [FD]
+Line_6 $$ CentralDogmaEndpointGroup<String> endpointGroup = CentralDogmaEndpointGroup.ofWatcher(watcher, EndpointListDecoder.TEXT) --> Line_12 $$ assertThat(endpointGroup.endpoints()).containsExactly(Endpoint.of("foo.bar", 1234)) [FD]

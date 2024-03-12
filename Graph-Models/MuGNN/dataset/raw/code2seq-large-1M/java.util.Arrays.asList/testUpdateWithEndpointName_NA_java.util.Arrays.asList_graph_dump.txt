@@ -1,0 +1,6 @@
+Line_2 $$ public void testUpdateWithEndpointName() --> Line_3 $$ List<String> names = Arrays.asList("users", "groups", "projects") [CD]
+Line_6 $$ ProjectUpdateRequest request = new ProjectUpdateRequest() --> Line_7 $$ request.setName(name) [FD]
+Line_4 $$ for (String name : names) --> Line_7 $$ request.setName(name) [FD]
+Line_4 $$ for (String name : names) --> Line_8 $$ call(() -> client().updateProject(uuid, request), BAD_REQUEST, "project_error_name_already_reserved", name) [FD]
+Line_5 $$ String uuid = projectUuid() --> Line_8 $$ call(() -> client().updateProject(uuid, request), BAD_REQUEST, "project_error_name_already_reserved", name) [FD]
+Line_6 $$ ProjectUpdateRequest request = new ProjectUpdateRequest() --> Line_8 $$ call(() -> client().updateProject(uuid, request), BAD_REQUEST, "project_error_name_already_reserved", name) [FD]

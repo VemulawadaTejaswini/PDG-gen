@@ -1,0 +1,5 @@
+Line_2 $$ public <T> T asObjectInternal(Document document, Class<T> type) --> Line_4 $$ return getObjectMapper().convertValue(document, type) [FD]
+Line_7 $$ if (iae.getCause() instanceof JsonMappingException) --> Line_8 $$ JsonMappingException jme = (JsonMappingException) iae.getCause() [CD]
+Line_7 $$ if (iae.getCause() instanceof JsonMappingException) --> Line_9 $$ if (jme.getMessage().contains("Cannot construct instance")) [CD]
+Line_8 $$ JsonMappingException jme = (JsonMappingException) iae.getCause() --> Line_9 $$ if (jme.getMessage().contains("Cannot construct instance")) [FD]
+Line_8 $$ JsonMappingException jme = (JsonMappingException) iae.getCause() --> Line_10 $$ throw new ObjectMappingException(errorMessage(jme.getMessage(), OME_NO_DEFAULT_CTOR)) [FD]

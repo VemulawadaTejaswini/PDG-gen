@@ -1,0 +1,8 @@
+Line_2 $$ public static Map<Attribute<Object>, Object> getAllAttributes(Context context, Class<?> clazz) --> Line_3 $$ Map<Attribute<Object>, Object> result = new HashMap() [CD]
+Line_2 $$ public static Map<Attribute<Object>, Object> getAllAttributes(Context context, Class<?> clazz) --> Line_5 $$ for (Field f : clazz.getDeclaredFields()) [FD]
+Line_5 $$ for (Field f : clazz.getDeclaredFields()) --> Line_6 $$ if (Modifier.isStatic(f.getModifiers()) && Attribute.class.isAssignableFrom(f.getType())) [FD]
+Line_5 $$ for (Field f : clazz.getDeclaredFields()) --> Line_7 $$ Attribute<Object> attribute = (Attribute<Object>) f.get(null) [FD]
+Line_3 $$ Map<Attribute<Object>, Object> result = new HashMap() --> Line_8 $$ result.put(attribute, context.getValue(attribute)) [FD]
+Line_7 $$ Attribute<Object> attribute = (Attribute<Object>) f.get(null) --> Line_8 $$ result.put(attribute, context.getValue(attribute)) [FD]
+Line_2 $$ public static Map<Attribute<Object>, Object> getAllAttributes(Context context, Class<?> clazz) --> Line_8 $$ result.put(attribute, context.getValue(attribute)) [FD]
+Line_2 $$ public static Map<Attribute<Object>, Object> getAllAttributes(Context context, Class<?> clazz) --> Line_14 $$ return result [CD]

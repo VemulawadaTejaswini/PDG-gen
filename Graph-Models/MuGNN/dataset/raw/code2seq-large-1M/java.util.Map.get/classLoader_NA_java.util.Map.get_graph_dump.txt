@@ -1,0 +1,8 @@
+Line_3 $$ ClassLoader cached = cache.get(cls) --> Line_4 $$ if (cached == null) [FD]
+Line_4 $$ if (cached == null) --> Line_5 $$ ClassLoader old = cache.putIfAbsent(cls, cached = detectClassLoader(cls)) [CD]
+Line_3 $$ ClassLoader cached = cache.get(cls) --> Line_5 $$ ClassLoader old = cache.putIfAbsent(cls, cached = detectClassLoader(cls)) [FD]
+Line_4 $$ if (cached == null) --> Line_6 $$ if (old != null) [CD]
+Line_5 $$ ClassLoader old = cache.putIfAbsent(cls, cached = detectClassLoader(cls)) --> Line_6 $$ if (old != null) [FD]
+Line_6 $$ if (old != null) --> Line_7 $$ cached = old [CD]
+Line_3 $$ ClassLoader cached = cache.get(cls) --> Line_7 $$ cached = old [FD]
+Line_5 $$ ClassLoader old = cache.putIfAbsent(cls, cached = detectClassLoader(cls)) --> Line_7 $$ cached = old [FD]

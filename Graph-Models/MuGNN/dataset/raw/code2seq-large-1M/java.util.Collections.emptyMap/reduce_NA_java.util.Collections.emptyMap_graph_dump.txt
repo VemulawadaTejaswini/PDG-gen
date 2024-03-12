@@ -1,0 +1,8 @@
+Line_4 $$ for (ComputeJobResult res : results) --> Line_5 $$ Map<PartitionHashRecord, List<PartitionEntryHashRecord>> nodeRes = res.getData() [FD]
+Line_11 $$ if (commonEntries == null) --> Line_12 $$ commonEntries = set [CD]
+Line_11 $$ if (commonEntries == null) --> Line_14 $$ commonEntries.retainAll(set) [CD]
+Line_12 $$ commonEntries = set --> Line_14 $$ commonEntries.retainAll(set) [FD]
+Line_12 $$ commonEntries = set --> Line_16 $$ if (commonEntries == null) [FD]
+Line_16 $$ if (commonEntries == null) --> Line_17 $$ return Collections.emptyMap() [CD]
+Line_12 $$ commonEntries = set --> Line_21 $$ conflicts.removeAll(commonEntries) [FD]
+Line_22 $$ if (!conflicts.isEmpty()) --> Line_23 $$ conflictsRes.put(e.getKey(), new ArrayList(conflicts)) [CD]

@@ -1,0 +1,4 @@
+Line_3 $$ RemoteDestroyReplyProcessor p = new RemoteDestroyReplyProcessor(r.getSystem(), recipient, false) --> Line_4 $$ p.requireResponse() [FD]
+Line_5 $$ RemoteDestroyMessage m = new RemoteDestroyMessage(recipient, r.getFullPath(), p, event, expectedOldValue, useOriginRemote, possibleDuplicate) --> Line_6 $$ Set<?> failures = r.getDistributionManager().putOutgoing(m) [FD]
+Line_6 $$ Set<?> failures = r.getDistributionManager().putOutgoing(m) --> Line_7 $$ if (failures != null && failures.size() > 0) [FD]
+Line_5 $$ RemoteDestroyMessage m = new RemoteDestroyMessage(recipient, r.getFullPath(), p, event, expectedOldValue, useOriginRemote, possibleDuplicate) --> Line_8 $$ throw new RemoteOperationException(LocalizedStrings.RemoteDestroyMessage_FAILED_SENDING_0.toLocalizedString(m)) [FD]

@@ -1,0 +1,6 @@
+Line_6 $$ HRegion region = getRS().getRegionByEncodedName(hriPrimary.getEncodedName()) --> Line_7 $$ region.flush(true) [FD]
+Line_10 $$ Get get = new Get(row) --> Line_11 $$ get.setConsistency(Consistency.TIMELINE) [FD]
+Line_10 $$ Get get = new Get(row) --> Line_12 $$ get.setReplicaId(1) [FD]
+Line_10 $$ Get get = new Get(row) --> Line_13 $$ Result result = table.get(get) [FD]
+Line_9 $$ byte[] row = Bytes.toBytes(String.valueOf(42)) --> Line_14 $$ Assert.assertArrayEquals(row, result.getValue(f, null)) [FD]
+Line_13 $$ Result result = table.get(get) --> Line_14 $$ Assert.assertArrayEquals(row, result.getValue(f, null)) [FD]

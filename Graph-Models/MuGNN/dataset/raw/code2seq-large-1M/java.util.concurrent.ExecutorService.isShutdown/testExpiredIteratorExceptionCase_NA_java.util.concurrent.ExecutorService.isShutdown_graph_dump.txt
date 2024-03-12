@@ -1,0 +1,7 @@
+Line_2 $$ public void testExpiredIteratorExceptionCase() throws Exception --> Line_3 $$ AsynchronousGetRecordsRetrievalStrategy strategy = new AsynchronousGetRecordsRetrievalStrategy(dataFetcher, executorService, (int) RETRY_GET_RECORDS_IN_SECONDS, completionServiceSupplier, SHARD_ID) [CD]
+Line_2 $$ public void testExpiredIteratorExceptionCase() throws Exception --> Line_4 $$ Future<DataFetcherResult> successfulFuture2 = mock(Future.class) [CD]
+Line_2 $$ public void testExpiredIteratorExceptionCase() throws Exception --> Line_5 $$ when(executorService.isShutdown()).thenReturn(false) [CD]
+Line_2 $$ public void testExpiredIteratorExceptionCase() throws Exception --> Line_6 $$ when(completionService.submit(any())).thenReturn(successfulFuture, successfulFuture2) [CD]
+Line_2 $$ public void testExpiredIteratorExceptionCase() throws Exception --> Line_7 $$ when(completionService.poll(anyLong(), any())).thenReturn(null).thenReturn(successfulFuture) [CD]
+Line_2 $$ public void testExpiredIteratorExceptionCase() throws Exception --> Line_8 $$ when(successfulFuture.get()).thenThrow(new ExecutionException(new ExpiredIteratorException("ExpiredException"))) [CD]
+Line_3 $$ AsynchronousGetRecordsRetrievalStrategy strategy = new AsynchronousGetRecordsRetrievalStrategy(dataFetcher, executorService, (int) RETRY_GET_RECORDS_IN_SECONDS, completionServiceSupplier, SHARD_ID) --> Line_10 $$ strategy.getRecords(10) [FD]

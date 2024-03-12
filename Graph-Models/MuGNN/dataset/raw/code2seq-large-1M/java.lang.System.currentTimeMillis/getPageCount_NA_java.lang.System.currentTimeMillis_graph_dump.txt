@@ -1,0 +1,5 @@
+Line_2 $$ public int getPageCount(final String group) --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ public int getPageCount(final String group) --> Line_5 $$ HibernateCallback<Number> callback =  session -> (Number) session.createQuery("select count(*) from RWikiCurrentObjectImpl r where r.realm = :realm").setString("realm", group).uniqueResult() [FD]
+Line_5 $$ HibernateCallback<Number> callback =  session -> (Number) session.createQuery("select count(*) from RWikiCurrentObjectImpl r where r.realm = :realm").setString("realm", group).uniqueResult() --> Line_6 $$ return getHibernateTemplate().execute(callback).intValue() [FD]
+Line_3 $$ long start = System.currentTimeMillis() --> Line_9 $$ TimeLogger.printTimer("RWikiObjectDaoImpl.getPageCount: " + group, start, finish) [FD]
+Line_8 $$ long finish = System.currentTimeMillis() --> Line_9 $$ TimeLogger.printTimer("RWikiObjectDaoImpl.getPageCount: " + group, start, finish) [FD]

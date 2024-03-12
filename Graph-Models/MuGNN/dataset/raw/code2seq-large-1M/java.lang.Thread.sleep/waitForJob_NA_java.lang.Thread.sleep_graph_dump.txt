@@ -1,0 +1,5 @@
+Line_2 $$ private void waitForJob() throws Exception --> Line_3 $$ for (int i = 0; i < 60; i++) [CD]
+Line_5 $$ final JobStatus jobStatus = clusterClient.getJobStatus(jobGraph.getJobID()).get(60, TimeUnit.SECONDS) --> Line_6 $$ assertThat(jobStatus.isGloballyTerminalState(), equalTo(false)) [FD]
+Line_5 $$ final JobStatus jobStatus = clusterClient.getJobStatus(jobGraph.getJobID()).get(60, TimeUnit.SECONDS) --> Line_7 $$ if (jobStatus == JobStatus.RUNNING) [FD]
+Line_7 $$ if (jobStatus == JobStatus.RUNNING) --> Line_8 $$ return [CD]
+Line_3 $$ for (int i = 0; i < 60; i++) --> Line_12 $$ Thread.sleep(1000) [CD]

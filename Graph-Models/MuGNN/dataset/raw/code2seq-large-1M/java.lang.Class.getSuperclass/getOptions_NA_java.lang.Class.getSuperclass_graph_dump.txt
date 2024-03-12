@@ -1,0 +1,8 @@
+Line_2 $$ private static List<Option> getOptions(Class<?> bean) --> Line_3 $$ ImmutableList.Builder<Option> allOptions = ImmutableList.builder() [CD]
+Line_2 $$ private static List<Option> getOptions(Class<?> bean) --> Line_4 $$ for (Class<?> c = bean; c != null; c = c.getSuperclass()) [CD]
+Line_5 $$ ImmutableList.Builder<AccessibleObject> builder = ImmutableList.builder() --> Line_6 $$ List<AccessibleObject> fieldAndMethods = builder.add(c.getDeclaredFields()).add(c.getDeclaredMethods()).build() [FD]
+Line_7 $$ for (AccessibleObject accessibleObject : fieldAndMethods) --> Line_8 $$ Option option = accessibleObject.getAnnotation(Option.class) [FD]
+Line_9 $$ if (option != null) --> Line_10 $$ allOptions.add(option) [CD]
+Line_3 $$ ImmutableList.Builder<Option> allOptions = ImmutableList.builder() --> Line_10 $$ allOptions.add(option) [FD]
+Line_2 $$ private static List<Option> getOptions(Class<?> bean) --> Line_14 $$ return allOptions.build() [CD]
+Line_3 $$ ImmutableList.Builder<Option> allOptions = ImmutableList.builder() --> Line_14 $$ return allOptions.build() [FD]

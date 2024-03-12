@@ -1,0 +1,8 @@
+Line_2 $$ private boolean verifyToken(Account account, Credential credential) --> Line_3 $$ if (credential instanceof PasswordCredential && account instanceof SimpleAccount) [CD]
+Line_3 $$ if (credential instanceof PasswordCredential && account instanceof SimpleAccount) --> Line_4 $$ char[] token = ((PasswordCredential) credential).getPassword() [CD]
+Line_3 $$ if (credential instanceof PasswordCredential && account instanceof SimpleAccount) --> Line_5 $$ char[] expectedToken = cachedAccounts.get(account.getPrincipal().getName()).get().getCredentials().getPassword() [CD]
+Line_2 $$ private boolean verifyToken(Account account, Credential credential) --> Line_5 $$ char[] expectedToken = cachedAccounts.get(account.getPrincipal().getName()).get().getCredentials().getPassword() [FD]
+Line_3 $$ if (credential instanceof PasswordCredential && account instanceof SimpleAccount) --> Line_6 $$ return Arrays.equals(token, expectedToken) [CD]
+Line_4 $$ char[] token = ((PasswordCredential) credential).getPassword() --> Line_6 $$ return Arrays.equals(token, expectedToken) [FD]
+Line_5 $$ char[] expectedToken = cachedAccounts.get(account.getPrincipal().getName()).get().getCredentials().getPassword() --> Line_6 $$ return Arrays.equals(token, expectedToken) [FD]
+Line_2 $$ private boolean verifyToken(Account account, Credential credential) --> Line_8 $$ return false [CD]

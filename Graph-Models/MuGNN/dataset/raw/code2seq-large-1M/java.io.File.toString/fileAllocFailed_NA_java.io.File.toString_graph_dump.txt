@@ -1,0 +1,6 @@
+Line_2 $$ private void fileAllocFailed(File file, long length, boolean is_new, Throwable e) --> Line_3 $$ errorMessage = Debug.getNestedExceptionMessage(e) + " (allocateFiles " + (is_new ? "new" : "existing") + ":" + file.toString() + ")" [FD]
+Line_2 $$ private void fileAllocFailed(File file, long length, boolean is_new, Throwable e) --> Line_4 $$ if (errorMessage.contains("not enough space")) [CD]
+Line_4 $$ if (errorMessage.contains("not enough space")) --> Line_6 $$ if (length >= 4 * 1024 * 1024 * 1024L) [CD]
+Line_2 $$ private void fileAllocFailed(File file, long length, boolean is_new, Throwable e) --> Line_6 $$ if (length >= 4 * 1024 * 1024 * 1024L) [FD]
+Line_6 $$ if (length >= 4 * 1024 * 1024 * 1024L) --> Line_7 $$ errorMessage = MessageText.getString("DiskManager.error.nospace_fat32") [CD]
+Line_6 $$ if (length >= 4 * 1024 * 1024 * 1024L) --> Line_9 $$ errorMessage = MessageText.getString("DiskManager.error.nospace") [CD]

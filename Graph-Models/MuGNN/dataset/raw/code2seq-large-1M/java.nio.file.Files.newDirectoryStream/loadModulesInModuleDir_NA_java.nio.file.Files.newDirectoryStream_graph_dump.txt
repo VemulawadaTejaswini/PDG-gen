@@ -1,0 +1,8 @@
+Line_2 $$ private static void loadModulesInModuleDir(ActorLoader instance, Path moduleDir) --> Line_3 $$ LOG.info("scanning module directory " + moduleDir + " for modules.") [CD]
+Line_2 $$ private static void loadModulesInModuleDir(ActorLoader instance, Path moduleDir) --> Line_4 $$ try (DirectoryStream<Path> children = Files.newDirectoryStream(moduleDir)) [FD]
+Line_5 $$ for (Path child : children) --> Line_6 $$ if (isValidFile(child, false)) [FD]
+Line_5 $$ for (Path child : children) --> Line_8 $$ final URL jarUrl = child.toUri().toURL() [FD]
+Line_2 $$ private static void loadModulesInModuleDir(ActorLoader instance, Path moduleDir) --> Line_9 $$ instance.reloadModule(jarUrl) [FD]
+Line_8 $$ final URL jarUrl = child.toUri().toURL() --> Line_9 $$ instance.reloadModule(jarUrl) [FD]
+Line_6 $$ if (isValidFile(child, false)) --> Line_14 $$ LOG.warn("A non-jar item " + child.getFileName() + " found in the modules directory " + moduleDir) [CD]
+Line_5 $$ for (Path child : children) --> Line_14 $$ LOG.warn("A non-jar item " + child.getFileName() + " found in the modules directory " + moduleDir) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static void readLinesFromStreamToSession(InputStream inputStream, Session session) --> Line_5 $$ RemoteEndpoint.Basic basicRemote = session.getBasicRemote() [FD]
+Line_6 $$ while (true) --> Line_7 $$ if (Thread.interrupted()) [CD]
+Line_7 $$ if (Thread.interrupted()) --> Line_8 $$ logger.info("Interrupted while starting to write to websocket") [CD]
+Line_7 $$ if (Thread.interrupted()) --> Line_9 $$ Thread.currentThread().interrupt() [CD]
+Line_3 $$ try (Reader reader = new InputStreamReader(inputStream); --> Line_13 $$ String line = bufferedReader.readLine() [FD]
+Line_5 $$ RemoteEndpoint.Basic basicRemote = session.getBasicRemote() --> Line_14 $$ basicRemote.sendObject(line + "\n\r") [FD]
+Line_20 $$ if (!Thread.interrupted()) --> Line_21 $$ logger.warn("Got IOException while writing to websocket, bailing..", e) [CD]
+Line_20 $$ if (!Thread.interrupted()) --> Line_24 $$ Thread.currentThread().interrupt() [CD]

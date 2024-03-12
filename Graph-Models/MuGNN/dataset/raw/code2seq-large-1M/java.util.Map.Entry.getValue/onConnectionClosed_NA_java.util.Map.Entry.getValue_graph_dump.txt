@@ -1,0 +1,8 @@
+Line_5 $$ RequestHolder holder = entry.getValue() --> Line_6 $$ if (holder.connection().getCacheKey().equals(connection.getCacheKey())) [FD]
+Line_2 $$ public void onConnectionClosed(Transport.Connection connection) --> Line_6 $$ if (holder.connection().getCacheKey().equals(connection.getCacheKey())) [FD]
+Line_6 $$ if (holder.connection().getCacheKey().equals(connection.getCacheKey())) --> Line_7 $$ final RequestHolder holderToNotify = clientHandlers.remove(entry.getKey()) [CD]
+Line_6 $$ if (holder.connection().getCacheKey().equals(connection.getCacheKey())) --> Line_8 $$ if (holderToNotify != null) [CD]
+Line_7 $$ final RequestHolder holderToNotify = clientHandlers.remove(entry.getKey()) --> Line_8 $$ if (holderToNotify != null) [FD]
+Line_8 $$ if (holderToNotify != null) --> Line_9 $$ threadPool.generic().execute(() -> holderToNotify.handler().handleException(new NodeDisconnectedException(connection.getNode(), holderToNotify.action()))) [CD]
+Line_7 $$ final RequestHolder holderToNotify = clientHandlers.remove(entry.getKey()) --> Line_9 $$ threadPool.generic().execute(() -> holderToNotify.handler().handleException(new NodeDisconnectedException(connection.getNode(), holderToNotify.action()))) [FD]
+Line_2 $$ public void onConnectionClosed(Transport.Connection connection) --> Line_9 $$ threadPool.generic().execute(() -> holderToNotify.handler().handleException(new NodeDisconnectedException(connection.getNode(), holderToNotify.action()))) [FD]

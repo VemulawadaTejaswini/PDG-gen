@@ -1,0 +1,6 @@
+Line_3 $$ try (MariaDbPoolDataSource pool = new MariaDbPoolDataSource(connUri + "&maxPoolSize=1")) --> Line_4 $$ try (Connection connection = pool.getConnection()) [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_5 $$ assertEquals(Connection.TRANSACTION_REPEATABLE_READ, connection.getTransactionIsolation()) [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_6 $$ connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE) [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_7 $$ assertEquals(Connection.TRANSACTION_SERIALIZABLE, connection.getTransactionIsolation()) [FD]
+Line_3 $$ try (MariaDbPoolDataSource pool = new MariaDbPoolDataSource(connUri + "&maxPoolSize=1")) --> Line_9 $$ try (Connection connection = pool.getConnection()) [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_10 $$ assertEquals(Connection.TRANSACTION_REPEATABLE_READ, connection.getTransactionIsolation()) [FD]

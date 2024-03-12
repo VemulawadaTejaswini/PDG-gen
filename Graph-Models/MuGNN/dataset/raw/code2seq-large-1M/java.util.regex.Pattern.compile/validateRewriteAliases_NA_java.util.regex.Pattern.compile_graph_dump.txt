@@ -1,0 +1,7 @@
+Line_2 $$ public CmsRewriteAliasValidationReply validateRewriteAliases(CmsRewriteAliasValidationRequest validationRequest) --> Line_3 $$ CmsRewriteAliasValidationReply result = new CmsRewriteAliasValidationReply() [CD]
+Line_2 $$ public CmsRewriteAliasValidationReply validateRewriteAliases(CmsRewriteAliasValidationRequest validationRequest) --> Line_4 $$ for (CmsRewriteAliasTableRow editedRow : validationRequest.getEditedRewriteAliases()) [FD]
+Line_4 $$ for (CmsRewriteAliasTableRow editedRow : validationRequest.getEditedRewriteAliases()) --> Line_6 $$ String patternString = editedRow.getPatternString() [FD]
+Line_6 $$ String patternString = editedRow.getPatternString() --> Line_7 $$ Pattern.compile(patternString) [FD]
+Line_3 $$ CmsRewriteAliasValidationReply result = new CmsRewriteAliasValidationReply() --> Line_9 $$ result.addError(editedRow.getId(), "Syntax error in regular expression: " + e.getMessage()) [FD]
+Line_4 $$ for (CmsRewriteAliasTableRow editedRow : validationRequest.getEditedRewriteAliases()) --> Line_9 $$ result.addError(editedRow.getId(), "Syntax error in regular expression: " + e.getMessage()) [FD]
+Line_2 $$ public CmsRewriteAliasValidationReply validateRewriteAliases(CmsRewriteAliasValidationRequest validationRequest) --> Line_12 $$ return result [CD]

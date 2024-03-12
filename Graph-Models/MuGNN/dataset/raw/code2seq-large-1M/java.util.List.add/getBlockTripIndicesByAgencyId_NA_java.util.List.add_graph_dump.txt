@@ -1,0 +1,6 @@
+Line_2 $$ private <T extends HasBlockTrips> Map<String, List<T>> getBlockTripIndicesByAgencyId(List<T> indices) --> Line_3 $$ Map<String, List<T>> blocksByAgencyId = new FactoryMap<String, List<T>>(new ArrayList<T>()) [CD]
+Line_4 $$ for (T blockIndex : indices) --> Line_6 $$ for (BlockTripEntry blockTrip : blockIndex.getTrips()) agencyIds.add(blockTrip.getTrip().getId().getAgencyId()) [FD]
+Line_5 $$ Set<String> agencyIds = new HashSet<String>() --> Line_6 $$ for (BlockTripEntry blockTrip : blockIndex.getTrips()) agencyIds.add(blockTrip.getTrip().getId().getAgencyId()) [FD]
+Line_4 $$ for (T blockIndex : indices) --> Line_7 $$ for (String agencyId : agencyIds) blocksByAgencyId.get(agencyId).add(blockIndex) [FD]
+Line_3 $$ Map<String, List<T>> blocksByAgencyId = new FactoryMap<String, List<T>>(new ArrayList<T>()) --> Line_7 $$ for (String agencyId : agencyIds) blocksByAgencyId.get(agencyId).add(blockIndex) [FD]
+Line_2 $$ private <T extends HasBlockTrips> Map<String, List<T>> getBlockTripIndicesByAgencyId(List<T> indices) --> Line_9 $$ return blocksByAgencyId [CD]

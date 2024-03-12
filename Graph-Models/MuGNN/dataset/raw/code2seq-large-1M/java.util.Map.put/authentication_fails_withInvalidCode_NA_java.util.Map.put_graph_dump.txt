@@ -1,0 +1,6 @@
+Line_2 $$ public void authentication_fails_withInvalidCode() --> Line_3 $$ Map<String, String> codeData = new HashMap() [CD]
+Line_2 $$ public void authentication_fails_withInvalidCode() --> Line_4 $$ codeData.put("action", "someotheraction") [CD]
+Line_3 $$ Map<String, String> codeData = new HashMap() --> Line_4 $$ codeData.put("action", "someotheraction") [FD]
+Line_2 $$ public void authentication_fails_withInvalidCode() --> Line_5 $$ when(codeStore.retrieveCode("the_secret_code", IdentityZoneHolder.get().getId())).thenReturn(new ExpiringCode("the_secret_code", new Timestamp(123), JsonUtils.writeValueAsString(codeData), null)) [CD]
+Line_3 $$ Map<String, String> codeData = new HashMap() --> Line_5 $$ when(codeStore.retrieveCode("the_secret_code", IdentityZoneHolder.get().getId())).thenReturn(new ExpiringCode("the_secret_code", new Timestamp(123), JsonUtils.writeValueAsString(codeData), null)) [FD]
+Line_2 $$ public void authentication_fails_withInvalidCode() --> Line_6 $$ manager.authenticate(authenticationToken) [CD]

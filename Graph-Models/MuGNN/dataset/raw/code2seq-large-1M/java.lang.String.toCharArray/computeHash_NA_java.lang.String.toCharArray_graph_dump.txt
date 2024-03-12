@@ -1,0 +1,8 @@
+Line_2 $$ public static String computeHash(String password, byte[] saltBytes) throws NoSuchAlgorithmException, InvalidKeySpecException --> Line_3 $$ char[] passwordChars = password.toCharArray() [FD]
+Line_2 $$ public static String computeHash(String password, byte[] saltBytes) throws NoSuchAlgorithmException, InvalidKeySpecException --> Line_3 $$ char[] passwordChars = password.toCharArray() [CD]
+Line_2 $$ public static String computeHash(String password, byte[] saltBytes) throws NoSuchAlgorithmException, InvalidKeySpecException --> Line_4 $$ PBEKeySpec spec = new PBEKeySpec(passwordChars, saltBytes, Constants.numIterations, Constants.keyLength) [CD]
+Line_2 $$ public static String computeHash(String password, byte[] saltBytes) throws NoSuchAlgorithmException, InvalidKeySpecException --> Line_5 $$ SecretKeyFactory key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1") [CD]
+Line_2 $$ public static String computeHash(String password, byte[] saltBytes) throws NoSuchAlgorithmException, InvalidKeySpecException --> Line_6 $$ byte[] hashedPassword = key.generateSecret(spec).getEncoded() [CD]
+Line_5 $$ SecretKeyFactory key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1") --> Line_6 $$ byte[] hashedPassword = key.generateSecret(spec).getEncoded() [FD]
+Line_4 $$ PBEKeySpec spec = new PBEKeySpec(passwordChars, saltBytes, Constants.numIterations, Constants.keyLength) --> Line_6 $$ byte[] hashedPassword = key.generateSecret(spec).getEncoded() [FD]
+Line_2 $$ public static String computeHash(String password, byte[] saltBytes) throws NoSuchAlgorithmException, InvalidKeySpecException --> Line_7 $$ return String.format("%x", new BigInteger(hashedPassword)) [CD]

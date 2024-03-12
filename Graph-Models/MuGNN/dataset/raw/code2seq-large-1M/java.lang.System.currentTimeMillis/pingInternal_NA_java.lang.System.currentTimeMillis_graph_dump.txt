@@ -1,0 +1,8 @@
+Line_2 $$ public void pingInternal(boolean checkForClosedConnection, int timeoutMillis) throws SQLException --> Line_3 $$ if (checkForClosedConnection) [CD]
+Line_3 $$ if (checkForClosedConnection) --> Line_4 $$ checkClosed() [CD]
+Line_2 $$ public void pingInternal(boolean checkForClosedConnection, int timeoutMillis) throws SQLException --> Line_6 $$ long pingMillisLifetime = getSelfDestructOnPingSecondsLifetime() [CD]
+Line_2 $$ public void pingInternal(boolean checkForClosedConnection, int timeoutMillis) throws SQLException --> Line_7 $$ int pingMaxOperations = getSelfDestructOnPingMaxOperations() [CD]
+Line_2 $$ public void pingInternal(boolean checkForClosedConnection, int timeoutMillis) throws SQLException --> Line_8 $$ if ((pingMillisLifetime > 0 && (System.currentTimeMillis() - this.connectionCreationTimeMillis) > pingMillisLifetime) || (pingMaxOperations > 0 && pingMaxOperations <= this.io.getCommandCount())) [CD]
+Line_8 $$ if ((pingMillisLifetime > 0 && (System.currentTimeMillis() - this.connectionCreationTimeMillis) > pingMillisLifetime) || (pingMaxOperations > 0 && pingMaxOperations <= this.io.getCommandCount())) --> Line_9 $$ close() [CD]
+Line_2 $$ public void pingInternal(boolean checkForClosedConnection, int timeoutMillis) throws SQLException --> Line_12 $$ this.io.sendCommand(MysqlDefs.PING, null, null, false, null, timeoutMillis) [FD]
+Line_2 $$ public void pingInternal(boolean checkForClosedConnection, int timeoutMillis) throws SQLException --> Line_12 $$ this.io.sendCommand(MysqlDefs.PING, null, null, false, null, timeoutMillis) [CD]

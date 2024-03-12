@@ -1,0 +1,8 @@
+Line_2 $$ private void serialization1D(double[] da) throws IOException --> Line_3 $$ File f = File.createTempFile("blah", "foo") [CD]
+Line_2 $$ private void serialization1D(double[] da) throws IOException --> Line_4 $$ f.deleteOnExit() [CD]
+Line_3 $$ File f = File.createTempFile("blah", "foo") --> Line_4 $$ f.deleteOnExit() [FD]
+Line_5 $$ try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(f))) --> Line_6 $$ DoubleArrays.serialize(dos, da) [FD]
+Line_2 $$ private void serialization1D(double[] da) throws IOException --> Line_6 $$ DoubleArrays.serialize(dos, da) [FD]
+Line_8 $$ try (DataInputStream dis = new DataInputStream(new FileInputStream(f))) --> Line_9 $$ double[] read = DoubleArrays.deserialize(dis) [FD]
+Line_2 $$ private void serialization1D(double[] da) throws IOException --> Line_10 $$ Assert.assertTrue(DoubleArrays.arrayEquals(da, read)) [FD]
+Line_9 $$ double[] read = DoubleArrays.deserialize(dis) --> Line_10 $$ Assert.assertTrue(DoubleArrays.arrayEquals(da, read)) [FD]

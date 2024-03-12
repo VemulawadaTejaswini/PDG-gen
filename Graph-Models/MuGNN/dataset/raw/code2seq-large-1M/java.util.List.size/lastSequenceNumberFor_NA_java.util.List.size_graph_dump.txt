@@ -1,0 +1,5 @@
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_3 $$ List<Long> results = entityManager().createQuery("SELECT MAX(e.sequenceNumber) FROM " + domainEventEntryEntityName() + " e WHERE e.aggregateIdentifier = :aggregateId", Long.class).setParameter("aggregateId", aggregateIdentifier).getResultList() [CD]
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_3 $$ List<Long> results = entityManager().createQuery("SELECT MAX(e.sequenceNumber) FROM " + domainEventEntryEntityName() + " e WHERE e.aggregateIdentifier = :aggregateId", Long.class).setParameter("aggregateId", aggregateIdentifier).getResultList() [FD]
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_4 $$ if (results.size() == 0) [CD]
+Line_4 $$ if (results.size() == 0) --> Line_5 $$ return Optional.empty() [CD]
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_7 $$ return Optional.ofNullable(results.get(0)) [CD]

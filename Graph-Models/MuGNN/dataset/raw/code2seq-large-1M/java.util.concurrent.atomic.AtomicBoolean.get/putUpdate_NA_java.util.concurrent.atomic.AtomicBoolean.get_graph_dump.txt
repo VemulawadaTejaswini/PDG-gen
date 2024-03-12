@@ -1,0 +1,8 @@
+Line_2 $$ public void putUpdate(Collection<? extends Persistable> updates) --> Line_3 $$ if (shutdown.get()) [CD]
+Line_3 $$ if (shutdown.get()) --> Line_4 $$ long count = shutdownWarnCount.getAndIncrement() [CD]
+Line_3 $$ if (shutdown.get()) --> Line_5 $$ if (count <= MAX_SHUTDOWN_WARN_COUNT) [CD]
+Line_4 $$ long count = shutdownWarnCount.getAndIncrement() --> Line_5 $$ if (count <= MAX_SHUTDOWN_WARN_COUNT) [FD]
+Line_5 $$ if (count <= MAX_SHUTDOWN_WARN_COUNT) --> Line_6 $$ log.warn("Info posted to RemoteUIStatsStorageRouter but router is shut down.") [CD]
+Line_3 $$ if (shutdown.get()) --> Line_8 $$ if (count == MAX_SHUTDOWN_WARN_COUNT) [CD]
+Line_4 $$ long count = shutdownWarnCount.getAndIncrement() --> Line_8 $$ if (count == MAX_SHUTDOWN_WARN_COUNT) [FD]
+Line_8 $$ if (count == MAX_SHUTDOWN_WARN_COUNT) --> Line_9 $$ log.warn("RemoteUIStatsStorageRouter: Reached max shutdown warnings. No further warnings will be produced.") [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ protected void setAuthenticationHeaders(final SOAPMessage action) --> Line_3 $$ if (status == HNAPStatus.LOGGED_IN) [CD]
+Line_2 $$ protected void setAuthenticationHeaders(final SOAPMessage action) --> Line_6 $$ final MimeHeaders actionHeaders = action.getMimeHeaders() [FD]
+Line_6 $$ final MimeHeaders actionHeaders = action.getMimeHeaders() --> Line_7 $$ actionHeaders.setHeader(COOKIE, loginHeaders.getHeader(COOKIE)[0]) [FD]
+Line_5 $$ final MimeHeaders loginHeaders = loginAction.getMimeHeaders() --> Line_7 $$ actionHeaders.setHeader(COOKIE, loginHeaders.getHeader(COOKIE)[0]) [FD]
+Line_6 $$ final MimeHeaders actionHeaders = action.getMimeHeaders() --> Line_9 $$ final String auth = hash(timeStamp + actionHeaders.getHeader(SOAPACTION)[0], privateKey) + " " + timeStamp [FD]
+Line_6 $$ final MimeHeaders actionHeaders = action.getMimeHeaders() --> Line_10 $$ actionHeaders.setHeader("HNAP_AUTH", auth) [FD]
+Line_9 $$ final String auth = hash(timeStamp + actionHeaders.getHeader(SOAPACTION)[0], privateKey) + " " + timeStamp --> Line_10 $$ actionHeaders.setHeader("HNAP_AUTH", auth) [FD]
+Line_2 $$ protected void setAuthenticationHeaders(final SOAPMessage action) --> Line_11 $$ action.saveChanges() [FD]

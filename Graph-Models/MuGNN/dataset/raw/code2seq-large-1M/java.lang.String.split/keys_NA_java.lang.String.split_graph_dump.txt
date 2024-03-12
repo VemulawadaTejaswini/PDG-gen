@@ -1,0 +1,8 @@
+Line_2 $$ public static SecretKeys keys(String keysStr) throws InvalidKeyException --> Line_3 $$ String[] keysArr = keysStr.split(":") [CD]
+Line_2 $$ public static SecretKeys keys(String keysStr) throws InvalidKeyException --> Line_3 $$ String[] keysArr = keysStr.split(":") [FD]
+Line_2 $$ public static SecretKeys keys(String keysStr) throws InvalidKeyException --> Line_4 $$ if (keysArr.length != 2) [CD]
+Line_4 $$ if (keysArr.length != 2) --> Line_7 $$ byte[] confidentialityKey = Base64.decode(keysArr[0], BASE64_FLAGS) [CD]
+Line_4 $$ if (keysArr.length != 2) --> Line_8 $$ if (confidentialityKey.length != AES_KEY_LENGTH_BITS / 8) [CD]
+Line_4 $$ if (keysArr.length != 2) --> Line_11 $$ byte[] integrityKey = Base64.decode(keysArr[1], BASE64_FLAGS) [CD]
+Line_4 $$ if (keysArr.length != 2) --> Line_12 $$ if (integrityKey.length != HMAC_KEY_LENGTH_BITS / 8) [CD]
+Line_4 $$ if (keysArr.length != 2) --> Line_15 $$ return new SecretKeys(new SecretKeySpec(confidentialityKey, 0, confidentialityKey.length, CIPHER), new SecretKeySpec(integrityKey, HMAC_ALGORITHM)) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void importFromLavagna(@RequestParam(value = "overrideConfiguration", defaultValue = "false") Boolean overrideConfiguration, @RequestParam("file") MultipartFile file) throws IOException --> Line_3 $$ Path tempFile = Files.createTempFile(null, null) [CD]
+Line_2 $$ public void importFromLavagna(@RequestParam(value = "overrideConfiguration", defaultValue = "false") Boolean overrideConfiguration, @RequestParam("file") MultipartFile file) throws IOException --> Line_5 $$ try (InputStream is = file.getInputStream(); [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(null, null) --> Line_5 $$ try (InputStream is = file.getInputStream(); [FD]
+Line_5 $$ try (InputStream is = file.getInputStream(); --> Line_7 $$ StreamUtils.copy(is, os) [FD]
+Line_2 $$ public void importFromLavagna(@RequestParam(value = "overrideConfiguration", defaultValue = "false") Boolean overrideConfiguration, @RequestParam("file") MultipartFile file) throws IOException --> Line_9 $$ exportImportService.importData(overrideConfiguration, tempFile) [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(null, null) --> Line_9 $$ exportImportService.importData(overrideConfiguration, tempFile) [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(null, null) --> Line_11 $$ Files.delete(tempFile) [FD]

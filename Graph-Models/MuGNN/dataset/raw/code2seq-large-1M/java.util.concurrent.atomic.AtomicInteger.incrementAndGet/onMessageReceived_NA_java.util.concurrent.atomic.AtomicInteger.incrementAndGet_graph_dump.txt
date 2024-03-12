@@ -1,0 +1,6 @@
+Line_2 $$ public void onMessageReceived() --> Line_3 $$ int cnt = msgCnt.incrementAndGet() [CD]
+Line_2 $$ public void onMessageReceived() --> Line_4 $$ if (cnt >= msgQueueLimit && !paused) [CD]
+Line_4 $$ if (cnt >= msgQueueLimit && !paused) --> Line_5 $$ lock.lock() [CD]
+Line_7 $$ if (!paused && msgCnt.get() >= msgQueueLimit) --> Line_8 $$ ses.pauseReads() [CD]
+Line_4 $$ if (cnt >= msgQueueLimit && !paused) --> Line_14 $$ if (paused && msgCnt.get() < msgQueueLimit && lock.tryLock()) [CD]
+Line_16 $$ if (paused) --> Line_17 $$ ses.resumeReads() [CD]

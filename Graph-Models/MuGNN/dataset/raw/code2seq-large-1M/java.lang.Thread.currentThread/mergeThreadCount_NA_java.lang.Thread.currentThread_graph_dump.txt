@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized int mergeThreadCount() --> Line_3 $$ Thread currentThread = Thread.currentThread() [CD]
+Line_2 $$ public synchronized int mergeThreadCount() --> Line_4 $$ int count = 0 [CD]
+Line_5 $$ for (MergeThread mergeThread : mergeThreads) --> Line_6 $$ if (currentThread != mergeThread && mergeThread.isAlive() && mergeThread.merge.rateLimiter.getAbort() == false) [FD]
+Line_6 $$ if (currentThread != mergeThread && mergeThread.isAlive() && mergeThread.merge.rateLimiter.getAbort() == false) --> Line_7 $$ count++ [CD]
+Line_4 $$ int count = 0 --> Line_7 $$ count++ [FD]
+Line_2 $$ public synchronized int mergeThreadCount() --> Line_10 $$ return count [CD]

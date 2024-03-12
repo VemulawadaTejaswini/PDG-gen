@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection conn = getConnection("queryCache;QUERY_CACHE_SIZE=10")) --> Line_4 $$ assertThrows(ErrorCode.TABLE_OR_VIEW_NOT_FOUND_1, conn).prepareStatement("SELECT * FROM TEST") [FD]
+Line_3 $$ try (Connection conn = getConnection("queryCache;QUERY_CACHE_SIZE=10")) --> Line_5 $$ Statement stat = conn.createStatement() [FD]
+Line_5 $$ Statement stat = conn.createStatement() --> Line_6 $$ stat.executeUpdate("CREATE TABLE TEST(col1 bigint, col2 varchar(255))") [FD]
+Line_3 $$ try (Connection conn = getConnection("queryCache;QUERY_CACHE_SIZE=10")) --> Line_7 $$ PreparedStatement prep = conn.prepareStatement("SELECT * FROM TEST") [FD]
+Line_7 $$ PreparedStatement prep = conn.prepareStatement("SELECT * FROM TEST") --> Line_8 $$ prep.close() [FD]
+Line_5 $$ Statement stat = conn.createStatement() --> Line_9 $$ stat.executeUpdate("DROP TABLE TEST") [FD]
+Line_3 $$ try (Connection conn = getConnection("queryCache;QUERY_CACHE_SIZE=10")) --> Line_10 $$ assertThrows(ErrorCode.TABLE_OR_VIEW_NOT_FOUND_1, conn).prepareStatement("SELECT * FROM TEST") [FD]

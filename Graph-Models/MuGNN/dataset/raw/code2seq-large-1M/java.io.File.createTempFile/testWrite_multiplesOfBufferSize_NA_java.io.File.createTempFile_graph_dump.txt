@@ -1,0 +1,8 @@
+Line_2 $$ public void testWrite_multiplesOfBufferSize() throws IOException --> Line_3 $$ final File file = File.createTempFile("log4j2", "test") [CD]
+Line_2 $$ public void testWrite_multiplesOfBufferSize() throws IOException --> Line_4 $$ file.deleteOnExit() [CD]
+Line_3 $$ final File file = File.createTempFile("log4j2", "test") --> Line_4 $$ file.deleteOnExit() [FD]
+Line_3 $$ final File file = File.createTempFile("log4j2", "test") --> Line_13 $$ final RollingRandomAccessFileManager manager = new RollingRandomAccessFileManager(null, raf, file.getName(), Strings.EMPTY, os, append, flushNow, RollingRandomAccessFileManager.DEFAULT_BUFFER_SIZE, triggerSize, time, triggerPolicy, rolloverStrategy, null, null, null, null, null, true) [FD]
+Line_13 $$ final RollingRandomAccessFileManager manager = new RollingRandomAccessFileManager(null, raf, file.getName(), Strings.EMPTY, os, append, flushNow, RollingRandomAccessFileManager.DEFAULT_BUFFER_SIZE, triggerSize, time, triggerPolicy, rolloverStrategy, null, null, null, null, null, true) --> Line_16 $$ manager.write(data, 0, data.length, flushNow) [FD]
+Line_15 $$ final byte[] data = new byte[size] --> Line_16 $$ manager.write(data, 0, data.length, flushNow) [FD]
+Line_8 $$ final boolean flushNow = false --> Line_16 $$ manager.write(data, 0, data.length, flushNow) [FD]
+Line_5 $$ try (final RandomAccessFile raf = new RandomAccessFile(file, "rw")) --> Line_17 $$ assertEquals(RollingRandomAccessFileManager.DEFAULT_BUFFER_SIZE * 3, raf.length()) [FD]

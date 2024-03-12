@@ -1,0 +1,8 @@
+Line_2 $$ public Integer registry(int rpcPort) --> Line_3 $$ String path = ZKPaths.makePath(dtsServerParentNode, NetUtil.getLocalIp() + ":" + Integer.valueOf(rpcPort).toString()) [FD]
+Line_2 $$ public Integer registry(int rpcPort) --> Line_3 $$ String path = ZKPaths.makePath(dtsServerParentNode, NetUtil.getLocalIp() + ":" + Integer.valueOf(rpcPort).toString()) [CD]
+Line_3 $$ String path = ZKPaths.makePath(dtsServerParentNode, NetUtil.getLocalIp() + ":" + Integer.valueOf(rpcPort).toString()) --> Line_5 $$ Stat stat = client.checkExists().forPath(path) [FD]
+Line_5 $$ Stat stat = client.checkExists().forPath(path) --> Line_6 $$ if (stat != null) [FD]
+Line_6 $$ if (stat != null) --> Line_7 $$ client.delete().forPath(path) [CD]
+Line_3 $$ String path = ZKPaths.makePath(dtsServerParentNode, NetUtil.getLocalIp() + ":" + Integer.valueOf(rpcPort).toString()) --> Line_7 $$ client.delete().forPath(path) [FD]
+Line_3 $$ String path = ZKPaths.makePath(dtsServerParentNode, NetUtil.getLocalIp() + ":" + Integer.valueOf(rpcPort).toString()) --> Line_10 $$ client.create().withMode(CreateMode.EPHEMERAL).forPath(path, mid.toString().getBytes()) [FD]
+Line_9 $$ Integer mid = midGenerator.next() --> Line_10 $$ client.create().withMode(CreateMode.EPHEMERAL).forPath(path, mid.toString().getBytes()) [FD]

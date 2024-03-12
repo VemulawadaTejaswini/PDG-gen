@@ -1,0 +1,7 @@
+Line_2 $$ public void testThatRelevantHttpHeadersBecomeRequestHeaders() throws IOException --> Line_3 $$ final String IRRELEVANT_HEADER = "SomeIrrelevantHeader" [CD]
+Line_2 $$ public void testThatRelevantHttpHeadersBecomeRequestHeaders() throws IOException --> Line_4 $$ Response response = getRestClient().performRequest("GET", "/" + queryIndex + "/_search", new BasicHeader(CUSTOM_HEADER, randomHeaderValue), new BasicHeader(IRRELEVANT_HEADER, randomHeaderValue)) [CD]
+Line_2 $$ public void testThatRelevantHttpHeadersBecomeRequestHeaders() throws IOException --> Line_5 $$ assertThat(response.getStatusLine().getStatusCode(), equalTo(200)) [CD]
+Line_4 $$ Response response = getRestClient().performRequest("GET", "/" + queryIndex + "/_search", new BasicHeader(CUSTOM_HEADER, randomHeaderValue), new BasicHeader(IRRELEVANT_HEADER, randomHeaderValue)) --> Line_5 $$ assertThat(response.getStatusLine().getStatusCode(), equalTo(200)) [FD]
+Line_2 $$ public void testThatRelevantHttpHeadersBecomeRequestHeaders() throws IOException --> Line_6 $$ List<RequestAndHeaders> searchRequests = getRequests(SearchRequest.class) [CD]
+Line_2 $$ public void testThatRelevantHttpHeadersBecomeRequestHeaders() throws IOException --> Line_7 $$ assertThat(searchRequests, hasSize(greaterThan(0))) [CD]
+Line_3 $$ final String IRRELEVANT_HEADER = "SomeIrrelevantHeader" --> Line_10 $$ assertThat(requestAndHeaders.headers.containsKey(IRRELEVANT_HEADER), is(false)) [FD]

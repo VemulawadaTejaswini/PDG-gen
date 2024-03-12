@@ -1,0 +1,6 @@
+Line_3 $$ try (CloseableHttpClient hc = HttpClients.createMinimal()) --> Line_4 $$ try (CloseableHttpResponse res = hc.execute(new HttpGet(server().uri(path)))) [FD]
+Line_2 $$ protected void testLarge(String path) throws IOException --> Line_4 $$ try (CloseableHttpResponse res = hc.execute(new HttpGet(server().uri(path)))) [FD]
+Line_4 $$ try (CloseableHttpResponse res = hc.execute(new HttpGet(server().uri(path)))) --> Line_5 $$ assertThat(res.getStatusLine().toString()).isEqualTo("HTTP/1.1 200 OK") [FD]
+Line_4 $$ try (CloseableHttpResponse res = hc.execute(new HttpGet(server().uri(path)))) --> Line_6 $$ assertThat(res.getFirstHeader(HttpHeaderNames.CONTENT_TYPE.toString()).getValue()).startsWith("text/plain") [FD]
+Line_4 $$ try (CloseableHttpResponse res = hc.execute(new HttpGet(server().uri(path)))) --> Line_7 $$ final byte[] content = EntityUtils.toByteArray(res.getEntity()) [FD]
+Line_4 $$ try (CloseableHttpResponse res = hc.execute(new HttpGet(server().uri(path)))) --> Line_8 $$ assertThat(res.getFirstHeader(HttpHeaderNames.CONTENT_LENGTH.toString()).getValue()).isEqualTo(String.valueOf(content.length)) [FD]

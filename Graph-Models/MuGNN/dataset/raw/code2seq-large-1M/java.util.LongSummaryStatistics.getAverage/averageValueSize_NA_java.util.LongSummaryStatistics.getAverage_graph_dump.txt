@@ -1,0 +1,5 @@
+Line_2 $$ public static <V> double averageValueSize(Class<V> valueClass, Iterable<V> values) --> Line_3 $$ try (ChronicleMap<Integer, V> testMap = ChronicleMap.of(Integer.class, valueClass).averageValueSize(1).entries(1).create()) [FD]
+Line_5 $$ LongSummaryStatistics statistics = new LongSummaryStatistics() --> Line_8 $$ statistics.accept(c.wrapValueAsData(value).size()) [FD]
+Line_7 $$ try (MapSegmentContext<Integer, V, ?> c = testMap.segmentContext(0)) --> Line_8 $$ statistics.accept(c.wrapValueAsData(value).size()) [FD]
+Line_6 $$ for (V value : values) --> Line_8 $$ statistics.accept(c.wrapValueAsData(value).size()) [FD]
+Line_5 $$ LongSummaryStatistics statistics = new LongSummaryStatistics() --> Line_11 $$ return statistics.getAverage() [FD]

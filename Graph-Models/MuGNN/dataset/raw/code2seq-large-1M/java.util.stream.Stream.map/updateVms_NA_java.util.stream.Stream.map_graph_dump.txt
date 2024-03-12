@@ -1,0 +1,8 @@
+Line_2 $$ private void updateVms(State currentState, List<String> vmServiceLinks) --> Line_3 $$ VmService.State vmPatchState = new VmService.State() [CD]
+Line_2 $$ private void updateVms(State currentState, List<String> vmServiceLinks) --> Line_4 $$ vmPatchState.imageId = currentState.imageId [CD]
+Line_2 $$ private void updateVms(State currentState, List<String> vmServiceLinks) --> Line_5 $$ OperationJoin.create(vmServiceLinks.stream().map(( vmServiceLink) -> Operation.createPatch(this, vmServiceLink).setBody(vmPatchState))).setCompletion(( ops,  exs) -> [FD]
+Line_2 $$ private void updateVms(State currentState, List<String> vmServiceLinks) --> Line_5 $$ OperationJoin.create(vmServiceLinks.stream().map(( vmServiceLink) -> Operation.createPatch(this, vmServiceLink).setBody(vmPatchState))).setCompletion(( ops,  exs) -> [CD]
+Line_3 $$ VmService.State vmPatchState = new VmService.State() --> Line_5 $$ OperationJoin.create(vmServiceLinks.stream().map(( vmServiceLink) -> Operation.createPatch(this, vmServiceLink).setBody(vmPatchState))).setCompletion(( ops,  exs) -> [FD]
+Line_6 $$ if (exs != null && !exs.isEmpty()) --> Line_7 $$ failTask(exs.values()) [CD]
+Line_6 $$ if (exs != null && !exs.isEmpty()) --> Line_8 $$ return [CD]
+Line_2 $$ private void updateVms(State currentState, List<String> vmServiceLinks) --> Line_11 $$ updateDeployment(currentState) [FD]

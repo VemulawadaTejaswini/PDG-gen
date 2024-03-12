@@ -1,0 +1,8 @@
+Line_2 $$ public void deleteChatRoom(String roomName, String serviceName) throws ServiceException --> Line_3 $$ MUCRoom chatRoom = XMPPServer.getInstance().getMultiUserChatManager().getMultiUserChatService(serviceName).getChatRoom(roomName.toLowerCase()) [CD]
+Line_2 $$ public void deleteChatRoom(String roomName, String serviceName) throws ServiceException --> Line_3 $$ MUCRoom chatRoom = XMPPServer.getInstance().getMultiUserChatManager().getMultiUserChatService(serviceName).getChatRoom(roomName.toLowerCase()) [FD]
+Line_2 $$ public void deleteChatRoom(String roomName, String serviceName) throws ServiceException --> Line_4 $$ if (chatRoom != null) [CD]
+Line_3 $$ MUCRoom chatRoom = XMPPServer.getInstance().getMultiUserChatManager().getMultiUserChatService(serviceName).getChatRoom(roomName.toLowerCase()) --> Line_4 $$ if (chatRoom != null) [FD]
+Line_4 $$ if (chatRoom != null) --> Line_5 $$ chatRoom.destroyRoom(null, null) [CD]
+Line_3 $$ MUCRoom chatRoom = XMPPServer.getInstance().getMultiUserChatManager().getMultiUserChatService(serviceName).getChatRoom(roomName.toLowerCase()) --> Line_5 $$ chatRoom.destroyRoom(null, null) [FD]
+Line_4 $$ if (chatRoom != null) --> Line_6 $$ if (ClusterManager.isClusteringStarted()) [CD]
+Line_6 $$ if (ClusterManager.isClusteringStarted()) --> Line_7 $$ CacheFactory.doClusterTask(new RoomRemovedEvent((LocalMUCRoom) chatRoom)) [CD]

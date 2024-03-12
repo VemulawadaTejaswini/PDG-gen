@@ -1,0 +1,6 @@
+Line_4 $$ if (jaasConfigurationLoaded) --> Line_5 $$ return jaasConfiguration [CD]
+Line_8 $$ if (configFile == null) --> Line_10 $$ return null [CD]
+Line_12 $$ URL resource = Thread.currentThread().getContextClassLoader().getResource(configFile) --> Line_13 $$ URI uri = resource.toURI() [FD]
+Line_14 $$ Class<Configuration> sunConfigFile = (Class<Configuration>) Class.forName("com.sun.security.auth.login.ConfigFile") --> Line_15 $$ Constructor<Configuration> constructor = sunConfigFile.getConstructor(URI.class) [FD]
+Line_13 $$ URI uri = resource.toURI() --> Line_16 $$ Configuration config = constructor.newInstance(uri) [FD]
+Line_16 $$ Configuration config = constructor.newInstance(uri) --> Line_17 $$ this.jaasConfiguration = config [FD]

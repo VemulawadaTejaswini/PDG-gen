@@ -1,0 +1,8 @@
+Line_2 $$ private Map<String, Throwable> stopThreads(Set<Locker> lockers, Map<String, Thread> threads) throws InterruptedException --> Line_3 $$ Map<String, Throwable> result = new HashMap() [CD]
+Line_2 $$ private Map<String, Throwable> stopThreads(Set<Locker> lockers, Map<String, Thread> threads) throws InterruptedException --> Line_5 $$ stopThread(threads.get(locker.name)) [FD]
+Line_4 $$ for (Locker locker : lockers) --> Line_6 $$ List<Throwable> errors = locker.getErrors() [FD]
+Line_6 $$ List<Throwable> errors = locker.getErrors() --> Line_7 $$ if (errors != null) [FD]
+Line_7 $$ if (errors != null) --> Line_8 $$ errors.forEach( error -> result.put(locker.name, error)) [CD]
+Line_6 $$ List<Throwable> errors = locker.getErrors() --> Line_8 $$ errors.forEach( error -> result.put(locker.name, error)) [FD]
+Line_3 $$ Map<String, Throwable> result = new HashMap() --> Line_8 $$ errors.forEach( error -> result.put(locker.name, error)) [FD]
+Line_2 $$ private Map<String, Throwable> stopThreads(Set<Locker> lockers, Map<String, Thread> threads) throws InterruptedException --> Line_11 $$ return result [CD]

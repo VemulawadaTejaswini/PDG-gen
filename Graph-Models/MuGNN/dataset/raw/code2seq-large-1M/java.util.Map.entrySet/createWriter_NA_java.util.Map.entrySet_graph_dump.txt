@@ -1,0 +1,7 @@
+Line_2 $$ private Writer createWriter(Map<String, String> metadata) throws IOException --> Line_3 $$ final Metadata md = new Metadata() [CD]
+Line_2 $$ private Writer createWriter(Map<String, String> metadata) throws IOException --> Line_4 $$ for (final Entry<String, String> e : metadata.entrySet()) [FD]
+Line_3 $$ final Metadata md = new Metadata() --> Line_5 $$ md.set(new Text(e.getKey()), new Text(e.getValue())) [FD]
+Line_2 $$ private Writer createWriter(Map<String, String> metadata) throws IOException --> Line_7 $$ final Class<K> keyClass = (Class<K>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0] [CD]
+Line_2 $$ private Writer createWriter(Map<String, String> metadata) throws IOException --> Line_8 $$ final Class<V> valueClass = (Class<V>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1] [CD]
+Line_2 $$ private Writer createWriter(Map<String, String> metadata) throws IOException --> Line_9 $$ return SequenceFile.createWriter(fileSystem, config, sequenceFilePath, keyClass, valueClass, compressionType, new DefaultCodec(), null, md) [CD]
+Line_3 $$ final Metadata md = new Metadata() --> Line_9 $$ return SequenceFile.createWriter(fileSystem, config, sequenceFilePath, keyClass, valueClass, compressionType, new DefaultCodec(), null, md) [FD]

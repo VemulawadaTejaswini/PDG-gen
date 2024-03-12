@@ -1,0 +1,8 @@
+Line_2 $$ protected void fireEvent(HotKey hotKey) --> Line_3 $$ HotKeyEvent event = new HotKeyEvent(hotKey) [CD]
+Line_2 $$ protected void fireEvent(HotKey hotKey) --> Line_4 $$ if (useSwingEventQueue) [CD]
+Line_4 $$ if (useSwingEventQueue) --> Line_5 $$ SwingUtilities.invokeLater(event) [CD]
+Line_3 $$ HotKeyEvent event = new HotKeyEvent(hotKey) --> Line_5 $$ SwingUtilities.invokeLater(event) [FD]
+Line_4 $$ if (useSwingEventQueue) --> Line_7 $$ if (eventQueue == null) [CD]
+Line_7 $$ if (eventQueue == null) --> Line_8 $$ eventQueue = Executors.newSingleThreadExecutor() [CD]
+Line_4 $$ if (useSwingEventQueue) --> Line_10 $$ eventQueue.execute(event) [CD]
+Line_3 $$ HotKeyEvent event = new HotKeyEvent(hotKey) --> Line_10 $$ eventQueue.execute(event) [FD]

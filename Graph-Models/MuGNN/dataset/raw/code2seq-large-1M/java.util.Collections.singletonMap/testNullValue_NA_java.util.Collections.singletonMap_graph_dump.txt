@@ -1,0 +1,6 @@
+Line_2 $$ public void testNullValue() throws Exception --> Line_3 $$ Processor processor = newProcessor("field", false) [CD]
+Line_2 $$ public void testNullValue() throws Exception --> Line_4 $$ IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), Collections.singletonMap("field", null)) [CD]
+Line_2 $$ public void testNullValue() throws Exception --> Line_5 $$ Exception e = expectThrows(Exception.class, () -> processor.execute(ingestDocument)) [CD]
+Line_3 $$ Processor processor = newProcessor("field", false) --> Line_5 $$ Exception e = expectThrows(Exception.class, () -> processor.execute(ingestDocument)) [FD]
+Line_4 $$ IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), Collections.singletonMap("field", null)) --> Line_5 $$ Exception e = expectThrows(Exception.class, () -> processor.execute(ingestDocument)) [FD]
+Line_2 $$ public void testNullValue() throws Exception --> Line_6 $$ assertThat(e.getMessage(), equalTo("field [field] is null, cannot process it.")) [CD]

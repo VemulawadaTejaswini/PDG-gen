@@ -1,0 +1,4 @@
+Line_2 $$ public ClusterHealthStatus getHealthStatus(String[] indexNames) --> Line_4 $$ Response response = lowLevelClient.performRequest("GET", String.format("/_cluster/health/%s", getIndexesAsString(indexNames))) [FD]
+Line_4 $$ Response response = lowLevelClient.performRequest("GET", String.format("/_cluster/health/%s", getIndexesAsString(indexNames))) --> Line_5 $$ try (InputStream is = response.getEntity().getContent()) [FD]
+Line_5 $$ try (InputStream is = response.getEntity().getContent()) --> Line_6 $$ Map<String, Object> map = XContentHelper.convertToMap(XContentType.JSON.xContent(), is, true) [FD]
+Line_6 $$ Map<String, Object> map = XContentHelper.convertToMap(XContentType.JSON.xContent(), is, true) --> Line_7 $$ return ClusterHealthStatus.fromString((String) map.get("status")) [FD]

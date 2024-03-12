@@ -1,0 +1,7 @@
+Line_2 $$ public static void validateCassandraHosts() --> Line_3 $$ String hosts = Configuration.getInstance().getStringProperty(CoreConfig.CASSANDRA_HOSTS) [CD]
+Line_2 $$ public static void validateCassandraHosts() --> Line_4 $$ if (!(hosts.length() >= 3)) [CD]
+Line_3 $$ String hosts = Configuration.getInstance().getStringProperty(CoreConfig.CASSANDRA_HOSTS) --> Line_4 $$ if (!(hosts.length() >= 3)) [FD]
+Line_4 $$ if (!(hosts.length() >= 3)) --> Line_5 $$ log.error("No cassandra hosts found in configuration option 'CASSANDRA_HOSTS'") [CD]
+Line_3 $$ String hosts = Configuration.getInstance().getStringProperty(CoreConfig.CASSANDRA_HOSTS) --> Line_8 $$ for (String host : hosts.split(",")) [FD]
+Line_8 $$ for (String host : hosts.split(",")) --> Line_9 $$ if (!host.matches("[\\d\\w\\.\\-_]+:\\d+")) [FD]
+Line_9 $$ if (!host.matches("[\\d\\w\\.\\-_]+:\\d+")) --> Line_10 $$ log.error("Invalid Cassandra host found in Configuration option 'CASSANDRA_HOSTS' -- Should be of the form <hostname>:<port>") [CD]

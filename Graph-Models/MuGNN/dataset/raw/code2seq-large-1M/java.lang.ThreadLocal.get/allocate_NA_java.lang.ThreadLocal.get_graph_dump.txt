@@ -1,0 +1,7 @@
+Line_2 $$ protected final ByteBuffer allocate() --> Line_3 $$ final ArrayDeque<ByteBuffer> queue = BUFFERS.get() [CD]
+Line_2 $$ protected final ByteBuffer allocate() --> Line_4 $$ final ByteBuffer buffer = queue.poll() [CD]
+Line_3 $$ final ArrayDeque<ByteBuffer> queue = BUFFERS.get() --> Line_4 $$ final ByteBuffer buffer = queue.poll() [FD]
+Line_2 $$ protected final ByteBuffer allocate() --> Line_5 $$ if (buffer != null && buffer.capacity() >= 0) [CD]
+Line_4 $$ final ByteBuffer buffer = queue.poll() --> Line_5 $$ if (buffer != null && buffer.capacity() >= 0) [FD]
+Line_5 $$ if (buffer != null && buffer.capacity() >= 0) --> Line_6 $$ return buffer [CD]
+Line_5 $$ if (buffer != null && buffer.capacity() >= 0) --> Line_8 $$ return allocateDirect(0) [CD]

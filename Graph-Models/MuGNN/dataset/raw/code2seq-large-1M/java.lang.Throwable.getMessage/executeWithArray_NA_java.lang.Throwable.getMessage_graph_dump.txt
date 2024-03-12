@@ -1,0 +1,6 @@
+Line_2 $$ private <T> T executeWithArray(Query query, Object[] params, String sql) throws MetaException --> Line_4 $$ return (T) ((params == null) ? query.execute() : query.executeWithArray(params)) [FD]
+Line_2 $$ private <T> T executeWithArray(Query query, Object[] params, String sql) throws MetaException --> Line_7 $$ if (params != null) [FD]
+Line_7 $$ if (params != null) --> Line_8 $$ boolean isFirst = true [CD]
+Line_6 $$ String error = "Failed to execute [" + sql + "] with parameters [" --> Line_10 $$ error += (isFirst ? "" : ", ") + param [FD]
+Line_9 $$ for (Object param : params) --> Line_10 $$ error += (isFirst ? "" : ", ") + param [FD]
+Line_8 $$ boolean isFirst = true --> Line_11 $$ isFirst = false [FD]

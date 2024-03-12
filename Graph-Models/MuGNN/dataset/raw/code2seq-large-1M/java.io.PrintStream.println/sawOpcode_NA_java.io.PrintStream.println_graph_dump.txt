@@ -1,0 +1,6 @@
+Line_9 $$ if (DEBUG) --> Line_10 $$ System.out.println("   ALOAD at PC " + getPC()) [CD]
+Line_16 $$ if (DEBUG) --> Line_17 $$ System.out.println("   getfield in stage " + stage) [CD]
+Line_24 $$ if (DEBUG) --> Line_25 $$ System.out.println("   getfield in stage " + stage) [CD]
+Line_39 $$ if (DEBUG) --> Line_40 $$ System.out.println("   conditional branch in stage " + stage + " to " + getBranchTarget()) [CD]
+Line_42 $$ if (stage == 2 && getBranchTarget() == start) --> Line_43 $$ bugReporter.reportBug(new BugInstance(this, "SP_SPIN_ON_FIELD", NORMAL_PRIORITY).addClassAndMethod(this).addReferencedField(lastFieldSeen).addSourceLine(this, start)) [CD]
+Line_42 $$ if (stage == 2 && getBranchTarget() == start) --> Line_45 $$ if (getBranchTarget() < getPC()) [CD]

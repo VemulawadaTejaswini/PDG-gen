@@ -1,0 +1,7 @@
+Line_2 $$ public void nestedPathMatchedByRegexWithSensitivePlaceholderShouldSanitize() --> Line_3 $$ Map<String, Object> map = new HashMap() [CD]
+Line_2 $$ public void nestedPathMatchedByRegexWithSensitivePlaceholderShouldSanitize() --> Line_4 $$ map.put("my.foo", "$ [CD]
+Line_3 $$ Map<String, Object> map = new HashMap() --> Line_4 $$ map.put("my.foo", "$ [FD]
+Line_2 $$ public void nestedPathMatchedByRegexWithSensitivePlaceholderShouldSanitize() --> Line_5 $$ map.put("my.password", "hello") [CD]
+Line_3 $$ Map<String, Object> map = new HashMap() --> Line_5 $$ map.put("my.password", "hello") [FD]
+Line_2 $$ public void nestedPathMatchedByRegexWithSensitivePlaceholderShouldSanitize() --> Line_6 $$ context.getEnvironment().getPropertySources().addFirst(new MapPropertySource("placeholder", map)) [CD]
+Line_2 $$ public void nestedPathMatchedByRegexWithSensitivePlaceholderShouldSanitize() --> Line_7 $$ client.get().uri("/actuator/env?pattern=my.*").exchange().expectStatus().isOk().expectBody().jsonPath(forProperty("placeholder", "my.foo")).isEqualTo("******") [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void callableEvaluatedTheRightTime() --> Line_3 $$ AtomicInteger count = new AtomicInteger() [CD]
+Line_2 $$ public void callableEvaluatedTheRightTime() --> Line_4 $$ Mono<Integer> p = Mono.fromCallable(count::<>incrementAndGet).subscribeOn(Schedulers.fromExecutorService(ForkJoinPool.commonPool())) [CD]
+Line_2 $$ public void callableEvaluatedTheRightTime() --> Line_5 $$ Assert.assertEquals(0, count.get()) [CD]
+Line_3 $$ AtomicInteger count = new AtomicInteger() --> Line_5 $$ Assert.assertEquals(0, count.get()) [FD]
+Line_2 $$ public void callableEvaluatedTheRightTime() --> Line_6 $$ p.subscribeWith(AssertSubscriber.create()).await() [CD]
+Line_4 $$ Mono<Integer> p = Mono.fromCallable(count::<>incrementAndGet).subscribeOn(Schedulers.fromExecutorService(ForkJoinPool.commonPool())) --> Line_6 $$ p.subscribeWith(AssertSubscriber.create()).await() [FD]
+Line_2 $$ public void callableEvaluatedTheRightTime() --> Line_7 $$ Assert.assertEquals(1, count.get()) [CD]
+Line_3 $$ AtomicInteger count = new AtomicInteger() --> Line_7 $$ Assert.assertEquals(1, count.get()) [FD]

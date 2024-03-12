@@ -1,0 +1,8 @@
+Line_2 $$ private List<Task> getTasks(Connection connection, List<String> taskIds) --> Line_3 $$ if (taskIds.isEmpty()) [CD]
+Line_2 $$ private List<Task> getTasks(Connection connection, List<String> taskIds) --> Line_3 $$ if (taskIds.isEmpty()) [FD]
+Line_3 $$ if (taskIds.isEmpty()) --> Line_4 $$ return Lists.newArrayList() [CD]
+Line_2 $$ private List<Task> getTasks(Connection connection, List<String> taskIds) --> Line_6 $$ final String GET_TASKS_FOR_IDS = String.format("SELECT json_data FROM task WHERE task_id IN (%s) AND json_data IS NOT NULL", Query.generateInBindings(taskIds.size())) [CD]
+Line_2 $$ private List<Task> getTasks(Connection connection, List<String> taskIds) --> Line_6 $$ final String GET_TASKS_FOR_IDS = String.format("SELECT json_data FROM task WHERE task_id IN (%s) AND json_data IS NOT NULL", Query.generateInBindings(taskIds.size())) [FD]
+Line_2 $$ private List<Task> getTasks(Connection connection, List<String> taskIds) --> Line_7 $$ return query(connection, GET_TASKS_FOR_IDS,  q -> q.addParameters(taskIds).executeAndFetch(Task.class)) [CD]
+Line_2 $$ private List<Task> getTasks(Connection connection, List<String> taskIds) --> Line_7 $$ return query(connection, GET_TASKS_FOR_IDS,  q -> q.addParameters(taskIds).executeAndFetch(Task.class)) [FD]
+Line_6 $$ final String GET_TASKS_FOR_IDS = String.format("SELECT json_data FROM task WHERE task_id IN (%s) AND json_data IS NOT NULL", Query.generateInBindings(taskIds.size())) --> Line_7 $$ return query(connection, GET_TASKS_FOR_IDS,  q -> q.addParameters(taskIds).executeAndFetch(Task.class)) [FD]

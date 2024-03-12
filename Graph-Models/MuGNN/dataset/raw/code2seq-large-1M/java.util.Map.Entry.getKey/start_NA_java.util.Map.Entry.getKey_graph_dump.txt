@@ -1,0 +1,6 @@
+Line_2 $$ public void start(final Environment env) throws IOException --> Line_5 $$ String encoding = getEncoding(env) [FD]
+Line_6 $$ final PrintStream pout = out instanceof PrintStream ? (PrintStream) out : new PrintStream(out, true, encoding) --> Line_9 $$ shell = sessionFactory.create(in, pout, perr, terminal, encoding, this::<>destroy) [FD]
+Line_7 $$ final PrintStream perr = err instanceof PrintStream ? (PrintStream) err : out == err ? pout : new PrintStream(err, true, encoding) --> Line_9 $$ shell = sessionFactory.create(in, pout, perr, terminal, encoding, this::<>destroy) [FD]
+Line_5 $$ String encoding = getEncoding(env) --> Line_9 $$ shell = sessionFactory.create(in, pout, perr, terminal, encoding, this::<>destroy) [FD]
+Line_2 $$ public void start(final Environment env) throws IOException --> Line_10 $$ for (Map.Entry<String, String> e : env.getEnv().entrySet()) [FD]
+Line_4 $$ final Subject subject = ShellImpl.this.session != null ? ShellImpl.this.session.getAttribute(KarafJaasAuthenticator.SUBJECT_ATTRIBUTE_KEY) : null --> Line_13 $$ JaasHelper.runAs(subject, () -> new Thread(shell, "Karaf ssh console user " + ShellUtil.getCurrentUserName()).start()) [FD]

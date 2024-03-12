@@ -1,0 +1,7 @@
+Line_2 $$ public Map<Integer, Integer> getItemAttributes(long itemId) --> Line_3 $$ Map<Integer, Integer> attributes = new HashMap() [CD]
+Line_2 $$ public Map<Integer, Integer> getItemAttributes(long itemId) --> Line_4 $$ Query query = pm.newQuery("javax.jdo.query.SQL", "select a.attr_id,e.value_id from items i inner join item_attr a on i.item_id=? inner join item_map_enum ime on i.item_id=ime.item_id and a.attr_id=ime.attr_id inner join item_attr_enum e on ime.attr_id=e.attr_id and ime.value_id=e.value_id") [CD]
+Line_2 $$ public Map<Integer, Integer> getItemAttributes(long itemId) --> Line_5 $$ Collection<Object[]> c = (Collection<Object[]>) query.execute(itemId) [FD]
+Line_2 $$ public Map<Integer, Integer> getItemAttributes(long itemId) --> Line_5 $$ Collection<Object[]> c = (Collection<Object[]>) query.execute(itemId) [CD]
+Line_4 $$ Query query = pm.newQuery("javax.jdo.query.SQL", "select a.attr_id,e.value_id from items i inner join item_attr a on i.item_id=? inner join item_map_enum ime on i.item_id=ime.item_id and a.attr_id=ime.attr_id inner join item_attr_enum e on ime.attr_id=e.attr_id and ime.value_id=e.value_id") --> Line_5 $$ Collection<Object[]> c = (Collection<Object[]>) query.execute(itemId) [FD]
+Line_3 $$ Map<Integer, Integer> attributes = new HashMap() --> Line_7 $$ attributes.put((Integer) array[0], (Integer) array[1]) [FD]
+Line_2 $$ public Map<Integer, Integer> getItemAttributes(long itemId) --> Line_9 $$ return attributes [CD]

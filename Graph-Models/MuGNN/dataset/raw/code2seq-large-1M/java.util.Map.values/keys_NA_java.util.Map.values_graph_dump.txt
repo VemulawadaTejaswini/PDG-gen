@@ -1,0 +1,5 @@
+Line_2 $$ public RedisFuture<List<K>> keys(K pattern) --> Line_3 $$ Map<String, CompletableFuture<List<K>>> executions = executeOnMasters( commands -> commands.keys(pattern)) [FD]
+Line_2 $$ public RedisFuture<List<K>> keys(K pattern) --> Line_3 $$ Map<String, CompletableFuture<List<K>>> executions = executeOnMasters( commands -> commands.keys(pattern)) [CD]
+Line_2 $$ public RedisFuture<List<K>> keys(K pattern) --> Line_4 $$ return new PipelinedRedisFuture(executions,  objectPipelinedRedisFuture -> [CD]
+Line_3 $$ Map<String, CompletableFuture<List<K>>> executions = executeOnMasters( commands -> commands.keys(pattern)) --> Line_6 $$ for (CompletableFuture<List<K>> future : executions.values()) [FD]
+Line_5 $$ List<K> result = new ArrayList() --> Line_7 $$ result.addAll(MultiNodeExecution.execute(future::<>get)) [FD]

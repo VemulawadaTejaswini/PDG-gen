@@ -1,0 +1,8 @@
+Line_2 $$ public static <T> List<T> readMatchingObjects(String regex, Path tempFile, TypeToken<T> t) --> Line_5 $$ try (InputStream is = Files.newInputStream(tempFile); [FD]
+Line_5 $$ try (InputStream is = Files.newInputStream(tempFile); --> Line_7 $$ ZipEntry ze = zis.getNextEntry() [FD]
+Line_8 $$ while (ze != null) --> Line_9 $$ if (ze.getName().matches("^" + regex + "$")) [CD]
+Line_9 $$ if (ze.getName().matches("^" + regex + "$")) --> Line_10 $$ res.add((T) Json.GSON.fromJson(new InputStreamReader(zis, StandardCharsets.UTF_8), t.getType())) [CD]
+Line_4 $$ List<T> res = new ArrayList() --> Line_10 $$ res.add((T) Json.GSON.fromJson(new InputStreamReader(zis, StandardCharsets.UTF_8), t.getType())) [FD]
+Line_2 $$ public static <T> List<T> readMatchingObjects(String regex, Path tempFile, TypeToken<T> t) --> Line_10 $$ res.add((T) Json.GSON.fromJson(new InputStreamReader(zis, StandardCharsets.UTF_8), t.getType())) [FD]
+Line_8 $$ while (ze != null) --> Line_12 $$ ze = zis.getNextEntry() [CD]
+Line_5 $$ try (InputStream is = Files.newInputStream(tempFile); --> Line_12 $$ ze = zis.getNextEntry() [FD]

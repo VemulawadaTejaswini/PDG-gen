@@ -1,0 +1,6 @@
+Line_2 $$ static Map<SpannerRpc.Option, ?> optionMap(SessionOption... options) --> Line_3 $$ if (options.length == 0) [CD]
+Line_3 $$ if (options.length == 0) --> Line_4 $$ return Collections.emptyMap() [CD]
+Line_2 $$ static Map<SpannerRpc.Option, ?> optionMap(SessionOption... options) --> Line_6 $$ Map<SpannerRpc.Option, Object> tmp = Maps.newEnumMap(SpannerRpc.Option.class) [CD]
+Line_7 $$ for (SessionOption option : options) --> Line_8 $$ Object prev = tmp.put(option.rpcOption(), option.value()) [FD]
+Line_7 $$ for (SessionOption option : options) --> Line_9 $$ checkArgument(prev == null, "Duplicate option %s", option.rpcOption()) [FD]
+Line_2 $$ static Map<SpannerRpc.Option, ?> optionMap(SessionOption... options) --> Line_11 $$ return ImmutableMap.copyOf(tmp) [CD]

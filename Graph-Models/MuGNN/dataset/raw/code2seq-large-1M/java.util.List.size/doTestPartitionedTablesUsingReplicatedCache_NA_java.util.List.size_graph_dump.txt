@@ -1,0 +1,8 @@
+Line_2 $$ private void doTestPartitionedTablesUsingReplicatedCache(int segments, boolean client) --> Line_3 $$ IgniteCache<Integer, Value> p = ignite(client ? CLIENT : 0).getOrCreateCache(cacheConfig("p", true, Integer.class, Value.class).setQueryParallelism(segments)) [CD]
+Line_2 $$ private void doTestPartitionedTablesUsingReplicatedCache(int segments, boolean client) --> Line_3 $$ IgniteCache<Integer, Value> p = ignite(client ? CLIENT : 0).getOrCreateCache(cacheConfig("p", true, Integer.class, Value.class).setQueryParallelism(segments)) [FD]
+Line_2 $$ private void doTestPartitionedTablesUsingReplicatedCache(int segments, boolean client) --> Line_4 $$ IgniteCache<Integer, Value> r = ignite(client ? CLIENT : 0).getOrCreateCache(cacheConfig("r", false, Integer.class, Value.class)) [CD]
+Line_6 $$ int cnt = 1000 --> Line_7 $$ for (int i = 0; i < cnt; i++) p.put(i, new Value(i, -i)) [FD]
+Line_6 $$ int cnt = 1000 --> Line_8 $$ assertEquals(cnt, r.query(new SqlFieldsQuery("select 1 from \"p\".Value")).getAll().size()) [FD]
+Line_9 $$ List<List<?>> res = r.query(new SqlFieldsQuery("select count(1) from \"p\".Value")).getAll() --> Line_10 $$ assertEquals(1, res.size()) [FD]
+Line_6 $$ int cnt = 1000 --> Line_11 $$ assertEquals(cnt, ((Number) res.get(0).get(0)).intValue()) [FD]
+Line_9 $$ List<List<?>> res = r.query(new SqlFieldsQuery("select count(1) from \"p\".Value")).getAll() --> Line_11 $$ assertEquals(cnt, ((Number) res.get(0).get(0)).intValue()) [FD]

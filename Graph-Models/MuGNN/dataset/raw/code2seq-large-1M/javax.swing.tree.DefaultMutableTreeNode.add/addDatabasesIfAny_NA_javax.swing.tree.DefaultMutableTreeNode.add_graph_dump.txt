@@ -1,0 +1,8 @@
+Line_2 $$ private void addDatabasesIfAny(MongoServer mongoServer, DefaultMutableTreeNode serverNode) --> Line_3 $$ for (MongoDatabase mongoDatabase : mongoServer.getDatabases()) [FD]
+Line_3 $$ for (MongoDatabase mongoDatabase : mongoServer.getDatabases()) --> Line_5 $$ for (MongoCollection collection : mongoDatabase.getCollections()) [FD]
+Line_5 $$ for (MongoCollection collection : mongoDatabase.getCollections()) --> Line_6 $$ if (shouldNotIgnore(collection, mongoServer.getConfiguration())) [FD]
+Line_2 $$ private void addDatabasesIfAny(MongoServer mongoServer, DefaultMutableTreeNode serverNode) --> Line_6 $$ if (shouldNotIgnore(collection, mongoServer.getConfiguration())) [FD]
+Line_6 $$ if (shouldNotIgnore(collection, mongoServer.getConfiguration())) --> Line_7 $$ databaseNode.add(new DefaultMutableTreeNode(collection)) [CD]
+Line_4 $$ DefaultMutableTreeNode databaseNode = new DefaultMutableTreeNode(mongoDatabase) --> Line_7 $$ databaseNode.add(new DefaultMutableTreeNode(collection)) [FD]
+Line_2 $$ private void addDatabasesIfAny(MongoServer mongoServer, DefaultMutableTreeNode serverNode) --> Line_10 $$ serverNode.add(databaseNode) [FD]
+Line_4 $$ DefaultMutableTreeNode databaseNode = new DefaultMutableTreeNode(mongoDatabase) --> Line_10 $$ serverNode.add(databaseNode) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void sessionAdded(long sessionId) --> Line_5 $$ RemoteSession session = remoteSessionFactory.createSession(sessionId) [FD]
+Line_2 $$ private void sessionAdded(long sessionId) --> Line_6 $$ Path sessionPath = sessionsPath.append(String.valueOf(sessionId)) [FD]
+Line_6 $$ Path sessionPath = sessionsPath.append(String.valueOf(sessionId)) --> Line_7 $$ Curator.FileCache fileCache = curator.createFileCache(sessionPath.append(ConfigCurator.SESSIONSTATE_ZK_SUBPATH).getAbsolute(), false) [FD]
+Line_7 $$ Curator.FileCache fileCache = curator.createFileCache(sessionPath.append(ConfigCurator.SESSIONSTATE_ZK_SUBPATH).getAbsolute(), false) --> Line_8 $$ fileCache.addListener(this) [FD]
+Line_5 $$ RemoteSession session = remoteSessionFactory.createSession(sessionId) --> Line_9 $$ loadSessionIfActive(session) [FD]
+Line_2 $$ private void sessionAdded(long sessionId) --> Line_10 $$ sessionStateWatchers.put(sessionId, new SessionStateWatcher(fileCache, reloadHandler, session, metrics)) [FD]
+Line_5 $$ RemoteSession session = remoteSessionFactory.createSession(sessionId) --> Line_11 $$ internalAddSession(session) [FD]

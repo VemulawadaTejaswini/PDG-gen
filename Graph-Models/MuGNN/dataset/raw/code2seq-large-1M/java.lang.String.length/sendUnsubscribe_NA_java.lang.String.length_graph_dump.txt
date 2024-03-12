@@ -1,0 +1,8 @@
+Line_2 $$ synchronized void sendUnsubscribe(String channel) --> Line_3 $$ byte[] channel_bytes = stringToBytes(channel) [FD]
+Line_2 $$ synchronized void sendUnsubscribe(String channel) --> Line_3 $$ byte[] channel_bytes = stringToBytes(channel) [CD]
+Line_2 $$ synchronized void sendUnsubscribe(String channel) --> Line_5 $$ ByteArrayOutputStream bouts = new ByteArrayOutputStream(channel.length() + 8) [FD]
+Line_6 $$ DataOutputStream outs = new DataOutputStream(bouts) --> Line_7 $$ outs.writeInt(MESSAGE_TYPE_UNSUBSCRIBE) [FD]
+Line_6 $$ DataOutputStream outs = new DataOutputStream(bouts) --> Line_8 $$ outs.writeInt(channel_bytes.length) [FD]
+Line_6 $$ DataOutputStream outs = new DataOutputStream(bouts) --> Line_9 $$ outs.write(channel_bytes, 0, channel_bytes.length) [FD]
+Line_3 $$ byte[] channel_bytes = stringToBytes(channel) --> Line_9 $$ outs.write(channel_bytes, 0, channel_bytes.length) [FD]
+Line_5 $$ ByteArrayOutputStream bouts = new ByteArrayOutputStream(channel.length() + 8) --> Line_10 $$ write(bouts.toByteArray()) [FD]

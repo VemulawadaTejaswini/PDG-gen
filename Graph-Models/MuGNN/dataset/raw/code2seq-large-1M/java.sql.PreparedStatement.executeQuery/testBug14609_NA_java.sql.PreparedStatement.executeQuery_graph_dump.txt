@@ -1,0 +1,8 @@
+Line_2 $$ public void testBug14609() throws Exception --> Line_3 $$ if (versionMeetsMinimum(5, 0)) [CD]
+Line_3 $$ if (versionMeetsMinimum(5, 0)) --> Line_4 $$ createTable("testBug14609", "(field1 int primary key, field2 decimal)") [CD]
+Line_3 $$ if (versionMeetsMinimum(5, 0)) --> Line_5 $$ this.stmt.executeUpdate("INSERT INTO testBug14609 VALUES (1, 1)") [CD]
+Line_3 $$ if (versionMeetsMinimum(5, 0)) --> Line_6 $$ PreparedStatement updatableStmt = this.conn.prepareStatement("SELECT field1, field2 FROM testBug14609", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) [CD]
+Line_6 $$ PreparedStatement updatableStmt = this.conn.prepareStatement("SELECT field1, field2 FROM testBug14609", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) --> Line_8 $$ this.rs = updatableStmt.executeQuery() [FD]
+Line_6 $$ PreparedStatement updatableStmt = this.conn.prepareStatement("SELECT field1, field2 FROM testBug14609", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) --> Line_10 $$ if (updatableStmt != null) [FD]
+Line_10 $$ if (updatableStmt != null) --> Line_11 $$ updatableStmt.close() [CD]
+Line_6 $$ PreparedStatement updatableStmt = this.conn.prepareStatement("SELECT field1, field2 FROM testBug14609", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) --> Line_11 $$ updatableStmt.close() [FD]

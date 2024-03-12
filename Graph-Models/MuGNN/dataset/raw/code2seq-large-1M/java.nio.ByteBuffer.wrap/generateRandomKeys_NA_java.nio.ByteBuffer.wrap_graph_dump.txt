@@ -1,0 +1,7 @@
+Line_2 $$ private void generateRandomKeys(int nrKeys) --> Line_3 $$ Flux<String> keyFlux = Flux.range(0, nrKeys).map( i -> (PREFIX + "-" + i)) [FD]
+Line_2 $$ private void generateRandomKeys(int nrKeys) --> Line_3 $$ Flux<String> keyFlux = Flux.range(0, nrKeys).map( i -> (PREFIX + "-" + i)) [CD]
+Line_2 $$ private void generateRandomKeys(int nrKeys) --> Line_4 $$ Flux<SetCommand> generator = keyFlux.map(String::<>getBytes).map(ByteBuffer::<>wrap).map( key -> SetCommand.set(key).value(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()))) [CD]
+Line_3 $$ Flux<String> keyFlux = Flux.range(0, nrKeys).map( i -> (PREFIX + "-" + i)) --> Line_4 $$ Flux<SetCommand> generator = keyFlux.map(String::<>getBytes).map(ByteBuffer::<>wrap).map( key -> SetCommand.set(key).value(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()))) [FD]
+Line_2 $$ private void generateRandomKeys(int nrKeys) --> Line_7 $$ StepVerifier.create(connection.stringCommands().set(generator)).expectNextCount(nrKeys).verifyComplete() [FD]
+Line_2 $$ private void generateRandomKeys(int nrKeys) --> Line_7 $$ StepVerifier.create(connection.stringCommands().set(generator)).expectNextCount(nrKeys).verifyComplete() [CD]
+Line_4 $$ Flux<SetCommand> generator = keyFlux.map(String::<>getBytes).map(ByteBuffer::<>wrap).map( key -> SetCommand.set(key).value(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()))) --> Line_7 $$ StepVerifier.create(connection.stringCommands().set(generator)).expectNextCount(nrKeys).verifyComplete() [FD]

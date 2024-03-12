@@ -1,0 +1,8 @@
+Line_2 $$ public static <K extends Comparable<? super K>, V extends Object> Map<K, V> sortByKeys(Map<K, V> map) --> Line_3 $$ List<Entry<K, V>> sortedEntries = map.entrySet().stream().sorted(comparingByKey()).collect(Collectors.toList()) [FD]
+Line_2 $$ public static <K extends Comparable<? super K>, V extends Object> Map<K, V> sortByKeys(Map<K, V> map) --> Line_3 $$ List<Entry<K, V>> sortedEntries = map.entrySet().stream().sorted(comparingByKey()).collect(Collectors.toList()) [CD]
+Line_2 $$ public static <K extends Comparable<? super K>, V extends Object> Map<K, V> sortByKeys(Map<K, V> map) --> Line_4 $$ LinkedHashMap<K, V> result = new LinkedHashMap() [CD]
+Line_6 $$ Object value = entry.getValue() --> Line_7 $$ if (value instanceof Map) [FD]
+Line_7 $$ if (value instanceof Map) --> Line_8 $$ value = sortByKeys((Map) value) [CD]
+Line_6 $$ Object value = entry.getValue() --> Line_8 $$ value = sortByKeys((Map) value) [FD]
+Line_4 $$ LinkedHashMap<K, V> result = new LinkedHashMap() --> Line_10 $$ result.put(entry.getKey(), (V) value) [FD]
+Line_2 $$ public static <K extends Comparable<? super K>, V extends Object> Map<K, V> sortByKeys(Map<K, V> map) --> Line_12 $$ return result [CD]

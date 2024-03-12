@@ -1,0 +1,7 @@
+Line_2 $$ public void testCreateMultipleRulesForTheSameTargetTable() throws Exception --> Line_3 $$ execute(String.format(Locale.ENGLISH, "create ingest rule another_topic_rule on %s where topic = '%s' into %s", INGESTION_SOURCE_ID, DATA_TOPIC, TARGET_TABLE)) [CD]
+Line_2 $$ public void testCreateMultipleRulesForTheSameTargetTable() throws Exception --> Line_4 $$ assertBusy(() -> assertThat(existingRulesOnIngestValue.contains("another_topic_rule"), is(true)), 5, TimeUnit.SECONDS) [CD]
+Line_2 $$ public void testCreateMultipleRulesForTheSameTargetTable() throws Exception --> Line_5 $$ pauseDataIngestion() [CD]
+Line_2 $$ public void testCreateMultipleRulesForTheSameTargetTable() throws Exception --> Line_6 $$ execute("select * from ingest_data_raw order by data desc limit 2") [CD]
+Line_2 $$ public void testCreateMultipleRulesForTheSameTargetTable() throws Exception --> Line_7 $$ assertThat(response.rowCount(), greaterThan(1L)) [CD]
+Line_2 $$ public void testCreateMultipleRulesForTheSameTargetTable() throws Exception --> Line_8 $$ assertThat(response.rows()[0][0], is(lastProducedData.get())) [CD]
+Line_2 $$ public void testCreateMultipleRulesForTheSameTargetTable() throws Exception --> Line_9 $$ assertThat(response.rows()[1][0], is(lastProducedData.get())) [CD]

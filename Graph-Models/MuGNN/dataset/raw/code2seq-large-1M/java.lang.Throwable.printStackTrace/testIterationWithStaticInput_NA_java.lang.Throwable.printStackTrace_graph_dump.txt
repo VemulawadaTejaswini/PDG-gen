@@ -1,0 +1,8 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_5 $$ env.setParallelism(100) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_6 $$ DataSet<Long> source = env.generateSequence(1, 1000000) [FD]
+Line_6 $$ DataSet<Long> source = env.generateSequence(1, 1000000) --> Line_7 $$ DataSet<Long> mapped = source.map(new IdentityMapper<Long>()) [FD]
+Line_6 $$ DataSet<Long> source = env.generateSequence(1, 1000000) --> Line_8 $$ DataSet<Long> reduced = source.groupBy(new IdentityKeyExtractor<Long>()).reduce(new SelectOneReducer<Long>()) [FD]
+Line_7 $$ DataSet<Long> mapped = source.map(new IdentityMapper<Long>()) --> Line_9 $$ IterativeDataSet<Long> iteration = mapped.iterate(10) [FD]
+Line_9 $$ IterativeDataSet<Long> iteration = mapped.iterate(10) --> Line_10 $$ iteration.closeWith(iteration.join(reduced).where(new IdentityKeyExtractor<Long>()).equalTo(new IdentityKeyExtractor<Long>()).with(new DummyFlatJoinFunction<Long>())).output(new DiscardingOutputFormat<Long>()) [FD]
+Line_8 $$ DataSet<Long> reduced = source.groupBy(new IdentityKeyExtractor<Long>()).reduce(new SelectOneReducer<Long>()) --> Line_10 $$ iteration.closeWith(iteration.join(reduced).where(new IdentityKeyExtractor<Long>()).equalTo(new IdentityKeyExtractor<Long>()).with(new DummyFlatJoinFunction<Long>())).output(new DiscardingOutputFormat<Long>()) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_11 $$ compileNoStats(env.createProgramPlan()) [FD]

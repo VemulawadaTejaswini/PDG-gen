@@ -1,0 +1,8 @@
+Line_2 $$ public DateTime exec(Tuple input) throws IOException --> Line_3 $$ if (UDFContext.getUDFContext().isFrontend()) [CD]
+Line_3 $$ if (UDFContext.getUDFContext().isFrontend()) --> Line_4 $$ return new DateTime() [CD]
+Line_2 $$ public DateTime exec(Tuple input) throws IOException --> Line_6 $$ if (!isInitialized) [CD]
+Line_6 $$ if (!isInitialized) --> Line_7 $$ String dateTimeValue = UDFContext.getUDFContext().getJobConf().get("pig.job.submitted.timestamp") [CD]
+Line_6 $$ if (!isInitialized) --> Line_8 $$ if (dateTimeValue == null) [CD]
+Line_7 $$ String dateTimeValue = UDFContext.getUDFContext().getJobConf().get("pig.job.submitted.timestamp") --> Line_8 $$ if (dateTimeValue == null) [FD]
+Line_7 $$ String dateTimeValue = UDFContext.getUDFContext().getJobConf().get("pig.job.submitted.timestamp") --> Line_11 $$ dateTime = new DateTime(Long.parseLong(dateTimeValue)) [FD]
+Line_2 $$ public DateTime exec(Tuple input) throws IOException --> Line_14 $$ return dateTime [CD]

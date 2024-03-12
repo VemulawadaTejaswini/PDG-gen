@@ -1,0 +1,7 @@
+Line_2 $$ protected SQLException handleExecuteError(Throwable ex) --> Line_4 $$ if (connection.getDataSource().getContainer().getPreferenceStore().getBoolean(ModelPreferences.QUERY_ROLLBACK_ON_ERROR)) [CD]
+Line_6 $$ if (!connection.isClosed() && !connection.getAutoCommit()) --> Line_7 $$ connection.rollback() [CD]
+Line_2 $$ protected SQLException handleExecuteError(Throwable ex) --> Line_10 $$ log.error("Can't rollback connection after error (" + ex.getMessage() + ")", e) [FD]
+Line_2 $$ protected SQLException handleExecuteError(Throwable ex) --> Line_13 $$ if (ex instanceof SQLException) [FD]
+Line_2 $$ protected SQLException handleExecuteError(Throwable ex) --> Line_13 $$ if (ex instanceof SQLException) [CD]
+Line_13 $$ if (ex instanceof SQLException) --> Line_14 $$ return (SQLException) ex [CD]
+Line_13 $$ if (ex instanceof SQLException) --> Line_16 $$ return new SQLException(ModelMessages.model_jdbc_exception_internal_jdbc_driver_error, ex) [CD]

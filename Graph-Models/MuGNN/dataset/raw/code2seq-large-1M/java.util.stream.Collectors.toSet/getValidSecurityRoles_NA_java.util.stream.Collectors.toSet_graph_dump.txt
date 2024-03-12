@@ -1,0 +1,8 @@
+Line_2 $$ private Set<String> getValidSecurityRoles(final Set<String> roles) --> Line_3 $$ Set<String> incomingRoles = new HashSet(roles) [CD]
+Line_2 $$ private Set<String> getValidSecurityRoles(final Set<String> roles) --> Line_4 $$ Set<SecurityRoleEntity> securityRoleEntities = new HashSet(securityRoleDao.getAllSecurityRoles()) [CD]
+Line_2 $$ private Set<String> getValidSecurityRoles(final Set<String> roles) --> Line_5 $$ Set<String> securityRoles = securityRoleEntities.stream().map(SecurityRoleEntity::<>getCode).collect(Collectors.toSet()) [CD]
+Line_4 $$ Set<SecurityRoleEntity> securityRoleEntities = new HashSet(securityRoleDao.getAllSecurityRoles()) --> Line_5 $$ Set<String> securityRoles = securityRoleEntities.stream().map(SecurityRoleEntity::<>getCode).collect(Collectors.toSet()) [FD]
+Line_2 $$ private Set<String> getValidSecurityRoles(final Set<String> roles) --> Line_6 $$ incomingRoles.retainAll(securityRoles) [CD]
+Line_3 $$ Set<String> incomingRoles = new HashSet(roles) --> Line_6 $$ incomingRoles.retainAll(securityRoles) [FD]
+Line_5 $$ Set<String> securityRoles = securityRoleEntities.stream().map(SecurityRoleEntity::<>getCode).collect(Collectors.toSet()) --> Line_6 $$ incomingRoles.retainAll(securityRoles) [FD]
+Line_2 $$ private Set<String> getValidSecurityRoles(final Set<String> roles) --> Line_7 $$ return incomingRoles [CD]

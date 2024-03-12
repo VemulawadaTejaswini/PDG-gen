@@ -1,0 +1,6 @@
+Line_2 $$ protected DiskStoreID readMember(DataInput in) throws IOException --> Line_3 $$ long mostSignificantBits = in.readLong() [CD]
+Line_2 $$ protected DiskStoreID readMember(DataInput in) throws IOException --> Line_3 $$ long mostSignificantBits = in.readLong() [FD]
+Line_2 $$ protected DiskStoreID readMember(DataInput in) throws IOException --> Line_4 $$ long leastSignificantBits = in.readLong() [CD]
+Line_2 $$ protected DiskStoreID readMember(DataInput in) throws IOException --> Line_4 $$ long leastSignificantBits = in.readLong() [FD]
+Line_2 $$ protected DiskStoreID readMember(DataInput in) throws IOException --> Line_5 $$ DiskStoreID member = new DiskStoreID(mostSignificantBits, leastSignificantBits) [CD]
+Line_2 $$ protected DiskStoreID readMember(DataInput in) throws IOException --> Line_6 $$ return member [CD]

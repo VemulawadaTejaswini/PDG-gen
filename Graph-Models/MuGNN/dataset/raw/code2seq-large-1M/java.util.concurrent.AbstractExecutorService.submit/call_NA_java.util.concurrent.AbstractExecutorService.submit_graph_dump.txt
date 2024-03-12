@@ -1,0 +1,7 @@
+Line_2 $$ protected <T> T call(Callable<T> callable) throws Exception --> Line_3 $$ Future<T> future = executor.submit(callable) [CD]
+Line_2 $$ protected <T> T call(Callable<T> callable) throws Exception --> Line_3 $$ Future<T> future = executor.submit(callable) [FD]
+Line_3 $$ Future<T> future = executor.submit(callable) --> Line_5 $$ return future.get(timeoutMs, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ Future<T> future = executor.submit(callable) --> Line_10 $$ if (!future.isDone()) [FD]
+Line_10 $$ if (!future.isDone()) --> Line_11 $$ future.cancel(true) [CD]
+Line_3 $$ Future<T> future = executor.submit(callable) --> Line_11 $$ future.cancel(true) [FD]
+Line_10 $$ if (!future.isDone()) --> Line_12 $$ LOG.warn("Try once task not done, cancel it, active count: " + executor.getActiveCount()) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private List<Map<String, Object>> formatInputEvents(Event[] events) throws Exception --> Line_3 $$ List<Map<String, Object>> inputList = new ArrayList() [CD]
+Line_4 $$ for (Event event : events) --> Line_6 $$ StratioStreamingMessage messageObject = javaToSiddhiSerializer.deserialize(event) [FD]
+Line_6 $$ StratioStreamingMessage messageObject = javaToSiddhiSerializer.deserialize(event) --> Line_7 $$ for (ColumnNameTypeValue column : messageObject.getColumns()) [FD]
+Line_5 $$ Map<String, Object> inputMap = new HashMap() --> Line_8 $$ inputMap.put(column.getColumn(), column.getValue()) [FD]
+Line_7 $$ for (ColumnNameTypeValue column : messageObject.getColumns()) --> Line_8 $$ inputMap.put(column.getColumn(), column.getValue()) [FD]
+Line_3 $$ List<Map<String, Object>> inputList = new ArrayList() --> Line_10 $$ inputList.add(inputMap) [FD]
+Line_5 $$ Map<String, Object> inputMap = new HashMap() --> Line_10 $$ inputList.add(inputMap) [FD]
+Line_2 $$ private List<Map<String, Object>> formatInputEvents(Event[] events) throws Exception --> Line_12 $$ return inputList [CD]

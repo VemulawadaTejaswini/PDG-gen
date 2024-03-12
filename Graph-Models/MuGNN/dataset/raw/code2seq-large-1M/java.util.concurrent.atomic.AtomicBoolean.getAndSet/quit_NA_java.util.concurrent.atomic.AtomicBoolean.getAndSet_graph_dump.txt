@@ -1,0 +1,5 @@
+Line_2 $$ public void quit() --> Line_3 $$ if (!mQuit.getAndSet(true)) [CD]
+Line_3 $$ if (!mQuit.getAndSet(true)) --> Line_4 $$ Handler handler = mRequestThread.waitAndGetHandler() [CD]
+Line_3 $$ if (!mQuit.getAndSet(true)) --> Line_5 $$ handler.sendMessageAtFrontOfQueue(handler.obtainMessage(MSG_CLEANUP)) [CD]
+Line_4 $$ Handler handler = mRequestThread.waitAndGetHandler() --> Line_5 $$ handler.sendMessageAtFrontOfQueue(handler.obtainMessage(MSG_CLEANUP)) [FD]
+Line_3 $$ if (!mQuit.getAndSet(true)) --> Line_6 $$ mRequestThread.quitSafely() [CD]

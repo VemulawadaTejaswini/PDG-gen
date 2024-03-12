@@ -1,0 +1,5 @@
+Line_2 $$ private void changeExistingObject(Record record, ELVars variables, String bucket, String objectPath) throws OnRecordErrorException --> Line_3 $$ if (!config.taskConfig.tags.isEmpty()) [CD]
+Line_3 $$ if (!config.taskConfig.tags.isEmpty()) --> Line_4 $$ List<Tag> newTags = new ArrayList() [CD]
+Line_4 $$ List<Tag> newTags = new ArrayList() --> Line_6 $$ newTags.add(new Tag(evaluate(record, "tags", variables, entry.getKey()), evaluate(record, "tags", variables, entry.getValue()))) [FD]
+Line_2 $$ private void changeExistingObject(Record record, ELVars variables, String bucket, String objectPath) throws OnRecordErrorException --> Line_6 $$ newTags.add(new Tag(evaluate(record, "tags", variables, entry.getKey()), evaluate(record, "tags", variables, entry.getValue()))) [FD]
+Line_3 $$ if (!config.taskConfig.tags.isEmpty()) --> Line_8 $$ config.s3Config.getS3Client().setObjectTagging(new SetObjectTaggingRequest(bucket, objectPath, new ObjectTagging(newTags))) [CD]

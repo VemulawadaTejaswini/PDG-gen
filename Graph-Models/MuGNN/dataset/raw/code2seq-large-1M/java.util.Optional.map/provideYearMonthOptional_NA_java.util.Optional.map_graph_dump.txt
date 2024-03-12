@@ -1,0 +1,6 @@
+Line_2 $$ static Optional<YearMonth> provideYearMonthOptional(HttpServletRequest req) --> Line_3 $$ DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM") [CD]
+Line_2 $$ static Optional<YearMonth> provideYearMonthOptional(HttpServletRequest req) --> Line_4 $$ Optional<String> optionalYearMonthStr = extractOptionalParameter(req, PARAM_YEAR_MONTH) [FD]
+Line_2 $$ static Optional<YearMonth> provideYearMonthOptional(HttpServletRequest req) --> Line_4 $$ Optional<String> optionalYearMonthStr = extractOptionalParameter(req, PARAM_YEAR_MONTH) [CD]
+Line_4 $$ Optional<String> optionalYearMonthStr = extractOptionalParameter(req, PARAM_YEAR_MONTH) --> Line_6 $$ return optionalYearMonthStr.map( s -> YearMonth.parse(s, formatter)) [FD]
+Line_3 $$ DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM") --> Line_6 $$ return optionalYearMonthStr.map( s -> YearMonth.parse(s, formatter)) [FD]
+Line_4 $$ Optional<String> optionalYearMonthStr = extractOptionalParameter(req, PARAM_YEAR_MONTH) --> Line_8 $$ throw new BadRequestException(String.format("yearMonth must be in yyyy-MM format, got %s instead", optionalYearMonthStr.orElse("UNSPECIFIED YEARMONTH"))) [FD]

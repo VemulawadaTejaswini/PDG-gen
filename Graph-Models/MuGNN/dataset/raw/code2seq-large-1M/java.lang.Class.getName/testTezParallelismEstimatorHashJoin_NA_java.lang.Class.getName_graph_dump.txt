@@ -1,0 +1,8 @@
+Line_2 $$ public void testTezParallelismEstimatorHashJoin() throws Exception --> Line_3 $$ pc.getProperties().setProperty(PigConfiguration.PIG_NO_SPLIT_COMBINATION, "true") [CD]
+Line_2 $$ public void testTezParallelismEstimatorHashJoin() throws Exception --> Line_4 $$ String query = "a = load '10' using " + ArbitarySplitsLoader.class.getName() + "() as (name:chararray, age:int, gpa:double);" + "b = load '5' using " + ArbitarySplitsLoader.class.getName() + "() as (name:chararray, course:chararray);" + "c = join a by name, b by name;" + "store c into 'output';" [CD]
+Line_2 $$ public void testTezParallelismEstimatorHashJoin() throws Exception --> Line_5 $$ Pair<TezOperPlan, DAG> compiledPlan = compile(query) [CD]
+Line_2 $$ public void testTezParallelismEstimatorHashJoin() throws Exception --> Line_6 $$ TezOperator leafOper = compiledPlan.first.getLeaves().get(0) [CD]
+Line_2 $$ public void testTezParallelismEstimatorHashJoin() throws Exception --> Line_7 $$ Vertex leafVertex = compiledPlan.second.getVertex(leafOper.getOperatorKey().toString()) [CD]
+Line_6 $$ TezOperator leafOper = compiledPlan.first.getLeaves().get(0) --> Line_7 $$ Vertex leafVertex = compiledPlan.second.getVertex(leafOper.getOperatorKey().toString()) [FD]
+Line_2 $$ public void testTezParallelismEstimatorHashJoin() throws Exception --> Line_8 $$ assertEquals(leafVertex.getParallelism(), 15) [CD]
+Line_7 $$ Vertex leafVertex = compiledPlan.second.getVertex(leafOper.getOperatorKey().toString()) --> Line_8 $$ assertEquals(leafVertex.getParallelism(), 15) [FD]

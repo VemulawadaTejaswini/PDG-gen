@@ -1,0 +1,8 @@
+Line_2 $$ public void testContentWithInvalidContentTypeToString() throws Exception --> Line_3 $$ final String content = constructString(RUSSIAN_HELLO) [CD]
+Line_2 $$ public void testContentWithInvalidContentTypeToString() throws Exception --> Line_4 $$ final byte[] bytes = content.getBytes("UTF-8") [CD]
+Line_3 $$ final String content = constructString(RUSSIAN_HELLO) --> Line_4 $$ final byte[] bytes = content.getBytes("UTF-8") [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_6 $$ httpentity.setContent(new ByteArrayInputStream(bytes)) [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_7 $$ httpentity.setContentType("text/plain; charset=nosuchcharset") [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_8 $$ final String s = EntityUtils.toString(httpentity, "UTF-8") [FD]
+Line_3 $$ final String content = constructString(RUSSIAN_HELLO) --> Line_9 $$ Assert.assertEquals(content, s) [FD]
+Line_8 $$ final String s = EntityUtils.toString(httpentity, "UTF-8") --> Line_9 $$ Assert.assertEquals(content, s) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private List<MetricCollection> fetchMetrics(FetchData.Request request, boolean slicedFetch) throws Exception --> Line_3 $$ if (slicedFetch) [CD]
+Line_3 $$ if (slicedFetch) --> Line_4 $$ List<MetricCollection> fetchedMetrics = Collections.synchronizedList(new ArrayList()) [CD]
+Line_3 $$ if (slicedFetch) --> Line_5 $$ backend.fetch(request, FetchQuotaWatcher.NO_QUOTA,  mcr -> fetchedMetrics.add(mcr.getMetrics())).get() [CD]
+Line_2 $$ private List<MetricCollection> fetchMetrics(FetchData.Request request, boolean slicedFetch) throws Exception --> Line_5 $$ backend.fetch(request, FetchQuotaWatcher.NO_QUOTA,  mcr -> fetchedMetrics.add(mcr.getMetrics())).get() [FD]
+Line_4 $$ List<MetricCollection> fetchedMetrics = Collections.synchronizedList(new ArrayList()) --> Line_5 $$ backend.fetch(request, FetchQuotaWatcher.NO_QUOTA,  mcr -> fetchedMetrics.add(mcr.getMetrics())).get() [FD]
+Line_3 $$ if (slicedFetch) --> Line_6 $$ return fetchedMetrics [CD]

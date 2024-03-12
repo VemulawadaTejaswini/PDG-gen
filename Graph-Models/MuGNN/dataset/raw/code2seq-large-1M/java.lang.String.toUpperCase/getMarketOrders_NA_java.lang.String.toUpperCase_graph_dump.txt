@@ -1,0 +1,7 @@
+Line_2 $$ public MarketOrderBook getMarketOrders(String marketId) throws ExchangeNetworkException, TradingApiException --> Line_4 $$ final ExchangeHttpResponse response = sendPublicRequestToExchange("GetMarketOrders/" + marketId.toUpperCase()) [FD]
+Line_6 $$ Type responseApiType = new TypeToken<CryptopiaPublicApiResponse<CryptopiaOrderBook>>() --> Line_8 $$ final CryptopiaPublicApiResponse<CryptopiaOrderBook> cryptopiaResponse = gson.fromJson(response.getPayload(), responseApiType) [FD]
+Line_4 $$ final ExchangeHttpResponse response = sendPublicRequestToExchange("GetMarketOrders/" + marketId.toUpperCase()) --> Line_8 $$ final CryptopiaPublicApiResponse<CryptopiaOrderBook> cryptopiaResponse = gson.fromJson(response.getPayload(), responseApiType) [FD]
+Line_10 $$ final List<MarketOrder> buyOrders = new ArrayList() --> Line_13 $$ buyOrders.add(buyOrder) [FD]
+Line_12 $$ final MarketOrder buyOrder = new MarketOrderImpl(OrderType.BUY, cryptopiaBuyOrder.Price, cryptopiaBuyOrder.Volume, cryptopiaBuyOrder.Total) --> Line_13 $$ buyOrders.add(buyOrder) [FD]
+Line_15 $$ final List<MarketOrder> sellOrders = new ArrayList() --> Line_18 $$ sellOrders.add(sellOrder) [FD]
+Line_17 $$ final MarketOrder sellOrder = new MarketOrderImpl(OrderType.SELL, cryptopiaSellOrder.Price, cryptopiaSellOrder.Volume, cryptopiaSellOrder.Total) --> Line_18 $$ sellOrders.add(sellOrder) [FD]

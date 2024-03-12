@@ -1,0 +1,8 @@
+Line_2 $$ public boolean setUserStateForCommandsBot(Integer userId, boolean active) --> Line_3 $$ int updatedRows = 0 [CD]
+Line_5 $$ final PreparedStatement preparedStatement = connetion.getPreparedStatement("INSERT INTO CommandUsers (userId, status) VALUES(?, ?) ON DUPLICATE KEY UPDATE status=?") --> Line_6 $$ preparedStatement.setInt(1, userId) [FD]
+Line_2 $$ public boolean setUserStateForCommandsBot(Integer userId, boolean active) --> Line_6 $$ preparedStatement.setInt(1, userId) [FD]
+Line_5 $$ final PreparedStatement preparedStatement = connetion.getPreparedStatement("INSERT INTO CommandUsers (userId, status) VALUES(?, ?) ON DUPLICATE KEY UPDATE status=?") --> Line_7 $$ preparedStatement.setInt(2, active ? 1 : 0) [FD]
+Line_5 $$ final PreparedStatement preparedStatement = connetion.getPreparedStatement("INSERT INTO CommandUsers (userId, status) VALUES(?, ?) ON DUPLICATE KEY UPDATE status=?") --> Line_8 $$ preparedStatement.setInt(3, active ? 1 : 0) [FD]
+Line_3 $$ int updatedRows = 0 --> Line_9 $$ updatedRows = preparedStatement.executeUpdate() [FD]
+Line_5 $$ final PreparedStatement preparedStatement = connetion.getPreparedStatement("INSERT INTO CommandUsers (userId, status) VALUES(?, ?) ON DUPLICATE KEY UPDATE status=?") --> Line_9 $$ updatedRows = preparedStatement.executeUpdate() [FD]
+Line_2 $$ public boolean setUserStateForCommandsBot(Integer userId, boolean active) --> Line_13 $$ return updatedRows > 0 [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void nonStaticJsonPathConfigHasPrecedenceOverStaticConfiguration() throws Exception --> Line_3 $$ JsonPath.config = new JsonPathConfig().numberReturnType(JsonPathConfig.NumberReturnType.FLOAT_AND_DOUBLE) [CD]
+Line_5 $$ final Map<String, Map> store = JsonPath.with(JSON).using(new JsonPathConfig(JsonPathConfig.NumberReturnType.BIG_DECIMAL)).get("store") --> Line_6 $$ assertThat(store.size(), equalTo(2)) [FD]
+Line_5 $$ final Map<String, Map> store = JsonPath.with(JSON).using(new JsonPathConfig(JsonPathConfig.NumberReturnType.BIG_DECIMAL)).get("store") --> Line_7 $$ final Map<String, Object> bicycle = store.get("bicycle") [FD]
+Line_7 $$ final Map<String, Object> bicycle = store.get("bicycle") --> Line_8 $$ final String color = (String) bicycle.get("color") [FD]
+Line_7 $$ final Map<String, Object> bicycle = store.get("bicycle") --> Line_9 $$ final BigDecimal price = (BigDecimal) bicycle.get("price") [FD]
+Line_8 $$ final String color = (String) bicycle.get("color") --> Line_10 $$ assertThat(color, equalTo("red")) [FD]
+Line_9 $$ final BigDecimal price = (BigDecimal) bicycle.get("price") --> Line_11 $$ assertThat(price, equalTo(new BigDecimal("19.95"))) [FD]

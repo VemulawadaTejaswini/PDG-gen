@@ -1,0 +1,8 @@
+Line_2 $$ private void startBulkRegionOperation(boolean writeLockNeeded) throws NotServingRegionException, RegionTooBusyException, InterruptedIOException --> Line_3 $$ if (this.closing.get()) [CD]
+Line_2 $$ private void startBulkRegionOperation(boolean writeLockNeeded) throws NotServingRegionException, RegionTooBusyException, InterruptedIOException --> Line_6 $$ if (writeLockNeeded) [CD]
+Line_6 $$ if (writeLockNeeded) --> Line_7 $$ lock(lock.writeLock()) [CD]
+Line_6 $$ if (writeLockNeeded) --> Line_9 $$ lock(lock.readLock()) [CD]
+Line_2 $$ private void startBulkRegionOperation(boolean writeLockNeeded) throws NotServingRegionException, RegionTooBusyException, InterruptedIOException --> Line_10 $$ if (this.closed.get()) [CD]
+Line_10 $$ if (this.closed.get()) --> Line_11 $$ if (writeLockNeeded) [CD]
+Line_11 $$ if (writeLockNeeded) --> Line_12 $$ lock.writeLock().unlock() [CD]
+Line_11 $$ if (writeLockNeeded) --> Line_14 $$ lock.readLock().unlock() [CD]

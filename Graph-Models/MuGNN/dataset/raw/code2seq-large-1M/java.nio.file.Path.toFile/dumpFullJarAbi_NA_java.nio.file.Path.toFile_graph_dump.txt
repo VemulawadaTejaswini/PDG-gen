@@ -1,0 +1,5 @@
+Line_3 $$ try (JarFile file = new JarFile(fullJarPath.toFile())) --> Line_4 $$ Iterable<JarEntry> entries = file.stream()::<>iterator [FD]
+Line_6 $$ String name = entry.getName() --> Line_7 $$ if (JarFile.MANIFEST_NAME.equals(name)) [FD]
+Line_6 $$ String name = entry.getName() --> Line_10 $$ actualFullDirectory.add(name) [FD]
+Line_6 $$ String name = entry.getName() --> Line_11 $$ actualFullAbis.put(name, new JarDumper().setAsmFlags(ClassReader.SKIP_CODE | ClassReader.SKIP_DEBUG | ClassReader.SKIP_FRAMES).dumpEntry(file, entry).collect(Collectors.toList())) [FD]
+Line_3 $$ try (JarFile file = new JarFile(fullJarPath.toFile())) --> Line_11 $$ actualFullAbis.put(name, new JarDumper().setAsmFlags(ClassReader.SKIP_CODE | ClassReader.SKIP_DEBUG | ClassReader.SKIP_FRAMES).dumpEntry(file, entry).collect(Collectors.toList())) [FD]

@@ -1,0 +1,7 @@
+Line_6 $$ final Instance instance = getInstance(new ActorTaskManagerGateway(new ExecutionGraphTestUtils.SimpleActorGateway(TestingUtils.defaultExecutionContext()))) --> Line_7 $$ final SimpleSlot slot = instance.allocateSimpleSlot() [FD]
+Line_9 $$ CompletableFuture<LogicalSlot> future = new CompletableFuture() --> Line_10 $$ future.complete(slot) [FD]
+Line_7 $$ final SimpleSlot slot = instance.allocateSimpleSlot() --> Line_10 $$ future.complete(slot) [FD]
+Line_9 $$ CompletableFuture<LogicalSlot> future = new CompletableFuture() --> Line_11 $$ when(scheduler.allocateSlot(any(SlotRequestId.class), any(ScheduledUnit.class), anyBoolean(), any(SlotProfile.class), any(Time.class))).thenReturn(future) [FD]
+Line_5 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_12 $$ assertEquals(ExecutionState.CREATED, vertex.getExecutionState()) [FD]
+Line_5 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_13 $$ vertex.scheduleForExecution(scheduler, false, LocationPreferenceConstraint.ALL) [FD]
+Line_5 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_14 $$ assertEquals(ExecutionState.DEPLOYING, vertex.getExecutionState()) [FD]

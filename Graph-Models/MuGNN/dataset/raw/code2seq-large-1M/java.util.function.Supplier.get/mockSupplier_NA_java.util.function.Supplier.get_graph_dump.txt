@@ -1,0 +1,7 @@
+Line_2 $$ private <T> Supplier<T> mockSupplier(T... values) --> Line_3 $$ Supplier<T> supplier = mock(Supplier.class) [CD]
+Line_2 $$ private <T> Supplier<T> mockSupplier(T... values) --> Line_4 $$ if (values.length == 1) [CD]
+Line_4 $$ if (values.length == 1) --> Line_5 $$ when(supplier.get()).thenReturn(values[0]) [CD]
+Line_4 $$ if (values.length == 1) --> Line_6 $$ if (values.length > 1) [CD]
+Line_6 $$ if (values.length > 1) --> Line_7 $$ when(supplier.get()).thenReturn(values[0], Arrays.copyOfRange(values, 1, values.length)) [CD]
+Line_2 $$ private <T> Supplier<T> mockSupplier(T... values) --> Line_7 $$ when(supplier.get()).thenReturn(values[0], Arrays.copyOfRange(values, 1, values.length)) [FD]
+Line_2 $$ private <T> Supplier<T> mockSupplier(T... values) --> Line_9 $$ return supplier [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private Stream<List<Object>> partitionList(@Name("values") List list, @Name("batchSize") int batchSize) --> Line_3 $$ int total = list.size() [CD]
+Line_2 $$ private Stream<List<Object>> partitionList(@Name("values") List list, @Name("batchSize") int batchSize) --> Line_3 $$ int total = list.size() [FD]
+Line_2 $$ private Stream<List<Object>> partitionList(@Name("values") List list, @Name("batchSize") int batchSize) --> Line_4 $$ int pages = (total / batchSize) + 1 [CD]
+Line_2 $$ private Stream<List<Object>> partitionList(@Name("values") List list, @Name("batchSize") int batchSize) --> Line_5 $$ return IntStream.range(0, pages).parallel().boxed().map( page -> [CD]
+Line_4 $$ int pages = (total / batchSize) + 1 --> Line_5 $$ return IntStream.range(0, pages).parallel().boxed().map( page -> [FD]
+Line_2 $$ private Stream<List<Object>> partitionList(@Name("values") List list, @Name("batchSize") int batchSize) --> Line_7 $$ return list.subList(from, Math.min(from + batchSize, total)) [FD]
+Line_6 $$ int from = page * batchSize --> Line_7 $$ return list.subList(from, Math.min(from + batchSize, total)) [FD]
+Line_3 $$ int total = list.size() --> Line_7 $$ return list.subList(from, Math.min(from + batchSize, total)) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<String> getStaticContextString() --> Line_3 $$ Set<Map.Entry<String, String>> entries = getStaticContext().toSet() [CD]
+Line_2 $$ public Optional<String> getStaticContextString() --> Line_4 $$ if (entries.isEmpty()) [CD]
+Line_4 $$ if (entries.isEmpty()) --> Line_5 $$ return Optional.empty() [CD]
+Line_2 $$ public Optional<String> getStaticContextString() --> Line_7 $$ if (entries.stream().anyMatch( pair -> !pair.getKey().equals(Contexts.SERVER_KEY))) [CD]
+Line_7 $$ if (entries.stream().anyMatch( pair -> !pair.getKey().equals(Contexts.SERVER_KEY))) --> Line_8 $$ return Optional.of(entries.stream().map( pair -> pair.getKey() + "=" + pair.getValue()).collect(Collectors.joining(";"))) [CD]
+Line_7 $$ if (entries.stream().anyMatch( pair -> !pair.getKey().equals(Contexts.SERVER_KEY))) --> Line_10 $$ return Optional.of(entries.stream().map(Map.Entry::<>getValue).collect(Collectors.joining(";"))) [CD]

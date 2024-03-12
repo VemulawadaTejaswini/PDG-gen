@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldBePossibleToConsumeResultAfterSessionIsClosed() --> Line_3 $$ CompletionStage<StatementResultCursor> cursorStage = session.runAsync("UNWIND range(1, 20000) AS x RETURN x") [CD]
+Line_2 $$ public void shouldBePossibleToConsumeResultAfterSessionIsClosed() --> Line_4 $$ await(session.closeAsync()) [CD]
+Line_2 $$ public void shouldBePossibleToConsumeResultAfterSessionIsClosed() --> Line_5 $$ StatementResultCursor cursor = await(cursorStage) [CD]
+Line_3 $$ CompletionStage<StatementResultCursor> cursorStage = session.runAsync("UNWIND range(1, 20000) AS x RETURN x") --> Line_5 $$ StatementResultCursor cursor = await(cursorStage) [FD]
+Line_2 $$ public void shouldBePossibleToConsumeResultAfterSessionIsClosed() --> Line_6 $$ List<Integer> ints = await(cursor.listAsync( record -> record.get(0).asInt())) [CD]
+Line_5 $$ StatementResultCursor cursor = await(cursorStage) --> Line_6 $$ List<Integer> ints = await(cursor.listAsync( record -> record.get(0).asInt())) [FD]
+Line_2 $$ public void shouldBePossibleToConsumeResultAfterSessionIsClosed() --> Line_7 $$ assertEquals(20000, ints.size()) [CD]
+Line_6 $$ List<Integer> ints = await(cursor.listAsync( record -> record.get(0).asInt())) --> Line_7 $$ assertEquals(20000, ints.size()) [FD]

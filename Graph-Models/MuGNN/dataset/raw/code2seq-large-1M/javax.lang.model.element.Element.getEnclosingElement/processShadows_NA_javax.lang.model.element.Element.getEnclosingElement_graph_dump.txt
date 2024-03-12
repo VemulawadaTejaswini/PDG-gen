@@ -1,0 +1,7 @@
+Line_2 $$ private void processShadows(RoundEnvironment roundEnv) --> Line_3 $$ for (Element elem : roundEnv.getElementsAnnotatedWith(Shadow.class)) [FD]
+Line_5 $$ if (!(parent instanceof TypeElement)) --> Line_6 $$ this.mixins.printMessage(Kind.ERROR, "Unexpected parent with type " + TypeUtils.getElementType(parent), elem) [CD]
+Line_4 $$ Element parent = elem.getEnclosingElement() --> Line_6 $$ this.mixins.printMessage(Kind.ERROR, "Unexpected parent with type " + TypeUtils.getElementType(parent), elem) [FD]
+Line_10 $$ if (elem.getKind() == ElementKind.FIELD) --> Line_11 $$ this.mixins.registerShadow((TypeElement) parent, (VariableElement) elem, shadow) [CD]
+Line_10 $$ if (elem.getKind() == ElementKind.FIELD) --> Line_12 $$ if (elem.getKind() == ElementKind.METHOD) [CD]
+Line_12 $$ if (elem.getKind() == ElementKind.METHOD) --> Line_13 $$ this.mixins.registerShadow((TypeElement) parent, (ExecutableElement) elem, shadow) [CD]
+Line_12 $$ if (elem.getKind() == ElementKind.METHOD) --> Line_15 $$ this.mixins.printMessage(Kind.ERROR, "Element is not a method or field", elem) [CD]

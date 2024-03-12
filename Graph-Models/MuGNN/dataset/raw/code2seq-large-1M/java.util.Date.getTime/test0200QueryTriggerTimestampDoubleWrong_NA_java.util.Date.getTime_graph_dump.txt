@@ -1,0 +1,7 @@
+Line_2 $$ public void test0200QueryTriggerTimestampDoubleWrong() throws Exception --> Line_3 $$ final Date NOW = new Date() [CD]
+Line_2 $$ public void test0200QueryTriggerTimestampDoubleWrong() throws Exception --> Line_4 $$ Session session = open() [CD]
+Line_3 $$ final Date NOW = new Date() --> Line_6 $$ XMLGregorianCalendar thisScanTimestamp = XmlTypeConverter.createXMLGregorianCalendar(NOW.getTime()) [FD]
+Line_6 $$ XMLGregorianCalendar thisScanTimestamp = XmlTypeConverter.createXMLGregorianCalendar(NOW.getTime()) --> Line_7 $$ ObjectQuery query = QueryBuilder.queryFor(ObjectType.class, prismContext).item(ObjectType.F_TRIGGER, F_TIMESTAMP).gt(thisScanTimestamp).and().item(ObjectType.F_TRIGGER, F_TIMESTAMP).lt(thisScanTimestamp).build() [FD]
+Line_4 $$ Session session = open() --> Line_9 $$ String real = getInterpretedQuery2(session, ObjectType.class, query) [FD]
+Line_10 $$ String expected = "select\n" + "  o.oid, o.fullObject, o.stringsCount, o.longsCount, o.datesCount, o.referencesCount, o.polysCount, o.booleansCount\n" + "from\n" + "  RObject o\n" + "    left join o.trigger t\n" + "    left join o.trigger t2\n" + "where\n" + "  (\n" + "    t.timestamp > :timestamp and\n" + "    t2.timestamp < :timestamp2\n" + "  )\n" --> Line_11 $$ assertEqualsIgnoreWhitespace(expected, real) [FD]
+Line_4 $$ Session session = open() --> Line_13 $$ close(session) [FD]

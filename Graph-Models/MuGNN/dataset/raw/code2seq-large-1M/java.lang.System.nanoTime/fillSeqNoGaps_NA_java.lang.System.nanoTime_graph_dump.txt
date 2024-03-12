@@ -1,0 +1,4 @@
+Line_6 $$ final long maxSeqNo = localCheckpointTracker.getMaxSeqNo() --> Line_8 $$ for (long seqNo = localCheckpoint + 1; seqNo <= maxSeqNo; seqNo = localCheckpointTracker.getCheckpoint() + 1) [FD]
+Line_8 $$ for (long seqNo = localCheckpoint + 1; seqNo <= maxSeqNo; seqNo = localCheckpointTracker.getCheckpoint() + 1) --> Line_10 $$ innerNoOp(new NoOp(seqNo, primaryTerm, Operation.Origin.PRIMARY, System.nanoTime(), "filling gaps")) [CD]
+Line_8 $$ for (long seqNo = localCheckpoint + 1; seqNo <= maxSeqNo; seqNo = localCheckpointTracker.getCheckpoint() + 1) --> Line_11 $$ numNoOpsAdded++ [CD]
+Line_7 $$ int numNoOpsAdded = 0 --> Line_11 $$ numNoOpsAdded++ [FD]

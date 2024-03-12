@@ -1,0 +1,8 @@
+Line_2 $$ public final long getSegmentTimeUs(int sequenceNumber) --> Line_3 $$ long unscaledSegmentTime [CD]
+Line_2 $$ public final long getSegmentTimeUs(int sequenceNumber) --> Line_4 $$ if (segmentTimeline != null) [CD]
+Line_4 $$ if (segmentTimeline != null) --> Line_5 $$ unscaledSegmentTime = segmentTimeline.get(sequenceNumber - startNumber).startTime - presentationTimeOffset [CD]
+Line_3 $$ long unscaledSegmentTime --> Line_5 $$ unscaledSegmentTime = segmentTimeline.get(sequenceNumber - startNumber).startTime - presentationTimeOffset [FD]
+Line_4 $$ if (segmentTimeline != null) --> Line_7 $$ unscaledSegmentTime = (sequenceNumber - startNumber) * duration [CD]
+Line_3 $$ long unscaledSegmentTime --> Line_7 $$ unscaledSegmentTime = (sequenceNumber - startNumber) * duration [FD]
+Line_5 $$ unscaledSegmentTime = segmentTimeline.get(sequenceNumber - startNumber).startTime - presentationTimeOffset --> Line_7 $$ unscaledSegmentTime = (sequenceNumber - startNumber) * duration [FD]
+Line_2 $$ public final long getSegmentTimeUs(int sequenceNumber) --> Line_9 $$ return (unscaledSegmentTime * 1000000) / timescale [CD]

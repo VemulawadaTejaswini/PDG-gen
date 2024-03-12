@@ -1,0 +1,5 @@
+Line_2 $$ private boolean needsResaveBasedOnStaleCheckpoint(File imageFile, long numEditsLoaded) --> Line_3 $$ final long checkpointPeriod = conf.getLong(DFSConfigKeys.DFS_NAMENODE_CHECKPOINT_PERIOD_KEY, DFSConfigKeys.DFS_NAMENODE_CHECKPOINT_PERIOD_DEFAULT) [CD]
+Line_2 $$ private boolean needsResaveBasedOnStaleCheckpoint(File imageFile, long numEditsLoaded) --> Line_4 $$ final long checkpointTxnCount = conf.getLong(DFSConfigKeys.DFS_NAMENODE_CHECKPOINT_TXNS_KEY, DFSConfigKeys.DFS_NAMENODE_CHECKPOINT_TXNS_DEFAULT) [CD]
+Line_2 $$ private boolean needsResaveBasedOnStaleCheckpoint(File imageFile, long numEditsLoaded) --> Line_5 $$ long checkpointAge = Time.now() - imageFile.lastModified() [FD]
+Line_2 $$ private boolean needsResaveBasedOnStaleCheckpoint(File imageFile, long numEditsLoaded) --> Line_5 $$ long checkpointAge = Time.now() - imageFile.lastModified() [CD]
+Line_2 $$ private boolean needsResaveBasedOnStaleCheckpoint(File imageFile, long numEditsLoaded) --> Line_6 $$ return (checkpointAge > checkpointPeriod * 1000) || (numEditsLoaded > checkpointTxnCount) [CD]

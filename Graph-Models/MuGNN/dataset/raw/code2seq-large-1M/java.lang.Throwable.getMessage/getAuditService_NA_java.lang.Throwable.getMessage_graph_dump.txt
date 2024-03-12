@@ -1,0 +1,8 @@
+Line_2 $$ public AuditService getAuditService() --> Line_3 $$ if (auditService == null) [CD]
+Line_3 $$ if (auditService == null) --> Line_4 $$ AuditServiceProxy proxy = new AuditServiceProxy() [CD]
+Line_5 $$ for (AuditServiceFactory factory : serviceFactories) --> Line_7 $$ AuditService service = factory.getAuditService() [FD]
+Line_7 $$ AuditService service = factory.getAuditService() --> Line_8 $$ applicationContext.getAutowireCapableBeanFactory().autowireBean(service) [FD]
+Line_4 $$ AuditServiceProxy proxy = new AuditServiceProxy() --> Line_9 $$ proxy.registerService(service) [FD]
+Line_7 $$ AuditService service = factory.getAuditService() --> Line_9 $$ proxy.registerService(service) [FD]
+Line_5 $$ for (AuditServiceFactory factory : serviceFactories) --> Line_11 $$ LoggingUtils.logException(LOGGER, "Couldn't get audit service from factory ' [FD]
+Line_2 $$ public AuditService getAuditService() --> Line_17 $$ return auditService [CD]

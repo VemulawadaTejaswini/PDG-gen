@@ -1,0 +1,8 @@
+Line_2 $$ public boolean allowAccess() --> Line_3 $$ long ts = System.currentTimeMillis() [CD]
+Line_2 $$ public boolean allowAccess() --> Line_4 $$ if (mLastResponse == Policy.LICENSED) [CD]
+Line_4 $$ if (mLastResponse == Policy.LICENSED) --> Line_5 $$ if (ts <= mValidityTimestamp) [CD]
+Line_3 $$ long ts = System.currentTimeMillis() --> Line_5 $$ if (ts <= mValidityTimestamp) [FD]
+Line_5 $$ if (ts <= mValidityTimestamp) --> Line_6 $$ return true [CD]
+Line_4 $$ if (mLastResponse == Policy.LICENSED) --> Line_8 $$ if (mLastResponse == Policy.RETRY && ts < mLastResponseTime + MILLIS_PER_MINUTE) [CD]
+Line_8 $$ if (mLastResponse == Policy.RETRY && ts < mLastResponseTime + MILLIS_PER_MINUTE) --> Line_9 $$ return (ts <= mRetryUntil || mRetryCount <= mMaxRetries) [CD]
+Line_2 $$ public boolean allowAccess() --> Line_11 $$ return false [CD]

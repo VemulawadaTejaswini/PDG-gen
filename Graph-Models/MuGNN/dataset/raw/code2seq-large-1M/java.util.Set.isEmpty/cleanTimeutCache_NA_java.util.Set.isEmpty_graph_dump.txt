@@ -1,0 +1,6 @@
+Line_2 $$ public static boolean cleanTimeutCache() --> Line_3 $$ if (!cacheRepository.keySet().isEmpty()) [CD]
+Line_4 $$ for (String key : cacheRepository.keySet()) --> Line_5 $$ LocalCacheData localCacheData = cacheRepository.get(key) [FD]
+Line_5 $$ LocalCacheData localCacheData = cacheRepository.get(key) --> Line_6 $$ if (localCacheData != null && System.currentTimeMillis() >= localCacheData.getTimeoutTime()) [FD]
+Line_6 $$ if (localCacheData != null && System.currentTimeMillis() >= localCacheData.getTimeoutTime()) --> Line_7 $$ cacheRepository.remove(key) [CD]
+Line_4 $$ for (String key : cacheRepository.keySet()) --> Line_7 $$ cacheRepository.remove(key) [FD]
+Line_2 $$ public static boolean cleanTimeutCache() --> Line_11 $$ return true [CD]

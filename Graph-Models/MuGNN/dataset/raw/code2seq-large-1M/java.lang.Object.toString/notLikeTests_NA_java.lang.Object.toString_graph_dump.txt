@@ -1,0 +1,7 @@
+Line_2 $$ public void notLikeTests() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_3 $$ SearchHits response = query("SELECT name FROM " + TEST_INDEX_GAME_OF_THRONES + "/gotCharacters where name.firstname not like '%d' and name is not null LIMIT 1000") [CD]
+Line_2 $$ public void notLikeTests() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_4 $$ Assert.assertEquals(3, response.getTotalHits()) [CD]
+Line_3 $$ SearchHits response = query("SELECT name FROM " + TEST_INDEX_GAME_OF_THRONES + "/gotCharacters where name.firstname not like '%d' and name is not null LIMIT 1000") --> Line_4 $$ Assert.assertEquals(3, response.getTotalHits()) [FD]
+Line_3 $$ SearchHits response = query("SELECT name FROM " + TEST_INDEX_GAME_OF_THRONES + "/gotCharacters where name.firstname not like '%d' and name is not null LIMIT 1000") --> Line_5 $$ for (SearchHit hit : response.getHits()) [FD]
+Line_5 $$ for (SearchHit hit : response.getHits()) --> Line_6 $$ Map<String, Object> sourceAsMap = hit.getSourceAsMap() [FD]
+Line_6 $$ Map<String, Object> sourceAsMap = hit.getSourceAsMap() --> Line_7 $$ String name = ((HashMap<String, Object>) sourceAsMap.get("name")).get("firstname").toString() [FD]
+Line_7 $$ String name = ((HashMap<String, Object>) sourceAsMap.get("name")).get("firstname").toString() --> Line_8 $$ Assert.assertFalse(name + " was in not like %d", name.startsWith("d")) [FD]

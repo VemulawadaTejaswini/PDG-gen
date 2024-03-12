@@ -1,0 +1,8 @@
+Line_2 $$ public void fusedPreconsume() throws Exception --> Line_3 $$ TestSubscriber<Integer> ts = Flowable.range(1, 1000 * 1000).onBackpressureBuffer().observeOn(Schedulers.single()).test(0L) [CD]
+Line_2 $$ public void fusedPreconsume() throws Exception --> Line_4 $$ ts.assertEmpty() [CD]
+Line_3 $$ TestSubscriber<Integer> ts = Flowable.range(1, 1000 * 1000).onBackpressureBuffer().observeOn(Schedulers.single()).test(0L) --> Line_4 $$ ts.assertEmpty() [FD]
+Line_2 $$ public void fusedPreconsume() throws Exception --> Line_5 $$ Thread.sleep(100) [CD]
+Line_2 $$ public void fusedPreconsume() throws Exception --> Line_6 $$ ts.request(1000 * 1000) [CD]
+Line_3 $$ TestSubscriber<Integer> ts = Flowable.range(1, 1000 * 1000).onBackpressureBuffer().observeOn(Schedulers.single()).test(0L) --> Line_6 $$ ts.request(1000 * 1000) [FD]
+Line_2 $$ public void fusedPreconsume() throws Exception --> Line_7 $$ ts.awaitDone(5, TimeUnit.SECONDS).assertValueCount(1000 * 1000).assertNoErrors().assertComplete() [CD]
+Line_3 $$ TestSubscriber<Integer> ts = Flowable.range(1, 1000 * 1000).onBackpressureBuffer().observeOn(Schedulers.single()).test(0L) --> Line_7 $$ ts.awaitDone(5, TimeUnit.SECONDS).assertValueCount(1000 * 1000).assertNoErrors().assertComplete() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public static void test_dropArgumentsToMatch_skip_all() throws Throwable --> Line_3 $$ MethodHandle h1 = MethodHandles.lookup().findVirtual(String.class, "concat", MethodType.methodType(String.class, String.class)) [CD]
+Line_2 $$ public static void test_dropArgumentsToMatch_skip_all() throws Throwable --> Line_4 $$ MethodType typeList = h1.type().insertParameterTypes(1, String.class, String.class) [CD]
+Line_2 $$ public static void test_dropArgumentsToMatch_skip_all() throws Throwable --> Line_5 $$ h1 = MethodHandles.dropArgumentsToMatch(h1, 2, typeList.parameterList(), 0) [CD]
+Line_2 $$ public static void test_dropArgumentsToMatch_skip_all() throws Throwable --> Line_6 $$ Assert.assertEquals(h1.invoke("x", "y", "a", "b", "c", "d"), "xy", "Transformed method handle did not return expected result") [CD]
+Line_5 $$ h1 = MethodHandles.dropArgumentsToMatch(h1, 2, typeList.parameterList(), 0) --> Line_6 $$ Assert.assertEquals(h1.invoke("x", "y", "a", "b", "c", "d"), "xy", "Transformed method handle did not return expected result") [FD]

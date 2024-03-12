@@ -1,0 +1,6 @@
+Line_2 $$ public static byte[] readDex(byte[] data) throws IOException --> Line_3 $$ if (data.length < 3) [CD]
+Line_2 $$ public static byte[] readDex(byte[] data) throws IOException --> Line_6 $$ if ("dex".equals(new String(data, 0, 3, StandardCharsets.ISO_8859_1))) [CD]
+Line_6 $$ if ("dex".equals(new String(data, 0, 3, StandardCharsets.ISO_8859_1))) --> Line_7 $$ return data [CD]
+Line_6 $$ if ("dex".equals(new String(data, 0, 3, StandardCharsets.ISO_8859_1))) --> Line_8 $$ if ("PK".equals(new String(data, 0, 2, StandardCharsets.ISO_8859_1))) [CD]
+Line_9 $$ try (ZipFile zipFile = new ZipFile(data)) --> Line_10 $$ ZipEntry classes = zipFile.findFirstEntry("classes.dex") [FD]
+Line_9 $$ try (ZipFile zipFile = new ZipFile(data)) --> Line_12 $$ return toByteArray(zipFile.getInputStream(classes)) [FD]

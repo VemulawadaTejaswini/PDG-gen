@@ -1,0 +1,7 @@
+Line_2 $$ public SSLEngine clientSslEngineFor(HttpRequest httpRequest, SSLSession serverSslSession) --> Line_4 $$ X509Certificate upstreamCert = getCertificateFromSession(serverSslSession) [FD]
+Line_4 $$ X509Certificate upstreamCert = getCertificateFromSession(serverSslSession) --> Line_5 $$ String commonName = getCommonName(upstreamCert) [FD]
+Line_6 $$ SubjectAlternativeNameHolder san = new SubjectAlternativeNameHolder() --> Line_7 $$ san.addAll(upstreamCert.getSubjectAlternativeNames()) [FD]
+Line_4 $$ X509Certificate upstreamCert = getCertificateFromSession(serverSslSession) --> Line_7 $$ san.addAll(upstreamCert.getSubjectAlternativeNames()) [FD]
+Line_6 $$ SubjectAlternativeNameHolder san = new SubjectAlternativeNameHolder() --> Line_8 $$ LOG.debug("Subject Alternative Names: [FD]
+Line_5 $$ String commonName = getCommonName(upstreamCert) --> Line_9 $$ return sslEngineSource.createCertForHost(commonName, san) [FD]
+Line_6 $$ SubjectAlternativeNameHolder san = new SubjectAlternativeNameHolder() --> Line_9 $$ return sslEngineSource.createCertForHost(commonName, san) [FD]

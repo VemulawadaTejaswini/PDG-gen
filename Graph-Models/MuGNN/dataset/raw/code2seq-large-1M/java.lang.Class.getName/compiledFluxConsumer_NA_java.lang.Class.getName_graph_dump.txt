@@ -1,0 +1,7 @@
+Line_2 $$ public void compiledFluxConsumer() throws Exception --> Line_3 $$ create(EmptyConfiguration.class, "spring.cloud.function.compile.foos.lambda=f -> f.subscribe(" + getClass().getName() + "::set)", "spring.cloud.function.compile.foos.type=consumer") [CD]
+Line_2 $$ public void compiledFluxConsumer() throws Exception --> Line_4 $$ assertThat(catalog.<Consumer<?>>lookup(Consumer.class, "foos")).isInstanceOf(Consumer.class) [CD]
+Line_2 $$ public void compiledFluxConsumer() throws Exception --> Line_5 $$ assertThat(inspector.getInputWrapper(catalog.lookup(Consumer.class, "foos"))).isEqualTo(Flux.class) [CD]
+Line_2 $$ public void compiledFluxConsumer() throws Exception --> Line_6 $$ Consumer<Flux<String>> consumer = (Consumer<Flux<String>>) context.getBean("foos") [CD]
+Line_2 $$ public void compiledFluxConsumer() throws Exception --> Line_7 $$ consumer.accept(Flux.just("hello")) [CD]
+Line_6 $$ Consumer<Flux<String>> consumer = (Consumer<Flux<String>>) context.getBean("foos") --> Line_7 $$ consumer.accept(Flux.just("hello")) [FD]
+Line_2 $$ public void compiledFluxConsumer() throws Exception --> Line_8 $$ assertThat(ContextFunctionCatalogAutoConfigurationTests.value).isEqualTo("hello") [CD]

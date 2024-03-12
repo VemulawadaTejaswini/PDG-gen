@@ -1,0 +1,8 @@
+Line_2 $$ static Map<String, PdfName> loadNames() --> Line_3 $$ Field[] fields = PdfName.class.getDeclaredFields() [CD]
+Line_2 $$ static Map<String, PdfName> loadNames() --> Line_4 $$ Map<String, PdfName> staticNames = new HashMap(fields.length) [CD]
+Line_2 $$ static Map<String, PdfName> loadNames() --> Line_5 $$ final int flags = Modifier.STATIC | Modifier.PUBLIC | Modifier.FINAL [CD]
+Line_7 $$ for (Field field : fields) --> Line_8 $$ if ((field.getModifiers() & flags) == flags && field.getType().equals(PdfName.class)) [FD]
+Line_7 $$ for (Field field : fields) --> Line_9 $$ PdfName name = (PdfName) field.get(null) [FD]
+Line_4 $$ Map<String, PdfName> staticNames = new HashMap(fields.length) --> Line_10 $$ staticNames.put(name.getValue(), name) [FD]
+Line_9 $$ PdfName name = (PdfName) field.get(null) --> Line_10 $$ staticNames.put(name.getValue(), name) [FD]
+Line_2 $$ static Map<String, PdfName> loadNames() --> Line_16 $$ return staticNames [CD]

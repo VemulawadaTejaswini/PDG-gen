@@ -1,0 +1,7 @@
+Line_2 $$ public <T> Document asDocumentInternal(T object) --> Line_3 $$ ObjectMapper objectMapper = getObjectMapper() [CD]
+Line_3 $$ ObjectMapper objectMapper = getObjectMapper() --> Line_5 $$ JsonNode node = objectMapper.convertValue(object, JsonNode.class) [FD]
+Line_2 $$ public <T> Document asDocumentInternal(T object) --> Line_5 $$ JsonNode node = objectMapper.convertValue(object, JsonNode.class) [FD]
+Line_9 $$ if (iae.getCause() instanceof JsonMappingException) --> Line_10 $$ JsonMappingException jme = (JsonMappingException) iae.getCause() [CD]
+Line_9 $$ if (iae.getCause() instanceof JsonMappingException) --> Line_11 $$ if (jme.getCause() instanceof StackOverflowError) [CD]
+Line_10 $$ JsonMappingException jme = (JsonMappingException) iae.getCause() --> Line_11 $$ if (jme.getCause() instanceof StackOverflowError) [FD]
+Line_10 $$ JsonMappingException jme = (JsonMappingException) iae.getCause() --> Line_12 $$ throw new ObjectMappingException(errorMessage("cyclic reference detected. " + jme.getPathReference(), OME_CYCLE_DETECTED)) [FD]

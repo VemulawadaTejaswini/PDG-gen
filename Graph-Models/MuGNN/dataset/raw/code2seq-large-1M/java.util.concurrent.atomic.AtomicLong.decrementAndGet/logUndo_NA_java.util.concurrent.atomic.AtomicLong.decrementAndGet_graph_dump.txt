@@ -1,0 +1,7 @@
+Line_2 $$ void logUndo() --> Line_3 $$ long currentState = statusAndLogId.decrementAndGet() [CD]
+Line_2 $$ void logUndo() --> Line_4 $$ long logId = getLogId(currentState) [CD]
+Line_3 $$ long currentState = statusAndLogId.decrementAndGet() --> Line_4 $$ long logId = getLogId(currentState) [FD]
+Line_2 $$ void logUndo() --> Line_5 $$ if (logId >= LOG_ID_LIMIT) [CD]
+Line_4 $$ long logId = getLogId(currentState) --> Line_5 $$ if (logId >= LOG_ID_LIMIT) [FD]
+Line_2 $$ void logUndo() --> Line_8 $$ store.logUndo(this, logId) [CD]
+Line_4 $$ long logId = getLogId(currentState) --> Line_8 $$ store.logUndo(this, logId) [FD]

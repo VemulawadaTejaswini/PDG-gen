@@ -1,0 +1,6 @@
+Line_2 $$ public void search_entity_multiple_object_response() --> Line_3 $$ fullTextIndex.rebuild() [CD]
+Line_2 $$ public void search_entity_multiple_object_response() --> Line_4 $$ final SearchResult result = createResource("entities?handle=*TEST").request(MediaType.APPLICATION_JSON_TYPE).get(SearchResult.class) [CD]
+Line_2 $$ public void search_entity_multiple_object_response() --> Line_5 $$ assertThat(result.getEntitySearchResults().stream().map( entity -> entity.getHandle()).collect(Collectors.toList()), containsInAnyOrder("TP1-TEST", "TP2-TEST", "PP1-TEST", "FR1-TEST", "ORG-TEST1-TEST")) [CD]
+Line_2 $$ public void search_entity_multiple_object_response() --> Line_6 $$ assertThat(result.getEntitySearchResults().stream().filter( entity -> entity.getHandle().equals("ORG-TEST1-TEST")).map( entity -> entity.getNotices()).flatMap( notices -> notices.stream()).map( notice -> notice.getTitle()).collect(Collectors.toList()), containsInAnyOrder("Source", "Filtered")) [CD]
+Line_2 $$ public void search_entity_multiple_object_response() --> Line_7 $$ assertThat(result.getNotices(), hasSize(1)) [CD]
+Line_2 $$ public void search_entity_multiple_object_response() --> Line_8 $$ assertThat(result.getNotices().get(0).getTitle(), is("Terms and Conditions")) [CD]

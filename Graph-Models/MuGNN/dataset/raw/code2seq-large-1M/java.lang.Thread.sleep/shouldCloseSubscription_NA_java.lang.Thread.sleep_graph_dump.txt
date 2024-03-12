@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldCloseSubscription() throws InterruptedException --> Line_3 $$ final TopicSubscription subscription = client.subscriptionClient().newTopicSubscription().name(SUBSCRIPTION_NAME).recordHandler(recordingHandler).open() [CD]
+Line_2 $$ public void shouldCloseSubscription() throws InterruptedException --> Line_4 $$ subscription.close() [CD]
+Line_3 $$ final TopicSubscription subscription = client.subscriptionClient().newTopicSubscription().name(SUBSCRIPTION_NAME).recordHandler(recordingHandler).open() --> Line_4 $$ subscription.close() [FD]
+Line_2 $$ public void shouldCloseSubscription() throws InterruptedException --> Line_5 $$ assertThat(subscription.isOpen()).isFalse() [CD]
+Line_3 $$ final TopicSubscription subscription = client.subscriptionClient().newTopicSubscription().name(SUBSCRIPTION_NAME).recordHandler(recordingHandler).open() --> Line_5 $$ assertThat(subscription.isOpen()).isFalse() [FD]
+Line_2 $$ public void shouldCloseSubscription() throws InterruptedException --> Line_6 $$ client.jobClient().newCreateCommand().jobType("foo").send().join() [CD]
+Line_2 $$ public void shouldCloseSubscription() throws InterruptedException --> Line_7 $$ Thread.sleep(1000L) [CD]
+Line_2 $$ public void shouldCloseSubscription() throws InterruptedException --> Line_8 $$ assertThat(recordingHandler.numJobRecords()).isEqualTo(0) [CD]

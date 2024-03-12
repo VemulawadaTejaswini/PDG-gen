@@ -1,0 +1,7 @@
+Line_2 $$ private void pushDownQueryModel(QueryModel qrym) --> Line_3 $$ if (qrym.type == Type.UNION) [CD]
+Line_3 $$ if (qrym.type == Type.UNION) --> Line_5 $$ for (int i = 0; i < qrym.size(); i++) pushDownQueryModel(qrym.get(i)) [CD]
+Line_2 $$ private void pushDownQueryModel(QueryModel qrym) --> Line_5 $$ for (int i = 0; i < qrym.size(); i++) pushDownQueryModel(qrym.get(i)) [FD]
+Line_3 $$ if (qrym.type == Type.UNION) --> Line_6 $$ if (qrym.type == Type.SELECT) [CD]
+Line_6 $$ if (qrym.type == Type.SELECT) --> Line_7 $$ if (!qrym.needSplit) [CD]
+Line_7 $$ if (!qrym.needSplit) --> Line_9 $$ pushDownQueryModelSelect(qrym) [CD]
+Line_2 $$ private void pushDownQueryModel(QueryModel qrym) --> Line_9 $$ pushDownQueryModelSelect(qrym) [FD]

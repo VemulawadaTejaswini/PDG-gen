@@ -1,0 +1,6 @@
+Line_2 $$ public void should_auth_failure() --> Line_3 $$ EmailSettingContent emailSetting = new EmailSettingContent("smtp.163.com", 465, "xxxx@163.com") [CD]
+Line_2 $$ public void should_auth_failure() --> Line_4 $$ MockHttpServletRequestBuilder content = post("/message/email/settings/auth").contentType(MediaType.APPLICATION_JSON).content(emailSetting.toJson()) [CD]
+Line_3 $$ EmailSettingContent emailSetting = new EmailSettingContent("smtp.163.com", 465, "xxxx@163.com") --> Line_4 $$ MockHttpServletRequestBuilder content = post("/message/email/settings/auth").contentType(MediaType.APPLICATION_JSON).content(emailSetting.toJson()) [FD]
+Line_4 $$ MockHttpServletRequestBuilder content = post("/message/email/settings/auth").contentType(MediaType.APPLICATION_JSON).content(emailSetting.toJson()) --> Line_6 $$ MvcResult mvcResult = this.mockMvc.perform(content).andDo(print()).andExpect(status().is4xxClientError()).andReturn() [FD]
+Line_6 $$ MvcResult mvcResult = this.mockMvc.perform(content).andDo(print()).andExpect(status().is4xxClientError()).andReturn() --> Line_7 $$ String response = mvcResult.getResponse().getContentAsString() [FD]
+Line_7 $$ String response = mvcResult.getResponse().getContentAsString() --> Line_8 $$ FlowException smtpAuthResponse = Jsonable.GSON_CONFIG.fromJson(response, FlowException.class) [FD]

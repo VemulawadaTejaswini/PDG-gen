@@ -1,0 +1,6 @@
+Line_2 $$ public List<SimplePageComment> findCommentsOnItemsByAuthor(List<Long> commentItemIds, String author) --> Line_3 $$ if (commentItemIds == null || commentItemIds.size() == 0) [CD]
+Line_2 $$ public List<SimplePageComment> findCommentsOnItemsByAuthor(List<Long> commentItemIds, String author) --> Line_3 $$ if (commentItemIds == null || commentItemIds.size() == 0) [FD]
+Line_3 $$ if (commentItemIds == null || commentItemIds.size() == 0) --> Line_4 $$ return new ArrayList<SimplePageComment>() [CD]
+Line_2 $$ public List<SimplePageComment> findCommentsOnItemsByAuthor(List<Long> commentItemIds, String author) --> Line_5 $$ DetachedCriteria d = DetachedCriteria.forClass(SimplePageComment.class).add(Restrictions.in("itemId", commentItemIds)).add(Restrictions.eq("author", author)) [CD]
+Line_2 $$ public List<SimplePageComment> findCommentsOnItemsByAuthor(List<Long> commentItemIds, String author) --> Line_5 $$ DetachedCriteria d = DetachedCriteria.forClass(SimplePageComment.class).add(Restrictions.in("itemId", commentItemIds)).add(Restrictions.eq("author", author)) [FD]
+Line_2 $$ public List<SimplePageComment> findCommentsOnItemsByAuthor(List<Long> commentItemIds, String author) --> Line_6 $$ return (List<SimplePageComment>) getHibernateTemplate().findByCriteria(d) [CD]

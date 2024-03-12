@@ -1,0 +1,6 @@
+Line_2 $$ public void whenCreateEventTypeWithUnknownApplicationThen422() throws Exception --> Line_3 $$ doReturn(false).when(applicationService).exists(any()) [CD]
+Line_2 $$ public void whenCreateEventTypeWithUnknownApplicationThen422() throws Exception --> Line_4 $$ final EventType eventType = EventTypeTestBuilder.builder().partitionKeyFields(Collections.singletonList("blabla")).build() [CD]
+Line_2 $$ public void whenCreateEventTypeWithUnknownApplicationThen422() throws Exception --> Line_5 $$ doReturn(eventType).when(eventTypeRepository).findByName(eventType.getName()) [CD]
+Line_4 $$ final EventType eventType = EventTypeTestBuilder.builder().partitionKeyFields(Collections.singletonList("blabla")).build() --> Line_5 $$ doReturn(eventType).when(eventTypeRepository).findByName(eventType.getName()) [FD]
+Line_2 $$ public void whenCreateEventTypeWithUnknownApplicationThen422() throws Exception --> Line_6 $$ postEventType(eventType).andExpect(status().isUnprocessableEntity()).andExpect(content().contentType("application/problem+json")) [CD]
+Line_4 $$ final EventType eventType = EventTypeTestBuilder.builder().partitionKeyFields(Collections.singletonList("blabla")).build() --> Line_6 $$ postEventType(eventType).andExpect(status().isUnprocessableEntity()).andExpect(content().contentType("application/problem+json")) [FD]

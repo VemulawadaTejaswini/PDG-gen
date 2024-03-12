@@ -1,0 +1,8 @@
+Line_2 $$ public void testInvalidateKeyAbsent() throws Exception --> Line_3 $$ offHeapStore = createAndInitStore(timeSource, ExpiryPolicyBuilder.timeToIdleExpiration(Duration.ofMillis(15L))) [CD]
+Line_2 $$ public void testInvalidateKeyAbsent() throws Exception --> Line_4 $$ final AtomicReference<Store.ValueHolder<String>> invalidated = new AtomicReference() [CD]
+Line_2 $$ public void testInvalidateKeyAbsent() throws Exception --> Line_5 $$ offHeapStore.setInvalidationListener(( key,  valueHolder) -> invalidated.set(valueHolder)) [CD]
+Line_4 $$ final AtomicReference<Store.ValueHolder<String>> invalidated = new AtomicReference() --> Line_5 $$ offHeapStore.setInvalidationListener(( key,  valueHolder) -> invalidated.set(valueHolder)) [FD]
+Line_2 $$ public void testInvalidateKeyAbsent() throws Exception --> Line_6 $$ offHeapStore.invalidate("1") [CD]
+Line_2 $$ public void testInvalidateKeyAbsent() throws Exception --> Line_7 $$ assertThat(invalidated.get(), is(nullValue())) [CD]
+Line_4 $$ final AtomicReference<Store.ValueHolder<String>> invalidated = new AtomicReference() --> Line_7 $$ assertThat(invalidated.get(), is(nullValue())) [FD]
+Line_2 $$ public void testInvalidateKeyAbsent() throws Exception --> Line_8 $$ validateStats(offHeapStore, EnumSet.of(LowerCachingTierOperationsOutcome.InvalidateOutcome.MISS)) [CD]

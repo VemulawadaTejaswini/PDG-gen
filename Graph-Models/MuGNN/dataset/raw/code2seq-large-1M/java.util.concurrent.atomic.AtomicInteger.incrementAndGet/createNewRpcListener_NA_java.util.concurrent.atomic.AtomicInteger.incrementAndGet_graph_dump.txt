@@ -1,0 +1,8 @@
+Line_2 $$ public <V> ChannelListenerWithCoordinationId createNewRpcListener(RpcOutcomeListener<V> handler, Class<V> clazz, RemoteConnection connection) --> Line_3 $$ final int i = lastCoordinationId.incrementAndGet() [CD]
+Line_2 $$ public <V> ChannelListenerWithCoordinationId createNewRpcListener(RpcOutcomeListener<V> handler, Class<V> clazz, RemoteConnection connection) --> Line_4 $$ final RpcListener<V> future = new RpcListener<V>(handler, clazz, i, connection) [CD]
+Line_2 $$ public <V> ChannelListenerWithCoordinationId createNewRpcListener(RpcOutcomeListener<V> handler, Class<V> clazz, RemoteConnection connection) --> Line_5 $$ final Object old [CD]
+Line_5 $$ final Object old --> Line_8 $$ old = map.put(i, future) [FD]
+Line_3 $$ final int i = lastCoordinationId.incrementAndGet() --> Line_8 $$ old = map.put(i, future) [FD]
+Line_4 $$ final RpcListener<V> future = new RpcListener<V>(handler, clazz, i, connection) --> Line_8 $$ old = map.put(i, future) [FD]
+Line_2 $$ public <V> ChannelListenerWithCoordinationId createNewRpcListener(RpcOutcomeListener<V> handler, Class<V> clazz, RemoteConnection connection) --> Line_10 $$ Preconditions.checkArgument(old == null, "You attempted to reuse a coordination id when the previous coordination id has not been removed.  " + "This is likely rpc future callback memory leak.") [CD]
+Line_2 $$ public <V> ChannelListenerWithCoordinationId createNewRpcListener(RpcOutcomeListener<V> handler, Class<V> clazz, RemoteConnection connection) --> Line_11 $$ return future [CD]

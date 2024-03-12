@@ -1,0 +1,5 @@
+Line_2 $$ public void testImplicitCastStringToBoolean() throws Exception --> Line_3 $$ String boolTable = FileUtils.getResourceAsFile("/store/json/booleanData.json").toURI().toString() [CD]
+Line_2 $$ public void testImplicitCastStringToBoolean() throws Exception --> Line_4 $$ String query = String.format("(select * from dfs_test.`%s` where key = 'true' or key = 'false')", boolTable) [CD]
+Line_3 $$ String boolTable = FileUtils.getResourceAsFile("/store/json/booleanData.json").toURI().toString() --> Line_4 $$ String query = String.format("(select * from dfs_test.`%s` where key = 'true' or key = 'false')", boolTable) [FD]
+Line_2 $$ public void testImplicitCastStringToBoolean() throws Exception --> Line_5 $$ testBuilder().sqlQuery(query).unOrdered().baselineColumns("key").baselineValues(true).baselineValues(false).build().run() [CD]
+Line_4 $$ String query = String.format("(select * from dfs_test.`%s` where key = 'true' or key = 'false')", boolTable) --> Line_5 $$ testBuilder().sqlQuery(query).unOrdered().baselineColumns("key").baselineValues(true).baselineValues(false).build().run() [FD]

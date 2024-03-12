@@ -1,0 +1,8 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_5 $$ DataSet<Tuple2<Long, Long>> data = env.fromCollection(Collections.singleton(new Tuple2(0L, 0L))) [FD]
+Line_5 $$ DataSet<Tuple2<Long, Long>> data = env.fromCollection(Collections.singleton(new Tuple2(0L, 0L))) --> Line_6 $$ PartitionOperator<Tuple2<Long, Long>> rangePartitioned = data.partitionByRange(1) [FD]
+Line_6 $$ PartitionOperator<Tuple2<Long, Long>> rangePartitioned = data.partitionByRange(1) --> Line_7 $$ rangePartitioned.groupBy(1).reduceGroup(new IdentityGroupReducerCombinable<Tuple2<Long, Long>>()).output(new DiscardingOutputFormat<Tuple2<Long, Long>>()) [FD]
+Line_5 $$ DataSet<Tuple2<Long, Long>> data = env.fromCollection(Collections.singleton(new Tuple2(0L, 0L))) --> Line_8 $$ data.groupBy(0).aggregate(Aggregations.SUM, 1).map(new MapFunction<Tuple2<Long, Long>, Long>() [FD]
+Line_8 $$ data.groupBy(0).aggregate(Aggregations.SUM, 1).map(new MapFunction<Tuple2<Long, Long>, Long>() --> Line_10 $$ return value.f1 [CD]
+Line_6 $$ PartitionOperator<Tuple2<Long, Long>> rangePartitioned = data.partitionByRange(1) --> Line_13 $$ rangePartitioned.filter(new FilterFunction<Tuple2<Long, Long>>() [FD]
+Line_13 $$ rangePartitioned.filter(new FilterFunction<Tuple2<Long, Long>>() --> Line_15 $$ return value.f0 % 2 == 0 [CD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_18 $$ Plan p = env.createProgramPlan() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private Scheduler getDelegateScheduler() --> Line_3 $$ return ExecController.current().map( c -> map.computeIfAbsent(c, ExecControllerBackedScheduler::<>new)).orElseGet(() -> [CD]
+Line_4 $$ if (fallback.get() == null) --> Line_5 $$ int nThreads = Runtime.getRuntime().availableProcessors() [CD]
+Line_4 $$ if (fallback.get() == null) --> Line_6 $$ ExecutorService executor = Executors.newFixedThreadPool(nThreads) [CD]
+Line_5 $$ int nThreads = Runtime.getRuntime().availableProcessors() --> Line_6 $$ ExecutorService executor = Executors.newFixedThreadPool(nThreads) [FD]
+Line_4 $$ if (fallback.get() == null) --> Line_7 $$ Scheduler scheduler = Schedulers.from(executor) [CD]
+Line_6 $$ ExecutorService executor = Executors.newFixedThreadPool(nThreads) --> Line_7 $$ Scheduler scheduler = Schedulers.from(executor) [FD]
+Line_4 $$ if (fallback.get() == null) --> Line_8 $$ fallback.compareAndSet(null, scheduler) [CD]
+Line_7 $$ Scheduler scheduler = Schedulers.from(executor) --> Line_8 $$ fallback.compareAndSet(null, scheduler) [FD]

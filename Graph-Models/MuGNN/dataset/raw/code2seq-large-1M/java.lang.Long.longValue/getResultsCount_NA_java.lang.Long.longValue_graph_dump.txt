@@ -1,0 +1,7 @@
+Line_2 $$ public long getResultsCount() --> Line_3 $$ if (resultsCount == PageProvider.UNKNOWN_SIZE) [CD]
+Line_3 $$ if (resultsCount == PageProvider.UNKNOWN_SIZE) --> Line_4 $$ buildAuditQuery(false) [CD]
+Line_3 $$ if (resultsCount == PageProvider.UNKNOWN_SIZE) --> Line_5 $$ AuditReader reader = Framework.getService(AuditReader.class) [CD]
+Line_3 $$ if (resultsCount == PageProvider.UNKNOWN_SIZE) --> Line_6 $$ List<Long> res = (List<Long>) reader.nativeQuery("select count(log.id) " + auditQuery, auditQueryParams, 1, 20) [CD]
+Line_3 $$ if (resultsCount == PageProvider.UNKNOWN_SIZE) --> Line_7 $$ resultsCount = res.get(0).longValue() [CD]
+Line_6 $$ List<Long> res = (List<Long>) reader.nativeQuery("select count(log.id) " + auditQuery, auditQueryParams, 1, 20) --> Line_7 $$ resultsCount = res.get(0).longValue() [FD]
+Line_2 $$ public long getResultsCount() --> Line_9 $$ return resultsCount [CD]

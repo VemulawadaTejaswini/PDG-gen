@@ -1,0 +1,5 @@
+Line_2 $$ public Collection<PartitionId> getRequiredPartitionIds() throws HyracksException --> Line_3 $$ Collection<PartitionId> c = new ArrayList<PartitionId>(expectedPartitions.cardinality()) [CD]
+Line_2 $$ public Collection<PartitionId> getRequiredPartitionIds() throws HyracksException --> Line_4 $$ for (int i = expectedPartitions.nextSetBit(0); i >= 0; i = expectedPartitions.nextSetBit(i + 1)) [CD]
+Line_4 $$ for (int i = expectedPartitions.nextSetBit(0); i >= 0; i = expectedPartitions.nextSetBit(i + 1)) --> Line_5 $$ c.add(new PartitionId(getJobId(), getConnectorId(), i, getReceiverIndex())) [CD]
+Line_3 $$ Collection<PartitionId> c = new ArrayList<PartitionId>(expectedPartitions.cardinality()) --> Line_5 $$ c.add(new PartitionId(getJobId(), getConnectorId(), i, getReceiverIndex())) [FD]
+Line_2 $$ public Collection<PartitionId> getRequiredPartitionIds() throws HyracksException --> Line_7 $$ return c [CD]

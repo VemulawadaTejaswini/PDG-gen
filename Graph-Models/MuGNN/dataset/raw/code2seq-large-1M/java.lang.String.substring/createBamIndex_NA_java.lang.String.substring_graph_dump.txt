@@ -1,0 +1,5 @@
+Line_2 $$ private BAMIndexer createBamIndex(final String pathURI) --> Line_4 $$ final String indexFileBase = pathURI.endsWith(BamFileIoUtils.BAM_FILE_EXTENSION) ? pathURI.substring(0, pathURI.lastIndexOf('.')) : pathURI [FD]
+Line_5 $$ final Path indexPath = IOUtil.getPath(indexFileBase + BAMIndex.BAMIndexSuffix) --> Line_6 $$ if (Files.exists(indexPath)) [FD]
+Line_6 $$ if (Files.exists(indexPath)) --> Line_7 $$ if (!Files.isWritable(indexPath)) [CD]
+Line_5 $$ final Path indexPath = IOUtil.getPath(indexFileBase + BAMIndex.BAMIndexSuffix) --> Line_7 $$ if (!Files.isWritable(indexPath)) [FD]
+Line_5 $$ final Path indexPath = IOUtil.getPath(indexFileBase + BAMIndex.BAMIndexSuffix) --> Line_8 $$ throw new SAMException("Not creating BAM index since unable to write index file " + indexPath.toUri()) [FD]

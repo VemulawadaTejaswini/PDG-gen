@@ -1,0 +1,6 @@
+Line_2 $$ public CompletableFuture<T> triggerCheckpoint(long checkpointId, long timestamp, final Executor executor) throws Exception --> Line_3 $$ final Executor wrappedExecutor = new Executor() [CD]
+Line_3 $$ final Executor wrappedExecutor = new Executor() --> Line_5 $$ executor.execute(new WrappedCommand(userClassLoader, command)) [CD]
+Line_2 $$ public CompletableFuture<T> triggerCheckpoint(long checkpointId, long timestamp, final Executor executor) throws Exception --> Line_5 $$ executor.execute(new WrappedCommand(userClassLoader, command)) [FD]
+Line_2 $$ public CompletableFuture<T> triggerCheckpoint(long checkpointId, long timestamp, final Executor executor) throws Exception --> Line_8 $$ return LambdaUtil.withContextClassLoader(userClassLoader, () -> hook.triggerCheckpoint(checkpointId, timestamp, wrappedExecutor)) [FD]
+Line_2 $$ public CompletableFuture<T> triggerCheckpoint(long checkpointId, long timestamp, final Executor executor) throws Exception --> Line_8 $$ return LambdaUtil.withContextClassLoader(userClassLoader, () -> hook.triggerCheckpoint(checkpointId, timestamp, wrappedExecutor)) [CD]
+Line_3 $$ final Executor wrappedExecutor = new Executor() --> Line_8 $$ return LambdaUtil.withContextClassLoader(userClassLoader, () -> hook.triggerCheckpoint(checkpointId, timestamp, wrappedExecutor)) [FD]

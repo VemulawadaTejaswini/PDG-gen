@@ -1,0 +1,8 @@
+Line_2 $$ public static HttpResponse getResponse(HttpResponseStatus status, @Nullable String message) --> Line_3 $$ ByteBuf messageByteBuf = message == null ? Unpooled.buffer(0) : Unpooled.wrappedBuffer(message.getBytes(ENCODING)) [CD]
+Line_2 $$ public static HttpResponse getResponse(HttpResponseStatus status, @Nullable String message) --> Line_3 $$ ByteBuf messageByteBuf = message == null ? Unpooled.buffer(0) : Unpooled.wrappedBuffer(message.getBytes(ENCODING)) [FD]
+Line_2 $$ public static HttpResponse getResponse(HttpResponseStatus status, @Nullable String message) --> Line_4 $$ FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status, messageByteBuf) [CD]
+Line_2 $$ public static HttpResponse getResponse(HttpResponseStatus status, @Nullable String message) --> Line_5 $$ response.headers().set(HttpHeaders.Names.CONTENT_TYPE, "text/plain; charset=" + ENCODING.name()) [CD]
+Line_4 $$ FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status, messageByteBuf) --> Line_5 $$ response.headers().set(HttpHeaders.Names.CONTENT_TYPE, "text/plain; charset=" + ENCODING.name()) [FD]
+Line_2 $$ public static HttpResponse getResponse(HttpResponseStatus status, @Nullable String message) --> Line_6 $$ response.headers().set(HttpHeaders.Names.CONTENT_LENGTH, response.content().readableBytes()) [CD]
+Line_4 $$ FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status, messageByteBuf) --> Line_6 $$ response.headers().set(HttpHeaders.Names.CONTENT_LENGTH, response.content().readableBytes()) [FD]
+Line_2 $$ public static HttpResponse getResponse(HttpResponseStatus status, @Nullable String message) --> Line_7 $$ return response [CD]

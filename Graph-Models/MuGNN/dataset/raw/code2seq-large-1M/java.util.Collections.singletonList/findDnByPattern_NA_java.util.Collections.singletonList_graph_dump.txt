@@ -1,0 +1,8 @@
+Line_3 $$ for (String pattern : patterns) --> Line_4 $$ String baseDnFromPattern = LdapUtils.extractBaseDn(pattern) [FD]
+Line_2 $$ private List<String> findDnByPattern(List<String> patterns, String name) throws NamingException --> Line_5 $$ String rdn = LdapUtils.extractFirstRdn(pattern).replaceAll("%s", name) [FD]
+Line_3 $$ for (String pattern : patterns) --> Line_5 $$ String rdn = LdapUtils.extractFirstRdn(pattern).replaceAll("%s", name) [FD]
+Line_4 $$ String baseDnFromPattern = LdapUtils.extractBaseDn(pattern) --> Line_6 $$ List<String> list = execute(Collections.singletonList(baseDnFromPattern), queries.findDnByPattern(rdn)).getAllLdapNames() [FD]
+Line_5 $$ String rdn = LdapUtils.extractFirstRdn(pattern).replaceAll("%s", name) --> Line_6 $$ List<String> list = execute(Collections.singletonList(baseDnFromPattern), queries.findDnByPattern(rdn)).getAllLdapNames() [FD]
+Line_6 $$ List<String> list = execute(Collections.singletonList(baseDnFromPattern), queries.findDnByPattern(rdn)).getAllLdapNames() --> Line_7 $$ if (!list.isEmpty()) [FD]
+Line_7 $$ if (!list.isEmpty()) --> Line_8 $$ return list [CD]
+Line_2 $$ private List<String> findDnByPattern(List<String> patterns, String name) throws NamingException --> Line_11 $$ return Collections.emptyList() [CD]

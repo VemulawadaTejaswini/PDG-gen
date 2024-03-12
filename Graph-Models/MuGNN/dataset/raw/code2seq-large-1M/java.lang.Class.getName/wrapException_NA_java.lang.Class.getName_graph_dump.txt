@@ -1,0 +1,8 @@
+Line_2 $$ public FlowableServiceException wrapException(Exception e, HttpUriRequest request) --> Line_3 $$ if (e instanceof HttpHostConnectException) [FD]
+Line_2 $$ public FlowableServiceException wrapException(Exception e, HttpUriRequest request) --> Line_3 $$ if (e instanceof HttpHostConnectException) [CD]
+Line_3 $$ if (e instanceof HttpHostConnectException) --> Line_4 $$ return new FlowableServiceException("Unable to connect to the Flowable server.") [CD]
+Line_3 $$ if (e instanceof HttpHostConnectException) --> Line_5 $$ if (e instanceof ConnectTimeoutException) [CD]
+Line_2 $$ public FlowableServiceException wrapException(Exception e, HttpUriRequest request) --> Line_5 $$ if (e instanceof ConnectTimeoutException) [FD]
+Line_5 $$ if (e instanceof ConnectTimeoutException) --> Line_6 $$ return new FlowableServiceException("Connection to the Flowable server timed out.") [CD]
+Line_5 $$ if (e instanceof ConnectTimeoutException) --> Line_8 $$ return new FlowableServiceException(e.getClass().getName() + ": " + e.getMessage()) [CD]
+Line_2 $$ public FlowableServiceException wrapException(Exception e, HttpUriRequest request) --> Line_8 $$ return new FlowableServiceException(e.getClass().getName() + ": " + e.getMessage()) [FD]

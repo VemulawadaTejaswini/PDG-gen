@@ -1,0 +1,7 @@
+Line_2 $$ void releaseFactories() --> Line_3 $$ InjectionProvider provider = getInjectionProvider() [CD]
+Line_2 $$ void releaseFactories() --> Line_4 $$ if (provider != null) [CD]
+Line_3 $$ InjectionProvider provider = getInjectionProvider() --> Line_4 $$ if (provider != null) [FD]
+Line_4 $$ if (provider != null) --> Line_5 $$ lock.writeLock().lock() [CD]
+Line_3 $$ InjectionProvider provider = getInjectionProvider() --> Line_11 $$ provider.invokePreDestroy(curFactory) [FD]
+Line_8 $$ Object curFactory = entry.getValue() --> Line_11 $$ provider.invokePreDestroy(curFactory) [FD]
+Line_4 $$ if (provider != null) --> Line_22 $$ LOGGER.log(SEVERE, "Unable to call @PreDestroy annotated methods because no InjectionProvider can be found. Does this container implement the Mojarra Injection SPI?") [CD]

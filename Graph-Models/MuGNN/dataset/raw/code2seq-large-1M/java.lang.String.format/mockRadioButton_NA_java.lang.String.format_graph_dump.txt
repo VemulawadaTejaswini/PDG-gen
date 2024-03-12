@@ -1,0 +1,8 @@
+Line_2 $$ private WebElement mockRadioButton() --> Line_3 $$ WebElement radioButton = mockInputWithNameAndType(RADIO_NAME, "radio") [CD]
+Line_2 $$ private WebElement mockRadioButton() --> Line_4 $$ when(getWrappedElement().findElements(By.name(RADIO_NAME))).thenReturn(singletonList(radioButton)) [CD]
+Line_3 $$ WebElement radioButton = mockInputWithNameAndType(RADIO_NAME, "radio") --> Line_4 $$ when(getWrappedElement().findElements(By.name(RADIO_NAME))).thenReturn(singletonList(radioButton)) [FD]
+Line_2 $$ private WebElement mockRadioButton() --> Line_5 $$ when(radioButton.findElements(By.xpath(String.format("self::* | following::input[@type = 'radio' " + "and @name = '%s'] | preceding::input[@type = 'radio' and @name = '%s']", RADIO_NAME, RADIO_NAME)))).thenReturn(singletonList(radioButton)) [CD]
+Line_3 $$ WebElement radioButton = mockInputWithNameAndType(RADIO_NAME, "radio") --> Line_5 $$ when(radioButton.findElements(By.xpath(String.format("self::* | following::input[@type = 'radio' " + "and @name = '%s'] | preceding::input[@type = 'radio' and @name = '%s']", RADIO_NAME, RADIO_NAME)))).thenReturn(singletonList(radioButton)) [FD]
+Line_2 $$ private WebElement mockRadioButton() --> Line_6 $$ when(radioButton.getAttribute("value")).thenReturn(RADIO_BUTTON_VALUE) [CD]
+Line_3 $$ WebElement radioButton = mockInputWithNameAndType(RADIO_NAME, "radio") --> Line_6 $$ when(radioButton.getAttribute("value")).thenReturn(RADIO_BUTTON_VALUE) [FD]
+Line_2 $$ private WebElement mockRadioButton() --> Line_7 $$ return radioButton [CD]

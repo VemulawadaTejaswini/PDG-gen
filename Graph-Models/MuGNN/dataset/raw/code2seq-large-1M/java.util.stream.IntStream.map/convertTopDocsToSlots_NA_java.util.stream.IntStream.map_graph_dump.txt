@@ -1,0 +1,7 @@
+Line_2 $$ static IntStream convertTopDocsToSlots(TopDocs topDocs, int[] rootDocsBySlot) --> Line_3 $$ IntStream stream = Arrays.stream(topDocs.scoreDocs).mapToInt( scoreDoc -> scoreDoc.doc) [CD]
+Line_2 $$ static IntStream convertTopDocsToSlots(TopDocs topDocs, int[] rootDocsBySlot) --> Line_4 $$ if (rootDocsBySlot != null) [FD]
+Line_2 $$ static IntStream convertTopDocsToSlots(TopDocs topDocs, int[] rootDocsBySlot) --> Line_4 $$ if (rootDocsBySlot != null) [CD]
+Line_4 $$ if (rootDocsBySlot != null) --> Line_5 $$ stream = stream.map( docId -> Arrays.binarySearch(rootDocsBySlot, docId)) [CD]
+Line_3 $$ IntStream stream = Arrays.stream(topDocs.scoreDocs).mapToInt( scoreDoc -> scoreDoc.doc) --> Line_5 $$ stream = stream.map( docId -> Arrays.binarySearch(rootDocsBySlot, docId)) [FD]
+Line_2 $$ static IntStream convertTopDocsToSlots(TopDocs topDocs, int[] rootDocsBySlot) --> Line_5 $$ stream = stream.map( docId -> Arrays.binarySearch(rootDocsBySlot, docId)) [FD]
+Line_2 $$ static IntStream convertTopDocsToSlots(TopDocs topDocs, int[] rootDocsBySlot) --> Line_7 $$ return stream [CD]

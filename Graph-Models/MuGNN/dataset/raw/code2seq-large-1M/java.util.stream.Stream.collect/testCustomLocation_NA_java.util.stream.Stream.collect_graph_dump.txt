@@ -1,0 +1,8 @@
+Line_2 $$ public void testCustomLocation() --> Line_3 $$ when(context.getInitParameter(ToolListener.PATH)).thenReturn("/custom") [CD]
+Line_2 $$ public void testCustomLocation() --> Line_4 $$ when(context.getResourcePaths("/custom/")).thenReturn(Stream.of("/custom/", "/custom/sakai-tool.xml").collect(Collectors.toSet())) [CD]
+Line_2 $$ public void testCustomLocation() --> Line_5 $$ InputStream inputStream = mock(InputStream.class) [CD]
+Line_2 $$ public void testCustomLocation() --> Line_6 $$ when(context.getResourceAsStream("/custom/sakai-tool.xml")).thenReturn(inputStream) [CD]
+Line_2 $$ public void testCustomLocation() --> Line_7 $$ listener.contextInitialized(event) [CD]
+Line_2 $$ public void testCustomLocation() --> Line_8 $$ verify(activeToolManager).register(inputStream, context) [CD]
+Line_2 $$ public void testCustomLocation() --> Line_9 $$ verify(context, never()).getResourcePaths("/tools/") [CD]
+Line_2 $$ public void testCustomLocation() --> Line_10 $$ verify(context, never()).getResourcePaths("/WEB-INF/tools/") [CD]

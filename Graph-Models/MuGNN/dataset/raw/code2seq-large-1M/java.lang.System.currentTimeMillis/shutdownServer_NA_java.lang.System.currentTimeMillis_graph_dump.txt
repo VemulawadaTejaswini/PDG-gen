@@ -1,0 +1,6 @@
+Line_3 $$ try (ManagementClient managementClient = getManagementClient()) --> Line_4 $$ block(managementClient) [FD]
+Line_3 $$ try (ManagementClient managementClient = getManagementClient()) --> Line_6 $$ managementClient.executeForResult(Operations.createOperation(SHUTDOWN, new ModelNode().setEmptyList())) [FD]
+Line_5 $$ long timeout = SHUTDOWN_WAITING_TIME + System.currentTimeMillis() --> Line_7 $$ while (System.currentTimeMillis() < timeout) [FD]
+Line_7 $$ while (System.currentTimeMillis() < timeout) --> Line_8 $$ Thread.sleep(FREQUENCY) [CD]
+Line_2 $$ public void shutdownServer() throws Exception --> Line_18 $$ Assert.assertFalse(controller.getClient().isServerInRunningState()) [CD]
+Line_2 $$ public void shutdownServer() throws Exception --> Line_23 $$ controller.start() [CD]

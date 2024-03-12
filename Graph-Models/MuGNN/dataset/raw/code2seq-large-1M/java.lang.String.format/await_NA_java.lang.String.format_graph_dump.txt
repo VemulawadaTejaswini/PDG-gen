@@ -1,0 +1,8 @@
+Line_2 $$ public void await(Duration timeout) --> Line_3 $$ assertTrue(String.format("Invalid attempt made to call await() %s times, with only %d expectedValues passed", currentLatchIndex + 1, countDownLatches.length), currentLatchIndex < countDownLatches.length) [CD]
+Line_2 $$ public void await(Duration timeout) --> Line_5 $$ if (!countDownLatches[currentLatchIndex].await(timeout.toMillis(), TimeUnit.MILLISECONDS)) [FD]
+Line_5 $$ if (!countDownLatches[currentLatchIndex].await(timeout.toMillis(), TimeUnit.MILLISECONDS)) --> Line_6 $$ if (spiedMetric != null) [CD]
+Line_6 $$ if (spiedMetric != null) --> Line_7 $$ fail(String.format("After waiting for %s, the expected metric for key '%s' is %d, found %d", timeout, expectedKey, expectedValues[currentLatchIndex], spiedMetric.getValue())) [CD]
+Line_2 $$ public void await(Duration timeout) --> Line_7 $$ fail(String.format("After waiting for %s, the expected metric for key '%s' is %d, found %d", timeout, expectedKey, expectedValues[currentLatchIndex], spiedMetric.getValue())) [FD]
+Line_6 $$ if (spiedMetric != null) --> Line_9 $$ fail(String.format("After waiting for %s, the expected metric for key '%s' is %d, " + "but the value was never incremented", timeout, expectedKey, expectedValues[currentLatchIndex])) [CD]
+Line_2 $$ public void await(Duration timeout) --> Line_9 $$ fail(String.format("After waiting for %s, the expected metric for key '%s' is %d, " + "but the value was never incremented", timeout, expectedKey, expectedValues[currentLatchIndex])) [FD]
+Line_2 $$ public void await(Duration timeout) --> Line_13 $$ fail(String.format("Await latch interrupted before timeout of %s was reached: %s", timeout, e)) [FD]

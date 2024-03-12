@@ -1,0 +1,8 @@
+Line_2 $$ public String validateCanonicalUnits(String unit, String canonical) --> Line_3 $$ assert checkStringParam(unit) : paramError("validate", "unit", "must not be null or empty") [FD]
+Line_2 $$ public String validateCanonicalUnits(String unit, String canonical) --> Line_4 $$ assert checkStringParam(canonical) : paramError("validateCanonicalUnits", "canonical", "must not be null or empty") [FD]
+Line_2 $$ public String validateCanonicalUnits(String unit, String canonical) --> Line_6 $$ Term term = new ExpressionParser(model).parse(unit) [FD]
+Line_6 $$ Term term = new ExpressionParser(model).parse(unit) --> Line_7 $$ Canonical can = new Converter(model, handlers).convert(term) [FD]
+Line_7 $$ Canonical can = new Converter(model, handlers).convert(term) --> Line_8 $$ String cu = new ExpressionComposer().compose(can, false) [FD]
+Line_2 $$ public String validateCanonicalUnits(String unit, String canonical) --> Line_9 $$ if (!canonical.equals(cu)) [FD]
+Line_8 $$ String cu = new ExpressionComposer().compose(can, false) --> Line_9 $$ if (!canonical.equals(cu)) [FD]
+Line_9 $$ if (!canonical.equals(cu)) --> Line_10 $$ return "unit " + unit + " has the base units " + cu + ", not " + canonical + " as required." [CD]

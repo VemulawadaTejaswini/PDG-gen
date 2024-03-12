@@ -1,0 +1,5 @@
+Line_2 $$ public static void validateTargetRange() --> Line_3 $$ final double default_target_glucose = tolerantParseDouble(Pref.getString("plus_target_range", Double.toString(5.5 / scale_factor))) [CD]
+Line_2 $$ public static void validateTargetRange() --> Line_4 $$ if (default_target_glucose > tolerantParseDouble(Pref.getString("highValue", Double.toString(5.5 / scale_factor)))) [CD]
+Line_3 $$ final double default_target_glucose = tolerantParseDouble(Pref.getString("plus_target_range", Double.toString(5.5 / scale_factor))) --> Line_4 $$ if (default_target_glucose > tolerantParseDouble(Pref.getString("highValue", Double.toString(5.5 / scale_factor)))) [FD]
+Line_4 $$ if (default_target_glucose > tolerantParseDouble(Pref.getString("highValue", Double.toString(5.5 / scale_factor)))) --> Line_5 $$ Pref.setString("plus_target_range", JoH.qs(default_target_glucose * Constants.MGDL_TO_MMOLL, 1)) [CD]
+Line_4 $$ if (default_target_glucose > tolerantParseDouble(Pref.getString("highValue", Double.toString(5.5 / scale_factor)))) --> Line_6 $$ UserError.Log.i(TAG, "Converted initial value of target glucose to mmol") [CD]

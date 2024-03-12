@@ -1,0 +1,7 @@
+Line_4 $$ if (!valMismatchKeys.isEmpty()) --> Line_5 $$ final Map<ReaderField, Set<Integer>> rfMap = readerFieldToValIds.getMap() [CD]
+Line_4 $$ if (!valMismatchKeys.isEmpty()) --> Line_6 $$ final Map<Integer, Set<CacheEntry>> valMap = valIdToItems.getMap() [CD]
+Line_5 $$ final Map<ReaderField, Set<Integer>> rfMap = readerFieldToValIds.getMap() --> Line_9 $$ for (final Integer value : rfMap.get(rf)) [FD]
+Line_7 $$ for (final ReaderField rf : valMismatchKeys) --> Line_9 $$ for (final Integer value : rfMap.get(rf)) [FD]
+Line_9 $$ for (final Integer value : rfMap.get(rf)) --> Line_10 $$ for (final CacheEntry cacheEntry : valMap.get(value)) [FD]
+Line_3 $$ final List<Insanity> insanity = new ArrayList(valMismatchKeys.size() * 3) --> Line_16 $$ insanity.add(new Insanity(InsanityType.VALUEMISMATCH, "Multiple distinct value objects for " + rf.toString(), badness)) [FD]
+Line_7 $$ for (final ReaderField rf : valMismatchKeys) --> Line_16 $$ insanity.add(new Insanity(InsanityType.VALUEMISMATCH, "Multiple distinct value objects for " + rf.toString(), badness)) [FD]

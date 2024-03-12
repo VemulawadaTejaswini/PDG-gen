@@ -1,0 +1,8 @@
+Line_2 $$ void cancelFuture() --> Line_3 $$ Future<?> f = future [CD]
+Line_2 $$ void cancelFuture() --> Line_4 $$ if (f != CANCELLED && f != FINISHED) [CD]
+Line_4 $$ if (f != CANCELLED && f != FINISHED) --> Line_5 $$ f = FUTURE.getAndSet(this, CANCELLED) [CD]
+Line_3 $$ Future<?> f = future --> Line_5 $$ f = FUTURE.getAndSet(this, CANCELLED) [FD]
+Line_4 $$ if (f != CANCELLED && f != FINISHED) --> Line_6 $$ if (f != null && f != CANCELLED && f != FINISHED) [CD]
+Line_6 $$ if (f != null && f != CANCELLED && f != FINISHED) --> Line_7 $$ f.cancel(true) [CD]
+Line_3 $$ Future<?> f = future --> Line_7 $$ f.cancel(true) [FD]
+Line_5 $$ f = FUTURE.getAndSet(this, CANCELLED) --> Line_7 $$ f.cancel(true) [FD]

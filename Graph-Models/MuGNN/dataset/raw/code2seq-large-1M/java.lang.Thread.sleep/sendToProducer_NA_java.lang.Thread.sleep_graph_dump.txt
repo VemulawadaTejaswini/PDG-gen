@@ -1,0 +1,8 @@
+Line_2 $$ protected void sendToProducer(MessageProducer producer, Destination producerDestination, Message message) throws JMSException --> Line_4 $$ boolean sent = false [CD]
+Line_2 $$ protected void sendToProducer(MessageProducer producer, Destination producerDestination, Message message) throws JMSException --> Line_5 $$ do [CD]
+Line_2 $$ protected void sendToProducer(MessageProducer producer, Destination producerDestination, Message message) throws JMSException --> Line_7 $$ producer.send(producerDestination, message) [FD]
+Line_8 $$ if (transactedSends && ((inflightMessageCount + 1) % 10 == 0 || (inflightMessageCount + 1) >= messageCount)) --> Line_9 $$ LOG.info("committing on send: " + inflightMessageCount + " message: " + message) [CD]
+Line_8 $$ if (transactedSends && ((inflightMessageCount + 1) % 10 == 0 || (inflightMessageCount + 1) >= messageCount)) --> Line_10 $$ session.commit() [CD]
+Line_4 $$ boolean sent = false --> Line_12 $$ sent = true [FD]
+Line_12 $$ sent = true --> Line_5 $$ do [FD]
+Line_4 $$ boolean sent = false --> Line_5 $$ do [FD]

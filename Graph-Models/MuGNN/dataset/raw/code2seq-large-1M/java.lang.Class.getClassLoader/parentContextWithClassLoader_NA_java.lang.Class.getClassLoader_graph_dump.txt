@@ -1,0 +1,6 @@
+Line_2 $$ public void parentContextWithClassLoader() --> Line_3 $$ SpringApplicationBuilder application = new SpringApplicationBuilder(ChildConfig.class).contextClass(SpyApplicationContext.class) [CD]
+Line_2 $$ public void parentContextWithClassLoader() --> Line_4 $$ ClassLoader classLoader = new URLClassLoader(new URL[0], getClass().getClassLoader()) [CD]
+Line_2 $$ public void parentContextWithClassLoader() --> Line_5 $$ application.resourceLoader(new DefaultResourceLoader(classLoader)) [CD]
+Line_2 $$ public void parentContextWithClassLoader() --> Line_6 $$ application.parent(ExampleConfig.class) [CD]
+Line_2 $$ public void parentContextWithClassLoader() --> Line_7 $$ this.context = application.run() [CD]
+Line_2 $$ public void parentContextWithClassLoader() --> Line_8 $$ assertThat(((SpyApplicationContext) this.context).getResourceLoader().getClassLoader()).isEqualTo(classLoader) [CD]

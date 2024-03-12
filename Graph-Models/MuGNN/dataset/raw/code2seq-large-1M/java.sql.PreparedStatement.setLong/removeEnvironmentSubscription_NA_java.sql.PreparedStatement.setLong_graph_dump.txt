@@ -1,0 +1,5 @@
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_4 $$ try (PreparedStatement statement = db.statement("DELETE FROM environment_subscription WHERE subscription_id=?")) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("DELETE FROM environment_subscription WHERE subscription_id=?")) --> Line_5 $$ statement.setLong(1, subscriptionId) [FD]
+Line_2 $$ public void removeEnvironmentSubscription(long subscriptionId) --> Line_5 $$ statement.setLong(1, subscriptionId) [FD]
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_6 $$ db.updateWithStatement(statement) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("DELETE FROM environment_subscription WHERE subscription_id=?")) --> Line_6 $$ db.updateWithStatement(statement) [FD]

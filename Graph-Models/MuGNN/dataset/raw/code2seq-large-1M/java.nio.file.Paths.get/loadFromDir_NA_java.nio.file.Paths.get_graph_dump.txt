@@ -1,0 +1,4 @@
+Line_3 $$ final Path pathToDirAsPath = Paths.get(pathToDir.getPath()) --> Line_4 $$ try (Stream<Path> paths = Files.walk(pathToDirAsPath)) [FD]
+Line_4 $$ try (Stream<Path> paths = Files.walk(pathToDirAsPath)) --> Line_5 $$ Stream<String> stream = paths.filter( path -> Files.isRegularFile(path)).map( path -> pathToDirAsPath.relativize(path)).map( path -> path.toFile().getPath()) [FD]
+Line_3 $$ final Path pathToDirAsPath = Paths.get(pathToDir.getPath()) --> Line_5 $$ Stream<String> stream = paths.filter( path -> Files.isRegularFile(path)).map( path -> pathToDirAsPath.relativize(path)).map( path -> path.toFile().getPath()) [FD]
+Line_5 $$ Stream<String> stream = paths.filter( path -> Files.isRegularFile(path)).map( path -> pathToDirAsPath.relativize(path)).map( path -> path.toFile().getPath()) --> Line_6 $$ return processStream(stream, classLoader, pathToDir) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testUnsupportedSystemVersion() --> Line_3 $$ final String systemApiVersion = randomFrom(TEMPLATE_VERSION, MonitoringTemplateUtils.OLD_TEMPLATE_VERSION) [CD]
+Line_2 $$ public void testUnsupportedSystemVersion() --> Line_4 $$ final RestRequest restRequest = createRestRequest(MonitoredSystem.UNKNOWN.getSystem(), systemApiVersion, "30s") [CD]
+Line_3 $$ final String systemApiVersion = randomFrom(TEMPLATE_VERSION, MonitoringTemplateUtils.OLD_TEMPLATE_VERSION) --> Line_4 $$ final RestRequest restRequest = createRestRequest(MonitoredSystem.UNKNOWN.getSystem(), systemApiVersion, "30s") [FD]
+Line_2 $$ public void testUnsupportedSystemVersion() --> Line_5 $$ final IllegalArgumentException exception = expectThrows(IllegalArgumentException.class, () -> prepareRequest(restRequest)) [CD]
+Line_4 $$ final RestRequest restRequest = createRestRequest(MonitoredSystem.UNKNOWN.getSystem(), systemApiVersion, "30s") --> Line_5 $$ final IllegalArgumentException exception = expectThrows(IllegalArgumentException.class, () -> prepareRequest(restRequest)) [FD]
+Line_2 $$ public void testUnsupportedSystemVersion() --> Line_6 $$ assertThat(exception.getMessage(), containsString("system_api_version [" + systemApiVersion + "] is not supported by system_id [unknown]")) [CD]

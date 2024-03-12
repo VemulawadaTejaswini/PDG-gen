@@ -1,0 +1,8 @@
+Line_2 $$ public Integer removeLockWhitelistAddress(Transaction tx, String addressBase58) --> Line_3 $$ if (!isLockWhitelistChangeAuthorized(tx)) [FD]
+Line_2 $$ public Integer removeLockWhitelistAddress(Transaction tx, String addressBase58) --> Line_3 $$ if (!isLockWhitelistChangeAuthorized(tx)) [CD]
+Line_3 $$ if (!isLockWhitelistChangeAuthorized(tx)) --> Line_4 $$ return LOCK_WHITELIST_GENERIC_ERROR_CODE [CD]
+Line_2 $$ public Integer removeLockWhitelistAddress(Transaction tx, String addressBase58) --> Line_6 $$ LockWhitelist whitelist = provider.getLockWhitelist() [CD]
+Line_2 $$ public Integer removeLockWhitelistAddress(Transaction tx, String addressBase58) --> Line_8 $$ Address address = Address.fromBase58(btcContext.getParams(), addressBase58) [FD]
+Line_6 $$ LockWhitelist whitelist = provider.getLockWhitelist() --> Line_9 $$ if (!whitelist.remove(address)) [FD]
+Line_8 $$ Address address = Address.fromBase58(btcContext.getParams(), addressBase58) --> Line_9 $$ if (!whitelist.remove(address)) [FD]
+Line_9 $$ if (!whitelist.remove(address)) --> Line_10 $$ return -1 [CD]

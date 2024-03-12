@@ -1,0 +1,8 @@
+Line_2 $$ private List<PageRevision> extractRevisions(final String response) throws ParseException --> Line_3 $$ Map<String, Map<String, Map<String, Map<String, Object>>>> result = new Gson().fromJson(response, Map.class) [FD]
+Line_2 $$ private List<PageRevision> extractRevisions(final String response) throws ParseException --> Line_3 $$ Map<String, Map<String, Map<String, Map<String, Object>>>> result = new Gson().fromJson(response, Map.class) [CD]
+Line_2 $$ private List<PageRevision> extractRevisions(final String response) throws ParseException --> Line_4 $$ List<PageRevision> revisions = newArrayList() [CD]
+Line_5 $$ for (Map<String, Object> p : result.get("query").get("pages").values()) --> Line_6 $$ Map<String, Object> lastRevision = ((List<Map<String, Object>>) p.get("revisions")).get(0) [FD]
+Line_4 $$ List<PageRevision> revisions = newArrayList() --> Line_7 $$ revisions.add(new PageRevision((String) p.get("title"), (String) lastRevision.get("user"), DATE_FORMAT.parse((String) lastRevision.get("timestamp")))) [FD]
+Line_5 $$ for (Map<String, Object> p : result.get("query").get("pages").values()) --> Line_7 $$ revisions.add(new PageRevision((String) p.get("title"), (String) lastRevision.get("user"), DATE_FORMAT.parse((String) lastRevision.get("timestamp")))) [FD]
+Line_6 $$ Map<String, Object> lastRevision = ((List<Map<String, Object>>) p.get("revisions")).get(0) --> Line_7 $$ revisions.add(new PageRevision((String) p.get("title"), (String) lastRevision.get("user"), DATE_FORMAT.parse((String) lastRevision.get("timestamp")))) [FD]
+Line_2 $$ private List<PageRevision> extractRevisions(final String response) throws ParseException --> Line_9 $$ return revisions [CD]

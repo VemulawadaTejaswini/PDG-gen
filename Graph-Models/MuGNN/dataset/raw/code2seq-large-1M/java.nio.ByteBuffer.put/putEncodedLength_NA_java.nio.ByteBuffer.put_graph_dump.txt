@@ -1,0 +1,8 @@
+Line_2 $$ private static void putEncodedLength(ByteBuffer buf, int length) --> Line_3 $$ if (length < (1 << 7)) [CD]
+Line_2 $$ private static void putEncodedLength(ByteBuffer buf, int length) --> Line_3 $$ if (length < (1 << 7)) [FD]
+Line_3 $$ if (length < (1 << 7)) --> Line_4 $$ buf.put((byte) length) [CD]
+Line_2 $$ private static void putEncodedLength(ByteBuffer buf, int length) --> Line_4 $$ buf.put((byte) length) [FD]
+Line_3 $$ if (length < (1 << 7)) --> Line_6 $$ buf.put((byte) ((1 << 7) | (length >> 8))) [CD]
+Line_2 $$ private static void putEncodedLength(ByteBuffer buf, int length) --> Line_6 $$ buf.put((byte) ((1 << 7) | (length >> 8))) [FD]
+Line_3 $$ if (length < (1 << 7)) --> Line_7 $$ buf.put((byte) (length & 0xFF)) [CD]
+Line_2 $$ private static void putEncodedLength(ByteBuffer buf, int length) --> Line_7 $$ buf.put((byte) (length & 0xFF)) [FD]

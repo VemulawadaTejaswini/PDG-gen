@@ -1,0 +1,8 @@
+Line_2 $$ public <M extends Map<K, V>> M toCustomMap(Supplier<M> mapSupplier) --> Line_3 $$ M map = mapSupplier.get() [CD]
+Line_2 $$ public <M extends Map<K, V>> M toCustomMap(Supplier<M> mapSupplier) --> Line_3 $$ M map = mapSupplier.get() [FD]
+Line_2 $$ public <M extends Map<K, V>> M toCustomMap(Supplier<M> mapSupplier) --> Line_4 $$ if (isParallel() && !(map instanceof ConcurrentMap)) [CD]
+Line_4 $$ if (isParallel() && !(map instanceof ConcurrentMap)) --> Line_5 $$ return collect(mapSupplier, ( m,  t) -> addToMap(m, t.getKey(), Objects.requireNonNull(t.getValue())), ( m1,  m2) -> m2.forEach(( k,  v) -> addToMap(m1, k, v))) [CD]
+Line_2 $$ public <M extends Map<K, V>> M toCustomMap(Supplier<M> mapSupplier) --> Line_5 $$ return collect(mapSupplier, ( m,  t) -> addToMap(m, t.getKey(), Objects.requireNonNull(t.getValue())), ( m1,  m2) -> m2.forEach(( k,  v) -> addToMap(m1, k, v))) [FD]
+Line_2 $$ public <M extends Map<K, V>> M toCustomMap(Supplier<M> mapSupplier) --> Line_7 $$ forEach(toMapConsumer(map)) [CD]
+Line_3 $$ M map = mapSupplier.get() --> Line_7 $$ forEach(toMapConsumer(map)) [FD]
+Line_2 $$ public <M extends Map<K, V>> M toCustomMap(Supplier<M> mapSupplier) --> Line_8 $$ return map [CD]

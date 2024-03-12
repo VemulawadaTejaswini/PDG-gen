@@ -1,0 +1,8 @@
+Line_2 $$ protected void applyPCRErrorModel(final byte[] readBases, final byte[] readInsQuals, final byte[] readDelQuals) --> Line_3 $$ if (pcrErrorModel == PCR_ERROR_MODEL.NONE) [CD]
+Line_3 $$ if (pcrErrorModel == PCR_ERROR_MODEL.NONE) --> Line_4 $$ return [CD]
+Line_2 $$ protected void applyPCRErrorModel(final byte[] readBases, final byte[] readInsQuals, final byte[] readDelQuals) --> Line_5 $$ final TandemRepeatFinder repeatFinder = new TandemRepeatFinder(readBases, MAX_STR_UNIT_LENGTH, MAX_REPEAT_LENGTH) [CD]
+Line_2 $$ protected void applyPCRErrorModel(final byte[] readBases, final byte[] readInsQuals, final byte[] readDelQuals) --> Line_6 $$ for (int iii = 1; iii < readBases.length; iii++) [CD]
+Line_6 $$ for (int iii = 1; iii < readBases.length; iii++) --> Line_7 $$ final int repeatLength = repeatFinder.findMostRelevantTandemRepeatUnitAt(iii - 1).getRepeatCount() [CD]
+Line_5 $$ final TandemRepeatFinder repeatFinder = new TandemRepeatFinder(readBases, MAX_STR_UNIT_LENGTH, MAX_REPEAT_LENGTH) --> Line_7 $$ final int repeatLength = repeatFinder.findMostRelevantTandemRepeatUnitAt(iii - 1).getRepeatCount() [FD]
+Line_6 $$ for (int iii = 1; iii < readBases.length; iii++) --> Line_8 $$ readInsQuals[iii - 1] = (byte) Math.min(0xff & readInsQuals[iii - 1], 0xff & pcrIndelErrorModelCache[repeatLength]) [CD]
+Line_6 $$ for (int iii = 1; iii < readBases.length; iii++) --> Line_9 $$ readDelQuals[iii - 1] = (byte) Math.min(0xff & readDelQuals[iii - 1], 0xff & pcrIndelErrorModelCache[repeatLength]) [CD]

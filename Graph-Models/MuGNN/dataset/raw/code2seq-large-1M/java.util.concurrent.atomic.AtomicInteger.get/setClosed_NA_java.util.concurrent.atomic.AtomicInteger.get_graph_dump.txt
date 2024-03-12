@@ -1,0 +1,6 @@
+Line_2 $$ public int setClosed() throws ClosedChannelException --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ int curBits = status.get() [CD]
+Line_3 $$ while (true) --> Line_5 $$ if ((curBits & STATUS_CLOSED_MASK) != 0) [CD]
+Line_3 $$ while (true) --> Line_8 $$ if (status.compareAndSet(curBits, curBits | STATUS_CLOSED_MASK)) [CD]
+Line_4 $$ int curBits = status.get() --> Line_8 $$ if (status.compareAndSet(curBits, curBits | STATUS_CLOSED_MASK)) [FD]
+Line_8 $$ if (status.compareAndSet(curBits, curBits | STATUS_CLOSED_MASK)) --> Line_9 $$ return curBits & (~STATUS_CLOSED_MASK) [CD]

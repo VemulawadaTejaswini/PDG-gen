@@ -1,0 +1,6 @@
+Line_2 $$ public int getQueryTimeoutSeconds() --> Line_3 $$ int time = Integer.parseInt(this.getOptional("kylin.query.timeout-seconds", "0")) [CD]
+Line_2 $$ public int getQueryTimeoutSeconds() --> Line_4 $$ if (time != 0 && time <= 60) [CD]
+Line_4 $$ if (time != 0 && time <= 60) --> Line_5 $$ logger.warn("query timeout seconds less than 60 sec, set to 60 sec.") [CD]
+Line_4 $$ if (time != 0 && time <= 60) --> Line_6 $$ time = 60 [CD]
+Line_3 $$ int time = Integer.parseInt(this.getOptional("kylin.query.timeout-seconds", "0")) --> Line_6 $$ time = 60 [FD]
+Line_2 $$ public int getQueryTimeoutSeconds() --> Line_8 $$ return time [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public Pair<RequestHolder, Long> jpegProduced() --> Line_3 $$ final ReentrantLock lock = this.mLock [CD]
+Line_2 $$ public Pair<RequestHolder, Long> jpegProduced() --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ final ReentrantLock lock = this.mLock --> Line_4 $$ lock.lock() [FD]
+Line_6 $$ CaptureHolder h = mJpegProduceQueue.poll() --> Line_7 $$ if (h == null) [FD]
+Line_7 $$ if (h == null) --> Line_8 $$ Log.w(TAG, "jpegProduced called with no jpeg request on queue!") [CD]
+Line_7 $$ if (h == null) --> Line_9 $$ return null [CD]
+Line_6 $$ CaptureHolder h = mJpegProduceQueue.poll() --> Line_11 $$ h.setJpegProduced() [FD]
+Line_3 $$ final ReentrantLock lock = this.mLock --> Line_14 $$ lock.unlock() [FD]

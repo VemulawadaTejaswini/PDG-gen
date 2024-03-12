@@ -1,0 +1,7 @@
+Line_2 $$ public void shouldHandleRecursiveExceptionChain() --> Line_3 $$ final Exception cause = new TestException("Something went wrong") [CD]
+Line_2 $$ public void shouldHandleRecursiveExceptionChain() --> Line_4 $$ final Throwable e = new TestException("Top level", cause) [CD]
+Line_2 $$ public void shouldHandleRecursiveExceptionChain() --> Line_5 $$ cause.initCause(e) [CD]
+Line_3 $$ final Exception cause = new TestException("Something went wrong") --> Line_5 $$ cause.initCause(e) [FD]
+Line_4 $$ final Throwable e = new TestException("Top level", cause) --> Line_5 $$ cause.initCause(e) [FD]
+Line_2 $$ public void shouldHandleRecursiveExceptionChain() --> Line_6 $$ assertThat(buildErrorMessage(e), is("Top level" + System.lineSeparator() + "Caused by: Something went wrong")) [CD]
+Line_4 $$ final Throwable e = new TestException("Top level", cause) --> Line_6 $$ assertThat(buildErrorMessage(e), is("Top level" + System.lineSeparator() + "Caused by: Something went wrong")) [FD]

@@ -1,0 +1,6 @@
+Line_3 $$ for (Field field : getConstantFields()) --> Line_4 $$ Optional<Charset> charset = ((MediaType) field.get(null)).charset() [FD]
+Line_3 $$ for (Field field : getConstantFields()) --> Line_5 $$ if (field.getName().endsWith("_UTF_8")) [FD]
+Line_5 $$ if (field.getName().endsWith("_UTF_8")) --> Line_6 $$ assertThat(charset).hasValue(UTF_8) [CD]
+Line_4 $$ Optional<Charset> charset = ((MediaType) field.get(null)).charset() --> Line_6 $$ assertThat(charset).hasValue(UTF_8) [FD]
+Line_5 $$ if (field.getName().endsWith("_UTF_8")) --> Line_8 $$ assertThat(charset).isEmpty() [CD]
+Line_4 $$ Optional<Charset> charset = ((MediaType) field.get(null)).charset() --> Line_8 $$ assertThat(charset).isEmpty() [FD]

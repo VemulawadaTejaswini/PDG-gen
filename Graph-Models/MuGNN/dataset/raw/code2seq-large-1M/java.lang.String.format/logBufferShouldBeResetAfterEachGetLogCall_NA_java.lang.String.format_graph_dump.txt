@@ -1,0 +1,8 @@
+Line_2 $$ public void logBufferShouldBeResetAfterEachGetLogCall() --> Line_3 $$ assumeFalse(TestUtilities.isOldChromedriver(driver)) [CD]
+Line_2 $$ public void logBufferShouldBeResetAfterEachGetLogCall() --> Line_4 $$ Set<String> logTypes = driver.manage().logs().getAvailableLogTypes() [CD]
+Line_5 $$ for (String logType : logTypes) --> Line_7 $$ LogEntries firstEntries = driver.manage().logs().get(logType) [FD]
+Line_7 $$ LogEntries firstEntries = driver.manage().logs().get(logType) --> Line_8 $$ assumeTrue(firstEntries.getAll().size() > 0) [FD]
+Line_5 $$ for (String logType : logTypes) --> Line_9 $$ LogEntries secondEntries = driver.manage().logs().get(logType) [FD]
+Line_5 $$ for (String logType : logTypes) --> Line_10 $$ assertFalse(String.format("There should be no overlapping log entries in " + "consecutive get log calls for %s logs", logType), LogEntriesChecks.hasOverlappingLogEntries(firstEntries, secondEntries)) [FD]
+Line_7 $$ LogEntries firstEntries = driver.manage().logs().get(logType) --> Line_10 $$ assertFalse(String.format("There should be no overlapping log entries in " + "consecutive get log calls for %s logs", logType), LogEntriesChecks.hasOverlappingLogEntries(firstEntries, secondEntries)) [FD]
+Line_9 $$ LogEntries secondEntries = driver.manage().logs().get(logType) --> Line_10 $$ assertFalse(String.format("There should be no overlapping log entries in " + "consecutive get log calls for %s logs", logType), LogEntriesChecks.hasOverlappingLogEntries(firstEntries, secondEntries)) [FD]

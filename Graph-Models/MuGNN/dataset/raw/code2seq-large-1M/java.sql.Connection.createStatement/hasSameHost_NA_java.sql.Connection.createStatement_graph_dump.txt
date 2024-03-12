@@ -1,0 +1,6 @@
+Line_4 $$ Statement st = sharedConnection.createStatement() --> Line_5 $$ ResultSet rs = st.executeQuery("select @@version_compile_os") [FD]
+Line_5 $$ ResultSet rs = st.executeQuery("select @@version_compile_os") --> Line_6 $$ if (rs.next()) [FD]
+Line_6 $$ if (rs.next()) --> Line_7 $$ if ((rs.getString(1).contains("linux") && Platform.isWindows()) || (rs.getString(1).contains("win") && Platform.isLinux())) [CD]
+Line_5 $$ ResultSet rs = st.executeQuery("select @@version_compile_os") --> Line_7 $$ if ((rs.getString(1).contains("linux") && Platform.isWindows()) || (rs.getString(1).contains("win") && Platform.isLinux())) [FD]
+Line_7 $$ if ((rs.getString(1).contains("linux") && Platform.isWindows()) || (rs.getString(1).contains("win") && Platform.isLinux())) --> Line_8 $$ return false [CD]
+Line_2 $$ public boolean hasSameHost() --> Line_12 $$ return true [CD]

@@ -1,0 +1,7 @@
+Line_3 $$ for (Integer seqNum : sequenceNumbers) --> Line_4 $$ Request request = requests.get(seqNum) [FD]
+Line_6 $$ if (request.timesRequested == MAX_REQUESTS) --> Line_7 $$ if (logger.isDebugEnabled()) [CD]
+Line_7 $$ if (logger.isDebugEnabled()) --> Line_8 $$ logger.debug("Generated the last NACK for SSRC=" + ssrc + " seq=" + request.seq + ". " + "Time since the first request: " + (time - request.firstRequestSentAt)) [CD]
+Line_6 $$ if (request.timesRequested == MAX_REQUESTS) --> Line_10 $$ requests.remove(seqNum) [CD]
+Line_3 $$ for (Integer seqNum : sequenceNumbers) --> Line_10 $$ requests.remove(seqNum) [FD]
+Line_13 $$ if (request.timesRequested == 1) --> Line_14 $$ request.firstRequestSentAt = time [CD]
+Line_2 $$ public synchronized void notifyNackCreated(long time, Collection<Integer> sequenceNumbers) --> Line_14 $$ request.firstRequestSentAt = time [FD]

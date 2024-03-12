@@ -1,0 +1,8 @@
+Line_3 $$ if (getFatFileSystem().getFat().isFat32()) --> Line_4 $$ return super.getFatDirEntry(index, allowDeleted) [CD]
+Line_6 $$ BootSector bootSector = getFatFileSystem().getBootSector() --> Line_7 $$ if (index > bootSector.getNrRootDirEntries()) [FD]
+Line_10 $$ FatMarshal entry = new FatMarshal(32) --> Line_11 $$ ByteBuffer dest = entry.getByteBuffer() [FD]
+Line_6 $$ BootSector bootSector = getFatFileSystem().getBootSector() --> Line_12 $$ long rootDirectoryOffset = bootSector.getFirstDataSector() * bootSector.getBytesPerSector() [FD]
+Line_11 $$ ByteBuffer dest = entry.getByteBuffer() --> Line_13 $$ dest.limit(dest.position() + entry.length()) [FD]
+Line_10 $$ FatMarshal entry = new FatMarshal(32) --> Line_13 $$ dest.limit(dest.position() + entry.length()) [FD]
+Line_11 $$ ByteBuffer dest = entry.getByteBuffer() --> Line_14 $$ getFatFileSystem().getApi().read(rootDirectoryOffset + 32 * index, dest) [FD]
+Line_10 $$ FatMarshal entry = new FatMarshal(32) --> Line_15 $$ return createDirEntry(entry, index, allowDeleted) [FD]

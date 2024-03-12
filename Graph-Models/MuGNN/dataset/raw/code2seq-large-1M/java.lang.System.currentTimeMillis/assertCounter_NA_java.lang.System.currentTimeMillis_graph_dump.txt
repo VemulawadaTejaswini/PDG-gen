@@ -1,0 +1,6 @@
+Line_2 $$ public static void assertCounter(AtomicInteger counter, int value, long timeout, TimeUnit unit) --> Line_3 $$ long t = System.currentTimeMillis() [CD]
+Line_2 $$ public static void assertCounter(AtomicInteger counter, int value, long timeout, TimeUnit unit) --> Line_4 $$ while (counter.get() < value && (System.currentTimeMillis() - t) < unit.toMillis(timeout)) [FD]
+Line_2 $$ public static void assertCounter(AtomicInteger counter, int value, long timeout, TimeUnit unit) --> Line_4 $$ while (counter.get() < value && (System.currentTimeMillis() - t) < unit.toMillis(timeout)) [CD]
+Line_4 $$ while (counter.get() < value && (System.currentTimeMillis() - t) < unit.toMillis(timeout)) --> Line_5 $$ LockSupport.parkNanos(10000L) [CD]
+Line_2 $$ public static void assertCounter(AtomicInteger counter, int value, long timeout, TimeUnit unit) --> Line_7 $$ Assert.assertEquals(value, counter.get()) [FD]
+Line_2 $$ public static void assertCounter(AtomicInteger counter, int value, long timeout, TimeUnit unit) --> Line_7 $$ Assert.assertEquals(value, counter.get()) [CD]

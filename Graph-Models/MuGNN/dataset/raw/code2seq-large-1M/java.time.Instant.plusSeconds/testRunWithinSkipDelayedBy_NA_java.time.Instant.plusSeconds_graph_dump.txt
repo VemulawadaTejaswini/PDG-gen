@@ -1,0 +1,5 @@
+Line_2 $$ public void testRunWithinSkipDelayedBy() throws Exception --> Line_3 $$ workflowConfig.getNestedOrSetEmpty("schedule").set("skip_delayed_by", "30s").set("daily>", "12:00:00") [CD]
+Line_2 $$ public void testRunWithinSkipDelayedBy() throws Exception --> Line_4 $$ when(sessionStore.getActiveAttemptsOfWorkflow(eq(PROJECT_ID), eq(WORKFLOW_NAME), anyInt(), any(Optional.class))).thenReturn(ImmutableList.of()) [CD]
+Line_2 $$ public void testRunWithinSkipDelayedBy() throws Exception --> Line_5 $$ scheduleExecutor.runScheduleOnce(now.plusSeconds(29)) [CD]
+Line_2 $$ public void testRunWithinSkipDelayedBy() throws Exception --> Line_6 $$ verify(scheduleExecutor).startSchedule(any(StoredSchedule.class), any(Scheduler.class), any(StoredWorkflowDefinitionWithProject.class)) [CD]
+Line_2 $$ public void testRunWithinSkipDelayedBy() throws Exception --> Line_7 $$ verify(scs).updateNextScheduleTimeAndLastSessionTime(SCHEDULE_ID, nextScheduleTime, now) [CD]

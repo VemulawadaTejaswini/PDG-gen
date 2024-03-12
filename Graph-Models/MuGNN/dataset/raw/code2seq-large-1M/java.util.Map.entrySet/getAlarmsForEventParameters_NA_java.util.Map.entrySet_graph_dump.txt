@@ -1,0 +1,6 @@
+Line_2 $$ public List<OnmsAlarm> getAlarmsForEventParameters(Map<String, String> eventParameters) --> Line_3 $$ Stream<OnmsAlarm> stream = findAll().stream() [CD]
+Line_2 $$ public List<OnmsAlarm> getAlarmsForEventParameters(Map<String, String> eventParameters) --> Line_4 $$ for (final Map.Entry<String, String> entry : eventParameters.entrySet()) [FD]
+Line_3 $$ Stream<OnmsAlarm> stream = findAll().stream() --> Line_5 $$ stream = stream.filter( e -> e.getEventParameters().stream().anyMatch( p -> p.getName().matches(entry.getKey().replaceAll("%", ".*")) && p.getValue().matches(entry.getValue().replace("%", ".*")))) [FD]
+Line_2 $$ public List<OnmsAlarm> getAlarmsForEventParameters(Map<String, String> eventParameters) --> Line_7 $$ return stream.distinct().collect(Collectors.toList()) [CD]
+Line_3 $$ Stream<OnmsAlarm> stream = findAll().stream() --> Line_7 $$ return stream.distinct().collect(Collectors.toList()) [FD]
+Line_5 $$ stream = stream.filter( e -> e.getEventParameters().stream().anyMatch( p -> p.getName().matches(entry.getKey().replaceAll("%", ".*")) && p.getValue().matches(entry.getValue().replace("%", ".*")))) --> Line_7 $$ return stream.distinct().collect(Collectors.toList()) [FD]

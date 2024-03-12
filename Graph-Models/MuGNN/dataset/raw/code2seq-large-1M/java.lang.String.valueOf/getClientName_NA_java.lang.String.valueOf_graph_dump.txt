@@ -1,0 +1,8 @@
+Line_2 $$ public final String getClientName() --> Line_3 $$ if (clientName == null) [CD]
+Line_3 $$ if (clientName == null) --> Line_4 $$ final int adClientId = getAD_Client_ID() [CD]
+Line_3 $$ if (clientName == null) --> Line_5 $$ if (adClientId > 0) [CD]
+Line_4 $$ final int adClientId = getAD_Client_ID() --> Line_5 $$ if (adClientId > 0) [FD]
+Line_5 $$ if (adClientId > 0) --> Line_6 $$ final I_AD_Client client = Services.get(IClientDAO.class).retriveClient(Env.getCtx(), adClientId) [CD]
+Line_4 $$ final int adClientId = getAD_Client_ID() --> Line_6 $$ final I_AD_Client client = Services.get(IClientDAO.class).retriveClient(Env.getCtx(), adClientId) [FD]
+Line_4 $$ final int adClientId = getAD_Client_ID() --> Line_7 $$ clientName = client == null ? String.valueOf(adClientId) : client.getName() [FD]
+Line_2 $$ public final String getClientName() --> Line_12 $$ return clientName [CD]

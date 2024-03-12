@@ -1,0 +1,5 @@
+Line_2 $$ final void setMaxFieldSize(int limit) throws SQLServerException --> Line_3 $$ if (maxFieldSize != limit) [FD]
+Line_2 $$ final void setMaxFieldSize(int limit) throws SQLServerException --> Line_3 $$ if (maxFieldSize != limit) [CD]
+Line_3 $$ if (maxFieldSize != limit) --> Line_4 $$ if (loggerExternal.isLoggable(Level.FINER) && Util.IsActivityTraceOn()) [CD]
+Line_4 $$ if (loggerExternal.isLoggable(Level.FINER) && Util.IsActivityTraceOn()) --> Line_5 $$ loggerExternal.finer(toString() + " ActivityId: " + ActivityCorrelator.getNext().toString()) [CD]
+Line_3 $$ if (maxFieldSize != limit) --> Line_7 $$ connectionCommand("SET TEXTSIZE " + ((0 == limit) ? 2147483647 : limit), "setMaxFieldSize") [CD]

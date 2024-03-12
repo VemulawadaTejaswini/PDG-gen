@@ -1,0 +1,6 @@
+Line_2 $$ public List<SObject> retrieveObjectList(final Server server) --> Line_3 $$ List<SObject> objectList = null [CD]
+Line_2 $$ public List<SObject> retrieveObjectList(final Server server) --> Line_4 $$ try (TcpProxy tcpProxy = TcpProxy.getTcpProxy(server)) [FD]
+Line_3 $$ List<SObject> objectList = null --> Line_5 $$ objectList = tcpProxy.process(RequestCmd.OBJECT_LIST_REAL_TIME, null).stream().map( p -> SObject.of((ObjectPack) p, server)).collect(Collectors.toList()) [FD]
+Line_4 $$ try (TcpProxy tcpProxy = TcpProxy.getTcpProxy(server)) --> Line_5 $$ objectList = tcpProxy.process(RequestCmd.OBJECT_LIST_REAL_TIME, null).stream().map( p -> SObject.of((ObjectPack) p, server)).collect(Collectors.toList()) [FD]
+Line_2 $$ public List<SObject> retrieveObjectList(final Server server) --> Line_5 $$ objectList = tcpProxy.process(RequestCmd.OBJECT_LIST_REAL_TIME, null).stream().map( p -> SObject.of((ObjectPack) p, server)).collect(Collectors.toList()) [FD]
+Line_2 $$ public List<SObject> retrieveObjectList(final Server server) --> Line_7 $$ return objectList [CD]

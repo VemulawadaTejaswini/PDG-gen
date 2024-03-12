@@ -1,0 +1,8 @@
+Line_2 $$ public void broadcastStateChange(PipelineState fromState, PipelineState toState, ThreadUsage threadUsage, Map<String, String> offset) --> Line_3 $$ if (stateEventListenerList.size() > 0) [CD]
+Line_3 $$ if (stateEventListenerList.size() > 0) --> Line_4 $$ List<StateEventListener> stateEventListenerListCopy [CD]
+Line_4 $$ List<StateEventListener> stateEventListenerListCopy --> Line_6 $$ stateEventListenerListCopy = new ArrayList(stateEventListenerList) [FD]
+Line_9 $$ ObjectMapper objectMapper = ObjectMapperFactory.get() --> Line_10 $$ String toStateJson = objectMapper.writer().writeValueAsString(BeanHelper.wrapPipelineState(toState, true)) [FD]
+Line_2 $$ public void broadcastStateChange(PipelineState fromState, PipelineState toState, ThreadUsage threadUsage, Map<String, String> offset) --> Line_10 $$ String toStateJson = objectMapper.writer().writeValueAsString(BeanHelper.wrapPipelineState(toState, true)) [FD]
+Line_11 $$ for (StateEventListener stateEventListener : stateEventListenerListCopy) --> Line_13 $$ stateEventListener.onStateChange(fromState, toState, toStateJson, threadUsage, offset) [FD]
+Line_2 $$ public void broadcastStateChange(PipelineState fromState, PipelineState toState, ThreadUsage threadUsage, Map<String, String> offset) --> Line_13 $$ stateEventListener.onStateChange(fromState, toState, toStateJson, threadUsage, offset) [FD]
+Line_10 $$ String toStateJson = objectMapper.writer().writeValueAsString(BeanHelper.wrapPipelineState(toState, true)) --> Line_13 $$ stateEventListener.onStateChange(fromState, toState, toStateJson, threadUsage, offset) [FD]

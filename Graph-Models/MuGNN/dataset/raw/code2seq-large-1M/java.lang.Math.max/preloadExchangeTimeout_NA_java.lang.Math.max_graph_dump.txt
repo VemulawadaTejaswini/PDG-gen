@@ -1,0 +1,6 @@
+Line_2 $$ public long preloadExchangeTimeout() --> Line_3 $$ long t1 = gridConfig().getNetworkTimeout() * 4 [CD]
+Line_2 $$ public long preloadExchangeTimeout() --> Line_4 $$ long t2 = gridConfig().getNetworkTimeout() * gridConfig().getCacheConfiguration().length * 2 [CD]
+Line_2 $$ public long preloadExchangeTimeout() --> Line_5 $$ long timeout = Math.max(t1, t2) [CD]
+Line_3 $$ long t1 = gridConfig().getNetworkTimeout() * 4 --> Line_5 $$ long timeout = Math.max(t1, t2) [FD]
+Line_4 $$ long t2 = gridConfig().getNetworkTimeout() * gridConfig().getCacheConfiguration().length * 2 --> Line_5 $$ long timeout = Math.max(t1, t2) [FD]
+Line_2 $$ public long preloadExchangeTimeout() --> Line_6 $$ return timeout < 0 ? Long.MAX_VALUE : timeout [CD]

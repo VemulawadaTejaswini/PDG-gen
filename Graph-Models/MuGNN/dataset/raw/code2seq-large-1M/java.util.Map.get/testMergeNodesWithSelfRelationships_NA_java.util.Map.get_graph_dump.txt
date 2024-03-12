@@ -1,0 +1,8 @@
+Line_2 $$ public void testMergeNodesWithSelfRelationships() throws Exception --> Line_3 $$ Map<String, Object> result = Iterators.single(db.execute("CREATE \n" + "(alice:Person [CD]
+Line_2 $$ public void testMergeNodesWithSelfRelationships() throws Exception --> Line_4 $$ testCall(db, "MATCH (alice:Person [CD]
+Line_3 $$ Map<String, Object> result = Iterators.single(db.execute("CREATE \n" + "(alice:Person --> Line_6 $$ assertEquals(result.get("aliceId"), node.getId()) [FD]
+Line_5 $$ Node node = (Node) r.get("node") --> Line_6 $$ assertEquals(result.get("aliceId"), node.getId()) [FD]
+Line_5 $$ Node node = (Node) r.get("node") --> Line_7 $$ assertEquals("Bob", node.getProperty("name")) [FD]
+Line_5 $$ Node node = (Node) r.get("node") --> Line_8 $$ assertEquals(1, node.getDegree(Direction.INCOMING)) [FD]
+Line_5 $$ Node node = (Node) r.get("node") --> Line_9 $$ assertEquals(1, node.getDegree(Direction.OUTGOING)) [FD]
+Line_5 $$ Node node = (Node) r.get("node") --> Line_10 $$ assertTrue(node.getSingleRelationship(RelationshipType.withName("likes"), Direction.OUTGOING).getEndNode().equals(node)) [FD]

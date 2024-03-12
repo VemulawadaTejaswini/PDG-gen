@@ -1,0 +1,8 @@
+Line_2 $$ public void ack(Object messageId) --> Line_4 $$ LOG.info("Received an ack with MessageId: " + messageId + " tuplesToAck=" + tuplesToAck) [CD]
+Line_2 $$ public void ack(Object messageId) --> Line_5 $$ if (!isTestMessageId(messageId)) [CD]
+Line_2 $$ public void ack(Object messageId) --> Line_5 $$ if (!isTestMessageId(messageId)) [FD]
+Line_5 $$ if (!isTestMessageId(messageId)) --> Line_6 $$ delegateSpout.ack(messageId) [CD]
+Line_2 $$ public void ack(Object messageId) --> Line_6 $$ delegateSpout.ack(messageId) [FD]
+Line_5 $$ if (!isTestMessageId(messageId)) --> Line_8 $$ handleAckedMessage(messageId, pendingMessages.get(messageId)) [CD]
+Line_2 $$ public void ack(Object messageId) --> Line_8 $$ handleAckedMessage(messageId, pendingMessages.get(messageId)) [FD]
+Line_2 $$ public void ack(Object messageId) --> Line_10 $$ emitTerminalIfNeeded() [CD]

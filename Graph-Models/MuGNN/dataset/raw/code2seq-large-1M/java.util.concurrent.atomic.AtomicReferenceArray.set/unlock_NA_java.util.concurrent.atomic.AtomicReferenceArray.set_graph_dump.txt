@@ -1,0 +1,7 @@
+Line_2 $$ public void unlock() --> Line_3 $$ long ticket = getPosEgress() [CD]
+Line_2 $$ public void unlock() --> Line_4 $$ waitersArray.set((int) (ticket % maxArrayWaiters), null) [CD]
+Line_2 $$ public void unlock() --> Line_5 $$ final WaitingNode wnode = waitersArray.get((int) ((ticket + 1) % maxArrayWaiters)) [CD]
+Line_2 $$ public void unlock() --> Line_6 $$ if (wnode != null) [CD]
+Line_5 $$ final WaitingNode wnode = waitersArray.get((int) ((ticket + 1) % maxArrayWaiters)) --> Line_6 $$ if (wnode != null) [FD]
+Line_6 $$ if (wnode != null) --> Line_7 $$ egress = -(ticket + 1) [CD]
+Line_6 $$ if (wnode != null) --> Line_8 $$ wnode.lockIsMine = true [CD]

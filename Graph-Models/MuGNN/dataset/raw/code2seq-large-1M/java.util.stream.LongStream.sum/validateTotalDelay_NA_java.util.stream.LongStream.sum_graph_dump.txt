@@ -1,0 +1,5 @@
+Line_2 $$ private void validateTotalDelay(List<Step> steps) --> Line_3 $$ long totalDelaySeconds = steps.stream().filter( step -> step instanceof Delay).mapToLong( delay -> ((Delay) delay).duration().getSeconds()).sum() [FD]
+Line_2 $$ private void validateTotalDelay(List<Step> steps) --> Line_3 $$ long totalDelaySeconds = steps.stream().filter( step -> step instanceof Delay).mapToLong( delay -> ((Delay) delay).duration().getSeconds()).sum() [CD]
+Line_2 $$ private void validateTotalDelay(List<Step> steps) --> Line_4 $$ if (totalDelaySeconds > Duration.ofHours(24).getSeconds()) [CD]
+Line_3 $$ long totalDelaySeconds = steps.stream().filter( step -> step instanceof Delay).mapToLong( delay -> ((Delay) delay).duration().getSeconds()).sum() --> Line_4 $$ if (totalDelaySeconds > Duration.ofHours(24).getSeconds()) [FD]
+Line_3 $$ long totalDelaySeconds = steps.stream().filter( step -> step instanceof Delay).mapToLong( delay -> ((Delay) delay).duration().getSeconds()).sum() --> Line_5 $$ throw new IllegalArgumentException("The total delay specified is " + Duration.ofSeconds(totalDelaySeconds) + " but max 24 hours is allowed") [FD]

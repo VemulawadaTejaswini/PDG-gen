@@ -1,0 +1,8 @@
+Line_2 $$ public void testAddFile() throws IOException --> Line_3 $$ ByteArrayOutputStream out = new ByteArrayOutputStream() [CD]
+Line_4 $$ try (ZipCombiner zipCombiner = new ZipCombiner(out)) --> Line_5 $$ zipCombiner.addFile("hello.txt", ZipCombiner.DOS_EPOCH, asStream("Hello World!")) [FD]
+Line_2 $$ public void testAddFile() throws IOException --> Line_7 $$ ZipInputStream zipInput = new ZipInputStream(new ByteArrayInputStream(out.toByteArray())) [CD]
+Line_3 $$ ByteArrayOutputStream out = new ByteArrayOutputStream() --> Line_7 $$ ZipInputStream zipInput = new ZipInputStream(new ByteArrayInputStream(out.toByteArray())) [FD]
+Line_2 $$ public void testAddFile() throws IOException --> Line_8 $$ assertEntry(zipInput, "hello.txt", "Hello World!") [CD]
+Line_7 $$ ZipInputStream zipInput = new ZipInputStream(new ByteArrayInputStream(out.toByteArray())) --> Line_8 $$ assertEntry(zipInput, "hello.txt", "Hello World!") [FD]
+Line_2 $$ public void testAddFile() throws IOException --> Line_9 $$ assertThat(zipInput.getNextEntry()).isNull() [CD]
+Line_7 $$ ZipInputStream zipInput = new ZipInputStream(new ByteArrayInputStream(out.toByteArray())) --> Line_9 $$ assertThat(zipInput.getNextEntry()).isNull() [FD]

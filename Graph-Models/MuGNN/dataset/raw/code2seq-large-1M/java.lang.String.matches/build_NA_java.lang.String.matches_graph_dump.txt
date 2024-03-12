@@ -1,0 +1,8 @@
+Line_2 $$ public final DynamoDbMapperFieldModel<T, V> build() --> Line_3 $$ final DynamoDbMapperFieldModel<T, V> result = new DynamoDbMapperFieldModel<T, V>(this) [CD]
+Line_2 $$ public final DynamoDbMapperFieldModel<T, V> build() --> Line_4 $$ if ((result.keyType() != null || result.indexed()) && !result.attributeType().name().matches("[BNS]")) [CD]
+Line_3 $$ final DynamoDbMapperFieldModel<T, V> result = new DynamoDbMapperFieldModel<T, V>(this) --> Line_4 $$ if ((result.keyType() != null || result.indexed()) && !result.attributeType().name().matches("[BNS]")) [FD]
+Line_3 $$ final DynamoDbMapperFieldModel<T, V> result = new DynamoDbMapperFieldModel<T, V>(this) --> Line_5 $$ throw new DynamoDbMappingException(String.format("%s[%s]; only scalar (B, N, or S) type allowed for key", targetType.getSimpleName(), result.name())) [FD]
+Line_4 $$ if ((result.keyType() != null || result.indexed()) && !result.attributeType().name().matches("[BNS]")) --> Line_6 $$ if (result.keyType() != null && result.getGenerateStrategy() == ALWAYS) [CD]
+Line_3 $$ final DynamoDbMapperFieldModel<T, V> result = new DynamoDbMapperFieldModel<T, V>(this) --> Line_6 $$ if (result.keyType() != null && result.getGenerateStrategy() == ALWAYS) [FD]
+Line_3 $$ final DynamoDbMapperFieldModel<T, V> result = new DynamoDbMapperFieldModel<T, V>(this) --> Line_7 $$ throw new DynamoDbMappingException(String.format("%s[%s]; auto-generated key and ALWAYS not allowed", targetType.getSimpleName(), result.name())) [FD]
+Line_2 $$ public final DynamoDbMapperFieldModel<T, V> build() --> Line_9 $$ return result [CD]

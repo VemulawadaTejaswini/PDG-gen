@@ -1,0 +1,7 @@
+Line_2 $$ private List<Node> removeRecursively(Node node, boolean force) --> Line_4 $$ List<Node> removed = !node.type().isDockerHost() ? new ArrayList() : getChildNodes(node.hostname()).stream().filter( child -> force || verifyRemovalIsAllowed(child, true)).collect(Collectors.toList()) [FD]
+Line_2 $$ private List<Node> removeRecursively(Node node, boolean force) --> Line_5 $$ if (force || verifyRemovalIsAllowed(node, false)) [FD]
+Line_5 $$ if (force || verifyRemovalIsAllowed(node, false)) --> Line_6 $$ removed.add(node) [CD]
+Line_4 $$ List<Node> removed = !node.type().isDockerHost() ? new ArrayList() : getChildNodes(node.hostname()).stream().filter( child -> force || verifyRemovalIsAllowed(child, true)).collect(Collectors.toList()) --> Line_6 $$ removed.add(node) [FD]
+Line_2 $$ private List<Node> removeRecursively(Node node, boolean force) --> Line_6 $$ removed.add(node) [FD]
+Line_4 $$ List<Node> removed = !node.type().isDockerHost() ? new ArrayList() : getChildNodes(node.hostname()).stream().filter( child -> force || verifyRemovalIsAllowed(child, true)).collect(Collectors.toList()) --> Line_7 $$ db.removeNodes(removed) [FD]
+Line_2 $$ private List<Node> removeRecursively(Node node, boolean force) --> Line_10 $$ throw new IllegalArgumentException("Failed to delete " + node.hostname(), e) [FD]

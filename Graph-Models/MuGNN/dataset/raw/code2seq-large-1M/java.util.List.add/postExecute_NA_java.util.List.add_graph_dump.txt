@@ -1,0 +1,8 @@
+Line_2 $$ protected void postExecute(ConcurrentTestCommandExecutor[] threads) throws Exception --> Line_3 $$ if (requiresCustomErrorHandling()) [CD]
+Line_4 $$ for (ConcurrentTestCommandExecutor executor : threads) --> Line_5 $$ if (executor.getFailureCause() != null) [FD]
+Line_5 $$ if (executor.getFailureCause() != null) --> Line_6 $$ customErrorHandler(executor) [CD]
+Line_4 $$ for (ConcurrentTestCommandExecutor executor : threads) --> Line_6 $$ customErrorHandler(executor) [FD]
+Line_10 $$ for (ConcurrentTestCommandExecutor thread : threads) --> Line_11 $$ Throwable cause = thread.getFailureCause() [FD]
+Line_11 $$ Throwable cause = thread.getFailureCause() --> Line_12 $$ if (cause != null) [FD]
+Line_12 $$ if (cause != null) --> Line_13 $$ failedThreads.add(new FailedThread(thread.getName(), thread.getFailureLocation(), cause)) [CD]
+Line_10 $$ for (ConcurrentTestCommandExecutor thread : threads) --> Line_13 $$ failedThreads.add(new FailedThread(thread.getName(), thread.getFailureLocation(), cause)) [FD]

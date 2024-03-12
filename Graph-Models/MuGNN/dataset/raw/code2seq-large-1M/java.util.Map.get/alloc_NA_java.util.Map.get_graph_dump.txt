@@ -1,0 +1,8 @@
+Line_2 $$ public static byte[] alloc(final int len) --> Line_3 $$ if ((len < minSize) || (len > maxSize)) [CD]
+Line_3 $$ if ((len < minSize) || (len > maxSize)) --> Line_4 $$ return new byte[len] [CD]
+Line_2 $$ public static byte[] alloc(final int len) --> Line_5 $$ incAlive(len) [CD]
+Line_2 $$ public static byte[] alloc(final int len) --> Line_5 $$ incAlive(len) [FD]
+Line_2 $$ public static byte[] alloc(final int len) --> Line_7 $$ final List<byte[]> buf = objHeap.get(Integer.valueOf(len)) [FD]
+Line_7 $$ final List<byte[]> buf = objHeap.get(Integer.valueOf(len)) --> Line_8 $$ if (buf == null || buf.isEmpty()) [FD]
+Line_8 $$ if (buf == null || buf.isEmpty()) --> Line_9 $$ return new byte[len] [CD]
+Line_7 $$ final List<byte[]> buf = objHeap.get(Integer.valueOf(len)) --> Line_10 $$ return buf.remove(buf.size() - 1) [FD]

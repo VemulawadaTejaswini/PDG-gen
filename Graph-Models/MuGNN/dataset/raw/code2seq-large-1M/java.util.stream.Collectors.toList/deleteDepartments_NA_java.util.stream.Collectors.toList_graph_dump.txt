@@ -1,0 +1,8 @@
+Line_2 $$ public void deleteDepartments(List<Department> departmentsToDelete) --> Line_3 $$ List<Integer> ids = departmentsToDelete.stream().map(Department::<>getPid).collect(Collectors.toList()) [CD]
+Line_2 $$ public void deleteDepartments(List<Department> departmentsToDelete) --> Line_3 $$ List<Integer> ids = departmentsToDelete.stream().map(Department::<>getPid).collect(Collectors.toList()) [FD]
+Line_2 $$ public void deleteDepartments(List<Department> departmentsToDelete) --> Line_4 $$ MapSqlParameterSource params = new MapSqlParameterSource().addValue("pids", ids) [CD]
+Line_3 $$ List<Integer> ids = departmentsToDelete.stream().map(Department::<>getPid).collect(Collectors.toList()) --> Line_4 $$ MapSqlParameterSource params = new MapSqlParameterSource().addValue("pids", ids) [FD]
+Line_2 $$ public void deleteDepartments(List<Department> departmentsToDelete) --> Line_5 $$ String updateStatement = "DELETE FROM department WHERE pid IN (:pids)" [CD]
+Line_2 $$ public void deleteDepartments(List<Department> departmentsToDelete) --> Line_6 $$ jdbcTemplate.update(updateStatement, params) [CD]
+Line_5 $$ String updateStatement = "DELETE FROM department WHERE pid IN (:pids)" --> Line_6 $$ jdbcTemplate.update(updateStatement, params) [FD]
+Line_4 $$ MapSqlParameterSource params = new MapSqlParameterSource().addValue("pids", ids) --> Line_6 $$ jdbcTemplate.update(updateStatement, params) [FD]

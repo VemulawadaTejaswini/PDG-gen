@@ -1,0 +1,6 @@
+Line_2 $$ public List findByPage(final String pageSpace, final String pageName) --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_5 $$ HibernateCallback callback = new HibernateCallback() --> Line_7 $$ return session.createCriteria(PagePresence.class).add(Expression.eq("pagename", pageName)).add(Expression.eq("pagespace", pageSpace)).addOrder(Order.desc("lastseen")).list() [FD]
+Line_5 $$ HibernateCallback callback = new HibernateCallback() --> Line_7 $$ return session.createCriteria(PagePresence.class).add(Expression.eq("pagename", pageName)).add(Expression.eq("pagespace", pageSpace)).addOrder(Order.desc("lastseen")).list() [CD]
+Line_2 $$ public List findByPage(final String pageSpace, final String pageName) --> Line_7 $$ return session.createCriteria(PagePresence.class).add(Expression.eq("pagename", pageName)).add(Expression.eq("pagespace", pageSpace)).addOrder(Order.desc("lastseen")).list() [FD]
+Line_5 $$ HibernateCallback callback = new HibernateCallback() --> Line_10 $$ return (List) getHibernateTemplate().execute(callback) [FD]
+Line_3 $$ long start = System.currentTimeMillis() --> Line_13 $$ TimeLogger.printTimer("PagePresenceDaoImpl.findByPage: " + pageSpace + " :" + pageName, start, finish) [FD]

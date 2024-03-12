@@ -1,0 +1,5 @@
+Line_2 $$ public Long getServerID() throws SQLException --> Line_3 $$ if (this.serverID != null) [CD]
+Line_3 $$ if (this.serverID != null) --> Line_4 $$ return this.serverID [CD]
+Line_5 $$ try (Connection c = getReplicationConnection()) --> Line_6 $$ ResultSet rs = c.createStatement().executeQuery("SELECT @@server_id as server_id") [FD]
+Line_6 $$ ResultSet rs = c.createStatement().executeQuery("SELECT @@server_id as server_id") --> Line_7 $$ if (!rs.next()) [FD]
+Line_6 $$ ResultSet rs = c.createStatement().executeQuery("SELECT @@server_id as server_id") --> Line_10 $$ this.serverID = rs.getLong("server_id") [FD]

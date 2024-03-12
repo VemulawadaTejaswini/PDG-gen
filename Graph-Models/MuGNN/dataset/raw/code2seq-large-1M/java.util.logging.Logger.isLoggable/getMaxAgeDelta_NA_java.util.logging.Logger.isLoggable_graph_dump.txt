@@ -1,0 +1,7 @@
+Line_2 $$ private static int getMaxAgeDelta(long date1, long date2) --> Line_3 $$ long result = date1 - date2 [CD]
+Line_2 $$ private static int getMaxAgeDelta(long date1, long date2) --> Line_4 $$ if (result > Integer.MAX_VALUE) [CD]
+Line_3 $$ long result = date1 - date2 --> Line_4 $$ if (result > Integer.MAX_VALUE) [FD]
+Line_4 $$ if (result > Integer.MAX_VALUE) --> Line_5 $$ if (LOGGER.isLoggable(Level.FINE)) [CD]
+Line_5 $$ if (LOGGER.isLoggable(Level.FINE)) --> Line_6 $$ LOGGER.fine("Integer overflow when calculating max age delta.  Date: " + date1 + ", current date: " + date2 + ".  Using Integer.MAX_VALUE for further calculation.") [CD]
+Line_4 $$ if (result > Integer.MAX_VALUE) --> Line_8 $$ return Integer.MAX_VALUE [CD]
+Line_4 $$ if (result > Integer.MAX_VALUE) --> Line_10 $$ return (int) result [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void updateSnapshotFromTable(DataTable table) --> Line_3 $$ snapshot.getInstances().clear() [CD]
+Line_2 $$ private void updateSnapshotFromTable(DataTable table) --> Line_4 $$ snapshot.getTasks().clear() [CD]
+Line_2 $$ private void updateSnapshotFromTable(DataTable table) --> Line_5 $$ for (Map<String, String> row : table.asMaps(String.class, String.class)) [FD]
+Line_6 $$ String instanceArn = row.get("instance") --> Line_7 $$ snapshot.getInstances().add(ContainerInstance.builder().arn(instanceArn).build()) [FD]
+Line_8 $$ for (String taskDescription : row.get("tasks").split(",")) --> Line_9 $$ if (!taskDescription.isEmpty()) [FD]
+Line_9 $$ if (!taskDescription.isEmpty()) --> Line_10 $$ snapshot.getTasks().add(taskFromDescription(instanceArn, taskDescription)) [CD]
+Line_6 $$ String instanceArn = row.get("instance") --> Line_10 $$ snapshot.getTasks().add(taskFromDescription(instanceArn, taskDescription)) [FD]
+Line_8 $$ for (String taskDescription : row.get("tasks").split(",")) --> Line_10 $$ snapshot.getTasks().add(taskFromDescription(instanceArn, taskDescription)) [FD]

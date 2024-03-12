@@ -1,0 +1,4 @@
+Line_2 $$ public void testFieldsAndMethodsMatcherStack() throws Exception --> Line_3 $$ Foo foo = new ByteBuddy().subclass(Foo.class).method(isDeclaredBy(Foo.class)).intercept(FixedValue.value("Hello World!")).method(named("foo")).intercept(FixedValue.value("Hello Foo!")).method(named("foo").and(takesArguments(1))).intercept(FixedValue.value("...")).make().load(getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testFieldsAndMethodsMatcherStack() throws Exception --> Line_4 $$ assertThat(foo.bar(), is("Hello World!")) [CD]
+Line_2 $$ public void testFieldsAndMethodsMatcherStack() throws Exception --> Line_5 $$ assertThat(foo.foo(), is("Hello Foo!")) [CD]
+Line_2 $$ public void testFieldsAndMethodsMatcherStack() throws Exception --> Line_6 $$ assertThat(foo.foo(null), is("...")) [CD]

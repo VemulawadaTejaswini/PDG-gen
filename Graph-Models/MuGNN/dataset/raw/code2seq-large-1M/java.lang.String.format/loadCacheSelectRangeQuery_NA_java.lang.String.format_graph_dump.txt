@@ -1,0 +1,5 @@
+Line_2 $$ public String loadCacheSelectRangeQuery(String fullTblName, Collection<String> keyCols) --> Line_3 $$ String cols = mkString(keyCols, ",") [FD]
+Line_2 $$ public String loadCacheSelectRangeQuery(String fullTblName, Collection<String> keyCols) --> Line_3 $$ String cols = mkString(keyCols, ",") [CD]
+Line_2 $$ public String loadCacheSelectRangeQuery(String fullTblName, Collection<String> keyCols) --> Line_4 $$ return String.format("SELECT %1$s FROM (SELECT %1$s, ROWNUM AS rn FROM (SELECT %1$s FROM %2$s ORDER BY %1$s)) WHERE mod(rn, ?) = 0", cols, fullTblName) [FD]
+Line_2 $$ public String loadCacheSelectRangeQuery(String fullTblName, Collection<String> keyCols) --> Line_4 $$ return String.format("SELECT %1$s FROM (SELECT %1$s, ROWNUM AS rn FROM (SELECT %1$s FROM %2$s ORDER BY %1$s)) WHERE mod(rn, ?) = 0", cols, fullTblName) [CD]
+Line_3 $$ String cols = mkString(keyCols, ",") --> Line_4 $$ return String.format("SELECT %1$s FROM (SELECT %1$s, ROWNUM AS rn FROM (SELECT %1$s FROM %2$s ORDER BY %1$s)) WHERE mod(rn, ?) = 0", cols, fullTblName) [FD]

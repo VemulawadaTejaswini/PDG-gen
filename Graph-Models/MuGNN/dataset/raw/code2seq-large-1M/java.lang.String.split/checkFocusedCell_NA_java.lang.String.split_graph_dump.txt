@@ -1,0 +1,7 @@
+Line_2 $$ private void checkFocusedCell(int row, int column, int rowTolerance) --> Line_3 $$ WebElement focusedCell = getGridElement().findElement(By.className("v-grid-cell-focused")) [CD]
+Line_2 $$ private void checkFocusedCell(int row, int column, int rowTolerance) --> Line_4 $$ String cellContents = focusedCell.getText() [CD]
+Line_2 $$ private void checkFocusedCell(int row, int column, int rowTolerance) --> Line_5 $$ String[] rowAndCol = cellContents.replaceAll("[()\\s]", "").split(",") [CD]
+Line_4 $$ String cellContents = focusedCell.getText() --> Line_5 $$ String[] rowAndCol = cellContents.replaceAll("[()\\s]", "").split(",") [FD]
+Line_2 $$ private void checkFocusedCell(int row, int column, int rowTolerance) --> Line_6 $$ int focusedRow = Integer.parseInt(rowAndCol[0].trim()) [CD]
+Line_2 $$ private void checkFocusedCell(int row, int column, int rowTolerance) --> Line_7 $$ int focusedColumn = Integer.parseInt(rowAndCol[1].trim()) [CD]
+Line_2 $$ private void checkFocusedCell(int row, int column, int rowTolerance) --> Line_8 $$ assertTrue("The wrong cell is focused. Expected (" + row + "," + column + "), was " + cellContents, column == focusedColumn && Math.abs(row - focusedRow) <= rowTolerance) [CD]

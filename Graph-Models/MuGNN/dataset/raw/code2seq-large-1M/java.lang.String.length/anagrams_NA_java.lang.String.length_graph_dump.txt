@@ -1,0 +1,6 @@
+Line_2 $$ public static List<String> anagrams(String input) --> Line_3 $$ if (input.length() <= 2) [FD]
+Line_2 $$ public static List<String> anagrams(String input) --> Line_3 $$ if (input.length() <= 2) [CD]
+Line_3 $$ if (input.length() <= 2) --> Line_4 $$ return input.length() == 2 ? Arrays.asList(input, input.substring(1) + input.substring(0, 1)) : Collections.singletonList(input) [CD]
+Line_2 $$ public static List<String> anagrams(String input) --> Line_4 $$ return input.length() == 2 ? Arrays.asList(input, input.substring(1) + input.substring(0, 1)) : Collections.singletonList(input) [FD]
+Line_2 $$ public static List<String> anagrams(String input) --> Line_6 $$ return IntStream.range(0, input.length()).mapToObj( i -> new SimpleEntry(i, input.substring(i, i + 1))).flatMap( entry -> anagrams(input.substring(0, entry.getKey()) + input.substring(entry.getKey() + 1)).stream().map( s -> entry.getValue() + s)).collect(Collectors.toList()) [FD]
+Line_2 $$ public static List<String> anagrams(String input) --> Line_6 $$ return IntStream.range(0, input.length()).mapToObj( i -> new SimpleEntry(i, input.substring(i, i + 1))).flatMap( entry -> anagrams(input.substring(0, entry.getKey()) + input.substring(entry.getKey() + 1)).stream().map( s -> entry.getValue() + s)).collect(Collectors.toList()) [CD]

@@ -1,0 +1,4 @@
+Line_2 $$ private synchronized int purgeExpiredRequests() --> Line_3 $$ final Set<String> expiredRequestIds = ThreadPoolRequestReplicator.this.responseMap.entrySet().stream().filter( entry -> entry.getValue().isOlderThan(30, TimeUnit.SECONDS)).filter( entry -> entry.getValue().isComplete()).map( entry -> entry.getKey()).collect(Collectors.toSet()) [CD]
+Line_2 $$ private synchronized int purgeExpiredRequests() --> Line_7 $$ expiredRequestIds.forEach( id -> onResponseConsumed(id)) [CD]
+Line_3 $$ final Set<String> expiredRequestIds = ThreadPoolRequestReplicator.this.responseMap.entrySet().stream().filter( entry -> entry.getValue().isOlderThan(30, TimeUnit.SECONDS)).filter( entry -> entry.getValue().isComplete()).map( entry -> entry.getKey()).collect(Collectors.toSet()) --> Line_7 $$ expiredRequestIds.forEach( id -> onResponseConsumed(id)) [FD]
+Line_2 $$ private synchronized int purgeExpiredRequests() --> Line_8 $$ return responseMap.size() [CD]

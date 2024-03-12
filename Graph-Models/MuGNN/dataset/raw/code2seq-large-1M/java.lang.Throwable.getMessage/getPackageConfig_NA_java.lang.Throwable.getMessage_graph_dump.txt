@@ -1,0 +1,6 @@
+Line_2 $$ public Response getPackageConfig(@PathParam("packageName") String packageName, @PathParam("artifact") String artifact) --> Line_3 $$ if (StringUtils.isEmpty(packageName) || StringUtils.isEmpty(artifact)) [FD]
+Line_2 $$ public Response getPackageConfig(@PathParam("packageName") String packageName, @PathParam("artifact") String artifact) --> Line_3 $$ if (StringUtils.isEmpty(packageName) || StringUtils.isEmpty(artifact)) [CD]
+Line_3 $$ if (StringUtils.isEmpty(packageName) || StringUtils.isEmpty(artifact)) --> Line_4 $$ return new JsonResponse(Response.Status.BAD_REQUEST, "package name or artifact is empty").build() [CD]
+Line_2 $$ public Response getPackageConfig(@PathParam("packageName") String packageName, @PathParam("artifact") String artifact) --> Line_7 $$ Map<String, Map<String, Object>> config = helium.getPackageConfig(packageName, artifact) [FD]
+Line_7 $$ Map<String, Map<String, Object>> config = helium.getPackageConfig(packageName, artifact) --> Line_8 $$ if (config == null) [FD]
+Line_8 $$ if (config == null) --> Line_9 $$ return new JsonResponse(Response.Status.BAD_REQUEST, "Failed to find package for " + artifact).build() [CD]

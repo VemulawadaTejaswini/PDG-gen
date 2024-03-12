@@ -1,0 +1,6 @@
+Line_2 $$ public boolean tryLock(String key) --> Line_4 $$ InterProcessMutex mutex = locks.computeIfAbsent(key,  __ -> new InterProcessMutex(curatorFramework, String.join("/", basePath, key))) [FD]
+Line_4 $$ InterProcessMutex mutex = locks.computeIfAbsent(key,  __ -> new InterProcessMutex(curatorFramework, String.join("/", basePath, key))) --> Line_5 $$ boolean owned = mutex.isAcquiredInThisProcess() [FD]
+Line_6 $$ if (owned) --> Line_7 $$ return true [CD]
+Line_6 $$ if (owned) --> Line_9 $$ mutex.acquire(timeout, TimeUnit.MILLISECONDS) [CD]
+Line_4 $$ InterProcessMutex mutex = locks.computeIfAbsent(key,  __ -> new InterProcessMutex(curatorFramework, String.join("/", basePath, key))) --> Line_9 $$ mutex.acquire(timeout, TimeUnit.MILLISECONDS) [FD]
+Line_4 $$ InterProcessMutex mutex = locks.computeIfAbsent(key,  __ -> new InterProcessMutex(curatorFramework, String.join("/", basePath, key))) --> Line_11 $$ return mutex.isAcquiredInThisProcess() [FD]

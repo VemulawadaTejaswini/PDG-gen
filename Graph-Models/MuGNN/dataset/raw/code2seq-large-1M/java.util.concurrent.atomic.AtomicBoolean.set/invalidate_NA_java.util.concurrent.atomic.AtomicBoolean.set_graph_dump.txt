@@ -1,0 +1,8 @@
+Line_2 $$ public void invalidate(final K key) throws StoreAccessException --> Line_3 $$ invalidateObserver.begin() [CD]
+Line_2 $$ public void invalidate(final K key) throws StoreAccessException --> Line_4 $$ final AtomicBoolean removed = new AtomicBoolean(false) [CD]
+Line_2 $$ public void invalidate(final K key) throws StoreAccessException --> Line_6 $$ backingMap().computeIfPresent(key, ( k,  present) -> [FD]
+Line_4 $$ final AtomicBoolean removed = new AtomicBoolean(false) --> Line_7 $$ removed.set(true) [FD]
+Line_2 $$ public void invalidate(final K key) throws StoreAccessException --> Line_8 $$ notifyInvalidation(key, present) [FD]
+Line_4 $$ final AtomicBoolean removed = new AtomicBoolean(false) --> Line_11 $$ if (removed.get()) [FD]
+Line_11 $$ if (removed.get()) --> Line_12 $$ invalidateObserver.end(LowerCachingTierOperationsOutcome.InvalidateOutcome.REMOVED) [CD]
+Line_11 $$ if (removed.get()) --> Line_14 $$ invalidateObserver.end(LowerCachingTierOperationsOutcome.InvalidateOutcome.MISS) [CD]

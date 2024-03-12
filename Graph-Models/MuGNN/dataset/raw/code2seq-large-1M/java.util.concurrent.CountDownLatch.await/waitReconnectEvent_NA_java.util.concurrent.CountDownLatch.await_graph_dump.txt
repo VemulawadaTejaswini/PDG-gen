@@ -1,0 +1,7 @@
+Line_2 $$ private static void waitReconnectEvent(IgniteLogger log, CountDownLatch latch) throws Exception --> Line_3 $$ if (!latch.await(30_000, MILLISECONDS)) [FD]
+Line_2 $$ private static void waitReconnectEvent(IgniteLogger log, CountDownLatch latch) throws Exception --> Line_3 $$ if (!latch.await(30_000, MILLISECONDS)) [CD]
+Line_3 $$ if (!latch.await(30_000, MILLISECONDS)) --> Line_4 $$ log.error("Failed to wait for reconnect event, will dump threads, latch count: " + latch.getCount()) [CD]
+Line_2 $$ private static void waitReconnectEvent(IgniteLogger log, CountDownLatch latch) throws Exception --> Line_4 $$ log.error("Failed to wait for reconnect event, will dump threads, latch count: " + latch.getCount()) [FD]
+Line_3 $$ if (!latch.await(30_000, MILLISECONDS)) --> Line_5 $$ U.dumpThreads(log) [CD]
+Line_2 $$ private static void waitReconnectEvent(IgniteLogger log, CountDownLatch latch) throws Exception --> Line_5 $$ U.dumpThreads(log) [FD]
+Line_3 $$ if (!latch.await(30_000, MILLISECONDS)) --> Line_6 $$ fail("Failed to wait for disconnect/reconnect event.") [CD]

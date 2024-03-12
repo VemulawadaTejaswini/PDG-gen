@@ -1,0 +1,6 @@
+Line_4 $$ if (!vi.escaped) --> Line_5 $$ if (vi.hasObjectOnlyCall && vi.used && vi.var == null) [CD]
+Line_4 $$ if (!vi.escaped) --> Line_8 $$ if (vi.hasObjectOnlyCall || (vi.used && vi.var != null)) [CD]
+Line_8 $$ if (vi.hasObjectOnlyCall || (vi.used && vi.var != null)) --> Line_9 $$ BugInstance bug = new BugInstance(vi.var == null ? "UC_USELESS_OBJECT_STACK" : "UC_USELESS_OBJECT", NORMAL_PRIORITY).addClassAndMethod(classContext.getJavaClass(), method) [CD]
+Line_8 $$ if (vi.hasObjectOnlyCall || (vi.used && vi.var != null)) --> Line_10 $$ if (vi.var != null) [CD]
+Line_10 $$ if (vi.var != null) --> Line_11 $$ bug.add(new StringAnnotation(vi.var)) [CD]
+Line_8 $$ if (vi.hasObjectOnlyCall || (vi.used && vi.var != null)) --> Line_13 $$ reporter.reportBug(bug.addType(vi.type).addSourceLine(classContext, method, vi.created)) [CD]

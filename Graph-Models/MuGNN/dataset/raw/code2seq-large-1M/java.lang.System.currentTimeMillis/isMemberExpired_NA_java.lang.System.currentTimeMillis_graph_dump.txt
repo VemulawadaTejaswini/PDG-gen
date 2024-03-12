@@ -1,0 +1,8 @@
+Line_2 $$ private boolean isMemberExpired(Member member, long initTime, long expiryTime) --> Line_3 $$ if (member.getStatus() == MemberStatus.ReadyToShutDown) [FD]
+Line_2 $$ private boolean isMemberExpired(Member member, long initTime, long expiryTime) --> Line_3 $$ if (member.getStatus() == MemberStatus.ReadyToShutDown) [CD]
+Line_3 $$ if (member.getStatus() == MemberStatus.ReadyToShutDown) --> Line_4 $$ if (initTime == 0) [CD]
+Line_2 $$ private boolean isMemberExpired(Member member, long initTime, long expiryTime) --> Line_4 $$ if (initTime == 0) [FD]
+Line_4 $$ if (initTime == 0) --> Line_5 $$ return false [CD]
+Line_3 $$ if (member.getStatus() == MemberStatus.ReadyToShutDown) --> Line_7 $$ long timeInReadyToShutdownStatus = System.currentTimeMillis() - initTime [CD]
+Line_3 $$ if (member.getStatus() == MemberStatus.ReadyToShutDown) --> Line_8 $$ return timeInReadyToShutdownStatus >= expiryTime [CD]
+Line_2 $$ private boolean isMemberExpired(Member member, long initTime, long expiryTime) --> Line_10 $$ return false [CD]

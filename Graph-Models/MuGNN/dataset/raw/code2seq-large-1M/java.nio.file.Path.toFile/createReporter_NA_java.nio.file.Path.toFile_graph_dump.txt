@@ -1,0 +1,6 @@
+Line_2 $$ private MetricsReporter createReporter(Clock clock, Controller controller, MetricsMock metricsMock, SystemName system) --> Line_3 $$ Chef client = Mockito.mock(Chef.class) [CD]
+Line_2 $$ private MetricsReporter createReporter(Clock clock, Controller controller, MetricsMock metricsMock, SystemName system) --> Line_4 $$ PartialNodeResult result [CD]
+Line_4 $$ PartialNodeResult result --> Line_6 $$ result = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(testData.resolve("chef_output.json").toFile(), PartialNodeResult.class) [FD]
+Line_2 $$ private MetricsReporter createReporter(Clock clock, Controller controller, MetricsMock metricsMock, SystemName system) --> Line_10 $$ when(client.partialSearchNodes(anyString(), anyListOf(AttributeMapping.class))).thenReturn(result) [CD]
+Line_4 $$ PartialNodeResult result --> Line_10 $$ when(client.partialSearchNodes(anyString(), anyListOf(AttributeMapping.class))).thenReturn(result) [FD]
+Line_2 $$ private MetricsReporter createReporter(Clock clock, Controller controller, MetricsMock metricsMock, SystemName system) --> Line_11 $$ return new MetricsReporter(controller, metricsMock, client, clock, new JobControl(new MockCuratorDb()), system) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private String getExecutor() --> Line_3 $$ if (SystemUtil.isWindows()) [CD]
+Line_3 $$ if (SystemUtil.isWindows()) --> Line_4 $$ String cygwinHome = System.getenv(CYGWIN_HOME) [CD]
+Line_3 $$ if (SystemUtil.isWindows()) --> Line_5 $$ if (Strings.isNullOrEmpty(cygwinHome)) [CD]
+Line_4 $$ String cygwinHome = System.getenv(CYGWIN_HOME) --> Line_5 $$ if (Strings.isNullOrEmpty(cygwinHome)) [FD]
+Line_5 $$ if (Strings.isNullOrEmpty(cygwinHome)) --> Line_6 $$ return Windows.CMD_EXECUTOR [CD]
+Line_3 $$ if (SystemUtil.isWindows()) --> Line_8 $$ return Paths.get(cygwinHome, "bin", "bash.exe").toString() [CD]
+Line_4 $$ String cygwinHome = System.getenv(CYGWIN_HOME) --> Line_8 $$ return Paths.get(cygwinHome, "bin", "bash.exe").toString() [FD]
+Line_2 $$ private String getExecutor() --> Line_10 $$ return Unix.CMD_EXECUTOR [CD]

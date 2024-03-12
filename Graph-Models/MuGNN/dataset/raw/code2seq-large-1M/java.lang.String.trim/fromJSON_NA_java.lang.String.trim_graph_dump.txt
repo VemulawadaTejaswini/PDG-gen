@@ -1,0 +1,8 @@
+Line_6 $$ Map<String, String> header = extractHeader(jsonContent) --> Line_7 $$ String coordinatorId = header.get("id") [FD]
+Line_8 $$ String arrayContent = extractArrayPart(jsonContent) --> Line_9 $$ List<String> elements = tokenize(arrayContent) [FD]
+Line_9 $$ List<String> elements = tokenize(arrayContent) --> Line_10 $$ ParticipantLogEntry[] participantLogEntries = new ParticipantLogEntry[elements.size()] [FD]
+Line_11 $$ for (int i = 0; i < participantLogEntries.length; i++) --> Line_12 $$ participantLogEntries[i] = recreateParticipantLogEntry(coordinatorId, elements.get(i)) [CD]
+Line_11 $$ for (int i = 0; i < participantLogEntries.length; i++) --> Line_12 $$ participantLogEntries[i] = recreateParticipantLogEntry(coordinatorId, elements.get(i)) [FD]
+Line_7 $$ String coordinatorId = header.get("id") --> Line_12 $$ participantLogEntries[i] = recreateParticipantLogEntry(coordinatorId, elements.get(i)) [FD]
+Line_9 $$ List<String> elements = tokenize(arrayContent) --> Line_12 $$ participantLogEntries[i] = recreateParticipantLogEntry(coordinatorId, elements.get(i)) [FD]
+Line_6 $$ Map<String, String> header = extractHeader(jsonContent) --> Line_14 $$ CoordinatorLogEntry actual = new CoordinatorLogEntry(header.get("id"), Boolean.valueOf(header.get("wasCommitted")), participantLogEntries, header.get("superiorCoordinatorId")) [FD]

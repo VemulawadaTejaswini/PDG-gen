@@ -1,0 +1,6 @@
+Line_2 $$ public void generateAsync(int requested, boolean slowProducer) --> Line_3 $$ if (slowProducer) [CD]
+Line_3 $$ if (slowProducer) --> Line_4 $$ for (int i = 0; i < 10; i++) executor.schedule(() -> generate(requested / 10), i, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ if (slowProducer) --> Line_5 $$ if (requested % 10 != 0) [CD]
+Line_5 $$ if (requested % 10 != 0) --> Line_6 $$ executor.schedule(() -> generate(requested % 10), 11, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ if (slowProducer) --> Line_8 $$ executor.submit(() -> generate(requested * 2)) [CD]
+Line_2 $$ public void generateAsync(int requested, boolean slowProducer) --> Line_10 $$ pushToSink() [CD]

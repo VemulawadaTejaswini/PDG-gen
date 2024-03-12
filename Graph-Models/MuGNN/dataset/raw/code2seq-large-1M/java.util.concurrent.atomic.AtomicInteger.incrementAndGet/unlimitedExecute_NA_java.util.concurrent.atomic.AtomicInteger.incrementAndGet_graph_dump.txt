@@ -1,0 +1,8 @@
+Line_2 $$ private O unlimitedExecute(ClientRequestContext ctx, I req) throws Exception --> Line_3 $$ numActiveRequests.incrementAndGet() [CD]
+Line_2 $$ private O unlimitedExecute(ClientRequestContext ctx, I req) throws Exception --> Line_4 $$ boolean success = false [CD]
+Line_2 $$ private O unlimitedExecute(ClientRequestContext ctx, I req) throws Exception --> Line_6 $$ final O res = delegate().execute(ctx, req) [FD]
+Line_6 $$ final O res = delegate().execute(ctx, req) --> Line_7 $$ res.completionFuture().whenComplete(( unused,  cause) -> numActiveRequests.decrementAndGet()) [FD]
+Line_4 $$ boolean success = false --> Line_8 $$ success = true [FD]
+Line_4 $$ boolean success = false --> Line_11 $$ if (!success) [FD]
+Line_8 $$ success = true --> Line_11 $$ if (!success) [FD]
+Line_11 $$ if (!success) --> Line_12 $$ numActiveRequests.decrementAndGet() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static List<String> getBrokerList(String zkUrl) --> Line_3 $$ ZkUtils zkUtils = getZkUtils(zkUrl) [CD]
+Line_2 $$ public static List<String> getBrokerList(String zkUrl) --> Line_3 $$ ZkUtils zkUtils = getZkUtils(zkUrl) [FD]
+Line_2 $$ public static List<String> getBrokerList(String zkUrl) --> Line_4 $$ Seq<Broker> brokersSeq = zkUtils.getAllBrokersInCluster() [CD]
+Line_3 $$ ZkUtils zkUtils = getZkUtils(zkUrl) --> Line_4 $$ Seq<Broker> brokersSeq = zkUtils.getAllBrokersInCluster() [FD]
+Line_2 $$ public static List<String> getBrokerList(String zkUrl) --> Line_5 $$ List<Broker> brokersList = scala.collection.JavaConverters.seqAsJavaList(brokersSeq) [CD]
+Line_4 $$ Seq<Broker> brokersSeq = zkUtils.getAllBrokersInCluster() --> Line_5 $$ List<Broker> brokersList = scala.collection.JavaConverters.seqAsJavaList(brokersSeq) [FD]
+Line_2 $$ public static List<String> getBrokerList(String zkUrl) --> Line_6 $$ return brokersList.stream().map( b -> b.getBrokerEndPoint(ListenerName.forSecurityProtocol(SecurityProtocol.PLAINTEXT)).connectionString()).collect(Collectors.toList()) [CD]
+Line_5 $$ List<Broker> brokersList = scala.collection.JavaConverters.seqAsJavaList(brokersSeq) --> Line_6 $$ return brokersList.stream().map( b -> b.getBrokerEndPoint(ListenerName.forSecurityProtocol(SecurityProtocol.PLAINTEXT)).connectionString()).collect(Collectors.toList()) [FD]

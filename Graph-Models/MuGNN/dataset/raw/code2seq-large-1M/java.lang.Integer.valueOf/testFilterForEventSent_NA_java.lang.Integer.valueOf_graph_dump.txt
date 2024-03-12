@@ -1,0 +1,8 @@
+Line_2 $$ public void testFilterForEventSent() throws Exception --> Line_3 $$ Client client = ClientBuilder.newClient() [CD]
+Line_3 $$ Client client = ClientBuilder.newClient() --> Line_5 $$ WebTarget baseTarget = client.target(generateURL()).path(SseEventSinkClosingTestResource.BASE_PATH) [FD]
+Line_5 $$ WebTarget baseTarget = client.target(generateURL()).path(SseEventSinkClosingTestResource.BASE_PATH) --> Line_6 $$ try (Response response = baseTarget.path(SseEventSinkClosingTestResource.SEND_AND_CLOSE_PATH).request(MediaType.SERVER_SENT_EVENTS_TYPE).get()) [FD]
+Line_6 $$ try (Response response = baseTarget.path(SseEventSinkClosingTestResource.SEND_AND_CLOSE_PATH).request(MediaType.SERVER_SENT_EVENTS_TYPE).get()) --> Line_7 $$ Assert.assertEquals(Status.OK.getStatusCode(), response.getStatus()) [FD]
+Line_5 $$ WebTarget baseTarget = client.target(generateURL()).path(SseEventSinkClosingTestResource.BASE_PATH) --> Line_9 $$ try (Response response = baseTarget.path(SseEventSinkClosingTestResource.GET_RESPONSE_FILTER_INVOCATION_COUNT_PATH).request(MediaType.TEXT_PLAIN_TYPE).get()) [FD]
+Line_6 $$ try (Response response = baseTarget.path(SseEventSinkClosingTestResource.SEND_AND_CLOSE_PATH).request(MediaType.SERVER_SENT_EVENTS_TYPE).get()) --> Line_10 $$ Assert.assertEquals(Status.OK.getStatusCode(), response.getStatus()) [FD]
+Line_6 $$ try (Response response = baseTarget.path(SseEventSinkClosingTestResource.SEND_AND_CLOSE_PATH).request(MediaType.SERVER_SENT_EVENTS_TYPE).get()) --> Line_11 $$ Assert.assertEquals(Integer.valueOf(1), response.readEntity(Integer.class)) [FD]
+Line_3 $$ Client client = ClientBuilder.newClient() --> Line_14 $$ client.close() [FD]

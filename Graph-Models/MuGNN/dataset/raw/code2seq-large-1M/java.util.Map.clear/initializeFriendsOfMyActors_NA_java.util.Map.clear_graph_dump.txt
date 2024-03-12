@@ -1,0 +1,8 @@
+Line_2 $$ private void initializeFriendsOfMyActors() --> Line_3 $$ friendsOfMyActors.clear() [CD]
+Line_2 $$ private void initializeFriendsOfMyActors() --> Line_4 $$ final String sql = "SELECT DISTINCT " + Actor.getActorAndUserSqlColumns(false) + ", " + FriendshipTable.ACTOR_ID + " FROM (" + Actor.getActorAndUserSqlTables() + ")" + " INNER JOIN " + FriendshipTable.TABLE_NAME + " ON " + FriendshipTable.FRIEND_ID + "=" + ActorTable.TABLE_NAME + "." + ActorTable._ID + " AND " + FriendshipTable.FOLLOWED + "=1" + " AND " + FriendshipTable.TABLE_NAME + "." + FriendshipTable.ACTOR_ID + SqlActorIds.fromIds(myActors.keySet()).getSql() [CD]
+Line_2 $$ private void initializeFriendsOfMyActors() --> Line_5 $$ final Function<Cursor, Void> function =  cursor -> [CD]
+Line_7 $$ Actor friend = Actor.fromCursor(myContext, cursor) --> Line_8 $$ addIfAbsent(friend) [FD]
+Line_6 $$ long actorId = cursor.getLong(7) --> Line_9 $$ friendsOfMyActors.put(friend.actorId, actorId) [FD]
+Line_2 $$ private void initializeFriendsOfMyActors() --> Line_12 $$ MyQuery.get(myContext, sql, function) [CD]
+Line_4 $$ final String sql = "SELECT DISTINCT " + Actor.getActorAndUserSqlColumns(false) + ", " + FriendshipTable.ACTOR_ID + " FROM (" + Actor.getActorAndUserSqlTables() + ")" + " INNER JOIN " + FriendshipTable.TABLE_NAME + " ON " + FriendshipTable.FRIEND_ID + "=" + ActorTable.TABLE_NAME + "." + ActorTable._ID + " AND " + FriendshipTable.FOLLOWED + "=1" + " AND " + FriendshipTable.TABLE_NAME + "." + FriendshipTable.ACTOR_ID + SqlActorIds.fromIds(myActors.keySet()).getSql() --> Line_12 $$ MyQuery.get(myContext, sql, function) [FD]
+Line_5 $$ final Function<Cursor, Void> function =  cursor -> --> Line_12 $$ MyQuery.get(myContext, sql, function) [FD]

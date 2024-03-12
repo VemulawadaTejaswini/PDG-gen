@@ -1,0 +1,4 @@
+Line_2 $$ public void testFailParentChild() throws Exception --> Line_3 $$ assertAcked(prepareCreate(INDEX_NAME).addMapping(TYPE_NAME, "query", "type=percolator").addMapping("child", "_parent", "type=parent").addMapping("parent")) [CD]
+Line_2 $$ public void testFailParentChild() throws Exception --> Line_4 $$ Exception e = expectThrows(MapperParsingException.class, () -> client().prepareIndex(INDEX_NAME, TYPE_NAME, "1").setSource(jsonBuilder().startObject().field("query", hasChildQuery("child", matchAllQuery(), ScoreMode.None)).endObject()).get()) [CD]
+Line_2 $$ public void testFailParentChild() throws Exception --> Line_5 $$ assertThat(e.getCause(), instanceOf(IllegalArgumentException.class)) [CD]
+Line_2 $$ public void testFailParentChild() throws Exception --> Line_6 $$ assertThat(e.getCause().getMessage(), equalTo("the [has_child] query is unsupported inside a percolator query")) [CD]

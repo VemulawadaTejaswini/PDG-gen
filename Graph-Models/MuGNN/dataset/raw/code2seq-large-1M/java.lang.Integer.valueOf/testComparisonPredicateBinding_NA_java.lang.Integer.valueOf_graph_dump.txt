@@ -1,0 +1,8 @@
+Line_2 $$ public void testComparisonPredicateBinding() --> Line_3 $$ StructType struct = StructType.of(required(14, "x", Types.IntegerType.get())) [CD]
+Line_5 $$ UnboundPredicate<Integer> unbound = new UnboundPredicate(op, ref("x"), 5) --> Line_6 $$ Expression expr = unbound.bind(struct) [FD]
+Line_3 $$ StructType struct = StructType.of(required(14, "x", Types.IntegerType.get())) --> Line_6 $$ Expression expr = unbound.bind(struct) [FD]
+Line_6 $$ Expression expr = unbound.bind(struct) --> Line_7 $$ BoundPredicate<Integer> bound = assertAndUnwrap(expr) [FD]
+Line_7 $$ BoundPredicate<Integer> bound = assertAndUnwrap(expr) --> Line_8 $$ Assert.assertEquals("Should not alter literal value", Integer.valueOf(5), bound.literal().value()) [FD]
+Line_7 $$ BoundPredicate<Integer> bound = assertAndUnwrap(expr) --> Line_9 $$ Assert.assertEquals("Should reference correct field ID", 14, bound.ref().fieldId()) [FD]
+Line_4 $$ for (Expression.Operation op : COMPARISONS) --> Line_10 $$ Assert.assertEquals("Should not change the comparison operation", op, bound.op()) [FD]
+Line_7 $$ BoundPredicate<Integer> bound = assertAndUnwrap(expr) --> Line_10 $$ Assert.assertEquals("Should not change the comparison operation", op, bound.op()) [FD]

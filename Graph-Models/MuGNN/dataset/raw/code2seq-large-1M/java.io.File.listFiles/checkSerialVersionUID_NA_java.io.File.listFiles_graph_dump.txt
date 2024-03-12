@@ -1,0 +1,6 @@
+Line_2 $$ private void checkSerialVersionUID(String baseDirectory, String path) throws ClassNotFoundException --> Line_3 $$ File classesDir = new File(baseDirectory + "/" + path) [CD]
+Line_2 $$ private void checkSerialVersionUID(String baseDirectory, String path) throws ClassNotFoundException --> Line_4 $$ File[] files = classesDir.listFiles() [CD]
+Line_2 $$ private void checkSerialVersionUID(String baseDirectory, String path) throws ClassNotFoundException --> Line_5 $$ assertNotNull("no files in " + classesDir, files) [CD]
+Line_6 $$ for (File file : files) --> Line_7 $$ if (file.isDirectory() || !file.getName().endsWith(".class")) [FD]
+Line_6 $$ for (File file : files) --> Line_10 $$ Class<?> c = Class.forName(file.getPath().substring(baseDirectory.length() + 1).replaceAll(".class$", "").replace(File.separatorChar, '.')) [FD]
+Line_2 $$ private void checkSerialVersionUID(String baseDirectory, String path) throws ClassNotFoundException --> Line_10 $$ Class<?> c = Class.forName(file.getPath().substring(baseDirectory.length() + 1).replaceAll(".class$", "").replace(File.separatorChar, '.')) [FD]

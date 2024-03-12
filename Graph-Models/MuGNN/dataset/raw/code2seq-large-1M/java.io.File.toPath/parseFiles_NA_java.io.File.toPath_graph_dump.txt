@@ -1,0 +1,8 @@
+Line_2 $$ private void parseFiles() --> Line_3 $$ BankMapFile bank = category.getBankMapFile() [CD]
+Line_3 $$ BankMapFile bank = category.getBankMapFile() --> Line_8 $$ String archiveFilename = ConversionUtils.convertFileSeparators(bank.getEntries()[archiveId].getName()) [FD]
+Line_8 $$ String archiveFilename = ConversionUtils.convertFileSeparators(bank.getEntries()[archiveId].getName()) --> Line_9 $$ SdtFile sdt = SoundCategory.getSdtFile(archiveFilename) [FD]
+Line_9 $$ SdtFile sdt = SoundCategory.getSdtFile(archiveFilename) --> Line_10 $$ if (sdt == null) [FD]
+Line_9 $$ SdtFile sdt = SoundCategory.getSdtFile(archiveFilename) --> Line_13 $$ String relative = new File(PathUtils.getDKIIFolder() + PathUtils.DKII_SFX_FOLDER).toPath().relativize(sdt.getFile().toPath()).toString() [FD]
+Line_13 $$ String relative = new File(PathUtils.getDKIIFolder() + PathUtils.DKII_SFX_FOLDER).toPath().relativize(sdt.getFile().toPath()).toString() --> Line_14 $$ String soundFilename = relative.substring(0, relative.length() - 4) + File.separator + SdtFile.fixFileExtension(sdt.getEntires()[soundId]) [FD]
+Line_9 $$ SdtFile sdt = SoundCategory.getSdtFile(archiveFilename) --> Line_14 $$ String soundFilename = relative.substring(0, relative.length() - 4) + File.separator + SdtFile.fixFileExtension(sdt.getEntires()[soundId]) [FD]
+Line_15 $$ SoundFile sf = new SoundFile(this, soundId, soundFilename) --> Line_16 $$ files.add(sf) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ static void buildDexArchive(Options options, Dexing dexing) throws Exception --> Line_3 $$ checkArgument(options.maxThreads > 0, "--max_threads must be strictly positive, was: %s", options.maxThreads) [CD]
+Line_4 $$ try (ZipFile in = new ZipFile(options.inputJar.toFile())) --> Line_5 $$ int threads = Math.min(options.maxThreads, in.size() / 1000 + 1) [FD]
+Line_5 $$ int threads = Math.min(options.maxThreads, in.size() / 1000 + 1) --> Line_6 $$ ExecutorService executor = newFixedThreadPool(threads) [FD]
+Line_4 $$ try (ZipFile in = new ZipFile(options.inputJar.toFile())) --> Line_8 $$ produceDexArchive(in, out, executor, threads <= 1, dexing, null) [FD]
+Line_7 $$ try (ZipOutputStream out = createZipOutputStream(options.outputZip)) --> Line_8 $$ produceDexArchive(in, out, executor, threads <= 1, dexing, null) [FD]
+Line_6 $$ ExecutorService executor = newFixedThreadPool(threads) --> Line_8 $$ produceDexArchive(in, out, executor, threads <= 1, dexing, null) [FD]
+Line_2 $$ static void buildDexArchive(Options options, Dexing dexing) throws Exception --> Line_8 $$ produceDexArchive(in, out, executor, threads <= 1, dexing, null) [FD]
+Line_6 $$ ExecutorService executor = newFixedThreadPool(threads) --> Line_10 $$ executor.shutdown() [FD]

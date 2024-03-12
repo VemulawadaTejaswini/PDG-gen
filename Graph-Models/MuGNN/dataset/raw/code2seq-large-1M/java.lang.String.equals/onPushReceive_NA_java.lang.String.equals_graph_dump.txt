@@ -1,0 +1,8 @@
+Line_2 $$ protected void onPushReceive(Context context, Intent intent) --> Line_3 $$ Log.d("Narrate", "GCM Broadcast received.") [CD]
+Line_2 $$ protected void onPushReceive(Context context, Intent intent) --> Line_4 $$ if (User.isAbleToSync()) [CD]
+Line_4 $$ if (User.isAbleToSync()) --> Line_5 $$ String data = intent.getStringExtra(KEY_PUSH_DATA) [CD]
+Line_2 $$ protected void onPushReceive(Context context, Intent intent) --> Line_5 $$ String data = intent.getStringExtra(KEY_PUSH_DATA) [FD]
+Line_7 $$ JSONObject payload = new JSONObject(data) --> Line_8 $$ String senderDeviceId = payload.getString("deviceId") [FD]
+Line_8 $$ String senderDeviceId = payload.getString("deviceId") --> Line_10 $$ if (senderDeviceId != null && !senderDeviceId.equals(thisDeviceId)) [FD]
+Line_9 $$ String thisDeviceId = ParseInstallation.getCurrentInstallation().getInstallationId() --> Line_10 $$ if (senderDeviceId != null && !senderDeviceId.equals(thisDeviceId)) [FD]
+Line_10 $$ if (senderDeviceId != null && !senderDeviceId.equals(thisDeviceId)) --> Line_11 $$ DataManager.getInstance().sync() [CD]

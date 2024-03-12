@@ -1,0 +1,8 @@
+Line_2 $$ private void traverseDirectory(File directory, ResourceVisitor visitor) --> Line_3 $$ for (File child : directory.listFiles()) [FD]
+Line_3 $$ for (File child : directory.listFiles()) --> Line_4 $$ if (child.isDirectory()) [FD]
+Line_4 $$ if (child.isDirectory()) --> Line_5 $$ traverseDirectory(child, visitor) [CD]
+Line_3 $$ for (File child : directory.listFiles()) --> Line_5 $$ traverseDirectory(child, visitor) [FD]
+Line_2 $$ private void traverseDirectory(File directory, ResourceVisitor visitor) --> Line_5 $$ traverseDirectory(child, visitor) [FD]
+Line_4 $$ if (child.isDirectory()) --> Line_7 $$ visitor.visit(getRelativeName(child)) [CD]
+Line_2 $$ private void traverseDirectory(File directory, ResourceVisitor visitor) --> Line_7 $$ visitor.visit(getRelativeName(child)) [FD]
+Line_3 $$ for (File child : directory.listFiles()) --> Line_7 $$ visitor.visit(getRelativeName(child)) [FD]

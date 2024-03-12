@@ -1,0 +1,8 @@
+Line_2 $$ public List<Route> getBefore(String path) --> Line_3 $$ String cleanPath = parsePath(path) [FD]
+Line_2 $$ public List<Route> getBefore(String path) --> Line_3 $$ String cleanPath = parsePath(path) [CD]
+Line_2 $$ public List<Route> getBefore(String path) --> Line_4 $$ List<Route> collect = hooks.values().stream().flatMap(Collection::<>stream).sorted(Comparator.comparingInt(Route::<>getSort)).filter( route -> route.getHttpMethod() == HttpMethod.BEFORE && matchesPath(route.getPath(), cleanPath)).collect(Collectors.toList()) [CD]
+Line_3 $$ String cleanPath = parsePath(path) --> Line_4 $$ List<Route> collect = hooks.values().stream().flatMap(Collection::<>stream).sorted(Comparator.comparingInt(Route::<>getSort)).filter( route -> route.getHttpMethod() == HttpMethod.BEFORE && matchesPath(route.getPath(), cleanPath)).collect(Collectors.toList()) [FD]
+Line_2 $$ public List<Route> getBefore(String path) --> Line_5 $$ this.giveMatch(path, collect) [FD]
+Line_2 $$ public List<Route> getBefore(String path) --> Line_5 $$ this.giveMatch(path, collect) [CD]
+Line_4 $$ List<Route> collect = hooks.values().stream().flatMap(Collection::<>stream).sorted(Comparator.comparingInt(Route::<>getSort)).filter( route -> route.getHttpMethod() == HttpMethod.BEFORE && matchesPath(route.getPath(), cleanPath)).collect(Collectors.toList()) --> Line_5 $$ this.giveMatch(path, collect) [FD]
+Line_2 $$ public List<Route> getBefore(String path) --> Line_6 $$ return collect [CD]

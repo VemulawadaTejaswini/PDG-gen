@@ -1,0 +1,8 @@
+Line_2 $$ private Runnable spawnTipRequesterThread() --> Line_3 $$ return () -> [CD]
+Line_8 $$ final TransactionViewModel transactionViewModel = TransactionViewModel.fromHash(tangle, milestone.latestMilestone) --> Line_9 $$ System.arraycopy(transactionViewModel.getBytes(), 0, tipRequestingPacket.getData(), 0, TransactionViewModel.SIZE) [FD]
+Line_8 $$ final TransactionViewModel transactionViewModel = TransactionViewModel.fromHash(tangle, milestone.latestMilestone) --> Line_10 $$ System.arraycopy(transactionViewModel.getHash().bytes(), 0, tipRequestingPacket.getData(), TransactionViewModel.SIZE, reqHashSize) [FD]
+Line_13 $$ if ((now - lastTime) > 10000L) --> Line_14 $$ lastTime = now [CD]
+Line_5 $$ long lastTime = 0 --> Line_14 $$ lastTime = now [FD]
+Line_12 $$ long now = System.currentTimeMillis() --> Line_14 $$ lastTime = now [FD]
+Line_13 $$ if ((now - lastTime) > 10000L) --> Line_15 $$ messageQ.publish("rstat %d %d %d %d %d", getReceiveQueueSize(), getBroadcastQueueSize(), transactionRequester.numberOfTransactionsToRequest(), getReplyQueueSize(), TransactionViewModel.getNumberOfStoredTransactions(tangle)) [CD]
+Line_13 $$ if ((now - lastTime) > 10000L) --> Line_16 $$ log.info("toProcess = [CD]

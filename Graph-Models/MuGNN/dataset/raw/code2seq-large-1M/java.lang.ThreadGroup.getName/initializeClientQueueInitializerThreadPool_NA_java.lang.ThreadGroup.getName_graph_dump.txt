@@ -1,0 +1,8 @@
+Line_2 $$ private ThreadPoolExecutor initializeClientQueueInitializerThreadPool() throws IOException --> Line_3 $$ final ThreadGroup clientQueueThreadGroup = LoggingThreadGroup.createThreadGroup("Client Queue Initialization ", logger) [CD]
+Line_2 $$ private ThreadPoolExecutor initializeClientQueueInitializerThreadPool() throws IOException --> Line_4 $$ ThreadFactory clientQueueThreadFactory = new ThreadFactory() [CD]
+Line_4 $$ ThreadFactory clientQueueThreadFactory = new ThreadFactory() --> Line_7 $$ String threadName = clientQueueThreadGroup.getName() + " Thread " + connNum.incrementAndGet() [CD]
+Line_3 $$ final ThreadGroup clientQueueThreadGroup = LoggingThreadGroup.createThreadGroup("Client Queue Initialization ", logger) --> Line_7 $$ String threadName = clientQueueThreadGroup.getName() + " Thread " + connNum.incrementAndGet() [FD]
+Line_4 $$ ThreadFactory clientQueueThreadFactory = new ThreadFactory() --> Line_8 $$ Runnable runnable = new Runnable() [CD]
+Line_4 $$ ThreadFactory clientQueueThreadFactory = new ThreadFactory() --> Line_11 $$ command.run() [FD]
+Line_4 $$ ThreadFactory clientQueueThreadFactory = new ThreadFactory() --> Line_17 $$ return new Thread(clientQueueThreadGroup, runnable, threadName) [CD]
+Line_2 $$ private ThreadPoolExecutor initializeClientQueueInitializerThreadPool() throws IOException --> Line_20 $$ return new PooledExecutorWithDMStats(new SynchronousQueue(), CLIENT_QUEUE_INITIALIZATION_POOL_SIZE, getStats().getCnxPoolHelper(), clientQueueThreadFactory, 60000) [CD]

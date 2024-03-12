@@ -1,0 +1,8 @@
+Line_2 $$ public List<String> getDimensionsForMetric(@PathParam("metricId") Long metricId) --> Line_3 $$ List<String> list = new ArrayList() [CD]
+Line_2 $$ public List<String> getDimensionsForMetric(@PathParam("metricId") Long metricId) --> Line_4 $$ list.add("All") [CD]
+Line_3 $$ List<String> list = new ArrayList() --> Line_4 $$ list.add("All") [FD]
+Line_2 $$ public List<String> getDimensionsForMetric(@PathParam("metricId") Long metricId) --> Line_6 $$ MetricConfigDTO metricConfigDTO = metricConfigDAO.findById(metricId) [FD]
+Line_6 $$ MetricConfigDTO metricConfigDTO = metricConfigDAO.findById(metricId) --> Line_7 $$ DatasetConfigDTO datasetConfigDTO = datasetConfigDAO.findByDataset(metricConfigDTO.getDataset()) [FD]
+Line_3 $$ List<String> list = new ArrayList() --> Line_8 $$ list.addAll(datasetConfigDTO.getDimensions()) [FD]
+Line_7 $$ DatasetConfigDTO datasetConfigDTO = datasetConfigDAO.findByDataset(metricConfigDTO.getDataset()) --> Line_8 $$ list.addAll(datasetConfigDTO.getDimensions()) [FD]
+Line_2 $$ public List<String> getDimensionsForMetric(@PathParam("metricId") Long metricId) --> Line_12 $$ return list [CD]

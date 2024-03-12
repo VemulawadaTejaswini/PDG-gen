@@ -1,0 +1,8 @@
+Line_2 $$ public static String getDeviceURN() --> Line_3 $$ if (NgnStringUtils.isNullOrEmpty(sDeviceURN)) [CD]
+Line_5 $$ final TelephonyManager telephonyMgr = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE) --> Line_6 $$ final String msisdn = telephonyMgr.getLine1Number() [FD]
+Line_6 $$ final String msisdn = telephonyMgr.getLine1Number() --> Line_7 $$ if (NgnStringUtils.isNullOrEmpty(msisdn)) [FD]
+Line_7 $$ if (NgnStringUtils.isNullOrEmpty(msisdn)) --> Line_8 $$ sDeviceURN = String.format("urn:imei:%s", telephonyMgr.getDeviceId()) [CD]
+Line_5 $$ final TelephonyManager telephonyMgr = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE) --> Line_8 $$ sDeviceURN = String.format("urn:imei:%s", telephonyMgr.getDeviceId()) [FD]
+Line_7 $$ if (NgnStringUtils.isNullOrEmpty(msisdn)) --> Line_10 $$ sDeviceURN = String.format("urn:tel:%s", msisdn) [CD]
+Line_6 $$ final String msisdn = telephonyMgr.getLine1Number() --> Line_10 $$ sDeviceURN = String.format("urn:tel:%s", msisdn) [FD]
+Line_2 $$ public static String getDeviceURN() --> Line_17 $$ return sDeviceURN [CD]

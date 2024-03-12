@@ -1,0 +1,7 @@
+Line_2 $$ public boolean saveToSnapshot() --> Line_3 $$ if (pendingItem != null) [CD]
+Line_3 $$ if (pendingItem != null) --> Line_4 $$ if (tryEmit(pendingItem)) [CD]
+Line_4 $$ if (tryEmit(pendingItem)) --> Line_7 $$ return false [CD]
+Line_2 $$ public boolean saveToSnapshot() --> Line_10 $$ if (snapshotTraverser == null) [CD]
+Line_10 $$ if (snapshotTraverser == null) --> Line_11 $$ snapshotTraverser = Traversers.traverseStream(IntStream.range(0, assignedPtions.length).boxed()).map( i -> entry(broadcastKey(assignedPtions[i]), ptionOffsets[i])).onFirstNull(() -> snapshotTraverser = null) [CD]
+Line_10 $$ if (snapshotTraverser == null) --> Line_13 $$ getLogger().info("Saving snapshot, offsets=" + Arrays.toString(ptionOffsets) + ", assignedPtions=" + Arrays.toString(assignedPtions)) [CD]
+Line_2 $$ public boolean saveToSnapshot() --> Line_15 $$ return emitFromTraverserToSnapshot(snapshotTraverser) [CD]

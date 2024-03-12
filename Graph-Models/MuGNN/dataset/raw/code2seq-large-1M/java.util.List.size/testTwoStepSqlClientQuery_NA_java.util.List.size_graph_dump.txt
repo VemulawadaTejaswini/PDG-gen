@@ -1,0 +1,7 @@
+Line_3 $$ try (Ignite client = startGrid("client")) --> Line_4 $$ IgniteCache<Integer, Value> cache = client.cache(DEFAULT_CACHE_NAME) [FD]
+Line_4 $$ IgniteCache<Integer, Value> cache = client.cache(DEFAULT_CACHE_NAME) --> Line_5 $$ List<Cache.Entry<Integer, Value>> all = cache.query(new SqlQuery<Integer, Value>(Value.class, "select * from Value")).getAll() [FD]
+Line_4 $$ IgniteCache<Integer, Value> cache = client.cache(DEFAULT_CACHE_NAME) --> Line_8 $$ check(cache) [FD]
+Line_4 $$ IgniteCache<Integer, Value> cache = client.cache(DEFAULT_CACHE_NAME) --> Line_9 $$ QueryCursor<List<?>> qry = cache.query(new SqlFieldsQuery("select _val from Value")) [FD]
+Line_9 $$ QueryCursor<List<?>> qry = cache.query(new SqlFieldsQuery("select _val from Value")) --> Line_10 $$ List<List<?>> all0 = qry.getAll() [FD]
+Line_10 $$ List<List<?>> all0 = qry.getAll() --> Line_11 $$ assertEquals(KEYS, all0.size()) [FD]
+Line_4 $$ IgniteCache<Integer, Value> cache = client.cache(DEFAULT_CACHE_NAME) --> Line_13 $$ check(cache) [FD]

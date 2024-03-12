@@ -1,0 +1,4 @@
+Line_2 $$ private SessionDescription correctSessionDescription(SessionDescription sessionDescription) --> Line_3 $$ String updatedSdp = sessionDescription.description.replaceAll("(a=fmtp:111 ((?!cbr=).)*)\r?\n", "$1;cbr=1\r\n") [CD]
+Line_2 $$ private SessionDescription correctSessionDescription(SessionDescription sessionDescription) --> Line_4 $$ updatedSdp = updatedSdp.replaceAll(".+urn:ietf:params:rtp-hdrext:ssrc-audio-level.*\r?\n", "") [CD]
+Line_3 $$ String updatedSdp = sessionDescription.description.replaceAll("(a=fmtp:111 ((?!cbr=).)*)\r?\n", "$1;cbr=1\r\n") --> Line_4 $$ updatedSdp = updatedSdp.replaceAll(".+urn:ietf:params:rtp-hdrext:ssrc-audio-level.*\r?\n", "") [FD]
+Line_2 $$ private SessionDescription correctSessionDescription(SessionDescription sessionDescription) --> Line_5 $$ return new SessionDescription(sessionDescription.type, updatedSdp) [CD]

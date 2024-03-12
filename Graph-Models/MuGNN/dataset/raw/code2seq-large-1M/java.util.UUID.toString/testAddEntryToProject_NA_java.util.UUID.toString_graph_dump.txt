@@ -1,0 +1,7 @@
+Line_3 $$ KylinConfig kylinConfig = getTestConfig() --> Line_4 $$ BadQueryHistoryManager manager = BadQueryHistoryManager.getInstance(kylinConfig) [FD]
+Line_4 $$ BadQueryHistoryManager manager = BadQueryHistoryManager.getInstance(kylinConfig) --> Line_6 $$ BadQueryHistory history = manager.upsertEntryToProject(entry, "default") [FD]
+Line_3 $$ KylinConfig kylinConfig = getTestConfig() --> Line_17 $$ for (int i = 0; i < kylinConfig.getBadQueryHistoryNum(); i++) [FD]
+Line_17 $$ for (int i = 0; i < kylinConfig.getBadQueryHistoryNum(); i++) --> Line_18 $$ BadQueryEntry tmp = new BadQueryEntry("sql", "adj", 1459362239993L + i, 100 + i, "server", "t-0", "user", UUID.randomUUID().toString()) [CD]
+Line_17 $$ for (int i = 0; i < kylinConfig.getBadQueryHistoryNum(); i++) --> Line_19 $$ history = manager.upsertEntryToProject(tmp, "default") [CD]
+Line_4 $$ BadQueryHistoryManager manager = BadQueryHistoryManager.getInstance(kylinConfig) --> Line_19 $$ history = manager.upsertEntryToProject(tmp, "default") [FD]
+Line_3 $$ KylinConfig kylinConfig = getTestConfig() --> Line_21 $$ assertEquals(kylinConfig.getBadQueryHistoryNum(), history.getEntries().size()) [FD]

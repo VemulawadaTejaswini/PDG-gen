@@ -1,0 +1,8 @@
+Line_2 $$ public List<ServiceState> getServiceStates() --> Line_3 $$ ActivityManager activityManager = (ActivityManager) mApplication.getSystemService(Context.ACTIVITY_SERVICE) [CD]
+Line_2 $$ public List<ServiceState> getServiceStates() --> Line_4 $$ List<ActivityManager.RunningServiceInfo> runningServices = activityManager.getRunningServices(100) [CD]
+Line_3 $$ ActivityManager activityManager = (ActivityManager) mApplication.getSystemService(Context.ACTIVITY_SERVICE) --> Line_4 $$ List<ActivityManager.RunningServiceInfo> runningServices = activityManager.getRunningServices(100) [FD]
+Line_2 $$ public List<ServiceState> getServiceStates() --> Line_5 $$ List<ServiceState> serviceStates = new ArrayList(runningServices.size()) [CD]
+Line_4 $$ List<ActivityManager.RunningServiceInfo> runningServices = activityManager.getRunningServices(100) --> Line_5 $$ List<ServiceState> serviceStates = new ArrayList(runningServices.size()) [FD]
+Line_7 $$ if (runningServiceInfo.pid == android.os.Process.myPid()) --> Line_8 $$ serviceStates.add(new ServiceState(runningServiceInfo.service.getShortClassName())) [CD]
+Line_5 $$ List<ServiceState> serviceStates = new ArrayList(runningServices.size()) --> Line_8 $$ serviceStates.add(new ServiceState(runningServiceInfo.service.getShortClassName())) [FD]
+Line_2 $$ public List<ServiceState> getServiceStates() --> Line_11 $$ return serviceStates [CD]

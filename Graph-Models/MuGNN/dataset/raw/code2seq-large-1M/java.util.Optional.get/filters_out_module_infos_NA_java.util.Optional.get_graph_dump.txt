@@ -1,0 +1,7 @@
+Line_2 $$ public void filters_out_module_infos() throws IOException --> Line_3 $$ URI jrtUri = ModuleFinder.ofSystem().find("java.base").get().location().get() [CD]
+Line_2 $$ public void filters_out_module_infos() throws IOException --> Line_4 $$ ClassFileSource source = Location.of(jrtUri).asClassFileSource(new ImportOptions()) [CD]
+Line_3 $$ URI jrtUri = ModuleFinder.ofSystem().find("java.base").get().location().get() --> Line_4 $$ ClassFileSource source = Location.of(jrtUri).asClassFileSource(new ImportOptions()) [FD]
+Line_2 $$ public void filters_out_module_infos() throws IOException --> Line_5 $$ Stream<String> allUris = StreamSupport.stream(source.spliterator(), false).map(ClassFileLocation::<>getUri).map(URI::<>toString) [CD]
+Line_4 $$ ClassFileSource source = Location.of(jrtUri).asClassFileSource(new ImportOptions()) --> Line_5 $$ Stream<String> allUris = StreamSupport.stream(source.spliterator(), false).map(ClassFileLocation::<>getUri).map(URI::<>toString) [FD]
+Line_2 $$ public void filters_out_module_infos() throws IOException --> Line_6 $$ assertThat(allUris.anyMatch( uri -> uri.contains(MODULE_INFO_FILE_NAME))).as("any URI contains " + MODULE_INFO_FILE_NAME).isFalse() [CD]
+Line_5 $$ Stream<String> allUris = StreamSupport.stream(source.spliterator(), false).map(ClassFileLocation::<>getUri).map(URI::<>toString) --> Line_6 $$ assertThat(allUris.anyMatch( uri -> uri.contains(MODULE_INFO_FILE_NAME))).as("any URI contains " + MODULE_INFO_FILE_NAME).isFalse() [FD]

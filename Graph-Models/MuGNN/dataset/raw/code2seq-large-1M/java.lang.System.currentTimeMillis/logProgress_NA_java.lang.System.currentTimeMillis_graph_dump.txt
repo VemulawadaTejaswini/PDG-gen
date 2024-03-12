@@ -1,0 +1,8 @@
+Line_2 $$ private void logProgress(String fileOffset, boolean prefixNewLine) throws IOException --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ private void logProgress(String fileOffset, boolean prefixNewLine) throws IOException --> Line_4 $$ LogEntry entry = new LogEntry(now, componentID, fileOffset) [CD]
+Line_2 $$ private void logProgress(String fileOffset, boolean prefixNewLine) throws IOException --> Line_5 $$ String line = entry.toString() [CD]
+Line_2 $$ private void logProgress(String fileOffset, boolean prefixNewLine) throws IOException --> Line_6 $$ if (prefixNewLine) [CD]
+Line_6 $$ if (prefixNewLine) --> Line_7 $$ lockFileStream.writeBytes(System.lineSeparator() + line) [CD]
+Line_6 $$ if (prefixNewLine) --> Line_9 $$ lockFileStream.writeBytes(line) [CD]
+Line_5 $$ String line = entry.toString() --> Line_9 $$ lockFileStream.writeBytes(line) [FD]
+Line_2 $$ private void logProgress(String fileOffset, boolean prefixNewLine) throws IOException --> Line_11 $$ lockFileStream.hflush() [CD]

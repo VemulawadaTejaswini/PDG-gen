@@ -1,0 +1,7 @@
+Line_2 $$ public void nestedSchedule() --> Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() [CD]
+Line_2 $$ public void nestedSchedule() --> Line_4 $$ List<Long> singleExecutionsTimestamps = new ArrayList() [CD]
+Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() --> Line_6 $$ vts.schedule(() -> vts.schedule(() -> singleExecutionsTimestamps.add(vts.now(TimeUnit.MILLISECONDS)), 100, TimeUnit.MILLISECONDS), 300, TimeUnit.MILLISECONDS) [FD]
+Line_4 $$ List<Long> singleExecutionsTimestamps = new ArrayList() --> Line_6 $$ vts.schedule(() -> vts.schedule(() -> singleExecutionsTimestamps.add(vts.now(TimeUnit.MILLISECONDS)), 100, TimeUnit.MILLISECONDS), 300, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() --> Line_7 $$ vts.advanceTimeBy(Duration.ofMillis(1000)) [FD]
+Line_4 $$ List<Long> singleExecutionsTimestamps = new ArrayList() --> Line_8 $$ assertThat(singleExecutionsTimestamps).as("single executions").containsExactly(400L) [FD]
+Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() --> Line_10 $$ vts.dispose() [FD]

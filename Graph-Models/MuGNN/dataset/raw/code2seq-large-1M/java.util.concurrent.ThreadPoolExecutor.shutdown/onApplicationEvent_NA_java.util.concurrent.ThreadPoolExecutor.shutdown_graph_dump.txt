@@ -1,0 +1,7 @@
+Line_2 $$ public void onApplicationEvent(ContextClosedEvent event) --> Line_3 $$ this.connector.pause() [CD]
+Line_2 $$ public void onApplicationEvent(ContextClosedEvent event) --> Line_4 $$ Executor executor = this.connector.getProtocolHandler().getExecutor() [CD]
+Line_2 $$ public void onApplicationEvent(ContextClosedEvent event) --> Line_5 $$ if (executor instanceof ThreadPoolExecutor) [CD]
+Line_4 $$ Executor executor = this.connector.getProtocolHandler().getExecutor() --> Line_5 $$ if (executor instanceof ThreadPoolExecutor) [FD]
+Line_7 $$ ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executor --> Line_8 $$ threadPoolExecutor.shutdown() [FD]
+Line_7 $$ ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executor --> Line_9 $$ if (!threadPoolExecutor.awaitTermination(30, TimeUnit.SECONDS)) [FD]
+Line_9 $$ if (!threadPoolExecutor.awaitTermination(30, TimeUnit.SECONDS)) --> Line_10 $$ log.warn("Tomcat thread pool did not shut down gracefully within " + "30 seconds. Proceeding with forceful shutdown") [CD]

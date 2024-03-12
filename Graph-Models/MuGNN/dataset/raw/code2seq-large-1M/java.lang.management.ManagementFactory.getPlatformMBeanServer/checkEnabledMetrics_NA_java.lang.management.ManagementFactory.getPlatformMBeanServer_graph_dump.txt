@@ -1,0 +1,7 @@
+Line_2 $$ protected static void checkEnabledMetrics() --> Line_3 $$ MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer() [CD]
+Line_2 $$ protected static void checkEnabledMetrics() --> Line_4 $$ if (mBeanServer != null) [CD]
+Line_3 $$ MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer() --> Line_4 $$ if (mBeanServer != null) [FD]
+Line_4 $$ if (mBeanServer != null) --> Line_5 $$ if (mBeanServer.isRegistered(AGENT_MBEAN_NAME)) [CD]
+Line_3 $$ MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer() --> Line_5 $$ if (mBeanServer.isRegistered(AGENT_MBEAN_NAME)) [FD]
+Line_5 $$ if (mBeanServer.isRegistered(AGENT_MBEAN_NAME)) --> Line_6 $$ if (enabledAgent.compareAndSet(false, true)) [CD]
+Line_3 $$ MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer() --> Line_8 $$ mBeanServer.invoke(AGENT_MBEAN_NAME, "startMetrics", new Object[0], new String[0]) [FD]

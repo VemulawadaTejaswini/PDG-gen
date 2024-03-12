@@ -1,0 +1,3 @@
+Line_3 $$ List<ShownNews> shownNews = shownNewsRepository.findAll() --> Line_4 $$ SemanticVersion from = shownNews.size() == 1 ? new SemanticVersion(shownNews.get(0).getVersion()) : null [FD]
+Line_4 $$ SemanticVersion from = shownNews.size() == 1 ? new SemanticVersion(shownNews.get(0).getVersion()) : null --> Line_7 $$ return news.stream().filter( x -> !(from != null && from.isSameOrNewer(x.getShowForVersion()) || x.getShowForVersion().isUpdateFor(to))).collect(Collectors.toList()) [FD]
+Line_5 $$ SemanticVersion to = new SemanticVersion(updateManager.getCurrentVersionString()) --> Line_7 $$ return news.stream().filter( x -> !(from != null && from.isSameOrNewer(x.getShowForVersion()) || x.getShowForVersion().isUpdateFor(to))).collect(Collectors.toList()) [FD]

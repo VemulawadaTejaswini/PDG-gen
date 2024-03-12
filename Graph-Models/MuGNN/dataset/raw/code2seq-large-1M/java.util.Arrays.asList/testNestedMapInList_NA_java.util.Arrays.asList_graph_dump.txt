@@ -1,0 +1,8 @@
+Line_2 $$ public void testNestedMapInList() throws IOException --> Line_3 $$ XContentBuilder builder = XContentFactory.jsonBuilder().startObject().startArray("some_array").startObject().field("foo", "bar").endObject().startObject().endObject().endArray().endObject() [CD]
+Line_3 $$ XContentBuilder builder = XContentFactory.jsonBuilder().startObject().startArray("some_array").startObject().field("foo", "bar").endObject().startObject().endObject().endArray().endObject() --> Line_4 $$ try (XContentParser parser = createParser(JsonXContent.jsonXContent, builder.string())) [FD]
+Line_4 $$ try (XContentParser parser = createParser(JsonXContent.jsonXContent, builder.string())) --> Line_5 $$ assertEquals(XContentParser.Token.START_OBJECT, parser.nextToken()) [FD]
+Line_4 $$ try (XContentParser parser = createParser(JsonXContent.jsonXContent, builder.string())) --> Line_6 $$ assertEquals(XContentParser.Token.FIELD_NAME, parser.nextToken()) [FD]
+Line_4 $$ try (XContentParser parser = createParser(JsonXContent.jsonXContent, builder.string())) --> Line_7 $$ assertEquals("some_array", parser.currentName()) [FD]
+Line_8 $$ if (random().nextBoolean()) --> Line_9 $$ assertEquals(XContentParser.Token.START_ARRAY, parser.nextToken()) [CD]
+Line_4 $$ try (XContentParser parser = createParser(JsonXContent.jsonXContent, builder.string())) --> Line_9 $$ assertEquals(XContentParser.Token.START_ARRAY, parser.nextToken()) [FD]
+Line_4 $$ try (XContentParser parser = createParser(JsonXContent.jsonXContent, builder.string())) --> Line_11 $$ assertEquals(Arrays.asList(singletonMap("foo", "bar"), emptyMap()), parser.list()) [FD]

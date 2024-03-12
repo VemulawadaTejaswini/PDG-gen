@@ -1,0 +1,6 @@
+Line_2 $$ public int getStoreCompactionPriority() --> Line_3 $$ int fc = getStorefileCount() [CD]
+Line_2 $$ public int getStoreCompactionPriority() --> Line_4 $$ if (state.stripeFiles.isEmpty() || (this.blockingFileCount <= fc)) [CD]
+Line_4 $$ if (state.stripeFiles.isEmpty() || (this.blockingFileCount <= fc)) --> Line_5 $$ return this.blockingFileCount - fc [CD]
+Line_2 $$ public int getStoreCompactionPriority() --> Line_7 $$ int l0 = state.level0Files.size(), sc = state.stripeFiles.size() [CD]
+Line_2 $$ public int getStoreCompactionPriority() --> Line_8 $$ int priority = (int) Math.ceil(((double) (this.blockingFileCount - fc + l0) / sc) - l0) [CD]
+Line_2 $$ public int getStoreCompactionPriority() --> Line_9 $$ return (priority <= HStore.PRIORITY_USER) ? (HStore.PRIORITY_USER + 1) : priority [CD]

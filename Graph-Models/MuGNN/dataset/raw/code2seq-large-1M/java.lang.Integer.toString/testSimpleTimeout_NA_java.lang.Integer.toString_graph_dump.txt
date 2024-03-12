@@ -1,0 +1,7 @@
+Line_2 $$ public void testSimpleTimeout() throws Exception --> Line_3 $$ for (int i = 0; i < 32; i++) [CD]
+Line_3 $$ for (int i = 0; i < 32; i++) --> Line_4 $$ client().prepareIndex("test", "type", Integer.toString(i)).setSource("field", "value").get() [FD]
+Line_3 $$ for (int i = 0; i < 32; i++) --> Line_4 $$ client().prepareIndex("test", "type", Integer.toString(i)).setSource("field", "value").get() [CD]
+Line_2 $$ public void testSimpleTimeout() throws Exception --> Line_6 $$ refresh("test") [CD]
+Line_2 $$ public void testSimpleTimeout() throws Exception --> Line_7 $$ SearchResponse searchResponse = client().prepareSearch("test").setTimeout(new TimeValue(10, TimeUnit.MILLISECONDS)).setQuery(scriptQuery(new Script(ScriptType.INLINE, "mockscript", SCRIPT_NAME, Collections.emptyMap()))).setAllowPartialSearchResults(true).execute().actionGet() [CD]
+Line_2 $$ public void testSimpleTimeout() throws Exception --> Line_8 $$ assertThat(searchResponse.isTimedOut(), equalTo(true)) [CD]
+Line_7 $$ SearchResponse searchResponse = client().prepareSearch("test").setTimeout(new TimeValue(10, TimeUnit.MILLISECONDS)).setQuery(scriptQuery(new Script(ScriptType.INLINE, "mockscript", SCRIPT_NAME, Collections.emptyMap()))).setAllowPartialSearchResults(true).execute().actionGet() --> Line_8 $$ assertThat(searchResponse.isTimedOut(), equalTo(true)) [FD]

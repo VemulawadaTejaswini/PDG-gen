@@ -1,0 +1,8 @@
+Line_2 $$ public void testNumericType() throws SQLException --> Line_3 $$ createTable("numericTypeTable", "t1 tinyint, " + "t2 boolean, " + "t3 smallint,  " + "t4 mediumint, " + "t5 int, " + "t6 bigint, " + "t7 decimal, " + "t8 float, " + "t9 double, " + "t10 bit," + "t11 char(10)," + "t12 varchar(10)," + "t13 binary(10)," + "t14 varbinary(10)," + "t15 text," + "t16 blob," + "t17 date") [CD]
+Line_4 $$ try (Statement stmt = sharedConnection.createStatement()) --> Line_5 $$ stmt.execute("INSERT into numericTypeTable values (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'a', 'a', 'a', 'a', 'a', 'a', now())") [FD]
+Line_4 $$ try (Statement stmt = sharedConnection.createStatement()) --> Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from numericTypeTable")) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from numericTypeTable")) --> Line_7 $$ assertTrue(rs.next()) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from numericTypeTable")) --> Line_8 $$ floatDoubleCheckResult(rs) [FD]
+Line_11 $$ try (PreparedStatement preparedStatement = sharedConnection.prepareStatement("select * from numericTypeTable")) --> Line_12 $$ try (ResultSet rs = preparedStatement.executeQuery()) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from numericTypeTable")) --> Line_13 $$ assertTrue(rs.next()) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from numericTypeTable")) --> Line_14 $$ floatDoubleCheckResult(rs) [FD]

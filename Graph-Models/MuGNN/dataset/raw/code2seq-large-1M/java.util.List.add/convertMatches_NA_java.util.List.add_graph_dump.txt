@@ -1,0 +1,8 @@
+Line_2 $$ protected static <I extends IDeviceEvent> SearchResults<I> convertMatches(IHBaseContext context, Pager<EventMatch> matches) throws SiteWhereException --> Line_3 $$ List<I> results = new ArrayList<I>() [CD]
+Line_2 $$ protected static <I extends IDeviceEvent> SearchResults<I> convertMatches(IHBaseContext context, Pager<EventMatch> matches) throws SiteWhereException --> Line_4 $$ for (EventMatch match : matches.getResults()) [FD]
+Line_4 $$ for (EventMatch match : matches.getResults()) --> Line_5 $$ Class<? extends IDeviceEvent> type = getEventClassForIndicator(match.getType().getType()) [FD]
+Line_3 $$ List<I> results = new ArrayList<I>() --> Line_7 $$ results.add((I) PayloadMarshalerResolver.getInstance().getMarshaler(match.getEncoding()).decode(match.getPayload(), type)) [FD]
+Line_5 $$ Class<? extends IDeviceEvent> type = getEventClassForIndicator(match.getType().getType()) --> Line_7 $$ results.add((I) PayloadMarshalerResolver.getInstance().getMarshaler(match.getEncoding()).decode(match.getPayload(), type)) [FD]
+Line_4 $$ for (EventMatch match : matches.getResults()) --> Line_7 $$ results.add((I) PayloadMarshalerResolver.getInstance().getMarshaler(match.getEncoding()).decode(match.getPayload(), type)) [FD]
+Line_2 $$ protected static <I extends IDeviceEvent> SearchResults<I> convertMatches(IHBaseContext context, Pager<EventMatch> matches) throws SiteWhereException --> Line_12 $$ return new SearchResults<I>(results, matches.getTotal()) [CD]
+Line_2 $$ protected static <I extends IDeviceEvent> SearchResults<I> convertMatches(IHBaseContext context, Pager<EventMatch> matches) throws SiteWhereException --> Line_12 $$ return new SearchResults<I>(results, matches.getTotal()) [FD]

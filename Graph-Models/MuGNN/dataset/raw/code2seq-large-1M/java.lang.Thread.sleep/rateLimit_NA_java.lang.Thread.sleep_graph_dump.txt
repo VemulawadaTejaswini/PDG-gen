@@ -1,0 +1,6 @@
+Line_2 $$ protected static void rateLimit(InetSocketAddress originator) throws Exception --> Line_4 $$ int hit_count = generate_bloom.add(AddressUtils.getAddressBytes(originator)) [FD]
+Line_10 $$ if (now < generate_bloom_create_time || now - generate_bloom_create_time > BLOOM_RECREATE) --> Line_11 $$ generate_bloom = BloomFilterFactory.createAddRemove4Bit(generate_bloom.getSize()) [CD]
+Line_4 $$ int hit_count = generate_bloom.add(AddressUtils.getAddressBytes(originator)) --> Line_14 $$ if (hit_count >= 15) [FD]
+Line_14 $$ if (hit_count >= 15) --> Line_15 $$ Logger.log(new LogEvent(LOGID, "STS bloom: too many recent connection attempts from " + originator)) [CD]
+Line_14 $$ if (hit_count >= 15) --> Line_16 $$ Debug.out("STS: too many recent connection attempts from " + originator) [CD]
+Line_20 $$ long delay = 100 - since_last --> Line_24 $$ Thread.sleep(delay) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private static void printDisks(HWDiskStore[] diskStores) --> Line_3 $$ oshi.add("Disks:") [CD]
+Line_4 $$ for (HWDiskStore disk : diskStores) --> Line_5 $$ boolean readwrite = disk.getReads() > 0 || disk.getWrites() > 0 [FD]
+Line_4 $$ for (HWDiskStore disk : diskStores) --> Line_6 $$ oshi.add(String.format(" %s: (model: %s - S/N: %s) size: %s, reads: %s (%s), writes: %s (%s), xfer: %s ms%n", disk.getName(), disk.getModel(), disk.getSerial(), disk.getSize() > 0 ? FormatUtil.formatBytesDecimal(disk.getSize()) : "?", readwrite ? disk.getReads() : "?", readwrite ? FormatUtil.formatBytes(disk.getReadBytes()) : "?", readwrite ? disk.getWrites() : "?", readwrite ? FormatUtil.formatBytes(disk.getWriteBytes()) : "?", readwrite ? disk.getTransferTime() : "?")) [FD]
+Line_4 $$ for (HWDiskStore disk : diskStores) --> Line_7 $$ HWPartition[] partitions = disk.getPartitions() [FD]
+Line_7 $$ HWPartition[] partitions = disk.getPartitions() --> Line_8 $$ if (partitions == null) [FD]
+Line_11 $$ for (HWPartition part : partitions) --> Line_12 $$ oshi.add(String.format(" |-- %s: %s (%s) Maj:Min=%d:%d, size: %s%s%n", part.getIdentification(), part.getName(), part.getType(), part.getMajor(), part.getMinor(), FormatUtil.formatBytesDecimal(part.getSize()), part.getMountPoint().isEmpty() ? "" : " @ " + part.getMountPoint())) [FD]

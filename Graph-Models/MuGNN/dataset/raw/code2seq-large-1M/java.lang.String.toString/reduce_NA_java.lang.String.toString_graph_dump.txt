@@ -1,0 +1,8 @@
+Line_2 $$ public void reduce(Long key, Iterable<String> values, Context context) throws IOException, InterruptedException --> Line_4 $$ mos.write(key, value, value.toString()) [FD]
+Line_3 $$ for (String value : values) --> Line_4 $$ mos.write(key, value, value.toString()) [FD]
+Line_3 $$ for (String value : values) --> Line_5 $$ if (!value.toString().equals("b")) [FD]
+Line_5 $$ if (!value.toString().equals("b")) --> Line_6 $$ context.write(key, value) [CD]
+Line_2 $$ public void reduce(Long key, Iterable<String> values, Context context) throws IOException, InterruptedException --> Line_6 $$ context.write(key, value) [FD]
+Line_3 $$ for (String value : values) --> Line_6 $$ context.write(key, value) [FD]
+Line_5 $$ if (!value.toString().equals("b")) --> Line_8 $$ mos.write(TEXT, key, new Text(TEXT)) [CD]
+Line_2 $$ public void reduce(Long key, Iterable<String> values, Context context) throws IOException, InterruptedException --> Line_8 $$ mos.write(TEXT, key, new Text(TEXT)) [FD]

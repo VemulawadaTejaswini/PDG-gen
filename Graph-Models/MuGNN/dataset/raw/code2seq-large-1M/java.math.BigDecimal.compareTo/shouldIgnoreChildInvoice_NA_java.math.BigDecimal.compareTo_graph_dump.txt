@@ -1,0 +1,5 @@
+Line_2 $$ private boolean shouldIgnoreChildInvoice(final Invoice childInvoice, final BigDecimal childInvoiceAmount) --> Line_3 $$ switch(childInvoiceAmount.compareTo(BigDecimal.ZERO)) [FD]
+Line_2 $$ private boolean shouldIgnoreChildInvoice(final Invoice childInvoice, final BigDecimal childInvoiceAmount) --> Line_9 $$ for (InvoiceItem item : childInvoice.getInvoiceItems()) [FD]
+Line_9 $$ for (InvoiceItem item : childInvoice.getInvoiceItems()) --> Line_10 $$ if (item.getInvoiceItemType().equals(InvoiceItemType.FIXED) || item.getInvoiceItemType().equals(InvoiceItemType.RECURRING)) [FD]
+Line_10 $$ if (item.getInvoiceItemType().equals(InvoiceItemType.FIXED) || item.getInvoiceItemType().equals(InvoiceItemType.RECURRING)) --> Line_11 $$ return false [CD]
+Line_2 $$ private boolean shouldIgnoreChildInvoice(final Invoice childInvoice, final BigDecimal childInvoiceAmount) --> Line_14 $$ return true [CD]

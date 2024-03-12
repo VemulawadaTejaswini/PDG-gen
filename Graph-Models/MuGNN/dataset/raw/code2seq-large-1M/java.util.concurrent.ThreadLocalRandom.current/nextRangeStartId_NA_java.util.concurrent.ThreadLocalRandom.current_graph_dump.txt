@@ -1,0 +1,8 @@
+Line_2 $$ public long nextRangeStartId() --> Line_3 $$ ThreadLocalRandom rnd = ThreadLocalRandom.current() [CD]
+Line_2 $$ public long nextRangeStartId() --> Line_4 $$ long blockWidth = rangeWidth * maxThreadsCnt [CD]
+Line_2 $$ public long nextRangeStartId() --> Line_5 $$ long blocksCnt = tableSize / blockWidth [CD]
+Line_2 $$ public long nextRangeStartId() --> Line_6 $$ long firstBlockId = rnd.nextLong(blocksCnt) * blockWidth + 1 [CD]
+Line_3 $$ ThreadLocalRandom rnd = ThreadLocalRandom.current() --> Line_6 $$ long firstBlockId = rnd.nextLong(blocksCnt) * blockWidth + 1 [FD]
+Line_5 $$ long blocksCnt = tableSize / blockWidth --> Line_6 $$ long firstBlockId = rnd.nextLong(blocksCnt) * blockWidth + 1 [FD]
+Line_2 $$ public long nextRangeStartId() --> Line_7 $$ long off = threadOrder.get() * rangeWidth [CD]
+Line_2 $$ public long nextRangeStartId() --> Line_8 $$ return firstBlockId + off [CD]

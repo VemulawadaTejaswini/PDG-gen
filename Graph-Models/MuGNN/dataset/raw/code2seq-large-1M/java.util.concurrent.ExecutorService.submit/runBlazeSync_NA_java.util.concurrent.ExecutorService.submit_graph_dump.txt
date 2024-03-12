@@ -1,0 +1,8 @@
+Line_2 $$ protected void runBlazeSync(BlazeSyncParams syncParams) --> Line_3 $$ Project project = getProject() [CD]
+Line_2 $$ protected void runBlazeSync(BlazeSyncParams syncParams) --> Line_4 $$ final BlazeSyncTask syncTask = new BlazeSyncTask(project, BlazeImportSettingsManager.getInstance(project).getImportSettings(), syncParams) [CD]
+Line_3 $$ Project project = getProject() --> Line_4 $$ final BlazeSyncTask syncTask = new BlazeSyncTask(project, BlazeImportSettingsManager.getInstance(project).getImportSettings(), syncParams) [FD]
+Line_2 $$ protected void runBlazeSync(BlazeSyncParams syncParams) --> Line_5 $$ Future<?> future = Executors.newSingleThreadExecutor().submit(() -> syncTask.syncProject(context)) [CD]
+Line_4 $$ final BlazeSyncTask syncTask = new BlazeSyncTask(project, BlazeImportSettingsManager.getInstance(project).getImportSettings(), syncParams) --> Line_5 $$ Future<?> future = Executors.newSingleThreadExecutor().submit(() -> syncTask.syncProject(context)) [FD]
+Line_2 $$ protected void runBlazeSync(BlazeSyncParams syncParams) --> Line_6 $$ while (!future.isDone()) [CD]
+Line_5 $$ Future<?> future = Executors.newSingleThreadExecutor().submit(() -> syncTask.syncProject(context)) --> Line_6 $$ while (!future.isDone()) [FD]
+Line_6 $$ while (!future.isDone()) --> Line_7 $$ IdeEventQueue.getInstance().flushQueue() [CD]

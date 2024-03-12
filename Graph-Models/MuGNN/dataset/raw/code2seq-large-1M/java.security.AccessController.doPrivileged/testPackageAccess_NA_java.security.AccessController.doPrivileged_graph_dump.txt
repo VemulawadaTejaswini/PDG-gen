@@ -1,0 +1,8 @@
+Line_2 $$ public void testPackageAccess() --> Line_3 $$ String script = "new javax.print.PrintException();" [CD]
+Line_2 $$ public void testPackageAccess() --> Line_4 $$ AccessController.doPrivileged(new PrivilegedAction<Void>() [CD]
+Line_4 $$ AccessController.doPrivileged(new PrivilegedAction<Void>() --> Line_6 $$ Security.setProperty("package.access", "javax.print") [CD]
+Line_4 $$ AccessController.doPrivileged(new PrivilegedAction<Void>() --> Line_7 $$ return null [CD]
+Line_2 $$ public void testPackageAccess() --> Line_10 $$ assertExecute(script, "/groovy/security/javax/print/deny", new RuntimePermission("accessClassInPackage.javax.print")) [CD]
+Line_3 $$ String script = "new javax.print.PrintException();" --> Line_10 $$ assertExecute(script, "/groovy/security/javax/print/deny", new RuntimePermission("accessClassInPackage.javax.print")) [FD]
+Line_2 $$ public void testPackageAccess() --> Line_11 $$ assertExecute(script, "/groovy/security/javax/print/allow", null) [CD]
+Line_3 $$ String script = "new javax.print.PrintException();" --> Line_11 $$ assertExecute(script, "/groovy/security/javax/print/allow", null) [FD]

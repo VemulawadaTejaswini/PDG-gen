@@ -1,0 +1,8 @@
+Line_2 $$ public void retain() --> Line_3 $$ if (counter.incrementAndGet() == 1) [CD]
+Line_3 $$ if (counter.incrementAndGet() == 1) --> Line_4 $$ if (instanceCounter.getAndIncrement() > 0) [CD]
+Line_4 $$ if (instanceCounter.getAndIncrement() > 0) --> Line_5 $$ InternalLogger instance = InternalLoggerFactory.getInstance(getClass()) [CD]
+Line_4 $$ if (instanceCounter.getAndIncrement() > 0) --> Line_6 $$ instance.info("Initialized PauseDetectorWrapper more than once.") [CD]
+Line_5 $$ InternalLogger instance = InternalLoggerFactory.getInstance(getClass()) --> Line_6 $$ instance.info("Initialized PauseDetectorWrapper more than once.") [FD]
+Line_3 $$ if (counter.incrementAndGet() == 1) --> Line_9 $$ Runtime.getRuntime().addShutdownHook(new Thread("ShutdownHook for SimplePauseDetector") [CD]
+Line_9 $$ Runtime.getRuntime().addShutdownHook(new Thread("ShutdownHook for SimplePauseDetector") --> Line_11 $$ if (pauseDetector != null) [CD]
+Line_11 $$ if (pauseDetector != null) --> Line_12 $$ pauseDetector.shutdown() [CD]

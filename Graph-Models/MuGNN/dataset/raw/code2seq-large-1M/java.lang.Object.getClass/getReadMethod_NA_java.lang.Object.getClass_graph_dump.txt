@@ -1,0 +1,7 @@
+Line_2 $$ private static Method getReadMethod(Object bean, String propertyName) --> Line_3 $$ PropertyDescriptor pd = BeanUtils.getPropertyDescriptor(bean.getClass(), propertyName) [FD]
+Line_2 $$ private static Method getReadMethod(Object bean, String propertyName) --> Line_3 $$ PropertyDescriptor pd = BeanUtils.getPropertyDescriptor(bean.getClass(), propertyName) [CD]
+Line_2 $$ private static Method getReadMethod(Object bean, String propertyName) --> Line_4 $$ if (pd == null) [CD]
+Line_3 $$ PropertyDescriptor pd = BeanUtils.getPropertyDescriptor(bean.getClass(), propertyName) --> Line_4 $$ if (pd == null) [FD]
+Line_4 $$ if (pd == null) --> Line_5 $$ return null [CD]
+Line_2 $$ private static Method getReadMethod(Object bean, String propertyName) --> Line_6 $$ return pd.getReadMethod() [CD]
+Line_3 $$ PropertyDescriptor pd = BeanUtils.getPropertyDescriptor(bean.getClass(), propertyName) --> Line_6 $$ return pd.getReadMethod() [FD]

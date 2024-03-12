@@ -1,0 +1,6 @@
+Line_2 $$ private Method findHandlerMethodForEvent(Class<?> type, Object event) --> Line_3 $$ for (Method method : type.getMethods()) [FD]
+Line_3 $$ for (Method method : type.getMethods()) --> Line_4 $$ if (method.getAnnotation(SagaAction.class) != null || method.getAnnotation(LoadSaga.class) != null) [FD]
+Line_3 $$ for (Method method : type.getMethods()) --> Line_5 $$ if (method.getParameterTypes().length == 1 && method.getParameterTypes()[0].isAssignableFrom(event.getClass())) [FD]
+Line_2 $$ private Method findHandlerMethodForEvent(Class<?> type, Object event) --> Line_5 $$ if (method.getParameterTypes().length == 1 && method.getParameterTypes()[0].isAssignableFrom(event.getClass())) [FD]
+Line_5 $$ if (method.getParameterTypes().length == 1 && method.getParameterTypes()[0].isAssignableFrom(event.getClass())) --> Line_6 $$ return method [CD]
+Line_2 $$ private Method findHandlerMethodForEvent(Class<?> type, Object event) --> Line_10 $$ throw new RuntimeException("no method handling " + event.getClass()) [FD]

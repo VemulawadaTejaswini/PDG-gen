@@ -1,0 +1,8 @@
+Line_2 $$ private synchronized void addCertificate(Object pemObject) throws CertificateException --> Line_3 $$ if (pemObject instanceof X509CertificateHolder) [FD]
+Line_2 $$ private synchronized void addCertificate(Object pemObject) throws CertificateException --> Line_3 $$ if (pemObject instanceof X509CertificateHolder) [CD]
+Line_3 $$ if (pemObject instanceof X509CertificateHolder) --> Line_4 $$ JcaX509CertificateConverter converter = new JcaX509CertificateConverter().setProvider(bouncyCastleProvider) [CD]
+Line_3 $$ if (pemObject instanceof X509CertificateHolder) --> Line_5 $$ String alias = "cert-" + aliasToCertificate.size() [CD]
+Line_3 $$ if (pemObject instanceof X509CertificateHolder) --> Line_6 $$ aliasToCertificate.put(alias, converter.getCertificate((X509CertificateHolder) pemObject)) [CD]
+Line_5 $$ String alias = "cert-" + aliasToCertificate.size() --> Line_6 $$ aliasToCertificate.put(alias, converter.getCertificate((X509CertificateHolder) pemObject)) [FD]
+Line_4 $$ JcaX509CertificateConverter converter = new JcaX509CertificateConverter().setProvider(bouncyCastleProvider) --> Line_6 $$ aliasToCertificate.put(alias, converter.getCertificate((X509CertificateHolder) pemObject)) [FD]
+Line_2 $$ private synchronized void addCertificate(Object pemObject) throws CertificateException --> Line_8 $$ throw new UnsupportedOperationException("Expected X509 certificate, got " + pemObject.getClass()) [FD]

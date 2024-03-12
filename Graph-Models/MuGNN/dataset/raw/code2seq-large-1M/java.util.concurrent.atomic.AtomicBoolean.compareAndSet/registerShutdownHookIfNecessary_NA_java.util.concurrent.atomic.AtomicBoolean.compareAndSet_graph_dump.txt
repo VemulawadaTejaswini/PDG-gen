@@ -1,0 +1,7 @@
+Line_2 $$ private void registerShutdownHookIfNecessary(Environment environment, LoggingSystem loggingSystem) --> Line_3 $$ boolean registerShutdownHook = environment.getProperty(REGISTER_SHUTDOWN_HOOK_PROPERTY, Boolean.class, false) [FD]
+Line_2 $$ private void registerShutdownHookIfNecessary(Environment environment, LoggingSystem loggingSystem) --> Line_3 $$ boolean registerShutdownHook = environment.getProperty(REGISTER_SHUTDOWN_HOOK_PROPERTY, Boolean.class, false) [CD]
+Line_2 $$ private void registerShutdownHookIfNecessary(Environment environment, LoggingSystem loggingSystem) --> Line_4 $$ if (registerShutdownHook) [CD]
+Line_4 $$ if (registerShutdownHook) --> Line_5 $$ Runnable shutdownHandler = loggingSystem.getShutdownHandler() [CD]
+Line_2 $$ private void registerShutdownHookIfNecessary(Environment environment, LoggingSystem loggingSystem) --> Line_5 $$ Runnable shutdownHandler = loggingSystem.getShutdownHandler() [FD]
+Line_4 $$ if (registerShutdownHook) --> Line_6 $$ if (shutdownHandler != null && shutdownHookRegistered.compareAndSet(false, true)) [CD]
+Line_6 $$ if (shutdownHandler != null && shutdownHookRegistered.compareAndSet(false, true)) --> Line_7 $$ registerShutdownHook(new Thread(shutdownHandler)) [CD]

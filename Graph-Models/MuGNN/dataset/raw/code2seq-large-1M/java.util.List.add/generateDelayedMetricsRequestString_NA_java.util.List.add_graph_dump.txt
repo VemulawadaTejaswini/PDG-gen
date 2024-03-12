@@ -1,0 +1,7 @@
+Line_2 $$ private String generateDelayedMetricsRequestString(String... metricNames) throws IOException --> Line_3 $$ long delayedTime = new DefaultClockImpl().now().getMillis() - 100 - Configuration.getInstance().getLongProperty(CoreConfig.ROLLUP_DELAY_MILLIS) [CD]
+Line_2 $$ private String generateDelayedMetricsRequestString(String... metricNames) throws IOException --> Line_4 $$ List<String> jsonMetrics = new ArrayList() [CD]
+Line_4 $$ List<String> jsonMetrics = new ArrayList() --> Line_6 $$ jsonMetrics.add(createRequestBody(metricName, delayedTime, 24 * 60 * 60, 1)) [FD]
+Line_5 $$ for (String metricName : metricNames) --> Line_6 $$ jsonMetrics.add(createRequestBody(metricName, delayedTime, 24 * 60 * 60, 1)) [FD]
+Line_3 $$ long delayedTime = new DefaultClockImpl().now().getMillis() - 100 - Configuration.getInstance().getLongProperty(CoreConfig.ROLLUP_DELAY_MILLIS) --> Line_6 $$ jsonMetrics.add(createRequestBody(metricName, delayedTime, 24 * 60 * 60, 1)) [FD]
+Line_2 $$ private String generateDelayedMetricsRequestString(String... metricNames) throws IOException --> Line_8 $$ return "[" + StringUtils.join(jsonMetrics, ",") + "]" [CD]
+Line_4 $$ List<String> jsonMetrics = new ArrayList() --> Line_8 $$ return "[" + StringUtils.join(jsonMetrics, ",") + "]" [FD]

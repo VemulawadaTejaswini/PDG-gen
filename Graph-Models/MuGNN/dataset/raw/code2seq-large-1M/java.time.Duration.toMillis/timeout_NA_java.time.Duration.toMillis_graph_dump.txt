@@ -1,0 +1,7 @@
+Line_2 $$ public final Mono<T> timeout(Duration timeout, @Nullable Mono<? extends T> fallback, Scheduler timer) --> Line_3 $$ final Mono<Long> _timer = Mono.delay(timeout, timer).onErrorReturn(0L) [FD]
+Line_2 $$ public final Mono<T> timeout(Duration timeout, @Nullable Mono<? extends T> fallback, Scheduler timer) --> Line_3 $$ final Mono<Long> _timer = Mono.delay(timeout, timer).onErrorReturn(0L) [CD]
+Line_2 $$ public final Mono<T> timeout(Duration timeout, @Nullable Mono<? extends T> fallback, Scheduler timer) --> Line_4 $$ if (fallback == null) [FD]
+Line_2 $$ public final Mono<T> timeout(Duration timeout, @Nullable Mono<? extends T> fallback, Scheduler timer) --> Line_4 $$ if (fallback == null) [CD]
+Line_4 $$ if (fallback == null) --> Line_5 $$ return onAssembly(new MonoTimeout(this, _timer, timeout.toMillis() + "ms")) [CD]
+Line_2 $$ public final Mono<T> timeout(Duration timeout, @Nullable Mono<? extends T> fallback, Scheduler timer) --> Line_5 $$ return onAssembly(new MonoTimeout(this, _timer, timeout.toMillis() + "ms")) [FD]
+Line_2 $$ public final Mono<T> timeout(Duration timeout, @Nullable Mono<? extends T> fallback, Scheduler timer) --> Line_7 $$ return onAssembly(new MonoTimeout(this, _timer, fallback)) [CD]

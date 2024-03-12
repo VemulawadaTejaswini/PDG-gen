@@ -1,0 +1,7 @@
+Line_2 $$ public boolean waitWhileNotEnoughEvents(long sleepMs, int eventCount) --> Line_3 $$ long maxMillis = System.currentTimeMillis() + sleepMs [CD]
+Line_2 $$ public boolean waitWhileNotEnoughEvents(long sleepMs, int eventCount) --> Line_6 $$ while (this.events.size() < eventCount) [FD]
+Line_6 $$ while (this.events.size() < eventCount) --> Line_7 $$ long waitMillis = maxMillis - System.currentTimeMillis() [CD]
+Line_6 $$ while (this.events.size() < eventCount) --> Line_8 $$ if (waitMillis < 10) [CD]
+Line_7 $$ long waitMillis = maxMillis - System.currentTimeMillis() --> Line_8 $$ if (waitMillis < 10) [FD]
+Line_6 $$ while (this.events.size() < eventCount) --> Line_11 $$ this.CONTROL_LOCK.wait(waitMillis) [CD]
+Line_7 $$ long waitMillis = maxMillis - System.currentTimeMillis() --> Line_11 $$ this.CONTROL_LOCK.wait(waitMillis) [FD]

@@ -1,0 +1,6 @@
+Line_4 $$ WhereBuilder whereBuilder = WhereBuilder.b("expires", "<", System.currentTimeMillis()) --> Line_5 $$ List<DiskCacheEntity> rmList = cacheDb.selector(DiskCacheEntity.class).where(whereBuilder).findAll() [FD]
+Line_4 $$ WhereBuilder whereBuilder = WhereBuilder.b("expires", "<", System.currentTimeMillis()) --> Line_6 $$ cacheDb.delete(DiskCacheEntity.class, whereBuilder) [FD]
+Line_8 $$ for (DiskCacheEntity entity : rmList) --> Line_9 $$ String path = entity.getPath() [FD]
+Line_9 $$ String path = entity.getPath() --> Line_10 $$ if (!TextUtils.isEmpty(path)) [FD]
+Line_10 $$ if (!TextUtils.isEmpty(path)) --> Line_11 $$ deleteFileWithLock(path) [CD]
+Line_9 $$ String path = entity.getPath() --> Line_11 $$ deleteFileWithLock(path) [FD]

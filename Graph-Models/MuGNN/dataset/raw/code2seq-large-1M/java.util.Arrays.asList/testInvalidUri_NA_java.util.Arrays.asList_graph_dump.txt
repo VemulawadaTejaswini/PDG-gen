@@ -1,0 +1,8 @@
+Line_2 $$ public void testInvalidUri() throws Exception --> Line_3 $$ AerospikeDTarget config = getDefaultConfig() [CD]
+Line_2 $$ public void testInvalidUri() throws Exception --> Line_4 $$ config.aerospikeBeanConfig.connectionString = Arrays.asList("xxx:abc") [CD]
+Line_2 $$ public void testInvalidUri() throws Exception --> Line_5 $$ Target target = config.createTarget() [CD]
+Line_3 $$ AerospikeDTarget config = getDefaultConfig() --> Line_5 $$ Target target = config.createTarget() [FD]
+Line_2 $$ public void testInvalidUri() throws Exception --> Line_6 $$ TargetRunner runner = new TargetRunner.Builder(AerospikeDTarget.class, target).setOnRecordError(OnRecordError.TO_ERROR).build() [CD]
+Line_2 $$ public void testInvalidUri() throws Exception --> Line_7 $$ List<Target.ConfigIssue> issues = runner.runValidateConfigs() [CD]
+Line_2 $$ public void testInvalidUri() throws Exception --> Line_8 $$ assertTrue("Issues contains invalid uri error", issues.stream().anyMatch( configIssue -> configIssue.toString().contains("AEROSPIKE_02"))) [CD]
+Line_7 $$ List<Target.ConfigIssue> issues = runner.runValidateConfigs() --> Line_8 $$ assertTrue("Issues contains invalid uri error", issues.stream().anyMatch( configIssue -> configIssue.toString().contains("AEROSPIKE_02"))) [FD]

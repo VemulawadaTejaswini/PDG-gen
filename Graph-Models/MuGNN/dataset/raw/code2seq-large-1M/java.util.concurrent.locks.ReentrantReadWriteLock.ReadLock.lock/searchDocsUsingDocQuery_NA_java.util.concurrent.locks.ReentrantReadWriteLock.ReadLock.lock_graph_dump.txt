@@ -1,0 +1,8 @@
+Line_2 $$ public <T extends Comparable<T>> void searchDocsUsingDocQuery(T termQuery, ArrayList<SemVectorResult<T>> docResult, QueryTransform<T> docTransform, int numResults) --> Line_3 $$ lock.readLock().lock() [CD]
+Line_2 $$ public <T extends Comparable<T>> void searchDocsUsingDocQuery(T termQuery, ArrayList<SemVectorResult<T>> docResult, QueryTransform<T> docTransform, int numResults) --> Line_5 $$ String docName = docTransform.toSV(termQuery) [FD]
+Line_5 $$ String docName = docTransform.toSV(termQuery) --> Line_6 $$ LinkedList<SearchResult> results = search(docName, docVecReader, docVecReader, numResults) [FD]
+Line_2 $$ public <T extends Comparable<T>> void searchDocsUsingDocQuery(T termQuery, ArrayList<SemVectorResult<T>> docResult, QueryTransform<T> docTransform, int numResults) --> Line_6 $$ LinkedList<SearchResult> results = search(docName, docVecReader, docVecReader, numResults) [FD]
+Line_7 $$ for (SearchResult r : results) --> Line_8 $$ String filename = r.getObjectVector().getObject().toString() [FD]
+Line_2 $$ public <T extends Comparable<T>> void searchDocsUsingDocQuery(T termQuery, ArrayList<SemVectorResult<T>> docResult, QueryTransform<T> docTransform, int numResults) --> Line_9 $$ docResult.add(new SemVectorResult(docTransform.fromSV(filename), r.getScore())) [FD]
+Line_8 $$ String filename = r.getObjectVector().getObject().toString() --> Line_9 $$ docResult.add(new SemVectorResult(docTransform.fromSV(filename), r.getScore())) [FD]
+Line_7 $$ for (SearchResult r : results) --> Line_9 $$ docResult.add(new SemVectorResult(docTransform.fromSV(filename), r.getScore())) [FD]

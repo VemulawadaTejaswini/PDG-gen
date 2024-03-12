@@ -1,0 +1,7 @@
+Line_2 $$ private boolean areJobsAvailable(String queueName) --> Line_3 $$ PinLaterDequeueRequest getOneJobRequest = new PinLaterDequeueRequest(queueName, 1) [CD]
+Line_2 $$ private boolean areJobsAvailable(String queueName) --> Line_4 $$ getOneJobRequest.setDryRun(true) [CD]
+Line_3 $$ PinLaterDequeueRequest getOneJobRequest = new PinLaterDequeueRequest(queueName, 1) --> Line_4 $$ getOneJobRequest.setDryRun(true) [FD]
+Line_2 $$ private boolean areJobsAvailable(String queueName) --> Line_5 $$ Map<String, ByteBuffer> jobs = getBackend().dequeueJobs("test", getOneJobRequest).get().getJobs() [CD]
+Line_3 $$ PinLaterDequeueRequest getOneJobRequest = new PinLaterDequeueRequest(queueName, 1) --> Line_5 $$ Map<String, ByteBuffer> jobs = getBackend().dequeueJobs("test", getOneJobRequest).get().getJobs() [FD]
+Line_2 $$ private boolean areJobsAvailable(String queueName) --> Line_6 $$ return jobs != null && jobs.size() > 0 [CD]
+Line_5 $$ Map<String, ByteBuffer> jobs = getBackend().dequeueJobs("test", getOneJobRequest).get().getJobs() --> Line_6 $$ return jobs != null && jobs.size() > 0 [FD]

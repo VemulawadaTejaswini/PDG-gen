@@ -1,0 +1,7 @@
+Line_2 $$ public void testResilienceStrategyFromTemplate() throws Exception --> Line_3 $$ final URL resource = XmlConfigurationTest.class.getResource("/configs/resilience-config.xml") [CD]
+Line_2 $$ public void testResilienceStrategyFromTemplate() throws Exception --> Line_4 $$ XmlConfiguration xmlConfig = new XmlConfiguration(resource) [CD]
+Line_2 $$ public void testResilienceStrategyFromTemplate() throws Exception --> Line_5 $$ CacheConfiguration<?, ?> cacheConfig = xmlConfig.getCacheConfigurations().get("shrubbery") [CD]
+Line_4 $$ XmlConfiguration xmlConfig = new XmlConfiguration(resource) --> Line_5 $$ CacheConfiguration<?, ?> cacheConfig = xmlConfig.getCacheConfigurations().get("shrubbery") [FD]
+Line_2 $$ public void testResilienceStrategyFromTemplate() throws Exception --> Line_6 $$ DefaultResilienceStrategyConfiguration resilienceStrategyConfiguration = findSingletonAmongst(DefaultResilienceStrategyConfiguration.class, cacheConfig.getServiceConfigurations()) [CD]
+Line_5 $$ CacheConfiguration<?, ?> cacheConfig = xmlConfig.getCacheConfigurations().get("shrubbery") --> Line_6 $$ DefaultResilienceStrategyConfiguration resilienceStrategyConfiguration = findSingletonAmongst(DefaultResilienceStrategyConfiguration.class, cacheConfig.getServiceConfigurations()) [FD]
+Line_2 $$ public void testResilienceStrategyFromTemplate() throws Exception --> Line_7 $$ assertThat(resilienceStrategyConfiguration.getClazz(), sameInstance(ShrubberyResilience.class)) [CD]

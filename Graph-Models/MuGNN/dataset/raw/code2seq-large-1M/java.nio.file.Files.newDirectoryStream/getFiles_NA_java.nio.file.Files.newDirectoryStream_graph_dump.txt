@@ -1,0 +1,8 @@
+Line_2 $$ private static List<File> getFiles(Path dirPath, String extension, String regressionBasename, String errorBasename) --> Line_3 $$ List<File> files = new ArrayList() [CD]
+Line_2 $$ private static List<File> getFiles(Path dirPath, String extension, String regressionBasename, String errorBasename) --> Line_4 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirPath, extension)) [FD]
+Line_5 $$ for (Path entry : stream) --> Line_6 $$ String filename = entry.getFileName().toString() [FD]
+Line_6 $$ String filename = entry.getFileName().toString() --> Line_7 $$ assertThat("Test class filename should start with basename", filename, is(anyOf(startsWith(regressionBasename), startsWith(errorBasename)))) [FD]
+Line_2 $$ private static List<File> getFiles(Path dirPath, String extension, String regressionBasename, String errorBasename) --> Line_7 $$ assertThat("Test class filename should start with basename", filename, is(anyOf(startsWith(regressionBasename), startsWith(errorBasename)))) [FD]
+Line_3 $$ List<File> files = new ArrayList() --> Line_8 $$ files.add(entry.toFile()) [FD]
+Line_5 $$ for (Path entry : stream) --> Line_8 $$ files.add(entry.toFile()) [FD]
+Line_2 $$ private static List<File> getFiles(Path dirPath, String extension, String regressionBasename, String errorBasename) --> Line_13 $$ return files [CD]

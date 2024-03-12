@@ -1,0 +1,8 @@
+Line_2 $$ private List<FileToPack> getUploadsFolderFiles() --> Line_3 $$ String uploadFolder = Common.ctx.getServletContext().getRealPath(FILE_SEPARATOR) + "uploads" [CD]
+Line_2 $$ private List<FileToPack> getUploadsFolderFiles() --> Line_4 $$ List<File> files = FileUtil.getFilesOnDirectory(uploadFolder) [CD]
+Line_3 $$ String uploadFolder = Common.ctx.getServletContext().getRealPath(FILE_SEPARATOR) + "uploads" --> Line_4 $$ List<File> files = FileUtil.getFilesOnDirectory(uploadFolder) [FD]
+Line_2 $$ private List<FileToPack> getUploadsFolderFiles() --> Line_5 $$ List<FileToPack> pack = new ArrayList<FileToPack>() [CD]
+Line_6 $$ for (File file : files) --> Line_7 $$ String filePartialPath = uploadsFolder + file.getName() [FD]
+Line_5 $$ List<FileToPack> pack = new ArrayList<FileToPack>() --> Line_8 $$ pack.add(new FileToPack(filePartialPath.substring(0, 7) + FILE_SEPARATOR + filePartialPath.substring(8), file)) [FD]
+Line_7 $$ String filePartialPath = uploadsFolder + file.getName() --> Line_8 $$ pack.add(new FileToPack(filePartialPath.substring(0, 7) + FILE_SEPARATOR + filePartialPath.substring(8), file)) [FD]
+Line_2 $$ private List<FileToPack> getUploadsFolderFiles() --> Line_10 $$ return pack [CD]

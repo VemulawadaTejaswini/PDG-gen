@@ -1,0 +1,8 @@
+Line_2 $$ private DeferredResult<Void> deleteComponents(RequestContext context, List<String> componentLinks) --> Line_3 $$ if (componentLinks == null || componentLinks.isEmpty()) [CD]
+Line_2 $$ private DeferredResult<Void> deleteComponents(RequestContext context, List<String> componentLinks) --> Line_3 $$ if (componentLinks == null || componentLinks.isEmpty()) [FD]
+Line_3 $$ if (componentLinks == null || componentLinks.isEmpty()) --> Line_4 $$ return DeferredResult.completed(null) [CD]
+Line_2 $$ private DeferredResult<Void> deleteComponents(RequestContext context, List<String> componentLinks) --> Line_6 $$ List<DeferredResult<Void>> operations = componentLinks.stream().map( link -> [CD]
+Line_2 $$ private DeferredResult<Void> deleteComponents(RequestContext context, List<String> componentLinks) --> Line_6 $$ List<DeferredResult<Void>> operations = componentLinks.stream().map( link -> [FD]
+Line_2 $$ private DeferredResult<Void> deleteComponents(RequestContext context, List<String> componentLinks) --> Line_7 $$ return getState(context, link).thenCompose( state -> deleteKubernetesEntity(context, state)).thenCompose( ignore -> deleteState(link)) [FD]
+Line_2 $$ private DeferredResult<Void> deleteComponents(RequestContext context, List<String> componentLinks) --> Line_9 $$ return DeferredResult.allOf(operations).thenAccept( ignore -> [CD]
+Line_6 $$ List<DeferredResult<Void>> operations = componentLinks.stream().map( link -> --> Line_9 $$ return DeferredResult.allOf(operations).thenAccept( ignore -> [FD]

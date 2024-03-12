@@ -1,0 +1,6 @@
+Line_2 $$ private void completeWindow(long frameTs) --> Line_3 $$ long frameToEvict = frameTs - winPolicy.windowSize() + winPolicy.frameSize() [CD]
+Line_2 $$ private void completeWindow(long frameTs) --> Line_4 $$ Map<K, A> evictedFrame = tsToKeyToAcc.remove(frameToEvict) [CD]
+Line_3 $$ long frameToEvict = frameTs - winPolicy.windowSize() + winPolicy.frameSize() --> Line_4 $$ Map<K, A> evictedFrame = tsToKeyToAcc.remove(frameToEvict) [FD]
+Line_2 $$ private void completeWindow(long frameTs) --> Line_5 $$ if (!winPolicy.isTumbling() && aggrOp.deductFn() != null) [CD]
+Line_5 $$ if (!winPolicy.isTumbling() && aggrOp.deductFn() != null) --> Line_6 $$ patchSlidingWindow(aggrOp.deductFn(), evictedFrame) [CD]
+Line_4 $$ Map<K, A> evictedFrame = tsToKeyToAcc.remove(frameToEvict) --> Line_6 $$ patchSlidingWindow(aggrOp.deductFn(), evictedFrame) [FD]

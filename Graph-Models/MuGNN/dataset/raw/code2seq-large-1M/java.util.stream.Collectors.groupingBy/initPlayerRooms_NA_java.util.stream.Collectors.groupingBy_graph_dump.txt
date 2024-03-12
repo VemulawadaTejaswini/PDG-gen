@@ -1,0 +1,5 @@
+Line_2 $$ private void initPlayerRooms() --> Line_3 $$ Map<Short, List<Entry<RoomInstance, GenericRoom>>> playerRooms = mapLoader.getRoomActuals().entrySet().stream().collect(Collectors.groupingBy( entry -> entry.getKey().getOwnerId())) [CD]
+Line_4 $$ for (Keeper player : gameState.getPlayers()) --> Line_5 $$ List<Entry<RoomInstance, GenericRoom>> rooms = playerRooms.get(player.getId()) [FD]
+Line_6 $$ if (rooms != null) --> Line_7 $$ player.getRoomControl().init(rooms) [CD]
+Line_4 $$ for (Keeper player : gameState.getPlayers()) --> Line_7 $$ player.getRoomControl().init(rooms) [FD]
+Line_4 $$ for (Keeper player : gameState.getPlayers()) --> Line_9 $$ addListener(player.getId(), player.getRoomControl()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void cacheThreadLocalRawStore() --> Line_3 $$ Long threadId = this.getId() [CD]
+Line_2 $$ public void cacheThreadLocalRawStore() --> Line_4 $$ RawStore threadLocalRawStore = HiveMetaStore.HMSHandler.getRawStore() [CD]
+Line_2 $$ public void cacheThreadLocalRawStore() --> Line_5 $$ if (threadLocalRawStore != null && !threadRawStoreMap.containsKey(threadId)) [CD]
+Line_3 $$ Long threadId = this.getId() --> Line_5 $$ if (threadLocalRawStore != null && !threadRawStoreMap.containsKey(threadId)) [FD]
+Line_5 $$ if (threadLocalRawStore != null && !threadRawStoreMap.containsKey(threadId)) --> Line_6 $$ LOG.debug("Adding RawStore: " + threadLocalRawStore + ", for the thread: " + this.getName() + " to threadRawStoreMap for future cleanup.") [CD]
+Line_5 $$ if (threadLocalRawStore != null && !threadRawStoreMap.containsKey(threadId)) --> Line_7 $$ threadRawStoreMap.put(threadId, threadLocalRawStore) [CD]
+Line_3 $$ Long threadId = this.getId() --> Line_7 $$ threadRawStoreMap.put(threadId, threadLocalRawStore) [FD]
+Line_4 $$ RawStore threadLocalRawStore = HiveMetaStore.HMSHandler.getRawStore() --> Line_7 $$ threadRawStoreMap.put(threadId, threadLocalRawStore) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public List<Menu> findAvailableMenus() --> Line_3 $$ List<Menu> allMenus = findAllCached() [CD]
+Line_2 $$ public List<Menu> findAvailableMenus() --> Line_4 $$ List<Menu> disabledMenus = allMenus.stream().filter( one -> one.getDisabled()).collect(Collectors.toList()) [CD]
+Line_3 $$ List<Menu> allMenus = findAllCached() --> Line_4 $$ List<Menu> disabledMenus = allMenus.stream().filter( one -> one.getDisabled()).collect(Collectors.toList()) [FD]
+Line_2 $$ public List<Menu> findAvailableMenus() --> Line_5 $$ List<Menu> availableMenus = allMenus.stream().filter( one -> [CD]
+Line_3 $$ List<Menu> allMenus = findAllCached() --> Line_5 $$ List<Menu> availableMenus = allMenus.stream().filter( one -> [FD]
+Line_4 $$ List<Menu> disabledMenus = allMenus.stream().filter( one -> one.getDisabled()).collect(Collectors.toList()) --> Line_6 $$ return disabledMenus.stream().noneMatch( disabledMenu -> one.getLft() >= disabledMenu.getLft() && one.getRgt() <= disabledMenu.getRgt()) [FD]
+Line_2 $$ public List<Menu> findAvailableMenus() --> Line_8 $$ return availableMenus [CD]

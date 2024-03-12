@@ -1,0 +1,8 @@
+Line_4 $$ if (runtime == RUNTIME_UNKNOW) --> Line_5 $$ runtime = getRuntime() [CD]
+Line_7 $$ if (runtime == RUNTIME_DALVIK) --> Line_8 $$ Method m = XposedHelpers.findMethodExact(obj.getClass().getSuperclass(), method.getName(), ((Method) method).getParameterTypes()) [CD]
+Line_2 $$ public static Object invokeSuper(Object obj, Member method, Object... args) throws NoSuchFieldException --> Line_8 $$ Method m = XposedHelpers.findMethodExact(obj.getClass().getSuperclass(), method.getName(), ((Method) method).getParameterTypes()) [FD]
+Line_7 $$ if (runtime == RUNTIME_DALVIK) --> Line_9 $$ slot = (int) getIntField(m, "slot") [CD]
+Line_6 $$ int slot = 0 --> Line_9 $$ slot = (int) getIntField(m, "slot") [FD]
+Line_2 $$ public static Object invokeSuper(Object obj, Member method, Object... args) throws NoSuchFieldException --> Line_11 $$ return invokeSuperNative(obj, args, method, method.getDeclaringClass(), ((Method) method).getParameterTypes(), ((Method) method).getReturnType(), slot) [FD]
+Line_6 $$ int slot = 0 --> Line_11 $$ return invokeSuperNative(obj, args, method, method.getDeclaringClass(), ((Method) method).getParameterTypes(), ((Method) method).getReturnType(), slot) [FD]
+Line_9 $$ slot = (int) getIntField(m, "slot") --> Line_11 $$ return invokeSuperNative(obj, args, method, method.getDeclaringClass(), ((Method) method).getParameterTypes(), ((Method) method).getReturnType(), slot) [FD]

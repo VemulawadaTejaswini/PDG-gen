@@ -1,0 +1,7 @@
+Line_2 $$ public void testExportTableWithNonMappedColumn_Bugzilla_61281() throws Exception --> Line_3 $$ XSSFWorkbook wb = XSSFTestDataSamples.openSampleWorkbook("61281.xlsx") [CD]
+Line_3 $$ XSSFWorkbook wb = XSSFTestDataSamples.openSampleWorkbook("61281.xlsx") --> Line_4 $$ for (XSSFMap map : wb.getCustomXMLMappings()) [FD]
+Line_5 $$ XSSFExportToXml exporter = new XSSFExportToXml(map) --> Line_7 $$ exporter.exportToXML(bos, true) [FD]
+Line_6 $$ ByteArrayOutputStream bos = new ByteArrayOutputStream() --> Line_7 $$ exporter.exportToXML(bos, true) [FD]
+Line_6 $$ ByteArrayOutputStream bos = new ByteArrayOutputStream() --> Line_8 $$ assertNotNull(DocumentHelper.readDocument(new ByteArrayInputStream(bos.toByteArray()))) [FD]
+Line_6 $$ ByteArrayOutputStream bos = new ByteArrayOutputStream() --> Line_9 $$ String exportedXml = bos.toString("UTF-8") [FD]
+Line_9 $$ String exportedXml = bos.toString("UTF-8") --> Line_10 $$ assertEquals("<Test><Test>1</Test></Test>", exportedXml.replaceAll("\\s+", "")) [FD]

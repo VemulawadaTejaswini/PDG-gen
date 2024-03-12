@@ -1,0 +1,8 @@
+Line_2 $$ boolean shouldAttempt() --> Line_3 $$ int attempts = 0 [CD]
+Line_2 $$ boolean shouldAttempt() --> Line_4 $$ LocalDateTime now = now() [CD]
+Line_5 $$ for (LocalDateTime attempt : lastAttemptTimes) --> Line_6 $$ long age = Duration.between(attempt, now).toMillis() [FD]
+Line_4 $$ LocalDateTime now = now() --> Line_6 $$ long age = Duration.between(attempt, now).toMillis() [FD]
+Line_6 $$ long age = Duration.between(attempt, now).toMillis() --> Line_7 $$ if (age < retryPeriod) [FD]
+Line_7 $$ if (age < retryPeriod) --> Line_8 $$ attempts++ [CD]
+Line_3 $$ int attempts = 0 --> Line_8 $$ attempts++ [FD]
+Line_2 $$ boolean shouldAttempt() --> Line_12 $$ return attempts <= maxAttempts [CD]

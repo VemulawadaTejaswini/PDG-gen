@@ -1,0 +1,8 @@
+Line_2 $$ public Environment findOne(String application, String env, String label) --> Line_3 $$ Environment result = new Environment(application, StringUtils.commaDelimitedListToStringArray(env), label, null, null) [CD]
+Line_2 $$ public Environment findOne(String application, String env, String label) --> Line_3 $$ Environment result = new Environment(application, StringUtils.commaDelimitedListToStringArray(env), label, null, null) [FD]
+Line_4 $$ for (org.springframework.core.env.PropertySource<?> source : this.environment.getPropertySources()) --> Line_5 $$ String name = source.getName() [FD]
+Line_5 $$ String name = source.getName() --> Line_6 $$ if (!this.standardSources.contains(name) && source instanceof MapPropertySource) [FD]
+Line_6 $$ if (!this.standardSources.contains(name) && source instanceof MapPropertySource) --> Line_7 $$ result.add(new PropertySource(name, getMap(source))) [CD]
+Line_3 $$ Environment result = new Environment(application, StringUtils.commaDelimitedListToStringArray(env), label, null, null) --> Line_7 $$ result.add(new PropertySource(name, getMap(source))) [FD]
+Line_4 $$ for (org.springframework.core.env.PropertySource<?> source : this.environment.getPropertySources()) --> Line_7 $$ result.add(new PropertySource(name, getMap(source))) [FD]
+Line_2 $$ public Environment findOne(String application, String env, String label) --> Line_10 $$ return result [CD]

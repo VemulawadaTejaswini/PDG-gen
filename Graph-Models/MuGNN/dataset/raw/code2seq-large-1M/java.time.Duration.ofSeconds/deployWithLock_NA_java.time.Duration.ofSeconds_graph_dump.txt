@@ -1,0 +1,7 @@
+Line_2 $$ final void deployWithLock(ApplicationId application) --> Line_3 $$ try (Mutex lock = nodeRepository().lock(application, Duration.ofSeconds(1))) [FD]
+Line_2 $$ final void deployWithLock(ApplicationId application) --> Line_4 $$ if (!isActive(application)) [FD]
+Line_4 $$ if (!isActive(application)) --> Line_5 $$ return [CD]
+Line_2 $$ final void deployWithLock(ApplicationId application) --> Line_6 $$ Optional<Deployment> deployment = deployer.deployFromLocalActive(application) [FD]
+Line_6 $$ Optional<Deployment> deployment = deployer.deployFromLocalActive(application) --> Line_7 $$ if (!deployment.isPresent()) [FD]
+Line_7 $$ if (!deployment.isPresent()) --> Line_8 $$ return [CD]
+Line_6 $$ Optional<Deployment> deployment = deployer.deployFromLocalActive(application) --> Line_9 $$ deployment.get().activate() [FD]

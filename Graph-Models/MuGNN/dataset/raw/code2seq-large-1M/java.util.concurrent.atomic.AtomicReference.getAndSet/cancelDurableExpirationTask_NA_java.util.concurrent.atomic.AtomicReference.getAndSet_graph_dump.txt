@@ -1,0 +1,8 @@
+Line_2 $$ protected void cancelDurableExpirationTask(boolean logMessage) --> Line_3 $$ SystemTimer.SystemTimerTask task = (SystemTimerTask) _durableExpirationTask.getAndSet(null) [CD]
+Line_2 $$ protected void cancelDurableExpirationTask(boolean logMessage) --> Line_4 $$ if (task != null) [CD]
+Line_3 $$ SystemTimer.SystemTimerTask task = (SystemTimerTask) _durableExpirationTask.getAndSet(null) --> Line_4 $$ if (task != null) [FD]
+Line_4 $$ if (task != null) --> Line_5 $$ if (logMessage) [CD]
+Line_5 $$ if (logMessage) --> Line_6 $$ logger.info(LocalizedMessage.create(LocalizedStrings.CacheClientProxy_0_CANCELLING_EXPIRATION_TASK_SINCE_THE_CLIENT_HAS_RECONNECTED, this)) [CD]
+Line_4 $$ if (task != null) --> Line_8 $$ if (task.cancel()) [CD]
+Line_3 $$ SystemTimer.SystemTimerTask task = (SystemTimerTask) _durableExpirationTask.getAndSet(null) --> Line_8 $$ if (task.cancel()) [FD]
+Line_8 $$ if (task.cancel()) --> Line_9 $$ _cache.purgeCCPTimer() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testOutputStreamInterface() throws IOException --> Line_3 $$ final LeakyBucketStreamThrottler throttler = new LeakyBucketStreamThrottler(1024 * 1024) [CD]
+Line_2 $$ public void testOutputStreamInterface() throws IOException --> Line_4 $$ final byte[] data = new byte[1024 * 1024 * 4] [CD]
+Line_2 $$ public void testOutputStreamInterface() throws IOException --> Line_5 $$ final ByteArrayOutputStream baos = new ByteArrayOutputStream() [CD]
+Line_3 $$ final LeakyBucketStreamThrottler throttler = new LeakyBucketStreamThrottler(1024 * 1024) --> Line_6 $$ try (final OutputStream throttledOut = throttler.newThrottledOutputStream(baos)) [FD]
+Line_5 $$ final ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_6 $$ try (final OutputStream throttledOut = throttler.newThrottledOutputStream(baos)) [FD]
+Line_6 $$ try (final OutputStream throttledOut = throttler.newThrottledOutputStream(baos)) --> Line_8 $$ throttledOut.write(data) [FD]
+Line_4 $$ final byte[] data = new byte[1024 * 1024 * 4] --> Line_8 $$ throttledOut.write(data) [FD]
+Line_3 $$ final LeakyBucketStreamThrottler throttler = new LeakyBucketStreamThrottler(1024 * 1024) --> Line_9 $$ throttler.close() [FD]

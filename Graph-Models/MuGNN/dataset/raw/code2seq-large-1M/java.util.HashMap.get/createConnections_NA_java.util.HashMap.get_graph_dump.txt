@@ -1,0 +1,7 @@
+Line_2 $$ private void createConnections(Map<String, Bolt> bolts, ListenableDirectedGraph<NamedNode, DefaultEdge> ret) --> Line_3 $$ for (final Entry<String, Bolt> boltspec : bolts.entrySet()) [FD]
+Line_4 $$ final Bolt bolt = boltspec.getValue() --> Line_6 $$ final Map<GlobalStreamId, Grouping> inputs = bolt.get_common().get_inputs() [FD]
+Line_6 $$ final Map<GlobalStreamId, Grouping> inputs = bolt.get_common().get_inputs() --> Line_7 $$ for (final Entry<GlobalStreamId, Grouping> input : inputs.entrySet()) [FD]
+Line_8 $$ final GlobalStreamId from = input.getKey() --> Line_9 $$ final String fromId = from.get_componentId() [FD]
+Line_2 $$ private void createConnections(Map<String, Bolt> bolts, ListenableDirectedGraph<NamedNode, DefaultEdge> ret) --> Line_10 $$ ret.addEdge(nns.get(fromId), nns.get(id)) [FD]
+Line_9 $$ final String fromId = from.get_componentId() --> Line_10 $$ ret.addEdge(nns.get(fromId), nns.get(id)) [FD]
+Line_5 $$ final String id = boltspec.getKey() --> Line_10 $$ ret.addEdge(nns.get(fromId), nns.get(id)) [FD]

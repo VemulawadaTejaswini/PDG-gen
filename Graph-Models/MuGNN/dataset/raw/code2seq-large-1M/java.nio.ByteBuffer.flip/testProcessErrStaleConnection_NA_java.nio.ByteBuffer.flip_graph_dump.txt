@@ -1,0 +1,7 @@
+Line_2 $$ public void testProcessErrStaleConnection() throws Exception --> Line_3 $$ final CountDownLatch ccbLatch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testProcessErrStaleConnection() throws Exception --> Line_4 $$ ClosedCallback ccb = new ClosedCallback() [CD]
+Line_4 $$ ClosedCallback ccb = new ClosedCallback() --> Line_6 $$ ccbLatch.countDown() [CD]
+Line_3 $$ final CountDownLatch ccbLatch = new CountDownLatch(1) --> Line_6 $$ ccbLatch.countDown() [FD]
+Line_2 $$ public void testProcessErrStaleConnection() throws Exception --> Line_9 $$ Options opts = new Options.Builder().noReconnect().closedCb(ccb).factory(newMockedTcpConnectionFactory()).build() [CD]
+Line_4 $$ ClosedCallback ccb = new ClosedCallback() --> Line_9 $$ Options opts = new Options.Builder().noReconnect().closedCb(ccb).factory(newMockedTcpConnectionFactory()).build() [FD]
+Line_3 $$ final CountDownLatch ccbLatch = new CountDownLatch(1) --> Line_16 $$ assertTrue("Closed callback should have fired", await(ccbLatch)) [FD]

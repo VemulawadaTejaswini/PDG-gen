@@ -1,0 +1,7 @@
+Line_2 $$ public static void acquireWakeLockNow(Context context) --> Line_3 $$ if (sWakeLock == null || !sWakeLock.isHeld()) [CD]
+Line_3 $$ if (sWakeLock == null || !sWakeLock.isHeld()) --> Line_4 $$ PowerManager powerManager = Assertions.assertNotNull((PowerManager) context.getSystemService(POWER_SERVICE)) [CD]
+Line_2 $$ public static void acquireWakeLockNow(Context context) --> Line_4 $$ PowerManager powerManager = Assertions.assertNotNull((PowerManager) context.getSystemService(POWER_SERVICE)) [FD]
+Line_3 $$ if (sWakeLock == null || !sWakeLock.isHeld()) --> Line_5 $$ sWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, HeadlessJsTaskService.class.getSimpleName()) [CD]
+Line_4 $$ PowerManager powerManager = Assertions.assertNotNull((PowerManager) context.getSystemService(POWER_SERVICE)) --> Line_5 $$ sWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, HeadlessJsTaskService.class.getSimpleName()) [FD]
+Line_3 $$ if (sWakeLock == null || !sWakeLock.isHeld()) --> Line_6 $$ sWakeLock.setReferenceCounted(false) [CD]
+Line_3 $$ if (sWakeLock == null || !sWakeLock.isHeld()) --> Line_7 $$ sWakeLock.acquire() [CD]

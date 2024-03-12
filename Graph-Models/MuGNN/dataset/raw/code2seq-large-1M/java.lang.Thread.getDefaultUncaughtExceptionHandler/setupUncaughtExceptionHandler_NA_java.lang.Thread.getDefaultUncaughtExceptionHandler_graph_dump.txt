@@ -1,0 +1,8 @@
+Line_2 $$ private void setupUncaughtExceptionHandler() --> Line_3 $$ UncaughtExceptionHandler currentHandler = Thread.getDefaultUncaughtExceptionHandler() [CD]
+Line_2 $$ private void setupUncaughtExceptionHandler() --> Line_4 $$ if (currentHandler != null) [CD]
+Line_3 $$ UncaughtExceptionHandler currentHandler = Thread.getDefaultUncaughtExceptionHandler() --> Line_4 $$ if (currentHandler != null) [FD]
+Line_4 $$ if (currentHandler != null) --> Line_5 $$ log("current handler class=" + currentHandler.getClass().getName()) [CD]
+Line_3 $$ UncaughtExceptionHandler currentHandler = Thread.getDefaultUncaughtExceptionHandler() --> Line_5 $$ log("current handler class=" + currentHandler.getClass().getName()) [FD]
+Line_2 $$ private void setupUncaughtExceptionHandler() --> Line_7 $$ if (!(currentHandler instanceof SentryUncaughtExceptionHandler)) [CD]
+Line_7 $$ if (!(currentHandler instanceof SentryUncaughtExceptionHandler)) --> Line_8 $$ Thread.setDefaultUncaughtExceptionHandler(new SentryUncaughtExceptionHandler(currentHandler, InternalStorage.getInstance())) [CD]
+Line_2 $$ private void setupUncaughtExceptionHandler() --> Line_10 $$ sendAllCachedCapturedEvents() [CD]

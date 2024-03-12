@@ -1,0 +1,6 @@
+Line_2 $$ public void markEventsAsPublished(List<EVENT> events) --> Line_3 $$ List<ID> ids = events.stream().map( message -> pollingDataParser.getId(message)).collect(Collectors.toList()) [FD]
+Line_2 $$ public void markEventsAsPublished(List<EVENT> events) --> Line_3 $$ List<ID> ids = events.stream().map( message -> pollingDataParser.getId(message)).collect(Collectors.toList()) [CD]
+Line_2 $$ public void markEventsAsPublished(List<EVENT> events) --> Line_4 $$ String query = String.format("UPDATE %s SET %s = 1 WHERE %s in (:ids)", pollingDataParser.table(), pollingDataParser.publishedField(), pollingDataParser.idField()) [CD]
+Line_2 $$ public void markEventsAsPublished(List<EVENT> events) --> Line_5 $$ handleConnectionLost(() -> namedParameterJdbcTemplate.update(query, ImmutableMap.of("ids", ids))) [CD]
+Line_4 $$ String query = String.format("UPDATE %s SET %s = 1 WHERE %s in (:ids)", pollingDataParser.table(), pollingDataParser.publishedField(), pollingDataParser.idField()) --> Line_5 $$ handleConnectionLost(() -> namedParameterJdbcTemplate.update(query, ImmutableMap.of("ids", ids))) [FD]
+Line_3 $$ List<ID> ids = events.stream().map( message -> pollingDataParser.getId(message)).collect(Collectors.toList()) --> Line_5 $$ handleConnectionLost(() -> namedParameterJdbcTemplate.update(query, ImmutableMap.of("ids", ids))) [FD]

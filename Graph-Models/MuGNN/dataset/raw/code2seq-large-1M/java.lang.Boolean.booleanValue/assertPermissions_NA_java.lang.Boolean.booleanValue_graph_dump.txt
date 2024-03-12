@@ -1,0 +1,7 @@
+Line_2 $$ private final void assertPermissions() --> Line_3 $$ final IUserRolePermissions permissions = Services.get(IUserRolePermissionsDAO.class).retrieveUserRolePermissions(pi.getAD_Role_ID(), pi.getAD_User_ID(), pi.getAD_Client_ID(), Env.getDate(pi.getCtx())) [CD]
+Line_2 $$ private final void assertPermissions() --> Line_8 $$ if (permissions.getAD_Role_ID() > 0) [CD]
+Line_8 $$ if (permissions.getAD_Role_ID() > 0) --> Line_9 $$ final int adProcessId = pi.getAD_Process_ID() [CD]
+Line_8 $$ if (permissions.getAD_Role_ID() > 0) --> Line_10 $$ final Boolean access = permissions.getProcessAccess(adProcessId) [CD]
+Line_9 $$ final int adProcessId = pi.getAD_Process_ID() --> Line_10 $$ final Boolean access = permissions.getProcessAccess(adProcessId) [FD]
+Line_8 $$ if (permissions.getAD_Role_ID() > 0) --> Line_11 $$ if (access == null || !access.booleanValue()) [CD]
+Line_10 $$ final Boolean access = permissions.getProcessAccess(adProcessId) --> Line_11 $$ if (access == null || !access.booleanValue()) [FD]

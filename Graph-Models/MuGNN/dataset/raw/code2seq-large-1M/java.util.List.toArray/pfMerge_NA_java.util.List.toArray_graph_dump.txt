@@ -1,0 +1,5 @@
+Line_2 $$ public Flux<BooleanResponse<PfMergeCommand>> pfMerge(Publisher<PfMergeCommand> commands) --> Line_3 $$ return getConnection().execute( cmd -> Flux.from(commands).concatMap( command -> [FD]
+Line_2 $$ public Flux<BooleanResponse<PfMergeCommand>> pfMerge(Publisher<PfMergeCommand> commands) --> Line_3 $$ return getConnection().execute( cmd -> Flux.from(commands).concatMap( command -> [CD]
+Line_6 $$ List<ByteBuffer> keys = new ArrayList(command.getSourceKeys()) --> Line_7 $$ keys.add(command.getKey()) [FD]
+Line_6 $$ List<ByteBuffer> keys = new ArrayList(command.getSourceKeys()) --> Line_8 $$ if (ClusterSlotHashUtil.isSameSlotForAllKeys(keys.toArray(new ByteBuffer[keys.size()]))) [FD]
+Line_8 $$ if (ClusterSlotHashUtil.isSameSlotForAllKeys(keys.toArray(new ByteBuffer[keys.size()]))) --> Line_9 $$ return super.pfMerge(Mono.just(command)) [CD]

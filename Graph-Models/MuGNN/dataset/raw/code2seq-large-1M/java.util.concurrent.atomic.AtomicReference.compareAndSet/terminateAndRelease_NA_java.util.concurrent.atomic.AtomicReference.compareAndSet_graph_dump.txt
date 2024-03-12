@@ -1,0 +1,7 @@
+Line_2 $$ public void terminateAndRelease(String reason) --> Line_3 $$ if (status.compareAndSet(Status.OPEN, Status.TERMINATED)) [CD]
+Line_3 $$ if (status.compareAndSet(Status.OPEN, Status.TERMINATED)) --> Line_4 $$ setTerminationReason(channel, reason) [CD]
+Line_2 $$ public void terminateAndRelease(String reason) --> Line_4 $$ setTerminationReason(channel, reason) [FD]
+Line_3 $$ if (status.compareAndSet(Status.OPEN, Status.TERMINATED)) --> Line_5 $$ channel.close() [CD]
+Line_3 $$ if (status.compareAndSet(Status.OPEN, Status.TERMINATED)) --> Line_6 $$ channelPool.release(channel) [CD]
+Line_3 $$ if (status.compareAndSet(Status.OPEN, Status.TERMINATED)) --> Line_7 $$ releaseFuture.complete(null) [CD]
+Line_3 $$ if (status.compareAndSet(Status.OPEN, Status.TERMINATED)) --> Line_8 $$ metricsListener.afterConnectionReleased(this.serverAddress, this.inUseEvent) [CD]

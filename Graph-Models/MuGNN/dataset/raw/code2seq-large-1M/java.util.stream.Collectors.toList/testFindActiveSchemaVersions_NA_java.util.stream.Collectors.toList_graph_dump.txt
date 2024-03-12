@@ -1,0 +1,4 @@
+Line_4 $$ Project project = project() --> Line_6 $$ List<SchemaContainerVersion> versions = project.getSchemaContainerRoot().findAll().stream().map(SchemaContainer::<>getLatestVersion).collect(Collectors.toList()) [FD]
+Line_5 $$ Release release = latestRelease() --> Line_7 $$ List<SchemaContainerVersion> activeVersions = TestUtils.toList(release.findActiveSchemaVersions()) [FD]
+Line_6 $$ List<SchemaContainerVersion> versions = project.getSchemaContainerRoot().findAll().stream().map(SchemaContainer::<>getLatestVersion).collect(Collectors.toList()) --> Line_8 $$ assertThat(activeVersions).as("List of schema versions").usingElementComparatorOnFields("uuid", "name", "version").containsAll(versions) [FD]
+Line_7 $$ List<SchemaContainerVersion> activeVersions = TestUtils.toList(release.findActiveSchemaVersions()) --> Line_8 $$ assertThat(activeVersions).as("List of schema versions").usingElementComparatorOnFields("uuid", "name", "version").containsAll(versions) [FD]

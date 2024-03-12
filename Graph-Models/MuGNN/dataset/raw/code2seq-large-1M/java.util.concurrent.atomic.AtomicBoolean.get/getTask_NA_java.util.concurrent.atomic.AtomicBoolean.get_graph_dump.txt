@@ -1,0 +1,8 @@
+Line_2 $$ public Task getTask(TaskId taskId) --> Line_3 $$ if (tasksLoaded.get()) [CD]
+Line_3 $$ if (tasksLoaded.get()) --> Line_4 $$ return tasks.get(taskId) [CD]
+Line_2 $$ public Task getTask(TaskId taskId) --> Line_4 $$ return tasks.get(taskId) [FD]
+Line_3 $$ if (tasksLoaded.get()) --> Line_6 $$ TaskID oldTaskId = TypeConverter.fromYarn(taskId) [CD]
+Line_2 $$ public Task getTask(TaskId taskId) --> Line_6 $$ TaskID oldTaskId = TypeConverter.fromYarn(taskId) [FD]
+Line_3 $$ if (tasksLoaded.get()) --> Line_7 $$ CompletedTask completedTask = new CompletedTask(taskId, jobInfo.getAllTasks().get(oldTaskId)) [CD]
+Line_6 $$ TaskID oldTaskId = TypeConverter.fromYarn(taskId) --> Line_7 $$ CompletedTask completedTask = new CompletedTask(taskId, jobInfo.getAllTasks().get(oldTaskId)) [FD]
+Line_3 $$ if (tasksLoaded.get()) --> Line_8 $$ return completedTask [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private double[] bracketRoot(double optionPrice, double sigma) --> Line_3 $$ BracketRoot bracketer = new BracketRoot() [CD]
+Line_2 $$ private double[] bracketRoot(double optionPrice, double sigma) --> Line_4 $$ Function<Double, Double> func = new Function<Double, Double>() [CD]
+Line_4 $$ Function<Double, Double> func = new Function<Double, Double>() --> Line_6 $$ return priceFunc.apply(volatility) / optionPrice - 1.0 [CD]
+Line_4 $$ Function<Double, Double> func = new Function<Double, Double>() --> Line_6 $$ return priceFunc.apply(volatility) / optionPrice - 1.0 [FD]
+Line_2 $$ private double[] bracketRoot(double optionPrice, double sigma) --> Line_9 $$ return bracketer.getBracketedPoints(func, Math.max(0.0, sigma - BRACKET_STEP), sigma + BRACKET_STEP, 0d, Double.POSITIVE_INFINITY) [CD]
+Line_3 $$ BracketRoot bracketer = new BracketRoot() --> Line_9 $$ return bracketer.getBracketedPoints(func, Math.max(0.0, sigma - BRACKET_STEP), sigma + BRACKET_STEP, 0d, Double.POSITIVE_INFINITY) [FD]
+Line_4 $$ Function<Double, Double> func = new Function<Double, Double>() --> Line_9 $$ return bracketer.getBracketedPoints(func, Math.max(0.0, sigma - BRACKET_STEP), sigma + BRACKET_STEP, 0d, Double.POSITIVE_INFINITY) [FD]

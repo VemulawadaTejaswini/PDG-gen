@@ -1,0 +1,8 @@
+Line_3 $$ for (BaragonConfigFile file : files) --> Line_5 $$ File configFile = new File(file.getFullPath()) [FD]
+Line_5 $$ File configFile = new File(file.getFullPath()) --> Line_6 $$ if (configFile.getParentFile() != null) [FD]
+Line_6 $$ if (configFile.getParentFile() != null) --> Line_7 $$ if (!configFile.getParentFile().exists() && !configFile.getParentFile().mkdirs()) [CD]
+Line_5 $$ File configFile = new File(file.getFullPath()) --> Line_7 $$ if (!configFile.getParentFile().exists() && !configFile.getParentFile().mkdirs()) [FD]
+Line_3 $$ for (BaragonConfigFile file : files) --> Line_8 $$ throw new IOException(String.format("Could not create parent directories for file path %s", file.getFullPath())) [FD]
+Line_3 $$ for (BaragonConfigFile file : files) --> Line_11 $$ Files.write(file.getContent().getBytes(Charsets.UTF_8), new File(file.getFullPath())) [FD]
+Line_3 $$ for (BaragonConfigFile file : files) --> Line_13 $$ LOG.error(String.format("Failed writing %s", file.getFullPath()), e) [FD]
+Line_3 $$ for (BaragonConfigFile file : files) --> Line_14 $$ throw new RuntimeException(String.format("Failed writing %s", file.getFullPath()), e) [FD]

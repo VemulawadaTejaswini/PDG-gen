@@ -1,0 +1,5 @@
+Line_2 $$ public static int getProcessId(@Nonnull Process process) --> Line_4 $$ if (SystemInfo.IS_AT_LEAST_JAVA9 && "java.lang.ProcessImpl".equals(process.getClass().getName())) [FD]
+Line_4 $$ if (SystemInfo.IS_AT_LEAST_JAVA9 && "java.lang.ProcessImpl".equals(process.getClass().getName())) --> Line_5 $$ return ((Long) Process.class.getMethod("pid").invoke(process)).intValue() [CD]
+Line_2 $$ public static int getProcessId(@Nonnull Process process) --> Line_5 $$ return ((Long) Process.class.getMethod("pid").invoke(process)).intValue() [FD]
+Line_2 $$ public static int getProcessId(@Nonnull Process process) --> Line_7 $$ return assertNotNull(ReflectionUtil.getField(process.getClass(), process, int.class, "pid")) [FD]
+Line_2 $$ public static int getProcessId(@Nonnull Process process) --> Line_9 $$ throw new IllegalStateException("Failed to get PID from instance of " + process.getClass() + ", OS: " + SystemInfo.OS_NAME, t) [FD]

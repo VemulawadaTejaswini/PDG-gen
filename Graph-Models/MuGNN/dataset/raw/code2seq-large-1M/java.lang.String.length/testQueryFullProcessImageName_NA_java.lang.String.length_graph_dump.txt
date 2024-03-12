@@ -1,0 +1,6 @@
+Line_2 $$ public final void testQueryFullProcessImageName() --> Line_3 $$ HANDLE h = Kernel32.INSTANCE.OpenProcess(WinNT.PROCESS_QUERY_INFORMATION, false, Kernel32.INSTANCE.GetCurrentProcessId()) [CD]
+Line_2 $$ public final void testQueryFullProcessImageName() --> Line_4 $$ assertNotNull("Failed (" + Kernel32.INSTANCE.GetLastError() + ") to get process handle", h) [CD]
+Line_3 $$ HANDLE h = Kernel32.INSTANCE.OpenProcess(WinNT.PROCESS_QUERY_INFORMATION, false, Kernel32.INSTANCE.GetCurrentProcessId()) --> Line_4 $$ assertNotNull("Failed (" + Kernel32.INSTANCE.GetLastError() + ") to get process handle", h) [FD]
+Line_3 $$ HANDLE h = Kernel32.INSTANCE.OpenProcess(WinNT.PROCESS_QUERY_INFORMATION, false, Kernel32.INSTANCE.GetCurrentProcessId()) --> Line_6 $$ String name = Kernel32Util.QueryFullProcessImageName(h, 0) [FD]
+Line_6 $$ String name = Kernel32Util.QueryFullProcessImageName(h, 0) --> Line_7 $$ assertTrue("Failed to query process image name, empty path returned", name.length() > 0) [FD]
+Line_3 $$ HANDLE h = Kernel32.INSTANCE.OpenProcess(WinNT.PROCESS_QUERY_INFORMATION, false, Kernel32.INSTANCE.GetCurrentProcessId()) --> Line_9 $$ Kernel32Util.closeHandle(h) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ protected long checkAndPutResourceImpl(String resPath, byte[] content, long oldTS, long newTS) throws IOException, WriteConflictException --> Line_4 $$ File f = file(resPath) [FD]
+Line_4 $$ File f = file(resPath) --> Line_5 $$ if ((f.exists() && f.lastModified() != oldTS) || (f.exists() == false && oldTS != 0)) [FD]
+Line_4 $$ File f = file(resPath) --> Line_6 $$ throw new WriteConflictException("Overwriting conflict " + resPath + ", expect old TS " + oldTS + ", but found " + f.lastModified()) [FD]
+Line_2 $$ protected long checkAndPutResourceImpl(String resPath, byte[] content, long oldTS, long newTS) throws IOException, WriteConflictException --> Line_7 $$ putResourceImpl(resPath, new ByteArrayInputStream(content), newTS) [FD]
+Line_4 $$ File f = file(resPath) --> Line_8 $$ return f.lastModified() [FD]

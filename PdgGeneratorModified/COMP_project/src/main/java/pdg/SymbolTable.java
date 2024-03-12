@@ -383,7 +383,7 @@ class SymbolTable {
 
         String returnString = "error:Variables with identifiers:";
         undeclared=assignBinaryExpressionCheck(node);
-        System.out.println(undeclared.toString());
+        //System.out.println(undeclared.toString());
         if(undeclared.size()>0){
             for(int i=0;i<undeclared.size();i++){
                 if(i==0)
@@ -478,7 +478,7 @@ class SymbolTable {
             boolean methodFound=false;
             StringTokenizer stock = new StringTokenizer(node.toString(),"(");
             String methodName=stock.nextToken();
-            System.out.println(methodName);
+            //System.out.println(methodName);
             Method method =new Method(methodName,lastClass.Name);
             if(lastClass.funcTable.containsKey(methodName))
                 methodFound=true;
@@ -788,7 +788,7 @@ class SymbolTable {
             ArrayList<String> undeclared;
             String returnString = "error:Variables with identifiers:";
             undeclared=assignBinaryExpressionCheck(node);
-            System.out.println(undeclared.toString());
+            //System.out.println(undeclared.toString());
             if(undeclared.size()>0){
                 for(int i=0;i<undeclared.size();i++){
                     if(i==0)
@@ -818,7 +818,7 @@ class SymbolTable {
             ArrayList<String> undeclared;
             String returnString = "error:Variables with identifiers:";
             undeclared=assignBinaryExpressionCheck(node);
-            System.out.println(undeclared.toString());
+            //System.out.println(undeclared.toString());
             if(undeclared.size()>0){
                 for(int i=0;i<undeclared.size();i++){
                     if(i==0)
@@ -944,7 +944,7 @@ class SymbolTable {
             ArrayList<String> undeclared;
             String returnString = "error:Variables with identifiers:";
             undeclared=assignBinaryExpressionCheck(node);
-            System.out.println(undeclared.toString());
+            //System.out.println(undeclared.toString());
             if(undeclared.size()>0){
                 for(int i=0;i<undeclared.size();i++){
                     if(i==0)
@@ -1057,10 +1057,10 @@ class SymbolTable {
 	private void addEdgeBetweenNodes(GraphNode graphNode, GraphNode node, String string, DirectedGraph<GraphNode, RelationshipEdge> hrefGraph, FileOutputStream out) {
         try{
             // For Debugging
-            System.out.println("$$$$ addEdgeBetweenNodes Called");
-            System.out.println(">> try " + graphNode.getData() + " --> " + node.getData() + "[ " + string + " ]");
-            System.out.println("##<< graphNodeClass " + graphNode.getNodeClass());
-            System.out.println("##<<  node.getclass " + node.getNodeClass());
+            // System.out.println("$$$$ addEdgeBetweenNodes Called");
+            // System.out.println(">> try " + graphNode.getData() + " --> " + node.getData() + "[ " + string + " ]");
+            // System.out.println("##<< graphNodeClass " + graphNode.getNodeClass());
+            // System.out.println("##<<  node.getclass " + node.getNodeClass());
 
             hrefGraph.addVertex(graphNode);
             hrefGraph.addVertex(node);
@@ -1071,9 +1071,9 @@ class SymbolTable {
             String s1tokens[]=s1.split("\\{|\\R",2);
             String s2tokens[]=s2.split("\\{|\\R",2);
             String s = s1tokens[0]+"-->"+s2tokens[0]+ "[ " + string + " ]\n";
-            System.out.println(s);
+            // System.out.println(s);
             writeTOFile(s, out);
-            System.out.println("$$$$ addEdgeBetweenNodes Done Successfully");
+            // System.out.println("$$$$ addEdgeBetweenNodes Done Successfully");
         } catch (Exception e) {
             System.out.println("ERROR in graph - " + e.getMessage());
             e.printStackTrace();
@@ -1117,10 +1117,10 @@ class SymbolTable {
             //GraphNode newNode = new GraphNode(node.getBeginLine(), node.toString(), node.getClass().toString());
             // hrefGraph.addVertex(newNode);
             GraphNode newNode = getExpressionNode(node);
-            System.out.println("$$ addNodeAndEdgeToGraph Called");
+            // System.out.println("$$ addNodeAndEdgeToGraph Called");
             
             if(previousNode == null){
-                System.out.println("!! previousNode == null ");
+                // System.out.println("!! previousNode == null ");
                 nodeToSend = newNode;
             }
             nodeToSend = newNode;
@@ -1133,14 +1133,14 @@ class SymbolTable {
             ){
                 //prune the node data into simplified form
                 String block = newNode.getNodeInfo();
-                System.out.println("block: "+ block);
+                // System.out.println("block: "+ block);
                 String[] arrSplit = block.split("\\{|\\R",2);
                 newNode.ReAssign(arrSplit[0]);
-                System.out.println("After ReAassign:" + newNode.getNodeInfo());
+                // System.out.println("After ReAassign:" + newNode.getNodeInfo());
             }
 
-            System.out.println("##>>  newNodeClass " + newNode.getNodeClass());
-            System.out.println("##>> PrevNodeClass " + previousNode.getNodeClass());
+            //System.out.println("##>>  newNodeClass " + newNode.getNodeClass());
+            //System.out.println("##>> PrevNodeClass " + previousNode.getNodeClass());
             hrefGraph.addVertex(previousNode);
             hrefGraph.addVertex(newNode);
             hrefGraph.addEdge(previousNode, newNode);
@@ -1150,7 +1150,7 @@ class SymbolTable {
             String s1tokens[]=s1.split("\\{|\\R",2);
             String s2tokens[]=s2.split("\\{|\\R",2);
             String S = s1tokens[0]+"-->"+s2tokens[0]+"[ CD ]\n";
-            System.out.println(S);
+            //System.out.println(S);
             writeTOFile(S, out);
 
             if(loop){
@@ -1158,13 +1158,13 @@ class SymbolTable {
                 s1 = previousNode.getData();
                 s1tokens = s1.split("\\{|\\R",2);
                 String S1 = s1tokens[0]+"-->"+s1tokens[0]+"[ CD ]\n";
-                System.out.println(S1);
+                //System.out.println(S1);
                 writeTOFile( S1, out);
             }
-            System.out.println("$$ addNodeAndEdgeToGraph Done Successfully");   
+            //System.out.println("$$ addNodeAndEdgeToGraph Done Successfully");   
         } catch (Exception e) {
-            System.out.println("ERROR in graph - " + e.getMessage());
-            e.printStackTrace();
+            //System.out.println("ERROR in graph - " + e.getMessage());
+            //e.printStackTrace();
         }
         return nodeToSend;
     }

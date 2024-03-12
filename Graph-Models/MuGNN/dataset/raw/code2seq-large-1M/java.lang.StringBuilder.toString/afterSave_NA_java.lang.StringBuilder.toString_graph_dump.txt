@@ -1,0 +1,8 @@
+Line_2 $$ protected boolean afterSave(boolean newRecord, boolean success) --> Line_3 $$ if (!newRecord) [FD]
+Line_2 $$ protected boolean afterSave(boolean newRecord, boolean success) --> Line_3 $$ if (!newRecord) [CD]
+Line_3 $$ if (!newRecord) --> Line_4 $$ if (is_ValueChanged(MColumn.COLUMNNAME_Name) || is_ValueChanged(MColumn.COLUMNNAME_Description) || is_ValueChanged(MColumn.COLUMNNAME_Help)) [CD]
+Line_4 $$ if (is_ValueChanged(MColumn.COLUMNNAME_Name) || is_ValueChanged(MColumn.COLUMNNAME_Description) || is_ValueChanged(MColumn.COLUMNNAME_Help)) --> Line_5 $$ StringBuilder sql = new StringBuilder("UPDATE AD_Field SET Name=").append(DB.TO_STRING(getName())).append(", Description=").append(DB.TO_STRING(getDescription())).append(", Help=").append(DB.TO_STRING(getHelp())).append(" WHERE AD_Column_ID=").append(get_ID()) [CD]
+Line_4 $$ if (is_ValueChanged(MColumn.COLUMNNAME_Name) || is_ValueChanged(MColumn.COLUMNNAME_Description) || is_ValueChanged(MColumn.COLUMNNAME_Help)) --> Line_6 $$ int no = DB.executeUpdate(sql.toString(), get_TrxName()) [CD]
+Line_5 $$ StringBuilder sql = new StringBuilder("UPDATE AD_Field SET Name=").append(DB.TO_STRING(getName())).append(", Description=").append(DB.TO_STRING(getDescription())).append(", Help=").append(DB.TO_STRING(getHelp())).append(" WHERE AD_Column_ID=").append(get_ID()) --> Line_6 $$ int no = DB.executeUpdate(sql.toString(), get_TrxName()) [FD]
+Line_4 $$ if (is_ValueChanged(MColumn.COLUMNNAME_Name) || is_ValueChanged(MColumn.COLUMNNAME_Description) || is_ValueChanged(MColumn.COLUMNNAME_Help)) --> Line_7 $$ log.debug("afterSave - Fields updated #" + no) [CD]
+Line_2 $$ protected boolean afterSave(boolean newRecord, boolean success) --> Line_10 $$ return success [CD]

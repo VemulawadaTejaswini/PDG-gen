@@ -1,0 +1,8 @@
+Line_2 $$ public void onNext(T t) --> Line_3 $$ if (!done) [CD]
+Line_3 $$ if (!done) --> Line_4 $$ long e = emitted [CD]
+Line_3 $$ if (!done) --> Line_5 $$ if (downstreamRequests.get() != e) [CD]
+Line_4 $$ long e = emitted --> Line_5 $$ if (downstreamRequests.get() != e) [FD]
+Line_5 $$ if (downstreamRequests.get() != e) --> Line_7 $$ HalfSerializer.onNext(actual, t, wip, error) [CD]
+Line_2 $$ public void onNext(T t) --> Line_7 $$ HalfSerializer.onNext(actual, t, wip, error) [FD]
+Line_5 $$ if (downstreamRequests.get() != e) --> Line_10 $$ cancel() [CD]
+Line_5 $$ if (downstreamRequests.get() != e) --> Line_11 $$ HalfSerializer.onError(actual, new MissingBackpressureException("Downstream is not ready to receive the next upstream item."), wip, error) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private Optional<ImmutableList<String>> readMetadataValues(String key) throws IOException --> Line_3 $$ Optional<String> value = readMetadataValue(getProjectFilesystem(), getBuildTarget(), key) [CD]
+Line_2 $$ private Optional<ImmutableList<String>> readMetadataValues(String key) throws IOException --> Line_3 $$ Optional<String> value = readMetadataValue(getProjectFilesystem(), getBuildTarget(), key) [FD]
+Line_2 $$ private Optional<ImmutableList<String>> readMetadataValues(String key) throws IOException --> Line_4 $$ if (value.isPresent()) [CD]
+Line_3 $$ Optional<String> value = readMetadataValue(getProjectFilesystem(), getBuildTarget(), key) --> Line_4 $$ if (value.isPresent()) [FD]
+Line_4 $$ if (value.isPresent()) --> Line_5 $$ return Optional.of(ObjectMappers.readValue(value.get(), new TypeReference<ImmutableList<String>>() [CD]
+Line_3 $$ Optional<String> value = readMetadataValue(getProjectFilesystem(), getBuildTarget(), key) --> Line_5 $$ return Optional.of(ObjectMappers.readValue(value.get(), new TypeReference<ImmutableList<String>>() [FD]
+Line_2 $$ private Optional<ImmutableList<String>> readMetadataValues(String key) throws IOException --> Line_8 $$ return Optional.empty() [CD]

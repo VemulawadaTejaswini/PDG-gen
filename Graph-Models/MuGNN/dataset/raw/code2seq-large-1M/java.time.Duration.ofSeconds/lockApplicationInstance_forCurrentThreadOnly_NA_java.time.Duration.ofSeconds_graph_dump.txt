@@ -1,0 +1,7 @@
+Line_2 $$ MutableStatusRegistry lockApplicationInstance_forCurrentThreadOnly(ApplicationInstanceReference applicationInstanceReference, long timeoutSeconds) --> Line_3 $$ String lockPath = applicationInstanceLock2Path(applicationInstanceReference) [FD]
+Line_2 $$ MutableStatusRegistry lockApplicationInstance_forCurrentThreadOnly(ApplicationInstanceReference applicationInstanceReference, long timeoutSeconds) --> Line_3 $$ String lockPath = applicationInstanceLock2Path(applicationInstanceReference) [CD]
+Line_2 $$ MutableStatusRegistry lockApplicationInstance_forCurrentThreadOnly(ApplicationInstanceReference applicationInstanceReference, long timeoutSeconds) --> Line_4 $$ Lock lock = new Lock(lockPath, curator) [CD]
+Line_2 $$ MutableStatusRegistry lockApplicationInstance_forCurrentThreadOnly(ApplicationInstanceReference applicationInstanceReference, long timeoutSeconds) --> Line_5 $$ lock.acquire(Duration.ofSeconds(timeoutSeconds)) [FD]
+Line_2 $$ MutableStatusRegistry lockApplicationInstance_forCurrentThreadOnly(ApplicationInstanceReference applicationInstanceReference, long timeoutSeconds) --> Line_5 $$ lock.acquire(Duration.ofSeconds(timeoutSeconds)) [CD]
+Line_4 $$ Lock lock = new Lock(lockPath, curator) --> Line_5 $$ lock.acquire(Duration.ofSeconds(timeoutSeconds)) [FD]
+Line_4 $$ Lock lock = new Lock(lockPath, curator) --> Line_9 $$ lock.close() [FD]

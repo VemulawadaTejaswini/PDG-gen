@@ -1,0 +1,5 @@
+Line_2 $$ public void doesNotOverwriteExistingFile() throws Exception --> Line_3 $$ File outputFile = temporaryFolder.newFile("queryOutput.txt") [CD]
+Line_2 $$ public void doesNotOverwriteExistingFile() throws Exception --> Line_4 $$ assertThat(outputFile).exists() [CD]
+Line_3 $$ File outputFile = temporaryFolder.newFile("queryOutput.txt") --> Line_4 $$ assertThat(outputFile).exists() [FD]
+Line_2 $$ public void doesNotOverwriteExistingFile() throws Exception --> Line_5 $$ gfsh.executeAndAssertThat("query --query='select * from /simpleRegion' --file=" + outputFile.getAbsolutePath()).statusIsError().containsOutput("The specified output file already exists.") [CD]
+Line_3 $$ File outputFile = temporaryFolder.newFile("queryOutput.txt") --> Line_5 $$ gfsh.executeAndAssertThat("query --query='select * from /simpleRegion' --file=" + outputFile.getAbsolutePath()).statusIsError().containsOutput("The specified output file already exists.") [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void hashMultiPass() throws Exception --> Line_3 $$ redis.hmset(key, KeysAndValues.MAP) [CD]
+Line_2 $$ public void hashMultiPass() throws Exception --> Line_4 $$ ScanIterator<KeyValue<String, String>> scan = ScanIterator.hscan(redis, key) [CD]
+Line_2 $$ public void hashMultiPass() throws Exception --> Line_5 $$ List<KeyValue<String, String>> keys = scan.stream().collect(Collectors.toList()) [CD]
+Line_4 $$ ScanIterator<KeyValue<String, String>> scan = ScanIterator.hscan(redis, key) --> Line_5 $$ List<KeyValue<String, String>> keys = scan.stream().collect(Collectors.toList()) [FD]
+Line_2 $$ public void hashMultiPass() throws Exception --> Line_6 $$ assertThat(keys).containsAll(KeysAndValues.KEYS.stream().map( s -> new KeyValue(s, KeysAndValues.MAP.get(s))).collect(Collectors.toList())) [CD]
+Line_5 $$ List<KeyValue<String, String>> keys = scan.stream().collect(Collectors.toList()) --> Line_6 $$ assertThat(keys).containsAll(KeysAndValues.KEYS.stream().map( s -> new KeyValue(s, KeysAndValues.MAP.get(s))).collect(Collectors.toList())) [FD]

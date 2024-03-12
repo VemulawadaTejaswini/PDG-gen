@@ -1,0 +1,7 @@
+Line_2 $$ public static int scaleForAvailableMemory(int value) --> Line_3 $$ long maxMemory = Runtime.getRuntime().maxMemory() [CD]
+Line_2 $$ public static int scaleForAvailableMemory(int value) --> Line_4 $$ if (maxMemory != Long.MAX_VALUE) [CD]
+Line_3 $$ long maxMemory = Runtime.getRuntime().maxMemory() --> Line_4 $$ if (maxMemory != Long.MAX_VALUE) [FD]
+Line_4 $$ if (maxMemory != Long.MAX_VALUE) --> Line_5 $$ return (int) (value * maxMemory / (1024 * 1024 * 1024)) [CD]
+Line_9 $$ Method method = Class.forName("com.sun.management.OperatingSystemMXBean").getMethod("getTotalPhysicalMemorySize") --> Line_10 $$ long physicalMemorySize = ((Number) method.invoke(mxBean)).longValue() [FD]
+Line_8 $$ OperatingSystemMXBean mxBean = ManagementFactory.getOperatingSystemMXBean() --> Line_10 $$ long physicalMemorySize = ((Number) method.invoke(mxBean)).longValue() [FD]
+Line_2 $$ public static int scaleForAvailableMemory(int value) --> Line_14 $$ return value [CD]

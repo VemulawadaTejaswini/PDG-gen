@@ -1,0 +1,8 @@
+Line_2 $$ private SecurityContext mockSecurityContext(String... roles) --> Line_3 $$ List<String> associatedRoles = Arrays.asList(roles) [FD]
+Line_2 $$ private SecurityContext mockSecurityContext(String... roles) --> Line_3 $$ List<String> associatedRoles = Arrays.asList(roles) [CD]
+Line_2 $$ private SecurityContext mockSecurityContext(String... roles) --> Line_4 $$ SecurityContext securityContext = mock(SecurityContext.class) [CD]
+Line_2 $$ private SecurityContext mockSecurityContext(String... roles) --> Line_5 $$ given(securityContext.getPrincipal()).willReturn(mock(Principal.class)) [CD]
+Line_2 $$ private SecurityContext mockSecurityContext(String... roles) --> Line_6 $$ given(securityContext.isUserInRole(anyString())).will((Answer<Boolean>)  invocation -> [CD]
+Line_3 $$ List<String> associatedRoles = Arrays.asList(roles) --> Line_8 $$ return associatedRoles.contains(expectedRole) [FD]
+Line_7 $$ String expectedRole = invocation.getArgument(0) --> Line_8 $$ return associatedRoles.contains(expectedRole) [FD]
+Line_2 $$ private SecurityContext mockSecurityContext(String... roles) --> Line_10 $$ return securityContext [CD]

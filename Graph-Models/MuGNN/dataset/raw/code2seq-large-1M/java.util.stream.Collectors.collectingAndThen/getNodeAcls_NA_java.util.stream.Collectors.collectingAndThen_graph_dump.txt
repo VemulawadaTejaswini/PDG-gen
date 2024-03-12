@@ -1,0 +1,8 @@
+Line_2 $$ public List<NodeAcl> getNodeAcls(Node node, boolean children) --> Line_3 $$ NodeList candidates = new NodeList(getNodes()) [CD]
+Line_2 $$ public List<NodeAcl> getNodeAcls(Node node, boolean children) --> Line_4 $$ if (children) [CD]
+Line_4 $$ if (children) --> Line_5 $$ return candidates.childrenOf(node).asList().stream().map( childNode -> getNodeAcl(childNode, candidates)).collect(Collectors.collectingAndThen(Collectors.toList(), Collections::<>unmodifiableList)) [CD]
+Line_3 $$ NodeList candidates = new NodeList(getNodes()) --> Line_5 $$ return candidates.childrenOf(node).asList().stream().map( childNode -> getNodeAcl(childNode, candidates)).collect(Collectors.collectingAndThen(Collectors.toList(), Collections::<>unmodifiableList)) [FD]
+Line_2 $$ public List<NodeAcl> getNodeAcls(Node node, boolean children) --> Line_5 $$ return candidates.childrenOf(node).asList().stream().map( childNode -> getNodeAcl(childNode, candidates)).collect(Collectors.collectingAndThen(Collectors.toList(), Collections::<>unmodifiableList)) [FD]
+Line_4 $$ if (children) --> Line_7 $$ return Collections.singletonList(getNodeAcl(node, candidates)) [CD]
+Line_2 $$ public List<NodeAcl> getNodeAcls(Node node, boolean children) --> Line_7 $$ return Collections.singletonList(getNodeAcl(node, candidates)) [FD]
+Line_3 $$ NodeList candidates = new NodeList(getNodes()) --> Line_7 $$ return Collections.singletonList(getNodeAcl(node, candidates)) [FD]

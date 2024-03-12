@@ -1,0 +1,7 @@
+Line_2 $$ public void testTableNotFoundException() throws Exception --> Line_3 $$ final String table = String.format("%s/missing.parquet", TestTools.WORKING_PATH.resolve(TestTools.TEST_RESOURCES_REL)) [CD]
+Line_2 $$ public void testTableNotFoundException() throws Exception --> Line_4 $$ final String query = String.format("select * from tmp.`%s`", table) [CD]
+Line_3 $$ final String table = String.format("%s/missing.parquet", TestTools.WORKING_PATH.resolve(TestTools.TEST_RESOURCES_REL)) --> Line_4 $$ final String query = String.format("select * from tmp.`%s`", table) [FD]
+Line_4 $$ final String query = String.format("select * from tmp.`%s`", table) --> Line_7 $$ testNoResult(query) [FD]
+Line_9 $$ final String pattern = String.format("[[dfs, tmp1]] is not valid with respect to either root schema or current default schema").toLowerCase() --> Line_10 $$ final boolean isSchemaNotFound = ex.getMessage().toLowerCase().contains(pattern) [FD]
+Line_3 $$ final String table = String.format("%s/missing.parquet", TestTools.WORKING_PATH.resolve(TestTools.TEST_RESOURCES_REL)) --> Line_11 $$ final boolean isTableNotFound = ex.getMessage().toLowerCase().contains(String.format("%s' not found", table).toLowerCase()) [FD]
+Line_10 $$ final boolean isSchemaNotFound = ex.getMessage().toLowerCase().contains(pattern) --> Line_12 $$ assertTrue(!isSchemaNotFound && isTableNotFound) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public Map<String, Double> memoryPoolUsage() --> Line_3 $$ final Map<String, Double> pools = new TreeMap<String, Double>() [CD]
+Line_4 $$ for (MemoryPoolMXBean pool : memoryPools) --> Line_5 $$ final double max = pool.getUsage().getMax() == -1 ? pool.getUsage().getCommitted() : pool.getUsage().getMax() [FD]
+Line_3 $$ final Map<String, Double> pools = new TreeMap<String, Double>() --> Line_6 $$ pools.put(pool.getName(), pool.getUsage().getUsed() / max) [FD]
+Line_4 $$ for (MemoryPoolMXBean pool : memoryPools) --> Line_6 $$ pools.put(pool.getName(), pool.getUsage().getUsed() / max) [FD]
+Line_2 $$ public Map<String, Double> memoryPoolUsage() --> Line_8 $$ return Collections.unmodifiableMap(pools) [CD]
+Line_3 $$ final Map<String, Double> pools = new TreeMap<String, Double>() --> Line_8 $$ return Collections.unmodifiableMap(pools) [FD]

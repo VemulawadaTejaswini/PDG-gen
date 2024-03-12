@@ -1,0 +1,8 @@
+Line_2 $$ public Map<NodeRef, RevTree> buildTrees() --> Line_3 $$ final Map<NodeRef, RevTree> result = Maps.newConcurrentMap() [CD]
+Line_2 $$ public Map<NodeRef, RevTree> buildTrees() --> Line_4 $$ List<AsyncBuildTree> tasks = Lists.newArrayList() [CD]
+Line_8 $$ final RevFeatureType revFeatureType = revFeatureTypes.get(treePath) --> Line_9 $$ final ObjectId metadataId = revFeatureType.getId() [FD]
+Line_4 $$ List<AsyncBuildTree> tasks = Lists.newArrayList() --> Line_10 $$ tasks.add(new AsyncBuildTree(treePath, builder, metadataId, result)) [FD]
+Line_4 $$ List<AsyncBuildTree> tasks = Lists.newArrayList() --> Line_13 $$ executorService.invokeAll(tasks) [FD]
+Line_2 $$ public Map<NodeRef, RevTree> buildTrees() --> Line_17 $$ db.putAll(result.values().iterator()) [CD]
+Line_3 $$ final Map<NodeRef, RevTree> result = Maps.newConcurrentMap() --> Line_17 $$ db.putAll(result.values().iterator()) [FD]
+Line_2 $$ public Map<NodeRef, RevTree> buildTrees() --> Line_18 $$ return result [CD]

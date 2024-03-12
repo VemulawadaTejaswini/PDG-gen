@@ -1,0 +1,6 @@
+Line_2 $$ private void cleanupZk() --> Line_3 $$ LOG.info("cleanup zk namespace") [CD]
+Line_2 $$ private void cleanupZk() --> Line_4 $$ List<String> children = getZkClient().getChildren("/") [CD]
+Line_5 $$ for (String child : children) --> Line_6 $$ if (!child.equals("zookeeper")) [FD]
+Line_6 $$ if (!child.equals("zookeeper")) --> Line_7 $$ getZkClient().deleteRecursive("/" + child) [CD]
+Line_2 $$ private void cleanupZk() --> Line_10 $$ LOG.info("unsubscribing " + getZkClient().numberOfListeners() + " listeners") [CD]
+Line_2 $$ private void cleanupZk() --> Line_11 $$ getZkClient().unsubscribeAll() [CD]

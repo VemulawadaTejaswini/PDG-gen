@@ -1,0 +1,7 @@
+Line_2 $$ public void testConcurrentReads() throws Exception --> Line_3 $$ final int insertsPerTask = 20 [CD]
+Line_2 $$ public void testConcurrentReads() throws Exception --> Line_4 $$ assertEquals(insertsPerTask, runInserts(1, insertsPerTask).get(0).get().intValue()) [CD]
+Line_3 $$ final int insertsPerTask = 20 --> Line_4 $$ assertEquals(insertsPerTask, runInserts(1, insertsPerTask).get(0).get().intValue()) [FD]
+Line_2 $$ public void testConcurrentReads() throws Exception --> Line_5 $$ final int readsPerTask = 20 [CD]
+Line_2 $$ public void testConcurrentReads() throws Exception --> Line_6 $$ List<Future<Integer>> readResults = runReads(readThreadCount, readsPerTask) [CD]
+Line_5 $$ final int readsPerTask = 20 --> Line_6 $$ List<Future<Integer>> readResults = runReads(readThreadCount, readsPerTask) [FD]
+Line_7 $$ for (Future<Integer> f : readResults) --> Line_8 $$ assertEquals(insertsPerTask * readsPerTask, f.get().intValue()) [FD]

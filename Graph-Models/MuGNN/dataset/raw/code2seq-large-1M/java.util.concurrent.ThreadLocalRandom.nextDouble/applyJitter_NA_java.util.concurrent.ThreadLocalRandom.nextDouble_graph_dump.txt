@@ -1,0 +1,5 @@
+Line_2 $$ private static long applyJitter(long timeoutMillis) --> Line_3 $$ final double rate = ThreadLocalRandom.current().nextDouble(1 - JITTER_RATE, 1.001) [CD]
+Line_2 $$ private static long applyJitter(long timeoutMillis) --> Line_4 $$ if (rate < 1) [CD]
+Line_3 $$ final double rate = ThreadLocalRandom.current().nextDouble(1 - JITTER_RATE, 1.001) --> Line_4 $$ if (rate < 1) [FD]
+Line_4 $$ if (rate < 1) --> Line_5 $$ return (long) (timeoutMillis * rate) [CD]
+Line_4 $$ if (rate < 1) --> Line_7 $$ return timeoutMillis [CD]

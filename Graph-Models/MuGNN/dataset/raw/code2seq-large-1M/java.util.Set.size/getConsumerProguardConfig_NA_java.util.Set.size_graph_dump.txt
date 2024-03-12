@@ -1,0 +1,8 @@
+Line_2 $$ public String getConsumerProguardConfig() --> Line_3 $$ Set<File> consumerProguardFiles = new ImmutableSet.Builder<File>().addAll(getBaseVariant().getMergedFlavor().getConsumerProguardFiles()).addAll(getBaseVariant().getBuildType().getConsumerProguardFiles()).build() [CD]
+Line_2 $$ public String getConsumerProguardConfig() --> Line_4 $$ if (consumerProguardFiles.size() > 0) [CD]
+Line_3 $$ Set<File> consumerProguardFiles = new ImmutableSet.Builder<File>().addAll(getBaseVariant().getMergedFlavor().getConsumerProguardFiles()).addAll(getBaseVariant().getBuildType().getConsumerProguardFiles()).build() --> Line_4 $$ if (consumerProguardFiles.size() > 0) [FD]
+Line_4 $$ if (consumerProguardFiles.size() > 0) --> Line_5 $$ Optional<File> optionalFile = consumerProguardFiles.stream().findFirst() [CD]
+Line_3 $$ Set<File> consumerProguardFiles = new ImmutableSet.Builder<File>().addAll(getBaseVariant().getMergedFlavor().getConsumerProguardFiles()).addAll(getBaseVariant().getBuildType().getConsumerProguardFiles()).build() --> Line_5 $$ Optional<File> optionalFile = consumerProguardFiles.stream().findFirst() [FD]
+Line_4 $$ if (consumerProguardFiles.size() > 0) --> Line_6 $$ return FileUtil.getRelativePath(getProject().getProjectDir(), optionalFile.get()) [CD]
+Line_5 $$ Optional<File> optionalFile = consumerProguardFiles.stream().findFirst() --> Line_6 $$ return FileUtil.getRelativePath(getProject().getProjectDir(), optionalFile.get()) [FD]
+Line_2 $$ public String getConsumerProguardConfig() --> Line_8 $$ return null [CD]

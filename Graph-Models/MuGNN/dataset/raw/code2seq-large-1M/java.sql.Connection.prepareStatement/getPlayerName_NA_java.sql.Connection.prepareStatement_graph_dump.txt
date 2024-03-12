@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection c = this.provider.getConnection()) --> Line_4 $$ try (PreparedStatement ps = c.prepareStatement(this.prefix.apply(PLAYER_SELECT_USERNAME_BY_UUID))) [FD]
+Line_4 $$ try (PreparedStatement ps = c.prepareStatement(this.prefix.apply(PLAYER_SELECT_USERNAME_BY_UUID))) --> Line_5 $$ ps.setString(1, uuid.toString()) [FD]
+Line_2 $$ public String getPlayerName(UUID uuid) throws SQLException --> Line_5 $$ ps.setString(1, uuid.toString()) [FD]
+Line_4 $$ try (PreparedStatement ps = c.prepareStatement(this.prefix.apply(PLAYER_SELECT_USERNAME_BY_UUID))) --> Line_6 $$ try (ResultSet rs = ps.executeQuery()) [FD]
+Line_6 $$ try (ResultSet rs = ps.executeQuery()) --> Line_7 $$ if (rs.next()) [FD]
+Line_7 $$ if (rs.next()) --> Line_8 $$ return rs.getString("username") [CD]
+Line_6 $$ try (ResultSet rs = ps.executeQuery()) --> Line_8 $$ return rs.getString("username") [FD]
+Line_2 $$ public String getPlayerName(UUID uuid) throws SQLException --> Line_13 $$ return null [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testWaitForMsgsSuccess() throws Exception --> Line_3 $$ final String subj = "foo" [CD]
+Line_2 $$ public void testWaitForMsgsSuccess() throws Exception --> Line_4 $$ final byte[] payload = "Hello there!".getBytes() [CD]
+Line_7 $$ final Message msg = new Message(payload, subj, null, sub) --> Line_11 $$ doReturn(msg, (Message) null).when(ch).take() [FD]
+Line_7 $$ final Message msg = new Message(payload, subj, null, sub) --> Line_18 $$ doReturn(msg, (Message) null).when(mchMock).poll() [FD]
+Line_5 $$ try (ConnectionImpl nc = spy(new ConnectionImpl(defaultOptions()))) --> Line_23 $$ nc.waitForMsgs(sub) [FD]
+Line_7 $$ final Message msg = new Message(payload, subj, null, sub) --> Line_24 $$ verify(mcbMock, times(1)).onMessage(msg) [FD]
+Line_5 $$ try (ConnectionImpl nc = spy(new ConnectionImpl(defaultOptions()))) --> Line_25 $$ verify(nc, times(1)).removeSub(eq(sub)) [FD]

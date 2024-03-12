@@ -1,0 +1,6 @@
+Line_2 $$ public void getPixels(int[] pixels, int offset, int stride, int x, int y, int width, int height) --> Line_3 $$ if (x != 0 || y != 0 || width != getWidth() || height != getHeight() || pixels.length != colors.length) [CD]
+Line_3 $$ if (x != 0 || y != 0 || width != getWidth() || height != getHeight() || pixels.length != colors.length) --> Line_4 $$ for (int y0 = y; y0 < y + height; y0++) [CD]
+Line_4 $$ for (int y0 = y; y0 < y + height; y0++) --> Line_5 $$ for (int x0 = x; x0 < x + width; x0++) [CD]
+Line_5 $$ for (int x0 = x; x0 < x + width; x0++) --> Line_6 $$ pixels[offset + y0 * stride + x0] = colors[(y0 - y) * this.width + (x0 - x)] [CD]
+Line_3 $$ if (x != 0 || y != 0 || width != getWidth() || height != getHeight() || pixels.length != colors.length) --> Line_10 $$ System.arraycopy(colors, 0, pixels, 0, colors.length) [CD]
+Line_2 $$ public void getPixels(int[] pixels, int offset, int stride, int x, int y, int width, int height) --> Line_10 $$ System.arraycopy(colors, 0, pixels, 0, colors.length) [FD]

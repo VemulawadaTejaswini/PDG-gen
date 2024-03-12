@@ -1,0 +1,6 @@
+Line_2 $$ public static double min_recent() --> Line_3 $$ Sensor sensor = Sensor.currentSensor() [CD]
+Line_2 $$ public static double min_recent() --> Line_4 $$ Calibration calibration = new Select().from(Calibration.class).where("Sensor = ? ", sensor.getId()).where("slope_confidence != 0").where("sensor_confidence != 0").where("timestamp > ?", (new Date().getTime() - (60000 * 60 * 24 * 4))).orderBy("bg asc").executeSingle() [CD]
+Line_3 $$ Sensor sensor = Sensor.currentSensor() --> Line_4 $$ Calibration calibration = new Select().from(Calibration.class).where("Sensor = ? ", sensor.getId()).where("slope_confidence != 0").where("sensor_confidence != 0").where("timestamp > ?", (new Date().getTime() - (60000 * 60 * 24 * 4))).orderBy("bg asc").executeSingle() [FD]
+Line_2 $$ public static double min_recent() --> Line_5 $$ if (calibration != null) [CD]
+Line_5 $$ if (calibration != null) --> Line_6 $$ return calibration.bg [CD]
+Line_5 $$ if (calibration != null) --> Line_8 $$ return 100 [CD]

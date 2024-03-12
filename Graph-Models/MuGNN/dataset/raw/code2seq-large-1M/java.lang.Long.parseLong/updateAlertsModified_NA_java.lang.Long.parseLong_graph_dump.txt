@@ -1,0 +1,7 @@
+Line_2 $$ private void updateAlertsModified(final Collection<InternalAlert> frozenAlerts) --> Line_3 $$ final String lastSyncValue = redisTemplate.opsForValue().get(LAST_SYNC_KEY) [CD]
+Line_2 $$ private void updateAlertsModified(final Collection<InternalAlert> frozenAlerts) --> Line_4 $$ final long lastSyncTimestamp = StringUtils.hasText(lastSyncValue) ? Long.parseLong(lastSyncValue) : 0L [CD]
+Line_3 $$ final String lastSyncValue = redisTemplate.opsForValue().get(LAST_SYNC_KEY) --> Line_4 $$ final long lastSyncTimestamp = StringUtils.hasText(lastSyncValue) ? Long.parseLong(lastSyncValue) : 0L [FD]
+Line_5 $$ for (final InternalAlert frozenAlert : frozenAlerts) --> Line_6 $$ final Date updatedAt = frozenAlert.getUpdatedAt() [FD]
+Line_6 $$ final Date updatedAt = frozenAlert.getUpdatedAt() --> Line_7 $$ if (updatedAt != null && updatedAt.getTime() >= lastSyncTimestamp) [FD]
+Line_7 $$ if (updatedAt != null && updatedAt.getTime() >= lastSyncTimestamp) --> Line_8 $$ updateFrozenTimeout(frozenAlert) [CD]
+Line_5 $$ for (final InternalAlert frozenAlert : frozenAlerts) --> Line_8 $$ updateFrozenTimeout(frozenAlert) [FD]

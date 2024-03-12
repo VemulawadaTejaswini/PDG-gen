@@ -1,0 +1,7 @@
+Line_2 $$ static PerceptronNer loadModel(Path modelRoot, TurkishMorphology morphology) throws IOException --> Line_3 $$ Map<String, ClassWeights> weightsMap = new HashMap() [CD]
+Line_2 $$ static PerceptronNer loadModel(Path modelRoot, TurkishMorphology morphology) throws IOException --> Line_4 $$ List<Path> files = Files.walk(modelRoot, 1).filter( s -> s.toFile().getName().endsWith(".ner.model")).collect(Collectors.toList()) [FD]
+Line_2 $$ static PerceptronNer loadModel(Path modelRoot, TurkishMorphology morphology) throws IOException --> Line_4 $$ List<Path> files = Files.walk(modelRoot, 1).filter( s -> s.toFile().getName().endsWith(".ner.model")).collect(Collectors.toList()) [CD]
+Line_5 $$ for (Path file : files) --> Line_6 $$ ClassWeights weights = ClassWeights.loadFromText(file) [FD]
+Line_3 $$ Map<String, ClassWeights> weightsMap = new HashMap() --> Line_7 $$ weightsMap.put(weights.id, weights) [FD]
+Line_6 $$ ClassWeights weights = ClassWeights.loadFromText(file) --> Line_7 $$ weightsMap.put(weights.id, weights) [FD]
+Line_2 $$ static PerceptronNer loadModel(Path modelRoot, TurkishMorphology morphology) throws IOException --> Line_9 $$ return new PerceptronNer(weightsMap, morphology) [CD]

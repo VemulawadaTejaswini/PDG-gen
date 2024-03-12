@@ -1,0 +1,8 @@
+Line_3 $$ for (GossipProtocolImpl gossipProtocol : gossipProtocols) --> Line_4 $$ gossipProtocol.stop() [FD]
+Line_2 $$ private void destroyGossipProtocols(List<GossipProtocolImpl> gossipProtocols) --> Line_6 $$ List<CompletableFuture<Void>> futures = new ArrayList() [CD]
+Line_8 $$ CompletableFuture<Void> close = new CompletableFuture() --> Line_9 $$ gossipProtocol.getTransport().stop(close) [FD]
+Line_3 $$ for (GossipProtocolImpl gossipProtocol : gossipProtocols) --> Line_9 $$ gossipProtocol.getTransport().stop(close) [FD]
+Line_6 $$ List<CompletableFuture<Void>> futures = new ArrayList() --> Line_10 $$ futures.add(close) [FD]
+Line_8 $$ CompletableFuture<Void> close = new CompletableFuture() --> Line_10 $$ futures.add(close) [FD]
+Line_6 $$ List<CompletableFuture<Void>> futures = new ArrayList() --> Line_13 $$ CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()])).get(30, TimeUnit.SECONDS) [FD]
+Line_2 $$ private void destroyGossipProtocols(List<GossipProtocolImpl> gossipProtocols) --> Line_18 $$ Thread.sleep(gossipProtocols.size() * 20) [FD]

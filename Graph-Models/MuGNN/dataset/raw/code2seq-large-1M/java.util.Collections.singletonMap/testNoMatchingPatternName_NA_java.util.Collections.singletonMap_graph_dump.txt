@@ -1,0 +1,7 @@
+Line_2 $$ public void testNoMatchingPatternName() --> Line_3 $$ String fieldName = RandomDocumentPicks.randomFieldName(random()) [CD]
+Line_2 $$ public void testNoMatchingPatternName() --> Line_4 $$ IngestDocument doc = RandomDocumentPicks.randomIngestDocument(random(), new HashMap()) [CD]
+Line_2 $$ public void testNoMatchingPatternName() --> Line_5 $$ doc.setFieldValue(fieldName, "23") [CD]
+Line_4 $$ IngestDocument doc = RandomDocumentPicks.randomIngestDocument(random(), new HashMap()) --> Line_5 $$ doc.setFieldValue(fieldName, "23") [FD]
+Line_3 $$ String fieldName = RandomDocumentPicks.randomFieldName(random()) --> Line_5 $$ doc.setFieldValue(fieldName, "23") [FD]
+Line_2 $$ public void testNoMatchingPatternName() --> Line_6 $$ Exception e = expectThrows(IllegalArgumentException.class, () -> new GrokProcessor(randomAlphaOfLength(10), Collections.singletonMap("ONE", "1"), Collections.singletonList("% [CD]
+Line_2 $$ public void testNoMatchingPatternName() --> Line_7 $$ assertThat(e.getMessage(), equalTo("Unable to find pattern [NOTONE] in Grok's pattern dictionary")) [CD]

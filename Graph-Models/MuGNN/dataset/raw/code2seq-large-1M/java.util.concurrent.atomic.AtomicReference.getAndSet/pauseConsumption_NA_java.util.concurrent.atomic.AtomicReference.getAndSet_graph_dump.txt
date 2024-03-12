@@ -1,0 +1,6 @@
+Line_2 $$ public AsyncFuture<Void> pauseConsumption() --> Line_3 $$ final CountDownLatch old = this.shouldPause.getAndSet(new CountDownLatch(1)) [CD]
+Line_2 $$ public AsyncFuture<Void> pauseConsumption() --> Line_4 $$ if (old != null) [CD]
+Line_3 $$ final CountDownLatch old = this.shouldPause.getAndSet(new CountDownLatch(1)) --> Line_4 $$ if (old != null) [FD]
+Line_4 $$ if (old != null) --> Line_5 $$ old.countDown() [CD]
+Line_3 $$ final CountDownLatch old = this.shouldPause.getAndSet(new CountDownLatch(1)) --> Line_5 $$ old.countDown() [FD]
+Line_2 $$ public AsyncFuture<Void> pauseConsumption() --> Line_7 $$ return async.resolved() [CD]

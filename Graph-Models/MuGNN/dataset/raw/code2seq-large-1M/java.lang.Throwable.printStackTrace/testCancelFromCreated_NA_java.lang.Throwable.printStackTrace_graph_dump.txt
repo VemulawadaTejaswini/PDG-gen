@@ -1,0 +1,8 @@
+Line_4 $$ final JobVertexID jid = new JobVertexID() --> Line_5 $$ final ExecutionJobVertex ejv = getExecutionVertex(jid) [FD]
+Line_6 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_7 $$ assertEquals(ExecutionState.CREATED, vertex.getExecutionState()) [FD]
+Line_6 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_8 $$ vertex.cancel() [FD]
+Line_6 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_9 $$ assertEquals(ExecutionState.CANCELED, vertex.getExecutionState()) [FD]
+Line_6 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_10 $$ assertNull(vertex.getFailureCause()) [FD]
+Line_6 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_11 $$ assertTrue(vertex.getStateTimestamp(ExecutionState.CREATED) > 0) [FD]
+Line_6 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_12 $$ assertTrue(vertex.getStateTimestamp(ExecutionState.CANCELING) > 0) [FD]
+Line_6 $$ final ExecutionVertex vertex = new ExecutionVertex(ejv, 0, new IntermediateResult[0], AkkaUtils.getDefaultTimeout()) --> Line_13 $$ assertTrue(vertex.getStateTimestamp(ExecutionState.CANCELED) > 0) [FD]

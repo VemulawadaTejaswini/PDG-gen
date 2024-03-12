@@ -1,0 +1,4 @@
+Line_3 $$ StringBuilder queryString = new StringBuilder() --> Line_4 $$ queryString.append("select term.glossaryEntry from HGlossaryTerm as term ").append("where term.locale.localeId = term.glossaryEntry.srcLocale.localeId ").append("and term.glossaryEntry.glossary.qualifiedName =:qualifiedName ").append("order by term.content") [FD]
+Line_3 $$ StringBuilder queryString = new StringBuilder() --> Line_5 $$ Query query = getSession().createQuery(queryString.toString()) [FD]
+Line_5 $$ Query query = getSession().createQuery(queryString.toString()) --> Line_6 $$ query.setParameter("qualifiedName", qualifiedName).setComment("GlossaryDAO.getEntries") [FD]
+Line_5 $$ Query query = getSession().createQuery(queryString.toString()) --> Line_7 $$ List<HGlossaryEntry> result = query.list() [FD]

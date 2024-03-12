@@ -1,0 +1,5 @@
+Line_4 $$ String query = String.format(Locale.ROOT, "SELECT comment FROM system_schema.tables WHERE keyspace_name='%s' AND table_name='%s'", this.elasticAdminKeyspaceName, ELASTIC_ADMIN_METADATA_TABLE) --> Line_5 $$ UntypedResultSet result = QueryProcessor.executeInternal(query) [FD]
+Line_5 $$ UntypedResultSet result = QueryProcessor.executeInternal(query) --> Line_6 $$ if (result.isEmpty()) [FD]
+Line_5 $$ UntypedResultSet result = QueryProcessor.executeInternal(query) --> Line_8 $$ String metadataString = result.one().getString("comment") [FD]
+Line_8 $$ String metadataString = result.one().getString("comment") --> Line_9 $$ logger.debug("Recover metadata from [FD]
+Line_8 $$ String metadataString = result.one().getString("comment") --> Line_10 $$ return parseMetaDataString(metadataString) [FD]

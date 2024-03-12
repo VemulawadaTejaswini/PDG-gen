@@ -1,0 +1,5 @@
+Line_2 $$ public void canReadMemInfoFileIfExists() --> Line_3 $$ final long size = this.util.getOsTotalFreeMemorySize() [CD]
+Line_2 $$ public void canReadMemInfoFileIfExists() --> Line_4 $$ final Path memFile = Paths.get("/proc/meminfo") [CD]
+Line_2 $$ public void canReadMemInfoFileIfExists() --> Line_5 $$ if (!(Files.isRegularFile(memFile) && Files.isReadable(memFile))) [CD]
+Line_4 $$ final Path memFile = Paths.get("/proc/meminfo") --> Line_5 $$ if (!(Files.isRegularFile(memFile) && Files.isReadable(memFile))) [FD]
+Line_5 $$ if (!(Files.isRegularFile(memFile) && Files.isReadable(memFile))) --> Line_6 $$ assertTrue(size == 0) [CD]

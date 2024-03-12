@@ -1,0 +1,5 @@
+Line_2 $$ private void checkActiveJobTtl() --> Line_3 $$ int timeout = config.getInteger("job.ttl.interval", 1000) [CD]
+Line_2 $$ private void checkActiveJobTtl() --> Line_4 $$ int limit = config.getInteger("job.ttl.limit", 1000) [CD]
+Line_2 $$ private void checkActiveJobTtl() --> Line_5 $$ vertx.setPeriodic(timeout,  l -> [CD]
+Line_3 $$ int timeout = config.getInteger("job.ttl.interval", 1000) --> Line_5 $$ vertx.setPeriodic(timeout,  l -> [FD]
+Line_4 $$ int limit = config.getInteger("job.ttl.limit", 1000) --> Line_6 $$ client.zrangebyscore(RedisHelper.getKey("jobs:ACTIVE"), String.valueOf(100000), String.valueOf(System.currentTimeMillis()), new RangeLimitOptions(new JsonObject().put("offset", 0).put("count", limit)),  r -> [FD]

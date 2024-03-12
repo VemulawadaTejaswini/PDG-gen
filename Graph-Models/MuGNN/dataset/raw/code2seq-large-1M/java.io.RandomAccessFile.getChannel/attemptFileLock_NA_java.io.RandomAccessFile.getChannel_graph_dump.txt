@@ -1,0 +1,7 @@
+Line_2 $$ public void attemptFileLock() --> Line_3 $$ if (lockingAllowed() && !isLocked()) [CD]
+Line_5 $$ final RandomAccessFile file = new RandomAccessFile(lockfile, "rw") --> Line_6 $$ final FileChannel f = file.getChannel() [FD]
+Line_6 $$ final FileChannel f = file.getChannel() --> Line_7 $$ lock = f.tryLock() [FD]
+Line_8 $$ if (lock != null) --> Line_9 $$ LOGGER.debug("obtained file lock on file " + lockfile.getAbsolutePath() + " lock is valid=" + lock.isValid()) [CD]
+Line_8 $$ if (lock != null) --> Line_10 $$ writeLockFileContents(file) [CD]
+Line_5 $$ final RandomAccessFile file = new RandomAccessFile(lockfile, "rw") --> Line_10 $$ writeLockFileContents(file) [FD]
+Line_8 $$ if (lock != null) --> Line_12 $$ LOGGER.debug("unable to obtain file lock on file " + lockfile.getAbsolutePath()) [CD]

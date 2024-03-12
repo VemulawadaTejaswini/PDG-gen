@@ -1,0 +1,8 @@
+Line_2 $$ private Multimap<String, String> loadNameRestrictions(List<String> configuredRestrictions) --> Line_3 $$ Multimap<String, String> restrictions = HashMultimap.create() [CD]
+Line_4 $$ for (String restriction : configuredRestrictions) --> Line_5 $$ if (isInsideString(';', restriction)) [FD]
+Line_5 $$ if (isInsideString(';', restriction)) --> Line_6 $$ String[] data = restriction.split(";") [CD]
+Line_4 $$ for (String restriction : configuredRestrictions) --> Line_6 $$ String[] data = restriction.split(";") [FD]
+Line_5 $$ if (isInsideString(';', restriction)) --> Line_7 $$ restrictions.put(data[0].toLowerCase(), data[1]) [CD]
+Line_3 $$ Multimap<String, String> restrictions = HashMultimap.create() --> Line_7 $$ restrictions.put(data[0].toLowerCase(), data[1]) [FD]
+Line_5 $$ if (isInsideString(';', restriction)) --> Line_9 $$ ConsoleLogger.warning("Restricted user rule must have a ';' separating name from restriction," + " but found: '" + restriction + "'") [CD]
+Line_2 $$ private Multimap<String, String> loadNameRestrictions(List<String> configuredRestrictions) --> Line_12 $$ return restrictions [CD]

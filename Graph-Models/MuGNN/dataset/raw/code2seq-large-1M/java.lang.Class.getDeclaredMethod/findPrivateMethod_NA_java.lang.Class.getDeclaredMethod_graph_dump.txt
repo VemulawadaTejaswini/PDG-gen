@@ -1,0 +1,6 @@
+Line_2 $$ public static Method findPrivateMethod(Class clazz, String methName, Class[] clazzArgs, Class retClazz) --> Line_4 $$ Method m = clazz.getDeclaredMethod(methName, clazzArgs) [FD]
+Line_4 $$ Method m = clazz.getDeclaredMethod(methName, clazzArgs) --> Line_5 $$ int modif = m.getModifiers() [FD]
+Line_4 $$ Method m = clazz.getDeclaredMethod(methName, clazzArgs) --> Line_6 $$ if ((m.getReturnType() == retClazz) && ((modif & Modifier.PRIVATE) != 0) && ((modif & Modifier.STATIC) == 0)) [FD]
+Line_6 $$ if ((m.getReturnType() == retClazz) && ((modif & Modifier.PRIVATE) != 0) && ((modif & Modifier.STATIC) == 0)) --> Line_7 $$ m.setAccessible(true) [CD]
+Line_4 $$ Method m = clazz.getDeclaredMethod(methName, clazzArgs) --> Line_7 $$ m.setAccessible(true) [FD]
+Line_6 $$ if ((m.getReturnType() == retClazz) && ((modif & Modifier.PRIVATE) != 0) && ((modif & Modifier.STATIC) == 0)) --> Line_8 $$ return m [CD]

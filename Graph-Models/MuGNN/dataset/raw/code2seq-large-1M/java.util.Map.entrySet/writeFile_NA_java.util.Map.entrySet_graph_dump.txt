@@ -1,0 +1,8 @@
+Line_2 $$ public static void writeFile(Map<String, String[]> userToRoles, Path path) --> Line_3 $$ HashMap<String, List<String>> roleToUsers = new HashMap() [CD]
+Line_2 $$ public static void writeFile(Map<String, String[]> userToRoles, Path path) --> Line_4 $$ for (Map.Entry<String, String[]> entry : userToRoles.entrySet()) [FD]
+Line_3 $$ HashMap<String, List<String>> roleToUsers = new HashMap() --> Line_6 $$ List<String> users = roleToUsers.computeIfAbsent(role,  k -> new ArrayList()) [FD]
+Line_5 $$ for (String role : entry.getValue()) --> Line_6 $$ List<String> users = roleToUsers.computeIfAbsent(role,  k -> new ArrayList()) [FD]
+Line_6 $$ List<String> users = roleToUsers.computeIfAbsent(role,  k -> new ArrayList()) --> Line_7 $$ users.add(entry.getKey()) [FD]
+Line_2 $$ public static void writeFile(Map<String, String[]> userToRoles, Path path) --> Line_10 $$ SecurityFiles.writeFileAtomically(path, roleToUsers,  e -> String.format(Locale.ROOT, "%s:%s", e.getKey(), collectionToCommaDelimitedString(e.getValue()))) [FD]
+Line_2 $$ public static void writeFile(Map<String, String[]> userToRoles, Path path) --> Line_10 $$ SecurityFiles.writeFileAtomically(path, roleToUsers,  e -> String.format(Locale.ROOT, "%s:%s", e.getKey(), collectionToCommaDelimitedString(e.getValue()))) [CD]
+Line_3 $$ HashMap<String, List<String>> roleToUsers = new HashMap() --> Line_10 $$ SecurityFiles.writeFileAtomically(path, roleToUsers,  e -> String.format(Locale.ROOT, "%s:%s", e.getKey(), collectionToCommaDelimitedString(e.getValue()))) [FD]

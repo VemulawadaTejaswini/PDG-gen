@@ -1,0 +1,7 @@
+Line_2 $$ public void testExistingCounterRetrieval() throws Exception --> Line_3 $$ Map<String, Double> values = new HashMap<String, Double>() [CD]
+Line_2 $$ public void testExistingCounterRetrieval() throws Exception --> Line_4 $$ values.put("VMW", 13.0) [CD]
+Line_3 $$ Map<String, Double> values = new HashMap<String, Double>() --> Line_4 $$ values.put("VMW", 13.0) [FD]
+Line_2 $$ public void testExistingCounterRetrieval() throws Exception --> Line_5 $$ values.put("GOOG", 23.0) [CD]
+Line_3 $$ Map<String, Double> values = new HashMap<String, Double>() --> Line_5 $$ values.put("GOOG", 23.0) [FD]
+Line_2 $$ public void testExistingCounterRetrieval() throws Exception --> Line_6 $$ when(fieldValueCounterRepository.findOne("iamthere")).thenReturn(new FieldValueCounter("iamthere", values)) [CD]
+Line_2 $$ public void testExistingCounterRetrieval() throws Exception --> Line_7 $$ mockMvc.perform(get("/metrics/field-value-counters/iamthere")).andExpect(status().isOk()).andExpect(jsonPath("$.name").value("iamthere")).andExpect(jsonPath("$.counts['VMW']").value(13.0)) [CD]

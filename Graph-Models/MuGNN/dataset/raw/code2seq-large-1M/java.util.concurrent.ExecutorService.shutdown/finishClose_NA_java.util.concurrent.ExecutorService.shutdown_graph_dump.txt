@@ -1,0 +1,8 @@
+Line_4 $$ final SharedReference<GenerationState<K, V>> state = generationState.getAndUnset() --> Line_6 $$ if (state != null) [FD]
+Line_6 $$ if (state != null) --> Line_7 $$ final VolatileGeneration<K, V> volatileGeneration = state.get().volatileGeneration [CD]
+Line_4 $$ final SharedReference<GenerationState<K, V>> state = generationState.getAndUnset() --> Line_7 $$ final VolatileGeneration<K, V> volatileGeneration = state.get().volatileGeneration [FD]
+Line_6 $$ if (state != null) --> Line_8 $$ if (volatileGeneration != null) [CD]
+Line_7 $$ final VolatileGeneration<K, V> volatileGeneration = state.get().volatileGeneration --> Line_8 $$ if (volatileGeneration != null) [FD]
+Line_8 $$ if (volatileGeneration != null) --> Line_9 $$ volatileGeneration.closeWriter() [CD]
+Line_7 $$ final VolatileGeneration<K, V> volatileGeneration = state.get().volatileGeneration --> Line_9 $$ volatileGeneration.closeWriter() [FD]
+Line_4 $$ final SharedReference<GenerationState<K, V>> state = generationState.getAndUnset() --> Line_12 $$ Closeables2.closeQuietly(state, log) [FD]

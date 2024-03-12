@@ -1,0 +1,8 @@
+Line_2 $$ public void test_serializationOnNode() --> Line_3 $$ JetInstance client = createJetMember() [CD]
+Line_2 $$ public void test_serializationOnNode() --> Line_4 $$ RuntimeException exc = new RuntimeException("myException") [CD]
+Line_6 $$ DAG dag = new DAG() --> Line_7 $$ dag.newVertex("source", () -> new MockP().setCompleteError(exc)).localParallelism(1) [FD]
+Line_4 $$ RuntimeException exc = new RuntimeException("myException") --> Line_7 $$ dag.newVertex("source", () -> new MockP().setCompleteError(exc)).localParallelism(1) [FD]
+Line_3 $$ JetInstance client = createJetMember() --> Line_8 $$ client.newJob(dag).join() [FD]
+Line_6 $$ DAG dag = new DAG() --> Line_8 $$ client.newJob(dag).join() [FD]
+Line_4 $$ RuntimeException exc = new RuntimeException("myException") --> Line_10 $$ assertThat(caught.toString(), containsString(exc.toString())) [FD]
+Line_4 $$ RuntimeException exc = new RuntimeException("myException") --> Line_11 $$ TestUtil.assertExceptionInCauses(exc, caught) [FD]

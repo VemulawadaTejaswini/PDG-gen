@@ -1,0 +1,7 @@
+Line_2 $$ public boolean isProperlyShutDown() --> Line_3 $$ boolean readersShutDown = true [CD]
+Line_3 $$ boolean readersShutDown = true --> Line_5 $$ readersShutDown &= rt.getState() == Thread.State.TERMINATED [FD]
+Line_4 $$ for (ReaderThread rt : readers) --> Line_5 $$ readersShutDown &= rt.getState() == Thread.State.TERMINATED [FD]
+Line_2 $$ public boolean isProperlyShutDown() --> Line_7 $$ boolean writersShutDown = true [CD]
+Line_7 $$ boolean writersShutDown = true --> Line_9 $$ writersShutDown &= wt.getState() == Thread.State.TERMINATED [FD]
+Line_8 $$ for (WriterThread wt : writers) --> Line_9 $$ writersShutDown &= wt.getState() == Thread.State.TERMINATED [FD]
+Line_2 $$ public boolean isProperlyShutDown() --> Line_11 $$ return isShutdown.get() && readersShutDown && writersShutDown && super.isProperlyShutDown() [CD]

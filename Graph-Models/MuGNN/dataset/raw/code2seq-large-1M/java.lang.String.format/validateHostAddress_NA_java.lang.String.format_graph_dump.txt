@@ -1,0 +1,8 @@
+Line_2 $$ private void validateHostAddress(RegistryState state, SslTrustCertificateState sslTrust) --> Line_3 $$ String hostname = UriUtilsExtended.extractHost(state.address) [CD]
+Line_2 $$ private void validateHostAddress(RegistryState state, SslTrustCertificateState sslTrust) --> Line_4 $$ X509Certificate certificate = null [CD]
+Line_4 $$ X509Certificate certificate = null --> Line_6 $$ certificate = KeyUtil.decodeCertificate(sslTrust.certificate) [FD]
+Line_3 $$ String hostname = UriUtilsExtended.extractHost(state.address) --> Line_8 $$ throw new LocalizableValidationException(String.format("Invalid certificate provided from host: %s", hostname), "compute.registry.host.address.invalid.certificate", hostname) [FD]
+Line_3 $$ String hostname = UriUtilsExtended.extractHost(state.address) --> Line_11 $$ new DefaultHostnameVerifier().verify(hostname, certificate) [FD]
+Line_4 $$ X509Certificate certificate = null --> Line_11 $$ new DefaultHostnameVerifier().verify(hostname, certificate) [FD]
+Line_6 $$ certificate = KeyUtil.decodeCertificate(sslTrust.certificate) --> Line_11 $$ new DefaultHostnameVerifier().verify(hostname, certificate) [FD]
+Line_3 $$ String hostname = UriUtilsExtended.extractHost(state.address) --> Line_13 $$ String errorMessage = String.format("Registry hostname (%s) does not match certificates CN (%s).", hostname, sslTrust.commonName) [FD]

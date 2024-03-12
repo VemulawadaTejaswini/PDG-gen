@@ -1,0 +1,6 @@
+Line_2 $$ public void testKnownLengthContentToByteArray() throws Exception --> Line_3 $$ final byte[] bytes = "Message content".getBytes(StandardCharsets.ISO_8859_1) [CD]
+Line_4 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_5 $$ httpentity.setContent(new ByteArrayInputStream(bytes)) [FD]
+Line_4 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_6 $$ httpentity.setContentLength(bytes.length) [FD]
+Line_4 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_7 $$ final byte[] bytes2 = EntityUtils.toByteArray(httpentity) [FD]
+Line_7 $$ final byte[] bytes2 = EntityUtils.toByteArray(httpentity) --> Line_8 $$ Assert.assertNotNull(bytes2) [FD]
+Line_10 $$ for (int i = 0; i < bytes.length; i++) --> Line_11 $$ Assert.assertEquals(bytes[i], bytes2[i]) [CD]

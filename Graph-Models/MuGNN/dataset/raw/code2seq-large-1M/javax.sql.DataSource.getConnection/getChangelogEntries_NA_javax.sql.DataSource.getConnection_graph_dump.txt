@@ -1,0 +1,7 @@
+Line_3 $$ final Connection connection = m_dataSource.getConnection() --> Line_5 $$ PreparedStatement statement = connection.prepareStatement("SELECT id, md5sum FROM databasechangelog order by id") [FD]
+Line_5 $$ PreparedStatement statement = connection.prepareStatement("SELECT id, md5sum FROM databasechangelog order by id") --> Line_6 $$ assertTrue(statement.execute()) [FD]
+Line_5 $$ PreparedStatement statement = connection.prepareStatement("SELECT id, md5sum FROM databasechangelog order by id") --> Line_7 $$ ResultSet rs = statement.getResultSet() [FD]
+Line_7 $$ ResultSet rs = statement.getResultSet() --> Line_9 $$ while (rs.next()) [FD]
+Line_9 $$ while (rs.next()) --> Line_10 $$ entries.add(new ChangelogEntry(rs.getString(1), rs.getString(2))) [CD]
+Line_7 $$ ResultSet rs = statement.getResultSet() --> Line_10 $$ entries.add(new ChangelogEntry(rs.getString(1), rs.getString(2))) [FD]
+Line_3 $$ final Connection connection = m_dataSource.getConnection() --> Line_14 $$ connection.close() [FD]

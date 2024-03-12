@@ -1,0 +1,5 @@
+Line_2 $$ public void testReflectedSchema() --> Line_3 $$ Schema expected = SchemaBuilder.record(RecordWithUUIDList.class.getName()).fields().name("uuids").type().array().items().stringType().noDefault().endRecord() [CD]
+Line_2 $$ public void testReflectedSchema() --> Line_4 $$ expected.getField("uuids").schema().addProp(SpecificData.CLASS_PROP, List.class.getName()) [CD]
+Line_2 $$ public void testReflectedSchema() --> Line_5 $$ LogicalTypes.uuid().addToSchema(expected.getField("uuids").schema().getElementType()) [CD]
+Line_2 $$ public void testReflectedSchema() --> Line_6 $$ Schema actual = REFLECT.getSchema(RecordWithUUIDList.class) [CD]
+Line_2 $$ public void testReflectedSchema() --> Line_7 $$ Assert.assertEquals("Should use the UUID logical type", expected, actual) [CD]

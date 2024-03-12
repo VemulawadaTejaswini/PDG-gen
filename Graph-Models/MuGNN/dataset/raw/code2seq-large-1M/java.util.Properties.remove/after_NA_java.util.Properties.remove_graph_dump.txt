@@ -1,0 +1,8 @@
+Line_2 $$ public void after() --> Line_3 $$ System.getProperties().remove(SPRING_EMBEDDED_KAFKA_BROKERS) [CD]
+Line_2 $$ public void after() --> Line_4 $$ System.getProperties().remove(SPRING_EMBEDDED_ZOOKEEPER_CONNECT) [CD]
+Line_5 $$ for (KafkaServer kafkaServer : this.kafkaServers) --> Line_7 $$ if (kafkaServer.brokerState().currentState() != (NotRunning.state())) [FD]
+Line_7 $$ if (kafkaServer.brokerState().currentState() != (NotRunning.state())) --> Line_8 $$ kafkaServer.shutdown() [CD]
+Line_5 $$ for (KafkaServer kafkaServer : this.kafkaServers) --> Line_8 $$ kafkaServer.shutdown() [FD]
+Line_7 $$ if (kafkaServer.brokerState().currentState() != (NotRunning.state())) --> Line_9 $$ kafkaServer.awaitShutdown() [CD]
+Line_5 $$ for (KafkaServer kafkaServer : this.kafkaServers) --> Line_9 $$ kafkaServer.awaitShutdown() [FD]
+Line_5 $$ for (KafkaServer kafkaServer : this.kafkaServers) --> Line_14 $$ CoreUtils.delete(kafkaServer.config().logDirs()) [FD]

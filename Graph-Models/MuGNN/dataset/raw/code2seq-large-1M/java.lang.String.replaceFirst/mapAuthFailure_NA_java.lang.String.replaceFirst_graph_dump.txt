@@ -1,0 +1,6 @@
+Line_2 $$ static Exception mapAuthFailure(Exception e, String jobId, String mappedActionName) --> Line_3 $$ if (e instanceof ElasticsearchStatusException) [FD]
+Line_2 $$ static Exception mapAuthFailure(Exception e, String jobId, String mappedActionName) --> Line_3 $$ if (e instanceof ElasticsearchStatusException) [CD]
+Line_3 $$ if (e instanceof ElasticsearchStatusException) --> Line_4 $$ if (((ElasticsearchStatusException) e).status() == RestStatus.FORBIDDEN) [CD]
+Line_4 $$ if (((ElasticsearchStatusException) e).status() == RestStatus.FORBIDDEN) --> Line_5 $$ e = Exceptions.authorizationError(e.getMessage().replaceFirst("action \\[.*?\\]", "action [" + mappedActionName + "]") + " for job [ [CD]
+Line_2 $$ static Exception mapAuthFailure(Exception e, String jobId, String mappedActionName) --> Line_5 $$ e = Exceptions.authorizationError(e.getMessage().replaceFirst("action \\[.*?\\]", "action [" + mappedActionName + "]") + " for job [ [FD]
+Line_2 $$ static Exception mapAuthFailure(Exception e, String jobId, String mappedActionName) --> Line_8 $$ return e [CD]

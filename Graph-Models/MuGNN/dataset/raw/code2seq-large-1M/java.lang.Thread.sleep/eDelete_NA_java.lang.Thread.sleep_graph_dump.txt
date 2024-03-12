@@ -1,0 +1,8 @@
+Line_2 $$ public void eDelete() throws InterruptedException --> Line_3 $$ List<Classifier> classifiers = service.listClassifiers().execute().getClassifiers() [CD]
+Line_6 $$ Classifier currentClassifier = service.getClassifier(getOptions).execute() --> Line_7 $$ if (currentClassifier.getClassifierId().equals(classifierId)) [FD]
+Line_6 $$ Classifier currentClassifier = service.getClassifier(getOptions).execute() --> Line_8 $$ while (!currentClassifier.getStatus().equals(Status.AVAILABLE)) [FD]
+Line_8 $$ while (!currentClassifier.getStatus().equals(Status.AVAILABLE)) --> Line_9 $$ Thread.sleep(5000) [CD]
+Line_8 $$ while (!currentClassifier.getStatus().equals(Status.AVAILABLE)) --> Line_10 $$ getOptions = new GetClassifierOptions.Builder().classifierId(classifierId).build() [CD]
+Line_8 $$ while (!currentClassifier.getStatus().equals(Status.AVAILABLE)) --> Line_11 $$ currentClassifier = service.getClassifier(getOptions).execute() [CD]
+Line_6 $$ Classifier currentClassifier = service.getClassifier(getOptions).execute() --> Line_11 $$ currentClassifier = service.getClassifier(getOptions).execute() [FD]
+Line_11 $$ currentClassifier = service.getClassifier(getOptions).execute() --> Line_8 $$ while (!currentClassifier.getStatus().equals(Status.AVAILABLE)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Map<String, Long> getJobStartTimes() --> Line_3 $$ Map<String, Long> startTimes = new HashMap<String, Long>() [CD]
+Line_2 $$ public Map<String, Long> getJobStartTimes() --> Line_4 $$ Map<String, String> startTimesMap = _record.getMapField(WorkflowContextProperties.StartTime.name()) [CD]
+Line_2 $$ public Map<String, Long> getJobStartTimes() --> Line_5 $$ if (startTimesMap != null) [CD]
+Line_4 $$ Map<String, String> startTimesMap = _record.getMapField(WorkflowContextProperties.StartTime.name()) --> Line_5 $$ if (startTimesMap != null) [FD]
+Line_4 $$ Map<String, String> startTimesMap = _record.getMapField(WorkflowContextProperties.StartTime.name()) --> Line_6 $$ for (Map.Entry<String, String> time : startTimesMap.entrySet()) [FD]
+Line_3 $$ Map<String, Long> startTimes = new HashMap<String, Long>() --> Line_7 $$ startTimes.put(time.getKey(), Long.valueOf(time.getValue())) [FD]
+Line_2 $$ public Map<String, Long> getJobStartTimes() --> Line_10 $$ return startTimes [CD]

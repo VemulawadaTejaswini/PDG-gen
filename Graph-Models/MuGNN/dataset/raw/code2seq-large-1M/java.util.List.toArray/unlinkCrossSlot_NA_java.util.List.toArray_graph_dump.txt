@@ -1,0 +1,8 @@
+Line_2 $$ public void unlinkCrossSlot() throws Exception --> Line_3 $$ assumeTrue(RedisConditions.of(syncCommands.getStatefulConnection()).hasCommand("UNLINK")) [CD]
+Line_2 $$ public void unlinkCrossSlot() throws Exception --> Line_4 $$ List<String> keys = prepareKeys() [CD]
+Line_2 $$ public void unlinkCrossSlot() throws Exception --> Line_5 $$ Long result = syncCommands.unlink(keys.toArray(new String[keys.size()])) [CD]
+Line_4 $$ List<String> keys = prepareKeys() --> Line_5 $$ Long result = syncCommands.unlink(keys.toArray(new String[keys.size()])) [FD]
+Line_2 $$ public void unlinkCrossSlot() throws Exception --> Line_6 $$ assertThat(result).isEqualTo(25) [CD]
+Line_5 $$ Long result = syncCommands.unlink(keys.toArray(new String[keys.size()])) --> Line_6 $$ assertThat(result).isEqualTo(25) [FD]
+Line_7 $$ for (String mykey : keys) --> Line_8 $$ String s1 = syncCommands.get(mykey) [FD]
+Line_8 $$ String s1 = syncCommands.get(mykey) --> Line_9 $$ assertThat(s1).isNull() [FD]

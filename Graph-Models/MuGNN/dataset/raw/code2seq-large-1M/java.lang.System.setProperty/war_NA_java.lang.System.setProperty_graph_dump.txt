@@ -1,0 +1,4 @@
+Line_2 $$ public static Archive<?> war() throws Exception --> Line_3 $$ final String port = findPort() [CD]
+Line_2 $$ public static Archive<?> war() throws Exception --> Line_4 $$ System.setProperty(AllFilterTest.class.getName() + ".port", port) [CD]
+Line_3 $$ final String port = findPort() --> Line_4 $$ System.setProperty(AllFilterTest.class.getName() + ".port", port) [FD]
+Line_2 $$ public static Archive<?> war() throws Exception --> Line_5 $$ return ShrinkWrap.create(WebArchive.class, "filter.war").addClass(MyFilter.class).addAsWebInfResource(new StringAsset(port), "classes/port.conf").addAsWebInfResource(new StringAsset(Descriptors.create(WebAppDescriptor.class).version(WebAppVersionType._2_5).metadataComplete(true).createFilter().filterName("My").filterClass(MyFilter.class.getName()).up().createFilterMapping().filterName("My").urlPattern("/*").up().exportAsString()), "web.xml") [CD]

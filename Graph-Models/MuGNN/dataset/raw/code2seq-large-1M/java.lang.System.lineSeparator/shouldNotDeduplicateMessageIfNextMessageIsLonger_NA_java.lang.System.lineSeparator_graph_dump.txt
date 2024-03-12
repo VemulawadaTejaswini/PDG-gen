@@ -1,0 +1,5 @@
+Line_2 $$ public void shouldNotDeduplicateMessageIfNextMessageIsLonger() --> Line_3 $$ final Throwable cause = new TestException("Something went wrong") [CD]
+Line_2 $$ public void shouldNotDeduplicateMessageIfNextMessageIsLonger() --> Line_4 $$ final Throwable subLevel1 = new TestException("Some Message with more detail", cause) [CD]
+Line_2 $$ public void shouldNotDeduplicateMessageIfNextMessageIsLonger() --> Line_5 $$ final Throwable e = new TestException("Some Message", subLevel1) [CD]
+Line_2 $$ public void shouldNotDeduplicateMessageIfNextMessageIsLonger() --> Line_6 $$ assertThat(buildErrorMessage(e), is("Some Message" + System.lineSeparator() + "Caused by: Some Message with more detail" + System.lineSeparator() + "Caused by: Something went wrong")) [CD]
+Line_5 $$ final Throwable e = new TestException("Some Message", subLevel1) --> Line_6 $$ assertThat(buildErrorMessage(e), is("Some Message" + System.lineSeparator() + "Caused by: Some Message with more detail" + System.lineSeparator() + "Caused by: Something went wrong")) [FD]

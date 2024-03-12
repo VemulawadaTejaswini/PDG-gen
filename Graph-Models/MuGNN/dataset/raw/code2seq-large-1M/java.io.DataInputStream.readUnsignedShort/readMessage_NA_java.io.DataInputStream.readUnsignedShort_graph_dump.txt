@@ -1,0 +1,8 @@
+Line_2 $$ private Message readMessage(InputStream inputStream) throws IOException --> Line_3 $$ DataInputStream stream = new DataInputStream(inputStream) [CD]
+Line_2 $$ private Message readMessage(InputStream inputStream) throws IOException --> Line_4 $$ int length = stream.readUnsignedShort() [CD]
+Line_3 $$ DataInputStream stream = new DataInputStream(inputStream) --> Line_4 $$ int length = stream.readUnsignedShort() [FD]
+Line_2 $$ private Message readMessage(InputStream inputStream) throws IOException --> Line_5 $$ byte[] messageData = new byte[length] [CD]
+Line_2 $$ private Message readMessage(InputStream inputStream) throws IOException --> Line_6 $$ stream.readFully(messageData) [CD]
+Line_3 $$ DataInputStream stream = new DataInputStream(inputStream) --> Line_6 $$ stream.readFully(messageData) [FD]
+Line_5 $$ byte[] messageData = new byte[length] --> Line_6 $$ stream.readFully(messageData) [FD]
+Line_2 $$ private Message readMessage(InputStream inputStream) throws IOException --> Line_7 $$ return new Message(messageData) [CD]

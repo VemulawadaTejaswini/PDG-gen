@@ -1,0 +1,7 @@
+Line_2 $$ public void testSimulateCtrlCWaitingForShutdown() throws Exception --> Line_3 $$ final Runtime runtime = mock(Runtime.class) [CD]
+Line_2 $$ public void testSimulateCtrlCWaitingForShutdown() throws Exception --> Line_4 $$ Service service = ServiceImpl.builder("test").withRuntime(runtime).build() [CD]
+Line_2 $$ public void testSimulateCtrlCWaitingForShutdown() throws Exception --> Line_5 $$ ExecutorService executorService = Executors.newSingleThreadExecutor() [CD]
+Line_4 $$ Service service = ServiceImpl.builder("test").withRuntime(runtime).build() --> Line_6 $$ try (Service.Instance instance = service.start()) [FD]
+Line_5 $$ ExecutorService executorService = Executors.newSingleThreadExecutor() --> Line_7 $$ executorService.submit(new ShutdownHookSim(runtime)) [FD]
+Line_6 $$ try (Service.Instance instance = service.start()) --> Line_8 $$ instance.waitForShutdown() [FD]
+Line_5 $$ ExecutorService executorService = Executors.newSingleThreadExecutor() --> Line_12 $$ executorService.shutdownNow() [FD]

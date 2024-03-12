@@ -1,0 +1,8 @@
+Line_2 $$ public void releaseLock(String lockName) --> Line_3 $$ if (isLockOwner(lockName)) [FD]
+Line_2 $$ public void releaseLock(String lockName) --> Line_3 $$ if (isLockOwner(lockName)) [CD]
+Line_3 $$ if (isLockOwner(lockName)) --> Line_4 $$ if (getLog().isDebugEnabled()) [CD]
+Line_4 $$ if (getLog().isDebugEnabled()) --> Line_5 $$ getLog().debug("Lock '" + lockName + "' returned by: " + Thread.currentThread().getName()) [CD]
+Line_3 $$ if (isLockOwner(lockName)) --> Line_7 $$ getThreadLocks().remove(lockName) [CD]
+Line_2 $$ public void releaseLock(String lockName) --> Line_7 $$ getThreadLocks().remove(lockName) [FD]
+Line_3 $$ if (isLockOwner(lockName)) --> Line_8 $$ if (getLog().isDebugEnabled()) [CD]
+Line_8 $$ if (getLog().isDebugEnabled()) --> Line_9 $$ getLog().warn("Lock '" + lockName + "' attempt to return by: " + Thread.currentThread().getName() + " -- but not owner!", new Exception("stack-trace of wrongful returner")) [CD]

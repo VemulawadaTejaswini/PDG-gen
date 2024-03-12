@@ -1,0 +1,7 @@
+Line_2 $$ private Map<String, Serializable> readMetadata(DiskLruCache.Snapshot snapshot) throws IOException --> Line_3 $$ ObjectInputStream ois = null [CD]
+Line_3 $$ ObjectInputStream ois = null --> Line_5 $$ ois = new ObjectInputStream(new BufferedInputStream(snapshot.getInputStream(METADATA_IDX))) [FD]
+Line_2 $$ private Map<String, Serializable> readMetadata(DiskLruCache.Snapshot snapshot) throws IOException --> Line_5 $$ ois = new ObjectInputStream(new BufferedInputStream(snapshot.getInputStream(METADATA_IDX))) [FD]
+Line_3 $$ ObjectInputStream ois = null --> Line_6 $$ Map<String, Serializable> annotations = (Map<String, Serializable>) ois.readObject() [FD]
+Line_5 $$ ois = new ObjectInputStream(new BufferedInputStream(snapshot.getInputStream(METADATA_IDX))) --> Line_6 $$ Map<String, Serializable> annotations = (Map<String, Serializable>) ois.readObject() [FD]
+Line_3 $$ ObjectInputStream ois = null --> Line_11 $$ IOUtils.closeQuietly(ois) [FD]
+Line_5 $$ ois = new ObjectInputStream(new BufferedInputStream(snapshot.getInputStream(METADATA_IDX))) --> Line_11 $$ IOUtils.closeQuietly(ois) [FD]

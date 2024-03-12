@@ -1,0 +1,8 @@
+Line_2 $$ public void testExtractNode() throws Exception --> Line_3 $$ Long id = db.execute("CREATE (f:Foo)-[rel:FOOBAR [CD]
+Line_2 $$ public void testExtractNode() throws Exception --> Line_4 $$ testCall(db, "CALL apoc.refactor.extractNode( [CD]
+Line_3 $$ Long id = db.execute("CREATE (f:Foo)-[rel:FOOBAR --> Line_4 $$ testCall(db, "CALL apoc.refactor.extractNode( [FD]
+Line_3 $$ Long id = db.execute("CREATE (f:Foo)-[rel:FOOBAR --> Line_5 $$ assertEquals(id, r.get("input")) [FD]
+Line_6 $$ Node node = (Node) r.get("output") --> Line_7 $$ assertEquals(true, node.hasLabel(Label.label("FooBar"))) [FD]
+Line_6 $$ Node node = (Node) r.get("output") --> Line_8 $$ assertEquals(1L, node.getProperty("a")) [FD]
+Line_6 $$ Node node = (Node) r.get("output") --> Line_9 $$ assertNotNull(node.getSingleRelationship(RelationshipType.withName("FOO"), Direction.OUTGOING)) [FD]
+Line_6 $$ Node node = (Node) r.get("output") --> Line_10 $$ assertNotNull(node.getSingleRelationship(RelationshipType.withName("BAR"), Direction.INCOMING)) [FD]

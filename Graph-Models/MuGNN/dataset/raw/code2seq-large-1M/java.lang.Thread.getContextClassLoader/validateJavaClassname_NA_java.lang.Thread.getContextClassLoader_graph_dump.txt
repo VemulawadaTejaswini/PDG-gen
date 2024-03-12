@@ -1,0 +1,8 @@
+Line_6 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() --> Line_7 $$ if (cl == null) [FD]
+Line_7 $$ if (cl == null) --> Line_8 $$ cl = getClass().getClassLoader() [CD]
+Line_6 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() --> Line_8 $$ cl = getClass().getClassLoader() [FD]
+Line_10 $$ final Class<?> clazz --> Line_12 $$ clazz = cl.loadClass(classname) [FD]
+Line_6 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() --> Line_12 $$ clazz = cl.loadClass(classname) [FD]
+Line_8 $$ cl = getClass().getClassLoader() --> Line_12 $$ clazz = cl.loadClass(classname) [FD]
+Line_16 $$ if (parentClass != null) --> Line_17 $$ if (!parentClass.isAssignableFrom(clazz)) [CD]
+Line_10 $$ final Class<?> clazz --> Line_17 $$ if (!parentClass.isAssignableFrom(clazz)) [FD]

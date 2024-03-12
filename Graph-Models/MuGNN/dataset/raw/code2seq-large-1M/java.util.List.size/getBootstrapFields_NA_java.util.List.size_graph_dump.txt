@@ -1,0 +1,8 @@
+Line_2 $$ private List<VolatileField> getBootstrapFields(Object serverConnection) --> Line_3 $$ List<VolatileField> result = Lists.newArrayList() [CD]
+Line_2 $$ private List<VolatileField> getBootstrapFields(Object serverConnection) --> Line_4 $$ for (Field field : FuzzyReflection.fromObject(serverConnection, true).getFieldListByType(List.class)) [FD]
+Line_5 $$ VolatileField volatileField = new VolatileField(field, serverConnection, true).toSynchronized() --> Line_6 $$ List<Object> list = (List<Object>) volatileField.getValue() [FD]
+Line_6 $$ List<Object> list = (List<Object>) volatileField.getValue() --> Line_7 $$ if (list.size() == 0 || list.get(0) instanceof ChannelFuture) [FD]
+Line_7 $$ if (list.size() == 0 || list.get(0) instanceof ChannelFuture) --> Line_8 $$ result.add(volatileField) [CD]
+Line_3 $$ List<VolatileField> result = Lists.newArrayList() --> Line_8 $$ result.add(volatileField) [FD]
+Line_5 $$ VolatileField volatileField = new VolatileField(field, serverConnection, true).toSynchronized() --> Line_8 $$ result.add(volatileField) [FD]
+Line_2 $$ private List<VolatileField> getBootstrapFields(Object serverConnection) --> Line_11 $$ return result [CD]

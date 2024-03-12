@@ -1,0 +1,7 @@
+Line_2 $$ public void onMessage(String twitterHandle) --> Line_3 $$ TwitterUser twitterUser = allTwitterUsers.computeIfAbsent(twitterHandle, TwitterUser::<>new) [FD]
+Line_2 $$ public void onMessage(String twitterHandle) --> Line_3 $$ TwitterUser twitterUser = allTwitterUsers.computeIfAbsent(twitterHandle, TwitterUser::<>new) [CD]
+Line_2 $$ public void onMessage(String twitterHandle) --> Line_4 $$ twitterUser.incrementCount() [CD]
+Line_3 $$ TwitterUser twitterUser = allTwitterUsers.computeIfAbsent(twitterHandle, TwitterUser::<>new) --> Line_4 $$ twitterUser.incrementCount() [FD]
+Line_2 $$ public void onMessage(String twitterHandle) --> Line_5 $$ List<TwitterUser> topTweeters = allTwitterUsers.values().stream().sorted(comparingInt(TwitterUser::<>getTweetCount).reversed()).limit(NUMBER_OF_LEADERS).collect(Collectors.toList()) [CD]
+Line_2 $$ public void onMessage(String twitterHandle) --> Line_6 $$ Platform.runLater(() -> items.setAll(topTweeters)) [CD]
+Line_5 $$ List<TwitterUser> topTweeters = allTwitterUsers.values().stream().sorted(comparingInt(TwitterUser::<>getTweetCount).reversed()).limit(NUMBER_OF_LEADERS).collect(Collectors.toList()) --> Line_6 $$ Platform.runLater(() -> items.setAll(topTweeters)) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ void reset(int len) --> Line_3 $$ final int bitsPerOffset = PackedInts.bitsRequired(len - LAST_LITERALS) [CD]
+Line_2 $$ void reset(int len) --> Line_4 $$ final int bitsPerOffsetLog = 32 - Integer.numberOfLeadingZeros(bitsPerOffset - 1) [CD]
+Line_2 $$ void reset(int len) --> Line_6 $$ if (hashTable == null || hashTable.size() < 1 << hashLog || hashTable.getBitsPerValue() < bitsPerOffset) [CD]
+Line_6 $$ if (hashTable == null || hashTable.size() < 1 << hashLog || hashTable.getBitsPerValue() < bitsPerOffset) --> Line_7 $$ hashTable = PackedInts.getMutable(1 << hashLog, bitsPerOffset, PackedInts.DEFAULT) [CD]
+Line_3 $$ final int bitsPerOffset = PackedInts.bitsRequired(len - LAST_LITERALS) --> Line_7 $$ hashTable = PackedInts.getMutable(1 << hashLog, bitsPerOffset, PackedInts.DEFAULT) [FD]
+Line_6 $$ if (hashTable == null || hashTable.size() < 1 << hashLog || hashTable.getBitsPerValue() < bitsPerOffset) --> Line_9 $$ hashTable.clear() [CD]

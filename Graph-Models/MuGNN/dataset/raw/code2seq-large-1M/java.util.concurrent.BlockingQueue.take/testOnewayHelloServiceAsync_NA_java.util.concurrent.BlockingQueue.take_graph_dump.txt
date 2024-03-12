@@ -1,0 +1,7 @@
+Line_2 $$ public void testOnewayHelloServiceAsync() throws Exception --> Line_3 $$ final OnewayHelloService.AsyncIface client = Clients.newClient(clientFactory(), getURI(Handlers.ONEWAYHELLO), Handlers.ONEWAYHELLO.asyncIface(), clientOptions) [CD]
+Line_2 $$ public void testOnewayHelloServiceAsync() throws Exception --> Line_4 $$ final BlockingQueue<Object> resQueue = new LinkedBlockingQueue() [CD]
+Line_2 $$ public void testOnewayHelloServiceAsync() throws Exception --> Line_5 $$ final String[] names = [CD]
+Line_3 $$ final OnewayHelloService.AsyncIface client = Clients.newClient(clientFactory(), getURI(Handlers.ONEWAYHELLO), Handlers.ONEWAYHELLO.asyncIface(), clientOptions) --> Line_7 $$ client.hello(name, new RequestQueuingCallback(resQueue)) [FD]
+Line_6 $$ for (String name : names) --> Line_7 $$ client.hello(name, new RequestQueuingCallback(resQueue)) [FD]
+Line_4 $$ final BlockingQueue<Object> resQueue = new LinkedBlockingQueue() --> Line_10 $$ assertThat(resQueue.take()).isEqualTo("null") [FD]
+Line_5 $$ final String[] names = --> Line_13 $$ assertThat(serverReceivedNames.take()).isIn(names) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private static Set<String> filterByVolume(String volumeName, Collection<ContainerDescription> descs) --> Line_3 $$ Predicate<ContainerDescription> hasVolume =  cd -> [CD]
+Line_4 $$ if (cd.volumes != null) --> Line_5 $$ return Arrays.stream(cd.volumes).anyMatch( v -> v.startsWith(volumeName)) [CD]
+Line_2 $$ private static Set<String> filterByVolume(String volumeName, Collection<ContainerDescription> descs) --> Line_5 $$ return Arrays.stream(cd.volumes).anyMatch( v -> v.startsWith(volumeName)) [FD]
+Line_2 $$ private static Set<String> filterByVolume(String volumeName, Collection<ContainerDescription> descs) --> Line_9 $$ return descs.stream().filter(hasVolume).map( cd -> cd.name).collect(Collectors.toSet()) [FD]
+Line_2 $$ private static Set<String> filterByVolume(String volumeName, Collection<ContainerDescription> descs) --> Line_9 $$ return descs.stream().filter(hasVolume).map( cd -> cd.name).collect(Collectors.toSet()) [CD]
+Line_3 $$ Predicate<ContainerDescription> hasVolume =  cd -> --> Line_9 $$ return descs.stream().filter(hasVolume).map( cd -> cd.name).collect(Collectors.toSet()) [FD]

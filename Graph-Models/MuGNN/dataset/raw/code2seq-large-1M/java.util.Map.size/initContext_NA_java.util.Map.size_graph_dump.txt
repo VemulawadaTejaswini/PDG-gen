@@ -1,0 +1,8 @@
+Line_2 $$ private Cat.Context initContext() --> Line_3 $$ Cat.Context context = new DubboCatContext() [CD]
+Line_2 $$ private Cat.Context initContext() --> Line_4 $$ Map<String, String> attachments = RpcContext.getContext().getAttachments() [CD]
+Line_2 $$ private Cat.Context initContext() --> Line_5 $$ if (attachments != null && attachments.size() > 0) [CD]
+Line_4 $$ Map<String, String> attachments = RpcContext.getContext().getAttachments() --> Line_5 $$ if (attachments != null && attachments.size() > 0) [FD]
+Line_4 $$ Map<String, String> attachments = RpcContext.getContext().getAttachments() --> Line_6 $$ for (Map.Entry<String, String> entry : attachments.entrySet()) [FD]
+Line_7 $$ if (Cat.Context.CHILD.equals(entry.getKey()) || Cat.Context.ROOT.equals(entry.getKey()) || Cat.Context.PARENT.equals(entry.getKey())) --> Line_8 $$ context.addProperty(entry.getKey(), entry.getValue()) [CD]
+Line_3 $$ Cat.Context context = new DubboCatContext() --> Line_8 $$ context.addProperty(entry.getKey(), entry.getValue()) [FD]
+Line_2 $$ private Cat.Context initContext() --> Line_12 $$ return context [CD]

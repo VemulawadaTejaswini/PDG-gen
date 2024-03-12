@@ -1,0 +1,5 @@
+Line_2 $$ public void testUnsubscribeFromAsynchronousSource() throws InterruptedException --> Line_3 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testUnsubscribeFromAsynchronousSource() throws InterruptedException --> Line_4 $$ Observable.interval(100, TimeUnit.MILLISECONDS).doOnUnsubscribe(countDown(latch)).lift(toOperator(Functions.<Observable<Long>>identity())).take(1).first().toBlocking().single() [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_4 $$ Observable.interval(100, TimeUnit.MILLISECONDS).doOnUnsubscribe(countDown(latch)).lift(toOperator(Functions.<Observable<Long>>identity())).take(1).first().toBlocking().single() [FD]
+Line_2 $$ public void testUnsubscribeFromAsynchronousSource() throws InterruptedException --> Line_9 $$ assertTrue(latch.await(AWAIT_SECONDS, TimeUnit.SECONDS)) [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_9 $$ assertTrue(latch.await(AWAIT_SECONDS, TimeUnit.SECONDS)) [FD]

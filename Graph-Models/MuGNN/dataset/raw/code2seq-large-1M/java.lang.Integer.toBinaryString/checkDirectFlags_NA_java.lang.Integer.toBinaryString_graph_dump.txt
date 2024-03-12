@@ -1,0 +1,5 @@
+Line_2 $$ static void checkDirectFlags(final int flags) --> Line_3 $$ final int allowedFlags = READ_ONLY_FLAG_MASK | EMPTY_FLAG_MASK | ORDERED_FLAG_MASK [CD]
+Line_2 $$ static void checkDirectFlags(final int flags) --> Line_6 $$ final int flagsMask = ~allowedFlags [CD]
+Line_3 $$ final int allowedFlags = READ_ONLY_FLAG_MASK | EMPTY_FLAG_MASK | ORDERED_FLAG_MASK --> Line_6 $$ final int flagsMask = ~allowedFlags [FD]
+Line_2 $$ static void checkDirectFlags(final int flags) --> Line_7 $$ if ((flags & flagsMask) > 0) [CD]
+Line_2 $$ static void checkDirectFlags(final int flags) --> Line_8 $$ throw new SketchesArgumentException("Possible corruption: Invalid flags field: Cannot be compact! " + Integer.toBinaryString(flags)) [FD]

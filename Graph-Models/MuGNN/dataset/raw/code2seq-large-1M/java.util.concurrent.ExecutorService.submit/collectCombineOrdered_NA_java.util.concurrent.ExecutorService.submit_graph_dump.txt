@@ -1,0 +1,8 @@
+Line_2 $$ private <S, V> void collectCombineOrdered(Function<Batch<T>, V> function, Procedure2<S, V> combineProcedure, S state) --> Line_3 $$ LazyIterable<? extends Batch<T>> chunks = this.split() [CD]
+Line_2 $$ private <S, V> void collectCombineOrdered(Function<Batch<T>, V> function, Procedure2<S, V> combineProcedure, S state) --> Line_4 $$ LazyIterable<Future<V>> futures = chunks.collect( chunk -> this.getExecutorService().submit(() -> function.valueOf(chunk))) [FD]
+Line_2 $$ private <S, V> void collectCombineOrdered(Function<Batch<T>, V> function, Procedure2<S, V> combineProcedure, S state) --> Line_4 $$ LazyIterable<Future<V>> futures = chunks.collect( chunk -> this.getExecutorService().submit(() -> function.valueOf(chunk))) [CD]
+Line_3 $$ LazyIterable<? extends Batch<T>> chunks = this.split() --> Line_4 $$ LazyIterable<Future<V>> futures = chunks.collect( chunk -> this.getExecutorService().submit(() -> function.valueOf(chunk))) [FD]
+Line_2 $$ private <S, V> void collectCombineOrdered(Function<Batch<T>, V> function, Procedure2<S, V> combineProcedure, S state) --> Line_5 $$ MutableList<Future<V>> futuresList = futures.toList() [CD]
+Line_4 $$ LazyIterable<Future<V>> futures = chunks.collect( chunk -> this.getExecutorService().submit(() -> function.valueOf(chunk))) --> Line_5 $$ MutableList<Future<V>> futuresList = futures.toList() [FD]
+Line_2 $$ private <S, V> void collectCombineOrdered(Function<Batch<T>, V> function, Procedure2<S, V> combineProcedure, S state) --> Line_8 $$ combineProcedure.value(state, future.get()) [FD]
+Line_6 $$ for (Future<V> future : futuresList) --> Line_8 $$ combineProcedure.value(state, future.get()) [FD]

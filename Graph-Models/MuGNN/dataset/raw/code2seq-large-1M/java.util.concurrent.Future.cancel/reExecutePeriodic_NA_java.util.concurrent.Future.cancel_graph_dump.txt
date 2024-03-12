@@ -1,0 +1,7 @@
+Line_2 $$ void reExecutePeriodic(RunnableScheduledFuture<?> task) --> Line_3 $$ if (canRunInCurrentRunState(true)) [CD]
+Line_3 $$ if (canRunInCurrentRunState(true)) --> Line_4 $$ workQueue.add(task) [CD]
+Line_2 $$ void reExecutePeriodic(RunnableScheduledFuture<?> task) --> Line_4 $$ workQueue.add(task) [FD]
+Line_3 $$ if (canRunInCurrentRunState(true)) --> Line_5 $$ if (!canRunInCurrentRunState(true) && workQueue.remove(task)) [CD]
+Line_2 $$ void reExecutePeriodic(RunnableScheduledFuture<?> task) --> Line_5 $$ if (!canRunInCurrentRunState(true) && workQueue.remove(task)) [FD]
+Line_5 $$ if (!canRunInCurrentRunState(true) && workQueue.remove(task)) --> Line_6 $$ task.cancel(false) [CD]
+Line_2 $$ void reExecutePeriodic(RunnableScheduledFuture<?> task) --> Line_6 $$ task.cancel(false) [FD]

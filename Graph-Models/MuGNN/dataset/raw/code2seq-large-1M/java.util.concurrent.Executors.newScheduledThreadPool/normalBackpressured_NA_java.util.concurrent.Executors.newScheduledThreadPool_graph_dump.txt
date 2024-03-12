@@ -1,0 +1,7 @@
+Line_2 $$ public void normalBackpressured() throws Exception --> Line_3 $$ ScheduledExecutorService exec = Executors.newScheduledThreadPool(1) [CD]
+Line_3 $$ ScheduledExecutorService exec = Executors.newScheduledThreadPool(1) --> Line_5 $$ Future<Integer> f = exec.schedule(() -> 1, 100, TimeUnit.MILLISECONDS) [FD]
+Line_6 $$ TestSubscriber<Integer> ts = new TestSubscriber(0) --> Line_7 $$ new PublisherFuture(f).subscribe(ts) [FD]
+Line_6 $$ TestSubscriber<Integer> ts = new TestSubscriber(0) --> Line_9 $$ ts.request(1) [FD]
+Line_6 $$ TestSubscriber<Integer> ts = new TestSubscriber(0) --> Line_10 $$ ts.await() [FD]
+Line_6 $$ TestSubscriber<Integer> ts = new TestSubscriber(0) --> Line_11 $$ ts.assertValue(1).assertNoError().assertComplete() [FD]
+Line_3 $$ ScheduledExecutorService exec = Executors.newScheduledThreadPool(1) --> Line_13 $$ exec.shutdown() [FD]

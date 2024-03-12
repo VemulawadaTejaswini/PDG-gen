@@ -1,0 +1,8 @@
+Line_7 $$ Optimizer optimizer = new Optimizer(new DataStatistics(), new DefaultCostEstimator(), config) --> Line_8 $$ OptimizedPlan op = (OptimizedPlan) ClusterClient.getOptimizedPlan(optimizer, prg, 1) [FD]
+Line_8 $$ OptimizedPlan op = (OptimizedPlan) ClusterClient.getOptimizedPlan(optimizer, prg, 1) --> Line_9 $$ assertNotNull(op) [FD]
+Line_10 $$ PlanJSONDumpGenerator dumper = new PlanJSONDumpGenerator() --> Line_11 $$ assertNotNull(dumper.getOptimizerPlanAsJSON(op)) [FD]
+Line_8 $$ OptimizedPlan op = (OptimizedPlan) ClusterClient.getOptimizedPlan(optimizer, prg, 1) --> Line_11 $$ assertNotNull(dumper.getOptimizerPlanAsJSON(op)) [FD]
+Line_12 $$ PlanJSONDumpGenerator dumper2 = new PlanJSONDumpGenerator() --> Line_13 $$ dumper2.setEncodeForHTML(true) [FD]
+Line_12 $$ PlanJSONDumpGenerator dumper2 = new PlanJSONDumpGenerator() --> Line_14 $$ String htmlEscaped = dumper2.getOptimizerPlanAsJSON(op) [FD]
+Line_8 $$ OptimizedPlan op = (OptimizedPlan) ClusterClient.getOptimizedPlan(optimizer, prg, 1) --> Line_14 $$ String htmlEscaped = dumper2.getOptimizerPlanAsJSON(op) [FD]
+Line_14 $$ String htmlEscaped = dumper2.getOptimizerPlanAsJSON(op) --> Line_15 $$ assertEquals(-1, htmlEscaped.indexOf('\\')) [FD]

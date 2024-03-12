@@ -1,0 +1,8 @@
+Line_2 $$ public URI endpoint() throws IOException --> Line_3 $$ String host = SdkSystemSetting.AWS_EC2_METADATA_SERVICE_ENDPOINT.getStringValueOrThrow() [CD]
+Line_2 $$ public URI endpoint() throws IOException --> Line_4 $$ URI endpoint = URI.create(host + SECURITY_CREDENTIALS_RESOURCE) [CD]
+Line_2 $$ public URI endpoint() throws IOException --> Line_5 $$ String securityCredentialsList = HttpResourcesUtils.instance().readResource(endpoint) [CD]
+Line_4 $$ URI endpoint = URI.create(host + SECURITY_CREDENTIALS_RESOURCE) --> Line_5 $$ String securityCredentialsList = HttpResourcesUtils.instance().readResource(endpoint) [FD]
+Line_2 $$ public URI endpoint() throws IOException --> Line_6 $$ String[] securityCredentials = securityCredentialsList.trim().split("\n") [CD]
+Line_5 $$ String securityCredentialsList = HttpResourcesUtils.instance().readResource(endpoint) --> Line_6 $$ String[] securityCredentials = securityCredentialsList.trim().split("\n") [FD]
+Line_2 $$ public URI endpoint() throws IOException --> Line_7 $$ if (securityCredentials.length == 0) [CD]
+Line_2 $$ public URI endpoint() throws IOException --> Line_10 $$ return URI.create(host + SECURITY_CREDENTIALS_RESOURCE + securityCredentials[0]) [CD]

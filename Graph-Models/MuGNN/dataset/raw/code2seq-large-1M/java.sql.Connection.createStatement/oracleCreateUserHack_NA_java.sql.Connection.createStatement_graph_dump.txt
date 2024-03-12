@@ -1,0 +1,5 @@
+Line_2 $$ private void oracleCreateUserHack(File createFile) throws HiveMetaException --> Line_3 $$ LOG.debug("Found oracle, hacking our way through it rather than using SqlLine") [CD]
+Line_5 $$ try (Connection conn = getConnectionToMetastore(false)) --> Line_6 $$ try (Statement stmt = conn.createStatement()) [FD]
+Line_4 $$ try (BufferedReader reader = new BufferedReader(new FileReader(createFile))) --> Line_7 $$ reader.lines().forEach( s -> [FD]
+Line_6 $$ try (Statement stmt = conn.createStatement()) --> Line_10 $$ stmt.execute(s.substring(0, s.length() - 1)) [FD]
+Line_2 $$ private void oracleCreateUserHack(File createFile) throws HiveMetaException --> Line_19 $$ LOG.error("Caught IOException trying to read modified create user script " + createFile.getAbsolutePath(), e) [FD]

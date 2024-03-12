@@ -1,0 +1,4 @@
+Line_2 $$ public void testOriginType() throws Exception --> Line_3 $$ Class<? extends Baz> baz = new ByteBuddy().subclass(Baz.class).method(isDeclaredBy(Baz.class)).intercept(FixedValue.originType()).make().load(QuxBaz.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testOriginType() throws Exception --> Line_4 $$ assertThat(baz.getDeclaredFields().length, is(0)) [CD]
+Line_2 $$ public void testOriginType() throws Exception --> Line_5 $$ assertThat(baz.getDeclaredMethods().length, is(1)) [CD]
+Line_2 $$ public void testOriginType() throws Exception --> Line_6 $$ assertThat(baz.getDeclaredMethod(BAR).invoke(baz.getDeclaredConstructor().newInstance()), is((Object) Baz.class)) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void addContent() throws IOException --> Line_3 $$ String content = "" [CD]
+Line_4 $$ try (StringWriter writer = new StringWriter()) --> Line_5 $$ properties2.store(writer, "New Content") [FD]
+Line_3 $$ String content = "" --> Line_6 $$ content = writer.toString() [FD]
+Line_4 $$ try (StringWriter writer = new StringWriter()) --> Line_6 $$ content = writer.toString() [FD]
+Line_3 $$ String content = "" --> Line_8 $$ try (InputStream is = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8))) [FD]
+Line_6 $$ content = writer.toString() --> Line_8 $$ try (InputStream is = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8))) [FD]
+Line_8 $$ try (InputStream is = new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8))) --> Line_9 $$ Future<?> future = manager.execute(manager.newDeploymentPlan().addContentToDeployment("test-deployment.jar", Collections.singletonMap("SimpleTest.properties", is)).redeploy("test-deployment.jar").build()) [FD]
+Line_9 $$ Future<?> future = manager.execute(manager.newDeploymentPlan().addContentToDeployment("test-deployment.jar", Collections.singletonMap("SimpleTest.properties", is)).redeploy("test-deployment.jar").build()) --> Line_10 $$ awaitDeploymentExecution(future) [FD]

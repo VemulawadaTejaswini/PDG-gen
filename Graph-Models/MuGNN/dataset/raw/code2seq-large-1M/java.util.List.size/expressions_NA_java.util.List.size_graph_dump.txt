@@ -1,0 +1,6 @@
+Line_2 $$ public static ImmutableMap<ColumnIdent, RowCollectExpressionFactory<SysSnapshot>> expressions() --> Line_3 $$ return ImmutableMap.<ColumnIdent, RowCollectExpressionFactory<SysSnapshot>>builder().put(SysSnapshotsTableInfo.Columns.NAME, () -> RowContextCollectorExpression.objToBytesRef(SysSnapshot::<>name)).put(SysSnapshotsTableInfo.Columns.REPOSITORY, () -> RowContextCollectorExpression.objToBytesRef(SysSnapshot::<>repository)).put(SysSnapshotsTableInfo.Columns.CONCRETE_INDICES, () -> RowContextCollectorExpression.forFunction((SysSnapshot s) -> [CD]
+Line_4 $$ List<String> concreteIndices = s.concreteIndices() --> Line_5 $$ BytesRef[] indices = new BytesRef[concreteIndices.size()] [FD]
+Line_4 $$ List<String> concreteIndices = s.concreteIndices() --> Line_6 $$ for (int i = 0; i < concreteIndices.size(); i++) [FD]
+Line_6 $$ for (int i = 0; i < concreteIndices.size(); i++) --> Line_7 $$ indices[i] = BytesRefs.toBytesRef(concreteIndices.get(i)) [CD]
+Line_6 $$ for (int i = 0; i < concreteIndices.size(); i++) --> Line_7 $$ indices[i] = BytesRefs.toBytesRef(concreteIndices.get(i)) [FD]
+Line_4 $$ List<String> concreteIndices = s.concreteIndices() --> Line_7 $$ indices[i] = BytesRefs.toBytesRef(concreteIndices.get(i)) [FD]

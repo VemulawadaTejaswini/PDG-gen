@@ -1,0 +1,8 @@
+Line_2 $$ private boolean isConfigMethod(Method method) --> Line_3 $$ boolean checkMethod = (method.getName().startsWith("get") || method.getName().startsWith("is")) && !"isDefault".equals(method.getName()) && Modifier.isPublic(method.getModifiers()) && method.getParameterTypes().length == 0 && isPrimitive(method.getReturnType()) [FD]
+Line_2 $$ private boolean isConfigMethod(Method method) --> Line_3 $$ boolean checkMethod = (method.getName().startsWith("get") || method.getName().startsWith("is")) && !"isDefault".equals(method.getName()) && Modifier.isPublic(method.getModifiers()) && method.getParameterTypes().length == 0 && isPrimitive(method.getReturnType()) [CD]
+Line_2 $$ private boolean isConfigMethod(Method method) --> Line_4 $$ if (checkMethod) [CD]
+Line_4 $$ if (checkMethod) --> Line_5 $$ ConfigDesc configDesc = method.getAnnotation(ConfigDesc.class) [CD]
+Line_2 $$ private boolean isConfigMethod(Method method) --> Line_5 $$ ConfigDesc configDesc = method.getAnnotation(ConfigDesc.class) [FD]
+Line_4 $$ if (checkMethod) --> Line_6 $$ if (configDesc != null && configDesc.excluded()) [CD]
+Line_6 $$ if (configDesc != null && configDesc.excluded()) --> Line_7 $$ return false [CD]
+Line_2 $$ private boolean isConfigMethod(Method method) --> Line_10 $$ return checkMethod [CD]

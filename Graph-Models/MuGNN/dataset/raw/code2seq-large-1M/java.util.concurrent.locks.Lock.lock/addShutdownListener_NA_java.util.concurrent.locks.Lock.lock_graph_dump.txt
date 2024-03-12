@@ -1,0 +1,7 @@
+Line_2 $$ public boolean addShutdownListener(final GracefulShutdownListener shutdownListener) --> Line_3 $$ final Lock lock = state.getStateLocker().writeLock() [CD]
+Line_2 $$ public boolean addShutdownListener(final GracefulShutdownListener shutdownListener) --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ final Lock lock = state.getStateLocker().writeLock() --> Line_4 $$ lock.lock() [FD]
+Line_7 $$ if (stateNow != State.STOPPING || stateNow != State.STOPPED) --> Line_8 $$ if (shutdownListeners == null) [CD]
+Line_7 $$ if (stateNow != State.STOPPING || stateNow != State.STOPPED) --> Line_11 $$ return shutdownListeners.add(shutdownListener) [CD]
+Line_2 $$ public boolean addShutdownListener(final GracefulShutdownListener shutdownListener) --> Line_11 $$ return shutdownListeners.add(shutdownListener) [FD]
+Line_3 $$ final Lock lock = state.getStateLocker().writeLock() --> Line_15 $$ lock.unlock() [FD]

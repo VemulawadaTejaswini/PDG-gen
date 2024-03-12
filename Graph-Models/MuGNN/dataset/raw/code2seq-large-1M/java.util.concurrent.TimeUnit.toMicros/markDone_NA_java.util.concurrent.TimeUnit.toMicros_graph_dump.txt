@@ -1,0 +1,8 @@
+Line_2 $$ private void markDone(String statusMessage) --> Line_3 $$ ExtensibilitySubscriptionCallback patch = new ExtensibilitySubscriptionCallback() [CD]
+Line_2 $$ private void markDone(String statusMessage) --> Line_4 $$ patch.status = ExtensibilitySubscriptionCallback.Status.DONE [CD]
+Line_2 $$ private void markDone(String statusMessage) --> Line_5 $$ patch.errorMessage = statusMessage [FD]
+Line_2 $$ private void markDone(String statusMessage) --> Line_5 $$ patch.errorMessage = statusMessage [CD]
+Line_2 $$ private void markDone(String statusMessage) --> Line_6 $$ patch.documentExpirationTimeMicros = ServiceUtils.getExpirationTimeFromNowInMicros(TimeUnit.MINUTES.toMicros(PROCESSED_NOTIFICATION_EXPIRE_TIME)) [CD]
+Line_2 $$ private void markDone(String statusMessage) --> Line_7 $$ sendRequest(Operation.createPatch(getUri()).setBody(patch).setCompletion(( o,  e) -> [CD]
+Line_3 $$ ExtensibilitySubscriptionCallback patch = new ExtensibilitySubscriptionCallback() --> Line_7 $$ sendRequest(Operation.createPatch(getUri()).setBody(patch).setCompletion(( o,  e) -> [FD]
+Line_8 $$ if (e != null && !(e instanceof ServiceNotFoundException)) --> Line_9 $$ logSevere("Self patch [%s] failed: %s", getSelfLink(), Utils.toString(e)) [CD]

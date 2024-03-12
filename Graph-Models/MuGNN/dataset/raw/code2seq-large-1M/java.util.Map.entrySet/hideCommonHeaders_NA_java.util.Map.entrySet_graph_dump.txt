@@ -1,0 +1,8 @@
+Line_2 $$ private static Map<String, String> hideCommonHeaders(Map<String, String> origHeaders) --> Line_3 $$ Map<String, String> selectedHeaders = new HashMap<String, String>() [CD]
+Line_2 $$ private static Map<String, String> hideCommonHeaders(Map<String, String> origHeaders) --> Line_4 $$ for (Map.Entry<String, String> entry : origHeaders.entrySet()) [FD]
+Line_5 $$ String headerName = entry.getKey().toLowerCase() --> Line_6 $$ if ("accept".equals(headerName) && entry.getValue().contains("*")) [FD]
+Line_5 $$ String headerName = entry.getKey().toLowerCase() --> Line_9 $$ if (!COMMON_HEADERS.contains(headerName)) [FD]
+Line_9 $$ if (!COMMON_HEADERS.contains(headerName)) --> Line_10 $$ selectedHeaders.put(entry.getKey(), entry.getValue()) [CD]
+Line_3 $$ Map<String, String> selectedHeaders = new HashMap<String, String>() --> Line_10 $$ selectedHeaders.put(entry.getKey(), entry.getValue()) [FD]
+Line_2 $$ private static Map<String, String> hideCommonHeaders(Map<String, String> origHeaders) --> Line_13 $$ return selectedHeaders.size() == 0 ? null : selectedHeaders [CD]
+Line_3 $$ Map<String, String> selectedHeaders = new HashMap<String, String>() --> Line_13 $$ return selectedHeaders.size() == 0 ? null : selectedHeaders [FD]

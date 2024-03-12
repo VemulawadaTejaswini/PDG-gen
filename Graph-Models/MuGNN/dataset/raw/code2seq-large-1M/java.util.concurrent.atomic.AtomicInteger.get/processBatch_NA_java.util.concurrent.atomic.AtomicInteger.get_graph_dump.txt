@@ -1,0 +1,8 @@
+Line_2 $$ public void processBatch(StageRunner.Output output) --> Line_3 $$ List<Record> records = output.getRecords().get("a") [FD]
+Line_2 $$ public void processBatch(StageRunner.Output output) --> Line_3 $$ List<Record> records = output.getRecords().get("a") [CD]
+Line_2 $$ public void processBatch(StageRunner.Output output) --> Line_4 $$ if (!records.isEmpty()) [CD]
+Line_3 $$ List<Record> records = output.getRecords().get("a") --> Line_4 $$ if (!records.isEmpty()) [FD]
+Line_4 $$ if (!records.isEmpty()) --> Line_5 $$ batchRecords.add(batchesProduced.get(), records) [CD]
+Line_3 $$ List<Record> records = output.getRecords().get("a") --> Line_5 $$ batchRecords.add(batchesProduced.get(), records) [FD]
+Line_4 $$ if (!records.isEmpty()) --> Line_6 $$ if (batchesProduced.incrementAndGet() == numberOfBatches) [CD]
+Line_6 $$ if (batchesProduced.incrementAndGet() == numberOfBatches) --> Line_7 $$ pushSourceRunner.setStop() [CD]

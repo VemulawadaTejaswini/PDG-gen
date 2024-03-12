@@ -1,0 +1,7 @@
+Line_2 $$ public void testIpBindFilteringMatchingAnd() --> Line_3 $$ Settings settings = shuffleSettings(Settings.builder().put("xxx.tag", "A").put("xxx." + randomFrom("_ip", "_host_ip", "_publish_ip"), "192.1.1.54").build()) [CD]
+Line_2 $$ public void testIpBindFilteringMatchingAnd() --> Line_4 $$ DiscoveryNodeFilters filters = buildFromSettings(AND, "xxx.", settings) [CD]
+Line_3 $$ Settings settings = shuffleSettings(Settings.builder().put("xxx.tag", "A").put("xxx." + randomFrom("_ip", "_host_ip", "_publish_ip"), "192.1.1.54").build()) --> Line_4 $$ DiscoveryNodeFilters filters = buildFromSettings(AND, "xxx.", settings) [FD]
+Line_2 $$ public void testIpBindFilteringMatchingAnd() --> Line_5 $$ DiscoveryNode node = new DiscoveryNode("", "", "", "", "192.1.1.54", localAddress, singletonMap("tag", "A"), emptySet(), null) [CD]
+Line_2 $$ public void testIpBindFilteringMatchingAnd() --> Line_6 $$ assertThat(filters.match(node), equalTo(true)) [CD]
+Line_4 $$ DiscoveryNodeFilters filters = buildFromSettings(AND, "xxx.", settings) --> Line_6 $$ assertThat(filters.match(node), equalTo(true)) [FD]
+Line_5 $$ DiscoveryNode node = new DiscoveryNode("", "", "", "", "192.1.1.54", localAddress, singletonMap("tag", "A"), emptySet(), null) --> Line_6 $$ assertThat(filters.match(node), equalTo(true)) [FD]

@@ -1,0 +1,5 @@
+Line_3 $$ Supplier<A> downstreamSupplier = downstream.supplier() --> Line_4 $$ Function<K, A> supplier =  k -> downstreamSupplier.get() [FD]
+Line_4 $$ Function<K, A> supplier =  k -> downstreamSupplier.get() --> Line_8 $$ A container = m.computeIfAbsent(key, supplier) [FD]
+Line_5 $$ ObjLongConsumer<A> downstreamAccumulator = downstream.longAccumulator() --> Line_9 $$ downstreamAccumulator.accept(container, t) [FD]
+Line_8 $$ A container = m.computeIfAbsent(key, supplier) --> Line_9 $$ downstreamAccumulator.accept(container, t) [FD]
+Line_6 $$ ObjLongConsumer<Map<K, A>> accumulator = ( m,  t) -> --> Line_11 $$ return PartialCollector.grouping(mapFactory, downstream).asLong(accumulator) [FD]

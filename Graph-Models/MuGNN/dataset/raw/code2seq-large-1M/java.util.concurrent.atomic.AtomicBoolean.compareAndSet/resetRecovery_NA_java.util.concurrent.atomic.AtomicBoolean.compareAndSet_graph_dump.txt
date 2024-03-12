@@ -1,0 +1,7 @@
+Line_2 $$ boolean resetRecovery(CancellableThreads newTargetCancellableThreads) throws IOException --> Line_3 $$ if (finished.compareAndSet(false, true)) [CD]
+Line_2 $$ boolean resetRecovery(CancellableThreads newTargetCancellableThreads) throws IOException --> Line_10 $$ newTargetCancellableThreads.execute(closedLatch::<>await) [FD]
+Line_3 $$ if (finished.compareAndSet(false, true)) --> Line_15 $$ RecoveryState.Stage stage = indexShard.recoveryState().getStage() [CD]
+Line_3 $$ if (finished.compareAndSet(false, true)) --> Line_16 $$ if (indexShard.recoveryState().getPrimary() && (stage == RecoveryState.Stage.FINALIZE || stage == RecoveryState.Stage.DONE)) [CD]
+Line_3 $$ if (finished.compareAndSet(false, true)) --> Line_20 $$ indexShard.performRecoveryRestart() [CD]
+Line_3 $$ if (finished.compareAndSet(false, true)) --> Line_21 $$ return true [CD]
+Line_2 $$ boolean resetRecovery(CancellableThreads newTargetCancellableThreads) throws IOException --> Line_23 $$ return false [CD]

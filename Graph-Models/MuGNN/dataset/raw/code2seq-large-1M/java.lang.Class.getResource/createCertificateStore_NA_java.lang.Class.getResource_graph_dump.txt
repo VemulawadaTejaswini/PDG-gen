@@ -1,0 +1,8 @@
+Line_2 $$ private String createCertificateStore(String resourceName) throws IOException --> Line_3 $$ URL resource = StubServer.class.getResource("/" + resourceName) [CD]
+Line_2 $$ private String createCertificateStore(String resourceName) throws IOException --> Line_4 $$ File store = File.createTempFile(resourceName, "store") [FD]
+Line_2 $$ private String createCertificateStore(String resourceName) throws IOException --> Line_4 $$ File store = File.createTempFile(resourceName, "store") [CD]
+Line_5 $$ try (InputStream input = resource.openStream()) --> Line_6 $$ Files.copy(input, store.toPath(), StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_4 $$ File store = File.createTempFile(resourceName, "store") --> Line_6 $$ Files.copy(input, store.toPath(), StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_4 $$ File store = File.createTempFile(resourceName, "store") --> Line_8 $$ store.deleteOnExit() [FD]
+Line_2 $$ private String createCertificateStore(String resourceName) throws IOException --> Line_10 $$ return store.getAbsolutePath() [CD]
+Line_4 $$ File store = File.createTempFile(resourceName, "store") --> Line_10 $$ return store.getAbsolutePath() [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ protected int performLockSQLInsert(final ILockCommand lockCommand, final List<Object> sqlParams, final String sql) --> Line_4 $$ final int countLocked = DB.executeUpdateEx(sql, sqlParams.toArray(), ITrx.TRXNAME_None) [FD]
+Line_2 $$ protected int performLockSQLInsert(final ILockCommand lockCommand, final List<Object> sqlParams, final String sql) --> Line_5 $$ if (countLocked <= 0 && lockCommand.isFailIfNothingLocked()) [FD]
+Line_2 $$ protected int performLockSQLInsert(final ILockCommand lockCommand, final List<Object> sqlParams, final String sql) --> Line_10 $$ throw new LockFailedException("Some of the records were already locked", e).setLockCommand(lockCommand).setSql(sql, sqlParams.toArray()) [FD]
+Line_2 $$ protected int performLockSQLInsert(final ILockCommand lockCommand, final List<Object> sqlParams, final String sql) --> Line_12 $$ throw LockFailedException.wrapIfNeeded(e).setLockCommand(lockCommand).setSql(sql, sqlParams.toArray()) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ private List<DeclaredConverterModel> findDeclaredConverters(RoundEnvironment roundEnv) --> Line_3 $$ final Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(DeclaredConverter.class) [FD]
+Line_2 $$ private List<DeclaredConverterModel> findDeclaredConverters(RoundEnvironment roundEnv) --> Line_3 $$ final Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(DeclaredConverter.class) [CD]
+Line_4 $$ for (Element element : elements) --> Line_5 $$ if (!context.utils().isAssignable(element.asType(), context.utils().of(TypeConverter.class), true)) [FD]
+Line_4 $$ for (Element element : elements) --> Line_6 $$ context.messager().printMessage(Kind.ERROR, "@DeclaredConverter can only be used on types that implement TypeConverter", element) [FD]
+Line_2 $$ private List<DeclaredConverterModel> findDeclaredConverters(RoundEnvironment roundEnv) --> Line_9 $$ return elements.stream().map( e -> new DeclaredConverterModel((DeclaredType) e.asType(), e.getAnnotation(DeclaredConverter.class).value())).collect(Collectors.toList()) [CD]

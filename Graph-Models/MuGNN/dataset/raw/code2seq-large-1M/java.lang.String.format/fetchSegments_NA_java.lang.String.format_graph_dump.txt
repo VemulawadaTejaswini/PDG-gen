@@ -1,0 +1,5 @@
+Line_2 $$ public int[] fetchSegments(String processorName) --> Line_3 $$ Connection connection = getConnection() [CD]
+Line_3 $$ Connection connection = getConnection() --> Line_5 $$ List<Integer> integers = executeQuery(connection,  c -> selectForSegments(c, processorName), listResults( rs -> rs.getInt(schema.segmentColumn())),  e -> new JdbcException(format("Could not load segments for processor [%s]", processorName), e)) [FD]
+Line_2 $$ public int[] fetchSegments(String processorName) --> Line_5 $$ List<Integer> integers = executeQuery(connection,  c -> selectForSegments(c, processorName), listResults( rs -> rs.getInt(schema.segmentColumn())),  e -> new JdbcException(format("Could not load segments for processor [%s]", processorName), e)) [FD]
+Line_5 $$ List<Integer> integers = executeQuery(connection,  c -> selectForSegments(c, processorName), listResults( rs -> rs.getInt(schema.segmentColumn())),  e -> new JdbcException(format("Could not load segments for processor [%s]", processorName), e)) --> Line_6 $$ return integers.stream().mapToInt( i -> i).toArray() [FD]
+Line_3 $$ Connection connection = getConnection() --> Line_8 $$ closeQuietly(connection) [FD]

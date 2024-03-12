@@ -1,0 +1,8 @@
+Line_2 $$ public static List<NetworkInterface> getNetworkInterfaces() --> Line_3 $$ List<NetworkInterface> networkInterfaces = new LinkedList() [CD]
+Line_2 $$ public static List<NetworkInterface> getNetworkInterfaces() --> Line_4 $$ List<String> macs = getItems(EC2_METADATA_ROOT + "/network/interfaces/macs/") [CD]
+Line_5 $$ for (String mac : macs) --> Line_6 $$ String key = mac.trim() [FD]
+Line_6 $$ String key = mac.trim() --> Line_7 $$ if (key.endsWith("/")) [FD]
+Line_7 $$ if (key.endsWith("/")) --> Line_8 $$ key = key.substring(0, key.length() - 1) [CD]
+Line_6 $$ String key = mac.trim() --> Line_8 $$ key = key.substring(0, key.length() - 1) [FD]
+Line_3 $$ List<NetworkInterface> networkInterfaces = new LinkedList() --> Line_10 $$ networkInterfaces.add(new NetworkInterface(key)) [FD]
+Line_2 $$ public static List<NetworkInterface> getNetworkInterfaces() --> Line_12 $$ return networkInterfaces [CD]

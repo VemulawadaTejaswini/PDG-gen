@@ -1,0 +1,5 @@
+Line_5 $$ File resource = new File("src/test/filesystemwebroot", "fspage.html") --> Line_6 $$ long modified = resource.lastModified() [FD]
+Line_6 $$ long modified = resource.lastModified() --> Line_9 $$ assertEquals(modified, toDateTime(lastModified)) [FD]
+Line_8 $$ String lastModified = res.headers().get("last-modified") --> Line_9 $$ assertEquals(modified, toDateTime(lastModified)) [FD]
+Line_5 $$ File resource = new File("src/test/filesystemwebroot", "fspage.html") --> Line_10 $$ resource.setLastModified(modified + 1000) [FD]
+Line_6 $$ long modified = resource.lastModified() --> Line_12 $$ req.putHeader("if-modified-since", dateTimeFormatter.format(modified)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void callSeriallyAndWait(Runnable r, int timeout) --> Line_3 $$ RunnableWrapper c = new RunnableWrapper(r, 0) [CD]
+Line_2 $$ public void callSeriallyAndWait(Runnable r, int timeout) --> Line_4 $$ callSerially(c) [CD]
+Line_3 $$ RunnableWrapper c = new RunnableWrapper(r, 0) --> Line_4 $$ callSerially(c) [FD]
+Line_3 $$ RunnableWrapper c = new RunnableWrapper(r, 0) --> Line_7 $$ while (!c.isDone()) [FD]
+Line_7 $$ while (!c.isDone()) --> Line_12 $$ if (System.currentTimeMillis() - t >= timeout) [CD]
+Line_2 $$ public void callSeriallyAndWait(Runnable r, int timeout) --> Line_12 $$ if (System.currentTimeMillis() - t >= timeout) [FD]
+Line_12 $$ if (System.currentTimeMillis() - t >= timeout) --> Line_13 $$ return [CD]

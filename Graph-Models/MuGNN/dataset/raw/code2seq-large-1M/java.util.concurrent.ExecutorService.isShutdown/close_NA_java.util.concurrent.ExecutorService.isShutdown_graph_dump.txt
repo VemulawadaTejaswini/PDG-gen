@@ -1,0 +1,6 @@
+Line_5 $$ for (Connection conn : connections) --> Line_6 $$ if (conn != null) [FD]
+Line_5 $$ for (Connection conn : connections) --> Line_8 $$ conn.close() [FD]
+Line_5 $$ for (Connection conn : connections) --> Line_12 $$ conn = null [FD]
+Line_2 $$ public void close() --> Line_19 $$ if (this.batchPool != null && !this.batchPool.isShutdown()) [CD]
+Line_19 $$ if (this.batchPool != null && !this.batchPool.isShutdown()) --> Line_20 $$ this.batchPool.shutdown() [CD]
+Line_22 $$ if (!this.batchPool.awaitTermination(10, TimeUnit.SECONDS)) --> Line_23 $$ this.batchPool.shutdownNow() [CD]

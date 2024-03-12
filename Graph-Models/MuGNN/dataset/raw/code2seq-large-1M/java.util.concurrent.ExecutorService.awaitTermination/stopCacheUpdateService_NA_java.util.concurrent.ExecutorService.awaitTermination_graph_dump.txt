@@ -1,0 +1,7 @@
+Line_2 $$ static synchronized boolean stopCacheUpdateService(long timeout) --> Line_3 $$ boolean tasksStoppedBeforeShutdown = false [CD]
+Line_2 $$ static synchronized boolean stopCacheUpdateService(long timeout) --> Line_4 $$ if (cacheUpdateMaster != null) [CD]
+Line_4 $$ if (cacheUpdateMaster != null) --> Line_5 $$ LOG.info("CachedStore: shutting down cache update service") [CD]
+Line_3 $$ boolean tasksStoppedBeforeShutdown = false --> Line_7 $$ tasksStoppedBeforeShutdown = cacheUpdateMaster.awaitTermination(timeout, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ static synchronized boolean stopCacheUpdateService(long timeout) --> Line_7 $$ tasksStoppedBeforeShutdown = cacheUpdateMaster.awaitTermination(timeout, TimeUnit.MILLISECONDS) [FD]
+Line_4 $$ if (cacheUpdateMaster != null) --> Line_11 $$ cacheUpdateMaster.shutdownNow() [CD]
+Line_2 $$ static synchronized boolean stopCacheUpdateService(long timeout) --> Line_14 $$ return tasksStoppedBeforeShutdown [CD]

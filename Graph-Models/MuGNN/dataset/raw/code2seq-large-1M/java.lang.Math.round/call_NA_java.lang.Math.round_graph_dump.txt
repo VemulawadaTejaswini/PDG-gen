@@ -1,0 +1,7 @@
+Line_2 $$ public Object call() throws Exception --> Line_3 $$ PGConnection pgConnection = (PGConnection) replConnection [CD]
+Line_2 $$ public Object call() throws Exception --> Line_4 $$ PGReplicationStream stream = pgConnection.getReplicationAPI().replicationStream().logical().withSlotName(SLOT_NAME).withStartPosition(getCurrentLSN()).withStatusInterval(Math.round(statusInterval / 3), TimeUnit.MILLISECONDS).start() [CD]
+Line_3 $$ PGConnection pgConnection = (PGConnection) replConnection --> Line_4 $$ PGReplicationStream stream = pgConnection.getReplicationAPI().replicationStream().logical().withSlotName(SLOT_NAME).withStartPosition(getCurrentLSN()).withStatusInterval(Math.round(statusInterval / 3), TimeUnit.MILLISECONDS).start() [FD]
+Line_2 $$ public Object call() throws Exception --> Line_5 $$ while (!Thread.interrupted()) [CD]
+Line_5 $$ while (!Thread.interrupted()) --> Line_6 $$ stream.read() [CD]
+Line_4 $$ PGReplicationStream stream = pgConnection.getReplicationAPI().replicationStream().logical().withSlotName(SLOT_NAME).withStartPosition(getCurrentLSN()).withStatusInterval(Math.round(statusInterval / 3), TimeUnit.MILLISECONDS).start() --> Line_6 $$ stream.read() [FD]
+Line_2 $$ public Object call() throws Exception --> Line_8 $$ return null [CD]

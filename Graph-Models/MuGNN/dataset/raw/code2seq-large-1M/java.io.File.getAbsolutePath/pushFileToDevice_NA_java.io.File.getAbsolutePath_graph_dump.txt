@@ -1,0 +1,7 @@
+Line_2 $$ private void pushFileToDevice(File file, String fileName, String deviceDir, boolean executable) throws AdbCommandRejectedException, IOException --> Line_7 $$ myDevice.pushFile(file.getAbsolutePath(), deviceDir + fileName) [FD]
+Line_8 $$ if (executable) --> Line_9 $$ ChmodOutputListener chmodListener = new ChmodOutputListener() [CD]
+Line_8 $$ if (executable) --> Line_10 $$ myDevice.executeShellCommand("chmod +x " + deviceDir + fileName, chmodListener) [CD]
+Line_9 $$ ChmodOutputListener chmodListener = new ChmodOutputListener() --> Line_10 $$ myDevice.executeShellCommand("chmod +x " + deviceDir + fileName, chmodListener) [FD]
+Line_8 $$ if (executable) --> Line_11 $$ if (chmodListener.hasErrors()) [CD]
+Line_9 $$ ChmodOutputListener chmodListener = new ChmodOutputListener() --> Line_11 $$ if (chmodListener.hasErrors()) [FD]
+Line_11 $$ if (chmodListener.hasErrors()) --> Line_12 $$ myDevice.executeShellCommand("chmod 777 " + deviceDir + fileName, new NullOutputReceiver()) [CD]

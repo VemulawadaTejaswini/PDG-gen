@@ -1,0 +1,8 @@
+Line_2 $$ private String getBaseRegionName() --> Line_3 $$ String id = isDurable() ? getDurableId() : getDSMembership() [CD]
+Line_2 $$ private String getBaseRegionName() --> Line_4 $$ if (id.indexOf('/') >= 0) [CD]
+Line_3 $$ String id = isDurable() ? getDurableId() : getDSMembership() --> Line_4 $$ if (id.indexOf('/') >= 0) [FD]
+Line_4 $$ if (id.indexOf('/') >= 0) --> Line_5 $$ id = id.replace('/', ':') [CD]
+Line_3 $$ String id = isDurable() ? getDurableId() : getDSMembership() --> Line_5 $$ id = id.replace('/', ':') [FD]
+Line_2 $$ private String getBaseRegionName() --> Line_7 $$ StringBuffer buffer = new StringBuffer().append("_gfe_").append(isDurable() ? "" : "non_").append("durable_client_").append("with_id_" + id).append("_").append(this.uniqueId) [CD]
+Line_2 $$ private String getBaseRegionName() --> Line_8 $$ return buffer.toString() [CD]
+Line_7 $$ StringBuffer buffer = new StringBuffer().append("_gfe_").append(isDurable() ? "" : "non_").append("durable_client_").append("with_id_" + id).append("_").append(this.uniqueId) --> Line_8 $$ return buffer.toString() [FD]

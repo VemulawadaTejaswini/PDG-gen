@@ -1,0 +1,6 @@
+Line_5 $$ String versionInfo = DnsUtils.resolveTXT("prod.android.ver.fqrouter.com") --> Line_6 $$ String latestVersion = versionInfo.split("\\|")[0] [FD]
+Line_5 $$ String versionInfo = DnsUtils.resolveTXT("prod.android.ver.fqrouter.com") --> Line_7 $$ String upgradeUrl = versionInfo.split("\\|")[1] [FD]
+Line_6 $$ String latestVersion = versionInfo.split("\\|")[0] --> Line_8 $$ if (isNewer(latestVersion, LaunchService.getMyVersion(this))) [FD]
+Line_8 $$ if (isNewer(latestVersion, LaunchService.getMyVersion(this))) --> Line_9 $$ LogUtils.i("latest version is: " + latestVersion) [CD]
+Line_8 $$ if (isNewer(latestVersion, LaunchService.getMyVersion(this))) --> Line_10 $$ sendBroadcast(new UpdateFoundIntent(latestVersion, upgradeUrl)) [CD]
+Line_8 $$ if (isNewer(latestVersion, LaunchService.getMyVersion(this))) --> Line_12 $$ LogUtils.i("already running the latest version") [CD]

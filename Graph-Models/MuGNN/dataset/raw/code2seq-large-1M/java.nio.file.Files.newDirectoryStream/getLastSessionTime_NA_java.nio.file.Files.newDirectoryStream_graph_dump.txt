@@ -1,0 +1,7 @@
+Line_2 $$ private static Optional<Instant> getLastSessionTime(Path sessionStatusPath, String workflowName) --> Line_5 $$ try (DirectoryStream<Path> ds = Files.newDirectoryStream(sessionStatusPath,  p -> Files.isDirectory(p) && taskExists(p, workflowName))) [FD]
+Line_4 $$ List<Instant> times = new ArrayList() --> Line_8 $$ times.add(Instant.from(SESSION_STATE_TIME_DIRNAME_FORMATTER.parse(path.getFileName().toString()))) [FD]
+Line_6 $$ for (Path path : ds) --> Line_8 $$ times.add(Instant.from(SESSION_STATE_TIME_DIRNAME_FORMATTER.parse(path.getFileName().toString()))) [FD]
+Line_4 $$ List<Instant> times = new ArrayList() --> Line_13 $$ if (times.isEmpty()) [FD]
+Line_13 $$ if (times.isEmpty()) --> Line_14 $$ return Optional.absent() [CD]
+Line_13 $$ if (times.isEmpty()) --> Line_16 $$ return Optional.of(times.stream().sorted(Comparator.<Instant>naturalOrder().reversed()).findFirst().get()) [CD]
+Line_4 $$ List<Instant> times = new ArrayList() --> Line_16 $$ return Optional.of(times.stream().sorted(Comparator.<Instant>naturalOrder().reversed()).findFirst().get()) [FD]

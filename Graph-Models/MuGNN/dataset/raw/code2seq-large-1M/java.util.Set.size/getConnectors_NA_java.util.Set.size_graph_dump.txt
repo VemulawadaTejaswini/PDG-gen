@@ -1,0 +1,8 @@
+Line_2 $$ public Collection<String> getConnectors() throws Exception --> Line_3 $$ String brokerName = getBrokerName() [CD]
+Line_2 $$ public Collection<String> getConnectors() throws Exception --> Line_4 $$ ObjectName query = new ObjectName("org.apache.activemq:type=Broker,brokerName=" + brokerName + ",connector=clientConnectors,connectorName=*") [CD]
+Line_2 $$ public Collection<String> getConnectors() throws Exception --> Line_5 $$ Set<ObjectName> queryResult = queryNames(query, null) [CD]
+Line_4 $$ ObjectName query = new ObjectName("org.apache.activemq:type=Broker,brokerName=" + brokerName + ",connector=clientConnectors,connectorName=*") --> Line_5 $$ Set<ObjectName> queryResult = queryNames(query, null) [FD]
+Line_2 $$ public Collection<String> getConnectors() throws Exception --> Line_6 $$ Collection<String> result = new ArrayList<String>(queryResult.size()) [CD]
+Line_5 $$ Set<ObjectName> queryResult = queryNames(query, null) --> Line_6 $$ Collection<String> result = new ArrayList<String>(queryResult.size()) [FD]
+Line_6 $$ Collection<String> result = new ArrayList<String>(queryResult.size()) --> Line_7 $$ for (ObjectName on : queryResult) result.add(on.getKeyProperty("connectorName")) [FD]
+Line_2 $$ public Collection<String> getConnectors() throws Exception --> Line_8 $$ return result [CD]

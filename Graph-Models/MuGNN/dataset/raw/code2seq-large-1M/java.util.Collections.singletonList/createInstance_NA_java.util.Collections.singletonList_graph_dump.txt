@@ -1,0 +1,6 @@
+Line_2 $$ protected Map<String, String> createInstance() throws Exception --> Line_3 $$ LinkedHashMap<String, String> properties = new LinkedHashMap() [CD]
+Line_2 $$ protected Map<String, String> createInstance() throws Exception --> Line_4 $$ DescribeTagsResult tags = this.amazonEc2.describeTags(new DescribeTagsRequest().withFilters(new Filter("resource-id", Collections.singletonList(this.idProvider.getCurrentInstanceId())), new Filter("resource-type", Collections.singletonList("instance")))) [CD]
+Line_4 $$ DescribeTagsResult tags = this.amazonEc2.describeTags(new DescribeTagsRequest().withFilters(new Filter("resource-id", Collections.singletonList(this.idProvider.getCurrentInstanceId())), new Filter("resource-type", Collections.singletonList("instance")))) --> Line_5 $$ for (TagDescription tag : tags.getTags()) [FD]
+Line_3 $$ LinkedHashMap<String, String> properties = new LinkedHashMap() --> Line_6 $$ properties.put(tag.getKey(), tag.getValue()) [FD]
+Line_5 $$ for (TagDescription tag : tags.getTags()) --> Line_6 $$ properties.put(tag.getKey(), tag.getValue()) [FD]
+Line_2 $$ protected Map<String, String> createInstance() throws Exception --> Line_8 $$ return properties [CD]

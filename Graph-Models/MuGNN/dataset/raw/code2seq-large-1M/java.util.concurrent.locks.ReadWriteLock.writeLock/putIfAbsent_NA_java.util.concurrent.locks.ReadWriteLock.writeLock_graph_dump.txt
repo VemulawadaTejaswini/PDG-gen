@@ -1,0 +1,8 @@
+Line_2 $$ public V putIfAbsent(int key, V value) --> Line_3 $$ int m = mapHash(key) [FD]
+Line_2 $$ public V putIfAbsent(int key, V value) --> Line_3 $$ int m = mapHash(key) [CD]
+Line_2 $$ public V putIfAbsent(int key, V value) --> Line_4 $$ Lock lock = lockArray[m].writeLock() [CD]
+Line_2 $$ public V putIfAbsent(int key, V value) --> Line_5 $$ lock.lock() [CD]
+Line_4 $$ Lock lock = lockArray[m].writeLock() --> Line_5 $$ lock.lock() [FD]
+Line_2 $$ public V putIfAbsent(int key, V value) --> Line_7 $$ V previous = mapArray[m].putIfAbsent(key, value) [FD]
+Line_8 $$ if (previous == null && value != null) --> Line_9 $$ totalKeys.incrementAndGet() [CD]
+Line_4 $$ Lock lock = lockArray[m].writeLock() --> Line_13 $$ lock.unlock() [FD]

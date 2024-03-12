@@ -1,0 +1,8 @@
+Line_2 $$ public static ImmutableClassToInstanceMap<Annotation> annotationMap(Symbol symbol) --> Line_3 $$ ImmutableClassToInstanceMap.Builder<Annotation> builder = ImmutableClassToInstanceMap.builder() [CD]
+Line_2 $$ public static ImmutableClassToInstanceMap<Annotation> annotationMap(Symbol symbol) --> Line_4 $$ for (Compound compound : symbol.getAnnotationMirrors()) [FD]
+Line_4 $$ for (Compound compound : symbol.getAnnotationMirrors()) --> Line_5 $$ Name qualifiedAnnotationType = ((TypeElement) compound.getAnnotationType().asElement()).getQualifiedName() [FD]
+Line_5 $$ Name qualifiedAnnotationType = ((TypeElement) compound.getAnnotationType().asElement()).getQualifiedName() --> Line_7 $$ Class<? extends Annotation> annotationClazz = Class.forName(qualifiedAnnotationType.toString()).asSubclass(Annotation.class) [FD]
+Line_3 $$ ImmutableClassToInstanceMap.Builder<Annotation> builder = ImmutableClassToInstanceMap.builder() --> Line_8 $$ builder.put((Class) annotationClazz, AnnotationProxyMaker.generateAnnotation(compound, annotationClazz)) [FD]
+Line_4 $$ for (Compound compound : symbol.getAnnotationMirrors()) --> Line_8 $$ builder.put((Class) annotationClazz, AnnotationProxyMaker.generateAnnotation(compound, annotationClazz)) [FD]
+Line_2 $$ public static ImmutableClassToInstanceMap<Annotation> annotationMap(Symbol symbol) --> Line_13 $$ return builder.build() [CD]
+Line_3 $$ ImmutableClassToInstanceMap.Builder<Annotation> builder = ImmutableClassToInstanceMap.builder() --> Line_13 $$ return builder.build() [FD]

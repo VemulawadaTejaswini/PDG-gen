@@ -1,0 +1,7 @@
+Line_2 $$ public void testReuse() --> Line_3 $$ ByteBuf buf = pool.getBuffer((int) Math.pow(2, 10)) [CD]
+Line_2 $$ public void testReuse() --> Line_4 $$ ByteBuffer byteBuffer = buf.asNIO() [CD]
+Line_3 $$ ByteBuf buf = pool.getBuffer((int) Math.pow(2, 10)) --> Line_4 $$ ByteBuffer byteBuffer = buf.asNIO() [FD]
+Line_2 $$ public void testReuse() --> Line_5 $$ buf.release() [CD]
+Line_3 $$ ByteBuf buf = pool.getBuffer((int) Math.pow(2, 10)) --> Line_5 $$ buf.release() [FD]
+Line_2 $$ public void testReuse() --> Line_6 $$ assertSame(byteBuffer, pool.getBuffer((int) Math.pow(2, 10)).asNIO()) [CD]
+Line_4 $$ ByteBuffer byteBuffer = buf.asNIO() --> Line_6 $$ assertSame(byteBuffer, pool.getBuffer((int) Math.pow(2, 10)).asNIO()) [FD]

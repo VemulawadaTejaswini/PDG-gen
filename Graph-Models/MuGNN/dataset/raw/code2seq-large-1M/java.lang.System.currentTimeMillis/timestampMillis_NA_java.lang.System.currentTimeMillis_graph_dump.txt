@@ -1,0 +1,8 @@
+Line_2 $$ public static String timestampMillis() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public static String timestampMillis() --> Line_4 $$ long secs = TimeUnit.MILLISECONDS.toSeconds(now) [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_4 $$ long secs = TimeUnit.MILLISECONDS.toSeconds(now) [FD]
+Line_2 $$ public static String timestampMillis() --> Line_5 $$ long msecs = now - TimeUnit.SECONDS.toMillis(secs) [CD]
+Line_4 $$ long secs = TimeUnit.MILLISECONDS.toSeconds(now) --> Line_5 $$ long msecs = now - TimeUnit.SECONDS.toMillis(secs) [FD]
+Line_2 $$ public static String timestampMillis() --> Line_6 $$ return String.format("%d.%03d", secs, msecs) [CD]
+Line_4 $$ long secs = TimeUnit.MILLISECONDS.toSeconds(now) --> Line_6 $$ return String.format("%d.%03d", secs, msecs) [FD]
+Line_5 $$ long msecs = now - TimeUnit.SECONDS.toMillis(secs) --> Line_6 $$ return String.format("%d.%03d", secs, msecs) [FD]

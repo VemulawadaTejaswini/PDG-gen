@@ -1,0 +1,7 @@
+Line_3 $$ try (JarFile file = new JarFile(stubJarPath.toFile())) --> Line_4 $$ Iterable<JarEntry> entries = file.stream()::<>iterator [FD]
+Line_6 $$ String name = entry.getName() --> Line_7 $$ if (JarFile.MANIFEST_NAME.equals(name)) [FD]
+Line_7 $$ if (JarFile.MANIFEST_NAME.equals(name)) --> Line_8 $$ actualStubManifest = new JarDumper().dumpEntry(file, entry).collect(Collectors.toList()) [CD]
+Line_3 $$ try (JarFile file = new JarFile(stubJarPath.toFile())) --> Line_8 $$ actualStubManifest = new JarDumper().dumpEntry(file, entry).collect(Collectors.toList()) [FD]
+Line_6 $$ String name = entry.getName() --> Line_11 $$ actualStubDirectory.add(name) [FD]
+Line_6 $$ String name = entry.getName() --> Line_12 $$ actualStubs.put(name, new JarDumper().dumpEntry(file, entry).collect(Collectors.toList())) [FD]
+Line_3 $$ try (JarFile file = new JarFile(stubJarPath.toFile())) --> Line_12 $$ actualStubs.put(name, new JarDumper().dumpEntry(file, entry).collect(Collectors.toList())) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void registrationThroughMerge() --> Line_3 $$ FunctionRegistration<Foos> registration = new FunctionRegistration(new Foos()).names("foos") [CD]
+Line_2 $$ public void registrationThroughMerge() --> Line_4 $$ processor.merge(Collections.singletonMap("foos", registration), Collections.emptyMap(), Collections.emptyMap(), Collections.emptyMap()) [CD]
+Line_3 $$ FunctionRegistration<Foos> registration = new FunctionRegistration(new Foos()).names("foos") --> Line_4 $$ processor.merge(Collections.singletonMap("foos", registration), Collections.emptyMap(), Collections.emptyMap(), Collections.emptyMap()) [FD]
+Line_2 $$ public void registrationThroughMerge() --> Line_5 $$ Function<Flux<Integer>, Flux<String>> foos = (Function<Flux<Integer>, Flux<String>>) processor.lookupFunction("foos") [CD]
+Line_2 $$ public void registrationThroughMerge() --> Line_6 $$ assertThat(foos.apply(Flux.just(2)).blockFirst()).isEqualTo("4") [CD]
+Line_5 $$ Function<Flux<Integer>, Flux<String>> foos = (Function<Flux<Integer>, Flux<String>>) processor.lookupFunction("foos") --> Line_6 $$ assertThat(foos.apply(Flux.just(2)).blockFirst()).isEqualTo("4") [FD]

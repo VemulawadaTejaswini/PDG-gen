@@ -1,0 +1,8 @@
+Line_2 $$ protected String computeDistinctDocuments(String query, boolean distinctDocuments) --> Line_3 $$ if (distinctDocuments) [CD]
+Line_3 $$ if (distinctDocuments) --> Line_4 $$ String q = query.toLowerCase() [CD]
+Line_2 $$ protected String computeDistinctDocuments(String query, boolean distinctDocuments) --> Line_4 $$ String q = query.toLowerCase() [FD]
+Line_3 $$ if (distinctDocuments) --> Line_5 $$ if (q.startsWith("select ") && !q.startsWith("select distinct ")) [CD]
+Line_4 $$ String q = query.toLowerCase() --> Line_5 $$ if (q.startsWith("select ") && !q.startsWith("select distinct ")) [FD]
+Line_5 $$ if (q.startsWith("select ") && !q.startsWith("select distinct ")) --> Line_6 $$ query = "SELECT DISTINCT " + query.substring(7) [CD]
+Line_2 $$ protected String computeDistinctDocuments(String query, boolean distinctDocuments) --> Line_6 $$ query = "SELECT DISTINCT " + query.substring(7) [FD]
+Line_2 $$ protected String computeDistinctDocuments(String query, boolean distinctDocuments) --> Line_9 $$ return query [CD]

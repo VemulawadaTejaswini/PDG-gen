@@ -1,0 +1,7 @@
+Line_2 $$ public void startWatcher() throws Exception --> Line_3 $$ assertOK(adminClient().performRequest("DELETE", ".watcher-history-*")) [CD]
+Line_2 $$ public void startWatcher() throws Exception --> Line_4 $$ assertBusy(() -> [CD]
+Line_5 $$ Response response = adminClient().performRequest("GET", "_xpack/watcher/stats") --> Line_6 $$ String state = ObjectPath.createFromResponse(response).evaluate("stats.0.watcher_state") [FD]
+Line_9 $$ Response startResponse = adminClient().performRequest("POST", "/_xpack/watcher/_start") --> Line_10 $$ boolean isAcknowledged = ObjectPath.createFromResponse(startResponse).evaluate("acknowledged") [FD]
+Line_10 $$ boolean isAcknowledged = ObjectPath.createFromResponse(startResponse).evaluate("acknowledged") --> Line_11 $$ assertThat(isAcknowledged, is(true)) [FD]
+Line_2 $$ public void startWatcher() throws Exception --> Line_23 $$ assertBusy(() -> [CD]
+Line_25 $$ Response templateExistsResponse = adminClient().performRequest("HEAD", "_template/" + template, emptyMap()) --> Line_26 $$ assertThat(templateExistsResponse.getStatusLine().getStatusCode(), is(200)) [FD]

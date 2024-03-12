@@ -1,0 +1,8 @@
+Line_2 $$ public void testCheckingHeader() --> Line_3 $$ byte[] bytes = "!<arch>\n..........".getBytes(Charsets.UTF_8) [CD]
+Line_2 $$ public void testCheckingHeader() --> Line_4 $$ assertThat(UnixArchive.checkHeader(ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN)), equalTo(true)) [CD]
+Line_3 $$ byte[] bytes = "!<arch>\n..........".getBytes(Charsets.UTF_8) --> Line_4 $$ assertThat(UnixArchive.checkHeader(ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN)), equalTo(true)) [FD]
+Line_2 $$ public void testCheckingHeader() --> Line_5 $$ bytes = "UNEXPECTED_CONTENTS.......".getBytes(Charsets.UTF_8) [CD]
+Line_3 $$ byte[] bytes = "!<arch>\n..........".getBytes(Charsets.UTF_8) --> Line_5 $$ bytes = "UNEXPECTED_CONTENTS.......".getBytes(Charsets.UTF_8) [FD]
+Line_2 $$ public void testCheckingHeader() --> Line_6 $$ assertThat(UnixArchive.checkHeader(ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN)), equalTo(false)) [CD]
+Line_3 $$ byte[] bytes = "!<arch>\n..........".getBytes(Charsets.UTF_8) --> Line_6 $$ assertThat(UnixArchive.checkHeader(ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN)), equalTo(false)) [FD]
+Line_5 $$ bytes = "UNEXPECTED_CONTENTS.......".getBytes(Charsets.UTF_8) --> Line_6 $$ assertThat(UnixArchive.checkHeader(ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN)), equalTo(false)) [FD]

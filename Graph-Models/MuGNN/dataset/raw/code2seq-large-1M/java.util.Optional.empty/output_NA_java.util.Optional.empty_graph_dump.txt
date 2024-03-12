@@ -1,0 +1,8 @@
+Line_2 $$ public void output() throws IOException, InterruptedException --> Line_3 $$ String stdout = "hello world" [CD]
+Line_2 $$ public void output() throws IOException, InterruptedException --> Line_4 $$ ImmutableList<String> echoCmd = Platform.detect() == Platform.WINDOWS ? ImmutableList.of("powershell", "-Command", "echo", "'" + stdout + "'") : ImmutableList.of("echo", stdout) [CD]
+Line_3 $$ String stdout = "hello world" --> Line_4 $$ ImmutableList<String> echoCmd = Platform.detect() == Platform.WINDOWS ? ImmutableList.of("powershell", "-Command", "echo", "'" + stdout + "'") : ImmutableList.of("echo", stdout) [FD]
+Line_2 $$ public void output() throws IOException, InterruptedException --> Line_5 $$ CxxTestStep step = new CxxTestStep(filesystem, echoCmd, ImmutableMap.of(), exitCode, output, Optional.empty()) [CD]
+Line_2 $$ public void output() throws IOException, InterruptedException --> Line_7 $$ step.execute(context) [CD]
+Line_5 $$ CxxTestStep step = new CxxTestStep(filesystem, echoCmd, ImmutableMap.of(), exitCode, output, Optional.empty()) --> Line_7 $$ step.execute(context) [FD]
+Line_2 $$ public void output() throws IOException, InterruptedException --> Line_8 $$ assertSame(0, readExitCode(exitCode)) [CD]
+Line_2 $$ public void output() throws IOException, InterruptedException --> Line_9 $$ assertContents(output, stdout + System.lineSeparator()) [CD]

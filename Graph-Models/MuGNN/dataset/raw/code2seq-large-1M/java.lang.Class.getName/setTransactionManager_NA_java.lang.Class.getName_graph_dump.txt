@@ -1,0 +1,7 @@
+Line_2 $$ public void setTransactionManager(Object transactionManager) --> Line_3 $$ if (transactionManager instanceof TransactionManager) [FD]
+Line_2 $$ public void setTransactionManager(Object transactionManager) --> Line_3 $$ if (transactionManager instanceof TransactionManager) [CD]
+Line_3 $$ if (transactionManager instanceof TransactionManager) --> Line_4 $$ this.transactionManager = (TransactionManager) transactionManager [CD]
+Line_3 $$ if (transactionManager instanceof TransactionManager) --> Line_5 $$ if (transactionManager instanceof PlatformTransactionManager) [CD]
+Line_2 $$ public void setTransactionManager(Object transactionManager) --> Line_5 $$ if (transactionManager instanceof PlatformTransactionManager) [FD]
+Line_5 $$ if (transactionManager instanceof PlatformTransactionManager) --> Line_6 $$ this.transactionManager = new SpringTransactionManager((PlatformTransactionManager) transactionManager) [CD]
+Line_2 $$ public void setTransactionManager(Object transactionManager) --> Line_8 $$ throw new IllegalArgumentException("Given transaction manager is of unknown type: " + transactionManager.getClass().getName()) [FD]

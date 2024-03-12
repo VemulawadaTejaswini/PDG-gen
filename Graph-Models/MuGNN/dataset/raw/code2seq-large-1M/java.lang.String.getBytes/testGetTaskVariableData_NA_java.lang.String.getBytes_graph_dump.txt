@@ -1,0 +1,8 @@
+Line_4 $$ Task task = taskService.newTask() --> Line_5 $$ taskService.saveTask(task) [FD]
+Line_4 $$ Task task = taskService.newTask() --> Line_6 $$ taskService.setVariableLocal(task.getId(), "localTaskVariable", "This is a binary piece of text".getBytes()) [FD]
+Line_4 $$ Task task = taskService.newTask() --> Line_7 $$ CloseableHttpResponse response = executeRequest(new HttpGet(SERVER_URL_PREFIX + RestUrls.createRelativeResourceUrl(RestUrls.URL_TASK_VARIABLE_DATA, task.getId(), "localTaskVariable")), HttpStatus.SC_OK) [FD]
+Line_7 $$ CloseableHttpResponse response = executeRequest(new HttpGet(SERVER_URL_PREFIX + RestUrls.createRelativeResourceUrl(RestUrls.URL_TASK_VARIABLE_DATA, task.getId(), "localTaskVariable")), HttpStatus.SC_OK) --> Line_8 $$ String actualResponseBytesAsText = IOUtils.toString(response.getEntity().getContent()) [FD]
+Line_7 $$ CloseableHttpResponse response = executeRequest(new HttpGet(SERVER_URL_PREFIX + RestUrls.createRelativeResourceUrl(RestUrls.URL_TASK_VARIABLE_DATA, task.getId(), "localTaskVariable")), HttpStatus.SC_OK) --> Line_9 $$ closeResponse(response) [FD]
+Line_8 $$ String actualResponseBytesAsText = IOUtils.toString(response.getEntity().getContent()) --> Line_10 $$ assertEquals("This is a binary piece of text", actualResponseBytesAsText) [FD]
+Line_7 $$ CloseableHttpResponse response = executeRequest(new HttpGet(SERVER_URL_PREFIX + RestUrls.createRelativeResourceUrl(RestUrls.URL_TASK_VARIABLE_DATA, task.getId(), "localTaskVariable")), HttpStatus.SC_OK) --> Line_11 $$ assertEquals("application/octet-stream", response.getEntity().getContentType().getValue()) [FD]
+Line_4 $$ Task task = taskService.newTask() --> Line_15 $$ taskService.deleteTask(task.getId(), true) [FD]

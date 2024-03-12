@@ -1,0 +1,4 @@
+Line_2 $$ public CompletableFuture<Void> process(RequestProcessor processor) --> Line_3 $$ state.compareAndSet("ACTIVE", "STATE3") [CD]
+Line_2 $$ public CompletableFuture<Void> process(RequestProcessor processor) --> Line_4 $$ if (state.get().equals("STATE3")) [CD]
+Line_4 $$ if (state.get().equals("STATE3")) --> Line_5 $$ return CompletableFuture.completedFuture(null).thenAccept( x -> state.compareAndSet("STATE3", "ACTIVE")).thenAccept( x -> result3.complete(null)) [CD]
+Line_4 $$ if (state.get().equals("STATE3")) --> Line_7 $$ return Futures.failedFuture(new OperationDisallowedException()) [CD]

@@ -1,0 +1,6 @@
+Line_3 $$ String payload = getFormatter().format(record) --> Line_5 $$ LogEntry.Builder builder = LogEntry.newBuilder(Payload.StringPayload.of(payload)).setTimestamp(record.getMillis()).setSeverity(severityFor(level)) [FD]
+Line_4 $$ Level level = record.getLevel() --> Line_5 $$ LogEntry.Builder builder = LogEntry.newBuilder(Payload.StringPayload.of(payload)).setTimestamp(record.getMillis()).setSeverity(severityFor(level)) [FD]
+Line_4 $$ Level level = record.getLevel() --> Line_6 $$ if (!baseLevel.equals(level)) [FD]
+Line_6 $$ if (!baseLevel.equals(level)) --> Line_7 $$ builder.addLabel("levelName", level.getName()).addLabel("levelValue", String.valueOf(level.intValue())) [CD]
+Line_4 $$ Level level = record.getLevel() --> Line_7 $$ builder.addLabel("levelName", level.getName()).addLabel("levelValue", String.valueOf(level.intValue())) [FD]
+Line_9 $$ for (LoggingEnhancer enhancer : enhancers) --> Line_10 $$ enhancer.enhanceLogEntry(builder) [FD]

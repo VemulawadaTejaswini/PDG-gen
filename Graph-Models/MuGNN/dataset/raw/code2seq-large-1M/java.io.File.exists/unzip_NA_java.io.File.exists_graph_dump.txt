@@ -1,0 +1,8 @@
+Line_2 $$ public static void unzip(final File sourceFile, final File outputDir) --> Line_3 $$ if (!outputDir.exists() && !outputDir.mkdirs()) [CD]
+Line_2 $$ public static void unzip(final File sourceFile, final File outputDir) --> Line_3 $$ if (!outputDir.exists() && !outputDir.mkdirs()) [FD]
+Line_6 $$ try (ZipInputStream input = new ZipInputStream(new FileInputStream(sourceFile))) --> Line_8 $$ while ((entry = input.getNextEntry()) != null) [FD]
+Line_12 $$ final File file = new File(outputDir, entry.getName()) --> Line_13 $$ final File parent = file.getParentFile() [FD]
+Line_13 $$ final File parent = file.getParentFile() --> Line_14 $$ if (!parent.exists() && !parent.mkdirs()) [FD]
+Line_6 $$ try (ZipInputStream input = new ZipInputStream(new FileInputStream(sourceFile))) --> Line_18 $$ IOUtils.copy(input, output) [FD]
+Line_17 $$ try (FileOutputStream output = new FileOutputStream(file)) --> Line_18 $$ IOUtils.copy(input, output) [FD]
+Line_6 $$ try (ZipInputStream input = new ZipInputStream(new FileInputStream(sourceFile))) --> Line_23 $$ input.closeEntry() [FD]

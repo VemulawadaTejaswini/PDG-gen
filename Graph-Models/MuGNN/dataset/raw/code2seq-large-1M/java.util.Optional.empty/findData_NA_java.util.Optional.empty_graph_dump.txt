@@ -1,0 +1,5 @@
+Line_2 $$ public <T> Optional<T> findData(MarketDataName<T> name) --> Line_3 $$ if (name instanceof CurveName) [CD]
+Line_2 $$ public <T> Optional<T> findData(MarketDataName<T> name) --> Line_3 $$ if (name instanceof CurveName) [FD]
+Line_3 $$ if (name instanceof CurveName) --> Line_4 $$ return Stream.concat(lookup.getRecoveryRateCurveIds().values().stream(), Stream.concat(lookup.getCreditCurveIds().values().stream(), lookup.getDiscountCurveIds().values().stream())).filter( id -> id.getMarketDataName().equals(name)).findFirst().flatMap( id -> marketData.findValue(id)).map( v -> name.getMarketDataType().cast(v)) [CD]
+Line_2 $$ public <T> Optional<T> findData(MarketDataName<T> name) --> Line_4 $$ return Stream.concat(lookup.getRecoveryRateCurveIds().values().stream(), Stream.concat(lookup.getCreditCurveIds().values().stream(), lookup.getDiscountCurveIds().values().stream())).filter( id -> id.getMarketDataName().equals(name)).findFirst().flatMap( id -> marketData.findValue(id)).map( v -> name.getMarketDataType().cast(v)) [FD]
+Line_2 $$ public <T> Optional<T> findData(MarketDataName<T> name) --> Line_6 $$ return Optional.empty() [CD]

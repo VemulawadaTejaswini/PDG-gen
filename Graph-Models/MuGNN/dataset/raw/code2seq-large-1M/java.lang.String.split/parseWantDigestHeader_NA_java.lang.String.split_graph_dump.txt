@@ -1,0 +1,6 @@
+Line_2 $$ private static Collection<String> parseWantDigestHeader(final String wantDigest) --> Line_3 $$ final Map<String, Double> digestPairs = new HashMap<String, Double>() [CD]
+Line_2 $$ private static Collection<String> parseWantDigestHeader(final String wantDigest) --> Line_5 $$ final List<String> algs = Splitter.on(',').omitEmptyStrings().trimResults().splitToList(wantDigest) [FD]
+Line_6 $$ for (final String alg : algs) --> Line_7 $$ final String[] tokens = alg.split(";", 2) [FD]
+Line_3 $$ final Map<String, Double> digestPairs = new HashMap<String, Double>() --> Line_9 $$ digestPairs.put(tokens[0], qValue) [FD]
+Line_8 $$ final double qValue = tokens.length == 1 || tokens[1].indexOf("=") < 0 ? 1.0 : Double.parseDouble(tokens[1].split("=", 2)[1]) --> Line_9 $$ digestPairs.put(tokens[0], qValue) [FD]
+Line_3 $$ final Map<String, Double> digestPairs = new HashMap<String, Double>() --> Line_11 $$ return digestPairs.entrySet().stream().filter( entry -> entry.getValue() > 0).filter( entry -> ContentDigest.DIGEST_ALGORITHM.isSupportedAlgorithm(entry.getKey())).map( entry -> entry.getKey()).collect(Collectors.toSet()) [FD]

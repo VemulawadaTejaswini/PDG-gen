@@ -1,0 +1,7 @@
+Line_2 $$ public static void assumeECDSACiphersSupported() throws Exception --> Line_3 $$ SSLContext sslContext = SSLContext.getInstance("TLSv1.2") [CD]
+Line_2 $$ public static void assumeECDSACiphersSupported() throws Exception --> Line_4 $$ sslContext.init(null, null, null) [CD]
+Line_3 $$ SSLContext sslContext = SSLContext.getInstance("TLSv1.2") --> Line_4 $$ sslContext.init(null, null, null) [FD]
+Line_2 $$ public static void assumeECDSACiphersSupported() throws Exception --> Line_5 $$ SSLEngine sslEngine = sslContext.createSSLEngine() [CD]
+Line_3 $$ SSLContext sslContext = SSLContext.getInstance("TLSv1.2") --> Line_5 $$ SSLEngine sslEngine = sslContext.createSSLEngine() [FD]
+Line_2 $$ public static void assumeECDSACiphersSupported() throws Exception --> Line_6 $$ assumeTrue("ECDSA ciphers must be supported for this test to run. Enabled ciphers: " + Arrays.toString(sslEngine.getEnabledCipherSuites()) + ", supported ciphers: " + Arrays.toString(sslEngine.getSupportedCipherSuites()), Arrays.stream(sslEngine.getEnabledCipherSuites()).anyMatch( s -> s.contains("ECDSA"))) [CD]
+Line_5 $$ SSLEngine sslEngine = sslContext.createSSLEngine() --> Line_6 $$ assumeTrue("ECDSA ciphers must be supported for this test to run. Enabled ciphers: " + Arrays.toString(sslEngine.getEnabledCipherSuites()) + ", supported ciphers: " + Arrays.toString(sslEngine.getSupportedCipherSuites()), Arrays.stream(sslEngine.getEnabledCipherSuites()).anyMatch( s -> s.contains("ECDSA"))) [FD]

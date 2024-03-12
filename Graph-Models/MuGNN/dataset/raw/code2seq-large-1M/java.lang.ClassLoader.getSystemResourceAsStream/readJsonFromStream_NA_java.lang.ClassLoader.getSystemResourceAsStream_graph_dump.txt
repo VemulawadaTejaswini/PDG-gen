@@ -1,0 +1,8 @@
+Line_2 $$ private JsonElement readJsonFromStream(String path, String metricName) throws IOException, JSONException --> Line_3 $$ try (InputStream is = ClassLoader.getSystemResourceAsStream(path)) [FD]
+Line_3 $$ try (InputStream is = ClassLoader.getSystemResourceAsStream(path)) --> Line_4 $$ if (is == null) [FD]
+Line_4 $$ if (is == null) --> Line_5 $$ return (null) [CD]
+Line_3 $$ try (InputStream is = ClassLoader.getSystemResourceAsStream(path)) --> Line_6 $$ String str = new String(ByteStreams.toByteArray(is), Charsets.UTF_8) [FD]
+Line_6 $$ String str = new String(ByteStreams.toByteArray(is), Charsets.UTF_8) --> Line_7 $$ str = str.replace("<metric_name>", metricName) [FD]
+Line_2 $$ private JsonElement readJsonFromStream(String path, String metricName) throws IOException, JSONException --> Line_7 $$ str = str.replace("<metric_name>", metricName) [FD]
+Line_6 $$ String str = new String(ByteStreams.toByteArray(is), Charsets.UTF_8) --> Line_8 $$ return (m_parser.parse(str)) [FD]
+Line_7 $$ str = str.replace("<metric_name>", metricName) --> Line_8 $$ return (m_parser.parse(str)) [FD]

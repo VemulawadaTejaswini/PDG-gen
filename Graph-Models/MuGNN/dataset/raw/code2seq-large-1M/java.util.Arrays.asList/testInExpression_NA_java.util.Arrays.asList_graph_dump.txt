@@ -1,0 +1,7 @@
+Line_2 $$ public void testInExpression() throws Exception --> Line_3 $$ String q = query + "b = filter a by srcid == 10 or srcid == 11;" + "store b into 'out';" [CD]
+Line_2 $$ public void testInExpression() throws Exception --> Line_4 $$ Expression expr = getExpressionForTest(q, Arrays.asList("srcid")) [CD]
+Line_3 $$ String q = query + "b = filter a by srcid == 10 or srcid == 11;" + "store b into 'out';" --> Line_4 $$ Expression expr = getExpressionForTest(q, Arrays.asList("srcid")) [FD]
+Line_2 $$ public void testInExpression() throws Exception --> Line_5 $$ SearchArgument sarg = orcStorage.getSearchArgument(expr) [CD]
+Line_4 $$ Expression expr = getExpressionForTest(q, Arrays.asList("srcid")) --> Line_5 $$ SearchArgument sarg = orcStorage.getSearchArgument(expr) [FD]
+Line_2 $$ public void testInExpression() throws Exception --> Line_6 $$ assertEquals("leaf-0 = (EQUALS srcid 10)\n" + "leaf-1 = (EQUALS srcid 11)\n" + "expr = (or leaf-0 leaf-1)", sarg.toString()) [CD]
+Line_5 $$ SearchArgument sarg = orcStorage.getSearchArgument(expr) --> Line_6 $$ assertEquals("leaf-0 = (EQUALS srcid 10)\n" + "leaf-1 = (EQUALS srcid 11)\n" + "expr = (or leaf-0 leaf-1)", sarg.toString()) [FD]

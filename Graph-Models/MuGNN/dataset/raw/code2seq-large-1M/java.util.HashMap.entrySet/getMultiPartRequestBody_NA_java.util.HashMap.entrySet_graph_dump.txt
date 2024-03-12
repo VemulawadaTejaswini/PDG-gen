@@ -1,0 +1,7 @@
+Line_2 $$ public RequestBody getMultiPartRequestBody() --> Line_3 $$ MultipartBody.Builder builder = new MultipartBody.Builder().setType((customMediaType == null) ? MultipartBody.FORM : customMediaType) [CD]
+Line_3 $$ MultipartBody.Builder builder = new MultipartBody.Builder().setType((customMediaType == null) ? MultipartBody.FORM : customMediaType) --> Line_6 $$ builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + entry.getKey() + "\""), RequestBody.create(null, entry.getValue())) [FD]
+Line_9 $$ String fileName = entry.getValue().getName() --> Line_10 $$ RequestBody fileBody = RequestBody.create(MediaType.parse(Utils.getMimeType(fileName)), entry.getValue()) [FD]
+Line_3 $$ MultipartBody.Builder builder = new MultipartBody.Builder().setType((customMediaType == null) ? MultipartBody.FORM : customMediaType) --> Line_11 $$ builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + entry.getKey() + "\"; filename=\"" + fileName + "\""), fileBody) [FD]
+Line_10 $$ RequestBody fileBody = RequestBody.create(MediaType.parse(Utils.getMimeType(fileName)), entry.getValue()) --> Line_11 $$ builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + entry.getKey() + "\"; filename=\"" + fileName + "\""), fileBody) [FD]
+Line_2 $$ public RequestBody getMultiPartRequestBody() --> Line_16 $$ return builder.build() [CD]
+Line_3 $$ MultipartBody.Builder builder = new MultipartBody.Builder().setType((customMediaType == null) ? MultipartBody.FORM : customMediaType) --> Line_16 $$ return builder.build() [FD]

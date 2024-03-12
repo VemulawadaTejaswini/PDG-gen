@@ -1,0 +1,8 @@
+Line_3 $$ int requestedSize = e.getRequestedSize() --> Line_4 $$ if (requestedSize < maxRelationshipSize) [FD]
+Line_4 $$ if (requestedSize < maxRelationshipSize) --> Line_5 $$ e.hardRef = (CachedQuery) e.get() [CD]
+Line_4 $$ if (requestedSize < maxRelationshipSize) --> Line_6 $$ e.nextLinked = relationshipHead.nextLinked [CD]
+Line_4 $$ if (requestedSize < maxRelationshipSize) --> Line_8 $$ e.prevLinked.nextLinked = e [CD]
+Line_4 $$ if (requestedSize < maxRelationshipSize) --> Line_9 $$ e.nextLinked.prevLinked = e [CD]
+Line_4 $$ if (requestedSize < maxRelationshipSize) --> Line_10 $$ while (maxRelationshipSize - relationshipSize < requestedSize) [CD]
+Line_3 $$ int requestedSize = e.getRequestedSize() --> Line_10 $$ while (maxRelationshipSize - relationshipSize < requestedSize) [FD]
+Line_10 $$ while (maxRelationshipSize - relationshipSize < requestedSize) --> Line_11 $$ unlink(relationshipHead.prevLinked) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static StatusType getSingleComponentStatus(Set<StatusType> statusTypes) --> Line_3 $$ if (statusTypes.isEmpty()) [FD]
+Line_2 $$ private static StatusType getSingleComponentStatus(Set<StatusType> statusTypes) --> Line_3 $$ if (statusTypes.isEmpty()) [CD]
+Line_3 $$ if (statusTypes.isEmpty()) --> Line_4 $$ return StatusType.UNREACHABLE [CD]
+Line_2 $$ private static StatusType getSingleComponentStatus(Set<StatusType> statusTypes) --> Line_6 $$ if (containAnyStatus(statusTypes, StatusType.ERROR, StatusType.UNREACHABLE) && containAnyStatus(statusTypes, StatusType.INITIALIZING, StatusType.READY)) [FD]
+Line_2 $$ private static StatusType getSingleComponentStatus(Set<StatusType> statusTypes) --> Line_6 $$ if (containAnyStatus(statusTypes, StatusType.ERROR, StatusType.UNREACHABLE) && containAnyStatus(statusTypes, StatusType.INITIALIZING, StatusType.READY)) [CD]
+Line_6 $$ if (containAnyStatus(statusTypes, StatusType.ERROR, StatusType.UNREACHABLE) && containAnyStatus(statusTypes, StatusType.INITIALIZING, StatusType.READY)) --> Line_7 $$ return StatusType.PARTIAL_ERROR [CD]
+Line_2 $$ private static StatusType getSingleComponentStatus(Set<StatusType> statusTypes) --> Line_9 $$ return statusTypes.stream().max(Comparator.comparing( statusType -> STATUS_MAP.get(statusType))).get() [FD]
+Line_2 $$ private static StatusType getSingleComponentStatus(Set<StatusType> statusTypes) --> Line_9 $$ return statusTypes.stream().max(Comparator.comparing( statusType -> STATUS_MAP.get(statusType))).get() [CD]

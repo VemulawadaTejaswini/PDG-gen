@@ -1,0 +1,5 @@
+Line_2 $$ public static Bundle readMeta(Parcel p) --> Line_3 $$ Bundle meta = new Bundle() [CD]
+Line_2 $$ public static Bundle readMeta(Parcel p) --> Line_4 $$ Map<String, String> map = p.readHashMap(String.class.getClassLoader()) [FD]
+Line_2 $$ public static Bundle readMeta(Parcel p) --> Line_4 $$ Map<String, String> map = p.readHashMap(String.class.getClassLoader()) [CD]
+Line_3 $$ Bundle meta = new Bundle() --> Line_6 $$ meta.putString(entry.getKey(), entry.getValue()) [FD]
+Line_2 $$ public static Bundle readMeta(Parcel p) --> Line_8 $$ return meta [CD]

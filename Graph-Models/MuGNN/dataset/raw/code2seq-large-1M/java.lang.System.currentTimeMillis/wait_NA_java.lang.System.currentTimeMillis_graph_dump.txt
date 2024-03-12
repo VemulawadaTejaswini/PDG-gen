@@ -1,0 +1,7 @@
+Line_2 $$ public void wait(AtomicBoolean running, int timout) --> Line_6 $$ while (running.get()) [FD]
+Line_6 $$ while (running.get()) --> Line_7 $$ running.wait(timout) [CD]
+Line_2 $$ public void wait(AtomicBoolean running, int timout) --> Line_7 $$ running.wait(timout) [FD]
+Line_6 $$ while (running.get()) --> Line_8 $$ if (running.get() && System.currentTimeMillis() - start > Settings.IMP.QUEUE.DISCARD_AFTER_MS) [CD]
+Line_2 $$ public void wait(AtomicBoolean running, int timout) --> Line_8 $$ if (running.get() && System.currentTimeMillis() - start > Settings.IMP.QUEUE.DISCARD_AFTER_MS) [FD]
+Line_8 $$ if (running.get() && System.currentTimeMillis() - start > Settings.IMP.QUEUE.DISCARD_AFTER_MS) --> Line_9 $$ new RuntimeException("FAWE is taking a long time to execute a task (might just be a symptom): ").printStackTrace() [CD]
+Line_8 $$ if (running.get() && System.currentTimeMillis() - start > Settings.IMP.QUEUE.DISCARD_AFTER_MS) --> Line_10 $$ Fawe.debug("For full debug information use: /fawe threads") [CD]

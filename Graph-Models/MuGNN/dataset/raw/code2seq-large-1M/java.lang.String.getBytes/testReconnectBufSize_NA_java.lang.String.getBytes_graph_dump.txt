@@ -1,0 +1,7 @@
+Line_4 $$ ConnectionFactory cf = new ConnectionFactory() --> Line_5 $$ cf.setReconnectBufSize(34) [FD]
+Line_4 $$ ConnectionFactory cf = new ConnectionFactory() --> Line_7 $$ cf.setDisconnectedCallback(new DisconnectedCallback() [FD]
+Line_7 $$ cf.setDisconnectedCallback(new DisconnectedCallback() --> Line_9 $$ dcLatch.countDown() [CD]
+Line_6 $$ final CountDownLatch dcLatch = new CountDownLatch(1) --> Line_9 $$ dcLatch.countDown() [FD]
+Line_4 $$ ConnectionFactory cf = new ConnectionFactory() --> Line_12 $$ try (ConnectionImpl nc = (ConnectionImpl) cf.createConnection()) [FD]
+Line_3 $$ try (NatsServer ts = runServerOnPort(4222)) --> Line_14 $$ ts.shutdown() [FD]
+Line_6 $$ final CountDownLatch dcLatch = new CountDownLatch(1) --> Line_15 $$ assertTrue("DisconnectedCB should have been triggered", await(dcLatch)) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public CompletableFuture<List<RegionInfo>> getRegions(TableName tableName) --> Line_3 $$ if (tableName.equals(META_TABLE_NAME)) [CD]
+Line_2 $$ public CompletableFuture<List<RegionInfo>> getRegions(TableName tableName) --> Line_3 $$ if (tableName.equals(META_TABLE_NAME)) [FD]
+Line_3 $$ if (tableName.equals(META_TABLE_NAME)) --> Line_4 $$ return connection.getLocator().getRegionLocation(tableName, null, null, operationTimeoutNs).thenApply( loc -> Collections.singletonList(loc.getRegion())) [CD]
+Line_2 $$ public CompletableFuture<List<RegionInfo>> getRegions(TableName tableName) --> Line_4 $$ return connection.getLocator().getRegionLocation(tableName, null, null, operationTimeoutNs).thenApply( loc -> Collections.singletonList(loc.getRegion())) [FD]
+Line_3 $$ if (tableName.equals(META_TABLE_NAME)) --> Line_6 $$ return AsyncMetaTableAccessor.getTableHRegionLocations(metaTable, Optional.of(tableName)).thenApply( locs -> locs.stream().map( loc -> loc.getRegion()).collect(Collectors.toList())) [CD]
+Line_2 $$ public CompletableFuture<List<RegionInfo>> getRegions(TableName tableName) --> Line_6 $$ return AsyncMetaTableAccessor.getTableHRegionLocations(metaTable, Optional.of(tableName)).thenApply( locs -> locs.stream().map( loc -> loc.getRegion()).collect(Collectors.toList())) [FD]

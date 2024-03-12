@@ -1,0 +1,5 @@
+Line_2 $$ public CompletableFuture<Optional<JobManagerMessages.ClassloadingProps>> requestClassloadingProps(JobID jobId, Time timeout) --> Line_3 $$ return FutureUtils.toJava(jobManagerGateway.ask(new JobManagerMessages.RequestClassloadingProps(jobId), FutureUtils.toFiniteDuration(timeout))).thenApply((Object response) -> [CD]
+Line_2 $$ public CompletableFuture<Optional<JobManagerMessages.ClassloadingProps>> requestClassloadingProps(JobID jobId, Time timeout) --> Line_3 $$ return FutureUtils.toJava(jobManagerGateway.ask(new JobManagerMessages.RequestClassloadingProps(jobId), FutureUtils.toFiniteDuration(timeout))).thenApply((Object response) -> [FD]
+Line_4 $$ if (response instanceof JobManagerMessages.ClassloadingProps) --> Line_5 $$ return Optional.of(((JobManagerMessages.ClassloadingProps) response)) [CD]
+Line_4 $$ if (response instanceof JobManagerMessages.ClassloadingProps) --> Line_6 $$ if (response instanceof JobManagerMessages.JobNotFound) [CD]
+Line_6 $$ if (response instanceof JobManagerMessages.JobNotFound) --> Line_7 $$ return Optional.empty() [CD]

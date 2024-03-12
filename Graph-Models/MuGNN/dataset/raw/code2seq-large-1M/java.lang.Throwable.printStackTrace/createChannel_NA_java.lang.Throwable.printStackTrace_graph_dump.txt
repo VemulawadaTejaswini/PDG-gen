@@ -1,0 +1,7 @@
+Line_2 $$ public ChannelFeed createChannel(ChannelInfo channelInfo) --> Line_3 $$ ChannelFeed channelFeed = null [CD]
+Line_2 $$ public ChannelFeed createChannel(ChannelInfo channelInfo) --> Line_5 $$ String jsonFromObject = GsonUtils.getJsonFromObject(channelInfo, channelInfo.getClass()) [FD]
+Line_5 $$ String jsonFromObject = GsonUtils.getJsonFromObject(channelInfo, channelInfo.getClass()) --> Line_6 $$ String createChannelResponse = httpRequestUtils.postData(getCreateChannelUrl(), "application/json", "application/json", jsonFromObject) [FD]
+Line_6 $$ String createChannelResponse = httpRequestUtils.postData(getCreateChannelUrl(), "application/json", "application/json", jsonFromObject) --> Line_8 $$ ChannelFeedApiResponse channelFeedApiResponse = (ChannelFeedApiResponse) GsonUtils.getObjectFromJson(createChannelResponse, ChannelFeedApiResponse.class) [FD]
+Line_9 $$ if (channelFeedApiResponse != null && channelFeedApiResponse.isSuccess()) --> Line_10 $$ channelFeed = channelFeedApiResponse.getResponse() [CD]
+Line_3 $$ ChannelFeed channelFeed = null --> Line_10 $$ channelFeed = channelFeedApiResponse.getResponse() [FD]
+Line_2 $$ public ChannelFeed createChannel(ChannelInfo channelInfo) --> Line_16 $$ return channelFeed [CD]

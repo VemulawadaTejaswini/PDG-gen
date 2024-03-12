@@ -1,0 +1,8 @@
+Line_2 $$ private <T> T onStoreProxy(TimeoutExceptionFunction<ServerStoreProxy, T> function) throws TimeoutException --> Line_3 $$ ServerStoreProxy storeProxy = proxy() [CD]
+Line_2 $$ private <T> T onStoreProxy(TimeoutExceptionFunction<ServerStoreProxy, T> function) throws TimeoutException --> Line_5 $$ return function.apply(storeProxy) [FD]
+Line_3 $$ ServerStoreProxy storeProxy = proxy() --> Line_5 $$ return function.apply(storeProxy) [FD]
+Line_7 $$ if (sspe.getCause() instanceof ConnectionClosedException) --> Line_8 $$ if (delegateRef.compareAndSet(storeProxy, new ReconnectInProgressProxy(storeProxy.getCacheId()))) [CD]
+Line_3 $$ ServerStoreProxy storeProxy = proxy() --> Line_8 $$ if (delegateRef.compareAndSet(storeProxy, new ReconnectInProgressProxy(storeProxy.getCacheId()))) [FD]
+Line_8 $$ if (delegateRef.compareAndSet(storeProxy, new ReconnectInProgressProxy(storeProxy.getCacheId()))) --> Line_9 $$ onReconnect.run() [CD]
+Line_7 $$ if (sspe.getCause() instanceof ConnectionClosedException) --> Line_11 $$ return onStoreProxy(function) [CD]
+Line_2 $$ private <T> T onStoreProxy(TimeoutExceptionFunction<ServerStoreProxy, T> function) throws TimeoutException --> Line_11 $$ return onStoreProxy(function) [FD]

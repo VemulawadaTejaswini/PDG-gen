@@ -1,0 +1,8 @@
+Line_2 $$ public void logFrameOut(final ByteBuffer buffer, final InetSocketAddress dstAddress) --> Line_3 $$ if (IS_FRAME_OUT_ENABLED) [CD]
+Line_3 $$ if (IS_FRAME_OUT_ENABLED) --> Line_4 $$ final MutableDirectBuffer encodedBuffer = ENCODING_BUFFER.get() [CD]
+Line_3 $$ if (IS_FRAME_OUT_ENABLED) --> Line_5 $$ final int encodedLength = EventEncoder.encode(encodedBuffer, buffer, buffer.position(), buffer.remaining(), dstAddress) [CD]
+Line_4 $$ final MutableDirectBuffer encodedBuffer = ENCODING_BUFFER.get() --> Line_5 $$ final int encodedLength = EventEncoder.encode(encodedBuffer, buffer, buffer.position(), buffer.remaining(), dstAddress) [FD]
+Line_2 $$ public void logFrameOut(final ByteBuffer buffer, final InetSocketAddress dstAddress) --> Line_5 $$ final int encodedLength = EventEncoder.encode(encodedBuffer, buffer, buffer.position(), buffer.remaining(), dstAddress) [FD]
+Line_3 $$ if (IS_FRAME_OUT_ENABLED) --> Line_6 $$ ringBuffer.write(EventCode.FRAME_OUT.id(), encodedBuffer, 0, encodedLength) [CD]
+Line_4 $$ final MutableDirectBuffer encodedBuffer = ENCODING_BUFFER.get() --> Line_6 $$ ringBuffer.write(EventCode.FRAME_OUT.id(), encodedBuffer, 0, encodedLength) [FD]
+Line_5 $$ final int encodedLength = EventEncoder.encode(encodedBuffer, buffer, buffer.position(), buffer.remaining(), dstAddress) --> Line_6 $$ ringBuffer.write(EventCode.FRAME_OUT.id(), encodedBuffer, 0, encodedLength) [FD]

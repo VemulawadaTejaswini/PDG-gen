@@ -1,0 +1,8 @@
+Line_2 $$ private void readEnumValues(JDBCSession session) throws DBException --> Line_3 $$ try (JDBCPreparedStatement dbStat = session.prepareStatement("SELECT e.enumlabel \n" + "FROM pg_catalog.pg_enum e\n" + "WHERE e.enumtypid=?")) [FD]
+Line_3 $$ try (JDBCPreparedStatement dbStat = session.prepareStatement("SELECT e.enumlabel \n" + "FROM pg_catalog.pg_enum e\n" + "WHERE e.enumtypid=?")) --> Line_4 $$ dbStat.setLong(1, getObjectId()) [FD]
+Line_3 $$ try (JDBCPreparedStatement dbStat = session.prepareStatement("SELECT e.enumlabel \n" + "FROM pg_catalog.pg_enum e\n" + "WHERE e.enumtypid=?")) --> Line_5 $$ try (JDBCResultSet rs = dbStat.executeQuery()) [FD]
+Line_5 $$ try (JDBCResultSet rs = dbStat.executeQuery()) --> Line_7 $$ while (rs.nextRow()) [FD]
+Line_7 $$ while (rs.nextRow()) --> Line_8 $$ values.add(JDBCUtils.safeGetString(rs, 1)) [CD]
+Line_6 $$ List<String> values = new ArrayList() --> Line_8 $$ values.add(JDBCUtils.safeGetString(rs, 1)) [FD]
+Line_5 $$ try (JDBCResultSet rs = dbStat.executeQuery()) --> Line_8 $$ values.add(JDBCUtils.safeGetString(rs, 1)) [FD]
+Line_6 $$ List<String> values = new ArrayList() --> Line_10 $$ enumValues = values.toArray() [FD]

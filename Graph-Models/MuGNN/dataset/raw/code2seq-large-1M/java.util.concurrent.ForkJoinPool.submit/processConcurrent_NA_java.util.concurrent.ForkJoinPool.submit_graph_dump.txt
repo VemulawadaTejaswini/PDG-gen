@@ -1,0 +1,7 @@
+Line_2 $$ void processConcurrent(HttpClient httpClient, ForkJoinPool fjp, AssetPool pool, FileAssembler consumer) throws IOException --> Line_3 $$ logger.trace("<< processConcurrent()") [CD]
+Line_2 $$ void processConcurrent(HttpClient httpClient, ForkJoinPool fjp, AssetPool pool, FileAssembler consumer) throws IOException --> Line_5 $$ Collection<StorageHostChunkList> containers = pool.authorize(httpClient) [FD]
+Line_2 $$ void processConcurrent(HttpClient httpClient, ForkJoinPool fjp, AssetPool pool, FileAssembler consumer) throws IOException --> Line_6 $$ fjp.submit(() -> containers.parallelStream().forEach( u -> processContainer(httpClient, u, pool, consumer))).get() [FD]
+Line_5 $$ Collection<StorageHostChunkList> containers = pool.authorize(httpClient) --> Line_6 $$ fjp.submit(() -> containers.parallelStream().forEach( u -> processContainer(httpClient, u, pool, consumer))).get() [FD]
+Line_10 $$ Throwable cause = ex.getCause() --> Line_11 $$ if (cause instanceof RuntimeException) [FD]
+Line_10 $$ Throwable cause = ex.getCause() --> Line_14 $$ if (cause instanceof IOException) [FD]
+Line_2 $$ void processConcurrent(HttpClient httpClient, ForkJoinPool fjp, AssetPool pool, FileAssembler consumer) throws IOException --> Line_19 $$ logger.trace("<< processConcurrent()") [CD]

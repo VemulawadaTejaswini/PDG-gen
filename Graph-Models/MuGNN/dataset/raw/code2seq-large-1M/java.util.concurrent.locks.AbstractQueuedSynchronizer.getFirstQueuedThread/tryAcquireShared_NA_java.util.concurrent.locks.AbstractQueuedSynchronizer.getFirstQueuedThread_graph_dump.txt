@@ -1,0 +1,8 @@
+Line_2 $$ protected int tryAcquireShared(int acquires) --> Line_3 $$ Thread queuedThread = getFirstQueuedThread() [CD]
+Line_2 $$ protected int tryAcquireShared(int acquires) --> Line_4 $$ if (queuedThread != null && queuedThread != Thread.currentThread()) [CD]
+Line_4 $$ if (queuedThread != null && queuedThread != Thread.currentThread()) --> Line_5 $$ return -1 [CD]
+Line_2 $$ protected int tryAcquireShared(int acquires) --> Line_6 $$ if (acquires == 0) [CD]
+Line_2 $$ protected int tryAcquireShared(int acquires) --> Line_6 $$ if (acquires == 0) [FD]
+Line_6 $$ if (acquires == 0) --> Line_7 $$ return isClosed() ? 1 : -1 [CD]
+Line_2 $$ protected int tryAcquireShared(int acquires) --> Line_8 $$ setState(1) [CD]
+Line_2 $$ protected int tryAcquireShared(int acquires) --> Line_9 $$ return 1 [CD]

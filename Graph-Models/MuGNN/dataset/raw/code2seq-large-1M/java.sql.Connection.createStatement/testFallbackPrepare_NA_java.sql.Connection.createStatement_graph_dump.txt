@@ -1,0 +1,7 @@
+Line_2 $$ public void testFallbackPrepare() throws SQLException --> Line_3 $$ createTable("testFallbackPrepare", "`test` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci") [CD]
+Line_4 $$ try (Connection connection = setConnection()) --> Line_5 $$ Statement stmt = connection.createStatement() [FD]
+Line_5 $$ Statement stmt = connection.createStatement() --> Line_6 $$ stmt.execute("SET @@character_set_connection = 'utf8mb4'") [FD]
+Line_5 $$ Statement stmt = connection.createStatement() --> Line_7 $$ stmt.execute("SELECT * FROM `testFallbackPrepare` WHERE `test` LIKE 'jj' COLLATE utf8mb4_unicode_ci") [FD]
+Line_4 $$ try (Connection connection = setConnection()) --> Line_8 $$ try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `testFallbackPrepare` WHERE `test` LIKE ? COLLATE utf8mb4_unicode_ci")) [FD]
+Line_8 $$ try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `testFallbackPrepare` WHERE `test` LIKE ? COLLATE utf8mb4_unicode_ci")) --> Line_9 $$ preparedStatement.setString(1, "jj") [FD]
+Line_8 $$ try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM `testFallbackPrepare` WHERE `test` LIKE ? COLLATE utf8mb4_unicode_ci")) --> Line_10 $$ preparedStatement.execute() [FD]

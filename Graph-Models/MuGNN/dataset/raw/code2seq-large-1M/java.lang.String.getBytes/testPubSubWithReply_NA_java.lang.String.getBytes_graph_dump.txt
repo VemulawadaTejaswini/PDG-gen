@@ -1,0 +1,7 @@
+Line_4 $$ try (Connection c = newDefaultConnection()) --> Line_5 $$ try (SyncSubscription s = c.subscribeSync("foo")) [FD]
+Line_4 $$ try (Connection c = newDefaultConnection()) --> Line_7 $$ c.publish("foo", "reply", omsg) [FD]
+Line_6 $$ final byte[] omsg = "Hello World".getBytes() --> Line_7 $$ c.publish("foo", "reply", omsg) [FD]
+Line_4 $$ try (Connection c = newDefaultConnection()) --> Line_8 $$ c.flush() [FD]
+Line_5 $$ try (SyncSubscription s = c.subscribeSync("foo")) --> Line_11 $$ Message msg = s.nextMessage(10000) [FD]
+Line_6 $$ final byte[] omsg = "Hello World".getBytes() --> Line_12 $$ assertArrayEquals("Message received does not match: ", omsg, msg.getData()) [FD]
+Line_11 $$ Message msg = s.nextMessage(10000) --> Line_12 $$ assertArrayEquals("Message received does not match: ", omsg, msg.getData()) [FD]

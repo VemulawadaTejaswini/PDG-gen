@@ -1,0 +1,6 @@
+Line_2 $$ private Acl getAcl(String pipelineName, boolean checkExistence) throws PipelineException --> Line_3 $$ synchronized (lockCache.getLock(pipelineName)) [FD]
+Line_2 $$ private Acl getAcl(String pipelineName, boolean checkExistence) throws PipelineException --> Line_4 $$ if (checkExistence && !pipelineStore.hasPipeline(pipelineName)) [FD]
+Line_2 $$ private Acl getAcl(String pipelineName, boolean checkExistence) throws PipelineException --> Line_7 $$ Path aclFilePath = getPipelineAclFile(pipelineName) [FD]
+Line_7 $$ Path aclFilePath = getPipelineAclFile(pipelineName) --> Line_8 $$ if (Files.exists(aclFilePath)) [FD]
+Line_2 $$ private Acl getAcl(String pipelineName, boolean checkExistence) throws PipelineException --> Line_9 $$ try (InputStream aclFile = Files.newInputStream(getPipelineAclFile(pipelineName))) [FD]
+Line_9 $$ try (InputStream aclFile = Files.newInputStream(getPipelineAclFile(pipelineName))) --> Line_10 $$ AclJson aclJsonBean = json.readValue(aclFile, AclJson.class) [FD]

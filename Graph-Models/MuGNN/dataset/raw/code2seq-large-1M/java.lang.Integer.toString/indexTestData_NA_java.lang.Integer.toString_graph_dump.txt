@@ -1,0 +1,7 @@
+Line_2 $$ private void indexTestData() --> Line_3 $$ for (int i = 0; i < 5; i++) [CD]
+Line_3 $$ for (int i = 0; i < 5; i++) --> Line_4 $$ BulkRequestBuilder bulkRequestBuilder = client().prepareBulk().setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE) [CD]
+Line_3 $$ for (int i = 0; i < 5; i++) --> Line_5 $$ for (int j = 0; j < 20; j++) [CD]
+Line_5 $$ for (int j = 0; j < 20; j++) --> Line_6 $$ bulkRequestBuilder.add(client().prepareIndex("test", "type", Integer.toString(i * 5 + j)).setSource("field", "value")) [CD]
+Line_4 $$ BulkRequestBuilder bulkRequestBuilder = client().prepareBulk().setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE) --> Line_6 $$ bulkRequestBuilder.add(client().prepareIndex("test", "type", Integer.toString(i * 5 + j)).setSource("field", "value")) [FD]
+Line_3 $$ for (int i = 0; i < 5; i++) --> Line_8 $$ assertNoFailures(bulkRequestBuilder.get()) [CD]
+Line_4 $$ BulkRequestBuilder bulkRequestBuilder = client().prepareBulk().setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE) --> Line_8 $$ assertNoFailures(bulkRequestBuilder.get()) [FD]

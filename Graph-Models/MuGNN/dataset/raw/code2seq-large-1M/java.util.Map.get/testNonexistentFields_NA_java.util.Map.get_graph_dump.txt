@@ -1,0 +1,6 @@
+Line_4 $$ HttpPost post = new HttpPost(restBaseUrl + "/" + RestClusteringAction.NAME + "?pretty=true") --> Line_5 $$ post.setEntity(new ByteArrayEntity(jsonResourceAs("post_nonexistent_fields.json", xtype), contentType)) [FD]
+Line_3 $$ try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) --> Line_6 $$ HttpResponse response = httpClient.execute(post) [FD]
+Line_4 $$ HttpPost post = new HttpPost(restBaseUrl + "/" + RestClusteringAction.NAME + "?pretty=true") --> Line_6 $$ HttpResponse response = httpClient.execute(post) [FD]
+Line_6 $$ HttpResponse response = httpClient.execute(post) --> Line_7 $$ Map<?, ?> map = checkHttpResponseContainsClusters(response) [FD]
+Line_7 $$ Map<?, ?> map = checkHttpResponseContainsClusters(response) --> Line_8 $$ List<?> clusterList = (List<?>) map.get("clusters") [FD]
+Line_8 $$ List<?> clusterList = (List<?>) map.get("clusters") --> Line_9 $$ Assertions.assertThat(clusterList).isNotNull() [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public <T> void collect(@Observes ProcessManagedBean<T> eventIn, BeanManager beanManager) --> Line_5 $$ getAnnotation(beanManager, event.getAnnotated(), FacesConfig.class).ifPresent( config -> setAddBeansForJSFImplicitObjects(config.version().ordinal() >= JSF_2_3.ordinal())) [FD]
+Line_4 $$ ProcessManagedBean<T> event = eventIn --> Line_5 $$ getAnnotation(beanManager, event.getAnnotated(), FacesConfig.class).ifPresent( config -> setAddBeansForJSFImplicitObjects(config.version().ordinal() >= JSF_2_3.ordinal())) [FD]
+Line_4 $$ ProcessManagedBean<T> event = eventIn --> Line_6 $$ for (AnnotatedField<? super T> field : event.getAnnotatedBeanClass().getFields()) [FD]
+Line_6 $$ for (AnnotatedField<? super T> field : event.getAnnotatedBeanClass().getFields()) --> Line_7 $$ if (field.isAnnotationPresent(ManagedProperty.class) && (field.getBaseType() instanceof Class || field.getBaseType() instanceof ParameterizedType)) [FD]
+Line_6 $$ for (AnnotatedField<? super T> field : event.getAnnotatedBeanClass().getFields()) --> Line_8 $$ managedPropertyTargetTypes.add(field.getBaseType()) [FD]
+Line_12 $$ if (LOGGER.isLoggable(Level.WARNING)) --> Line_13 $$ LOGGER.warning("Exception happened when collecting: " + e) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static Connection unwrapConnection(Connection conn) --> Line_3 $$ if (Proxy.isProxyClass(conn.getClass())) [FD]
+Line_2 $$ public static Connection unwrapConnection(Connection conn) --> Line_3 $$ if (Proxy.isProxyClass(conn.getClass())) [CD]
+Line_3 $$ if (Proxy.isProxyClass(conn.getClass())) --> Line_4 $$ InvocationHandler handler = Proxy.getInvocationHandler(conn) [CD]
+Line_2 $$ public static Connection unwrapConnection(Connection conn) --> Line_4 $$ InvocationHandler handler = Proxy.getInvocationHandler(conn) [FD]
+Line_3 $$ if (Proxy.isProxyClass(conn.getClass())) --> Line_5 $$ if (handler instanceof PooledConnection) [CD]
+Line_4 $$ InvocationHandler handler = Proxy.getInvocationHandler(conn) --> Line_5 $$ if (handler instanceof PooledConnection) [FD]
+Line_5 $$ if (handler instanceof PooledConnection) --> Line_6 $$ return ((PooledConnection) handler).getRealConnection() [CD]
+Line_2 $$ public static Connection unwrapConnection(Connection conn) --> Line_9 $$ return conn [CD]

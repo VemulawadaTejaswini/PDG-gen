@@ -1,0 +1,5 @@
+Line_2 $$ private static float alphaBlendingComponent(int foregroundComponent, float foregroundAlpha, int backgroundComponent, float backgroundAlpha) --> Line_3 $$ float alpha = foregroundAlpha + backgroundAlpha * (1 - foregroundAlpha) [CD]
+Line_2 $$ private static float alphaBlendingComponent(int foregroundComponent, float foregroundAlpha, int backgroundComponent, float backgroundAlpha) --> Line_4 $$ if (Math.abs(alpha) < 0.001) [CD]
+Line_3 $$ float alpha = foregroundAlpha + backgroundAlpha * (1 - foregroundAlpha) --> Line_4 $$ if (Math.abs(alpha) < 0.001) [FD]
+Line_4 $$ if (Math.abs(alpha) < 0.001) --> Line_5 $$ return 1 [CD]
+Line_2 $$ private static float alphaBlendingComponent(int foregroundComponent, float foregroundAlpha, int backgroundComponent, float backgroundAlpha) --> Line_7 $$ return (foregroundAlpha * foregroundComponent + backgroundAlpha * backgroundComponent * (1 - foregroundAlpha)) / (255.0f * alpha) [CD]

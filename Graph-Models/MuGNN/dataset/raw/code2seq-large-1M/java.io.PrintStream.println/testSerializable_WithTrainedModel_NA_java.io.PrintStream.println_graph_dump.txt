@@ -1,0 +1,6 @@
+Line_2 $$ public void testSerializable_WithTrainedModel() throws Exception --> Line_3 $$ System.out.println("Serializable") [CD]
+Line_5 $$ CSKLRBatch instance = new CSKLRBatch(0.5, new RBFKernel(0.5), 10, mode, SupportVectorLearner.CacheMode.NONE) --> Line_8 $$ instance.train(train) [FD]
+Line_6 $$ ClassificationDataSet train = FixedProblems.getInnerOuterCircle(200, RandomUtil.getRandom()) --> Line_8 $$ instance.train(train) [FD]
+Line_5 $$ CSKLRBatch instance = new CSKLRBatch(0.5, new RBFKernel(0.5), 10, mode, SupportVectorLearner.CacheMode.NONE) --> Line_9 $$ CSKLRBatch serializedBatch = serializeAndDeserialize(instance) [FD]
+Line_7 $$ ClassificationDataSet test = FixedProblems.getInnerOuterCircle(100, RandomUtil.getRandom()) --> Line_10 $$ for (int i = 0; i < test.getSampleSize(); i++) assertEquals(test.getDataPointCategory(i), serializedBatch.classify(test.getDataPoint(i)).mostLikely()) [FD]
+Line_9 $$ CSKLRBatch serializedBatch = serializeAndDeserialize(instance) --> Line_10 $$ for (int i = 0; i < test.getSampleSize(); i++) assertEquals(test.getDataPointCategory(i), serializedBatch.classify(test.getDataPoint(i)).mostLikely()) [FD]

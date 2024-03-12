@@ -1,0 +1,8 @@
+Line_2 $$ public void loadSpanReceivers() --> Line_3 $$ String[] receiverNames = conf.getStrings(SPAN_RECEIVERS_CONF_KEY) [CD]
+Line_2 $$ public void loadSpanReceivers() --> Line_4 $$ if (receiverNames == null || receiverNames.length == 0) [CD]
+Line_4 $$ if (receiverNames == null || receiverNames.length == 0) --> Line_5 $$ return [CD]
+Line_2 $$ public void loadSpanReceivers() --> Line_7 $$ SpanReceiver.Builder builder = new SpanReceiver.Builder(new HBaseHTraceConfiguration(conf)) [CD]
+Line_7 $$ SpanReceiver.Builder builder = new SpanReceiver.Builder(new HBaseHTraceConfiguration(conf)) --> Line_10 $$ SpanReceiver receiver = builder.className(className).build() [FD]
+Line_11 $$ if (receiver != null) --> Line_12 $$ receivers.add(receiver) [CD]
+Line_11 $$ if (receiver != null) --> Line_13 $$ LOG.info("SpanReceiver " + className + " was loaded successfully.") [CD]
+Line_16 $$ for (SpanReceiver rcvr : receivers) --> Line_17 $$ TraceUtil.addReceiver(rcvr) [FD]

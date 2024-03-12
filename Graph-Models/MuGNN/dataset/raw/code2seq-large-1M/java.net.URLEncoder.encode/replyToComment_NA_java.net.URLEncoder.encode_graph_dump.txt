@@ -1,0 +1,4 @@
+Line_2 $$ public PostCommentResult replyToComment(String parentCommentFullName, String responseCommentBody) throws NetworkConnectionException, RedditApiException --> Line_4 $$ RequestBody requestBody = requestBody(ImmutableMap.of("api_type", "json", "text", URLEncoder.encode(responseCommentBody, "UTF-8"), "thing_id", parentCommentFullName)) [FD]
+Line_4 $$ RequestBody requestBody = requestBody(ImmutableMap.of("api_type", "json", "text", URLEncoder.encode(responseCommentBody, "UTF-8"), "thing_id", parentCommentFullName)) --> Line_5 $$ Request request = request().post(requestBody).url(httpsUrl(HOST, "/api/comment")).build() [FD]
+Line_5 $$ Request request = request().post(requestBody).url(httpsUrl(HOST, "/api/comment")).build() --> Line_6 $$ Response response = okHttpClient.newCall(request).execute() [FD]
+Line_6 $$ Response response = okHttpClient.newCall(request).execute() --> Line_7 $$ return processResponse(response) [FD]

@@ -1,0 +1,7 @@
+Line_6 $$ long remainingDelay = delayJoiningUntilNanotime - System.nanoTime() --> Line_7 $$ if (remainingDelay > 0) [FD]
+Line_7 $$ if (remainingDelay > 0) --> Line_8 $$ if (healthy) [CD]
+Line_8 $$ if (healthy) --> Line_9 $$ LOG.info("Would have joined master election, but this node is " + "prohibited from doing so for " + TimeUnit.NANOSECONDS.toMillis(remainingDelay) + " more ms") [CD]
+Line_6 $$ long remainingDelay = delayJoiningUntilNanotime - System.nanoTime() --> Line_9 $$ LOG.info("Would have joined master election, but this node is " + "prohibited from doing so for " + TimeUnit.NANOSECONDS.toMillis(remainingDelay) + " more ms") [FD]
+Line_7 $$ if (remainingDelay > 0) --> Line_11 $$ scheduleRecheck(remainingDelay) [CD]
+Line_6 $$ long remainingDelay = delayJoiningUntilNanotime - System.nanoTime() --> Line_11 $$ scheduleRecheck(remainingDelay) [FD]
+Line_7 $$ if (remainingDelay > 0) --> Line_12 $$ return [CD]

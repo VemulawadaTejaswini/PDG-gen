@@ -1,0 +1,5 @@
+Line_2 $$ public Set<String> getPausedTriggerGroups() throws JobPersistenceException --> Line_3 $$ return execute( db -> [CD]
+Line_6 $$ for (String group : groups) --> Line_7 $$ boolean allPaused = !ImmutableList.copyOf(triggerEntityAdapter.browseByGroup(db, group)).stream().anyMatch( e -> PAUSED != e.getState() && PAUSED_BLOCKED != e.getState()) [FD]
+Line_8 $$ if (allPaused) --> Line_9 $$ pausedGroups.add(group) [CD]
+Line_4 $$ Set<String> pausedGroups = new HashSet() --> Line_9 $$ pausedGroups.add(group) [FD]
+Line_6 $$ for (String group : groups) --> Line_9 $$ pausedGroups.add(group) [FD]

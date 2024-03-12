@@ -1,0 +1,7 @@
+Line_2 $$ public void systemProperties() --> Line_3 $$ System.setProperty("test", "value") [CD]
+Line_2 $$ public void systemProperties() --> Line_4 $$ System.setProperty("prefix_transformed", "value2") [CD]
+Line_2 $$ public void systemProperties() --> Line_5 $$ assertEquals("value", PropertySources.fromSystem().get("test").get()) [CD]
+Line_2 $$ public void systemProperties() --> Line_6 $$ assertFalse(PropertySources.fromSystem().get("test2").isPresent()) [CD]
+Line_2 $$ public void systemProperties() --> Line_7 $$ assertFalse(PropertySources.fromSystem().get("transformed").isPresent()) [CD]
+Line_2 $$ public void systemProperties() --> Line_8 $$ assertEquals("value2", PropertySources.fromSystem( v -> "prefix_" + v).get("transformed").get()) [CD]
+Line_2 $$ public void systemProperties() --> Line_9 $$ assertEquals("value", PropertySources.fromSystem().getRequired("test").asString()) [CD]

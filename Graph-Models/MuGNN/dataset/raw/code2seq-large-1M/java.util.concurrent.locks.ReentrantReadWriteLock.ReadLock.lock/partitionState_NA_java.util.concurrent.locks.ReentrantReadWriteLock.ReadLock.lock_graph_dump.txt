@@ -1,0 +1,7 @@
+Line_2 $$ public GridDhtPartitionState partitionState(UUID nodeId, int part) --> Line_3 $$ lock.readLock().lock() [CD]
+Line_2 $$ public GridDhtPartitionState partitionState(UUID nodeId, int part) --> Line_5 $$ GridDhtPartitionMap partMap = node2part.get(nodeId) [FD]
+Line_5 $$ GridDhtPartitionMap partMap = node2part.get(nodeId) --> Line_6 $$ if (partMap != null) [FD]
+Line_6 $$ if (partMap != null) --> Line_7 $$ GridDhtPartitionState state = partMap.get(part) [CD]
+Line_5 $$ GridDhtPartitionMap partMap = node2part.get(nodeId) --> Line_7 $$ GridDhtPartitionState state = partMap.get(part) [FD]
+Line_2 $$ public GridDhtPartitionState partitionState(UUID nodeId, int part) --> Line_7 $$ GridDhtPartitionState state = partMap.get(part) [FD]
+Line_6 $$ if (partMap != null) --> Line_8 $$ return state == null ? EVICTED : state [CD]

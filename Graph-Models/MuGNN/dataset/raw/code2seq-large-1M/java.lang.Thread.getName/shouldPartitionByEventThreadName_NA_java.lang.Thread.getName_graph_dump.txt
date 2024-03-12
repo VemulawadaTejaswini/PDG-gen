@@ -1,0 +1,5 @@
+Line_2 $$ public void shouldPartitionByEventThreadName() --> Line_3 $$ final String threadName = Thread.currentThread().getName() [CD]
+Line_2 $$ public void shouldPartitionByEventThreadName() --> Line_4 $$ final ILoggingEvent evt = new LoggingEvent("fqcn", ctx.getLogger("logger"), Level.ALL, "msg", null, new Object[0]) [CD]
+Line_2 $$ public void shouldPartitionByEventThreadName() --> Line_5 $$ Assert.assertThat(unit.createKey(evt), Matchers.equalTo(ByteBuffer.allocate(4).putInt(threadName.hashCode()).array())) [CD]
+Line_4 $$ final ILoggingEvent evt = new LoggingEvent("fqcn", ctx.getLogger("logger"), Level.ALL, "msg", null, new Object[0]) --> Line_5 $$ Assert.assertThat(unit.createKey(evt), Matchers.equalTo(ByteBuffer.allocate(4).putInt(threadName.hashCode()).array())) [FD]
+Line_3 $$ final String threadName = Thread.currentThread().getName() --> Line_5 $$ Assert.assertThat(unit.createKey(evt), Matchers.equalTo(ByteBuffer.allocate(4).putInt(threadName.hashCode()).array())) [FD]

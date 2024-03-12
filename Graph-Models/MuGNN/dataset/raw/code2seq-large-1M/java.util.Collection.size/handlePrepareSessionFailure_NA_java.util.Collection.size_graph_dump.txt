@@ -1,0 +1,8 @@
+Line_2 $$ private void handlePrepareSessionFailure(SpannerException e, PooledSession session) --> Line_4 $$ if (isSessionNotFound(e)) [FD]
+Line_4 $$ if (isSessionNotFound(e)) --> Line_5 $$ invalidateSession(session) [CD]
+Line_2 $$ private void handlePrepareSessionFailure(SpannerException e, PooledSession session) --> Line_5 $$ invalidateSession(session) [FD]
+Line_4 $$ if (isSessionNotFound(e)) --> Line_6 $$ if (readWriteWaiters.size() > 0) [CD]
+Line_6 $$ if (readWriteWaiters.size() > 0) --> Line_7 $$ readWriteWaiters.poll().put(e) [CD]
+Line_2 $$ private void handlePrepareSessionFailure(SpannerException e, PooledSession session) --> Line_7 $$ readWriteWaiters.poll().put(e) [FD]
+Line_6 $$ if (readWriteWaiters.size() > 0) --> Line_9 $$ releaseSession(session) [CD]
+Line_2 $$ private void handlePrepareSessionFailure(SpannerException e, PooledSession session) --> Line_9 $$ releaseSession(session) [FD]

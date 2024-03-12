@@ -1,0 +1,4 @@
+Line_2 $$ public void deployLargeSetOfJars() throws Exception --> Line_3 $$ File libDir = gfsh.getGfshPath().getParent().getParent().resolve("lib").toFile() [CD]
+Line_2 $$ public void deployLargeSetOfJars() throws Exception --> Line_4 $$ String commonLibs = Arrays.stream(libDir.listFiles( x -> x.getName().startsWith("commons"))).map(File::<>getAbsolutePath).collect(Collectors.joining(",")) [CD]
+Line_3 $$ File libDir = gfsh.getGfshPath().getParent().getParent().resolve("lib").toFile() --> Line_4 $$ String commonLibs = Arrays.stream(libDir.listFiles( x -> x.getName().startsWith("commons"))).map(File::<>getAbsolutePath).collect(Collectors.joining(",")) [FD]
+Line_2 $$ public void deployLargeSetOfJars() throws Exception --> Line_5 $$ GfshExecution execution = GfshScript.of("start locator --name=locator --max-heap=128m", "start server --name=server --max-heap=128m", "sleep --time=1", "deploy --jars=" + commonLibs).execute(gfsh) [CD]

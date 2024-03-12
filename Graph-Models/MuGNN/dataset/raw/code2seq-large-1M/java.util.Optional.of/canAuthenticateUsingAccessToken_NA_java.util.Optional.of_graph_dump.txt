@@ -1,0 +1,8 @@
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_3 $$ when(request.getHeader(AUTHORIZATION)).thenReturn("Bearer abc123") [CD]
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_4 $$ when(securityTokens.findUsernameByAccessToken("abc123")).thenReturn(Optional.of("admin")) [CD]
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_5 $$ when(identity.isLoggedIn()).thenReturn(true) [CD]
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_6 $$ securityInterceptor.filter(context) [CD]
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_7 $$ verify(credential).setUsername("admin") [CD]
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_8 $$ verify(identity).setRequestUsingOAuth(true) [CD]
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_9 $$ verify(identity).tryLogin() [CD]
+Line_2 $$ public void canAuthenticateUsingAccessToken() throws Exception --> Line_10 $$ verify(context, never()).abortWith(any(Response.class)) [CD]

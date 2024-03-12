@@ -1,0 +1,6 @@
+Line_2 $$ public <T> List<T> queryForNode(String query, Function<Map<String, Object>, T> transformer) --> Line_3 $$ long start = currentTimeMillis() [CD]
+Line_2 $$ public <T> List<T> queryForNode(String query, Function<Map<String, Object>, T> transformer) --> Line_5 $$ try (Result nodes = db.execute(query, singletonMap("value", value))) [FD]
+Line_2 $$ public <T> List<T> queryForNode(String query, Function<Map<String, Object>, T> transformer) --> Line_6 $$ return nodes.stream().map(transformer).collect(Collectors.toList()) [FD]
+Line_5 $$ try (Result nodes = db.execute(query, singletonMap("value", value))) --> Line_6 $$ return nodes.stream().map(transformer).collect(Collectors.toList()) [FD]
+Line_4 $$ try (Transaction tx = db.beginTx()) --> Line_8 $$ tx.success() [FD]
+Line_9 $$ if (log.isDebugEnabled()) --> Line_10 $$ log.debug(format("(%s) search on label:%s and prop:%s took %d", Thread.currentThread(), label, prop, currentTimeMillis() - start)) [CD]

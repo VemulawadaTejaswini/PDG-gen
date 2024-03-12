@@ -1,0 +1,8 @@
+Line_5 $$ if (regionServer.replicationSinkHandler != null) --> Line_6 $$ requestCount.increment() [CD]
+Line_5 $$ if (regionServer.replicationSinkHandler != null) --> Line_7 $$ List<WALEntry> entries = request.getEntryList() [CD]
+Line_5 $$ if (regionServer.replicationSinkHandler != null) --> Line_8 $$ CellScanner cellScanner = ((HBaseRpcController) controller).cellScanner() [CD]
+Line_5 $$ if (regionServer.replicationSinkHandler != null) --> Line_9 $$ regionServer.getRegionServerCoprocessorHost().preReplicateLogEntries() [CD]
+Line_5 $$ if (regionServer.replicationSinkHandler != null) --> Line_10 $$ regionServer.replicationSinkHandler.replicateLogEntries(entries, cellScanner, request.getReplicationClusterId(), request.getSourceBaseNamespaceDirPath(), request.getSourceHFileArchiveDirPath()) [CD]
+Line_8 $$ CellScanner cellScanner = ((HBaseRpcController) controller).cellScanner() --> Line_10 $$ regionServer.replicationSinkHandler.replicateLogEntries(entries, cellScanner, request.getReplicationClusterId(), request.getSourceBaseNamespaceDirPath(), request.getSourceHFileArchiveDirPath()) [FD]
+Line_5 $$ if (regionServer.replicationSinkHandler != null) --> Line_11 $$ regionServer.getRegionServerCoprocessorHost().postReplicateLogEntries() [CD]
+Line_5 $$ if (regionServer.replicationSinkHandler != null) --> Line_12 $$ return ReplicateWALEntryResponse.newBuilder().build() [CD]

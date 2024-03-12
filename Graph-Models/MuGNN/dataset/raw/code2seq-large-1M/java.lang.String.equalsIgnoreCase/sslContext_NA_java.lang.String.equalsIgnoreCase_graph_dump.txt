@@ -1,0 +1,8 @@
+Line_2 $$ private SslContext sslContext(String scheme) --> Line_3 $$ if (scheme.equalsIgnoreCase("https")) [FD]
+Line_2 $$ private SslContext sslContext(String scheme) --> Line_3 $$ if (scheme.equalsIgnoreCase("https")) [CD]
+Line_3 $$ if (scheme.equalsIgnoreCase("https")) --> Line_4 $$ SslContextBuilder builder = SslContextBuilder.forClient().sslProvider(defaultClientProvider()) [CD]
+Line_3 $$ if (scheme.equalsIgnoreCase("https")) --> Line_5 $$ if (configuration.trustAllCertificates()) [CD]
+Line_5 $$ if (configuration.trustAllCertificates()) --> Line_6 $$ builder.trustManager(InsecureTrustManagerFactory.INSTANCE) [CD]
+Line_4 $$ SslContextBuilder builder = SslContextBuilder.forClient().sslProvider(defaultClientProvider()) --> Line_6 $$ builder.trustManager(InsecureTrustManagerFactory.INSTANCE) [FD]
+Line_3 $$ if (scheme.equalsIgnoreCase("https")) --> Line_8 $$ return invokeSafely(builder::<>build) [CD]
+Line_2 $$ private SslContext sslContext(String scheme) --> Line_10 $$ return null [CD]

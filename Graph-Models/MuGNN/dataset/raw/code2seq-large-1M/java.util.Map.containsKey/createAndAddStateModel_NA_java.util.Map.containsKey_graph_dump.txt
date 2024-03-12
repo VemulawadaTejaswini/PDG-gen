@@ -1,0 +1,8 @@
+Line_2 $$ public T createAndAddStateModel(String resourceName, String partitionKey) --> Line_3 $$ T stateModel = createNewStateModel(resourceName, partitionKey) [FD]
+Line_2 $$ public T createAndAddStateModel(String resourceName, String partitionKey) --> Line_3 $$ T stateModel = createNewStateModel(resourceName, partitionKey) [CD]
+Line_2 $$ public T createAndAddStateModel(String resourceName, String partitionKey) --> Line_5 $$ if (!_stateModelMap.containsKey(resourceName)) [FD]
+Line_5 $$ if (!_stateModelMap.containsKey(resourceName)) --> Line_6 $$ _stateModelMap.put(resourceName, new ConcurrentHashMap<String, T>()) [CD]
+Line_2 $$ public T createAndAddStateModel(String resourceName, String partitionKey) --> Line_6 $$ _stateModelMap.put(resourceName, new ConcurrentHashMap<String, T>()) [FD]
+Line_2 $$ public T createAndAddStateModel(String resourceName, String partitionKey) --> Line_8 $$ _stateModelMap.get(resourceName).put(partitionKey, stateModel) [FD]
+Line_3 $$ T stateModel = createNewStateModel(resourceName, partitionKey) --> Line_8 $$ _stateModelMap.get(resourceName).put(partitionKey, stateModel) [FD]
+Line_2 $$ public T createAndAddStateModel(String resourceName, String partitionKey) --> Line_10 $$ return stateModel [CD]

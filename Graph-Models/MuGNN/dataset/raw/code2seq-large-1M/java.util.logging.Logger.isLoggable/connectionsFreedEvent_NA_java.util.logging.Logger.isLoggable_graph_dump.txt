@@ -1,0 +1,7 @@
+Line_2 $$ public void connectionsFreedEvent(@ProbeParam("poolName") String poolName, @ProbeParam("appName") String appName, @ProbeParam("moduleName") String moduleName, @ProbeParam("count") int count) --> Line_3 $$ PoolInfo poolInfo = new PoolInfo(poolName, appName, moduleName) [CD]
+Line_2 $$ public void connectionsFreedEvent(@ProbeParam("poolName") String poolName, @ProbeParam("appName") String appName, @ProbeParam("moduleName") String moduleName, @ProbeParam("count") int count) --> Line_4 $$ if (this.poolInfo.equals(poolInfo)) [CD]
+Line_3 $$ PoolInfo poolInfo = new PoolInfo(poolName, appName, moduleName) --> Line_4 $$ if (this.poolInfo.equals(poolInfo)) [FD]
+Line_4 $$ if (this.poolInfo.equals(poolInfo)) --> Line_5 $$ if (logger.isLoggable(Level.FINEST)) [CD]
+Line_5 $$ if (logger.isLoggable(Level.FINEST)) --> Line_6 $$ logger.finest("Connections Freed event received - poolName = " + poolName) [CD]
+Line_5 $$ if (logger.isLoggable(Level.FINEST)) --> Line_7 $$ logger.finest("numConnUsed =" + numConnUsed.getCurrent() + " numConnFree=" + numConnFree.getCurrent() + " Number of connections freed =" + count) [CD]
+Line_2 $$ public void connectionsFreedEvent(@ProbeParam("poolName") String poolName, @ProbeParam("appName") String appName, @ProbeParam("moduleName") String moduleName, @ProbeParam("count") int count) --> Line_10 $$ numConnFree.setCurrent(count) [FD]

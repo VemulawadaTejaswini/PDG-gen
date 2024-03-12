@@ -1,0 +1,8 @@
+Line_2 $$ public static void bufferDepthToU16(ByteBuffer input, GrayU16 output) --> Line_3 $$ int indexIn = 0 [CD]
+Line_2 $$ public static void bufferDepthToU16(ByteBuffer input, GrayU16 output) --> Line_4 $$ for (int y = 0; y < output.height; y++) [CD]
+Line_4 $$ for (int y = 0; y < output.height; y++) --> Line_5 $$ int indexOut = output.startIndex + y * output.stride [CD]
+Line_4 $$ for (int y = 0; y < output.height; y++) --> Line_6 $$ for (int x = 0; x < output.width; x++, indexOut++) [CD]
+Line_5 $$ int indexOut = output.startIndex + y * output.stride --> Line_6 $$ for (int x = 0; x < output.width; x++, indexOut++) [FD]
+Line_6 $$ for (int x = 0; x < output.width; x++, indexOut++) --> Line_7 $$ output.data[indexOut] = (short) ((input.get(indexIn++) & 0xFF) | ((input.get(indexIn++) & 0xFF) << 8)) [CD]
+Line_2 $$ public static void bufferDepthToU16(ByteBuffer input, GrayU16 output) --> Line_7 $$ output.data[indexOut] = (short) ((input.get(indexIn++) & 0xFF) | ((input.get(indexIn++) & 0xFF) << 8)) [FD]
+Line_3 $$ int indexIn = 0 --> Line_7 $$ output.data[indexOut] = (short) ((input.get(indexIn++) & 0xFF) | ((input.get(indexIn++) & 0xFF) << 8)) [FD]

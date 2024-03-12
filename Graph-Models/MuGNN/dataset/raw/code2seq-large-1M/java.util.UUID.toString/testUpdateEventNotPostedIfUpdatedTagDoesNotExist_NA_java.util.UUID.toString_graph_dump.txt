@@ -1,0 +1,7 @@
+Line_2 $$ public void testUpdateEventNotPostedIfUpdatedTagDoesNotExist() --> Line_3 $$ final TagCollection tagCollection = newPersistentTagCollection("1") [CD]
+Line_2 $$ public void testUpdateEventNotPostedIfUpdatedTagDoesNotExist() --> Line_4 $$ final Tag tag = newTag("1", tagCollection) [CD]
+Line_3 $$ final TagCollection tagCollection = newPersistentTagCollection("1") --> Line_4 $$ final Tag tag = newTag("1", tagCollection) [FD]
+Line_2 $$ public void testUpdateEventNotPostedIfUpdatedTagDoesNotExist() --> Line_5 $$ tag.setTagId(UUID.randomUUID().toString()) [CD]
+Line_4 $$ final Tag tag = newTag("1", tagCollection) --> Line_5 $$ tag.setTagId(UUID.randomUUID().toString()) [FD]
+Line_4 $$ final Tag tag = newTag("1", tagCollection) --> Line_7 $$ tagStorage.updateTag(tag) [FD]
+Line_2 $$ public void testUpdateEventNotPostedIfUpdatedTagDoesNotExist() --> Line_12 $$ verify(tagsEventTrackingService, never()).post(argThatMatchesAnyOf(NULL, argHasProperty("event", equalTo("tags.update.tag")))) [CD]

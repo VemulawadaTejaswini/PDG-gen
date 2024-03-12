@@ -1,0 +1,5 @@
+Line_2 $$ public void shouldReadMetricCollectorConfiguration() throws ConfigurationException --> Line_3 $$ URL configFile = Thread.currentThread().getContextClassLoader().getResource("secor.test.monitoring.properties") [CD]
+Line_2 $$ public void shouldReadMetricCollectorConfiguration() throws ConfigurationException --> Line_4 $$ PropertiesConfiguration properties = new PropertiesConfiguration(configFile) [CD]
+Line_2 $$ public void shouldReadMetricCollectorConfiguration() throws ConfigurationException --> Line_5 $$ SecorConfig secorConfig = new SecorConfig(properties) [CD]
+Line_2 $$ public void shouldReadMetricCollectorConfiguration() throws ConfigurationException --> Line_6 $$ assertEquals("com.pinterest.secor.monitoring.OstrichMetricCollector", secorConfig.getMetricsCollectorClass()) [CD]
+Line_5 $$ SecorConfig secorConfig = new SecorConfig(properties) --> Line_6 $$ assertEquals("com.pinterest.secor.monitoring.OstrichMetricCollector", secorConfig.getMetricsCollectorClass()) [FD]

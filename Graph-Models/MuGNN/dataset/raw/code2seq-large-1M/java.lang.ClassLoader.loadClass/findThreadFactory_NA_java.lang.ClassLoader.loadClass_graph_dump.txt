@@ -1,0 +1,4 @@
+Line_2 $$ public static ManagedThreadFactory findThreadFactory(final String threadFactory) throws InstantiationException, IllegalAccessException, NamingException --> Line_4 $$ final Class<?> aClass = Thread.currentThread().getContextClassLoader().loadClass(threadFactory) [FD]
+Line_4 $$ final Class<?> aClass = Thread.currentThread().getContextClassLoader().loadClass(threadFactory) --> Line_5 $$ if (!ManagedThreadFactory.class.isAssignableFrom(aClass) && ThreadFactory.class.isAssignableFrom(aClass)) [FD]
+Line_4 $$ final Class<?> aClass = Thread.currentThread().getContextClassLoader().loadClass(threadFactory) --> Line_6 $$ return new ManageMyThreadFactory(ThreadFactory.class.cast(aClass.newInstance())) [FD]
+Line_4 $$ final Class<?> aClass = Thread.currentThread().getContextClassLoader().loadClass(threadFactory) --> Line_8 $$ return ManagedThreadFactory.class.cast(aClass.newInstance()) [FD]

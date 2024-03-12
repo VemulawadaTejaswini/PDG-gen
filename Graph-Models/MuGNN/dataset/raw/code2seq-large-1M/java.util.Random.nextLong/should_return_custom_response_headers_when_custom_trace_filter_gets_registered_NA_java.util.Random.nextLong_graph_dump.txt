@@ -1,0 +1,8 @@
+Line_2 $$ public void should_return_custom_response_headers_when_custom_trace_filter_gets_registered() throws Exception --> Line_3 $$ Long expectedTraceId = new Random().nextLong() [CD]
+Line_2 $$ public void should_return_custom_response_headers_when_custom_trace_filter_gets_registered() throws Exception --> Line_4 $$ MvcResult mvcResult = whenSentPingWithTraceId(expectedTraceId) [CD]
+Line_3 $$ Long expectedTraceId = new Random().nextLong() --> Line_4 $$ MvcResult mvcResult = whenSentPingWithTraceId(expectedTraceId) [FD]
+Line_2 $$ public void should_return_custom_response_headers_when_custom_trace_filter_gets_registered() throws Exception --> Line_5 $$ then(mvcResult.getResponse().getHeader("ZIPKIN-TRACE-ID")).isEqualTo(SpanUtil.idToHex(expectedTraceId)) [CD]
+Line_4 $$ MvcResult mvcResult = whenSentPingWithTraceId(expectedTraceId) --> Line_5 $$ then(mvcResult.getResponse().getHeader("ZIPKIN-TRACE-ID")).isEqualTo(SpanUtil.idToHex(expectedTraceId)) [FD]
+Line_3 $$ Long expectedTraceId = new Random().nextLong() --> Line_5 $$ then(mvcResult.getResponse().getHeader("ZIPKIN-TRACE-ID")).isEqualTo(SpanUtil.idToHex(expectedTraceId)) [FD]
+Line_2 $$ public void should_return_custom_response_headers_when_custom_trace_filter_gets_registered() throws Exception --> Line_6 $$ then(this.reporter.getSpans()).hasSize(1) [CD]
+Line_2 $$ public void should_return_custom_response_headers_when_custom_trace_filter_gets_registered() throws Exception --> Line_7 $$ then(this.reporter.getSpans().get(0).tags()).containsEntry("custom", "tag") [CD]

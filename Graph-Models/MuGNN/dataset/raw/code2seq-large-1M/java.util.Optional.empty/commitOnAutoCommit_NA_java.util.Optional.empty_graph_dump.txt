@@ -1,0 +1,7 @@
+Line_2 $$ private void commitOnAutoCommit(String commitTime, JavaRDD<WriteStatus> resultRDD, String actionType) --> Line_3 $$ if (config.shouldAutoCommit()) [CD]
+Line_3 $$ if (config.shouldAutoCommit()) --> Line_4 $$ logger.info("Auto commit enabled: Committing " + commitTime) [CD]
+Line_3 $$ if (config.shouldAutoCommit()) --> Line_5 $$ boolean commitResult = commit(commitTime, resultRDD, Optional.empty(), actionType) [CD]
+Line_2 $$ private void commitOnAutoCommit(String commitTime, JavaRDD<WriteStatus> resultRDD, String actionType) --> Line_5 $$ boolean commitResult = commit(commitTime, resultRDD, Optional.empty(), actionType) [FD]
+Line_3 $$ if (config.shouldAutoCommit()) --> Line_6 $$ if (!commitResult) [CD]
+Line_5 $$ boolean commitResult = commit(commitTime, resultRDD, Optional.empty(), actionType) --> Line_6 $$ if (!commitResult) [FD]
+Line_3 $$ if (config.shouldAutoCommit()) --> Line_10 $$ logger.info("Auto commit disabled for " + commitTime) [CD]

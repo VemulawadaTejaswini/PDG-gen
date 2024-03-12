@@ -1,0 +1,6 @@
+Line_2 $$ public static void write(ChannelFactory factory, Path checkpointFile, Checkpoint checkpoint, OpenOption... options) throws IOException --> Line_3 $$ final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream(FILE_SIZE) [CD]
+Line_3 $$ final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream(FILE_SIZE) --> Line_5 $$ return buf [CD]
+Line_2 $$ public static void write(ChannelFactory factory, Path checkpointFile, Checkpoint checkpoint, OpenOption... options) throws IOException --> Line_9 $$ try (OutputStreamIndexOutput indexOutput = new OutputStreamIndexOutput(resourceDesc, checkpointFile.toString(), byteOutputStream, FILE_SIZE)) [FD]
+Line_2 $$ public static void write(ChannelFactory factory, Path checkpointFile, Checkpoint checkpoint, OpenOption... options) throws IOException --> Line_11 $$ checkpoint.write(indexOutput) [FD]
+Line_2 $$ public static void write(ChannelFactory factory, Path checkpointFile, Checkpoint checkpoint, OpenOption... options) throws IOException --> Line_16 $$ try (FileChannel channel = factory.open(checkpointFile, options)) [FD]
+Line_3 $$ final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream(FILE_SIZE) --> Line_17 $$ Channels.writeToChannel(byteOutputStream.toByteArray(), channel) [FD]

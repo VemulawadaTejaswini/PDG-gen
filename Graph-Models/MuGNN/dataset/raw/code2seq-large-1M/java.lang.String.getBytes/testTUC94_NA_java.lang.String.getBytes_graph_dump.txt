@@ -1,0 +1,14 @@
+Line_2 $$ public void testTUC94() throws Exception --> Line_3 $$ String testString = "INSERT INTO `Test` VALUES (715,3968,'\\0\\0\\0\\0\\0*'),(716,0,'=o\\rM=�'),(716,64,'w;�w2�H');" [CD]
+Line_2 $$ public void testTUC94() throws Exception --> Line_4 $$ MySQLStatementTranslator translator = new MySQLStatementTranslator("UTF-8") [CD]
+Line_2 $$ public void testTUC94() throws Exception --> Line_5 $$ byte[] testBytes = testString.getBytes() [CD]
+Line_3 $$ String testString = "INSERT INTO `Test` VALUES (715,3968,'\\0\\0\\0\\0\\0*'),(716,0,'=o\\rM=�'),(716,64,'w;�w2�H');" --> Line_5 $$ byte[] testBytes = testString.getBytes() [FD]
+Line_2 $$ public void testTUC94() throws Exception --> Line_6 $$ testBytes[71] = (byte) -11 [CD]
+Line_2 $$ public void testTUC94() throws Exception --> Line_7 $$ testString = new String(testBytes, "UTF-8") [CD]
+Line_3 $$ String testString = "INSERT INTO `Test` VALUES (715,3968,'\\0\\0\\0\\0\\0*'),(716,0,'=o\\rM=�'),(716,64,'w;�w2�H');" --> Line_7 $$ testString = new String(testBytes, "UTF-8") [FD]
+Line_2 $$ public void testTUC94() throws Exception --> Line_8 $$ String testString2 = translator.toJavaString(testBytes, 0, testBytes.length) [CD]
+Line_4 $$ MySQLStatementTranslator translator = new MySQLStatementTranslator("UTF-8") --> Line_8 $$ String testString2 = translator.toJavaString(testBytes, 0, testBytes.length) [FD]
+Line_5 $$ byte[] testBytes = testString.getBytes() --> Line_8 $$ String testString2 = translator.toJavaString(testBytes, 0, testBytes.length) [FD]
+Line_2 $$ public void testTUC94() throws Exception --> Line_9 $$ assertEquals("Ordinary strings are unaltered", testString, testString2) [CD]
+Line_3 $$ String testString = "INSERT INTO `Test` VALUES (715,3968,'\\0\\0\\0\\0\\0*'),(716,0,'=o\\rM=�'),(716,64,'w;�w2�H');" --> Line_9 $$ assertEquals("Ordinary strings are unaltered", testString, testString2) [FD]
+Line_7 $$ testString = new String(testBytes, "UTF-8") --> Line_9 $$ assertEquals("Ordinary strings are unaltered", testString, testString2) [FD]
+Line_8 $$ String testString2 = translator.toJavaString(testBytes, 0, testBytes.length) --> Line_9 $$ assertEquals("Ordinary strings are unaltered", testString, testString2) [FD]

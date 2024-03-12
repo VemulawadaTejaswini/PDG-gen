@@ -1,0 +1,7 @@
+Line_2 $$ TimeValue throttledUntil() --> Line_3 $$ DelayedPrepareBulkRequest delayed = delayedPrepareBulkRequestReference.get() [CD]
+Line_2 $$ TimeValue throttledUntil() --> Line_4 $$ if (delayed == null) [CD]
+Line_3 $$ DelayedPrepareBulkRequest delayed = delayedPrepareBulkRequestReference.get() --> Line_4 $$ if (delayed == null) [FD]
+Line_4 $$ if (delayed == null) --> Line_5 $$ return timeValueNanos(0) [CD]
+Line_2 $$ TimeValue throttledUntil() --> Line_7 $$ if (delayed.future == null) [CD]
+Line_7 $$ if (delayed.future == null) --> Line_8 $$ return timeValueNanos(0) [CD]
+Line_2 $$ TimeValue throttledUntil() --> Line_10 $$ return timeValueNanos(max(0, delayed.future.getDelay(TimeUnit.NANOSECONDS))) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_3 $$ message.setMsgState(MessageState.READ) [FD]
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_3 $$ message.setMsgState(MessageState.READ) [CD]
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_4 $$ message.setReadTimeStamp(new Date().getTime()) [FD]
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_4 $$ message.setReadTimeStamp(new Date().getTime()) [CD]
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_5 $$ message.setExecuteSessionId(context.getManager().getSessionId()) [FD]
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_5 $$ message.setExecuteSessionId(context.getManager().getSessionId()) [CD]
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_6 $$ _statusUpdateUtil.logInfo(message, HelixStateMachineEngine.class, "New Message", manager) [FD]
+Line_2 $$ private void markReadMessage(Message message, NotificationContext context, HelixManager manager) --> Line_6 $$ _statusUpdateUtil.logInfo(message, HelixStateMachineEngine.class, "New Message", manager) [CD]

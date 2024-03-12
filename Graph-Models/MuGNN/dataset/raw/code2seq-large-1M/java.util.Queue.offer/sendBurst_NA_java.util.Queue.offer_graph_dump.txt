@@ -1,0 +1,7 @@
+Line_2 $$ private void sendBurst(Queue<AbstractEvent> q, int burst, Go go, Stop stop) --> Line_3 $$ for (int i = 0; i < burst - 1; i++) [CD]
+Line_3 $$ for (int i = 0; i < burst - 1; i++) --> Line_4 $$ while (!q.offer(go)) [CD]
+Line_2 $$ private void sendBurst(Queue<AbstractEvent> q, int burst, Go go, Stop stop) --> Line_4 $$ while (!q.offer(go)) [FD]
+Line_3 $$ for (int i = 0; i < burst - 1; i++) --> Line_7 $$ if (DELAY_PRODUCER != 0) [CD]
+Line_7 $$ if (DELAY_PRODUCER != 0) --> Line_8 $$ Blackhole.consumeCPU(DELAY_PRODUCER) [CD]
+Line_2 $$ private void sendBurst(Queue<AbstractEvent> q, int burst, Go go, Stop stop) --> Line_11 $$ while (!q.offer(stop)) [CD]
+Line_2 $$ private void sendBurst(Queue<AbstractEvent> q, int burst, Go go, Stop stop) --> Line_11 $$ while (!q.offer(stop)) [FD]

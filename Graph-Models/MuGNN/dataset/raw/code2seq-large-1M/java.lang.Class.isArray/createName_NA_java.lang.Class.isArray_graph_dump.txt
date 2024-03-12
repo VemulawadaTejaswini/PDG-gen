@@ -1,0 +1,6 @@
+Line_2 $$ private static String createName(Class<?> clazz, Class<?>... parameters) --> Line_3 $$ if (clazz.isArray()) [FD]
+Line_2 $$ private static String createName(Class<?> clazz, Class<?>... parameters) --> Line_3 $$ if (clazz.isArray()) [CD]
+Line_3 $$ if (clazz.isArray()) --> Line_4 $$ return createName(clazz.getComponentType(), parameters) + "Array" [CD]
+Line_2 $$ private static String createName(Class<?> clazz, Class<?>... parameters) --> Line_4 $$ return createName(clazz.getComponentType(), parameters) + "Array" [FD]
+Line_3 $$ if (clazz.isArray()) --> Line_6 $$ return parameters.length == 0 ? clazz.getSimpleName() : Arrays.stream(parameters).map( p -> createName(p)).collect(Collectors.joining()) + createName(clazz) [CD]
+Line_2 $$ private static String createName(Class<?> clazz, Class<?>... parameters) --> Line_6 $$ return parameters.length == 0 ? clazz.getSimpleName() : Arrays.stream(parameters).map( p -> createName(p)).collect(Collectors.joining()) + createName(clazz) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void startReconnectTimer(int reason) --> Line_3 $$ if (reconnectionTimer == null) [CD]
+Line_3 $$ if (reconnectionTimer == null) --> Line_4 $$ if (connectionAttempts > maxReconnectionAttempts && maxReconnectionAttempts > -1) [CD]
+Line_4 $$ if (connectionAttempts > maxReconnectionAttempts && maxReconnectionAttempts > -1) --> Line_5 $$ listener.onGlobalInfo("Gave up reconnecting. :(") [CD]
+Line_4 $$ if (connectionAttempts > maxReconnectionAttempts && maxReconnectionAttempts > -1) --> Line_7 $$ int delay = getReconnectionDelay(connectionAttempts) [CD]
+Line_4 $$ if (connectionAttempts > maxReconnectionAttempts && maxReconnectionAttempts > -1) --> Line_8 $$ listener.onGlobalInfo(String.format("Attempting to reconnect in %s seconds.. (%s/%s)", delay, irc.connectionAttempts, maxReconnectionAttempts < 0 ? "∞" : maxReconnectionAttempts)) [CD]
+Line_7 $$ int delay = getReconnectionDelay(connectionAttempts) --> Line_8 $$ listener.onGlobalInfo(String.format("Attempting to reconnect in %s seconds.. (%s/%s)", delay, irc.connectionAttempts, maxReconnectionAttempts < 0 ? "∞" : maxReconnectionAttempts)) [FD]
+Line_4 $$ if (connectionAttempts > maxReconnectionAttempts && maxReconnectionAttempts > -1) --> Line_9 $$ setState(Irc.STATE_RECONNECTING) [CD]
+Line_4 $$ if (connectionAttempts > maxReconnectionAttempts && maxReconnectionAttempts > -1) --> Line_11 $$ reconnectionTimer.schedule(getReconnectionTimerTask(), delay * 1000) [CD]

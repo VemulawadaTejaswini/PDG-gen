@@ -1,0 +1,8 @@
+Line_2 $$ public float calcGain(float sumGrad, float sumHess, float testGrad, float testHess) --> Line_3 $$ float w = calcWeight(sumGrad, sumHess) [CD]
+Line_2 $$ public float calcGain(float sumGrad, float sumHess, float testGrad, float testHess) --> Line_3 $$ float w = calcWeight(sumGrad, sumHess) [FD]
+Line_2 $$ public float calcGain(float sumGrad, float sumHess, float testGrad, float testHess) --> Line_4 $$ float ret = testGrad * w + 0.5f * (testHess + regLambda) * Maths.sqr(w) [CD]
+Line_3 $$ float w = calcWeight(sumGrad, sumHess) --> Line_4 $$ float ret = testGrad * w + 0.5f * (testHess + regLambda) * Maths.sqr(w) [FD]
+Line_2 $$ public float calcGain(float sumGrad, float sumHess, float testGrad, float testHess) --> Line_5 $$ if (regAlpha == 0.0f) [CD]
+Line_5 $$ if (regAlpha == 0.0f) --> Line_6 $$ return -2.0f * ret [CD]
+Line_5 $$ if (regAlpha == 0.0f) --> Line_8 $$ return -2.0f * (ret + regAlpha * Math.abs(w)) [CD]
+Line_3 $$ float w = calcWeight(sumGrad, sumHess) --> Line_8 $$ return -2.0f * (ret + regAlpha * Math.abs(w)) [FD]

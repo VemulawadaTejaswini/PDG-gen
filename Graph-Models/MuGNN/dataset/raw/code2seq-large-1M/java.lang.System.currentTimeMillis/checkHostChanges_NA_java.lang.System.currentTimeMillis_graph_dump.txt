@@ -1,0 +1,7 @@
+Line_5 $$ Map<String, ServiceKeyValue> hosts = getHostsFromKeyStore() --> Line_7 $$ for (String guid : hosts.keySet()) [FD]
+Line_5 $$ Map<String, ServiceKeyValue> hosts = getHostsFromKeyStore() --> Line_8 $$ ServiceKeyValue host = hosts.get(guid) [FD]
+Line_7 $$ for (String guid : hosts.keySet()) --> Line_8 $$ ServiceKeyValue host = hosts.get(guid) [FD]
+Line_6 $$ long now = System.currentTimeMillis() --> Line_9 $$ if ((host.getLastModified().getTime() + (1000 * inactiveTimeSeconds)) < now) [FD]
+Line_8 $$ ServiceKeyValue host = hosts.get(guid) --> Line_9 $$ if ((host.getLastModified().getTime() + (1000 * inactiveTimeSeconds)) < now) [FD]
+Line_9 $$ if ((host.getLastModified().getTime() + (1000 * inactiveTimeSeconds)) < now) --> Line_10 $$ keyStore.deleteKey(SERVICE, SERVICE_KEY, guid) [CD]
+Line_7 $$ for (String guid : hosts.keySet()) --> Line_10 $$ keyStore.deleteKey(SERVICE, SERVICE_KEY, guid) [FD]

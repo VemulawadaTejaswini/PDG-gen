@@ -1,0 +1,8 @@
+Line_2 $$ public boolean canStart() --> Line_3 $$ if (System.getProperty(SystemProperties.SYSPROP_INSTANCE_LOCK_DISABLE, "0").equals("1")) [CD]
+Line_3 $$ if (System.getProperty(SystemProperties.SYSPROP_INSTANCE_LOCK_DISABLE, "0").equals("1")) --> Line_4 $$ return (true) [CD]
+Line_7 $$ if (file_lock != null) --> Line_8 $$ return (true) [CD]
+Line_12 $$ RandomAccessFile raf = new RandomAccessFile(lock_file, "rw") --> Line_13 $$ FileChannel channel = raf.getChannel() [FD]
+Line_14 $$ for (int i = 0; i < 15; i++) --> Line_15 $$ file_lock = channel.tryLock() [CD]
+Line_13 $$ FileChannel channel = raf.getChannel() --> Line_15 $$ file_lock = channel.tryLock() [FD]
+Line_14 $$ for (int i = 0; i < 15; i++) --> Line_16 $$ if (file_lock != null) [CD]
+Line_16 $$ if (file_lock != null) --> Line_17 $$ return (true) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static void pause(long milli) --> Line_3 $$ final Thread t = Thread.currentThread() [CD]
+Line_2 $$ public static void pause(long milli) --> Line_4 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ public static void pause(long milli) --> Line_5 $$ while (System.currentTimeMillis() - start < milli) [CD]
+Line_2 $$ public static void pause(long milli) --> Line_5 $$ while (System.currentTimeMillis() - start < milli) [FD]
+Line_8 $$ long target = milli - (System.currentTimeMillis() - start) --> Line_9 $$ if (target > 0) [FD]
+Line_9 $$ if (target > 0) --> Line_10 $$ t.wait(target) [CD]
+Line_3 $$ final Thread t = Thread.currentThread() --> Line_10 $$ t.wait(target) [FD]
+Line_8 $$ long target = milli - (System.currentTimeMillis() - start) --> Line_10 $$ t.wait(target) [FD]

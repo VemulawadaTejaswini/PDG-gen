@@ -1,0 +1,8 @@
+Line_2 $$ public void testCreateSpecInReadOnlyDirectory() throws IOException --> Line_3 $$ final Path tempDirectory = Files.createTempDirectory("ReadOnlyDirectory" + System.currentTimeMillis()) [CD]
+Line_2 $$ public void testCreateSpecInReadOnlyDirectory() throws IOException --> Line_4 $$ final File tempFile = Files.createTempFile(tempDirectory, "TestCreateSpecInReadOnlyDirectory", ".tla").toFile() [CD]
+Line_3 $$ final Path tempDirectory = Files.createTempDirectory("ReadOnlyDirectory" + System.currentTimeMillis()) --> Line_4 $$ final File tempFile = Files.createTempFile(tempDirectory, "TestCreateSpecInReadOnlyDirectory", ".tla").toFile() [FD]
+Line_2 $$ public void testCreateSpecInReadOnlyDirectory() throws IOException --> Line_5 $$ tempDirectory.toFile().setReadOnly() [CD]
+Line_3 $$ final Path tempDirectory = Files.createTempDirectory("ReadOnlyDirectory" + System.currentTimeMillis()) --> Line_5 $$ tempDirectory.toFile().setReadOnly() [FD]
+Line_4 $$ final File tempFile = Files.createTempFile(tempDirectory, "TestCreateSpecInReadOnlyDirectory", ".tla").toFile() --> Line_7 $$ Spec.createNewSpec("TestCreateSpecInReadOnlyDirectory", tempFile.getAbsolutePath(), false, new NullProgressMonitor()) [FD]
+Line_3 $$ final Path tempDirectory = Files.createTempDirectory("ReadOnlyDirectory" + System.currentTimeMillis()) --> Line_12 $$ tempDirectory.toFile().setWritable(true) [FD]
+Line_2 $$ public void testCreateSpecInReadOnlyDirectory() throws IOException --> Line_14 $$ Assert.fail("Creating a spec in a read-only directory should fail with a CoreException.") [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testNoBackends() --> Line_3 $$ ClusterSearcher cluster = new ClusterSearcher(new LinkedHashSet(Arrays.asList("dummy"))) [CD]
+Line_3 $$ ClusterSearcher cluster = new ClusterSearcher(new LinkedHashSet(Arrays.asList("dummy"))) --> Line_5 $$ cluster.getMonitor().getConfiguration().setRequestTimeout(100) [FD]
+Line_7 $$ Query query = new Query("query=hello") --> Line_8 $$ query.setHits(10) [FD]
+Line_6 $$ Execution execution = new Execution(cluster, Execution.Context.createContextStub()) --> Line_9 $$ com.yahoo.search.Result result = execution.search(query) [FD]
+Line_7 $$ Query query = new Query("query=hello") --> Line_9 $$ com.yahoo.search.Result result = execution.search(query) [FD]
+Line_9 $$ com.yahoo.search.Result result = execution.search(query) --> Line_10 $$ assertTrue(result.hits().getError() != null) [FD]
+Line_9 $$ com.yahoo.search.Result result = execution.search(query) --> Line_11 $$ assertEquals("No backends in service. Try later", result.hits().getError().getMessage()) [FD]
+Line_3 $$ ClusterSearcher cluster = new ClusterSearcher(new LinkedHashSet(Arrays.asList("dummy"))) --> Line_13 $$ cluster.deconstruct() [FD]

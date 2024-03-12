@@ -1,0 +1,7 @@
+Line_2 $$ public void purgeLogsOlderThan(long minTxIdToKeep) throws IOException --> Line_3 $$ checkEnv() [CD]
+Line_2 $$ public void purgeLogsOlderThan(long minTxIdToKeep) throws IOException --> Line_5 $$ if (l.getLastTxId() < minTxIdToKeep) [FD]
+Line_4 $$ for (EditLogLedgerMetadata l : getLedgerList(false)) --> Line_5 $$ if (l.getLastTxId() < minTxIdToKeep) [FD]
+Line_4 $$ for (EditLogLedgerMetadata l : getLedgerList(false)) --> Line_7 $$ Stat stat = zkc.exists(l.getZkPath(), false) [FD]
+Line_4 $$ for (EditLogLedgerMetadata l : getLedgerList(false)) --> Line_8 $$ zkc.delete(l.getZkPath(), stat.getVersion()) [FD]
+Line_7 $$ Stat stat = zkc.exists(l.getZkPath(), false) --> Line_8 $$ zkc.delete(l.getZkPath(), stat.getVersion()) [FD]
+Line_4 $$ for (EditLogLedgerMetadata l : getLedgerList(false)) --> Line_9 $$ bkc.deleteLedger(l.getLedgerId()) [FD]

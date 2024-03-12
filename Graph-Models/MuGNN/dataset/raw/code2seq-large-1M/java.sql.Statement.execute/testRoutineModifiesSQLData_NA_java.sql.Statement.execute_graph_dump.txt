@@ -1,0 +1,8 @@
+Line_2 $$ public void testRoutineModifiesSQLData() throws SQLException --> Line_3 $$ assertCompileError(SYNTAX_ERROR, "create function f(x int) returns int language java " + "parameter style java external name 'java.lang.Math.abs' " + "modifies sql data") [CD]
+Line_2 $$ public void testRoutineModifiesSQLData() throws SQLException --> Line_4 $$ Statement s = createStatement() [CD]
+Line_2 $$ public void testRoutineModifiesSQLData() throws SQLException --> Line_5 $$ s.execute("create procedure p(i int) language java " + "parameter style java external name '" + getClass().getName() + ".intProcedure' no sql") [CD]
+Line_4 $$ Statement s = createStatement() --> Line_5 $$ s.execute("create procedure p(i int) language java " + "parameter style java external name '" + getClass().getName() + ".intProcedure' no sql") [FD]
+Line_2 $$ public void testRoutineModifiesSQLData() throws SQLException --> Line_6 $$ s.execute("create table t(x int)") [CD]
+Line_4 $$ Statement s = createStatement() --> Line_6 $$ s.execute("create table t(x int)") [FD]
+Line_2 $$ public void testRoutineModifiesSQLData() throws SQLException --> Line_7 $$ assertCompileError(SYNTAX_ERROR, "create trigger tr after insert on t when (call p(1)) values 1") [CD]
+Line_2 $$ public void testRoutineModifiesSQLData() throws SQLException --> Line_8 $$ assertCompileError(PROC_USED_AS_FUNC, "create trigger tr after insert on t when (p(1)) values 1") [CD]

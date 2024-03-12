@@ -1,0 +1,8 @@
+Line_2 $$ boolean checkToken(ByteWrapper token, Key nodeId, InetAddress ip, int port, Key lookupKey) --> Line_3 $$ updateTokenTimestamps() [CD]
+Line_2 $$ boolean checkToken(ByteWrapper token, Key nodeId, InetAddress ip, int port, Key lookupKey) --> Line_4 $$ boolean valid = checkToken(token, nodeId, ip, port, lookupKey, timestampCurrent.get()) || checkToken(token, nodeId, ip, port, lookupKey, timestampPrevious) [CD]
+Line_2 $$ boolean checkToken(ByteWrapper token, Key nodeId, InetAddress ip, int port, Key lookupKey) --> Line_4 $$ boolean valid = checkToken(token, nodeId, ip, port, lookupKey, timestampCurrent.get()) || checkToken(token, nodeId, ip, port, lookupKey, timestampPrevious) [FD]
+Line_2 $$ boolean checkToken(ByteWrapper token, Key nodeId, InetAddress ip, int port, Key lookupKey) --> Line_5 $$ if (!valid) [CD]
+Line_4 $$ boolean valid = checkToken(token, nodeId, ip, port, lookupKey, timestampCurrent.get()) || checkToken(token, nodeId, ip, port, lookupKey, timestampPrevious) --> Line_5 $$ if (!valid) [FD]
+Line_5 $$ if (!valid) --> Line_6 $$ DHT.logDebug("Received Invalid token from " + ip.getHostAddress()) [CD]
+Line_2 $$ boolean checkToken(ByteWrapper token, Key nodeId, InetAddress ip, int port, Key lookupKey) --> Line_6 $$ DHT.logDebug("Received Invalid token from " + ip.getHostAddress()) [FD]
+Line_2 $$ boolean checkToken(ByteWrapper token, Key nodeId, InetAddress ip, int port, Key lookupKey) --> Line_7 $$ return valid [CD]

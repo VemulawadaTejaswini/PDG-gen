@@ -1,0 +1,8 @@
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_3 $$ Mockito.when(solrOperationsMock.count(Mockito.any(), Mockito.any(SolrDataQuery.class))).thenReturn(12345l) [CD]
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_4 $$ SimpleSolrRepository<BeanWithLongIdType, Long> repoWithNonStringIdType = new SimpleSolrRepository(solrOperationsMock, BeanWithLongIdType.class) [CD]
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_5 $$ repoWithNonStringIdType.findAllById(Arrays.asList(1L, 2L, 3L)) [CD]
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_6 $$ ArgumentCaptor<Query> captor = ArgumentCaptor.forClass(Query.class) [CD]
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_7 $$ Mockito.verify(solrOperationsMock, Mockito.times(1)).count(Mockito.any(), captor.capture()) [CD]
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_8 $$ Mockito.verify(solrOperationsMock, Mockito.times(1)).queryForPage(Mockito.any(), captor.capture(), Mockito.eq(BeanWithLongIdType.class)) [CD]
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_9 $$ Assert.assertThat(captor.getAllValues().get(0).getPageRequest().isUnpaged(), is(true)) [CD]
+Line_2 $$ public void testFindAllByIdQueryForBeanWithLongIdType() --> Line_10 $$ Assert.assertEquals(12345, captor.getAllValues().get(1).getPageRequest().getPageSize()) [CD]

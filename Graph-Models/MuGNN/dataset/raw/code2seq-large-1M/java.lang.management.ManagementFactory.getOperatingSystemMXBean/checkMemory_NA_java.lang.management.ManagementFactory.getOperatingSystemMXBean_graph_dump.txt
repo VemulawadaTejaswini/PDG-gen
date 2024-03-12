@@ -1,0 +1,7 @@
+Line_2 $$ private void checkMemory() --> Line_3 $$ final OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean() [CD]
+Line_2 $$ private void checkMemory() --> Line_4 $$ final long maxMemory = Runtime.getRuntime().maxMemory() [CD]
+Line_2 $$ private void checkMemory() --> Line_5 $$ if (maxMemory < (os.getTotalPhysicalMemorySize() / 4)) [CD]
+Line_4 $$ final long maxMemory = Runtime.getRuntime().maxMemory() --> Line_5 $$ if (maxMemory < (os.getTotalPhysicalMemorySize() / 4)) [FD]
+Line_3 $$ final OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean() --> Line_5 $$ if (maxMemory < (os.getTotalPhysicalMemorySize() / 4)) [FD]
+Line_5 $$ if (maxMemory < (os.getTotalPhysicalMemorySize() / 4)) --> Line_6 $$ logger.warn(String.format("Memory available to JVM (%s) is less than 25%% of available system memory. " + "You should probably increase it.", FileUtils.byteCountToDisplaySize(maxMemory))) [CD]
+Line_4 $$ final long maxMemory = Runtime.getRuntime().maxMemory() --> Line_6 $$ logger.warn(String.format("Memory available to JVM (%s) is less than 25%% of available system memory. " + "You should probably increase it.", FileUtils.byteCountToDisplaySize(maxMemory))) [FD]

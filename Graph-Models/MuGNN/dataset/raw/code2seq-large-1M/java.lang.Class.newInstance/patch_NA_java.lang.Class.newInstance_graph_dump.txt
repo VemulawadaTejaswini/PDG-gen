@@ -1,0 +1,7 @@
+Line_4 $$ Class<?> patchInfoClazz = mLoader.loadClass("cn.wjdiankong.patchimpl.PatchesInfoImpl") --> Line_5 $$ PatchesInfo patchInfo = (PatchesInfo) patchInfoClazz.newInstance() [FD]
+Line_5 $$ PatchesInfo patchInfo = (PatchesInfo) patchInfoClazz.newInstance() --> Line_6 $$ List<PatchedClassInfo> infoList = patchInfo.getPatchedClassesInfo() [FD]
+Line_7 $$ for (PatchedClassInfo info : infoList) --> Line_8 $$ ChangeQuickRedirect redirectObj = (ChangeQuickRedirect) mLoader.loadClass(info.getPatchClassName()).newInstance() [FD]
+Line_7 $$ for (PatchedClassInfo info : infoList) --> Line_9 $$ Class<?> fixClass = mLoader.loadClass(info.getFixClassName()) [FD]
+Line_9 $$ Class<?> fixClass = mLoader.loadClass(info.getFixClassName()) --> Line_10 $$ Field redirectF = fixClass.getField("changeQuickRedirect") [FD]
+Line_10 $$ Field redirectF = fixClass.getField("changeQuickRedirect") --> Line_11 $$ redirectF.set(null, redirectObj) [FD]
+Line_8 $$ ChangeQuickRedirect redirectObj = (ChangeQuickRedirect) mLoader.loadClass(info.getPatchClassName()).newInstance() --> Line_11 $$ redirectF.set(null, redirectObj) [FD]

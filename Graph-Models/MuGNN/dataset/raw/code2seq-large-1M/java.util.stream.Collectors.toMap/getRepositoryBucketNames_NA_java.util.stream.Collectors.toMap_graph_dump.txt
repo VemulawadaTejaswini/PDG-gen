@@ -1,0 +1,5 @@
+Line_2 $$ public Map<EntityId, String> getRepositoryBucketNames(final Repository repository) --> Line_3 $$ checkNotNull(repository) [FD]
+Line_2 $$ public Map<EntityId, String> getRepositoryBucketNames(final Repository repository) --> Line_3 $$ checkNotNull(repository) [CD]
+Line_2 $$ public Map<EntityId, String> getRepositoryBucketNames(final Repository repository) --> Line_4 $$ try (StorageTx storageTx = repository.facet(StorageFacet.class).txSupplier().get()) [FD]
+Line_2 $$ public Map<EntityId, String> getRepositoryBucketNames(final Repository repository) --> Line_6 $$ List<Bucket> buckets = getBuckets(storageTx, getRepositories(repository)) [FD]
+Line_6 $$ List<Bucket> buckets = getBuckets(storageTx, getRepositories(repository)) --> Line_7 $$ return buckets.stream().collect(toMap(EntityHelper::<>id, Bucket::<>getRepositoryName)) [FD]

@@ -1,0 +1,5 @@
+Line_3 $$ try (WeldContainer container = createWeld()) --> Line_6 $$ container.event().select(Message.class).fireAsync(() -> threadNames.add(Thread.currentThread().getName()), WeldNotificationOptions.withParallelMode()).thenAccept(synchronizer::<>add) [FD]
+Line_5 $$ Set<String> threadNames = new CopyOnWriteArraySet() --> Line_6 $$ container.event().select(Message.class).fireAsync(() -> threadNames.add(Thread.currentThread().getName()), WeldNotificationOptions.withParallelMode()).thenAccept(synchronizer::<>add) [FD]
+Line_4 $$ BlockingQueue<Message> synchronizer = new LinkedBlockingQueue() --> Line_7 $$ Message message = synchronizer.poll(2, TimeUnit.SECONDS) [FD]
+Line_7 $$ Message message = synchronizer.poll(2, TimeUnit.SECONDS) --> Line_8 $$ assertNotNull(message) [FD]
+Line_5 $$ Set<String> threadNames = new CopyOnWriteArraySet() --> Line_9 $$ assertEquals(2, threadNames.size()) [FD]

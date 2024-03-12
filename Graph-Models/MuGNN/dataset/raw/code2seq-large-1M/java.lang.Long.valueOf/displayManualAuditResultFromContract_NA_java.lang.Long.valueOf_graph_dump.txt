@@ -1,0 +1,7 @@
+Line_2 $$ public String displayManualAuditResultFromContract(@RequestParam(TgolKeyStore.AUDIT_ID_KEY) String auditId, HttpServletRequest request, Model model) --> Line_4 $$ Audit audit = getAuditDataService().read(Long.valueOf(auditId)) [FD]
+Line_4 $$ Audit audit = getAuditDataService().read(Long.valueOf(auditId)) --> Line_5 $$ Act act = getActDataService().getActFromAudit(audit) [FD]
+Line_5 $$ Act act = getActDataService().getActFromAudit(audit) --> Line_6 $$ switch(act.getScope().getCode()) [FD]
+Line_5 $$ Act act = getActDataService().getActFromAudit(audit) --> Line_9 $$ if (!getContractDataService().doesContractHaveFunctionality(act.getContract(), manualAuditFunctionalityKey)) [FD]
+Line_9 $$ if (!getContractDataService().doesContractHaveFunctionality(act.getContract(), manualAuditFunctionalityKey)) --> Line_10 $$ return TgolKeyStore.ACCESS_DENIED_VIEW_NAME [CD]
+Line_2 $$ public String displayManualAuditResultFromContract(@RequestParam(TgolKeyStore.AUDIT_ID_KEY) String auditId, HttpServletRequest request, Model model) --> Line_12 $$ model.addAttribute(TgolKeyStore.WEBRESOURCE_ID_KEY, audit.getSubject().getId()) [FD]
+Line_4 $$ Audit audit = getAuditDataService().read(Long.valueOf(auditId)) --> Line_12 $$ model.addAttribute(TgolKeyStore.WEBRESOURCE_ID_KEY, audit.getSubject().getId()) [FD]

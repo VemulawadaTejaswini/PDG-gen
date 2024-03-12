@@ -1,0 +1,6 @@
+Line_2 $$ private <M extends Meter> M findOne(Class<M> clazz) --> Line_3 $$ Optional<M> meter = meterStream().filter(clazz::<>isInstance).findAny().map(clazz::<>cast) [CD]
+Line_2 $$ private <M extends Meter> M findOne(Class<M> clazz) --> Line_4 $$ if (meter.isPresent()) [CD]
+Line_3 $$ Optional<M> meter = meterStream().filter(clazz::<>isInstance).findAny().map(clazz::<>cast) --> Line_4 $$ if (meter.isPresent()) [FD]
+Line_4 $$ if (meter.isPresent()) --> Line_5 $$ return meter.get() [CD]
+Line_3 $$ Optional<M> meter = meterStream().filter(clazz::<>isInstance).findAny().map(clazz::<>cast) --> Line_5 $$ return meter.get() [FD]
+Line_2 $$ private <M extends Meter> M findOne(Class<M> clazz) --> Line_7 $$ throw MeterNotFoundException.forSearch(this, clazz) [FD]

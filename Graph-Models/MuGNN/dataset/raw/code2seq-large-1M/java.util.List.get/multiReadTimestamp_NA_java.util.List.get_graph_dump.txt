@@ -1,0 +1,7 @@
+Line_2 $$ public void multiReadTimestamp() --> Line_3 $$ setUpPrivateDatabase() [CD]
+Line_2 $$ public void multiReadTimestamp() --> Line_4 $$ History expected = history.get(2) [CD]
+Line_5 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction(TimestampBound.ofReadTimestamp(expected.timestamp))) --> Line_6 $$ Struct row = readRow(readContext) [FD]
+Line_6 $$ Struct row = readRow(readContext) --> Line_7 $$ assertThat(row).isNotNull() [FD]
+Line_6 $$ Struct row = readRow(readContext) --> Line_8 $$ assertThat(row.getString(0)).isEqualTo(expected.value) [FD]
+Line_5 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction(TimestampBound.ofReadTimestamp(expected.timestamp))) --> Line_9 $$ assertThat(readContext.getReadTimestamp()).isEqualTo(expected.timestamp) [FD]
+Line_5 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction(TimestampBound.ofReadTimestamp(expected.timestamp))) --> Line_10 $$ insertAndReadAgain(readContext, readContext.getReadTimestamp(), expected.value) [FD]

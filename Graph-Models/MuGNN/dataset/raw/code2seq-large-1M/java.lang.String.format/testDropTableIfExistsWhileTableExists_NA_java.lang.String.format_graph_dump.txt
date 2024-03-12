@@ -1,0 +1,8 @@
+Line_2 $$ public void testDropTableIfExistsWhileTableExists() throws Exception --> Line_3 $$ final String existentTableName = "test_table" [CD]
+Line_2 $$ public void testDropTableIfExistsWhileTableExists() throws Exception --> Line_4 $$ test("use dfs_test") [CD]
+Line_2 $$ public void testDropTableIfExistsWhileTableExists() throws Exception --> Line_5 $$ test(String.format(CREATE_SIMPLE_TABLE, existentTableName)) [CD]
+Line_3 $$ final String existentTableName = "test_table" --> Line_5 $$ test(String.format(CREATE_SIMPLE_TABLE, existentTableName)) [FD]
+Line_2 $$ public void testDropTableIfExistsWhileTableExists() throws Exception --> Line_6 $$ testNoResult(REFRESH, existentTableName) [CD]
+Line_3 $$ final String existentTableName = "test_table" --> Line_6 $$ testNoResult(REFRESH, existentTableName) [FD]
+Line_2 $$ public void testDropTableIfExistsWhileTableExists() throws Exception --> Line_7 $$ testBuilder().sqlQuery(String.format(DROP_TABLE_IF_EXISTS, existentTableName)).unOrdered().baselineColumns("ok", "summary").baselineValues(true, String.format("Table [dfs_test.%s] dropped", existentTableName)).go() [CD]
+Line_3 $$ final String existentTableName = "test_table" --> Line_7 $$ testBuilder().sqlQuery(String.format(DROP_TABLE_IF_EXISTS, existentTableName)).unOrdered().baselineColumns("ok", "summary").baselineValues(true, String.format("Table [dfs_test.%s] dropped", existentTableName)).go() [FD]

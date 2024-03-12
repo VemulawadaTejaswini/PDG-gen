@@ -1,0 +1,7 @@
+Line_2 $$ private static RatedSearchHit searchHit(String index, int docId, Integer rating) --> Line_3 $$ SearchHit hit = new SearchHit(docId, docId + "", new Text(""), Collections.emptyMap()) [CD]
+Line_2 $$ private static RatedSearchHit searchHit(String index, int docId, Integer rating) --> Line_4 $$ hit.shard(new SearchShardTarget("testnode", new Index(index, "uuid"), 0, null)) [CD]
+Line_3 $$ SearchHit hit = new SearchHit(docId, docId + "", new Text(""), Collections.emptyMap()) --> Line_4 $$ hit.shard(new SearchShardTarget("testnode", new Index(index, "uuid"), 0, null)) [FD]
+Line_2 $$ private static RatedSearchHit searchHit(String index, int docId, Integer rating) --> Line_5 $$ hit.score(1.0f) [CD]
+Line_3 $$ SearchHit hit = new SearchHit(docId, docId + "", new Text(""), Collections.emptyMap()) --> Line_5 $$ hit.score(1.0f) [FD]
+Line_2 $$ private static RatedSearchHit searchHit(String index, int docId, Integer rating) --> Line_6 $$ return new RatedSearchHit(hit, rating != null ? Optional.of(rating) : Optional.empty()) [FD]
+Line_2 $$ private static RatedSearchHit searchHit(String index, int docId, Integer rating) --> Line_6 $$ return new RatedSearchHit(hit, rating != null ? Optional.of(rating) : Optional.empty()) [CD]

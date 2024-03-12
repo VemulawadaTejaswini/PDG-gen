@@ -1,0 +1,6 @@
+Line_9 $$ Transaction txn = tm.getTransaction() --> Line_11 $$ txn.registerSynchronization(sync) [FD]
+Line_10 $$ Synchronization sync = new SyncImpl() --> Line_11 $$ txn.registerSynchronization(sync) [FD]
+Line_4 $$ boolean exceptionoccurred = false --> Line_13 $$ exceptionoccurred = true [FD]
+Line_4 $$ boolean exceptionoccurred = false --> Line_15 $$ if (!exceptionoccurred) [FD]
+Line_13 $$ exceptionoccurred = true --> Line_15 $$ if (!exceptionoccurred) [FD]
+Line_15 $$ if (!exceptionoccurred) --> Line_16 $$ fail("RollbackException not occurred although the transaction was marked for rollback") [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public static ImmutableMap<String, String> readClassMapping(Iterable<String> lines) --> Line_3 $$ ImmutableMap.Builder<String, String> classMappingBuilder = ImmutableMap.builder() [CD]
+Line_4 $$ for (String line : lines) --> Line_5 $$ if (line.charAt(0) == ' ') [FD]
+Line_4 $$ for (String line : lines) --> Line_8 $$ Matcher matcher = CLASS_LINE_PATTERN.matcher(line) [FD]
+Line_8 $$ Matcher matcher = CLASS_LINE_PATTERN.matcher(line) --> Line_9 $$ if (!matcher.matches()) [FD]
+Line_8 $$ Matcher matcher = CLASS_LINE_PATTERN.matcher(line) --> Line_12 $$ classMappingBuilder.put(matcher.group(1), matcher.group(2)) [FD]
+Line_2 $$ public static ImmutableMap<String, String> readClassMapping(Iterable<String> lines) --> Line_14 $$ return classMappingBuilder.build() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public List<VmNicInventory> getL3NetworkVmNics(String uuid) throws ApiSenderException --> Line_3 $$ QueryVmNicAction a = new QueryVmNicAction() [CD]
+Line_2 $$ public List<VmNicInventory> getL3NetworkVmNics(String uuid) throws ApiSenderException --> Line_4 $$ a.conditions = Arrays.asList(String.format("l3NetworkUuid=%s", uuid), String.format("vmInstance.type=%s", VmInstanceConstant.USER_VM_TYPE)) [FD]
+Line_2 $$ public List<VmNicInventory> getL3NetworkVmNics(String uuid) throws ApiSenderException --> Line_4 $$ a.conditions = Arrays.asList(String.format("l3NetworkUuid=%s", uuid), String.format("vmInstance.type=%s", VmInstanceConstant.USER_VM_TYPE)) [CD]
+Line_2 $$ public List<VmNicInventory> getL3NetworkVmNics(String uuid) throws ApiSenderException --> Line_5 $$ a.sessionId = getSessionUuid(adminSession) [CD]
+Line_2 $$ public List<VmNicInventory> getL3NetworkVmNics(String uuid) throws ApiSenderException --> Line_6 $$ QueryVmNicAction.Result r = a.call() [CD]
+Line_3 $$ QueryVmNicAction a = new QueryVmNicAction() --> Line_6 $$ QueryVmNicAction.Result r = a.call() [FD]
+Line_2 $$ public List<VmNicInventory> getL3NetworkVmNics(String uuid) throws ApiSenderException --> Line_7 $$ throwExceptionIfNeed(r.error) [CD]
+Line_2 $$ public List<VmNicInventory> getL3NetworkVmNics(String uuid) throws ApiSenderException --> Line_8 $$ return JSONObjectUtil.toCollection(JSONObjectUtil.toJsonString(r.value.inventories), ArrayList.class, VmNicInventory.class) [CD]

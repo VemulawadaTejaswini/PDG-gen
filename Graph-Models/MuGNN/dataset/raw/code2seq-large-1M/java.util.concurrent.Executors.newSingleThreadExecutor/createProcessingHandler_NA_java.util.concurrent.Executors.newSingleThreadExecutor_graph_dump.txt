@@ -1,0 +1,4 @@
+Line_2 $$ private static ProcessingHandler createProcessingHandler(Collection<Chain<Processor>> chains, ComponentRegistry<Renderer> renderers, AccessLog accessLog) --> Line_3 $$ Executor executor = Executors.newSingleThreadExecutor() [CD]
+Line_2 $$ private static ProcessingHandler createProcessingHandler(Collection<Chain<Processor>> chains, ComponentRegistry<Renderer> renderers, AccessLog accessLog) --> Line_4 $$ ChainRegistry<Processor> registry = new ChainRegistry() [CD]
+Line_4 $$ ChainRegistry<Processor> registry = new ChainRegistry() --> Line_5 $$ for (Chain<Processor> chain : chains) registry.register(chain.getId(), chain) [FD]
+Line_2 $$ private static ProcessingHandler createProcessingHandler(Collection<Chain<Processor>> chains, ComponentRegistry<Renderer> renderers, AccessLog accessLog) --> Line_6 $$ return new ProcessingHandler(registry, renderers, executor, accessLog) [CD]

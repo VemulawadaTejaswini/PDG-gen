@@ -1,0 +1,4 @@
+Line_2 $$ public Set<AccessPolicy> getAccessPoliciesForUser(String userId) --> Line_3 $$ return accessPolicyProvider.getAccessPolicies().stream().filter( p -> [CD]
+Line_2 $$ public Set<AccessPolicy> getAccessPoliciesForUser(String userId) --> Line_4 $$ if (p.getUsers().contains(userId)) [FD]
+Line_4 $$ if (p.getUsers().contains(userId)) --> Line_5 $$ return true [CD]
+Line_2 $$ public Set<AccessPolicy> getAccessPoliciesForUser(String userId) --> Line_7 $$ return !p.getGroups().stream().filter( g -> userGroupProvider.getGroup(g).getUsers().contains(userId)).collect(Collectors.toSet()).isEmpty() [FD]

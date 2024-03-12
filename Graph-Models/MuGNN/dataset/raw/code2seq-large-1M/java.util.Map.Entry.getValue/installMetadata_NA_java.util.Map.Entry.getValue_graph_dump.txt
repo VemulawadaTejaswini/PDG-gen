@@ -1,0 +1,6 @@
+Line_2 $$ private void installMetadata(ImmutableMap<Path, String> metadataToInstall) throws Exception --> Line_5 $$ for (Map.Entry<Path, String> entry : metadataToInstall.entrySet()) [FD]
+Line_3 $$ try (Closer closer = Closer.create()) --> Line_6 $$ NamedTemporaryFile temp = closer.register(new NamedTemporaryFile("metadata", "tmp")) [FD]
+Line_6 $$ NamedTemporaryFile temp = closer.register(new NamedTemporaryFile("metadata", "tmp")) --> Line_7 $$ com.google.common.io.Files.write(entry.getValue().getBytes(Charsets.UTF_8), temp.get().toFile()) [FD]
+Line_4 $$ Map<Path, Path> filesToInstall = new HashMap() --> Line_8 $$ filesToInstall.put(entry.getKey(), temp.get()) [FD]
+Line_6 $$ NamedTemporaryFile temp = closer.register(new NamedTemporaryFile("metadata", "tmp")) --> Line_8 $$ filesToInstall.put(entry.getKey(), temp.get()) [FD]
+Line_4 $$ Map<Path, Path> filesToInstall = new HashMap() --> Line_10 $$ installFiles("metadata", ImmutableMap.copyOf(filesToInstall)) [FD]

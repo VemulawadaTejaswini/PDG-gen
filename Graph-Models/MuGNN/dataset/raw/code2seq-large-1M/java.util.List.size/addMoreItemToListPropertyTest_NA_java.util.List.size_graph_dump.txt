@@ -1,0 +1,8 @@
+Line_2 $$ public void addMoreItemToListPropertyTest() throws IOException, OperationException --> Line_3 $$ String fieldsDataAsJson = readPropertiesFromFile("newFields.json") [CD]
+Line_4 $$ try (OperationContext ctx = new OperationContext(coreSession)) --> Line_5 $$ ctx.setInput(doc) [FD]
+Line_3 $$ String fieldsDataAsJson = readPropertiesFromFile("newFields.json") --> Line_7 $$ chain.add(AddItemToListProperty.ID).set("xpath", "ds:fields").set("complexJsonProperties", fieldsDataAsJson) [FD]
+Line_6 $$ OperationChain chain = new OperationChain("testChain") --> Line_7 $$ chain.add(AddItemToListProperty.ID).set("xpath", "ds:fields").set("complexJsonProperties", fieldsDataAsJson) [FD]
+Line_4 $$ try (OperationContext ctx = new OperationContext(coreSession)) --> Line_8 $$ DocumentModel resultDoc = (DocumentModel) service.run(ctx, chain) [FD]
+Line_6 $$ OperationChain chain = new OperationChain("testChain") --> Line_8 $$ DocumentModel resultDoc = (DocumentModel) service.run(ctx, chain) [FD]
+Line_8 $$ DocumentModel resultDoc = (DocumentModel) service.run(ctx, chain) --> Line_9 $$ List dbFields = (List) resultDoc.getPropertyValue("ds:fields") [FD]
+Line_9 $$ List dbFields = (List) resultDoc.getPropertyValue("ds:fields") --> Line_10 $$ assertEquals(2, dbFields.size()) [FD]

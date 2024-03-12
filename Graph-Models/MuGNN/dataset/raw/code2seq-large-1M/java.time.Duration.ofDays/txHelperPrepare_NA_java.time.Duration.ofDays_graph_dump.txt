@@ -1,0 +1,6 @@
+Line_2 $$ public void txHelperPrepare() throws SQLException --> Line_3 $$ TransactionHelper txHelper = pgConnection.getStrictTransactionHelper(null, "__digdag_status", Duration.ofDays(1)) [CD]
+Line_2 $$ public void txHelperPrepare() throws SQLException --> Line_4 $$ UUID queryId = UUID.randomUUID() [CD]
+Line_2 $$ public void txHelperPrepare() throws SQLException --> Line_5 $$ txHelper.prepare(queryId) [CD]
+Line_3 $$ TransactionHelper txHelper = pgConnection.getStrictTransactionHelper(null, "__digdag_status", Duration.ofDays(1)) --> Line_5 $$ txHelper.prepare(queryId) [FD]
+Line_4 $$ UUID queryId = UUID.randomUUID() --> Line_5 $$ txHelper.prepare(queryId) [FD]
+Line_2 $$ public void txHelperPrepare() throws SQLException --> Line_6 $$ verify(pgConnection).execute(eq("CREATE TABLE IF NOT EXISTS \"__digdag_status\"" + " (query_id text NOT NULL UNIQUE, created_at timestamptz NOT NULL, completed_at timestamptz)")) [CD]

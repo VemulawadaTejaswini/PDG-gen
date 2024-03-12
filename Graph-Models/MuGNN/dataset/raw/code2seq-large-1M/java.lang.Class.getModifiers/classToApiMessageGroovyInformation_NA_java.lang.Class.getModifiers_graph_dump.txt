@@ -1,0 +1,7 @@
+Line_3 $$ if (Modifier.isStatic(clazz.getModifiers())) --> Line_4 $$ return [CD]
+Line_6 $$ String name = clazz.getSimpleName().replace("\\.", "_").toUpperCase() --> Line_7 $$ sb.append(String.format("\n%sdef %s = [name: '%s',", whiteSpace(4), name, clazz.getName())) [FD]
+Line_10 $$ for (Field f : fs) --> Line_11 $$ APIParam at = f.getAnnotation(APIParam.class) [FD]
+Line_12 $$ if (at != null && at.required()) --> Line_13 $$ mandatoryFields.add(String.format("'%s'", f.getName())) [CD]
+Line_9 $$ List<String> mandatoryFields = new ArrayList<String>() --> Line_13 $$ mandatoryFields.add(String.format("'%s'", f.getName())) [FD]
+Line_10 $$ for (Field f : fs) --> Line_13 $$ mandatoryFields.add(String.format("'%s'", f.getName())) [FD]
+Line_9 $$ List<String> mandatoryFields = new ArrayList<String>() --> Line_16 $$ sb.append(String.format("requiredFields: [%s]]\n", StringUtils.join(mandatoryFields.iterator(), ","))) [FD]

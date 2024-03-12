@@ -1,0 +1,7 @@
+Line_2 $$ protected String getFreezeFields() --> Line_3 $$ if (originalIsMultiValued) [CD]
+Line_3 $$ if (originalIsMultiValued) --> Line_4 $$ if (originalSuffix == null) [CD]
+Line_4 $$ if (originalSuffix == null) --> Line_5 $$ return String.format(("%1$s ++= %2$s" + ".filter(orig => orig != null && (!orig.getName.endsWith(\".list\")))" + ".map(orig => new File(orig.getPath + \"%3$s\"))%n"), indexFieldName, originalFieldName, indexSuffix) [CD]
+Line_4 $$ if (originalSuffix == null) --> Line_7 $$ return String.format(("%1$s ++= %2$s" + ".filter(orig => orig != null && orig.getName.endsWith(\"%4$s\"))" + ".flatMap(orig => Array(" + " new File(orig.getPath + \"%3$s\")," + " new File(orig.getPath.stripSuffix(\"%4$s\") + \"%3$s\") ))%n"), indexFieldName, originalFieldName, indexSuffix, originalSuffix) [CD]
+Line_3 $$ if (originalIsMultiValued) --> Line_10 $$ if (originalSuffix == null) [CD]
+Line_10 $$ if (originalSuffix == null) --> Line_11 $$ return String.format(("if (%2$s != null)%n  " + "%1$s :+= new File(%2$s.getPath + \"%3$s\")%n"), indexFieldName, originalFieldName, indexSuffix) [CD]
+Line_10 $$ if (originalSuffix == null) --> Line_13 $$ return String.format(("if (%2$s != null && %2$s.getName.endsWith(\"%4$s\"))%n  " + "%1$s ++= Array(" + " new File(%2$s.getPath + \"%3$s\")," + " new File(%2$s.getPath.stripSuffix(\"%4$s\") + \"%3$s\") )%n"), indexFieldName, originalFieldName, indexSuffix, originalSuffix) [CD]

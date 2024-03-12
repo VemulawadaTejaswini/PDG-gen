@@ -1,0 +1,8 @@
+Line_2 $$ public void showProgressDeterminateDialog() --> Line_3 $$ new MaterialDialog.Builder(this).title(R.string.progress_dialog).content(R.string.please_wait).contentGravity(GravityEnum.CENTER).progress(false, 150, true).cancelListener( dialog -> [CD]
+Line_4 $$ if (thread != null) --> Line_5 $$ thread.interrupt() [CD]
+Line_8 $$ final MaterialDialog dialog = (MaterialDialog) dialogInterface --> Line_10 $$ while (dialog.getCurrentProgress() != dialog.getMaxProgress() && !Thread.currentThread().isInterrupted()) [FD]
+Line_10 $$ while (dialog.getCurrentProgress() != dialog.getMaxProgress() && !Thread.currentThread().isInterrupted()) --> Line_11 $$ if (dialog.isCancelled()) [CD]
+Line_8 $$ final MaterialDialog dialog = (MaterialDialog) dialogInterface --> Line_11 $$ if (dialog.isCancelled()) [FD]
+Line_10 $$ while (dialog.getCurrentProgress() != dialog.getMaxProgress() && !Thread.currentThread().isInterrupted()) --> Line_19 $$ dialog.incrementProgress(1) [CD]
+Line_8 $$ final MaterialDialog dialog = (MaterialDialog) dialogInterface --> Line_19 $$ dialog.incrementProgress(1) [FD]
+Line_8 $$ final MaterialDialog dialog = (MaterialDialog) dialogInterface --> Line_23 $$ dialog.setContent(getString(R.string.md_done_label)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public Collection<NodeSubscription> getPendingSubscriptions() --> Line_3 $$ if (accessModel.isAuthorizationRequired()) [CD]
+Line_3 $$ if (accessModel.isAuthorizationRequired()) --> Line_4 $$ List<NodeSubscription> pendingSubscriptions = new ArrayList() [CD]
+Line_5 $$ for (NodeSubscription subscription : subscriptionsByID.values()) --> Line_6 $$ if (subscription.isAuthorizationPending()) [FD]
+Line_6 $$ if (subscription.isAuthorizationPending()) --> Line_7 $$ pendingSubscriptions.add(subscription) [CD]
+Line_4 $$ List<NodeSubscription> pendingSubscriptions = new ArrayList() --> Line_7 $$ pendingSubscriptions.add(subscription) [FD]
+Line_5 $$ for (NodeSubscription subscription : subscriptionsByID.values()) --> Line_7 $$ pendingSubscriptions.add(subscription) [FD]
+Line_3 $$ if (accessModel.isAuthorizationRequired()) --> Line_10 $$ return pendingSubscriptions [CD]
+Line_2 $$ public Collection<NodeSubscription> getPendingSubscriptions() --> Line_12 $$ return Collections.emptyList() [CD]

@@ -1,0 +1,4 @@
+Line_3 $$ for (EhcacheMessageType messageType : EhcacheMessageType.STATE_REPO_OPERATION_MESSAGES) --> Line_4 $$ ByteBuffer encodedBuffer = EhcacheCodec.OP_CODE_DECODER.encoder().enm("opCode", messageType).encode() [FD]
+Line_4 $$ ByteBuffer encodedBuffer = EhcacheCodec.OP_CODE_DECODER.encoder().enm("opCode", messageType).encode() --> Line_5 $$ serverCodec.decodeMessage(encodedBuffer.array()) [FD]
+Line_2 $$ public void decodeStateRepoMessages() throws Exception --> Line_7 $$ verify(clientCodec, times(EhcacheMessageType.STATE_REPO_OPERATION_MESSAGES.size())).decodeMessage(any(ByteBuffer.class), any(EhcacheMessageType.class)) [CD]
+Line_2 $$ public void decodeStateRepoMessages() throws Exception --> Line_8 $$ verifyZeroInteractions(replicationCodec) [CD]

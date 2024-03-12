@@ -1,0 +1,8 @@
+Line_2 $$ private void cleanExpiredSynchronousCommandListeners() --> Line_3 $$ final long now = System.currentTimeMillis() [CD]
+Line_2 $$ private void cleanExpiredSynchronousCommandListeners() --> Line_4 $$ final ArrayList<Short> expired = new ArrayList<Short>() [CD]
+Line_7 $$ while (i.hasNext()) --> Line_8 $$ Map.Entry<Short, SynchronousCommandListener> entry = i.next() [CD]
+Line_7 $$ while (i.hasNext()) --> Line_9 $$ final long expiration = synchronousCommandListenerTimeouts.get(entry.getValue()) [CD]
+Line_7 $$ while (i.hasNext()) --> Line_10 $$ if (expiration != -1L && expiration < now) [CD]
+Line_10 $$ if (expiration != -1L && expiration < now) --> Line_11 $$ expired.add(entry.getKey()) [CD]
+Line_4 $$ final ArrayList<Short> expired = new ArrayList<Short>() --> Line_11 $$ expired.add(entry.getKey()) [FD]
+Line_14 $$ for (Short key : expired) --> Line_15 $$ synchronousCommandListeners.remove(key) [FD]

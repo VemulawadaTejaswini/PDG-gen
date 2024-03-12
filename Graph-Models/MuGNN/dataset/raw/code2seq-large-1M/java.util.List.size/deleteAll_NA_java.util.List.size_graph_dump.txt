@@ -1,0 +1,7 @@
+Line_2 $$ public void deleteAll() throws DependencyException, InvalidStateException, ProvisionedThroughputException --> Line_3 $$ List<T> allLeases = listLeases() [CD]
+Line_2 $$ public void deleteAll() throws DependencyException, InvalidStateException, ProvisionedThroughputException --> Line_4 $$ LOG.warn("Deleting " + allLeases.size() + " items from table " + table) [CD]
+Line_3 $$ List<T> allLeases = listLeases() --> Line_4 $$ LOG.warn("Deleting " + allLeases.size() + " items from table " + table) [FD]
+Line_6 $$ DeleteItemRequest deleteRequest = new DeleteItemRequest() --> Line_7 $$ deleteRequest.setTableName(table) [FD]
+Line_6 $$ DeleteItemRequest deleteRequest = new DeleteItemRequest() --> Line_8 $$ deleteRequest.setKey(serializer.getDynamoHashKey(lease)) [FD]
+Line_5 $$ for (T lease : allLeases) --> Line_8 $$ deleteRequest.setKey(serializer.getDynamoHashKey(lease)) [FD]
+Line_6 $$ DeleteItemRequest deleteRequest = new DeleteItemRequest() --> Line_9 $$ dynamoDBClient.deleteItem(deleteRequest) [FD]

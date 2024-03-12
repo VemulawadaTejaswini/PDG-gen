@@ -1,0 +1,3 @@
+Line_2 $$ private void backupDiskInitFiles(Map<DiskStore, Path> diskInitFiles) throws IOException --> Line_3 $$ for (Map.Entry<DiskStore, Path> entry : diskInitFiles.entrySet()) [FD]
+Line_4 $$ Path destinationDirectory = getOplogBackupDir(entry.getKey(), ((DiskStoreImpl) entry.getKey()).getInforFileDirIndex()) --> Line_5 $$ Files.createDirectories(destinationDirectory) [FD]
+Line_4 $$ Path destinationDirectory = getOplogBackupDir(entry.getKey(), ((DiskStoreImpl) entry.getKey()).getInforFileDirIndex()) --> Line_6 $$ Files.copy(entry.getValue(), destinationDirectory.resolve(entry.getValue().getFileName()), StandardCopyOption.COPY_ATTRIBUTES) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ private void transferInWithResult(final String inetnum, final int status, final String message) --> Line_4 $$ WhoisResources resp = RestTest.target(getPort(), "whois/transfer/inetnum/", "override=" + SyncUpdateUtils.encode(OVERRIDE_LINE), null).path(URLEncoder.encode(inetnum, "UTF-8")).request(MediaType.APPLICATION_JSON_TYPE).post(Entity.text(null), WhoisResources.class) [FD]
+Line_2 $$ private void transferInWithResult(final String inetnum, final int status, final String message) --> Line_6 $$ assertThat(200, is(status)) [FD]
+Line_2 $$ private void transferInWithResult(final String inetnum, final int status, final String message) --> Line_7 $$ assertThat(getInfoMessage(resp), is(message)) [FD]
+Line_2 $$ private void transferInWithResult(final String inetnum, final int status, final String message) --> Line_10 $$ assertThat(exc.getResponse().getStatus(), is(status)) [FD]
+Line_2 $$ private void transferInWithResult(final String inetnum, final int status, final String message) --> Line_11 $$ assertThat(getErrorMessage(exc.getResponse().readEntity(WhoisResources.class)), is(message)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static Optional<ZonedDateTime> getNextMaintenanceWindow(final String cronSchedule, final String duration, final String timezone) --> Line_4 $$ final ExecutionTime scheduleExecutor = ExecutionTime.forCron(getCronFromExpression(cronSchedule)) [FD]
+Line_2 $$ public static Optional<ZonedDateTime> getNextMaintenanceWindow(final String cronSchedule, final String duration, final String timezone) --> Line_5 $$ final ZonedDateTime now = ZonedDateTime.now(ZoneOffset.of(timezone)) [FD]
+Line_5 $$ final ZonedDateTime now = ZonedDateTime.now(ZoneOffset.of(timezone)) --> Line_6 $$ final ZonedDateTime after = now.minus(convertToISODuration(duration)) [FD]
+Line_2 $$ public static Optional<ZonedDateTime> getNextMaintenanceWindow(final String cronSchedule, final String duration, final String timezone) --> Line_6 $$ final ZonedDateTime after = now.minus(convertToISODuration(duration)) [FD]
+Line_4 $$ final ExecutionTime scheduleExecutor = ExecutionTime.forCron(getCronFromExpression(cronSchedule)) --> Line_7 $$ final ZonedDateTime next = scheduleExecutor.nextExecution(after) [FD]
+Line_6 $$ final ZonedDateTime after = now.minus(convertToISODuration(duration)) --> Line_7 $$ final ZonedDateTime next = scheduleExecutor.nextExecution(after) [FD]
+Line_7 $$ final ZonedDateTime next = scheduleExecutor.nextExecution(after) --> Line_8 $$ return Optional.of(next) [FD]

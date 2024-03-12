@@ -1,0 +1,7 @@
+Line_2 $$ public static void setupTables() throws SQLException --> Line_3 $$ populateRecords() [CD]
+Line_4 $$ try (Statement statement = connection.createStatement()) --> Line_5 $$ statement.addBatch("CREATE TABLE TEST.USER_TABLE (u_id INT PRIMARY KEY, name varchar(100), address varchar(1000))") [FD]
+Line_4 $$ try (Statement statement = connection.createStatement()) --> Line_6 $$ statement.addBatch("CREATE TABLE TEST.PRODUCT" + " (p_id INT PRIMARY KEY, name varchar(100), manufacturer varchar(1000))") [FD]
+Line_4 $$ try (Statement statement = connection.createStatement()) --> Line_7 $$ statement.addBatch("CREATE TABLE TEST.ORDER_TBL" + " (o_id INT PRIMARY KEY, u_id INT, FOREIGN KEY (u_id) REFERENCES TEST.USER_TABLE(u_id))") [FD]
+Line_4 $$ try (Statement statement = connection.createStatement()) --> Line_8 $$ statement.addBatch("CREATE TABLE TEST.ITEMS (" + "time_id BIGINT PRIMARY KEY, o_id INT," + " p_id INT, quantity int," + " FOREIGN KEY (o_id) REFERENCES TEST.ORDER_TBL(o_id), FOREIGN KEY (p_id) REFERENCES TEST.PRODUCT(p_id))") [FD]
+Line_4 $$ try (Statement statement = connection.createStatement()) --> Line_9 $$ statement.executeBatch() [FD]
+Line_11 $$ for (Pair<String, ArrayList<Record>> value : TABLE_TO_TEMPLATE_AND_RECORDS_MAP.values()) --> Line_12 $$ insertRows(value.getLeft(), value.getRight()) [FD]

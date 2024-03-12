@@ -1,0 +1,6 @@
+Line_3 $$ if (traceJNI) --> Line_4 $$ VM.sysWriteln("JNI called: NewObjectA") [CD]
+Line_8 $$ RVMClass vmcls = java.lang.JikesRVMSupport.getTypeForClass(cls).asClass() --> Line_9 $$ if (vmcls.isAbstract() || vmcls.isInterface()) [FD]
+Line_9 $$ if (vmcls.isAbstract() || vmcls.isInterface()) --> Line_10 $$ env.recordException(new InstantiationException()) [CD]
+Line_9 $$ if (vmcls.isAbstract() || vmcls.isInterface()) --> Line_11 $$ return 0 [CD]
+Line_13 $$ Object newobj = JNIHelpers.invokeInitializer(cls, methodID, argAddress, true, false) --> Line_14 $$ return env.pushJNIRef(newobj) [FD]
+Line_16 $$ if (traceJNI) --> Line_17 $$ unexpected.printStackTrace(System.err) [CD]

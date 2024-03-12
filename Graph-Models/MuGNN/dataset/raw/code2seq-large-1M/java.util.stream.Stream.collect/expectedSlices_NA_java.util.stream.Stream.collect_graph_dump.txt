@@ -1,0 +1,7 @@
+Line_2 $$ protected int expectedSlices(int requestSlices, Collection<String> indices) --> Line_3 $$ if (requestSlices == AbstractBulkByScrollRequest.AUTO_SLICES) [FD]
+Line_2 $$ protected int expectedSlices(int requestSlices, Collection<String> indices) --> Line_3 $$ if (requestSlices == AbstractBulkByScrollRequest.AUTO_SLICES) [CD]
+Line_3 $$ if (requestSlices == AbstractBulkByScrollRequest.AUTO_SLICES) --> Line_4 $$ int leastNumShards = Collections.min(indices.stream().map( sourceIndex -> getNumShards(sourceIndex).numPrimaries).collect(Collectors.toList())) [CD]
+Line_2 $$ protected int expectedSlices(int requestSlices, Collection<String> indices) --> Line_4 $$ int leastNumShards = Collections.min(indices.stream().map( sourceIndex -> getNumShards(sourceIndex).numPrimaries).collect(Collectors.toList())) [FD]
+Line_3 $$ if (requestSlices == AbstractBulkByScrollRequest.AUTO_SLICES) --> Line_5 $$ return Math.min(leastNumShards, BulkByScrollParallelizationHelper.AUTO_SLICE_CEILING) [CD]
+Line_4 $$ int leastNumShards = Collections.min(indices.stream().map( sourceIndex -> getNumShards(sourceIndex).numPrimaries).collect(Collectors.toList())) --> Line_5 $$ return Math.min(leastNumShards, BulkByScrollParallelizationHelper.AUTO_SLICE_CEILING) [FD]
+Line_3 $$ if (requestSlices == AbstractBulkByScrollRequest.AUTO_SLICES) --> Line_7 $$ return requestSlices [CD]

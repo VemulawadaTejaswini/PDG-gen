@@ -1,0 +1,6 @@
+Line_2 $$ public void onNext(T t) --> Line_3 $$ if (sourceMode != ASYNC) [CD]
+Line_3 $$ if (sourceMode != ASYNC) --> Line_4 $$ if (!queue.offer(t)) [CD]
+Line_2 $$ public void onNext(T t) --> Line_4 $$ if (!queue.offer(t)) [FD]
+Line_4 $$ if (!queue.offer(t)) --> Line_5 $$ onError(Operators.onOperatorError(s, Exceptions.failWithOverflow(Exceptions.BACKPRESSURE_ERROR_QUEUE_FULL), currentContext())) [CD]
+Line_4 $$ if (!queue.offer(t)) --> Line_6 $$ return [CD]
+Line_2 $$ public void onNext(T t) --> Line_9 $$ parent.drain() [CD]

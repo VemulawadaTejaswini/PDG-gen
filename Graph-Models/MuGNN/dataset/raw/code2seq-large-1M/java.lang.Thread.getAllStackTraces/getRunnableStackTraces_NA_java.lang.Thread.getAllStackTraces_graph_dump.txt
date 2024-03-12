@@ -1,0 +1,7 @@
+Line_2 $$ private static List<Object[]> getRunnableStackTraces() --> Line_3 $$ ArrayList<Object[]> list = new ArrayList<Object[]>() [CD]
+Line_2 $$ private static List<Object[]> getRunnableStackTraces() --> Line_4 $$ Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces() [CD]
+Line_4 $$ Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces() --> Line_5 $$ for (Map.Entry<Thread, StackTraceElement[]> entry : map.entrySet()) [FD]
+Line_6 $$ Thread t = entry.getKey() --> Line_7 $$ if (t.getState() != Thread.State.RUNNABLE) [FD]
+Line_3 $$ ArrayList<Object[]> list = new ArrayList<Object[]>() --> Line_14 $$ list.add(dump) [FD]
+Line_10 $$ StackTraceElement[] dump = entry.getValue() --> Line_14 $$ list.add(dump) [FD]
+Line_2 $$ private static List<Object[]> getRunnableStackTraces() --> Line_16 $$ return list [CD]

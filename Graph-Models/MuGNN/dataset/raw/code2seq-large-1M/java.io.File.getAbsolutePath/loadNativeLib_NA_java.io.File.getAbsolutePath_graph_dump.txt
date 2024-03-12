@@ -1,0 +1,8 @@
+Line_2 $$ private void loadNativeLib(DBPDriver driver) throws DBException --> Line_3 $$ for (DBPDriverLibrary libFile : driver.getDriverLibraries()) [FD]
+Line_3 $$ for (DBPDriverLibrary libFile : driver.getDriverLibraries()) --> Line_4 $$ if (libFile.matchesCurrentPlatform() && libFile.getType() == DBPDriverLibrary.FileType.lib) [FD]
+Line_4 $$ if (libFile.matchesCurrentPlatform() && libFile.getType() == DBPDriverLibrary.FileType.lib) --> Line_5 $$ File localFile = libFile.getLocalFile() [CD]
+Line_3 $$ for (DBPDriverLibrary libFile : driver.getDriverLibraries()) --> Line_5 $$ File localFile = libFile.getLocalFile() [FD]
+Line_4 $$ if (libFile.matchesCurrentPlatform() && libFile.getType() == DBPDriverLibrary.FileType.lib) --> Line_6 $$ if (localFile != null) [CD]
+Line_5 $$ File localFile = libFile.getLocalFile() --> Line_6 $$ if (localFile != null) [FD]
+Line_5 $$ File localFile = libFile.getLocalFile() --> Line_8 $$ WMIService.linkNative(localFile.getAbsolutePath()) [FD]
+Line_5 $$ File localFile = libFile.getLocalFile() --> Line_10 $$ throw new DBException("Can't load native library '" + localFile.getAbsolutePath() + "'", e) [FD]

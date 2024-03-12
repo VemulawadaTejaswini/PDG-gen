@@ -1,0 +1,8 @@
+Line_2 $$ public void testRedefinitionReloadingStrategy() throws Exception --> Line_3 $$ assertThat(ByteBuddyAgent.install(), instanceOf(Instrumentation.class)) [CD]
+Line_2 $$ public void testRedefinitionReloadingStrategy() throws Exception --> Line_4 $$ Foo foo = new Foo() [CD]
+Line_2 $$ public void testRedefinitionReloadingStrategy() throws Exception --> Line_5 $$ assertThat(foo.foo(), is(FOO)) [CD]
+Line_4 $$ Foo foo = new Foo() --> Line_5 $$ assertThat(foo.foo(), is(FOO)) [FD]
+Line_2 $$ public void testRedefinitionReloadingStrategy() throws Exception --> Line_6 $$ ClassReloadingStrategy classReloadingStrategy = ClassReloadingStrategy.fromInstalledAgent(ClassReloadingStrategy.Strategy.REDEFINITION) [CD]
+Line_2 $$ public void testRedefinitionReloadingStrategy() throws Exception --> Line_7 $$ new ByteBuddy().redefine(Foo.class).method(named(FOO)).intercept(FixedValue.value(BAR)).make().load(Foo.class.getClassLoader(), classReloadingStrategy) [CD]
+Line_4 $$ Foo foo = new Foo() --> Line_9 $$ assertThat(foo.foo(), is(BAR)) [FD]
+Line_4 $$ Foo foo = new Foo() --> Line_12 $$ assertThat(foo.foo(), is(FOO)) [FD]

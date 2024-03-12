@@ -1,0 +1,6 @@
+Line_3 $$ for (Database db : databases) --> Line_4 $$ Database dbCopy = db.deepCopy() [FD]
+Line_4 $$ Database dbCopy = db.deepCopy() --> Line_5 $$ dbCopy.setName(dbCopy.getName().toLowerCase()) [FD]
+Line_4 $$ Database dbCopy = db.deepCopy() --> Line_8 $$ String key = CacheUtils.buildDbKey(dbCopy.getCatalogName().toLowerCase(), dbCopy.getName().toLowerCase()) [FD]
+Line_8 $$ String key = CacheUtils.buildDbKey(dbCopy.getCatalogName().toLowerCase(), dbCopy.getName().toLowerCase()) --> Line_9 $$ if (databasesDeletedDuringPrewarm.contains(key)) [FD]
+Line_8 $$ String key = CacheUtils.buildDbKey(dbCopy.getCatalogName().toLowerCase(), dbCopy.getName().toLowerCase()) --> Line_12 $$ databaseCache.putIfAbsent(key, dbCopy) [FD]
+Line_4 $$ Database dbCopy = db.deepCopy() --> Line_12 $$ databaseCache.putIfAbsent(key, dbCopy) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ void verifyCaller(Callable<?> callable) --> Line_3 $$ Method callMethod = getCallableMethod(callable.getClass()) [FD]
+Line_2 $$ void verifyCaller(Callable<?> callable) --> Line_3 $$ Method callMethod = getCallableMethod(callable.getClass()) [CD]
+Line_3 $$ Method callMethod = getCallableMethod(callable.getClass()) --> Line_4 $$ for (Class<?> exceptionOrError : callMethod.getExceptionTypes()) [FD]
+Line_4 $$ for (Class<?> exceptionOrError : callMethod.getExceptionTypes()) --> Line_5 $$ Preconditions.checkArgument(Exception.class.isAssignableFrom(exceptionOrError), "Callable method exceptions must be derived from Exception") [FD]
+Line_6 $$ Class<? extends Exception> exception = (Class<? extends Exception>) exceptionOrError --> Line_7 $$ Preconditions.checkArgument(findMostSpecificRetryInfo(retryInfo, exception) != null, "Declared exception '" + exception + "' is not covered by exception handler") [FD]

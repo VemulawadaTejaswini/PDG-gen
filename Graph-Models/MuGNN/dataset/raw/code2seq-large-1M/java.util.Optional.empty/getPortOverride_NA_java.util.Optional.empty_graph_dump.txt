@@ -1,0 +1,7 @@
+Line_2 $$ private Optional<Integer> getPortOverride() --> Line_3 $$ Integer port = options.getPort() [CD]
+Line_2 $$ private Optional<Integer> getPortOverride() --> Line_4 $$ if (port == null) [CD]
+Line_3 $$ Integer port = options.getPort() --> Line_4 $$ if (port == null) [FD]
+Line_4 $$ if (port == null) --> Line_5 $$ return Optional.empty() [CD]
+Line_4 $$ if (port == null) --> Line_6 $$ if (port < 1024 || port >= 65535) [CD]
+Line_2 $$ private Optional<Integer> getPortOverride() --> Line_9 $$ return Optional.of(port) [CD]
+Line_3 $$ Integer port = options.getPort() --> Line_9 $$ return Optional.of(port) [FD]

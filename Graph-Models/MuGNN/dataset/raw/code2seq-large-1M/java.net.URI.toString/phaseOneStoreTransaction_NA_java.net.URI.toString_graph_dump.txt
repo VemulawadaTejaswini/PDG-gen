@@ -1,0 +1,8 @@
+Line_2 $$ private <T extends Entity> void phaseOneStoreTransaction(final T requestEntity, final Revision revision, final Set<Revision> revisions) --> Line_3 $$ if (twoPhaseCommitCache.size() > MAX_CACHE_SOFT_LIMIT) [CD]
+Line_2 $$ private <T extends Entity> void phaseOneStoreTransaction(final T requestEntity, final Revision revision, final Set<Revision> revisions) --> Line_6 $$ final String transactionId = httpServletRequest.getHeader(RequestReplicator.REQUEST_TRANSACTION_ID_HEADER) [CD]
+Line_2 $$ private <T extends Entity> void phaseOneStoreTransaction(final T requestEntity, final Revision revision, final Set<Revision> revisions) --> Line_7 $$ if (StringUtils.isBlank(transactionId)) [CD]
+Line_6 $$ final String transactionId = httpServletRequest.getHeader(RequestReplicator.REQUEST_TRANSACTION_ID_HEADER) --> Line_7 $$ if (StringUtils.isBlank(transactionId)) [FD]
+Line_11 $$ final CacheKey key = new CacheKey(transactionId) --> Line_12 $$ if (twoPhaseCommitCache.getIfPresent(key) != null) [FD]
+Line_15 $$ final NiFiUser user = NiFiUserUtils.getNiFiUser() --> Line_16 $$ final Request<T> request = new Request(ProxiedEntitiesUtils.buildProxiedEntitiesChainString(user), getAbsolutePath().toString(), revision, revisions, requestEntity) [FD]
+Line_11 $$ final CacheKey key = new CacheKey(transactionId) --> Line_17 $$ twoPhaseCommitCache.put(key, request) [FD]
+Line_16 $$ final Request<T> request = new Request(ProxiedEntitiesUtils.buildProxiedEntitiesChainString(user), getAbsolutePath().toString(), revision, revisions, requestEntity) --> Line_17 $$ twoPhaseCommitCache.put(key, request) [FD]

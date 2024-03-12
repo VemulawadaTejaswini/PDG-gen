@@ -1,0 +1,6 @@
+Line_2 $$ void resetHeartbeatTimeout(long heartbeatTimeout) --> Line_3 $$ if (state.get() == State.RUNNING) [CD]
+Line_3 $$ if (state.get() == State.RUNNING) --> Line_4 $$ cancelTimeout() [CD]
+Line_3 $$ if (state.get() == State.RUNNING) --> Line_5 $$ futureTimeout = scheduledExecutor.schedule(this, heartbeatTimeout, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ void resetHeartbeatTimeout(long heartbeatTimeout) --> Line_5 $$ futureTimeout = scheduledExecutor.schedule(this, heartbeatTimeout, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ if (state.get() == State.RUNNING) --> Line_6 $$ if (state.get() != State.RUNNING) [CD]
+Line_6 $$ if (state.get() != State.RUNNING) --> Line_7 $$ cancelTimeout() [CD]

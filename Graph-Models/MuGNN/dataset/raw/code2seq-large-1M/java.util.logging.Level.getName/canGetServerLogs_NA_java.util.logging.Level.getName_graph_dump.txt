@@ -1,0 +1,7 @@
+Line_2 $$ public void canGetServerLogs() --> Line_3 $$ when(executeMethod.execute(DriverCommand.GET_LOG, ImmutableMap.of(RemoteLogs.TYPE_KEY, LogType.SERVER))).thenReturn(ImmutableList.of(ImmutableMap.of("level", Level.INFO.getName(), "timestamp", 0L, "message", "world"))) [CD]
+Line_2 $$ public void canGetServerLogs() --> Line_4 $$ LogEntries logEntries = remoteLogs.get(LogType.SERVER) [CD]
+Line_2 $$ public void canGetServerLogs() --> Line_5 $$ assertEquals(1, logEntries.getAll().size()) [CD]
+Line_4 $$ LogEntries logEntries = remoteLogs.get(LogType.SERVER) --> Line_5 $$ assertEquals(1, logEntries.getAll().size()) [FD]
+Line_2 $$ public void canGetServerLogs() --> Line_6 $$ assertEquals("world", logEntries.getAll().get(0).getMessage()) [CD]
+Line_4 $$ LogEntries logEntries = remoteLogs.get(LogType.SERVER) --> Line_6 $$ assertEquals("world", logEntries.getAll().get(0).getMessage()) [FD]
+Line_2 $$ public void canGetServerLogs() --> Line_7 $$ verifyNoMoreInteractions(localLogs) [CD]

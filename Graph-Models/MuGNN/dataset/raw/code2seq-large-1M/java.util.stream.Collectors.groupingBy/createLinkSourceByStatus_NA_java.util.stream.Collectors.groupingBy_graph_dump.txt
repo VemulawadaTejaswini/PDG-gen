@@ -1,0 +1,8 @@
+Line_2 $$ private static Map<TaskStatus, CoordSource> createLinkSourceByStatus(Schedule schedule) --> Line_3 $$ Stream<DriveTask> tasks = Schedules.driveTasks(schedule) [CD]
+Line_2 $$ private static Map<TaskStatus, CoordSource> createLinkSourceByStatus(Schedule schedule) --> Line_3 $$ Stream<DriveTask> tasks = Schedules.driveTasks(schedule) [FD]
+Line_2 $$ private static Map<TaskStatus, CoordSource> createLinkSourceByStatus(Schedule schedule) --> Line_4 $$ Map<TaskStatus, List<DriveTask>> taskListByStatus = tasks.collect(Collectors.groupingBy( t -> t.getStatus())) [CD]
+Line_3 $$ Stream<DriveTask> tasks = Schedules.driveTasks(schedule) --> Line_4 $$ Map<TaskStatus, List<DriveTask>> taskListByStatus = tasks.collect(Collectors.groupingBy( t -> t.getStatus())) [FD]
+Line_2 $$ private static Map<TaskStatus, CoordSource> createLinkSourceByStatus(Schedule schedule) --> Line_5 $$ Map<TaskStatus, CoordSource> linkSourceByStatus = new EnumMap(TaskStatus.class) [CD]
+Line_6 $$ for (TaskStatus ts : TaskStatus.values()) --> Line_7 $$ linkSourceByStatus.put(ts, ScheduleCoordSources.createCoordSource(taskListByStatus.get(ts))) [FD]
+Line_4 $$ Map<TaskStatus, List<DriveTask>> taskListByStatus = tasks.collect(Collectors.groupingBy( t -> t.getStatus())) --> Line_7 $$ linkSourceByStatus.put(ts, ScheduleCoordSources.createCoordSource(taskListByStatus.get(ts))) [FD]
+Line_2 $$ private static Map<TaskStatus, CoordSource> createLinkSourceByStatus(Schedule schedule) --> Line_9 $$ return linkSourceByStatus [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testInvalidIndexSort() --> Line_3 $$ IllegalArgumentException exc = expectThrows(IllegalArgumentException.class, () -> prepareCreate("test").setSettings(Settings.builder().put(indexSettings()).putList("index.sort.field", "invalid_field")).addMapping("test", TEST_MAPPING).get()) [CD]
+Line_2 $$ public void testInvalidIndexSort() --> Line_4 $$ assertThat(exc.getMessage(), containsString("unknown index sort field:[invalid_field]")) [CD]
+Line_2 $$ public void testInvalidIndexSort() --> Line_5 $$ exc = expectThrows(IllegalArgumentException.class, () -> prepareCreate("test").setSettings(Settings.builder().put(indexSettings()).putList("index.sort.field", "numeric")).addMapping("test", TEST_MAPPING).get()) [CD]
+Line_2 $$ public void testInvalidIndexSort() --> Line_6 $$ assertThat(exc.getMessage(), containsString("docvalues not found for index sort field:[numeric]")) [CD]
+Line_2 $$ public void testInvalidIndexSort() --> Line_7 $$ exc = expectThrows(IllegalArgumentException.class, () -> prepareCreate("test").setSettings(Settings.builder().put(indexSettings()).putList("index.sort.field", "keyword")).addMapping("test", TEST_MAPPING).get()) [CD]
+Line_2 $$ public void testInvalidIndexSort() --> Line_8 $$ assertThat(exc.getMessage(), containsString("docvalues not found for index sort field:[keyword]")) [CD]

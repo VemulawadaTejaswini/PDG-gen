@@ -1,0 +1,8 @@
+Line_2 $$ private SortedSet<BrokerReplicaCount> eligibleBrokers(Replica replica, ClusterModel clusterModel) --> Line_3 $$ SortedSet<BrokerReplicaCount> eligibleBrokers = new TreeSet() [CD]
+Line_2 $$ private SortedSet<BrokerReplicaCount> eligibleBrokers(Replica replica, ClusterModel clusterModel) --> Line_4 $$ int sourceBrokerId = replica.broker().id() [FD]
+Line_2 $$ private SortedSet<BrokerReplicaCount> eligibleBrokers(Replica replica, ClusterModel clusterModel) --> Line_4 $$ int sourceBrokerId = replica.broker().id() [CD]
+Line_2 $$ private SortedSet<BrokerReplicaCount> eligibleBrokers(Replica replica, ClusterModel clusterModel) --> Line_5 $$ for (Broker broker : clusterModel.healthyBrokers()) [FD]
+Line_5 $$ for (Broker broker : clusterModel.healthyBrokers()) --> Line_6 $$ if ((_isSelfHealingMode || broker.replicas().size() < _balancingConstraint.maxReplicasPerBroker()) && broker.id() != sourceBrokerId) [FD]
+Line_6 $$ if ((_isSelfHealingMode || broker.replicas().size() < _balancingConstraint.maxReplicasPerBroker()) && broker.id() != sourceBrokerId) --> Line_7 $$ eligibleBrokers.add(new BrokerReplicaCount(broker)) [CD]
+Line_3 $$ SortedSet<BrokerReplicaCount> eligibleBrokers = new TreeSet() --> Line_7 $$ eligibleBrokers.add(new BrokerReplicaCount(broker)) [FD]
+Line_2 $$ private SortedSet<BrokerReplicaCount> eligibleBrokers(Replica replica, ClusterModel clusterModel) --> Line_10 $$ return eligibleBrokers [CD]

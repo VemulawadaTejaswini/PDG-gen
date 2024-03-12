@@ -1,0 +1,6 @@
+Line_2 $$ public void lock() --> Line_3 $$ trace("lock", "in") [CD]
+Line_5 $$ long start = startWait() --> Line_6 $$ while (isLocked && !timedOut(start)) [FD]
+Line_5 $$ long start = startWait() --> Line_13 $$ if (timedOut(start)) [FD]
+Line_13 $$ if (timedOut(start)) --> Line_14 $$ String holderName = holder == null ? "<no-one>" : holder.getName() [CD]
+Line_13 $$ if (timedOut(start)) --> Line_15 $$ Harness.dumpStateAndExit("Timed out waiting for " + name + ", held by " + holderName) [CD]
+Line_2 $$ public void lock() --> Line_20 $$ trace("lock", "out") [CD]

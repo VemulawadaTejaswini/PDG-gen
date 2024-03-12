@@ -1,0 +1,6 @@
+Line_2 $$ public static State getState(Path segmentPath) throws IOException --> Line_3 $$ try (Stream<Path> paths = Files.list(segmentPath)) [FD]
+Line_3 $$ try (Stream<Path> paths = Files.list(segmentPath)) --> Line_4 $$ Set<String> stateFiles = paths.map( p -> p.getFileName().toString()).filter( n -> n.startsWith("_ST_") || n.startsWith("_st_")).collect(Collectors.toSet()) [FD]
+Line_4 $$ Set<String> stateFiles = paths.map( p -> p.getFileName().toString()).filter( n -> n.startsWith("_ST_") || n.startsWith("_st_")).collect(Collectors.toSet()) --> Line_7 $$ if (stateFiles.contains(st.fileName) || stateFiles.contains(st.fileName.toLowerCase())) [FD]
+Line_7 $$ if (stateFiles.contains(st.fileName) || stateFiles.contains(st.fileName.toLowerCase())) --> Line_8 $$ stat = st [CD]
+Line_5 $$ State stat = Begin --> Line_8 $$ stat = st [FD]
+Line_6 $$ for (State st : State.values()) --> Line_8 $$ stat = st [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public SnapshotInfo save(String name, String rev, String id, long batchNumber, List<List<StageOutput>> snapshotBatches) throws PipelineException --> Line_3 $$ synchronized (lockCache.getLock(name)) [FD]
+Line_2 $$ public SnapshotInfo save(String name, String rev, String id, long batchNumber, List<List<StageOutput>> snapshotBatches) throws PipelineException --> Line_5 $$ SnapshotInfo snapshotInfo = getSnapshotInfoFromCache(name, rev, id) [FD]
+Line_5 $$ SnapshotInfo snapshotInfo = getSnapshotInfoFromCache(name, rev, id) --> Line_6 $$ if (snapshotInfo == null) [FD]
+Line_2 $$ public SnapshotInfo save(String name, String rev, String id, long batchNumber, List<List<StageOutput>> snapshotBatches) throws PipelineException --> Line_9 $$ SnapshotInfo updatedSnapshotInfo = snapshotStore.save(name, rev, id, batchNumber, snapshotBatches) [FD]
+Line_9 $$ SnapshotInfo updatedSnapshotInfo = snapshotStore.save(name, rev, id, batchNumber, snapshotBatches) --> Line_10 $$ snapshotStateCache.put(getCacheKey(name, rev, id), updatedSnapshotInfo) [FD]
+Line_2 $$ public SnapshotInfo save(String name, String rev, String id, long batchNumber, List<List<StageOutput>> snapshotBatches) throws PipelineException --> Line_10 $$ snapshotStateCache.put(getCacheKey(name, rev, id), updatedSnapshotInfo) [FD]

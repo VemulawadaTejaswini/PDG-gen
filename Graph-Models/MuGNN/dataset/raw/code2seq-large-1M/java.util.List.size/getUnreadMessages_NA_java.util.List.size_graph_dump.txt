@@ -1,0 +1,8 @@
+Line_2 $$ public List getUnreadMessages() --> Line_3 $$ ArrayList unreadMessages = new ArrayList() [CD]
+Line_2 $$ public List getUnreadMessages() --> Line_4 $$ for (int i = 0; i < messages.size(); i++) [CD]
+Line_4 $$ for (int i = 0; i < messages.size(); i++) --> Line_5 $$ if (!((DiscussionMessageBean) messages.get(i)).isRead()) [CD]
+Line_4 $$ for (int i = 0; i < messages.size(); i++) --> Line_5 $$ if (!((DiscussionMessageBean) messages.get(i)).isRead()) [FD]
+Line_5 $$ if (!((DiscussionMessageBean) messages.get(i)).isRead()) --> Line_6 $$ unreadMessages.add(messages.get(i)) [CD]
+Line_3 $$ ArrayList unreadMessages = new ArrayList() --> Line_6 $$ unreadMessages.add(messages.get(i)) [FD]
+Line_4 $$ for (int i = 0; i < messages.size(); i++) --> Line_6 $$ unreadMessages.add(messages.get(i)) [FD]
+Line_2 $$ public List getUnreadMessages() --> Line_9 $$ return unreadMessages [CD]

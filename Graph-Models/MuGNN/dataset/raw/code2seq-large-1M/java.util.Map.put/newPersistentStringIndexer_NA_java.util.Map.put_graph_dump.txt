@@ -1,0 +1,6 @@
+Line_2 $$ static PersistentStringIndexer newPersistentStringIndexer(Path dataPath, Clock clock) throws IOException --> Line_3 $$ PersistentIndexMap persistentIndexMap = new PersistentIndexMap(dataPath, FileSystemUtils.replaceExtension(dataPath, ".journal"), clock) [FD]
+Line_2 $$ static PersistentStringIndexer newPersistentStringIndexer(Path dataPath, Clock clock) throws IOException --> Line_3 $$ PersistentIndexMap persistentIndexMap = new PersistentIndexMap(dataPath, FileSystemUtils.replaceExtension(dataPath, ".journal"), clock) [CD]
+Line_2 $$ static PersistentStringIndexer newPersistentStringIndexer(Path dataPath, Clock clock) throws IOException --> Line_4 $$ Map<Integer, String> reverseMapping = newConcurrentMap(INITIAL_ENTRIES) [CD]
+Line_3 $$ PersistentIndexMap persistentIndexMap = new PersistentIndexMap(dataPath, FileSystemUtils.replaceExtension(dataPath, ".journal"), clock) --> Line_5 $$ for (Map.Entry<String, Integer> entry : persistentIndexMap.entrySet()) [FD]
+Line_4 $$ Map<Integer, String> reverseMapping = newConcurrentMap(INITIAL_ENTRIES) --> Line_6 $$ if (reverseMapping.put(entry.getValue(), entry.getKey()) != null) [FD]
+Line_2 $$ static PersistentStringIndexer newPersistentStringIndexer(Path dataPath, Clock clock) throws IOException --> Line_10 $$ return new PersistentStringIndexer(persistentIndexMap, reverseMapping) [CD]

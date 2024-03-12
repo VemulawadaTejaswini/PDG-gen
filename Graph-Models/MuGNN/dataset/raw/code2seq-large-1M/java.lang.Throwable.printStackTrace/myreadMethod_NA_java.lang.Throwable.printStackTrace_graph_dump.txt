@@ -1,0 +1,7 @@
+Line_2 $$ public static <T> T myreadMethod(byte[] stream, Class<T> c) --> Line_3 $$ FSTObjectInput in = configuration.getObjectInput(stream) [CD]
+Line_2 $$ public static <T> T myreadMethod(byte[] stream, Class<T> c) --> Line_3 $$ FSTObjectInput in = configuration.getObjectInput(stream) [FD]
+Line_2 $$ public static <T> T myreadMethod(byte[] stream, Class<T> c) --> Line_4 $$ T result = null [CD]
+Line_4 $$ T result = null --> Line_6 $$ result = (T) in.readObject(c) [FD]
+Line_3 $$ FSTObjectInput in = configuration.getObjectInput(stream) --> Line_6 $$ result = (T) in.readObject(c) [FD]
+Line_2 $$ public static <T> T myreadMethod(byte[] stream, Class<T> c) --> Line_6 $$ result = (T) in.readObject(c) [FD]
+Line_2 $$ public static <T> T myreadMethod(byte[] stream, Class<T> c) --> Line_10 $$ return result [CD]

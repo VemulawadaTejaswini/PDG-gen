@@ -1,0 +1,6 @@
+Line_2 $$ private void registerCategory(String newCategory, ReadWriteLock lock, ListEventPublisher publisher) --> Line_4 $$ if (CATEGORY_MAP.containsKey(newCategory)) [FD]
+Line_4 $$ if (CATEGORY_MAP.containsKey(newCategory)) --> Line_5 $$ final ListInfo info = getListInfo() [CD]
+Line_4 $$ if (CATEGORY_MAP.containsKey(newCategory)) --> Line_6 $$ if (!lock.equals(info.lock) || !publisher.equals(info.publisher)) [CD]
+Line_2 $$ private void registerCategory(String newCategory, ReadWriteLock lock, ListEventPublisher publisher) --> Line_6 $$ if (!lock.equals(info.lock) || !publisher.equals(info.publisher)) [FD]
+Line_4 $$ if (CATEGORY_MAP.containsKey(newCategory)) --> Line_10 $$ CATEGORY_MAP.put(newCategory, new ListInfo(lock, publisher)) [CD]
+Line_2 $$ private void registerCategory(String newCategory, ReadWriteLock lock, ListEventPublisher publisher) --> Line_10 $$ CATEGORY_MAP.put(newCategory, new ListInfo(lock, publisher)) [FD]

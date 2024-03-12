@@ -1,0 +1,8 @@
+Line_2 $$ public void exclusiveLock() --> Line_3 $$ final long tidSelf = Thread.currentThread().getId() [CD]
+Line_2 $$ public void exclusiveLock() --> Line_4 $$ while (!writerOwner.compareAndSet(SRWL_INVALID_TID, tidSelf)) [CD]
+Line_3 $$ final long tidSelf = Thread.currentThread().getId() --> Line_4 $$ while (!writerOwner.compareAndSet(SRWL_INVALID_TID, tidSelf)) [FD]
+Line_4 $$ while (!writerOwner.compareAndSet(SRWL_INVALID_TID, tidSelf)) --> Line_5 $$ Thread.yield() [CD]
+Line_2 $$ public void exclusiveLock() --> Line_7 $$ for (int i = 0; i < highestAssigned.get() * CACHE_PADD; i += CACHE_PADD) [CD]
+Line_7 $$ for (int i = 0; i < highestAssigned.get() * CACHE_PADD; i += CACHE_PADD) --> Line_8 $$ while (readersState.get(i) == SRWL_STATE_READING) [FD]
+Line_7 $$ for (int i = 0; i < highestAssigned.get() * CACHE_PADD; i += CACHE_PADD) --> Line_8 $$ while (readersState.get(i) == SRWL_STATE_READING) [CD]
+Line_8 $$ while (readersState.get(i) == SRWL_STATE_READING) --> Line_9 $$ Thread.yield() [CD]

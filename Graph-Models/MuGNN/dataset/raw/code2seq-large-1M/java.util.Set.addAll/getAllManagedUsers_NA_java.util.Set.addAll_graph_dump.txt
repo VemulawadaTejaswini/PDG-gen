@@ -1,0 +1,8 @@
+Line_2 $$ public Set<User> getAllManagedUsers() --> Line_3 $$ Set<User> result = new HashSet() [CD]
+Line_2 $$ public Set<User> getAllManagedUsers() --> Line_4 $$ result.addAll(getManagedUsers()) [CD]
+Line_3 $$ Set<User> result = new HashSet() --> Line_4 $$ result.addAll(getManagedUsers()) [FD]
+Line_5 $$ for (User managedUser : getManagedUsers()) --> Line_6 $$ if (managedUser.getManager()) [FD]
+Line_6 $$ if (managedUser.getManager()) --> Line_7 $$ result.addAll(managedUser.getAllManagedUsers()) [CD]
+Line_3 $$ Set<User> result = new HashSet() --> Line_7 $$ result.addAll(managedUser.getAllManagedUsers()) [FD]
+Line_5 $$ for (User managedUser : getManagedUsers()) --> Line_7 $$ result.addAll(managedUser.getAllManagedUsers()) [FD]
+Line_2 $$ public Set<User> getAllManagedUsers() --> Line_10 $$ return result [CD]

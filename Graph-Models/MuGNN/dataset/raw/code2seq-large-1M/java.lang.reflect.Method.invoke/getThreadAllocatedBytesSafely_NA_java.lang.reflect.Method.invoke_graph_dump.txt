@@ -1,0 +1,6 @@
+Line_2 $$ public long getThreadAllocatedBytesSafely(long threadId) --> Line_3 $$ if (disabledDueToError) [CD]
+Line_3 $$ if (disabledDueToError) --> Line_4 $$ return -1 [CD]
+Line_2 $$ public long getThreadAllocatedBytesSafely(long threadId) --> Line_7 $$ Long threadAllocatedBytes = (Long) getThreadAllocatedBytesMethod.invoke(ManagementFactory.getThreadMXBean(), threadId) [FD]
+Line_7 $$ Long threadAllocatedBytes = (Long) getThreadAllocatedBytesMethod.invoke(ManagementFactory.getThreadMXBean(), threadId) --> Line_8 $$ if (threadAllocatedBytes == null) [FD]
+Line_8 $$ if (threadAllocatedBytes == null) --> Line_9 $$ logger.error("method unexpectedly returned null:" + " com.sun.management.ThreadMXBean.getThreadAllocatedBytes()") [CD]
+Line_8 $$ if (threadAllocatedBytes == null) --> Line_11 $$ return -1 [CD]

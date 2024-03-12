@@ -1,0 +1,8 @@
+Line_4 $$ BufferOrEvent[] sequence = --> Line_5 $$ MockInputGate gate = new MockInputGate(PAGE_SIZE, 1, Arrays.asList(sequence)) [FD]
+Line_6 $$ BarrierTracker tracker = new BarrierTracker(gate) --> Line_8 $$ tracker.registerCheckpointEventHandler(validator) [FD]
+Line_7 $$ CheckpointSequenceValidator validator = new CheckpointSequenceValidator(1, 3, 4, 6, 7, 10) --> Line_8 $$ tracker.registerCheckpointEventHandler(validator) [FD]
+Line_9 $$ for (BufferOrEvent boe : sequence) --> Line_10 $$ if (boe.isBuffer() || boe.getEvent().getClass() != CheckpointBarrier.class) [FD]
+Line_9 $$ for (BufferOrEvent boe : sequence) --> Line_11 $$ assertEquals(boe, tracker.getNextNonBlocked()) [FD]
+Line_6 $$ BarrierTracker tracker = new BarrierTracker(gate) --> Line_11 $$ assertEquals(boe, tracker.getNextNonBlocked()) [FD]
+Line_6 $$ BarrierTracker tracker = new BarrierTracker(gate) --> Line_14 $$ assertNull(tracker.getNextNonBlocked()) [FD]
+Line_6 $$ BarrierTracker tracker = new BarrierTracker(gate) --> Line_15 $$ assertNull(tracker.getNextNonBlocked()) [FD]

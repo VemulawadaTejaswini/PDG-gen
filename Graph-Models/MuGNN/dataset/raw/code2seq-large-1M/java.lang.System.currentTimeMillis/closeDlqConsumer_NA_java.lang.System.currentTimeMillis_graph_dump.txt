@@ -1,0 +1,7 @@
+Line_2 $$ private void closeDlqConsumer() throws JMSException, InterruptedException --> Line_3 $$ final long limit = System.currentTimeMillis() + 30 * 1000 [CD]
+Line_2 $$ private void closeDlqConsumer() throws JMSException, InterruptedException --> Line_4 $$ if (dlqConsumerLastReceivedTimeStamp > 0) [CD]
+Line_4 $$ if (dlqConsumerLastReceivedTimeStamp > 0) --> Line_5 $$ while (System.currentTimeMillis() < dlqConsumerLastReceivedTimeStamp + 5000 && System.currentTimeMillis() < limit) [CD]
+Line_5 $$ while (System.currentTimeMillis() < dlqConsumerLastReceivedTimeStamp + 5000 && System.currentTimeMillis() < limit) --> Line_6 $$ LOG.info("waiting for DLQ do drain, receivedCount: " + dlqReceivedCount) [CD]
+Line_5 $$ while (System.currentTimeMillis() < dlqConsumerLastReceivedTimeStamp + 5000 && System.currentTimeMillis() < limit) --> Line_7 $$ TimeUnit.SECONDS.sleep(1) [CD]
+Line_2 $$ private void closeDlqConsumer() throws JMSException, InterruptedException --> Line_10 $$ if (dlqConnection != null) [CD]
+Line_10 $$ if (dlqConnection != null) --> Line_11 $$ dlqConnection.close() [CD]

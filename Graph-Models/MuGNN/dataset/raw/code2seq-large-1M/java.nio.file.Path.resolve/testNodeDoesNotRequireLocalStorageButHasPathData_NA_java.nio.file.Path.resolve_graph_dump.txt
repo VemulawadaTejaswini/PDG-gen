@@ -1,0 +1,8 @@
+Line_2 $$ public void testNodeDoesNotRequireLocalStorageButHasPathData() --> Line_3 $$ final Path pathHome = createTempDir().toAbsolutePath() [CD]
+Line_2 $$ public void testNodeDoesNotRequireLocalStorageButHasPathData() --> Line_4 $$ final Path pathData = pathHome.resolve("data") [CD]
+Line_3 $$ final Path pathHome = createTempDir().toAbsolutePath() --> Line_4 $$ final Path pathData = pathHome.resolve("data") [FD]
+Line_2 $$ public void testNodeDoesNotRequireLocalStorageButHasPathData() --> Line_5 $$ final Settings settings = Settings.builder().put("path.home", pathHome).put("path.data", pathData).put("node.local_storage", false).put("node.master", false).put("node.data", false).build() [CD]
+Line_4 $$ final Path pathData = pathHome.resolve("data") --> Line_5 $$ final Settings settings = Settings.builder().put("path.home", pathHome).put("path.data", pathData).put("node.local_storage", false).put("node.master", false).put("node.data", false).build() [FD]
+Line_3 $$ final Path pathHome = createTempDir().toAbsolutePath() --> Line_5 $$ final Settings settings = Settings.builder().put("path.home", pathHome).put("path.data", pathData).put("node.local_storage", false).put("node.master", false).put("node.data", false).build() [FD]
+Line_2 $$ public void testNodeDoesNotRequireLocalStorageButHasPathData() --> Line_6 $$ final IllegalStateException e = expectThrows(IllegalStateException.class, () -> new Environment(settings, null)) [CD]
+Line_2 $$ public void testNodeDoesNotRequireLocalStorageButHasPathData() --> Line_7 $$ assertThat(e, hasToString(containsString("node does not require local storage yet path.data is set to [" + pathData + "]"))) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void stackSafety() --> Line_3 $$ Integer stackBlowingNumber = 10_000 [CD]
+Line_2 $$ public void stackSafety() --> Line_4 $$ Iterable<Integer> ints = foldRight(( x,  acc) -> () -> new ConsingIterator(x, acc), (Iterable<Integer>) Collections.<Integer>emptyList(), take(stackBlowingNumber, iterate( x -> x + 1, 1))) [CD]
+Line_3 $$ Integer stackBlowingNumber = 10_000 --> Line_4 $$ Iterable<Integer> ints = foldRight(( x,  acc) -> () -> new ConsingIterator(x, acc), (Iterable<Integer>) Collections.<Integer>emptyList(), take(stackBlowingNumber, iterate( x -> x + 1, 1))) [FD]
+Line_2 $$ public void stackSafety() --> Line_5 $$ assertEquals(stackBlowingNumber, take(1, drop(stackBlowingNumber - 1, ints)).iterator().next()) [CD]
+Line_3 $$ Integer stackBlowingNumber = 10_000 --> Line_5 $$ assertEquals(stackBlowingNumber, take(1, drop(stackBlowingNumber - 1, ints)).iterator().next()) [FD]
+Line_4 $$ Iterable<Integer> ints = foldRight(( x,  acc) -> () -> new ConsingIterator(x, acc), (Iterable<Integer>) Collections.<Integer>emptyList(), take(stackBlowingNumber, iterate( x -> x + 1, 1))) --> Line_5 $$ assertEquals(stackBlowingNumber, take(1, drop(stackBlowingNumber - 1, ints)).iterator().next()) [FD]

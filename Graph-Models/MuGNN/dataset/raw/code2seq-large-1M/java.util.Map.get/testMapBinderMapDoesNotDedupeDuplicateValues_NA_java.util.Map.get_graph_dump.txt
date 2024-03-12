@@ -1,0 +1,8 @@
+Line_17 $$ Module m1 = new AbstractModule() --> Line_19 $$ MapBinder<String, ValueType> multibinder = MapBinder.newMapBinder(binder(), String.class, ValueType.class) [CD]
+Line_17 $$ Module m1 = new AbstractModule() --> Line_20 $$ multibinder.addBinding("a").toInstance(new ValueType(1, 2)) [CD]
+Line_23 $$ Module m2 = new AbstractModule() --> Line_25 $$ MapBinder<String, ValueType> multibinder = MapBinder.newMapBinder(binder(), String.class, ValueType.class) [CD]
+Line_23 $$ Module m2 = new AbstractModule() --> Line_26 $$ multibinder.addBinding("b").toInstance(new ValueType(1, 3)) [CD]
+Line_2 $$ public void testMapBinderMapDoesNotDedupeDuplicateValues() --> Line_29 $$ Injector injector = Guice.createInjector(m1, m2) [CD]
+Line_2 $$ public void testMapBinderMapDoesNotDedupeDuplicateValues() --> Line_30 $$ Map<String, ValueType> map = injector.getInstance(new Key<Map<String, ValueType>>() [CD]
+Line_2 $$ public void testMapBinderMapDoesNotDedupeDuplicateValues() --> Line_32 $$ assertEquals(2, map.get("a").dataPart) [CD]
+Line_2 $$ public void testMapBinderMapDoesNotDedupeDuplicateValues() --> Line_33 $$ assertEquals(3, map.get("b").dataPart) [CD]

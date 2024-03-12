@@ -1,0 +1,8 @@
+Line_2 $$ public Collection<ProducerViewMBean> getQueueProducers(String queueName) throws Exception --> Line_3 $$ String brokerName = getBrokerName() [CD]
+Line_2 $$ public Collection<ProducerViewMBean> getQueueProducers(String queueName) throws Exception --> Line_4 $$ queueName = StringUtils.replace(queueName, "\"", "_") [FD]
+Line_2 $$ public Collection<ProducerViewMBean> getQueueProducers(String queueName) throws Exception --> Line_4 $$ queueName = StringUtils.replace(queueName, "\"", "_") [CD]
+Line_2 $$ public Collection<ProducerViewMBean> getQueueProducers(String queueName) throws Exception --> Line_5 $$ ObjectName query = new ObjectName("org.apache.activemq:type=Broker,brokerName=" + brokerName + ",destinationType=Queue,destinationName=" + queueName + ",endpoint=Producer,*") [CD]
+Line_2 $$ public Collection<ProducerViewMBean> getQueueProducers(String queueName) throws Exception --> Line_6 $$ Set<ObjectName> queryResult = queryNames(query, null) [CD]
+Line_5 $$ ObjectName query = new ObjectName("org.apache.activemq:type=Broker,brokerName=" + brokerName + ",destinationType=Queue,destinationName=" + queueName + ",endpoint=Producer,*") --> Line_6 $$ Set<ObjectName> queryResult = queryNames(query, null) [FD]
+Line_2 $$ public Collection<ProducerViewMBean> getQueueProducers(String queueName) throws Exception --> Line_7 $$ return getManagedObjects(queryResult.toArray(new ObjectName[queryResult.size()]), ProducerViewMBean.class) [CD]
+Line_6 $$ Set<ObjectName> queryResult = queryNames(query, null) --> Line_7 $$ return getManagedObjects(queryResult.toArray(new ObjectName[queryResult.size()]), ProducerViewMBean.class) [FD]

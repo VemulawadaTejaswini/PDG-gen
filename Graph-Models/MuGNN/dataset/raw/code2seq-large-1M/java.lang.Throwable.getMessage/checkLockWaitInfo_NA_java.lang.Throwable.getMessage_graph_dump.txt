@@ -1,0 +1,7 @@
+Line_2 $$ private void checkLockWaitInfo(Exception sqle) --> Line_3 $$ String eMsg = sqle.getMessage() [FD]
+Line_2 $$ private void checkLockWaitInfo(Exception sqle) --> Line_3 $$ String eMsg = sqle.getMessage() [CD]
+Line_2 $$ private void checkLockWaitInfo(Exception sqle) --> Line_4 $$ if (eMsg.indexOf("A lock could not be obtained within the time requested") >= 0 || eMsg.indexOf("Lock wait timeout exceeded") >= 0) [CD]
+Line_3 $$ String eMsg = sqle.getMessage() --> Line_4 $$ if (eMsg.indexOf("A lock could not be obtained within the time requested") >= 0 || eMsg.indexOf("Lock wait timeout exceeded") >= 0) [FD]
+Line_4 $$ if (eMsg.indexOf("A lock could not be obtained within the time requested") >= 0 || eMsg.indexOf("Lock wait timeout exceeded") >= 0) --> Line_5 $$ Debug.logWarning(sqle, "Lock wait timeout error found in thread [" + Thread.currentThread().getId() + "]: (" + eMsg + ") when executing the SQL [" + _sql + "]", module) [CD]
+Line_2 $$ private void checkLockWaitInfo(Exception sqle) --> Line_5 $$ Debug.logWarning(sqle, "Lock wait timeout error found in thread [" + Thread.currentThread().getId() + "]: (" + eMsg + ") when executing the SQL [" + _sql + "]", module) [FD]
+Line_4 $$ if (eMsg.indexOf("A lock could not be obtained within the time requested") >= 0 || eMsg.indexOf("Lock wait timeout exceeded") >= 0) --> Line_6 $$ TransactionUtil.printAllThreadsTransactionBeginStacks() [CD]

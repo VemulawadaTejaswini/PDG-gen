@@ -1,0 +1,8 @@
+Line_2 $$ private void visitAndWaitForCompletion() throws QueryException, InterruptedException --> Line_3 $$ while (!mustJobsBeStopped() && (!processingQueue.isEmpty() || getTaskCount() > 0)) [CD]
+Line_3 $$ while (!mustJobsBeStopped() && (!processingQueue.isEmpty() || getTaskCount() > 0)) --> Line_4 $$ if (getTaskCount() < MIN_PENDING_TASKS || processingQueue.size() >= SkyQueryEnvironment.BATCH_CALLBACK_SIZE) [CD]
+Line_4 $$ if (getTaskCount() < MIN_PENDING_TASKS || processingQueue.size() >= SkyQueryEnvironment.BATCH_CALLBACK_SIZE) --> Line_5 $$ Collection<T> pendingKeysToVisit = new ArrayList(processingQueue.size()) [CD]
+Line_4 $$ if (getTaskCount() < MIN_PENDING_TASKS || processingQueue.size() >= SkyQueryEnvironment.BATCH_CALLBACK_SIZE) --> Line_6 $$ processingQueue.drainTo(pendingKeysToVisit) [CD]
+Line_5 $$ Collection<T> pendingKeysToVisit = new ArrayList(processingQueue.size()) --> Line_6 $$ processingQueue.drainTo(pendingKeysToVisit) [FD]
+Line_5 $$ Collection<T> pendingKeysToVisit = new ArrayList(processingQueue.size()) --> Line_7 $$ for (Task task : getVisitTasks(pendingKeysToVisit)) [FD]
+Line_7 $$ for (Task task : getVisitTasks(pendingKeysToVisit)) --> Line_8 $$ execute(task) [FD]
+Line_2 $$ private void visitAndWaitForCompletion() throws QueryException, InterruptedException --> Line_18 $$ awaitTerminationAndPropagateErrorsIfAny() [CD]

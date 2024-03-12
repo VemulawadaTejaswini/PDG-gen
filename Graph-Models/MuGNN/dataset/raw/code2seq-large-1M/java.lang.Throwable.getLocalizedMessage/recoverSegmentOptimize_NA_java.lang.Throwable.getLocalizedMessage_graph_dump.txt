@@ -1,0 +1,7 @@
+Line_2 $$ public JobInstance recoverSegmentOptimize(@PathVariable String cubeName, @PathVariable String segmentID) --> Line_5 $$ CubeInstance cube = jobService.getCubeManager().getCube(cubeName) [FD]
+Line_5 $$ CubeInstance cube = jobService.getCubeManager().getCube(cubeName) --> Line_6 $$ if (cube == null) [FD]
+Line_5 $$ CubeInstance cube = jobService.getCubeManager().getCube(cubeName) --> Line_9 $$ CubeSegment segment = cube.getSegmentById(segmentID) [FD]
+Line_2 $$ public JobInstance recoverSegmentOptimize(@PathVariable String cubeName, @PathVariable String segmentID) --> Line_9 $$ CubeSegment segment = cube.getSegmentById(segmentID) [FD]
+Line_9 $$ CubeSegment segment = cube.getSegmentById(segmentID) --> Line_10 $$ if (segment == null) [FD]
+Line_9 $$ CubeSegment segment = cube.getSegmentById(segmentID) --> Line_13 $$ return jobService.submitRecoverSegmentOptimizeJob(segment, submitter) [FD]
+Line_4 $$ String submitter = SecurityContextHolder.getContext().getAuthentication().getName() --> Line_13 $$ return jobService.submitRecoverSegmentOptimizeJob(segment, submitter) [FD]

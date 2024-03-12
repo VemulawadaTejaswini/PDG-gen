@@ -1,0 +1,7 @@
+Line_2 $$ X509ExtendedTrustManager createTrustManager(@Nullable Environment environment) --> Line_3 $$ Optional<TrustConfig> matchAll = trustConfigs.stream().filter(TrustAllConfig.INSTANCE::<>equals).findAny() [CD]
+Line_2 $$ X509ExtendedTrustManager createTrustManager(@Nullable Environment environment) --> Line_4 $$ if (matchAll.isPresent()) [CD]
+Line_3 $$ Optional<TrustConfig> matchAll = trustConfigs.stream().filter(TrustAllConfig.INSTANCE::<>equals).findAny() --> Line_4 $$ if (matchAll.isPresent()) [FD]
+Line_4 $$ if (matchAll.isPresent()) --> Line_5 $$ return matchAll.get().createTrustManager(environment) [CD]
+Line_2 $$ X509ExtendedTrustManager createTrustManager(@Nullable Environment environment) --> Line_5 $$ return matchAll.get().createTrustManager(environment) [FD]
+Line_3 $$ Optional<TrustConfig> matchAll = trustConfigs.stream().filter(TrustAllConfig.INSTANCE::<>equals).findAny() --> Line_5 $$ return matchAll.get().createTrustManager(environment) [FD]
+Line_2 $$ X509ExtendedTrustManager createTrustManager(@Nullable Environment environment) --> Line_8 $$ return CertUtils.trustManager(trustConfigs.stream().flatMap(( tc) -> Arrays.stream(tc.createTrustManager(environment).getAcceptedIssuers())).collect(Collectors.toList()).toArray(new X509Certificate[0])) [FD]

@@ -1,0 +1,5 @@
+Line_4 $$ ObjectName objectName = new ObjectName(resourceAdapterObjectName) --> Line_5 $$ Set<ObjectInstance> mbeanSet = mBeanServer.queryMBeans(objectName, null) [FD]
+Line_6 $$ for (ObjectInstance mbean : mbeanSet) --> Line_7 $$ String stateString = (String) mBeanServer.getAttribute(mbean.getObjectName(), "StateString") [FD]
+Line_7 $$ String stateString = (String) mBeanServer.getAttribute(mbean.getObjectName(), "StateString") --> Line_8 $$ if ("Started".equalsIgnoreCase(stateString) || "Starting".equalsIgnoreCase(stateString)) [FD]
+Line_8 $$ if ("Started".equalsIgnoreCase(stateString) || "Starting".equalsIgnoreCase(stateString)) --> Line_9 $$ mBeanServer.invoke(mbean.getObjectName(), "stop", new Object[0], new String[0]) [CD]
+Line_6 $$ for (ObjectInstance mbean : mbeanSet) --> Line_9 $$ mBeanServer.invoke(mbean.getObjectName(), "stop", new Object[0], new String[0]) [FD]

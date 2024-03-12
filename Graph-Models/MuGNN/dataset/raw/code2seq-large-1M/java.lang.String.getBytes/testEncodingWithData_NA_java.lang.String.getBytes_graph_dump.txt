@@ -1,0 +1,8 @@
+Line_2 $$ public void testEncodingWithData() throws IOException --> Line_3 $$ final RELPFrame frame = new RELPFrame.Builder().txnr(1).command("rsp").dataLength(5).data("12345".getBytes(StandardCharsets.UTF_8)).build() [CD]
+Line_2 $$ public void testEncodingWithData() throws IOException --> Line_4 $$ final RELPEncoder encoder = new RELPEncoder(StandardCharsets.UTF_8) [CD]
+Line_2 $$ public void testEncodingWithData() throws IOException --> Line_5 $$ final byte[] result = encoder.encode(frame) [CD]
+Line_4 $$ final RELPEncoder encoder = new RELPEncoder(StandardCharsets.UTF_8) --> Line_5 $$ final byte[] result = encoder.encode(frame) [FD]
+Line_3 $$ final RELPFrame frame = new RELPFrame.Builder().txnr(1).command("rsp").dataLength(5).data("12345".getBytes(StandardCharsets.UTF_8)).build() --> Line_5 $$ final byte[] result = encoder.encode(frame) [FD]
+Line_2 $$ public void testEncodingWithData() throws IOException --> Line_6 $$ final String expected = "1 rsp 5 12345\n" [CD]
+Line_2 $$ public void testEncodingWithData() throws IOException --> Line_7 $$ Assert.assertEquals(expected, new String(result, StandardCharsets.UTF_8)) [CD]
+Line_6 $$ final String expected = "1 rsp 5 12345\n" --> Line_7 $$ Assert.assertEquals(expected, new String(result, StandardCharsets.UTF_8)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void getConfigShouldLoadCumulatedConfiguration() --> Line_3 $$ Properties result = clusterConnection.getConfig("*max-*-entries*") [CD]
+Line_2 $$ public void getConfigShouldLoadCumulatedConfiguration() --> Line_4 $$ assertThat(result.size() % 3, is(0)) [CD]
+Line_3 $$ Properties result = clusterConnection.getConfig("*max-*-entries*") --> Line_4 $$ assertThat(result.size() % 3, is(0)) [FD]
+Line_3 $$ Properties result = clusterConnection.getConfig("*max-*-entries*") --> Line_5 $$ for (Object o : result.keySet()) [FD]
+Line_5 $$ for (Object o : result.keySet()) --> Line_6 $$ assertThat(o.toString(), startsWith(CLUSTER_HOST)) [FD]
+Line_3 $$ Properties result = clusterConnection.getConfig("*max-*-entries*") --> Line_7 $$ assertThat(result.getProperty(o.toString()), not(startsWith(CLUSTER_HOST))) [FD]
+Line_5 $$ for (Object o : result.keySet()) --> Line_7 $$ assertThat(result.getProperty(o.toString()), not(startsWith(CLUSTER_HOST))) [FD]

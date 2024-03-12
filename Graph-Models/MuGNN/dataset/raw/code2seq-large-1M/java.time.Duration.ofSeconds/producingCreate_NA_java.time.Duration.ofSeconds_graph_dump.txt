@@ -1,0 +1,4 @@
+Line_2 $$ public void producingCreate() --> Line_3 $$ Flux<String> bridge = Flux.create( sink -> [CD]
+Line_8 $$ for (String s : chunk) --> Line_9 $$ sink.next(s) [FD]
+Line_4 $$ myEventProcessor.register(new MyEventListener<String>() --> Line_13 $$ sink.complete() [CD]
+Line_2 $$ public void producingCreate() --> Line_17 $$ StepVerifier.withVirtualTime(() -> bridge).expectSubscription().expectNoEvent(Duration.ofSeconds(10)).then(() -> myEventProcessor.dataChunk("foo", "bar", "baz")).expectNext("foo", "bar", "baz").expectNoEvent(Duration.ofSeconds(10)).then(() -> myEventProcessor.processComplete()).verifyComplete() [CD]

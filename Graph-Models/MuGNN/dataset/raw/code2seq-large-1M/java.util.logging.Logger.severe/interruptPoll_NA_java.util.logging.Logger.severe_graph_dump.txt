@@ -1,0 +1,6 @@
+Line_6 $$ if (serverPollset != 0) --> Line_7 $$ rc = Poll.interrupt(serverPollset) [CD]
+Line_4 $$ int rc = Status.APR_SUCCESS --> Line_7 $$ rc = Poll.interrupt(serverPollset) [FD]
+Line_6 $$ if (serverPollset != 0) --> Line_9 $$ log.severe("Interrupt with closed pollset") [CD]
+Line_4 $$ int rc = Status.APR_SUCCESS --> Line_12 $$ if (rc != Status.APR_SUCCESS) [FD]
+Line_7 $$ rc = Poll.interrupt(serverPollset) --> Line_12 $$ if (rc != Status.APR_SUCCESS) [FD]
+Line_12 $$ if (rc != Status.APR_SUCCESS) --> Line_13 $$ log.severe("Failed interrupt and not thread safe") [CD]

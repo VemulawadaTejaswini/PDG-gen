@@ -1,0 +1,7 @@
+Line_2 $$ public void testImportRelationshipsWithNonIndexedNodes() throws Exception --> Line_3 $$ when(index.get("node", "a")).thenReturn(new LongIterableIndexHits(asList(1L))) [CD]
+Line_2 $$ public void testImportRelationshipsWithNonIndexedNodes() throws Exception --> Line_4 $$ when(index.get("node", "b")).thenReturn(new LongIterableIndexHits(Arrays.<Long>asList())) [CD]
+Line_2 $$ public void testImportRelationshipsWithNonIndexedNodes() throws Exception --> Line_5 $$ importer.importRelationships(new StringReader("node:string:index-a\tnode:string:index-a\ttype\na\ta\tTYPE\na\tb\tTYPE\nb\ta\tTYPE")) [CD]
+Line_2 $$ public void testImportRelationshipsWithNonIndexedNodes() throws Exception --> Line_6 $$ importer.finish() [CD]
+Line_2 $$ public void testImportRelationshipsWithNonIndexedNodes() throws Exception --> Line_7 $$ verify(inserter, times(1)).createRelationship(eq(1L), eq(1L), argThat(new RelationshipMatcher("TYPE")), eq(map())) [CD]
+Line_2 $$ public void testImportRelationshipsWithNonIndexedNodes() throws Exception --> Line_8 $$ verify(inserter, never()).createRelationship(eq(1L), eq(-1L), argThat(new RelationshipMatcher("TYPE")), eq(map())) [CD]
+Line_2 $$ public void testImportRelationshipsWithNonIndexedNodes() throws Exception --> Line_9 $$ verify(inserter, never()).createRelationship(eq(-1L), eq(1L), argThat(new RelationshipMatcher("TYPE")), eq(map())) [CD]

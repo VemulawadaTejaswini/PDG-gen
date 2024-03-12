@@ -1,0 +1,6 @@
+Line_2 $$ public CompletableFuture<Long> getLatency() --> Line_3 $$ DiagnosticCallback callback = new DiagnosticCallback() [CD]
+Line_5 $$ RowMap rowMap = new RowMap("insert", config.databaseName, "dummy", System.currentTimeMillis(), new ArrayList(), positionStoreThread.getPosition()) --> Line_6 $$ rowMap.setTXCommit() [FD]
+Line_5 $$ RowMap rowMap = new RowMap("insert", config.databaseName, "dummy", System.currentTimeMillis(), new ArrayList(), positionStoreThread.getPosition()) --> Line_7 $$ ProducerRecord<String, String> record = producer.makeProducerRecord(rowMap) [FD]
+Line_7 $$ ProducerRecord<String, String> record = producer.makeProducerRecord(rowMap) --> Line_8 $$ producer.sendAsync(record, callback) [FD]
+Line_3 $$ DiagnosticCallback callback = new DiagnosticCallback() --> Line_8 $$ producer.sendAsync(record, callback) [FD]
+Line_2 $$ public CompletableFuture<Long> getLatency() --> Line_12 $$ return callback.latency [CD]

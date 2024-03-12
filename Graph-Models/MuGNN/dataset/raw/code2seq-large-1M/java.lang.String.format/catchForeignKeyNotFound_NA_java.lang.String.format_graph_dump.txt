@@ -1,0 +1,5 @@
+Line_2 $$ public <T> T catchForeignKeyNotFound(NewResourceAction<T> function, String messageFormat, Object... messageParameters) throws ResourceNotFoundException, ResourceConflictException --> Line_4 $$ return function.call() [FD]
+Line_6 $$ if (ex.getCause() instanceof SQLException) --> Line_7 $$ SQLException sqlEx = (SQLException) ex.getCause() [CD]
+Line_6 $$ if (ex.getCause() instanceof SQLException) --> Line_8 $$ if (isForeignKeyException(sqlEx)) [CD]
+Line_7 $$ SQLException sqlEx = (SQLException) ex.getCause() --> Line_8 $$ if (isForeignKeyException(sqlEx)) [FD]
+Line_2 $$ public <T> T catchForeignKeyNotFound(NewResourceAction<T> function, String messageFormat, Object... messageParameters) throws ResourceNotFoundException, ResourceConflictException --> Line_9 $$ throw new ResourceNotFoundException("Resource not found: " + String.format(messageFormat, messageParameters)) [FD]

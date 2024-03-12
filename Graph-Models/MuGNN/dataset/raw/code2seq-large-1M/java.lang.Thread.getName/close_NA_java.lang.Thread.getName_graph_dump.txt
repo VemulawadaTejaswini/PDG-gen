@@ -1,0 +1,8 @@
+Line_2 $$ boolean close(SimpleServerRpcConnection connection) --> Line_3 $$ boolean exists = remove(connection) [FD]
+Line_2 $$ boolean close(SimpleServerRpcConnection connection) --> Line_3 $$ boolean exists = remove(connection) [CD]
+Line_2 $$ boolean close(SimpleServerRpcConnection connection) --> Line_4 $$ if (exists) [CD]
+Line_4 $$ if (exists) --> Line_5 $$ if (LOG.isTraceEnabled()) [CD]
+Line_5 $$ if (LOG.isTraceEnabled()) --> Line_6 $$ LOG.trace(Thread.currentThread().getName() + ": disconnecting client " + connection + ". Number of active connections: " + size()) [CD]
+Line_4 $$ if (exists) --> Line_8 $$ connection.close() [CD]
+Line_2 $$ boolean close(SimpleServerRpcConnection connection) --> Line_8 $$ connection.close() [FD]
+Line_2 $$ boolean close(SimpleServerRpcConnection connection) --> Line_10 $$ return exists [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private NanoHTTPD.Response downloadFileData(String fileName) --> Line_3 $$ File file = new File(Environment.getExternalStorageDirectory(), fileName) [CD]
+Line_2 $$ private NanoHTTPD.Response downloadFileData(String fileName) --> Line_4 $$ if (!file.exists()) [CD]
+Line_3 $$ File file = new File(Environment.getExternalStorageDirectory(), fileName) --> Line_4 $$ if (!file.exists()) [FD]
+Line_4 $$ if (!file.exists()) --> Line_5 $$ return RemoteServer.createPlainTextResponse(NanoHTTPD.Response.Status.NOT_FOUND, "Error 404, file not found.") [CD]
+Line_8 $$ InputStream inputStream = new FileInputStream(file) --> Line_9 $$ return RemoteServer.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.getMimeTypeForFile(file.getName()) + "; charset=utf-8", inputStream, (long) inputStream.available()) [FD]
+Line_3 $$ File file = new File(Environment.getExternalStorageDirectory(), fileName) --> Line_9 $$ return RemoteServer.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.getMimeTypeForFile(file.getName()) + "; charset=utf-8", inputStream, (long) inputStream.available()) [FD]

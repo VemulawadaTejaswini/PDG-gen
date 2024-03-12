@@ -1,0 +1,6 @@
+Line_2 $$ public void testNonStreamedBatch() --> Line_3 $$ GridTestUtils.assertThrows(null, new Callable<Object>() [CD]
+Line_5 $$ try (Connection conn = createOrdinaryConnection()) --> Line_6 $$ try (Statement s = conn.createStatement()) [FD]
+Line_6 $$ try (Statement s = conn.createStatement()) --> Line_7 $$ for (int i = 1; i <= 10; i++) s.addBatch(String.format("insert into Person(\"id\", \"name\")values (%d, '%s')", i, nameForId(i))) [FD]
+Line_5 $$ try (Connection conn = createOrdinaryConnection()) --> Line_8 $$ execute(conn, "SET STREAMING 1") [FD]
+Line_6 $$ try (Statement s = conn.createStatement()) --> Line_9 $$ s.addBatch(String.format("insert into Person(\"id\", \"name\")values (%d, '%s')", 11, nameForId(11))) [FD]
+Line_3 $$ GridTestUtils.assertThrows(null, new Callable<Object>() --> Line_12 $$ return null [CD]

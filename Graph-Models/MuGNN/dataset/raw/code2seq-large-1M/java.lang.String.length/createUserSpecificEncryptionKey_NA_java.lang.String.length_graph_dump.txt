@@ -1,0 +1,8 @@
+Line_2 $$ private static String createUserSpecificEncryptionKey(String userNameKey) throws Exception --> Line_3 $$ if (userNameKey.length() != 16) [FD]
+Line_2 $$ private static String createUserSpecificEncryptionKey(String userNameKey) throws Exception --> Line_3 $$ if (userNameKey.length() != 16) [CD]
+Line_3 $$ if (userNameKey.length() != 16) --> Line_6 $$ byte[] serverKey = serverEncryptionKey.getBytes() [CD]
+Line_3 $$ if (userNameKey.length() != 16) --> Line_7 $$ byte[] userKey = userNameKey.getBytes() [CD]
+Line_2 $$ private static String createUserSpecificEncryptionKey(String userNameKey) throws Exception --> Line_7 $$ byte[] userKey = userNameKey.getBytes() [FD]
+Line_3 $$ if (userNameKey.length() != 16) --> Line_8 $$ for (int i = 0; i < userKey.length; i++) [CD]
+Line_8 $$ for (int i = 0; i < userKey.length; i++) --> Line_9 $$ userKey[i] = (byte) (userKey[i] + serverKey[i]) [CD]
+Line_3 $$ if (userNameKey.length() != 16) --> Line_11 $$ return new String(userKey, Charset.forName("US-ASCII")) [CD]

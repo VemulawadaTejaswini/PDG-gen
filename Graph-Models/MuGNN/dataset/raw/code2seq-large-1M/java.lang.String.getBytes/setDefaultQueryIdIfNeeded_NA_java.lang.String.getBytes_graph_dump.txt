@@ -1,0 +1,6 @@
+Line_2 $$ private void setDefaultQueryIdIfNeeded() --> Line_3 $$ if (this.queryDto.getQueryId() == null) [CD]
+Line_3 $$ if (this.queryDto.getQueryId() == null) --> Line_4 $$ int queryHash = (gson.toJson(queryDto) + gson.toJson(filter)).hashCode() [CD]
+Line_3 $$ if (this.queryDto.getQueryId() == null) --> Line_5 $$ String queryId = Base64.encodeToString(String.valueOf(queryHash).getBytes(), Base64.NO_PADDING | Base64.NO_WRAP) [CD]
+Line_4 $$ int queryHash = (gson.toJson(queryDto) + gson.toJson(filter)).hashCode() --> Line_5 $$ String queryId = Base64.encodeToString(String.valueOf(queryHash).getBytes(), Base64.NO_PADDING | Base64.NO_WRAP) [FD]
+Line_3 $$ if (this.queryDto.getQueryId() == null) --> Line_6 $$ this.queryDto.setQueryId(queryId) [CD]
+Line_5 $$ String queryId = Base64.encodeToString(String.valueOf(queryHash).getBytes(), Base64.NO_PADDING | Base64.NO_WRAP) --> Line_6 $$ this.queryDto.setQueryId(queryId) [FD]

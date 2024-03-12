@@ -1,0 +1,6 @@
+Line_2 $$ public void releasesConnectionAfterExecution() --> Line_3 $$ when(scriptingCommandsMock.evalSha(anyString(), any(ReturnType.class), anyInt())).thenReturn(Flux.just(ByteBuffer.wrap("FOO".getBytes()))) [CD]
+Line_2 $$ public void releasesConnectionAfterExecution() --> Line_4 $$ Flux<String> execute = executor.execute(SCRIPT, Collections.emptyList()) [CD]
+Line_2 $$ public void releasesConnectionAfterExecution() --> Line_5 $$ verify(connectionMock, never()).close() [CD]
+Line_2 $$ public void releasesConnectionAfterExecution() --> Line_6 $$ StepVerifier.create(execute).expectNext("FOO").verifyComplete() [CD]
+Line_4 $$ Flux<String> execute = executor.execute(SCRIPT, Collections.emptyList()) --> Line_6 $$ StepVerifier.create(execute).expectNext("FOO").verifyComplete() [FD]
+Line_2 $$ public void releasesConnectionAfterExecution() --> Line_7 $$ verify(connectionMock).close() [CD]

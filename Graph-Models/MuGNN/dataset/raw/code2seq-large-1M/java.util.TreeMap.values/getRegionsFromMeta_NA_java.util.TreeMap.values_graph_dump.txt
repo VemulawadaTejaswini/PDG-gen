@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized ImmutableList<RegionInfo> getRegionsFromMeta() --> Line_3 $$ if (regionsFromMeta == null) [CD]
+Line_3 $$ if (regionsFromMeta == null) --> Line_4 $$ List<RegionInfo> regions = new ArrayList() [CD]
+Line_5 $$ for (HbckInfo h : HBaseFsck.this.regionInfoMap.values()) --> Line_6 $$ if (tableName.equals(h.getTableName())) [FD]
+Line_6 $$ if (tableName.equals(h.getTableName())) --> Line_7 $$ if (h.metaEntry != null) [CD]
+Line_4 $$ List<RegionInfo> regions = new ArrayList() --> Line_8 $$ regions.add(h.metaEntry) [FD]
+Line_3 $$ if (regionsFromMeta == null) --> Line_12 $$ regionsFromMeta = Ordering.from(RegionInfo.COMPARATOR).immutableSortedCopy(regions) [CD]
+Line_4 $$ List<RegionInfo> regions = new ArrayList() --> Line_12 $$ regionsFromMeta = Ordering.from(RegionInfo.COMPARATOR).immutableSortedCopy(regions) [FD]
+Line_2 $$ public synchronized ImmutableList<RegionInfo> getRegionsFromMeta() --> Line_14 $$ return regionsFromMeta [CD]

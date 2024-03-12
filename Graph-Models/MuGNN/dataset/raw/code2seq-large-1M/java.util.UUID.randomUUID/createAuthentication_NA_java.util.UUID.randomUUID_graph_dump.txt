@@ -1,0 +1,8 @@
+Line_2 $$ protected Authentication createAuthentication() --> Line_3 $$ UUID uuid = UUID.randomUUID() [CD]
+Line_2 $$ protected Authentication createAuthentication() --> Line_4 $$ UUID credentials = UUID.randomUUID() [CD]
+Line_2 $$ protected Authentication createAuthentication() --> Line_5 $$ UserIndexKey principal = new UserIndexKey(UserIndexTypes.WEB, uuid.toString()) [CD]
+Line_3 $$ UUID uuid = UUID.randomUUID() --> Line_5 $$ UserIndexKey principal = new UserIndexKey(UserIndexTypes.WEB, uuid.toString()) [FD]
+Line_2 $$ protected Authentication createAuthentication() --> Line_6 $$ IndexedUserDetails details = _userDetailsService.getOrCreateUserForIndexKey(principal, credentials.toString(), true) [CD]
+Line_5 $$ UserIndexKey principal = new UserIndexKey(UserIndexTypes.WEB, uuid.toString()) --> Line_6 $$ IndexedUserDetails details = _userDetailsService.getOrCreateUserForIndexKey(principal, credentials.toString(), true) [FD]
+Line_4 $$ UUID credentials = UUID.randomUUID() --> Line_6 $$ IndexedUserDetails details = _userDetailsService.getOrCreateUserForIndexKey(principal, credentials.toString(), true) [FD]
+Line_2 $$ protected Authentication createAuthentication() --> Line_7 $$ return new DefaultUserAuthenticationToken(details) [CD]

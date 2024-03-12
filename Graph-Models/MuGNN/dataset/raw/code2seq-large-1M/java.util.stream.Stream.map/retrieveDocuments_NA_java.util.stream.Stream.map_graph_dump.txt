@@ -1,0 +1,8 @@
+Line_2 $$ private void retrieveDocuments(State currentState, long lastUpdateQueryTime) --> Line_3 $$ Stream<Operation> queryOps = currentState.sourceURIs.stream().map(( sourceURI) -> [CD]
+Line_2 $$ private void retrieveDocuments(State currentState, long lastUpdateQueryTime) --> Line_4 $$ Operation queryOp = Operation.createPost(UriUtils.buildUri(sourceURI, ServiceUriPaths.CORE_LOCAL_QUERY_TASKS)).setBody(retrieveDocumentsQuery(currentState)) [FD]
+Line_4 $$ Operation queryOp = Operation.createPost(UriUtils.buildUri(sourceURI, ServiceUriPaths.CORE_LOCAL_QUERY_TASKS)).setBody(retrieveDocumentsQuery(currentState)) --> Line_5 $$ AuthenticationUtils.addSystemUserAuthcontext(queryOp, getSystemAuthorizationContext()) [FD]
+Line_2 $$ private void retrieveDocuments(State currentState, long lastUpdateQueryTime) --> Line_8 $$ OperationJoin.create(queryOps).setCompletion(( ops,  exs) -> [CD]
+Line_3 $$ Stream<Operation> queryOps = currentState.sourceURIs.stream().map(( sourceURI) -> --> Line_8 $$ OperationJoin.create(queryOps).setCompletion(( ops,  exs) -> [FD]
+Line_10 $$ if (exs != null && !exs.isEmpty()) --> Line_11 $$ failTask(exs) [CD]
+Line_10 $$ if (exs != null && !exs.isEmpty()) --> Line_13 $$ processQueryOps(currentState, ops.values(), lastUpdateQueryTime) [CD]
+Line_2 $$ private void retrieveDocuments(State currentState, long lastUpdateQueryTime) --> Line_13 $$ processQueryOps(currentState, ops.values(), lastUpdateQueryTime) [FD]

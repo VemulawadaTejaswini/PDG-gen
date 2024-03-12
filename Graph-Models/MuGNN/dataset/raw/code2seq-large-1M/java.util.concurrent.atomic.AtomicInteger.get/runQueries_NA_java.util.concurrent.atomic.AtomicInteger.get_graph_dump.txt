@@ -1,0 +1,7 @@
+Line_2 $$ private static int runQueries(PredicateIndex index, Stream<PredicateQuery> queries, String outputFile) throws IOException --> Line_5 $$ PredicateIndex.Searcher searcher = index.searcher() [FD]
+Line_2 $$ private static int runQueries(PredicateIndex index, Stream<PredicateQuery> queries, String outputFile) throws IOException --> Line_6 $$ return queries.map(searcher::<>search).peek( hits -> [FD]
+Line_4 $$ AtomicInteger i = new AtomicInteger() --> Line_7 $$ if (i.get() % 500 == 0) [FD]
+Line_7 $$ if (i.get() % 500 == 0) --> Line_8 $$ index.rebuildPostingListCache() [CD]
+Line_2 $$ private static int runQueries(PredicateIndex index, Stream<PredicateQuery> queries, String outputFile) throws IOException --> Line_8 $$ index.rebuildPostingListCache() [FD]
+Line_3 $$ try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile, false))) --> Line_10 $$ writeHits(i.getAndIncrement(), hits, writer) [FD]
+Line_4 $$ AtomicInteger i = new AtomicInteger() --> Line_10 $$ writeHits(i.getAndIncrement(), hits, writer) [FD]

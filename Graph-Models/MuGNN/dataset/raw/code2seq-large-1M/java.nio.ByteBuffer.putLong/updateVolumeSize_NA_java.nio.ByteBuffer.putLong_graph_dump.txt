@@ -1,0 +1,8 @@
+Line_2 $$ protected void updateVolumeSize(long diff, AtomicDBUpdate update) throws DatabaseException --> Line_3 $$ long newSize = getVolumeSize() + diff [CD]
+Line_2 $$ protected void updateVolumeSize(long diff, AtomicDBUpdate update) throws DatabaseException --> Line_4 $$ byte[] sizeBytes = new byte[8] [CD]
+Line_2 $$ protected void updateVolumeSize(long diff, AtomicDBUpdate update) throws DatabaseException --> Line_5 $$ ByteBuffer.wrap(sizeBytes).putLong(0, newSize) [CD]
+Line_3 $$ long newSize = getVolumeSize() + diff --> Line_5 $$ ByteBuffer.wrap(sizeBytes).putLong(0, newSize) [FD]
+Line_4 $$ byte[] sizeBytes = new byte[8] --> Line_5 $$ ByteBuffer.wrap(sizeBytes).putLong(0, newSize) [FD]
+Line_2 $$ protected void updateVolumeSize(long diff, AtomicDBUpdate update) throws DatabaseException --> Line_6 $$ update.addUpdate(VOLUME_INDEX, VOL_SIZE_KEY, sizeBytes) [CD]
+Line_2 $$ protected void updateVolumeSize(long diff, AtomicDBUpdate update) throws DatabaseException --> Line_6 $$ update.addUpdate(VOLUME_INDEX, VOL_SIZE_KEY, sizeBytes) [FD]
+Line_4 $$ byte[] sizeBytes = new byte[8] --> Line_6 $$ update.addUpdate(VOLUME_INDEX, VOL_SIZE_KEY, sizeBytes) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ private String createMonitoringWatch() throws Exception --> Line_3 $$ String clusterUUID = getClusterUUID() [CD]
+Line_2 $$ private String createMonitoringWatch() throws Exception --> Line_4 $$ String watchId = clusterUUID + "_kibana_version_mismatch" [CD]
+Line_2 $$ private String createMonitoringWatch() throws Exception --> Line_5 $$ String sampleWatch = WatchSourceBuilders.watchBuilder().trigger(TriggerBuilders.schedule(new IntervalSchedule(new IntervalSchedule.Interval(1000, MINUTES)))).input(simpleInput()).addAction("logme", ActionBuilders.loggingAction("foo")).buildAsBytes(XContentType.JSON).utf8ToString() [CD]
+Line_2 $$ private String createMonitoringWatch() throws Exception --> Line_6 $$ client().performRequest("PUT", "_xpack/watcher/watch/" + watchId, Collections.emptyMap(), new StringEntity(sampleWatch, ContentType.APPLICATION_JSON)) [CD]
+Line_2 $$ private String createMonitoringWatch() throws Exception --> Line_7 $$ return watchId [CD]

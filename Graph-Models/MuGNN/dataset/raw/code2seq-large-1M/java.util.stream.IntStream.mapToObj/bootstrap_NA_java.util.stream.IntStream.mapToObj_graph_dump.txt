@@ -1,0 +1,4 @@
+Line_2 $$ public void bootstrap(List<ZoneId> zones) --> Line_3 $$ nodeRepository().clear() [CD]
+Line_5 $$ for (SystemApplication application : SystemApplication.all()) --> Line_6 $$ List<Node> nodes = IntStream.rangeClosed(1, 3).mapToObj( i -> new Node(HostName.from("node-" + i + "-" + application.id().application().value()), Node.State.active, application.nodeType(), Optional.of(application.id()), initialVersion, initialVersion)).collect(Collectors.toList()) [FD]
+Line_4 $$ for (ZoneId zone : zones) --> Line_7 $$ nodeRepository().add(zone, nodes) [FD]
+Line_6 $$ List<Node> nodes = IntStream.rangeClosed(1, 3).mapToObj( i -> new Node(HostName.from("node-" + i + "-" + application.id().application().value()), Node.State.active, application.nodeType(), Optional.of(application.id()), initialVersion, initialVersion)).collect(Collectors.toList()) --> Line_7 $$ nodeRepository().add(zone, nodes) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private IDataSource createIDataSourceInstance(DataSourceOperator commonDataSource) throws ApplicationBuildException --> Line_3 $$ String dataSourceClassName = commonDataSource.getDataSourceClassName() [FD]
+Line_2 $$ private IDataSource createIDataSourceInstance(DataSourceOperator commonDataSource) throws ApplicationBuildException --> Line_3 $$ String dataSourceClassName = commonDataSource.getDataSourceClassName() [CD]
+Line_2 $$ private IDataSource createIDataSourceInstance(DataSourceOperator commonDataSource) throws ApplicationBuildException --> Line_4 $$ IDataSource dataSource = null [CD]
+Line_3 $$ String dataSourceClassName = commonDataSource.getDataSourceClassName() --> Line_6 $$ Class<?> dataSourceClazz = Class.forName(dataSourceClassName, true, CQLUtils.getClassLoader()) [FD]
+Line_4 $$ IDataSource dataSource = null --> Line_7 $$ dataSource = (IDataSource) dataSourceClazz.newInstance() [FD]
+Line_6 $$ Class<?> dataSourceClazz = Class.forName(dataSourceClassName, true, CQLUtils.getClassLoader()) --> Line_7 $$ dataSource = (IDataSource) dataSourceClazz.newInstance() [FD]
+Line_9 $$ ApplicationBuildException exception = new ApplicationBuildException(ErrorCode.SEMANTICANALYZE_DATASOURCE_UNKNOWN, dataSourceClassName) --> Line_10 $$ LOG.error("Unknown dataSource, reflective operation error.", exception) [FD]
+Line_2 $$ private IDataSource createIDataSourceInstance(DataSourceOperator commonDataSource) throws ApplicationBuildException --> Line_13 $$ return dataSource [CD]

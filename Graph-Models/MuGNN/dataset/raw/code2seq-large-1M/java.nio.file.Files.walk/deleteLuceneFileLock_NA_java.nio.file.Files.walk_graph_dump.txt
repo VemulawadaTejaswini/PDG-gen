@@ -1,0 +1,7 @@
+Line_2 $$ protected void deleteLuceneFileLock(String root) throws IOException --> Line_3 $$ try (Stream<Path> files = Files.walk(Paths.get(root))) [FD]
+Line_3 $$ try (Stream<Path> files = Files.walk(Paths.get(root))) --> Line_4 $$ List<Path> locks = files.filter( f -> f.getFileName().toString().equals("node.lock")).collect(Collectors.toList()) [FD]
+Line_4 $$ List<Path> locks = files.filter( f -> f.getFileName().toString().equals("node.lock")).collect(Collectors.toList()) --> Line_5 $$ if (!locks.isEmpty()) [FD]
+Line_5 $$ if (!locks.isEmpty()) --> Line_6 $$ locks.forEach( f -> log.warn("Found lock on close, deleting: " + f)) [CD]
+Line_4 $$ List<Path> locks = files.filter( f -> f.getFileName().toString().equals("node.lock")).collect(Collectors.toList()) --> Line_6 $$ locks.forEach( f -> log.warn("Found lock on close, deleting: " + f)) [FD]
+Line_5 $$ if (!locks.isEmpty()) --> Line_7 $$ locks.forEach( f -> f.toFile().delete()) [CD]
+Line_4 $$ List<Path> locks = files.filter( f -> f.getFileName().toString().equals("node.lock")).collect(Collectors.toList()) --> Line_7 $$ locks.forEach( f -> f.toFile().delete()) [FD]

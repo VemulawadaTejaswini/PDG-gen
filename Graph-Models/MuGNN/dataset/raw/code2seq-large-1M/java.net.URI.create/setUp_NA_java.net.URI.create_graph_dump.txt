@@ -1,0 +1,4 @@
+Line_2 $$ public void setUp() throws IOException --> Line_3 $$ fileSystem = FileSystem.get(new Configuration()) [CD]
+Line_2 $$ public void setUp() throws IOException --> Line_4 $$ testDirectory = fileSystem.makeQualified(new Path(Files.createTempDir().getAbsolutePath())) [CD]
+Line_2 $$ public void setUp() throws IOException --> Line_5 $$ partitionStrategy = new PartitionStrategy.Builder().hash("username", "username_part", 2).hash("email", 3).build() [CD]
+Line_2 $$ public void setUp() throws IOException --> Line_6 $$ dataset = new FileSystemDataset.Builder<Record>().namespace("ns").name("partitioned-users").configuration(new Configuration()).uri(URI.create("test")).descriptor(new DatasetDescriptor.Builder().schema(USER_SCHEMA).location(testDirectory).partitionStrategy(partitionStrategy).build()).type(Record.class).build() [CD]

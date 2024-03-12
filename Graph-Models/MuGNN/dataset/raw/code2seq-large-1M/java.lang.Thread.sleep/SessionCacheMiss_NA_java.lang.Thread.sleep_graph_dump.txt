@@ -1,0 +1,8 @@
+Line_2 $$ public void SessionCacheMiss() throws Exception --> Line_3 $$ final SessionCache sessionCache = freshSessionCache() [CD]
+Line_2 $$ public void SessionCacheMiss() throws Exception --> Line_4 $$ final Session session = new Session("TEST_SESSION_ID", new User("TEST_USER_MISS"), "123.12.12.123") [CD]
+Line_2 $$ public void SessionCacheMiss() throws Exception --> Line_5 $$ sessionCache.addSession(session) [CD]
+Line_3 $$ final SessionCache sessionCache = freshSessionCache() --> Line_5 $$ sessionCache.addSession(session) [FD]
+Line_4 $$ final Session session = new Session("TEST_SESSION_ID", new User("TEST_USER_MISS"), "123.12.12.123") --> Line_5 $$ sessionCache.addSession(session) [FD]
+Line_2 $$ public void SessionCacheMiss() throws Exception --> Line_6 $$ Thread.sleep(200L) [CD]
+Line_2 $$ public void SessionCacheMiss() throws Exception --> Line_7 $$ assertThat(sessionCache.getSession("TEST_SESSION_ID")).isNull() [CD]
+Line_3 $$ final SessionCache sessionCache = freshSessionCache() --> Line_7 $$ assertThat(sessionCache.getSession("TEST_SESSION_ID")).isNull() [FD]

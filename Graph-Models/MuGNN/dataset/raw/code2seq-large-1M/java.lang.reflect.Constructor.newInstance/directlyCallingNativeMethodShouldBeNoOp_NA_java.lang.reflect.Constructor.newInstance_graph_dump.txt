@@ -1,0 +1,6 @@
+Line_2 $$ public void directlyCallingNativeMethodShouldBeNoOp() throws Exception --> Line_3 $$ Class<?> exampleClass = loadClass(AClassWithNativeMethod.class) [CD]
+Line_2 $$ public void directlyCallingNativeMethodShouldBeNoOp() throws Exception --> Line_4 $$ Object exampleInstance = exampleClass.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void directlyCallingNativeMethodShouldBeNoOp() throws Exception --> Line_5 $$ Method directMethod = findDirectMethod(exampleClass, "nativeMethod", String.class, int.class) [CD]
+Line_2 $$ public void directlyCallingNativeMethodShouldBeNoOp() throws Exception --> Line_6 $$ assertThat(Modifier.isNative(directMethod.getModifiers())).isFalse() [CD]
+Line_2 $$ public void directlyCallingNativeMethodShouldBeNoOp() throws Exception --> Line_7 $$ assertThat(directMethod.invoke(exampleInstance, "", 1)).isNull() [CD]
+Line_4 $$ Object exampleInstance = exampleClass.getDeclaredConstructor().newInstance() --> Line_7 $$ assertThat(directMethod.invoke(exampleInstance, "", 1)).isNull() [FD]

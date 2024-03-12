@@ -1,0 +1,8 @@
+Line_2 $$ public static CountDownLatch waitForMigration(MeshRestClient client) --> Line_3 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public static CountDownLatch waitForMigration(MeshRestClient client) --> Line_4 $$ client.eventbus( ws -> [FD]
+Line_2 $$ public static CountDownLatch waitForMigration(MeshRestClient client) --> Line_4 $$ client.eventbus( ws -> [CD]
+Line_5 $$ JsonObject msg = new JsonObject().put("type", "register").put("address", MESH_MIGRATION) --> Line_6 $$ ws.writeFinalTextFrame(msg.encode()) [FD]
+Line_9 $$ JsonObject received = new JsonObject(str) --> Line_10 $$ JsonObject rec = received.getJsonObject("body") [FD]
+Line_10 $$ JsonObject rec = received.getJsonObject("body") --> Line_11 $$ if ("completed".equalsIgnoreCase(rec.getString("type"))) [FD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_13 $$ latch.countDown() [FD]
+Line_2 $$ public static CountDownLatch waitForMigration(MeshRestClient client) --> Line_20 $$ return latch [CD]

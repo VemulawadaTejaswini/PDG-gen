@@ -1,0 +1,8 @@
+Line_2 $$ TaskResult readSuccessfulTaskReport(Path dir, String fullName) --> Line_3 $$ TaskResumeState resumeState [CD]
+Line_3 $$ TaskResumeState resumeState --> Line_5 $$ resumeState = mapper.readFile(dir.resolve(fullName + ".yml").toFile(), TaskResumeState.class) [FD]
+Line_2 $$ TaskResult readSuccessfulTaskReport(Path dir, String fullName) --> Line_5 $$ resumeState = mapper.readFile(dir.resolve(fullName + ".yml").toFile(), TaskResumeState.class) [FD]
+Line_2 $$ TaskResult readSuccessfulTaskReport(Path dir, String fullName) --> Line_11 $$ if (resumeState.getState() == TaskStateCode.SUCCESS) [CD]
+Line_3 $$ TaskResumeState resumeState --> Line_11 $$ if (resumeState.getState() == TaskStateCode.SUCCESS) [FD]
+Line_11 $$ if (resumeState.getState() == TaskStateCode.SUCCESS) --> Line_12 $$ return resumeState.getResult() [CD]
+Line_3 $$ TaskResumeState resumeState --> Line_12 $$ return resumeState.getResult() [FD]
+Line_11 $$ if (resumeState.getState() == TaskStateCode.SUCCESS) --> Line_14 $$ return null [CD]

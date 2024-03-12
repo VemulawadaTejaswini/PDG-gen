@@ -1,0 +1,7 @@
+Line_2 $$ public void removeAssessment(Long assessmentId, String action) --> Line_3 $$ PublishedAssessmentData assessment = (PublishedAssessmentData) getHibernateTemplate().load(PublishedAssessmentData.class, assessmentId) [CD]
+Line_2 $$ public void removeAssessment(Long assessmentId, String action) --> Line_3 $$ PublishedAssessmentData assessment = (PublishedAssessmentData) getHibernateTemplate().load(PublishedAssessmentData.class, assessmentId) [FD]
+Line_2 $$ public void removeAssessment(Long assessmentId, String action) --> Line_4 $$ if (action == null || action.equals("preview")) [CD]
+Line_2 $$ public void removeAssessment(Long assessmentId, String action) --> Line_4 $$ if (action == null || action.equals("preview")) [FD]
+Line_4 $$ if (action == null || action.equals("preview")) --> Line_5 $$ delete(assessment) [CD]
+Line_4 $$ if (action == null || action.equals("preview")) --> Line_6 $$ PersistenceService.getInstance().getAuthzQueriesFacade().removeAuthorizationByQualifier(assessment.getPublishedAssessmentId().toString(), true) [CD]
+Line_4 $$ if (action == null || action.equals("preview")) --> Line_8 $$ assessment.setStatus(PublishedAssessmentIfc.DEAD_STATUS) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static File mkfifo(String type) throws IOException --> Line_3 $$ File f = File.createTempFile("robovm-" + type + "-", ".fifo") [CD]
+Line_2 $$ public static File mkfifo(String type) throws IOException --> Line_4 $$ f.delete() [CD]
+Line_3 $$ File f = File.createTempFile("robovm-" + type + "-", ".fifo") --> Line_4 $$ f.delete() [FD]
+Line_2 $$ public static File mkfifo(String type) throws IOException --> Line_5 $$ ProcessBuilder pb = new ProcessBuilder("mkfifo", "-m", "600", f.getAbsolutePath()) [CD]
+Line_3 $$ File f = File.createTempFile("robovm-" + type + "-", ".fifo") --> Line_5 $$ ProcessBuilder pb = new ProcessBuilder("mkfifo", "-m", "600", f.getAbsolutePath()) [FD]
+Line_5 $$ ProcessBuilder pb = new ProcessBuilder("mkfifo", "-m", "600", f.getAbsolutePath()) --> Line_7 $$ int exitValue = pb.start().waitFor() [FD]
+Line_7 $$ int exitValue = pb.start().waitFor() --> Line_8 $$ if (exitValue != 0) [FD]
+Line_2 $$ public static File mkfifo(String type) throws IOException --> Line_14 $$ return f [CD]

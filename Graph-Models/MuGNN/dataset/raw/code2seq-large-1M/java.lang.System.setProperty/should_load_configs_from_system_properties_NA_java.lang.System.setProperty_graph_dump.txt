@@ -1,0 +1,7 @@
+Line_2 $$ public void should_load_configs_from_system_properties() throws Exception --> Line_3 $$ System.setProperty("restx.test.system.property", "v1") [CD]
+Line_2 $$ public void should_load_configs_from_system_properties() throws Exception --> Line_4 $$ Factory factory = Factory.builder().addMachine(new SystemPropertyFactoryMachine()).addMachine(new ConsolidatedConfigFactoryMachine()).build() [CD]
+Line_2 $$ public void should_load_configs_from_system_properties() throws Exception --> Line_6 $$ Optional<RestxConfig> configOptional = factory.queryByClass(RestxConfig.class).findOneAsComponent() [CD]
+Line_4 $$ Factory factory = Factory.builder().addMachine(new SystemPropertyFactoryMachine()).addMachine(new ConsolidatedConfigFactoryMachine()).build() --> Line_6 $$ Optional<RestxConfig> configOptional = factory.queryByClass(RestxConfig.class).findOneAsComponent() [FD]
+Line_2 $$ public void should_load_configs_from_system_properties() throws Exception --> Line_7 $$ assertThat(configOptional.isPresent()).isTrue() [CD]
+Line_2 $$ public void should_load_configs_from_system_properties() throws Exception --> Line_8 $$ assertThat(configOptional.get().getString("restx.test.system.property")).isEqualTo(Optional.of("v1")) [CD]
+Line_2 $$ public void should_load_configs_from_system_properties() throws Exception --> Line_9 $$ assertThat(configOptional.get().getElement("restx.test.system.property").get().getOrigin()).isEqualTo("system") [CD]

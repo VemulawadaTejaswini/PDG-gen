@@ -1,0 +1,6 @@
+Line_2 $$ public List<Boolean> testPermissions(String projectId, List<String> permissions) throws ResourceManagerException --> Line_4 $$ TestIamPermissionsResponse response = resourceManager.projects().testIamPermissions(projectId, new TestIamPermissionsRequest().setPermissions(permissions)).execute() [FD]
+Line_4 $$ TestIamPermissionsResponse response = resourceManager.projects().testIamPermissions(projectId, new TestIamPermissionsRequest().setPermissions(permissions)).execute() --> Line_5 $$ Set<String> permissionsOwned = ImmutableSet.copyOf(firstNonNull(response.getPermissions(), ImmutableList.<String>of())) [FD]
+Line_6 $$ ImmutableList.Builder<Boolean> answer = ImmutableList.builder() --> Line_8 $$ answer.add(permissionsOwned.contains(p)) [FD]
+Line_5 $$ Set<String> permissionsOwned = ImmutableSet.copyOf(firstNonNull(response.getPermissions(), ImmutableList.<String>of())) --> Line_8 $$ answer.add(permissionsOwned.contains(p)) [FD]
+Line_7 $$ for (String p : permissions) --> Line_8 $$ answer.add(permissionsOwned.contains(p)) [FD]
+Line_6 $$ ImmutableList.Builder<Boolean> answer = ImmutableList.builder() --> Line_10 $$ return answer.build() [FD]

@@ -1,0 +1,6 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_5 $$ IterativeDataSet<Integer> iteration = env.fromElements(1).iterate(10) [FD]
+Line_5 $$ IterativeDataSet<Integer> iteration = env.fromElements(1).iterate(10) --> Line_6 $$ DataSet<Integer> result = iteration.closeWith(iteration.map(new AddSuperstepNumberMapper())) [FD]
+Line_6 $$ DataSet<Integer> result = iteration.closeWith(iteration.map(new AddSuperstepNumberMapper())) --> Line_8 $$ result.output(new LocalCollectionOutputFormat<Integer>(collected)) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_9 $$ env.execute() [FD]
+Line_7 $$ List<Integer> collected = new ArrayList<Integer>() --> Line_10 $$ assertEquals(1, collected.size()) [FD]
+Line_7 $$ List<Integer> collected = new ArrayList<Integer>() --> Line_11 $$ assertEquals(56, collected.get(0).intValue()) [FD]

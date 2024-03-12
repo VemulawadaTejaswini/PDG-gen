@@ -1,0 +1,8 @@
+Line_2 $$ public void testSetQueryTimeoutDisableRace() throws SQLException --> Line_3 $$ Statement stmt = con.createStatement() [CD]
+Line_3 $$ Statement stmt = con.createStatement() --> Line_5 $$ stmt.setQueryTimeout(1) [FD]
+Line_3 $$ Statement stmt = con.createStatement() --> Line_6 $$ stmt.execute("select pg_sleep(1.1)") [FD]
+Line_8 $$ if (sqle.getSQLState() == null || sqle.getSQLState().compareTo("57014") != 0) --> Line_9 $$ fail("Should have received cancel exception") [CD]
+Line_3 $$ Statement stmt = con.createStatement() --> Line_12 $$ stmt.setQueryTimeout(0) [FD]
+Line_3 $$ Statement stmt = con.createStatement() --> Line_13 $$ stmt.execute("select pg_sleep(3)") [FD]
+Line_2 $$ public void testSetQueryTimeoutDisableRace() throws SQLException --> Line_17 $$ stmt.close() [CD]
+Line_3 $$ Statement stmt = con.createStatement() --> Line_17 $$ stmt.close() [FD]

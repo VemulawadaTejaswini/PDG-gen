@@ -1,0 +1,7 @@
+Line_2 $$ private List<Broker> fetchBrokers() --> Line_3 $$ final List<Broker> brokers = new ArrayList() [CD]
+Line_5 $$ final CuratorFramework curator = zkFactory.get() --> Line_6 $$ for (final String brokerId : curator.getChildren().forPath(BROKERS_IDS_PATH)) [FD]
+Line_5 $$ final CuratorFramework curator = zkFactory.get() --> Line_8 $$ final byte[] brokerData = curator.getData().forPath(BROKERS_IDS_PATH + "/" + brokerId) [FD]
+Line_3 $$ final List<Broker> brokers = new ArrayList() --> Line_9 $$ brokers.add(Broker.fromByteJson(brokerData)) [FD]
+Line_8 $$ final byte[] brokerData = curator.getData().forPath(BROKERS_IDS_PATH + "/" + brokerId) --> Line_9 $$ brokers.add(Broker.fromByteJson(brokerData)) [FD]
+Line_6 $$ for (final String brokerId : curator.getChildren().forPath(BROKERS_IDS_PATH)) --> Line_11 $$ LOG.info(String.format("Failed to fetch connection string for broker %s", brokerId), e) [FD]
+Line_2 $$ private List<Broker> fetchBrokers() --> Line_17 $$ return brokers [CD]

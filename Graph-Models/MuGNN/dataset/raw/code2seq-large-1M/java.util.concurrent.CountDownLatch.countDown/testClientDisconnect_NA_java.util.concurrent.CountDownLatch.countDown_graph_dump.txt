@@ -1,0 +1,5 @@
+Line_6 $$ Ignite client = startGrid(1) --> Line_8 $$ final IgniteQueue queue = client.queue(IGNITE_QUEUE_NAME, 0, collectionConfiguration(CacheAtomicityMode.ATOMIC)) [FD]
+Line_8 $$ final IgniteQueue queue = client.queue(IGNITE_QUEUE_NAME, 0, collectionConfiguration(CacheAtomicityMode.ATOMIC)) --> Line_13 $$ Object value = queue.take() [FD]
+Line_9 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_15 $$ latch.countDown() [FD]
+Line_4 $$ Ignite server = startGrid(0) --> Line_21 $$ server.close() [FD]
+Line_9 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_22 $$ boolean countReachedZero = latch.await(FAILURE_DETECTION_TIMEOUT * 2, TimeUnit.MILLISECONDS) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ private void ensureNotOnMainThread() --> Line_3 $$ final Looper looper = Looper.myLooper() [CD]
+Line_2 $$ private void ensureNotOnMainThread() --> Line_4 $$ if (looper != null && looper == Looper.getMainLooper()) [CD]
+Line_4 $$ if (looper != null && looper == Looper.getMainLooper()) --> Line_5 $$ final IllegalStateException exception = new IllegalStateException("calling this from your main thread can lead to deadlock") [CD]
+Line_4 $$ if (looper != null && looper == Looper.getMainLooper()) --> Line_6 $$ LOGGER.log(Level.WARNING, "calling this from your main thread can lead to deadlock and/or ANRs", exception) [CD]
+Line_5 $$ final IllegalStateException exception = new IllegalStateException("calling this from your main thread can lead to deadlock") --> Line_6 $$ LOGGER.log(Level.WARNING, "calling this from your main thread can lead to deadlock and/or ANRs", exception) [FD]

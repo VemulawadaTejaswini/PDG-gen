@@ -1,0 +1,8 @@
+Line_2 $$ public static <T> Collector<CompletableFuture<T>, ?, CompletableFuture<List<T>>> toFutureList() --> Line_3 $$ return Collectors.collectingAndThen(Collectors.<CompletableFuture<T>>toList(),  futures -> [CD]
+Line_7 $$ if (failure == null) --> Line_8 $$ if (resultsRemaining.decrementAndGet() == 0) [CD]
+Line_4 $$ AtomicLong resultsRemaining = new AtomicLong(futures.size()) --> Line_8 $$ if (resultsRemaining.decrementAndGet() == 0) [FD]
+Line_8 $$ if (resultsRemaining.decrementAndGet() == 0) --> Line_9 $$ result.complete(futures.stream().map(CompletableFutures::<>safeGet).collect(toList())) [CD]
+Line_5 $$ CompletableFuture<List<T>> result = new CompletableFuture() --> Line_9 $$ result.complete(futures.stream().map(CompletableFutures::<>safeGet).collect(toList())) [FD]
+Line_7 $$ if (failure == null) --> Line_12 $$ result.completeExceptionally(failure) [CD]
+Line_5 $$ CompletableFuture<List<T>> result = new CompletableFuture() --> Line_12 $$ result.completeExceptionally(failure) [FD]
+Line_6 $$ BiFunction<T, Throwable, Void> handler = ( success,  failure) -> --> Line_16 $$ future.handle(handler) [FD]

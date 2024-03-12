@@ -1,0 +1,8 @@
+Line_2 $$ public void saveNewSession() --> Line_3 $$ given(this.redisOperations.opsForHash()).willReturn(this.hashOperations) [CD]
+Line_2 $$ public void saveNewSession() --> Line_4 $$ given(this.hashOperations.putAll(anyString(), any())).willReturn(Mono.just(true)) [CD]
+Line_2 $$ public void saveNewSession() --> Line_5 $$ given(this.redisOperations.expire(anyString(), any())).willReturn(Mono.just(true)) [CD]
+Line_2 $$ public void saveNewSession() --> Line_6 $$ StepVerifier.create(this.repository.createSession().doOnNext(this.repository::<>save)).consumeNextWith( session -> [CD]
+Line_12 $$ Map<String, Object> delta = this.delta.getAllValues().get(0) --> Line_13 $$ assertThat(delta.size()).isEqualTo(3) [FD]
+Line_12 $$ Map<String, Object> delta = this.delta.getAllValues().get(0) --> Line_14 $$ assertThat(delta.get(ReactiveRedisOperationsSessionRepository.CREATION_TIME_KEY)).isEqualTo(session.getCreationTime().toEpochMilli()) [FD]
+Line_12 $$ Map<String, Object> delta = this.delta.getAllValues().get(0) --> Line_15 $$ assertThat(delta.get(ReactiveRedisOperationsSessionRepository.MAX_INACTIVE_INTERVAL_KEY)).isEqualTo((int) Duration.ofSeconds(MapSession.DEFAULT_MAX_INACTIVE_INTERVAL_SECONDS).getSeconds()) [FD]
+Line_12 $$ Map<String, Object> delta = this.delta.getAllValues().get(0) --> Line_16 $$ assertThat(delta.get(ReactiveRedisOperationsSessionRepository.LAST_ACCESSED_TIME_KEY)).isEqualTo(session.getLastAccessedTime().toEpochMilli()) [FD]

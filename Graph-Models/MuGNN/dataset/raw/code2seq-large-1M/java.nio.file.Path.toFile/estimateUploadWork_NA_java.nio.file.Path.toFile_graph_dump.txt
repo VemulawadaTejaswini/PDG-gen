@@ -1,0 +1,7 @@
+Line_2 $$ public ListenableFuture<FileTransferWorkEstimate> estimateUploadWork(@NotNull Path path, @NotNull FileTransferWorkEstimatorProgress progress) --> Line_3 $$ ListenableFuture<FileTransferWorkEstimate> futureEstimate = myTaskExecutor.executeAsync(() -> [CD]
+Line_4 $$ FileTransferWorkEstimate workEstimate = new FileTransferWorkEstimate() --> Line_5 $$ if (!estimateUploadWorkWorker(path.toFile(), workEstimate, progress)) [FD]
+Line_2 $$ public ListenableFuture<FileTransferWorkEstimate> estimateUploadWork(@NotNull Path path, @NotNull FileTransferWorkEstimatorProgress progress) --> Line_5 $$ if (!estimateUploadWorkWorker(path.toFile(), workEstimate, progress)) [FD]
+Line_5 $$ if (!estimateUploadWorkWorker(path.toFile(), workEstimate, progress)) --> Line_6 $$ return null [CD]
+Line_2 $$ public ListenableFuture<FileTransferWorkEstimate> estimateUploadWork(@NotNull Path path, @NotNull FileTransferWorkEstimatorProgress progress) --> Line_10 $$ return myTaskExecutor.transformAsync(futureEstimate,  estimate -> [CD]
+Line_3 $$ ListenableFuture<FileTransferWorkEstimate> futureEstimate = myTaskExecutor.executeAsync(() -> --> Line_10 $$ return myTaskExecutor.transformAsync(futureEstimate,  estimate -> [FD]
+Line_11 $$ if (estimate == null) --> Line_12 $$ return Futures.immediateCancelledFuture() [CD]

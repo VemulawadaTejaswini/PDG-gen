@@ -1,0 +1,5 @@
+Line_2 $$ public void testPublish() throws UnsupportedEncodingException, ExecutionException, InterruptedException --> Line_3 $$ final Message message = Message.ofEncoded("hello world") [CD]
+Line_2 $$ public void testPublish() throws UnsupportedEncodingException, ExecutionException, InterruptedException --> Line_4 $$ final List<CompletableFuture<String>> futures = range(0, 10).mapToObj( i -> publisher.publish(TOPIC, message)).collect(toList()) [CD]
+Line_3 $$ final Message message = Message.ofEncoded("hello world") --> Line_4 $$ final List<CompletableFuture<String>> futures = range(0, 10).mapToObj( i -> publisher.publish(TOPIC, message)).collect(toList()) [FD]
+Line_2 $$ public void testPublish() throws UnsupportedEncodingException, ExecutionException, InterruptedException --> Line_5 $$ futures.stream().map(Futures::<>getUnchecked).forEach( id -> out.println("message id: " + id)) [CD]
+Line_4 $$ final List<CompletableFuture<String>> futures = range(0, 10).mapToObj( i -> publisher.publish(TOPIC, message)).collect(toList()) --> Line_5 $$ futures.stream().map(Futures::<>getUnchecked).forEach( id -> out.println("message id: " + id)) [FD]

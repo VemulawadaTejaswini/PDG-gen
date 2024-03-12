@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_4 $$ conn.createStatement().execute("CREATE TABLE LONG_BUG (NAME VARCHAR PRIMARY KEY, AMOUNT DECIMAL)") [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_7 $$ conn.createStatement().execute("UPSERT INTO LONG_BUG (NAME, AMOUNT) VALUES('HELLO1', -50000)") [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_8 $$ conn.commit() [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_11 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT NAME, AMOUNT FROM LONG_BUG") [FD]
+Line_11 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT NAME, AMOUNT FROM LONG_BUG") --> Line_12 $$ assertTrue(rs.next()) [FD]
+Line_11 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT NAME, AMOUNT FROM LONG_BUG") --> Line_13 $$ assertEquals("HELLO1", rs.getString(1)) [FD]
+Line_11 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT NAME, AMOUNT FROM LONG_BUG") --> Line_14 $$ assertTrue(new BigDecimal(-50000).compareTo(rs.getBigDecimal(2)) == 0) [FD]
+Line_11 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT NAME, AMOUNT FROM LONG_BUG") --> Line_15 $$ assertFalse(rs.next()) [FD]

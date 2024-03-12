@@ -1,0 +1,8 @@
+Line_2 $$ public void testCreateDestroyValidRegion() throws InterruptedException --> Line_3 $$ Cache serverCache = getCache() [CD]
+Line_2 $$ public void testCreateDestroyValidRegion() throws InterruptedException --> Line_4 $$ serverCache.createRegionFactory(RegionShortcut.REPLICATE).create(GOOD_REGION_NAME) [CD]
+Line_3 $$ Cache serverCache = getCache() --> Line_4 $$ serverCache.createRegionFactory(RegionShortcut.REPLICATE).create(GOOD_REGION_NAME) [FD]
+Line_3 $$ Cache serverCache = getCache() --> Line_6 $$ startServer(serverCache) [FD]
+Line_2 $$ public void testCreateDestroyValidRegion() throws InterruptedException --> Line_10 $$ client1.invoke(() -> [CD]
+Line_11 $$ ClientCache cache = new ClientCacheFactory(createClientProperties()).setPoolSubscriptionEnabled(true).addPoolServer("localhost", serverPort).create() --> Line_12 $$ Region region = cache.createClientRegionFactory(ClientRegionShortcut.PROXY).create(GOOD_REGION_NAME) [FD]
+Line_12 $$ Region region = cache.createClientRegionFactory(ClientRegionShortcut.PROXY).create(GOOD_REGION_NAME) --> Line_13 $$ region.destroyRegion() [FD]
+Line_12 $$ Region region = cache.createClientRegionFactory(ClientRegionShortcut.PROXY).create(GOOD_REGION_NAME) --> Line_14 $$ assertThat(region.isDestroyed()).isTrue() [FD]

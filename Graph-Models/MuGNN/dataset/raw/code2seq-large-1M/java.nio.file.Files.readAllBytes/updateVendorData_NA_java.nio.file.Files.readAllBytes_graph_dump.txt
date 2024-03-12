@@ -1,0 +1,5 @@
+Line_2 $$ public Response updateVendorData(@PathParam("deviceName") String deviceName, File file) --> Line_3 $$ logRequest() [CD]
+Line_2 $$ public Response updateVendorData(@PathParam("deviceName") String deviceName, File file) --> Line_5 $$ ConfigurationChanges diffs = conf.updateDeviceVendorData(deviceName, Files.readAllBytes(file.toPath())) [FD]
+Line_5 $$ ConfigurationChanges diffs = conf.updateDeviceVendorData(deviceName, Files.readAllBytes(file.toPath())) --> Line_6 $$ if (!diffs.isEmpty()) [FD]
+Line_6 $$ if (!diffs.isEmpty()) --> Line_7 $$ softwareConfigurationEvent.fire(new SoftwareConfiguration(request, deviceName, diffs)) [CD]
+Line_2 $$ public Response updateVendorData(@PathParam("deviceName") String deviceName, File file) --> Line_13 $$ return Response.ok().status(Response.Status.NO_CONTENT).build() [CD]

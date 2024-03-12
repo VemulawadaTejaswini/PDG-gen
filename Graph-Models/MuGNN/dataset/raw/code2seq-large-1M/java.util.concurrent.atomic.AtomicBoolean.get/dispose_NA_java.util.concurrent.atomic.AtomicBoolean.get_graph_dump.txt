@@ -1,0 +1,8 @@
+Line_2 $$ public void dispose(T instance) --> Line_3 $$ for (int i = 0; i < MAX_SIMULTANEOUS_ALLOCATIONS; ++i) [CD]
+Line_3 $$ for (int i = 0; i < MAX_SIMULTANEOUS_ALLOCATIONS; ++i) --> Line_4 $$ if (myObjects[i] == instance) [CD]
+Line_2 $$ public void dispose(T instance) --> Line_4 $$ if (myObjects[i] == instance) [FD]
+Line_4 $$ if (myObjects[i] == instance) --> Line_5 $$ if (!myEmployed[i].get()) [CD]
+Line_4 $$ if (myObjects[i] == instance) --> Line_8 $$ myDisposer.disposeInstance(instance) [CD]
+Line_2 $$ public void dispose(T instance) --> Line_8 $$ myDisposer.disposeInstance(instance) [FD]
+Line_4 $$ if (myObjects[i] == instance) --> Line_9 $$ myEmployed[i].set(false) [CD]
+Line_4 $$ if (myObjects[i] == instance) --> Line_10 $$ return [CD]

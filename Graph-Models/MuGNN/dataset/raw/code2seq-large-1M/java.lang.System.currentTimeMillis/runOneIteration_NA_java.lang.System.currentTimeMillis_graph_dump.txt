@@ -1,0 +1,8 @@
+Line_2 $$ protected void runOneIteration() throws Exception --> Line_3 $$ LiteJobConfiguration config = configService.load(true) [CD]
+Line_2 $$ protected void runOneIteration() throws Exception --> Line_4 $$ int reconcileIntervalMinutes = null == config ? -1 : config.getReconcileIntervalMinutes() [CD]
+Line_3 $$ LiteJobConfiguration config = configService.load(true) --> Line_4 $$ int reconcileIntervalMinutes = null == config ? -1 : config.getReconcileIntervalMinutes() [FD]
+Line_2 $$ protected void runOneIteration() throws Exception --> Line_5 $$ if (reconcileIntervalMinutes > 0 && (System.currentTimeMillis() - lastReconcileTime >= reconcileIntervalMinutes * 60 * 1000)) [CD]
+Line_5 $$ if (reconcileIntervalMinutes > 0 && (System.currentTimeMillis() - lastReconcileTime >= reconcileIntervalMinutes * 60 * 1000)) --> Line_6 $$ lastReconcileTime = System.currentTimeMillis() [CD]
+Line_5 $$ if (reconcileIntervalMinutes > 0 && (System.currentTimeMillis() - lastReconcileTime >= reconcileIntervalMinutes * 60 * 1000)) --> Line_7 $$ if (leaderService.isLeaderUntilBlock() && !shardingService.isNeedSharding() && shardingService.hasShardingInfoInOfflineServers()) [CD]
+Line_7 $$ if (leaderService.isLeaderUntilBlock() && !shardingService.isNeedSharding() && shardingService.hasShardingInfoInOfflineServers()) --> Line_8 $$ log.warn("Elastic Job: job status node has inconsistent value,start reconciling...") [CD]
+Line_7 $$ if (leaderService.isLeaderUntilBlock() && !shardingService.isNeedSharding() && shardingService.hasShardingInfoInOfflineServers()) --> Line_9 $$ shardingService.setReshardingFlag() [CD]

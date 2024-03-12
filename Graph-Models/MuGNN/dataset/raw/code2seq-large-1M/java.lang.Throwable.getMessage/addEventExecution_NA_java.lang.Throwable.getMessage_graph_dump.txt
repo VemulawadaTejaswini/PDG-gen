@@ -1,0 +1,8 @@
+Line_2 $$ public void addEventExecution(EventExecution eventExecution) --> Line_4 $$ byte[] doc = objectMapper.writeValueAsBytes(eventExecution) [FD]
+Line_2 $$ public void addEventExecution(EventExecution eventExecution) --> Line_5 $$ String id = eventExecution.getName() + "." + eventExecution.getEvent() + "." + eventExecution.getMessageId() + "." + eventExecution.getId() [FD]
+Line_6 $$ UpdateRequest req = new UpdateRequest(logIndexName, EVENT_DOC_TYPE, id) --> Line_7 $$ req.doc(doc) [FD]
+Line_4 $$ byte[] doc = objectMapper.writeValueAsBytes(eventExecution) --> Line_7 $$ req.doc(doc) [FD]
+Line_6 $$ UpdateRequest req = new UpdateRequest(logIndexName, EVENT_DOC_TYPE, id) --> Line_8 $$ req.upsert(doc) [FD]
+Line_4 $$ byte[] doc = objectMapper.writeValueAsBytes(eventExecution) --> Line_8 $$ req.upsert(doc) [FD]
+Line_6 $$ UpdateRequest req = new UpdateRequest(logIndexName, EVENT_DOC_TYPE, id) --> Line_9 $$ req.retryOnConflict(5) [FD]
+Line_6 $$ UpdateRequest req = new UpdateRequest(logIndexName, EVENT_DOC_TYPE, id) --> Line_10 $$ updateWithRetry(req, "Update Event execution for doc_type event") [FD]

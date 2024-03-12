@@ -1,0 +1,8 @@
+Line_2 $$ private final Map<Integer, IDocMetaInfo> loadDocMetaInfo() --> Line_3 $$ final List<Integer> tableIds = Services.get(IQueryBL.class).createQueryBuilder(I_AD_Column.class, Env.getCtx(), ITrx.TRXNAME_None).addOnlyActiveRecordsFilter().addEqualsFilter(I_AD_Column.COLUMN_ColumnName, "Posted").andCollect(I_AD_Column.COLUMN_AD_Table_ID).addOnlyActiveRecordsFilter().addEqualsFilter(I_AD_Table.COLUMNNAME_IsView, false).create().listIds() [CD]
+Line_2 $$ private final Map<Integer, IDocMetaInfo> loadDocMetaInfo() --> Line_5 $$ final Map<Integer, IDocMetaInfo> tableId2docMetaInfo = new HashMap(tableIds.size()) [CD]
+Line_6 $$ for (final int adTableId : tableIds) --> Line_7 $$ final IDocMetaInfo docMetaData = createDocMetaInfoOrNull(adTableId) [FD]
+Line_7 $$ final IDocMetaInfo docMetaData = createDocMetaInfoOrNull(adTableId) --> Line_8 $$ if (docMetaData == null) [FD]
+Line_5 $$ final Map<Integer, IDocMetaInfo> tableId2docMetaInfo = new HashMap(tableIds.size()) --> Line_11 $$ tableId2docMetaInfo.put(adTableId, docMetaData) [FD]
+Line_6 $$ for (final int adTableId : tableIds) --> Line_11 $$ tableId2docMetaInfo.put(adTableId, docMetaData) [FD]
+Line_7 $$ final IDocMetaInfo docMetaData = createDocMetaInfoOrNull(adTableId) --> Line_11 $$ tableId2docMetaInfo.put(adTableId, docMetaData) [FD]
+Line_2 $$ private final Map<Integer, IDocMetaInfo> loadDocMetaInfo() --> Line_13 $$ return tableId2docMetaInfo [CD]

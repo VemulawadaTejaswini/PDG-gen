@@ -1,0 +1,7 @@
+Line_2 $$ public List<FeedCapacity> findFeedsExceedingCapacity(long maxCapacity, long max) --> Line_3 $$ NumberExpression<Long> count = entry.id.count() [CD]
+Line_2 $$ public List<FeedCapacity> findFeedsExceedingCapacity(long maxCapacity, long max) --> Line_4 $$ List<Tuple> tuples = query().select(entry.feed.id, count).from(entry).groupBy(entry.feed).having(count.gt(maxCapacity)).limit(max).fetch() [CD]
+Line_2 $$ public List<FeedCapacity> findFeedsExceedingCapacity(long maxCapacity, long max) --> Line_4 $$ List<Tuple> tuples = query().select(entry.feed.id, count).from(entry).groupBy(entry.feed).having(count.gt(maxCapacity)).limit(max).fetch() [FD]
+Line_3 $$ NumberExpression<Long> count = entry.id.count() --> Line_4 $$ List<Tuple> tuples = query().select(entry.feed.id, count).from(entry).groupBy(entry.feed).having(count.gt(maxCapacity)).limit(max).fetch() [FD]
+Line_2 $$ public List<FeedCapacity> findFeedsExceedingCapacity(long maxCapacity, long max) --> Line_5 $$ return tuples.stream().map( t -> new FeedCapacity(t.get(entry.feed.id), t.get(count))).collect(Collectors.toList()) [CD]
+Line_4 $$ List<Tuple> tuples = query().select(entry.feed.id, count).from(entry).groupBy(entry.feed).having(count.gt(maxCapacity)).limit(max).fetch() --> Line_5 $$ return tuples.stream().map( t -> new FeedCapacity(t.get(entry.feed.id), t.get(count))).collect(Collectors.toList()) [FD]
+Line_3 $$ NumberExpression<Long> count = entry.id.count() --> Line_5 $$ return tuples.stream().map( t -> new FeedCapacity(t.get(entry.feed.id), t.get(count))).collect(Collectors.toList()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testPublishReconnectingPendingBufferTooLarge() throws Exception --> Line_3 $$ thrown.expect(IOException.class) [CD]
+Line_2 $$ public void testPublishReconnectingPendingBufferTooLarge() throws Exception --> Line_4 $$ thrown.expectMessage(Nats.ERR_RECONNECT_BUF_EXCEEDED) [CD]
+Line_5 $$ try (ConnectionImpl conn = new ConnectionImpl(defaultOptions())) --> Line_6 $$ conn.setConnectedServerInfo(ServerInfo.createFromWire(defaultInfo)) [FD]
+Line_5 $$ try (ConnectionImpl conn = new ConnectionImpl(defaultOptions())) --> Line_7 $$ conn.setOutputStream(bwMock) [FD]
+Line_5 $$ try (ConnectionImpl conn = new ConnectionImpl(defaultOptions())) --> Line_8 $$ conn.setPending(pendingMock) [FD]
+Line_5 $$ try (ConnectionImpl conn = new ConnectionImpl(defaultOptions())) --> Line_9 $$ when(pendingMock.size()).thenReturn(conn.getOptions().getReconnectBufSize() + 10) [FD]
+Line_5 $$ try (ConnectionImpl conn = new ConnectionImpl(defaultOptions())) --> Line_10 $$ ConnectionAccessor.setState(conn, RECONNECTING) [FD]
+Line_5 $$ try (ConnectionImpl conn = new ConnectionImpl(defaultOptions())) --> Line_11 $$ conn.publish("foo", null) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testCreateFromScript() --> Line_3 $$ Database db = Database.from(DatabaseCreator.nextUrl()) [CD]
+Line_2 $$ public void testCreateFromScript() --> Line_4 $$ Observable<Integer> create = db.run(DatabaseTestBase.class.getResourceAsStream("/db-creation-script.sql"), ";") [CD]
+Line_3 $$ Database db = Database.from(DatabaseCreator.nextUrl()) --> Line_4 $$ Observable<Integer> create = db.run(DatabaseTestBase.class.getResourceAsStream("/db-creation-script.sql"), ";") [FD]
+Line_2 $$ public void testCreateFromScript() --> Line_5 $$ Observable<Integer> count = db.select("select name from person").dependsOn(create).getAs(String.class).count() [CD]
+Line_3 $$ Database db = Database.from(DatabaseCreator.nextUrl()) --> Line_5 $$ Observable<Integer> count = db.select("select name from person").dependsOn(create).getAs(String.class).count() [FD]
+Line_2 $$ public void testCreateFromScript() --> Line_6 $$ assertIs(3, count) [CD]

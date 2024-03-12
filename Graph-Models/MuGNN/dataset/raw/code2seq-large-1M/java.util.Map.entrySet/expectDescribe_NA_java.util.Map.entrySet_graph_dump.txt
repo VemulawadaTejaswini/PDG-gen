@@ -1,0 +1,6 @@
+Line_2 $$ public void expectDescribe(Map<String, String> columns, String user) throws Exception --> Line_3 $$ try (EmbeddedCli cli = new EmbeddedCli(elasticsearchAddress(), true, userSecurity(user))) [FD]
+Line_3 $$ try (EmbeddedCli cli = new EmbeddedCli(elasticsearchAddress(), true, userSecurity(user))) --> Line_4 $$ assertThat(cli.command("DESCRIBE test"), containsString("column     |     type")) [FD]
+Line_3 $$ try (EmbeddedCli cli = new EmbeddedCli(elasticsearchAddress(), true, userSecurity(user))) --> Line_5 $$ assertEquals("---------------+---------------", cli.readLine()) [FD]
+Line_2 $$ public void expectDescribe(Map<String, String> columns, String user) throws Exception --> Line_6 $$ for (Map.Entry<String, String> column : columns.entrySet()) [FD]
+Line_3 $$ try (EmbeddedCli cli = new EmbeddedCli(elasticsearchAddress(), true, userSecurity(user))) --> Line_7 $$ assertThat(cli.readLine(), both(startsWith(column.getKey())).and(containsString("|" + column.getValue()))) [FD]
+Line_3 $$ try (EmbeddedCli cli = new EmbeddedCli(elasticsearchAddress(), true, userSecurity(user))) --> Line_9 $$ assertEquals("", cli.readLine()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testLastModifiedSinceIsOlder() --> Line_3 $$ Date now = new Date() [CD]
+Line_2 $$ public void testLastModifiedSinceIsOlder() --> Line_4 $$ DefaultHttpHeaders headers = new DefaultHttpHeaders().lastModified(now) [CD]
+Line_3 $$ Date now = new Date() --> Line_4 $$ DefaultHttpHeaders headers = new DefaultHttpHeaders().lastModified(now) [FD]
+Line_2 $$ public void testLastModifiedSinceIsOlder() --> Line_5 $$ mockRequest.addHeader("If-Modified-Since", getGMTDateFormat().format(new Date(now.getTime() - 1000 * 60 * 60))) [CD]
+Line_3 $$ Date now = new Date() --> Line_5 $$ mockRequest.addHeader("If-Modified-Since", getGMTDateFormat().format(new Date(now.getTime() - 1000 * 60 * 60))) [FD]
+Line_2 $$ public void testLastModifiedSinceIsOlder() --> Line_6 $$ headers.apply(mockRequest, mockResponse, new Object()) [CD]
+Line_4 $$ DefaultHttpHeaders headers = new DefaultHttpHeaders().lastModified(now) --> Line_6 $$ headers.apply(mockRequest, mockResponse, new Object()) [FD]
+Line_2 $$ public void testLastModifiedSinceIsOlder() --> Line_7 $$ assertEquals(SC_NOT_MODIFIED, mockResponse.getStatus()) [CD]

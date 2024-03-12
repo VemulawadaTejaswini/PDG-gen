@@ -1,0 +1,7 @@
+Line_2 $$ public void noRollbackOnBeginFailure() throws Exception --> Line_3 $$ doReturn(ApiFutures.immediateFailedFuture(new Exception("Expected exception"))).when(firestoreMock).sendRequest(requestCapture.capture(), Matchers.<UnaryCallable<Message, Message>>any()) [CD]
+Line_2 $$ public void noRollbackOnBeginFailure() throws Exception --> Line_4 $$ ApiFuture<String> transaction = firestoreMock.runTransaction(new Transaction.Function<String>() [CD]
+Line_4 $$ ApiFuture<String> transaction = firestoreMock.runTransaction(new Transaction.Function<String>() --> Line_6 $$ fail() [CD]
+Line_4 $$ ApiFuture<String> transaction = firestoreMock.runTransaction(new Transaction.Function<String>() --> Line_7 $$ return null [CD]
+Line_4 $$ ApiFuture<String> transaction = firestoreMock.runTransaction(new Transaction.Function<String>() --> Line_11 $$ transaction.get() [FD]
+Line_2 $$ public void noRollbackOnBeginFailure() throws Exception --> Line_16 $$ List<Message> requests = requestCapture.getAllValues() [CD]
+Line_2 $$ public void noRollbackOnBeginFailure() throws Exception --> Line_17 $$ assertEquals(1, requests.size()) [CD]

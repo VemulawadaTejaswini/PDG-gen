@@ -1,0 +1,8 @@
+Line_2 $$ private Operation getOperation(String operationStr, boolean reservationUsage, Ec2InstanceReservationPrice.ReservationUtilization utilization) --> Line_3 $$ if (operationStr.startsWith("RunInstances")) [FD]
+Line_2 $$ private Operation getOperation(String operationStr, boolean reservationUsage, Ec2InstanceReservationPrice.ReservationUtilization utilization) --> Line_3 $$ if (operationStr.startsWith("RunInstances")) [CD]
+Line_3 $$ if (operationStr.startsWith("RunInstances")) --> Line_4 $$ return (reservationUsage ? Operation.getReservedInstances(utilization) : Operation.ondemandInstances) [CD]
+Line_2 $$ private Operation getOperation(String operationStr, boolean reservationUsage, Ec2InstanceReservationPrice.ReservationUtilization utilization) --> Line_4 $$ return (reservationUsage ? Operation.getReservedInstances(utilization) : Operation.ondemandInstances) [FD]
+Line_3 $$ if (operationStr.startsWith("RunInstances")) --> Line_5 $$ if (operationStr.startsWith("RunComputeNode")) [CD]
+Line_2 $$ private Operation getOperation(String operationStr, boolean reservationUsage, Ec2InstanceReservationPrice.ReservationUtilization utilization) --> Line_5 $$ if (operationStr.startsWith("RunComputeNode")) [FD]
+Line_5 $$ if (operationStr.startsWith("RunComputeNode")) --> Line_6 $$ return (reservationUsage ? Operation.reservedInstances : Operation.ondemandInstances) [CD]
+Line_5 $$ if (operationStr.startsWith("RunComputeNode")) --> Line_8 $$ return null [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void fluxCanBeEnforcedToDispatchValuesWithKeysDistinctFromPredecessors() --> Line_3 $$ Flux<Integer> s = Flux.fromIterable(Arrays.asList(2, 4, 3, 5, 2, 5)) [CD]
+Line_2 $$ public void fluxCanBeEnforcedToDispatchValuesWithKeysDistinctFromPredecessors() --> Line_4 $$ MonoProcessor<List<Integer>> tap = s.distinctUntilChanged( it -> it % 2 == 0).collectList().toProcessor() [CD]
+Line_3 $$ Flux<Integer> s = Flux.fromIterable(Arrays.asList(2, 4, 3, 5, 2, 5)) --> Line_4 $$ MonoProcessor<List<Integer>> tap = s.distinctUntilChanged( it -> it % 2 == 0).collectList().toProcessor() [FD]
+Line_2 $$ public void fluxCanBeEnforcedToDispatchValuesWithKeysDistinctFromPredecessors() --> Line_5 $$ assertThat(tap.block()).containsExactly(2, 3, 2, 5) [CD]
+Line_4 $$ MonoProcessor<List<Integer>> tap = s.distinctUntilChanged( it -> it % 2 == 0).collectList().toProcessor() --> Line_5 $$ assertThat(tap.block()).containsExactly(2, 3, 2, 5) [FD]

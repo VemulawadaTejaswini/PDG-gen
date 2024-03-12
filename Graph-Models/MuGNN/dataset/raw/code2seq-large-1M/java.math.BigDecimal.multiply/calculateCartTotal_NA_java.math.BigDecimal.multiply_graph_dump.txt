@@ -1,0 +1,7 @@
+Line_2 $$ private static String calculateCartTotal(List<LineItem> lineItems) --> Line_3 $$ BigDecimal cartTotal = BigDecimal.ZERO [CD]
+Line_4 $$ for (LineItem lineItem : lineItems) --> Line_5 $$ BigDecimal lineItemTotal = lineItem.getTotalPrice() == null ? new BigDecimal(lineItem.getUnitPrice()).multiply(new BigDecimal(lineItem.getQuantity())) : new BigDecimal(lineItem.getTotalPrice()) [FD]
+Line_3 $$ BigDecimal cartTotal = BigDecimal.ZERO --> Line_6 $$ cartTotal = cartTotal.add(lineItemTotal) [FD]
+Line_5 $$ BigDecimal lineItemTotal = lineItem.getTotalPrice() == null ? new BigDecimal(lineItem.getUnitPrice()).multiply(new BigDecimal(lineItem.getQuantity())) : new BigDecimal(lineItem.getTotalPrice()) --> Line_6 $$ cartTotal = cartTotal.add(lineItemTotal) [FD]
+Line_2 $$ private static String calculateCartTotal(List<LineItem> lineItems) --> Line_8 $$ return cartTotal.setScale(2, RoundingMode.HALF_EVEN).toString() [CD]
+Line_3 $$ BigDecimal cartTotal = BigDecimal.ZERO --> Line_8 $$ return cartTotal.setScale(2, RoundingMode.HALF_EVEN).toString() [FD]
+Line_6 $$ cartTotal = cartTotal.add(lineItemTotal) --> Line_8 $$ return cartTotal.setScale(2, RoundingMode.HALF_EVEN).toString() [FD]

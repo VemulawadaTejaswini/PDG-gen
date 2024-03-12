@@ -1,0 +1,6 @@
+Line_3 $$ for (String nodeName : internalCluster().getNodeNames()) --> Line_4 $$ DiscoveryNode node = internalCluster().getInstance(ClusterService.class, nodeName).localNode() [FD]
+Line_2 $$ private void registerTaskManageListeners(String actionMasks) --> Line_5 $$ RecordingTaskManagerListener listener = new RecordingTaskManagerListener(node.getId(), actionMasks.split(",")) [FD]
+Line_5 $$ RecordingTaskManagerListener listener = new RecordingTaskManagerListener(node.getId(), actionMasks.split(",")) --> Line_6 $$ ((MockTaskManager) internalCluster().getInstance(TransportService.class, nodeName).getTaskManager()).addListener(listener) [FD]
+Line_3 $$ for (String nodeName : internalCluster().getNodeNames()) --> Line_6 $$ ((MockTaskManager) internalCluster().getInstance(TransportService.class, nodeName).getTaskManager()).addListener(listener) [FD]
+Line_5 $$ RecordingTaskManagerListener listener = new RecordingTaskManagerListener(node.getId(), actionMasks.split(",")) --> Line_7 $$ RecordingTaskManagerListener oldListener = listeners.put(new Tuple(node.getName(), actionMasks), listener) [FD]
+Line_7 $$ RecordingTaskManagerListener oldListener = listeners.put(new Tuple(node.getName(), actionMasks), listener) --> Line_8 $$ assertNull(oldListener) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void cleanupTmpFiles(final String extension) throws Exception --> Line_3 $$ List<String> leftFiles = fileFactory.listFiles(getFileExtension() + extension) [CD]
+Line_2 $$ private void cleanupTmpFiles(final String extension) throws Exception --> Line_4 $$ if (leftFiles.size() > 0) [CD]
+Line_3 $$ List<String> leftFiles = fileFactory.listFiles(getFileExtension() + extension) --> Line_4 $$ if (leftFiles.size() > 0) [FD]
+Line_4 $$ if (leftFiles.size() > 0) --> Line_5 $$ ActiveMQJournalLogger.LOGGER.tempFilesLeftOpen() [CD]
+Line_6 $$ for (String fileToDelete : leftFiles) --> Line_7 $$ ActiveMQJournalLogger.LOGGER.deletingOrphanedFile(fileToDelete) [FD]
+Line_6 $$ for (String fileToDelete : leftFiles) --> Line_8 $$ SequentialFile file = fileFactory.createSequentialFile(fileToDelete) [FD]
+Line_8 $$ SequentialFile file = fileFactory.createSequentialFile(fileToDelete) --> Line_9 $$ file.delete() [FD]

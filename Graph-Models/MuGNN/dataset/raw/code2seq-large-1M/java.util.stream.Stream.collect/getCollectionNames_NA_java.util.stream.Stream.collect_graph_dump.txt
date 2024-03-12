@@ -1,0 +1,8 @@
+Line_2 $$ public List<String> getCollectionNames(String dbName) --> Line_3 $$ MongoDatabase db = getDatabase(dbName) [FD]
+Line_2 $$ public List<String> getCollectionNames(String dbName) --> Line_3 $$ MongoDatabase db = getDatabase(dbName) [CD]
+Line_2 $$ public List<String> getCollectionNames(String dbName) --> Line_4 $$ List<String> _colls = new ArrayList() [CD]
+Line_2 $$ public List<String> getCollectionNames(String dbName) --> Line_5 $$ db.listCollectionNames().into(_colls) [CD]
+Line_4 $$ List<String> _colls = new ArrayList() --> Line_5 $$ db.listCollectionNames().into(_colls) [FD]
+Line_3 $$ MongoDatabase db = getDatabase(dbName) --> Line_5 $$ db.listCollectionNames().into(_colls) [FD]
+Line_2 $$ public List<String> getCollectionNames(String dbName) --> Line_6 $$ return _colls.stream().filter( coll -> !RequestContext.isReservedResourceCollection(coll)).sorted().collect(Collectors.toList()) [CD]
+Line_4 $$ List<String> _colls = new ArrayList() --> Line_6 $$ return _colls.stream().filter( coll -> !RequestContext.isReservedResourceCollection(coll)).sorted().collect(Collectors.toList()) [FD]

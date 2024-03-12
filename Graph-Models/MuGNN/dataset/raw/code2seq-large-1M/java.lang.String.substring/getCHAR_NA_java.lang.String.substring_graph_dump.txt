@@ -1,0 +1,6 @@
+Line_2 $$ private String getCHAR(int column) throws SqlException --> Line_3 $$ if (ccsid_[column - 1] == 1200) [CD]
+Line_3 $$ if (ccsid_[column - 1] == 1200) --> Line_4 $$ return getStringWithoutConvert(columnDataPosition_[column - 1], columnDataComputedLength_[column - 1]) [CD]
+Line_2 $$ private String getCHAR(int column) throws SqlException --> Line_6 $$ if (charset_[column - 1] == null) [CD]
+Line_2 $$ private String getCHAR(int column) throws SqlException --> Line_9 $$ String tempString = new String(dataBuffer_, columnDataPosition_[column - 1], columnDataComputedLength_[column - 1], charset_[column - 1]) [CD]
+Line_2 $$ private String getCHAR(int column) throws SqlException --> Line_10 $$ return (maxFieldSize_ == 0) ? tempString : tempString.substring(0, Math.min(maxFieldSize_, tempString.length())) [CD]
+Line_9 $$ String tempString = new String(dataBuffer_, columnDataPosition_[column - 1], columnDataComputedLength_[column - 1], charset_[column - 1]) --> Line_10 $$ return (maxFieldSize_ == 0) ? tempString : tempString.substring(0, Math.min(maxFieldSize_, tempString.length())) [FD]

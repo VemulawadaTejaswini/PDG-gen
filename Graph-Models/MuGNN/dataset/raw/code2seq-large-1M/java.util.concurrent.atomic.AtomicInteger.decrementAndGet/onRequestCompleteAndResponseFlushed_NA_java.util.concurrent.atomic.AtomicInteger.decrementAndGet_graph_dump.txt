@@ -1,0 +1,7 @@
+Line_2 $$ private void onRequestCompleteAndResponseFlushed() --> Line_3 $$ final int count = activeRequestsCounter.decrementAndGet() [CD]
+Line_2 $$ private void onRequestCompleteAndResponseFlushed() --> Line_4 $$ if (count == 0 && shuttingDown.get()) [CD]
+Line_4 $$ if (count == 0 && shuttingDown.get()) --> Line_5 $$ final FutureImpl<HttpServerFilter> shutdownFuture = shutdownCompletionFuture != null ? shutdownCompletionFuture.getAndSet(null) : null [CD]
+Line_4 $$ if (count == 0 && shuttingDown.get()) --> Line_6 $$ if (shutdownFuture != null) [CD]
+Line_5 $$ final FutureImpl<HttpServerFilter> shutdownFuture = shutdownCompletionFuture != null ? shutdownCompletionFuture.getAndSet(null) : null --> Line_6 $$ if (shutdownFuture != null) [FD]
+Line_6 $$ if (shutdownFuture != null) --> Line_7 $$ shutdownFuture.result(this) [CD]
+Line_5 $$ final FutureImpl<HttpServerFilter> shutdownFuture = shutdownCompletionFuture != null ? shutdownCompletionFuture.getAndSet(null) : null --> Line_7 $$ shutdownFuture.result(this) [FD]

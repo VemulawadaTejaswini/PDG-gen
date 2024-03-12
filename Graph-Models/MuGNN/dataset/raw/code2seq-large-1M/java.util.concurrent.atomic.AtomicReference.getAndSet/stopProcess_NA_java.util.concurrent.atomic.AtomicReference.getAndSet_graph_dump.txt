@@ -1,0 +1,8 @@
+Line_2 $$ private void stopProcess(AtomicReference<Process> processReference) --> Line_3 $$ Process p = processReference.getAndSet(null) [CD]
+Line_2 $$ private void stopProcess(AtomicReference<Process> processReference) --> Line_3 $$ Process p = processReference.getAndSet(null) [FD]
+Line_2 $$ private void stopProcess(AtomicReference<Process> processReference) --> Line_4 $$ if (p != null) [CD]
+Line_3 $$ Process p = processReference.getAndSet(null) --> Line_4 $$ if (p != null) [FD]
+Line_4 $$ if (p != null) --> Line_5 $$ p.destroy() [CD]
+Line_3 $$ Process p = processReference.getAndSet(null) --> Line_5 $$ p.destroy() [FD]
+Line_4 $$ if (p != null) --> Line_6 $$ Exceptions.handleInterrupted(() -> p.waitFor(PROCESS_SHUTDOWN_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)) [CD]
+Line_3 $$ Process p = processReference.getAndSet(null) --> Line_6 $$ Exceptions.handleInterrupted(() -> p.waitFor(PROCESS_SHUTDOWN_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)) [FD]

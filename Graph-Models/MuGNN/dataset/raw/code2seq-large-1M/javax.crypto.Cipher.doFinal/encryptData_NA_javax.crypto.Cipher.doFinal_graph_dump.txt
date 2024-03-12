@@ -1,0 +1,8 @@
+Line_2 $$ public void encryptData(final String value) --> Line_3 $$ if (!isFingerprintInitialized()) [CD]
+Line_3 $$ if (!isFingerprintInitialized()) --> Line_4 $$ if (fingerPrintCallback != null && hasEnrolledFingerprints()) [CD]
+Line_4 $$ if (fingerPrintCallback != null && hasEnrolledFingerprints()) --> Line_5 $$ fingerPrintCallback.onException() [CD]
+Line_3 $$ if (!isFingerprintInitialized()) --> Line_7 $$ return [CD]
+Line_2 $$ public void encryptData(final String value) --> Line_10 $$ byte[] encrypted = cipher.doFinal(value.getBytes()) [FD]
+Line_10 $$ byte[] encrypted = cipher.doFinal(value.getBytes()) --> Line_11 $$ final String encryptedValue = new String(Base64Coder.encode(encrypted)) [FD]
+Line_11 $$ final String encryptedValue = new String(Base64Coder.encode(encrypted)) --> Line_14 $$ fingerPrintCallback.handleEncryptedResult(encryptedValue, ivSpecValue) [FD]
+Line_13 $$ final String ivSpecValue = new String(Base64Coder.encode(spec.getIV())) --> Line_14 $$ fingerPrintCallback.handleEncryptedResult(encryptedValue, ivSpecValue) [FD]

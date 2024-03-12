@@ -1,0 +1,6 @@
+Line_2 $$ public void testExternalClassesMarshalling() throws Exception --> Line_3 $$ ClassLoader tstClsLdr = new GridTestClassLoader(Collections.singletonMap("org/apache/ignite/p2p/p2p.properties", "resource=loaded"), getClass().getClassLoader(), GridP2PTestTask.class.getName(), GridP2PTestJob.class.getName()) [CD]
+Line_2 $$ public void testExternalClassesMarshalling() throws Exception --> Line_4 $$ ComputeTask<?, ?> inTask = (ComputeTask<?, ?>) tstClsLdr.loadClass(GridP2PTestTask.class.getName()).newInstance() [CD]
+Line_2 $$ public void testExternalClassesMarshalling() throws Exception --> Line_5 $$ byte[] buf = marsh.marshal(inTask) [CD]
+Line_2 $$ public void testExternalClassesMarshalling() throws Exception --> Line_6 $$ ComputeTask<?, ?> outTask = marsh.unmarshal(buf, tstClsLdr) [CD]
+Line_5 $$ byte[] buf = marsh.marshal(inTask) --> Line_6 $$ ComputeTask<?, ?> outTask = marsh.unmarshal(buf, tstClsLdr) [FD]
+Line_6 $$ ComputeTask<?, ?> outTask = marsh.unmarshal(buf, tstClsLdr) --> Line_8 $$ assert inTask.getClass().equals(outTask.getClass()) [FD]

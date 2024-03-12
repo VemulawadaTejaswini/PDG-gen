@@ -1,0 +1,8 @@
+Line_2 $$ public void evictDetailMetrics() --> Line_3 $$ if (detailMetricsSz > 0) [CD]
+Line_3 $$ if (detailMetricsSz > 0) --> Line_4 $$ int sz = detailMetrics.size() [CD]
+Line_3 $$ if (detailMetricsSz > 0) --> Line_5 $$ if (sz > detailMetricsSz) [CD]
+Line_4 $$ int sz = detailMetrics.size() --> Line_5 $$ if (sz > detailMetricsSz) [FD]
+Line_5 $$ if (sz > detailMetricsSz) --> Line_6 $$ int evictCnt = Math.min(QRY_DETAIL_METRICS_EVICTION_LIMIT, sz - detailMetricsSz) [CD]
+Line_5 $$ if (sz > detailMetricsSz) --> Line_7 $$ Queue<GridCacheQueryDetailMetricsAdapter> metricsToEvict = new GridBoundedPriorityQueue(evictCnt, QRY_DETAIL_METRICS_PRIORITY_OLD_CMP) [CD]
+Line_5 $$ if (sz > detailMetricsSz) --> Line_8 $$ metricsToEvict.addAll(detailMetrics.values()) [CD]
+Line_7 $$ Queue<GridCacheQueryDetailMetricsAdapter> metricsToEvict = new GridBoundedPriorityQueue(evictCnt, QRY_DETAIL_METRICS_PRIORITY_OLD_CMP) --> Line_8 $$ metricsToEvict.addAll(detailMetrics.values()) [FD]

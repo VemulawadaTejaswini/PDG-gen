@@ -1,0 +1,7 @@
+Line_3 $$ long ttl = getTTLExpirationTime() --> Line_5 $$ if (ttl == 0) [FD]
+Line_5 $$ if (ttl == 0) --> Line_6 $$ return idle [CD]
+Line_5 $$ if (ttl == 0) --> Line_7 $$ if (idle == 0) [CD]
+Line_4 $$ long idle = getIdleExpirationTime() --> Line_7 $$ if (idle == 0) [FD]
+Line_7 $$ if (idle == 0) --> Line_8 $$ return ttl [CD]
+Line_3 $$ long ttl = getTTLExpirationTime() --> Line_10 $$ return Math.min(ttl, idle) [FD]
+Line_4 $$ long idle = getIdleExpirationTime() --> Line_10 $$ return Math.min(ttl, idle) [FD]

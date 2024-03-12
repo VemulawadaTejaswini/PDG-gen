@@ -1,0 +1,7 @@
+Line_2 $$ public void testSequenceInOnDupKey() throws Exception --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_2 $$ public void testSequenceInOnDupKey() throws Exception --> Line_4 $$ conn.createStatement().execute("CREATE TABLE t1 (k1 integer not null, k2 integer not null, v bigint, constraint pk primary key (k1,k2))") [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_4 $$ conn.createStatement().execute("CREATE TABLE t1 (k1 integer not null, k2 integer not null, v bigint, constraint pk primary key (k1,k2))") [FD]
+Line_2 $$ public void testSequenceInOnDupKey() throws Exception --> Line_5 $$ conn.createStatement().execute("CREATE SEQUENCE s1") [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_5 $$ conn.createStatement().execute("CREATE SEQUENCE s1") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_7 $$ conn.createStatement().execute("UPSERT INTO t1 VALUES(0,0) ON DUPLICATE KEY UPDATE v = next value for s1") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_12 $$ conn.close() [FD]

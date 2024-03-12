@@ -1,0 +1,7 @@
+Line_2 $$ public void testProjectLeadingEdge() --> Line_3 $$ final RelBuilder builder = RelBuilder.create(config().build()) [CD]
+Line_2 $$ public void testProjectLeadingEdge() --> Line_4 $$ RelNode root = builder.scan("EMP").project(builder.fields(Mappings.bijection(Arrays.asList(0, 1, 2)))).build() [CD]
+Line_3 $$ final RelBuilder builder = RelBuilder.create(config().build()) --> Line_4 $$ RelNode root = builder.scan("EMP").project(builder.fields(Mappings.bijection(Arrays.asList(0, 1, 2)))).build() [FD]
+Line_2 $$ public void testProjectLeadingEdge() --> Line_5 $$ final String expected = "LogicalProject(EMPNO=[$0], ENAME=[$1], JOB=[$2])\n" + "  LogicalTableScan(table=[[scott, EMP]])\n" [CD]
+Line_2 $$ public void testProjectLeadingEdge() --> Line_6 $$ assertThat(root, hasTree(expected)) [CD]
+Line_4 $$ RelNode root = builder.scan("EMP").project(builder.fields(Mappings.bijection(Arrays.asList(0, 1, 2)))).build() --> Line_6 $$ assertThat(root, hasTree(expected)) [FD]
+Line_5 $$ final String expected = "LogicalProject(EMPNO=[$0], ENAME=[$1], JOB=[$2])\n" + "  LogicalTableScan(table=[[scott, EMP]])\n" --> Line_6 $$ assertThat(root, hasTree(expected)) [FD]

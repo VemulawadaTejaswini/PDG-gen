@@ -1,0 +1,6 @@
+Line_2 $$ Observable<PGNotification> observe(String channel, long pollingPeriod) --> Line_3 $$ return Observable.<PGNotification>create( subscriber -> [CD]
+Line_5 $$ Connection connection = DriverManager.getConnection("jdbc:postgresql:db") --> Line_6 $$ closeQuietly(connection) [FD]
+Line_5 $$ Connection connection = DriverManager.getConnection("jdbc:postgresql:db") --> Line_7 $$ listenOn(connection, channel) [FD]
+Line_2 $$ Observable<PGNotification> observe(String channel, long pollingPeriod) --> Line_7 $$ listenOn(connection, channel) [FD]
+Line_2 $$ Observable<PGNotification> observe(String channel, long pollingPeriod) --> Line_9 $$ pollForNotifications(pollingPeriod, pgConn).subscribe(Subscribers.wrap(subscriber)) [FD]
+Line_8 $$ Jdbc42Connection pgConn = (Jdbc42Connection) connection --> Line_9 $$ pollForNotifications(pollingPeriod, pgConn).subscribe(Subscribers.wrap(subscriber)) [FD]

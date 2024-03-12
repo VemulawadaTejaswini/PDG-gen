@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection c = connect(grid(0), "replicatedOnly=true")) --> Line_4 $$ execute(c, "CREATE TABLE Company(id int primary key, name varchar) WITH " + "\"template=replicated,cache_name=Company\"") [FD]
+Line_3 $$ try (Connection c = connect(grid(0), "replicatedOnly=true")) --> Line_5 $$ execute(c, "CREATE TABLE Person(id int primary key, name varchar, companyid int) WITH " + "\"template=replicated,cache_name=Person\"") [FD]
+Line_3 $$ try (Connection c = connect(grid(0), "replicatedOnly=true")) --> Line_6 $$ execute(c, "insert into Company(id, name) values (1, 'Apple')") [FD]
+Line_3 $$ try (Connection c = connect(grid(0), "replicatedOnly=true")) --> Line_7 $$ execute(c, "insert into Person(id, name, companyid) values (2, 'John', 1)") [FD]
+Line_3 $$ try (Connection c = connect(grid(0), "replicatedOnly=true")) --> Line_8 $$ List<List<?>> res = execute(c, "SELECT p.id, p.name, c.name from Person p left join Company c on " + "p.companyid = c.id") [FD]
+Line_8 $$ List<List<?>> res = execute(c, "SELECT p.id, p.name, c.name from Person p left join Company c on " + "p.companyid = c.id") --> Line_9 $$ assertEqualsCollections(F.asList(2, "John", "Apple"), res.get(0)) [FD]
+Line_10 $$ Map twoStepCache = U.field(grid(0).context().query().getIndexing(), "twoStepCache") --> Line_11 $$ assertEquals(0, twoStepCache.size()) [FD]

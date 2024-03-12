@@ -1,0 +1,8 @@
+Line_4 $$ Session session = getSession() --> Line_5 $$ if (session != null) [FD]
+Line_5 $$ if (session != null) --> Line_6 $$ BoundStatement bound = preparedStatementMap.get("full_history.save").bind().setString(0, userLogin).setLong(1, date.getTime()).setLong(2, resourceId).setString(3, eventType).setString(4, extra == null ? "" : extra).setString(5, initiator).setString(6, "") [CD]
+Line_2 $$ public boolean saveFullEvent(String userLogin, Date date, long resourceId, String eventType, String extra, String initiator) throws ScyllaInteractionException --> Line_6 $$ BoundStatement bound = preparedStatementMap.get("full_history.save").bind().setString(0, userLogin).setLong(1, date.getTime()).setLong(2, resourceId).setString(3, eventType).setString(4, extra == null ? "" : extra).setString(5, initiator).setString(6, "") [FD]
+Line_5 $$ if (session != null) --> Line_7 $$ session.execute(bound) [CD]
+Line_4 $$ Session session = getSession() --> Line_7 $$ session.execute(bound) [FD]
+Line_6 $$ BoundStatement bound = preparedStatementMap.get("full_history.save").bind().setString(0, userLogin).setLong(1, date.getTime()).setLong(2, resourceId).setString(3, eventType).setString(4, extra == null ? "" : extra).setString(5, initiator).setString(6, "") --> Line_7 $$ session.execute(bound) [FD]
+Line_5 $$ if (session != null) --> Line_8 $$ return true [CD]
+Line_5 $$ if (session != null) --> Line_10 $$ return false [CD]

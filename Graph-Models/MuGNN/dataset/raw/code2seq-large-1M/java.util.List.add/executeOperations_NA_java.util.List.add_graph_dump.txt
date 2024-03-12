@@ -1,0 +1,6 @@
+Line_2 $$ private void executeOperations(DoWithProduct... operations) throws InterruptedException, ExecutionException --> Line_3 $$ CyclicBarrier cyclicBarrier = new CyclicBarrier(operations.length) [CD]
+Line_2 $$ private void executeOperations(DoWithProduct... operations) throws InterruptedException, ExecutionException --> Line_4 $$ List<TransactionTemplate> tasks = new LinkedList<TransactionTemplate>() [CD]
+Line_4 $$ List<TransactionTemplate> tasks = new LinkedList<TransactionTemplate>() --> Line_6 $$ tasks.add(new TransactionTemplate(operation, cyclicBarrier)) [FD]
+Line_2 $$ private void executeOperations(DoWithProduct... operations) throws InterruptedException, ExecutionException --> Line_8 $$ List<Future<Void>> futures = executorService.invokeAll(tasks) [CD]
+Line_4 $$ List<TransactionTemplate> tasks = new LinkedList<TransactionTemplate>() --> Line_8 $$ List<Future<Void>> futures = executorService.invokeAll(tasks) [FD]
+Line_9 $$ for (Future<Void> future : futures) --> Line_10 $$ future.get() [FD]

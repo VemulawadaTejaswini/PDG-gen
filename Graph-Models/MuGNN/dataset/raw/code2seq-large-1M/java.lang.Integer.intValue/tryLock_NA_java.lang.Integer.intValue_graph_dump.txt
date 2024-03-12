@@ -1,0 +1,8 @@
+Line_2 $$ protected void tryLock() throws JMSException --> Line_3 $$ if (logger.isTraceEnabled()) [CD]
+Line_3 $$ if (logger.isTraceEnabled()) --> Line_4 $$ ActiveMQRALogger.LOGGER.trace("tryLock()") [CD]
+Line_2 $$ protected void tryLock() throws JMSException --> Line_6 $$ Integer tryLock = mcf.getUseTryLock() [CD]
+Line_2 $$ protected void tryLock() throws JMSException --> Line_7 $$ if (tryLock == null || tryLock.intValue() <= 0) [CD]
+Line_6 $$ Integer tryLock = mcf.getUseTryLock() --> Line_7 $$ if (tryLock == null || tryLock.intValue() <= 0) [FD]
+Line_7 $$ if (tryLock == null || tryLock.intValue() <= 0) --> Line_8 $$ lock() [CD]
+Line_7 $$ if (tryLock == null || tryLock.intValue() <= 0) --> Line_9 $$ return [CD]
+Line_6 $$ Integer tryLock = mcf.getUseTryLock() --> Line_12 $$ if (lock.tryLock(tryLock.intValue(), TimeUnit.SECONDS) == false) [FD]

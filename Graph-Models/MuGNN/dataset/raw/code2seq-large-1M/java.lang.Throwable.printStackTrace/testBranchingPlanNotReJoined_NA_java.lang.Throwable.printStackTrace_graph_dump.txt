@@ -1,0 +1,8 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_5 $$ DataSet<Integer> data = env.readTextFile("/never/accessed").map(new MapFunction<String, Integer>() [FD]
+Line_5 $$ DataSet<Integer> data = env.readTextFile("/never/accessed").map(new MapFunction<String, Integer>() --> Line_7 $$ return 0 [CD]
+Line_5 $$ DataSet<Integer> data = env.readTextFile("/never/accessed").map(new MapFunction<String, Integer>() --> Line_10 $$ data.filter(new FilterFunction<Integer>() [FD]
+Line_10 $$ data.filter(new FilterFunction<Integer>() --> Line_12 $$ return false [CD]
+Line_5 $$ DataSet<Integer> data = env.readTextFile("/never/accessed").map(new MapFunction<String, Integer>() --> Line_15 $$ data.join(env.fromElements(1, 2, 3, 4)).where(new IdentityKeyExtractor<Integer>()).equalTo(new IdentityKeyExtractor<Integer>()).output(new DiscardingOutputFormat<Tuple2<Integer, Integer>>()) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_15 $$ data.join(env.fromElements(1, 2, 3, 4)).where(new IdentityKeyExtractor<Integer>()).equalTo(new IdentityKeyExtractor<Integer>()).output(new DiscardingOutputFormat<Tuple2<Integer, Integer>>()) [FD]
+Line_5 $$ DataSet<Integer> data = env.readTextFile("/never/accessed").map(new MapFunction<String, Integer>() --> Line_16 $$ data.output(new DiscardingOutputFormat<Integer>()) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_17 $$ List<DataSinkNode> sinks = convertPlan(env.createProgramPlan()) [FD]

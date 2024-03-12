@@ -1,0 +1,8 @@
+Line_2 $$ public Object getProperty(String property) --> Line_3 $$ if (clazz != null) [CD]
+Line_2 $$ public Object getProperty(String property) --> Line_5 $$ return loadClass(prefix + clazz).getField(property).get(null) [FD]
+Line_2 $$ public Object getProperty(String property) --> Line_11 $$ if (property.matches("^[A-Z].*")) [CD]
+Line_2 $$ public Object getProperty(String property) --> Line_11 $$ if (property.matches("^[A-Z].*")) [FD]
+Line_11 $$ if (property.matches("^[A-Z].*")) --> Line_12 $$ String fullClazz = clazz != null ? clazz + '$' + property : property [CD]
+Line_11 $$ if (property.matches("^[A-Z].*")) --> Line_13 $$ loadClass(prefix + fullClazz) [CD]
+Line_11 $$ if (property.matches("^[A-Z].*")) --> Line_14 $$ return new LoadedClasses(library, trusted, changelog, prefix, fullClazz, srcUrl) [CD]
+Line_11 $$ if (property.matches("^[A-Z].*")) --> Line_16 $$ return new LoadedClasses(library, trusted, changelog, prefix + property + '.', null, srcUrl) [CD]

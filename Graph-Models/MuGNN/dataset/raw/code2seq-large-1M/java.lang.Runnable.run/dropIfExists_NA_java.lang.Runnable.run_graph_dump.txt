@@ -1,0 +1,8 @@
+Line_2 $$ private void dropIfExists(String repoName, Runnable callback) --> Line_3 $$ RepositoryMetaData repository = getRepository(repoName) [CD]
+Line_2 $$ private void dropIfExists(String repoName, Runnable callback) --> Line_3 $$ RepositoryMetaData repository = getRepository(repoName) [FD]
+Line_2 $$ private void dropIfExists(String repoName, Runnable callback) --> Line_4 $$ if (repository == null) [CD]
+Line_3 $$ RepositoryMetaData repository = getRepository(repoName) --> Line_4 $$ if (repository == null) [FD]
+Line_4 $$ if (repository == null) --> Line_5 $$ callback.run() [CD]
+Line_2 $$ private void dropIfExists(String repoName, Runnable callback) --> Line_5 $$ callback.run() [FD]
+Line_4 $$ if (repository == null) --> Line_7 $$ execute(new DropRepositoryAnalyzedStatement(repoName)).addListener(callback, MoreExecutors.directExecutor()) [CD]
+Line_2 $$ private void dropIfExists(String repoName, Runnable callback) --> Line_7 $$ execute(new DropRepositoryAnalyzedStatement(repoName)).addListener(callback, MoreExecutors.directExecutor()) [FD]

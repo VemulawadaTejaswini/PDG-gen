@@ -1,0 +1,4 @@
+Line_5 $$ AdbShellCommandResult commandResult = AdbShellCommandsUtil.executeCommand(myDevice, command) --> Line_6 $$ List<AdbFileListingEntry> entries = commandResult.getOutput().stream().map( x -> processLsOutputLine(parentEntry, x)).filter(Objects::<>nonNull).collect(Collectors.toList()) [FD]
+Line_5 $$ AdbShellCommandResult commandResult = AdbShellCommandsUtil.executeCommand(myDevice, command) --> Line_7 $$ if (entries.isEmpty() && commandResult.isError()) [FD]
+Line_7 $$ if (entries.isEmpty() && commandResult.isError()) --> Line_8 $$ commandResult.throwIfError() [CD]
+Line_5 $$ AdbShellCommandResult commandResult = AdbShellCommandsUtil.executeCommand(myDevice, command) --> Line_8 $$ commandResult.throwIfError() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testNumericPromotionBigDecimal() --> Line_3 $$ long val = 3 [CD]
+Line_2 $$ public void testNumericPromotionBigDecimal() --> Line_4 $$ List<Double> lineorders = streams.streamAll(em, Lineorder.class).select( lo -> (lo.getTotal().add(new BigDecimal(val))).doubleValue() + lo.getItem().getSaleprice()).sortedBy( num -> num).toList() [CD]
+Line_2 $$ public void testNumericPromotionBigDecimal() --> Line_5 $$ assertEquals("SELECT A.total + :param0 + A.item.saleprice FROM Lineorder A ORDER BY A.total + :param0 + A.item.saleprice ASC", query) [CD]
+Line_2 $$ public void testNumericPromotionBigDecimal() --> Line_6 $$ assertEquals(11, lineorders.size()) [CD]
+Line_2 $$ public void testNumericPromotionBigDecimal() --> Line_7 $$ assertEquals(6, lineorders.get(0).longValue()) [CD]

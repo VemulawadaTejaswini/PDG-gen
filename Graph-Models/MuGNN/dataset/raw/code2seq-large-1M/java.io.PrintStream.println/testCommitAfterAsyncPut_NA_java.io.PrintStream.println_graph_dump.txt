@@ -1,0 +1,8 @@
+Line_2 $$ public void testCommitAfterAsyncPut() --> Line_3 $$ CacheConfiguration[] caches = cacheConfigurations() [CD]
+Line_5 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).put(1, i + 1) --> Line_7 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).putAsync(1, (i + 1) * 10) [FD]
+Line_6 $$ try (Transaction tx = grid(0).transactions().txStart()) --> Line_8 $$ tx.commit() [FD]
+Line_7 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).putAsync(1, (i + 1) * 10) --> Line_12 $$ for (int i = 0; i < caches.length; i++) assertEquals((i + 1) * 10, grid(0).cache(caches[i].getName()).get(1)) [FD]
+Line_5 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).put(1, i + 1) --> Line_12 $$ for (int i = 0; i < caches.length; i++) assertEquals((i + 1) * 10, grid(0).cache(caches[i].getName()).get(1)) [FD]
+Line_12 $$ for (int i = 0; i < caches.length; i++) assertEquals((i + 1) * 10, grid(0).cache(caches[i].getName()).get(1)) --> Line_14 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).removeAll() [FD]
+Line_7 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).putAsync(1, (i + 1) * 10) --> Line_14 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).removeAll() [FD]
+Line_5 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).put(1, i + 1) --> Line_14 $$ for (int i = 0; i < caches.length; i++) grid(0).cache(caches[i].getName()).removeAll() [FD]

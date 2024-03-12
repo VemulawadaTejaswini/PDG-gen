@@ -1,0 +1,7 @@
+Line_2 $$ public void fusion() --> Line_3 $$ AtomicInteger invocationCount = new AtomicInteger() [CD]
+Line_2 $$ public void fusion() --> Line_4 $$ Flux<String> sourceWithFusionAsync = Flux.just("foo").publishOn(Schedulers.elastic()).flatMap( v -> Flux.just("flatMap_" + v).doOnEach( sig -> invocationCount.incrementAndGet())) [CD]
+Line_3 $$ AtomicInteger invocationCount = new AtomicInteger() --> Line_4 $$ Flux<String> sourceWithFusionAsync = Flux.just("foo").publishOn(Schedulers.elastic()).flatMap( v -> Flux.just("flatMap_" + v).doOnEach( sig -> invocationCount.incrementAndGet())) [FD]
+Line_2 $$ public void fusion() --> Line_5 $$ StepVerifier.create(sourceWithFusionAsync).expectNoFusionSupport().expectNext("flatMap_foo").verifyComplete() [CD]
+Line_4 $$ Flux<String> sourceWithFusionAsync = Flux.just("foo").publishOn(Schedulers.elastic()).flatMap( v -> Flux.just("flatMap_" + v).doOnEach( sig -> invocationCount.incrementAndGet())) --> Line_5 $$ StepVerifier.create(sourceWithFusionAsync).expectNoFusionSupport().expectNext("flatMap_foo").verifyComplete() [FD]
+Line_2 $$ public void fusion() --> Line_6 $$ assertThat(invocationCount).as("doOnEach invoked").hasValue(2) [CD]
+Line_3 $$ AtomicInteger invocationCount = new AtomicInteger() --> Line_6 $$ assertThat(invocationCount).as("doOnEach invoked").hasValue(2) [FD]

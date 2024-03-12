@@ -1,0 +1,3 @@
+Line_2 $$ public void testMethodModifier() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(Sample.class).visit(new ModifierAdjustment().withMethodModifiers(named(FOO), Visibility.PUBLIC)).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testMethodModifier() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(FOO).getModifiers(), is(Opcodes.ACC_PUBLIC)) [CD]
+Line_2 $$ public void testMethodModifier() throws Exception --> Line_5 $$ assertThat(type.getDeclaredMethod(BAR).getModifiers(), is(0)) [CD]

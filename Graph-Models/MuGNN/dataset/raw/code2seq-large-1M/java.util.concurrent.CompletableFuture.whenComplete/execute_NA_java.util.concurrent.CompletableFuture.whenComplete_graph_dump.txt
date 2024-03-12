@@ -1,0 +1,8 @@
+Line_2 $$ public void execute(List<Participant> participantList) --> Line_4 $$ if (CollectionUtils.isNotEmpty(participantList)) [FD]
+Line_4 $$ if (CollectionUtils.isNotEmpty(participantList)) --> Line_5 $$ final CompletableFuture[] cfs = participantList.stream().map( participant -> CompletableFuture.runAsync(() -> [CD]
+Line_2 $$ public void execute(List<Participant> participantList) --> Line_5 $$ final CompletableFuture[] cfs = participantList.stream().map( participant -> CompletableFuture.runAsync(() -> [FD]
+Line_6 $$ TccTransactionContext context = new TccTransactionContext() --> Line_7 $$ context.setAction(TccActionEnum.CANCELING.getCode()) [FD]
+Line_6 $$ TccTransactionContext context = new TccTransactionContext() --> Line_8 $$ context.setTransId(participant.getTransId()) [FD]
+Line_6 $$ TccTransactionContext context = new TccTransactionContext() --> Line_9 $$ TransactionContextLocal.getInstance().set(context) [FD]
+Line_4 $$ if (CollectionUtils.isNotEmpty(participantList)) --> Line_17 $$ CompletableFuture.allOf(cfs).join() [CD]
+Line_5 $$ final CompletableFuture[] cfs = participantList.stream().map( participant -> CompletableFuture.runAsync(() -> --> Line_17 $$ CompletableFuture.allOf(cfs).join() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testIllegalCustomDataPath() --> Line_3 $$ Index index = new Index("foo", "foo") [CD]
+Line_2 $$ public void testIllegalCustomDataPath() --> Line_4 $$ final Path path = createTempDir().resolve(index.getUUID()).resolve("0") [CD]
+Line_3 $$ Index index = new Index("foo", "foo") --> Line_4 $$ final Path path = createTempDir().resolve(index.getUUID()).resolve("0") [FD]
+Line_2 $$ public void testIllegalCustomDataPath() --> Line_5 $$ Exception e = expectThrows(IllegalArgumentException.class, () -> new ShardPath(true, path, path, new ShardId(index, 0))) [CD]
+Line_2 $$ public void testIllegalCustomDataPath() --> Line_6 $$ assertThat(e.getMessage(), is("shard state path must be different to the data path when using custom data paths")) [CD]

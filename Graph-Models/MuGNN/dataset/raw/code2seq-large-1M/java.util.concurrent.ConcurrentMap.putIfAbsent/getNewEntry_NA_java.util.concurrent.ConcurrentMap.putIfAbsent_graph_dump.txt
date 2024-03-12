@@ -1,0 +1,8 @@
+Line_3 $$ KEY key = (KEY) k --> Line_4 $$ VALUE v = this.fac.create(key) [FD]
+Line_4 $$ VALUE v = this.fac.create(key) --> Line_5 $$ if (v == null) [FD]
+Line_5 $$ if (v == null) --> Line_6 $$ return null [CD]
+Line_3 $$ KEY key = (KEY) k --> Line_8 $$ VALUE old = internalMap.putIfAbsent(key, v) [FD]
+Line_4 $$ VALUE v = this.fac.create(key) --> Line_8 $$ VALUE old = internalMap.putIfAbsent(key, v) [FD]
+Line_8 $$ VALUE old = internalMap.putIfAbsent(key, v) --> Line_9 $$ if (old == null) [FD]
+Line_9 $$ if (old == null) --> Line_10 $$ return v [CD]
+Line_4 $$ VALUE v = this.fac.create(key) --> Line_12 $$ fac.destroy(v) [FD]

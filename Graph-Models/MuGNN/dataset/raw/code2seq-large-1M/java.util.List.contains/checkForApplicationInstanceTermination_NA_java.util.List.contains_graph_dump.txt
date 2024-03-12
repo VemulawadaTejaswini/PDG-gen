@@ -1,0 +1,6 @@
+Line_3 $$ for (NetworkPartitionContext networkPartitionContext : networkPartitionContextsMap.values()) --> Line_4 $$ String nPartitionId = networkPartitionContext.getId() [FD]
+Line_2 $$ private void checkForApplicationInstanceTermination(Application application, List<String> defaultNetworkPartitions) --> Line_5 $$ if (!defaultNetworkPartitions.contains(nPartitionId)) [FD]
+Line_4 $$ String nPartitionId = networkPartitionContext.getId() --> Line_5 $$ if (!defaultNetworkPartitions.contains(nPartitionId)) [FD]
+Line_5 $$ if (!defaultNetworkPartitions.contains(nPartitionId)) --> Line_6 $$ log.info("The [application] " + appId + " runtime cannot be in [network-partition] " + nPartitionId + " as it is removed from the [application-policy]...!") [CD]
+Line_3 $$ for (NetworkPartitionContext networkPartitionContext : networkPartitionContextsMap.values()) --> Line_7 $$ for (InstanceContext instanceContext : networkPartitionContext.getInstanceIdToInstanceContextMap().values()) [FD]
+Line_7 $$ for (InstanceContext instanceContext : networkPartitionContext.getInstanceIdToInstanceContextMap().values()) --> Line_8 $$ ApplicationBuilder.handleApplicationInstanceTerminatingEvent(this.appId, instanceContext.getId()) [FD]

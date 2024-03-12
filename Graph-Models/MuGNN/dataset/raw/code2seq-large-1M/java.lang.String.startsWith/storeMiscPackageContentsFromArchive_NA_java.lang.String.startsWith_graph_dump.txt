@@ -1,0 +1,7 @@
+Line_4 $$ if (archivePath.startsWith("file:")) --> Line_5 $$ archivePath = archivePath.substring(5) [CD]
+Line_7 $$ ZipFile zip = new ZipFile(archivePath) --> Line_8 $$ Enumeration<? extends ZipEntry> entries = zip.entries() [FD]
+Line_9 $$ while (entries.hasMoreElements()) --> Line_10 $$ ZipEntry entry = entries.nextElement() [CD]
+Line_9 $$ while (entries.hasMoreElements()) --> Line_11 $$ String name = entry.getName() [CD]
+Line_9 $$ while (entries.hasMoreElements()) --> Line_12 $$ if (name.startsWith(packagePath) && !name.endsWith(".class") && !name.substring(packagePath.length() + 1).contains("/") && name.charAt(name.length() - 1) != '/') [CD]
+Line_11 $$ String name = entry.getName() --> Line_12 $$ if (name.startsWith(packagePath) && !name.endsWith(".class") && !name.substring(packagePath.length() + 1).contains("/") && name.charAt(name.length() - 1) != '/') [FD]
+Line_11 $$ String name = entry.getName() --> Line_13 $$ archive.addAsResource(new ClassLoaderAsset(name, classLoader), name) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException --> Line_4 $$ RemoteInvocation invocation = readRemoteInvocation(request) [FD]
+Line_4 $$ RemoteInvocation invocation = readRemoteInvocation(request) --> Line_5 $$ Serializable interfaceNameObject = invocation.getAttribute(ServiceRegistryHttpInvokerProxyFactoryBean.ATTRIBUTE_INTERFACE_NAME) [FD]
+Line_5 $$ Serializable interfaceNameObject = invocation.getAttribute(ServiceRegistryHttpInvokerProxyFactoryBean.ATTRIBUTE_INTERFACE_NAME) --> Line_6 $$ if (interfaceNameObject == null) [FD]
+Line_6 $$ if (interfaceNameObject == null) --> Line_9 $$ String interfaceName = (String) interfaceNameObject [CD]
+Line_4 $$ RemoteInvocation invocation = readRemoteInvocation(request) --> Line_11 $$ RemoteInvocationResult result = invokeAndCreateResult(invocation, serviceRegistry.findProvider(Class.forName(interfaceName))) [FD]
+Line_9 $$ String interfaceName = (String) interfaceNameObject --> Line_11 $$ RemoteInvocationResult result = invokeAndCreateResult(invocation, serviceRegistry.findProvider(Class.forName(interfaceName))) [FD]
+Line_2 $$ public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException --> Line_12 $$ writeRemoteInvocationResult(request, response, result) [FD]
+Line_11 $$ RemoteInvocationResult result = invokeAndCreateResult(invocation, serviceRegistry.findProvider(Class.forName(interfaceName))) --> Line_12 $$ writeRemoteInvocationResult(request, response, result) [FD]

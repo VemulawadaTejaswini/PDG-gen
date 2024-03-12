@@ -1,0 +1,8 @@
+Line_2 $$ public void bootstrapNewHistory() throws IOException --> Line_3 $$ metadataLock.writeLock().lock() [CD]
+Line_4 $$ try (IndexWriter writer = newIndexWriter(IndexWriterConfig.OpenMode.APPEND, directory, null)) --> Line_5 $$ final Map<String, String> userData = getUserData(writer) [FD]
+Line_5 $$ final Map<String, String> userData = getUserData(writer) --> Line_6 $$ final long maxSeqNo = Long.parseLong(userData.get(SequenceNumbers.MAX_SEQ_NO)) [FD]
+Line_7 $$ final Map<String, String> map = new HashMap() --> Line_8 $$ map.put(Engine.HISTORY_UUID_KEY, UUIDs.randomBase64UUID()) [FD]
+Line_7 $$ final Map<String, String> map = new HashMap() --> Line_9 $$ map.put(SequenceNumbers.LOCAL_CHECKPOINT_KEY, Long.toString(maxSeqNo)) [FD]
+Line_6 $$ final long maxSeqNo = Long.parseLong(userData.get(SequenceNumbers.MAX_SEQ_NO)) --> Line_9 $$ map.put(SequenceNumbers.LOCAL_CHECKPOINT_KEY, Long.toString(maxSeqNo)) [FD]
+Line_4 $$ try (IndexWriter writer = newIndexWriter(IndexWriterConfig.OpenMode.APPEND, directory, null)) --> Line_10 $$ updateCommitData(writer, map) [FD]
+Line_7 $$ final Map<String, String> map = new HashMap() --> Line_10 $$ updateCommitData(writer, map) [FD]

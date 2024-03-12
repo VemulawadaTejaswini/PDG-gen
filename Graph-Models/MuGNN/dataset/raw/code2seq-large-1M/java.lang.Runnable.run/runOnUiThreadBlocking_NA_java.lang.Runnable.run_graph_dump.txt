@@ -1,0 +1,7 @@
+Line_2 $$ public static void runOnUiThreadBlocking(final Runnable r) --> Line_3 $$ if (runningOnUiThread()) [CD]
+Line_3 $$ if (runningOnUiThread()) --> Line_4 $$ r.run() [CD]
+Line_2 $$ public static void runOnUiThreadBlocking(final Runnable r) --> Line_4 $$ r.run() [FD]
+Line_3 $$ if (runningOnUiThread()) --> Line_6 $$ FutureTask<Void> task = new FutureTask<Void>(r, null) [CD]
+Line_3 $$ if (runningOnUiThread()) --> Line_7 $$ postOnUiThread(task) [CD]
+Line_6 $$ FutureTask<Void> task = new FutureTask<Void>(r, null) --> Line_7 $$ postOnUiThread(task) [FD]
+Line_6 $$ FutureTask<Void> task = new FutureTask<Void>(r, null) --> Line_9 $$ task.get() [FD]

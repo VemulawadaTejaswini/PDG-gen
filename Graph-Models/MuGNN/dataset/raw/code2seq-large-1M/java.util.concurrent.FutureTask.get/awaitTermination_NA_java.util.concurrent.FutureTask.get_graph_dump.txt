@@ -1,0 +1,7 @@
+Line_2 $$ public boolean awaitTermination(long timeout, @NotNull TimeUnit unit) throws InterruptedException --> Line_3 $$ if (!isShutdown()) [CD]
+Line_2 $$ public boolean awaitTermination(long timeout, @NotNull TimeUnit unit) throws InterruptedException --> Line_5 $$ List<MyScheduledFutureTask> tasks = new ArrayList<MyScheduledFutureTask>(delayQueue) [CD]
+Line_6 $$ for (MyScheduledFutureTask task : tasks) --> Line_7 $$ if (task.getBackendExecutorService() != backendExecutorService) [FD]
+Line_6 $$ for (MyScheduledFutureTask task : tasks) --> Line_11 $$ task.get(timeout, unit) [FD]
+Line_2 $$ public boolean awaitTermination(long timeout, @NotNull TimeUnit unit) throws InterruptedException --> Line_11 $$ task.get(timeout, unit) [FD]
+Line_2 $$ public boolean awaitTermination(long timeout, @NotNull TimeUnit unit) throws InterruptedException --> Line_17 $$ return backendExecutorService.awaitTermination(timeout, unit) [FD]
+Line_2 $$ public boolean awaitTermination(long timeout, @NotNull TimeUnit unit) throws InterruptedException --> Line_17 $$ return backendExecutorService.awaitTermination(timeout, unit) [CD]

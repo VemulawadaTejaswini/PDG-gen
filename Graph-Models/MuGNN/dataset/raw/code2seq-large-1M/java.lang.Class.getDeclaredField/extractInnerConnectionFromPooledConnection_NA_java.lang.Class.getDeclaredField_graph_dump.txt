@@ -1,0 +1,7 @@
+Line_2 $$ public static Object extractInnerConnectionFromPooledConnection(Object pooledConnection, String memberVariableName) throws IOException --> Line_3 $$ if (logger.isTraceEnabled()) [CD]
+Line_3 $$ if (logger.isTraceEnabled()) --> Line_4 $$ logger.trace("Getting pooled connection inner connection") [CD]
+Line_2 $$ public static Object extractInnerConnectionFromPooledConnection(Object pooledConnection, String memberVariableName) throws IOException --> Line_6 $$ Field connectionField = pooledConnection.getClass().getDeclaredField(memberVariableName) [FD]
+Line_6 $$ Field connectionField = pooledConnection.getClass().getDeclaredField(memberVariableName) --> Line_7 $$ connectionField.setAccessible(true) [FD]
+Line_2 $$ public static Object extractInnerConnectionFromPooledConnection(Object pooledConnection, String memberVariableName) throws IOException --> Line_8 $$ pooledConnection = (Connection) connectionField.get(pooledConnection) [FD]
+Line_6 $$ Field connectionField = pooledConnection.getClass().getDeclaredField(memberVariableName) --> Line_8 $$ pooledConnection = (Connection) connectionField.get(pooledConnection) [FD]
+Line_2 $$ public static Object extractInnerConnectionFromPooledConnection(Object pooledConnection, String memberVariableName) throws IOException --> Line_12 $$ return pooledConnection [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static void postTaskSafely(Runnable task) --> Line_3 $$ int curThreadId = android.os.Process.myTid() [CD]
+Line_2 $$ public static void postTaskSafely(Runnable task) --> Line_4 $$ if (curThreadId == getMainThreadId()) [CD]
+Line_3 $$ int curThreadId = android.os.Process.myTid() --> Line_4 $$ if (curThreadId == getMainThreadId()) [FD]
+Line_4 $$ if (curThreadId == getMainThreadId()) --> Line_5 $$ task.run() [CD]
+Line_2 $$ public static void postTaskSafely(Runnable task) --> Line_5 $$ task.run() [FD]
+Line_4 $$ if (curThreadId == getMainThreadId()) --> Line_7 $$ getMainThreadHandler().post(task) [CD]
+Line_2 $$ public static void postTaskSafely(Runnable task) --> Line_7 $$ getMainThreadHandler().post(task) [FD]

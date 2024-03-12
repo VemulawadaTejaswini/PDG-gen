@@ -1,0 +1,4 @@
+Line_2 $$ private void waitIntervalAfterFailure(int currentNumOfAttempts, Throwable throwable) --> Line_3 $$ long interval = intervalFunction.apply(numOfAttempts.get()) [CD]
+Line_2 $$ private void waitIntervalAfterFailure(int currentNumOfAttempts, Throwable throwable) --> Line_4 $$ publishRetryEvent(() -> new RetryOnRetryEvent(getName(), currentNumOfAttempts, throwable, interval)) [CD]
+Line_2 $$ private void waitIntervalAfterFailure(int currentNumOfAttempts, Throwable throwable) --> Line_5 $$ Try.run(() -> sleepFunction.accept(interval)).getOrElseThrow( ex -> lastRuntimeException.get()) [CD]
+Line_3 $$ long interval = intervalFunction.apply(numOfAttempts.get()) --> Line_5 $$ Try.run(() -> sleepFunction.accept(interval)).getOrElseThrow( ex -> lastRuntimeException.get()) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public static String readMember(File inItem) --> Line_3 $$ List<String> followees = FileHelper.processFile(inItem,  br -> [FD]
+Line_2 $$ public static String readMember(File inItem) --> Line_3 $$ List<String> followees = FileHelper.processFile(inItem,  br -> [CD]
+Line_5 $$ String s = br.readLine() --> Line_6 $$ return Collections.singletonList(s) [FD]
+Line_2 $$ public static String readMember(File inItem) --> Line_8 $$ return followees.size() == 0 ? null : followees.get(0) [CD]
+Line_3 $$ List<String> followees = FileHelper.processFile(inItem,  br -> --> Line_8 $$ return followees.size() == 0 ? null : followees.get(0) [FD]

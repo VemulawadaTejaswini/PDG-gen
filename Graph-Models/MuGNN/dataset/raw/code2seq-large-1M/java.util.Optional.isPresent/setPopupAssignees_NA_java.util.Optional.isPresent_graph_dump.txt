@@ -1,0 +1,7 @@
+Line_2 $$ private void setPopupAssignees(DBConnection db, String uuid, Optional<List<String>> assignToEids) throws SQLException --> Line_3 $$ if (assignToEids.isPresent()) [CD]
+Line_2 $$ private void setPopupAssignees(DBConnection db, String uuid, Optional<List<String>> assignToEids) throws SQLException --> Line_3 $$ if (assignToEids.isPresent()) [FD]
+Line_3 $$ if (assignToEids.isPresent()) --> Line_4 $$ db.run("DELETE FROM pasystem_popup_assign where uuid = ? AND user_id is not NULL").param(uuid).executeUpdate() [CD]
+Line_2 $$ private void setPopupAssignees(DBConnection db, String uuid, Optional<List<String>> assignToEids) throws SQLException --> Line_4 $$ db.run("DELETE FROM pasystem_popup_assign where uuid = ? AND user_id is not NULL").param(uuid).executeUpdate() [FD]
+Line_2 $$ private void setPopupAssignees(DBConnection db, String uuid, Optional<List<String>> assignToEids) throws SQLException --> Line_5 $$ for (String userId : eidsToUserIds(assignToEids.get())) [FD]
+Line_5 $$ for (String userId : eidsToUserIds(assignToEids.get())) --> Line_6 $$ db.run("INSERT INTO pasystem_popup_assign (uuid, user_id) VALUES (?, ?)").param(uuid).param(userId).executeUpdate() [FD]
+Line_2 $$ private void setPopupAssignees(DBConnection db, String uuid, Optional<List<String>> assignToEids) throws SQLException --> Line_6 $$ db.run("INSERT INTO pasystem_popup_assign (uuid, user_id) VALUES (?, ?)").param(uuid).param(userId).executeUpdate() [FD]

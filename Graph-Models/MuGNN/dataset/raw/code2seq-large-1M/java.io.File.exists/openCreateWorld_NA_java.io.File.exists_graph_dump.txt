@@ -1,0 +1,8 @@
+Line_2 $$ public void openCreateWorld(GuiOpenEvent event) --> Line_3 $$ if (event.getGui() instanceof GuiCreateWorld) [CD]
+Line_2 $$ public void openCreateWorld(GuiOpenEvent event) --> Line_3 $$ if (event.getGui() instanceof GuiCreateWorld) [FD]
+Line_3 $$ if (event.getGui() instanceof GuiCreateWorld) --> Line_4 $$ File nameHashFile = new File(Minecraft.getMinecraft().mcDataDir.getPath() + File.separator + "settings.rtg") [CD]
+Line_3 $$ if (event.getGui() instanceof GuiCreateWorld) --> Line_5 $$ String nameHash = "" + Minecraft.getMinecraft().getSession().getUsername().hashCode() [CD]
+Line_4 $$ File nameHashFile = new File(Minecraft.getMinecraft().mcDataDir.getPath() + File.separator + "settings.rtg") --> Line_7 $$ if (!nameHashFile.exists() || !FileUtils.readFileToString(nameHashFile).contains(nameHash + "StartupWarning".hashCode())) [FD]
+Line_7 $$ if (!nameHashFile.exists() || !FileUtils.readFileToString(nameHashFile).contains(nameHash + "StartupWarning".hashCode())) --> Line_8 $$ event.setGui(new WorldTypeMessageGUI(event.getGui(), nameHashFile, nameHash)) [CD]
+Line_2 $$ public void openCreateWorld(GuiOpenEvent event) --> Line_8 $$ event.setGui(new WorldTypeMessageGUI(event.getGui(), nameHashFile, nameHash)) [FD]
+Line_3 $$ if (event.getGui() instanceof GuiCreateWorld) --> Line_13 $$ MinecraftForge.EVENT_BUS.unregister(instance) [CD]

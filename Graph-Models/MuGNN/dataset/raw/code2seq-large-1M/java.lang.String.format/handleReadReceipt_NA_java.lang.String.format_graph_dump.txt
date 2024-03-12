@@ -1,0 +1,4 @@
+Line_2 $$ private void handleReadReceipt(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceReceiptMessage message) --> Line_3 $$ if (TextSecurePreferences.isReadReceiptsEnabled(context)) [CD]
+Line_2 $$ private void handleReadReceipt(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceReceiptMessage message) --> Line_4 $$ for (long timestamp : message.getTimestamps()) [FD]
+Line_4 $$ for (long timestamp : message.getTimestamps()) --> Line_5 $$ Log.w(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp)) [FD]
+Line_2 $$ private void handleReadReceipt(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceReceiptMessage message) --> Line_6 $$ DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()), timestamp), envelope.getTimestamp()) [FD]

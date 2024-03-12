@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_4 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_5 $$ Statement stmt = conn.createStatement() [FD]
+Line_5 $$ Statement stmt = conn.createStatement() --> Line_6 $$ stmt.executeUpdate("create table t (x int) with (number_of_replicas = 0)") [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_8 $$ Statement statement = conn.createStatement() [FD]
+Line_8 $$ Statement statement = conn.createStatement() --> Line_9 $$ statement.addBatch("insert into t(x) values(1), (2)") [FD]
+Line_8 $$ Statement statement = conn.createStatement() --> Line_10 $$ statement.addBatch("refresh table t") [FD]
+Line_8 $$ Statement statement = conn.createStatement() --> Line_11 $$ statement.addBatch("select count(*) from t") [FD]
+Line_8 $$ Statement statement = conn.createStatement() --> Line_14 $$ statement.executeBatch() [FD]

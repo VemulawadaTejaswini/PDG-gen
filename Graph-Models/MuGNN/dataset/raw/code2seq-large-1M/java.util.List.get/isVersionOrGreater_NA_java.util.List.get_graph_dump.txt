@@ -1,0 +1,8 @@
+Line_2 $$ protected static boolean isVersionOrGreater(String version) --> Line_3 $$ Result result = getGraphDatabaseService().execute("CALL dbms.components()") [CD]
+Line_2 $$ protected static boolean isVersionOrGreater(String version) --> Line_4 $$ Map<String, Object> kernel = result.stream().filter( map -> map.get("name").equals("Neo4j Kernel")).findFirst().orElseThrow(() -> new IllegalStateException("Expected component named 'Neo4j Kernel'")) [CD]
+Line_3 $$ Result result = getGraphDatabaseService().execute("CALL dbms.components()") --> Line_4 $$ Map<String, Object> kernel = result.stream().filter( map -> map.get("name").equals("Neo4j Kernel")).findFirst().orElseThrow(() -> new IllegalStateException("Expected component named 'Neo4j Kernel'")) [FD]
+Line_2 $$ protected static boolean isVersionOrGreater(String version) --> Line_5 $$ String kernelVersion = (String) ((List<Object>) kernel.get("versions")).get(0) [CD]
+Line_4 $$ Map<String, Object> kernel = result.stream().filter( map -> map.get("name").equals("Neo4j Kernel")).findFirst().orElseThrow(() -> new IllegalStateException("Expected component named 'Neo4j Kernel'")) --> Line_5 $$ String kernelVersion = (String) ((List<Object>) kernel.get("versions")).get(0) [FD]
+Line_2 $$ protected static boolean isVersionOrGreater(String version) --> Line_6 $$ return version.compareTo(kernelVersion) <= 0 [CD]
+Line_2 $$ protected static boolean isVersionOrGreater(String version) --> Line_6 $$ return version.compareTo(kernelVersion) <= 0 [FD]
+Line_5 $$ String kernelVersion = (String) ((List<Object>) kernel.get("versions")).get(0) --> Line_6 $$ return version.compareTo(kernelVersion) <= 0 [FD]

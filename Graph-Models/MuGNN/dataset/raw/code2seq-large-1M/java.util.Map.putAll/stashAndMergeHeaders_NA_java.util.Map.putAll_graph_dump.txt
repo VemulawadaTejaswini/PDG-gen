@@ -1,0 +1,8 @@
+Line_2 $$ public StoredContext stashAndMergeHeaders(Map<String, String> headers) --> Line_3 $$ final ThreadContextStruct context = threadLocal.get() [CD]
+Line_2 $$ public StoredContext stashAndMergeHeaders(Map<String, String> headers) --> Line_4 $$ Map<String, String> newHeader = new HashMap(headers) [CD]
+Line_2 $$ public StoredContext stashAndMergeHeaders(Map<String, String> headers) --> Line_5 $$ newHeader.putAll(context.requestHeaders) [CD]
+Line_4 $$ Map<String, String> newHeader = new HashMap(headers) --> Line_5 $$ newHeader.putAll(context.requestHeaders) [FD]
+Line_2 $$ public StoredContext stashAndMergeHeaders(Map<String, String> headers) --> Line_6 $$ threadLocal.set(DEFAULT_CONTEXT.putHeaders(newHeader)) [CD]
+Line_4 $$ Map<String, String> newHeader = new HashMap(headers) --> Line_6 $$ threadLocal.set(DEFAULT_CONTEXT.putHeaders(newHeader)) [FD]
+Line_2 $$ public StoredContext stashAndMergeHeaders(Map<String, String> headers) --> Line_7 $$ return () -> threadLocal.set(context) [CD]
+Line_3 $$ final ThreadContextStruct context = threadLocal.get() --> Line_7 $$ return () -> threadLocal.set(context) [FD]

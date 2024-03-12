@@ -1,0 +1,8 @@
+Line_2 $$ public ConfigDescriptor getConfigDescriptor(Object configurationProxy) --> Line_3 $$ Class<?> inter = configurationProxy.getClass().getInterfaces()[0] [FD]
+Line_2 $$ public ConfigDescriptor getConfigDescriptor(Object configurationProxy) --> Line_3 $$ Class<?> inter = configurationProxy.getClass().getInterfaces()[0] [CD]
+Line_2 $$ public ConfigDescriptor getConfigDescriptor(Object configurationProxy) --> Line_4 $$ ConfigGroup group = inter.getAnnotation(ConfigGroup.class) [CD]
+Line_3 $$ Class<?> inter = configurationProxy.getClass().getInterfaces()[0] --> Line_4 $$ ConfigGroup group = inter.getAnnotation(ConfigGroup.class) [FD]
+Line_2 $$ public ConfigDescriptor getConfigDescriptor(Object configurationProxy) --> Line_5 $$ if (group == null) [CD]
+Line_2 $$ public ConfigDescriptor getConfigDescriptor(Object configurationProxy) --> Line_8 $$ List<ConfigItemDescriptor> items = Arrays.stream(inter.getMethods()).filter( m -> m.getParameterCount() == 0).sorted(Comparator.comparingInt( m -> m.getDeclaredAnnotation(ConfigItem.class).position())).map( m -> new ConfigItemDescriptor(m.getDeclaredAnnotation(ConfigItem.class), m.getReturnType())).collect(Collectors.toList()) [CD]
+Line_3 $$ Class<?> inter = configurationProxy.getClass().getInterfaces()[0] --> Line_8 $$ List<ConfigItemDescriptor> items = Arrays.stream(inter.getMethods()).filter( m -> m.getParameterCount() == 0).sorted(Comparator.comparingInt( m -> m.getDeclaredAnnotation(ConfigItem.class).position())).map( m -> new ConfigItemDescriptor(m.getDeclaredAnnotation(ConfigItem.class), m.getReturnType())).collect(Collectors.toList()) [FD]
+Line_2 $$ public ConfigDescriptor getConfigDescriptor(Object configurationProxy) --> Line_9 $$ return new ConfigDescriptor(group, items) [CD]

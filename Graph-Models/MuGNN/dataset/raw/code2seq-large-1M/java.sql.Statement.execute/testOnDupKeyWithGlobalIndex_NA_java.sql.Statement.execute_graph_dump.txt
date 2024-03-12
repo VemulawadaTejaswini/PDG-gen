@@ -1,0 +1,5 @@
+Line_2 $$ public void testOnDupKeyWithGlobalIndex() throws Exception --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_5 $$ conn.createStatement().execute("CREATE TABLE t1 (k integer not null primary key, v bigint)") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_6 $$ conn.createStatement().execute("CREATE INDEX idx ON t1 (v)") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_7 $$ conn.createStatement().execute("UPSERT INTO t1 VALUES(0,0) ON DUPLICATE KEY UPDATE v = v + 1") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_12 $$ conn.close() [FD]

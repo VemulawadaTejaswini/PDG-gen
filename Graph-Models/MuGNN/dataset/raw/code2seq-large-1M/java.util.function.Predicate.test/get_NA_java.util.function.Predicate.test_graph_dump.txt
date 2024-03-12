@@ -1,0 +1,8 @@
+Line_2 $$ public String get(Object key) --> Line_3 $$ if (key instanceof String) [FD]
+Line_2 $$ public String get(Object key) --> Line_3 $$ if (key instanceof String) [CD]
+Line_3 $$ if (key instanceof String) --> Line_4 $$ final String theKey = prefix == null ? (String) key : prefix + key [CD]
+Line_3 $$ if (key instanceof String) --> Line_5 $$ if (filter.test(theKey)) [CD]
+Line_4 $$ final String theKey = prefix == null ? (String) key : prefix + key --> Line_5 $$ if (filter.test(theKey)) [FD]
+Line_5 $$ if (filter.test(theKey)) --> Line_6 $$ return delegate.get(theKey) [CD]
+Line_4 $$ final String theKey = prefix == null ? (String) key : prefix + key --> Line_6 $$ return delegate.get(theKey) [FD]
+Line_2 $$ public String get(Object key) --> Line_9 $$ return null [CD]

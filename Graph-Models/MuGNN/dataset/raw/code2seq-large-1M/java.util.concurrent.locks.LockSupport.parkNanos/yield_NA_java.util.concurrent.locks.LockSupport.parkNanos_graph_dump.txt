@@ -1,0 +1,8 @@
+Line_2 $$ public void yield(int count) --> Line_3 $$ if (count > sleepCount || count < 0) [CD]
+Line_3 $$ if (count > sleepCount || count < 0) --> Line_4 $$ LockSupport.parkNanos(nanosToPark) [CD]
+Line_3 $$ if (count > sleepCount || count < 0) --> Line_5 $$ if (count > parkCount) [CD]
+Line_2 $$ public void yield(int count) --> Line_5 $$ if (count > parkCount) [FD]
+Line_5 $$ if (count > parkCount) --> Line_6 $$ LockSupport.parkNanos(1) [CD]
+Line_5 $$ if (count > parkCount) --> Line_8 $$ if (count > yieldCount) [CD]
+Line_2 $$ public void yield(int count) --> Line_8 $$ if (count > yieldCount) [FD]
+Line_8 $$ if (count > yieldCount) --> Line_9 $$ Thread.yield() [CD]

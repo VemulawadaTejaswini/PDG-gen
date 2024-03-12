@@ -1,0 +1,7 @@
+Line_5 $$ ExampleResolver resolver = new ExampleResolver(exampleSet) --> Line_6 $$ resolver.bind(exampleSet.getExample(0)) [FD]
+Line_4 $$ ExampleSet exampleSet = makeDateExampleSet() --> Line_6 $$ resolver.bind(exampleSet.getExample(0)) [FD]
+Line_5 $$ ExampleResolver resolver = new ExampleResolver(exampleSet) --> Line_7 $$ Expression expression = getExpressionWithFunctionsAndExamples("date_add(date_now(), 5, DATE_UNIT_HOUR, MISSNING_NOMINAL, MISSNING_NOMINAL)", resolver) [FD]
+Line_8 $$ Calendar cal = Calendar.getInstance() --> Line_9 $$ cal.add(Calendar.HOUR, 5) [FD]
+Line_8 $$ Calendar cal = Calendar.getInstance() --> Line_10 $$ double diff = cal.getTime().getTime() - expression.evaluateDate().getTime() [FD]
+Line_7 $$ Expression expression = getExpressionWithFunctionsAndExamples("date_add(date_now(), 5, DATE_UNIT_HOUR, MISSNING_NOMINAL, MISSNING_NOMINAL)", resolver) --> Line_10 $$ double diff = cal.getTime().getTime() - expression.evaluateDate().getTime() [FD]
+Line_10 $$ double diff = cal.getTime().getTime() - expression.evaluateDate().getTime() --> Line_11 $$ assertTrue("Dates aren't close enough to each other!", Math.abs(diff) < 10) [FD]

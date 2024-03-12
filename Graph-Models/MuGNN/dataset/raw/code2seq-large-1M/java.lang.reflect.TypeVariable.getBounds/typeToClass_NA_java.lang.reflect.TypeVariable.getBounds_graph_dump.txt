@@ -1,0 +1,8 @@
+Line_2 $$ static Class<?> typeToClass(@Nonnull Type type) --> Line_3 $$ if (type instanceof Class) [FD]
+Line_2 $$ static Class<?> typeToClass(@Nonnull Type type) --> Line_3 $$ if (type instanceof Class) [CD]
+Line_3 $$ if (type instanceof Class) --> Line_4 $$ return (Class<?>) type [CD]
+Line_3 $$ if (type instanceof Class) --> Line_5 $$ if (type instanceof TypeVariable) [CD]
+Line_2 $$ static Class<?> typeToClass(@Nonnull Type type) --> Line_5 $$ if (type instanceof TypeVariable) [FD]
+Line_5 $$ if (type instanceof TypeVariable) --> Line_6 $$ Type bound = ((TypeVariable) type).getBounds()[0] [CD]
+Line_5 $$ if (type instanceof TypeVariable) --> Line_7 $$ return bound instanceof Class ? (Class) bound : (Class<?>) ((ParameterizedType) bound).getRawType() [CD]
+Line_5 $$ if (type instanceof TypeVariable) --> Line_9 $$ return (Class<?>) ((ParameterizedType) type).getRawType() [CD]

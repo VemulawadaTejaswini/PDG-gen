@@ -1,0 +1,6 @@
+Line_2 $$ private void checkEnvironment(List<ConfigIssue> issues) --> Line_3 $$ Map<String, String> vars = System.getenv() [CD]
+Line_2 $$ private void checkEnvironment(List<ConfigIssue> issues) --> Line_4 $$ if (!vars.containsKey(GOOGLE_CREDENTIALS) || vars.get(GOOGLE_CREDENTIALS).isEmpty() || !Files.exists(Paths.get(vars.get(GOOGLE_CREDENTIALS)))) [CD]
+Line_3 $$ Map<String, String> vars = System.getenv() --> Line_4 $$ if (!vars.containsKey(GOOGLE_CREDENTIALS) || vars.get(GOOGLE_CREDENTIALS).isEmpty() || !Files.exists(Paths.get(vars.get(GOOGLE_CREDENTIALS)))) [FD]
+Line_4 $$ if (!vars.containsKey(GOOGLE_CREDENTIALS) || vars.get(GOOGLE_CREDENTIALS).isEmpty() || !Files.exists(Paths.get(vars.get(GOOGLE_CREDENTIALS)))) --> Line_5 $$ issues.add(getContext().createConfigIssue(Groups.BIGTABLE.name(), CONFIG, Errors.BIGTABLE_07, vars.get(GOOGLE_CREDENTIALS), GOOGLE_CREDENTIALS)) [CD]
+Line_2 $$ private void checkEnvironment(List<ConfigIssue> issues) --> Line_5 $$ issues.add(getContext().createConfigIssue(Groups.BIGTABLE.name(), CONFIG, Errors.BIGTABLE_07, vars.get(GOOGLE_CREDENTIALS), GOOGLE_CREDENTIALS)) [FD]
+Line_3 $$ Map<String, String> vars = System.getenv() --> Line_5 $$ issues.add(getContext().createConfigIssue(Groups.BIGTABLE.name(), CONFIG, Errors.BIGTABLE_07, vars.get(GOOGLE_CREDENTIALS), GOOGLE_CREDENTIALS)) [FD]

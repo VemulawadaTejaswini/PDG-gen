@@ -1,0 +1,5 @@
+Line_2 $$ protected ProtocolMessage readMessage() throws IOException, ReplicatorException --> Line_3 $$ if (ois == null) [CD]
+Line_2 $$ protected ProtocolMessage readMessage() throws IOException, ReplicatorException --> Line_6 $$ Object obj [CD]
+Line_6 $$ Object obj --> Line_8 $$ obj = ois.readObject() [FD]
+Line_2 $$ protected ProtocolMessage readMessage() throws IOException, ReplicatorException --> Line_12 $$ if (obj instanceof ProtocolMessage == false) [CD]
+Line_2 $$ protected ProtocolMessage readMessage() throws IOException, ReplicatorException --> Line_14 $$ return (ProtocolMessage) obj [CD]

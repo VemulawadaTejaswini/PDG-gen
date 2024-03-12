@@ -1,0 +1,5 @@
+Line_2 $$ public void zoneId() --> Line_3 $$ final ZoneId zone = ZoneId.systemDefault() [CD]
+Line_2 $$ public void zoneId() --> Line_4 $$ h.execute("insert into stuff(z) values (?)", zone) [CD]
+Line_3 $$ final ZoneId zone = ZoneId.systemDefault() --> Line_4 $$ h.execute("insert into stuff(z) values (?)", zone) [FD]
+Line_2 $$ public void zoneId() --> Line_5 $$ assertThat(h.createQuery("select z from stuff").mapTo(ZoneId.class).findOnly()).isEqualTo(zone) [CD]
+Line_3 $$ final ZoneId zone = ZoneId.systemDefault() --> Line_5 $$ assertThat(h.createQuery("select z from stuff").mapTo(ZoneId.class).findOnly()).isEqualTo(zone) [FD]

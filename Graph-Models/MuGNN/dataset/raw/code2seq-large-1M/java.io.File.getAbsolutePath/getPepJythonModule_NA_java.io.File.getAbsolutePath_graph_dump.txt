@@ -1,0 +1,8 @@
+Line_5 $$ File pepModuleLoc = CorePlugin.getPepModuleLocation(module + ".py") --> Line_6 $$ if (pepModuleLoc == null) [FD]
+Line_6 $$ if (pepModuleLoc == null) --> Line_7 $$ return null [CD]
+Line_4 $$ String s = "" + "import sys\n" + "add_to_pythonpath = '%s'\n" + "if add_to_pythonpath not in sys.path:\n" + "    sys.path.append(add_to_pythonpath)\n" + "import " + module + "\n" --> Line_9 $$ s = StringUtils.format(s, StringUtils.replaceAllSlashes(pepModuleLoc.getParentFile().getAbsolutePath())) [FD]
+Line_5 $$ File pepModuleLoc = CorePlugin.getPepModuleLocation(module + ".py") --> Line_9 $$ s = StringUtils.format(s, StringUtils.replaceAllSlashes(pepModuleLoc.getParentFile().getAbsolutePath())) [FD]
+Line_2 $$ private static PyObject getPepJythonModule(IPythonInterpreter interpreter, String module) --> Line_10 $$ interpreter.exec(s) [FD]
+Line_4 $$ String s = "" + "import sys\n" + "add_to_pythonpath = '%s'\n" + "if add_to_pythonpath not in sys.path:\n" + "    sys.path.append(add_to_pythonpath)\n" + "import " + module + "\n" --> Line_10 $$ interpreter.exec(s) [FD]
+Line_9 $$ s = StringUtils.format(s, StringUtils.replaceAllSlashes(pepModuleLoc.getParentFile().getAbsolutePath())) --> Line_10 $$ interpreter.exec(s) [FD]
+Line_2 $$ private static PyObject getPepJythonModule(IPythonInterpreter interpreter, String module) --> Line_11 $$ return (PyObject) interpreter.get(module) [FD]

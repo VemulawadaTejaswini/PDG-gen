@@ -1,0 +1,8 @@
+Line_2 $$ public Response deleteMacro(@QueryParam("pairs") KVPairs kv, @QueryParam("user") String user, @QueryParam("token") String token) --> Line_4 $$ String name = kv.getValue("name") [FD]
+Line_4 $$ String name = kv.getValue("name") --> Line_5 $$ if (name == null) [FD]
+Line_5 $$ if (name == null) --> Line_6 $$ return Response.serverError().entity("missing macro name").build() [CD]
+Line_4 $$ String name = kv.getValue("name") --> Line_8 $$ String error = jobMacroManager.deleteEntity(name) [FD]
+Line_8 $$ String error = jobMacroManager.deleteEntity(name) --> Line_9 $$ if (error == null) [FD]
+Line_9 $$ if (error == null) --> Line_10 $$ return Response.ok().build() [CD]
+Line_9 $$ if (error == null) --> Line_12 $$ return Response.serverError().entity(error).build() [CD]
+Line_8 $$ String error = jobMacroManager.deleteEntity(name) --> Line_12 $$ return Response.serverError().entity(error).build() [FD]

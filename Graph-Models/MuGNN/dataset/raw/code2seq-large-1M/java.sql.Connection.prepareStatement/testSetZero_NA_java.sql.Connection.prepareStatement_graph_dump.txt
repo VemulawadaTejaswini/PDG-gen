@@ -1,0 +1,5 @@
+Line_3 $$ try (PreparedStatement pstmt = conn.prepareStatement("INSERT INTO numerictest(id) VALUES (?)")) --> Line_4 $$ pstmt.setBigDecimal(1, new BigDecimal("0")) [FD]
+Line_3 $$ try (PreparedStatement pstmt = conn.prepareStatement("INSERT INTO numerictest(id) VALUES (?)")) --> Line_5 $$ pstmt.executeUpdate() [FD]
+Line_3 $$ try (PreparedStatement pstmt = conn.prepareStatement("INSERT INTO numerictest(id) VALUES (?)")) --> Line_8 $$ try (ResultSet rs = pstmt.executeQuery()) [FD]
+Line_8 $$ try (ResultSet rs = pstmt.executeQuery()) --> Line_9 $$ assertTrue(rs.next()) [FD]
+Line_8 $$ try (ResultSet rs = pstmt.executeQuery()) --> Line_10 $$ assertThat(new BigDecimal("0"), is(rs.getBigDecimal(1))) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static <T> Optional<T> findFromEnd(final Stream<T> stream, final int index) --> Line_3 $$ final int bufferSize = index + 1 [CD]
+Line_2 $$ private static <T> Optional<T> findFromEnd(final Stream<T> stream, final int index) --> Line_4 $$ final EvictingQueue<T> buffer = EvictingQueue.create(bufferSize) [CD]
+Line_3 $$ final int bufferSize = index + 1 --> Line_4 $$ final EvictingQueue<T> buffer = EvictingQueue.create(bufferSize) [FD]
+Line_2 $$ private static <T> Optional<T> findFromEnd(final Stream<T> stream, final int index) --> Line_5 $$ stream.forEachOrdered(buffer::<>add) [CD]
+Line_2 $$ private static <T> Optional<T> findFromEnd(final Stream<T> stream, final int index) --> Line_5 $$ stream.forEachOrdered(buffer::<>add) [FD]
+Line_2 $$ private static <T> Optional<T> findFromEnd(final Stream<T> stream, final int index) --> Line_6 $$ return buffer.size() < bufferSize ? Optional.empty() : Optional.ofNullable(buffer.peek()) [CD]
+Line_4 $$ final EvictingQueue<T> buffer = EvictingQueue.create(bufferSize) --> Line_6 $$ return buffer.size() < bufferSize ? Optional.empty() : Optional.ofNullable(buffer.peek()) [FD]

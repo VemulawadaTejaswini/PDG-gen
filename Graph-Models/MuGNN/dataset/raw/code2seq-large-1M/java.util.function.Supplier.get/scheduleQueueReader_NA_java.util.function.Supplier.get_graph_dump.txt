@@ -1,0 +1,6 @@
+Line_2 $$ private void scheduleQueueReader(final ExecutorService es, final BlockingQueue<Item<E>> queue, final ItemProcessor<E> processor) --> Line_3 $$ CompletableFuture.runAsync(microBatchingQueueDrainerWithHeartBeat(queue, processor), es).whenComplete(( voidValue,  error) -> [CD]
+Line_2 $$ private void scheduleQueueReader(final ExecutorService es, final BlockingQueue<Item<E>> queue, final ItemProcessor<E> processor) --> Line_3 $$ CompletableFuture.runAsync(microBatchingQueueDrainerWithHeartBeat(queue, processor), es).whenComplete(( voidValue,  error) -> [FD]
+Line_2 $$ private void scheduleQueueReader(final ExecutorService es, final BlockingQueue<Item<E>> queue, final ItemProcessor<E> processor) --> Line_4 $$ processor.cleanup() [FD]
+Line_5 $$ if (error != null && running) --> Line_6 $$ logger.warn("Uncaught exception in incoming queue reader thread.", error) [CD]
+Line_5 $$ if (error != null && running) --> Line_7 $$ scheduleQueueReader(es, queue, processorSupplier.get()) [CD]
+Line_2 $$ private void scheduleQueueReader(final ExecutorService es, final BlockingQueue<Item<E>> queue, final ItemProcessor<E> processor) --> Line_7 $$ scheduleQueueReader(es, queue, processorSupplier.get()) [FD]

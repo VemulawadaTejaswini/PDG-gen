@@ -1,0 +1,7 @@
+Line_2 $$ void removeBreakpoint(Breakpoint breakpoint) --> Line_3 $$ if (active && breakpoint.isActive()) [FD]
+Line_2 $$ void removeBreakpoint(Breakpoint breakpoint) --> Line_3 $$ if (active && breakpoint.isActive()) [CD]
+Line_3 $$ if (active && breakpoint.isActive()) --> Line_4 $$ BreakpointInfoImpl breakpointInfo = findBreakpointInfo(breakpoint) [CD]
+Line_2 $$ void removeBreakpoint(Breakpoint breakpoint) --> Line_4 $$ BreakpointInfoImpl breakpointInfo = findBreakpointInfo(breakpoint) [FD]
+Line_3 $$ if (active && breakpoint.isActive()) --> Line_5 $$ if (breakpointInfo != null && !StringUtils.isNullOrEmpty(breakpointInfo.breakpointId)) [CD]
+Line_5 $$ if (breakpointInfo != null && !StringUtils.isNullOrEmpty(breakpointInfo.breakpointId)) --> Line_6 $$ debuggerApi.removeBreakpoint(sessionId, breakpointInfo.breakpointId) [CD]
+Line_5 $$ if (breakpointInfo != null && !StringUtils.isNullOrEmpty(breakpointInfo.breakpointId)) --> Line_8 $$ Log.error(getClass(), "Breakpoint to remove not found: " + breakpoint) [CD]

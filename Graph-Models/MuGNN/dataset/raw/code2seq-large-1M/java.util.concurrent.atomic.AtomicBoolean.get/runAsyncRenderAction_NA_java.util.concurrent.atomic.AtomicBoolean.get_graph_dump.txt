@@ -1,0 +1,7 @@
+Line_2 $$ <V> ListenableFuture<V> runAsyncRenderAction(@NotNull Callable<V> callable) --> Line_3 $$ if (isDisposed.get()) [CD]
+Line_3 $$ if (isDisposed.get()) --> Line_4 $$ return Futures.immediateFailedFuture(new IllegalStateException("RenderTask was already disposed")) [CD]
+Line_2 $$ <V> ListenableFuture<V> runAsyncRenderAction(@NotNull Callable<V> callable) --> Line_7 $$ ListenableFuture<V> newFuture = RenderService.runAsyncRenderAction(callable) [FD]
+Line_7 $$ ListenableFuture<V> newFuture = RenderService.runAsyncRenderAction(callable) --> Line_8 $$ Futures.addCallback(newFuture, new FutureCallback<V>() [FD]
+Line_7 $$ ListenableFuture<V> newFuture = RenderService.runAsyncRenderAction(callable) --> Line_11 $$ myRunningFutures.remove(newFuture) [FD]
+Line_7 $$ ListenableFuture<V> newFuture = RenderService.runAsyncRenderAction(callable) --> Line_16 $$ myRunningFutures.remove(newFuture) [FD]
+Line_7 $$ ListenableFuture<V> newFuture = RenderService.runAsyncRenderAction(callable) --> Line_20 $$ myRunningFutures.add(newFuture) [FD]

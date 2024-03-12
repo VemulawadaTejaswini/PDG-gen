@@ -1,0 +1,6 @@
+Line_2 $$ public void testGetKeysFiltered() throws Exception --> Line_3 $$ IgniteCache<Integer, String> cache = grid().createCache("test-cache") [CD]
+Line_3 $$ IgniteCache<Integer, String> cache = grid().createCache("test-cache") --> Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, "val" + i) [FD]
+Line_6 $$ IgniteBiPredicate<Integer, String> filter = new IgniteBiPredicate<Integer, String>() --> Line_8 $$ return k % 10 == 0 [CD]
+Line_3 $$ IgniteCache<Integer, String> cache = grid().createCache("test-cache") --> Line_16 $$ List<Integer> keys = cache.query(new ScanQuery(filter), transformer).getAll() [FD]
+Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, "val" + i) --> Line_19 $$ for (int i = 0; i < 5; i++) assertEquals(i * 10, keys.get(i).intValue()) [FD]
+Line_3 $$ IgniteCache<Integer, String> cache = grid().createCache("test-cache") --> Line_21 $$ cache.destroy() [FD]

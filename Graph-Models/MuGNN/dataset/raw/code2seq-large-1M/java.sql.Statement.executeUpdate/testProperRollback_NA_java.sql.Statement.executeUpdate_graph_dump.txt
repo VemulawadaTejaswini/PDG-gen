@@ -1,0 +1,7 @@
+Line_3 $$ try (Statement st = sharedConnection.createStatement()) --> Line_4 $$ st.executeUpdate("insert into tx_prim_key(id) values(32)") [FD]
+Line_3 $$ try (Statement st = sharedConnection.createStatement()) --> Line_5 $$ st.executeUpdate("insert into tx_fore_key(id, id_ref) values(42, 32)") [FD]
+Line_2 $$ public void testProperRollback() throws Exception --> Line_7 $$ sharedConnection.setAutoCommit(false) [CD]
+Line_3 $$ try (Statement st = sharedConnection.createStatement()) --> Line_9 $$ st.executeUpdate("delete from tx_prim_key where id = 32") [FD]
+Line_3 $$ try (Statement st = sharedConnection.createStatement()) --> Line_18 $$ st.setQueryTimeout(3) [FD]
+Line_3 $$ try (Statement st = sharedConnection.createStatement()) --> Line_19 $$ st.executeUpdate("delete from tx_fore_key where id = 42") [FD]
+Line_3 $$ try (Statement st = sharedConnection.createStatement()) --> Line_20 $$ st.executeUpdate("delete from tx_prim_key where id = 32") [FD]

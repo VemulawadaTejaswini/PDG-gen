@@ -1,0 +1,7 @@
+Line_2 $$ private DeployRequest createDeployRequest(List<Artifact> toPublish) --> Line_3 $$ DeployRequest deployRequest = new DeployRequest().setRepository(remoteRepo) [CD]
+Line_4 $$ for (Artifact artifact : toPublish) --> Line_5 $$ File file = artifact.getFile() [FD]
+Line_5 $$ File file = artifact.getFile() --> Line_6 $$ Preconditions.checkNotNull(file) [FD]
+Line_5 $$ File file = artifact.getFile() --> Line_7 $$ Preconditions.checkArgument(file.exists(), "No such file: %s", file.getAbsolutePath()) [FD]
+Line_3 $$ DeployRequest deployRequest = new DeployRequest().setRepository(remoteRepo) --> Line_8 $$ deployRequest.addArtifact(artifact) [FD]
+Line_4 $$ for (Artifact artifact : toPublish) --> Line_8 $$ deployRequest.addArtifact(artifact) [FD]
+Line_2 $$ private DeployRequest createDeployRequest(List<Artifact> toPublish) --> Line_10 $$ return deployRequest [CD]

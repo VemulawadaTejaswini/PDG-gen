@@ -1,0 +1,8 @@
+Line_2 $$ public void testAutoMap() --> Line_3 $$ TimeZone current = TimeZone.getDefault() [CD]
+Line_9 $$ java.sql.Timestamp registered = new java.sql.Timestamp(now) --> Line_10 $$ Observable<Integer> u = db.update("update person set dob=?, registered=? where name=?").parameter(dob).parameter(registered).parameter("FRED").count() [FD]
+Line_7 $$ Date dob = new Date(100) --> Line_10 $$ Observable<Integer> u = db.update("update person set dob=?, registered=? where name=?").parameter(dob).parameter(registered).parameter("FRED").count() [FD]
+Line_6 $$ Database db = db() --> Line_10 $$ Observable<Integer> u = db.update("update person set dob=?, registered=? where name=?").parameter(dob).parameter(registered).parameter("FRED").count() [FD]
+Line_10 $$ Observable<Integer> u = db.update("update person set dob=?, registered=? where name=?").parameter(dob).parameter(registered).parameter("FRED").count() --> Line_11 $$ Person person = db.select("select name,score,dob,registered from person order by name").dependsOn(u).autoMap(Person.class).first().toBlocking().single() [FD]
+Line_6 $$ Database db = db() --> Line_11 $$ Person person = db.select("select name,score,dob,registered from person order by name").dependsOn(u).autoMap(Person.class).first().toBlocking().single() [FD]
+Line_8 $$ long now = System.currentTimeMillis() --> Line_15 $$ assertEquals(now, (long) person.getRegistered()) [FD]
+Line_3 $$ TimeZone current = TimeZone.getDefault() --> Line_17 $$ TimeZone.setDefault(current) [FD]

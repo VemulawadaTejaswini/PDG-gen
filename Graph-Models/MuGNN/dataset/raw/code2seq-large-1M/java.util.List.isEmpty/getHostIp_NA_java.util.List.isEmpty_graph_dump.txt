@@ -1,0 +1,8 @@
+Line_2 $$ protected String getHostIp(VmInstanceInventory vm) --> Line_3 $$ String sql = "select h.managementIp from HostVO h, VmInstanceVO vm where h.uuid = vm.hostUuid and vm.uuid = :uuid" [CD]
+Line_2 $$ protected String getHostIp(VmInstanceInventory vm) --> Line_4 $$ TypedQuery<String> q = dbf.getEntityManager().createQuery(sql, String.class) [CD]
+Line_3 $$ String sql = "select h.managementIp from HostVO h, VmInstanceVO vm where h.uuid = vm.hostUuid and vm.uuid = :uuid" --> Line_4 $$ TypedQuery<String> q = dbf.getEntityManager().createQuery(sql, String.class) [FD]
+Line_2 $$ protected String getHostIp(VmInstanceInventory vm) --> Line_5 $$ q.setParameter("uuid", vm.getUuid()) [CD]
+Line_2 $$ protected String getHostIp(VmInstanceInventory vm) --> Line_5 $$ q.setParameter("uuid", vm.getUuid()) [FD]
+Line_2 $$ protected String getHostIp(VmInstanceInventory vm) --> Line_6 $$ List<String> ret = q.getResultList() [CD]
+Line_2 $$ protected String getHostIp(VmInstanceInventory vm) --> Line_7 $$ return ret.isEmpty() ? null : ret.get(0) [CD]
+Line_6 $$ List<String> ret = q.getResultList() --> Line_7 $$ return ret.isEmpty() ? null : ret.get(0) [FD]

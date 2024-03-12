@@ -1,0 +1,7 @@
+Line_2 $$ private <T extends SkyValue> EvaluationResult<T> doMutatingEvaluation(ImmutableSet<SkyKey> skyKeys) throws InterruptedException, E --> Line_3 $$ NodeEntry errorTransienceEntry = Iterables.getOnlyElement(graph.createIfAbsentBatch(null, Reason.PRE_OR_POST_EVALUATION, ImmutableList.of(ErrorTransienceValue.KEY)).values()) [CD]
+Line_2 $$ private <T extends SkyValue> EvaluationResult<T> doMutatingEvaluation(ImmutableSet<SkyKey> skyKeys) throws InterruptedException, E --> Line_4 $$ if (!errorTransienceEntry.isDone()) [CD]
+Line_2 $$ private <T extends SkyValue> EvaluationResult<T> doMutatingEvaluation(ImmutableSet<SkyKey> skyKeys) throws InterruptedException, E --> Line_8 $$ for (Map.Entry<SkyKey, ? extends NodeEntry> e : graph.createIfAbsentBatch(null, Reason.PRE_OR_POST_EVALUATION, skyKeys).entrySet()) [FD]
+Line_9 $$ SkyKey skyKey = e.getKey() --> Line_13 $$ evaluatorContext.getVisitor().enqueueEvaluation(skyKey) [FD]
+Line_9 $$ SkyKey skyKey = e.getKey() --> Line_16 $$ informProgressReceiverThatValueIsDone(skyKey, entry) [FD]
+Line_2 $$ private <T extends SkyValue> EvaluationResult<T> doMutatingEvaluation(ImmutableSet<SkyKey> skyKeys) throws InterruptedException, E --> Line_29 $$ return waitForCompletionAndConstructResult(skyKeys) [FD]
+Line_2 $$ private <T extends SkyValue> EvaluationResult<T> doMutatingEvaluation(ImmutableSet<SkyKey> skyKeys) throws InterruptedException, E --> Line_29 $$ return waitForCompletionAndConstructResult(skyKeys) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ boolean infoFileExists(String commandName) throws IOException --> Line_3 $$ ProcessBuilder processBuilder = new ProcessBuilder(infoExecutable, "-w", commandName) [CD]
+Line_2 $$ boolean infoFileExists(String commandName) throws IOException --> Line_4 $$ CapturingProcessHandler processHandler = new CapturingProcessHandler(processBuilder.start(), Charset.forName(CHARSET_NAME), infoExecutable + " -w " + commandName) [CD]
+Line_3 $$ ProcessBuilder processBuilder = new ProcessBuilder(infoExecutable, "-w", commandName) --> Line_4 $$ CapturingProcessHandler processHandler = new CapturingProcessHandler(processBuilder.start(), Charset.forName(CHARSET_NAME), infoExecutable + " -w " + commandName) [FD]
+Line_2 $$ boolean infoFileExists(String commandName) throws IOException --> Line_5 $$ ProcessOutput output = processHandler.runProcess(TIMEOUT_IN_MILLISECONDS) [CD]
+Line_4 $$ CapturingProcessHandler processHandler = new CapturingProcessHandler(processBuilder.start(), Charset.forName(CHARSET_NAME), infoExecutable + " -w " + commandName) --> Line_5 $$ ProcessOutput output = processHandler.runProcess(TIMEOUT_IN_MILLISECONDS) [FD]
+Line_2 $$ boolean infoFileExists(String commandName) throws IOException --> Line_6 $$ return output.getExitCode() == 0 && !output.getStdout().isEmpty() [CD]
+Line_5 $$ ProcessOutput output = processHandler.runProcess(TIMEOUT_IN_MILLISECONDS) --> Line_6 $$ return output.getExitCode() == 0 && !output.getStdout().isEmpty() [FD]

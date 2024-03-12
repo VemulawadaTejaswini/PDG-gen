@@ -1,0 +1,8 @@
+Line_2 $$ public byte[] readBytes(@Nullable ProgressIndicator indicator) throws IOException --> Line_3 $$ int contentLength = getConnection().getContentLength() [CD]
+Line_2 $$ public byte[] readBytes(@Nullable ProgressIndicator indicator) throws IOException --> Line_4 $$ BufferExposingByteArrayOutputStream out = new BufferExposingByteArrayOutputStream(contentLength > 0 ? contentLength : BLOCK_SIZE) [CD]
+Line_2 $$ public byte[] readBytes(@Nullable ProgressIndicator indicator) throws IOException --> Line_5 $$ NetUtils.copyStreamContent(indicator, getInputStream(), out, contentLength) [FD]
+Line_2 $$ public byte[] readBytes(@Nullable ProgressIndicator indicator) throws IOException --> Line_5 $$ NetUtils.copyStreamContent(indicator, getInputStream(), out, contentLength) [CD]
+Line_4 $$ BufferExposingByteArrayOutputStream out = new BufferExposingByteArrayOutputStream(contentLength > 0 ? contentLength : BLOCK_SIZE) --> Line_5 $$ NetUtils.copyStreamContent(indicator, getInputStream(), out, contentLength) [FD]
+Line_3 $$ int contentLength = getConnection().getContentLength() --> Line_5 $$ NetUtils.copyStreamContent(indicator, getInputStream(), out, contentLength) [FD]
+Line_2 $$ public byte[] readBytes(@Nullable ProgressIndicator indicator) throws IOException --> Line_6 $$ return ArrayUtil.realloc(out.getInternalBuffer(), out.size()) [CD]
+Line_4 $$ BufferExposingByteArrayOutputStream out = new BufferExposingByteArrayOutputStream(contentLength > 0 ? contentLength : BLOCK_SIZE) --> Line_6 $$ return ArrayUtil.realloc(out.getInternalBuffer(), out.size()) [FD]

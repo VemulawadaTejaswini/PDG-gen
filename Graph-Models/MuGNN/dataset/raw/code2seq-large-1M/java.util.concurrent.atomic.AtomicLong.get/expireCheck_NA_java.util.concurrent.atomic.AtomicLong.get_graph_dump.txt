@@ -1,0 +1,7 @@
+Line_2 $$ protected void expireCheck() --> Line_3 $$ long now = timeService.getCurrentTimeMillis() [CD]
+Line_2 $$ protected void expireCheck() --> Line_4 $$ long l = lastCheck.get() [CD]
+Line_2 $$ protected void expireCheck() --> Line_5 $$ if ((now - l) > timeout) [CD]
+Line_5 $$ if ((now - l) > timeout) --> Line_6 $$ if (lastCheck.compareAndSet(l, now)) [CD]
+Line_4 $$ long l = lastCheck.get() --> Line_6 $$ if (lastCheck.compareAndSet(l, now)) [FD]
+Line_3 $$ long now = timeService.getCurrentTimeMillis() --> Line_6 $$ if (lastCheck.compareAndSet(l, now)) [FD]
+Line_6 $$ if (lastCheck.compareAndSet(l, now)) --> Line_7 $$ Map.Entry[] entries = map.entrySet().toArray(new Map.Entry[0]) [CD]

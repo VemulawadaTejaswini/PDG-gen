@@ -1,0 +1,8 @@
+Line_2 $$ String safeEnvVarValue(String value, String name, boolean truncate) --> Line_3 $$ final int lenLimit = 20 * 1024 [CD]
+Line_2 $$ String safeEnvVarValue(String value, String name, boolean truncate) --> Line_4 $$ if (truncate && value.length() > lenLimit) [FD]
+Line_2 $$ String safeEnvVarValue(String value, String name, boolean truncate) --> Line_4 $$ if (truncate && value.length() > lenLimit) [CD]
+Line_4 $$ if (truncate && value.length() > lenLimit) --> Line_5 $$ value = value.substring(0, lenLimit) [CD]
+Line_2 $$ String safeEnvVarValue(String value, String name, boolean truncate) --> Line_5 $$ value = value.substring(0, lenLimit) [FD]
+Line_3 $$ final int lenLimit = 20 * 1024 --> Line_5 $$ value = value.substring(0, lenLimit) [FD]
+Line_4 $$ if (truncate && value.length() > lenLimit) --> Line_6 $$ LOG.warn("Length of environment variable " + name + " was truncated to " + lenLimit + " bytes to fit system limits.") [CD]
+Line_2 $$ String safeEnvVarValue(String value, String name, boolean truncate) --> Line_8 $$ return value [CD]

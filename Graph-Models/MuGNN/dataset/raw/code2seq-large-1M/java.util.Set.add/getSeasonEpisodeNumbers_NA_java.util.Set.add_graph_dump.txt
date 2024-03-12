@@ -1,0 +1,7 @@
+Line_2 $$ private SortedMap<Integer, SortedSet<Integer>> getSeasonEpisodeNumbers(Iterable<Episode> episodes) --> Line_3 $$ SortedMap<Integer, SortedSet<Integer>> n = new TreeMap<Integer, SortedSet<Integer>>() [CD]
+Line_4 $$ for (Episode it : episodes) --> Line_5 $$ Integer s = it.getSeason() == null || it.getSpecial() != null ? it.getSpecial() == null ? -1 : 0 : it.getSeason() [FD]
+Line_4 $$ for (Episode it : episodes) --> Line_6 $$ Integer e = it.getEpisode() == null ? it.getSpecial() == null ? -1 : it.getSpecial() : it.getEpisode() [FD]
+Line_6 $$ Integer e = it.getEpisode() == null ? it.getSpecial() == null ? -1 : it.getSpecial() : it.getEpisode() --> Line_7 $$ n.computeIfAbsent(s,  key -> new TreeSet<Integer>()).add(e) [FD]
+Line_3 $$ SortedMap<Integer, SortedSet<Integer>> n = new TreeMap<Integer, SortedSet<Integer>>() --> Line_7 $$ n.computeIfAbsent(s,  key -> new TreeSet<Integer>()).add(e) [FD]
+Line_5 $$ Integer s = it.getSeason() == null || it.getSpecial() != null ? it.getSpecial() == null ? -1 : 0 : it.getSeason() --> Line_7 $$ n.computeIfAbsent(s,  key -> new TreeSet<Integer>()).add(e) [FD]
+Line_2 $$ private SortedMap<Integer, SortedSet<Integer>> getSeasonEpisodeNumbers(Iterable<Episode> episodes) --> Line_9 $$ return n [CD]

@@ -1,0 +1,7 @@
+Line_4 $$ final Map<String, String> map = recordWithHeader.toMap() --> Line_5 $$ map.remove("OldColumn") [FD]
+Line_4 $$ final Map<String, String> map = recordWithHeader.toMap() --> Line_6 $$ map.put("ZColumn", "NewValue") [FD]
+Line_4 $$ final Map<String, String> map = recordWithHeader.toMap() --> Line_7 $$ final ArrayList<String> list = new ArrayList(map.values()) [FD]
+Line_7 $$ final ArrayList<String> list = new ArrayList(map.values()) --> Line_8 $$ Collections.sort(list) [FD]
+Line_3 $$ try (final CSVPrinter printer = new CSVPrinter(new StringBuilder(), CSVFormat.DEFAULT)) --> Line_9 $$ printer.printRecord(list) [FD]
+Line_7 $$ final ArrayList<String> list = new ArrayList(map.values()) --> Line_9 $$ printer.printRecord(list) [FD]
+Line_3 $$ try (final CSVPrinter printer = new CSVPrinter(new StringBuilder(), CSVFormat.DEFAULT)) --> Line_10 $$ Assert.assertEquals("A,B,C,NewValue" + CSVFormat.DEFAULT.getRecordSeparator(), printer.getOut().toString()) [FD]

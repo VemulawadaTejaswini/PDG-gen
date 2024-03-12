@@ -1,0 +1,6 @@
+Line_2 $$ protected void flushCalendarUpdates() --> Line_3 $$ if (calendarIngestCache.getSize() > 0) [CD]
+Line_3 $$ if (calendarIngestCache.getSize() > 0) --> Line_4 $$ logger.info("Flushing [CD]
+Line_3 $$ if (calendarIngestCache.getSize() > 0) --> Line_5 $$ calendarIngestCache.getCurrentCache().forEach( entry -> calendarDataService.saveCalendar(entry.getLeft(), entry.getRight(), false)) [CD]
+Line_3 $$ if (calendarIngestCache.getSize() > 0) --> Line_6 $$ List<Calendar> calendars = calendarIngestCache.getCurrentCache().stream().map( entry -> entry.getLeft()).collect(Collectors.toList()) [CD]
+Line_3 $$ if (calendarIngestCache.getSize() > 0) --> Line_7 $$ eventBus.post(new BulkCalendarUpdateEvent(calendars, LocalDateTime.now())) [CD]
+Line_3 $$ if (calendarIngestCache.getSize() > 0) --> Line_8 $$ calendarIngestCache.clearCache() [CD]

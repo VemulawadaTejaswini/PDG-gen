@@ -1,0 +1,8 @@
+Line_2 $$ public int signalDone() --> Line_4 $$ int current = notDoneCount.decrementAndGet() [CD]
+Line_2 $$ public int signalDone() --> Line_6 $$ if (LOG.isDebugEnabled()) [CD]
+Line_6 $$ if (LOG.isDebugEnabled()) --> Line_7 $$ LOG.debug(String.format("%d workers are not done. Waiting until they finish", current)) [CD]
+Line_4 $$ int current = notDoneCount.decrementAndGet() --> Line_7 $$ LOG.debug(String.format("%d workers are not done. Waiting until they finish", current)) [FD]
+Line_2 $$ public int signalDone() --> Line_8 $$ if (current == 0) [CD]
+Line_4 $$ int current = notDoneCount.decrementAndGet() --> Line_8 $$ if (current == 0) [FD]
+Line_8 $$ if (current == 0) --> Line_9 $$ this.state = State.EXIT [CD]
+Line_2 $$ public int signalDone() --> Line_11 $$ return current [CD]

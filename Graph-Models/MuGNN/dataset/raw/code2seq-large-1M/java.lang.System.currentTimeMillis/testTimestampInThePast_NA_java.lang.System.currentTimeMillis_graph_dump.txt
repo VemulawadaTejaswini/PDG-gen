@@ -1,0 +1,8 @@
+Line_2 $$ public void testTimestampInThePast() throws IOException --> Line_3 $$ long timestamp = System.currentTimeMillis() - TIME_DIFF_MS - Configuration.getInstance().getLongProperty(CoreConfig.BEFORE_CURRENT_COLLECTIONTIME_MS) [CD]
+Line_2 $$ public void testTimestampInThePast() throws IOException --> Line_4 $$ String json = getJsonFromFile("sample_payload.json", timestamp, POSTFIX) [CD]
+Line_3 $$ long timestamp = System.currentTimeMillis() - TIME_DIFF_MS - Configuration.getInstance().getLongProperty(CoreConfig.BEFORE_CURRENT_COLLECTIONTIME_MS) --> Line_4 $$ String json = getJsonFromFile("sample_payload.json", timestamp, POSTFIX) [FD]
+Line_2 $$ public void testTimestampInThePast() throws IOException --> Line_5 $$ payload = AggregatedPayload.create(json) [CD]
+Line_4 $$ String json = getJsonFromFile("sample_payload.json", timestamp, POSTFIX) --> Line_5 $$ payload = AggregatedPayload.create(json) [FD]
+Line_2 $$ public void testTimestampInThePast() throws IOException --> Line_6 $$ List<ErrorResponse.ErrorData> errors = payload.getValidationErrors() [CD]
+Line_2 $$ public void testTimestampInThePast() throws IOException --> Line_7 $$ assertEquals("Invalid error message", "Out of bounds. Cannot be more than 259200000 milliseconds into the past. " + "Cannot be more than 600000 milliseconds into the future", errors.get(0).getMessage()) [CD]
+Line_6 $$ List<ErrorResponse.ErrorData> errors = payload.getValidationErrors() --> Line_7 $$ assertEquals("Invalid error message", "Out of bounds. Cannot be more than 259200000 milliseconds into the past. " + "Cannot be more than 600000 milliseconds into the future", errors.get(0).getMessage()) [FD]

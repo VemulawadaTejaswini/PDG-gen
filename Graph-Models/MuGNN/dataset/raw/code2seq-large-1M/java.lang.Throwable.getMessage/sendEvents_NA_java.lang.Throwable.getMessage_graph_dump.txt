@@ -1,0 +1,6 @@
+Line_2 $$ private void sendEvents(final List<Event> allEvents) --> Line_3 $$ final BulkRequest<Event> request = new BulkRequest(jestClient, allEvents, ( events) -> new BulkWrapper(new Bulk.Builder().addAction(convertEventsToEsActions(events))), bulkRetryCount) [CD]
+Line_3 $$ final BulkRequest<Event> request = new BulkRequest(jestClient, allEvents, ( events) -> new BulkWrapper(new Bulk.Builder().addAction(convertEventsToEsActions(events))), bulkRetryCount) --> Line_5 $$ request.execute() [FD]
+Line_7 $$ final BulkResult result = ex.getBulkResult().getRawResult() --> Line_8 $$ LOG.error("Bulk API action failed. Error response was: [FD]
+Line_7 $$ final BulkResult result = ex.getBulkResult().getRawResult() --> Line_10 $$ for (BulkResultItem item : result.getItems()) [FD]
+Line_11 $$ if (item.status >= 200 && item.status < 300) --> Line_12 $$ logEsDebug(item.operation, item.index, item.type, "none", item.status, item.error) [CD]
+Line_11 $$ if (item.status >= 200 && item.status < 300) --> Line_14 $$ logEsError(item.operation, item.index, item.type, "none", item.status, item.error) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ protected List<FlowFile> processException(final ProcessSession session, List<FlowFile> flowFiles, Exception exception) --> Line_3 $$ List<FlowFile> failedFlowFiles = new ArrayList() [CD]
+Line_4 $$ for (FlowFile flowFile : flowFiles) --> Line_5 $$ flowFile = session.putAttribute(flowFile, DYNAMODB_ERROR_EXCEPTION_MESSAGE, exception.getMessage()) [FD]
+Line_2 $$ protected List<FlowFile> processException(final ProcessSession session, List<FlowFile> flowFiles, Exception exception) --> Line_5 $$ flowFile = session.putAttribute(flowFile, DYNAMODB_ERROR_EXCEPTION_MESSAGE, exception.getMessage()) [FD]
+Line_3 $$ List<FlowFile> failedFlowFiles = new ArrayList() --> Line_6 $$ failedFlowFiles.add(flowFile) [FD]
+Line_4 $$ for (FlowFile flowFile : flowFiles) --> Line_6 $$ failedFlowFiles.add(flowFile) [FD]
+Line_5 $$ flowFile = session.putAttribute(flowFile, DYNAMODB_ERROR_EXCEPTION_MESSAGE, exception.getMessage()) --> Line_6 $$ failedFlowFiles.add(flowFile) [FD]
+Line_2 $$ protected List<FlowFile> processException(final ProcessSession session, List<FlowFile> flowFiles, Exception exception) --> Line_8 $$ return failedFlowFiles [CD]

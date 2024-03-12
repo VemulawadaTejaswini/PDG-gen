@@ -1,0 +1,8 @@
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_3 $$ commandGateway.sendAndWait(asCommandMessage(new CreateMyAggregateCommand("id"))) [CD]
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_4 $$ commandGateway.sendAndWait(asCommandMessage(new MyNestedCommand("id", "state"))) [CD]
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_5 $$ ArgumentCaptor<EventMessage<?>> eventCaptor = ArgumentCaptor.forClass(EventMessage.class) [CD]
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_6 $$ verify(eventStore, times(4)).publish(eventCaptor.capture()) [CD]
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_7 $$ assertEquals(new MyAggregateCreatedEvent("id"), eventCaptor.getAllValues().get(0).getPayload()) [CD]
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_8 $$ assertEquals(new AnyCommandMatchingPatternInterceptedEvent(MyNestedCommand.class.getName()), eventCaptor.getAllValues().get(1).getPayload()) [CD]
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_9 $$ assertEquals(new AnyCommandInterceptedEvent(MyNestedCommand.class.getName()), eventCaptor.getAllValues().get(2).getPayload()) [CD]
+Line_2 $$ public void testInterceptorWithNestedEntity() --> Line_10 $$ assertEquals(new MyNestedEvent("id", "state intercepted"), eventCaptor.getAllValues().get(3).getPayload()) [CD]

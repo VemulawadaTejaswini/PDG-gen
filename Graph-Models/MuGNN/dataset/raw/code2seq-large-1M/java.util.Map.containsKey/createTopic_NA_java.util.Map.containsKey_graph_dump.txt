@@ -1,0 +1,6 @@
+Line_2 $$ public void createTopic(String topic, int numPartitions, short replicationFactor, Map<String, ?> configs) --> Line_3 $$ if (!topicMap.containsKey(topic)) [FD]
+Line_2 $$ public void createTopic(String topic, int numPartitions, short replicationFactor, Map<String, ?> configs) --> Line_3 $$ if (!topicMap.containsKey(topic)) [CD]
+Line_3 $$ if (!topicMap.containsKey(topic)) --> Line_4 $$ final TopicCleanupPolicy cleanUpPolicy = CLEANUP_POLICY_COMPACT.equals(configs.get(COMPRESSION_TYPE_CONFIG)) ? TopicCleanupPolicy.COMPACT : TopicCleanupPolicy.DELETE [CD]
+Line_2 $$ public void createTopic(String topic, int numPartitions, short replicationFactor, Map<String, ?> configs) --> Line_4 $$ final TopicCleanupPolicy cleanUpPolicy = CLEANUP_POLICY_COMPACT.equals(configs.get(COMPRESSION_TYPE_CONFIG)) ? TopicCleanupPolicy.COMPACT : TopicCleanupPolicy.DELETE [FD]
+Line_3 $$ if (!topicMap.containsKey(topic)) --> Line_5 $$ topicMap.put(topic, new FakeTopic(topic, numPartitions, replicationFactor, cleanUpPolicy)) [CD]
+Line_2 $$ public void createTopic(String topic, int numPartitions, short replicationFactor, Map<String, ?> configs) --> Line_5 $$ topicMap.put(topic, new FakeTopic(topic, numPartitions, replicationFactor, cleanUpPolicy)) [FD]

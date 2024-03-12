@@ -1,0 +1,7 @@
+Line_2 $$ public void testMultiDeletePlan() throws Exception --> Line_3 $$ DeleteById plan = e.plan("delete from users where id in (1, 2)") [CD]
+Line_2 $$ public void testMultiDeletePlan() throws Exception --> Line_4 $$ assertThat(plan.docKeys().size(), is(2)) [CD]
+Line_3 $$ DeleteById plan = e.plan("delete from users where id in (1, 2)") --> Line_4 $$ assertThat(plan.docKeys().size(), is(2)) [FD]
+Line_2 $$ public void testMultiDeletePlan() throws Exception --> Line_5 $$ List<String> docKeys = Lists.newArrayList(plan.docKeys()).stream().map( x -> x.getId(e.functions(), Row.EMPTY, Collections.emptyMap())).collect(Collectors.toList()) [CD]
+Line_3 $$ DeleteById plan = e.plan("delete from users where id in (1, 2)") --> Line_5 $$ List<String> docKeys = Lists.newArrayList(plan.docKeys()).stream().map( x -> x.getId(e.functions(), Row.EMPTY, Collections.emptyMap())).collect(Collectors.toList()) [FD]
+Line_2 $$ public void testMultiDeletePlan() throws Exception --> Line_6 $$ assertThat(docKeys, Matchers.containsInAnyOrder("1", "2")) [CD]
+Line_5 $$ List<String> docKeys = Lists.newArrayList(plan.docKeys()).stream().map( x -> x.getId(e.functions(), Row.EMPTY, Collections.emptyMap())).collect(Collectors.toList()) --> Line_6 $$ assertThat(docKeys, Matchers.containsInAnyOrder("1", "2")) [FD]

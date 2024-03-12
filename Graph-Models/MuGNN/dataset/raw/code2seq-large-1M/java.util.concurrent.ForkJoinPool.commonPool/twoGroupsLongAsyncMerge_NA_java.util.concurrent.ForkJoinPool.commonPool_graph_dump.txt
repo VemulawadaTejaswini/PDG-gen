@@ -1,0 +1,7 @@
+Line_2 $$ public void twoGroupsLongAsyncMerge() --> Line_3 $$ TestSubscriber<Integer> ts = new TestSubscriber() [CD]
+Line_2 $$ public void twoGroupsLongAsyncMerge() --> Line_4 $$ Px.range(1, 1_000_000).groupBy( v -> (v & 1)).flatMap( g -> g).observeOn(ForkJoinPool.commonPool()).subscribe(ts) [CD]
+Line_3 $$ TestSubscriber<Integer> ts = new TestSubscriber() --> Line_4 $$ Px.range(1, 1_000_000).groupBy( v -> (v & 1)).flatMap( g -> g).observeOn(ForkJoinPool.commonPool()).subscribe(ts) [FD]
+Line_2 $$ public void twoGroupsLongAsyncMerge() --> Line_5 $$ ts.await(5, TimeUnit.SECONDS) [CD]
+Line_3 $$ TestSubscriber<Integer> ts = new TestSubscriber() --> Line_5 $$ ts.await(5, TimeUnit.SECONDS) [FD]
+Line_2 $$ public void twoGroupsLongAsyncMerge() --> Line_6 $$ ts.assertValueCount(1_000_000).assertNoError().assertComplete() [CD]
+Line_3 $$ TestSubscriber<Integer> ts = new TestSubscriber() --> Line_6 $$ ts.assertValueCount(1_000_000).assertNoError().assertComplete() [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ CounterProxy getProxyAndReset() --> Line_3 $$ CounterProxy c = new CounterProxy(getName()) [CD]
+Line_2 $$ CounterProxy getProxyAndReset() --> Line_4 $$ if (getResetCounter()) [CD]
+Line_4 $$ if (getResetCounter()) --> Line_5 $$ c.setRaw(current.getAndSet(0L)) [CD]
+Line_3 $$ CounterProxy c = new CounterProxy(getName()) --> Line_5 $$ c.setRaw(current.getAndSet(0L)) [FD]
+Line_4 $$ if (getResetCounter()) --> Line_7 $$ c.setRaw(current.get()) [CD]
+Line_3 $$ CounterProxy c = new CounterProxy(getName()) --> Line_7 $$ c.setRaw(current.get()) [FD]
+Line_2 $$ CounterProxy getProxyAndReset() --> Line_9 $$ return c [CD]

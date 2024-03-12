@@ -1,0 +1,8 @@
+Line_2 $$ public String getVersion() throws Exception --> Line_3 $$ final HttpGet httpget = new HttpGet(url.toExternalForm() + "/rest/info") [CD]
+Line_3 $$ final HttpGet httpget = new HttpGet(url.toExternalForm() + "/rest/info") --> Line_4 $$ try (CloseableHttpResponse response = getResponse(httpget)) [FD]
+Line_4 $$ try (CloseableHttpResponse response = getResponse(httpget)) --> Line_5 $$ if (response.getStatusLine().getStatusCode() != 200) [FD]
+Line_4 $$ try (CloseableHttpResponse response = getResponse(httpget)) --> Line_6 $$ throw new IllegalStateException(String.format("Oups. We were expecting a status code of 200, but got %d instead.", response.getStatusLine().getStatusCode())) [FD]
+Line_4 $$ try (CloseableHttpResponse response = getResponse(httpget)) --> Line_8 $$ final HttpEntity entity = response.getEntity() [FD]
+Line_8 $$ final HttpEntity entity = response.getEntity() --> Line_9 $$ final String json = EntityUtils.toString(entity) [FD]
+Line_10 $$ final Gson g = new Gson() --> Line_12 $$ final JsonObject info = g.fromJson(json, JsonObject.class) [FD]
+Line_9 $$ final String json = EntityUtils.toString(entity) --> Line_12 $$ final JsonObject info = g.fromJson(json, JsonObject.class) [FD]

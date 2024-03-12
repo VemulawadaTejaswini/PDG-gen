@@ -1,0 +1,7 @@
+Line_2 $$ public void observesDeploy(@Observes final AfterDeploy afterDeployment) --> Line_3 $$ contextProducer.set(new DeploymentContext(Thread.currentThread().getContextClassLoader())) [CD]
+Line_2 $$ public void observesDeploy(@Observes final AfterDeploy afterDeployment) --> Line_4 $$ final ClassLoaders loader = classLoader.get() [CD]
+Line_2 $$ public void observesDeploy(@Observes final AfterDeploy afterDeployment) --> Line_5 $$ final String name = afterDeployment.getDeployment().getArchive() != null ? afterDeployment.getDeployment().getArchive().getName() : null [FD]
+Line_2 $$ public void observesDeploy(@Observes final AfterDeploy afterDeployment) --> Line_5 $$ final String name = afterDeployment.getDeployment().getArchive() != null ? afterDeployment.getDeployment().getArchive().getName() : null [CD]
+Line_2 $$ public void observesDeploy(@Observes final AfterDeploy afterDeployment) --> Line_6 $$ if (loader != null && loader.classloaders.containsKey(name)) [CD]
+Line_5 $$ final String name = afterDeployment.getDeployment().getArchive() != null ? afterDeployment.getDeployment().getArchive().getName() : null --> Line_6 $$ if (loader != null && loader.classloaders.containsKey(name)) [FD]
+Line_5 $$ final String name = afterDeployment.getDeployment().getArchive() != null ? afterDeployment.getDeployment().getArchive().getName() : null --> Line_7 $$ setTCCL(loader.classloaders.get(name)) [FD]

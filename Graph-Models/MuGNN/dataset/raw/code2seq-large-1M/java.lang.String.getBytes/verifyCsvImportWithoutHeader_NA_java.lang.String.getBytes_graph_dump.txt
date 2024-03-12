@@ -1,0 +1,8 @@
+Line_2 $$ public void verifyCsvImportWithoutHeader() --> Line_3 $$ final String csv = new CsvBuilder().withHeader(false).withRule(new RuleBuilder().withName("http2").withProtocol("TCP,UDP").withDstAddress("127.0.0.1")).withRule(new RuleBuilder().withName("google").withDstAddress("8.8.8.8")).build() [CD]
+Line_2 $$ public void verifyCsvImportWithoutHeader() --> Line_4 $$ final InputStream inputStream = new ByteArrayInputStream(csv.getBytes()) [CD]
+Line_3 $$ final String csv = new CsvBuilder().withHeader(false).withRule(new RuleBuilder().withName("http2").withProtocol("TCP,UDP").withDstAddress("127.0.0.1")).withRule(new RuleBuilder().withName("google").withDstAddress("8.8.8.8")).build() --> Line_4 $$ final InputStream inputStream = new ByteArrayInputStream(csv.getBytes()) [FD]
+Line_2 $$ public void verifyCsvImportWithoutHeader() --> Line_5 $$ classificationService.importRules(inputStream, false, true) [CD]
+Line_4 $$ final InputStream inputStream = new ByteArrayInputStream(csv.getBytes()) --> Line_5 $$ classificationService.importRules(inputStream, false, true) [FD]
+Line_2 $$ public void verifyCsvImportWithoutHeader() --> Line_6 $$ assertThat(ruleDao.countAll(), is(2)) [CD]
+Line_2 $$ public void verifyCsvImportWithoutHeader() --> Line_7 $$ assertThat(ruleDao.findByDefinition(new RuleBuilder().withName("http").withProtocol("tcp,udp").withDstAddress("127.0.0.1").build()), hasSize(1)) [CD]
+Line_2 $$ public void verifyCsvImportWithoutHeader() --> Line_8 $$ assertThat(ruleDao.findByDefinition(new RuleBuilder().withName("google").withDstAddress("8.8.8.8").build()), hasSize(1)) [CD]

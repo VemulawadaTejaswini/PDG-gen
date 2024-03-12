@@ -1,0 +1,8 @@
+Line_4 $$ Status status = (Status) ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(this.googleApiManager.getClient(), ACTIVITY_DETECTION_INTERVAL_MS, this.activityRecognitionIntent).await(0, TimeUnit.MILLISECONDS) --> Line_5 $$ if (status.isSuccess()) [FD]
+Line_5 $$ if (status.isSuccess()) --> Line_6 $$ this.status = ServiceStatus.RUNNING [CD]
+Line_5 $$ if (status.isSuccess()) --> Line_8 $$ this.status = ServiceStatus.FAILED [CD]
+Line_5 $$ if (status.isSuccess()) --> Line_9 $$ Log.d(TAG, "Request updates failed " + status.getStatusMessage()) [CD]
+Line_4 $$ Status status = (Status) ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(this.googleApiManager.getClient(), ACTIVITY_DETECTION_INTERVAL_MS, this.activityRecognitionIntent).await(0, TimeUnit.MILLISECONDS) --> Line_9 $$ Log.d(TAG, "Request updates failed " + status.getStatusMessage()) [FD]
+Line_5 $$ if (status.isSuccess()) --> Line_10 $$ Log.d(TAG, "Request status has resolution " + status.hasResolution()) [CD]
+Line_4 $$ Status status = (Status) ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(this.googleApiManager.getClient(), ACTIVITY_DETECTION_INTERVAL_MS, this.activityRecognitionIntent).await(0, TimeUnit.MILLISECONDS) --> Line_10 $$ Log.d(TAG, "Request status has resolution " + status.hasResolution()) [FD]
+Line_2 $$ private void requestActivityUpdates() --> Line_17 $$ safeUpdateActivity(null, this.status.ordinal()) [CD]

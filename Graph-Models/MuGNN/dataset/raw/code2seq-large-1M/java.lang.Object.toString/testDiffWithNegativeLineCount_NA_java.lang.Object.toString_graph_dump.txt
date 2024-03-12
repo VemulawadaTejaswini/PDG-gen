@@ -1,0 +1,8 @@
+Line_2 $$ public void testDiffWithNegativeLineCount() throws Exception --> Line_3 $$ write(new File(db.getWorkTree(), "test.txt"), "0\n1\n2\n3\n4\n5\n6\n7\n8\n9") [CD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_5 $$ git.add().addFilepattern(".").call() [FD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_6 $$ git.commit().setMessage("Initial commit").call() [FD]
+Line_8 $$ OutputStream out = new ByteArrayOutputStream() --> Line_9 $$ git.diff().setOutputStream(out).setContextLines(1).call() [FD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_9 $$ git.diff().setOutputStream(out).setContextLines(1).call() [FD]
+Line_8 $$ OutputStream out = new ByteArrayOutputStream() --> Line_10 $$ String actual = out.toString() [FD]
+Line_11 $$ String expected = "diff --git a/test.txt b/test.txt\n" + "index f55b5c9..c5ec8fd 100644\n" + "--- a/test.txt\n" + "+++ b/test.txt\n" + "@@ -4,3 +4,3 @@\n" + " 3\n" + "-4\n" + "+4a\n" + " 5\n" --> Line_12 $$ assertEquals(expected, actual) [FD]
+Line_10 $$ String actual = out.toString() --> Line_12 $$ assertEquals(expected, actual) [FD]

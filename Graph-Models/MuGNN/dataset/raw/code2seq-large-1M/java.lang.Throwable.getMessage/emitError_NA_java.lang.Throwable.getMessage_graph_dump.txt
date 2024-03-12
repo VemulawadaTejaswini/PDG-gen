@@ -1,0 +1,7 @@
+Line_2 $$ public Job emitError(Throwable ex) --> Line_3 $$ JsonObject errorMessage = new JsonObject().put("id", this.id).put("message", ex.getMessage()) [FD]
+Line_2 $$ public Job emitError(Throwable ex) --> Line_3 $$ JsonObject errorMessage = new JsonObject().put("id", this.id).put("message", ex.getMessage()) [CD]
+Line_2 $$ public Job emitError(Throwable ex) --> Line_4 $$ eventBus.send(Kue.workerAddress("error"), errorMessage) [CD]
+Line_3 $$ JsonObject errorMessage = new JsonObject().put("id", this.id).put("message", ex.getMessage()) --> Line_4 $$ eventBus.send(Kue.workerAddress("error"), errorMessage) [FD]
+Line_2 $$ public Job emitError(Throwable ex) --> Line_5 $$ eventBus.send(Kue.getCertainJobAddress("error", this), errorMessage) [CD]
+Line_3 $$ JsonObject errorMessage = new JsonObject().put("id", this.id).put("message", ex.getMessage()) --> Line_5 $$ eventBus.send(Kue.getCertainJobAddress("error", this), errorMessage) [FD]
+Line_2 $$ public Job emitError(Throwable ex) --> Line_6 $$ return this [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void logout() throws AuthenticationException --> Line_3 $$ final LogoutRequest request = new LogoutRequest(client.getClientIdentity()) [CD]
+Line_2 $$ private void logout() throws AuthenticationException --> Line_4 $$ final LogoutResponse response [CD]
+Line_4 $$ final LogoutResponse response --> Line_6 $$ response = LogoutResponse.class.cast(Client.request(request, new LogoutResponse(), server)) [FD]
+Line_3 $$ final LogoutRequest request = new LogoutRequest(client.getClientIdentity()) --> Line_6 $$ response = LogoutResponse.class.cast(Client.request(request, new LogoutResponse(), server)) [FD]
+Line_4 $$ final LogoutResponse response --> Line_10 $$ switch(response.getResponseCode()) [FD]
+Line_4 $$ final LogoutResponse response --> Line_12 $$ throw AuthenticationException.class.cast(new AuthenticationException("Can't logout").initCause(response.getDeniedCause())) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public BaseDTO saveStore(@FormParam("model") String model, @FormParam("content") String content, @FormParam("fileName") String fileName, @FormParam("contentType") String contentType, @QueryParam("tenantId") String tenantId) --> Line_4 $$ byte[] bytes = new Base64().decodeBase64(content.getBytes("utf-8")) [FD]
+Line_2 $$ public BaseDTO saveStore(@FormParam("model") String model, @FormParam("content") String content, @FormParam("fileName") String fileName, @FormParam("contentType") String contentType, @QueryParam("tenantId") String tenantId) --> Line_7 $$ StoreDTO storeDto = storeService.saveStore(model, dataSource, tenantId) [FD]
+Line_6 $$ DataSource dataSource = new ByteArrayDataSource(fileName, bytes) --> Line_7 $$ StoreDTO storeDto = storeService.saveStore(model, dataSource, tenantId) [FD]
+Line_5 $$ BaseDTO result = new BaseDTO() --> Line_8 $$ result.setCode(200) [FD]
+Line_5 $$ BaseDTO result = new BaseDTO() --> Line_9 $$ result.setData(storeDto.getKey()) [FD]
+Line_7 $$ StoreDTO storeDto = storeService.saveStore(model, dataSource, tenantId) --> Line_9 $$ result.setData(storeDto.getKey()) [FD]
+Line_5 $$ BaseDTO result = new BaseDTO() --> Line_14 $$ result.setCode(500) [FD]
+Line_5 $$ BaseDTO result = new BaseDTO() --> Line_15 $$ result.setMessage(ex.getMessage()) [FD]

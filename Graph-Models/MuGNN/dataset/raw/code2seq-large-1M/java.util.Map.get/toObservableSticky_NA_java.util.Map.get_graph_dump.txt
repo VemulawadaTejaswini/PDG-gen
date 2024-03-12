@@ -1,0 +1,8 @@
+Line_2 $$ public <T> Observable<T> toObservableSticky(final Class<T> eventType) --> Line_4 $$ Observable<T> observable = mBus.ofType(eventType) [FD]
+Line_2 $$ public <T> Observable<T> toObservableSticky(final Class<T> eventType) --> Line_5 $$ final Object event = mStickyEventMap.get(eventType) [FD]
+Line_5 $$ final Object event = mStickyEventMap.get(eventType) --> Line_6 $$ if (event != null) [FD]
+Line_6 $$ if (event != null) --> Line_7 $$ return observable.mergeWith(Observable.just(eventType.cast(event))) [CD]
+Line_4 $$ Observable<T> observable = mBus.ofType(eventType) --> Line_7 $$ return observable.mergeWith(Observable.just(eventType.cast(event))) [FD]
+Line_2 $$ public <T> Observable<T> toObservableSticky(final Class<T> eventType) --> Line_7 $$ return observable.mergeWith(Observable.just(eventType.cast(event))) [FD]
+Line_5 $$ final Object event = mStickyEventMap.get(eventType) --> Line_7 $$ return observable.mergeWith(Observable.just(eventType.cast(event))) [FD]
+Line_6 $$ if (event != null) --> Line_9 $$ return observable [CD]

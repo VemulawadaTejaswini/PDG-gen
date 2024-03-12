@@ -1,0 +1,7 @@
+Line_2 $$ public void testOverridesDoesntFixTwiceBoundInOriginal() --> Line_3 $$ Module original = new AbstractModule() [CD]
+Line_3 $$ Module original = new AbstractModule() --> Line_5 $$ bind(String.class).toInstance("A") [CD]
+Line_3 $$ Module original = new AbstractModule() --> Line_6 $$ bind(String.class).toInstance("B") [CD]
+Line_9 $$ Module replacements = new AbstractModule() --> Line_11 $$ bind(String.class).toInstance("C") [CD]
+Line_2 $$ public void testOverridesDoesntFixTwiceBoundInOriginal() --> Line_14 $$ Module module = Modules.override(original).with(replacements) [CD]
+Line_3 $$ Module original = new AbstractModule() --> Line_14 $$ Module module = Modules.override(original).with(replacements) [FD]
+Line_3 $$ Module original = new AbstractModule() --> Line_19 $$ assertContains(expected.getMessage(), "1) A binding to java.lang.String was already configured at " + replacements.getClass().getName(), asModuleChain(Modules.OverrideModule.class, replacements.getClass()), "at " + original.getClass().getName(), asModuleChain(Modules.OverrideModule.class, original.getClass())) [FD]

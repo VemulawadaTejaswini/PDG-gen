@@ -1,0 +1,7 @@
+Line_4 $$ final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) --> Line_5 $$ final Schema schema = schemaFactory.newSchema(FLOW_XSD_RESOURCE) [FD]
+Line_6 $$ final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance() --> Line_7 $$ docFactory.setNamespaceAware(true) [FD]
+Line_6 $$ final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance() --> Line_8 $$ docFactory.setSchema(schema) [FD]
+Line_5 $$ final Schema schema = schemaFactory.newSchema(FLOW_XSD_RESOURCE) --> Line_8 $$ docFactory.setSchema(schema) [FD]
+Line_6 $$ final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance() --> Line_9 $$ final DocumentBuilder docBuilder = docFactory.newDocumentBuilder() [FD]
+Line_9 $$ final DocumentBuilder docBuilder = docFactory.newDocumentBuilder() --> Line_10 $$ docBuilder.setErrorHandler(new LoggingXmlParserErrorHandler("Flow Configuration", logger)) [FD]
+Line_9 $$ final DocumentBuilder docBuilder = docFactory.newDocumentBuilder() --> Line_11 $$ return (flow == null || flow.length == 0) ? null : docBuilder.parse(new ByteArrayInputStream(flow)) [FD]

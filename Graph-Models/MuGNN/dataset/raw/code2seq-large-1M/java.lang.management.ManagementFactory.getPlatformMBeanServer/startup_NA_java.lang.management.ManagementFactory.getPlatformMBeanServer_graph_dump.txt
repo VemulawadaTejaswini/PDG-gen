@@ -1,0 +1,6 @@
+Line_2 $$ protected void startup() --> Line_3 $$ if (createRegistry) [CD]
+Line_11 $$ if (getEndpointConfiguration().getServerUrl().equals("platform")) --> Line_12 $$ server = ManagementFactory.getPlatformMBeanServer() [CD]
+Line_11 $$ if (getEndpointConfiguration().getServerUrl().equals("platform")) --> Line_14 $$ server = MBeanServerFactory.createMBeanServer() [CD]
+Line_11 $$ if (getEndpointConfiguration().getServerUrl().equals("platform")) --> Line_15 $$ jmxConnectorServer = JMXConnectorServerFactory.newJMXConnectorServer(new JMXServiceURL(endpointConfiguration.getServerUrl()), endpointConfiguration.getEnvironmentProperties(), server) [CD]
+Line_11 $$ if (getEndpointConfiguration().getServerUrl().equals("platform")) --> Line_16 $$ jmxConnectorServer.start() [CD]
+Line_18 $$ for (ManagedBeanDefinition mbean : mbeans) --> Line_19 $$ server.registerMBean(new JmxEndpointMBean(mbean, endpointConfiguration, getEndpointAdapter()), mbean.createObjectName()) [FD]

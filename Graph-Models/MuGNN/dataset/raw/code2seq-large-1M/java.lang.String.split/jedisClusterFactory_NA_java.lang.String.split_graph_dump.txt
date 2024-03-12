@@ -1,0 +1,5 @@
+Line_2 $$ public JedisCluster jedisClusterFactory() --> Line_3 $$ String[] serverArray = redisProperties.getNodes().split(",") [CD]
+Line_2 $$ public JedisCluster jedisClusterFactory() --> Line_4 $$ Set<HostAndPort> nodes = new HashSet() [CD]
+Line_5 $$ for (String ipPort : serverArray) --> Line_6 $$ String[] ipPortPair = ipPort.split(":") [FD]
+Line_4 $$ Set<HostAndPort> nodes = new HashSet() --> Line_7 $$ nodes.add(new HostAndPort(ipPortPair[0].trim(), Integer.valueOf(ipPortPair[1].trim()))) [FD]
+Line_2 $$ public JedisCluster jedisClusterFactory() --> Line_9 $$ return new JedisCluster(nodes, redisProperties.getCommandTimeout()) [CD]

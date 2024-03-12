@@ -1,0 +1,8 @@
+Line_2 $$ public static List<Binding.ComponentBinding> extractBindings(Map<String, Object> initialMap) --> Line_3 $$ List<Binding.ComponentBinding> bindingsPerComponent = new LinkedList() [CD]
+Line_2 $$ public static List<Binding.ComponentBinding> extractBindings(Map<String, Object> initialMap) --> Line_4 $$ for (Entry<String, Object> e : initialMap.entrySet()) [FD]
+Line_5 $$ if (e.getKey().equals(COMPONENTS)) --> Line_6 $$ Map<String, Object> components = (Map<String, Object>) e.getValue() [CD]
+Line_6 $$ Map<String, Object> components = (Map<String, Object>) e.getValue() --> Line_7 $$ for (Entry<String, Object> ce : components.entrySet()) [FD]
+Line_8 $$ List<Binding> bindings = extractBindings(ce.getKey(), ce.getValue()) --> Line_9 $$ if (bindings != null && !bindings.isEmpty()) [FD]
+Line_9 $$ if (bindings != null && !bindings.isEmpty()) --> Line_10 $$ bindingsPerComponent.add(new ComponentBinding(ce.getKey(), bindings)) [CD]
+Line_3 $$ List<Binding.ComponentBinding> bindingsPerComponent = new LinkedList() --> Line_10 $$ bindingsPerComponent.add(new ComponentBinding(ce.getKey(), bindings)) [FD]
+Line_2 $$ public static List<Binding.ComponentBinding> extractBindings(Map<String, Object> initialMap) --> Line_15 $$ return bindingsPerComponent [CD]

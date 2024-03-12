@@ -1,0 +1,7 @@
+Line_2 $$ private void stopServiceInternal(Intent serviceIntent) --> Line_3 $$ if (serviceIntent != null && mActiveServicesProxy != null) [CD]
+Line_3 $$ if (serviceIntent != null && mActiveServicesProxy != null) --> Line_4 $$ List<Object> records = mActiveServicesProxy.getServiceRecords(Binder.getCallingUid(), serviceIntent) [CD]
+Line_2 $$ private void stopServiceInternal(Intent serviceIntent) --> Line_4 $$ List<Object> records = mActiveServicesProxy.getServiceRecords(Binder.getCallingUid(), serviceIntent) [FD]
+Line_3 $$ if (serviceIntent != null && mActiveServicesProxy != null) --> Line_5 $$ if (XposedLog.isVerboseLoggable()) [CD]
+Line_5 $$ if (XposedLog.isVerboseLoggable()) --> Line_6 $$ XposedLog.verbose("stopServiceInternal, records service " + Arrays.toString(records.toArray())) [CD]
+Line_4 $$ List<Object> records = mActiveServicesProxy.getServiceRecords(Binder.getCallingUid(), serviceIntent) --> Line_6 $$ XposedLog.verbose("stopServiceInternal, records service " + Arrays.toString(records.toArray())) [FD]
+Line_8 $$ for (Object o : records) --> Line_9 $$ mActiveServicesProxy.stopServiceLocked(o) [FD]

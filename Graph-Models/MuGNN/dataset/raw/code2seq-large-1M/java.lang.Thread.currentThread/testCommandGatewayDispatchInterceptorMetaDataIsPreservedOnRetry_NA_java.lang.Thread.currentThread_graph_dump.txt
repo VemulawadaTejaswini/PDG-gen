@@ -1,0 +1,7 @@
+Line_2 $$ public void testCommandGatewayDispatchInterceptorMetaDataIsPreservedOnRetry() --> Line_3 $$ final Thread testThread = Thread.currentThread() [CD]
+Line_3 $$ final Thread testThread = Thread.currentThread() --> Line_5 $$ if (Thread.currentThread() == testThread) [FD]
+Line_5 $$ if (Thread.currentThread() == testThread) --> Line_6 $$ return message.andMetaData(Collections.singletonMap("gatewayMetaData", "myUserSession")) [CD]
+Line_2 $$ public void testCommandGatewayDispatchInterceptorMetaDataIsPreservedOnRetry() --> Line_11 $$ commandBus.subscribe(String.class.getName(),  commandMessage -> [CD]
+Line_3 $$ final Thread testThread = Thread.currentThread() --> Line_12 $$ if (Thread.currentThread() == testThread) [FD]
+Line_12 $$ if (Thread.currentThread() == testThread) --> Line_15 $$ return commandMessage.getMetaData() [CD]
+Line_2 $$ public void testCommandGatewayDispatchInterceptorMetaDataIsPreservedOnRetry() --> Line_18 $$ assertEquals("myUserSession", ((MetaData) commandGateway.sendAndWait("command")).get("gatewayMetaData")) [CD]

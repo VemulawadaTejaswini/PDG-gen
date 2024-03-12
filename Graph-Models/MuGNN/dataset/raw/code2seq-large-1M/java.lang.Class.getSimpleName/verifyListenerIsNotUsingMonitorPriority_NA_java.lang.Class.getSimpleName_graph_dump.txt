@@ -1,0 +1,6 @@
+Line_2 $$ private static void verifyListenerIsNotUsingMonitorPriority(Class<?> listenerClass) --> Line_3 $$ final String clazz = listenerClass.getSimpleName() [FD]
+Line_2 $$ private static void verifyListenerIsNotUsingMonitorPriority(Class<?> listenerClass) --> Line_3 $$ final String clazz = listenerClass.getSimpleName() [CD]
+Line_2 $$ private static void verifyListenerIsNotUsingMonitorPriority(Class<?> listenerClass) --> Line_4 $$ for (Method method : listenerClass.getDeclaredMethods()) [FD]
+Line_4 $$ for (Method method : listenerClass.getDeclaredMethods()) --> Line_5 $$ if (isTestableMethod(method) && method.isAnnotationPresent(EventHandler.class)) [FD]
+Line_4 $$ for (Method method : listenerClass.getDeclaredMethods()) --> Line_6 $$ EventHandler eventHandlerAnnotation = method.getAnnotation(EventHandler.class) [FD]
+Line_4 $$ for (Method method : listenerClass.getDeclaredMethods()) --> Line_7 $$ assertThat("Method " + clazz + "#" + method.getName() + " does not use EventPriority.MONITOR", eventHandlerAnnotation.priority(), not(equalTo(EventPriority.MONITOR))) [FD]

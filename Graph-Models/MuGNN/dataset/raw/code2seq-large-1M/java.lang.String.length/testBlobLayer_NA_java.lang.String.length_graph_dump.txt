@@ -1,0 +1,6 @@
+Line_5 $$ final String blob = StringUtils.repeat("abcdefghijklmnopqrstuvwxyz", 1024 * 600) --> Line_6 $$ String blobUrl = upload("test", blob) [FD]
+Line_6 $$ String blobUrl = upload("test", blob) --> Line_7 $$ assertThat(blobUrl, not(isEmptyOrNullString())) [FD]
+Line_8 $$ HttpGet httpGet = new HttpGet(blobUrl) --> Line_9 $$ CloseableHttpResponse response = httpClient.execute(httpGet) [FD]
+Line_9 $$ CloseableHttpResponse response = httpClient.execute(httpGet) --> Line_10 $$ assertEquals(200, response.getStatusLine().getStatusCode()) [FD]
+Line_9 $$ CloseableHttpResponse response = httpClient.execute(httpGet) --> Line_11 $$ assertThat(response.getEntity().getContentLength(), is((long) blob.length())) [FD]
+Line_5 $$ final String blob = StringUtils.repeat("abcdefghijklmnopqrstuvwxyz", 1024 * 600) --> Line_11 $$ assertThat(response.getEntity().getContentLength(), is((long) blob.length())) [FD]

@@ -1,0 +1,6 @@
+Line_9 $$ IgniteEx ignite = startGrid(2) --> Line_10 $$ ignite.cluster().active(true) [FD]
+Line_9 $$ IgniteEx ignite = startGrid(2) --> Line_12 $$ IgniteCache<Integer, Integer> cache = ignite.createCache(new CacheConfiguration<Integer, Integer>().setName(CACHE_NAME).setCacheMode(PARTITIONED).setBackups(1).setPartitionLossPolicy(READ_ONLY_SAFE).setAffinity(new RendezvousAffinityFunction(32, null)).setNodeFilter(new DataNodeFilter())) [FD]
+Line_12 $$ IgniteCache<Integer, Integer> cache = ignite.createCache(new CacheConfiguration<Integer, Integer>().setName(CACHE_NAME).setCacheMode(PARTITIONED).setBackups(1).setPartitionLossPolicy(READ_ONLY_SAFE).setAffinity(new RendezvousAffinityFunction(32, null)).setNodeFilter(new DataNodeFilter())) --> Line_13 $$ for (int k = 0; k < 10_000; k++) cache.put(k, k) [FD]
+Line_4 $$ final int EMPTY_NODE_IDX = 2 --> Line_15 $$ printSizesDataNodes(NODE_COUNT - 1, EMPTY_NODE_IDX) [FD]
+Line_9 $$ IgniteEx ignite = startGrid(2) --> Line_18 $$ ignite.cluster().setBaselineTopology(ignite.cluster().topologyVersion()) [FD]
+Line_4 $$ final int EMPTY_NODE_IDX = 2 --> Line_21 $$ printSizesDataNodes(NODE_COUNT, EMPTY_NODE_IDX) [FD]

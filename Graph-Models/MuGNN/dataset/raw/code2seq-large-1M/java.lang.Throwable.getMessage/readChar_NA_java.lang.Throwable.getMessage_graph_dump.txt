@@ -1,0 +1,7 @@
+Line_2 $$ protected RStringVector readChar(int con, RAbstractIntVector nchars, boolean useBytes) --> Line_3 $$ try (BaseRConnection openConn = RConnection.fromIndex(con).forceOpen("rb")) [FD]
+Line_2 $$ protected RStringVector readChar(int con, RAbstractIntVector nchars, boolean useBytes) --> Line_4 $$ String[] data = new String[nchars.getLength()] [FD]
+Line_5 $$ for (int i = 0; i < data.length; i++) --> Line_6 $$ data[i] = openConn.readChar(nchars.getDataAt(i), useBytes) [FD]
+Line_5 $$ for (int i = 0; i < data.length; i++) --> Line_6 $$ data[i] = openConn.readChar(nchars.getDataAt(i), useBytes) [CD]
+Line_3 $$ try (BaseRConnection openConn = RConnection.fromIndex(con).forceOpen("rb")) --> Line_6 $$ data[i] = openConn.readChar(nchars.getDataAt(i), useBytes) [FD]
+Line_2 $$ protected RStringVector readChar(int con, RAbstractIntVector nchars, boolean useBytes) --> Line_6 $$ data[i] = openConn.readChar(nchars.getDataAt(i), useBytes) [FD]
+Line_4 $$ String[] data = new String[nchars.getLength()] --> Line_8 $$ return RDataFactory.createStringVector(data, RDataFactory.COMPLETE_VECTOR) [FD]

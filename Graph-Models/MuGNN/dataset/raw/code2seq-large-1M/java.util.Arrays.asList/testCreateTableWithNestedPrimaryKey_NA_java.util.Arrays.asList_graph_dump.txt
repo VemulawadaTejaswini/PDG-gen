@@ -1,0 +1,8 @@
+Line_2 $$ public void testCreateTableWithNestedPrimaryKey() throws Exception --> Line_3 $$ DocIndexMetaData metaData = getDocIndexMetaDataFromStatement("create table t (o object as (x int primary key))") [CD]
+Line_2 $$ public void testCreateTableWithNestedPrimaryKey() throws Exception --> Line_4 $$ assertThat(metaData.primaryKey(), contains(new ColumnIdent("o", "x"))) [CD]
+Line_3 $$ DocIndexMetaData metaData = getDocIndexMetaDataFromStatement("create table t (o object as (x int primary key))") --> Line_4 $$ assertThat(metaData.primaryKey(), contains(new ColumnIdent("o", "x"))) [FD]
+Line_2 $$ public void testCreateTableWithNestedPrimaryKey() throws Exception --> Line_5 $$ metaData = getDocIndexMetaDataFromStatement("create table t (x object as (y object as (z int primary key)))") [CD]
+Line_3 $$ DocIndexMetaData metaData = getDocIndexMetaDataFromStatement("create table t (o object as (x int primary key))") --> Line_5 $$ metaData = getDocIndexMetaDataFromStatement("create table t (x object as (y object as (z int primary key)))") [FD]
+Line_2 $$ public void testCreateTableWithNestedPrimaryKey() throws Exception --> Line_6 $$ assertThat(metaData.primaryKey(), contains(new ColumnIdent("x", Arrays.asList("y", "z")))) [CD]
+Line_3 $$ DocIndexMetaData metaData = getDocIndexMetaDataFromStatement("create table t (o object as (x int primary key))") --> Line_6 $$ assertThat(metaData.primaryKey(), contains(new ColumnIdent("x", Arrays.asList("y", "z")))) [FD]
+Line_5 $$ metaData = getDocIndexMetaDataFromStatement("create table t (x object as (y object as (z int primary key)))") --> Line_6 $$ assertThat(metaData.primaryKey(), contains(new ColumnIdent("x", Arrays.asList("y", "z")))) [FD]

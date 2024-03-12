@@ -1,0 +1,8 @@
+Line_2 $$ public TimeValue getMaxTaskWaitTime() --> Line_3 $$ if (getQueue().size() == 0) [CD]
+Line_3 $$ if (getQueue().size() == 0) --> Line_4 $$ return NO_WAIT_TIME_VALUE [CD]
+Line_2 $$ public TimeValue getMaxTaskWaitTime() --> Line_6 $$ long now = System.nanoTime() [CD]
+Line_2 $$ public TimeValue getMaxTaskWaitTime() --> Line_7 $$ long oldestCreationDateInNanos = now [CD]
+Line_8 $$ for (Runnable queuedRunnable : getQueue()) --> Line_9 $$ if (queuedRunnable instanceof PrioritizedRunnable) [FD]
+Line_9 $$ if (queuedRunnable instanceof PrioritizedRunnable) --> Line_10 $$ oldestCreationDateInNanos = Math.min(oldestCreationDateInNanos, ((PrioritizedRunnable) queuedRunnable).getCreationDateInNanos()) [CD]
+Line_7 $$ long oldestCreationDateInNanos = now --> Line_10 $$ oldestCreationDateInNanos = Math.min(oldestCreationDateInNanos, ((PrioritizedRunnable) queuedRunnable).getCreationDateInNanos()) [FD]
+Line_2 $$ public TimeValue getMaxTaskWaitTime() --> Line_13 $$ return TimeValue.timeValueNanos(now - oldestCreationDateInNanos) [CD]

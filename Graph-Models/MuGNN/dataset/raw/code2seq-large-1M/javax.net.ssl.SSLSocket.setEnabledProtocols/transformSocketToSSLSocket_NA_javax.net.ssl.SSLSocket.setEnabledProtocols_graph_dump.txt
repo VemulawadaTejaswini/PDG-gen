@@ -1,0 +1,6 @@
+Line_2 $$ protected static void transformSocketToSSLSocket(MysqlIO mysqlIO) throws SQLException --> Line_3 $$ javax.net.ssl.SSLSocketFactory sslFact = getSSLSocketFactoryDefaultOrConfigured(mysqlIO) [FD]
+Line_2 $$ protected static void transformSocketToSSLSocket(MysqlIO mysqlIO) throws SQLException --> Line_3 $$ javax.net.ssl.SSLSocketFactory sslFact = getSSLSocketFactoryDefaultOrConfigured(mysqlIO) [CD]
+Line_3 $$ javax.net.ssl.SSLSocketFactory sslFact = getSSLSocketFactoryDefaultOrConfigured(mysqlIO) --> Line_5 $$ mysqlIO.mysqlConnection = sslFact.createSocket(mysqlIO.mysqlConnection, mysqlIO.host, mysqlIO.port, true) [FD]
+Line_9 $$ if (mysqlIO.connection.getUseUnbufferedInput()) --> Line_10 $$ mysqlIO.mysqlInput = mysqlIO.mysqlConnection.getInputStream() [CD]
+Line_9 $$ if (mysqlIO.connection.getUseUnbufferedInput()) --> Line_12 $$ mysqlIO.mysqlInput = new BufferedInputStream(mysqlIO.mysqlConnection.getInputStream(), 16384) [CD]
+Line_2 $$ protected static void transformSocketToSSLSocket(MysqlIO mysqlIO) throws SQLException --> Line_17 $$ throw SQLError.createCommunicationsException(mysqlIO.connection, mysqlIO.getLastPacketSentTimeMs(), mysqlIO.getLastPacketReceivedTimeMs(), ioEx, mysqlIO.getExceptionInterceptor()) [FD]

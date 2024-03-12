@@ -1,0 +1,7 @@
+Line_2 $$ protected void checkSupports(Connection connection) throws SQLException --> Line_3 $$ try (Statement st = connection.createStatement(); [FD]
+Line_3 $$ try (Statement st = connection.createStatement(); --> Line_5 $$ rs.next() [FD]
+Line_3 $$ try (Statement st = connection.createStatement(); --> Line_6 $$ String productVersion = rs.getString(1) [FD]
+Line_6 $$ String productVersion = rs.getString(1) --> Line_7 $$ int majorVersion = Integer.parseInt(productVersion.split("\\.")[0]) [FD]
+Line_3 $$ try (Statement st = connection.createStatement(); --> Line_8 $$ int engineEdition = rs.getInt(2) [FD]
+Line_9 $$ boolean azure = engineEdition == 5 --> Line_10 $$ supportsXA = !azure [FD]
+Line_9 $$ boolean azure = engineEdition == 5 --> Line_11 $$ supportsSequences = majorVersion >= 11 && !azure [FD]

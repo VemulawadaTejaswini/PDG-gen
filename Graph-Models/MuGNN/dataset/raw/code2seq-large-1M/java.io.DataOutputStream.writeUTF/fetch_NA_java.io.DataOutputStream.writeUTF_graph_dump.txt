@@ -1,0 +1,8 @@
+Line_5 $$ final DataOutputStream dos = new DataOutputStream(session.getOutputStream()) --> Line_6 $$ dos.writeUTF("fetch") [FD]
+Line_5 $$ final DataOutputStream dos = new DataOutputStream(session.getOutputStream()) --> Line_7 $$ serialize(key, keySerializer, dos) [FD]
+Line_5 $$ final DataOutputStream dos = new DataOutputStream(session.getOutputStream()) --> Line_8 $$ dos.flush() [FD]
+Line_9 $$ final DataInputStream dis = new DataInputStream(session.getInputStream()) --> Line_10 $$ final long revision = dis.readLong() [FD]
+Line_9 $$ final DataInputStream dis = new DataInputStream(session.getInputStream()) --> Line_11 $$ final byte[] responseBuffer = readLengthDelimitedResponse(dis) [FD]
+Line_10 $$ final long revision = dis.readLong() --> Line_12 $$ if (revision < 0) [FD]
+Line_12 $$ if (revision < 0) --> Line_13 $$ return null [CD]
+Line_11 $$ final byte[] responseBuffer = readLengthDelimitedResponse(dis) --> Line_15 $$ return new AtomicCacheEntry(key, valueDeserializer.deserialize(responseBuffer), revision) [FD]

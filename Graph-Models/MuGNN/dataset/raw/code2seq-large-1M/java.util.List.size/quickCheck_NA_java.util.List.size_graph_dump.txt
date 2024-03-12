@@ -1,0 +1,8 @@
+Line_2 $$ private int quickCheck(Session session) --> Line_3 $$ NativeQuery q = session.createNativeQuery("select count(m_org.oid) as problems from m_org left join m_org_closure cl " + "on cl.descendant_oid = m_org.oid and cl.ancestor_oid = m_org.oid " + "where cl.descendant_oid is null").addScalar("problems", IntegerType.INSTANCE) [CD]
+Line_2 $$ private int quickCheck(Session session) --> Line_3 $$ NativeQuery q = session.createNativeQuery("select count(m_org.oid) as problems from m_org left join m_org_closure cl " + "on cl.descendant_oid = m_org.oid and cl.ancestor_oid = m_org.oid " + "where cl.descendant_oid is null").addScalar("problems", IntegerType.INSTANCE) [FD]
+Line_2 $$ private int quickCheck(Session session) --> Line_4 $$ List problemsList = q.list() [CD]
+Line_3 $$ NativeQuery q = session.createNativeQuery("select count(m_org.oid) as problems from m_org left join m_org_closure cl " + "on cl.descendant_oid = m_org.oid and cl.ancestor_oid = m_org.oid " + "where cl.descendant_oid is null").addScalar("problems", IntegerType.INSTANCE) --> Line_4 $$ List problemsList = q.list() [FD]
+Line_2 $$ private int quickCheck(Session session) --> Line_5 $$ if (problemsList == null || problemsList.size() != 1) [CD]
+Line_4 $$ List problemsList = q.list() --> Line_5 $$ if (problemsList == null || problemsList.size() != 1) [FD]
+Line_2 $$ private int quickCheck(Session session) --> Line_8 $$ return (int) problemsList.get(0) [CD]
+Line_4 $$ List problemsList = q.list() --> Line_8 $$ return (int) problemsList.get(0) [FD]

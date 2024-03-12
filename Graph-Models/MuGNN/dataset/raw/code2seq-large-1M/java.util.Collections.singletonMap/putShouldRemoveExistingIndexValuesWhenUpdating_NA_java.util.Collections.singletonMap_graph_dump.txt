@@ -1,0 +1,8 @@
+Line_2 $$ public void putShouldRemoveExistingIndexValuesWhenUpdating() --> Line_3 $$ RedisData rd = new RedisData(Bucket.newBucketFromStringMap(Collections.singletonMap("_id", "1"))) [CD]
+Line_2 $$ public void putShouldRemoveExistingIndexValuesWhenUpdating() --> Line_4 $$ rd.addIndexedData(new SimpleIndexedPropertyValue("persons", "firstname", "rand")) [CD]
+Line_3 $$ RedisData rd = new RedisData(Bucket.newBucketFromStringMap(Collections.singletonMap("_id", "1"))) --> Line_4 $$ rd.addIndexedData(new SimpleIndexedPropertyValue("persons", "firstname", "rand")) [FD]
+Line_2 $$ public void putShouldRemoveExistingIndexValuesWhenUpdating() --> Line_5 $$ when(redisConnectionMock.sMembers(Mockito.any(byte[].class))).thenReturn(new LinkedHashSet(Arrays.asList("persons:firstname:rand".getBytes()))) [CD]
+Line_2 $$ public void putShouldRemoveExistingIndexValuesWhenUpdating() --> Line_6 $$ when(redisConnectionMock.del((byte[][]) any())).thenReturn(1L) [CD]
+Line_2 $$ public void putShouldRemoveExistingIndexValuesWhenUpdating() --> Line_7 $$ adapter.put("1", rd, "persons") [CD]
+Line_3 $$ RedisData rd = new RedisData(Bucket.newBucketFromStringMap(Collections.singletonMap("_id", "1"))) --> Line_7 $$ adapter.put("1", rd, "persons") [FD]
+Line_2 $$ public void putShouldRemoveExistingIndexValuesWhenUpdating() --> Line_8 $$ verify(redisConnectionMock, times(1)).sRem(Mockito.any(byte[].class), Mockito.any(byte[].class)) [CD]

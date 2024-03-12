@@ -1,0 +1,8 @@
+Line_2 $$ private void updateOpsPerSec() --> Line_3 $$ Instant now = Instant.now() [CD]
+Line_3 $$ Instant now = Instant.now() --> Line_5 $$ if (now.plusSeconds(1).isAfter(prevOpsPerSecTime)) [FD]
+Line_5 $$ if (now.plusSeconds(1).isAfter(prevOpsPerSecTime)) --> Line_6 $$ Duration duration = Duration.between(now, prevOpsPerSecTime) [CD]
+Line_3 $$ Instant now = Instant.now() --> Line_6 $$ Duration duration = Duration.between(now, prevOpsPerSecTime) [FD]
+Line_5 $$ if (now.plusSeconds(1).isAfter(prevOpsPerSecTime)) --> Line_7 $$ double opsPerSec = operationsForOpsPerSec / (duration.toMillis() / 1000.) [CD]
+Line_6 $$ Duration duration = Duration.between(now, prevOpsPerSecTime) --> Line_7 $$ double opsPerSec = operationsForOpsPerSec / (duration.toMillis() / 1000.) [FD]
+Line_5 $$ if (now.plusSeconds(1).isAfter(prevOpsPerSecTime)) --> Line_8 $$ metric.set(MetricNames.OPERATIONS_PER_SEC, opsPerSec, null) [CD]
+Line_7 $$ double opsPerSec = operationsForOpsPerSec / (duration.toMillis() / 1000.) --> Line_8 $$ metric.set(MetricNames.OPERATIONS_PER_SEC, opsPerSec, null) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private long multiplicativeRateIncrease(long nowMs, long lastMs, long currentBitrateBps) --> Line_3 $$ double alpha = 1.08 [CD]
+Line_2 $$ private long multiplicativeRateIncrease(long nowMs, long lastMs, long currentBitrateBps) --> Line_4 $$ if (lastMs > -1) [FD]
+Line_2 $$ private long multiplicativeRateIncrease(long nowMs, long lastMs, long currentBitrateBps) --> Line_4 $$ if (lastMs > -1) [CD]
+Line_4 $$ if (lastMs > -1) --> Line_5 $$ long timeSinceLastUpdateMs = Math.min(nowMs - lastMs, 1000) [CD]
+Line_4 $$ if (lastMs > -1) --> Line_6 $$ alpha = Math.pow(alpha, timeSinceLastUpdateMs / 1000.0) [CD]
+Line_3 $$ double alpha = 1.08 --> Line_6 $$ alpha = Math.pow(alpha, timeSinceLastUpdateMs / 1000.0) [FD]
+Line_2 $$ private long multiplicativeRateIncrease(long nowMs, long lastMs, long currentBitrateBps) --> Line_8 $$ return (long) Math.max(currentBitrateBps * (alpha - 1.0), 1000.0) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void cannotRePrepare() throws SQLException --> Line_3 $$ createTable("cannotRePrepare", "test int") [CD]
+Line_5 $$ try (PreparedStatement preparedStatement = sharedConnection.prepareStatement("INSERT INTO cannotRePrepare(test) values (?)")) --> Line_6 $$ preparedStatement.setInt(1, 1) [FD]
+Line_5 $$ try (PreparedStatement preparedStatement = sharedConnection.prepareStatement("INSERT INTO cannotRePrepare(test) values (?)")) --> Line_7 $$ preparedStatement.execute() [FD]
+Line_4 $$ try (Statement stmt = sharedConnection.createStatement()) --> Line_8 $$ stmt.execute("ALTER TABLE cannotRePrepare" + " CHANGE COLUMN `test` `otherName` VARCHAR(50) NULL DEFAULT NULL FIRST;") [FD]
+Line_5 $$ try (PreparedStatement preparedStatement = sharedConnection.prepareStatement("INSERT INTO cannotRePrepare(test) values (?)")) --> Line_9 $$ preparedStatement.setInt(1, 2) [FD]
+Line_5 $$ try (PreparedStatement preparedStatement = sharedConnection.prepareStatement("INSERT INTO cannotRePrepare(test) values (?)")) --> Line_11 $$ preparedStatement.execute() [FD]

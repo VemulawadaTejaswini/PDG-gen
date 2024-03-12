@@ -1,0 +1,8 @@
+Line_2 $$ private static void validate(int AD_Table_ID, String TableName) --> Line_3 $$ for (int i = 0; i < s_cascades.length; i++) [CD]
+Line_3 $$ for (int i = 0; i < s_cascades.length; i++) --> Line_4 $$ StringBuffer sql = new StringBuffer("DELETE FROM ").append(s_cascadeNames[i]).append(" WHERE AD_Table_ID=").append(AD_Table_ID).append(" AND Record_ID NOT IN (SELECT ").append(TableName).append("_ID FROM ").append(TableName).append(")") [CD]
+Line_2 $$ private static void validate(int AD_Table_ID, String TableName) --> Line_4 $$ StringBuffer sql = new StringBuffer("DELETE FROM ").append(s_cascadeNames[i]).append(" WHERE AD_Table_ID=").append(AD_Table_ID).append(" AND Record_ID NOT IN (SELECT ").append(TableName).append("_ID FROM ").append(TableName).append(")") [FD]
+Line_3 $$ for (int i = 0; i < s_cascades.length; i++) --> Line_5 $$ int no = DB.executeUpdate(sql.toString(), null) [CD]
+Line_4 $$ StringBuffer sql = new StringBuffer("DELETE FROM ").append(s_cascadeNames[i]).append(" WHERE AD_Table_ID=").append(AD_Table_ID).append(" AND Record_ID NOT IN (SELECT ").append(TableName).append("_ID FROM ").append(TableName).append(")") --> Line_5 $$ int no = DB.executeUpdate(sql.toString(), null) [FD]
+Line_3 $$ for (int i = 0; i < s_cascades.length; i++) --> Line_6 $$ if (no > 0) [CD]
+Line_5 $$ int no = DB.executeUpdate(sql.toString(), null) --> Line_6 $$ if (no > 0) [FD]
+Line_6 $$ if (no > 0) --> Line_7 $$ log.config(s_cascadeNames[i] + " (" + AD_Table_ID + "/" + TableName + ") Invalid #" + no) [CD]

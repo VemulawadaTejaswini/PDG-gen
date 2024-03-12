@@ -1,0 +1,6 @@
+Line_2 $$ public boolean put(Message msg) --> Line_4 $$ if (!queue.offer(msg)) [FD]
+Line_4 $$ if (!queue.offer(msg)) --> Line_5 $$ if (queue.isFull()) [CD]
+Line_5 $$ if (queue.isFull()) --> Line_6 $$ broker.informBroker("Entity ID=" + entityID + " not notified of publication or subscription" + " " + msg + " because queue is full!", true) [CD]
+Line_4 $$ if (!queue.offer(msg)) --> Line_8 $$ return false [CD]
+Line_4 $$ if (!queue.offer(msg)) --> Line_10 $$ queueMutex.notify() [CD]
+Line_4 $$ if (!queue.offer(msg)) --> Line_11 $$ return true [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void flushToGZIP() throws IOException --> Line_3 $$ if (stream instanceof ByteArrayOutputStream) [CD]
+Line_3 $$ if (stream instanceof ByteArrayOutputStream) --> Line_4 $$ response.setHeader("Content-Encoding", "gzip") [CD]
+Line_3 $$ if (stream instanceof ByteArrayOutputStream) --> Line_5 $$ response.setHeader("Vary", "Accept-Encoding") [CD]
+Line_3 $$ if (stream instanceof ByteArrayOutputStream) --> Line_6 $$ final GZIPOutputStream gzipstream = new GZIPOutputStream(response.getOutputStream(), compressionThreshold) [CD]
+Line_3 $$ if (stream instanceof ByteArrayOutputStream) --> Line_7 $$ final byte[] bytes = ((ByteArrayOutputStream) stream).toByteArray() [CD]
+Line_3 $$ if (stream instanceof ByteArrayOutputStream) --> Line_8 $$ gzipstream.write(bytes) [CD]
+Line_6 $$ final GZIPOutputStream gzipstream = new GZIPOutputStream(response.getOutputStream(), compressionThreshold) --> Line_8 $$ gzipstream.write(bytes) [FD]
+Line_7 $$ final byte[] bytes = ((ByteArrayOutputStream) stream).toByteArray() --> Line_8 $$ gzipstream.write(bytes) [FD]

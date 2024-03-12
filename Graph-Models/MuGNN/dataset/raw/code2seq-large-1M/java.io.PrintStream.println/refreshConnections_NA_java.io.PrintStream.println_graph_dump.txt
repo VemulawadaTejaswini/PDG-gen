@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void refreshConnections() throws SQLException --> Line_3 $$ if (connections == null) [CD]
+Line_3 $$ if (connections == null) --> Line_4 $$ System.out.println(" 连接池不存在，无法刷新 !") [CD]
+Line_3 $$ if (connections == null) --> Line_5 $$ return [CD]
+Line_7 $$ for (PooledConnection connection : connections) --> Line_8 $$ if (connection.isBusy()) [FD]
+Line_8 $$ if (connection.isBusy()) --> Line_9 $$ wait(5000) [CD]
+Line_7 $$ for (PooledConnection connection : connections) --> Line_10 $$ closeConnection(connection.getConnection()) [FD]
+Line_7 $$ for (PooledConnection connection : connections) --> Line_11 $$ connection.setConnection(newConnection()) [FD]
+Line_7 $$ for (PooledConnection connection : connections) --> Line_12 $$ connection.setBusy(false) [FD]

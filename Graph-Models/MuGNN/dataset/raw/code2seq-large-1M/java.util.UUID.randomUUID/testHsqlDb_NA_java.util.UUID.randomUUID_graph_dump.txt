@@ -1,0 +1,7 @@
+Line_2 $$ public void testHsqlDb() --> Line_3 $$ Jdbi db = Jdbi.create("jdbc:hsqldb:mem:" + UUID.randomUUID()) [CD]
+Line_2 $$ public void testHsqlDb() --> Line_4 $$ init(db) [CD]
+Line_3 $$ Jdbi db = Jdbi.create("jdbc:hsqldb:mem:" + UUID.randomUUID()) --> Line_4 $$ init(db) [FD]
+Line_3 $$ Jdbi db = Jdbi.create("jdbc:hsqldb:mem:" + UUID.randomUUID()) --> Line_5 $$ try (Handle handle = db.open()) [FD]
+Line_5 $$ try (Handle handle = db.open()) --> Line_6 $$ handle.execute("create table player_stats (" + "name varchar(64) primary key, " + "seasons varchar(36) array, " + "points int array)") [FD]
+Line_5 $$ try (Handle handle = db.open()) --> Line_7 $$ handle.createUpdate("insert into player_stats (name,seasons,points) values (?,?,?)").bind(0, "Jack Johnson").bind(1, new String[] [FD]
+Line_5 $$ try (Handle handle = db.open()) --> Line_8 $$ String[] seasons = handle.createQuery("select seasons from player_stats where name=:name").bind("name", "Jack Johnson").mapTo(String[].class).findOnly() [FD]

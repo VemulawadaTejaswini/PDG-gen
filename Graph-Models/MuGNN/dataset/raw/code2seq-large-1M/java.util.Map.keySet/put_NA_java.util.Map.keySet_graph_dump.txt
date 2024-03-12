@@ -1,0 +1,8 @@
+Line_2 $$ public Bag<T> put(Map<T, Integer> map) --> Line_3 $$ for (T element : map.keySet()) [FD]
+Line_3 $$ for (T element : map.keySet()) --> Line_4 $$ if (!this.map.containsKey(element)) [FD]
+Line_4 $$ if (!this.map.containsKey(element)) --> Line_5 $$ this.map.put(element, 1) [CD]
+Line_3 $$ for (T element : map.keySet()) --> Line_5 $$ this.map.put(element, 1) [FD]
+Line_4 $$ if (!this.map.containsKey(element)) --> Line_7 $$ this.map.put(element, this.map.get(element) + map.get(element)) [CD]
+Line_3 $$ for (T element : map.keySet()) --> Line_7 $$ this.map.put(element, this.map.get(element) + map.get(element)) [FD]
+Line_2 $$ public Bag<T> put(Map<T, Integer> map) --> Line_7 $$ this.map.put(element, this.map.get(element) + map.get(element)) [FD]
+Line_2 $$ public Bag<T> put(Map<T, Integer> map) --> Line_10 $$ return this [CD]

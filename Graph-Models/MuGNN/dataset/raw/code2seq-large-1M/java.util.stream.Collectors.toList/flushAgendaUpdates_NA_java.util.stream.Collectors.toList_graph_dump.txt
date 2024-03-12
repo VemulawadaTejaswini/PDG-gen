@@ -1,0 +1,6 @@
+Line_2 $$ protected void flushAgendaUpdates() --> Line_3 $$ if (agendaIngestCache.getSize() > 0) [CD]
+Line_3 $$ if (agendaIngestCache.getSize() > 0) --> Line_4 $$ logger.info("Flushing [CD]
+Line_3 $$ if (agendaIngestCache.getSize() > 0) --> Line_5 $$ agendaIngestCache.getCurrentCache().forEach( entry -> agendaDataService.saveAgenda(entry.getLeft(), entry.getRight(), false)) [CD]
+Line_3 $$ if (agendaIngestCache.getSize() > 0) --> Line_6 $$ List<Agenda> agendas = agendaIngestCache.getCurrentCache().stream().map( entry -> entry.getLeft()).collect(Collectors.toList()) [CD]
+Line_3 $$ if (agendaIngestCache.getSize() > 0) --> Line_7 $$ eventBus.post(new BulkAgendaUpdateEvent(agendas, LocalDateTime.now())) [CD]
+Line_3 $$ if (agendaIngestCache.getSize() > 0) --> Line_8 $$ agendaIngestCache.clearCache() [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private CompletableFuture<TxnStatus> validateCompletedTxn(UUID txId, boolean commit, String operation) --> Line_3 $$ return getCompletedTxnStatus(txId).thenApply( status -> [FD]
+Line_2 $$ private CompletableFuture<TxnStatus> validateCompletedTxn(UUID txId, boolean commit, String operation) --> Line_3 $$ return getCompletedTxnStatus(txId).thenApply( status -> [CD]
+Line_2 $$ private CompletableFuture<TxnStatus> validateCompletedTxn(UUID txId, boolean commit, String operation) --> Line_4 $$ if ((commit && status == TxnStatus.COMMITTED) || (!commit && status == TxnStatus.ABORTED)) [FD]
+Line_4 $$ if ((commit && status == TxnStatus.COMMITTED) || (!commit && status == TxnStatus.ABORTED)) --> Line_5 $$ return status [CD]
+Line_4 $$ if ((commit && status == TxnStatus.COMMITTED) || (!commit && status == TxnStatus.ABORTED)) --> Line_6 $$ if (status == TxnStatus.UNKNOWN) [CD]
+Line_2 $$ private CompletableFuture<TxnStatus> validateCompletedTxn(UUID txId, boolean commit, String operation) --> Line_7 $$ throw StoreException.create(StoreException.Type.DATA_NOT_FOUND, "Stream: " + getName() + " Transaction: " + txId.toString()) [FD]
+Line_2 $$ private CompletableFuture<TxnStatus> validateCompletedTxn(UUID txId, boolean commit, String operation) --> Line_9 $$ throw StoreException.create(StoreException.Type.ILLEGAL_STATE, "Stream: " + getName() + " Transaction: " + txId.toString() + " State: " + status.name()) [FD]

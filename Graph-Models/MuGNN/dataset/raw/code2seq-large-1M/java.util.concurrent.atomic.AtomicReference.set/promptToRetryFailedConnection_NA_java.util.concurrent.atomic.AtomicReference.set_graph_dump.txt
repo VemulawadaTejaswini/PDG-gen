@@ -1,0 +1,7 @@
+Line_2 $$ private static ConnectionState promptToRetryFailedConnection() --> Line_3 $$ final AtomicReference<ConnectionState> atomicBoolean = Atomics.newReference() [CD]
+Line_2 $$ private static ConnectionState promptToRetryFailedConnection() --> Line_4 $$ Application application = ApplicationManager.getApplication() [CD]
+Line_2 $$ private static ConnectionState promptToRetryFailedConnection() --> Line_5 $$ application.invokeAndWait(() -> atomicBoolean.set(promptUserForProxy()), application.getAnyModalityState()) [CD]
+Line_4 $$ Application application = ApplicationManager.getApplication() --> Line_5 $$ application.invokeAndWait(() -> atomicBoolean.set(promptUserForProxy()), application.getAnyModalityState()) [FD]
+Line_3 $$ final AtomicReference<ConnectionState> atomicBoolean = Atomics.newReference() --> Line_5 $$ application.invokeAndWait(() -> atomicBoolean.set(promptUserForProxy()), application.getAnyModalityState()) [FD]
+Line_2 $$ private static ConnectionState promptToRetryFailedConnection() --> Line_6 $$ return atomicBoolean.get() [CD]
+Line_3 $$ final AtomicReference<ConnectionState> atomicBoolean = Atomics.newReference() --> Line_6 $$ return atomicBoolean.get() [FD]

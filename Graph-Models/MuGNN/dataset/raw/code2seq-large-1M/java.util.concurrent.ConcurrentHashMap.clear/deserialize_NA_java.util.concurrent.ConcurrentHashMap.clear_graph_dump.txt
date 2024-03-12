@@ -1,0 +1,7 @@
+Line_2 $$ public void deserialize(byte[] serializedData, boolean wipe) throws IOException --> Line_3 $$ if (wipe) [CD]
+Line_3 $$ if (wipe) --> Line_4 $$ map.clear() [CD]
+Line_2 $$ public void deserialize(byte[] serializedData, boolean wipe) throws IOException --> Line_6 $$ InputStream in = new ByteArrayInputStream(serializedData) [CD]
+Line_2 $$ public void deserialize(byte[] serializedData, boolean wipe) throws IOException --> Line_7 $$ ObjectInputStream ois = new PluginClassResolverObjectInputStream(in) [CD]
+Line_7 $$ ObjectInputStream ois = new PluginClassResolverObjectInputStream(in) --> Line_9 $$ for (Map.Entry<String, ? extends Serializable> e : ((Map<String, ? extends Serializable>) ois.readObject()).entrySet()) [FD]
+Line_10 $$ if (e.getValue() instanceof Map && map.get(e.getKey()) instanceof Map) --> Line_11 $$ ((Map) map.get(e.getKey())).putAll((Map) e.getValue()) [CD]
+Line_10 $$ if (e.getValue() instanceof Map && map.get(e.getKey()) instanceof Map) --> Line_13 $$ put(e.getKey(), e.getValue()) [CD]

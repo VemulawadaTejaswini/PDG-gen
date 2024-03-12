@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void notifyDeploymentStatus(String nodeId, DeploymentStatus status) --> Line_3 $$ if (status == DeploymentStatus.SUCCEED) [FD]
+Line_2 $$ public synchronized void notifyDeploymentStatus(String nodeId, DeploymentStatus status) --> Line_3 $$ if (status == DeploymentStatus.SUCCEED) [CD]
+Line_3 $$ if (status == DeploymentStatus.SUCCEED) --> Line_4 $$ deploymentNodeIds.remove(nodeId) [CD]
+Line_2 $$ public synchronized void notifyDeploymentStatus(String nodeId, DeploymentStatus status) --> Line_4 $$ deploymentNodeIds.remove(nodeId) [FD]
+Line_3 $$ if (status == DeploymentStatus.SUCCEED) --> Line_5 $$ if (deploymentNodeIds.size() == 0) [CD]
+Line_5 $$ if (deploymentNodeIds.size() == 0) --> Line_7 $$ notifyAll() [CD]
+Line_3 $$ if (status == DeploymentStatus.SUCCEED) --> Line_10 $$ deploymentNodeIds.clear() [CD]
+Line_3 $$ if (status == DeploymentStatus.SUCCEED) --> Line_12 $$ notifyAll() [CD]

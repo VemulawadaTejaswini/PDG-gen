@@ -1,0 +1,7 @@
+Line_2 $$ private void setUpFlushTask() --> Line_3 $$ ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("event-logger-flush-%d").setDaemon(true).build() [CD]
+Line_2 $$ private void setUpFlushTask() --> Line_4 $$ flushScheduler = Executors.newSingleThreadScheduledExecutor(threadFactory) [CD]
+Line_3 $$ ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("event-logger-flush-%d").setDaemon(true).build() --> Line_4 $$ flushScheduler = Executors.newSingleThreadScheduledExecutor(threadFactory) [FD]
+Line_2 $$ private void setUpFlushTask() --> Line_5 $$ Runnable runnable = new Runnable() [CD]
+Line_8 $$ if (dirty) --> Line_9 $$ eventLogWriter.flush() [CD]
+Line_2 $$ private void setUpFlushTask() --> Line_18 $$ flushScheduler.scheduleAtFixedRate(runnable, FLUSH_INTERVAL_MILLIS, FLUSH_INTERVAL_MILLIS, TimeUnit.MILLISECONDS) [CD]
+Line_5 $$ Runnable runnable = new Runnable() --> Line_18 $$ flushScheduler.scheduleAtFixedRate(runnable, FLUSH_INTERVAL_MILLIS, FLUSH_INTERVAL_MILLIS, TimeUnit.MILLISECONDS) [FD]

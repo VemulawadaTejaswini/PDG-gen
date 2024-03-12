@@ -1,0 +1,8 @@
+Line_2 $$ private WebElement findRowByUserName(final String username) --> Line_4 $$ if (getListItemUsername(listItem).equals(username)) [FD]
+Line_3 $$ for (WebElement listItem : getRows()) --> Line_4 $$ if (getListItemUsername(listItem).equals(username)) [FD]
+Line_4 $$ if (getListItemUsername(listItem).equals(username)) --> Line_5 $$ List<WebElement> linksUnderneath = listItem.findElements(By.tagName("a")) [CD]
+Line_3 $$ for (WebElement listItem : getRows()) --> Line_5 $$ List<WebElement> linksUnderneath = listItem.findElements(By.tagName("a")) [FD]
+Line_6 $$ for (WebElement link : linksUnderneath) --> Line_7 $$ String onclickCallback = link.getAttribute("onclick") [FD]
+Line_7 $$ String onclickCallback = link.getAttribute("onclick") --> Line_8 $$ if (onclickCallback != null && onclickCallback.contains("editUser")) [FD]
+Line_8 $$ if (onclickCallback != null && onclickCallback.contains("editUser")) --> Line_9 $$ return link [CD]
+Line_4 $$ if (getListItemUsername(listItem).equals(username)) --> Line_12 $$ return listItem [CD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void testRuntimeTypeSuperCall() throws Exception --> Line_3 $$ DynamicType.Loaded<RuntimeTypeTest> loaded = new ByteBuddy().subclass(RuntimeTypeTest.class).method(isDeclaredBy(RuntimeTypeTest.class)).intercept(MethodDelegation.to(RuntimeTypeTarget.class)).make().load(RuntimeTypeTest.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testRuntimeTypeSuperCall() throws Exception --> Line_4 $$ RuntimeTypeTest instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testRuntimeTypeSuperCall() throws Exception --> Line_5 $$ assertThat(instance.foo(), is(FOO)) [CD]
+Line_4 $$ RuntimeTypeTest instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(instance.foo(), is(FOO)) [FD]

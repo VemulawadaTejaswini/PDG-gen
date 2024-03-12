@@ -1,0 +1,8 @@
+Line_2 $$ public void visitInsn(int opcode) --> Line_3 $$ if (opcode == Opcodes.RETURN && (methodName.equals("<clinit>"))) [CD]
+Line_3 $$ if (opcode == Opcodes.RETURN && (methodName.equals("<clinit>"))) --> Line_4 $$ String executionTracerClassName = ExecutionTracer.class.getName().replace('.', '/') [CD]
+Line_3 $$ if (opcode == Opcodes.RETURN && (methodName.equals("<clinit>"))) --> Line_5 $$ String executionTracerDescriptor = Type.getMethodDescriptor(Type.VOID_TYPE, Type.getType(String.class)) [CD]
+Line_3 $$ if (opcode == Opcodes.RETURN && (methodName.equals("<clinit>"))) --> Line_6 $$ String classNameWithDots = className.replace('/', '.') [CD]
+Line_3 $$ if (opcode == Opcodes.RETURN && (methodName.equals("<clinit>"))) --> Line_7 $$ super.visitLdcInsn(classNameWithDots) [CD]
+Line_3 $$ if (opcode == Opcodes.RETURN && (methodName.equals("<clinit>"))) --> Line_8 $$ super.visitMethodInsn(INVOKESTATIC, executionTracerClassName, EXIT_CLASS_INIT, executionTracerDescriptor, false) [CD]
+Line_2 $$ public void visitInsn(int opcode) --> Line_10 $$ super.visitInsn(opcode) [CD]
+Line_2 $$ public void visitInsn(int opcode) --> Line_10 $$ super.visitInsn(opcode) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testInsertModeValue() throws SQLException --> Line_3 $$ Statement st = createStatement() [CD]
+Line_2 $$ public void testInsertModeValue() throws SQLException --> Line_4 $$ st.executeUpdate("create table temp1 (c1 int, c2 int, " + "c3 int, constraint temp1cons1 primary key(c1, c2))") [CD]
+Line_3 $$ Statement st = createStatement() --> Line_4 $$ st.executeUpdate("create table temp1 (c1 int, c2 int, " + "c3 int, constraint temp1cons1 primary key(c1, c2))") [FD]
+Line_2 $$ public void testInsertModeValue() throws SQLException --> Line_5 $$ assertStatementError("42X01", st, "insert into temp1 (c1,c2,c3)" + " -- derby-properties insertModeValue=replace\n" + "select * from t1") [CD]
+Line_3 $$ Statement st = createStatement() --> Line_5 $$ assertStatementError("42X01", st, "insert into temp1 (c1,c2,c3)" + " -- derby-properties insertModeValue=replace\n" + "select * from t1") [FD]
+Line_2 $$ public void testInsertModeValue() throws SQLException --> Line_6 $$ dropTable("temp1") [CD]
+Line_2 $$ public void testInsertModeValue() throws SQLException --> Line_7 $$ st.close() [CD]
+Line_3 $$ Statement st = createStatement() --> Line_7 $$ st.close() [FD]

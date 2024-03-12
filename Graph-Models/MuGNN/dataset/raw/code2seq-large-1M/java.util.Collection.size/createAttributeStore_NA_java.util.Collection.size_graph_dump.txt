@@ -1,0 +1,7 @@
+Line_2 $$ X509Store createAttributeStore(String type, Provider provider, Store certStore) throws NoSuchStoreException, CMSException --> Line_4 $$ Collection certHldrs = certStore.getMatches(null) [FD]
+Line_4 $$ Collection certHldrs = certStore.getMatches(null) --> Line_5 $$ List certs = new ArrayList(certHldrs.size()) [FD]
+Line_4 $$ Collection certHldrs = certStore.getMatches(null) --> Line_6 $$ for (Iterator it = certHldrs.iterator(); it.hasNext(); ) [FD]
+Line_6 $$ for (Iterator it = certHldrs.iterator(); it.hasNext(); ) --> Line_7 $$ certs.add(new X509V2AttributeCertificate(((X509AttributeCertificateHolder) it.next()).getEncoded())) [CD]
+Line_6 $$ for (Iterator it = certHldrs.iterator(); it.hasNext(); ) --> Line_7 $$ certs.add(new X509V2AttributeCertificate(((X509AttributeCertificateHolder) it.next()).getEncoded())) [FD]
+Line_5 $$ List certs = new ArrayList(certHldrs.size()) --> Line_7 $$ certs.add(new X509V2AttributeCertificate(((X509AttributeCertificateHolder) it.next()).getEncoded())) [FD]
+Line_2 $$ X509Store createAttributeStore(String type, Provider provider, Store certStore) throws NoSuchStoreException, CMSException --> Line_9 $$ return X509Store.getInstance("AttributeCertificate/" + type, new X509CollectionStoreParameters(certs), provider) [FD]

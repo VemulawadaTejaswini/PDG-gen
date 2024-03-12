@@ -1,0 +1,8 @@
+Line_2 $$ public InetAddress getInetAddress() --> Line_3 $$ TransportAddress addr = getAddress() [CD]
+Line_2 $$ public InetAddress getInetAddress() --> Line_4 $$ if (addr instanceof InetSocketTransportAddress) [CD]
+Line_3 $$ TransportAddress addr = getAddress() --> Line_4 $$ if (addr instanceof InetSocketTransportAddress) [FD]
+Line_4 $$ if (addr instanceof InetSocketTransportAddress) --> Line_5 $$ return ((InetSocketTransportAddress) getAddress()).address().getAddress() [CD]
+Line_2 $$ public InetAddress getInetAddress() --> Line_6 $$ if (addr instanceof LocalTransportAddress) [CD]
+Line_3 $$ TransportAddress addr = getAddress() --> Line_6 $$ if (addr instanceof LocalTransportAddress) [FD]
+Line_6 $$ if (addr instanceof LocalTransportAddress) --> Line_7 $$ return InetAddress.getLoopbackAddress() [CD]
+Line_2 $$ public InetAddress getInetAddress() --> Line_8 $$ return null [CD]

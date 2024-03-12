@@ -1,0 +1,6 @@
+Line_3 $$ for (Integer statement : trace.keySet()) --> Line_4 $$ if (other.trace.containsKey(statement)) [FD]
+Line_3 $$ for (Integer statement : trace.keySet()) --> Line_5 $$ for (Integer var : trace.get(statement).keySet()) [FD]
+Line_5 $$ for (Integer var : trace.get(statement).keySet()) --> Line_6 $$ if (trace.get(statement).get(var).differs(other.trace.get(statement).get(var))) [FD]
+Line_3 $$ for (Integer statement : trace.keySet()) --> Line_6 $$ if (trace.get(statement).get(var).differs(other.trace.get(statement).get(var))) [FD]
+Line_6 $$ if (trace.get(statement).get(var).differs(other.trace.get(statement).get(var))) --> Line_7 $$ return true [CD]
+Line_2 $$ public boolean differs(OutputTrace<?> other) --> Line_11 $$ return false [CD]

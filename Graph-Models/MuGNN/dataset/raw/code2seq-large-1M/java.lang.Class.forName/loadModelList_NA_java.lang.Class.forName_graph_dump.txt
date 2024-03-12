@@ -1,0 +1,6 @@
+Line_2 $$ private List<Class<? extends Model>> loadModelList(String[] models) --> Line_3 $$ final List<Class<? extends Model>> modelClasses = new ArrayList<Class<? extends Model>>() [CD]
+Line_2 $$ private List<Class<? extends Model>> loadModelList(String[] models) --> Line_4 $$ final ClassLoader classLoader = mContext.getClass().getClassLoader() [CD]
+Line_5 $$ for (String model : models) --> Line_7 $$ Class modelClass = Class.forName(model.trim(), false, classLoader) [FD]
+Line_8 $$ if (ReflectionUtils.isModel(modelClass)) --> Line_9 $$ modelClasses.add(modelClass) [CD]
+Line_3 $$ final List<Class<? extends Model>> modelClasses = new ArrayList<Class<? extends Model>>() --> Line_9 $$ modelClasses.add(modelClass) [FD]
+Line_2 $$ private List<Class<? extends Model>> loadModelList(String[] models) --> Line_15 $$ return modelClasses [CD]

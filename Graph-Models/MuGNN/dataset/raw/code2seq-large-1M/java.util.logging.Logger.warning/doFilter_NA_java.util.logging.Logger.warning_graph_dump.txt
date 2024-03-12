@@ -1,0 +1,8 @@
+Line_2 $$ public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException --> Line_3 $$ if (response instanceof HttpServletResponse && request instanceof HttpServletRequest) [CD]
+Line_3 $$ if (response instanceof HttpServletResponse && request instanceof HttpServletRequest) --> Line_4 $$ HttpServletRequest httpRequest = (HttpServletRequest) request [CD]
+Line_3 $$ if (response instanceof HttpServletResponse && request instanceof HttpServletRequest) --> Line_5 $$ HttpServletResponse httpResponse = (HttpServletResponse) response [CD]
+Line_2 $$ public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException --> Line_7 $$ filterChain.doFilter(request, response) [FD]
+Line_9 $$ if (e.getDetails().getError().contains("invalid_grant")) --> Line_10 $$ LOG.warning("User disabled Glassware. Attempting to re-authenticate") [CD]
+Line_9 $$ if (e.getDetails().getError().contains("invalid_grant")) --> Line_11 $$ httpResponse.sendRedirect(WebUtil.buildUrl(httpRequest, "/oauth2callback")) [CD]
+Line_5 $$ HttpServletResponse httpResponse = (HttpServletResponse) response --> Line_11 $$ httpResponse.sendRedirect(WebUtil.buildUrl(httpRequest, "/oauth2callback")) [FD]
+Line_4 $$ HttpServletRequest httpRequest = (HttpServletRequest) request --> Line_11 $$ httpResponse.sendRedirect(WebUtil.buildUrl(httpRequest, "/oauth2callback")) [FD]

@@ -1,0 +1,6 @@
+Line_3 $$ for (Partitioner part : partitioner.getPartitioners()) --> Line_4 $$ for (PartitionOutgoingBatch o : part.getOutgoingBatches()) [FD]
+Line_4 $$ for (PartitionOutgoingBatch o : part.getOutgoingBatches()) --> Line_5 $$ long totalRecords = o.getTotalRecords() [FD]
+Line_5 $$ long totalRecords = o.getTotalRecords() --> Line_6 $$ minReceiverRecordCount = Math.min(minReceiverRecordCount, totalRecords) [FD]
+Line_5 $$ long totalRecords = o.getTotalRecords() --> Line_7 $$ maxReceiverRecordCount = Math.max(maxReceiverRecordCount, totalRecords) [FD]
+Line_2 $$ private void updateAggregateStats() --> Line_10 $$ stats.setLongStat(Metric.MIN_RECORDS, minReceiverRecordCount) [CD]
+Line_2 $$ private void updateAggregateStats() --> Line_11 $$ stats.setLongStat(Metric.MAX_RECORDS, maxReceiverRecordCount) [CD]

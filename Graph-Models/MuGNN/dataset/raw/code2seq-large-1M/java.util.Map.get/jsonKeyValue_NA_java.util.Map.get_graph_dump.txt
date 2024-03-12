@@ -1,0 +1,6 @@
+Line_2 $$ public void jsonKeyValue() throws Exception --> Line_3 $$ gfsh.executeAndAssertThat("put --region=regionA --key=('key':'1') --value=('value':'1') " + "--key-class=" + Key.class.getCanonicalName() + " --value-class=" + Value.class.getCanonicalName()).statusIsSuccess() [CD]
+Line_2 $$ public void jsonKeyValue() throws Exception --> Line_4 $$ CommandResult result = gfsh.executeCommand("locate entry --region=regionA --key=('key':'1') " + "--key-class=" + Key.class.getCanonicalName() + " --value-class=" + Value.class.getCanonicalName()) [CD]
+Line_2 $$ public void jsonKeyValue() throws Exception --> Line_5 $$ assertThat(result.getStatus()).isEqualTo(Result.Status.OK) [CD]
+Line_2 $$ public void jsonKeyValue() throws Exception --> Line_6 $$ Map<String, String> data = result.getMapFromSection(DataCommandResult.DATA_INFO_SECTION) [CD]
+Line_2 $$ public void jsonKeyValue() throws Exception --> Line_7 $$ assertThat(data.get("Locations Found")).isEqualTo("1") [CD]
+Line_6 $$ Map<String, String> data = result.getMapFromSection(DataCommandResult.DATA_INFO_SECTION) --> Line_7 $$ assertThat(data.get("Locations Found")).isEqualTo("1") [FD]

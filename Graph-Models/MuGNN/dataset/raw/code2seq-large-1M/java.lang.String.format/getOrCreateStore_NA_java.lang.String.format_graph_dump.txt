@@ -1,0 +1,6 @@
+Line_2 $$ public <V> PersistentStore<V> getOrCreateStore(final String storeName, final Class<? extends PersistentStoreCreator> storeCreator, InstanceSerializer<V> serializer) throws StoreException --> Line_3 $$ if (inMemory) [CD]
+Line_3 $$ if (inMemory) --> Line_4 $$ return new InMemoryLocalStore() [CD]
+Line_2 $$ public <V> PersistentStore<V> getOrCreateStore(final String storeName, final Class<? extends PersistentStoreCreator> storeCreator, InstanceSerializer<V> serializer) throws StoreException --> Line_6 $$ final KVPersistentStore<V> store = new KVPersistentStore(storeProvider, storeCreator, serializer) [CD]
+Line_6 $$ final KVPersistentStore<V> store = new KVPersistentStore(storeProvider, storeCreator, serializer) --> Line_8 $$ store.start() [FD]
+Line_2 $$ public <V> PersistentStore<V> getOrCreateStore(final String storeName, final Class<? extends PersistentStoreCreator> storeCreator, InstanceSerializer<V> serializer) throws StoreException --> Line_10 $$ throw new StoreException(String.format("Unable to start persistent store %s", storeName), e) [FD]
+Line_2 $$ public <V> PersistentStore<V> getOrCreateStore(final String storeName, final Class<? extends PersistentStoreCreator> storeCreator, InstanceSerializer<V> serializer) throws StoreException --> Line_12 $$ return store [CD]

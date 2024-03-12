@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<Set<Integer>> getExportersWithFlows(int limit, List<Filter> filters) --> Line_3 $$ final String query = searchQueryProvider.getUniqueNodeExporters(limit, filters) [FD]
+Line_2 $$ public CompletableFuture<Set<Integer>> getExportersWithFlows(int limit, List<Filter> filters) --> Line_3 $$ final String query = searchQueryProvider.getUniqueNodeExporters(limit, filters) [CD]
+Line_2 $$ public CompletableFuture<Set<Integer>> getExportersWithFlows(int limit, List<Filter> filters) --> Line_4 $$ return searchAsync(query, extractTimeRangeFilter(filters)).thenApply( res -> [FD]
+Line_2 $$ public CompletableFuture<Set<Integer>> getExportersWithFlows(int limit, List<Filter> filters) --> Line_4 $$ return searchAsync(query, extractTimeRangeFilter(filters)).thenApply( res -> [CD]
+Line_3 $$ final String query = searchQueryProvider.getUniqueNodeExporters(limit, filters) --> Line_4 $$ return searchAsync(query, extractTimeRangeFilter(filters)).thenApply( res -> [FD]
+Line_5 $$ final TermsAggregation criterias = res.getAggregations().getTermsAggregation("criterias") --> Line_6 $$ if (criterias == null) [FD]
+Line_6 $$ if (criterias == null) --> Line_7 $$ return Collections.emptySet() [CD]
+Line_5 $$ final TermsAggregation criterias = res.getAggregations().getTermsAggregation("criterias") --> Line_9 $$ return criterias.getBuckets().stream().map( e -> Integer.parseInt(e.getKey())).collect(Collectors.toSet()) [FD]

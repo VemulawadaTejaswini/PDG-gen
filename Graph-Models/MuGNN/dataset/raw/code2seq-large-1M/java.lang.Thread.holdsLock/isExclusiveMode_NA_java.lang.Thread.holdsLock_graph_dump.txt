@@ -1,0 +1,7 @@
+Line_2 $$ private boolean isExclusiveMode() --> Line_3 $$ ServerSession exclusive = database.getExclusiveSession() [CD]
+Line_2 $$ private boolean isExclusiveMode() --> Line_4 $$ if (exclusive == null || exclusive == this) [CD]
+Line_4 $$ if (exclusive == null || exclusive == this) --> Line_5 $$ return false [CD]
+Line_2 $$ private boolean isExclusiveMode() --> Line_7 $$ if (Thread.holdsLock(exclusive)) [CD]
+Line_3 $$ ServerSession exclusive = database.getExclusiveSession() --> Line_7 $$ if (Thread.holdsLock(exclusive)) [FD]
+Line_7 $$ if (Thread.holdsLock(exclusive)) --> Line_8 $$ return false [CD]
+Line_2 $$ private boolean isExclusiveMode() --> Line_10 $$ return true [CD]

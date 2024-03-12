@@ -1,0 +1,7 @@
+Line_2 $$ public void testNoErrorFromXContent() throws IOException --> Line_3 $$ IllegalStateException e = expectThrows(IllegalStateException.class, () -> [CD]
+Line_4 $$ try (XContentBuilder builder = XContentBuilder.builder(randomFrom(XContentType.values()).xContent())) --> Line_5 $$ builder.startObject() [FD]
+Line_4 $$ try (XContentBuilder builder = XContentBuilder.builder(randomFrom(XContentType.values()).xContent())) --> Line_6 $$ builder.field("status", randomFrom(RestStatus.values()).getStatus()) [FD]
+Line_4 $$ try (XContentBuilder builder = XContentBuilder.builder(randomFrom(XContentType.values()).xContent())) --> Line_7 $$ builder.endObject() [FD]
+Line_4 $$ try (XContentBuilder builder = XContentBuilder.builder(randomFrom(XContentType.values()).xContent())) --> Line_8 $$ try (XContentParser parser = createParser(builder.contentType().xContent(), builder.bytes())) [FD]
+Line_8 $$ try (XContentParser parser = createParser(builder.contentType().xContent(), builder.bytes())) --> Line_9 $$ BytesRestResponse.errorFromXContent(parser) [FD]
+Line_2 $$ public void testNoErrorFromXContent() throws IOException --> Line_13 $$ assertEquals("Failed to parse elasticsearch status exception: no exception was found", e.getMessage()) [CD]

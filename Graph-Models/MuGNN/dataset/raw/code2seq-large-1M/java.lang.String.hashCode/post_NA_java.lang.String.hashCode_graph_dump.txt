@@ -1,0 +1,8 @@
+Line_2 $$ public void post(Document document) throws EndpointIOException --> Line_3 $$ String documentIdStr = document.getDocumentId() [FD]
+Line_2 $$ public void post(Document document) throws EndpointIOException --> Line_3 $$ String documentIdStr = document.getDocumentId() [CD]
+Line_2 $$ public void post(Document document) throws EndpointIOException --> Line_4 $$ int hash = documentIdStr.hashCode() & 0x7FFFFFFF [CD]
+Line_3 $$ String documentIdStr = document.getDocumentId() --> Line_4 $$ int hash = documentIdStr.hashCode() & 0x7FFFFFFF [FD]
+Line_2 $$ public void post(Document document) throws EndpointIOException --> Line_5 $$ IOThread ioThread = ioThreads.get(hash % ioThreads.size()) [CD]
+Line_5 $$ IOThread ioThread = ioThreads.get(hash % ioThreads.size()) --> Line_7 $$ ioThread.post(document) [FD]
+Line_2 $$ public void post(Document document) throws EndpointIOException --> Line_7 $$ ioThread.post(document) [FD]
+Line_5 $$ IOThread ioThread = ioThreads.get(hash % ioThreads.size()) --> Line_9 $$ throw new EndpointIOException(ioThread.getEndpoint(), "While sending", t) [FD]

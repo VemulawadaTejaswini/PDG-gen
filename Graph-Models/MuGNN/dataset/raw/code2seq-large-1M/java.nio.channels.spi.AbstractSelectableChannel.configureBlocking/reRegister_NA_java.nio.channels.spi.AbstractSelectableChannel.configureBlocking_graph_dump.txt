@@ -1,0 +1,8 @@
+Line_2 $$ void reRegister(HttpConnection c) --> Line_4 $$ SocketChannel chan = c.getChannel() [FD]
+Line_4 $$ SocketChannel chan = c.getChannel() --> Line_5 $$ chan.configureBlocking(false) [FD]
+Line_4 $$ SocketChannel chan = c.getChannel() --> Line_6 $$ SelectionKey key = chan.register(selector, SelectionKey.OP_READ) [FD]
+Line_6 $$ SelectionKey key = chan.register(selector, SelectionKey.OP_READ) --> Line_7 $$ key.attach(c) [FD]
+Line_2 $$ void reRegister(HttpConnection c) --> Line_7 $$ key.attach(c) [FD]
+Line_6 $$ SelectionKey key = chan.register(selector, SelectionKey.OP_READ) --> Line_8 $$ c.selectionKey = key [FD]
+Line_2 $$ void reRegister(HttpConnection c) --> Line_10 $$ idleConnections.add(c) [FD]
+Line_2 $$ void reRegister(HttpConnection c) --> Line_14 $$ c.close() [FD]

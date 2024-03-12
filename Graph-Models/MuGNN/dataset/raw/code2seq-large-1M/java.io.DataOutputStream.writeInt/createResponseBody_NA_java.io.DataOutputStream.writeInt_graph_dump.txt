@@ -1,0 +1,7 @@
+Line_2 $$ private ResponseBody createResponseBody(ImmutableSet<RuleKey> ruleKeys, ImmutableMap<String, String> metadata, ByteSource source, String data) throws IOException --> Line_5 $$ byte[] rawMetadata = HttpArtifactCacheBinaryProtocol.createMetadataHeader(ruleKeys, metadata, source) [FD]
+Line_3 $$ try (ByteArrayOutputStream out = new ByteArrayOutputStream(); --> Line_6 $$ dataOut.writeInt(rawMetadata.length) [FD]
+Line_3 $$ try (ByteArrayOutputStream out = new ByteArrayOutputStream(); --> Line_7 $$ dataOut.write(rawMetadata) [FD]
+Line_5 $$ byte[] rawMetadata = HttpArtifactCacheBinaryProtocol.createMetadataHeader(ruleKeys, metadata, source) --> Line_7 $$ dataOut.write(rawMetadata) [FD]
+Line_3 $$ try (ByteArrayOutputStream out = new ByteArrayOutputStream(); --> Line_8 $$ dataOut.write(data.getBytes(Charsets.UTF_8)) [FD]
+Line_2 $$ private ResponseBody createResponseBody(ImmutableSet<RuleKey> ruleKeys, ImmutableMap<String, String> metadata, ByteSource source, String data) throws IOException --> Line_8 $$ dataOut.write(data.getBytes(Charsets.UTF_8)) [FD]
+Line_3 $$ try (ByteArrayOutputStream out = new ByteArrayOutputStream(); --> Line_9 $$ return ResponseBody.create(OCTET_STREAM, out.toByteArray()) [FD]

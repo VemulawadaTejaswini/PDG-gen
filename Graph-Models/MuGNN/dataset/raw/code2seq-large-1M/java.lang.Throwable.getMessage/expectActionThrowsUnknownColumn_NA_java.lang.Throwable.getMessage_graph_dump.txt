@@ -1,0 +1,7 @@
+Line_2 $$ static void expectActionThrowsUnknownColumn(String user, CheckedConsumer<Connection, SQLException> action, String column) throws Exception --> Line_3 $$ SQLException e [CD]
+Line_2 $$ static void expectActionThrowsUnknownColumn(String user, CheckedConsumer<Connection, SQLException> action, String column) throws Exception --> Line_4 $$ try (Connection connection = es(userProperties(user))) [FD]
+Line_3 $$ SQLException e --> Line_5 $$ e = expectThrows(SQLException.class, () -> action.accept(connection)) [FD]
+Line_2 $$ static void expectActionThrowsUnknownColumn(String user, CheckedConsumer<Connection, SQLException> action, String column) throws Exception --> Line_5 $$ e = expectThrows(SQLException.class, () -> action.accept(connection)) [FD]
+Line_4 $$ try (Connection connection = es(userProperties(user))) --> Line_5 $$ e = expectThrows(SQLException.class, () -> action.accept(connection)) [FD]
+Line_2 $$ static void expectActionThrowsUnknownColumn(String user, CheckedConsumer<Connection, SQLException> action, String column) throws Exception --> Line_7 $$ assertThat(e.getMessage(), containsString("Unknown column [" + column + "]")) [CD]
+Line_3 $$ SQLException e --> Line_7 $$ assertThat(e.getMessage(), containsString("Unknown column [" + column + "]")) [FD]

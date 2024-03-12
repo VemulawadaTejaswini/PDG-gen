@@ -1,0 +1,8 @@
+Line_2 $$ protected boolean waitForResult(CountDownLatch latch) throws IOException --> Line_3 $$ if (Thread.currentThread() == _asyncStub.getChannel().getClient().getEventThread()) [CD]
+Line_3 $$ if (Thread.currentThread() == _asyncStub.getChannel().getClient().getEventThread()) --> Line_4 $$ long timeoutTime = System.currentTimeMillis() + getRPCTimeout() [CD]
+Line_3 $$ if (Thread.currentThread() == _asyncStub.getChannel().getClient().getEventThread()) --> Line_5 $$ do [CD]
+Line_5 $$ do --> Line_6 $$ _asyncStub.getChannel().getClient().waitForIO(1) [CD]
+Line_2 $$ protected boolean waitForResult(CountDownLatch latch) throws IOException --> Line_5 $$ do [FD]
+Line_2 $$ protected boolean waitForResult(CountDownLatch latch) throws IOException --> Line_10 $$ latch.await(getRPCTimeout(), TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ protected boolean waitForResult(CountDownLatch latch) throws IOException --> Line_15 $$ return latch.getCount() == 0 [CD]
+Line_2 $$ protected boolean waitForResult(CountDownLatch latch) throws IOException --> Line_15 $$ return latch.getCount() == 0 [FD]

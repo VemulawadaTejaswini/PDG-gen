@@ -1,0 +1,7 @@
+Line_2 $$ public void testUpdateAccelerateConfiguration() throws InterruptedException --> Line_3 $$ String status = s3.getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest.builder().bucket(US_BUCKET_NAME).build()).statusString() [CD]
+Line_2 $$ public void testUpdateAccelerateConfiguration() throws InterruptedException --> Line_4 $$ if (status == null || !status.equals("Enabled")) [CD]
+Line_3 $$ String status = s3.getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest.builder().bucket(US_BUCKET_NAME).build()).statusString() --> Line_4 $$ if (status == null || !status.equals("Enabled")) [FD]
+Line_4 $$ if (status == null || !status.equals("Enabled")) --> Line_5 $$ enableAccelerateOnBucket() [CD]
+Line_2 $$ public void testUpdateAccelerateConfiguration() throws InterruptedException --> Line_7 $$ assertEquals(BucketAccelerateStatus.ENABLED, s3.getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest.builder().bucket(US_BUCKET_NAME).build()).status()) [CD]
+Line_2 $$ public void testUpdateAccelerateConfiguration() throws InterruptedException --> Line_8 $$ disableAccelerateOnBucket() [CD]
+Line_2 $$ public void testUpdateAccelerateConfiguration() throws InterruptedException --> Line_9 $$ assertEquals(BucketAccelerateStatus.SUSPENDED, s3.getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest.builder().bucket(US_BUCKET_NAME).build()).status()) [CD]

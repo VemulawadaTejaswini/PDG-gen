@@ -1,0 +1,5 @@
+Line_2 $$ private boolean upgradeToVersion2(SQLiteDatabase db) --> Line_3 $$ boolean success = true [CD]
+Line_2 $$ private boolean upgradeToVersion2(SQLiteDatabase db) --> Line_5 $$ db.execSQL("ALTER TABLE " + INSTANCES_TABLE_NAME + " ADD COLUMN " + CAN_EDIT_WHEN_COMPLETE + " text;") [FD]
+Line_2 $$ private boolean upgradeToVersion2(SQLiteDatabase db) --> Line_6 $$ db.execSQL("UPDATE " + INSTANCES_TABLE_NAME + " SET " + CAN_EDIT_WHEN_COMPLETE + " = '" + Boolean.toString(true) + "' WHERE " + STATUS + " IS NOT NULL AND " + STATUS + " != '" + InstanceProviderAPI.STATUS_INCOMPLETE + "'") [FD]
+Line_3 $$ boolean success = true --> Line_9 $$ success = false [FD]
+Line_2 $$ private boolean upgradeToVersion2(SQLiteDatabase db) --> Line_11 $$ return success [CD]

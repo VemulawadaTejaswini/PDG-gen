@@ -1,0 +1,8 @@
+Line_2 $$ public void testComposition2() --> Line_3 $$ log.debug("running testComposition2") [CD]
+Line_2 $$ public void testComposition2() --> Line_4 $$ Func1<Integer, Boolean> isZero = new Func1<Integer, Boolean>() [CD]
+Line_4 $$ Func1<Integer, Boolean> isZero = new Func1<Integer, Boolean>() --> Line_6 $$ return count == 0 [CD]
+Line_2 $$ public void testComposition2() --> Line_9 $$ Database db = db() [CD]
+Line_2 $$ public void testComposition2() --> Line_10 $$ Observable<Integer> existingRows = db.select("select name from person where name=?").parameter("FRED").getAs(String.class).count().filter(isZero) [CD]
+Line_4 $$ Func1<Integer, Boolean> isZero = new Func1<Integer, Boolean>() --> Line_10 $$ Observable<Integer> existingRows = db.select("select name from person where name=?").parameter("FRED").getAs(String.class).count().filter(isZero) [FD]
+Line_2 $$ public void testComposition2() --> Line_11 $$ List<Integer> counts = db.update("insert into person(name,score) values(?,?)").parameters(existingRows).count().toList().toBlocking().single() [CD]
+Line_2 $$ public void testComposition2() --> Line_12 $$ assertEquals(0, counts.size()) [CD]

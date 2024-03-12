@@ -1,0 +1,7 @@
+Line_2 $$ public void verifyUncaughtErrorCount() throws Exception --> Line_3 $$ assumeThat(server.isRemoteDatabase(), is(true)) [CD]
+Line_4 $$ try (JMXConnector con = connectJmx(server)) --> Line_5 $$ MBeanServerConnection beans = con.getMBeanServerConnection() [FD]
+Line_5 $$ MBeanServerConnection beans = con.getMBeanServerConnection() --> Line_6 $$ Object uncaughtErrorCount = beans.getAttribute(ObjectName.getInstance("io.digdag.core", "name", "ErrorReporter"), "UncaughtErrorCount") [FD]
+Line_6 $$ Object uncaughtErrorCount = beans.getAttribute(ObjectName.getInstance("io.digdag.core", "name", "ErrorReporter"), "UncaughtErrorCount") --> Line_7 $$ assertThat(uncaughtErrorCount, is(0)) [FD]
+Line_8 $$ try (DataSourceProvider dsp = new DataSourceProvider(server.getRemoteTestDatabaseConfig())) --> Line_9 $$ Statement stmt = dsp.get().getConnection().createStatement() [FD]
+Line_9 $$ Statement stmt = dsp.get().getConnection().createStatement() --> Line_10 $$ stmt.execute("drop table tasks cascade") [FD]
+Line_5 $$ MBeanServerConnection beans = con.getMBeanServerConnection() --> Line_13 $$ int count = (int) beans.getAttribute(ObjectName.getInstance("io.digdag.core", "name", "ErrorReporter"), "UncaughtErrorCount") [FD]

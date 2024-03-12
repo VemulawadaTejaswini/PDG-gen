@@ -1,0 +1,7 @@
+Line_4 $$ if (jc != null && jc.getRunningJobs().size() > 0) --> Line_5 $$ log.info("Received kill signal") [CD]
+Line_6 $$ for (Job job : jc.getRunningJobs()) --> Line_7 $$ org.apache.hadoop.mapreduce.Job mrJob = job.getJob() [FD]
+Line_7 $$ org.apache.hadoop.mapreduce.Job mrJob = job.getJob() --> Line_9 $$ if (mrJob != null) [FD]
+Line_9 $$ if (mrJob != null) --> Line_10 $$ mrJob.killJob() [CD]
+Line_7 $$ org.apache.hadoop.mapreduce.Job mrJob = job.getJob() --> Line_10 $$ mrJob.killJob() [FD]
+Line_6 $$ for (Job job : jc.getRunningJobs()) --> Line_15 $$ log.info("Job " + job.getAssignedJobID() + " killed") [FD]
+Line_6 $$ for (Job job : jc.getRunningJobs()) --> Line_17 $$ System.err.println(timeStamp + " Job " + job.getAssignedJobID() + " killed") [FD]

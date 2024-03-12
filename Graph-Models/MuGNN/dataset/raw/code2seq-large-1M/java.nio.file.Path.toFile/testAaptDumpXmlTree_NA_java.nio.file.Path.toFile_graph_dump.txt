@@ -1,0 +1,6 @@
+Line_3 $$ try (ZipFile apkZip = new ZipFile(apkPath.toFile())) --> Line_4 $$ ByteBuffer buf = ResChunk.wrap(ByteStreams.toByteArray(apkZip.getInputStream(apkZip.getEntry("AndroidManifest.xml")))) [FD]
+Line_5 $$ ResourcesXml xml = ResourcesXml.get(buf) --> Line_7 $$ xml.dump(new PrintStream(baos)) [FD]
+Line_6 $$ ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_8 $$ String content = new String(baos.toByteArray(), Charsets.UTF_8) [FD]
+Line_9 $$ Path xmltreeOutput = filesystem.resolve(filesystem.getPath(APK_NAME + ".manifest")) --> Line_10 $$ String expected = new String(Files.readAllBytes(xmltreeOutput)) [FD]
+Line_10 $$ String expected = new String(Files.readAllBytes(xmltreeOutput)) --> Line_11 $$ MoreAsserts.assertLargeStringsEqual(expected, content) [FD]
+Line_8 $$ String content = new String(baos.toByteArray(), Charsets.UTF_8) --> Line_11 $$ MoreAsserts.assertLargeStringsEqual(expected, content) [FD]

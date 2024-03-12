@@ -1,0 +1,8 @@
+Line_2 $$ public void getServerMsg() --> Line_3 $$ byte[] recvByte = new byte[MAX_BUFFER_LENGTH] [CD]
+Line_2 $$ public void getServerMsg() --> Line_4 $$ String dataStr [CD]
+Line_3 $$ byte[] recvByte = new byte[MAX_BUFFER_LENGTH] --> Line_6 $$ int recvLen = bis.read(recvByte, 0, recvByte.length) [FD]
+Line_3 $$ byte[] recvByte = new byte[MAX_BUFFER_LENGTH] --> Line_8 $$ System.arraycopy(recvByte, 0, realBuf, 0, recvLen) [FD]
+Line_7 $$ byte[] realBuf = new byte[recvLen] --> Line_8 $$ System.arraycopy(recvByte, 0, realBuf, 0, recvLen) [FD]
+Line_6 $$ int recvLen = bis.read(recvByte, 0, recvByte.length) --> Line_8 $$ System.arraycopy(recvByte, 0, realBuf, 0, recvLen) [FD]
+Line_4 $$ String dataStr --> Line_9 $$ dataStr = new String(realBuf, 12, realBuf.length - 12) [FD]
+Line_10 $$ MsgView msgView = new MsgView(dataStr) --> Line_11 $$ parseServerMsg(msgView.getMessageList()) [FD]

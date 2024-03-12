@@ -1,0 +1,7 @@
+Line_2 $$ public String getEndpointsToRouteMessageTo(Exchange exchange) --> Line_3 $$ String orderType = exchange.getIn().getHeader("orderType", String.class) [CD]
+Line_2 $$ public String getEndpointsToRouteMessageTo(Exchange exchange) --> Line_3 $$ String orderType = exchange.getIn().getHeader("orderType", String.class) [FD]
+Line_2 $$ public String getEndpointsToRouteMessageTo(Exchange exchange) --> Line_4 $$ if (orderType == null) [CD]
+Line_4 $$ if (orderType == null) --> Line_5 $$ return "direct:unrecognized" [CD]
+Line_4 $$ if (orderType == null) --> Line_6 $$ if (orderType.equals("priority")) [CD]
+Line_6 $$ if (orderType.equals("priority")) --> Line_7 $$ return "direct:order.priority,direct:billing" [CD]
+Line_6 $$ if (orderType.equals("priority")) --> Line_9 $$ return "direct:order.normal,direct:billing" [CD]

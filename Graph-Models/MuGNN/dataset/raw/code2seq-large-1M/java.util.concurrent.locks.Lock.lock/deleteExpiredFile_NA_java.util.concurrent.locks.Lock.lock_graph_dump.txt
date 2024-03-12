@@ -1,0 +1,8 @@
+Line_2 $$ private void deleteExpiredFile(List<IndexFile> files) --> Line_3 $$ if (!files.isEmpty()) [CD]
+Line_2 $$ private void deleteExpiredFile(List<IndexFile> files) --> Line_3 $$ if (!files.isEmpty()) [FD]
+Line_6 $$ for (IndexFile file : files) --> Line_7 $$ boolean destroyed = file.destroy(3000) [FD]
+Line_7 $$ boolean destroyed = file.destroy(3000) --> Line_8 $$ destroyed = destroyed && this.indexFileList.remove(file) [FD]
+Line_6 $$ for (IndexFile file : files) --> Line_8 $$ destroyed = destroyed && this.indexFileList.remove(file) [FD]
+Line_7 $$ boolean destroyed = file.destroy(3000) --> Line_9 $$ if (!destroyed) [FD]
+Line_8 $$ destroyed = destroyed && this.indexFileList.remove(file) --> Line_9 $$ if (!destroyed) [FD]
+Line_9 $$ if (!destroyed) --> Line_10 $$ log.error("deleteExpiredFile remove failed.") [CD]

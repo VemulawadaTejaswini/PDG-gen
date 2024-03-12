@@ -1,0 +1,6 @@
+Line_2 $$ private void addRemoveValues(AssociativeArray array, int sign) --> Line_3 $$ for (Map.Entry<Object, Object> entry : array.entrySet()) [FD]
+Line_4 $$ Object column = entry.getKey() --> Line_5 $$ Double previousValue = TypeInference.toDouble(internalData.get(column)) [FD]
+Line_5 $$ Double previousValue = TypeInference.toDouble(internalData.get(column)) --> Line_6 $$ if (previousValue == null) [FD]
+Line_6 $$ if (previousValue == null) --> Line_7 $$ previousValue = 0.0 [CD]
+Line_5 $$ Double previousValue = TypeInference.toDouble(internalData.get(column)) --> Line_7 $$ previousValue = 0.0 [FD]
+Line_4 $$ Object column = entry.getKey() --> Line_9 $$ internalData.put(column, previousValue + sign * TypeInference.toDouble(entry.getValue())) [FD]

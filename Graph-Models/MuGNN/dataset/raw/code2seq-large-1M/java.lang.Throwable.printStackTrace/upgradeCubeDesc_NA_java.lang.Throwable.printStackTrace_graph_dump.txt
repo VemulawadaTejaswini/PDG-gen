@@ -1,0 +1,7 @@
+Line_2 $$ private void upgradeCubeDesc() --> Line_3 $$ logger.info("Reloading Cube Metadata from folder " + store.getReadableResourcePath(ResourceStore.CUBE_DESC_RESOURCE_ROOT)) [CD]
+Line_2 $$ private void upgradeCubeDesc() --> Line_4 $$ List<String> paths = listResourceStore(ResourceStore.CUBE_DESC_RESOURCE_ROOT) [CD]
+Line_7 $$ CubeDescUpgrader upgrade = new CubeDescUpgrader(path) --> Line_8 $$ CubeDesc ndesc = upgrade.upgrade() [FD]
+Line_8 $$ CubeDesc ndesc = upgrade.upgrade() --> Line_9 $$ ndesc.setSignature(ndesc.calculateSignature()) [FD]
+Line_8 $$ CubeDesc ndesc = upgrade.upgrade() --> Line_10 $$ getStore().putResource(ndesc.getModel().getResourcePath(), ndesc.getModel(), MetadataManager.MODELDESC_SERIALIZER) [FD]
+Line_8 $$ CubeDesc ndesc = upgrade.upgrade() --> Line_11 $$ getStore().putResource(ndesc.getResourcePath(), ndesc, CubeDescManager.CUBE_DESC_SERIALIZER) [FD]
+Line_8 $$ CubeDesc ndesc = upgrade.upgrade() --> Line_12 $$ updatedResources.add(ndesc.getResourcePath()) [FD]

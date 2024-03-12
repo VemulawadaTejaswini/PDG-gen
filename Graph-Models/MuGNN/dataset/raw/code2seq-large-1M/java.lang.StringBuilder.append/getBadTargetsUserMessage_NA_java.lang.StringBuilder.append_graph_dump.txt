@@ -1,0 +1,7 @@
+Line_2 $$ private static String getBadTargetsUserMessage(Multimap<ConfiguredTarget, Label> badTargets) --> Line_3 $$ StringBuilder msg = new StringBuilder() [CD]
+Line_2 $$ private static String getBadTargetsUserMessage(Multimap<ConfiguredTarget, Label> badTargets) --> Line_4 $$ msg.append("This is a restricted-environment build.") [CD]
+Line_3 $$ StringBuilder msg = new StringBuilder() --> Line_4 $$ msg.append("This is a restricted-environment build.") [FD]
+Line_2 $$ private static String getBadTargetsUserMessage(Multimap<ConfiguredTarget, Label> badTargets) --> Line_5 $$ for (Map.Entry<ConfiguredTarget, Collection<Label>> entry : badTargets.asMap().entrySet()) [FD]
+Line_3 $$ StringBuilder msg = new StringBuilder() --> Line_6 $$ msg.append(String.format("\n - %s does not support required environment%s %s.", entry.getKey().getLabel(), entry.getValue().size() == 1 ? "" : "s", Joiner.on(", ").join(entry.getValue()))) [FD]
+Line_2 $$ private static String getBadTargetsUserMessage(Multimap<ConfiguredTarget, Label> badTargets) --> Line_8 $$ return msg.toString() [CD]
+Line_3 $$ StringBuilder msg = new StringBuilder() --> Line_8 $$ return msg.toString() [FD]

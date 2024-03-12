@@ -1,0 +1,6 @@
+Line_3 $$ try (DataOutputStream outStream = new DataOutputStream(rawStream)) --> Line_4 $$ outStream.writeInt(serializedThriftData.length) [FD]
+Line_3 $$ try (DataOutputStream outStream = new DataOutputStream(rawStream)) --> Line_5 $$ outStream.write(serializedThriftData) [FD]
+Line_6 $$ for (int i = 0; i < payloads.size(); ++i) --> Line_8 $$ PayloadInfo info = payloads.get(i) [FD]
+Line_7 $$ try (InputStream inputStream = payloadByteSources[i].openStream()) --> Line_9 $$ copyExactly(inputStream, outStream, info.getSizeBytes()) [FD]
+Line_3 $$ try (DataOutputStream outStream = new DataOutputStream(rawStream)) --> Line_9 $$ copyExactly(inputStream, outStream, info.getSizeBytes()) [FD]
+Line_8 $$ PayloadInfo info = payloads.get(i) --> Line_9 $$ copyExactly(inputStream, outStream, info.getSizeBytes()) [FD]

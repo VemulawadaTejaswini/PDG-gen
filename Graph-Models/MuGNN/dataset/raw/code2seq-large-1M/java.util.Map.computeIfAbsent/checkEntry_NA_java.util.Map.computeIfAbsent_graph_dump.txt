@@ -1,0 +1,5 @@
+Line_3 $$ Set<String> set = mapArchiveEntries.computeIfAbsent(file,  k -> new HashSet()) --> Line_4 $$ boolean added = set.add(entryName) [FD]
+Line_4 $$ boolean added = set.add(entryName) --> Line_5 $$ if (!added) [FD]
+Line_5 $$ if (!added) --> Line_6 $$ String message = "Zip entry " + entryName + " already exists in " + file [CD]
+Line_5 $$ if (!added) --> Line_7 $$ DecompilerContext.getLogger().writeMessage(message, IFernflowerLogger.Severity.WARN) [CD]
+Line_6 $$ String message = "Zip entry " + entryName + " already exists in " + file --> Line_7 $$ DecompilerContext.getLogger().writeMessage(message, IFernflowerLogger.Severity.WARN) [FD]

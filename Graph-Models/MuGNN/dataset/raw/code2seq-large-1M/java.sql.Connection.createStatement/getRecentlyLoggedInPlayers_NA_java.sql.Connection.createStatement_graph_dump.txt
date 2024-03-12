@@ -1,0 +1,8 @@
+Line_2 $$ public List<PlayerAuth> getRecentlyLoggedInPlayers() --> Line_3 $$ List<PlayerAuth> players = new ArrayList() [CD]
+Line_2 $$ public List<PlayerAuth> getRecentlyLoggedInPlayers() --> Line_4 $$ String sql = "SELECT * FROM " + tableName + " ORDER BY " + col.LAST_LOGIN + " DESC LIMIT 10;" [CD]
+Line_4 $$ String sql = "SELECT * FROM " + tableName + " ORDER BY " + col.LAST_LOGIN + " DESC LIMIT 10;" --> Line_5 $$ try (Statement st = con.createStatement(); [FD]
+Line_5 $$ try (Statement st = con.createStatement(); --> Line_7 $$ while (rs.next()) [FD]
+Line_7 $$ while (rs.next()) --> Line_8 $$ players.add(buildAuthFromResultSet(rs)) [CD]
+Line_3 $$ List<PlayerAuth> players = new ArrayList() --> Line_8 $$ players.add(buildAuthFromResultSet(rs)) [FD]
+Line_5 $$ try (Statement st = con.createStatement(); --> Line_8 $$ players.add(buildAuthFromResultSet(rs)) [FD]
+Line_2 $$ public List<PlayerAuth> getRecentlyLoggedInPlayers() --> Line_13 $$ return players [CD]

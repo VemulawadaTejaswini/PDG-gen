@@ -1,0 +1,8 @@
+Line_2 $$ static Throwable readExceptionFromStream(InputStream in) throws IOException --> Line_3 $$ int len = readLength(in) [CD]
+Line_2 $$ static Throwable readExceptionFromStream(InputStream in) throws IOException --> Line_3 $$ int len = readLength(in) [FD]
+Line_2 $$ static Throwable readExceptionFromStream(InputStream in) throws IOException --> Line_4 $$ byte[] bytes = new byte[len] [CD]
+Line_2 $$ static Throwable readExceptionFromStream(InputStream in) throws IOException --> Line_5 $$ readFully(in, bytes, 0, len, "Error message") [CD]
+Line_2 $$ static Throwable readExceptionFromStream(InputStream in) throws IOException --> Line_5 $$ readFully(in, bytes, 0, len, "Error message") [FD]
+Line_4 $$ byte[] bytes = new byte[len] --> Line_5 $$ readFully(in, bytes, 0, len, "Error message") [FD]
+Line_3 $$ int len = readLength(in) --> Line_5 $$ readFully(in, bytes, 0, len, "Error message") [FD]
+Line_4 $$ byte[] bytes = new byte[len] --> Line_7 $$ return (Throwable) InstantiationUtil.deserializeObject(bytes, ClassLoader.getSystemClassLoader()) [FD]

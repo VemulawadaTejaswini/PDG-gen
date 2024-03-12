@@ -1,0 +1,6 @@
+Line_2 $$ public void testInvalidDynamicUpdate() --> Line_3 $$ createIndex("test") [CD]
+Line_2 $$ public void testInvalidDynamicUpdate() --> Line_4 $$ IllegalArgumentException exception = expectThrows(IllegalArgumentException.class, () -> client().admin().indices().prepareUpdateSettings("test").setSettings(Settings.builder().put("index.dummy", "boom")).execute().actionGet()) [CD]
+Line_2 $$ public void testInvalidDynamicUpdate() --> Line_5 $$ assertEquals(exception.getCause().getMessage(), "this setting goes boom") [CD]
+Line_2 $$ public void testInvalidDynamicUpdate() --> Line_6 $$ IndexMetaData indexMetaData = client().admin().cluster().prepareState().execute().actionGet().getState().metaData().index("test") [CD]
+Line_2 $$ public void testInvalidDynamicUpdate() --> Line_7 $$ assertNotEquals(indexMetaData.getSettings().get("index.dummy"), "invalid dynamic value") [CD]
+Line_6 $$ IndexMetaData indexMetaData = client().admin().cluster().prepareState().execute().actionGet().getState().metaData().index("test") --> Line_7 $$ assertNotEquals(indexMetaData.getSettings().get("index.dummy"), "invalid dynamic value") [FD]

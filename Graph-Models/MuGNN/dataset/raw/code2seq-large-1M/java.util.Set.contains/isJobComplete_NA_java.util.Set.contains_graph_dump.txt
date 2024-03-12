@@ -1,0 +1,6 @@
+Line_2 $$ private static boolean isJobComplete(JobContext ctx, Set<Integer> allPartitions, Set<Integer> skippedPartitions, JobConfig cfg) --> Line_4 $$ TaskPartitionState state = ctx.getPartitionState(pId) [FD]
+Line_3 $$ for (Integer pId : allPartitions) --> Line_4 $$ TaskPartitionState state = ctx.getPartitionState(pId) [FD]
+Line_2 $$ private static boolean isJobComplete(JobContext ctx, Set<Integer> allPartitions, Set<Integer> skippedPartitions, JobConfig cfg) --> Line_5 $$ if (!skippedPartitions.contains(pId) && state != TaskPartitionState.COMPLETED && !isTaskGivenup(ctx, cfg, pId)) [FD]
+Line_3 $$ for (Integer pId : allPartitions) --> Line_5 $$ if (!skippedPartitions.contains(pId) && state != TaskPartitionState.COMPLETED && !isTaskGivenup(ctx, cfg, pId)) [FD]
+Line_5 $$ if (!skippedPartitions.contains(pId) && state != TaskPartitionState.COMPLETED && !isTaskGivenup(ctx, cfg, pId)) --> Line_6 $$ return false [CD]
+Line_2 $$ private static boolean isJobComplete(JobContext ctx, Set<Integer> allPartitions, Set<Integer> skippedPartitions, JobConfig cfg) --> Line_9 $$ return true [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void orShould_ORs_conditions(ArchRule rule) --> Line_3 $$ EvaluationResult result = rule.evaluate(importClasses(RightOne.class, RightTwo.class, Wrong.class)) [FD]
+Line_2 $$ public void orShould_ORs_conditions(ArchRule rule) --> Line_3 $$ EvaluationResult result = rule.evaluate(importClasses(RightOne.class, RightTwo.class, Wrong.class)) [CD]
+Line_2 $$ public void orShould_ORs_conditions(ArchRule rule) --> Line_4 $$ FailureReport report = result.getFailureReport() [CD]
+Line_2 $$ public void orShould_ORs_conditions(ArchRule rule) --> Line_5 $$ assertThat(report.toString()).contains(String.format("classes should have fully qualified name '%s' or should have fully qualified name '%s'", RightOne.class.getName(), RightTwo.class.getName())) [CD]
+Line_4 $$ FailureReport report = result.getFailureReport() --> Line_5 $$ assertThat(report.toString()).contains(String.format("classes should have fully qualified name '%s' or should have fully qualified name '%s'", RightOne.class.getName(), RightTwo.class.getName())) [FD]
+Line_2 $$ public void orShould_ORs_conditions(ArchRule rule) --> Line_6 $$ assertThat(report.getDetails()).containsOnly(String.format("%s and %s", doesntHaveFqnMessage(Wrong.class, RightOne.class), doesntHaveFqnMessage(Wrong.class, RightTwo.class))) [CD]
+Line_4 $$ FailureReport report = result.getFailureReport() --> Line_6 $$ assertThat(report.getDetails()).containsOnly(String.format("%s and %s", doesntHaveFqnMessage(Wrong.class, RightOne.class), doesntHaveFqnMessage(Wrong.class, RightTwo.class))) [FD]

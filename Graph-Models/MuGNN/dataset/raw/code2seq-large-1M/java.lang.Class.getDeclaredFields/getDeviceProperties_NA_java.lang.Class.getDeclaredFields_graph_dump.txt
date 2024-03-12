@@ -1,0 +1,8 @@
+Line_2 $$ private Map<String, Field> getDeviceProperties(boolean enableReport, boolean allowUpdate) --> Line_3 $$ Map<String, Field> properties = new HashMap() [CD]
+Line_4 $$ for (Field field : this.getClass().getDeclaredFields()) --> Line_5 $$ AWSIotDeviceProperty annotation = field.getAnnotation(AWSIotDeviceProperty.class) [FD]
+Line_4 $$ for (Field field : this.getClass().getDeclaredFields()) --> Line_9 $$ String propertyName = annotation.name().length() > 0 ? annotation.name() : field.getName() [FD]
+Line_10 $$ if ((enableReport && annotation.enableReport()) || (allowUpdate && annotation.allowUpdate())) --> Line_11 $$ properties.put(propertyName, field) [CD]
+Line_3 $$ Map<String, Field> properties = new HashMap() --> Line_11 $$ properties.put(propertyName, field) [FD]
+Line_9 $$ String propertyName = annotation.name().length() > 0 ? annotation.name() : field.getName() --> Line_11 $$ properties.put(propertyName, field) [FD]
+Line_4 $$ for (Field field : this.getClass().getDeclaredFields()) --> Line_11 $$ properties.put(propertyName, field) [FD]
+Line_2 $$ private Map<String, Field> getDeviceProperties(boolean enableReport, boolean allowUpdate) --> Line_14 $$ return properties [CD]

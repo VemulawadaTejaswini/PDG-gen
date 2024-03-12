@@ -1,0 +1,8 @@
+Line_2 $$ private void enableShortCircuit() --> Line_3 $$ if (isReadShortCircuitOn()) [CD]
+Line_3 $$ if (isReadShortCircuitOn()) --> Line_4 $$ String curUser = System.getProperty("user.name") [CD]
+Line_3 $$ if (isReadShortCircuitOn()) --> Line_5 $$ LOG.info("read short circuit is ON for user " + curUser) [CD]
+Line_3 $$ if (isReadShortCircuitOn()) --> Line_6 $$ conf.set("dfs.block.local-path-access.user", curUser) [CD]
+Line_4 $$ String curUser = System.getProperty("user.name") --> Line_6 $$ conf.set("dfs.block.local-path-access.user", curUser) [FD]
+Line_3 $$ if (isReadShortCircuitOn()) --> Line_7 $$ conf.setBoolean("dfs.client.read.shortcircuit", true) [CD]
+Line_3 $$ if (isReadShortCircuitOn()) --> Line_8 $$ conf.setBoolean("dfs.client.read.shortcircuit.skip.checksum", true) [CD]
+Line_3 $$ if (isReadShortCircuitOn()) --> Line_10 $$ LOG.info("read short circuit is OFF") [CD]

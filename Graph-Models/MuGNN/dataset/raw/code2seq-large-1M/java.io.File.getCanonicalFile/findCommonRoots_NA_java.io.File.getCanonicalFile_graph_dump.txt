@@ -1,0 +1,8 @@
+Line_2 $$ private static File findCommonRoots(Collection<DirDescriptor> dirDescriptors) throws IOException --> Line_3 $$ List<File> dirs = Lists.newArrayList() [CD]
+Line_3 $$ List<File> dirs = Lists.newArrayList() --> Line_4 $$ for (DirDescriptor d : dirDescriptors) dirs.add(d.getMirrorDirectory() == null ? d.getDirectory() : d.getMirrorDirectory()) [FD]
+Line_2 $$ private static File findCommonRoots(Collection<DirDescriptor> dirDescriptors) throws IOException --> Line_5 $$ File common = dirs == null ? null : dirs.get(0).getCanonicalFile() [CD]
+Line_3 $$ List<File> dirs = Lists.newArrayList() --> Line_5 $$ File common = dirs == null ? null : dirs.get(0).getCanonicalFile() [FD]
+Line_2 $$ private static File findCommonRoots(Collection<DirDescriptor> dirDescriptors) throws IOException --> Line_6 $$ for (int i = 1; i < dirs.size(); i++) common = commonality(common, dirs.get(i).getCanonicalFile()) [CD]
+Line_3 $$ List<File> dirs = Lists.newArrayList() --> Line_6 $$ for (int i = 1; i < dirs.size(); i++) common = commonality(common, dirs.get(i).getCanonicalFile()) [FD]
+Line_5 $$ File common = dirs == null ? null : dirs.get(0).getCanonicalFile() --> Line_6 $$ for (int i = 1; i < dirs.size(); i++) common = commonality(common, dirs.get(i).getCanonicalFile()) [FD]
+Line_2 $$ private static File findCommonRoots(Collection<DirDescriptor> dirDescriptors) throws IOException --> Line_7 $$ return common == null ? new File(".") : common [CD]

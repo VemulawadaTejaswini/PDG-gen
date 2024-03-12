@@ -1,0 +1,8 @@
+Line_5 $$ String newVersion = resolveNewVersion() --> Line_6 $$ diff.setOldVersion(oldVersion).setNewVersion(newVersion) [FD]
+Line_4 $$ String oldVersion = resolveOldVersion() --> Line_6 $$ diff.setOldVersion(oldVersion).setNewVersion(newVersion) [FD]
+Line_8 $$ if (paths.isEmpty()) --> Line_9 $$ diffEntries = diff.setProgressListener(cli.getProgressListener()).call() [CD]
+Line_8 $$ if (paths.isEmpty()) --> Line_11 $$ diffEntries = AutoCloseableIterator.emptyIterator() [CD]
+Line_9 $$ diffEntries = diff.setProgressListener(cli.getProgressListener()).call() --> Line_11 $$ diffEntries = AutoCloseableIterator.emptyIterator() [FD]
+Line_12 $$ for (String path : paths) --> Line_13 $$ AutoCloseableIterator<DiffEntry> moreEntries = diff.setPathFilter(path).setProgressListener(cli.getProgressListener()).call() [FD]
+Line_9 $$ diffEntries = diff.setProgressListener(cli.getProgressListener()).call() --> Line_14 $$ diffEntries = AutoCloseableIterator.concat(diffEntries, moreEntries) [FD]
+Line_11 $$ diffEntries = AutoCloseableIterator.emptyIterator() --> Line_14 $$ diffEntries = AutoCloseableIterator.concat(diffEntries, moreEntries) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private String dbKeyForStoredNode(final DatabaseStoredNodeData storedNodeData) throws PwmUnrecoverableException --> Line_3 $$ final String instanceID = storedNodeData.getInstanceID() [FD]
+Line_2 $$ private String dbKeyForStoredNode(final DatabaseStoredNodeData storedNodeData) throws PwmUnrecoverableException --> Line_3 $$ final String instanceID = storedNodeData.getInstanceID() [CD]
+Line_2 $$ private String dbKeyForStoredNode(final DatabaseStoredNodeData storedNodeData) throws PwmUnrecoverableException --> Line_4 $$ final String hash = pwmApplication.getSecureService().hash(instanceID) [CD]
+Line_3 $$ final String instanceID = storedNodeData.getInstanceID() --> Line_4 $$ final String hash = pwmApplication.getSecureService().hash(instanceID) [FD]
+Line_2 $$ private String dbKeyForStoredNode(final DatabaseStoredNodeData storedNodeData) throws PwmUnrecoverableException --> Line_5 $$ final String truncatedHash = hash.length() > 64 ? hash.substring(0, 64) : hash [CD]
+Line_4 $$ final String hash = pwmApplication.getSecureService().hash(instanceID) --> Line_5 $$ final String truncatedHash = hash.length() > 64 ? hash.substring(0, 64) : hash [FD]
+Line_2 $$ private String dbKeyForStoredNode(final DatabaseStoredNodeData storedNodeData) throws PwmUnrecoverableException --> Line_6 $$ return KEY_PREFIX_NODE + truncatedHash [CD]

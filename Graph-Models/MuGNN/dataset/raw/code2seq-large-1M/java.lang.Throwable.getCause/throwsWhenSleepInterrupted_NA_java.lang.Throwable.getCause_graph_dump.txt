@@ -1,0 +1,8 @@
+Line_2 $$ public void throwsWhenSleepInterrupted() throws Exception --> Line_3 $$ Clock clock = mock(Clock.class) [CD]
+Line_2 $$ public void throwsWhenSleepInterrupted() throws Exception --> Line_4 $$ doThrow(new InterruptedException()).when(clock).sleep(1) [CD]
+Line_2 $$ public void throwsWhenSleepInterrupted() throws Exception --> Line_5 $$ ExponentialBackoffRetryLogic logic = newRetryLogic(1, 1, 1, 0, clock) [CD]
+Line_2 $$ public void throwsWhenSleepInterrupted() throws Exception --> Line_6 $$ Supplier<Void> workMock = newWorkMock() [CD]
+Line_2 $$ public void throwsWhenSleepInterrupted() throws Exception --> Line_7 $$ when(workMock.get()).thenThrow(serviceUnavailable()) [CD]
+Line_6 $$ Supplier<Void> workMock = newWorkMock() --> Line_7 $$ when(workMock.get()).thenThrow(serviceUnavailable()) [FD]
+Line_5 $$ ExponentialBackoffRetryLogic logic = newRetryLogic(1, 1, 1, 0, clock) --> Line_9 $$ logic.retry(workMock) [FD]
+Line_6 $$ Supplier<Void> workMock = newWorkMock() --> Line_9 $$ logic.retry(workMock) [FD]

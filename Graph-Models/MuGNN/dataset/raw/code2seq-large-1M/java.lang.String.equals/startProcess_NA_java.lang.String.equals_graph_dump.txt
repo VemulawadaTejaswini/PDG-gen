@@ -1,0 +1,6 @@
+Line_4 $$ final GeneralCommandLine appCommandLine = getExecutableCommandLine(config) --> Line_5 $$ return new OSProcessHandler(appCommandLine.createProcess(), appCommandLine.getCommandLineString()) [FD]
+Line_11 $$ final String message = e.getMessage() --> Line_12 $$ final boolean isEmpty = message.equals("Executable is not specified") [FD]
+Line_11 $$ final String message = e.getMessage() --> Line_13 $$ final boolean notCorrect = message.startsWith("Cannot run program") [FD]
+Line_12 $$ final boolean isEmpty = message.equals("Executable is not specified") --> Line_14 $$ if (isEmpty || notCorrect) [FD]
+Line_13 $$ final boolean notCorrect = message.startsWith("Cannot run program") --> Line_14 $$ if (isEmpty || notCorrect) [FD]
+Line_14 $$ if (isEmpty || notCorrect) --> Line_15 $$ Notifications.Bus.notify(new Notification("D App run configuration", "D App settings", "D application executable path is " + (isEmpty ? "empty" : "not specified correctly") + "<br/><a href='configure'>Configure</a> output folder", NotificationType.ERROR), config.getProject()) [CD]

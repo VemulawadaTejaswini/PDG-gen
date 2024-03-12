@@ -1,0 +1,6 @@
+Line_2 $$ public void testPutCacheValueWithoutHash() throws IOException --> Line_3 $$ String cacheKey = repositoryCache.put(downloadedFile, KeyType.SHA256) [CD]
+Line_2 $$ public void testPutCacheValueWithoutHash() throws IOException --> Line_4 $$ assertThat(cacheKey).isEqualTo(downloadedFileSha256) [CD]
+Line_3 $$ String cacheKey = repositoryCache.put(downloadedFile, KeyType.SHA256) --> Line_4 $$ assertThat(cacheKey).isEqualTo(downloadedFileSha256) [FD]
+Line_2 $$ public void testPutCacheValueWithoutHash() throws IOException --> Line_5 $$ Path cacheEntry = KeyType.SHA256.getCachePath(contentAddressableCachePath).getChild(downloadedFileSha256) [CD]
+Line_2 $$ public void testPutCacheValueWithoutHash() throws IOException --> Line_6 $$ Path cacheValue = cacheEntry.getChild(RepositoryCache.DEFAULT_CACHE_FILENAME) [CD]
+Line_2 $$ public void testPutCacheValueWithoutHash() throws IOException --> Line_7 $$ assertThat(FileSystemUtils.readContent(downloadedFile, Charset.defaultCharset())).isEqualTo(FileSystemUtils.readContent(cacheValue, Charset.defaultCharset())) [CD]

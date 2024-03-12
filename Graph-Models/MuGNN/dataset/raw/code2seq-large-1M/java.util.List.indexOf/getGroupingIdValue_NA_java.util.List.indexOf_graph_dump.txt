@@ -1,0 +1,6 @@
+Line_2 $$ private int getGroupingIdValue(List<Integer> list, List<Integer> sourceOfForCountDistinct, int groupCount) --> Line_3 $$ int ind = IntMath.pow(2, groupCount) - 1 [FD]
+Line_2 $$ private int getGroupingIdValue(List<Integer> list, List<Integer> sourceOfForCountDistinct, int groupCount) --> Line_3 $$ int ind = IntMath.pow(2, groupCount) - 1 [CD]
+Line_3 $$ int ind = IntMath.pow(2, groupCount) - 1 --> Line_5 $$ ind &= ~(1 << groupCount - sourceOfForCountDistinct.indexOf(i) - 1) [FD]
+Line_2 $$ private int getGroupingIdValue(List<Integer> list, List<Integer> sourceOfForCountDistinct, int groupCount) --> Line_5 $$ ind &= ~(1 << groupCount - sourceOfForCountDistinct.indexOf(i) - 1) [FD]
+Line_4 $$ for (int i : list) --> Line_5 $$ ind &= ~(1 << groupCount - sourceOfForCountDistinct.indexOf(i) - 1) [FD]
+Line_2 $$ private int getGroupingIdValue(List<Integer> list, List<Integer> sourceOfForCountDistinct, int groupCount) --> Line_7 $$ return ind [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void initFromProperties(XAConnectionManager connectionManager, Properties properties) --> Line_3 $$ for (Object key : properties.keySet()) [FD]
+Line_3 $$ for (Object key : properties.keySet()) --> Line_4 $$ String keyString = key.toString() [FD]
+Line_4 $$ String keyString = key.toString() --> Line_5 $$ String methodName = "set" + Character.toUpperCase(keyString.charAt(0)) + keyString.substring(1) [FD]
+Line_5 $$ String methodName = "set" + Character.toUpperCase(keyString.charAt(0)) + keyString.substring(1) --> Line_7 $$ Method method = connectionManager.getClass().getMethod(methodName, String.class) [FD]
+Line_2 $$ private void initFromProperties(XAConnectionManager connectionManager, Properties properties) --> Line_7 $$ Method method = connectionManager.getClass().getMethod(methodName, String.class) [FD]
+Line_2 $$ private void initFromProperties(XAConnectionManager connectionManager, Properties properties) --> Line_8 $$ method.invoke(connectionManager, properties.getProperty(keyString)) [FD]
+Line_4 $$ String keyString = key.toString() --> Line_8 $$ method.invoke(connectionManager, properties.getProperty(keyString)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testTimeout() throws Exception --> Line_3 $$ ReplyingKafkaTemplate<Integer, String, String> template = createTemplate(A_REPLY) [CD]
+Line_3 $$ ReplyingKafkaTemplate<Integer, String, String> template = createTemplate(A_REPLY) --> Line_5 $$ template.setReplyTimeout(1) [FD]
+Line_6 $$ ProducerRecord<Integer, String> record = new ProducerRecord<Integer, String>(A_REQUEST, "foo") --> Line_7 $$ record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, A_REPLY.getBytes())) [FD]
+Line_3 $$ ReplyingKafkaTemplate<Integer, String, String> template = createTemplate(A_REPLY) --> Line_8 $$ RequestReplyFuture<Integer, String, String> future = template.sendAndReceive(record) [FD]
+Line_6 $$ ProducerRecord<Integer, String> record = new ProducerRecord<Integer, String>(A_REQUEST, "foo") --> Line_8 $$ RequestReplyFuture<Integer, String, String> future = template.sendAndReceive(record) [FD]
+Line_8 $$ RequestReplyFuture<Integer, String, String> future = template.sendAndReceive(record) --> Line_9 $$ future.getSendFuture().get(10, TimeUnit.SECONDS) [FD]
+Line_8 $$ RequestReplyFuture<Integer, String, String> future = template.sendAndReceive(record) --> Line_11 $$ future.get(30, TimeUnit.SECONDS) [FD]
+Line_3 $$ ReplyingKafkaTemplate<Integer, String, String> template = createTemplate(A_REPLY) --> Line_20 $$ template.stop() [FD]

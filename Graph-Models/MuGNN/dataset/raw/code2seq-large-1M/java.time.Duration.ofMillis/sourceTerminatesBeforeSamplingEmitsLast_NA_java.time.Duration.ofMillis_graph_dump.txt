@@ -1,0 +1,5 @@
+Line_2 $$ public void sourceTerminatesBeforeSamplingEmitsLast() --> Line_3 $$ Flux<Integer> source = Flux.just(1, 2).hide() [CD]
+Line_2 $$ public void sourceTerminatesBeforeSamplingEmitsLast() --> Line_4 $$ Duration duration = StepVerifier.create(source.sampleTimeout( i -> Mono.delay(Duration.ofMillis(250)))).expectNext(2).verifyComplete() [CD]
+Line_3 $$ Flux<Integer> source = Flux.just(1, 2).hide() --> Line_4 $$ Duration duration = StepVerifier.create(source.sampleTimeout( i -> Mono.delay(Duration.ofMillis(250)))).expectNext(2).verifyComplete() [FD]
+Line_2 $$ public void sourceTerminatesBeforeSamplingEmitsLast() --> Line_5 $$ assertThat(duration.toMillis()).isLessThan(250) [CD]
+Line_4 $$ Duration duration = StepVerifier.create(source.sampleTimeout( i -> Mono.delay(Duration.ofMillis(250)))).expectNext(2).verifyComplete() --> Line_5 $$ assertThat(duration.toMillis()).isLessThan(250) [FD]

@@ -1,0 +1,8 @@
+Line_5 $$ if (ae == null && len == 0) --> Line_6 $$ JOptionPane.showMessageDialog(src, "You must select an auction to be able to cancel snipes.", "Snipe-cancel error", JOptionPane.PLAIN_MESSAGE) [CD]
+Line_5 $$ if (ae == null && len == 0) --> Line_7 $$ return [CD]
+Line_4 $$ int len = rowList.length --> Line_9 $$ if (len != 0) [FD]
+Line_10 $$ for (int aRowList : rowList) --> Line_11 $$ AuctionEntry tempEntry = (AuctionEntry) mTabs.getIndexedEntry(aRowList) [FD]
+Line_9 $$ if (len != 0) --> Line_19 $$ if (ae.isSniped()) [CD]
+Line_19 $$ if (ae.isSniped()) --> Line_20 $$ JConfig.getMetrics().trackEvent("snipe", "cancel") [CD]
+Line_9 $$ if (len != 0) --> Line_22 $$ ae.cancelSnipe(false) [CD]
+Line_9 $$ if (len != 0) --> Line_23 $$ MQFactory.getConcrete("redraw").enqueue(ae.getIdentifier()) [CD]

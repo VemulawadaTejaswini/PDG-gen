@@ -1,0 +1,6 @@
+Line_2 $$ public void infrastructureBeansAreOmitted() --> Line_3 $$ ApplicationContextRunner contextRunner = new ApplicationContextRunner().withUserConfiguration(EndpointConfiguration.class) [CD]
+Line_2 $$ public void infrastructureBeansAreOmitted() --> Line_4 $$ contextRunner.run(( context) -> [CD]
+Line_5 $$ ConfigurableListableBeanFactory factory = (ConfigurableListableBeanFactory) context.getAutowireCapableBeanFactory() --> Line_6 $$ List<String> infrastructureBeans = Stream.of(context.getBeanDefinitionNames()).filter(( name) -> BeanDefinition.ROLE_INFRASTRUCTURE == factory.getBeanDefinition(name).getRole()).collect(Collectors.toList()) [FD]
+Line_8 $$ ContextBeans contextDescriptor = result.getContexts().get(context.getId()) --> Line_9 $$ Map<String, BeanDescriptor> beans = contextDescriptor.getBeans() [FD]
+Line_10 $$ for (String infrastructureBean : infrastructureBeans) --> Line_11 $$ assertThat(beans).doesNotContainKey(infrastructureBean) [FD]
+Line_9 $$ Map<String, BeanDescriptor> beans = contextDescriptor.getBeans() --> Line_11 $$ assertThat(beans).doesNotContainKey(infrastructureBean) [FD]

@@ -1,0 +1,4 @@
+Line_3 $$ for (DirectoryHolder directoryHolder : getDirectoryHolders()) --> Line_6 $$ try (Stream<Path> stream = Files.list(directoryHolder.getDir().toPath())) [FD]
+Line_5 $$ List<Path> backupDirectories --> Line_7 $$ backupDirectories = stream.filter(( path) -> path.getFileName().toString().startsWith(BackupService.DATA_STORES_TEMPORARY_DIRECTORY)).filter( p -> Files.isDirectory(p)).collect(Collectors.toList()) [FD]
+Line_6 $$ try (Stream<Path> stream = Files.list(directoryHolder.getDir().toPath())) --> Line_7 $$ backupDirectories = stream.filter(( path) -> path.getFileName().toString().startsWith(BackupService.DATA_STORES_TEMPORARY_DIRECTORY)).filter( p -> Files.isDirectory(p)).collect(Collectors.toList()) [FD]
+Line_9 $$ for (Path backupDirectory : backupDirectories) --> Line_12 $$ FileUtils.deleteDirectory(backupDirectory.toFile()) [FD]

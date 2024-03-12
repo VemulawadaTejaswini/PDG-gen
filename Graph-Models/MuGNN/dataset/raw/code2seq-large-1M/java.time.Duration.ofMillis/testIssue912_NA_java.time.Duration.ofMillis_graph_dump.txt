@@ -1,0 +1,1 @@
+Line_2 $$ public void testIssue912() --> Line_3 $$ StepVerifier.withVirtualTime(() -> Flux.concat(Flux.just("#").delayElements(Duration.ofMillis(20)), Flux.range(1, 10), Flux.range(11, 5).delayElements(Duration.ofMillis(15))).windowTimeout(10, Duration.ofMillis(1)).concatMap( w -> w).log()).thenAwait(Duration.ofMillis(95)).expectNextCount(16).verifyComplete() [CD]

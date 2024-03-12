@@ -1,0 +1,8 @@
+Line_2 $$ public void serializerShouldCopyHeadersFromResponses() throws Exception --> Line_3 $$ Object response = new Object() [CD]
+Line_2 $$ public void serializerShouldCopyHeadersFromResponses() throws Exception --> Line_4 $$ ByteString serializedPayload = ByteString.encodeUtf8("hi there") [CD]
+Line_2 $$ public void serializerShouldCopyHeadersFromResponses() throws Exception --> Line_5 $$ when(serializer.serialize(any(Request.class), eq(response))).thenReturn(Payloads.create(serializedPayload)) [CD]
+Line_3 $$ Object response = new Object() --> Line_5 $$ when(serializer.serialize(any(Request.class), eq(response))).thenReturn(Payloads.create(serializedPayload)) [FD]
+Line_4 $$ ByteString serializedPayload = ByteString.encodeUtf8("hi there") --> Line_5 $$ when(serializer.serialize(any(Request.class), eq(response))).thenReturn(Payloads.create(serializedPayload)) [FD]
+Line_2 $$ public void serializerShouldCopyHeadersFromResponses() throws Exception --> Line_6 $$ serializationFuture.complete(Response.forPayload(response).withHeader("X-Foo", "Fie")) [CD]
+Line_3 $$ Object response = new Object() --> Line_6 $$ serializationFuture.complete(Response.forPayload(response).withHeader("X-Foo", "Fie")) [FD]
+Line_2 $$ public void serializerShouldCopyHeadersFromResponses() throws Exception --> Line_7 $$ assertThat(getResult(Middlewares.serialize(serializer).apply(serializationDelegate)).headers().get("X-Foo"), is(Optional.of("Fie"))) [CD]

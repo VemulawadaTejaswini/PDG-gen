@@ -1,0 +1,8 @@
+Line_2 $$ public void testLatestByKeyWithinMonths() throws Exception --> Line_3 $$ long max = w.getAppendTimestampLo() [CD]
+Line_2 $$ public void testLatestByKeyWithinMonths() throws Exception --> Line_4 $$ long inc = System.currentTimeMillis() - max [CD]
+Line_6 $$ for (Quote a : JournalIterators.bufferedIterator(q.getJournal())) --> Line_7 $$ a.setTimestamp(a.getTimestamp() + inc) [FD]
+Line_6 $$ for (Quote a : JournalIterators.bufferedIterator(q.getJournal())) --> Line_8 $$ w2.append(a) [FD]
+Line_11 $$ long millis --> Line_12 $$ Interval interval = new Interval(Dates.addMonths(millis = System.currentTimeMillis(), -1), millis) [FD]
+Line_12 $$ Interval interval = new Interval(Dates.addMonths(millis = System.currentTimeMillis(), -1), millis) --> Line_13 $$ UnorderedResultSet<Quote> rs = q.getJournal().query().head().withKeys().limit(interval).asResultSet() [FD]
+Line_10 $$ Query<Quote> q = w2.query() --> Line_13 $$ UnorderedResultSet<Quote> rs = q.getJournal().query().head().withKeys().limit(interval).asResultSet() [FD]
+Line_13 $$ UnorderedResultSet<Quote> rs = q.getJournal().query().head().withKeys().limit(interval).asResultSet() --> Line_14 $$ Assert.assertEquals(10, rs.size()) [FD]

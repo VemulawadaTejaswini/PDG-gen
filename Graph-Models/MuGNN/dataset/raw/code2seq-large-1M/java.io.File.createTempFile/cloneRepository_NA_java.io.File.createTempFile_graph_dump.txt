@@ -1,0 +1,6 @@
+Line_2 $$ private static Repository cloneRepository() throws IOException, GitAPIException --> Line_3 $$ File localPath = File.createTempFile("TestGitRepository", "") [CD]
+Line_2 $$ private static Repository cloneRepository() throws IOException, GitAPIException --> Line_4 $$ if (!localPath.delete()) [CD]
+Line_3 $$ File localPath = File.createTempFile("TestGitRepository", "") --> Line_4 $$ if (!localPath.delete()) [FD]
+Line_2 $$ private static Repository cloneRepository() throws IOException, GitAPIException --> Line_7 $$ System.out.println("Cloning from " + REMOTE_URL + " to " + localPath) [CD]
+Line_3 $$ File localPath = File.createTempFile("TestGitRepository", "") --> Line_8 $$ try (Git result = Git.cloneRepository().setURI(REMOTE_URL).setDirectory(localPath).call()) [FD]
+Line_8 $$ try (Git result = Git.cloneRepository().setURI(REMOTE_URL).setDirectory(localPath).call()) --> Line_9 $$ return result.getRepository() [FD]

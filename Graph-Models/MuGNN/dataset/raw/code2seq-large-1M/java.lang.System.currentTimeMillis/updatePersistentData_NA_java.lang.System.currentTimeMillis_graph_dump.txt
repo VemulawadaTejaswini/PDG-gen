@@ -1,0 +1,8 @@
+Line_2 $$ private void updatePersistentData(Bucket toDelete) --> Line_3 $$ if (toDelete == null) [FD]
+Line_2 $$ private void updatePersistentData(Bucket toDelete) --> Line_3 $$ if (toDelete == null) [CD]
+Line_3 $$ if (toDelete == null) --> Line_4 $$ return [CD]
+Line_2 $$ private void updatePersistentData(Bucket toDelete) --> Line_6 $$ long millis = toDelete.gotTimeStamps ? toDelete.toMillis : System.currentTimeMillis() [CD]
+Line_2 $$ private void updatePersistentData(Bucket toDelete) --> Line_7 $$ for (Map.Entry<String, List<Entry<Point, UntypedMetric>>> metric : toDelete.getValuesByMetricName().entrySet()) [FD]
+Line_8 $$ LinkedHashMap<Point, TimeStampedMetric> cachedPoints = getCachedMetric(metric.getKey()) --> Line_10 $$ cachedPoints.remove(newestInterval.getKey()) [FD]
+Line_8 $$ LinkedHashMap<Point, TimeStampedMetric> cachedPoints = getCachedMetric(metric.getKey()) --> Line_12 $$ cachedPoints.put(newestInterval.getKey(), toInsert) [FD]
+Line_11 $$ TimeStampedMetric toInsert = new TimeStampedMetric(millis, newestInterval.getValue()) --> Line_12 $$ cachedPoints.put(newestInterval.getKey(), toInsert) [FD]

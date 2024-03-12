@@ -1,0 +1,7 @@
+Line_2 $$ private static Hierarchical createHierarchicalContainer(BusinessServiceContainer newContainer) --> Line_3 $$ final ContainerHierarchicalWrapper hierarchicalContainer = new ContainerHierarchicalWrapper(newContainer) [CD]
+Line_2 $$ private static Hierarchical createHierarchicalContainer(BusinessServiceContainer newContainer) --> Line_4 $$ for (Map.Entry<Long, Long> eachEntry : newContainer.getRowIdToParentRowIdMapping().entrySet()) [FD]
+Line_3 $$ final ContainerHierarchicalWrapper hierarchicalContainer = new ContainerHierarchicalWrapper(newContainer) --> Line_5 $$ hierarchicalContainer.setParent(eachEntry.getKey(), eachEntry.getValue()) [FD]
+Line_3 $$ final ContainerHierarchicalWrapper hierarchicalContainer = new ContainerHierarchicalWrapper(newContainer) --> Line_7 $$ for (Object itemId : hierarchicalContainer.getItemIds()) [FD]
+Line_3 $$ final ContainerHierarchicalWrapper hierarchicalContainer = new ContainerHierarchicalWrapper(newContainer) --> Line_8 $$ hierarchicalContainer.setChildrenAllowed(itemId, hierarchicalContainer.hasChildren(itemId)) [FD]
+Line_7 $$ for (Object itemId : hierarchicalContainer.getItemIds()) --> Line_8 $$ hierarchicalContainer.setChildrenAllowed(itemId, hierarchicalContainer.hasChildren(itemId)) [FD]
+Line_2 $$ private static Hierarchical createHierarchicalContainer(BusinessServiceContainer newContainer) --> Line_10 $$ return hierarchicalContainer [CD]

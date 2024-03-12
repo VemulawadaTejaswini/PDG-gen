@@ -1,0 +1,8 @@
+Line_2 $$ boolean waitForReady() --> Line_3 $$ boolean skipStructure = false [CD]
+Line_6 $$ long now --> Line_7 $$ while (mPendingAsyncChildren.size() > 0 && (now = SystemClock.uptimeMillis()) < endTime) [FD]
+Line_13 $$ if (mPendingAsyncChildren.size() > 0) --> Line_14 $$ Log.w(TAG, "Skipping assist structure, waiting too long for async children (have " + mPendingAsyncChildren.size() + " remaining") [CD]
+Line_13 $$ if (mPendingAsyncChildren.size() > 0) --> Line_15 $$ skipStructure = true [CD]
+Line_3 $$ boolean skipStructure = false --> Line_15 $$ skipStructure = true [FD]
+Line_2 $$ boolean waitForReady() --> Line_18 $$ return !skipStructure [CD]
+Line_3 $$ boolean skipStructure = false --> Line_18 $$ return !skipStructure [FD]
+Line_15 $$ skipStructure = true --> Line_18 $$ return !skipStructure [FD]

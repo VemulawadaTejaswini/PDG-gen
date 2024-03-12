@@ -1,0 +1,7 @@
+Line_2 $$ void purgeAcknowledged(long messageNr) --> Line_3 $$ RMStore store = destination.getManager().getStore() [CD]
+Line_2 $$ void purgeAcknowledged(long messageNr) --> Line_4 $$ if (null == store) [CD]
+Line_3 $$ RMStore store = destination.getManager().getStore() --> Line_4 $$ if (null == store) [FD]
+Line_4 $$ if (null == store) --> Line_5 $$ return [CD]
+Line_2 $$ void purgeAcknowledged(long messageNr) --> Line_7 $$ store.removeMessages(getIdentifier(), Collections.singleton(messageNr), false) [FD]
+Line_2 $$ void purgeAcknowledged(long messageNr) --> Line_7 $$ store.removeMessages(getIdentifier(), Collections.singleton(messageNr), false) [CD]
+Line_3 $$ RMStore store = destination.getManager().getStore() --> Line_7 $$ store.removeMessages(getIdentifier(), Collections.singleton(messageNr), false) [FD]

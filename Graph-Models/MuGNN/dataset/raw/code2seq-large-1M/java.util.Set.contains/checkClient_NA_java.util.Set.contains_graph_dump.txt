@@ -1,0 +1,8 @@
+Line_2 $$ protected void checkClient(Method m) --> Line_3 $$ if (confidentialClientMethods.contains(m.getName())) [CD]
+Line_2 $$ protected void checkClient(Method m) --> Line_3 $$ if (confidentialClientMethods.contains(m.getName())) [FD]
+Line_3 $$ if (confidentialClientMethods.contains(m.getName())) --> Line_4 $$ OAuthContext context = OAuthContextUtils.getContext(mc) [CD]
+Line_3 $$ if (confidentialClientMethods.contains(m.getName())) --> Line_5 $$ if (!context.isClientConfidential()) [CD]
+Line_4 $$ OAuthContext context = OAuthContextUtils.getContext(mc) --> Line_5 $$ if (!context.isClientConfidential()) [FD]
+Line_5 $$ if (!context.isClientConfidential()) --> Line_6 $$ LOG.warning("Non confidential client " + context.getClientId() + " has attempted to invoke " + m.getName()) [CD]
+Line_4 $$ OAuthContext context = OAuthContextUtils.getContext(mc) --> Line_6 $$ LOG.warning("Non confidential client " + context.getClientId() + " has attempted to invoke " + m.getName()) [FD]
+Line_2 $$ protected void checkClient(Method m) --> Line_6 $$ LOG.warning("Non confidential client " + context.getClientId() + " has attempted to invoke " + m.getName()) [FD]

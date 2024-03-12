@@ -1,0 +1,7 @@
+Line_2 $$ public void testInfiniteLoopWithDelegateExpressionFix() --> Line_3 $$ Map<Object, Object> originalBeans = processEngineConfiguration.getExpressionManager().getBeans() [CD]
+Line_5 $$ Map<Object, Object> newBeans = new HashMap<Object, Object>() --> Line_6 $$ newBeans.put("SampleTask", new TestSampleServiceTask()) [FD]
+Line_5 $$ Map<Object, Object> newBeans = new HashMap<Object, Object>() --> Line_7 $$ processEngineConfiguration.getExpressionManager().setBeans(newBeans) [FD]
+Line_8 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_9 $$ params.put("sampleValues", Arrays.asList("eins", "zwei", "drei")) [FD]
+Line_8 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_10 $$ ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("infiniteLoopTest", params) [FD]
+Line_10 $$ ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("infiniteLoopTest", params) --> Line_11 $$ assertNotNull(processInstance) [FD]
+Line_3 $$ Map<Object, Object> originalBeans = processEngineConfiguration.getExpressionManager().getBeans() --> Line_13 $$ processEngineConfiguration.getExpressionManager().setBeans(originalBeans) [FD]

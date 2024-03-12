@@ -1,0 +1,8 @@
+Line_2 $$ public void indexWorkflow(Workflow workflow) --> Line_4 $$ String id = workflow.getWorkflowId() [FD]
+Line_5 $$ WorkflowSummary summary = new WorkflowSummary(workflow) --> Line_6 $$ byte[] doc = objectMapper.writeValueAsBytes(summary) [FD]
+Line_7 $$ UpdateRequest req = new UpdateRequest(indexName, WORKFLOW_DOC_TYPE, id) --> Line_8 $$ req.doc(doc) [FD]
+Line_6 $$ byte[] doc = objectMapper.writeValueAsBytes(summary) --> Line_8 $$ req.doc(doc) [FD]
+Line_7 $$ UpdateRequest req = new UpdateRequest(indexName, WORKFLOW_DOC_TYPE, id) --> Line_9 $$ req.upsert(doc) [FD]
+Line_6 $$ byte[] doc = objectMapper.writeValueAsBytes(summary) --> Line_9 $$ req.upsert(doc) [FD]
+Line_7 $$ UpdateRequest req = new UpdateRequest(indexName, WORKFLOW_DOC_TYPE, id) --> Line_10 $$ req.retryOnConflict(5) [FD]
+Line_7 $$ UpdateRequest req = new UpdateRequest(indexName, WORKFLOW_DOC_TYPE, id) --> Line_11 $$ updateWithRetry(req, "Index workflow into doc_type workflow") [FD]

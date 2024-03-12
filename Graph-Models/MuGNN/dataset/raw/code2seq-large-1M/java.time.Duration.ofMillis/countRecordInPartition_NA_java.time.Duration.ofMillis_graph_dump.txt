@@ -1,0 +1,5 @@
+Line_2 $$ protected int countRecordInPartition(LogManager manager, String stream, int partition) throws Exception --> Line_3 $$ try (LogTailer<Record> tailer = manager.createTailer("results", LogPartition.of(stream, partition))) [FD]
+Line_3 $$ try (LogTailer<Record> tailer = manager.createTailer("results", LogPartition.of(stream, partition))) --> Line_5 $$ tailer.toStart() [FD]
+Line_3 $$ try (LogTailer<Record> tailer = manager.createTailer("results", LogPartition.of(stream, partition))) --> Line_6 $$ for (LogRecord<Record> logRecord = tailer.read(Duration.ofMillis(1000)); logRecord != null; logRecord = tailer.read(Duration.ofMillis(500))) [FD]
+Line_6 $$ for (LogRecord<Record> logRecord = tailer.read(Duration.ofMillis(1000)); logRecord != null; logRecord = tailer.read(Duration.ofMillis(500))) --> Line_7 $$ result += 1 [CD]
+Line_4 $$ int result = 0 --> Line_7 $$ result += 1 [FD]

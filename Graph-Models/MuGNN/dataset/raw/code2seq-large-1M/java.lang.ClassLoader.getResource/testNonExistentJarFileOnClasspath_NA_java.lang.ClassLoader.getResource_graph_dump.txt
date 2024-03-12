@@ -1,0 +1,8 @@
+Line_2 $$ public void testNonExistentJarFileOnClasspath() --> Line_3 $$ final URL nonJarURL = Issue166Test.class.getClassLoader().getResource("file-content-test.txt") [CD]
+Line_2 $$ public void testNonExistentJarFileOnClasspath() --> Line_4 $$ final String nonExistentURL = nonJarURL.toString() + "-file-that-does-not-exist" [CD]
+Line_2 $$ public void testNonExistentJarFileOnClasspath() --> Line_5 $$ final ArrayList<String> fileNames = new ArrayList() [CD]
+Line_2 $$ public void testNonExistentJarFileOnClasspath() --> Line_6 $$ new FastClasspathScanner().overrideClasspath(nonExistentURL).matchFilenamePattern(".*", (final File classpathElt, final String relativePath) -> fileNames.add(relativePath)).scan() [CD]
+Line_4 $$ final String nonExistentURL = nonJarURL.toString() + "-file-that-does-not-exist" --> Line_6 $$ new FastClasspathScanner().overrideClasspath(nonExistentURL).matchFilenamePattern(".*", (final File classpathElt, final String relativePath) -> fileNames.add(relativePath)).scan() [FD]
+Line_5 $$ final ArrayList<String> fileNames = new ArrayList() --> Line_7 $$ fileNames.add(relativePath) [FD]
+Line_2 $$ public void testNonExistentJarFileOnClasspath() --> Line_8 $$ assertThat(fileNames).isEmpty() [CD]
+Line_5 $$ final ArrayList<String> fileNames = new ArrayList() --> Line_8 $$ assertThat(fileNames).isEmpty() [FD]

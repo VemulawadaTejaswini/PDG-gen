@@ -1,0 +1,6 @@
+Line_2 $$ public void terminateProducer(final Producer<String, String> producer) --> Line_3 $$ LOG.info("Received signal to terminate producer " + producer) [CD]
+Line_2 $$ public void terminateProducer(final Producer<String, String> producer) --> Line_4 $$ rwLock.writeLock().lock() [CD]
+Line_2 $$ public void terminateProducer(final Producer<String, String> producer) --> Line_6 $$ if (producer == this.activeProducer) [FD]
+Line_6 $$ if (producer == this.activeProducer) --> Line_7 $$ producerTerminations.inc() [CD]
+Line_6 $$ if (producer == this.activeProducer) --> Line_8 $$ this.activeProducer = null [CD]
+Line_6 $$ if (producer == this.activeProducer) --> Line_10 $$ LOG.info("Signal for producer termination already received: " + producer) [CD]

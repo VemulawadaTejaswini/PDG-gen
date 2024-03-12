@@ -1,0 +1,6 @@
+Line_2 $$ private long getMemoryUsageForTopic(String topicName) throws Exception --> Line_3 $$ ObjectName[] topics = brokerService.getAdminView().getTopics() [CD]
+Line_2 $$ private long getMemoryUsageForTopic(String topicName) throws Exception --> Line_5 $$ if (objectName.getCanonicalName().contains(topicName)) [FD]
+Line_4 $$ for (ObjectName objectName : topics) --> Line_5 $$ if (objectName.getCanonicalName().contains(topicName)) [FD]
+Line_5 $$ if (objectName.getCanonicalName().contains(topicName)) --> Line_6 $$ TopicViewMBean topicViewMBean = (TopicViewMBean) brokerService.getManagementContext().newProxyInstance(objectName, TopicViewMBean.class, false) [CD]
+Line_4 $$ for (ObjectName objectName : topics) --> Line_6 $$ TopicViewMBean topicViewMBean = (TopicViewMBean) brokerService.getManagementContext().newProxyInstance(objectName, TopicViewMBean.class, false) [FD]
+Line_5 $$ if (objectName.getCanonicalName().contains(topicName)) --> Line_7 $$ return topicViewMBean.getMemoryUsageByteCount() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ TenantResult<JsonObject> removeTenant(final String tenantId) --> Line_3 $$ Objects.requireNonNull(tenantId) [CD]
+Line_2 $$ TenantResult<JsonObject> removeTenant(final String tenantId) --> Line_3 $$ Objects.requireNonNull(tenantId) [FD]
+Line_2 $$ TenantResult<JsonObject> removeTenant(final String tenantId) --> Line_4 $$ if (getConfig().isModificationEnabled()) [CD]
+Line_4 $$ if (getConfig().isModificationEnabled()) --> Line_5 $$ if (tenants.remove(tenantId) != null) [CD]
+Line_2 $$ TenantResult<JsonObject> removeTenant(final String tenantId) --> Line_5 $$ if (tenants.remove(tenantId) != null) [FD]
+Line_5 $$ if (tenants.remove(tenantId) != null) --> Line_7 $$ return TenantResult.from(HttpURLConnection.HTTP_NO_CONTENT) [CD]
+Line_5 $$ if (tenants.remove(tenantId) != null) --> Line_9 $$ return TenantResult.from(HttpURLConnection.HTTP_NOT_FOUND) [CD]
+Line_4 $$ if (getConfig().isModificationEnabled()) --> Line_12 $$ return TenantResult.from(HttpURLConnection.HTTP_FORBIDDEN) [CD]

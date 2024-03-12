@@ -1,0 +1,8 @@
+Line_2 $$ private void enqueueWakeup(long bucketTime) --> Line_3 $$ if (bucketTime <= mLastEnqueuedWakeup) [FD]
+Line_2 $$ private void enqueueWakeup(long bucketTime) --> Line_3 $$ if (bucketTime <= mLastEnqueuedWakeup) [CD]
+Line_3 $$ if (bucketTime <= mLastEnqueuedWakeup) --> Line_4 $$ return [CD]
+Line_2 $$ private void enqueueWakeup(long bucketTime) --> Line_6 $$ long curTime = System.currentTimeMillis() [CD]
+Line_2 $$ private void enqueueWakeup(long bucketTime) --> Line_7 $$ long offset = mTimeModulus + mSlackTime [CD]
+Line_2 $$ private void enqueueWakeup(long bucketTime) --> Line_8 $$ long closeTime = curTime + offset [CD]
+Line_2 $$ private void enqueueWakeup(long bucketTime) --> Line_9 $$ LOG.debug("Insert wakeup call: " + bucketTime + " at time offset=" + offset) [CD]
+Line_2 $$ private void enqueueWakeup(long bucketTime) --> Line_10 $$ mEvictionThread.insert(new Pair<Long, Long>(closeTime, bucketTime)) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testDefaultMethodFallback() throws Exception --> Line_3 $$ DynamicType.Loaded<?> loaded = new ByteBuddy().subclass(Object.class).implement(Class.forName(SINGLE_DEFAULT_METHOD)).intercept(MethodDelegation.to(NonVoidTarget.class)).make().load(getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testDefaultMethodFallback() throws Exception --> Line_4 $$ Object instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testDefaultMethodFallback() throws Exception --> Line_5 $$ Method method = loaded.getLoaded().getMethod(FOO) [CD]
+Line_2 $$ public void testDefaultMethodFallback() throws Exception --> Line_6 $$ assertThat(method.invoke(instance), is((Object) FOO)) [CD]
+Line_5 $$ Method method = loaded.getLoaded().getMethod(FOO) --> Line_6 $$ assertThat(method.invoke(instance), is((Object) FOO)) [FD]
+Line_4 $$ Object instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ assertThat(method.invoke(instance), is((Object) FOO)) [FD]

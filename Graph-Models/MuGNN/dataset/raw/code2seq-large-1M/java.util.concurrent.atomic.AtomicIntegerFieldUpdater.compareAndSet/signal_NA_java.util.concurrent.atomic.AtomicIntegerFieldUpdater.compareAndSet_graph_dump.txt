@@ -1,0 +1,7 @@
+Line_2 $$ private Thread signal() --> Line_3 $$ if (!isSet() && signalledUpdater.compareAndSet(this, NOT_SET, SIGNALLED)) [CD]
+Line_3 $$ if (!isSet() && signalledUpdater.compareAndSet(this, NOT_SET, SIGNALLED)) --> Line_4 $$ Thread thread = this.thread [CD]
+Line_3 $$ if (!isSet() && signalledUpdater.compareAndSet(this, NOT_SET, SIGNALLED)) --> Line_5 $$ LockSupport.unpark(thread) [CD]
+Line_4 $$ Thread thread = this.thread --> Line_5 $$ LockSupport.unpark(thread) [FD]
+Line_3 $$ if (!isSet() && signalledUpdater.compareAndSet(this, NOT_SET, SIGNALLED)) --> Line_6 $$ this.thread = null [CD]
+Line_3 $$ if (!isSet() && signalledUpdater.compareAndSet(this, NOT_SET, SIGNALLED)) --> Line_7 $$ return thread [CD]
+Line_2 $$ private Thread signal() --> Line_9 $$ return null [CD]

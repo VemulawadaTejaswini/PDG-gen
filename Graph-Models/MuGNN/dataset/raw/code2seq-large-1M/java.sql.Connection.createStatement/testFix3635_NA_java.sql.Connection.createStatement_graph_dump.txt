@@ -1,0 +1,6 @@
+Line_2 $$ public void testFix3635() throws Exception --> Line_3 $$ final String tableName = "dfs_test.\"testDDLs\"" [CD]
+Line_4 $$ try (Connection conn = connect(sabotNode.getJDBCConnectionString())) --> Line_5 $$ Statement s = conn.createStatement() [FD]
+Line_5 $$ Statement s = conn.createStatement() --> Line_6 $$ s.executeQuery(String.format("CREATE TABLE %s AS SELECT * FROM cp.\"employee.json\"", tableName)) [FD]
+Line_3 $$ final String tableName = "dfs_test.\"testDDLs\"" --> Line_6 $$ s.executeQuery(String.format("CREATE TABLE %s AS SELECT * FROM cp.\"employee.json\"", tableName)) [FD]
+Line_2 $$ public void testFix3635() throws Exception --> Line_8 $$ testQuery(String.format("SELECT * FROM %s LIMIT 1", tableName)) [CD]
+Line_3 $$ final String tableName = "dfs_test.\"testDDLs\"" --> Line_8 $$ testQuery(String.format("SELECT * FROM %s LIMIT 1", tableName)) [FD]

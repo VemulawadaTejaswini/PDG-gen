@@ -1,0 +1,6 @@
+Line_2 $$ private static int selectValue(Connection conn, int value) throws SQLException --> Line_3 $$ try (Statement stmt = conn.createStatement()) [FD]
+Line_3 $$ try (Statement stmt = conn.createStatement()) --> Line_4 $$ try (ResultSet rs = stmt.executeQuery("select " + value)) [FD]
+Line_4 $$ try (ResultSet rs = stmt.executeQuery("select " + value)) --> Line_5 $$ if (rs.next()) [FD]
+Line_5 $$ if (rs.next()) --> Line_6 $$ return rs.getInt(1) [CD]
+Line_4 $$ try (ResultSet rs = stmt.executeQuery("select " + value)) --> Line_6 $$ return rs.getInt(1) [FD]
+Line_5 $$ if (rs.next()) --> Line_8 $$ return value [CD]

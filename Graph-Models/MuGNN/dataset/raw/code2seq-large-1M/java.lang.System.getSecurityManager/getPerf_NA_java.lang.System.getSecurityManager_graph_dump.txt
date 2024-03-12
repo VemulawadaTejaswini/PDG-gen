@@ -1,0 +1,8 @@
+Line_2 $$ public static Perf getPerf() --> Line_3 $$ SecurityManager security = System.getSecurityManager() [CD]
+Line_2 $$ public static Perf getPerf() --> Line_4 $$ if (security != null) [CD]
+Line_3 $$ SecurityManager security = System.getSecurityManager() --> Line_4 $$ if (security != null) [FD]
+Line_4 $$ if (security != null) --> Line_5 $$ Permission perm = new RuntimePermission("sun.misc.Perf.getPerf") [CD]
+Line_4 $$ if (security != null) --> Line_6 $$ security.checkPermission(perm) [CD]
+Line_3 $$ SecurityManager security = System.getSecurityManager() --> Line_6 $$ security.checkPermission(perm) [FD]
+Line_5 $$ Permission perm = new RuntimePermission("sun.misc.Perf.getPerf") --> Line_6 $$ security.checkPermission(perm) [FD]
+Line_2 $$ public static Perf getPerf() --> Line_8 $$ return instance [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private Set<String> filterIgnorePaths(Set<String> inputPaths, Set<String> ignoredNotInIndex, boolean exact) --> Line_3 $$ if (ignore) [CD]
+Line_3 $$ if (ignore) --> Line_4 $$ Set<String> filtered = new TreeSet(inputPaths) [CD]
+Line_2 $$ private Set<String> filterIgnorePaths(Set<String> inputPaths, Set<String> ignoredNotInIndex, boolean exact) --> Line_5 $$ for (String path : inputPaths) for (String ignored : ignoredNotInIndex) if ((exact && path.equals(ignored)) || (!exact && path.startsWith(ignored))) [FD]
+Line_5 $$ for (String path : inputPaths) for (String ignored : ignoredNotInIndex) if ((exact && path.equals(ignored)) || (!exact && path.startsWith(ignored))) --> Line_6 $$ filtered.remove(path) [CD]
+Line_5 $$ for (String path : inputPaths) for (String ignored : ignoredNotInIndex) if ((exact && path.equals(ignored)) || (!exact && path.startsWith(ignored))) --> Line_6 $$ filtered.remove(path) [FD]
+Line_4 $$ Set<String> filtered = new TreeSet(inputPaths) --> Line_6 $$ filtered.remove(path) [FD]
+Line_3 $$ if (ignore) --> Line_9 $$ return filtered [CD]
+Line_2 $$ private Set<String> filterIgnorePaths(Set<String> inputPaths, Set<String> ignoredNotInIndex, boolean exact) --> Line_11 $$ return inputPaths [CD]

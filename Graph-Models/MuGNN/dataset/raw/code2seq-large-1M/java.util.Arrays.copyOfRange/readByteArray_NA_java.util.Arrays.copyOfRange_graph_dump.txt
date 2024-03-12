@@ -1,0 +1,6 @@
+Line_2 $$ public byte[] readByteArray() throws IOException --> Line_3 $$ final int size = readRawVarint32() [CD]
+Line_2 $$ public byte[] readByteArray() throws IOException --> Line_4 $$ if (size <= (bufferSize - bufferPos) && size > 0) [CD]
+Line_4 $$ if (size <= (bufferSize - bufferPos) && size > 0) --> Line_5 $$ final byte[] result = Arrays.copyOfRange(buffer, bufferPos, bufferPos + size) [CD]
+Line_4 $$ if (size <= (bufferSize - bufferPos) && size > 0) --> Line_7 $$ return result [CD]
+Line_4 $$ if (size <= (bufferSize - bufferPos) && size > 0) --> Line_9 $$ return readRawBytesSlowPath(size) [CD]
+Line_3 $$ final int size = readRawVarint32() --> Line_9 $$ return readRawBytesSlowPath(size) [FD]

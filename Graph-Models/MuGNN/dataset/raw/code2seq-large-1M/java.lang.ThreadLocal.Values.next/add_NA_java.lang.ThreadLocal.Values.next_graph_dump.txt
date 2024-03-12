@@ -1,0 +1,8 @@
+Line_2 $$ void add(ThreadLocal<?> key, Object value) --> Line_3 $$ for (int index = key.hash & mask; ; index = next(index)) [CD]
+Line_3 $$ for (int index = key.hash & mask; ; index = next(index)) --> Line_4 $$ Object k = table[index] [CD]
+Line_3 $$ for (int index = key.hash & mask; ; index = next(index)) --> Line_5 $$ if (k == null) [CD]
+Line_4 $$ Object k = table[index] --> Line_5 $$ if (k == null) [FD]
+Line_5 $$ if (k == null) --> Line_6 $$ table[index] = key.reference [CD]
+Line_5 $$ if (k == null) --> Line_7 $$ table[index + 1] = value [CD]
+Line_2 $$ void add(ThreadLocal<?> key, Object value) --> Line_7 $$ table[index + 1] = value [FD]
+Line_5 $$ if (k == null) --> Line_8 $$ return [CD]

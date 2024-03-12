@@ -1,0 +1,7 @@
+Line_2 $$ synchronized Object getValueAndReset(long now) --> Line_3 $$ long value = _currentBucket.getAndSet(0) [CD]
+Line_2 $$ synchronized Object getValueAndReset(long now) --> Line_4 $$ long timeSpent = now - _bucketStart [CD]
+Line_2 $$ synchronized Object getValueAndReset(long now) --> Line_5 $$ long ret = value + _exactExtra [CD]
+Line_2 $$ synchronized Object getValueAndReset(long now) --> Line_8 $$ rotateBuckets(value, timeSpent) [CD]
+Line_3 $$ long value = _currentBucket.getAndSet(0) --> Line_8 $$ rotateBuckets(value, timeSpent) [FD]
+Line_4 $$ long timeSpent = now - _bucketStart --> Line_8 $$ rotateBuckets(value, timeSpent) [FD]
+Line_2 $$ synchronized Object getValueAndReset(long now) --> Line_9 $$ return ret [CD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void noCancelOnCompleteWhenCountUnexpected() --> Line_3 $$ LongAdder cancelled = new LongAdder() [CD]
+Line_2 $$ public void noCancelOnCompleteWhenCountUnexpected() --> Line_4 $$ assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> StepVerifier.create(Flux.just("foo").doOnCancel(cancelled::<>increment)).expectNextCount(2).expectComplete().verify()).withMessageContaining("expectNextCount") [CD]
+Line_2 $$ public void noCancelOnCompleteWhenCountUnexpected() --> Line_5 $$ assertThat(cancelled.intValue()).overridingErrorMessage("the expectNextCount assertion caused a cancellation").isZero() [CD]
+Line_3 $$ LongAdder cancelled = new LongAdder() --> Line_5 $$ assertThat(cancelled.intValue()).overridingErrorMessage("the expectNextCount assertion caused a cancellation").isZero() [FD]

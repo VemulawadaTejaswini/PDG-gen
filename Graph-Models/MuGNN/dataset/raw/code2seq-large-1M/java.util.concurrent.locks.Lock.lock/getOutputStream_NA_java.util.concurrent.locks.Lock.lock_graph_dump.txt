@@ -1,0 +1,7 @@
+Line_2 $$ public OutputStream getOutputStream(int i) throws IOException --> Line_3 $$ if (i < 0 || i > entries) [CD]
+Line_2 $$ public OutputStream getOutputStream(int i) throws IOException --> Line_6 $$ refreshAccess() [CD]
+Line_2 $$ public OutputStream getOutputStream(int i) throws IOException --> Line_7 $$ Lock lock = blockLock[i].writeLock() [CD]
+Line_2 $$ public OutputStream getOutputStream(int i) throws IOException --> Line_8 $$ lock.lock() [CD]
+Line_7 $$ Lock lock = blockLock[i].writeLock() --> Line_8 $$ lock.lock() [FD]
+Line_2 $$ public OutputStream getOutputStream(int i) throws IOException --> Line_9 $$ if (this.isClosed()) [CD]
+Line_2 $$ public OutputStream getOutputStream(int i) throws IOException --> Line_12 $$ return new BufferedOutputStream(new DeflaterOutputStream(new SRFOutputStream(this, i, this.segmentMask + 1, lock))) [CD]

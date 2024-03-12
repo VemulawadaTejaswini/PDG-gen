@@ -1,0 +1,8 @@
+Line_2 $$ public <T> T safeCall(final Plugin plugin, final Callable<T> task) --> Line_3 $$ SpoutSnapshotLock lock = getSnapshotLock() [CD]
+Line_2 $$ public <T> T safeCall(final Plugin plugin, final Callable<T> task) --> Line_4 $$ lock.readLock(plugin) [CD]
+Line_2 $$ public <T> T safeCall(final Plugin plugin, final Callable<T> task) --> Line_4 $$ lock.readLock(plugin) [FD]
+Line_3 $$ SpoutSnapshotLock lock = getSnapshotLock() --> Line_4 $$ lock.readLock(plugin) [FD]
+Line_2 $$ public <T> T safeCall(final Plugin plugin, final Callable<T> task) --> Line_7 $$ return task.call() [FD]
+Line_2 $$ public <T> T safeCall(final Plugin plugin, final Callable<T> task) --> Line_9 $$ Spout.info("Exception throw when executing task from plugin " + plugin.getName() + ", " + e.getMessage()) [FD]
+Line_3 $$ SpoutSnapshotLock lock = getSnapshotLock() --> Line_13 $$ lock.readUnlock(plugin) [FD]
+Line_2 $$ public <T> T safeCall(final Plugin plugin, final Callable<T> task) --> Line_13 $$ lock.readUnlock(plugin) [FD]

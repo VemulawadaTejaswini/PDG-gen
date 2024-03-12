@@ -1,0 +1,6 @@
+Line_2 $$ public void testFlushInHandler() throws Exception --> Line_3 $$ final CountDownLatch mcbLatch = new CountDownLatch(1) [CD]
+Line_5 $$ try (Connection c = newDefaultConnection()) --> Line_6 $$ try (AsyncSubscription s = c.subscribe("foo", new MessageHandler() [FD]
+Line_5 $$ try (Connection c = newDefaultConnection()) --> Line_9 $$ c.flush() [FD]
+Line_3 $$ final CountDownLatch mcbLatch = new CountDownLatch(1) --> Line_10 $$ mcbLatch.countDown() [FD]
+Line_5 $$ try (Connection c = newDefaultConnection()) --> Line_16 $$ c.publish("foo", "Hello".getBytes()) [FD]
+Line_3 $$ final CountDownLatch mcbLatch = new CountDownLatch(1) --> Line_17 $$ assertTrue("Flush did not return properly in callback", mcbLatch.await(5, TimeUnit.SECONDS)) [FD]

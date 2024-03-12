@@ -1,0 +1,8 @@
+Line_2 $$ public void testEncryptionHelper() throws NoSuchPaddingException, BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, InvalidAlgorithmParameterException, DecoderException --> Line_3 $$ String[][] testCases = new String[][] [CD]
+Line_5 $$ SecretKeySpec k = new SecretKeySpec(new Hex().decode(testCase[0].getBytes()), "AES") --> Line_7 $$ byte[] cipherTExt = EncryptionHelper.encrypt(k, iv, new Hex().decode(testCase[2].getBytes())) [FD]
+Line_6 $$ IvParameterSpec iv = new IvParameterSpec(new Hex().decode(testCase[1].getBytes())) --> Line_7 $$ byte[] cipherTExt = EncryptionHelper.encrypt(k, iv, new Hex().decode(testCase[2].getBytes())) [FD]
+Line_7 $$ byte[] cipherTExt = EncryptionHelper.encrypt(k, iv, new Hex().decode(testCase[2].getBytes())) --> Line_8 $$ String cipher = new String(new Hex().encode(cipherTExt)) [FD]
+Line_8 $$ String cipher = new String(new Hex().encode(cipherTExt)) --> Line_9 $$ assertEquals(cipher, testCase[3]) [FD]
+Line_5 $$ SecretKeySpec k = new SecretKeySpec(new Hex().decode(testCase[0].getBytes()), "AES") --> Line_10 $$ assertEquals(testCase[2], new String(new Hex().encode(EncryptionHelper.decrypt(k, iv, cipherTExt)))) [FD]
+Line_6 $$ IvParameterSpec iv = new IvParameterSpec(new Hex().decode(testCase[1].getBytes())) --> Line_10 $$ assertEquals(testCase[2], new String(new Hex().encode(EncryptionHelper.decrypt(k, iv, cipherTExt)))) [FD]
+Line_7 $$ byte[] cipherTExt = EncryptionHelper.encrypt(k, iv, new Hex().decode(testCase[2].getBytes())) --> Line_10 $$ assertEquals(testCase[2], new String(new Hex().encode(EncryptionHelper.decrypt(k, iv, cipherTExt)))) [FD]

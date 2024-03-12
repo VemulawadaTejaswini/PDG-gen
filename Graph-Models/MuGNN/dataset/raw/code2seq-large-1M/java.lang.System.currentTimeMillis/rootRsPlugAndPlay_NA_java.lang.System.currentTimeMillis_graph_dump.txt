@@ -1,0 +1,8 @@
+Line_2 $$ public void rootRsPlugAndPlay() throws Exception --> Line_3 $$ final long current = System.currentTimeMillis() [CD]
+Line_2 $$ public void rootRsPlugAndPlay() throws Exception --> Line_4 $$ mvc.perform(get("/default-tenant/controller/v1/4711")).andDo(MockMvcResultPrinter.print()).andExpect(status().isOk()).andExpect(content().contentType(APPLICATION_JSON_HAL_UTF)).andExpect(jsonPath("$.config.polling.sleep", equalTo("00:01:00"))) [CD]
+Line_2 $$ public void rootRsPlugAndPlay() throws Exception --> Line_5 $$ assertThat(targetManagement.getByControllerID("4711").get().getLastTargetQuery()).isGreaterThanOrEqualTo(current) [CD]
+Line_3 $$ final long current = System.currentTimeMillis() --> Line_5 $$ assertThat(targetManagement.getByControllerID("4711").get().getLastTargetQuery()).isGreaterThanOrEqualTo(current) [FD]
+Line_2 $$ public void rootRsPlugAndPlay() throws Exception --> Line_6 $$ assertThat(targetManagement.getByControllerID("4711").get().getUpdateStatus()).isEqualTo(TargetUpdateStatus.REGISTERED) [CD]
+Line_2 $$ public void rootRsPlugAndPlay() throws Exception --> Line_7 $$ mvc.perform(post("/default-tenant/controller/v1/4711")).andDo(MockMvcResultPrinter.print()).andExpect(status().isMethodNotAllowed()) [CD]
+Line_2 $$ public void rootRsPlugAndPlay() throws Exception --> Line_8 $$ mvc.perform(put("/default-tenant/controller/v1/4711")).andDo(MockMvcResultPrinter.print()).andExpect(status().isMethodNotAllowed()) [CD]
+Line_2 $$ public void rootRsPlugAndPlay() throws Exception --> Line_9 $$ mvc.perform(delete("/default-tenant/controller/v1/4711")).andDo(MockMvcResultPrinter.print()).andExpect(status().isMethodNotAllowed()) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public long getAccountsWithVerifiedEmails() --> Line_3 $$ Query query = entityManager.createNativeQuery("select count(distinct profile.orcid) from email join profile on profile.profile_deactivation_date is null and email.is_verified=true and email.orcid=profile.orcid and profile.record_locked = false") [CD]
+Line_2 $$ public long getAccountsWithVerifiedEmails() --> Line_4 $$ BigInteger numberOfLiveIdsWithVerifiedEmail = (BigInteger) query.getSingleResult() [CD]
+Line_3 $$ Query query = entityManager.createNativeQuery("select count(distinct profile.orcid) from email join profile on profile.profile_deactivation_date is null and email.is_verified=true and email.orcid=profile.orcid and profile.record_locked = false") --> Line_4 $$ BigInteger numberOfLiveIdsWithVerifiedEmail = (BigInteger) query.getSingleResult() [FD]
+Line_2 $$ public long getAccountsWithVerifiedEmails() --> Line_5 $$ return numberOfLiveIdsWithVerifiedEmail.longValue() [CD]
+Line_4 $$ BigInteger numberOfLiveIdsWithVerifiedEmail = (BigInteger) query.getSingleResult() --> Line_5 $$ return numberOfLiveIdsWithVerifiedEmail.longValue() [FD]

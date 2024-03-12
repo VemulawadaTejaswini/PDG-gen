@@ -1,0 +1,5 @@
+Line_2 $$ public List<KubernetesV2Service> getServicesByPriority(List<SpinnakerService.Type> serviceTypes) --> Line_3 $$ List<KubernetesV2Service> result = getFieldsOfType(KubernetesV2Service.class).stream().filter( d -> serviceTypes.contains(d.getService().getType())).collect(Collectors.toList()) [CD]
+Line_2 $$ public List<KubernetesV2Service> getServicesByPriority(List<SpinnakerService.Type> serviceTypes) --> Line_3 $$ List<KubernetesV2Service> result = getFieldsOfType(KubernetesV2Service.class).stream().filter( d -> serviceTypes.contains(d.getService().getType())).collect(Collectors.toList()) [FD]
+Line_2 $$ public List<KubernetesV2Service> getServicesByPriority(List<SpinnakerService.Type> serviceTypes) --> Line_4 $$ if (result.removeIf( s -> s.getService().getType() == SpinnakerService.Type.REDIS)) [CD]
+Line_4 $$ if (result.removeIf( s -> s.getService().getType() == SpinnakerService.Type.REDIS)) --> Line_5 $$ result.add(0, redisService) [CD]
+Line_2 $$ public List<KubernetesV2Service> getServicesByPriority(List<SpinnakerService.Type> serviceTypes) --> Line_7 $$ return result [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public String getUrl() --> Line_3 $$ if (url.contains("exp=")) [CD]
+Line_3 $$ if (url.contains("exp=")) --> Line_4 $$ int expLoc = url.indexOf("exp=") [CD]
+Line_3 $$ if (url.contains("exp=")) --> Line_5 $$ long expires = Integer.parseInt(url.substring(expLoc + 4, url.indexOf("~", expLoc))) [CD]
+Line_4 $$ int expLoc = url.indexOf("exp=") --> Line_5 $$ long expires = Integer.parseInt(url.substring(expLoc + 4, url.indexOf("~", expLoc))) [FD]
+Line_3 $$ if (url.contains("exp=")) --> Line_6 $$ if (expires < System.currentTimeMillis() / 1000) [CD]
+Line_5 $$ long expires = Integer.parseInt(url.substring(expLoc + 4, url.indexOf("~", expLoc))) --> Line_6 $$ if (expires < System.currentTimeMillis() / 1000) [FD]
+Line_6 $$ if (expires < System.currentTimeMillis() / 1000) --> Line_7 $$ return "n/a" [CD]
+Line_2 $$ public String getUrl() --> Line_10 $$ return url [CD]

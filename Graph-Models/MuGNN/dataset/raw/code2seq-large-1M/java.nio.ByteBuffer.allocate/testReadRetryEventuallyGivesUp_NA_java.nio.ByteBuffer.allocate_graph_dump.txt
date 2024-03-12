@@ -1,0 +1,7 @@
+Line_2 $$ public void testReadRetryEventuallyGivesUp() throws IOException --> Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(1) [CD]
+Line_2 $$ public void testReadRetryEventuallyGivesUp() throws IOException --> Line_4 $$ when(gcsChannel.read(eq(buffer))).thenThrow(new StorageException(new IOException("Connection closed prematurely: bytesRead = 33554432, Content-Length = 41943040"))).thenThrow(new StorageException(new IOException("Connection closed prematurely: bytesRead = 33554432, Content-Length = 41943040"))).thenReturn(1) [CD]
+Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(1) --> Line_4 $$ when(gcsChannel.read(eq(buffer))).thenThrow(new StorageException(new IOException("Connection closed prematurely: bytesRead = 33554432, Content-Length = 41943040"))).thenThrow(new StorageException(new IOException("Connection closed prematurely: bytesRead = 33554432, Content-Length = 41943040"))).thenReturn(1) [FD]
+Line_2 $$ public void testReadRetryEventuallyGivesUp() throws IOException --> Line_5 $$ assertThat(chan.position()).isEqualTo(0L) [CD]
+Line_2 $$ public void testReadRetryEventuallyGivesUp() throws IOException --> Line_6 $$ thrown.expect(StorageException.class) [CD]
+Line_2 $$ public void testReadRetryEventuallyGivesUp() throws IOException --> Line_7 $$ chan.read(buffer) [CD]
+Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(1) --> Line_7 $$ chan.read(buffer) [FD]

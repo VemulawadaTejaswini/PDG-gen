@@ -1,0 +1,3 @@
+Line_2 $$ public void testFrameTooShortTrivialCopying() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().subclass(Object.class).defineMethod(FOO, String.class, Visibility.PUBLIC).intercept(new TooShortMethod()).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER_PERSISTENT).getLoaded() [CD]
+Line_2 $$ public void testFrameTooShortTrivialCopying() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(FOO).invoke(type.getDeclaredConstructor().newInstance()), is((Object) BAR)) [CD]
+Line_2 $$ public void testFrameTooShortTrivialCopying() throws Exception --> Line_5 $$ new ByteBuddy().redefine(type).visit(Advice.to(copying).on(named(FOO))).make() [CD]

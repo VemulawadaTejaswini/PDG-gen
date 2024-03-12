@@ -1,0 +1,8 @@
+Line_2 $$ public void testDiffWithPrefixes() throws Exception --> Line_3 $$ write(new File(db.getWorkTree(), "test.txt"), "test") [CD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_5 $$ git.add().addFilepattern(".").call() [FD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_6 $$ git.commit().setMessage("Initial commit").call() [FD]
+Line_8 $$ OutputStream out = new ByteArrayOutputStream() --> Line_9 $$ git.diff().setOutputStream(out).setSourcePrefix("old/").setDestinationPrefix("new/").call() [FD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_9 $$ git.diff().setOutputStream(out).setSourcePrefix("old/").setDestinationPrefix("new/").call() [FD]
+Line_8 $$ OutputStream out = new ByteArrayOutputStream() --> Line_10 $$ String actual = out.toString() [FD]
+Line_11 $$ String expected = "diff --git old/test.txt new/test.txt\n" + "index 30d74d2..4dba797 100644\n" + "--- old/test.txt\n" + "+++ new/test.txt\n" + "@@ -1 +1 @@\n" + "-test\n" + "\\ No newline at end of file\n" + "+test change\n" + "\\ No newline at end of file\n" --> Line_12 $$ assertEquals(expected, actual) [FD]
+Line_10 $$ String actual = out.toString() --> Line_12 $$ assertEquals(expected, actual) [FD]

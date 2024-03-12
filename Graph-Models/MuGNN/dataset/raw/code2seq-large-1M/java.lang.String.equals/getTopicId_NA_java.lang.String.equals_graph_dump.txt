@@ -1,0 +1,8 @@
+Line_5 $$ String url = getProductTopicIdUrl() + "?conversationId=" + conversationId --> Line_6 $$ String response = httpRequestUtils.getResponse(url, "application/json", "application/json") [FD]
+Line_6 $$ String response = httpRequestUtils.getResponse(url, "application/json", "application/json") --> Line_7 $$ if (response == null || TextUtils.isEmpty(response) || response.equals("UnAuthorized Access")) [FD]
+Line_7 $$ if (response == null || TextUtils.isEmpty(response) || response.equals("UnAuthorized Access")) --> Line_8 $$ return null [CD]
+Line_6 $$ String response = httpRequestUtils.getResponse(url, "application/json", "application/json") --> Line_10 $$ ApiResponse productConversationIdResponse = (ApiResponse) GsonUtils.getObjectFromJson(response, ApiResponse.class) [FD]
+Line_11 $$ if ("success".equals(productConversationIdResponse.getStatus())) --> Line_12 $$ topicId = productConversationIdResponse.getResponse().toString() [CD]
+Line_4 $$ String topicId = null --> Line_12 $$ topicId = productConversationIdResponse.getResponse().toString() [FD]
+Line_11 $$ if ("success".equals(productConversationIdResponse.getStatus())) --> Line_13 $$ return topicId [CD]
+Line_2 $$ public String getTopicId(Integer conversationId) --> Line_19 $$ return null [CD]

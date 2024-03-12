@@ -1,0 +1,8 @@
+Line_2 $$ public void testNoCharsetContentToString() throws Exception --> Line_3 $$ final String content = constructString(SWISS_GERMAN_HELLO) [CD]
+Line_2 $$ public void testNoCharsetContentToString() throws Exception --> Line_4 $$ final byte[] bytes = content.getBytes(StandardCharsets.ISO_8859_1) [CD]
+Line_3 $$ final String content = constructString(SWISS_GERMAN_HELLO) --> Line_4 $$ final byte[] bytes = content.getBytes(StandardCharsets.ISO_8859_1) [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_6 $$ httpentity.setContent(new ByteArrayInputStream(bytes)) [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_7 $$ httpentity.setContentType("text/plain") [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_8 $$ final String s = EntityUtils.toString(httpentity) [FD]
+Line_3 $$ final String content = constructString(SWISS_GERMAN_HELLO) --> Line_9 $$ Assert.assertEquals(content, s) [FD]
+Line_8 $$ final String s = EntityUtils.toString(httpentity) --> Line_9 $$ Assert.assertEquals(content, s) [FD]

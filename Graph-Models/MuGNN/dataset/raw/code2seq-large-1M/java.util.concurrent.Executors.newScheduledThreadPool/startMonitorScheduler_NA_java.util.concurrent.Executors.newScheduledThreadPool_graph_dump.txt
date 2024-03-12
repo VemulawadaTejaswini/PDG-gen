@@ -1,0 +1,8 @@
+Line_2 $$ private void startMonitorScheduler() --> Line_3 $$ this.monitorScheduler = Executors.newScheduledThreadPool(2) [CD]
+Line_2 $$ private void startMonitorScheduler() --> Line_5 $$ int secOfTheDay = getCurrentSeconds() [CD]
+Line_2 $$ private void startMonitorScheduler() --> Line_6 $$ int interval = context.getMyperfConfig().getScannerIntervalSeconds() [CD]
+Line_2 $$ private void startMonitorScheduler() --> Line_8 $$ if (maxScanIdleTime < 300000L) [CD]
+Line_2 $$ private void startMonitorScheduler() --> Line_10 $$ logger.info("maximun alowed hange time: " + maxScanIdleTime) [CD]
+Line_2 $$ private void startMonitorScheduler() --> Line_11 $$ int monitorDelay = (int) Math.ceil(((double) secOfTheDay) / (600)) * 600 - secOfTheDay [CD]
+Line_2 $$ private void startMonitorScheduler() --> Line_12 $$ ScheduledFuture<?> monitorTaskFuture = this.monitorScheduler.scheduleAtFixedRate(monitorTask, monitorDelay, 600, TimeUnit.SECONDS) [CD]
+Line_11 $$ int monitorDelay = (int) Math.ceil(((double) secOfTheDay) / (600)) * 600 - secOfTheDay --> Line_12 $$ ScheduledFuture<?> monitorTaskFuture = this.monitorScheduler.scheduleAtFixedRate(monitorTask, monitorDelay, 600, TimeUnit.SECONDS) [FD]

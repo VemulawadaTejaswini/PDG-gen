@@ -1,0 +1,6 @@
+Line_2 $$ public void setRollbackOnly() throws IllegalStateException --> Line_3 $$ if (state == BeanState.CREATED) [CD]
+Line_2 $$ public void setRollbackOnly() throws IllegalStateException --> Line_5 $$ if (container.isBeanManagedTran) [CD]
+Line_2 $$ public void setRollbackOnly() throws IllegalStateException --> Line_7 $$ TransactionManager tm = EjbContainerUtilImpl.getInstance().getTransactionManager() [CD]
+Line_7 $$ TransactionManager tm = EjbContainerUtilImpl.getInstance().getTransactionManager() --> Line_9 $$ if (tm.getStatus() == Status.STATUS_NO_TRANSACTION) [FD]
+Line_7 $$ TransactionManager tm = EjbContainerUtilImpl.getInstance().getTransactionManager() --> Line_14 $$ tm.setRollbackOnly() [FD]
+Line_16 $$ IllegalStateException illEx = new IllegalStateException(ex.toString()) --> Line_17 $$ illEx.initCause(ex) [FD]

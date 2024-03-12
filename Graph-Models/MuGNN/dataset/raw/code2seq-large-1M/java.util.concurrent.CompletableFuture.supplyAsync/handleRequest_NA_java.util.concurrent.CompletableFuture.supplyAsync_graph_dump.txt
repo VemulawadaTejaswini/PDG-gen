@@ -1,0 +1,6 @@
+Line_2 $$ protected CompletableFuture<EmptyResponseBody> handleRequest(@Nonnull final HandlerRequest<EmptyRequestBody, JarDeleteMessageParameters> request, @Nonnull final RestfulGateway gateway) throws RestHandlerException --> Line_3 $$ final String jarId = request.getPathParameter(JarIdPathParameter.class) [FD]
+Line_2 $$ protected CompletableFuture<EmptyResponseBody> handleRequest(@Nonnull final HandlerRequest<EmptyRequestBody, JarDeleteMessageParameters> request, @Nonnull final RestfulGateway gateway) throws RestHandlerException --> Line_3 $$ final String jarId = request.getPathParameter(JarIdPathParameter.class) [CD]
+Line_2 $$ protected CompletableFuture<EmptyResponseBody> handleRequest(@Nonnull final HandlerRequest<EmptyRequestBody, JarDeleteMessageParameters> request, @Nonnull final RestfulGateway gateway) throws RestHandlerException --> Line_4 $$ return CompletableFuture.supplyAsync(() -> [CD]
+Line_5 $$ final Path jarToDelete = jarDir.resolve(jarId) --> Line_6 $$ if (!Files.exists(jarToDelete)) [FD]
+Line_5 $$ final Path jarToDelete = jarDir.resolve(jarId) --> Line_10 $$ Files.delete(jarToDelete) [FD]
+Line_5 $$ final Path jarToDelete = jarDir.resolve(jarId) --> Line_13 $$ throw new CompletionException(new RestHandlerException(String.format("Failed to delete jar %s.", jarToDelete), HttpResponseStatus.INTERNAL_SERVER_ERROR, e)) [FD]

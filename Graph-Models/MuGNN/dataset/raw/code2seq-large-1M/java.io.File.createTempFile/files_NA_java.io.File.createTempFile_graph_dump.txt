@@ -1,0 +1,5 @@
+Line_2 $$ public void files() throws IOException --> Line_3 $$ assertFalse(PropertySources.fromFile("nonexistent.properties").get("test2").isPresent()) [CD]
+Line_2 $$ public void files() throws IOException --> Line_4 $$ File externalProperties = File.createTempFile("test", ".properties") [CD]
+Line_4 $$ File externalProperties = File.createTempFile("test", ".properties") --> Line_6 $$ Files.write("test4=value4\n", externalProperties, Charsets.UTF_8) [FD]
+Line_4 $$ File externalProperties = File.createTempFile("test", ".properties") --> Line_13 $$ assertEquals("value4", PropertySources.fromFile(externalProperties.getPath()).orFile("test2.properties").getRequired("test4").asString()) [FD]
+Line_4 $$ File externalProperties = File.createTempFile("test", ".properties") --> Line_15 $$ externalProperties.delete() [FD]

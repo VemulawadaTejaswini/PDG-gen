@@ -1,0 +1,6 @@
+Line_2 $$ public void configUpdated(String client, String configKey, String configValue) --> Line_3 $$ if (configKey.equals(REDIS_KEY)) [CD]
+Line_2 $$ public void configUpdated(String client, String configKey, String configValue) --> Line_3 $$ if (configKey.equals(REDIS_KEY)) [FD]
+Line_3 $$ if (configKey.equals(REDIS_KEY)) --> Line_4 $$ logger.info("Received new redis config for " + client + ": " + configValue) [CD]
+Line_6 $$ ObjectMapper mapper = new ObjectMapper() --> Line_7 $$ RedisConfig config = mapper.readValue(configValue, RedisConfig.class) [FD]
+Line_2 $$ public void configUpdated(String client, String configKey, String configValue) --> Line_7 $$ RedisConfig config = mapper.readValue(configValue, RedisConfig.class) [FD]
+Line_2 $$ public void configUpdated(String client, String configKey, String configValue) --> Line_8 $$ add(client, config.host, config.maxTotal, config.maxIdle) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static void assertNoSearchContexts() throws IOException --> Line_3 $$ Map<String, Object> stats = searchStats() [CD]
+Line_2 $$ public static void assertNoSearchContexts() throws IOException --> Line_4 $$ Map<String, Object> indicesStats = (Map<String, Object>) stats.get("indices") [CD]
+Line_3 $$ Map<String, Object> stats = searchStats() --> Line_4 $$ Map<String, Object> indicesStats = (Map<String, Object>) stats.get("indices") [FD]
+Line_4 $$ Map<String, Object> indicesStats = (Map<String, Object>) stats.get("indices") --> Line_5 $$ for (String index : indicesStats.keySet()) [FD]
+Line_5 $$ for (String index : indicesStats.keySet()) --> Line_6 $$ if (index.startsWith(".") == false) [FD]
+Line_6 $$ if (index.startsWith(".") == false) --> Line_7 $$ assertEquals(index + " should have no search contexts", 0, getOpenContexts(stats, index)) [CD]
+Line_3 $$ Map<String, Object> stats = searchStats() --> Line_7 $$ assertEquals(index + " should have no search contexts", 0, getOpenContexts(stats, index)) [FD]
+Line_5 $$ for (String index : indicesStats.keySet()) --> Line_7 $$ assertEquals(index + " should have no search contexts", 0, getOpenContexts(stats, index)) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ protected void prepareResultCount(QueryConfig config) --> Line_3 $$ if (isNamedQuery()) [CD]
+Line_3 $$ if (isNamedQuery()) --> Line_4 $$ if (JpaHelper.findNamedQuery(getType(), query.replace("find", "count")) != null) [CD]
+Line_4 $$ if (JpaHelper.findNamedQuery(getType(), query.replace("find", "count")) != null) --> Line_5 $$ resultCountQuery = getEntityManager().createNamedQuery(query.replace("find", "count"), Long.class) [CD]
+Line_4 $$ if (JpaHelper.findNamedQuery(getType(), query.replace("find", "count")) != null) --> Line_7 $$ resultCountQuery = getEntityManager().createQuery(JpaHelper.createResultCountQuery(JpaHelper.findNamedQuery(getType(), query).query()), Long.class) [CD]
+Line_3 $$ if (isNamedQuery()) --> Line_10 $$ resultCountQuery = getEntityManager().createQuery(JpaHelper.createResultCountQuery(query), Long.class) [CD]

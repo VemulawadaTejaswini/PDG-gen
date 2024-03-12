@@ -1,0 +1,5 @@
+Line_2 $$ public void testUnaryNumericFunctions() throws Exception --> Line_3 $$ final List<String> unaryFunctions = Lists.newArrayList("ABS", "ACOS", "ASIN", "ATAN", "COS", "CEILING", "DEGREES", "FLOOR", "RADIANS", "SIN", "TAN", "EXP", "SIGN", "SQRT") [CD]
+Line_2 $$ public void testUnaryNumericFunctions() throws Exception --> Line_5 $$ final String exprs = " cast(%s(stars) as double), cast(%s(review_count) as double)" [CD]
+Line_6 $$ for (String s : unaryFunctions) --> Line_7 $$ String elasticQuery = String.format("select " + exprs + " from %s", s, s, ELASTIC_TABLE) [FD]
+Line_7 $$ String elasticQuery = String.format("select " + exprs + " from %s", s, s, ELASTIC_TABLE) --> Line_8 $$ testBuilder().sqlQuery(elasticQuery).unOrdered().sqlBaselineQuery(String.format("select " + exprs + " from %s", s, s, PARQUET_TABLE)).go() [FD]
+Line_6 $$ for (String s : unaryFunctions) --> Line_8 $$ testBuilder().sqlQuery(elasticQuery).unOrdered().sqlBaselineQuery(String.format("select " + exprs + " from %s", s, s, PARQUET_TABLE)).go() [FD]

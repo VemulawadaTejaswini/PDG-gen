@@ -1,0 +1,7 @@
+Line_2 $$ private void dropObject(Connection conn, String schemaName, String objectName, String objectType, boolean restrict) throws SQLException --> Line_3 $$ String dotSchemaName = dotSeparatedSchemaName(schemaName) [FD]
+Line_2 $$ private void dropObject(Connection conn, String schemaName, String objectName, String objectType, boolean restrict) throws SQLException --> Line_3 $$ String dotSchemaName = dotSeparatedSchemaName(schemaName) [CD]
+Line_2 $$ private void dropObject(Connection conn, String schemaName, String objectName, String objectType, boolean restrict) throws SQLException --> Line_4 $$ String restrictString = restrict ? " restrict" : "" [CD]
+Line_2 $$ private void dropObject(Connection conn, String schemaName, String objectName, String objectType, boolean restrict) throws SQLException --> Line_6 $$ executeDDL(conn, "drop " + objectType + " " + dotSchemaName + delimitedID(objectName) + restrictString) [FD]
+Line_8 $$ String actualSQLState = se.getSQLState() --> Line_10 $$ if (actualSQLState.startsWith(safeSQLState)) [FD]
+Line_9 $$ for (String safeSQLState : SAFE_DROP_SQLSTATES) --> Line_10 $$ if (actualSQLState.startsWith(safeSQLState)) [FD]
+Line_10 $$ if (actualSQLState.startsWith(safeSQLState)) --> Line_11 $$ return [CD]

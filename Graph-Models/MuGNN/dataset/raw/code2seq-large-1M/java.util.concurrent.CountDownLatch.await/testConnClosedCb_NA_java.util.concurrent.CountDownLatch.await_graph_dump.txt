@@ -1,0 +1,6 @@
+Line_2 $$ public void testConnClosedCb() throws Exception --> Line_3 $$ final CountDownLatch cbLatch = new CountDownLatch(1) [CD]
+Line_5 $$ try (Connection nc = newDefaultConnection()) --> Line_6 $$ nc.setClosedCallback(new ClosedCallback() [FD]
+Line_6 $$ nc.setClosedCallback(new ClosedCallback() --> Line_8 $$ cbLatch.countDown() [CD]
+Line_3 $$ final CountDownLatch cbLatch = new CountDownLatch(1) --> Line_8 $$ cbLatch.countDown() [FD]
+Line_5 $$ try (Connection nc = newDefaultConnection()) --> Line_11 $$ nc.close() [FD]
+Line_3 $$ final CountDownLatch cbLatch = new CountDownLatch(1) --> Line_12 $$ assertTrue("Closed callback not triggered", cbLatch.await(5, TimeUnit.SECONDS)) [FD]

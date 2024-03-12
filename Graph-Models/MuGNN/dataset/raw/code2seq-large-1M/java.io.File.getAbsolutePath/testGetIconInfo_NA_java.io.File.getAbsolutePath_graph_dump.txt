@@ -1,0 +1,6 @@
+Line_2 $$ public void testGetIconInfo() throws Exception --> Line_3 $$ final ICONINFO iconInfo = new ICONINFO() [CD]
+Line_2 $$ public void testGetIconInfo() throws Exception --> Line_4 $$ final HANDLE hImage = User32.INSTANCE.LoadImage(null, new File(getClass().getResource("/res/test_icon.ico").toURI()).getAbsolutePath(), WinUser.IMAGE_ICON, 0, 0, WinUser.LR_LOADFROMFILE) [CD]
+Line_3 $$ final ICONINFO iconInfo = new ICONINFO() --> Line_6 $$ if (!User32.INSTANCE.GetIconInfo(new HICON(hImage), iconInfo)) [FD]
+Line_3 $$ final ICONINFO iconInfo = new ICONINFO() --> Line_8 $$ iconInfo.read() [FD]
+Line_10 $$ if (iconInfo.hbmColor != null && iconInfo.hbmColor.getPointer() != Pointer.NULL) --> Line_11 $$ GDI32.INSTANCE.DeleteObject(iconInfo.hbmColor) [CD]
+Line_12 $$ if (iconInfo.hbmMask != null && iconInfo.hbmMask.getPointer() != Pointer.NULL) --> Line_13 $$ GDI32.INSTANCE.DeleteObject(iconInfo.hbmMask) [CD]

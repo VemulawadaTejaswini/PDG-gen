@@ -1,0 +1,8 @@
+Line_2 $$ public Acl saveAcl(String pipelineName, Acl acl) throws PipelineStoreException --> Line_3 $$ synchronized (lockCache.getLock(pipelineName)) [FD]
+Line_2 $$ public Acl saveAcl(String pipelineName, Acl acl) throws PipelineStoreException --> Line_4 $$ DataStore dataStore = new DataStore(getPipelineAclFile(pipelineName).toFile()) [FD]
+Line_4 $$ DataStore dataStore = new DataStore(getPipelineAclFile(pipelineName).toFile()) --> Line_5 $$ try (OutputStream os = dataStore.getOutputStream()) [FD]
+Line_5 $$ try (OutputStream os = dataStore.getOutputStream()) --> Line_6 $$ ObjectMapperFactory.get().writeValue(os, AclDtoJsonMapper.INSTANCE.toAclJson(acl)) [FD]
+Line_2 $$ public Acl saveAcl(String pipelineName, Acl acl) throws PipelineStoreException --> Line_6 $$ ObjectMapperFactory.get().writeValue(os, AclDtoJsonMapper.INSTANCE.toAclJson(acl)) [FD]
+Line_4 $$ DataStore dataStore = new DataStore(getPipelineAclFile(pipelineName).toFile()) --> Line_7 $$ dataStore.commit(os) [FD]
+Line_5 $$ try (OutputStream os = dataStore.getOutputStream()) --> Line_7 $$ dataStore.commit(os) [FD]
+Line_4 $$ DataStore dataStore = new DataStore(getPipelineAclFile(pipelineName).toFile()) --> Line_11 $$ dataStore.release() [FD]

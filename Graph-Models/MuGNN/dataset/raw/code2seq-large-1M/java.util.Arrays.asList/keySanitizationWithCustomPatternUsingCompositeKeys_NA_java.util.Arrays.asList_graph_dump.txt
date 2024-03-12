@@ -1,0 +1,7 @@
+Line_2 $$ public void keySanitizationWithCustomPatternUsingCompositeKeys() --> Line_3 $$ load(Arrays.asList(".*\\.secrets\\..*", ".*\\.hidden\\..*"), ( context,  properties) -> [CD]
+Line_4 $$ Map<String, Object> nestedProperties = properties.getBeans().get("testProperties").getProperties() --> Line_5 $$ assertThat(nestedProperties).isNotNull() [FD]
+Line_4 $$ Map<String, Object> nestedProperties = properties.getBeans().get("testProperties").getProperties() --> Line_6 $$ Map<String, Object> secrets = (Map<String, Object>) nestedProperties.get("secrets") [FD]
+Line_4 $$ Map<String, Object> nestedProperties = properties.getBeans().get("testProperties").getProperties() --> Line_7 $$ Map<String, Object> hidden = (Map<String, Object>) nestedProperties.get("hidden") [FD]
+Line_6 $$ Map<String, Object> secrets = (Map<String, Object>) nestedProperties.get("secrets") --> Line_8 $$ assertThat(secrets.get("mine")).isEqualTo("******") [FD]
+Line_6 $$ Map<String, Object> secrets = (Map<String, Object>) nestedProperties.get("secrets") --> Line_9 $$ assertThat(secrets.get("yours")).isEqualTo("******") [FD]
+Line_7 $$ Map<String, Object> hidden = (Map<String, Object>) nestedProperties.get("hidden") --> Line_10 $$ assertThat(hidden.get("mine")).isEqualTo("******") [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static IoConnector createIoConnector(SocketAddress address) throws ConfigError --> Line_3 $$ if (address instanceof InetSocketAddress) [FD]
+Line_2 $$ public static IoConnector createIoConnector(SocketAddress address) throws ConfigError --> Line_3 $$ if (address instanceof InetSocketAddress) [CD]
+Line_3 $$ if (address instanceof InetSocketAddress) --> Line_4 $$ return new NioSocketConnector() [CD]
+Line_3 $$ if (address instanceof InetSocketAddress) --> Line_5 $$ if (address instanceof VmPipeAddress) [CD]
+Line_2 $$ public static IoConnector createIoConnector(SocketAddress address) throws ConfigError --> Line_5 $$ if (address instanceof VmPipeAddress) [FD]
+Line_5 $$ if (address instanceof VmPipeAddress) --> Line_6 $$ return new VmPipeConnector() [CD]
+Line_2 $$ public static IoConnector createIoConnector(SocketAddress address) throws ConfigError --> Line_8 $$ throw new ConfigError("Unknown session acceptor address type: " + address.getClass().getName()) [FD]

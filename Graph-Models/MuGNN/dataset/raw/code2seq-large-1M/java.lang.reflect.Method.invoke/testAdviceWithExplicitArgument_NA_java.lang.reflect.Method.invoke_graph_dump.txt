@@ -1,0 +1,4 @@
+Line_2 $$ public void testAdviceWithExplicitArgument() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(Sample.class).visit(Advice.to(ArgumentAdviceExplicit.class).on(named(QUX))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testAdviceWithExplicitArgument() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(QUX, String.class, String.class).invoke(type.getDeclaredConstructor().newInstance(), FOO, BAR), is((Object) (FOO + BAR))) [CD]
+Line_2 $$ public void testAdviceWithExplicitArgument() throws Exception --> Line_5 $$ assertThat(type.getDeclaredField(ENTER).get(null), is((Object) 1)) [CD]
+Line_2 $$ public void testAdviceWithExplicitArgument() throws Exception --> Line_6 $$ assertThat(type.getDeclaredField(EXIT).get(null), is((Object) 1)) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void animateToPostion(float position) --> Line_4 $$ if (Math.abs(mCurrentPosition - mFinalPosition) < SHIFT_THRESHOLD) [CD]
+Line_2 $$ private void animateToPostion(float position) --> Line_7 $$ if (mAnimator == null && Float.compare(mCurrentPosition, mFinalPosition) != 0) [CD]
+Line_7 $$ if (mAnimator == null && Float.compare(mCurrentPosition, mFinalPosition) != 0) --> Line_8 $$ float positionForThisAnim = mCurrentPosition > mFinalPosition ? mCurrentPosition - SHIFT_PER_ANIMATION : mCurrentPosition + SHIFT_PER_ANIMATION [CD]
+Line_7 $$ if (mAnimator == null && Float.compare(mCurrentPosition, mFinalPosition) != 0) --> Line_9 $$ mAnimator = ObjectAnimator.ofFloat(this, CURRENT_POSITION, positionForThisAnim) [CD]
+Line_8 $$ float positionForThisAnim = mCurrentPosition > mFinalPosition ? mCurrentPosition - SHIFT_PER_ANIMATION : mCurrentPosition + SHIFT_PER_ANIMATION --> Line_9 $$ mAnimator = ObjectAnimator.ofFloat(this, CURRENT_POSITION, positionForThisAnim) [FD]
+Line_7 $$ if (mAnimator == null && Float.compare(mCurrentPosition, mFinalPosition) != 0) --> Line_10 $$ mAnimator.addListener(mAnimCycleListener) [CD]
+Line_7 $$ if (mAnimator == null && Float.compare(mCurrentPosition, mFinalPosition) != 0) --> Line_11 $$ mAnimator.setDuration(ANIMATION_DURATION) [CD]
+Line_7 $$ if (mAnimator == null && Float.compare(mCurrentPosition, mFinalPosition) != 0) --> Line_12 $$ mAnimator.start() [CD]

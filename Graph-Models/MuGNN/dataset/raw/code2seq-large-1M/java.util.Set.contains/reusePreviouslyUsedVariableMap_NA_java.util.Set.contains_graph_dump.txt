@@ -1,0 +1,8 @@
+Line_2 $$ private void reusePreviouslyUsedVariableMap(SortedSet<Assignment> varsToRename) --> Line_3 $$ checkNotNull(prevUsedRenameMap.getNewNameToOriginalNameMap()) [CD]
+Line_5 $$ String prevNewName = prevUsedRenameMap.lookupNewName(a.oldName) --> Line_6 $$ if (prevNewName == null || reservedNames.contains(prevNewName)) [FD]
+Line_5 $$ String prevNewName = prevUsedRenameMap.lookupNewName(a.oldName) --> Line_9 $$ if (a.isLocal || (!externNames.contains(a.oldName) && prevNewName.startsWith(prefix))) [FD]
+Line_9 $$ if (a.isLocal || (!externNames.contains(a.oldName) && prevNewName.startsWith(prefix))) --> Line_10 $$ reservedNames.add(prevNewName) [CD]
+Line_5 $$ String prevNewName = prevUsedRenameMap.lookupNewName(a.oldName) --> Line_10 $$ reservedNames.add(prevNewName) [FD]
+Line_9 $$ if (a.isLocal || (!externNames.contains(a.oldName) && prevNewName.startsWith(prefix))) --> Line_11 $$ finalizeNameAssignment(a, prevNewName) [CD]
+Line_4 $$ for (Assignment a : varsToRename) --> Line_11 $$ finalizeNameAssignment(a, prevNewName) [FD]
+Line_5 $$ String prevNewName = prevUsedRenameMap.lookupNewName(a.oldName) --> Line_11 $$ finalizeNameAssignment(a, prevNewName) [FD]

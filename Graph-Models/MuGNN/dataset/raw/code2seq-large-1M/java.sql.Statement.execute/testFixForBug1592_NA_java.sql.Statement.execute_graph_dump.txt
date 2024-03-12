@@ -1,0 +1,6 @@
+Line_2 $$ public void testFixForBug1592() throws Exception --> Line_3 $$ if (versionMeetsMinimum(4, 1)) [CD]
+Line_3 $$ if (versionMeetsMinimum(4, 1)) --> Line_4 $$ Statement updatableStmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE) [CD]
+Line_4 $$ Statement updatableStmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE) --> Line_6 $$ updatableStmt.execute("SELECT * FROM mysql.user") [FD]
+Line_4 $$ Statement updatableStmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE) --> Line_7 $$ this.rs = updatableStmt.getResultSet() [FD]
+Line_9 $$ String message = sqlEx.getMessage() --> Line_10 $$ if ((message != null) && (message.indexOf("denied") != -1)) [FD]
+Line_10 $$ if ((message != null) && (message.indexOf("denied") != -1)) --> Line_11 $$ System.err.println("WARN: Can't complete testFixForBug1592(), access to" + " 'mysql' database not allowed") [CD]

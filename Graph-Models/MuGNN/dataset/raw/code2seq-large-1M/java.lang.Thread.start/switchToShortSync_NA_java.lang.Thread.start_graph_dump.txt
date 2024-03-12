@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<Void> switchToShortSync() --> Line_3 $$ final CompletableFuture<Void> syncDoneF = new CompletableFuture() [CD]
+Line_2 $$ public CompletableFuture<Void> switchToShortSync() --> Line_4 $$ if (!syncDone && config.isSyncEnabled()) [CD]
+Line_4 $$ if (!syncDone && config.isSyncEnabled()) --> Line_5 $$ new Thread(() -> [CD]
+Line_3 $$ final CompletableFuture<Void> syncDoneF = new CompletableFuture() --> Line_10 $$ syncDoneF.completeExceptionally(e) [FD]
+Line_3 $$ final CompletableFuture<Void> syncDoneF = new CompletableFuture() --> Line_14 $$ syncDoneF.complete(null) [FD]
+Line_4 $$ if (!syncDone && config.isSyncEnabled()) --> Line_17 $$ syncDoneF.complete(null) [CD]
+Line_3 $$ final CompletableFuture<Void> syncDoneF = new CompletableFuture() --> Line_17 $$ syncDoneF.complete(null) [FD]
+Line_2 $$ public CompletableFuture<Void> switchToShortSync() --> Line_19 $$ return syncDoneF [CD]

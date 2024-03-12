@@ -1,0 +1,6 @@
+Line_2 $$ public X500Principal getTrustedCaSubjectDn() --> Line_3 $$ final JsonObject trustedCa = getProperty(TenantConstants.FIELD_PAYLOAD_TRUSTED_CA) [CD]
+Line_2 $$ public X500Principal getTrustedCaSubjectDn() --> Line_4 $$ if (trustedCa == null) [CD]
+Line_3 $$ final JsonObject trustedCa = getProperty(TenantConstants.FIELD_PAYLOAD_TRUSTED_CA) --> Line_4 $$ if (trustedCa == null) [FD]
+Line_4 $$ if (trustedCa == null) --> Line_5 $$ return null [CD]
+Line_4 $$ if (trustedCa == null) --> Line_7 $$ return Optional.ofNullable((String) getProperty(trustedCa, TenantConstants.FIELD_PAYLOAD_SUBJECT_DN)).map( dn -> new X500Principal(dn)).orElse(null) [CD]
+Line_3 $$ final JsonObject trustedCa = getProperty(TenantConstants.FIELD_PAYLOAD_TRUSTED_CA) --> Line_7 $$ return Optional.ofNullable((String) getProperty(trustedCa, TenantConstants.FIELD_PAYLOAD_SUBJECT_DN)).map( dn -> new X500Principal(dn)).orElse(null) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static Automaton patterns(Collection<String> patterns) --> Line_3 $$ if (patterns.isEmpty()) [CD]
+Line_2 $$ public static Automaton patterns(Collection<String> patterns) --> Line_3 $$ if (patterns.isEmpty()) [FD]
+Line_3 $$ if (patterns.isEmpty()) --> Line_4 $$ return EMPTY [CD]
+Line_2 $$ public static Automaton patterns(Collection<String> patterns) --> Line_6 $$ Automaton automaton = null [CD]
+Line_7 $$ for (String pattern : patterns) --> Line_8 $$ final Automaton patternAutomaton = minimize(pattern(pattern), DEFAULT_MAX_DETERMINIZED_STATES) [FD]
+Line_6 $$ Automaton automaton = null --> Line_9 $$ automaton = automaton == null ? patternAutomaton : unionAndMinimize(Arrays.asList(automaton, patternAutomaton)) [FD]
+Line_8 $$ final Automaton patternAutomaton = minimize(pattern(pattern), DEFAULT_MAX_DETERMINIZED_STATES) --> Line_9 $$ automaton = automaton == null ? patternAutomaton : unionAndMinimize(Arrays.asList(automaton, patternAutomaton)) [FD]
+Line_2 $$ public static Automaton patterns(Collection<String> patterns) --> Line_11 $$ return automaton [CD]

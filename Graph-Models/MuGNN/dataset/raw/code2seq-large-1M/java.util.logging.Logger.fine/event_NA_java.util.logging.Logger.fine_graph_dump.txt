@@ -1,0 +1,8 @@
+Line_2 $$ public void event(@RestrictTo(EventTypes.SERVER_READY_NAME) Event event) --> Line_3 $$ if (event.is(EventTypes.SERVER_READY)) [CD]
+Line_2 $$ public void event(@RestrictTo(EventTypes.SERVER_READY_NAME) Event event) --> Line_3 $$ if (event.is(EventTypes.SERVER_READY)) [FD]
+Line_3 $$ if (event.is(EventTypes.SERVER_READY)) --> Line_4 $$ if (retryableJobsInfo.size() > 0) [CD]
+Line_4 $$ if (retryableJobsInfo.size() > 0) --> Line_5 $$ Runnable runnable = new Runnable() [CD]
+Line_5 $$ Runnable runnable = new Runnable() --> Line_7 $$ logger.fine("Restarting retryable jobs") [CD]
+Line_8 $$ for (CheckpointFilename cf : retryableJobsInfo.values()) --> Line_9 $$ reexecuteJobFromCheckpoint(cf) [FD]
+Line_4 $$ if (retryableJobsInfo.size() > 0) --> Line_13 $$ (new Thread(runnable)).start() [CD]
+Line_4 $$ if (retryableJobsInfo.size() > 0) --> Line_15 $$ logger.fine("No retryable job found") [CD]

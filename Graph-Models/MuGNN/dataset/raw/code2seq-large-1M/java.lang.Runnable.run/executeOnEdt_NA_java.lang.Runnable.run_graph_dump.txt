@@ -1,0 +1,8 @@
+Line_2 $$ public static void executeOnEdt(boolean synchronous, @Nonnull Runnable task) --> Line_3 $$ if (synchronous) [CD]
+Line_3 $$ if (synchronous) --> Line_4 $$ if (ApplicationManager.getApplication().isDispatchThread()) [CD]
+Line_4 $$ if (ApplicationManager.getApplication().isDispatchThread()) --> Line_5 $$ task.run() [CD]
+Line_2 $$ public static void executeOnEdt(boolean synchronous, @Nonnull Runnable task) --> Line_5 $$ task.run() [FD]
+Line_4 $$ if (ApplicationManager.getApplication().isDispatchThread()) --> Line_7 $$ UIUtil.invokeAndWaitIfNeeded(task) [CD]
+Line_2 $$ public static void executeOnEdt(boolean synchronous, @Nonnull Runnable task) --> Line_7 $$ UIUtil.invokeAndWaitIfNeeded(task) [FD]
+Line_3 $$ if (synchronous) --> Line_10 $$ UIUtil.invokeLaterIfNeeded(task) [CD]
+Line_2 $$ public static void executeOnEdt(boolean synchronous, @Nonnull Runnable task) --> Line_10 $$ UIUtil.invokeLaterIfNeeded(task) [FD]

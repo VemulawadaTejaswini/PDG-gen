@@ -1,0 +1,8 @@
+Line_2 $$ public boolean tryAcquireAndRun(RunnableEx taskAfterAcquire) throws Exception --> Line_3 $$ final Semaphore concSem = maxConcurrentSemaphore [CD]
+Line_2 $$ public boolean tryAcquireAndRun(RunnableEx taskAfterAcquire) throws Exception --> Line_4 $$ boolean gotConcurrentPermit = concSem.tryAcquire() [CD]
+Line_3 $$ final Semaphore concSem = maxConcurrentSemaphore --> Line_4 $$ boolean gotConcurrentPermit = concSem.tryAcquire() [FD]
+Line_2 $$ public boolean tryAcquireAndRun(RunnableEx taskAfterAcquire) throws Exception --> Line_5 $$ if (gotConcurrentPermit) [CD]
+Line_2 $$ public boolean tryAcquireAndRun(RunnableEx taskAfterAcquire) throws Exception --> Line_8 $$ if (!acquireActivePermit(taskAfterAcquire)) [FD]
+Line_3 $$ final Semaphore concSem = maxConcurrentSemaphore --> Line_12 $$ concSem.release() [FD]
+Line_5 $$ if (gotConcurrentPermit) --> Line_16 $$ log.debug("failed to acquire [concurrent] permit") [CD]
+Line_2 $$ public boolean tryAcquireAndRun(RunnableEx taskAfterAcquire) throws Exception --> Line_18 $$ return gotConcurrentPermit [CD]

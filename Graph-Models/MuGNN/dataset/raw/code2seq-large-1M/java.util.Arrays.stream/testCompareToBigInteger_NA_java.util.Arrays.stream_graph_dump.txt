@@ -1,0 +1,7 @@
+Line_2 $$ public void testCompareToBigInteger() --> Line_3 $$ withRandom( r -> [CD]
+Line_4 $$ long[] input = LongStreamEx.of(r, 1000).toArray() --> Line_5 $$ Supplier<LongStream> supplier = () -> Arrays.stream(input) [FD]
+Line_5 $$ Supplier<LongStream> supplier = () -> Arrays.stream(input) --> Line_6 $$ double expected = supplier.get().boxed().collect(getBigIntegerAverager()).getAsDouble() [FD]
+Line_6 $$ double expected = supplier.get().boxed().collect(getBigIntegerAverager()).getAsDouble() --> Line_7 $$ assertEquals(expected, supplier.get().collect(AverageLong::<>new, AverageLong::<>accept, AverageLong::<>combine).result().getAsDouble(), Math.abs(expected) / 1e14) [FD]
+Line_5 $$ Supplier<LongStream> supplier = () -> Arrays.stream(input) --> Line_7 $$ assertEquals(expected, supplier.get().collect(AverageLong::<>new, AverageLong::<>accept, AverageLong::<>combine).result().getAsDouble(), Math.abs(expected) / 1e14) [FD]
+Line_6 $$ double expected = supplier.get().boxed().collect(getBigIntegerAverager()).getAsDouble() --> Line_8 $$ assertEquals(expected, supplier.get().parallel().collect(AverageLong::<>new, AverageLong::<>accept, AverageLong::<>combine).result().getAsDouble(), Math.abs(expected) / 1e14) [FD]
+Line_5 $$ Supplier<LongStream> supplier = () -> Arrays.stream(input) --> Line_8 $$ assertEquals(expected, supplier.get().parallel().collect(AverageLong::<>new, AverageLong::<>accept, AverageLong::<>combine).result().getAsDouble(), Math.abs(expected) / 1e14) [FD]

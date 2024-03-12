@@ -1,0 +1,5 @@
+Line_2 $$ public void unlockAllSilently() --> Line_3 $$ Collection<Vault> vaultsToUnlock = vaults.stream().filter(this::<>shouldUnlockAfterStartup).collect(Collectors.toList()) [CD]
+Line_2 $$ public void unlockAllSilently() --> Line_4 $$ if (keychainAccess.isPresent() && !vaultsToUnlock.isEmpty()) [CD]
+Line_3 $$ Collection<Vault> vaultsToUnlock = vaults.stream().filter(this::<>shouldUnlockAfterStartup).collect(Collectors.toList()) --> Line_4 $$ if (keychainAccess.isPresent() && !vaultsToUnlock.isEmpty()) [FD]
+Line_4 $$ if (keychainAccess.isPresent() && !vaultsToUnlock.isEmpty()) --> Line_5 $$ executor.submit(() -> unlockAll(vaultsToUnlock)) [CD]
+Line_3 $$ Collection<Vault> vaultsToUnlock = vaults.stream().filter(this::<>shouldUnlockAfterStartup).collect(Collectors.toList()) --> Line_5 $$ executor.submit(() -> unlockAll(vaultsToUnlock)) [FD]

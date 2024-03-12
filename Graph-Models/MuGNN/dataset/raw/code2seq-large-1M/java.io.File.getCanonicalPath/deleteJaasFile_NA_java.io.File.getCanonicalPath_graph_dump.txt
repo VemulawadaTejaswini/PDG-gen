@@ -1,0 +1,6 @@
+Line_4 $$ String tmpDir = new File(conf.getStringValue(StreamingConfig.STREAMING_TEMPLATE_DIRECTORY)).getCanonicalPath() --> Line_6 $$ if (!file.getPath().startsWith(tmpDir)) [FD]
+Line_5 $$ File file = new File(jaasPath).getCanonicalFile() --> Line_6 $$ if (!file.getPath().startsWith(tmpDir)) [FD]
+Line_6 $$ if (!file.getPath().startsWith(tmpDir)) --> Line_7 $$ LOG.error("Invalid jaas path, not in config tmp path.") [CD]
+Line_5 $$ File file = new File(jaasPath).getCanonicalFile() --> Line_10 $$ if (file.isFile()) [FD]
+Line_10 $$ if (file.isFile()) --> Line_11 $$ FileUtils.forceDelete(new File(jaasPath)) [CD]
+Line_17 $$ StreamingException exception = new StreamingException(ErrorCode.SECURITY_INNER_ERROR) --> Line_18 $$ LOG.error("Failed to get canonical pathname for cannot be accessed.", exception) [FD]

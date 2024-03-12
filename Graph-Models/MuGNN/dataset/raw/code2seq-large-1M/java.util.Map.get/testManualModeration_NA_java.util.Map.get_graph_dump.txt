@@ -1,0 +1,5 @@
+Line_2 $$ public void testManualModeration() throws Exception --> Line_3 $$ Map uploadResult = cloudinary.uploader().upload(SRC_TEST_IMAGE, ObjectUtils.asMap("moderation", "manual", "tags", UPLOAD_TAGS)) [CD]
+Line_2 $$ public void testManualModeration() throws Exception --> Line_4 $$ Map apiResult = api.update((String) uploadResult.get("public_id"), ObjectUtils.asMap("moderation_status", "approved", "tags", UPLOAD_TAGS)) [CD]
+Line_3 $$ Map uploadResult = cloudinary.uploader().upload(SRC_TEST_IMAGE, ObjectUtils.asMap("moderation", "manual", "tags", UPLOAD_TAGS)) --> Line_4 $$ Map apiResult = api.update((String) uploadResult.get("public_id"), ObjectUtils.asMap("moderation_status", "approved", "tags", UPLOAD_TAGS)) [FD]
+Line_2 $$ public void testManualModeration() throws Exception --> Line_5 $$ assertEquals("approved", ((Map) ((List<Map>) apiResult.get("moderation")).get(0)).get("status")) [CD]
+Line_4 $$ Map apiResult = api.update((String) uploadResult.get("public_id"), ObjectUtils.asMap("moderation_status", "approved", "tags", UPLOAD_TAGS)) --> Line_5 $$ assertEquals("approved", ((Map) ((List<Map>) apiResult.get("moderation")).get(0)).get("status")) [FD]

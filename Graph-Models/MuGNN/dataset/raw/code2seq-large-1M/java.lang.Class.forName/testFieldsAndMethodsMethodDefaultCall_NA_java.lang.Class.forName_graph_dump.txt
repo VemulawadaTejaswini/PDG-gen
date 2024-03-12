@@ -1,0 +1,4 @@
+Line_2 $$ public void testFieldsAndMethodsMethodDefaultCall() throws Exception --> Line_3 $$ Object instance = new ByteBuddy(ClassFileVersion.JAVA_V8).subclass(Object.class).implement(Class.forName(DEFAULT_METHOD_INTERFACE)).implement(Class.forName(CONFLICTING_DEFAULT_METHOD_INTERFACE)).method(named("foo")).intercept(DefaultMethodCall.prioritize(Class.forName(DEFAULT_METHOD_INTERFACE))).make().load(getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testFieldsAndMethodsMethodDefaultCall() throws Exception --> Line_4 $$ Method method = instance.getClass().getMethod("foo") [CD]
+Line_2 $$ public void testFieldsAndMethodsMethodDefaultCall() throws Exception --> Line_5 $$ assertThat(method.invoke(instance), is((Object) "foo")) [CD]
+Line_4 $$ Method method = instance.getClass().getMethod("foo") --> Line_5 $$ assertThat(method.invoke(instance), is((Object) "foo")) [FD]

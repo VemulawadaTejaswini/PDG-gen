@@ -1,0 +1,7 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_5 $$ DataSet<Tuple2<Long, Long>> input = env.fromElements(new Tuple2<Long, Long>(0L, 0L)) [FD]
+Line_6 $$ Configuration cfg = new Configuration() --> Line_7 $$ cfg.setString(Optimizer.HINT_SHIP_STRATEGY_FIRST_INPUT, Optimizer.HINT_SHIP_STRATEGY_REPARTITION_HASH) [FD]
+Line_6 $$ Configuration cfg = new Configuration() --> Line_8 $$ cfg.setString(Optimizer.HINT_SHIP_STRATEGY_SECOND_INPUT, Optimizer.HINT_SHIP_STRATEGY_REPARTITION_RANGE) [FD]
+Line_6 $$ Configuration cfg = new Configuration() --> Line_9 $$ input.join(input).where(0).equalTo(0).withParameters(cfg).output(new DiscardingOutputFormat<Tuple2<Tuple2<Long, Long>, Tuple2<Long, Long>>>()) [FD]
+Line_5 $$ DataSet<Tuple2<Long, Long>> input = env.fromElements(new Tuple2<Long, Long>(0L, 0L)) --> Line_9 $$ input.join(input).where(0).equalTo(0).withParameters(cfg).output(new DiscardingOutputFormat<Tuple2<Tuple2<Long, Long>, Tuple2<Long, Long>>>()) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_10 $$ Plan p = env.createProgramPlan() [FD]
+Line_10 $$ Plan p = env.createProgramPlan() --> Line_12 $$ compileNoStats(p) [FD]

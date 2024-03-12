@@ -1,0 +1,7 @@
+Line_2 $$ private static ListeningScheduledExecutorService defaultExecutorService() --> Line_3 $$ final int clientCount = clientCounter.incrementAndGet() [CD]
+Line_2 $$ private static ListeningScheduledExecutorService defaultExecutorService() --> Line_4 $$ final ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("helios-client-" + clientCount + "-thread-%d").build() [CD]
+Line_2 $$ private static ListeningScheduledExecutorService defaultExecutorService() --> Line_5 $$ final ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(4, threadFactory) [CD]
+Line_2 $$ private static ListeningScheduledExecutorService defaultExecutorService() --> Line_6 $$ final ScheduledExecutorService exitingExecutor = MoreExecutors.getExitingScheduledExecutorService(stpe, 0, SECONDS) [CD]
+Line_5 $$ final ScheduledThreadPoolExecutor stpe = new ScheduledThreadPoolExecutor(4, threadFactory) --> Line_6 $$ final ScheduledExecutorService exitingExecutor = MoreExecutors.getExitingScheduledExecutorService(stpe, 0, SECONDS) [FD]
+Line_2 $$ private static ListeningScheduledExecutorService defaultExecutorService() --> Line_7 $$ return MoreExecutors.listeningDecorator(exitingExecutor) [CD]
+Line_6 $$ final ScheduledExecutorService exitingExecutor = MoreExecutors.getExitingScheduledExecutorService(stpe, 0, SECONDS) --> Line_7 $$ return MoreExecutors.listeningDecorator(exitingExecutor) [FD]

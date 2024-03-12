@@ -1,0 +1,8 @@
+Line_2 $$ public void testMessagesAreRetriedOnRetriableFailure() throws IOException --> Line_3 $$ final Publisher publisher = mockPublisher.orElseThrow(IllegalStateException::<>new) [CD]
+Line_2 $$ public void testMessagesAreRetriedOnRetriableFailure() throws IOException --> Line_4 $$ when(publisher.publish(any(PubsubMessage.class))).thenReturn(failedFuture(new ApiException("simulated transient failure", new IOException(), GrpcStatusCode.of(Status.Code.INTERNAL), true))).thenAnswer( invocationOnMock -> completedFuture(String.valueOf(messageIdCounter++))) [CD]
+Line_3 $$ final Publisher publisher = mockPublisher.orElseThrow(IllegalStateException::<>new) --> Line_4 $$ when(publisher.publish(any(PubsubMessage.class))).thenReturn(failedFuture(new ApiException("simulated transient failure", new IOException(), GrpcStatusCode.of(Status.Code.INTERNAL), true))).thenAnswer( invocationOnMock -> completedFuture(String.valueOf(messageIdCounter++))) [FD]
+Line_2 $$ public void testMessagesAreRetriedOnRetriableFailure() throws IOException --> Line_5 $$ processSingleMessage() [CD]
+Line_2 $$ public void testMessagesAreRetriedOnRetriableFailure() throws IOException --> Line_6 $$ verify(publisher, times(2)).publish(any(PubsubMessage.class)) [CD]
+Line_3 $$ final Publisher publisher = mockPublisher.orElseThrow(IllegalStateException::<>new) --> Line_6 $$ verify(publisher, times(2)).publish(any(PubsubMessage.class)) [FD]
+Line_2 $$ public void testMessagesAreRetriedOnRetriableFailure() throws IOException --> Line_7 $$ verifyNoMoreInteractions(publisher) [CD]
+Line_3 $$ final Publisher publisher = mockPublisher.orElseThrow(IllegalStateException::<>new) --> Line_7 $$ verifyNoMoreInteractions(publisher) [FD]

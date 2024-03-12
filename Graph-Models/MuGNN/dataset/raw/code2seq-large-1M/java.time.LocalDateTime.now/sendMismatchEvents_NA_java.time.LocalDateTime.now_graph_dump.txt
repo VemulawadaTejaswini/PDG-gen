@@ -1,0 +1,3 @@
+Line_2 $$ private void sendMismatchEvents(SpotCheckReport<ContentKey> report) --> Line_3 $$ for (SpotCheckObservation<ContentKey> observation : report.getObservations().values()) [FD]
+Line_3 $$ for (SpotCheckObservation<ContentKey> observation : report.getObservations().values()) --> Line_4 $$ for (SpotCheckMismatch mismatch : observation.getMismatches().values()) [FD]
+Line_3 $$ for (SpotCheckObservation<ContentKey> observation : report.getObservations().values()) --> Line_5 $$ eventBus.post(new SpotcheckMismatchEvent(LocalDateTime.now(), observation.getKey(), mismatch)) [FD]

@@ -1,0 +1,8 @@
+Line_3 $$ if (!ref.isMemberReference() || "<init>".equals(ref.name())) --> Line_4 $$ return ref [CD]
+Line_6 $$ Class<?> clazz --> Line_8 $$ clazz = classpath.loadClass(ref.internalName().replace('/', '.')) [FD]
+Line_6 $$ Class<?> clazz --> Line_12 $$ Class<?> owner = findDeclaringClass(clazz, ref) [FD]
+Line_12 $$ Class<?> owner = findDeclaringClass(clazz, ref) --> Line_13 $$ if (owner == clazz) [FD]
+Line_6 $$ Class<?> clazz --> Line_13 $$ if (owner == clazz) [FD]
+Line_13 $$ if (owner == clazz) --> Line_14 $$ return ref [CD]
+Line_12 $$ Class<?> owner = findDeclaringClass(clazz, ref) --> Line_16 $$ String parent = checkNotNull(owner, "Can't resolve: %s", ref).getName().replace('.', '/') [FD]
+Line_16 $$ String parent = checkNotNull(owner, "Can't resolve: %s", ref).getName().replace('.', '/') --> Line_17 $$ return KeepReference.memberReference(parent, ref.name(), ref.desc()) [FD]

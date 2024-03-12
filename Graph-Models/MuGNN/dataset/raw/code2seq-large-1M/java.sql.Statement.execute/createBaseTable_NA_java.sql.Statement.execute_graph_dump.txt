@@ -1,0 +1,8 @@
+Line_2 $$ private void createBaseTable(String tableName, Integer saltBuckets, boolean hasStringTenantId) throws SQLException --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_2 $$ private void createBaseTable(String tableName, Integer saltBuckets, boolean hasStringTenantId) throws SQLException --> Line_4 $$ String tenantIdType = hasStringTenantId ? "VARCHAR" : "BIGINT" [CD]
+Line_2 $$ private void createBaseTable(String tableName, Integer saltBuckets, boolean hasStringTenantId) throws SQLException --> Line_5 $$ String ddl = "CREATE TABLE " + tableName + " (t_id " + tenantIdType + " NOT NULL,\n" + "k1 INTEGER NOT NULL,\n" + "k2 INTEGER NOT NULL,\n" + "v1 VARCHAR,\n" + "CONSTRAINT pk PRIMARY KEY (t_id, k1, k2))\n" + "multi_tenant=true" + (saltBuckets == null ? "" : (",salt_buckets=" + saltBuckets)) [CD]
+Line_2 $$ private void createBaseTable(String tableName, Integer saltBuckets, boolean hasStringTenantId) throws SQLException --> Line_6 $$ conn.createStatement().execute(ddl) [CD]
+Line_5 $$ String ddl = "CREATE TABLE " + tableName + " (t_id " + tenantIdType + " NOT NULL,\n" + "k1 INTEGER NOT NULL,\n" + "k2 INTEGER NOT NULL,\n" + "v1 VARCHAR,\n" + "CONSTRAINT pk PRIMARY KEY (t_id, k1, k2))\n" + "multi_tenant=true" + (saltBuckets == null ? "" : (",salt_buckets=" + saltBuckets)) --> Line_6 $$ conn.createStatement().execute(ddl) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_6 $$ conn.createStatement().execute(ddl) [FD]
+Line_2 $$ private void createBaseTable(String tableName, Integer saltBuckets, boolean hasStringTenantId) throws SQLException --> Line_7 $$ conn.close() [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_7 $$ conn.close() [FD]

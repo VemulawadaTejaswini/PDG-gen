@@ -1,0 +1,5 @@
+Line_2 $$ public void transition(TaskAttemptImpl taskAttempt, TaskAttemptEvent event) --> Line_3 $$ taskAttempt.eventHandler.handle(new SpeculatorEvent(taskAttempt.getID().getTaskId(), +1)) [FD]
+Line_2 $$ public void transition(TaskAttemptImpl taskAttempt, TaskAttemptEvent event) --> Line_3 $$ taskAttempt.eventHandler.handle(new SpeculatorEvent(taskAttempt.getID().getTaskId(), +1)) [CD]
+Line_2 $$ public void transition(TaskAttemptImpl taskAttempt, TaskAttemptEvent event) --> Line_4 $$ if (rescheduled) [CD]
+Line_4 $$ if (rescheduled) --> Line_5 $$ taskAttempt.eventHandler.handle(ContainerRequestEvent.createContainerRequestEventForFailedContainer(taskAttempt.attemptId, taskAttempt.resourceCapability)) [CD]
+Line_4 $$ if (rescheduled) --> Line_7 $$ taskAttempt.eventHandler.handle(new ContainerRequestEvent(taskAttempt.attemptId, taskAttempt.resourceCapability, taskAttempt.dataLocalHosts.toArray(new String[taskAttempt.dataLocalHosts.size()]), taskAttempt.dataLocalRacks.toArray(new String[taskAttempt.dataLocalRacks.size()]))) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ static ActivityId getCurrent() --> Line_3 $$ long uniqueThreadId = Thread.currentThread().getId() [CD]
+Line_2 $$ static ActivityId getCurrent() --> Line_4 $$ if (!ActivityIdTlsMap.containsKey(uniqueThreadId)) [CD]
+Line_3 $$ long uniqueThreadId = Thread.currentThread().getId() --> Line_4 $$ if (!ActivityIdTlsMap.containsKey(uniqueThreadId)) [FD]
+Line_4 $$ if (!ActivityIdTlsMap.containsKey(uniqueThreadId)) --> Line_5 $$ ActivityIdTlsMap.put(uniqueThreadId, new ActivityId()) [CD]
+Line_3 $$ long uniqueThreadId = Thread.currentThread().getId() --> Line_5 $$ ActivityIdTlsMap.put(uniqueThreadId, new ActivityId()) [FD]
+Line_2 $$ static ActivityId getCurrent() --> Line_7 $$ return ActivityIdTlsMap.get(uniqueThreadId) [CD]
+Line_3 $$ long uniqueThreadId = Thread.currentThread().getId() --> Line_7 $$ return ActivityIdTlsMap.get(uniqueThreadId) [FD]

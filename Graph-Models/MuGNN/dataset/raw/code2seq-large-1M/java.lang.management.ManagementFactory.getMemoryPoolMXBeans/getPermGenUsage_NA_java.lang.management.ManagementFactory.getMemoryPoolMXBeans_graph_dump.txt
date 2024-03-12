@@ -1,0 +1,6 @@
+Line_3 $$ for (MemoryPoolMXBean item : ManagementFactory.getMemoryPoolMXBeans()) --> Line_4 $$ if (item.getName().contains("Perm Gen")) [FD]
+Line_4 $$ if (item.getName().contains("Perm Gen")) --> Line_5 $$ MemoryUsage usage = item.getUsage() [CD]
+Line_3 $$ for (MemoryPoolMXBean item : ManagementFactory.getMemoryPoolMXBeans()) --> Line_5 $$ MemoryUsage usage = item.getUsage() [FD]
+Line_4 $$ if (item.getName().contains("Perm Gen")) --> Line_6 $$ return usage.getUsed() / (double) usage.getCommitted() [CD]
+Line_5 $$ MemoryUsage usage = item.getUsage() --> Line_6 $$ return usage.getUsed() / (double) usage.getCommitted() [FD]
+Line_2 $$ private double getPermGenUsage() --> Line_9 $$ return 0 [CD]

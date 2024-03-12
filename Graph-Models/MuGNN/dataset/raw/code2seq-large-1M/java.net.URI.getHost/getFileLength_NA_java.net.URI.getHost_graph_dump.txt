@@ -1,0 +1,6 @@
+Line_2 $$ private static long getFileLength(URI uri, String s3AccessKey, String s3Secret) throws IOException --> Line_3 $$ BasicAWSCredentials credentials = new BasicAWSCredentials(s3AccessKey, s3Secret) [CD]
+Line_2 $$ private static long getFileLength(URI uri, String s3AccessKey, String s3Secret) throws IOException --> Line_4 $$ AmazonS3Client s3Client = new AmazonS3Client(credentials) [CD]
+Line_4 $$ AmazonS3Client s3Client = new AmazonS3Client(credentials) --> Line_6 $$ ObjectMetadata metadata = s3Client.getObjectMetadata(uri.getHost(), uri.getPath().substring(1)) [FD]
+Line_2 $$ private static long getFileLength(URI uri, String s3AccessKey, String s3Secret) throws IOException --> Line_6 $$ ObjectMetadata metadata = s3Client.getObjectMetadata(uri.getHost(), uri.getPath().substring(1)) [FD]
+Line_6 $$ ObjectMetadata metadata = s3Client.getObjectMetadata(uri.getHost(), uri.getPath().substring(1)) --> Line_7 $$ return metadata.getContentLength() [FD]
+Line_4 $$ AmazonS3Client s3Client = new AmazonS3Client(credentials) --> Line_9 $$ s3Client.shutdown() [FD]

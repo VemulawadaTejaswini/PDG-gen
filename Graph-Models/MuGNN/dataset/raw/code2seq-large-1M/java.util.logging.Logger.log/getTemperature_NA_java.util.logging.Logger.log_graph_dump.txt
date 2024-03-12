@@ -1,0 +1,8 @@
+Line_2 $$ public double getTemperature() --> Line_3 $$ double retVal = 0 [CD]
+Line_2 $$ public double getTemperature() --> Line_4 $$ byte[] tempBuffer = new byte[2] [CD]
+Line_4 $$ byte[] tempBuffer = new byte[2] --> Line_6 $$ dev.read(tempBuffer, 0, 2) [FD]
+Line_7 $$ int msb = (tempBuffer[0] < 0) ? 256 + tempBuffer[0] : tempBuffer[0] --> Line_9 $$ msb = msb << 4 [FD]
+Line_8 $$ int lsb = (tempBuffer[1] < 0) ? 256 + tempBuffer[1] : tempBuffer[1] --> Line_10 $$ lsb = lsb >> 4 [FD]
+Line_3 $$ double retVal = 0 --> Line_12 $$ retVal = count * 0.0625 [FD]
+Line_11 $$ int count = msb | lsb --> Line_12 $$ retVal = count * 0.0625 [FD]
+Line_2 $$ public double getTemperature() --> Line_16 $$ return retVal [CD]

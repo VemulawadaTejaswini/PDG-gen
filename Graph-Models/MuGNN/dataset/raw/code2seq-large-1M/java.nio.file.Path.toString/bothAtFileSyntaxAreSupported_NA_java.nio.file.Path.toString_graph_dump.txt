@@ -1,0 +1,8 @@
+Line_2 $$ public void bothAtFileSyntaxAreSupported() throws Exception --> Line_3 $$ Path argsfile = tmp.newFile("argsfile") [CD]
+Line_2 $$ public void bothAtFileSyntaxAreSupported() throws Exception --> Line_4 $$ Files.write(argsfile, ImmutableList.of("arg2", "arg3")) [CD]
+Line_3 $$ Path argsfile = tmp.newFile("argsfile") --> Line_4 $$ Files.write(argsfile, ImmutableList.of("arg2", "arg3")) [FD]
+Line_2 $$ public void bothAtFileSyntaxAreSupported() throws Exception --> Line_5 $$ Path argsfile2 = tmp.newFile("argsfile2") [CD]
+Line_2 $$ public void bothAtFileSyntaxAreSupported() throws Exception --> Line_6 $$ Files.write(argsfile2, ImmutableList.of("arg4", "arg5")) [CD]
+Line_5 $$ Path argsfile2 = tmp.newFile("argsfile2") --> Line_6 $$ Files.write(argsfile2, ImmutableList.of("arg4", "arg5")) [FD]
+Line_2 $$ public void bothAtFileSyntaxAreSupported() throws Exception --> Line_7 $$ assertThat(BuckArgsMethods.expandAtFiles(ImmutableList.of("arg1", "--flagfile", argsfile.toString(), "@argsfile2"), ImmutableMap.of(RelativeCellName.ROOT_CELL_NAME, tmp.getRoot())), Matchers.contains("arg1", "arg2", "arg3", "arg4", "arg5")) [CD]
+Line_3 $$ Path argsfile = tmp.newFile("argsfile") --> Line_7 $$ assertThat(BuckArgsMethods.expandAtFiles(ImmutableList.of("arg1", "--flagfile", argsfile.toString(), "@argsfile2"), ImmutableMap.of(RelativeCellName.ROOT_CELL_NAME, tmp.getRoot())), Matchers.contains("arg1", "arg2", "arg3", "arg4", "arg5")) [FD]

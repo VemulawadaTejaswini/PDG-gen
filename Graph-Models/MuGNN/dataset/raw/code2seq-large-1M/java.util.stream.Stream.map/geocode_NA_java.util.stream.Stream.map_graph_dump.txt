@@ -1,0 +1,7 @@
+Line_2 $$ public Stream<GeoCodeResult> geocode(String address, long maxResults) --> Line_3 $$ throttler.waitForThrottle() [CD]
+Line_2 $$ public Stream<GeoCodeResult> geocode(String address, long maxResults) --> Line_4 $$ Object value = JsonUtil.loadJson(OSM_URL + Util.encodeUrlComponent(address)).findFirst().orElse(null) [FD]
+Line_2 $$ public Stream<GeoCodeResult> geocode(String address, long maxResults) --> Line_4 $$ Object value = JsonUtil.loadJson(OSM_URL + Util.encodeUrlComponent(address)).findFirst().orElse(null) [CD]
+Line_2 $$ public Stream<GeoCodeResult> geocode(String address, long maxResults) --> Line_5 $$ if (value instanceof List) [CD]
+Line_4 $$ Object value = JsonUtil.loadJson(OSM_URL + Util.encodeUrlComponent(address)).findFirst().orElse(null) --> Line_5 $$ if (value instanceof List) [FD]
+Line_5 $$ if (value instanceof List) --> Line_6 $$ return ((List<Map<String, Object>>) value).stream().limit(maxResults).map( data -> new GeoCodeResult(toDouble(data.get("lat")), toDouble(data.get("lon")), valueOf(data.get("display_name")), data)) [CD]
+Line_2 $$ public Stream<GeoCodeResult> geocode(String address, long maxResults) --> Line_6 $$ return ((List<Map<String, Object>>) value).stream().limit(maxResults).map( data -> new GeoCodeResult(toDouble(data.get("lat")), toDouble(data.get("lon")), valueOf(data.get("display_name")), data)) [FD]

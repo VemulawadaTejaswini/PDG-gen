@@ -1,0 +1,7 @@
+Line_2 $$ public void testMultipleModules() throws Exception --> Line_3 $$ AtomicInteger count = new AtomicInteger(0) [CD]
+Line_2 $$ public void testMultipleModules() throws Exception --> Line_4 $$ Service service = ServiceImpl.builder("test").withModule(new CountingModuleWithPriority(1.0, count)).withModule(new CountingModuleWithPriority(1.0, count)).build() [CD]
+Line_4 $$ Service service = ServiceImpl.builder("test").withModule(new CountingModuleWithPriority(1.0, count)).withModule(new CountingModuleWithPriority(1.0, count)).build() --> Line_5 $$ try (Service.Instance instance = service.start()) [FD]
+Line_5 $$ try (Service.Instance instance = service.start()) --> Line_6 $$ instance.getSignaller().signalShutdown() [FD]
+Line_5 $$ try (Service.Instance instance = service.start()) --> Line_7 $$ instance.waitForShutdown() [FD]
+Line_2 $$ public void testMultipleModules() throws Exception --> Line_9 $$ assertThat(count.get(), is(2)) [CD]
+Line_3 $$ AtomicInteger count = new AtomicInteger(0) --> Line_9 $$ assertThat(count.get(), is(2)) [FD]

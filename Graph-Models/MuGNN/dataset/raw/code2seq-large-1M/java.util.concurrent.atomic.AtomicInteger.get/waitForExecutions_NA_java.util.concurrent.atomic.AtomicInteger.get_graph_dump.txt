@@ -1,0 +1,5 @@
+Line_2 $$ public static void waitForExecutions(int numberOfExecutions) --> Line_3 $$ int initialCount = COUNT_OF_EXECUTIONS.get() [CD]
+Line_2 $$ public static void waitForExecutions(int numberOfExecutions) --> Line_4 $$ int countToWaitFor = initialCount + numberOfExecutions [CD]
+Line_2 $$ public static void waitForExecutions(int numberOfExecutions) --> Line_5 $$ Callable<Boolean> doneWaiting = () -> COUNT_OF_EXECUTIONS.get() >= countToWaitFor [CD]
+Line_2 $$ public static void waitForExecutions(int numberOfExecutions) --> Line_6 $$ Awaitility.await().atMost(3, TimeUnit.MINUTES).until(doneWaiting) [CD]
+Line_5 $$ Callable<Boolean> doneWaiting = () -> COUNT_OF_EXECUTIONS.get() >= countToWaitFor --> Line_6 $$ Awaitility.await().atMost(3, TimeUnit.MINUTES).until(doneWaiting) [FD]

@@ -1,0 +1,8 @@
+Line_11 $$ IgniteCache<Integer, TestObject> cache = grid(2).cache(DEFAULT_CACHE_NAME) --> Line_12 $$ for (int i = 0; i < 100; i++) cache.put(i, new TestObject()) [FD]
+Line_12 $$ for (int i = 0; i < 100; i++) cache.put(i, new TestObject()) --> Line_15 $$ for (int i = 0; i < 200; i++) cache.invoke(i, new Transform()) [FD]
+Line_11 $$ IgniteCache<Integer, TestObject> cache = grid(2).cache(DEFAULT_CACHE_NAME) --> Line_15 $$ for (int i = 0; i < 200; i++) cache.invoke(i, new Transform()) [FD]
+Line_15 $$ for (int i = 0; i < 200; i++) cache.invoke(i, new Transform()) --> Line_17 $$ for (int i = 0; i < 300; i++) keys.add(i) [FD]
+Line_12 $$ for (int i = 0; i < 100; i++) cache.put(i, new TestObject()) --> Line_17 $$ for (int i = 0; i < 300; i++) keys.add(i) [FD]
+Line_16 $$ Set<Integer> keys = new HashSet() --> Line_17 $$ for (int i = 0; i < 300; i++) keys.add(i) [FD]
+Line_11 $$ IgniteCache<Integer, TestObject> cache = grid(2).cache(DEFAULT_CACHE_NAME) --> Line_18 $$ cache.invokeAll(keys, new Transform()) [FD]
+Line_16 $$ Set<Integer> keys = new HashSet() --> Line_18 $$ cache.invokeAll(keys, new Transform()) [FD]

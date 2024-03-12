@@ -1,0 +1,8 @@
+Line_2 $$ public void testManyRequests() throws Exception --> Line_3 $$ final int numRequests = 1000 [CD]
+Line_5 $$ try (final Connection conn = newDefaultConnection()) --> Line_7 $$ try (Subscription sub = conn.subscribe("foo", "bar", new MessageHandler() [FD]
+Line_5 $$ try (final Connection conn = newDefaultConnection()) --> Line_10 $$ conn.publish(message.getReplyTo(), "hello".getBytes()) [FD]
+Line_7 $$ try (Subscription sub = conn.subscribe("foo", "bar", new MessageHandler() --> Line_10 $$ conn.publish(message.getReplyTo(), "hello".getBytes()) [FD]
+Line_5 $$ try (final Connection conn = newDefaultConnection()) --> Line_16 $$ conn.flush() [FD]
+Line_3 $$ final int numRequests = 1000 --> Line_17 $$ for (int i = 0; i < numRequests; i++) [FD]
+Line_17 $$ for (int i = 0; i < numRequests; i++) --> Line_18 $$ assertNotNull(String.format("timed out after %d msgs", i + 1), pub.request("foo", "blah".getBytes(), 5000)) [CD]
+Line_6 $$ try (final Connection pub = newDefaultConnection()) --> Line_18 $$ assertNotNull(String.format("timed out after %d msgs", i + 1), pub.request("foo", "blah".getBytes(), 5000)) [FD]

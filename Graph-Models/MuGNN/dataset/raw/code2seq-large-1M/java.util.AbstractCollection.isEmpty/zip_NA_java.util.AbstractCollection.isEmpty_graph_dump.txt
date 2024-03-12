@@ -1,0 +1,8 @@
+Line_2 $$ public <S, R> LazySeq<R> zip(LazySeq<? extends S> second, BiFunction<? super E, ? super S, ? extends R> zipper) --> Line_3 $$ if (second.isEmpty()) [FD]
+Line_2 $$ public <S, R> LazySeq<R> zip(LazySeq<? extends S> second, BiFunction<? super E, ? super S, ? extends R> zipper) --> Line_3 $$ if (second.isEmpty()) [CD]
+Line_3 $$ if (second.isEmpty()) --> Line_4 $$ return empty() [CD]
+Line_3 $$ if (second.isEmpty()) --> Line_6 $$ final R headsZipped = zipper.apply(head(), second.head()) [CD]
+Line_2 $$ public <S, R> LazySeq<R> zip(LazySeq<? extends S> second, BiFunction<? super E, ? super S, ? extends R> zipper) --> Line_6 $$ final R headsZipped = zipper.apply(head(), second.head()) [FD]
+Line_3 $$ if (second.isEmpty()) --> Line_7 $$ return cons(headsZipped, () -> tail().zip(second.tail(), zipper)) [CD]
+Line_6 $$ final R headsZipped = zipper.apply(head(), second.head()) --> Line_7 $$ return cons(headsZipped, () -> tail().zip(second.tail(), zipper)) [FD]
+Line_2 $$ public <S, R> LazySeq<R> zip(LazySeq<? extends S> second, BiFunction<? super E, ? super S, ? extends R> zipper) --> Line_7 $$ return cons(headsZipped, () -> tail().zip(second.tail(), zipper)) [FD]

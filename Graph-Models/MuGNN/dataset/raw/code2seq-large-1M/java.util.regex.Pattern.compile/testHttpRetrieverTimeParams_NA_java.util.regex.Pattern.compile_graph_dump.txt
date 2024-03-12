@@ -1,0 +1,6 @@
+Line_2 $$ public String testHttpRetrieverTimeParams(String url, int timeoutSeconds, int retries, String timeRegex, String timeFormat) --> Line_4 $$ String data = HttpRetrieverDataSourceRT.getData(url, timeoutSeconds, retries) [FD]
+Line_2 $$ public String testHttpRetrieverTimeParams(String url, int timeoutSeconds, int retries, String timeRegex, String timeFormat) --> Line_5 $$ Pattern timePattern = Pattern.compile(timeRegex) [FD]
+Line_5 $$ Pattern timePattern = Pattern.compile(timeRegex) --> Line_7 $$ long time = DataSourceUtils.getValueTime(System.currentTimeMillis(), timePattern, data, dateFormat, null) [FD]
+Line_4 $$ String data = HttpRetrieverDataSourceRT.getData(url, timeoutSeconds, retries) --> Line_7 $$ long time = DataSourceUtils.getValueTime(System.currentTimeMillis(), timePattern, data, dateFormat, null) [FD]
+Line_6 $$ DateFormat dateFormat = new SimpleDateFormat(timeFormat) --> Line_7 $$ long time = DataSourceUtils.getValueTime(System.currentTimeMillis(), timePattern, data, dateFormat, null) [FD]
+Line_7 $$ long time = DataSourceUtils.getValueTime(System.currentTimeMillis(), timePattern, data, dateFormat, null) --> Line_8 $$ return DateFunctions.getTime(time) [FD]

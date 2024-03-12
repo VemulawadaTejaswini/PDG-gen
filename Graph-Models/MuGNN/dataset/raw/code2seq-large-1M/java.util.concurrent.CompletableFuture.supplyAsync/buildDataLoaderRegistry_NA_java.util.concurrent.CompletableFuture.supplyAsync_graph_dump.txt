@@ -1,0 +1,7 @@
+Line_2 $$ private DataLoaderRegistry buildDataLoaderRegistry() --> Line_3 $$ BatchLoader<String, Object> friendsBatchLoader =  keys -> CompletableFuture.supplyAsync(() -> loadCharactersViaHTTP(keys)) [CD]
+Line_2 $$ private DataLoaderRegistry buildDataLoaderRegistry() --> Line_4 $$ DataLoader<String, Object> friendsDataLoader = new DataLoader(friendsBatchLoader) [CD]
+Line_2 $$ private DataLoaderRegistry buildDataLoaderRegistry() --> Line_5 $$ DataLoaderRegistry dataLoaderRegistry = new DataLoaderRegistry() [CD]
+Line_2 $$ private DataLoaderRegistry buildDataLoaderRegistry() --> Line_6 $$ dataLoaderRegistry.register("friends", friendsDataLoader) [CD]
+Line_5 $$ DataLoaderRegistry dataLoaderRegistry = new DataLoaderRegistry() --> Line_6 $$ dataLoaderRegistry.register("friends", friendsDataLoader) [FD]
+Line_4 $$ DataLoader<String, Object> friendsDataLoader = new DataLoader(friendsBatchLoader) --> Line_6 $$ dataLoaderRegistry.register("friends", friendsDataLoader) [FD]
+Line_2 $$ private DataLoaderRegistry buildDataLoaderRegistry() --> Line_7 $$ return dataLoaderRegistry [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public <U> DataFrame<U> transform(final RowFunction<V, U> transform) --> Line_3 $$ final DataFrame<U> transformed = new DataFrame(columns.names()) [CD]
+Line_2 $$ public <U> DataFrame<U> transform(final RowFunction<V, U> transform) --> Line_4 $$ final Iterator<Object> it = index().iterator() [CD]
+Line_2 $$ public <U> DataFrame<U> transform(final RowFunction<V, U> transform) --> Line_6 $$ for (final List<U> trans : transform.apply(row)) [FD]
+Line_5 $$ for (final List<V> row : this) --> Line_6 $$ for (final List<U> trans : transform.apply(row)) [FD]
+Line_3 $$ final DataFrame<U> transformed = new DataFrame(columns.names()) --> Line_7 $$ transformed.append(it.hasNext() ? it.next() : transformed.length(), trans) [FD]
+Line_6 $$ for (final List<U> trans : transform.apply(row)) --> Line_7 $$ transformed.append(it.hasNext() ? it.next() : transformed.length(), trans) [FD]
+Line_4 $$ final Iterator<Object> it = index().iterator() --> Line_7 $$ transformed.append(it.hasNext() ? it.next() : transformed.length(), trans) [FD]
+Line_2 $$ public <U> DataFrame<U> transform(final RowFunction<V, U> transform) --> Line_10 $$ return transformed [CD]

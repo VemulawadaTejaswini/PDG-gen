@@ -1,0 +1,8 @@
+Line_2 $$ protected LoadIndicator getLoadIndicator(int operatorId, long tps) --> Line_3 $$ if ((tps < tpsMin && lastTps != 0) || tps > tpsMax) [CD]
+Line_3 $$ if ((tps < tpsMin && lastTps != 0) || tps > tpsMax) --> Line_5 $$ if (tps < tpsMin) [CD]
+Line_2 $$ protected LoadIndicator getLoadIndicator(int operatorId, long tps) --> Line_5 $$ if (tps < tpsMin) [FD]
+Line_5 $$ if (tps < tpsMin) --> Line_6 $$ return new LoadIndicator(-1, String.format("Tuples per second %d is less than the minimum %d", tps, tpsMin)) [CD]
+Line_2 $$ protected LoadIndicator getLoadIndicator(int operatorId, long tps) --> Line_6 $$ return new LoadIndicator(-1, String.format("Tuples per second %d is less than the minimum %d", tps, tpsMin)) [FD]
+Line_5 $$ if (tps < tpsMin) --> Line_8 $$ return new LoadIndicator(1, String.format("Tuples per second %d is greater than the maximum %d", tps, tpsMax)) [CD]
+Line_2 $$ protected LoadIndicator getLoadIndicator(int operatorId, long tps) --> Line_8 $$ return new LoadIndicator(1, String.format("Tuples per second %d is greater than the maximum %d", tps, tpsMax)) [FD]
+Line_2 $$ protected LoadIndicator getLoadIndicator(int operatorId, long tps) --> Line_12 $$ return new LoadIndicator(0, null) [CD]

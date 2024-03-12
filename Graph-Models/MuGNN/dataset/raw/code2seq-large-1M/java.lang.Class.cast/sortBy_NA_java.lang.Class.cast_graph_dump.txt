@@ -1,0 +1,7 @@
+Line_2 $$ public DataFrame<V> sortBy(final Object... cols) --> Line_3 $$ final Map<Integer, SortDirection> sortCols = new LinkedHashMap() [CD]
+Line_4 $$ for (final Object col : cols) --> Line_5 $$ final String str = col instanceof String ? String.class.cast(col) : "" [FD]
+Line_3 $$ final Map<Integer, SortDirection> sortCols = new LinkedHashMap() --> Line_8 $$ sortCols.put(c, dir) [FD]
+Line_7 $$ final int c = columns.get(str.startsWith("-") ? str.substring(1) : col) --> Line_8 $$ sortCols.put(c, dir) [FD]
+Line_6 $$ final SortDirection dir = str.startsWith("-") ? SortDirection.DESCENDING : SortDirection.ASCENDING --> Line_8 $$ sortCols.put(c, dir) [FD]
+Line_2 $$ public DataFrame<V> sortBy(final Object... cols) --> Line_10 $$ return Sorting.sort(this, sortCols) [CD]
+Line_3 $$ final Map<Integer, SortDirection> sortCols = new LinkedHashMap() --> Line_10 $$ return Sorting.sort(this, sortCols) [FD]

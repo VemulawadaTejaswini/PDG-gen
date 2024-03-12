@@ -1,0 +1,8 @@
+Line_2 $$ protected String getDeploymentPath(Class<?> uiClass) --> Line_3 $$ String runPath = "/run" [CD]
+Line_2 $$ protected String getDeploymentPath(Class<?> uiClass) --> Line_4 $$ if (isPush()) [CD]
+Line_4 $$ if (isPush()) --> Line_5 $$ runPath = "/run-push" [CD]
+Line_3 $$ String runPath = "/run" --> Line_5 $$ runPath = "/run-push" [FD]
+Line_2 $$ protected String getDeploymentPath(Class<?> uiClass) --> Line_7 $$ if (UI.class.isAssignableFrom(uiClass) || UIProvider.class.isAssignableFrom(uiClass) || LegacyApplication.class.isAssignableFrom(uiClass)) [CD]
+Line_2 $$ protected String getDeploymentPath(Class<?> uiClass) --> Line_7 $$ if (UI.class.isAssignableFrom(uiClass) || UIProvider.class.isAssignableFrom(uiClass) || LegacyApplication.class.isAssignableFrom(uiClass)) [FD]
+Line_2 $$ protected String getDeploymentPath(Class<?> uiClass) --> Line_8 $$ return runPath + "/" + uiClass.getCanonicalName() [FD]
+Line_2 $$ protected String getDeploymentPath(Class<?> uiClass) --> Line_10 $$ throw new IllegalArgumentException("Unable to determine path for enclosing class " + uiClass.getCanonicalName()) [FD]

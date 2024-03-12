@@ -1,0 +1,5 @@
+Line_5 $$ PigServer pigServer = new PigServer(ctx) --> Line_6 $$ Data data = resetData(pigServer) [FD]
+Line_6 $$ Data data = resetData(pigServer) --> Line_7 $$ data.set("foo", tuple("a", 1, "b"), tuple("b", 2, "c"), tuple("c", 3, "d")) [FD]
+Line_8 $$ StringBuilder script = new StringBuilder() --> Line_9 $$ script.append("set io.sort.mb 1000;").append("DEFINE UrlDecode InvokeForString('java.net.URLDecoder.decode', 'String String');  ").append("A = LOAD 'foo' USING mock.Storage() AS (f1:chararray,f2:int,f3:chararray);").append("B = order A by f1,f2,f3 DESC;").append("STORE B INTO 'bar' USING mock.Storage();") [FD]
+Line_5 $$ PigServer pigServer = new PigServer(ctx) --> Line_10 $$ pigServer.registerScript(IOUtils.toInputStream(script)) [FD]
+Line_8 $$ StringBuilder script = new StringBuilder() --> Line_10 $$ pigServer.registerScript(IOUtils.toInputStream(script)) [FD]

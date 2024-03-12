@@ -1,0 +1,8 @@
+Line_2 $$ public Map<String, BigDecimal> getFeatureIdQtyMap(int idx) --> Line_3 $$ CartShipInfo info = this.getShipInfo(idx) [FD]
+Line_2 $$ public Map<String, BigDecimal> getFeatureIdQtyMap(int idx) --> Line_3 $$ CartShipInfo info = this.getShipInfo(idx) [CD]
+Line_2 $$ public Map<String, BigDecimal> getFeatureIdQtyMap(int idx) --> Line_4 $$ Map<String, BigDecimal> featureMap = new HashMap<String, BigDecimal>() [CD]
+Line_5 $$ for (ShoppingCartItem item : info.shipItemInfo.keySet()) --> Line_6 $$ CartShipInfo.CartShipItemInfo csii = info.shipItemInfo.get(item) [FD]
+Line_7 $$ if (csii != null && csii.quantity.compareTo(BigDecimal.ZERO) > 0) --> Line_8 $$ featureMap.putAll(item.getFeatureIdQtyMap(csii.quantity)) [CD]
+Line_4 $$ Map<String, BigDecimal> featureMap = new HashMap<String, BigDecimal>() --> Line_8 $$ featureMap.putAll(item.getFeatureIdQtyMap(csii.quantity)) [FD]
+Line_5 $$ for (ShoppingCartItem item : info.shipItemInfo.keySet()) --> Line_8 $$ featureMap.putAll(item.getFeatureIdQtyMap(csii.quantity)) [FD]
+Line_2 $$ public Map<String, BigDecimal> getFeatureIdQtyMap(int idx) --> Line_11 $$ return featureMap [CD]

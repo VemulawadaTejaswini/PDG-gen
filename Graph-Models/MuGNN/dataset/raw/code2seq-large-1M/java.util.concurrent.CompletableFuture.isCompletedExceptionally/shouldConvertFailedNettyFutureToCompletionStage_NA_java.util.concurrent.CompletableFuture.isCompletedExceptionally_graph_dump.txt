@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldConvertFailedNettyFutureToCompletionStage() throws Exception --> Line_3 $$ RuntimeException error = new RuntimeException("Hello") [CD]
+Line_2 $$ public void shouldConvertFailedNettyFutureToCompletionStage() throws Exception --> Line_4 $$ FailedFuture<Object> nettyFuture = new FailedFuture(ImmediateEventExecutor.INSTANCE, error) [CD]
+Line_2 $$ public void shouldConvertFailedNettyFutureToCompletionStage() throws Exception --> Line_5 $$ CompletableFuture<Object> future = Futures.asCompletionStage(nettyFuture).toCompletableFuture() [CD]
+Line_4 $$ FailedFuture<Object> nettyFuture = new FailedFuture(ImmediateEventExecutor.INSTANCE, error) --> Line_5 $$ CompletableFuture<Object> future = Futures.asCompletionStage(nettyFuture).toCompletableFuture() [FD]
+Line_2 $$ public void shouldConvertFailedNettyFutureToCompletionStage() throws Exception --> Line_6 $$ assertTrue(future.isCompletedExceptionally()) [CD]
+Line_5 $$ CompletableFuture<Object> future = Futures.asCompletionStage(nettyFuture).toCompletableFuture() --> Line_6 $$ assertTrue(future.isCompletedExceptionally()) [FD]
+Line_5 $$ CompletableFuture<Object> future = Futures.asCompletionStage(nettyFuture).toCompletableFuture() --> Line_8 $$ future.get() [FD]
+Line_3 $$ RuntimeException error = new RuntimeException("Hello") --> Line_11 $$ assertEquals(error, e.getCause()) [FD]

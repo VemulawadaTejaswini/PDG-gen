@@ -1,0 +1,7 @@
+Line_2 $$ public void onMonoRejectedDoOnSuccessOrError() --> Line_3 $$ Mono<String> mp = Mono.error(new Exception("test")) [CD]
+Line_2 $$ public void onMonoRejectedDoOnSuccessOrError() --> Line_4 $$ AtomicReference<Throwable> ref = new AtomicReference() [CD]
+Line_2 $$ public void onMonoRejectedDoOnSuccessOrError() --> Line_5 $$ mp.doOnSuccessOrError(( s,  f) -> ref.set(f)).subscribe() [CD]
+Line_3 $$ Mono<String> mp = Mono.error(new Exception("test")) --> Line_5 $$ mp.doOnSuccessOrError(( s,  f) -> ref.set(f)).subscribe() [FD]
+Line_4 $$ AtomicReference<Throwable> ref = new AtomicReference() --> Line_5 $$ mp.doOnSuccessOrError(( s,  f) -> ref.set(f)).subscribe() [FD]
+Line_2 $$ public void onMonoRejectedDoOnSuccessOrError() --> Line_6 $$ assertThat(ref.get()).hasMessage("test") [CD]
+Line_4 $$ AtomicReference<Throwable> ref = new AtomicReference() --> Line_6 $$ assertThat(ref.get()).hasMessage("test") [FD]

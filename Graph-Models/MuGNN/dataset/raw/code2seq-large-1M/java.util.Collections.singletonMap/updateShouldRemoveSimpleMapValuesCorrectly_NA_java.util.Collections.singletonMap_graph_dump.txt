@@ -1,0 +1,7 @@
+Line_2 $$ public void updateShouldRemoveSimpleMapValuesCorrectly() --> Line_3 $$ Person rand = new Person() [CD]
+Line_2 $$ public void updateShouldRemoveSimpleMapValuesCorrectly() --> Line_4 $$ rand.physicalAttributes = Collections.singletonMap("eye-color", "grey") [CD]
+Line_2 $$ public void updateShouldRemoveSimpleMapValuesCorrectly() --> Line_5 $$ adapter.put("1", rand, "persons") [CD]
+Line_3 $$ Person rand = new Person() --> Line_5 $$ adapter.put("1", rand, "persons") [FD]
+Line_2 $$ public void updateShouldRemoveSimpleMapValuesCorrectly() --> Line_6 $$ PartialUpdate<Person> update = new PartialUpdate("1", Person.class).del("physicalAttributes") [CD]
+Line_2 $$ public void updateShouldRemoveSimpleMapValuesCorrectly() --> Line_8 $$ adapter.update(update) [CD]
+Line_2 $$ public void updateShouldRemoveSimpleMapValuesCorrectly() --> Line_9 $$ assertThat(template.opsForHash().hasKey("persons:1", "physicalAttributes.[eye-color]"), is(false)) [CD]

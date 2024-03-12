@@ -1,0 +1,8 @@
+Line_2 $$ public int updateParticipant(TccTransaction tccTransaction) --> Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, tccTransaction.getTransId()) [CD]
+Line_2 $$ public int updateParticipant(TccTransaction tccTransaction) --> Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, tccTransaction.getTransId()) [FD]
+Line_2 $$ public int updateParticipant(TccTransaction tccTransaction) --> Line_4 $$ byte[] contents = jedisClient.get(redisKey.getBytes()) [CD]
+Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, tccTransaction.getTransId()) --> Line_4 $$ byte[] contents = jedisClient.get(redisKey.getBytes()) [FD]
+Line_4 $$ byte[] contents = jedisClient.get(redisKey.getBytes()) --> Line_6 $$ CoordinatorRepositoryAdapter adapter = objectSerializer.deSerialize(contents, CoordinatorRepositoryAdapter.class) [FD]
+Line_2 $$ public int updateParticipant(TccTransaction tccTransaction) --> Line_7 $$ adapter.setContents(objectSerializer.serialize(tccTransaction.getParticipants())) [FD]
+Line_3 $$ final String redisKey = RepositoryPathUtils.buildRedisKey(keyPrefix, tccTransaction.getTransId()) --> Line_8 $$ jedisClient.set(redisKey, objectSerializer.serialize(adapter)) [FD]
+Line_2 $$ public int updateParticipant(TccTransaction tccTransaction) --> Line_13 $$ return 1 [CD]

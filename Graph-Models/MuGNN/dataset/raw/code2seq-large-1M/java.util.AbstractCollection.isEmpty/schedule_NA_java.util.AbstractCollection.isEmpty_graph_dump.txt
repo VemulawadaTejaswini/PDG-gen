@@ -1,0 +1,6 @@
+Line_4 $$ if (!_waitingThreads.isEmpty() || _inActionOperationsCount == _concurrentLimit.AsInt) --> Line_5 $$ _waitingThreads.add(Thread.currentThread()) [CD]
+Line_4 $$ if (!_waitingThreads.isEmpty() || _inActionOperationsCount == _concurrentLimit.AsInt) --> Line_6 $$ awaitTurn() [CD]
+Line_2 $$ public <V, T extends Throwable> V schedule(Operation<V, T> operation) throws T --> Line_11 $$ return operation.apply() [FD]
+Line_15 $$ if (!_waitingThreads.isEmpty()) --> Line_16 $$ Thread nextToGo = _waitingThreads.remove() [CD]
+Line_15 $$ if (!_waitingThreads.isEmpty()) --> Line_17 $$ nextToGo.interrupt() [CD]
+Line_16 $$ Thread nextToGo = _waitingThreads.remove() --> Line_17 $$ nextToGo.interrupt() [FD]

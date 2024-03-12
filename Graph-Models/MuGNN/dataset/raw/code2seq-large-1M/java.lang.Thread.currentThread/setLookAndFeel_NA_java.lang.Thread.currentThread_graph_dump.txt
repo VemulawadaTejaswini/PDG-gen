@@ -1,0 +1,6 @@
+Line_4 $$ Thread currentThread = Thread.currentThread() --> Line_5 $$ ClassLoader oldLoader = currentThread.getContextClassLoader() [FD]
+Line_4 $$ Thread currentThread = Thread.currentThread() --> Line_6 $$ currentThread.setContextClassLoader(ExtensionManager.getClassLoader()) [FD]
+Line_2 $$ private static void setLookAndFeel(String lnfName) --> Line_7 $$ UIManager.setLookAndFeel((LookAndFeel) Class.forName(lnfName, true, ExtensionManager.getClassLoader()).newInstance()) [FD]
+Line_4 $$ Thread currentThread = Thread.currentThread() --> Line_8 $$ currentThread.setContextClassLoader(oldLoader) [FD]
+Line_5 $$ ClassLoader oldLoader = currentThread.getContextClassLoader() --> Line_8 $$ currentThread.setContextClassLoader(oldLoader) [FD]
+Line_9 $$ for (MainFrame mainFrame : instance.mainFrames) --> Line_10 $$ SwingUtilities.updateComponentTreeUI(mainFrame) [FD]

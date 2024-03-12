@@ -1,0 +1,8 @@
+Line_2 $$ public void testProblematicPublicKeyDecoding() throws Exception --> Line_3 $$ KeyFactory kf = KeyFactory.getInstance("RSA") [CD]
+Line_2 $$ public void testProblematicPublicKeyDecoding() throws Exception --> Line_4 $$ int cnt = 0 [CD]
+Line_5 $$ for (String encoded : PROBLEMATIC_PUBLIC_KEY) --> Line_6 $$ X509EncodedKeySpec spec = new X509EncodedKeySpec(TestUtil.hexToBytes(encoded)) [FD]
+Line_3 $$ KeyFactory kf = KeyFactory.getInstance("RSA") --> Line_8 $$ RSAPublicKey unusedKey = (RSAPublicKey) kf.generatePublic(spec) [FD]
+Line_6 $$ X509EncodedKeySpec spec = new X509EncodedKeySpec(TestUtil.hexToBytes(encoded)) --> Line_8 $$ RSAPublicKey unusedKey = (RSAPublicKey) kf.generatePublic(spec) [FD]
+Line_4 $$ int cnt = 0 --> Line_12 $$ cnt++ [FD]
+Line_2 $$ public void testProblematicPublicKeyDecoding() throws Exception --> Line_15 $$ assertEquals(0, cnt) [CD]
+Line_4 $$ int cnt = 0 --> Line_15 $$ assertEquals(0, cnt) [FD]

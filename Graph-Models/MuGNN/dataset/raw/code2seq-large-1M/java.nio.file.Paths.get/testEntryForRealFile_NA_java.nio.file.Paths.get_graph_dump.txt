@@ -1,0 +1,7 @@
+Line_4 $$ ProjectFilesystem projectFilesystem = TestProjectFilesystems.createProjectFilesystem(projectDir.getRoot().toPath()) --> Line_5 $$ Path realFileAbsPath = projectFilesystem.resolve("realfile") [FD]
+Line_6 $$ Path relativeRealFile = Paths.get("realfile") --> Line_8 $$ realFileHashEntry.setPath(unixPath(relativeRealFile)) [FD]
+Line_12 $$ BuildJobStateFileHashes fileHashes = new BuildJobStateFileHashes() --> Line_13 $$ fileHashes.addToEntries(realFileHashEntry) [FD]
+Line_4 $$ ProjectFilesystem projectFilesystem = TestProjectFilesystems.createProjectFilesystem(projectDir.getRoot().toPath()) --> Line_16 $$ expect(mockFileHashCache.getFilesystem()).andReturn(projectFilesystem).atLeastOnce() [FD]
+Line_6 $$ Path relativeRealFile = Paths.get("realfile") --> Line_17 $$ expect(mockFileHashCache.get(relativeRealFile)).andReturn(setCorrectHash ? EXAMPLE_HASHCODE : EXAMPLE_HASHCODE_TWO).atLeastOnce() [FD]
+Line_19 $$ MaterializerDummyFileHashCache fileMaterializer = new MaterializerDummyFileHashCache(mockFileHashCache, fileHashes, inlineProvider, MoreExecutors.newDirectExecutorService()) --> Line_20 $$ materializeFunction.execute(fileMaterializer, relativeRealFile) [FD]
+Line_6 $$ Path relativeRealFile = Paths.get("realfile") --> Line_20 $$ materializeFunction.execute(fileMaterializer, relativeRealFile) [FD]

@@ -1,0 +1,5 @@
+Line_5 $$ if (inhabitant != null && inhabitant.isActive()) --> Line_6 $$ TransactionManager txmgr = inhabitant.getService() [CD]
+Line_5 $$ if (inhabitant != null && inhabitant.isActive()) --> Line_7 $$ if (txmgr.getStatus() == Status.STATUS_ACTIVE || txmgr.getStatus() == Status.STATUS_MARKED_ROLLBACK) [CD]
+Line_6 $$ TransactionManager txmgr = inhabitant.getService() --> Line_7 $$ if (txmgr.getStatus() == Status.STATUS_ACTIVE || txmgr.getStatus() == Status.STATUS_MARKED_ROLLBACK) [FD]
+Line_7 $$ if (txmgr.getStatus() == Status.STATUS_ACTIVE || txmgr.getStatus() == Status.STATUS_MARKED_ROLLBACK) --> Line_8 $$ txmgr.rollback() [CD]
+Line_6 $$ TransactionManager txmgr = inhabitant.getService() --> Line_8 $$ txmgr.rollback() [FD]

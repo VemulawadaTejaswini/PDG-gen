@@ -1,0 +1,7 @@
+Line_6 $$ final double ratio = graphSizeInBytes / freeMemoryInBytes --> Line_7 $$ if (ratio > TLCGlobals.livenessGraphSizeThreshold) [FD]
+Line_7 $$ if (ratio > TLCGlobals.livenessGraphSizeThreshold) --> Line_8 $$ final int capacityInBytes = SynchronousDiskIntStack.BufSize << Math.min((int) ratio, 5) [CD]
+Line_7 $$ if (ratio > TLCGlobals.livenessGraphSizeThreshold) --> Line_9 $$ if (capacityInBytes < freeMemoryInBytes) [CD]
+Line_8 $$ final int capacityInBytes = SynchronousDiskIntStack.BufSize << Math.min((int) ratio, 5) --> Line_9 $$ if (capacityInBytes < freeMemoryInBytes) [FD]
+Line_4 $$ final double freeMemoryInBytes = (Runtime.getRuntime().freeMemory() / (numWorkers * 1d)) --> Line_9 $$ if (capacityInBytes < freeMemoryInBytes) [FD]
+Line_9 $$ if (capacityInBytes < freeMemoryInBytes) --> Line_10 $$ return new SynchronousDiskIntStack(metaDir, name, capacityInBytes) [CD]
+Line_9 $$ if (capacityInBytes < freeMemoryInBytes) --> Line_12 $$ return new SynchronousDiskIntStack(metaDir, name) [CD]

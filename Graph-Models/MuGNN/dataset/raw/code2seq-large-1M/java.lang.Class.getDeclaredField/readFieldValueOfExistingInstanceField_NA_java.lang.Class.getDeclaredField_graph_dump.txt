@@ -1,0 +1,7 @@
+Line_2 $$ void readFieldValueOfExistingInstanceField() throws Exception --> Line_3 $$ MyClass instance = new MyClass(42) [CD]
+Line_2 $$ void readFieldValueOfExistingInstanceField() throws Exception --> Line_4 $$ assertThat(readFieldValue(MyClass.class, "instanceField", instance)).contains(42) [CD]
+Line_3 $$ MyClass instance = new MyClass(42) --> Line_4 $$ assertThat(readFieldValue(MyClass.class, "instanceField", instance)).contains(42) [FD]
+Line_2 $$ void readFieldValueOfExistingInstanceField() throws Exception --> Line_5 $$ Field field = MyClass.class.getDeclaredField("instanceField") [CD]
+Line_2 $$ void readFieldValueOfExistingInstanceField() throws Exception --> Line_6 $$ assertThat(readFieldValue(field, instance)).contains(42) [CD]
+Line_3 $$ MyClass instance = new MyClass(42) --> Line_6 $$ assertThat(readFieldValue(field, instance)).contains(42) [FD]
+Line_2 $$ void readFieldValueOfExistingInstanceField() throws Exception --> Line_7 $$ assertThat(readFieldValue(field, null)).isNotPresent() [CD]

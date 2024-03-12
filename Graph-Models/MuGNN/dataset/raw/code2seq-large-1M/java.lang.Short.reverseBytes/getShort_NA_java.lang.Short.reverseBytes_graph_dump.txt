@@ -1,0 +1,7 @@
+Line_2 $$ public static short getShort(long address) --> Line_3 $$ if (UNALIGNED) [CD]
+Line_3 $$ if (UNALIGNED) --> Line_4 $$ short v = memoryAccessor.getShort(address) [CD]
+Line_2 $$ public static short getShort(long address) --> Line_4 $$ short v = memoryAccessor.getShort(address) [FD]
+Line_3 $$ if (UNALIGNED) --> Line_5 $$ return BIG_ENDIAN_NATIVE_ORDER ? v : Short.reverseBytes(v) [CD]
+Line_4 $$ short v = memoryAccessor.getShort(address) --> Line_5 $$ return BIG_ENDIAN_NATIVE_ORDER ? v : Short.reverseBytes(v) [FD]
+Line_2 $$ public static short getShort(long address) --> Line_7 $$ return (short) (memoryAccessor.getByte(address) << 8 | memoryAccessor.getByte(address + 1) & 0xff) [FD]
+Line_2 $$ public static short getShort(long address) --> Line_7 $$ return (short) (memoryAccessor.getByte(address) << 8 | memoryAccessor.getByte(address + 1) & 0xff) [CD]

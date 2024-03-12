@@ -1,0 +1,8 @@
+Line_5 $$ Unmarshaller unmarshaller = context.createUnmarshaller() --> Line_6 $$ JAXBElement<TimeType> jaxbElement = unmarshaller.unmarshal(timeoutNode, TimeType.class) [FD]
+Line_2 $$ private Duration processTimeout(Element parentElement, Node timeoutNode) --> Line_6 $$ JAXBElement<TimeType> jaxbElement = unmarshaller.unmarshal(timeoutNode, TimeType.class) [FD]
+Line_7 $$ TimeType timeType = jaxbElement.getValue() --> Line_8 $$ BigInteger amount = timeType.getValue() [FD]
+Line_8 $$ BigInteger amount = timeType.getValue() --> Line_9 $$ if (amount.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0) [FD]
+Line_8 $$ BigInteger amount = timeType.getValue() --> Line_10 $$ throw new XmlConfigurationException(String.format("Value of XML configuration element <%s> in <%s> exceeds allowed value - %s", timeoutNode.getNodeName(), parentElement.getTagName(), amount)) [FD]
+Line_2 $$ private Duration processTimeout(Element parentElement, Node timeoutNode) --> Line_10 $$ throw new XmlConfigurationException(String.format("Value of XML configuration element <%s> in <%s> exceeds allowed value - %s", timeoutNode.getNodeName(), parentElement.getTagName(), amount)) [FD]
+Line_8 $$ BigInteger amount = timeType.getValue() --> Line_12 $$ return Duration.of(amount.longValue(), convertToJavaTimeUnit(timeType.getUnit())) [FD]
+Line_7 $$ TimeType timeType = jaxbElement.getValue() --> Line_12 $$ return Duration.of(amount.longValue(), convertToJavaTimeUnit(timeType.getUnit())) [FD]

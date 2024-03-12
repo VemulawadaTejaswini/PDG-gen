@@ -1,0 +1,5 @@
+Line_2 $$ private List<Activity> fetchProjectLastActivity() --> Line_3 $$ if (StringUtils.isEmpty(slug) || !identity.isLoggedIn()) [CD]
+Line_3 $$ if (StringUtils.isEmpty(slug) || !identity.isLoggedIn()) --> Line_4 $$ return Collections.emptyList() [CD]
+Line_2 $$ private List<Activity> fetchProjectLastActivity() --> Line_6 $$ Collection<Long> versionIds = Collections2.transform(getProjectVersions(),  input -> input != null ? input.getId() : null) [CD]
+Line_2 $$ private List<Activity> fetchProjectLastActivity() --> Line_7 $$ return activityServiceImpl.findLatestVersionActivitiesByUser(currentUser.getPerson().getId(), Lists.newArrayList(versionIds), 0, 1) [CD]
+Line_6 $$ Collection<Long> versionIds = Collections2.transform(getProjectVersions(),  input -> input != null ? input.getId() : null) --> Line_7 $$ return activityServiceImpl.findLatestVersionActivitiesByUser(currentUser.getPerson().getId(), Lists.newArrayList(versionIds), 0, 1) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testUpgradeColumnToNotNullWithDefault() throws Exception --> Line_3 $$ final String[] commands = [CD]
+Line_2 $$ public void testUpgradeColumnToNotNullWithDefault() throws Exception --> Line_4 $$ final String newSql = "CREATE TABLE alarms ( id integer, x733ProbableCause integer DEFAULT 0 NOT NULL );\n" [CD]
+Line_2 $$ public void testUpgradeColumnToNotNullWithDefault() throws Exception --> Line_5 $$ executeSQL(commands) [CD]
+Line_3 $$ final String[] commands = --> Line_5 $$ executeSQL(commands) [FD]
+Line_2 $$ public void testUpgradeColumnToNotNullWithDefault() throws Exception --> Line_6 $$ getInstallerDb().readTables(new StringReader(newSql)) [CD]
+Line_2 $$ public void testUpgradeColumnToNotNullWithDefault() throws Exception --> Line_7 $$ getInstallerDb().createTables() [CD]
+Line_2 $$ public void testUpgradeColumnToNotNullWithDefault() throws Exception --> Line_8 $$ assertEquals("x733ProbableCause for id = 1 should have its original value", Integer.valueOf(1), jdbcTemplate.queryForObject("SELECT x733ProbableCause FROM alarms WHERE id = 1", Integer.class)) [CD]
+Line_2 $$ public void testUpgradeColumnToNotNullWithDefault() throws Exception --> Line_9 $$ assertEquals("x733ProbableCause for id = 2 should have the DEFAULT value", Integer.valueOf(0), jdbcTemplate.queryForObject("SELECT x733ProbableCause FROM alarms WHERE id = 2", Integer.class)) [CD]

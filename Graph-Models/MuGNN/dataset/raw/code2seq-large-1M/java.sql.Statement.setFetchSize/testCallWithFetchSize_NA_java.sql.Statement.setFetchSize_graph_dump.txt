@@ -1,0 +1,8 @@
+Line_2 $$ public void testCallWithFetchSize() throws SQLException --> Line_3 $$ createProcedure("testCallWithFetchSize", "()\nBEGIN\nSELECT 1;SELECT 2;\nEND") [CD]
+Line_4 $$ try (Statement statement = sharedConnection.createStatement()) --> Line_5 $$ statement.setFetchSize(1) [FD]
+Line_4 $$ try (Statement statement = sharedConnection.createStatement()) --> Line_6 $$ try (ResultSet resultSet = statement.executeQuery("CALL testCallWithFetchSize()")) [FD]
+Line_6 $$ try (ResultSet resultSet = statement.executeQuery("CALL testCallWithFetchSize()")) --> Line_8 $$ while (resultSet.next()) [FD]
+Line_8 $$ while (resultSet.next()) --> Line_9 $$ rowCount++ [CD]
+Line_7 $$ int rowCount = 0 --> Line_9 $$ rowCount++ [FD]
+Line_7 $$ int rowCount = 0 --> Line_11 $$ assertEquals(1, rowCount) [FD]
+Line_4 $$ try (Statement statement = sharedConnection.createStatement()) --> Line_13 $$ statement.execute("SELECT 1") [FD]

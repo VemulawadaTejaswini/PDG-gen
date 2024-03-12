@@ -1,0 +1,6 @@
+Line_2 $$ public Map<ThreadInformation, StackTraceElement[]> createThreadInfo() --> Line_3 $$ final Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces() [CD]
+Line_2 $$ public Map<ThreadInformation, StackTraceElement[]> createThreadInfo() --> Line_4 $$ final Map<ThreadInformation, StackTraceElement[]> threads = new HashMap(map.size()) [CD]
+Line_3 $$ final Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces() --> Line_4 $$ final Map<ThreadInformation, StackTraceElement[]> threads = new HashMap(map.size()) [FD]
+Line_3 $$ final Map<Thread, StackTraceElement[]> map = Thread.getAllStackTraces() --> Line_5 $$ for (final Map.Entry<Thread, StackTraceElement[]> entry : map.entrySet()) [FD]
+Line_4 $$ final Map<ThreadInformation, StackTraceElement[]> threads = new HashMap(map.size()) --> Line_6 $$ threads.put(new BasicThreadInformation(entry.getKey()), entry.getValue()) [FD]
+Line_2 $$ public Map<ThreadInformation, StackTraceElement[]> createThreadInfo() --> Line_8 $$ return threads [CD]

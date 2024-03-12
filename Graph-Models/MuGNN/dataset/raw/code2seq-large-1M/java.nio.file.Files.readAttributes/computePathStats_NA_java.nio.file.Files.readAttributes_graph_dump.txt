@@ -1,0 +1,8 @@
+Line_2 $$ private PathStats computePathStats(Path path) throws IOException --> Line_3 $$ BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class) [FD]
+Line_2 $$ private PathStats computePathStats(Path path) throws IOException --> Line_3 $$ BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class) [CD]
+Line_2 $$ private PathStats computePathStats(Path path) throws IOException --> Line_4 $$ if (attributes.isDirectory()) [CD]
+Line_4 $$ if (attributes.isDirectory()) --> Line_5 $$ return new PathStats(path, computeDirSizeBytesRecursively(path), attributes.creationTime().toMillis(), attributes.lastAccessTime().toMillis()) [CD]
+Line_2 $$ private PathStats computePathStats(Path path) throws IOException --> Line_5 $$ return new PathStats(path, computeDirSizeBytesRecursively(path), attributes.creationTime().toMillis(), attributes.lastAccessTime().toMillis()) [FD]
+Line_4 $$ if (attributes.isDirectory()) --> Line_6 $$ if (attributes.isRegularFile()) [CD]
+Line_6 $$ if (attributes.isRegularFile()) --> Line_7 $$ return new PathStats(path, attributes.size(), attributes.creationTime().toMillis(), attributes.lastAccessTime().toMillis()) [CD]
+Line_2 $$ private PathStats computePathStats(Path path) throws IOException --> Line_9 $$ throw new IllegalArgumentException(String.format("Argument path [%s] is not a valid file or directory.", path.toString())) [FD]

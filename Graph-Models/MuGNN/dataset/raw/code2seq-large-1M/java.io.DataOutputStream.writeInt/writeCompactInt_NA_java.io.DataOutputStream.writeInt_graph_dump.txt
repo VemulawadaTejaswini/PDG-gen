@@ -1,0 +1,8 @@
+Line_2 $$ public void writeCompactInt(int value) throws IOException --> Line_3 $$ if (value < COMPACT_INT_MIN || value >= COMPACT_INT_MAX) [CD]
+Line_3 $$ if (value < COMPACT_INT_MIN || value >= COMPACT_INT_MAX) --> Line_5 $$ if (value > 0x3FFF) [CD]
+Line_2 $$ public void writeCompactInt(int value) throws IOException --> Line_5 $$ if (value > 0x3FFF) [FD]
+Line_5 $$ if (value > 0x3FFF) --> Line_6 $$ writeInt(value | 0xC000_0000) [CD]
+Line_5 $$ if (value > 0x3FFF) --> Line_7 $$ if (value > 0x7F) [CD]
+Line_2 $$ public void writeCompactInt(int value) throws IOException --> Line_7 $$ if (value > 0x7F) [FD]
+Line_7 $$ if (value > 0x7F) --> Line_8 $$ writeShort((short) (value | 0x8000)) [CD]
+Line_7 $$ if (value > 0x7F) --> Line_10 $$ writeByte((byte) value) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public static <T, K, L extends List<T>> BiConsumer<Partition<T, K, L>, T> scheduleEvictIfEmpty(long time, TimeUnit unit) --> Line_3 $$ return ( partition,  tuple) -> [CD]
+Line_4 $$ if (partition.getContents().isEmpty()) --> Line_5 $$ ScheduledExecutorService ses = partition.getWindow().getScheduledExecutorService() [CD]
+Line_4 $$ if (partition.getContents().isEmpty()) --> Line_6 $$ ses.schedule(() -> partition.evict(), time, unit) [CD]
+Line_5 $$ ScheduledExecutorService ses = partition.getWindow().getScheduledExecutorService() --> Line_6 $$ ses.schedule(() -> partition.evict(), time, unit) [FD]
+Line_2 $$ public static <T, K, L extends List<T>> BiConsumer<Partition<T, K, L>, T> scheduleEvictIfEmpty(long time, TimeUnit unit) --> Line_6 $$ ses.schedule(() -> partition.evict(), time, unit) [FD]

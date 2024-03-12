@@ -1,0 +1,6 @@
+Line_2 $$ private void handleReleaseLockRequest(Operation op, State currentState, State payload) --> Line_3 $$ if (StringUtils.isBlank(currentState.ownerTaskId)) [CD]
+Line_3 $$ if (StringUtils.isBlank(currentState.ownerTaskId)) --> Line_4 $$ op.setStatusCode(Operation.STATUS_CODE_NOT_MODIFIED) [CD]
+Line_2 $$ private void handleReleaseLockRequest(Operation op, State currentState, State payload) --> Line_4 $$ op.setStatusCode(Operation.STATUS_CODE_NOT_MODIFIED) [FD]
+Line_3 $$ if (StringUtils.isBlank(currentState.ownerTaskId)) --> Line_5 $$ return [CD]
+Line_2 $$ private void handleReleaseLockRequest(Operation op, State currentState, State payload) --> Line_7 $$ checkArgument(currentState.ownerTaskId.equalsIgnoreCase(payload.ownerTaskId), "Only the current owner can release a lock. Current ownerTaskId: %s, Request ownerTaskId: %s, EntityId: %s", currentState.ownerTaskId, payload.ownerTaskId, currentState.entityId) [CD]
+Line_2 $$ private void handleReleaseLockRequest(Operation op, State currentState, State payload) --> Line_8 $$ payload.ownerTaskId = null [CD]

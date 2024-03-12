@@ -1,0 +1,8 @@
+Line_5 $$ Properties globalProps = (Properties) getServletContext().getAttribute("globalProps") --> Line_6 $$ String zkServer = globalProps.getProperty("zkServer") [FD]
+Line_6 $$ String zkServer = globalProps.getProperty("zkServer") --> Line_7 $$ String[] zkServerLst = zkServer.split(",") [FD]
+Line_2 $$ protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException --> Line_8 $$ ZooKeeper zk = ServletUtil.INSTANCE.getZookeeper(request, response, zkServerLst[0], globalProps) [FD]
+Line_5 $$ Properties globalProps = (Properties) getServletContext().getAttribute("globalProps") --> Line_8 $$ ZooKeeper zk = ServletUtil.INSTANCE.getZookeeper(request, response, zkServerLst[0], globalProps) [FD]
+Line_2 $$ protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException --> Line_9 $$ request.getSession().invalidate() [FD]
+Line_8 $$ ZooKeeper zk = ServletUtil.INSTANCE.getZookeeper(request, response, zkServerLst[0], globalProps) --> Line_10 $$ zk.close() [FD]
+Line_2 $$ protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException --> Line_11 $$ response.sendRedirect("/login") [FD]
+Line_2 $$ protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException --> Line_14 $$ ServletUtil.INSTANCE.renderError(request, response, ex.getMessage()) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void whenHandleCallThrowsExceptionThenItPropagatesToThreadCaller() throws Exception --> Line_3 $$ final ServerHandler<Message, Integer, Message> server = mock(ServerHandler.class) [CD]
+Line_2 $$ public void whenHandleCallThrowsExceptionThenItPropagatesToThreadCaller() throws Exception --> Line_4 $$ when(server.handleCall(any(ActorRef.class), anyObject(), any(Message.class))).thenThrow(new RuntimeException("my exception")) [CD]
+Line_2 $$ public void whenHandleCallThrowsExceptionThenItPropagatesToThreadCaller() throws Exception --> Line_5 $$ final Server<Message, Integer, Message> s = spawnServer(server) [CD]
+Line_5 $$ final Server<Message, Integer, Message> s = spawnServer(server) --> Line_7 $$ int res = s.call(new Message(3, 4)) [FD]
+Line_5 $$ final Server<Message, Integer, Message> s = spawnServer(server) --> Line_13 $$ LocalActor.join(s, 100, TimeUnit.MILLISECONDS) [FD]

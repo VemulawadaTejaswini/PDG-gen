@@ -1,0 +1,6 @@
+Line_2 $$ public void waitForCompletionThenShutdown() throws InterruptedException, ExecutionException --> Line_3 $$ executor.shutdown() [CD]
+Line_6 $$ for (Future<Boolean> job : jobs) --> Line_8 $$ Boolean success = job.get(30, TimeUnit.SECONDS) [FD]
+Line_8 $$ Boolean success = job.get(30, TimeUnit.SECONDS) --> Line_9 $$ if (success != null && !success) [FD]
+Line_9 $$ if (success != null && !success) --> Line_10 $$ System.out.println("One or more jobs failed!  Shutting down remaining jobs...") [CD]
+Line_9 $$ if (success != null && !success) --> Line_11 $$ executor.shutdownNow() [CD]
+Line_2 $$ public void waitForCompletionThenShutdown() throws InterruptedException, ExecutionException --> Line_21 $$ jobs.clear() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void putTemplate(Settings customSettings, Consumer<Exception> consumer) --> Line_4 $$ final PutIndexTemplateRequest request = getPutIndexTemplateRequest(customSettings) [FD]
+Line_4 $$ final PutIndexTemplateRequest request = getPutIndexTemplateRequest(customSettings) --> Line_5 $$ client.admin().indices().putTemplate(request, ActionListener.wrap(( response) -> [FD]
+Line_2 $$ private void putTemplate(Settings customSettings, Consumer<Exception> consumer) --> Line_5 $$ client.admin().indices().putTemplate(request, ActionListener.wrap(( response) -> [FD]
+Line_6 $$ if (response.isAcknowledged()) --> Line_7 $$ client.admin().cluster().prepareState().execute(ActionListener.wrap( stateResponse -> updateCurrentIndexMappingsIfNecessary(stateResponse.getState()), consumer)) [CD]
+Line_2 $$ private void putTemplate(Settings customSettings, Consumer<Exception> consumer) --> Line_7 $$ client.admin().cluster().prepareState().execute(ActionListener.wrap( stateResponse -> updateCurrentIndexMappingsIfNecessary(stateResponse.getState()), consumer)) [FD]
+Line_6 $$ if (response.isAcknowledged()) --> Line_9 $$ consumer.accept(new IllegalStateException("failed to put index template for audit logging")) [CD]
+Line_2 $$ private void putTemplate(Settings customSettings, Consumer<Exception> consumer) --> Line_9 $$ consumer.accept(new IllegalStateException("failed to put index template for audit logging")) [FD]
+Line_2 $$ private void putTemplate(Settings customSettings, Consumer<Exception> consumer) --> Line_14 $$ consumer.accept(e) [FD]

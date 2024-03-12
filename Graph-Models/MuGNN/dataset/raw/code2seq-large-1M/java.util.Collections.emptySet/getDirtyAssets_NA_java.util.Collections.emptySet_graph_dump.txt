@@ -1,0 +1,5 @@
+Line_2 $$ public static Set<PodInstanceRequirement> getDirtyAssets(Plan plan) --> Line_3 $$ if (plan == null) [FD]
+Line_2 $$ public static Set<PodInstanceRequirement> getDirtyAssets(Plan plan) --> Line_3 $$ if (plan == null) [CD]
+Line_3 $$ if (plan == null) --> Line_4 $$ return Collections.emptySet() [CD]
+Line_2 $$ public static Set<PodInstanceRequirement> getDirtyAssets(Plan plan) --> Line_6 $$ return plan.getChildren().stream().flatMap( phase -> phase.getChildren().stream()).filter( step -> (step.isPrepared() || step.isStarting()) && step.getPodInstanceRequirement().isPresent()).map( step -> step.getPodInstanceRequirement().get()).collect(Collectors.toSet()) [FD]
+Line_2 $$ public static Set<PodInstanceRequirement> getDirtyAssets(Plan plan) --> Line_6 $$ return plan.getChildren().stream().flatMap( phase -> phase.getChildren().stream()).filter( step -> (step.isPrepared() || step.isStarting()) && step.getPodInstanceRequirement().isPresent()).map( step -> step.getPodInstanceRequirement().get()).collect(Collectors.toSet()) [CD]

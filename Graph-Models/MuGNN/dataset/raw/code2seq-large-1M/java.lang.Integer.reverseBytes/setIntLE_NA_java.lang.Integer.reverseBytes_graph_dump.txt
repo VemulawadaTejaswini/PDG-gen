@@ -1,0 +1,8 @@
+Line_2 $$ public static void setIntLE(long address, int value) --> Line_3 $$ if (UNALIGNED) [CD]
+Line_3 $$ if (UNALIGNED) --> Line_4 $$ memoryAccessor.putInt(address, BIG_ENDIAN_NATIVE_ORDER ? Integer.reverseBytes(value) : value) [CD]
+Line_2 $$ public static void setIntLE(long address, int value) --> Line_4 $$ memoryAccessor.putInt(address, BIG_ENDIAN_NATIVE_ORDER ? Integer.reverseBytes(value) : value) [FD]
+Line_3 $$ if (UNALIGNED) --> Line_6 $$ memoryAccessor.putByte(address, (byte) value) [CD]
+Line_2 $$ public static void setIntLE(long address, int value) --> Line_6 $$ memoryAccessor.putByte(address, (byte) value) [FD]
+Line_3 $$ if (UNALIGNED) --> Line_7 $$ memoryAccessor.putByte(address + 1, (byte) (value >>> 8)) [CD]
+Line_3 $$ if (UNALIGNED) --> Line_8 $$ memoryAccessor.putByte(address + 2, (byte) (value >>> 16)) [CD]
+Line_3 $$ if (UNALIGNED) --> Line_9 $$ memoryAccessor.putByte(address + 3, (byte) (value >>> 24)) [CD]

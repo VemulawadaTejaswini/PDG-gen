@@ -1,0 +1,6 @@
+Line_2 $$ public void testErrorWithSpelEscape() throws Exception --> Line_3 $$ String spel = "$ [CD]
+Line_2 $$ public void testErrorWithSpelEscape() throws Exception --> Line_4 $$ MvcResult response = this.mockMvc.perform(get("/error").requestAttr("javax.servlet.error.exception", new RuntimeException(spel)).accept(MediaType.TEXT_HTML)).andExpect(status().is5xxServerError()).andReturn() [CD]
+Line_2 $$ public void testErrorWithSpelEscape() throws Exception --> Line_5 $$ String content = response.getResponse().getContentAsString() [CD]
+Line_4 $$ MvcResult response = this.mockMvc.perform(get("/error").requestAttr("javax.servlet.error.exception", new RuntimeException(spel)).accept(MediaType.TEXT_HTML)).andExpect(status().is5xxServerError()).andReturn() --> Line_5 $$ String content = response.getResponse().getContentAsString() [FD]
+Line_2 $$ public void testErrorWithSpelEscape() throws Exception --> Line_6 $$ assertThat(content).doesNotContain("injection") [CD]
+Line_5 $$ String content = response.getResponse().getContentAsString() --> Line_6 $$ assertThat(content).doesNotContain("injection") [FD]

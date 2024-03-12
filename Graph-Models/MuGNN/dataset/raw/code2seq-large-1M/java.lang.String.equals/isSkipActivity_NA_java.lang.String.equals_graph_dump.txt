@@ -1,0 +1,8 @@
+Line_2 $$ public boolean isSkipActivity(String historyActivityId) --> Line_3 $$ JdbcTemplate jdbcTemplate = ApplicationContextHelper.getBean(JdbcTemplate.class) [CD]
+Line_2 $$ public boolean isSkipActivity(String historyActivityId) --> Line_4 $$ String historyTaskId = jdbcTemplate.queryForObject("select task_id_ from ACT_HI_ACTINST where id_=?", String.class, historyActivityId) [CD]
+Line_2 $$ public boolean isSkipActivity(String historyActivityId) --> Line_4 $$ String historyTaskId = jdbcTemplate.queryForObject("select task_id_ from ACT_HI_ACTINST where id_=?", String.class, historyActivityId) [FD]
+Line_2 $$ public boolean isSkipActivity(String historyActivityId) --> Line_5 $$ HistoricTaskInstanceEntity historicTaskInstanceEntity = Context.getCommandContext().getHistoricTaskInstanceEntityManager().findHistoricTaskInstanceById(historyTaskId) [CD]
+Line_2 $$ public boolean isSkipActivity(String historyActivityId) --> Line_6 $$ String deleteReason = historicTaskInstanceEntity.getDeleteReason() [CD]
+Line_5 $$ HistoricTaskInstanceEntity historicTaskInstanceEntity = Context.getCommandContext().getHistoricTaskInstanceEntityManager().findHistoricTaskInstanceById(historyTaskId) --> Line_6 $$ String deleteReason = historicTaskInstanceEntity.getDeleteReason() [FD]
+Line_2 $$ public boolean isSkipActivity(String historyActivityId) --> Line_7 $$ return "跳过".equals(deleteReason) [CD]
+Line_6 $$ String deleteReason = historicTaskInstanceEntity.getDeleteReason() --> Line_7 $$ return "跳过".equals(deleteReason) [FD]

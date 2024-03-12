@@ -1,0 +1,4 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_4 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_5 $$ PreparedStatement stmt = conn.prepareStatement("select cast([10.3, 20.2] as integer) " + "from information_schema.tables") [FD]
+Line_5 $$ PreparedStatement stmt = conn.prepareStatement("select cast([10.3, 20.2] as integer) " + "from information_schema.tables") --> Line_7 $$ stmt.executeQuery() [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_12 $$ assertSelectNameFromSysClusterWorks(conn) [FD]

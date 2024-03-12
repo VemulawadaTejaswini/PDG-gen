@@ -1,0 +1,6 @@
+Line_2 $$ public void testThisValue() throws Exception --> Line_3 $$ Class<? extends QuxBaz> quxbaz = new ByteBuddy().subclass(QuxBaz.class).method(isDeclaredBy(QuxBaz.class)).intercept(FixedValue.self()).make().load(QuxBaz.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testThisValue() throws Exception --> Line_4 $$ assertThat(quxbaz.getDeclaredFields().length, is(0)) [CD]
+Line_2 $$ public void testThisValue() throws Exception --> Line_5 $$ assertThat(quxbaz.getDeclaredMethods().length, is(1)) [CD]
+Line_2 $$ public void testThisValue() throws Exception --> Line_6 $$ QuxBaz self = quxbaz.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testThisValue() throws Exception --> Line_7 $$ assertThat(self.bar(), sameInstance((Object) self)) [CD]
+Line_6 $$ QuxBaz self = quxbaz.getDeclaredConstructor().newInstance() --> Line_7 $$ assertThat(self.bar(), sameInstance((Object) self)) [FD]

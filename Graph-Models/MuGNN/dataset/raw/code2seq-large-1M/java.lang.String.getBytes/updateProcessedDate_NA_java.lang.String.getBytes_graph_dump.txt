@@ -1,0 +1,8 @@
+Line_2 $$ public void updateProcessedDate(int partitionId, String date) --> Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId --> Line_5 $$ if (curator.checkExists().forPath(path) == null) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) == null) --> Line_6 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, date.getBytes("UTF-8")) [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId --> Line_6 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, date.getBytes("UTF-8")) [FD]
+Line_2 $$ public void updateProcessedDate(int partitionId, String date) --> Line_6 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, date.getBytes("UTF-8")) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) == null) --> Line_8 $$ curator.setData().forPath(path, date.getBytes("UTF-8")) [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId --> Line_8 $$ curator.setData().forPath(path, date.getBytes("UTF-8")) [FD]
+Line_2 $$ public void updateProcessedDate(int partitionId, String date) --> Line_8 $$ curator.setData().forPath(path, date.getBytes("UTF-8")) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ void testInterceptorMethods(Set<LifecycleCallbackDescriptor> callbackDescs, String callbackMethodName, Boolean isBeanMethod) --> Line_3 $$ ClassLoader cl = getVerifierContext().getClassLoader() [CD]
+Line_4 $$ for (LifecycleCallbackDescriptor callbackDesc : callbackDescs) --> Line_6 $$ Method method = callbackDesc.getLifecycleCallbackMethodObject(cl) [FD]
+Line_3 $$ ClassLoader cl = getVerifierContext().getClassLoader() --> Line_6 $$ Method method = callbackDesc.getLifecycleCallbackMethodObject(cl) [FD]
+Line_6 $$ Method method = callbackDesc.getLifecycleCallbackMethodObject(cl) --> Line_7 $$ if (Modifier.isFinal(method.getModifiers()) || Modifier.isStatic(method.getModifiers())) [FD]
+Line_7 $$ if (Modifier.isFinal(method.getModifiers()) || Modifier.isStatic(method.getModifiers())) --> Line_8 $$ logFailure(callbackMethodName, method) [CD]
+Line_2 $$ void testInterceptorMethods(Set<LifecycleCallbackDescriptor> callbackDescs, String callbackMethodName, Boolean isBeanMethod) --> Line_8 $$ logFailure(callbackMethodName, method) [FD]
+Line_6 $$ Method method = callbackDesc.getLifecycleCallbackMethodObject(cl) --> Line_8 $$ logFailure(callbackMethodName, method) [FD]

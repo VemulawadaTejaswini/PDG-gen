@@ -1,0 +1,8 @@
+Line_2 $$ public static void checkFactoryType(Class<?> factoryClass, Collector collector) --> Line_3 $$ for (Type type : factoryClass.getGenericInterfaces()) [FD]
+Line_3 $$ for (Type type : factoryClass.getGenericInterfaces()) --> Line_4 $$ Class<?> rawClass = ReflectionHelper.getRawClass(type) [FD]
+Line_4 $$ Class<?> rawClass = ReflectionHelper.getRawClass(type) --> Line_5 $$ if (rawClass == null) [FD]
+Line_4 $$ Class<?> rawClass = ReflectionHelper.getRawClass(type) --> Line_7 $$ if (!Factory.class.equals(rawClass)) [FD]
+Line_3 $$ for (Type type : factoryClass.getGenericInterfaces()) --> Line_9 $$ Type firstType = ReflectionHelper.getFirstTypeArgument(type) [FD]
+Line_9 $$ Type firstType = ReflectionHelper.getFirstTypeArgument(type) --> Line_10 $$ if (firstType instanceof WildcardType) [FD]
+Line_10 $$ if (firstType instanceof WildcardType) --> Line_11 $$ collector.addThrowable(new IllegalArgumentException("The class " + Pretty.clazz(factoryClass) + " has a Wildcard as its type")) [CD]
+Line_2 $$ public static void checkFactoryType(Class<?> factoryClass, Collector collector) --> Line_11 $$ collector.addThrowable(new IllegalArgumentException("The class " + Pretty.clazz(factoryClass) + " has a Wildcard as its type")) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testPrepareSetTimestamp() throws SQLException, ParseException --> Line_3 $$ String sql = String.format("SELECT * FROM %s WHERE c17 = ?", dataTypeTableName) [CD]
+Line_3 $$ String sql = String.format("SELECT * FROM %s WHERE c17 = ?", dataTypeTableName) --> Line_4 $$ try (PreparedStatement ps = con.prepareStatement(sql)) [FD]
+Line_4 $$ try (PreparedStatement ps = con.prepareStatement(sql)) --> Line_6 $$ ps.setTimestamp(1, timestamp) [FD]
+Line_5 $$ Timestamp timestamp = Timestamp.valueOf("2012-04-22 09:00:00.123456789") --> Line_6 $$ ps.setTimestamp(1, timestamp) [FD]
+Line_4 $$ try (PreparedStatement ps = con.prepareStatement(sql)) --> Line_7 $$ try (ResultSet resultSet = ps.executeQuery()) [FD]
+Line_7 $$ try (ResultSet resultSet = ps.executeQuery()) --> Line_8 $$ assertTrue(resultSet.next()) [FD]
+Line_7 $$ try (ResultSet resultSet = ps.executeQuery()) --> Line_9 $$ assertEquals(1, resultSet.getInt(1)) [FD]
+Line_7 $$ try (ResultSet resultSet = ps.executeQuery()) --> Line_10 $$ assertFalse(resultSet.next()) [FD]

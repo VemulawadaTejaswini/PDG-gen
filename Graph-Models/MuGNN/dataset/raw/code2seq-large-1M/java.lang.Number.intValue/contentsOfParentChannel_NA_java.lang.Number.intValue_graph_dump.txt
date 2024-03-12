@@ -1,0 +1,8 @@
+Line_2 $$ public int contentsOfParentChannel(Integer channelId) --> Line_3 $$ String hql = "select count(*) from Content bean" + " join bean.channel channel,Channel parent" + "  where channel.lft between parent.lft and parent.rgt and channel.site.id=parent.site.id and parent.id=:parentId and bean.status=" + ContentCheck.CHECKED [CD]
+Line_2 $$ public int contentsOfParentChannel(Integer channelId) --> Line_4 $$ Query query = getSession().createQuery(hql) [CD]
+Line_3 $$ String hql = "select count(*) from Content bean" + " join bean.channel channel,Channel parent" + "  where channel.lft between parent.lft and parent.rgt and channel.site.id=parent.site.id and parent.id=:parentId and bean.status=" + ContentCheck.CHECKED --> Line_4 $$ Query query = getSession().createQuery(hql) [FD]
+Line_2 $$ public int contentsOfParentChannel(Integer channelId) --> Line_5 $$ query.setParameter("parentId", channelId) [FD]
+Line_2 $$ public int contentsOfParentChannel(Integer channelId) --> Line_5 $$ query.setParameter("parentId", channelId) [CD]
+Line_4 $$ Query query = getSession().createQuery(hql) --> Line_5 $$ query.setParameter("parentId", channelId) [FD]
+Line_2 $$ public int contentsOfParentChannel(Integer channelId) --> Line_6 $$ return ((Number) query.iterate().next()).intValue() [CD]
+Line_4 $$ Query query = getSession().createQuery(hql) --> Line_6 $$ return ((Number) query.iterate().next()).intValue() [FD]

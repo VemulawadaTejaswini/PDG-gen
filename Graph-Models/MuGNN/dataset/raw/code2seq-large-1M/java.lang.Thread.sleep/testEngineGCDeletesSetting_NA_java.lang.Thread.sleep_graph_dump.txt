@@ -1,0 +1,8 @@
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_3 $$ createIndex("test") [CD]
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_4 $$ client().prepareIndex("test", "type", "1").setSource("f", 1).get() [CD]
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_5 $$ client().prepareDelete("test", "type", "1").get() [CD]
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_6 $$ client().prepareIndex("test", "type", "1").setSource("f", 2).setVersion(2).get() [CD]
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_7 $$ client().admin().indices().prepareUpdateSettings("test").setSettings(Settings.builder().put("index.gc_deletes", 0)).get() [CD]
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_8 $$ client().prepareDelete("test", "type", "1").get() [CD]
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_9 $$ Thread.sleep(300) [CD]
+Line_2 $$ public void testEngineGCDeletesSetting() throws InterruptedException --> Line_10 $$ assertThrows(client().prepareIndex("test", "type", "1").setSource("f", 3).setVersion(4), VersionConflictEngineException.class) [CD]

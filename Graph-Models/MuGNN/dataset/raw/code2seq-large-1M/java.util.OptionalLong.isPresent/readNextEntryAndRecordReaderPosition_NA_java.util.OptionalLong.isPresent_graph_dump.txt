@@ -1,0 +1,8 @@
+Line_5 $$ OptionalLong fileLength = walFileLengthProvider.getLogFileSizeIfBeingWritten(currentPath) --> Line_6 $$ if (fileLength.isPresent() && readerPos > fileLength.getAsLong()) [FD]
+Line_6 $$ if (fileLength.isPresent() && readerPos > fileLength.getAsLong()) --> Line_7 $$ if (LOG.isDebugEnabled()) [CD]
+Line_7 $$ if (LOG.isDebugEnabled()) --> Line_8 $$ LOG.debug("The provider tells us the valid length for " + currentPath + " is " + fileLength.getAsLong() + ", but we have advanced to " + readerPos) [CD]
+Line_5 $$ OptionalLong fileLength = walFileLengthProvider.getLogFileSizeIfBeingWritten(currentPath) --> Line_8 $$ LOG.debug("The provider tells us the valid length for " + currentPath + " is " + fileLength.getAsLong() + ", but we have advanced to " + readerPos) [FD]
+Line_6 $$ if (fileLength.isPresent() && readerPos > fileLength.getAsLong()) --> Line_10 $$ resetReader() [CD]
+Line_6 $$ if (fileLength.isPresent() && readerPos > fileLength.getAsLong()) --> Line_11 $$ return true [CD]
+Line_4 $$ long readerPos = reader.getPosition() --> Line_18 $$ this.currentPositionOfReader = readerPos [FD]
+Line_5 $$ OptionalLong fileLength = walFileLengthProvider.getLogFileSizeIfBeingWritten(currentPath) --> Line_19 $$ return fileLength.isPresent() [FD]

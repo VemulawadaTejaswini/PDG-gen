@@ -1,0 +1,8 @@
+Line_2 $$ public void testProgressReportingWithStatusMessage() throws Exception --> Line_3 $$ String taskTimeout = cluster.getProperties().getProperty(MRConfiguration.TASK_TIMEOUT) [CD]
+Line_8 $$ String filename = prepareTempFile() --> Line_9 $$ filename = filename.replace("\\", "\\\\") [FD]
+Line_7 $$ PigServer pig = new PigServer(cluster.getExecType(), cluster.getProperties()) --> Line_10 $$ pig.registerQuery("A = load 'a.txt' as (f1:chararray);") [FD]
+Line_7 $$ PigServer pig = new PigServer(cluster.getExecType(), cluster.getProperties()) --> Line_11 $$ pig.registerQuery("B = foreach A generate org.apache.pig.test.utils.ReportingUDF();") [FD]
+Line_7 $$ PigServer pig = new PigServer(cluster.getExecType(), cluster.getProperties()) --> Line_12 $$ assertEquals("(100)", pig.openIterator("B").next().toString()) [FD]
+Line_3 $$ String taskTimeout = cluster.getProperties().getProperty(MRConfiguration.TASK_TIMEOUT) --> Line_14 $$ if (taskTimeout != null) [FD]
+Line_14 $$ if (taskTimeout != null) --> Line_15 $$ cluster.setProperty(MRConfiguration.TASK_TIMEOUT, taskTimeout) [CD]
+Line_3 $$ String taskTimeout = cluster.getProperties().getProperty(MRConfiguration.TASK_TIMEOUT) --> Line_15 $$ cluster.setProperty(MRConfiguration.TASK_TIMEOUT, taskTimeout) [FD]

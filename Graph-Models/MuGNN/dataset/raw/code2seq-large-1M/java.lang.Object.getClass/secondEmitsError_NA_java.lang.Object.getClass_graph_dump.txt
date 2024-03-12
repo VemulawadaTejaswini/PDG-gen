@@ -1,0 +1,8 @@
+Line_2 $$ public void secondEmitsError() --> Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() [CD]
+Line_2 $$ public void secondEmitsError() --> Line_4 $$ RuntimeException ex = new RuntimeException("forced failure") [CD]
+Line_2 $$ public void secondEmitsError() --> Line_5 $$ Flux.first(Flux.never(), Flux.<Integer>error(ex)).subscribe(ts) [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_5 $$ Flux.first(Flux.never(), Flux.<Integer>error(ex)).subscribe(ts) [FD]
+Line_4 $$ RuntimeException ex = new RuntimeException("forced failure") --> Line_5 $$ Flux.first(Flux.never(), Flux.<Integer>error(ex)).subscribe(ts) [FD]
+Line_2 $$ public void secondEmitsError() --> Line_6 $$ ts.assertNoValues().assertNotComplete().assertError(ex.getClass()) [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_6 $$ ts.assertNoValues().assertNotComplete().assertError(ex.getClass()) [FD]
+Line_4 $$ RuntimeException ex = new RuntimeException("forced failure") --> Line_6 $$ ts.assertNoValues().assertNotComplete().assertError(ex.getClass()) [FD]

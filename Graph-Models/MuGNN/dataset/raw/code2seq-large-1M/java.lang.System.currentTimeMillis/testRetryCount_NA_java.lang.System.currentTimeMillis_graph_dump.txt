@@ -1,0 +1,6 @@
+Line_2 $$ public void testRetryCount() throws Exception --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ public void testRetryCount() throws Exception --> Line_4 $$ String successAnswer = webb.get("/error/503/" + System.currentTimeMillis() + "/2").retry(2, true).ensureSuccess().asString().getBody() [CD]
+Line_2 $$ public void testRetryCount() throws Exception --> Line_5 $$ assertEquals("Now it works", successAnswer) [CD]
+Line_4 $$ String successAnswer = webb.get("/error/503/" + System.currentTimeMillis() + "/2").retry(2, true).ensureSuccess().asString().getBody() --> Line_5 $$ assertEquals("Now it works", successAnswer) [FD]
+Line_2 $$ public void testRetryCount() throws Exception --> Line_6 $$ long duration = System.currentTimeMillis() - start [CD]
+Line_2 $$ public void testRetryCount() throws Exception --> Line_7 $$ assertTrue("Should last longer than 3 seconds", duration > 3000) [CD]

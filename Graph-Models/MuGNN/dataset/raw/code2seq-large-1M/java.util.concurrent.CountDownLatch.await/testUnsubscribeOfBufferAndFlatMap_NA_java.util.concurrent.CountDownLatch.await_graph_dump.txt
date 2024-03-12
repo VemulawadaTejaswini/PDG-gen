@@ -1,0 +1,5 @@
+Line_2 $$ public void testUnsubscribeOfBufferAndFlatMap() throws InterruptedException --> Line_3 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testUnsubscribeOfBufferAndFlatMap() throws InterruptedException --> Line_4 $$ Observable.interval(10, TimeUnit.MILLISECONDS).doOnUnsubscribe(countDown(latch)).buffer(2).flatMap(constant(just(1L))).take(6).toList().toBlocking().single() [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_4 $$ Observable.interval(10, TimeUnit.MILLISECONDS).doOnUnsubscribe(countDown(latch)).buffer(2).flatMap(constant(just(1L))).take(6).toList().toBlocking().single() [FD]
+Line_2 $$ public void testUnsubscribeOfBufferAndFlatMap() throws InterruptedException --> Line_5 $$ assertTrue(latch.await(3, TimeUnit.SECONDS)) [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_5 $$ assertTrue(latch.await(3, TimeUnit.SECONDS)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private OASFilter getFilter() --> Line_3 $$ String filterClassName = config.getOptionalValue(OASConfig.FILTER, String.class).orElse(null) [CD]
+Line_2 $$ private OASFilter getFilter() --> Line_4 $$ if (filterClassName == null) [CD]
+Line_4 $$ if (filterClassName == null) --> Line_5 $$ return null [CD]
+Line_8 $$ ClassLoader cl = getContextClassLoader() --> Line_9 $$ if (cl == null) [FD]
+Line_9 $$ if (cl == null) --> Line_10 $$ cl = OpenApiServletContextListener.class.getClassLoader() [CD]
+Line_8 $$ ClassLoader cl = getContextClassLoader() --> Line_10 $$ cl = OpenApiServletContextListener.class.getClassLoader() [FD]
+Line_8 $$ ClassLoader cl = getContextClassLoader() --> Line_12 $$ Class<?> c = cl.loadClass(filterClassName) [FD]
+Line_12 $$ Class<?> c = cl.loadClass(filterClassName) --> Line_13 $$ return (OASFilter) c.newInstance() [FD]

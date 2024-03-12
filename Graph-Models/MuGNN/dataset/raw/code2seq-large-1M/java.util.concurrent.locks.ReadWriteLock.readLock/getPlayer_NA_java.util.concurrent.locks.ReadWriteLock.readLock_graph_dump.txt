@@ -1,0 +1,8 @@
+Line_2 $$ protected Player getPlayer(long ssrc) --> Line_3 $$ Lock readLock = playbacksLock.readLock() [CD]
+Line_2 $$ protected Player getPlayer(long ssrc) --> Line_4 $$ readLock.lock() [CD]
+Line_3 $$ Lock readLock = playbacksLock.readLock() --> Line_4 $$ readLock.lock() [FD]
+Line_7 $$ long playbackSSRC = 0xFFFFFFFFL & playback.receiveStream.getSSRC() --> Line_8 $$ if (playbackSSRC == ssrc) [FD]
+Line_2 $$ protected Player getPlayer(long ssrc) --> Line_8 $$ if (playbackSSRC == ssrc) [FD]
+Line_8 $$ if (playbackSSRC == ssrc) --> Line_9 $$ return playback.player [CD]
+Line_3 $$ Lock readLock = playbacksLock.readLock() --> Line_12 $$ readLock.unlock() [FD]
+Line_2 $$ protected Player getPlayer(long ssrc) --> Line_14 $$ return null [CD]

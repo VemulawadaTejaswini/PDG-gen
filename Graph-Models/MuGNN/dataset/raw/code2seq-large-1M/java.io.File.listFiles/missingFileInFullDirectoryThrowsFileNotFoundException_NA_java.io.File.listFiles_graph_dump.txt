@@ -1,0 +1,6 @@
+Line_2 $$ public void missingFileInFullDirectoryThrowsFileNotFoundException() throws Exception --> Line_3 $$ int[] pids = new AvailablePid().findAvailablePids(4) [CD]
+Line_2 $$ public void missingFileInFullDirectoryThrowsFileNotFoundException() throws Exception --> Line_4 $$ for (int i = 1; i <= pids.length; i++) [CD]
+Line_4 $$ for (int i = 1; i <= pids.length; i++) --> Line_5 $$ new IntegerFileWriter(new File(directory, "pid" + i + ".txt")).writeToFile(pids[i - 1]) [CD]
+Line_2 $$ public void missingFileInFullDirectoryThrowsFileNotFoundException() throws Exception --> Line_7 $$ assertThat(directory.listFiles()).hasSameSizeAs(pids) [CD]
+Line_3 $$ int[] pids = new AvailablePid().findAvailablePids(4) --> Line_7 $$ assertThat(directory.listFiles()).hasSameSizeAs(pids) [FD]
+Line_2 $$ public void missingFileInFullDirectoryThrowsFileNotFoundException() throws Exception --> Line_8 $$ assertThatThrownBy(() -> new PidFile(directory, pidFileName).readPid()).isInstanceOf(FileNotFoundException.class).hasMessage("Unable to find PID file '" + pidFileName + "' in directory '" + directory + "'") [CD]

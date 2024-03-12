@@ -1,0 +1,7 @@
+Line_2 $$ public Map<ThreadInformation, StackTraceElement[]> createThreadInfo() --> Line_3 $$ final ThreadMXBean bean = ManagementFactory.getThreadMXBean() [CD]
+Line_2 $$ public Map<ThreadInformation, StackTraceElement[]> createThreadInfo() --> Line_4 $$ final ThreadInfo[] array = bean.dumpAllThreads(true, true) [CD]
+Line_3 $$ final ThreadMXBean bean = ManagementFactory.getThreadMXBean() --> Line_4 $$ final ThreadInfo[] array = bean.dumpAllThreads(true, true) [FD]
+Line_2 $$ public Map<ThreadInformation, StackTraceElement[]> createThreadInfo() --> Line_5 $$ final Map<ThreadInformation, StackTraceElement[]> threads = new HashMap(array.length) [CD]
+Line_5 $$ final Map<ThreadInformation, StackTraceElement[]> threads = new HashMap(array.length) --> Line_7 $$ threads.put(new ExtendedThreadInformation(info), info.getStackTrace()) [FD]
+Line_6 $$ for (final ThreadInfo info : array) --> Line_7 $$ threads.put(new ExtendedThreadInformation(info), info.getStackTrace()) [FD]
+Line_2 $$ public Map<ThreadInformation, StackTraceElement[]> createThreadInfo() --> Line_9 $$ return threads [CD]

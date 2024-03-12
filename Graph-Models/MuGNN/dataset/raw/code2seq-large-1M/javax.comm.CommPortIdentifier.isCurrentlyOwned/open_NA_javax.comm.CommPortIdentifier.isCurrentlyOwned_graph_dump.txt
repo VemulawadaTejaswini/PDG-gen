@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized CommPort open(final String appName, final int timeout) throws PortInUseException --> Line_3 $$ if (isCurrentlyOwned()) [CD]
+Line_3 $$ if (isCurrentlyOwned()) --> Line_4 $$ final PortInUseException piux = new PortInUseException(appName) [CD]
+Line_3 $$ if (isCurrentlyOwned()) --> Line_5 $$ piux.currentOwner = getCurrentOwner() [CD]
+Line_2 $$ public synchronized CommPort open(final String appName, final int timeout) throws PortInUseException --> Line_8 $$ this.currentOwner = appName [FD]
+Line_2 $$ public synchronized CommPort open(final String appName, final int timeout) throws PortInUseException --> Line_8 $$ this.currentOwner = appName [CD]
+Line_2 $$ public synchronized CommPort open(final String appName, final int timeout) throws PortInUseException --> Line_9 $$ this.currentlyOwned = true [CD]
+Line_2 $$ public synchronized CommPort open(final String appName, final int timeout) throws PortInUseException --> Line_10 $$ fireOwnershipEvent(CommPortOwnershipListener.PORT_OWNERSHIP_REQUESTED) [CD]
+Line_2 $$ public synchronized CommPort open(final String appName, final int timeout) throws PortInUseException --> Line_11 $$ return commDriver.getCommPort(getName(), getPortType()) [CD]

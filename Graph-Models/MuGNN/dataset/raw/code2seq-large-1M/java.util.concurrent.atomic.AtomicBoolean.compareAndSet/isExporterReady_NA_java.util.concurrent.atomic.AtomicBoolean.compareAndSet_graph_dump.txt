@@ -1,0 +1,5 @@
+Line_2 $$ boolean isExporterReady() --> Line_3 $$ final boolean canUseClusterAlerts = config.licenseState().isMonitoringClusterAlertsAllowed() [CD]
+Line_2 $$ boolean isExporterReady() --> Line_4 $$ if (clusterAlertsAllowed.compareAndSet(!canUseClusterAlerts, canUseClusterAlerts)) [CD]
+Line_3 $$ final boolean canUseClusterAlerts = config.licenseState().isMonitoringClusterAlertsAllowed() --> Line_4 $$ if (clusterAlertsAllowed.compareAndSet(!canUseClusterAlerts, canUseClusterAlerts)) [FD]
+Line_4 $$ if (clusterAlertsAllowed.compareAndSet(!canUseClusterAlerts, canUseClusterAlerts)) --> Line_5 $$ resource.markDirty() [CD]
+Line_2 $$ boolean isExporterReady() --> Line_7 $$ return resource.checkAndPublishIfDirty(client) [CD]

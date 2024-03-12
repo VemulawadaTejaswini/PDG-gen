@@ -1,0 +1,6 @@
+Line_2 $$ public List<WebhookItem> getWebHooks() --> Line_3 $$ List<WebElement> list = getWebhookList() [CD]
+Line_2 $$ public List<WebhookItem> getWebHooks() --> Line_4 $$ if (list.isEmpty()) [CD]
+Line_3 $$ List<WebElement> list = getWebhookList() --> Line_4 $$ if (list.isEmpty()) [FD]
+Line_4 $$ if (list.isEmpty()) --> Line_5 $$ return Lists.newArrayList() [CD]
+Line_2 $$ public List<WebhookItem> getWebHooks() --> Line_7 $$ return list.stream().map( element -> new WebhookItem(element.findElement(By.name("url")).getText(), getSelectedTypes(element))).collect(Collectors.toList()) [CD]
+Line_3 $$ List<WebElement> list = getWebhookList() --> Line_7 $$ return list.stream().map( element -> new WebhookItem(element.findElement(By.name("url")).getText(), getSelectedTypes(element))).collect(Collectors.toList()) [FD]

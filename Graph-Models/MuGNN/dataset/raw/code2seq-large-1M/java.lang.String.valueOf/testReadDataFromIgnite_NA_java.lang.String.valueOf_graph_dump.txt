@@ -1,0 +1,8 @@
+Line_2 $$ public void testReadDataFromIgnite() throws Exception --> Line_3 $$ JavaSparkContext sc = new JavaSparkContext("local[*]", "test") [CD]
+Line_6 $$ Ignite ignite = Ignition.ignite("grid-0") --> Line_7 $$ IgniteCache<String, Integer> cache = ignite.cache(ENTITY_CACHE_NAME) [FD]
+Line_7 $$ IgniteCache<String, Integer> cache = ignite.cache(ENTITY_CACHE_NAME) --> Line_8 $$ for (int i = 0; i < KEYS_CNT; i++) cache.put(String.valueOf(i), i) [FD]
+Line_5 $$ JavaIgniteContext<String, Integer> ic = new JavaIgniteContext(sc, new IgniteConfigProvider()) --> Line_9 $$ JavaRDD<Integer> values = ic.fromCache(ENTITY_CACHE_NAME).map(STR_INT_PAIR_TO_INT_F) [FD]
+Line_9 $$ JavaRDD<Integer> values = ic.fromCache(ENTITY_CACHE_NAME).map(STR_INT_PAIR_TO_INT_F) --> Line_10 $$ int sum = values.fold(0, SUM_F) [FD]
+Line_11 $$ int expSum = (KEYS_CNT * KEYS_CNT + KEYS_CNT) / 2 - KEYS_CNT --> Line_12 $$ assertEquals(expSum, sum) [FD]
+Line_10 $$ int sum = values.fold(0, SUM_F) --> Line_12 $$ assertEquals(expSum, sum) [FD]
+Line_3 $$ JavaSparkContext sc = new JavaSparkContext("local[*]", "test") --> Line_14 $$ sc.stop() [FD]

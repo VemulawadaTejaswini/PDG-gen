@@ -1,0 +1,7 @@
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPut() throws Exception --> Line_3 $$ String jobId = "privs-put-job" [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPut() throws Exception --> Line_4 $$ String job = " [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPut() throws Exception --> Line_5 $$ client().performRequest("put", MachineLearning.BASE_PATH + "anomaly_detectors/" + jobId, Collections.emptyMap(), new StringEntity(job, ContentType.APPLICATION_JSON)) [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPut() throws Exception --> Line_6 $$ String datafeedId = "datafeed-" + jobId [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPut() throws Exception --> Line_7 $$ ResponseException e = expectThrows(ResponseException.class, () -> new DatafeedBuilder(datafeedId, jobId, "airline-data-aggs", "response").setAuthHeader(BASIC_AUTH_VALUE_ML_ADMIN).build()) [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPut() throws Exception --> Line_8 $$ assertThat(e.getMessage(), containsString("Cannot create datafeed")) [CD]
+Line_2 $$ public void testInsufficientSearchPrivilegesOnPut() throws Exception --> Line_9 $$ assertThat(e.getMessage(), containsString("user ml_admin lacks permissions on the indices to be searched")) [CD]

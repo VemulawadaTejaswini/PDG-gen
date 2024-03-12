@@ -1,0 +1,4 @@
+Line_2 $$ public Set<BusinessService> getFeasibleChildServices(final BusinessService service) --> Line_3 $$ final BusinessServiceEntity entity = getBusinessServiceEntity(service) [FD]
+Line_2 $$ public Set<BusinessService> getFeasibleChildServices(final BusinessService service) --> Line_3 $$ final BusinessServiceEntity entity = getBusinessServiceEntity(service) [CD]
+Line_2 $$ public Set<BusinessService> getFeasibleChildServices(final BusinessService service) --> Line_4 $$ return getDao().findAll().stream().filter( s -> !this.checkDescendantForLoop(entity, s)).map( s -> new BusinessServiceImpl(this, s)).collect(Collectors.<BusinessService>toSet()) [CD]
+Line_3 $$ final BusinessServiceEntity entity = getBusinessServiceEntity(service) --> Line_4 $$ return getDao().findAll().stream().filter( s -> !this.checkDescendantForLoop(entity, s)).map( s -> new BusinessServiceImpl(this, s)).collect(Collectors.<BusinessService>toSet()) [FD]

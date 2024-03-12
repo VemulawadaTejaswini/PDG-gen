@@ -1,0 +1,8 @@
+Line_4 $$ while (!scheduledTasks.isEmpty() && (scheduledTasks.firstKey() <= clock.nowMs())) --> Line_5 $$ Map.Entry<Long, String> scheduledTask = scheduledTasks.pollFirstEntry() [CD]
+Line_4 $$ while (!scheduledTasks.isEmpty() && (scheduledTasks.firstKey() <= clock.nowMs())) --> Line_6 $$ Runnable runnable = TypedUtil.mapGet(registeredTasks, scheduledTask.getValue()) [CD]
+Line_4 $$ while (!scheduledTasks.isEmpty() && (scheduledTasks.firstKey() <= clock.nowMs())) --> Line_7 $$ if (runnable == null) [CD]
+Line_6 $$ Runnable runnable = TypedUtil.mapGet(registeredTasks, scheduledTask.getValue()) --> Line_7 $$ if (runnable == null) [FD]
+Line_7 $$ if (runnable == null) --> Line_8 $$ logger.severe("No task registered for %s", scheduledTask.getValue()) [CD]
+Line_4 $$ while (!scheduledTasks.isEmpty() && (scheduledTasks.firstKey() <= clock.nowMs())) --> Line_11 $$ runnable.run() [CD]
+Line_6 $$ Runnable runnable = TypedUtil.mapGet(registeredTasks, scheduledTask.getValue()) --> Line_11 $$ runnable.run() [FD]
+Line_14 $$ if (!scheduledTasks.isEmpty()) --> Line_15 $$ ensureIntentScheduledForSoonestTask() [CD]

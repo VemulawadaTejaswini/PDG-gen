@@ -1,0 +1,7 @@
+Line_2 $$ public void markLastTransaction(int partition, Long txn_id) --> Line_3 $$ assert (this.hstore_site.isLocalPartition(partition) == false) : "Trying to mark the last seen txnId for local partition #" + partition [FD]
+Line_2 $$ public void markLastTransaction(int partition, Long txn_id) --> Line_5 $$ if (this.lockQueueLastTxns[partition].compareTo(txn_id) < 0) [FD]
+Line_5 $$ if (this.lockQueueLastTxns[partition].compareTo(txn_id) < 0) --> Line_6 $$ if (debug.val) [CD]
+Line_6 $$ if (debug.val) --> Line_7 $$ LOG.debug(String.format("Marking txn #%d as last txnId for remote partition %d", txn_id, partition)) [CD]
+Line_2 $$ public void markLastTransaction(int partition, Long txn_id) --> Line_7 $$ LOG.debug(String.format("Marking txn #%d as last txnId for remote partition %d", txn_id, partition)) [FD]
+Line_5 $$ if (this.lockQueueLastTxns[partition].compareTo(txn_id) < 0) --> Line_8 $$ this.lockQueueLastTxns[partition] = txn_id [CD]
+Line_2 $$ public void markLastTransaction(int partition, Long txn_id) --> Line_8 $$ this.lockQueueLastTxns[partition] = txn_id [FD]

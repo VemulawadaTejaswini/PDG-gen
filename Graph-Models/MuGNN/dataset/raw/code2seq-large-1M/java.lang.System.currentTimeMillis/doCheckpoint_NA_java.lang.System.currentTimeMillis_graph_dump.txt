@@ -1,0 +1,7 @@
+Line_2 $$ private void doCheckpoint() --> Line_3 $$ LOG.debug("In checkpoint") [CD]
+Line_2 $$ private void doCheckpoint() --> Line_4 $$ if (curTxState.getState() == COMMITTED) [CD]
+Line_4 $$ if (curTxState.getState() == COMMITTED) --> Line_5 $$ saveTxState(curTxState.nextState(false)) [CD]
+Line_4 $$ if (curTxState.getState() == COMMITTED) --> Line_6 $$ lastCheckpointTs = System.currentTimeMillis() [CD]
+Line_2 $$ private void doCheckpoint() --> Line_8 $$ Action action = curTxState.nextAction(false) [CD]
+Line_2 $$ private void doCheckpoint() --> Line_9 $$ emit(curTxState.getTxid(), action) [CD]
+Line_8 $$ Action action = curTxState.nextAction(false) --> Line_9 $$ emit(curTxState.getTxid(), action) [FD]

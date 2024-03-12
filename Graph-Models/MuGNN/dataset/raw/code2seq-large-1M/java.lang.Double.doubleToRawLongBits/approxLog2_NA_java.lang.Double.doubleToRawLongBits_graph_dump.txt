@@ -1,0 +1,5 @@
+Line_2 $$ public static double approxLog2(double value) --> Line_3 $$ final long valueBits = Double.doubleToRawLongBits(value) [FD]
+Line_2 $$ public static double approxLog2(double value) --> Line_3 $$ final long valueBits = Double.doubleToRawLongBits(value) [CD]
+Line_2 $$ public static double approxLog2(double value) --> Line_4 $$ final long exponent = ((valueBits & 0x7ff0_0000_0000_0000L) >>> 52) - 1024 [CD]
+Line_2 $$ public static double approxLog2(double value) --> Line_5 $$ final double m = Double.longBitsToDouble((valueBits & 0x800fffffffffffffL) | 0x3ff0000000000000L) [CD]
+Line_2 $$ public static double approxLog2(double value) --> Line_6 $$ return (m * (2 - (1.0 / 3) * m) + exponent - (2.0 / 3.0)) [CD]

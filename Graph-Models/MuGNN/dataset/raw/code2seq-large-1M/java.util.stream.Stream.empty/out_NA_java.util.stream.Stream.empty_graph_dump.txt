@@ -1,0 +1,5 @@
+Line_2 $$ public Stream<WeightedNodeResult> out(@Name("from") Node from, @Name("type") String type, @Name("query") String query) throws Exception --> Line_3 $$ if (!db.index().existsForRelationships(type)) [CD]
+Line_2 $$ public Stream<WeightedNodeResult> out(@Name("from") Node from, @Name("type") String type, @Name("query") String query) throws Exception --> Line_3 $$ if (!db.index().existsForRelationships(type)) [FD]
+Line_3 $$ if (!db.index().existsForRelationships(type)) --> Line_4 $$ return Stream.empty() [CD]
+Line_2 $$ public Stream<WeightedNodeResult> out(@Name("from") Node from, @Name("type") String type, @Name("query") String query) throws Exception --> Line_5 $$ return toWeightedRelationshipResult(db.index().forRelationships(type).query(query, from, null)).map(( w) -> new WeightedNodeResult(w.rel.getEndNode(), w.weight)) [CD]
+Line_2 $$ public Stream<WeightedNodeResult> out(@Name("from") Node from, @Name("type") String type, @Name("query") String query) throws Exception --> Line_5 $$ return toWeightedRelationshipResult(db.index().forRelationships(type).query(query, from, null)).map(( w) -> new WeightedNodeResult(w.rel.getEndNode(), w.weight)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private InetSocketAddress localAddress(Channel channel) --> Line_3 $$ SocketAddress localSocketAddress = channel.localAddress() [FD]
+Line_2 $$ private InetSocketAddress localAddress(Channel channel) --> Line_3 $$ SocketAddress localSocketAddress = channel.localAddress() [CD]
+Line_2 $$ private InetSocketAddress localAddress(Channel channel) --> Line_4 $$ if (null != localSocketAddress && InetSocketAddress.class.isAssignableFrom(localSocketAddress.getClass())) [CD]
+Line_3 $$ SocketAddress localSocketAddress = channel.localAddress() --> Line_4 $$ if (null != localSocketAddress && InetSocketAddress.class.isAssignableFrom(localSocketAddress.getClass())) [FD]
+Line_5 $$ InetSocketAddress inetSocketAddress = (InetSocketAddress) localSocketAddress --> Line_6 $$ if (inetSocketAddress.getAddress() != null) [FD]
+Line_6 $$ if (inetSocketAddress.getAddress() != null) --> Line_7 $$ return inetSocketAddress [CD]
+Line_2 $$ private InetSocketAddress localAddress(Channel channel) --> Line_10 $$ return null [CD]

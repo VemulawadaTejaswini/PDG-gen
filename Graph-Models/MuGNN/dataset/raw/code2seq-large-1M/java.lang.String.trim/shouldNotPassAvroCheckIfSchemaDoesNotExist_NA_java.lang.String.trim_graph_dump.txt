@@ -1,0 +1,7 @@
+Line_2 $$ public void shouldNotPassAvroCheckIfSchemaDoesNotExist() throws Exception --> Line_3 $$ SchemaRegistryClient schemaRegistryClient = mock(SchemaRegistryClient.class) [CD]
+Line_2 $$ public void shouldNotPassAvroCheckIfSchemaDoesNotExist() throws Exception --> Line_4 $$ SchemaMetadata schemaMetadata = new SchemaMetadata(1, 1, null) [CD]
+Line_2 $$ public void shouldNotPassAvroCheckIfSchemaDoesNotExist() throws Exception --> Line_5 $$ expect(schemaRegistryClient.getLatestSchemaMetadata(anyString())).andReturn(schemaMetadata) [CD]
+Line_4 $$ SchemaMetadata schemaMetadata = new SchemaMetadata(1, 1, null) --> Line_5 $$ expect(schemaRegistryClient.getLatestSchemaMetadata(anyString())).andReturn(schemaMetadata) [FD]
+Line_2 $$ public void shouldNotPassAvroCheckIfSchemaDoesNotExist() throws Exception --> Line_6 $$ replay(schemaRegistryClient) [CD]
+Line_2 $$ public void shouldNotPassAvroCheckIfSchemaDoesNotExist() throws Exception --> Line_7 $$ AbstractStreamCreateStatement abstractStreamCreateStatement = getAbstractStreamCreateStatement("CREATE STREAM S1 WITH " + "(kafka_topic='s1_topic', " + "value_format='avro' );") [CD]
+Line_7 $$ AbstractStreamCreateStatement abstractStreamCreateStatement = getAbstractStreamCreateStatement("CREATE STREAM S1 WITH " + "(kafka_topic='s1_topic', " + "value_format='avro' );") --> Line_9 $$ avroUtil.checkAndSetAvroSchema(abstractStreamCreateStatement, new HashMap(), schemaRegistryClient) [FD]

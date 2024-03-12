@@ -1,0 +1,6 @@
+Line_2 $$ private void syncIsolation(int nativeIsolation) --> Line_3 $$ int jdbcIsolation = convertNativeIsolationToJDBC(nativeIsolation) [FD]
+Line_2 $$ private void syncIsolation(int nativeIsolation) --> Line_3 $$ int jdbcIsolation = convertNativeIsolationToJDBC(nativeIsolation) [CD]
+Line_2 $$ private void syncIsolation(int nativeIsolation) --> Line_4 $$ int srcJdbcIsolation = getTxIsolation() [CD]
+Line_2 $$ private void syncIsolation(int nativeIsolation) --> Line_5 $$ if (jdbcIsolation == srcJdbcIsolation || "oracle".equalsIgnoreCase(getDbType()) && jdbcIsolation != Connection.TRANSACTION_READ_COMMITTED && jdbcIsolation != Connection.TRANSACTION_SERIALIZABLE) [CD]
+Line_5 $$ if (jdbcIsolation == srcJdbcIsolation || "oracle".equalsIgnoreCase(getDbType()) && jdbcIsolation != Connection.TRANSACTION_READ_COMMITTED && jdbcIsolation != Connection.TRANSACTION_SERIALIZABLE) --> Line_6 $$ return [CD]
+Line_3 $$ int jdbcIsolation = convertNativeIsolationToJDBC(nativeIsolation) --> Line_9 $$ con.setTransactionIsolation(jdbcIsolation) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testCompactHasCorrectWithExpiry() --> Line_3 $$ Chain chain = getChainFromOperations(new PutOperation(1L, "Albin1", 0L), new PutOperation(1L, "Albin2", 1L), new PutOperation(1L, "Albin3", 2L), new PutOperation(1L, "Albin4", 3L)) [CD]
+Line_2 $$ public void testCompactHasCorrectWithExpiry() --> Line_4 $$ ExpiryChainResolver<Long, String> resolver = new ExpiryChainResolver(codec, ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMillis(1L))) [CD]
+Line_2 $$ public void testCompactHasCorrectWithExpiry() --> Line_5 $$ Chain compactedChain = resolver.applyOperation(chain, 3L) [CD]
+Line_4 $$ ExpiryChainResolver<Long, String> resolver = new ExpiryChainResolver(codec, ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMillis(1L))) --> Line_5 $$ Chain compactedChain = resolver.applyOperation(chain, 3L) [FD]
+Line_3 $$ Chain chain = getChainFromOperations(new PutOperation(1L, "Albin1", 0L), new PutOperation(1L, "Albin2", 1L), new PutOperation(1L, "Albin3", 2L), new PutOperation(1L, "Albin4", 3L)) --> Line_5 $$ Chain compactedChain = resolver.applyOperation(chain, 3L) [FD]
+Line_2 $$ public void testCompactHasCorrectWithExpiry() --> Line_6 $$ assertThat(compactedChain, contains(operation(new PutOperation(1L, "Albin4", 3L)))) [CD]
+Line_5 $$ Chain compactedChain = resolver.applyOperation(chain, 3L) --> Line_6 $$ assertThat(compactedChain, contains(operation(new PutOperation(1L, "Albin4", 3L)))) [FD]

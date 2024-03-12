@@ -1,0 +1,8 @@
+Line_2 $$ public ResourceServerTokenServices mockResourceTokenServices() --> Line_3 $$ final ResourceServerTokenServices tokenServices = mock(ResourceServerTokenServices.class) [CD]
+Line_2 $$ public ResourceServerTokenServices mockResourceTokenServices() --> Line_4 $$ when(tokenServices.loadAuthentication(any())).thenAnswer( invocation -> [CD]
+Line_6 $$ final String token = (String) invocation.getArguments()[0] --> Line_7 $$ final Set<String> scopes = ImmutableSet.copyOf(scopesForTokens.get(token)) [FD]
+Line_8 $$ final Map<String, Object> details = new HashMap() --> Line_9 $$ details.put("realm", realms.get(token)) [FD]
+Line_6 $$ final String token = (String) invocation.getArguments()[0] --> Line_9 $$ details.put("realm", realms.get(token)) [FD]
+Line_5 $$ final UsernamePasswordAuthenticationToken user = new UsernamePasswordAuthenticationToken("user", "N/A", AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER")) --> Line_10 $$ user.setDetails(details) [FD]
+Line_8 $$ final Map<String, Object> details = new HashMap() --> Line_10 $$ user.setDetails(details) [FD]
+Line_2 $$ public ResourceServerTokenServices mockResourceTokenServices() --> Line_14 $$ return tokenServices [CD]

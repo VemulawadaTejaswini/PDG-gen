@@ -1,0 +1,8 @@
+Line_2 $$ public Set<String> getSelectColumns() --> Line_3 $$ if (selectColumns != null && selectColumns.size() > 0) [CD]
+Line_3 $$ if (selectColumns != null && selectColumns.size() > 0) --> Line_4 $$ if (excludeColumns != null && excludeColumns.size() > 0) [CD]
+Line_4 $$ if (excludeColumns != null && excludeColumns.size() > 0) --> Line_5 $$ Collection<EntityColumn> entityColumns = propertyMap.values() [CD]
+Line_5 $$ Collection<EntityColumn> entityColumns = propertyMap.values() --> Line_6 $$ selectColumns = new LinkedHashSet<String>(entityColumns.size() - excludeColumns.size()) [FD]
+Line_7 $$ for (EntityColumn column : entityColumns) --> Line_8 $$ if (!excludeColumns.contains(column.getColumn())) [FD]
+Line_8 $$ if (!excludeColumns.contains(column.getColumn())) --> Line_9 $$ selectColumns.add(column.getColumn()) [CD]
+Line_7 $$ for (EntityColumn column : entityColumns) --> Line_9 $$ selectColumns.add(column.getColumn()) [FD]
+Line_2 $$ public Set<String> getSelectColumns() --> Line_13 $$ return selectColumns [CD]

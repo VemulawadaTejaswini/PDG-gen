@@ -1,0 +1,5 @@
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_4 $$ try (PreparedStatement statement = db.statement("insert into ledger_testrecords(hash) values(?) on conflict do nothing;")) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("insert into ledger_testrecords(hash) values(?) on conflict do nothing;")) --> Line_5 $$ statement.setBytes(1, hash.getDigest()) [FD]
+Line_2 $$ public void markTestRecord(HashId hash) --> Line_5 $$ statement.setBytes(1, hash.getDigest()) [FD]
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_6 $$ db.updateWithStatement(statement) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("insert into ledger_testrecords(hash) values(?) on conflict do nothing;")) --> Line_6 $$ db.updateWithStatement(statement) [FD]

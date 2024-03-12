@@ -1,0 +1,8 @@
+Line_3 $$ for (String actualMessage : actualMessages) --> Line_6 $$ if (actualMessage.contains(expectedSubstring)) [FD]
+Line_5 $$ for (String expectedSubstring : expectedSubstrings) --> Line_6 $$ if (actualMessage.contains(expectedSubstring)) [FD]
+Line_6 $$ if (actualMessage.contains(expectedSubstring)) --> Line_7 $$ found = true [CD]
+Line_4 $$ boolean found = false --> Line_7 $$ found = true [FD]
+Line_4 $$ boolean found = false --> Line_11 $$ if (!found) [FD]
+Line_7 $$ found = true --> Line_11 $$ if (!found) [FD]
+Line_11 $$ if (!found) --> Line_12 $$ AssertJUnit.fail(desc + " \"" + actualMessage + "\" was not expected (" + actualMessages.size() + " messages total)") [CD]
+Line_2 $$ private void assertMessages(String desc, Collection<String> actualMessages, String... expectedSubstrings) --> Line_12 $$ AssertJUnit.fail(desc + " \"" + actualMessage + "\" was not expected (" + actualMessages.size() + " messages total)") [FD]

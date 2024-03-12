@@ -1,0 +1,6 @@
+Line_4 $$ for (Path jarPath : jars) --> Line_5 $$ boolean jarIsDirect = isDirect.test(jarPath) [FD]
+Line_4 $$ for (Path jarPath : jars) --> Line_7 $$ ZipFile zipFile = closer.register(new ZipFile(jarPath.toFile())) [FD]
+Line_7 $$ ZipFile zipFile = closer.register(new ZipFile(jarPath.toFile())) --> Line_8 $$ zipFile.stream().forEach( entry -> [FD]
+Line_9 $$ String name = entry.getName() --> Line_10 $$ if (!name.endsWith(".class")) [FD]
+Line_9 $$ String name = entry.getName() --> Line_13 $$ String internalName = name.substring(0, name.lastIndexOf('.')) [FD]
+Line_13 $$ String internalName = name.substring(0, name.lastIndexOf('.')) --> Line_14 $$ result.computeIfAbsent(internalName,  key -> new LazyClassEntry(key, zipFile, jarPath, jarIsDirect)) [FD]

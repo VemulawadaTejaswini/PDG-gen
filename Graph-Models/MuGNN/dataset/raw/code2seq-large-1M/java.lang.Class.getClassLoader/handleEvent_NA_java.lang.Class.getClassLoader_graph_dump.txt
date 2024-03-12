@@ -1,0 +1,8 @@
+Line_2 $$ public void handleEvent(Object event, Annotation... qualifiers) --> Line_3 $$ if (event instanceof PreShutdown) [FD]
+Line_2 $$ public void handleEvent(Object event, Annotation... qualifiers) --> Line_3 $$ if (event instanceof PreShutdown) [CD]
+Line_3 $$ if (event instanceof PreShutdown) --> Line_4 $$ PreShutdown preShutdown = (PreShutdown) event [CD]
+Line_3 $$ if (event instanceof PreShutdown) --> Line_5 $$ if (SimpleContainer.getAddon(getClass().getClassLoader()).equals(preShutdown.getAddon())) [CD]
+Line_4 $$ PreShutdown preShutdown = (PreShutdown) event --> Line_5 $$ if (SimpleContainer.getAddon(getClass().getClassLoader()).equals(preShutdown.getAddon())) [FD]
+Line_5 $$ if (SimpleContainer.getAddon(getClass().getClassLoader()).equals(preShutdown.getAddon())) --> Line_6 $$ FileResourceTransactionManager transactionManager = SimpleContainer.getServices(getClass().getClassLoader(), FileResourceTransactionManager.class).get() [CD]
+Line_5 $$ if (SimpleContainer.getAddon(getClass().getClassLoader()).equals(preShutdown.getAddon())) --> Line_7 $$ transactionManager.shutdown(preShutdown) [CD]
+Line_4 $$ PreShutdown preShutdown = (PreShutdown) event --> Line_7 $$ transactionManager.shutdown(preShutdown) [FD]

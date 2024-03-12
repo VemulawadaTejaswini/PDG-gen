@@ -1,0 +1,8 @@
+Line_2 $$ private List<Long> getLedgerIdsToDelete(LogMetadata oldMetadata, LogMetadata currentMetadata) --> Line_3 $$ if (oldMetadata == null) [CD]
+Line_2 $$ private List<Long> getLedgerIdsToDelete(LogMetadata oldMetadata, LogMetadata currentMetadata) --> Line_3 $$ if (oldMetadata == null) [FD]
+Line_3 $$ if (oldMetadata == null) --> Line_4 $$ return Collections.emptyList() [CD]
+Line_2 $$ private List<Long> getLedgerIdsToDelete(LogMetadata oldMetadata, LogMetadata currentMetadata) --> Line_6 $$ val existingIds = currentMetadata.getLedgers().stream().map(LedgerMetadata::<>getLedgerId).collect(Collectors.toSet()) [CD]
+Line_2 $$ private List<Long> getLedgerIdsToDelete(LogMetadata oldMetadata, LogMetadata currentMetadata) --> Line_6 $$ val existingIds = currentMetadata.getLedgers().stream().map(LedgerMetadata::<>getLedgerId).collect(Collectors.toSet()) [FD]
+Line_2 $$ private List<Long> getLedgerIdsToDelete(LogMetadata oldMetadata, LogMetadata currentMetadata) --> Line_7 $$ return oldMetadata.getLedgers().stream().map(LedgerMetadata::<>getLedgerId).filter( id -> !existingIds.contains(id)).collect(Collectors.toList()) [CD]
+Line_2 $$ private List<Long> getLedgerIdsToDelete(LogMetadata oldMetadata, LogMetadata currentMetadata) --> Line_7 $$ return oldMetadata.getLedgers().stream().map(LedgerMetadata::<>getLedgerId).filter( id -> !existingIds.contains(id)).collect(Collectors.toList()) [FD]
+Line_6 $$ val existingIds = currentMetadata.getLedgers().stream().map(LedgerMetadata::<>getLedgerId).collect(Collectors.toSet()) --> Line_7 $$ return oldMetadata.getLedgers().stream().map(LedgerMetadata::<>getLedgerId).filter( id -> !existingIds.contains(id)).collect(Collectors.toList()) [FD]

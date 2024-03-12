@@ -1,0 +1,7 @@
+Line_2 $$ public ExecutorService getMultiThreadExecutorService() --> Line_3 $$ if (null == mMultiThreadExecutor || mMultiThreadExecutor.isShutdown()) [CD]
+Line_3 $$ if (null == mMultiThreadExecutor || mMultiThreadExecutor.isShutdown()) --> Line_4 $$ final int numThreads = Math.round(Runtime.getRuntime().availableProcessors() * EXECUTOR_POOL_SIZE_PER_CORE) [CD]
+Line_3 $$ if (null == mMultiThreadExecutor || mMultiThreadExecutor.isShutdown()) --> Line_5 $$ mMultiThreadExecutor = Executors.newFixedThreadPool(numThreads, new PhotupThreadFactory()) [CD]
+Line_4 $$ final int numThreads = Math.round(Runtime.getRuntime().availableProcessors() * EXECUTOR_POOL_SIZE_PER_CORE) --> Line_5 $$ mMultiThreadExecutor = Executors.newFixedThreadPool(numThreads, new PhotupThreadFactory()) [FD]
+Line_3 $$ if (null == mMultiThreadExecutor || mMultiThreadExecutor.isShutdown()) --> Line_6 $$ if (Flags.DEBUG) [CD]
+Line_6 $$ if (Flags.DEBUG) --> Line_7 $$ Log.d(LOG_TAG, "MultiThreadExecutor created with " + numThreads + " threads") [CD]
+Line_2 $$ public ExecutorService getMultiThreadExecutorService() --> Line_10 $$ return mMultiThreadExecutor [CD]

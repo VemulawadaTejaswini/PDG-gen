@@ -1,0 +1,5 @@
+Line_2 $$ public void testReactChain() throws InterruptedException, ExecutionException --> Line_3 $$ List<String> strings = new SimpleReact().<Integer>ofAsync(() -> 1, () -> 2, () -> 3).then(( it) -> it * 100).then(( it) -> "*" + it).block( status -> status.getCompleted() > 1) [CD]
+Line_2 $$ public void testReactChain() throws InterruptedException, ExecutionException --> Line_4 $$ assertThat(strings.get(0), is(containsString("*"))) [CD]
+Line_3 $$ List<String> strings = new SimpleReact().<Integer>ofAsync(() -> 1, () -> 2, () -> 3).then(( it) -> it * 100).then(( it) -> "*" + it).block( status -> status.getCompleted() > 1) --> Line_4 $$ assertThat(strings.get(0), is(containsString("*"))) [FD]
+Line_2 $$ public void testReactChain() throws InterruptedException, ExecutionException --> Line_5 $$ assertThat(Integer.valueOf(strings.get(0).substring(1)), is(greaterThan(99))) [CD]
+Line_3 $$ List<String> strings = new SimpleReact().<Integer>ofAsync(() -> 1, () -> 2, () -> 3).then(( it) -> it * 100).then(( it) -> "*" + it).block( status -> status.getCompleted() > 1) --> Line_5 $$ assertThat(Integer.valueOf(strings.get(0).substring(1)), is(greaterThan(99))) [FD]

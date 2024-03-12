@@ -1,0 +1,8 @@
+Line_4 $$ if (this.writestate.readOnly) --> Line_5 $$ return true [CD]
+Line_7 $$ if (!writestate.flushing) --> Line_8 $$ return true [CD]
+Line_14 $$ while (writestate.flushing) --> Line_15 $$ if (timeout > 0 && duration >= timeout) [CD]
+Line_18 $$ long toWait = timeout == 0 ? 0 : (timeout - duration) --> Line_19 $$ writestate.wait(toWait) [FD]
+Line_11 $$ boolean interrupted = false --> Line_22 $$ interrupted = true [FD]
+Line_10 $$ long duration = 0 --> Line_25 $$ duration = System.currentTimeMillis() - start [FD]
+Line_9 $$ long start = System.currentTimeMillis() --> Line_25 $$ duration = System.currentTimeMillis() - start [FD]
+Line_29 $$ if (interrupted) --> Line_30 $$ Thread.currentThread().interrupt() [CD]

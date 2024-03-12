@@ -1,0 +1,6 @@
+Line_2 $$ public static List<Thread> currentThreads() --> Line_3 $$ List<Thread> threads = Lists.newArrayList() [CD]
+Line_4 $$ for (Thread thread : Thread.getAllStackTraces().keySet()) --> Line_5 $$ if (thread.getState() != State.TERMINATED && !thread.getName().equals("DestroyJavaVM") && !thread.getName().equals("AWT-AppKit") && !thread.getName().equals("process reaper")) [FD]
+Line_5 $$ if (thread.getState() != State.TERMINATED && !thread.getName().equals("DestroyJavaVM") && !thread.getName().equals("AWT-AppKit") && !thread.getName().equals("process reaper")) --> Line_6 $$ threads.add(thread) [CD]
+Line_3 $$ List<Thread> threads = Lists.newArrayList() --> Line_6 $$ threads.add(thread) [FD]
+Line_4 $$ for (Thread thread : Thread.getAllStackTraces().keySet()) --> Line_6 $$ threads.add(thread) [FD]
+Line_2 $$ public static List<Thread> currentThreads() --> Line_9 $$ return threads [CD]

@@ -1,0 +1,8 @@
+Line_12 $$ ExprForge[] havingForges = perLevelForges.getOptionalHavingForges() --> Line_13 $$ if (havingForges != null) [FD]
+Line_13 $$ if (havingForges != null) --> Line_14 $$ factoryMembers.add(new CodegenTypedParam(HavingClauseEvaluator[].class, NAME_HAVINGEVALUATOR_ARRAYNONMEMBER)) [CD]
+Line_13 $$ if (havingForges != null) --> Line_15 $$ factoryCtor.getBlock().assignRef(NAME_HAVINGEVALUATOR_ARRAYNONMEMBER, newArrayByLength(HavingClauseEvaluator.class, constant(havingForges.length))) [CD]
+Line_13 $$ if (havingForges != null) --> Line_16 $$ for (int i = 0; i < havingForges.length; i++) [CD]
+Line_16 $$ for (int i = 0; i < havingForges.length; i++) --> Line_17 $$ CodegenExpressionNewAnonymousClass impl = newAnonymousClass(factoryCtor.getBlock(), HavingClauseEvaluator.class, boolean.class, "evaluateHaving", ExprForgeCodegenNames.PARAMS) [CD]
+Line_16 $$ for (int i = 0; i < havingForges.length; i++) --> Line_18 $$ impl.getBlock().blockReturn(CodegenLegoMethodExpression.codegenBooleanExpressionReturnTrueFalse(havingForges[i], classScope, factoryCtor, REF_EPS, REF_ISNEWDATA, REF_EXPREVALCONTEXT)) [CD]
+Line_16 $$ for (int i = 0; i < havingForges.length; i++) --> Line_19 $$ factoryCtor.getBlock().assignArrayElement(NAME_HAVINGEVALUATOR_ARRAYNONMEMBER, constant(i), impl) [CD]
+Line_16 $$ for (int i = 0; i < havingForges.length; i++) --> Line_19 $$ factoryCtor.getBlock().assignArrayElement(NAME_HAVINGEVALUATOR_ARRAYNONMEMBER, constant(i), impl) [FD]

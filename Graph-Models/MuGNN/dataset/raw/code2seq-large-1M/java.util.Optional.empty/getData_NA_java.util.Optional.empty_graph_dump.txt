@@ -1,0 +1,6 @@
+Line_2 $$ public HoodieRecord getData(byte[] bytes) --> Line_4 $$ Pair<Pair<String, String>, byte[]> data = SerializationUtils.deserialize(bytes) [FD]
+Line_4 $$ Pair<Pair<String, String>, byte[]> data = SerializationUtils.deserialize(bytes) --> Line_6 $$ if (data.getValue().length > 0) [FD]
+Line_6 $$ if (data.getValue().length > 0) --> Line_7 $$ payload = Optional.of(HoodieAvroUtils.bytesToAvro(data.getValue(), schema)) [CD]
+Line_5 $$ Optional<GenericRecord> payload = Optional.empty() --> Line_7 $$ payload = Optional.of(HoodieAvroUtils.bytesToAvro(data.getValue(), schema)) [FD]
+Line_4 $$ Pair<Pair<String, String>, byte[]> data = SerializationUtils.deserialize(bytes) --> Line_7 $$ payload = Optional.of(HoodieAvroUtils.bytesToAvro(data.getValue(), schema)) [FD]
+Line_4 $$ Pair<Pair<String, String>, byte[]> data = SerializationUtils.deserialize(bytes) --> Line_9 $$ HoodieRecord<? extends HoodieRecordPayload> hoodieRecord = new HoodieRecord(new HoodieKey(data.getKey().getKey(), data.getKey().getValue()), ReflectionUtils.loadPayload(payloadClazz, new Object[] [FD]

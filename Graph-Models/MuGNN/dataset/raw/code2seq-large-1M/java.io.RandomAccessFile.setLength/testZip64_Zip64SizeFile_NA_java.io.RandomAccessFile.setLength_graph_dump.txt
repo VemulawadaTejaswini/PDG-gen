@@ -1,0 +1,8 @@
+Line_2 $$ public void testZip64_Zip64SizeFile() throws IOException --> Line_3 $$ File biggerFile = tmp.newFile("big") [CD]
+Line_4 $$ try (RandomAccessFile biggerOut = new RandomAccessFile(biggerFile, "rw")) --> Line_5 $$ biggerOut.setLength(0x1000000ffL) [FD]
+Line_3 $$ File biggerFile = tmp.newFile("big") --> Line_8 $$ ZipFileEntry bigEntry = new ZipFileEntry(biggerFile.getName()) [FD]
+Line_7 $$ try (ZipWriter writer = new ZipWriter(new FileOutputStream(test), UTF_8, true)) --> Line_13 $$ writer.putNextEntry(bigEntry) [FD]
+Line_7 $$ try (ZipWriter writer = new ZipWriter(new FileOutputStream(test), UTF_8, true)) --> Line_14 $$ ByteStreams.copy(new BufferedInputStream(new FileInputStream(biggerFile)), writer) [FD]
+Line_16 $$ try (ZipReader reader = new ZipReader(test, UTF_8)) --> Line_17 $$ Collection<ZipFileEntry> entries = reader.entries() [FD]
+Line_16 $$ try (ZipReader reader = new ZipReader(test, UTF_8)) --> Line_19 $$ ZipFileEntry bigEntry = reader.getEntry(biggerFile.getName()) [FD]
+Line_3 $$ File biggerFile = tmp.newFile("big") --> Line_19 $$ ZipFileEntry bigEntry = reader.getEntry(biggerFile.getName()) [FD]

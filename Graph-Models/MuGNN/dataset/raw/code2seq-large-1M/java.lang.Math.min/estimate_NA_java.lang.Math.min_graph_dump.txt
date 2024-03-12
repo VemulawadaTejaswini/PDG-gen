@@ -1,0 +1,6 @@
+Line_2 $$ public int estimate() --> Line_3 $$ long entries = Math.min(getExpectedEntries(), maxEntries) [CD]
+Line_2 $$ public int estimate() --> Line_4 $$ long numBits = (long) (-entries * Math.log(BloomKFilter.DEFAULT_FPP) / (Math.log(2) * Math.log(2))) [CD]
+Line_3 $$ long entries = Math.min(getExpectedEntries(), maxEntries) --> Line_4 $$ long numBits = (long) (-entries * Math.log(BloomKFilter.DEFAULT_FPP) / (Math.log(2) * Math.log(2))) [FD]
+Line_2 $$ public int estimate() --> Line_5 $$ int nLongs = (int) Math.ceil((double) numBits / (double) Long.SIZE) [CD]
+Line_2 $$ public int estimate() --> Line_6 $$ int padLongs = 8 - nLongs % 8 [CD]
+Line_2 $$ public int estimate() --> Line_7 $$ return (nLongs + padLongs) * Long.SIZE / 8 [CD]

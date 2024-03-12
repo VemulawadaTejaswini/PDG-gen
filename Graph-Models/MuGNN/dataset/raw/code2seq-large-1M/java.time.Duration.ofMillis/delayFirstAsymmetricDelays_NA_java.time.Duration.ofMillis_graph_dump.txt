@@ -1,0 +1,4 @@
+Line_2 $$ public void delayFirstAsymmetricDelays() --> Line_3 $$ Supplier<Flux<Tuple2<Long, Long>>> test = () -> [CD]
+Line_4 $$ Flux<Long> asymmetricDelays = Flux.concat(Mono.delay(Duration.ofMillis(400)).then(Mono.just(0L)), Mono.delay(Duration.ofMillis(800)).then(Mono.just(1L)), Mono.delay(Duration.ofMillis(200)).then(Mono.just(2L)), Mono.delay(Duration.ofMillis(300)).then(Mono.just(3L))) --> Line_5 $$ return asymmetricDelays.delaySequence(Duration.ofMillis(500)).take(33).elapsed() [FD]
+Line_2 $$ public void delayFirstAsymmetricDelays() --> Line_7 $$ StepVerifier.withVirtualTime(test).thenAwait(Duration.ofMillis(500 + 400)).assertNext( t2 -> [CD]
+Line_3 $$ Supplier<Flux<Tuple2<Long, Long>>> test = () -> --> Line_7 $$ StepVerifier.withVirtualTime(test).thenAwait(Duration.ofMillis(500 + 400)).assertNext( t2 -> [FD]

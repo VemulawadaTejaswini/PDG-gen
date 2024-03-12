@@ -1,0 +1,3 @@
+Line_2 $$ public void testGroupIndexOperations() throws Exception --> Line_3 $$ IgniteCache<Integer, GroupIndexTestValue> c = ignite(0).getOrCreateCache(cacheConfig("grp", false, Integer.class, GroupIndexTestValue.class)) [CD]
+Line_7 $$ String plan = columnQuery(c, "explain " + qry + "where a = 1 and b > 0").get(0).toString() --> Line_9 $$ assertTrue("_explain: " + plan, plan.toLowerCase().contains("grpidx")) [FD]
+Line_10 $$ List<GroupIndexTestValue> list = F.asList(new GroupIndexTestValue(0, 0), new GroupIndexTestValue(0, 5), new GroupIndexTestValue(1, 1), new GroupIndexTestValue(1, 3), new GroupIndexTestValue(2, -1), new GroupIndexTestValue(2, 2)) --> Line_11 $$ for (int i = 0; i < list.size(); i++) c.put(i, list.get(i)) [FD]

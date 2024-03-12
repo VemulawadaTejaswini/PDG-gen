@@ -1,0 +1,8 @@
+Line_2 $$ public void rebuildAllPath() --> Line_3 $$ final List<Module> modules = this.getAll() [CD]
+Line_2 $$ public void rebuildAllPath() --> Line_4 $$ final List<Module> roots = modules.stream().filter( module -> module.getParentId().equals(0)).collect(Collectors.toList()) [CD]
+Line_3 $$ final List<Module> modules = this.getAll() --> Line_4 $$ final List<Module> roots = modules.stream().filter( module -> module.getParentId().equals(0)).collect(Collectors.toList()) [FD]
+Line_5 $$ for (final Module root : roots) --> Line_6 $$ root.setPath(root.getId().toString()) [FD]
+Line_3 $$ final List<Module> modules = this.getAll() --> Line_7 $$ this.rebuildPath(modules, root) [FD]
+Line_5 $$ for (final Module root : roots) --> Line_7 $$ this.rebuildPath(modules, root) [FD]
+Line_2 $$ public void rebuildAllPath() --> Line_9 $$ this.dao.batchUpdate(modules) [CD]
+Line_3 $$ final List<Module> modules = this.getAll() --> Line_9 $$ this.dao.batchUpdate(modules) [FD]

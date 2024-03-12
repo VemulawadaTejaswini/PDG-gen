@@ -1,0 +1,6 @@
+Line_2 $$ public void hotUndeployBundles(DevBundle[] bundles) throws ReflectiveOperationException --> Line_3 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() [CD]
+Line_2 $$ public void hotUndeployBundles(DevBundle[] bundles) throws ReflectiveOperationException --> Line_6 $$ List<String> bundleNames = Stream.of(bundles).filter( bundle -> bundle.devBundleType == DevBundleType.Bundle).map(DevBundle::<>getName).filter(Objects::<>nonNull).collect(Collectors.toList()) [FD]
+Line_6 $$ List<String> bundleNames = Stream.of(bundles).filter( bundle -> bundle.devBundleType == DevBundleType.Bundle).map(DevBundle::<>getName).filter(Objects::<>nonNull).collect(Collectors.toList()) --> Line_7 $$ undeployBundles(bundleNames) [FD]
+Line_2 $$ public void hotUndeployBundles(DevBundle[] bundles) throws ReflectiveOperationException --> Line_8 $$ if (Stream.of(bundles).map(DevBundle::<>getDevBundleType).anyMatch(DevBundleType.Seam::<>equals)) [FD]
+Line_8 $$ if (Stream.of(bundles).map(DevBundle::<>getDevBundleType).anyMatch(DevBundleType.Seam::<>equals)) --> Line_9 $$ flushSeam() [CD]
+Line_3 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() --> Line_12 $$ Thread.currentThread().setContextClassLoader(cl) [FD]

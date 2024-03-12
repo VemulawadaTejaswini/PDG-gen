@@ -1,0 +1,6 @@
+Line_2 $$ private static File jar(File sourceFile, String destDir) throws IOException --> Line_3 $$ File jarFile = File.createTempFile("ceylonlang-testmain-", ".jar") [CD]
+Line_2 $$ private static File jar(File sourceFile, String destDir) throws IOException --> Line_6 $$ String dirName = destDir.isEmpty() ? sourceFile.getName() : destDir + "/" + sourceFile.getName() [FD]
+Line_5 $$ JarOutputStream jar = new JarOutputStream(new FileOutputStream(jarFile)) --> Line_8 $$ jar.putNextEntry(entry) [FD]
+Line_5 $$ JarOutputStream jar = new JarOutputStream(new FileOutputStream(jarFile)) --> Line_9 $$ IOUtils.copyStream(new FileInputStream(sourceFile), jar, true, true) [FD]
+Line_3 $$ File jarFile = File.createTempFile("ceylonlang-testmain-", ".jar") --> Line_11 $$ FileUtil.deleteQuietly(jarFile) [FD]
+Line_2 $$ private static File jar(File sourceFile, String destDir) throws IOException --> Line_14 $$ return jarFile [CD]

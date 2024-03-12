@@ -1,0 +1,4 @@
+Line_2 $$ public void cancelOnUnexpectedNextWithMoreData() --> Line_3 $$ LongAdder cancelled = new LongAdder() [CD]
+Line_2 $$ public void cancelOnUnexpectedNextWithMoreData() --> Line_4 $$ assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> StepVerifier.create(Flux.just("foo", "bar").doOnCancel(cancelled::<>increment)).expectNext("baz").expectComplete().verify()).withMessageContaining("expected value: baz;") [CD]
+Line_2 $$ public void cancelOnUnexpectedNextWithMoreData() --> Line_5 $$ assertThat(cancelled.intValue()).overridingErrorMessage("the expectNext assertion didn't cause a cancellation").isEqualTo(1) [CD]
+Line_3 $$ LongAdder cancelled = new LongAdder() --> Line_5 $$ assertThat(cancelled.intValue()).overridingErrorMessage("the expectNext assertion didn't cause a cancellation").isEqualTo(1) [FD]

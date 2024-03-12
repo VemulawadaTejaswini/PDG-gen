@@ -1,0 +1,7 @@
+Line_2 $$ public List<Address> getCallerInfo() --> Line_3 $$ List<Address> ci = super.getCallerInfo() [CD]
+Line_2 $$ public List<Address> getCallerInfo() --> Line_4 $$ if (!callerInfoAdded) [CD]
+Line_4 $$ if (!callerInfoAdded) --> Line_5 $$ String header = (getHeaders() == null) ? null : getHeaders().getValues(SipConstants.HEADER_CALL_INFO) [CD]
+Line_4 $$ if (!callerInfoAdded) --> Line_6 $$ if (header != null) [CD]
+Line_5 $$ String header = (getHeaders() == null) ? null : getHeaders().getValues(SipConstants.HEADER_CALL_INFO) --> Line_6 $$ if (header != null) [FD]
+Line_3 $$ List<Address> ci = super.getCallerInfo() --> Line_8 $$ ci.addAll(new AddressReader(header).readValues()) [FD]
+Line_2 $$ public List<Address> getCallerInfo() --> Line_15 $$ return ci [CD]

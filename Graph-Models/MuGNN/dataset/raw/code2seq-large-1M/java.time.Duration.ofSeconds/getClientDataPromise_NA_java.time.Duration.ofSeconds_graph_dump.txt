@@ -1,0 +1,6 @@
+Line_2 $$ private List<String> getClientDataPromise() throws Exception --> Line_3 $$ HttpClient httpClient = HttpClient.create( opts -> opts.host("localhost").port(httpServer.address().getPort())) [CD]
+Line_2 $$ private List<String> getClientDataPromise() throws Exception --> Line_4 $$ Mono<List<String>> content = httpClient.get("/data").flatMap( f -> f.receive().asString().collectList()).cache() [CD]
+Line_3 $$ HttpClient httpClient = HttpClient.create( opts -> opts.host("localhost").port(httpServer.address().getPort())) --> Line_4 $$ Mono<List<String>> content = httpClient.get("/data").flatMap( f -> f.receive().asString().collectList()).cache() [FD]
+Line_2 $$ private List<String> getClientDataPromise() throws Exception --> Line_5 $$ List<String> res = content.block(Duration.ofSeconds(30)) [CD]
+Line_4 $$ Mono<List<String>> content = httpClient.get("/data").flatMap( f -> f.receive().asString().collectList()).cache() --> Line_5 $$ List<String> res = content.block(Duration.ofSeconds(30)) [FD]
+Line_2 $$ private List<String> getClientDataPromise() throws Exception --> Line_6 $$ return res [CD]

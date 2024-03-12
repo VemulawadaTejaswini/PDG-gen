@@ -1,0 +1,8 @@
+Line_2 $$ public <K, V> ImmutableMap<K, V> newWithKeysValues(Object... elements) --> Line_3 $$ if (elements.length % 2 != 0) [CD]
+Line_3 $$ if (elements.length % 2 != 0) --> Line_4 $$ fail(String.valueOf(elements.length)) [CD]
+Line_2 $$ public <K, V> ImmutableMap<K, V> newWithKeysValues(Object... elements) --> Line_6 $$ MutableMap<K, V> result = new UnifiedMap() [CD]
+Line_2 $$ public <K, V> ImmutableMap<K, V> newWithKeysValues(Object... elements) --> Line_7 $$ for (int i = 0; i < elements.length; i += 2) [CD]
+Line_7 $$ for (int i = 0; i < elements.length; i += 2) --> Line_8 $$ assertNull(result.put((K) elements[i], (V) elements[i + 1])) [CD]
+Line_6 $$ MutableMap<K, V> result = new UnifiedMap() --> Line_8 $$ assertNull(result.put((K) elements[i], (V) elements[i + 1])) [FD]
+Line_2 $$ public <K, V> ImmutableMap<K, V> newWithKeysValues(Object... elements) --> Line_10 $$ return result.toImmutable() [CD]
+Line_6 $$ MutableMap<K, V> result = new UnifiedMap() --> Line_10 $$ return result.toImmutable() [FD]

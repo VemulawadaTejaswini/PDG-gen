@@ -1,0 +1,4 @@
+Line_2 $$ public void shouldRemapClassesWhileInterceptingMethods() throws Exception --> Line_3 $$ InstrumentationConfiguration config = configureBuilder().addClassNameTranslation(AClassToForget.class.getName(), AClassToRemember.class.getName()).addInterceptedMethod(new MethodRef(AClassThatCallsAMethodReturningAForgettableClass.class, "getAForgettableClass")).build() [CD]
+Line_2 $$ public void shouldRemapClassesWhileInterceptingMethods() throws Exception --> Line_4 $$ setClassLoader(new SandboxClassLoader(config)) [CD]
+Line_2 $$ public void shouldRemapClassesWhileInterceptingMethods() throws Exception --> Line_5 $$ Class<?> theClass = loadClass(AClassThatCallsAMethodReturningAForgettableClass.class) [CD]
+Line_2 $$ public void shouldRemapClassesWhileInterceptingMethods() throws Exception --> Line_6 $$ theClass.getMethod("callSomeMethod").invoke(shadow.directlyOn(theClass.getDeclaredConstructor().newInstance(), (Class<Object>) theClass)) [CD]

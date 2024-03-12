@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldReturnStartPositionOnOpen() --> Line_3 $$ apiRule.createCmdRequest().type(ValueType.JOB, JobIntent.CREATE).command().put("type", "foo").put("retries", 1).done().sendAndAwait() [CD]
+Line_2 $$ public void shouldReturnStartPositionOnOpen() --> Line_4 $$ final ExecuteCommandResponse addResponse = apiRule.openTopicSubscription("foo", 0).await() [CD]
+Line_2 $$ public void shouldReturnStartPositionOnOpen() --> Line_5 $$ final long startPosition = (long) addResponse.getValue().get("startPosition") [CD]
+Line_4 $$ final ExecuteCommandResponse addResponse = apiRule.openTopicSubscription("foo", 0).await() --> Line_5 $$ final long startPosition = (long) addResponse.getValue().get("startPosition") [FD]
+Line_2 $$ public void shouldReturnStartPositionOnOpen() --> Line_6 $$ final Optional<Long> event = apiRule.subscribedEvents().map(( e) -> e.position()).findFirst() [CD]
+Line_2 $$ public void shouldReturnStartPositionOnOpen() --> Line_7 $$ assertThat(startPosition).isLessThan(event.get()) [CD]
+Line_5 $$ final long startPosition = (long) addResponse.getValue().get("startPosition") --> Line_7 $$ assertThat(startPosition).isLessThan(event.get()) [FD]
+Line_6 $$ final Optional<Long> event = apiRule.subscribedEvents().map(( e) -> e.position()).findFirst() --> Line_7 $$ assertThat(startPosition).isLessThan(event.get()) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testSetConsistencyInURL() throws Exception --> Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) [CD]
+Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) --> Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl() + PhoenixRuntime.JDBC_PROTOCOL_TERMINATOR + "Consistency=TIMELINE", props)) [FD]
+Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl() + PhoenixRuntime.JDBC_PROTOCOL_TERMINATOR + "Consistency=TIMELINE", props)) --> Line_6 $$ Statement st = conn.createStatement() [FD]
+Line_6 $$ Statement st = conn.createStatement() --> Line_7 $$ ResultSet rs = st.executeQuery("explain select * from " + tableName) [FD]
+Line_7 $$ ResultSet rs = st.executeQuery("explain select * from " + tableName) --> Line_8 $$ String queryPlan = QueryUtil.getExplainPlan(rs) [FD]
+Line_8 $$ String queryPlan = QueryUtil.getExplainPlan(rs) --> Line_9 $$ assertTrue(queryPlan.indexOf("TIMELINE") > 0) [FD]
+Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl() + PhoenixRuntime.JDBC_PROTOCOL_TERMINATOR + "Consistency=TIMELINE", props)) --> Line_10 $$ conn.close() [FD]

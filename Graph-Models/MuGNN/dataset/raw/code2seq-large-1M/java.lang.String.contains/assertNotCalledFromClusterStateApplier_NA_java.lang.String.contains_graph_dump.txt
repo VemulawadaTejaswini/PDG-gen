@@ -1,0 +1,5 @@
+Line_2 $$ private static boolean assertNotCalledFromClusterStateApplier(String reason) --> Line_3 $$ if (Thread.currentThread().getName().contains(UPDATE_THREAD_NAME)) [CD]
+Line_4 $$ for (StackTraceElement element : Thread.currentThread().getStackTrace()) --> Line_5 $$ final String className = element.getClassName() [FD]
+Line_4 $$ for (StackTraceElement element : Thread.currentThread().getStackTrace()) --> Line_6 $$ final String methodName = element.getMethodName() [FD]
+Line_6 $$ final String methodName = element.getMethodName() --> Line_9 $$ if (className.equals(BaseClusterService.class.getName()) && methodName.equals("callClusterStateAppliers")) [FD]
+Line_2 $$ private static boolean assertNotCalledFromClusterStateApplier(String reason) --> Line_14 $$ return true [CD]

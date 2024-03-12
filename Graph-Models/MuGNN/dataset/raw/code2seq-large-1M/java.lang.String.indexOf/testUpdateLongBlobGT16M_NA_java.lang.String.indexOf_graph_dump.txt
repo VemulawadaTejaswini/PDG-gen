@@ -1,0 +1,8 @@
+Line_2 $$ public void testUpdateLongBlobGT16M() throws Exception --> Line_3 $$ if (versionMeetsMinimum(4, 0)) [CD]
+Line_3 $$ if (versionMeetsMinimum(4, 0)) --> Line_4 $$ byte[] blobData = new byte[18 * 1024 * 1024] [CD]
+Line_3 $$ if (versionMeetsMinimum(4, 0)) --> Line_5 $$ createTable("testUpdateLongBlob", "(blobField LONGBLOB)") [CD]
+Line_3 $$ if (versionMeetsMinimum(4, 0)) --> Line_6 $$ this.stmt.executeUpdate("INSERT INTO testUpdateLongBlob (blobField) VALUES (NULL)") [CD]
+Line_3 $$ if (versionMeetsMinimum(4, 0)) --> Line_7 $$ this.pstmt = this.conn.prepareStatement("UPDATE testUpdateLongBlob SET blobField=?") [CD]
+Line_3 $$ if (versionMeetsMinimum(4, 0)) --> Line_8 $$ this.pstmt.setBytes(1, blobData) [CD]
+Line_4 $$ byte[] blobData = new byte[18 * 1024 * 1024] --> Line_8 $$ this.pstmt.setBytes(1, blobData) [FD]
+Line_12 $$ if (sqlEx.getMessage().indexOf("max_allowed_packet") != -1) --> Line_13 $$ fail("You need to increase max_allowed_packet to at least 18M before running this test!") [CD]

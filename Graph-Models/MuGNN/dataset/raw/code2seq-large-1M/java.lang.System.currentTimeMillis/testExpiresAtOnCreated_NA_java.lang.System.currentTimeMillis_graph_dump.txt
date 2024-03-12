@@ -1,0 +1,8 @@
+Line_2 $$ public void testExpiresAtOnCreated() --> Line_3 $$ UaaTokenStore.TokenCode code = store.createTokenCode("code", "userid", "clientid", 0, new Timestamp(System.currentTimeMillis()), new byte[0]) [CD]
+Line_2 $$ public void testExpiresAtOnCreated() --> Line_4 $$ assertFalse(code.isExpired()) [CD]
+Line_3 $$ UaaTokenStore.TokenCode code = store.createTokenCode("code", "userid", "clientid", 0, new Timestamp(System.currentTimeMillis()), new byte[0]) --> Line_4 $$ assertFalse(code.isExpired()) [FD]
+Line_2 $$ public void testExpiresAtOnCreated() --> Line_5 $$ code = store.createTokenCode("code", "userid", "clientid", 0, new Timestamp(System.currentTimeMillis() - (2 * store.getExpirationTime())), new byte[0]) [CD]
+Line_3 $$ UaaTokenStore.TokenCode code = store.createTokenCode("code", "userid", "clientid", 0, new Timestamp(System.currentTimeMillis()), new byte[0]) --> Line_5 $$ code = store.createTokenCode("code", "userid", "clientid", 0, new Timestamp(System.currentTimeMillis() - (2 * store.getExpirationTime())), new byte[0]) [FD]
+Line_2 $$ public void testExpiresAtOnCreated() --> Line_6 $$ assertTrue(code.isExpired()) [CD]
+Line_3 $$ UaaTokenStore.TokenCode code = store.createTokenCode("code", "userid", "clientid", 0, new Timestamp(System.currentTimeMillis()), new byte[0]) --> Line_6 $$ assertTrue(code.isExpired()) [FD]
+Line_5 $$ code = store.createTokenCode("code", "userid", "clientid", 0, new Timestamp(System.currentTimeMillis() - (2 * store.getExpirationTime())), new byte[0]) --> Line_6 $$ assertTrue(code.isExpired()) [FD]

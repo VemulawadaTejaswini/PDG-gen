@@ -1,0 +1,6 @@
+Line_4 $$ Set<Assignment> assignments = new HashSet<Assignment>() --> Line_5 $$ assignments.add(new Assignment()) [FD]
+Line_2 $$ public static Set<Assignment> getAllCombinations(Map<String, Set<Value>> valuesMatrix) --> Line_6 $$ for (String label : valuesMatrix.keySet()) [FD]
+Line_2 $$ public static Set<Assignment> getAllCombinations(Map<String, Set<Value>> valuesMatrix) --> Line_7 $$ Set<Value> values = valuesMatrix.get(label) [FD]
+Line_6 $$ for (String label : valuesMatrix.keySet()) --> Line_7 $$ Set<Value> values = valuesMatrix.get(label) [FD]
+Line_4 $$ Set<Assignment> assignments = new HashSet<Assignment>() --> Line_8 $$ assignments = assignments.stream().flatMap( a -> values.stream().map( v -> new Assignment(a, label, v)).sequential()).collect(Collectors.toSet()) [FD]
+Line_7 $$ Set<Value> values = valuesMatrix.get(label) --> Line_8 $$ assignments = assignments.stream().flatMap( a -> values.stream().map( v -> new Assignment(a, label, v)).sequential()).collect(Collectors.toSet()) [FD]

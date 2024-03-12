@@ -1,0 +1,8 @@
+Line_2 $$ public String getObjectDefinitionText(DBRProgressMonitor monitor, Map<String, Object> options) throws DBException --> Line_3 $$ if (body == null) [CD]
+Line_2 $$ public String getObjectDefinitionText(DBRProgressMonitor monitor, Map<String, Object> options) throws DBException --> Line_4 $$ try (JDBCSession session = DBUtils.openMetaSession(monitor, getDataSource(), "Read trigger declaration")) [FD]
+Line_4 $$ try (JDBCSession session = DBUtils.openMetaSession(monitor, getDataSource(), "Read trigger declaration")) --> Line_5 $$ try (JDBCPreparedStatement dbStat = session.prepareStatement("SHOW CREATE TRIGGER " + getFullyQualifiedName(DBPEvaluationContext.DDL))) [FD]
+Line_5 $$ try (JDBCPreparedStatement dbStat = session.prepareStatement("SHOW CREATE TRIGGER " + getFullyQualifiedName(DBPEvaluationContext.DDL))) --> Line_6 $$ try (JDBCResultSet dbResult = dbStat.executeQuery()) [FD]
+Line_6 $$ try (JDBCResultSet dbResult = dbStat.executeQuery()) --> Line_7 $$ if (dbResult.next()) [FD]
+Line_7 $$ if (dbResult.next()) --> Line_8 $$ body = JDBCUtils.safeGetString(dbResult, "SQL Original Statement") [CD]
+Line_6 $$ try (JDBCResultSet dbResult = dbStat.executeQuery()) --> Line_8 $$ body = JDBCUtils.safeGetString(dbResult, "SQL Original Statement") [FD]
+Line_2 $$ public String getObjectDefinitionText(DBRProgressMonitor monitor, Map<String, Object> options) throws DBException --> Line_19 $$ return body [CD]

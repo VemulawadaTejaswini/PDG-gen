@@ -1,0 +1,8 @@
+Line_2 $$ public void run() --> Line_3 $$ while (running) [CD]
+Line_5 $$ Message message = messagesQueue.take() --> Line_6 $$ String sessionId = message.getSessionId() [FD]
+Line_6 $$ String sessionId = message.getSessionId() --> Line_7 $$ HttpServletResponse response = responsesMap.get(sessionId) [FD]
+Line_7 $$ HttpServletResponse response = responsesMap.get(sessionId) --> Line_8 $$ PrintWriter writer = response.getWriter() [FD]
+Line_5 $$ Message message = messagesQueue.take() --> Line_9 $$ System.out.println("Thread " + Thread.currentThread().getName() + " , message : " + message.toString()) [FD]
+Line_8 $$ PrintWriter writer = response.getWriter() --> Line_10 $$ writer.println(message.toString()) [FD]
+Line_5 $$ Message message = messagesQueue.take() --> Line_10 $$ writer.println(message.toString()) [FD]
+Line_8 $$ PrintWriter writer = response.getWriter() --> Line_11 $$ writer.flush() [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private CompletionStage<Void> doRollbackAsync() --> Line_3 $$ if (state == State.TERMINATED) [CD]
+Line_3 $$ if (state == State.TERMINATED) --> Line_4 $$ return completedWithNull() [CD]
+Line_2 $$ private CompletionStage<Void> doRollbackAsync() --> Line_6 $$ CompletableFuture<Void> rollbackFuture = new CompletableFuture() [CD]
+Line_2 $$ private CompletionStage<Void> doRollbackAsync() --> Line_7 $$ ResponseHandler pullAllHandler = new RollbackTxResponseHandler(rollbackFuture) [CD]
+Line_2 $$ private CompletionStage<Void> doRollbackAsync() --> Line_8 $$ connection.runAndFlush(ROLLBACK_QUERY, emptyMap(), NoOpResponseHandler.INSTANCE, pullAllHandler) [CD]
+Line_7 $$ ResponseHandler pullAllHandler = new RollbackTxResponseHandler(rollbackFuture) --> Line_8 $$ connection.runAndFlush(ROLLBACK_QUERY, emptyMap(), NoOpResponseHandler.INSTANCE, pullAllHandler) [FD]
+Line_2 $$ private CompletionStage<Void> doRollbackAsync() --> Line_9 $$ return rollbackFuture [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static ImmutableSet<Path> getExcludedFiles(final Path testDirectory) --> Line_3 $$ String excludedFiles = getProperty(TEST_EXCLUDES_PROPERTY) [CD]
+Line_2 $$ private static ImmutableSet<Path> getExcludedFiles(final Path testDirectory) --> Line_4 $$ if (excludedFiles == null) [CD]
+Line_3 $$ String excludedFiles = getProperty(TEST_EXCLUDES_PROPERTY) --> Line_4 $$ if (excludedFiles == null) [FD]
+Line_4 $$ if (excludedFiles == null) --> Line_5 $$ return ImmutableSet.of() [CD]
+Line_2 $$ private static ImmutableSet<Path> getExcludedFiles(final Path testDirectory) --> Line_7 $$ Iterable<String> splitExcludes = Splitter.on(',').omitEmptyStrings().split(excludedFiles) [CD]
+Line_3 $$ String excludedFiles = getProperty(TEST_EXCLUDES_PROPERTY) --> Line_7 $$ Iterable<String> splitExcludes = Splitter.on(',').omitEmptyStrings().split(excludedFiles) [FD]
+Line_2 $$ private static ImmutableSet<Path> getExcludedFiles(final Path testDirectory) --> Line_8 $$ return ImmutableSet.copyOf(StreamSupport.stream(splitExcludes.spliterator(), false).map(testDirectory::<>resolve).collect(Collectors.toList())) [CD]
+Line_7 $$ Iterable<String> splitExcludes = Splitter.on(',').omitEmptyStrings().split(excludedFiles) --> Line_8 $$ return ImmutableSet.copyOf(StreamSupport.stream(splitExcludes.spliterator(), false).map(testDirectory::<>resolve).collect(Collectors.toList())) [FD]

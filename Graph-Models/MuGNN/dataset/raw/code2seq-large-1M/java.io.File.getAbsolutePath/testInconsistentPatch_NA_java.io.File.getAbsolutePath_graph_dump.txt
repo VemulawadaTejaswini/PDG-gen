@@ -1,0 +1,8 @@
+Line_2 $$ public void testInconsistentPatch() throws Exception --> Line_3 $$ final String wrongPatchFile = AS_DISTRIBUTION + FILE_SEPARATOR + randomString() [CD]
+Line_2 $$ public void testInconsistentPatch() throws Exception --> Line_4 $$ setFileContent(wrongPatchFile, "whatever") [CD]
+Line_3 $$ final String wrongPatchFile = AS_DISTRIBUTION + FILE_SEPARATOR + randomString() --> Line_4 $$ setFileContent(wrongPatchFile, "whatever") [FD]
+Line_2 $$ public void testInconsistentPatch() throws Exception --> Line_5 $$ controller.start() [CD]
+Line_6 $$ try (CLIWrapper cli = new CLIWrapper(true)) --> Line_7 $$ boolean success = cli.sendLine("patch apply " + new File(wrongPatchFile).getAbsolutePath(), true) [FD]
+Line_7 $$ boolean success = cli.sendLine("patch apply " + new File(wrongPatchFile).getAbsolutePath(), true) --> Line_8 $$ Assert.assertFalse("Patch should not be applied successfully", success) [FD]
+Line_6 $$ try (CLIWrapper cli = new CLIWrapper(true)) --> Line_9 $$ Assert.assertThat("Wrong error message", cli.readOutput(), containsString("WFLYPAT0046")) [FD]
+Line_2 $$ public void testInconsistentPatch() throws Exception --> Line_11 $$ controller.stop() [CD]

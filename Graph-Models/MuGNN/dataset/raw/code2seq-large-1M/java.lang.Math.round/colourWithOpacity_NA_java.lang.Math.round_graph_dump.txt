@@ -1,0 +1,7 @@
+Line_2 $$ static int colourWithOpacity(int colour, float opacity) --> Line_3 $$ int alpha = (colour >> 24) & 0xff [CD]
+Line_2 $$ static int colourWithOpacity(int colour, float opacity) --> Line_4 $$ alpha = Math.round(alpha * opacity) [CD]
+Line_3 $$ int alpha = (colour >> 24) & 0xff --> Line_4 $$ alpha = Math.round(alpha * opacity) [FD]
+Line_2 $$ static int colourWithOpacity(int colour, float opacity) --> Line_5 $$ alpha = (alpha < 0) ? 0 : (alpha > 255) ? 255 : alpha [CD]
+Line_3 $$ int alpha = (colour >> 24) & 0xff --> Line_5 $$ alpha = (alpha < 0) ? 0 : (alpha > 255) ? 255 : alpha [FD]
+Line_4 $$ alpha = Math.round(alpha * opacity) --> Line_5 $$ alpha = (alpha < 0) ? 0 : (alpha > 255) ? 255 : alpha [FD]
+Line_2 $$ static int colourWithOpacity(int colour, float opacity) --> Line_6 $$ return (alpha << 24) | (colour & 0xffffff) [CD]

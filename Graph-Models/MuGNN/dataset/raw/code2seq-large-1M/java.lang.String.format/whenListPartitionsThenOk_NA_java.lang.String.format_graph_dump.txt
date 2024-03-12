@@ -1,0 +1,4 @@
+Line_2 $$ public void whenListPartitionsThenOk() throws Exception --> Line_3 $$ when(eventTypeRepositoryMock.findByName(TEST_EVENT_TYPE)).thenReturn(EVENT_TYPE) [CD]
+Line_2 $$ public void whenListPartitionsThenOk() throws Exception --> Line_4 $$ when(topicRepositoryMock.topicExists(eq(EVENT_TYPE.getName()))).thenReturn(true) [CD]
+Line_2 $$ public void whenListPartitionsThenOk() throws Exception --> Line_5 $$ when(topicRepositoryMock.loadTopicStatistics(eq(Collections.singletonList(TIMELINE)))).thenReturn(TEST_POSITION_STATS) [CD]
+Line_2 $$ public void whenListPartitionsThenOk() throws Exception --> Line_6 $$ mockMvc.perform(get(String.format("/event-types/%s/partitions", TEST_EVENT_TYPE))).andExpect(status().isOk()).andExpect(content().string(TestUtils.JSON_TEST_HELPER.matchesObject(TEST_TOPIC_PARTITIONS))) [CD]

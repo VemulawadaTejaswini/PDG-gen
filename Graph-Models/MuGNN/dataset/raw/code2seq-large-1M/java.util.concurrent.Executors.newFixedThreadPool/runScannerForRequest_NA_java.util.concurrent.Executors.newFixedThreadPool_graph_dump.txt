@@ -1,0 +1,7 @@
+Line_2 $$ private List<IScanIssue> runScannerForRequest(IHttpRequestResponse iHttpRequestResponse) --> Line_3 $$ ExecutorService service = Executors.newFixedThreadPool(1) [CD]
+Line_2 $$ private List<IScanIssue> runScannerForRequest(IHttpRequestResponse iHttpRequestResponse) --> Line_4 $$ Future<List<IScanIssue>> task = service.submit(new ScannerThread(iHttpRequestResponse)) [CD]
+Line_3 $$ ExecutorService service = Executors.newFixedThreadPool(1) --> Line_4 $$ Future<List<IScanIssue>> task = service.submit(new ScannerThread(iHttpRequestResponse)) [FD]
+Line_2 $$ private List<IScanIssue> runScannerForRequest(IHttpRequestResponse iHttpRequestResponse) --> Line_5 $$ List<IScanIssue> result = null [CD]
+Line_5 $$ List<IScanIssue> result = null --> Line_7 $$ result = task.get() [FD]
+Line_4 $$ Future<List<IScanIssue>> task = service.submit(new ScannerThread(iHttpRequestResponse)) --> Line_7 $$ result = task.get() [FD]
+Line_2 $$ private List<IScanIssue> runScannerForRequest(IHttpRequestResponse iHttpRequestResponse) --> Line_13 $$ return result [CD]

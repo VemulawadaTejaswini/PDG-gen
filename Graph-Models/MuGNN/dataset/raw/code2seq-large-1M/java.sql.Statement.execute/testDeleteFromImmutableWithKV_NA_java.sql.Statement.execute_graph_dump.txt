@@ -1,0 +1,8 @@
+Line_2 $$ public void testDeleteFromImmutableWithKV() throws Exception --> Line_3 $$ String ddl = "CREATE TABLE t (k1 VARCHAR, v1 VARCHAR, v2 VARCHAR CONSTRAINT pk PRIMARY KEY(k1)) immutable_rows=true" [CD]
+Line_2 $$ public void testDeleteFromImmutableWithKV() throws Exception --> Line_4 $$ String indexDDL = "CREATE INDEX i ON t (v1)" [CD]
+Line_2 $$ public void testDeleteFromImmutableWithKV() throws Exception --> Line_5 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_3 $$ String ddl = "CREATE TABLE t (k1 VARCHAR, v1 VARCHAR, v2 VARCHAR CONSTRAINT pk PRIMARY KEY(k1)) immutable_rows=true" --> Line_7 $$ conn.createStatement().execute(ddl) [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_7 $$ conn.createStatement().execute(ddl) [FD]
+Line_4 $$ String indexDDL = "CREATE INDEX i ON t (v1)" --> Line_8 $$ conn.createStatement().execute(indexDDL) [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_8 $$ conn.createStatement().execute(indexDDL) [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_9 $$ conn.createStatement().execute("DELETE FROM t") [FD]

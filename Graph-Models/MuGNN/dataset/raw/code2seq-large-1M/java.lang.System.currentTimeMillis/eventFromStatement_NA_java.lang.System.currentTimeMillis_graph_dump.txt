@@ -1,0 +1,8 @@
+Line_2 $$ public ReplDBMSEvent eventFromStatement(long seqno, String defaultSchema, String query, int fragNo, boolean lastFrag) --> Line_3 $$ Timestamp ts = new Timestamp(System.currentTimeMillis()) [CD]
+Line_2 $$ public ReplDBMSEvent eventFromStatement(long seqno, String defaultSchema, String query, int fragNo, boolean lastFrag) --> Line_4 $$ ArrayList<DBMSData> t = new ArrayList<DBMSData>() [CD]
+Line_2 $$ public ReplDBMSEvent eventFromStatement(long seqno, String defaultSchema, String query, int fragNo, boolean lastFrag) --> Line_5 $$ t.add(new StatementData(query, ts.getTime(), defaultSchema)) [CD]
+Line_4 $$ ArrayList<DBMSData> t = new ArrayList<DBMSData>() --> Line_5 $$ t.add(new StatementData(query, ts.getTime(), defaultSchema)) [FD]
+Line_3 $$ Timestamp ts = new Timestamp(System.currentTimeMillis()) --> Line_5 $$ t.add(new StatementData(query, ts.getTime(), defaultSchema)) [FD]
+Line_2 $$ public ReplDBMSEvent eventFromStatement(long seqno, String defaultSchema, String query, int fragNo, boolean lastFrag) --> Line_6 $$ DBMSEvent dbmsEvent = new DBMSEvent(new Long(seqno).toString(), null, t, lastFrag, new Timestamp(System.currentTimeMillis())) [CD]
+Line_2 $$ public ReplDBMSEvent eventFromStatement(long seqno, String defaultSchema, String query, int fragNo, boolean lastFrag) --> Line_7 $$ ReplDBMSEvent replDbmsEvent = new ReplDBMSEvent(seqno, (short) fragNo, lastFrag, "NONE", 0, ts, dbmsEvent) [CD]
+Line_2 $$ public ReplDBMSEvent eventFromStatement(long seqno, String defaultSchema, String query, int fragNo, boolean lastFrag) --> Line_8 $$ return replDbmsEvent [CD]

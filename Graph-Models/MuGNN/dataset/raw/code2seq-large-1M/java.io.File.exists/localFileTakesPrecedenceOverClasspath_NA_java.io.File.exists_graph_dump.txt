@@ -1,0 +1,8 @@
+Line_2 $$ public void localFileTakesPrecedenceOverClasspath() throws Exception --> Line_3 $$ File localFile = new File(new File("."), "application.properties") [CD]
+Line_2 $$ public void localFileTakesPrecedenceOverClasspath() throws Exception --> Line_4 $$ assertThat(localFile.exists()).isFalse() [CD]
+Line_3 $$ File localFile = new File(new File("."), "application.properties") --> Line_4 $$ assertThat(localFile.exists()).isFalse() [FD]
+Line_6 $$ Properties properties = new Properties() --> Line_7 $$ properties.put("the.property", "fromlocalfile") [FD]
+Line_6 $$ Properties properties = new Properties() --> Line_9 $$ properties.store(outputStream, "") [FD]
+Line_8 $$ try (OutputStream outputStream = new FileOutputStream(localFile)) --> Line_9 $$ properties.store(outputStream, "") [FD]
+Line_12 $$ String property = this.environment.getProperty("the.property") --> Line_13 $$ assertThat(property).isEqualTo("fromlocalfile") [FD]
+Line_3 $$ File localFile = new File(new File("."), "application.properties") --> Line_15 $$ localFile.delete() [FD]

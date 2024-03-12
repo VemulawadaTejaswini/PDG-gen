@@ -1,0 +1,5 @@
+Line_2 $$ public void listRepositories() throws Exception --> Line_3 $$ doAnswer( invocation -> [CD]
+Line_4 $$ final AsyncMethodCallback<List<Repository>> callback = invocation.getArgument(1) --> Line_6 $$ callback.onComplete(ImmutableList.of(repository)) [FD]
+Line_5 $$ final Repository repository = new Repository("repo").setHead(new TCommit(new TRevision(42), new TAuthor("hitchhiker", "arthur@dent.com"), "1978-03-08T00:00:00Z", "The primary phrase", new Comment(""), null)) --> Line_6 $$ callback.onComplete(ImmutableList.of(repository)) [FD]
+Line_2 $$ public void listRepositories() throws Exception --> Line_9 $$ assertThat(client.listRepositories("project").get()).isEqualTo(ImmutableMap.of("repo", new RepositoryInfo("repo", new Commit(new Revision(42), new Author("hitchhiker", "arthur@dent.com"), Instant.parse("1978-03-08T00:00:00Z").toEpochMilli(), "The primary phrase", "", Markup.PLAINTEXT)))) [CD]
+Line_2 $$ public void listRepositories() throws Exception --> Line_10 $$ verify(iface).listRepositories(eq("project"), any()) [CD]

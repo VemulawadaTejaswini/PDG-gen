@@ -1,0 +1,7 @@
+Line_2 $$ public void removeProject(final Project project, final String user) throws ProjectManagerException --> Line_3 $$ final long updateTime = System.currentTimeMillis() [CD]
+Line_2 $$ public void removeProject(final Project project, final String user) throws ProjectManagerException --> Line_4 $$ final String UPDATE_INACTIVE_PROJECT = "UPDATE projects SET active=false,modified_time=?,last_modified_by=? WHERE id=?" [CD]
+Line_4 $$ final String UPDATE_INACTIVE_PROJECT = "UPDATE projects SET active=false,modified_time=?,last_modified_by=? WHERE id=?" --> Line_6 $$ this.dbOperator.update(UPDATE_INACTIVE_PROJECT, updateTime, user, project.getId()) [FD]
+Line_3 $$ final long updateTime = System.currentTimeMillis() --> Line_6 $$ this.dbOperator.update(UPDATE_INACTIVE_PROJECT, updateTime, user, project.getId()) [FD]
+Line_2 $$ public void removeProject(final Project project, final String user) throws ProjectManagerException --> Line_6 $$ this.dbOperator.update(UPDATE_INACTIVE_PROJECT, updateTime, user, project.getId()) [FD]
+Line_2 $$ public void removeProject(final Project project, final String user) throws ProjectManagerException --> Line_8 $$ logger.error("error remove project " + project.getName(), e) [FD]
+Line_2 $$ public void removeProject(final Project project, final String user) throws ProjectManagerException --> Line_9 $$ throw new ProjectManagerException("Error remove project " + project.getName(), e) [FD]

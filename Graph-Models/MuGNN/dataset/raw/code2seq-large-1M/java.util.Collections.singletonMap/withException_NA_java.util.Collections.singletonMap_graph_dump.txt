@@ -1,0 +1,7 @@
+Line_2 $$ public void withException() --> Line_3 $$ RuntimeException ex = new RuntimeException("bang") [CD]
+Line_2 $$ public void withException() --> Line_4 $$ Health health = new Health.Builder(Status.UP, Collections.singletonMap("a", "b")).withException(ex).build() [CD]
+Line_3 $$ RuntimeException ex = new RuntimeException("bang") --> Line_4 $$ Health health = new Health.Builder(Status.UP, Collections.singletonMap("a", "b")).withException(ex).build() [FD]
+Line_2 $$ public void withException() --> Line_5 $$ assertThat(health.getDetails().get("a")).isEqualTo("b") [CD]
+Line_4 $$ Health health = new Health.Builder(Status.UP, Collections.singletonMap("a", "b")).withException(ex).build() --> Line_5 $$ assertThat(health.getDetails().get("a")).isEqualTo("b") [FD]
+Line_2 $$ public void withException() --> Line_6 $$ assertThat(health.getDetails().get("error")).isEqualTo("java.lang.RuntimeException: bang") [CD]
+Line_4 $$ Health health = new Health.Builder(Status.UP, Collections.singletonMap("a", "b")).withException(ex).build() --> Line_6 $$ assertThat(health.getDetails().get("error")).isEqualTo("java.lang.RuntimeException: bang") [FD]

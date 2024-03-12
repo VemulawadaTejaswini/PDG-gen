@@ -1,0 +1,8 @@
+Line_5 $$ ZipInputStream zis = new ZipInputStream(is) --> Line_7 $$ while ((entry = zis.getNextEntry()) != null) [FD]
+Line_8 $$ if (MANIFEST_NAME.equals(entry.getName())) --> Line_9 $$ Attributes attributes = new Manifest(zis).getMainAttributes() [CD]
+Line_9 $$ Attributes attributes = new Manifest(zis).getMainAttributes() --> Line_10 $$ for (Map.Entry<Object, Object> attr : attributes.entrySet()) [FD]
+Line_4 $$ Hashtable<String, String> headers = new Hashtable() --> Line_11 $$ headers.put(attr.getKey().toString(), attr.getValue().toString()) [FD]
+Line_15 $$ BundleRevision revision = new FakeBundleRevision(headers, uri, nextBundleId.incrementAndGet()) --> Line_16 $$ Bundle bundle = revision.getBundle() [FD]
+Line_2 $$ public Bundle installBundle(String region, String uri, InputStream is) throws BundleException --> Line_17 $$ MapUtils.addToMapSet(dstate.bundlesPerRegion, region, bundle.getBundleId()) [FD]
+Line_16 $$ Bundle bundle = revision.getBundle() --> Line_17 $$ MapUtils.addToMapSet(dstate.bundlesPerRegion, region, bundle.getBundleId()) [FD]
+Line_16 $$ Bundle bundle = revision.getBundle() --> Line_18 $$ dstate.bundles.put(bundle.getBundleId(), bundle) [FD]

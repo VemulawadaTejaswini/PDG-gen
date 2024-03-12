@@ -1,0 +1,8 @@
+Line_2 $$ public void testLaunchNotDeployedJob() --> Line_3 $$ logger.info("Launch batch job that is not deployed") [CD]
+Line_2 $$ public void testLaunchNotDeployedJob() --> Line_4 $$ String jobName = generateJobName() [CD]
+Line_2 $$ public void testLaunchNotDeployedJob() --> Line_5 $$ executeJobCreate(jobName, JOB_WITH_PARAMETERS_DESCRIPTOR, false) [CD]
+Line_4 $$ String jobName = generateJobName() --> Line_5 $$ executeJobCreate(jobName, JOB_WITH_PARAMETERS_DESCRIPTOR, false) [FD]
+Line_2 $$ public void testLaunchNotDeployedJob() --> Line_6 $$ CommandResult result = executeCommandExpectingFailure("job launch --name " + jobName) [CD]
+Line_2 $$ public void testLaunchNotDeployedJob() --> Line_7 $$ assertThat(result.getException().getMessage(), containsString(String.format("The job named '%s' is not currently deployed", jobName))) [CD]
+Line_6 $$ CommandResult result = executeCommandExpectingFailure("job launch --name " + jobName) --> Line_7 $$ assertThat(result.getException().getMessage(), containsString(String.format("The job named '%s' is not currently deployed", jobName))) [FD]
+Line_4 $$ String jobName = generateJobName() --> Line_7 $$ assertThat(result.getException().getMessage(), containsString(String.format("The job named '%s' is not currently deployed", jobName))) [FD]

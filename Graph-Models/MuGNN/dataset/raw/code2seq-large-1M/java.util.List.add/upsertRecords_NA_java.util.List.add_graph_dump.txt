@@ -1,0 +1,8 @@
+Line_2 $$ public static List<String> upsertRecords(List<IndexedRecord> iRecords, Map<String, HoodieRecord<? extends HoodieRecordPayload>> records) --> Line_3 $$ List<String> recordKeys = new ArrayList() [CD]
+Line_2 $$ public static List<String> upsertRecords(List<IndexedRecord> iRecords, Map<String, HoodieRecord<? extends HoodieRecordPayload>> records) --> Line_4 $$ iRecords.stream().forEach( r -> [CD]
+Line_2 $$ public static List<String> upsertRecords(List<IndexedRecord> iRecords, Map<String, HoodieRecord<? extends HoodieRecordPayload>> records) --> Line_4 $$ iRecords.stream().forEach( r -> [FD]
+Line_3 $$ List<String> recordKeys = new ArrayList() --> Line_7 $$ recordKeys.add(key) [FD]
+Line_5 $$ String key = ((GenericRecord) r).get(HoodieRecord.RECORD_KEY_METADATA_FIELD).toString() --> Line_7 $$ recordKeys.add(key) [FD]
+Line_2 $$ public static List<String> upsertRecords(List<IndexedRecord> iRecords, Map<String, HoodieRecord<? extends HoodieRecordPayload>> records) --> Line_8 $$ records.put(key, new HoodieRecord(new HoodieKey(key, partitionPath), new HoodieAvroPayload(Optional.of((GenericRecord) r)))) [FD]
+Line_5 $$ String key = ((GenericRecord) r).get(HoodieRecord.RECORD_KEY_METADATA_FIELD).toString() --> Line_8 $$ records.put(key, new HoodieRecord(new HoodieKey(key, partitionPath), new HoodieAvroPayload(Optional.of((GenericRecord) r)))) [FD]
+Line_2 $$ public static List<String> upsertRecords(List<IndexedRecord> iRecords, Map<String, HoodieRecord<? extends HoodieRecordPayload>> records) --> Line_10 $$ return recordKeys [CD]

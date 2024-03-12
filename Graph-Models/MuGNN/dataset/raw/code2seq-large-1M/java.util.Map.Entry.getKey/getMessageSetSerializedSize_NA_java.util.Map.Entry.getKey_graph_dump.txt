@@ -1,0 +1,8 @@
+Line_3 $$ final FieldDescriptorType descriptor = entry.getKey() --> Line_5 $$ if (descriptor.getLiteJavaType() == WireFormat.JavaType.MESSAGE && !descriptor.isRepeated() && !descriptor.isPacked()) [FD]
+Line_5 $$ if (descriptor.getLiteJavaType() == WireFormat.JavaType.MESSAGE && !descriptor.isRepeated() && !descriptor.isPacked()) --> Line_6 $$ if (value instanceof LazyField) [CD]
+Line_4 $$ Object value = entry.getValue() --> Line_6 $$ if (value instanceof LazyField) [FD]
+Line_6 $$ if (value instanceof LazyField) --> Line_7 $$ return CodedOutputStream.computeLazyFieldMessageSetExtensionSize(entry.getKey().getNumber(), (LazyField) value) [CD]
+Line_6 $$ if (value instanceof LazyField) --> Line_9 $$ return CodedOutputStream.computeMessageSetExtensionSize(entry.getKey().getNumber(), (MessageLite) value) [CD]
+Line_5 $$ if (descriptor.getLiteJavaType() == WireFormat.JavaType.MESSAGE && !descriptor.isRepeated() && !descriptor.isPacked()) --> Line_12 $$ return computeFieldSize(descriptor, value) [CD]
+Line_3 $$ final FieldDescriptorType descriptor = entry.getKey() --> Line_12 $$ return computeFieldSize(descriptor, value) [FD]
+Line_4 $$ Object value = entry.getValue() --> Line_12 $$ return computeFieldSize(descriptor, value) [FD]

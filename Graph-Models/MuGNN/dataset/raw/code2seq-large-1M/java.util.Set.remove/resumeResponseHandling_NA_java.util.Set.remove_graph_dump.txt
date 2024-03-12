@@ -1,0 +1,7 @@
+Line_2 $$ public void resumeResponseHandling(Object lock) --> Line_3 $$ responseHandlingLocks.remove(lock) [FD]
+Line_2 $$ public void resumeResponseHandling(Object lock) --> Line_3 $$ responseHandlingLocks.remove(lock) [CD]
+Line_2 $$ public void resumeResponseHandling(Object lock) --> Line_4 $$ if (responseHandlingLocks.isEmpty()) [CD]
+Line_4 $$ if (responseHandlingLocks.isEmpty()) --> Line_5 $$ forceHandleMessage.cancel() [CD]
+Line_4 $$ if (responseHandlingLocks.isEmpty()) --> Line_6 $$ if (!pendingUIDLMessages.isEmpty()) [CD]
+Line_6 $$ if (!pendingUIDLMessages.isEmpty()) --> Line_7 $$ getLogger().info("No more response handling locks, handling pending requests.") [CD]
+Line_6 $$ if (!pendingUIDLMessages.isEmpty()) --> Line_8 $$ handlePendingMessages() [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testCompositeBatchIterator() throws Exception --> Line_3 $$ Supplier<BatchIterator> batchSimulatingItSupplier = () -> new CloseAssertingBatchIterator(new BatchSimulatingIterator(TestingBatchIterators.range(5, 10), 2, 2, null)) [CD]
+Line_2 $$ public void testCompositeBatchIterator() throws Exception --> Line_4 $$ ExecutorService executorService = Executors.newFixedThreadPool(3) [CD]
+Line_3 $$ Supplier<BatchIterator> batchSimulatingItSupplier = () -> new CloseAssertingBatchIterator(new BatchSimulatingIterator(TestingBatchIterators.range(5, 10), 2, 2, null)) --> Line_6 $$ BatchIteratorTester tester = new BatchIteratorTester(() -> new AsyncCompositeBatchIterator(executorService, TestingBatchIterators.range(0, 5), batchSimulatingItSupplier.get())) [FD]
+Line_6 $$ BatchIteratorTester tester = new BatchIteratorTester(() -> new AsyncCompositeBatchIterator(executorService, TestingBatchIterators.range(0, 5), batchSimulatingItSupplier.get())) --> Line_7 $$ tester.verifyResultAndEdgeCaseBehaviour(expectedResult) [FD]
+Line_4 $$ ExecutorService executorService = Executors.newFixedThreadPool(3) --> Line_9 $$ executorService.shutdown() [FD]
+Line_4 $$ ExecutorService executorService = Executors.newFixedThreadPool(3) --> Line_10 $$ executorService.awaitTermination(10, TimeUnit.SECONDS) [FD]

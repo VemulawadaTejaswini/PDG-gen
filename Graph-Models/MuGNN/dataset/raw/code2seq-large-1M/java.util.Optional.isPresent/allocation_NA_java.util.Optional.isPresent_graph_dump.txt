@@ -1,0 +1,7 @@
+Line_2 $$ private Optional<Allocation> allocation(Optional<String> tenant) --> Line_3 $$ if (tenant.isPresent()) [CD]
+Line_2 $$ private Optional<Allocation> allocation(Optional<String> tenant) --> Line_3 $$ if (tenant.isPresent()) [FD]
+Line_3 $$ if (tenant.isPresent()) --> Line_4 $$ Allocation allocation = new Allocation(app(tenant.get()), ClusterMembership.from("container/id1/3", new Version()), Generation.inital(), false) [CD]
+Line_2 $$ private Optional<Allocation> allocation(Optional<String> tenant) --> Line_4 $$ Allocation allocation = new Allocation(app(tenant.get()), ClusterMembership.from("container/id1/3", new Version()), Generation.inital(), false) [FD]
+Line_3 $$ if (tenant.isPresent()) --> Line_5 $$ return Optional.of(allocation) [CD]
+Line_4 $$ Allocation allocation = new Allocation(app(tenant.get()), ClusterMembership.from("container/id1/3", new Version()), Generation.inital(), false) --> Line_5 $$ return Optional.of(allocation) [FD]
+Line_2 $$ private Optional<Allocation> allocation(Optional<String> tenant) --> Line_7 $$ return Optional.empty() [CD]

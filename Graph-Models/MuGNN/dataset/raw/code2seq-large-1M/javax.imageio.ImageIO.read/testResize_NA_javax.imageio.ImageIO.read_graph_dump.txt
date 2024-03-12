@@ -1,0 +1,7 @@
+Line_2 $$ public void testResize() throws Exception --> Line_3 $$ checkImages(( imageName,  width,  height,  color,  refImage,  bs) -> [CD]
+Line_5 $$ Single<Buffer> obs = manipulator.handleResize(bs, imageName, new ImageManipulationParametersImpl().setWidth(150).setHeight(180)).map(PropReadFileStream::<>getFile).map(RxUtil::<>toBufferFlow).flatMap(RxUtil::<>readEntireData) --> Line_7 $$ obs.subscribe( buffer -> [FD]
+Line_11 $$ try (ByteArrayInputStream bis = new ByteArrayInputStream(data)) --> Line_12 $$ BufferedImage resizedImage = ImageIO.read(bis) [FD]
+Line_12 $$ BufferedImage resizedImage = ImageIO.read(bis) --> Line_13 $$ assertThat(resizedImage).hasSize(150, 180).matches(refImage) [FD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_19 $$ latch.countDown() [FD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_22 $$ if (!latch.await(20, TimeUnit.SECONDS)) [FD]
+Line_22 $$ if (!latch.await(20, TimeUnit.SECONDS)) --> Line_23 $$ fail("Timeout reached") [CD]

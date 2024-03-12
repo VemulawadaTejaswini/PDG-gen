@@ -1,0 +1,8 @@
+Line_15 $$ if (!getInstanceFollowRedirects()) --> Line_16 $$ return Retry.NONE [CD]
+Line_21 $$ String location = getHeaderField("Location") --> Line_22 $$ if (location == null) [FD]
+Line_22 $$ if (location == null) --> Line_23 $$ return Retry.NONE [CD]
+Line_25 $$ URL previousUrl = url --> Line_27 $$ if (!previousUrl.getProtocol().equals(url.getProtocol())) [FD]
+Line_27 $$ if (!previousUrl.getProtocol().equals(url.getProtocol())) --> Line_28 $$ return Retry.NONE [CD]
+Line_25 $$ URL previousUrl = url --> Line_30 $$ if (previousUrl.getHost().equals(url.getHost()) && URLs.getEffectivePort(previousUrl) == URLs.getEffectivePort(url)) [FD]
+Line_30 $$ if (previousUrl.getHost().equals(url.getHost()) && URLs.getEffectivePort(previousUrl) == URLs.getEffectivePort(url)) --> Line_31 $$ return Retry.SAME_CONNECTION [CD]
+Line_30 $$ if (previousUrl.getHost().equals(url.getHost()) && URLs.getEffectivePort(previousUrl) == URLs.getEffectivePort(url)) --> Line_33 $$ return Retry.DIFFERENT_CONNECTION [CD]

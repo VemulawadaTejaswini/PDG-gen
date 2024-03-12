@@ -1,0 +1,8 @@
+Line_2 $$ public void xpendingWithGroup() --> Line_3 $$ redis.xadd(key, Collections.singletonMap("key", "value")) [CD]
+Line_2 $$ public void xpendingWithGroup() --> Line_4 $$ redis.xgroupCreate(key, "group", "$") [CD]
+Line_2 $$ public void xpendingWithGroup() --> Line_5 $$ String id = redis.xadd(key, Collections.singletonMap("key", "value")) [CD]
+Line_2 $$ public void xpendingWithGroup() --> Line_6 $$ redis.xreadgroup(Consumer.from("group", "consumer1"), StreamOffset.lastConsumed(key)) [CD]
+Line_2 $$ public void xpendingWithGroup() --> Line_7 $$ List<Object> pendingEntries = redis.xpending(key, "group") [CD]
+Line_2 $$ public void xpendingWithGroup() --> Line_8 $$ assertThat(pendingEntries).hasSize(4).containsSequence(1L, id, id) [CD]
+Line_5 $$ String id = redis.xadd(key, Collections.singletonMap("key", "value")) --> Line_8 $$ assertThat(pendingEntries).hasSize(4).containsSequence(1L, id, id) [FD]
+Line_7 $$ List<Object> pendingEntries = redis.xpending(key, "group") --> Line_8 $$ assertThat(pendingEntries).hasSize(4).containsSequence(1L, id, id) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void addClusterTombstone(final ClusterDeleteTask currentState) --> Line_3 $$ TombstoneService.State state = new TombstoneService.State() [CD]
+Line_2 $$ private void addClusterTombstone(final ClusterDeleteTask currentState) --> Line_4 $$ state.entityId = currentState.clusterId [CD]
+Line_2 $$ private void addClusterTombstone(final ClusterDeleteTask currentState) --> Line_5 $$ state.entityKind = "cluster" [CD]
+Line_2 $$ private void addClusterTombstone(final ClusterDeleteTask currentState) --> Line_6 $$ state.tombstoneTime = System.currentTimeMillis() [CD]
+Line_2 $$ private void addClusterTombstone(final ClusterDeleteTask currentState) --> Line_7 $$ sendRequest(HostUtils.getCloudStoreHelper(this).createPost(TombstoneServiceFactory.SELF_LINK).setBody(state).setCompletion(( operation,  throwable) -> [CD]
+Line_3 $$ TombstoneService.State state = new TombstoneService.State() --> Line_7 $$ sendRequest(HostUtils.getCloudStoreHelper(this).createPost(TombstoneServiceFactory.SELF_LINK).setBody(state).setCompletion(( operation,  throwable) -> [FD]
+Line_8 $$ if (null != throwable) --> Line_9 $$ failTask(throwable) [CD]
+Line_8 $$ if (null != throwable) --> Line_11 $$ TaskUtils.sendSelfPatch(this, buildPatch(TaskState.TaskStage.FINISHED, null)) [CD]

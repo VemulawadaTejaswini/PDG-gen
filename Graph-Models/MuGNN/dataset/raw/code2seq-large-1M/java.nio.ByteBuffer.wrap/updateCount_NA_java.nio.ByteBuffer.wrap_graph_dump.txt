@@ -1,0 +1,5 @@
+Line_2 $$ private void updateCount(byte[] key, boolean increment, AtomicDBUpdate update) throws DatabaseException --> Line_4 $$ byte[] countBytes = BabuDBStorageHelper.getVolumeMetadata(database, key) [FD]
+Line_4 $$ byte[] countBytes = BabuDBStorageHelper.getVolumeMetadata(database, key) --> Line_5 $$ ByteBuffer countBuf = ByteBuffer.wrap(countBytes) [FD]
+Line_5 $$ ByteBuffer countBuf = ByteBuffer.wrap(countBytes) --> Line_6 $$ countBuf.putLong(0, countBuf.getLong() + (increment ? 1 : -1)) [FD]
+Line_2 $$ private void updateCount(byte[] key, boolean increment, AtomicDBUpdate update) throws DatabaseException --> Line_7 $$ update.addUpdate(VOLUME_INDEX, key, countBytes) [FD]
+Line_4 $$ byte[] countBytes = BabuDBStorageHelper.getVolumeMetadata(database, key) --> Line_7 $$ update.addUpdate(VOLUME_INDEX, key, countBytes) [FD]

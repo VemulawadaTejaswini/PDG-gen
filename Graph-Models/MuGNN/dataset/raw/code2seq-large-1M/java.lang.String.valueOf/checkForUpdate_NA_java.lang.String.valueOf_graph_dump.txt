@@ -1,0 +1,6 @@
+Line_4 $$ OkHttpClient client = new OkHttpClient.Builder().build() --> Line_6 $$ Response response = client.newCall(request).execute() [FD]
+Line_5 $$ Request request = new Request.Builder().url(BaseUrl + LatestUrl).header("Accept", AcceptHeader).get().build() --> Line_6 $$ Response response = client.newCall(request).execute() [FD]
+Line_6 $$ Response response = client.newCall(request).execute() --> Line_7 $$ Release r = new Gson().fromJson(response.body().string(), Release.class) [FD]
+Line_8 $$ if (r.getPrerelease() || r.getDraft()) --> Line_9 $$ return [CD]
+Line_11 $$ int c = VersionUtil.compareVersion(VersionUtil.getVersionFromString(getPackageManager().getPackageInfo(getPackageName(), 0).versionName), VersionUtil.getVersionFromString(r.getTagName())) --> Line_12 $$ if (c < 0) [FD]
+Line_12 $$ if (c < 0) --> Line_13 $$ doNotification(r.getTagName(), r.getBody(), r.getAssets().get(0).getBrowserDownloadUrl()) [CD]

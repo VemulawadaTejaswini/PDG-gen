@@ -1,0 +1,6 @@
+Line_2 $$ public PullComment reply(final String body, final int comment) throws IOException --> Line_3 $$ this.storage.lock() [CD]
+Line_2 $$ public PullComment reply(final String body, final int comment) throws IOException --> Line_5 $$ final JsonObject orig = this.get(comment).json() [FD]
+Line_2 $$ public PullComment reply(final String body, final int comment) throws IOException --> Line_6 $$ final PullComment reply = this.post(body, orig.getString("commit_id"), orig.getString("path"), comment) [FD]
+Line_5 $$ final JsonObject orig = this.get(comment).json() --> Line_6 $$ final PullComment reply = this.post(body, orig.getString("commit_id"), orig.getString("path"), comment) [FD]
+Line_6 $$ final PullComment reply = this.post(body, orig.getString("commit_id"), orig.getString("path"), comment) --> Line_7 $$ reply.patch(Json.createObjectBuilder().add("original_position", String.valueOf(comment)).build()) [FD]
+Line_2 $$ public PullComment reply(final String body, final int comment) throws IOException --> Line_7 $$ reply.patch(Json.createObjectBuilder().add("original_position", String.valueOf(comment)).build()) [FD]

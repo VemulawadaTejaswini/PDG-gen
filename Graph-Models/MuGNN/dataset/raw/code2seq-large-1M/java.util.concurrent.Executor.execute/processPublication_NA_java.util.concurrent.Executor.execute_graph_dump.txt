@@ -1,0 +1,6 @@
+Line_5 $$ if (entry.getExceptionResult() != null && rollbackConfiguration.rollBackOn(entry.getExceptionResult())) --> Line_6 $$ exceptionResult = performRollback(unitOfWork, aggregateIdentifier, entry.getExceptionResult()) [CD]
+Line_4 $$ Throwable exceptionResult --> Line_6 $$ exceptionResult = performRollback(unitOfWork, aggregateIdentifier, entry.getExceptionResult()) [FD]
+Line_5 $$ if (entry.getExceptionResult() != null && rollbackConfiguration.rollBackOn(entry.getExceptionResult())) --> Line_8 $$ exceptionResult = performCommit(unitOfWork, entry.getExceptionResult(), aggregateIdentifier) [CD]
+Line_4 $$ Throwable exceptionResult --> Line_8 $$ exceptionResult = performCommit(unitOfWork, entry.getExceptionResult(), aggregateIdentifier) [FD]
+Line_6 $$ exceptionResult = performRollback(unitOfWork, aggregateIdentifier, entry.getExceptionResult()) --> Line_8 $$ exceptionResult = performCommit(unitOfWork, entry.getExceptionResult(), aggregateIdentifier) [FD]
+Line_10 $$ if (exceptionResult != null || entry.getCallback().hasDelegate()) --> Line_11 $$ executor.execute(new ReportResultTask(entry.getMessage(), entry.getCallback(), entry.getResult(), exceptionResult)) [CD]

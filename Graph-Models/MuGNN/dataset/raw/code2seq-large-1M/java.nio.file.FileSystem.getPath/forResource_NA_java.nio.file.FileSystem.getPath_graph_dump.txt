@@ -1,0 +1,8 @@
+Line_2 $$ public JavaFileObject forResource(Class<?> clazz, String fileName) --> Line_3 $$ Path path = fileSystem.getPath("/", clazz.getPackage().getName().replace('.', '/'), fileName) [FD]
+Line_2 $$ public JavaFileObject forResource(Class<?> clazz, String fileName) --> Line_3 $$ Path path = fileSystem.getPath("/", clazz.getPackage().getName().replace('.', '/'), fileName) [CD]
+Line_2 $$ public JavaFileObject forResource(Class<?> clazz, String fileName) --> Line_4 $$ try (InputStream is = findResource(clazz, fileName)) [FD]
+Line_3 $$ Path path = fileSystem.getPath("/", clazz.getPackage().getName().replace('.', '/'), fileName) --> Line_5 $$ Files.createDirectories(path.getParent()) [FD]
+Line_4 $$ try (InputStream is = findResource(clazz, fileName)) --> Line_6 $$ Files.copy(is, path) [FD]
+Line_3 $$ Path path = fileSystem.getPath("/", clazz.getPackage().getName().replace('.', '/'), fileName) --> Line_6 $$ Files.copy(is, path) [FD]
+Line_2 $$ public JavaFileObject forResource(Class<?> clazz, String fileName) --> Line_10 $$ return Iterables.getOnlyElement(getJavaFileObjects(path)) [CD]
+Line_3 $$ Path path = fileSystem.getPath("/", clazz.getPackage().getName().replace('.', '/'), fileName) --> Line_10 $$ return Iterables.getOnlyElement(getJavaFileObjects(path)) [FD]

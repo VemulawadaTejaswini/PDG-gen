@@ -1,0 +1,5 @@
+Line_2 $$ public List<AbstractBuckEvent> getStatsEvents() --> Line_3 $$ List<AbstractBuckEvent> events = fileHashCacheEngines.stream().map(FileHashCacheEngine::<>getStatsEvents).flatMap(List::<>stream).collect(Collectors.toList()) [CD]
+Line_2 $$ public List<AbstractBuckEvent> getStatsEvents() --> Line_4 $$ if (sha1Mismatches > 0) [CD]
+Line_4 $$ if (sha1Mismatches > 0) --> Line_5 $$ events.add(new ExperimentEvent("file_hash_cache_invalidation", "sha1", "mismatches", sha1Mismatches, null)) [CD]
+Line_3 $$ List<AbstractBuckEvent> events = fileHashCacheEngines.stream().map(FileHashCacheEngine::<>getStatsEvents).flatMap(List::<>stream).collect(Collectors.toList()) --> Line_5 $$ events.add(new ExperimentEvent("file_hash_cache_invalidation", "sha1", "mismatches", sha1Mismatches, null)) [FD]
+Line_2 $$ public List<AbstractBuckEvent> getStatsEvents() --> Line_8 $$ return events [CD]

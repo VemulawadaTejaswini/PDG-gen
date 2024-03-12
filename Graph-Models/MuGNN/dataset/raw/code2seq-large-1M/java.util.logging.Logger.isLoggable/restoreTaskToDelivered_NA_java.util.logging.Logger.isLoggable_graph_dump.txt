@@ -1,0 +1,8 @@
+Line_2 $$ void restoreTaskToDelivered(TimerPrimaryKey timerId) --> Line_3 $$ RuntimeTimerState timerState = getTimerState(timerId) [FD]
+Line_2 $$ void restoreTaskToDelivered(TimerPrimaryKey timerId) --> Line_3 $$ RuntimeTimerState timerState = getTimerState(timerId) [CD]
+Line_2 $$ void restoreTaskToDelivered(TimerPrimaryKey timerId) --> Line_4 $$ if (timerState != null) [CD]
+Line_3 $$ RuntimeTimerState timerState = getTimerState(timerId) --> Line_4 $$ if (timerState != null) [FD]
+Line_3 $$ RuntimeTimerState timerState = getTimerState(timerId) --> Line_6 $$ timerState.restoredToDelivered() [FD]
+Line_4 $$ if (timerState != null) --> Line_8 $$ if (logger.isLoggable(Level.FINE)) [CD]
+Line_8 $$ if (logger.isLoggable(Level.FINE)) --> Line_9 $$ logger.log(Level.FINE, "Restoring " + timerId + " to delivered state after it was cancelled and " + " rolled back from within its own ejbTimeout method") [CD]
+Line_4 $$ if (timerState != null) --> Line_12 $$ logger.log(Level.FINE, "No timer state found for " + "restoreTaskToDelivered request of " + timerId) [CD]

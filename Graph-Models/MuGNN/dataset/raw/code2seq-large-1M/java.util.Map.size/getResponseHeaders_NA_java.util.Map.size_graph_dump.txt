@@ -1,0 +1,7 @@
+Line_2 $$ public Map<String, List<String>> getResponseHeaders() --> Line_3 $$ Map<String, List<String>> responseHeaders = threadLocal.get().responseHeaders [CD]
+Line_2 $$ public Map<String, List<String>> getResponseHeaders() --> Line_4 $$ HashMap<String, List<String>> map = new HashMap(responseHeaders.size()) [CD]
+Line_3 $$ Map<String, List<String>> responseHeaders = threadLocal.get().responseHeaders --> Line_4 $$ HashMap<String, List<String>> map = new HashMap(responseHeaders.size()) [FD]
+Line_3 $$ Map<String, List<String>> responseHeaders = threadLocal.get().responseHeaders --> Line_5 $$ for (Map.Entry<String, List<String>> entry : responseHeaders.entrySet()) [FD]
+Line_4 $$ HashMap<String, List<String>> map = new HashMap(responseHeaders.size()) --> Line_6 $$ map.put(entry.getKey(), Collections.unmodifiableList(entry.getValue())) [FD]
+Line_2 $$ public Map<String, List<String>> getResponseHeaders() --> Line_8 $$ return Collections.unmodifiableMap(map) [CD]
+Line_4 $$ HashMap<String, List<String>> map = new HashMap(responseHeaders.size()) --> Line_8 $$ return Collections.unmodifiableMap(map) [FD]

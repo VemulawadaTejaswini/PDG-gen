@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void unregisterConnection(ConnectContext ctx) --> Line_3 $$ if (connectionMap.remove((long) ctx.getConnectionId()) != null) [CD]
+Line_2 $$ public synchronized void unregisterConnection(ConnectContext ctx) --> Line_3 $$ if (connectionMap.remove((long) ctx.getConnectionId()) != null) [FD]
+Line_3 $$ if (connectionMap.remove((long) ctx.getConnectionId()) != null) --> Line_5 $$ AtomicInteger conns = connByUser.get(ctx.getUser()) [CD]
+Line_2 $$ public synchronized void unregisterConnection(ConnectContext ctx) --> Line_5 $$ AtomicInteger conns = connByUser.get(ctx.getUser()) [FD]
+Line_3 $$ if (connectionMap.remove((long) ctx.getConnectionId()) != null) --> Line_6 $$ if (conns != null) [CD]
+Line_5 $$ AtomicInteger conns = connByUser.get(ctx.getUser()) --> Line_6 $$ if (conns != null) [FD]
+Line_6 $$ if (conns != null) --> Line_7 $$ conns.decrementAndGet() [CD]
+Line_5 $$ AtomicInteger conns = connByUser.get(ctx.getUser()) --> Line_7 $$ conns.decrementAndGet() [FD]

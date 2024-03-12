@@ -1,0 +1,7 @@
+Line_4 $$ DummyCommand dc = new DummyCommand() --> Line_5 $$ Class<?> cl = dc.getClass() [FD]
+Line_6 $$ ParameterMap params = new ParameterMap() --> Line_7 $$ params.add("hello", "world") [FD]
+Line_4 $$ DummyCommand dc = new DummyCommand() --> Line_8 $$ CommandModel dccm = new CommandModelImpl(dc.getClass()) [FD]
+Line_5 $$ Class<?> cl = dc.getClass() --> Line_10 $$ AnnotatedElement ae = (AnnotatedElement) cl.getDeclaredField("hello") [FD]
+Line_9 $$ MapInjectionResolver mir = new MapInjectionResolver(dccm, params) --> Line_11 $$ String hello = mir.getValue(dc, ae, null, String.class) [FD]
+Line_4 $$ DummyCommand dc = new DummyCommand() --> Line_11 $$ String hello = mir.getValue(dc, ae, null, String.class) [FD]
+Line_10 $$ AnnotatedElement ae = (AnnotatedElement) cl.getDeclaredField("hello") --> Line_11 $$ String hello = mir.getValue(dc, ae, null, String.class) [FD]

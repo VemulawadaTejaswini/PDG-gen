@@ -1,0 +1,6 @@
+Line_2 $$ public void testImmutableTableWithStorageSchemeAndColumnEncodingProps() throws Exception --> Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) [CD]
+Line_2 $$ public void testImmutableTableWithStorageSchemeAndColumnEncodingProps() throws Exception --> Line_4 $$ String immutableDataTableFullName = SchemaUtil.getTableName("", generateUniqueName()) [CD]
+Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) --> Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) [FD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) --> Line_6 $$ Statement stmt = conn.createStatement() [FD]
+Line_6 $$ Statement stmt = conn.createStatement() --> Line_9 $$ stmt.execute(ddl) [FD]
+Line_8 $$ String ddl = "CREATE IMMUTABLE TABLE  " + immutableDataTableFullName + "  (a_string varchar not null, col1 integer" + "  CONSTRAINT pk PRIMARY KEY (a_string)) COLUMN_ENCODED_BYTES=0, IMMUTABLE_STORAGE_SCHEME=" + PTable.ImmutableStorageScheme.SINGLE_CELL_ARRAY_WITH_OFFSETS --> Line_9 $$ stmt.execute(ddl) [FD]

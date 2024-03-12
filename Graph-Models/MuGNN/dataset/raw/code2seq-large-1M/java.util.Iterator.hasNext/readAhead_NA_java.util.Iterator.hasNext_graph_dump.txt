@@ -1,0 +1,8 @@
+Line_2 $$ private IteratorBuffer<T> readAhead() --> Line_3 $$ List<T> readAhead = null [CD]
+Line_5 $$ if (!underlyingIterator.hasNext()) --> Line_6 $$ return new IteratorBuffer() [CD]
+Line_3 $$ List<T> readAhead = null --> Line_7 $$ readAhead = new ArrayList(bufferSize) [FD]
+Line_8 $$ for (int i = 0; i < bufferSize && underlyingIterator.hasNext(); i++) --> Line_9 $$ if (Thread.currentThread().isInterrupted()) [CD]
+Line_9 $$ if (Thread.currentThread().isInterrupted()) --> Line_10 $$ return new IteratorBuffer(readAhead, new InterruptedException()) [CD]
+Line_8 $$ for (int i = 0; i < bufferSize && underlyingIterator.hasNext(); i++) --> Line_12 $$ readAhead.add(underlyingIterator.next()) [CD]
+Line_3 $$ List<T> readAhead = null --> Line_12 $$ readAhead.add(underlyingIterator.next()) [FD]
+Line_7 $$ readAhead = new ArrayList(bufferSize) --> Line_12 $$ readAhead.add(underlyingIterator.next()) [FD]

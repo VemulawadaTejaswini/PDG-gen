@@ -1,0 +1,8 @@
+Line_2 $$ public boolean containsBean(String name) --> Line_3 $$ if (this.app != null) [CD]
+Line_3 $$ if (this.app != null) --> Line_4 $$ if (containsBeanByName(name)) [CD]
+Line_2 $$ public boolean containsBean(String name) --> Line_4 $$ if (containsBeanByName(name)) [FD]
+Line_4 $$ if (containsBeanByName(name)) --> Line_5 $$ return true [CD]
+Line_3 $$ if (this.app != null) --> Line_7 $$ Expression parsed = new SpelExpressionParser().parseExpression("context.getBeansOfType(T(" + name + "))") [CD]
+Line_7 $$ Expression parsed = new SpelExpressionParser().parseExpression("context.getBeansOfType(T(" + name + "))") --> Line_9 $$ Map<String, Object> beans = (Map<String, Object>) parsed.getValue(this.app) [FD]
+Line_9 $$ Map<String, Object> beans = (Map<String, Object>) parsed.getValue(this.app) --> Line_10 $$ return !beans.isEmpty() [FD]
+Line_2 $$ public boolean containsBean(String name) --> Line_14 $$ return false [CD]

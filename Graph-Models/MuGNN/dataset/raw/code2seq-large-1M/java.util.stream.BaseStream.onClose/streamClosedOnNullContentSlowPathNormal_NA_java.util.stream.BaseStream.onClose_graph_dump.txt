@@ -1,0 +1,6 @@
+Line_2 $$ public void streamClosedOnNullContentSlowPathNormal() --> Line_3 $$ AtomicInteger closed = new AtomicInteger() [CD]
+Line_2 $$ public void streamClosedOnNullContentSlowPathNormal() --> Line_4 $$ Stream<String> source = Stream.of("foo", "bar", null, "baz").onClose(closed::<>incrementAndGet) [CD]
+Line_2 $$ public void streamClosedOnNullContentSlowPathNormal() --> Line_5 $$ StepVerifier.create(Flux.fromStream(source), 4).expectNext("foo", "bar").verifyErrorMessage("The iterator returned a null value") [CD]
+Line_4 $$ Stream<String> source = Stream.of("foo", "bar", null, "baz").onClose(closed::<>incrementAndGet) --> Line_5 $$ StepVerifier.create(Flux.fromStream(source), 4).expectNext("foo", "bar").verifyErrorMessage("The iterator returned a null value") [FD]
+Line_2 $$ public void streamClosedOnNullContentSlowPathNormal() --> Line_6 $$ assertThat(closed.get()).isEqualTo(1) [CD]
+Line_3 $$ AtomicInteger closed = new AtomicInteger() --> Line_6 $$ assertThat(closed.get()).isEqualTo(1) [FD]

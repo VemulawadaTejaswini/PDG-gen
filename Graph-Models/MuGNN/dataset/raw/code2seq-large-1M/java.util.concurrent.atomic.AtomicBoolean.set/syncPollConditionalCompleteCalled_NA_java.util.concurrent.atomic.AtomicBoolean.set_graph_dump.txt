@@ -1,0 +1,7 @@
+Line_2 $$ public void syncPollConditionalCompleteCalled() --> Line_3 $$ AtomicBoolean onComplete = new AtomicBoolean() [CD]
+Line_2 $$ public void syncPollConditionalCompleteCalled() --> Line_4 $$ ConnectableFlux<Integer> f = Flux.just(1).doOnComplete(() -> onComplete.set(true)).filter( v -> true).publish() [CD]
+Line_3 $$ AtomicBoolean onComplete = new AtomicBoolean() --> Line_4 $$ ConnectableFlux<Integer> f = Flux.just(1).doOnComplete(() -> onComplete.set(true)).filter( v -> true).publish() [FD]
+Line_2 $$ public void syncPollConditionalCompleteCalled() --> Line_5 $$ StepVerifier.create(f).then(f::<>connect).expectNext(1).verifyComplete() [CD]
+Line_4 $$ ConnectableFlux<Integer> f = Flux.just(1).doOnComplete(() -> onComplete.set(true)).filter( v -> true).publish() --> Line_5 $$ StepVerifier.create(f).then(f::<>connect).expectNext(1).verifyComplete() [FD]
+Line_2 $$ public void syncPollConditionalCompleteCalled() --> Line_6 $$ assertThat(onComplete.get()).withFailMessage("onComplete not called back").isTrue() [CD]
+Line_3 $$ AtomicBoolean onComplete = new AtomicBoolean() --> Line_6 $$ assertThat(onComplete.get()).withFailMessage("onComplete not called back").isTrue() [FD]

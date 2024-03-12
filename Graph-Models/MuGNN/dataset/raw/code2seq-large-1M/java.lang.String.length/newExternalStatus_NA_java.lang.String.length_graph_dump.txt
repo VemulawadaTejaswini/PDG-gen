@@ -1,0 +1,7 @@
+Line_2 $$ public static void newExternalStatus() --> Line_3 $$ final String statusLine = ExternalStatusService.getLastStatusLine() [CD]
+Line_2 $$ public static void newExternalStatus() --> Line_4 $$ if (statusLine.length() > 0) [CD]
+Line_3 $$ final String statusLine = ExternalStatusService.getLastStatusLine() --> Line_4 $$ if (statusLine.length() > 0) [FD]
+Line_4 $$ if (statusLine.length() > 0) --> Line_5 $$ if (Pref.getBooleanDefaultFalse("wear_sync")) [CD]
+Line_5 $$ if (Pref.getBooleanDefaultFalse("wear_sync")) --> Line_6 $$ startWatchUpdaterService(xdrip.getAppContext(), WatchUpdaterService.ACTION_SEND_STATUS, TAG, "externalStatusString", statusLine) [CD]
+Line_3 $$ final String statusLine = ExternalStatusService.getLastStatusLine() --> Line_6 $$ startWatchUpdaterService(xdrip.getAppContext(), WatchUpdaterService.ACTION_SEND_STATUS, TAG, "externalStatusString", statusLine) [FD]
+Line_4 $$ if (statusLine.length() > 0) --> Line_8 $$ sendToPebble() [CD]

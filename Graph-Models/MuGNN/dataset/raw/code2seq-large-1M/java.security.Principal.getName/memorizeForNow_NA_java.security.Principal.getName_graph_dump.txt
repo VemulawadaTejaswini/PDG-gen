@@ -1,0 +1,8 @@
+Line_3 $$ for (X509Certificate cert : chain) --> Line_4 $$ String alias = cert.getSubjectDN().getName() [FD]
+Line_4 $$ String alias = cert.getSubjectDN().getName() --> Line_5 $$ transientKeyStore.setCertificateEntry(alias, cert) [FD]
+Line_3 $$ for (X509Certificate cert : chain) --> Line_5 $$ transientKeyStore.setCertificateEntry(alias, cert) [FD]
+Line_2 $$ synchronized void memorizeForNow(@NonNull X509Certificate[] chain) throws Exception --> Line_7 $$ TrustManagerFactory tmf = TrustManagerFactory.getInstance("X509") [CD]
+Line_2 $$ synchronized void memorizeForNow(@NonNull X509Certificate[] chain) throws Exception --> Line_8 $$ tmf.init(transientKeyStore) [CD]
+Line_7 $$ TrustManagerFactory tmf = TrustManagerFactory.getInstance("X509") --> Line_8 $$ tmf.init(transientKeyStore) [FD]
+Line_2 $$ synchronized void memorizeForNow(@NonNull X509Certificate[] chain) throws Exception --> Line_9 $$ transientTrustManager = findX509TrustManager(tmf) [CD]
+Line_7 $$ TrustManagerFactory tmf = TrustManagerFactory.getInstance("X509") --> Line_9 $$ transientTrustManager = findX509TrustManager(tmf) [FD]

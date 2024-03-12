@@ -1,0 +1,8 @@
+Line_2 $$ public void testInterruptWrite() throws ExecutionException, InterruptedException --> Line_3 $$ final Snapshot snapshot = maintenance.snapshot() [CD]
+Line_2 $$ public void testInterruptWrite() throws ExecutionException, InterruptedException --> Line_4 $$ final OutputStream out = new ByteArrayOutputStream() [CD]
+Line_2 $$ public void testInterruptWrite() throws ExecutionException, InterruptedException --> Line_5 $$ Future<?> done = executor.submit(() -> assertThatExceptionOfType(InterruptedException.class).isThrownBy(() -> snapshot.write(out))) [CD]
+Line_3 $$ final Snapshot snapshot = maintenance.snapshot() --> Line_5 $$ Future<?> done = executor.submit(() -> assertThatExceptionOfType(InterruptedException.class).isThrownBy(() -> snapshot.write(out))) [FD]
+Line_4 $$ final OutputStream out = new ByteArrayOutputStream() --> Line_5 $$ Future<?> done = executor.submit(() -> assertThatExceptionOfType(InterruptedException.class).isThrownBy(() -> snapshot.write(out))) [FD]
+Line_2 $$ public void testInterruptWrite() throws ExecutionException, InterruptedException --> Line_6 $$ Thread.sleep(50) [CD]
+Line_2 $$ public void testInterruptWrite() throws ExecutionException, InterruptedException --> Line_7 $$ executor.shutdownNow() [CD]
+Line_2 $$ public void testInterruptWrite() throws ExecutionException, InterruptedException --> Line_8 $$ done.get() [CD]

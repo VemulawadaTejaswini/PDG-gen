@@ -1,0 +1,5 @@
+Line_2 $$ public void testCreateClient() throws Exception --> Line_3 $$ ClientDetails client = createClient(adminToken, new RandomValueStringGenerator().generate(), SECRET, Collections.singleton("client_credentials")) [CD]
+Line_2 $$ public void testCreateClient() throws Exception --> Line_4 $$ verify(applicationEventPublisher, times(1)).publishEvent(captor.capture()) [CD]
+Line_2 $$ public void testCreateClient() throws Exception --> Line_5 $$ assertEquals(AuditEventType.ClientCreateSuccess, captor.getValue().getAuditEvent().getType()) [CD]
+Line_2 $$ public void testCreateClient() throws Exception --> Line_6 $$ assertEquals(makeClientName(client.getClientId()), client.getAdditionalInformation().get("name")) [CD]
+Line_3 $$ ClientDetails client = createClient(adminToken, new RandomValueStringGenerator().generate(), SECRET, Collections.singleton("client_credentials")) --> Line_6 $$ assertEquals(makeClientName(client.getClientId()), client.getAdditionalInformation().get("name")) [FD]

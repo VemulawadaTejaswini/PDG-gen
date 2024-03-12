@@ -1,0 +1,8 @@
+Line_2 $$ public void promiseOnErrorHandlesExceptions() throws Exception --> Line_3 $$ CountDownLatch latch1 = new CountDownLatch(1) [CD]
+Line_2 $$ public void promiseOnErrorHandlesExceptions() throws Exception --> Line_4 $$ CountDownLatch latch2 = new CountDownLatch(1) [CD]
+Line_3 $$ CountDownLatch latch1 = new CountDownLatch(1) --> Line_8 $$ latch1.countDown() [FD]
+Line_4 $$ CountDownLatch latch2 = new CountDownLatch(1) --> Line_8 $$ latch1.countDown() [FD]
+Line_2 $$ public void promiseOnErrorHandlesExceptions() throws Exception --> Line_11 $$ assertThat("Error latch was counted down", latch1.await(1, TimeUnit.SECONDS), is(true)) [CD]
+Line_3 $$ CountDownLatch latch1 = new CountDownLatch(1) --> Line_11 $$ assertThat("Error latch was counted down", latch1.await(1, TimeUnit.SECONDS), is(true)) [FD]
+Line_2 $$ public void promiseOnErrorHandlesExceptions() throws Exception --> Line_12 $$ assertThat("Complete latch was not counted down", latch2.getCount(), is(1L)) [CD]
+Line_4 $$ CountDownLatch latch2 = new CountDownLatch(1) --> Line_12 $$ assertThat("Complete latch was not counted down", latch2.getCount(), is(1L)) [FD]

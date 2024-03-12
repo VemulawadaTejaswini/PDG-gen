@@ -1,0 +1,8 @@
+Line_2 $$ private static String alias(boolean user, X509Certificate x, int index) --> Line_3 $$ String prefix = user ? "user:" : "system:" [CD]
+Line_2 $$ private static String alias(boolean user, X509Certificate x, int index) --> Line_4 $$ X500Principal subject = x.getSubjectX500Principal() [CD]
+Line_2 $$ private static String alias(boolean user, X509Certificate x, int index) --> Line_4 $$ X500Principal subject = x.getSubjectX500Principal() [FD]
+Line_2 $$ private static String alias(boolean user, X509Certificate x, int index) --> Line_5 $$ int intHash = NativeCrypto.X509_NAME_hash_old(subject) [CD]
+Line_4 $$ X500Principal subject = x.getSubjectX500Principal() --> Line_5 $$ int intHash = NativeCrypto.X509_NAME_hash_old(subject) [FD]
+Line_2 $$ private static String alias(boolean user, X509Certificate x, int index) --> Line_6 $$ String strHash = IntegralToString.intToHexString(intHash, false, 8) [CD]
+Line_5 $$ int intHash = NativeCrypto.X509_NAME_hash_old(subject) --> Line_6 $$ String strHash = IntegralToString.intToHexString(intHash, false, 8) [FD]
+Line_2 $$ private static String alias(boolean user, X509Certificate x, int index) --> Line_7 $$ return prefix + strHash + '.' + index [CD]

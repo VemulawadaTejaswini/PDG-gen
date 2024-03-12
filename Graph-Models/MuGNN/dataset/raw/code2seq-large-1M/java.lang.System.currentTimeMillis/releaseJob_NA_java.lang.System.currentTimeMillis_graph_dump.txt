@@ -1,0 +1,6 @@
+Line_2 $$ public void releaseJob(JobID jobId) --> Line_3 $$ checkNotNull(jobId) [FD]
+Line_2 $$ public void releaseJob(JobID jobId) --> Line_3 $$ checkNotNull(jobId) [CD]
+Line_2 $$ public void releaseJob(JobID jobId) --> Line_5 $$ RefCount ref = jobRefCounters.get(jobId) [FD]
+Line_6 $$ if (ref == null || ref.references == 0) --> Line_7 $$ log.warn("improper use of releaseJob() without a matching number of registerJob() calls for jobId " + jobId) [CD]
+Line_6 $$ if (ref == null || ref.references == 0) --> Line_8 $$ return [CD]
+Line_11 $$ if (ref.references == 0) --> Line_12 $$ ref.keepUntil = System.currentTimeMillis() + cleanupInterval [CD]

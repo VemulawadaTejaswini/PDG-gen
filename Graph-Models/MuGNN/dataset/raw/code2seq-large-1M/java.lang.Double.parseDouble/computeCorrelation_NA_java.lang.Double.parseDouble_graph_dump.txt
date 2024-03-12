@@ -1,0 +1,7 @@
+Line_2 $$ public double computeCorrelation(String columnA, String columnB) throws DDFException --> Line_3 $$ if (!(this.getDDF().getColumn(columnA).isNumeric() || this.getDDF().getColumn(columnB).isNumeric())) [CD]
+Line_2 $$ public double computeCorrelation(String columnA, String columnB) throws DDFException --> Line_3 $$ if (!(this.getDDF().getColumn(columnA).isNumeric() || this.getDDF().getColumn(columnB).isNumeric())) [FD]
+Line_2 $$ public double computeCorrelation(String columnA, String columnB) throws DDFException --> Line_6 $$ String sqlCmd = String.format("SELECT CORR(%s, %s) FROM %s", columnA, columnB, this.getDDF().getTableName()) [CD]
+Line_2 $$ public double computeCorrelation(String columnA, String columnB) throws DDFException --> Line_6 $$ String sqlCmd = String.format("SELECT CORR(%s, %s) FROM %s", columnA, columnB, this.getDDF().getTableName()) [FD]
+Line_6 $$ String sqlCmd = String.format("SELECT CORR(%s, %s) FROM %s", columnA, columnB, this.getDDF().getTableName()) --> Line_8 $$ List<String> rs = this.getManager().sql(sqlCmd, false).getRows() [FD]
+Line_8 $$ List<String> rs = this.getManager().sql(sqlCmd, false).getRows() --> Line_9 $$ return Utils.roundUp(Double.parseDouble(rs.get(0))) [FD]
+Line_2 $$ public double computeCorrelation(String columnA, String columnB) throws DDFException --> Line_11 $$ throw new DDFException(String.format("Unable to get CORR(%s, %s) FROM %s", columnA, columnB, this.getDDF().getTableName()), e) [FD]

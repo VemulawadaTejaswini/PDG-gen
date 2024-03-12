@@ -1,0 +1,8 @@
+Line_2 $$ public MultiResponseEntity<EnvClusterInfo> nav(@PathVariable String appId) --> Line_3 $$ MultiResponseEntity<EnvClusterInfo> response = MultiResponseEntity.ok() [CD]
+Line_2 $$ public MultiResponseEntity<EnvClusterInfo> nav(@PathVariable String appId) --> Line_4 $$ List<Env> envs = portalSettings.getActiveEnvs() [CD]
+Line_3 $$ MultiResponseEntity<EnvClusterInfo> response = MultiResponseEntity.ok() --> Line_7 $$ response.addResponseEntity(RichResponseEntity.ok(appService.createEnvNavNode(env, appId))) [FD]
+Line_5 $$ for (Env env : envs) --> Line_7 $$ response.addResponseEntity(RichResponseEntity.ok(appService.createEnvNavNode(env, appId))) [FD]
+Line_2 $$ public MultiResponseEntity<EnvClusterInfo> nav(@PathVariable String appId) --> Line_7 $$ response.addResponseEntity(RichResponseEntity.ok(appService.createEnvNavNode(env, appId))) [FD]
+Line_3 $$ MultiResponseEntity<EnvClusterInfo> response = MultiResponseEntity.ok() --> Line_9 $$ response.addResponseEntity(RichResponseEntity.error(HttpStatus.INTERNAL_SERVER_ERROR, "load env:" + env.name() + " cluster error." + e.getMessage())) [FD]
+Line_5 $$ for (Env env : envs) --> Line_9 $$ response.addResponseEntity(RichResponseEntity.error(HttpStatus.INTERNAL_SERVER_ERROR, "load env:" + env.name() + " cluster error." + e.getMessage())) [FD]
+Line_2 $$ public MultiResponseEntity<EnvClusterInfo> nav(@PathVariable String appId) --> Line_12 $$ return response [CD]

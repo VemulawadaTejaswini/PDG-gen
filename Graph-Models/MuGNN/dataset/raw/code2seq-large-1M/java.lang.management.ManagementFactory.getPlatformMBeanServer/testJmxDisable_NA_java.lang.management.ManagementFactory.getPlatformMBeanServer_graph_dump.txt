@@ -1,0 +1,6 @@
+Line_2 $$ public void testJmxDisable() throws Exception --> Line_3 $$ MBeanServer server = ManagementFactory.getPlatformMBeanServer() [CD]
+Line_2 $$ public void testJmxDisable() throws Exception --> Line_4 $$ ObjectName filter = new ObjectName("org.mariadb.jdbc.pool:type=PoolTest-*") [CD]
+Line_5 $$ try (MariaDbPoolDataSource pool = new MariaDbPoolDataSource(connUri + "&maxPoolSize=2&registerJmxPool=false&poolName=PoolTest")) --> Line_6 $$ try (Connection connection = pool.getConnection()) [FD]
+Line_3 $$ MBeanServer server = ManagementFactory.getPlatformMBeanServer() --> Line_7 $$ Set<ObjectName> objectNames = server.queryNames(filter, null) [FD]
+Line_4 $$ ObjectName filter = new ObjectName("org.mariadb.jdbc.pool:type=PoolTest-*") --> Line_7 $$ Set<ObjectName> objectNames = server.queryNames(filter, null) [FD]
+Line_7 $$ Set<ObjectName> objectNames = server.queryNames(filter, null) --> Line_8 $$ assertEquals(0, objectNames.size()) [FD]

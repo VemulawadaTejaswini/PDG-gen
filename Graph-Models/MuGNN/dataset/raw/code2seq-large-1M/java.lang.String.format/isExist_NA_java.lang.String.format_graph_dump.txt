@@ -1,0 +1,8 @@
+Line_2 $$ boolean isExist(Object id) --> Line_3 $$ String sql = String.format("select count(*) from %s ref where ref.%s = :id", voClass.getSimpleName(), voPrimaryKeyField.getName()) [CD]
+Line_2 $$ boolean isExist(Object id) --> Line_4 $$ TypedQuery<Long> q = getEntityManager().createQuery(sql, Long.class) [CD]
+Line_3 $$ String sql = String.format("select count(*) from %s ref where ref.%s = :id", voClass.getSimpleName(), voPrimaryKeyField.getName()) --> Line_4 $$ TypedQuery<Long> q = getEntityManager().createQuery(sql, Long.class) [FD]
+Line_2 $$ boolean isExist(Object id) --> Line_5 $$ q.setParameter("id", id) [FD]
+Line_2 $$ boolean isExist(Object id) --> Line_5 $$ q.setParameter("id", id) [CD]
+Line_2 $$ boolean isExist(Object id) --> Line_6 $$ q.setMaxResults(1) [CD]
+Line_2 $$ boolean isExist(Object id) --> Line_7 $$ Long count = q.getSingleResult() [CD]
+Line_2 $$ boolean isExist(Object id) --> Line_8 $$ return count > 0 [CD]

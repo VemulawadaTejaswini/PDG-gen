@@ -1,0 +1,7 @@
+Line_2 $$ public void testVisitSymbolVisitsAllSymbols() throws Exception --> Line_3 $$ QueriedRelation relation = e.analyze("select " + "       x," + "       count(*) " + "from t1 " + "where x = 2 " + "group by 1 " + "having count(*) = 2 " + "order by 2 " + "limit 1 " + "offset 1") [CD]
+Line_2 $$ public void testVisitSymbolVisitsAllSymbols() throws Exception --> Line_12 $$ final AtomicInteger numSymbols = new AtomicInteger(0) [CD]
+Line_2 $$ public void testVisitSymbolVisitsAllSymbols() throws Exception --> Line_13 $$ relation.visitSymbols( s -> numSymbols.incrementAndGet()) [CD]
+Line_3 $$ QueriedRelation relation = e.analyze("select " + "       x," + "       count(*) " + "from t1 " + "where x = 2 " + "group by 1 " + "having count(*) = 2 " + "order by 2 " + "limit 1 " + "offset 1") --> Line_13 $$ relation.visitSymbols( s -> numSymbols.incrementAndGet()) [FD]
+Line_12 $$ final AtomicInteger numSymbols = new AtomicInteger(0) --> Line_13 $$ relation.visitSymbols( s -> numSymbols.incrementAndGet()) [FD]
+Line_2 $$ public void testVisitSymbolVisitsAllSymbols() throws Exception --> Line_14 $$ assertThat(numSymbols.get(), is(8)) [CD]
+Line_12 $$ final AtomicInteger numSymbols = new AtomicInteger(0) --> Line_14 $$ assertThat(numSymbols.get(), is(8)) [FD]

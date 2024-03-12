@@ -1,0 +1,5 @@
+Line_2 $$ public void allTest() throws SqlParseException, SQLFeatureNotSupportedException --> Line_3 $$ SearchHits response = query(String.format("SELECT exclude('*name','*ge'),include('b*'),exclude('*ddre*'),include('gender') FROM %s/account LIMIT 1000", TEST_INDEX_ACCOUNT)) [CD]
+Line_3 $$ SearchHits response = query(String.format("SELECT exclude('*name','*ge'),include('b*'),exclude('*ddre*'),include('gender') FROM %s/account LIMIT 1000", TEST_INDEX_ACCOUNT)) --> Line_4 $$ for (SearchHit hit : response.getHits()) [FD]
+Line_4 $$ for (SearchHit hit : response.getHits()) --> Line_5 $$ Set<String> keySet = hit.getSourceAsMap().keySet() [FD]
+Line_6 $$ for (String field : keySet) --> Line_7 $$ Assert.assertFalse(field.endsWith("name") || field.endsWith("ge") || field.contains("ddre")) [FD]
+Line_6 $$ for (String field : keySet) --> Line_8 $$ Assert.assertTrue(field.startsWith("b") || field.equals("gender")) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void run(final UDPNIOConnection connection) throws Exception --> Line_3 $$ connection.drop(groupAddr, ni, source) [FD]
+Line_2 $$ public void run(final UDPNIOConnection connection) throws Exception --> Line_3 $$ connection.drop(groupAddr, ni, source) [CD]
+Line_2 $$ public void run(final UDPNIOConnection connection) throws Exception --> Line_5 $$ final InetSocketAddress peerAddr = new InetSocketAddress(groupAddr, ((InetSocketAddress) connection.getLocalAddress()).getPort()) [FD]
+Line_2 $$ public void run(final UDPNIOConnection connection) throws Exception --> Line_7 $$ connection.write(peerAddr, "left the group " + groupAddr, Futures.toCompletionHandler(writeFuture)) [FD]
+Line_5 $$ final InetSocketAddress peerAddr = new InetSocketAddress(groupAddr, ((InetSocketAddress) connection.getLocalAddress()).getPort()) --> Line_7 $$ connection.write(peerAddr, "left the group " + groupAddr, Futures.toCompletionHandler(writeFuture)) [FD]
+Line_6 $$ final FutureImpl<WriteResult<String, SocketAddress>> writeFuture = Futures.createSafeFuture() --> Line_7 $$ connection.write(peerAddr, "left the group " + groupAddr, Futures.toCompletionHandler(writeFuture)) [FD]
+Line_6 $$ final FutureImpl<WriteResult<String, SocketAddress>> writeFuture = Futures.createSafeFuture() --> Line_8 $$ writeFuture.get(10, TimeUnit.SECONDS) [FD]

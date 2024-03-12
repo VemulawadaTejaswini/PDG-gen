@@ -1,0 +1,7 @@
+Line_4 $$ final IIOManager ioManager = appCtx.getIoManager() --> Line_6 $$ final FileReference filePath = ioManager.resolve(file) [FD]
+Line_2 $$ public void replicate(String file, boolean metadata) --> Line_6 $$ final FileReference filePath = ioManager.resolve(file) [FD]
+Line_6 $$ final FileReference filePath = ioManager.resolve(file) --> Line_7 $$ ReplicateFileTask task = new ReplicateFileTask(file, filePath.getFile().length(), metadata) [FD]
+Line_7 $$ ReplicateFileTask task = new ReplicateFileTask(file, filePath.getFile().length(), metadata) --> Line_8 $$ ReplicationProtocol.sendTo(replica, task) [FD]
+Line_6 $$ final FileReference filePath = ioManager.resolve(file) --> Line_9 $$ try (RandomAccessFile fromFile = new RandomAccessFile(filePath.getFile(), "r"); [FD]
+Line_9 $$ try (RandomAccessFile fromFile = new RandomAccessFile(filePath.getFile(), "r"); --> Line_11 $$ NetworkingUtil.sendFile(fileChannel, channel) [FD]
+Line_5 $$ final SocketChannel channel = replica.getChannel() --> Line_11 $$ NetworkingUtil.sendFile(fileChannel, channel) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ void releaseReadLock(DiskRegion dr) --> Line_3 $$ dr.basicReleaseReadLock() [CD]
+Line_2 $$ void releaseReadLock(DiskRegion dr) --> Line_3 $$ dr.basicReleaseReadLock() [FD]
+Line_2 $$ void releaseReadLock(DiskRegion dr) --> Line_4 $$ int currentOpsInProgress = entryOpsCount.decrementAndGet() [CD]
+Line_2 $$ void releaseReadLock(DiskRegion dr) --> Line_5 $$ if (currentOpsInProgress == 0) [CD]
+Line_4 $$ int currentOpsInProgress = entryOpsCount.decrementAndGet() --> Line_5 $$ if (currentOpsInProgress == 0) [FD]
+Line_2 $$ void releaseReadLock(DiskRegion dr) --> Line_7 $$ if (dr.isRegionClosed() && entryOpsCount.get() == 0) [FD]
+Line_7 $$ if (dr.isRegionClosed() && entryOpsCount.get() == 0) --> Line_8 $$ this.closeRegionGuard.notifyAll() [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void createFailureBatch(FullPipeBatch pipeBatch) --> Line_3 $$ if (!pipelineConfigBean.shouldCreateFailureSnapshot) [CD]
+Line_3 $$ if (!pipelineConfigBean.shouldCreateFailureSnapshot) --> Line_4 $$ return [CD]
+Line_7 $$ String snapshotName = "Failure_" + UUID.randomUUID().toString() --> Line_9 $$ snapshotStore.create("", pipelineName, revision, snapshotName, snapshotLabel) [FD]
+Line_8 $$ String snapshotLabel = "Failure at " + LocalDateTime.now().toString() --> Line_9 $$ snapshotStore.create("", pipelineName, revision, snapshotName, snapshotLabel) [FD]
+Line_7 $$ String snapshotName = "Failure_" + UUID.randomUUID().toString() --> Line_10 $$ snapshotStore.save(pipelineName, revision, snapshotName, -1, ImmutableList.of(pipeBatch.createFailureSnapshot())) [FD]
+Line_2 $$ private void createFailureBatch(FullPipeBatch pipeBatch) --> Line_10 $$ snapshotStore.save(pipelineName, revision, snapshotName, -1, ImmutableList.of(pipeBatch.createFailureSnapshot())) [FD]

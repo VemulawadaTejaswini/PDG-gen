@@ -1,0 +1,8 @@
+Line_2 $$ public void whenExecuteJobThenOk() throws Exception --> Line_3 $$ jobWrapper.runJobLocked(dummyJob) [CD]
+Line_2 $$ public void whenExecuteJobThenOk() throws Exception --> Line_4 $$ assertThat(jobExecuted.get(), is(true)) [CD]
+Line_2 $$ public void whenExecuteJobThenOk() throws Exception --> Line_5 $$ assertThat("lock node should be removed", CURATOR.checkExists().forPath(lockPath), is(nullValue())) [CD]
+Line_2 $$ public void whenExecuteJobThenOk() throws Exception --> Line_6 $$ final byte[] data = CURATOR.getData().forPath(latestPath) [CD]
+Line_2 $$ public void whenExecuteJobThenOk() throws Exception --> Line_7 $$ final DateTime lastCleaned = objectMapper.readValue(new String(data, Charsets.UTF_8), DateTime.class) [CD]
+Line_2 $$ public void whenExecuteJobThenOk() throws Exception --> Line_8 $$ final long msSinceCleaned = new DateTime().getMillis() - lastCleaned.getMillis() [CD]
+Line_2 $$ public void whenExecuteJobThenOk() throws Exception --> Line_9 $$ assertThat("job was executed less than 5 seconds ago", msSinceCleaned, lessThan(5000L)) [CD]
+Line_8 $$ final long msSinceCleaned = new DateTime().getMillis() - lastCleaned.getMillis() --> Line_9 $$ assertThat("job was executed less than 5 seconds ago", msSinceCleaned, lessThan(5000L)) [FD]

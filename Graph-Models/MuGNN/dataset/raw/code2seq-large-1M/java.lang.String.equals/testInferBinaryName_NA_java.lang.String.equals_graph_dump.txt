@@ -1,0 +1,8 @@
+Line_2 $$ void testInferBinaryName(String binaryName, boolean fail) --> Line_4 $$ JavaFileObject file = fm.getJavaFileForInput(PLATFORM_CLASS_PATH, binaryName, CLASS) [FD]
+Line_4 $$ JavaFileObject file = fm.getJavaFileForInput(PLATFORM_CLASS_PATH, binaryName, CLASS) --> Line_5 $$ String inferred = fm.inferBinaryName(fail ? CLASS_PATH : PLATFORM_CLASS_PATH, file) [FD]
+Line_2 $$ void testInferBinaryName(String binaryName, boolean fail) --> Line_6 $$ if (inferred == null && fail) [FD]
+Line_6 $$ if (inferred == null && fail) --> Line_7 $$ return [CD]
+Line_5 $$ String inferred = fm.inferBinaryName(fail ? CLASS_PATH : PLATFORM_CLASS_PATH, file) --> Line_8 $$ if (!inferred.equals(binaryName)) [FD]
+Line_2 $$ void testInferBinaryName(String binaryName, boolean fail) --> Line_8 $$ if (!inferred.equals(binaryName)) [FD]
+Line_2 $$ void testInferBinaryName(String binaryName, boolean fail) --> Line_9 $$ throw new AssertionError(String.format("binaryName (%s) != inferred (%s)", binaryName, inferred)) [FD]
+Line_5 $$ String inferred = fm.inferBinaryName(fail ? CLASS_PATH : PLATFORM_CLASS_PATH, file) --> Line_9 $$ throw new AssertionError(String.format("binaryName (%s) != inferred (%s)", binaryName, inferred)) [FD]

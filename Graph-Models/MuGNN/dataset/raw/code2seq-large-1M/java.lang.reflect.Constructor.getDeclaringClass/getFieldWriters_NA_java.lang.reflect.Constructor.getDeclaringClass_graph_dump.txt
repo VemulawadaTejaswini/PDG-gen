@@ -1,0 +1,6 @@
+Line_2 $$ private Map<String, TypeAndWriter> getFieldWriters(Constructor<?> constructor) --> Line_3 $$ List<Field> fields = new LinkedList() [CD]
+Line_2 $$ private Map<String, TypeAndWriter> getFieldWriters(Constructor<?> constructor) --> Line_4 $$ for (Class current = constructor.getDeclaringClass(); current != Object.class; current = current.getSuperclass()) [CD]
+Line_2 $$ private Map<String, TypeAndWriter> getFieldWriters(Constructor<?> constructor) --> Line_4 $$ for (Class current = constructor.getDeclaringClass(); current != Object.class; current = current.getSuperclass()) [FD]
+Line_3 $$ List<Field> fields = new LinkedList() --> Line_5 $$ fields.addAll(Arrays.asList(current.getDeclaredFields())) [FD]
+Line_2 $$ private Map<String, TypeAndWriter> getFieldWriters(Constructor<?> constructor) --> Line_7 $$ return fields.stream().filter( field -> !Modifier.isFinal(field.getModifiers())).filter( field -> !Modifier.isTransient(field.getModifiers())).peek( field -> field.setAccessible(true)).collect(Collectors.toMap(Field::<>getName,  field -> [CD]
+Line_3 $$ List<Field> fields = new LinkedList() --> Line_7 $$ return fields.stream().filter( field -> !Modifier.isFinal(field.getModifiers())).filter( field -> !Modifier.isTransient(field.getModifiers())).peek( field -> field.setAccessible(true)).collect(Collectors.toMap(Field::<>getName,  field -> [FD]

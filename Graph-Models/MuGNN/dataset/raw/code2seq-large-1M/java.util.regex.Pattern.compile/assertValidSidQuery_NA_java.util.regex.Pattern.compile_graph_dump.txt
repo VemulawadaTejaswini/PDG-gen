@@ -1,0 +1,8 @@
+Line_2 $$ private void assertValidSidQuery(Filter query, String[] expectedSids) --> Line_3 $$ String queryString = query.toString() [FD]
+Line_2 $$ private void assertValidSidQuery(Filter query, String[] expectedSids) --> Line_3 $$ String queryString = query.toString() [CD]
+Line_2 $$ private void assertValidSidQuery(Filter query, String[] expectedSids) --> Line_4 $$ Pattern sidQueryPattern = Pattern.compile("\\(\\|(\\(objectSid=S(-\\d+)+\\))+\\)") [CD]
+Line_2 $$ private void assertValidSidQuery(Filter query, String[] expectedSids) --> Line_5 $$ assertThat("[" + queryString + "] didn't match the search filter pattern", sidQueryPattern.matcher(queryString).matches(), is(true)) [CD]
+Line_4 $$ Pattern sidQueryPattern = Pattern.compile("\\(\\|(\\(objectSid=S(-\\d+)+\\))+\\)") --> Line_5 $$ assertThat("[" + queryString + "] didn't match the search filter pattern", sidQueryPattern.matcher(queryString).matches(), is(true)) [FD]
+Line_3 $$ String queryString = query.toString() --> Line_5 $$ assertThat("[" + queryString + "] didn't match the search filter pattern", sidQueryPattern.matcher(queryString).matches(), is(true)) [FD]
+Line_3 $$ String queryString = query.toString() --> Line_7 $$ assertThat(queryString, containsString(sid)) [FD]
+Line_6 $$ for (String sid : expectedSids) --> Line_7 $$ assertThat(queryString, containsString(sid)) [FD]

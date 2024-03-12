@@ -1,0 +1,7 @@
+Line_2 $$ public <F extends Serializable> RpcServer fenceRpcServer(RpcServer rpcServer, F fencingToken) --> Line_3 $$ if (rpcServer instanceof AkkaBasedEndpoint) [FD]
+Line_2 $$ public <F extends Serializable> RpcServer fenceRpcServer(RpcServer rpcServer, F fencingToken) --> Line_3 $$ if (rpcServer instanceof AkkaBasedEndpoint) [CD]
+Line_3 $$ if (rpcServer instanceof AkkaBasedEndpoint) --> Line_4 $$ InvocationHandler fencedInvocationHandler = new FencedAkkaInvocationHandler(rpcServer.getAddress(), rpcServer.getHostname(), ((AkkaBasedEndpoint) rpcServer).getActorRef(), timeout, maximumFramesize, null, () -> fencingToken) [CD]
+Line_2 $$ public <F extends Serializable> RpcServer fenceRpcServer(RpcServer rpcServer, F fencingToken) --> Line_4 $$ InvocationHandler fencedInvocationHandler = new FencedAkkaInvocationHandler(rpcServer.getAddress(), rpcServer.getHostname(), ((AkkaBasedEndpoint) rpcServer).getActorRef(), timeout, maximumFramesize, null, () -> fencingToken) [FD]
+Line_3 $$ if (rpcServer instanceof AkkaBasedEndpoint) --> Line_5 $$ ClassLoader classLoader = getClass().getClassLoader() [CD]
+Line_3 $$ if (rpcServer instanceof AkkaBasedEndpoint) --> Line_6 $$ return (RpcServer) Proxy.newProxyInstance(classLoader, new Class<?>[] [CD]
+Line_4 $$ InvocationHandler fencedInvocationHandler = new FencedAkkaInvocationHandler(rpcServer.getAddress(), rpcServer.getHostname(), ((AkkaBasedEndpoint) rpcServer).getActorRef(), timeout, maximumFramesize, null, () -> fencingToken) --> Line_6 $$ return (RpcServer) Proxy.newProxyInstance(classLoader, new Class<?>[] [FD]

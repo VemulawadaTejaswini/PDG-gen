@@ -1,0 +1,8 @@
+Line_2 $$ public void collectToList() --> Line_3 $$ Mono<List<Integer>> source = Flux.range(1, 5).collect(Collectors.toList()) [CD]
+Line_2 $$ public void collectToList() --> Line_4 $$ for (int i = 0; i < 5; i++) [CD]
+Line_4 $$ for (int i = 0; i < 5; i++) --> Line_5 $$ AssertSubscriber<List<Integer>> ts = AssertSubscriber.create() [CD]
+Line_4 $$ for (int i = 0; i < 5; i++) --> Line_6 $$ source.subscribe(ts) [CD]
+Line_3 $$ Mono<List<Integer>> source = Flux.range(1, 5).collect(Collectors.toList()) --> Line_6 $$ source.subscribe(ts) [FD]
+Line_5 $$ AssertSubscriber<List<Integer>> ts = AssertSubscriber.create() --> Line_6 $$ source.subscribe(ts) [FD]
+Line_4 $$ for (int i = 0; i < 5; i++) --> Line_7 $$ ts.assertValues(Arrays.asList(1, 2, 3, 4, 5)).assertNoError().assertComplete() [CD]
+Line_5 $$ AssertSubscriber<List<Integer>> ts = AssertSubscriber.create() --> Line_7 $$ ts.assertValues(Arrays.asList(1, 2, 3, 4, 5)).assertNoError().assertComplete() [FD]

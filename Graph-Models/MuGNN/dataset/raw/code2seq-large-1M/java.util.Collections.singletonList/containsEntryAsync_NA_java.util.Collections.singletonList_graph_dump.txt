@@ -1,0 +1,4 @@
+Line_3 $$ ByteBuf keyState = encodeMapKey(key) --> Line_4 $$ String keyHash = hashAndRelease(keyState) [FD]
+Line_4 $$ String keyHash = hashAndRelease(keyState) --> Line_6 $$ String setName = getValuesName(keyHash) [FD]
+Line_5 $$ ByteBuf valueState = encodeMapValue(value) --> Line_7 $$ return commandExecutor.evalReadAsync(getName(), codec, RedisCommands.EVAL_BOOLEAN, "local items = redis.call('lrange', KEYS[1], 0, -1) " + "for i=1,#items do " + "if items[i] == ARGV[1] then " + "return 1; " + "end; " + "end; " + "return 0; ", Collections.<Object>singletonList(setName), valueState) [FD]
+Line_6 $$ String setName = getValuesName(keyHash) --> Line_7 $$ return commandExecutor.evalReadAsync(getName(), codec, RedisCommands.EVAL_BOOLEAN, "local items = redis.call('lrange', KEYS[1], 0, -1) " + "for i=1,#items do " + "if items[i] == ARGV[1] then " + "return 1; " + "end; " + "end; " + "return 0; ", Collections.<Object>singletonList(setName), valueState) [FD]

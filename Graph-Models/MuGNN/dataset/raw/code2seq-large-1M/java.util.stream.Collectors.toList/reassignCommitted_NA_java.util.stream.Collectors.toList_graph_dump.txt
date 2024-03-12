@@ -1,0 +1,5 @@
+Line_2 $$ private void reassignCommitted() --> Line_3 $$ final List<EventTypePartition> keysToRelease = releasingPartitions.keySet().stream().filter( pk -> !offsets.containsKey(pk) || offsets.get(pk).isCommitted()).collect(Collectors.toList()) [CD]
+Line_2 $$ private void reassignCommitted() --> Line_4 $$ if (!keysToRelease.isEmpty()) [CD]
+Line_3 $$ final List<EventTypePartition> keysToRelease = releasingPartitions.keySet().stream().filter( pk -> !offsets.containsKey(pk) || offsets.get(pk).isCommitted()).collect(Collectors.toList()) --> Line_4 $$ if (!keysToRelease.isEmpty()) [FD]
+Line_3 $$ final List<EventTypePartition> keysToRelease = releasingPartitions.keySet().stream().filter( pk -> !offsets.containsKey(pk) || offsets.get(pk).isCommitted()).collect(Collectors.toList()) --> Line_6 $$ keysToRelease.forEach(this::<>removeFromStreaming) [FD]
+Line_3 $$ final List<EventTypePartition> keysToRelease = releasingPartitions.keySet().stream().filter( pk -> !offsets.containsKey(pk) || offsets.get(pk).isCommitted()).collect(Collectors.toList()) --> Line_8 $$ getZk().transfer(getSessionId(), keysToRelease) [FD]

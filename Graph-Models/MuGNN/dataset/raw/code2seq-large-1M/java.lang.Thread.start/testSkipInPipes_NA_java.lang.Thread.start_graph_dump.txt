@@ -1,0 +1,8 @@
+Line_2 $$ public void testSkipInPipes() throws Exception --> Line_3 $$ FileDescriptor[] pipe = Libcore.os.pipe() [CD]
+Line_2 $$ public void testSkipInPipes() throws Exception --> Line_4 $$ DataFeeder feeder = new DataFeeder(pipe[1]) [CD]
+Line_4 $$ DataFeeder feeder = new DataFeeder(pipe[1]) --> Line_6 $$ feeder.start() [FD]
+Line_7 $$ FileInputStream fis = new FileInputStream(pipe[0]) --> Line_8 $$ fis.skip(SKIP_SIZE) [FD]
+Line_7 $$ FileInputStream fis = new FileInputStream(pipe[0]) --> Line_9 $$ verifyData(fis, SKIP_SIZE, TOTAL_SIZE - SKIP_SIZE) [FD]
+Line_7 $$ FileInputStream fis = new FileInputStream(pipe[0]) --> Line_10 $$ assertEquals(-1, fis.read()) [FD]
+Line_4 $$ DataFeeder feeder = new DataFeeder(pipe[1]) --> Line_11 $$ feeder.join(1000) [FD]
+Line_4 $$ DataFeeder feeder = new DataFeeder(pipe[1]) --> Line_12 $$ assertFalse(feeder.isAlive()) [FD]

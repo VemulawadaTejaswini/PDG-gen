@@ -1,0 +1,5 @@
+Line_2 $$ public void testOrderByDropped() throws Exception --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_5 $$ conn.createStatement().execute("CREATE TABLE foo (k VARCHAR NOT NULL PRIMARY KEY, v VARCHAR) IMMUTABLE_ROWS=true") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_6 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class) [FD]
+Line_7 $$ QueryPlan plan = stmt.optimizeQuery("SELECT * FROM foo ORDER BY 'a','b','c'") --> Line_8 $$ assertTrue(plan.getOrderBy().getOrderByExpressions().isEmpty()) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_10 $$ conn.close() [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public long getMaxResultWindow() --> Line_3 $$ if (maxResultWindow == null) [CD]
+Line_3 $$ if (maxResultWindow == null) --> Line_4 $$ ConfigurationService cs = Framework.getService(ConfigurationService.class) [CD]
+Line_3 $$ if (maxResultWindow == null) --> Line_5 $$ String maxResultWindowStr = cs.getProperty(ES_MAX_RESULT_WINDOW_PROPERTY, DEFAULT_ES_MAX_RESULT_WINDOW_VALUE) [CD]
+Line_5 $$ String maxResultWindowStr = cs.getProperty(ES_MAX_RESULT_WINDOW_PROPERTY, DEFAULT_ES_MAX_RESULT_WINDOW_VALUE) --> Line_7 $$ maxResultWindow = Long.valueOf(maxResultWindowStr) [FD]
+Line_5 $$ String maxResultWindowStr = cs.getProperty(ES_MAX_RESULT_WINDOW_PROPERTY, DEFAULT_ES_MAX_RESULT_WINDOW_VALUE) --> Line_9 $$ log.warn(String.format("Invalid maxResultWindow property value: %s for page provider: %s, fallback to default.", maxResultWindowStr, getName())) [FD]
+Line_2 $$ public long getMaxResultWindow() --> Line_13 $$ return maxResultWindow [CD]

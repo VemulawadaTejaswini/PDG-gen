@@ -1,0 +1,6 @@
+Line_2 $$ boolean isTimedOut(long sesTimeout) --> Line_3 $$ long time0 = lastTouchTime.get() [CD]
+Line_2 $$ boolean isTimedOut(long sesTimeout) --> Line_4 $$ if (time0 == TIMEDOUT_FLAG) [CD]
+Line_3 $$ long time0 = lastTouchTime.get() --> Line_4 $$ if (time0 == TIMEDOUT_FLAG) [FD]
+Line_4 $$ if (time0 == TIMEDOUT_FLAG) --> Line_5 $$ return true [CD]
+Line_2 $$ boolean isTimedOut(long sesTimeout) --> Line_6 $$ return U.currentTimeMillis() - time0 > sesTimeout && lastTouchTime.compareAndSet(time0, TIMEDOUT_FLAG) [CD]
+Line_3 $$ long time0 = lastTouchTime.get() --> Line_6 $$ return U.currentTimeMillis() - time0 > sesTimeout && lastTouchTime.compareAndSet(time0, TIMEDOUT_FLAG) [FD]

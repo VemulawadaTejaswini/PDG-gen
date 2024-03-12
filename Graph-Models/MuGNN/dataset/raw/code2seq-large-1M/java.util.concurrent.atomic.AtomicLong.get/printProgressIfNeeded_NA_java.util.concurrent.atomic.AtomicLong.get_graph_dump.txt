@@ -1,0 +1,6 @@
+Line_2 $$ private void printProgressIfNeeded() --> Line_3 $$ long curTs = U.currentTimeMillis() [CD]
+Line_2 $$ private void printProgressIfNeeded() --> Line_4 $$ long lastTs = lastProgressPrintTs.get() [CD]
+Line_2 $$ private void printProgressIfNeeded() --> Line_5 $$ if (curTs - lastTs >= 60_000 && lastProgressPrintTs.compareAndSet(lastTs, curTs)) [CD]
+Line_4 $$ long lastTs = lastProgressPrintTs.get() --> Line_5 $$ if (curTs - lastTs >= 60_000 && lastProgressPrintTs.compareAndSet(lastTs, curTs)) [FD]
+Line_3 $$ long curTs = U.currentTimeMillis() --> Line_5 $$ if (curTs - lastTs >= 60_000 && lastProgressPrintTs.compareAndSet(lastTs, curTs)) [FD]
+Line_5 $$ if (curTs - lastTs >= 60_000 && lastProgressPrintTs.compareAndSet(lastTs, curTs)) --> Line_6 $$ log.warning("Current progress of ValidateIndexesClosure: processed " + processedPartitions.get() + " of " + totalPartitions + " partitions, " + processedIndexes.get() + " of " + totalIndexes + " SQL indexes") [CD]

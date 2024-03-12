@@ -1,0 +1,6 @@
+Line_2 $$ public void whitespaceProblem() throws Exception --> Line_3 $$ SpotlessTask task = create(setFile("testFile").toContent("A \nB\t\nC  \n")) [CD]
+Line_2 $$ public void whitespaceProblem() throws Exception --> Line_4 $$ task.addStep(FormatterStep.createNeverUpToDate("trimTrailing",  input -> [CD]
+Line_3 $$ SpotlessTask task = create(setFile("testFile").toContent("A \nB\t\nC  \n")) --> Line_4 $$ task.addStep(FormatterStep.createNeverUpToDate("trimTrailing",  input -> [FD]
+Line_5 $$ Pattern pattern = Pattern.compile("[ \t]+$", Pattern.UNIX_LINES | Pattern.MULTILINE) --> Line_6 $$ return pattern.matcher(input).replaceAll("") [FD]
+Line_2 $$ public void whitespaceProblem() throws Exception --> Line_8 $$ assertTaskFailure(task, "    testFile", "        @@ -1,3 +1,3 @@", "        -A·", "        -B\\t", "        -C··", "        +A", "        +B", "        +C") [CD]
+Line_3 $$ SpotlessTask task = create(setFile("testFile").toContent("A \nB\t\nC  \n")) --> Line_8 $$ assertTaskFailure(task, "    testFile", "        @@ -1,3 +1,3 @@", "        -A·", "        -B\\t", "        -C··", "        +A", "        +B", "        +C") [FD]

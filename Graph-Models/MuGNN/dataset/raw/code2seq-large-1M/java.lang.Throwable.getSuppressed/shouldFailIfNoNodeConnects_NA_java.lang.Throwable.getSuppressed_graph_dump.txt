@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldFailIfNoNodeConnects() throws Exception --> Line_3 $$ List<RedisURI> seed = Arrays.asList(RedisURI.create("127.0.0.1", 7380), RedisURI.create("127.0.0.1", 7381)) [CD]
+Line_2 $$ public void shouldFailIfNoNodeConnects() throws Exception --> Line_4 $$ when(nodeConnectionFactory.connectToNodeAsync(any(RedisCodec.class), eq(new InetSocketAddress("127.0.0.1", 7380)))).thenReturn(completedWithException(new RedisException("connection failed"))) [CD]
+Line_2 $$ public void shouldFailIfNoNodeConnects() throws Exception --> Line_5 $$ when(nodeConnectionFactory.connectToNodeAsync(any(RedisCodec.class), eq(new InetSocketAddress("127.0.0.1", 7381)))).thenReturn(completedWithException(new RedisException("connection failed"))) [CD]
+Line_3 $$ List<RedisURI> seed = Arrays.asList(RedisURI.create("127.0.0.1", 7380), RedisURI.create("127.0.0.1", 7381)) --> Line_7 $$ sut.loadViews(seed, true) [FD]
+Line_2 $$ public void shouldFailIfNoNodeConnects() throws Exception --> Line_13 $$ verify(nodeConnectionFactory).connectToNodeAsync(any(RedisCodec.class), eq(new InetSocketAddress("127.0.0.1", 7380))) [CD]
+Line_2 $$ public void shouldFailIfNoNodeConnects() throws Exception --> Line_14 $$ verify(nodeConnectionFactory).connectToNodeAsync(any(RedisCodec.class), eq(new InetSocketAddress("127.0.0.1", 7381))) [CD]

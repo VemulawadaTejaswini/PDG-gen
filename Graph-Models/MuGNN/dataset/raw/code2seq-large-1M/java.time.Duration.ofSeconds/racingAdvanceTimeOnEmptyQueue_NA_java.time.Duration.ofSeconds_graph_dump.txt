@@ -1,0 +1,6 @@
+Line_2 $$ public void racingAdvanceTimeOnEmptyQueue() --> Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() [CD]
+Line_5 $$ for (int i = 1; i <= 100; i++) --> Line_6 $$ RaceTestUtils.race(() -> vts.advanceTimeBy(Duration.ofSeconds(10)), () -> vts.advanceTimeBy(Duration.ofSeconds(3))) [CD]
+Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() --> Line_6 $$ RaceTestUtils.race(() -> vts.advanceTimeBy(Duration.ofSeconds(10)), () -> vts.advanceTimeBy(Duration.ofSeconds(3))) [FD]
+Line_5 $$ for (int i = 1; i <= 100; i++) --> Line_7 $$ assertThat(vts.now(TimeUnit.MILLISECONDS)).as("iteration " + i).isEqualTo(13_000 * i) [CD]
+Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() --> Line_7 $$ assertThat(vts.now(TimeUnit.MILLISECONDS)).as("iteration " + i).isEqualTo(13_000 * i) [FD]
+Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() --> Line_10 $$ vts.dispose() [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public int read(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException --> Line_3 $$ if (buffer.isDirect()) [FD]
+Line_2 $$ public int read(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException --> Line_3 $$ if (buffer.isDirect()) [CD]
+Line_3 $$ if (buffer.isDirect()) --> Line_4 $$ return readBytes(fd, buffer, buffer.position(), buffer.remaining()) [CD]
+Line_2 $$ public int read(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException --> Line_4 $$ return readBytes(fd, buffer, buffer.position(), buffer.remaining()) [FD]
+Line_3 $$ if (buffer.isDirect()) --> Line_6 $$ return readBytes(fd, NioUtils.unsafeArray(buffer), NioUtils.unsafeArrayOffset(buffer) + buffer.position(), buffer.remaining()) [CD]
+Line_2 $$ public int read(FileDescriptor fd, ByteBuffer buffer) throws ErrnoException --> Line_6 $$ return readBytes(fd, NioUtils.unsafeArray(buffer), NioUtils.unsafeArrayOffset(buffer) + buffer.position(), buffer.remaining()) [FD]

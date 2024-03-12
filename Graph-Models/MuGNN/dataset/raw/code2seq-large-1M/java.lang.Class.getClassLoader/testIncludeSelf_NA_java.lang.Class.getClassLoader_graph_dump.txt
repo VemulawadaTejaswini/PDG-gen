@@ -1,0 +1,4 @@
+Line_2 $$ public void testIncludeSelf() throws Exception --> Line_3 $$ DynamicType.Loaded<Qux> loaded = new ByteBuddy().subclass(Qux.class).method(isDeclaredBy(Qux.class)).intercept(MethodDelegation.to(IncludeSelf.class)).make().load(Foo.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testIncludeSelf() throws Exception --> Line_4 $$ Qux instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testIncludeSelf() throws Exception --> Line_5 $$ assertThat(instance.foo(QUX, BAZ), is((Object) instance)) [CD]
+Line_4 $$ Qux instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(instance.foo(QUX, BAZ), is((Object) instance)) [FD]

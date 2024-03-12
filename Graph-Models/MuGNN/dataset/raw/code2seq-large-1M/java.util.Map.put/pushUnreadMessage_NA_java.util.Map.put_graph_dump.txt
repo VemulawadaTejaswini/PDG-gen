@@ -1,0 +1,7 @@
+Line_2 $$ public void pushUnreadMessage(final Long userId, Long unreadMessageCount) --> Line_3 $$ Map<String, Object> data = Maps.newHashMap() [CD]
+Line_2 $$ public void pushUnreadMessage(final Long userId, Long unreadMessageCount) --> Line_4 $$ data.put("unreadMessageCount", unreadMessageCount) [FD]
+Line_2 $$ public void pushUnreadMessage(final Long userId, Long unreadMessageCount) --> Line_4 $$ data.put("unreadMessageCount", unreadMessageCount) [CD]
+Line_3 $$ Map<String, Object> data = Maps.newHashMap() --> Line_4 $$ data.put("unreadMessageCount", unreadMessageCount) [FD]
+Line_2 $$ public void pushUnreadMessage(final Long userId, Long unreadMessageCount) --> Line_5 $$ pushService.push(userId, data) [FD]
+Line_2 $$ public void pushUnreadMessage(final Long userId, Long unreadMessageCount) --> Line_5 $$ pushService.push(userId, data) [CD]
+Line_3 $$ Map<String, Object> data = Maps.newHashMap() --> Line_5 $$ pushService.push(userId, data) [FD]

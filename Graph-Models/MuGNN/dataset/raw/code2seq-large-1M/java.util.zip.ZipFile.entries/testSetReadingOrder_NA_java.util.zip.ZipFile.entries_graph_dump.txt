@@ -1,0 +1,7 @@
+Line_2 $$ public void testSetReadingOrder() throws TransformationException, IOException --> Line_3 $$ for (Enumeration<? extends ZipEntry> e = zipFile.entries(); e.hasMoreElements(); ) [CD]
+Line_4 $$ String filename = e.nextElement().getName() --> Line_5 $$ if (!filename.endsWith(".xml")) [FD]
+Line_4 $$ String filename = e.nextElement().getName() --> Line_8 $$ BxDocument doc = getDocumentFromZip(filename) [FD]
+Line_10 $$ HierarchicalReadingOrderResolver roa = new HierarchicalReadingOrderResolver() --> Line_11 $$ BxDocument orderedDoc = roa.resolve(doc) [FD]
+Line_8 $$ BxDocument doc = getDocumentFromZip(filename) --> Line_11 $$ BxDocument orderedDoc = roa.resolve(doc) [FD]
+Line_11 $$ BxDocument orderedDoc = roa.resolve(doc) --> Line_12 $$ assertTrue(areDocumentsEqual(orderedDoc, modelOrderedDoc)) [FD]
+Line_9 $$ BxDocument modelOrderedDoc = getDocumentFromZip(filename + ".out") --> Line_12 $$ assertTrue(areDocumentsEqual(orderedDoc, modelOrderedDoc)) [FD]

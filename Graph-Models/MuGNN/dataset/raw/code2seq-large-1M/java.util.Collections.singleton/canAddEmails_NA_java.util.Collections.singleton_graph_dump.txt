@@ -1,0 +1,8 @@
+Line_2 $$ public void canAddEmails() throws Exception --> Line_3 $$ final UserEmails emails = new MkGithub().users().get("john").emails() [CD]
+Line_2 $$ public void canAddEmails() throws Exception --> Line_4 $$ final String email = "john@nowhere.com" [CD]
+Line_2 $$ public void canAddEmails() throws Exception --> Line_5 $$ final Iterable<String> added = emails.add(Collections.singleton(email)) [CD]
+Line_3 $$ final UserEmails emails = new MkGithub().users().get("john").emails() --> Line_5 $$ final Iterable<String> added = emails.add(Collections.singleton(email)) [FD]
+Line_4 $$ final String email = "john@nowhere.com" --> Line_5 $$ final Iterable<String> added = emails.add(Collections.singleton(email)) [FD]
+Line_2 $$ public void canAddEmails() throws Exception --> Line_6 $$ MatcherAssert.assertThat(added, Matchers.allOf(Matchers.<String>iterableWithSize(1), Matchers.hasItems(email))) [CD]
+Line_5 $$ final Iterable<String> added = emails.add(Collections.singleton(email)) --> Line_6 $$ MatcherAssert.assertThat(added, Matchers.allOf(Matchers.<String>iterableWithSize(1), Matchers.hasItems(email))) [FD]
+Line_4 $$ final String email = "john@nowhere.com" --> Line_6 $$ MatcherAssert.assertThat(added, Matchers.allOf(Matchers.<String>iterableWithSize(1), Matchers.hasItems(email))) [FD]

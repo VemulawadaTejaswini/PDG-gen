@@ -1,0 +1,7 @@
+Line_2 $$ public void cyclic(long interval, Callable<Boolean> toRun) --> Line_3 $$ if (!isStopped()) [CD]
+Line_3 $$ if (!isStopped()) --> Line_4 $$ Boolean res = true [CD]
+Line_4 $$ Boolean res = true --> Line_6 $$ res = toRun.call() [FD]
+Line_2 $$ public void cyclic(long interval, Callable<Boolean> toRun) --> Line_6 $$ res = toRun.call() [FD]
+Line_3 $$ if (!isStopped()) --> Line_10 $$ if (res) [CD]
+Line_10 $$ if (res) --> Line_11 $$ self().delayed(interval, () -> cyclic(interval, toRun)) [CD]
+Line_2 $$ public void cyclic(long interval, Callable<Boolean> toRun) --> Line_11 $$ self().delayed(interval, () -> cyclic(interval, toRun)) [FD]

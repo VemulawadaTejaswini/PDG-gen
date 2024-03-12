@@ -1,0 +1,6 @@
+Line_2 $$ private Map<Integer, Map<String, ResAllocs>> getTierAllocsForBuckets(Map<String, Double> bucketWeights) --> Line_3 $$ Map<Integer, Map<String, ResAllocs>> tierAllocs = new HashMap() [CD]
+Line_2 $$ private Map<Integer, Map<String, ResAllocs>> getTierAllocsForBuckets(Map<String, Double> bucketWeights) --> Line_4 $$ tierAllocs.put(0, new HashMap()) [CD]
+Line_3 $$ Map<Integer, Map<String, ResAllocs>> tierAllocs = new HashMap() --> Line_4 $$ tierAllocs.put(0, new HashMap()) [FD]
+Line_2 $$ private Map<Integer, Map<String, ResAllocs>> getTierAllocsForBuckets(Map<String, Double> bucketWeights) --> Line_5 $$ for (Map.Entry<String, Double> entry : bucketWeights.entrySet()) [FD]
+Line_3 $$ Map<Integer, Map<String, ResAllocs>> tierAllocs = new HashMap() --> Line_6 $$ tierAllocs.get(0).put(entry.getKey(), new ResAllocsBuilder(entry.getKey()).withCores(10 * entry.getValue()).withMemory(1000 * entry.getValue()).withNetworkMbps(1000 * entry.getValue()).withDisk(1000 * entry.getValue()).build()) [FD]
+Line_2 $$ private Map<Integer, Map<String, ResAllocs>> getTierAllocsForBuckets(Map<String, Double> bucketWeights) --> Line_8 $$ return tierAllocs [CD]

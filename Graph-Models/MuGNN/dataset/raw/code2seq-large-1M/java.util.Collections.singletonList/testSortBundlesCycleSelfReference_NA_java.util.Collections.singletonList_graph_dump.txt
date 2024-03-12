@@ -1,0 +1,6 @@
+Line_2 $$ public void testSortBundlesCycleSelfReference() throws Exception --> Line_3 $$ Path pluginDir = createTempDir() [CD]
+Line_2 $$ public void testSortBundlesCycleSelfReference() throws Exception --> Line_4 $$ PluginInfo info = new PluginInfo("foo", "desc", "1.0", Version.CURRENT, "1.8", "MyPlugin", Collections.singletonList("foo"), false) [CD]
+Line_2 $$ public void testSortBundlesCycleSelfReference() throws Exception --> Line_5 $$ PluginsService.Bundle bundle = new PluginsService.Bundle(info, pluginDir) [CD]
+Line_2 $$ public void testSortBundlesCycleSelfReference() throws Exception --> Line_6 $$ IllegalStateException e = expectThrows(IllegalStateException.class, () -> PluginsService.sortBundles(Collections.singleton(bundle))) [CD]
+Line_5 $$ PluginsService.Bundle bundle = new PluginsService.Bundle(info, pluginDir) --> Line_6 $$ IllegalStateException e = expectThrows(IllegalStateException.class, () -> PluginsService.sortBundles(Collections.singleton(bundle))) [FD]
+Line_2 $$ public void testSortBundlesCycleSelfReference() throws Exception --> Line_7 $$ assertEquals("Cycle found in plugin dependencies: foo -> foo", e.getMessage()) [CD]

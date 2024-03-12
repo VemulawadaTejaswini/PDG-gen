@@ -1,0 +1,7 @@
+Line_2 $$ private void decrementPendingJSCalls() --> Line_3 $$ int newPendingCalls = mPendingJSCalls.decrementAndGet() [CD]
+Line_2 $$ private void decrementPendingJSCalls() --> Line_4 $$ boolean isNowIdle = newPendingCalls == 0 [CD]
+Line_2 $$ private void decrementPendingJSCalls() --> Line_5 $$ Systrace.traceCounter(Systrace.TRACE_TAG_REACT_JAVA_BRIDGE, mJsPendingCallsTitleForTrace, newPendingCalls) [CD]
+Line_3 $$ int newPendingCalls = mPendingJSCalls.decrementAndGet() --> Line_5 $$ Systrace.traceCounter(Systrace.TRACE_TAG_REACT_JAVA_BRIDGE, mJsPendingCallsTitleForTrace, newPendingCalls) [FD]
+Line_2 $$ private void decrementPendingJSCalls() --> Line_6 $$ if (isNowIdle && !mBridgeIdleListeners.isEmpty()) [CD]
+Line_4 $$ boolean isNowIdle = newPendingCalls == 0 --> Line_6 $$ if (isNowIdle && !mBridgeIdleListeners.isEmpty()) [FD]
+Line_7 $$ for (NotThreadSafeBridgeIdleDebugListener listener : mBridgeIdleListeners) --> Line_8 $$ listener.onTransitionToBridgeIdle() [FD]

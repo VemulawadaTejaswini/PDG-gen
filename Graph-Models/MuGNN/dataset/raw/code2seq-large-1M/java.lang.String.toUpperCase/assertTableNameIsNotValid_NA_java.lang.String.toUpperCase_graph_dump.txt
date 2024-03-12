@@ -1,0 +1,8 @@
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_3 $$ info("Checking table name variant for invalidity: " + checkedTblName) [CD]
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_4 $$ execute("create table if not exists " + tblNameToCreate + " (id int primary key, name varchar)") [CD]
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_5 $$ assertCommandThrowsTableNotFound(checkedTblName.toUpperCase(), "MERGE INTO " + checkedTblName + " (id, name) values (1, 'A')") [CD]
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_5 $$ assertCommandThrowsTableNotFound(checkedTblName.toUpperCase(), "MERGE INTO " + checkedTblName + " (id, name) values (1, 'A')") [FD]
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_6 $$ assertCommandThrowsTableNotFound(checkedTblName.toUpperCase(), "SELECT * FROM " + checkedTblName) [CD]
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_6 $$ assertCommandThrowsTableNotFound(checkedTblName.toUpperCase(), "SELECT * FROM " + checkedTblName) [FD]
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_7 $$ assertDdlCommandThrowsTableNotFound(checkedTblName.toUpperCase(), "DROP TABLE " + checkedTblName) [CD]
+Line_2 $$ private void assertTableNameIsNotValid(String tblNameToCreate, String checkedTblName) --> Line_7 $$ assertDdlCommandThrowsTableNotFound(checkedTblName.toUpperCase(), "DROP TABLE " + checkedTblName) [FD]

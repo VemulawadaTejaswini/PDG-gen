@@ -1,0 +1,5 @@
+Line_2 $$ public void testNoCompletionForOtherAttributes() --> Line_3 $$ completionTester.runWithAutoPopupEnabled(() -> [CD]
+Line_5 $$ BuildFile file = createBuildFile(new WorkspacePath("java/com/google/BUILD"), "java_binary(", "    name = 'binary',", "    main_clazz = 'com.google.bin.M',", ")") --> Line_6 $$ Editor editor = editorTest.openFileInEditor(file.getVirtualFile()) [FD]
+Line_6 $$ Editor editor = editorTest.openFileInEditor(file.getVirtualFile()) --> Line_7 $$ editorTest.setCaretPosition(editor, 2, "    main_clazz = 'com.google.bin.M".length()) [FD]
+Line_8 $$ LookupElement[] completionItems = testFixture.complete(CompletionType.CLASS_NAME) --> Line_9 $$ assertThat(completionItems).isEmpty() [FD]
+Line_5 $$ BuildFile file = createBuildFile(new WorkspacePath("java/com/google/BUILD"), "java_binary(", "    name = 'binary',", "    main_clazz = 'com.google.bin.M',", ")") --> Line_10 $$ assertFileContents(file, "java_binary(", "    name = 'binary',", "    main_clazz = 'com.google.bin.M',", ")") [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException --> Line_3 $$ long deadline = System.currentTimeMillis() + unit.toMillis(timeout) [FD]
+Line_2 $$ public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException --> Line_3 $$ long deadline = System.currentTimeMillis() + unit.toMillis(timeout) [CD]
+Line_5 $$ while (!isTerminated()) --> Line_6 $$ long waitTime = deadline - System.currentTimeMillis() [CD]
+Line_5 $$ while (!isTerminated()) --> Line_7 $$ if (waitTime <= 0) [CD]
+Line_6 $$ long waitTime = deadline - System.currentTimeMillis() --> Line_7 $$ if (waitTime <= 0) [FD]
+Line_5 $$ while (!isTerminated()) --> Line_10 $$ workers.wait(waitTime) [CD]
+Line_6 $$ long waitTime = deadline - System.currentTimeMillis() --> Line_10 $$ workers.wait(waitTime) [FD]
+Line_2 $$ public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException --> Line_13 $$ return isTerminated() [CD]

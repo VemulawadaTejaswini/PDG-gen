@@ -1,0 +1,8 @@
+Line_2 $$ private boolean ssoAuthentication(final List<RpslAttribute> authAttributes) --> Line_3 $$ if (StringUtils.isBlank(token)) [CD]
+Line_3 $$ if (StringUtils.isBlank(token)) --> Line_4 $$ return false [CD]
+Line_6 $$ for (RpslAttribute attribute : authAttributes) --> Line_7 $$ final Matcher matcher = SSO_PATTERN.matcher(attribute.getCleanValue().toString()) [FD]
+Line_7 $$ final Matcher matcher = SSO_PATTERN.matcher(attribute.getCleanValue().toString()) --> Line_8 $$ if (matcher.matches()) [FD]
+Line_10 $$ final UserSession userSession = ssoTokenTranslator.translateSsoToken(token) --> Line_11 $$ if (userSession != null && userSession.getUuid().equals(matcher.group(1))) [FD]
+Line_7 $$ final Matcher matcher = SSO_PATTERN.matcher(attribute.getCleanValue().toString()) --> Line_11 $$ if (userSession != null && userSession.getUuid().equals(matcher.group(1))) [FD]
+Line_11 $$ if (userSession != null && userSession.getUuid().equals(matcher.group(1))) --> Line_12 $$ return true [CD]
+Line_2 $$ private boolean ssoAuthentication(final List<RpslAttribute> authAttributes) --> Line_19 $$ return false [CD]

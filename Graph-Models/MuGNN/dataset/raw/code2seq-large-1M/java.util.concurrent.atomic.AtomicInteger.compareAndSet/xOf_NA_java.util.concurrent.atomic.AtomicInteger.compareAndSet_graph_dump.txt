@@ -1,0 +1,7 @@
+Line_2 $$ public static <R> FastFuture<List<R>> xOf(final int x, final Runnable onComplete, final FastFuture... futures) --> Line_3 $$ final FastFuture xOf = new FastFuture(FinalPipeline.empty(), x) [CD]
+Line_4 $$ for (final FastFuture next : futures) --> Line_6 $$ next.onComplete( v -> [FD]
+Line_5 $$ final AtomicInteger count = new AtomicInteger(0) --> Line_7 $$ if (!count.compareAndSet(0, 1)) [FD]
+Line_7 $$ if (!count.compareAndSet(0, 1)) --> Line_8 $$ return [CD]
+Line_9 $$ if (xOf.count.incrementAndGet() >= xOf.max.get()) --> Line_10 $$ onComplete.run() [CD]
+Line_2 $$ public static <R> FastFuture<List<R>> xOf(final int x, final Runnable onComplete, final FastFuture... futures) --> Line_10 $$ onComplete.run() [FD]
+Line_2 $$ public static <R> FastFuture<List<R>> xOf(final int x, final Runnable onComplete, final FastFuture... futures) --> Line_14 $$ return xOf [CD]

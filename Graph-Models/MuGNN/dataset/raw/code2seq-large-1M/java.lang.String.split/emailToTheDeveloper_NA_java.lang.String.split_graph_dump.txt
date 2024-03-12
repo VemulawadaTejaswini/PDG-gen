@@ -1,0 +1,6 @@
+Line_5 $$ String emailsString = getString(R.string.settings_developers_emails) --> Line_6 $$ String[] emails = emailsString.substring(0, emailsString.indexOf('(') - 1).split(",") [FD]
+Line_4 $$ final Intent emailIntent = new Intent(Intent.ACTION_SEND) --> Line_7 $$ emailIntent.putExtra(Intent.EXTRA_EMAIL, emails) [FD]
+Line_6 $$ String[] emails = emailsString.substring(0, emailsString.indexOf('(') - 1).split(",") --> Line_7 $$ emailIntent.putExtra(Intent.EXTRA_EMAIL, emails) [FD]
+Line_4 $$ final Intent emailIntent = new Intent(Intent.ACTION_SEND) --> Line_8 $$ emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_email_to_the_developer_subj) + " " + buildVersionDescTextView.getText().toString()) [FD]
+Line_4 $$ final Intent emailIntent = new Intent(Intent.ACTION_SEND) --> Line_9 $$ emailIntent.setType("message/rfc822") [FD]
+Line_4 $$ final Intent emailIntent = new Intent(Intent.ACTION_SEND) --> Line_10 $$ startActivity(Intent.createChooser(emailIntent, getString(R.string.settings_email_dialog_title))) [FD]

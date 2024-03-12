@@ -1,0 +1,7 @@
+Line_2 $$ public void checksJsonSchemaConstraints() throws Exception --> Line_3 $$ final JSONArray testCases = new JSONArray(readFile("org/zalando/nakadi/validation/invalid-json-schema-examples.json")) [CD]
+Line_5 $$ final JSONObject testCase = (JSONObject) testCaseObject --> Line_6 $$ final JSONObject schemaJson = testCase.getJSONObject("schema") [FD]
+Line_5 $$ final JSONObject testCase = (JSONObject) testCaseObject --> Line_7 $$ final List<String> errorMessages = testCase.getJSONArray("errors").toList().stream().map(Object::<>toString).collect(toList()) [FD]
+Line_5 $$ final JSONObject testCase = (JSONObject) testCaseObject --> Line_8 $$ final String description = testCase.getString("description") [FD]
+Line_8 $$ final String description = testCase.getString("description") --> Line_9 $$ assertThat(description, service.collectIncompatibilities(schemaJson).stream().map(Object::<>toString).collect(toList()), is(errorMessages)) [FD]
+Line_6 $$ final JSONObject schemaJson = testCase.getJSONObject("schema") --> Line_9 $$ assertThat(description, service.collectIncompatibilities(schemaJson).stream().map(Object::<>toString).collect(toList()), is(errorMessages)) [FD]
+Line_7 $$ final List<String> errorMessages = testCase.getJSONArray("errors").toList().stream().map(Object::<>toString).collect(toList()) --> Line_9 $$ assertThat(description, service.collectIncompatibilities(schemaJson).stream().map(Object::<>toString).collect(toList()), is(errorMessages)) [FD]

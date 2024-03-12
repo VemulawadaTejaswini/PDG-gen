@@ -1,0 +1,6 @@
+Line_2 $$ private XenonRestClient[] setupXenonRestClients(BasicServiceHost[] hosts) --> Line_3 $$ XenonRestClient[] xenonRestClients = new XenonRestClient[hosts.length] [CD]
+Line_2 $$ private XenonRestClient[] setupXenonRestClients(BasicServiceHost[] hosts) --> Line_4 $$ for (Integer i = 0; i < hosts.length; i++) [CD]
+Line_4 $$ for (Integer i = 0; i < hosts.length; i++) --> Line_5 $$ StaticServerSet serverSet = new StaticServerSet(new InetSocketAddress(hosts[i].getPreferredAddress(), hosts[i].getPort())) [CD]
+Line_4 $$ for (Integer i = 0; i < hosts.length; i++) --> Line_6 $$ xenonRestClients[i] = spy(new XenonRestClient(serverSet, Executors.newFixedThreadPool(1), Executors.newScheduledThreadPool(1), hosts[i])) [CD]
+Line_4 $$ for (Integer i = 0; i < hosts.length; i++) --> Line_7 $$ xenonRestClients[i].start() [CD]
+Line_2 $$ private XenonRestClient[] setupXenonRestClients(BasicServiceHost[] hosts) --> Line_9 $$ return xenonRestClients [CD]

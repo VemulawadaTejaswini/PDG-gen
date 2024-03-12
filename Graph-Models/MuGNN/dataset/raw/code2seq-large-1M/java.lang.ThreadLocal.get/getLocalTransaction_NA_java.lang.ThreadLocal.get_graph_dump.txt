@@ -1,0 +1,7 @@
+Line_2 $$ public LocalTx getLocalTransaction() --> Line_3 $$ LocalTx localTx = (LocalTx) this.threadTransaction.get() [CD]
+Line_2 $$ public LocalTx getLocalTransaction() --> Line_4 $$ if (localTx != null && localTx.isAsyncCommitOrRollback()) [CD]
+Line_3 $$ LocalTx localTx = (LocalTx) this.threadTransaction.get() --> Line_4 $$ if (localTx != null && localTx.isAsyncCommitOrRollback()) [FD]
+Line_4 $$ if (localTx != null && localTx.isAsyncCommitOrRollback()) --> Line_5 $$ this.threadTransaction.set(null) [CD]
+Line_4 $$ if (localTx != null && localTx.isAsyncCommitOrRollback()) --> Line_6 $$ localTx = null [CD]
+Line_3 $$ LocalTx localTx = (LocalTx) this.threadTransaction.get() --> Line_6 $$ localTx = null [FD]
+Line_2 $$ public LocalTx getLocalTransaction() --> Line_8 $$ return localTx [CD]

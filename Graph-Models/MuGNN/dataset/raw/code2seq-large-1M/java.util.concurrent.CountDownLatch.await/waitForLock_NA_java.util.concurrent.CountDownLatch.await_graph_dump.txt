@@ -1,0 +1,8 @@
+Line_2 $$ private boolean waitForLock(String waitNode, long waitTime) throws InterruptedException, KeeperException --> Line_3 $$ Stat stat = zk.exists(ROOT_PATH + "/" + waitNode, true) [CD]
+Line_2 $$ private boolean waitForLock(String waitNode, long waitTime) throws InterruptedException, KeeperException --> Line_4 $$ if (stat != null) [CD]
+Line_3 $$ Stat stat = zk.exists(ROOT_PATH + "/" + waitNode, true) --> Line_4 $$ if (stat != null) [FD]
+Line_4 $$ if (stat != null) --> Line_5 $$ this.latch = new CountDownLatch(1) [CD]
+Line_4 $$ if (stat != null) --> Line_6 $$ this.latch.await(waitTime, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ private boolean waitForLock(String waitNode, long waitTime) throws InterruptedException, KeeperException --> Line_6 $$ this.latch.await(waitTime, TimeUnit.MILLISECONDS) [FD]
+Line_4 $$ if (stat != null) --> Line_7 $$ this.latch = null [CD]
+Line_2 $$ private boolean waitForLock(String waitNode, long waitTime) throws InterruptedException, KeeperException --> Line_9 $$ return true [CD]

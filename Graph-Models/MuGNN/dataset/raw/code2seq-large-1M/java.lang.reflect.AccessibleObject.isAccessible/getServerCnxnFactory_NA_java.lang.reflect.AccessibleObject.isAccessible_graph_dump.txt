@@ -1,0 +1,8 @@
+Line_2 $$ private ServerCnxnFactory getServerCnxnFactory() --> Line_3 $$ if (serverCnxnFactory != null) [CD]
+Line_3 $$ if (serverCnxnFactory != null) --> Line_4 $$ return serverCnxnFactory [CD]
+Line_7 $$ Class<? extends ZooKeeperServerMain> serverClass = server.getClass() --> Line_8 $$ Field cnxnFactoryField = serverClass.getDeclaredField("cnxnFactory") [FD]
+Line_8 $$ Field cnxnFactoryField = serverClass.getDeclaredField("cnxnFactory") --> Line_9 $$ if (!cnxnFactoryField.isAccessible()) [FD]
+Line_9 $$ if (!cnxnFactoryField.isAccessible()) --> Line_10 $$ cnxnFactoryField.setAccessible(true) [CD]
+Line_8 $$ Field cnxnFactoryField = serverClass.getDeclaredField("cnxnFactory") --> Line_10 $$ cnxnFactoryField.setAccessible(true) [FD]
+Line_8 $$ Field cnxnFactoryField = serverClass.getDeclaredField("cnxnFactory") --> Line_12 $$ Object o = cnxnFactoryField.get(server) [FD]
+Line_13 $$ if (o == null || o instanceof ServerCnxnFactory) --> Line_15 $$ return serverCnxnFactory [CD]

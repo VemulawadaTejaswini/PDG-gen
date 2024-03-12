@@ -1,0 +1,6 @@
+Line_2 $$ public void testBasicDataFlow() --> Line_3 $$ ParameterParser webFormsParser = new WebFormsParameterParser() [CD]
+Line_2 $$ public void testBasicDataFlow() --> Line_4 $$ EndpointQuery query = generateCodePoints("string sql = @\"SELECT * FROM [User] WHERE Username = '\" + txtUsername.Text + @\"'\";", "sql", "sql", "SqlCommand") [CD]
+Line_2 $$ public void testBasicDataFlow() --> Line_5 $$ String param = webFormsParser.parse(query) [CD]
+Line_3 $$ ParameterParser webFormsParser = new WebFormsParameterParser() --> Line_5 $$ String param = webFormsParser.parse(query) [FD]
+Line_4 $$ EndpointQuery query = generateCodePoints("string sql = @\"SELECT * FROM [User] WHERE Username = '\" + txtUsername.Text + @\"'\";", "sql", "sql", "SqlCommand") --> Line_5 $$ String param = webFormsParser.parse(query) [FD]
+Line_5 $$ String param = webFormsParser.parse(query) --> Line_7 $$ assert param.equals("txtUsername") : "Didn't get txtUsername, got " + param [FD]

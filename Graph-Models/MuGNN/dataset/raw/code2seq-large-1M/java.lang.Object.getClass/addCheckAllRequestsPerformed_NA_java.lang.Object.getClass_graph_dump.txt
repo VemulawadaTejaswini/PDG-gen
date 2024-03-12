@@ -1,0 +1,4 @@
+Line_4 $$ TaxiRequest tr = (TaxiRequest) r --> Line_5 $$ if (tr.getStatus() != TaxiRequestStatus.PERFORMED) [FD]
+Line_5 $$ if (tr.getStatus() != TaxiRequestStatus.PERFORMED) --> Line_6 $$ if (tcg.isBreakSimulationIfNotAllRequestsServed()) [CD]
+Line_6 $$ if (tcg.isBreakSimulationIfNotAllRequestsServed()) --> Line_9 $$ Logger.getLogger(getClass()).warn("Taxi request not performed. Request time:\t" + Time.writeTime(tr.getEarliestStartTime()) + "\tPassenger:\t" + tr.getPassenger().getId()) [CD]
+Line_4 $$ TaxiRequest tr = (TaxiRequest) r --> Line_9 $$ Logger.getLogger(getClass()).warn("Taxi request not performed. Request time:\t" + Time.writeTime(tr.getEarliestStartTime()) + "\tPassenger:\t" + tr.getPassenger().getId()) [FD]

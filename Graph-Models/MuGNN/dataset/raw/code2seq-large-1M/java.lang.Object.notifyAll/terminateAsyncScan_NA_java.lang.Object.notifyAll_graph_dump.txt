@@ -1,0 +1,8 @@
+Line_2 $$ private void terminateAsyncScan(int projectId, final boolean clearCounter) --> Line_4 $$ int counter = myInitInProgress.remove(projectId) [FD]
+Line_5 $$ if (clearCounter) --> Line_6 $$ myAsyncScanLock.notifyAll() [CD]
+Line_5 $$ if (clearCounter) --> Line_8 $$ if (--counter > 0) [CD]
+Line_4 $$ int counter = myInitInProgress.remove(projectId) --> Line_8 $$ if (--counter > 0) [FD]
+Line_8 $$ if (--counter > 0) --> Line_9 $$ myInitInProgress.put(projectId, counter) [CD]
+Line_2 $$ private void terminateAsyncScan(int projectId, final boolean clearCounter) --> Line_9 $$ myInitInProgress.put(projectId, counter) [FD]
+Line_4 $$ int counter = myInitInProgress.remove(projectId) --> Line_9 $$ myInitInProgress.put(projectId, counter) [FD]
+Line_8 $$ if (--counter > 0) --> Line_11 $$ myAsyncScanLock.notifyAll() [CD]

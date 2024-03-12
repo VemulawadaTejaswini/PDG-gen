@@ -1,0 +1,7 @@
+Line_2 $$ public static void patchSettings() throws Exception --> Line_3 $$ if (!MTConfig.getInstance().isMaterialTheme()) [CD]
+Line_3 $$ if (!MTConfig.getInstance().isMaterialTheme()) --> Line_4 $$ return [CD]
+Line_2 $$ public static void patchSettings() throws Exception --> Line_6 $$ final Color accentColor = ColorUtil.fromHex(MTConfig.getInstance().getAccentColor()) [CD]
+Line_2 $$ public static void patchSettings() throws Exception --> Line_7 $$ final Field[] fields = SettingsTreeView.class.getDeclaredFields() [CD]
+Line_2 $$ public static void patchSettings() throws Exception --> Line_8 $$ final Object[] objects = Arrays.stream(fields).filter( f -> f.getType().equals(Color.class)).toArray() [CD]
+Line_2 $$ public static void patchSettings() throws Exception --> Line_9 $$ StaticPatcher.setFinalStatic((Field) objects[1], accentColor) [CD]
+Line_6 $$ final Color accentColor = ColorUtil.fromHex(MTConfig.getInstance().getAccentColor()) --> Line_9 $$ StaticPatcher.setFinalStatic((Field) objects[1], accentColor) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void acquireLock(Object key) --> Line_3 $$ Lock lock = getLockForKey(key) [CD]
+Line_2 $$ private void acquireLock(Object key) --> Line_3 $$ Lock lock = getLockForKey(key) [FD]
+Line_2 $$ private void acquireLock(Object key) --> Line_4 $$ if (timeout > 0) [CD]
+Line_3 $$ Lock lock = getLockForKey(key) --> Line_6 $$ boolean acquired = lock.tryLock(timeout, TimeUnit.MILLISECONDS) [FD]
+Line_6 $$ boolean acquired = lock.tryLock(timeout, TimeUnit.MILLISECONDS) --> Line_7 $$ if (!acquired) [FD]
+Line_4 $$ if (timeout > 0) --> Line_14 $$ lock.lock() [CD]
+Line_3 $$ Lock lock = getLockForKey(key) --> Line_14 $$ lock.lock() [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void logException(int tries, Supplier<Stream<RegionRequest>> regionsSupplier, Throwable error, ServerName serverName) --> Line_3 $$ if (tries > startLogErrorsCnt) [FD]
+Line_2 $$ private void logException(int tries, Supplier<Stream<RegionRequest>> regionsSupplier, Throwable error, ServerName serverName) --> Line_3 $$ if (tries > startLogErrorsCnt) [CD]
+Line_3 $$ if (tries > startLogErrorsCnt) --> Line_4 $$ String regions = regionsSupplier.get().map( r -> "'" + r.loc.getRegionInfo().getRegionNameAsString() + "'").collect(Collectors.joining(",", "[", "]")) [CD]
+Line_2 $$ private void logException(int tries, Supplier<Stream<RegionRequest>> regionsSupplier, Throwable error, ServerName serverName) --> Line_4 $$ String regions = regionsSupplier.get().map( r -> "'" + r.loc.getRegionInfo().getRegionNameAsString() + "'").collect(Collectors.joining(",", "[", "]")) [FD]
+Line_3 $$ if (tries > startLogErrorsCnt) --> Line_5 $$ LOG.warn("Process batch for " + regions + " in " + tableName + " from " + serverName + " failed, tries=" + tries, error) [CD]
+Line_2 $$ private void logException(int tries, Supplier<Stream<RegionRequest>> regionsSupplier, Throwable error, ServerName serverName) --> Line_5 $$ LOG.warn("Process batch for " + regions + " in " + tableName + " from " + serverName + " failed, tries=" + tries, error) [FD]

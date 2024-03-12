@@ -1,0 +1,8 @@
+Line_2 $$ protected static void updateCounters(ScanMetrics scanMetrics, long numScannerRestarts, Method getCounter, TaskAttemptContext context, long numStale) --> Line_3 $$ if (getCounter == null) [FD]
+Line_2 $$ protected static void updateCounters(ScanMetrics scanMetrics, long numScannerRestarts, Method getCounter, TaskAttemptContext context, long numStale) --> Line_3 $$ if (getCounter == null) [CD]
+Line_3 $$ if (getCounter == null) --> Line_4 $$ return [CD]
+Line_2 $$ protected static void updateCounters(ScanMetrics scanMetrics, long numScannerRestarts, Method getCounter, TaskAttemptContext context, long numStale) --> Line_7 $$ for (Map.Entry<String, Long> entry : scanMetrics.getMetricsMap().entrySet()) [FD]
+Line_2 $$ protected static void updateCounters(ScanMetrics scanMetrics, long numScannerRestarts, Method getCounter, TaskAttemptContext context, long numStale) --> Line_8 $$ Counter ct = (Counter) getCounter.invoke(context, HBASE_COUNTER_GROUP_NAME, entry.getKey()) [FD]
+Line_8 $$ Counter ct = (Counter) getCounter.invoke(context, HBASE_COUNTER_GROUP_NAME, entry.getKey()) --> Line_9 $$ ct.increment(entry.getValue()) [FD]
+Line_2 $$ protected static void updateCounters(ScanMetrics scanMetrics, long numScannerRestarts, Method getCounter, TaskAttemptContext context, long numStale) --> Line_11 $$ ((Counter) getCounter.invoke(context, HBASE_COUNTER_GROUP_NAME, "NUM_SCANNER_RESTARTS")).increment(numScannerRestarts) [FD]
+Line_2 $$ protected static void updateCounters(ScanMetrics scanMetrics, long numScannerRestarts, Method getCounter, TaskAttemptContext context, long numStale) --> Line_12 $$ ((Counter) getCounter.invoke(context, HBASE_COUNTER_GROUP_NAME, "NUM_SCAN_RESULTS_STALE")).increment(numStale) [FD]

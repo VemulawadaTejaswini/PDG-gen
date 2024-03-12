@@ -1,0 +1,3 @@
+Line_2 $$ public String createOrGetTenantId() --> Line_3 $$ if (this.notExists("select count(*) from tenant_info where ref=?", tenantMap.get("ref"))) [CD]
+Line_3 $$ if (this.notExists("select count(*) from tenant_info where ref=?", tenantMap.get("ref"))) --> Line_4 $$ jdbcTemplate.update("insert into tenant_info(NAME,CODE,REF,SHARED,USER_REPO_REF) values(?,?,?,0,?)", tenantMap.get("code"), tenantMap.get("code"), tenantMap.get("ref"), tenantMap.get("userRepoRef")) [CD]
+Line_2 $$ public String createOrGetTenantId() --> Line_6 $$ return jdbcTemplate.queryForObject("select id from tenant_info where ref=?", String.class, tenantMap.get("ref")) [CD]

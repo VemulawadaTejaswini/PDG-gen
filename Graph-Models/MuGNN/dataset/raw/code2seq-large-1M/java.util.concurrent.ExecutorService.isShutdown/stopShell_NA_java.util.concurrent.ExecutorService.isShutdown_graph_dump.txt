@@ -1,0 +1,8 @@
+Line_2 $$ private void stopShell() --> Line_3 $$ if (executor != null && !(executor.isShutdown() || executor.isTerminated())) [CD]
+Line_3 $$ if (executor != null && !(executor.isShutdown() || executor.isTerminated())) --> Line_4 $$ if (shellJob != null) [CD]
+Line_4 $$ if (shellJob != null) --> Line_5 $$ shellJob.terminate() [CD]
+Line_3 $$ if (executor != null && !(executor.isShutdown() || executor.isTerminated())) --> Line_7 $$ executor.shutdown() [CD]
+Line_9 $$ if (!executor.awaitTermination(5, TimeUnit.SECONDS)) --> Line_10 $$ System.err.println("!!! FAILED TO STOP EXECUTOR !!!") [CD]
+Line_9 $$ if (!executor.awaitTermination(5, TimeUnit.SECONDS)) --> Line_11 $$ Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces() [CD]
+Line_11 $$ Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces() --> Line_12 $$ for (Map.Entry<Thread, StackTraceElement[]> entry : allStackTraces.entrySet()) [FD]
+Line_13 $$ Thread t = entry.getKey() --> Line_14 $$ System.err.printf("Thread: %s (%s): %s\n", t.getName(), t.getState(), Arrays.toString(entry.getValue())) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static void checkAuthCodeConflicts(Set<ReservedList> reservedLists) --> Line_3 $$ Multimap<String, String> allAuthCodes = LinkedHashMultimap.create() [CD]
+Line_4 $$ for (ReservedList list : reservedLists) --> Line_5 $$ for (ReservedListEntry entry : list.getReservedListEntries().values()) [FD]
+Line_6 $$ if (entry.getAuthCode() != null) --> Line_7 $$ allAuthCodes.put(entry.getLabel(), entry.getAuthCode()) [CD]
+Line_3 $$ Multimap<String, String> allAuthCodes = LinkedHashMultimap.create() --> Line_7 $$ allAuthCodes.put(entry.getLabel(), entry.getAuthCode()) [FD]
+Line_2 $$ private static void checkAuthCodeConflicts(Set<ReservedList> reservedLists) --> Line_11 $$ ImmutableSet<Entry<String, Collection<String>>> conflicts = allAuthCodes.asMap().entrySet().stream().filter((Entry<String, Collection<String>> entry) -> entry.getValue().size() > 1).collect(toImmutableSet()) [CD]
+Line_3 $$ Multimap<String, String> allAuthCodes = LinkedHashMultimap.create() --> Line_11 $$ ImmutableSet<Entry<String, Collection<String>>> conflicts = allAuthCodes.asMap().entrySet().stream().filter((Entry<String, Collection<String>> entry) -> entry.getValue().size() > 1).collect(toImmutableSet()) [FD]
+Line_2 $$ private static void checkAuthCodeConflicts(Set<ReservedList> reservedLists) --> Line_12 $$ checkArgument(conflicts.isEmpty(), "Cannot set reserved lists because of auth code conflicts for labels: %s", conflicts) [CD]

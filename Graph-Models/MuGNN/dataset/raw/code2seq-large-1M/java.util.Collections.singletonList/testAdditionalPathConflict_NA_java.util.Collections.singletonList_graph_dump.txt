@@ -1,0 +1,8 @@
+Line_2 $$ public void testAdditionalPathConflict() throws Exception --> Line_3 $$ String serviceId = setupTestService() [CD]
+Line_2 $$ public void testAdditionalPathConflict() throws Exception --> Line_4 $$ waitForStatus(serviceId, BaragonRequestState.SUCCESS) [CD]
+Line_3 $$ String serviceId = setupTestService() --> Line_4 $$ waitForStatus(serviceId, BaragonRequestState.SUCCESS) [FD]
+Line_2 $$ public void testAdditionalPathConflict() throws Exception --> Line_5 $$ String serviceId2 = serviceId + "-2" [CD]
+Line_2 $$ public void testAdditionalPathConflict() throws Exception --> Line_6 $$ setupTestService(serviceId2, serviceId2, "/some-other-path", Collections.singletonList(SERVICE_BASE_PATH), Optional.of("someotherservice"), Optional.<Map<String, Object>>absent(), Optional.<String>absent()) [CD]
+Line_5 $$ String serviceId2 = serviceId + "-2" --> Line_6 $$ setupTestService(serviceId2, serviceId2, "/some-other-path", Collections.singletonList(SERVICE_BASE_PATH), Optional.of("someotherservice"), Optional.<Map<String, Object>>absent(), Optional.<String>absent()) [FD]
+Line_2 $$ public void testAdditionalPathConflict() throws Exception --> Line_7 $$ waitForStatus(serviceId2, BaragonRequestState.INVALID_REQUEST_NOOP) [CD]
+Line_5 $$ String serviceId2 = serviceId + "-2" --> Line_7 $$ waitForStatus(serviceId2, BaragonRequestState.INVALID_REQUEST_NOOP) [FD]

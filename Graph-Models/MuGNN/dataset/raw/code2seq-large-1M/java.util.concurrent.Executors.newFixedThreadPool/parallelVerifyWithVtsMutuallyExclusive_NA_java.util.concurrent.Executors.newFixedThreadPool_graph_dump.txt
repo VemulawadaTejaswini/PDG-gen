@@ -1,0 +1,8 @@
+Line_2 $$ public void parallelVerifyWithVtsMutuallyExclusive() --> Line_3 $$ ExecutorService executorService = Executors.newFixedThreadPool(2) [CD]
+Line_2 $$ public void parallelVerifyWithVtsMutuallyExclusive() --> Line_4 $$ for (int i = 0; i < 10; i++) [CD]
+Line_4 $$ for (int i = 0; i < 10; i++) --> Line_5 $$ Future<Duration> ex1 = executorService.submit(() -> StepVerifier.withVirtualTime(() -> Flux.just("A", "B", "C").delaySequence(Duration.ofMillis(100))).then(() -> [CD]
+Line_3 $$ ExecutorService executorService = Executors.newFixedThreadPool(2) --> Line_5 $$ Future<Duration> ex1 = executorService.submit(() -> StepVerifier.withVirtualTime(() -> Flux.just("A", "B", "C").delaySequence(Duration.ofMillis(100))).then(() -> [FD]
+Line_4 $$ for (int i = 0; i < 10; i++) --> Line_12 $$ Future<Duration> ex2 = executorService.submit(() -> StepVerifier.withVirtualTime(() -> Flux.just(1, 2, 3).delaySequence(Duration.ofMillis(100))).thenAwait(Duration.ofMillis(100)).expectNextCount(3).expectComplete().verify()) [CD]
+Line_3 $$ ExecutorService executorService = Executors.newFixedThreadPool(2) --> Line_12 $$ Future<Duration> ex2 = executorService.submit(() -> StepVerifier.withVirtualTime(() -> Flux.just(1, 2, 3).delaySequence(Duration.ofMillis(100))).thenAwait(Duration.ofMillis(100)).expectNextCount(3).expectComplete().verify()) [FD]
+Line_4 $$ for (int i = 0; i < 10; i++) --> Line_13 $$ assertThatCode(ex1::<>get).as("execution 1 in iteration #" + i).doesNotThrowAnyException() [CD]
+Line_4 $$ for (int i = 0; i < 10; i++) --> Line_14 $$ assertThatCode(ex2::<>get).as("execution 2 in iteration #" + i).doesNotThrowAnyException() [CD]

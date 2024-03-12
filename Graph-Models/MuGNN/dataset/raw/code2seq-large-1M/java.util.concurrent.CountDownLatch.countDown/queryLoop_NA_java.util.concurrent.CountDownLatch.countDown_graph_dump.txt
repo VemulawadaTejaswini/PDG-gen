@@ -1,0 +1,8 @@
+Line_2 $$ static void queryLoop(RealLiveTable user) --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ CountDownLatch qq = new CountDownLatch(1) [CD]
+Line_3 $$ while (true) --> Line_5 $$ user.query("value == 'val13'", ( r,  e) -> [CD]
+Line_2 $$ static void queryLoop(RealLiveTable user) --> Line_5 $$ user.query("value == 'val13'", ( r,  e) -> [FD]
+Line_6 $$ if (r != null) --> Line_7 $$ System.out.println("received " + r) [CD]
+Line_6 $$ if (r != null) --> Line_9 $$ qq.countDown() [CD]
+Line_4 $$ CountDownLatch qq = new CountDownLatch(1) --> Line_9 $$ qq.countDown() [FD]
+Line_4 $$ CountDownLatch qq = new CountDownLatch(1) --> Line_13 $$ qq.await() [FD]

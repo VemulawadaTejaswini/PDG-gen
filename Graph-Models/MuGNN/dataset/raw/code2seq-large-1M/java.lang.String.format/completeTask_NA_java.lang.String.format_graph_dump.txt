@@ -1,0 +1,6 @@
+Line_2 $$ private void completeTask(ContainerRedeploymentTaskState state) --> Line_3 $$ String redeployedContainers = StringUtils.join(state.containerStateLinks, ", ") [CD]
+Line_2 $$ private void completeTask(ContainerRedeploymentTaskState state) --> Line_4 $$ String description = String.format("Containers [%s] redeployed", redeployedContainers) [CD]
+Line_3 $$ String redeployedContainers = StringUtils.join(state.containerStateLinks, ", ") --> Line_4 $$ String description = String.format("Containers [%s] redeployed", redeployedContainers) [FD]
+Line_2 $$ private void completeTask(ContainerRedeploymentTaskState state) --> Line_5 $$ sendEventLog(state.tenantLinks, description, ( op,  ex) -> [CD]
+Line_4 $$ String description = String.format("Containers [%s] redeployed", redeployedContainers) --> Line_5 $$ sendEventLog(state.tenantLinks, description, ( op,  ex) -> [FD]
+Line_6 $$ if (ex != null) --> Line_7 $$ op.fail(new LocalizableValidationException("Failed to publish an event log", "request.container.redeployment.event-log.create-fail")) [CD]

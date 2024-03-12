@@ -1,0 +1,8 @@
+Line_2 $$ public void testTempTableDDLRollbackbehaviour4() throws SQLException --> Line_3 $$ Statement s = createStatement() [CD]
+Line_2 $$ public void testTempTableDDLRollbackbehaviour4() throws SQLException --> Line_4 $$ s.executeUpdate("declare global temporary table SESSION.t1(c11 int, c12 int) on commit preserve rows  not logged") [CD]
+Line_3 $$ Statement s = createStatement() --> Line_4 $$ s.executeUpdate("declare global temporary table SESSION.t1(c11 int, c12 int) on commit preserve rows  not logged") [FD]
+Line_2 $$ public void testTempTableDDLRollbackbehaviour4() throws SQLException --> Line_5 $$ JDBC.assertSingleValueResultSet(s.executeQuery("select count(*) from SESSION.t1"), "0") [CD]
+Line_3 $$ Statement s = createStatement() --> Line_5 $$ JDBC.assertSingleValueResultSet(s.executeQuery("select count(*) from SESSION.t1"), "0") [FD]
+Line_2 $$ public void testTempTableDDLRollbackbehaviour4() throws SQLException --> Line_6 $$ rollback() [CD]
+Line_2 $$ public void testTempTableDDLRollbackbehaviour4() throws SQLException --> Line_7 $$ assertStatementError("42X05", s, "select * from SESSION.t1") [CD]
+Line_3 $$ Statement s = createStatement() --> Line_7 $$ assertStatementError("42X05", s, "select * from SESSION.t1") [FD]

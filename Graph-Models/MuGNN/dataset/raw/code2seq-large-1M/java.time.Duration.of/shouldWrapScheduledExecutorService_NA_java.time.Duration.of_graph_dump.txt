@@ -1,0 +1,5 @@
+Line_2 $$ public void shouldWrapScheduledExecutorService() --> Line_3 $$ ScheduledExecutorService scheduledExecutorService = mock(ScheduledExecutorService.class) [CD]
+Line_2 $$ public void shouldWrapScheduledExecutorService() --> Line_4 $$ LockableTaskScheduler lockableTaskScheduler = SpringLockableTaskSchedulerFactory.newLockableTaskScheduler(scheduledExecutorService, lockProvider, Duration.of(10, MINUTES)) [CD]
+Line_2 $$ public void shouldWrapScheduledExecutorService() --> Line_5 $$ lockableTaskScheduler.schedule(task, new Date()) [CD]
+Line_4 $$ LockableTaskScheduler lockableTaskScheduler = SpringLockableTaskSchedulerFactory.newLockableTaskScheduler(scheduledExecutorService, lockProvider, Duration.of(10, MINUTES)) --> Line_5 $$ lockableTaskScheduler.schedule(task, new Date()) [FD]
+Line_2 $$ public void shouldWrapScheduledExecutorService() --> Line_6 $$ verify(scheduledExecutorService).schedule(any(Runnable.class), anyLong(), eq(TimeUnit.MILLISECONDS)) [CD]

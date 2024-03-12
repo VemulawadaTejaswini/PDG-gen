@@ -1,0 +1,7 @@
+Line_2 $$ private double calculateWeight() --> Line_3 $$ double firstTimeStarted = Calibration.first().sensor_age_at_time_of_estimation [CD]
+Line_2 $$ private double calculateWeight() --> Line_4 $$ double lastTimeStarted = Calibration.last().sensor_age_at_time_of_estimation [CD]
+Line_2 $$ private double calculateWeight() --> Line_5 $$ double time_percentage = Math.min(((sensor_age_at_time_of_estimation - firstTimeStarted) / (lastTimeStarted - firstTimeStarted)) / (.85), 1) [CD]
+Line_2 $$ private double calculateWeight() --> Line_6 $$ time_percentage = (time_percentage + .01) [CD]
+Line_5 $$ double time_percentage = Math.min(((sensor_age_at_time_of_estimation - firstTimeStarted) / (lastTimeStarted - firstTimeStarted)) / (.85), 1) --> Line_6 $$ time_percentage = (time_percentage + .01) [FD]
+Line_2 $$ private double calculateWeight() --> Line_7 $$ Log.i(TAG, "CALIBRATIONS TIME PERCENTAGE WEIGHT: " + time_percentage) [CD]
+Line_2 $$ private double calculateWeight() --> Line_8 $$ return Math.max((((((slope_confidence + sensor_confidence) * (time_percentage))) / 2) * 100), 1) [CD]

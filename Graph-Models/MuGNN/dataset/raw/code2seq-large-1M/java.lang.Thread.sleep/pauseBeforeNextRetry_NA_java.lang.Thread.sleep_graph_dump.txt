@@ -1,0 +1,7 @@
+Line_2 $$ private long pauseBeforeNextRetry(AmazonWebServiceRequest originalRequest, AmazonClientException previousException, int requestCount, RetryPolicy retryPolicy) --> Line_3 $$ final int retries = requestCount - 1 - 1 [CD]
+Line_2 $$ private long pauseBeforeNextRetry(AmazonWebServiceRequest originalRequest, AmazonClientException previousException, int requestCount, RetryPolicy retryPolicy) --> Line_7 $$ final long delay = retryPolicy.getBackoffStrategy().delayBeforeNextRetry(originalRequest, previousException, retries) [CD]
+Line_2 $$ private long pauseBeforeNextRetry(AmazonWebServiceRequest originalRequest, AmazonClientException previousException, int requestCount, RetryPolicy retryPolicy) --> Line_7 $$ final long delay = retryPolicy.getBackoffStrategy().delayBeforeNextRetry(originalRequest, previousException, retries) [FD]
+Line_3 $$ final int retries = requestCount - 1 - 1 --> Line_7 $$ final long delay = retryPolicy.getBackoffStrategy().delayBeforeNextRetry(originalRequest, previousException, retries) [FD]
+Line_2 $$ private long pauseBeforeNextRetry(AmazonWebServiceRequest originalRequest, AmazonClientException previousException, int requestCount, RetryPolicy retryPolicy) --> Line_8 $$ if (log.isDebugEnabled()) [CD]
+Line_8 $$ if (log.isDebugEnabled()) --> Line_9 $$ log.debug("Retriable error detected, " + "will retry in " + delay + "ms, attempt number: " + retries) [CD]
+Line_7 $$ final long delay = retryPolicy.getBackoffStrategy().delayBeforeNextRetry(originalRequest, previousException, retries) --> Line_12 $$ Thread.sleep(delay) [FD]

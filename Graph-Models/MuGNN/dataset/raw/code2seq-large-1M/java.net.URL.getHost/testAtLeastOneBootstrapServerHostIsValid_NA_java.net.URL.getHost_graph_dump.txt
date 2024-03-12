@@ -1,0 +1,6 @@
+Line_5 $$ String unknownHost = "foobar:11111" --> Line_7 $$ URL unknownHostURL = NetUtils.getCorrectHostnamePort(unknownHost) [FD]
+Line_7 $$ URL unknownHostURL = NetUtils.getCorrectHostnamePort(unknownHost) --> Line_9 $$ when(InetAddress.getByName(Matchers.eq(unknownHostURL.getHost()))).thenThrow(new UnknownHostException("Test exception")) [FD]
+Line_4 $$ String zookeeperConnect = "localhost:56794" --> Line_11 $$ Properties props = createKafkaProps(zookeeperConnect, bootstrapServers, groupId) [FD]
+Line_6 $$ String bootstrapServers = unknownHost + ", localhost:22222" --> Line_11 $$ Properties props = createKafkaProps(zookeeperConnect, bootstrapServers, groupId) [FD]
+Line_10 $$ String groupId = "non-existent-group" --> Line_11 $$ Properties props = createKafkaProps(zookeeperConnect, bootstrapServers, groupId) [FD]
+Line_12 $$ DummyFlinkKafkaConsumer consumer = new DummyFlinkKafkaConsumer("no op topic", new SimpleStringSchema(), props) --> Line_13 $$ consumer.open(new Configuration()) [FD]

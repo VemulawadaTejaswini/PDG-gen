@@ -1,0 +1,6 @@
+Line_2 $$ public void execute() throws InterruptedException, IOException --> Line_6 $$ ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(threadCount)) [CD]
+Line_8 $$ List<ListenableFuture<?>> futures = new ArrayList<ListenableFuture<?>>() --> Line_11 $$ futures.add(executor.submit(job)) [FD]
+Line_6 $$ ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(threadCount)) --> Line_11 $$ futures.add(executor.submit(job)) [FD]
+Line_10 $$ for (HttpDownloadJob job : queue) --> Line_11 $$ futures.add(executor.submit(job)) [FD]
+Line_8 $$ List<ListenableFuture<?>> futures = new ArrayList<ListenableFuture<?>>() --> Line_15 $$ Futures.allAsList(futures).get() [FD]
+Line_6 $$ ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(threadCount)) --> Line_25 $$ executor.shutdownNow() [FD]

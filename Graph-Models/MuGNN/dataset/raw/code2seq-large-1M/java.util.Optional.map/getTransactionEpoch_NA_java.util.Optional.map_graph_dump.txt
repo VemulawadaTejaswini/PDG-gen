@@ -1,0 +1,6 @@
+Line_2 $$ CompletableFuture<Integer> getTransactionEpoch(UUID txId) --> Line_3 $$ Optional<Integer> epoch [CD]
+Line_3 $$ Optional<Integer> epoch --> Line_5 $$ epoch = epochTxnMap.entrySet().stream().filter( x -> x.getValue().contains(txId.toString())).findFirst().map(Map.Entry::<>getKey) [FD]
+Line_2 $$ CompletableFuture<Integer> getTransactionEpoch(UUID txId) --> Line_5 $$ epoch = epochTxnMap.entrySet().stream().filter( x -> x.getValue().contains(txId.toString())).findFirst().map(Map.Entry::<>getKey) [FD]
+Line_2 $$ CompletableFuture<Integer> getTransactionEpoch(UUID txId) --> Line_7 $$ return epoch.map(CompletableFuture::<>completedFuture).orElseGet(() -> Futures.failedFuture(StoreException.create(StoreException.Type.DATA_NOT_FOUND, "Stream: " + getName() + " Transaction: " + txId.toString()))) [FD]
+Line_2 $$ CompletableFuture<Integer> getTransactionEpoch(UUID txId) --> Line_7 $$ return epoch.map(CompletableFuture::<>completedFuture).orElseGet(() -> Futures.failedFuture(StoreException.create(StoreException.Type.DATA_NOT_FOUND, "Stream: " + getName() + " Transaction: " + txId.toString()))) [CD]
+Line_3 $$ Optional<Integer> epoch --> Line_7 $$ return epoch.map(CompletableFuture::<>completedFuture).orElseGet(() -> Futures.failedFuture(StoreException.create(StoreException.Type.DATA_NOT_FOUND, "Stream: " + getName() + " Transaction: " + txId.toString()))) [FD]

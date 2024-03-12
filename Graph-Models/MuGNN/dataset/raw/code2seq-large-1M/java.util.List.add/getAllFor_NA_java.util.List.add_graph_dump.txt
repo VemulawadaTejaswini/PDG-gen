@@ -1,0 +1,8 @@
+Line_2 $$ public List<SessionRow> getAllFor(@NonNull Address address) --> Line_3 $$ SQLiteDatabase database = databaseHelper.getReadableDatabase() [CD]
+Line_2 $$ public List<SessionRow> getAllFor(@NonNull Address address) --> Line_4 $$ List<SessionRow> results = new LinkedList() [CD]
+Line_3 $$ SQLiteDatabase database = databaseHelper.getReadableDatabase() --> Line_5 $$ try (Cursor cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] [FD]
+Line_2 $$ public List<SessionRow> getAllFor(@NonNull Address address) --> Line_5 $$ try (Cursor cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] [FD]
+Line_5 $$ try (Cursor cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] --> Line_6 $$ while (cursor != null && cursor.moveToNext()) [FD]
+Line_4 $$ List<SessionRow> results = new LinkedList() --> Line_8 $$ results.add(new SessionRow(address, cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE)), new SessionRecord(cursor.getBlob(cursor.getColumnIndexOrThrow(RECORD))))) [FD]
+Line_5 $$ try (Cursor cursor = database.query(TABLE_NAME, null, ADDRESS + " = ?", new String[] --> Line_8 $$ results.add(new SessionRow(address, cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE)), new SessionRecord(cursor.getBlob(cursor.getColumnIndexOrThrow(RECORD))))) [FD]
+Line_2 $$ public List<SessionRow> getAllFor(@NonNull Address address) --> Line_14 $$ return results [CD]

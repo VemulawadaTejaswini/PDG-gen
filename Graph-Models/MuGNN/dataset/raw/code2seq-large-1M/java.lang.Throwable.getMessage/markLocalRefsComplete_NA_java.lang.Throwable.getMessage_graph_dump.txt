@@ -1,0 +1,6 @@
+Line_2 $$ private void markLocalRefsComplete(Set<ObjectId> have) throws TransportException --> Line_3 $$ List<Ref> refs [CD]
+Line_3 $$ List<Ref> refs --> Line_5 $$ refs = local.getRefDatabase().getRefs() [FD]
+Line_9 $$ for (Ref r : refs) --> Line_11 $$ markLocalObjComplete(revWalk.parseAny(r.getObjectId())) [FD]
+Line_9 $$ for (Ref r : refs) --> Line_13 $$ throw new TransportException(MessageFormat.format(JGitText.get().localRefIsMissingObjects, r.getName()), readError) [FD]
+Line_16 $$ for (ObjectId id : have) --> Line_18 $$ markLocalObjComplete(revWalk.parseAny(id)) [FD]
+Line_16 $$ for (ObjectId id : have) --> Line_20 $$ throw new TransportException(MessageFormat.format(JGitText.get().transportExceptionMissingAssumed, id.name()), readError) [FD]

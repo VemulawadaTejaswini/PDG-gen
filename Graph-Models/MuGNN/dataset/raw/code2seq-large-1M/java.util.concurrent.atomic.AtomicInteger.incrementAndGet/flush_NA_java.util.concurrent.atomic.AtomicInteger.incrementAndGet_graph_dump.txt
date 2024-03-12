@@ -1,0 +1,6 @@
+Line_2 $$ public Future<VoidResult> flush(TaskContext context, int matrixId) --> Line_3 $$ FutureResult<VoidResult> futureResult = new FutureResult<VoidResult>() [CD]
+Line_5 $$ OpLogMessage flushMessage = new OpLogMessage(seqIdGenerator.incrementAndGet(), matrixId, OpLogMessageType.FLUSH, context) --> Line_6 $$ messageToFutureMap.put(flushMessage, futureResult) [FD]
+Line_3 $$ FutureResult<VoidResult> futureResult = new FutureResult<VoidResult>() --> Line_6 $$ messageToFutureMap.put(flushMessage, futureResult) [FD]
+Line_5 $$ OpLogMessage flushMessage = new OpLogMessage(seqIdGenerator.incrementAndGet(), matrixId, OpLogMessageType.FLUSH, context) --> Line_7 $$ messageQueue.add(flushMessage) [FD]
+Line_3 $$ FutureResult<VoidResult> futureResult = new FutureResult<VoidResult>() --> Line_10 $$ futureResult.set(new VoidResult(ResponseType.FAILED)) [FD]
+Line_2 $$ public Future<VoidResult> flush(TaskContext context, int matrixId) --> Line_12 $$ return futureResult [CD]

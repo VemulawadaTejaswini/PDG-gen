@@ -1,0 +1,8 @@
+Line_3 $$ try (ZipFile zip = new ZipFile(archive)) --> Line_4 $$ Enumeration<? extends ZipEntry> entries = zip.entries() [FD]
+Line_5 $$ while (entries.hasMoreElements()) --> Line_6 $$ ZipEntry entry = entries.nextElement() [CD]
+Line_5 $$ while (entries.hasMoreElements()) --> Line_7 $$ if (!entry.isDirectory()) [CD]
+Line_7 $$ if (!entry.isDirectory()) --> Line_8 $$ File file = new File(targetDir, entry.getName()) [CD]
+Line_7 $$ if (!entry.isDirectory()) --> Line_9 $$ assertTrue(file.getParentFile().mkdirs() || file.getParentFile().isDirectory()) [CD]
+Line_8 $$ File file = new File(targetDir, entry.getName()) --> Line_9 $$ assertTrue(file.getParentFile().mkdirs() || file.getParentFile().isDirectory()) [FD]
+Line_3 $$ try (ZipFile zip = new ZipFile(archive)) --> Line_10 $$ try (InputStream in = zip.getInputStream(entry); [FD]
+Line_10 $$ try (InputStream in = zip.getInputStream(entry); --> Line_12 $$ InterpreterUtil.copyStream(in, out) [FD]

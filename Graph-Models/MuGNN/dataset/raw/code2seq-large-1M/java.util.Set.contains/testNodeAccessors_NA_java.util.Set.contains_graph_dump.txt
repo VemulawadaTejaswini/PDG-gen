@@ -1,0 +1,7 @@
+Line_2 $$ public void testNodeAccessors(NodeTest test) --> Line_3 $$ Assert.assertNotNull(test.node.getElements()) [CD]
+Line_4 $$ for (String name : test.allNames) --> Line_5 $$ DiffElement elt = test.node.getElement(name) [FD]
+Line_5 $$ DiffElement elt = test.node.getElement(name) --> Line_6 $$ Assert.assertNotNull(elt, "Failed to find field " + elt + " in " + test.node) [FD]
+Line_4 $$ for (String name : test.allNames) --> Line_7 $$ Assert.assertEquals(elt.getName(), name) [FD]
+Line_5 $$ DiffElement elt = test.node.getElement(name) --> Line_7 $$ Assert.assertEquals(elt.getName(), name) [FD]
+Line_5 $$ DiffElement elt = test.node.getElement(name) --> Line_8 $$ Assert.assertEquals(elt.getValue().isAtomic(), test.fields.contains(name), "Failed atomic/compound expectation: " + test.node) [FD]
+Line_4 $$ for (String name : test.allNames) --> Line_8 $$ Assert.assertEquals(elt.getValue().isAtomic(), test.fields.contains(name), "Failed atomic/compound expectation: " + test.node) [FD]

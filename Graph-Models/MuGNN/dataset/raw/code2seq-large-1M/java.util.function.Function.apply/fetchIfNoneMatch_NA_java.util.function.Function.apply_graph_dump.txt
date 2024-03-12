@@ -1,0 +1,5 @@
+Line_2 $$ public static Fetch fetchIfNoneMatch(Function<URL, Object> etagRetrieve, BiConsumer<URL, String> etagStore) --> Line_3 $$ return ( url,  lastModified) -> [CD]
+Line_2 $$ public static Fetch fetchIfNoneMatch(Function<URL, Object> etagRetrieve, BiConsumer<URL, String> etagStore) --> Line_4 $$ Object etagValue = etagRetrieve.apply(url) [FD]
+Line_4 $$ Object etagValue = etagRetrieve.apply(url) --> Line_5 $$ debug.fine(WebRequest.log(url, lastModified, etagValue)) [FD]
+Line_4 $$ Object etagValue = etagRetrieve.apply(url) --> Line_7 $$ return WebRequest.fetch(url, etagValue == null ? lastModified : 0, etagValue, null, storeETag(url, etagStore,  etag -> !etag.equals(etagValue))) [FD]
+Line_2 $$ public static Fetch fetchIfNoneMatch(Function<URL, Object> etagRetrieve, BiConsumer<URL, String> etagStore) --> Line_7 $$ return WebRequest.fetch(url, etagValue == null ? lastModified : 0, etagValue, null, storeETag(url, etagStore,  etag -> !etag.equals(etagValue))) [FD]

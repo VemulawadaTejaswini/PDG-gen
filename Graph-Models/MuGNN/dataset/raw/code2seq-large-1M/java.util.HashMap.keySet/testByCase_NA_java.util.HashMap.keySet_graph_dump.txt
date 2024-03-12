@@ -1,0 +1,8 @@
+Line_3 $$ for (String url : testCases.keySet()) --> Line_4 $$ Map<String, Object> answers = testCases.get(url) [FD]
+Line_3 $$ for (String url : testCases.keySet()) --> Line_5 $$ testCall(db, "RETURN apoc.data.url($url) AS value", map("url", url),  row -> [FD]
+Line_4 $$ Map<String, Object> answers = testCases.get(url) --> Line_7 $$ if (answers != null) [FD]
+Line_4 $$ Map<String, Object> answers = testCases.get(url) --> Line_8 $$ for (Map.Entry o : answers.entrySet()) [FD]
+Line_6 $$ Map value = (Map) row.get("value") --> Line_9 $$ assertEquals(o.getKey().toString(), o.getValue(), value.get(o.getKey())) [FD]
+Line_4 $$ Map<String, Object> answers = testCases.get(url) --> Line_12 $$ assertEquals(answers, value) [FD]
+Line_6 $$ Map value = (Map) row.get("value") --> Line_12 $$ assertEquals(answers, value) [FD]
+Line_2 $$ public void testByCase() --> Line_15 $$ testCall(db, "RETURN apoc.data.url(null) AS value",  row -> [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private static Object readMethod(Method m, Object entity) --> Line_3 $$ m.setAccessible(true) [CD]
+Line_2 $$ private static Object readMethod(Method m, Object entity) --> Line_3 $$ m.setAccessible(true) [FD]
+Line_2 $$ private static Object readMethod(Method m, Object entity) --> Line_5 $$ return m.invoke(entity) [FD]
+Line_2 $$ private static Object readMethod(Method m, Object entity) --> Line_7 $$ throw new RuntimeException(Messages.MESSAGES.failedToReadPropertyFromMethod(m.getName()), e) [FD]
+Line_2 $$ private static Object readMethod(Method m, Object entity) --> Line_9 $$ m.setAccessible(false) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testCreateJar() throws Exception --> Line_3 $$ ByteArrayOutputStream res = new Jar().setAttribute("Foo", "1234").setAttribute("Bar", "5678").addEntry(Paths.get("foo.txt"), Jar.toInputStream("I am foo!\n", UTF_8)).addEntry(Paths.get("dir", "bar.txt"), Jar.toInputStream("I am bar!\n", UTF_8)).write(new ByteArrayOutputStream()) [CD]
+Line_2 $$ public void testCreateJar() throws Exception --> Line_4 $$ assertEquals("I am foo!\n", getEntryAsString(toInput(res), Paths.get("foo.txt"), UTF_8)) [CD]
+Line_2 $$ public void testCreateJar() throws Exception --> Line_5 $$ assertEquals("I am bar!\n", getEntryAsString(toInput(res), Paths.get("dir", "bar.txt"), UTF_8)) [CD]
+Line_2 $$ public void testCreateJar() throws Exception --> Line_6 $$ Manifest man2 = toInput(res).getManifest() [CD]
+Line_2 $$ public void testCreateJar() throws Exception --> Line_7 $$ assertEquals("1234", man2.getMainAttributes().getValue("Foo")) [CD]
+Line_6 $$ Manifest man2 = toInput(res).getManifest() --> Line_7 $$ assertEquals("1234", man2.getMainAttributes().getValue("Foo")) [FD]
+Line_2 $$ public void testCreateJar() throws Exception --> Line_8 $$ assertEquals("5678", man2.getMainAttributes().getValue("Bar")) [CD]
+Line_6 $$ Manifest man2 = toInput(res).getManifest() --> Line_8 $$ assertEquals("5678", man2.getMainAttributes().getValue("Bar")) [FD]

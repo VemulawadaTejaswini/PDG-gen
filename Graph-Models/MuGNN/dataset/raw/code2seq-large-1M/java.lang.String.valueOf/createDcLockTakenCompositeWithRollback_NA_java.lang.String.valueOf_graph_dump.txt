@@ -1,0 +1,7 @@
+Line_2 $$ private ModelNode createDcLockTakenCompositeWithRollback(ModelNode op) --> Line_3 $$ ModelNode composite = createDcLockTakenComposite(op) [FD]
+Line_2 $$ private ModelNode createDcLockTakenCompositeWithRollback(ModelNode op) --> Line_3 $$ ModelNode composite = createDcLockTakenComposite(op) [CD]
+Line_2 $$ private ModelNode createDcLockTakenCompositeWithRollback(ModelNode op) --> Line_4 $$ ModelNode rollback = Util.getWriteAttributeOperation(SLAVE_ROOT_ADDRESS.clone().add(SYSTEM_PROPERTY, "rollback-does-not-exist" + String.valueOf(System.currentTimeMillis())), VALUE, "xxx") [CD]
+Line_2 $$ private ModelNode createDcLockTakenCompositeWithRollback(ModelNode op) --> Line_5 $$ composite.get(STEPS).add(rollback) [CD]
+Line_4 $$ ModelNode rollback = Util.getWriteAttributeOperation(SLAVE_ROOT_ADDRESS.clone().add(SYSTEM_PROPERTY, "rollback-does-not-exist" + String.valueOf(System.currentTimeMillis())), VALUE, "xxx") --> Line_5 $$ composite.get(STEPS).add(rollback) [FD]
+Line_3 $$ ModelNode composite = createDcLockTakenComposite(op) --> Line_5 $$ composite.get(STEPS).add(rollback) [FD]
+Line_2 $$ private ModelNode createDcLockTakenCompositeWithRollback(ModelNode op) --> Line_6 $$ return composite [CD]

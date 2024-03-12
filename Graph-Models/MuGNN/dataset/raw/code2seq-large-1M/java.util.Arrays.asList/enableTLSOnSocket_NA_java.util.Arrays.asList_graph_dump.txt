@@ -1,0 +1,8 @@
+Line_2 $$ private Socket enableTLSOnSocket(Socket socket) --> Line_3 $$ if (socket instanceof SSLSocket) [FD]
+Line_2 $$ private Socket enableTLSOnSocket(Socket socket) --> Line_3 $$ if (socket instanceof SSLSocket) [CD]
+Line_3 $$ if (socket instanceof SSLSocket) --> Line_4 $$ ArrayList<String> supportedProtocols = new ArrayList(Arrays.asList(((SSLSocket) socket).getSupportedProtocols())) [CD]
+Line_3 $$ if (socket instanceof SSLSocket) --> Line_5 $$ supportedProtocols.retainAll(Collections.singletonList("TLSv1.2")) [CD]
+Line_4 $$ ArrayList<String> supportedProtocols = new ArrayList(Arrays.asList(((SSLSocket) socket).getSupportedProtocols())) --> Line_5 $$ supportedProtocols.retainAll(Collections.singletonList("TLSv1.2")) [FD]
+Line_3 $$ if (socket instanceof SSLSocket) --> Line_6 $$ ((SSLSocket) socket).setEnabledProtocols(supportedProtocols.toArray(new String[supportedProtocols.size()])) [CD]
+Line_4 $$ ArrayList<String> supportedProtocols = new ArrayList(Arrays.asList(((SSLSocket) socket).getSupportedProtocols())) --> Line_6 $$ ((SSLSocket) socket).setEnabledProtocols(supportedProtocols.toArray(new String[supportedProtocols.size()])) [FD]
+Line_2 $$ private Socket enableTLSOnSocket(Socket socket) --> Line_8 $$ return socket [CD]

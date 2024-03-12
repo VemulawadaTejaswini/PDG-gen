@@ -1,0 +1,5 @@
+Line_2 $$ public void testOrderByWithNoProjection() throws SQLException --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_5 $$ conn.createStatement().execute("create table x (id integer primary key, A.i1 integer," + " B.i2 integer)") [FD]
+Line_6 $$ Scan scan = projectQuery("select A.i1 from X group by i1 order by avg(B.i2) " + "desc") --> Line_7 $$ ServerAggregators aggregators = ServerAggregators.deserialize(scan.getAttribute(BaseScannerRegionObserver.AGGREGATORS), null, null) [FD]
+Line_7 $$ ServerAggregators aggregators = ServerAggregators.deserialize(scan.getAttribute(BaseScannerRegionObserver.AGGREGATORS), null, null) --> Line_8 $$ assertEquals(2, aggregators.getAggregatorCount()) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_10 $$ conn.close() [FD]

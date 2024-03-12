@@ -1,0 +1,6 @@
+Line_2 $$ public static Value instantToValue(Object instant) --> Line_4 $$ long epochSecond = (long) INSTANT_GET_EPOCH_SECOND.invoke(instant) [FD]
+Line_2 $$ public static Value instantToValue(Object instant) --> Line_5 $$ int nano = (int) INSTANT_GET_NANO.invoke(instant) [FD]
+Line_7 $$ if (epochSecond < 0 && (absoluteDay * 86_400 != epochSecond)) --> Line_8 $$ absoluteDay-- [CD]
+Line_6 $$ long absoluteDay = epochSecond / 86_400 --> Line_8 $$ absoluteDay-- [FD]
+Line_10 $$ long timeNanos = (epochSecond - absoluteDay * 86_400) * 1_000_000_000 + nano --> Line_11 $$ return ValueTimestampTimeZone.fromDateValueAndNanos(DateTimeUtils.dateValueFromAbsoluteDay(absoluteDay), timeNanos, (short) 0) [FD]
+Line_6 $$ long absoluteDay = epochSecond / 86_400 --> Line_11 $$ return ValueTimestampTimeZone.fromDateValueAndNanos(DateTimeUtils.dateValueFromAbsoluteDay(absoluteDay), timeNanos, (short) 0) [FD]

@@ -1,0 +1,8 @@
+Line_9 $$ if (this.batchedArgs == null || this.batchedArgs.size() == 0) --> Line_10 $$ return new int[0] [CD]
+Line_18 $$ if (!this.batchHasPlainStatements && this.connection.getRewriteBatchedStatements()) --> Line_19 $$ if (canRewriteAsMultiValueInsertAtSqlLevel()) [CD]
+Line_19 $$ if (canRewriteAsMultiValueInsertAtSqlLevel()) --> Line_20 $$ return executeBatchedInserts(batchTimeout) [CD]
+Line_12 $$ int batchTimeout = this.timeoutInMillis --> Line_20 $$ return executeBatchedInserts(batchTimeout) [FD]
+Line_18 $$ if (!this.batchHasPlainStatements && this.connection.getRewriteBatchedStatements()) --> Line_22 $$ if (this.connection.versionMeetsMinimum(4, 1, 0) && !this.batchHasPlainStatements && this.batchedArgs != null && this.batchedArgs.size() > 3) [CD]
+Line_22 $$ if (this.connection.versionMeetsMinimum(4, 1, 0) && !this.batchHasPlainStatements && this.batchedArgs != null && this.batchedArgs.size() > 3) --> Line_24 $$ return executePreparedBatchAsMultiStatement(batchTimeout) [CD]
+Line_12 $$ int batchTimeout = this.timeoutInMillis --> Line_24 $$ return executePreparedBatchAsMultiStatement(batchTimeout) [FD]
+Line_12 $$ int batchTimeout = this.timeoutInMillis --> Line_27 $$ return executeBatchSerially(batchTimeout) [FD]

@@ -1,0 +1,8 @@
+Line_5 $$ if (isAtLeastO(myDevice) && StudioFlags.PROFILER_USE_JVMTI.get()) --> Line_6 $$ myDevice.createForward(myLocalPort, DEVICE_SOCKET_NAME, IDevice.DeviceUnixSocketNamespace.ABSTRACT) [CD]
+Line_5 $$ if (isAtLeastO(myDevice) && StudioFlags.PROFILER_USE_JVMTI.get()) --> Line_8 $$ myDevice.createForward(myLocalPort, DEVICE_PORT) [CD]
+Line_10 $$ if (myLocalPort < 0) --> Line_11 $$ return [CD]
+Line_13 $$ ClassLoader stashedContextClassLoader = Thread.currentThread().getContextClassLoader() --> Line_16 $$ Thread.currentThread().setContextClassLoader(stashedContextClassLoader) [FD]
+Line_22 $$ if (myDeviceProxies.containsKey(myDevice)) --> Line_23 $$ myDeviceProxies.remove(myDevice) [CD]
+Line_17 $$ String channelName = myDevice.getSerialNumber() --> Line_26 $$ ManagedChannel proxyChannel = InProcessChannelBuilder.forName(channelName).build() [FD]
+Line_26 $$ ManagedChannel proxyChannel = InProcessChannelBuilder.forName(channelName).build() --> Line_27 $$ myDataStore.connect(proxyChannel) [FD]
+Line_29 $$ if (myPerfdProxy != null) --> Line_30 $$ myPerfdProxy.disconnect() [CD]

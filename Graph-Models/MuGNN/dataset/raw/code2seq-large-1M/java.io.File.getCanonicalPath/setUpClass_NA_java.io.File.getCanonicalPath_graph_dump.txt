@@ -1,0 +1,8 @@
+Line_2 $$ public static void setUpClass() throws Exception --> Line_3 $$ String webappDocBase = "test/tmpTestWebappClassLoaderWeaving" [CD]
+Line_2 $$ public static void setUpClass() throws Exception --> Line_4 $$ File webappDocBaseFile = new File(webappDocBase) [CD]
+Line_2 $$ public static void setUpClass() throws Exception --> Line_5 $$ WEBAPP_DOC_BASE = webappDocBaseFile.getCanonicalPath() [CD]
+Line_4 $$ File webappDocBaseFile = new File(webappDocBase) --> Line_5 $$ WEBAPP_DOC_BASE = webappDocBaseFile.getCanonicalPath() [FD]
+Line_2 $$ public static void setUpClass() throws Exception --> Line_6 $$ File classes = new File(webappDocBaseFile, "/WEB-INF/classes/" + PACKAGE_PREFIX) [CD]
+Line_2 $$ public static void setUpClass() throws Exception --> Line_7 $$ classes.mkdirs() [CD]
+Line_2 $$ public static void setUpClass() throws Exception --> Line_8 $$ copyResource(PACKAGE_PREFIX + "/TesterNeverWeavedClass.class", new File(classes, "TesterNeverWeavedClass.class")) [CD]
+Line_2 $$ public static void setUpClass() throws Exception --> Line_9 $$ copyResource(PACKAGE_PREFIX + "/TesterUnweavedClass.class", new File(classes, "TesterUnweavedClass.class")) [CD]

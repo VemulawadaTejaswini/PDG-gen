@@ -1,0 +1,8 @@
+Line_2 $$ protected void logMessage(String logMessage, String message, boolean incoming) --> Line_3 $$ if (messageListener != null) [CD]
+Line_3 $$ if (messageListener != null) --> Line_4 $$ log.debug(logMessage) [CD]
+Line_2 $$ protected void logMessage(String logMessage, String message, boolean incoming) --> Line_4 $$ log.debug(logMessage) [FD]
+Line_3 $$ if (messageListener != null) --> Line_5 $$ if (incoming) [CD]
+Line_5 $$ if (incoming) --> Line_6 $$ messageListener.onInboundMessage(new RawMessage(message), null) [CD]
+Line_5 $$ if (incoming) --> Line_8 $$ messageListener.onOutboundMessage(new RawMessage(message), null) [CD]
+Line_3 $$ if (messageListener != null) --> Line_11 $$ if (log.isDebugEnabled()) [CD]
+Line_11 $$ if (log.isDebugEnabled()) --> Line_12 $$ log.debug(logMessage + ":" + System.getProperty("line.separator") + message) [CD]

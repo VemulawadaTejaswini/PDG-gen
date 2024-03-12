@@ -1,0 +1,5 @@
+Line_3 $$ for (String key : locks.keySet()) --> Line_4 $$ if (locks.get(key).isHeldByCurrentThread()) [FD]
+Line_4 $$ if (locks.get(key).isHeldByCurrentThread()) --> Line_5 $$ timestamps.put(key, System.currentTimeMillis()) [CD]
+Line_3 $$ for (String key : locks.keySet()) --> Line_5 $$ timestamps.put(key, System.currentTimeMillis()) [FD]
+Line_4 $$ if (locks.get(key).isHeldByCurrentThread()) --> Line_6 $$ locks.get(key).unlock() [CD]
+Line_3 $$ for (String key : locks.keySet()) --> Line_6 $$ locks.get(key).unlock() [FD]

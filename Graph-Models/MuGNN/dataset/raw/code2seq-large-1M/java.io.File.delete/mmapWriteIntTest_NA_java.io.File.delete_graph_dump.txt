@@ -1,0 +1,8 @@
+Line_2 $$ public void mmapWriteIntTest() throws IOException --> Line_3 $$ File tmpFile = storeInTempFile(new ByteArrayInputStream(BLOB)) [CD]
+Line_5 $$ for (int x = 0; x < BLOB.length / 4; x++) --> Line_6 $$ obj.writeInt(500 + x) [CD]
+Line_4 $$ try (RandomAccessObject obj = new RandomAccessObject.RandomAccessMmapObject(new RandomAccessFile(tmpFile, "rw"), "rw")) --> Line_6 $$ obj.writeInt(500 + x) [FD]
+Line_4 $$ try (RandomAccessObject obj = new RandomAccessObject.RandomAccessMmapObject(new RandomAccessFile(tmpFile, "rw"), "rw")) --> Line_8 $$ obj.seekToIntAligned(0) [FD]
+Line_5 $$ for (int x = 0; x < BLOB.length / 4; x++) --> Line_9 $$ for (int x = 0; x < BLOB.length / 4; x++) [FD]
+Line_9 $$ for (int x = 0; x < BLOB.length / 4; x++) --> Line_10 $$ Assert.assertEquals(500 + x, obj.readInt()) [CD]
+Line_4 $$ try (RandomAccessObject obj = new RandomAccessObject.RandomAccessMmapObject(new RandomAccessFile(tmpFile, "rw"), "rw")) --> Line_10 $$ Assert.assertEquals(500 + x, obj.readInt()) [FD]
+Line_3 $$ File tmpFile = storeInTempFile(new ByteArrayInputStream(BLOB)) --> Line_13 $$ tmpFile.delete() [FD]

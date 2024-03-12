@@ -1,0 +1,6 @@
+Line_2 $$ public void testOffersNotReady() throws InterruptedException --> Line_3 $$ when(mockMesosEventClient.offers(any())).thenReturn(OfferResponse.notReady(Collections.emptyList())) [CD]
+Line_2 $$ public void testOffersNotReady() throws InterruptedException --> Line_4 $$ when(mockMesosEventClient.getUnexpectedResources(any())).thenReturn(UnexpectedResourcesResponse.processed(Collections.emptyList())) [CD]
+Line_2 $$ public void testOffersNotReady() throws InterruptedException --> Line_5 $$ processor.setOfferQueueSize(0).start() [CD]
+Line_2 $$ public void testOffersNotReady() throws InterruptedException --> Line_6 $$ Set<String> sentOfferIds = sendOffers(1, OFFERS_PER_THREAD) [CD]
+Line_2 $$ public void testOffersNotReady() throws InterruptedException --> Line_7 $$ verify(mockSchedulerDriver, times(sentOfferIds.size())).declineOffer(any(), eq(SHORT_INTERVAL)) [CD]
+Line_6 $$ Set<String> sentOfferIds = sendOffers(1, OFFERS_PER_THREAD) --> Line_7 $$ verify(mockSchedulerDriver, times(sentOfferIds.size())).declineOffer(any(), eq(SHORT_INTERVAL)) [FD]

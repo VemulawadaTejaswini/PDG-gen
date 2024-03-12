@@ -1,0 +1,5 @@
+Line_2 $$ protected void createTopic(String topic, int partitions) --> Line_3 $$ if (topicExists(topic)) [FD]
+Line_2 $$ protected void createTopic(String topic, int partitions) --> Line_3 $$ if (topicExists(topic)) [CD]
+Line_3 $$ if (topicExists(topic)) --> Line_4 $$ return [CD]
+Line_6 $$ try (AdminClient adminClient = AdminClient.create(getAdminProperties())) --> Line_7 $$ CreateTopicsResult ret = adminClient.createTopics(Collections.singletonList(new NewTopic(topic, partitions, DEFAULT_REPLICATION))) [FD]
+Line_7 $$ CreateTopicsResult ret = adminClient.createTopics(Collections.singletonList(new NewTopic(topic, partitions, DEFAULT_REPLICATION))) --> Line_8 $$ ret.all().get(2, TimeUnit.MINUTES) [FD]

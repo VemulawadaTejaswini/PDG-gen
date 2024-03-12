@@ -1,0 +1,7 @@
+Line_2 $$ public static Socket createSocket(InetAddress address, int port, boolean ssl) throws IOException --> Line_3 $$ long start = System.nanoTime() [CD]
+Line_2 $$ public static Socket createSocket(InetAddress address, int port, boolean ssl) throws IOException --> Line_4 $$ for (int i = 0; ; i++) [CD]
+Line_6 $$ if (ssl) --> Line_7 $$ return CipherFactory.createSocket(address, port) [CD]
+Line_2 $$ public static Socket createSocket(InetAddress address, int port, boolean ssl) throws IOException --> Line_7 $$ return CipherFactory.createSocket(address, port) [FD]
+Line_9 $$ Socket socket = new Socket() --> Line_10 $$ socket.connect(new InetSocketAddress(address, port), SysProperties.SOCKET_CONNECT_TIMEOUT) [FD]
+Line_4 $$ for (int i = 0; ; i++) --> Line_16 $$ if (i >= SysProperties.SOCKET_CONNECT_RETRY) [FD]
+Line_20 $$ long sleep = Math.min(256, i * i) --> Line_21 $$ Thread.sleep(sleep) [FD]

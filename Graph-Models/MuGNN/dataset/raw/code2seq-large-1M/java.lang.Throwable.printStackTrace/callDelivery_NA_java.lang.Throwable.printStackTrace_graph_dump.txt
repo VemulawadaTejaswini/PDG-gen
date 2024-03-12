@@ -1,0 +1,7 @@
+Line_2 $$ public void callDelivery(short w_id, int carrier, TimestampType date) throws IOException --> Line_3 $$ if (m_blockOnBackpressure) [CD]
+Line_3 $$ if (m_blockOnBackpressure) --> Line_4 $$ final DeliveryCallback cb = new DeliveryCallback() [CD]
+Line_3 $$ if (m_blockOnBackpressure) --> Line_5 $$ while (!this.getClientHandle().callProcedure(cb, TPCCConstants.DELIVERY, w_id, carrier, date)) [CD]
+Line_4 $$ final DeliveryCallback cb = new DeliveryCallback() --> Line_5 $$ while (!this.getClientHandle().callProcedure(cb, TPCCConstants.DELIVERY, w_id, carrier, date)) [FD]
+Line_2 $$ public void callDelivery(short w_id, int carrier, TimestampType date) throws IOException --> Line_5 $$ while (!this.getClientHandle().callProcedure(cb, TPCCConstants.DELIVERY, w_id, carrier, date)) [FD]
+Line_3 $$ if (m_blockOnBackpressure) --> Line_13 $$ m_queuedMessage = this.getClientHandle().callProcedure(new DeliveryCallback(), TPCCConstants.DELIVERY, w_id, carrier, date) [CD]
+Line_2 $$ public void callDelivery(short w_id, int carrier, TimestampType date) throws IOException --> Line_13 $$ m_queuedMessage = this.getClientHandle().callProcedure(new DeliveryCallback(), TPCCConstants.DELIVERY, w_id, carrier, date) [FD]

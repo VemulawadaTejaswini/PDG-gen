@@ -1,0 +1,6 @@
+Line_2 $$ public CompletableFuture<Void> stop() --> Line_3 $$ final Server server = this.server.getAndSet(null) [CD]
+Line_2 $$ public CompletableFuture<Void> stop() --> Line_4 $$ if (server == null || server.activePorts().isEmpty()) [CD]
+Line_3 $$ final Server server = this.server.getAndSet(null) --> Line_4 $$ if (server == null || server.activePorts().isEmpty()) [FD]
+Line_4 $$ if (server == null || server.activePorts().isEmpty()) --> Line_5 $$ return CompletableFuture.completedFuture(null) [CD]
+Line_2 $$ public CompletableFuture<Void> stop() --> Line_7 $$ return server.stop() [CD]
+Line_3 $$ final Server server = this.server.getAndSet(null) --> Line_7 $$ return server.stop() [FD]

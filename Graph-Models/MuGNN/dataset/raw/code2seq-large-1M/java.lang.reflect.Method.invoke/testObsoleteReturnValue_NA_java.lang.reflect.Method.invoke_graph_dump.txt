@@ -1,0 +1,4 @@
+Line_2 $$ public void testObsoleteReturnValue() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(Sample.class).visit(Advice.to(ObsoleteReturnValueAdvice.class).on(named(FOO))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testObsoleteReturnValue() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(FOO).invoke(type.getDeclaredConstructor().newInstance()), is((Object) FOO)) [CD]
+Line_2 $$ public void testObsoleteReturnValue() throws Exception --> Line_5 $$ assertThat(type.getDeclaredField(ENTER).get(null), is((Object) 1)) [CD]
+Line_2 $$ public void testObsoleteReturnValue() throws Exception --> Line_6 $$ assertThat(type.getDeclaredField(EXIT).get(null), is((Object) 0)) [CD]

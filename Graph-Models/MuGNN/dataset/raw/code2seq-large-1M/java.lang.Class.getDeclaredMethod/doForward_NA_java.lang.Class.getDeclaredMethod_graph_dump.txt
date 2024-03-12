@@ -1,0 +1,6 @@
+Line_2 $$ public static Iterator<Object> doForward(Iterator batch, int id, EmbeddedSDC sdc) --> Line_3 $$ return Optional.ofNullable(sdc.getSparkProcessorAt(id)).map( t -> [CD]
+Line_2 $$ public static Iterator<Object> doForward(Iterator batch, int id, EmbeddedSDC sdc) --> Line_3 $$ return Optional.ofNullable(sdc.getSparkProcessorAt(id)).map( t -> [FD]
+Line_5 $$ Object processor = t.getClass().getMethod("get").invoke(t) --> Line_6 $$ final Method continueProcessing = processor.getClass().getDeclaredMethod(CONTINUE_PROCESSING, Iterator.class) [FD]
+Line_5 $$ Object processor = t.getClass().getMethod("get").invoke(t) --> Line_7 $$ continueProcessing.invoke(processor, batch) [FD]
+Line_2 $$ public static Iterator<Object> doForward(Iterator batch, int id, EmbeddedSDC sdc) --> Line_7 $$ continueProcessing.invoke(processor, batch) [FD]
+Line_2 $$ public static Iterator<Object> doForward(Iterator batch, int id, EmbeddedSDC sdc) --> Line_8 $$ return getNextBatch(id + 1, sdc) [FD]

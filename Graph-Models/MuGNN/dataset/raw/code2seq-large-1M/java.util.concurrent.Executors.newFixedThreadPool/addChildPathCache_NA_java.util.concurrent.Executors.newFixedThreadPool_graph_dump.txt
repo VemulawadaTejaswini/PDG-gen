@@ -1,0 +1,8 @@
+Line_2 $$ public static void addChildPathCache(String path, PathChildrenCacheListener listener) --> Line_3 $$ NameableExecutor businessExecutor = MycatServer.getInstance().getBusinessExecutor() [CD]
+Line_2 $$ public static void addChildPathCache(String path, PathChildrenCacheListener listener) --> Line_4 $$ ExecutorService executor = businessExecutor == null ? Executors.newFixedThreadPool(5) : businessExecutor [CD]
+Line_6 $$ final PathChildrenCache childrenCache = new PathChildrenCache(getConnection(), path, true) --> Line_7 $$ childrenCache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT) [FD]
+Line_2 $$ public static void addChildPathCache(String path, PathChildrenCacheListener listener) --> Line_8 $$ childrenCache.getListenable().addListener(listener, executor) [FD]
+Line_4 $$ ExecutorService executor = businessExecutor == null ? Executors.newFixedThreadPool(5) : businessExecutor --> Line_8 $$ childrenCache.getListenable().addListener(listener, executor) [FD]
+Line_6 $$ final PathChildrenCache childrenCache = new PathChildrenCache(getConnection(), path, true) --> Line_8 $$ childrenCache.getListenable().addListener(listener, executor) [FD]
+Line_2 $$ public static void addChildPathCache(String path, PathChildrenCacheListener listener) --> Line_9 $$ watchMap.put(path, childrenCache) [FD]
+Line_6 $$ final PathChildrenCache childrenCache = new PathChildrenCache(getConnection(), path, true) --> Line_9 $$ watchMap.put(path, childrenCache) [FD]

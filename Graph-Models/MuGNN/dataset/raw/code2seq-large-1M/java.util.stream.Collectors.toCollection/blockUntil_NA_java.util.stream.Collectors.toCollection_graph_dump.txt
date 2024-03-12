@@ -1,0 +1,6 @@
+Line_2 $$ private void blockUntil(ProposedTimestamp ts) throws TimeIsUncertainException --> Line_3 $$ List<ProposedTimestamp> times = todo.stream().flatMap( p -> p.getProposedTimestamps().stream()).collect(Collectors.toCollection(ArrayList::<>new)) [CD]
+Line_2 $$ private void blockUntil(ProposedTimestamp ts) throws TimeIsUncertainException --> Line_4 $$ times.add(ts) [CD]
+Line_2 $$ private void blockUntil(ProposedTimestamp ts) throws TimeIsUncertainException --> Line_4 $$ times.add(ts) [FD]
+Line_3 $$ List<ProposedTimestamp> times = todo.stream().flatMap( p -> p.getProposedTimestamps().stream()).collect(Collectors.toCollection(ArrayList::<>new)) --> Line_4 $$ times.add(ts) [FD]
+Line_3 $$ List<ProposedTimestamp> times = todo.stream().flatMap( p -> p.getProposedTimestamps().stream()).collect(Collectors.toCollection(ArrayList::<>new)) --> Line_7 $$ ProposedTimestamp.blockUntil(times, maxWait) [FD]
+Line_6 $$ Duration maxWait = getSystem().getMaxWaitForMonotonicClock() --> Line_7 $$ ProposedTimestamp.blockUntil(times, maxWait) [FD]

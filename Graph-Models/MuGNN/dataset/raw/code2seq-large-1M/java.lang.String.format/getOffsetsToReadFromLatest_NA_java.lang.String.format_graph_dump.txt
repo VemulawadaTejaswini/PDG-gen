@@ -1,0 +1,8 @@
+Line_2 $$ public List<Cursor> getOffsetsToReadFromLatest(final String topic) --> Line_3 $$ return getNextOffsets(topic).stream().map( cursor -> [FD]
+Line_2 $$ public List<Cursor> getOffsetsToReadFromLatest(final String topic) --> Line_3 $$ return getNextOffsets(topic).stream().map( cursor -> [CD]
+Line_4 $$ if ("0".equals(cursor.getOffset())) --> Line_5 $$ return new Cursor(cursor.getPartition(), "001-0001--1") [CD]
+Line_4 $$ if ("0".equals(cursor.getOffset())) --> Line_7 $$ final long lastEventOffset = toKafkaOffset(cursor.getOffset()) - 1 [CD]
+Line_4 $$ if ("0".equals(cursor.getOffset())) --> Line_8 $$ final String offset = StringUtils.leftPad(toNakadiOffset(lastEventOffset), CURSOR_OFFSET_LENGTH, '0') [CD]
+Line_7 $$ final long lastEventOffset = toKafkaOffset(cursor.getOffset()) - 1 --> Line_8 $$ final String offset = StringUtils.leftPad(toNakadiOffset(lastEventOffset), CURSOR_OFFSET_LENGTH, '0') [FD]
+Line_4 $$ if ("0".equals(cursor.getOffset())) --> Line_9 $$ return new Cursor(cursor.getPartition(), String.format("001-0001-%s", offset)) [CD]
+Line_8 $$ final String offset = StringUtils.leftPad(toNakadiOffset(lastEventOffset), CURSOR_OFFSET_LENGTH, '0') --> Line_9 $$ return new Cursor(cursor.getPartition(), String.format("001-0001-%s", offset)) [FD]

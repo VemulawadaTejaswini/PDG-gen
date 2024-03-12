@@ -1,0 +1,8 @@
+Line_2 $$ public void storeSheet() throws Exception --> Line_3 $$ if (modified) [CD]
+Line_3 $$ if (modified) --> Line_4 $$ book.getLock().lock() [CD]
+Line_3 $$ if (modified) --> Line_5 $$ Path bookPath = BookManager.getDefaultSavePath(book) [CD]
+Line_5 $$ Path bookPath = BookManager.getDefaultSavePath(book) --> Line_7 $$ Path root = ZipFileSystem.open(bookPath) [FD]
+Line_7 $$ Path root = ZipFileSystem.open(bookPath) --> Line_8 $$ book.storeBookInfo(root) [FD]
+Line_7 $$ Path root = ZipFileSystem.open(bookPath) --> Line_9 $$ Path sheetFolder = root.resolve(INTERNALS_RADIX + getNumber()) [FD]
+Line_9 $$ Path sheetFolder = root.resolve(INTERNALS_RADIX + getNumber()) --> Line_10 $$ sheet.store(sheetFolder, null) [FD]
+Line_7 $$ Path root = ZipFileSystem.open(bookPath) --> Line_11 $$ root.getFileSystem().close() [FD]

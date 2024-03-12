@@ -1,0 +1,8 @@
+Line_2 $$ public ShortDirectPCM changeChannels(int channels) --> Line_3 $$ ByteBuffer samples = getDirectByteBuffer((this.sample.limit() / 2) * channels / this.channels * 2) [CD]
+Line_2 $$ public ShortDirectPCM changeChannels(int channels) --> Line_4 $$ for (long i = 0; i < samples.limit() / 2 / channels; i++) [CD]
+Line_3 $$ ByteBuffer samples = getDirectByteBuffer((this.sample.limit() / 2) * channels / this.channels * 2) --> Line_4 $$ for (long i = 0; i < samples.limit() / 2 / channels; i++) [FD]
+Line_4 $$ for (long i = 0; i < samples.limit() / 2 / channels; i++) --> Line_5 $$ for (int j = 0; j < channels; j++) [CD]
+Line_2 $$ public ShortDirectPCM changeChannels(int channels) --> Line_5 $$ for (int j = 0; j < channels; j++) [FD]
+Line_5 $$ for (int j = 0; j < channels; j++) --> Line_6 $$ samples.putShort((int) (i * channels + j) * 2, this.sample.getShort((int) (i * this.channels) * 2)) [CD]
+Line_3 $$ ByteBuffer samples = getDirectByteBuffer((this.sample.limit() / 2) * channels / this.channels * 2) --> Line_6 $$ samples.putShort((int) (i * channels + j) * 2, this.sample.getShort((int) (i * this.channels) * 2)) [FD]
+Line_2 $$ public ShortDirectPCM changeChannels(int channels) --> Line_9 $$ return new ShortDirectPCM(channels, sampleRate, this.start * channels / this.channels, this.len * channels / this.channels, samples) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void bindWhenUsingSystemEnvironmentToOverride() --> Line_3 $$ MockEnvironment environment = new MockEnvironment() [CD]
+Line_2 $$ public void bindWhenUsingSystemEnvironmentToOverride() --> Line_4 $$ SystemEnvironmentPropertySource propertySource = new SystemEnvironmentPropertySource("override", Collections.singletonMap("foo.password", "test")) [CD]
+Line_2 $$ public void bindWhenUsingSystemEnvironmentToOverride() --> Line_5 $$ environment.getPropertySources().addFirst(propertySource) [CD]
+Line_4 $$ SystemEnvironmentPropertySource propertySource = new SystemEnvironmentPropertySource("override", Collections.singletonMap("foo.password", "test")) --> Line_5 $$ environment.getPropertySources().addFirst(propertySource) [FD]
+Line_3 $$ MockEnvironment environment = new MockEnvironment() --> Line_5 $$ environment.getPropertySources().addFirst(propertySource) [FD]
+Line_2 $$ public void bindWhenUsingSystemEnvironmentToOverride() --> Line_6 $$ PasswordProperties result = Binder.get(environment).bind("foo", Bindable.of(PasswordProperties.class)).get() [CD]
+Line_3 $$ MockEnvironment environment = new MockEnvironment() --> Line_6 $$ PasswordProperties result = Binder.get(environment).bind("foo", Bindable.of(PasswordProperties.class)).get() [FD]
+Line_2 $$ public void bindWhenUsingSystemEnvironmentToOverride() --> Line_7 $$ assertThat(result.getPassword()).isEqualTo("test") [CD]

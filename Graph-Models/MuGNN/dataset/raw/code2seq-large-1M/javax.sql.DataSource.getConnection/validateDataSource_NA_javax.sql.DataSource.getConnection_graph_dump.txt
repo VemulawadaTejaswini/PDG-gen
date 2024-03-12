@@ -1,0 +1,5 @@
+Line_2 $$ private boolean validateDataSource(DataSource ds) throws SQLException --> Line_3 $$ try (Connection connection = ds.getConnection()) [FD]
+Line_3 $$ try (Connection connection = ds.getConnection()) --> Line_4 $$ try (Statement statement = connection.createStatement()) [FD]
+Line_4 $$ try (Statement statement = connection.createStatement()) --> Line_5 $$ try (ResultSet rs = statement.executeQuery("SELECT 1")) [FD]
+Line_5 $$ try (ResultSet rs = statement.executeQuery("SELECT 1")) --> Line_6 $$ Assert.assertTrue(rs.next()) [FD]
+Line_5 $$ try (ResultSet rs = statement.executeQuery("SELECT 1")) --> Line_7 $$ Assert.assertEquals(1, rs.getInt(1)) [FD]

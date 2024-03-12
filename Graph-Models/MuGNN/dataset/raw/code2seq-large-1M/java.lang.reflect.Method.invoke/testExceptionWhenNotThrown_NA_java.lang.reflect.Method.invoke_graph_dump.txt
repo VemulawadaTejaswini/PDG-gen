@@ -1,0 +1,3 @@
+Line_2 $$ public void testExceptionWhenNotThrown() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(Sample.class).visit(Advice.to(ThrowableAdvice.class).on(named(FOO))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testExceptionWhenNotThrown() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(FOO).invoke(type.getDeclaredConstructor().newInstance()), is((Object) (FOO))) [CD]
+Line_2 $$ public void testExceptionWhenNotThrown() throws Exception --> Line_5 $$ assertThat(type.getDeclaredField(THROWABLE).get(null), nullValue(Object.class)) [CD]

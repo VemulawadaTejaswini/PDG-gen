@@ -1,0 +1,7 @@
+Line_2 $$ public static void verifyIncorrectJaasConf(ThriftServer server, Map<String, Object> conf, String jaas, Class<? extends Exception> expectedException) --> Line_3 $$ Map<String, Object> badConf = new HashMap(conf) [CD]
+Line_2 $$ public static void verifyIncorrectJaasConf(ThriftServer server, Map<String, Object> conf, String jaas, Class<? extends Exception> expectedException) --> Line_4 $$ badConf.put("java.security.auth.login.config", jaas) [FD]
+Line_2 $$ public static void verifyIncorrectJaasConf(ThriftServer server, Map<String, Object> conf, String jaas, Class<? extends Exception> expectedException) --> Line_4 $$ badConf.put("java.security.auth.login.config", jaas) [CD]
+Line_3 $$ Map<String, Object> badConf = new HashMap(conf) --> Line_4 $$ badConf.put("java.security.auth.login.config", jaas) [FD]
+Line_2 $$ public static void verifyIncorrectJaasConf(ThriftServer server, Map<String, Object> conf, String jaas, Class<? extends Exception> expectedException) --> Line_5 $$ try (NimbusClient client = new NimbusClient(badConf, "localhost", server.getPort(), NIMBUS_TIMEOUT)) [FD]
+Line_5 $$ try (NimbusClient client = new NimbusClient(badConf, "localhost", server.getPort(), NIMBUS_TIMEOUT)) --> Line_6 $$ client.getClient().activate("bad_auth_test_topology") [FD]
+Line_2 $$ public static void verifyIncorrectJaasConf(ThriftServer server, Map<String, Object> conf, String jaas, Class<? extends Exception> expectedException) --> Line_10 $$ assert (Utils.exceptionCauseIsInstanceOf(expectedException, e)) [FD]

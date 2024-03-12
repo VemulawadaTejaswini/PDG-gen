@@ -1,0 +1,5 @@
+Line_2 $$ public <B, A extends B> void read(ByteBuffer dst, A attachment, CompletionHandler<Integer, B> handler) --> Line_3 $$ WrapperFuture<Integer, B> future = new WrapperFuture(handler, attachment) [CD]
+Line_2 $$ public <B, A extends B> void read(ByteBuffer dst, A attachment, CompletionHandler<Integer, B> handler) --> Line_4 $$ if (!reading.compareAndSet(false, true)) [CD]
+Line_2 $$ public <B, A extends B> void read(ByteBuffer dst, A attachment, CompletionHandler<Integer, B> handler) --> Line_7 $$ ReadTask readTask = new ReadTask(dst, future) [CD]
+Line_2 $$ public <B, A extends B> void read(ByteBuffer dst, A attachment, CompletionHandler<Integer, B> handler) --> Line_8 $$ executor.execute(readTask) [CD]
+Line_7 $$ ReadTask readTask = new ReadTask(dst, future) --> Line_8 $$ executor.execute(readTask) [FD]

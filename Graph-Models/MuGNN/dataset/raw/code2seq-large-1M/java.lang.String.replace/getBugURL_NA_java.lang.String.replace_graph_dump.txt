@@ -1,0 +1,8 @@
+Line_2 $$ public String getBugURL(String endpointURL, String bugID) --> Line_3 $$ String url = getUrlWithRest() + "Defect?where=Scope.Name='" + getUrlEncodedProjectName() + "';Number='" + bugID + "'&sel=Number" [CD]
+Line_2 $$ public String getBugURL(String endpointURL, String bugID) --> Line_4 $$ List<Assets.Asset> assets = getAssets(url) [CD]
+Line_3 $$ String url = getUrlWithRest() + "Defect?where=Scope.Name='" + getUrlEncodedProjectName() + "';Number='" + bugID + "'&sel=Number" --> Line_4 $$ List<Assets.Asset> assets = getAssets(url) [FD]
+Line_2 $$ public String getBugURL(String endpointURL, String bugID) --> Line_5 $$ if (assets == null || assets.isEmpty()) [CD]
+Line_4 $$ List<Assets.Asset> assets = getAssets(url) --> Line_5 $$ if (assets == null || assets.isEmpty()) [FD]
+Line_5 $$ if (assets == null || assets.isEmpty()) --> Line_6 $$ return getUrlWithRest().replace("/rest-1.v1/Data/", "") [CD]
+Line_5 $$ if (assets == null || assets.isEmpty()) --> Line_8 $$ return getUrlWithRest().replace("/rest-1.v1/Data/", "/defect.mvc/Summary?oidToken=") + assets.get(0).getId() [CD]
+Line_4 $$ List<Assets.Asset> assets = getAssets(url) --> Line_8 $$ return getUrlWithRest().replace("/rest-1.v1/Data/", "/defect.mvc/Summary?oidToken=") + assets.get(0).getId() [FD]

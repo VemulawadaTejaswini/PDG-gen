@@ -1,0 +1,8 @@
+Line_2 $$ private static long logRtpLosses(long totalNbLost, long totalNbReceived, long lastLogTime) --> Line_3 $$ double percentLost = ((double) totalNbLost) / ((double) (totalNbLost + totalNbReceived)) [CD]
+Line_2 $$ private static long logRtpLosses(long totalNbLost, long totalNbReceived, long lastLogTime) --> Line_4 $$ if (percentLost > 0.05) [CD]
+Line_3 $$ double percentLost = ((double) totalNbLost) / ((double) (totalNbLost + totalNbReceived)) --> Line_4 $$ if (percentLost > 0.05) [FD]
+Line_4 $$ if (percentLost > 0.05) --> Line_5 $$ long currentTime = System.currentTimeMillis() [CD]
+Line_4 $$ if (percentLost > 0.05) --> Line_6 $$ if (currentTime - lastLogTime >= 5000) [CD]
+Line_6 $$ if (currentTime - lastLogTime >= 5000) --> Line_7 $$ logger.info("RTP lost > 5%: " + percentLost) [CD]
+Line_6 $$ if (currentTime - lastLogTime >= 5000) --> Line_8 $$ return currentTime [CD]
+Line_2 $$ private static long logRtpLosses(long totalNbLost, long totalNbReceived, long lastLogTime) --> Line_11 $$ return lastLogTime [CD]

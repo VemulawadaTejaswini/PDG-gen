@@ -1,0 +1,7 @@
+Line_2 $$ public String sanitizeString(String string, String info) --> Line_3 $$ if (policy == null) [CD]
+Line_3 $$ if (policy == null) --> Line_4 $$ log.error("Cannot sanitize, no policy registered") [CD]
+Line_3 $$ if (policy == null) --> Line_5 $$ return string [CD]
+Line_2 $$ public String sanitizeString(String string, String info) --> Line_8 $$ CleanResults cr = new AntiSamy().scan(string, policy) [FD]
+Line_8 $$ CleanResults cr = new AntiSamy().scan(string, policy) --> Line_9 $$ for (Object err : cr.getErrorMessages()) [FD]
+Line_9 $$ for (Object err : cr.getErrorMessages()) --> Line_10 $$ log.debug(String.format("Sanitizing %s: %s", info == null ? "" : info, err)) [FD]
+Line_8 $$ CleanResults cr = new AntiSamy().scan(string, policy) --> Line_12 $$ return cr.getCleanHTML() [FD]

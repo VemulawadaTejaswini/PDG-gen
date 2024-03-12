@@ -1,0 +1,6 @@
+Line_2 $$ public <K> void insertMulti(Map<K, String> keyValues, Serializer<K> keySerializer) --> Line_3 $$ Mutator<K> m = createMutator(keyspace, keySerializer) [FD]
+Line_2 $$ public <K> void insertMulti(Map<K, String> keyValues, Serializer<K> keySerializer) --> Line_3 $$ Mutator<K> m = createMutator(keyspace, keySerializer) [CD]
+Line_2 $$ public <K> void insertMulti(Map<K, String> keyValues, Serializer<K> keySerializer) --> Line_4 $$ for (Map.Entry<K, String> keyValue : keyValues.entrySet()) [FD]
+Line_3 $$ Mutator<K> m = createMutator(keyspace, keySerializer) --> Line_5 $$ m.addInsertion(keyValue.getKey(), CF_NAME, createColumn(COLUMN_NAME, keyValue.getValue(), keyspace.createClock(), serializer, serializer)) [FD]
+Line_2 $$ public <K> void insertMulti(Map<K, String> keyValues, Serializer<K> keySerializer) --> Line_7 $$ m.execute() [CD]
+Line_3 $$ Mutator<K> m = createMutator(keyspace, keySerializer) --> Line_7 $$ m.execute() [FD]

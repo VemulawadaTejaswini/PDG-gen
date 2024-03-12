@@ -1,0 +1,6 @@
+Line_2 $$ private void assertGotCancelled(final String statement, @Nullable final Object[] params, boolean killAll) throws Exception --> Line_4 $$ ActionFuture<SQLResponse> future = sqlExecutor.execute(statement, params) [FD]
+Line_2 $$ private void assertGotCancelled(final String statement, @Nullable final Object[] params, boolean killAll) throws Exception --> Line_5 $$ String jobId = waitForJobEntry(statement) [FD]
+Line_6 $$ if (jobId == null) --> Line_7 $$ return [CD]
+Line_9 $$ if (killAll) --> Line_10 $$ execute("kill all") [CD]
+Line_9 $$ if (killAll) --> Line_12 $$ execute("kill ?", $(jobId)) [CD]
+Line_4 $$ ActionFuture<SQLResponse> future = sqlExecutor.execute(statement, params) --> Line_15 $$ future.get(10, TimeUnit.SECONDS) [FD]

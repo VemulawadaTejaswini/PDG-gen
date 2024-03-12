@@ -1,0 +1,7 @@
+Line_2 $$ public void testLoggerSettings() --> Line_4 $$ Settings settings = Settings.builder().put("logger._root", "TRACE").put("logger.transport", "INFO").build() [CD]
+Line_2 $$ public void testLoggerSettings() --> Line_5 $$ SettingsModule module = new SettingsModule(settings) [CD]
+Line_2 $$ public void testLoggerSettings() --> Line_6 $$ assertInstanceBinding(module, Settings.class, ( s) -> s == settings) [CD]
+Line_5 $$ SettingsModule module = new SettingsModule(settings) --> Line_6 $$ assertInstanceBinding(module, Settings.class, ( s) -> s == settings) [FD]
+Line_2 $$ public void testLoggerSettings() --> Line_9 $$ Settings settings = Settings.builder().put("logger._root", "BOOM").put("logger.transport", "WOW").build() [CD]
+Line_2 $$ public void testLoggerSettings() --> Line_10 $$ IllegalArgumentException ex = expectThrows(IllegalArgumentException.class, () -> new SettingsModule(settings)) [CD]
+Line_2 $$ public void testLoggerSettings() --> Line_11 $$ assertEquals("Unknown level constant [BOOM].", ex.getMessage()) [CD]

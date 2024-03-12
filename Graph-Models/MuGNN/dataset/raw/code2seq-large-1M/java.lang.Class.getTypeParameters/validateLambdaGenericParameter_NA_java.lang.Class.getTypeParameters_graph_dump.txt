@@ -1,0 +1,6 @@
+Line_2 $$ private static void validateLambdaGenericParameter(Type t) --> Line_3 $$ if (!(t instanceof Class)) [CD]
+Line_3 $$ if (!(t instanceof Class)) --> Line_4 $$ return [CD]
+Line_2 $$ private static void validateLambdaGenericParameter(Type t) --> Line_6 $$ final Class<?> clazz = (Class<?>) t [CD]
+Line_2 $$ private static void validateLambdaGenericParameter(Type t) --> Line_7 $$ if (clazz.getTypeParameters().length > 0) [CD]
+Line_6 $$ final Class<?> clazz = (Class<?>) t --> Line_7 $$ if (clazz.getTypeParameters().length > 0) [FD]
+Line_6 $$ final Class<?> clazz = (Class<?>) t --> Line_8 $$ throw new InvalidTypesException("The generic type parameters of '" + clazz.getSimpleName() + "' are missing. \n" + "It seems that your compiler has not stored them into the .class file. \n" + "Currently, only the Eclipse JDT compiler preserves the type information necessary to use the lambdas feature type-safely. \n" + "See the documentation for more information about how to compile jobs containing lambda expressions.") [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public <T> T asEntity(Class<T> entityClass) --> Line_4 $$ T data = newEntity(entityClass) [FD]
+Line_4 $$ T data = newEntity(entityClass) --> Line_6 $$ Field field = LinqUtils.first(getFields(data, String.class),  f -> namesEqual(f.getName(), item.getName())) [FD]
+Line_7 $$ if (field == null) --> Line_8 $$ return [CD]
+Line_4 $$ T data = newEntity(entityClass) --> Line_10 $$ field.set(data, ((IHasValue) getValueField(item, this)).getValue()) [FD]
+Line_2 $$ public <T> T asEntity(Class<T> entityClass) --> Line_16 $$ throw exception("Can't get entity from Form" + getName() + " for class: " + entityClass.getClass()) [FD]

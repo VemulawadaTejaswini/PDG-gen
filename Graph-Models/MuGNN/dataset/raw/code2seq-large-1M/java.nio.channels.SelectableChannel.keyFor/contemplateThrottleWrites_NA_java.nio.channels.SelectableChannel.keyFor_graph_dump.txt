@@ -1,0 +1,6 @@
+Line_2 $$ public void contemplateThrottleWrites(int bytesJustWritten) throws ClosedChannelException --> Line_4 $$ if (bytesWritten > maxBytesInInterval) [CD]
+Line_5 $$ for (SelectableChannel channel : channels) --> Line_6 $$ final SelectionKey selectionKey = channel.keyFor(selector) [FD]
+Line_6 $$ final SelectionKey selectionKey = channel.keyFor(selector) --> Line_7 $$ if (selectionKey != null) [FD]
+Line_7 $$ if (selectionKey != null) --> Line_8 $$ selectionKey.interestOps(selectionKey.interestOps() & ~OP_WRITE) [CD]
+Line_6 $$ final SelectionKey selectionKey = channel.keyFor(selector) --> Line_8 $$ selectionKey.interestOps(selectionKey.interestOps() & ~OP_WRITE) [FD]
+Line_9 $$ if (LOG.isDebugEnabled()) --> Line_10 $$ LOG.debug("Throttling UDP writes") [CD]

@@ -1,0 +1,7 @@
+Line_3 $$ final int hash = computeHashForOperationAndDoIncrementalRehash(key, namespace) --> Line_4 $$ final StateTableEntry<K, N, S>[] tab = selectActiveTable(hash) [FD]
+Line_7 $$ if (e.hash == hash && key.equals(e.key) && namespace.equals(e.namespace)) --> Line_8 $$ if (e.entryVersion < highestRequiredSnapshotVersion) [CD]
+Line_8 $$ if (e.entryVersion < highestRequiredSnapshotVersion) --> Line_9 $$ e = handleChainedEntryCopyOnWrite(tab, index, e) [CD]
+Line_5 $$ int index = hash & (tab.length - 1) --> Line_9 $$ e = handleChainedEntryCopyOnWrite(tab, index, e) [FD]
+Line_7 $$ if (e.hash == hash && key.equals(e.key) && namespace.equals(e.namespace)) --> Line_11 $$ return e [CD]
+Line_15 $$ if (size() > threshold) --> Line_16 $$ doubleCapacity() [CD]
+Line_3 $$ final int hash = computeHashForOperationAndDoIncrementalRehash(key, namespace) --> Line_18 $$ return addNewStateTableEntry(tab, key, namespace, hash) [FD]

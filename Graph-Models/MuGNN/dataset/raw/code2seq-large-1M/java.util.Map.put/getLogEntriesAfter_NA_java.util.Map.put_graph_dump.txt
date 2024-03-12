@@ -1,0 +1,4 @@
+Line_3 $$ Map<String, Object> params = getParams(eventIds) --> Line_5 $$ params.put("repoId", repositoryId) [FD]
+Line_3 $$ Map<String, Object> params = getParams(eventIds) --> Line_6 $$ params.put("minId", Long.valueOf(logIdOffset)) [FD]
+Line_4 $$ String paramNames = getParamNames(eventIds) --> Line_7 $$ String query = String.format("FROM LogEntry log" + " WHERE log.id >= :minId" + "   AND log.eventId IN (%s)" + "   AND log.repositoryId = :repoId" + " ORDER BY log.id", paramNames) [FD]
+Line_3 $$ Map<String, Object> params = getParams(eventIds) --> Line_12 $$ return (List<LogEntry>) nativeQuery(query, params, 1, limit) [FD]

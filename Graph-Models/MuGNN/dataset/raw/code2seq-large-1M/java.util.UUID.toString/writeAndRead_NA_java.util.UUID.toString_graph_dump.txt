@@ -1,0 +1,8 @@
+Line_2 $$ public byte[] writeAndRead(byte[] txBuffer) throws RuntimeIOException --> Line_3 $$ SpiWriteAndRead request = new SpiWriteAndRead(controller, chipSelect, txBuffer, UUID.randomUUID().toString()) [CD]
+Line_2 $$ public byte[] writeAndRead(byte[] txBuffer) throws RuntimeIOException --> Line_4 $$ SpiResponse response = deviceFactory.getProtocolHandler().request(request) [CD]
+Line_3 $$ SpiWriteAndRead request = new SpiWriteAndRead(controller, chipSelect, txBuffer, UUID.randomUUID().toString()) --> Line_4 $$ SpiResponse response = deviceFactory.getProtocolHandler().request(request) [FD]
+Line_2 $$ public byte[] writeAndRead(byte[] txBuffer) throws RuntimeIOException --> Line_5 $$ if (response.getStatus() != Response.Status.OK) [CD]
+Line_4 $$ SpiResponse response = deviceFactory.getProtocolHandler().request(request) --> Line_5 $$ if (response.getStatus() != Response.Status.OK) [FD]
+Line_4 $$ SpiResponse response = deviceFactory.getProtocolHandler().request(request) --> Line_6 $$ throw new RuntimeIOException("Error in SPI writeAndRead: " + response.getDetail()) [FD]
+Line_2 $$ public byte[] writeAndRead(byte[] txBuffer) throws RuntimeIOException --> Line_8 $$ return response.getRxData() [CD]
+Line_4 $$ SpiResponse response = deviceFactory.getProtocolHandler().request(request) --> Line_8 $$ return response.getRxData() [FD]

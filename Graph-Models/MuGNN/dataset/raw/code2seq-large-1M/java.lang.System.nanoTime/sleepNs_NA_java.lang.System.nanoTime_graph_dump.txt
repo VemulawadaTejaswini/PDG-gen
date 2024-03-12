@@ -1,0 +1,6 @@
+Line_2 $$ private void sleepNs(final long ns) --> Line_3 $$ long now = System.nanoTime() [CD]
+Line_2 $$ private void sleepNs(final long ns) --> Line_4 $$ final long deadline = now + ns [CD]
+Line_2 $$ private void sleepNs(final long ns) --> Line_5 $$ while ((now = System.nanoTime()) < deadline) [CD]
+Line_4 $$ final long deadline = now + ns --> Line_5 $$ while ((now = System.nanoTime()) < deadline) [FD]
+Line_3 $$ long now = System.nanoTime() --> Line_5 $$ while ((now = System.nanoTime()) < deadline) [FD]
+Line_5 $$ while ((now = System.nanoTime()) < deadline) --> Line_6 $$ idleStrategy.idle() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public RedisVersion getRedisVersion() --> Line_3 $$ if (redisVersion == null) [CD]
+Line_3 $$ if (redisVersion == null) --> Line_4 $$ RedisConnection c = createRedisClientInstance().connect() [CD]
+Line_3 $$ if (redisVersion == null) --> Line_5 $$ Map<String, String> serverMap = c.sync(RedisCommands.INFO_SERVER) [CD]
+Line_4 $$ RedisConnection c = createRedisClientInstance().connect() --> Line_5 $$ Map<String, String> serverMap = c.sync(RedisCommands.INFO_SERVER) [FD]
+Line_5 $$ Map<String, String> serverMap = c.sync(RedisCommands.INFO_SERVER) --> Line_6 $$ redisVersion = new RedisVersion(serverMap.get("redis_version")) [FD]
+Line_3 $$ if (redisVersion == null) --> Line_7 $$ c.closeAsync() [CD]
+Line_4 $$ RedisConnection c = createRedisClientInstance().connect() --> Line_7 $$ c.closeAsync() [FD]
+Line_2 $$ public RedisVersion getRedisVersion() --> Line_9 $$ return redisVersion [CD]

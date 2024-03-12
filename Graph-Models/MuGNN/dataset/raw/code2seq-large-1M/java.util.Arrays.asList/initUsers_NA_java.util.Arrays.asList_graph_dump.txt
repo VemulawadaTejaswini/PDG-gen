@@ -1,0 +1,4 @@
+Line_2 $$ private void initUsers() --> Line_3 $$ log.info("start users initialization  ...") [CD]
+Line_2 $$ private void initUsers() --> Line_4 $$ this.users.deleteAll().thenMany(Flux.just("user", "admin").flatMap( username -> [CD]
+Line_5 $$ List<String> roles = "user".equals(username) ? Arrays.asList("ROLE_USER") : Arrays.asList("ROLE_USER", "ROLE_ADMIN") --> Line_6 $$ User user = User.builder().roles(roles).username(username).password(passwordEncoder.encode("password")).build() [FD]
+Line_6 $$ User user = User.builder().roles(roles).username(username).password(passwordEncoder.encode("password")).build() --> Line_7 $$ return this.users.save(user) [FD]

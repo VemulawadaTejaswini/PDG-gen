@@ -1,0 +1,7 @@
+Line_2 $$ private void issueRequests(Supplier<Integer> clientNumberSupplier) throws InterruptedException --> Line_3 $$ for (int i = 0; i < totalQueriesPerThread / (epochs * sequences); i++) [CD]
+Line_3 $$ for (int i = 0; i < totalQueriesPerThread / (epochs * sequences); i++) --> Line_4 $$ int clientNumber = clientNumberSupplier.get() [CD]
+Line_2 $$ private void issueRequests(Supplier<Integer> clientNumberSupplier) throws InterruptedException --> Line_4 $$ int clientNumber = clientNumberSupplier.get() [FD]
+Line_3 $$ for (int i = 0; i < totalQueriesPerThread / (epochs * sequences); i++) --> Line_5 $$ requestCounters.get(toClientId(clientNumber)).addRequest(executeWasAllowed(chain, clientNumber)) [CD]
+Line_4 $$ int clientNumber = clientNumberSupplier.get() --> Line_5 $$ requestCounters.get(toClientId(clientNumber)).addRequest(executeWasAllowed(chain, clientNumber)) [FD]
+Line_3 $$ for (int i = 0; i < totalQueriesPerThread / (epochs * sequences); i++) --> Line_6 $$ if (!isInPeak()) [CD]
+Line_6 $$ if (!isInPeak()) --> Line_7 $$ Thread.sleep(sleepMsBetweenRequests) [CD]

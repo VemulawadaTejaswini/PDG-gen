@@ -1,0 +1,6 @@
+Line_2 $$ public static UUID getTimeBasedUuid() --> Line_3 $$ final long time = ((System.currentTimeMillis() * HUNDRED_NANOS_PER_MILLI) + NUM_100NS_INTERVALS_SINCE_UUID_EPOCH) + (COUNT.incrementAndGet() % HUNDRED_NANOS_PER_MILLI) [CD]
+Line_2 $$ public static UUID getTimeBasedUuid() --> Line_4 $$ final long timeLow = (time & LOW_MASK) << SHIFT_4 [CD]
+Line_2 $$ public static UUID getTimeBasedUuid() --> Line_5 $$ final long timeMid = (time & MID_MASK) >> SHIFT_2 [CD]
+Line_2 $$ public static UUID getTimeBasedUuid() --> Line_6 $$ final long timeHi = (time & HIGH_MASK) >> SHIFT_6 [CD]
+Line_2 $$ public static UUID getTimeBasedUuid() --> Line_7 $$ final long most = timeLow | timeMid | TYPE1 | timeHi [CD]
+Line_2 $$ public static UUID getTimeBasedUuid() --> Line_8 $$ return new UUID(most, LEAST) [CD]

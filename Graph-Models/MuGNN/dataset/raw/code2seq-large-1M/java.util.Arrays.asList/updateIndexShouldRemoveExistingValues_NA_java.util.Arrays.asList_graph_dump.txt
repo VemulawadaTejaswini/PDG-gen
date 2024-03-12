@@ -1,0 +1,5 @@
+Line_2 $$ public void updateIndexShouldRemoveExistingValues() --> Line_3 $$ when(connectionMock.keys(any(byte[].class))).thenReturn(new LinkedHashSet(Arrays.asList("persons:firstname:rand".getBytes(CHARSET)))) [CD]
+Line_2 $$ public void updateIndexShouldRemoveExistingValues() --> Line_4 $$ writer.updateIndexes(KEY_BIN, Collections.<IndexedData>singleton(new SimpleIndexedPropertyValue(KEYSPACE, "firstname", "Rand"))) [CD]
+Line_2 $$ public void updateIndexShouldRemoveExistingValues() --> Line_5 $$ verify(connectionMock).sAdd(eq("persons:firstname:Rand".getBytes(CHARSET)), eq(KEY_BIN)) [CD]
+Line_2 $$ public void updateIndexShouldRemoveExistingValues() --> Line_6 $$ verify(connectionMock).sAdd(eq("persons:key-1:idx".getBytes(CHARSET)), eq("persons:firstname:Rand".getBytes(CHARSET))) [CD]
+Line_2 $$ public void updateIndexShouldRemoveExistingValues() --> Line_7 $$ verify(connectionMock, times(1)).sRem(any(byte[].class), eq(KEY_BIN)) [CD]

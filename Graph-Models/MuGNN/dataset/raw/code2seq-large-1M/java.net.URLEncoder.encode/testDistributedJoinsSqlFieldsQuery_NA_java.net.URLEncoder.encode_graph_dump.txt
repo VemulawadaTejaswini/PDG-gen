@@ -1,0 +1,8 @@
+Line_2 $$ public void testDistributedJoinsSqlFieldsQuery() throws Exception --> Line_3 $$ String qry = "select * from \"person\".Person p, \"organization\".Organization o where o.id = p.orgId" [CD]
+Line_2 $$ public void testDistributedJoinsSqlFieldsQuery() throws Exception --> Line_4 $$ String ret = content("person", GridRestCommand.EXECUTE_SQL_FIELDS_QUERY, "distributedJoins", "true", "pageSize", "10", "qry", URLEncoder.encode(qry, CHARSET)) [CD]
+Line_3 $$ String qry = "select * from \"person\".Person p, \"organization\".Organization o where o.id = p.orgId" --> Line_4 $$ String ret = content("person", GridRestCommand.EXECUTE_SQL_FIELDS_QUERY, "distributedJoins", "true", "pageSize", "10", "qry", URLEncoder.encode(qry, CHARSET)) [FD]
+Line_2 $$ public void testDistributedJoinsSqlFieldsQuery() throws Exception --> Line_5 $$ JsonNode items = jsonResponse(ret).get("items") [CD]
+Line_4 $$ String ret = content("person", GridRestCommand.EXECUTE_SQL_FIELDS_QUERY, "distributedJoins", "true", "pageSize", "10", "qry", URLEncoder.encode(qry, CHARSET)) --> Line_5 $$ JsonNode items = jsonResponse(ret).get("items") [FD]
+Line_2 $$ public void testDistributedJoinsSqlFieldsQuery() throws Exception --> Line_6 $$ assertEquals(4, items.size()) [CD]
+Line_5 $$ JsonNode items = jsonResponse(ret).get("items") --> Line_6 $$ assertEquals(4, items.size()) [FD]
+Line_2 $$ public void testDistributedJoinsSqlFieldsQuery() throws Exception --> Line_7 $$ assertFalse(queryCursorFound()) [CD]

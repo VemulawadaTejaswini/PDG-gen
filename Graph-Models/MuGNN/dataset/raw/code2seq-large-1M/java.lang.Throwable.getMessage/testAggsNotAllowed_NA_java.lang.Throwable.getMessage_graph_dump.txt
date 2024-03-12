@@ -1,0 +1,6 @@
+Line_2 $$ public void testAggsNotAllowed() --> Line_3 $$ List<RatedDocument> ratedDocs = Arrays.asList(new RatedDocument("index1", "id1", 1)) [CD]
+Line_2 $$ public void testAggsNotAllowed() --> Line_4 $$ SearchSourceBuilder query = new SearchSourceBuilder() [CD]
+Line_2 $$ public void testAggsNotAllowed() --> Line_5 $$ query.aggregation(AggregationBuilders.terms("fieldName")) [CD]
+Line_4 $$ SearchSourceBuilder query = new SearchSourceBuilder() --> Line_5 $$ query.aggregation(AggregationBuilders.terms("fieldName")) [FD]
+Line_2 $$ public void testAggsNotAllowed() --> Line_6 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> new RatedRequest("id", ratedDocs, query)) [CD]
+Line_2 $$ public void testAggsNotAllowed() --> Line_7 $$ assertEquals("Query in rated requests should not contain aggregations.", e.getMessage()) [CD]

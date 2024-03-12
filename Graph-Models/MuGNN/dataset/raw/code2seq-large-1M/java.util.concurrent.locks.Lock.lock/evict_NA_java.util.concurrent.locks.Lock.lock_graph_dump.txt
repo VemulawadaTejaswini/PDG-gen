@@ -1,0 +1,7 @@
+Line_2 $$ public boolean evict(int index, boolean shrink) --> Line_3 $$ Lock lock = writeLock() [CD]
+Line_2 $$ public boolean evict(int index, boolean shrink) --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ Lock lock = writeLock() --> Line_4 $$ lock.lock() [FD]
+Line_2 $$ public boolean evict(int index, boolean shrink) --> Line_6 $$ Entry<K, V> entry = getEntryAtTableOffset(index) [FD]
+Line_2 $$ public boolean evict(int index, boolean shrink) --> Line_7 $$ boolean evicted = super.evict(index, shrink) [FD]
+Line_8 $$ if (evicted) --> Line_9 $$ evictionListener.onEviction(entry.getKey(), entry.getValue()) [CD]
+Line_3 $$ Lock lock = writeLock() --> Line_13 $$ lock.unlock() [FD]

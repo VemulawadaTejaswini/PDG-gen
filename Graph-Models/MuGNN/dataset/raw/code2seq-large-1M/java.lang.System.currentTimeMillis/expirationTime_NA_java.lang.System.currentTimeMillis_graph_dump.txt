@@ -1,0 +1,7 @@
+Line_2 $$ public long expirationTime(final K key, final V value) --> Line_3 $$ if (timeToLiveMillis >= 0L) [CD]
+Line_3 $$ if (timeToLiveMillis >= 0L) --> Line_4 $$ final long now = System.currentTimeMillis() [CD]
+Line_3 $$ if (timeToLiveMillis >= 0L) --> Line_5 $$ if (now > Long.MAX_VALUE - timeToLiveMillis) [CD]
+Line_4 $$ final long now = System.currentTimeMillis() --> Line_5 $$ if (now > Long.MAX_VALUE - timeToLiveMillis) [FD]
+Line_5 $$ if (now > Long.MAX_VALUE - timeToLiveMillis) --> Line_6 $$ return -1 [CD]
+Line_3 $$ if (timeToLiveMillis >= 0L) --> Line_8 $$ return now + timeToLiveMillis [CD]
+Line_2 $$ public long expirationTime(final K key, final V value) --> Line_10 $$ return -1L [CD]

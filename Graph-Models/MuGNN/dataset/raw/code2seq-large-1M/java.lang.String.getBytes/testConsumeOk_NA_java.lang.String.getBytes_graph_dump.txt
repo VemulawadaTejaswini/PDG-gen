@@ -1,0 +1,7 @@
+Line_2 $$ public void testConsumeOk() --> Line_3 $$ List<? extends ConsumerRecord<byte[], byte[]>> records = Arrays.asList(new BinaryConsumerRecord(topicName, "key1".getBytes(), "value1".getBytes(), 0, 10)) [CD]
+Line_3 $$ List<? extends ConsumerRecord<byte[], byte[]>> records = Arrays.asList(new BinaryConsumerRecord(topicName, "key1".getBytes(), "value1".getBytes(), 0, 10)) --> Line_5 $$ expectConsume(EmbeddedFormat.BINARY, records) [FD]
+Line_6 $$ final Response response = request(topicName, partitionId, offset, mediatype.header) --> Line_8 $$ assertOKResponse(response, expectedMediatype) [FD]
+Line_7 $$ final String expectedMediatype = mediatype.header != null ? mediatype.expected : Versions.KAFKA_V1_JSON_BINARY --> Line_8 $$ assertOKResponse(response, expectedMediatype) [FD]
+Line_6 $$ final Response response = request(topicName, partitionId, offset, mediatype.header) --> Line_9 $$ final List<BinaryConsumerRecord> readResponseRecords = TestUtils.tryReadEntityOrLog(response, new GenericType<List<BinaryConsumerRecord>>() [FD]
+Line_3 $$ List<? extends ConsumerRecord<byte[], byte[]>> records = Arrays.asList(new BinaryConsumerRecord(topicName, "key1".getBytes(), "value1".getBytes(), 0, 10)) --> Line_11 $$ assertEquals(records, readResponseRecords) [FD]
+Line_9 $$ final List<BinaryConsumerRecord> readResponseRecords = TestUtils.tryReadEntityOrLog(response, new GenericType<List<BinaryConsumerRecord>>() --> Line_11 $$ assertEquals(records, readResponseRecords) [FD]

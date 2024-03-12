@@ -1,0 +1,8 @@
+Line_2 $$ public ExecutorCompletionService<Boolean> startProducers() --> Line_3 $$ final CountDownLatch latch = new CountDownLatch(producers.size()) [CD]
+Line_2 $$ public ExecutorCompletionService<Boolean> startProducers() --> Line_4 $$ final ExecutorCompletionService<Boolean> completionService = new ExecutorCompletionService<Boolean>(executorService) [CD]
+Line_2 $$ public ExecutorCompletionService<Boolean> startProducers() --> Line_5 $$ producers.stream().map( producer -> [CD]
+Line_4 $$ final ExecutorCompletionService<Boolean> completionService = new ExecutorCompletionService<Boolean>(executorService) --> Line_6 $$ return completionService.submit(() -> [FD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(producers.size()) --> Line_16 $$ latch.countDown() [FD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(producers.size()) --> Line_17 $$ if (latch.getCount() == 0) [FD]
+Line_17 $$ if (latch.getCount() == 0) --> Line_18 $$ queue.close() [CD]
+Line_2 $$ public ExecutorCompletionService<Boolean> startProducers() --> Line_25 $$ return completionService [CD]

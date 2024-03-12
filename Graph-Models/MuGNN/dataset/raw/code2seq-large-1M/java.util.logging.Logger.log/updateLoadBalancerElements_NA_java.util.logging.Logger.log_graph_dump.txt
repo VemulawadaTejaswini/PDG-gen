@@ -1,0 +1,8 @@
+Line_2 $$ private void updateLoadBalancerElements() --> Line_3 $$ LoadBalancers loadBalancers = domain.getExtensionByType(LoadBalancers.class) [CD]
+Line_2 $$ private void updateLoadBalancerElements() --> Line_4 $$ if (loadBalancers == null) [CD]
+Line_4 $$ if (loadBalancers == null) --> Line_5 $$ return [CD]
+Line_2 $$ private void updateLoadBalancerElements() --> Line_7 $$ List<LoadBalancer> loadBalancerList = loadBalancers.getLoadBalancer() [CD]
+Line_8 $$ for (LoadBalancer loadBalancer : loadBalancerList) --> Line_10 $$ ConfigSupport.apply(new LoadBalancerConfigCode(), loadBalancer) [FD]
+Line_8 $$ for (LoadBalancer loadBalancer : loadBalancerList) --> Line_12 $$ String msg = LbLogUtil.getStringManager().getString("ErrorDuringUpgrade", loadBalancer.getName(), ex.getMessage()) [FD]
+Line_12 $$ String msg = LbLogUtil.getStringManager().getString("ErrorDuringUpgrade", loadBalancer.getName(), ex.getMessage()) --> Line_13 $$ Logger.getAnonymousLogger().log(Level.SEVERE, msg) [FD]
+Line_14 $$ if (Logger.getAnonymousLogger().isLoggable(Level.FINE)) --> Line_15 $$ Logger.getAnonymousLogger().log(Level.FINE, "Exception during upgrade operation", ex) [CD]

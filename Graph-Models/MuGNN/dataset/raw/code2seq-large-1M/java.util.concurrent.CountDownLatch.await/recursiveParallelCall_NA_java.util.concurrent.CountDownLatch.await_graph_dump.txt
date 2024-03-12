@@ -1,0 +1,6 @@
+Line_2 $$ public void recursiveParallelCall() throws Exception --> Line_3 $$ Scheduler s = Schedulers.newParallel("work", 4) [CD]
+Line_3 $$ Scheduler s = Schedulers.newParallel("work", 4) --> Line_5 $$ Scheduler.Worker w = s.createWorker() [FD]
+Line_5 $$ Scheduler.Worker w = s.createWorker() --> Line_7 $$ w.schedule(() -> recursiveCall(w, latch, 0)) [FD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_7 $$ w.schedule(() -> recursiveCall(w, latch, 0)) [FD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_8 $$ latch.await() [FD]
+Line_3 $$ Scheduler s = Schedulers.newParallel("work", 4) --> Line_10 $$ s.dispose() [FD]

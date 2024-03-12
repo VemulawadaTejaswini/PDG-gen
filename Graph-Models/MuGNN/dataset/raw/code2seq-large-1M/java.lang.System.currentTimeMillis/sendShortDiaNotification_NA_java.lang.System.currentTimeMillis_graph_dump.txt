@@ -1,0 +1,5 @@
+Line_2 $$ void sendShortDiaNotification(double dia) --> Line_3 $$ if ((System.currentTimeMillis() - lastWarned) > 60 * 1000) [CD]
+Line_3 $$ if ((System.currentTimeMillis() - lastWarned) > 60 * 1000) --> Line_4 $$ lastWarned = System.currentTimeMillis() [CD]
+Line_3 $$ if ((System.currentTimeMillis() - lastWarned) > 60 * 1000) --> Line_5 $$ Notification notification = new Notification(Notification.SHORT_DIA, String.format(this.getNotificationPattern(), dia, MIN_DIA), Notification.URGENT) [CD]
+Line_2 $$ void sendShortDiaNotification(double dia) --> Line_5 $$ Notification notification = new Notification(Notification.SHORT_DIA, String.format(this.getNotificationPattern(), dia, MIN_DIA), Notification.URGENT) [FD]
+Line_3 $$ if ((System.currentTimeMillis() - lastWarned) > 60 * 1000) --> Line_6 $$ this.getBus().post(new EventNewNotification(notification)) [CD]

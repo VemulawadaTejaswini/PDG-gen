@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldBuildErrorMessageFromExceptionChain() --> Line_3 $$ final Throwable cause = new TestException("Something went wrong") [CD]
+Line_2 $$ public void shouldBuildErrorMessageFromExceptionChain() --> Line_4 $$ final Throwable subLevel2 = new TestException("Intermediate message 2", cause) [CD]
+Line_2 $$ public void shouldBuildErrorMessageFromExceptionChain() --> Line_5 $$ final Throwable subLevel1 = new TestException("Intermediate message 1", subLevel2) [CD]
+Line_2 $$ public void shouldBuildErrorMessageFromExceptionChain() --> Line_6 $$ final Throwable e = new TestException("Top level", subLevel1) [CD]
+Line_2 $$ public void shouldBuildErrorMessageFromExceptionChain() --> Line_7 $$ assertThat(buildErrorMessage(e), is("Top level" + System.lineSeparator() + "Caused by: Intermediate message 1" + System.lineSeparator() + "Caused by: Intermediate message 2" + System.lineSeparator() + "Caused by: Something went wrong")) [CD]
+Line_6 $$ final Throwable e = new TestException("Top level", subLevel1) --> Line_7 $$ assertThat(buildErrorMessage(e), is("Top level" + System.lineSeparator() + "Caused by: Intermediate message 1" + System.lineSeparator() + "Caused by: Intermediate message 2" + System.lineSeparator() + "Caused by: Something went wrong")) [FD]

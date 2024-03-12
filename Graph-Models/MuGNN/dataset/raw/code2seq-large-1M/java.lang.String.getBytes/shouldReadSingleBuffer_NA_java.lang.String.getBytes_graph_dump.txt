@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldReadSingleBuffer() throws IOException --> Line_3 $$ final byte[] sentinelBytes = "someTextToRead".getBytes(StandardCharsets.UTF_8) [CD]
+Line_2 $$ public void shouldReadSingleBuffer() throws IOException --> Line_4 $$ final ByteBuffer buffer = ByteBuffer.allocate(sentinelBytes.length + 10).put(sentinelBytes) [CD]
+Line_3 $$ final byte[] sentinelBytes = "someTextToRead".getBytes(StandardCharsets.UTF_8) --> Line_4 $$ final ByteBuffer buffer = ByteBuffer.allocate(sentinelBytes.length + 10).put(sentinelBytes) [FD]
+Line_5 $$ try (final InputStream stream = new ChunkyByteBufferInputStream(buffer)) --> Line_6 $$ final byte[] readBytes = ByteStreams.toByteArray(stream) [FD]
+Line_3 $$ final byte[] sentinelBytes = "someTextToRead".getBytes(StandardCharsets.UTF_8) --> Line_7 $$ assertArrayEquals(sentinelBytes, readBytes) [FD]
+Line_6 $$ final byte[] readBytes = ByteStreams.toByteArray(stream) --> Line_7 $$ assertArrayEquals(sentinelBytes, readBytes) [FD]

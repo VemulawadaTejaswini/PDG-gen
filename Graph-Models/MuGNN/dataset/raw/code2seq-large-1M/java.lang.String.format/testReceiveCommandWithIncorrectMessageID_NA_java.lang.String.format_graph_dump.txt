@@ -1,0 +1,8 @@
+Line_2 $$ public void testReceiveCommandWithIncorrectMessageID() throws IOException --> Line_3 $$ int messageID = 123 [CD]
+Line_2 $$ public void testReceiveCommandWithIncorrectMessageID() throws IOException --> Line_4 $$ int differentMessageID = 456 [CD]
+Line_2 $$ public void testReceiveCommandWithIncorrectMessageID() throws IOException --> Line_5 $$ InputStream jsonReader = createMockJsonReaderForReceiveCommand(differentMessageID, "command", "/path/to/args", "/path/to/stdout", "/path/to/stderr") [CD]
+Line_4 $$ int differentMessageID = 456 --> Line_5 $$ InputStream jsonReader = createMockJsonReaderForReceiveCommand(differentMessageID, "command", "/path/to/args", "/path/to/stdout", "/path/to/stderr") [FD]
+Line_2 $$ public void testReceiveCommandWithIncorrectMessageID() throws IOException --> Line_6 $$ WorkerProcessProtocol.CommandReceiver protocol = new WorkerProcessProtocolZero.CommandReceiver(dummyOutputStream, jsonReader) [CD]
+Line_6 $$ WorkerProcessProtocol.CommandReceiver protocol = new WorkerProcessProtocolZero.CommandReceiver(dummyOutputStream, jsonReader) --> Line_8 $$ protocol.receiveCommand(messageID) [FD]
+Line_3 $$ int messageID = 123 --> Line_8 $$ protocol.receiveCommand(messageID) [FD]
+Line_3 $$ int messageID = 123 --> Line_10 $$ assertThat(e.getMessage(), Matchers.containsString(String.format("Expected command's \"id\" value to be \"%d\"", messageID))) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private Optional<Relationship> determineClientConnection(List<Node> servers, Node client) --> Line_3 $$ Optional<String> boltAddress = getBoltConnector() [CD]
+Line_2 $$ private Optional<Relationship> determineClientConnection(List<Node> servers, Node client) --> Line_4 $$ if (boltAddress.isPresent()) [CD]
+Line_3 $$ Optional<String> boltAddress = getBoltConnector() --> Line_4 $$ if (boltAddress.isPresent()) [FD]
+Line_5 $$ for (Node server : servers) --> Line_6 $$ if (serverHasBoltAddress(boltAddress.get(), server)) [FD]
+Line_3 $$ Optional<String> boltAddress = getBoltConnector() --> Line_6 $$ if (serverHasBoltAddress(boltAddress.get(), server)) [FD]
+Line_6 $$ if (serverHasBoltAddress(boltAddress.get(), server)) --> Line_7 $$ return Optional.of(new VirtualRelationship(client, server, RelationshipType.withName("CONNECTED_TO"))) [CD]
+Line_2 $$ private Optional<Relationship> determineClientConnection(List<Node> servers, Node client) --> Line_11 $$ return Optional.empty() [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public double getCpuVoltage() --> Line_3 $$ double voltage = 0d [CD]
+Line_4 $$ for (String line : ExecutingCommand.runNative("/usr/sbin/prtpicl -v -c voltage-sensor")) --> Line_5 $$ if (line.trim().startsWith("Voltage:")) [FD]
+Line_5 $$ if (line.trim().startsWith("Voltage:")) --> Line_6 $$ voltage = ParseUtil.parseDoubleOrDefault(line.replace("Voltage:", "").trim(), 0d) [CD]
+Line_3 $$ double voltage = 0d --> Line_6 $$ voltage = ParseUtil.parseDoubleOrDefault(line.replace("Voltage:", "").trim(), 0d) [FD]
+Line_4 $$ for (String line : ExecutingCommand.runNative("/usr/sbin/prtpicl -v -c voltage-sensor")) --> Line_6 $$ voltage = ParseUtil.parseDoubleOrDefault(line.replace("Voltage:", "").trim(), 0d) [FD]
+Line_2 $$ public double getCpuVoltage() --> Line_10 $$ return voltage [CD]

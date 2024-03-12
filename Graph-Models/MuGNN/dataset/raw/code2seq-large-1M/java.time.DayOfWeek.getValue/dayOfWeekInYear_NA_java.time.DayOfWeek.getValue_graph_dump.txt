@@ -1,0 +1,8 @@
+Line_2 $$ private TemporalAdjuster dayOfWeekInYear(int ordinal, DayOfWeek dayOfWeek) --> Line_3 $$ int dowValue = dayOfWeek.getValue() [FD]
+Line_2 $$ private TemporalAdjuster dayOfWeekInYear(int ordinal, DayOfWeek dayOfWeek) --> Line_3 $$ int dowValue = dayOfWeek.getValue() [CD]
+Line_2 $$ private TemporalAdjuster dayOfWeekInYear(int ordinal, DayOfWeek dayOfWeek) --> Line_4 $$ return ( temporal) -> [CD]
+Line_5 $$ Temporal temp = (ordinal > 0) ? temporal.with(TemporalAdjusters.firstDayOfYear()) : temporal.plus(1, ChronoUnit.YEARS).with(TemporalAdjusters.firstDayOfYear()) --> Line_6 $$ int curDow = temp.get(DAY_OF_WEEK) [FD]
+Line_7 $$ int dowDiff = (dowValue - curDow + 7) % 7 --> Line_8 $$ dowDiff = (ordinal > 0) ? dowDiff + (ordinal - 1) * 7 : dowDiff + (ordinal) * 7 [FD]
+Line_5 $$ Temporal temp = (ordinal > 0) ? temporal.with(TemporalAdjusters.firstDayOfYear()) : temporal.plus(1, ChronoUnit.YEARS).with(TemporalAdjusters.firstDayOfYear()) --> Line_9 $$ return temp.plus(dowDiff, DAYS) [FD]
+Line_7 $$ int dowDiff = (dowValue - curDow + 7) % 7 --> Line_9 $$ return temp.plus(dowDiff, DAYS) [FD]
+Line_8 $$ dowDiff = (ordinal > 0) ? dowDiff + (ordinal - 1) * 7 : dowDiff + (ordinal) * 7 --> Line_9 $$ return temp.plus(dowDiff, DAYS) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void dispatchOnSelectedQueue(Runnable r) --> Line_3 $$ if (forceSyncCalls) [CD]
+Line_3 $$ if (forceSyncCalls) --> Line_4 $$ r.run() [CD]
+Line_2 $$ private void dispatchOnSelectedQueue(Runnable r) --> Line_4 $$ r.run() [FD]
+Line_3 $$ if (forceSyncCalls) --> Line_6 $$ DispatchQueue queue = shouldUseMainThread() ? mainQueue : backgroundQueue [CD]
+Line_3 $$ if (forceSyncCalls) --> Line_7 $$ queue.dispatch(r) [CD]
+Line_6 $$ DispatchQueue queue = shouldUseMainThread() ? mainQueue : backgroundQueue --> Line_7 $$ queue.dispatch(r) [FD]
+Line_2 $$ private void dispatchOnSelectedQueue(Runnable r) --> Line_7 $$ queue.dispatch(r) [FD]

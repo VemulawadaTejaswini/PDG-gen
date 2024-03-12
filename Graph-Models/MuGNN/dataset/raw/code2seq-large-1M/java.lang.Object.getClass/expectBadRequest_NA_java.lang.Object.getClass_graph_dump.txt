@@ -1,0 +1,5 @@
+Line_2 $$ private void expectBadRequest(CheckedSupplier<Map<String, Object>, Exception> code, Matcher<String> errorMessageMatcher) --> Line_4 $$ Map<String, Object> result = code.get() [FD]
+Line_7 $$ if (400 != e.getResponse().getStatusLine().getStatusCode()) --> Line_8 $$ String body [CD]
+Line_8 $$ String body --> Line_10 $$ body = Streams.copyToString(new InputStreamReader(e.getResponse().getEntity().getContent(), StandardCharsets.UTF_8)) [FD]
+Line_7 $$ if (400 != e.getResponse().getStatusLine().getStatusCode()) --> Line_14 $$ fail("expected [400] response but get [" + e.getResponse().getStatusLine().getStatusCode() + "] with body:\n" + body) [CD]
+Line_2 $$ private void expectBadRequest(CheckedSupplier<Map<String, Object>, Exception> code, Matcher<String> errorMessageMatcher) --> Line_16 $$ assertThat(e.getMessage(), errorMessageMatcher) [FD]

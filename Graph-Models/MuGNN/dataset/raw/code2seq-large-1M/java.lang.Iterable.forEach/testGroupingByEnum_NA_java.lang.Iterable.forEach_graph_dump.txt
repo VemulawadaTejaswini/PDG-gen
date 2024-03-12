@@ -1,0 +1,6 @@
+Line_2 $$ public void testGroupingByEnum() --> Line_3 $$ EnumMap<TimeUnit, Long> expected = new EnumMap(TimeUnit.class) [CD]
+Line_2 $$ public void testGroupingByEnum() --> Line_4 $$ EnumSet.allOf(TimeUnit.class).forEach( tu -> expected.put(tu, 0L)) [CD]
+Line_2 $$ public void testGroupingByEnum() --> Line_5 $$ expected.put(TimeUnit.SECONDS, 1L) [CD]
+Line_2 $$ public void testGroupingByEnum() --> Line_6 $$ expected.put(TimeUnit.DAYS, 2L) [CD]
+Line_2 $$ public void testGroupingByEnum() --> Line_7 $$ expected.put(TimeUnit.NANOSECONDS, 1L) [CD]
+Line_2 $$ public void testGroupingByEnum() --> Line_8 $$ checkCollector("groupingByEnum", expected, () -> Stream.of(TimeUnit.SECONDS, TimeUnit.DAYS, TimeUnit.DAYS, TimeUnit.NANOSECONDS), MoreCollectors.groupingByEnum(TimeUnit.class, Function.identity(), Collectors.counting())) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private void sendMessageActual(Message.MessageForSending message) --> Line_3 $$ reinitIfNecessary() [CD]
+Line_2 $$ private void sendMessageActual(Message.MessageForSending message) --> Line_4 $$ if (channel == null) [CD]
+Line_2 $$ private void sendMessageActual(Message.MessageForSending message) --> Line_7 $$ AMQP.BasicProperties properties = new AMQP.BasicProperties.Builder().contentType(message.getContentType()).contentEncoding(message.getContentEncoding()).deliveryMode((message.isPersistent()) ? 2 : 1).headers(message.getHeaders()).build() [FD]
+Line_7 $$ AMQP.BasicProperties properties = new AMQP.BasicProperties.Builder().contentType(message.getContentType()).contentEncoding(message.getContentEncoding()).deliveryMode((message.isPersistent()) ? 2 : 1).headers(message.getHeaders()).build() --> Line_8 $$ channel.basicPublish(message.getExchangeName(), message.getRoutingKey(), properties, message.getBody()) [FD]
+Line_2 $$ private void sendMessageActual(Message.MessageForSending message) --> Line_8 $$ channel.basicPublish(message.getExchangeName(), message.getRoutingKey(), properties, message.getBody()) [FD]

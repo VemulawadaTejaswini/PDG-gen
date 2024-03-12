@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldFailWhenAskedForSingleRecordButResultContainsMore() --> Line_3 $$ PullAllResponseHandler pullAllHandler = mock(PullAllResponseHandler.class) [CD]
+Line_2 $$ public void shouldFailWhenAskedForSingleRecordButResultContainsMore() --> Line_4 $$ Record record1 = new InternalRecord(asList("key1", "key2"), values(1, 1)) [CD]
+Line_2 $$ public void shouldFailWhenAskedForSingleRecordButResultContainsMore() --> Line_5 $$ Record record2 = new InternalRecord(asList("key1", "key2"), values(2, 2)) [CD]
+Line_2 $$ public void shouldFailWhenAskedForSingleRecordButResultContainsMore() --> Line_6 $$ when(pullAllHandler.nextAsync()).thenReturn(completedFuture(record1)).thenReturn(completedFuture(record2)) [CD]
+Line_4 $$ Record record1 = new InternalRecord(asList("key1", "key2"), values(1, 1)) --> Line_6 $$ when(pullAllHandler.nextAsync()).thenReturn(completedFuture(record1)).thenReturn(completedFuture(record2)) [FD]
+Line_5 $$ Record record2 = new InternalRecord(asList("key1", "key2"), values(2, 2)) --> Line_6 $$ when(pullAllHandler.nextAsync()).thenReturn(completedFuture(record1)).thenReturn(completedFuture(record2)) [FD]
+Line_2 $$ public void shouldFailWhenAskedForSingleRecordButResultContainsMore() --> Line_7 $$ InternalStatementResultCursor cursor = newCursor(pullAllHandler) [CD]
+Line_7 $$ InternalStatementResultCursor cursor = newCursor(pullAllHandler) --> Line_9 $$ await(cursor.singleAsync()) [FD]

@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_5 $$ PreparedStatement stmt = conn.prepareStatement(query) [FD]
+Line_4 $$ String query = "SELECT GUIDE_POSTS_WIDTH FROM SYSTEM.CATALOG WHERE TABLE_NAME = ? AND COLUMN_FAMILY IS NULL AND COLUMN_NAME IS NULL" --> Line_5 $$ PreparedStatement stmt = conn.prepareStatement(query) [FD]
+Line_5 $$ PreparedStatement stmt = conn.prepareStatement(query) --> Line_6 $$ stmt.setString(1, tableName) [FD]
+Line_2 $$ private int checkGuidePostWidth(String tableName) throws Exception --> Line_6 $$ stmt.setString(1, tableName) [FD]
+Line_5 $$ PreparedStatement stmt = conn.prepareStatement(query) --> Line_7 $$ ResultSet rs = stmt.executeQuery() [FD]
+Line_7 $$ ResultSet rs = stmt.executeQuery() --> Line_8 $$ assertTrue(rs.next()) [FD]
+Line_7 $$ ResultSet rs = stmt.executeQuery() --> Line_9 $$ return rs.getInt(1) [FD]

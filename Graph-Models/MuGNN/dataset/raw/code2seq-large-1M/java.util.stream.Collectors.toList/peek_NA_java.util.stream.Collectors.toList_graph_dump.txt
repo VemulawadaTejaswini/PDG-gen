@@ -1,0 +1,6 @@
+Line_2 $$ List<VariantContext> peek() --> Line_3 $$ final List<VariantContext> L = priv_peek() [CD]
+Line_2 $$ List<VariantContext> peek() --> Line_4 $$ if (L.isEmpty() || L.size() == 1) [CD]
+Line_3 $$ final List<VariantContext> L = priv_peek() --> Line_4 $$ if (L.isEmpty() || L.size() == 1) [FD]
+Line_4 $$ if (L.isEmpty() || L.size() == 1) --> Line_5 $$ return L [CD]
+Line_2 $$ List<VariantContext> peek() --> Line_6 $$ return L.stream().filter( V -> V == L.get(0) || VCFMerge.this.compareChromPosRef.compare(L.get(0), V) == 0).collect(Collectors.toList()) [CD]
+Line_3 $$ final List<VariantContext> L = priv_peek() --> Line_6 $$ return L.stream().filter( V -> V == L.get(0) || VCFMerge.this.compareChromPosRef.compare(L.get(0), V) == 0).collect(Collectors.toList()) [FD]

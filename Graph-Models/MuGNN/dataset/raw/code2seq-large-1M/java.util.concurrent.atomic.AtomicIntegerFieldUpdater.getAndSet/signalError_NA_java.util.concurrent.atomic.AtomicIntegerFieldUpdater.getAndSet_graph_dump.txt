@@ -1,0 +1,8 @@
+Line_2 $$ void signalError(Throwable t) --> Line_3 $$ if (delayError) [CD]
+Line_3 $$ if (delayError) --> Line_4 $$ signal() [CD]
+Line_3 $$ if (delayError) --> Line_6 $$ int n = subscribers.length [CD]
+Line_3 $$ if (delayError) --> Line_7 $$ if (DONE.getAndSet(this, n) != n) [CD]
+Line_6 $$ int n = subscribers.length --> Line_7 $$ if (DONE.getAndSet(this, n) != n) [FD]
+Line_7 $$ if (DONE.getAndSet(this, n) != n) --> Line_8 $$ cancel() [CD]
+Line_7 $$ if (DONE.getAndSet(this, n) != n) --> Line_9 $$ actual.onError(t) [CD]
+Line_2 $$ void signalError(Throwable t) --> Line_9 $$ actual.onError(t) [FD]

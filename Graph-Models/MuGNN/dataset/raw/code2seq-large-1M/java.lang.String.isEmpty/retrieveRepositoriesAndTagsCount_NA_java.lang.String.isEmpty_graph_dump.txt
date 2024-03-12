@@ -1,0 +1,8 @@
+Line_3 $$ if (harborId == null || harborId.isEmpty()) --> Line_4 $$ service.getHost().log(Level.WARNING, "harborId not set for project %s. Skipping repository retrieval", projectLink) [CD]
+Line_3 $$ if (harborId == null || harborId.isEmpty()) --> Line_5 $$ return DeferredResult.completed(Collections.emptyList()) [CD]
+Line_7 $$ Operation getRepositories = Operation.createGet(UriUtils.buildUri(service.getHost(), UriUtils.buildUriPath(HarborApiProxyService.SELF_LINK, Harbor.ENDPOINT_REPOSITORIES), UriUtils.buildUriQuery(Harbor.QUERY_PARAM_PROJECT_ID, harborId, Harbor.QUERY_PARAM_DETAIL, Boolean.toString(true)))).setReferer(ProjectFactoryService.SELF_LINK) --> Line_8 $$ return service.sendWithDeferredResult(getRepositories).thenApply(( op) -> [FD]
+Line_10 $$ if (op.getBodyRaw() instanceof ServiceErrorResponse) --> Line_11 $$ ServiceErrorResponse errorResponse = op.getBody(ServiceErrorResponse.class) [CD]
+Line_9 $$ Object body = op.getBodyRaw() --> Line_14 $$ String stringBody = body instanceof String ? (String) body : Utils.toJson(body) [FD]
+Line_14 $$ String stringBody = body instanceof String ? (String) body : Utils.toJson(body) --> Line_16 $$ throw new IllegalStateException(stringBody.trim()) [FD]
+Line_14 $$ String stringBody = body instanceof String ? (String) body : Utils.toJson(body) --> Line_18 $$ String json = String.format(" [FD]
+Line_18 $$ String json = String.format(" --> Line_19 $$ HbrRepositoriesResponse response = Utils.fromJson(json, HbrRepositoriesResponse.class) [FD]

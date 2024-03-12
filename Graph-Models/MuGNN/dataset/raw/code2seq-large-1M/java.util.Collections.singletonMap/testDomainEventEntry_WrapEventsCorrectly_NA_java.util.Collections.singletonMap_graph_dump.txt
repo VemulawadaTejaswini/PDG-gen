@@ -1,0 +1,7 @@
+Line_6 $$ DomainEventMessage<String> event = new GenericDomainEventMessage("type", randomUUID().toString(), 2L, payload, metaData, randomUUID().toString(), Instant.now()) --> Line_8 $$ assertEquals(event.getAggregateIdentifier(), eventEntry.getAggregateIdentifier()) [FD]
+Line_6 $$ DomainEventMessage<String> event = new GenericDomainEventMessage("type", randomUUID().toString(), 2L, payload, metaData, randomUUID().toString(), Instant.now()) --> Line_9 $$ assertEquals(event.getSequenceNumber(), eventEntry.getSequenceNumber()) [FD]
+Line_6 $$ DomainEventMessage<String> event = new GenericDomainEventMessage("type", randomUUID().toString(), 2L, payload, metaData, randomUUID().toString(), Instant.now()) --> Line_10 $$ assertEquals(event.getTimestamp(), eventEntry.getTimestamp()) [FD]
+Line_4 $$ String payload = "Payload" --> Line_11 $$ assertEquals(payload, serializer.deserialize(eventEntry.getPayload())) [FD]
+Line_3 $$ Serializer serializer = new XStreamSerializer() --> Line_11 $$ assertEquals(payload, serializer.deserialize(eventEntry.getPayload())) [FD]
+Line_5 $$ MetaData metaData = new MetaData(Collections.singletonMap("Key", "Value")) --> Line_12 $$ assertEquals(metaData, serializer.deserialize(eventEntry.getMetaData())) [FD]
+Line_3 $$ Serializer serializer = new XStreamSerializer() --> Line_12 $$ assertEquals(metaData, serializer.deserialize(eventEntry.getMetaData())) [FD]

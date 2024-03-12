@@ -1,0 +1,8 @@
+Line_9 $$ for (DataPointRT dataPoint : dataPoints) --> Line_10 $$ IEC101PointLocatorVO pointLocator = dataPoint.getVO().getPointLocator() [FD]
+Line_10 $$ IEC101PointLocatorVO pointLocator = dataPoint.getVO().getPointLocator() --> Line_11 $$ List<DataElement> elements = iec101Master.read(pointLocator.getObjectAddress(), pointLocator.getIec101DataType()) [FD]
+Line_12 $$ for (DataElement dataElement : elements) --> Line_13 $$ MangoValue value = MangoValue.stringToValue(dataElement.getValue(), pointLocator.getDataTypeId()) [FD]
+Line_10 $$ IEC101PointLocatorVO pointLocator = dataPoint.getVO().getPointLocator() --> Line_13 $$ MangoValue value = MangoValue.stringToValue(dataElement.getValue(), pointLocator.getDataTypeId()) [FD]
+Line_14 $$ Calendar ts = Calendar.getInstance() --> Line_15 $$ ts.setTimeInMillis(dataElement.getTimestamp()) [FD]
+Line_12 $$ for (DataElement dataElement : elements) --> Line_15 $$ ts.setTimeInMillis(dataElement.getTimestamp()) [FD]
+Line_9 $$ for (DataPointRT dataPoint : dataPoints) --> Line_16 $$ dataPoint.updatePointValue(new PointValueTime(value, ts.getTimeInMillis())) [FD]
+Line_14 $$ Calendar ts = Calendar.getInstance() --> Line_16 $$ dataPoint.updatePointValue(new PointValueTime(value, ts.getTimeInMillis())) [FD]

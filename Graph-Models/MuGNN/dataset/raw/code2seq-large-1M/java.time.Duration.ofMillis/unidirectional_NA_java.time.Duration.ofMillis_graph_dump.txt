@@ -1,0 +1,6 @@
+Line_2 $$ public void unidirectional() --> Line_3 $$ int c = 10 [CD]
+Line_2 $$ public void unidirectional() --> Line_4 $$ httpServer = HttpServer.create(0).newHandler(( in,  out) -> out.sendWebsocket(( i,  o) -> o.options( opt -> opt.flushOnEach()).sendString(Mono.just("test").delayElement(Duration.ofMillis(100)).repeat()))).block(Duration.ofSeconds(30)) [CD]
+Line_2 $$ public void unidirectional() --> Line_5 $$ Flux<String> ws = HttpClient.create(httpServer.address().getPort()).ws("/").flatMapMany( in -> in.receiveWebsocket().aggregateFrames().receive().asString()) [CD]
+Line_2 $$ public void unidirectional() --> Line_6 $$ StepVerifier.create(ws.take(c).log()).expectNextSequence(Flux.range(1, c).map( v -> "test").toIterable()).expectComplete().verify() [CD]
+Line_5 $$ Flux<String> ws = HttpClient.create(httpServer.address().getPort()).ws("/").flatMapMany( in -> in.receiveWebsocket().aggregateFrames().receive().asString()) --> Line_6 $$ StepVerifier.create(ws.take(c).log()).expectNextSequence(Flux.range(1, c).map( v -> "test").toIterable()).expectComplete().verify() [FD]
+Line_3 $$ int c = 10 --> Line_6 $$ StepVerifier.create(ws.take(c).log()).expectNextSequence(Flux.range(1, c).map( v -> "test").toIterable()).expectComplete().verify() [FD]

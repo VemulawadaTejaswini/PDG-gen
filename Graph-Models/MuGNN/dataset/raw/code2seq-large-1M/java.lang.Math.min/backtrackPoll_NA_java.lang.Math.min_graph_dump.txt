@@ -1,0 +1,7 @@
+Line_2 $$ boolean backtrackPoll() --> Line_3 $$ if (batchHistory < POLL_BATCH_SIZE) [CD]
+Line_3 $$ if (batchHistory < POLL_BATCH_SIZE) --> Line_4 $$ batchHistory = Math.min(POLL_BATCH_SIZE, batchHistory << 1) [CD]
+Line_2 $$ boolean backtrackPoll() --> Line_8 $$ while (UNSAFE.getObjectVolatile(buffer, offset(batchHead)) == null) [CD]
+Line_8 $$ while (UNSAFE.getObjectVolatile(buffer, offset(batchHead)) == null) --> Line_9 $$ spinWait() [CD]
+Line_8 $$ while (UNSAFE.getObjectVolatile(buffer, offset(batchHead)) == null) --> Line_10 $$ if (batchSize > 1) [CD]
+Line_10 $$ if (batchSize > 1) --> Line_15 $$ return false [CD]
+Line_2 $$ boolean backtrackPoll() --> Line_19 $$ return true [CD]

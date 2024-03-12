@@ -1,0 +1,6 @@
+Line_2 $$ private void onInitSQL(HashMap SQL) throws SQLException --> Line_3 $$ for (Map.Entry e : (Set<Map.Entry>) SQL.entrySet()) [FD]
+Line_4 $$ DBCPService s = (DBCPService) e.getValue() --> Line_5 $$ OSql sql = new OSql(s.getConnection(Collections.emptyMap())) [FD]
+Line_5 $$ OSql sql = new OSql(s.getConnection(Collections.emptyMap())) --> Line_7 $$ if (sql.getConnection().getAutoCommit()) [FD]
+Line_7 $$ if (sql.getConnection().getAutoCommit()) --> Line_8 $$ sql.getConnection().setAutoCommit(false) [CD]
+Line_5 $$ OSql sql = new OSql(s.getConnection(Collections.emptyMap())) --> Line_8 $$ sql.getConnection().setAutoCommit(false) [FD]
+Line_5 $$ OSql sql = new OSql(s.getConnection(Collections.emptyMap())) --> Line_13 $$ e.setValue(sql) [FD]

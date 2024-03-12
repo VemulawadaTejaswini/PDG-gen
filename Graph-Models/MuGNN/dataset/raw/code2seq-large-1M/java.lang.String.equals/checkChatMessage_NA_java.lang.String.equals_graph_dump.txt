@@ -1,0 +1,7 @@
+Line_3 $$ try (Jedis con = getConnection()) --> Line_4 $$ String userLogin = con.hget(CHAT_ROOM_ID + roomId, USER_LOGIN) [FD]
+Line_4 $$ String userLogin = con.hget(CHAT_ROOM_ID + roomId, USER_LOGIN) --> Line_5 $$ if (userLogin != null && !userLogin.equals(author)) [FD]
+Line_2 $$ public void checkChatMessage(long roomId, String author) --> Line_5 $$ if (userLogin != null && !userLogin.equals(author)) [FD]
+Line_5 $$ if (userLogin != null && !userLogin.equals(author)) --> Line_6 $$ con.hdel(CHAT_ROOM_ID + roomId, USER_LOGIN) [CD]
+Line_3 $$ try (Jedis con = getConnection()) --> Line_6 $$ con.hdel(CHAT_ROOM_ID + roomId, USER_LOGIN) [FD]
+Line_5 $$ if (userLogin != null && !userLogin.equals(author)) --> Line_7 $$ con.del(CHAT_ROOM_ID + roomId + USER_LOGIN) [CD]
+Line_3 $$ try (Jedis con = getConnection()) --> Line_7 $$ con.del(CHAT_ROOM_ID + roomId + USER_LOGIN) [FD]

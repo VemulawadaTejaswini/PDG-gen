@@ -1,0 +1,5 @@
+Line_2 $$ private void checkAndPotentiallyWaitUntilUnlocked(String name, RedisConnection connection) --> Line_3 $$ if (!isLockingCacheWriter()) [CD]
+Line_3 $$ if (!isLockingCacheWriter()) --> Line_4 $$ return [CD]
+Line_2 $$ private void checkAndPotentiallyWaitUntilUnlocked(String name, RedisConnection connection) --> Line_7 $$ while (doCheckLock(name, connection)) [FD]
+Line_7 $$ while (doCheckLock(name, connection)) --> Line_8 $$ Thread.sleep(sleepTime.toMillis()) [CD]
+Line_2 $$ private void checkAndPotentiallyWaitUntilUnlocked(String name, RedisConnection connection) --> Line_12 $$ throw new PessimisticLockingFailureException(String.format("Interrupted while waiting to unlock cache %s", name), ex) [FD]

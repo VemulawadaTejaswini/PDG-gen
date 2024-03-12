@@ -1,0 +1,8 @@
+Line_2 $$ public static List<String> loadLinesFromResource(String resourcePath, String ignorePrefix) throws IOException --> Line_3 $$ if (!resourcePath.startsWith("/")) [FD]
+Line_2 $$ public static List<String> loadLinesFromResource(String resourcePath, String ignorePrefix) throws IOException --> Line_3 $$ if (!resourcePath.startsWith("/")) [CD]
+Line_3 $$ if (!resourcePath.startsWith("/")) --> Line_4 $$ resourcePath = "/" + resourcePath [CD]
+Line_2 $$ public static List<String> loadLinesFromResource(String resourcePath, String ignorePrefix) throws IOException --> Line_4 $$ resourcePath = "/" + resourcePath [FD]
+Line_2 $$ public static List<String> loadLinesFromResource(String resourcePath, String ignorePrefix) throws IOException --> Line_6 $$ try (InputStream is = TextIO.class.getResourceAsStream(resourcePath)) [FD]
+Line_4 $$ resourcePath = "/" + resourcePath --> Line_6 $$ try (InputStream is = TextIO.class.getResourceAsStream(resourcePath)) [FD]
+Line_7 $$ BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)) --> Line_8 $$ return reader.lines().filter( s -> s.trim().length() > 0 && (ignorePrefix == null || !s.trim().startsWith(ignorePrefix))).collect(Collectors.toList()) [FD]
+Line_2 $$ public static List<String> loadLinesFromResource(String resourcePath, String ignorePrefix) throws IOException --> Line_8 $$ return reader.lines().filter( s -> s.trim().length() > 0 && (ignorePrefix == null || !s.trim().startsWith(ignorePrefix))).collect(Collectors.toList()) [FD]

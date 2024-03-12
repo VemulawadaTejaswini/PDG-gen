@@ -1,0 +1,7 @@
+Line_2 $$ public Peer store(Peer peer) --> Line_3 $$ peerLock.lock() [CD]
+Line_5 $$ UpdatablePeer newPeer = new UpdatablePeer(peer) --> Line_6 $$ UpdatablePeer existing = knownPeers.putIfAbsent(peer.getInetSocketAddress(), newPeer) [FD]
+Line_2 $$ public Peer store(Peer peer) --> Line_6 $$ UpdatablePeer existing = knownPeers.putIfAbsent(peer.getInetSocketAddress(), newPeer) [FD]
+Line_6 $$ UpdatablePeer existing = knownPeers.putIfAbsent(peer.getInetSocketAddress(), newPeer) --> Line_7 $$ if (existing != null) [FD]
+Line_7 $$ if (existing != null) --> Line_8 $$ existing.setOptions(peer.getOptions()) [CD]
+Line_6 $$ UpdatablePeer existing = knownPeers.putIfAbsent(peer.getInetSocketAddress(), newPeer) --> Line_8 $$ existing.setOptions(peer.getOptions()) [FD]
+Line_2 $$ public Peer store(Peer peer) --> Line_8 $$ existing.setOptions(peer.getOptions()) [FD]

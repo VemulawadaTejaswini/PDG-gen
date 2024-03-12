@@ -1,0 +1,6 @@
+Line_2 $$ public String seal(String data, long expiration) throws IntegrityException --> Line_3 $$ if (data == null) [CD]
+Line_2 $$ public String seal(String data, long expiration) throws IntegrityException --> Line_3 $$ if (data == null) [FD]
+Line_7 $$ String b64data = null --> Line_9 $$ b64data = ESAPI.encoder().encodeForBase64(data.getBytes("UTF-8"), false) [FD]
+Line_2 $$ public String seal(String data, long expiration) throws IntegrityException --> Line_9 $$ b64data = ESAPI.encoder().encodeForBase64(data.getBytes("UTF-8"), false) [FD]
+Line_14 $$ String plaintext = expiration + ":" + nonce + ":" + b64data --> Line_15 $$ String sig = this.sign(plaintext) [FD]
+Line_16 $$ CipherText ciphertext = this.encrypt(new PlainText(plaintext + ":" + sig)) --> Line_17 $$ String sealedData = ESAPI.encoder().encodeForBase64(ciphertext.asPortableSerializedByteArray(), false) [FD]

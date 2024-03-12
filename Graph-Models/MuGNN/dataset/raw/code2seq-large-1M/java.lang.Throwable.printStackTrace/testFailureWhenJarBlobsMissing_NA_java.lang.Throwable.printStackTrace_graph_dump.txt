@@ -1,0 +1,3 @@
+Line_4 $$ JobVertex jobVertex = new JobVertex("Test Vertex") --> Line_5 $$ jobVertex.setInvokableClass(NoOpInvokable.class) [FD]
+Line_6 $$ JobGraph jg = new JobGraph("test job", jobVertex) --> Line_7 $$ jg.addUserJarBlobKey(new PermanentBlobKey()) [FD]
+Line_8 $$ Future<Object> submitFuture = jmGateway.ask(new JobManagerMessages.SubmitJob(jg, ListeningBehaviour.EXECUTION_RESULT), timeout) --> Line_10 $$ Await.result(submitFuture, timeout) [FD]

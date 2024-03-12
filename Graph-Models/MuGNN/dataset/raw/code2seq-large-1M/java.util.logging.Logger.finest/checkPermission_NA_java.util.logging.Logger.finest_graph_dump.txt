@@ -1,0 +1,5 @@
+Line_2 $$ private void checkPermission(Permission permission) --> Line_3 $$ if (((GitLabConnectionConfig) Jenkins.getInstance().getDescriptor(GitLabConnectionConfig.class)).isUseAuthenticatedEndpoint()) [CD]
+Line_2 $$ private void checkPermission(Permission permission) --> Line_4 $$ if (!Jenkins.getActiveInstance().getACL().hasPermission(authentication, permission)) [FD]
+Line_4 $$ if (!Jenkins.getActiveInstance().getACL().hasPermission(authentication, permission)) --> Line_5 $$ String message = Messages.AccessDeniedException2_MissingPermission(authentication.getName(), permission.group.title + "/" + permission.name) [CD]
+Line_4 $$ if (!Jenkins.getActiveInstance().getACL().hasPermission(authentication, permission)) --> Line_6 $$ LOGGER.finest("Unauthorized (Did you forget to add API Token to the web hook ?)") [CD]
+Line_5 $$ String message = Messages.AccessDeniedException2_MissingPermission(authentication.getName(), permission.group.title + "/" + permission.name) --> Line_7 $$ throw HttpResponses.errorWithoutStack(403, message) [FD]

@@ -1,0 +1,8 @@
+Line_3 $$ try (ZipFile zip = new ZipFile(entryFile)) --> Line_4 $$ ZipEntry beansXmlEntry = zip.getEntry(AbstractWeldDeployment.BEANS_XML) [FD]
+Line_2 $$ private void scanJarFile(File entryFile, ImmutableList.Builder<ScanResult> results) throws IOException --> Line_6 $$ logger.debugv(BEANS_XML_FOUND_MESSAGE, entryFile) [FD]
+Line_2 $$ private void scanJarFile(File entryFile, ImmutableList.Builder<ScanResult> results) throws IOException --> Line_7 $$ BeansXml beansXml = parseBeansXml(new URL(PROCOTOL_JAR + ":" + entryFile.toURI().toURL().toExternalForm() + JAR_URL_SEPARATOR + beansXmlEntry.getName())) [FD]
+Line_8 $$ if (accept(beansXml)) --> Line_9 $$ results.add(new ScanResult(beansXml, entryFile.getPath())) [CD]
+Line_2 $$ private void scanJarFile(File entryFile, ImmutableList.Builder<ScanResult> results) throws IOException --> Line_9 $$ results.add(new ScanResult(beansXml, entryFile.getPath())) [FD]
+Line_3 $$ try (ZipFile zip = new ZipFile(entryFile)) --> Line_12 $$ if (zip.getEntry(EXTENSION_FILE) == null) [FD]
+Line_2 $$ private void scanJarFile(File entryFile, ImmutableList.Builder<ScanResult> results) throws IOException --> Line_13 $$ logger.debugv(BEANS_XML_NOT_FOUND_MESSAGE, entryFile) [FD]
+Line_2 $$ private void scanJarFile(File entryFile, ImmutableList.Builder<ScanResult> results) throws IOException --> Line_14 $$ results.add(new ScanResult(null, entryFile.getPath())) [FD]

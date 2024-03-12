@@ -1,0 +1,7 @@
+Line_2 $$ private void pollQueueLater() --> Line_3 $$ invokeLater(() -> [CD]
+Line_4 $$ Queue<Transaction> queue = getQueue(myCurrentTransaction) --> Line_5 $$ Transaction next = queue.peek() [FD]
+Line_5 $$ Transaction next = queue.peek() --> Line_6 $$ if (next != null && canRunTransactionNow(next, false)) [FD]
+Line_6 $$ if (next != null && canRunTransactionNow(next, false)) --> Line_7 $$ queue.remove() [CD]
+Line_4 $$ Queue<Transaction> queue = getQueue(myCurrentTransaction) --> Line_7 $$ queue.remove() [FD]
+Line_6 $$ if (next != null && canRunTransactionNow(next, false)) --> Line_8 $$ runSyncTransaction(next) [CD]
+Line_5 $$ Transaction next = queue.peek() --> Line_8 $$ runSyncTransaction(next) [FD]

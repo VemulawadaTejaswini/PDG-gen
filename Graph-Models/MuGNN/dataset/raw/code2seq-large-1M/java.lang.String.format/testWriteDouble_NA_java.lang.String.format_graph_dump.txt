@@ -1,0 +1,5 @@
+Line_2 $$ public void testWriteDouble() throws Exception --> Line_3 $$ String outputTable = "double_test" [CD]
+Line_3 $$ String outputTable = "double_test" --> Line_5 $$ String ctas = String.format("use dfs_test; " + "create table %s as select " + "cast('1.2' as double) col1, cast('1.2' as double) col2 " + "from cp.`employee.json` limit 1", outputTable) [FD]
+Line_5 $$ String ctas = String.format("use dfs_test; " + "create table %s as select " + "cast('1.2' as double) col1, cast('1.2' as double) col2 " + "from cp.`employee.json` limit 1", outputTable) --> Line_6 $$ test(ctas) [FD]
+Line_3 $$ String outputTable = "double_test" --> Line_7 $$ testBuilder().unOrdered().sqlQuery(String.format("select col1, col2 from %s ", outputTable)).baselineColumns("col1", "col2").baselineValues(1.2D, 1.2D).go() [FD]
+Line_3 $$ String outputTable = "double_test" --> Line_9 $$ deleteTableIfExists(outputTable) [FD]

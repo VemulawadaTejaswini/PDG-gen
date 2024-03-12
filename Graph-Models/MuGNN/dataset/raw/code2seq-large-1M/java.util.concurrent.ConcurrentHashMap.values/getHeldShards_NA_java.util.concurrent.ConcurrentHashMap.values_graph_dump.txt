@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized Collection<Integer> getHeldShards() --> Line_3 $$ SortedSet<Integer> held = new TreeSet<Integer>() [CD]
+Line_4 $$ for (Lock lock : locks.values()) --> Line_5 $$ if (lock.isHeld()) [FD]
+Line_5 $$ if (lock.isHeld()) --> Line_6 $$ held.add(lock.getShard()) [CD]
+Line_3 $$ SortedSet<Integer> held = new TreeSet<Integer>() --> Line_6 $$ held.add(lock.getShard()) [FD]
+Line_4 $$ for (Lock lock : locks.values()) --> Line_6 $$ held.add(lock.getShard()) [FD]
+Line_2 $$ public synchronized Collection<Integer> getHeldShards() --> Line_9 $$ return held [CD]

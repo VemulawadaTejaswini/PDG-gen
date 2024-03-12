@@ -1,0 +1,6 @@
+Line_2 $$ public void testDuplicateHostsProvider() --> Line_3 $$ DummyHostsProviderPlugin plugin1 = () -> Collections.singletonMap("dup", () -> null) [CD]
+Line_2 $$ public void testDuplicateHostsProvider() --> Line_4 $$ DummyHostsProviderPlugin plugin2 = () -> Collections.singletonMap("dup", () -> null) [CD]
+Line_2 $$ public void testDuplicateHostsProvider() --> Line_5 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> newModule(Settings.EMPTY, Arrays.asList(plugin1, plugin2))) [CD]
+Line_3 $$ DummyHostsProviderPlugin plugin1 = () -> Collections.singletonMap("dup", () -> null) --> Line_5 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> newModule(Settings.EMPTY, Arrays.asList(plugin1, plugin2))) [FD]
+Line_4 $$ DummyHostsProviderPlugin plugin2 = () -> Collections.singletonMap("dup", () -> null) --> Line_5 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> newModule(Settings.EMPTY, Arrays.asList(plugin1, plugin2))) [FD]
+Line_2 $$ public void testDuplicateHostsProvider() --> Line_6 $$ assertEquals("Cannot register zen hosts provider [dup] twice", e.getMessage()) [CD]

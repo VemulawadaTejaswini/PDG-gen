@@ -1,0 +1,7 @@
+Line_2 $$ public void testSequenceAnyMSeq() --> Line_3 $$ AnyMSeq<list, Integer> just = AnyM.fromList(ListX.of(10)) [CD]
+Line_2 $$ public void testSequenceAnyMSeq() --> Line_4 $$ Stream<AnyMSeq<list, Integer>> source = ReactiveSeq.of(just, AnyM.fromList(Arrays.asList(1))) [CD]
+Line_3 $$ AnyMSeq<list, Integer> just = AnyM.fromList(ListX.of(10)) --> Line_4 $$ Stream<AnyMSeq<list, Integer>> source = ReactiveSeq.of(just, AnyM.fromList(Arrays.asList(1))) [FD]
+Line_2 $$ public void testSequenceAnyMSeq() --> Line_5 $$ AnyM<list, Stream<Integer>> maybes = AnyM.sequence(source, list.INSTANCE) [CD]
+Line_4 $$ Stream<AnyMSeq<list, Integer>> source = ReactiveSeq.of(just, AnyM.fromList(Arrays.asList(1))) --> Line_5 $$ AnyM<list, Stream<Integer>> maybes = AnyM.sequence(source, list.INSTANCE) [FD]
+Line_2 $$ public void testSequenceAnyMSeq() --> Line_6 $$ assertThat(maybes.map( s -> s.collect(Collectors.toList())), equalTo(AnyM.fromList(ListX.of(ListX.of(10, 1))))) [CD]
+Line_5 $$ AnyM<list, Stream<Integer>> maybes = AnyM.sequence(source, list.INSTANCE) --> Line_6 $$ assertThat(maybes.map( s -> s.collect(Collectors.toList())), equalTo(AnyM.fromList(ListX.of(ListX.of(10, 1))))) [FD]

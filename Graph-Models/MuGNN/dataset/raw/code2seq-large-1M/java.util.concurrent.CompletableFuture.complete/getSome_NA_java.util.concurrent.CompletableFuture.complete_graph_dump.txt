@@ -1,0 +1,7 @@
+Line_2 $$ public CompletableFuture<List<T>> getSome(String key, Object value) --> Line_3 $$ CompletableFuture<List<T>> future = new CompletableFuture() [CD]
+Line_2 $$ public CompletableFuture<List<T>> getSome(String key, Object value) --> Line_4 $$ List<T> list = new ArrayList() [CD]
+Line_2 $$ public CompletableFuture<List<T>> getSome(String key, Object value) --> Line_5 $$ collection.find(new Document(key, value)).forEach(( document) -> [CD]
+Line_4 $$ List<T> list = new ArrayList() --> Line_7 $$ list.add(mapper.readValue(toJson(document), clazz)) [FD]
+Line_3 $$ CompletableFuture<List<T>> future = new CompletableFuture() --> Line_11 $$ future.complete(list) [FD]
+Line_4 $$ List<T> list = new ArrayList() --> Line_11 $$ future.complete(list) [FD]
+Line_2 $$ public CompletableFuture<List<T>> getSome(String key, Object value) --> Line_13 $$ return future [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testSendPartnerReportIntoDatabase() throws Exception --> Line_3 $$ assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric")) [CD]
+Line_2 $$ public void testSendPartnerReportIntoDatabase() throws Exception --> Line_4 $$ String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>200911150815</date><code>200</code><time>4387</time></partner>" [CD]
+Line_2 $$ public void testSendPartnerReportIntoDatabase() throws Exception --> Line_5 $$ template.sendBody("activemq:queue:partners", xml) [CD]
+Line_4 $$ String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>200911150815</date><code>200</code><time>4387</time></partner>" --> Line_5 $$ template.sendBody("activemq:queue:partners", xml) [FD]
+Line_2 $$ public void testSendPartnerReportIntoDatabase() throws Exception --> Line_6 $$ Thread.sleep(5000) [CD]
+Line_2 $$ public void testSendPartnerReportIntoDatabase() throws Exception --> Line_7 $$ assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric")) [CD]

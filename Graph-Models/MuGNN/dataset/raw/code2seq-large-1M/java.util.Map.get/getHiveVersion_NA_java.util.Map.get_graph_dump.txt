@@ -1,0 +1,8 @@
+Line_2 $$ public void getHiveVersion() throws Exception --> Line_3 $$ MethodCallRetVal p = doHttpCall(templetonBaseUrl + "/version/hive", HTTP_METHOD_TYPE.GET) [CD]
+Line_2 $$ public void getHiveVersion() throws Exception --> Line_4 $$ Assert.assertEquals(HttpStatus.OK_200, p.httpStatusCode) [CD]
+Line_2 $$ public void getHiveVersion() throws Exception --> Line_5 $$ Map<String, Object> props = JsonBuilder.jsonToMap(p.responseBody) [CD]
+Line_2 $$ public void getHiveVersion() throws Exception --> Line_6 $$ Assert.assertEquals("hive", props.get("module")) [CD]
+Line_5 $$ Map<String, Object> props = JsonBuilder.jsonToMap(p.responseBody) --> Line_6 $$ Assert.assertEquals("hive", props.get("module")) [FD]
+Line_2 $$ public void getHiveVersion() throws Exception --> Line_7 $$ Assert.assertTrue(p.getAssertMsg(), ((String) props.get("version")).matches("[0-9]+.[0-9]+.[0-9]+.*")) [CD]
+Line_3 $$ MethodCallRetVal p = doHttpCall(templetonBaseUrl + "/version/hive", HTTP_METHOD_TYPE.GET) --> Line_7 $$ Assert.assertTrue(p.getAssertMsg(), ((String) props.get("version")).matches("[0-9]+.[0-9]+.[0-9]+.*")) [FD]
+Line_5 $$ Map<String, Object> props = JsonBuilder.jsonToMap(p.responseBody) --> Line_7 $$ Assert.assertTrue(p.getAssertMsg(), ((String) props.get("version")).matches("[0-9]+.[0-9]+.[0-9]+.*")) [FD]

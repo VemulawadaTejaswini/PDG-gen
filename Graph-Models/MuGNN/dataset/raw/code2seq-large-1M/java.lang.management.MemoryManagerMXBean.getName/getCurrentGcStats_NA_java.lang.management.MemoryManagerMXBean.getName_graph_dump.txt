@@ -1,0 +1,7 @@
+Line_2 $$ public Iterable<GCStat> getCurrentGcStats() --> Line_3 $$ List<GCStat> stats = new ArrayList() [CD]
+Line_4 $$ for (GarbageCollectorMXBean mxBean : mxBeans) --> Line_5 $$ String name = mxBean.getName() [FD]
+Line_5 $$ String name = mxBean.getName() --> Line_6 $$ GCStat initStat = Preconditions.checkNotNull(initialData.get(name)) [FD]
+Line_3 $$ List<GCStat> stats = new ArrayList() --> Line_7 $$ stats.add(new GCStat(name, mxBean.getCollectionCount() - initStat.getNumCollections(), mxBean.getCollectionTime() - initStat.getTotalTimeInMs())) [FD]
+Line_4 $$ for (GarbageCollectorMXBean mxBean : mxBeans) --> Line_7 $$ stats.add(new GCStat(name, mxBean.getCollectionCount() - initStat.getNumCollections(), mxBean.getCollectionTime() - initStat.getTotalTimeInMs())) [FD]
+Line_6 $$ GCStat initStat = Preconditions.checkNotNull(initialData.get(name)) --> Line_7 $$ stats.add(new GCStat(name, mxBean.getCollectionCount() - initStat.getNumCollections(), mxBean.getCollectionTime() - initStat.getTotalTimeInMs())) [FD]
+Line_2 $$ public Iterable<GCStat> getCurrentGcStats() --> Line_9 $$ return stats [CD]

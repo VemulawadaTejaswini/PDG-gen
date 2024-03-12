@@ -1,0 +1,7 @@
+Line_2 $$ public List<RelOptMaterialization> getAllValidMaterializedViews(boolean forceMVContentsUpToDate, ValidTxnWriteIdList txnList) throws HiveException --> Line_3 $$ List<RelOptMaterialization> result = new ArrayList() [CD]
+Line_5 $$ for (String dbName : getMSC().getAllDatabases()) --> Line_6 $$ List<String> materializedViewNames = getMaterializedViewsForRewriting(dbName) [FD]
+Line_6 $$ List<String> materializedViewNames = getMaterializedViewsForRewriting(dbName) --> Line_7 $$ if (materializedViewNames.isEmpty()) [FD]
+Line_3 $$ List<RelOptMaterialization> result = new ArrayList() --> Line_10 $$ result.addAll(getValidMaterializedViews(dbName, materializedViewNames, forceMVContentsUpToDate, txnList)) [FD]
+Line_5 $$ for (String dbName : getMSC().getAllDatabases()) --> Line_10 $$ result.addAll(getValidMaterializedViews(dbName, materializedViewNames, forceMVContentsUpToDate, txnList)) [FD]
+Line_6 $$ List<String> materializedViewNames = getMaterializedViewsForRewriting(dbName) --> Line_10 $$ result.addAll(getValidMaterializedViews(dbName, materializedViewNames, forceMVContentsUpToDate, txnList)) [FD]
+Line_2 $$ public List<RelOptMaterialization> getAllValidMaterializedViews(boolean forceMVContentsUpToDate, ValidTxnWriteIdList txnList) throws HiveException --> Line_10 $$ result.addAll(getValidMaterializedViews(dbName, materializedViewNames, forceMVContentsUpToDate, txnList)) [FD]

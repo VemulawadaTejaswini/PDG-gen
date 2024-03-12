@@ -1,0 +1,8 @@
+Line_2 $$ private void assertIsRowTimestampSet(String schemaName, String tableName, String columnName) throws SQLException --> Line_3 $$ String sql = "SELECT IS_ROW_TIMESTAMP FROM \"SYSTEM\".\"CATALOG\" WHERE " + "(TABLE_SCHEM, TABLE_NAME) = ('" + schemaName + "','" + tableName + "') AND\n" + "COLUMN_FAMILY IS NULL AND COLUMN_NAME = ?" [CD]
+Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_5 $$ PreparedStatement stmt = conn.prepareStatement(sql) [FD]
+Line_3 $$ String sql = "SELECT IS_ROW_TIMESTAMP FROM \"SYSTEM\".\"CATALOG\" WHERE " + "(TABLE_SCHEM, TABLE_NAME) = ('" + schemaName + "','" + tableName + "') AND\n" + "COLUMN_FAMILY IS NULL AND COLUMN_NAME = ?" --> Line_5 $$ PreparedStatement stmt = conn.prepareStatement(sql) [FD]
+Line_5 $$ PreparedStatement stmt = conn.prepareStatement(sql) --> Line_6 $$ stmt.setString(1, columnName) [FD]
+Line_2 $$ private void assertIsRowTimestampSet(String schemaName, String tableName, String columnName) throws SQLException --> Line_6 $$ stmt.setString(1, columnName) [FD]
+Line_5 $$ PreparedStatement stmt = conn.prepareStatement(sql) --> Line_7 $$ ResultSet rs = stmt.executeQuery() [FD]
+Line_7 $$ ResultSet rs = stmt.executeQuery() --> Line_8 $$ assertTrue(rs.next()) [FD]
+Line_7 $$ ResultSet rs = stmt.executeQuery() --> Line_9 $$ assertEquals(true, rs.getBoolean(1)) [FD]

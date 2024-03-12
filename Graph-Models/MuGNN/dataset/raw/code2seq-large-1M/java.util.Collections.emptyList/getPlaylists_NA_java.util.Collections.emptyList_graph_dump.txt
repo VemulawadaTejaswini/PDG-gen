@@ -1,0 +1,7 @@
+Line_2 $$ public Observable<List<Playlist>> getPlaylists() --> Line_3 $$ if (mPlaylists == null) [CD]
+Line_3 $$ if (mPlaylists == null) --> Line_4 $$ mPlaylists = BehaviorSubject.create() [CD]
+Line_3 $$ if (mPlaylists == null) --> Line_5 $$ mLoadingState.onNext(true) [CD]
+Line_3 $$ if (mPlaylists == null) --> Line_6 $$ MediaStoreUtil.getPermission(mContext).observeOn(Schedulers.io()).subscribe( granted -> [CD]
+Line_7 $$ if (granted) --> Line_8 $$ mPlaylists.onNext(getAllPlaylists()) [CD]
+Line_7 $$ if (granted) --> Line_10 $$ mPlaylists.onNext(Collections.emptyList()) [CD]
+Line_2 $$ public Observable<List<Playlist>> getPlaylists() --> Line_17 $$ return mPlaylists.asObservable().observeOn(AndroidSchedulers.mainThread()) [CD]

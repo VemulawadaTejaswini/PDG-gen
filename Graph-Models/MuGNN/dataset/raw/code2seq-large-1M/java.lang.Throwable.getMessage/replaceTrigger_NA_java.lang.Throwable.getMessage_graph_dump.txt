@@ -1,0 +1,8 @@
+Line_2 $$ protected boolean replaceTrigger(Connection conn, TriggerKey key, OperableTrigger newTrigger) throws JobPersistenceException --> Line_4 $$ JobDetail job = getDelegate().selectJobForTrigger(conn, getClassLoadHelper(), key) [FD]
+Line_4 $$ JobDetail job = getDelegate().selectJobForTrigger(conn, getClassLoadHelper(), key) --> Line_5 $$ if (job == null) [FD]
+Line_5 $$ if (job == null) --> Line_6 $$ return false [CD]
+Line_2 $$ protected boolean replaceTrigger(Connection conn, TriggerKey key, OperableTrigger newTrigger) throws JobPersistenceException --> Line_8 $$ if (!newTrigger.getJobKey().equals(job.getKey())) [FD]
+Line_4 $$ JobDetail job = getDelegate().selectJobForTrigger(conn, getClassLoadHelper(), key) --> Line_8 $$ if (!newTrigger.getJobKey().equals(job.getKey())) [FD]
+Line_2 $$ protected boolean replaceTrigger(Connection conn, TriggerKey key, OperableTrigger newTrigger) throws JobPersistenceException --> Line_11 $$ boolean removedTrigger = deleteTriggerAndChildren(conn, key) [FD]
+Line_2 $$ protected boolean replaceTrigger(Connection conn, TriggerKey key, OperableTrigger newTrigger) throws JobPersistenceException --> Line_12 $$ storeTrigger(conn, newTrigger, job, false, STATE_WAITING, false, false) [FD]
+Line_4 $$ JobDetail job = getDelegate().selectJobForTrigger(conn, getClassLoadHelper(), key) --> Line_12 $$ storeTrigger(conn, newTrigger, job, false, STATE_WAITING, false, false) [FD]

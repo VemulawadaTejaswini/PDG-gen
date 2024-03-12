@@ -1,0 +1,7 @@
+Line_2 $$ public void afterDoesNotUseADeclaredGroup() throws Exception --> Line_3 $$ String transform = "" + "core.replace(\n" + "  before = 'foo$ [CD]
+Line_2 $$ public void afterDoesNotUseADeclaredGroup() throws Exception --> Line_4 $$ Replace replace = skylark.eval("r", "r = " + transform) [CD]
+Line_2 $$ public void afterDoesNotUseADeclaredGroup() throws Exception --> Line_5 $$ Files.write(checkoutDir.resolve("foo"), "foo123abc".getBytes(UTF_8)) [CD]
+Line_2 $$ public void afterDoesNotUseADeclaredGroup() throws Exception --> Line_6 $$ transform(replace) [CD]
+Line_4 $$ Replace replace = skylark.eval("r", "r = " + transform) --> Line_6 $$ transform(replace) [FD]
+Line_2 $$ public void afterDoesNotUseADeclaredGroup() throws Exception --> Line_7 $$ FileSubjects.assertThatPath(checkoutDir).containsFile("foo", "foo123") [CD]
+Line_2 $$ public void afterDoesNotUseADeclaredGroup() throws Exception --> Line_8 $$ skylark.evalFails("core.reverse([" + transform + "])", "defined but not used: \\[bar\\]") [CD]

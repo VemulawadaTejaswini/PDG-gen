@@ -1,0 +1,7 @@
+Line_2 $$ void innerNext(MergeSequentialInner<R> inner, R value) --> Line_3 $$ if (inner.queue().offer(value)) [CD]
+Line_2 $$ void innerNext(MergeSequentialInner<R> inner, R value) --> Line_3 $$ if (inner.queue().offer(value)) [FD]
+Line_3 $$ if (inner.queue().offer(value)) --> Line_4 $$ drain() [CD]
+Line_3 $$ if (inner.queue().offer(value)) --> Line_6 $$ inner.cancel() [CD]
+Line_2 $$ void innerNext(MergeSequentialInner<R> inner, R value) --> Line_6 $$ inner.cancel() [FD]
+Line_3 $$ if (inner.queue().offer(value)) --> Line_7 $$ onError(Operators.onOperatorError(null, Exceptions.failWithOverflow(Exceptions.BACKPRESSURE_ERROR_QUEUE_FULL), value, actual.currentContext())) [CD]
+Line_2 $$ void innerNext(MergeSequentialInner<R> inner, R value) --> Line_7 $$ onError(Operators.onOperatorError(null, Exceptions.failWithOverflow(Exceptions.BACKPRESSURE_ERROR_QUEUE_FULL), value, actual.currentContext())) [FD]

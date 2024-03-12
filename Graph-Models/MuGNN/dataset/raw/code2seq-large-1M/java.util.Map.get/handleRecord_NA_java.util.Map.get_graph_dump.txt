@@ -1,0 +1,7 @@
+Line_2 $$ protected BinlogFileOffset handleRecord(ConsumerRecord<String, String> record) --> Line_4 $$ Map<String, Object> keyMap = JSonMapper.fromJson(record.key(), Map.class) [FD]
+Line_5 $$ List<Object> payload = (List<Object>) keyMap.get("payload") --> Line_6 $$ String connector = (String) payload.get(0) [FD]
+Line_5 $$ List<Object> payload = (List<Object>) keyMap.get("payload") --> Line_7 $$ String server = ((Map<String, String>) payload.get(1)).get("server") [FD]
+Line_6 $$ String connector = (String) payload.get(0) --> Line_8 $$ if (!"my-sql-connector".equals(connector) || !"my-app-connector".equals(server)) [FD]
+Line_7 $$ String server = ((Map<String, String>) payload.get(1)).get("server") --> Line_8 $$ if (!"my-sql-connector".equals(connector) || !"my-app-connector".equals(server)) [FD]
+Line_8 $$ if (!"my-sql-connector".equals(connector) || !"my-app-connector".equals(server)) --> Line_9 $$ return null [CD]
+Line_2 $$ protected BinlogFileOffset handleRecord(ConsumerRecord<String, String> record) --> Line_11 $$ Map<String, Object> valueMap = JSonMapper.fromJson(record.value(), Map.class) [FD]

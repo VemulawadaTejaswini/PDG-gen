@@ -1,0 +1,3 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_4 $$ ResultSet resultSet = conn.createStatement().executeQuery("select count (distinct 74) from unnest([1, 2]) t1 cross join unnest([2, 3]) t2") [FD]
+Line_4 $$ ResultSet resultSet = conn.createStatement().executeQuery("select count (distinct 74) from unnest([1, 2]) t1 cross join unnest([2, 3]) t2") --> Line_5 $$ assertThat(resultSet.next(), is(true)) [FD]
+Line_4 $$ ResultSet resultSet = conn.createStatement().executeQuery("select count (distinct 74) from unnest([1, 2]) t1 cross join unnest([2, 3]) t2") --> Line_6 $$ assertThat(resultSet.getLong(1), is(1L)) [FD]

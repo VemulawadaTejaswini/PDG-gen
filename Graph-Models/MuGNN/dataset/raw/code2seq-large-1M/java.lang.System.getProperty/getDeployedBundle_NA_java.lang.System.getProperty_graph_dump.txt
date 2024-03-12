@@ -1,0 +1,8 @@
+Line_2 $$ public String getDeployedBundle() --> Line_3 $$ String apiHostname = configService.getConfigurationValueAsString("apiHostname", null) [CD]
+Line_2 $$ public String getDeployedBundle() --> Line_4 $$ if (apiHostname != null) [CD]
+Line_3 $$ String apiHostname = configService.getConfigurationValueAsString("apiHostname", null) --> Line_4 $$ if (apiHostname != null) [FD]
+Line_4 $$ if (apiHostname != null) --> Line_5 $$ String apiHost = apiHostname + "/api/where/config.json?key=TEST" [CD]
+Line_5 $$ String apiHost = apiHostname + "/api/where/config.json?key=TEST" --> Line_7 $$ return getJsonData(apiHost).getAsJsonObject().getAsJsonObject("data").getAsJsonObject("entry").get("name").getAsString() [FD]
+Line_2 $$ public String getDeployedBundle() --> Line_12 $$ String tdmHost = System.getProperty("tdm.host") + "/api/bundle/list" [CD]
+Line_12 $$ String tdmHost = System.getProperty("tdm.host") + "/api/bundle/list" --> Line_14 $$ return getJsonData(tdmHost).getAsJsonObject().getAsJsonArray("bundles").get(0).getAsJsonObject().get("name").getAsString() [FD]
+Line_2 $$ public String getDeployedBundle() --> Line_18 $$ return "" [CD]

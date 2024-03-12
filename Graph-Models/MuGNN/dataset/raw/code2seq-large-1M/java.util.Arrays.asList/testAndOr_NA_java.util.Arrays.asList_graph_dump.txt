@@ -1,0 +1,7 @@
+Line_2 $$ public void testAndOr() throws Exception --> Line_3 $$ String q = query + "b = filter a by (srcid > 10 or dstid <= 5) and name == 'foo' and mrkt is null;" + "store b into 'out';" [CD]
+Line_2 $$ public void testAndOr() throws Exception --> Line_4 $$ Expression expr = getExpressionForTest(q, Arrays.asList("srcid", "dstid", "name", "mrkt")) [CD]
+Line_3 $$ String q = query + "b = filter a by (srcid > 10 or dstid <= 5) and name == 'foo' and mrkt is null;" + "store b into 'out';" --> Line_4 $$ Expression expr = getExpressionForTest(q, Arrays.asList("srcid", "dstid", "name", "mrkt")) [FD]
+Line_2 $$ public void testAndOr() throws Exception --> Line_5 $$ SearchArgument sarg = orcStorage.getSearchArgument(expr) [CD]
+Line_4 $$ Expression expr = getExpressionForTest(q, Arrays.asList("srcid", "dstid", "name", "mrkt")) --> Line_5 $$ SearchArgument sarg = orcStorage.getSearchArgument(expr) [FD]
+Line_2 $$ public void testAndOr() throws Exception --> Line_6 $$ assertEquals("leaf-0 = (LESS_THAN_EQUALS srcid 10)\n" + "leaf-1 = (LESS_THAN_EQUALS dstid 5)\n" + "leaf-2 = (EQUALS name foo)\n" + "leaf-3 = (IS_NULL mrkt)\n" + "expr = (and (or (not leaf-0) leaf-1) leaf-2 leaf-3)", sarg.toString()) [CD]
+Line_5 $$ SearchArgument sarg = orcStorage.getSearchArgument(expr) --> Line_6 $$ assertEquals("leaf-0 = (LESS_THAN_EQUALS srcid 10)\n" + "leaf-1 = (LESS_THAN_EQUALS dstid 5)\n" + "leaf-2 = (EQUALS name foo)\n" + "leaf-3 = (IS_NULL mrkt)\n" + "expr = (and (or (not leaf-0) leaf-1) leaf-2 leaf-3)", sarg.toString()) [FD]

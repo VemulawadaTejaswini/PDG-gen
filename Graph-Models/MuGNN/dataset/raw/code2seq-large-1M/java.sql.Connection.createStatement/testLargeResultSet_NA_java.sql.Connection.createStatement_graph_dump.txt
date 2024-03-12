@@ -1,0 +1,8 @@
+Line_2 $$ public void testLargeResultSet() throws Exception --> Line_3 $$ Timer timer = new Timer() [CD]
+Line_2 $$ public void testLargeResultSet() throws Exception --> Line_4 $$ for (int c = 0; c < 100; ++c) [CD]
+Line_5 $$ try (Statement st = conn.createStatement()) --> Line_6 $$ try (ResultSet rs = st.executeQuery("SELECT id, md5(random()::text) AS descr FROM (SELECT * FROM generate_series(1,100000) AS id) AS x;")) [FD]
+Line_6 $$ try (ResultSet rs = st.executeQuery("SELECT id, md5(random()::text) AS descr FROM (SELECT * FROM generate_series(1,100000) AS id) AS x;")) --> Line_7 $$ while (rs.next()) [FD]
+Line_7 $$ while (rs.next()) --> Line_8 $$ rs.getString(1) [CD]
+Line_6 $$ try (ResultSet rs = st.executeQuery("SELECT id, md5(random()::text) AS descr FROM (SELECT * FROM generate_series(1,100000) AS id) AS x;")) --> Line_8 $$ rs.getString(1) [FD]
+Line_4 $$ for (int c = 0; c < 100; ++c) --> Line_12 $$ System.out.println("Query Time:" + timer.getLapSeconds()) [CD]
+Line_3 $$ Timer timer = new Timer() --> Line_12 $$ System.out.println("Query Time:" + timer.getLapSeconds()) [FD]

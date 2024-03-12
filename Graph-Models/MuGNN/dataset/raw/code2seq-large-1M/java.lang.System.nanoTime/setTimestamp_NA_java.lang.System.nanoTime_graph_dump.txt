@@ -1,0 +1,7 @@
+Line_2 $$ private void setTimestamp(byte[] buf, int off) --> Line_3 $$ long ns = System.nanoTime() [CD]
+Line_2 $$ private void setTimestamp(byte[] buf, int off) --> Line_4 $$ int fraction = (int) ((ns % b) * (1 << 18) / b) [CD]
+Line_2 $$ private void setTimestamp(byte[] buf, int off) --> Line_5 $$ int seconds = (int) ((ns / b) % 64) [CD]
+Line_2 $$ private void setTimestamp(byte[] buf, int off) --> Line_6 $$ int timestamp = (seconds << 18 | fraction) & 0x00FFFFFF [CD]
+Line_2 $$ private void setTimestamp(byte[] buf, int off) --> Line_7 $$ buf[off] = (byte) (timestamp >> 16) [CD]
+Line_2 $$ private void setTimestamp(byte[] buf, int off) --> Line_8 $$ buf[off + 1] = (byte) (timestamp >> 8) [CD]
+Line_2 $$ private void setTimestamp(byte[] buf, int off) --> Line_9 $$ buf[off + 2] = (byte) timestamp [CD]

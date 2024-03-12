@@ -1,0 +1,8 @@
+Line_2 $$ public void testPutWithStorageTypeCompatibility() --> Line_3 $$ final String bucketName = "bucket-with-storage-type-compatibility" [CD]
+Line_2 $$ public void testPutWithStorageTypeCompatibility() --> Line_4 $$ CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName) [CD]
+Line_4 $$ CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName) --> Line_6 $$ ossClient.createBucket(createBucketRequest) [FD]
+Line_3 $$ final String bucketName = "bucket-with-storage-type-compatibility" --> Line_7 $$ BucketList buckets = ossClient.listBuckets(bucketName, "", 100) [FD]
+Line_7 $$ BucketList buckets = ossClient.listBuckets(bucketName, "", 100) --> Line_8 $$ Assert.assertEquals(1, buckets.getBucketList().size()) [FD]
+Line_7 $$ BucketList buckets = ossClient.listBuckets(bucketName, "", 100) --> Line_9 $$ Assert.assertEquals(StorageClass.Standard, buckets.getBucketList().get(0).getStorageClass()) [FD]
+Line_7 $$ BucketList buckets = ossClient.listBuckets(bucketName, "", 100) --> Line_10 $$ Assert.assertEquals(buckets.getRequestId().length(), REQUEST_ID_LEN) [FD]
+Line_3 $$ final String bucketName = "bucket-with-storage-type-compatibility" --> Line_14 $$ ossClient.deleteBucket(bucketName) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public boolean onZoomValueChanged(float factor) --> Line_3 $$ if (mIsReady && mMediaStreamingManager.isZoomSupported()) [CD]
+Line_3 $$ if (mIsReady && mMediaStreamingManager.isZoomSupported()) --> Line_5 $$ mCurrentZoom = Math.min(mCurrentZoom, mMaxZoom) [CD]
+Line_3 $$ if (mIsReady && mMediaStreamingManager.isZoomSupported()) --> Line_6 $$ mCurrentZoom = Math.max(0, mCurrentZoom) [CD]
+Line_3 $$ if (mIsReady && mMediaStreamingManager.isZoomSupported()) --> Line_7 $$ Log.d(TAG, "zoom ongoing, scale: " + mCurrentZoom + ",factor:" + factor + ",maxZoom:" + mMaxZoom) [CD]
+Line_3 $$ if (mIsReady && mMediaStreamingManager.isZoomSupported()) --> Line_8 $$ if (!mHandler.hasMessages(MSG_SET_ZOOM)) [CD]
+Line_8 $$ if (!mHandler.hasMessages(MSG_SET_ZOOM)) --> Line_9 $$ mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ZOOM), ZOOM_MINIMUM_WAIT_MILLIS) [CD]
+Line_8 $$ if (!mHandler.hasMessages(MSG_SET_ZOOM)) --> Line_10 $$ return true [CD]
+Line_2 $$ public boolean onZoomValueChanged(float factor) --> Line_13 $$ return false [CD]

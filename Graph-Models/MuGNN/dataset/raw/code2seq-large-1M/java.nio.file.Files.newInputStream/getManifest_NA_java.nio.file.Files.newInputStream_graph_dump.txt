@@ -1,0 +1,5 @@
+Line_2 $$ private static Manifest getManifest(Path jar, boolean useZipfs) throws IOException --> Line_3 $$ if (useZipfs) [CD]
+Line_2 $$ private static Manifest getManifest(Path jar, boolean useZipfs) throws IOException --> Line_4 $$ try (FileSystem zipfs = ZipFS.newZipFileSystem(jar)) [FD]
+Line_4 $$ try (FileSystem zipfs = ZipFS.newZipFileSystem(jar)) --> Line_5 $$ return new Manifest(Files.newInputStream(zipfs.getPath(JarFile.MANIFEST_NAME))) [FD]
+Line_3 $$ if (useZipfs) --> Line_8 $$ return new JarInputStream(Files.newInputStream(jar)).getManifest() [CD]
+Line_2 $$ private static Manifest getManifest(Path jar, boolean useZipfs) throws IOException --> Line_8 $$ return new JarInputStream(Files.newInputStream(jar)).getManifest() [FD]

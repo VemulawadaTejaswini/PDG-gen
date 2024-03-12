@@ -1,0 +1,6 @@
+Line_4 $$ if (servletRequestMethod == null) --> Line_5 $$ Class<?> portletRequestClass = Class.forName("com.bea.portlet.container.PortletRequestImpl") [CD]
+Line_4 $$ if (servletRequestMethod == null) --> Line_6 $$ servletRequestMethod = portletRequestClass.getDeclaredMethod("getInternalRequest") [CD]
+Line_5 $$ Class<?> portletRequestClass = Class.forName("com.bea.portlet.container.PortletRequestImpl") --> Line_6 $$ servletRequestMethod = portletRequestClass.getDeclaredMethod("getInternalRequest") [FD]
+Line_4 $$ if (servletRequestMethod == null) --> Line_7 $$ servletRequestMethod.setAccessible(true) [CD]
+Line_2 $$ protected HttpServletRequest getServletRequest(PortletRequest request) --> Line_9 $$ return (HttpServletRequest) servletRequestMethod.invoke(request) [FD]
+Line_11 $$ if (!warningLogged) --> Line_13 $$ getLogger().log(Level.WARNING, "Could not determine underlying servlet request for WebLogic Portal portlet request", e) [CD]

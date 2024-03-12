@@ -1,0 +1,7 @@
+Line_2 $$ public void testClear() throws Exception --> Line_3 $$ waitForEvent(INDEX_SYNC_EVENT, ElasticsearchSyncVerticle::<>invokeSync) [CD]
+Line_2 $$ public void testClear() throws Exception --> Line_4 $$ call(() -> client().invokeIndexClear(), FORBIDDEN, "error_admin_permission_required") [CD]
+Line_2 $$ public void testClear() throws Exception --> Line_5 $$ tx(() -> group().addRole(roles().get("admin"))) [CD]
+Line_2 $$ public void testClear() throws Exception --> Line_6 $$ GenericMessageResponse message = call(() -> client().invokeIndexClear()) [CD]
+Line_2 $$ public void testClear() throws Exception --> Line_7 $$ assertThat(message).matches("search_admin_index_clear") [CD]
+Line_6 $$ GenericMessageResponse message = call(() -> client().invokeIndexClear()) --> Line_7 $$ assertThat(message).matches("search_admin_index_clear") [FD]
+Line_12 $$ HttpErrorException error = (HttpErrorException) e.getCause() --> Line_13 $$ assertEquals(404, error.getStatusCode()) [FD]

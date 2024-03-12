@@ -1,0 +1,8 @@
+Line_2 $$ public static RefundNotifyReqInfo decryptRefundNotifyReqInfo(String req_info, String key) --> Line_5 $$ Key sKeySpec = new SecretKeySpec(DigestUtils.md5Hex(key).getBytes(), "AES") [FD]
+Line_4 $$ Cipher cipher = Cipher.getInstance("AES/ECB/NoPadding") --> Line_6 $$ cipher.init(Cipher.DECRYPT_MODE, sKeySpec) [FD]
+Line_5 $$ Key sKeySpec = new SecretKeySpec(DigestUtils.md5Hex(key).getBytes(), "AES") --> Line_6 $$ cipher.init(Cipher.DECRYPT_MODE, sKeySpec) [FD]
+Line_4 $$ Cipher cipher = Cipher.getInstance("AES/ECB/NoPadding") --> Line_7 $$ byte[] resultByte = cipher.doFinal(Base64.decodeBase64(req_info)) [FD]
+Line_2 $$ public static RefundNotifyReqInfo decryptRefundNotifyReqInfo(String req_info, String key) --> Line_7 $$ byte[] resultByte = cipher.doFinal(Base64.decodeBase64(req_info)) [FD]
+Line_7 $$ byte[] resultByte = cipher.doFinal(Base64.decodeBase64(req_info)) --> Line_8 $$ String data = new String(PKCS7Encoder.decode(resultByte)) [FD]
+Line_8 $$ String data = new String(PKCS7Encoder.decode(resultByte)) --> Line_9 $$ return XMLConverUtil.convertToObject(RefundNotifyReqInfo.class, data) [FD]
+Line_2 $$ public static RefundNotifyReqInfo decryptRefundNotifyReqInfo(String req_info, String key) --> Line_13 $$ return null [CD]

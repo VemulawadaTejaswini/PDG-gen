@@ -1,0 +1,7 @@
+Line_2 $$ public void whenGetPartitionWithConsumedOffsetThenOk() throws Exception --> Line_3 $$ when(eventTypeRepositoryMock.findByName(TEST_EVENT_TYPE)).thenReturn(EVENT_TYPE) [CD]
+Line_2 $$ public void whenGetPartitionWithConsumedOffsetThenOk() throws Exception --> Line_4 $$ when(topicRepositoryMock.topicExists(eq(EVENT_TYPE.getName()))).thenReturn(true) [CD]
+Line_2 $$ public void whenGetPartitionWithConsumedOffsetThenOk() throws Exception --> Line_5 $$ when(topicRepositoryMock.loadPartitionStatistics(eq(TIMELINE), eq(TEST_PARTITION))).thenReturn(Optional.of(TEST_POSITION_STATS.get(0))) [CD]
+Line_2 $$ public void whenGetPartitionWithConsumedOffsetThenOk() throws Exception --> Line_6 $$ final List<NakadiCursorLag> lags = mockCursorLag() [CD]
+Line_2 $$ public void whenGetPartitionWithConsumedOffsetThenOk() throws Exception --> Line_7 $$ when(cursorOperationsService.cursorsLag(any(), any())).thenReturn(lags) [CD]
+Line_6 $$ final List<NakadiCursorLag> lags = mockCursorLag() --> Line_7 $$ when(cursorOperationsService.cursorsLag(any(), any())).thenReturn(lags) [FD]
+Line_2 $$ public void whenGetPartitionWithConsumedOffsetThenOk() throws Exception --> Line_8 $$ mockMvc.perform(get(String.format("/event-types/%s/partitions/%s?consumed_offset=1", TEST_EVENT_TYPE, TEST_PARTITION))).andExpect(status().isOk()).andExpect(content().string(TestUtils.JSON_TEST_HELPER.matchesObject(new CursorLag("0", "001-0000-0", "001-0000-1", 42L)))) [CD]

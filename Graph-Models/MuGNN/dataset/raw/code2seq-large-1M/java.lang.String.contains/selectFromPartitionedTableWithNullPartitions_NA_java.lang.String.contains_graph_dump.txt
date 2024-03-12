@@ -1,0 +1,6 @@
+Line_2 $$ public void selectFromPartitionedTableWithNullPartitions() throws Exception --> Line_3 $$ final String query = "SELECT count(*) nullCount FROM hive.partition_pruning_test " + "WHERE c IS NULL OR d IS NULL OR e IS NULL" [CD]
+Line_2 $$ public void selectFromPartitionedTableWithNullPartitions() throws Exception --> Line_4 $$ final String plan = getPlanInString("EXPLAIN PLAN FOR " + query, OPTIQ_FORMAT) [CD]
+Line_2 $$ public void selectFromPartitionedTableWithNullPartitions() throws Exception --> Line_5 $$ assertFalse("Unexpected plan\n" + plan, plan.contains("Filter")) [CD]
+Line_4 $$ final String plan = getPlanInString("EXPLAIN PLAN FOR " + query, OPTIQ_FORMAT) --> Line_5 $$ assertFalse("Unexpected plan\n" + plan, plan.contains("Filter")) [FD]
+Line_2 $$ public void selectFromPartitionedTableWithNullPartitions() throws Exception --> Line_6 $$ testBuilder().sqlQuery(query).unOrdered().baselineColumns("nullCount").baselineValues(95L).go() [CD]
+Line_3 $$ final String query = "SELECT count(*) nullCount FROM hive.partition_pruning_test " + "WHERE c IS NULL OR d IS NULL OR e IS NULL" --> Line_6 $$ testBuilder().sqlQuery(query).unOrdered().baselineColumns("nullCount").baselineValues(95L).go() [FD]

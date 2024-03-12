@@ -1,0 +1,7 @@
+Line_2 $$ public Map<Long, Long> getCuboids() --> Line_3 $$ if (cuboidBytes == null) [CD]
+Line_3 $$ if (cuboidBytes == null) --> Line_4 $$ return null [CD]
+Line_2 $$ public Map<Long, Long> getCuboids() --> Line_5 $$ byte[] uncompressed [CD]
+Line_5 $$ byte[] uncompressed --> Line_7 $$ uncompressed = CompressionUtils.decompress(cuboidBytes) [FD]
+Line_8 $$ String str = new String(uncompressed, "UTF-8") --> Line_11 $$ Map<Long, Long> cuboids = JsonUtil.readValue(str, typeRef) [FD]
+Line_9 $$ TypeReference<Map<Long, Long>> typeRef = new TypeReference<Map<Long, Long>>() --> Line_11 $$ Map<Long, Long> cuboids = JsonUtil.readValue(str, typeRef) [FD]
+Line_11 $$ Map<Long, Long> cuboids = JsonUtil.readValue(str, typeRef) --> Line_12 $$ return cuboids.isEmpty() ? null : cuboids [FD]

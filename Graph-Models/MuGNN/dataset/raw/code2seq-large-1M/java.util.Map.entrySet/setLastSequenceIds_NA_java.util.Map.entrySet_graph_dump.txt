@@ -1,0 +1,7 @@
+Line_2 $$ public void setLastSequenceIds(String peerId, Map<String, Long> lastSeqIds) throws ReplicationException --> Line_5 $$ for (Entry<String, Long> lastSeqEntry : lastSeqIds.entrySet()) [FD]
+Line_2 $$ public void setLastSequenceIds(String peerId, Map<String, Long> lastSeqIds) throws ReplicationException --> Line_6 $$ String path = getSerialReplicationRegionPeerNode(lastSeqEntry.getKey(), peerId) [FD]
+Line_4 $$ List<ZKUtilOp> listOfOps = new ArrayList() --> Line_8 $$ listOfOps.add(ZKUtilOp.setData(path, ZKUtil.positionToByteArray(lastSeqEntry.getValue()))) [FD]
+Line_4 $$ List<ZKUtilOp> listOfOps = new ArrayList() --> Line_10 $$ if (!listOfOps.isEmpty()) [FD]
+Line_10 $$ if (!listOfOps.isEmpty()) --> Line_11 $$ ZKUtil.multiOrSequential(zookeeper, listOfOps, true) [CD]
+Line_4 $$ List<ZKUtilOp> listOfOps = new ArrayList() --> Line_11 $$ ZKUtil.multiOrSequential(zookeeper, listOfOps, true) [FD]
+Line_2 $$ public void setLastSequenceIds(String peerId, Map<String, Long> lastSeqIds) throws ReplicationException --> Line_14 $$ throw new ReplicationException("Failed to set last sequence ids, peerId=" + peerId + ", size of lastSeqIds=" + lastSeqIds.size(), e) [FD]

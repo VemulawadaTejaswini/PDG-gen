@@ -1,0 +1,8 @@
+Line_2 $$ public void snoozeLegacyAlert() --> Line_3 $$ long initialTimestamp = System.currentTimeMillis() [CD]
+Line_2 $$ public void snoozeLegacyAlert() --> Line_4 $$ UserNotification.create("test1", "calibration_alert", initialTimestamp) [CD]
+Line_3 $$ long initialTimestamp = System.currentTimeMillis() --> Line_4 $$ UserNotification.create("test1", "calibration_alert", initialTimestamp) [FD]
+Line_2 $$ public void snoozeLegacyAlert() --> Line_5 $$ UserNotification.snoozeAlert("calibration_alert", 15) [CD]
+Line_2 $$ public void snoozeLegacyAlert() --> Line_6 $$ UserNotification calibrationAlert = UserNotification.GetNotificationByType("calibration_alert") [CD]
+Line_2 $$ public void snoozeLegacyAlert() --> Line_7 $$ assertThat(calibrationAlert).isNotNull() [CD]
+Line_6 $$ UserNotification calibrationAlert = UserNotification.GetNotificationByType("calibration_alert") --> Line_7 $$ assertThat(calibrationAlert).isNotNull() [FD]
+Line_2 $$ public void snoozeLegacyAlert() --> Line_8 $$ assertThat(calibrationAlert.timestamp).isAtLeast(initialTimestamp + 15d * 60_000) [CD]

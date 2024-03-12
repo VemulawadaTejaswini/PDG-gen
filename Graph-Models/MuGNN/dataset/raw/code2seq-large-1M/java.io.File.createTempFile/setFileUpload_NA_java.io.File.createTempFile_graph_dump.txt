@@ -1,0 +1,8 @@
+Line_2 $$ private void setFileUpload() --> Line_3 $$ String fileUploadContents = getFirstValue("mockFileUpload") [CD]
+Line_2 $$ private void setFileUpload() --> Line_4 $$ if (fileUploadContents != null) [CD]
+Line_3 $$ String fileUploadContents = getFirstValue("mockFileUpload") --> Line_4 $$ if (fileUploadContents != null) [FD]
+Line_6 $$ File tempFile = File.createTempFile(UUID.randomUUID().toString(), ".tmp") --> Line_7 $$ tempFile.deleteOnExit() [FD]
+Line_3 $$ String fileUploadContents = getFirstValue("mockFileUpload") --> Line_8 $$ try (FileOutputStream fos = new FileOutputStream(tempFile); [FD]
+Line_8 $$ try (FileOutputStream fos = new FileOutputStream(tempFile); --> Line_10 $$ IOUtils.copy(bais, fos) [FD]
+Line_8 $$ try (FileOutputStream fos = new FileOutputStream(tempFile); --> Line_11 $$ fos.flush() [FD]
+Line_6 $$ File tempFile = File.createTempFile(UUID.randomUUID().toString(), ".tmp") --> Line_13 $$ this.uploadedFile = tempFile [FD]

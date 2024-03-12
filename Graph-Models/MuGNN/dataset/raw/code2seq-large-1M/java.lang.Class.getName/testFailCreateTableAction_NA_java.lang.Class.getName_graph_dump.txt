@@ -1,0 +1,5 @@
+Line_2 $$ public void testFailCreateTableAction() throws Exception --> Line_3 $$ conf.set(MASTER_COPROCESSOR_CONF_KEY, CreateFailObserverHandler.class.getName()) [CD]
+Line_2 $$ public void testFailCreateTableAction() throws Exception --> Line_4 $$ TEST_UTIL.startMiniCluster(3) [CD]
+Line_2 $$ public void testFailCreateTableAction() throws Exception --> Line_12 $$ List<Procedure<?>> procedureInfos = TEST_UTIL.getMiniHBaseCluster().getMaster().getMasterProcedureExecutor().getProcedures() [CD]
+Line_13 $$ for (Procedure procedureInfo : procedureInfos) --> Line_14 $$ if (procedureInfo.getProcName().equals("CreateTableProcedure") && procedureInfo.getState() == ProcedureProtos.ProcedureState.ROLLEDBACK) [FD]
+Line_14 $$ if (procedureInfo.getProcName().equals("CreateTableProcedure") && procedureInfo.getState() == ProcedureProtos.ProcedureState.ROLLEDBACK) --> Line_15 $$ fail("Found procedure " + procedureInfo + " that hasn't been cleaned up") [CD]

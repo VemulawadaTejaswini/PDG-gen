@@ -1,0 +1,6 @@
+Line_2 $$ public void testTwoConnectionsOpenedAndClosedWhenTakeOneUsedWithSelectThatReturnsOneRow() throws InterruptedException --> Line_3 $$ Action0 completed = new Action0() [CD]
+Line_3 $$ Action0 completed = new Action0() --> Line_5 $$ System.out.println("completed") [CD]
+Line_2 $$ public void testTwoConnectionsOpenedAndClosedWhenTakeOneUsedWithSelectThatReturnsOneRow() throws InterruptedException --> Line_10 $$ db.select("select count(*) from person").getAs(Long.class).doOnCompleted(completed).take(1).toBlocking().single() [CD]
+Line_3 $$ Action0 completed = new Action0() --> Line_10 $$ db.select("select count(*) from person").getAs(Long.class).doOnCompleted(completed).take(1).toBlocking().single() [FD]
+Line_2 $$ public void testTwoConnectionsOpenedAndClosedWhenTakeOneUsedWithSelectThatReturnsOneRow() throws InterruptedException --> Line_11 $$ assertTrue(cp.getsLatch().await(6, TimeUnit.SECONDS)) [CD]
+Line_2 $$ public void testTwoConnectionsOpenedAndClosedWhenTakeOneUsedWithSelectThatReturnsOneRow() throws InterruptedException --> Line_12 $$ assertTrue(cp.closesLatch().await(6, TimeUnit.SECONDS)) [CD]

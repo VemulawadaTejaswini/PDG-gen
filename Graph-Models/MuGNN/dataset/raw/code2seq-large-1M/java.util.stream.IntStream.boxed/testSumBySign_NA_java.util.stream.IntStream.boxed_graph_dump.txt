@@ -1,0 +1,5 @@
+Line_2 $$ public void testSumBySign() --> Line_3 $$ withRandom( r -> [CD]
+Line_4 $$ int[] input = r.ints(2000, -1000, 1000).toArray() --> Line_5 $$ Map<Boolean, Integer> sums = IntStreamEx.of(input).collect(IntCollector.partitioningBy( i -> i > 0, IntCollector.summing())) [FD]
+Line_4 $$ int[] input = r.ints(2000, -1000, 1000).toArray() --> Line_6 $$ Map<Boolean, Integer> sumsBoxed = IntStream.of(input).boxed().collect(Collectors.partitioningBy( i -> i > 0, Collectors.summingInt(Integer::<>intValue))) [FD]
+Line_6 $$ Map<Boolean, Integer> sumsBoxed = IntStream.of(input).boxed().collect(Collectors.partitioningBy( i -> i > 0, Collectors.summingInt(Integer::<>intValue))) --> Line_7 $$ assertEquals(sumsBoxed, sums) [FD]
+Line_5 $$ Map<Boolean, Integer> sums = IntStreamEx.of(input).collect(IntCollector.partitioningBy( i -> i > 0, IntCollector.summing())) --> Line_7 $$ assertEquals(sumsBoxed, sums) [FD]

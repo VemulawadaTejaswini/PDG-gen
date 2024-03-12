@@ -1,0 +1,8 @@
+Line_2 $$ protected Set<ConstraintCheckIssue> doCheck(Element element, AnnotationMirror annotation) --> Line_3 $$ if (ElementKind.ANNOTATION_TYPE.equals(element.getKind())) [FD]
+Line_2 $$ protected Set<ConstraintCheckIssue> doCheck(Element element, AnnotationMirror annotation) --> Line_3 $$ if (ElementKind.ANNOTATION_TYPE.equals(element.getKind())) [CD]
+Line_4 $$ for (Element innerElement : elementUtils.getAllMembers((TypeElement) element)) --> Line_5 $$ if (ElementKind.METHOD.equals(innerElement.getKind()) && "message".equals(innerElement.getSimpleName().toString())) [FD]
+Line_5 $$ if (ElementKind.METHOD.equals(innerElement.getKind()) && "message".equals(innerElement.getSimpleName().toString())) --> Line_6 $$ if (checkMessage(((ExecutableElement) innerElement).getDefaultValue().getValue().toString())) [CD]
+Line_6 $$ if (checkMessage(((ExecutableElement) innerElement).getDefaultValue().getValue().toString())) --> Line_7 $$ return CollectionHelper.asSet(ConstraintCheckIssue.warning(innerElement, annotation, "INVALID_MESSAGE_VALUE_ANNOTATION_PARAMETERS")) [CD]
+Line_4 $$ for (Element innerElement : elementUtils.getAllMembers((TypeElement) element)) --> Line_7 $$ return CollectionHelper.asSet(ConstraintCheckIssue.warning(innerElement, annotation, "INVALID_MESSAGE_VALUE_ANNOTATION_PARAMETERS")) [FD]
+Line_2 $$ protected Set<ConstraintCheckIssue> doCheck(Element element, AnnotationMirror annotation) --> Line_7 $$ return CollectionHelper.asSet(ConstraintCheckIssue.warning(innerElement, annotation, "INVALID_MESSAGE_VALUE_ANNOTATION_PARAMETERS")) [FD]
+Line_2 $$ protected Set<ConstraintCheckIssue> doCheck(Element element, AnnotationMirror annotation) --> Line_12 $$ return Collections.emptySet() [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static void popTransactionStartStamp() --> Line_3 $$ ListOrderedMap map = (ListOrderedMap) suspendedTxStartStamps.get() [CD]
+Line_2 $$ private static void popTransactionStartStamp() --> Line_4 $$ if (map.size() > 0) [CD]
+Line_3 $$ ListOrderedMap map = (ListOrderedMap) suspendedTxStartStamps.get() --> Line_4 $$ if (map.size() > 0) [FD]
+Line_4 $$ if (map.size() > 0) --> Line_5 $$ transactionStartStamp.set((Timestamp) map.remove(map.lastKey())) [CD]
+Line_3 $$ ListOrderedMap map = (ListOrderedMap) suspendedTxStartStamps.get() --> Line_5 $$ transactionStartStamp.set((Timestamp) map.remove(map.lastKey())) [FD]
+Line_4 $$ if (map.size() > 0) --> Line_7 $$ Debug.logError("Error in transaction handling - no saved start stamp found - using NOW.", module) [CD]
+Line_4 $$ if (map.size() > 0) --> Line_8 $$ transactionStartStamp.set(UtilDateTime.nowTimestamp()) [CD]

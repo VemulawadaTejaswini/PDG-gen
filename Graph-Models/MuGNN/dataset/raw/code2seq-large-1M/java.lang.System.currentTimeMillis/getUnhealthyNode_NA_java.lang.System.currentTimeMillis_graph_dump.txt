@@ -1,0 +1,7 @@
+Line_2 $$ private RMNodeImpl getUnhealthyNode() --> Line_3 $$ RMNodeImpl node = getRunningNode() [CD]
+Line_2 $$ private RMNodeImpl getUnhealthyNode() --> Line_4 $$ NodeHealthStatus status = NodeHealthStatus.newInstance(false, "sick", System.currentTimeMillis()) [CD]
+Line_2 $$ private RMNodeImpl getUnhealthyNode() --> Line_5 $$ node.handle(new RMNodeStatusEvent(node.getNodeID(), status, new ArrayList<ContainerStatus>(), null, null)) [CD]
+Line_3 $$ RMNodeImpl node = getRunningNode() --> Line_5 $$ node.handle(new RMNodeStatusEvent(node.getNodeID(), status, new ArrayList<ContainerStatus>(), null, null)) [FD]
+Line_2 $$ private RMNodeImpl getUnhealthyNode() --> Line_6 $$ Assert.assertEquals(NodeState.UNHEALTHY, node.getState()) [CD]
+Line_3 $$ RMNodeImpl node = getRunningNode() --> Line_6 $$ Assert.assertEquals(NodeState.UNHEALTHY, node.getState()) [FD]
+Line_2 $$ private RMNodeImpl getUnhealthyNode() --> Line_7 $$ return node [CD]

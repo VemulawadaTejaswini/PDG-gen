@@ -1,0 +1,8 @@
+Line_2 $$ public ReferenceTypeImpl getSuperClass() --> Line_3 $$ if (clazz.getGenericSuperclass() == null) [CD]
+Line_2 $$ public ReferenceTypeImpl getSuperClass() --> Line_6 $$ java.lang.reflect.Type superType = clazz.getGenericSuperclass() [CD]
+Line_2 $$ public ReferenceTypeImpl getSuperClass() --> Line_7 $$ if (superType instanceof ParameterizedType) [CD]
+Line_7 $$ if (superType instanceof ParameterizedType) --> Line_8 $$ ParameterizedType parameterizedType = (ParameterizedType) superType [CD]
+Line_7 $$ if (superType instanceof ParameterizedType) --> Line_9 $$ List<ResolvedType> typeParameters = Arrays.stream(parameterizedType.getActualTypeArguments()).map(( t) -> ReflectionFactory.typeUsageFor(t, typeSolver)).collect(Collectors.toList()) [CD]
+Line_8 $$ ParameterizedType parameterizedType = (ParameterizedType) superType --> Line_9 $$ List<ResolvedType> typeParameters = Arrays.stream(parameterizedType.getActualTypeArguments()).map(( t) -> ReflectionFactory.typeUsageFor(t, typeSolver)).collect(Collectors.toList()) [FD]
+Line_7 $$ if (superType instanceof ParameterizedType) --> Line_10 $$ return new ReferenceTypeImpl(new ReflectionClassDeclaration(clazz.getSuperclass(), typeSolver), typeParameters, typeSolver) [CD]
+Line_2 $$ public ReferenceTypeImpl getSuperClass() --> Line_12 $$ return new ReferenceTypeImpl(new ReflectionClassDeclaration(clazz.getSuperclass(), typeSolver), typeSolver) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testCiTextInPlainQuery() throws SQLException --> Line_3 $$ assumeTrue(ASSUMPTION, ciTextInstalled) [CD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_5 $$ int rows = stmt.executeUpdate("INSERT INTO users(name, email) VALUES ('Rich Drake', 'RDrake@gmail.com')") [FD]
+Line_5 $$ int rows = stmt.executeUpdate("INSERT INTO users(name, email) VALUES ('Rich Drake', 'RDrake@gmail.com')") --> Line_6 $$ assertEquals(1, rows) [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_7 $$ ResultSet rs = stmt.executeQuery("SELECT name, email FROM users WHERE email='rdrake@gmail.com'") [FD]
+Line_7 $$ ResultSet rs = stmt.executeQuery("SELECT name, email FROM users WHERE email='rdrake@gmail.com'") --> Line_8 $$ assertTrue(rs.next()) [FD]
+Line_7 $$ ResultSet rs = stmt.executeQuery("SELECT name, email FROM users WHERE email='rdrake@gmail.com'") --> Line_9 $$ assertEquals("Rich Drake", rs.getString(1)) [FD]
+Line_7 $$ ResultSet rs = stmt.executeQuery("SELECT name, email FROM users WHERE email='rdrake@gmail.com'") --> Line_10 $$ assertEquals("RDrake@gmail.com", rs.getString(2)) [FD]

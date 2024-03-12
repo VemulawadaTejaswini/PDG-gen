@@ -1,0 +1,4 @@
+Line_2 $$ public void averageCitySizeByState() throws InterruptedException, TimeoutException, IOException --> Line_3 $$ Assume.assumeTrue(new File(MONGO_IMPORT).exists()) [CD]
+Line_2 $$ public void averageCitySizeByState() throws InterruptedException, TimeoutException, IOException --> Line_4 $$ installSampleData() [CD]
+Line_2 $$ public void averageCitySizeByState() throws InterruptedException, TimeoutException, IOException --> Line_5 $$ AggregationPipeline pipeline = getDs().createAggregation(City.class).group(id(grouping("state"), grouping("city")), grouping("pop", sum("pop"))).group("_id.state", grouping("avgCityPop", average("pop"))) [CD]
+Line_2 $$ public void averageCitySizeByState() throws InterruptedException, TimeoutException, IOException --> Line_6 $$ validate(pipeline.aggregate(Population.class), "MN", 5372) [CD]

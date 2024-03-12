@@ -1,0 +1,7 @@
+Line_2 $$ private long getDiskStoreCount(String diskStoreName) --> Line_3 $$ DistributedSystemMXBean dsMXBean = getManagementService().getDistributedSystemMXBean() [CD]
+Line_2 $$ private long getDiskStoreCount(String diskStoreName) --> Line_4 $$ Map<String, String[]> diskstores = dsMXBean.listMemberDiskstore() [CD]
+Line_3 $$ DistributedSystemMXBean dsMXBean = getManagementService().getDistributedSystemMXBean() --> Line_4 $$ Map<String, String[]> diskstores = dsMXBean.listMemberDiskstore() [FD]
+Line_2 $$ private long getDiskStoreCount(String diskStoreName) --> Line_5 $$ long count = diskstores.values().stream().filter( x -> ArrayUtils.contains(x, diskStoreName)).count() [FD]
+Line_2 $$ private long getDiskStoreCount(String diskStoreName) --> Line_5 $$ long count = diskstores.values().stream().filter( x -> ArrayUtils.contains(x, diskStoreName)).count() [CD]
+Line_4 $$ Map<String, String[]> diskstores = dsMXBean.listMemberDiskstore() --> Line_5 $$ long count = diskstores.values().stream().filter( x -> ArrayUtils.contains(x, diskStoreName)).count() [FD]
+Line_2 $$ private long getDiskStoreCount(String diskStoreName) --> Line_6 $$ return count [CD]

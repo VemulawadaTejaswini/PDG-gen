@@ -1,0 +1,8 @@
+Line_2 $$ public void testNoReconnectAndCloseTheStreamWhileEventIsBeingReceived() throws InterruptedException, IOException --> Line_3 $$ when(response.getStatus()).thenReturn(200) [CD]
+Line_2 $$ public void testNoReconnectAndCloseTheStreamWhileEventIsBeingReceived() throws InterruptedException, IOException --> Line_4 $$ when(response.readEntity(InputStream.class)).then( invocation -> [CD]
+Line_2 $$ public void testNoReconnectAndCloseTheStreamWhileEventIsBeingReceived() throws InterruptedException, IOException --> Line_8 $$ final List<InboundSseEvent> events = new ArrayList() [CD]
+Line_9 $$ try (SseEventSource eventSource = withNoReconnect()) --> Line_10 $$ eventSource.register(events::<>add) [FD]
+Line_9 $$ try (SseEventSource eventSource = withNoReconnect()) --> Line_11 $$ eventSource.open() [FD]
+Line_9 $$ try (SseEventSource eventSource = withNoReconnect()) --> Line_12 $$ assertThat(eventSource.isOpen(), equalTo(true)) [FD]
+Line_9 $$ try (SseEventSource eventSource = withNoReconnect()) --> Line_15 $$ assertThat(eventSource.close(100, TimeUnit.MILLISECONDS), equalTo(true)) [FD]
+Line_9 $$ try (SseEventSource eventSource = withNoReconnect()) --> Line_16 $$ assertThat(eventSource.isOpen(), equalTo(false)) [FD]

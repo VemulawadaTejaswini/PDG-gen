@@ -1,0 +1,6 @@
+Line_2 $$ private void maybeFinish() --> Line_3 $$ final int numPending = pendingOps.decrementAndGet() [CD]
+Line_2 $$ private void maybeFinish() --> Line_4 $$ if (numPending == 0) [CD]
+Line_3 $$ final int numPending = pendingOps.decrementAndGet() --> Line_4 $$ if (numPending == 0) [FD]
+Line_4 $$ if (numPending == 0) --> Line_5 $$ if (syncFailure.get() != null) [CD]
+Line_5 $$ if (syncFailure.get() != null) --> Line_6 $$ respond.onFailure(syncFailure.get()) [CD]
+Line_5 $$ if (syncFailure.get() != null) --> Line_8 $$ respond.onSuccess(refreshed.get()) [CD]

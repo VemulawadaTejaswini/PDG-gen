@@ -1,0 +1,7 @@
+Line_2 $$ private void fields(Throwable throwable) --> Line_4 $$ PropertyDescriptor[] descriptors = Introspector.getBeanInfo(throwable.getClass()).getPropertyDescriptors() [FD]
+Line_5 $$ for (PropertyDescriptor descriptor : descriptors) --> Line_6 $$ if (descriptor.getReadMethod() == null) [FD]
+Line_5 $$ for (PropertyDescriptor descriptor : descriptors) --> Line_9 $$ String field = descriptor.getName() [FD]
+Line_9 $$ String field = descriptor.getName() --> Line_10 $$ if ("class".equals(field) || KeplerGenericException.FILTER_FIELD.contains(field)) [FD]
+Line_9 $$ String field = descriptor.getName() --> Line_13 $$ this.fields.put(field, descriptor.getReadMethod().invoke(throwable)) [FD]
+Line_2 $$ private void fields(Throwable throwable) --> Line_13 $$ this.fields.put(field, descriptor.getReadMethod().invoke(throwable)) [FD]
+Line_5 $$ for (PropertyDescriptor descriptor : descriptors) --> Line_13 $$ this.fields.put(field, descriptor.getReadMethod().invoke(throwable)) [FD]

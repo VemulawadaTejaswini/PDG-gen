@@ -1,0 +1,7 @@
+Line_2 $$ public void testSerializePropagatesIOExceptionFromCustomCodecsAsSerializationException() throws Exception --> Line_3 $$ Integer original = Integer.valueOf(12345) [CD]
+Line_2 $$ public void testSerializePropagatesIOExceptionFromCustomCodecsAsSerializationException() throws Exception --> Line_4 $$ IOException staged = new IOException("BECAUSE FAIL") [CD]
+Line_2 $$ public void testSerializePropagatesIOExceptionFromCustomCodecsAsSerializationException() throws Exception --> Line_5 $$ doThrow(staged).when(spyObjectCodec).serialize(any(SerializationContext.class), eq(original), any(CodedOutputStream.class)) [CD]
+Line_4 $$ IOException staged = new IOException("BECAUSE FAIL") --> Line_5 $$ doThrow(staged).when(spyObjectCodec).serialize(any(SerializationContext.class), eq(original), any(CodedOutputStream.class)) [FD]
+Line_3 $$ Integer original = Integer.valueOf(12345) --> Line_5 $$ doThrow(staged).when(spyObjectCodec).serialize(any(SerializationContext.class), eq(original), any(CodedOutputStream.class)) [FD]
+Line_3 $$ Integer original = Integer.valueOf(12345) --> Line_7 $$ underTest.serialize(original) [FD]
+Line_4 $$ IOException staged = new IOException("BECAUSE FAIL") --> Line_10 $$ assertThat(e).hasCauseThat().isSameAs(staged) [FD]

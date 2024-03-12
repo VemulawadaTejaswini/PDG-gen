@@ -1,0 +1,6 @@
+Line_2 $$ private CompletableFuture<Void> terminateJobManagerRunners() --> Line_3 $$ log.info("Stopping all currently running jobs of dispatcher [CD]
+Line_2 $$ private CompletableFuture<Void> terminateJobManagerRunners() --> Line_4 $$ final HashSet<JobID> jobsToRemove = new HashSet(jobManagerRunners.keySet()) [CD]
+Line_2 $$ private CompletableFuture<Void> terminateJobManagerRunners() --> Line_5 $$ final List<CompletableFuture<Void>> terminationFutures = jobsToRemove.stream().map( jobId -> removeJob(jobId, false)).collect(Collectors.toList()) [CD]
+Line_4 $$ final HashSet<JobID> jobsToRemove = new HashSet(jobManagerRunners.keySet()) --> Line_5 $$ final List<CompletableFuture<Void>> terminationFutures = jobsToRemove.stream().map( jobId -> removeJob(jobId, false)).collect(Collectors.toList()) [FD]
+Line_2 $$ private CompletableFuture<Void> terminateJobManagerRunners() --> Line_6 $$ return FutureUtils.completeAll(terminationFutures) [CD]
+Line_5 $$ final List<CompletableFuture<Void>> terminationFutures = jobsToRemove.stream().map( jobId -> removeJob(jobId, false)).collect(Collectors.toList()) --> Line_6 $$ return FutureUtils.completeAll(terminationFutures) [FD]

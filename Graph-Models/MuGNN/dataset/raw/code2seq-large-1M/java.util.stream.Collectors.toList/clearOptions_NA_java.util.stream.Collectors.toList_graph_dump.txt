@@ -1,0 +1,5 @@
+Line_2 $$ public CompletableFuture<Boolean> clearOptions() --> Line_3 $$ List<Node> toRemove = streamNodes().filter( n -> n.isMeta() || n.isPrefix() || n.isSuffix()).collect(Collectors.toList()) [CD]
+Line_2 $$ public CompletableFuture<Boolean> clearOptions() --> Line_4 $$ toRemove.forEach( node -> this.type.run(() -> this.holder.unsetPermission(node), () -> this.holder.unsetTransientPermission(node))) [CD]
+Line_3 $$ List<Node> toRemove = streamNodes().filter( n -> n.isMeta() || n.isPrefix() || n.isSuffix()).collect(Collectors.toList()) --> Line_4 $$ toRemove.forEach( node -> this.type.run(() -> this.holder.unsetPermission(node), () -> this.holder.unsetTransientPermission(node))) [FD]
+Line_2 $$ public CompletableFuture<Boolean> clearOptions() --> Line_5 $$ return objectSave(this.holder).thenApply( v -> !toRemove.isEmpty()) [CD]
+Line_3 $$ List<Node> toRemove = streamNodes().filter( n -> n.isMeta() || n.isPrefix() || n.isSuffix()).collect(Collectors.toList()) --> Line_5 $$ return objectSave(this.holder).thenApply( v -> !toRemove.isEmpty()) [FD]

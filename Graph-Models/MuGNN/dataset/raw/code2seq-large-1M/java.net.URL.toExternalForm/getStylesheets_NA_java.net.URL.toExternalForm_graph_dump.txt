@@ -1,0 +1,5 @@
+Line_2 $$ public String[] getStylesheets() --> Line_3 $$ String name = isCustom() ? BLUE.getName() : this.name [CD]
+Line_2 $$ public String[] getStylesheets() --> Line_4 $$ String css = Theme.class.getResource("/assets/css/" + name + ".css").toExternalForm() [CD]
+Line_6 $$ File temp = File.createTempFile("hmcl", ".css") --> Line_7 $$ FileUtils.writeText(temp, IOUtils.readFullyAsString(Theme.class.getResourceAsStream("/assets/css/custom.css")).replace("%base-color%", color).replace("%font-color%", getColorDisplayName(getForegroundColor()))) [FD]
+Line_6 $$ File temp = File.createTempFile("hmcl", ".css") --> Line_8 $$ css = temp.toURI().toString() [FD]
+Line_2 $$ public String[] getStylesheets() --> Line_12 $$ return new String[] [CD]

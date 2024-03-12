@@ -1,0 +1,6 @@
+Line_2 $$ public void testDetachedJobSubmission() throws Exception --> Line_3 $$ final TestBlobServerPortHandler testBlobServerPortHandler = new TestBlobServerPortHandler() [CD]
+Line_2 $$ public void testDetachedJobSubmission() throws Exception --> Line_4 $$ final TestJobSubmitHandler testJobSubmitHandler = new TestJobSubmitHandler() [CD]
+Line_3 $$ final TestBlobServerPortHandler testBlobServerPortHandler = new TestBlobServerPortHandler() --> Line_5 $$ try (TestRestServerEndpoint ignored = createRestServerEndpoint(testBlobServerPortHandler, testJobSubmitHandler)) [FD]
+Line_4 $$ final TestJobSubmitHandler testJobSubmitHandler = new TestJobSubmitHandler() --> Line_5 $$ try (TestRestServerEndpoint ignored = createRestServerEndpoint(testBlobServerPortHandler, testJobSubmitHandler)) [FD]
+Line_7 $$ final JobSubmissionResult jobSubmissionResult = restClusterClient.submitJob(jobGraph, ClassLoader.getSystemClassLoader()) --> Line_8 $$ assertThat(jobSubmissionResult, is(not(instanceOf(JobExecutionResult.class)))) [FD]
+Line_7 $$ final JobSubmissionResult jobSubmissionResult = restClusterClient.submitJob(jobGraph, ClassLoader.getSystemClassLoader()) --> Line_9 $$ assertThat(jobSubmissionResult.getJobID(), is(jobId)) [FD]

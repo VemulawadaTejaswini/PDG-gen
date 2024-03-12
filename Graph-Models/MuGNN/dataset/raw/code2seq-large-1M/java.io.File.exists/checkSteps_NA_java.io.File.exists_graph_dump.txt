@@ -1,0 +1,7 @@
+Line_2 $$ private void checkSteps(List<RebaseTodoLine> steps) throws InvalidRebaseStepException, IOException --> Line_3 $$ if (steps.isEmpty()) [CD]
+Line_2 $$ private void checkSteps(List<RebaseTodoLine> steps) throws InvalidRebaseStepException, IOException --> Line_3 $$ if (steps.isEmpty()) [FD]
+Line_3 $$ if (steps.isEmpty()) --> Line_4 $$ return [CD]
+Line_2 $$ private void checkSteps(List<RebaseTodoLine> steps) throws InvalidRebaseStepException, IOException --> Line_5 $$ if (RebaseTodoLine.Action.SQUASH.equals(steps.get(0).getAction()) || RebaseTodoLine.Action.FIXUP.equals(steps.get(0).getAction())) [CD]
+Line_2 $$ private void checkSteps(List<RebaseTodoLine> steps) throws InvalidRebaseStepException, IOException --> Line_5 $$ if (RebaseTodoLine.Action.SQUASH.equals(steps.get(0).getAction()) || RebaseTodoLine.Action.FIXUP.equals(steps.get(0).getAction())) [FD]
+Line_5 $$ if (RebaseTodoLine.Action.SQUASH.equals(steps.get(0).getAction()) || RebaseTodoLine.Action.FIXUP.equals(steps.get(0).getAction())) --> Line_6 $$ if (!rebaseState.getFile(DONE).exists() || rebaseState.readFile(DONE).trim().length() == 0) [CD]
+Line_2 $$ private void checkSteps(List<RebaseTodoLine> steps) throws InvalidRebaseStepException, IOException --> Line_7 $$ throw new InvalidRebaseStepException(MessageFormat.format(JGitText.get().cannotSquashFixupWithoutPreviousCommit, steps.get(0).getAction().name())) [FD]

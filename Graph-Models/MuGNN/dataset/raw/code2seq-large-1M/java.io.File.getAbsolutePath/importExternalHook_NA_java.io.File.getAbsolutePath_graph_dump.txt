@@ -1,0 +1,7 @@
+Line_3 $$ final File dexExternalStoragePath = new File(mHookFolderPath, dexFilename) --> Line_5 $$ (new PrepareDexTask()).execute(dexExternalStoragePath, dexInternalStoragePath) [FD]
+Line_4 $$ final File dexInternalStoragePath = new File(mMainActivity.getDir("dex", Context.MODE_PRIVATE), dexFilename) --> Line_5 $$ (new PrepareDexTask()).execute(dexExternalStoragePath, dexInternalStoragePath) [FD]
+Line_4 $$ final File dexInternalStoragePath = new File(mMainActivity.getDir("dex", Context.MODE_PRIVATE), dexFilename) --> Line_7 $$ DexClassLoader cl = new DexClassLoader(dexInternalStoragePath.getAbsolutePath(), optimizedDexOutputPath.getAbsolutePath(), null, mMainActivity.getClassLoader()) [FD]
+Line_6 $$ final File optimizedDexOutputPath = mMainActivity.getDir("outdex", Context.MODE_PRIVATE) --> Line_7 $$ DexClassLoader cl = new DexClassLoader(dexInternalStoragePath.getAbsolutePath(), optimizedDexOutputPath.getAbsolutePath(), null, mMainActivity.getClassLoader()) [FD]
+Line_8 $$ Class hookClass = null --> Line_10 $$ hookClass = cl.loadClass(className) [FD]
+Line_7 $$ DexClassLoader cl = new DexClassLoader(dexInternalStoragePath.getAbsolutePath(), optimizedDexOutputPath.getAbsolutePath(), null, mMainActivity.getClassLoader()) --> Line_10 $$ hookClass = cl.loadClass(className) [FD]
+Line_8 $$ Class hookClass = null --> Line_11 $$ HookPlugin importedHook = (HookPlugin) hookClass.newInstance() [FD]

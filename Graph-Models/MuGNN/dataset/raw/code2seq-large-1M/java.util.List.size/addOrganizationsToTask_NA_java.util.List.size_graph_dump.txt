@@ -1,0 +1,8 @@
+Line_2 $$ private void addOrganizationsToTask(AdminUserWriteTask task) throws Exception --> Line_3 $$ task.orgNamesByUuid = managementService.getOrganizationsForAdminUser(task.adminUser.getUuid()) [CD]
+Line_2 $$ private void addOrganizationsToTask(AdminUserWriteTask task) throws Exception --> Line_4 $$ List<Org> orgs = userToOrgsMap.get(task.adminUser.getUuid()) [CD]
+Line_2 $$ private void addOrganizationsToTask(AdminUserWriteTask task) throws Exception --> Line_5 $$ if (orgs != null && task.orgNamesByUuid.size() < orgs.size()) [CD]
+Line_4 $$ List<Org> orgs = userToOrgsMap.get(task.adminUser.getUuid()) --> Line_5 $$ if (orgs != null && task.orgNamesByUuid.size() < orgs.size()) [FD]
+Line_5 $$ if (orgs != null && task.orgNamesByUuid.size() < orgs.size()) --> Line_6 $$ BiMap<UUID, String> bimap = HashBiMap.create() [CD]
+Line_6 $$ BiMap<UUID, String> bimap = HashBiMap.create() --> Line_8 $$ bimap.put(org.orgId, org.orgName) [FD]
+Line_5 $$ if (orgs != null && task.orgNamesByUuid.size() < orgs.size()) --> Line_10 $$ task.orgNamesByUuid = bimap [CD]
+Line_6 $$ BiMap<UUID, String> bimap = HashBiMap.create() --> Line_10 $$ task.orgNamesByUuid = bimap [FD]

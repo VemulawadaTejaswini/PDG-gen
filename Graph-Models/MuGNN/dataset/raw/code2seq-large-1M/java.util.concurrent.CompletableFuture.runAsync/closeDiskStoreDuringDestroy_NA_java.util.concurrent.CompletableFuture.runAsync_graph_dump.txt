@@ -1,0 +1,7 @@
+Line_2 $$ public void closeDiskStoreDuringDestroy() throws InterruptedException --> Line_3 $$ testRegion.put("existingKey", "value") [CD]
+Line_2 $$ public void closeDiskStoreDuringDestroy() throws InterruptedException --> Line_4 $$ testRegion.getAttributesMutator().setCacheWriter(blockingWriter) [CD]
+Line_2 $$ public void closeDiskStoreDuringDestroy() throws InterruptedException --> Line_5 $$ Future<Void> asyncDestroy = CompletableFuture.runAsync(() -> testRegion.remove("existingKey")) [CD]
+Line_2 $$ public void closeDiskStoreDuringDestroy() throws InterruptedException --> Line_6 $$ blockingWriter.awaitDestroyInProgress() [CD]
+Line_2 $$ public void closeDiskStoreDuringDestroy() throws InterruptedException --> Line_7 $$ cache.closeDiskStores() [CD]
+Line_2 $$ public void closeDiskStoreDuringDestroy() throws InterruptedException --> Line_8 $$ blockingWriter.allowDestroys() [CD]
+Line_2 $$ public void closeDiskStoreDuringDestroy() throws InterruptedException --> Line_9 $$ assertThatThrownBy(asyncDestroy::<>get).hasRootCauseInstanceOf(CacheClosedException.class).hasMessageContaining("The disk store is closed") [CD]

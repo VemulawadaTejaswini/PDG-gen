@@ -1,0 +1,7 @@
+Line_2 $$ public void distinctUntilChangedDefaultCancelDoesntRetainObjects() throws InterruptedException --> Line_3 $$ FluxDistinctTest.Foo.finalized.set(0) [CD]
+Line_2 $$ public void distinctUntilChangedDefaultCancelDoesntRetainObjects() throws InterruptedException --> Line_4 $$ Flux<FluxDistinctTest.Foo> test = Flux.range(1, 100).map(FluxDistinctTest.Foo::<>new).concatWith(Mono.error(new IllegalStateException("boom"))).distinctUntilChanged().take(50) [CD]
+Line_2 $$ public void distinctUntilChangedDefaultCancelDoesntRetainObjects() throws InterruptedException --> Line_5 $$ StepVerifier.create(test).expectNextCount(50).verifyComplete() [CD]
+Line_4 $$ Flux<FluxDistinctTest.Foo> test = Flux.range(1, 100).map(FluxDistinctTest.Foo::<>new).concatWith(Mono.error(new IllegalStateException("boom"))).distinctUntilChanged().take(50) --> Line_5 $$ StepVerifier.create(test).expectNextCount(50).verifyComplete() [FD]
+Line_2 $$ public void distinctUntilChangedDefaultCancelDoesntRetainObjects() throws InterruptedException --> Line_6 $$ System.gc() [CD]
+Line_2 $$ public void distinctUntilChangedDefaultCancelDoesntRetainObjects() throws InterruptedException --> Line_7 $$ Thread.sleep(500) [CD]
+Line_2 $$ public void distinctUntilChangedDefaultCancelDoesntRetainObjects() throws InterruptedException --> Line_8 $$ assertThat(FluxDistinctTest.Foo.finalized.longValue()).as("none retained after cancel").isEqualTo(50) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public boolean deleteApplicationGroup(String name) --> Line_3 $$ Map<String, ApplicationGroup> appgroups = getApplicationGroups() [CD]
+Line_2 $$ public boolean deleteApplicationGroup(String name) --> Line_4 $$ ApplicationGroup appgroup = appgroups.remove(name) [CD]
+Line_2 $$ public boolean deleteApplicationGroup(String name) --> Line_4 $$ ApplicationGroup appgroup = appgroups.remove(name) [FD]
+Line_3 $$ Map<String, ApplicationGroup> appgroups = getApplicationGroups() --> Line_4 $$ ApplicationGroup appgroup = appgroups.remove(name) [FD]
+Line_3 $$ Map<String, ApplicationGroup> appgroups = getApplicationGroups() --> Line_6 $$ String json = getJson(appgroups) [FD]
+Line_6 $$ String json = getJson(appgroups) --> Line_7 $$ s3Client.putObject(config.workS3BucketName, config.workS3BucketPrefix + "appgroups", new ByteArrayInputStream(json.getBytes()), new ObjectMetadata()) [FD]

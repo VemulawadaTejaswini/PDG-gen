@@ -1,0 +1,6 @@
+Line_2 $$ public void insertClobAndReadAsReader() throws SQLException, IOException --> Line_3 $$ Database db = db() [CD]
+Line_2 $$ public void insertClobAndReadAsReader() throws SQLException, IOException --> Line_4 $$ insertClob(db) [CD]
+Line_3 $$ Database db = db() --> Line_4 $$ insertClob(db) [FD]
+Line_2 $$ public void insertClobAndReadAsReader() throws SQLException, IOException --> Line_5 $$ String text = db.select("select document from person_clob").getAs(Reader.class).map(Util.READER_TO_STRING).first().toBlocking().single() [CD]
+Line_3 $$ Database db = db() --> Line_5 $$ String text = db.select("select document from person_clob").getAs(Reader.class).map(Util.READER_TO_STRING).first().toBlocking().single() [FD]
+Line_2 $$ public void insertClobAndReadAsReader() throws SQLException, IOException --> Line_6 $$ assertTrue(text.contains("about Fred")) [CD]

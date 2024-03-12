@@ -1,0 +1,6 @@
+Line_2 $$ public Liquibase liquibase(DataSource dataSource) --> Line_3 $$ LOGGER.info("Configuring Liquibase") [CD]
+Line_2 $$ public Liquibase liquibase(DataSource dataSource) --> Line_5 $$ DatabaseConnection connection = new JdbcConnection(dataSource.getConnection()) [FD]
+Line_5 $$ DatabaseConnection connection = new JdbcConnection(dataSource.getConnection()) --> Line_6 $$ Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection) [FD]
+Line_6 $$ Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection) --> Line_7 $$ database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogTableName()) [FD]
+Line_6 $$ Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection) --> Line_8 $$ database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogLockTableName()) [FD]
+Line_9 $$ Liquibase liquibase = new Liquibase("META-INF/liquibase/flowable-modeler-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database) --> Line_10 $$ liquibase.update("flowable") [FD]

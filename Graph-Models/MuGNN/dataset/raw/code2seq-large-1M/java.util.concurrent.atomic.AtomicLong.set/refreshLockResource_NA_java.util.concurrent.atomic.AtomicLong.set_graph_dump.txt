@@ -1,0 +1,6 @@
+Line_2 $$ public boolean refreshLockResource(String dbName, String tableName, long txnId) --> Line_3 $$ final ResourceLock prevResourceLock = locks.get(Warehouse.getQualifiedName(dbName, tableName)) [FD]
+Line_2 $$ public boolean refreshLockResource(String dbName, String tableName, long txnId) --> Line_3 $$ final ResourceLock prevResourceLock = locks.get(Warehouse.getQualifiedName(dbName, tableName)) [CD]
+Line_2 $$ public boolean refreshLockResource(String dbName, String tableName, long txnId) --> Line_4 $$ if (prevResourceLock == null || prevResourceLock.txnId != txnId || prevResourceLock.state.get() != State.ACQUIRED) [CD]
+Line_4 $$ if (prevResourceLock == null || prevResourceLock.txnId != txnId || prevResourceLock.state.get() != State.ACQUIRED) --> Line_5 $$ return false [CD]
+Line_2 $$ public boolean refreshLockResource(String dbName, String tableName, long txnId) --> Line_7 $$ prevResourceLock.lastHeartBeatTime.set(System.currentTimeMillis()) [CD]
+Line_2 $$ public boolean refreshLockResource(String dbName, String tableName, long txnId) --> Line_8 $$ return true [CD]

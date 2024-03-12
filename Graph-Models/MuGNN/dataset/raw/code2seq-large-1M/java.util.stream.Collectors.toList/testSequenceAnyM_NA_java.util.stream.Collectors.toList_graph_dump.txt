@@ -1,0 +1,7 @@
+Line_2 $$ public void testSequenceAnyM() --> Line_3 $$ AnyMValue<optional, Integer> just = AnyM.ofNullable(10) [CD]
+Line_2 $$ public void testSequenceAnyM() --> Line_4 $$ Stream<AnyM<optional, Integer>> source = ReactiveSeq.of(just, AnyM.ofNullable(1)) [CD]
+Line_3 $$ AnyMValue<optional, Integer> just = AnyM.ofNullable(10) --> Line_4 $$ Stream<AnyM<optional, Integer>> source = ReactiveSeq.of(just, AnyM.ofNullable(1)) [FD]
+Line_2 $$ public void testSequenceAnyM() --> Line_5 $$ AnyM<optional, Stream<Integer>> maybes = AnyM.sequence(source, optional.INSTANCE) [CD]
+Line_4 $$ Stream<AnyM<optional, Integer>> source = ReactiveSeq.of(just, AnyM.ofNullable(1)) --> Line_5 $$ AnyM<optional, Stream<Integer>> maybes = AnyM.sequence(source, optional.INSTANCE) [FD]
+Line_2 $$ public void testSequenceAnyM() --> Line_6 $$ assertThat(maybes.map( s -> s.collect(Collectors.toList())), equalTo(AnyM.ofNullable(ListX.of(10, 1)))) [CD]
+Line_5 $$ AnyM<optional, Stream<Integer>> maybes = AnyM.sequence(source, optional.INSTANCE) --> Line_6 $$ assertThat(maybes.map( s -> s.collect(Collectors.toList())), equalTo(AnyM.ofNullable(ListX.of(10, 1)))) [FD]

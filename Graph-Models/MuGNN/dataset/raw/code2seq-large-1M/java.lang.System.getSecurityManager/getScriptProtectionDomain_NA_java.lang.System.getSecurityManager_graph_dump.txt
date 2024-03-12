@@ -1,0 +1,8 @@
+Line_2 $$ public static ProtectionDomain getScriptProtectionDomain() --> Line_3 $$ final SecurityManager securityManager = System.getSecurityManager() [CD]
+Line_2 $$ public static ProtectionDomain getScriptProtectionDomain() --> Line_4 $$ if (securityManager instanceof RhinoSecurityManager) [CD]
+Line_3 $$ final SecurityManager securityManager = System.getSecurityManager() --> Line_4 $$ if (securityManager instanceof RhinoSecurityManager) [FD]
+Line_4 $$ if (securityManager instanceof RhinoSecurityManager) --> Line_5 $$ return AccessController.doPrivileged(new PrivilegedAction<ProtectionDomain>() [CD]
+Line_5 $$ return AccessController.doPrivileged(new PrivilegedAction<ProtectionDomain>() --> Line_7 $$ Class c = ((RhinoSecurityManager) securityManager).getCurrentScriptClass() [CD]
+Line_5 $$ return AccessController.doPrivileged(new PrivilegedAction<ProtectionDomain>() --> Line_8 $$ return c == null ? null : c.getProtectionDomain() [CD]
+Line_7 $$ Class c = ((RhinoSecurityManager) securityManager).getCurrentScriptClass() --> Line_8 $$ return c == null ? null : c.getProtectionDomain() [FD]
+Line_2 $$ public static ProtectionDomain getScriptProtectionDomain() --> Line_12 $$ return null [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public <T> T getOption(final Option<T> option) throws IOException --> Line_3 $$ if (option == Options.SSL_CLIENT_AUTH_MODE) [CD]
+Line_2 $$ public <T> T getOption(final Option<T> option) throws IOException --> Line_3 $$ if (option == Options.SSL_CLIENT_AUTH_MODE) [FD]
+Line_3 $$ if (option == Options.SSL_CLIENT_AUTH_MODE) --> Line_4 $$ final SSLEngine engine = conduit.getEngine() [CD]
+Line_3 $$ if (option == Options.SSL_CLIENT_AUTH_MODE) --> Line_5 $$ return option.cast(engine.getNeedClientAuth() ? SslClientAuthMode.REQUIRED : engine.getWantClientAuth() ? SslClientAuthMode.REQUESTED : SslClientAuthMode.NOT_REQUESTED) [CD]
+Line_2 $$ public <T> T getOption(final Option<T> option) throws IOException --> Line_5 $$ return option.cast(engine.getNeedClientAuth() ? SslClientAuthMode.REQUIRED : engine.getWantClientAuth() ? SslClientAuthMode.REQUESTED : SslClientAuthMode.NOT_REQUESTED) [FD]
+Line_4 $$ final SSLEngine engine = conduit.getEngine() --> Line_5 $$ return option.cast(engine.getNeedClientAuth() ? SslClientAuthMode.REQUIRED : engine.getWantClientAuth() ? SslClientAuthMode.REQUESTED : SslClientAuthMode.NOT_REQUESTED) [FD]
+Line_3 $$ if (option == Options.SSL_CLIENT_AUTH_MODE) --> Line_7 $$ return option == Options.SECURE ? option.cast(Boolean.valueOf(conduit.isTls())) : streamConnection.getOption(option) [CD]
+Line_2 $$ public <T> T getOption(final Option<T> option) throws IOException --> Line_7 $$ return option == Options.SECURE ? option.cast(Boolean.valueOf(conduit.isTls())) : streamConnection.getOption(option) [FD]

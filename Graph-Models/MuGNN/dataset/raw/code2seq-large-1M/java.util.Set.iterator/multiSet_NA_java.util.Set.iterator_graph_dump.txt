@@ -1,0 +1,5 @@
+Line_2 $$ public Mono<Boolean> multiSet(Map<? extends K, ? extends V> map) --> Line_3 $$ Assert.notNull(map, "Map must not be null!") [CD]
+Line_2 $$ public Mono<Boolean> multiSet(Map<? extends K, ? extends V> map) --> Line_3 $$ Assert.notNull(map, "Map must not be null!") [FD]
+Line_2 $$ public Mono<Boolean> multiSet(Map<? extends K, ? extends V> map) --> Line_4 $$ return createMono( connection -> [CD]
+Line_2 $$ public Mono<Boolean> multiSet(Map<? extends K, ? extends V> map) --> Line_5 $$ Mono<Map<ByteBuffer, ByteBuffer>> serializedMap = Flux.fromIterable(() -> map.entrySet().iterator()).collectMap( entry -> rawKey(entry.getKey()),  entry -> rawValue(entry.getValue())) [FD]
+Line_5 $$ Mono<Map<ByteBuffer, ByteBuffer>> serializedMap = Flux.fromIterable(() -> map.entrySet().iterator()).collectMap( entry -> rawKey(entry.getKey()),  entry -> rawValue(entry.getValue())) --> Line_6 $$ return serializedMap.flatMap(connection::<>mSet) [FD]

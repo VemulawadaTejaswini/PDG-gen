@@ -1,0 +1,8 @@
+Line_2 $$ public RSAPublicKey getKnoxPublicKey() --> Line_3 $$ final Path knoxPublicKeyPath = properties.getKnoxPublicKeyPath() [CD]
+Line_2 $$ public RSAPublicKey getKnoxPublicKey() --> Line_4 $$ if (Files.isRegularFile(knoxPublicKeyPath) && Files.exists(knoxPublicKeyPath)) [CD]
+Line_3 $$ final Path knoxPublicKeyPath = properties.getKnoxPublicKeyPath() --> Line_4 $$ if (Files.isRegularFile(knoxPublicKeyPath) && Files.exists(knoxPublicKeyPath)) [FD]
+Line_3 $$ final Path knoxPublicKeyPath = properties.getKnoxPublicKeyPath() --> Line_5 $$ try (final InputStream publicKeyStream = Files.newInputStream(knoxPublicKeyPath)) [FD]
+Line_6 $$ final CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509") --> Line_7 $$ final X509Certificate certificate = (X509Certificate) certificateFactory.generateCertificate(publicKeyStream) [FD]
+Line_5 $$ try (final InputStream publicKeyStream = Files.newInputStream(knoxPublicKeyPath)) --> Line_7 $$ final X509Certificate certificate = (X509Certificate) certificateFactory.generateCertificate(publicKeyStream) [FD]
+Line_7 $$ final X509Certificate certificate = (X509Certificate) certificateFactory.generateCertificate(publicKeyStream) --> Line_8 $$ return (RSAPublicKey) certificate.getPublicKey() [FD]
+Line_3 $$ final Path knoxPublicKeyPath = properties.getKnoxPublicKeyPath() --> Line_13 $$ throw new RuntimeException(String.format("The specified Knox public key path does not exist '%s'", knoxPublicKeyPath.toString())) [FD]

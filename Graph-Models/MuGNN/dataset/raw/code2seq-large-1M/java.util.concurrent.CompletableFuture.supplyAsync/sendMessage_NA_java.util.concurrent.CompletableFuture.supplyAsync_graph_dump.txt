@@ -1,0 +1,5 @@
+Line_2 $$ private <T> T sendMessage(UdpTrackerMessage message, Session session, UdpTrackerResponseHandler<T> responseHandler, boolean retry) --> Line_3 $$ int timeToWait = retry ? 5 : 10 [CD]
+Line_3 $$ int timeToWait = retry ? 5 : 10 --> Line_5 $$ return CompletableFuture.supplyAsync(() -> doSend(message, session, responseHandler), executor).get(timeToWait, TimeUnit.SECONDS) [FD]
+Line_2 $$ private <T> T sendMessage(UdpTrackerMessage message, Session session, UdpTrackerResponseHandler<T> responseHandler, boolean retry) --> Line_5 $$ return CompletableFuture.supplyAsync(() -> doSend(message, session, responseHandler), executor).get(timeToWait, TimeUnit.SECONDS) [FD]
+Line_9 $$ if (retry) --> Line_12 $$ return sendMessage(message, session, responseHandler, true) [CD]
+Line_2 $$ private <T> T sendMessage(UdpTrackerMessage message, Session session, UdpTrackerResponseHandler<T> responseHandler, boolean retry) --> Line_12 $$ return sendMessage(message, session, responseHandler, true) [FD]

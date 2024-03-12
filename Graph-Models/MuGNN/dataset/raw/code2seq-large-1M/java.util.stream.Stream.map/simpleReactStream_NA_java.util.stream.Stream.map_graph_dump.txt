@@ -1,0 +1,8 @@
+Line_2 $$ static <T> SimpleReactStream<T> simpleReactStream(Stream<T> stream) --> Line_3 $$ if (stream instanceof FutureStream) [FD]
+Line_2 $$ static <T> SimpleReactStream<T> simpleReactStream(Stream<T> stream) --> Line_3 $$ if (stream instanceof FutureStream) [CD]
+Line_3 $$ if (stream instanceof FutureStream) --> Line_4 $$ stream = ((FutureStream) stream).toQueue().stream(((FutureStream) stream).getSubscription()) [CD]
+Line_2 $$ static <T> SimpleReactStream<T> simpleReactStream(Stream<T> stream) --> Line_4 $$ stream = ((FutureStream) stream).toQueue().stream(((FutureStream) stream).getSubscription()) [FD]
+Line_2 $$ static <T> SimpleReactStream<T> simpleReactStream(Stream<T> stream) --> Line_5 $$ final SimpleReact sr = new SimpleReact(ThreadPools.getCurrentThreadExecutor(), false) [CD]
+Line_2 $$ static <T> SimpleReactStream<T> simpleReactStream(Stream<T> stream) --> Line_6 $$ return new SimpleReactStreamImpl<T>(sr, stream.map(CompletableFuture::<>completedFuture)) [FD]
+Line_2 $$ static <T> SimpleReactStream<T> simpleReactStream(Stream<T> stream) --> Line_6 $$ return new SimpleReactStreamImpl<T>(sr, stream.map(CompletableFuture::<>completedFuture)) [CD]
+Line_4 $$ stream = ((FutureStream) stream).toQueue().stream(((FutureStream) stream).getSubscription()) --> Line_6 $$ return new SimpleReactStreamImpl<T>(sr, stream.map(CompletableFuture::<>completedFuture)) [FD]

@@ -1,0 +1,6 @@
+Line_3 $$ try (Actor actor = new Actor(tracer, phaser)) --> Line_6 $$ actor.tell("my message 1") [FD]
+Line_3 $$ try (Actor actor = new Actor(tracer, phaser)) --> Line_7 $$ actor.tell("my message 2") [FD]
+Line_16 $$ List<MockSpan> finished = tracer.finishedSpans() --> Line_17 $$ assertThat(finished.size()).isEqualTo(3) [FD]
+Line_16 $$ List<MockSpan> finished = tracer.finishedSpans() --> Line_18 $$ assertThat(finished.get(0).context().traceId()).isEqualTo(finished.get(1).context().traceId()) [FD]
+Line_16 $$ List<MockSpan> finished = tracer.finishedSpans() --> Line_19 $$ assertThat(getByTag(finished, Tags.SPAN_KIND, Tags.SPAN_KIND_CONSUMER)).hasSize(2) [FD]
+Line_16 $$ List<MockSpan> finished = tracer.finishedSpans() --> Line_20 $$ assertThat(getOneByTag(finished, Tags.SPAN_KIND, Tags.SPAN_KIND_PRODUCER)).isNotNull() [FD]

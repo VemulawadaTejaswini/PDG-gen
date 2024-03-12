@@ -1,0 +1,8 @@
+Line_4 $$ Integer version = 0 --> Line_6 $$ version = Integer.valueOf(sqlVersion) [FD]
+Line_10 $$ for (File f : getSqlFileList(basePath)) --> Line_12 $$ Integer fileVersion = Integer.valueOf(f.getName().replace(".sql", "")) [FD]
+Line_12 $$ Integer fileVersion = Integer.valueOf(f.getName().replace(".sql", "")) --> Line_13 $$ if (fileVersion > version) [FD]
+Line_4 $$ Integer version = 0 --> Line_13 $$ if (fileVersion > version) [FD]
+Line_6 $$ version = Integer.valueOf(sqlVersion) --> Line_13 $$ if (fileVersion > version) [FD]
+Line_13 $$ if (fileVersion > version) --> Line_14 $$ LOGGER.info("need update sql " + f) [CD]
+Line_13 $$ if (fileVersion > version) --> Line_15 $$ Map.Entry<Integer, List<String>> entry = new AbstractMap.SimpleEntry(fileVersion, Arrays.asList(IOUtil.getStringInputStream(new FileInputStream(f)).split("\n"))) [CD]
+Line_13 $$ if (fileVersion > version) --> Line_16 $$ sqlList.add(entry) [CD]

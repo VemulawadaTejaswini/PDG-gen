@@ -1,0 +1,7 @@
+Line_2 $$ public void shouldMaskStrange() --> Line_3 $$ List<Pattern> maskPatterns = ImmutableList.of(Pattern.compile(".*password.*")) [CD]
+Line_2 $$ public void shouldMaskStrange() --> Line_4 $$ String requestQueryString = "test=one&&&===&=&xpasswordy=mask=me&&&==&test=two" [CD]
+Line_2 $$ public void shouldMaskStrange() --> Line_5 $$ String maskRequestQueryString = ServletMessageSupplier.maskRequestQueryString(requestQueryString, maskPatterns) [CD]
+Line_4 $$ String requestQueryString = "test=one&&&===&=&xpasswordy=mask=me&&&==&test=two" --> Line_5 $$ String maskRequestQueryString = ServletMessageSupplier.maskRequestQueryString(requestQueryString, maskPatterns) [FD]
+Line_3 $$ List<Pattern> maskPatterns = ImmutableList.of(Pattern.compile(".*password.*")) --> Line_5 $$ String maskRequestQueryString = ServletMessageSupplier.maskRequestQueryString(requestQueryString, maskPatterns) [FD]
+Line_2 $$ public void shouldMaskStrange() --> Line_6 $$ assertThat(maskRequestQueryString).isEqualTo("test=one&&&===&=&xpasswordy=****&&&==&test=two") [CD]
+Line_5 $$ String maskRequestQueryString = ServletMessageSupplier.maskRequestQueryString(requestQueryString, maskPatterns) --> Line_6 $$ assertThat(maskRequestQueryString).isEqualTo("test=one&&&===&=&xpasswordy=****&&&==&test=two") [FD]

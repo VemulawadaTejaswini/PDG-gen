@@ -1,0 +1,5 @@
+Line_2 $$ public void testGetReadMethod() throws Exception --> Line_3 $$ Method method = javaBeanPropertyDescriptor.getReadMethod() [CD]
+Line_2 $$ public void testGetReadMethod() throws Exception --> Line_4 $$ assertNotNull("method should not be null", method) [CD]
+Line_3 $$ Method method = javaBeanPropertyDescriptor.getReadMethod() --> Line_4 $$ assertNotNull("method should not be null", method) [FD]
+Line_2 $$ public void testGetReadMethod() throws Exception --> Line_5 $$ assertEquals("incorrect method found", "getDestField", method.getName()) [CD]
+Line_3 $$ Method method = javaBeanPropertyDescriptor.getReadMethod() --> Line_5 $$ assertEquals("incorrect method found", "getDestField", method.getName()) [FD]

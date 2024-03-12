@@ -1,0 +1,8 @@
+Line_2 $$ public void fileNotDirectory() throws IOException --> Line_3 $$ TypeSpec type = TypeSpec.classBuilder("Test").build() [CD]
+Line_2 $$ public void fileNotDirectory() throws IOException --> Line_4 $$ JavaFile javaFile = JavaFile.builder("example", type).build() [CD]
+Line_2 $$ public void fileNotDirectory() throws IOException --> Line_5 $$ File file = new File(tmp.newFolder("foo"), "bar") [CD]
+Line_2 $$ public void fileNotDirectory() throws IOException --> Line_6 $$ file.createNewFile() [CD]
+Line_5 $$ File file = new File(tmp.newFolder("foo"), "bar") --> Line_6 $$ file.createNewFile() [FD]
+Line_4 $$ JavaFile javaFile = JavaFile.builder("example", type).build() --> Line_8 $$ javaFile.writeTo(file) [FD]
+Line_5 $$ File file = new File(tmp.newFolder("foo"), "bar") --> Line_8 $$ javaFile.writeTo(file) [FD]
+Line_5 $$ File file = new File(tmp.newFolder("foo"), "bar") --> Line_11 $$ assertThat(e.getMessage()).isEqualTo("path " + file.getPath() + " exists but is not a directory.") [FD]

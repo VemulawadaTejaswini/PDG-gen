@@ -1,0 +1,8 @@
+Line_3 $$ for (DateTime key : fileCache.keySet()) --> Line_4 $$ File file = fileCache.get(key) [FD]
+Line_4 $$ File file = fileCache.get(key) --> Line_5 $$ boolean downloaded = AwsUtils.downloadFileIfChanged(config.workS3BucketName, config.workS3BucketPrefix, file, 0) [FD]
+Line_6 $$ if (downloaded) --> Line_7 $$ logger.info("trying to re-read data for " + file) [CD]
+Line_6 $$ if (downloaded) --> Line_8 $$ FileInputStream in = new FileInputStream(file) [CD]
+Line_8 $$ FileInputStream in = new FileInputStream(file) --> Line_10 $$ String[] strs = IOUtils.toString(in).split(",") [FD]
+Line_3 $$ for (DateTime key : fileCache.keySet()) --> Line_13 $$ data.put(key, values) [FD]
+Line_11 $$ double[] values = new double[strs.length] --> Line_13 $$ data.put(key, values) [FD]
+Line_8 $$ FileInputStream in = new FileInputStream(file) --> Line_16 $$ in.close() [FD]

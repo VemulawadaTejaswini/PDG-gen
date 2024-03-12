@@ -1,0 +1,5 @@
+Line_2 $$ void discoveryFiltersAreStoredInDiscoveryRequest() --> Line_3 $$ LauncherDiscoveryRequest discoveryRequest = request().filters(new DiscoveryFilterStub("filter1"), new DiscoveryFilterStub("filter2")).build() [CD]
+Line_2 $$ void discoveryFiltersAreStoredInDiscoveryRequest() --> Line_4 $$ List<String> filterStrings = discoveryRequest.getFiltersByType(DiscoveryFilter.class).stream().map(DiscoveryFilter::<>toString).collect(toList()) [CD]
+Line_3 $$ LauncherDiscoveryRequest discoveryRequest = request().filters(new DiscoveryFilterStub("filter1"), new DiscoveryFilterStub("filter2")).build() --> Line_4 $$ List<String> filterStrings = discoveryRequest.getFiltersByType(DiscoveryFilter.class).stream().map(DiscoveryFilter::<>toString).collect(toList()) [FD]
+Line_2 $$ void discoveryFiltersAreStoredInDiscoveryRequest() --> Line_5 $$ assertThat(filterStrings).hasSize(2) [CD]
+Line_2 $$ void discoveryFiltersAreStoredInDiscoveryRequest() --> Line_6 $$ assertThat(filterStrings).contains("filter1", "filter2") [CD]

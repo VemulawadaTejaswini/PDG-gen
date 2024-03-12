@@ -1,0 +1,3 @@
+Line_2 $$ private MySQLMetaBean getLBReadMetaBean() --> Line_3 $$ List<MySQLMetaBean> result = metaBeans.stream().filter( f -> f.isSlaveNode() && f.canSelectAsReadNode()).collect(Collectors.toList()) [CD]
+Line_2 $$ private MySQLMetaBean getLBReadMetaBean() --> Line_4 $$ return result.isEmpty() ? null : result.get(ThreadLocalRandom.current().nextInt(result.size())) [CD]
+Line_3 $$ List<MySQLMetaBean> result = metaBeans.stream().filter( f -> f.isSlaveNode() && f.canSelectAsReadNode()).collect(Collectors.toList()) --> Line_4 $$ return result.isEmpty() ? null : result.get(ThreadLocalRandom.current().nextInt(result.size())) [FD]

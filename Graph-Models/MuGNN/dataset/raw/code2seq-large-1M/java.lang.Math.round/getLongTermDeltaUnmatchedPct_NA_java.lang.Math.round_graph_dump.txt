@@ -1,0 +1,3 @@
+Line_2 $$ public Response getLongTermDeltaUnmatchedPct(@PathParam("agencyId") String agencyId, @QueryParam("feedId") String feedId) --> Line_4 $$ int unmatchedTrips = getUnmatchedTripIdCt(agencyId, feedId) [FD]
+Line_2 $$ public Response getLongTermDeltaUnmatchedPct(@PathParam("agencyId") String agencyId, @QueryParam("feedId") String feedId) --> Line_5 $$ int average = getAvgByAgency("unmatched-trips-average", agencyId) [FD]
+Line_6 $$ int longTermDeltaPct = average != 0 ? (int) (Math.round(((unmatchedTrips - average) * 100.0) / average)) : Integer.MAX_VALUE --> Line_8 $$ return Response.ok(ok("unmatched-trips", longTermDeltaPct)).build() [FD]

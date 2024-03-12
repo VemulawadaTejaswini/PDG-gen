@@ -1,0 +1,4 @@
+Line_2 $$ public Optional<UUID> lookupUuid(String username) --> Line_3 $$ if (!getGame().isServerAvailable()) [CD]
+Line_3 $$ if (!getGame().isServerAvailable()) --> Line_4 $$ return Optional.empty() [CD]
+Line_2 $$ public Optional<UUID> lookupUuid(String username) --> Line_6 $$ return getGame().getServer().getGameProfileManager().get(username).thenApply( p -> Optional.of(p.getUniqueId())).exceptionally( x -> Optional.empty()).join() [CD]
+Line_2 $$ public Optional<UUID> lookupUuid(String username) --> Line_6 $$ return getGame().getServer().getGameProfileManager().get(username).thenApply( p -> Optional.of(p.getUniqueId())).exceptionally( x -> Optional.empty()).join() [FD]

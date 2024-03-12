@@ -1,0 +1,6 @@
+Line_2 $$ public void testUniquenessConstraintOnNode() --> Line_3 $$ db.execute("CREATE CONSTRAINT ON (bar:Bar) ASSERT bar.foo IS UNIQUE").close() [CD]
+Line_2 $$ public void testUniquenessConstraintOnNode() --> Line_4 $$ testResult(db, "CALL apoc.schema.nodes()", ( result) -> [CD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_6 $$ assertEquals("CONSTRAINT ON (bar:Bar) ASSERT bar.foo IS UNIQUE", r.get("name")) [FD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_7 $$ assertEquals("Bar", r.get("label")) [FD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_8 $$ assertEquals("UNIQUENESS", r.get("type")) [FD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_9 $$ assertEquals("foo", ((List<String>) r.get("properties")).get(0)) [FD]

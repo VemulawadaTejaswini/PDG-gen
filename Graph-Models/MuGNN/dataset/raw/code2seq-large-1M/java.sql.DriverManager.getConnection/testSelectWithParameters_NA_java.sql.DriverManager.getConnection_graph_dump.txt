@@ -1,0 +1,6 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_4 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_5 $$ PreparedStatement preparedStatement = conn.prepareStatement("select name from sys.cluster where name like ?") [FD]
+Line_5 $$ PreparedStatement preparedStatement = conn.prepareStatement("select name from sys.cluster where name like ?") --> Line_6 $$ preparedStatement.setString(1, "SUITE%") [FD]
+Line_5 $$ PreparedStatement preparedStatement = conn.prepareStatement("select name from sys.cluster where name like ?") --> Line_7 $$ ResultSet resultSet = preparedStatement.executeQuery() [FD]
+Line_7 $$ ResultSet resultSet = preparedStatement.executeQuery() --> Line_8 $$ assertThat(resultSet.next(), is(true)) [FD]
+Line_7 $$ ResultSet resultSet = preparedStatement.executeQuery() --> Line_9 $$ assertThat(resultSet.getString(1), Matchers.startsWith("SUITE-CHILD")) [FD]

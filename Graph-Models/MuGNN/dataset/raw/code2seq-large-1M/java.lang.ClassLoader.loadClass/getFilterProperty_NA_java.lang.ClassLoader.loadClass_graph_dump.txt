@@ -1,0 +1,8 @@
+Line_2 $$ private Filter getFilterProperty(String name, Filter defaultValue) --> Line_3 $$ String stringFilter = getProperty(name) [FD]
+Line_2 $$ private Filter getFilterProperty(String name, Filter defaultValue) --> Line_3 $$ String stringFilter = getProperty(name) [CD]
+Line_3 $$ String stringFilter = getProperty(name) --> Line_5 $$ if (stringFilter != null) [FD]
+Line_5 $$ if (stringFilter != null) --> Line_6 $$ Class clz = ClassLoader.getSystemClassLoader().loadClass(stringFilter) [CD]
+Line_3 $$ String stringFilter = getProperty(name) --> Line_6 $$ Class clz = ClassLoader.getSystemClassLoader().loadClass(stringFilter) [FD]
+Line_5 $$ if (stringFilter != null) --> Line_7 $$ return (Filter) clz.newInstance() [CD]
+Line_6 $$ Class clz = ClassLoader.getSystemClassLoader().loadClass(stringFilter) --> Line_7 $$ return (Filter) clz.newInstance() [FD]
+Line_2 $$ private Filter getFilterProperty(String name, Filter defaultValue) --> Line_11 $$ return defaultValue [CD]

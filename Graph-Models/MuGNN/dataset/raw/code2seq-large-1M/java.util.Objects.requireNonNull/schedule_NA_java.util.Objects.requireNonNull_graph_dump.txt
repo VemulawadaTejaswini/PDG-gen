@@ -1,0 +1,8 @@
+Line_2 $$ public Disposable schedule(Runnable task) --> Line_3 $$ Objects.requireNonNull(task, "task") [CD]
+Line_2 $$ public Disposable schedule(Runnable task) --> Line_3 $$ Objects.requireNonNull(task, "task") [FD]
+Line_2 $$ public Disposable schedule(Runnable task) --> Line_4 $$ if (terminated) [CD]
+Line_2 $$ public Disposable schedule(Runnable task) --> Line_7 $$ ExecutorTrackedRunnable r = new ExecutorTrackedRunnable(task, this, false) [CD]
+Line_7 $$ ExecutorTrackedRunnable r = new ExecutorTrackedRunnable(task, this, false) --> Line_12 $$ queue.offer(r) [FD]
+Line_2 $$ public Disposable schedule(Runnable task) --> Line_14 $$ if (WIP.getAndIncrement(this) == 0) [CD]
+Line_7 $$ ExecutorTrackedRunnable r = new ExecutorTrackedRunnable(task, this, false) --> Line_18 $$ r.dispose() [FD]
+Line_2 $$ public Disposable schedule(Runnable task) --> Line_23 $$ return r [CD]

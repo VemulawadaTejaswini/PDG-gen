@@ -1,0 +1,8 @@
+Line_2 $$ public void testBackpressureIssue38() --> Line_3 $$ Database db = DatabaseCreator.db() [CD]
+Line_2 $$ public void testBackpressureIssue38() --> Line_4 $$ final Long start = System.currentTimeMillis() [CD]
+Line_2 $$ public void testBackpressureIssue38() --> Line_5 $$ final CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testBackpressureIssue38() --> Line_6 $$ Observable.interval(0, 1, TimeUnit.MILLISECONDS).onBackpressureLatest().compose(db.select("SELECT * FROM (VALUES (?)) AS v").parameterTransformer().getAs(String.class)).concatMap(new Func1<String, Observable<String>>() [CD]
+Line_3 $$ Database db = DatabaseCreator.db() --> Line_6 $$ Observable.interval(0, 1, TimeUnit.MILLISECONDS).onBackpressureLatest().compose(db.select("SELECT * FROM (VALUES (?)) AS v").parameterTransformer().getAs(String.class)).concatMap(new Func1<String, Observable<String>>() [FD]
+Line_5 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_15 $$ latch.countDown() [FD]
+Line_5 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_20 $$ latch.countDown() [FD]
+Line_5 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_27 $$ latch.await() [FD]

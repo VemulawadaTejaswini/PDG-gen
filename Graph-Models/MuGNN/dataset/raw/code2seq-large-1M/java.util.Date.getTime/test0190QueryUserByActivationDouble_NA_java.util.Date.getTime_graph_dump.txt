@@ -1,0 +1,6 @@
+Line_2 $$ public void test0190QueryUserByActivationDouble() throws Exception --> Line_3 $$ Date NOW = new Date() [CD]
+Line_2 $$ public void test0190QueryUserByActivationDouble() throws Exception --> Line_4 $$ Session session = open() [CD]
+Line_3 $$ Date NOW = new Date() --> Line_6 $$ ObjectQuery query = QueryBuilder.queryFor(UserType.class, prismContext).item(AssignmentType.F_ACTIVATION, ActivationType.F_ADMINISTRATIVE_STATUS).eq(ActivationStatusType.ENABLED).and().item(AssignmentType.F_ACTIVATION, ActivationType.F_VALID_FROM).eq(XmlTypeConverter.createXMLGregorianCalendar(NOW.getTime())).build() [FD]
+Line_4 $$ Session session = open() --> Line_7 $$ String real = getInterpretedQuery2(session, UserType.class, query) [FD]
+Line_8 $$ String expected = "select\n" + "  u.oid, u.fullObject, u.stringsCount, u.longsCount, u.datesCount, u.referencesCount, u.polysCount, u.booleansCount\n" + "from\n" + "  RUser u\n" + "where\n" + "  (\n" + "    u.activation.administrativeStatus = :administrativeStatus and\n" + "    u.activation.validFrom = :validFrom\n" + "  )\n" --> Line_9 $$ assertEqualsIgnoreWhitespace(expected, real) [FD]
+Line_4 $$ Session session = open() --> Line_11 $$ close(session) [FD]

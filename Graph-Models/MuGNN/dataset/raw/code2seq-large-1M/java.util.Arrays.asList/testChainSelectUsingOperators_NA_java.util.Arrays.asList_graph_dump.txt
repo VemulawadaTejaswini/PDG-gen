@@ -1,0 +1,4 @@
+Line_2 $$ public void testChainSelectUsingOperators() --> Line_3 $$ Database db = db() [CD]
+Line_2 $$ public void testChainSelectUsingOperators() --> Line_4 $$ List<Integer> scores = db.select("select name from person").getAs(String.class).compose(db.select("select score from person where name=?").parameterTransformer().getAs(Integer.class)).toSortedList().toBlocking().single() [CD]
+Line_3 $$ Database db = db() --> Line_4 $$ List<Integer> scores = db.select("select name from person").getAs(String.class).compose(db.select("select score from person where name=?").parameterTransformer().getAs(Integer.class)).toSortedList().toBlocking().single() [FD]
+Line_2 $$ public void testChainSelectUsingOperators() --> Line_12 $$ assertEquals(asList(21, 25, 34), scores) [CD]

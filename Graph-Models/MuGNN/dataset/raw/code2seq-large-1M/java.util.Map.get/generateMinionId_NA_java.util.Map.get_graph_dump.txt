@@ -1,0 +1,7 @@
+Line_2 $$ private void generateMinionId() --> Line_3 $$ minionId = minionIds.get(targetIp) [CD]
+Line_2 $$ private void generateMinionId() --> Line_4 $$ if (minionId != null) [CD]
+Line_4 $$ if (minionId != null) --> Line_5 $$ return [CD]
+Line_2 $$ private void generateMinionId() --> Line_7 $$ SshResult machineIdRes = new Ssh().setHostname(targetIp).setUsername(username).setPrivateKey(privateKey).setPassword(password).setPort(sshPort).command("cat /sys/class/dmi/id/product_uuid").runAndClose() [CD]
+Line_2 $$ private void generateMinionId() --> Line_8 $$ machineIdRes.raiseExceptionIfFailed() [CD]
+Line_2 $$ private void generateMinionId() --> Line_9 $$ minionId = machineIdRes.getStdout().trim() [CD]
+Line_2 $$ private void generateMinionId() --> Line_10 $$ minionIds.put(targetIp, minionId) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private long calculateRetryDelay() --> Line_3 $$ double delayMultiplier = Math.pow(retryDelayMultiplier, this.retryNum - 1) [CD]
+Line_2 $$ private long calculateRetryDelay() --> Line_4 $$ double delay = retryInitialDelayMs * delayMultiplier [CD]
+Line_2 $$ private long calculateRetryDelay() --> Line_5 $$ Long maxLong = Long.MAX_VALUE [CD]
+Line_2 $$ private long calculateRetryDelay() --> Line_6 $$ long delayThisRetryMs = delay >= maxLong.doubleValue() ? maxLong : (long) delay [CD]
+Line_5 $$ Long maxLong = Long.MAX_VALUE --> Line_6 $$ long delayThisRetryMs = delay >= maxLong.doubleValue() ? maxLong : (long) delay [FD]
+Line_2 $$ private long calculateRetryDelay() --> Line_7 $$ return Math.min(delayThisRetryMs, retryDelayMaxMs) [CD]
+Line_6 $$ long delayThisRetryMs = delay >= maxLong.doubleValue() ? maxLong : (long) delay --> Line_7 $$ return Math.min(delayThisRetryMs, retryDelayMaxMs) [FD]

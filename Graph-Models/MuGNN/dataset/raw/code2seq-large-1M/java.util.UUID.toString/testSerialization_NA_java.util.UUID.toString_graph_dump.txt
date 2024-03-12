@@ -1,0 +1,8 @@
+Line_2 $$ public void testSerialization() throws Exception --> Line_3 $$ String queueName = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void testSerialization() throws Exception --> Line_4 $$ final IgniteQueue<Integer> queue = grid(0).queue(queueName, 0, config(false)) [CD]
+Line_3 $$ String queueName = UUID.randomUUID().toString() --> Line_4 $$ final IgniteQueue<Integer> queue = grid(0).queue(queueName, 0, config(false)) [FD]
+Line_2 $$ public void testSerialization() throws Exception --> Line_5 $$ assertNotNull(queue) [CD]
+Line_4 $$ final IgniteQueue<Integer> queue = grid(0).queue(queueName, 0, config(false)) --> Line_5 $$ assertNotNull(queue) [FD]
+Line_4 $$ final IgniteQueue<Integer> queue = grid(0).queue(queueName, 0, config(false)) --> Line_7 $$ for (int i = 0; i < 10; i++) queue.add(i) [FD]
+Line_8 $$ Collection<Integer> c = grid(0).compute().broadcast(new QueueJob(queue)) --> Line_9 $$ assertEquals(GRID_CNT, c.size()) [FD]
+Line_4 $$ final IgniteQueue<Integer> queue = grid(0).queue(queueName, 0, config(false)) --> Line_12 $$ queue.close() [FD]

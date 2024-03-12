@@ -1,0 +1,6 @@
+Line_2 $$ public void testIssue186() --> Line_3 $$ NettyContext server = HttpServer.create(0).newHandler(( req,  res) -> res.status(200).send()).block(Duration.ofSeconds(30)) [CD]
+Line_2 $$ public void testIssue186() --> Line_4 $$ HttpClient client = HttpClient.create( ops -> ops.connectAddress(() -> server.address()).poolResources(PoolResources.fixed("test", 1))) [CD]
+Line_3 $$ NettyContext server = HttpServer.create(0).newHandler(( req,  res) -> res.status(200).send()).block(Duration.ofSeconds(30)) --> Line_4 $$ HttpClient client = HttpClient.create( ops -> ops.connectAddress(() -> server.address()).poolResources(PoolResources.fixed("test", 1))) [FD]
+Line_4 $$ HttpClient client = HttpClient.create( ops -> ops.connectAddress(() -> server.address()).poolResources(PoolResources.fixed("test", 1))) --> Line_6 $$ doTestIssue186(client) [FD]
+Line_4 $$ HttpClient client = HttpClient.create( ops -> ops.connectAddress(() -> server.address()).poolResources(PoolResources.fixed("test", 1))) --> Line_7 $$ doTestIssue186(client) [FD]
+Line_3 $$ NettyContext server = HttpServer.create(0).newHandler(( req,  res) -> res.status(200).send()).block(Duration.ofSeconds(30)) --> Line_9 $$ server.dispose() [FD]

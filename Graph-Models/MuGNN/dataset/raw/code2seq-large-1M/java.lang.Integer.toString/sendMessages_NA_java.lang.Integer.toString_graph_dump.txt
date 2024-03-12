@@ -1,0 +1,7 @@
+Line_2 $$ private void sendMessages(String topicName, KafkaSink sink, int msgCount) throws JsonProcessingException --> Line_3 $$ for (int i = 0; i < msgCount; ++i) [FD]
+Line_2 $$ private void sendMessages(String topicName, KafkaSink sink, int msgCount) throws JsonProcessingException --> Line_3 $$ for (int i = 0; i < msgCount; ++i) [CD]
+Line_3 $$ for (int i = 0; i < msgCount; ++i) --> Line_4 $$ Map<String, Object> msgMap = new ImmutableMap.Builder<String, Object>().put("key", Integer.toString(i)).put("value", "message:" + i).build() [FD]
+Line_3 $$ for (int i = 0; i < msgCount; ++i) --> Line_4 $$ Map<String, Object> msgMap = new ImmutableMap.Builder<String, Object>().put("key", Integer.toString(i)).put("value", "message:" + i).build() [CD]
+Line_3 $$ for (int i = 0; i < msgCount; ++i) --> Line_5 $$ sink.writeTo(new DefaultMessageContainer(new Message(topicName, jsonMapper.writeValueAsBytes(msgMap)), jsonMapper)) [CD]
+Line_2 $$ private void sendMessages(String topicName, KafkaSink sink, int msgCount) throws JsonProcessingException --> Line_5 $$ sink.writeTo(new DefaultMessageContainer(new Message(topicName, jsonMapper.writeValueAsBytes(msgMap)), jsonMapper)) [FD]
+Line_4 $$ Map<String, Object> msgMap = new ImmutableMap.Builder<String, Object>().put("key", Integer.toString(i)).put("value", "message:" + i).build() --> Line_5 $$ sink.writeTo(new DefaultMessageContainer(new Message(topicName, jsonMapper.writeValueAsBytes(msgMap)), jsonMapper)) [FD]

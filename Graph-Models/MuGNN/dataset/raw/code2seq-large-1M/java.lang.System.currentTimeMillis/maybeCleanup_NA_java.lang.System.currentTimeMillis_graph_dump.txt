@@ -1,0 +1,7 @@
+Line_2 $$ private void maybeCleanup() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ private void maybeCleanup() --> Line_4 $$ long last = lastCleanup.get() [CD]
+Line_2 $$ private void maybeCleanup() --> Line_5 $$ if (now - last > 1000 * 10) [CD]
+Line_5 $$ if (now - last > 1000 * 10) --> Line_6 $$ if (lastCleanup.compareAndSet(last, now)) [CD]
+Line_4 $$ long last = lastCleanup.get() --> Line_6 $$ if (lastCleanup.compareAndSet(last, now)) [FD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_6 $$ if (lastCleanup.compareAndSet(last, now)) [FD]
+Line_6 $$ if (lastCleanup.compareAndSet(last, now)) --> Line_7 $$ cache.cleanUp() [CD]

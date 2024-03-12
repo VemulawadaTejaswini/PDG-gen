@@ -1,0 +1,7 @@
+Line_2 $$ public void process(boolean validate) --> Line_3 $$ if (!validate) [FD]
+Line_2 $$ public void process(boolean validate) --> Line_3 $$ if (!validate) [CD]
+Line_3 $$ if (!validate) --> Line_4 $$ return [CD]
+Line_2 $$ public void process(boolean validate) --> Line_5 $$ String invalidAttributes = search.allFields().flatMap( field -> field.getAttributes().values().stream()).filter(FastAccessValidator::<>isIncompatibleAttribute).map(Attribute::<>getName).collect(Collectors.joining(", ")) [CD]
+Line_2 $$ public void process(boolean validate) --> Line_6 $$ if (!invalidAttributes.isEmpty()) [CD]
+Line_5 $$ String invalidAttributes = search.allFields().flatMap( field -> field.getAttributes().values().stream()).filter(FastAccessValidator::<>isIncompatibleAttribute).map(Attribute::<>getName).collect(Collectors.joining(", ")) --> Line_6 $$ if (!invalidAttributes.isEmpty()) [FD]
+Line_5 $$ String invalidAttributes = search.allFields().flatMap( field -> field.getAttributes().values().stream()).filter(FastAccessValidator::<>isIncompatibleAttribute).map(Attribute::<>getName).collect(Collectors.joining(", ")) --> Line_7 $$ throw new IllegalArgumentException(String.format("For search '%s': The following attributes have a type that is incompatible with fast-access: %s. " + "Predicate, tensor and reference attributes are incompatible with fast-access.", search.getName(), invalidAttributes)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void validateBytesConvertedToBytesMessageOnSend() throws Exception --> Line_3 $$ final String destinationName = "validateBytesConvertedToBytesMessageOnSend" [CD]
+Line_2 $$ public void validateBytesConvertedToBytesMessageOnSend() throws Exception --> Line_4 $$ JmsTemplate jmsTemplate = CommonTest.buildJmsTemplateForDestination(false) [CD]
+Line_4 $$ JmsTemplate jmsTemplate = CommonTest.buildJmsTemplateForDestination(false) --> Line_6 $$ JMSPublisher publisher = new JMSPublisher((CachingConnectionFactory) jmsTemplate.getConnectionFactory(), jmsTemplate, mock(ComponentLog.class)) [FD]
+Line_3 $$ final String destinationName = "validateBytesConvertedToBytesMessageOnSend" --> Line_7 $$ publisher.publish(destinationName, "hellomq".getBytes()) [FD]
+Line_4 $$ JmsTemplate jmsTemplate = CommonTest.buildJmsTemplateForDestination(false) --> Line_8 $$ Message receivedMessage = jmsTemplate.receive(destinationName) [FD]
+Line_3 $$ final String destinationName = "validateBytesConvertedToBytesMessageOnSend" --> Line_8 $$ Message receivedMessage = jmsTemplate.receive(destinationName) [FD]
+Line_10 $$ byte[] bytes = new byte[7] --> Line_11 $$ ((BytesMessage) receivedMessage).readBytes(bytes) [FD]
+Line_4 $$ JmsTemplate jmsTemplate = CommonTest.buildJmsTemplateForDestination(false) --> Line_14 $$ ((CachingConnectionFactory) jmsTemplate.getConnectionFactory()).destroy() [FD]

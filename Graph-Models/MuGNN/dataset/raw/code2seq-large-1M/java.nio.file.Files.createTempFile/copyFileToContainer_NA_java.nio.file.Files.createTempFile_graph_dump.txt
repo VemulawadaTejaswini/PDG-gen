@@ -1,0 +1,8 @@
+Line_2 $$ public void copyFileToContainer() throws Exception --> Line_3 $$ CreateContainerResponse container = prepareContainerForCopy("1") [CD]
+Line_2 $$ public void copyFileToContainer() throws Exception --> Line_4 $$ Path temp = Files.createTempFile("", ".tar.gz") [CD]
+Line_2 $$ public void copyFileToContainer() throws Exception --> Line_5 $$ CompressArchiveUtil.tar(Paths.get("src/test/resources/testReadFile"), temp, true, false) [CD]
+Line_4 $$ Path temp = Files.createTempFile("", ".tar.gz") --> Line_5 $$ CompressArchiveUtil.tar(Paths.get("src/test/resources/testReadFile"), temp, true, false) [FD]
+Line_4 $$ Path temp = Files.createTempFile("", ".tar.gz") --> Line_6 $$ try (InputStream uploadStream = Files.newInputStream(temp)) [FD]
+Line_6 $$ try (InputStream uploadStream = Files.newInputStream(temp)) --> Line_7 $$ dockerRule.getClient().copyArchiveToContainerCmd(container.getId()).withTarInputStream(uploadStream).exec() [FD]
+Line_3 $$ CreateContainerResponse container = prepareContainerForCopy("1") --> Line_7 $$ dockerRule.getClient().copyArchiveToContainerCmd(container.getId()).withTarInputStream(uploadStream).exec() [FD]
+Line_3 $$ CreateContainerResponse container = prepareContainerForCopy("1") --> Line_8 $$ assertFileCopied(container) [FD]

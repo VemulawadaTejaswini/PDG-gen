@@ -1,0 +1,5 @@
+Line_2 $$ private void pingTransactions() --> Line_3 $$ log.info("Start sending transaction pings.") [CD]
+Line_2 $$ private void pingTransactions() --> Line_4 $$ Map<UUID, CompletableFuture<Void>> pingResult = txnList.stream().collect(Collectors.toMap(Function.identity(),  uuid -> [CD]
+Line_2 $$ private void pingTransactions() --> Line_8 $$ Futures.allOf(pingResult.values()).whenComplete(( v,  ex) -> pingResult.entrySet().stream().filter( e -> !Futures.isSuccessful(e.getValue())).forEach( e -> [CD]
+Line_4 $$ Map<UUID, CompletableFuture<Void>> pingResult = txnList.stream().collect(Collectors.toMap(Function.identity(),  uuid -> --> Line_8 $$ Futures.allOf(pingResult.values()).whenComplete(( v,  ex) -> pingResult.entrySet().stream().filter( e -> !Futures.isSuccessful(e.getValue())).forEach( e -> [FD]
+Line_2 $$ private void pingTransactions() --> Line_11 $$ log.trace("Completed sending transaction pings.") [CD]

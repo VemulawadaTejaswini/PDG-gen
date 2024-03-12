@@ -1,0 +1,6 @@
+Line_2 $$ public List<String> getLogFileNames() --> Line_3 $$ File[] logFiles = new File(NzbHydra.getDataFolder(), "logs").listFiles() [CD]
+Line_2 $$ public List<String> getLogFileNames() --> Line_4 $$ if (logFiles == null) [CD]
+Line_3 $$ File[] logFiles = new File(NzbHydra.getDataFolder(), "logs").listFiles() --> Line_4 $$ if (logFiles == null) [FD]
+Line_4 $$ if (logFiles == null) --> Line_5 $$ return Collections.emptyList() [CD]
+Line_2 $$ public List<String> getLogFileNames() --> Line_7 $$ return Stream.of(logFiles).sorted(Comparator.comparingLong(File::<>lastModified).reversed()).filter( x -> x.getName().toLowerCase().endsWith("log")).map(File::<>getName).collect(Collectors.toList()) [CD]
+Line_3 $$ File[] logFiles = new File(NzbHydra.getDataFolder(), "logs").listFiles() --> Line_7 $$ return Stream.of(logFiles).sorted(Comparator.comparingLong(File::<>lastModified).reversed()).filter( x -> x.getName().toLowerCase().endsWith("log")).map(File::<>getName).collect(Collectors.toList()) [FD]

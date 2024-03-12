@@ -1,0 +1,6 @@
+Line_4 $$ Project project = project() --> Line_5 $$ List<MicroschemaContainerVersion> versions = project.getMicroschemaContainerRoot().findAll().stream().map(MicroschemaContainer::<>getLatestVersion).collect(Collectors.toList()) [FD]
+Line_4 $$ Project project = project() --> Line_7 $$ for (MicroschemaContainerVersion version : project.getInitialRelease().findAllMicroschemaVersions()) [FD]
+Line_6 $$ List<MicroschemaContainerVersion> found = new ArrayList() --> Line_8 $$ found.add(version) [FD]
+Line_7 $$ for (MicroschemaContainerVersion version : project.getInitialRelease().findAllMicroschemaVersions()) --> Line_8 $$ found.add(version) [FD]
+Line_5 $$ List<MicroschemaContainerVersion> versions = project.getMicroschemaContainerRoot().findAll().stream().map(MicroschemaContainer::<>getLatestVersion).collect(Collectors.toList()) --> Line_10 $$ assertThat(found).as("List of microschema versions").usingElementComparatorOnFields("uuid", "name", "version").containsAll(versions) [FD]
+Line_6 $$ List<MicroschemaContainerVersion> found = new ArrayList() --> Line_10 $$ assertThat(found).as("List of microschema versions").usingElementComparatorOnFields("uuid", "name", "version").containsAll(versions) [FD]

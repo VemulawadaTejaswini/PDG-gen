@@ -1,0 +1,6 @@
+Line_2 $$ public void testQueryProviderSingleColumn() throws Exception --> Line_3 $$ Connection connection = CalciteAssert.that(CalciteAssert.Config.REGULAR).connect() [CD]
+Line_2 $$ public void testQueryProviderSingleColumn() throws Exception --> Line_4 $$ QueryProvider queryProvider = connection.unwrap(QueryProvider.class) [CD]
+Line_3 $$ Connection connection = CalciteAssert.that(CalciteAssert.Config.REGULAR).connect() --> Line_4 $$ QueryProvider queryProvider = connection.unwrap(QueryProvider.class) [FD]
+Line_2 $$ public void testQueryProviderSingleColumn() throws Exception --> Line_5 $$ ParameterExpression e = Expressions.parameter(Employee.class, "e") [CD]
+Line_2 $$ public void testQueryProviderSingleColumn() throws Exception --> Line_6 $$ List<Integer> list = queryProvider.createQuery(Expressions.call(Expressions.call(Types.of(Enumerable.class, Employee.class), null, LINQ4J_AS_ENUMERABLE_METHOD, Expressions.constant(new JdbcTest.HrSchema().emps)), "asQueryable"), Employee.class).select(Expressions.<Function1<Employee, Integer>>lambda(Expressions.field(e, "empid"), e)).toList() [CD]
+Line_2 $$ public void testQueryProviderSingleColumn() throws Exception --> Line_7 $$ assertEquals(Arrays.asList(100, 200, 150, 110), list) [CD]

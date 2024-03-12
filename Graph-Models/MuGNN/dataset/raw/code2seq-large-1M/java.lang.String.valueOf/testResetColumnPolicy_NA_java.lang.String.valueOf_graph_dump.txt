@@ -1,0 +1,8 @@
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_3 $$ execute("create table dynamic_table (" + "  id integer, " + "  score double" + ") with (number_of_replicas=0)") [CD]
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_4 $$ ensureYellow() [CD]
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_5 $$ execute("alter table dynamic_table set (column_policy = 'strict')") [CD]
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_6 $$ waitNoPendingTasksOnAll() [CD]
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_7 $$ assertThat(String.valueOf(getSourceMap("dynamic_table").get("dynamic")), is(ColumnPolicy.STRICT.value())) [CD]
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_8 $$ execute("alter table dynamic_table reset (column_policy)") [CD]
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_9 $$ waitNoPendingTasksOnAll() [CD]
+Line_2 $$ public void testResetColumnPolicy() throws Exception --> Line_10 $$ assertThat(String.valueOf(getSourceMap("dynamic_table").get("dynamic")), is(String.valueOf(ColumnPolicy.DYNAMIC.mappingValue()))) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public SimpleNode[] getChildren() --> Line_3 $$ List<FilteringNode> nodes = myNodesCache.get(this) [CD]
+Line_2 $$ public SimpleNode[] getChildren() --> Line_4 $$ if (nodes == null) [CD]
+Line_3 $$ List<FilteringNode> nodes = myNodesCache.get(this) --> Line_4 $$ if (nodes == null) [FD]
+Line_4 $$ if (nodes == null) --> Line_5 $$ return myDelegate instanceof SimpleNode ? ContainerUtil.map(((SimpleNode) myDelegate).getChildren(), new Function<SimpleNode, SimpleNode>() [CD]
+Line_5 $$ return myDelegate instanceof SimpleNode ? ContainerUtil.map(((SimpleNode) myDelegate).getChildren(), new Function<SimpleNode, SimpleNode>() --> Line_7 $$ return new FilteringNode(FilteringNode.this, node) [CD]
+Line_13 $$ if (node.state == State.VISIBLE) --> Line_14 $$ result.add(node) [CD]
+Line_5 $$ return myDelegate instanceof SimpleNode ? ContainerUtil.map(((SimpleNode) myDelegate).getChildren(), new Function<SimpleNode, SimpleNode>() --> Line_14 $$ result.add(node) [FD]
+Line_2 $$ public SimpleNode[] getChildren() --> Line_17 $$ return result.toArray(new FilteringNode[result.size()]) [CD]

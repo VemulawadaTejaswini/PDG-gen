@@ -1,0 +1,7 @@
+Line_4 $$ Iterator<PendingCheckpoint> pendingCheckpointIt = pendingCheckpoints.iterator() --> Line_5 $$ while (pendingCheckpointIt.hasNext()) [FD]
+Line_5 $$ while (pendingCheckpointIt.hasNext()) --> Line_6 $$ PendingCheckpoint pendingCheckpoint = pendingCheckpointIt.next() [CD]
+Line_4 $$ Iterator<PendingCheckpoint> pendingCheckpointIt = pendingCheckpoints.iterator() --> Line_6 $$ PendingCheckpoint pendingCheckpoint = pendingCheckpointIt.next() [FD]
+Line_5 $$ while (pendingCheckpointIt.hasNext()) --> Line_7 $$ if (committer.isCheckpointCommitted(pendingCheckpoint.subtaskId, pendingCheckpoint.checkpointId)) [CD]
+Line_7 $$ if (committer.isCheckpointCommitted(pendingCheckpoint.subtaskId, pendingCheckpoint.checkpointId)) --> Line_8 $$ pendingCheckpoint.stateHandle.discardState() [CD]
+Line_7 $$ if (committer.isCheckpointCommitted(pendingCheckpoint.subtaskId, pendingCheckpoint.checkpointId)) --> Line_9 $$ pendingCheckpointIt.remove() [CD]
+Line_4 $$ Iterator<PendingCheckpoint> pendingCheckpointIt = pendingCheckpoints.iterator() --> Line_9 $$ pendingCheckpointIt.remove() [FD]

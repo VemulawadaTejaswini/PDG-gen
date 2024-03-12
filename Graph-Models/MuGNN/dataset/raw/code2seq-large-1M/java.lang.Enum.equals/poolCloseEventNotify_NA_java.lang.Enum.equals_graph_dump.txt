@@ -1,0 +1,7 @@
+Line_2 $$ final void poolCloseEventNotify() throws SQLServerException --> Line_3 $$ if (state.equals(State.Opened) && null != pooledConnectionParent) [CD]
+Line_3 $$ if (state.equals(State.Opened) && null != pooledConnectionParent) --> Line_4 $$ if (!databaseAutoCommitMode && !(pooledConnectionParent instanceof XAConnection)) [CD]
+Line_4 $$ if (!databaseAutoCommitMode && !(pooledConnectionParent instanceof XAConnection)) --> Line_5 $$ connectionCommand("IF @@TRANCOUNT > 0 ROLLBACK TRAN", "close connection") [CD]
+Line_3 $$ if (state.equals(State.Opened) && null != pooledConnectionParent) --> Line_8 $$ notifyPooledConnection(null) [CD]
+Line_3 $$ if (state.equals(State.Opened) && null != pooledConnectionParent) --> Line_9 $$ ActivityCorrelator.cleanupActivityId() [CD]
+Line_3 $$ if (state.equals(State.Opened) && null != pooledConnectionParent) --> Line_10 $$ if (connectionlogger.isLoggable(Level.FINER)) [CD]
+Line_10 $$ if (connectionlogger.isLoggable(Level.FINER)) --> Line_11 $$ connectionlogger.finer(toString() + " Connection closed and returned to connection pool") [CD]

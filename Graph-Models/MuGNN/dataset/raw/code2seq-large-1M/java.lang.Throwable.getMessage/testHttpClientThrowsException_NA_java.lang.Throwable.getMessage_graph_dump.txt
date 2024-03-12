@@ -1,0 +1,8 @@
+Line_2 $$ public void testHttpClientThrowsException() throws Exception --> Line_3 $$ when(httpClient.execute(any(HttpRequest.class))).thenThrow(new IOException("whatever")) [CD]
+Line_2 $$ public void testHttpClientThrowsException() throws Exception --> Line_4 $$ HttpRequestTemplate requestTemplate = HttpRequestTemplate.builder("localhost", 80).path("foo").build() [CD]
+Line_2 $$ public void testHttpClientThrowsException() throws Exception --> Line_5 $$ HttpRequestAttachment attachment = new HttpRequestAttachment("someid", requestTemplate, false, null) [CD]
+Line_2 $$ public void testHttpClientThrowsException() throws Exception --> Line_6 $$ WatchExecutionContext ctx = createWatchExecutionContext() [CD]
+Line_2 $$ public void testHttpClientThrowsException() throws Exception --> Line_7 $$ IOException exception = expectThrows(IOException.class, () -> attachmentParsers.get(HttpEmailAttachementParser.TYPE).toAttachment(ctx, new Payload.Simple(), attachment)) [CD]
+Line_6 $$ WatchExecutionContext ctx = createWatchExecutionContext() --> Line_7 $$ IOException exception = expectThrows(IOException.class, () -> attachmentParsers.get(HttpEmailAttachementParser.TYPE).toAttachment(ctx, new Payload.Simple(), attachment)) [FD]
+Line_5 $$ HttpRequestAttachment attachment = new HttpRequestAttachment("someid", requestTemplate, false, null) --> Line_7 $$ IOException exception = expectThrows(IOException.class, () -> attachmentParsers.get(HttpEmailAttachementParser.TYPE).toAttachment(ctx, new Payload.Simple(), attachment)) [FD]
+Line_2 $$ public void testHttpClientThrowsException() throws Exception --> Line_8 $$ assertThat(exception.getMessage(), is("whatever")) [CD]

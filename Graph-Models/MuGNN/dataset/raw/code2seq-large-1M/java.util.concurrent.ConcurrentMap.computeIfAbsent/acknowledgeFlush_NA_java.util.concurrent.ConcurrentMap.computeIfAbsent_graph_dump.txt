@@ -1,0 +1,7 @@
+Line_2 $$ void acknowledgeFlush(FlushAcknowledgement flushAcknowledgement) --> Line_3 $$ String flushId = flushAcknowledgement.getId() [FD]
+Line_2 $$ void acknowledgeFlush(FlushAcknowledgement flushAcknowledgement) --> Line_3 $$ String flushId = flushAcknowledgement.getId() [CD]
+Line_2 $$ void acknowledgeFlush(FlushAcknowledgement flushAcknowledgement) --> Line_4 $$ FlushAcknowledgementHolder holder = awaitingFlushed.computeIfAbsent(flushId, ( key) -> new FlushAcknowledgementHolder(flushId)) [CD]
+Line_3 $$ String flushId = flushAcknowledgement.getId() --> Line_4 $$ FlushAcknowledgementHolder holder = awaitingFlushed.computeIfAbsent(flushId, ( key) -> new FlushAcknowledgementHolder(flushId)) [FD]
+Line_2 $$ void acknowledgeFlush(FlushAcknowledgement flushAcknowledgement) --> Line_5 $$ holder.flushAcknowledgement = flushAcknowledgement [FD]
+Line_2 $$ void acknowledgeFlush(FlushAcknowledgement flushAcknowledgement) --> Line_5 $$ holder.flushAcknowledgement = flushAcknowledgement [CD]
+Line_2 $$ void acknowledgeFlush(FlushAcknowledgement flushAcknowledgement) --> Line_6 $$ holder.latch.countDown() [CD]

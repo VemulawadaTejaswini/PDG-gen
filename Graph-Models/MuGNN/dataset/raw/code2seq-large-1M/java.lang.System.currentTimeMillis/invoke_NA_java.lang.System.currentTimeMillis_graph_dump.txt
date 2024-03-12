@@ -1,0 +1,8 @@
+Line_2 $$ public void invoke(Tuple2<Long, Long> value) --> Line_3 $$ long ts = value.f1 [CD]
+Line_2 $$ public void invoke(Tuple2<Long, Long> value) --> Line_4 $$ if (ts != 0L) [CD]
+Line_3 $$ long ts = value.f1 --> Line_4 $$ if (ts != 0L) [FD]
+Line_4 $$ if (ts != 0L) --> Line_5 $$ long diff = System.currentTimeMillis() - ts [CD]
+Line_4 $$ if (ts != 0L) --> Line_6 $$ maxLatency = Math.max(diff, maxLatency) [CD]
+Line_5 $$ long diff = System.currentTimeMillis() - ts --> Line_6 $$ maxLatency = Math.max(diff, maxLatency) [FD]
+Line_2 $$ public void invoke(Tuple2<Long, Long> value) --> Line_9 $$ if (count == 5000) [CD]
+Line_9 $$ if (count == 5000) --> Line_10 $$ System.out.println("Max latency: " + maxLatency) [CD]

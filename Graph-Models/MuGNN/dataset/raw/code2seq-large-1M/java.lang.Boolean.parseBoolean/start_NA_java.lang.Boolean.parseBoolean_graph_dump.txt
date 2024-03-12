@@ -1,0 +1,8 @@
+Line_2 $$ public void start() throws Exception --> Line_3 $$ final Terminal terminal = TerminalBuilder.builder().nativeSignals(true).signalHandler(Terminal.SignalHandler.SIG_IGN).build() [CD]
+Line_2 $$ public void start() throws Exception --> Line_4 $$ final Subject subject = createLocalKarafSubject() [CD]
+Line_2 $$ public void start() throws Exception --> Line_5 $$ this.session = JaasHelper.doAs(subject, (PrivilegedAction<Session>) () -> [CD]
+Line_4 $$ final Subject subject = createLocalKarafSubject() --> Line_5 $$ this.session = JaasHelper.doAs(subject, (PrivilegedAction<Session>) () -> [FD]
+Line_6 $$ String encoding = getEncoding() --> Line_7 $$ session = sessionFactory.create(terminal.input(), new PrintStream(terminal.output()), new PrintStream(terminal.output()), new JLineTerminal(terminal), encoding, LocalConsoleManager.this::<>close) [FD]
+Line_3 $$ final Terminal terminal = TerminalBuilder.builder().nativeSignals(true).signalHandler(Terminal.SignalHandler.SIG_IGN).build() --> Line_7 $$ session = sessionFactory.create(terminal.input(), new PrintStream(terminal.output()), new PrintStream(terminal.output()), new JLineTerminal(terminal), encoding, LocalConsoleManager.this::<>close) [FD]
+Line_12 $$ if (delayconsole) --> Line_14 $$ new Thread(watcher, name).start() [CD]
+Line_12 $$ if (delayconsole) --> Line_16 $$ new Thread(session, name).start() [CD]

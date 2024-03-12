@@ -1,0 +1,7 @@
+Line_2 $$ private static void createSampleTables(Connection con) --> Line_4 $$ Statement stmt = con.createStatement() [FD]
+Line_4 $$ Statement stmt = con.createStatement() --> Line_5 $$ stmt.executeUpdate("if exists (select * from sys.objects where name = 'TestTable1')" + "drop table TestTable1") [FD]
+Line_4 $$ Statement stmt = con.createStatement() --> Line_6 $$ stmt.executeUpdate("if exists (select * from sys.objects where name = 'TestTable2')" + "drop table TestTable2") [FD]
+Line_4 $$ Statement stmt = con.createStatement() --> Line_7 $$ stmt.execute("CREATE TABLE TestTable1 (Col1 int IDENTITY, Col2 char, Col3 xml)") [FD]
+Line_4 $$ Statement stmt = con.createStatement() --> Line_8 $$ stmt.execute("CREATE TABLE TestTable2 (Col1 int IDENTITY, Col2 char, Col3 varchar(50), Col4 int, Col5 xml)") [FD]
+Line_4 $$ Statement stmt = con.createStatement() --> Line_11 $$ stmt.executeUpdate("insert into TestTable1" + " (Col2, Col3) values('A', '" + row1 + "')") [FD]
+Line_4 $$ Statement stmt = con.createStatement() --> Line_12 $$ stmt.executeUpdate("insert into TestTable1" + " (Col2, Col3) values('B', '" + row2 + "')") [FD]

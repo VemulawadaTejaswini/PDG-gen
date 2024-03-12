@@ -1,0 +1,8 @@
+Line_2 $$ public void testSystemPropertiesOverrideConfigurationValues() --> Line_3 $$ final String keyName = CoreConfig.MAX_CASSANDRA_CONNECTIONS.toString() [CD]
+Line_2 $$ public void testSystemPropertiesOverrideConfigurationValues() --> Line_4 $$ Configuration config = Configuration.getInstance() [CD]
+Line_4 $$ Configuration config = Configuration.getInstance() --> Line_6 $$ Assert.assertEquals("75", config.getStringProperty(CoreConfig.MAX_CASSANDRA_CONNECTIONS)) [FD]
+Line_3 $$ final String keyName = CoreConfig.MAX_CASSANDRA_CONNECTIONS.toString() --> Line_7 $$ System.setProperty(keyName, "something else") [FD]
+Line_4 $$ Configuration config = Configuration.getInstance() --> Line_8 $$ Assert.assertEquals("something else", config.getStringProperty(CoreConfig.MAX_CASSANDRA_CONNECTIONS)) [FD]
+Line_3 $$ final String keyName = CoreConfig.MAX_CASSANDRA_CONNECTIONS.toString() --> Line_10 $$ System.clearProperty(keyName) [FD]
+Line_4 $$ Configuration config = Configuration.getInstance() --> Line_11 $$ config.clearProperty(keyName) [FD]
+Line_3 $$ final String keyName = CoreConfig.MAX_CASSANDRA_CONNECTIONS.toString() --> Line_11 $$ config.clearProperty(keyName) [FD]

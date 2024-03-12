@@ -1,0 +1,7 @@
+Line_2 $$ public void testTemporaryTablesInViewDefinitions() throws Exception --> Line_3 $$ String temporaryTableName = "temporary_table_for_view_definition" [CD]
+Line_2 $$ public void testTemporaryTablesInViewDefinitions() throws Exception --> Line_4 $$ test("create TEMPORARY table %s as select 'A' as c1 from (values(1))", temporaryTableName) [CD]
+Line_3 $$ String temporaryTableName = "temporary_table_for_view_definition" --> Line_4 $$ test("create TEMPORARY table %s as select 'A' as c1 from (values(1))", temporaryTableName) [FD]
+Line_2 $$ public void testTemporaryTablesInViewDefinitions() throws Exception --> Line_5 $$ expectUserRemoteExceptionWithMessage(String.format("VALIDATION ERROR: Temporary tables usage is disallowed. Used temporary table name: [%s]", temporaryTableName)) [CD]
+Line_3 $$ String temporaryTableName = "temporary_table_for_view_definition" --> Line_5 $$ expectUserRemoteExceptionWithMessage(String.format("VALIDATION ERROR: Temporary tables usage is disallowed. Used temporary table name: [%s]", temporaryTableName)) [FD]
+Line_2 $$ public void testTemporaryTablesInViewDefinitions() throws Exception --> Line_6 $$ test("create view %s.view_with_temp_table as select * from %s", DFS_TMP_SCHEMA, temporaryTableName) [CD]
+Line_3 $$ String temporaryTableName = "temporary_table_for_view_definition" --> Line_6 $$ test("create view %s.view_with_temp_table as select * from %s", DFS_TMP_SCHEMA, temporaryTableName) [FD]

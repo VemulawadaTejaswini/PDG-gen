@@ -1,0 +1,7 @@
+Line_2 $$ private void createAndQuery(String datafile) throws Exception --> Line_3 $$ String query = String.format("select * from cp.`parquet/%s`", datafile) [FD]
+Line_2 $$ private void createAndQuery(String datafile) throws Exception --> Line_3 $$ String query = String.format("select * from cp.`parquet/%s`", datafile) [CD]
+Line_2 $$ private void createAndQuery(String datafile) throws Exception --> Line_4 $$ String tableName = "test_repeated_readers_" + datafile [CD]
+Line_4 $$ String tableName = "test_repeated_readers_" + datafile --> Line_6 $$ test("create table dfs_test.`%s` as %s", tableName, query) [FD]
+Line_3 $$ String query = String.format("select * from cp.`parquet/%s`", datafile) --> Line_6 $$ test("create table dfs_test.`%s` as %s", tableName, query) [FD]
+Line_4 $$ String tableName = "test_repeated_readers_" + datafile --> Line_7 $$ testBuilder().sqlQuery("select * from dfs_test.`%s` d", tableName).ordered().jsonBaselineFile("parquet/" + datafile).go() [FD]
+Line_4 $$ String tableName = "test_repeated_readers_" + datafile --> Line_9 $$ deleteTableIfExists(tableName) [FD]

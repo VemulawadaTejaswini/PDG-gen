@@ -1,0 +1,6 @@
+Line_2 $$ public void testUnnecessaryStoreRemovalCollapseSplit() --> Line_3 $$ System.out.println("===== multi-query unnecessary stores collapse split =====") [CD]
+Line_12 $$ LogicalPlan lp = checkLogicalPlan(1, 1, 6) --> Line_13 $$ PhysicalPlan pp = checkPhysicalPlan(lp, 1, 1, 11) [FD]
+Line_13 $$ PhysicalPlan pp = checkPhysicalPlan(lp, 1, 1, 11) --> Line_14 $$ MROperPlan mp = checkMRPlan(pp, 1, 1, 2) [FD]
+Line_14 $$ MROperPlan mp = checkMRPlan(pp, 1, 1, 2) --> Line_15 $$ MapReduceOper mo1 = mp.getRoots().get(0) [FD]
+Line_14 $$ MROperPlan mp = checkMRPlan(pp, 1, 1, 2) --> Line_16 $$ MapReduceOper mo2 = mp.getLeaves().get(0) [FD]
+Line_19 $$ PhysicalOperator leaf = mo1.reducePlan.getLeaves().get(0) --> Line_23 $$ leaf = mo2.reducePlan.getLeaves().get(0) [FD]

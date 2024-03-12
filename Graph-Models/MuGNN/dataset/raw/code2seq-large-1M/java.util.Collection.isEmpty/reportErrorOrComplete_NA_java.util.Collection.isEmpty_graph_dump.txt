@@ -1,0 +1,8 @@
+Line_2 $$ void reportErrorOrComplete(Subscriber<? super T> child) --> Line_3 $$ if (delayErrors && !errors.isEmpty()) [CD]
+Line_3 $$ if (delayErrors && !errors.isEmpty()) --> Line_4 $$ if (errors.size() == 1) [CD]
+Line_4 $$ if (errors.size() == 1) --> Line_5 $$ child.onError(errors.poll()) [CD]
+Line_2 $$ void reportErrorOrComplete(Subscriber<? super T> child) --> Line_5 $$ child.onError(errors.poll()) [FD]
+Line_4 $$ if (errors.size() == 1) --> Line_7 $$ child.onError(new CompositeException(errors)) [CD]
+Line_2 $$ void reportErrorOrComplete(Subscriber<? super T> child) --> Line_7 $$ child.onError(new CompositeException(errors)) [FD]
+Line_3 $$ if (delayErrors && !errors.isEmpty()) --> Line_10 $$ child.onCompleted() [CD]
+Line_2 $$ void reportErrorOrComplete(Subscriber<? super T> child) --> Line_10 $$ child.onCompleted() [FD]

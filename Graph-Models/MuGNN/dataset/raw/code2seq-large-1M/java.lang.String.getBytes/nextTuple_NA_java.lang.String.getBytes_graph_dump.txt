@@ -1,0 +1,8 @@
+Line_2 $$ public void nextTuple() throws Exception --> Line_3 $$ List<List<Object>> list = new ArrayList() [CD]
+Line_2 $$ public void nextTuple() throws Exception --> Line_4 $$ list.add(RocketMqUtils.generateTuples(new Message("tpc", "body".getBytes()), RocketMqUtils.createScheme(properties))) [CD]
+Line_3 $$ List<List<Object>> list = new ArrayList() --> Line_4 $$ list.add(RocketMqUtils.generateTuples(new Message("tpc", "body".getBytes()), RocketMqUtils.createScheme(properties))) [FD]
+Line_2 $$ public void nextTuple() throws Exception --> Line_5 $$ ConsumerBatchMessage<List<Object>> batchMessage = new ConsumerBatchMessage(list) [CD]
+Line_2 $$ public void nextTuple() throws Exception --> Line_6 $$ queue.put(batchMessage) [CD]
+Line_5 $$ ConsumerBatchMessage<List<Object>> batchMessage = new ConsumerBatchMessage(list) --> Line_6 $$ queue.put(batchMessage) [FD]
+Line_2 $$ public void nextTuple() throws Exception --> Line_7 $$ spout.nextTuple() [CD]
+Line_2 $$ public void nextTuple() throws Exception --> Line_8 $$ verify(collector).emit(anyList(), anyString()) [CD]

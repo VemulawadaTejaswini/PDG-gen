@@ -1,0 +1,8 @@
+Line_2 $$ public static Long createAccount(CreateNewAccountCommand cmd, CommandContext ctx) --> Line_3 $$ long accountId = ctx.id(Account.class) [FD]
+Line_2 $$ public static Long createAccount(CreateNewAccountCommand cmd, CommandContext ctx) --> Line_3 $$ long accountId = ctx.id(Account.class) [CD]
+Line_2 $$ public static Long createAccount(CreateNewAccountCommand cmd, CommandContext ctx) --> Line_4 $$ ctx.executeTxAction(new CreateAccount(accountId, cmd.currency)) [FD]
+Line_2 $$ public static Long createAccount(CreateNewAccountCommand cmd, CommandContext ctx) --> Line_4 $$ ctx.executeTxAction(new CreateAccount(accountId, cmd.currency)) [CD]
+Line_2 $$ public static Long createAccount(CreateNewAccountCommand cmd, CommandContext ctx) --> Line_5 $$ if (cmd.balance > 0) [CD]
+Line_5 $$ if (cmd.balance > 0) --> Line_6 $$ ctx.executeTxAction(new Credit(accountId, cmd.balance, System.currentTimeMillis())) [CD]
+Line_2 $$ public static Long createAccount(CreateNewAccountCommand cmd, CommandContext ctx) --> Line_6 $$ ctx.executeTxAction(new Credit(accountId, cmd.balance, System.currentTimeMillis())) [FD]
+Line_2 $$ public static Long createAccount(CreateNewAccountCommand cmd, CommandContext ctx) --> Line_7 $$ return accountId [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public StateRecord findOrCreate(HashId itemId) --> Line_3 $$ return protect(() -> [CD]
+Line_2 $$ public StateRecord findOrCreate(HashId itemId) --> Line_4 $$ StateRecord record = getFromCache(itemId) [FD]
+Line_4 $$ StateRecord record = getFromCache(itemId) --> Line_5 $$ if (record == null) [FD]
+Line_2 $$ public StateRecord findOrCreate(HashId itemId) --> Line_6 $$ try (ResultSet rs = inPool( db -> db.queryRow("select * from sr_find_or_create(?)", itemId.getDigest()))) [FD]
+Line_4 $$ StateRecord record = getFromCache(itemId) --> Line_7 $$ record = new StateRecord(this, rs) [FD]
+Line_4 $$ StateRecord record = getFromCache(itemId) --> Line_8 $$ putToCache(record) [FD]
+Line_7 $$ record = new StateRecord(this, rs) --> Line_8 $$ putToCache(record) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ void startRebalancingTimer(long period, HelixManager manager) --> Line_3 $$ if (period != _timerPeriod) [CD]
+Line_2 $$ void startRebalancingTimer(long period, HelixManager manager) --> Line_3 $$ if (period != _timerPeriod) [FD]
+Line_3 $$ if (period != _timerPeriod) --> Line_4 $$ logger.info("Controller starting timer at period " + period) [CD]
+Line_3 $$ if (period != _timerPeriod) --> Line_5 $$ if (_periodicalRebalanceTimer != null) [CD]
+Line_5 $$ if (_periodicalRebalanceTimer != null) --> Line_6 $$ _periodicalRebalanceTimer.cancel() [CD]
+Line_3 $$ if (period != _timerPeriod) --> Line_10 $$ _periodicalRebalanceTimer.scheduleAtFixedRate(new RebalanceTask(manager, ClusterEventType.PeriodicalRebalance), _timerPeriod, _timerPeriod) [CD]
+Line_3 $$ if (period != _timerPeriod) --> Line_12 $$ logger.info("Controller already has timer at period " + _timerPeriod) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void verifyBroadSearches(String index, Map<String, Set<String>> routingToDocumentIds, int expectedShards) --> Line_3 $$ for (Map.Entry<String, Set<String>> routingEntry : routingToDocumentIds.entrySet()) [FD]
+Line_2 $$ private void verifyBroadSearches(String index, Map<String, Set<String>> routingToDocumentIds, int expectedShards) --> Line_6 $$ SearchResponse response = client().prepareSearch().setQuery(QueryBuilders.termQuery("_routing", routing)).setIndices(index).setSize(100).execute().actionGet() [FD]
+Line_2 $$ private void verifyBroadSearches(String index, Map<String, Set<String>> routingToDocumentIds, int expectedShards) --> Line_7 $$ assertEquals(expectedShards, response.getTotalShards()) [FD]
+Line_6 $$ SearchResponse response = client().prepareSearch().setQuery(QueryBuilders.termQuery("_routing", routing)).setIndices(index).setSize(100).execute().actionGet() --> Line_7 $$ assertEquals(expectedShards, response.getTotalShards()) [FD]
+Line_6 $$ SearchResponse response = client().prepareSearch().setQuery(QueryBuilders.termQuery("_routing", routing)).setIndices(index).setSize(100).execute().actionGet() --> Line_8 $$ assertEquals(expectedDocuments, response.getHits().totalHits()) [FD]
+Line_6 $$ SearchResponse response = client().prepareSearch().setQuery(QueryBuilders.termQuery("_routing", routing)).setIndices(index).setSize(100).execute().actionGet() --> Line_10 $$ response.getHits().forEach( h -> found.add(h.getId())) [FD]
+Line_9 $$ Set<String> found = new HashSet() --> Line_10 $$ response.getHits().forEach( h -> found.add(h.getId())) [FD]
+Line_9 $$ Set<String> found = new HashSet() --> Line_11 $$ assertEquals(routingEntry.getValue(), found) [FD]

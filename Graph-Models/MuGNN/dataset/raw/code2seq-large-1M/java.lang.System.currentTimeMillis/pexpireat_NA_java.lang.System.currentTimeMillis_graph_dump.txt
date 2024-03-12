@@ -1,0 +1,7 @@
+Line_2 $$ public void pexpireat() --> Line_3 $$ Date expiration = new Date(System.currentTimeMillis() + 5000) [CD]
+Line_2 $$ public void pexpireat() --> Line_4 $$ assertThat(redis.pexpireat(key, expiration)).isFalse() [CD]
+Line_3 $$ Date expiration = new Date(System.currentTimeMillis() + 5000) --> Line_4 $$ assertThat(redis.pexpireat(key, expiration)).isFalse() [FD]
+Line_2 $$ public void pexpireat() --> Line_5 $$ redis.set(key, value) [CD]
+Line_2 $$ public void pexpireat() --> Line_6 $$ assertThat(redis.pexpireat(key, expiration)).isTrue() [CD]
+Line_3 $$ Date expiration = new Date(System.currentTimeMillis() + 5000) --> Line_6 $$ assertThat(redis.pexpireat(key, expiration)).isTrue() [FD]
+Line_2 $$ public void pexpireat() --> Line_7 $$ assertThat(redis.pttl(key)).isGreaterThan(0).isLessThanOrEqualTo(5000) [CD]

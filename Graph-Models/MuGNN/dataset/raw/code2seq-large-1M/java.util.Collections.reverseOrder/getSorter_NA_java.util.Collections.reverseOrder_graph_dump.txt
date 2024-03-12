@@ -1,0 +1,8 @@
+Line_2 $$ private static Sorter getSorter(int trimSize, AggregationFunction aggregationFunction, boolean isComparable) --> Line_3 $$ boolean minOrder = aggregationFunction instanceof MinAggregationFunction [CD]
+Line_2 $$ private static Sorter getSorter(int trimSize, AggregationFunction aggregationFunction, boolean isComparable) --> Line_4 $$ if (isComparable) [CD]
+Line_4 $$ if (isComparable) --> Line_5 $$ if (minOrder) [CD]
+Line_5 $$ if (minOrder) --> Line_6 $$ return new ComparableSorter(trimSize, Collections.reverseOrder()) [CD]
+Line_5 $$ if (minOrder) --> Line_8 $$ return new ComparableSorter(trimSize, new ComparableComparator()) [CD]
+Line_4 $$ if (isComparable) --> Line_11 $$ if (minOrder) [CD]
+Line_11 $$ if (minOrder) --> Line_12 $$ return new NonComparableSorter(trimSize, new ComparableComparator(), aggregationFunction) [CD]
+Line_11 $$ if (minOrder) --> Line_14 $$ return new NonComparableSorter(trimSize, Collections.reverseOrder(), aggregationFunction) [CD]

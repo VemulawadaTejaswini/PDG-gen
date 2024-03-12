@@ -1,0 +1,7 @@
+Line_2 $$ public Response datastoreCutover(@QueryParam("src") String src, @QueryParam("tar") String tar, @QueryParam("checkAll") int checkAll) --> Line_4 $$ DataStoreType sourceType = DataStoreType.valueOf(src) [FD]
+Line_2 $$ public Response datastoreCutover(@QueryParam("src") String src, @QueryParam("tar") String tar, @QueryParam("checkAll") int checkAll) --> Line_5 $$ DataStoreType targetType = DataStoreType.valueOf(tar) [FD]
+Line_4 $$ DataStoreType sourceType = DataStoreType.valueOf(src) --> Line_7 $$ systemManager.cutoverDataStore(sourceType, targetType, checkAllWrites) [FD]
+Line_5 $$ DataStoreType targetType = DataStoreType.valueOf(tar) --> Line_7 $$ systemManager.cutoverDataStore(sourceType, targetType, checkAllWrites) [FD]
+Line_6 $$ boolean checkAllWrites = (checkAll == 1) --> Line_7 $$ systemManager.cutoverDataStore(sourceType, targetType, checkAllWrites) [FD]
+Line_14 $$ String err = "Error cutting over data store: " + e.getMessage() --> Line_15 $$ log.error(err, e) [FD]
+Line_14 $$ String err = "Error cutting over data store: " + e.getMessage() --> Line_16 $$ return Response.serverError().entity(err).build() [FD]

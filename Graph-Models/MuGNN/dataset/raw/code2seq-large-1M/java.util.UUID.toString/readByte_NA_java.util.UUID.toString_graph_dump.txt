@@ -1,0 +1,8 @@
+Line_2 $$ public byte readByte() throws RuntimeIOException --> Line_3 $$ I2CReadByte request = new I2CReadByte(controller, address, UUID.randomUUID().toString()) [CD]
+Line_2 $$ public byte readByte() throws RuntimeIOException --> Line_4 $$ I2CReadByteResponse response = deviceFactory.getProtocolHandler().request(request) [CD]
+Line_3 $$ I2CReadByte request = new I2CReadByte(controller, address, UUID.randomUUID().toString()) --> Line_4 $$ I2CReadByteResponse response = deviceFactory.getProtocolHandler().request(request) [FD]
+Line_2 $$ public byte readByte() throws RuntimeIOException --> Line_5 $$ if (response.getStatus() != Response.Status.OK) [CD]
+Line_4 $$ I2CReadByteResponse response = deviceFactory.getProtocolHandler().request(request) --> Line_5 $$ if (response.getStatus() != Response.Status.OK) [FD]
+Line_4 $$ I2CReadByteResponse response = deviceFactory.getProtocolHandler().request(request) --> Line_6 $$ throw new RuntimeIOException("Error in I2C readByte: " + response.getDetail()) [FD]
+Line_2 $$ public byte readByte() throws RuntimeIOException --> Line_8 $$ return response.getData() [CD]
+Line_4 $$ I2CReadByteResponse response = deviceFactory.getProtocolHandler().request(request) --> Line_8 $$ return response.getData() [FD]

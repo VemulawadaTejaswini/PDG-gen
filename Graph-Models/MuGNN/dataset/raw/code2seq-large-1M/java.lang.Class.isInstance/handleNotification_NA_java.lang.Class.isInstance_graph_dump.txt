@@ -1,0 +1,7 @@
+Line_2 $$ public void handleNotification(Notification notification, Object handback) --> Line_3 $$ if (JMXConnectionNotification.class.isInstance(notification)) [CD]
+Line_2 $$ public void handleNotification(Notification notification, Object handback) --> Line_3 $$ if (JMXConnectionNotification.class.isInstance(notification)) [FD]
+Line_4 $$ JMXConnectionNotification connNotif = (JMXConnectionNotification) notification --> Line_5 $$ if (JMXConnectionNotification.CLOSED.equals(connNotif.getType()) || JMXConnectionNotification.FAILED.equals(connNotif.getType())) [FD]
+Line_5 $$ if (JMXConnectionNotification.CLOSED.equals(connNotif.getType()) || JMXConnectionNotification.FAILED.equals(connNotif.getType())) --> Line_6 $$ this.invoker.isConnected.set(false) [CD]
+Line_5 $$ if (JMXConnectionNotification.CLOSED.equals(connNotif.getType()) || JMXConnectionNotification.FAILED.equals(connNotif.getType())) --> Line_7 $$ this.invoker.resetClusterId() [CD]
+Line_5 $$ if (JMXConnectionNotification.CLOSED.equals(connNotif.getType()) || JMXConnectionNotification.FAILED.equals(connNotif.getType())) --> Line_8 $$ if (!this.invoker.isSelfDisconnect.get()) [CD]
+Line_8 $$ if (!this.invoker.isSelfDisconnect.get()) --> Line_9 $$ Gfsh.getCurrentInstance().notifyDisconnect(this.invoker.toString()) [CD]

@@ -1,0 +1,6 @@
+Line_4 $$ String procCmd = System.getenv("windir") + "\\system32\\wbem\\wmic.exe process get Caption,CommandLine," + "KernelModeTime,ReadOperationCount,ThreadCount,UserModeTime,WriteOperationCount" --> Line_5 $$ long[] c0 = readCpu(Runtime.getRuntime().exec(procCmd)) [FD]
+Line_4 $$ String procCmd = System.getenv("windir") + "\\system32\\wbem\\wmic.exe process get Caption,CommandLine," + "KernelModeTime,ReadOperationCount,ThreadCount,UserModeTime,WriteOperationCount" --> Line_7 $$ long[] c1 = readCpu(Runtime.getRuntime().exec(procCmd)) [FD]
+Line_8 $$ if (c0 != null && c1 != null) --> Line_9 $$ long idletime = c1[0] - c0[0] [CD]
+Line_8 $$ if (c0 != null && c1 != null) --> Line_10 $$ long busytime = c1[1] - c0[1] [CD]
+Line_8 $$ if (c0 != null && c1 != null) --> Line_11 $$ return Double.valueOf(PERCENT * (busytime) / (busytime + idletime)).doubleValue() [CD]
+Line_8 $$ if (c0 != null && c1 != null) --> Line_13 $$ return 0.0 [CD]

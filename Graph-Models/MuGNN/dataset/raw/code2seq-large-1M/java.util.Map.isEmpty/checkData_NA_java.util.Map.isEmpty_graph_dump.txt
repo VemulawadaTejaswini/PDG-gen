@@ -1,0 +1,8 @@
+Line_2 $$ private void checkData(Map<Integer, Integer> expData) --> Line_3 $$ assert !expData.isEmpty() [FD]
+Line_2 $$ private void checkData(Map<Integer, Integer> expData) --> Line_4 $$ List<Ignite> nodes = G.allGrids() [CD]
+Line_2 $$ private void checkData(Map<Integer, Integer> expData) --> Line_5 $$ assertFalse(nodes.isEmpty()) [CD]
+Line_4 $$ List<Ignite> nodes = G.allGrids() --> Line_5 $$ assertFalse(nodes.isEmpty()) [FD]
+Line_6 $$ for (Ignite node : nodes) --> Line_7 $$ IgniteCache<Integer, Integer> cache = node.cache(DEFAULT_CACHE_NAME) [FD]
+Line_2 $$ private void checkData(Map<Integer, Integer> expData) --> Line_8 $$ for (Map.Entry<Integer, Integer> e : expData.entrySet()) [FD]
+Line_6 $$ for (Ignite node : nodes) --> Line_9 $$ assertEquals("Invalid value [key=" + e.getKey() + ", node=" + node.name() + ']', e.getValue(), cache.get(e.getKey())) [FD]
+Line_7 $$ IgniteCache<Integer, Integer> cache = node.cache(DEFAULT_CACHE_NAME) --> Line_9 $$ assertEquals("Invalid value [key=" + e.getKey() + ", node=" + node.name() + ']', e.getValue(), cache.get(e.getKey())) [FD]

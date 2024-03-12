@@ -1,0 +1,8 @@
+Line_2 $$ private byte[] filterProperties(byte[] content, MediaType mediaType) --> Line_3 $$ ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT) [CD]
+Line_3 $$ ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT) --> Line_5 $$ Map<String, Object> payload = objectMapper.readValue(content, Map.class) [FD]
+Line_2 $$ private byte[] filterProperties(byte[] content, MediaType mediaType) --> Line_5 $$ Map<String, Object> payload = objectMapper.readValue(content, Map.class) [FD]
+Line_7 $$ for (Map<String, Object> propertySource : propertySources) --> Line_8 $$ Map<String, String> properties = (Map<String, String>) propertySource.get("properties") [FD]
+Line_8 $$ Map<String, String> properties = (Map<String, String>) propertySource.get("properties") --> Line_9 $$ Set<String> filteredKeys = properties.keySet().stream().filter(this::<>retainKey).limit(3).collect(Collectors.toSet()) [FD]
+Line_9 $$ Set<String> filteredKeys = properties.keySet().stream().filter(this::<>retainKey).limit(3).collect(Collectors.toSet()) --> Line_10 $$ properties.keySet().retainAll(filteredKeys) [FD]
+Line_8 $$ Map<String, String> properties = (Map<String, String>) propertySource.get("properties") --> Line_10 $$ properties.keySet().retainAll(filteredKeys) [FD]
+Line_3 $$ ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT) --> Line_12 $$ return objectMapper.writeValueAsBytes(payload) [FD]

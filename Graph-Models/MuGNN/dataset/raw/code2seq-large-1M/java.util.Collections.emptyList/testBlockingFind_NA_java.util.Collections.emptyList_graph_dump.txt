@@ -1,0 +1,4 @@
+Line_2 $$ public void testBlockingFind() throws ParseException --> Line_3 $$ List<ParseUser> users = Arrays.asList(mock(ParseUser.class), mock(ParseUser.class), mock(ParseUser.class)) [CD]
+Line_2 $$ public void testBlockingFind() throws ParseException --> Line_4 $$ ParseQuery<ParseUser> query = mocker(ParseQuery.class).when( q -> q.findInBackground()).thenReturn( q -> Task.forResult(users)).when( q -> [CD]
+Line_5 $$ List<ParseUser> list = Collections.emptyList() --> Line_7 $$ list = q.find() [FD]
+Line_2 $$ public void testBlockingFind() throws ParseException --> Line_12 $$ assertThat(query.find()).isEqualTo(rx.parse2.ParseObservable.find(query).toList().blockingGet()) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testNullWithoutIgnoreMissing() throws Exception --> Line_3 $$ UserAgentProcessor processor = new UserAgentProcessor(randomAlphaOfLength(10), "source_field", "target_field", null, EnumSet.allOf(UserAgentProcessor.Property.class), false) [CD]
+Line_2 $$ public void testNullWithoutIgnoreMissing() throws Exception --> Line_4 $$ IngestDocument originalIngestDocument = RandomDocumentPicks.randomIngestDocument(random(), Collections.singletonMap("source_field", null)) [CD]
+Line_2 $$ public void testNullWithoutIgnoreMissing() throws Exception --> Line_5 $$ IngestDocument ingestDocument = new IngestDocument(originalIngestDocument) [CD]
+Line_2 $$ public void testNullWithoutIgnoreMissing() throws Exception --> Line_6 $$ Exception exception = expectThrows(Exception.class, () -> processor.execute(ingestDocument)) [CD]
+Line_5 $$ IngestDocument ingestDocument = new IngestDocument(originalIngestDocument) --> Line_6 $$ Exception exception = expectThrows(Exception.class, () -> processor.execute(ingestDocument)) [FD]
+Line_2 $$ public void testNullWithoutIgnoreMissing() throws Exception --> Line_7 $$ assertThat(exception.getMessage(), equalTo("field [source_field] is null, cannot parse user-agent.")) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ static String getMessageSelector(JMSConfiguration jmsConfig, String conduitId) --> Line_3 $$ String staticSelectorPrefix = jmsConfig.getConduitSelectorPrefix() [FD]
+Line_2 $$ static String getMessageSelector(JMSConfiguration jmsConfig, String conduitId) --> Line_3 $$ String staticSelectorPrefix = jmsConfig.getConduitSelectorPrefix() [CD]
+Line_2 $$ static String getMessageSelector(JMSConfiguration jmsConfig, String conduitId) --> Line_4 $$ String conduitIdSt = jmsConfig.isUseConduitIdSelector() && conduitId != null ? conduitId : "" [FD]
+Line_2 $$ static String getMessageSelector(JMSConfiguration jmsConfig, String conduitId) --> Line_4 $$ String conduitIdSt = jmsConfig.isUseConduitIdSelector() && conduitId != null ? conduitId : "" [CD]
+Line_2 $$ static String getMessageSelector(JMSConfiguration jmsConfig, String conduitId) --> Line_5 $$ String correlationIdPrefix = staticSelectorPrefix + conduitIdSt [CD]
+Line_2 $$ static String getMessageSelector(JMSConfiguration jmsConfig, String conduitId) --> Line_6 $$ return correlationIdPrefix.isEmpty() ? null : "JMSCorrelationID LIKE '" + correlationIdPrefix + "%'" [CD]
+Line_5 $$ String correlationIdPrefix = staticSelectorPrefix + conduitIdSt --> Line_6 $$ return correlationIdPrefix.isEmpty() ? null : "JMSCorrelationID LIKE '" + correlationIdPrefix + "%'" [FD]

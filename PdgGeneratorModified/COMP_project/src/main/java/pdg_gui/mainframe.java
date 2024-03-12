@@ -8,6 +8,12 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import pdg.PDGCore;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 import org.jgrapht.ext.DOTExporter;
 import org.jgrapht.ext.StringEdgeNameProvider;
 import org.jgrapht.ext.StringNameProvider;
@@ -27,19 +33,34 @@ public class mainframe {
     private DirectedGraph<GraphNode, RelationshipEdge> hrefGraph;
     private PDGCore astPrinter = new PDGCore();
     // static String outputFolder = "./../../Code_kernel_data/before_pruning/NEW/";
-    // static String inputFolder = "./../../Code_kernel_data/after_preprocessing/FINAL/test/";
-    // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/pdg-data/";
-    // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
-    // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/pdg-data/";
-    // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/Processed-data-for-pdg/";
-    // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/pdg_data_java250_100_class/";
-    // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg_java250_100_class/";
-    // static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Perturbed_Code/pdg_data/";
-    // static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Perturbed_Code/source_code/";
-    // static String outputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Benchmarks\\Code-Kernel-Relabelled\\before_pruning\\";
-    // static String inputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Benchmarks\\Code-Kernel-Relabelled\\after_preprocessing\\";
-    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/Big-Clone-Bench/pdg_data/";
-    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/Big-Clone-Bench/java_files/";
+    // static String inputFolder =
+    // "./../../Code_kernel_data/after_preprocessing/FINAL/test/";
+    // static String outputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/pdg-data/";
+    // static String inputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data/";
+    // static String outputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/pdg-data/";
+    // static String inputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CryptoAPI-Bench/Processed-data-for-pdg/";
+    // static String outputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/pdg_data_java250_100_class/";
+    // static String inputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg_java250_100_class/";
+    // static String outputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Perturbed_Code/pdg_data/";
+    // static String inputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Perturbed_Code/source_code/";
+    // static String outputFolder = "D:\\IIT Hyderabad\\Research\\API misuse
+    // prediction\\Repository\\Benchmarks\\Code-Kernel-Relabelled\\before_pruning\\";
+    // static String inputFolder = "D:\\IIT Hyderabad\\Research\\API misuse
+    // prediction\\Repository\\Benchmarks\\Code-Kernel-Relabelled\\after_preprocessing\\";
+    // static String outputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/Big-Clone-Bench/pdg_data/";
+    // static String inputFolder =
+    // "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/Benchmarks/Big-Clone-Bench/java_files/";
+    static String outputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-large/pdg-data/";
+    static String inputFolder = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-large/processed-data/";
 
     // Get all .java files
     static private ArrayList<String> getListOfFiles(String dirPath) {
@@ -83,9 +104,9 @@ public class mainframe {
         selectedFile = new File(filename);
         selectedFileName = selectedFile.getName();
 
-        System.out.println("***************");
-        System.out.println(selectedFileName);
-        System.out.println("***************");
+        // System.out.println("***************");
+        // System.out.println(selectedFileName);
+        // System.out.println("***************");
 
         runAnalysisAndMakeGraph(apiName, sampleName);
 
@@ -127,7 +148,7 @@ public class mainframe {
 
             if (astPrinter.addFile(new FileInputStream(selectedFile), hrefGraph, gn, "null",
                     selectedFileName, outputFolder + apiName + "/", sampleName + "_" + apiName)) {
-                System.out.println("astPrinter called");
+                //System.out.println("astPrinter called");
             }
 
         } catch (ParseException | com.github.javaparser.TokenMgrError | IOException e1) {
@@ -140,14 +161,15 @@ public class mainframe {
         try {
             mainframe obj = new mainframe();
             boolean isOnlyFile = false;
-            String generateFor = "big-code-bench"; // "code2seq" or "ck" or "crypto-api" or "codenet" or "perturbed-code" or "big-code-bench"
+            String generateFor = "code2seq"; // "code2seq" or "ck" or "crypto-api" or "codenet" or "perturbed-code" or
+                                             // "big-code-bench"
             if (isOnlyFile) {
                 outputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\PdgGeneratorModified\\test_folder\\";
-                String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Code_kernel_data\\after_relabeling\\ExecutorService.submit\\sample-0\\0.java"; 
+                String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Code_kernel_data\\after_relabeling\\ExecutorService.submit\\sample-0\\0.java";
                 String apiName = "ExecutorService.submit";
                 String sampleName = "sample-0";
                 obj.methods(file, apiName, sampleName);
-            } else if(generateFor.equals("ck")){
+            } else if (generateFor.equals("ck")) {
                 ArrayList<String> folders = getListOfFolders(inputFolder);
                 // System.out.println("\n\nAPI Folders: " + folders);
                 for (String folder : folders) {
@@ -165,14 +187,63 @@ public class mainframe {
                         obj.methods(file, apiName, sampleName);
                     }
                 }
-            } else if(generateFor.equals("code2seq") || generateFor.equals("codenet") || generateFor.equals("perturbed-code")){
+            } else if (generateFor.equals("code2seq") || generateFor.equals("codenet")
+                    || generateFor.equals("perturbed-code")) {
+
+                // Find the APIs that are already processed
+                HashSet<String> processed_apis = new HashSet<>();
+                try {
+                    Scanner scanner = new Scanner(new File(
+                            "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/PdgGeneratorModified/logs/processed-api.log"));
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        if (line.startsWith("INFO: /home")) {
+                            line = line.substring(6);
+                            processed_apis.add(line);
+                        }
+                    }
+                    scanner.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                // setup the logger for projects processing data
+                Logger processed_apis_file = Logger.getLogger("ProcessedApiLog");
+                FileHandler fh;
+                try {
+                    // This block configure the logger with handler and formatter
+                    fh = new FileHandler(
+                            "/home/tomy495/CS21MTECH12001/Research/API-misuse/PDG-gen/PdgGeneratorModified/logs/processed-api.log");
+                    processed_apis_file.addHandler(fh);
+                    SimpleFormatter formatter = new SimpleFormatter();
+                    fh.setFormatter(formatter);
+                    processed_apis_file.setUseParentHandlers(false);
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 ArrayList<String> folders = getListOfFolders(inputFolder);
-                // System.out.println("\n\nAPI Folders: " + folders);
+                processed_apis_file.info("Total Number of APIs: " + folders.size() + "\n");
+
+                // Add already processed APIs to the logs
+                for (String ele : processed_apis) {
+                    processed_apis_file.info(ele + "\n");
+                }
+
                 for (String folder : folders) {
+                    
+                    // If the API is already proceseed, skip it
+                    if(processed_apis.contains(folder)){
+                        System.out.println("\nAlready Project Processed: " + folder);
+                        continue;
+                    }
+
                     int lastIndex = folder.lastIndexOf("/");
                     String apiName = folder.substring(lastIndex + 1);
                     // System.out.println("\n\nFolder Name: " + folder);
-                    System.out.println("\n\nAPI Name (processing for): " + apiName);
+                    System.out.println("\nAPI Name (processing for): " + apiName);
 
                     // Get the files for the API
                     ArrayList<String> listOfFiles = new ArrayList<String>();
@@ -185,11 +256,15 @@ public class mainframe {
                     }
 
                     for (String file : listOfFiles) {
-                        System.out.println("\n\nFile Name: " + file);
+                        System.out.println("\nProcessing File: " + file);
                         obj.methods(file, apiName, "NA");
                     }
+
+                    processed_apis.add(folder);
+                    processed_apis_file.info(folder + "\n");
+                    processed_apis_file.info("Number of processed APIs: " + processed_apis.size() + "\n");
                 }
-            } else if(generateFor.equals("crypto-api") || generateFor.equals("big-code-bench")){
+            } else if (generateFor.equals("crypto-api") || generateFor.equals("big-code-bench")) {
                 ArrayList<String> listOfFiles = new ArrayList<String>();
                 File directory = new File(inputFolder);
                 File filesList[] = directory.listFiles();

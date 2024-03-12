@@ -1,0 +1,6 @@
+Line_2 $$ public void testEnclosingInstance() throws Exception --> Line_3 $$ Object myInnerClass = new MyInnerClass() [CD]
+Line_2 $$ public void testEnclosingInstance() throws Exception --> Line_4 $$ Object outerClass = enclosingInstance(myInnerClass) [CD]
+Line_3 $$ Object myInnerClass = new MyInnerClass() --> Line_4 $$ Object outerClass = enclosingInstance(myInnerClass) [FD]
+Line_2 $$ public void testEnclosingInstance() throws Exception --> Line_5 $$ assertThat(format("Did not find enclosing instance in fields: %s", syntheticFields(myInnerClass.getClass()).map(Fields.name)), outerClass, is((Object) this)) [CD]
+Line_4 $$ Object outerClass = enclosingInstance(myInnerClass) --> Line_5 $$ assertThat(format("Did not find enclosing instance in fields: %s", syntheticFields(myInnerClass.getClass()).map(Fields.name)), outerClass, is((Object) this)) [FD]
+Line_3 $$ Object myInnerClass = new MyInnerClass() --> Line_5 $$ assertThat(format("Did not find enclosing instance in fields: %s", syntheticFields(myInnerClass.getClass()).map(Fields.name)), outerClass, is((Object) this)) [FD]

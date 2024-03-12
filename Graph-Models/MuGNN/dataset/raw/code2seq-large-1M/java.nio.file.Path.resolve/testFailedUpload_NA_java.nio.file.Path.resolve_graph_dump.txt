@@ -1,0 +1,7 @@
+Line_2 $$ public void testFailedUpload() throws Exception --> Line_3 $$ final Path uploadedFile = jarDir.resolve("Kafka010Example.jar") [CD]
+Line_2 $$ public void testFailedUpload() throws Exception --> Line_4 $$ final HandlerRequest<FileUpload, EmptyMessageParameters> request = createRequest(uploadedFile) [CD]
+Line_3 $$ final Path uploadedFile = jarDir.resolve("Kafka010Example.jar") --> Line_4 $$ final HandlerRequest<FileUpload, EmptyMessageParameters> request = createRequest(uploadedFile) [FD]
+Line_4 $$ final HandlerRequest<FileUpload, EmptyMessageParameters> request = createRequest(uploadedFile) --> Line_6 $$ jarUploadHandler.handleRequest(request, mockDispatcherGateway).get() [FD]
+Line_9 $$ final Throwable throwable = ExceptionUtils.stripCompletionException(e.getCause()) --> Line_10 $$ assertThat(throwable, instanceOf(RestHandlerException.class)) [FD]
+Line_11 $$ final RestHandlerException restHandlerException = (RestHandlerException) throwable --> Line_12 $$ assertThat(restHandlerException.getMessage(), containsString("Could not move uploaded jar file")) [FD]
+Line_11 $$ final RestHandlerException restHandlerException = (RestHandlerException) throwable --> Line_13 $$ assertThat(restHandlerException.getHttpResponseStatus(), equalTo(HttpResponseStatus.INTERNAL_SERVER_ERROR)) [FD]

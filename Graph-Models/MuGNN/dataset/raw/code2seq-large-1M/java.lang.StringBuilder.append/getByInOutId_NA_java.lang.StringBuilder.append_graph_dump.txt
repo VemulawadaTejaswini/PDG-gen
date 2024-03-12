@@ -1,0 +1,6 @@
+Line_2 $$ public static List<MMatchPO> getByInOutId(Properties ctx, int inOutId, String trxName) --> Line_3 $$ StringBuilder whereClause = new StringBuilder() [CD]
+Line_2 $$ public static List<MMatchPO> getByInOutId(Properties ctx, int inOutId, String trxName) --> Line_4 $$ whereClause.append("Reversal_ID IS NULL AND EXISTS (SELECT 1 FROM M_InOutLine l WHERE M_MatchPO.M_InOutLine_ID=l.M_InOutLine_ID AND l.M_InOut_ID=?)") [CD]
+Line_3 $$ StringBuilder whereClause = new StringBuilder() --> Line_4 $$ whereClause.append("Reversal_ID IS NULL AND EXISTS (SELECT 1 FROM M_InOutLine l WHERE M_MatchPO.M_InOutLine_ID=l.M_InOutLine_ID AND l.M_InOut_ID=?)") [FD]
+Line_2 $$ public static List<MMatchPO> getByInOutId(Properties ctx, int inOutId, String trxName) --> Line_5 $$ return new Query(ctx, MMatchPO.Table_Name, whereClause.toString(), trxName).setClient_ID().setParameters(inOutId).list() [FD]
+Line_2 $$ public static List<MMatchPO> getByInOutId(Properties ctx, int inOutId, String trxName) --> Line_5 $$ return new Query(ctx, MMatchPO.Table_Name, whereClause.toString(), trxName).setClient_ID().setParameters(inOutId).list() [CD]
+Line_3 $$ StringBuilder whereClause = new StringBuilder() --> Line_5 $$ return new Query(ctx, MMatchPO.Table_Name, whereClause.toString(), trxName).setClient_ID().setParameters(inOutId).list() [FD]

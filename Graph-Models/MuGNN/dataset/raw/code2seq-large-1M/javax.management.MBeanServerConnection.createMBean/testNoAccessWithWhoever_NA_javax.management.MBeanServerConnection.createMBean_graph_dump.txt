@@ -1,0 +1,7 @@
+Line_2 $$ public void testNoAccessWithWhoever() throws Exception --> Line_3 $$ MBeanServerConnection con = connectionRule.getMBeanServerConnection() [CD]
+Line_2 $$ public void testNoAccessWithWhoever() throws Exception --> Line_4 $$ assertThatThrownBy(() -> con.createMBean("FakeClassName", new ObjectName("GemFire", "name", "foo"))).isInstanceOf(SecurityException.class) [CD]
+Line_3 $$ MBeanServerConnection con = connectionRule.getMBeanServerConnection() --> Line_4 $$ assertThatThrownBy(() -> con.createMBean("FakeClassName", new ObjectName("GemFire", "name", "foo"))).isInstanceOf(SecurityException.class) [FD]
+Line_2 $$ public void testNoAccessWithWhoever() throws Exception --> Line_5 $$ assertThatThrownBy(() -> con.unregisterMBean(new ObjectName("GemFire", "name", "foo"))).isInstanceOf(SecurityException.class) [CD]
+Line_3 $$ MBeanServerConnection con = connectionRule.getMBeanServerConnection() --> Line_5 $$ assertThatThrownBy(() -> con.unregisterMBean(new ObjectName("GemFire", "name", "foo"))).isInstanceOf(SecurityException.class) [FD]
+Line_2 $$ public void testNoAccessWithWhoever() throws Exception --> Line_6 $$ assertThatThrownBy(() -> con.createMBean("FakeClassName", new ObjectName("OtherDomain", "name", "foo"))).isInstanceOf(ReflectionException.class) [CD]
+Line_3 $$ MBeanServerConnection con = connectionRule.getMBeanServerConnection() --> Line_6 $$ assertThatThrownBy(() -> con.createMBean("FakeClassName", new ObjectName("OtherDomain", "name", "foo"))).isInstanceOf(ReflectionException.class) [FD]

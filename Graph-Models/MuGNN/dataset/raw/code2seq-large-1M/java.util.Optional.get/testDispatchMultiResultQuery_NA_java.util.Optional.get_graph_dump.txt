@@ -1,0 +1,4 @@
+Line_2 $$ public void testDispatchMultiResultQuery() --> Line_3 $$ when(mockBus.scatterGather(anyMessage(String.class, String.class), anyLong(), any())).thenReturn(Stream.of(answer)) [CD]
+Line_2 $$ public void testDispatchMultiResultQuery() --> Line_4 $$ Stream<String> actual = testSubject.scatterGather("query", ResponseTypes.instanceOf(String.class), 1, TimeUnit.SECONDS) [CD]
+Line_2 $$ public void testDispatchMultiResultQuery() --> Line_5 $$ assertEquals("answer", actual.findFirst().get()) [CD]
+Line_2 $$ public void testDispatchMultiResultQuery() --> Line_6 $$ verify(mockBus).scatterGather(argThat((ArgumentMatcher<QueryMessage<String, String>>)  x -> "query".equals(x.getPayload())), eq(1L), eq(TimeUnit.SECONDS)) [CD]

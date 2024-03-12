@@ -1,0 +1,5 @@
+Line_2 $$ private void streamToBigqueryWithRetry(List<Rows> rows) --> Line_4 $$ final InsertAll request = getBigquery().tabledata().insertAll(projectId, DATASET, TABLE_ID, new TableDataInsertAllRequest().setRows(rows)) [FD]
+Line_4 $$ final InsertAll request = getBigquery().tabledata().insertAll(projectId, DATASET, TABLE_ID, new TableDataInsertAllRequest().setRows(rows)) --> Line_6 $$ TableDataInsertAllResponse response = request.execute() [FD]
+Line_6 $$ TableDataInsertAllResponse response = request.execute() --> Line_7 $$ if (response.getInsertErrors() != null && !response.getInsertErrors().isEmpty()) [FD]
+Line_6 $$ TableDataInsertAllResponse response = request.execute() --> Line_8 $$ throw new RuntimeException(response.getInsertErrors().stream().map( error -> [FD]
+Line_5 $$ Callable<Void> callable = () -> --> Line_18 $$ retrier.callWithRetry(callable, RuntimeException.class) [FD]

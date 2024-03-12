@@ -1,0 +1,8 @@
+Line_2 $$ protected void validateTdSparkQueryOutput() --> Line_3 $$ AmazonS3URI resultUri = new AmazonS3URI(tmpS3FolderUri.toString() + "/result/") [CD]
+Line_2 $$ protected void validateTdSparkQueryOutput() --> Line_4 $$ ObjectListing resultListing = s3.listObjects(new ListObjectsRequest().withBucketName(resultUri.getBucket()).withPrefix(resultUri.getKey())) [CD]
+Line_3 $$ AmazonS3URI resultUri = new AmazonS3URI(tmpS3FolderUri.toString() + "/result/") --> Line_4 $$ ObjectListing resultListing = s3.listObjects(new ListObjectsRequest().withBucketName(resultUri.getBucket()).withPrefix(resultUri.getKey())) [FD]
+Line_2 $$ protected void validateTdSparkQueryOutput() --> Line_5 $$ List<String> resultLines = resultListing.getObjectSummaries().stream().flatMap( o -> [CD]
+Line_4 $$ ObjectListing resultListing = s3.listObjects(new ListObjectsRequest().withBucketName(resultUri.getBucket()).withPrefix(resultUri.getKey())) --> Line_5 $$ List<String> resultLines = resultListing.getObjectSummaries().stream().flatMap( o -> [FD]
+Line_6 $$ try (S3Object object = s3.getObject(o.getBucketName(), o.getKey())) --> Line_7 $$ return CharStreams.readLines(new InputStreamReader(object.getObjectContent())).stream() [FD]
+Line_2 $$ protected void validateTdSparkQueryOutput() --> Line_12 $$ assertThat(resultLines, Matchers.hasItem(",164.54.104.106,/item/games/4663,/category/electronics,404,Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0),121,GET,1412383598")) [CD]
+Line_5 $$ List<String> resultLines = resultListing.getObjectSummaries().stream().flatMap( o -> --> Line_12 $$ assertThat(resultLines, Matchers.hasItem(",164.54.104.106,/item/games/4663,/category/electronics,404,Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0),121,GET,1412383598")) [FD]

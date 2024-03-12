@@ -1,0 +1,7 @@
+Line_2 $$ public void collect() --> Line_3 $$ Supplier<List<Integer>> as = () -> new ArrayList() [CD]
+Line_2 $$ public void collect() --> Line_4 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() [CD]
+Line_2 $$ public void collect() --> Line_5 $$ Flux.range(1, 10).parallel().collect(as, ( a,  b) -> a.add(b)).sequential().flatMapIterable( v -> v).log("ParallelCollectTest#collect", Level.FINE).subscribe(ts) [CD]
+Line_4 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_5 $$ Flux.range(1, 10).parallel().collect(as, ( a,  b) -> a.add(b)).sequential().flatMapIterable( v -> v).log("ParallelCollectTest#collect", Level.FINE).subscribe(ts) [FD]
+Line_3 $$ Supplier<List<Integer>> as = () -> new ArrayList() --> Line_5 $$ Flux.range(1, 10).parallel().collect(as, ( a,  b) -> a.add(b)).sequential().flatMapIterable( v -> v).log("ParallelCollectTest#collect", Level.FINE).subscribe(ts) [FD]
+Line_2 $$ public void collect() --> Line_6 $$ ts.assertContainValues(new HashSet(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))).assertNoError().assertComplete() [CD]
+Line_4 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_6 $$ ts.assertContainValues(new HashSet(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))).assertNoError().assertComplete() [FD]

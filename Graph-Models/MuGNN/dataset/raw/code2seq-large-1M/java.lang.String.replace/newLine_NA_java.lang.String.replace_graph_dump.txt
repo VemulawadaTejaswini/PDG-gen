@@ -1,0 +1,8 @@
+Line_2 $$ public Future<?> newLine(String log) --> Line_3 $$ return Schedulers.computation().schedule(() -> [CD]
+Line_2 $$ public Future<?> newLine(String log) --> Line_5 $$ String line = log.replace("<![CDATA[", "").replace("]]>", "").replace("log4j:", "log4j_").replace("<log4j_Message>", "<log4j_Message><![CDATA[").replace("</log4j_Message>", "]]></log4j_Message>").replace("<log4j_Throwable>", "<log4j_Throwable><![CDATA[").replace("</log4j_Throwable>", "]]></log4j_Throwable>") [FD]
+Line_5 $$ String line = log.replace("<![CDATA[", "").replace("]]>", "").replace("log4j:", "log4j_").replace("<log4j_Message>", "<log4j_Message><![CDATA[").replace("</log4j_Message>", "]]></log4j_Message>").replace("<log4j_Throwable>", "<log4j_Throwable><![CDATA[").replace("</log4j_Throwable>", "]]></log4j_Throwable>") --> Line_6 $$ logs.add(line) [FD]
+Line_7 $$ if (broken) --> Line_8 $$ System.out.println(line) [CD]
+Line_5 $$ String line = log.replace("<![CDATA[", "").replace("]]>", "").replace("log4j:", "log4j_").replace("<log4j_Message>", "<log4j_Message><![CDATA[").replace("</log4j_Message>", "]]></log4j_Message>").replace("<log4j_Throwable>", "<log4j_Throwable><![CDATA[").replace("</log4j_Throwable>", "]]></log4j_Throwable>") --> Line_8 $$ System.out.println(line) [FD]
+Line_9 $$ byte[] bytes = (line + OperatingSystem.LINE_SEPARATOR).getBytes(Constants.SYSTEM_CHARSET) --> Line_10 $$ outputStream.write(bytes) [FD]
+Line_13 $$ if (!broken) --> Line_14 $$ Logging.LOG.log(Level.WARNING, "An error occurred when writing console lines", e) [CD]
+Line_13 $$ if (!broken) --> Line_15 $$ logs.forEach(System.out::<>println) [CD]

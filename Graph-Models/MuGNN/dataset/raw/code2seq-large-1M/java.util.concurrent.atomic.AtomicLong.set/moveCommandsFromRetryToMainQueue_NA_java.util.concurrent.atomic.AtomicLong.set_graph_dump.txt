@@ -1,0 +1,5 @@
+Line_3 $$ for (CommandData cd : get(QueueType.RETRY)) --> Line_4 $$ if (cd.executedMoreSecondsAgoThan(MIN_RETRY_PERIOD_SECONDS) && addToMainQueue(cd)) [FD]
+Line_4 $$ if (cd.executedMoreSecondsAgoThan(MIN_RETRY_PERIOD_SECONDS) && addToMainQueue(cd)) --> Line_5 $$ get(QueueType.RETRY).remove(cd) [CD]
+Line_3 $$ for (CommandData cd : get(QueueType.RETRY)) --> Line_5 $$ get(QueueType.RETRY).remove(cd) [FD]
+Line_4 $$ if (cd.executedMoreSecondsAgoThan(MIN_RETRY_PERIOD_SECONDS) && addToMainQueue(cd)) --> Line_6 $$ MyLog.v(this, "Moved from Retry to Main queue: " + cd) [CD]
+Line_2 $$ private void moveCommandsFromRetryToMainQueue() --> Line_9 $$ mRetryQueueProcessedAt.set(System.currentTimeMillis()) [CD]

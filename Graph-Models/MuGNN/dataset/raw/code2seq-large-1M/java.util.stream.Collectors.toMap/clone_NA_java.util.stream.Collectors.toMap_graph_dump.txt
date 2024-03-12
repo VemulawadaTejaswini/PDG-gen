@@ -1,0 +1,6 @@
+Line_2 $$ public MetaStore clone() --> Line_3 $$ Map<String, KsqlTopic> cloneTopicMap = new HashMap() [CD]
+Line_2 $$ public MetaStore clone() --> Line_4 $$ Map<String, Pair<StructuredDataSource, ReferentialIntegrityTableEntry>> cloneDataSourceMap = dataSourceMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::<>getKey,  entry -> new Pair(entry.getValue().getLeft(), entry.getValue().getRight().clone()))) [CD]
+Line_2 $$ public MetaStore clone() --> Line_5 $$ cloneTopicMap.putAll(topicMap) [CD]
+Line_3 $$ Map<String, KsqlTopic> cloneTopicMap = new HashMap() --> Line_5 $$ cloneTopicMap.putAll(topicMap) [FD]
+Line_2 $$ public MetaStore clone() --> Line_6 $$ cloneDataSourceMap.putAll(dataSourceMap) [CD]
+Line_2 $$ public MetaStore clone() --> Line_7 $$ return new MetaStoreImpl(cloneTopicMap, cloneDataSourceMap) [CD]

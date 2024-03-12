@@ -1,0 +1,7 @@
+Line_2 $$ public Metadata parseMeta(String fileName, Configuration conf) --> Line_3 $$ Metadata metadata = null [CD]
+Line_5 $$ String urlString = "file:" + sampleDir + fileSeparator + fileName --> Line_6 $$ Protocol protocol = new ProtocolFactory(conf).getProtocol(urlString) [FD]
+Line_6 $$ Protocol protocol = new ProtocolFactory(conf).getProtocol(urlString) --> Line_7 $$ Content content = protocol.getProtocolOutput(new Text(urlString), new CrawlDatum()).getContent() [FD]
+Line_7 $$ Content content = protocol.getProtocolOutput(new Text(urlString), new CrawlDatum()).getContent() --> Line_8 $$ Parse parse = new ParseUtil(conf).parse(content).get(content.getUrl()) [FD]
+Line_3 $$ Metadata metadata = null --> Line_9 $$ metadata = parse.getData().getParseMeta() [FD]
+Line_8 $$ Parse parse = new ParseUtil(conf).parse(content).get(content.getUrl()) --> Line_9 $$ metadata = parse.getData().getParseMeta() [FD]
+Line_2 $$ public Metadata parseMeta(String fileName, Configuration conf) --> Line_14 $$ return metadata [CD]

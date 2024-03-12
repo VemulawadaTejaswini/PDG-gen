@@ -1,0 +1,8 @@
+Line_2 $$ public static void createSecurityQuestionAbortMessage(ContainerRequestContext requestCtx, String secQChallenge) --> Line_3 $$ String challenge = "" [CD]
+Line_2 $$ public static void createSecurityQuestionAbortMessage(ContainerRequestContext requestCtx, String secQChallenge) --> Line_4 $$ if (StringUtils.isNotBlank(secQChallenge)) [CD]
+Line_2 $$ public static void createSecurityQuestionAbortMessage(ContainerRequestContext requestCtx, String secQChallenge) --> Line_4 $$ if (StringUtils.isNotBlank(secQChallenge)) [FD]
+Line_4 $$ if (StringUtils.isNotBlank(secQChallenge)) --> Line_5 $$ challenge = " " + Base64Utility.encode(secQChallenge.getBytes()) [CD]
+Line_3 $$ String challenge = "" --> Line_5 $$ challenge = " " + Base64Utility.encode(secQChallenge.getBytes()) [FD]
+Line_2 $$ public static void createSecurityQuestionAbortMessage(ContainerRequestContext requestCtx, String secQChallenge) --> Line_5 $$ challenge = " " + Base64Utility.encode(secQChallenge.getBytes()) [FD]
+Line_2 $$ public static void createSecurityQuestionAbortMessage(ContainerRequestContext requestCtx, String secQChallenge) --> Line_7 $$ requestCtx.abortWith(Response.status(Status.UNAUTHORIZED).header("WWW-Authenticate", RestAuthenticationMethod.SECURITY_QUESTIONS.getMethod() + challenge).build()) [CD]
+Line_2 $$ public static void createSecurityQuestionAbortMessage(ContainerRequestContext requestCtx, String secQChallenge) --> Line_7 $$ requestCtx.abortWith(Response.status(Status.UNAUTHORIZED).header("WWW-Authenticate", RestAuthenticationMethod.SECURITY_QUESTIONS.getMethod() + challenge).build()) [FD]

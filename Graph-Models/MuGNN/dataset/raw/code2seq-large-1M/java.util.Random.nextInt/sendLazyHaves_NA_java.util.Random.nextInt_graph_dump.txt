@@ -1,0 +1,8 @@
+Line_2 $$ protected void sendLazyHaves(final int[] lazy_haves, boolean immediate) --> Line_3 $$ if (immediate) [CD]
+Line_3 $$ if (immediate) --> Line_4 $$ if (current_peer_state == TRANSFERING) [CD]
+Line_3 $$ if (immediate) --> Line_10 $$ SimpleTimer.addEvent("LazyHaveSender", SystemTime.getCurrentTime() + 1000 + rnd.nextInt(2000), new TimerEventPerformer() [CD]
+Line_10 $$ SimpleTimer.addEvent("LazyHaveSender", SystemTime.getCurrentTime() + 1000 + rnd.nextInt(2000), new TimerEventPerformer() --> Line_13 $$ if (current_peer_state == TRANSFERING) [CD]
+Line_13 $$ if (current_peer_state == TRANSFERING) --> Line_14 $$ int lazy_have = lazy_haves[next_have++] [CD]
+Line_13 $$ if (current_peer_state == TRANSFERING) --> Line_15 $$ connection.getOutgoingMessageQueue().addMessage(new BTHave(lazy_have, other_peer_bt_have_version), false) [CD]
+Line_13 $$ if (current_peer_state == TRANSFERING) --> Line_16 $$ if (next_have < lazy_haves.length && current_peer_state == TRANSFERING) [CD]
+Line_16 $$ if (next_have < lazy_haves.length && current_peer_state == TRANSFERING) --> Line_17 $$ SimpleTimer.addEvent("LazyHaveSender", SystemTime.getCurrentTime() + rnd.nextInt(2000), this) [CD]

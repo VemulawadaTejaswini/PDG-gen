@@ -1,0 +1,6 @@
+Line_4 $$ for (InetSocketAddress addr : registeredAddresses()) try --> Line_5 $$ int port = addr.getPort() [FD]
+Line_4 $$ for (InetSocketAddress addr : registeredAddresses()) try --> Line_6 $$ InetSocketAddress resolved = addr.isUnresolved() ? new InetSocketAddress(InetAddress.getByName(addr.getHostName()), port) : new InetSocketAddress(addr.getAddress(), port) [FD]
+Line_6 $$ InetSocketAddress resolved = addr.isUnresolved() ? new InetSocketAddress(InetAddress.getByName(addr.getHostName()), port) : new InetSocketAddress(addr.getAddress(), port) --> Line_7 $$ if (resolved.equals(locAddr)) [FD]
+Line_3 $$ for (InetSocketAddress locAddr : locNodeAddrs) --> Line_7 $$ if (resolved.equals(locAddr)) [FD]
+Line_7 $$ if (resolved.equals(locAddr)) --> Line_8 $$ return true [CD]
+Line_2 $$ boolean ipFinderHasLocalAddress() throws IgniteSpiException --> Line_13 $$ return false [CD]

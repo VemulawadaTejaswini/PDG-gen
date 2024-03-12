@@ -1,0 +1,8 @@
+Line_4 $$ SQLiteDatabase db = dbHelper.getWritableDatabase() --> Line_5 $$ final Cursor cursor = db.rawQuery("SELECT unreadCount FROM contact WHERE userId = " + "'" + userId + "'", null) [FD]
+Line_5 $$ final Cursor cursor = db.rawQuery("SELECT unreadCount FROM contact WHERE userId = " + "'" + userId + "'", null) --> Line_6 $$ cursor.moveToFirst() [FD]
+Line_5 $$ final Cursor cursor = db.rawQuery("SELECT unreadCount FROM contact WHERE userId = " + "'" + userId + "'", null) --> Line_8 $$ if (cursor.getCount() > 0) [FD]
+Line_8 $$ if (cursor.getCount() > 0) --> Line_9 $$ unreadMessageCount = cursor.getInt(0) [CD]
+Line_7 $$ int unreadMessageCount = 0 --> Line_9 $$ unreadMessageCount = cursor.getInt(0) [FD]
+Line_5 $$ final Cursor cursor = db.rawQuery("SELECT unreadCount FROM contact WHERE userId = " + "'" + userId + "'", null) --> Line_9 $$ unreadMessageCount = cursor.getInt(0) [FD]
+Line_5 $$ final Cursor cursor = db.rawQuery("SELECT unreadCount FROM contact WHERE userId = " + "'" + userId + "'", null) --> Line_11 $$ cursor.close() [FD]
+Line_2 $$ public int getUnreadMessageCountForContact(String userId) --> Line_17 $$ return 0 [CD]

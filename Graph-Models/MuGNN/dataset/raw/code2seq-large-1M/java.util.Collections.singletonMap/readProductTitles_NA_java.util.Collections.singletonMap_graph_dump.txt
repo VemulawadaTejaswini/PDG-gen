@@ -1,0 +1,8 @@
+Line_2 $$ public CompletionStage<List<String>> readProductTitles() --> Line_3 $$ String query = "MATCH (p:Product) WHERE p.id = $id RETURN p.title" [CD]
+Line_2 $$ public CompletionStage<List<String>> readProductTitles() --> Line_4 $$ Map<String, Object> parameters = Collections.singletonMap("id", 0) [CD]
+Line_2 $$ public CompletionStage<List<String>> readProductTitles() --> Line_5 $$ Session session = driver.session() [CD]
+Line_2 $$ public CompletionStage<List<String>> readProductTitles() --> Line_6 $$ return session.runAsync(query, parameters).thenCompose( cursor -> cursor.listAsync( record -> record.get(0).asString())).exceptionally( error -> [CD]
+Line_5 $$ Session session = driver.session() --> Line_6 $$ return session.runAsync(query, parameters).thenCompose( cursor -> cursor.listAsync( record -> record.get(0).asString())).exceptionally( error -> [FD]
+Line_3 $$ String query = "MATCH (p:Product) WHERE p.id = $id RETURN p.title" --> Line_6 $$ return session.runAsync(query, parameters).thenCompose( cursor -> cursor.listAsync( record -> record.get(0).asString())).exceptionally( error -> [FD]
+Line_4 $$ Map<String, Object> parameters = Collections.singletonMap("id", 0) --> Line_6 $$ return session.runAsync(query, parameters).thenCompose( cursor -> cursor.listAsync( record -> record.get(0).asString())).exceptionally( error -> [FD]
+Line_5 $$ Session session = driver.session() --> Line_9 $$ session.closeAsync().thenApply( ignore -> titles) [FD]

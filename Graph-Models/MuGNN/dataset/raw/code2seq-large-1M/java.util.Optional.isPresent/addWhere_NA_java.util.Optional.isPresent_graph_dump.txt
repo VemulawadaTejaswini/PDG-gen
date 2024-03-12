@@ -1,0 +1,8 @@
+Line_2 $$ void addWhere(SelectQuery query) --> Line_3 $$ query.where("1!=1") [CD]
+Line_2 $$ void addWhere(SelectQuery query) --> Line_3 $$ query.where("1!=1") [FD]
+Line_4 $$ for (SnapshotIdentifier snapshotIdentifier : snapshotIdentifiers) --> Line_5 $$ Optional<Long> globalIdPk = globalIdRepository.findGlobalIdPk(snapshotIdentifier.getGlobalId()) [FD]
+Line_5 $$ Optional<Long> globalIdPk = globalIdRepository.findGlobalIdPk(snapshotIdentifier.getGlobalId()) --> Line_6 $$ if (globalIdPk.isPresent()) [FD]
+Line_6 $$ if (globalIdPk.isPresent()) --> Line_7 $$ query.append(" OR (").append(SNAPSHOT_GLOBAL_ID_FK).append(" = ").append(globalIdPk.get().toString()).append(" AND ").append(SNAPSHOT_VERSION).append(" = ").append(Long.toString(snapshotIdentifier.getVersion())).append(")") [CD]
+Line_2 $$ void addWhere(SelectQuery query) --> Line_7 $$ query.append(" OR (").append(SNAPSHOT_GLOBAL_ID_FK).append(" = ").append(globalIdPk.get().toString()).append(" AND ").append(SNAPSHOT_VERSION).append(" = ").append(Long.toString(snapshotIdentifier.getVersion())).append(")") [FD]
+Line_5 $$ Optional<Long> globalIdPk = globalIdRepository.findGlobalIdPk(snapshotIdentifier.getGlobalId()) --> Line_7 $$ query.append(" OR (").append(SNAPSHOT_GLOBAL_ID_FK).append(" = ").append(globalIdPk.get().toString()).append(" AND ").append(SNAPSHOT_VERSION).append(" = ").append(Long.toString(snapshotIdentifier.getVersion())).append(")") [FD]
+Line_4 $$ for (SnapshotIdentifier snapshotIdentifier : snapshotIdentifiers) --> Line_7 $$ query.append(" OR (").append(SNAPSHOT_GLOBAL_ID_FK).append(" = ").append(globalIdPk.get().toString()).append(" AND ").append(SNAPSHOT_VERSION).append(" = ").append(Long.toString(snapshotIdentifier.getVersion())).append(")") [FD]

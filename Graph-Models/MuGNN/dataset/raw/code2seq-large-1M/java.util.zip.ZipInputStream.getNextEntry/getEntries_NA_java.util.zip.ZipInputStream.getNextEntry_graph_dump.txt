@@ -1,0 +1,6 @@
+Line_2 $$ private ImmutableList<String> getEntries(ProjectFilesystem filesystem, Path zip) throws IOException --> Line_3 $$ ImmutableList.Builder<String> entries = ImmutableList.builder() [CD]
+Line_2 $$ private ImmutableList<String> getEntries(ProjectFilesystem filesystem, Path zip) throws IOException --> Line_4 $$ try (ZipInputStream is = new ZipInputStream(filesystem.newFileInputStream(zip))) [FD]
+Line_4 $$ try (ZipInputStream is = new ZipInputStream(filesystem.newFileInputStream(zip))) --> Line_5 $$ for (ZipEntry entry = is.getNextEntry(); entry != null; entry = is.getNextEntry()) [FD]
+Line_3 $$ ImmutableList.Builder<String> entries = ImmutableList.builder() --> Line_6 $$ entries.add(entry.getName()) [FD]
+Line_2 $$ private ImmutableList<String> getEntries(ProjectFilesystem filesystem, Path zip) throws IOException --> Line_9 $$ return entries.build() [CD]
+Line_3 $$ ImmutableList.Builder<String> entries = ImmutableList.builder() --> Line_9 $$ return entries.build() [FD]

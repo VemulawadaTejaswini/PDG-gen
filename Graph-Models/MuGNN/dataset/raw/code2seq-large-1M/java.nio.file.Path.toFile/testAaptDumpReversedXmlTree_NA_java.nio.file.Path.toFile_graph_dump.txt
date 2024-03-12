@@ -1,0 +1,8 @@
+Line_3 $$ try (ZipFile apkZip = new ZipFile(apkPath.toFile())) --> Line_4 $$ ResourceTable resourceTable = ResourceTable.get(ResChunk.wrap(ByteStreams.toByteArray(apkZip.getInputStream(apkZip.getEntry("resources.arsc"))))) [FD]
+Line_3 $$ try (ZipFile apkZip = new ZipFile(apkPath.toFile())) --> Line_6 $$ ByteBuffer buf = ResChunk.wrap(ByteStreams.toByteArray(apkZip.getInputStream(apkZip.getEntry("AndroidManifest.xml")))) [FD]
+Line_7 $$ ResourcesXml xml = ResourcesXml.get(buf) --> Line_8 $$ xml.transformReferences(reversingMapper::<>map) [FD]
+Line_7 $$ ResourcesXml xml = ResourcesXml.get(buf) --> Line_10 $$ xml.dump(new PrintStream(baos)) [FD]
+Line_9 $$ ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_11 $$ String content = new String(baos.toByteArray(), Charsets.UTF_8) [FD]
+Line_12 $$ Path xmltreeOutput = filesystem.resolve(filesystem.getPath(APK_NAME + ".manifest.reversed")) --> Line_13 $$ String expected = new String(Files.readAllBytes(xmltreeOutput)) [FD]
+Line_13 $$ String expected = new String(Files.readAllBytes(xmltreeOutput)) --> Line_14 $$ MoreAsserts.assertLargeStringsEqual(expected, content) [FD]
+Line_11 $$ String content = new String(baos.toByteArray(), Charsets.UTF_8) --> Line_14 $$ MoreAsserts.assertLargeStringsEqual(expected, content) [FD]

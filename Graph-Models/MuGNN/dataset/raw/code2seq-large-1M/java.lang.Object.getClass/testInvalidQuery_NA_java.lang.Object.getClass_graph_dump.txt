@@ -1,0 +1,7 @@
+Line_2 $$ public void testInvalidQuery() throws Exception --> Line_3 $$ setupIndex(false) [CD]
+Line_2 $$ public void testInvalidQuery() throws Exception --> Line_4 $$ SearchPhaseExecutionException exc = expectThrows(SearchPhaseExecutionException.class, () -> client().prepareSearch().setQuery(matchAllQuery()).slice(new SliceBuilder("invalid_random_int", 0, 10)).get()) [CD]
+Line_2 $$ public void testInvalidQuery() throws Exception --> Line_5 $$ Throwable rootCause = findRootCause(exc) [CD]
+Line_2 $$ public void testInvalidQuery() throws Exception --> Line_6 $$ assertThat(rootCause.getClass(), equalTo(SearchContextException.class)) [CD]
+Line_5 $$ Throwable rootCause = findRootCause(exc) --> Line_6 $$ assertThat(rootCause.getClass(), equalTo(SearchContextException.class)) [FD]
+Line_2 $$ public void testInvalidQuery() throws Exception --> Line_7 $$ assertThat(rootCause.getMessage(), equalTo("`slice` cannot be used outside of a scroll context")) [CD]
+Line_5 $$ Throwable rootCause = findRootCause(exc) --> Line_7 $$ assertThat(rootCause.getMessage(), equalTo("`slice` cannot be used outside of a scroll context")) [FD]

@@ -1,0 +1,7 @@
+Line_3 $$ DurableDataLog.ReadItem nextItem = this.reader.getNext() --> Line_4 $$ if (nextItem == null) [FD]
+Line_4 $$ if (nextItem == null) --> Line_5 $$ return null [CD]
+Line_3 $$ DurableDataLog.ReadItem nextItem = this.reader.getNext() --> Line_9 $$ frameContents = DataFrame.read(nextItem.getPayload(), nextItem.getLength(), nextItem.getAddress()) [FD]
+Line_3 $$ DurableDataLog.ReadItem nextItem = this.reader.getNext() --> Line_13 $$ long sequence = nextItem.getAddress().getSequence() [FD]
+Line_13 $$ long sequence = nextItem.getAddress().getSequence() --> Line_14 $$ if (sequence <= this.lastReadFrameSequence) [FD]
+Line_13 $$ long sequence = nextItem.getAddress().getSequence() --> Line_15 $$ throw new SerializationException(String.format("Found DataFrame out of order. Expected frame sequence greater than %d, found %d.", this.lastReadFrameSequence, sequence)) [FD]
+Line_13 $$ long sequence = nextItem.getAddress().getSequence() --> Line_17 $$ this.lastReadFrameSequence = sequence [FD]

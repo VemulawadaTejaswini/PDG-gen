@@ -1,0 +1,7 @@
+Line_2 $$ public void inTermsTestWithStrings() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_3 $$ SearchHits response = query(String.format("SELECT name FROM %s/gotCharacters WHERE name.firstname = IN_TERMS('daenerys','eddard') LIMIT 1000", TEST_INDEX_GAME_OF_THRONES)) [CD]
+Line_2 $$ public void inTermsTestWithStrings() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_4 $$ SearchHit[] hits = response.getHits() [CD]
+Line_3 $$ SearchHits response = query(String.format("SELECT name FROM %s/gotCharacters WHERE name.firstname = IN_TERMS('daenerys','eddard') LIMIT 1000", TEST_INDEX_GAME_OF_THRONES)) --> Line_4 $$ SearchHit[] hits = response.getHits() [FD]
+Line_2 $$ public void inTermsTestWithStrings() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_5 $$ Assert.assertEquals(2, response.getTotalHits()) [CD]
+Line_3 $$ SearchHits response = query(String.format("SELECT name FROM %s/gotCharacters WHERE name.firstname = IN_TERMS('daenerys','eddard') LIMIT 1000", TEST_INDEX_GAME_OF_THRONES)) --> Line_5 $$ Assert.assertEquals(2, response.getTotalHits()) [FD]
+Line_6 $$ for (SearchHit hit : hits) --> Line_7 $$ String firstname = ((Map<String, Object>) hit.getSourceAsMap().get("name")).get("firstname").toString() [FD]
+Line_7 $$ String firstname = ((Map<String, Object>) hit.getSourceAsMap().get("name")).get("firstname").toString() --> Line_8 $$ assertThat(firstname, isOneOf("Daenerys", "Eddard")) [FD]

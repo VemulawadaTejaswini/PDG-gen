@@ -1,0 +1,8 @@
+Line_4 $$ JsonNode record = request().body().asJson() --> Line_5 $$ String feedback = record.hasNonNull("feedback") ? record.get("feedback").asText().toUpperCase() : null [FD]
+Line_4 $$ JsonNode record = request().body().asJson() --> Line_6 $$ String uid = record.hasNonNull("uid") ? record.get("uid").asText() : "" [FD]
+Line_5 $$ String feedback = record.hasNonNull("feedback") ? record.get("feedback").asText().toUpperCase() : null --> Line_7 $$ if (!"ACCEPT".equals(feedback) && !"REJECT".equals(feedback)) [FD]
+Line_7 $$ if (!"ACCEPT".equals(feedback) && !"REJECT".equals(feedback)) --> Line_8 $$ return Promise.promise(() -> badRequest(_EMPTY_RESPONSE)) [CD]
+Line_2 $$ public static Promise<Result> sendDatasetSuggestedComplianceFeedback(@Nonnull String datasetUrn) --> Line_10 $$ COMPLIANCE_DAO.sendSuggestedComplianceFeedback(datasetUrn, uid, feedback) [FD]
+Line_6 $$ String uid = record.hasNonNull("uid") ? record.get("uid").asText() : "" --> Line_10 $$ COMPLIANCE_DAO.sendSuggestedComplianceFeedback(datasetUrn, uid, feedback) [FD]
+Line_5 $$ String feedback = record.hasNonNull("feedback") ? record.get("feedback").asText().toUpperCase() : null --> Line_10 $$ COMPLIANCE_DAO.sendSuggestedComplianceFeedback(datasetUrn, uid, feedback) [FD]
+Line_2 $$ public static Promise<Result> sendDatasetSuggestedComplianceFeedback(@Nonnull String datasetUrn) --> Line_15 $$ return Promise.promise(() -> ok(_EMPTY_RESPONSE)) [CD]

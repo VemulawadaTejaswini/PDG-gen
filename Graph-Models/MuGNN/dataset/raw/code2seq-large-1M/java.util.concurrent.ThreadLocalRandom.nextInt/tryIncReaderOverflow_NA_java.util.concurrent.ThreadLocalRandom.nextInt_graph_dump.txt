@@ -1,0 +1,8 @@
+Line_2 $$ private long tryIncReaderOverflow(long s) --> Line_3 $$ if ((s & ABITS) == RFULL) [CD]
+Line_3 $$ if ((s & ABITS) == RFULL) --> Line_4 $$ if (U.compareAndSwapLong(this, STATE, s, s | RBITS)) [CD]
+Line_2 $$ private long tryIncReaderOverflow(long s) --> Line_4 $$ if (U.compareAndSwapLong(this, STATE, s, s | RBITS)) [FD]
+Line_4 $$ if (U.compareAndSwapLong(this, STATE, s, s | RBITS)) --> Line_7 $$ return s [CD]
+Line_3 $$ if ((s & ABITS) == RFULL) --> Line_9 $$ if ((ThreadLocalRandom.current().nextInt() & OVERFLOW_YIELD_RATE) == 0) [CD]
+Line_9 $$ if ((ThreadLocalRandom.current().nextInt() & OVERFLOW_YIELD_RATE) == 0) --> Line_10 $$ if (!Strand.isCurrentFiber()) [CD]
+Line_10 $$ if (!Strand.isCurrentFiber()) --> Line_11 $$ Thread.yield() [CD]
+Line_2 $$ private long tryIncReaderOverflow(long s) --> Line_12 $$ return 0L [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private boolean hasPendingAddMessage(UUID nodeId) --> Line_3 $$ if (pendingMsgs.msgs.isEmpty()) [CD]
+Line_3 $$ if (pendingMsgs.msgs.isEmpty()) --> Line_4 $$ return false [CD]
+Line_6 $$ if (pendingMsg.msg instanceof TcpDiscoveryNodeAddedMessage) --> Line_7 $$ TcpDiscoveryNodeAddedMessage addMsg = (TcpDiscoveryNodeAddedMessage) pendingMsg.msg [CD]
+Line_6 $$ if (pendingMsg.msg instanceof TcpDiscoveryNodeAddedMessage) --> Line_8 $$ if (addMsg.node().id().equals(nodeId) && addMsg.id().compareTo(pendingMsgs.discardId) > 0) [CD]
+Line_2 $$ private boolean hasPendingAddMessage(UUID nodeId) --> Line_8 $$ if (addMsg.node().id().equals(nodeId) && addMsg.id().compareTo(pendingMsgs.discardId) > 0) [FD]
+Line_7 $$ TcpDiscoveryNodeAddedMessage addMsg = (TcpDiscoveryNodeAddedMessage) pendingMsg.msg --> Line_8 $$ if (addMsg.node().id().equals(nodeId) && addMsg.id().compareTo(pendingMsgs.discardId) > 0) [FD]
+Line_8 $$ if (addMsg.node().id().equals(nodeId) && addMsg.id().compareTo(pendingMsgs.discardId) > 0) --> Line_9 $$ return true [CD]
+Line_2 $$ private boolean hasPendingAddMessage(UUID nodeId) --> Line_12 $$ return false [CD]

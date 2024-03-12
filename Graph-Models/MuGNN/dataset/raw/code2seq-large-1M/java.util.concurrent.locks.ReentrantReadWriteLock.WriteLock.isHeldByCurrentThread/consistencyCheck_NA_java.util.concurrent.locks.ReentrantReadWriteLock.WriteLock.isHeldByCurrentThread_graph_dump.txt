@@ -1,0 +1,7 @@
+Line_2 $$ private void consistencyCheck() --> Line_3 $$ if (CONSISTENCY_CHECK) [CD]
+Line_3 $$ if (CONSISTENCY_CHECK) --> Line_5 $$ if (node2part == null) [CD]
+Line_5 $$ if (node2part == null) --> Line_6 $$ return [CD]
+Line_8 $$ for (Integer p : e.getValue().keySet()) --> Line_9 $$ Set<UUID> nodeIds = part2node.get(p) [FD]
+Line_9 $$ Set<UUID> nodeIds = part2node.get(p) --> Line_11 $$ assert nodeIds.contains(e.getKey()) : "Failed consistency check [part=" + p + ", nodeId=" + e.getKey() + ", nodeIds=" + nodeIds + ']' [FD]
+Line_15 $$ for (UUID nodeId : e.getValue()) --> Line_16 $$ GridDhtPartitionMap map = node2part.get(nodeId) [FD]
+Line_16 $$ GridDhtPartitionMap map = node2part.get(nodeId) --> Line_18 $$ assert map.containsKey(e.getKey()) : "Failed consistency check [part=" + e.getKey() + ", nodeId=" + nodeId + ']' [FD]

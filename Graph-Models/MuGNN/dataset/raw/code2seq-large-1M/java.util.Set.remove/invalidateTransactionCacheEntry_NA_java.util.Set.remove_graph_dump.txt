@@ -1,0 +1,8 @@
+Line_3 $$ if (trace.val) --> Line_4 $$ LOG.trace("Removing Transaction:" + txn_entry) [CD]
+Line_5 $$ if (txn_entry.base_partition != HStoreConstants.NULL_PARTITION_ID) --> Line_6 $$ if (trace.val) [CD]
+Line_6 $$ if (trace.val) --> Line_7 $$ LOG.trace("Resetting base partition [" + txn_entry.base_partition + "] and updating histograms") [CD]
+Line_5 $$ if (txn_entry.base_partition != HStoreConstants.NULL_PARTITION_ID) --> Line_8 $$ this.histogram_java_partitions.dec(txn_entry.base_partition, txn_entry.weight) [CD]
+Line_5 $$ if (txn_entry.base_partition != HStoreConstants.NULL_PARTITION_ID) --> Line_9 $$ if (this.isJavaExecutionWeightEnabled()) [CD]
+Line_9 $$ if (this.isJavaExecutionWeightEnabled()) --> Line_10 $$ txn_entry.touched_partitions.dec(txn_entry.base_partition, (int) Math.round(txn_entry.weight * this.getJavaExecutionWeight())) [CD]
+Line_5 $$ if (txn_entry.base_partition != HStoreConstants.NULL_PARTITION_ID) --> Line_12 $$ if (trace.val) [CD]
+Line_12 $$ if (trace.val) --> Line_13 $$ LOG.trace("Global Java Histogram:\n" + this.histogram_java_partitions) [CD]

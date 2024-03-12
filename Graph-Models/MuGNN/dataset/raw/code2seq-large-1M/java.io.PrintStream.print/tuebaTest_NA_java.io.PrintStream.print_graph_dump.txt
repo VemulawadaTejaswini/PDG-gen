@@ -1,0 +1,8 @@
+Line_2 $$ public void tuebaTest() throws Exception --> Line_3 $$ CollectionReaderDescription reader = createReaderDescription(NegraExportReader.class, NegraExportReader.PARAM_SOURCE_LOCATION, "src/test/resources/tueba/input/tueba-sample.export", NegraExportReader.PARAM_LANGUAGE, "de", NegraExportReader.PARAM_SOURCE_ENCODING, "UTF-8") [CD]
+Line_2 $$ public void tuebaTest() throws Exception --> Line_5 $$ AnalysisEngineDescription writer = createEngineDescription(RelAnnisWriter.class, RelAnnisWriter.PARAM_PATH, workspace.getRoot().getPath()) [CD]
+Line_2 $$ public void tuebaTest() throws Exception --> Line_6 $$ SimplePipeline.runPipeline(reader, writer) [CD]
+Line_7 $$ for (File f : workspace.getRoot().listFiles()) --> Line_8 $$ System.out.print("Checking [" + f.getName() + "]... ") [FD]
+Line_7 $$ for (File f : workspace.getRoot().listFiles()) --> Line_9 $$ if (readFileToString(new File("src/test/resources/tueba/reference", f.getName()), "UTF-8").equals(readFileToString(f, "UTF-8"))) [FD]
+Line_9 $$ if (readFileToString(new File("src/test/resources/tueba/reference", f.getName()), "UTF-8").equals(readFileToString(f, "UTF-8"))) --> Line_10 $$ System.out.println("ok.") [CD]
+Line_9 $$ if (readFileToString(new File("src/test/resources/tueba/reference", f.getName()), "UTF-8").equals(readFileToString(f, "UTF-8"))) --> Line_12 $$ System.out.println("FAIL.") [CD]
+Line_7 $$ for (File f : workspace.getRoot().listFiles()) --> Line_16 $$ assertTrue(contentEqualsIgnoreEOL(new File("src/test/resources/tueba/reference", f.getName()), f, "UTF-8")) [FD]

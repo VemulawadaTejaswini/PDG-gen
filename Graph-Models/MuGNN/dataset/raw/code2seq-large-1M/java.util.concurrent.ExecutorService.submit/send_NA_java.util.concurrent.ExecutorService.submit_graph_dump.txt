@@ -1,0 +1,7 @@
+Line_2 $$ public Handler send(String serverIp, int port, InputStream stream, long totalByte, int bufferSize, T extra, boolean currentThread) --> Line_3 $$ Handler handler = new Handler(serverIp, port, stream, totalByte, new byte[bufferSize], extra) [CD]
+Line_2 $$ public Handler send(String serverIp, int port, InputStream stream, long totalByte, int bufferSize, T extra, boolean currentThread) --> Line_4 $$ if (currentThread) [CD]
+Line_4 $$ if (currentThread) --> Line_5 $$ handler.run() [CD]
+Line_3 $$ Handler handler = new Handler(serverIp, port, stream, totalByte, new byte[bufferSize], extra) --> Line_5 $$ handler.run() [FD]
+Line_4 $$ if (currentThread) --> Line_7 $$ getExecutor().submit(handler) [CD]
+Line_3 $$ Handler handler = new Handler(serverIp, port, stream, totalByte, new byte[bufferSize], extra) --> Line_7 $$ getExecutor().submit(handler) [FD]
+Line_2 $$ public Handler send(String serverIp, int port, InputStream stream, long totalByte, int bufferSize, T extra, boolean currentThread) --> Line_8 $$ return handler [CD]

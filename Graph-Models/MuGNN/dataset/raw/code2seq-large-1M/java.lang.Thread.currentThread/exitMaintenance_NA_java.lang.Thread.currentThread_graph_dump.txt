@@ -1,0 +1,6 @@
+Line_2 $$ Transition exitMaintenance() --> Line_3 $$ checkMaintenance() [CD]
+Line_2 $$ Transition exitMaintenance() --> Line_4 $$ logger.trace("Exiting Maintenance") [CD]
+Line_2 $$ Transition exitMaintenance() --> Line_5 $$ InternalStatus.Transition st [CD]
+Line_2 $$ Transition exitMaintenance() --> Line_6 $$ for (InternalStatus.Transition cs; !currentState.compareAndSet(cs = currentState.get(), st = cs.get().close()); ) [CD]
+Line_5 $$ InternalStatus.Transition st --> Line_6 $$ for (InternalStatus.Transition cs; !currentState.compareAndSet(cs = currentState.get(), st = cs.get().close()); ) [FD]
+Line_2 $$ Transition exitMaintenance() --> Line_7 $$ return new Transition(st, Thread.currentThread(), "Exit Maintenance") [CD]

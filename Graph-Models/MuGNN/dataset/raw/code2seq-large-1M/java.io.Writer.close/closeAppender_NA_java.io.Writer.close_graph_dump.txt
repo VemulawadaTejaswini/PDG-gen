@@ -1,0 +1,7 @@
+Line_2 $$ private synchronized void closeAppender() throws IOException --> Line_3 $$ if (appender != null) [CD]
+Line_3 $$ if (appender != null) --> Line_9 $$ if (appendFile.exists()) [CD]
+Line_9 $$ if (appendFile.exists()) --> Line_10 $$ if (IOUtils.isGZIPFileEmpty(appendFile)) [CD]
+Line_10 $$ if (IOUtils.isGZIPFileEmpty(appendFile)) --> Line_11 $$ log.info("File appears to have no data, deleting: [CD]
+Line_10 $$ if (IOUtils.isGZIPFileEmpty(appendFile)) --> Line_12 $$ if (!appendFile.delete()) [CD]
+Line_12 $$ if (!appendFile.delete()) --> Line_13 $$ log.warn("Could not delete [CD]
+Line_10 $$ if (IOUtils.isGZIPFileEmpty(appendFile)) --> Line_16 $$ Files.move(appendFile, new File(inputDir, System.currentTimeMillis() + ".csv.gz")) [CD]

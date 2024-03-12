@@ -1,0 +1,6 @@
+Line_2 $$ private synchronized void updateListenerManagement() --> Line_3 $$ if (!bedStatusListeners.isEmpty() && (pollingJob == null || pollingJob.isCancelled())) [CD]
+Line_3 $$ if (!bedStatusListeners.isEmpty() && (pollingJob == null || pollingJob.isCancelled())) --> Line_4 $$ int pollingInterval = getPollingInterval() [CD]
+Line_3 $$ if (!bedStatusListeners.isEmpty() && (pollingJob == null || pollingJob.isCancelled())) --> Line_5 $$ pollingJob = scheduler.scheduleWithFixedDelay(this::<>refreshBedStatus, pollingInterval, pollingInterval, TimeUnit.SECONDS) [CD]
+Line_4 $$ int pollingInterval = getPollingInterval() --> Line_5 $$ pollingJob = scheduler.scheduleWithFixedDelay(this::<>refreshBedStatus, pollingInterval, pollingInterval, TimeUnit.SECONDS) [FD]
+Line_3 $$ if (!bedStatusListeners.isEmpty() && (pollingJob == null || pollingJob.isCancelled())) --> Line_6 $$ if (bedStatusListeners.isEmpty() && pollingJob != null && !pollingJob.isCancelled()) [CD]
+Line_6 $$ if (bedStatusListeners.isEmpty() && pollingJob != null && !pollingJob.isCancelled()) --> Line_7 $$ pollingJob.cancel(true) [CD]

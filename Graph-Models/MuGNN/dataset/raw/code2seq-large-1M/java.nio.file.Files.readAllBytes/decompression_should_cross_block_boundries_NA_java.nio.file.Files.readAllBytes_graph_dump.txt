@@ -1,0 +1,7 @@
+Line_2 $$ public void decompression_should_cross_block_boundries() throws Exception --> Line_3 $$ byte[] uncompressed = Files.readAllBytes(BLOCK_UNCOMPRESSED.toPath()) [CD]
+Line_4 $$ try (BlockCompressedInputStream stream = new BlockCompressedInputStream(new FileInputStream(BLOCK_COMPRESSED))) --> Line_6 $$ stream.read(decompressed) [FD]
+Line_5 $$ byte[] decompressed = new byte[uncompressed.length] --> Line_6 $$ stream.read(decompressed) [FD]
+Line_5 $$ byte[] decompressed = new byte[uncompressed.length] --> Line_7 $$ Assert.assertEquals(decompressed, uncompressed) [FD]
+Line_3 $$ byte[] uncompressed = Files.readAllBytes(BLOCK_UNCOMPRESSED.toPath()) --> Line_7 $$ Assert.assertEquals(decompressed, uncompressed) [FD]
+Line_4 $$ try (BlockCompressedInputStream stream = new BlockCompressedInputStream(new FileInputStream(BLOCK_COMPRESSED))) --> Line_8 $$ Assert.assertTrue(stream.endOfBlock()) [FD]
+Line_4 $$ try (BlockCompressedInputStream stream = new BlockCompressedInputStream(new FileInputStream(BLOCK_COMPRESSED))) --> Line_9 $$ Assert.assertEquals(stream.read(), -1) [FD]

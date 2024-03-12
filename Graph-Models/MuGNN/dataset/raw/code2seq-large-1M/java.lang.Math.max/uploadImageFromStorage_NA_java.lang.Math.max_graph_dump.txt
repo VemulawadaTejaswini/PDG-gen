@@ -1,0 +1,8 @@
+Line_2 $$ public static void uploadImageFromStorage(URL fsName, Configuration conf, NNStorage storage, NameNodeFile nnf, long txid, Canceler canceler) throws IOException --> Line_3 $$ URL url = new URL(fsName, ImageServlet.PATH_SPEC) [CD]
+Line_2 $$ public static void uploadImageFromStorage(URL fsName, Configuration conf, NNStorage storage, NameNodeFile nnf, long txid, Canceler canceler) throws IOException --> Line_4 $$ long startTime = Time.monotonicNow() [CD]
+Line_3 $$ URL url = new URL(fsName, ImageServlet.PATH_SPEC) --> Line_6 $$ uploadImage(url, conf, storage, nnf, txid, canceler) [FD]
+Line_2 $$ public static void uploadImageFromStorage(URL fsName, Configuration conf, NNStorage storage, NameNodeFile nnf, long txid, Canceler canceler) throws IOException --> Line_6 $$ uploadImage(url, conf, storage, nnf, txid, canceler) [FD]
+Line_8 $$ if (e.getResponseCode() == HttpServletResponse.SC_CONFLICT) --> Line_9 $$ LOG.info("Image upload with txid " + txid + " conflicted with a previous image upload to the " + "same NameNode. Continuing...", e) [CD]
+Line_8 $$ if (e.getResponseCode() == HttpServletResponse.SC_CONFLICT) --> Line_10 $$ return [CD]
+Line_2 $$ public static void uploadImageFromStorage(URL fsName, Configuration conf, NNStorage storage, NameNodeFile nnf, long txid, Canceler canceler) throws IOException --> Line_15 $$ double xferSec = Math.max(((float) (Time.monotonicNow() - startTime)) / 1000.0, 0.001) [CD]
+Line_2 $$ public static void uploadImageFromStorage(URL fsName, Configuration conf, NNStorage storage, NameNodeFile nnf, long txid, Canceler canceler) throws IOException --> Line_16 $$ LOG.info("Uploaded image with txid " + txid + " to namenode at " + fsName + " in " + xferSec + " seconds") [CD]

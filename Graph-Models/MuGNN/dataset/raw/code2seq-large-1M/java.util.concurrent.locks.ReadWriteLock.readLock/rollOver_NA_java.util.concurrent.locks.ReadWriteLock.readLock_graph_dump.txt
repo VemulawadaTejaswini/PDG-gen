@@ -1,0 +1,4 @@
+Line_3 $$ for (Map<Integer, VariableReader> entryCP : variableVersionsPerCP) --> Line_4 $$ for (Map.Entry<Integer, VariableReader> entry : entryCP.entrySet()) [FD]
+Line_7 $$ VersionedValueList<Object> versionsOld = entry.getValue().getVersionsLow() --> Line_8 $$ Object currentValue = versionsOld.getCurrentAndPriorValue().getCurrentVersion().getValue() [FD]
+Line_7 $$ VersionedValueList<Object> versionsOld = entry.getValue().getVersionsLow() --> Line_10 $$ entry.getValue().setVersionsHigh(versionsOld) [FD]
+Line_9 $$ VersionedValueList<Object> versionsNew = new VersionedValueList<Object>(name, 1, currentValue, timestamp, millisecondLifetimeOldVersions, readWriteLock.readLock(), HIGH_WATERMARK_VERSIONS, false) --> Line_11 $$ entry.getValue().setVersionsLow(versionsNew) [FD]

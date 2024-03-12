@@ -1,0 +1,7 @@
+Line_2 $$ private ExtendedOsStats osStatsProbe() --> Line_3 $$ OsStats osStats = OsProbe.getInstance().osStats() [CD]
+Line_2 $$ private ExtendedOsStats osStatsProbe() --> Line_4 $$ OsStats.Cpu cpuProbe = osStats.getCpu() [CD]
+Line_3 $$ OsStats osStats = OsProbe.getInstance().osStats() --> Line_4 $$ OsStats.Cpu cpuProbe = osStats.getCpu() [FD]
+Line_2 $$ private ExtendedOsStats osStatsProbe() --> Line_5 $$ ExtendedOsStats.Cpu cpu = new ExtendedOsStats.Cpu(cpuProbe.getPercent()) [CD]
+Line_4 $$ OsStats.Cpu cpuProbe = osStats.getCpu() --> Line_5 $$ ExtendedOsStats.Cpu cpu = new ExtendedOsStats.Cpu(cpuProbe.getPercent()) [FD]
+Line_2 $$ private ExtendedOsStats osStatsProbe() --> Line_6 $$ return new ExtendedOsStats(System.currentTimeMillis(), cpu, cpuProbe.getLoadAverage() == null ? NA_LOAD : cpuProbe.getLoadAverage(), SysInfo.getSystemUptime(), osStats) [CD]
+Line_4 $$ OsStats.Cpu cpuProbe = osStats.getCpu() --> Line_6 $$ return new ExtendedOsStats(System.currentTimeMillis(), cpu, cpuProbe.getLoadAverage() == null ? NA_LOAD : cpuProbe.getLoadAverage(), SysInfo.getSystemUptime(), osStats) [FD]

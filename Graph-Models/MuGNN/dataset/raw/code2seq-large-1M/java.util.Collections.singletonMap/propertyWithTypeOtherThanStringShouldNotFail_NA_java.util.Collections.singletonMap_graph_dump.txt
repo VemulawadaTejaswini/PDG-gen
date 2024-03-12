@@ -1,0 +1,8 @@
+Line_2 $$ public void propertyWithTypeOtherThanStringShouldNotFail() --> Line_3 $$ ConfigurableEnvironment environment = emptyEnvironment() [CD]
+Line_2 $$ public void propertyWithTypeOtherThanStringShouldNotFail() --> Line_4 $$ environment.getPropertySources().addFirst(singleKeyPropertySource("test", "foo", Collections.singletonMap("bar", "baz"))) [CD]
+Line_3 $$ ConfigurableEnvironment environment = emptyEnvironment() --> Line_4 $$ environment.getPropertySources().addFirst(singleKeyPropertySource("test", "foo", Collections.singletonMap("bar", "baz"))) [FD]
+Line_2 $$ public void propertyWithTypeOtherThanStringShouldNotFail() --> Line_5 $$ EnvironmentDescriptor descriptor = new EnvironmentEndpoint(environment).environment(null) [CD]
+Line_2 $$ public void propertyWithTypeOtherThanStringShouldNotFail() --> Line_6 $$ Map<String, String> foo = (Map<String, String>) propertySources(descriptor).get("test").getProperties().get("foo").getValue() [CD]
+Line_5 $$ EnvironmentDescriptor descriptor = new EnvironmentEndpoint(environment).environment(null) --> Line_6 $$ Map<String, String> foo = (Map<String, String>) propertySources(descriptor).get("test").getProperties().get("foo").getValue() [FD]
+Line_2 $$ public void propertyWithTypeOtherThanStringShouldNotFail() --> Line_7 $$ assertThat(foo.get("bar")).isEqualTo("baz") [CD]
+Line_6 $$ Map<String, String> foo = (Map<String, String>) propertySources(descriptor).get("test").getProperties().get("foo").getValue() --> Line_7 $$ assertThat(foo.get("bar")).isEqualTo("baz") [FD]

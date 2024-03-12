@@ -1,0 +1,7 @@
+Line_2 $$ public static Collection<ArchivedJson> getArchivedJsons(Path file) throws IOException --> Line_3 $$ try (FSDataInputStream input = file.getFileSystem().open(file); [FD]
+Line_3 $$ try (FSDataInputStream input = file.getFileSystem().open(file); --> Line_5 $$ IOUtils.copyBytes(input, output) [FD]
+Line_3 $$ try (FSDataInputStream input = file.getFileSystem().open(file); --> Line_6 $$ JsonNode archive = mapper.readTree(output.toByteArray()) [FD]
+Line_6 $$ JsonNode archive = mapper.readTree(output.toByteArray()) --> Line_8 $$ for (JsonNode archivePart : archive.get(ARCHIVE)) [FD]
+Line_8 $$ for (JsonNode archivePart : archive.get(ARCHIVE)) --> Line_9 $$ String path = archivePart.get(PATH).asText() [FD]
+Line_8 $$ for (JsonNode archivePart : archive.get(ARCHIVE)) --> Line_10 $$ String json = archivePart.get(JSON).asText() [FD]
+Line_7 $$ Collection<ArchivedJson> archives = new ArrayList() --> Line_11 $$ archives.add(new ArchivedJson(path, json)) [FD]

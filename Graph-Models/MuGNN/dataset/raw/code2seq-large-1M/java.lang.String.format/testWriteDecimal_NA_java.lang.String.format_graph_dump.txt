@@ -1,0 +1,6 @@
+Line_2 $$ public void testWriteDecimal() throws Exception --> Line_3 $$ String outputTable = "decimal_test" [CD]
+Line_3 $$ String outputTable = "decimal_test" --> Line_5 $$ String ctas = String.format("use dfs_test; " + "create table %s as select " + "cast('1.2' as decimal(38, 2)) col1, cast('1.2' as decimal(28, 2)) col2 " + "from cp.`employee.json` limit 1", outputTable) [FD]
+Line_5 $$ String ctas = String.format("use dfs_test; " + "create table %s as select " + "cast('1.2' as decimal(38, 2)) col1, cast('1.2' as decimal(28, 2)) col2 " + "from cp.`employee.json` limit 1", outputTable) --> Line_6 $$ test(ctas) [FD]
+Line_7 $$ BigDecimal result = new BigDecimal("1.20") --> Line_8 $$ testBuilder().unOrdered().sqlQuery(String.format("select col1, col2 from %s ", outputTable)).baselineColumns("col1", "col2").baselineValues(result, result).go() [FD]
+Line_3 $$ String outputTable = "decimal_test" --> Line_8 $$ testBuilder().unOrdered().sqlQuery(String.format("select col1, col2 from %s ", outputTable)).baselineColumns("col1", "col2").baselineValues(result, result).go() [FD]
+Line_3 $$ String outputTable = "decimal_test" --> Line_10 $$ deleteTableIfExists(outputTable) [FD]

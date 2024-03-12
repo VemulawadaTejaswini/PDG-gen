@@ -1,0 +1,8 @@
+Line_5 $$ ObjectOutputStream oos = new ObjectOutputStream(baos) --> Line_6 $$ oos.writeObject(ex) [FD]
+Line_2 $$ public static Response serializeError(Exception ex) --> Line_6 $$ oos.writeObject(ex) [FD]
+Line_5 $$ ObjectOutputStream oos = new ObjectOutputStream(baos) --> Line_7 $$ oos.flush() [FD]
+Line_4 $$ ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_8 $$ String info = new String(Base64.encodeBytesToBytes(baos.toByteArray()), MotanConstants.DEFAULT_CHARACTER) [FD]
+Line_8 $$ String info = new String(Base64.encodeBytesToBytes(baos.toByteArray()), MotanConstants.DEFAULT_CHARACTER) --> Line_9 $$ return Response.status(Status.EXPECTATION_FAILED).header(EXCEPTION_HEADER, ex.getClass()).entity(info).build() [FD]
+Line_2 $$ public static Response serializeError(Exception ex) --> Line_9 $$ return Response.status(Status.EXPECTATION_FAILED).header(EXCEPTION_HEADER, ex.getClass()).entity(info).build() [FD]
+Line_2 $$ public static Response serializeError(Exception ex) --> Line_11 $$ LoggerUtil.error("serialize " + ex.getClass() + " error", e) [FD]
+Line_2 $$ public static Response serializeError(Exception ex) --> Line_12 $$ return Response.status(Status.INTERNAL_SERVER_ERROR).entity("serialization " + ex.getClass() + " error").build() [FD]

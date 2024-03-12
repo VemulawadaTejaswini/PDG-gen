@@ -1,0 +1,5 @@
+Line_2 $$ public Method getReadMethod() --> Line_3 $$ if (readMethod != null) [CD]
+Line_3 $$ if (readMethod != null) --> Line_4 $$ return readMethod [CD]
+Line_6 $$ if (readMethod != null) --> Line_7 $$ return readMethod [CD]
+Line_14 $$ if (readMethod.getParameterTypes().length != 0) --> Line_15 $$ return null [CD]
+Line_2 $$ public Method getReadMethod() --> Line_18 $$ return readMethod [CD]

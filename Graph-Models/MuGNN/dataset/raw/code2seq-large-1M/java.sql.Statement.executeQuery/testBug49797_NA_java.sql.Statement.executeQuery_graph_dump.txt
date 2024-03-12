@@ -1,0 +1,7 @@
+Line_2 $$ public void testBug49797() throws Exception --> Line_3 $$ createTable("testBug49797", "(`Id` int(2) not null auto_increment, " + "`abc` char(50) , " + "PRIMARY KEY (`Id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8") [CD]
+Line_2 $$ public void testBug49797() throws Exception --> Line_4 $$ this.stmt.executeUpdate("INSERT into testBug49797 VALUES (1,'1'),(2,'2'),(3,'3')") [CD]
+Line_2 $$ public void testBug49797() throws Exception --> Line_5 $$ assertEquals(3, getRowCount("testBug49797")) [CD]
+Line_2 $$ public void testBug49797() throws Exception --> Line_6 $$ Statement updStmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) [CD]
+Line_6 $$ Statement updStmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) --> Line_8 $$ this.rs = updStmt.executeQuery("SELECT * FROM testBug49797") [FD]
+Line_9 $$ while (rs.next()) --> Line_10 $$ rs.deleteRow() [CD]
+Line_6 $$ Statement updStmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE) --> Line_14 $$ updStmt.close() [FD]

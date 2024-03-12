@@ -1,0 +1,6 @@
+Line_2 $$ protected boolean commitStats(PartitionKey key, long startOffset, long endOffset, String folder, String destFileName, BaseStats stats) --> Line_4 $$ long timeSlot = DateUtil.parseDate(folder, folderResolver.getFolderPathFormat()).getTime() [FD]
+Line_4 $$ long timeSlot = DateUtil.parseDate(folder, folderResolver.getFolderPathFormat()).getTime() --> Line_5 $$ String path = getStatsPath(timeSlot) [FD]
+Line_5 $$ String path = getStatsPath(timeSlot) --> Line_6 $$ path += "/" + destFileName + STATS_SUFFIX [FD]
+Line_5 $$ String path = getStatsPath(timeSlot) --> Line_7 $$ zkConnector.writeJSON(path, genFileStats(key, startOffset, endOffset, (EventTsBasedStats) stats)) [FD]
+Line_6 $$ path += "/" + destFileName + STATS_SUFFIX --> Line_7 $$ zkConnector.writeJSON(path, genFileStats(key, startOffset, endOffset, (EventTsBasedStats) stats)) [FD]
+Line_2 $$ protected boolean commitStats(PartitionKey key, long startOffset, long endOffset, String folder, String destFileName, BaseStats stats) --> Line_7 $$ zkConnector.writeJSON(path, genFileStats(key, startOffset, endOffset, (EventTsBasedStats) stats)) [FD]

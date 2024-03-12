@@ -1,0 +1,6 @@
+Line_2 $$ public void testFailedDelete() throws Exception --> Line_3 $$ makeJarDirReadOnly() [CD]
+Line_2 $$ public void testFailedDelete() throws Exception --> Line_4 $$ final HandlerRequest<EmptyRequestBody, JarDeleteMessageParameters> request = createRequest(TEST_JAR_NAME) [CD]
+Line_4 $$ final HandlerRequest<EmptyRequestBody, JarDeleteMessageParameters> request = createRequest(TEST_JAR_NAME) --> Line_6 $$ jarDeleteHandler.handleRequest(request, restfulGateway).get() [FD]
+Line_8 $$ final Throwable throwable = ExceptionUtils.stripCompletionException(e.getCause()) --> Line_9 $$ assertThat(throwable, instanceOf(RestHandlerException.class)) [FD]
+Line_10 $$ final RestHandlerException restHandlerException = (RestHandlerException) throwable --> Line_11 $$ assertThat(restHandlerException.getMessage(), containsString("Failed to delete jar")) [FD]
+Line_10 $$ final RestHandlerException restHandlerException = (RestHandlerException) throwable --> Line_12 $$ assertThat(restHandlerException.getHttpResponseStatus(), equalTo(HttpResponseStatus.INTERNAL_SERVER_ERROR)) [FD]

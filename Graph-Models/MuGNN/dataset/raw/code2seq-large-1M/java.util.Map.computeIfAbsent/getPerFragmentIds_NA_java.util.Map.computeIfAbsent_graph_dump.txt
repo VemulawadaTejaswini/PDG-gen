@@ -1,0 +1,7 @@
+Line_2 $$ public Map<String, Set<Serializable>> getPerFragmentIds(Map<Serializable, IdWithTypes> idToTypes) --> Line_3 $$ Map<String, Set<Serializable>> allFragmentIds = new HashMap() [CD]
+Line_2 $$ public Map<String, Set<Serializable>> getPerFragmentIds(Map<Serializable, IdWithTypes> idToTypes) --> Line_4 $$ for (Entry<Serializable, IdWithTypes> e : idToTypes.entrySet()) [FD]
+Line_6 $$ IdWithTypes typeInfo = e.getValue() --> Line_7 $$ for (String fragmentName : getTypeFragments(typeInfo)) [FD]
+Line_5 $$ Serializable id = e.getKey() --> Line_8 $$ allFragmentIds.computeIfAbsent(fragmentName,  k -> new HashSet()).add(id) [FD]
+Line_3 $$ Map<String, Set<Serializable>> allFragmentIds = new HashMap() --> Line_8 $$ allFragmentIds.computeIfAbsent(fragmentName,  k -> new HashSet()).add(id) [FD]
+Line_7 $$ for (String fragmentName : getTypeFragments(typeInfo)) --> Line_8 $$ allFragmentIds.computeIfAbsent(fragmentName,  k -> new HashSet()).add(id) [FD]
+Line_2 $$ public Map<String, Set<Serializable>> getPerFragmentIds(Map<Serializable, IdWithTypes> idToTypes) --> Line_11 $$ return allFragmentIds [CD]

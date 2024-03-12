@@ -1,0 +1,8 @@
+Line_6 $$ ClassLoader ldr = getExternalClassLoader() --> Line_7 $$ Class<?> epCls = ldr.loadClass(ENTRY_PROCESSOR_CLASS_NAME) [FD]
+Line_7 $$ Class<?> epCls = ldr.loadClass(ENTRY_PROCESSOR_CLASS_NAME) --> Line_8 $$ Constructor<?> epCtr = epCls.getConstructor() [FD]
+Line_8 $$ Constructor<?> epCtr = epCls.getConstructor() --> Line_9 $$ CacheEntryProcessor ep = (CacheEntryProcessor) epCtr.newInstance() [FD]
+Line_5 $$ Ignite client = startGrid("client") --> Line_10 $$ IgniteCache<Integer, String> cache = client.createCache(CACHE_NAME) [FD]
+Line_5 $$ Ignite client = startGrid("client") --> Line_11 $$ try (IgniteDataStreamer<Integer, String> streamer = client.dataStreamer(CACHE_NAME)) [FD]
+Line_11 $$ try (IgniteDataStreamer<Integer, String> streamer = client.dataStreamer(CACHE_NAME)) --> Line_12 $$ streamer.receiver(StreamTransformer.from(ep)) [FD]
+Line_11 $$ try (IgniteDataStreamer<Integer, String> streamer = client.dataStreamer(CACHE_NAME)) --> Line_13 $$ streamer.addData(1, "1") [FD]
+Line_10 $$ IgniteCache<Integer, String> cache = client.createCache(CACHE_NAME) --> Line_15 $$ assertEquals("1", cache.get(1)) [FD]

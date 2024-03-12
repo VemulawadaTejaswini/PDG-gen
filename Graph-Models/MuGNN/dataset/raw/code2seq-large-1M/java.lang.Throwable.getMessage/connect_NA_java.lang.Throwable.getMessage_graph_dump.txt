@@ -1,0 +1,8 @@
+Line_2 $$ public void connect(String host, int port, String remoteId, boolean discoveryMode) --> Line_4 $$ ChannelFuture f = connectAsync(host, port, remoteId, discoveryMode) [FD]
+Line_4 $$ ChannelFuture f = connectAsync(host, port, remoteId, discoveryMode) --> Line_5 $$ f.sync() [FD]
+Line_4 $$ ChannelFuture f = connectAsync(host, port, remoteId, discoveryMode) --> Line_6 $$ f.channel().closeFuture().sync() [FD]
+Line_9 $$ if (discoveryMode) --> Line_10 $$ logger.trace("Exception:", e) [CD]
+Line_9 $$ if (discoveryMode) --> Line_12 $$ if (e instanceof IOException) [CD]
+Line_12 $$ if (e instanceof IOException) --> Line_13 $$ logger.info("PeerClient: Can't connect to " + host + ":" + port + " (" + e.getMessage() + ")") [CD]
+Line_12 $$ if (e instanceof IOException) --> Line_14 $$ logger.debug("PeerClient.connect(" + host + ":" + port + ") exception:", e) [CD]
+Line_12 $$ if (e instanceof IOException) --> Line_16 $$ logger.error("Exception:", e) [CD]

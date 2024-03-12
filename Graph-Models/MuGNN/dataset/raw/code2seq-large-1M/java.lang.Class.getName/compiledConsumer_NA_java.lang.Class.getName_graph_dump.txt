@@ -1,0 +1,7 @@
+Line_2 $$ public void compiledConsumer() throws Exception --> Line_3 $$ create(EmptyConfiguration.class, "spring.cloud.function.compile.foos.lambda=" + getClass().getName() + "::set", "spring.cloud.function.compile.foos.type=consumer", "spring.cloud.function.compile.foos.inputType=String") [CD]
+Line_2 $$ public void compiledConsumer() throws Exception --> Line_4 $$ assertThat(catalog.<Function<?, ?>>lookup(Function.class, "foos")).isInstanceOf(Function.class) [CD]
+Line_2 $$ public void compiledConsumer() throws Exception --> Line_5 $$ assertThat(inspector.getInputWrapper(catalog.lookup(Function.class, "foos"))).isEqualTo(String.class) [CD]
+Line_2 $$ public void compiledConsumer() throws Exception --> Line_6 $$ Consumer<String> consumer = (Consumer<String>) context.getBean("foos") [CD]
+Line_2 $$ public void compiledConsumer() throws Exception --> Line_7 $$ consumer.accept("hello") [CD]
+Line_6 $$ Consumer<String> consumer = (Consumer<String>) context.getBean("foos") --> Line_7 $$ consumer.accept("hello") [FD]
+Line_2 $$ public void compiledConsumer() throws Exception --> Line_8 $$ assertThat(ContextFunctionCatalogAutoConfigurationTests.value).isEqualTo("hello") [CD]

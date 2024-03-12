@@ -1,0 +1,7 @@
+Line_2 $$ public boolean isExpired() --> Line_3 $$ if (getTokenExpirationAdvance() < 0) [CD]
+Line_3 $$ if (getTokenExpirationAdvance() < 0) --> Line_4 $$ return false [CD]
+Line_7 $$ JWT jwt = this.getIdToken() --> Line_8 $$ JWTClaimsSet claims = jwt.getJWTClaimsSet() [FD]
+Line_8 $$ JWTClaimsSet claims = jwt.getJWTClaimsSet() --> Line_9 $$ Date expiresOn = claims.getExpirationTime() [FD]
+Line_10 $$ Calendar now = Calendar.getInstance() --> Line_11 $$ now.add(Calendar.SECOND, getTokenExpirationAdvance()) [FD]
+Line_9 $$ Date expiresOn = claims.getExpirationTime() --> Line_12 $$ return expiresOn.before(now.getTime()) [FD]
+Line_10 $$ Calendar now = Calendar.getInstance() --> Line_12 $$ return expiresOn.before(now.getTime()) [FD]

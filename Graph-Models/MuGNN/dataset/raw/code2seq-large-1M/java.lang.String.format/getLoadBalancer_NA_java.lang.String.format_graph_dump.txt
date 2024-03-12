@@ -1,0 +1,6 @@
+Line_2 $$ public LoadBalancer getLoadBalancer(@PathParam("elbName") String elbName) --> Line_3 $$ if (config.isPresent()) [CD]
+Line_2 $$ public LoadBalancer getLoadBalancer(@PathParam("elbName") String elbName) --> Line_5 $$ Optional<LoadBalancer> maybeLoadBalancer = applicationLoadBalancer.getLoadBalancer(elbName) [FD]
+Line_5 $$ Optional<LoadBalancer> maybeLoadBalancer = applicationLoadBalancer.getLoadBalancer(elbName) --> Line_6 $$ if (maybeLoadBalancer.isPresent()) [FD]
+Line_6 $$ if (maybeLoadBalancer.isPresent()) --> Line_7 $$ return maybeLoadBalancer.get() [CD]
+Line_5 $$ Optional<LoadBalancer> maybeLoadBalancer = applicationLoadBalancer.getLoadBalancer(elbName) --> Line_7 $$ return maybeLoadBalancer.get() [FD]
+Line_2 $$ public LoadBalancer getLoadBalancer(@PathParam("elbName") String elbName) --> Line_9 $$ throw new WebApplicationException(String.format("ELB %s not found", elbName), Status.NOT_FOUND) [FD]

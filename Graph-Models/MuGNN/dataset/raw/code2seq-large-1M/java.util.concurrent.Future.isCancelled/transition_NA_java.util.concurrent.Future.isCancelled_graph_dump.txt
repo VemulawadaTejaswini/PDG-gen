@@ -1,0 +1,6 @@
+Line_2 $$ public JobStateInternal transition(JobImpl job, JobEvent event) --> Line_3 $$ if (!job.failWaitTriggerScheduledFuture.isCancelled()) [CD]
+Line_4 $$ for (Task task : job.tasks.values()) --> Line_5 $$ if (!task.isFinished()) [FD]
+Line_5 $$ if (!task.isFinished()) --> Line_6 $$ return JobStateInternal.FAIL_WAIT [CD]
+Line_2 $$ public JobStateInternal transition(JobImpl job, JobEvent event) --> Line_10 $$ job.failWaitTriggerScheduledFuture.cancel(false) [CD]
+Line_2 $$ public JobStateInternal transition(JobImpl job, JobEvent event) --> Line_11 $$ job.eventHandler.handle(new CommitterJobAbortEvent(job.jobId, job.jobContext, org.apache.hadoop.mapreduce.JobStatus.State.FAILED)) [CD]
+Line_2 $$ public JobStateInternal transition(JobImpl job, JobEvent event) --> Line_12 $$ return JobStateInternal.FAIL_ABORT [CD]

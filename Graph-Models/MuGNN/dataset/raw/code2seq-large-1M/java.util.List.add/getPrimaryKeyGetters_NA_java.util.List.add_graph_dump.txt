@@ -1,0 +1,6 @@
+Line_2 $$ <T> Collection<Method> getPrimaryKeyGetters(Class<T> clazz) --> Line_3 $$ List<Method> keyGetters = new LinkedList<Method>() [CD]
+Line_2 $$ <T> Collection<Method> getPrimaryKeyGetters(Class<T> clazz) --> Line_4 $$ for (Method getter : getRelevantGetters(clazz)) [FD]
+Line_4 $$ for (Method getter : getRelevantGetters(clazz)) --> Line_5 $$ if (ReflectionUtils.getterOrFieldHasAnnotation(getter, DynamoDBHashKey.class) || ReflectionUtils.getterOrFieldHasAnnotation(getter, DynamoDBRangeKey.class)) [FD]
+Line_3 $$ List<Method> keyGetters = new LinkedList<Method>() --> Line_6 $$ keyGetters.add(getter) [FD]
+Line_4 $$ for (Method getter : getRelevantGetters(clazz)) --> Line_6 $$ keyGetters.add(getter) [FD]
+Line_2 $$ <T> Collection<Method> getPrimaryKeyGetters(Class<T> clazz) --> Line_9 $$ return keyGetters [CD]

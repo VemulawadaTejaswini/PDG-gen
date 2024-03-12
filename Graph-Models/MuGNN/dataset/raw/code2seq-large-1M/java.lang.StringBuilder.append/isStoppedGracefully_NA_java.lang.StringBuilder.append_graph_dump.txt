@@ -1,0 +1,8 @@
+Line_2 $$ public Boolean isStoppedGracefully(String containerName) throws FatalDockerJSONException --> Line_4 $$ final ContainerInfo info = dockerClient.inspectContainer(containerName) [FD]
+Line_4 $$ final ContainerInfo info = dockerClient.inspectContainer(containerName) --> Line_5 $$ boolean exited = info.state().status().equalsIgnoreCase("Exited") [FD]
+Line_4 $$ final ContainerInfo info = dockerClient.inspectContainer(containerName) --> Line_6 $$ if (info.state().exitCode() != 0) [FD]
+Line_6 $$ if (info.state().exitCode() != 0) --> Line_7 $$ logger.warn("The container may be brutally stopped. Its exit code is : " + info.state().exitCode()) [CD]
+Line_4 $$ final ContainerInfo info = dockerClient.inspectContainer(containerName) --> Line_7 $$ logger.warn("The container may be brutally stopped. Its exit code is : " + info.state().exitCode()) [FD]
+Line_2 $$ public Boolean isStoppedGracefully(String containerName) throws FatalDockerJSONException --> Line_12 $$ msgError.append("containerName=").append(containerName) [FD]
+Line_11 $$ StringBuilder msgError = new StringBuilder() --> Line_12 $$ msgError.append("containerName=").append(containerName) [FD]
+Line_11 $$ StringBuilder msgError = new StringBuilder() --> Line_13 $$ throw new FatalDockerJSONException(msgError.toString(), e) [FD]

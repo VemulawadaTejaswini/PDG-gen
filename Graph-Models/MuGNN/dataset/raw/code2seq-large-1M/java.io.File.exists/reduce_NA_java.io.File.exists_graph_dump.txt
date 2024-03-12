@@ -1,0 +1,8 @@
+Line_2 $$ public void reduce(Text key, Iterable<IntWritable> values, Context ctx) throws IOException, InterruptedException --> Line_3 $$ while (reduceLockFile.exists()) Thread.sleep(50) [CD]
+Line_2 $$ public void reduce(Text key, Iterable<IntWritable> values, Context ctx) throws IOException, InterruptedException --> Line_4 $$ int wordCnt = 0 [CD]
+Line_4 $$ int wordCnt = 0 --> Line_5 $$ for (IntWritable value : values) wordCnt += value.get() [FD]
+Line_2 $$ public void reduce(Text key, Iterable<IntWritable> values, Context ctx) throws IOException, InterruptedException --> Line_6 $$ totalWordCnt.set(wordCnt) [CD]
+Line_4 $$ int wordCnt = 0 --> Line_6 $$ totalWordCnt.set(wordCnt) [FD]
+Line_5 $$ for (IntWritable value : values) wordCnt += value.get() --> Line_6 $$ totalWordCnt.set(wordCnt) [FD]
+Line_2 $$ public void reduce(Text key, Iterable<IntWritable> values, Context ctx) throws IOException, InterruptedException --> Line_7 $$ ctx.write(key, totalWordCnt) [CD]
+Line_2 $$ public void reduce(Text key, Iterable<IntWritable> values, Context ctx) throws IOException, InterruptedException --> Line_7 $$ ctx.write(key, totalWordCnt) [FD]

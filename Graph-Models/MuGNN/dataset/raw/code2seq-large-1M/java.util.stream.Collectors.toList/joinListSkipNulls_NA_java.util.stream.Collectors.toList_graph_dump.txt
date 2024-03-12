@@ -1,0 +1,8 @@
+Line_2 $$ public static String joinListSkipNulls(@ElParam("list") List<Field> list, @ElParam("separator") String separator) --> Line_3 $$ if (list == null) [CD]
+Line_2 $$ public static String joinListSkipNulls(@ElParam("list") List<Field> list, @ElParam("separator") String separator) --> Line_3 $$ if (list == null) [FD]
+Line_3 $$ if (list == null) --> Line_4 $$ return "" [CD]
+Line_2 $$ public static String joinListSkipNulls(@ElParam("list") List<Field> list, @ElParam("separator") String separator) --> Line_6 $$ List<String> listOfStrings = list.stream().map( field -> field.getValue() == null ? null : field.getValueAsString()).collect(Collectors.toList()) [CD]
+Line_2 $$ public static String joinListSkipNulls(@ElParam("list") List<Field> list, @ElParam("separator") String separator) --> Line_6 $$ List<String> listOfStrings = list.stream().map( field -> field.getValue() == null ? null : field.getValueAsString()).collect(Collectors.toList()) [FD]
+Line_2 $$ public static String joinListSkipNulls(@ElParam("list") List<Field> list, @ElParam("separator") String separator) --> Line_7 $$ return Joiner.on(separator).skipNulls().join(listOfStrings) [CD]
+Line_2 $$ public static String joinListSkipNulls(@ElParam("list") List<Field> list, @ElParam("separator") String separator) --> Line_7 $$ return Joiner.on(separator).skipNulls().join(listOfStrings) [FD]
+Line_6 $$ List<String> listOfStrings = list.stream().map( field -> field.getValue() == null ? null : field.getValueAsString()).collect(Collectors.toList()) --> Line_7 $$ return Joiner.on(separator).skipNulls().join(listOfStrings) [FD]

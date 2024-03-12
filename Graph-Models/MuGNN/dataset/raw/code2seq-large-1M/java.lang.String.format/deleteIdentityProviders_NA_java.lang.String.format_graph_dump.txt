@@ -1,0 +1,8 @@
+Line_3 $$ for (String origin : getOriginsToDelete()) --> Line_4 $$ if (!UAA.equals(origin) && !LDAP.equals(origin)) [FD]
+Line_3 $$ for (String origin : getOriginsToDelete()) --> Line_7 $$ IdentityProvider provider = provisioning.retrieveByOrigin(origin, zoneId) [FD]
+Line_2 $$ private void deleteIdentityProviders(String zoneId) --> Line_7 $$ IdentityProvider provider = provisioning.retrieveByOrigin(origin, zoneId) [FD]
+Line_9 $$ if (this.publisher != null) --> Line_10 $$ publisher.publishEvent(event) [CD]
+Line_8 $$ EntityDeletedEvent<IdentityProvider> event = new EntityDeletedEvent(provider, SYSTEM_AUTHENTICATION) --> Line_10 $$ publisher.publishEvent(event) [FD]
+Line_9 $$ if (this.publisher != null) --> Line_11 $$ logger.debug("Identity provider deactivated:" + origin) [CD]
+Line_9 $$ if (this.publisher != null) --> Line_13 $$ logger.warn(String.format("Unable to delete identity provider with origin '%s', no application publisher", origin)) [CD]
+Line_3 $$ for (String origin : getOriginsToDelete()) --> Line_13 $$ logger.warn(String.format("Unable to delete identity provider with origin '%s', no application publisher", origin)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static Comment deleteComment(Long userId, Long commentId) --> Line_3 $$ Comment c = Comment.findFirst("id = ?", commentId) [FD]
+Line_2 $$ public static Comment deleteComment(Long userId, Long commentId) --> Line_3 $$ Comment c = Comment.findFirst("id = ?", commentId) [CD]
+Line_2 $$ public static Comment deleteComment(Long userId, Long commentId) --> Line_4 $$ Timestamp cTime = new Timestamp(new Date().getTime()) [CD]
+Line_2 $$ public static Comment deleteComment(Long userId, Long commentId) --> Line_5 $$ c.set("deleted", true, "modified", cTime, "modified_by_user_id", userId).saveIt() [FD]
+Line_2 $$ public static Comment deleteComment(Long userId, Long commentId) --> Line_5 $$ c.set("deleted", true, "modified", cTime, "modified_by_user_id", userId).saveIt() [CD]
+Line_3 $$ Comment c = Comment.findFirst("id = ?", commentId) --> Line_5 $$ c.set("deleted", true, "modified", cTime, "modified_by_user_id", userId).saveIt() [FD]
+Line_4 $$ Timestamp cTime = new Timestamp(new Date().getTime()) --> Line_5 $$ c.set("deleted", true, "modified", cTime, "modified_by_user_id", userId).saveIt() [FD]
+Line_2 $$ public static Comment deleteComment(Long userId, Long commentId) --> Line_6 $$ return c [CD]

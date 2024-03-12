@@ -1,0 +1,5 @@
+Line_3 $$ String canonicalName = getName() --> Line_6 $$ canonicalName = parent.getName() + "." + canonicalName [FD]
+Line_6 $$ canonicalName = parent.getName() + "." + canonicalName --> Line_10 $$ canonicalName = canonicalName.substring(0, canonicalName.lastIndexOf(".")) [FD]
+Line_3 $$ String canonicalName = getName() --> Line_10 $$ canonicalName = canonicalName.substring(0, canonicalName.lastIndexOf(".")) [FD]
+Line_7 $$ parent = parent.getParent() --> Line_5 $$ while (parent != null && !parent.getType().equals(JarEntryType.jarEntry)) [FD]
+Line_7 $$ parent = parent.getParent() --> Line_6 $$ canonicalName = parent.getName() + "." + canonicalName [FD]

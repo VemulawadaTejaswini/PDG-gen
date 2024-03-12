@@ -1,0 +1,7 @@
+Line_2 $$ private Histogram<Integer> getTransactionLatencies(String txnName, boolean dtxn) --> Line_3 $$ Histogram<Integer> latencies = new ObjectHistogram<Integer>() [CD]
+Line_4 $$ for (Map<String, List<Result>> clientResults : data.values()) --> Line_5 $$ if (clientResults.containsKey(txnName) == false) [FD]
+Line_2 $$ private Histogram<Integer> getTransactionLatencies(String txnName, boolean dtxn) --> Line_5 $$ if (clientResults.containsKey(txnName) == false) [FD]
+Line_4 $$ for (Map<String, List<Result>> clientResults : data.values()) --> Line_7 $$ for (Result r : clientResults.get(txnName)) [FD]
+Line_2 $$ private Histogram<Integer> getTransactionLatencies(String txnName, boolean dtxn) --> Line_7 $$ for (Result r : clientResults.get(txnName)) [FD]
+Line_3 $$ Histogram<Integer> latencies = new ObjectHistogram<Integer>() --> Line_8 $$ latencies.put(dtxn ? r.dtxnLatencies : r.spLatencies) [FD]
+Line_2 $$ private Histogram<Integer> getTransactionLatencies(String txnName, boolean dtxn) --> Line_11 $$ return (latencies) [CD]

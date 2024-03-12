@@ -1,0 +1,7 @@
+Line_3 $$ try (JDBCRecordReader reader = getInitializedReader("SELECT * FROM Coffee")) --> Line_4 $$ RecordMetaDataJdbc rmd = new RecordMetaDataJdbc(new URI(conn.getMetaData().getURL()), "SELECT * FROM Coffee WHERE ProdNum = ?", Collections.singletonList("14-001"), reader.getClass()) [FD]
+Line_3 $$ try (JDBCRecordReader reader = getInitializedReader("SELECT * FROM Coffee")) --> Line_5 $$ Record res = reader.loadFromMetaData(rmd) [FD]
+Line_4 $$ RecordMetaDataJdbc rmd = new RecordMetaDataJdbc(new URI(conn.getMetaData().getURL()), "SELECT * FROM Coffee WHERE ProdNum = ?", Collections.singletonList("14-001"), reader.getClass()) --> Line_5 $$ Record res = reader.loadFromMetaData(rmd) [FD]
+Line_5 $$ Record res = reader.loadFromMetaData(rmd) --> Line_6 $$ assertNotNull(res) [FD]
+Line_5 $$ Record res = reader.loadFromMetaData(rmd) --> Line_7 $$ assertEquals(new Text("Bolivian Dark"), res.getRecord().get(0)) [FD]
+Line_5 $$ Record res = reader.loadFromMetaData(rmd) --> Line_8 $$ assertEquals(new Text("14-001"), res.getRecord().get(1)) [FD]
+Line_5 $$ Record res = reader.loadFromMetaData(rmd) --> Line_9 $$ assertEquals(new DoubleWritable(8.95), res.getRecord().get(2)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ void afterBeanDiscovery(@Observes AfterBeanDiscovery abd, BeanManager beanManager) throws Exception --> Line_8 $$ abd.addBean(new ConfigurableFractionBean(fraction, this.configurableManager)) [FD]
+Line_4 $$ Set<Type> preExistingFractionClasses = new HashSet() --> Line_12 $$ preExistingFractionClasses.add(fraction.getClass()) [FD]
+Line_6 $$ for (Fraction<?> fraction : explicitlyInstalledFractions) --> Line_12 $$ preExistingFractionClasses.add(fraction.getClass()) [FD]
+Line_2 $$ void afterBeanDiscovery(@Observes AfterBeanDiscovery abd, BeanManager beanManager) throws Exception --> Line_14 $$ Set<Bean<?>> availableFractionBeans = beanManager.getBeans(Fraction.class, AnyLiteral.INSTANCE) [FD]
+Line_4 $$ Set<Type> preExistingFractionClasses = new HashSet() --> Line_15 $$ preExistingFractionClasses.addAll(availableFractionBeans.stream().flatMap( e -> e.getTypes().stream()).collect(Collectors.toSet())) [FD]
+Line_4 $$ Set<Type> preExistingFractionClasses = new HashSet() --> Line_17 $$ Set<Class<? extends Fraction>> fractionClasses = uninstalledFractionClasses(preExistingFractionClasses) [FD]
+Line_17 $$ Set<Class<? extends Fraction>> fractionClasses = uninstalledFractionClasses(preExistingFractionClasses) --> Line_19 $$ fractionClasses.forEach(( cls) -> [FD]
+Line_2 $$ void afterBeanDiscovery(@Observes AfterBeanDiscovery abd, BeanManager beanManager) throws Exception --> Line_21 $$ abd.addBean(new ConfigurableFractionBean(cls, this.configurableManager)) [FD]

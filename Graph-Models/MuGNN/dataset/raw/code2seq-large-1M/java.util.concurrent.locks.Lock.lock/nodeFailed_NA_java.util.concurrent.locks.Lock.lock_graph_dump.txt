@@ -1,0 +1,8 @@
+Line_2 $$ public void nodeFailed(UUID nodeId) --> Line_3 $$ lock.writeLock().lock() [CD]
+Line_2 $$ public void nodeFailed(UUID nodeId) --> Line_5 $$ boolean nodeDeleted = nodes.containsKey(nodeId) [FD]
+Line_7 $$ if (nodeDeleted) --> Line_8 $$ Map<UUID, GridClientNodeImpl> updatedTop = new HashMap(nodes) [CD]
+Line_7 $$ if (nodeDeleted) --> Line_9 $$ deleted = updatedTop.remove(nodeId) [CD]
+Line_6 $$ GridClientNode deleted = null --> Line_9 $$ deleted = updatedTop.remove(nodeId) [FD]
+Line_8 $$ Map<UUID, GridClientNodeImpl> updatedTop = new HashMap(nodes) --> Line_9 $$ deleted = updatedTop.remove(nodeId) [FD]
+Line_2 $$ public void nodeFailed(UUID nodeId) --> Line_9 $$ deleted = updatedTop.remove(nodeId) [FD]
+Line_12 $$ if (nodeDeleted) --> Line_13 $$ notifyEvents(Collections.singletonList(new TopologyEvent(false, deleted))) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void writeLogStreamLinesToDisk(SlaveStream slaveStream, List<String> newLines) --> Line_3 $$ Path outputLogFilePath = getStreamLogFilePath(slaveStream.buildSlaveRunId.id, slaveStream.streamType.toString()) [CD]
+Line_3 $$ Path outputLogFilePath = getStreamLogFilePath(slaveStream.buildSlaveRunId.id, slaveStream.streamType.toString()) --> Line_4 $$ try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputLogFilePath.toFile(), true))) [FD]
+Line_4 $$ try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputLogFilePath.toFile(), true))) --> Line_6 $$ outputStream.write(logLine.getBytes(Charsets.UTF_8)) [FD]
+Line_5 $$ for (String logLine : newLines) --> Line_6 $$ outputStream.write(logLine.getBytes(Charsets.UTF_8)) [FD]
+Line_4 $$ try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputLogFilePath.toFile(), true))) --> Line_8 $$ outputStream.flush() [FD]
+Line_3 $$ Path outputLogFilePath = getStreamLogFilePath(slaveStream.buildSlaveRunId.id, slaveStream.streamType.toString()) --> Line_10 $$ LOG.debug("Failed to write to %s", outputLogFilePath.toAbsolutePath(), e) [FD]

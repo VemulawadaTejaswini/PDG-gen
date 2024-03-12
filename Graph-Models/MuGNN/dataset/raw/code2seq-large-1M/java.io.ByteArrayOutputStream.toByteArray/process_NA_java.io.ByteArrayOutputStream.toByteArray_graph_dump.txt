@@ -1,0 +1,7 @@
+Line_4 $$ ByteArrayOutputStream outputStream = new ByteArrayOutputStream() --> Line_5 $$ DataGenerator generator = getContext().getService(DataFormatGeneratorService.class).getGenerator(outputStream) [FD]
+Line_2 $$ protected void process(Record record, SingleLaneBatchMaker batchMaker) throws StageException --> Line_6 $$ generator.write(record) [FD]
+Line_4 $$ ByteArrayOutputStream outputStream = new ByteArrayOutputStream() --> Line_8 $$ byte[] output = outputStream.toByteArray() [FD]
+Line_2 $$ protected void process(Record record, SingleLaneBatchMaker batchMaker) throws StageException --> Line_11 $$ record.set(config.targetField, Field.create(Field.Type.STRING, new String(output))) [FD]
+Line_2 $$ protected void process(Record record, SingleLaneBatchMaker batchMaker) throws StageException --> Line_14 $$ record.set(config.targetField, Field.create(Field.Type.BYTE_ARRAY, output)) [FD]
+Line_8 $$ byte[] output = outputStream.toByteArray() --> Line_14 $$ record.set(config.targetField, Field.create(Field.Type.BYTE_ARRAY, output)) [FD]
+Line_2 $$ protected void process(Record record, SingleLaneBatchMaker batchMaker) throws StageException --> Line_19 $$ batchMaker.addRecord(record) [FD]

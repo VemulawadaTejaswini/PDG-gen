@@ -1,0 +1,8 @@
+Line_2 $$ public boolean waitForMessages(Queue queue, int count, long timeout) throws Exception --> Line_3 $$ long timeToWait = System.currentTimeMillis() + timeout [CD]
+Line_2 $$ public boolean waitForMessages(Queue queue, int count, long timeout) throws Exception --> Line_4 $$ while (System.currentTimeMillis() < timeToWait) [CD]
+Line_3 $$ long timeToWait = System.currentTimeMillis() + timeout --> Line_4 $$ while (System.currentTimeMillis() < timeToWait) [FD]
+Line_4 $$ while (System.currentTimeMillis() < timeToWait) --> Line_5 $$ if (queue.getMessageCount() >= count) [CD]
+Line_2 $$ public boolean waitForMessages(Queue queue, int count, long timeout) throws Exception --> Line_5 $$ if (queue.getMessageCount() >= count) [FD]
+Line_5 $$ if (queue.getMessageCount() >= count) --> Line_6 $$ return true [CD]
+Line_4 $$ while (System.currentTimeMillis() < timeToWait) --> Line_8 $$ Thread.sleep(100) [CD]
+Line_2 $$ public boolean waitForMessages(Queue queue, int count, long timeout) throws Exception --> Line_10 $$ return false [CD]

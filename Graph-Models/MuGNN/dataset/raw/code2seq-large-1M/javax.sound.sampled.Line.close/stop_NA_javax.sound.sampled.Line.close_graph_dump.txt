@@ -1,0 +1,5 @@
+Line_4 $$ if (recorder == null) --> Line_5 $$ return new short[0] [CD]
+Line_7 $$ ByteArrayOutputStream out = recorder.stopRecording() --> Line_10 $$ byte[] audioBytes = out.toByteArray() [FD]
+Line_11 $$ ByteArrayInputStream in = new ByteArrayInputStream(audioBytes) --> Line_13 $$ short[] samples = RawReader.readAudioData(in, inFormat) [FD]
+Line_14 $$ if (downsample) --> Line_15 $$ samples = Downsampler.downsample(samples, (int) (inFormat.getSampleRate() / 1000.0f), (int) (outFormat.getSampleRate() / 1000.0f)) [CD]
+Line_13 $$ short[] samples = RawReader.readAudioData(in, inFormat) --> Line_15 $$ samples = Downsampler.downsample(samples, (int) (inFormat.getSampleRate() / 1000.0f), (int) (outFormat.getSampleRate() / 1000.0f)) [FD]

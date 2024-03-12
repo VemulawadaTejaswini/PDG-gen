@@ -1,0 +1,6 @@
+Line_2 $$ private void checkConnectionCount(final int count) --> Line_3 $$ Cache cache = (Cache) remoteObjects.get(CACHE_KEY) [CD]
+Line_2 $$ private void checkConnectionCount(final int count) --> Line_4 $$ final CacheServerImpl server = (CacheServerImpl) cache.getCacheServers().get(0) [CD]
+Line_3 $$ Cache cache = (Cache) remoteObjects.get(CACHE_KEY) --> Line_4 $$ final CacheServerImpl server = (CacheServerImpl) cache.getCacheServers().get(0) [FD]
+Line_2 $$ private void checkConnectionCount(final int count) --> Line_5 $$ Awaitility.await().pollDelay(100, TimeUnit.MILLISECONDS).pollInterval(100, TimeUnit.MILLISECONDS).timeout(300, TimeUnit.SECONDS).until(() -> [CD]
+Line_4 $$ final CacheServerImpl server = (CacheServerImpl) cache.getCacheServers().get(0) --> Line_6 $$ int sz = server.getAcceptor().getStats().getCurrentClientConnections() [FD]
+Line_7 $$ if (Math.abs(sz - count) <= ALLOWABLE_ERROR_IN_COUNT) --> Line_8 $$ return true [CD]

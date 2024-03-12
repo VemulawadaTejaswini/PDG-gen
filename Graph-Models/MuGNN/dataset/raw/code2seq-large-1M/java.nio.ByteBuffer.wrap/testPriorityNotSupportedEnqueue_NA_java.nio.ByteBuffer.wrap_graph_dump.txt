@@ -1,0 +1,8 @@
+Line_4 $$ PinLaterEnqueueRequest enqueueRequest = new PinLaterEnqueueRequest() --> Line_5 $$ enqueueRequest.setQueueName(getQueueName()) [FD]
+Line_6 $$ PinLaterJob job = new PinLaterJob(ByteBuffer.wrap("job_body".getBytes())) --> Line_7 $$ job.setPriority((byte) 4) [FD]
+Line_4 $$ PinLaterEnqueueRequest enqueueRequest = new PinLaterEnqueueRequest() --> Line_8 $$ enqueueRequest.addToJobs(job) [FD]
+Line_6 $$ PinLaterJob job = new PinLaterJob(ByteBuffer.wrap("job_body".getBytes())) --> Line_8 $$ enqueueRequest.addToJobs(job) [FD]
+Line_4 $$ PinLaterEnqueueRequest enqueueRequest = new PinLaterEnqueueRequest() --> Line_9 $$ getBackend().enqueueJobs(enqueueRequest).get() [FD]
+Line_11 $$ if (e instanceof PinLaterException) --> Line_12 $$ Assert.assertEquals(ErrorCode.PRIORITY_NOT_SUPPORTED, ((PinLaterException) e).getErrorCode()) [CD]
+Line_11 $$ if (e instanceof PinLaterException) --> Line_13 $$ return [CD]
+Line_2 $$ public void testPriorityNotSupportedEnqueue() --> Line_16 $$ Assert.fail() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static void injectLoggerIntoLoggerFactory(final Class loggingClass, final Logger logger) throws Exception --> Line_3 $$ final SimpleLoggerFactory simpleLoggerFactory = (SimpleLoggerFactory) StaticLoggerBinder.getSingleton().getLoggerFactory() [CD]
+Line_2 $$ private static void injectLoggerIntoLoggerFactory(final Class loggingClass, final Logger logger) throws Exception --> Line_4 $$ final Field loggerMapField = SimpleLoggerFactory.class.getDeclaredField("loggerMap") [CD]
+Line_2 $$ private static void injectLoggerIntoLoggerFactory(final Class loggingClass, final Logger logger) throws Exception --> Line_5 $$ loggerMapField.setAccessible(true) [CD]
+Line_2 $$ private static void injectLoggerIntoLoggerFactory(final Class loggingClass, final Logger logger) throws Exception --> Line_6 $$ final Map loggerMap = (Map) loggerMapField.get(simpleLoggerFactory) [CD]
+Line_3 $$ final SimpleLoggerFactory simpleLoggerFactory = (SimpleLoggerFactory) StaticLoggerBinder.getSingleton().getLoggerFactory() --> Line_6 $$ final Map loggerMap = (Map) loggerMapField.get(simpleLoggerFactory) [FD]
+Line_2 $$ private static void injectLoggerIntoLoggerFactory(final Class loggingClass, final Logger logger) throws Exception --> Line_7 $$ loggerMap.put(loggingClass.getName(), logger) [FD]
+Line_2 $$ private static void injectLoggerIntoLoggerFactory(final Class loggingClass, final Logger logger) throws Exception --> Line_7 $$ loggerMap.put(loggingClass.getName(), logger) [CD]
+Line_6 $$ final Map loggerMap = (Map) loggerMapField.get(simpleLoggerFactory) --> Line_7 $$ loggerMap.put(loggingClass.getName(), logger) [FD]

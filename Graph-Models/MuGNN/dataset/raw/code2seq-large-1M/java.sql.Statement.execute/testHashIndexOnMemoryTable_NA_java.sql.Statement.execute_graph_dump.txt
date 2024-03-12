@@ -1,0 +1,8 @@
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_3 $$ reconnect() [CD]
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_4 $$ stat.execute("drop table if exists hash_index_test") [CD]
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_5 $$ stat.execute("create memory table hash_index_test as " + "select x as id, x % 10 as data from (select *  from system_range(1, 100))") [CD]
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_6 $$ stat.execute("create hash index idx2 on hash_index_test(data)") [CD]
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_7 $$ assertEquals(10, getValue("select count(*) from hash_index_test where data = 1")) [CD]
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_8 $$ stat.execute("drop index idx2") [CD]
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_9 $$ stat.execute("create unique hash index idx2 on hash_index_test(id)") [CD]
+Line_2 $$ private void testHashIndexOnMemoryTable() throws SQLException --> Line_10 $$ assertEquals(1, getValue("select count(*) from hash_index_test where id = 1")) [CD]

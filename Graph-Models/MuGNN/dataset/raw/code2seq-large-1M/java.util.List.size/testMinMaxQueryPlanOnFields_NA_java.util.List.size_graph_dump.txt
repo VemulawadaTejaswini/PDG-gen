@@ -1,0 +1,6 @@
+Line_3 $$ try (Ignite client = startGrid("client")) --> Line_4 $$ IgniteCache<Integer, ValueObj> cache = client.cache(CACHE_NAME_2) [FD]
+Line_4 $$ IgniteCache<Integer, ValueObj> cache = client.cache(CACHE_NAME_2) --> Line_5 $$ QueryCursor<List<?>> cursor = cache.query(new SqlFieldsQuery("explain select min(idxVal), max(idxVal) from ValueObj")) [FD]
+Line_5 $$ QueryCursor<List<?>> cursor = cache.query(new SqlFieldsQuery("explain select min(idxVal), max(idxVal) from ValueObj")) --> Line_6 $$ List<List<?>> result = cursor.getAll() [FD]
+Line_6 $$ List<List<?>> result = cursor.getAll() --> Line_7 $$ assertEquals(2, result.size()) [FD]
+Line_6 $$ List<List<?>> result = cursor.getAll() --> Line_8 $$ assertTrue(((String) result.get(0).get(0)).toLowerCase().contains("idxval_idx")) [FD]
+Line_6 $$ List<List<?>> result = cursor.getAll() --> Line_9 $$ assertTrue(((String) result.get(0).get(0)).toLowerCase().contains("direct lookup")) [FD]

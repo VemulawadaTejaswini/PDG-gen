@@ -1,0 +1,8 @@
+Line_2 $$ public Set<String> filterOutNonParallelGatewaySenders(Set<String> senderIds) --> Line_3 $$ Set<String> allParallelSenders = cache.getAllGatewaySenders().parallelStream().filter(GatewaySender::<>isParallel).map(GatewaySender::<>getId).collect(toSet()) [CD]
+Line_2 $$ public Set<String> filterOutNonParallelGatewaySenders(Set<String> senderIds) --> Line_4 $$ Set<String> parallelSenders = new HashSet() [CD]
+Line_2 $$ public Set<String> filterOutNonParallelGatewaySenders(Set<String> senderIds) --> Line_5 $$ senderIds.parallelStream().forEach( gatewaySenderId -> [FD]
+Line_2 $$ public Set<String> filterOutNonParallelGatewaySenders(Set<String> senderIds) --> Line_5 $$ senderIds.parallelStream().forEach( gatewaySenderId -> [CD]
+Line_3 $$ Set<String> allParallelSenders = cache.getAllGatewaySenders().parallelStream().filter(GatewaySender::<>isParallel).map(GatewaySender::<>getId).collect(toSet()) --> Line_6 $$ if (allParallelSenders.contains(gatewaySenderId)) [FD]
+Line_6 $$ if (allParallelSenders.contains(gatewaySenderId)) --> Line_7 $$ parallelSenders.add(gatewaySenderId) [CD]
+Line_4 $$ Set<String> parallelSenders = new HashSet() --> Line_7 $$ parallelSenders.add(gatewaySenderId) [FD]
+Line_2 $$ public Set<String> filterOutNonParallelGatewaySenders(Set<String> senderIds) --> Line_10 $$ return parallelSenders [CD]

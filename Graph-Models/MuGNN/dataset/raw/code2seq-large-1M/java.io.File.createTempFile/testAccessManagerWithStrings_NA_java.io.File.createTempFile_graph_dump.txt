@@ -1,0 +1,7 @@
+Line_3 $$ try (final LoggerContext ctx = LoggerContext.getContext(false)) --> Line_4 $$ final Configuration config = ctx.getConfiguration() [FD]
+Line_5 $$ final File file = File.createTempFile("RollingFileAppenderAccessTest", ".tmp") --> Line_6 $$ file.deleteOnExit() [FD]
+Line_4 $$ final Configuration config = ctx.getConfiguration() --> Line_7 $$ final RollingFileAppender appender = RollingFileAppender.createAppender(file.getCanonicalPath(), "FilePattern", null, "Name", null, null, null, OnStartupTriggeringPolicy.createPolicy(1), null, null, null, null, null, null, config) [FD]
+Line_5 $$ final File file = File.createTempFile("RollingFileAppenderAccessTest", ".tmp") --> Line_7 $$ final RollingFileAppender appender = RollingFileAppender.createAppender(file.getCanonicalPath(), "FilePattern", null, "Name", null, null, null, OnStartupTriggeringPolicy.createPolicy(1), null, null, null, null, null, null, config) [FD]
+Line_7 $$ final RollingFileAppender appender = RollingFileAppender.createAppender(file.getCanonicalPath(), "FilePattern", null, "Name", null, null, null, OnStartupTriggeringPolicy.createPolicy(1), null, null, null, null, null, null, config) --> Line_8 $$ final RollingFileManager manager = appender.getManager() [FD]
+Line_8 $$ final RollingFileManager manager = appender.getManager() --> Line_9 $$ Assert.assertNotNull(manager.getRolloverStrategy()) [FD]
+Line_8 $$ final RollingFileManager manager = appender.getManager() --> Line_10 $$ Assert.assertNotNull(manager.getTriggeringPolicy()) [FD]

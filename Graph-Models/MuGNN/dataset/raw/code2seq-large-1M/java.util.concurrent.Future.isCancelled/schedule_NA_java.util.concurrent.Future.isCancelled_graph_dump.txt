@@ -1,0 +1,8 @@
+Line_2 $$ public <T> ScheduledFuture<?> schedule(Callable<T> callable, long delay, TimeUnit unit) --> Line_4 $$ if (future == null || future.isCancelled() || future.isDone() || future.getDelay(unit) > delay) [FD]
+Line_4 $$ if (future == null || future.isCancelled() || future.isDone() || future.getDelay(unit) > delay) --> Line_5 $$ if (future != null && !future.isDone()) [CD]
+Line_5 $$ if (future != null && !future.isDone()) --> Line_6 $$ future.cancel(false) [CD]
+Line_5 $$ if (future != null && !future.isDone()) --> Line_7 $$ listener.taskDropped() [CD]
+Line_4 $$ if (future == null || future.isCancelled() || future.isDone() || future.getDelay(unit) > delay) --> Line_9 $$ future = ex.schedule(new DelegatingCallable<T>(callable), delay, unit) [CD]
+Line_2 $$ public <T> ScheduledFuture<?> schedule(Callable<T> callable, long delay, TimeUnit unit) --> Line_9 $$ future = ex.schedule(new DelegatingCallable<T>(callable), delay, unit) [FD]
+Line_4 $$ if (future == null || future.isCancelled() || future.isDone() || future.getDelay(unit) > delay) --> Line_11 $$ listener.taskDropped() [CD]
+Line_2 $$ public <T> ScheduledFuture<?> schedule(Callable<T> callable, long delay, TimeUnit unit) --> Line_14 $$ return future [CD]

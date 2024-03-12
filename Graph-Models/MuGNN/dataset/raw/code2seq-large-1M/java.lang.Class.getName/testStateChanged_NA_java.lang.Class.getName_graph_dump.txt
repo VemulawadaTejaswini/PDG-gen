@@ -1,0 +1,6 @@
+Line_3 $$ for (FragmentState state : FragmentState.values()) --> Line_5 $$ statusReporter.stateChanged(state) [FD]
+Line_3 $$ for (FragmentState state : FragmentState.values()) --> Line_6 $$ if (state == FAILED) [FD]
+Line_6 $$ if (state == FAILED) --> Line_7 $$ fail("Expected exception: " + IllegalStateException.class.getName()) [CD]
+Line_3 $$ for (FragmentState state : FragmentState.values()) --> Line_10 $$ if (state != FAILED) [FD]
+Line_10 $$ if (state != FAILED) --> Line_11 $$ fail("Unexpected exception: " + e.toString()) [CD]
+Line_2 $$ public void testStateChanged() throws Exception --> Line_15 $$ verify(foremanTunnel, times(FragmentState.values().length - 2)).sendFragmentStatus(any(FragmentStatus.class)) [CD]

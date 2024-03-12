@@ -1,0 +1,5 @@
+Line_2 $$ private void cleanupOrphanedSessions() --> Line_3 $$ SessionManager sessionManager = SessionManager.getInstance() [CD]
+Line_4 $$ for (TransportSession<B> session : getSessions()) --> Line_5 $$ if ((session.getDetachTimestamp() == 0 || new Date().getTime() - session.getDetachTimestamp() > detachTimeout) && sessionManager.getSessionCount(session.getJID().getNode()) == 0) [FD]
+Line_3 $$ SessionManager sessionManager = SessionManager.getInstance() --> Line_5 $$ if ((session.getDetachTimestamp() == 0 || new Date().getTime() - session.getDetachTimestamp() > detachTimeout) && sessionManager.getSessionCount(session.getJID().getNode()) == 0) [FD]
+Line_5 $$ if ((session.getDetachTimestamp() == 0 || new Date().getTime() - session.getDetachTimestamp() > detachTimeout) && sessionManager.getSessionCount(session.getJID().getNode()) == 0) --> Line_6 $$ transport.registrationLoggedOut(session) [CD]
+Line_4 $$ for (TransportSession<B> session : getSessions()) --> Line_6 $$ transport.registrationLoggedOut(session) [FD]

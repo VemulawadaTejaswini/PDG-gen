@@ -1,0 +1,5 @@
+Line_2 $$ boolean shouldDrainBuffers(boolean delayable) --> Line_3 $$ if (executor.isShutdown()) [CD]
+Line_3 $$ if (executor.isShutdown()) --> Line_4 $$ DrainStatus status = drainStatus.get() [CD]
+Line_3 $$ if (executor.isShutdown()) --> Line_5 $$ return (status != DrainStatus.PROCESSING) & (!delayable | (status == DrainStatus.REQUIRED)) [CD]
+Line_2 $$ boolean shouldDrainBuffers(boolean delayable) --> Line_5 $$ return (status != DrainStatus.PROCESSING) & (!delayable | (status == DrainStatus.REQUIRED)) [FD]
+Line_2 $$ boolean shouldDrainBuffers(boolean delayable) --> Line_7 $$ return false [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static Object getSingletonTarget(Object candidate) --> Line_4 $$ if (implementsInterface(candidate.getClass(), SPRING_ADVISED_CLASS_NAME)) [FD]
+Line_4 $$ if (implementsInterface(candidate.getClass(), SPRING_ADVISED_CLASS_NAME)) --> Line_5 $$ Object targetSource = MethodUtils.invokeMethod(candidate, "getTargetSource") [CD]
+Line_2 $$ private static Object getSingletonTarget(Object candidate) --> Line_5 $$ Object targetSource = MethodUtils.invokeMethod(candidate, "getTargetSource") [FD]
+Line_4 $$ if (implementsInterface(candidate.getClass(), SPRING_ADVISED_CLASS_NAME)) --> Line_6 $$ if (implementsInterface(targetSource.getClass(), SPRING_SINGLETONTARGETSOURCE_CLASS_NAME)) [CD]
+Line_5 $$ Object targetSource = MethodUtils.invokeMethod(candidate, "getTargetSource") --> Line_6 $$ if (implementsInterface(targetSource.getClass(), SPRING_SINGLETONTARGETSOURCE_CLASS_NAME)) [FD]
+Line_6 $$ if (implementsInterface(targetSource.getClass(), SPRING_SINGLETONTARGETSOURCE_CLASS_NAME)) --> Line_7 $$ return MethodUtils.invokeMethod(targetSource, "getTarget") [CD]
+Line_5 $$ Object targetSource = MethodUtils.invokeMethod(candidate, "getTargetSource") --> Line_7 $$ return MethodUtils.invokeMethod(targetSource, "getTarget") [FD]
+Line_2 $$ private static Object getSingletonTarget(Object candidate) --> Line_12 $$ return null [CD]

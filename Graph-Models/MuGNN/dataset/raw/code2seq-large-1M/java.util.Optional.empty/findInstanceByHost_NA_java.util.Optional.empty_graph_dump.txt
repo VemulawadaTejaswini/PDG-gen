@@ -1,0 +1,7 @@
+Line_3 $$ for (ApplicationInstance app : apps) --> Line_4 $$ for (ServiceCluster cluster : app.serviceClusters()) [FD]
+Line_4 $$ for (ServiceCluster cluster : app.serviceClusters()) --> Line_5 $$ for (ServiceInstance service : cluster.serviceInstances()) [FD]
+Line_2 $$ public Optional<ApplicationInstance> findInstanceByHost(HostName hostName) --> Line_6 $$ if (hostName.equals(service.hostName())) [FD]
+Line_5 $$ for (ServiceInstance service : cluster.serviceInstances()) --> Line_6 $$ if (hostName.equals(service.hostName())) [FD]
+Line_6 $$ if (hostName.equals(service.hostName())) --> Line_7 $$ return Optional.of(app) [CD]
+Line_3 $$ for (ApplicationInstance app : apps) --> Line_7 $$ return Optional.of(app) [FD]
+Line_2 $$ public Optional<ApplicationInstance> findInstanceByHost(HostName hostName) --> Line_11 $$ return Optional.empty() [CD]

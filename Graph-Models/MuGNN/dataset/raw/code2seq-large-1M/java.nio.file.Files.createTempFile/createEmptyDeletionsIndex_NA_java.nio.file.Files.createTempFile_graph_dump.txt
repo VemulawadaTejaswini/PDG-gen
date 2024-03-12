@@ -1,0 +1,8 @@
+Line_2 $$ private void createEmptyDeletionsIndex(final File deletionsIndex) throws IOException --> Line_3 $$ Path tempFile = Files.createTempFile(DELETIONS_FILENAME, "tmp") [CD]
+Line_2 $$ private void createEmptyDeletionsIndex(final File deletionsIndex) throws IOException --> Line_4 $$ Files.delete(tempFile) [CD]
+Line_3 $$ Path tempFile = Files.createTempFile(DELETIONS_FILENAME, "tmp") --> Line_4 $$ Files.delete(tempFile) [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(DELETIONS_FILENAME, "tmp") --> Line_6 $$ new QueueFile(tempFile.toFile()).close() [FD]
+Line_7 $$ try (RandomAccessFile raf = new RandomAccessFile(deletionsIndex, "rw")) --> Line_8 $$ raf.setLength(0) [FD]
+Line_7 $$ try (RandomAccessFile raf = new RandomAccessFile(deletionsIndex, "rw")) --> Line_9 $$ raf.write(Files.readAllBytes(tempFile)) [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(DELETIONS_FILENAME, "tmp") --> Line_9 $$ raf.write(Files.readAllBytes(tempFile)) [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(DELETIONS_FILENAME, "tmp") --> Line_12 $$ Files.deleteIfExists(tempFile) [FD]

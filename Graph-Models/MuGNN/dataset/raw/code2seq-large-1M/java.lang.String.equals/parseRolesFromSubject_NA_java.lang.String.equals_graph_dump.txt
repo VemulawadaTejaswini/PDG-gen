@@ -1,0 +1,8 @@
+Line_2 $$ public Set<Principal> parseRolesFromSubject(Principal principal, Subject subject) --> Line_3 $$ if (subject != null) [CD]
+Line_2 $$ public Set<Principal> parseRolesFromSubject(Principal principal, Subject subject) --> Line_3 $$ if (subject != null) [FD]
+Line_3 $$ if (subject != null) --> Line_4 $$ if (roleClassifier != null && !"".equals(roleClassifier)) [CD]
+Line_4 $$ if (roleClassifier != null && !"".equals(roleClassifier)) --> Line_5 $$ RolePrefixSecurityContextImpl securityContext = new RolePrefixSecurityContextImpl(subject, roleClassifier, roleClassifierType) [CD]
+Line_4 $$ if (roleClassifier != null && !"".equals(roleClassifier)) --> Line_6 $$ return securityContext.getUserRoles() [CD]
+Line_5 $$ RolePrefixSecurityContextImpl securityContext = new RolePrefixSecurityContextImpl(subject, roleClassifier, roleClassifierType) --> Line_6 $$ return securityContext.getUserRoles() [FD]
+Line_3 $$ if (subject != null) --> Line_8 $$ return new DefaultSecurityContext(principal, subject).getUserRoles() [CD]
+Line_2 $$ public Set<Principal> parseRolesFromSubject(Principal principal, Subject subject) --> Line_10 $$ return Collections.emptySet() [CD]

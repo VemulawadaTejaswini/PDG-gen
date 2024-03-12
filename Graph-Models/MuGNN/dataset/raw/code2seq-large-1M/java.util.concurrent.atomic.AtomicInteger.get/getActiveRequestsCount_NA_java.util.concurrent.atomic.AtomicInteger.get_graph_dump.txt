@@ -1,0 +1,8 @@
+Line_2 $$ public int getActiveRequestsCount(long currentTime) --> Line_3 $$ int count = activeRequestsCount.get() [CD]
+Line_2 $$ public int getActiveRequestsCount(long currentTime) --> Line_4 $$ if (count == 0) [CD]
+Line_3 $$ int count = activeRequestsCount.get() --> Line_4 $$ if (count == 0) [FD]
+Line_4 $$ if (count == 0) --> Line_5 $$ return 0 [CD]
+Line_4 $$ if (count == 0) --> Line_6 $$ if (currentTime - lastActiveRequestsCountChangeTimestamp > activeRequestsCountTimeout.get() * 1000 || count < 0) [CD]
+Line_6 $$ if (currentTime - lastActiveRequestsCountChangeTimestamp > activeRequestsCountTimeout.get() * 1000 || count < 0) --> Line_7 $$ activeRequestsCount.set(0) [CD]
+Line_6 $$ if (currentTime - lastActiveRequestsCountChangeTimestamp > activeRequestsCountTimeout.get() * 1000 || count < 0) --> Line_8 $$ return 0 [CD]
+Line_6 $$ if (currentTime - lastActiveRequestsCountChangeTimestamp > activeRequestsCountTimeout.get() * 1000 || count < 0) --> Line_10 $$ return count [CD]

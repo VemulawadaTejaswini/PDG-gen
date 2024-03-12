@@ -1,0 +1,6 @@
+Line_2 $$ public AsyncFuture<Void> reportFetchSeries(LocalDate date, Series series) --> Line_3 $$ if (!pendingReports.tryAcquire()) [CD]
+Line_3 $$ if (!pendingReports.tryAcquire()) --> Line_4 $$ reporter.reportDroppedFetchSeries() [CD]
+Line_3 $$ if (!pendingReports.tryAcquire()) --> Line_5 $$ return async.cancelled() [CD]
+Line_2 $$ public AsyncFuture<Void> reportFetchSeries(LocalDate date, Series series) --> Line_7 $$ return connection.doto( c -> [CD]
+Line_8 $$ final ByteString key = fetchSeries.encode(new SeriesKeyEncoding.SeriesKey(date, series), mapper::<>writeValueAsString) --> Line_9 $$ final AsyncFuture<Row> request = c.dataClient().readModifyWriteRow(hitsTableName, key, ReadModifyWriteRules.builder().increment(hitsColumnFamily, ByteString.EMPTY, 1L).build()) [FD]
+Line_9 $$ final AsyncFuture<Row> request = c.dataClient().readModifyWriteRow(hitsTableName, key, ReadModifyWriteRules.builder().increment(hitsColumnFamily, ByteString.EMPTY, 1L).build()) --> Line_10 $$ return request.<Void>directTransform( d -> null).onFailed( e -> [FD]

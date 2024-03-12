@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(URL + "/\"cache2\"")) --> Line_4 $$ Statement stmt = conn.createStatement() [FD]
+Line_4 $$ Statement stmt = conn.createStatement() --> Line_5 $$ stmt.execute("select t._key, t._val, v._val " + "from \"cache1\".Integer t join Integer v on t._key = v._key") [FD]
+Line_4 $$ Statement stmt = conn.createStatement() --> Line_6 $$ ResultSet rs = stmt.getResultSet() [FD]
+Line_6 $$ ResultSet rs = stmt.getResultSet() --> Line_7 $$ while (rs.next()) [FD]
+Line_7 $$ while (rs.next()) --> Line_8 $$ assertEquals(rs.getInt(2), rs.getInt(1) * 2) [CD]
+Line_6 $$ ResultSet rs = stmt.getResultSet() --> Line_8 $$ assertEquals(rs.getInt(2), rs.getInt(1) * 2) [FD]
+Line_7 $$ while (rs.next()) --> Line_9 $$ assertEquals(rs.getInt(3), rs.getInt(1) * 3) [CD]
+Line_6 $$ ResultSet rs = stmt.getResultSet() --> Line_9 $$ assertEquals(rs.getInt(3), rs.getInt(1) * 3) [FD]

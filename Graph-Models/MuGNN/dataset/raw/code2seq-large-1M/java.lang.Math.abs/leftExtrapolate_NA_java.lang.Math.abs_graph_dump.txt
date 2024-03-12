@@ -1,0 +1,7 @@
+Line_2 $$ public double leftExtrapolate(double xValue) --> Line_3 $$ if (firstXValue == 0d) [CD]
+Line_2 $$ public double leftExtrapolate(double xValue) --> Line_6 $$ if (Math.abs(xValue) < eps) [CD]
+Line_2 $$ public double leftExtrapolate(double xValue) --> Line_6 $$ if (Math.abs(xValue) < eps) [FD]
+Line_6 $$ if (Math.abs(xValue) < eps) --> Line_7 $$ return -leftLinCoef - (leftQuadCoef - 0.5d * leftLinCoef * leftLinCoef) * xValue - xValue * xValue * (leftLinCoef * leftLinCoef * leftLinCoef / 3d - leftQuadCoef * leftLinCoef) [CD]
+Line_2 $$ public double leftExtrapolate(double xValue) --> Line_9 $$ double df = leftQuadCoef * xValue * xValue + leftLinCoef * xValue + 1d [CD]
+Line_2 $$ public double leftExtrapolate(double xValue) --> Line_10 $$ return -Math.log(df) / xValue [CD]
+Line_9 $$ double df = leftQuadCoef * xValue * xValue + leftLinCoef * xValue + 1d --> Line_10 $$ return -Math.log(df) / xValue [FD]

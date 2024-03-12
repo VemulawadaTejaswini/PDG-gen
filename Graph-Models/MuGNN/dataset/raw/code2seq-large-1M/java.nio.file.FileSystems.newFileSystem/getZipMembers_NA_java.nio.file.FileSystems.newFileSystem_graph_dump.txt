@@ -1,0 +1,4 @@
+Line_2 $$ public static ImmutableSet<Path> getZipMembers(Path archiveAbsolutePath) throws IOException --> Line_3 $$ try (FileSystem zipFs = FileSystems.newFileSystem(archiveAbsolutePath, null)) [FD]
+Line_3 $$ try (FileSystem zipFs = FileSystems.newFileSystem(archiveAbsolutePath, null)) --> Line_4 $$ Path root = Iterables.getOnlyElement(zipFs.getRootDirectories()) [FD]
+Line_4 $$ Path root = Iterables.getOnlyElement(zipFs.getRootDirectories()) --> Line_5 $$ return Files.walk(root).filter( path -> !Files.isDirectory(path)).map(root::<>relativize).map( path -> Paths.get(path.toString())).collect(ImmutableSet.toImmutableSet()) [FD]
+Line_2 $$ public static ImmutableSet<Path> getZipMembers(Path archiveAbsolutePath) throws IOException --> Line_8 $$ throw new IOException(String.format("Could not read %s because of %s", archiveAbsolutePath, error.toString()), error) [FD]

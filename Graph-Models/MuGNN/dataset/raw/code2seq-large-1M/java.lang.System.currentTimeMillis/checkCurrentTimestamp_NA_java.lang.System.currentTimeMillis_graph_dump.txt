@@ -1,0 +1,7 @@
+Line_2 $$ private void checkCurrentTimestamp(LookupTableRowType row) --> Line_3 $$ XMLGregorianCalendar ts = row.getLastChangeTimestamp() [FD]
+Line_2 $$ private void checkCurrentTimestamp(LookupTableRowType row) --> Line_3 $$ XMLGregorianCalendar ts = row.getLastChangeTimestamp() [CD]
+Line_2 $$ private void checkCurrentTimestamp(LookupTableRowType row) --> Line_4 $$ assertNotNull("No last change timestamp in " + row, ts) [CD]
+Line_3 $$ XMLGregorianCalendar ts = row.getLastChangeTimestamp() --> Line_4 $$ assertNotNull("No last change timestamp in " + row, ts) [FD]
+Line_2 $$ private void checkCurrentTimestamp(LookupTableRowType row) --> Line_5 $$ long diff = System.currentTimeMillis() - XmlTypeConverter.toMillis(ts) [CD]
+Line_3 $$ XMLGregorianCalendar ts = row.getLastChangeTimestamp() --> Line_5 $$ long diff = System.currentTimeMillis() - XmlTypeConverter.toMillis(ts) [FD]
+Line_2 $$ private void checkCurrentTimestamp(LookupTableRowType row) --> Line_6 $$ assertTrue("Last change timestamp in " + row + " is too old or too new; diff = " + diff, diff >= 0 && diff <= TIMESTAMP_TOLERANCE) [CD]

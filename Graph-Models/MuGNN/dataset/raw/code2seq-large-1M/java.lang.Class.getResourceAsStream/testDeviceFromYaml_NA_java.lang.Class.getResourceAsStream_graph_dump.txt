@@ -1,0 +1,8 @@
+Line_2 $$ void testDeviceFromYaml(String filename) --> Line_3 $$ InputStream yamlStream = this.getClass().getResourceAsStream(TEST_RESOURCE_PATH + filename) [CD]
+Line_2 $$ void testDeviceFromYaml(String filename) --> Line_4 $$ Map<String, List<Map<String, String>>> entries = (Map<String, List<Map<String, String>>>) yaml.load(yamlStream) [CD]
+Line_3 $$ InputStream yamlStream = this.getClass().getResourceAsStream(TEST_RESOURCE_PATH + filename) --> Line_4 $$ Map<String, List<Map<String, String>>> entries = (Map<String, List<Map<String, String>>>) yaml.load(yamlStream) [FD]
+Line_2 $$ void testDeviceFromYaml(String filename) --> Line_5 $$ List<Map<String, String>> testCases = entries.get("test_cases") [CD]
+Line_4 $$ Map<String, List<Map<String, String>>> entries = (Map<String, List<Map<String, String>>>) yaml.load(yamlStream) --> Line_5 $$ List<Map<String, String>> testCases = entries.get("test_cases") [FD]
+Line_6 $$ for (Map<String, String> testCase : testCases) --> Line_7 $$ String uaString = testCase.get("user_agent_string") [FD]
+Line_7 $$ String uaString = testCase.get("user_agent_string") --> Line_8 $$ assertThat(uaString, parser.parseDevice(uaString), is(Device.fromMap(testCase))) [FD]
+Line_6 $$ for (Map<String, String> testCase : testCases) --> Line_8 $$ assertThat(uaString, parser.parseDevice(uaString), is(Device.fromMap(testCase))) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private Set<String> getDatabases() throws SQLException --> Line_3 $$ Set<String> databases = new HashSet<String>() [CD]
+Line_2 $$ private Set<String> getDatabases() throws SQLException --> Line_4 $$ DatabaseMetaData metaData = beeLine.getDatabaseMetaData() [CD]
+Line_4 $$ DatabaseMetaData metaData = beeLine.getDatabaseMetaData() --> Line_5 $$ try (ResultSet schemasResultSet = metaData.getSchemas()) [FD]
+Line_5 $$ try (ResultSet schemasResultSet = metaData.getSchemas()) --> Line_6 $$ while (schemasResultSet.next()) [FD]
+Line_6 $$ while (schemasResultSet.next()) --> Line_7 $$ databases.add(schemasResultSet.getString("TABLE_SCHEM")) [CD]
+Line_3 $$ Set<String> databases = new HashSet<String>() --> Line_7 $$ databases.add(schemasResultSet.getString("TABLE_SCHEM")) [FD]
+Line_5 $$ try (ResultSet schemasResultSet = metaData.getSchemas()) --> Line_7 $$ databases.add(schemasResultSet.getString("TABLE_SCHEM")) [FD]
+Line_2 $$ private Set<String> getDatabases() throws SQLException --> Line_10 $$ return databases [CD]

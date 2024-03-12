@@ -1,0 +1,8 @@
+Line_2 $$ private void validatePhaseTransitions(List<UnitOfWork.Phase> phases, List<Message<?>> messages) --> Line_3 $$ Iterator<PhaseTransition> iterator = transitions.iterator() [CD]
+Line_4 $$ for (UnitOfWork.Phase phase : phases) --> Line_5 $$ Iterator<Message<?>> messageIterator = phase.isReverseCallbackOrder() ? new LinkedList(messages).descendingIterator() : messages.iterator() [FD]
+Line_2 $$ private void validatePhaseTransitions(List<UnitOfWork.Phase> phases, List<Message<?>> messages) --> Line_5 $$ Iterator<Message<?>> messageIterator = phase.isReverseCallbackOrder() ? new LinkedList(messages).descendingIterator() : messages.iterator() [FD]
+Line_5 $$ Iterator<Message<?>> messageIterator = phase.isReverseCallbackOrder() ? new LinkedList(messages).descendingIterator() : messages.iterator() --> Line_6 $$ messageIterator.forEachRemaining( message -> [FD]
+Line_3 $$ Iterator<PhaseTransition> iterator = transitions.iterator() --> Line_8 $$ assertTrue(iterator.hasNext()) [FD]
+Line_3 $$ Iterator<PhaseTransition> iterator = transitions.iterator() --> Line_9 $$ PhaseTransition actual = iterator.next() [FD]
+Line_7 $$ PhaseTransition expected = new PhaseTransition(message, phase) --> Line_10 $$ assertEquals(expected, actual) [FD]
+Line_9 $$ PhaseTransition actual = iterator.next() --> Line_10 $$ assertEquals(expected, actual) [FD]

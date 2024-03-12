@@ -1,0 +1,8 @@
+Line_2 $$ public void asyncRestTemplatesInContextAreInstrumented() throws Exception --> Line_3 $$ ListenableFuture<ResponseEntity<String>> future = asyncClient.getForEntity(rootUri + "/it/2", String.class) [CD]
+Line_2 $$ public void asyncRestTemplatesInContextAreInstrumented() throws Exception --> Line_4 $$ final CyclicBarrier barrier = new CyclicBarrier(2) [CD]
+Line_2 $$ public void asyncRestTemplatesInContextAreInstrumented() throws Exception --> Line_5 $$ future.addCallback( result -> [CD]
+Line_4 $$ final CyclicBarrier barrier = new CyclicBarrier(2) --> Line_7 $$ barrier.await() [FD]
+Line_2 $$ public void asyncRestTemplatesInContextAreInstrumented() throws Exception --> Line_12 $$ future.get() [CD]
+Line_2 $$ public void asyncRestTemplatesInContextAreInstrumented() throws Exception --> Line_13 $$ barrier.await() [CD]
+Line_4 $$ final CyclicBarrier barrier = new CyclicBarrier(2) --> Line_13 $$ barrier.await() [FD]
+Line_2 $$ public void asyncRestTemplatesInContextAreInstrumented() throws Exception --> Line_14 $$ assertThat(registry.get("http.client.requests").timer().count()).isEqualTo(1) [CD]

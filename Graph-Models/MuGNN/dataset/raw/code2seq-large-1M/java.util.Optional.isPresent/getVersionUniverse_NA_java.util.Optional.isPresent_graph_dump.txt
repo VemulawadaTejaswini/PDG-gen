@@ -1,0 +1,8 @@
+Line_3 $$ Optional<String> universeName = getVersionUniverseName(root) --> Line_4 $$ if (!universeName.isPresent() && !universes.isEmpty()) [FD]
+Line_4 $$ if (!universeName.isPresent() && !universes.isEmpty()) --> Line_5 $$ return Optional.of(Iterables.get(universes.entrySet(), 0)) [CD]
+Line_3 $$ Optional<String> universeName = getVersionUniverseName(root) --> Line_7 $$ if (!universeName.isPresent()) [FD]
+Line_7 $$ if (!universeName.isPresent()) --> Line_8 $$ return Optional.empty() [CD]
+Line_3 $$ Optional<String> universeName = getVersionUniverseName(root) --> Line_10 $$ VersionUniverse universe = universes.get(universeName.get()) [FD]
+Line_10 $$ VersionUniverse universe = universes.get(universeName.get()) --> Line_11 $$ if (universe == null) [FD]
+Line_3 $$ Optional<String> universeName = getVersionUniverseName(root) --> Line_12 $$ throw new VerifyException(String.format("%s: unknown version universe \"%s\"", root.getBuildTarget(), universeName.get())) [FD]
+Line_3 $$ Optional<String> universeName = getVersionUniverseName(root) --> Line_14 $$ return Optional.of(new AbstractMap.SimpleEntry(universeName.get(), universe)) [FD]

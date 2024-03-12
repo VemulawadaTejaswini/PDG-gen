@@ -1,0 +1,7 @@
+Line_2 $$ private List<BinlogPosition> getBinlogInfo() throws SQLException --> Line_3 $$ ArrayList<BinlogPosition> list = new ArrayList() [CD]
+Line_4 $$ try (Connection c = replicationConnectionPool.getConnection()) --> Line_5 $$ ResultSet rs = c.createStatement().executeQuery("SHOW BINARY LOGS") [FD]
+Line_5 $$ ResultSet rs = c.createStatement().executeQuery("SHOW BINARY LOGS") --> Line_6 $$ while (rs.next()) [FD]
+Line_6 $$ while (rs.next()) --> Line_7 $$ list.add(BinlogPosition.at(4, rs.getString("Log_name"))) [CD]
+Line_3 $$ ArrayList<BinlogPosition> list = new ArrayList() --> Line_7 $$ list.add(BinlogPosition.at(4, rs.getString("Log_name"))) [FD]
+Line_5 $$ ResultSet rs = c.createStatement().executeQuery("SHOW BINARY LOGS") --> Line_7 $$ list.add(BinlogPosition.at(4, rs.getString("Log_name"))) [FD]
+Line_2 $$ private List<BinlogPosition> getBinlogInfo() throws SQLException --> Line_10 $$ return list [CD]

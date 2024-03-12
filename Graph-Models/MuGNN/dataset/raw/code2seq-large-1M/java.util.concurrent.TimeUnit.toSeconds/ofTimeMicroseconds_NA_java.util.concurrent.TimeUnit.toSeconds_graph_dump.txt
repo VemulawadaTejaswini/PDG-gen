@@ -1,0 +1,8 @@
+Line_2 $$ public static Timestamp ofTimeMicroseconds(long microseconds) --> Line_3 $$ long seconds = TimeUnit.MICROSECONDS.toSeconds(microseconds) [FD]
+Line_2 $$ public static Timestamp ofTimeMicroseconds(long microseconds) --> Line_3 $$ long seconds = TimeUnit.MICROSECONDS.toSeconds(microseconds) [CD]
+Line_2 $$ public static Timestamp ofTimeMicroseconds(long microseconds) --> Line_4 $$ int nanos = (int) TimeUnit.MICROSECONDS.toNanos(microseconds - TimeUnit.SECONDS.toMicros(seconds)) [CD]
+Line_3 $$ long seconds = TimeUnit.MICROSECONDS.toSeconds(microseconds) --> Line_4 $$ int nanos = (int) TimeUnit.MICROSECONDS.toNanos(microseconds - TimeUnit.SECONDS.toMicros(seconds)) [FD]
+Line_2 $$ public static Timestamp ofTimeMicroseconds(long microseconds) --> Line_5 $$ checkArgument(Timestamps.isValid(seconds, nanos), "timestamp out of range: %s, %s", seconds, nanos) [CD]
+Line_3 $$ long seconds = TimeUnit.MICROSECONDS.toSeconds(microseconds) --> Line_5 $$ checkArgument(Timestamps.isValid(seconds, nanos), "timestamp out of range: %s, %s", seconds, nanos) [FD]
+Line_4 $$ int nanos = (int) TimeUnit.MICROSECONDS.toNanos(microseconds - TimeUnit.SECONDS.toMicros(seconds)) --> Line_5 $$ checkArgument(Timestamps.isValid(seconds, nanos), "timestamp out of range: %s, %s", seconds, nanos) [FD]
+Line_2 $$ public static Timestamp ofTimeMicroseconds(long microseconds) --> Line_6 $$ return new Timestamp(seconds, nanos) [CD]

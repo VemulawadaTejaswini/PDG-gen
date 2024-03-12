@@ -1,0 +1,8 @@
+Line_4 $$ File tempDir = getTempDir() --> Line_5 $$ if (tempDir == null) [FD]
+Line_5 $$ if (tempDir == null) --> Line_6 $$ return null [CD]
+Line_8 $$ File autosaveFile = new File(tempDir, "_ganttproject_autosave.zip") --> Line_9 $$ if (autosaveFile.exists() && !autosaveFile.canWrite()) [FD]
+Line_9 $$ if (autosaveFile.exists() && !autosaveFile.canWrite()) --> Line_10 $$ myLogger.warning(String.format("Autosave file %s is not writable", autosaveFile.getAbsolutePath())) [CD]
+Line_8 $$ File autosaveFile = new File(tempDir, "_ganttproject_autosave.zip") --> Line_10 $$ myLogger.warning(String.format("Autosave file %s is not writable", autosaveFile.getAbsolutePath())) [FD]
+Line_9 $$ if (autosaveFile.exists() && !autosaveFile.canWrite()) --> Line_11 $$ return null [CD]
+Line_8 $$ File autosaveFile = new File(tempDir, "_ganttproject_autosave.zip") --> Line_13 $$ URI uri = new URI("jar:file:" + autosaveFile.toURI().getPath()) [FD]
+Line_13 $$ URI uri = new URI("jar:file:" + autosaveFile.toURI().getPath()) --> Line_14 $$ return FileSystems.newFileSystem(uri, ImmutableMap.<String, Object>of("create", "true")) [FD]

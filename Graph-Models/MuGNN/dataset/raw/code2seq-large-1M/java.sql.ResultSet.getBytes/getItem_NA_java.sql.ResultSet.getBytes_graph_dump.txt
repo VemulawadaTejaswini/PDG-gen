@@ -1,0 +1,5 @@
+Line_2 $$ public Approvable getItem(final StateRecord record) --> Line_3 $$ return protect(() -> [CD]
+Line_2 $$ public Approvable getItem(final StateRecord record) --> Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("select * from items where id = ?", record.getRecordId()))) [FD]
+Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("select * from items where id = ?", record.getRecordId()))) --> Line_5 $$ if (rs == null) [FD]
+Line_5 $$ if (rs == null) --> Line_6 $$ return null [CD]
+Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("select * from items where id = ?", record.getRecordId()))) --> Line_7 $$ return Contract.fromPackedTransaction(rs.getBytes("packed")) [FD]

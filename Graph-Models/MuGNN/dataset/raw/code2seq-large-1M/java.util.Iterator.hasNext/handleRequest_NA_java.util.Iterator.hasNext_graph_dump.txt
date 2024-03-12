@@ -1,0 +1,7 @@
+Line_2 $$ protected CompletableFuture<JobExecutionResultResponseBody> handleRequest(@Nonnull HandlerRequest<EmptyRequestBody, JobMessageParameters> request, @Nonnull DispatcherGateway gateway) throws RestHandlerException --> Line_3 $$ if (jobExecutionResults.hasNext()) [CD]
+Line_3 $$ if (jobExecutionResults.hasNext()) --> Line_4 $$ lastJobExecutionResult = jobExecutionResults.next() [CD]
+Line_2 $$ protected CompletableFuture<JobExecutionResultResponseBody> handleRequest(@Nonnull HandlerRequest<EmptyRequestBody, JobMessageParameters> request, @Nonnull DispatcherGateway gateway) throws RestHandlerException --> Line_6 $$ checkState(lastJobExecutionResult != null) [CD]
+Line_2 $$ protected CompletableFuture<JobExecutionResultResponseBody> handleRequest(@Nonnull HandlerRequest<EmptyRequestBody, JobMessageParameters> request, @Nonnull DispatcherGateway gateway) throws RestHandlerException --> Line_7 $$ if (lastJobExecutionResult instanceof JobExecutionResultResponseBody) [CD]
+Line_7 $$ if (lastJobExecutionResult instanceof JobExecutionResultResponseBody) --> Line_8 $$ return CompletableFuture.completedFuture((JobExecutionResultResponseBody) lastJobExecutionResult) [CD]
+Line_7 $$ if (lastJobExecutionResult instanceof JobExecutionResultResponseBody) --> Line_9 $$ if (lastJobExecutionResult instanceof RestHandlerException) [CD]
+Line_9 $$ if (lastJobExecutionResult instanceof RestHandlerException) --> Line_10 $$ return FutureUtils.completedExceptionally((RestHandlerException) lastJobExecutionResult) [CD]

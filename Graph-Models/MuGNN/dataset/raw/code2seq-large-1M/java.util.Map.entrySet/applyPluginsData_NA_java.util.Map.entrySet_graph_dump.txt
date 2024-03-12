@@ -1,0 +1,6 @@
+Line_2 $$ private void applyPluginsData(UUID nodeId, Map<String, Serializable> pluginsData) --> Line_3 $$ for (Map.Entry<String, Serializable> e : pluginsData.entrySet()) [FD]
+Line_4 $$ PluginProvider provider = plugins.get(e.getKey()) --> Line_5 $$ if (provider != null) [FD]
+Line_5 $$ if (provider != null) --> Line_6 $$ provider.receiveDiscoveryData(nodeId, e.getValue()) [CD]
+Line_4 $$ PluginProvider provider = plugins.get(e.getKey()) --> Line_6 $$ provider.receiveDiscoveryData(nodeId, e.getValue()) [FD]
+Line_2 $$ private void applyPluginsData(UUID nodeId, Map<String, Serializable> pluginsData) --> Line_6 $$ provider.receiveDiscoveryData(nodeId, e.getValue()) [FD]
+Line_5 $$ if (provider != null) --> Line_8 $$ U.warn(log, "Received discovery data for unknown plugin: " + e.getKey()) [CD]

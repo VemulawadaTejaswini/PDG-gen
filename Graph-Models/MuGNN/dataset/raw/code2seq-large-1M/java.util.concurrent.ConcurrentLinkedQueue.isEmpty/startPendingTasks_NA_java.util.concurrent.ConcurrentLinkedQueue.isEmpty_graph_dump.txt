@@ -1,0 +1,8 @@
+Line_2 $$ private static void startPendingTasks() --> Line_3 $$ if (!taskQueueWaitingForInit.isEmpty()) [CD]
+Line_3 $$ if (!taskQueueWaitingForInit.isEmpty()) --> Line_4 $$ pendingTaskExecutor = Executors.newSingleThreadExecutor(new ThreadFactory() [CD]
+Line_4 $$ pendingTaskExecutor = Executors.newSingleThreadExecutor(new ThreadFactory() --> Line_6 $$ Thread newThread = new Thread(runnable) [CD]
+Line_4 $$ pendingTaskExecutor = Executors.newSingleThreadExecutor(new ThreadFactory() --> Line_7 $$ newThread.setName("OS_PENDING_EXECUTOR_" + newThread.getId()) [CD]
+Line_6 $$ Thread newThread = new Thread(runnable) --> Line_7 $$ newThread.setName("OS_PENDING_EXECUTOR_" + newThread.getId()) [FD]
+Line_4 $$ pendingTaskExecutor = Executors.newSingleThreadExecutor(new ThreadFactory() --> Line_8 $$ return newThread [CD]
+Line_3 $$ if (!taskQueueWaitingForInit.isEmpty()) --> Line_11 $$ while (!taskQueueWaitingForInit.isEmpty()) [CD]
+Line_11 $$ while (!taskQueueWaitingForInit.isEmpty()) --> Line_12 $$ pendingTaskExecutor.submit(taskQueueWaitingForInit.poll()) [CD]

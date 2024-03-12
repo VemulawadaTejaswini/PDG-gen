@@ -1,0 +1,7 @@
+Line_2 $$ public static String importantWords(String textPath) --> Line_3 $$ Set<Word> wordSet = WordSources.get("/word_CET4.txt", "/word_CET6.txt", "/word_GRE.txt", "/word_IELTS.txt", "/word_TOEFL.txt", "/word_KY.txt") [CD]
+Line_2 $$ public static String importantWords(String textPath) --> Line_4 $$ Map<Word, AtomicInteger> data = WordSources.convert(frequency(getFileNames(textPath))) [FD]
+Line_2 $$ public static String importantWords(String textPath) --> Line_4 $$ Map<Word, AtomicInteger> data = WordSources.convert(frequency(getFileNames(textPath))) [CD]
+Line_2 $$ public static String importantWords(String textPath) --> Line_5 $$ Set<Map.Entry<Word, AtomicInteger>> entries = data.entrySet().stream().filter( entry -> wordSet.contains(entry.getKey())).collect(Collectors.toSet()) [CD]
+Line_4 $$ Map<Word, AtomicInteger> data = WordSources.convert(frequency(getFileNames(textPath))) --> Line_5 $$ Set<Map.Entry<Word, AtomicInteger>> entries = data.entrySet().stream().filter( entry -> wordSet.contains(entry.getKey())).collect(Collectors.toSet()) [FD]
+Line_3 $$ Set<Word> wordSet = WordSources.get("/word_CET4.txt", "/word_CET6.txt", "/word_GRE.txt", "/word_IELTS.txt", "/word_TOEFL.txt", "/word_KY.txt") --> Line_5 $$ Set<Map.Entry<Word, AtomicInteger>> entries = data.entrySet().stream().filter( entry -> wordSet.contains(entry.getKey())).collect(Collectors.toSet()) [FD]
+Line_2 $$ public static String importantWords(String textPath) --> Line_6 $$ return HtmlFormatter.toHtmlTableFragment(entries, 5) [CD]

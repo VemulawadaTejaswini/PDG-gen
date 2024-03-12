@@ -1,0 +1,2 @@
+Line_2 $$ public Set<String> sinksWithMultipleConfluentIds() --> Line_3 $$ final Map<String, Long> countsBySink = mappings.values().stream().filter( config -> config.confluentId.isPresent()).flatMap( config -> config.sinks.stream().map( sink -> Maps.immutableEntry(sink, config.confluentId))).distinct().collect(Collectors.groupingBy(Map.Entry::<>getKey, Collectors.counting())) [CD]
+Line_2 $$ public Set<String> sinksWithMultipleConfluentIds() --> Line_4 $$ return Maps.filterValues(countsBySink,  count -> count > 1L).keySet() [CD]

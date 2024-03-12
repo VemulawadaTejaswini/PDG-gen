@@ -1,0 +1,7 @@
+Line_3 $$ String moduleGroupName = projectConfig.getModuleGroupName() --> Line_4 $$ boolean needToPutModuleToGroup = !moduleGroupName.isEmpty() [FD]
+Line_6 $$ Path moduleOutputFilePath = module.getModuleImlFilePath() --> Line_7 $$ String fileUrl = projectConfig.getProjectPaths().toProjectDirRelativeUrl(moduleOutputFilePath) [FD]
+Line_6 $$ Path moduleOutputFilePath = module.getModuleImlFilePath() --> Line_8 $$ Path moduleOutputFileRelativePath = Paths.get(projectConfig.getProjectPaths().toProjectDirRelativeString(moduleOutputFilePath)) [FD]
+Line_4 $$ boolean needToPutModuleToGroup = !moduleGroupName.isEmpty() --> Line_9 $$ String group = (module.getModuleBasePath().toString().isEmpty() || !needToPutModuleToGroup) ? null : moduleGroupName [FD]
+Line_9 $$ String group = (module.getModuleBasePath().toString().isEmpty() || !needToPutModuleToGroup) ? null : moduleGroupName --> Line_10 $$ return ModuleIndexEntry.builder().setFileUrl(fileUrl).setFilePath(moduleOutputFileRelativePath).setGroup(group).build() [FD]
+Line_8 $$ Path moduleOutputFileRelativePath = Paths.get(projectConfig.getProjectPaths().toProjectDirRelativeString(moduleOutputFilePath)) --> Line_10 $$ return ModuleIndexEntry.builder().setFileUrl(fileUrl).setFilePath(moduleOutputFileRelativePath).setGroup(group).build() [FD]
+Line_7 $$ String fileUrl = projectConfig.getProjectPaths().toProjectDirRelativeUrl(moduleOutputFilePath) --> Line_10 $$ return ModuleIndexEntry.builder().setFileUrl(fileUrl).setFilePath(moduleOutputFileRelativePath).setGroup(group).build() [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static ExecutorService createExecutor(int threads) --> Line_3 $$ int effectiveThreads = (threads <= 0 ? Runtime.getRuntime().availableProcessors() : threads) [CD]
+Line_2 $$ private static ExecutorService createExecutor(int threads) --> Line_4 $$ ThreadFactory threadFactory =  r -> [CD]
+Line_5 $$ Thread t = Executors.defaultThreadFactory().newThread(r) --> Line_6 $$ t.setName("CalculationTaskRunner-" + t.getName()) [FD]
+Line_5 $$ Thread t = Executors.defaultThreadFactory().newThread(r) --> Line_7 $$ t.setDaemon(true) [FD]
+Line_2 $$ private static ExecutorService createExecutor(int threads) --> Line_10 $$ return Executors.newFixedThreadPool(effectiveThreads, threadFactory) [CD]
+Line_3 $$ int effectiveThreads = (threads <= 0 ? Runtime.getRuntime().availableProcessors() : threads) --> Line_10 $$ return Executors.newFixedThreadPool(effectiveThreads, threadFactory) [FD]
+Line_4 $$ ThreadFactory threadFactory =  r -> --> Line_10 $$ return Executors.newFixedThreadPool(effectiveThreads, threadFactory) [FD]

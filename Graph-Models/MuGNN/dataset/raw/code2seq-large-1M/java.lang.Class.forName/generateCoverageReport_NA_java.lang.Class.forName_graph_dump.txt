@@ -1,0 +1,8 @@
+Line_2 $$ private void generateCoverageReport() --> Line_3 $$ String coverageFilePath = getCoverageFilePath() [CD]
+Line_2 $$ private void generateCoverageReport() --> Line_4 $$ java.io.File coverageFile = new java.io.File(coverageFilePath) [CD]
+Line_6 $$ Class<?> emmaRTClass = Class.forName("com.vladium.emma.rt.RT") --> Line_7 $$ Method dumpCoverageMethod = emmaRTClass.getMethod("dumpCoverageData", coverageFile.getClass(), boolean.class, boolean.class) [FD]
+Line_4 $$ java.io.File coverageFile = new java.io.File(coverageFilePath) --> Line_7 $$ Method dumpCoverageMethod = emmaRTClass.getMethod("dumpCoverageData", coverageFile.getClass(), boolean.class, boolean.class) [FD]
+Line_4 $$ java.io.File coverageFile = new java.io.File(coverageFilePath) --> Line_8 $$ dumpCoverageMethod.invoke(null, coverageFile, false, false) [FD]
+Line_3 $$ String coverageFilePath = getCoverageFilePath() --> Line_9 $$ mResults.putString(REPORT_KEY_COVERAGE_PATH, coverageFilePath) [FD]
+Line_10 $$ final String currentStream = mResults.getString(Instrumentation.REPORT_KEY_STREAMRESULT) --> Line_11 $$ mResults.putString(Instrumentation.REPORT_KEY_STREAMRESULT, String.format("%s\nGenerated code coverage data to %s", currentStream, coverageFilePath)) [FD]
+Line_3 $$ String coverageFilePath = getCoverageFilePath() --> Line_11 $$ mResults.putString(Instrumentation.REPORT_KEY_STREAMRESULT, String.format("%s\nGenerated code coverage data to %s", currentStream, coverageFilePath)) [FD]

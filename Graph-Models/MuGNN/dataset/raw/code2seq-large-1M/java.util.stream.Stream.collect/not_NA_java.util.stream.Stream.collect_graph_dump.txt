@@ -1,0 +1,8 @@
+Line_2 $$ public TypeExpr not() --> Line_3 $$ if (isNothing()) [CD]
+Line_3 $$ if (isNothing()) --> Line_4 $$ return ANYTHING [CD]
+Line_2 $$ public TypeExpr not() --> Line_6 $$ if (isAnything()) [CD]
+Line_6 $$ if (isAnything()) --> Line_7 $$ return NOTHING [CD]
+Line_2 $$ public TypeExpr not() --> Line_9 $$ Set<TypeExpr> asUnions = disjNormForm.stream().map( conj -> union(negateTypes(conj))).collect(Collectors.toSet()) [CD]
+Line_2 $$ public TypeExpr not() --> Line_10 $$ TypeExpr conj = asUnions.stream().reduce(( res,  te) -> res.and(te)).orElse(NOTHING) [CD]
+Line_9 $$ Set<TypeExpr> asUnions = disjNormForm.stream().map( conj -> union(negateTypes(conj))).collect(Collectors.toSet()) --> Line_10 $$ TypeExpr conj = asUnions.stream().reduce(( res,  te) -> res.and(te)).orElse(NOTHING) [FD]
+Line_2 $$ public TypeExpr not() --> Line_11 $$ return new TypeExpr(conj.disjNormForm, samples.swap()) [CD]

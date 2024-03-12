@@ -1,0 +1,7 @@
+Line_2 $$ public void recordGaugeValues(Map<String, ? extends Number> gauges) --> Line_3 $$ long time = System.currentTimeMillis() [CD]
+Line_2 $$ public void recordGaugeValues(Map<String, ? extends Number> gauges) --> Line_4 $$ BatchPoints batchPoints = BatchPoints.database(database).build() [CD]
+Line_2 $$ public void recordGaugeValues(Map<String, ? extends Number> gauges) --> Line_5 $$ for (Map.Entry<String, ? extends Number> gauge : gauges.entrySet()) [FD]
+Line_4 $$ BatchPoints batchPoints = BatchPoints.database(database).build() --> Line_6 $$ batchPoints.point(constructPoint(time, gauge.getKey(), gauge.getValue())) [FD]
+Line_3 $$ long time = System.currentTimeMillis() --> Line_6 $$ batchPoints.point(constructPoint(time, gauge.getKey(), gauge.getValue())) [FD]
+Line_2 $$ public void recordGaugeValues(Map<String, ? extends Number> gauges) --> Line_8 $$ client.write(batchPoints) [CD]
+Line_4 $$ BatchPoints batchPoints = BatchPoints.database(database).build() --> Line_8 $$ client.write(batchPoints) [FD]

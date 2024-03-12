@@ -1,0 +1,7 @@
+Line_2 $$ public void testIdentityConversions() --> Line_3 $$ List<Pair<Literal<?>, Type>> pairs = Arrays.asList(Pair.of(Literal.of(true), Types.BooleanType.get()), Pair.of(Literal.of(34), Types.IntegerType.get()), Pair.of(Literal.of(34L), Types.LongType.get()), Pair.of(Literal.of(34.11F), Types.FloatType.get()), Pair.of(Literal.of(34.55D), Types.DoubleType.get()), Pair.of(Literal.of("34.55"), Types.DecimalType.of(9, 2)), Pair.of(Literal.of("2017-08-18"), Types.DateType.get()), Pair.of(Literal.of("14:21:01.919"), Types.TimeType.get()), Pair.of(Literal.of("2017-08-18T14:21:01.919"), Types.TimestampType.withoutZone()), Pair.of(Literal.of("abc"), Types.StringType.get()), Pair.of(Literal.of(UUID.randomUUID()), Types.UUIDType.get()), Pair.of(Literal.of(new byte[] [CD]
+Line_4 $$ for (Pair<Literal<?>, Type> pair : pairs) --> Line_5 $$ Literal<?> lit = pair.first() [FD]
+Line_4 $$ for (Pair<Literal<?>, Type> pair : pairs) --> Line_6 $$ Type type = pair.second() [FD]
+Line_5 $$ Literal<?> lit = pair.first() --> Line_7 $$ Literal<?> expected = lit.to(type) [FD]
+Line_6 $$ Type type = pair.second() --> Line_7 $$ Literal<?> expected = lit.to(type) [FD]
+Line_7 $$ Literal<?> expected = lit.to(type) --> Line_8 $$ Assert.assertSame("Converting twice should produce identical values", expected, expected.to(type)) [FD]
+Line_6 $$ Type type = pair.second() --> Line_8 $$ Assert.assertSame("Converting twice should produce identical values", expected, expected.to(type)) [FD]

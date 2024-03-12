@@ -1,0 +1,8 @@
+Line_3 $$ for (Long functionId : functionIds) --> Line_4 $$ AnomalyFunctionDTO anomalyFunction = anomalyFunctionDAO.findById(functionId) [FD]
+Line_4 $$ AnomalyFunctionDTO anomalyFunction = anomalyFunctionDAO.findById(functionId) --> Line_5 $$ if (!anomalyFunction.getIsActive()) [FD]
+Line_5 $$ if (!anomalyFunction.getIsActive()) --> Line_6 $$ LOG.info("Skipping deactivated function [CD]
+Line_3 $$ for (Long functionId : functionIds) --> Line_6 $$ LOG.info("Skipping deactivated function [FD]
+Line_3 $$ for (Long functionId : functionIds) --> Line_9 $$ LOG.info("Sending backfill function [FD]
+Line_2 $$ private void regenerateAnomaliesForBucketsInRange(boolean forceBackfill) throws Exception --> Line_10 $$ String response = detectionResourceHttpUtils.runBackfillAnomalyFunction(String.valueOf(functionId), monitoringWindowStartTime, monitoringWindowEndTime, forceBackfill) [FD]
+Line_3 $$ for (Long functionId : functionIds) --> Line_10 $$ String response = detectionResourceHttpUtils.runBackfillAnomalyFunction(String.valueOf(functionId), monitoringWindowStartTime, monitoringWindowEndTime, forceBackfill) [FD]
+Line_10 $$ String response = detectionResourceHttpUtils.runBackfillAnomalyFunction(String.valueOf(functionId), monitoringWindowStartTime, monitoringWindowEndTime, forceBackfill) --> Line_11 $$ LOG.info("Response [FD]

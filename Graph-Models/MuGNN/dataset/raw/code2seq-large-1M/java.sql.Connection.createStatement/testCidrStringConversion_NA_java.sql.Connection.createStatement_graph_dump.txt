@@ -1,0 +1,5 @@
+Line_3 $$ try (Statement stmt = conn.createStatement()) --> Line_4 $$ int rows = stmt.executeUpdate("INSERT into mactest(cidr_mask) VALUES ('192.168/24')") [FD]
+Line_4 $$ int rows = stmt.executeUpdate("INSERT into mactest(cidr_mask) VALUES ('192.168/24')") --> Line_5 $$ assertEquals("Number of inserted rows not as expected", 1, rows) [FD]
+Line_3 $$ try (Statement stmt = conn.createStatement()) --> Line_6 $$ ResultSet resultSet = stmt.executeQuery("SELECT cidr_mask FROM mactest WHERE cidr_mask='192.168.0.0/24'") [FD]
+Line_6 $$ ResultSet resultSet = stmt.executeQuery("SELECT cidr_mask FROM mactest WHERE cidr_mask='192.168.0.0/24'") --> Line_7 $$ assertTrue(resultSet.next()) [FD]
+Line_6 $$ ResultSet resultSet = stmt.executeQuery("SELECT cidr_mask FROM mactest WHERE cidr_mask='192.168.0.0/24'") --> Line_8 $$ assertEquals("192.168.0.0/24", resultSet.getString(1)) [FD]

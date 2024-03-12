@@ -1,0 +1,7 @@
+Line_4 $$ if (abortAllRemaining) --> Line_5 $$ int minOpenTxnIndex = Math.max(currentTxnIndex + (state == TxnState.ABORTED || state == TxnState.COMMITTED ? 1 : 0), 0) [CD]
+Line_4 $$ if (abortAllRemaining) --> Line_6 $$ for (currentTxnIndex = minOpenTxnIndex; currentTxnIndex < txnToWriteIds.size(); currentTxnIndex++) [CD]
+Line_6 $$ for (currentTxnIndex = minOpenTxnIndex; currentTxnIndex < txnToWriteIds.size(); currentTxnIndex++) --> Line_7 $$ msClient.rollbackTxn(txnToWriteIds.get(currentTxnIndex).getTxnId()) [CD]
+Line_6 $$ for (currentTxnIndex = minOpenTxnIndex; currentTxnIndex < txnToWriteIds.size(); currentTxnIndex++) --> Line_8 $$ txnStatus[currentTxnIndex] = TxnState.ABORTED [CD]
+Line_4 $$ if (abortAllRemaining) --> Line_12 $$ if (getCurrentTxnId() > 0) [CD]
+Line_12 $$ if (getCurrentTxnId() > 0) --> Line_13 $$ msClient.rollbackTxn(getCurrentTxnId()) [CD]
+Line_12 $$ if (getCurrentTxnId() > 0) --> Line_14 $$ txnStatus[currentTxnIndex] = TxnState.ABORTED [CD]

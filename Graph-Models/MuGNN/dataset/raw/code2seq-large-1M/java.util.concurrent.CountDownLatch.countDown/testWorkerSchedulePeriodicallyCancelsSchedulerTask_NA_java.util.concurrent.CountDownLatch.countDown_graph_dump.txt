@@ -1,0 +1,6 @@
+Line_3 $$ try (TaskCheckingScheduledExecutor executorService = new TaskCheckingScheduledExecutor()) --> Line_6 $$ Disposable disposable = Schedulers.workerSchedulePeriodically(executorService, tasks, () -> [FD]
+Line_5 $$ Disposable.Composite tasks = Disposables.composite() --> Line_6 $$ Disposable disposable = Schedulers.workerSchedulePeriodically(executorService, tasks, () -> [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_7 $$ latch.countDown() [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(2) --> Line_9 $$ latch.await() [FD]
+Line_6 $$ Disposable disposable = Schedulers.workerSchedulePeriodically(executorService, tasks, () -> --> Line_10 $$ disposable.dispose() [FD]
+Line_3 $$ try (TaskCheckingScheduledExecutor executorService = new TaskCheckingScheduledExecutor()) --> Line_11 $$ assertThat(executorService.isAllTasksCancelled()).isTrue() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void snoozeNewAlert() --> Line_3 $$ long initialTimestamp = System.currentTimeMillis() [CD]
+Line_2 $$ public void snoozeNewAlert() --> Line_4 $$ UserNotification.create("test1", "testAlert", initialTimestamp) [CD]
+Line_3 $$ long initialTimestamp = System.currentTimeMillis() --> Line_4 $$ UserNotification.create("test1", "testAlert", initialTimestamp) [FD]
+Line_2 $$ public void snoozeNewAlert() --> Line_5 $$ UserNotification.snoozeAlert("testAlert", 15) [CD]
+Line_2 $$ public void snoozeNewAlert() --> Line_6 $$ UserNotification newAlert = UserNotification.GetNotificationByType("testAlert") [CD]
+Line_2 $$ public void snoozeNewAlert() --> Line_7 $$ assertThat(newAlert).isNotNull() [CD]
+Line_6 $$ UserNotification newAlert = UserNotification.GetNotificationByType("testAlert") --> Line_7 $$ assertThat(newAlert).isNotNull() [FD]
+Line_2 $$ public void snoozeNewAlert() --> Line_8 $$ assertThat(newAlert.timestamp - initialTimestamp).isAtLeast(15d * 60_000) [CD]

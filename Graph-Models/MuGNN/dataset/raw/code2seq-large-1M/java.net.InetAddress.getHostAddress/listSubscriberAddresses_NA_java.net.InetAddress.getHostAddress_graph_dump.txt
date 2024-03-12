@@ -1,0 +1,8 @@
+Line_2 $$ public List<String> listSubscriberAddresses() --> Line_3 $$ List<String> hosts = Lists.newArrayList() [CD]
+Line_4 $$ for (Channel ch : subscriberChannels) --> Line_5 $$ SocketAddress address = ch.remoteAddress() [FD]
+Line_5 $$ SocketAddress address = ch.remoteAddress() --> Line_6 $$ if (address instanceof InetSocketAddress) [FD]
+Line_6 $$ if (address instanceof InetSocketAddress) --> Line_7 $$ String host = ((InetSocketAddress) address).getAddress().getHostAddress() [CD]
+Line_6 $$ if (address instanceof InetSocketAddress) --> Line_8 $$ int port = ((InetSocketAddress) address).getPort() [CD]
+Line_6 $$ if (address instanceof InetSocketAddress) --> Line_9 $$ hosts.add(new RegisterMeta.Address(host, port).toString()) [CD]
+Line_3 $$ List<String> hosts = Lists.newArrayList() --> Line_9 $$ hosts.add(new RegisterMeta.Address(host, port).toString()) [FD]
+Line_2 $$ public List<String> listSubscriberAddresses() --> Line_12 $$ return hosts [CD]

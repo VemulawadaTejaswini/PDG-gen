@@ -1,0 +1,7 @@
+Line_7 $$ Statement stmt = con.createStatement() --> Line_8 $$ stmt.execute("SET DateStyle = 'ISO, DMY'") [FD]
+Line_9 $$ String sql = "COPY copytest FROM STDIN with xxx " + copyParams --> Line_10 $$ CopyIn cp = manager.copyIn(sql) [FD]
+Line_11 $$ for (String anOrigData : origData) --> Line_12 $$ byte[] buf = anOrigData.getBytes() [FD]
+Line_10 $$ CopyIn cp = manager.copyIn(sql) --> Line_13 $$ cp.writeToCopy(buf, 0, buf.length) [FD]
+Line_12 $$ byte[] buf = anOrigData.getBytes() --> Line_13 $$ cp.writeToCopy(buf, 0, buf.length) [FD]
+Line_10 $$ CopyIn cp = manager.copyIn(sql) --> Line_15 $$ long count1 = cp.endCopy() [FD]
+Line_10 $$ CopyIn cp = manager.copyIn(sql) --> Line_16 $$ long count2 = cp.getHandledRowCount() [FD]

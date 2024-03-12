@@ -1,0 +1,8 @@
+Line_2 $$ private void dispatchPendingNonBatchedOperations(long frameTimeNanos) --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ long timeLeftInFrame = FRAME_TIME_MS - ((System.nanoTime() - frameTimeNanos) / 1000000) [CD]
+Line_3 $$ while (true) --> Line_5 $$ if (timeLeftInFrame < MIN_TIME_LEFT_IN_FRAME_TO_SCHEDULE_MORE_WORK_MS) [CD]
+Line_4 $$ long timeLeftInFrame = FRAME_TIME_MS - ((System.nanoTime() - frameTimeNanos) / 1000000) --> Line_5 $$ if (timeLeftInFrame < MIN_TIME_LEFT_IN_FRAME_TO_SCHEDULE_MORE_WORK_MS) [FD]
+Line_3 $$ while (true) --> Line_8 $$ UIOperation nextOperation [CD]
+Line_8 $$ UIOperation nextOperation --> Line_13 $$ nextOperation = mNonBatchedOperations.pollFirst() [FD]
+Line_8 $$ UIOperation nextOperation --> Line_16 $$ nextOperation.execute() [FD]
+Line_13 $$ nextOperation = mNonBatchedOperations.pollFirst() --> Line_16 $$ nextOperation.execute() [FD]

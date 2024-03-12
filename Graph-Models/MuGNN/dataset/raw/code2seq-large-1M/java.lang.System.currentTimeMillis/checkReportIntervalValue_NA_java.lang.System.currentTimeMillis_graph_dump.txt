@@ -1,0 +1,5 @@
+Line_2 $$ private void checkReportIntervalValue(final int requestInterval) --> Line_3 $$ final long currentTimestamp = System.currentTimeMillis() [CD]
+Line_2 $$ private void checkReportIntervalValue(final int requestInterval) --> Line_4 $$ if (mTimestamp > 0) [CD]
+Line_4 $$ if (mTimestamp > 0) --> Line_5 $$ final long diff = currentTimestamp - mTimestamp [CD]
+Line_4 $$ if (mTimestamp > 0) --> Line_6 $$ if (diff < (requestInterval - TestCommon.OFFSET_REPORT_INTERVAL) || diff > (requestInterval + TestCommon.OFFSET_REPORT_INTERVAL)) [CD]
+Line_6 $$ if (diff < (requestInterval - TestCommon.OFFSET_REPORT_INTERVAL) || diff > (requestInterval + TestCommon.OFFSET_REPORT_INTERVAL)) --> Line_7 $$ mWaiter.fail("expected " + requestInterval + " | current val : " + (currentTimestamp - mTimestamp)) [CD]

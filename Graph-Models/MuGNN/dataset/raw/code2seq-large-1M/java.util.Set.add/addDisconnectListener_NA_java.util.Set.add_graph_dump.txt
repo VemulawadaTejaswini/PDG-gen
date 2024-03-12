@@ -1,0 +1,8 @@
+Line_2 $$ public void addDisconnectListener(DisconnectListener listener) --> Line_4 $$ this.listeners.add(listener) [FD]
+Line_5 $$ Boolean disconnectListenerThreadBoolean = (Boolean) disconnectListenerThread.get() --> Line_6 $$ if (disconnectListenerThreadBoolean == null || !disconnectListenerThreadBoolean.booleanValue()) [FD]
+Line_6 $$ if (disconnectListenerThreadBoolean == null || !disconnectListenerThreadBoolean.booleanValue()) --> Line_7 $$ String reason = this.stopper.cancelInProgress() [CD]
+Line_6 $$ if (disconnectListenerThreadBoolean == null || !disconnectListenerThreadBoolean.booleanValue()) --> Line_8 $$ if (reason != null) [CD]
+Line_7 $$ String reason = this.stopper.cancelInProgress() --> Line_8 $$ if (reason != null) [FD]
+Line_8 $$ if (reason != null) --> Line_9 $$ this.listeners.remove(listener) [CD]
+Line_2 $$ public void addDisconnectListener(DisconnectListener listener) --> Line_9 $$ this.listeners.remove(listener) [FD]
+Line_7 $$ String reason = this.stopper.cancelInProgress() --> Line_10 $$ throw new DistributedSystemDisconnectedException(LocalizedStrings.InternalDistributedSystem_NO_LISTENERS_PERMITTED_AFTER_SHUTDOWN_0.toLocalizedString(reason), dm.getRootCause()) [FD]

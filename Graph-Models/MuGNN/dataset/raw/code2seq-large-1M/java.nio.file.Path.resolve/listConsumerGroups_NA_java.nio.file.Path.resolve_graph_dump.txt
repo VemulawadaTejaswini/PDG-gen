@@ -1,0 +1,6 @@
+Line_2 $$ public List<String> listConsumerGroups(String name) --> Line_3 $$ Path logRoot = basePath.resolve(name) [FD]
+Line_2 $$ public List<String> listConsumerGroups(String name) --> Line_3 $$ Path logRoot = basePath.resolve(name) [CD]
+Line_2 $$ public List<String> listConsumerGroups(String name) --> Line_4 $$ if (!Files.exists(logRoot)) [CD]
+Line_3 $$ Path logRoot = basePath.resolve(name) --> Line_4 $$ if (!Files.exists(logRoot)) [FD]
+Line_3 $$ Path logRoot = basePath.resolve(name) --> Line_7 $$ try (Stream<Path> paths = Files.list(logRoot)) [FD]
+Line_7 $$ try (Stream<Path> paths = Files.list(logRoot)) --> Line_8 $$ return paths.filter(Files::<>isDirectory).map(Path::<>getFileName).map(Path::<>toString).filter(ChronicleLogOffsetTracker::<>isOffsetTracker).map(ChronicleLogOffsetTracker::<>getGroupFromDirectory).collect(Collectors.toList()) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static SignedPreKeyRecord generateSignedPreKey(Context context, MasterSecret masterSecret, IdentityKeyPair identityKeyPair) --> Line_5 $$ int signedPreKeyId = getNextSignedPreKeyId(context) [FD]
+Line_2 $$ public static SignedPreKeyRecord generateSignedPreKey(Context context, MasterSecret masterSecret, IdentityKeyPair identityKeyPair) --> Line_7 $$ byte[] signature = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize()) [FD]
+Line_6 $$ ECKeyPair keyPair = Curve.generateKeyPair() --> Line_7 $$ byte[] signature = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize()) [FD]
+Line_4 $$ SignedPreKeyStore signedPreKeyStore = new SilencePreKeyStore(context, masterSecret) --> Line_9 $$ signedPreKeyStore.storeSignedPreKey(signedPreKeyId, record) [FD]
+Line_5 $$ int signedPreKeyId = getNextSignedPreKeyId(context) --> Line_9 $$ signedPreKeyStore.storeSignedPreKey(signedPreKeyId, record) [FD]
+Line_8 $$ SignedPreKeyRecord record = new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature) --> Line_9 $$ signedPreKeyStore.storeSignedPreKey(signedPreKeyId, record) [FD]
+Line_2 $$ public static SignedPreKeyRecord generateSignedPreKey(Context context, MasterSecret masterSecret, IdentityKeyPair identityKeyPair) --> Line_10 $$ setNextSignedPreKeyId(context, (signedPreKeyId + 1) % Medium.MAX_VALUE) [FD]

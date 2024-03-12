@@ -1,0 +1,8 @@
+Line_3 $$ try (DRPC server = new DRPC(null, 100)) --> Line_4 $$ Future<String> found = exec.submit(() -> server.executeBlocking("testing", "test")) [FD]
+Line_3 $$ try (DRPC server = new DRPC(null, 100)) --> Line_5 $$ DRPCRequest request = getNextAvailableRequest(server, "testing") [FD]
+Line_5 $$ DRPCRequest request = getNextAvailableRequest(server, "testing") --> Line_6 $$ assertNotNull(request) [FD]
+Line_5 $$ DRPCRequest request = getNextAvailableRequest(server, "testing") --> Line_7 $$ assertEquals("test", request.get_func_args()) [FD]
+Line_5 $$ DRPCRequest request = getNextAvailableRequest(server, "testing") --> Line_8 $$ assertNotNull(request.get_request_id()) [FD]
+Line_3 $$ try (DRPC server = new DRPC(null, 100)) --> Line_9 $$ server.failRequest(request.get_request_id(), null) [FD]
+Line_5 $$ DRPCRequest request = getNextAvailableRequest(server, "testing") --> Line_9 $$ server.failRequest(request.get_request_id(), null) [FD]
+Line_4 $$ Future<String> found = exec.submit(() -> server.executeBlocking("testing", "test")) --> Line_11 $$ found.get(100, TimeUnit.MILLISECONDS) [FD]

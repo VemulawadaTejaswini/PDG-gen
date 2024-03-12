@@ -1,0 +1,7 @@
+Line_2 $$ public void open() throws IOException --> Line_3 $$ File file = new File(directory, JOURNAL_FILENAME) [CD]
+Line_2 $$ public void open() throws IOException --> Line_4 $$ if (file.isFile()) [CD]
+Line_3 $$ File file = new File(directory, JOURNAL_FILENAME) --> Line_4 $$ if (file.isFile()) [FD]
+Line_5 $$ try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) --> Line_6 $$ boolean valid = ois.readBoolean() [FD]
+Line_8 $$ if (valid) --> Line_9 $$ Map<TransactionId, SerializableEntry<K>> readStates = (Map<TransactionId, SerializableEntry<K>>) ois.readObject() [CD]
+Line_5 $$ try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) --> Line_9 $$ Map<TransactionId, SerializableEntry<K>> readStates = (Map<TransactionId, SerializableEntry<K>>) ois.readObject() [FD]
+Line_20 $$ try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) --> Line_21 $$ oos.writeObject(false) [FD]

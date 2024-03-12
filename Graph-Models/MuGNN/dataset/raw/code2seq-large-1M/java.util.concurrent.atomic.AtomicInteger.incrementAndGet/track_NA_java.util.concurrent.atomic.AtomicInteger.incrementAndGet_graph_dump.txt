@@ -1,0 +1,5 @@
+Line_2 $$ public void track(Event<T> event) --> Line_3 $$ if (started && !event.isWatermark()) [FD]
+Line_2 $$ public void track(Event<T> event) --> Line_3 $$ if (started && !event.isWatermark()) [CD]
+Line_3 $$ if (started && !event.isWatermark()) --> Line_4 $$ if (currentCount.incrementAndGet() >= count) [CD]
+Line_4 $$ if (currentCount.incrementAndGet() >= count) --> Line_5 $$ evictionPolicy.setContext(new DefaultEvictionContext(System.currentTimeMillis())) [CD]
+Line_4 $$ if (currentCount.incrementAndGet() >= count) --> Line_6 $$ handler.onTrigger() [CD]

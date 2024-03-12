@@ -1,0 +1,8 @@
+Line_3 $$ try (Session session = neo4j.driver().session()) --> Line_4 $$ StatementResult result = session.run("UNWIND range(8000, 1, -1) AS x RETURN 42 / x") [FD]
+Line_5 $$ for (int i = 0; i < 12; i++) --> Line_6 $$ assertTrue(result.hasNext()) [CD]
+Line_4 $$ StatementResult result = session.run("UNWIND range(8000, 1, -1) AS x RETURN 42 / x") --> Line_6 $$ assertTrue(result.hasNext()) [FD]
+Line_5 $$ for (int i = 0; i < 12; i++) --> Line_7 $$ assertNotNull(result.next()) [CD]
+Line_4 $$ StatementResult result = session.run("UNWIND range(8000, 1, -1) AS x RETURN 42 / x") --> Line_7 $$ assertNotNull(result.next()) [FD]
+Line_5 $$ for (int i = 0; i < 12; i++) --> Line_8 $$ Thread.sleep(50) [CD]
+Line_4 $$ StatementResult result = session.run("UNWIND range(8000, 1, -1) AS x RETURN 42 / x") --> Line_10 $$ ResultSummary summary = result.summary() [FD]
+Line_10 $$ ResultSummary summary = result.summary() --> Line_11 $$ assertNotNull(summary) [FD]

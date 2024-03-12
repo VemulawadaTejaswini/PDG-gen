@@ -1,0 +1,5 @@
+Line_3 $$ try (Git git = new Git(db)) --> Line_4 $$ RevCommit sideCommit = prepareCherryPick(git) [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_5 $$ CherryPickResult result = git.cherryPick().include(sideCommit.getId()).call() [FD]
+Line_4 $$ RevCommit sideCommit = prepareCherryPick(git) --> Line_5 $$ CherryPickResult result = git.cherryPick().include(sideCommit.getId()).call() [FD]
+Line_5 $$ CherryPickResult result = git.cherryPick().include(sideCommit.getId()).call() --> Line_6 $$ assertEquals(CherryPickStatus.CONFLICTING, result.getStatus()) [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_9 $$ git.reset().setMode(ResetType.MIXED).setRef("HEAD").call() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testAllIsNotAllowedInShardLevelRequests() --> Line_3 $$ ShardSearchTransportRequest request = mock(ShardSearchTransportRequest.class) [CD]
+Line_2 $$ public void testAllIsNotAllowedInShardLevelRequests() --> Line_4 $$ if (randomBoolean()) [CD]
+Line_4 $$ if (randomBoolean()) --> Line_5 $$ when(request.indices()).thenReturn(new String[] [CD]
+Line_4 $$ if (randomBoolean()) --> Line_7 $$ if (randomBoolean()) [CD]
+Line_7 $$ if (randomBoolean()) --> Line_8 $$ when(request.indices()).thenReturn(Strings.EMPTY_ARRAY) [CD]
+Line_7 $$ if (randomBoolean()) --> Line_10 $$ when(request.indices()).thenReturn(null) [CD]
+Line_2 $$ public void testAllIsNotAllowedInShardLevelRequests() --> Line_13 $$ IllegalStateException illegalStateException = expectThrows(IllegalStateException.class, () -> resolveIndices(request, buildAuthorizedIndices(userDashIndices, SearchAction.NAME)).getLocal()) [CD]
+Line_2 $$ public void testAllIsNotAllowedInShardLevelRequests() --> Line_14 $$ assertEquals("There are no external requests known to support wildcards that don't support replacing their indices", illegalStateException.getMessage()) [CD]

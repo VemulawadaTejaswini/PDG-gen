@@ -1,0 +1,8 @@
+Line_4 $$ final MqttClient client = connect() --> Line_5 $$ if (client == null || !client.isConnected()) [FD]
+Line_5 $$ if (client == null || !client.isConnected()) --> Line_6 $$ return [CD]
+Line_8 $$ MqttMessage message = new MqttMessage() --> Line_9 $$ message.setRetained(false) [FD]
+Line_8 $$ MqttMessage message = new MqttMessage() --> Line_10 $$ message.setPayload((applicationId + "," + loggedInUserId + "," + status).getBytes()) [FD]
+Line_8 $$ MqttMessage message = new MqttMessage() --> Line_11 $$ message.setQos(0) [FD]
+Line_4 $$ final MqttClient client = connect() --> Line_12 $$ client.publish("typing" + "-" + applicationId + "-" + userId, message) [FD]
+Line_8 $$ MqttMessage message = new MqttMessage() --> Line_12 $$ client.publish("typing" + "-" + applicationId + "-" + userId, message) [FD]
+Line_8 $$ MqttMessage message = new MqttMessage() --> Line_13 $$ Utils.printLog(context, TAG, "Published " + new String(message.getPayload()) + " to topic: " + "typing" + "-" + applicationId + "-" + userId) [FD]

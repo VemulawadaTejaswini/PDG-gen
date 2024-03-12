@@ -1,0 +1,8 @@
+Line_2 $$ public static String decrypt(String s) --> Line_4 $$ byte[] buffer = new BASE64Decoder().decode(s.getBytes()) [FD]
+Line_5 $$ for (int i = 0; i < buffer.length; i += 3) --> Line_6 $$ buffer[i] = (byte) ((byte) (0x0F & buffer[i]) << 4 | (((byte) (0x70 & buffer[i])) >> 4) | (byte) ((((byte) (0x80 & buffer[i])) == -128) ? 0x08 : 0)) [CD]
+Line_5 $$ for (int i = 0; i < buffer.length; i += 3) --> Line_8 $$ for (int i = 0; i < buffer.length - 1; i += 2) [FD]
+Line_8 $$ for (int i = 0; i < buffer.length - 1; i += 2) --> Line_9 $$ byte temp = buffer[i] [CD]
+Line_8 $$ for (int i = 0; i < buffer.length - 1; i += 2) --> Line_10 $$ buffer[i] = buffer[i + 1] [CD]
+Line_8 $$ for (int i = 0; i < buffer.length - 1; i += 2) --> Line_11 $$ buffer[i + 1] = temp [CD]
+Line_9 $$ byte temp = buffer[i] --> Line_11 $$ buffer[i + 1] = temp [FD]
+Line_2 $$ public static String decrypt(String s) --> Line_16 $$ return "" [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public long getItemId(int position) --> Line_3 $$ if (getData() != null) [CD]
+Line_3 $$ if (getData() != null) --> Line_4 $$ Task task = getData().get(position) [CD]
+Line_2 $$ public long getItemId(int position) --> Line_4 $$ Task task = getData().get(position) [FD]
+Line_3 $$ if (getData() != null) --> Line_5 $$ if (task.getId() != null && task.getId().length() == 36) [CD]
+Line_4 $$ Task task = getData().get(position) --> Line_5 $$ if (task.getId() != null && task.getId().length() == 36) [FD]
+Line_5 $$ if (task.getId() != null && task.getId().length() == 36) --> Line_6 $$ return UUID.fromString(task.getId()).getMostSignificantBits() [CD]
+Line_4 $$ Task task = getData().get(position) --> Line_6 $$ return UUID.fromString(task.getId()).getMostSignificantBits() [FD]
+Line_2 $$ public long getItemId(int position) --> Line_9 $$ return UUID.randomUUID().getMostSignificantBits() [CD]

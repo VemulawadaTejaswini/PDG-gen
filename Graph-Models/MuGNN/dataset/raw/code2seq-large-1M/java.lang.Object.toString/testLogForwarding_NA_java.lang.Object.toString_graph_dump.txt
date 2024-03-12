@@ -1,0 +1,7 @@
+Line_2 $$ public void testLogForwarding() --> Line_3 $$ String hosts = "<hosts>" + "  <host name=\"myhost0\">" + "    <alias>node0</alias>" + "  </host>" + "</hosts>" [CD]
+Line_2 $$ public void testLogForwarding() --> Line_4 $$ String services = "<services>" + "  <admin version='2.0'>" + "    <adminserver hostalias='node0' />" + "    <logforwarding>" + "      <splunk deployment-server='foo:123' client-name='foocli'/>" + "    </logforwarding>" + "  </admin>" + "</services>" [CD]
+Line_2 $$ public void testLogForwarding() --> Line_5 $$ VespaModel vespaModel = new VespaModelCreatorWithMockPkg(hosts, services).create() [CD]
+Line_2 $$ public void testLogForwarding() --> Line_6 $$ Set<String> configIds = vespaModel.getConfigIds() [CD]
+Line_5 $$ VespaModel vespaModel = new VespaModelCreatorWithMockPkg(hosts, services).create() --> Line_6 $$ Set<String> configIds = vespaModel.getConfigIds() [FD]
+Line_2 $$ public void testLogForwarding() --> Line_7 $$ assertTrue(configIds.toString(), configIds.contains("hosts/myhost0/logforwarder")) [CD]
+Line_6 $$ Set<String> configIds = vespaModel.getConfigIds() --> Line_7 $$ assertTrue(configIds.toString(), configIds.contains("hosts/myhost0/logforwarder")) [FD]

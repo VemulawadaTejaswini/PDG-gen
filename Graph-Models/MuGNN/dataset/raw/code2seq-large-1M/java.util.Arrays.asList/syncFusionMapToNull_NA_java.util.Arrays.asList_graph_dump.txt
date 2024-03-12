@@ -1,0 +1,5 @@
+Line_2 $$ public void syncFusionMapToNull() --> Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() [CD]
+Line_2 $$ public void syncFusionMapToNull() --> Line_4 $$ Flux.fromIterable(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).zipWith(Flux.fromIterable(Arrays.asList(1, 2)).map( v -> v == 2 ? null : v), ( a,  b) -> a + b).subscribe(ts) [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_4 $$ Flux.fromIterable(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).zipWith(Flux.fromIterable(Arrays.asList(1, 2)).map( v -> v == 2 ? null : v), ( a,  b) -> a + b).subscribe(ts) [FD]
+Line_2 $$ public void syncFusionMapToNull() --> Line_5 $$ ts.assertValues(2).assertError(NullPointerException.class).assertNotComplete() [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_5 $$ ts.assertValues(2).assertError(NullPointerException.class).assertNotComplete() [FD]

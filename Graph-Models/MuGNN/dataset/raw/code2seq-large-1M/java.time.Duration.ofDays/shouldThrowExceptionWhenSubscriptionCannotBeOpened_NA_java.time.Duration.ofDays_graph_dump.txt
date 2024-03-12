@@ -1,0 +1,4 @@
+Line_2 $$ public void shouldThrowExceptionWhenSubscriptionCannotBeOpened() --> Line_3 $$ broker.onControlMessageRequest( r -> r.messageType() == ControlMessageType.ADD_JOB_SUBSCRIPTION).respondWithError().errorCode(ErrorCode.REQUEST_PROCESSING_FAILURE).errorData("does not compute").register() [CD]
+Line_2 $$ public void shouldThrowExceptionWhenSubscriptionCannotBeOpened() --> Line_4 $$ exception.expect(RuntimeException.class) [CD]
+Line_2 $$ public void shouldThrowExceptionWhenSubscriptionCannotBeOpened() --> Line_5 $$ exception.expectMessage("Could not open subscription") [CD]
+Line_2 $$ public void shouldThrowExceptionWhenSubscriptionCannotBeOpened() --> Line_6 $$ clientRule.subscriptionClient().newJobSubscription().jobType("bar").handler(DO_NOTHING).lockOwner("foo").lockTime(Duration.ofDays(10)).open() [CD]

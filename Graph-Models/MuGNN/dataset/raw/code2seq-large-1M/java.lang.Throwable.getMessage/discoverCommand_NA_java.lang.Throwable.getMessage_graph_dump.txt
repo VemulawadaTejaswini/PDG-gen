@@ -1,0 +1,6 @@
+Line_2 $$ protected String discoverCommand(URL url) --> Line_4 $$ String commandPath = ZkUtils.toCommandPath(url) [FD]
+Line_4 $$ String commandPath = ZkUtils.toCommandPath(url) --> Line_6 $$ if (zkClient.exists(commandPath)) [FD]
+Line_6 $$ if (zkClient.exists(commandPath)) --> Line_7 $$ command = zkClient.readData(commandPath) [CD]
+Line_5 $$ String command = "" --> Line_7 $$ command = zkClient.readData(commandPath) [FD]
+Line_4 $$ String commandPath = ZkUtils.toCommandPath(url) --> Line_7 $$ command = zkClient.readData(commandPath) [FD]
+Line_2 $$ protected String discoverCommand(URL url) --> Line_11 $$ throw new MotanFrameworkException(String.format("Failed to discover command %s from zookeeper(%s), cause: %s", url, getUrl(), e.getMessage())) [FD]

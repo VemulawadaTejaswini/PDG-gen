@@ -1,0 +1,6 @@
+Line_2 $$ protected IWebApplicationFactory getApplicationFactory() --> Line_3 $$ final String appFactoryClassName = filterConfig.getInitParameter(APP_FACT_PARAM) [CD]
+Line_2 $$ protected IWebApplicationFactory getApplicationFactory() --> Line_4 $$ if (appFactoryClassName == null) [CD]
+Line_3 $$ final String appFactoryClassName = filterConfig.getInitParameter(APP_FACT_PARAM) --> Line_4 $$ if (appFactoryClassName == null) [FD]
+Line_4 $$ if (appFactoryClassName == null) --> Line_5 $$ return new ContextParamWebApplicationFactory() [CD]
+Line_3 $$ final String appFactoryClassName = filterConfig.getInitParameter(APP_FACT_PARAM) --> Line_8 $$ final Class<?> factoryClass = Class.forName(appFactoryClassName, false, Thread.currentThread().getContextClassLoader()) [FD]
+Line_8 $$ final Class<?> factoryClass = Class.forName(appFactoryClassName, false, Thread.currentThread().getContextClassLoader()) --> Line_9 $$ return (IWebApplicationFactory) factoryClass.newInstance() [FD]

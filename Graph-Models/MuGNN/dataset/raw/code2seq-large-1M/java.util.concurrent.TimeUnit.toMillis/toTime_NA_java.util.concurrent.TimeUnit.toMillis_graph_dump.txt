@@ -1,0 +1,8 @@
+Line_2 $$ public Time toTime() --> Line_3 $$ long millis = getMillisLocal() [CD]
+Line_2 $$ public Time toTime() --> Line_4 $$ if (type == Type.Timestamp) [CD]
+Line_4 $$ if (type == Type.Timestamp) --> Line_5 $$ millis %= DAYS.toMillis(1) [CD]
+Line_3 $$ long millis = getMillisLocal() --> Line_5 $$ millis %= DAYS.toMillis(1) [FD]
+Line_2 $$ public Time toTime() --> Line_7 $$ millis -= getZoneOffsetMillis() [CD]
+Line_3 $$ long millis = getMillisLocal() --> Line_7 $$ millis -= getZoneOffsetMillis() [FD]
+Line_5 $$ millis %= DAYS.toMillis(1) --> Line_7 $$ millis -= getZoneOffsetMillis() [FD]
+Line_2 $$ public Time toTime() --> Line_8 $$ return new Time(millis) [CD]

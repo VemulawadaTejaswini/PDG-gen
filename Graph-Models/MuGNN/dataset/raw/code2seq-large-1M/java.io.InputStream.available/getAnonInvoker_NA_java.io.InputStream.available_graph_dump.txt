@@ -1,0 +1,8 @@
+Line_2 $$ protected static NodeInterface getAnonInvoker() throws IllegalAccessException, IOException, InstantiationException --> Line_3 $$ String resource = NodeClass.class.getName().replace('.', '/') + ".class" [CD]
+Line_2 $$ protected static NodeInterface getAnonInvoker() throws IllegalAccessException, IOException, InstantiationException --> Line_4 $$ InputStream classFile = j9vm.test.invoker.NodeClass.class.getClassLoader().getResourceAsStream(resource) [CD]
+Line_2 $$ protected static NodeInterface getAnonInvoker() throws IllegalAccessException, IOException, InstantiationException --> Line_5 $$ byte[] classFileBytes = new byte[classFile.available()] [CD]
+Line_2 $$ protected static NodeInterface getAnonInvoker() throws IllegalAccessException, IOException, InstantiationException --> Line_6 $$ classFile.read(classFileBytes) [CD]
+Line_2 $$ protected static NodeInterface getAnonInvoker() throws IllegalAccessException, IOException, InstantiationException --> Line_7 $$ Unsafe unsafe = getUnsafeInstance() [CD]
+Line_2 $$ protected static NodeInterface getAnonInvoker() throws IllegalAccessException, IOException, InstantiationException --> Line_8 $$ NodeInterface anonInvoker = (NodeInterface) unsafe.defineAnonymousClass(NodeInterface.class, classFileBytes, null).newInstance() [CD]
+Line_7 $$ Unsafe unsafe = getUnsafeInstance() --> Line_8 $$ NodeInterface anonInvoker = (NodeInterface) unsafe.defineAnonymousClass(NodeInterface.class, classFileBytes, null).newInstance() [FD]
+Line_2 $$ protected static NodeInterface getAnonInvoker() throws IllegalAccessException, IOException, InstantiationException --> Line_9 $$ return anonInvoker [CD]

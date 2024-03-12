@@ -1,0 +1,8 @@
+Line_2 $$ public static SqlActorIds forTimelineActor(@NonNull Timeline timeline) --> Line_3 $$ if (timeline.isCombined()) [CD]
+Line_2 $$ public static SqlActorIds forTimelineActor(@NonNull Timeline timeline) --> Line_3 $$ if (timeline.isCombined()) [FD]
+Line_3 $$ if (timeline.isCombined()) --> Line_4 $$ return SqlActorIds.fromIds(MyContextHolder.get().users().myActors.keySet()) [CD]
+Line_3 $$ if (timeline.isCombined()) --> Line_5 $$ if (timeline.getTimelineType().isAtOrigin()) [CD]
+Line_2 $$ public static SqlActorIds forTimelineActor(@NonNull Timeline timeline) --> Line_5 $$ if (timeline.getTimelineType().isAtOrigin()) [FD]
+Line_5 $$ if (timeline.getTimelineType().isAtOrigin()) --> Line_6 $$ return SqlActorIds.fromActors(MyContextHolder.get().users().myActors.values().stream().filter( actor -> actor.origin.equals(timeline.getOrigin())).collect(toList())) [CD]
+Line_2 $$ public static SqlActorIds forTimelineActor(@NonNull Timeline timeline) --> Line_6 $$ return SqlActorIds.fromActors(MyContextHolder.get().users().myActors.values().stream().filter( actor -> actor.origin.equals(timeline.getOrigin())).collect(toList())) [FD]
+Line_5 $$ if (timeline.getTimelineType().isAtOrigin()) --> Line_8 $$ return SqlActorIds.fromIds(timeline.actor.user.actorIds) [CD]

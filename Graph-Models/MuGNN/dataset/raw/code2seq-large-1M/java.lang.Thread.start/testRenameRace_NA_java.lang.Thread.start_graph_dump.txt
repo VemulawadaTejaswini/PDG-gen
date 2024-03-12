@@ -1,0 +1,8 @@
+Line_6 $$ FileSystem fs = cluster.getFileSystem() --> Line_10 $$ fs.mkdirs(dirPath1) [FD]
+Line_7 $$ Path dirPath1 = new Path("/testRenameRace1") --> Line_10 $$ fs.mkdirs(dirPath1) [FD]
+Line_6 $$ FileSystem fs = cluster.getFileSystem() --> Line_11 $$ FSDataOutputStream out = fs.create(filePath) [FD]
+Line_9 $$ Path filePath = new Path("/testRenameRace1/file1") --> Line_11 $$ FSDataOutputStream out = fs.create(filePath) [FD]
+Line_12 $$ Thread renameThread = new RenameThread(fs, dirPath1, dirPath2) --> Line_13 $$ renameThread.start() [FD]
+Line_11 $$ FSDataOutputStream out = fs.create(filePath) --> Line_14 $$ out.write(new byte[32], 0, 32) [FD]
+Line_11 $$ FSDataOutputStream out = fs.create(filePath) --> Line_15 $$ out.close() [FD]
+Line_18 $$ if (cluster != null) --> Line_19 $$ cluster.shutdown() [CD]

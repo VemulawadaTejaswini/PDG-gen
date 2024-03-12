@@ -1,0 +1,7 @@
+Line_2 $$ protected MBeanServer findOrCreateMBeanServer() --> Line_3 $$ if (jmxConfigurator.getMbeanDomain().equals(JMXConfigurator.DEFAUL_JMX_DOMAIN)) [CD]
+Line_3 $$ if (jmxConfigurator.getMbeanDomain().equals(JMXConfigurator.DEFAUL_JMX_DOMAIN)) --> Line_4 $$ return ManagementFactory.getPlatformMBeanServer() [CD]
+Line_2 $$ protected MBeanServer findOrCreateMBeanServer() --> Line_5 $$ List<MBeanServer> servers = MBeanServerFactory.findMBeanServer(null) [CD]
+Line_6 $$ for (MBeanServer server : servers) --> Line_7 $$ LOGGER.debug("Found MBeanServer with default domain [FD]
+Line_6 $$ for (MBeanServer server : servers) --> Line_8 $$ if (jmxConfigurator.getMbeanDomain().equals(server.getDefaultDomain())) [FD]
+Line_8 $$ if (jmxConfigurator.getMbeanDomain().equals(server.getDefaultDomain())) --> Line_9 $$ return server [CD]
+Line_2 $$ protected MBeanServer findOrCreateMBeanServer() --> Line_12 $$ return MBeanServerFactory.createMBeanServer(jmxConfigurator.getMbeanDomain()) [CD]

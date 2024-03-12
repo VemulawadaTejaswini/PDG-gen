@@ -1,0 +1,8 @@
+Line_9 $$ while (iterator.hasNext()) --> Line_10 $$ Entry keyValue = iterator.next() [CD]
+Line_9 $$ while (iterator.hasNext()) --> Line_11 $$ Object indexKey = keyValue.getKey() == null ? IndexManager.NULL : keyValue.getKey() [CD]
+Line_9 $$ while (iterator.hasNext()) --> Line_12 $$ if (!presentKeys.contains(indexKey)) [CD]
+Line_11 $$ Object indexKey = keyValue.getKey() == null ? IndexManager.NULL : keyValue.getKey() --> Line_12 $$ if (!presentKeys.contains(indexKey)) [FD]
+Line_12 $$ if (!presentKeys.contains(indexKey)) --> Line_13 $$ CompactRangeIndex rg = (CompactRangeIndex) this.mapKeyToValueIndex.get(keyValue.getKey()) [CD]
+Line_12 $$ if (!presentKeys.contains(indexKey)) --> Line_14 $$ rg.removeMapping(keyValue.getValue(), entry) [CD]
+Line_13 $$ CompactRangeIndex rg = (CompactRangeIndex) this.mapKeyToValueIndex.get(keyValue.getKey()) --> Line_14 $$ rg.removeMapping(keyValue.getValue(), entry) [FD]
+Line_12 $$ if (!presentKeys.contains(indexKey)) --> Line_15 $$ iterator.remove() [CD]

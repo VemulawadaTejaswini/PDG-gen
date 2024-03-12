@@ -1,0 +1,7 @@
+Line_2 $$ static Operation sleep(Duration duration) --> Line_3 $$ if (duration.isNegative()) [FD]
+Line_2 $$ static Operation sleep(Duration duration) --> Line_3 $$ if (duration.isNegative()) [CD]
+Line_3 $$ if (duration.isNegative()) --> Line_6 $$ if (duration.isZero()) [CD]
+Line_2 $$ static Operation sleep(Duration duration) --> Line_6 $$ if (duration.isZero()) [FD]
+Line_6 $$ if (duration.isZero()) --> Line_7 $$ return Operation.noop() [CD]
+Line_6 $$ if (duration.isZero()) --> Line_9 $$ return Promise.async( down -> [CD]
+Line_2 $$ static Operation sleep(Duration duration) --> Line_11 $$ current().getEventLoop().schedule(() -> down.success(null), duration.toNanos(), TimeUnit.NANOSECONDS) [FD]

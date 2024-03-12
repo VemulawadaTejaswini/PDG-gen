@@ -1,0 +1,6 @@
+Line_2 $$ private void assertSingleDexOutput(int expectedClassCount, Path outputArchive, String dexFileName) throws IOException --> Line_3 $$ try (ZipFile output = new ZipFile(outputArchive.toFile())) [FD]
+Line_3 $$ try (ZipFile output = new ZipFile(outputArchive.toFile())) --> Line_4 $$ ZipEntry entry = Iterators.getOnlyElement(Iterators.forEnumeration(output.entries())) [FD]
+Line_2 $$ private void assertSingleDexOutput(int expectedClassCount, Path outputArchive, String dexFileName) throws IOException --> Line_5 $$ assertThat(entry.getName()).isEqualTo(dexFileName) [FD]
+Line_3 $$ try (ZipFile output = new ZipFile(outputArchive.toFile())) --> Line_6 $$ Dex dex = new Dex(output.getInputStream(entry)) [FD]
+Line_2 $$ private void assertSingleDexOutput(int expectedClassCount, Path outputArchive, String dexFileName) throws IOException --> Line_7 $$ assertThat(dex.classDefs()).hasSize(expectedClassCount) [FD]
+Line_6 $$ Dex dex = new Dex(output.getInputStream(entry)) --> Line_7 $$ assertThat(dex.classDefs()).hasSize(expectedClassCount) [FD]

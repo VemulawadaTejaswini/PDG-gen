@@ -1,0 +1,6 @@
+Line_2 $$ public void testImplicitFieldGetterAccess() throws Exception --> Line_3 $$ DynamicType.Loaded<ImplicitGetter> loaded = new ByteBuddy().subclass(ImplicitGetter.class).method(isDeclaredBy(ImplicitGetter.class)).intercept(MethodDelegation.withDefaultConfiguration().withBinders(FieldProxy.Binder.install(Get.class, Set.class)).to(GetInterceptor.class)).make().load(ImplicitGetter.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testImplicitFieldGetterAccess() throws Exception --> Line_4 $$ ImplicitGetter implicitGetter = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testImplicitFieldGetterAccess() throws Exception --> Line_5 $$ assertThat(implicitGetter.foo, is(FOO)) [CD]
+Line_2 $$ public void testImplicitFieldGetterAccess() throws Exception --> Line_6 $$ assertThat(implicitGetter.getFoo(), is(FOO + BAR)) [CD]
+Line_4 $$ ImplicitGetter implicitGetter = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ assertThat(implicitGetter.getFoo(), is(FOO + BAR)) [FD]
+Line_2 $$ public void testImplicitFieldGetterAccess() throws Exception --> Line_7 $$ assertThat(implicitGetter.foo, is(FOO + BAR)) [CD]

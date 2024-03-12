@@ -1,0 +1,7 @@
+Line_5 $$ while ((existing = map.putIfAbsent(entry.id, entry)) != null) --> Line_7 $$ if (existing.locked) [FD]
+Line_7 $$ if (existing.locked) --> Line_8 $$ ++existing.numWaiters [CD]
+Line_7 $$ if (existing.locked) --> Line_9 $$ while (existing.locked) [CD]
+Line_5 $$ while ((existing = map.putIfAbsent(entry.id, entry)) != null) --> Line_11 $$ existing.wait() [FD]
+Line_7 $$ if (existing.locked) --> Line_17 $$ --existing.numWaiters [CD]
+Line_7 $$ if (existing.locked) --> Line_18 $$ existing.locked = true [CD]
+Line_7 $$ if (existing.locked) --> Line_19 $$ return existing [CD]

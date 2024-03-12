@@ -1,0 +1,8 @@
+Line_2 $$ public void topHitTest_WithIncludeTwoFields() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_3 $$ Aggregations result = query(String.format("select topHits('size'=3,'include'='age,firstname',age='desc') from %s/account group by gender ", TEST_INDEX_ACCOUNT)) [CD]
+Line_2 $$ public void topHitTest_WithIncludeTwoFields() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_4 $$ List<? extends Terms.Bucket> buckets = ((Terms) (result.asList().get(0))).getBuckets() [CD]
+Line_3 $$ Aggregations result = query(String.format("select topHits('size'=3,'include'='age,firstname',age='desc') from %s/account group by gender ", TEST_INDEX_ACCOUNT)) --> Line_4 $$ List<? extends Terms.Bucket> buckets = ((Terms) (result.asList().get(0))).getBuckets() [FD]
+Line_5 $$ for (Terms.Bucket bucket : buckets) --> Line_6 $$ SearchHits hits = ((InternalTopHits) bucket.getAggregations().asList().get(0)).getHits() [FD]
+Line_7 $$ for (SearchHit hit : hits) --> Line_8 $$ Set<String> fields = hit.getSourceAsMap().keySet() [FD]
+Line_8 $$ Set<String> fields = hit.getSourceAsMap().keySet() --> Line_9 $$ Assert.assertEquals(2, fields.size()) [FD]
+Line_8 $$ Set<String> fields = hit.getSourceAsMap().keySet() --> Line_10 $$ Assert.assertTrue(fields.contains("age")) [FD]
+Line_8 $$ Set<String> fields = hit.getSourceAsMap().keySet() --> Line_11 $$ Assert.assertTrue(fields.contains("firstname")) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void testNumericPromotionBigInteger() --> Line_3 $$ List<BigInteger> lineorders = streams.streamAll(em, Lineorder.class).select( lo -> lo.getTransactionConfirmation().add(BigInteger.valueOf(lo.getQuantity()))).sortedBy( num -> num).toList() [CD]
+Line_2 $$ public void testNumericPromotionBigInteger() --> Line_4 $$ assertEquals("SELECT A.transactionConfirmation + A.quantity FROM org.jinq.hibernate.test.entities.Lineorder A ORDER BY A.transactionConfirmation + A.quantity ASC", query) [CD]
+Line_2 $$ public void testNumericPromotionBigInteger() --> Line_5 $$ assertEquals(11, lineorders.size()) [CD]
+Line_2 $$ public void testNumericPromotionBigInteger() --> Line_6 $$ assertEquals(1001, lineorders.get(0).longValue()) [CD]

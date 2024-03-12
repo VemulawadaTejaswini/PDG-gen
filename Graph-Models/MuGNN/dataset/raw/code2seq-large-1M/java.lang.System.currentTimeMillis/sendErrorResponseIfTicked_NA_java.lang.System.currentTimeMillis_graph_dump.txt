@@ -1,0 +1,8 @@
+Line_2 $$ private void sendErrorResponseIfTicked(ChannelHandlerContext ctx, int msgId) --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ private void sendErrorResponseIfTicked(ChannelHandlerContext ctx, int msgId) --> Line_4 $$ if (lastQuotaExceededTime + USER_QUOTA_LIMIT_WARN_PERIOD < now) [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_4 $$ if (lastQuotaExceededTime + USER_QUOTA_LIMIT_WARN_PERIOD < now) [FD]
+Line_4 $$ if (lastQuotaExceededTime + USER_QUOTA_LIMIT_WARN_PERIOD < now) --> Line_6 $$ log.debug("User has exceeded message quota limit.") [CD]
+Line_4 $$ if (lastQuotaExceededTime + USER_QUOTA_LIMIT_WARN_PERIOD < now) --> Line_7 $$ if (ctx.channel().isWritable()) [CD]
+Line_2 $$ private void sendErrorResponseIfTicked(ChannelHandlerContext ctx, int msgId) --> Line_7 $$ if (ctx.channel().isWritable()) [FD]
+Line_7 $$ if (ctx.channel().isWritable()) --> Line_8 $$ ctx.channel().writeAndFlush(makeResponse(msgId, Response.QUOTA_LIMIT), ctx.voidPromise()) [CD]
+Line_2 $$ private void sendErrorResponseIfTicked(ChannelHandlerContext ctx, int msgId) --> Line_8 $$ ctx.channel().writeAndFlush(makeResponse(msgId, Response.QUOTA_LIMIT), ctx.voidPromise()) [FD]

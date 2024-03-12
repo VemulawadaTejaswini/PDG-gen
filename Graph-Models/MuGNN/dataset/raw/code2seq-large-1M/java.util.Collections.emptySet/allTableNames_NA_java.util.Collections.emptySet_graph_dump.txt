@@ -1,0 +1,4 @@
+Line_2 $$ public Set<String> allTableNames() throws Exception --> Line_3 $$ if (zkClient.checkExists().forPath(zkTableRoot) == null) [CD]
+Line_3 $$ if (zkClient.checkExists().forPath(zkTableRoot) == null) --> Line_4 $$ return Collections.emptySet() [CD]
+Line_2 $$ public Set<String> allTableNames() throws Exception --> Line_6 $$ List<String> names = Try.on(() -> zkClient.getChildren().forPath(zkTableRoot), 5, logger, "Read table names from zk failed") [CD]
+Line_2 $$ public Set<String> allTableNames() throws Exception --> Line_7 $$ return names == null ? null : new HashSet(names) [CD]

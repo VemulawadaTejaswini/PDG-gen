@@ -1,0 +1,8 @@
+Line_2 $$ public void tearDown() throws Exception --> Line_3 $$ ExecutorService executor = Executors.newSingleThreadExecutor() [CD]
+Line_2 $$ public void tearDown() throws Exception --> Line_4 $$ Future<Boolean> future = executor.submit(new TeardownTask(brokerLock, broker)) [CD]
+Line_3 $$ ExecutorService executor = Executors.newSingleThreadExecutor() --> Line_4 $$ Future<Boolean> future = executor.submit(new TeardownTask(brokerLock, broker)) [FD]
+Line_4 $$ Future<Boolean> future = executor.submit(new TeardownTask(brokerLock, broker)) --> Line_8 $$ Boolean result = future.get(30, TimeUnit.SECONDS) [FD]
+Line_8 $$ Boolean result = future.get(30, TimeUnit.SECONDS) --> Line_10 $$ LOG.debug("Result of teardown: [FD]
+Line_2 $$ public void tearDown() throws Exception --> Line_15 $$ executor.shutdownNow() [CD]
+Line_3 $$ ExecutorService executor = Executors.newSingleThreadExecutor() --> Line_15 $$ executor.shutdownNow() [FD]
+Line_2 $$ public void tearDown() throws Exception --> Line_16 $$ exceptions.clear() [CD]

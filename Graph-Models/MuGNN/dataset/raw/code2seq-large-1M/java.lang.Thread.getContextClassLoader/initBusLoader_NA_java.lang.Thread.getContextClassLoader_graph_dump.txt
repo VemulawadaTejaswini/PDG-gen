@@ -1,0 +1,8 @@
+Line_2 $$ public static ClassLoader initBusLoader() --> Line_3 $$ final ClassLoader loader = CxfUtil.getBus().getExtension(ClassLoader.class) [CD]
+Line_2 $$ public static ClassLoader initBusLoader() --> Line_4 $$ final ClassLoader tccl = Thread.currentThread().getContextClassLoader() [CD]
+Line_2 $$ public static ClassLoader initBusLoader() --> Line_5 $$ if (loader != null) [CD]
+Line_5 $$ if (loader != null) --> Line_6 $$ if (CxfContainerClassLoader.class.isInstance(loader) && !CxfContainerClassLoader.class.isInstance(tccl)) [CD]
+Line_4 $$ final ClassLoader tccl = Thread.currentThread().getContextClassLoader() --> Line_6 $$ if (CxfContainerClassLoader.class.isInstance(loader) && !CxfContainerClassLoader.class.isInstance(tccl)) [FD]
+Line_4 $$ final ClassLoader tccl = Thread.currentThread().getContextClassLoader() --> Line_7 $$ CxfContainerClassLoader.class.cast(loader).tccl(tccl) [FD]
+Line_5 $$ if (loader != null) --> Line_9 $$ return loader [CD]
+Line_2 $$ public static ClassLoader initBusLoader() --> Line_11 $$ return tccl [CD]

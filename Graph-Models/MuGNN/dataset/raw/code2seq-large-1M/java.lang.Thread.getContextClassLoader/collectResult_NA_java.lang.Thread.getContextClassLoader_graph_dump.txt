@@ -1,0 +1,6 @@
+Line_2 $$ private static void collectResult(int opIdx, OperatorStateHandle operatorStateHandle, List<String> resultCollector) throws Exception --> Line_3 $$ try (FSDataInputStream in = operatorStateHandle.openInputStream()) [FD]
+Line_2 $$ private static void collectResult(int opIdx, OperatorStateHandle operatorStateHandle, List<String> resultCollector) throws Exception --> Line_4 $$ for (Map.Entry<String, OperatorStateHandle.StateMetaInfo> entry : operatorStateHandle.getStateNameToPartitionOffsets().entrySet()) [FD]
+Line_3 $$ try (FSDataInputStream in = operatorStateHandle.openInputStream()) --> Line_6 $$ in.seek(offset) [FD]
+Line_5 $$ for (long offset : entry.getValue().getOffsets()) --> Line_6 $$ in.seek(offset) [FD]
+Line_3 $$ try (FSDataInputStream in = operatorStateHandle.openInputStream()) --> Line_7 $$ Integer state = InstantiationUtil.deserializeObject(in, Thread.currentThread().getContextClassLoader()) [FD]
+Line_2 $$ private static void collectResult(int opIdx, OperatorStateHandle operatorStateHandle, List<String> resultCollector) throws Exception --> Line_8 $$ resultCollector.add(opIdx + " : " + entry.getKey() + " : " + state) [FD]

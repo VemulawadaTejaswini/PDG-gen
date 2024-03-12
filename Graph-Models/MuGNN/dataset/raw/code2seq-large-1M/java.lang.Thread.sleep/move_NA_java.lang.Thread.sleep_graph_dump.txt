@@ -1,0 +1,8 @@
+Line_2 $$ private void move() throws IOException, InterruptedException --> Line_3 $$ RegionInfo region = UTIL.getHBaseCluster().getRegions(tableName).stream().findAny().get().getRegionInfo() [CD]
+Line_2 $$ private void move() throws IOException, InterruptedException --> Line_4 $$ HRegionServer rs = UTIL.getHBaseCluster().getRegionServerThreads().stream().map( t -> t.getRegionServer()).filter( r -> !r.getOnlineTables().contains(tableName)).findAny().get() [CD]
+Line_2 $$ private void move() throws IOException, InterruptedException --> Line_5 $$ UTIL.getAdmin().move(region.getEncodedNameAsBytes(), Bytes.toBytes(rs.getServerName().getServerName())) [CD]
+Line_3 $$ RegionInfo region = UTIL.getHBaseCluster().getRegions(tableName).stream().findAny().get().getRegionInfo() --> Line_5 $$ UTIL.getAdmin().move(region.getEncodedNameAsBytes(), Bytes.toBytes(rs.getServerName().getServerName())) [FD]
+Line_4 $$ HRegionServer rs = UTIL.getHBaseCluster().getRegionServerThreads().stream().map( t -> t.getRegionServer()).filter( r -> !r.getOnlineTables().contains(tableName)).findAny().get() --> Line_5 $$ UTIL.getAdmin().move(region.getEncodedNameAsBytes(), Bytes.toBytes(rs.getServerName().getServerName())) [FD]
+Line_2 $$ private void move() throws IOException, InterruptedException --> Line_6 $$ while (UTIL.getRSForFirstRegionInTable(tableName) != rs) [CD]
+Line_4 $$ HRegionServer rs = UTIL.getHBaseCluster().getRegionServerThreads().stream().map( t -> t.getRegionServer()).filter( r -> !r.getOnlineTables().contains(tableName)).findAny().get() --> Line_6 $$ while (UTIL.getRSForFirstRegionInTable(tableName) != rs) [FD]
+Line_6 $$ while (UTIL.getRSForFirstRegionInTable(tableName) != rs) --> Line_7 $$ Thread.sleep(100) [CD]

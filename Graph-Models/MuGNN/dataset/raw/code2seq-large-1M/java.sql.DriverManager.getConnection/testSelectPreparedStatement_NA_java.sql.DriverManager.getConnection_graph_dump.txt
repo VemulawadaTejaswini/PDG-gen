@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_4 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_5 $$ PreparedStatement preparedStatement = conn.prepareStatement("select name from sys.cluster") [FD]
+Line_5 $$ PreparedStatement preparedStatement = conn.prepareStatement("select name from sys.cluster") --> Line_6 $$ ResultSet resultSet = preparedStatement.executeQuery() [FD]
+Line_6 $$ ResultSet resultSet = preparedStatement.executeQuery() --> Line_7 $$ assertThat(resultSet.next(), is(true)) [FD]
+Line_6 $$ ResultSet resultSet = preparedStatement.executeQuery() --> Line_8 $$ assertThat(resultSet.getString(1), Matchers.startsWith("SUITE-CHILD")) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private Rectangle getScreenRectangle() --> Line_3 $$ Rectangle2D result = new Rectangle2D.Double() [CD]
+Line_2 $$ private Rectangle getScreenRectangle() --> Line_4 $$ GraphicsEnvironment localGE = GraphicsEnvironment.getLocalGraphicsEnvironment() [CD]
+Line_4 $$ GraphicsEnvironment localGE = GraphicsEnvironment.getLocalGraphicsEnvironment() --> Line_5 $$ for (GraphicsDevice gd : localGE.getScreenDevices()) [FD]
+Line_5 $$ for (GraphicsDevice gd : localGE.getScreenDevices()) --> Line_6 $$ for (GraphicsConfiguration graphicsConfiguration : gd.getConfigurations()) [FD]
+Line_3 $$ Rectangle2D result = new Rectangle2D.Double() --> Line_7 $$ Rectangle2D.union(result, graphicsConfiguration.getBounds(), result) [FD]
+Line_6 $$ for (GraphicsConfiguration graphicsConfiguration : gd.getConfigurations()) --> Line_7 $$ Rectangle2D.union(result, graphicsConfiguration.getBounds(), result) [FD]
+Line_2 $$ private Rectangle getScreenRectangle() --> Line_10 $$ return new Rectangle((int) result.getWidth(), (int) result.getHeight()) [CD]
+Line_3 $$ Rectangle2D result = new Rectangle2D.Double() --> Line_10 $$ return new Rectangle((int) result.getWidth(), (int) result.getHeight()) [FD]

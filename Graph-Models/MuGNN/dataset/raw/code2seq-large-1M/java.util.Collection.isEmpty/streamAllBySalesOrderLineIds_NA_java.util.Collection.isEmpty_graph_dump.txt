@@ -1,0 +1,6 @@
+Line_2 $$ public Stream<PurchaseCandidate> streamAllBySalesOrderLineIds(final Collection<Integer> salesOrderLineIds) --> Line_3 $$ if (salesOrderLineIds.isEmpty()) [CD]
+Line_2 $$ public Stream<PurchaseCandidate> streamAllBySalesOrderLineIds(final Collection<Integer> salesOrderLineIds) --> Line_3 $$ if (salesOrderLineIds.isEmpty()) [FD]
+Line_3 $$ if (salesOrderLineIds.isEmpty()) --> Line_4 $$ return Stream.empty() [CD]
+Line_2 $$ public Stream<PurchaseCandidate> streamAllBySalesOrderLineIds(final Collection<Integer> salesOrderLineIds) --> Line_6 $$ final IQueryBL queryBL = Services.get(IQueryBL.class) [CD]
+Line_2 $$ public Stream<PurchaseCandidate> streamAllBySalesOrderLineIds(final Collection<Integer> salesOrderLineIds) --> Line_7 $$ return queryBL.createQueryBuilder(I_C_PurchaseCandidate.class).addInArrayFilter(I_C_PurchaseCandidate.COLUMNNAME_C_OrderLineSO_ID, salesOrderLineIds).create().stream(I_C_PurchaseCandidate.class).map(this::<>toPurchaseCandidate) [CD]
+Line_2 $$ public Stream<PurchaseCandidate> streamAllBySalesOrderLineIds(final Collection<Integer> salesOrderLineIds) --> Line_7 $$ return queryBL.createQueryBuilder(I_C_PurchaseCandidate.class).addInArrayFilter(I_C_PurchaseCandidate.COLUMNNAME_C_OrderLineSO_ID, salesOrderLineIds).create().stream(I_C_PurchaseCandidate.class).map(this::<>toPurchaseCandidate) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void renewAuthToken() --> Line_3 $$ if (authExpirationTime == Long.MAX_VALUE || authExpirationTime - System.currentTimeMillis() > leaseExpirationBuffer) [CD]
+Line_3 $$ if (authExpirationTime == Long.MAX_VALUE || authExpirationTime - System.currentTimeMillis() > leaseExpirationBuffer) --> Line_4 $$ return [CD]
+Line_2 $$ private void renewAuthToken() --> Line_6 $$ VaultClient vault = new VaultClient(config) [CD]
+Line_6 $$ VaultClient vault = new VaultClient(config) --> Line_8 $$ Secret token = vault.authenticate().renewSelf() [FD]
+Line_8 $$ Secret token = vault.authenticate().renewSelf() --> Line_9 $$ long leaseDuration = token.getAuth().getLeaseDuration() [FD]
+Line_9 $$ long leaseDuration = token.getAuth().getLeaseDuration() --> Line_10 $$ LOG.debug("CredentialStore ' [FD]
+Line_9 $$ long leaseDuration = token.getAuth().getLeaseDuration() --> Line_11 $$ if (leaseDuration > 0) [FD]

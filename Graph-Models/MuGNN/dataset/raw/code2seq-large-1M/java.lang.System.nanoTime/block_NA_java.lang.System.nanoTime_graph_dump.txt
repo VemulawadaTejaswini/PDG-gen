@@ -1,0 +1,7 @@
+Line_2 $$ public O block(Duration timeout) --> Line_3 $$ long delay = System.nanoTime() + timeout.toNanos() [FD]
+Line_2 $$ public O block(Duration timeout) --> Line_3 $$ long delay = System.nanoTime() + timeout.toNanos() [CD]
+Line_2 $$ public O block(Duration timeout) --> Line_4 $$ Runnable spinObserver = () -> [CD]
+Line_3 $$ long delay = System.nanoTime() + timeout.toNanos() --> Line_5 $$ if (delay < System.nanoTime()) [FD]
+Line_5 $$ if (delay < System.nanoTime()) --> Line_6 $$ WaitStrategy.alert() [CD]
+Line_2 $$ public O block(Duration timeout) --> Line_9 $$ return block(spinObserver) [CD]
+Line_4 $$ Runnable spinObserver = () -> --> Line_9 $$ return block(spinObserver) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void addToHistory() --> Line_3 $$ if (_doHistory && (((_lastChanged + MIN_HISTORY_DELAY) < System.currentTimeMillis()))) [CD]
+Line_3 $$ if (_doHistory && (((_lastChanged + MIN_HISTORY_DELAY) < System.currentTimeMillis()))) --> Line_4 $$ while (_historyPosition != _history.size() && _history.size() != 0) [CD]
+Line_4 $$ while (_historyPosition != _history.size() && _history.size() != 0) --> Line_5 $$ _history.remove(_history.size() - 1) [CD]
+Line_3 $$ if (_doHistory && (((_lastChanged + MIN_HISTORY_DELAY) < System.currentTimeMillis()))) --> Line_7 $$ if (_history.size() >= MAX_HISTORY_SIZE) [CD]
+Line_7 $$ if (_history.size() >= MAX_HISTORY_SIZE) --> Line_8 $$ _history.remove(2) [CD]
+Line_3 $$ if (_doHistory && (((_lastChanged + MIN_HISTORY_DELAY) < System.currentTimeMillis()))) --> Line_11 $$ if (_history.isEmpty() || (!_history.isEmpty() && !_history.get(_history.size() - 1).equals(this))) [CD]
+Line_11 $$ if (_history.isEmpty() || (!_history.isEmpty() && !_history.get(_history.size() - 1).equals(this))) --> Line_12 $$ _history.add(cloneDocument()) [CD]
+Line_11 $$ if (_history.isEmpty() || (!_history.isEmpty() && !_history.get(_history.size() - 1).equals(this))) --> Line_14 $$ _lastChanged = System.currentTimeMillis() [CD]

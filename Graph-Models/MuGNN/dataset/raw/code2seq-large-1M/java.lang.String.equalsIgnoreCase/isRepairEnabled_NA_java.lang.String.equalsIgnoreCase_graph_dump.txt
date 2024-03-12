@@ -1,0 +1,8 @@
+Line_2 $$ private boolean isRepairEnabled() --> Line_3 $$ final BundleContext context = FrameworkUtil.getBundle(DbDataStore.class).getBundleContext() [CD]
+Line_2 $$ private boolean isRepairEnabled() --> Line_4 $$ ServiceReference<SystemService> reference = context.getServiceReference(SystemService.class) [CD]
+Line_2 $$ private boolean isRepairEnabled() --> Line_5 $$ SystemService systemService = context.getService(reference) [CD]
+Line_2 $$ private boolean isRepairEnabled() --> Line_6 $$ if (systemService == null) [CD]
+Line_5 $$ SystemService systemService = context.getService(reference) --> Line_6 $$ if (systemService == null) [FD]
+Line_6 $$ if (systemService == null) --> Line_7 $$ return false [CD]
+Line_5 $$ SystemService systemService = context.getService(reference) --> Line_10 $$ final String isRepairEnabled = systemService.getProperties().getProperty(DATA_SERVICE_REPAIR_ENABLED_PROPNAME) [FD]
+Line_10 $$ final String isRepairEnabled = systemService.getProperties().getProperty(DATA_SERVICE_REPAIR_ENABLED_PROPNAME) --> Line_11 $$ return "true".equalsIgnoreCase(isRepairEnabled) [FD]

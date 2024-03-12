@@ -1,0 +1,8 @@
+Line_2 $$ public void testProduceTarGzipTextFile() throws Exception --> Line_3 $$ SpoolDirSource source = createTarGzipSource() [CD]
+Line_2 $$ public void testProduceTarGzipTextFile() throws Exception --> Line_4 $$ PushSourceRunner runner = new PushSourceRunner.Builder(SpoolDirDSource.class, source).addOutputLane("lane").build() [CD]
+Line_2 $$ public void testProduceTarGzipTextFile() throws Exception --> Line_5 $$ runner.runInit() [CD]
+Line_7 $$ final List<Record> records = Collections.synchronizedList(new ArrayList(10)) --> Line_11 $$ records.addAll(output.getRecords().get("lane")) [FD]
+Line_8 $$ AtomicInteger batchCount = new AtomicInteger(0) --> Line_13 $$ batchCount.incrementAndGet() [FD]
+Line_8 $$ AtomicInteger batchCount = new AtomicInteger(0) --> Line_14 $$ if (batchCount.get() > 50) [FD]
+Line_14 $$ if (batchCount.get() > 50) --> Line_15 $$ runner.setStop() [CD]
+Line_7 $$ final List<Record> records = Collections.synchronizedList(new ArrayList(10)) --> Line_20 $$ Assert.assertEquals(37044, records.size()) [FD]

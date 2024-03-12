@@ -1,0 +1,8 @@
+Line_2 $$ protected void startSessionTimer() --> Line_3 $$ Runnable timerTask = new SessionTimerTask() [CD]
+Line_2 $$ protected void startSessionTimer() --> Line_4 $$ if (shortLivedExecutor != null) [CD]
+Line_4 $$ if (shortLivedExecutor != null) --> Line_5 $$ timerTask = new DelegatingTask(timerTask, shortLivedExecutor) [CD]
+Line_3 $$ Runnable timerTask = new SessionTimerTask() --> Line_5 $$ timerTask = new DelegatingTask(timerTask, shortLivedExecutor) [FD]
+Line_2 $$ protected void startSessionTimer() --> Line_7 $$ sessionTimerFuture = scheduledExecutorService.scheduleAtFixedRate(timerTask, 0, 1000L, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ Runnable timerTask = new SessionTimerTask() --> Line_7 $$ sessionTimerFuture = scheduledExecutorService.scheduleAtFixedRate(timerTask, 0, 1000L, TimeUnit.MILLISECONDS) [FD]
+Line_5 $$ timerTask = new DelegatingTask(timerTask, shortLivedExecutor) --> Line_7 $$ sessionTimerFuture = scheduledExecutorService.scheduleAtFixedRate(timerTask, 0, 1000L, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ protected void startSessionTimer() --> Line_8 $$ log.info("SessionTimer started") [CD]

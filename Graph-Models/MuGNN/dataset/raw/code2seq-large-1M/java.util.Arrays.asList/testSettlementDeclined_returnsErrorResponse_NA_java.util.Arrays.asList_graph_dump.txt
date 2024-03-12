@@ -1,0 +1,5 @@
+Line_2 $$ public void testSettlementDeclined_returnsErrorResponse() throws Exception --> Line_3 $$ when(result.isSuccess()).thenReturn(false) [CD]
+Line_2 $$ public void testSettlementDeclined_returnsErrorResponse() throws Exception --> Line_4 $$ when(result.getTransaction()).thenReturn(transaction) [CD]
+Line_2 $$ public void testSettlementDeclined_returnsErrorResponse() throws Exception --> Line_5 $$ when(transaction.getStatus()).thenReturn(Transaction.Status.SETTLEMENT_DECLINED) [CD]
+Line_2 $$ public void testSettlementDeclined_returnsErrorResponse() throws Exception --> Line_6 $$ when(transaction.getProcessorSettlementResponseText()).thenReturn("mine eyes have seen the glory of the coming of the borg") [CD]
+Line_2 $$ public void testSettlementDeclined_returnsErrorResponse() throws Exception --> Line_7 $$ assertThat(paymentAction.handleJsonRequest(ImmutableMap.of("amount", "123", "currency", "USD", "paymentMethodNonce", "abc-123"))).containsExactly("status", "ERROR", "message", "Payment declined: mine eyes have seen the glory of the coming of the borg", "results", asList()) [CD]

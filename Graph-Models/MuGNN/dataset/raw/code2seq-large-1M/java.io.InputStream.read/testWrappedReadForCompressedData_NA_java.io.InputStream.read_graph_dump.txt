@@ -1,0 +1,8 @@
+Line_2 $$ public void testWrappedReadForCompressedData() throws IOException --> Line_3 $$ byte[] buf = new byte[2] [CD]
+Line_2 $$ public void testWrappedReadForCompressedData() throws IOException --> Line_4 $$ InputStream mockStream = Mockito.mock(InputStream.class) [CD]
+Line_2 $$ public void testWrappedReadForCompressedData() throws IOException --> Line_5 $$ Mockito.when(mockStream.read(buf, 0, 1)).thenReturn(1) [CD]
+Line_3 $$ byte[] buf = new byte[2] --> Line_5 $$ Mockito.when(mockStream.read(buf, 0, 1)).thenReturn(1) [FD]
+Line_2 $$ public void testWrappedReadForCompressedData() throws IOException --> Line_6 $$ Mockito.when(mockStream.read(buf, 0, 2)).thenThrow(new java.lang.InternalError()) [CD]
+Line_3 $$ byte[] buf = new byte[2] --> Line_6 $$ Mockito.when(mockStream.read(buf, 0, 2)).thenThrow(new java.lang.InternalError()) [FD]
+Line_3 $$ byte[] buf = new byte[2] --> Line_8 $$ assertEquals("Check expected value", 1, IOUtils.wrappedReadForCompressedData(mockStream, buf, 0, 1)) [FD]
+Line_3 $$ byte[] buf = new byte[2] --> Line_13 $$ IOUtils.wrappedReadForCompressedData(mockStream, buf, 0, 2) [FD]

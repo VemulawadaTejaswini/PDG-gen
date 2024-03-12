@@ -1,0 +1,8 @@
+Line_2 $$ public void canCreateFileContent() throws Exception --> Line_3 $$ final Repos repos = github().repos() [CD]
+Line_2 $$ public void canCreateFileContent() throws Exception --> Line_4 $$ final Repo repo = this.rule.repo(repos) [CD]
+Line_3 $$ final Repos repos = github().repos() --> Line_4 $$ final Repo repo = this.rule.repo(repos) [FD]
+Line_3 $$ final Repos repos = github().repos() --> Line_7 $$ MatcherAssert.assertThat(repos.get(repo.coordinates()).contents().create(this.jsonObject(path, new String(Base64.encodeBase64("some content".getBytes())), "theMessage")).path(), Matchers.equalTo(path)) [FD]
+Line_4 $$ final Repo repo = this.rule.repo(repos) --> Line_7 $$ MatcherAssert.assertThat(repos.get(repo.coordinates()).contents().create(this.jsonObject(path, new String(Base64.encodeBase64("some content".getBytes())), "theMessage")).path(), Matchers.equalTo(path)) [FD]
+Line_6 $$ final String path = RandomStringUtils.randomAlphanumeric(Tv.TEN) --> Line_7 $$ MatcherAssert.assertThat(repos.get(repo.coordinates()).contents().create(this.jsonObject(path, new String(Base64.encodeBase64("some content".getBytes())), "theMessage")).path(), Matchers.equalTo(path)) [FD]
+Line_3 $$ final Repos repos = github().repos() --> Line_9 $$ repos.remove(repo.coordinates()) [FD]
+Line_4 $$ final Repo repo = this.rule.repo(repos) --> Line_9 $$ repos.remove(repo.coordinates()) [FD]

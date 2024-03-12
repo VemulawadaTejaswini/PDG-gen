@@ -1,0 +1,7 @@
+Line_2 $$ List<Work> listScheduled() --> Line_3 $$ RedisPoolDescriptor config = Framework.getService(RedisAdmin.class).getConfig() [CD]
+Line_2 $$ List<Work> listScheduled() --> Line_4 $$ return config.newExecutor().execute( jedis -> [CD]
+Line_5 $$ Set<byte[]> keys = jedis.smembers(queueBytes()) --> Line_6 $$ List<Work> list = new ArrayList(keys.size()) [FD]
+Line_7 $$ for (byte[] workIdBytes : keys) --> Line_8 $$ byte[] workBytes = jedis.hget(dataKey(), workIdBytes) [FD]
+Line_8 $$ byte[] workBytes = jedis.hget(dataKey(), workIdBytes) --> Line_9 $$ Work work = deserializeWork(workBytes) [FD]
+Line_6 $$ List<Work> list = new ArrayList(keys.size()) --> Line_10 $$ list.add(work) [FD]
+Line_9 $$ Work work = deserializeWork(workBytes) --> Line_10 $$ list.add(work) [FD]

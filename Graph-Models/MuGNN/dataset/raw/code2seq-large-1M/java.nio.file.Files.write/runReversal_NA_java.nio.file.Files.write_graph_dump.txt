@@ -1,0 +1,6 @@
+Line_2 $$ public void runReversal() throws Exception --> Line_3 $$ Files.write(checkoutDir.resolve("file1"), new byte[0]) [CD]
+Line_2 $$ public void runReversal() throws Exception --> Line_4 $$ Files.write(checkoutDir.resolve("file2"), new byte[0]) [CD]
+Line_2 $$ public void runReversal() throws Exception --> Line_5 $$ Transformation transform = skylark.eval("t", "t = " + "core.transform(" + "    [core.move('foo', 'bar')]," + "    reversal = [core.move('file1', 'file1.a'), core.move('file2', 'file2.a')]," + ")") [CD]
+Line_2 $$ public void runReversal() throws Exception --> Line_6 $$ transform(transform.reverse()) [CD]
+Line_5 $$ Transformation transform = skylark.eval("t", "t = " + "core.transform(" + "    [core.move('foo', 'bar')]," + "    reversal = [core.move('file1', 'file1.a'), core.move('file2', 'file2.a')]," + ")") --> Line_6 $$ transform(transform.reverse()) [FD]
+Line_2 $$ public void runReversal() throws Exception --> Line_7 $$ assertThatPath(checkoutDir).containsFiles("file1.a", "file2.a") [CD]

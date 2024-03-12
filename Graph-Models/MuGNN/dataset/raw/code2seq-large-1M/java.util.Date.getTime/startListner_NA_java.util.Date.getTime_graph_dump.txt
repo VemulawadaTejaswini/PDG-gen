@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized void startListner() --> Line_3 $$ if (mIsGpsActive) [CD]
+Line_3 $$ if (mIsGpsActive) --> Line_4 $$ if (new Date().getTime() < mGpsRestUntil) [CD]
+Line_4 $$ if (new Date().getTime() < mGpsRestUntil) --> Line_5 $$ return [CD]
+Line_8 $$ if (mModule.getLocationManager().isProviderEnabled(LocationManager.GPS_PROVIDER) && !mIsListeningGps) --> Line_9 $$ mModule.getLocationManager().requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, mModule.getSettingsManager().gpsOnlyNew() ? 100 : 0, this) [CD]
+Line_18 $$ if (mModule.getLocationManager().isProviderEnabled(LocationManager.NETWORK_PROVIDER) && !mIsListeningNetwork) --> Line_19 $$ mModule.getLocationManager().requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, mModule.getSettingsManager().gpsOnlyNew() ? 100 : 0, this) [CD]
+Line_3 $$ if (mIsGpsActive) --> Line_27 $$ if (!mTimeoutHandler.hasMessages(TimeoutHandler.MSG_GPS_STOP)) [CD]
+Line_27 $$ if (!mTimeoutHandler.hasMessages(TimeoutHandler.MSG_GPS_STOP)) --> Line_28 $$ mTimeoutHandler.sendEmptyMessageDelayed(TimeoutHandler.MSG_GPS_STOP, mGpsTimeout) [CD]

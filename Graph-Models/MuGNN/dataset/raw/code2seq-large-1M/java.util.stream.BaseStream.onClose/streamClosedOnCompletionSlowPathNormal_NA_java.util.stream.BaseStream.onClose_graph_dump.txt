@@ -1,0 +1,6 @@
+Line_2 $$ public void streamClosedOnCompletionSlowPathNormal() --> Line_3 $$ AtomicInteger closed = new AtomicInteger() [CD]
+Line_2 $$ public void streamClosedOnCompletionSlowPathNormal() --> Line_4 $$ Stream<String> source = Stream.of("foo", "bar", "baz").onClose(closed::<>incrementAndGet) [CD]
+Line_2 $$ public void streamClosedOnCompletionSlowPathNormal() --> Line_5 $$ StepVerifier.create(Flux.fromStream(source), 3).expectNext("foo", "bar", "baz").verifyComplete() [CD]
+Line_4 $$ Stream<String> source = Stream.of("foo", "bar", "baz").onClose(closed::<>incrementAndGet) --> Line_5 $$ StepVerifier.create(Flux.fromStream(source), 3).expectNext("foo", "bar", "baz").verifyComplete() [FD]
+Line_2 $$ public void streamClosedOnCompletionSlowPathNormal() --> Line_6 $$ assertThat(closed.get()).isEqualTo(1) [CD]
+Line_3 $$ AtomicInteger closed = new AtomicInteger() --> Line_6 $$ assertThat(closed.get()).isEqualTo(1) [FD]

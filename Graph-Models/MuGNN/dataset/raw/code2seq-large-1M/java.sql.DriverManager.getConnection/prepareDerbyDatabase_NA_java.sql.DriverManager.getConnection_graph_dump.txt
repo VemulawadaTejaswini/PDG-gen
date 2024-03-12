@@ -1,0 +1,7 @@
+Line_2 $$ private String prepareDerbyDatabase(String sqlFile) throws Exception --> Line_3 $$ URL sqlUrl = Objects.requireNonNull(ResourceUtil.getResource(getClass(), sqlFile + ".sql")) [CD]
+Line_2 $$ private String prepareDerbyDatabase(String sqlFile) throws Exception --> Line_4 $$ String dbUrl = "jdbc:derby:" + projectDir.getAbsolutePath() + "/build/" + sqlFile [CD]
+Line_8 $$ try (Connection connection = DriverManager.getConnection(dbUrl + ";create=true")) --> Line_9 $$ try (Statement stmt = connection.createStatement()) [FD]
+Line_3 $$ URL sqlUrl = Objects.requireNonNull(ResourceUtil.getResource(getClass(), sqlFile + ".sql")) --> Line_10 $$ for (String sql : SQLReader.statements(sqlUrl, ";")) [FD]
+Line_9 $$ try (Statement stmt = connection.createStatement()) --> Line_11 $$ stmt.execute(sql) [FD]
+Line_10 $$ for (String sql : SQLReader.statements(sqlUrl, ";")) --> Line_11 $$ stmt.execute(sql) [FD]
+Line_2 $$ private String prepareDerbyDatabase(String sqlFile) throws Exception --> Line_18 $$ return dbUrl + ";create=true" [CD]

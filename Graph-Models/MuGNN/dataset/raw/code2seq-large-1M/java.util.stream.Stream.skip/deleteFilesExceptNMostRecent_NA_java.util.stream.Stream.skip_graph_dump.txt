@@ -1,0 +1,7 @@
+Line_2 $$ static void deleteFilesExceptNMostRecent(Path basePath, int nMostRecentToKeep) throws IOException --> Line_3 $$ if (nMostRecentToKeep < 1) [FD]
+Line_2 $$ static void deleteFilesExceptNMostRecent(Path basePath, int nMostRecentToKeep) throws IOException --> Line_3 $$ if (nMostRecentToKeep < 1) [CD]
+Line_2 $$ static void deleteFilesExceptNMostRecent(Path basePath, int nMostRecentToKeep) throws IOException --> Line_6 $$ List<Path> pathsInDeleteDir = Files.list(basePath).filter(Files::<>isRegularFile).sorted(Comparator.comparing(FileHelper::<>getLastModifiedTime)).skip(nMostRecentToKeep).collect(Collectors.toList()) [FD]
+Line_2 $$ static void deleteFilesExceptNMostRecent(Path basePath, int nMostRecentToKeep) throws IOException --> Line_6 $$ List<Path> pathsInDeleteDir = Files.list(basePath).filter(Files::<>isRegularFile).sorted(Comparator.comparing(FileHelper::<>getLastModifiedTime)).skip(nMostRecentToKeep).collect(Collectors.toList()) [CD]
+Line_7 $$ for (Path path : pathsInDeleteDir) --> Line_8 $$ if (!Files.deleteIfExists(path)) [FD]
+Line_8 $$ if (!Files.deleteIfExists(path)) --> Line_9 $$ logger.warning("Could not delete file: " + path.toAbsolutePath()) [CD]
+Line_7 $$ for (Path path : pathsInDeleteDir) --> Line_9 $$ logger.warning("Could not delete file: " + path.toAbsolutePath()) [FD]

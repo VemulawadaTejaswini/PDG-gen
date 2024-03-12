@@ -1,0 +1,7 @@
+Line_2 $$ public void testHugeExceptionMessageLeadsToReasonableReport() --> Line_3 $$ StringBuilder msg = new StringBuilder() [CD]
+Line_2 $$ public void testHugeExceptionMessageLeadsToReasonableReport() --> Line_4 $$ for (int i = 0; i < 1000000; i++) [CD]
+Line_4 $$ for (int i = 0; i < 1000000; i++) --> Line_5 $$ msg.append('x') [CD]
+Line_3 $$ StringBuilder msg = new StringBuilder() --> Line_5 $$ msg.append('x') [FD]
+Line_2 $$ public void testHugeExceptionMessageLeadsToReasonableReport() --> Line_7 $$ CrashInfo crashInfo = new CrashInfo(new Throwable(msg.toString())) [CD]
+Line_3 $$ StringBuilder msg = new StringBuilder() --> Line_7 $$ CrashInfo crashInfo = new CrashInfo(new Throwable(msg.toString())) [FD]
+Line_2 $$ public void testHugeExceptionMessageLeadsToReasonableReport() --> Line_8 $$ assertTrue("message is longer than 50'000 characters", crashInfo.exceptionMessage.length() < 50000) [CD]

@@ -1,0 +1,8 @@
+Line_3 $$ if (this.ipUsers.containsKey(ip)) --> Line_4 $$ final String user = this.ipUsers.get(ip) [CD]
+Line_3 $$ if (this.ipUsers.containsKey(ip)) --> Line_5 $$ final Entry entry = this.getEntry(user) [CD]
+Line_4 $$ final String user = this.ipUsers.get(ip) --> Line_5 $$ final Entry entry = this.getEntry(user) [FD]
+Line_3 $$ if (this.ipUsers.containsKey(ip)) --> Line_6 $$ final Long entryTimestamp = entry.getLastAccess() [CD]
+Line_3 $$ if (this.ipUsers.containsKey(ip)) --> Line_7 $$ if (entryTimestamp == null || (System.currentTimeMillis() - entryTimestamp.longValue()) > (1000 * 60 * 10)) [CD]
+Line_6 $$ final Long entryTimestamp = entry.getLastAccess() --> Line_7 $$ if (entryTimestamp == null || (System.currentTimeMillis() - entryTimestamp.longValue()) > (1000 * 60 * 10)) [FD]
+Line_7 $$ if (entryTimestamp == null || (System.currentTimeMillis() - entryTimestamp.longValue()) > (1000 * 60 * 10)) --> Line_8 $$ return null [CD]
+Line_3 $$ if (this.ipUsers.containsKey(ip)) --> Line_10 $$ return entry [CD]

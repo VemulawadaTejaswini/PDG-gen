@@ -1,0 +1,8 @@
+Line_2 $$ private static void obtainResourceFileLock() --> Line_3 $$ if (resourcesFileLock != null) [CD]
+Line_3 $$ if (resourcesFileLock != null) --> Line_4 $$ return [CD]
+Line_2 $$ private static void obtainResourceFileLock() --> Line_6 $$ String resourceLockFilePath = System.getProperties().getProperty("buck.resource_lock_path") [CD]
+Line_2 $$ private static void obtainResourceFileLock() --> Line_7 $$ if (resourceLockFilePath == null) [CD]
+Line_6 $$ String resourceLockFilePath = System.getProperties().getProperty("buck.resource_lock_path") --> Line_7 $$ if (resourceLockFilePath == null) [FD]
+Line_7 $$ if (resourceLockFilePath == null) --> Line_8 $$ return [CD]
+Line_6 $$ String resourceLockFilePath = System.getProperties().getProperty("buck.resource_lock_path") --> Line_11 $$ FileChannel fileChannel = FileChannel.open(Paths.get(resourceLockFilePath), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE) [FD]
+Line_11 $$ FileChannel fileChannel = FileChannel.open(Paths.get(resourceLockFilePath), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE) --> Line_12 $$ resourcesFileLock = fileChannel.tryLock(0L, Long.MAX_VALUE, true) [FD]

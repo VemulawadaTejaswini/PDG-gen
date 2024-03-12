@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized void scheduleTimeout(EventInstance evt, long fireTime) --> Line_3 $$ Set<String> addresses = new MailingListDao().getRecipientAddresses(vo.getEscalationRecipients(), new DateTime(fireTime)) [CD]
+Line_2 $$ public synchronized void scheduleTimeout(EventInstance evt, long fireTime) --> Line_4 $$ sendEmail(evt, NotificationType.ESCALATION, addresses) [CD]
+Line_2 $$ public synchronized void scheduleTimeout(EventInstance evt, long fireTime) --> Line_4 $$ sendEmail(evt, NotificationType.ESCALATION, addresses) [FD]
+Line_3 $$ Set<String> addresses = new MailingListDao().getRecipientAddresses(vo.getEscalationRecipients(), new DateTime(fireTime)) --> Line_4 $$ sendEmail(evt, NotificationType.ESCALATION, addresses) [FD]
+Line_2 $$ public synchronized void scheduleTimeout(EventInstance evt, long fireTime) --> Line_5 $$ if (vo.isSendInactive() && !vo.isInactiveOverride()) [CD]
+Line_5 $$ if (vo.isSendInactive() && !vo.isInactiveOverride()) --> Line_6 $$ inactiveRecipients.addAll(addresses) [CD]
+Line_3 $$ Set<String> addresses = new MailingListDao().getRecipientAddresses(vo.getEscalationRecipients(), new DateTime(fireTime)) --> Line_6 $$ inactiveRecipients.addAll(addresses) [FD]

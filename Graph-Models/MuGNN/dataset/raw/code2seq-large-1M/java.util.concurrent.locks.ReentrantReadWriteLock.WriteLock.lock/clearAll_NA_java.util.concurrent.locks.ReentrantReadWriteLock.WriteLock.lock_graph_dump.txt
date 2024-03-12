@@ -1,0 +1,7 @@
+Line_2 $$ public void clearAll() --> Line_3 $$ TOMMessage[] requests = new TOMMessage[watched.size()] [CD]
+Line_2 $$ public void clearAll() --> Line_4 $$ rwLock.writeLock().lock() [CD]
+Line_2 $$ public void clearAll() --> Line_5 $$ watched.toArray(requests) [CD]
+Line_3 $$ TOMMessage[] requests = new TOMMessage[watched.size()] --> Line_5 $$ watched.toArray(requests) [FD]
+Line_6 $$ for (TOMMessage request : requests) --> Line_7 $$ if (request != null && watched.remove(request) && watched.isEmpty() && rtTask != null) [FD]
+Line_7 $$ if (request != null && watched.remove(request) && watched.isEmpty() && rtTask != null) --> Line_8 $$ rtTask.cancel() [CD]
+Line_2 $$ public void clearAll() --> Line_12 $$ rwLock.writeLock().unlock() [CD]

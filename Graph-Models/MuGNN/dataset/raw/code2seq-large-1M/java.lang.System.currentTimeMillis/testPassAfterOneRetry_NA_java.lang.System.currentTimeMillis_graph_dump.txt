@@ -1,0 +1,7 @@
+Line_2 $$ public void testPassAfterOneRetry() throws Throwable --> Line_3 $$ when(mockService.invoke()).thenThrow(rateExceededException).thenReturn(DUMMY_OBJECT) [CD]
+Line_2 $$ public void testPassAfterOneRetry() throws Throwable --> Line_4 $$ long startTime = System.currentTimeMillis() [CD]
+Line_2 $$ public void testPassAfterOneRetry() throws Throwable --> Line_5 $$ rateLimiter.run(TEST_CID, mockService, method, EMPTY_ARGS) [CD]
+Line_2 $$ public void testPassAfterOneRetry() throws Throwable --> Line_6 $$ long endTime = System.currentTimeMillis() [CD]
+Line_2 $$ public void testPassAfterOneRetry() throws Throwable --> Line_7 $$ long duration = endTime - startTime [CD]
+Line_2 $$ public void testPassAfterOneRetry() throws Throwable --> Line_8 $$ long minWaitMillis = SECONDS.toMillis(RETRY_AFTER_SECONDS * ApiServicesRetryStrategy.MIN_WAIT_TIME_MULTIPLIER) [CD]
+Line_2 $$ public void testPassAfterOneRetry() throws Throwable --> Line_9 $$ assertTrue("Unexpected execution duration!", duration > minWaitMillis) [CD]

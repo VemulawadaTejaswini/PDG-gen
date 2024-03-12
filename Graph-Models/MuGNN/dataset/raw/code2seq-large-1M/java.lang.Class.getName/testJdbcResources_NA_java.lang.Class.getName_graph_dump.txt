@@ -1,0 +1,8 @@
+Line_2 $$ private void testJdbcResources(String filter) --> Line_3 $$ debug("---------------------------[ " + filter + " ]---------------------------------") [CD]
+Line_2 $$ private void testJdbcResources(String filter) --> Line_5 $$ ServiceReference[] refs = bundleContext.getAllServiceReferences(javax.sql.DataSource.class.getName(), filter) [FD]
+Line_7 $$ for (ServiceReference ref : refs) --> Line_8 $$ DataSource ds = (DataSource) ref.getBundle().getBundleContext().getService(ref) [FD]
+Line_8 $$ DataSource ds = (DataSource) ref.getBundle().getBundleContext().getService(ref) --> Line_10 $$ Connection con = ds.getConnection() [FD]
+Line_7 $$ for (ServiceReference ref : refs) --> Line_11 $$ debug("got connection [" + con + "] for resource [" + ref.getProperty("jndi-name") + "]") [FD]
+Line_10 $$ Connection con = ds.getConnection() --> Line_12 $$ con.close() [FD]
+Line_6 $$ if (refs != null) --> Line_18 $$ debug("testJdbcResources, none found") [CD]
+Line_2 $$ private void testJdbcResources(String filter) --> Line_23 $$ debug("-----------------------------------------------------------------------") [CD]

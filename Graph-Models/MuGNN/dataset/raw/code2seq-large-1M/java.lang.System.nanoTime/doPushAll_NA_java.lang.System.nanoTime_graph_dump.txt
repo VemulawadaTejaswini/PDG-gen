@@ -1,0 +1,5 @@
+Line_2 $$ protected void doPushAll(Collection<Record> rs) --> Line_6 $$ int bytes = getRecordBytes(rs) [FD]
+Line_2 $$ protected void doPushAll(Collection<Record> rs) --> Line_7 $$ while (memoryBytes.get() + bytes > this.byteCapacity || rs.size() > this.queue.remainingCapacity()) [FD]
+Line_7 $$ while (memoryBytes.get() + bytes > this.byteCapacity || rs.size() > this.queue.remainingCapacity()) --> Line_8 $$ notInsufficient.await(200L, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ protected void doPushAll(Collection<Record> rs) --> Line_10 $$ this.queue.addAll(rs) [FD]
+Line_6 $$ int bytes = getRecordBytes(rs) --> Line_12 $$ memoryBytes.addAndGet(bytes) [FD]

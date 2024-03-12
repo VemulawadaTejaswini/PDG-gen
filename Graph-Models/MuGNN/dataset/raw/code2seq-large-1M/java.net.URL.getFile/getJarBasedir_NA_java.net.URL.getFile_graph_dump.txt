@@ -1,0 +1,7 @@
+Line_5 $$ String path = uri.getPath() --> Line_6 $$ if (path.startsWith("/") && path.contains("!")) [FD]
+Line_6 $$ if (path.startsWith("/") && path.contains("!")) --> Line_7 $$ String jarPath = path.substring(0, path.lastIndexOf('!')) [CD]
+Line_5 $$ String path = uri.getPath() --> Line_7 $$ String jarPath = path.substring(0, path.lastIndexOf('!')) [FD]
+Line_6 $$ if (path.startsWith("/") && path.contains("!")) --> Line_8 $$ String basedir = jarPath.substring(0, jarPath.lastIndexOf('/') + 1) [CD]
+Line_7 $$ String jarPath = path.substring(0, path.lastIndexOf('!')) --> Line_8 $$ String basedir = jarPath.substring(0, jarPath.lastIndexOf('/') + 1) [FD]
+Line_6 $$ if (path.startsWith("/") && path.contains("!")) --> Line_9 $$ return new File(basedir) [CD]
+Line_6 $$ if (path.startsWith("/") && path.contains("!")) --> Line_11 $$ return new File(".") [CD]

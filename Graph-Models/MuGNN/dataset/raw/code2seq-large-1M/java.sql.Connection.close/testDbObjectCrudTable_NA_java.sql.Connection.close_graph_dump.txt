@@ -1,0 +1,8 @@
+Line_2 $$ public void testDbObjectCrudTable() throws SQLException --> Line_3 $$ Connection connection = DbHelper.getDbConnection(targetDB) [CD]
+Line_2 $$ public void testDbObjectCrudTable() throws SQLException --> Line_4 $$ if (connection == null) [CD]
+Line_3 $$ Connection connection = DbHelper.getDbConnection(targetDB) --> Line_4 $$ if (connection == null) [FD]
+Line_4 $$ if (connection == null) --> Line_5 $$ System.err.println("Db " + targetDB + " not available") [CD]
+Line_4 $$ if (connection == null) --> Line_6 $$ return [CD]
+Line_3 $$ Connection connection = DbHelper.getDbConnection(targetDB) --> Line_9 $$ Crud<DbObjectTable, Long> objectCrud = JdbcMapperFactory.newInstance().<DbObjectTable, Long>crud(DbObjectTable.class, Long.class).to(connection) [FD]
+Line_3 $$ Connection connection = DbHelper.getDbConnection(targetDB) --> Line_10 $$ checkCrudDbObject(connection, objectCrud, DbObject.newInstance(new DbObjectTable())) [FD]
+Line_3 $$ Connection connection = DbHelper.getDbConnection(targetDB) --> Line_12 $$ connection.close() [FD]

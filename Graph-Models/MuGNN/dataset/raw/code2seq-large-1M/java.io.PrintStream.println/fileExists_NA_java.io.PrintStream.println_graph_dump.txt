@@ -1,0 +1,8 @@
+Line_2 $$ public int fileExists(SrvSession session, TreeConnection connection, String path) --> Line_4 $$ CmsObjectWrapper cms = getCms(session, connection) [FD]
+Line_4 $$ CmsObjectWrapper cms = getCms(session, connection) --> Line_5 $$ cms.getRequestContext().setAttribute(NO_FILESIZE_REQUIRED, Boolean.TRUE) [FD]
+Line_4 $$ CmsObjectWrapper cms = getCms(session, connection) --> Line_6 $$ CmsJlanNetworkFile file = getFileForPath(cms, session, connection, path) [FD]
+Line_2 $$ public int fileExists(SrvSession session, TreeConnection connection, String path) --> Line_6 $$ CmsJlanNetworkFile file = getFileForPath(cms, session, connection, path) [FD]
+Line_6 $$ CmsJlanNetworkFile file = getFileForPath(cms, session, connection, path) --> Line_7 $$ if (file == null) [FD]
+Line_7 $$ if (file == null) --> Line_8 $$ return FileStatus.NotExist [CD]
+Line_7 $$ if (file == null) --> Line_10 $$ return file.isDirectory() ? FileStatus.DirectoryExists : FileStatus.FileExists [CD]
+Line_6 $$ CmsJlanNetworkFile file = getFileForPath(cms, session, connection, path) --> Line_10 $$ return file.isDirectory() ? FileStatus.DirectoryExists : FileStatus.FileExists [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private boolean isGoodTime(Message message) throws FieldNotFound --> Line_3 $$ if (!checkLatency) [CD]
+Line_3 $$ if (!checkLatency) --> Line_4 $$ return true [CD]
+Line_2 $$ private boolean isGoodTime(Message message) throws FieldNotFound --> Line_6 $$ final LocalDateTime sendingTime = message.getHeader().getUtcTimeStamp(SendingTime.FIELD) [FD]
+Line_2 $$ private boolean isGoodTime(Message message) throws FieldNotFound --> Line_6 $$ final LocalDateTime sendingTime = message.getHeader().getUtcTimeStamp(SendingTime.FIELD) [CD]
+Line_2 $$ private boolean isGoodTime(Message message) throws FieldNotFound --> Line_7 $$ return Math.abs(SystemTime.currentTimeMillis() - sendingTime.toInstant(ZoneOffset.UTC).toEpochMilli()) / 1000 <= maxLatency [CD]
+Line_6 $$ final LocalDateTime sendingTime = message.getHeader().getUtcTimeStamp(SendingTime.FIELD) --> Line_7 $$ return Math.abs(SystemTime.currentTimeMillis() - sendingTime.toInstant(ZoneOffset.UTC).toEpochMilli()) / 1000 <= maxLatency [FD]

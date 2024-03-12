@@ -1,0 +1,8 @@
+Line_2 $$ public void sendTo(List<Sink> sinks, boolean sync) --> Line_3 $$ long count = counter.getAndSet(0) [CD]
+Line_2 $$ public void sendTo(List<Sink> sinks, boolean sync) --> Line_4 $$ long current = System.currentTimeMillis() [CD]
+Line_2 $$ public void sendTo(List<Sink> sinks, boolean sync) --> Line_5 $$ long interval = (current - lastTime) / 1000 [CD]
+Line_2 $$ public void sendTo(List<Sink> sinks, boolean sync) --> Line_6 $$ if (interval > 0) [CD]
+Line_5 $$ long interval = (current - lastTime) / 1000 --> Line_6 $$ if (interval > 0) [FD]
+Line_6 $$ if (interval > 0) --> Line_7 $$ for (long i = lastTime; i <= current; i += 1000) [CD]
+Line_4 $$ long current = System.currentTimeMillis() --> Line_7 $$ for (long i = lastTime; i <= current; i += 1000) [FD]
+Line_8 $$ for (Sink s : sinks) --> Line_9 $$ s.send(metricsName, Long.toString(count / interval), i / 1000) [FD]

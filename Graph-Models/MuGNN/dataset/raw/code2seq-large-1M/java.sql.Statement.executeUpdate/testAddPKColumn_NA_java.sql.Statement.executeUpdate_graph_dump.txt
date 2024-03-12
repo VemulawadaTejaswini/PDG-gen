@@ -1,0 +1,7 @@
+Line_2 $$ public void testAddPKColumn() throws Exception --> Line_3 $$ String tenantId = getOrganizationId() [CD]
+Line_2 $$ public void testAddPKColumn() throws Exception --> Line_4 $$ String tableName = initATableValues(null, tenantId, getDefaultSplits(tenantId), null, null, getUrl(), null) [CD]
+Line_3 $$ String tenantId = getOrganizationId() --> Line_4 $$ String tableName = initATableValues(null, tenantId, getDefaultSplits(tenantId), null, null, getUrl(), null) [FD]
+Line_5 $$ try (Connection conn1 = DriverManager.getConnection(getUrl())) --> Line_7 $$ conn1.createStatement().executeUpdate("ALTER TABLE " + tableName + " ADD z_string varchar not null primary key") [FD]
+Line_5 $$ try (Connection conn1 = DriverManager.getConnection(getUrl())) --> Line_12 $$ conn1.createStatement().executeUpdate("ALTER TABLE " + tableName + " ADD z_string varchar primary key") [FD]
+Line_5 $$ try (Connection conn1 = DriverManager.getConnection(getUrl())) --> Line_14 $$ assertTrue(conn1.prepareStatement(query).executeQuery().next()) [FD]
+Line_13 $$ String query = "SELECT z_string FROM " + tableName --> Line_14 $$ assertTrue(conn1.prepareStatement(query).executeQuery().next()) [FD]

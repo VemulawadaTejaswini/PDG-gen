@@ -1,0 +1,8 @@
+Line_2 $$ synchronized double reportRate(long currentTime) --> Line_3 $$ long duration = Math.max(1l, currentTime - _bucketStart.get()) [CD]
+Line_2 $$ synchronized double reportRate(long currentTime) --> Line_4 $$ long events = _currentBucket.get() [CD]
+Line_2 $$ synchronized double reportRate(long currentTime) --> Line_5 $$ for (int i = 0; i < _oldBuckets.length; i++) [CD]
+Line_5 $$ for (int i = 0; i < _oldBuckets.length; i++) --> Line_6 $$ events += _oldBuckets[i] [CD]
+Line_4 $$ long events = _currentBucket.get() --> Line_6 $$ events += _oldBuckets[i] [FD]
+Line_5 $$ for (int i = 0; i < _oldBuckets.length; i++) --> Line_7 $$ duration += _bucketTime[i] [CD]
+Line_3 $$ long duration = Math.max(1l, currentTime - _bucketStart.get()) --> Line_7 $$ duration += _bucketTime[i] [FD]
+Line_2 $$ synchronized double reportRate(long currentTime) --> Line_9 $$ return events * 1000.0 / duration [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public List<Scan> retrieveByApplicationIdList(List<Integer> applicationIdList) --> Line_3 $$ if (applicationIdList == null || applicationIdList.isEmpty()) [CD]
+Line_2 $$ public List<Scan> retrieveByApplicationIdList(List<Integer> applicationIdList) --> Line_3 $$ if (applicationIdList == null || applicationIdList.isEmpty()) [FD]
+Line_3 $$ if (applicationIdList == null || applicationIdList.isEmpty()) --> Line_4 $$ return list() [CD]
+Line_2 $$ public List<Scan> retrieveByApplicationIdList(List<Integer> applicationIdList) --> Line_6 $$ List<Integer> scanIds = sessionFactory.getCurrentSession().createCriteria(Application.class).add(Restrictions.in("id", applicationIdList)).createAlias("scans", "scans").add(Restrictions.eq("scans.lockedMetadata", false)).setProjection(Projections.groupProperty("scans.id")).list() [CD]
+Line_2 $$ public List<Scan> retrieveByApplicationIdList(List<Integer> applicationIdList) --> Line_6 $$ List<Integer> scanIds = sessionFactory.getCurrentSession().createCriteria(Application.class).add(Restrictions.in("id", applicationIdList)).createAlias("scans", "scans").add(Restrictions.eq("scans.lockedMetadata", false)).setProjection(Projections.groupProperty("scans.id")).list() [FD]
+Line_2 $$ public List<Scan> retrieveByApplicationIdList(List<Integer> applicationIdList) --> Line_7 $$ if (scanIds != null && !scanIds.isEmpty()) [CD]
+Line_7 $$ if (scanIds != null && !scanIds.isEmpty()) --> Line_8 $$ return sessionFactory.getCurrentSession().createCriteria(Scan.class).add(Restrictions.in("id", scanIds)).list() [CD]
+Line_7 $$ if (scanIds != null && !scanIds.isEmpty()) --> Line_10 $$ return list() [CD]

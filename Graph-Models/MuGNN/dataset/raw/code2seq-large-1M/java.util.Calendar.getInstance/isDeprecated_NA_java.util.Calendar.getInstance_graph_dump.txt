@@ -1,0 +1,8 @@
+Line_2 $$ public static boolean isDeprecated(CodeSystem cs, ConceptDefinitionComponent def) --> Line_3 $$ for (ConceptPropertyComponent p : def.getProperty()) [FD]
+Line_3 $$ for (ConceptPropertyComponent p : def.getProperty()) --> Line_4 $$ if (p.getCode().equals("deprecated") && p.hasValue() && p.getValue() instanceof BooleanType) [FD]
+Line_4 $$ if (p.getCode().equals("deprecated") && p.hasValue() && p.getValue() instanceof BooleanType) --> Line_5 $$ return ((BooleanType) p.getValue()).getValue() [CD]
+Line_3 $$ for (ConceptPropertyComponent p : def.getProperty()) --> Line_5 $$ return ((BooleanType) p.getValue()).getValue() [FD]
+Line_3 $$ for (ConceptPropertyComponent p : def.getProperty()) --> Line_6 $$ if (p.getCode().equals("deprecationDate") && p.hasValue() && p.getValue() instanceof DateTimeType) [FD]
+Line_6 $$ if (p.getCode().equals("deprecationDate") && p.hasValue() && p.getValue() instanceof DateTimeType) --> Line_7 $$ return ((DateTimeType) p.getValue()).before(new DateTimeType(Calendar.getInstance())) [CD]
+Line_3 $$ for (ConceptPropertyComponent p : def.getProperty()) --> Line_7 $$ return ((DateTimeType) p.getValue()).before(new DateTimeType(Calendar.getInstance())) [FD]
+Line_2 $$ public static boolean isDeprecated(CodeSystem cs, ConceptDefinitionComponent def) --> Line_9 $$ return false [CD]

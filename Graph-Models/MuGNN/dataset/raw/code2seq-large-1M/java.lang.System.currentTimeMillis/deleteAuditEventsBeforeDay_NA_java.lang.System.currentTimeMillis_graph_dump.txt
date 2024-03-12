@@ -1,0 +1,5 @@
+Line_2 $$ public void deleteAuditEventsBeforeDay(String realm, Date day) --> Line_3 $$ if (StringUtils.isEmpty(realm)) [FD]
+Line_2 $$ public void deleteAuditEventsBeforeDay(String realm, Date day) --> Line_3 $$ if (StringUtils.isEmpty(realm)) [CD]
+Line_2 $$ public void deleteAuditEventsBeforeDay(String realm, Date day) --> Line_6 $$ if (System.currentTimeMillis() - day.getTime() < 15 * DomainConstants.HOW_LONG_OF_ONE_DAY) [FD]
+Line_2 $$ public void deleteAuditEventsBeforeDay(String realm, Date day) --> Line_6 $$ if (System.currentTimeMillis() - day.getTime() < 15 * DomainConstants.HOW_LONG_OF_ONE_DAY) [CD]
+Line_2 $$ public void deleteAuditEventsBeforeDay(String realm, Date day) --> Line_9 $$ Edms.getEdm(AuditEventDispatcher.QUEUE_NAME).dispatch(RemoveEventConstants.DELETE_AUDIT_EVENT_BEFORE_DAY, new RemoveEventObject(realm, day)) [CD]

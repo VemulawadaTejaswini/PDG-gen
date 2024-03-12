@@ -1,0 +1,8 @@
+Line_2 $$ public void longTaskTimerSupported() throws InterruptedException, ExecutionException --> Line_3 $$ final Future<Response> future = target("long-timed").request().async().get() [CD]
+Line_2 $$ public void longTaskTimerSupported() throws InterruptedException, ExecutionException --> Line_4 $$ longTaskRequestStartedLatch.await() [CD]
+Line_2 $$ public void longTaskTimerSupported() throws InterruptedException, ExecutionException --> Line_5 $$ assertThat(registry.find(METRIC_NAME).tags(tagsFrom("/timed", 200)).timer()).isNull() [CD]
+Line_2 $$ public void longTaskTimerSupported() throws InterruptedException, ExecutionException --> Line_6 $$ assertThat(registry.get("long.task.in.request").tags(Tags.of(DefaultJerseyTagsProvider.TAG_METHOD, "GET", DefaultJerseyTagsProvider.TAG_URI, "/long-timed")).longTaskTimer().activeTasks()).isEqualTo(1) [CD]
+Line_2 $$ public void longTaskTimerSupported() throws InterruptedException, ExecutionException --> Line_7 $$ longTaskRequestReleaseLatch.countDown() [CD]
+Line_2 $$ public void longTaskTimerSupported() throws InterruptedException, ExecutionException --> Line_8 $$ future.get() [CD]
+Line_3 $$ final Future<Response> future = target("long-timed").request().async().get() --> Line_8 $$ future.get() [FD]
+Line_2 $$ public void longTaskTimerSupported() throws InterruptedException, ExecutionException --> Line_9 $$ assertThat(registry.get(METRIC_NAME).tags(tagsFrom("/long-timed", 200)).timer().count()).isEqualTo(1) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ void shouldNotSerializeStacktraceByDefault() throws JsonProcessingException --> Line_3 $$ final Problem problem = Problem.builder().withType(URI.create("about:blank")).withTitle("Foo").withStatus(BAD_REQUEST).withCause(Problem.builder().withType(URI.create("about:blank")).withTitle("Bar").withStatus(BAD_REQUEST).build()).build() [CD]
+Line_2 $$ void shouldNotSerializeStacktraceByDefault() throws JsonProcessingException --> Line_4 $$ final String json = mapper.writeValueAsString(problem) [CD]
+Line_3 $$ final Problem problem = Problem.builder().withType(URI.create("about:blank")).withTitle("Foo").withStatus(BAD_REQUEST).withCause(Problem.builder().withType(URI.create("about:blank")).withTitle("Bar").withStatus(BAD_REQUEST).build()).build() --> Line_4 $$ final String json = mapper.writeValueAsString(problem) [FD]
+Line_2 $$ void shouldNotSerializeStacktraceByDefault() throws JsonProcessingException --> Line_5 $$ with(json).assertNotDefined("$.stacktrace").assertNotDefined("$.stackTrace") [CD]
+Line_4 $$ final String json = mapper.writeValueAsString(problem) --> Line_5 $$ with(json).assertNotDefined("$.stacktrace").assertNotDefined("$.stackTrace") [FD]

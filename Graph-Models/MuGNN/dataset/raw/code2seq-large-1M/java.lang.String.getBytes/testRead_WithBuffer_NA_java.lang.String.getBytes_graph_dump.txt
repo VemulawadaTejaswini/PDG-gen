@@ -1,0 +1,8 @@
+Line_2 $$ public void testRead_WithBuffer() throws IOException --> Line_3 $$ final String TEXT = "To the man who only has a hammer, everything he encounters begins to look like a nail." [CD]
+Line_2 $$ public void testRead_WithBuffer() throws IOException --> Line_4 $$ DummyDataCountsReporter dataCountsReporter = new DummyDataCountsReporter() [CD]
+Line_2 $$ public void testRead_WithBuffer() throws IOException --> Line_5 $$ InputStream source = new ByteArrayInputStream(TEXT.getBytes(StandardCharsets.UTF_8)) [CD]
+Line_3 $$ final String TEXT = "To the man who only has a hammer, everything he encounters begins to look like a nail." --> Line_5 $$ InputStream source = new ByteArrayInputStream(TEXT.getBytes(StandardCharsets.UTF_8)) [FD]
+Line_6 $$ try (CountingInputStream counting = new CountingInputStream(source, dataCountsReporter)) --> Line_8 $$ while (counting.read(buf) >= 0) [FD]
+Line_7 $$ byte[] buf = new byte[256] --> Line_8 $$ while (counting.read(buf) >= 0) [FD]
+Line_3 $$ final String TEXT = "To the man who only has a hammer, everything he encounters begins to look like a nail." --> Line_10 $$ assertEquals(TEXT.length(), dataCountsReporter.incrementalStats().getInputBytes()) [FD]
+Line_4 $$ DummyDataCountsReporter dataCountsReporter = new DummyDataCountsReporter() --> Line_10 $$ assertEquals(TEXT.length(), dataCountsReporter.incrementalStats().getInputBytes()) [FD]

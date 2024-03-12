@@ -1,0 +1,8 @@
+Line_2 $$ public void changeConfig(final BulkheadConfig newConfig) --> Line_4 $$ int delta = newConfig.getMaxConcurrentCalls() - config.getMaxConcurrentCalls() [FD]
+Line_4 $$ int delta = newConfig.getMaxConcurrentCalls() - config.getMaxConcurrentCalls() --> Line_5 $$ if (delta < 0) [FD]
+Line_5 $$ if (delta < 0) --> Line_6 $$ semaphore.acquireUninterruptibly(-delta) [CD]
+Line_4 $$ int delta = newConfig.getMaxConcurrentCalls() - config.getMaxConcurrentCalls() --> Line_6 $$ semaphore.acquireUninterruptibly(-delta) [FD]
+Line_5 $$ if (delta < 0) --> Line_7 $$ if (delta > 0) [CD]
+Line_4 $$ int delta = newConfig.getMaxConcurrentCalls() - config.getMaxConcurrentCalls() --> Line_7 $$ if (delta > 0) [FD]
+Line_7 $$ if (delta > 0) --> Line_8 $$ semaphore.release(delta) [CD]
+Line_4 $$ int delta = newConfig.getMaxConcurrentCalls() - config.getMaxConcurrentCalls() --> Line_8 $$ semaphore.release(delta) [FD]

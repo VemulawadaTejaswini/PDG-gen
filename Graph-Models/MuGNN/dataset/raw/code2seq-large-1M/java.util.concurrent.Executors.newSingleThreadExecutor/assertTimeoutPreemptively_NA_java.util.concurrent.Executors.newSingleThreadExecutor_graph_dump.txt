@@ -1,0 +1,8 @@
+Line_2 $$ private static <T> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier, Object messageOrSupplier) --> Line_3 $$ ExecutorService executorService = Executors.newSingleThreadExecutor() [CD]
+Line_3 $$ ExecutorService executorService = Executors.newSingleThreadExecutor() --> Line_5 $$ Future<T> future = executorService.submit(() -> [FD]
+Line_2 $$ private static <T> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier, Object messageOrSupplier) --> Line_7 $$ return supplier.get() [FD]
+Line_2 $$ private static <T> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier, Object messageOrSupplier) --> Line_12 $$ long timeoutInMillis = timeout.toMillis() [FD]
+Line_5 $$ Future<T> future = executorService.submit(() -> --> Line_14 $$ return future.get(timeoutInMillis, TimeUnit.MILLISECONDS) [FD]
+Line_12 $$ long timeoutInMillis = timeout.toMillis() --> Line_14 $$ return future.get(timeoutInMillis, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ private static <T> T assertTimeoutPreemptively(Duration timeout, ThrowingSupplier<T> supplier, Object messageOrSupplier) --> Line_16 $$ throw new AssertionFailedError(buildPrefix(nullSafeGet(messageOrSupplier)) + "execution timed out after " + timeoutInMillis + " ms") [FD]
+Line_3 $$ ExecutorService executorService = Executors.newSingleThreadExecutor() --> Line_23 $$ executorService.shutdownNow() [FD]

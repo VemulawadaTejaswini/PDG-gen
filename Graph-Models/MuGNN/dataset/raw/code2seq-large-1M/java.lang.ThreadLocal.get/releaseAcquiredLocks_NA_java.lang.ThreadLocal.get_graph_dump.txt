@@ -1,0 +1,7 @@
+Line_2 $$ public void releaseAcquiredLocks() --> Line_3 $$ Set<Lock> locks = threadLocal.get() [CD]
+Line_2 $$ public void releaseAcquiredLocks() --> Line_4 $$ if (locks.isEmpty()) [CD]
+Line_3 $$ Set<Lock> locks = threadLocal.get() --> Line_4 $$ if (locks.isEmpty()) [FD]
+Line_4 $$ if (locks.isEmpty()) --> Line_5 $$ return [CD]
+Line_7 $$ for (Lock lock : locks) --> Line_8 $$ lock.unlock() [FD]
+Line_2 $$ public void releaseAcquiredLocks() --> Line_10 $$ locks.clear() [CD]
+Line_3 $$ Set<Lock> locks = threadLocal.get() --> Line_10 $$ locks.clear() [FD]

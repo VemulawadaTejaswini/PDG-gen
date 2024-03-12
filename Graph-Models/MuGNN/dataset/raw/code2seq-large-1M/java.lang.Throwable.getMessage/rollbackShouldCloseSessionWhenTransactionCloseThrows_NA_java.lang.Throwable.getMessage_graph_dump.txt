@@ -1,0 +1,8 @@
+Line_2 $$ public void rollbackShouldCloseSessionWhenTransactionCloseThrows() --> Line_3 $$ Transaction nativeTx = openTransactionMock() [CD]
+Line_2 $$ public void rollbackShouldCloseSessionWhenTransactionCloseThrows() --> Line_4 $$ doThrow(new RuntimeException("Close failed")).when(nativeTx).close() [CD]
+Line_3 $$ Transaction nativeTx = openTransactionMock() --> Line_4 $$ doThrow(new RuntimeException("Close failed")).when(nativeTx).close() [FD]
+Line_2 $$ public void rollbackShouldCloseSessionWhenTransactionCloseThrows() --> Line_5 $$ Session nativeSession = openSessionMock() [CD]
+Line_2 $$ public void rollbackShouldCloseSessionWhenTransactionCloseThrows() --> Line_6 $$ BoltTransaction boltTx = new BoltTransaction(rollingBackTxManager(), nativeTx, nativeSession, READ_ONLY) [CD]
+Line_6 $$ BoltTransaction boltTx = new BoltTransaction(rollingBackTxManager(), nativeTx, nativeSession, READ_ONLY) --> Line_8 $$ boltTx.rollback() [FD]
+Line_2 $$ public void rollbackShouldCloseSessionWhenTransactionCloseThrows() --> Line_13 $$ verify(nativeSession).close() [CD]
+Line_5 $$ Session nativeSession = openSessionMock() --> Line_13 $$ verify(nativeSession).close() [FD]

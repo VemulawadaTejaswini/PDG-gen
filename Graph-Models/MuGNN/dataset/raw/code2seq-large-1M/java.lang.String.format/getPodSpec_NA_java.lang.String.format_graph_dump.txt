@@ -1,0 +1,7 @@
+Line_2 $$ private static PodSpec getPodSpec(ServiceSpec serviceSpec, String podName) --> Line_3 $$ Optional<PodSpec> match = serviceSpec.getPods().stream().filter( podSpec -> podSpec.getType().equals(podName)).findFirst() [FD]
+Line_2 $$ private static PodSpec getPodSpec(ServiceSpec serviceSpec, String podName) --> Line_3 $$ Optional<PodSpec> match = serviceSpec.getPods().stream().filter( podSpec -> podSpec.getType().equals(podName)).findFirst() [CD]
+Line_2 $$ private static PodSpec getPodSpec(ServiceSpec serviceSpec, String podName) --> Line_4 $$ if (!match.isPresent()) [CD]
+Line_3 $$ Optional<PodSpec> match = serviceSpec.getPods().stream().filter( podSpec -> podSpec.getType().equals(podName)).findFirst() --> Line_4 $$ if (!match.isPresent()) [FD]
+Line_2 $$ private static PodSpec getPodSpec(ServiceSpec serviceSpec, String podName) --> Line_5 $$ throw new IllegalStateException(String.format("Missing required pod named '%s' in service spec", podName)) [FD]
+Line_2 $$ private static PodSpec getPodSpec(ServiceSpec serviceSpec, String podName) --> Line_7 $$ return match.get() [CD]
+Line_3 $$ Optional<PodSpec> match = serviceSpec.getPods().stream().filter( podSpec -> podSpec.getType().equals(podName)).findFirst() --> Line_7 $$ return match.get() [FD]

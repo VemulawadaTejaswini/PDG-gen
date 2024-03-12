@@ -1,0 +1,5 @@
+Line_2 $$ public void sync() throws IOException --> Line_3 $$ this.path = Paths.get(backupPath.replaceFirst("~", System.getProperty("user.home"))) [CD]
+Line_2 $$ public void sync() throws IOException --> Line_4 $$ if (Files.exists(path)) [CD]
+Line_4 $$ if (Files.exists(path)) --> Line_5 $$ backupEntries = Files.list(path).filter( p -> p.toString().endsWith(".sql")).map( p -> new BackupEntry(p)).collect(Collectors.toList()) [CD]
+Line_4 $$ if (Files.exists(path)) --> Line_6 $$ Collections.sort(backupEntries, Collections.reverseOrder()) [CD]
+Line_4 $$ if (Files.exists(path)) --> Line_8 $$ logger.warn("Path didn't exists: " + this.path) [CD]

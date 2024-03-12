@@ -1,0 +1,7 @@
+Line_2 $$ static <T, F extends Future<T>> Callable<T> decorateFutureSupplier(TimeLimiter timeLimiter, Supplier<F> futureSupplier) --> Line_3 $$ return () -> [CD]
+Line_2 $$ static <T, F extends Future<T>> Callable<T> decorateFutureSupplier(TimeLimiter timeLimiter, Supplier<F> futureSupplier) --> Line_4 $$ Future<T> future = futureSupplier.get() [FD]
+Line_4 $$ Future<T> future = futureSupplier.get() --> Line_6 $$ return future.get(timeLimiter.getTimeLimiterConfig().getTimeoutDuration().toMillis(), TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ static <T, F extends Future<T>> Callable<T> decorateFutureSupplier(TimeLimiter timeLimiter, Supplier<F> futureSupplier) --> Line_6 $$ return future.get(timeLimiter.getTimeLimiterConfig().getTimeoutDuration().toMillis(), TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ static <T, F extends Future<T>> Callable<T> decorateFutureSupplier(TimeLimiter timeLimiter, Supplier<F> futureSupplier) --> Line_8 $$ if (timeLimiter.getTimeLimiterConfig().shouldCancelRunningFuture()) [FD]
+Line_8 $$ if (timeLimiter.getTimeLimiterConfig().shouldCancelRunningFuture()) --> Line_9 $$ future.cancel(true) [CD]
+Line_4 $$ Future<T> future = futureSupplier.get() --> Line_9 $$ future.cancel(true) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void releaseSavepoint(Handle handle, String name) --> Line_3 $$ final Connection conn = handle.getConnection() [FD]
+Line_2 $$ public void releaseSavepoint(Handle handle, String name) --> Line_3 $$ final Connection conn = handle.getConnection() [CD]
+Line_2 $$ public void releaseSavepoint(Handle handle, String name) --> Line_5 $$ final Savepoint savepoint = localStuff.get(handle).getSavepoints().remove(name) [FD]
+Line_5 $$ final Savepoint savepoint = localStuff.get(handle).getSavepoints().remove(name) --> Line_6 $$ if (savepoint == null) [FD]
+Line_2 $$ public void releaseSavepoint(Handle handle, String name) --> Line_7 $$ throw new TransactionException(String.format("Attempt to release non-existent savepoint, '%s'", name)) [FD]
+Line_3 $$ final Connection conn = handle.getConnection() --> Line_9 $$ conn.releaseSavepoint(savepoint) [FD]
+Line_5 $$ final Savepoint savepoint = localStuff.get(handle).getSavepoints().remove(name) --> Line_9 $$ conn.releaseSavepoint(savepoint) [FD]
+Line_2 $$ public void releaseSavepoint(Handle handle, String name) --> Line_11 $$ throw new TransactionException(String.format("Unable to create savepoint %s", name), e) [FD]

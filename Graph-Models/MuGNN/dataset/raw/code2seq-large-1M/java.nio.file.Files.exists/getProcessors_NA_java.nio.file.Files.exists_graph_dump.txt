@@ -1,0 +1,8 @@
+Line_2 $$ public Map<String, Processor.Factory> getProcessors(Processor.Parameters parameters) --> Line_3 $$ Path userAgentConfigDirectory = parameters.env.configFile().resolve("ingest-user-agent") [CD]
+Line_2 $$ public Map<String, Processor.Factory> getProcessors(Processor.Parameters parameters) --> Line_4 $$ if (Files.exists(userAgentConfigDirectory) == false && Files.isDirectory(userAgentConfigDirectory)) [CD]
+Line_3 $$ Path userAgentConfigDirectory = parameters.env.configFile().resolve("ingest-user-agent") --> Line_4 $$ if (Files.exists(userAgentConfigDirectory) == false && Files.isDirectory(userAgentConfigDirectory)) [FD]
+Line_2 $$ public Map<String, Processor.Factory> getProcessors(Processor.Parameters parameters) --> Line_7 $$ long cacheSize = CACHE_SIZE_SETTING.get(parameters.env.settings()) [CD]
+Line_2 $$ public Map<String, Processor.Factory> getProcessors(Processor.Parameters parameters) --> Line_8 $$ Map<String, UserAgentParser> userAgentParsers [CD]
+Line_8 $$ Map<String, UserAgentParser> userAgentParsers --> Line_10 $$ userAgentParsers = createUserAgentParsers(userAgentConfigDirectory, new UserAgentCache(cacheSize)) [FD]
+Line_3 $$ Path userAgentConfigDirectory = parameters.env.configFile().resolve("ingest-user-agent") --> Line_10 $$ userAgentParsers = createUserAgentParsers(userAgentConfigDirectory, new UserAgentCache(cacheSize)) [FD]
+Line_2 $$ public Map<String, Processor.Factory> getProcessors(Processor.Parameters parameters) --> Line_14 $$ return Collections.singletonMap(UserAgentProcessor.TYPE, new UserAgentProcessor.Factory(userAgentParsers)) [CD]

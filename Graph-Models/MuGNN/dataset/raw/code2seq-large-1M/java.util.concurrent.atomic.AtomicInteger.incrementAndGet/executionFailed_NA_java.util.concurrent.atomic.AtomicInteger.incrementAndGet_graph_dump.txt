@@ -1,0 +1,8 @@
+Line_2 $$ synchronized void executionFailed() --> Line_3 $$ failureCount.incrementAndGet() [CD]
+Line_2 $$ synchronized void executionFailed() --> Line_4 $$ Status current = status.get() [CD]
+Line_2 $$ synchronized void executionFailed() --> Line_5 $$ if (HALF_OPEN == current || (CLOSED == current && isFailureThresholdReached())) [CD]
+Line_5 $$ if (HALF_OPEN == current || (CLOSED == current && isFailureThresholdReached())) --> Line_6 $$ LOGGER.debugf("%s >> OPEN [id:%s]", current, id) [CD]
+Line_4 $$ Status current = status.get() --> Line_6 $$ LOGGER.debugf("%s >> OPEN [id:%s]", current, id) [FD]
+Line_5 $$ if (HALF_OPEN == current || (CLOSED == current && isFailureThresholdReached())) --> Line_7 $$ status.set(OPEN) [CD]
+Line_5 $$ if (HALF_OPEN == current || (CLOSED == current && isFailureThresholdReached())) --> Line_8 $$ circuitOpenedAt.set(System.currentTimeMillis()) [CD]
+Line_5 $$ if (HALF_OPEN == current || (CLOSED == current && isFailureThresholdReached())) --> Line_9 $$ resetCounts() [CD]

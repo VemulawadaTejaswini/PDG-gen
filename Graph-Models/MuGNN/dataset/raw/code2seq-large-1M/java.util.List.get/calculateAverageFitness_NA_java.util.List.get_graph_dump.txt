@@ -1,0 +1,7 @@
+Line_2 $$ private Double calculateAverageFitness() --> Line_3 $$ double avgFitnessScore = 0 [CD]
+Line_2 $$ private Double calculateAverageFitness() --> Line_4 $$ IgniteCache<Long, Gene> cache = ignite.cache(GAGridConstants.POPULATION_CACHE) [CD]
+Line_2 $$ private Double calculateAverageFitness() --> Line_5 $$ SqlFieldsQuery sql = new SqlFieldsQuery("select AVG(FITNESSSCORE) from Chromosome") [CD]
+Line_4 $$ IgniteCache<Long, Gene> cache = ignite.cache(GAGridConstants.POPULATION_CACHE) --> Line_6 $$ try (QueryCursor<List<?>> cursor = cache.query(sql)) [FD]
+Line_5 $$ SqlFieldsQuery sql = new SqlFieldsQuery("select AVG(FITNESSSCORE) from Chromosome") --> Line_6 $$ try (QueryCursor<List<?>> cursor = cache.query(sql)) [FD]
+Line_3 $$ double avgFitnessScore = 0 --> Line_7 $$ for (List<?> row : cursor) avgFitnessScore = (Double) row.get(0) [FD]
+Line_2 $$ private Double calculateAverageFitness() --> Line_9 $$ return avgFitnessScore [CD]

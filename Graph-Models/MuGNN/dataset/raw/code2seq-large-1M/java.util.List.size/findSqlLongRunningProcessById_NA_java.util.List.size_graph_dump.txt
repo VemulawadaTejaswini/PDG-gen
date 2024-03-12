@@ -1,0 +1,8 @@
+Line_2 $$ private SqlLongRunningProcess findSqlLongRunningProcessById(String longRunningProcessId) --> Line_3 $$ Session session = sessionManager.getSession() [CD]
+Line_2 $$ private SqlLongRunningProcess findSqlLongRunningProcessById(String longRunningProcessId) --> Line_4 $$ List longRunningProcesses = session.createCriteria(SqlLongRunningProcess.class).add(Restrictions.eq("longRunningProcessId", longRunningProcessId)).list() [CD]
+Line_2 $$ private SqlLongRunningProcess findSqlLongRunningProcessById(String longRunningProcessId) --> Line_4 $$ List longRunningProcesses = session.createCriteria(SqlLongRunningProcess.class).add(Restrictions.eq("longRunningProcessId", longRunningProcessId)).list() [FD]
+Line_3 $$ Session session = sessionManager.getSession() --> Line_4 $$ List longRunningProcesses = session.createCriteria(SqlLongRunningProcess.class).add(Restrictions.eq("longRunningProcessId", longRunningProcessId)).list() [FD]
+Line_2 $$ private SqlLongRunningProcess findSqlLongRunningProcessById(String longRunningProcessId) --> Line_5 $$ if (longRunningProcesses.size() == 0) [CD]
+Line_5 $$ if (longRunningProcesses.size() == 0) --> Line_6 $$ return null [CD]
+Line_5 $$ if (longRunningProcesses.size() == 0) --> Line_7 $$ if (longRunningProcesses.size() > 1) [CD]
+Line_7 $$ if (longRunningProcesses.size() > 1) --> Line_10 $$ return (SqlLongRunningProcess) longRunningProcesses.get(0) [CD]

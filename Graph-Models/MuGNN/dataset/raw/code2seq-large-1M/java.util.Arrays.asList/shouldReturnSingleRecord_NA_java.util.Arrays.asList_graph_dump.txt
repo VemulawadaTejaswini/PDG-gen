@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldReturnSingleRecord() --> Line_3 $$ PullAllResponseHandler pullAllHandler = mock(PullAllResponseHandler.class) [CD]
+Line_2 $$ public void shouldReturnSingleRecord() --> Line_4 $$ Record record = new InternalRecord(asList("key1", "key2"), values(42, 42)) [CD]
+Line_2 $$ public void shouldReturnSingleRecord() --> Line_5 $$ when(pullAllHandler.nextAsync()).thenReturn(completedFuture(record)).thenReturn(completedWithNull()) [CD]
+Line_4 $$ Record record = new InternalRecord(asList("key1", "key2"), values(42, 42)) --> Line_5 $$ when(pullAllHandler.nextAsync()).thenReturn(completedFuture(record)).thenReturn(completedWithNull()) [FD]
+Line_2 $$ public void shouldReturnSingleRecord() --> Line_6 $$ InternalStatementResultCursor cursor = newCursor(pullAllHandler) [CD]
+Line_2 $$ public void shouldReturnSingleRecord() --> Line_7 $$ assertEquals(record, await(cursor.singleAsync())) [CD]
+Line_4 $$ Record record = new InternalRecord(asList("key1", "key2"), values(42, 42)) --> Line_7 $$ assertEquals(record, await(cursor.singleAsync())) [FD]
+Line_6 $$ InternalStatementResultCursor cursor = newCursor(pullAllHandler) --> Line_7 $$ assertEquals(record, await(cursor.singleAsync())) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void doNotFireCommandUntilObservation() --> Line_3 $$ Observable<String> set = reactive.set(key, value) [CD]
+Line_2 $$ public void doNotFireCommandUntilObservation() --> Line_4 $$ Delay.delay(Duration.ofMillis(200)) [CD]
+Line_2 $$ public void doNotFireCommandUntilObservation() --> Line_5 $$ assertThat(redis.get(key)).isNull() [CD]
+Line_2 $$ public void doNotFireCommandUntilObservation() --> Line_6 $$ set.subscribe() [CD]
+Line_3 $$ Observable<String> set = reactive.set(key, value) --> Line_6 $$ set.subscribe() [FD]
+Line_2 $$ public void doNotFireCommandUntilObservation() --> Line_7 $$ Wait.untilEquals(value, () -> redis.get(key)).waitOrTimeout() [CD]
+Line_2 $$ public void doNotFireCommandUntilObservation() --> Line_8 $$ assertThat(redis.get(key)).isEqualTo(value) [CD]

@@ -1,0 +1,8 @@
+Line_5 $$ if (bufLen + length > buf.length) --> Line_6 $$ char[] newBuf = new char[Math.max(bufLen + length, buf.length * 2)] [CD]
+Line_5 $$ if (bufLen + length > buf.length) --> Line_7 $$ System.arraycopy(buf, 0, newBuf, 0, bufLen) [CD]
+Line_6 $$ char[] newBuf = new char[Math.max(bufLen + length, buf.length * 2)] --> Line_7 $$ System.arraycopy(buf, 0, newBuf, 0, bufLen) [FD]
+Line_2 $$ public void characters(char[] ch, int start, int length) throws SAXException --> Line_10 $$ System.arraycopy(ch, start, buf, bufLen, length) [FD]
+Line_14 $$ int len = start + length --> Line_15 $$ for (int i = start; i < len; i++) if (!WhiteSpaceProcessor.isWhiteSpace(ch[i])) [FD]
+Line_15 $$ for (int i = start; i < len; i++) if (!WhiteSpaceProcessor.isWhiteSpace(ch[i])) --> Line_16 $$ super.characters(ch, start, length) [CD]
+Line_2 $$ public void characters(char[] ch, int start, int length) throws SAXException --> Line_16 $$ super.characters(ch, start, length) [FD]
+Line_15 $$ for (int i = start; i < len; i++) if (!WhiteSpaceProcessor.isWhiteSpace(ch[i])) --> Line_17 $$ return [CD]

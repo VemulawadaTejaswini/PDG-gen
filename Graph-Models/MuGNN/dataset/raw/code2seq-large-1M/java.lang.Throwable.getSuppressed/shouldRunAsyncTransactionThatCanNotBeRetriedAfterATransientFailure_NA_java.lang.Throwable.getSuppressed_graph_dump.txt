@@ -1,0 +1,7 @@
+Line_2 $$ public void shouldRunAsyncTransactionThatCanNotBeRetriedAfterATransientFailure() --> Line_3 $$ InvocationTrackingWork work = new InvocationTrackingWork("CREATE (:Person) RETURN 1").withSyncFailures(new TransientException("Oh!", "Deadlock!")).withAsyncFailures(new DatabaseException("Oh!", "OutOfMemory!")) [CD]
+Line_2 $$ public void shouldRunAsyncTransactionThatCanNotBeRetriedAfterATransientFailure() --> Line_4 $$ CompletionStage<Record> txStage = session.writeTransactionAsync(work) [CD]
+Line_3 $$ InvocationTrackingWork work = new InvocationTrackingWork("CREATE (:Person) RETURN 1").withSyncFailures(new TransientException("Oh!", "Deadlock!")).withAsyncFailures(new DatabaseException("Oh!", "OutOfMemory!")) --> Line_4 $$ CompletionStage<Record> txStage = session.writeTransactionAsync(work) [FD]
+Line_4 $$ CompletionStage<Record> txStage = session.writeTransactionAsync(work) --> Line_6 $$ await(txStage) [FD]
+Line_2 $$ public void shouldRunAsyncTransactionThatCanNotBeRetriedAfterATransientFailure() --> Line_13 $$ assertEquals(2, work.invocationCount()) [CD]
+Line_3 $$ InvocationTrackingWork work = new InvocationTrackingWork("CREATE (:Person) RETURN 1").withSyncFailures(new TransientException("Oh!", "Deadlock!")).withAsyncFailures(new DatabaseException("Oh!", "OutOfMemory!")) --> Line_13 $$ assertEquals(2, work.invocationCount()) [FD]
+Line_2 $$ public void shouldRunAsyncTransactionThatCanNotBeRetriedAfterATransientFailure() --> Line_14 $$ assertEquals(0, countNodesByLabel("Person")) [CD]

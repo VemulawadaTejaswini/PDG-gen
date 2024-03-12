@@ -1,0 +1,5 @@
+Line_2 $$ public void testProcessorDeclined_returnsErrorResponse() throws Exception --> Line_3 $$ when(result.isSuccess()).thenReturn(false) [CD]
+Line_2 $$ public void testProcessorDeclined_returnsErrorResponse() throws Exception --> Line_4 $$ when(result.getTransaction()).thenReturn(transaction) [CD]
+Line_2 $$ public void testProcessorDeclined_returnsErrorResponse() throws Exception --> Line_5 $$ when(transaction.getStatus()).thenReturn(Transaction.Status.PROCESSOR_DECLINED) [CD]
+Line_2 $$ public void testProcessorDeclined_returnsErrorResponse() throws Exception --> Line_6 $$ when(transaction.getProcessorResponseText()).thenReturn("You don't know the power of the dark side") [CD]
+Line_2 $$ public void testProcessorDeclined_returnsErrorResponse() throws Exception --> Line_7 $$ assertThat(paymentAction.handleJsonRequest(ImmutableMap.of("amount", "123", "currency", "USD", "paymentMethodNonce", "abc-123"))).containsExactly("status", "ERROR", "message", "Payment declined: You don't know the power of the dark side", "results", asList()) [CD]

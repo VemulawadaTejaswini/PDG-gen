@@ -1,0 +1,8 @@
+Line_2 $$ private void submitCooperativeTasklets(ExecutionTracker executionTracker, ClassLoader jobClassLoader, List<Tasklet> tasklets) --> Line_3 $$ ensureThreadsStarted() [CD]
+Line_2 $$ private void submitCooperativeTasklets(ExecutionTracker executionTracker, ClassLoader jobClassLoader, List<Tasklet> tasklets) --> Line_4 $$ final List<TaskletTracker>[] trackersByThread = new List[cooperativeWorkers.length] [CD]
+Line_2 $$ private void submitCooperativeTasklets(ExecutionTracker executionTracker, ClassLoader jobClassLoader, List<Tasklet> tasklets) --> Line_5 $$ Arrays.setAll(trackersByThread,  i -> new ArrayList()) [CD]
+Line_4 $$ final List<TaskletTracker>[] trackersByThread = new List[cooperativeWorkers.length] --> Line_5 $$ Arrays.setAll(trackersByThread,  i -> new ArrayList()) [FD]
+Line_6 $$ for (Tasklet t : tasklets) --> Line_7 $$ t.init() [FD]
+Line_2 $$ private void submitCooperativeTasklets(ExecutionTracker executionTracker, ClassLoader jobClassLoader, List<Tasklet> tasklets) --> Line_10 $$ for (int i = 0; i < trackersByThread.length; i++) [CD]
+Line_10 $$ for (int i = 0; i < trackersByThread.length; i++) --> Line_11 $$ cooperativeWorkers[i].trackers.addAll(trackersByThread[i]) [CD]
+Line_2 $$ private void submitCooperativeTasklets(ExecutionTracker executionTracker, ClassLoader jobClassLoader, List<Tasklet> tasklets) --> Line_13 $$ Arrays.stream(cooperativeThreadPool).forEach(LockSupport::<>unpark) [CD]

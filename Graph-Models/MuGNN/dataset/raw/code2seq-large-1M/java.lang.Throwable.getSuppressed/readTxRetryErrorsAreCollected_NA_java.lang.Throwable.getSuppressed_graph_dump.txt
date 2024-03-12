@@ -1,0 +1,5 @@
+Line_3 $$ try (Driver driver = newDriverWithLimitedRetries(4, TimeUnit.SECONDS)) --> Line_6 $$ try (Session session = driver.session()) [FD]
+Line_6 $$ try (Session session = driver.session()) --> Line_8 $$ session.readTransaction(work) [FD]
+Line_4 $$ ThrowingWork work = newThrowingWorkSpy("MATCH (n) RETURN n.name", Integer.MAX_VALUE) --> Line_8 $$ session.readTransaction(work) [FD]
+Line_5 $$ int suppressedErrors = 0 --> Line_13 $$ suppressedErrors = e.getSuppressed().length [FD]
+Line_4 $$ ThrowingWork work = newThrowingWorkSpy("MATCH (n) RETURN n.name", Integer.MAX_VALUE) --> Line_16 $$ verify(work, times(suppressedErrors + 1)).execute(any(Transaction.class)) [FD]

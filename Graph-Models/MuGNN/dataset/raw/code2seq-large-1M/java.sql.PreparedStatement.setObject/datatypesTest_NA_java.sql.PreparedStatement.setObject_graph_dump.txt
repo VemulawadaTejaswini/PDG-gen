@@ -1,0 +1,8 @@
+Line_4 $$ try (PreparedStatement preparedStmt = sharedConnection.prepareStatement("INSERT INTO `datatypesTest` (`type_longvarchar`) VALUES ( ? )")) --> Line_5 $$ preparedStmt.setObject(1, "longvarcharTest", Types.LONGVARCHAR) [FD]
+Line_4 $$ try (PreparedStatement preparedStmt = sharedConnection.prepareStatement("INSERT INTO `datatypesTest` (`type_longvarchar`) VALUES ( ? )")) --> Line_6 $$ preparedStmt.executeUpdate() [FD]
+Line_3 $$ try (Statement stmt = sharedConnection.createStatement()) --> Line_8 $$ ResultSet rs = stmt.executeQuery("SELECT * FROM datatypesTest") [FD]
+Line_3 $$ try (Statement stmt = sharedConnection.createStatement()) --> Line_9 $$ stmt.close() [FD]
+Line_8 $$ ResultSet rs = stmt.executeQuery("SELECT * FROM datatypesTest") --> Line_10 $$ if (rs.next()) [FD]
+Line_10 $$ if (rs.next()) --> Line_11 $$ assertEquals("longvarcharTest", rs.getString(1)) [CD]
+Line_8 $$ ResultSet rs = stmt.executeQuery("SELECT * FROM datatypesTest") --> Line_11 $$ assertEquals("longvarcharTest", rs.getString(1)) [FD]
+Line_10 $$ if (rs.next()) --> Line_13 $$ fail() [CD]

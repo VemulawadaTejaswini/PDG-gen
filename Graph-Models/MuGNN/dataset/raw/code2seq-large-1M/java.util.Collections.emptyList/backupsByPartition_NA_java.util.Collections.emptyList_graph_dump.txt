@@ -1,0 +1,8 @@
+Line_2 $$ private Collection<ClusterNode> backupsByPartition(int part, AffinityTopologyVersion topVer) --> Line_3 $$ List<ClusterNode> nodes = nodesByPartition(part, topVer) [CD]
+Line_2 $$ private Collection<ClusterNode> backupsByPartition(int part, AffinityTopologyVersion topVer) --> Line_3 $$ List<ClusterNode> nodes = nodesByPartition(part, topVer) [FD]
+Line_3 $$ List<ClusterNode> nodes = nodesByPartition(part, topVer) --> Line_4 $$ assert !F.isEmpty(nodes) [FD]
+Line_2 $$ private Collection<ClusterNode> backupsByPartition(int part, AffinityTopologyVersion topVer) --> Line_5 $$ if (nodes.size() == 1) [CD]
+Line_3 $$ List<ClusterNode> nodes = nodesByPartition(part, topVer) --> Line_5 $$ if (nodes.size() == 1) [FD]
+Line_5 $$ if (nodes.size() == 1) --> Line_6 $$ return Collections.emptyList() [CD]
+Line_2 $$ private Collection<ClusterNode> backupsByPartition(int part, AffinityTopologyVersion topVer) --> Line_7 $$ return F.view(nodes, F.notEqualTo(nodes.get(0))) [CD]
+Line_3 $$ List<ClusterNode> nodes = nodesByPartition(part, topVer) --> Line_7 $$ return F.view(nodes, F.notEqualTo(nodes.get(0))) [FD]

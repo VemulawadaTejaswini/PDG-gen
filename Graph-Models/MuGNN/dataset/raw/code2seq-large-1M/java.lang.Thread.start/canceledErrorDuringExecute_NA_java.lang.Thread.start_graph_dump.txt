@@ -1,0 +1,8 @@
+Line_2 $$ public void canceledErrorDuringExecute() throws Exception --> Line_3 $$ final NamedCountDownLatch countDownLatch = new NamedCountDownLatch("canceledErrorDuringExecute", 1) [CD]
+Line_2 $$ public void canceledErrorDuringExecute() throws Exception --> Line_4 $$ final GraphCall call = graphClient.queryGraph(shopNameQuery) [CD]
+Line_2 $$ public void canceledErrorDuringExecute() throws Exception --> Line_5 $$ new Thread(() -> [CD]
+Line_4 $$ final GraphCall call = graphClient.queryGraph(shopNameQuery) --> Line_10 $$ call.cancel() [FD]
+Line_3 $$ final NamedCountDownLatch countDownLatch = new NamedCountDownLatch("canceledErrorDuringExecute", 1) --> Line_11 $$ countDownLatch.countDown() [FD]
+Line_4 $$ final GraphCall call = graphClient.queryGraph(shopNameQuery) --> Line_14 $$ call.execute() [FD]
+Line_2 $$ public void canceledErrorDuringExecute() throws Exception --> Line_18 $$ countDownLatch.await(3, TimeUnit.SECONDS) [CD]
+Line_3 $$ final NamedCountDownLatch countDownLatch = new NamedCountDownLatch("canceledErrorDuringExecute", 1) --> Line_18 $$ countDownLatch.await(3, TimeUnit.SECONDS) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public List<Config> getErrors(List<Long> idList) --> Line_3 $$ if (idList.isEmpty()) [CD]
+Line_2 $$ public List<Config> getErrors(List<Long> idList) --> Line_3 $$ if (idList.isEmpty()) [FD]
+Line_3 $$ if (idList.isEmpty()) --> Line_4 $$ return ImmutableList.of() [CD]
+Line_2 $$ public List<Config> getErrors(List<Long> idList) --> Line_6 $$ List<IdConfig> list = autoCommit(( handle,  dao) -> handle.createQuery("select id, error" + " from task_state_details" + " where id " + inLargeIdListExpression(idList)).map(new IdConfigMapper(cklm, null, configMapper, "error", null)).list()) [CD]
+Line_2 $$ public List<Config> getErrors(List<Long> idList) --> Line_6 $$ List<IdConfig> list = autoCommit(( handle,  dao) -> handle.createQuery("select id, error" + " from task_state_details" + " where id " + inLargeIdListExpression(idList)).map(new IdConfigMapper(cklm, null, configMapper, "error", null)).list()) [FD]
+Line_2 $$ public List<Config> getErrors(List<Long> idList) --> Line_7 $$ return sortConfigListByIdList(idList, list) [CD]
+Line_2 $$ public List<Config> getErrors(List<Long> idList) --> Line_7 $$ return sortConfigListByIdList(idList, list) [FD]
+Line_6 $$ List<IdConfig> list = autoCommit(( handle,  dao) -> handle.createQuery("select id, error" + " from task_state_details" + " where id " + inLargeIdListExpression(idList)).map(new IdConfigMapper(cklm, null, configMapper, "error", null)).list()) --> Line_7 $$ return sortConfigListByIdList(idList, list) [FD]

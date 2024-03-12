@@ -1,0 +1,7 @@
+Line_2 $$ public Handler receive(int port, OutputStream outputStream, long fileSize, int bufferSize, int timeOut, T extra, boolean currentThread) --> Line_3 $$ Handler handler = new Handler(extra, port, outputStream, fileSize, new byte[bufferSize], timeOut) [CD]
+Line_2 $$ public Handler receive(int port, OutputStream outputStream, long fileSize, int bufferSize, int timeOut, T extra, boolean currentThread) --> Line_4 $$ if (currentThread) [CD]
+Line_4 $$ if (currentThread) --> Line_5 $$ handler.run() [CD]
+Line_3 $$ Handler handler = new Handler(extra, port, outputStream, fileSize, new byte[bufferSize], timeOut) --> Line_5 $$ handler.run() [FD]
+Line_4 $$ if (currentThread) --> Line_7 $$ getExecutor().submit(handler) [CD]
+Line_3 $$ Handler handler = new Handler(extra, port, outputStream, fileSize, new byte[bufferSize], timeOut) --> Line_7 $$ getExecutor().submit(handler) [FD]
+Line_2 $$ public Handler receive(int port, OutputStream outputStream, long fileSize, int bufferSize, int timeOut, T extra, boolean currentThread) --> Line_8 $$ return handler [CD]

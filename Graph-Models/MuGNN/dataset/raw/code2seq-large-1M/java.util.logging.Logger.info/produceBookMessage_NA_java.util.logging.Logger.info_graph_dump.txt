@@ -1,0 +1,6 @@
+Line_2 $$ public Response produceBookMessage(CDIInjectionBook book) --> Line_3 $$ log.info("entering produceBookMessage()") [CD]
+Line_2 $$ public Response produceBookMessage(CDIInjectionBook book) --> Line_9 $$ TextMessage message = session.createTextMessage(book.getName()) [FD]
+Line_8 $$ MessageProducer producer = session.createProducer(bookQueue) --> Line_10 $$ producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT) [FD]
+Line_8 $$ MessageProducer producer = session.createProducer(bookQueue) --> Line_11 $$ producer.send(message) [FD]
+Line_9 $$ TextMessage message = session.createTextMessage(book.getName()) --> Line_11 $$ producer.send(message) [FD]
+Line_9 $$ TextMessage message = session.createTextMessage(book.getName()) --> Line_12 $$ log.info("sent: " + message.getText()) [FD]

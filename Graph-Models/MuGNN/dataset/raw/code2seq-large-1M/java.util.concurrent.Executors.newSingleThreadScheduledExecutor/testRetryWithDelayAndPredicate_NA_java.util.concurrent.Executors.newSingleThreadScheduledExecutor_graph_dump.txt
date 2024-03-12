@@ -1,0 +1,6 @@
+Line_2 $$ public void testRetryWithDelayAndPredicate() throws Exception --> Line_3 $$ final ScheduledExecutorService retryExecutor = Executors.newSingleThreadScheduledExecutor() [CD]
+Line_2 $$ public void testRetryWithDelayAndPredicate() throws Exception --> Line_4 $$ final String retryableExceptionMessage = "first exception" [CD]
+Line_8 $$ if (counter.getAndIncrement() == 0) --> Line_9 $$ return FutureUtils.completedExceptionally(new RuntimeException(retryableExceptionMessage)) [CD]
+Line_8 $$ if (counter.getAndIncrement() == 0) --> Line_11 $$ return FutureUtils.completedExceptionally(new RuntimeException("should propagate")) [CD]
+Line_4 $$ final String retryableExceptionMessage = "first exception" --> Line_16 $$ throwable instanceof RuntimeException && throwable.getMessage().contains(retryableExceptionMessage) [FD]
+Line_3 $$ final ScheduledExecutorService retryExecutor = Executors.newSingleThreadScheduledExecutor() --> Line_20 $$ retryExecutor.shutdownNow() [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public InputStream getBody() throws IOException --> Line_3 $$ InputStream body = this.delegate.getBody() [CD]
+Line_2 $$ public InputStream getBody() throws IOException --> Line_4 $$ if (body == null || body.markSupported() || body instanceof PushbackInputStream) [CD]
+Line_3 $$ InputStream body = this.delegate.getBody() --> Line_4 $$ if (body == null || body.markSupported() || body instanceof PushbackInputStream) [FD]
+Line_4 $$ if (body == null || body.markSupported() || body instanceof PushbackInputStream) --> Line_5 $$ return body [CD]
+Line_4 $$ if (body == null || body.markSupported() || body instanceof PushbackInputStream) --> Line_6 $$ if (this.pushbackInputStream == null) [CD]
+Line_6 $$ if (this.pushbackInputStream == null) --> Line_7 $$ this.pushbackInputStream = new PushbackInputStream(body, WX_API_ERROR_CODE_END) [CD]
+Line_2 $$ public InputStream getBody() throws IOException --> Line_9 $$ return this.pushbackInputStream [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Object lag(int amt) throws HiveException --> Line_3 $$ int i = PTFRollingPartition.this.numRowsProcessed - amt [CD]
+Line_2 $$ public Object lag(int amt) throws HiveException --> Line_4 $$ int start = PTFRollingPartition.this.numRowsReceived - PTFRollingPartition.this.currWindow.size() [CD]
+Line_2 $$ public Object lag(int amt) throws HiveException --> Line_5 $$ i = i < start ? start : i [CD]
+Line_3 $$ int i = PTFRollingPartition.this.numRowsProcessed - amt --> Line_5 $$ i = i < start ? start : i [FD]
+Line_2 $$ public Object lag(int amt) throws HiveException --> Line_6 $$ return PTFRollingPartition.this.getAt(i) [CD]
+Line_3 $$ int i = PTFRollingPartition.this.numRowsProcessed - amt --> Line_6 $$ return PTFRollingPartition.this.getAt(i) [FD]
+Line_5 $$ i = i < start ? start : i --> Line_6 $$ return PTFRollingPartition.this.getAt(i) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void prepareDeleteStatements() throws DBException --> Line_3 $$ DBDRowIdentifier rowIdentifier = getDefaultRowIdentifier() [CD]
+Line_2 $$ private void prepareDeleteStatements() throws DBException --> Line_4 $$ if (rowIdentifier == null) [CD]
+Line_3 $$ DBDRowIdentifier rowIdentifier = getDefaultRowIdentifier() --> Line_4 $$ if (rowIdentifier == null) [FD]
+Line_3 $$ DBDRowIdentifier rowIdentifier = getDefaultRowIdentifier() --> Line_8 $$ DataStatementInfo statement = new DataStatementInfo(DBSManipulationType.DELETE, row, rowIdentifier.getEntity()) [FD]
+Line_3 $$ DBDRowIdentifier rowIdentifier = getDefaultRowIdentifier() --> Line_9 $$ List<DBDAttributeBinding> keyColumns = rowIdentifier.getAttributes() [FD]
+Line_10 $$ for (DBDAttributeBinding binding : keyColumns) --> Line_11 $$ statement.keyAttributes.add(new DBDAttributeValue(binding, model.getCellValue(binding, row))) [FD]
+Line_7 $$ for (ResultSetRow row : deletedRows) --> Line_11 $$ statement.keyAttributes.add(new DBDAttributeValue(binding, model.getCellValue(binding, row))) [FD]
+Line_8 $$ DataStatementInfo statement = new DataStatementInfo(DBSManipulationType.DELETE, row, rowIdentifier.getEntity()) --> Line_13 $$ deleteStatements.add(statement) [FD]

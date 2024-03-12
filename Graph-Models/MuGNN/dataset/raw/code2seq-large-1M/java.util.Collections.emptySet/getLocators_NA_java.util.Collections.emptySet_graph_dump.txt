@@ -1,0 +1,5 @@
+Line_2 $$ public Collection<Locator> getLocators(SlotKey slotKey) throws IOException --> Line_3 $$ Timer.Context ctx = Instrumentation.getReadTimerContext(CassandraModel.CF_METRICS_DELAYED_LOCATOR_NAME) [CD]
+Line_2 $$ public Collection<Locator> getLocators(SlotKey slotKey) throws IOException --> Line_5 $$ RowQuery<SlotKey, Locator> query = AstyanaxIO.getKeyspace().prepareQuery(CassandraModel.CF_METRICS_DELAYED_LOCATOR).getKey(slotKey) [FD]
+Line_5 $$ RowQuery<SlotKey, Locator> query = AstyanaxIO.getKeyspace().prepareQuery(CassandraModel.CF_METRICS_DELAYED_LOCATOR).getKey(slotKey) --> Line_6 $$ return query.execute().getResult().getColumnNames() [FD]
+Line_2 $$ public Collection<Locator> getLocators(SlotKey slotKey) throws IOException --> Line_13 $$ LOG.error("Connection exception during ADelayedLocatorIO.getLocators(" + slotKey.toString() + ")", ex) [FD]
+Line_3 $$ Timer.Context ctx = Instrumentation.getReadTimerContext(CassandraModel.CF_METRICS_DELAYED_LOCATOR_NAME) --> Line_16 $$ ctx.stop() [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public static void runConcurrently(final Callable<Void>... tasks) throws Exception --> Line_3 $$ final ExecutorService service = Executors.newFixedThreadPool(5) [CD]
+Line_2 $$ public static void runConcurrently(final Callable<Void>... tasks) throws Exception --> Line_4 $$ final List<Future<?>> futures = new ArrayList<Future<?>>() [CD]
+Line_4 $$ final List<Future<?>> futures = new ArrayList<Future<?>>() --> Line_6 $$ futures.add(service.submit(task)) [FD]
+Line_3 $$ final ExecutorService service = Executors.newFixedThreadPool(5) --> Line_6 $$ futures.add(service.submit(task)) [FD]
+Line_5 $$ for (final Callable<Void> task : tasks) --> Line_6 $$ futures.add(service.submit(task)) [FD]
+Line_8 $$ for (final Future<?> future : futures) --> Line_9 $$ future.get() [FD]

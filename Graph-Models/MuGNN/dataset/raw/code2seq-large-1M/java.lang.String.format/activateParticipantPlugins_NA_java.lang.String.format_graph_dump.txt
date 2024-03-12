@@ -1,0 +1,8 @@
+Line_2 $$ public static void activateParticipantPlugins() --> Line_3 $$ IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXECUTION_PARTICIPANTS_EXTENSION_ID) [CD]
+Line_4 $$ for (IConfigurationElement element : elements) --> Line_5 $$ String pluginId = element.getAttribute(EXTENSION_ATTRIBUTE_PLUGIN_ID) [FD]
+Line_5 $$ String pluginId = element.getAttribute(EXTENSION_ATTRIBUTE_PLUGIN_ID) --> Line_7 $$ Bundle bundle = Platform.getBundle(pluginId) [FD]
+Line_7 $$ Bundle bundle = Platform.getBundle(pluginId) --> Line_8 $$ if (Bundle.ACTIVE != bundle.getState()) [FD]
+Line_8 $$ if (Bundle.ACTIVE != bundle.getState()) --> Line_9 $$ bundle.start(Bundle.START_TRANSIENT) [CD]
+Line_7 $$ Bundle bundle = Platform.getBundle(pluginId) --> Line_9 $$ bundle.start(Bundle.START_TRANSIENT) [FD]
+Line_5 $$ String pluginId = element.getAttribute(EXTENSION_ATTRIBUTE_PLUGIN_ID) --> Line_12 $$ String message = String.format("Failed to activate plugin %s referenced in extension point 'executionparticipants'.", pluginId) [FD]
+Line_12 $$ String message = String.format("Failed to activate plugin %s referenced in extension point 'executionparticipants'.", pluginId) --> Line_13 $$ CorePlugin.logger().error(message, e) [FD]

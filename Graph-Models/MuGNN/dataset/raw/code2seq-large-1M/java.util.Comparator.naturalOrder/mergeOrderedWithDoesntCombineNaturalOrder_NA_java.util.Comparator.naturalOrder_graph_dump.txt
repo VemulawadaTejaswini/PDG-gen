@@ -1,0 +1,4 @@
+Line_2 $$ public void mergeOrderedWithDoesntCombineNaturalOrder() --> Line_3 $$ final Flux<String> flux = Flux.just("AAAAA", "BBBB").mergeOrderedWith(Flux.just("DD", "CCC"), Comparator.naturalOrder()).mergeOrderedWith(Flux.just("E"), Comparator.naturalOrder()) [CD]
+Line_2 $$ public void mergeOrderedWithDoesntCombineNaturalOrder() --> Line_4 $$ assertThat(flux).isInstanceOf(FluxMergeOrdered.class) [CD]
+Line_3 $$ final Flux<String> flux = Flux.just("AAAAA", "BBBB").mergeOrderedWith(Flux.just("DD", "CCC"), Comparator.naturalOrder()).mergeOrderedWith(Flux.just("E"), Comparator.naturalOrder()) --> Line_4 $$ assertThat(flux).isInstanceOf(FluxMergeOrdered.class) [FD]
+Line_2 $$ public void mergeOrderedWithDoesntCombineNaturalOrder() --> Line_5 $$ assertThat(((FluxMergeOrdered) flux).valueComparator).as("didn't combine naturalOrder()").isSameAs(Comparator.naturalOrder()) [CD]

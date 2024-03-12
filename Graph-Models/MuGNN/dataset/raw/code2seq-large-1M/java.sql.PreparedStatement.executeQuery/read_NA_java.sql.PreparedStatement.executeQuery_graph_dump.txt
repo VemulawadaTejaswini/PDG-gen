@@ -1,0 +1,8 @@
+Line_2 $$ public T read(Connection connection, K key) throws SQLException --> Line_3 $$ PreparedStatement preparedStatement = selectQueryPreparer.prepare(connection).bind(key) [FD]
+Line_2 $$ public T read(Connection connection, K key) throws SQLException --> Line_3 $$ PreparedStatement preparedStatement = selectQueryPreparer.prepare(connection).bind(key) [CD]
+Line_3 $$ PreparedStatement preparedStatement = selectQueryPreparer.prepare(connection).bind(key) --> Line_5 $$ ResultSet resultSet = preparedStatement.executeQuery() [FD]
+Line_5 $$ ResultSet resultSet = preparedStatement.executeQuery() --> Line_6 $$ if (resultSet.next()) [FD]
+Line_6 $$ if (resultSet.next()) --> Line_7 $$ return selectQueryMapper.map(resultSet) [CD]
+Line_5 $$ ResultSet resultSet = preparedStatement.executeQuery() --> Line_7 $$ return selectQueryMapper.map(resultSet) [FD]
+Line_3 $$ PreparedStatement preparedStatement = selectQueryPreparer.prepare(connection).bind(key) --> Line_10 $$ safeClose(preparedStatement) [FD]
+Line_2 $$ public T read(Connection connection, K key) throws SQLException --> Line_12 $$ return null [CD]

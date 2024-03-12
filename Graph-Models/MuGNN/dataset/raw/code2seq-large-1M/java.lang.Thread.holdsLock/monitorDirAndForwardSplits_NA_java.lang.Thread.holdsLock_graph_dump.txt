@@ -1,0 +1,8 @@
+Line_2 $$ private void monitorDirAndForwardSplits(FileSystem fs, SourceContext<TimestampedFileInputSplit> context) throws IOException --> Line_4 $$ Map<Path, FileStatus> eligibleFiles = listEligibleFiles(fs, new Path(path)) [FD]
+Line_2 $$ private void monitorDirAndForwardSplits(FileSystem fs, SourceContext<TimestampedFileInputSplit> context) throws IOException --> Line_4 $$ Map<Path, FileStatus> eligibleFiles = listEligibleFiles(fs, new Path(path)) [CD]
+Line_2 $$ private void monitorDirAndForwardSplits(FileSystem fs, SourceContext<TimestampedFileInputSplit> context) throws IOException --> Line_5 $$ Map<Long, List<TimestampedFileInputSplit>> splitsSortedByModTime = getInputSplitsSortedByModTime(eligibleFiles) [CD]
+Line_4 $$ Map<Path, FileStatus> eligibleFiles = listEligibleFiles(fs, new Path(path)) --> Line_5 $$ Map<Long, List<TimestampedFileInputSplit>> splitsSortedByModTime = getInputSplitsSortedByModTime(eligibleFiles) [FD]
+Line_5 $$ Map<Long, List<TimestampedFileInputSplit>> splitsSortedByModTime = getInputSplitsSortedByModTime(eligibleFiles) --> Line_6 $$ for (Map.Entry<Long, List<TimestampedFileInputSplit>> splits : splitsSortedByModTime.entrySet()) [FD]
+Line_2 $$ private void monitorDirAndForwardSplits(FileSystem fs, SourceContext<TimestampedFileInputSplit> context) throws IOException --> Line_10 $$ context.collect(split) [FD]
+Line_8 $$ for (TimestampedFileInputSplit split : splits.getValue()) --> Line_10 $$ context.collect(split) [FD]
+Line_7 $$ long modificationTime = splits.getKey() --> Line_12 $$ globalModificationTime = Math.max(globalModificationTime, modificationTime) [FD]

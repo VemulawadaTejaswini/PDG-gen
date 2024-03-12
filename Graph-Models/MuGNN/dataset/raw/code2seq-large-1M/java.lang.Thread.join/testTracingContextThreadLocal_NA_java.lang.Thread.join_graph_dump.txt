@@ -1,0 +1,8 @@
+Line_2 $$ public void testTracingContextThreadLocal() throws InterruptedException --> Line_3 $$ Thread thread = new Thread(new Runnable() [CD]
+Line_3 $$ Thread thread = new Thread(new Runnable() --> Line_5 $$ Span span = tracer.buildSpan("test").start() [CD]
+Line_3 $$ Thread thread = new Thread(new Runnable() --> Line_6 $$ tracingContext.pushSpan(span) [CD]
+Line_5 $$ Span span = tracer.buildSpan("test").start() --> Line_6 $$ tracingContext.pushSpan(span) [FD]
+Line_3 $$ Thread thread = new Thread(new Runnable() --> Line_7 $$ assertTrue("Have span in worker thread", tracingContext.hasSpan()) [CD]
+Line_2 $$ public void testTracingContextThreadLocal() throws InterruptedException --> Line_10 $$ thread.join() [CD]
+Line_3 $$ Thread thread = new Thread(new Runnable() --> Line_10 $$ thread.join() [FD]
+Line_2 $$ public void testTracingContextThreadLocal() throws InterruptedException --> Line_11 $$ assertFalse("No span in main thread", tracingContext.hasSpan()) [CD]

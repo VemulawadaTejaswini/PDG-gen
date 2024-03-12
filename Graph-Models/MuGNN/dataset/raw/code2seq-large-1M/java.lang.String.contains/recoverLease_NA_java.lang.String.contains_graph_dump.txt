@@ -1,0 +1,7 @@
+Line_2 $$ boolean recoverLease(final DistributedFileSystem dfs, final int nbAttempt, final Path p, final long startWaiting) throws FileNotFoundException --> Line_3 $$ boolean recovered = false [CD]
+Line_3 $$ boolean recovered = false --> Line_5 $$ recovered = dfs.recoverLease(p) [FD]
+Line_2 $$ boolean recoverLease(final DistributedFileSystem dfs, final int nbAttempt, final Path p, final long startWaiting) throws FileNotFoundException --> Line_5 $$ recovered = dfs.recoverLease(p) [FD]
+Line_2 $$ boolean recoverLease(final DistributedFileSystem dfs, final int nbAttempt, final Path p, final long startWaiting) throws FileNotFoundException --> Line_6 $$ LOG.info((recovered ? "Recovered lease, " : "Failed to recover lease, ") + getLogMessageDetail(nbAttempt, p, startWaiting)) [FD]
+Line_8 $$ if (e instanceof LeaseExpiredException && e.getMessage().contains("File does not exist")) --> Line_10 $$ if (e instanceof FileNotFoundException) [CD]
+Line_2 $$ boolean recoverLease(final DistributedFileSystem dfs, final int nbAttempt, final Path p, final long startWaiting) throws FileNotFoundException --> Line_13 $$ LOG.warn(getLogMessageDetail(nbAttempt, p, startWaiting), e) [FD]
+Line_2 $$ boolean recoverLease(final DistributedFileSystem dfs, final int nbAttempt, final Path p, final long startWaiting) throws FileNotFoundException --> Line_15 $$ return recovered [CD]

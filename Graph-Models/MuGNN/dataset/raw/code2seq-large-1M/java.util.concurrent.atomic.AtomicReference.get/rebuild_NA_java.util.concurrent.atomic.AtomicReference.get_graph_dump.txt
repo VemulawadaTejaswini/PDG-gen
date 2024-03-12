@@ -1,0 +1,8 @@
+Line_2 $$ synchronized void rebuild() --> Line_3 $$ QueueConfigSchema queueConfigSchema = queueConfigSchemaRef.get() [CD]
+Line_2 $$ synchronized void rebuild() --> Line_4 $$ int numServers = numPinLaterServers.get() [CD]
+Line_2 $$ synchronized void rebuild() --> Line_5 $$ if (queueConfigSchema == null || queueConfigSchema.queues == null || queueConfigSchema.queues.isEmpty()) [CD]
+Line_5 $$ if (queueConfigSchema == null || queueConfigSchema.queues == null || queueConfigSchema.queues.isEmpty()) --> Line_6 $$ return [CD]
+Line_2 $$ synchronized void rebuild() --> Line_8 $$ ImmutableMap.Builder<String, QueueRateLimiter.IFace> builder = new ImmutableMap.Builder<String, QueueRateLimiter.IFace>() [CD]
+Line_8 $$ ImmutableMap.Builder<String, QueueRateLimiter.IFace> builder = new ImmutableMap.Builder<String, QueueRateLimiter.IFace>() --> Line_10 $$ builder.put(queue.name, QueueRateLimiter.create(queue.queueConfig.maxJobsPerSecond / numServers)) [FD]
+Line_2 $$ synchronized void rebuild() --> Line_12 $$ queueRateLimitMapRef.set(builder.build()) [CD]
+Line_8 $$ ImmutableMap.Builder<String, QueueRateLimiter.IFace> builder = new ImmutableMap.Builder<String, QueueRateLimiter.IFace>() --> Line_12 $$ queueRateLimitMapRef.set(builder.build()) [FD]

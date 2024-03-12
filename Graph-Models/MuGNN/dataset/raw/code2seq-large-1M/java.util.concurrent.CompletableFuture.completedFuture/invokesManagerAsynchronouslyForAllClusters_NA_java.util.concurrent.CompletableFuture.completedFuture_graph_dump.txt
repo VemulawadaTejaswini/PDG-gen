@@ -1,0 +1,6 @@
+Line_2 $$ public void invokesManagerAsynchronouslyForAllClusters() throws Exception --> Line_3 $$ when(data.listClusters(any())).thenReturn(new ListClustersResponse(Arrays.asList(CLUSTER1, CLUSTER2))) [CD]
+Line_2 $$ public void invokesManagerAsynchronouslyForAllClusters() throws Exception --> Line_4 $$ when(manager.triggerAsync(input.capture())).thenReturn(CompletableFuture.completedFuture(null)) [CD]
+Line_2 $$ public void invokesManagerAsynchronouslyForAllClusters() throws Exception --> Line_5 $$ ReconcilerHandler handler = new ReconcilerHandler(data, manager) [CD]
+Line_2 $$ public void invokesManagerAsynchronouslyForAllClusters() throws Exception --> Line_6 $$ handler.handleRequest(new CloudWatchEvent(), null) [CD]
+Line_5 $$ ReconcilerHandler handler = new ReconcilerHandler(data, manager) --> Line_6 $$ handler.handleRequest(new CloudWatchEvent(), null) [FD]
+Line_2 $$ public void invokesManagerAsynchronouslyForAllClusters() throws Exception --> Line_7 $$ assertThat(input.getAllValues(), hasItems(new ManagerInput(CLUSTER1), new ManagerInput(CLUSTER2))) [CD]

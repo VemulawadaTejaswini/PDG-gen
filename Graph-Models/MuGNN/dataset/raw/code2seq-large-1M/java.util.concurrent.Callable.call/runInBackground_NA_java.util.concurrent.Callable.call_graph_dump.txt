@@ -1,0 +1,7 @@
+Line_2 $$ protected static <T> void runInBackground(@NotNull final Callable<T> backgroundAction, @Nullable final Dispatchable<T> dispatchAfter) --> Line_3 $$ final Application application = ApplicationManager.getApplication() [CD]
+Line_2 $$ protected static <T> void runInBackground(@NotNull final Callable<T> backgroundAction, @Nullable final Dispatchable<T> dispatchAfter) --> Line_4 $$ application.executeOnPooledThread(new Runnable() [CD]
+Line_3 $$ final Application application = ApplicationManager.getApplication() --> Line_4 $$ application.executeOnPooledThread(new Runnable() [FD]
+Line_2 $$ protected static <T> void runInBackground(@NotNull final Callable<T> backgroundAction, @Nullable final Dispatchable<T> dispatchAfter) --> Line_7 $$ T result = backgroundAction.call() [FD]
+Line_8 $$ if (result != null && dispatchAfter != null) --> Line_9 $$ dispatchAfter.dispatch(result) [CD]
+Line_2 $$ protected static <T> void runInBackground(@NotNull final Callable<T> backgroundAction, @Nullable final Dispatchable<T> dispatchAfter) --> Line_9 $$ dispatchAfter.dispatch(result) [FD]
+Line_7 $$ T result = backgroundAction.call() --> Line_9 $$ dispatchAfter.dispatch(result) [FD]

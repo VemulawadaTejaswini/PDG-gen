@@ -1,0 +1,5 @@
+Line_2 $$ Subscription addSubscription(final String channel, final int streamId, final AvailableImageHandler availableImageHandler, final UnavailableImageHandler unavailableImageHandler) --> Line_3 $$ clientLock.lock() [CD]
+Line_2 $$ Subscription addSubscription(final String channel, final int streamId, final AvailableImageHandler availableImageHandler, final UnavailableImageHandler unavailableImageHandler) --> Line_6 $$ final long correlationId = driverProxy.addSubscription(channel, streamId) [FD]
+Line_6 $$ final long correlationId = driverProxy.addSubscription(channel, streamId) --> Line_8 $$ resourceByRegIdMap.put(correlationId, subscription) [FD]
+Line_7 $$ final Subscription subscription = new Subscription(this, channel, streamId, correlationId, availableImageHandler, unavailableImageHandler) --> Line_8 $$ resourceByRegIdMap.put(correlationId, subscription) [FD]
+Line_6 $$ final long correlationId = driverProxy.addSubscription(channel, streamId) --> Line_9 $$ awaitResponse(correlationId) [FD]

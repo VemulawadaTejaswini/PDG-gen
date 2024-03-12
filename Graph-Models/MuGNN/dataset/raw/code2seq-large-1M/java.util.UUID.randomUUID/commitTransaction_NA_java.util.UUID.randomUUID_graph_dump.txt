@@ -1,0 +1,6 @@
+Line_2 $$ public void commitTransaction() --> Line_3 $$ MockConnectionFactory factory = new MockConnectionFactory() [CD]
+Line_2 $$ public void commitTransaction() --> Line_4 $$ CompletableFuture<Controller.TxnStatus> retVal = helper.commitTransaction("", "", 0, UUID.randomUUID(), new MockHostControllerStore(), factory, "") [CD]
+Line_3 $$ MockConnectionFactory factory = new MockConnectionFactory() --> Line_4 $$ CompletableFuture<Controller.TxnStatus> retVal = helper.commitTransaction("", "", 0, UUID.randomUUID(), new MockHostControllerStore(), factory, "") [FD]
+Line_2 $$ public void commitTransaction() --> Line_5 $$ factory.rp.authTokenCheckFailed(new WireCommands.AuthTokenCheckFailed(0)) [CD]
+Line_2 $$ public void commitTransaction() --> Line_6 $$ AssertExtensions.assertThrows("", () -> retVal.join(),  ex -> ex instanceof WireCommandFailedException && ex.getCause() instanceof AuthenticationException) [CD]
+Line_4 $$ CompletableFuture<Controller.TxnStatus> retVal = helper.commitTransaction("", "", 0, UUID.randomUUID(), new MockHostControllerStore(), factory, "") --> Line_6 $$ AssertExtensions.assertThrows("", () -> retVal.join(),  ex -> ex instanceof WireCommandFailedException && ex.getCause() instanceof AuthenticationException) [FD]

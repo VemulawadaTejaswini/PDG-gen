@@ -1,0 +1,7 @@
+Line_2 $$ private Runnable insertTask(final int numConnections, final int taskID) --> Line_3 $$ return new Runnable() [CD]
+Line_6 $$ Connection c = Support_SQL.getConnection() --> Line_7 $$ if (c == null) [FD]
+Line_7 $$ if (c == null) --> Line_8 $$ return [CD]
+Line_6 $$ Connection c = Support_SQL.getConnection() --> Line_11 $$ vc.add(c) [FD]
+Line_13 $$ int tasksPerConnection = Support_SQL.sqlMaxTasks / numConnections --> Line_14 $$ for (int i = 0; i < tasksPerConnection; ++i) [FD]
+Line_14 $$ for (int i = 0; i < tasksPerConnection; ++i) --> Line_15 $$ insertNewRecord(c, (i + 1) + tasksPerConnection * taskID) [CD]
+Line_6 $$ Connection c = Support_SQL.getConnection() --> Line_15 $$ insertNewRecord(c, (i + 1) + tasksPerConnection * taskID) [FD]

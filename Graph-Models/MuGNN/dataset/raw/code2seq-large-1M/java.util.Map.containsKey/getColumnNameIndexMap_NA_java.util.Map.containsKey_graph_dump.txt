@@ -1,0 +1,8 @@
+Line_2 $$ private Map<String, Integer> getColumnNameIndexMap() throws OdaException --> Line_3 $$ if (columnNameIndexMap == null) [CD]
+Line_3 $$ if (columnNameIndexMap == null) --> Line_5 $$ int i = 1 [CD]
+Line_6 $$ for (ColumnReferenceNode crn : getColumnReferences()) --> Line_7 $$ String name = crn.getColumn().getName() [FD]
+Line_7 $$ String name = crn.getColumn().getName() --> Line_8 $$ if (columnNameIndexMap.containsKey(name)) [FD]
+Line_7 $$ String name = crn.getColumn().getName() --> Line_9 $$ throw new OdaException(Messages.getString("ReferenceGraph.DuplicateColumnName", name)) [FD]
+Line_7 $$ String name = crn.getColumn().getName() --> Line_11 $$ columnNameIndexMap.put(name, i++) [FD]
+Line_5 $$ int i = 1 --> Line_11 $$ columnNameIndexMap.put(name, i++) [FD]
+Line_2 $$ private Map<String, Integer> getColumnNameIndexMap() throws OdaException --> Line_14 $$ return columnNameIndexMap [CD]

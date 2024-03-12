@@ -1,0 +1,6 @@
+Line_2 $$ static <T> Supplier<T> blocking(Supplier<T> supplier, boolean threadLocal) --> Line_3 $$ return threadLocal ? supplier : new Supplier<T>() [CD]
+Line_7 $$ ForkJoinPool.managedBlock(new ManagedBlocker() --> Line_9 $$ asyncResult = supplier.get() [CD]
+Line_2 $$ static <T> Supplier<T> blocking(Supplier<T> supplier, boolean threadLocal) --> Line_9 $$ asyncResult = supplier.get() [FD]
+Line_7 $$ ForkJoinPool.managedBlock(new ManagedBlocker() --> Line_10 $$ return true [CD]
+Line_7 $$ ForkJoinPool.managedBlock(new ManagedBlocker() --> Line_13 $$ return asyncResult != null [CD]
+Line_3 $$ return threadLocal ? supplier : new Supplier<T>() --> Line_19 $$ return asyncResult [CD]

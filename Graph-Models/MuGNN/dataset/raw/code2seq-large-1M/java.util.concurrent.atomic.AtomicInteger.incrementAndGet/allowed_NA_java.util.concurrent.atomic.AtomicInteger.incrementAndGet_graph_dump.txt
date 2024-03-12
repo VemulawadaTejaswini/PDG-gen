@@ -1,0 +1,6 @@
+Line_2 $$ private boolean allowed(String uuid) --> Line_3 $$ boolean allowed = this.threshold.incrementAndGet() <= DefaultTransaction.DELAY_MAX [CD]
+Line_2 $$ private boolean allowed(String uuid) --> Line_4 $$ if (!allowed) [CD]
+Line_3 $$ boolean allowed = this.threshold.incrementAndGet() <= DefaultTransaction.DELAY_MAX --> Line_4 $$ if (!allowed) [FD]
+Line_4 $$ if (!allowed) --> Line_5 $$ this.threshold.decrementAndGet() [CD]
+Line_4 $$ if (!allowed) --> Line_6 $$ DefaultTransaction.LOGGER.warn("Delay queue not allowed this request: " + uuid + " ... ") [CD]
+Line_2 $$ private boolean allowed(String uuid) --> Line_8 $$ return allowed [CD]

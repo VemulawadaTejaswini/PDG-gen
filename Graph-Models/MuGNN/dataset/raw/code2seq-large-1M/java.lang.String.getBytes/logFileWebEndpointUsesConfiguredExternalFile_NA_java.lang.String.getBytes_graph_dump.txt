@@ -1,0 +1,7 @@
+Line_2 $$ public void logFileWebEndpointUsesConfiguredExternalFile() throws IOException --> Line_3 $$ File file = this.temp.newFile("logfile") [CD]
+Line_2 $$ public void logFileWebEndpointUsesConfiguredExternalFile() throws IOException --> Line_4 $$ FileCopyUtils.copy("--TEST--".getBytes(), file) [CD]
+Line_3 $$ File file = this.temp.newFile("logfile") --> Line_4 $$ FileCopyUtils.copy("--TEST--".getBytes(), file) [FD]
+Line_2 $$ public void logFileWebEndpointUsesConfiguredExternalFile() throws IOException --> Line_5 $$ this.contextRunner.withPropertyValues("management.endpoint.logfile.external-file:" + file.getAbsolutePath()).run(( context) -> [CD]
+Line_3 $$ File file = this.temp.newFile("logfile") --> Line_5 $$ this.contextRunner.withPropertyValues("management.endpoint.logfile.external-file:" + file.getAbsolutePath()).run(( context) -> [FD]
+Line_8 $$ Resource resource = endpoint.logFile() --> Line_9 $$ assertThat(resource).isNotNull() [FD]
+Line_8 $$ Resource resource = endpoint.logFile() --> Line_10 $$ assertThat(StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8)).isEqualTo("--TEST--") [FD]

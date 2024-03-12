@@ -1,0 +1,5 @@
+Line_2 $$ public void checkpointEmptyAndDebug() --> Line_3 $$ StringWriter sw = new StringWriter() [CD]
+Line_2 $$ public void checkpointEmptyAndDebug() --> Line_4 $$ Hooks.onOperatorDebug() [CD]
+Line_6 $$ Flux<Integer> tested = Flux.range(1, 10).map( i -> i < 3 ? i : null).filter( i -> i % 2 == 0).checkpoint().doOnError( t -> t.printStackTrace(new PrintWriter(sw))) --> Line_7 $$ StepVerifier.create(tested).expectNext(2).verifyError() [FD]
+Line_3 $$ StringWriter sw = new StringWriter() --> Line_8 $$ String debugStack = sw.toString() [FD]
+Line_8 $$ String debugStack = sw.toString() --> Line_9 $$ assertThat(debugStack).contains("Assembly trace from producer [reactor.core.publisher.FluxMapFuseable] :") [FD]

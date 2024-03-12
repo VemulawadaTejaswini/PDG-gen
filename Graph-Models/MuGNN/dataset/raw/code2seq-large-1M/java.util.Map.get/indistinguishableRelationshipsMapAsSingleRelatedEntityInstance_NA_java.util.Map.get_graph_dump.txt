@@ -1,0 +1,4 @@
+Line_2 $$ public void indistinguishableRelationshipsMapAsSingleRelatedEntityInstance() throws Exception --> Line_3 $$ Map<String, Object> ids = getGraphDatabaseService().execute("CREATE " + "(n1:NODE), (n2:NODE)," + "(n1)-[:RELATED]->(n2)," + "(n1)-[:RELATED]->(n2)" + "RETURN id(n1) AS id1, id(n2) AS id2").next() [CD]
+Line_2 $$ public void indistinguishableRelationshipsMapAsSingleRelatedEntityInstance() throws Exception --> Line_4 $$ Node node = session.load(Node.class, (Long) ids.get("id1")) [CD]
+Line_3 $$ Map<String, Object> ids = getGraphDatabaseService().execute("CREATE " + "(n1:NODE), (n2:NODE)," + "(n1)-[:RELATED]->(n2)," + "(n1)-[:RELATED]->(n2)" + "RETURN id(n1) AS id1, id(n2) AS id2").next() --> Line_4 $$ Node node = session.load(Node.class, (Long) ids.get("id1")) [FD]
+Line_2 $$ public void indistinguishableRelationshipsMapAsSingleRelatedEntityInstance() throws Exception --> Line_5 $$ assertThat(node.related).hasSize(1) [CD]

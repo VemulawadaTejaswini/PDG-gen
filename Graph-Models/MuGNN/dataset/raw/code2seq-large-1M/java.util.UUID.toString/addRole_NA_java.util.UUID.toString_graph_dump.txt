@@ -1,0 +1,4 @@
+Line_4 $$ if (existingRole != null) --> Line_5 $$ directory.getAdminSession().modify(existingRole.getDn(), new DefaultModification(ModificationOperation.REPLACE_ATTRIBUTE, "accessKey", role.getRoleId()), new DefaultModification(ModificationOperation.REPLACE_ATTRIBUTE, "gidNumber", roleGroup.get("gidNumber").getString())) [CD]
+Line_4 $$ if (existingRole != null) --> Line_6 $$ if (!roleGroup.contains("memberUid", role.getRoleName())) [CD]
+Line_6 $$ if (!roleGroup.contains("memberUid", role.getRoleName())) --> Line_7 $$ directory.getAdminSession().modify(roleGroup.getDn(), new DefaultModification(ModificationOperation.ADD_ATTRIBUTE, "memberUid", role.getRoleName())) [CD]
+Line_4 $$ if (existingRole != null) --> Line_9 $$ return [CD]

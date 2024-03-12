@@ -1,0 +1,8 @@
+Line_2 $$ private void verifyClusterSet(String state, String reason) throws Exception --> Line_3 $$ restAPI.setUnitState(new SetUnitStateRequestImpl("music").setNewState("user", state, reason)) [CD]
+Line_2 $$ private void verifyClusterSet(String state, String reason) throws Exception --> Line_3 $$ restAPI.setUnitState(new SetUnitStateRequestImpl("music").setNewState("user", state, reason)) [FD]
+Line_5 $$ UnitResponse response = restAPI.getState(new StateRequest("music/storage/" + index, 0)) --> Line_6 $$ String actualState = response.getCurrentState().getStatePerType().get("user").getId() [FD]
+Line_6 $$ String actualState = response.getCurrentState().getStatePerType().get("user").getId() --> Line_7 $$ assertThat(actualState, is(state.toLowerCase())) [FD]
+Line_2 $$ private void verifyClusterSet(String state, String reason) throws Exception --> Line_7 $$ assertThat(actualState, is(state.toLowerCase())) [FD]
+Line_5 $$ UnitResponse response = restAPI.getState(new StateRequest("music/storage/" + index, 0)) --> Line_8 $$ String actualReason = response.getCurrentState().getStatePerType().get("user").getReason() [FD]
+Line_8 $$ String actualReason = response.getCurrentState().getStatePerType().get("user").getReason() --> Line_9 $$ assertThat(actualReason, is(reason)) [FD]
+Line_2 $$ private void verifyClusterSet(String state, String reason) throws Exception --> Line_9 $$ assertThat(actualReason, is(reason)) [FD]

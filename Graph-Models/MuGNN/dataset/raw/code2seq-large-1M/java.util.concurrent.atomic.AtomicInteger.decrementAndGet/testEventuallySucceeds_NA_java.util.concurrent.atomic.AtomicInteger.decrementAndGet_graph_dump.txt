@@ -1,0 +1,8 @@
+Line_2 $$ public void testEventuallySucceeds() throws Exception --> Line_3 $$ final AtomicInteger remaining = new AtomicInteger(RETRIES / 2) [CD]
+Line_2 $$ public void testEventuallySucceeds() throws Exception --> Line_4 $$ Handle handle = db.open() [CD]
+Line_2 $$ public void testEventuallySucceeds() throws Exception --> Line_5 $$ handle.inTransaction(TransactionIsolationLevel.SERIALIZABLE,  conn -> [CD]
+Line_4 $$ Handle handle = db.open() --> Line_5 $$ handle.inTransaction(TransactionIsolationLevel.SERIALIZABLE,  conn -> [FD]
+Line_3 $$ final AtomicInteger remaining = new AtomicInteger(RETRIES / 2) --> Line_6 $$ if (remaining.decrementAndGet() == 0) [FD]
+Line_6 $$ if (remaining.decrementAndGet() == 0) --> Line_7 $$ return null [CD]
+Line_2 $$ public void testEventuallySucceeds() throws Exception --> Line_11 $$ assertThat(remaining.get()).isZero() [CD]
+Line_3 $$ final AtomicInteger remaining = new AtomicInteger(RETRIES / 2) --> Line_11 $$ assertThat(remaining.get()).isZero() [FD]

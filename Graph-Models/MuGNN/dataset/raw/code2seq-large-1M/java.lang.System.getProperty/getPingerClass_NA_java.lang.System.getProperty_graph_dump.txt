@@ -1,0 +1,7 @@
+Line_2 $$ public Class<? extends Pinger> getPingerClass() --> Line_3 $$ final String pingerClassName = System.getProperty("org.opennms.netmgt.icmp.pingerClass", "org.opennms.netmgt.icmp.best.BestMatchPinger") [CD]
+Line_2 $$ public Class<? extends Pinger> getPingerClass() --> Line_4 $$ final Pinger defaultPinger = m_pingers.getIfPresent(1) [CD]
+Line_2 $$ public Class<? extends Pinger> getPingerClass() --> Line_5 $$ if (defaultPinger != null) [CD]
+Line_4 $$ final Pinger defaultPinger = m_pingers.getIfPresent(1) --> Line_5 $$ if (defaultPinger != null) [FD]
+Line_5 $$ if (defaultPinger != null) --> Line_6 $$ return defaultPinger.getClass() [CD]
+Line_4 $$ final Pinger defaultPinger = m_pingers.getIfPresent(1) --> Line_6 $$ return defaultPinger.getClass() [FD]
+Line_3 $$ final String pingerClassName = System.getProperty("org.opennms.netmgt.icmp.pingerClass", "org.opennms.netmgt.icmp.best.BestMatchPinger") --> Line_9 $$ return Class.forName(pingerClassName).asSubclass(Pinger.class) [FD]

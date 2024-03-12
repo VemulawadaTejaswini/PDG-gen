@@ -1,0 +1,3 @@
+Line_2 $$ public static String getWatchedAiredCount() --> Line_3 $$ final long firstAiredOffset = FirstAiredOffsetPreference.getInstance().getOffsetMillis() [CD]
+Line_2 $$ public static String getWatchedAiredCount() --> Line_4 $$ final long currentTime = System.currentTimeMillis() [CD]
+Line_2 $$ public static String getWatchedAiredCount() --> Line_5 $$ return "(SELECT COUNT(*) FROM " + Tables.EPISODES + " WHERE " + Tables.EPISODES + "." + EpisodeColumns.SEASON_ID + "=" + Tables.SEASONS + "." + SeasonColumns.ID + " AND " + Tables.EPISODES + "." + EpisodeColumns.FIRST_AIRED + "<=" + (currentTime - firstAiredOffset) + " AND " + Tables.EPISODES + "." + EpisodeColumns.SEASON + ">0" + " AND " + Tables.EPISODES + "." + EpisodeColumns.WATCHED + "=1" + ")" [CD]

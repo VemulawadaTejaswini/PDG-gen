@@ -1,0 +1,6 @@
+Line_2 $$ public void singleRefUpdateDoesNotRequirePackedRefsLock() throws Exception --> Line_3 $$ writeLooseRef("refs/heads/master", A) [CD]
+Line_2 $$ public void singleRefUpdateDoesNotRequirePackedRefsLock() throws Exception --> Line_4 $$ List<ReceiveCommand> cmds = Arrays.asList(new ReceiveCommand(A, B, "refs/heads/master", UPDATE)) [CD]
+Line_2 $$ public void singleRefUpdateDoesNotRequirePackedRefsLock() throws Exception --> Line_5 $$ LockFile myLock = refdir.lockPackedRefs() [CD]
+Line_4 $$ List<ReceiveCommand> cmds = Arrays.asList(new ReceiveCommand(A, B, "refs/heads/master", UPDATE)) --> Line_7 $$ execute(newBatchUpdate(cmds).setAllowNonFastForwards(true)) [FD]
+Line_4 $$ List<ReceiveCommand> cmds = Arrays.asList(new ReceiveCommand(A, B, "refs/heads/master", UPDATE)) --> Line_9 $$ assertResults(cmds, OK) [FD]
+Line_5 $$ LockFile myLock = refdir.lockPackedRefs() --> Line_13 $$ myLock.unlock() [FD]

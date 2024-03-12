@@ -1,0 +1,8 @@
+Line_2 $$ private void blockMultiply(DenseMatrix b, ExecutorService threadPool, DenseMatrix C) --> Line_3 $$ if (!canMultiply(this, b)) [FD]
+Line_2 $$ private void blockMultiply(DenseMatrix b, ExecutorService threadPool, DenseMatrix C) --> Line_3 $$ if (!canMultiply(this, b)) [CD]
+Line_3 $$ if (!canMultiply(this, b)) --> Line_5 $$ if (this.rows() != C.rows() || b.cols() != C.cols()) [CD]
+Line_2 $$ private void blockMultiply(DenseMatrix b, ExecutorService threadPool, DenseMatrix C) --> Line_5 $$ if (this.rows() != C.rows() || b.cols() != C.cols()) [FD]
+Line_2 $$ private void blockMultiply(DenseMatrix b, ExecutorService threadPool, DenseMatrix C) --> Line_7 $$ CountDownLatch latch = new CountDownLatch(LogicalCores) [CD]
+Line_2 $$ private void blockMultiply(DenseMatrix b, ExecutorService threadPool, DenseMatrix C) --> Line_8 $$ for (int threadID = 0; threadID < LogicalCores; threadID++) threadPool.submit(new BlockMultRun(latch, C, b, threadID)) [FD]
+Line_2 $$ private void blockMultiply(DenseMatrix b, ExecutorService threadPool, DenseMatrix C) --> Line_8 $$ for (int threadID = 0; threadID < LogicalCores; threadID++) threadPool.submit(new BlockMultRun(latch, C, b, threadID)) [CD]
+Line_7 $$ CountDownLatch latch = new CountDownLatch(LogicalCores) --> Line_10 $$ latch.await() [FD]

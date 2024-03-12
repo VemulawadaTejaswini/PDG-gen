@@ -1,0 +1,8 @@
+Line_2 $$ private void checkMapJoins(TezWork tezWork) throws SemanticException --> Line_3 $$ for (BaseWork wrk : tezWork.getAllWork()) [FD]
+Line_3 $$ for (BaseWork wrk : tezWork.getAllWork()) --> Line_4 $$ if (wrk instanceof MergeJoinWork) [FD]
+Line_4 $$ if (wrk instanceof MergeJoinWork) --> Line_5 $$ wrk = ((MergeJoinWork) wrk).getMainWork() [CD]
+Line_3 $$ for (BaseWork wrk : tezWork.getAllWork()) --> Line_5 $$ wrk = ((MergeJoinWork) wrk).getMainWork() [FD]
+Line_3 $$ for (BaseWork wrk : tezWork.getAllWork()) --> Line_7 $$ List<String> warnings = new MapJoinCheck(wrk.getName()).analyze(wrk) [FD]
+Line_5 $$ wrk = ((MergeJoinWork) wrk).getMainWork() --> Line_7 $$ List<String> warnings = new MapJoinCheck(wrk.getName()).analyze(wrk) [FD]
+Line_7 $$ List<String> warnings = new MapJoinCheck(wrk.getName()).analyze(wrk) --> Line_8 $$ if (!warnings.isEmpty()) [FD]
+Line_9 $$ for (String w : warnings) --> Line_10 $$ warn(w) [FD]

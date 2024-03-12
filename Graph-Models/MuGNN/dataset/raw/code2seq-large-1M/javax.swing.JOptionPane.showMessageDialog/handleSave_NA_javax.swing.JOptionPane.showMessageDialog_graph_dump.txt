@@ -1,0 +1,6 @@
+Line_2 $$ private void handleSave(boolean success) --> Line_3 $$ if (success) [CD]
+Line_3 $$ if (success) --> Line_4 $$ JOptionPane.showMessageDialog(null, "Searches Saved!", "Save Complete", JOptionPane.INFORMATION_MESSAGE) [CD]
+Line_3 $$ if (success) --> Line_6 $$ String saveFile = JConfig.queryConfiguration("search.savefile", "searches.xml") [CD]
+Line_3 $$ if (success) --> Line_7 $$ saveFile = Path.getCanonicalFile(saveFile, "jbidwatcher", false) [CD]
+Line_6 $$ String saveFile = JConfig.queryConfiguration("search.savefile", "searches.xml") --> Line_7 $$ saveFile = Path.getCanonicalFile(saveFile, "jbidwatcher", false) [FD]
+Line_3 $$ if (success) --> Line_8 $$ MQFactory.getConcrete("Swing").enqueue("ERROR Failed to save searches.  Check that the directory for\n" + saveFile + " exists, and is writable.") [CD]

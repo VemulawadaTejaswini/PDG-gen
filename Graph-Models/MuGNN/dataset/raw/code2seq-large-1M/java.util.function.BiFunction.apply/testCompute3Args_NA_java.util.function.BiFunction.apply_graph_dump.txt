@@ -1,0 +1,8 @@
+Line_2 $$ public void testCompute3Args() throws Exception --> Line_3 $$ when(numberAuthoritativeTier.compute(any(Number.class), any(BiFunction.class), any(Supplier.class))).then((Answer<Store.ValueHolder<CharSequence>>)  invocation -> [CD]
+Line_5 $$ BiFunction<Number, CharSequence, CharSequence> function = (BiFunction<Number, CharSequence, CharSequence>) invocation.getArguments()[1] --> Line_6 $$ return newValueHolder(function.apply(key, null)) [FD]
+Line_4 $$ Number key = (Number) invocation.getArguments()[0] --> Line_6 $$ return newValueHolder(function.apply(key, null)) [FD]
+Line_2 $$ public void testCompute3Args() throws Exception --> Line_8 $$ TieredStore<Number, CharSequence> tieredStore = new TieredStore(numberCachingTier, numberAuthoritativeTier) [CD]
+Line_2 $$ public void testCompute3Args() throws Exception --> Line_9 $$ assertThat(tieredStore.compute(1, ( number,  charSequence) -> "one", () -> true).get(), Matchers.<CharSequence>equalTo("one")) [CD]
+Line_8 $$ TieredStore<Number, CharSequence> tieredStore = new TieredStore(numberCachingTier, numberAuthoritativeTier) --> Line_9 $$ assertThat(tieredStore.compute(1, ( number,  charSequence) -> "one", () -> true).get(), Matchers.<CharSequence>equalTo("one")) [FD]
+Line_2 $$ public void testCompute3Args() throws Exception --> Line_10 $$ verify(numberCachingTier, times(1)).invalidate(any(Number.class)) [CD]
+Line_2 $$ public void testCompute3Args() throws Exception --> Line_11 $$ verify(numberAuthoritativeTier, times(1)).compute(eq(1), any(BiFunction.class), any(Supplier.class)) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public long getMinFirstLSN() throws HyracksDataException --> Line_3 $$ long minFirstLSN = getLocalMinFirstLSN() [CD]
+Line_2 $$ public long getMinFirstLSN() throws HyracksDataException --> Line_4 $$ if (replicationEnabled) [CD]
+Line_4 $$ if (replicationEnabled) --> Line_5 $$ long remoteMinFirstLSN = getRemoteMinFirstLSN() [CD]
+Line_4 $$ if (replicationEnabled) --> Line_6 $$ minFirstLSN = Math.min(minFirstLSN, remoteMinFirstLSN) [CD]
+Line_3 $$ long minFirstLSN = getLocalMinFirstLSN() --> Line_6 $$ minFirstLSN = Math.min(minFirstLSN, remoteMinFirstLSN) [FD]
+Line_5 $$ long remoteMinFirstLSN = getRemoteMinFirstLSN() --> Line_6 $$ minFirstLSN = Math.min(minFirstLSN, remoteMinFirstLSN) [FD]
+Line_2 $$ public long getMinFirstLSN() throws HyracksDataException --> Line_8 $$ return minFirstLSN [CD]

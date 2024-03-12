@@ -1,0 +1,6 @@
+Line_2 $$ public <S extends MergingState<?, ?>> void mergePartitionedState(StateDescriptor<S, ?> stateDescriptor) --> Line_3 $$ if (mergedWindows != null && mergedWindows.size() > 0) [CD]
+Line_2 $$ public <S extends MergingState<?, ?>> void mergePartitionedState(StateDescriptor<S, ?> stateDescriptor) --> Line_5 $$ S rawState = getKeyedStateBackend().getOrCreateKeyedState(windowSerializer, stateDescriptor) [FD]
+Line_5 $$ S rawState = getKeyedStateBackend().getOrCreateKeyedState(windowSerializer, stateDescriptor) --> Line_6 $$ if (rawState instanceof InternalMergingState) [FD]
+Line_6 $$ if (rawState instanceof InternalMergingState) --> Line_7 $$ InternalMergingState<K, W, ?, ?, ?> mergingState = (InternalMergingState<K, W, ?, ?, ?>) rawState [CD]
+Line_6 $$ if (rawState instanceof InternalMergingState) --> Line_8 $$ mergingState.mergeNamespaces(window, mergedWindows) [CD]
+Line_7 $$ InternalMergingState<K, W, ?, ?, ?> mergingState = (InternalMergingState<K, W, ?, ?, ?>) rawState --> Line_8 $$ mergingState.mergeNamespaces(window, mergedWindows) [FD]

@@ -1,0 +1,6 @@
+Line_4 $$ if (appRTCSignalingParameters == null) --> Line_5 $$ return [CD]
+Line_9 $$ URLConnection connection = new URL(appRTCSignalingParameters.gaeBaseHref + appRTCSignalingParameters.postMessageUrl).openConnection() --> Line_10 $$ connection.setDoOutput(true) [FD]
+Line_9 $$ URLConnection connection = new URL(appRTCSignalingParameters.gaeBaseHref + appRTCSignalingParameters.postMessageUrl).openConnection() --> Line_11 $$ connection.getOutputStream().write(msg.getBytes("UTF-8")) [FD]
+Line_8 $$ for (String msg : sendQueue) --> Line_11 $$ connection.getOutputStream().write(msg.getBytes("UTF-8")) [FD]
+Line_9 $$ URLConnection connection = new URL(appRTCSignalingParameters.gaeBaseHref + appRTCSignalingParameters.postMessageUrl).openConnection() --> Line_12 $$ if (!connection.getHeaderField(null).startsWith("HTTP/1.1 200 ")) [FD]
+Line_9 $$ URLConnection connection = new URL(appRTCSignalingParameters.gaeBaseHref + appRTCSignalingParameters.postMessageUrl).openConnection() --> Line_13 $$ throw new IOException("Non-200 response to POST: " + connection.getHeaderField(null) + " for msg: " + msg) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public CompletableFuture<Void> seal(Duration timeout) --> Line_3 $$ ensureInitialized() [CD]
+Line_2 $$ public CompletableFuture<Void> seal(Duration timeout) --> Line_4 $$ TimeoutTimer timer = new TimeoutTimer(timeout) [CD]
+Line_2 $$ public CompletableFuture<Void> seal(Duration timeout) --> Line_5 $$ return Futures.exceptionallyExpecting(createSnapshot(new AttributeCollection(), true, timer.getRemaining()).thenComposeAsync( v -> this.storage.seal(this.attributeSegment.get().handle, timer.getRemaining()), this.executor).thenRun(() -> log.info(" [CD]
+Line_4 $$ TimeoutTimer timer = new TimeoutTimer(timeout) --> Line_5 $$ return Futures.exceptionallyExpecting(createSnapshot(new AttributeCollection(), true, timer.getRemaining()).thenComposeAsync( v -> this.storage.seal(this.attributeSegment.get().handle, timer.getRemaining()), this.executor).thenRun(() -> log.info(" [FD]

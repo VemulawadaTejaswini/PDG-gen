@@ -1,0 +1,8 @@
+Line_2 $$ private void calculateCurrentUser() --> Line_3 $$ final String currentUserAndDomain = client.getConnection().getAuthorizedTFSUser().toString() [CD]
+Line_2 $$ private void calculateCurrentUser() --> Line_4 $$ currentUserConstant = getMetadata().getConstantsTable().getConstantByString(currentUserAndDomain) [CD]
+Line_3 $$ final String currentUserAndDomain = client.getConnection().getAuthorizedTFSUser().toString() --> Line_4 $$ currentUserConstant = getMetadata().getConstantsTable().getConstantByString(currentUserAndDomain) [FD]
+Line_2 $$ private void calculateCurrentUser() --> Line_5 $$ if (currentUserConstant == null) [CD]
+Line_5 $$ if (currentUserConstant == null) --> Line_6 $$ final String messageFormat = Messages.getString("WITContext.CurrentUserNotFoundFormat") [CD]
+Line_5 $$ if (currentUserConstant == null) --> Line_7 $$ final String message = MessageFormat.format(messageFormat, currentUserAndDomain) [CD]
+Line_6 $$ final String messageFormat = Messages.getString("WITContext.CurrentUserNotFoundFormat") --> Line_7 $$ final String message = MessageFormat.format(messageFormat, currentUserAndDomain) [FD]
+Line_3 $$ final String currentUserAndDomain = client.getConnection().getAuthorizedTFSUser().toString() --> Line_7 $$ final String message = MessageFormat.format(messageFormat, currentUserAndDomain) [FD]

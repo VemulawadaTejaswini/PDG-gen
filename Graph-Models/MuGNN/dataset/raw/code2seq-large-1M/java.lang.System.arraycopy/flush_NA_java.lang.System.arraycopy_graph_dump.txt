@@ -1,0 +1,8 @@
+Line_2 $$ private void flush() --> Line_3 $$ if (limit >= chunkSize) [CD]
+Line_3 $$ if (limit >= chunkSize) --> Line_4 $$ final int length = limit - limit % getMinChunkSize() [CD]
+Line_3 $$ if (limit >= chunkSize) --> Line_5 $$ flushBuffer(length, false) [CD]
+Line_4 $$ final int length = limit - limit % getMinChunkSize() --> Line_5 $$ flushBuffer(length, false) [FD]
+Line_3 $$ if (limit >= chunkSize) --> Line_8 $$ byte[] temp = new byte[chunkSize] [CD]
+Line_3 $$ if (limit >= chunkSize) --> Line_9 $$ System.arraycopy(buffer, length, temp, 0, limit) [CD]
+Line_4 $$ final int length = limit - limit % getMinChunkSize() --> Line_9 $$ System.arraycopy(buffer, length, temp, 0, limit) [FD]
+Line_8 $$ byte[] temp = new byte[chunkSize] --> Line_9 $$ System.arraycopy(buffer, length, temp, 0, limit) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static <T, E extends Exception> T initializeLazily(AtomicReference<T> reference, SupplierThrowingException<T, E> factory, Class<E> exceptionType) throws E --> Line_3 $$ final T existing = reference.get() [FD]
+Line_2 $$ public static <T, E extends Exception> T initializeLazily(AtomicReference<T> reference, SupplierThrowingException<T, E> factory, Class<E> exceptionType) throws E --> Line_3 $$ final T existing = reference.get() [CD]
+Line_2 $$ public static <T, E extends Exception> T initializeLazily(AtomicReference<T> reference, SupplierThrowingException<T, E> factory, Class<E> exceptionType) throws E --> Line_4 $$ if (existing != null) [CD]
+Line_3 $$ final T existing = reference.get() --> Line_4 $$ if (existing != null) [FD]
+Line_4 $$ if (existing != null) --> Line_5 $$ return existing [CD]
+Line_2 $$ public static <T, E extends Exception> T initializeLazily(AtomicReference<T> reference, SupplierThrowingException<T, E> factory, Class<E> exceptionType) throws E --> Line_8 $$ return reference.updateAndGet(invokeFactoryIfNull(factory)) [FD]
+Line_2 $$ public static <T, E extends Exception> T initializeLazily(AtomicReference<T> reference, SupplierThrowingException<T, E> factory, Class<E> exceptionType) throws E --> Line_11 $$ Throwables.throwIfInstanceOf(e.getCause(), exceptionType) [FD]

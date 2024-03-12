@@ -1,0 +1,7 @@
+Line_2 $$ protected static synchronized java.nio.file.Path getTempFile() throws IOException --> Line_3 $$ if (tempFile == null) [CD]
+Line_3 $$ if (tempFile == null) --> Line_4 $$ tempFile = Files.createTempFile("rustdt_gdbinit_windows_", "") [CD]
+Line_3 $$ if (tempFile == null) --> Line_5 $$ Runtime.getRuntime().addShutdownHook(new Thread(() -> tempFile.toFile().delete())) [CD]
+Line_3 $$ if (tempFile == null) --> Line_6 $$ String contents = "python\n" + "print \"--Registering Rust pretty-printers for Windows--\"\n" + "import gdb_rust_pretty_printing\n" + "gdb_rust_pretty_printing.register_printers(gdb)\n" + "print \"--DONE--\"\n" + "end\n" [CD]
+Line_3 $$ if (tempFile == null) --> Line_7 $$ FileUtil.writeStringToFile(tempFile.toFile(), contents, melnorme.utilbox.misc.StringUtil.UTF8) [CD]
+Line_6 $$ String contents = "python\n" + "print \"--Registering Rust pretty-printers for Windows--\"\n" + "import gdb_rust_pretty_printing\n" + "gdb_rust_pretty_printing.register_printers(gdb)\n" + "print \"--DONE--\"\n" + "end\n" --> Line_7 $$ FileUtil.writeStringToFile(tempFile.toFile(), contents, melnorme.utilbox.misc.StringUtil.UTF8) [FD]
+Line_2 $$ protected static synchronized java.nio.file.Path getTempFile() throws IOException --> Line_9 $$ return tempFile [CD]

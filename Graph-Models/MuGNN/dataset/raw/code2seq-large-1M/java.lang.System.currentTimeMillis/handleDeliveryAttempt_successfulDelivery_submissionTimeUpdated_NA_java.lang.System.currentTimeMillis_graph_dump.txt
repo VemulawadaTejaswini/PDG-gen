@@ -1,0 +1,8 @@
+Line_2 $$ public void handleDeliveryAttempt_successfulDelivery_submissionTimeUpdated() --> Line_3 $$ SubmissionTimePolicy target = new SubmissionTimePolicy(mockContext, 100l) [CD]
+Line_2 $$ public void handleDeliveryAttempt_successfulDelivery_submissionTimeUpdated() --> Line_4 $$ target.handleDeliveryAttempt(true) [CD]
+Line_3 $$ SubmissionTimePolicy target = new SubmissionTimePolicy(mockContext, 100l) --> Line_4 $$ target.handleDeliveryAttempt(true) [FD]
+Line_2 $$ public void handleDeliveryAttempt_successfulDelivery_submissionTimeUpdated() --> Line_5 $$ ArgumentCaptor<Long> timestamp = ArgumentCaptor.forClass(Long.class) [CD]
+Line_2 $$ public void handleDeliveryAttempt_successfulDelivery_submissionTimeUpdated() --> Line_6 $$ verify(mockPreferences, times(1)).putLong(eq("SubmissionTimePolicy.submissionTime"), timestamp.capture()) [CD]
+Line_2 $$ public void handleDeliveryAttempt_successfulDelivery_submissionTimeUpdated() --> Line_7 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public void handleDeliveryAttempt_successfulDelivery_submissionTimeUpdated() --> Line_8 $$ assertThat(timestamp.getValue(), is(lessThan(now + 1000))) [CD]
+Line_2 $$ public void handleDeliveryAttempt_successfulDelivery_submissionTimeUpdated() --> Line_9 $$ assertThat(timestamp.getValue(), is(greaterThan(now - 1000))) [CD]

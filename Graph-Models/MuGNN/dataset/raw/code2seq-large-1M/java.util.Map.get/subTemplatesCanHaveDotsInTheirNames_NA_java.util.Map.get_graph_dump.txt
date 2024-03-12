@@ -1,0 +1,7 @@
+Line_2 $$ public void subTemplatesCanHaveDotsInTheirNames() throws Exception --> Line_3 $$ Templates templates = Templates.templates().add("a.txt",  ignore -> "...").add("b.txt",  context -> "Your last name is " + ((Map<?, ?>) context).get("name")) [CD]
+Line_2 $$ public void subTemplatesCanHaveDotsInTheirNames() throws Exception --> Line_4 $$ Template template = template("Hello $first$ $('a.txt')()$ $('b.txt')(name=last)$", templates) [CD]
+Line_3 $$ Templates templates = Templates.templates().add("a.txt",  ignore -> "...").add("b.txt",  context -> "Your last name is " + ((Map<?, ?>) context).get("name")) --> Line_4 $$ Template template = template("Hello $first$ $('a.txt')()$ $('b.txt')(name=last)$", templates) [FD]
+Line_2 $$ public void subTemplatesCanHaveDotsInTheirNames() throws Exception --> Line_5 $$ String result = template.render(map("first", "Dan", "last", "Bodart")) [CD]
+Line_4 $$ Template template = template("Hello $first$ $('a.txt')()$ $('b.txt')(name=last)$", templates) --> Line_5 $$ String result = template.render(map("first", "Dan", "last", "Bodart")) [FD]
+Line_2 $$ public void subTemplatesCanHaveDotsInTheirNames() throws Exception --> Line_6 $$ assertThat(result, Matchers.is("Hello Dan ... Your last name is Bodart")) [CD]
+Line_5 $$ String result = template.render(map("first", "Dan", "last", "Bodart")) --> Line_6 $$ assertThat(result, Matchers.is("Hello Dan ... Your last name is Bodart")) [FD]

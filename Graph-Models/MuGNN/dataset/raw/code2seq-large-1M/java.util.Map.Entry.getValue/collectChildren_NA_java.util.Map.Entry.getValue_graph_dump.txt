@@ -1,0 +1,8 @@
+Line_2 $$ private static void collectChildren(MemorySection parentSection, List<String> children) --> Line_3 $$ for (Map.Entry<String, Object> entry : parentSection.getValues(false).entrySet()) [FD]
+Line_4 $$ if (entry.getValue() instanceof MemorySection) --> Line_5 $$ collectChildren((MemorySection) entry.getValue(), children) [CD]
+Line_2 $$ private static void collectChildren(MemorySection parentSection, List<String> children) --> Line_5 $$ collectChildren((MemorySection) entry.getValue(), children) [FD]
+Line_4 $$ if (entry.getValue() instanceof MemorySection) --> Line_6 $$ if (entry.getValue() instanceof Boolean) [CD]
+Line_6 $$ if (entry.getValue() instanceof Boolean) --> Line_7 $$ if (!Boolean.TRUE.equals(entry.getValue())) [CD]
+Line_6 $$ if (entry.getValue() instanceof Boolean) --> Line_10 $$ children.add(parentSection.getCurrentPath() + "." + entry.getKey()) [CD]
+Line_2 $$ private static void collectChildren(MemorySection parentSection, List<String> children) --> Line_10 $$ children.add(parentSection.getCurrentPath() + "." + entry.getKey()) [FD]
+Line_2 $$ private static void collectChildren(MemorySection parentSection, List<String> children) --> Line_12 $$ throw new IllegalStateException("Found child entry at '" + entry.getKey() + "' with value " + "of unexpected type: '" + parentSection.getCurrentPath() + "." + entry.getValue() + "'") [FD]

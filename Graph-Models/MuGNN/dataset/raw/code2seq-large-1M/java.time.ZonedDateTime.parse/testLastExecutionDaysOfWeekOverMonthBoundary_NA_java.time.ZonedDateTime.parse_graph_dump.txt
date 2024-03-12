@@ -1,0 +1,8 @@
+Line_2 $$ public void testLastExecutionDaysOfWeekOverMonthBoundary() --> Line_3 $$ final Cron cron = getUnixCron("0 11 * * 1") [CD]
+Line_2 $$ public void testLastExecutionDaysOfWeekOverMonthBoundary() --> Line_4 $$ final Optional<ZonedDateTime> lastExecution = getLastExecutionFor(cron, ZonedDateTime.parse("2015-11-02T00:10:00Z")) [CD]
+Line_3 $$ final Cron cron = getUnixCron("0 11 * * 1") --> Line_4 $$ final Optional<ZonedDateTime> lastExecution = getLastExecutionFor(cron, ZonedDateTime.parse("2015-11-02T00:10:00Z")) [FD]
+Line_2 $$ public void testLastExecutionDaysOfWeekOverMonthBoundary() --> Line_5 $$ if (lastExecution.isPresent()) [CD]
+Line_4 $$ final Optional<ZonedDateTime> lastExecution = getLastExecutionFor(cron, ZonedDateTime.parse("2015-11-02T00:10:00Z")) --> Line_5 $$ if (lastExecution.isPresent()) [FD]
+Line_5 $$ if (lastExecution.isPresent()) --> Line_6 $$ assertEquals(ZonedDateTime.parse("2015-10-26T11:00:00Z"), lastExecution.get()) [CD]
+Line_4 $$ final Optional<ZonedDateTime> lastExecution = getLastExecutionFor(cron, ZonedDateTime.parse("2015-11-02T00:10:00Z")) --> Line_6 $$ assertEquals(ZonedDateTime.parse("2015-10-26T11:00:00Z"), lastExecution.get()) [FD]
+Line_5 $$ if (lastExecution.isPresent()) --> Line_8 $$ fail(LAST_EXECUTION_NOT_PRESENT_ERROR) [CD]

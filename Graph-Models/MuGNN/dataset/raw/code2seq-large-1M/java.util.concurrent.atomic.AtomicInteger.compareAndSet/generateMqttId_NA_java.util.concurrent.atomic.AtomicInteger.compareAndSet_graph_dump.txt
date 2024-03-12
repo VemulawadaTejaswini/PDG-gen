@@ -1,0 +1,5 @@
+Line_2 $$ public int generateMqttId(long messageId, long consumerId) --> Line_4 $$ Integer id = artemisToMqttMessageMap.get(generateKey(messageId, consumerId)) [FD]
+Line_4 $$ Integer id = artemisToMqttMessageMap.get(generateKey(messageId, consumerId)) --> Line_5 $$ if (id == null) [FD]
+Line_5 $$ if (id == null) --> Line_6 $$ ids.compareAndSet(Short.MAX_VALUE, 1) [CD]
+Line_5 $$ if (id == null) --> Line_7 $$ id = ids.addAndGet(1) [CD]
+Line_4 $$ Integer id = artemisToMqttMessageMap.get(generateKey(messageId, consumerId)) --> Line_7 $$ id = ids.addAndGet(1) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testGenericField() throws Exception --> Line_3 $$ DynamicType.Unloaded<?> unloaded = new ByteBuddy().redefine(GenericField.class).make() [CD]
+Line_2 $$ public void testGenericField() throws Exception --> Line_4 $$ Class<?> type = unloaded.load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testGenericField() throws Exception --> Line_5 $$ FieldDescription createdField = new FieldDescription.ForLoadedField(type.getDeclaredField(FOO)) [CD]
+Line_4 $$ Class<?> type = unloaded.load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() --> Line_5 $$ FieldDescription createdField = new FieldDescription.ForLoadedField(type.getDeclaredField(FOO)) [FD]
+Line_2 $$ public void testGenericField() throws Exception --> Line_6 $$ FieldDescription originalField = new FieldDescription.ForLoadedField(GenericField.class.getDeclaredField(FOO)) [CD]
+Line_2 $$ public void testGenericField() throws Exception --> Line_7 $$ assertThat(createdField.getType(), is(originalField.getType())) [CD]
+Line_5 $$ FieldDescription createdField = new FieldDescription.ForLoadedField(type.getDeclaredField(FOO)) --> Line_7 $$ assertThat(createdField.getType(), is(originalField.getType())) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ private boolean noStorageAccessible() --> Line_3 $$ List<String> attachedPsUuids = Q.New(PrimaryStorageClusterRefVO.class).select(PrimaryStorageClusterRefVO_.primaryStorageUuid).eq(PrimaryStorageClusterRefVO_.clusterUuid, self.getClusterUuid()).listValues() [CD]
+Line_2 $$ private boolean noStorageAccessible() --> Line_4 $$ long attachedPsCount = attachedPsUuids.size() [CD]
+Line_2 $$ private boolean noStorageAccessible() --> Line_5 $$ long inaccessiblePsCount = attachedPsCount == 0 ? 0 : Q.New(PrimaryStorageHostRefVO.class).eq(PrimaryStorageHostRefVO_.hostUuid, self.getUuid()).eq(PrimaryStorageHostRefVO_.status, PrimaryStorageHostStatus.Disconnected).in(PrimaryStorageHostRefVO_.primaryStorageUuid, attachedPsUuids).count() [CD]
+Line_2 $$ private boolean noStorageAccessible() --> Line_6 $$ return inaccessiblePsCount == attachedPsCount && attachedPsCount > 0 [CD]

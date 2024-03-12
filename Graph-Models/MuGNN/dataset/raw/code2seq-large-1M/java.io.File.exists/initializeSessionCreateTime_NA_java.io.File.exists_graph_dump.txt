@@ -1,0 +1,6 @@
+Line_2 $$ private void initializeSessionCreateTime() throws IOException --> Line_3 $$ final File sessionTimeFile = new File(sessionFileName) [CD]
+Line_2 $$ private void initializeSessionCreateTime() throws IOException --> Line_4 $$ if (sessionTimeFile.exists() && sessionTimeFile.length() > 0) [CD]
+Line_3 $$ final File sessionTimeFile = new File(sessionFileName) --> Line_4 $$ if (sessionTimeFile.exists() && sessionTimeFile.length() > 0) [FD]
+Line_5 $$ try (DataInputStream sessionTimeInput = new DataInputStream(new BufferedInputStream(new FileInputStream(sessionTimeFile)))) --> Line_6 $$ final Calendar c = SystemTime.getUtcCalendar(UtcTimestampConverter.convert(sessionTimeInput.readUTF())) [FD]
+Line_6 $$ final Calendar c = SystemTime.getUtcCalendar(UtcTimestampConverter.convert(sessionTimeInput.readUTF())) --> Line_7 $$ cache.setCreationTime(c) [FD]
+Line_4 $$ if (sessionTimeFile.exists() && sessionTimeFile.length() > 0) --> Line_12 $$ storeSessionTimeStamp() [CD]

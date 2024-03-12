@@ -1,0 +1,7 @@
+Line_2 $$ private void loadApplicationIni() --> Line_3 $$ Optional<Path> applicationIni = getResource("application.ini") [CD]
+Line_2 $$ private void loadApplicationIni() --> Line_4 $$ if (applicationIni.isPresent()) [CD]
+Line_3 $$ Optional<Path> applicationIni = getResource("application.ini") --> Line_4 $$ if (applicationIni.isPresent()) [FD]
+Line_3 $$ Optional<Path> applicationIni = getResource("application.ini") --> Line_5 $$ try (BufferedReader reader = Files.newBufferedReader(applicationIni.get())) [FD]
+Line_5 $$ try (BufferedReader reader = Files.newBufferedReader(applicationIni.get())) --> Line_6 $$ reader.lines().map(String::<>trim).forEach( line -> [FD]
+Line_7 $$ if (line.startsWith("Version=")) --> Line_8 $$ version = line.substring("Version=".length()) [CD]
+Line_4 $$ if (applicationIni.isPresent()) --> Line_14 $$ return [CD]

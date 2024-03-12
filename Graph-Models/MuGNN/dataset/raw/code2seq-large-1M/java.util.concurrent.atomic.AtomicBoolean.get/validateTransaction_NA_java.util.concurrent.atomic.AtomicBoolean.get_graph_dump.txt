@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized boolean validateTransaction(String localTransactionName) --> Line_3 $$ checkClosed() [CD]
+Line_5 $$ int id = getNextId() --> Line_6 $$ transfer.writeRequestHeader(id, Session.COMMAND_DISTRIBUTED_TRANSACTION_VALIDATE) [FD]
+Line_2 $$ public synchronized boolean validateTransaction(String localTransactionName) --> Line_7 $$ transfer.writeString(localTransactionName) [FD]
+Line_8 $$ AtomicBoolean isValid = new AtomicBoolean() --> Line_12 $$ isValid.set(transfer.readBoolean()) [FD]
+Line_5 $$ int id = getNextId() --> Line_18 $$ transfer.addAsyncCallback(id, ac) [FD]
+Line_9 $$ AsyncCallback<Void> ac = new AsyncCallback<Void>() --> Line_18 $$ transfer.addAsyncCallback(id, ac) [FD]
+Line_9 $$ AsyncCallback<Void> ac = new AsyncCallback<Void>() --> Line_20 $$ ac.await() [FD]
+Line_8 $$ AtomicBoolean isValid = new AtomicBoolean() --> Line_21 $$ return isValid.get() [FD]

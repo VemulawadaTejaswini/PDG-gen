@@ -1,0 +1,8 @@
+Line_2 $$ private BinaryMetadata readMetadata(int typeId) --> Line_3 $$ File file = new File(workDir, Integer.toString(typeId) + ".bin") [FD]
+Line_2 $$ private BinaryMetadata readMetadata(int typeId) --> Line_3 $$ File file = new File(workDir, Integer.toString(typeId) + ".bin") [CD]
+Line_2 $$ private BinaryMetadata readMetadata(int typeId) --> Line_4 $$ if (!file.exists()) [CD]
+Line_3 $$ File file = new File(workDir, Integer.toString(typeId) + ".bin") --> Line_4 $$ if (!file.exists()) [FD]
+Line_4 $$ if (!file.exists()) --> Line_5 $$ return null [CD]
+Line_6 $$ try (FileInputStream in = new FileInputStream(file)) --> Line_7 $$ return U.unmarshal(ctx.config().getMarshaller(), in, U.resolveClassLoader(ctx.config())) [FD]
+Line_3 $$ File file = new File(workDir, Integer.toString(typeId) + ".bin") --> Line_9 $$ U.warn(log, "Failed to restore metadata from file: " + file.getName() + "; exception was thrown: " + e.getMessage()) [FD]
+Line_2 $$ private BinaryMetadata readMetadata(int typeId) --> Line_11 $$ return null [CD]

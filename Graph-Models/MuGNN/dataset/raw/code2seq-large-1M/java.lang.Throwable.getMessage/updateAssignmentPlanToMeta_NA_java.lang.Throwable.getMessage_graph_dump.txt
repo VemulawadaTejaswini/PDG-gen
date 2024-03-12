@@ -1,0 +1,6 @@
+Line_2 $$ public void updateAssignmentPlanToMeta(FavoredNodesPlan plan) throws IOException --> Line_5 $$ Map<String, List<ServerName>> assignmentMap = plan.getAssignmentMap() [FD]
+Line_5 $$ Map<String, List<ServerName>> assignmentMap = plan.getAssignmentMap() --> Line_6 $$ Map<RegionInfo, List<ServerName>> planToUpdate = new HashMap(assignmentMap.size()) [FD]
+Line_5 $$ Map<String, List<ServerName>> assignmentMap = plan.getAssignmentMap() --> Line_8 $$ for (Map.Entry<String, List<ServerName>> entry : assignmentMap.entrySet()) [FD]
+Line_6 $$ Map<RegionInfo, List<ServerName>> planToUpdate = new HashMap(assignmentMap.size()) --> Line_9 $$ planToUpdate.put(regionToRegionInfoMap.get(entry.getKey()), entry.getValue()) [FD]
+Line_7 $$ Map<String, RegionInfo> regionToRegionInfoMap = getRegionAssignmentSnapshot().getRegionNameToRegionInfoMap() --> Line_9 $$ planToUpdate.put(regionToRegionInfoMap.get(entry.getKey()), entry.getValue()) [FD]
+Line_6 $$ Map<RegionInfo, List<ServerName>> planToUpdate = new HashMap(assignmentMap.size()) --> Line_11 $$ FavoredNodeAssignmentHelper.updateMetaWithFavoredNodesInfo(planToUpdate, conf) [FD]

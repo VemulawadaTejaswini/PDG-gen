@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized void waitUntilFinished(long timeout) throws InterruptedException, TimeoutException --> Line_3 $$ final long start = System.currentTimeMillis() [CD]
+Line_2 $$ public synchronized void waitUntilFinished(long timeout) throws InterruptedException, TimeoutException --> Line_4 $$ while (!finished) [CD]
+Line_4 $$ while (!finished) --> Line_5 $$ wait(timeout) [CD]
+Line_2 $$ public synchronized void waitUntilFinished(long timeout) throws InterruptedException, TimeoutException --> Line_5 $$ wait(timeout) [FD]
+Line_4 $$ while (!finished) --> Line_6 $$ if ((timeout > 0) && (!finished)) [CD]
+Line_6 $$ if ((timeout > 0) && (!finished)) --> Line_7 $$ if (System.currentTimeMillis() >= start + timeout) [CD]

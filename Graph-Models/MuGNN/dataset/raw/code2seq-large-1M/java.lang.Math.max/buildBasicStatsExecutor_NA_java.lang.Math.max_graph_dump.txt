@@ -1,0 +1,8 @@
+Line_2 $$ private ExecutorService buildBasicStatsExecutor() --> Line_3 $$ int poolSize = conf.getInt(ConfVars.HIVE_MOVE_FILES_THREAD_COUNT.varname, 1) [CD]
+Line_2 $$ private ExecutorService buildBasicStatsExecutor() --> Line_4 $$ poolSize = Math.max(poolSize, 1) [CD]
+Line_3 $$ int poolSize = conf.getInt(ConfVars.HIVE_MOVE_FILES_THREAD_COUNT.varname, 1) --> Line_4 $$ poolSize = Math.max(poolSize, 1) [FD]
+Line_2 $$ private ExecutorService buildBasicStatsExecutor() --> Line_5 $$ final ExecutorService pool = Executors.newFixedThreadPool(poolSize, new ThreadFactoryBuilder().setDaemon(true).setNameFormat("stats-updater-thread-%d").build()) [CD]
+Line_3 $$ int poolSize = conf.getInt(ConfVars.HIVE_MOVE_FILES_THREAD_COUNT.varname, 1) --> Line_5 $$ final ExecutorService pool = Executors.newFixedThreadPool(poolSize, new ThreadFactoryBuilder().setDaemon(true).setNameFormat("stats-updater-thread-%d").build()) [FD]
+Line_4 $$ poolSize = Math.max(poolSize, 1) --> Line_5 $$ final ExecutorService pool = Executors.newFixedThreadPool(poolSize, new ThreadFactoryBuilder().setDaemon(true).setNameFormat("stats-updater-thread-%d").build()) [FD]
+Line_2 $$ private ExecutorService buildBasicStatsExecutor() --> Line_6 $$ LOG.debug("Getting file stats of all partitions. threadpool size:" + poolSize) [CD]
+Line_2 $$ private ExecutorService buildBasicStatsExecutor() --> Line_7 $$ return pool [CD]

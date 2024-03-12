@@ -1,0 +1,8 @@
+Line_2 $$ public ByteBuffer allocate() --> Line_3 $$ long posn = Long.lowestOneBit(availableBits) [CD]
+Line_2 $$ public ByteBuffer allocate() --> Line_4 $$ if (posn != 0L) [CD]
+Line_3 $$ long posn = Long.lowestOneBit(availableBits) --> Line_4 $$ if (posn != 0L) [FD]
+Line_4 $$ if (posn != 0L) --> Line_5 $$ int bit = Long.numberOfTrailingZeros(posn) [CD]
+Line_3 $$ long posn = Long.lowestOneBit(availableBits) --> Line_5 $$ int bit = Long.numberOfTrailingZeros(posn) [FD]
+Line_4 $$ if (posn != 0L) --> Line_6 $$ availableBits &= ~posn [CD]
+Line_3 $$ long posn = Long.lowestOneBit(availableBits) --> Line_6 $$ availableBits &= ~posn [FD]
+Line_4 $$ if (posn != 0L) --> Line_13 $$ return parent.allocate() [CD]

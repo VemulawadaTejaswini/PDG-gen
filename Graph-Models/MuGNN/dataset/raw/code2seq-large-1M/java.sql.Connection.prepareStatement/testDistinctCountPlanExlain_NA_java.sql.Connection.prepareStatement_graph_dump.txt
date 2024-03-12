@@ -1,0 +1,7 @@
+Line_2 $$ public void testDistinctCountPlanExlain() throws Exception --> Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) [CD]
+Line_2 $$ public void testDistinctCountPlanExlain() throws Exception --> Line_4 $$ String query = "explain SELECT APPROX_COUNT_DISTINCT(i1||i2) FROM " + tableName [CD]
+Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) --> Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props); [FD]
+Line_4 $$ String query = "explain SELECT APPROX_COUNT_DISTINCT(i1||i2) FROM " + tableName --> Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props); [FD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props); --> Line_7 $$ prepareTableWithValues(conn, 100) [FD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props); --> Line_8 $$ ResultSet rs = statement.executeQuery() [FD]
+Line_8 $$ ResultSet rs = statement.executeQuery() --> Line_9 $$ assertEquals("CLIENT PARALLEL 1-WAY FULL SCAN OVER " + tableName + "\n" + "    SERVER FILTER BY FIRST KEY ONLY\n" + "    SERVER AGGREGATE INTO SINGLE ROW", QueryUtil.getExplainPlan(rs)) [FD]

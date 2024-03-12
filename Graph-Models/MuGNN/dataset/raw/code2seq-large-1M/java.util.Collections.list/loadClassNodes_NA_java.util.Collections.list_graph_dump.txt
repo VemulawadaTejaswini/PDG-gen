@@ -1,0 +1,7 @@
+Line_2 $$ private void loadClassNodes(JarFile jarFile, ImmutableList.Builder<ClassNode> builder) throws IOException --> Line_3 $$ for (JarEntry entry : Collections.list(jarFile.entries())) [FD]
+Line_4 $$ String name = entry.getName() --> Line_5 $$ if (entry.isDirectory() || (name == null) || !name.endsWith(".class")) [FD]
+Line_2 $$ private void loadClassNodes(JarFile jarFile, ImmutableList.Builder<ClassNode> builder) throws IOException --> Line_9 $$ try (InputStream stream = jarFile.getInputStream(entry)) [FD]
+Line_10 $$ ClassReader reader = new ClassReader(stream) --> Line_11 $$ reader.accept(node, ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG) [FD]
+Line_8 $$ ClassNode node = new ClassNode() --> Line_11 $$ reader.accept(node, ClassReader.SKIP_FRAMES | ClassReader.SKIP_DEBUG) [FD]
+Line_2 $$ private void loadClassNodes(JarFile jarFile, ImmutableList.Builder<ClassNode> builder) throws IOException --> Line_13 $$ builder.add(node) [FD]
+Line_8 $$ ClassNode node = new ClassNode() --> Line_13 $$ builder.add(node) [FD]

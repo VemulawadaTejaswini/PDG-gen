@@ -1,0 +1,7 @@
+Line_2 $$ public ByteAmount increaseBy(int percentage) --> Line_3 $$ checkArgument(percentage >= 0, String.format("Increasing by negative percent (%d) not supported", percentage)) [FD]
+Line_2 $$ public ByteAmount increaseBy(int percentage) --> Line_3 $$ checkArgument(percentage >= 0, String.format("Increasing by negative percent (%d) not supported", percentage)) [CD]
+Line_2 $$ public ByteAmount increaseBy(int percentage) --> Line_4 $$ double factor = 1.0 + ((double) percentage / 100) [CD]
+Line_2 $$ public ByteAmount increaseBy(int percentage) --> Line_5 $$ long max = Math.round(Long.MAX_VALUE / factor) [CD]
+Line_2 $$ public ByteAmount increaseBy(int percentage) --> Line_6 $$ checkArgument(asBytes() <= max, String.format("Increasing %s by %d percent would exceed Long.MAX_LONG", this, percentage)) [FD]
+Line_2 $$ public ByteAmount increaseBy(int percentage) --> Line_6 $$ checkArgument(asBytes() <= max, String.format("Increasing %s by %d percent would exceed Long.MAX_LONG", this, percentage)) [CD]
+Line_2 $$ public ByteAmount increaseBy(int percentage) --> Line_7 $$ return ByteAmount.fromBytes(Math.round((double) asBytes() * factor)) [CD]

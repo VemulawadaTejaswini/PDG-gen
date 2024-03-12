@@ -1,0 +1,7 @@
+Line_3 $$ for (FileSet fs : filesets) --> Line_5 $$ final DirectoryScanner ds = fs.getDirectoryScanner(getProject()) [FD]
+Line_5 $$ final DirectoryScanner ds = fs.getDirectoryScanner(getProject()) --> Line_6 $$ final String[] includedFiles = ds.getIncludedFiles() [FD]
+Line_7 $$ for (String filename : includedFiles) --> Line_8 $$ if (isClassFile(filename)) [FD]
+Line_3 $$ for (FileSet fs : filesets) --> Line_10 $$ File file = new File(fs.getDir(), filename) [FD]
+Line_10 $$ File file = new File(fs.getDir(), filename) --> Line_11 $$ if (file.isFile()) [FD]
+Line_11 $$ if (file.isFile()) --> Line_12 $$ classFileVisitor.apply(new FileInputStream(file)) [CD]
+Line_11 $$ if (file.isFile()) --> Line_14 $$ log("File not found: " + filename) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void deleteEmptyRefsFolders() throws IOException --> Line_3 $$ Path refs = repo.getDirectory().toPath().resolve("refs") [CD]
+Line_3 $$ Path refs = repo.getDirectory().toPath().resolve("refs") --> Line_4 $$ try (Stream<Path> entries = Files.list(refs)) [FD]
+Line_4 $$ try (Stream<Path> entries = Files.list(refs)) --> Line_5 $$ Iterator<Path> iterator = entries.iterator() [FD]
+Line_5 $$ Iterator<Path> iterator = entries.iterator() --> Line_6 $$ while (iterator.hasNext()) [FD]
+Line_5 $$ Iterator<Path> iterator = entries.iterator() --> Line_7 $$ try (Stream<Path> s = Files.list(iterator.next())) [FD]
+Line_7 $$ try (Stream<Path> s = Files.list(iterator.next())) --> Line_8 $$ s.forEach(this::<>deleteDir) [FD]

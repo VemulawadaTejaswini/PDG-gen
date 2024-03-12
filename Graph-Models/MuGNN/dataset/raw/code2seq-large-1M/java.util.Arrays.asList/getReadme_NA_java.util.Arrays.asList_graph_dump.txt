@@ -1,0 +1,7 @@
+Line_2 $$ public MarkupDocument getReadme(Repository r, String repositoryName, String commitId) --> Line_3 $$ List<MarkupDocument> list = getDocs(r, repositoryName, commitId, Arrays.asList("readme")) [FD]
+Line_2 $$ public MarkupDocument getReadme(Repository r, String repositoryName, String commitId) --> Line_3 $$ List<MarkupDocument> list = getDocs(r, repositoryName, commitId, Arrays.asList("readme")) [CD]
+Line_2 $$ public MarkupDocument getReadme(Repository r, String repositoryName, String commitId) --> Line_4 $$ if (list.isEmpty()) [CD]
+Line_3 $$ List<MarkupDocument> list = getDocs(r, repositoryName, commitId, Arrays.asList("readme")) --> Line_4 $$ if (list.isEmpty()) [FD]
+Line_4 $$ if (list.isEmpty()) --> Line_5 $$ return null [CD]
+Line_2 $$ public MarkupDocument getReadme(Repository r, String repositoryName, String commitId) --> Line_7 $$ return list.get(0) [CD]
+Line_3 $$ List<MarkupDocument> list = getDocs(r, repositoryName, commitId, Arrays.asList("readme")) --> Line_7 $$ return list.get(0) [FD]

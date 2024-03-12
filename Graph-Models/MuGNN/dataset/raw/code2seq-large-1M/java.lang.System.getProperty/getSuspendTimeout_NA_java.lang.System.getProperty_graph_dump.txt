@@ -1,0 +1,8 @@
+Line_2 $$ private static long getSuspendTimeout() --> Line_3 $$ long result = 0 [CD]
+Line_2 $$ private static long getSuspendTimeout() --> Line_4 $$ String timeoutString = System.getProperty(SIGTERM_SUSPEND_TIMEOUT_PROP) [CD]
+Line_2 $$ private static long getSuspendTimeout() --> Line_5 $$ if (timeoutString != null && timeoutString.length() > 0) [CD]
+Line_4 $$ String timeoutString = System.getProperty(SIGTERM_SUSPEND_TIMEOUT_PROP) --> Line_5 $$ if (timeoutString != null && timeoutString.length() > 0) [FD]
+Line_4 $$ String timeoutString = System.getProperty(SIGTERM_SUSPEND_TIMEOUT_PROP) --> Line_7 $$ int max = Integer.decode(timeoutString) [FD]
+Line_3 $$ long result = 0 --> Line_8 $$ result = max > 0 ? max * 1000 : max [FD]
+Line_4 $$ String timeoutString = System.getProperty(SIGTERM_SUSPEND_TIMEOUT_PROP) --> Line_11 $$ ServerLogger.ROOT_LOGGER.failedToParseCommandLineInteger(SIGTERM_SUSPEND_TIMEOUT_PROP, timeoutString) [FD]
+Line_2 $$ private static long getSuspendTimeout() --> Line_16 $$ return result [CD]

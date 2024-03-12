@@ -1,0 +1,7 @@
+Line_2 $$ public AggrStats getAggrColStatsFor(String dbName, String tblName, List<String> colNames, List<String> partNames) throws NoSuchObjectException, MetaException, TException --> Line_3 $$ if (colNames.isEmpty() || partNames.isEmpty()) [CD]
+Line_2 $$ public AggrStats getAggrColStatsFor(String dbName, String tblName, List<String> colNames, List<String> partNames) throws NoSuchObjectException, MetaException, TException --> Line_3 $$ if (colNames.isEmpty() || partNames.isEmpty()) [FD]
+Line_3 $$ if (colNames.isEmpty() || partNames.isEmpty()) --> Line_4 $$ LOG.debug("Columns is empty or partNames is empty : Short-circuiting stats eval on client side.") [CD]
+Line_3 $$ if (colNames.isEmpty() || partNames.isEmpty()) --> Line_5 $$ return new AggrStats(new ArrayList(), 0) [CD]
+Line_2 $$ public AggrStats getAggrColStatsFor(String dbName, String tblName, List<String> colNames, List<String> partNames) throws NoSuchObjectException, MetaException, TException --> Line_7 $$ PartitionsStatsRequest req = new PartitionsStatsRequest(dbName, tblName, colNames, partNames) [CD]
+Line_2 $$ public AggrStats getAggrColStatsFor(String dbName, String tblName, List<String> colNames, List<String> partNames) throws NoSuchObjectException, MetaException, TException --> Line_8 $$ return client.get_aggr_stats_for(req) [CD]
+Line_7 $$ PartitionsStatsRequest req = new PartitionsStatsRequest(dbName, tblName, colNames, partNames) --> Line_8 $$ return client.get_aggr_stats_for(req) [FD]

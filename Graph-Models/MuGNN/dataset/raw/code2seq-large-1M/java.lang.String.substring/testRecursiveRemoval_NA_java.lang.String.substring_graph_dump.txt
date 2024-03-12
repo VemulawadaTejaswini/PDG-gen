@@ -1,0 +1,8 @@
+Line_2 $$ public void testRecursiveRemoval() throws Exception --> Line_3 $$ final String curDir = prefix.substring(0, prefix.length() - 1) [CD]
+Line_2 $$ public void testRecursiveRemoval() throws Exception --> Line_4 $$ assertThatThrownBy(() -> repo.commit(HEAD, 0L, Author.UNKNOWN, SUMMARY, Change.ofRemoval(curDir)).join()).isInstanceOf(CompletionException.class).hasCauseInstanceOf(ChangeConflictException.class) [CD]
+Line_3 $$ final String curDir = prefix.substring(0, prefix.length() - 1) --> Line_4 $$ assertThatThrownBy(() -> repo.commit(HEAD, 0L, Author.UNKNOWN, SUMMARY, Change.ofRemoval(curDir)).join()).isInstanceOf(CompletionException.class).hasCauseInstanceOf(ChangeConflictException.class) [FD]
+Line_2 $$ public void testRecursiveRemoval() throws Exception --> Line_5 $$ repo.commit(HEAD, 0L, Author.UNKNOWN, SUMMARY, jsonUpserts).join() [CD]
+Line_2 $$ public void testRecursiveRemoval() throws Exception --> Line_6 $$ assertThat(repo.find(HEAD, allPattern).join()).hasSize(jsonUpserts.length) [CD]
+Line_2 $$ public void testRecursiveRemoval() throws Exception --> Line_7 $$ repo.commit(HEAD, 0L, Author.UNKNOWN, SUMMARY, Change.ofRemoval(curDir)).join() [CD]
+Line_3 $$ final String curDir = prefix.substring(0, prefix.length() - 1) --> Line_7 $$ repo.commit(HEAD, 0L, Author.UNKNOWN, SUMMARY, Change.ofRemoval(curDir)).join() [FD]
+Line_2 $$ public void testRecursiveRemoval() throws Exception --> Line_8 $$ assertThat(repo.find(HEAD, allPattern).join()).isEmpty() [CD]

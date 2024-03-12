@@ -1,0 +1,6 @@
+Line_2 $$ void doPipeline(ChannelHandlerContext ctx, Object msg) --> Line_3 $$ if (pipelined == null) [CD]
+Line_3 $$ if (pipelined == null) --> Line_4 $$ pipelined = Queues.unbounded().get() [CD]
+Line_2 $$ void doPipeline(ChannelHandlerContext ctx, Object msg) --> Line_6 $$ if (!pipelined.offer(msg)) [CD]
+Line_2 $$ void doPipeline(ChannelHandlerContext ctx, Object msg) --> Line_6 $$ if (!pipelined.offer(msg)) [FD]
+Line_6 $$ if (!pipelined.offer(msg)) --> Line_7 $$ ctx.fireExceptionCaught(Exceptions.failWithOverflow()) [CD]
+Line_2 $$ void doPipeline(ChannelHandlerContext ctx, Object msg) --> Line_7 $$ ctx.fireExceptionCaught(Exceptions.failWithOverflow()) [FD]

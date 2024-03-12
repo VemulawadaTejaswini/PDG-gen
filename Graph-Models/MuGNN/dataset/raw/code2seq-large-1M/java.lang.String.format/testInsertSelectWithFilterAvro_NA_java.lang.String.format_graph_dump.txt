@@ -1,0 +1,5 @@
+Line_2 $$ public void testInsertSelectWithFilterAvro() throws Exception --> Line_3 $$ ksqlContext.sql(String.format("CREATE STREAM BIGORDERS_avro AS SELECT * FROM %s WHERE ORDERUNITS > " + "100000;", avroStreamName)) [CD]
+Line_2 $$ public void testInsertSelectWithFilterAvro() throws Exception --> Line_4 $$ ksqlContext.sql(String.format("INSERT INTO BIGORDERS_avro SELECT * FROM %s WHERE ORDERUNITS > 40;" + "", avroStreamName)) [CD]
+Line_2 $$ public void testInsertSelectWithFilterAvro() throws Exception --> Line_5 $$ Map<String, GenericRow> results = testHarness.consumeData("BIGORDERS_avro", dataProvider.schema(), 4, new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.AVRO) [CD]
+Line_2 $$ public void testInsertSelectWithFilterAvro() throws Exception --> Line_6 $$ Assert.assertEquals(4, results.size()) [CD]
+Line_5 $$ Map<String, GenericRow> results = testHarness.consumeData("BIGORDERS_avro", dataProvider.schema(), 4, new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.AVRO) --> Line_6 $$ Assert.assertEquals(4, results.size()) [FD]

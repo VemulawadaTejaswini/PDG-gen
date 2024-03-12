@@ -1,0 +1,7 @@
+Line_8 $$ String language = languages[i] --> Line_9 $$ if (language.contains("(")) [FD]
+Line_9 $$ if (language.contains("(")) --> Line_10 $$ language = language.substring(0, language.indexOf("(") - 1) [CD]
+Line_8 $$ String language = languages[i] --> Line_10 $$ language = language.substring(0, language.indexOf("(") - 1) [FD]
+Line_8 $$ String language = languages[i] --> Line_12 $$ LocaleUtil.updateLanguage(getActivity(), language) [FD]
+Line_10 $$ language = language.substring(0, language.indexOf("(") - 1) --> Line_12 $$ LocaleUtil.updateLanguage(getActivity(), language) [FD]
+Line_2 $$ public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) --> Line_15 $$ EasyTracker.getInstance(getActivity()).send(MapBuilder.createEvent(GA_EVENT_SETTINGS_SELECT_LANGUAGE, "languageChangedTo", i == 0 ? "default" : languages[i], 0L).build()) [CD]
+Line_2 $$ public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) --> Line_16 $$ getActivity().finish() [CD]

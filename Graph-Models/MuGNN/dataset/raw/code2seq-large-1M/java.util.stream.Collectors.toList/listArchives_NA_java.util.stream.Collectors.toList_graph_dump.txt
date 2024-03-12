@@ -1,0 +1,8 @@
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_3 $$ CacheEntry cache = cacheService.findCache(cacheId) [CD]
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_3 $$ CacheEntry cache = cacheService.findCache(cacheId) [FD]
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_4 $$ if (cache == null) [CD]
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_7 $$ IndexEntry indexEntry = cacheService.findIndexForCache(cache, indexId) [CD]
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_7 $$ IndexEntry indexEntry = cacheService.findIndexForCache(cache, indexId) [FD]
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_8 $$ if (indexEntry == null) [CD]
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_11 $$ List<ArchiveEntry> archives = cacheService.findArchivesForIndex(indexEntry) [CD]
+Line_2 $$ public List<CacheArchive> listArchives(@PathVariable int cacheId, @PathVariable int indexId) --> Line_12 $$ return archives.stream().map( archive -> new CacheArchive(archive.getArchiveId(), archive.getNameHash(), archive.getRevision())).collect(Collectors.toList()) [CD]

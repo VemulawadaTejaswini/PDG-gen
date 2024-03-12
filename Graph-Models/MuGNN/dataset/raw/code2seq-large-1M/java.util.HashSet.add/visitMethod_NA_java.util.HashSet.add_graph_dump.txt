@@ -1,0 +1,6 @@
+Line_2 $$ public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) --> Line_3 $$ if ((access & (Opcodes.ACC_BRIDGE | Opcodes.ACC_ABSTRACT | Opcodes.ACC_STATIC)) == Opcodes.ACC_BRIDGE) [CD]
+Line_3 $$ if ((access & (Opcodes.ACC_BRIDGE | Opcodes.ACC_ABSTRACT | Opcodes.ACC_STATIC)) == Opcodes.ACC_BRIDGE) --> Line_4 $$ if (implementedMethods.add(name + ":" + desc)) [CD]
+Line_4 $$ if (implementedMethods.add(name + ":" + desc)) --> Line_5 $$ MethodVisitor result = LambdaClassFixer.super.visitMethod(access, name, desc, signature, exceptions) [CD]
+Line_2 $$ public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) --> Line_5 $$ MethodVisitor result = LambdaClassFixer.super.visitMethod(access, name, desc, signature, exceptions) [FD]
+Line_4 $$ if (implementedMethods.add(name + ":" + desc)) --> Line_6 $$ return allowDefaultMethods ? result : new AvoidJacocoInit(result) [CD]
+Line_2 $$ public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) --> Line_9 $$ return null [CD]

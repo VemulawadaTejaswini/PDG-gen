@@ -1,0 +1,8 @@
+Line_4 $$ Request request = httpClient.newRequest(url).method(HttpMethod.POST).header(HttpHeader.CONTENT_TYPE, "application/octet-stream").header(HttpHeader.ACCEPT_ENCODING, "gzip").content(new BytesContentProvider(message)) --> Line_5 $$ addSessionCookie(request) [FD]
+Line_4 $$ Request request = httpClient.newRequest(url).method(HttpMethod.POST).header(HttpHeader.CONTENT_TYPE, "application/octet-stream").header(HttpHeader.ACCEPT_ENCODING, "gzip").content(new BytesContentProvider(message)) --> Line_7 $$ request.send(listener) [FD]
+Line_6 $$ InputStreamResponseListener listener = new InputStreamResponseListener() --> Line_7 $$ request.send(listener) [FD]
+Line_6 $$ InputStreamResponseListener listener = new InputStreamResponseListener() --> Line_8 $$ Response response = listener.get(readTimeout, TimeUnit.SECONDS) [FD]
+Line_8 $$ Response response = listener.get(readTimeout, TimeUnit.SECONDS) --> Line_9 $$ if (response.getStatus() >= 300) [FD]
+Line_8 $$ Response response = listener.get(readTimeout, TimeUnit.SECONDS) --> Line_10 $$ throw new IOException("Did not receive successful HTTP response: status code = " + response.getStatus() + ", status message = [" + response.getReason() + "]") [FD]
+Line_6 $$ InputStreamResponseListener listener = new InputStreamResponseListener() --> Line_12 $$ return listener.getInputStream() [FD]
+Line_14 $$ if (e instanceof InterruptedException) --> Line_15 $$ Thread.currentThread().interrupt() [CD]

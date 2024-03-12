@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url())) --> Line_4 $$ try (Statement stmt = conn.createStatement()) [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_5 $$ stmt.execute("SELECT 1") [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_6 $$ ResultSet rs = stmt.getResultSet() [FD]
+Line_6 $$ ResultSet rs = stmt.getResultSet() --> Line_7 $$ assertTrue(rs.next()) [FD]
+Line_6 $$ ResultSet rs = stmt.getResultSet() --> Line_8 $$ assertEquals(1, rs.getInt(1)) [FD]

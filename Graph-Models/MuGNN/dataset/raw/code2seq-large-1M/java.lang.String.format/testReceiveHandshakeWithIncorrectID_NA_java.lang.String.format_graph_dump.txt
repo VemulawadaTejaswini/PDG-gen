@@ -1,0 +1,8 @@
+Line_2 $$ public void testReceiveHandshakeWithIncorrectID() throws IOException --> Line_3 $$ int handshakeID = 123 [CD]
+Line_2 $$ public void testReceiveHandshakeWithIncorrectID() throws IOException --> Line_4 $$ int differentHandshakeID = 456 [CD]
+Line_2 $$ public void testReceiveHandshakeWithIncorrectID() throws IOException --> Line_5 $$ InputStream jsonReader = createMockJsonReaderForReceiveHandshake(differentHandshakeID, "handshake", "0") [CD]
+Line_4 $$ int differentHandshakeID = 456 --> Line_5 $$ InputStream jsonReader = createMockJsonReaderForReceiveHandshake(differentHandshakeID, "handshake", "0") [FD]
+Line_2 $$ public void testReceiveHandshakeWithIncorrectID() throws IOException --> Line_6 $$ WorkerProcessProtocol.CommandReceiver protocol = new WorkerProcessProtocolZero.CommandReceiver(dummyOutputStream, jsonReader) [CD]
+Line_6 $$ WorkerProcessProtocol.CommandReceiver protocol = new WorkerProcessProtocolZero.CommandReceiver(dummyOutputStream, jsonReader) --> Line_8 $$ protocol.handshake(handshakeID) [FD]
+Line_3 $$ int handshakeID = 123 --> Line_8 $$ protocol.handshake(handshakeID) [FD]
+Line_3 $$ int handshakeID = 123 --> Line_10 $$ assertThat(e.getMessage(), Matchers.containsString(String.format("Expected handshake response's \"id\" value to be \"%d\"", handshakeID))) [FD]

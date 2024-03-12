@@ -1,0 +1,6 @@
+Line_2 $$ public void startHeartBeatScheduler() --> Line_3 $$ if (heartBeatTasks.get(REPLICA_HEARTBEAT) == null) [CD]
+Line_3 $$ if (heartBeatTasks.get(REPLICA_HEARTBEAT) == null) --> Line_4 $$ HeartbeatConfig heartbeatConfig = config.getConfig(ConfigEnum.HEARTBEAT) [CD]
+Line_3 $$ if (heartBeatTasks.get(REPLICA_HEARTBEAT) == null) --> Line_5 $$ long replicaHeartbeat = heartbeatConfig.getHeartbeat().getReplicaHeartbeatPeriod() [CD]
+Line_4 $$ HeartbeatConfig heartbeatConfig = config.getConfig(ConfigEnum.HEARTBEAT) --> Line_5 $$ long replicaHeartbeat = heartbeatConfig.getHeartbeat().getReplicaHeartbeatPeriod() [FD]
+Line_3 $$ if (heartBeatTasks.get(REPLICA_HEARTBEAT) == null) --> Line_6 $$ heartBeatTasks.put(REPLICA_HEARTBEAT, heartbeatScheduler.scheduleAtFixedRate(replicaHeartbeat(), 0, replicaHeartbeat, TimeUnit.MILLISECONDS)) [CD]
+Line_5 $$ long replicaHeartbeat = heartbeatConfig.getHeartbeat().getReplicaHeartbeatPeriod() --> Line_6 $$ heartBeatTasks.put(REPLICA_HEARTBEAT, heartbeatScheduler.scheduleAtFixedRate(replicaHeartbeat(), 0, replicaHeartbeat, TimeUnit.MILLISECONDS)) [FD]

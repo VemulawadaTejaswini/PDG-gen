@@ -1,0 +1,8 @@
+Line_2 $$ public void handleIndexerSearchFinishedEvent(IndexerSearchFinishedEvent event) --> Line_3 $$ if (searchStates.containsKey(event.getSearchRequest().getSearchRequestId())) [CD]
+Line_2 $$ public void handleIndexerSearchFinishedEvent(IndexerSearchFinishedEvent event) --> Line_3 $$ if (searchStates.containsKey(event.getSearchRequest().getSearchRequestId())) [FD]
+Line_3 $$ if (searchStates.containsKey(event.getSearchRequest().getSearchRequestId())) --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ if (searchStates.containsKey(event.getSearchRequest().getSearchRequestId())) --> Line_5 $$ SearchState searchState = searchStates.get(event.getSearchRequest().getSearchRequestId()) [CD]
+Line_2 $$ public void handleIndexerSearchFinishedEvent(IndexerSearchFinishedEvent event) --> Line_5 $$ SearchState searchState = searchStates.get(event.getSearchRequest().getSearchRequestId()) [FD]
+Line_3 $$ if (searchStates.containsKey(event.getSearchRequest().getSearchRequestId())) --> Line_6 $$ searchState.setIndexersFinished(searchState.getIndexersFinished() + 1) [CD]
+Line_5 $$ SearchState searchState = searchStates.get(event.getSearchRequest().getSearchRequestId()) --> Line_6 $$ searchState.setIndexersFinished(searchState.getIndexersFinished() + 1) [FD]
+Line_3 $$ if (searchStates.containsKey(event.getSearchRequest().getSearchRequestId())) --> Line_7 $$ lock.unlock() [CD]

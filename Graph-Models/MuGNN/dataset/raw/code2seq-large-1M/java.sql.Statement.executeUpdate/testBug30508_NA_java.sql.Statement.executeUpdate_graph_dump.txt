@@ -1,0 +1,6 @@
+Line_2 $$ public void testBug30508() throws Exception --> Line_3 $$ createTable("testBug30508", "(k INT PRIMARY KEY NOT NULL AUTO_INCREMENT, p VARCHAR(32))") [CD]
+Line_5 $$ Statement ggkStatement = this.conn.createStatement() --> Line_6 $$ ggkStatement.executeUpdate("INSERT INTO testBug30508 (p) VALUES ('abc')", Statement.RETURN_GENERATED_KEYS) [FD]
+Line_5 $$ Statement ggkStatement = this.conn.createStatement() --> Line_7 $$ this.rs = ggkStatement.getGeneratedKeys() [FD]
+Line_5 $$ Statement ggkStatement = this.conn.createStatement() --> Line_8 $$ ggkStatement.close() [FD]
+Line_2 $$ public void testBug30508() throws Exception --> Line_23 $$ if (versionMeetsMinimum(5, 0)) [CD]
+Line_23 $$ if (versionMeetsMinimum(5, 0)) --> Line_24 $$ createProcedure("testBug30508", "() BEGIN SELECT 1; END") [CD]

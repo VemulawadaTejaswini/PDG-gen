@@ -1,0 +1,7 @@
+Line_2 $$ public Future<VoidResult> clock(TaskContext context, int matrixId, boolean flushFirst) --> Line_3 $$ FutureResult<VoidResult> futureResult = new FutureResult<VoidResult>() [CD]
+Line_2 $$ public Future<VoidResult> clock(TaskContext context, int matrixId, boolean flushFirst) --> Line_5 $$ LOG.debug("task " + context.getIndex() + " clock matrix " + matrixId) [FD]
+Line_6 $$ ClockMessage clockMessage = new ClockMessage(seqIdGenerator.incrementAndGet(), matrixId, context, flushFirst) --> Line_7 $$ messageToFutureMap.put(clockMessage, futureResult) [FD]
+Line_3 $$ FutureResult<VoidResult> futureResult = new FutureResult<VoidResult>() --> Line_7 $$ messageToFutureMap.put(clockMessage, futureResult) [FD]
+Line_6 $$ ClockMessage clockMessage = new ClockMessage(seqIdGenerator.incrementAndGet(), matrixId, context, flushFirst) --> Line_8 $$ messageQueue.add(clockMessage) [FD]
+Line_3 $$ FutureResult<VoidResult> futureResult = new FutureResult<VoidResult>() --> Line_11 $$ futureResult.set(new VoidResult(ResponseType.FAILED)) [FD]
+Line_2 $$ public Future<VoidResult> clock(TaskContext context, int matrixId, boolean flushFirst) --> Line_13 $$ return futureResult [CD]

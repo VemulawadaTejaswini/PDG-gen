@@ -1,0 +1,6 @@
+Line_3 $$ try (Statement stmt = conn.createStatement()) --> Line_5 $$ try (ResultSet rs = stmt.executeQuery("SELECT pg_backend_pid();")) [FD]
+Line_5 $$ try (ResultSet rs = stmt.executeQuery("SELECT pg_backend_pid();")) --> Line_6 $$ assertTrue(rs.next()) [FD]
+Line_4 $$ final int pid --> Line_7 $$ pid = rs.getInt(1) [FD]
+Line_5 $$ try (ResultSet rs = stmt.executeQuery("SELECT pg_backend_pid();")) --> Line_7 $$ pid = rs.getInt(1) [FD]
+Line_10 $$ Thread killThread = new Thread() --> Line_20 $$ killThread.start() [FD]
+Line_3 $$ try (Statement stmt = conn.createStatement()) --> Line_21 $$ stmt.executeQuery("SELECT pg_sleep(5);") [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void failed(UDPConnectionSet set) --> Line_4 $$ String key = set.getKey() [FD]
+Line_4 $$ String key = set.getKey() --> Line_5 $$ if (connection_sets.remove(key) != null) [FD]
+Line_5 $$ if (connection_sets.remove(key) != null) --> Line_6 $$ set.removed() [CD]
+Line_2 $$ public void failed(UDPConnectionSet set) --> Line_6 $$ set.removed() [FD]
+Line_5 $$ if (connection_sets.remove(key) != null) --> Line_7 $$ recently_dead_keys.put(key, new Long(SystemTime.getCurrentTime())) [CD]
+Line_4 $$ String key = set.getKey() --> Line_7 $$ recently_dead_keys.put(key, new Long(SystemTime.getCurrentTime())) [FD]
+Line_5 $$ if (connection_sets.remove(key) != null) --> Line_8 $$ if (Logger.isEnabled()) [CD]
+Line_8 $$ if (Logger.isEnabled()) --> Line_9 $$ Logger.log(new LogEvent(LOGID, "Connection set " + key + " failed")) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void forgetRecoveredAcks(ArrayList<MessageAck> acks, boolean rollback) throws IOException --> Line_3 $$ if (acks != null) [FD]
+Line_2 $$ public void forgetRecoveredAcks(ArrayList<MessageAck> acks, boolean rollback) throws IOException --> Line_3 $$ if (acks != null) [CD]
+Line_3 $$ if (acks != null) --> Line_4 $$ indexLock.writeLock().lock() [CD]
+Line_6 $$ for (MessageAck ack : acks) --> Line_7 $$ final String id = ack.getLastMessageId().toProducerKey() [FD]
+Line_7 $$ final String id = ack.getLastMessageId().toProducerKey() --> Line_8 $$ ackedAndPrepared.remove(id) [FD]
+Line_9 $$ if (rollback) --> Line_10 $$ rolledBackAcks.add(id) [CD]
+Line_7 $$ final String id = ack.getLastMessageId().toProducerKey() --> Line_10 $$ rolledBackAcks.add(id) [FD]
+Line_9 $$ if (rollback) --> Line_11 $$ incrementAndAddSizeToStoreStat(dest, 0) [CD]

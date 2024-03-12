@@ -1,0 +1,5 @@
+Line_2 $$ protected ByteBufferIndexInput newCloneInstance(String newResourceDescription, ByteBuffer[] newBuffers, int offset, long length) --> Line_3 $$ if (newBuffers.length == 1) [CD]
+Line_3 $$ if (newBuffers.length == 1) --> Line_4 $$ newBuffers[0].position(offset) [CD]
+Line_2 $$ protected ByteBufferIndexInput newCloneInstance(String newResourceDescription, ByteBuffer[] newBuffers, int offset, long length) --> Line_4 $$ newBuffers[0].position(offset) [FD]
+Line_3 $$ if (newBuffers.length == 1) --> Line_5 $$ return new SingleBufferImpl(newResourceDescription, newBuffers[0].slice(), length, chunkSizePower, this.cleaner, this.clones) [CD]
+Line_3 $$ if (newBuffers.length == 1) --> Line_7 $$ return (offset == 0) ? new DefaultImpl(newResourceDescription, newBuffers, length, chunkSizePower, cleaner, clones) : new WithOffsetImpl(newResourceDescription, newBuffers, offset, length, chunkSizePower, cleaner, clones) [CD]

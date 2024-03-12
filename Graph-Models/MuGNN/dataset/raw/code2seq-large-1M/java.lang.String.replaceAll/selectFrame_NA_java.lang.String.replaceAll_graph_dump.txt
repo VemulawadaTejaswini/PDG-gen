@@ -1,0 +1,8 @@
+Line_2 $$ public void selectFrame(int frameNumber) throws DBGException --> Line_3 $$ log.debug("Select frame") [CD]
+Line_2 $$ public void selectFrame(int frameNumber) throws DBGException --> Line_4 $$ String sql = SQL_SELECT_FRAME.replaceAll("\\?sessionid", String.valueOf(sessionId)).replaceAll("\\?frameno", String.valueOf(frameNumber)) [FD]
+Line_2 $$ public void selectFrame(int frameNumber) throws DBGException --> Line_4 $$ String sql = SQL_SELECT_FRAME.replaceAll("\\?sessionid", String.valueOf(sessionId)).replaceAll("\\?frameno", String.valueOf(frameNumber)) [CD]
+Line_5 $$ try (JDBCSession session = getControllerConnection().openSession(new VoidProgressMonitor(), DBCExecutionPurpose.UTIL, "Select debug frame")) --> Line_6 $$ try (Statement stmt = session.createStatement()) [FD]
+Line_6 $$ try (Statement stmt = session.createStatement()) --> Line_7 $$ try (ResultSet rs = stmt.executeQuery(sql)) [FD]
+Line_4 $$ String sql = SQL_SELECT_FRAME.replaceAll("\\?sessionid", String.valueOf(sessionId)).replaceAll("\\?frameno", String.valueOf(frameNumber)) --> Line_7 $$ try (ResultSet rs = stmt.executeQuery(sql)) [FD]
+Line_7 $$ try (ResultSet rs = stmt.executeQuery(sql)) --> Line_8 $$ if (!rs.next()) [FD]
+Line_8 $$ if (!rs.next()) --> Line_9 $$ log.debug("Unable to select frame") [CD]

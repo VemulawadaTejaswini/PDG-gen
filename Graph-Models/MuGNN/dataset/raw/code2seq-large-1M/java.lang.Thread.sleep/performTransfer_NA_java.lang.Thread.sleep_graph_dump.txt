@@ -1,0 +1,6 @@
+Line_2 $$ private TransactionReceipt performTransfer(Web3j web3j, String destinationAddress, Credentials credentials, BigDecimal amountInWei) --> Line_3 $$ console.printf("Commencing transfer (this may take a few minutes) ") [CD]
+Line_2 $$ private TransactionReceipt performTransfer(Web3j web3j, String destinationAddress, Credentials credentials, BigDecimal amountInWei) --> Line_5 $$ Future<TransactionReceipt> future = Transfer.sendFunds(web3j, credentials, destinationAddress, amountInWei, Convert.Unit.WEI).sendAsync() [FD]
+Line_5 $$ Future<TransactionReceipt> future = Transfer.sendFunds(web3j, credentials, destinationAddress, amountInWei, Convert.Unit.WEI).sendAsync() --> Line_6 $$ while (!future.isDone()) [FD]
+Line_6 $$ while (!future.isDone()) --> Line_7 $$ console.printf(".") [CD]
+Line_6 $$ while (!future.isDone()) --> Line_8 $$ Thread.sleep(500) [CD]
+Line_5 $$ Future<TransactionReceipt> future = Transfer.sendFunds(web3j, credentials, destinationAddress, amountInWei, Convert.Unit.WEI).sendAsync() --> Line_11 $$ return future.get() [FD]

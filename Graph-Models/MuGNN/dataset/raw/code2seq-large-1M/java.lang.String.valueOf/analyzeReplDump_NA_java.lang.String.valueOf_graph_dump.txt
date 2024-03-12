@@ -1,0 +1,8 @@
+Line_2 $$ private void analyzeReplDump(ASTNode ast) throws SemanticException --> Line_3 $$ LOG.debug("ReplicationSemanticAnalyzer.analyzeReplDump: " + String.valueOf(dbNameOrPattern) + "." + String.valueOf(tblNameOrPattern) + " from " + String.valueOf(eventFrom) + " to " + String.valueOf(eventTo) + " maxEventLimit " + String.valueOf(maxEventLimit)) [CD]
+Line_2 $$ private void analyzeReplDump(ASTNode ast) throws SemanticException --> Line_6 $$ Task<ReplDumpWork> replDumpWorkTask = TaskFactory.get(new ReplDumpWork(dbNameOrPattern, tblNameOrPattern, eventFrom, eventTo, ErrorMsg.INVALID_PATH.getMsg(ast), maxEventLimit, ctx.getResFile().toUri().toString()), conf) [FD]
+Line_6 $$ Task<ReplDumpWork> replDumpWorkTask = TaskFactory.get(new ReplDumpWork(dbNameOrPattern, tblNameOrPattern, eventFrom, eventTo, ErrorMsg.INVALID_PATH.getMsg(ast), maxEventLimit, ctx.getResFile().toUri().toString()), conf) --> Line_7 $$ rootTasks.add(replDumpWorkTask) [FD]
+Line_9 $$ for (String dbName : Utils.matchesDb(db, dbNameOrPattern)) --> Line_11 $$ for (String tblName : Utils.matchesTbl(db, dbName, tblNameOrPattern)) [FD]
+Line_9 $$ for (String dbName : Utils.matchesDb(db, dbNameOrPattern)) --> Line_12 $$ inputs.add(new ReadEntity(db.getTable(dbName, tblName))) [FD]
+Line_11 $$ for (String tblName : Utils.matchesTbl(db, dbName, tblNameOrPattern)) --> Line_12 $$ inputs.add(new ReadEntity(db.getTable(dbName, tblName))) [FD]
+Line_10 $$ if (tblNameOrPattern != null) --> Line_15 $$ inputs.add(new ReadEntity(db.getDatabase(dbName))) [CD]
+Line_9 $$ for (String dbName : Utils.matchesDb(db, dbNameOrPattern)) --> Line_15 $$ inputs.add(new ReadEntity(db.getDatabase(dbName))) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<Integer> waitForThreads(int numThreads) --> Line_3 $$ lock.lock() [CD]
+Line_2 $$ public CompletableFuture<Integer> waitForThreads(int numThreads) --> Line_4 $$ final CompletableFuture<Integer> future = new CompletableFuture() [CD]
+Line_5 $$ barrier = new CyclicBarrier(numThreads, new Runnable() --> Line_7 $$ future.complete(numThreads) [CD]
+Line_4 $$ final CompletableFuture<Integer> future = new CompletableFuture() --> Line_7 $$ future.complete(numThreads) [FD]
+Line_2 $$ public CompletableFuture<Integer> waitForThreads(int numThreads) --> Line_7 $$ future.complete(numThreads) [FD]
+Line_5 $$ barrier = new CyclicBarrier(numThreads, new Runnable() --> Line_8 $$ lock.lock() [CD]
+Line_5 $$ barrier = new CyclicBarrier(numThreads, new Runnable() --> Line_9 $$ lock.unlock() [CD]
+Line_2 $$ public CompletableFuture<Integer> waitForThreads(int numThreads) --> Line_13 $$ return future [CD]

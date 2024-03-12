@@ -1,0 +1,6 @@
+Line_2 $$ public CassandraUtils checkNumDocsInIndex(Integer expectedNumDocs) --> Line_3 $$ List<Long> numDocsInEachNode = getJMXAttribute(indexBean, "NumDocs") [CD]
+Line_2 $$ public CassandraUtils checkNumDocsInIndex(Integer expectedNumDocs) --> Line_4 $$ Long totalNumDocs = numDocsInEachNode.stream().reduce(0L, ( l,  r) -> l + r) / (long) REPLICATION [CD]
+Line_3 $$ List<Long> numDocsInEachNode = getJMXAttribute(indexBean, "NumDocs") --> Line_4 $$ Long totalNumDocs = numDocsInEachNode.stream().reduce(0L, ( l,  r) -> l + r) / (long) REPLICATION [FD]
+Line_2 $$ public CassandraUtils checkNumDocsInIndex(Integer expectedNumDocs) --> Line_5 $$ assertEquals("NumDocs in index is not correct", new Long(expectedNumDocs), totalNumDocs) [CD]
+Line_4 $$ Long totalNumDocs = numDocsInEachNode.stream().reduce(0L, ( l,  r) -> l + r) / (long) REPLICATION --> Line_5 $$ assertEquals("NumDocs in index is not correct", new Long(expectedNumDocs), totalNumDocs) [FD]
+Line_2 $$ public CassandraUtils checkNumDocsInIndex(Integer expectedNumDocs) --> Line_6 $$ return this [CD]

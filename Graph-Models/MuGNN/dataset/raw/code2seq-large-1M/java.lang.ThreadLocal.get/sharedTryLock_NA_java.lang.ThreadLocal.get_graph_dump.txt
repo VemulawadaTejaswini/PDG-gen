@@ -1,0 +1,8 @@
+Line_2 $$ public boolean sharedTryLock() --> Line_3 $$ ReadersEntry localEntry = entry.get() [CD]
+Line_2 $$ public boolean sharedTryLock() --> Line_4 $$ if (localEntry == null) [CD]
+Line_2 $$ public boolean sharedTryLock() --> Line_7 $$ final AtomicInteger currentReadersState = localEntry.state [CD]
+Line_2 $$ public boolean sharedTryLock() --> Line_8 $$ currentReadersState.set(SRWL_STATE_READING) [CD]
+Line_2 $$ public boolean sharedTryLock() --> Line_9 $$ if (!stampedLock.isWriteLocked()) [CD]
+Line_9 $$ if (!stampedLock.isWriteLocked()) --> Line_10 $$ return true [CD]
+Line_9 $$ if (!stampedLock.isWriteLocked()) --> Line_12 $$ currentReadersState.set(SRWL_STATE_NOT_READING) [CD]
+Line_9 $$ if (!stampedLock.isWriteLocked()) --> Line_13 $$ return false [CD]

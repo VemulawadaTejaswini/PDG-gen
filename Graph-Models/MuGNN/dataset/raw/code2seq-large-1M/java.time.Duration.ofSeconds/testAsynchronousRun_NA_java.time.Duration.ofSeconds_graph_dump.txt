@@ -1,0 +1,4 @@
+Line_2 $$ public void testAsynchronousRun() --> Line_3 $$ Flux.range(1, 2).flatMapSequential( t -> Flux.range(1, 1000).subscribeOn(Schedulers.single())).publishOn(Schedulers.elastic()).subscribe(ts) [CD]
+Line_2 $$ public void testAsynchronousRun() --> Line_4 $$ ts.await(Duration.ofSeconds(5)) [CD]
+Line_2 $$ public void testAsynchronousRun() --> Line_5 $$ ts.assertNoError() [CD]
+Line_2 $$ public void testAsynchronousRun() --> Line_6 $$ ts.assertValueCount(2000) [CD]

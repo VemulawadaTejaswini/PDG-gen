@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldDeduplicateMessage() --> Line_3 $$ final Throwable cause = new TestException("Something went wrong") [CD]
+Line_2 $$ public void shouldDeduplicateMessage() --> Line_4 $$ final Throwable subLevel2 = new TestException("Msg that matches", cause) [CD]
+Line_2 $$ public void shouldDeduplicateMessage() --> Line_5 $$ final Throwable subLevel1 = new TestException("Msg that matches", subLevel2) [CD]
+Line_2 $$ public void shouldDeduplicateMessage() --> Line_6 $$ final Throwable e = new TestException("Msg that matches", subLevel1) [CD]
+Line_2 $$ public void shouldDeduplicateMessage() --> Line_7 $$ assertThat(buildErrorMessage(e), is("Msg that matches" + System.lineSeparator() + "Caused by: Something went wrong")) [CD]
+Line_6 $$ final Throwable e = new TestException("Msg that matches", subLevel1) --> Line_7 $$ assertThat(buildErrorMessage(e), is("Msg that matches" + System.lineSeparator() + "Caused by: Something went wrong")) [FD]

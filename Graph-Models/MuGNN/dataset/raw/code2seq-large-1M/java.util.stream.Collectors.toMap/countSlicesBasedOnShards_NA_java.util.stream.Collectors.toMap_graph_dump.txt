@@ -1,0 +1,8 @@
+Line_2 $$ private static int countSlicesBasedOnShards(ClusterSearchShardsResponse response) --> Line_3 $$ Map<Index, Integer> countsByIndex = Arrays.stream(response.getGroups()).collect(Collectors.toMap( group -> group.getShardId().getIndex(),  group -> 1, ( sum,  term) -> sum + term)) [FD]
+Line_2 $$ private static int countSlicesBasedOnShards(ClusterSearchShardsResponse response) --> Line_3 $$ Map<Index, Integer> countsByIndex = Arrays.stream(response.getGroups()).collect(Collectors.toMap( group -> group.getShardId().getIndex(),  group -> 1, ( sum,  term) -> sum + term)) [CD]
+Line_2 $$ private static int countSlicesBasedOnShards(ClusterSearchShardsResponse response) --> Line_4 $$ Set<Integer> counts = new HashSet(countsByIndex.values()) [CD]
+Line_3 $$ Map<Index, Integer> countsByIndex = Arrays.stream(response.getGroups()).collect(Collectors.toMap( group -> group.getShardId().getIndex(),  group -> 1, ( sum,  term) -> sum + term)) --> Line_4 $$ Set<Integer> counts = new HashSet(countsByIndex.values()) [FD]
+Line_2 $$ private static int countSlicesBasedOnShards(ClusterSearchShardsResponse response) --> Line_5 $$ int leastShards = Collections.min(counts) [CD]
+Line_4 $$ Set<Integer> counts = new HashSet(countsByIndex.values()) --> Line_5 $$ int leastShards = Collections.min(counts) [FD]
+Line_2 $$ private static int countSlicesBasedOnShards(ClusterSearchShardsResponse response) --> Line_6 $$ return Math.min(leastShards, AUTO_SLICE_CEILING) [CD]
+Line_5 $$ int leastShards = Collections.min(counts) --> Line_6 $$ return Math.min(leastShards, AUTO_SLICE_CEILING) [FD]

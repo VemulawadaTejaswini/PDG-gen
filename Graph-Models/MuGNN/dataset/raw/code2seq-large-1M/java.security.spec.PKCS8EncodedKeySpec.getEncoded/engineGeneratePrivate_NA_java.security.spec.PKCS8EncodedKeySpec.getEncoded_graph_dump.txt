@@ -1,0 +1,7 @@
+Line_2 $$ protected PrivateKey engineGeneratePrivate(KeySpec keySpec) throws InvalidKeySpecException --> Line_3 $$ if (keySpec instanceof PKCS8EncodedKeySpec) [FD]
+Line_2 $$ protected PrivateKey engineGeneratePrivate(KeySpec keySpec) throws InvalidKeySpecException --> Line_3 $$ if (keySpec instanceof PKCS8EncodedKeySpec) [CD]
+Line_5 $$ PrivateKeyInfo info = PrivateKeyInfo.getInstance(((PKCS8EncodedKeySpec) keySpec).getEncoded()) --> Line_6 $$ PrivateKey key = BouncyCastleProvider.getPrivateKey(info) [FD]
+Line_6 $$ PrivateKey key = BouncyCastleProvider.getPrivateKey(info) --> Line_7 $$ if (key != null) [FD]
+Line_7 $$ if (key != null) --> Line_8 $$ return key [CD]
+Line_5 $$ PrivateKeyInfo info = PrivateKeyInfo.getInstance(((PKCS8EncodedKeySpec) keySpec).getEncoded()) --> Line_10 $$ throw new InvalidKeySpecException("no factory found for OID: " + info.getPrivateKeyAlgorithm().getAlgorithm()) [FD]
+Line_2 $$ protected PrivateKey engineGeneratePrivate(KeySpec keySpec) throws InvalidKeySpecException --> Line_15 $$ throw new InvalidKeySpecException("Unknown KeySpec type: " + keySpec.getClass().getName()) [FD]

@@ -1,0 +1,8 @@
+Line_4 $$ File fh = new File(filename) --> Line_5 $$ if (!fh.exists() || !fh.isFile() || !fh.canRead()) [FD]
+Line_5 $$ if (!fh.exists() || !fh.isFile() || !fh.canRead()) --> Line_6 $$ return new byte[0] [CD]
+Line_4 $$ File fh = new File(filename) --> Line_8 $$ long fileSize = fh.length() [FD]
+Line_8 $$ long fileSize = fh.length() --> Line_9 $$ if (fileSize > Integer.MAX_VALUE) [FD]
+Line_9 $$ if (fileSize > Integer.MAX_VALUE) --> Line_10 $$ return new byte[0] [CD]
+Line_12 $$ FileInputStream fis = new FileInputStream(filename) --> Line_13 $$ byte[] file = FileFunctions.readFullyIntoBuffer(fis, Math.min((int) fileSize, maxBytes)) [FD]
+Line_2 $$ protected static byte[] loadFilePartial(String filename, int maxBytes) --> Line_13 $$ byte[] file = FileFunctions.readFullyIntoBuffer(fis, Math.min((int) fileSize, maxBytes)) [FD]
+Line_12 $$ FileInputStream fis = new FileInputStream(filename) --> Line_14 $$ fis.close() [FD]

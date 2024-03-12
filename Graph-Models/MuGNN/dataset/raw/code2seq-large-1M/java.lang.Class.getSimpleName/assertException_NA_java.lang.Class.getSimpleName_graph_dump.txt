@@ -1,0 +1,6 @@
+Line_2 $$ public void assertException(Level level, Class<?> exceptionType, String messagePart) --> Line_3 $$ for (LogEvent event : filterByLevel(logEvents, level)) [FD]
+Line_2 $$ public void assertException(Level level, Class<?> exceptionType, String messagePart) --> Line_4 $$ if (exceptionType.isInstance(event.getThrown()) && event.getThrown().getMessage().contains(messagePart)) [FD]
+Line_3 $$ for (LogEvent event : filterByLevel(logEvents, level)) --> Line_4 $$ if (exceptionType.isInstance(event.getThrown()) && event.getThrown().getMessage().contains(messagePart)) [FD]
+Line_4 $$ if (exceptionType.isInstance(event.getThrown()) && event.getThrown().getMessage().contains(messagePart)) --> Line_5 $$ return [CD]
+Line_2 $$ public void assertException(Level level, Class<?> exceptionType, String messagePart) --> Line_8 $$ Assert.fail(String.format("Couldn't find any log event with level %s that contains a %s with message containing '%s' in%n%s", level, exceptionType.getSimpleName(), messagePart, logEvents)) [FD]
+Line_2 $$ public void assertException(Level level, Class<?> exceptionType, String messagePart) --> Line_8 $$ Assert.fail(String.format("Couldn't find any log event with level %s that contains a %s with message containing '%s' in%n%s", level, exceptionType.getSimpleName(), messagePart, logEvents)) [CD]

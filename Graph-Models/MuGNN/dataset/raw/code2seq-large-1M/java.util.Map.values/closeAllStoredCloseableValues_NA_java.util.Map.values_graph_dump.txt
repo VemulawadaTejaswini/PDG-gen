@@ -1,0 +1,8 @@
+Line_2 $$ public void closeAllStoredCloseableValues() --> Line_3 $$ ThrowableCollector throwableCollector = new ThrowableCollector() [CD]
+Line_4 $$ for (Supplier<Object> supplier : storedValues.values()) --> Line_5 $$ Object value = supplier.get() [FD]
+Line_5 $$ Object value = supplier.get() --> Line_6 $$ if (value instanceof ExtensionContext.Store.CloseableResource) [FD]
+Line_6 $$ if (value instanceof ExtensionContext.Store.CloseableResource) --> Line_7 $$ ExtensionContext.Store.CloseableResource resource = (ExtensionContext.Store.CloseableResource) value [CD]
+Line_6 $$ if (value instanceof ExtensionContext.Store.CloseableResource) --> Line_8 $$ throwableCollector.execute(resource::<>close) [CD]
+Line_3 $$ ThrowableCollector throwableCollector = new ThrowableCollector() --> Line_8 $$ throwableCollector.execute(resource::<>close) [FD]
+Line_2 $$ public void closeAllStoredCloseableValues() --> Line_11 $$ throwableCollector.assertEmpty() [CD]
+Line_3 $$ ThrowableCollector throwableCollector = new ThrowableCollector() --> Line_11 $$ throwableCollector.assertEmpty() [FD]

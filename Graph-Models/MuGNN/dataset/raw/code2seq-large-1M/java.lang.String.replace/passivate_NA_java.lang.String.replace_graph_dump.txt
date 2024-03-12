@@ -1,0 +1,7 @@
+Line_2 $$ public void passivate(final Object primaryKey, final Object state) throws SystemException --> Line_4 $$ final String filename = primaryKey.toString().replace(':', '=') [FD]
+Line_5 $$ final File sessionFile = new File(sessionDirectory, filename) --> Line_6 $$ if (!sessionFile.exists() && !sessionFile.createNewFile()) [FD]
+Line_5 $$ final File sessionFile = new File(sessionDirectory, filename) --> Line_7 $$ throw new Exception("Failed to create passivation file: " + sessionFile.getAbsolutePath()) [FD]
+Line_5 $$ final File sessionFile = new File(sessionDirectory, filename) --> Line_10 $$ try (final OutputStream os = IO.write(sessionFile); [FD]
+Line_10 $$ try (final OutputStream os = IO.write(sessionFile); --> Line_12 $$ oos.writeObject(state) [FD]
+Line_2 $$ public void passivate(final Object primaryKey, final Object state) throws SystemException --> Line_12 $$ oos.writeObject(state) [FD]
+Line_5 $$ final File sessionFile = new File(sessionDirectory, filename) --> Line_14 $$ sessionFile.deleteOnExit() [FD]

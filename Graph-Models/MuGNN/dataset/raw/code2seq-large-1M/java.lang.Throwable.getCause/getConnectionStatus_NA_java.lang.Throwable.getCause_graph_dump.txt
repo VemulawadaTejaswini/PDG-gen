@@ -1,0 +1,7 @@
+Line_2 $$ public ConnectionStatus getConnectionStatus(Long instanceId) --> Line_3 $$ NutchInstance instance = instanceService.getInstance(instanceId) [FD]
+Line_2 $$ public ConnectionStatus getConnectionStatus(Long instanceId) --> Line_3 $$ NutchInstance instance = instanceService.getInstance(instanceId) [CD]
+Line_3 $$ NutchInstance instance = instanceService.getInstance(instanceId) --> Line_5 $$ NutchStatus nutchStatus = nutchClientFactory.getClient(instance).getNutchStatus() [FD]
+Line_5 $$ NutchStatus nutchStatus = nutchClientFactory.getClient(instance).getNutchStatus() --> Line_6 $$ if (nutchStatus.getStartDate() != null) [FD]
+Line_6 $$ if (nutchStatus.getStartDate() != null) --> Line_7 $$ return ConnectionStatus.CONNECTED [CD]
+Line_10 $$ if (e.getCause() instanceof ConnectException) --> Line_11 $$ return ConnectionStatus.DISCONNECTED [CD]
+Line_2 $$ public ConnectionStatus getConnectionStatus(Long instanceId) --> Line_15 $$ return null [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testPublishUnsupportedQoS() throws Exception --> Line_3 $$ MqttPublishMessage mqttPublishMessage = MqttMessages.publishBuilder().qos(MqttQoS.AT_LEAST_ONCE).topicName("t1").messageId(messageId.incrementAndGet()).retained(false).payload(Unpooled.copiedBuffer("Hello World".getBytes())).build() [CD]
+Line_2 $$ public void testPublishUnsupportedQoS() throws Exception --> Line_4 $$ mqttClient.sendMessage(mqttPublishMessage) [CD]
+Line_3 $$ MqttPublishMessage mqttPublishMessage = MqttMessages.publishBuilder().qos(MqttQoS.AT_LEAST_ONCE).topicName("t1").messageId(messageId.incrementAndGet()).retained(false).payload(Unpooled.copiedBuffer("Hello World".getBytes())).build() --> Line_4 $$ mqttClient.sendMessage(mqttPublishMessage) [FD]
+Line_2 $$ public void testPublishUnsupportedQoS() throws Exception --> Line_5 $$ expectedException.expectMessage("MQTT client did not receive message in time") [CD]
+Line_2 $$ public void testPublishUnsupportedQoS() throws Exception --> Line_6 $$ mqttClient.lastReceivedMessage() [CD]

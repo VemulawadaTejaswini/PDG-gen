@@ -1,0 +1,7 @@
+Line_2 $$ public void testCircularCauseExceptions() --> Line_3 $$ final Exception e1 = new Exception() [CD]
+Line_2 $$ public void testCircularCauseExceptions() --> Line_4 $$ final Exception e2 = new Exception(e1) [CD]
+Line_2 $$ public void testCircularCauseExceptions() --> Line_5 $$ e1.initCause(e2) [CD]
+Line_3 $$ final Exception e1 = new Exception() --> Line_5 $$ e1.initCause(e2) [FD]
+Line_4 $$ final Exception e2 = new Exception(e1) --> Line_5 $$ e1.initCause(e2) [FD]
+Line_2 $$ public void testCircularCauseExceptions() --> Line_6 $$ LogManager.getLogger().error("Error", e1) [CD]
+Line_3 $$ final Exception e1 = new Exception() --> Line_6 $$ LogManager.getLogger().error("Error", e1) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void setCookieHeaderCanBeIncluded() --> Line_3 $$ HttpTrace trace = new HttpTrace(createRequest()) [CD]
+Line_2 $$ public void setCookieHeaderCanBeIncluded() --> Line_4 $$ new HttpExchangeTracer(EnumSet.of(Include.RESPONSE_HEADERS, Include.COOKIE_HEADERS)).sendingResponse(trace, createResponse(Collections.singletonMap(HttpHeaders.SET_COOKIE, Arrays.asList("test=test"))), null, null) [CD]
+Line_3 $$ HttpTrace trace = new HttpTrace(createRequest()) --> Line_4 $$ new HttpExchangeTracer(EnumSet.of(Include.RESPONSE_HEADERS, Include.COOKIE_HEADERS)).sendingResponse(trace, createResponse(Collections.singletonMap(HttpHeaders.SET_COOKIE, Arrays.asList("test=test"))), null, null) [FD]
+Line_2 $$ public void setCookieHeaderCanBeIncluded() --> Line_5 $$ assertThat(trace.getResponse().getHeaders()).containsOnlyKeys(HttpHeaders.SET_COOKIE) [CD]
+Line_3 $$ HttpTrace trace = new HttpTrace(createRequest()) --> Line_5 $$ assertThat(trace.getResponse().getHeaders()).containsOnlyKeys(HttpHeaders.SET_COOKIE) [FD]

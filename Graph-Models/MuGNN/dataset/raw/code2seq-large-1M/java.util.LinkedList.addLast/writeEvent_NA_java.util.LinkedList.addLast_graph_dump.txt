@@ -1,0 +1,8 @@
+Line_2 $$ public void writeEvent(Type event) throws TxnFailedException --> Line_3 $$ checkFailed() [CD]
+Line_2 $$ public void writeEvent(Type event) throws TxnFailedException --> Line_4 $$ ByteBuffer buffer = serializer.serialize(event) [CD]
+Line_2 $$ public void writeEvent(Type event) throws TxnFailedException --> Line_4 $$ ByteBuffer buffer = serializer.serialize(event) [FD]
+Line_2 $$ public void writeEvent(Type event) throws TxnFailedException --> Line_5 $$ CompletableFuture<Void> ack = new CompletableFuture<Void>() [CD]
+Line_2 $$ public void writeEvent(Type event) throws TxnFailedException --> Line_6 $$ PendingEvent pendingEvent = new PendingEvent(null, buffer, ack) [CD]
+Line_6 $$ PendingEvent pendingEvent = new PendingEvent(null, buffer, ack) --> Line_8 $$ out.write(pendingEvent) [FD]
+Line_5 $$ CompletableFuture<Void> ack = new CompletableFuture<Void>() --> Line_9 $$ outstanding.addLast(ack) [FD]
+Line_2 $$ public void writeEvent(Type event) throws TxnFailedException --> Line_12 $$ checkFailed() [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public long tick(boolean firstTick) --> Line_3 $$ lock.lock() [CD]
+Line_2 $$ public long tick(boolean firstTick) --> Line_5 $$ if (!firstTick) [FD]
+Line_7 $$ if (connection.getLocalState() != EndpointState.CLOSED) --> Line_8 $$ long rescheduleAt = transport.tick(TimeUnit.NANOSECONDS.toMillis(System.nanoTime())) [CD]
+Line_7 $$ if (connection.getLocalState() != EndpointState.CLOSED) --> Line_9 $$ if (transport.isClosed()) [CD]
+Line_7 $$ if (connection.getLocalState() != EndpointState.CLOSED) --> Line_12 $$ return rescheduleAt [CD]
+Line_5 $$ if (!firstTick) --> Line_19 $$ return 0 [CD]

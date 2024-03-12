@@ -1,0 +1,7 @@
+Line_2 $$ public void addField(final String accessorTypeName) throws InstrumentException --> Line_4 $$ final Class<?> accessorType = this.pluginContext.injectClass(this.classLoader, accessorTypeName) [FD]
+Line_5 $$ final AccessorAnalyzer accessorAnalyzer = new AccessorAnalyzer() --> Line_6 $$ final AccessorAnalyzer.AccessorDetails accessorDetails = accessorAnalyzer.analyze(accessorType) [FD]
+Line_2 $$ public void addField(final String accessorTypeName) throws InstrumentException --> Line_7 $$ final ASMFieldNodeAdapter fieldNode = this.classNode.addField(FIELD_PREFIX + JavaAssistUtils.javaClassNameToVariableName(accessorTypeName), accessorDetails.getFieldType()) [FD]
+Line_6 $$ final AccessorAnalyzer.AccessorDetails accessorDetails = accessorAnalyzer.analyze(accessorType) --> Line_7 $$ final ASMFieldNodeAdapter fieldNode = this.classNode.addField(FIELD_PREFIX + JavaAssistUtils.javaClassNameToVariableName(accessorTypeName), accessorDetails.getFieldType()) [FD]
+Line_2 $$ public void addField(final String accessorTypeName) throws InstrumentException --> Line_8 $$ this.classNode.addInterface(accessorTypeName) [FD]
+Line_6 $$ final AccessorAnalyzer.AccessorDetails accessorDetails = accessorAnalyzer.analyze(accessorType) --> Line_9 $$ this.classNode.addGetterMethod(accessorDetails.getGetter().getName(), fieldNode) [FD]
+Line_6 $$ final AccessorAnalyzer.AccessorDetails accessorDetails = accessorAnalyzer.analyze(accessorType) --> Line_10 $$ this.classNode.addSetterMethod(accessorDetails.getSetter().getName(), fieldNode) [FD]

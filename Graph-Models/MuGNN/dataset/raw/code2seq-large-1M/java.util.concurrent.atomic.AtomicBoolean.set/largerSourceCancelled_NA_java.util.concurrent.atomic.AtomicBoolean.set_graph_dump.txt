@@ -1,0 +1,7 @@
+Line_2 $$ public void largerSourceCancelled() --> Line_3 $$ AtomicBoolean cancelled = new AtomicBoolean() [CD]
+Line_2 $$ public void largerSourceCancelled() --> Line_4 $$ Flux<Integer> test = Flux.range(1, 1000).doOnCancel(() -> cancelled.set(true)).limitRequest(3) [CD]
+Line_3 $$ AtomicBoolean cancelled = new AtomicBoolean() --> Line_4 $$ Flux<Integer> test = Flux.range(1, 1000).doOnCancel(() -> cancelled.set(true)).limitRequest(3) [FD]
+Line_2 $$ public void largerSourceCancelled() --> Line_5 $$ StepVerifier.create(test).expectNextCount(3).verifyComplete() [CD]
+Line_4 $$ Flux<Integer> test = Flux.range(1, 1000).doOnCancel(() -> cancelled.set(true)).limitRequest(3) --> Line_5 $$ StepVerifier.create(test).expectNextCount(3).verifyComplete() [FD]
+Line_2 $$ public void largerSourceCancelled() --> Line_6 $$ assertThat(cancelled.get()).as("source is cancelled").isTrue() [CD]
+Line_3 $$ AtomicBoolean cancelled = new AtomicBoolean() --> Line_6 $$ assertThat(cancelled.get()).as("source is cancelled").isTrue() [FD]

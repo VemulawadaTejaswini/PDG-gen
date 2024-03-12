@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<Void> write(SegmentHandle handle, long offset, InputStream data, int length, Duration timeout) --> Line_3 $$ ErrorInjector.throwSyncExceptionIfNeeded(this.writeSyncErrorInjector) [CD]
+Line_2 $$ public CompletableFuture<Void> write(SegmentHandle handle, long offset, InputStream data, int length, Duration timeout) --> Line_4 $$ return ErrorInjector.throwAsyncExceptionIfNeeded(this.writeAsyncErrorInjector, () -> [CD]
+Line_5 $$ WriteInterceptor wi = this.writeInterceptor --> Line_7 $$ if (wi != null) [FD]
+Line_7 $$ if (wi != null) --> Line_8 $$ result = wi.apply(handle.getSegmentName(), offset, data, length, this.wrappedStorage) [CD]
+Line_6 $$ CompletableFuture<Void> result = null --> Line_8 $$ result = wi.apply(handle.getSegmentName(), offset, data, length, this.wrappedStorage) [FD]
+Line_5 $$ WriteInterceptor wi = this.writeInterceptor --> Line_8 $$ result = wi.apply(handle.getSegmentName(), offset, data, length, this.wrappedStorage) [FD]
+Line_2 $$ public CompletableFuture<Void> write(SegmentHandle handle, long offset, InputStream data, int length, Duration timeout) --> Line_8 $$ result = wi.apply(handle.getSegmentName(), offset, data, length, this.wrappedStorage) [FD]
+Line_2 $$ public CompletableFuture<Void> write(SegmentHandle handle, long offset, InputStream data, int length, Duration timeout) --> Line_11 $$ this.wrappedStorage.write(handle, offset, data, length, timeout) [FD]

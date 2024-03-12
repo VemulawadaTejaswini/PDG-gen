@@ -1,0 +1,8 @@
+Line_2 $$ public long getHostCount(int uid, boolean usecache) --> Line_3 $$ if (usecache) [CD]
+Line_2 $$ public long getHostCount(int uid, boolean usecache) --> Line_5 $$ if (mapUidHosts.containsKey(uid)) [FD]
+Line_5 $$ if (mapUidHosts.containsKey(uid)) --> Line_6 $$ return mapUidHosts.get(uid) [CD]
+Line_2 $$ public long getHostCount(int uid, boolean usecache) --> Line_6 $$ return mapUidHosts.get(uid) [FD]
+Line_2 $$ public long getHostCount(int uid, boolean usecache) --> Line_8 $$ lock.readLock().lock() [CD]
+Line_10 $$ SQLiteDatabase db = this.getReadableDatabase() --> Line_11 $$ long hosts = db.compileStatement("SELECT COUNT(*) FROM access WHERE block >= 0 AND uid =" + uid).simpleQueryForLong() [FD]
+Line_2 $$ public long getHostCount(int uid, boolean usecache) --> Line_13 $$ mapUidHosts.put(uid, hosts) [FD]
+Line_11 $$ long hosts = db.compileStatement("SELECT COUNT(*) FROM access WHERE block >= 0 AND uid =" + uid).simpleQueryForLong() --> Line_13 $$ mapUidHosts.put(uid, hosts) [FD]

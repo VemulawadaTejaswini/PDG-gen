@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection connection = getNewConnection("&retriesAllDown=6&connectTimeout=1000&socketTimeout=1000", true)) --> Line_4 $$ int masterServerId = getServerId(connection) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&retriesAllDown=6&connectTimeout=1000&socketTimeout=1000", true)) --> Line_5 $$ connection.setReadOnly(true) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&retriesAllDown=6&connectTimeout=1000&socketTimeout=1000", true)) --> Line_6 $$ int firstSlaveId = getServerId(connection) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&retriesAllDown=6&connectTimeout=1000&socketTimeout=1000", true)) --> Line_7 $$ connection.setReadOnly(false) [FD]
+Line_4 $$ int masterServerId = getServerId(connection) --> Line_8 $$ stopProxy(masterServerId) [FD]
+Line_6 $$ int firstSlaveId = getServerId(connection) --> Line_9 $$ stopProxy(firstSlaveId) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&retriesAllDown=6&connectTimeout=1000&socketTimeout=1000", true)) --> Line_10 $$ connection.createStatement().executeQuery("SELECT CONNECTION_ID()") [FD]

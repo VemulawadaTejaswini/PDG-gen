@@ -1,0 +1,7 @@
+Line_2 $$ public void checkDuplication(Action action, String ip, boolean trusted, Errors errors) --> Line_3 $$ int threshold = trusted ? action.getThresholdTrusted() : action.getThreshold() [FD]
+Line_2 $$ public void checkDuplication(Action action, String ip, boolean trusted, Errors errors) --> Line_3 $$ int threshold = trusted ? action.getThresholdTrusted() : action.getThreshold() [CD]
+Line_2 $$ public void checkDuplication(Action action, String ip, boolean trusted, Errors errors) --> Line_4 $$ if (!check(action, ip, threshold)) [FD]
+Line_2 $$ public void checkDuplication(Action action, String ip, boolean trusted, Errors errors) --> Line_4 $$ if (!check(action, ip, threshold)) [CD]
+Line_3 $$ int threshold = trusted ? action.getThresholdTrusted() : action.getThreshold() --> Line_4 $$ if (!check(action, ip, threshold)) [FD]
+Line_4 $$ if (!check(action, ip, threshold)) --> Line_5 $$ errors.reject(null, String.format("Следующее сообщение может быть записано не менее чем через %d секунд после предыдущего", threshold / 1000)) [CD]
+Line_2 $$ public void checkDuplication(Action action, String ip, boolean trusted, Errors errors) --> Line_5 $$ errors.reject(null, String.format("Следующее сообщение может быть записано не менее чем через %d секунд после предыдущего", threshold / 1000)) [FD]

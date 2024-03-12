@@ -1,0 +1,6 @@
+Line_2 $$ public void updateProcessedJob(String date, String jobId, String status) --> Line_3 $$ String path = zkRoot + "/" + ZNODE_JOB_IDS + "/" + date + "/" + jobId [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_JOB_IDS + "/" + date + "/" + jobId --> Line_5 $$ if (curator.checkExists().forPath(path) == null) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) == null) --> Line_6 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path) [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_JOB_IDS + "/" + date + "/" + jobId --> Line_6 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path) [FD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_JOB_IDS + "/" + date + "/" + jobId --> Line_8 $$ curator.setData().forPath(path, status.getBytes("UTF-8")) [FD]
+Line_2 $$ public void updateProcessedJob(String date, String jobId, String status) --> Line_8 $$ curator.setData().forPath(path, status.getBytes("UTF-8")) [FD]

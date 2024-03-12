@@ -1,0 +1,7 @@
+Line_2 $$ public static WatchService newWatchService() --> Line_3 $$ final String osVersion = System.getProperty("os.version") [CD]
+Line_2 $$ public static WatchService newWatchService() --> Line_4 $$ final int minorVersion = Integer.parseInt(osVersion.split("\\.")[1]) [CD]
+Line_3 $$ final String osVersion = System.getProperty("os.version") --> Line_4 $$ final int minorVersion = Integer.parseInt(osVersion.split("\\.")[1]) [FD]
+Line_2 $$ public static WatchService newWatchService() --> Line_5 $$ if (minorVersion < 5) [CD]
+Line_4 $$ final int minorVersion = Integer.parseInt(osVersion.split("\\.")[1]) --> Line_5 $$ if (minorVersion < 5) [FD]
+Line_5 $$ if (minorVersion < 5) --> Line_6 $$ return new MacOSXPollingWatchService() [CD]
+Line_5 $$ if (minorVersion < 5) --> Line_8 $$ return new MacOSXListeningWatchService() [CD]

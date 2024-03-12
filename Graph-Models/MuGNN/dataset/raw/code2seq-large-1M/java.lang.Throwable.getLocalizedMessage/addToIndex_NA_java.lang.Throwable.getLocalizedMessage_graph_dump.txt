@@ -1,0 +1,8 @@
+Line_2 $$ public IESIndexerResult addToIndex(final Iterator<?> models) --> Line_3 $$ final BulkRequestBuilder bulkRequest = getClient().prepareBulk() [CD]
+Line_2 $$ public IESIndexerResult addToIndex(final Iterator<?> models) --> Line_5 $$ IteratorUtils.stream(models).flatMap( model -> createIndexRequests(model)).forEach(bulkRequest::<>add) [FD]
+Line_3 $$ final BulkRequestBuilder bulkRequest = getClient().prepareBulk() --> Line_6 $$ if (bulkRequest.numberOfActions() <= 0) [FD]
+Line_6 $$ if (bulkRequest.numberOfActions() <= 0) --> Line_7 $$ return IESIndexerResult.NULL [CD]
+Line_3 $$ final BulkRequestBuilder bulkRequest = getClient().prepareBulk() --> Line_9 $$ final BulkResponse bulkResponse = bulkRequest.execute().actionGet() [FD]
+Line_9 $$ final BulkResponse bulkResponse = bulkRequest.execute().actionGet() --> Line_10 $$ final IESIndexerResult esResponse = ESIndexerResult.of(bulkResponse) [FD]
+Line_10 $$ final IESIndexerResult esResponse = ESIndexerResult.of(bulkResponse) --> Line_11 $$ logger.debug("Added [FD]
+Line_3 $$ final BulkRequestBuilder bulkRequest = getClient().prepareBulk() --> Line_16 $$ final int count = bulkRequest.numberOfActions() [FD]

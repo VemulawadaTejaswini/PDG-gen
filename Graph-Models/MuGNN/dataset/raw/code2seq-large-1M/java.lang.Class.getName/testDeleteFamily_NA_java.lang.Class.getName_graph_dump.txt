@@ -1,0 +1,5 @@
+Line_2 $$ public void testDeleteFamily() throws Exception --> Line_3 $$ createTable(TestDeleteFamilyCoprocessor.class.getName()) [CD]
+Line_4 $$ try (Table t = util.getConnection().getTable(tableName)) --> Line_5 $$ t.put(Lists.newArrayList(new Put(row1).addColumn(test, dummy, dummy), new Put(row2).addColumn(test, dummy, dummy), new Put(row3).addColumn(test, dummy, dummy))) [FD]
+Line_4 $$ try (Table t = util.getConnection().getTable(tableName)) --> Line_6 $$ assertRowCount(t, 3) [FD]
+Line_4 $$ try (Table t = util.getConnection().getTable(tableName)) --> Line_7 $$ t.delete(new Delete(test).addFamily(test)) [FD]
+Line_4 $$ try (Table t = util.getConnection().getTable(tableName)) --> Line_8 $$ assertRowCount(t, 1) [FD]

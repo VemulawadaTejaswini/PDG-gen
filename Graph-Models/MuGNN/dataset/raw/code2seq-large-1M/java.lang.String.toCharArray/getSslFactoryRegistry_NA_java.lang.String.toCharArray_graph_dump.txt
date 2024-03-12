@@ -1,0 +1,3 @@
+Line_2 $$ private static Registry<ConnectionSocketFactory> getSslFactoryRegistry(String certPath) throws IOException --> Line_4 $$ KeyStore keyStore = KeyStoreUtils.createDockerKeyStore(certPath) [FD]
+Line_4 $$ KeyStore keyStore = KeyStoreUtils.createDockerKeyStore(certPath) --> Line_5 $$ SSLContext sslContext = SSLContexts.custom().useTLS().loadKeyMaterial(keyStore, "docker".toCharArray()).loadTrustMaterial(keyStore).build() [FD]
+Line_6 $$ SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext) --> Line_7 $$ return RegistryBuilder.<ConnectionSocketFactory>create().register("https", sslsf).build() [FD]

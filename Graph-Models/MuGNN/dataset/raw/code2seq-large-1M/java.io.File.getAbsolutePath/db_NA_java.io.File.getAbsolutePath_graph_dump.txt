@@ -1,0 +1,8 @@
+Line_2 $$ private RocksDBReference db() --> Line_3 $$ Preconditions.checkState(!closed, "db was closed") [CD]
+Line_2 $$ private RocksDBReference db() --> Line_4 $$ if (dbhandle == null) [CD]
+Line_6 $$ if (dbhandle == null) --> Line_7 $$ String dbpath = dbdir.getAbsolutePath() [CD]
+Line_6 $$ if (dbhandle == null) --> Line_8 $$ boolean readOnly = this.readOnly [CD]
+Line_6 $$ if (dbhandle == null) --> Line_9 $$ DBConfig address = new DBConfig(dbpath, readOnly) [CD]
+Line_6 $$ if (dbhandle == null) --> Line_10 $$ this.dbhandle = RocksConnectionManager.INSTANCE.acquire(address) [CD]
+Line_9 $$ DBConfig address = new DBConfig(dbpath, readOnly) --> Line_10 $$ this.dbhandle = RocksConnectionManager.INSTANCE.acquire(address) [FD]
+Line_2 $$ private RocksDBReference db() --> Line_14 $$ return dbhandle.getReference() [CD]

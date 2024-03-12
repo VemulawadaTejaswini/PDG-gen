@@ -1,0 +1,8 @@
+Line_2 $$ public void testDescTimestampAtBoundary() throws Exception --> Line_3 $$ Properties props = PropertiesUtil.deepCopy(new Properties()) [CD]
+Line_2 $$ public void testDescTimestampAtBoundary() throws Exception --> Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) [CD]
+Line_3 $$ Properties props = PropertiesUtil.deepCopy(new Properties()) --> Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) [FD]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) --> Line_6 $$ conn.createStatement().execute("CREATE TABLE FOO(\n" + "                a VARCHAR NOT NULL,\n" + "                b TIMESTAMP NOT NULL,\n" + "                c VARCHAR,\n" + "                CONSTRAINT pk PRIMARY KEY (a, b DESC, c)\n" + "              ) IMMUTABLE_ROWS=true\n" + "                ,SALT_BUCKETS=20") [FD]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) --> Line_8 $$ ResultSet rs = conn.createStatement().executeQuery("EXPLAIN " + query) [FD]
+Line_8 $$ ResultSet rs = conn.createStatement().executeQuery("EXPLAIN " + query) --> Line_9 $$ String queryPlan = QueryUtil.getExplainPlan(rs) [FD]
+Line_9 $$ String queryPlan = QueryUtil.getExplainPlan(rs) --> Line_10 $$ assertEquals("CLIENT PARALLEL 20-WAY RANGE SCAN OVER FOO [0,'a',~'2016-01-28 23:59:59.999'] - [19,'a',~'2016-01-28 00:00:00.000']\n" + "    SERVER FILTER BY FIRST KEY ONLY\n" + "CLIENT MERGE SORT", queryPlan) [FD]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) --> Line_12 $$ conn.close() [FD]

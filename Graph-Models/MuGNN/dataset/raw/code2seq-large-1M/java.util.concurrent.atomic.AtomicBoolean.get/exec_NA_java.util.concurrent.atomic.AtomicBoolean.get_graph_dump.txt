@@ -1,0 +1,8 @@
+Line_4 $$ if ((boolean) Platform.isFxApplicationThread()) --> Line_5 $$ return action.perform() [CD]
+Line_2 $$ static <T> T exec(final boolean pauseAfterExec, final StatusCode statusCode, final long timeout, final Sync<T> action) --> Line_5 $$ return action.perform() [FD]
+Line_7 $$ final Runner<T> runner = new Runner<T>(action, statusCode) --> Line_9 $$ Platform.runLater(runner) [FD]
+Line_2 $$ static <T> T exec(final boolean pauseAfterExec, final StatusCode statusCode, final long timeout, final Sync<T> action) --> Line_14 $$ runner.done.wait(timeout) [FD]
+Line_12 $$ if (!runner.done.get()) --> Line_18 $$ if (!runner.done.get()) [CD]
+Line_18 $$ if (!runner.done.get()) --> Line_19 $$ runner.cancel.set(true) [CD]
+Line_2 $$ static <T> T exec(final boolean pauseAfterExec, final StatusCode statusCode, final long timeout, final Sync<T> action) --> Line_20 $$ throw new TimeoutException(new StringBuilder().append("Timeout of ").append(timeout).append("ms reached.").toString()) [FD]
+Line_27 $$ if (pauseAfterExec) --> Line_28 $$ pause() [CD]

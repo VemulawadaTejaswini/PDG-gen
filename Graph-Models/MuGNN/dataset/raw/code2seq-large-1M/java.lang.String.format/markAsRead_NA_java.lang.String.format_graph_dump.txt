@@ -1,0 +1,7 @@
+Line_2 $$ public void markAsRead(final Date lastread) throws IOException --> Line_3 $$ final Iterable<XML> ids = this.storage.xml().nodes(this.xpath() + String.format("/notifications/notification[date <= %s]/id", lastread.getTime())) [FD]
+Line_2 $$ public void markAsRead(final Date lastread) throws IOException --> Line_3 $$ final Iterable<XML> ids = this.storage.xml().nodes(this.xpath() + String.format("/notifications/notification[date <= %s]/id", lastread.getTime())) [CD]
+Line_2 $$ public void markAsRead(final Date lastread) throws IOException --> Line_4 $$ final JsonPatch json = new JsonPatch(this.storage) [CD]
+Line_2 $$ public void markAsRead(final Date lastread) throws IOException --> Line_5 $$ final JsonObject read = Json.createObjectBuilder().add("read", true).build() [CD]
+Line_4 $$ final JsonPatch json = new JsonPatch(this.storage) --> Line_7 $$ json.patch(String.format(this.xpath().concat("/notifications/notification[id = %s]"), nid.xpath("text()").get(0)), read) [FD]
+Line_5 $$ final JsonObject read = Json.createObjectBuilder().add("read", true).build() --> Line_7 $$ json.patch(String.format(this.xpath().concat("/notifications/notification[id = %s]"), nid.xpath("text()").get(0)), read) [FD]
+Line_6 $$ for (final XML nid : ids) --> Line_7 $$ json.patch(String.format(this.xpath().concat("/notifications/notification[id = %s]"), nid.xpath("text()").get(0)), read) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ static String provideSubdir(@Parameter(PARAM_SUBDIR) Optional<String> subdirOptional, YearMonth yearMonth) --> Line_3 $$ String subdir = subdirOptional.orElse(String.format("%s/%s", DEFAULT_SUBDIR, DateTimeFormat.forPattern("yyyy-MM").print(yearMonth))) [FD]
+Line_2 $$ static String provideSubdir(@Parameter(PARAM_SUBDIR) Optional<String> subdirOptional, YearMonth yearMonth) --> Line_3 $$ String subdir = subdirOptional.orElse(String.format("%s/%s", DEFAULT_SUBDIR, DateTimeFormat.forPattern("yyyy-MM").print(yearMonth))) [CD]
+Line_2 $$ static String provideSubdir(@Parameter(PARAM_SUBDIR) Optional<String> subdirOptional, YearMonth yearMonth) --> Line_4 $$ if (subdir.startsWith("/") || subdir.endsWith("/")) [CD]
+Line_3 $$ String subdir = subdirOptional.orElse(String.format("%s/%s", DEFAULT_SUBDIR, DateTimeFormat.forPattern("yyyy-MM").print(yearMonth))) --> Line_4 $$ if (subdir.startsWith("/") || subdir.endsWith("/")) [FD]
+Line_3 $$ String subdir = subdirOptional.orElse(String.format("%s/%s", DEFAULT_SUBDIR, DateTimeFormat.forPattern("yyyy-MM").print(yearMonth))) --> Line_5 $$ throw new BadRequestException(String.format("subdir must not start or end with a \"/\", got %s instead.", subdir)) [FD]
+Line_2 $$ static String provideSubdir(@Parameter(PARAM_SUBDIR) Optional<String> subdirOptional, YearMonth yearMonth) --> Line_7 $$ return subdir [CD]

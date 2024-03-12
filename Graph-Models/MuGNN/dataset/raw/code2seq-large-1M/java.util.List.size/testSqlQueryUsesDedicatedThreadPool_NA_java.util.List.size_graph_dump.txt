@@ -1,0 +1,8 @@
+Line_3 $$ try (Ignite client = startGrid("client")) --> Line_4 $$ IgniteCache<Integer, Integer> cache = client.cache(CACHE_NAME) [FD]
+Line_4 $$ IgniteCache<Integer, Integer> cache = client.cache(CACHE_NAME) --> Line_5 $$ cache.put(1, 1) [FD]
+Line_4 $$ IgniteCache<Integer, Integer> cache = client.cache(CACHE_NAME) --> Line_6 $$ QueryCursor<List<?>> cursor = cache.query(new SqlFieldsQuery("select currentPolicy() from Integer")) [FD]
+Line_6 $$ QueryCursor<List<?>> cursor = cache.query(new SqlFieldsQuery("select currentPolicy() from Integer")) --> Line_7 $$ List<List<?>> result = cursor.getAll() [FD]
+Line_6 $$ QueryCursor<List<?>> cursor = cache.query(new SqlFieldsQuery("select currentPolicy() from Integer")) --> Line_8 $$ cursor.close() [FD]
+Line_7 $$ List<List<?>> result = cursor.getAll() --> Line_9 $$ assertEquals(1, result.size()) [FD]
+Line_7 $$ List<List<?>> result = cursor.getAll() --> Line_10 $$ Byte plc = (Byte) result.get(0).get(0) [FD]
+Line_10 $$ Byte plc = (Byte) result.get(0).get(0) --> Line_11 $$ assertNotNull(plc) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void unlockHbck() --> Line_3 $$ if (isExclusive() && hbckLockCleanup.compareAndSet(true, false)) [CD]
+Line_3 $$ if (isExclusive() && hbckLockCleanup.compareAndSet(true, false)) --> Line_4 $$ RetryCounter retryCounter = lockFileRetryCounterFactory.create() [CD]
+Line_3 $$ if (isExclusive() && hbckLockCleanup.compareAndSet(true, false)) --> Line_5 $$ do [CD]
+Line_4 $$ RetryCounter retryCounter = lockFileRetryCounterFactory.create() --> Line_12 $$ LOG.info("Failed to delete " + HBCK_LOCK_PATH + ", try=" + (retryCounter.getAttemptTimes() + 1) + " of " + retryCounter.getMaxAttempts()) [FD]
+Line_4 $$ RetryCounter retryCounter = lockFileRetryCounterFactory.create() --> Line_15 $$ retryCounter.sleepUntilNextRetry() [FD]
+Line_4 $$ RetryCounter retryCounter = lockFileRetryCounterFactory.create() --> Line_5 $$ do [FD]

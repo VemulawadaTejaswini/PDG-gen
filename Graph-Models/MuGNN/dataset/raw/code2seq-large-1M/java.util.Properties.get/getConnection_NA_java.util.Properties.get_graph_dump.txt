@@ -1,0 +1,8 @@
+Line_2 $$ public IConnection getConnection(String connectionClassName) throws OdaException --> Line_4 $$ boolean isConnOpen = false [CD]
+Line_2 $$ public IConnection getConnection(String connectionClassName) throws OdaException --> Line_5 $$ if (m_appContext != null && (m_appContext instanceof Properties)) [CD]
+Line_5 $$ if (m_appContext != null && (m_appContext instanceof Properties)) --> Line_6 $$ Object connState = ((Properties) m_appContext).get(TEST_DRIVER_CONN_STATE) [CD]
+Line_5 $$ if (m_appContext != null && (m_appContext instanceof Properties)) --> Line_7 $$ if (connState != null && connState.toString().equals(TEST_DRIVER_CONN_STATE_OPEN)) [CD]
+Line_6 $$ Object connState = ((Properties) m_appContext).get(TEST_DRIVER_CONN_STATE) --> Line_7 $$ if (connState != null && connState.toString().equals(TEST_DRIVER_CONN_STATE_OPEN)) [FD]
+Line_7 $$ if (connState != null && connState.toString().equals(TEST_DRIVER_CONN_STATE_OPEN)) --> Line_8 $$ isConnOpen = true [CD]
+Line_4 $$ boolean isConnOpen = false --> Line_8 $$ isConnOpen = true [FD]
+Line_2 $$ public IConnection getConnection(String connectionClassName) throws OdaException --> Line_10 $$ return new TestConnectionImpl(isConnOpen) [CD]

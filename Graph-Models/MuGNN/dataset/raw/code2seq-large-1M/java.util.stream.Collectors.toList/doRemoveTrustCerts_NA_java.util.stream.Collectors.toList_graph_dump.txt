@@ -1,0 +1,7 @@
+Line_2 $$ private void doRemoveTrustCerts(ContainerHostRemovalTaskState state) --> Line_3 $$ collectTrustCert(state).thenAccept( trustCertSelfLinks -> [CD]
+Line_2 $$ private void doRemoveTrustCerts(ContainerHostRemovalTaskState state) --> Line_3 $$ collectTrustCert(state).thenAccept( trustCertSelfLinks -> [FD]
+Line_5 $$ if (trustCertSelfLink == null || !trustCertSelfLink.startsWith(SslTrustCertificateService.FACTORY_LINK)) --> Line_6 $$ return DeferredResult.completed(null) [CD]
+Line_8 $$ Query.Builder queryBuilder = Query.Builder.create().addCompositeFieldClause(ComputeState.FIELD_NAME_CUSTOM_PROPERTIES, ComputeConstants.HOST_TRUST_CERTS_PROP_NAME, trustCertSelfLink) --> Line_9 $$ Query query = queryBuilder.build() [FD]
+Line_9 $$ Query query = queryBuilder.build() --> Line_10 $$ QueryTask queryTask = QueryUtil.buildQuery(ComputeState.class, true, query) [FD]
+Line_13 $$ if (qrt.results.documentCount == 0 || state.resourceLinks.containsAll(qrt.results.documentLinks)) --> Line_14 $$ return sendWithDeferredResult(Operation.createDelete(UriUtils.buildUri(getHost(), trustCertSelfLink)).setReferer(getHost().getUri()), QueryTask.class) [CD]
+Line_4 $$ List l = trustCertSelfLinks.stream().map( trustCertSelfLink -> --> Line_23 $$ DeferredResult.allOf(l).thenAccept( oo -> [FD]

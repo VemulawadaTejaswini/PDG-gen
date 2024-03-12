@@ -1,0 +1,6 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW), properties)) --> Line_4 $$ ResultSet resultSet = conn.createStatement().executeQuery("select port['psql'] from sys.nodes limit 1") [FD]
+Line_4 $$ ResultSet resultSet = conn.createStatement().executeQuery("select port['psql'] from sys.nodes limit 1") --> Line_5 $$ assertThat(resultSet.next(), is(true)) [FD]
+Line_4 $$ ResultSet resultSet = conn.createStatement().executeQuery("select port['psql'] from sys.nodes limit 1") --> Line_6 $$ Integer port = resultSet.getInt(1) [FD]
+Line_7 $$ ArrayList<Integer> actualPorts = new ArrayList() --> Line_9 $$ actualPorts.add(postgresNetty.boundAddress().publishAddress().getPort()) [FD]
+Line_6 $$ Integer port = resultSet.getInt(1) --> Line_11 $$ assertThat(port, Matchers.isOneOf(actualPorts.toArray(new Integer[0]))) [FD]
+Line_7 $$ ArrayList<Integer> actualPorts = new ArrayList() --> Line_11 $$ assertThat(port, Matchers.isOneOf(actualPorts.toArray(new Integer[0]))) [FD]

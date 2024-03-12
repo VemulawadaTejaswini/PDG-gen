@@ -1,0 +1,7 @@
+Line_2 $$ public long readProcessedTimeStamp(int partitionId) --> Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId + "/" + ZNODE_TIMESTAMPS [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId + "/" + ZNODE_TIMESTAMPS --> Line_5 $$ if (curator.checkExists().forPath(path) == null) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) == null) --> Line_6 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path) [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId + "/" + ZNODE_TIMESTAMPS --> Line_6 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) == null) --> Line_7 $$ return 0L [CD]
+Line_5 $$ if (curator.checkExists().forPath(path) == null) --> Line_9 $$ return Long.parseLong(new String(curator.getData().forPath(path), "UTF-8")) [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_PARTITIONS + "/" + partitionId + "/" + ZNODE_TIMESTAMPS --> Line_9 $$ return Long.parseLong(new String(curator.getData().forPath(path), "UTF-8")) [FD]

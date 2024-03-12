@@ -1,0 +1,6 @@
+Line_2 $$ private void deleteAttemptTempFiles(Path targetWorkPath, FileSystem targetFS, String jobId) throws IOException --> Line_3 $$ FileStatus[] tempFiles = targetFS.globStatus(new Path(targetWorkPath, ".distcp.tmp." + jobId.replaceAll("job", "attempt") + "*")) [FD]
+Line_2 $$ private void deleteAttemptTempFiles(Path targetWorkPath, FileSystem targetFS, String jobId) throws IOException --> Line_3 $$ FileStatus[] tempFiles = targetFS.globStatus(new Path(targetWorkPath, ".distcp.tmp." + jobId.replaceAll("job", "attempt") + "*")) [CD]
+Line_2 $$ private void deleteAttemptTempFiles(Path targetWorkPath, FileSystem targetFS, String jobId) throws IOException --> Line_4 $$ if (tempFiles != null && tempFiles.length > 0) [CD]
+Line_5 $$ for (FileStatus file : tempFiles) --> Line_6 $$ LOG.info("Cleaning up " + file.getPath()) [FD]
+Line_2 $$ private void deleteAttemptTempFiles(Path targetWorkPath, FileSystem targetFS, String jobId) throws IOException --> Line_7 $$ targetFS.delete(file.getPath(), false) [FD]
+Line_5 $$ for (FileStatus file : tempFiles) --> Line_7 $$ targetFS.delete(file.getPath(), false) [FD]

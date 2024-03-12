@@ -1,0 +1,8 @@
+Line_2 $$ private void readConfigurations(String dataDirectoryName, int offset) --> Line_3 $$ final File dataDirectory = new File(dataDirectoryName) [CD]
+Line_2 $$ private void readConfigurations(String dataDirectoryName, int offset) --> Line_4 $$ final File[] partitionDirectories = dataDirectory.listFiles(( d,  f) -> new File(d, f).isDirectory()) [CD]
+Line_3 $$ final File dataDirectory = new File(dataDirectoryName) --> Line_4 $$ final File[] partitionDirectories = dataDirectory.listFiles(( d,  f) -> new File(d, f).isDirectory()) [FD]
+Line_6 $$ final File configFile = new File(partitionDirectory, PARTITION_METAFILE_NAME) --> Line_7 $$ if (configFile.exists()) [FD]
+Line_7 $$ if (configFile.exists()) --> Line_8 $$ final File logDirectory = new File(partitionDirectory, PARTITION_LOG_DIR) [CD]
+Line_7 $$ if (configFile.exists()) --> Line_9 $$ final File snapshotsDirectory = new File(partitionDirectory, PARTITION_SNAPSHOTS_DIR) [CD]
+Line_7 $$ if (configFile.exists()) --> Line_10 $$ configurations.add(new RaftPersistentConfiguration(configFile, logDirectory, snapshotsDirectory)) [CD]
+Line_7 $$ if (configFile.exists()) --> Line_11 $$ partitionCountPerDataDirectory[offset]++ [CD]

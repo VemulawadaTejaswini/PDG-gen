@@ -1,0 +1,8 @@
+Line_2 $$ private TsModel transformOptionalProperties(final SymbolTable symbolTable, TsModel tsModel) --> Line_3 $$ return tsModel.withBeans(tsModel.getBeans().stream().map( bean -> [CD]
+Line_2 $$ private TsModel transformOptionalProperties(final SymbolTable symbolTable, TsModel tsModel) --> Line_3 $$ return tsModel.withBeans(tsModel.getBeans().stream().map( bean -> [FD]
+Line_4 $$ if (bean.getCategory() != TsBeanCategory.Data) --> Line_5 $$ return bean [CD]
+Line_8 $$ if (property.getTsType() instanceof TsType.OptionalType) --> Line_9 $$ final TsType.OptionalType optionalType = (TsType.OptionalType) property.getTsType() [CD]
+Line_8 $$ if (property.getTsType() instanceof TsType.OptionalType) --> Line_10 $$ if (settings.optionalPropertiesDeclaration == OptionalPropertiesDeclaration.nullableType) [CD]
+Line_10 $$ if (settings.optionalPropertiesDeclaration == OptionalPropertiesDeclaration.nullableType) --> Line_11 $$ return property.setTsType(new TsType.UnionType(Arrays.asList(optionalType.type, TsType.Null))) [CD]
+Line_8 $$ if (property.getTsType() instanceof TsType.OptionalType) --> Line_13 $$ if (settings.optionalPropertiesDeclaration == OptionalPropertiesDeclaration.questionMarkAndNullableType) [CD]
+Line_13 $$ if (settings.optionalPropertiesDeclaration == OptionalPropertiesDeclaration.questionMarkAndNullableType) --> Line_14 $$ return property.setTsType(new TsType.OptionalType(new TsType.UnionType(Arrays.asList(optionalType.type, TsType.Null)))) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void performUpdate(Driver driver, int nodeId, int newNodeId, AtomicReference<Session> usedSessionRef, CountDownLatch latchToWait) throws Exception --> Line_3 $$ try (Session session = driver.session()) [FD]
+Line_2 $$ public void performUpdate(Driver driver, int nodeId, int newNodeId, AtomicReference<Session> usedSessionRef, CountDownLatch latchToWait) throws Exception --> Line_4 $$ usedSessionRef.set(session) [FD]
+Line_3 $$ try (Session session = driver.session()) --> Line_4 $$ usedSessionRef.set(session) [FD]
+Line_2 $$ public void performUpdate(Driver driver, int nodeId, int newNodeId, AtomicReference<Session> usedSessionRef, CountDownLatch latchToWait) throws Exception --> Line_5 $$ latchToWait.await() [FD]
+Line_3 $$ try (Session session = driver.session()) --> Line_6 $$ session.writeTransaction( tx -> [FD]
+Line_2 $$ public void performUpdate(Driver driver, int nodeId, int newNodeId, AtomicReference<Session> usedSessionRef, CountDownLatch latchToWait) throws Exception --> Line_8 $$ StatementResult result = updateNodeId(tx, nodeId, newNodeId) [FD]
+Line_8 $$ StatementResult result = updateNodeId(tx, nodeId, newNodeId) --> Line_9 $$ result.consume() [FD]

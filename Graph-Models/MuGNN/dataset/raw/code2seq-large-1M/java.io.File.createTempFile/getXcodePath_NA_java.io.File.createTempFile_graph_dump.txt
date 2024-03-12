@@ -1,0 +1,7 @@
+Line_2 $$ private File getXcodePath() throws Exception --> Line_3 $$ if (xcodePath != null) [CD]
+Line_3 $$ if (xcodePath != null) --> Line_4 $$ return new File(xcodePath) [CD]
+Line_2 $$ private File getXcodePath() throws Exception --> Line_6 $$ File tmpFile = File.createTempFile(this.getClass().getSimpleName(), ".tmp") [CD]
+Line_6 $$ File tmpFile = File.createTempFile(this.getClass().getSimpleName(), ".tmp") --> Line_8 $$ int ret = new ProcessBuilder("xcode-select", "-print-path").redirectErrorStream(true).redirectOutput(Redirect.to(tmpFile)).start().waitFor() [FD]
+Line_8 $$ int ret = new ProcessBuilder("xcode-select", "-print-path").redirectErrorStream(true).redirectOutput(Redirect.to(tmpFile)).start().waitFor() --> Line_9 $$ if (ret != 0) [FD]
+Line_6 $$ File tmpFile = File.createTempFile(this.getClass().getSimpleName(), ".tmp") --> Line_12 $$ return new File(new String(Files.readAllBytes(tmpFile.toPath()), "UTF-8").trim()) [FD]
+Line_6 $$ File tmpFile = File.createTempFile(this.getClass().getSimpleName(), ".tmp") --> Line_14 $$ tmpFile.delete() [FD]

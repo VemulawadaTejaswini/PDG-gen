@@ -1,0 +1,8 @@
+Line_2 $$ public Promise<List<T>> yield() --> Line_3 $$ List<Promise<T>> promises = Lists.newArrayList(this.promises) [CD]
+Line_2 $$ public Promise<List<T>> yield() --> Line_4 $$ if (promises.isEmpty()) [CD]
+Line_3 $$ List<Promise<T>> promises = Lists.newArrayList(this.promises) --> Line_4 $$ if (promises.isEmpty()) [FD]
+Line_4 $$ if (promises.isEmpty()) --> Line_5 $$ return Promise.value(Collections.emptyList()) [CD]
+Line_2 $$ public Promise<List<T>> yield() --> Line_7 $$ List<T> results = Types.cast(promises) [CD]
+Line_3 $$ List<Promise<T>> promises = Lists.newArrayList(this.promises) --> Line_7 $$ List<T> results = Types.cast(promises) [FD]
+Line_2 $$ public Promise<List<T>> yield() --> Line_8 $$ return Promise.async( d -> forEach(results::<>set).onError(d::<>error).then(() -> d.success(results))) [CD]
+Line_7 $$ List<T> results = Types.cast(promises) --> Line_8 $$ return Promise.async( d -> forEach(results::<>set).onError(d::<>error).then(() -> d.success(results))) [FD]

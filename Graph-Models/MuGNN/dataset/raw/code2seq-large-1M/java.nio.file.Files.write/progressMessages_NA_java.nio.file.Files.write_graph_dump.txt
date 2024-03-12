@@ -1,0 +1,6 @@
+Line_2 $$ public void progressMessages() throws Exception --> Line_3 $$ Files.write(checkoutDir.resolve("file1"), new byte[0]) [CD]
+Line_2 $$ public void progressMessages() throws Exception --> Line_4 $$ Files.write(checkoutDir.resolve("file2"), new byte[0]) [CD]
+Line_2 $$ public void progressMessages() throws Exception --> Line_5 $$ Transformation transform = skylark.eval("t", "t = " + "core.transform(" + "    [core.move('file1', 'file1.a'), core.move('file2', 'file2.a')]," + "    reversal = [core.move('foo', 'bar')]," + ")") [CD]
+Line_2 $$ public void progressMessages() throws Exception --> Line_6 $$ transform(transform) [CD]
+Line_5 $$ Transformation transform = skylark.eval("t", "t = " + "core.transform(" + "    [core.move('file1', 'file1.a'), core.move('file2', 'file2.a')]," + "    reversal = [core.move('foo', 'bar')]," + ")") --> Line_6 $$ transform(transform) [FD]
+Line_2 $$ public void progressMessages() throws Exception --> Line_7 $$ console.assertThat().onceInLog(MessageType.PROGRESS, "\\[ *1/ *2\\] Transform Moving file1").onceInLog(MessageType.PROGRESS, "\\[ *2/ *2\\] Transform Moving file2") [CD]

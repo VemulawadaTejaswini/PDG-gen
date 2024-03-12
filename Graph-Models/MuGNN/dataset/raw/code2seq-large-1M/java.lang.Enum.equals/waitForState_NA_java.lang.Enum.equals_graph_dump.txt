@@ -1,0 +1,8 @@
+Line_2 $$ public static void waitForState(String service, State state, long timeoutMillis) throws TimeoutException --> Line_3 $$ final long endMillis = SystemClock.elapsedRealtime() + timeoutMillis [CD]
+Line_2 $$ public static void waitForState(String service, State state, long timeoutMillis) throws TimeoutException --> Line_4 $$ while (true) [CD]
+Line_2 $$ public static void waitForState(String service, State state, long timeoutMillis) throws TimeoutException --> Line_6 $$ final State currentState = getState(service) [FD]
+Line_2 $$ public static void waitForState(String service, State state, long timeoutMillis) throws TimeoutException --> Line_7 $$ if (state.equals(currentState)) [FD]
+Line_6 $$ final State currentState = getState(service) --> Line_7 $$ if (state.equals(currentState)) [FD]
+Line_7 $$ if (state.equals(currentState)) --> Line_8 $$ return [CD]
+Line_3 $$ final long endMillis = SystemClock.elapsedRealtime() + timeoutMillis --> Line_10 $$ if (SystemClock.elapsedRealtime() >= endMillis) [FD]
+Line_2 $$ public static void waitForState(String service, State state, long timeoutMillis) throws TimeoutException --> Line_14 $$ sPropertyLock.wait(timeoutMillis) [FD]

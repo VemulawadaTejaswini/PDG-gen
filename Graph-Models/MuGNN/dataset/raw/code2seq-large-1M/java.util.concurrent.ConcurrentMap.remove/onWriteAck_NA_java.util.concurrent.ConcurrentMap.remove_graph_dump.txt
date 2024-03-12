@@ -1,0 +1,7 @@
+Line_2 $$ private void onWriteAck(UUID nodeId, long batchId) --> Line_3 $$ if (!isDone()) [CD]
+Line_3 $$ if (!isDone()) --> Line_4 $$ boolean rmv = ackMap.remove(batchId, nodeId) [CD]
+Line_2 $$ private void onWriteAck(UUID nodeId, long batchId) --> Line_4 $$ boolean rmv = ackMap.remove(batchId, nodeId) [FD]
+Line_3 $$ if (!isDone()) --> Line_6 $$ if (ackMap.isEmpty()) [CD]
+Line_6 $$ if (ackMap.isEmpty()) --> Line_7 $$ signalNoAcks() [CD]
+Line_6 $$ if (ackMap.isEmpty()) --> Line_8 $$ if (awaitingLast) [CD]
+Line_8 $$ if (awaitingLast) --> Line_9 $$ onDone(true) [CD]

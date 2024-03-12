@@ -1,0 +1,7 @@
+Line_2 $$ public void setLastEntries(Feed feed, List<String> entries) --> Line_4 $$ String key = buildRedisEntryKey(feed) [FD]
+Line_3 $$ try (Jedis jedis = pool.getResource()) --> Line_5 $$ Pipeline pipe = jedis.pipelined() [FD]
+Line_5 $$ Pipeline pipe = jedis.pipelined() --> Line_6 $$ pipe.del(key) [FD]
+Line_5 $$ Pipeline pipe = jedis.pipelined() --> Line_8 $$ pipe.sadd(key, entry) [FD]
+Line_7 $$ for (String entry : entries) --> Line_8 $$ pipe.sadd(key, entry) [FD]
+Line_5 $$ Pipeline pipe = jedis.pipelined() --> Line_10 $$ pipe.expire(key, (int) TimeUnit.DAYS.toSeconds(7)) [FD]
+Line_5 $$ Pipeline pipe = jedis.pipelined() --> Line_11 $$ pipe.sync() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private String scrubPath(String path) --> Line_3 $$ if (path.startsWith(Environment.getDataDirectory().getAbsolutePath())) [FD]
+Line_2 $$ private String scrubPath(String path) --> Line_3 $$ if (path.startsWith(Environment.getDataDirectory().getAbsolutePath())) [CD]
+Line_3 $$ if (path.startsWith(Environment.getDataDirectory().getAbsolutePath())) --> Line_4 $$ return "internal" [CD]
+Line_2 $$ private String scrubPath(String path) --> Line_6 $$ final VolumeRecord rec = findRecordForPath(path) [FD]
+Line_2 $$ private String scrubPath(String path) --> Line_6 $$ final VolumeRecord rec = findRecordForPath(path) [CD]
+Line_2 $$ private String scrubPath(String path) --> Line_7 $$ if (rec == null || rec.createdMillis == 0) [CD]
+Line_7 $$ if (rec == null || rec.createdMillis == 0) --> Line_8 $$ return "unknown" [CD]
+Line_7 $$ if (rec == null || rec.createdMillis == 0) --> Line_10 $$ return "ext:" + (int) ((System.currentTimeMillis() - rec.createdMillis) / DateUtils.WEEK_IN_MILLIS) + "w" [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testBlob() --> Line_3 $$ List<Pair<Supplier, byte[]>> suppliers = streams.streamAll(em, Supplier.class).select( s -> new Pair(s, s.getSignature())).toList() [CD]
+Line_2 $$ public void testBlob() --> Line_4 $$ suppliers = suppliers.stream().sorted(( a,  b) -> a.getOne().getName().compareTo(b.getOne().getName())).collect(Collectors.toList()) [CD]
+Line_2 $$ public void testBlob() --> Line_5 $$ assertEquals("SELECT A, A.signature FROM org.jinq.hibernate.test.entities.Supplier A", query) [CD]
+Line_2 $$ public void testBlob() --> Line_6 $$ assertEquals(3, suppliers.size()) [CD]
+Line_4 $$ suppliers = suppliers.stream().sorted(( a,  b) -> a.getOne().getName().compareTo(b.getOne().getName())).collect(Collectors.toList()) --> Line_6 $$ assertEquals(3, suppliers.size()) [FD]
+Line_2 $$ public void testBlob() --> Line_7 $$ assertEquals("Conglomerate", Charset.forName("UTF-8").decode(ByteBuffer.wrap(suppliers.get(0).getTwo())).toString()) [CD]
+Line_4 $$ suppliers = suppliers.stream().sorted(( a,  b) -> a.getOne().getName().compareTo(b.getOne().getName())).collect(Collectors.toList()) --> Line_7 $$ assertEquals("Conglomerate", Charset.forName("UTF-8").decode(ByteBuffer.wrap(suppliers.get(0).getTwo())).toString()) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public int forceout(String ids) --> Line_3 $$ String[] sessionIds = ids.split(",") [CD]
+Line_2 $$ public int forceout(String ids) --> Line_3 $$ String[] sessionIds = ids.split(",") [FD]
+Line_5 $$ String session = RedisUtil.get(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId) --> Line_6 $$ UpmsSession upmsSession = (UpmsSession) SerializableUtil.deserialize(session) [FD]
+Line_6 $$ UpmsSession upmsSession = (UpmsSession) SerializableUtil.deserialize(session) --> Line_7 $$ upmsSession.setStatus(UpmsSession.OnlineStatus.force_logout) [FD]
+Line_6 $$ UpmsSession upmsSession = (UpmsSession) SerializableUtil.deserialize(session) --> Line_8 $$ upmsSession.setAttribute("FORCE_LOGOUT", "FORCE_LOGOUT") [FD]
+Line_6 $$ UpmsSession upmsSession = (UpmsSession) SerializableUtil.deserialize(session) --> Line_9 $$ RedisUtil.set(ZHENG_UPMS_SHIRO_SESSION_ID + "_" + sessionId, SerializableUtil.serialize(upmsSession), (int) upmsSession.getTimeout() / 1000) [FD]
+Line_2 $$ public int forceout(String ids) --> Line_11 $$ return sessionIds.length [CD]

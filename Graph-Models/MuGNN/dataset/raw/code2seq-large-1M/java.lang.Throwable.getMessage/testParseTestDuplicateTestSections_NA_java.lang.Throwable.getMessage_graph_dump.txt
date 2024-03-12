@@ -1,0 +1,3 @@
+Line_2 $$ public void testParseTestDuplicateTestSections() throws Exception --> Line_3 $$ parser = createParser(YamlXContent.yamlXContent, "---\n" + "\"Missing document (script)\":\n" + "\n" + "  - do:\n" + "      catch:      missing\n" + "      update:\n" + "          index:  test_1\n" + "          type:   test\n" + "          id:     1\n" + "          body: [CD]
+Line_2 $$ public void testParseTestDuplicateTestSections() throws Exception --> Line_4 $$ Exception e = expectThrows(ParsingException.class, () -> ClientYamlTestSuite.parse(getTestClass().getName(), getTestName(), parser)) [CD]
+Line_2 $$ public void testParseTestDuplicateTestSections() throws Exception --> Line_5 $$ assertThat(e.getMessage(), containsString("duplicate test section")) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private void completeMergeTransactions(HashMap<Long, ArrayList<Long>> transactionsBySegment, TestContext context) throws Exception --> Line_3 $$ for (Map.Entry<Long, ArrayList<Long>> e : transactionsBySegment.entrySet()) [FD]
+Line_5 $$ for (long transactionId : e.getValue()) --> Line_6 $$ UpdateableSegmentMetadata transactionMetadata = context.metadata.getStreamSegmentMetadata(transactionId) [FD]
+Line_6 $$ UpdateableSegmentMetadata transactionMetadata = context.metadata.getStreamSegmentMetadata(transactionId) --> Line_7 $$ transactionMetadata.markDeleted() [FD]
+Line_4 $$ long parentId = e.getKey() --> Line_8 $$ context.readIndex.completeMerge(parentId, transactionId) [FD]
+Line_5 $$ for (long transactionId : e.getValue()) --> Line_8 $$ context.readIndex.completeMerge(parentId, transactionId) [FD]

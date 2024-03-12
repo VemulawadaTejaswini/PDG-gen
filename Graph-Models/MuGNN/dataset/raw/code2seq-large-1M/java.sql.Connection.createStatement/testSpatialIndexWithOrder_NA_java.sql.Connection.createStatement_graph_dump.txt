@@ -1,0 +1,7 @@
+Line_2 $$ private void testSpatialIndexWithOrder() throws SQLException --> Line_3 $$ deleteDb("spatial") [CD]
+Line_4 $$ try (Connection conn = getConnection(URL)) --> Line_5 $$ Statement stat = conn.createStatement() [FD]
+Line_5 $$ Statement stat = conn.createStatement() --> Line_6 $$ stat.execute("DROP TABLE IF EXISTS BUILDINGS;" + "CREATE TABLE BUILDINGS (PK serial, THE_GEOM geometry);" + "insert into buildings(the_geom) SELECT 'POINT(1 1)" + "'::geometry from SYSTEM_RANGE(1,10000);\n" + "CREATE SPATIAL INDEX ON PUBLIC.BUILDINGS(THE_GEOM);\n") [FD]
+Line_5 $$ Statement stat = conn.createStatement() --> Line_7 $$ try (ResultSet rs = stat.executeQuery("EXPLAIN SELECT * FROM " + "BUILDINGS ORDER BY PK LIMIT 51;")) [FD]
+Line_7 $$ try (ResultSet rs = stat.executeQuery("EXPLAIN SELECT * FROM " + "BUILDINGS ORDER BY PK LIMIT 51;")) --> Line_8 $$ assertTrue(rs.next()) [FD]
+Line_7 $$ try (ResultSet rs = stat.executeQuery("EXPLAIN SELECT * FROM " + "BUILDINGS ORDER BY PK LIMIT 51;")) --> Line_9 $$ assertTrue(rs.getString(1).contains("PRIMARY_KEY")) [FD]
+Line_2 $$ private void testSpatialIndexWithOrder() throws SQLException --> Line_12 $$ deleteDb("spatial") [CD]

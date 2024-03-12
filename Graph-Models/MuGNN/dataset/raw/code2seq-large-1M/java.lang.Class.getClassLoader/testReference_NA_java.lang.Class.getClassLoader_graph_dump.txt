@@ -1,0 +1,4 @@
+Line_2 $$ public void testReference() throws Exception --> Line_3 $$ DynamicType.Loaded<ReferenceMethod> loaded = new ByteBuddy().subclass(ReferenceMethod.class).method(isDeclaredBy(ReferenceMethod.class)).intercept(MethodDelegation.to(new Interceptor(null))).make().load(ReferenceMethod.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testReference() throws Exception --> Line_4 $$ ReferenceMethod instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testReference() throws Exception --> Line_5 $$ assertThat(instance.foo(), nullValue(Object.class)) [CD]
+Line_4 $$ ReferenceMethod instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(instance.foo(), nullValue(Object.class)) [FD]

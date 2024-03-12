@@ -1,0 +1,4 @@
+Line_2 $$ private List<URL> jarsInDirectory(final Path directory) --> Line_3 $$ final DirectoryStream.Filter<Path> pathFilter =  entry -> Files.isRegularFile(entry) && entry.toString().endsWith(".jar") [CD]
+Line_2 $$ private List<URL> jarsInDirectory(final Path directory) --> Line_4 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory, pathFilter)) [FD]
+Line_3 $$ final DirectoryStream.Filter<Path> pathFilter =  entry -> Files.isRegularFile(entry) && entry.toString().endsWith(".jar") --> Line_4 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory, pathFilter)) [FD]
+Line_4 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory, pathFilter)) --> Line_5 $$ return StreamSupport.stream(stream.spliterator(), false).filter(Files::<>isRegularFile).map(this::<>toUrlSafe).filter(Optional::<>isPresent).map(Optional::<>get).collect(Collectors.toList()) [FD]

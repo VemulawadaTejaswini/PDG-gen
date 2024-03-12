@@ -1,0 +1,5 @@
+Line_2 $$ private void desugar() throws Exception --> Line_3 $$ checkState(!this.used, "This Desugar instance has been used. Please create another one.") [CD]
+Line_2 $$ private void desugar() throws Exception --> Line_4 $$ this.used = true [CD]
+Line_5 $$ try (Closer closer = Closer.create()) --> Line_6 $$ IndexedInputs indexedBootclasspath = new IndexedInputs(toRegisteredInputFileProvider(closer, options.bootclasspath)) [FD]
+Line_5 $$ try (Closer closer = Closer.create()) --> Line_8 $$ IndexedInputs indexedClasspath = new IndexedInputs(toRegisteredInputFileProvider(closer, options.classpath)) [FD]
+Line_9 $$ for (InputOutputPair inputOutputPair : toInputOutputPairs(options)) --> Line_10 $$ desugarOneInput(inputOutputPair, indexedClasspath, bootclassloader, new ClassReaderFactory(indexedBootclasspath, rewriter)) [FD]

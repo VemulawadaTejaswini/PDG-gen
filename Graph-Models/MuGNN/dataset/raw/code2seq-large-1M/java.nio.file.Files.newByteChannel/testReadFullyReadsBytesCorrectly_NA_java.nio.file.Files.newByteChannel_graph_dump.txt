@@ -1,0 +1,8 @@
+Line_3 $$ try (final SeekableByteChannel channel = Files.newByteChannel(DEFECTIVE.toPath())) --> Line_5 $$ Assert.assertTrue(channel.size() > readBuffer.capacity()) [FD]
+Line_4 $$ final ByteBuffer readBuffer = ByteBuffer.allocate(10) --> Line_5 $$ Assert.assertTrue(channel.size() > readBuffer.capacity()) [FD]
+Line_3 $$ try (final SeekableByteChannel channel = Files.newByteChannel(DEFECTIVE.toPath())) --> Line_6 $$ BlockCompressedInputStream.readFully(channel, readBuffer) [FD]
+Line_4 $$ final ByteBuffer readBuffer = ByteBuffer.allocate(10) --> Line_6 $$ BlockCompressedInputStream.readFully(channel, readBuffer) [FD]
+Line_7 $$ ByteBuffer expected = ByteBuffer.allocate(10) --> Line_8 $$ channel.position(0).read(expected) [FD]
+Line_3 $$ try (final SeekableByteChannel channel = Files.newByteChannel(DEFECTIVE.toPath())) --> Line_8 $$ channel.position(0).read(expected) [FD]
+Line_4 $$ final ByteBuffer readBuffer = ByteBuffer.allocate(10) --> Line_9 $$ Assert.assertEquals(readBuffer.array(), expected.array()) [FD]
+Line_7 $$ ByteBuffer expected = ByteBuffer.allocate(10) --> Line_9 $$ Assert.assertEquals(readBuffer.array(), expected.array()) [FD]

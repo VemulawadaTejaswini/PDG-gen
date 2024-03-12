@@ -1,0 +1,8 @@
+Line_4 $$ StorageAgent sa = oper.operatorMeta.getValue(OperatorContext.STORAGE_AGENT) --> Line_5 $$ long[] windowIds = sa.getWindowIds(oper.getId()) [FD]
+Line_3 $$ for (PTOperator oper : getAllOperators().values()) --> Line_5 $$ long[] windowIds = sa.getWindowIds(oper.getId()) [FD]
+Line_5 $$ long[] windowIds = sa.getWindowIds(oper.getId()) --> Line_6 $$ Arrays.sort(windowIds) [FD]
+Line_8 $$ for (long wid : windowIds) --> Line_9 $$ if (wid != Stateless.WINDOW_ID) [FD]
+Line_9 $$ if (wid != Stateless.WINDOW_ID) --> Line_10 $$ oper.addCheckpoint(wid, startTime) [CD]
+Line_3 $$ for (PTOperator oper : getAllOperators().values()) --> Line_10 $$ oper.addCheckpoint(wid, startTime) [FD]
+Line_8 $$ for (long wid : windowIds) --> Line_10 $$ oper.addCheckpoint(wid, startTime) [FD]
+Line_2 $$ public void syncCheckpoints(long startTime, long currentTime) throws IOException --> Line_10 $$ oper.addCheckpoint(wid, startTime) [FD]

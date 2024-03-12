@@ -1,0 +1,3 @@
+Line_2 $$ public void shouldEmitBulkheadFullExceptionEvenWhenErrorNotOnSubscribe() --> Line_3 $$ bulkhead.isCallPermitted() [CD]
+Line_2 $$ public void shouldEmitBulkheadFullExceptionEvenWhenErrorNotOnSubscribe() --> Line_4 $$ StepVerifier.create(Flux.error(new IOException("BAM!"), true).transform(BulkheadOperator.of(bulkhead, Schedulers.immediate()))).expectSubscription().expectError(BulkheadFullException.class).verify(Duration.ofSeconds(1)) [CD]
+Line_2 $$ public void shouldEmitBulkheadFullExceptionEvenWhenErrorNotOnSubscribe() --> Line_5 $$ assertThat(bulkhead.getMetrics().getAvailableConcurrentCalls()).isEqualTo(0) [CD]

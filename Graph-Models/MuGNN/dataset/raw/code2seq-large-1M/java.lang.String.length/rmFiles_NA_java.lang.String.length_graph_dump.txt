@@ -1,0 +1,7 @@
+Line_2 $$ public void rmFiles(String dirPath, Iterable<String> filesToDelete) throws Exception --> Line_3 $$ String commandPrefix = "cd " + dirPath + " && rm " [CD]
+Line_2 $$ public void rmFiles(String dirPath, Iterable<String> filesToDelete) throws Exception --> Line_4 $$ int overhead = commandPrefix.length() + 100 [CD]
+Line_3 $$ String commandPrefix = "cd " + dirPath + " && rm " --> Line_4 $$ int overhead = commandPrefix.length() + 100 [FD]
+Line_2 $$ public void rmFiles(String dirPath, Iterable<String> filesToDelete) throws Exception --> Line_5 $$ for (List<String> rmArgs : chunkArgs(filesToDelete, MAX_ADB_COMMAND_SIZE - overhead)) [FD]
+Line_5 $$ for (List<String> rmArgs : chunkArgs(filesToDelete, MAX_ADB_COMMAND_SIZE - overhead)) --> Line_6 $$ String command = commandPrefix + Joiner.on(' ').join(rmArgs) [FD]
+Line_6 $$ String command = commandPrefix + Joiner.on(' ').join(rmArgs) --> Line_7 $$ LOG.debug("Executing %s", command) [FD]
+Line_6 $$ String command = commandPrefix + Joiner.on(' ').join(rmArgs) --> Line_8 $$ executeCommandWithErrorChecking(command) [FD]

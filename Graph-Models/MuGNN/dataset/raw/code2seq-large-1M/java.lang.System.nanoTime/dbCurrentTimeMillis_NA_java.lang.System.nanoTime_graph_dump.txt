@@ -1,0 +1,7 @@
+Line_2 $$ private long dbCurrentTimeMillis() throws SQLException --> Line_3 $$ final long start = System.nanoTime() [CD]
+Line_4 $$ try (ResultSet resultSet = currentDateTime.executeQuery()) --> Line_5 $$ resultSet.next() [FD]
+Line_4 $$ try (ResultSet resultSet = currentDateTime.executeQuery()) --> Line_6 $$ final Timestamp currentTimestamp = resultSet.getTimestamp(1) [FD]
+Line_8 $$ if (LOGGER.isDebugEnabled()) --> Line_9 $$ LOGGER.debugf("[%s] %s query currentTimestamp = %s tooks %d ms", lockName, holderId, currentTimestamp, TimeUnit.NANOSECONDS.toMillis(elapsedTime)) [CD]
+Line_6 $$ final Timestamp currentTimestamp = resultSet.getTimestamp(1) --> Line_9 $$ LOGGER.debugf("[%s] %s query currentTimestamp = %s tooks %d ms", lockName, holderId, currentTimestamp, TimeUnit.NANOSECONDS.toMillis(elapsedTime)) [FD]
+Line_7 $$ final long elapsedTime = System.nanoTime() - start --> Line_9 $$ LOGGER.debugf("[%s] %s query currentTimestamp = %s tooks %d ms", lockName, holderId, currentTimestamp, TimeUnit.NANOSECONDS.toMillis(elapsedTime)) [FD]
+Line_6 $$ final Timestamp currentTimestamp = resultSet.getTimestamp(1) --> Line_11 $$ return currentTimestamp.getTime() [FD]

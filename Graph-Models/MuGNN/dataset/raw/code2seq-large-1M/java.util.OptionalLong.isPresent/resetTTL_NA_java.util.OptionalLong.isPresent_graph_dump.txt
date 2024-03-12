@@ -1,0 +1,7 @@
+Line_2 $$ private void resetTTL(ScanOptions options) --> Line_3 $$ OptionalLong expireBefore = getExpireBefore() [CD]
+Line_2 $$ private void resetTTL(ScanOptions options) --> Line_4 $$ if (!expireBefore.isPresent()) [CD]
+Line_3 $$ OptionalLong expireBefore = getExpireBefore() --> Line_4 $$ if (!expireBefore.isPresent()) [FD]
+Line_4 $$ if (!expireBefore.isPresent()) --> Line_5 $$ return [CD]
+Line_2 $$ private void resetTTL(ScanOptions options) --> Line_7 $$ options.setTTL(EnvironmentEdgeManager.currentTime() - expireBefore.getAsLong()) [FD]
+Line_2 $$ private void resetTTL(ScanOptions options) --> Line_7 $$ options.setTTL(EnvironmentEdgeManager.currentTime() - expireBefore.getAsLong()) [CD]
+Line_3 $$ OptionalLong expireBefore = getExpireBefore() --> Line_7 $$ options.setTTL(EnvironmentEdgeManager.currentTime() - expireBefore.getAsLong()) [FD]

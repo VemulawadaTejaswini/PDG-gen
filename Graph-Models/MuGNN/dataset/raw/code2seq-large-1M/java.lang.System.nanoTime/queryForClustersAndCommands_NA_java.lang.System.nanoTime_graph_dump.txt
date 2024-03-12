@@ -1,0 +1,6 @@
+Line_2 $$ private Map<Cluster, String> queryForClustersAndCommands(final List<Criterion> clusterCriteria, final Criterion commandCriterion) throws GenieException --> Line_3 $$ final long start = System.nanoTime() [CD]
+Line_2 $$ private Map<Cluster, String> queryForClustersAndCommands(final List<Criterion> clusterCriteria, final Criterion commandCriterion) throws GenieException --> Line_4 $$ final Set<Tag> tags = Sets.newHashSet() [CD]
+Line_2 $$ private Map<Cluster, String> queryForClustersAndCommands(final List<Criterion> clusterCriteria, final Criterion commandCriterion) throws GenieException --> Line_6 $$ final Map<Cluster, String> clustersAndCommands = this.clusterPersistenceService.findClustersAndCommandsForCriteria(clusterCriteria, commandCriterion) [FD]
+Line_4 $$ final Set<Tag> tags = Sets.newHashSet() --> Line_7 $$ MetricsUtils.addSuccessTags(tags) [FD]
+Line_4 $$ final Set<Tag> tags = Sets.newHashSet() --> Line_10 $$ MetricsUtils.addFailureTagsWithException(tags, t) [FD]
+Line_4 $$ final Set<Tag> tags = Sets.newHashSet() --> Line_13 $$ this.registry.timer(CLUSTER_COMMAND_QUERY_TIMER_NAME, tags).record(System.nanoTime() - start, TimeUnit.NANOSECONDS) [FD]

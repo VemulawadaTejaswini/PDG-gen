@@ -1,0 +1,8 @@
+Line_2 $$ public void testThatHttpExporterAddsWatches() throws Exception --> Line_3 $$ String watchId = createMonitoringWatch() [CD]
+Line_2 $$ public void testThatHttpExporterAddsWatches() throws Exception --> Line_4 $$ String httpHost = getHttpHost() [CD]
+Line_2 $$ public void testThatHttpExporterAddsWatches() throws Exception --> Line_5 $$ String body = BytesReference.bytes(jsonBuilder().startObject().startObject("transient").field("xpack.monitoring.exporters.my_http_exporter.type", "http").field("xpack.monitoring.exporters.my_http_exporter.host", httpHost).field("xpack.monitoring.exporters.my_http_exporter.cluster_alerts.management.enabled", true).endObject().endObject()).utf8ToString() [CD]
+Line_4 $$ String httpHost = getHttpHost() --> Line_5 $$ String body = BytesReference.bytes(jsonBuilder().startObject().startObject("transient").field("xpack.monitoring.exporters.my_http_exporter.type", "http").field("xpack.monitoring.exporters.my_http_exporter.host", httpHost).field("xpack.monitoring.exporters.my_http_exporter.cluster_alerts.management.enabled", true).endObject().endObject()).utf8ToString() [FD]
+Line_2 $$ public void testThatHttpExporterAddsWatches() throws Exception --> Line_6 $$ adminClient().performRequest("PUT", "_cluster/settings", Collections.emptyMap(), new StringEntity(body, ContentType.APPLICATION_JSON)) [CD]
+Line_2 $$ public void testThatHttpExporterAddsWatches() throws Exception --> Line_7 $$ assertTotalWatchCount(ClusterAlertsUtil.WATCH_IDS.length) [CD]
+Line_2 $$ public void testThatHttpExporterAddsWatches() throws Exception --> Line_8 $$ assertMonitoringWatchHasBeenOverWritten(watchId) [CD]
+Line_3 $$ String watchId = createMonitoringWatch() --> Line_8 $$ assertMonitoringWatchHasBeenOverWritten(watchId) [FD]

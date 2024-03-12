@@ -1,0 +1,8 @@
+Line_2 $$ public void testTabularData() throws Exception --> Line_3 $$ MapMXBean mapMXBean = new MapMXBean() [CD]
+Line_5 $$ MetricPoller poller = new JmxMetricPoller(new LocalJmxConnector(), new ObjectName("com.netflix.servo.test:*"), MATCH_ALL) --> Line_6 $$ List<Metric> metrics = poller.poll( config -> config.getName().equals("Count")) [FD]
+Line_6 $$ List<Metric> metrics = poller.poll( config -> config.getName().equals("Count")) --> Line_7 $$ assertEquals(metrics.size(), 2) [FD]
+Line_8 $$ Map<String, Integer> values = new HashMap() --> Line_10 $$ values.put(m.getConfig().getTags().getTag("JmxCompositePath").getValue(), (Integer) m.getValue()) [FD]
+Line_9 $$ for (Metric m : metrics) --> Line_10 $$ values.put(m.getConfig().getTags().getTag("JmxCompositePath").getValue(), (Integer) m.getValue()) [FD]
+Line_8 $$ Map<String, Integer> values = new HashMap() --> Line_12 $$ assertEquals(values.get("Entry1"), (Integer) 111) [FD]
+Line_8 $$ Map<String, Integer> values = new HashMap() --> Line_13 $$ assertEquals(values.get("Entry2"), (Integer) 222) [FD]
+Line_3 $$ MapMXBean mapMXBean = new MapMXBean() --> Line_15 $$ mapMXBean.destroy() [FD]

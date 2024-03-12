@@ -1,0 +1,8 @@
+Line_2 $$ public boolean isSymbolicLink(String filePath) --> Line_3 $$ boolean isExitFlag = false [CD]
+Line_2 $$ public boolean isSymbolicLink(String filePath) --> Line_5 $$ FTPFile[] ftpFiles = ftpClient.listFiles(new String(filePath.getBytes(), FTP.DEFAULT_CONTROL_ENCODING)) [FD]
+Line_6 $$ if (ftpFiles.length == 1 && ftpFiles[0].isSymbolicLink()) --> Line_7 $$ isExitFlag = true [CD]
+Line_3 $$ boolean isExitFlag = false --> Line_7 $$ isExitFlag = true [FD]
+Line_2 $$ public boolean isSymbolicLink(String filePath) --> Line_10 $$ String message = String.format("获取文件：[%s] 属性时发生I/O异常,请确认与ftp服务器的连接正常", filePath) [FD]
+Line_10 $$ String message = String.format("获取文件：[%s] 属性时发生I/O异常,请确认与ftp服务器的连接正常", filePath) --> Line_11 $$ LOG.error(message) [FD]
+Line_10 $$ String message = String.format("获取文件：[%s] 属性时发生I/O异常,请确认与ftp服务器的连接正常", filePath) --> Line_12 $$ throw DataXException.asDataXException(FtpReaderErrorCode.COMMAND_FTP_IO_EXCEPTION, message, e) [FD]
+Line_2 $$ public boolean isSymbolicLink(String filePath) --> Line_14 $$ return isExitFlag [CD]

@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection connection = getNewConnection("&connectTimeout=1000&socketTimeout=1000", true)) --> Line_4 $$ Statement st = connection.createStatement() [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&connectTimeout=1000&socketTimeout=1000", true)) --> Line_5 $$ int masterServerId = getServerId(connection) [FD]
+Line_5 $$ int masterServerId = getServerId(connection) --> Line_7 $$ stopProxy(masterServerId, 4000) [FD]
+Line_4 $$ Statement st = connection.createStatement() --> Line_9 $$ st.execute("SELECT 1") [FD]
+Line_10 $$ if (System.currentTimeMillis() - startTime < 4 * 1000) --> Line_11 $$ fail("Auto-reconnection must have been done after 4000ms but was " + (System.currentTimeMillis() - startTime)) [CD]

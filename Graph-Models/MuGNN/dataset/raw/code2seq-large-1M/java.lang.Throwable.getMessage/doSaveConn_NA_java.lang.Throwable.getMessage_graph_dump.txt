@@ -1,0 +1,7 @@
+Line_2 $$ private void doSaveConn(Object toSave, RConnection conn, boolean ascii) --> Line_3 $$ try (RConnection openConn = conn.forceOpen(ascii ? "wt" : "wb")) [FD]
+Line_3 $$ try (RConnection openConn = conn.forceOpen(ascii ? "wt" : "wb")) --> Line_4 $$ if (!openConn.canWrite()) [FD]
+Line_2 $$ private void doSaveConn(Object toSave, RConnection conn, boolean ascii) --> Line_7 $$ if (!ascii && openConn.isTextMode()) [FD]
+Line_3 $$ try (RConnection openConn = conn.forceOpen(ascii ? "wt" : "wb")) --> Line_7 $$ if (!ascii && openConn.isTextMode()) [FD]
+Line_3 $$ try (RConnection openConn = conn.forceOpen(ascii ? "wt" : "wb")) --> Line_10 $$ openConn.writeChar(ascii ? ASCII_HEADER : XDR_HEADER, 0, null, false) [FD]
+Line_3 $$ try (RConnection openConn = conn.forceOpen(ascii ? "wt" : "wb")) --> Line_11 $$ RSerialize.serialize(openConn, toSave, ascii ? RSerialize.ASCII : RSerialize.XDR, RSerialize.DEFAULT_VERSION, null) [FD]
+Line_2 $$ private void doSaveConn(Object toSave, RConnection conn, boolean ascii) --> Line_11 $$ RSerialize.serialize(openConn, toSave, ascii ? RSerialize.ASCII : RSerialize.XDR, RSerialize.DEFAULT_VERSION, null) [FD]

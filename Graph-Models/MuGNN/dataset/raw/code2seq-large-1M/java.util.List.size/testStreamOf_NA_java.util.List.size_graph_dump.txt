@@ -1,0 +1,7 @@
+Line_2 $$ public void testStreamOf() throws InterruptedException, ExecutionException --> Line_3 $$ Stream<CompletableFuture<String>> stream = new SimpleReact().<Integer>ofAsync(() -> 1, () -> 2, () -> 3).then( it -> "*" + it).streamCompletableFutures() [CD]
+Line_2 $$ public void testStreamOf() throws InterruptedException, ExecutionException --> Line_4 $$ List<String> strings = new SimpleReact().<String>fromStream(stream).then( it -> it + "*").block() [CD]
+Line_3 $$ Stream<CompletableFuture<String>> stream = new SimpleReact().<Integer>ofAsync(() -> 1, () -> 2, () -> 3).then( it -> "*" + it).streamCompletableFutures() --> Line_4 $$ List<String> strings = new SimpleReact().<String>fromStream(stream).then( it -> it + "*").block() [FD]
+Line_2 $$ public void testStreamOf() throws InterruptedException, ExecutionException --> Line_5 $$ assertThat(strings.size(), is(3)) [CD]
+Line_4 $$ List<String> strings = new SimpleReact().<String>fromStream(stream).then( it -> it + "*").block() --> Line_5 $$ assertThat(strings.size(), is(3)) [FD]
+Line_2 $$ public void testStreamOf() throws InterruptedException, ExecutionException --> Line_6 $$ assertThat(strings, hasItem("*1*")) [CD]
+Line_4 $$ List<String> strings = new SimpleReact().<String>fromStream(stream).then( it -> it + "*").block() --> Line_6 $$ assertThat(strings, hasItem("*1*")) [FD]

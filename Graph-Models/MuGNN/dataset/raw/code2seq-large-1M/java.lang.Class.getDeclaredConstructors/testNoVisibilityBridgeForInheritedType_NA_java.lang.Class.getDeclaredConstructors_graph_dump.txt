@@ -1,0 +1,4 @@
+Line_2 $$ public void testNoVisibilityBridgeForInheritedType() throws Exception --> Line_3 $$ InjectionClassLoader classLoader = new ByteArrayClassLoader(ClassLoadingStrategy.BOOTSTRAP_LOADER, false, ClassFileExtraction.of(PublicVisibilityBridgeExtension.class, VisibilityBridge.class, FooBar.class)) [CD]
+Line_2 $$ public void testNoVisibilityBridgeForInheritedType() throws Exception --> Line_4 $$ Class<?> type = new ByteBuddy().subclass(PublicVisibilityBridgeExtension.class).modifiers(Opcodes.ACC_PUBLIC).make().load(classLoader, InjectionClassLoader.Strategy.INSTANCE).getLoaded() [CD]
+Line_2 $$ public void testNoVisibilityBridgeForInheritedType() throws Exception --> Line_5 $$ assertThat(type.getDeclaredConstructors().length, is(1)) [CD]
+Line_2 $$ public void testNoVisibilityBridgeForInheritedType() throws Exception --> Line_6 $$ assertThat(type.getDeclaredMethods().length, is(0)) [CD]

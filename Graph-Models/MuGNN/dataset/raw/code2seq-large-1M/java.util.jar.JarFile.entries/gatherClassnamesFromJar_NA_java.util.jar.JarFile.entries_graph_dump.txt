@@ -1,0 +1,7 @@
+Line_2 $$ public static Set<String> gatherClassnamesFromJar(File jar) throws IOException --> Line_3 $$ HashSet<String> names = new HashSet() [CD]
+Line_4 $$ try (JarFile zf = new JarFile(jar)) --> Line_5 $$ Enumeration<? extends JarEntry> entries = zf.entries() [FD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_7 $$ JarEntry entry = entries.nextElement() [CD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_8 $$ if (!entry.isDirectory() && entry.getName().endsWith(".class") && !entry.getName().endsWith("module-info.class")) [CD]
+Line_10 $$ String name = entry.getName() --> Line_11 $$ String className = name.substring(0, name.length() - 6).replace('/', '.') [FD]
+Line_3 $$ HashSet<String> names = new HashSet() --> Line_12 $$ names.add(className) [FD]
+Line_2 $$ public static Set<String> gatherClassnamesFromJar(File jar) throws IOException --> Line_16 $$ return names [CD]

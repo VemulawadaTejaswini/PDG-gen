@@ -1,0 +1,7 @@
+Line_2 $$ boolean maybeWriteAsync(final T data) --> Line_3 $$ if (SystemClock.elapsedRealtime() - mLastTimeWritten.get() < WRITE_INTERVAL_MS && !PackageManagerService.DEBUG_DEXOPT) [CD]
+Line_3 $$ if (SystemClock.elapsedRealtime() - mLastTimeWritten.get() < WRITE_INTERVAL_MS && !PackageManagerService.DEBUG_DEXOPT) --> Line_4 $$ return false [CD]
+Line_2 $$ boolean maybeWriteAsync(final T data) --> Line_6 $$ if (mBackgroundWriteRunning.compareAndSet(false, true)) [CD]
+Line_6 $$ if (mBackgroundWriteRunning.compareAndSet(false, true)) --> Line_7 $$ new Thread(mBackgroundThreadName) [CD]
+Line_2 $$ boolean maybeWriteAsync(final T data) --> Line_10 $$ writeImpl(data) [FD]
+Line_6 $$ if (mBackgroundWriteRunning.compareAndSet(false, true)) --> Line_17 $$ return true [CD]
+Line_2 $$ boolean maybeWriteAsync(final T data) --> Line_19 $$ return false [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void loadChannelPref() --> Line_3 $$ Optional<Path> channelPrefs = getResource("defaults/pref/channel-prefs.js") [CD]
+Line_2 $$ private void loadChannelPref() --> Line_4 $$ if (channelPrefs.isPresent()) [CD]
+Line_3 $$ Optional<Path> channelPrefs = getResource("defaults/pref/channel-prefs.js") --> Line_4 $$ if (channelPrefs.isPresent()) [FD]
+Line_3 $$ Optional<Path> channelPrefs = getResource("defaults/pref/channel-prefs.js") --> Line_5 $$ try (BufferedReader reader = Files.newBufferedReader(channelPrefs.get())) [FD]
+Line_5 $$ try (BufferedReader reader = Files.newBufferedReader(channelPrefs.get())) --> Line_6 $$ reader.lines().map(String::<>trim).forEach( line -> [FD]
+Line_7 $$ if (line.startsWith("pref(")) --> Line_8 $$ channel = FirefoxBinary.Channel.fromString(line.substring("pref(\"app.update.channel\", \"".length(), line.length() - "\");".length())) [CD]
+Line_4 $$ if (channelPrefs.isPresent()) --> Line_14 $$ return [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Set<String> getJobs(String tag, long timestamp) --> Line_3 $$ Set<ApplicationId> childYarnJobs = getYarnChildJobs(tag, timestamp) [FD]
+Line_2 $$ public Set<String> getJobs(String tag, long timestamp) --> Line_3 $$ Set<ApplicationId> childYarnJobs = getYarnChildJobs(tag, timestamp) [CD]
+Line_2 $$ public Set<String> getJobs(String tag, long timestamp) --> Line_4 $$ Set<String> childJobs = new HashSet<String>() [CD]
+Line_5 $$ for (ApplicationId id : childYarnJobs) --> Line_6 $$ String childJobId = TypeConverter.fromYarn(id).toString() [FD]
+Line_4 $$ Set<String> childJobs = new HashSet<String>() --> Line_7 $$ childJobs.add(childJobId) [FD]
+Line_6 $$ String childJobId = TypeConverter.fromYarn(id).toString() --> Line_7 $$ childJobs.add(childJobId) [FD]
+Line_2 $$ public Set<String> getJobs(String tag, long timestamp) --> Line_9 $$ return childJobs [CD]

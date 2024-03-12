@@ -1,0 +1,8 @@
+Line_2 $$ public long nextAtomicId() --> Line_3 $$ LongWrapper cnt = threadAtomicCnt.get() [CD]
+Line_2 $$ public long nextAtomicId() --> Line_4 $$ long res = cnt.getAndIncrement() [CD]
+Line_3 $$ LongWrapper cnt = threadAtomicCnt.get() --> Line_4 $$ long res = cnt.getAndIncrement() [FD]
+Line_2 $$ public long nextAtomicId() --> Line_5 $$ if ((cnt.get() & (THREAD_RESERVE_SIZE - 1)) == 0) [CD]
+Line_3 $$ LongWrapper cnt = threadAtomicCnt.get() --> Line_5 $$ if ((cnt.get() & (THREAD_RESERVE_SIZE - 1)) == 0) [FD]
+Line_5 $$ if ((cnt.get() & (THREAD_RESERVE_SIZE - 1)) == 0) --> Line_6 $$ cnt.set(globalAtomicCnt.getAndAdd(THREAD_RESERVE_SIZE)) [CD]
+Line_3 $$ LongWrapper cnt = threadAtomicCnt.get() --> Line_6 $$ cnt.set(globalAtomicCnt.getAndAdd(THREAD_RESERVE_SIZE)) [FD]
+Line_2 $$ public long nextAtomicId() --> Line_7 $$ return res [CD]

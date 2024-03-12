@@ -1,0 +1,7 @@
+Line_2 $$ private void assertValidConnectionDerby(Connection connection, int num) throws SQLException --> Line_3 $$ try (Statement statement = connection.createStatement()) [FD]
+Line_3 $$ try (Statement statement = connection.createStatement()) --> Line_4 $$ ResultSet rs = statement.executeQuery("SELECT " + num + " FROM SYSIBM.SYSDUMMY1") [FD]
+Line_4 $$ ResultSet rs = statement.executeQuery("SELECT " + num + " FROM SYSIBM.SYSDUMMY1") --> Line_5 $$ assertTrue(rs.next()) [FD]
+Line_4 $$ ResultSet rs = statement.executeQuery("SELECT " + num + " FROM SYSIBM.SYSDUMMY1") --> Line_6 $$ int value = rs.getInt(1) [FD]
+Line_2 $$ private void assertValidConnectionDerby(Connection connection, int num) throws SQLException --> Line_7 $$ assertEquals(num, value) [FD]
+Line_6 $$ int value = rs.getInt(1) --> Line_7 $$ assertEquals(num, value) [FD]
+Line_2 $$ private void assertValidConnectionDerby(Connection connection, int num) throws SQLException --> Line_8 $$ assertTrue(connection.isValid(20)) [FD]

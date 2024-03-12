@@ -1,0 +1,8 @@
+Line_2 $$ private void traceEdges(Cell<PhysicalNode> base, List<Cell<PhysicalNode>> visited) --> Line_3 $$ if (visited.contains(base)) [CD]
+Line_2 $$ private void traceEdges(Cell<PhysicalNode> base, List<Cell<PhysicalNode>> visited) --> Line_3 $$ if (visited.contains(base)) [FD]
+Line_3 $$ if (visited.contains(base)) --> Line_4 $$ return [CD]
+Line_2 $$ private void traceEdges(Cell<PhysicalNode> base, List<Cell<PhysicalNode>> visited) --> Line_6 $$ visited.add(base) [CD]
+Line_2 $$ private void traceEdges(Cell<PhysicalNode> base, List<Cell<PhysicalNode>> visited) --> Line_6 $$ visited.add(base) [FD]
+Line_2 $$ private void traceEdges(Cell<PhysicalNode> base, List<Cell<PhysicalNode>> visited) --> Line_7 $$ for (Cell<PhysicalNode> endpoint : base.getEdges().stream().map( edge -> (edge.getSource().equals(base) ? edge.getTarget() : edge.getSource())).collect(Collectors.toList())) [FD]
+Line_7 $$ for (Cell<PhysicalNode> endpoint : base.getEdges().stream().map( edge -> (edge.getSource().equals(base) ? edge.getTarget() : edge.getSource())).collect(Collectors.toList())) --> Line_8 $$ traceEdges(endpoint, visited) [FD]
+Line_2 $$ private void traceEdges(Cell<PhysicalNode> base, List<Cell<PhysicalNode>> visited) --> Line_8 $$ traceEdges(endpoint, visited) [FD]

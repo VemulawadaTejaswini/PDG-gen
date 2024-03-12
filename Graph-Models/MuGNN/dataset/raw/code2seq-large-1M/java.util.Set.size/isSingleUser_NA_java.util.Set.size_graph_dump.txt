@@ -1,0 +1,8 @@
+Line_2 $$ private boolean isSingleUser() --> Line_3 $$ NotNullFunction<VcsUser, String> nameToString =  user -> VcsUserUtil.getNameInStandardForm(VcsUserUtil.getShortPresentation(user)) [CD]
+Line_2 $$ private boolean isSingleUser() --> Line_4 $$ Set<String> allUserNames = ContainerUtil.newHashSet(ContainerUtil.map(myLogData.getAllUsers(), nameToString)) [CD]
+Line_3 $$ NotNullFunction<VcsUser, String> nameToString =  user -> VcsUserUtil.getNameInStandardForm(VcsUserUtil.getShortPresentation(user)) --> Line_4 $$ Set<String> allUserNames = ContainerUtil.newHashSet(ContainerUtil.map(myLogData.getAllUsers(), nameToString)) [FD]
+Line_2 $$ private boolean isSingleUser() --> Line_5 $$ Set<String> currentUserNames = ContainerUtil.newHashSet(ContainerUtil.map(myLogData.getCurrentUser().values(), nameToString)) [CD]
+Line_3 $$ NotNullFunction<VcsUser, String> nameToString =  user -> VcsUserUtil.getNameInStandardForm(VcsUserUtil.getShortPresentation(user)) --> Line_5 $$ Set<String> currentUserNames = ContainerUtil.newHashSet(ContainerUtil.map(myLogData.getCurrentUser().values(), nameToString)) [FD]
+Line_2 $$ private boolean isSingleUser() --> Line_6 $$ return allUserNames.size() == currentUserNames.size() && currentUserNames.containsAll(allUserNames) [CD]
+Line_4 $$ Set<String> allUserNames = ContainerUtil.newHashSet(ContainerUtil.map(myLogData.getAllUsers(), nameToString)) --> Line_6 $$ return allUserNames.size() == currentUserNames.size() && currentUserNames.containsAll(allUserNames) [FD]
+Line_5 $$ Set<String> currentUserNames = ContainerUtil.newHashSet(ContainerUtil.map(myLogData.getCurrentUser().values(), nameToString)) --> Line_6 $$ return allUserNames.size() == currentUserNames.size() && currentUserNames.containsAll(allUserNames) [FD]

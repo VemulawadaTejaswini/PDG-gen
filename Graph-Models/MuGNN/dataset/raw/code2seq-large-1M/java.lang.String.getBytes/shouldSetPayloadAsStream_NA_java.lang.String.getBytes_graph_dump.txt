@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldSetPayloadAsStream() --> Line_3 $$ brokerRule.onExecuteCommandRequest(ValueType.JOB, JobIntent.CREATE).respondWith().event().key(123).intent(JobIntent.CREATED).value().allOf(( r) -> r.getCommand()).put("lockTime", Protocol.INSTANT_NULL_VALUE).put("lockOwner", "").done().register() [CD]
+Line_2 $$ public void shouldSetPayloadAsStream() --> Line_4 $$ final String payload = " [CD]
+Line_2 $$ public void shouldSetPayloadAsStream() --> Line_5 $$ clientRule.jobClient().newCreateCommand().jobType("fooType").payload(new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8))).send().join() [CD]
+Line_4 $$ final String payload = " --> Line_5 $$ clientRule.jobClient().newCreateCommand().jobType("fooType").payload(new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8))).send().join() [FD]
+Line_2 $$ public void shouldSetPayloadAsStream() --> Line_6 $$ final ExecuteCommandRequest request = brokerRule.getReceivedCommandRequests().get(0) [CD]
+Line_2 $$ public void shouldSetPayloadAsStream() --> Line_7 $$ assertThat(request.getCommand()).contains(entry("payload", converter.convertToMsgPack(payload))) [CD]
+Line_6 $$ final ExecuteCommandRequest request = brokerRule.getReceivedCommandRequests().get(0) --> Line_7 $$ assertThat(request.getCommand()).contains(entry("payload", converter.convertToMsgPack(payload))) [FD]
+Line_4 $$ final String payload = " --> Line_7 $$ assertThat(request.getCommand()).contains(entry("payload", converter.convertToMsgPack(payload))) [FD]

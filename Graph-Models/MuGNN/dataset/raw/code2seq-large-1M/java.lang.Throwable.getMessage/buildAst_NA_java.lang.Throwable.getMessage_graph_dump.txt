@@ -1,0 +1,7 @@
+Line_2 $$ public List<Statement> buildAst(String sql, MetaStore metaStore) --> Line_4 $$ ParserRuleContext tree = getParseTree(sql) [FD]
+Line_5 $$ SqlBaseParser.StatementsContext statementsContext = (SqlBaseParser.StatementsContext) tree --> Line_7 $$ for (SqlBaseParser.SingleStatementContext statementContext : statementsContext.singleStatement()) [FD]
+Line_8 $$ DataSourceExtractor dataSourceExtractor = new DataSourceExtractor(metaStore) --> Line_9 $$ dataSourceExtractor.extractDataSources(statementContext) [FD]
+Line_7 $$ for (SqlBaseParser.SingleStatementContext statementContext : statementsContext.singleStatement()) --> Line_9 $$ dataSourceExtractor.extractDataSources(statementContext) [FD]
+Line_7 $$ for (SqlBaseParser.SingleStatementContext statementContext : statementsContext.singleStatement()) --> Line_10 $$ Node root = new AstBuilder(dataSourceExtractor).visit(statementContext) [FD]
+Line_6 $$ List<Statement> astNodes = new ArrayList() --> Line_12 $$ astNodes.add(statement) [FD]
+Line_11 $$ Statement statement = (Statement) root --> Line_12 $$ astNodes.add(statement) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public List<String> getTemplateDatabases(DBRProgressMonitor monitor) throws DBException --> Line_3 $$ try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load template databases")) [FD]
+Line_3 $$ try (JDBCSession session = DBUtils.openMetaSession(monitor, this, "Load template databases")) --> Line_4 $$ try (PreparedStatement dbStat = session.prepareStatement("SELECT db.datname FROM pg_catalog.pg_database db WHERE datistemplate")) [FD]
+Line_4 $$ try (PreparedStatement dbStat = session.prepareStatement("SELECT db.datname FROM pg_catalog.pg_database db WHERE datistemplate")) --> Line_5 $$ try (ResultSet resultSet = dbStat.executeQuery()) [FD]
+Line_5 $$ try (ResultSet resultSet = dbStat.executeQuery()) --> Line_7 $$ while (resultSet.next()) [FD]
+Line_7 $$ while (resultSet.next()) --> Line_8 $$ dbNames.add(resultSet.getString(1)) [CD]
+Line_6 $$ List<String> dbNames = new ArrayList() --> Line_8 $$ dbNames.add(resultSet.getString(1)) [FD]
+Line_5 $$ try (ResultSet resultSet = dbStat.executeQuery()) --> Line_8 $$ dbNames.add(resultSet.getString(1)) [FD]

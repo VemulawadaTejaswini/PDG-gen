@@ -1,0 +1,6 @@
+Line_2 $$ private static void urlPathAssertion(HttpStatus expected, String path) throws Exception --> Line_3 $$ final String requestString = "GET " + path + " HTTP/1.0\r\n\r\n" [CD]
+Line_4 $$ try (Socket s = new Socket(NetUtil.LOCALHOST, server.httpPort())) --> Line_5 $$ s.setSoTimeout(10000) [FD]
+Line_4 $$ try (Socket s = new Socket(NetUtil.LOCALHOST, server.httpPort())) --> Line_6 $$ s.getOutputStream().write(requestString.getBytes(StandardCharsets.US_ASCII)) [FD]
+Line_3 $$ final String requestString = "GET " + path + " HTTP/1.0\r\n\r\n" --> Line_6 $$ s.getOutputStream().write(requestString.getBytes(StandardCharsets.US_ASCII)) [FD]
+Line_2 $$ private static void urlPathAssertion(HttpStatus expected, String path) throws Exception --> Line_7 $$ assertThat(new String(ByteStreams.toByteArray(s.getInputStream()), StandardCharsets.US_ASCII)).as(path).startsWith("HTTP/1.1 " + expected) [FD]
+Line_4 $$ try (Socket s = new Socket(NetUtil.LOCALHOST, server.httpPort())) --> Line_7 $$ assertThat(new String(ByteStreams.toByteArray(s.getInputStream()), StandardCharsets.US_ASCII)).as(path).startsWith("HTTP/1.1 " + expected) [FD]

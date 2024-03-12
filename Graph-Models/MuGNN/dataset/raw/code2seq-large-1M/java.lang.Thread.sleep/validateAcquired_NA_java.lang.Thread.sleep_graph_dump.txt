@@ -1,0 +1,8 @@
+Line_2 $$ private boolean validateAcquired(List<OperableTrigger> result) --> Line_3 $$ if (result.isEmpty()) [CD]
+Line_2 $$ private boolean validateAcquired(List<OperableTrigger> result) --> Line_3 $$ if (result.isEmpty()) [FD]
+Line_3 $$ if (result.isEmpty()) --> Line_4 $$ return false [CD]
+Line_3 $$ if (result.isEmpty()) --> Line_6 $$ while (!toolkitShutdown) [CD]
+Line_10 $$ for (OperableTrigger ot : result) --> Line_11 $$ TriggerWrapper tw = triggerFacade.get(ot.getKey()) [FD]
+Line_10 $$ for (OperableTrigger ot : result) --> Line_12 $$ if (!ot.getFireInstanceId().equals(tw.getTriggerClone().getFireInstanceId()) || !TriggerState.ACQUIRED.equals(tw.getState())) [FD]
+Line_11 $$ TriggerWrapper tw = triggerFacade.get(ot.getKey()) --> Line_12 $$ if (!ot.getFireInstanceId().equals(tw.getTriggerClone().getFireInstanceId()) || !TriggerState.ACQUIRED.equals(tw.getState())) [FD]
+Line_12 $$ if (!ot.getFireInstanceId().equals(tw.getTriggerClone().getFireInstanceId()) || !TriggerState.ACQUIRED.equals(tw.getState())) --> Line_13 $$ return false [CD]

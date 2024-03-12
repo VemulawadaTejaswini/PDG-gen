@@ -1,0 +1,8 @@
+Line_2 $$ public static void printClassesWithTypes(Path inputJarFile, PrintWriter printWriter) throws IOException --> Line_3 $$ Preconditions.checkState(Files.exists(inputJarFile), "The input jar file %s does not exist.", inputJarFile) [FD]
+Line_2 $$ public static void printClassesWithTypes(Path inputJarFile, PrintWriter printWriter) throws IOException --> Line_3 $$ Preconditions.checkState(Files.exists(inputJarFile), "The input jar file %s does not exist.", inputJarFile) [CD]
+Line_2 $$ public static void printClassesWithTypes(Path inputJarFile, PrintWriter printWriter) throws IOException --> Line_4 $$ try (ZipFile jarFile = new ZipFile(inputJarFile.toFile())) [FD]
+Line_4 $$ try (ZipFile jarFile = new ZipFile(inputJarFile.toFile())) --> Line_5 $$ for (ZipEntry entry : getSortedClassEntriess(jarFile)) [FD]
+Line_4 $$ try (ZipFile jarFile = new ZipFile(inputJarFile.toFile())) --> Line_6 $$ try (InputStream classStream = jarFile.getInputStream(entry)) [FD]
+Line_2 $$ public static void printClassesWithTypes(Path inputJarFile, PrintWriter printWriter) throws IOException --> Line_7 $$ printWriter.println("\nClass: " + entry.getName()) [FD]
+Line_9 $$ ClassVisitor visitor = new ClassWithTypeDumper(printWriter) --> Line_10 $$ classReader.accept(visitor, 0) [FD]
+Line_2 $$ public static void printClassesWithTypes(Path inputJarFile, PrintWriter printWriter) throws IOException --> Line_12 $$ printWriter.println("\n") [FD]

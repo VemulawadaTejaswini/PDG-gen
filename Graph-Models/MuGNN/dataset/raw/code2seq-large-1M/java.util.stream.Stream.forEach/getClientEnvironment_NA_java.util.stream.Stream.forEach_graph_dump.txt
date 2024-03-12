@@ -1,0 +1,8 @@
+Line_2 $$ private static ImmutableMap<String, String> getClientEnvironment(Optional<NGContext> context) --> Line_3 $$ if (context.isPresent()) [FD]
+Line_2 $$ private static ImmutableMap<String, String> getClientEnvironment(Optional<NGContext> context) --> Line_3 $$ if (context.isPresent()) [CD]
+Line_3 $$ if (context.isPresent()) --> Line_4 $$ return ImmutableMap.<String, String>copyOf((Map) context.get().getEnv()) [CD]
+Line_2 $$ private static ImmutableMap<String, String> getClientEnvironment(Optional<NGContext> context) --> Line_4 $$ return ImmutableMap.<String, String>copyOf((Map) context.get().getEnv()) [FD]
+Line_3 $$ if (context.isPresent()) --> Line_6 $$ Builder<String, String> builder = ImmutableMap.builder() [CD]
+Line_3 $$ if (context.isPresent()) --> Line_7 $$ System.getenv().entrySet().stream().filter( e -> !NAILGUN_STDOUT_ISTTY_ENV.equals(e.getKey()) && !NAILGUN_STDERR_ISTTY_ENV.equals(e.getKey())).forEach(builder::<>put) [CD]
+Line_3 $$ if (context.isPresent()) --> Line_8 $$ return builder.build() [CD]
+Line_6 $$ Builder<String, String> builder = ImmutableMap.builder() --> Line_8 $$ return builder.build() [FD]

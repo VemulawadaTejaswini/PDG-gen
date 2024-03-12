@@ -1,0 +1,8 @@
+Line_3 $$ try (Statement statement = connection.createStatement()) --> Line_4 $$ ResultSet rs = statement.executeQuery(sql) [FD]
+Line_2 $$ private List<Persistable> queryUpdates(String sql) --> Line_4 $$ ResultSet rs = statement.executeQuery(sql) [FD]
+Line_4 $$ ResultSet rs = statement.executeQuery(sql) --> Line_6 $$ while (rs.next()) [FD]
+Line_6 $$ while (rs.next()) --> Line_7 $$ byte[] bytes = rs.getBytes(1) [CD]
+Line_4 $$ ResultSet rs = statement.executeQuery(sql) --> Line_7 $$ byte[] bytes = rs.getBytes(1) [FD]
+Line_6 $$ while (rs.next()) --> Line_8 $$ out.add((Persistable) deserialize(bytes)) [CD]
+Line_5 $$ List<Persistable> out = new ArrayList() --> Line_8 $$ out.add((Persistable) deserialize(bytes)) [FD]
+Line_7 $$ byte[] bytes = rs.getBytes(1) --> Line_8 $$ out.add((Persistable) deserialize(bytes)) [FD]

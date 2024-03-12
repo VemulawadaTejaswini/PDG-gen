@@ -1,0 +1,7 @@
+Line_2 $$ private long timeDirectStoreAllocations() --> Line_3 $$ long start = System.nanoTime() [CD]
+Line_2 $$ private long timeDirectStoreAllocations() --> Line_4 $$ for (int i = 0; i < ALLOCATIONS; i += BATCH) [CD]
+Line_4 $$ for (int i = 0; i < ALLOCATIONS; i += BATCH) --> Line_5 $$ DirectStore[] ds = new DirectStore[BATCH] [CD]
+Line_4 $$ for (int i = 0; i < ALLOCATIONS; i += BATCH) --> Line_6 $$ for (int j = 0; j < BATCH; j++) ds[j] = DirectStore.allocateLazy(BUFFER_SIZE) [CD]
+Line_4 $$ for (int i = 0; i < ALLOCATIONS; i += BATCH) --> Line_7 $$ for (int j = 0; j < BATCH; j++) ds[j].free() [CD]
+Line_6 $$ for (int j = 0; j < BATCH; j++) ds[j] = DirectStore.allocateLazy(BUFFER_SIZE) --> Line_7 $$ for (int j = 0; j < BATCH; j++) ds[j].free() [FD]
+Line_2 $$ private long timeDirectStoreAllocations() --> Line_9 $$ return System.nanoTime() - start [CD]

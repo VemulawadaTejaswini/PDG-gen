@@ -1,0 +1,8 @@
+Line_2 $$ public DBUser getUserByName(final String username) --> Line_3 $$ final String sql = "select * from ta_users where username = ?" [CD]
+Line_3 $$ final String sql = "select * from ta_users where username = ?" --> Line_4 $$ try (Connection con = connectionSupplier.get(); [FD]
+Line_4 $$ try (Connection con = connectionSupplier.get(); --> Line_6 $$ ps.setString(1, username) [FD]
+Line_2 $$ public DBUser getUserByName(final String username) --> Line_6 $$ ps.setString(1, username) [FD]
+Line_4 $$ try (Connection con = connectionSupplier.get(); --> Line_7 $$ try (ResultSet rs = ps.executeQuery()) [FD]
+Line_7 $$ try (ResultSet rs = ps.executeQuery()) --> Line_8 $$ if (!rs.next()) [FD]
+Line_8 $$ if (!rs.next()) --> Line_9 $$ return null [CD]
+Line_7 $$ try (ResultSet rs = ps.executeQuery()) --> Line_11 $$ return new DBUser(new DBUser.UserName(rs.getString("username")), new DBUser.UserEmail(rs.getString("email")), rs.getBoolean("admin") ? DBUser.Role.ADMIN : DBUser.Role.NOT_ADMIN) [FD]

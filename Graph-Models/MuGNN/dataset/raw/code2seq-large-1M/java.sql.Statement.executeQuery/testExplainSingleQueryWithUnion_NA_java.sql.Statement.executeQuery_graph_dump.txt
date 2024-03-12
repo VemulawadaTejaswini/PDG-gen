@@ -1,0 +1,8 @@
+Line_2 $$ public void testExplainSingleQueryWithUnion() throws Exception --> Line_3 $$ Properties props = PropertiesUtil.deepCopy(TestUtil.TEST_PROPERTIES) [CD]
+Line_2 $$ public void testExplainSingleQueryWithUnion() throws Exception --> Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) [CD]
+Line_3 $$ Properties props = PropertiesUtil.deepCopy(TestUtil.TEST_PROPERTIES) --> Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) [FD]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) --> Line_6 $$ prepareTableWithValues(conn, 100) [FD]
+Line_7 $$ String query = "EXPLAIN SELECT * FROM " + tableName + " tablesample (100) where i1<2 union all SELECT * FROM " + tableName + " tablesample (2) where i2<6000" --> Line_8 $$ ResultSet rs = conn.createStatement().executeQuery(query) [FD]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) --> Line_8 $$ ResultSet rs = conn.createStatement().executeQuery(query) [FD]
+Line_8 $$ ResultSet rs = conn.createStatement().executeQuery(query) --> Line_9 $$ assertEquals("UNION ALL OVER 2 QUERIES\n" + "    CLIENT PARALLEL 1-WAY 1.0-SAMPLED RANGE SCAN OVER " + tableName + " [*] - [2]\n" + "        SERVER FILTER BY FIRST KEY ONLY\n" + "    CLIENT PARALLEL 1-WAY 0.02-SAMPLED FULL SCAN OVER " + tableName + "\n" + "        SERVER FILTER BY FIRST KEY ONLY AND I2 < 6000", QueryUtil.getExplainPlan(rs)) [FD]
+Line_4 $$ Connection conn = DriverManager.getConnection(getUrl(), props) --> Line_11 $$ conn.close() [FD]

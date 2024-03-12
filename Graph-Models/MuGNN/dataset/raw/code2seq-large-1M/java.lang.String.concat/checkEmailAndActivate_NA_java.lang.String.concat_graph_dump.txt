@@ -1,0 +1,7 @@
+Line_2 $$ private SignInPage checkEmailAndActivate() --> Line_3 $$ WiserMessage message = hasEmailRule.getMessages().get(0) [CD]
+Line_2 $$ private SignInPage checkEmailAndActivate() --> Line_4 $$ String link = EmailQuery.getLink(message, ACTIVATE) [CD]
+Line_3 $$ WiserMessage message = hasEmailRule.getMessages().get(0) --> Line_4 $$ String link = EmailQuery.getLink(message, ACTIVATE) [FD]
+Line_2 $$ private SignInPage checkEmailAndActivate() --> Line_5 $$ SignInPage signInPage = new BasicWorkFlow().goToUrl(link.concat("?" + dswid), SignInPage.class) [CD]
+Line_4 $$ String link = EmailQuery.getLink(message, ACTIVATE) --> Line_5 $$ SignInPage signInPage = new BasicWorkFlow().goToUrl(link.concat("?" + dswid), SignInPage.class) [FD]
+Line_2 $$ private SignInPage checkEmailAndActivate() --> Line_6 $$ assertThat(signInPage.getNotificationMessage()).isEqualTo(SignInPage.ACTIVATION_SUCCESS).as("Activation was successful") [CD]
+Line_2 $$ private SignInPage checkEmailAndActivate() --> Line_7 $$ return signInPage [CD]

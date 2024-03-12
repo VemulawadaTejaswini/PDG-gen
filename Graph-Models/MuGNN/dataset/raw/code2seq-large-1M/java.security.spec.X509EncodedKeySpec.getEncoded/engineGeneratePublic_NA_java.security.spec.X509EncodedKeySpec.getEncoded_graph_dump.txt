@@ -1,0 +1,7 @@
+Line_2 $$ protected PublicKey engineGeneratePublic(KeySpec keySpec) throws InvalidKeySpecException --> Line_3 $$ if (keySpec instanceof X509EncodedKeySpec) [FD]
+Line_2 $$ protected PublicKey engineGeneratePublic(KeySpec keySpec) throws InvalidKeySpecException --> Line_3 $$ if (keySpec instanceof X509EncodedKeySpec) [CD]
+Line_5 $$ SubjectPublicKeyInfo info = SubjectPublicKeyInfo.getInstance(((X509EncodedKeySpec) keySpec).getEncoded()) --> Line_6 $$ PublicKey key = BouncyCastleProvider.getPublicKey(info) [FD]
+Line_6 $$ PublicKey key = BouncyCastleProvider.getPublicKey(info) --> Line_7 $$ if (key != null) [FD]
+Line_7 $$ if (key != null) --> Line_8 $$ return key [CD]
+Line_5 $$ SubjectPublicKeyInfo info = SubjectPublicKeyInfo.getInstance(((X509EncodedKeySpec) keySpec).getEncoded()) --> Line_10 $$ throw new InvalidKeySpecException("no factory found for OID: " + info.getAlgorithm().getAlgorithm()) [FD]
+Line_2 $$ protected PublicKey engineGeneratePublic(KeySpec keySpec) throws InvalidKeySpecException --> Line_15 $$ throw new InvalidKeySpecException("Unknown KeySpec type: " + keySpec.getClass().getName()) [FD]

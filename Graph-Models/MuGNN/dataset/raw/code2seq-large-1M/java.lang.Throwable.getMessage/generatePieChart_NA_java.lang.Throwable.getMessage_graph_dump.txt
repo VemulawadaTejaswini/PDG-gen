@@ -1,0 +1,8 @@
+Line_2 $$ public void generatePieChart(@PathVariable("surveyDefinitionId") Long surveyDefinitionId, @PathVariable("questionId") Long questionId, HttpServletResponse response) --> Line_4 $$ response.setContentType("image/png") [FD]
+Line_2 $$ public void generatePieChart(@PathVariable("surveyDefinitionId") Long surveyDefinitionId, @PathVariable("questionId") Long questionId, HttpServletResponse response) --> Line_5 $$ long recordCount = surveyService.surveyStatistic_get(surveyDefinitionId).getSubmittedCount() [FD]
+Line_2 $$ public void generatePieChart(@PathVariable("surveyDefinitionId") Long surveyDefinitionId, @PathVariable("questionId") Long questionId, HttpServletResponse response) --> Line_6 $$ PieDataset pieDataSet = createDataset(questionId, recordCount) [FD]
+Line_5 $$ long recordCount = surveyService.surveyStatistic_get(surveyDefinitionId).getSubmittedCount() --> Line_6 $$ PieDataset pieDataSet = createDataset(questionId, recordCount) [FD]
+Line_6 $$ PieDataset pieDataSet = createDataset(questionId, recordCount) --> Line_7 $$ JFreeChart chart = createChart(pieDataSet, "") [FD]
+Line_7 $$ JFreeChart chart = createChart(pieDataSet, "") --> Line_8 $$ ChartUtilities.writeChartAsPNG(response.getOutputStream(), chart, 340, 200) [FD]
+Line_2 $$ public void generatePieChart(@PathVariable("surveyDefinitionId") Long surveyDefinitionId, @PathVariable("questionId") Long questionId, HttpServletResponse response) --> Line_8 $$ ChartUtilities.writeChartAsPNG(response.getOutputStream(), chart, 340, 200) [FD]
+Line_2 $$ public void generatePieChart(@PathVariable("surveyDefinitionId") Long surveyDefinitionId, @PathVariable("questionId") Long questionId, HttpServletResponse response) --> Line_9 $$ response.getOutputStream().close() [FD]

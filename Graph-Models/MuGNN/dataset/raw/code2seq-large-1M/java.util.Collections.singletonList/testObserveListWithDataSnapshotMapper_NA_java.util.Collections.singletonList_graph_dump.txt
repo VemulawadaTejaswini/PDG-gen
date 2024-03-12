@@ -1,0 +1,5 @@
+Line_2 $$ public void testObserveListWithDataSnapshotMapper() --> Line_3 $$ TestSubscriber<List<ChildData>> testObserver = RxFirebaseDatabase.observeValueEvent(query, DataSnapshotMapper.listOf(ChildData.class)).test() [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotMapper() --> Line_4 $$ ArgumentCaptor<ValueEventListener> argument = ArgumentCaptor.forClass(ValueEventListener.class) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotMapper() --> Line_5 $$ verify(query).addValueEventListener(argument.capture()) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotMapper() --> Line_6 $$ argument.getValue().onDataChange(dataSnapshot) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotMapper() --> Line_7 $$ testObserver.assertNoErrors().assertValueCount(1).assertValueSet(Collections.singletonList(childDataList)).assertNotComplete().dispose() [CD]

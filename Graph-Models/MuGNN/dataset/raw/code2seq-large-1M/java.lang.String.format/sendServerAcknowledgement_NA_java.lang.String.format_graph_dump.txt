@@ -1,0 +1,7 @@
+Line_2 $$ public void sendServerAcknowledgement() --> Line_3 $$ if (isEnabled()) [CD]
+Line_3 $$ if (isEnabled()) --> Line_4 $$ if (session.isDetached()) [CD]
+Line_4 $$ if (session.isDetached()) --> Line_5 $$ Log.debug("Session is detached, won't request an ack.") [CD]
+Line_4 $$ if (session.isDetached()) --> Line_6 $$ return [CD]
+Line_3 $$ if (isEnabled()) --> Line_8 $$ String ack = String.format("<a xmlns='%s' h='%s' />", namespace, serverProcessedStanzas.get() & MASK) [CD]
+Line_3 $$ if (isEnabled()) --> Line_9 $$ session.deliverRawText(ack) [CD]
+Line_8 $$ String ack = String.format("<a xmlns='%s' h='%s' />", namespace, serverProcessedStanzas.get() & MASK) --> Line_9 $$ session.deliverRawText(ack) [FD]

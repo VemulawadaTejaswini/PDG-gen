@@ -1,0 +1,7 @@
+Line_2 $$ public Stream<Geocode.GeoCodeResult> geocode(@Name("location") String address, @Name("maxResults") long maxResults) --> Line_3 $$ if (geocodeResults != null && geocodeResults.containsKey(address)) [FD]
+Line_2 $$ public Stream<Geocode.GeoCodeResult> geocode(@Name("location") String address, @Name("maxResults") long maxResults) --> Line_3 $$ if (geocodeResults != null && geocodeResults.containsKey(address)) [CD]
+Line_3 $$ if (geocodeResults != null && geocodeResults.containsKey(address)) --> Line_4 $$ Map data = geocodeResults.get(address) [CD]
+Line_2 $$ public Stream<Geocode.GeoCodeResult> geocode(@Name("location") String address, @Name("maxResults") long maxResults) --> Line_4 $$ Map data = geocodeResults.get(address) [FD]
+Line_3 $$ if (geocodeResults != null && geocodeResults.containsKey(address)) --> Line_5 $$ return Stream.of(new Geocode.GeoCodeResult(Util.toDouble(data.get("lat")), Util.toDouble(data.get("lon")), String.valueOf(data.get("display_name")), data)) [CD]
+Line_4 $$ Map data = geocodeResults.get(address) --> Line_5 $$ return Stream.of(new Geocode.GeoCodeResult(Util.toDouble(data.get("lat")), Util.toDouble(data.get("lon")), String.valueOf(data.get("display_name")), data)) [FD]
+Line_3 $$ if (geocodeResults != null && geocodeResults.containsKey(address)) --> Line_7 $$ return Stream.empty() [CD]

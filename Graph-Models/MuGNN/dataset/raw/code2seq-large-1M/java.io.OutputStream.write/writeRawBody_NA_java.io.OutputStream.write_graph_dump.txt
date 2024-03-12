@@ -1,0 +1,6 @@
+Line_2 $$ private void writeRawBody(HttpServletResponse response, byte[] rawBody) throws IOException --> Line_3 $$ try (OutputStream out = response.getOutputStream()) [FD]
+Line_2 $$ private void writeRawBody(HttpServletResponse response, byte[] rawBody) throws IOException --> Line_4 $$ if (!response.containsHeader("Content-Length")) [FD]
+Line_4 $$ if (!response.containsHeader("Content-Length")) --> Line_5 $$ response.setIntHeader("Content-Length", rawBody.length) [CD]
+Line_2 $$ private void writeRawBody(HttpServletResponse response, byte[] rawBody) throws IOException --> Line_5 $$ response.setIntHeader("Content-Length", rawBody.length) [FD]
+Line_3 $$ try (OutputStream out = response.getOutputStream()) --> Line_7 $$ out.write(rawBody) [FD]
+Line_2 $$ private void writeRawBody(HttpServletResponse response, byte[] rawBody) throws IOException --> Line_7 $$ out.write(rawBody) [FD]

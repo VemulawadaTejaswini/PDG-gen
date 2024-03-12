@@ -1,0 +1,8 @@
+Line_2 $$ public Integer getPartitionNumber(List<ColumnNameValue> keyValues, Integer numberOfNodes) --> Line_3 $$ int hash = 0 [CD]
+Line_2 $$ public Integer getPartitionNumber(List<ColumnNameValue> keyValues, Integer numberOfNodes) --> Line_4 $$ for (int i = 0; i < keyValues.size(); i++) [CD]
+Line_2 $$ public Integer getPartitionNumber(List<ColumnNameValue> keyValues, Integer numberOfNodes) --> Line_4 $$ for (int i = 0; i < keyValues.size(); i++) [FD]
+Line_4 $$ for (int i = 0; i < keyValues.size(); i++) --> Line_5 $$ hash = JenkinsHash.hash32(keyValues.get(i).columnValue().toString().getBytes(), hash) [CD]
+Line_4 $$ for (int i = 0; i < keyValues.size(); i++) --> Line_5 $$ hash = JenkinsHash.hash32(keyValues.get(i).columnValue().toString().getBytes(), hash) [FD]
+Line_3 $$ int hash = 0 --> Line_5 $$ hash = JenkinsHash.hash32(keyValues.get(i).columnValue().toString().getBytes(), hash) [FD]
+Line_2 $$ public Integer getPartitionNumber(List<ColumnNameValue> keyValues, Integer numberOfNodes) --> Line_5 $$ hash = JenkinsHash.hash32(keyValues.get(i).columnValue().toString().getBytes(), hash) [FD]
+Line_2 $$ public Integer getPartitionNumber(List<ColumnNameValue> keyValues, Integer numberOfNodes) --> Line_7 $$ return Math.abs(hash % numberOfNodes) [CD]

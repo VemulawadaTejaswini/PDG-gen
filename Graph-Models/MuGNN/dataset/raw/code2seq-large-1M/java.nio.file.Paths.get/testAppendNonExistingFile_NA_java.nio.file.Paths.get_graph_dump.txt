@@ -1,0 +1,8 @@
+Line_2 $$ public void testAppendNonExistingFile() throws Exception --> Line_3 $$ CommandContext ctx = CLITestUtil.getCommandContext(TestSuiteEnvironment.getServerAddress(), TestSuiteEnvironment.getServerPort(), System.in, System.out) [CD]
+Line_2 $$ public void testAppendNonExistingFile() throws Exception --> Line_4 $$ String fileName = "non-existing-file" [CD]
+Line_2 $$ public void testAppendNonExistingFile() throws Exception --> Line_5 $$ Path path = Paths.get(fileName) [CD]
+Line_4 $$ String fileName = "non-existing-file" --> Line_5 $$ Path path = Paths.get(fileName) [FD]
+Line_3 $$ CommandContext ctx = CLITestUtil.getCommandContext(TestSuiteEnvironment.getServerAddress(), TestSuiteEnvironment.getServerPort(), System.in, System.out) --> Line_7 $$ ctx.handle("version >> " + fileName) [FD]
+Line_5 $$ Path path = Paths.get(fileName) --> Line_8 $$ Assert.assertTrue("The file" + fileName + "doesn't contain expected content.", checkFileContains(path, "Release: ")) [FD]
+Line_3 $$ CommandContext ctx = CLITestUtil.getCommandContext(TestSuiteEnvironment.getServerAddress(), TestSuiteEnvironment.getServerPort(), System.in, System.out) --> Line_10 $$ ctx.terminateSession() [FD]
+Line_5 $$ Path path = Paths.get(fileName) --> Line_11 $$ Files.delete(path) [FD]

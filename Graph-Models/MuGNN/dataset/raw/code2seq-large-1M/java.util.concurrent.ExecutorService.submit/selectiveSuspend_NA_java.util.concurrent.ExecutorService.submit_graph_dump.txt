@@ -1,0 +1,7 @@
+Line_2 $$ public void selectiveSuspend(@QueryParam("query") final String query, @Suspended final AsyncResponse ar) --> Line_3 $$ if (!isComplex(query)) [FD]
+Line_2 $$ public void selectiveSuspend(@QueryParam("query") final String query, @Suspended final AsyncResponse ar) --> Line_3 $$ if (!isComplex(query)) [CD]
+Line_3 $$ if (!isComplex(query)) --> Line_4 $$ ar.resume("Simple result for " + query) [CD]
+Line_2 $$ public void selectiveSuspend(@QueryParam("query") final String query, @Suspended final AsyncResponse ar) --> Line_4 $$ ar.resume("Simple result for " + query) [FD]
+Line_3 $$ if (!isComplex(query)) --> Line_6 $$ Executors.newSingleThreadExecutor().submit(new Runnable() [CD]
+Line_6 $$ Executors.newSingleThreadExecutor().submit(new Runnable() --> Line_13 $$ ar.resume("Complex result for " + query) [CD]
+Line_2 $$ public void selectiveSuspend(@QueryParam("query") final String query, @Suspended final AsyncResponse ar) --> Line_13 $$ ar.resume("Complex result for " + query) [FD]

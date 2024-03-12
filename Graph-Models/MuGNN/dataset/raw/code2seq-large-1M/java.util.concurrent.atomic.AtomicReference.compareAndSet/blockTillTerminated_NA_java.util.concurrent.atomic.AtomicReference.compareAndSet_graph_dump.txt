@@ -1,0 +1,5 @@
+Line_2 $$ public void blockTillTerminated() --> Line_3 $$ while (!runState.compareAndSet(State.IDLE, State.REMOVED)) [CD]
+Line_3 $$ while (!runState.compareAndSet(State.IDLE, State.REMOVED)) --> Line_4 $$ LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(10)) [CD]
+Line_3 $$ while (!runState.compareAndSet(State.IDLE, State.REMOVED)) --> Line_5 $$ if (Thread.currentThread().isInterrupted()) [CD]
+Line_5 $$ if (Thread.currentThread().isInterrupted()) --> Line_6 $$ runState.set(State.REMOVED) [CD]
+Line_5 $$ if (Thread.currentThread().isInterrupted()) --> Line_7 $$ return [CD]

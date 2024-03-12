@@ -1,0 +1,7 @@
+Line_2 $$ public void singleUseReadOnlyTransactionReturnsEmptyTransactionMetadata() --> Line_3 $$ PartialResultSet resultSet = PartialResultSet.newBuilder().setMetadata(newMetadata(Type.struct(Type.StructField.of("C", Type.string()))).toBuilder().setTransaction(Transaction.getDefaultInstance())).build() [CD]
+Line_2 $$ public void singleUseReadOnlyTransactionReturnsEmptyTransactionMetadata() --> Line_4 $$ mockRead(resultSet) [CD]
+Line_3 $$ PartialResultSet resultSet = PartialResultSet.newBuilder().setMetadata(newMetadata(Type.struct(Type.StructField.of("C", Type.string()))).toBuilder().setTransaction(Transaction.getDefaultInstance())).build() --> Line_4 $$ mockRead(resultSet) [FD]
+Line_2 $$ public void singleUseReadOnlyTransactionReturnsEmptyTransactionMetadata() --> Line_5 $$ ReadOnlyTransaction txn = session.singleUseReadOnlyTransaction(TimestampBound.strong()) [CD]
+Line_2 $$ public void singleUseReadOnlyTransactionReturnsEmptyTransactionMetadata() --> Line_6 $$ expectedException.expect(SpannerMatchers.isSpannerException(ErrorCode.INTERNAL)) [CD]
+Line_2 $$ public void singleUseReadOnlyTransactionReturnsEmptyTransactionMetadata() --> Line_7 $$ txn.readRow("Dummy", Key.of(), Arrays.asList("C")) [CD]
+Line_5 $$ ReadOnlyTransaction txn = session.singleUseReadOnlyTransaction(TimestampBound.strong()) --> Line_7 $$ txn.readRow("Dummy", Key.of(), Arrays.asList("C")) [FD]

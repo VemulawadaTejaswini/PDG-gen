@@ -1,0 +1,7 @@
+Line_2 $$ public void testMissingWritePermission() throws IOException --> Line_3 $$ assumeTrue("posix filesystem", isPosix) [CD]
+Line_2 $$ public void testMissingWritePermission() throws IOException --> Line_4 $$ final String[] tempPaths = tmpPaths() [CD]
+Line_2 $$ public void testMissingWritePermission() throws IOException --> Line_5 $$ Path path = PathUtils.get(randomFrom(tempPaths)) [CD]
+Line_4 $$ final String[] tempPaths = tmpPaths() --> Line_5 $$ Path path = PathUtils.get(randomFrom(tempPaths)) [FD]
+Line_6 $$ try (PosixPermissionsResetter attr = new PosixPermissionsResetter(path)) --> Line_7 $$ attr.setPermissions(new HashSet(Arrays.asList(PosixFilePermission.OTHERS_READ, PosixFilePermission.GROUP_READ, PosixFilePermission.OWNER_READ))) [FD]
+Line_4 $$ final String[] tempPaths = tmpPaths() --> Line_8 $$ Settings build = Settings.builder().put(Environment.PATH_HOME_SETTING.getKey(), createTempDir().toAbsolutePath().toString()).putArray(Environment.PATH_DATA_SETTING.getKey(), tempPaths).build() [FD]
+Line_5 $$ Path path = PathUtils.get(randomFrom(tempPaths)) --> Line_12 $$ assertTrue(ioException.getMessage(), ioException.getMessage().startsWith(path.toString())) [FD]

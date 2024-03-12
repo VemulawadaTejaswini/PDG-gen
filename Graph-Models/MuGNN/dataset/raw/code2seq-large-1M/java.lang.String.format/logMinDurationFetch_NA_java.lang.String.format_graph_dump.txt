@@ -1,0 +1,8 @@
+Line_2 $$ private void logMinDurationFetch(long duration, long totalSize) --> Line_3 $$ if (log.isDebugEnabled() && (duration > LOG_MIN_DURATION_FETCH_NS)) [CD]
+Line_3 $$ if (log.isDebugEnabled() && (duration > LOG_MIN_DURATION_FETCH_NS)) --> Line_4 $$ String msg = String.format("Slow fetch duration_ms:\t%.2f\treturning:\t%d documents", duration / 1000000.0, totalSize) [CD]
+Line_2 $$ private void logMinDurationFetch(long duration, long totalSize) --> Line_4 $$ String msg = String.format("Slow fetch duration_ms:\t%.2f\treturning:\t%d documents", duration / 1000000.0, totalSize) [FD]
+Line_3 $$ if (log.isDebugEnabled() && (duration > LOG_MIN_DURATION_FETCH_NS)) --> Line_5 $$ if (log.isTraceEnabled()) [CD]
+Line_5 $$ if (log.isTraceEnabled()) --> Line_6 $$ log.trace(msg, new Throwable("Slow fetch document stack trace")) [CD]
+Line_4 $$ String msg = String.format("Slow fetch duration_ms:\t%.2f\treturning:\t%d documents", duration / 1000000.0, totalSize) --> Line_6 $$ log.trace(msg, new Throwable("Slow fetch document stack trace")) [FD]
+Line_5 $$ if (log.isTraceEnabled()) --> Line_8 $$ log.debug(msg) [CD]
+Line_4 $$ String msg = String.format("Slow fetch duration_ms:\t%.2f\treturning:\t%d documents", duration / 1000000.0, totalSize) --> Line_8 $$ log.debug(msg) [FD]

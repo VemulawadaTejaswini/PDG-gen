@@ -1,0 +1,7 @@
+Line_2 $$ private JobUI waitForCompleteJobInIndex(JobId jobId) --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ final JobUI job = expectSuccess(getBuilder(getAPIv2().path("job/" + jobId.getId())).buildGet(), JobUI.class) [CD]
+Line_2 $$ private JobUI waitForCompleteJobInIndex(JobId jobId) --> Line_4 $$ final JobUI job = expectSuccess(getBuilder(getAPIv2().path("job/" + jobId.getId())).buildGet(), JobUI.class) [FD]
+Line_3 $$ while (true) --> Line_5 $$ final JobState state = job.getJobAttempt().getState() [CD]
+Line_3 $$ while (true) --> Line_6 $$ if (state == JobState.CANCELED || state == JobState.COMPLETED || state == JobState.FAILED) [CD]
+Line_6 $$ if (state == JobState.CANCELED || state == JobState.COMPLETED || state == JobState.FAILED) --> Line_7 $$ return job [CD]
+Line_2 $$ private JobUI waitForCompleteJobInIndex(JobId jobId) --> Line_15 $$ return null [CD]

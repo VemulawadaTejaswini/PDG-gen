@@ -1,0 +1,5 @@
+Line_2 $$ public void testDurableSubscriberStartStopStart() throws Exception --> Line_3 $$ Destination dest = new ActiveMQTopic(TOPIC_NAME) [CD]
+Line_4 $$ try (IgniteDataStreamer<String, String> dataStreamer = grid().dataStreamer(DEFAULT_CACHE_NAME)) --> Line_5 $$ JmsStreamer<TextMessage, String, String> jmsStreamer = newJmsStreamer(TextMessage.class, dataStreamer) [FD]
+Line_3 $$ Destination dest = new ActiveMQTopic(TOPIC_NAME) --> Line_6 $$ jmsStreamer.setDestination(dest) [FD]
+Line_3 $$ Destination dest = new ActiveMQTopic(TOPIC_NAME) --> Line_13 $$ produceStringMessages(dest, false) [FD]
+Line_14 $$ CountDownLatch latch = subscribeToPutEvents(CACHE_ENTRY_COUNT) --> Line_16 $$ latch.await(10, TimeUnit.SECONDS) [FD]

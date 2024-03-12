@@ -1,0 +1,6 @@
+Line_2 $$ public void testRecoverReportsAbortedTx() throws Exception --> Line_3 $$ EhcacheXAResource<Long, String> xaResource = new EhcacheXAResource(underlyingStore, journal, xaTransactionContextFactory) [CD]
+Line_2 $$ public void testRecoverReportsAbortedTx() throws Exception --> Line_4 $$ when(journal.recover()).thenReturn(Collections.singletonMap(new TransactionId(new TestXid(0, 0)), (Collection<Long>) Arrays.asList(1L, 2L, 3L))) [CD]
+Line_2 $$ public void testRecoverReportsAbortedTx() throws Exception --> Line_5 $$ Xid[] recovered = xaResource.recover(XAResource.TMSTARTRSCAN | XAResource.TMENDRSCAN) [CD]
+Line_3 $$ EhcacheXAResource<Long, String> xaResource = new EhcacheXAResource(underlyingStore, journal, xaTransactionContextFactory) --> Line_5 $$ Xid[] recovered = xaResource.recover(XAResource.TMSTARTRSCAN | XAResource.TMENDRSCAN) [FD]
+Line_2 $$ public void testRecoverReportsAbortedTx() throws Exception --> Line_6 $$ assertThat(recovered.length, is(1)) [CD]
+Line_2 $$ public void testRecoverReportsAbortedTx() throws Exception --> Line_7 $$ assertThat(new SerializableXid(recovered[0]), Matchers.<Xid>equalTo(new SerializableXid(new TestXid(0, 0)))) [CD]

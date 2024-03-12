@@ -1,0 +1,8 @@
+Line_2 $$ public void haltAllTasks() --> Line_3 $$ LinkedList<Thread> endingThreads = new LinkedList() [CD]
+Line_2 $$ public void haltAllTasks() --> Line_4 $$ endingThreads.addAll(executions.values()) [CD]
+Line_3 $$ LinkedList<Thread> endingThreads = new LinkedList() --> Line_4 $$ endingThreads.addAll(executions.values()) [FD]
+Line_5 $$ for (Thread thread : endingThreads) --> Line_6 $$ while (thread.isAlive() && thread != Thread.currentThread()) [FD]
+Line_6 $$ while (thread.isAlive() && thread != Thread.currentThread()) --> Line_7 $$ LOGGER.info("Interrupting execution thread " + thread) [CD]
+Line_6 $$ while (thread.isAlive() && thread != Thread.currentThread()) --> Line_8 $$ thread.interrupt() [CD]
+Line_5 $$ for (Thread thread : endingThreads) --> Line_8 $$ thread.interrupt() [FD]
+Line_2 $$ public void haltAllTasks() --> Line_11 $$ executions.clear() [CD]

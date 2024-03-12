@@ -1,0 +1,6 @@
+Line_2 $$ private Optional<JavaConfigJson> readJavaConfigJson(Path configFile) --> Line_4 $$ JsonNode json = JSON.readValue(configFile.toFile(), JsonNode.class) [FD]
+Line_5 $$ if (json.isArray()) --> Line_6 $$ return JSON.convertValue(json, new TypeReference<List<JavaConfigJson>>() [CD]
+Line_5 $$ if (json.isArray()) --> Line_9 $$ JavaConfigJson one = JSON.convertValue(json, JavaConfigJson.class) [CD]
+Line_5 $$ if (json.isArray()) --> Line_10 $$ return Optional.of(one) [CD]
+Line_13 $$ MessageParams message = new MessageParams() --> Line_14 $$ message.setMessage("Error reading " + configFile) [FD]
+Line_13 $$ MessageParams message = new MessageParams() --> Line_15 $$ message.setType(MessageType.Error) [FD]

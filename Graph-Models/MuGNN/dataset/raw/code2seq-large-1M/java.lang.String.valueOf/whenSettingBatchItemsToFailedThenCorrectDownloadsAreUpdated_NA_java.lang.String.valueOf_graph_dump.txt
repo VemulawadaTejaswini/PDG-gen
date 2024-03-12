@@ -1,0 +1,8 @@
+Line_2 $$ public void whenSettingBatchItemsToFailedThenCorrectDownloadsAreUpdated() throws Exception --> Line_3 $$ final ContentValues mockContentValues = mock(ContentValues.class) [CD]
+Line_2 $$ public void whenSettingBatchItemsToFailedThenCorrectDownloadsAreUpdated() throws Exception --> Line_4 $$ whenNew(ContentValues.class).withAnyArguments().thenReturn(mockContentValues) [CD]
+Line_2 $$ public void whenSettingBatchItemsToFailedThenCorrectDownloadsAreUpdated() throws Exception --> Line_5 $$ ContentResolver mockResolver = mock(ContentResolver.class) [CD]
+Line_2 $$ public void whenSettingBatchItemsToFailedThenCorrectDownloadsAreUpdated() throws Exception --> Line_6 $$ BatchStatusRepository batchStatusRepository = givenBatchStatusServiceAtCurrentTime(mockResolver) [CD]
+Line_2 $$ public void whenSettingBatchItemsToFailedThenCorrectDownloadsAreUpdated() throws Exception --> Line_7 $$ batchStatusRepository.setBatchItemsFailed(ANY_BATCH_ID, ANY_DOWNLOAD_ID) [CD]
+Line_6 $$ BatchStatusRepository batchStatusRepository = givenBatchStatusServiceAtCurrentTime(mockResolver) --> Line_7 $$ batchStatusRepository.setBatchItemsFailed(ANY_BATCH_ID, ANY_DOWNLOAD_ID) [FD]
+Line_2 $$ public void whenSettingBatchItemsToFailedThenCorrectDownloadsAreUpdated() throws Exception --> Line_8 $$ verify(mockContentValues).put(Downloads.COLUMN_STATUS, DownloadStatus.BATCH_FAILED) [CD]
+Line_2 $$ public void whenSettingBatchItemsToFailedThenCorrectDownloadsAreUpdated() throws Exception --> Line_9 $$ verify(mockResolver).update(ALL_DOWNLOADS_URI, mockContentValues, Downloads.COLUMN_BATCH_ID + " = ? AND " + Downloads._ID + " <> ? ", new String[] [CD]

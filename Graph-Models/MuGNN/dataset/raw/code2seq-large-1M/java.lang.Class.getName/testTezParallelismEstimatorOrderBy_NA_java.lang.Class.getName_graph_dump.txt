@@ -1,0 +1,8 @@
+Line_2 $$ public void testTezParallelismEstimatorOrderBy() throws Exception --> Line_3 $$ pc.getProperties().setProperty(PigConfiguration.PIG_NO_SPLIT_COMBINATION, "true") [CD]
+Line_2 $$ public void testTezParallelismEstimatorOrderBy() throws Exception --> Line_4 $$ String query = "a = load '2' using " + ArbitarySplitsLoader.class.getName() + "() as (name:chararray, age:int, gpa:double);" + "b = group a by name parallel 3;" + "c = foreach b generate group as name, AVG(a.age) as age;" + "d = order c by age;" + "store d into 'output';" [CD]
+Line_2 $$ public void testTezParallelismEstimatorOrderBy() throws Exception --> Line_5 $$ Pair<TezOperPlan, DAG> compiledPlan = compile(query) [CD]
+Line_2 $$ public void testTezParallelismEstimatorOrderBy() throws Exception --> Line_6 $$ TezOperator sortOper = compiledPlan.first.getLeaves().get(0) [CD]
+Line_2 $$ public void testTezParallelismEstimatorOrderBy() throws Exception --> Line_7 $$ Vertex sortVertex = compiledPlan.second.getVertex(sortOper.getOperatorKey().toString()) [CD]
+Line_6 $$ TezOperator sortOper = compiledPlan.first.getLeaves().get(0) --> Line_7 $$ Vertex sortVertex = compiledPlan.second.getVertex(sortOper.getOperatorKey().toString()) [FD]
+Line_2 $$ public void testTezParallelismEstimatorOrderBy() throws Exception --> Line_8 $$ assertEquals(sortVertex.getParallelism(), -1) [CD]
+Line_7 $$ Vertex sortVertex = compiledPlan.second.getVertex(sortOper.getOperatorKey().toString()) --> Line_8 $$ assertEquals(sortVertex.getParallelism(), -1) [FD]

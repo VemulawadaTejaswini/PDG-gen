@@ -1,0 +1,5 @@
+Line_2 $$ public void testStackFrames() --> Line_3 $$ Task<String> successTask = getSuccessTask() [CD]
+Line_3 $$ Task<String> successTask = getSuccessTask() --> Line_5 $$ runAndWait("TestTask.testStackFrames", successTask.flatMap("nested",  x -> getFailureTask())) [FD]
+Line_8 $$ String stackTrace = Arrays.toString(ex.getCause().getStackTrace()) --> Line_9 $$ assertFalse(stackTrace.contains("BaseTask")) [FD]
+Line_8 $$ String stackTrace = Arrays.toString(ex.getCause().getStackTrace()) --> Line_10 $$ assertTrue(stackTrace.contains("\"failure\"")) [FD]
+Line_8 $$ String stackTrace = Arrays.toString(ex.getCause().getStackTrace()) --> Line_11 $$ assertTrue(stackTrace.contains("\"nested\"")) [FD]

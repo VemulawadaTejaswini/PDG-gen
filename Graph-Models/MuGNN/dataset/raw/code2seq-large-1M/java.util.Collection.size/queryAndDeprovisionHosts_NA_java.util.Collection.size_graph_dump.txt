@@ -1,0 +1,8 @@
+Line_2 $$ private void queryAndDeprovisionHosts(final State currentState) --> Line_3 $$ sendRequest(HostUtils.getCloudStoreHelper(this).createBroadcastPost(ServiceUriPaths.CORE_LOCAL_QUERY_TASKS, ServiceUriPaths.DEFAULT_NODE_SELECTOR).setBody(QueryTask.create(buildQuerySpecification(HostService.State.class)).setDirect(true)).setCompletion(( completedOp,  failure) -> [CD]
+Line_4 $$ if (null != failure) --> Line_5 $$ failTask(failure) [CD]
+Line_4 $$ if (null != failure) --> Line_6 $$ return [CD]
+Line_9 $$ Collection<String> documentLinks = QueryTaskUtils.getBroadcastQueryDocumentLinks(completedOp) --> Line_10 $$ QueryTaskUtils.logQueryResults(RemoveDeploymentWorkflowService.this, documentLinks) [FD]
+Line_9 $$ Collection<String> documentLinks = QueryTaskUtils.getBroadcastQueryDocumentLinks(completedOp) --> Line_11 $$ if (documentLinks.size() > 0) [FD]
+Line_11 $$ if (documentLinks.size() > 0) --> Line_12 $$ deprovisionHosts(currentState, documentLinks) [CD]
+Line_2 $$ private void queryAndDeprovisionHosts(final State currentState) --> Line_12 $$ deprovisionHosts(currentState, documentLinks) [FD]
+Line_9 $$ Collection<String> documentLinks = QueryTaskUtils.getBroadcastQueryDocumentLinks(completedOp) --> Line_12 $$ deprovisionHosts(currentState, documentLinks) [FD]

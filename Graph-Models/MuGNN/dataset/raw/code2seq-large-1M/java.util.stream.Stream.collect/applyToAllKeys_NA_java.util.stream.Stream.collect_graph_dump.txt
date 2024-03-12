@@ -1,0 +1,7 @@
+Line_2 $$ public <N, S extends State, T> void applyToAllKeys(final N namespace, final TypeSerializer<N> namespaceSerializer, final StateDescriptor<S, T> stateDescriptor, final KeyedStateFunction<K, S> function) throws Exception --> Line_3 $$ try (Stream<K> keyStream = getKeys(stateDescriptor.getName(), namespace)) [FD]
+Line_3 $$ try (Stream<K> keyStream = getKeys(stateDescriptor.getName(), namespace)) --> Line_4 $$ final List<K> keys = keyStream.collect(Collectors.toList()) [FD]
+Line_2 $$ public <N, S extends State, T> void applyToAllKeys(final N namespace, final TypeSerializer<N> namespaceSerializer, final StateDescriptor<S, T> stateDescriptor, final KeyedStateFunction<K, S> function) throws Exception --> Line_5 $$ final S state = getPartitionedState(namespace, namespaceSerializer, stateDescriptor) [FD]
+Line_6 $$ for (K key : keys) --> Line_7 $$ setCurrentKey(key) [FD]
+Line_2 $$ public <N, S extends State, T> void applyToAllKeys(final N namespace, final TypeSerializer<N> namespaceSerializer, final StateDescriptor<S, T> stateDescriptor, final KeyedStateFunction<K, S> function) throws Exception --> Line_8 $$ function.process(key, state) [FD]
+Line_6 $$ for (K key : keys) --> Line_8 $$ function.process(key, state) [FD]
+Line_5 $$ final S state = getPartitionedState(namespace, namespaceSerializer, stateDescriptor) --> Line_8 $$ function.process(key, state) [FD]

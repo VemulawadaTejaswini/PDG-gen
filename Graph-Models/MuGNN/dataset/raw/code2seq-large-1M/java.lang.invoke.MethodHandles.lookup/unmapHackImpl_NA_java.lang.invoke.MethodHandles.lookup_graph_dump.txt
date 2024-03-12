@@ -1,0 +1,7 @@
+Line_2 $$ private static Object unmapHackImpl() --> Line_3 $$ final Lookup lookup = lookup() [CD]
+Line_3 $$ final Lookup lookup = lookup() --> Line_6 $$ final MethodHandle unmapper = lookup.findVirtual(unsafeClass, "invokeCleaner", methodType(void.class, ByteBuffer.class)) [FD]
+Line_5 $$ final Class<?> unsafeClass = Class.forName("sun.misc.Unsafe") --> Line_6 $$ final MethodHandle unmapper = lookup.findVirtual(unsafeClass, "invokeCleaner", methodType(void.class, ByteBuffer.class)) [FD]
+Line_5 $$ final Class<?> unsafeClass = Class.forName("sun.misc.Unsafe") --> Line_7 $$ final Field f = unsafeClass.getDeclaredField("theUnsafe") [FD]
+Line_7 $$ final Field f = unsafeClass.getDeclaredField("theUnsafe") --> Line_8 $$ f.setAccessible(true) [FD]
+Line_7 $$ final Field f = unsafeClass.getDeclaredField("theUnsafe") --> Line_9 $$ final Object theUnsafe = f.get(null) [FD]
+Line_9 $$ final Object theUnsafe = f.get(null) --> Line_10 $$ return new BufferCleaner(ByteBuffer.class, unmapper.bindTo(theUnsafe)) [FD]

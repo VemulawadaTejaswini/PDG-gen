@@ -1,0 +1,8 @@
+Line_2 $$ public void testTimeStampUtcNow() throws SQLException --> Line_3 $$ Assume.assumeFalse("true".equals(System.getenv("AURORA"))) [CD]
+Line_2 $$ public void testTimeStampUtcNow() throws SQLException --> Line_4 $$ TimeZone.setDefault(parisTimeZone) [CD]
+Line_5 $$ try (Connection connection = setConnection("&serverTimezone=UTC&useServerPrepStmts=true")) --> Line_7 $$ setSessionTimeZone(connection, "+00:00") [FD]
+Line_5 $$ try (Connection connection = setConnection("&serverTimezone=UTC&useServerPrepStmts=true")) --> Line_9 $$ PreparedStatement st = connection.prepareStatement("SELECT NOW()") [FD]
+Line_9 $$ PreparedStatement st = connection.prepareStatement("SELECT NOW()") --> Line_10 $$ ResultSet rs = st.executeQuery() [FD]
+Line_10 $$ ResultSet rs = st.executeQuery() --> Line_11 $$ assertTrue(rs.next()) [FD]
+Line_8 $$ Timestamp currentTimeParis = new Timestamp(System.currentTimeMillis()) --> Line_13 $$ long timeDifference = currentTimeParis.getTime() - offset - rs.getTimestamp(1).getTime() [FD]
+Line_10 $$ ResultSet rs = st.executeQuery() --> Line_13 $$ long timeDifference = currentTimeParis.getTime() - offset - rs.getTimestamp(1).getTime() [FD]

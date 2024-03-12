@@ -1,0 +1,8 @@
+Line_2 $$ public BlockingQueue<byte[]> keyQueue(final int size) --> Line_3 $$ final ArrayBlockingQueue<byte[]> set = new ArrayBlockingQueue<byte[]>(size) [CD]
+Line_2 $$ public BlockingQueue<byte[]> keyQueue(final int size) --> Line_4 $$ (new Thread() [CD]
+Line_4 $$ (new Thread() --> Line_6 $$ Thread.currentThread().setName("MapHeap.keyQueue:" + size) [CD]
+Line_8 $$ final Iterator<byte[]> i = MapHeap.this.blob.keys(true, false) --> Line_9 $$ while (i.hasNext()) try [FD]
+Line_3 $$ final ArrayBlockingQueue<byte[]> set = new ArrayBlockingQueue<byte[]>(size) --> Line_10 $$ set.put(i.next()) [FD]
+Line_8 $$ final Iterator<byte[]> i = MapHeap.this.blob.keys(true, false) --> Line_10 $$ set.put(i.next()) [FD]
+Line_3 $$ final ArrayBlockingQueue<byte[]> set = new ArrayBlockingQueue<byte[]>(size) --> Line_17 $$ set.put(MapHeap.POISON_QUEUE_ENTRY) [FD]
+Line_2 $$ public BlockingQueue<byte[]> keyQueue(final int size) --> Line_22 $$ return set [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ Transition maintenance() --> Line_3 $$ logger.trace("Entering Maintenance") [CD]
+Line_2 $$ Transition maintenance() --> Line_4 $$ InternalStatus.Transition st [CD]
+Line_2 $$ Transition maintenance() --> Line_5 $$ for (InternalStatus.Transition cs; !currentState.compareAndSet(cs = currentState.get(), st = cs.get().maintenance()); ) [CD]
+Line_4 $$ InternalStatus.Transition st --> Line_5 $$ for (InternalStatus.Transition cs; !currentState.compareAndSet(cs = currentState.get(), st = cs.get().maintenance()); ) [FD]
+Line_2 $$ Transition maintenance() --> Line_6 $$ return new Transition(st, Thread.currentThread(), "Enter Maintenance") [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void userEventTriggered(ChannelHandlerContext ctx, Object evt) --> Line_3 $$ if (evt instanceof BridgeForwardMessage) [FD]
+Line_2 $$ public void userEventTriggered(ChannelHandlerContext ctx, Object evt) --> Line_3 $$ if (evt instanceof BridgeForwardMessage) [CD]
+Line_3 $$ if (evt instanceof BridgeForwardMessage) --> Line_4 $$ var bridgeForwardMessage = (BridgeForwardMessage) evt [CD]
+Line_3 $$ if (evt instanceof BridgeForwardMessage) --> Line_5 $$ var tokenValue = bridgeForwardMessage.tokenValue [CD]
+Line_2 $$ public void userEventTriggered(ChannelHandlerContext ctx, Object evt) --> Line_7 $$ hardware.messageReceived(ctx, bridgeForwardMessage.message, bridgeForwardMessage.userKey, tokenValue.user, tokenValue.dash, tokenValue.device) [FD]
+Line_2 $$ public void userEventTriggered(ChannelHandlerContext ctx, Object evt) --> Line_10 $$ ctx.writeAndFlush(illegalCommand(bridgeForwardMessage.message.id), ctx.voidPromise()) [FD]
+Line_3 $$ if (evt instanceof BridgeForwardMessage) --> Line_13 $$ ctx.fireUserEventTriggered(evt) [CD]
+Line_2 $$ public void userEventTriggered(ChannelHandlerContext ctx, Object evt) --> Line_13 $$ ctx.fireUserEventTriggered(evt) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public long getTimeUntilNextRun() --> Line_3 $$ long now = timeProvider.currentTimeMillis() [CD]
+Line_2 $$ public long getTimeUntilNextRun() --> Line_4 $$ Requester nextDueRequester = getNextDueRequester() [CD]
+Line_2 $$ public long getTimeUntilNextRun() --> Line_5 $$ if (nextDueRequester == null) [CD]
+Line_4 $$ Requester nextDueRequester = getNextDueRequester() --> Line_5 $$ if (nextDueRequester == null) [FD]
+Line_5 $$ if (nextDueRequester == null) --> Line_6 $$ return WAKEUP_INTERVAL_MILLIS [CD]
+Line_5 $$ if (nextDueRequester == null) --> Line_8 $$ if (logger.isTraceEnabled()) [CD]
+Line_8 $$ if (logger.isTraceEnabled()) --> Line_9 $$ logger.trace(hashCode() + ": Next nack is scheduled for ssrc " + nextDueRequester.ssrc + " at " + Math.max(nextDueRequester.nextRequestAt, 0) + ".  (current time is " + now + ")") [CD]
+Line_5 $$ if (nextDueRequester == null) --> Line_11 $$ return Math.max(nextDueRequester.nextRequestAt - now, 0) [CD]

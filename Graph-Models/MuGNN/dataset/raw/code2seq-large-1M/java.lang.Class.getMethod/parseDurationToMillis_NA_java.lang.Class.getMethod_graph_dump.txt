@@ -1,0 +1,7 @@
+Line_4 $$ final Class<?> k = findClass("java.time.Duration") --> Line_5 $$ final Method parse = k.getMethod("parse", CharSequence.class) [FD]
+Line_4 $$ final Class<?> k = findClass("java.time.Duration") --> Line_6 $$ if (!k.isAssignableFrom(parse.getReturnType()) || !Modifier.isStatic(parse.getModifiers())) [FD]
+Line_4 $$ final Class<?> k = findClass("java.time.Duration") --> Line_9 $$ final Method toMillis = k.getMethod("toMillis") [FD]
+Line_9 $$ final Method toMillis = k.getMethod("toMillis") --> Line_10 $$ if (!Long.TYPE.isAssignableFrom(toMillis.getReturnType()) || Modifier.isStatic(toMillis.getModifiers())) [FD]
+Line_9 $$ final Method toMillis = k.getMethod("toMillis") --> Line_11 $$ throw new NoSuchMethodException(toMillis.toString()) [FD]
+Line_9 $$ final Method toMillis = k.getMethod("toMillis") --> Line_13 $$ return (Long) toMillis.invoke(parse.invoke(null, value)) [FD]
+Line_2 $$ static long parseDurationToMillis(final CharSequence value) throws Exception --> Line_13 $$ return (Long) toMillis.invoke(parse.invoke(null, value)) [FD]

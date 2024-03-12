@@ -1,0 +1,8 @@
+Line_2 $$ private void addGarbageCollectorMetrics(long timestamp, MetricList metrics) --> Line_3 $$ final List<GarbageCollectorMXBean> beans = ManagementFactory.getGarbageCollectorMXBeans() [CD]
+Line_4 $$ for (GarbageCollectorMXBean bean : beans) --> Line_5 $$ final Tag id = Tags.newTag("id", bean.getName()) [FD]
+Line_2 $$ private void addGarbageCollectorMetrics(long timestamp, MetricList metrics) --> Line_6 $$ metrics.add(new Metric(COLLECTION_COUNT.withAdditionalTag(id), timestamp, bean.getCollectionCount())) [FD]
+Line_5 $$ final Tag id = Tags.newTag("id", bean.getName()) --> Line_6 $$ metrics.add(new Metric(COLLECTION_COUNT.withAdditionalTag(id), timestamp, bean.getCollectionCount())) [FD]
+Line_4 $$ for (GarbageCollectorMXBean bean : beans) --> Line_6 $$ metrics.add(new Metric(COLLECTION_COUNT.withAdditionalTag(id), timestamp, bean.getCollectionCount())) [FD]
+Line_2 $$ private void addGarbageCollectorMetrics(long timestamp, MetricList metrics) --> Line_7 $$ metrics.add(new Metric(COLLECTION_TIME.withAdditionalTag(id), timestamp, bean.getCollectionTime())) [FD]
+Line_5 $$ final Tag id = Tags.newTag("id", bean.getName()) --> Line_7 $$ metrics.add(new Metric(COLLECTION_TIME.withAdditionalTag(id), timestamp, bean.getCollectionTime())) [FD]
+Line_4 $$ for (GarbageCollectorMXBean bean : beans) --> Line_7 $$ metrics.add(new Metric(COLLECTION_TIME.withAdditionalTag(id), timestamp, bean.getCollectionTime())) [FD]

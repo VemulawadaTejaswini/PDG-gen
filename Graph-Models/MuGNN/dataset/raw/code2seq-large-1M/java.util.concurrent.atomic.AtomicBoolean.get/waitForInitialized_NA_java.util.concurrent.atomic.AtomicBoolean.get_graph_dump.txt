@@ -1,0 +1,8 @@
+Line_2 $$ private boolean waitForInitialized() --> Line_3 $$ boolean wasInterrupted = false [CD]
+Line_5 $$ while (!localInitialized && !awaitUninterruptibly(initialized, 3, TimeUnit.SECONDS) && !shuttingDown.get()) --> Line_6 $$ log.info(fileStatsToString("waiting for initialization")) [CD]
+Line_5 $$ while (!localInitialized && !awaitUninterruptibly(initialized, 3, TimeUnit.SECONDS) && !shuttingDown.get()) --> Line_7 $$ if (Thread.interrupted()) [CD]
+Line_7 $$ if (Thread.interrupted()) --> Line_8 $$ wasInterrupted = true [CD]
+Line_3 $$ boolean wasInterrupted = false --> Line_8 $$ wasInterrupted = true [FD]
+Line_7 $$ if (Thread.interrupted()) --> Line_9 $$ log.info("interrupted while waiting for initialization; closing source then resuming wait") [CD]
+Line_7 $$ if (Thread.interrupted()) --> Line_10 $$ close() [CD]
+Line_17 $$ if (wasInterrupted) --> Line_18 $$ Thread.currentThread().interrupt() [CD]

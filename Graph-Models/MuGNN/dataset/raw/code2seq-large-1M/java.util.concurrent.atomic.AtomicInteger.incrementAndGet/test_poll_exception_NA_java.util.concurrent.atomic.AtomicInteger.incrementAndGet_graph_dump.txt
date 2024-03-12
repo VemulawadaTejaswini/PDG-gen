@@ -1,0 +1,8 @@
+Line_2 $$ public void test_poll_exception() --> Line_3 $$ AtomicInteger counter = new AtomicInteger() [CD]
+Line_2 $$ public void test_poll_exception() --> Line_4 $$ Supplier<String> pollingFn = () -> [CD]
+Line_3 $$ AtomicInteger counter = new AtomicInteger() --> Line_5 $$ switch(counter.incrementAndGet()) [FD]
+Line_2 $$ public void test_poll_exception() --> Line_14 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor() [CD]
+Line_14 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor() --> Line_16 $$ CompletableFuture<String> future = Guavate.poll(executor, Duration.ofMillis(100), Duration.ofMillis(100), pollingFn) [FD]
+Line_4 $$ Supplier<String> pollingFn = () -> --> Line_16 $$ CompletableFuture<String> future = Guavate.poll(executor, Duration.ofMillis(100), Duration.ofMillis(100), pollingFn) [FD]
+Line_16 $$ CompletableFuture<String> future = Guavate.poll(executor, Duration.ofMillis(100), Duration.ofMillis(100), pollingFn) --> Line_17 $$ future.join() [FD]
+Line_14 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor() --> Line_19 $$ executor.shutdown() [FD]

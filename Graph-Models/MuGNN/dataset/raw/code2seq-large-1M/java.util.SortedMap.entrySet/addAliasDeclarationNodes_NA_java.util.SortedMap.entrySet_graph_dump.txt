@@ -1,0 +1,8 @@
+Line_4 $$ StringInfo info = entry.getValue() --> Line_8 $$ String alias = info.getVariableName(entry.getKey()) [FD]
+Line_8 $$ String alias = info.getVariableName(entry.getKey()) --> Line_9 $$ Node var = IR.var(IR.name(alias), IR.string(entry.getKey())) [FD]
+Line_9 $$ Node var = IR.var(IR.name(alias), IR.string(entry.getKey())) --> Line_10 $$ var.useSourceInfoFromForTree(info.parentForNewVarDecl) [FD]
+Line_11 $$ if (info.siblingToInsertVarDeclBefore == null) --> Line_12 $$ info.parentForNewVarDecl.addChildToFront(var) [CD]
+Line_9 $$ Node var = IR.var(IR.name(alias), IR.string(entry.getKey())) --> Line_12 $$ info.parentForNewVarDecl.addChildToFront(var) [FD]
+Line_11 $$ if (info.siblingToInsertVarDeclBefore == null) --> Line_14 $$ info.parentForNewVarDecl.addChildBefore(var, info.siblingToInsertVarDeclBefore) [CD]
+Line_9 $$ Node var = IR.var(IR.name(alias), IR.string(entry.getKey())) --> Line_14 $$ info.parentForNewVarDecl.addChildBefore(var, info.siblingToInsertVarDeclBefore) [FD]
+Line_9 $$ Node var = IR.var(IR.name(alias), IR.string(entry.getKey())) --> Line_16 $$ compiler.reportChangeToEnclosingScope(var) [FD]

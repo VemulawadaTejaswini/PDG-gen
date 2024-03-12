@@ -1,0 +1,7 @@
+Line_2 $$ public static Annotation resolveAnnotation(Class annotation) --> Line_4 $$ String name = annotation.getSimpleName().replace(pathSeparator, dotSeparator) [FD]
+Line_2 $$ public static Annotation resolveAnnotation(Class annotation) --> Line_5 $$ Class<?> declaringClass = annotation.getDeclaringClass().getDeclaringClass() [FD]
+Line_5 $$ Class<?> declaringClass = annotation.getDeclaringClass().getDeclaringClass() --> Line_6 $$ Class<?> aClass = resolveClassOf(declaringClass) [FD]
+Line_4 $$ String name = annotation.getSimpleName().replace(pathSeparator, dotSeparator) --> Line_7 $$ Class<? extends Annotation> aClass1 = (Class<? extends Annotation>) ReflectionUtils.forName(name) [FD]
+Line_6 $$ Class<?> aClass = resolveClassOf(declaringClass) --> Line_8 $$ Annotation annotation1 = aClass.getAnnotation(aClass1) [FD]
+Line_7 $$ Class<? extends Annotation> aClass1 = (Class<? extends Annotation>) ReflectionUtils.forName(name) --> Line_8 $$ Annotation annotation1 = aClass.getAnnotation(aClass1) [FD]
+Line_2 $$ public static Annotation resolveAnnotation(Class annotation) --> Line_11 $$ throw new ReflectionsException("could not resolve to annotation " + annotation.getName(), e) [FD]

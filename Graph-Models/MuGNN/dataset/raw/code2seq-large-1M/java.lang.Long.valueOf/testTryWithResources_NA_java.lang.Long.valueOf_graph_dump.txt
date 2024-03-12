@@ -1,0 +1,7 @@
+Line_2 $$ public void testTryWithResources() --> Line_3 $$ Metric metric = mock(Metric.class) [CD]
+Line_2 $$ public void testTryWithResources() --> Line_4 $$ Timer timer = mock(Timer.class) [CD]
+Line_2 $$ public void testTryWithResources() --> Line_5 $$ ServiceMonitorMetrics metrics = new ServiceMonitorMetrics(metric, timer) [CD]
+Line_2 $$ public void testTryWithResources() --> Line_6 $$ when(timer.currentTimeMillis()).thenReturn(Long.valueOf(500), Long.valueOf(1000)) [CD]
+Line_5 $$ ServiceMonitorMetrics metrics = new ServiceMonitorMetrics(metric, timer) --> Line_7 $$ try (LatencyMeasurement measurement = metrics.startServiceModelSnapshotLatencyMeasurement()) [FD]
+Line_7 $$ try (LatencyMeasurement measurement = metrics.startServiceModelSnapshotLatencyMeasurement()) --> Line_8 $$ measurement.hashCode() [FD]
+Line_2 $$ public void testTryWithResources() --> Line_10 $$ verify(metric).set("serviceModel.snapshot.latency", 0.5, null) [CD]

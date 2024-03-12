@@ -1,0 +1,7 @@
+Line_2 $$ public long readLastFinishTime() throws Exception --> Line_3 $$ String path = zkRoot + "/" + ZNODE_LAST_UPDATE [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_LAST_UPDATE --> Line_5 $$ if (curator.checkExists().forPath(path) != null) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) != null) --> Line_6 $$ return Long.parseLong(new String(curator.getData().forPath(path), "UTF-8")) [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_LAST_UPDATE --> Line_6 $$ return Long.parseLong(new String(curator.getData().forPath(path), "UTF-8")) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) != null) --> Line_8 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, "0".getBytes("UTF-8")) [CD]
+Line_3 $$ String path = zkRoot + "/" + ZNODE_LAST_UPDATE --> Line_8 $$ curator.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, "0".getBytes("UTF-8")) [FD]
+Line_5 $$ if (curator.checkExists().forPath(path) != null) --> Line_9 $$ return 0L [CD]

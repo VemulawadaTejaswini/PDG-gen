@@ -1,0 +1,7 @@
+Line_2 $$ private synchronized URIResolverHook loadUriResolverHook() throws IllegalStateException --> Line_3 $$ String uriResolverClassName = MetastoreConf.getAsString(conf, ConfVars.URI_RESOLVER) [CD]
+Line_2 $$ private synchronized URIResolverHook loadUriResolverHook() throws IllegalStateException --> Line_4 $$ if (uriResolverClassName.equals("")) [CD]
+Line_3 $$ String uriResolverClassName = MetastoreConf.getAsString(conf, ConfVars.URI_RESOLVER) --> Line_4 $$ if (uriResolverClassName.equals("")) [FD]
+Line_4 $$ if (uriResolverClassName.equals("")) --> Line_5 $$ return null [CD]
+Line_4 $$ if (uriResolverClassName.equals("")) --> Line_7 $$ LOG.info("Loading uri resolver" + uriResolverClassName) [CD]
+Line_3 $$ String uriResolverClassName = MetastoreConf.getAsString(conf, ConfVars.URI_RESOLVER) --> Line_9 $$ Class<?> uriResolverClass = Class.forName(uriResolverClassName, true, JavaUtils.getClassLoader()) [FD]
+Line_9 $$ Class<?> uriResolverClass = Class.forName(uriResolverClassName, true, JavaUtils.getClassLoader()) --> Line_10 $$ return (URIResolverHook) ReflectionUtils.newInstance(uriResolverClass, null) [FD]

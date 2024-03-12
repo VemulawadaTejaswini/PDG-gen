@@ -1,0 +1,6 @@
+Line_2 $$ public Backend getBackend(String hostname, int port) --> Line_3 $$ countRequest(hostname + ":" + port) [CD]
+Line_2 $$ public Backend getBackend(String hostname, int port) --> Line_4 $$ if (nonRespondingBackends.contains(hostname)) [CD]
+Line_2 $$ public Backend getBackend(String hostname, int port) --> Line_4 $$ if (nonRespondingBackends.contains(hostname)) [FD]
+Line_4 $$ if (nonRespondingBackends.contains(hostname)) --> Line_5 $$ return new MockBackend(hostname, NonWorkingMockFSChannel::<>new) [CD]
+Line_4 $$ if (nonRespondingBackends.contains(hostname)) --> Line_7 $$ return new MockBackend(hostname, () -> new MockFSChannel(activeDocumentsInBackend.getOrDefault(hostname, 0L))) [CD]
+Line_2 $$ public Backend getBackend(String hostname, int port) --> Line_7 $$ return new MockBackend(hostname, () -> new MockFSChannel(activeDocumentsInBackend.getOrDefault(hostname, 0L))) [FD]

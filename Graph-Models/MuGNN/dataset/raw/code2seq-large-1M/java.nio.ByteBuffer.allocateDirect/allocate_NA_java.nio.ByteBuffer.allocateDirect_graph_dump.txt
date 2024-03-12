@@ -1,0 +1,8 @@
+Line_2 $$ protected DirectBuffer allocate() --> Line_3 $$ final OneToOneConcurrentArrayQueue<DirectBuffer> q = BUFFERS.get() [CD]
+Line_2 $$ protected DirectBuffer allocate() --> Line_4 $$ final DirectBuffer buffer = q.poll() [CD]
+Line_3 $$ final OneToOneConcurrentArrayQueue<DirectBuffer> q = BUFFERS.get() --> Line_4 $$ final DirectBuffer buffer = q.poll() [FD]
+Line_2 $$ protected DirectBuffer allocate() --> Line_5 $$ if (buffer != null && buffer.capacity() >= 0) [CD]
+Line_4 $$ final DirectBuffer buffer = q.poll() --> Line_5 $$ if (buffer != null && buffer.capacity() >= 0) [FD]
+Line_5 $$ if (buffer != null && buffer.capacity() >= 0) --> Line_6 $$ return buffer [CD]
+Line_5 $$ if (buffer != null && buffer.capacity() >= 0) --> Line_8 $$ final ByteBuffer bb = allocateDirect(0) [CD]
+Line_5 $$ if (buffer != null && buffer.capacity() >= 0) --> Line_9 $$ return new UnsafeBuffer(bb) [CD]

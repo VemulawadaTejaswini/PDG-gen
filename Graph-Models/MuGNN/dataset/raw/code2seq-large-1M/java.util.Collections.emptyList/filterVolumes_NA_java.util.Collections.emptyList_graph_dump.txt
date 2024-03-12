@@ -1,0 +1,6 @@
+Line_2 $$ private static List<ContainerVolumeDescription> filterVolumes(ContainerDescription cd, Collection<ContainerVolumeDescription> volumes) --> Line_3 $$ if (cd.volumes == null) [CD]
+Line_3 $$ if (cd.volumes == null) --> Line_4 $$ return Collections.emptyList() [CD]
+Line_2 $$ private static List<ContainerVolumeDescription> filterVolumes(ContainerDescription cd, Collection<ContainerVolumeDescription> volumes) --> Line_6 $$ Predicate<ContainerVolumeDescription> hasVolume =  vd -> Arrays.stream(cd.volumes).anyMatch( v -> v.startsWith(vd.name)) [CD]
+Line_2 $$ private static List<ContainerVolumeDescription> filterVolumes(ContainerDescription cd, Collection<ContainerVolumeDescription> volumes) --> Line_7 $$ return volumes.stream().filter(hasVolume).collect(Collectors.toList()) [CD]
+Line_2 $$ private static List<ContainerVolumeDescription> filterVolumes(ContainerDescription cd, Collection<ContainerVolumeDescription> volumes) --> Line_7 $$ return volumes.stream().filter(hasVolume).collect(Collectors.toList()) [FD]
+Line_6 $$ Predicate<ContainerVolumeDescription> hasVolume =  vd -> Arrays.stream(cd.volumes).anyMatch( v -> v.startsWith(vd.name)) --> Line_7 $$ return volumes.stream().filter(hasVolume).collect(Collectors.toList()) [FD]

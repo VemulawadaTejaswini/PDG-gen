@@ -1,0 +1,8 @@
+Line_5 $$ if (invokeCallbacks) --> Line_6 $$ boolean doCallback = false [CD]
+Line_5 $$ if (invokeCallbacks) --> Line_7 $$ if (isInitialized) [CD]
+Line_7 $$ if (isInitialized) --> Line_8 $$ if (event.isGenerateCallbacks()) [CD]
+Line_8 $$ if (event.isGenerateCallbacks()) --> Line_9 $$ doCallback = true [CD]
+Line_6 $$ boolean doCallback = false --> Line_9 $$ doCallback = true [FD]
+Line_5 $$ if (invokeCallbacks) --> Line_12 $$ if (doCallback) [CD]
+Line_12 $$ if (doCallback) --> Line_13 $$ notifyGatewaySender(event.getOperation().isUpdate() ? EnumListenerEvent.AFTER_UPDATE : EnumListenerEvent.AFTER_CREATE, event) [CD]
+Line_12 $$ if (doCallback) --> Line_14 $$ if (!event.isBulkOpInProgress()) [CD]

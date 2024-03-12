@@ -1,0 +1,6 @@
+Line_2 $$ public void assignExecutor(final int executorId, final int executionId) throws ExecutorManagerException --> Line_3 $$ final String UPDATE = "UPDATE execution_flows SET executor_id=? where exec_id=?" [CD]
+Line_2 $$ public void assignExecutor(final int executorId, final int executionId) throws ExecutorManagerException --> Line_5 $$ if (this.executorDao.fetchExecutor(executorId) == null) [FD]
+Line_2 $$ public void assignExecutor(final int executorId, final int executionId) throws ExecutorManagerException --> Line_6 $$ throw new ExecutorManagerException(String.format("Failed to assign non-existent executor Id: %d to execution : %d  ", executorId, executionId)) [FD]
+Line_3 $$ final String UPDATE = "UPDATE execution_flows SET executor_id=? where exec_id=?" --> Line_8 $$ if (this.dbOperator.update(UPDATE, executorId, executionId) == 0) [FD]
+Line_2 $$ public void assignExecutor(final int executorId, final int executionId) throws ExecutorManagerException --> Line_8 $$ if (this.dbOperator.update(UPDATE, executorId, executionId) == 0) [FD]
+Line_2 $$ public void assignExecutor(final int executorId, final int executionId) throws ExecutorManagerException --> Line_9 $$ throw new ExecutorManagerException(String.format("Failed to assign executor Id: %d to non-existent execution : %d  ", executorId, executionId)) [FD]

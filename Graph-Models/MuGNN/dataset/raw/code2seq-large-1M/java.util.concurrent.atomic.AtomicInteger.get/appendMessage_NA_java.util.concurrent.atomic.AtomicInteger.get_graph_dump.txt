@@ -1,0 +1,8 @@
+Line_2 $$ public boolean appendMessage(final byte[] data, final int offset, final int length) --> Line_3 $$ int currentPos = this.wrotePosition.get() [CD]
+Line_2 $$ public boolean appendMessage(final byte[] data, final int offset, final int length) --> Line_4 $$ if ((currentPos + length) <= this.fileSize) [CD]
+Line_3 $$ int currentPos = this.wrotePosition.get() --> Line_6 $$ this.fileChannel.position(currentPos) [FD]
+Line_2 $$ public boolean appendMessage(final byte[] data, final int offset, final int length) --> Line_7 $$ this.fileChannel.write(ByteBuffer.wrap(data, offset, length)) [FD]
+Line_4 $$ if ((currentPos + length) <= this.fileSize) --> Line_11 $$ this.wrotePosition.addAndGet(length) [CD]
+Line_2 $$ public boolean appendMessage(final byte[] data, final int offset, final int length) --> Line_11 $$ this.wrotePosition.addAndGet(length) [FD]
+Line_4 $$ if ((currentPos + length) <= this.fileSize) --> Line_12 $$ return true [CD]
+Line_2 $$ public boolean appendMessage(final byte[] data, final int offset, final int length) --> Line_14 $$ return false [CD]

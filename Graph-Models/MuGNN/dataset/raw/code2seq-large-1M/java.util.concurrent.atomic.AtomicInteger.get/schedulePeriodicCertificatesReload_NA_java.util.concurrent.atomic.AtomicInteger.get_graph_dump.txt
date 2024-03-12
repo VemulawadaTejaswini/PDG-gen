@@ -1,0 +1,6 @@
+Line_2 $$ private void schedulePeriodicCertificatesReload() --> Line_3 $$ long nextDelay = (reloadCounter.get() > reloadCounterThreshold) ? maintenanceInterval : maintenanceIntervalInitial [CD]
+Line_2 $$ private void schedulePeriodicCertificatesReload() --> Line_4 $$ if (host.isStopping()) [CD]
+Line_4 $$ if (host.isStopping()) --> Line_5 $$ return [CD]
+Line_2 $$ private void schedulePeriodicCertificatesReload() --> Line_7 $$ Runnable task = () -> [CD]
+Line_7 $$ Runnable task = () -> --> Line_21 $$ host.schedule(task, nextDelay, TimeUnit.MICROSECONDS) [FD]
+Line_3 $$ long nextDelay = (reloadCounter.get() > reloadCounterThreshold) ? maintenanceInterval : maintenanceIntervalInitial --> Line_21 $$ host.schedule(task, nextDelay, TimeUnit.MICROSECONDS) [FD]

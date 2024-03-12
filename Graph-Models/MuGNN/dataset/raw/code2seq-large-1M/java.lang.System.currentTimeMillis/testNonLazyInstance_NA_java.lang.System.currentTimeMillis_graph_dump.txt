@@ -1,0 +1,5 @@
+Line_2 $$ public void testNonLazyInstance() --> Line_3 $$ final long time = new Iso8601Date(new Date(System.currentTimeMillis())).getTime() [CD]
+Line_2 $$ public void testNonLazyInstance() --> Line_4 $$ final List<RelativeIso8601Date> testDates = Arrays.<RelativeIso8601Date>asList(new RelativeIso8601Date(new Date(time)), new RelativeIso8601Date(new Iso8601Date(new Date(time)).toString())) [CD]
+Line_5 $$ for (final RelativeIso8601Date nonLazy : testDates) --> Line_6 $$ Assert.assertFalse(nonLazy.toString().equals(RelativeIso8601Date.LAZY_NOW_LABEL)) [FD]
+Line_5 $$ for (final RelativeIso8601Date nonLazy : testDates) --> Line_7 $$ Assert.assertEquals((double) nonLazy.getTime(), (double) time, DELTA_FOR_TIME) [FD]
+Line_5 $$ for (final RelativeIso8601Date nonLazy : testDates) --> Line_8 $$ new RelativeIso8601Date(nonLazy.toString()) [FD]

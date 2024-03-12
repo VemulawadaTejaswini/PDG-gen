@@ -1,0 +1,3 @@
+Line_2 $$ List<Class<?>> scan(ModuleReference reference) --> Line_3 $$ try (ModuleReader reader = reference.open()) [FD]
+Line_3 $$ try (ModuleReader reader = reference.open()) --> Line_4 $$ try (Stream<String> names = reader.list()) [FD]
+Line_4 $$ try (Stream<String> names = reader.list()) --> Line_5 $$ return names.filter( name -> name.endsWith(".class")).map(this::<>className).filter( name -> !name.equals("module-info")).filter(classFilter::<>match).map(this::<>loadClassUnchecked).filter(classFilter::<>match).collect(Collectors.toList()) [FD]

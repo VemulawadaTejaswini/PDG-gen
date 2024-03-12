@@ -1,0 +1,6 @@
+Line_2 $$ public void prematureCancel() throws Exception --> Line_3 $$ DirectProcessor<Void> signal = DirectProcessor.create() [CD]
+Line_2 $$ public void prematureCancel() throws Exception --> Line_4 $$ NettyContext x = TcpServer.create("localhost", 0).newHandler(( in,  out) -> [CD]
+Line_3 $$ DirectProcessor<Void> signal = DirectProcessor.create() --> Line_5 $$ signal.onComplete() [FD]
+Line_2 $$ public void prematureCancel() throws Exception --> Line_8 $$ StepVerifier.create(createHttpClientForContext(x).get("/").timeout(signal)).verifyError(TimeoutException.class) [CD]
+Line_3 $$ DirectProcessor<Void> signal = DirectProcessor.create() --> Line_8 $$ StepVerifier.create(createHttpClientForContext(x).get("/").timeout(signal)).verifyError(TimeoutException.class) [FD]
+Line_4 $$ NettyContext x = TcpServer.create("localhost", 0).newHandler(( in,  out) -> --> Line_8 $$ StepVerifier.create(createHttpClientForContext(x).get("/").timeout(signal)).verifyError(TimeoutException.class) [FD]

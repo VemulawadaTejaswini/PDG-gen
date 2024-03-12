@@ -1,0 +1,8 @@
+Line_2 $$ public void setupInstance() throws Exception --> Line_3 $$ LOGGER.info("Setting up DynamicCounter instance with a new cache") [CD]
+Line_2 $$ public void setupInstance() throws Exception --> Line_4 $$ DynamicCounter theInstance = getInstance() [CD]
+Line_2 $$ public void setupInstance() throws Exception --> Line_5 $$ Field counters = DynamicCounter.class.getDeclaredField("counters") [CD]
+Line_2 $$ public void setupInstance() throws Exception --> Line_6 $$ counters.setAccessible(true) [CD]
+Line_2 $$ public void setupInstance() throws Exception --> Line_7 $$ ExpiringCache<MonitorConfig, Counter> newShortExpiringCache = new ExpiringCache(60000L,  config -> new StepCounter(config, clock), 100L, clock) [CD]
+Line_2 $$ public void setupInstance() throws Exception --> Line_8 $$ counters.set(theInstance, newShortExpiringCache) [CD]
+Line_4 $$ DynamicCounter theInstance = getInstance() --> Line_8 $$ counters.set(theInstance, newShortExpiringCache) [FD]
+Line_7 $$ ExpiringCache<MonitorConfig, Counter> newShortExpiringCache = new ExpiringCache(60000L,  config -> new StepCounter(config, clock), 100L, clock) --> Line_8 $$ counters.set(theInstance, newShortExpiringCache) [FD]

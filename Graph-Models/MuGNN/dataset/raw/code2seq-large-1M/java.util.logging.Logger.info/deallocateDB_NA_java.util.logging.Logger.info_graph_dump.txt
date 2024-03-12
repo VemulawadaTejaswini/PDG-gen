@@ -1,0 +1,8 @@
+Line_2 $$ public boolean deallocateDB(final DB db) --> Line_3 $$ final String containerName = getProp("container.name") [CD]
+Line_2 $$ public boolean deallocateDB(final DB db) --> Line_4 $$ LOGGER.info("Listing containers for deallocation.") [CD]
+Line_2 $$ public boolean deallocateDB(final DB db) --> Line_5 $$ dockerClient.listContainersCmd().withShowAll(true).exec().stream().filter( c -> ArrayUtils.contains(c.getNames(), "/" + containerName)).forEach((Container c) -> [CD]
+Line_7 $$ try (InputStream x = dockerClient.copyArchiveFromContainerCmd(c.getId(), "/tmp/db.log").exec()) --> Line_8 $$ LOGGER.info(IOUtils.toString(x, "UTF-8")) [FD]
+Line_6 $$ final InspectContainerResponse.ContainerState s = Objects.requireNonNull(dockerClient.inspectContainerCmd(c.getId()).exec().getState(), "Container state cannot be null. Something went terribly wrong.") --> Line_12 $$ if (s.getRunning() || s.getRestarting()) [FD]
+Line_12 $$ if (s.getRunning() || s.getRestarting()) --> Line_13 $$ LOGGER.info("Killing container.") [CD]
+Line_12 $$ if (s.getRunning() || s.getRestarting()) --> Line_14 $$ dockerClient.killContainerCmd(c.getId()).exec() [CD]
+Line_2 $$ public boolean deallocateDB(final DB db) --> Line_19 $$ return true [CD]

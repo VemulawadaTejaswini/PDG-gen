@@ -1,0 +1,6 @@
+Line_2 $$ public TargetGroup getTargetGroup(@PathParam("targetGroup") String targetGroup) --> Line_3 $$ if (config.isPresent()) [CD]
+Line_2 $$ public TargetGroup getTargetGroup(@PathParam("targetGroup") String targetGroup) --> Line_5 $$ Optional<TargetGroup> maybeTargetGroup = applicationLoadBalancer.getTargetGroup(targetGroup) [FD]
+Line_5 $$ Optional<TargetGroup> maybeTargetGroup = applicationLoadBalancer.getTargetGroup(targetGroup) --> Line_6 $$ if (maybeTargetGroup.isPresent()) [FD]
+Line_6 $$ if (maybeTargetGroup.isPresent()) --> Line_7 $$ return maybeTargetGroup.get() [CD]
+Line_5 $$ Optional<TargetGroup> maybeTargetGroup = applicationLoadBalancer.getTargetGroup(targetGroup) --> Line_7 $$ return maybeTargetGroup.get() [FD]
+Line_2 $$ public TargetGroup getTargetGroup(@PathParam("targetGroup") String targetGroup) --> Line_9 $$ throw new WebApplicationException(String.format("TargetGroup with name %s not found", targetGroup), Status.NOT_FOUND) [FD]

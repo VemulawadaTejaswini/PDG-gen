@@ -1,0 +1,8 @@
+Line_4 $$ Class miuiNotificationClass = Class.forName("android.app.MiuiNotification") --> Line_5 $$ Object miuiNotification = miuiNotificationClass.newInstance() [FD]
+Line_5 $$ Object miuiNotification = miuiNotificationClass.newInstance() --> Line_6 $$ Field field = miuiNotification.getClass().getDeclaredField("messageCount") [FD]
+Line_6 $$ Field field = miuiNotification.getClass().getDeclaredField("messageCount") --> Line_7 $$ field.setAccessible(true) [FD]
+Line_6 $$ Field field = miuiNotification.getClass().getDeclaredField("messageCount") --> Line_8 $$ field.set(miuiNotification, String.valueOf(badgeCount == 0 ? "" : badgeCount)) [FD]
+Line_5 $$ Object miuiNotification = miuiNotificationClass.newInstance() --> Line_8 $$ field.set(miuiNotification, String.valueOf(badgeCount == 0 ? "" : badgeCount)) [FD]
+Line_10 $$ Intent localIntent = new Intent(INTENT_ACTION) --> Line_11 $$ localIntent.putExtra(EXTRA_UPDATE_APP_COMPONENT_NAME, getContextPackageName() + "/" + getEntryActivityName()) [FD]
+Line_10 $$ Intent localIntent = new Intent(INTENT_ACTION) --> Line_12 $$ localIntent.putExtra(EXTRA_UPDATE_APP_MSG_TEXT, String.valueOf(badgeCount == 0 ? "" : badgeCount)) [FD]
+Line_10 $$ Intent localIntent = new Intent(INTENT_ACTION) --> Line_13 $$ mContext.sendBroadcast(localIntent) [FD]

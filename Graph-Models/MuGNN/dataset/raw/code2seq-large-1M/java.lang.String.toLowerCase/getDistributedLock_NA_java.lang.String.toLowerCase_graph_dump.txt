@@ -1,0 +1,8 @@
+Line_2 $$ private AutoCloseable getDistributedLock(String sourceName) throws Exception --> Line_3 $$ long millis = 15_000 [CD]
+Line_2 $$ private AutoCloseable getDistributedLock(String sourceName) throws Exception --> Line_4 $$ DistributedLease lease = context.get().getClusterCoordinator().getSemaphore("-source-" + sourceName.toLowerCase(), 1).acquire(millis, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ private AutoCloseable getDistributedLock(String sourceName) throws Exception --> Line_4 $$ DistributedLease lease = context.get().getClusterCoordinator().getSemaphore("-source-" + sourceName.toLowerCase(), 1).acquire(millis, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ long millis = 15_000 --> Line_4 $$ DistributedLease lease = context.get().getClusterCoordinator().getSemaphore("-source-" + sourceName.toLowerCase(), 1).acquire(millis, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ private AutoCloseable getDistributedLock(String sourceName) throws Exception --> Line_5 $$ if (lease == null) [CD]
+Line_4 $$ DistributedLease lease = context.get().getClusterCoordinator().getSemaphore("-source-" + sourceName.toLowerCase(), 1).acquire(millis, TimeUnit.MILLISECONDS) --> Line_5 $$ if (lease == null) [FD]
+Line_2 $$ private AutoCloseable getDistributedLock(String sourceName) throws Exception --> Line_6 $$ throw UserException.resourceError().message("Unable to aquire source change lock for source [%s] within timeout.", sourceName).build(logger) [FD]
+Line_2 $$ private AutoCloseable getDistributedLock(String sourceName) throws Exception --> Line_8 $$ return lease [CD]

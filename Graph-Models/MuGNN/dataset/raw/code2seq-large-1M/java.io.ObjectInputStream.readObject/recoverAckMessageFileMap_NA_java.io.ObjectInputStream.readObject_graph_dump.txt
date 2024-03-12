@@ -1,0 +1,6 @@
+Line_2 $$ private boolean recoverAckMessageFileMap() throws IOException --> Line_3 $$ boolean requiresReplay = true [CD]
+Line_2 $$ private boolean recoverAckMessageFileMap() throws IOException --> Line_4 $$ if (metadata.ackMessageFileMapLocation != null) [CD]
+Line_6 $$ KahaAckMessageFileMapCommand audit = (KahaAckMessageFileMapCommand) load(metadata.ackMessageFileMapLocation) --> Line_7 $$ ObjectInputStream objectIn = new ObjectInputStream(audit.getAckMessageFileMap().newInput()) [FD]
+Line_7 $$ ObjectInputStream objectIn = new ObjectInputStream(audit.getAckMessageFileMap().newInput()) --> Line_8 $$ metadata.ackMessageFileMap = (Map<Integer, Set<Integer>>) objectIn.readObject() [FD]
+Line_3 $$ boolean requiresReplay = true --> Line_9 $$ requiresReplay = false [FD]
+Line_2 $$ private boolean recoverAckMessageFileMap() throws IOException --> Line_14 $$ return requiresReplay [CD]

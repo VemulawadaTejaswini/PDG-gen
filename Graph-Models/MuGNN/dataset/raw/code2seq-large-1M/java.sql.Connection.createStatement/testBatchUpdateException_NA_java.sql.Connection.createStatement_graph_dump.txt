@@ -1,0 +1,6 @@
+Line_3 $$ try (final Connection conn = getConnection()) --> Line_4 $$ try (Statement stmt = conn.createStatement()) [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_5 $$ stmt.executeUpdate("CREATE TABLE test (id int primary key, val varchar)") [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_6 $$ stmt.addBatch("insert into test (id, val) values (1, 'val1')") [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_7 $$ stmt.addBatch("insert into test (id, val) values (2, 'val2')") [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_8 $$ stmt.addBatch("insert into test (id1, val1) values (3, 'val3')") [FD]
+Line_4 $$ try (Statement stmt = conn.createStatement()) --> Line_9 $$ stmt.executeBatch() [FD]

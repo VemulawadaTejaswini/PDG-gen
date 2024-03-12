@@ -1,0 +1,8 @@
+Line_2 $$ public void testKeepBinaryFiltered() throws Exception --> Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") [CD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) [FD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_6 $$ IgniteCache<Integer, BinaryObject> binaryCache = cache.withKeepBinary() [FD]
+Line_7 $$ IgniteBiPredicate<Integer, BinaryObject> filter = new IgniteBiPredicate<Integer, BinaryObject>() --> Line_9 $$ return v.<Integer>field("idx") % 1000 == 0 [CD]
+Line_7 $$ IgniteBiPredicate<Integer, BinaryObject> filter = new IgniteBiPredicate<Integer, BinaryObject>() --> Line_9 $$ return v.<Integer>field("idx") % 1000 == 0 [FD]
+Line_6 $$ IgniteCache<Integer, BinaryObject> binaryCache = cache.withKeepBinary() --> Line_17 $$ List<Integer> res = binaryCache.query(new ScanQuery(filter), transformer).getAll() [FD]
+Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) --> Line_20 $$ for (int i = 0; i < 5; i++) assertEquals(i * 1000, res.get(i).intValue()) [FD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_22 $$ cache.destroy() [FD]

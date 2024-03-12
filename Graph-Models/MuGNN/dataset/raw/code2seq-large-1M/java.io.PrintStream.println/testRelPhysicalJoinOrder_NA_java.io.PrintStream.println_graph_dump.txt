@@ -1,0 +1,7 @@
+Line_2 $$ public static void testRelPhysicalJoinOrder(String sql, String... expectedSubstrs) throws Exception --> Line_3 $$ final String planStr = getRelPlanInString(sql, SqlExplainLevel.EXPPLAN_ATTRIBUTES, Depth.PHYSICAL) [CD]
+Line_2 $$ public static void testRelPhysicalJoinOrder(String sql, String... expectedSubstrs) throws Exception --> Line_3 $$ final String planStr = getRelPlanInString(sql, SqlExplainLevel.EXPPLAN_ATTRIBUTES, Depth.PHYSICAL) [FD]
+Line_2 $$ public static void testRelPhysicalJoinOrder(String sql, String... expectedSubstrs) throws Exception --> Line_4 $$ final String prefixJoinOrder = getPhysicalPrefixJoinOrderFromPlan(planStr) [CD]
+Line_3 $$ final String planStr = getRelPlanInString(sql, SqlExplainLevel.EXPPLAN_ATTRIBUTES, Depth.PHYSICAL) --> Line_4 $$ final String prefixJoinOrder = getPhysicalPrefixJoinOrderFromPlan(planStr) [FD]
+Line_2 $$ public static void testRelPhysicalJoinOrder(String sql, String... expectedSubstrs) throws Exception --> Line_5 $$ System.out.println(" prefix Join order = \n" + prefixJoinOrder) [CD]
+Line_6 $$ for (final String substr : expectedSubstrs) --> Line_7 $$ assertTrue(String.format("Expected string %s is not in the prefixJoinOrder %s!", substr, prefixJoinOrder), prefixJoinOrder.contains(substr)) [FD]
+Line_4 $$ final String prefixJoinOrder = getPhysicalPrefixJoinOrderFromPlan(planStr) --> Line_7 $$ assertTrue(String.format("Expected string %s is not in the prefixJoinOrder %s!", substr, prefixJoinOrder), prefixJoinOrder.contains(substr)) [FD]

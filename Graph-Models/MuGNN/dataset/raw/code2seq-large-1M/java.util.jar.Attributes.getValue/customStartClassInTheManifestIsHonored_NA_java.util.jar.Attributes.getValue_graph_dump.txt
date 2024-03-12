@@ -1,0 +1,6 @@
+Line_2 $$ public void customStartClassInTheManifestIsHonored() throws IOException --> Line_3 $$ this.task.setMainClassName("com.example.Main") [CD]
+Line_2 $$ public void customStartClassInTheManifestIsHonored() throws IOException --> Line_4 $$ this.task.getManifest().getAttributes().put("Start-Class", "com.example.CustomMain") [CD]
+Line_2 $$ public void customStartClassInTheManifestIsHonored() throws IOException --> Line_5 $$ this.task.execute() [CD]
+Line_2 $$ public void customStartClassInTheManifestIsHonored() throws IOException --> Line_6 $$ assertThat(this.task.getArchivePath()).exists() [CD]
+Line_7 $$ try (JarFile jarFile = new JarFile(this.task.getArchivePath())) --> Line_8 $$ assertThat(jarFile.getManifest().getMainAttributes().getValue("Main-Class")).isEqualTo(this.launcherClass) [FD]
+Line_7 $$ try (JarFile jarFile = new JarFile(this.task.getArchivePath())) --> Line_9 $$ assertThat(jarFile.getManifest().getMainAttributes().getValue("Start-Class")).isEqualTo("com.example.CustomMain") [FD]

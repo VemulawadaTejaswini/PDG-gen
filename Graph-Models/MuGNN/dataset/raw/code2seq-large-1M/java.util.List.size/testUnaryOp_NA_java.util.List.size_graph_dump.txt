@@ -1,0 +1,6 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_5 $$ DataSet<String> bcData = env.fromElements(SUFFIX) [FD]
+Line_5 $$ DataSet<String> bcData = env.fromElements(SUFFIX) --> Line_7 $$ env.fromElements(TEST_DATA).map(new SuffixAppender()).withBroadcastSet(bcData, BC_VAR_NAME).output(new LocalCollectionOutputFormat<String>(result)) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_7 $$ env.fromElements(TEST_DATA).map(new SuffixAppender()).withBroadcastSet(bcData, BC_VAR_NAME).output(new LocalCollectionOutputFormat<String>(result)) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_8 $$ env.execute() [FD]
+Line_6 $$ List<String> result = new ArrayList<String>() --> Line_9 $$ assertEquals(TEST_DATA.length, result.size()) [FD]
+Line_10 $$ for (String s : result) --> Line_11 $$ assertTrue(s.indexOf(SUFFIX) > 0) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void stringSetIsUnmodifiable() --> Line_3 $$ Preference<Set<String>> preference = rxPreferences.getStringSet("foo") [CD]
+Line_2 $$ public void stringSetIsUnmodifiable() --> Line_4 $$ preference.set(new LinkedHashSet<String>()) [CD]
+Line_3 $$ Preference<Set<String>> preference = rxPreferences.getStringSet("foo") --> Line_4 $$ preference.set(new LinkedHashSet<String>()) [FD]
+Line_2 $$ public void stringSetIsUnmodifiable() --> Line_5 $$ Set<String> stringSet = preference.get() [CD]
+Line_3 $$ Preference<Set<String>> preference = rxPreferences.getStringSet("foo") --> Line_5 $$ Set<String> stringSet = preference.get() [FD]
+Line_5 $$ Set<String> stringSet = preference.get() --> Line_7 $$ stringSet.add("") [FD]
+Line_5 $$ Set<String> stringSet = preference.get() --> Line_8 $$ fail(stringSet.getClass() + " should not be modifiable.") [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ String calculateSignature(String signatureBase) --> Line_5 $$ final byte[] signatureBaseBytes = signatureBase.getBytes(UrlUtils.UTF8) [FD]
+Line_4 $$ final String key = getSigningKey() --> Line_6 $$ final byte[] keyBytes = key.getBytes(UrlUtils.UTF8) [FD]
+Line_8 $$ final Mac mac = Mac.getInstance("HmacSHA1") --> Line_9 $$ mac.init(secretKey) [FD]
+Line_7 $$ final SecretKey secretKey = new SecretKeySpec(keyBytes, "HmacSHA1") --> Line_9 $$ mac.init(secretKey) [FD]
+Line_8 $$ final Mac mac = Mac.getInstance("HmacSHA1") --> Line_10 $$ final byte[] signatureBytes = mac.doFinal(signatureBaseBytes) [FD]
+Line_5 $$ final byte[] signatureBaseBytes = signatureBase.getBytes(UrlUtils.UTF8) --> Line_10 $$ final byte[] signatureBytes = mac.doFinal(signatureBaseBytes) [FD]
+Line_10 $$ final byte[] signatureBytes = mac.doFinal(signatureBaseBytes) --> Line_11 $$ return ByteString.of(signatureBytes, 0, signatureBytes.length).base64() [FD]

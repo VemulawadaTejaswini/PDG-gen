@@ -1,0 +1,5 @@
+Line_2 $$ public byte[] getEnvironmentFromStorage(HashId ncontractHashId) --> Line_3 $$ return protect(() -> [CD]
+Line_2 $$ public byte[] getEnvironmentFromStorage(HashId ncontractHashId) --> Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("SELECT kv_storage FROM environments WHERE ncontract_hash_id=?", ncontractHashId.getDigest()))) [FD]
+Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("SELECT kv_storage FROM environments WHERE ncontract_hash_id=?", ncontractHashId.getDigest()))) --> Line_5 $$ if (rs == null) [FD]
+Line_5 $$ if (rs == null) --> Line_6 $$ return null [CD]
+Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("SELECT kv_storage FROM environments WHERE ncontract_hash_id=?", ncontractHashId.getDigest()))) --> Line_7 $$ return rs.getBytes("kv_storage") [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void throwsExceptionWhenFailsToGetTableMetadata() throws Exception --> Line_3 $$ SQLException cause = new SQLException("sql message") [CD]
+Line_2 $$ public void throwsExceptionWhenFailsToGetTableMetadata() throws Exception --> Line_4 $$ when(connection.getMetaData()).thenThrow(cause) [CD]
+Line_3 $$ SQLException cause = new SQLException("sql message") --> Line_4 $$ when(connection.getMetaData()).thenThrow(cause) [FD]
+Line_2 $$ public void throwsExceptionWhenFailsToGetTableMetadata() throws Exception --> Line_5 $$ assertThatThrownBy(() -> tableMetaDataManager.getTableMetaDataView(connection, TABLE_NAME)).isInstanceOf(JdbcConnectorException.class).hasMessageContaining("sql message") [CD]

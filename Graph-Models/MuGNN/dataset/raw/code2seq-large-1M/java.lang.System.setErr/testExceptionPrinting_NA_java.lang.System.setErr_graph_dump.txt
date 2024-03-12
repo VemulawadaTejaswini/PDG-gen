@@ -1,0 +1,5 @@
+Line_2 $$ public void testExceptionPrinting() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(Sample.class).visit(Advice.to(ExceptionWriterTest.class).withExceptionPrinting().on(named(FOO))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testExceptionPrinting() throws Exception --> Line_4 $$ PrintStream printStream = mock(PrintStream.class) [CD]
+Line_2 $$ public void testExceptionPrinting() throws Exception --> Line_5 $$ PrintStream err = System.err [CD]
+Line_5 $$ PrintStream err = System.err --> Line_11 $$ System.setErr(err) [FD]
+Line_2 $$ public void testExceptionPrinting() throws Exception --> Line_14 $$ verify(printStream, times(2)).println(Mockito.any(RuntimeException.class)) [CD]

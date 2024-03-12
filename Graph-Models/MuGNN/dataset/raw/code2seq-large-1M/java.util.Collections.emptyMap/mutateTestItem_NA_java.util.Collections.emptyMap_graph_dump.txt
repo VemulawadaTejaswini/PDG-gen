@@ -1,0 +1,7 @@
+Line_2 $$ private static RatedSearchHit mutateTestItem(RatedSearchHit original) --> Line_3 $$ Optional<Integer> rating = original.getRating() [FD]
+Line_2 $$ private static RatedSearchHit mutateTestItem(RatedSearchHit original) --> Line_3 $$ Optional<Integer> rating = original.getRating() [CD]
+Line_2 $$ private static RatedSearchHit mutateTestItem(RatedSearchHit original) --> Line_4 $$ SearchHit hit = original.getSearchHit() [FD]
+Line_2 $$ private static RatedSearchHit mutateTestItem(RatedSearchHit original) --> Line_4 $$ SearchHit hit = original.getSearchHit() [CD]
+Line_3 $$ Optional<Integer> rating = original.getRating() --> Line_7 $$ rating = rating.isPresent() ? Optional.of(rating.get() + 1) : Optional.of(randomInt(5)) [FD]
+Line_4 $$ SearchHit hit = original.getSearchHit() --> Line_10 $$ hit = new SearchHit(hit.docId(), hit.getId() + randomAlphaOfLength(10), new Text(hit.getType()), Collections.emptyMap()) [FD]
+Line_2 $$ private static RatedSearchHit mutateTestItem(RatedSearchHit original) --> Line_15 $$ return new RatedSearchHit(hit, rating) [CD]

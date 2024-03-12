@@ -1,0 +1,8 @@
+Line_2 $$ public Optional<CdoSnapshot> getLatest(GlobalId globalId) --> Line_3 $$ Optional<Long> globalIdPk = globalIdRepository.findGlobalIdPk(globalId) [CD]
+Line_2 $$ public Optional<CdoSnapshot> getLatest(GlobalId globalId) --> Line_3 $$ Optional<Long> globalIdPk = globalIdRepository.findGlobalIdPk(globalId) [FD]
+Line_2 $$ public Optional<CdoSnapshot> getLatest(GlobalId globalId) --> Line_4 $$ if (!globalIdPk.isPresent()) [CD]
+Line_3 $$ Optional<Long> globalIdPk = globalIdRepository.findGlobalIdPk(globalId) --> Line_4 $$ if (!globalIdPk.isPresent()) [FD]
+Line_4 $$ if (!globalIdPk.isPresent()) --> Line_5 $$ return Optional.empty() [CD]
+Line_2 $$ public Optional<CdoSnapshot> getLatest(GlobalId globalId) --> Line_7 $$ return selectMaxSnapshotPrimaryKey(globalIdPk.get()).map( maxSnapshot -> [CD]
+Line_3 $$ Optional<Long> globalIdPk = globalIdRepository.findGlobalIdPk(globalId) --> Line_7 $$ return selectMaxSnapshotPrimaryKey(globalIdPk.get()).map( maxSnapshot -> [FD]
+Line_8 $$ QueryParams oneItemLimit = QueryParamsBuilder.withLimit(1).build() --> Line_9 $$ return fetchCdoSnapshots(new SnapshotIdFilter(tableNameProvider, maxSnapshot), Optional.of(oneItemLimit)).get(0) [FD]

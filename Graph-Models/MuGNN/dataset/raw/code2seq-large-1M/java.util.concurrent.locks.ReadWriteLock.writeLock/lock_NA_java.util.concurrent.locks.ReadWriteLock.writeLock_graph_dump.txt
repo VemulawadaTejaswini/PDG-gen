@@ -1,0 +1,8 @@
+Line_2 $$ private void lock(boolean exclusive) --> Line_3 $$ Lock l = exclusive ? lock.writeLock() : lock.readLock() [CD]
+Line_2 $$ private void lock(boolean exclusive) --> Line_5 $$ if (!exclusive || !GridMapQueryExecutor.FORCE_LAZY) [FD]
+Line_5 $$ if (!exclusive || !GridMapQueryExecutor.FORCE_LAZY) --> Line_6 $$ l.lockInterruptibly() [CD]
+Line_3 $$ Lock l = exclusive ? lock.writeLock() : lock.readLock() --> Line_6 $$ l.lockInterruptibly() [FD]
+Line_5 $$ if (!exclusive || !GridMapQueryExecutor.FORCE_LAZY) --> Line_8 $$ for (; ; ) [CD]
+Line_8 $$ for (; ; ) --> Line_9 $$ if (l.tryLock(200, TimeUnit.MILLISECONDS)) [CD]
+Line_3 $$ Lock l = exclusive ? lock.writeLock() : lock.readLock() --> Line_9 $$ if (l.tryLock(200, TimeUnit.MILLISECONDS)) [FD]
+Line_9 $$ if (l.tryLock(200, TimeUnit.MILLISECONDS)) --> Line_12 $$ Thread.yield() [CD]

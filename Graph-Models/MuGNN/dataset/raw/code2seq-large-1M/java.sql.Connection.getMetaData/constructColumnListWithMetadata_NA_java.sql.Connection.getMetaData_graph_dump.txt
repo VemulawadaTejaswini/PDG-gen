@@ -1,0 +1,6 @@
+Line_3 $$ try (Connection con = getConnection(mySql)) --> Line_4 $$ final DatabaseMetaData metaData = con.getMetaData() [FD]
+Line_6 $$ List<String> formattedColumns = new ArrayList(Columns.values().length) --> Line_8 $$ formattedColumns.add(formatColumnWithMetadata(col, metaData, tableName)) [FD]
+Line_7 $$ for (Columns col : Columns.values()) --> Line_8 $$ formattedColumns.add(formatColumnWithMetadata(col, metaData, tableName)) [FD]
+Line_4 $$ final DatabaseMetaData metaData = con.getMetaData() --> Line_8 $$ formattedColumns.add(formatColumnWithMetadata(col, metaData, tableName)) [FD]
+Line_5 $$ final String tableName = settings.getProperty(DatabaseSettings.MYSQL_TABLE) --> Line_8 $$ formattedColumns.add(formatColumnWithMetadata(col, metaData, tableName)) [FD]
+Line_6 $$ List<String> formattedColumns = new ArrayList(Columns.values().length) --> Line_10 $$ return String.join(ChatColor.RESET + ", ", formattedColumns) [FD]

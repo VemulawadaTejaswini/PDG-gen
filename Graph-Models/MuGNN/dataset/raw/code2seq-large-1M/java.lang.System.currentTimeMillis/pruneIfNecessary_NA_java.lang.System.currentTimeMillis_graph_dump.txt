@@ -1,0 +1,7 @@
+Line_2 $$ private void pruneIfNecessary(SQLiteDatabase db) --> Line_3 $$ long nowMs = System.currentTimeMillis() [CD]
+Line_2 $$ private void pruneIfNecessary(SQLiteDatabase db) --> Line_4 $$ if (sNumWrites > PRUNE_MIN_WRITES || nowMs - sLastPruneMs > PRUNE_MIN_DELAY_MS) [CD]
+Line_4 $$ if (sNumWrites > PRUNE_MIN_WRITES || nowMs - sLastPruneMs > PRUNE_MIN_DELAY_MS) --> Line_7 $$ long horizonStartMs = nowMs - HORIZON_MS [CD]
+Line_4 $$ if (sNumWrites > PRUNE_MIN_WRITES || nowMs - sLastPruneMs > PRUNE_MIN_DELAY_MS) --> Line_8 $$ int deletedRows = db.delete(TAB_LOG, COL_EVENT_TIME + " < ?", new String[] [CD]
+Line_2 $$ private void pruneIfNecessary(SQLiteDatabase db) --> Line_8 $$ int deletedRows = db.delete(TAB_LOG, COL_EVENT_TIME + " < ?", new String[] [FD]
+Line_7 $$ long horizonStartMs = nowMs - HORIZON_MS --> Line_8 $$ int deletedRows = db.delete(TAB_LOG, COL_EVENT_TIME + " < ?", new String[] [FD]
+Line_4 $$ if (sNumWrites > PRUNE_MIN_WRITES || nowMs - sLastPruneMs > PRUNE_MIN_DELAY_MS) --> Line_9 $$ Log.d(TAG, "Pruned event entries: " + deletedRows) [CD]

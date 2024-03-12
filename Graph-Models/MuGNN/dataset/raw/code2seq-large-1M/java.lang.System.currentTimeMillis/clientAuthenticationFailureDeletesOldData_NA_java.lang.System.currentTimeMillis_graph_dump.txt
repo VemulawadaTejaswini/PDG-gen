@@ -1,0 +1,7 @@
+Line_2 $$ public void clientAuthenticationFailureDeletesOldData() throws Exception --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public void clientAuthenticationFailureDeletesOldData() throws Exception --> Line_4 $$ auditService.log(getAuditEvent(ClientAuthenticationFailure, "client", "testman"), getAuditEvent(ClientAuthenticationFailure, "client", "testman").getIdentityZoneId()) [CD]
+Line_2 $$ public void clientAuthenticationFailureDeletesOldData() throws Exception --> Line_5 $$ assertThat(jdbcTemplate.queryForObject("select count(*) from sec_audit where principal_id='client'", Integer.class), is(0)) [CD]
+Line_2 $$ public void clientAuthenticationFailureDeletesOldData() throws Exception --> Line_6 $$ jdbcTemplate.update("update sec_audit set created=?", new Timestamp(now - 25 * 3600 * 1000)) [CD]
+Line_2 $$ public void clientAuthenticationFailureDeletesOldData() throws Exception --> Line_7 $$ auditService.log(getAuditEvent(ClientAuthenticationFailure, "client", "testman"), getAuditEvent(ClientAuthenticationFailure, "client", "testman").getIdentityZoneId()) [CD]
+Line_2 $$ public void clientAuthenticationFailureDeletesOldData() throws Exception --> Line_8 $$ assertThat(jdbcTemplate.queryForObject("select count(*) from sec_audit where principal_id='client'", Integer.class), is(0)) [CD]
+Line_2 $$ public void clientAuthenticationFailureDeletesOldData() throws Exception --> Line_9 $$ verifyZeroInteractions(template) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void onNextDroppedLocal() --> Line_3 $$ AtomicReference<Object> hookState = new AtomicReference() [CD]
+Line_2 $$ public void onNextDroppedLocal() --> Line_4 $$ Consumer<Object> localHook = hookState::<>set [CD]
+Line_2 $$ public void onNextDroppedLocal() --> Line_5 $$ Context c = Context.of(Hooks.KEY_ON_NEXT_DROPPED, localHook) [CD]
+Line_4 $$ Consumer<Object> localHook = hookState::<>set --> Line_5 $$ Context c = Context.of(Hooks.KEY_ON_NEXT_DROPPED, localHook) [FD]
+Line_2 $$ public void onNextDroppedLocal() --> Line_6 $$ Operators.onNextDropped("foo", c) [CD]
+Line_5 $$ Context c = Context.of(Hooks.KEY_ON_NEXT_DROPPED, localHook) --> Line_6 $$ Operators.onNextDropped("foo", c) [FD]
+Line_2 $$ public void onNextDroppedLocal() --> Line_7 $$ assertThat(hookState.get()).isEqualTo("foo") [CD]
+Line_3 $$ AtomicReference<Object> hookState = new AtomicReference() --> Line_7 $$ assertThat(hookState.get()).isEqualTo("foo") [FD]

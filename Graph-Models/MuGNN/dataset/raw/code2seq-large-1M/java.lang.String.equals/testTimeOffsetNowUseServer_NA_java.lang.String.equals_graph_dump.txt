@@ -1,0 +1,8 @@
+Line_2 $$ public void testTimeOffsetNowUseServer() throws SQLException --> Line_3 $$ Assume.assumeFalse("true".equals(System.getenv("AURORA"))) [CD]
+Line_4 $$ try (Connection connection = setConnection("&useLegacyDatetimeCode=false&serverTimezone=+5:00")) --> Line_5 $$ setSessionTimeZone(connection, "+5:00") [FD]
+Line_4 $$ try (Connection connection = setConnection("&useLegacyDatetimeCode=false&serverTimezone=+5:00")) --> Line_7 $$ PreparedStatement st = connection.prepareStatement("SELECT NOW()") [FD]
+Line_7 $$ PreparedStatement st = connection.prepareStatement("SELECT NOW()") --> Line_8 $$ ResultSet rs = st.executeQuery() [FD]
+Line_8 $$ ResultSet rs = st.executeQuery() --> Line_9 $$ assertTrue(rs.next()) [FD]
+Line_8 $$ ResultSet rs = st.executeQuery() --> Line_10 $$ Timestamp nowServer = rs.getTimestamp(1) [FD]
+Line_6 $$ Time currentTimeParis = new Time(System.currentTimeMillis()) --> Line_11 $$ long timeDifference = currentTimeParis.getTime() - nowServer.getTime() [FD]
+Line_10 $$ Timestamp nowServer = rs.getTimestamp(1) --> Line_11 $$ long timeDifference = currentTimeParis.getTime() - nowServer.getTime() [FD]

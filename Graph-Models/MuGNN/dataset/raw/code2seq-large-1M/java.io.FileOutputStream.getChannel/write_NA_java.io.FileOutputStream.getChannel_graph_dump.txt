@@ -1,0 +1,7 @@
+Line_2 $$ public ChannelFuture write(Object msg, ChannelPromise promise) --> Line_3 $$ if (msg instanceof DefaultFileRegion) [FD]
+Line_2 $$ public ChannelFuture write(Object msg, ChannelPromise promise) --> Line_3 $$ if (msg instanceof DefaultFileRegion) [CD]
+Line_3 $$ if (msg instanceof DefaultFileRegion) --> Line_4 $$ final DefaultFileRegion defaultFileRegion = (DefaultFileRegion) msg [CD]
+Line_5 $$ try (final FileOutputStream fileOutputStream = new FileOutputStream(outputFile)) --> Line_6 $$ fileOutputStream.getChannel() [FD]
+Line_4 $$ final DefaultFileRegion defaultFileRegion = (DefaultFileRegion) msg --> Line_7 $$ defaultFileRegion.transferTo(fileOutputStream.getChannel(), 0L) [FD]
+Line_5 $$ try (final FileOutputStream fileOutputStream = new FileOutputStream(outputFile)) --> Line_7 $$ defaultFileRegion.transferTo(fileOutputStream.getChannel(), 0L) [FD]
+Line_2 $$ public ChannelFuture write(Object msg, ChannelPromise promise) --> Line_12 $$ return new DefaultChannelPromise(null) [CD]

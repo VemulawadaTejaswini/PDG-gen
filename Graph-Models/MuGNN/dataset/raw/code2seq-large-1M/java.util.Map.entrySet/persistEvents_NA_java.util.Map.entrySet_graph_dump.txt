@@ -1,0 +1,6 @@
+Line_2 $$ public static void persistEvents(Context context, Map<AccessTokenAppIdPair, SessionEventsState> eventsToPersist) --> Line_4 $$ PersistedEvents persistedEvents = readAndClearStore(context) [FD]
+Line_2 $$ public static void persistEvents(Context context, Map<AccessTokenAppIdPair, SessionEventsState> eventsToPersist) --> Line_5 $$ for (Map.Entry<AccessTokenAppIdPair, SessionEventsState> entry : eventsToPersist.entrySet()) [FD]
+Line_6 $$ List<AppEvent> events = entry.getValue().getEventsToPersist() --> Line_7 $$ if (events.size() == 0) [FD]
+Line_4 $$ PersistedEvents persistedEvents = readAndClearStore(context) --> Line_10 $$ persistedEvents.addEvents(entry.getKey(), events) [FD]
+Line_6 $$ List<AppEvent> events = entry.getValue().getEventsToPersist() --> Line_10 $$ persistedEvents.addEvents(entry.getKey(), events) [FD]
+Line_4 $$ PersistedEvents persistedEvents = readAndClearStore(context) --> Line_12 $$ persistedEvents.write() [FD]

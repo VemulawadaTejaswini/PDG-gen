@@ -1,0 +1,4 @@
+Line_2 $$ public void tableSchemaWhenSelectFieldsInDef_SelectFieldsInView() throws Exception --> Line_3 $$ final String newTblName = "testTableOutputSchema" [CD]
+Line_3 $$ final String newTblName = "testTableOutputSchema" --> Line_5 $$ test("CREATE TABLE dfs.tmp.%s(id, name, bday) AS SELECT " + "cast(`employee_id` as integer), " + "cast(`full_name` as varchar(100)), " + "cast(`birth_date` as date) " + "FROM cp.`employee.json` ORDER BY `employee_id` LIMIT 1", newTblName) [FD]
+Line_3 $$ final String newTblName = "testTableOutputSchema" --> Line_6 $$ testBuilder().unOrdered().sqlQuery("SELECT * FROM dfs.tmp.`%s`", newTblName).baselineColumns("id", "name", "bday").baselineValues(1, "Sheri Nowmer", LocalDate.parse("1961-08-26")).go() [FD]
+Line_3 $$ final String newTblName = "testTableOutputSchema" --> Line_8 $$ deleteTableIfExists(newTblName) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void failUpload(UploadItem failedItem) --> Line_3 $$ LOG.error("Upload For Bucket:" + _bucket + " Key:" + _key + " failed due to Item:" + failedItem) [CD]
+Line_2 $$ private void failUpload(UploadItem failedItem) --> Line_4 $$ _failureException.set(new IOException("Upload Failed. Item that caused failure:" + failedItem + " AttemptCount:" + failedItem._attemptCount)) [CD]
+Line_2 $$ private void failUpload(UploadItem failedItem) --> Line_5 $$ if (_timer != null) [CD]
+Line_5 $$ if (_timer != null) --> Line_6 $$ _theEventLoop.cancelTimer(_timer) [CD]
+Line_10 $$ for (int i = 0; i < _uploadSlots.length; ++i) --> Line_11 $$ if (_uploadSlots[i] != null) [CD]
+Line_11 $$ if (_uploadSlots[i] != null) --> Line_12 $$ _uploadSlots[i].shutdownUpload() [CD]
+Line_11 $$ if (_uploadSlots[i] != null) --> Line_13 $$ _uploadSlots[i] = null [CD]

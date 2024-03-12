@@ -1,0 +1,8 @@
+Line_2 $$ private void addBridgesToMapping() --> Line_3 $$ if (LOG.isTraceEnabled()) [CD]
+Line_3 $$ if (LOG.isTraceEnabled()) --> Line_4 $$ LOG.trace("InboundBridgeRecoveryModule.addBridgesToMapping") [CD]
+Line_2 $$ private void addBridgesToMapping() --> Line_6 $$ final InboundBridgeManager inboundBridgeManager = InboundBridgeManager.getInstance() [CD]
+Line_6 $$ final InboundBridgeManager inboundBridgeManager = InboundBridgeManager.getInstance() --> Line_8 $$ if (!inboundBridgeManager.addInboundBridge(bridge)) [FD]
+Line_7 $$ for (final InboundBridge bridge : recoveredBridges) --> Line_8 $$ if (!inboundBridgeManager.addInboundBridge(bridge)) [FD]
+Line_8 $$ if (!inboundBridgeManager.addInboundBridge(bridge)) --> Line_9 $$ final XATerminator xaTerminator = SubordinationManager.getXATerminator() [CD]
+Line_9 $$ final XATerminator xaTerminator = SubordinationManager.getXATerminator() --> Line_11 $$ xaTerminator.rollback(bridge.getXid()) [FD]
+Line_7 $$ for (final InboundBridge bridge : recoveredBridges) --> Line_11 $$ xaTerminator.rollback(bridge.getXid()) [FD]

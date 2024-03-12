@@ -1,0 +1,8 @@
+Line_2 $$ private void removeCompositeComponents(CompositeComponentRemovalTaskState state) --> Line_3 $$ List<Operation> operations = state.resourceLinks.stream().map(( selfLink) -> Operation.createDelete(this, selfLink)).collect(Collectors.toList()) [CD]
+Line_2 $$ private void removeCompositeComponents(CompositeComponentRemovalTaskState state) --> Line_4 $$ OperationJoin.create(operations).setCompletion(( ops,  exs) -> [CD]
+Line_3 $$ List<Operation> operations = state.resourceLinks.stream().map(( selfLink) -> Operation.createDelete(this, selfLink)).collect(Collectors.toList()) --> Line_4 $$ OperationJoin.create(operations).setCompletion(( ops,  exs) -> [FD]
+Line_5 $$ if (exs != null) --> Line_6 $$ exs = exs.entrySet().stream().filter(( e) -> !(e.getValue() instanceof CancellationException)).collect(Collectors.toMap( e -> e.getKey(),  e -> e.getValue())) [CD]
+Line_6 $$ exs = exs.entrySet().stream().filter(( e) -> !(e.getValue() instanceof CancellationException)).collect(Collectors.toMap( e -> e.getKey(),  e -> e.getValue())) --> Line_8 $$ if (exs != null && !exs.isEmpty()) [FD]
+Line_8 $$ if (exs != null && !exs.isEmpty()) --> Line_9 $$ failTask("Failed removing composite states: " + Utils.toString(exs), null) [CD]
+Line_6 $$ exs = exs.entrySet().stream().filter(( e) -> !(e.getValue() instanceof CancellationException)).collect(Collectors.toMap( e -> e.getKey(),  e -> e.getValue())) --> Line_9 $$ failTask("Failed removing composite states: " + Utils.toString(exs), null) [FD]
+Line_8 $$ if (exs != null && !exs.isEmpty()) --> Line_10 $$ return [CD]

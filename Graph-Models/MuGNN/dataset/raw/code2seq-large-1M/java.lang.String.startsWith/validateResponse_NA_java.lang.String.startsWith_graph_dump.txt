@@ -1,0 +1,8 @@
+Line_2 $$ public AuthStatus validateResponse(MessageInfo messageInfo, Subject clientSubject, Subject serviceSubject) throws AuthException --> Line_3 $$ SOAPMessage respMessage = (SOAPMessage) messageInfo.getResponseMessage() [FD]
+Line_2 $$ public AuthStatus validateResponse(MessageInfo messageInfo, Subject clientSubject, Subject serviceSubject) throws AuthException --> Line_3 $$ SOAPMessage respMessage = (SOAPMessage) messageInfo.getResponseMessage() [CD]
+Line_3 $$ SOAPMessage respMessage = (SOAPMessage) messageInfo.getResponseMessage() --> Line_5 $$ String value = Util.getValue(respMessage) [FD]
+Line_5 $$ String value = Util.getValue(respMessage) --> Line_6 $$ if (value == null || !value.startsWith("SecResp ") || (value.indexOf("ValReq SecReq ") == -1)) [FD]
+Line_6 $$ if (value == null || !value.startsWith("SecResp ") || (value.indexOf("ValReq SecReq ") == -1)) --> Line_7 $$ return AuthStatus.FAILURE [CD]
+Line_3 $$ SOAPMessage respMessage = (SOAPMessage) messageInfo.getResponseMessage() --> Line_9 $$ Util.prependSOAPMessage(respMessage, "ValResp ") [FD]
+Line_11 $$ AuthException aex = new AuthException() --> Line_12 $$ aex.initCause(ex) [FD]
+Line_2 $$ public AuthStatus validateResponse(MessageInfo messageInfo, Subject clientSubject, Subject serviceSubject) throws AuthException --> Line_15 $$ return AuthStatus.SUCCESS [CD]

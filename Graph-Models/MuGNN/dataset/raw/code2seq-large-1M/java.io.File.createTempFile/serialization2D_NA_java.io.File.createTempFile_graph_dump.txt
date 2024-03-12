@@ -1,0 +1,7 @@
+Line_2 $$ private void serialization2D(double[][] da) throws IOException --> Line_3 $$ File f = File.createTempFile("blah", "foo") [CD]
+Line_2 $$ private void serialization2D(double[][] da) throws IOException --> Line_4 $$ f.deleteOnExit() [CD]
+Line_3 $$ File f = File.createTempFile("blah", "foo") --> Line_4 $$ f.deleteOnExit() [FD]
+Line_5 $$ try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(f))) --> Line_6 $$ DoubleArrays.serialize(dos, da) [FD]
+Line_2 $$ private void serialization2D(double[][] da) throws IOException --> Line_6 $$ DoubleArrays.serialize(dos, da) [FD]
+Line_8 $$ try (DataInputStream dis = new DataInputStream(new FileInputStream(f))) --> Line_9 $$ double[][] read = DoubleArrays.deserialize2d(dis) [FD]
+Line_10 $$ for (int i = 0; i < read.length; i++) --> Line_11 $$ Assert.assertTrue(DoubleArrays.arrayEquals(da[i], read[i])) [CD]

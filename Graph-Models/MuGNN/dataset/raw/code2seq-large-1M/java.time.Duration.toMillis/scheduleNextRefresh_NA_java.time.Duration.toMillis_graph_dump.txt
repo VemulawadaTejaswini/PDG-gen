@@ -1,0 +1,8 @@
+Line_2 $$ private void scheduleNextRefresh() --> Line_3 $$ final long now = ActorClock.currentTimeMillis() [CD]
+Line_2 $$ private void scheduleNextRefresh() --> Line_4 $$ final long timeSinceLastRefresh = now - lastRefreshTime [CD]
+Line_2 $$ private void scheduleNextRefresh() --> Line_5 $$ if (timeSinceLastRefresh >= MIN_REFRESH_INTERVAL_MILLIS.toMillis()) [CD]
+Line_4 $$ final long timeSinceLastRefresh = now - lastRefreshTime --> Line_5 $$ if (timeSinceLastRefresh >= MIN_REFRESH_INTERVAL_MILLIS.toMillis()) [FD]
+Line_5 $$ if (timeSinceLastRefresh >= MIN_REFRESH_INTERVAL_MILLIS.toMillis()) --> Line_6 $$ refreshTopology() [CD]
+Line_5 $$ if (timeSinceLastRefresh >= MIN_REFRESH_INTERVAL_MILLIS.toMillis()) --> Line_8 $$ final long timeoutToNextRefresh = MIN_REFRESH_INTERVAL_MILLIS.toMillis() - timeSinceLastRefresh [CD]
+Line_5 $$ if (timeSinceLastRefresh >= MIN_REFRESH_INTERVAL_MILLIS.toMillis()) --> Line_9 $$ actor.runDelayed(Duration.ofMillis(timeoutToNextRefresh), () -> refreshTopology()) [CD]
+Line_8 $$ final long timeoutToNextRefresh = MIN_REFRESH_INTERVAL_MILLIS.toMillis() - timeSinceLastRefresh --> Line_9 $$ actor.runDelayed(Duration.ofMillis(timeoutToNextRefresh), () -> refreshTopology()) [FD]

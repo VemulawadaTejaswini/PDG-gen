@@ -1,0 +1,6 @@
+Line_2 $$ public void fluxCreateGenerateOnRequest() --> Line_3 $$ AtomicInteger index = new AtomicInteger(1) [CD]
+Line_2 $$ public void fluxCreateGenerateOnRequest() --> Line_4 $$ Flux<Integer> created = Flux.create( s -> [CD]
+Line_6 $$ for (int i = 0; i < n; i++) --> Line_7 $$ s.next(index.getAndIncrement()) [CD]
+Line_3 $$ AtomicInteger index = new AtomicInteger(1) --> Line_7 $$ s.next(index.getAndIncrement()) [FD]
+Line_2 $$ public void fluxCreateGenerateOnRequest() --> Line_11 $$ StepVerifier.create(created, 0).expectSubscription().thenAwait().thenRequest(1).expectNext(1).thenRequest(2).expectNext(2, 3).thenCancel().verify() [CD]
+Line_4 $$ Flux<Integer> created = Flux.create( s -> --> Line_11 $$ StepVerifier.create(created, 0).expectSubscription().thenAwait().thenRequest(1).expectNext(1).thenRequest(2).expectNext(2, 3).thenCancel().verify() [FD]

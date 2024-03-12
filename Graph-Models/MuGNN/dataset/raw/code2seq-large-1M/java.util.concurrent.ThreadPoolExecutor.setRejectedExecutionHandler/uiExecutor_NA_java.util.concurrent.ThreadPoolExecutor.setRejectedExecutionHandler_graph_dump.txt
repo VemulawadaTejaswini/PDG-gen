@@ -1,0 +1,5 @@
+Line_2 $$ public Executor uiExecutor() --> Line_3 $$ final BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue(20) [CD]
+Line_2 $$ public Executor uiExecutor() --> Line_4 $$ final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 20, 10000, TimeUnit.MILLISECONDS, blockingQueue, new ThreadFactoryBuilder().setNameFormat("ui-executor-pool-%d").build()) [CD]
+Line_2 $$ public Executor uiExecutor() --> Line_5 $$ threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy()) [CD]
+Line_4 $$ final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 20, 10000, TimeUnit.MILLISECONDS, blockingQueue, new ThreadFactoryBuilder().setNameFormat("ui-executor-pool-%d").build()) --> Line_5 $$ threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy()) [FD]
+Line_2 $$ public Executor uiExecutor() --> Line_6 $$ return new DelegatingSecurityContextExecutor(threadPoolExecutor) [CD]

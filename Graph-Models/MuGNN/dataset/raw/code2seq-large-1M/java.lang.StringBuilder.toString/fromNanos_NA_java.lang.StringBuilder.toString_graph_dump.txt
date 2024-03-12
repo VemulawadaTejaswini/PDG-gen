@@ -1,0 +1,8 @@
+Line_2 $$ public static ValueTime fromNanos(long nanos) --> Line_3 $$ if (!SysProperties.UNLIMITED_TIME_RANGE) [CD]
+Line_3 $$ if (!SysProperties.UNLIMITED_TIME_RANGE) --> Line_4 $$ if (nanos < 0L || nanos >= DateTimeUtils.NANOS_PER_DAY) [CD]
+Line_4 $$ if (nanos < 0L || nanos >= DateTimeUtils.NANOS_PER_DAY) --> Line_5 $$ StringBuilder builder = new StringBuilder() [CD]
+Line_4 $$ if (nanos < 0L || nanos >= DateTimeUtils.NANOS_PER_DAY) --> Line_6 $$ DateTimeUtils.appendTime(builder, nanos) [CD]
+Line_5 $$ StringBuilder builder = new StringBuilder() --> Line_6 $$ DateTimeUtils.appendTime(builder, nanos) [FD]
+Line_2 $$ public static ValueTime fromNanos(long nanos) --> Line_6 $$ DateTimeUtils.appendTime(builder, nanos) [FD]
+Line_5 $$ StringBuilder builder = new StringBuilder() --> Line_7 $$ throw DbException.get(ErrorCode.INVALID_DATETIME_CONSTANT_2, "TIME", builder.toString()) [FD]
+Line_2 $$ public static ValueTime fromNanos(long nanos) --> Line_10 $$ return (ValueTime) Value.cache(new ValueTime(nanos)) [CD]

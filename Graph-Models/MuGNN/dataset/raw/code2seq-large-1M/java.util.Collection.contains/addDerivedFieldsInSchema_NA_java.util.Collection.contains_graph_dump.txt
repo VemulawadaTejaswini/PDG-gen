@@ -1,0 +1,8 @@
+Line_2 $$ private void addDerivedFieldsInSchema() --> Line_3 $$ if (createHllIndex) [CD]
+Line_3 $$ if (createHllIndex) --> Line_4 $$ Collection<String> columnNames = dataSchema.getColumnNames() [CD]
+Line_3 $$ if (createHllIndex) --> Line_5 $$ HllConfig hllConfig = config.getHllConfig() [CD]
+Line_5 $$ HllConfig hllConfig = config.getHllConfig() --> Line_6 $$ for (String derivedFieldName : hllConfig.getDerivedHllFieldToOriginMap().keySet()) [FD]
+Line_4 $$ Collection<String> columnNames = dataSchema.getColumnNames() --> Line_7 $$ if (columnNames.contains(derivedFieldName)) [FD]
+Line_6 $$ for (String derivedFieldName : hllConfig.getDerivedHllFieldToOriginMap().keySet()) --> Line_7 $$ if (columnNames.contains(derivedFieldName)) [FD]
+Line_7 $$ if (columnNames.contains(derivedFieldName)) --> Line_10 $$ dataSchema.addField(new MetricFieldSpec(derivedFieldName, FieldSpec.DataType.STRING, hllConfig.getHllFieldSize(), MetricFieldSpec.DerivedMetricType.HLL)) [CD]
+Line_5 $$ HllConfig hllConfig = config.getHllConfig() --> Line_10 $$ dataSchema.addField(new MetricFieldSpec(derivedFieldName, FieldSpec.DataType.STRING, hllConfig.getHllFieldSize(), MetricFieldSpec.DerivedMetricType.HLL)) [FD]

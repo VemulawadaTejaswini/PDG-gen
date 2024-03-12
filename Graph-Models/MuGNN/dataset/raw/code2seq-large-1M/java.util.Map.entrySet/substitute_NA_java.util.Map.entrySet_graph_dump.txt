@@ -1,0 +1,7 @@
+Line_3 $$ for (final Map<String, Object> properties : mapArray) --> Line_5 $$ for (final Map.Entry<String, Object> entry : properties.entrySet()) [FD]
+Line_4 $$ final Map<String, String> convertedProperties = new HashMap<String, String>() --> Line_7 $$ convertedProperties.put(entry.getKey(), value == null ? null : value.toString()) [FD]
+Line_6 $$ final Object value = entry.getValue() --> Line_7 $$ convertedProperties.put(entry.getKey(), value == null ? null : value.toString()) [FD]
+Line_3 $$ for (final Map<String, Object> properties : mapArray) --> Line_9 $$ if (properties != null) [FD]
+Line_9 $$ if (properties != null) --> Line_10 $$ return substitute(initialString, new MapBasedSymbolTable(convertedProperties), PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, new ArrayList<String>()) [CD]
+Line_2 $$ public static String substitute(final String initialString, final Map<String, Object>... mapArray) --> Line_10 $$ return substitute(initialString, new MapBasedSymbolTable(convertedProperties), PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX, new ArrayList<String>()) [FD]
+Line_2 $$ public static String substitute(final String initialString, final Map<String, Object>... mapArray) --> Line_13 $$ return initialString [CD]

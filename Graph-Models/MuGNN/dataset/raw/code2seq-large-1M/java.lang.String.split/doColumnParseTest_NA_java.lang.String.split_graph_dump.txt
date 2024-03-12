@@ -1,0 +1,7 @@
+Line_2 $$ private void doColumnParseTest(HBaseStorage storage, String... names) --> Line_3 $$ Assert.assertEquals("Wrong column count", names.length, storage.getColumnInfoList().size()) [CD]
+Line_2 $$ private void doColumnParseTest(HBaseStorage storage, String... names) --> Line_3 $$ Assert.assertEquals("Wrong column count", names.length, storage.getColumnInfoList().size()) [FD]
+Line_4 $$ for (String name : names) --> Line_5 $$ String[] cfAndName = name.split(":") [FD]
+Line_2 $$ private void doColumnParseTest(HBaseStorage storage, String... names) --> Line_6 $$ HBaseStorage.ColumnInfo col = storage.getColumnInfoList().remove(0) [FD]
+Line_6 $$ HBaseStorage.ColumnInfo col = storage.getColumnInfoList().remove(0) --> Line_7 $$ Assert.assertEquals("Wrong CF", cfAndName[0], new String(col.getColumnFamily())) [FD]
+Line_6 $$ HBaseStorage.ColumnInfo col = storage.getColumnInfoList().remove(0) --> Line_8 $$ Assert.assertEquals("Wrong column descriptor", cfAndName[1], new String(col.getColumnName())) [FD]
+Line_6 $$ HBaseStorage.ColumnInfo col = storage.getColumnInfoList().remove(0) --> Line_9 $$ Assert.assertNull("Column prefix should be null", col.getColumnPrefix()) [FD]

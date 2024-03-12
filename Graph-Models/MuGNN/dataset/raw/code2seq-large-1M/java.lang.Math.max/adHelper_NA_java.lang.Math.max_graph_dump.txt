@@ -1,0 +1,6 @@
+Line_2 $$ private double adHelper(int order) --> Line_3 $$ int orderIndex = order - 1 [CD]
+Line_2 $$ private double adHelper(int order) --> Line_4 $$ if (order == 1) [FD]
+Line_2 $$ private double adHelper(int order) --> Line_4 $$ if (order == 1) [CD]
+Line_4 $$ if (order == 1) --> Line_5 $$ return getTokenMleOrEpsilon(orderIndex) [CD]
+Line_3 $$ int orderIndex = order - 1 --> Line_5 $$ return getTokenMleOrEpsilon(orderIndex) [FD]
+Line_4 $$ if (order == 1) --> Line_7 $$ return (Math.max(0.0, ((double) tokenCounts[orderIndex]) - DISCOUNT)) / ((double) tokenNormalizers[orderIndex]) + ((double) historyTypeCounts[orderIndex]) * DISCOUNT / ((double) tokenNormalizers[orderIndex]) * adHelper(order - 1) [CD]

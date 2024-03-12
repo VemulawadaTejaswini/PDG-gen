@@ -1,0 +1,8 @@
+Line_2 $$ private void ensureCapacity() --> Line_3 $$ if (size >= maximumSize) [CD]
+Line_3 $$ if (size >= maximumSize) --> Line_4 $$ Iterator<Map.Entry<K, V>> it = map.descendingMap().entrySet().iterator() [CD]
+Line_3 $$ if (size >= maximumSize) --> Line_5 $$ while (it.hasNext()) [CD]
+Line_5 $$ while (it.hasNext()) --> Line_6 $$ Map.Entry<K, V> next = it.next() [CD]
+Line_5 $$ while (it.hasNext()) --> Line_7 $$ if (!isPinned(next.getKey())) [CD]
+Line_7 $$ if (!isPinned(next.getKey())) --> Line_8 $$ it.remove() [CD]
+Line_7 $$ if (!isPinned(next.getKey())) --> Line_9 $$ if (removalListener != null) [CD]
+Line_9 $$ if (removalListener != null) --> Line_10 $$ removalListener.onRemoval(next.getKey(), next.getValue(), RemovalCause.REPLACED) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private PoolingSupport createPoolingSupport() --> Line_3 $$ if (!pooling) [CD]
+Line_3 $$ if (!pooling) --> Line_4 $$ return new NoPool() [CD]
+Line_2 $$ private PoolingSupport createPoolingSupport() --> Line_6 $$ if (partitionStrategy == null || "none".equalsIgnoreCase(partitionStrategy)) [CD]
+Line_6 $$ if (partitionStrategy == null || "none".equalsIgnoreCase(partitionStrategy)) --> Line_7 $$ return new SinglePool(poolMaxSize, poolMinSize, connectionMaxWaitMilliseconds, connectionMaxIdleMinutes, allConnectionsEqual, !allConnectionsEqual, assumeOneMatch) [CD]
+Line_6 $$ if (partitionStrategy == null || "none".equalsIgnoreCase(partitionStrategy)) --> Line_8 $$ if ("by-connector-properties".equalsIgnoreCase(partitionStrategy)) [CD]
+Line_8 $$ if ("by-connector-properties".equalsIgnoreCase(partitionStrategy)) --> Line_9 $$ return new PartitionedPool(poolMaxSize, poolMinSize, connectionMaxWaitMilliseconds, connectionMaxIdleMinutes, allConnectionsEqual, !allConnectionsEqual, assumeOneMatch, true, false) [CD]
+Line_8 $$ if ("by-connector-properties".equalsIgnoreCase(partitionStrategy)) --> Line_10 $$ if ("by-subject".equalsIgnoreCase(partitionStrategy)) [CD]
+Line_10 $$ if ("by-subject".equalsIgnoreCase(partitionStrategy)) --> Line_11 $$ return new PartitionedPool(poolMaxSize, poolMinSize, connectionMaxWaitMilliseconds, connectionMaxIdleMinutes, allConnectionsEqual, !allConnectionsEqual, assumeOneMatch, false, true) [CD]

@@ -1,0 +1,2 @@
+Line_2 $$ private String readMethodName(Method method, SMDMethod smdMethodAnnotation) --> Line_3 $$ return smdMethodAnnotation.name().length() == 0 ? method.getName() : smdMethodAnnotation.name() [FD]
+Line_2 $$ private String readMethodName(Method method, SMDMethod smdMethodAnnotation) --> Line_3 $$ return smdMethodAnnotation.name().length() == 0 ? method.getName() : smdMethodAnnotation.name() [CD]

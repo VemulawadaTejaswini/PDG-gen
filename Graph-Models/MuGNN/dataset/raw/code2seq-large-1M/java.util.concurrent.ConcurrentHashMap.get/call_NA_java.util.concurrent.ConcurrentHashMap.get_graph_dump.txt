@@ -1,0 +1,8 @@
+Line_2 $$ public void call(Runnable runnable) --> Line_3 $$ Boolean running = sRunningMap.get(mLabel) [CD]
+Line_2 $$ public void call(Runnable runnable) --> Line_4 $$ if (running == null || running) [CD]
+Line_3 $$ Boolean running = sRunningMap.get(mLabel) --> Line_4 $$ if (running == null || running) [FD]
+Line_4 $$ if (running == null || running) --> Line_5 $$ mScheduler.call(runnable) [CD]
+Line_2 $$ public void call(Runnable runnable) --> Line_5 $$ mScheduler.call(runnable) [FD]
+Line_4 $$ if (running == null || running) --> Line_6 $$ sRunningMap.put(mLabel, false) [CD]
+Line_4 $$ if (running == null || running) --> Line_7 $$ sExecutorService.schedule(new ResumingRunnable(mLabel), mDuration, mUnit) [CD]
+Line_4 $$ if (running == null || running) --> Line_9 $$ pause() [CD]

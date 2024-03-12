@@ -1,0 +1,7 @@
+Line_2 $$ void scrubActive() --> Line_3 $$ long youngConnections = activeTasks.values().stream().filter( t -> t.attemptedCount() < 5).count() [CD]
+Line_2 $$ void scrubActive() --> Line_4 $$ if (youngConnections > 15 || activeCount.get() < maxFetches() * 0.9) [CD]
+Line_4 $$ if (youngConnections > 15 || activeCount.get() < maxFetches() * 0.9) --> Line_5 $$ return [CD]
+Line_2 $$ void scrubActive() --> Line_6 $$ Comparator<Map.Entry<FetchTask, Integer>> comp = Map.Entry.comparingByValue() [CD]
+Line_2 $$ void scrubActive() --> Line_7 $$ comp = comp.reversed() [CD]
+Line_2 $$ void scrubActive() --> Line_8 $$ activeTasks.values().stream().map( t -> new AbstractMap.SimpleEntry(t, t.attemptedCount())).filter( e -> e.getValue() > 70).sorted(comp).limit(10).forEachOrdered( e -> [CD]
+Line_7 $$ comp = comp.reversed() --> Line_8 $$ activeTasks.values().stream().map( t -> new AbstractMap.SimpleEntry(t, t.attemptedCount())).filter( e -> e.getValue() > 70).sorted(comp).limit(10).forEachOrdered( e -> [FD]

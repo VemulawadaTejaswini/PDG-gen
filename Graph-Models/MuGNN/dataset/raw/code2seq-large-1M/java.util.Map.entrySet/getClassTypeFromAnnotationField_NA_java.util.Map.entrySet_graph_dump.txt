@@ -1,0 +1,8 @@
+Line_2 $$ static TypeElement getClassTypeFromAnnotationField(Elements elementUtils, AnnotationMirror annotation, String fieldName) throws OptionProcessorException --> Line_3 $$ for (Map.Entry<? extends ExecutableElement, ? extends AnnotationValue> entry : elementUtils.getElementValuesWithDefaults(annotation).entrySet()) [FD]
+Line_2 $$ static TypeElement getClassTypeFromAnnotationField(Elements elementUtils, AnnotationMirror annotation, String fieldName) throws OptionProcessorException --> Line_4 $$ if (entry.getKey().getSimpleName().contentEquals(fieldName)) [FD]
+Line_4 $$ if (entry.getKey().getSimpleName().contentEquals(fieldName)) --> Line_5 $$ Object annotationField = entry.getValue().getValue() [CD]
+Line_4 $$ if (entry.getKey().getSimpleName().contentEquals(fieldName)) --> Line_6 $$ if (!(annotationField instanceof DeclaredType)) [CD]
+Line_4 $$ if (entry.getKey().getSimpleName().contentEquals(fieldName)) --> Line_9 $$ String qualifiedName = ((TypeElement) ((DeclaredType) annotationField).asElement()).getQualifiedName().toString() [CD]
+Line_4 $$ if (entry.getKey().getSimpleName().contentEquals(fieldName)) --> Line_10 $$ return elementUtils.getTypeElement(qualifiedName) [CD]
+Line_2 $$ static TypeElement getClassTypeFromAnnotationField(Elements elementUtils, AnnotationMirror annotation, String fieldName) throws OptionProcessorException --> Line_10 $$ return elementUtils.getTypeElement(qualifiedName) [FD]
+Line_9 $$ String qualifiedName = ((TypeElement) ((DeclaredType) annotationField).asElement()).getQualifiedName().toString() --> Line_10 $$ return elementUtils.getTypeElement(qualifiedName) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public List<ChangesByCommit> groupByCommit() --> Line_3 $$ Map<CommitMetadata, List<Change>> changesByCommit = changes.stream().collect(groupingBy( c -> c.getCommitMetadata().orElseThrow(() -> new IllegalStateException("No CommitMetadata in this Change")), () -> new LinkedHashMap(), toList())) [CD]
+Line_2 $$ public List<ChangesByCommit> groupByCommit() --> Line_4 $$ List<ChangesByCommit> result = new ArrayList() [CD]
+Line_2 $$ public List<ChangesByCommit> groupByCommit() --> Line_5 $$ changesByCommit.forEach(( k,  v) -> [CD]
+Line_3 $$ Map<CommitMetadata, List<Change>> changesByCommit = changes.stream().collect(groupingBy( c -> c.getCommitMetadata().orElseThrow(() -> new IllegalStateException("No CommitMetadata in this Change")), () -> new LinkedHashMap(), toList())) --> Line_5 $$ changesByCommit.forEach(( k,  v) -> [FD]
+Line_4 $$ List<ChangesByCommit> result = new ArrayList() --> Line_6 $$ result.add(new ChangesByCommit(k, v, valuePrinter)) [FD]
+Line_2 $$ public List<ChangesByCommit> groupByCommit() --> Line_8 $$ return Collections.unmodifiableList(result) [CD]
+Line_4 $$ List<ChangesByCommit> result = new ArrayList() --> Line_8 $$ return Collections.unmodifiableList(result) [FD]

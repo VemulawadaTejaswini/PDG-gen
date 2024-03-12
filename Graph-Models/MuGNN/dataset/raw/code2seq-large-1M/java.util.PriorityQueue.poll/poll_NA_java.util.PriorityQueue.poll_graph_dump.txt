@@ -1,0 +1,8 @@
+Line_2 $$ public E poll() --> Line_3 $$ PseudoEntry<E> entry = this.delegate.poll() [CD]
+Line_2 $$ public E poll() --> Line_4 $$ while ((entry != null) && (!entry.valid)) [CD]
+Line_4 $$ while ((entry != null) && (!entry.valid)) --> Line_5 $$ entry = this.delegate.poll() [CD]
+Line_2 $$ public E poll() --> Line_7 $$ if (entry == null) [CD]
+Line_5 $$ entry = this.delegate.poll() --> Line_7 $$ if (entry == null) [FD]
+Line_7 $$ if (entry == null) --> Line_8 $$ return null [CD]
+Line_2 $$ public E poll() --> Line_10 $$ this.lastEntry.remove(entry.value) [CD]
+Line_2 $$ public E poll() --> Line_11 $$ return entry.value [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void assertResult(List<KeyRange> result, int start, int end) --> Line_3 $$ int expectStart = start [CD]
+Line_4 $$ for (KeyRange rowKeyRange : result) --> Line_5 $$ byte[] lowerRange = rowKeyRange.getLowerRange() [FD]
+Line_5 $$ byte[] lowerRange = rowKeyRange.getLowerRange() --> Line_6 $$ assertTrue(Bytes.equals(lowerRange, PInteger.INSTANCE.toBytes(expectStart))) [FD]
+Line_3 $$ int expectStart = start --> Line_6 $$ assertTrue(Bytes.equals(lowerRange, PInteger.INSTANCE.toBytes(expectStart))) [FD]
+Line_4 $$ for (KeyRange rowKeyRange : result) --> Line_7 $$ byte[] upperRange = rowKeyRange.getUpperRange() [FD]
+Line_3 $$ int expectStart = start --> Line_8 $$ expectStart = ((Integer) PInteger.INSTANCE.toObject(upperRange)).intValue() + 1 [FD]
+Line_7 $$ byte[] upperRange = rowKeyRange.getUpperRange() --> Line_8 $$ expectStart = ((Integer) PInteger.INSTANCE.toObject(upperRange)).intValue() + 1 [FD]
+Line_2 $$ private void assertResult(List<KeyRange> result, int start, int end) --> Line_10 $$ assertTrue(expectStart - 1 == end) [CD]

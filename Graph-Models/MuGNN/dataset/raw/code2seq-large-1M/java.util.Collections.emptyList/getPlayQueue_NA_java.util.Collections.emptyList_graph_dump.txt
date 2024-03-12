@@ -1,0 +1,8 @@
+Line_2 $$ private PlayQueue getPlayQueue(final int index) --> Line_3 $$ if (itemListAdapter == null) [CD]
+Line_3 $$ if (itemListAdapter == null) --> Line_4 $$ return new SinglePlayQueue(Collections.emptyList(), 0) [CD]
+Line_2 $$ private PlayQueue getPlayQueue(final int index) --> Line_6 $$ final List<LocalItem> infoItems = itemListAdapter.getItemsList() [CD]
+Line_2 $$ private PlayQueue getPlayQueue(final int index) --> Line_7 $$ List<StreamInfoItem> streamInfoItems = new ArrayList(infoItems.size()) [CD]
+Line_6 $$ final List<LocalItem> infoItems = itemListAdapter.getItemsList() --> Line_7 $$ List<StreamInfoItem> streamInfoItems = new ArrayList(infoItems.size()) [FD]
+Line_8 $$ for (final LocalItem item : infoItems) --> Line_9 $$ if (item instanceof PlaylistStreamEntry) [FD]
+Line_7 $$ List<StreamInfoItem> streamInfoItems = new ArrayList(infoItems.size()) --> Line_10 $$ streamInfoItems.add(((PlaylistStreamEntry) item).toStreamInfoItem()) [FD]
+Line_2 $$ private PlayQueue getPlayQueue(final int index) --> Line_13 $$ return new SinglePlayQueue(streamInfoItems, index) [CD]

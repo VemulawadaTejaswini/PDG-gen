@@ -1,0 +1,8 @@
+Line_2 $$ private <T> T getServiceConfig(CouchbaseService service, Integer fallback, BiFunction<Integer, Integer, T> factory) --> Line_3 $$ if (service.getMinEndpoints() != 1 || service.getMaxEndpoints() != 1) [CD]
+Line_2 $$ private <T> T getServiceConfig(CouchbaseService service, Integer fallback, BiFunction<Integer, Integer, T> factory) --> Line_3 $$ if (service.getMinEndpoints() != 1 || service.getMaxEndpoints() != 1) [FD]
+Line_3 $$ if (service.getMinEndpoints() != 1 || service.getMaxEndpoints() != 1) --> Line_4 $$ return factory.apply(service.getMinEndpoints(), service.getMaxEndpoints()) [CD]
+Line_2 $$ private <T> T getServiceConfig(CouchbaseService service, Integer fallback, BiFunction<Integer, Integer, T> factory) --> Line_4 $$ return factory.apply(service.getMinEndpoints(), service.getMaxEndpoints()) [FD]
+Line_2 $$ private <T> T getServiceConfig(CouchbaseService service, Integer fallback, BiFunction<Integer, Integer, T> factory) --> Line_6 $$ int endpoints = (fallback != null ? fallback : 1) [CD]
+Line_2 $$ private <T> T getServiceConfig(CouchbaseService service, Integer fallback, BiFunction<Integer, Integer, T> factory) --> Line_7 $$ return factory.apply(endpoints, endpoints) [CD]
+Line_2 $$ private <T> T getServiceConfig(CouchbaseService service, Integer fallback, BiFunction<Integer, Integer, T> factory) --> Line_7 $$ return factory.apply(endpoints, endpoints) [FD]
+Line_6 $$ int endpoints = (fallback != null ? fallback : 1) --> Line_7 $$ return factory.apply(endpoints, endpoints) [FD]

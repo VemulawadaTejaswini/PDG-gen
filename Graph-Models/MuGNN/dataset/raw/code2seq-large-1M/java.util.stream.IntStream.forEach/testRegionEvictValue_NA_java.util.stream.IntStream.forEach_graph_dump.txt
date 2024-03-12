@@ -1,0 +1,7 @@
+Line_2 $$ public void testRegionEvictValue() --> Line_3 $$ region = cache.<Integer, String>createRegionFactory(RegionShortcut.REPLICATE_PERSISTENT).setDiskSynchronous(true).setDiskStoreName(diskStore.getName()).create(REGION_NAME + 2) [CD]
+Line_2 $$ public void testRegionEvictValue() --> Line_4 $$ diskRegion = ((InternalRegion) region).getDiskRegion() [CD]
+Line_2 $$ public void testRegionEvictValue() --> Line_5 $$ IntStream.range(0, MAX_ENTRIES + 1).forEach(( i) -> region.put(i, "value")) [CD]
+Line_2 $$ public void testRegionEvictValue() --> Line_6 $$ ((LocalRegion) region).evictValue(2) [CD]
+Line_2 $$ public void testRegionEvictValue() --> Line_7 $$ Object value = ((LocalRegion) region).getValueInVM(2) [CD]
+Line_2 $$ public void testRegionEvictValue() --> Line_8 $$ assertNull(value) [CD]
+Line_7 $$ Object value = ((LocalRegion) region).getValueInVM(2) --> Line_8 $$ assertNull(value) [FD]

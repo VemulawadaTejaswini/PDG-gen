@@ -1,0 +1,7 @@
+Line_2 $$ public static void parse(List<String> urls) throws InterruptedException --> Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(10) [CD]
+Line_5 $$ CompletionService<String> completionService = new ExecutorCompletionService(executor) --> Line_7 $$ completionService.submit(new UrlTitleParser(url)) [FD]
+Line_2 $$ public static void parse(List<String> urls) throws InterruptedException --> Line_9 $$ for (int i = 0; i < urls.size(); i++) [FD]
+Line_9 $$ for (int i = 0; i < urls.size(); i++) --> Line_10 $$ Future<String> result = completionService.take() [CD]
+Line_5 $$ CompletionService<String> completionService = new ExecutorCompletionService(executor) --> Line_10 $$ Future<String> result = completionService.take() [FD]
+Line_10 $$ Future<String> result = completionService.take() --> Line_12 $$ System.out.println(result.get()) [FD]
+Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(10) --> Line_18 $$ executor.shutdown() [FD]

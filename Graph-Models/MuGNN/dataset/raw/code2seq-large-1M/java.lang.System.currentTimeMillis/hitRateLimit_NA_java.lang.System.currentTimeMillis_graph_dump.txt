@@ -1,0 +1,6 @@
+Line_2 $$ public long hitRateLimit(long id) --> Line_3 $$ long blacklistingLength = 0 [CD]
+Line_2 $$ public long hitRateLimit(long id) --> Line_4 $$ BlacklistEntry blEntry = blacklistService.fetchBlacklistEntry(id) [FD]
+Line_2 $$ public long hitRateLimit(long id) --> Line_4 $$ BlacklistEntry blEntry = blacklistService.fetchBlacklistEntry(id) [CD]
+Line_6 $$ long now = System.currentTimeMillis() --> Line_11 $$ blEntry.setRateLimitReachedTimestamp(now) [FD]
+Line_6 $$ long now = System.currentTimeMillis() --> Line_17 $$ blEntry.setBlacklistedTimestamp(now) [FD]
+Line_3 $$ long blacklistingLength = 0 --> Line_19 $$ blacklistingLength = getBlacklistTimeLength(blEntry.getLevel()) [FD]

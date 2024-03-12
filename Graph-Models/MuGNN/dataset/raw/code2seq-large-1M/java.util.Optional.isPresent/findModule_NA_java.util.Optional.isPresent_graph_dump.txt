@@ -1,0 +1,8 @@
+Line_2 $$ private Module findModule(String moduleName) --> Line_3 $$ Guard.guardTrue(!applicationUtils.getCurrentApplication().getModules().isEmpty(), NO_MODULES, applicationUtils.getCurrentApplication().getName()) [CD]
+Line_2 $$ private Module findModule(String moduleName) --> Line_4 $$ Optional<Module> module = applicationUtils.getCurrentApplication().getModules().stream().filter( m -> m.getName().endsWith(moduleName)).findAny() [CD]
+Line_2 $$ private Module findModule(String moduleName) --> Line_4 $$ Optional<Module> module = applicationUtils.getCurrentApplication().getModules().stream().filter( m -> m.getName().endsWith(moduleName)).findAny() [FD]
+Line_2 $$ private Module findModule(String moduleName) --> Line_5 $$ Guard.guardTrue(module.isPresent(), NO_SUCH_MODULE, applicationUtils.getCurrentApplication().getName(), moduleName) [CD]
+Line_2 $$ private Module findModule(String moduleName) --> Line_5 $$ Guard.guardTrue(module.isPresent(), NO_SUCH_MODULE, applicationUtils.getCurrentApplication().getName(), moduleName) [FD]
+Line_4 $$ Optional<Module> module = applicationUtils.getCurrentApplication().getModules().stream().filter( m -> m.getName().endsWith(moduleName)).findAny() --> Line_5 $$ Guard.guardTrue(module.isPresent(), NO_SUCH_MODULE, applicationUtils.getCurrentApplication().getName(), moduleName) [FD]
+Line_2 $$ private Module findModule(String moduleName) --> Line_6 $$ return module.get() [CD]
+Line_4 $$ Optional<Module> module = applicationUtils.getCurrentApplication().getModules().stream().filter( m -> m.getName().endsWith(moduleName)).findAny() --> Line_6 $$ return module.get() [FD]

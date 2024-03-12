@@ -1,0 +1,5 @@
+Line_2 $$ public void testScheduledTasksRunOnDeclaredPool() throws InterruptedException, ExecutionException --> Line_3 $$ ExecutorService worker = Executors.newSingleThreadExecutor( r -> new Thread(r, "testScheduledTasksRunOnDeclaredPool")) [CD]
+Line_5 $$ PartitionedScheduledExecutor executor = new PartitionedScheduledExecutor(scheduler, worker) --> Line_6 $$ ScheduledFuture<Thread> future = executor.schedule(Thread::<>currentThread, 0, MILLISECONDS) [FD]
+Line_6 $$ ScheduledFuture<Thread> future = executor.schedule(Thread::<>currentThread, 0, MILLISECONDS) --> Line_7 $$ assertThat(waitFor(future).getName(), is("testScheduledTasksRunOnDeclaredPool")) [FD]
+Line_5 $$ PartitionedScheduledExecutor executor = new PartitionedScheduledExecutor(scheduler, worker) --> Line_8 $$ executor.shutdown() [FD]
+Line_3 $$ ExecutorService worker = Executors.newSingleThreadExecutor( r -> new Thread(r, "testScheduledTasksRunOnDeclaredPool")) --> Line_10 $$ worker.shutdown() [FD]

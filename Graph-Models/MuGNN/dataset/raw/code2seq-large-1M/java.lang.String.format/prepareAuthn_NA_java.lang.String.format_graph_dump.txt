@@ -1,0 +1,8 @@
+Line_2 $$ private void prepareAuthn(Operation op) --> Line_3 $$ if (harborAuthHeader != null) [CD]
+Line_3 $$ if (harborAuthHeader != null) --> Line_4 $$ op.addRequestHeader("Authorization", "Basic " + harborAuthHeader) [CD]
+Line_2 $$ private void prepareAuthn(Operation op) --> Line_4 $$ op.addRequestHeader("Authorization", "Basic " + harborAuthHeader) [FD]
+Line_3 $$ if (harborAuthHeader != null) --> Line_6 $$ if (harborUser != null && harborPassword != null) [CD]
+Line_6 $$ if (harborUser != null && harborPassword != null) --> Line_7 $$ String s = String.format("%s:%s", harborUser, harborPassword) [CD]
+Line_7 $$ String s = String.format("%s:%s", harborUser, harborPassword) --> Line_8 $$ harborAuthHeader = new String(Base64.getEncoder().encode(s.getBytes())) [FD]
+Line_6 $$ if (harborUser != null && harborPassword != null) --> Line_9 $$ op.addRequestHeader("Authorization", "Basic " + harborAuthHeader) [CD]
+Line_2 $$ private void prepareAuthn(Operation op) --> Line_9 $$ op.addRequestHeader("Authorization", "Basic " + harborAuthHeader) [FD]

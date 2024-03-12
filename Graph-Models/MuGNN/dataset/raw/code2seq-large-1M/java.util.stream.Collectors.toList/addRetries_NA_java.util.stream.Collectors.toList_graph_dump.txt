@@ -1,0 +1,7 @@
+Line_2 $$ private Consumer<TestResult> addRetries(final List<TestResult> results) --> Line_3 $$ return  latest -> [CD]
+Line_2 $$ private Consumer<TestResult> addRetries(final List<TestResult> results) --> Line_4 $$ final List<RetryItem> retries = results.stream().sorted(comparingByTime()).filter( result -> !latest.equals(result)).map(this::<>prepareRetry).map(this::<>createRetryItem).collect(Collectors.toList()) [FD]
+Line_4 $$ final List<RetryItem> retries = results.stream().sorted(comparingByTime()).filter( result -> !latest.equals(result)).map(this::<>prepareRetry).map(this::<>createRetryItem).collect(Collectors.toList()) --> Line_5 $$ latest.addExtraBlock(RETRY_BLOCK_NAME, retries) [FD]
+Line_4 $$ final List<RetryItem> retries = results.stream().sorted(comparingByTime()).filter( result -> !latest.equals(result)).map(this::<>prepareRetry).map(this::<>createRetryItem).collect(Collectors.toList()) --> Line_6 $$ final Set<Status> statuses = retries.stream().map(RetryItem::<>getStatus).distinct().collect(Collectors.toSet()) [FD]
+Line_6 $$ final Set<Status> statuses = retries.stream().map(RetryItem::<>getStatus).distinct().collect(Collectors.toSet()) --> Line_7 $$ statuses.remove(Status.PASSED) [FD]
+Line_6 $$ final Set<Status> statuses = retries.stream().map(RetryItem::<>getStatus).distinct().collect(Collectors.toSet()) --> Line_8 $$ statuses.remove(Status.SKIPPED) [FD]
+Line_6 $$ final Set<Status> statuses = retries.stream().map(RetryItem::<>getStatus).distinct().collect(Collectors.toSet()) --> Line_9 $$ latest.setFlaky(!statuses.isEmpty()) [FD]

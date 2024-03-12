@@ -1,0 +1,8 @@
+Line_2 $$ double[] gradient(double[] x) --> Line_3 $$ return computeWithCtx(( ctx,  data,  partIdx) -> [CD]
+Line_5 $$ int featureCols = data.getFeatures().length / data.getRows() --> Line_6 $$ blas.dgemv("N", data.getRows(), featureCols, 1.0, data.getFeatures(), Math.max(1, data.getRows()), x, 1, -1.0, tmp, 1) [FD]
+Line_2 $$ double[] gradient(double[] x) --> Line_6 $$ blas.dgemv("N", data.getRows(), featureCols, 1.0, data.getFeatures(), Math.max(1, data.getRows()), x, 1, -1.0, tmp, 1) [FD]
+Line_4 $$ double[] tmp = Arrays.copyOf(data.getLabels(), data.getRows()) --> Line_6 $$ blas.dgemv("N", data.getRows(), featureCols, 1.0, data.getFeatures(), Math.max(1, data.getRows()), x, 1, -1.0, tmp, 1) [FD]
+Line_5 $$ int featureCols = data.getFeatures().length / data.getRows() --> Line_8 $$ blas.dgemv("T", data.getRows(), featureCols, 1.0, data.getFeatures(), Math.max(1, data.getRows()), tmp, 1, 0.0, res, 1) [FD]
+Line_4 $$ double[] tmp = Arrays.copyOf(data.getLabels(), data.getRows()) --> Line_8 $$ blas.dgemv("T", data.getRows(), featureCols, 1.0, data.getFeatures(), Math.max(1, data.getRows()), tmp, 1, 0.0, res, 1) [FD]
+Line_7 $$ double[] res = new double[featureCols] --> Line_8 $$ blas.dgemv("T", data.getRows(), featureCols, 1.0, data.getFeatures(), Math.max(1, data.getRows()), tmp, 1, 0.0, res, 1) [FD]
+Line_7 $$ double[] res = new double[featureCols] --> Line_10 $$ System.out.println("Iteration " + iteration + " on partition " + partIdx + " completed with local result " + Arrays.toString(res)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void renameHDFSPath(String srcPath, String dstPath) throws IOException, InterruptedException --> Line_3 $$ int nRetry = 0 [CD]
+Line_2 $$ private void renameHDFSPath(String srcPath, String dstPath) throws IOException, InterruptedException --> Line_4 $$ int sleepTime = 5000 [CD]
+Line_2 $$ private void renameHDFSPath(String srcPath, String dstPath) throws IOException, InterruptedException --> Line_5 $$ while (!hdfsFS.rename(new Path(srcPath), new Path(dstPath))) [CD]
+Line_5 $$ while (!hdfsFS.rename(new Path(srcPath), new Path(dstPath))) --> Line_6 $$ ++nRetry [CD]
+Line_3 $$ int nRetry = 0 --> Line_6 $$ ++nRetry [FD]
+Line_5 $$ while (!hdfsFS.rename(new Path(srcPath), new Path(dstPath))) --> Line_7 $$ if (nRetry > 3) [CD]
+Line_3 $$ int nRetry = 0 --> Line_7 $$ if (nRetry > 3) [FD]
+Line_7 $$ if (nRetry > 3) --> Line_10 $$ Thread.sleep(sleepTime * nRetry * nRetry) [CD]

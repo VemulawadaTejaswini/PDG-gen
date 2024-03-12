@@ -1,0 +1,6 @@
+Line_2 $$ public Thread newThread(Runnable r) --> Line_3 $$ Thread ret = new Thread(Thread.currentThread().getThreadGroup(), r, threadName + "-Thread-" + threadId.getAndIncrement(), 0) [CD]
+Line_2 $$ public Thread newThread(Runnable r) --> Line_4 $$ ret.setDaemon(false) [CD]
+Line_3 $$ Thread ret = new Thread(Thread.currentThread().getThreadGroup(), r, threadName + "-Thread-" + threadId.getAndIncrement(), 0) --> Line_4 $$ ret.setDaemon(false) [FD]
+Line_2 $$ public Thread newThread(Runnable r) --> Line_5 $$ if (threadId.get() == Integer.MAX_VALUE) [CD]
+Line_5 $$ if (threadId.get() == Integer.MAX_VALUE) --> Line_6 $$ threadId.set(0) [CD]
+Line_2 $$ public Thread newThread(Runnable r) --> Line_8 $$ return ret [CD]

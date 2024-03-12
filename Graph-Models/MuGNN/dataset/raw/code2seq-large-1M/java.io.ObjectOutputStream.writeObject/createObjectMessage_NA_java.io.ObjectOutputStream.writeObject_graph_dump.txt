@@ -1,0 +1,7 @@
+Line_2 $$ private ServerJMSObjectMessage createObjectMessage(Serializable payload, boolean compression) --> Line_3 $$ ServerJMSObjectMessage result = AMQPMessageSupport.createObjectMessage(0, null) [CD]
+Line_2 $$ private ServerJMSObjectMessage createObjectMessage(Serializable payload, boolean compression) --> Line_4 $$ if (compression) [CD]
+Line_6 $$ try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); --> Line_8 $$ oos.writeObject(payload) [FD]
+Line_2 $$ private ServerJMSObjectMessage createObjectMessage(Serializable payload, boolean compression) --> Line_8 $$ oos.writeObject(payload) [FD]
+Line_6 $$ try (ByteArrayOutputStream baos = new ByteArrayOutputStream(); --> Line_9 $$ byte[] data = baos.toByteArray() [FD]
+Line_3 $$ ServerJMSObjectMessage result = AMQPMessageSupport.createObjectMessage(0, null) --> Line_10 $$ result.setSerializedForm(new Binary(data)) [FD]
+Line_2 $$ private ServerJMSObjectMessage createObjectMessage(Serializable payload, boolean compression) --> Line_14 $$ return result [CD]

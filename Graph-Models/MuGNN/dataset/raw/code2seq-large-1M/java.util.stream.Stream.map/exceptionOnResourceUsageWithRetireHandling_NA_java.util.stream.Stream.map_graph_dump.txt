@@ -1,0 +1,7 @@
+Line_5 $$ ListeningExecutorService executorService = MoreExecutors.newDirectExecutorService() --> Line_6 $$ List<ListenableFuture<TestResource>> results = Stream.of(0, 1, 2).map( i -> f.getPool().scheduleOperationWithResource( r -> [FD]
+Line_3 $$ try (Fixture f = new Fixture(1, ResourcePool.ResourceUsageErrorPolicy.RETIRE)) --> Line_6 $$ List<ListenableFuture<TestResource>> results = Stream.of(0, 1, 2).map( i -> f.getPool().scheduleOperationWithResource( r -> [FD]
+Line_6 $$ List<ListenableFuture<TestResource>> results = Stream.of(0, 1, 2).map( i -> f.getPool().scheduleOperationWithResource( r -> --> Line_12 $$ Futures.successfulAsList(results).get() [FD]
+Line_3 $$ try (Fixture f = new Fixture(1, ResourcePool.ResourceUsageErrorPolicy.RETIRE)) --> Line_13 $$ assertThat(f.getCreatedResources().get(), equalTo(f.getMaxResources() + 1)) [FD]
+Line_6 $$ List<ListenableFuture<TestResource>> results = Stream.of(0, 1, 2).map( i -> f.getPool().scheduleOperationWithResource( r -> --> Line_14 $$ assertThat(results.get(0).get().getTestResourceId(), equalTo(0)) [FD]
+Line_6 $$ List<ListenableFuture<TestResource>> results = Stream.of(0, 1, 2).map( i -> f.getPool().scheduleOperationWithResource( r -> --> Line_15 $$ assertThat(results.get(2).get().getTestResourceId(), equalTo(1)) [FD]
+Line_6 $$ List<ListenableFuture<TestResource>> results = Stream.of(0, 1, 2).map( i -> f.getPool().scheduleOperationWithResource( r -> --> Line_17 $$ results.get(1).get() [FD]

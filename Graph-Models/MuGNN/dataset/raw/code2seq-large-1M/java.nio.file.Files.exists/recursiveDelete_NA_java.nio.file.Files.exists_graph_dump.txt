@@ -1,0 +1,8 @@
+Line_2 $$ private static void recursiveDelete(Path path) throws IOException --> Line_3 $$ if (Files.exists(path)) [FD]
+Line_2 $$ private static void recursiveDelete(Path path) throws IOException --> Line_3 $$ if (Files.exists(path)) [CD]
+Line_3 $$ if (Files.exists(path)) --> Line_4 $$ if (Files.isDirectory(path)) [CD]
+Line_2 $$ private static void recursiveDelete(Path path) throws IOException --> Line_4 $$ if (Files.isDirectory(path)) [FD]
+Line_2 $$ private static void recursiveDelete(Path path) throws IOException --> Line_5 $$ try (DirectoryStream<Path> children = Files.newDirectoryStream(path)) [FD]
+Line_6 $$ for (Path child : children) --> Line_7 $$ recursiveDelete(child) [FD]
+Line_3 $$ if (Files.exists(path)) --> Line_11 $$ Files.delete(path) [CD]
+Line_2 $$ private static void recursiveDelete(Path path) throws IOException --> Line_11 $$ Files.delete(path) [FD]

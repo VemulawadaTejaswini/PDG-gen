@@ -1,0 +1,8 @@
+Line_2 $$ public void testFixtureApi_givenCurrentTime() --> Line_3 $$ String identifier = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void testFixtureApi_givenCurrentTime() --> Line_4 $$ Instant fourDaysAgo = Instant.now().minus(4, ChronoUnit.DAYS) [CD]
+Line_2 $$ public void testFixtureApi_givenCurrentTime() --> Line_5 $$ Instant fourDaysMinusTenMinutesAgo = fourDaysAgo.plus(10, ChronoUnit.MINUTES) [CD]
+Line_4 $$ Instant fourDaysAgo = Instant.now().minus(4, ChronoUnit.DAYS) --> Line_5 $$ Instant fourDaysMinusTenMinutesAgo = fourDaysAgo.plus(10, ChronoUnit.MINUTES) [FD]
+Line_2 $$ public void testFixtureApi_givenCurrentTime() --> Line_6 $$ SagaTestFixture<StubSaga> fixture = new SagaTestFixture(StubSaga.class) [CD]
+Line_2 $$ public void testFixtureApi_givenCurrentTime() --> Line_7 $$ fixture.givenCurrentTime(fourDaysAgo).whenPublishingA(new TriggerSagaStartEvent(identifier)).expectScheduledEvent(fourDaysMinusTenMinutesAgo, new TimerTriggeredEvent(identifier)) [CD]
+Line_5 $$ Instant fourDaysMinusTenMinutesAgo = fourDaysAgo.plus(10, ChronoUnit.MINUTES) --> Line_7 $$ fixture.givenCurrentTime(fourDaysAgo).whenPublishingA(new TriggerSagaStartEvent(identifier)).expectScheduledEvent(fourDaysMinusTenMinutesAgo, new TimerTriggeredEvent(identifier)) [FD]
+Line_4 $$ Instant fourDaysAgo = Instant.now().minus(4, ChronoUnit.DAYS) --> Line_7 $$ fixture.givenCurrentTime(fourDaysAgo).whenPublishingA(new TriggerSagaStartEvent(identifier)).expectScheduledEvent(fourDaysMinusTenMinutesAgo, new TimerTriggeredEvent(identifier)) [FD]

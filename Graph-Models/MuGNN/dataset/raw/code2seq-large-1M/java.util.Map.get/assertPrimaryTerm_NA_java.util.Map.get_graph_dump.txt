@@ -1,0 +1,8 @@
+Line_2 $$ private void assertPrimaryTerm(String index) --> Line_3 $$ final long[] terms = primaryTermsPerIndex.get(index) [CD]
+Line_2 $$ private void assertPrimaryTerm(String index) --> Line_3 $$ final long[] terms = primaryTermsPerIndex.get(index) [FD]
+Line_2 $$ private void assertPrimaryTerm(String index) --> Line_4 $$ final IndexMetaData indexMetaData = clusterState.metaData().index(index) [CD]
+Line_2 $$ private void assertPrimaryTerm(String index) --> Line_4 $$ final IndexMetaData indexMetaData = clusterState.metaData().index(index) [FD]
+Line_2 $$ private void assertPrimaryTerm(String index) --> Line_5 $$ for (IndexShardRoutingTable shardRoutingTable : this.clusterState.routingTable().index(index)) [FD]
+Line_5 $$ for (IndexShardRoutingTable shardRoutingTable : this.clusterState.routingTable().index(index)) --> Line_6 $$ final int shard = shardRoutingTable.shardId().id() [FD]
+Line_4 $$ final IndexMetaData indexMetaData = clusterState.metaData().index(index) --> Line_7 $$ assertThat("primary term mismatch between indexMetaData of [" + index + "] and shard [" + shard + "]'s routing", indexMetaData.primaryTerm(shard), equalTo(terms[shard])) [FD]
+Line_6 $$ final int shard = shardRoutingTable.shardId().id() --> Line_7 $$ assertThat("primary term mismatch between indexMetaData of [" + index + "] and shard [" + shard + "]'s routing", indexMetaData.primaryTerm(shard), equalTo(terms[shard])) [FD]

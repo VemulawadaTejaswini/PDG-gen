@@ -1,0 +1,7 @@
+Line_2 $$ private void setupUpgradeSecurity() throws GFLauncherException --> Line_3 $$ if (info.isUpgrade() && jvmOptions.sysProps.containsKey("java.security.manager")) [CD]
+Line_3 $$ if (info.isUpgrade() && jvmOptions.sysProps.containsKey("java.security.manager")) --> Line_4 $$ GFLauncherLogger.info(GFLauncherLogger.copy_server_policy) [CD]
+Line_3 $$ if (info.isUpgrade() && jvmOptions.sysProps.containsKey("java.security.manager")) --> Line_5 $$ File source = new File(new File(new File(info.installDir, "lib"), "templates"), "server.policy") [CD]
+Line_3 $$ if (info.isUpgrade() && jvmOptions.sysProps.containsKey("java.security.manager")) --> Line_6 $$ File target = new File(info.getConfigDir(), "server.policy") [CD]
+Line_5 $$ File source = new File(new File(new File(info.installDir, "lib"), "templates"), "server.policy") --> Line_8 $$ FileUtils.copyFile(source, target) [FD]
+Line_6 $$ File target = new File(info.getConfigDir(), "server.policy") --> Line_8 $$ FileUtils.copyFile(source, target) [FD]
+Line_10 $$ Throwable cause = ioe.getCause() == null ? ioe : ioe.getCause() --> Line_11 $$ throw new GFLauncherException(strings.get("copy_server_policy_error", cause.getMessage())) [FD]

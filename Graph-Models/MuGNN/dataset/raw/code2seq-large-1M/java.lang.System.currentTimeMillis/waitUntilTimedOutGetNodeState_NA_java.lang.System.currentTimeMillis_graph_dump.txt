@@ -1,0 +1,4 @@
+Line_2 $$ private void waitUntilTimedOutGetNodeState(DummyVdsNode dnode, DummyVdsNode snode) throws TimeoutException --> Line_3 $$ long timeout = System.currentTimeMillis() + timeoutMS [CD]
+Line_5 $$ while (dnode.timedOutStateReplies != 1 || snode.timedOutStateReplies != 1) --> Line_6 $$ if (System.currentTimeMillis() > timeout) [CD]
+Line_3 $$ long timeout = System.currentTimeMillis() + timeoutMS --> Line_6 $$ if (System.currentTimeMillis() > timeout) [FD]
+Line_2 $$ private void waitUntilTimedOutGetNodeState(DummyVdsNode dnode, DummyVdsNode snode) throws TimeoutException --> Line_7 $$ throw new TimeoutException("Did not get to have one timed out within timeout of " + timeoutMS + " ms" + ", " + getGetNodeStateReplyCounts(dnode) + ", " + getGetNodeStateReplyCounts(snode)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static List<LogData> fetchLogs() --> Line_3 $$ long loadInterval = System.currentTimeMillis() - 3600000 [CD]
+Line_2 $$ public static List<LogData> fetchLogs() --> Line_4 $$ List<LogData> log = SQLite.select().from(LogData.class).where(LogData_Table.timestamp.greaterThan(loadInterval)).orderBy(LogData_Table.timestamp, true).queryList() [CD]
+Line_3 $$ long loadInterval = System.currentTimeMillis() - 3600000 --> Line_4 $$ List<LogData> log = SQLite.select().from(LogData.class).where(LogData_Table.timestamp.greaterThan(loadInterval)).orderBy(LogData_Table.timestamp, true).queryList() [FD]
+Line_2 $$ public static List<LogData> fetchLogs() --> Line_5 $$ purgeOldLog() [CD]
+Line_2 $$ public static List<LogData> fetchLogs() --> Line_6 $$ if (log != null && log.size() > 100) [CD]
+Line_6 $$ if (log != null && log.size() > 100) --> Line_7 $$ return log.subList((log.size() - 100), log.size()) [CD]
+Line_6 $$ if (log != null && log.size() > 100) --> Line_9 $$ return log [CD]

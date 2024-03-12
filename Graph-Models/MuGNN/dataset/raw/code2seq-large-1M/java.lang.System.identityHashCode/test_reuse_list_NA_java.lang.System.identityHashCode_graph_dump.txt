@@ -1,0 +1,8 @@
+Line_2 $$ public void test_reuse_list() throws IOException --> Line_3 $$ List list1 = new ArrayList() [CD]
+Line_2 $$ public void test_reuse_list() throws IOException --> Line_4 $$ JsonIterator iter = JsonIterator.parse("[1]") [CD]
+Line_2 $$ public void test_reuse_list() throws IOException --> Line_5 $$ List list2 = iter.read(new TypeLiteral<List<Integer>>() [CD]
+Line_4 $$ JsonIterator iter = JsonIterator.parse("[1]") --> Line_5 $$ List list2 = iter.read(new TypeLiteral<List<Integer>>() [FD]
+Line_3 $$ List list1 = new ArrayList() --> Line_5 $$ List list2 = iter.read(new TypeLiteral<List<Integer>>() [FD]
+Line_2 $$ public void test_reuse_list() throws IOException --> Line_7 $$ assertEquals(System.identityHashCode(list2), System.identityHashCode(list1)) [CD]
+Line_5 $$ List list2 = iter.read(new TypeLiteral<List<Integer>>() --> Line_7 $$ assertEquals(System.identityHashCode(list2), System.identityHashCode(list1)) [FD]
+Line_3 $$ List list1 = new ArrayList() --> Line_7 $$ assertEquals(System.identityHashCode(list2), System.identityHashCode(list1)) [FD]

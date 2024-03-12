@@ -1,0 +1,7 @@
+Line_2 $$ public static VcfIterator filter(final VcfIterator delegate, final Predicate<VariantContext> predicate) --> Line_7 $$ this.delegate = delegate [FD]
+Line_2 $$ public static VcfIterator filter(final VcfIterator delegate, final Predicate<VariantContext> predicate) --> Line_8 $$ this.predicate = predicate [FD]
+Line_20 $$ while (this.delegate.hasNext()) --> Line_21 $$ final VariantContext ctx = this.delegate.next() [CD]
+Line_20 $$ while (this.delegate.hasNext()) --> Line_22 $$ if (this.predicate.test(ctx)) [CD]
+Line_21 $$ final VariantContext ctx = this.delegate.next() --> Line_22 $$ if (this.predicate.test(ctx)) [FD]
+Line_22 $$ if (this.predicate.test(ctx)) --> Line_23 $$ return ctx [CD]
+Line_2 $$ public static VcfIterator filter(final VcfIterator delegate, final Predicate<VariantContext> predicate) --> Line_29 $$ return new FilteringVcfIterator(delegate, predicate) [CD]

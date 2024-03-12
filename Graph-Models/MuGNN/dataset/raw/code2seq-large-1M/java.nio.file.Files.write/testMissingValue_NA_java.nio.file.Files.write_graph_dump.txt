@@ -1,0 +1,6 @@
+Line_2 $$ public void testMissingValue() throws Exception --> Line_3 $$ Path tmp = createTempFile("test", ".yaml") [CD]
+Line_2 $$ public void testMissingValue() throws Exception --> Line_4 $$ Files.write(tmp, Collections.singletonList("foo: # missing value\n"), StandardCharsets.UTF_8) [CD]
+Line_3 $$ Path tmp = createTempFile("test", ".yaml") --> Line_4 $$ Files.write(tmp, Collections.singletonList("foo: # missing value\n"), StandardCharsets.UTF_8) [FD]
+Line_2 $$ public void testMissingValue() throws Exception --> Line_5 $$ ElasticsearchParseException e = expectThrows(ElasticsearchParseException.class, () -> [CD]
+Line_3 $$ Path tmp = createTempFile("test", ".yaml") --> Line_6 $$ Settings.builder().loadFromPath(tmp) [FD]
+Line_2 $$ public void testMissingValue() throws Exception --> Line_8 $$ assertTrue(e.getMessage(), e.getMessage().contains("null-valued setting found for key [foo] found at line number [1], column number [5]")) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public String getTMCIPeerInfo() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public String getTMCIPeerInfo() --> Line_4 $$ int idle = -1 [CD]
+Line_4 $$ int idle = -1 --> Line_6 $$ idle = (int) ((now - timeLastReceivedPacket) / 1000) [FD]
+Line_2 $$ public String getTMCIPeerInfo() --> Line_8 $$ if ((getPeerNodeStatus() == PeerManager.PEER_NODE_STATUS_NEVER_CONNECTED) && (getPeerAddedTime() > 1)) [CD]
+Line_8 $$ if ((getPeerNodeStatus() == PeerManager.PEER_NODE_STATUS_NEVER_CONNECTED) && (getPeerAddedTime() > 1)) --> Line_9 $$ idle = (int) ((now - getPeerAddedTime()) / 1000) [CD]
+Line_4 $$ int idle = -1 --> Line_9 $$ idle = (int) ((now - getPeerAddedTime()) / 1000) [FD]
+Line_6 $$ idle = (int) ((now - timeLastReceivedPacket) / 1000) --> Line_9 $$ idle = (int) ((now - getPeerAddedTime()) / 1000) [FD]
+Line_2 $$ public String getTMCIPeerInfo() --> Line_10 $$ return String.valueOf(getPeer()) + '\t' + getIdentityString() + '\t' + getLocation() + '\t' + getPeerNodeStatusString() + '\t' + idle [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized void claim(Object owner, long timeout) throws InterruptedException, TimeoutException --> Line_3 $$ final long start = System.currentTimeMillis() [CD]
+Line_2 $$ public synchronized void claim(Object owner, long timeout) throws InterruptedException, TimeoutException --> Line_4 $$ while (locked) [CD]
+Line_4 $$ while (locked) --> Line_5 $$ wait(timeout) [CD]
+Line_2 $$ public synchronized void claim(Object owner, long timeout) throws InterruptedException, TimeoutException --> Line_5 $$ wait(timeout) [FD]
+Line_4 $$ while (locked) --> Line_6 $$ if (locked) [CD]
+Line_6 $$ if (locked) --> Line_7 $$ if (System.currentTimeMillis() > start + timeout) [CD]
+Line_2 $$ public synchronized void claim(Object owner, long timeout) throws InterruptedException, TimeoutException --> Line_12 $$ this.locked = true [CD]

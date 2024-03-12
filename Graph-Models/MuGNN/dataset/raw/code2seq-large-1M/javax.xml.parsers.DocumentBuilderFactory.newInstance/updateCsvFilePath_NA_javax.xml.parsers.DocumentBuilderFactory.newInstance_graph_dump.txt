@@ -1,0 +1,8 @@
+Line_4 $$ DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance() --> Line_5 $$ DocumentBuilder docBuilder = docFactory.newDocumentBuilder() [FD]
+Line_5 $$ DocumentBuilder docBuilder = docFactory.newDocumentBuilder() --> Line_6 $$ Document doc = docBuilder.parse(CSV_RESOURCE_XML_PATH) [FD]
+Line_6 $$ Document doc = docBuilder.parse(CSV_RESOURCE_XML_PATH) --> Line_7 $$ Node filePathNode = doc.getElementsByTagName("icfccsvfile:filePath").item(0) [FD]
+Line_7 $$ Node filePathNode = doc.getElementsByTagName("icfccsvfile:filePath").item(0) --> Line_8 $$ filePathNode.setTextContent(System.getProperty("user.dir") + "/src/test/resources/mp-resources/midpoint-flatfile.csv") [FD]
+Line_9 $$ TransformerFactory transformerFactory = TransformerFactory.newInstance() --> Line_10 $$ Transformer transformer = transformerFactory.newTransformer() [FD]
+Line_10 $$ Transformer transformer = transformerFactory.newTransformer() --> Line_13 $$ transformer.transform(source, result) [FD]
+Line_11 $$ DOMSource source = new DOMSource(doc) --> Line_13 $$ transformer.transform(source, result) [FD]
+Line_12 $$ StreamResult result = new StreamResult(new File(CSV_RESOURCE_XML_PATH)) --> Line_13 $$ transformer.transform(source, result) [FD]

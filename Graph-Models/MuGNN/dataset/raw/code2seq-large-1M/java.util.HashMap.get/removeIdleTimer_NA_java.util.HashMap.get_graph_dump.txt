@@ -1,0 +1,8 @@
+Line_2 $$ public void removeIdleTimer(String iface) --> Line_3 $$ mContext.enforceCallingOrSelfPermission(CONNECTIVITY_INTERNAL, TAG) [CD]
+Line_2 $$ public void removeIdleTimer(String iface) --> Line_4 $$ if (DBG) [CD]
+Line_4 $$ if (DBG) --> Line_5 $$ Slog.d(TAG, "Removing idletimer") [CD]
+Line_2 $$ public void removeIdleTimer(String iface) --> Line_7 $$ final IdleTimerParams params = mActiveIdleTimers.get(iface) [FD]
+Line_8 $$ if (params == null || --(params.networkCount) > 0) --> Line_9 $$ return [CD]
+Line_2 $$ public void removeIdleTimer(String iface) --> Line_12 $$ mConnector.execute("idletimer", "remove", iface, Integer.toString(params.timeout), Integer.toString(params.type)) [FD]
+Line_2 $$ public void removeIdleTimer(String iface) --> Line_16 $$ mActiveIdleTimers.remove(iface) [FD]
+Line_17 $$ mDaemonHandler.post(new Runnable() --> Line_19 $$ notifyInterfaceClassActivity(params.type, DataConnectionRealTimeInfo.DC_POWER_STATE_LOW, SystemClock.elapsedRealtimeNanos(), -1, false) [CD]

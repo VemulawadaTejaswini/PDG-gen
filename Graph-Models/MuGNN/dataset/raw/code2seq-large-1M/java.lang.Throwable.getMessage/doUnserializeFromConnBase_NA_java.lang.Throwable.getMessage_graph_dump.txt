@@ -1,0 +1,5 @@
+Line_2 $$ protected static Object doUnserializeFromConnBase(RBaseNode node, int connIndex, @SuppressWarnings("unused") REnvironment refhook) --> Line_3 $$ try (RConnection openConn = RConnection.fromIndex(connIndex).forceOpen("rb")) [FD]
+Line_3 $$ try (RConnection openConn = RConnection.fromIndex(connIndex).forceOpen("rb")) --> Line_4 $$ if (!openConn.canRead()) [FD]
+Line_2 $$ protected static Object doUnserializeFromConnBase(RBaseNode node, int connIndex, @SuppressWarnings("unused") REnvironment refhook) --> Line_5 $$ throw node.error(RError.Message.CONNECTION_NOT_OPEN_READ) [FD]
+Line_3 $$ try (RConnection openConn = RConnection.fromIndex(connIndex).forceOpen("rb")) --> Line_7 $$ return RSerialize.unserialize(openConn) [FD]
+Line_2 $$ protected static Object doUnserializeFromConnBase(RBaseNode node, int connIndex, @SuppressWarnings("unused") REnvironment refhook) --> Line_9 $$ throw node.error(RError.Message.GENERIC, ex.getMessage()) [FD]

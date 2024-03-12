@@ -1,0 +1,6 @@
+Line_5 $$ if (PXRParser.VERSION_ATTR.equals(attr.key)) --> Line_6 $$ Semver fileVersion = new Semver(attr.value, Semver.SemverType.LOOSE) [CD]
+Line_5 $$ if (PXRParser.VERSION_ATTR.equals(attr.key)) --> Line_7 $$ Semver runningVersion = new Semver(CoreInfo.getDefault().getVersion(), Semver.SemverType.LOOSE) [CD]
+Line_5 $$ if (PXRParser.VERSION_ATTR.equals(attr.key)) --> Line_8 $$ if (fileVersion.isGreaterThan(runningVersion)) [CD]
+Line_6 $$ Semver fileVersion = new Semver(attr.value, Semver.SemverType.LOOSE) --> Line_8 $$ if (fileVersion.isGreaterThan(runningVersion)) [FD]
+Line_7 $$ Semver runningVersion = new Semver(CoreInfo.getDefault().getVersion(), Semver.SemverType.LOOSE) --> Line_8 $$ if (fileVersion.isGreaterThan(runningVersion)) [FD]
+Line_8 $$ if (fileVersion.isGreaterThan(runningVersion)) --> Line_9 $$ warn(Bundle.MSG_versionWarning()) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void takeScreenshot(String screenshotName) --> Line_3 $$ WebDriver driver = this.webDriverSupplier.get() [CD]
+Line_2 $$ private void takeScreenshot(String screenshotName) --> Line_4 $$ if (driver instanceof TakesScreenshot) [CD]
+Line_3 $$ WebDriver driver = this.webDriverSupplier.get() --> Line_4 $$ if (driver instanceof TakesScreenshot) [FD]
+Line_4 $$ if (driver instanceof TakesScreenshot) --> Line_5 $$ File tempFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE) [CD]
+Line_5 $$ File tempFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE) --> Line_8 $$ FileUtils.copyFile(tempFile, screenshot) [FD]
+Line_7 $$ File screenshot = new File("build/screenshots/" + screenshotName + ".png") --> Line_8 $$ FileUtils.copyFile(tempFile, screenshot) [FD]
+Line_7 $$ File screenshot = new File("build/screenshots/" + screenshotName + ".png") --> Line_9 $$ System.err.println("Screenshot saved to: " + screenshot.getCanonicalPath()) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public Stream<BlobId> getDirectPathBlobIdStream(final String prefix) --> Line_3 $$ String subpath = format("%s/%s", DIRECT_PATH_PREFIX, prefix) [FD]
+Line_2 $$ public Stream<BlobId> getDirectPathBlobIdStream(final String prefix) --> Line_3 $$ String subpath = format("%s/%s", DIRECT_PATH_PREFIX, prefix) [CD]
+Line_2 $$ public Stream<BlobId> getDirectPathBlobIdStream(final String prefix) --> Line_4 $$ Iterable<S3ObjectSummary> summaries = S3Objects.withPrefix(s3, getConfiguredBucket(), subpath) [CD]
+Line_3 $$ String subpath = format("%s/%s", DIRECT_PATH_PREFIX, prefix) --> Line_4 $$ Iterable<S3ObjectSummary> summaries = S3Objects.withPrefix(s3, getConfiguredBucket(), subpath) [FD]
+Line_2 $$ public Stream<BlobId> getDirectPathBlobIdStream(final String prefix) --> Line_5 $$ return stream(summaries.spliterator(), false).map(S3ObjectSummary::<>getKey).filter( key -> key.endsWith(BLOB_ATTRIBUTE_SUFFIX)).map(this::<>attributePathToDirectPathBlobId) [CD]
+Line_4 $$ Iterable<S3ObjectSummary> summaries = S3Objects.withPrefix(s3, getConfiguredBucket(), subpath) --> Line_5 $$ return stream(summaries.spliterator(), false).map(S3ObjectSummary::<>getKey).filter( key -> key.endsWith(BLOB_ATTRIBUTE_SUFFIX)).map(this::<>attributePathToDirectPathBlobId) [FD]

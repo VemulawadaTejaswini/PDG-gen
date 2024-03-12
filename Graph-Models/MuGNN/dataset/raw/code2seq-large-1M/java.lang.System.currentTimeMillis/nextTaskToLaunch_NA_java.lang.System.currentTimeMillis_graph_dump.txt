@@ -1,0 +1,8 @@
+Line_2 $$ public Assignable<QueuableTask> nextTaskToLaunch() throws TaskQueueException --> Line_3 $$ if (iterator == null) [CD]
+Line_3 $$ if (iterator == null) --> Line_4 $$ iterator = queuedTasks.entrySet().iterator() [CD]
+Line_3 $$ if (iterator == null) --> Line_5 $$ if (!assignedTasks.isEmpty()) [CD]
+Line_2 $$ public Assignable<QueuableTask> nextTaskToLaunch() throws TaskQueueException --> Line_8 $$ while (iterator.hasNext()) [CD]
+Line_8 $$ while (iterator.hasNext()) --> Line_9 $$ final Map.Entry<String, QueuableTask> nextTask = iterator.next() [CD]
+Line_8 $$ while (iterator.hasNext()) --> Line_10 $$ if (nextTask.getValue().getReadyAt() <= System.currentTimeMillis()) [CD]
+Line_10 $$ if (nextTask.getValue().getReadyAt() <= System.currentTimeMillis()) --> Line_11 $$ return Assignable.success(nextTask.getValue()) [CD]
+Line_2 $$ public Assignable<QueuableTask> nextTaskToLaunch() throws TaskQueueException --> Line_13 $$ return null [CD]

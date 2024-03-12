@@ -1,0 +1,8 @@
+Line_2 $$ public ANRequest addRequest(ANRequest request) --> Line_4 $$ mCurrentRequests.add(request) [FD]
+Line_2 $$ public ANRequest addRequest(ANRequest request) --> Line_9 $$ request.setSequenceNumber(getSequenceNumber()) [FD]
+Line_2 $$ public ANRequest addRequest(ANRequest request) --> Line_10 $$ if (request.getPriority() == Priority.IMMEDIATE) [FD]
+Line_10 $$ if (request.getPriority() == Priority.IMMEDIATE) --> Line_11 $$ request.setFuture(Core.getInstance().getExecutorSupplier().forImmediateNetworkTasks().submit(new InternalRunnable(request))) [CD]
+Line_2 $$ public ANRequest addRequest(ANRequest request) --> Line_11 $$ request.setFuture(Core.getInstance().getExecutorSupplier().forImmediateNetworkTasks().submit(new InternalRunnable(request))) [FD]
+Line_10 $$ if (request.getPriority() == Priority.IMMEDIATE) --> Line_13 $$ request.setFuture(Core.getInstance().getExecutorSupplier().forNetworkTasks().submit(new InternalRunnable(request))) [CD]
+Line_2 $$ public ANRequest addRequest(ANRequest request) --> Line_13 $$ request.setFuture(Core.getInstance().getExecutorSupplier().forNetworkTasks().submit(new InternalRunnable(request))) [FD]
+Line_2 $$ public ANRequest addRequest(ANRequest request) --> Line_18 $$ return request [CD]

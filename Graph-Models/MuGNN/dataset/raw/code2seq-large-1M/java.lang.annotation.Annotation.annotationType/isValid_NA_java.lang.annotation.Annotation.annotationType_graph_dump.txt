@@ -1,0 +1,8 @@
+Line_3 $$ for (Annotation annotation : constraints) --> Line_4 $$ AcceptsConstraint constraint = annotation.annotationType().getAnnotation(AcceptsConstraint.class) [FD]
+Line_5 $$ Class<? extends AcceptsValidator<?>> validatorClass = constraint.value() --> Line_6 $$ AcceptsValidator validator = container.instanceFor(validatorClass) [FD]
+Line_6 $$ AcceptsValidator validator = container.instanceFor(validatorClass) --> Line_7 $$ validator.initialize(annotation) [FD]
+Line_3 $$ for (Annotation annotation : constraints) --> Line_7 $$ validator.initialize(annotation) [FD]
+Line_6 $$ AcceptsValidator validator = container.instanceFor(validatorClass) --> Line_8 $$ if (!validator.validate(controllerMethod, controllerInstance)) [FD]
+Line_2 $$ public boolean isValid(Object interceptor, ControllerMethod controllerMethod, ControllerInstance controllerInstance, List<Annotation> constraints) --> Line_8 $$ if (!validator.validate(controllerMethod, controllerInstance)) [FD]
+Line_8 $$ if (!validator.validate(controllerMethod, controllerInstance)) --> Line_9 $$ return false [CD]
+Line_2 $$ public boolean isValid(Object interceptor, ControllerMethod controllerMethod, ControllerInstance controllerInstance, List<Annotation> constraints) --> Line_12 $$ return true [CD]

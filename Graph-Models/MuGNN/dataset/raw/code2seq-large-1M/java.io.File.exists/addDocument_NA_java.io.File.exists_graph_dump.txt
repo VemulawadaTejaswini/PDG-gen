@@ -1,0 +1,7 @@
+Line_2 $$ public void addDocument(final String name, final InputStream in) throws IOException --> Line_3 $$ final File f = new File(folder, name) [CD]
+Line_2 $$ public void addDocument(final String name, final InputStream in) throws IOException --> Line_4 $$ if (f.exists() && !f.delete()) [CD]
+Line_3 $$ final File f = new File(folder, name) --> Line_4 $$ if (f.exists() && !f.delete()) [FD]
+Line_3 $$ final File f = new File(folder, name) --> Line_5 $$ throw new IOException("Unable to delete FS file:" + f.getAbsolutePath()) [FD]
+Line_7 $$ try (OutputStream out = new BufferedOutputStream(new FileOutputStream(f))) --> Line_8 $$ out.write(IOUtils.readBytesFromStream(in)) [FD]
+Line_2 $$ public void addDocument(final String name, final InputStream in) throws IOException --> Line_8 $$ out.write(IOUtils.readBytesFromStream(in)) [FD]
+Line_3 $$ final File f = new File(folder, name) --> Line_9 $$ f.deleteOnExit() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static MMatchInv[] getInOut(Properties ctx, int M_InOut_ID, String trxName) --> Line_3 $$ if (M_InOut_ID <= 0) [FD]
+Line_2 $$ public static MMatchInv[] getInOut(Properties ctx, int M_InOut_ID, String trxName) --> Line_3 $$ if (M_InOut_ID <= 0) [CD]
+Line_3 $$ if (M_InOut_ID <= 0) --> Line_4 $$ return new MMatchInv[] [CD]
+Line_2 $$ public static MMatchInv[] getInOut(Properties ctx, int M_InOut_ID, String trxName) --> Line_5 $$ final String whereClause = "EXISTS (SELECT 1 FROM M_InOutLine l" + " WHERE M_MatchInv.M_InOutLine_ID=l.M_InOutLine_ID AND l.M_InOut_ID=?)" [CD]
+Line_2 $$ public static MMatchInv[] getInOut(Properties ctx, int M_InOut_ID, String trxName) --> Line_6 $$ List<MMatchInv> list = new Query(ctx, I_M_MatchInv.Table_Name, whereClause, trxName).setParameters(M_InOut_ID).list() [FD]
+Line_2 $$ public static MMatchInv[] getInOut(Properties ctx, int M_InOut_ID, String trxName) --> Line_6 $$ List<MMatchInv> list = new Query(ctx, I_M_MatchInv.Table_Name, whereClause, trxName).setParameters(M_InOut_ID).list() [CD]
+Line_2 $$ public static MMatchInv[] getInOut(Properties ctx, int M_InOut_ID, String trxName) --> Line_7 $$ return list.toArray(new MMatchInv[list.size()]) [CD]
+Line_6 $$ List<MMatchInv> list = new Query(ctx, I_M_MatchInv.Table_Name, whereClause, trxName).setParameters(M_InOut_ID).list() --> Line_7 $$ return list.toArray(new MMatchInv[list.size()]) [FD]

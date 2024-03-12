@@ -1,0 +1,8 @@
+Line_2 $$ public AuditEvent getAuditEvent() --> Line_3 $$ String name = getAuthentication().getName() [CD]
+Line_3 $$ String name = getAuthentication().getName() --> Line_5 $$ name = Utf8.decode(Base64.encode(MessageDigest.getInstance("SHA-1").digest(Utf8.encode(name)))) [FD]
+Line_3 $$ String name = getAuthentication().getName() --> Line_7 $$ name = "NOSHA" [FD]
+Line_5 $$ name = Utf8.decode(Base64.encode(MessageDigest.getInstance("SHA-1").digest(Utf8.encode(name)))) --> Line_7 $$ name = "NOSHA" [FD]
+Line_2 $$ public AuditEvent getAuditEvent() --> Line_9 $$ return createAuditRecord(name, AuditEventType.UserNotFound, getOrigin(getAuthenticationDetails()), "") [CD]
+Line_3 $$ String name = getAuthentication().getName() --> Line_9 $$ return createAuditRecord(name, AuditEventType.UserNotFound, getOrigin(getAuthenticationDetails()), "") [FD]
+Line_5 $$ name = Utf8.decode(Base64.encode(MessageDigest.getInstance("SHA-1").digest(Utf8.encode(name)))) --> Line_9 $$ return createAuditRecord(name, AuditEventType.UserNotFound, getOrigin(getAuthenticationDetails()), "") [FD]
+Line_7 $$ name = "NOSHA" --> Line_9 $$ return createAuditRecord(name, AuditEventType.UserNotFound, getOrigin(getAuthenticationDetails()), "") [FD]

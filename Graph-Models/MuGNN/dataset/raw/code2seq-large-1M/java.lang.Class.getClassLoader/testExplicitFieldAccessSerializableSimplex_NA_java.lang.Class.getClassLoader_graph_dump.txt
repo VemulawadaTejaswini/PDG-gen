@@ -1,0 +1,6 @@
+Line_2 $$ public void testExplicitFieldAccessSerializableSimplex() throws Exception --> Line_3 $$ DynamicType.Loaded<Explicit> loaded = new ByteBuddy().subclass(Explicit.class).method(isDeclaredBy(Explicit.class)).intercept(MethodDelegation.withDefaultConfiguration().withBinders(FieldProxy.Binder.install(Get.class, Set.class)).to(SwapSerializable.class)).make().load(Explicit.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testExplicitFieldAccessSerializableSimplex() throws Exception --> Line_4 $$ Explicit explicit = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testExplicitFieldAccessSerializableSimplex() throws Exception --> Line_5 $$ assertThat(explicit.foo, is(FOO)) [CD]
+Line_2 $$ public void testExplicitFieldAccessSerializableSimplex() throws Exception --> Line_6 $$ explicit.swap() [CD]
+Line_4 $$ Explicit explicit = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ explicit.swap() [FD]
+Line_2 $$ public void testExplicitFieldAccessSerializableSimplex() throws Exception --> Line_7 $$ assertThat(explicit.foo, is(FOO + BAR)) [CD]

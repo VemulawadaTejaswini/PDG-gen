@@ -1,0 +1,6 @@
+Line_2 $$ public void setRecurrenceId(Temporal temporal) --> Line_3 $$ if ((temporal instanceof LocalDate) || (temporal instanceof LocalDateTime) || (temporal instanceof ZonedDateTime)) [CD]
+Line_3 $$ if ((temporal instanceof LocalDate) || (temporal instanceof LocalDateTime) || (temporal instanceof ZonedDateTime)) --> Line_4 $$ if (getRecurrenceId() == null) [CD]
+Line_4 $$ if (getRecurrenceId() == null) --> Line_5 $$ setRecurrenceId(new RecurrenceId(temporal)) [CD]
+Line_4 $$ if (getRecurrenceId() == null) --> Line_7 $$ getRecurrenceId().setValue(temporal) [CD]
+Line_2 $$ public void setRecurrenceId(Temporal temporal) --> Line_7 $$ getRecurrenceId().setValue(temporal) [FD]
+Line_2 $$ public void setRecurrenceId(Temporal temporal) --> Line_10 $$ throw new DateTimeException("Only LocalDate, LocalDateTime and ZonedDateTime supported. " + temporal.getClass().getSimpleName() + " is not supported") [FD]

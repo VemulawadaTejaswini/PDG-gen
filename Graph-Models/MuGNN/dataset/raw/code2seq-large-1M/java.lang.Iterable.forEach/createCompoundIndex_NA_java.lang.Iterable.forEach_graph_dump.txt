@@ -1,0 +1,8 @@
+Line_2 $$ private AssertSchemaResult createCompoundIndex(String label, List<String> keys) --> Line_3 $$ List<String> backTickedKeys = new ArrayList() [CD]
+Line_2 $$ private AssertSchemaResult createCompoundIndex(String label, List<String> keys) --> Line_4 $$ keys.forEach( key -> backTickedKeys.add(String.format("`%s`", key))) [CD]
+Line_2 $$ private AssertSchemaResult createCompoundIndex(String label, List<String> keys) --> Line_4 $$ keys.forEach( key -> backTickedKeys.add(String.format("`%s`", key))) [FD]
+Line_3 $$ List<String> backTickedKeys = new ArrayList() --> Line_4 $$ keys.forEach( key -> backTickedKeys.add(String.format("`%s`", key))) [FD]
+Line_2 $$ private AssertSchemaResult createCompoundIndex(String label, List<String> keys) --> Line_5 $$ db.execute(String.format("CREATE INDEX ON :`%s` (%s)", label, String.join(",", backTickedKeys))) [CD]
+Line_2 $$ private AssertSchemaResult createCompoundIndex(String label, List<String> keys) --> Line_5 $$ db.execute(String.format("CREATE INDEX ON :`%s` (%s)", label, String.join(",", backTickedKeys))) [FD]
+Line_3 $$ List<String> backTickedKeys = new ArrayList() --> Line_5 $$ db.execute(String.format("CREATE INDEX ON :`%s` (%s)", label, String.join(",", backTickedKeys))) [FD]
+Line_2 $$ private AssertSchemaResult createCompoundIndex(String label, List<String> keys) --> Line_6 $$ return new AssertSchemaResult(label, keys).created() [CD]

@@ -1,0 +1,7 @@
+Line_3 $$ for (final MemoryPoolMXBean bean : ManagementFactory.getMemoryPoolMXBeans()) --> Line_4 $$ if (bean.getName().startsWith("G1")) [FD]
+Line_3 $$ for (final MemoryPoolMXBean bean : ManagementFactory.getMemoryPoolMXBeans()) --> Line_6 $$ if (bean.getName().contains("Eden")) [FD]
+Line_6 $$ if (bean.getName().contains("Eden")) --> Line_8 $$ if (bean.getName().contains("Survivor")) [CD]
+Line_3 $$ for (final MemoryPoolMXBean bean : ManagementFactory.getMemoryPoolMXBeans()) --> Line_8 $$ if (bean.getName().contains("Survivor")) [FD]
+Line_8 $$ if (bean.getName().contains("Survivor")) --> Line_10 $$ if (bean.getName().contains("Old") || bean.getName().contains("Tenured")) [CD]
+Line_3 $$ for (final MemoryPoolMXBean bean : ManagementFactory.getMemoryPoolMXBeans()) --> Line_10 $$ if (bean.getName().contains("Old") || bean.getName().contains("Tenured")) [FD]
+Line_2 $$ private boolean initPoolBeans() --> Line_14 $$ return eden == null || survivor == null || old == null [CD]

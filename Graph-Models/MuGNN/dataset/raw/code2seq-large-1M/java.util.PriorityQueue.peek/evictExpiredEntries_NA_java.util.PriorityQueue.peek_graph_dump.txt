@@ -1,0 +1,8 @@
+Line_2 $$ private void evictExpiredEntries() --> Line_3 $$ final long now = clock.currentTime() [CD]
+Line_2 $$ private void evictExpiredEntries() --> Line_4 $$ for (int i = 0; i < EVICTION_LIMIT; i++) [CD]
+Line_4 $$ for (int i = 0; i < EVICTION_LIMIT; i++) --> Line_5 $$ final Entry peeked = queue.peek() [CD]
+Line_4 $$ for (int i = 0; i < EVICTION_LIMIT; i++) --> Line_6 $$ if (peeked == null || !isExpired(peeked, now)) [CD]
+Line_3 $$ final long now = clock.currentTime() --> Line_6 $$ if (peeked == null || !isExpired(peeked, now)) [FD]
+Line_6 $$ if (peeked == null || !isExpired(peeked, now)) --> Line_7 $$ return [CD]
+Line_4 $$ for (int i = 0; i < EVICTION_LIMIT; i++) --> Line_9 $$ final E evicted = evict() [CD]
+Line_4 $$ for (int i = 0; i < EVICTION_LIMIT; i++) --> Line_10 $$ Preconditions.checkState(evicted == peeked) [CD]

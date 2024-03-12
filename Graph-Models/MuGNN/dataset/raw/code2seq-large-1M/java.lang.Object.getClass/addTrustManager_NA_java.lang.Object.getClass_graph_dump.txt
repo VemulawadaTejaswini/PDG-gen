@@ -1,0 +1,8 @@
+Line_2 $$ private void addTrustManager(String alias, String trustStore, String trustStorePassword) --> Line_3 $$ Utils.log(getClass(), getClass().getSimpleName(), Level.INFO, "Adding trust store '%s' (path: '%s') to the trust manager...", alias, trustStore) [FD]
+Line_2 $$ private void addTrustManager(String alias, String trustStore, String trustStorePassword) --> Line_3 $$ Utils.log(getClass(), getClass().getSimpleName(), Level.INFO, "Adding trust store '%s' (path: '%s') to the trust manager...", alias, trustStore) [CD]
+Line_5 $$ KeyStore store = KeyStore.getInstance(KeyStore.getDefaultType()) --> Line_6 $$ store.load(is, trustStorePassword.toCharArray()) [FD]
+Line_4 $$ try (InputStream is = new FileInputStream(trustStore)) --> Line_6 $$ store.load(is, trustStorePassword.toCharArray()) [FD]
+Line_2 $$ private void addTrustManager(String alias, String trustStore, String trustStorePassword) --> Line_6 $$ store.load(is, trustStorePassword.toCharArray()) [FD]
+Line_2 $$ private void addTrustManager(String alias, String trustStore, String trustStorePassword) --> Line_7 $$ delegatingTrustManager.putDelegate(alias, (X509TrustManager) CertificateUtil.getTrustManagers(store)[0]) [FD]
+Line_5 $$ KeyStore store = KeyStore.getInstance(KeyStore.getDefaultType()) --> Line_7 $$ delegatingTrustManager.putDelegate(alias, (X509TrustManager) CertificateUtil.getTrustManagers(store)[0]) [FD]
+Line_2 $$ private void addTrustManager(String alias, String trustStore, String trustStorePassword) --> Line_9 $$ Utils.logWarning("Exception during trust manager configuration. Trust Store '%s'" + " (path: '%s'). Error: %s", alias, trustStore, Utils.toString(e)) [FD]

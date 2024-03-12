@@ -1,0 +1,7 @@
+Line_2 $$ public void testScriptConditionReturnObjectThrowsException() throws Exception --> Line_3 $$ ScriptCondition condition = new ScriptCondition(mockScript("return new Object()"), scriptService) [CD]
+Line_2 $$ public void testScriptConditionReturnObjectThrowsException() throws Exception --> Line_4 $$ SearchResponse response = new SearchResponse(InternalSearchResponse.empty(), "", 3, 3, 0, 500L, ShardSearchFailure.EMPTY_ARRAY, SearchResponse.Clusters.EMPTY) [CD]
+Line_2 $$ public void testScriptConditionReturnObjectThrowsException() throws Exception --> Line_5 $$ WatchExecutionContext ctx = mockExecutionContext("_name", new Payload.XContent(response)) [CD]
+Line_2 $$ public void testScriptConditionReturnObjectThrowsException() throws Exception --> Line_6 $$ Exception exception = expectThrows(IllegalStateException.class, () -> condition.execute(ctx)) [CD]
+Line_3 $$ ScriptCondition condition = new ScriptCondition(mockScript("return new Object()"), scriptService) --> Line_6 $$ Exception exception = expectThrows(IllegalStateException.class, () -> condition.execute(ctx)) [FD]
+Line_5 $$ WatchExecutionContext ctx = mockExecutionContext("_name", new Payload.XContent(response)) --> Line_6 $$ Exception exception = expectThrows(IllegalStateException.class, () -> condition.execute(ctx)) [FD]
+Line_2 $$ public void testScriptConditionReturnObjectThrowsException() throws Exception --> Line_7 $$ assertThat(exception.getMessage(), containsString("condition [script] must return a boolean value (true|false) but instead returned [_name]")) [CD]

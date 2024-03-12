@@ -1,0 +1,7 @@
+Line_2 $$ public void deleteHook() --> Line_3 $$ if (FusionstorGlobalConfig.PRIMARY_STORAGE_DELETE_POOL.value(Boolean.class)) [CD]
+Line_4 $$ DeletePoolCmd cmd = new DeletePoolCmd() --> Line_7 $$ httpCall(DELETE_POOL_PATH, cmd, DeletePoolRsp.class, completion) [FD]
+Line_6 $$ FutureReturnValueCompletion completion = new FutureReturnValueCompletion(null) --> Line_7 $$ httpCall(DELETE_POOL_PATH, cmd, DeletePoolRsp.class, completion) [FD]
+Line_6 $$ FutureReturnValueCompletion completion = new FutureReturnValueCompletion(null) --> Line_8 $$ completion.await(TimeUnit.MINUTES.toMillis(30)) [FD]
+Line_6 $$ FutureReturnValueCompletion completion = new FutureReturnValueCompletion(null) --> Line_9 $$ if (!completion.isSuccess()) [FD]
+Line_6 $$ FutureReturnValueCompletion completion = new FutureReturnValueCompletion(null) --> Line_10 $$ throw new OperationFailureException(completion.getErrorCode()) [FD]
+Line_2 $$ public void deleteHook() --> Line_13 $$ dbf.removeCollection(getSelf().getMons(), FusionstorPrimaryStorageMonVO.class) [CD]

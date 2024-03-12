@@ -1,0 +1,6 @@
+Line_2 $$ public void runnableDisposedAsyncTimed2() throws Exception --> Line_3 $$ ExecutorService executorScheduler = Executors.newScheduledThreadPool(1, new RxThreadFactory("TestCustomPoolTimed")) [CD]
+Line_3 $$ ExecutorService executorScheduler = Executors.newScheduledThreadPool(1, new RxThreadFactory("TestCustomPoolTimed")) --> Line_5 $$ final Scheduler s = Schedulers.from(executorScheduler) [FD]
+Line_5 $$ final Scheduler s = Schedulers.from(executorScheduler) --> Line_6 $$ Disposable d = s.scheduleDirect(Functions.EMPTY_RUNNABLE, 1, TimeUnit.MILLISECONDS) [FD]
+Line_6 $$ Disposable d = s.scheduleDirect(Functions.EMPTY_RUNNABLE, 1, TimeUnit.MILLISECONDS) --> Line_7 $$ while (!d.isDisposed()) [FD]
+Line_7 $$ while (!d.isDisposed()) --> Line_8 $$ Thread.sleep(1) [CD]
+Line_3 $$ ExecutorService executorScheduler = Executors.newScheduledThreadPool(1, new RxThreadFactory("TestCustomPoolTimed")) --> Line_11 $$ executorScheduler.shutdownNow() [FD]

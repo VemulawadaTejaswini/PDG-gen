@@ -1,0 +1,6 @@
+Line_2 $$ private static NetworkInterface findInterface(final InterfaceSearchAddress searchAddress) throws SocketException --> Line_3 $$ final NetworkInterface[] filteredInterfaces = filterBySubnet(searchAddress.getInetAddress(), searchAddress.getSubnetPrefix()) [FD]
+Line_2 $$ private static NetworkInterface findInterface(final InterfaceSearchAddress searchAddress) throws SocketException --> Line_3 $$ final NetworkInterface[] filteredInterfaces = filterBySubnet(searchAddress.getInetAddress(), searchAddress.getSubnetPrefix()) [CD]
+Line_4 $$ for (final NetworkInterface networkInterface : filteredInterfaces) --> Line_5 $$ if (networkInterface.supportsMulticast() || networkInterface.isLoopback()) [FD]
+Line_5 $$ if (networkInterface.supportsMulticast() || networkInterface.isLoopback()) --> Line_6 $$ return networkInterface [CD]
+Line_3 $$ final NetworkInterface[] filteredInterfaces = filterBySubnet(searchAddress.getInetAddress(), searchAddress.getSubnetPrefix()) --> Line_9 $$ throw new IllegalArgumentException(errorNoMatchingInterfaces(filteredInterfaces, searchAddress)) [FD]
+Line_2 $$ private static NetworkInterface findInterface(final InterfaceSearchAddress searchAddress) throws SocketException --> Line_9 $$ throw new IllegalArgumentException(errorNoMatchingInterfaces(filteredInterfaces, searchAddress)) [FD]

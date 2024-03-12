@@ -1,0 +1,8 @@
+Line_2 $$ void readMessages() --> Line_3 $$ List<InboundMessage> msgList = new ArrayList<InboundMessage>() [CD]
+Line_3 $$ List<InboundMessage> msgList = new ArrayList<InboundMessage>() --> Line_5 $$ Service.getInstance().readMessages(msgList, MessageClasses.ALL) [FD]
+Line_3 $$ List<InboundMessage> msgList = new ArrayList<InboundMessage>() --> Line_6 $$ if (msgList.size() > 0) [FD]
+Line_7 $$ for (Interface<? extends Object> inf : getInfList()) if (inf.isInbound()) --> Line_8 $$ inf.messagesReceived(msgList) [FD]
+Line_7 $$ for (Interface<? extends Object> inf : getInfList()) if (inf.isInbound()) --> Line_8 $$ inf.messagesReceived(msgList) [CD]
+Line_3 $$ List<InboundMessage> msgList = new ArrayList<InboundMessage>() --> Line_8 $$ inf.messagesReceived(msgList) [FD]
+Line_6 $$ if (msgList.size() > 0) --> Line_9 $$ if (getProperties().getProperty("settings.delete_after_processing", "no").equalsIgnoreCase("yes")) [CD]
+Line_3 $$ List<InboundMessage> msgList = new ArrayList<InboundMessage>() --> Line_9 $$ if (getProperties().getProperty("settings.delete_after_processing", "no").equalsIgnoreCase("yes")) [FD]

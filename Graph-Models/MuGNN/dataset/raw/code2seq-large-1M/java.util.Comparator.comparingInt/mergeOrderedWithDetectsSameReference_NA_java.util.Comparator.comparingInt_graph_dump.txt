@@ -1,0 +1,7 @@
+Line_2 $$ public void mergeOrderedWithDetectsSameReference() --> Line_3 $$ Comparator<String> comparator = Comparator.comparingInt(String::<>length) [CD]
+Line_2 $$ public void mergeOrderedWithDetectsSameReference() --> Line_4 $$ final Flux<String> flux = Flux.just("AAAAA", "BBBB").mergeOrderedWith(Flux.just("DD", "CCC"), comparator).mergeOrderedWith(Flux.just("E"), comparator) [CD]
+Line_3 $$ Comparator<String> comparator = Comparator.comparingInt(String::<>length) --> Line_4 $$ final Flux<String> flux = Flux.just("AAAAA", "BBBB").mergeOrderedWith(Flux.just("DD", "CCC"), comparator).mergeOrderedWith(Flux.just("E"), comparator) [FD]
+Line_2 $$ public void mergeOrderedWithDetectsSameReference() --> Line_5 $$ assertThat(flux).isInstanceOf(FluxMergeOrdered.class) [CD]
+Line_4 $$ final Flux<String> flux = Flux.just("AAAAA", "BBBB").mergeOrderedWith(Flux.just("DD", "CCC"), comparator).mergeOrderedWith(Flux.just("E"), comparator) --> Line_5 $$ assertThat(flux).isInstanceOf(FluxMergeOrdered.class) [FD]
+Line_2 $$ public void mergeOrderedWithDetectsSameReference() --> Line_6 $$ assertThat(((FluxMergeOrdered) flux).valueComparator).as("didn't combine comparator").isSameAs(comparator) [CD]
+Line_3 $$ Comparator<String> comparator = Comparator.comparingInt(String::<>length) --> Line_6 $$ assertThat(((FluxMergeOrdered) flux).valueComparator).as("didn't combine comparator").isSameAs(comparator) [FD]

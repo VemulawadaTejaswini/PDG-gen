@@ -1,0 +1,7 @@
+Line_2 $$ public void notifyListener() --> Line_3 $$ LiveInstances currentState = stateSync.getState() [CD]
+Line_2 $$ public void notifyListener() --> Line_4 $$ if (currentState.isHealthy(instanceId)) [CD]
+Line_3 $$ LiveInstances currentState = stateSync.getState() --> Line_4 $$ if (currentState.isHealthy(instanceId)) [FD]
+Line_4 $$ if (currentState.isHealthy(instanceId)) --> Line_5 $$ if (healthy.compareAndSet(false, true)) [CD]
+Line_5 $$ if (healthy.compareAndSet(false, true)) --> Line_6 $$ listener.healthy() [CD]
+Line_4 $$ if (currentState.isHealthy(instanceId)) --> Line_9 $$ if (healthy.compareAndSet(true, false)) [CD]
+Line_9 $$ if (healthy.compareAndSet(true, false)) --> Line_10 $$ listener.unhealthy() [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private void softRefresh(String cacheKeyStr) --> Line_3 $$ RedisLock redisLock = new RedisLock((RedisTemplate<String, Object>) redisOperations, cacheKeyStr + "_lock") [CD]
+Line_3 $$ RedisLock redisLock = new RedisLock((RedisTemplate<String, Object>) redisOperations, cacheKeyStr + "_lock") --> Line_5 $$ if (redisLock.tryLock()) [FD]
+Line_5 $$ if (redisLock.tryLock()) --> Line_6 $$ redisOperations.expire(cacheKeyStr, this.expirationSecondTime, TimeUnit.SECONDS) [CD]
+Line_2 $$ private void softRefresh(String cacheKeyStr) --> Line_6 $$ redisOperations.expire(cacheKeyStr, this.expirationSecondTime, TimeUnit.SECONDS) [FD]
+Line_3 $$ RedisLock redisLock = new RedisLock((RedisTemplate<String, Object>) redisOperations, cacheKeyStr + "_lock") --> Line_11 $$ redisLock.unlock() [FD]

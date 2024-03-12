@@ -1,0 +1,5 @@
+Line_2 $$ public void purgeRecords(Collection<String> toPurge) --> Line_3 $$ String delete = "DELETE FROM " + tableName + " WHERE " + col.NAME + "=?;" [CD]
+Line_3 $$ String delete = "DELETE FROM " + tableName + " WHERE " + col.NAME + "=?;" --> Line_4 $$ try (PreparedStatement deletePst = con.prepareStatement(delete)) [FD]
+Line_4 $$ try (PreparedStatement deletePst = con.prepareStatement(delete)) --> Line_6 $$ deletePst.setString(1, name.toLowerCase()) [FD]
+Line_5 $$ for (String name : toPurge) --> Line_6 $$ deletePst.setString(1, name.toLowerCase()) [FD]
+Line_4 $$ try (PreparedStatement deletePst = con.prepareStatement(delete)) --> Line_7 $$ deletePst.executeUpdate() [FD]

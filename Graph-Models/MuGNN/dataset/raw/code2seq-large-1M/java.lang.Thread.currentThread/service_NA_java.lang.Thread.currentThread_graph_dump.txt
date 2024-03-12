@@ -1,0 +1,8 @@
+Line_2 $$ protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException --> Line_3 $$ Thread currentThread = Thread.currentThread() [CD]
+Line_2 $$ protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException --> Line_4 $$ ClassLoader oldContextClassLoader = currentThread.getContextClassLoader() [CD]
+Line_3 $$ Thread currentThread = Thread.currentThread() --> Line_4 $$ ClassLoader oldContextClassLoader = currentThread.getContextClassLoader() [FD]
+Line_2 $$ protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException --> Line_5 $$ currentThread.setContextClassLoader(this.getClass().getClassLoader()) [CD]
+Line_3 $$ Thread currentThread = Thread.currentThread() --> Line_5 $$ currentThread.setContextClassLoader(this.getClass().getClassLoader()) [FD]
+Line_2 $$ protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException --> Line_7 $$ super.service(req, resp) [FD]
+Line_3 $$ Thread currentThread = Thread.currentThread() --> Line_9 $$ currentThread.setContextClassLoader(oldContextClassLoader) [FD]
+Line_4 $$ ClassLoader oldContextClassLoader = currentThread.getContextClassLoader() --> Line_9 $$ currentThread.setContextClassLoader(oldContextClassLoader) [FD]

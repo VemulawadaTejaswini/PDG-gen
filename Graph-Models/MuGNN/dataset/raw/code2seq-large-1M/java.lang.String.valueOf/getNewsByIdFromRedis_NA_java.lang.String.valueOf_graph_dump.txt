@@ -1,0 +1,6 @@
+Line_2 $$ private List<News> getNewsByIdFromRedis(int newsId, int count) --> Line_3 $$ List<News> newList = new ArrayList() [CD]
+Line_2 $$ private List<News> getNewsByIdFromRedis(int newsId, int count) --> Line_4 $$ Set<String> result = mJedis.zrangeByScore(KEY_LIST, String.valueOf(newsId), "+inf", 0, count) [FD]
+Line_2 $$ private List<News> getNewsByIdFromRedis(int newsId, int count) --> Line_4 $$ Set<String> result = mJedis.zrangeByScore(KEY_LIST, String.valueOf(newsId), "+inf", 0, count) [CD]
+Line_5 $$ for (String newsJson : result) --> Line_6 $$ News news = JSON.parseObject(newsJson, News.class) [FD]
+Line_3 $$ List<News> newList = new ArrayList() --> Line_7 $$ newList.add(news) [FD]
+Line_2 $$ private List<News> getNewsByIdFromRedis(int newsId, int count) --> Line_9 $$ return newList [CD]

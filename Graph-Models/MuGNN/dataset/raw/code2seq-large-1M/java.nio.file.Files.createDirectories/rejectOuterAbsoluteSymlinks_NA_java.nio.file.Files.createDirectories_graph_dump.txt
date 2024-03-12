@@ -1,0 +1,8 @@
+Line_2 $$ public void rejectOuterAbsoluteSymlinks() throws Exception --> Line_3 $$ assumeSymlinkSupported() [CD]
+Line_2 $$ public void rejectOuterAbsoluteSymlinks() throws Exception --> Line_4 $$ Path projectDir = Files.createDirectories(project) [CD]
+Line_2 $$ public void rejectOuterAbsoluteSymlinks() throws Exception --> Line_5 $$ Files.createSymbolicLink(projectDir.resolve("invalid_link.file"), projectDir.resolve("../sibling")) [CD]
+Line_4 $$ Path projectDir = Files.createDirectories(project) --> Line_5 $$ Files.createSymbolicLink(projectDir.resolve("invalid_link.file"), projectDir.resolve("../sibling")) [FD]
+Line_2 $$ public void rejectOuterAbsoluteSymlinks() throws Exception --> Line_6 $$ CommandStatus command = main("archive", "--project", projectDir.toString(), "-o", archive.toString()) [CD]
+Line_4 $$ Path projectDir = Files.createDirectories(project) --> Line_6 $$ CommandStatus command = main("archive", "--project", projectDir.toString(), "-o", archive.toString()) [FD]
+Line_2 $$ public void rejectOuterAbsoluteSymlinks() throws Exception --> Line_7 $$ assertThat(command.errUtf8(), command.code(), is(1)) [CD]
+Line_6 $$ CommandStatus command = main("archive", "--project", projectDir.toString(), "-o", archive.toString()) --> Line_7 $$ assertThat(command.errUtf8(), command.code(), is(1)) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ void cleanUpDirectory(Path path) --> Line_5 $$ Files.newDirectoryStream(path).forEach( e -> [FD]
+Line_6 $$ if (Files.isDirectory(e)) --> Line_7 $$ cleanUpDirectory(e) [CD]
+Line_6 $$ if (Files.isDirectory(e)) --> Line_8 $$ if (Files.isRegularFile(e)) [CD]
+Line_4 $$ Instant maxDate = Instant.now().minus(sakuliProperties.getLogMaxAge(), ChronoUnit.DAYS) --> Line_10 $$ if (Files.getLastModifiedTime(e).toInstant().isBefore(maxDate)) [FD]
+Line_10 $$ if (Files.getLastModifiedTime(e).toInstant().isBefore(maxDate)) --> Line_11 $$ LOGGER.info("cleanup too old log file ' [CD]
+Line_10 $$ if (Files.getLastModifiedTime(e).toInstant().isBefore(maxDate)) --> Line_12 $$ Files.deleteIfExists(e) [CD]

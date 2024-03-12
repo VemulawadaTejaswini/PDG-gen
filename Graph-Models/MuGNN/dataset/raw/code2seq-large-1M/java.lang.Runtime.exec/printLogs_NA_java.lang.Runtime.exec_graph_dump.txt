@@ -1,0 +1,7 @@
+Line_2 $$ private void printLogs() throws IOException, InterruptedException --> Line_3 $$ Process process = Runtime.getRuntime().exec("docker logs " + containerName) [CD]
+Line_3 $$ Process process = Runtime.getRuntime().exec("docker logs " + containerName) --> Line_4 $$ try (InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8)) [FD]
+Line_4 $$ try (InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8)) --> Line_5 $$ System.out.println(CharStreams.toString(inputStreamReader)) [FD]
+Line_3 $$ Process process = Runtime.getRuntime().exec("docker logs " + containerName) --> Line_7 $$ try (InputStreamReader inputStreamReader = new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8)) [FD]
+Line_4 $$ try (InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8)) --> Line_8 $$ System.err.println(CharStreams.toString(inputStreamReader)) [FD]
+Line_2 $$ private void printLogs() throws IOException, InterruptedException --> Line_10 $$ process.waitFor() [CD]
+Line_3 $$ Process process = Runtime.getRuntime().exec("docker logs " + containerName) --> Line_10 $$ process.waitFor() [FD]

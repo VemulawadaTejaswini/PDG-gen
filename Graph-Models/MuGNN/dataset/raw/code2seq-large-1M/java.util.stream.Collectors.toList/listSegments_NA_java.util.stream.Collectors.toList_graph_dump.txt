@@ -1,0 +1,7 @@
+Line_2 $$ public static Promise<Result> listSegments(@Nullable String platform, @Nonnull String prefix) --> Line_4 $$ if (StringUtils.isBlank(platform)) [FD]
+Line_4 $$ if (StringUtils.isBlank(platform)) --> Line_5 $$ return Promise.promise(() -> ok(Json.toJson(DATA_TYPES_DAO.getAllPlatforms().stream().map( s -> String.format("[platform=%s]", s.get("name"))).collect(Collectors.toList())))) [CD]
+Line_2 $$ public static Promise<Result> listSegments(@Nullable String platform, @Nonnull String prefix) --> Line_7 $$ List<String> names = DATASET_VIEW_DAO.listSegments(platform, "PROD", getPlatformPrefix(platform, prefix)) [FD]
+Line_7 $$ List<String> names = DATASET_VIEW_DAO.listSegments(platform, "PROD", getPlatformPrefix(platform, prefix)) --> Line_8 $$ if (names.size() == 1 && names.get(0).equalsIgnoreCase(prefix)) [FD]
+Line_2 $$ public static Promise<Result> listSegments(@Nullable String platform, @Nonnull String prefix) --> Line_8 $$ if (names.size() == 1 && names.get(0).equalsIgnoreCase(prefix)) [FD]
+Line_8 $$ if (names.size() == 1 && names.get(0).equalsIgnoreCase(prefix)) --> Line_9 $$ return Promise.promise(() -> ok(Json.newArray())) [CD]
+Line_7 $$ List<String> names = DATASET_VIEW_DAO.listSegments(platform, "PROD", getPlatformPrefix(platform, prefix)) --> Line_11 $$ return Promise.promise(() -> ok(Json.toJson(names))) [FD]

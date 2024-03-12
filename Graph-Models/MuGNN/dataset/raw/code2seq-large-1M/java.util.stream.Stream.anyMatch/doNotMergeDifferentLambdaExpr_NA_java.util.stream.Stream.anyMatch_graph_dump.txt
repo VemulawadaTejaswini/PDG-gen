@@ -1,0 +1,7 @@
+Line_2 $$ public static Predicate<String> doNotMergeDifferentLambdaExpr(final boolean caseSensitive, final String... allowedSet) --> Line_3 $$ if (caseSensitive) [CD]
+Line_3 $$ if (caseSensitive) --> Line_4 $$ return  x -> Arrays.stream(allowedSet).anyMatch( y -> (x == null && y == null) || (x != null && x.equals(y))) [CD]
+Line_2 $$ public static Predicate<String> doNotMergeDifferentLambdaExpr(final boolean caseSensitive, final String... allowedSet) --> Line_4 $$ return  x -> Arrays.stream(allowedSet).anyMatch( y -> (x == null && y == null) || (x != null && x.equals(y))) [FD]
+Line_3 $$ if (caseSensitive) --> Line_6 $$ Function<String, String> toLower =  x -> x == null ? null : x.toLowerCase() [CD]
+Line_3 $$ if (caseSensitive) --> Line_7 $$ return  x -> Arrays.stream(allowedSet).map(toLower).anyMatch( y -> (x == null && y == null) || (x != null && toLower.apply(x).equals(y))) [CD]
+Line_6 $$ Function<String, String> toLower =  x -> x == null ? null : x.toLowerCase() --> Line_7 $$ return  x -> Arrays.stream(allowedSet).map(toLower).anyMatch( y -> (x == null && y == null) || (x != null && toLower.apply(x).equals(y))) [FD]
+Line_2 $$ public static Predicate<String> doNotMergeDifferentLambdaExpr(final boolean caseSensitive, final String... allowedSet) --> Line_7 $$ return  x -> Arrays.stream(allowedSet).map(toLower).anyMatch( y -> (x == null && y == null) || (x != null && toLower.apply(x).equals(y))) [FD]

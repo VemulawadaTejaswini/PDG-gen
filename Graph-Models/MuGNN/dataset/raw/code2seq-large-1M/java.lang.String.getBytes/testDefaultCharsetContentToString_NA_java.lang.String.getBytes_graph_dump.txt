@@ -1,0 +1,8 @@
+Line_2 $$ public void testDefaultCharsetContentToString() throws Exception --> Line_3 $$ final String content = constructString(RUSSIAN_HELLO) [CD]
+Line_2 $$ public void testDefaultCharsetContentToString() throws Exception --> Line_4 $$ final byte[] bytes = content.getBytes(Charset.forName("KOI8-R")) [CD]
+Line_3 $$ final String content = constructString(RUSSIAN_HELLO) --> Line_4 $$ final byte[] bytes = content.getBytes(Charset.forName("KOI8-R")) [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_6 $$ httpentity.setContent(new ByteArrayInputStream(bytes)) [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_7 $$ httpentity.setContentType("text/plain") [FD]
+Line_5 $$ try (final BasicHttpEntity httpentity = new BasicHttpEntity()) --> Line_8 $$ final String s = EntityUtils.toString(httpentity, "KOI8-R") [FD]
+Line_3 $$ final String content = constructString(RUSSIAN_HELLO) --> Line_9 $$ Assert.assertEquals(content, s) [FD]
+Line_8 $$ final String s = EntityUtils.toString(httpentity, "KOI8-R") --> Line_9 $$ Assert.assertEquals(content, s) [FD]

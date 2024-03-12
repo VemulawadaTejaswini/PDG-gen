@@ -1,0 +1,8 @@
+Line_2 $$ public void testLinkedAndInstanceBindings() throws Exception --> Line_3 $$ grapher.graph(Guice.createInjector(new AbstractModule() [CD]
+Line_3 $$ grapher.graph(Guice.createInjector(new AbstractModule() --> Line_5 $$ bind(IA.class).to(A.class) [CD]
+Line_3 $$ grapher.graph(Guice.createInjector(new AbstractModule() --> Line_6 $$ bind(IA.class).annotatedWith(Ann.class).to(A.class) [CD]
+Line_3 $$ grapher.graph(Guice.createInjector(new AbstractModule() --> Line_7 $$ bind(String.class).toInstance(TEST_STRING) [CD]
+Line_2 $$ public void testLinkedAndInstanceBindings() throws Exception --> Line_10 $$ Set<Node> expectedNodes = ImmutableSet.<Node>of(iaNode, iaAnnNode, aNode, stringNode, stringInstanceNode) [CD]
+Line_2 $$ public void testLinkedAndInstanceBindings() throws Exception --> Line_11 $$ Set<Edge> expectedEdges = ImmutableSet.<Edge>of(new BindingEdge(iaNode.getId(), aNode.getId(), BindingEdge.Type.NORMAL), new BindingEdge(iaAnnNode.getId(), aNode.getId(), BindingEdge.Type.NORMAL), new BindingEdge(stringNode.getId(), stringInstanceNode.getId(), BindingEdge.Type.NORMAL), new DependencyEdge(aNode.getId(), stringNode.getId(), InjectionPoint.forConstructor(A.class.getConstructor(String.class)))) [CD]
+Line_2 $$ public void testLinkedAndInstanceBindings() throws Exception --> Line_12 $$ assertEquals(expectedNodes, grapher.nodes) [CD]
+Line_2 $$ public void testLinkedAndInstanceBindings() throws Exception --> Line_13 $$ assertEquals(expectedEdges, grapher.edges) [CD]

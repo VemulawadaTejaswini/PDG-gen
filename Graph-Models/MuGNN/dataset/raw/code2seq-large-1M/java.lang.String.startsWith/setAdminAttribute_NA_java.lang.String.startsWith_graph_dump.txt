@@ -1,0 +1,7 @@
+Line_2 $$ private void setAdminAttribute(TeamModel team) --> Line_3 $$ if (!supportsTeamMembershipChanges()) [CD]
+Line_3 $$ if (!supportsTeamMembershipChanges()) --> Line_4 $$ List<String> admins = settings.getStrings(Keys.realm.ldap.admins) [CD]
+Line_3 $$ if (!supportsTeamMembershipChanges()) --> Line_5 $$ if (!ArrayUtils.isEmpty(admins)) [CD]
+Line_4 $$ List<String> admins = settings.getStrings(Keys.realm.ldap.admins) --> Line_5 $$ if (!ArrayUtils.isEmpty(admins)) [FD]
+Line_5 $$ if (!ArrayUtils.isEmpty(admins)) --> Line_6 $$ team.canAdmin = false [CD]
+Line_7 $$ for (String admin : admins) --> Line_8 $$ if (admin.startsWith("@") && team.name.equalsIgnoreCase(admin.substring(1))) [FD]
+Line_8 $$ if (admin.startsWith("@") && team.name.equalsIgnoreCase(admin.substring(1))) --> Line_9 $$ team.canAdmin = true [CD]

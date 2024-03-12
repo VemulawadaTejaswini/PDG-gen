@@ -1,0 +1,7 @@
+Line_2 $$ public SerializableOptions asSerializable() --> Line_3 $$ Map<String, Collection<String>> benchmarkParameters = extension.getBenchmarkParameters() [CD]
+Line_2 $$ public SerializableOptions asSerializable() --> Line_4 $$ Map<String, Optional<Collection<String>>> asOptional = new HashMap<String, Optional<Collection<String>>>() [CD]
+Line_2 $$ public SerializableOptions asSerializable() --> Line_5 $$ if (benchmarkParameters != null) [CD]
+Line_3 $$ Map<String, Collection<String>> benchmarkParameters = extension.getBenchmarkParameters() --> Line_5 $$ if (benchmarkParameters != null) [FD]
+Line_3 $$ Map<String, Collection<String>> benchmarkParameters = extension.getBenchmarkParameters() --> Line_6 $$ for (Map.Entry<String, Collection<String>> entry : benchmarkParameters.entrySet()) [FD]
+Line_4 $$ Map<String, Optional<Collection<String>>> asOptional = new HashMap<String, Optional<Collection<String>>>() --> Line_7 $$ asOptional.put(entry.getKey(), Optional.eitherOf(entry.getValue())) [FD]
+Line_2 $$ public SerializableOptions asSerializable() --> Line_10 $$ return new SerializableOptions(this, asOptional) [CD]

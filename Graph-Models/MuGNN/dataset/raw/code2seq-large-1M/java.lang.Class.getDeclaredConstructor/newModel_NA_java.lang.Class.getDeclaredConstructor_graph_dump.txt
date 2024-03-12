@@ -1,0 +1,6 @@
+Line_2 $$ private IModel newModel(Class<?>[] argTypes, Object[] argValues) throws DDFException --> Line_3 $$ String className = Config.getValue(this.getEngine(), "Model") [CD]
+Line_2 $$ private IModel newModel(Class<?>[] argTypes, Object[] argValues) throws DDFException --> Line_4 $$ if (Strings.isNullOrEmpty(className)) [CD]
+Line_2 $$ private IModel newModel(Class<?>[] argTypes, Object[] argValues) throws DDFException --> Line_7 $$ Constructor<IModel> cons = (Constructor<IModel>) Class.forName(className).getDeclaredConstructor(argTypes) [FD]
+Line_2 $$ private IModel newModel(Class<?>[] argTypes, Object[] argValues) throws DDFException --> Line_11 $$ IModel model = cons.newInstance(argValues) [FD]
+Line_11 $$ IModel model = cons.newInstance(argValues) --> Line_12 $$ if (model == null) [FD]
+Line_2 $$ private IModel newModel(Class<?>[] argTypes, Object[] argValues) throws DDFException --> Line_16 $$ throw new DDFException(String.format("While instantiating a new %s DDF of class %s with argTypes %s and argValues %s", this.getEngine(), className, Arrays.toString(argTypes), Arrays.toString(argValues)), e) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void flushIfPossible(boolean flushAll) throws IOException --> Line_3 $$ if (!flushing && pendingBatchEntries.size() > 0) [CD]
+Line_2 $$ private void flushIfPossible(boolean flushAll) throws IOException --> Line_6 $$ do [FD]
+Line_6 $$ do --> Line_7 $$ while (batch.size() < maxRequestsPerBatch && !pendingBatchEntries.isEmpty()) [CD]
+Line_7 $$ while (batch.size() < maxRequestsPerBatch && !pendingBatchEntries.isEmpty()) --> Line_8 $$ QueueRequestCallback head = pendingBatchEntries.remove(0) [CD]
+Line_7 $$ while (batch.size() < maxRequestsPerBatch && !pendingBatchEntries.isEmpty()) --> Line_9 $$ head.enqueue() [CD]
+Line_8 $$ QueueRequestCallback head = pendingBatchEntries.remove(0) --> Line_9 $$ head.enqueue() [FD]
+Line_6 $$ do --> Line_11 $$ batch.execute() [CD]

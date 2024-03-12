@@ -1,0 +1,8 @@
+Line_2 $$ private void sessionEnd0(@Nullable IgniteInternalTx tx, boolean threwEx) throws IgniteCheckedException --> Line_4 $$ if (tx == null) [FD]
+Line_4 $$ if (tx == null) --> Line_5 $$ if (sesLsnrs != null && sesHolder.get().contains(store)) [CD]
+Line_2 $$ private void sessionEnd0(@Nullable IgniteInternalTx tx, boolean threwEx) throws IgniteCheckedException --> Line_6 $$ for (CacheStoreSessionListener lsnr : sesLsnrs) lsnr.onSessionEnd(locSes, !threwEx) [FD]
+Line_4 $$ if (tx == null) --> Line_8 $$ if (!sesHolder.get().ended(store)) [CD]
+Line_8 $$ if (!sesHolder.get().ended(store)) --> Line_9 $$ store.sessionEnd(!threwEx) [CD]
+Line_2 $$ private void sessionEnd0(@Nullable IgniteInternalTx tx, boolean threwEx) throws IgniteCheckedException --> Line_9 $$ store.sessionEnd(!threwEx) [FD]
+Line_2 $$ private void sessionEnd0(@Nullable IgniteInternalTx tx, boolean threwEx) throws IgniteCheckedException --> Line_12 $$ if (!threwEx) [FD]
+Line_15 $$ if (sesHolder != null) --> Line_16 $$ sesHolder.set(null) [CD]

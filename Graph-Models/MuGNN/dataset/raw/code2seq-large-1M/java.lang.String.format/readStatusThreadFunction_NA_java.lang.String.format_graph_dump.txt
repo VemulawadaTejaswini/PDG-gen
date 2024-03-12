@@ -1,0 +1,8 @@
+Line_4 $$ while (!mStopReadStatusThread) --> Line_5 $$ byte[] buffer = new byte[STATUS_BUFFER_SIZE] [CD]
+Line_4 $$ while (!mStopReadStatusThread) --> Line_6 $$ int readBytesCount = mConnection.bulkTransfer(mInterruptEndpoint, buffer, STATUS_BUFFER_SIZE, 500) [CD]
+Line_5 $$ byte[] buffer = new byte[STATUS_BUFFER_SIZE] --> Line_6 $$ int readBytesCount = mConnection.bulkTransfer(mInterruptEndpoint, buffer, STATUS_BUFFER_SIZE, 500) [FD]
+Line_4 $$ while (!mStopReadStatusThread) --> Line_7 $$ if (readBytesCount > 0) [CD]
+Line_6 $$ int readBytesCount = mConnection.bulkTransfer(mInterruptEndpoint, buffer, STATUS_BUFFER_SIZE, 500) --> Line_7 $$ if (readBytesCount > 0) [FD]
+Line_7 $$ if (readBytesCount > 0) --> Line_8 $$ if (readBytesCount == STATUS_BUFFER_SIZE) [CD]
+Line_6 $$ int readBytesCount = mConnection.bulkTransfer(mInterruptEndpoint, buffer, STATUS_BUFFER_SIZE, 500) --> Line_8 $$ if (readBytesCount == STATUS_BUFFER_SIZE) [FD]
+Line_6 $$ int readBytesCount = mConnection.bulkTransfer(mInterruptEndpoint, buffer, STATUS_BUFFER_SIZE, 500) --> Line_11 $$ throw new IOException(String.format("Invalid CTS / DSR / CD / RI status buffer received, expected %d bytes, but received %d", STATUS_BUFFER_SIZE, readBytesCount)) [FD]

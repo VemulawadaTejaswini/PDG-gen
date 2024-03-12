@@ -1,0 +1,8 @@
+Line_2 $$ public static <T> CompletableFuture<T> futureOfFutures(List<CompletableFuture<T>> futures) --> Line_3 $$ CompletableFuture<T> result = new CompletableFuture() [CD]
+Line_2 $$ public static <T> CompletableFuture<T> futureOfFutures(List<CompletableFuture<T>> futures) --> Line_4 $$ AtomicInteger numPending = new AtomicInteger(futures.size()) [CD]
+Line_2 $$ public static <T> CompletableFuture<T> futureOfFutures(List<CompletableFuture<T>> futures) --> Line_4 $$ AtomicInteger numPending = new AtomicInteger(futures.size()) [FD]
+Line_5 $$ for (CompletableFuture<T> future : futures) --> Line_6 $$ future.handle(( v,  ex) -> [FD]
+Line_4 $$ AtomicInteger numPending = new AtomicInteger(futures.size()) --> Line_7 $$ if (numPending.decrementAndGet() == 0) [FD]
+Line_7 $$ if (numPending.decrementAndGet() == 0) --> Line_8 $$ result.complete(v) [CD]
+Line_3 $$ CompletableFuture<T> result = new CompletableFuture() --> Line_8 $$ result.complete(v) [FD]
+Line_2 $$ public static <T> CompletableFuture<T> futureOfFutures(List<CompletableFuture<T>> futures) --> Line_12 $$ return result [CD]

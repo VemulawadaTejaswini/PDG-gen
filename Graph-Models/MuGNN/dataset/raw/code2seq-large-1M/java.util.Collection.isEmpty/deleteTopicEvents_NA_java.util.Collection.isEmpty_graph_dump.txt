@@ -1,0 +1,8 @@
+Line_2 $$ public List<Integer> deleteTopicEvents(Collection<Integer> topics) --> Line_3 $$ if (topics.isEmpty()) [CD]
+Line_2 $$ public List<Integer> deleteTopicEvents(Collection<Integer> topics) --> Line_3 $$ if (topics.isEmpty()) [FD]
+Line_3 $$ if (topics.isEmpty()) --> Line_4 $$ return ImmutableList.of() [CD]
+Line_2 $$ public List<Integer> deleteTopicEvents(Collection<Integer> topics) --> Line_6 $$ List<Integer> affectedUsers = namedJdbcTemplate.queryForList("SELECT DISTINCT (userid) FROM user_events " + "WHERE message_id IN (:list) AND type IN ('TAG', 'REF', 'REPLY', 'WATCH')", ImmutableMap.of("list", topics), Integer.class) [CD]
+Line_2 $$ public List<Integer> deleteTopicEvents(Collection<Integer> topics) --> Line_6 $$ List<Integer> affectedUsers = namedJdbcTemplate.queryForList("SELECT DISTINCT (userid) FROM user_events " + "WHERE message_id IN (:list) AND type IN ('TAG', 'REF', 'REPLY', 'WATCH')", ImmutableMap.of("list", topics), Integer.class) [FD]
+Line_2 $$ public List<Integer> deleteTopicEvents(Collection<Integer> topics) --> Line_7 $$ namedJdbcTemplate.update("DELETE FROM user_events WHERE message_id IN (:list) AND type IN ('TAG', 'REF', 'REPLY', 'WATCH')", ImmutableMap.of("list", topics)) [CD]
+Line_2 $$ public List<Integer> deleteTopicEvents(Collection<Integer> topics) --> Line_7 $$ namedJdbcTemplate.update("DELETE FROM user_events WHERE message_id IN (:list) AND type IN ('TAG', 'REF', 'REPLY', 'WATCH')", ImmutableMap.of("list", topics)) [FD]
+Line_2 $$ public List<Integer> deleteTopicEvents(Collection<Integer> topics) --> Line_8 $$ return affectedUsers [CD]

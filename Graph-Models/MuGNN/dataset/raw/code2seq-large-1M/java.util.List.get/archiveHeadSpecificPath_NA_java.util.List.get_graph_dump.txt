@@ -1,0 +1,8 @@
+Line_3 $$ try (Git git = new Git(db)) --> Line_5 $$ git.add().addFilepattern("file_1.txt").call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_6 $$ git.commit().setMessage("create file").call() [FD]
+Line_8 $$ String expectedFilePath = "some_directory/file_2.txt" --> Line_9 $$ writeTrashFile(expectedFilePath, "content_2_2") [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_10 $$ git.add().addFilepattern(".").call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_11 $$ git.commit().setMessage("updated file").call() [FD]
+Line_8 $$ String expectedFilePath = "some_directory/file_2.txt" --> Line_12 $$ git.archive().setOutputStream(new MockOutputStream()).setFormat(format.SUFFIXES.get(0)).setTree(git.getRepository().resolve("HEAD")).setPaths(expectedFilePath).call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_12 $$ git.archive().setOutputStream(new MockOutputStream()).setFormat(format.SUFFIXES.get(0)).setTree(git.getRepository().resolve("HEAD")).setPaths(expectedFilePath).call() [FD]
+Line_8 $$ String expectedFilePath = "some_directory/file_2.txt" --> Line_14 $$ assertEquals(UNEXPECTED_FILE_CONTENTS, "content_2_2", format.getByPath(expectedFilePath)) [FD]

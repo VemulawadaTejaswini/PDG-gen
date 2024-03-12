@@ -1,0 +1,7 @@
+Line_2 $$ public static <T> T extractEntity(Class<T> entityClass, BaseElement el) --> Line_4 $$ T data = newEntity(entityClass) [FD]
+Line_2 $$ public static <T> T extractEntity(Class<T> entityClass, BaseElement el) --> Line_5 $$ foreach(getFields(el, IHasValue.class),  item -> [FD]
+Line_4 $$ T data = newEntity(entityClass) --> Line_6 $$ Field field = LinqUtils.first(getFields(data, String.class),  f -> namesEqual(f.getName(), item.getName())) [FD]
+Line_7 $$ if (field == null) --> Line_8 $$ return [CD]
+Line_4 $$ T data = newEntity(entityClass) --> Line_10 $$ field.set(data, ((IHasValue) getValueField(item, el)).getValue()) [FD]
+Line_2 $$ public static <T> T extractEntity(Class<T> entityClass, BaseElement el) --> Line_10 $$ field.set(data, ((IHasValue) getValueField(item, el)).getValue()) [FD]
+Line_2 $$ public static <T> T extractEntity(Class<T> entityClass, BaseElement el) --> Line_16 $$ throw exception("Can't get entity from Form" + el.getName() + " for class: " + entityClass.getClass()) [FD]

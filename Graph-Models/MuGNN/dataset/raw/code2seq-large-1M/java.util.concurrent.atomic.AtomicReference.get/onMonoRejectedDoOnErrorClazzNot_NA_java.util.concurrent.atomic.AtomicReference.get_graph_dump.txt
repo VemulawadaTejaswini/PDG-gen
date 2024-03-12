@@ -1,0 +1,8 @@
+Line_2 $$ public void onMonoRejectedDoOnErrorClazzNot() --> Line_3 $$ Mono<String> mp = Mono.error(new TestException()) [CD]
+Line_2 $$ public void onMonoRejectedDoOnErrorClazzNot() --> Line_4 $$ AtomicReference<Throwable> ref = new AtomicReference() [CD]
+Line_2 $$ public void onMonoRejectedDoOnErrorClazzNot() --> Line_5 $$ MonoProcessor<String> processor = mp.doOnError(RuntimeException.class, ref::<>set).toProcessor() [CD]
+Line_3 $$ Mono<String> mp = Mono.error(new TestException()) --> Line_5 $$ MonoProcessor<String> processor = mp.doOnError(RuntimeException.class, ref::<>set).toProcessor() [FD]
+Line_2 $$ public void onMonoRejectedDoOnErrorClazzNot() --> Line_6 $$ processor.subscribe() [CD]
+Line_2 $$ public void onMonoRejectedDoOnErrorClazzNot() --> Line_7 $$ assertThat(processor.getError()).isInstanceOf(TestException.class) [CD]
+Line_2 $$ public void onMonoRejectedDoOnErrorClazzNot() --> Line_8 $$ assertThat(ref.get()).isNull() [CD]
+Line_4 $$ AtomicReference<Throwable> ref = new AtomicReference() --> Line_8 $$ assertThat(ref.get()).isNull() [FD]

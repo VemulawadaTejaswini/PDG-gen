@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<DeleteEpochResponse> tryDeleteEpochIfScaling(final String scope, final String name, final int epoch, final OperationContext context, final Executor executor) --> Line_3 $$ Stream stream = getStream(scope, name, context) [CD]
+Line_2 $$ public CompletableFuture<DeleteEpochResponse> tryDeleteEpochIfScaling(final String scope, final String name, final int epoch, final OperationContext context, final Executor executor) --> Line_3 $$ Stream stream = getStream(scope, name, context) [FD]
+Line_2 $$ public CompletableFuture<DeleteEpochResponse> tryDeleteEpochIfScaling(final String scope, final String name, final int epoch, final OperationContext context, final Executor executor) --> Line_4 $$ return withCompletion(stream.scaleTryDeleteEpoch(epoch), executor).thenCompose( deleted -> [CD]
+Line_2 $$ public CompletableFuture<DeleteEpochResponse> tryDeleteEpochIfScaling(final String scope, final String name, final int epoch, final OperationContext context, final Executor executor) --> Line_4 $$ return withCompletion(stream.scaleTryDeleteEpoch(epoch), executor).thenCompose( deleted -> [FD]
+Line_3 $$ Stream stream = getStream(scope, name, context) --> Line_4 $$ return withCompletion(stream.scaleTryDeleteEpoch(epoch), executor).thenCompose( deleted -> [FD]
+Line_5 $$ if (deleted) --> Line_6 $$ return stream.latestScaleData().thenCompose( pair -> [CD]
+Line_3 $$ Stream stream = getStream(scope, name, context) --> Line_6 $$ return stream.latestScaleData().thenCompose( pair -> [FD]
+Line_5 $$ if (deleted) --> Line_11 $$ return CompletableFuture.completedFuture(new DeleteEpochResponse(false, null, null)) [CD]

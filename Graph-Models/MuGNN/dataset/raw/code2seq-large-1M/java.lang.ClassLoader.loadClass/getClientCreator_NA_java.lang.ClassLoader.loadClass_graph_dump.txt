@@ -1,0 +1,7 @@
+Line_2 $$ private Class getClientCreator() --> Line_3 $$ Class creatorClass = null [CD]
+Line_2 $$ private Class getClientCreator() --> Line_4 $$ String creatorClassName = System.getProperty(Constants.CLIENT_CREATOR_CLASS_NAME) [CD]
+Line_4 $$ String creatorClassName = System.getProperty(Constants.CLIENT_CREATOR_CLASS_NAME) --> Line_6 $$ if (Strings.isNotBlank(creatorClassName)) [FD]
+Line_6 $$ if (Strings.isNotBlank(creatorClassName)) --> Line_7 $$ creatorClass = KubernetesExtension.class.getClassLoader().loadClass(creatorClassName) [CD]
+Line_3 $$ Class creatorClass = null --> Line_7 $$ creatorClass = KubernetesExtension.class.getClassLoader().loadClass(creatorClassName) [FD]
+Line_4 $$ String creatorClassName = System.getProperty(Constants.CLIENT_CREATOR_CLASS_NAME) --> Line_7 $$ creatorClass = KubernetesExtension.class.getClassLoader().loadClass(creatorClassName) [FD]
+Line_2 $$ private Class getClientCreator() --> Line_10 $$ return creatorClass != null ? creatorClass : ClientCreator.class [CD]

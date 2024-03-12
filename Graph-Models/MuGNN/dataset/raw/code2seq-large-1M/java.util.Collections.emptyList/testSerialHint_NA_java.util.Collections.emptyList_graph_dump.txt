@@ -1,0 +1,8 @@
+Line_2 $$ public void testSerialHint() throws Exception --> Line_3 $$ String query = "SELECT  COUNT(*) FROM atable" [CD]
+Line_2 $$ public void testSerialHint() throws Exception --> Line_4 $$ assertTrue("Expected a SERIAL query", compileStatement(query).getExplainPlan().getPlanSteps().get(0).contains("SERIAL")) [CD]
+Line_3 $$ String query = "SELECT  COUNT(*) FROM atable" --> Line_4 $$ assertTrue("Expected a SERIAL query", compileStatement(query).getExplainPlan().getPlanSteps().get(0).contains("SERIAL")) [FD]
+Line_2 $$ public void testSerialHint() throws Exception --> Line_5 $$ query = "SELECT  * FROM atable limit 10" [CD]
+Line_3 $$ String query = "SELECT  COUNT(*) FROM atable" --> Line_5 $$ query = "SELECT  * FROM atable limit 10" [FD]
+Line_2 $$ public void testSerialHint() throws Exception --> Line_6 $$ assertTrue("Expected a SERIAL query", compileStatement(query, Collections.emptyList(), 10).getExplainPlan().getPlanSteps().get(0).contains("SERIAL")) [CD]
+Line_3 $$ String query = "SELECT  COUNT(*) FROM atable" --> Line_6 $$ assertTrue("Expected a SERIAL query", compileStatement(query, Collections.emptyList(), 10).getExplainPlan().getPlanSteps().get(0).contains("SERIAL")) [FD]
+Line_5 $$ query = "SELECT  * FROM atable limit 10" --> Line_6 $$ assertTrue("Expected a SERIAL query", compileStatement(query, Collections.emptyList(), 10).getExplainPlan().getPlanSteps().get(0).contains("SERIAL")) [FD]

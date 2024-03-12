@@ -1,0 +1,6 @@
+Line_2 $$ public void testFailureMissingSourceVib() throws Throwable --> Line_3 $$ FileUtils.deleteDirectory(sourceDirectory) [CD]
+Line_2 $$ public void testFailureMissingSourceVib() throws Throwable --> Line_4 $$ assertTrue(sourceDirectory.mkdirs()) [CD]
+Line_2 $$ public void testFailureMissingSourceVib() throws Throwable --> Line_5 $$ UploadVibTaskService.State finalState = testEnvironment.callServiceAndWaitForState(UploadVibTaskFactoryService.SELF_LINK, startState, UploadVibTaskService.State.class, ( state) -> TaskUtils.finalTaskStages.contains(state.taskState.stage)) [CD]
+Line_2 $$ public void testFailureMissingSourceVib() throws Throwable --> Line_6 $$ assertThat(finalState.taskState.stage, is(TaskState.TaskStage.FAILED)) [CD]
+Line_2 $$ public void testFailureMissingSourceVib() throws Throwable --> Line_7 $$ assertThat(finalState.taskState.failure.statusCode, is(400)) [CD]
+Line_2 $$ public void testFailureMissingSourceVib() throws Throwable --> Line_8 $$ assertThat(finalState.taskState.failure.message, is("Invalid VIB source file " + sourceFile)) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testDeleteWithCollation() --> Line_3 $$ checkMinServerVersion(3.4) [CD]
+Line_2 $$ public void testDeleteWithCollation() --> Line_4 $$ getDs().getCollection(FacebookUser.class).drop() [CD]
+Line_2 $$ public void testDeleteWithCollation() --> Line_5 $$ getDs().save(asList(new FacebookUser(1, "John Doe"), new FacebookUser(2, "john doe"))) [CD]
+Line_2 $$ public void testDeleteWithCollation() --> Line_6 $$ Query<FacebookUser> query = getDs().find(FacebookUser.class).field("username").equal("john doe") [CD]
+Line_2 $$ public void testDeleteWithCollation() --> Line_7 $$ assertEquals(1, getDs().delete(query).getN()) [CD]
+Line_2 $$ public void testDeleteWithCollation() --> Line_8 $$ assertEquals(1, getDs().delete(query, new DeleteOptions().collation(Collation.builder().locale("en").collationStrength(CollationStrength.SECONDARY).build())).getN()) [CD]

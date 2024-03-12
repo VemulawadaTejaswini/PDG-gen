@@ -1,0 +1,8 @@
+Line_2 $$ public ArrayList<WeakPriorityBlockingQueue.Element<URIMetadataNode>> completeResults(final long waitingtime) --> Line_3 $$ final long timeout = waitingtime == Long.MAX_VALUE ? Long.MAX_VALUE : System.currentTimeMillis() + waitingtime [CD]
+Line_2 $$ public ArrayList<WeakPriorityBlockingQueue.Element<URIMetadataNode>> completeResults(final long waitingtime) --> Line_4 $$ int i = 0 [CD]
+Line_2 $$ public ArrayList<WeakPriorityBlockingQueue.Element<URIMetadataNode>> completeResults(final long waitingtime) --> Line_5 $$ while (this.resultList.sizeAvailable() < this.query.neededResults() && System.currentTimeMillis() < timeout) [CD]
+Line_5 $$ while (this.resultList.sizeAvailable() < this.query.neededResults() && System.currentTimeMillis() < timeout) --> Line_6 $$ URIMetadataNode re = oneResult(i++, timeout - System.currentTimeMillis()) [CD]
+Line_4 $$ int i = 0 --> Line_6 $$ URIMetadataNode re = oneResult(i++, timeout - System.currentTimeMillis()) [FD]
+Line_5 $$ while (this.resultList.sizeAvailable() < this.query.neededResults() && System.currentTimeMillis() < timeout) --> Line_7 $$ if (re == null) [CD]
+Line_6 $$ URIMetadataNode re = oneResult(i++, timeout - System.currentTimeMillis()) --> Line_7 $$ if (re == null) [FD]
+Line_2 $$ public ArrayList<WeakPriorityBlockingQueue.Element<URIMetadataNode>> completeResults(final long waitingtime) --> Line_10 $$ return this.resultList.list(Math.min(this.query.neededResults(), this.resultList.sizeAvailable())) [CD]

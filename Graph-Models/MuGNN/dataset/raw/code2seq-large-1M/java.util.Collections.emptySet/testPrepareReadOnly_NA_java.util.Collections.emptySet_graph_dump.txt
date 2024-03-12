@@ -1,0 +1,8 @@
+Line_2 $$ public void testPrepareReadOnly() throws Exception --> Line_3 $$ TestTimeSource timeSource = new TestTimeSource() [CD]
+Line_2 $$ public void testPrepareReadOnly() throws Exception --> Line_4 $$ XATransactionContext<Long, String> xaTransactionContext = new XATransactionContext(new TransactionId(new TestXid(0, 0)), underlyingStore, journal, timeSource, timeSource.getTimeMillis() + 30000) [CD]
+Line_3 $$ TestTimeSource timeSource = new TestTimeSource() --> Line_4 $$ XATransactionContext<Long, String> xaTransactionContext = new XATransactionContext(new TransactionId(new TestXid(0, 0)), underlyingStore, journal, timeSource, timeSource.getTimeMillis() + 30000) [FD]
+Line_2 $$ public void testPrepareReadOnly() throws Exception --> Line_5 $$ assertThat(xaTransactionContext.prepare(), is(0)) [CD]
+Line_4 $$ XATransactionContext<Long, String> xaTransactionContext = new XATransactionContext(new TransactionId(new TestXid(0, 0)), underlyingStore, journal, timeSource, timeSource.getTimeMillis() + 30000) --> Line_5 $$ assertThat(xaTransactionContext.prepare(), is(0)) [FD]
+Line_2 $$ public void testPrepareReadOnly() throws Exception --> Line_6 $$ verify(journal, times(1)).saveInDoubt(eq(new TransactionId(new TestXid(0, 0))), eq(Collections.<Long>emptySet())) [CD]
+Line_2 $$ public void testPrepareReadOnly() throws Exception --> Line_7 $$ verify(journal, times(0)).saveCommitted(eq(new TransactionId(new TestXid(0, 0))), anyBoolean()) [CD]
+Line_2 $$ public void testPrepareReadOnly() throws Exception --> Line_8 $$ verify(journal, times(1)).saveRolledBack(eq(new TransactionId(new TestXid(0, 0))), eq(false)) [CD]

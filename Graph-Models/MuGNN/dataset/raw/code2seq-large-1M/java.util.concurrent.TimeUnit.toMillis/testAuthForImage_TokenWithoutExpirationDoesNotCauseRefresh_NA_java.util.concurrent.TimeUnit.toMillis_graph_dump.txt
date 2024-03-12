@@ -1,0 +1,8 @@
+Line_2 $$ public void testAuthForImage_TokenWithoutExpirationDoesNotCauseRefresh() throws Exception --> Line_3 $$ final AccessToken accessToken = new AccessToken(tokenValue, null) [CD]
+Line_2 $$ public void testAuthForImage_TokenWithoutExpirationDoesNotCauseRefresh() throws Exception --> Line_4 $$ final GoogleCredentials credentials = new GoogleCredentials(accessToken) [CD]
+Line_2 $$ public void testAuthForImage_TokenWithoutExpirationDoesNotCauseRefresh() throws Exception --> Line_5 $$ final ContainerRegistryAuthSupplier supplier = new ContainerRegistryAuthSupplier(credentials, clock, TimeUnit.SECONDS.toMillis(minimumExpirationSecs), refresher) [CD]
+Line_2 $$ public void testAuthForImage_TokenWithoutExpirationDoesNotCauseRefresh() throws Exception --> Line_6 $$ assertThat(supplier.authFor("gcr.io/foobar/barfoo:latest"), matchesAccessToken(accessToken)) [CD]
+Line_5 $$ final ContainerRegistryAuthSupplier supplier = new ContainerRegistryAuthSupplier(credentials, clock, TimeUnit.SECONDS.toMillis(minimumExpirationSecs), refresher) --> Line_6 $$ assertThat(supplier.authFor("gcr.io/foobar/barfoo:latest"), matchesAccessToken(accessToken)) [FD]
+Line_3 $$ final AccessToken accessToken = new AccessToken(tokenValue, null) --> Line_6 $$ assertThat(supplier.authFor("gcr.io/foobar/barfoo:latest"), matchesAccessToken(accessToken)) [FD]
+Line_2 $$ public void testAuthForImage_TokenWithoutExpirationDoesNotCauseRefresh() throws Exception --> Line_7 $$ verify(refresher, never()).refresh(credentials) [CD]
+Line_4 $$ final GoogleCredentials credentials = new GoogleCredentials(accessToken) --> Line_7 $$ verify(refresher, never()).refresh(credentials) [FD]

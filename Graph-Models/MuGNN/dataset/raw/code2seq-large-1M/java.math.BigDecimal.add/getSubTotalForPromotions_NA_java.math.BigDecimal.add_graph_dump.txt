@@ -1,0 +1,8 @@
+Line_2 $$ public BigDecimal getSubTotalForPromotions() --> Line_3 $$ BigDecimal itemsTotal = BigDecimal.ZERO [CD]
+Line_4 $$ for (ShoppingCartItem cartItem : this.cartLines) --> Line_5 $$ GenericValue product = cartItem.getProduct() [FD]
+Line_5 $$ GenericValue product = cartItem.getProduct() --> Line_6 $$ if (product != null && "N".equals(product.getString("includeInPromotions"))) [FD]
+Line_3 $$ BigDecimal itemsTotal = BigDecimal.ZERO --> Line_9 $$ itemsTotal = itemsTotal.add(cartItem.getItemSubTotal()) [FD]
+Line_4 $$ for (ShoppingCartItem cartItem : this.cartLines) --> Line_9 $$ itemsTotal = itemsTotal.add(cartItem.getItemSubTotal()) [FD]
+Line_2 $$ public BigDecimal getSubTotalForPromotions() --> Line_11 $$ return itemsTotal.add(this.getOrderOtherAdjustmentTotal()) [CD]
+Line_3 $$ BigDecimal itemsTotal = BigDecimal.ZERO --> Line_11 $$ return itemsTotal.add(this.getOrderOtherAdjustmentTotal()) [FD]
+Line_9 $$ itemsTotal = itemsTotal.add(cartItem.getItemSubTotal()) --> Line_11 $$ return itemsTotal.add(this.getOrderOtherAdjustmentTotal()) [FD]

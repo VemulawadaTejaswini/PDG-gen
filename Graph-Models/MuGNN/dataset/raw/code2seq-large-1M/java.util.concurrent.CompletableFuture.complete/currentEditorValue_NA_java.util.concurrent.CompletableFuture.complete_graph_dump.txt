@@ -1,0 +1,8 @@
+Line_2 $$ public String currentEditorValue() --> Line_3 $$ if (Platform.isFxApplicationThread()) [CD]
+Line_3 $$ if (Platform.isFxApplicationThread()) --> Line_4 $$ return (String) currentEngine().executeScript("editor.getValue()") [CD]
+Line_2 $$ public String currentEditorValue() --> Line_5 $$ final CompletableFuture<String> completableFuture = new CompletableFuture() [CD]
+Line_2 $$ public String currentEditorValue() --> Line_6 $$ CompletableFuture.runAsync(() -> [CD]
+Line_5 $$ final CompletableFuture<String> completableFuture = new CompletableFuture() --> Line_10 $$ completableFuture.complete((String) result) [FD]
+Line_5 $$ final CompletableFuture<String> completableFuture = new CompletableFuture() --> Line_12 $$ completableFuture.completeExceptionally(ex) [FD]
+Line_2 $$ public String currentEditorValue() --> Line_16 $$ return completableFuture.join() [CD]
+Line_5 $$ final CompletableFuture<String> completableFuture = new CompletableFuture() --> Line_16 $$ return completableFuture.join() [FD]

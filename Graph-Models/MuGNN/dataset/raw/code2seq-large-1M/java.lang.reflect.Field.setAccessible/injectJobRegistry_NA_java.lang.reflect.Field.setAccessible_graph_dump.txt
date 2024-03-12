@@ -1,0 +1,8 @@
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_3 $$ final Field field = JobRegistry.class.getDeclaredField("INSTANCE") [CD]
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_4 $$ field.setAccessible(true) [CD]
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_5 $$ originalJobRegistry = JobRegistry.getInstance() [CD]
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_6 $$ Field modifiersField = Field.class.getDeclaredField("modifiers") [CD]
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_7 $$ modifiersField.setAccessible(true) [CD]
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_8 $$ modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL) [CD]
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_9 $$ field.set(null, jobRegistry) [FD]
+Line_2 $$ private static void injectJobRegistry(final JobRegistry jobRegistry) throws NoSuchFieldException, IllegalAccessException --> Line_9 $$ field.set(null, jobRegistry) [CD]

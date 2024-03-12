@@ -1,0 +1,7 @@
+Line_2 $$ private int getKeySize(PublicKey pkey) --> Line_3 $$ if (pkey instanceof ECPublicKey) [FD]
+Line_2 $$ private int getKeySize(PublicKey pkey) --> Line_3 $$ if (pkey instanceof ECPublicKey) [CD]
+Line_3 $$ if (pkey instanceof ECPublicKey) --> Line_4 $$ return ((ECPublicKey) pkey).getParams().getCurve().getField().getFieldSize() [CD]
+Line_3 $$ if (pkey instanceof ECPublicKey) --> Line_5 $$ if (pkey instanceof RSAPublicKey) [CD]
+Line_2 $$ private int getKeySize(PublicKey pkey) --> Line_5 $$ if (pkey instanceof RSAPublicKey) [FD]
+Line_5 $$ if (pkey instanceof RSAPublicKey) --> Line_6 $$ return ((RSAPublicKey) pkey).getModulus().bitLength() [CD]
+Line_2 $$ private int getKeySize(PublicKey pkey) --> Line_8 $$ throw new IllegalArgumentException("Unsupported public key type: " + pkey.getClass().getName()) [FD]

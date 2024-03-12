@@ -1,0 +1,6 @@
+Line_2 $$ protected <P> ApplyMore doApply(P payload, MetaData metaData) --> Line_3 $$ if (!applying && aggregateRoot != null) [CD]
+Line_2 $$ protected <P> ApplyMore doApply(P payload, MetaData metaData) --> Line_6 $$ publish(createMessage(payload, metaData)) [FD]
+Line_7 $$ while (!delayedTasks.isEmpty()) --> Line_8 $$ delayedTasks.remove().run() [CD]
+Line_3 $$ if (!applying && aggregateRoot != null) --> Line_15 $$ delayedTasks.add(() -> publish(createMessage(payload, metaData))) [CD]
+Line_2 $$ protected <P> ApplyMore doApply(P payload, MetaData metaData) --> Line_15 $$ delayedTasks.add(() -> publish(createMessage(payload, metaData))) [FD]
+Line_2 $$ protected <P> ApplyMore doApply(P payload, MetaData metaData) --> Line_17 $$ return this [CD]

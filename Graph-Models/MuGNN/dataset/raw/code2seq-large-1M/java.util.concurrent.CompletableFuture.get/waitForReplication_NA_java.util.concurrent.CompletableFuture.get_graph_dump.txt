@@ -1,0 +1,8 @@
+Line_2 $$ protected static void waitForReplication(RedisAdvancedClusterAsyncCommands<String, String> commands, String key, int port) throws Exception --> Line_3 $$ AsyncNodeSelection<String, String> selection = commands.slaves( redisClusterNode -> redisClusterNode.getUri().getPort() == port) [FD]
+Line_2 $$ protected static void waitForReplication(RedisAdvancedClusterAsyncCommands<String, String> commands, String key, int port) throws Exception --> Line_3 $$ AsyncNodeSelection<String, String> selection = commands.slaves( redisClusterNode -> redisClusterNode.getUri().getPort() == port) [CD]
+Line_2 $$ protected static void waitForReplication(RedisAdvancedClusterAsyncCommands<String, String> commands, String key, int port) throws Exception --> Line_4 $$ Wait.untilNotEquals(null, () -> [CD]
+Line_2 $$ protected static void waitForReplication(RedisAdvancedClusterAsyncCommands<String, String> commands, String key, int port) throws Exception --> Line_5 $$ for (CompletableFuture<String> future : selection.commands().get(key).futures()) [FD]
+Line_3 $$ AsyncNodeSelection<String, String> selection = commands.slaves( redisClusterNode -> redisClusterNode.getUri().getPort() == port) --> Line_5 $$ for (CompletableFuture<String> future : selection.commands().get(key).futures()) [FD]
+Line_5 $$ for (CompletableFuture<String> future : selection.commands().get(key).futures()) --> Line_6 $$ if (future.get() != null) [FD]
+Line_6 $$ if (future.get() != null) --> Line_7 $$ return future.get() [CD]
+Line_5 $$ for (CompletableFuture<String> future : selection.commands().get(key).futures()) --> Line_7 $$ return future.get() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void testAmbiguousColumnNames() throws SQLException --> Line_3 $$ stat.execute("create table test(id int)") [CD]
+Line_2 $$ private void testAmbiguousColumnNames() throws SQLException --> Line_4 $$ stat.execute("insert into test values(1)") [CD]
+Line_2 $$ private void testAmbiguousColumnNames() throws SQLException --> Line_5 $$ ResultSet rs = stat.executeQuery("select 1 x, 2 x, 3 x, 4 x, 5 x, 6 x from test") [CD]
+Line_2 $$ private void testAmbiguousColumnNames() throws SQLException --> Line_6 $$ rs.next() [CD]
+Line_5 $$ ResultSet rs = stat.executeQuery("select 1 x, 2 x, 3 x, 4 x, 5 x, 6 x from test") --> Line_6 $$ rs.next() [FD]
+Line_2 $$ private void testAmbiguousColumnNames() throws SQLException --> Line_7 $$ assertEquals(1, rs.getInt("x")) [CD]
+Line_5 $$ ResultSet rs = stat.executeQuery("select 1 x, 2 x, 3 x, 4 x, 5 x, 6 x from test") --> Line_7 $$ assertEquals(1, rs.getInt("x")) [FD]
+Line_2 $$ private void testAmbiguousColumnNames() throws SQLException --> Line_8 $$ stat.execute("drop table test") [CD]

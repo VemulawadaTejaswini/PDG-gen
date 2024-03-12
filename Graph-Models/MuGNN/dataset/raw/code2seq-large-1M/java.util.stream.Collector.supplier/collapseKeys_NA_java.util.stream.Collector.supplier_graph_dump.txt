@@ -1,0 +1,6 @@
+Line_3 $$ Supplier<A> supplier = collector.supplier() --> Line_8 $$ A a = supplier.get() [FD]
+Line_4 $$ BiConsumer<A, ? super V> accumulator = collector.accumulator() --> Line_9 $$ accumulator.accept(a, e.getValue()) [FD]
+Line_8 $$ A a = supplier.get() --> Line_9 $$ accumulator.accept(a, e.getValue()) [FD]
+Line_4 $$ BiConsumer<A, ? super V> accumulator = collector.accumulator() --> Line_12 $$ accumulator.accept(pb.b, e.getValue()) [FD]
+Line_5 $$ BinaryOperator<A> combiner = collector.combiner() --> Line_15 $$ pb1.b = combiner.apply(pb1.b, pb2.b) [FD]
+Line_6 $$ Function<A, R> finisher = collector.finisher() --> Line_17 $$ finisher.apply(pb.b) [FD]

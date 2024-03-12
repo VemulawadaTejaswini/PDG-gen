@@ -1,0 +1,8 @@
+Line_2 $$ private void corruptAdvertisementFile(TargetManager badTarget) --> Line_3 $$ File targetDir = new File(commonDirectory, badTarget.targetId) [CD]
+Line_2 $$ private void corruptAdvertisementFile(TargetManager badTarget) --> Line_4 $$ File advertisement = new File(targetDir, ADVERT_FILENAME) [CD]
+Line_8 $$ for (int i = 0; i < 42; ++i) --> Line_9 $$ advertisementWriter.write(dataGenerator.nextInt()) [CD]
+Line_6 $$ OutputStreamWriter advertisementWriter = new OutputStreamWriter(new FileOutputStream(advertisement)) --> Line_9 $$ advertisementWriter.write(dataGenerator.nextInt()) [FD]
+Line_7 $$ Random dataGenerator = new Random(12345) --> Line_9 $$ advertisementWriter.write(dataGenerator.nextInt()) [FD]
+Line_6 $$ OutputStreamWriter advertisementWriter = new OutputStreamWriter(new FileOutputStream(advertisement)) --> Line_11 $$ advertisementWriter.close() [FD]
+Line_4 $$ File advertisement = new File(targetDir, ADVERT_FILENAME) --> Line_13 $$ Assert.fail("FileNotFoundException opening " + advertisement.getAbsolutePath()) [FD]
+Line_4 $$ File advertisement = new File(targetDir, ADVERT_FILENAME) --> Line_15 $$ Assert.fail("IOException opening " + advertisement.getAbsolutePath()) [FD]

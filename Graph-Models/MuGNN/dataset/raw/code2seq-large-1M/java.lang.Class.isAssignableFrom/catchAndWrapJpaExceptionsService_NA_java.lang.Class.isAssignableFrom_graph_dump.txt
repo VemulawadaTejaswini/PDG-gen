@@ -1,0 +1,8 @@
+Line_2 $$ public void catchAndWrapJpaExceptionsService(final Exception ex) throws Throwable --> Line_3 $$ if (ex instanceof TransactionSystemException) [FD]
+Line_2 $$ public void catchAndWrapJpaExceptionsService(final Exception ex) throws Throwable --> Line_3 $$ if (ex instanceof TransactionSystemException) [CD]
+Line_6 $$ for (final Class<?> mappedEx : MAPPED_EXCEPTION_ORDER) --> Line_7 $$ if (!mappedEx.isAssignableFrom(ex.getClass())) [FD]
+Line_2 $$ public void catchAndWrapJpaExceptionsService(final Exception ex) throws Throwable --> Line_7 $$ if (!mappedEx.isAssignableFrom(ex.getClass())) [FD]
+Line_6 $$ for (final Class<?> mappedEx : MAPPED_EXCEPTION_ORDER) --> Line_10 $$ if (EXCEPTION_MAPPING.containsKey(mappedEx.getName())) [FD]
+Line_2 $$ public void catchAndWrapJpaExceptionsService(final Exception ex) throws Throwable --> Line_11 $$ throw (Exception) Class.forName(EXCEPTION_MAPPING.get(mappedEx.getName())).getConstructor(Throwable.class).newInstance(ex) [FD]
+Line_6 $$ for (final Class<?> mappedEx : MAPPED_EXCEPTION_ORDER) --> Line_11 $$ throw (Exception) Class.forName(EXCEPTION_MAPPING.get(mappedEx.getName())).getConstructor(Throwable.class).newInstance(ex) [FD]
+Line_6 $$ for (final Class<?> mappedEx : MAPPED_EXCEPTION_ORDER) --> Line_13 $$ LOG.error("there is no mapping configured for exception class [FD]

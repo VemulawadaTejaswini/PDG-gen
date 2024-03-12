@@ -1,0 +1,8 @@
+Line_2 $$ public void destroyDiskStoreIsIdempotent() throws Exception --> Line_3 $$ MemberVM locator = rule.startLocatorVM(0) [CD]
+Line_2 $$ public void destroyDiskStoreIsIdempotent() throws Exception --> Line_4 $$ MemberVM server1 = rule.startServerVM(1, locator.getPort()) [CD]
+Line_3 $$ MemberVM locator = rule.startLocatorVM(0) --> Line_4 $$ MemberVM server1 = rule.startServerVM(1, locator.getPort()) [FD]
+Line_2 $$ public void destroyDiskStoreIsIdempotent() throws Exception --> Line_5 $$ gfsh.connectAndVerify(locator) [CD]
+Line_3 $$ MemberVM locator = rule.startLocatorVM(0) --> Line_5 $$ gfsh.connectAndVerify(locator) [FD]
+Line_2 $$ public void destroyDiskStoreIsIdempotent() throws Exception --> Line_6 $$ gfsh.executeAndAssertThat(String.format("create disk-store --name=%s --dir=%s", DISKSTORE, DISKSTORE)).statusIsSuccess() [CD]
+Line_2 $$ public void destroyDiskStoreIsIdempotent() throws Exception --> Line_7 $$ gfsh.executeAndAssertThat(String.format("destroy disk-store --name=%s --if-exists", DISKSTORE)).statusIsSuccess() [CD]
+Line_2 $$ public void destroyDiskStoreIsIdempotent() throws Exception --> Line_8 $$ gfsh.executeAndAssertThat(String.format("destroy disk-store --name=%s --if-exists", DISKSTORE)).statusIsSuccess() [CD]

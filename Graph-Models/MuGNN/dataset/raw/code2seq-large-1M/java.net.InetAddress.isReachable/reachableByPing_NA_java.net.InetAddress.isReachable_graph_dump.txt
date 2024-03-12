@@ -1,0 +1,6 @@
+Line_2 $$ public static boolean reachableByPing(InetAddress addr, int reachTimeout) --> Line_4 $$ if (addr.isReachable(reachTimeout)) [FD]
+Line_4 $$ if (addr.isReachable(reachTimeout)) --> Line_5 $$ return true [CD]
+Line_2 $$ public static boolean reachableByPing(InetAddress addr, int reachTimeout) --> Line_6 $$ String cmd = String.format("ping -%s 1 %s", U.isWindows() ? "n" : "c", addr.getHostAddress()) [FD]
+Line_6 $$ String cmd = String.format("ping -%s 1 %s", U.isWindows() ? "n" : "c", addr.getHostAddress()) --> Line_7 $$ Process myProc = Runtime.getRuntime().exec(cmd) [FD]
+Line_7 $$ Process myProc = Runtime.getRuntime().exec(cmd) --> Line_8 $$ myProc.waitFor() [FD]
+Line_7 $$ Process myProc = Runtime.getRuntime().exec(cmd) --> Line_9 $$ return myProc.exitValue() == 0 [FD]

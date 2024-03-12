@@ -1,0 +1,6 @@
+Line_2 $$ private boolean lock(byte[] hash) throws InterruptedException --> Line_3 $$ String hashHex = HashUtil.bytesToHexString(hash) [FD]
+Line_2 $$ private boolean lock(byte[] hash) throws InterruptedException --> Line_3 $$ String hashHex = HashUtil.bytesToHexString(hash) [CD]
+Line_3 $$ String hashHex = HashUtil.bytesToHexString(hash) --> Line_5 $$ if (!lockedContents.containsKey(hashHex)) [FD]
+Line_5 $$ if (!lockedContents.containsKey(hashHex)) --> Line_6 $$ lockedContents.put(hashHex, new ReentrantLock()) [CD]
+Line_3 $$ String hashHex = HashUtil.bytesToHexString(hash) --> Line_6 $$ lockedContents.put(hashHex, new ReentrantLock()) [FD]
+Line_3 $$ String hashHex = HashUtil.bytesToHexString(hash) --> Line_8 $$ return lockedContents.get(hashHex).tryLock(lockTimeout, TimeUnit.MILLISECONDS) [FD]

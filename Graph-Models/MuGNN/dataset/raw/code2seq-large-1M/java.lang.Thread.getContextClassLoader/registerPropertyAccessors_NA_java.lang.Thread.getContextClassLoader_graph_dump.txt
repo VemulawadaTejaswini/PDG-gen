@@ -1,0 +1,8 @@
+Line_2 $$ private static void registerPropertyAccessors(List<String> lines) --> Line_3 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() [CD]
+Line_4 $$ for (String line : lines) --> Line_5 $$ line = line.trim() [FD]
+Line_4 $$ for (String line : lines) --> Line_6 $$ if (line.startsWith("#")) [FD]
+Line_5 $$ line = line.trim() --> Line_6 $$ if (line.startsWith("#")) [FD]
+Line_6 $$ if (line.startsWith("#")) --> Line_7 $$ return [CD]
+Line_4 $$ for (String line : lines) --> Line_8 $$ String[] parts = line.split("=") [FD]
+Line_5 $$ line = line.trim() --> Line_8 $$ String[] parts = line.split("=") [FD]
+Line_3 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() --> Line_11 $$ ACCESSORS.put(cl.loadClass(parts[0].trim()), (Class<? extends PropertyAccessor>) cl.loadClass(parts[1].trim())) [FD]

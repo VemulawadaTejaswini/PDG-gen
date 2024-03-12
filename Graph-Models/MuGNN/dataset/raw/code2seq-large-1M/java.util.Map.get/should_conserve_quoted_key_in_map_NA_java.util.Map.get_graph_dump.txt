@@ -1,0 +1,8 @@
+Line_2 $$ public void should_conserve_quoted_key_in_map() throws Exception --> Line_3 $$ Toml toml = new Toml().read("[dog.\"tater.man\"]  \n  type = \"pug0\"  \n[dog.tater]  \n  type = \"pug1\"\n[dog.tater.man]  \n  type = \"pug2\"") [CD]
+Line_2 $$ public void should_conserve_quoted_key_in_map() throws Exception --> Line_4 $$ Toml dogs = toml.getTable("dog") [CD]
+Line_3 $$ Toml toml = new Toml().read("[dog.\"tater.man\"]  \n  type = \"pug0\"  \n[dog.tater]  \n  type = \"pug1\"\n[dog.tater.man]  \n  type = \"pug2\"") --> Line_4 $$ Toml dogs = toml.getTable("dog") [FD]
+Line_2 $$ public void should_conserve_quoted_key_in_map() throws Exception --> Line_5 $$ Map<String, Map<String, Object>> map = dogs.to(Map.class) [CD]
+Line_4 $$ Toml dogs = toml.getTable("dog") --> Line_5 $$ Map<String, Map<String, Object>> map = dogs.to(Map.class) [FD]
+Line_2 $$ public void should_conserve_quoted_key_in_map() throws Exception --> Line_6 $$ assertEquals("pug0", map.get("\"tater.man\"").get("type")) [CD]
+Line_2 $$ public void should_conserve_quoted_key_in_map() throws Exception --> Line_7 $$ assertEquals("pug1", map.get("tater").get("type")) [CD]
+Line_2 $$ public void should_conserve_quoted_key_in_map() throws Exception --> Line_8 $$ assertEquals("pug2", ((Map<String, Object>) map.get("tater").get("man")).get("type")) [CD]

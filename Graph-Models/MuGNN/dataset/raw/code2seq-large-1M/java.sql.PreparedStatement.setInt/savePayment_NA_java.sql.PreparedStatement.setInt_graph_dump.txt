@@ -1,0 +1,7 @@
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_4 $$ try (PreparedStatement statement = db.statement("insert into payments_summary (amount,date) VALUES (?,?) ON CONFLICT (date) DO UPDATE SET amount = payments_summary.amount + excluded.amount")) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("insert into payments_summary (amount,date) VALUES (?,?) ON CONFLICT (date) DO UPDATE SET amount = payments_summary.amount + excluded.amount")) --> Line_5 $$ statement.setInt(1, amount) [FD]
+Line_2 $$ public void savePayment(int amount, ZonedDateTime date) --> Line_5 $$ statement.setInt(1, amount) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("insert into payments_summary (amount,date) VALUES (?,?) ON CONFLICT (date) DO UPDATE SET amount = payments_summary.amount + excluded.amount")) --> Line_6 $$ statement.setInt(2, (int) date.truncatedTo(ChronoUnit.DAYS).toEpochSecond()) [FD]
+Line_2 $$ public void savePayment(int amount, ZonedDateTime date) --> Line_6 $$ statement.setInt(2, (int) date.truncatedTo(ChronoUnit.DAYS).toEpochSecond()) [FD]
+Line_3 $$ try (PooledDb db = dbPool.db()) --> Line_7 $$ db.updateWithStatement(statement) [FD]
+Line_4 $$ try (PreparedStatement statement = db.statement("insert into payments_summary (amount,date) VALUES (?,?) ON CONFLICT (date) DO UPDATE SET amount = payments_summary.amount + excluded.amount")) --> Line_7 $$ db.updateWithStatement(statement) [FD]

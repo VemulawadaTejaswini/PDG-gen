@@ -1,0 +1,6 @@
+Line_2 $$ private DescribeInstancesRequest buildDescribeInstancesRequest() --> Line_3 $$ DescribeInstancesRequest describeInstancesRequest = new DescribeInstancesRequest().withFilters(new Filter("instance-state-name").withValues("running", "pending")) [CD]
+Line_3 $$ DescribeInstancesRequest describeInstancesRequest = new DescribeInstancesRequest().withFilters(new Filter("instance-state-name").withValues("running", "pending")) --> Line_5 $$ describeInstancesRequest.withFilters(new Filter("tag:" + tagFilter.getKey()).withValues(tagFilter.getValue())) [FD]
+Line_2 $$ private DescribeInstancesRequest buildDescribeInstancesRequest() --> Line_7 $$ if (!availabilityZones.isEmpty()) [CD]
+Line_7 $$ if (!availabilityZones.isEmpty()) --> Line_8 $$ describeInstancesRequest.withFilters(new Filter("availability-zone").withValues(availabilityZones)) [CD]
+Line_3 $$ DescribeInstancesRequest describeInstancesRequest = new DescribeInstancesRequest().withFilters(new Filter("instance-state-name").withValues("running", "pending")) --> Line_8 $$ describeInstancesRequest.withFilters(new Filter("availability-zone").withValues(availabilityZones)) [FD]
+Line_2 $$ private DescribeInstancesRequest buildDescribeInstancesRequest() --> Line_10 $$ return describeInstancesRequest [CD]

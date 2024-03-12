@@ -1,0 +1,7 @@
+Line_2 $$ public boolean acquireDailyTask(final LocalDate date, final Class taskClass, final String hostName) --> Line_3 $$ final List<Long> finishDate = jdbcTemplate.queryForList("SELECT done FROM scheduler WHERE date = ? AND task = ?", Long.class, date.minusDays(1).toString(), taskClass.getSimpleName()) [FD]
+Line_2 $$ public boolean acquireDailyTask(final LocalDate date, final Class taskClass, final String hostName) --> Line_3 $$ final List<Long> finishDate = jdbcTemplate.queryForList("SELECT done FROM scheduler WHERE date = ? AND task = ?", Long.class, date.minusDays(1).toString(), taskClass.getSimpleName()) [CD]
+Line_2 $$ public boolean acquireDailyTask(final LocalDate date, final Class taskClass, final String hostName) --> Line_4 $$ if (finishDate.size() > 0 && finishDate.get(0) == null) [CD]
+Line_4 $$ if (finishDate.size() > 0 && finishDate.get(0) == null) --> Line_5 $$ LOGGER.error("While trying to acquire ( [CD]
+Line_2 $$ public boolean acquireDailyTask(final LocalDate date, final Class taskClass, final String hostName) --> Line_5 $$ LOGGER.error("While trying to acquire ( [FD]
+Line_2 $$ public boolean acquireDailyTask(final LocalDate date, final Class taskClass, final String hostName) --> Line_8 $$ jdbcTemplate.update("INSERT INTO scheduler (date, task, host) VALUES (?, ?, ?)", date.toString(), taskClass.getSimpleName(), hostName) [FD]
+Line_2 $$ public boolean acquireDailyTask(final LocalDate date, final Class taskClass, final String hostName) --> Line_13 $$ return true [CD]

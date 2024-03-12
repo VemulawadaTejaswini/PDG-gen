@@ -1,0 +1,8 @@
+Line_2 $$ void loadAuthorizedServices() --> Line_3 $$ String authzServiceFname = System.getProperty(ZMSConsts.ZMS_PROP_AUTHZ_SERVICE_FNAME, getRootDir() + "/conf/zms_server/authorized_services.json") [CD]
+Line_2 $$ void loadAuthorizedServices() --> Line_4 $$ Path path = Paths.get(authzServiceFname) [CD]
+Line_3 $$ String authzServiceFname = System.getProperty(ZMSConsts.ZMS_PROP_AUTHZ_SERVICE_FNAME, getRootDir() + "/conf/zms_server/authorized_services.json") --> Line_4 $$ Path path = Paths.get(authzServiceFname) [FD]
+Line_4 $$ Path path = Paths.get(authzServiceFname) --> Line_6 $$ serverAuthorizedServices = JSON.fromBytes(Files.readAllBytes(path), AuthorizedServices.class) [FD]
+Line_3 $$ String authzServiceFname = System.getProperty(ZMSConsts.ZMS_PROP_AUTHZ_SERVICE_FNAME, getRootDir() + "/conf/zms_server/authorized_services.json") --> Line_8 $$ LOG.error("Unable to parse authorized service file [FD]
+Line_2 $$ void loadAuthorizedServices() --> Line_10 $$ if (serverAuthorizedServices == null) [CD]
+Line_10 $$ if (serverAuthorizedServices == null) --> Line_11 $$ LOG.error("Generating empty authorized service list...") [CD]
+Line_10 $$ if (serverAuthorizedServices == null) --> Line_13 $$ serverAuthorizedServices.setTemplates(new HashMap()) [CD]

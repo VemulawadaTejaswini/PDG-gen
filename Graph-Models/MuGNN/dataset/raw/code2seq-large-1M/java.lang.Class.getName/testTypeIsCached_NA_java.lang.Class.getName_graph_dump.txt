@@ -1,0 +1,8 @@
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_3 $$ ClassFileLocator classFileLocator = spy(ClassFileLocator.ForClassLoader.ofClassPath()) [CD]
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_4 $$ TypePool typePool = TypePool.Default.WithLazyResolution.of(classFileLocator) [CD]
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_5 $$ TypePool.Resolution resolution = typePool.describe(Object.class.getName()) [CD]
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_6 $$ assertThat(resolution.resolve().getModifiers(), CoreMatchers.is(TypeDescription.OBJECT.getModifiers())) [CD]
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_7 $$ assertThat(resolution.resolve().getInterfaces(), CoreMatchers.is(TypeDescription.OBJECT.getInterfaces())) [CD]
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_8 $$ assertThat(typePool.describe(Object.class.getName()).resolve(), CoreMatchers.is(resolution.resolve())) [CD]
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_9 $$ verify(classFileLocator).locate(Object.class.getName()) [CD]
+Line_2 $$ public void testTypeIsCached() throws Exception --> Line_10 $$ verifyNoMoreInteractions(classFileLocator) [CD]

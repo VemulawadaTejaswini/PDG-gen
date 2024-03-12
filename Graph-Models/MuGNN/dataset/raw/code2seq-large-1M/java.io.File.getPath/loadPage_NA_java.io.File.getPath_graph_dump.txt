@@ -1,0 +1,8 @@
+Line_2 $$ private void loadPage(int index, Memory freePage) throws IOException --> Line_3 $$ final long address = (long) index << PAGE_BITS [CD]
+Line_2 $$ private void loadPage(int index, Memory freePage) throws IOException --> Line_4 $$ if (log.isDebugEnabled()) [CD]
+Line_4 $$ if (log.isDebugEnabled()) --> Line_5 $$ log.debug("loading page in file " + file.getPath() + " at address " + address) [CD]
+Line_2 $$ private void loadPage(int index, Memory freePage) throws IOException --> Line_6 $$ final int pageLength = (int) Math.min(PAGE_SIZE, length - address) [CD]
+Line_3 $$ final long address = (long) index << PAGE_BITS --> Line_8 $$ raf.seek(address) [FD]
+Line_6 $$ final int pageLength = (int) Math.min(PAGE_SIZE, length - address) --> Line_9 $$ raf.readFully(pageBuffer, 0, pageLength) [FD]
+Line_2 $$ private void loadPage(int index, Memory freePage) throws IOException --> Line_10 $$ freePage.putBytes(0, pageBuffer, 0, pageLength) [FD]
+Line_6 $$ final int pageLength = (int) Math.min(PAGE_SIZE, length - address) --> Line_10 $$ freePage.putBytes(0, pageBuffer, 0, pageLength) [FD]

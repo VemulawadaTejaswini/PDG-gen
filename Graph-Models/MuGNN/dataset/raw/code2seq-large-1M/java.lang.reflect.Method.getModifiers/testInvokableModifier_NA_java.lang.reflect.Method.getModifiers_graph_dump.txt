@@ -1,0 +1,5 @@
+Line_2 $$ public void testInvokableModifier() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(Sample.class).visit(new ModifierAdjustment().withInvokableModifiers(named(FOO).or(takesArgument(0, Void.class)), Visibility.PUBLIC)).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testInvokableModifier() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(FOO).getModifiers(), is(Opcodes.ACC_PUBLIC)) [CD]
+Line_2 $$ public void testInvokableModifier() throws Exception --> Line_5 $$ assertThat(type.getDeclaredMethod(BAR).getModifiers(), is(0)) [CD]
+Line_2 $$ public void testInvokableModifier() throws Exception --> Line_6 $$ assertThat(type.getDeclaredConstructor(Void.class).getModifiers(), is(Opcodes.ACC_PUBLIC)) [CD]
+Line_2 $$ public void testInvokableModifier() throws Exception --> Line_7 $$ assertThat(type.getDeclaredConstructor().getModifiers(), is(0)) [CD]

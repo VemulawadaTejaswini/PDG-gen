@@ -1,0 +1,6 @@
+Line_2 $$ void resetTriggerFromErrorState(Connection conn, final TriggerKey triggerKey) throws JobPersistenceException --> Line_5 $$ if (getDelegate().isTriggerGroupPaused(conn, triggerKey.getGroup())) [FD]
+Line_5 $$ if (getDelegate().isTriggerGroupPaused(conn, triggerKey.getGroup())) --> Line_6 $$ newState = STATE_PAUSED [CD]
+Line_4 $$ String newState = STATE_WAITING --> Line_6 $$ newState = STATE_PAUSED [FD]
+Line_2 $$ void resetTriggerFromErrorState(Connection conn, final TriggerKey triggerKey) throws JobPersistenceException --> Line_8 $$ getDelegate().updateTriggerStateFromOtherState(conn, triggerKey, newState, STATE_ERROR) [FD]
+Line_4 $$ String newState = STATE_WAITING --> Line_8 $$ getDelegate().updateTriggerStateFromOtherState(conn, triggerKey, newState, STATE_ERROR) [FD]
+Line_6 $$ newState = STATE_PAUSED --> Line_8 $$ getDelegate().updateTriggerStateFromOtherState(conn, triggerKey, newState, STATE_ERROR) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void onErrorNoSubscribeCrash() --> Line_3 $$ List<Throwable> list = TestCommonHelper.trackPluginErrors() [CD]
+Line_5 $$ CrashDummy cd = new CrashDummy(true, 1, false, false, false) --> Line_6 $$ SafeObserver<Object> so = cd.toSafe() [FD]
+Line_6 $$ SafeObserver<Object> so = cd.toSafe() --> Line_7 $$ so.onError(new TestException()) [FD]
+Line_3 $$ List<Throwable> list = TestCommonHelper.trackPluginErrors() --> Line_8 $$ TestCommonHelper.assertError(list, 0, CompositeException.class) [FD]
+Line_3 $$ List<Throwable> list = TestCommonHelper.trackPluginErrors() --> Line_9 $$ List<Throwable> ce = TestCommonHelper.compositeList(list.get(0)) [FD]
+Line_9 $$ List<Throwable> ce = TestCommonHelper.compositeList(list.get(0)) --> Line_10 $$ TestCommonHelper.assertError(ce, 0, TestException.class) [FD]
+Line_9 $$ List<Throwable> ce = TestCommonHelper.compositeList(list.get(0)) --> Line_11 $$ TestCommonHelper.assertError(ce, 1, NullPointerException.class, "Subscription not set!") [FD]

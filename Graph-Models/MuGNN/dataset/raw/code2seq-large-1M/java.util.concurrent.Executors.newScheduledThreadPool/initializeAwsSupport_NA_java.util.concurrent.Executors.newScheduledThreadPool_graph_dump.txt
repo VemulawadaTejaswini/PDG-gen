@@ -1,0 +1,8 @@
+Line_2 $$ void initializeAwsSupport() --> Line_3 $$ if (!awsEnabled) [CD]
+Line_3 $$ if (!awsEnabled) --> Line_4 $$ return [CD]
+Line_2 $$ void initializeAwsSupport() --> Line_6 $$ if (!loadBootMetaData()) [CD]
+Line_2 $$ void initializeAwsSupport() --> Line_9 $$ if (!fetchRoleCredentials()) [CD]
+Line_2 $$ void initializeAwsSupport() --> Line_12 $$ int credsUpdateTime = ZTSUtils.retrieveConfigSetting(ZTSConsts.ZTS_PROP_AWS_CREDS_UPDATE_TIMEOUT, 900) [CD]
+Line_2 $$ void initializeAwsSupport() --> Line_13 $$ scheduledThreadPool = Executors.newScheduledThreadPool(1) [CD]
+Line_2 $$ void initializeAwsSupport() --> Line_14 $$ scheduledThreadPool.scheduleAtFixedRate(new RoleCredentialsFetcher(), credsUpdateTime, credsUpdateTime, TimeUnit.SECONDS) [CD]
+Line_12 $$ int credsUpdateTime = ZTSUtils.retrieveConfigSetting(ZTSConsts.ZTS_PROP_AWS_CREDS_UPDATE_TIMEOUT, 900) --> Line_14 $$ scheduledThreadPool.scheduleAtFixedRate(new RoleCredentialsFetcher(), credsUpdateTime, credsUpdateTime, TimeUnit.SECONDS) [FD]

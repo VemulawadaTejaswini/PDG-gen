@@ -1,0 +1,5 @@
+Line_2 $$ private Stream<TagDocument> lookupTags(final Filter filter) --> Line_3 $$ final Lock l = lock.readLock() [CD]
+Line_2 $$ private Stream<TagDocument> lookupTags(final Filter filter) --> Line_4 $$ l.lock() [CD]
+Line_3 $$ final Lock l = lock.readLock() --> Line_4 $$ l.lock() [FD]
+Line_2 $$ private Stream<TagDocument> lookupTags(final Filter filter) --> Line_5 $$ return tagIndex.values().stream().filter( e -> filter.apply(e.series)).onClose(l::<>unlock) [FD]
+Line_2 $$ private Stream<TagDocument> lookupTags(final Filter filter) --> Line_5 $$ return tagIndex.values().stream().filter( e -> filter.apply(e.series)).onClose(l::<>unlock) [CD]

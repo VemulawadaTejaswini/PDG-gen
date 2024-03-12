@@ -1,0 +1,6 @@
+Line_2 $$ public ScheduledFuture<?> scheduleAtFixedRate(ProcessingTimeCallback callback, long initialDelay, long period) --> Line_3 $$ long nextTimestamp = getCurrentProcessingTime() + initialDelay [CD]
+Line_2 $$ public ScheduledFuture<?> scheduleAtFixedRate(ProcessingTimeCallback callback, long initialDelay, long period) --> Line_5 $$ return timerService.scheduleAtFixedRate(new RepeatedTriggerTask(status, task, checkpointLock, callback, nextTimestamp, period), initialDelay, period, TimeUnit.MILLISECONDS) [FD]
+Line_7 $$ final int status = this.status.get() --> Line_8 $$ if (status == STATUS_QUIESCED) [FD]
+Line_8 $$ if (status == STATUS_QUIESCED) --> Line_9 $$ return new NeverCompleteFuture(initialDelay) [CD]
+Line_8 $$ if (status == STATUS_QUIESCED) --> Line_10 $$ if (status == STATUS_SHUTDOWN) [CD]
+Line_7 $$ final int status = this.status.get() --> Line_10 $$ if (status == STATUS_SHUTDOWN) [FD]

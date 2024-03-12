@@ -1,0 +1,8 @@
+Line_2 $$ private String extractFileName(Part part) --> Line_3 $$ String contentDisp = part.getHeader("content-disposition") [CD]
+Line_2 $$ private String extractFileName(Part part) --> Line_3 $$ String contentDisp = part.getHeader("content-disposition") [FD]
+Line_2 $$ private String extractFileName(Part part) --> Line_4 $$ String[] items = contentDisp.split(";") [CD]
+Line_3 $$ String contentDisp = part.getHeader("content-disposition") --> Line_4 $$ String[] items = contentDisp.split(";") [FD]
+Line_5 $$ for (String s : items) --> Line_6 $$ if (s.trim().startsWith("filename")) [FD]
+Line_6 $$ if (s.trim().startsWith("filename")) --> Line_7 $$ return s.substring(s.indexOf("=") + 2, s.length() - 1) [CD]
+Line_5 $$ for (String s : items) --> Line_7 $$ return s.substring(s.indexOf("=") + 2, s.length() - 1) [FD]
+Line_2 $$ private String extractFileName(Part part) --> Line_10 $$ return "" [CD]

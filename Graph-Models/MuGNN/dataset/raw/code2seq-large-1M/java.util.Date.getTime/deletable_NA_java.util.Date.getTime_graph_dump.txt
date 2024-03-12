@@ -1,0 +1,6 @@
+Line_2 $$ public static List<UserError> deletable() --> Line_3 $$ List<UserError> userErrors = new Select().from(UserError.class).where("severity < ?", 3).where("timestamp < ?", (new Date().getTime() - 1000 * 60 * 60 * 24)).orderBy("timestamp desc").execute() [CD]
+Line_2 $$ public static List<UserError> deletable() --> Line_4 $$ List<UserError> highErrors = new Select().from(UserError.class).where("severity = ?", 3).where("timestamp < ?", (new Date().getTime() - 1000 * 60 * 60 * 24 * 3)).orderBy("timestamp desc").execute() [CD]
+Line_2 $$ public static List<UserError> deletable() --> Line_5 $$ List<UserError> events = new Select().from(UserError.class).where("severity > ?", 3).where("timestamp < ?", (new Date().getTime() - 1000 * 60 * 60 * 24 * 7)).orderBy("timestamp desc").execute() [CD]
+Line_2 $$ public static List<UserError> deletable() --> Line_6 $$ userErrors.addAll(highErrors) [CD]
+Line_2 $$ public static List<UserError> deletable() --> Line_7 $$ userErrors.addAll(events) [CD]
+Line_2 $$ public static List<UserError> deletable() --> Line_8 $$ return userErrors [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void flatMapDelayErrors() throws Exception --> Line_3 $$ AtomicInteger onNextSignals = new AtomicInteger() [CD]
+Line_2 $$ public void flatMapDelayErrors() throws Exception --> Line_4 $$ StepVerifier.create(Flux.range(0, 5).hide().flatMapDelayError( i -> Mono.just(i).doOnNext( e -> onNextSignals.incrementAndGet()).handle(( s1,  sink) -> [CD]
+Line_3 $$ AtomicInteger onNextSignals = new AtomicInteger() --> Line_4 $$ StepVerifier.create(Flux.range(0, 5).hide().flatMapDelayError( i -> Mono.just(i).doOnNext( e -> onNextSignals.incrementAndGet()).handle(( s1,  sink) -> [FD]
+Line_5 $$ if (s1 == 1 || s1 == 3) --> Line_6 $$ sink.error(new RuntimeException("Error: " + s1)) [CD]
+Line_5 $$ if (s1 == 1 || s1 == 3) --> Line_8 $$ sink.next(s1) [CD]
+Line_2 $$ public void flatMapDelayErrors() throws Exception --> Line_14 $$ assertThat(onNextSignals.get()).isEqualTo(10) [CD]
+Line_3 $$ AtomicInteger onNextSignals = new AtomicInteger() --> Line_14 $$ assertThat(onNextSignals.get()).isEqualTo(10) [FD]

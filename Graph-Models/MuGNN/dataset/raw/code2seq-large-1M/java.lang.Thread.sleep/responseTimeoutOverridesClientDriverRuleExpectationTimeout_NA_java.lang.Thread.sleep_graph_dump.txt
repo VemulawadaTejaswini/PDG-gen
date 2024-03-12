@@ -1,0 +1,8 @@
+Line_2 $$ public void responseTimeoutOverridesClientDriverRuleExpectationTimeout() throws InterruptedException --> Line_3 $$ final ClientDriverRule driver = new ClientDriverRule().expectResponsesWithin(5, TimeUnit.MINUTES) [CD]
+Line_2 $$ public void responseTimeoutOverridesClientDriverRuleExpectationTimeout() throws InterruptedException --> Line_4 $$ final ClientDriverResponse response = giveResponse("", null) [CD]
+Line_2 $$ public void responseTimeoutOverridesClientDriverRuleExpectationTimeout() throws InterruptedException --> Line_5 $$ driver.addExpectation(onRequestTo("/path"), response.within(1, TimeUnit.MILLISECONDS)) [CD]
+Line_3 $$ final ClientDriverRule driver = new ClientDriverRule().expectResponsesWithin(5, TimeUnit.MINUTES) --> Line_5 $$ driver.addExpectation(onRequestTo("/path"), response.within(1, TimeUnit.MILLISECONDS)) [FD]
+Line_4 $$ final ClientDriverResponse response = giveResponse("", null) --> Line_5 $$ driver.addExpectation(onRequestTo("/path"), response.within(1, TimeUnit.MILLISECONDS)) [FD]
+Line_2 $$ public void responseTimeoutOverridesClientDriverRuleExpectationTimeout() throws InterruptedException --> Line_6 $$ Thread.sleep(5) [CD]
+Line_2 $$ public void responseTimeoutOverridesClientDriverRuleExpectationTimeout() throws InterruptedException --> Line_7 $$ assertThat(response.hasNotExpired(), is(false)) [CD]
+Line_4 $$ final ClientDriverResponse response = giveResponse("", null) --> Line_7 $$ assertThat(response.hasNotExpired(), is(false)) [FD]

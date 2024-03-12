@@ -1,0 +1,5 @@
+Line_2 $$ public Set<Rotation> readRotationsFromZooKeeper(ApplicationId application) --> Line_4 $$ Optional<byte[]> data = curator.getData(rotationsOf(application)) [FD]
+Line_4 $$ Optional<byte[]> data = curator.getData(rotationsOf(application)) --> Line_5 $$ if (!data.isPresent() || data.get().length == 0) [FD]
+Line_5 $$ if (!data.isPresent() || data.get().length == 0) --> Line_6 $$ return Collections.emptySet() [CD]
+Line_4 $$ Optional<byte[]> data = curator.getData(rotationsOf(application)) --> Line_7 $$ Set<String> rotationIds = new ObjectMapper().readValue(data.get(), new TypeReference<Set<String>>() [FD]
+Line_7 $$ Set<String> rotationIds = new ObjectMapper().readValue(data.get(), new TypeReference<Set<String>>() --> Line_9 $$ return rotationIds.stream().map(Rotation::<>new).collect(Collectors.toSet()) [FD]

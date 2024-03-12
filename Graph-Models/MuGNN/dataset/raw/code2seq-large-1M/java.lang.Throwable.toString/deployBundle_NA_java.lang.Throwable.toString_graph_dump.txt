@@ -1,0 +1,8 @@
+Line_2 $$ public void deployBundle(String bundle, boolean start, boolean deployOptional) throws MBeanException --> Line_5 $$ String[] target = getTarget(bundle) [FD]
+Line_6 $$ Resource resource = selectNewestVersion(searchRepository(repositoryAdmin, target[0], target[1])) --> Line_7 $$ if (resource == null) [FD]
+Line_4 $$ Resolver resolver = repositoryAdmin.resolver() --> Line_10 $$ resolver.add(resource) [FD]
+Line_6 $$ Resource resource = selectNewestVersion(searchRepository(repositoryAdmin, target[0], target[1])) --> Line_10 $$ resolver.add(resource) [FD]
+Line_4 $$ Resolver resolver = repositoryAdmin.resolver() --> Line_11 $$ if ((resolver.getAddedResources() != null) && (resolver.getAddedResources().length > 0)) [FD]
+Line_11 $$ if ((resolver.getAddedResources() != null) && (resolver.getAddedResources().length > 0)) --> Line_12 $$ if (resolver.resolve(deployOptional ? 0 : Resolver.NO_OPTIONAL_RESOURCES)) [CD]
+Line_4 $$ Resolver resolver = repositoryAdmin.resolver() --> Line_12 $$ if (resolver.resolve(deployOptional ? 0 : Resolver.NO_OPTIONAL_RESOURCES)) [FD]
+Line_4 $$ Resolver resolver = repositoryAdmin.resolver() --> Line_14 $$ resolver.deploy(start ? Resolver.START : 0) [FD]

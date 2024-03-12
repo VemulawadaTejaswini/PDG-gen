@@ -1,0 +1,5 @@
+Line_2 $$ public void testCloseDisconnectedCb() throws Exception --> Line_3 $$ final CountDownLatch cbLatch = new CountDownLatch(1) [CD]
+Line_8 $$ opts.disconnectedCb = new DisconnectedCallback() --> Line_10 $$ cbLatch.countDown() [CD]
+Line_3 $$ final CountDownLatch cbLatch = new CountDownLatch(1) --> Line_10 $$ cbLatch.countDown() [FD]
+Line_6 $$ Options opts = new Options.Builder(Nats.defaultOptions()).noReconnect().build() --> Line_13 $$ try (Connection nc = opts.connect()) [FD]
+Line_3 $$ final CountDownLatch cbLatch = new CountDownLatch(1) --> Line_15 $$ assertTrue("Disconnected callback not triggered", cbLatch.await(5, TimeUnit.SECONDS)) [FD]

@@ -1,0 +1,8 @@
+Line_4 $$ String typeParams = Strings.repeat('?', size).replaceAll("\\?", "?, ") --> Line_5 $$ typeParams = typeParams.substring(0, typeParams.length() - 2) [FD]
+Line_7 $$ String name = "tuple" + size --> Line_8 $$ equalsSpecBuilder.addStatement("$L $L = ($L) o", wildcardClassName, name, wildcardClassName) [FD]
+Line_9 $$ for (int i = 1; i < size; i++) --> Line_10 $$ String value = VALUE + i [CD]
+Line_9 $$ for (int i = 1; i < size; i++) --> Line_11 $$ equalsSpecBuilder.beginControlFlow("if ($L != null ? !$L.equals($L.$L) : $L.$L != null)", value, value, name, value, name, value).addStatement("return false").endControlFlow() [CD]
+Line_10 $$ String value = VALUE + i --> Line_11 $$ equalsSpecBuilder.beginControlFlow("if ($L != null ? !$L.equals($L.$L) : $L.$L != null)", value, value, name, value, name, value).addStatement("return false").endControlFlow() [FD]
+Line_7 $$ String name = "tuple" + size --> Line_11 $$ equalsSpecBuilder.beginControlFlow("if ($L != null ? !$L.equals($L.$L) : $L.$L != null)", value, value, name, value, name, value).addStatement("return false").endControlFlow() [FD]
+Line_13 $$ String lastValue = VALUE + size --> Line_14 $$ equalsSpecBuilder.addStatement("return $L != null ? $L.equals($L.$L) : $L.$L == null", lastValue, lastValue, name, lastValue, name, lastValue) [FD]
+Line_7 $$ String name = "tuple" + size --> Line_14 $$ equalsSpecBuilder.addStatement("return $L != null ? $L.equals($L.$L) : $L.$L == null", lastValue, lastValue, name, lastValue, name, lastValue) [FD]

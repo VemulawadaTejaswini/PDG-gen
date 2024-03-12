@@ -1,0 +1,8 @@
+Line_3 $$ for (Part part : foundParts) --> Line_4 $$ if (!MessageHelper.isCompletePartAvailable(part)) [FD]
+Line_4 $$ if (!MessageHelper.isCompletePartAvailable(part)) --> Line_5 $$ addErrorAnnotation(part, CryptoError.OPENPGP_ENCRYPTED_BUT_INCOMPLETE, MessageHelper.createEmptyPart()) [CD]
+Line_3 $$ for (Part part : foundParts) --> Line_5 $$ addErrorAnnotation(part, CryptoError.OPENPGP_ENCRYPTED_BUT_INCOMPLETE, MessageHelper.createEmptyPart()) [FD]
+Line_3 $$ for (Part part : foundParts) --> Line_8 $$ if (MessageDecryptVerifier.isPgpMimeEncryptedOrSignedPart(part)) [FD]
+Line_8 $$ if (MessageDecryptVerifier.isPgpMimeEncryptedOrSignedPart(part)) --> Line_9 $$ CryptoPart cryptoPart = new CryptoPart(CryptoPartType.PGP_ENCRYPTED, part) [CD]
+Line_8 $$ if (MessageDecryptVerifier.isPgpMimeEncryptedOrSignedPart(part)) --> Line_10 $$ partsToDecryptOrVerify.add(cryptoPart) [CD]
+Line_9 $$ CryptoPart cryptoPart = new CryptoPart(CryptoPartType.PGP_ENCRYPTED, part) --> Line_10 $$ partsToDecryptOrVerify.add(cryptoPart) [FD]
+Line_3 $$ for (Part part : foundParts) --> Line_13 $$ addErrorAnnotation(part, CryptoError.ENCRYPTED_BUT_UNSUPPORTED, MessageHelper.createEmptyPart()) [FD]

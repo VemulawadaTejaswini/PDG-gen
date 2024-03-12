@@ -1,0 +1,6 @@
+Line_2 $$ public boolean isLocked() --> Line_3 $$ boolean lck = !realLocker.readLock().tryLock() [CD]
+Line_2 $$ public boolean isLocked() --> Line_4 $$ boolean result = lck || isLocked.get() [CD]
+Line_2 $$ public boolean isLocked() --> Line_5 $$ if (!result) [CD]
+Line_4 $$ boolean result = lck || isLocked.get() --> Line_5 $$ if (!result) [FD]
+Line_5 $$ if (!result) --> Line_6 $$ isReadLocked.set(true) [CD]
+Line_2 $$ public boolean isLocked() --> Line_7 $$ return result [CD]

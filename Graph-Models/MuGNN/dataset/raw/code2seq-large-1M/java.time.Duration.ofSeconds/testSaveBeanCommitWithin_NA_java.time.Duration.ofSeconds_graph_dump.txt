@@ -1,0 +1,8 @@
+Line_2 $$ public void testSaveBeanCommitWithin() throws IOException, SolrServerException --> Line_3 $$ when(solrClientMock.add(eq(COLLECTION_NAME), any(SolrInputDocument.class), eq(10000))).thenReturn(new UpdateResponse()) [CD]
+Line_2 $$ public void testSaveBeanCommitWithin() throws IOException, SolrServerException --> Line_4 $$ UpdateResponse updateResponse = solrTemplate.saveBean(COLLECTION_NAME, SIMPLE_OBJECT, Duration.ofSeconds(10)) [CD]
+Line_2 $$ public void testSaveBeanCommitWithin() throws IOException, SolrServerException --> Line_5 $$ assertNotNull(updateResponse) [CD]
+Line_4 $$ UpdateResponse updateResponse = solrTemplate.saveBean(COLLECTION_NAME, SIMPLE_OBJECT, Duration.ofSeconds(10)) --> Line_5 $$ assertNotNull(updateResponse) [FD]
+Line_2 $$ public void testSaveBeanCommitWithin() throws IOException, SolrServerException --> Line_6 $$ ArgumentCaptor<SolrInputDocument> captor = ArgumentCaptor.forClass(SolrInputDocument.class) [CD]
+Line_2 $$ public void testSaveBeanCommitWithin() throws IOException, SolrServerException --> Line_7 $$ verify(solrClientMock, times(1)).add(eq(COLLECTION_NAME), captor.capture(), eq(10000)) [CD]
+Line_2 $$ public void testSaveBeanCommitWithin() throws IOException, SolrServerException --> Line_8 $$ assertEquals(SIMPLE_OBJECT.getId(), captor.getValue().getFieldValue("id")) [CD]
+Line_2 $$ public void testSaveBeanCommitWithin() throws IOException, SolrServerException --> Line_9 $$ assertEquals(SIMPLE_OBJECT.getValue(), captor.getValue().getFieldValue("value")) [CD]

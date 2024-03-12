@@ -1,0 +1,8 @@
+Line_4 $$ JobRoot root = boot().jobRoot() --> Line_5 $$ root.addItem(tx.addVertex(NodeMigrationJobImpl.class)) [FD]
+Line_3 $$ try (Tx tx = tx()) --> Line_5 $$ root.addItem(tx.addVertex(NodeMigrationJobImpl.class)) [FD]
+Line_4 $$ JobRoot root = boot().jobRoot() --> Line_6 $$ root.addItem(tx.addVertex(MicronodeMigrationJobImpl.class)) [FD]
+Line_3 $$ try (Tx tx = tx()) --> Line_6 $$ root.addItem(tx.addVertex(MicronodeMigrationJobImpl.class)) [FD]
+Line_4 $$ JobRoot root = boot().jobRoot() --> Line_7 $$ root.addItem(tx.addVertex(ReleaseMigrationJobImpl.class)) [FD]
+Line_3 $$ try (Tx tx = tx()) --> Line_7 $$ root.addItem(tx.addVertex(ReleaseMigrationJobImpl.class)) [FD]
+Line_4 $$ JobRoot root = boot().jobRoot() --> Line_8 $$ List<String> list = TestUtils.toList(root.findAllIt()).stream().map( i -> i.getClass().getName()).collect(Collectors.toList()) [FD]
+Line_8 $$ List<String> list = TestUtils.toList(root.findAllIt()).stream().map( i -> i.getClass().getName()).collect(Collectors.toList()) --> Line_9 $$ assertThat(list).containsExactly(NodeMigrationJobImpl.class.getName(), MicronodeMigrationJobImpl.class.getName(), ReleaseMigrationJobImpl.class.getName()) [FD]

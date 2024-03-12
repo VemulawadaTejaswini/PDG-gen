@@ -1,0 +1,8 @@
+Line_2 $$ public AsyncFuture<Void> run(final ShellIO io, TaskParameters base) throws Exception --> Line_3 $$ final Parameters params = (Parameters) base [CD]
+Line_2 $$ public AsyncFuture<Void> run(final ShellIO io, TaskParameters base) throws Exception --> Line_4 $$ final ResolvableFuture<Void> future = async.future() [CD]
+Line_2 $$ public AsyncFuture<Void> run(final ShellIO io, TaskParameters base) throws Exception --> Line_5 $$ final LocalDate date = params.date.map(LocalDate::<>parse).orElseGet(LocalDate::<>now) [CD]
+Line_2 $$ public AsyncFuture<Void> run(final ShellIO io, TaskParameters base) throws Exception --> Line_6 $$ metricAnalytics.seriesHits(date).observe(AsyncObserver.bind(future,  series -> [CD]
+Line_5 $$ final LocalDate date = params.date.map(LocalDate::<>parse).orElseGet(LocalDate::<>now) --> Line_6 $$ metricAnalytics.seriesHits(date).observe(AsyncObserver.bind(future,  series -> [FD]
+Line_4 $$ final ResolvableFuture<Void> future = async.future() --> Line_6 $$ metricAnalytics.seriesHits(date).observe(AsyncObserver.bind(future,  series -> [FD]
+Line_2 $$ public AsyncFuture<Void> run(final ShellIO io, TaskParameters base) throws Exception --> Line_8 $$ io.out().println(mapper.writeValueAsString(new AnalyticsHits(series.getSeries(), series.getSeries().getHashCode().toString(), series.getHits()))) [FD]
+Line_2 $$ public AsyncFuture<Void> run(final ShellIO io, TaskParameters base) throws Exception --> Line_14 $$ return future [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void run() --> Line_3 $$ boolean refreshSuccess = true [CD]
+Line_4 $$ for (Env env : allEnvs) --> Line_5 $$ boolean currentEnvRefreshResult = refreshServerAddressCache(env) [FD]
+Line_3 $$ boolean refreshSuccess = true --> Line_6 $$ refreshSuccess = refreshSuccess && currentEnvRefreshResult [FD]
+Line_5 $$ boolean currentEnvRefreshResult = refreshServerAddressCache(env) --> Line_6 $$ refreshSuccess = refreshSuccess && currentEnvRefreshResult [FD]
+Line_2 $$ public void run() --> Line_8 $$ if (refreshSuccess) [CD]
+Line_8 $$ if (refreshSuccess) --> Line_9 $$ refreshServiceAddressService.schedule(new RefreshAdminServerAddressTask(), NORMAL_REFRESH_INTERVAL, TimeUnit.MILLISECONDS) [CD]
+Line_8 $$ if (refreshSuccess) --> Line_11 $$ refreshServiceAddressService.schedule(new RefreshAdminServerAddressTask(), OFFLINE_REFRESH_INTERVAL, TimeUnit.MILLISECONDS) [CD]

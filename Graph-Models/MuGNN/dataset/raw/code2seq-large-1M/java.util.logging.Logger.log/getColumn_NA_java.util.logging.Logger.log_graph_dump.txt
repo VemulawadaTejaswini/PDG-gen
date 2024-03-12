@@ -1,0 +1,7 @@
+Line_2 $$ public int getColumn(BucketId bucketId) --> Line_3 $$ int ret = (int) (bucketId.getId() & (getNumBuckets(numBucketBits) - 1)) [FD]
+Line_2 $$ public int getColumn(BucketId bucketId) --> Line_3 $$ int ret = (int) (bucketId.getId() & (getNumBuckets(numBucketBits) - 1)) [CD]
+Line_2 $$ public int getColumn(BucketId bucketId) --> Line_4 $$ if (ret >= bucketToColumn.length) [CD]
+Line_3 $$ int ret = (int) (bucketId.getId() & (getNumBuckets(numBucketBits) - 1)) --> Line_4 $$ if (ret >= bucketToColumn.length) [FD]
+Line_4 $$ if (ret >= bucketToColumn.length) --> Line_5 $$ log.log(Level.SEVERE, "The bucket distribution map is not in sync with the number of bucket bits. " + "This should never happen! Distribution is broken!!") [CD]
+Line_4 $$ if (ret >= bucketToColumn.length) --> Line_6 $$ return 0 [CD]
+Line_2 $$ public int getColumn(BucketId bucketId) --> Line_8 $$ return bucketToColumn[ret] [CD]

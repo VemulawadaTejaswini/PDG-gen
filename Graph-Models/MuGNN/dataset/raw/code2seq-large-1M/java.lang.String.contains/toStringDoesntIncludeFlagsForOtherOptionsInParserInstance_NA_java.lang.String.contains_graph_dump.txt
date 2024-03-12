@@ -1,0 +1,8 @@
+Line_2 $$ public void toStringDoesntIncludeFlagsForOtherOptionsInParserInstance() throws Exception --> Line_3 $$ OptionsParser parser = newOptionsParser(ExampleFoo.class, ExampleBaz.class) [CD]
+Line_2 $$ public void toStringDoesntIncludeFlagsForOtherOptionsInParserInstance() throws Exception --> Line_4 $$ parser.parse("--foo", "foo", "--bar", "43", "--baz", "baz") [CD]
+Line_2 $$ public void toStringDoesntIncludeFlagsForOtherOptionsInParserInstance() throws Exception --> Line_5 $$ String fooString = parser.getOptions(ExampleFoo.class).toString() [CD]
+Line_2 $$ public void toStringDoesntIncludeFlagsForOtherOptionsInParserInstance() throws Exception --> Line_6 $$ if (!fooString.contains("foo=foo") || !fooString.contains("bar=43") || !fooString.contains("ExampleFoo") || fooString.contains("baz=baz")) [CD]
+Line_6 $$ if (!fooString.contains("foo=foo") || !fooString.contains("bar=43") || !fooString.contains("ExampleFoo") || fooString.contains("baz=baz")) --> Line_7 $$ fail("ExampleFoo.toString() is incorrect: " + fooString) [CD]
+Line_2 $$ public void toStringDoesntIncludeFlagsForOtherOptionsInParserInstance() throws Exception --> Line_9 $$ String bazString = parser.getOptions(ExampleBaz.class).toString() [CD]
+Line_2 $$ public void toStringDoesntIncludeFlagsForOtherOptionsInParserInstance() throws Exception --> Line_10 $$ if (!bazString.contains("baz=baz") || !bazString.contains("ExampleBaz") || bazString.contains("foo=foo") || bazString.contains("bar=43")) [CD]
+Line_10 $$ if (!bazString.contains("baz=baz") || !bazString.contains("ExampleBaz") || bazString.contains("foo=foo") || bazString.contains("bar=43")) --> Line_11 $$ fail("ExampleBaz.toString() is incorrect: " + bazString) [CD]

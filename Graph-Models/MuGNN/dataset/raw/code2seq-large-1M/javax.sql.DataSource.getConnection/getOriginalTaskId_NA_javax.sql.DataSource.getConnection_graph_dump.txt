@@ -1,0 +1,8 @@
+Line_2 $$ private String getOriginalTaskId(final String taskId) --> Line_3 $$ String sql = String.format("SELECT original_task_id FROM %s WHERE task_id = '%s' and state='%s' LIMIT 1", TABLE_JOB_STATUS_TRACE_LOG, taskId, State.TASK_STAGING) [FD]
+Line_2 $$ private String getOriginalTaskId(final String taskId) --> Line_3 $$ String sql = String.format("SELECT original_task_id FROM %s WHERE task_id = '%s' and state='%s' LIMIT 1", TABLE_JOB_STATUS_TRACE_LOG, taskId, State.TASK_STAGING) [CD]
+Line_2 $$ private String getOriginalTaskId(final String taskId) --> Line_4 $$ String result = "" [CD]
+Line_3 $$ String sql = String.format("SELECT original_task_id FROM %s WHERE task_id = '%s' and state='%s' LIMIT 1", TABLE_JOB_STATUS_TRACE_LOG, taskId, State.TASK_STAGING) --> Line_5 $$ try (Connection conn = dataSource.getConnection(); [FD]
+Line_5 $$ try (Connection conn = dataSource.getConnection(); --> Line_8 $$ if (resultSet.next()) [FD]
+Line_8 $$ if (resultSet.next()) --> Line_9 $$ return resultSet.getString("original_task_id") [CD]
+Line_5 $$ try (Connection conn = dataSource.getConnection(); --> Line_9 $$ return resultSet.getString("original_task_id") [FD]
+Line_2 $$ private String getOriginalTaskId(final String taskId) --> Line_14 $$ return result [CD]

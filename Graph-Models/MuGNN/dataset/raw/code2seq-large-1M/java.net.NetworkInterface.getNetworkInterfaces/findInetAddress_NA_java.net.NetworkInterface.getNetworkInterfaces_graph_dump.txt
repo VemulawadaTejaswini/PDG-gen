@@ -1,0 +1,6 @@
+Line_2 $$ public static InetAddress findInetAddress() throws SocketException, UnknownHostException --> Line_3 $$ final Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces() [CD]
+Line_2 $$ public static InetAddress findInetAddress() throws SocketException, UnknownHostException --> Line_4 $$ if (interfaces == null) [CD]
+Line_3 $$ final Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces() --> Line_4 $$ if (interfaces == null) [FD]
+Line_4 $$ if (interfaces == null) --> Line_5 $$ return InetAddress.getLocalHost() [CD]
+Line_2 $$ public static InetAddress findInetAddress() throws SocketException, UnknownHostException --> Line_7 $$ return Collections.list(interfaces).stream().map(NetworkInterface::<>getInetAddresses).map(Collections::<>list).flatMap(Collection::<>stream).filter(Util.not(InetAddress::<>isLoopbackAddress)).min(getInetAddressComparator()).orElse(InetAddress.getLocalHost()) [CD]
+Line_3 $$ final Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces() --> Line_7 $$ return Collections.list(interfaces).stream().map(NetworkInterface::<>getInetAddresses).map(Collections::<>list).flatMap(Collection::<>stream).filter(Util.not(InetAddress::<>isLoopbackAddress)).min(getInetAddressComparator()).orElse(InetAddress.getLocalHost()) [FD]

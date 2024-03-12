@@ -1,0 +1,4 @@
+Line_2 $$ public void noCancelOnCompleteWhenSequenceUnexpected() --> Line_3 $$ LongAdder cancelled = new LongAdder() [CD]
+Line_2 $$ public void noCancelOnCompleteWhenSequenceUnexpected() --> Line_4 $$ assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> StepVerifier.create(Flux.just("foo").doOnCancel(cancelled::<>increment)).expectNextSequence(Arrays.asList("foo", "bar")).expectComplete().verify()).withMessageContaining("expectNextSequence") [CD]
+Line_2 $$ public void noCancelOnCompleteWhenSequenceUnexpected() --> Line_5 $$ assertThat(cancelled.intValue()).overridingErrorMessage("the expectNextSequence assertion caused a cancellation").isZero() [CD]
+Line_3 $$ LongAdder cancelled = new LongAdder() --> Line_5 $$ assertThat(cancelled.intValue()).overridingErrorMessage("the expectNextSequence assertion caused a cancellation").isZero() [FD]

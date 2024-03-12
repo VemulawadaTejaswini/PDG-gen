@@ -1,0 +1,7 @@
+Line_6 $$ if (ENTRIES.size() > instances.size() * SPAWN_THRESHOLD) --> Line_7 $$ if (instances.size() < MAX_INSTANCES) [CD]
+Line_7 $$ if (instances.size() < MAX_INSTANCES) --> Line_8 $$ BatchWriteBehind bwb = new BatchWriteBehind(pointValueService) [CD]
+Line_7 $$ if (instances.size() < MAX_INSTANCES) --> Line_9 $$ instances.add(bwb) [CD]
+Line_8 $$ BatchWriteBehind bwb = new BatchWriteBehind(pointValueService) --> Line_9 $$ instances.add(bwb) [FD]
+Line_7 $$ if (instances.size() < MAX_INSTANCES) --> Line_10 $$ INSTANCES_MONITOR.setValue(instances.size()) [CD]
+Line_8 $$ BatchWriteBehind bwb = new BatchWriteBehind(pointValueService) --> Line_12 $$ Common.ctx.getBackgroundProcessing().addWorkItem(bwb) [FD]
+Line_8 $$ BatchWriteBehind bwb = new BatchWriteBehind(pointValueService) --> Line_14 $$ instances.remove(bwb) [FD]

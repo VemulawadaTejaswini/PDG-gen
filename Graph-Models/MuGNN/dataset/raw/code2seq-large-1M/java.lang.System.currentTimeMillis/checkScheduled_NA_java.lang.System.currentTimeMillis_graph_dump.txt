@@ -1,0 +1,8 @@
+Line_2 $$ public void checkScheduled() --> Line_3 $$ if (scheduledCommercialTime > 0) [CD]
+Line_3 $$ if (scheduledCommercialTime > 0) --> Line_4 $$ long timeLeft = scheduledCommercialTime - System.currentTimeMillis() [CD]
+Line_3 $$ if (scheduledCommercialTime > 0) --> Line_5 $$ if (timeLeft <= 0) [CD]
+Line_4 $$ long timeLeft = scheduledCommercialTime - System.currentTimeMillis() --> Line_5 $$ if (timeLeft <= 0) [FD]
+Line_5 $$ if (timeLeft <= 0) --> Line_6 $$ runCommercialNow(scheduledCommercialLength) [CD]
+Line_5 $$ if (timeLeft <= 0) --> Line_7 $$ if (System.currentTimeMillis() - lastCommercialRunAttempt > COMMERCIAL_RUN_ATTEMPT_DELAY) [CD]
+Line_7 $$ if (System.currentTimeMillis() - lastCommercialRunAttempt > COMMERCIAL_RUN_ATTEMPT_DELAY) --> Line_8 $$ setCommercialResult(String.format("Commercial (%ds) scheduled to run in %s", scheduledCommercialLength, DateTime.duration(timeLeft, 2, 0))) [CD]
+Line_4 $$ long timeLeft = scheduledCommercialTime - System.currentTimeMillis() --> Line_8 $$ setCommercialResult(String.format("Commercial (%ds) scheduled to run in %s", scheduledCommercialLength, DateTime.duration(timeLeft, 2, 0))) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void exportToGcs(String tld, String domains) --> Line_3 $$ GcsFilename filename = new GcsFilename(gcsBucket, tld + ".txt") [CD]
+Line_2 $$ private void exportToGcs(String tld, String domains) --> Line_4 $$ GcsUtils cloudStorage = new GcsUtils(createGcsService(RetryParams.getDefaultInstance()), gcsBufferSize) [CD]
+Line_4 $$ GcsUtils cloudStorage = new GcsUtils(createGcsService(RetryParams.getDefaultInstance()), gcsBufferSize) --> Line_5 $$ try (OutputStream gcsOutput = cloudStorage.openOutputStream(filename); [FD]
+Line_3 $$ GcsFilename filename = new GcsFilename(gcsBucket, tld + ".txt") --> Line_5 $$ try (OutputStream gcsOutput = cloudStorage.openOutputStream(filename); [FD]
+Line_5 $$ try (OutputStream gcsOutput = cloudStorage.openOutputStream(filename); --> Line_7 $$ osWriter.write(domains) [FD]
+Line_2 $$ private void exportToGcs(String tld, String domains) --> Line_7 $$ osWriter.write(domains) [FD]
+Line_2 $$ private void exportToGcs(String tld, String domains) --> Line_9 $$ logger.severefmt(e, "Error exporting registered domains for TLD %s to GCS.", tld) [FD]
+Line_2 $$ private void exportToGcs(String tld, String domains) --> Line_11 $$ getContext().incrementCounter("domain lists written out to GCS") [CD]

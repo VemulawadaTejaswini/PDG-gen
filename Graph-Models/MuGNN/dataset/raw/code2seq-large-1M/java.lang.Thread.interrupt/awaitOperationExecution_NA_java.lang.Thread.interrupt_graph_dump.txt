@@ -1,0 +1,7 @@
+Line_2 $$ private void awaitOperationExecution(ModelNode op) --> Line_3 $$ Future<ModelNode> future = managementClient.getControllerClient().executeAsync(OperationBuilder.create(op, false).build(), null) [FD]
+Line_2 $$ private void awaitOperationExecution(ModelNode op) --> Line_3 $$ Future<ModelNode> future = managementClient.getControllerClient().executeAsync(OperationBuilder.create(op, false).build(), null) [CD]
+Line_3 $$ Future<ModelNode> future = managementClient.getControllerClient().executeAsync(OperationBuilder.create(op, false).build(), null) --> Line_5 $$ ModelNode response = future.get(TIMEOUT, TimeUnit.MILLISECONDS) [FD]
+Line_5 $$ ModelNode response = future.get(TIMEOUT, TimeUnit.MILLISECONDS) --> Line_6 $$ Assert.assertTrue(Operations.isSuccessfulOutcome(response)) [FD]
+Line_3 $$ Future<ModelNode> future = managementClient.getControllerClient().executeAsync(OperationBuilder.create(op, false).build(), null) --> Line_15 $$ if (!future.isDone()) [FD]
+Line_15 $$ if (!future.isDone()) --> Line_16 $$ future.cancel(true) [CD]
+Line_3 $$ Future<ModelNode> future = managementClient.getControllerClient().executeAsync(OperationBuilder.create(op, false).build(), null) --> Line_16 $$ future.cancel(true) [FD]

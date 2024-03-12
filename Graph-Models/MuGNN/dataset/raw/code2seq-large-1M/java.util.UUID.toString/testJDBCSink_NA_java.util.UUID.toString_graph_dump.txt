@@ -1,0 +1,8 @@
+Line_2 $$ public void testJDBCSink() --> Line_3 $$ String data = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void testJDBCSink() --> Line_4 $$ stream("dataSender", "trigger --payload='" + data + "'" + XD_DELIMITER + jdbcSink) [CD]
+Line_2 $$ public void testJDBCSink() --> Line_5 $$ String query = String.format("SELECT payload FROM %s", tableName) [CD]
+Line_2 $$ public void testJDBCSink() --> Line_6 $$ waitForTablePopulation(query, jdbcSink.getJdbcTemplate(), 1) [CD]
+Line_5 $$ String query = String.format("SELECT payload FROM %s", tableName) --> Line_6 $$ waitForTablePopulation(query, jdbcSink.getJdbcTemplate(), 1) [FD]
+Line_2 $$ public void testJDBCSink() --> Line_7 $$ assertEquals(data, jdbcSink.getJdbcTemplate().queryForObject(query, String.class)) [CD]
+Line_3 $$ String data = UUID.randomUUID().toString() --> Line_7 $$ assertEquals(data, jdbcSink.getJdbcTemplate().queryForObject(query, String.class)) [FD]
+Line_5 $$ String query = String.format("SELECT payload FROM %s", tableName) --> Line_7 $$ assertEquals(data, jdbcSink.getJdbcTemplate().queryForObject(query, String.class)) [FD]

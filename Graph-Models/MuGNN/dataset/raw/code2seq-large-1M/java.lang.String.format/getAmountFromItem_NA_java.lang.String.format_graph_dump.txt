@@ -1,0 +1,5 @@
+Line_2 $$ private BigDecimal getAmountFromItem(final List<InvoiceItem> items, final UUID itemId) throws PaymentControlApiException --> Line_4 $$ if (item.getId().equals(itemId)) [FD]
+Line_3 $$ for (final InvoiceItem item : items) --> Line_4 $$ if (item.getId().equals(itemId)) [FD]
+Line_4 $$ if (item.getId().equals(itemId)) --> Line_5 $$ return item.getAmount() [CD]
+Line_3 $$ for (final InvoiceItem item : items) --> Line_5 $$ return item.getAmount() [FD]
+Line_2 $$ private BigDecimal getAmountFromItem(final List<InvoiceItem> items, final UUID itemId) throws PaymentControlApiException --> Line_8 $$ throw new PaymentControlApiException(String.format("Unable to find invoice item for id %s", itemId), new PaymentApiException(ErrorCode.PAYMENT_PLUGIN_EXCEPTION, "Invalid plugin properties")) [FD]

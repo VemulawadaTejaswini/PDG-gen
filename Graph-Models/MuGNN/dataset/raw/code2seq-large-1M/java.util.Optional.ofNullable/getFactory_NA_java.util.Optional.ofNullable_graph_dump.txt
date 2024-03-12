@@ -1,0 +1,7 @@
+Line_2 $$ public SinkFactory getFactory() --> Line_3 $$ final RetrySettings retrySettings = this.retrySettings.createRetrySettings() [CD]
+Line_2 $$ public SinkFactory getFactory() --> Line_4 $$ final BatchingSettings batchingSettings = this.batchingSettings.createBatchingSettings() [CD]
+Line_2 $$ public SinkFactory getFactory() --> Line_5 $$ final Optional<String> emulator = Optional.ofNullable(System.getenv("PUBSUB_EMULATOR_HOST")) [CD]
+Line_2 $$ public SinkFactory getFactory() --> Line_6 $$ return emulator.map( hostport -> createFlushingPool(retrySettings, batchingSettings, hostport)).orElseGet(() -> createFlushingPool(retrySettings, batchingSettings)) [CD]
+Line_5 $$ final Optional<String> emulator = Optional.ofNullable(System.getenv("PUBSUB_EMULATOR_HOST")) --> Line_6 $$ return emulator.map( hostport -> createFlushingPool(retrySettings, batchingSettings, hostport)).orElseGet(() -> createFlushingPool(retrySettings, batchingSettings)) [FD]
+Line_3 $$ final RetrySettings retrySettings = this.retrySettings.createRetrySettings() --> Line_6 $$ return emulator.map( hostport -> createFlushingPool(retrySettings, batchingSettings, hostport)).orElseGet(() -> createFlushingPool(retrySettings, batchingSettings)) [FD]
+Line_4 $$ final BatchingSettings batchingSettings = this.batchingSettings.createBatchingSettings() --> Line_6 $$ return emulator.map( hostport -> createFlushingPool(retrySettings, batchingSettings, hostport)).orElseGet(() -> createFlushingPool(retrySettings, batchingSettings)) [FD]

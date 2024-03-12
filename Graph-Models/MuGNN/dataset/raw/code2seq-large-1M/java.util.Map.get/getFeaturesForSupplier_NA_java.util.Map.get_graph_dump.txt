@@ -1,0 +1,7 @@
+Line_2 $$ public List<GenericValue> getFeaturesForSupplier(LocalDispatcher dispatcher, String partyId) --> Line_3 $$ List<GenericValue> featureAppls = getStandardFeatureList() [CD]
+Line_2 $$ public List<GenericValue> getFeaturesForSupplier(LocalDispatcher dispatcher, String partyId) --> Line_4 $$ if (UtilValidate.isNotEmpty(featureAppls)) [CD]
+Line_3 $$ List<GenericValue> featureAppls = getStandardFeatureList() --> Line_4 $$ if (UtilValidate.isNotEmpty(featureAppls)) [FD]
+Line_2 $$ public List<GenericValue> getFeaturesForSupplier(LocalDispatcher dispatcher, String partyId) --> Line_6 $$ Map<String, Object> result = dispatcher.runSync("convertFeaturesForSupplier", UtilMisc.toMap("partyId", partyId, "productFeatures", featureAppls)) [FD]
+Line_3 $$ List<GenericValue> featureAppls = getStandardFeatureList() --> Line_6 $$ Map<String, Object> result = dispatcher.runSync("convertFeaturesForSupplier", UtilMisc.toMap("partyId", partyId, "productFeatures", featureAppls)) [FD]
+Line_6 $$ Map<String, Object> result = dispatcher.runSync("convertFeaturesForSupplier", UtilMisc.toMap("partyId", partyId, "productFeatures", featureAppls)) --> Line_7 $$ featuresForSupplier = UtilGenerics.checkList(result.get("convertedProductFeatures")) [FD]
+Line_2 $$ public List<GenericValue> getFeaturesForSupplier(LocalDispatcher dispatcher, String partyId) --> Line_12 $$ return featuresForSupplier [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public NfoResult getNfo(String guid) --> Line_3 $$ URI nfoUri = UriComponentsBuilder.fromHttpUrl(config.getHost()).pathSegment("viewNFO.php").queryParam("oid", guid).build().toUri() [FD]
+Line_2 $$ public NfoResult getNfo(String guid) --> Line_3 $$ URI nfoUri = UriComponentsBuilder.fromHttpUrl(config.getHost()).pathSegment("viewNFO.php").queryParam("oid", guid).build().toUri() [CD]
+Line_3 $$ URI nfoUri = UriComponentsBuilder.fromHttpUrl(config.getHost()).pathSegment("viewNFO.php").queryParam("oid", guid).build().toUri() --> Line_5 $$ String html = getAndStoreResultToDatabase(nfoUri, String.class, IndexerApiAccessType.NFO) [FD]
+Line_6 $$ Matcher matcher = NFO_PATTERN.matcher(html) --> Line_7 $$ if (!matcher.find()) [FD]
+Line_7 $$ if (!matcher.find()) --> Line_8 $$ return NfoResult.withoutNfo() [CD]
+Line_6 $$ Matcher matcher = NFO_PATTERN.matcher(html) --> Line_10 $$ return NfoResult.withNfo(matcher.group("nfo")) [FD]

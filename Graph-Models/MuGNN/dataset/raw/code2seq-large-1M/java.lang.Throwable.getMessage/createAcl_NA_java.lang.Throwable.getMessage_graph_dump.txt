@@ -1,0 +1,7 @@
+Line_2 $$ public ObjectAccessControl createAcl(ObjectAccessControl acl) --> Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_CREATE_OBJECT_ACL) [CD]
+Line_2 $$ public ObjectAccessControl createAcl(ObjectAccessControl acl) --> Line_4 $$ Scope scope = tracer.withSpan(span) [CD]
+Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_CREATE_OBJECT_ACL) --> Line_4 $$ Scope scope = tracer.withSpan(span) [FD]
+Line_2 $$ public ObjectAccessControl createAcl(ObjectAccessControl acl) --> Line_6 $$ return storage.objectAccessControls().insert(acl.getBucket(), acl.getObject(), acl).setGeneration(acl.getGeneration()).execute() [FD]
+Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_CREATE_OBJECT_ACL) --> Line_8 $$ span.setStatus(Status.UNKNOWN.withDescription(ex.getMessage())) [FD]
+Line_4 $$ Scope scope = tracer.withSpan(span) --> Line_11 $$ scope.close() [FD]
+Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_CREATE_OBJECT_ACL) --> Line_12 $$ span.end() [FD]

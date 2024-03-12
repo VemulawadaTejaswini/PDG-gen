@@ -1,0 +1,5 @@
+Line_2 $$ private Version getVersion(String versionUrl) throws IOException --> Line_3 $$ String txtContent = HttpUtil.getInstance().getTextByUrl(versionUrl + "?_" + System.currentTimeMillis() + "&v=" + BlogBuildInfoUtil.getBuildId()).trim() [CD]
+Line_2 $$ private Version getVersion(String versionUrl) throws IOException --> Line_4 $$ Version tLastVersion = new Gson().fromJson(txtContent, Version.class) [CD]
+Line_3 $$ String txtContent = HttpUtil.getInstance().getTextByUrl(versionUrl + "?_" + System.currentTimeMillis() + "&v=" + BlogBuildInfoUtil.getBuildId()).trim() --> Line_4 $$ Version tLastVersion = new Gson().fromJson(txtContent, Version.class) [FD]
+Line_2 $$ private Version getVersion(String versionUrl) throws IOException --> Line_5 $$ tLastVersion.setChangeLog(UpdateVersionPlugin.getChangeLog(tLastVersion.getVersion(), tLastVersion.getBuildId())) [CD]
+Line_2 $$ private Version getVersion(String versionUrl) throws IOException --> Line_6 $$ return tLastVersion [CD]

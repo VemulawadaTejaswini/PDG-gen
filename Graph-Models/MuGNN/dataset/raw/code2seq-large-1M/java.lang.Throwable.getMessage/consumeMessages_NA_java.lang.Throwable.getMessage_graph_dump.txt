@@ -1,0 +1,6 @@
+Line_2 $$ private Message consumeMessages(Connection connection) --> Line_3 $$ Message message = null [CD]
+Line_2 $$ private Message consumeMessages(Connection connection) --> Line_5 $$ Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE) [FD]
+Line_5 $$ Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE) --> Line_6 $$ MessageConsumer consumer = session.createConsumer(new ActiveMQQueue(TEST_QUEUE_NAME)) [FD]
+Line_3 $$ Message message = null --> Line_7 $$ message = consumer.receive(45000) [FD]
+Line_6 $$ MessageConsumer consumer = session.createConsumer(new ActiveMQQueue(TEST_QUEUE_NAME)) --> Line_7 $$ message = consumer.receive(45000) [FD]
+Line_2 $$ private Message consumeMessages(Connection connection) --> Line_12 $$ return message [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ protected void performExpirationClean() --> Line_3 $$ long last = lastClean.get() [CD]
+Line_2 $$ protected void performExpirationClean() --> Line_4 $$ if ((System.currentTimeMillis() - last) > getExpirationTime()) [CD]
+Line_4 $$ if ((System.currentTimeMillis() - last) > getExpirationTime()) --> Line_5 $$ if (lastClean.compareAndSet(last, last + getExpirationTime())) [CD]
+Line_3 $$ long last = lastClean.get() --> Line_5 $$ if (lastClean.compareAndSet(last, last + getExpirationTime())) [FD]
+Line_7 $$ JdbcTemplate template = new JdbcTemplate(dataSource) --> Line_8 $$ int expired = template.update(SQL_EXPIRE_STATEMENT, System.currentTimeMillis()) [FD]
+Line_8 $$ int expired = template.update(SQL_EXPIRE_STATEMENT, System.currentTimeMillis()) --> Line_10 $$ expired = template.update(SQL_CLEAN_STATEMENT, new Timestamp(System.currentTimeMillis() - LEGACY_CODE_EXPIRATION_TIME)) [FD]
+Line_7 $$ JdbcTemplate template = new JdbcTemplate(dataSource) --> Line_10 $$ expired = template.update(SQL_CLEAN_STATEMENT, new Timestamp(System.currentTimeMillis() - LEGACY_CODE_EXPIRATION_TIME)) [FD]

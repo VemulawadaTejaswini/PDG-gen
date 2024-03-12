@@ -1,0 +1,8 @@
+Line_2 $$ private static void robustlyAddNodeToJenkins(DockerTransientNode slave) throws IOException --> Line_3 $$ final Jenkins jenkins = Jenkins.getInstance() [CD]
+Line_2 $$ private static void robustlyAddNodeToJenkins(DockerTransientNode slave) throws IOException --> Line_4 $$ final int maxAttempts = 10 [CD]
+Line_2 $$ private static void robustlyAddNodeToJenkins(DockerTransientNode slave) throws IOException --> Line_5 $$ for (int attempt = 1; ; attempt++) [CD]
+Line_3 $$ final Jenkins jenkins = Jenkins.getInstance() --> Line_7 $$ jenkins.addNode(slave) [FD]
+Line_2 $$ private static void robustlyAddNodeToJenkins(DockerTransientNode slave) throws IOException --> Line_7 $$ jenkins.addNode(slave) [FD]
+Line_5 $$ for (int attempt = 1; ; attempt++) --> Line_10 $$ if (attempt > maxAttempts) [FD]
+Line_4 $$ final int maxAttempts = 10 --> Line_10 $$ if (attempt > maxAttempts) [FD]
+Line_13 $$ final long delayInMilliseconds = 10L * attempt --> Line_15 $$ Thread.sleep(delayInMilliseconds) [FD]

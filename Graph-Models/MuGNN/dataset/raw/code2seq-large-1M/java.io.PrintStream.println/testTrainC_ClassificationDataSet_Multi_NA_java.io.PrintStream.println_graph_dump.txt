@@ -1,0 +1,8 @@
+Line_2 $$ public void testTrainC_ClassificationDataSet_Multi() --> Line_3 $$ System.out.println("trainC") [CD]
+Line_2 $$ public void testTrainC_ClassificationDataSet_Multi() --> Line_4 $$ ClassificationDataSet trainSet = FixedProblems.getCircles(150, new Random(2), 1.0, 2.0, 4.0) [CD]
+Line_2 $$ public void testTrainC_ClassificationDataSet_Multi() --> Line_5 $$ ClassificationDataSet testSet = FixedProblems.getCircles(50, new Random(3), 1.0, 2.0, 4.0) [CD]
+Line_2 $$ public void testTrainC_ClassificationDataSet_Multi() --> Line_6 $$ KernelSGD classifier = new KernelSGD(new HingeLoss(), new RBFKernel(0.5), 1e-5, KernelPoint.BudgetStrategy.STOP, 100) [CD]
+Line_2 $$ public void testTrainC_ClassificationDataSet_Multi() --> Line_7 $$ classifier.train(trainSet) [CD]
+Line_4 $$ ClassificationDataSet trainSet = FixedProblems.getCircles(150, new Random(2), 1.0, 2.0, 4.0) --> Line_7 $$ classifier.train(trainSet) [FD]
+Line_2 $$ public void testTrainC_ClassificationDataSet_Multi() --> Line_8 $$ for (int i = 0; i < testSet.getSampleSize(); i++) assertEquals(testSet.getDataPointCategory(i), classifier.classify(testSet.getDataPoint(i)).mostLikely()) [CD]
+Line_5 $$ ClassificationDataSet testSet = FixedProblems.getCircles(50, new Random(3), 1.0, 2.0, 4.0) --> Line_8 $$ for (int i = 0; i < testSet.getSampleSize(); i++) assertEquals(testSet.getDataPointCategory(i), classifier.classify(testSet.getDataPoint(i)).mostLikely()) [FD]

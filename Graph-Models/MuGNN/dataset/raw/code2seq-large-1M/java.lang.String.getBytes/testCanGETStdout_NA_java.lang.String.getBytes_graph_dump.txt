@@ -1,0 +1,8 @@
+Line_2 $$ public void testCanGETStdout() throws InterruptedException --> Line_3 $$ final JobId jobId = generateAuthenticatedRequest(RULE, HTTP_JOBS_PATH).post(json(REQUEST_AGAINST_FIRST_SPEC)).readEntity(APIJobCreatedResponse.class).getId() [CD]
+Line_2 $$ public void testCanGETStdout() throws InterruptedException --> Line_4 $$ waitUntilJobTerminates(jobId) [CD]
+Line_2 $$ public void testCanGETStdout() throws InterruptedException --> Line_5 $$ final Response stdoutResponse = generateAuthenticatedRequest(RULE, jobResourceSubpath(jobId + "/stdout")).get() [CD]
+Line_2 $$ public void testCanGETStdout() throws InterruptedException --> Line_6 $$ assertThat(stdoutResponse.getStatus()).isEqualTo(OK) [CD]
+Line_5 $$ final Response stdoutResponse = generateAuthenticatedRequest(RULE, jobResourceSubpath(jobId + "/stdout")).get() --> Line_6 $$ assertThat(stdoutResponse.getStatus()).isEqualTo(OK) [FD]
+Line_2 $$ public void testCanGETStdout() throws InterruptedException --> Line_7 $$ final byte[] stdoutBytes = stdoutResponse.readEntity(byte[].class) [CD]
+Line_5 $$ final Response stdoutResponse = generateAuthenticatedRequest(RULE, jobResourceSubpath(jobId + "/stdout")).get() --> Line_7 $$ final byte[] stdoutBytes = stdoutResponse.readEntity(byte[].class) [FD]
+Line_2 $$ public void testCanGETStdout() throws InterruptedException --> Line_8 $$ assertThat(stdoutBytes).isEqualTo("hello world\n".getBytes()) [CD]

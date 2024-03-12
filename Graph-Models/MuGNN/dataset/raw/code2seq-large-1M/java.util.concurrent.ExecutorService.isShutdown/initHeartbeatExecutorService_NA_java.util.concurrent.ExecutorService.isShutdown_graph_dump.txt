@@ -1,0 +1,5 @@
+Line_2 $$ private synchronized void initHeartbeatExecutorService() --> Line_3 $$ if (heartbeatExecutorService != null && !heartbeatExecutorService.isShutdown() && !heartbeatExecutorService.isTerminated()) [CD]
+Line_3 $$ if (heartbeatExecutorService != null && !heartbeatExecutorService.isShutdown() && !heartbeatExecutorService.isTerminated()) --> Line_4 $$ return [CD]
+Line_2 $$ private synchronized void initHeartbeatExecutorService() --> Line_6 $$ heartbeatExecutorService = Executors.newScheduledThreadPool(conf.getIntVar(HiveConf.ConfVars.HIVE_TXN_HEARTBEAT_THREADPOOL_SIZE), new ThreadFactory() [CD]
+Line_6 $$ heartbeatExecutorService = Executors.newScheduledThreadPool(conf.getIntVar(HiveConf.ConfVars.HIVE_TXN_HEARTBEAT_THREADPOOL_SIZE), new ThreadFactory() --> Line_9 $$ return new HeartbeaterThread(r, "Heartbeater-" + threadCounter.getAndIncrement()) [CD]
+Line_2 $$ private synchronized void initHeartbeatExecutorService() --> Line_12 $$ ((ScheduledThreadPoolExecutor) heartbeatExecutorService).setRemoveOnCancelPolicy(true) [CD]

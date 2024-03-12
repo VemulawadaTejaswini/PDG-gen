@@ -1,0 +1,6 @@
+Line_2 $$ public void testCommandInjection() throws IOException, GitAPIException --> Line_3 $$ writeTrashFile("; echo virus", "foo\n") [CD]
+Line_2 $$ public void testCommandInjection() throws IOException, GitAPIException --> Line_4 $$ File script = writeTempFile("sed s/o/e/g") [CD]
+Line_5 $$ try (Git git = new Git(db)) --> Line_6 $$ StoredConfig config = git.getRepository().getConfig() [FD]
+Line_6 $$ StoredConfig config = git.getRepository().getConfig() --> Line_7 $$ config.setString("filter", "tstFilter", "clean", "sh " + slashify(script.getPath()) + " %f") [FD]
+Line_4 $$ File script = writeTempFile("sed s/o/e/g") --> Line_7 $$ config.setString("filter", "tstFilter", "clean", "sh " + slashify(script.getPath()) + " %f") [FD]
+Line_5 $$ try (Git git = new Git(db)) --> Line_9 $$ git.add().addFilepattern("; echo virus").call() [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private long nextTime(KafkaSpoutMessageId msgId) --> Line_3 $$ Validate.isTrue(msgId.numFails() > 0, "nextTime assumes the message has failed at least once") [FD]
+Line_2 $$ private long nextTime(KafkaSpoutMessageId msgId) --> Line_3 $$ Validate.isTrue(msgId.numFails() > 0, "nextTime assumes the message has failed at least once") [CD]
+Line_2 $$ private long nextTime(KafkaSpoutMessageId msgId) --> Line_4 $$ final long currentTimeNanos = Time.nanoTime() [CD]
+Line_2 $$ private long nextTime(KafkaSpoutMessageId msgId) --> Line_5 $$ final long nextTimeNanos = msgId.numFails() == 1 ? currentTimeNanos + initialDelay.lengthNanos : currentTimeNanos + delayPeriod.lengthNanos * (long) (Math.pow(2, msgId.numFails() - 1)) [FD]
+Line_2 $$ private long nextTime(KafkaSpoutMessageId msgId) --> Line_5 $$ final long nextTimeNanos = msgId.numFails() == 1 ? currentTimeNanos + initialDelay.lengthNanos : currentTimeNanos + delayPeriod.lengthNanos * (long) (Math.pow(2, msgId.numFails() - 1)) [CD]
+Line_2 $$ private long nextTime(KafkaSpoutMessageId msgId) --> Line_7 $$ return Math.min(nextTimeNanos, currentTimeNanos + maxDelay.lengthNanos) [CD]
+Line_5 $$ final long nextTimeNanos = msgId.numFails() == 1 ? currentTimeNanos + initialDelay.lengthNanos : currentTimeNanos + delayPeriod.lengthNanos * (long) (Math.pow(2, msgId.numFails() - 1)) --> Line_7 $$ return Math.min(nextTimeNanos, currentTimeNanos + maxDelay.lengthNanos) [FD]

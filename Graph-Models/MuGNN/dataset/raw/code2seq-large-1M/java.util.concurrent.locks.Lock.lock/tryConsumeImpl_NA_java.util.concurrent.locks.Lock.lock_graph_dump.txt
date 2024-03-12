@@ -1,0 +1,7 @@
+Line_2 $$ protected boolean tryConsumeImpl(long tokensToConsume) --> Line_3 $$ long currentTimeNanos = timeMeter.currentTimeNanos() [CD]
+Line_2 $$ protected boolean tryConsumeImpl(long tokensToConsume) --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ long currentTimeNanos = timeMeter.currentTimeNanos() --> Line_6 $$ state.refillAllBandwidth(bandwidths, currentTimeNanos) [FD]
+Line_2 $$ protected boolean tryConsumeImpl(long tokensToConsume) --> Line_8 $$ if (tokensToConsume > availableToConsume) [FD]
+Line_7 $$ long availableToConsume = state.getAvailableTokens(bandwidths) --> Line_8 $$ if (tokensToConsume > availableToConsume) [FD]
+Line_8 $$ if (tokensToConsume > availableToConsume) --> Line_9 $$ return false [CD]
+Line_2 $$ protected boolean tryConsumeImpl(long tokensToConsume) --> Line_11 $$ state.consume(bandwidths, tokensToConsume) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ protected boolean newDatabaseCheck(ExtendedJdbcTemplate ejt) --> Line_4 $$ ejt.execute("select count(*) from users") [FD]
+Line_6 $$ if (e.getCause() instanceof SQLException) --> Line_7 $$ SQLException se = (SQLException) e.getCause() [CD]
+Line_6 $$ if (e.getCause() instanceof SQLException) --> Line_8 $$ if ("42000".equals(se.getSQLState()) || se.getErrorCode() == ErrorCode.TableOrViewDoesNotExist.getCode()) [CD]
+Line_7 $$ SQLException se = (SQLException) e.getCause() --> Line_8 $$ if ("42000".equals(se.getSQLState()) || se.getErrorCode() == ErrorCode.TableOrViewDoesNotExist.getCode()) [FD]
+Line_8 $$ if ("42000".equals(se.getSQLState()) || se.getErrorCode() == ErrorCode.TableOrViewDoesNotExist.getCode()) --> Line_9 $$ createSchema(CREATE_SCHEMA_SCRIPT_PATH) [CD]
+Line_8 $$ if ("42000".equals(se.getSQLState()) || se.getErrorCode() == ErrorCode.TableOrViewDoesNotExist.getCode()) --> Line_10 $$ return true [CD]
+Line_2 $$ protected boolean newDatabaseCheck(ExtendedJdbcTemplate ejt) --> Line_15 $$ return false [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private boolean shouldPageInMoreForBrowse(int max) --> Line_3 $$ int alreadyPagedIn = 0 [CD]
+Line_2 $$ private boolean shouldPageInMoreForBrowse(int max) --> Line_4 $$ pagedInMessagesLock.readLock().lock() [CD]
+Line_3 $$ int alreadyPagedIn = 0 --> Line_6 $$ alreadyPagedIn = pagedInMessages.size() [FD]
+Line_2 $$ private boolean shouldPageInMoreForBrowse(int max) --> Line_10 $$ int messagesInQueue = alreadyPagedIn [CD]
+Line_2 $$ private boolean shouldPageInMoreForBrowse(int max) --> Line_11 $$ messagesLock.readLock().lock() [CD]
+Line_10 $$ int messagesInQueue = alreadyPagedIn --> Line_13 $$ messagesInQueue += messages.size() [FD]
+Line_2 $$ private boolean shouldPageInMoreForBrowse(int max) --> Line_17 $$ LOG.trace("max [CD]
+Line_2 $$ private boolean shouldPageInMoreForBrowse(int max) --> Line_18 $$ return (alreadyPagedIn == 0 || (alreadyPagedIn < max) && (alreadyPagedIn < messagesInQueue) && messages.hasSpace()) [CD]

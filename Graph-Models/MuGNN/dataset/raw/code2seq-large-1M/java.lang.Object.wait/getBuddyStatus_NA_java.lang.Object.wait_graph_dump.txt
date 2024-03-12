@@ -1,0 +1,8 @@
+Line_2 $$ public IcqStatusEnum getBuddyStatus(String screenname) throws IllegalStateException --> Line_3 $$ if (!registered) [CD]
+Line_2 $$ public IcqStatusEnum getBuddyStatus(String screenname) throws IllegalStateException --> Line_5 $$ StatusResponseRetriever responseRetriever = new StatusResponseRetriever() [CD]
+Line_2 $$ public IcqStatusEnum getBuddyStatus(String screenname) throws IllegalStateException --> Line_6 $$ GetInfoCmd getInfoCmd = new GetInfoCmd(GetInfoCmd.CMD_NEW_GET_INFO | GetInfoCmd.FLAG_AWAYMSG | GetInfoCmd.FLAG_INFO, new Screenname(screenname).getFormatted()) [CD]
+Line_2 $$ public IcqStatusEnum getBuddyStatus(String screenname) throws IllegalStateException --> Line_7 $$ conn.getInfoService().getOscarConnection().sendSnacRequest(getInfoCmd, responseRetriever) [CD]
+Line_6 $$ GetInfoCmd getInfoCmd = new GetInfoCmd(GetInfoCmd.CMD_NEW_GET_INFO | GetInfoCmd.FLAG_AWAYMSG | GetInfoCmd.FLAG_INFO, new Screenname(screenname).getFormatted()) --> Line_7 $$ conn.getInfoService().getOscarConnection().sendSnacRequest(getInfoCmd, responseRetriever) [FD]
+Line_5 $$ StatusResponseRetriever responseRetriever = new StatusResponseRetriever() --> Line_7 $$ conn.getInfoService().getOscarConnection().sendSnacRequest(getInfoCmd, responseRetriever) [FD]
+Line_2 $$ public IcqStatusEnum getBuddyStatus(String screenname) throws IllegalStateException --> Line_16 $$ logger.debug("Done. we'll return status " + responseRetriever.status) [CD]
+Line_2 $$ public IcqStatusEnum getBuddyStatus(String screenname) throws IllegalStateException --> Line_17 $$ return responseRetriever.status == null ? IcqStatusEnum.OFFLINE : responseRetriever.status [CD]

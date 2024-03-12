@@ -1,0 +1,8 @@
+Line_2 $$ public static Set<DateTime> listMonths(String bucket, String prefix) --> Line_3 $$ List<S3ObjectSummary> objects = listAllObjects(bucket, prefix) [FD]
+Line_2 $$ public static Set<DateTime> listMonths(String bucket, String prefix) --> Line_3 $$ List<S3ObjectSummary> objects = listAllObjects(bucket, prefix) [CD]
+Line_2 $$ public static Set<DateTime> listMonths(String bucket, String prefix) --> Line_4 $$ Set<DateTime> result = Sets.newTreeSet() [CD]
+Line_5 $$ for (S3ObjectSummary object : objects) --> Line_6 $$ String fileName = object.getKey().substring(prefix.length()) [FD]
+Line_2 $$ public static Set<DateTime> listMonths(String bucket, String prefix) --> Line_6 $$ String fileName = object.getKey().substring(prefix.length()) [FD]
+Line_4 $$ Set<DateTime> result = Sets.newTreeSet() --> Line_7 $$ result.add(monthDateFormat.parseDateTime(fileName)) [FD]
+Line_6 $$ String fileName = object.getKey().substring(prefix.length()) --> Line_7 $$ result.add(monthDateFormat.parseDateTime(fileName)) [FD]
+Line_2 $$ public static Set<DateTime> listMonths(String bucket, String prefix) --> Line_9 $$ return result [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ protected void addIfMatching(Test test, String fqn) --> Line_4 $$ String externalName = fqn.substring(0, fqn.indexOf('.')).replace('/', '.') [FD]
+Line_6 $$ if (log.isDebugEnabled()) --> Line_7 $$ log.debug("Checking to see if class " + externalName + " matches criteria [" + test + "]") [CD]
+Line_5 $$ ClassLoader loader = getClassLoader() --> Line_9 $$ Class<?> type = loader.loadClass(externalName) [FD]
+Line_4 $$ String externalName = fqn.substring(0, fqn.indexOf('.')).replace('/', '.') --> Line_9 $$ Class<?> type = loader.loadClass(externalName) [FD]
+Line_2 $$ protected void addIfMatching(Test test, String fqn) --> Line_10 $$ if (test.matches(type)) [FD]
+Line_9 $$ Class<?> type = loader.loadClass(externalName) --> Line_10 $$ if (test.matches(type)) [FD]
+Line_10 $$ if (test.matches(type)) --> Line_11 $$ matches.add((Class<T>) type) [CD]

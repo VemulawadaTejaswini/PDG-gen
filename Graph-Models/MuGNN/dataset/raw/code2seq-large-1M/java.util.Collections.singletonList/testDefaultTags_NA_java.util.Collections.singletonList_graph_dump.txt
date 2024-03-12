@@ -1,0 +1,5 @@
+Line_2 $$ public void testDefaultTags() throws Exception --> Line_3 $$ MetricPoller poller = new JmxMetricPoller(new LocalJmxConnector(), Collections.singletonList(new ObjectName("java.lang:type=OperatingSystem")), MATCH_ALL, true, Collections.singletonList(Tags.newTag("HostName", "localhost"))) [CD]
+Line_2 $$ public void testDefaultTags() throws Exception --> Line_4 $$ List<Metric> metrics = poller.poll(MATCH_ALL) [CD]
+Line_3 $$ MetricPoller poller = new JmxMetricPoller(new LocalJmxConnector(), Collections.singletonList(new ObjectName("java.lang:type=OperatingSystem")), MATCH_ALL, true, Collections.singletonList(Tags.newTag("HostName", "localhost"))) --> Line_4 $$ List<Metric> metrics = poller.poll(MATCH_ALL) [FD]
+Line_5 $$ for (Metric m : metrics) --> Line_6 $$ Map<String, String> tags = m.getConfig().getTags().asMap() [FD]
+Line_6 $$ Map<String, String> tags = m.getConfig().getTags().asMap() --> Line_7 $$ assertEquals(tags.get("HostName"), "localhost") [FD]

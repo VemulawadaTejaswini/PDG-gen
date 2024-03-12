@@ -1,0 +1,8 @@
+Line_3 $$ if (securityData == null) --> Line_4 $$ log.error("Null params received, returning...") [CD]
+Line_3 $$ if (securityData == null) --> Line_5 $$ return Collections.emptyList() [CD]
+Line_7 $$ Map<String, List<String>> grants = securityData.getCurrentDocGrant() --> Line_9 $$ List<UserEntry> entries = new ArrayList<UserEntry>(grants.size() + denies.size()) [FD]
+Line_8 $$ Map<String, List<String>> denies = securityData.getCurrentDocDeny() --> Line_9 $$ List<UserEntry> entries = new ArrayList<UserEntry>(grants.size() + denies.size()) [FD]
+Line_7 $$ Map<String, List<String>> grants = securityData.getCurrentDocGrant() --> Line_10 $$ for (Entry<String, List<String>> e : grants.entrySet()) [FD]
+Line_12 $$ for (String permission : e.getValue()) --> Line_13 $$ entry.addPrivilege(permission, true, false) [FD]
+Line_8 $$ Map<String, List<String>> denies = securityData.getCurrentDocDeny() --> Line_17 $$ for (Entry<String, List<String>> e : denies.entrySet()) [FD]
+Line_12 $$ for (String permission : e.getValue()) --> Line_20 $$ entry.addPrivilege(permission, false, false) [FD]

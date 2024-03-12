@@ -1,0 +1,6 @@
+Line_2 $$ private LogicalPlan createLogicalPlan(MultiSourceSelect mss, TableStats tableStats) --> Line_3 $$ LogicalPlanner logicalPlanner = new LogicalPlanner(functions, tableStats) [CD]
+Line_2 $$ private LogicalPlan createLogicalPlan(MultiSourceSelect mss, TableStats tableStats) --> Line_4 $$ SubqueryPlanner subqueryPlanner = new SubqueryPlanner(( s) -> logicalPlanner.planSubSelect(s, plannerCtx)) [CD]
+Line_3 $$ LogicalPlanner logicalPlanner = new LogicalPlanner(functions, tableStats) --> Line_4 $$ SubqueryPlanner subqueryPlanner = new SubqueryPlanner(( s) -> logicalPlanner.planSubSelect(s, plannerCtx)) [FD]
+Line_2 $$ private LogicalPlan createLogicalPlan(MultiSourceSelect mss, TableStats tableStats) --> Line_5 $$ return JoinPlanBuilder.createNodes(mss, mss.where(), subqueryPlanner, functions, txnCtx).build(tableStats, Collections.emptySet()) [FD]
+Line_2 $$ private LogicalPlan createLogicalPlan(MultiSourceSelect mss, TableStats tableStats) --> Line_5 $$ return JoinPlanBuilder.createNodes(mss, mss.where(), subqueryPlanner, functions, txnCtx).build(tableStats, Collections.emptySet()) [CD]
+Line_4 $$ SubqueryPlanner subqueryPlanner = new SubqueryPlanner(( s) -> logicalPlanner.planSubSelect(s, plannerCtx)) --> Line_5 $$ return JoinPlanBuilder.createNodes(mss, mss.where(), subqueryPlanner, functions, txnCtx).build(tableStats, Collections.emptySet()) [FD]

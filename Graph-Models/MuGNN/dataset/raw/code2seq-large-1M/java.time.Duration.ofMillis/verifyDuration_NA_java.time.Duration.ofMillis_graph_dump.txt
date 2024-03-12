@@ -1,0 +1,7 @@
+Line_2 $$ public void verifyDuration() --> Line_3 $$ long interval = 200 [CD]
+Line_2 $$ public void verifyDuration() --> Line_4 $$ Flux<String> flux = Flux.interval(Duration.ofMillis(interval)).map( l -> "foo").take(2) [CD]
+Line_3 $$ long interval = 200 --> Line_4 $$ Flux<String> flux = Flux.interval(Duration.ofMillis(interval)).map( l -> "foo").take(2) [FD]
+Line_2 $$ public void verifyDuration() --> Line_5 $$ Duration duration = StepVerifier.create(flux).thenAwait(Duration.ofSeconds(100)).expectNext("foo").expectNext("foo").expectComplete().verify(Duration.ofMillis(500)) [CD]
+Line_4 $$ Flux<String> flux = Flux.interval(Duration.ofMillis(interval)).map( l -> "foo").take(2) --> Line_5 $$ Duration duration = StepVerifier.create(flux).thenAwait(Duration.ofSeconds(100)).expectNext("foo").expectNext("foo").expectComplete().verify(Duration.ofMillis(500)) [FD]
+Line_2 $$ public void verifyDuration() --> Line_6 $$ assertThat(duration.toMillis()).isGreaterThan(2 * interval) [CD]
+Line_5 $$ Duration duration = StepVerifier.create(flux).thenAwait(Duration.ofSeconds(100)).expectNext("foo").expectNext("foo").expectComplete().verify(Duration.ofMillis(500)) --> Line_6 $$ assertThat(duration.toMillis()).isGreaterThan(2 * interval) [FD]

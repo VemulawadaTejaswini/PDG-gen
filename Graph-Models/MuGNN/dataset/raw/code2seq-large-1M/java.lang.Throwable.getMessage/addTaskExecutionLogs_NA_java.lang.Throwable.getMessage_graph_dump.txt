@@ -1,0 +1,8 @@
+Line_2 $$ public void addTaskExecutionLogs(List<TaskExecLog> taskExecLogs) --> Line_3 $$ if (taskExecLogs.isEmpty()) [FD]
+Line_2 $$ public void addTaskExecutionLogs(List<TaskExecLog> taskExecLogs) --> Line_3 $$ if (taskExecLogs.isEmpty()) [CD]
+Line_3 $$ if (taskExecLogs.isEmpty()) --> Line_4 $$ return [CD]
+Line_9 $$ IndexRequest request = new IndexRequest(logIndexName, LOG_DOC_TYPE) --> Line_10 $$ request.source(objectMapper.writeValueAsBytes(taskExecLog)) [FD]
+Line_8 $$ for (TaskExecLog taskExecLog : taskExecLogs) --> Line_10 $$ request.source(objectMapper.writeValueAsBytes(taskExecLog)) [FD]
+Line_7 $$ BulkRequestBuilder bulkRequestBuilder = elasticSearchClient.prepareBulk() --> Line_11 $$ bulkRequestBuilder.add(request) [FD]
+Line_9 $$ IndexRequest request = new IndexRequest(logIndexName, LOG_DOC_TYPE) --> Line_11 $$ bulkRequestBuilder.add(request) [FD]
+Line_7 $$ BulkRequestBuilder bulkRequestBuilder = elasticSearchClient.prepareBulk() --> Line_13 $$ bulkRequestBuilder.execute().actionGet() [FD]

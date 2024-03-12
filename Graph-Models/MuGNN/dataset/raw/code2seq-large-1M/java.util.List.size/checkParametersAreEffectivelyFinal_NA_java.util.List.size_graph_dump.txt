@@ -1,0 +1,8 @@
+Line_2 $$ private void checkParametersAreEffectivelyFinal(MethodTree node, ExecutableElement method, String stringExpr) --> Line_3 $$ List<Integer> parameterIndices = FlowExpressionParseUtil.parameterIndices(stringExpr) [CD]
+Line_2 $$ private void checkParametersAreEffectivelyFinal(MethodTree node, ExecutableElement method, String stringExpr) --> Line_3 $$ List<Integer> parameterIndices = FlowExpressionParseUtil.parameterIndices(stringExpr) [FD]
+Line_4 $$ for (Integer idx : parameterIndices) --> Line_5 $$ if (idx > method.getParameters().size()) [FD]
+Line_2 $$ private void checkParametersAreEffectivelyFinal(MethodTree node, ExecutableElement method, String stringExpr) --> Line_5 $$ if (idx > method.getParameters().size()) [FD]
+Line_2 $$ private void checkParametersAreEffectivelyFinal(MethodTree node, ExecutableElement method, String stringExpr) --> Line_8 $$ VariableElement parameter = method.getParameters().get(idx - 1) [FD]
+Line_8 $$ VariableElement parameter = method.getParameters().get(idx - 1) --> Line_9 $$ if (!ElementUtils.isEffectivelyFinal(parameter)) [FD]
+Line_9 $$ if (!ElementUtils.isEffectivelyFinal(parameter)) --> Line_10 $$ checker.report(Result.failure("flowexpr.parameter.not.final", "#" + idx, stringExpr), node) [CD]
+Line_2 $$ private void checkParametersAreEffectivelyFinal(MethodTree node, ExecutableElement method, String stringExpr) --> Line_10 $$ checker.report(Result.failure("flowexpr.parameter.not.final", "#" + idx, stringExpr), node) [FD]

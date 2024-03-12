@@ -1,0 +1,7 @@
+Line_2 $$ private void followCallers(Queue<MethodNode> q, MethodNode method) --> Line_3 $$ for (MethodNode caller : method.getCallers()) [FD]
+Line_4 $$ if (caller.suspendType == null) --> Line_5 $$ q.add(caller) [CD]
+Line_2 $$ private void followCallers(Queue<MethodNode> q, MethodNode method) --> Line_5 $$ q.add(caller) [FD]
+Line_3 $$ for (MethodNode caller : method.getCallers()) --> Line_5 $$ q.add(caller) [FD]
+Line_4 $$ if (caller.suspendType == null) --> Line_6 $$ log("Marking " + caller + " suspendable because it calls " + method, Project.MSG_VERBOSE) [CD]
+Line_4 $$ if (caller.suspendType == null) --> Line_7 $$ caller.setSuspendType(SuspendableType.SUSPENDABLE) [CD]
+Line_3 $$ for (MethodNode caller : method.getCallers()) --> Line_7 $$ caller.setSuspendType(SuspendableType.SUSPENDABLE) [FD]

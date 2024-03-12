@@ -1,0 +1,8 @@
+Line_5 $$ WorkerReportResponse response = masterClient.workerReport() --> Line_7 $$ switch(response.getCommand()) [FD]
+Line_13 $$ if (!stopped.get()) --> Line_14 $$ System.exit(-1) [CD]
+Line_5 $$ WorkerReportResponse response = masterClient.workerReport() --> Line_18 $$ int activeTaskNum = response.getActiveTaskNum() [FD]
+Line_18 $$ int activeTaskNum = response.getActiveTaskNum() --> Line_19 $$ if (activeTaskNum < getActiveTaskNum()) [FD]
+Line_19 $$ if (activeTaskNum < getActiveTaskNum()) --> Line_20 $$ LOG.warn("Received message that activeTaskNum is changed! oldTaskNum: " + getActiveTaskNum() + ", newTaskNum: " + activeTaskNum) [CD]
+Line_19 $$ if (activeTaskNum < getActiveTaskNum()) --> Line_21 $$ setActiveTaskNum(activeTaskNum) [CD]
+Line_18 $$ int activeTaskNum = response.getActiveTaskNum() --> Line_21 $$ setActiveTaskNum(activeTaskNum) [FD]
+Line_25 $$ if (!stopped.get()) --> Line_26 $$ LOG.error("report to appmaster failed, err: ", netException) [CD]

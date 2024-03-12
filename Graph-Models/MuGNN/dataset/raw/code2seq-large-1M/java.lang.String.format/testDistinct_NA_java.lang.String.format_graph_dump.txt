@@ -1,0 +1,8 @@
+Line_2 $$ public void testDistinct() throws IOException, ProcCallException --> Line_3 $$ String[] tables = [CD]
+Line_6 $$ for (int i = 0; i < ROWS; ++i) --> Line_7 $$ client.callProcedure("Insert", table, i, "desc", new BigDecimal(10.0), i / 2, 14.5) [FD]
+Line_6 $$ for (int i = 0; i < ROWS; ++i) --> Line_7 $$ client.callProcedure("Insert", table, i, "desc", new BigDecimal(10.0), i / 2, 14.5) [CD]
+Line_5 $$ Client client = getClient() --> Line_7 $$ client.callProcedure("Insert", table, i, "desc", new BigDecimal(10.0), i / 2, 14.5) [FD]
+Line_4 $$ for (String table : tables) --> Line_7 $$ client.callProcedure("Insert", table, i, "desc", new BigDecimal(10.0), i / 2, 14.5) [FD]
+Line_4 $$ for (String table : tables) --> Line_9 $$ String query = String.format("select distinct %s.NUM from %s", table, table) [FD]
+Line_5 $$ Client client = getClient() --> Line_10 $$ VoltTable[] results = client.callProcedure("@AdHoc", query).getResults() [FD]
+Line_9 $$ String query = String.format("select distinct %s.NUM from %s", table, table) --> Line_10 $$ VoltTable[] results = client.callProcedure("@AdHoc", query).getResults() [FD]

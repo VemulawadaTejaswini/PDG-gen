@@ -1,0 +1,7 @@
+Line_2 $$ private void initCpuClusters() --> Line_3 $$ final Object obj = sPowerMap.get(POWER_CPU_CLUSTER_CORE_COUNT) [CD]
+Line_2 $$ private void initCpuClusters() --> Line_4 $$ if (obj == null || !(obj instanceof Double[])) [CD]
+Line_4 $$ if (obj == null || !(obj instanceof Double[])) --> Line_6 $$ mCpuClusters[0] = new CpuClusterKey(POWER_CPU_SPEEDS, POWER_CPU_ACTIVE, 1) [CD]
+Line_4 $$ if (obj == null || !(obj instanceof Double[])) --> Line_8 $$ final Double[] array = (Double[]) obj [CD]
+Line_4 $$ if (obj == null || !(obj instanceof Double[])) --> Line_10 $$ for (int cluster = 0; cluster < array.length; cluster++) [CD]
+Line_10 $$ for (int cluster = 0; cluster < array.length; cluster++) --> Line_11 $$ int numCpusInCluster = (int) Math.round(array[cluster]) [CD]
+Line_10 $$ for (int cluster = 0; cluster < array.length; cluster++) --> Line_12 $$ mCpuClusters[cluster] = new CpuClusterKey(POWER_CPU_CLUSTER_SPEED_PREFIX + cluster, POWER_CPU_CLUSTER_ACTIVE_PREFIX + cluster, numCpusInCluster) [CD]

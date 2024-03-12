@@ -1,0 +1,5 @@
+Line_2 $$ public void servletContextPropertySourceIsAvailablePriorToRefresh() --> Line_3 $$ ServletContext servletContext = mock(ServletContext.class) [CD]
+Line_2 $$ public void servletContextPropertySourceIsAvailablePriorToRefresh() --> Line_4 $$ given(servletContext.getInitParameterNames()).willReturn(Collections.enumeration(Arrays.asList("spring.profiles.active"))) [CD]
+Line_2 $$ public void servletContextPropertySourceIsAvailablePriorToRefresh() --> Line_5 $$ given(servletContext.getInitParameter("spring.profiles.active")).willReturn("from-servlet-context") [CD]
+Line_2 $$ public void servletContextPropertySourceIsAvailablePriorToRefresh() --> Line_6 $$ given(servletContext.getAttributeNames()).willReturn(Collections.enumeration(Collections.emptyList())) [CD]
+Line_7 $$ try (ConfigurableApplicationContext context = (ConfigurableApplicationContext) new PropertySourceVerifyingSpringBootServletInitializer().createRootApplicationContext(servletContext)) --> Line_8 $$ assertThat(context.getEnvironment().getActiveProfiles()).containsExactly("from-servlet-context") [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public ResponseEntity<?> uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) --> Line_4 $$ String filename = uploadfile.getOriginalFilename() [FD]
+Line_5 $$ String directory = env.getProperty("netgloo.paths.uploadedFiles") --> Line_6 $$ String filepath = Paths.get(directory, filename).toString() [FD]
+Line_4 $$ String filename = uploadfile.getOriginalFilename() --> Line_6 $$ String filepath = Paths.get(directory, filename).toString() [FD]
+Line_7 $$ BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filepath))) --> Line_8 $$ stream.write(uploadfile.getBytes()) [FD]
+Line_2 $$ public ResponseEntity<?> uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) --> Line_8 $$ stream.write(uploadfile.getBytes()) [FD]
+Line_7 $$ BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filepath))) --> Line_9 $$ stream.close() [FD]
+Line_2 $$ public ResponseEntity<?> uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) --> Line_14 $$ return new ResponseEntity(HttpStatus.OK) [CD]

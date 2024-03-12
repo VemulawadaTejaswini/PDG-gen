@@ -1,0 +1,6 @@
+Line_3 $$ for (String envVar : ENV_VARS) --> Line_4 $$ final String value = System.getenv(envVar) [FD]
+Line_4 $$ final String value = System.getenv(envVar) --> Line_5 $$ if (value != null) [FD]
+Line_5 $$ if (value != null) --> Line_6 $$ System.setProperty(ENV_VAR_PROP_PREFIX + envVar, value) [CD]
+Line_4 $$ final String value = System.getenv(envVar) --> Line_6 $$ System.setProperty(ENV_VAR_PROP_PREFIX + envVar, value) [FD]
+Line_5 $$ if (value != null) --> Line_7 $$ if (isDebug) [CD]
+Line_7 $$ if (isDebug) --> Line_8 $$ System.err.println(ENV_VAR_PROP_PREFIX + envVar + " set to " + value) [CD]

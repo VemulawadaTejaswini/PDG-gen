@@ -1,0 +1,8 @@
+Line_2 $$ protected void setupSsl(Hashtable<String, Object> env) throws NamingException --> Line_3 $$ BundleContext bundleContext = FrameworkUtil.getBundle(LDAPOptions.class).getBundleContext() [CD]
+Line_2 $$ protected void setupSsl(Hashtable<String, Object> env) throws NamingException --> Line_4 $$ ServiceReference<KeystoreManager> ref = null [CD]
+Line_2 $$ protected void setupSsl(Hashtable<String, Object> env) throws NamingException --> Line_7 $$ env.put(Context.SECURITY_PROTOCOL, "ssl") [FD]
+Line_2 $$ protected void setupSsl(Hashtable<String, Object> env) throws NamingException --> Line_8 $$ env.put("java.naming.ldap.factory.socket", ManagedSSLSocketFactory.class.getName()) [FD]
+Line_4 $$ ServiceReference<KeystoreManager> ref = null --> Line_9 $$ ref = bundleContext.getServiceReference(KeystoreManager.class) [FD]
+Line_4 $$ ServiceReference<KeystoreManager> ref = null --> Line_10 $$ KeystoreManager manager = bundleContext.getService(ref) [FD]
+Line_10 $$ KeystoreManager manager = bundleContext.getService(ref) --> Line_11 $$ SSLSocketFactory factory = manager.createSSLFactory(getSslProvider(), getSslProtocol(), getSslAlgorithm(), getSslKeystore(), getSslKeyAlias(), getSslTrustStore(), getSslTimeout()) [FD]
+Line_4 $$ ServiceReference<KeystoreManager> ref = null --> Line_17 $$ bundleContext.ungetService(ref) [FD]

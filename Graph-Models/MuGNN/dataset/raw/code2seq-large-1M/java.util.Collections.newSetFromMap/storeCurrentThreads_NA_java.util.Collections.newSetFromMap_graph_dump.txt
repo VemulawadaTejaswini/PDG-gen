@@ -1,0 +1,8 @@
+Line_2 $$ public void storeCurrentThreads() --> Line_3 $$ if (currentRunningThreads == null) [CD]
+Line_3 $$ if (currentRunningThreads == null) --> Line_4 $$ currentRunningThreads = Collections.newSetFromMap(new IdentityHashMap<Thread, Boolean>()) [CD]
+Line_3 $$ if (currentRunningThreads == null) --> Line_6 $$ currentRunningThreads.clear() [CD]
+Line_2 $$ public void storeCurrentThreads() --> Line_8 $$ Map<Thread, StackTraceElement[]> threadMap = Thread.getAllStackTraces() [CD]
+Line_8 $$ Map<Thread, StackTraceElement[]> threadMap = Thread.getAllStackTraces() --> Line_9 $$ for (Thread t : threadMap.keySet()) [FD]
+Line_9 $$ for (Thread t : threadMap.keySet()) --> Line_10 $$ if (t.isAlive()) [FD]
+Line_10 $$ if (t.isAlive()) --> Line_11 $$ currentRunningThreads.add(t) [CD]
+Line_9 $$ for (Thread t : threadMap.keySet()) --> Line_11 $$ currentRunningThreads.add(t) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private LogEntries getRemoteEntries(String logType) --> Line_3 $$ Object raw = executeMethod.execute(DriverCommand.GET_LOG, ImmutableMap.of(TYPE_KEY, logType)) [CD]
+Line_2 $$ private LogEntries getRemoteEntries(String logType) --> Line_3 $$ Object raw = executeMethod.execute(DriverCommand.GET_LOG, ImmutableMap.of(TYPE_KEY, logType)) [FD]
+Line_2 $$ private LogEntries getRemoteEntries(String logType) --> Line_4 $$ if (!(raw instanceof List)) [CD]
+Line_2 $$ private LogEntries getRemoteEntries(String logType) --> Line_7 $$ List<Map<String, Object>> rawList = (List<Map<String, Object>>) raw [CD]
+Line_2 $$ private LogEntries getRemoteEntries(String logType) --> Line_8 $$ List<LogEntry> remoteEntries = new ArrayList(rawList.size()) [CD]
+Line_7 $$ List<Map<String, Object>> rawList = (List<Map<String, Object>>) raw --> Line_8 $$ List<LogEntry> remoteEntries = new ArrayList(rawList.size()) [FD]
+Line_9 $$ for (Map<String, Object> obj : rawList) --> Line_10 $$ remoteEntries.add(new LogEntry(LogLevelMapping.toLevel((String) obj.get(LEVEL)), (Long) obj.get(TIMESTAMP), (String) obj.get(MESSAGE))) [FD]
+Line_2 $$ private LogEntries getRemoteEntries(String logType) --> Line_12 $$ return new LogEntries(remoteEntries) [CD]

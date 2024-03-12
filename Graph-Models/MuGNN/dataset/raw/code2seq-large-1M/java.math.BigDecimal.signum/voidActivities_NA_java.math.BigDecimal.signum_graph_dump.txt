@@ -1,0 +1,8 @@
+Line_3 $$ for (MPPOrderNode node : this.getNodes(true, getAD_Client_ID())) --> Line_4 $$ BigDecimal old = node.getQtyRequired() [FD]
+Line_4 $$ BigDecimal old = node.getQtyRequired() --> Line_5 $$ if (old.signum() != 0) [FD]
+Line_5 $$ if (old.signum() != 0) --> Line_6 $$ node.addDescription(Msg.getMsg(getCtx(), "Voided") + " (" + old + ")") [CD]
+Line_3 $$ for (MPPOrderNode node : this.getNodes(true, getAD_Client_ID())) --> Line_6 $$ node.addDescription(Msg.getMsg(getCtx(), "Voided") + " (" + old + ")") [FD]
+Line_5 $$ if (old.signum() != 0) --> Line_7 $$ node.voidIt() [CD]
+Line_3 $$ for (MPPOrderNode node : this.getNodes(true, getAD_Client_ID())) --> Line_7 $$ node.voidIt() [FD]
+Line_5 $$ if (old.signum() != 0) --> Line_8 $$ node.saveEx() [CD]
+Line_3 $$ for (MPPOrderNode node : this.getNodes(true, getAD_Client_ID())) --> Line_8 $$ node.saveEx() [FD]

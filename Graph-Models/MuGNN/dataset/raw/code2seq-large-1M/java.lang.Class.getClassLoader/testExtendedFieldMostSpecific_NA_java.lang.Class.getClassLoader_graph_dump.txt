@@ -1,0 +1,6 @@
+Line_2 $$ public void testExtendedFieldMostSpecific() throws Exception --> Line_3 $$ DynamicType.Loaded<ExtendedField> loaded = new ByteBuddy().subclass(ExtendedField.class).method(isDeclaredBy(ExtendedField.class)).intercept(MethodDelegation.to(SimpleInterceptor.class)).make().load(ExtendedField.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testExtendedFieldMostSpecific() throws Exception --> Line_4 $$ ExtendedField instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testExtendedFieldMostSpecific() throws Exception --> Line_6 $$ assertThat(instance.foo(), is((Object) FOO)) [CD]
+Line_4 $$ ExtendedField instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ assertThat(instance.foo(), is((Object) FOO)) [FD]
+Line_2 $$ public void testExtendedFieldMostSpecific() throws Exception --> Line_8 $$ assertThat(instance.foo(), is((Object) BAR)) [CD]
+Line_4 $$ ExtendedField instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_8 $$ assertThat(instance.foo(), is((Object) BAR)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldNotLockJobIfRetriesAreExhausted() --> Line_3 $$ eventRecorder.startRecordingEvents() [CD]
+Line_2 $$ public void shouldNotLockJobIfRetriesAreExhausted() --> Line_4 $$ jobClient.newCreateCommand().jobType("foo").retries(1).send().join() [CD]
+Line_2 $$ public void shouldNotLockJobIfRetriesAreExhausted() --> Line_5 $$ final RecordingJobHandler jobHandler = new RecordingJobHandler(( c,  t) -> [CD]
+Line_2 $$ public void shouldNotLockJobIfRetriesAreExhausted() --> Line_8 $$ subscriptionClient.newJobSubscription().jobType("foo").handler(jobHandler).lockTime(Duration.ofMinutes(5)).lockOwner("test").open() [CD]
+Line_5 $$ final RecordingJobHandler jobHandler = new RecordingJobHandler(( c,  t) -> --> Line_8 $$ subscriptionClient.newJobSubscription().jobType("foo").handler(jobHandler).lockTime(Duration.ofMinutes(5)).lockOwner("test").open() [FD]
+Line_2 $$ public void shouldNotLockJobIfRetriesAreExhausted() --> Line_9 $$ waitUntil(() -> eventRecorder.hasJobEvent(state(JobState.FAILED).and(jobRetries(0)))) [CD]
+Line_2 $$ public void shouldNotLockJobIfRetriesAreExhausted() --> Line_10 $$ assertThat(jobHandler.getHandledJobs()).hasSize(1) [CD]
+Line_5 $$ final RecordingJobHandler jobHandler = new RecordingJobHandler(( c,  t) -> --> Line_10 $$ assertThat(jobHandler.getHandledJobs()).hasSize(1) [FD]

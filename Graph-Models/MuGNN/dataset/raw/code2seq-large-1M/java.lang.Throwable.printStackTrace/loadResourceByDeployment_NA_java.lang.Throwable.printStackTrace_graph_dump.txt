@@ -1,0 +1,8 @@
+Line_2 $$ public void loadResourceByDeployment(@RequestParam("deploymentId") String deploymentId, @RequestParam("resourceName") String resourceName, HttpServletRequest request, HttpServletResponse response) --> Line_3 $$ InputStream resourceAsStream = repositoryService.getResourceAsStream(deploymentId, resourceName) [CD]
+Line_2 $$ public void loadResourceByDeployment(@RequestParam("deploymentId") String deploymentId, @RequestParam("resourceName") String resourceName, HttpServletRequest request, HttpServletResponse response) --> Line_3 $$ InputStream resourceAsStream = repositoryService.getResourceAsStream(deploymentId, resourceName) [FD]
+Line_3 $$ InputStream resourceAsStream = repositoryService.getResourceAsStream(deploymentId, resourceName) --> Line_5 $$ byte[] byteArray = IOUtils.toByteArray(resourceAsStream) [FD]
+Line_2 $$ public void loadResourceByDeployment(@RequestParam("deploymentId") String deploymentId, @RequestParam("resourceName") String resourceName, HttpServletRequest request, HttpServletResponse response) --> Line_6 $$ ServletOutputStream servletOutputStream = response.getOutputStream() [FD]
+Line_6 $$ ServletOutputStream servletOutputStream = response.getOutputStream() --> Line_7 $$ servletOutputStream.write(byteArray, 0, byteArray.length) [FD]
+Line_5 $$ byte[] byteArray = IOUtils.toByteArray(resourceAsStream) --> Line_7 $$ servletOutputStream.write(byteArray, 0, byteArray.length) [FD]
+Line_6 $$ ServletOutputStream servletOutputStream = response.getOutputStream() --> Line_8 $$ servletOutputStream.flush() [FD]
+Line_6 $$ ServletOutputStream servletOutputStream = response.getOutputStream() --> Line_9 $$ servletOutputStream.close() [FD]

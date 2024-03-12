@@ -1,0 +1,6 @@
+Line_2 $$ public Future<Void> saveAndIncrement(T data) --> Line_3 $$ String correlationId = "" + System.currentTimeMillis() + ":" + r.nextLong() [CD]
+Line_2 $$ public Future<Void> saveAndIncrement(T data) --> Line_4 $$ Supplier<MapX<String, String>> dataMap = () -> MapX.fromMap(HashMapBuilder.map(MANIFEST_COMPARATOR_DATA_WRITER_KEY, comparator.toString()).build()) [CD]
+Line_2 $$ public Future<Void> saveAndIncrement(T data) --> Line_5 $$ return Future.<Void>of(() -> [CD]
+Line_2 $$ public Future<Void> saveAndIncrement(T data) --> Line_6 $$ comparator.saveAndIncrement(data) [FD]
+Line_3 $$ String correlationId = "" + System.currentTimeMillis() + ":" + r.nextLong() --> Line_8 $$ bus.post(SystemData.<String, String>builder().correlationId(correlationId).dataMap(dataMap.get()).errors(0).processed(1).build()) [FD]
+Line_4 $$ Supplier<MapX<String, String>> dataMap = () -> MapX.fromMap(HashMapBuilder.map(MANIFEST_COMPARATOR_DATA_WRITER_KEY, comparator.toString()).build()) --> Line_8 $$ bus.post(SystemData.<String, String>builder().correlationId(correlationId).dataMap(dataMap.get()).errors(0).processed(1).build()) [FD]

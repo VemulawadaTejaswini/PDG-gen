@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldCreateStreamUsingLikeClause() throws Exception --> Line_3 $$ executeStatement("CREATE STREAM pageviews_like_p5" + " WITH (kafka_topic='pageviews_enriched_r0', value_format='DELIMITED')" + " AS SELECT * FROM %s" + " WHERE pageId LIKE '%%_5';", pageViewStream) [CD]
+Line_2 $$ public void shouldCreateStreamUsingLikeClause() throws Exception --> Line_4 $$ final QueuedQueryMetadata queryMetadata = executeQuery("SELECT userid, pageid from pageviews_like_p5;") [CD]
+Line_2 $$ public void shouldCreateStreamUsingLikeClause() throws Exception --> Line_5 $$ final List<Object> columns = waitForFirstRow(queryMetadata) [CD]
+Line_4 $$ final QueuedQueryMetadata queryMetadata = executeQuery("SELECT userid, pageid from pageviews_like_p5;") --> Line_5 $$ final List<Object> columns = waitForFirstRow(queryMetadata) [FD]
+Line_2 $$ public void shouldCreateStreamUsingLikeClause() throws Exception --> Line_6 $$ assertThat(columns.get(1), is("PAGE_5")) [CD]
+Line_5 $$ final List<Object> columns = waitForFirstRow(queryMetadata) --> Line_6 $$ assertThat(columns.get(1), is("PAGE_5")) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void assertNoTmpFilesAndNoIndicesRemaining() throws Exception --> Line_3 $$ assertBusy(() -> forEachIndicesMap( i -> [CD]
+Line_4 $$ for (BlobIndex blobIndex : i.values()) --> Line_6 $$ Map<Integer, BlobShard> o = (Map<Integer, BlobShard>) shardsField.get(blobIndex) [FD]
+Line_6 $$ Map<Integer, BlobShard> o = (Map<Integer, BlobShard>) shardsField.get(blobIndex) --> Line_7 $$ for (BlobShard blobShard : o.values()) [FD]
+Line_7 $$ for (BlobShard blobShard : o.values()) --> Line_8 $$ Path tmpDir = blobShard.blobContainer().getTmpDirectory() [FD]
+Line_8 $$ Path tmpDir = blobShard.blobContainer().getTmpDirectory() --> Line_9 $$ try (Stream<Path> files = Files.list(tmpDir)) [FD]
+Line_9 $$ try (Stream<Path> files = Files.list(tmpDir)) --> Line_10 $$ assertThat(files.count(), is(0L)) [FD]
+Line_2 $$ public void assertNoTmpFilesAndNoIndicesRemaining() throws Exception --> Line_18 $$ internalCluster().wipeIndices("_all") [CD]
+Line_2 $$ public void assertNoTmpFilesAndNoIndicesRemaining() throws Exception --> Line_19 $$ assertBusy(() -> forEachIndicesMap( i -> assertThat(i.keySet(), empty()))) [CD]

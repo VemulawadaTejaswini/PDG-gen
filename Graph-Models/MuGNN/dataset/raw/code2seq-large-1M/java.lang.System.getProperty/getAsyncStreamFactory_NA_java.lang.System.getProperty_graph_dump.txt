@@ -1,0 +1,7 @@
+Line_2 $$ public static StreamFactory getAsyncStreamFactory() --> Line_3 $$ String streamType = System.getProperty("org.mongodb.async.type", "nio2") [CD]
+Line_2 $$ public static StreamFactory getAsyncStreamFactory() --> Line_4 $$ if (streamType.equals("netty") || getSslSettings().isEnabled()) [CD]
+Line_3 $$ String streamType = System.getProperty("org.mongodb.async.type", "nio2") --> Line_4 $$ if (streamType.equals("netty") || getSslSettings().isEnabled()) [FD]
+Line_4 $$ if (streamType.equals("netty") || getSslSettings().isEnabled()) --> Line_5 $$ return new NettyStreamFactory(getSocketSettings(), getSslSettings()) [CD]
+Line_4 $$ if (streamType.equals("netty") || getSslSettings().isEnabled()) --> Line_6 $$ if (streamType.equals("nio2")) [CD]
+Line_3 $$ String streamType = System.getProperty("org.mongodb.async.type", "nio2") --> Line_6 $$ if (streamType.equals("nio2")) [FD]
+Line_6 $$ if (streamType.equals("nio2")) --> Line_7 $$ return new AsynchronousSocketChannelStreamFactory(getSocketSettings(), getSslSettings()) [CD]

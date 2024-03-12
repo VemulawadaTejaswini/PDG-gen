@@ -1,0 +1,8 @@
+Line_2 $$ public CompletionStage<?> loadNextBatch() --> Line_3 $$ if (!currentlyLoading.compareAndSet(false, true)) [CD]
+Line_3 $$ if (!currentlyLoading.compareAndSet(false, true)) --> Line_4 $$ return CompletableFutures.failedFuture(new IllegalStateException("loadNextBatch call during load operation")) [CD]
+Line_2 $$ public CompletionStage<?> loadNextBatch() --> Line_6 $$ if (delegate.allLoaded()) [CD]
+Line_6 $$ if (delegate.allLoaded()) --> Line_8 $$ if (currentBatch > numBatches) [CD]
+Line_8 $$ if (currentBatch > numBatches) --> Line_9 $$ currentlyLoading.compareAndSet(true, false) [CD]
+Line_8 $$ if (currentBatch > numBatches) --> Line_10 $$ return CompletableFutures.failedFuture(new IllegalStateException("Iterator already fully loaded")) [CD]
+Line_6 $$ if (delegate.allLoaded()) --> Line_12 $$ return CompletableFuture.runAsync(() -> [CD]
+Line_6 $$ if (delegate.allLoaded()) --> Line_21 $$ return delegate.loadNextBatch().thenAccept( i -> currentlyLoading.compareAndSet(true, false)) [CD]

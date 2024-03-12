@@ -1,0 +1,5 @@
+Line_2 $$ private Request rewriteRequest(final Request request) --> Line_3 $$ final Optional<String> frameHostOpt = getFrameHost() [CD]
+Line_2 $$ private Request rewriteRequest(final Request request) --> Line_4 $$ if (request.url.getProtocol().equals("data") && frameHostOpt.isPresent()) [CD]
+Line_3 $$ final Optional<String> frameHostOpt = getFrameHost() --> Line_4 $$ if (request.url.getProtocol().equals("data") && frameHostOpt.isPresent()) [FD]
+Line_3 $$ final Optional<String> frameHostOpt = getFrameHost() --> Line_6 $$ return new Request(new URL("data", frameHostOpt.get(), "someDataPath"), request.kind) [FD]
+Line_4 $$ if (request.url.getProtocol().equals("data") && frameHostOpt.isPresent()) --> Line_11 $$ return request [CD]

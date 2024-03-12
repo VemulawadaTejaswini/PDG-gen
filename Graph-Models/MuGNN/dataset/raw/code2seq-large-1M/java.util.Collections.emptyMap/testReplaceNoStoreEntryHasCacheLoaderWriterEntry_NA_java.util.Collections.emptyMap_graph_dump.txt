@@ -1,0 +1,6 @@
+Line_3 $$ final FakeStore fakeStore = new FakeStore(Collections.emptyMap()) --> Line_4 $$ this.store = spy(fakeStore) [FD]
+Line_5 $$ final FakeCacheLoaderWriter fakeLoaderWriter = new FakeCacheLoaderWriter(Collections.singletonMap("key", "oldValue")) --> Line_6 $$ final EhcacheWithLoaderWriter<String, String> ehcache = this.getEhcache(fakeLoaderWriter) [FD]
+Line_6 $$ final EhcacheWithLoaderWriter<String, String> ehcache = this.getEhcache(fakeLoaderWriter) --> Line_7 $$ assertThat(ehcache.replace("key", "value"), is("oldValue")) [FD]
+Line_3 $$ final FakeStore fakeStore = new FakeStore(Collections.emptyMap()) --> Line_10 $$ assertThat(fakeStore.getEntryMap().containsKey("key"), is(true)) [FD]
+Line_5 $$ final FakeCacheLoaderWriter fakeLoaderWriter = new FakeCacheLoaderWriter(Collections.singletonMap("key", "oldValue")) --> Line_11 $$ assertThat(fakeLoaderWriter.getEntryMap().get("key"), is(equalTo("value"))) [FD]
+Line_6 $$ final EhcacheWithLoaderWriter<String, String> ehcache = this.getEhcache(fakeLoaderWriter) --> Line_12 $$ validateStats(ehcache, EnumSet.of(CacheOperationOutcomes.ReplaceOutcome.HIT)) [FD]

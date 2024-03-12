@@ -1,0 +1,7 @@
+Line_2 $$ private Field getEntityIdFieldFromClass(Class<?> clazz) --> Line_3 $$ Class<?> c = clazz [CD]
+Line_2 $$ private Field getEntityIdFieldFromClass(Class<?> clazz) --> Line_4 $$ do [CD]
+Line_3 $$ Class<?> c = clazz --> Line_5 $$ for (Field f : c.getDeclaredFields()) [FD]
+Line_5 $$ for (Field f : c.getDeclaredFields()) --> Line_6 $$ if (f.isAnnotationPresent(Id.class)) [FD]
+Line_4 $$ do --> Line_10 $$ c = c.getSuperclass() [CD]
+Line_3 $$ Class<?> c = clazz --> Line_10 $$ c = c.getSuperclass() [FD]
+Line_2 $$ private Field getEntityIdFieldFromClass(Class<?> clazz) --> Line_12 $$ throw new CloudRuntimeException(String.format("class[%s] doesn't have a field annotated by %s, is it a JPA @Entity class???", clazz.getName(), Id.class.getName())) [FD]

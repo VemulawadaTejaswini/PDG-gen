@@ -1,0 +1,7 @@
+Line_2 $$ public void testParseMalformedXml() throws IOException --> Line_3 $$ String xml = "<?xml version='1.1' encoding='UTF-8' standalone='no'?>\n" + "<testcase name='com.facebook.buck.test.XmlTestResultParserTest'>\n" + "  <test name='testParseMalformedXml' success='true' time='too meta'/>\n" + "</testcase>\n" [CD]
+Line_2 $$ public void testParseMalformedXml() throws IOException --> Line_4 $$ Path xmlFile = tmp.newFile("result.xml") [CD]
+Line_2 $$ public void testParseMalformedXml() throws IOException --> Line_5 $$ Files.write(xmlFile, xml.getBytes(UTF_8)) [CD]
+Line_4 $$ Path xmlFile = tmp.newFile("result.xml") --> Line_5 $$ Files.write(xmlFile, xml.getBytes(UTF_8)) [FD]
+Line_3 $$ String xml = "<?xml version='1.1' encoding='UTF-8' standalone='no'?>\n" + "<testcase name='com.facebook.buck.test.XmlTestResultParserTest'>\n" + "  <test name='testParseMalformedXml' success='true' time='too meta'/>\n" + "</testcase>\n" --> Line_5 $$ Files.write(xmlFile, xml.getBytes(UTF_8)) [FD]
+Line_4 $$ Path xmlFile = tmp.newFile("result.xml") --> Line_7 $$ XmlTestResultParser.parse(xmlFile) [FD]
+Line_4 $$ Path xmlFile = tmp.newFile("result.xml") --> Line_11 $$ assertEquals("Exception should include the path to the file as well as its contents.", "Error parsing test result data in " + xmlFile.toAbsolutePath() + ".\n" + "File contents:\n" + xml, e.getMessage()) [FD]

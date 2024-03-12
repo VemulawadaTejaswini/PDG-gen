@@ -1,0 +1,7 @@
+Line_2 $$ public static Collection<String> getAllNoLoopbackAddresses() --> Line_3 $$ Collection<String> noLoopbackAddresses = new ArrayList<String>() [CD]
+Line_2 $$ public static Collection<String> getAllNoLoopbackAddresses() --> Line_4 $$ Collection<InetAddress> allInetAddresses = getAllHostAddress() [CD]
+Line_5 $$ for (InetAddress address : allInetAddresses) --> Line_6 $$ if (!address.isLoopbackAddress()) [FD]
+Line_6 $$ if (!address.isLoopbackAddress()) --> Line_7 $$ noLoopbackAddresses.add(address.getHostAddress()) [CD]
+Line_3 $$ Collection<String> noLoopbackAddresses = new ArrayList<String>() --> Line_7 $$ noLoopbackAddresses.add(address.getHostAddress()) [FD]
+Line_5 $$ for (InetAddress address : allInetAddresses) --> Line_7 $$ noLoopbackAddresses.add(address.getHostAddress()) [FD]
+Line_2 $$ public static Collection<String> getAllNoLoopbackAddresses() --> Line_10 $$ return noLoopbackAddresses [CD]

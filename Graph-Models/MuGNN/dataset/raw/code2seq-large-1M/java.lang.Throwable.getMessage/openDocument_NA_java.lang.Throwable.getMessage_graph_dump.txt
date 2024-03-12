@@ -1,0 +1,8 @@
+Line_2 $$ public ParcelFileDescriptor openDocument(String documentId, String mode, CancellationSignal signal) throws FileNotFoundException --> Line_3 $$ Log.d(TAG, "openDocument() " + documentId) [CD]
+Line_2 $$ public ParcelFileDescriptor openDocument(String documentId, String mode, CancellationSignal signal) throws FileNotFoundException --> Line_5 $$ UsbFile file = getFileForDocId(documentId) [FD]
+Line_2 $$ public ParcelFileDescriptor openDocument(String documentId, String mode, CancellationSignal signal) throws FileNotFoundException --> Line_6 $$ final int accessMode = ParcelFileDescriptor.parseMode(mode) [FD]
+Line_7 $$ if ((accessMode | ParcelFileDescriptor.MODE_READ_ONLY) == ParcelFileDescriptor.MODE_READ_ONLY) --> Line_8 $$ Log.d(TAG, "openDocument() piping to UsbFileInputStream") [CD]
+Line_7 $$ if ((accessMode | ParcelFileDescriptor.MODE_READ_ONLY) == ParcelFileDescriptor.MODE_READ_ONLY) --> Line_9 $$ return ParcelFileDescriptorUtil.pipeFrom(new UsbFileInputStream(file)) [CD]
+Line_7 $$ if ((accessMode | ParcelFileDescriptor.MODE_READ_ONLY) == ParcelFileDescriptor.MODE_READ_ONLY) --> Line_10 $$ if ((accessMode | ParcelFileDescriptor.MODE_WRITE_ONLY) == ParcelFileDescriptor.MODE_WRITE_ONLY) [CD]
+Line_10 $$ if ((accessMode | ParcelFileDescriptor.MODE_WRITE_ONLY) == ParcelFileDescriptor.MODE_WRITE_ONLY) --> Line_11 $$ Log.d(TAG, "openDocument() piping to UsbFileOutputStream") [CD]
+Line_10 $$ if ((accessMode | ParcelFileDescriptor.MODE_WRITE_ONLY) == ParcelFileDescriptor.MODE_WRITE_ONLY) --> Line_12 $$ return ParcelFileDescriptorUtil.pipeTo(new UsbFileOutputStream(file)) [CD]

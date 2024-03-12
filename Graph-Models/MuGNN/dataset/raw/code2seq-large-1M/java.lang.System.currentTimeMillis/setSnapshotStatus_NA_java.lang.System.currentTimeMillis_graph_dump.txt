@@ -1,0 +1,8 @@
+Line_2 $$ long setSnapshotStatus(long jobId, long snapshotId, SnapshotStatus status) --> Line_3 $$ IMapJet<Long, SnapshotRecord> snapshots = getSnapshotMap(jobId) [FD]
+Line_2 $$ long setSnapshotStatus(long jobId, long snapshotId, SnapshotStatus status) --> Line_3 $$ IMapJet<Long, SnapshotRecord> snapshots = getSnapshotMap(jobId) [CD]
+Line_2 $$ long setSnapshotStatus(long jobId, long snapshotId, SnapshotStatus status) --> Line_4 $$ SnapshotRecord record = compute(snapshots, snapshotId, ( k,  r) -> [FD]
+Line_2 $$ long setSnapshotStatus(long jobId, long snapshotId, SnapshotStatus status) --> Line_4 $$ SnapshotRecord record = compute(snapshots, snapshotId, ( k,  r) -> [CD]
+Line_3 $$ IMapJet<Long, SnapshotRecord> snapshots = getSnapshotMap(jobId) --> Line_4 $$ SnapshotRecord record = compute(snapshots, snapshotId, ( k,  r) -> [FD]
+Line_2 $$ long setSnapshotStatus(long jobId, long snapshotId, SnapshotStatus status) --> Line_5 $$ r.setStatus(status) [FD]
+Line_2 $$ long setSnapshotStatus(long jobId, long snapshotId, SnapshotStatus status) --> Line_8 $$ return System.currentTimeMillis() - record.startTime() [CD]
+Line_4 $$ SnapshotRecord record = compute(snapshots, snapshotId, ( k,  r) -> --> Line_8 $$ return System.currentTimeMillis() - record.startTime() [FD]

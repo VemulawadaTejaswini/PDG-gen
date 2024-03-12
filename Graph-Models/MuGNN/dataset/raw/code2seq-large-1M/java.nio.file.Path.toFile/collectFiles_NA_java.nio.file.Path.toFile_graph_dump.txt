@@ -1,0 +1,8 @@
+Line_2 $$ static Map<String, byte[]> collectFiles(Path jar) throws IOException --> Line_3 $$ Map<String, byte[]> files = new LinkedHashMap() [CD]
+Line_2 $$ static Map<String, byte[]> collectFiles(Path jar) throws IOException --> Line_4 $$ try (JarFile jf = new JarFile(jar.toFile())) [FD]
+Line_4 $$ try (JarFile jf = new JarFile(jar.toFile())) --> Line_5 $$ Enumeration<JarEntry> entries = jf.entries() [FD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_7 $$ JarEntry entry = entries.nextElement() [CD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_8 $$ files.put(entry.getName(), ByteStreams.toByteArray(jf.getInputStream(entry))) [CD]
+Line_3 $$ Map<String, byte[]> files = new LinkedHashMap() --> Line_8 $$ files.put(entry.getName(), ByteStreams.toByteArray(jf.getInputStream(entry))) [FD]
+Line_4 $$ try (JarFile jf = new JarFile(jar.toFile())) --> Line_8 $$ files.put(entry.getName(), ByteStreams.toByteArray(jf.getInputStream(entry))) [FD]
+Line_2 $$ static Map<String, byte[]> collectFiles(Path jar) throws IOException --> Line_11 $$ return files [CD]

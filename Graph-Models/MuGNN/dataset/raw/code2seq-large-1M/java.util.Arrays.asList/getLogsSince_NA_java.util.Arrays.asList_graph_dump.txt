@@ -1,0 +1,8 @@
+Line_2 $$ public List<TransactionLog> getLogsSince(long timestamp) throws IOException --> Line_3 $$ FileStatus[] statuses = fs.listStatus(snapshotDir, new LogFileFilter(timestamp, Long.MAX_VALUE)) [CD]
+Line_2 $$ public List<TransactionLog> getLogsSince(long timestamp) throws IOException --> Line_4 $$ TimestampedFilename[] timestampedFiles = new TimestampedFilename[statuses.length] [CD]
+Line_2 $$ public List<TransactionLog> getLogsSince(long timestamp) throws IOException --> Line_5 $$ for (int i = 0; i < statuses.length; i++) [CD]
+Line_5 $$ for (int i = 0; i < statuses.length; i++) --> Line_6 $$ timestampedFiles[i] = new TimestampedFilename(statuses[i].getPath()) [CD]
+Line_2 $$ public List<TransactionLog> getLogsSince(long timestamp) throws IOException --> Line_8 $$ return Lists.transform(Arrays.asList(timestampedFiles), new Function<TimestampedFilename, TransactionLog>() [CD]
+Line_4 $$ TimestampedFilename[] timestampedFiles = new TimestampedFilename[statuses.length] --> Line_8 $$ return Lists.transform(Arrays.asList(timestampedFiles), new Function<TimestampedFilename, TransactionLog>() [FD]
+Line_8 $$ return Lists.transform(Arrays.asList(timestampedFiles), new Function<TimestampedFilename, TransactionLog>() --> Line_10 $$ return openLog(input.getPath(), input.getTimestamp()) [FD]
+Line_8 $$ return Lists.transform(Arrays.asList(timestampedFiles), new Function<TimestampedFilename, TransactionLog>() --> Line_10 $$ return openLog(input.getPath(), input.getTimestamp()) [CD]

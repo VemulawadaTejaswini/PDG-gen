@@ -1,0 +1,8 @@
+Line_2 $$ private DeferredResult<List<Operation>> unsubscribeHostForEvents(ContainerHostRemovalTaskState state) --> Line_3 $$ List<DeferredResult<Operation>> deferredResults = new ArrayList(state.resourceLinks.size()) [CD]
+Line_4 $$ for (String resourceLink : state.resourceLinks) --> Line_8 $$ request.resourceReference = UriUtils.buildUri(getHost(), resourceLink) [FD]
+Line_3 $$ List<DeferredResult<Operation>> deferredResults = new ArrayList(state.resourceLinks.size()) --> Line_10 $$ deferredResults.add(getHost().sendWithDeferredResult(Operation.createPatch(adapterManagementReference).setReferer(this.getUri()).setBodyNoCloning(request)).whenComplete(( o,  e) -> [FD]
+Line_5 $$ AdapterRequest request = new AdapterRequest() --> Line_10 $$ deferredResults.add(getHost().sendWithDeferredResult(Operation.createPatch(adapterManagementReference).setReferer(this.getUri()).setBodyNoCloning(request)).whenComplete(( o,  e) -> [FD]
+Line_9 $$ URI adapterManagementReference = UriUtils.buildUri(getHost(), ManagementUriParts.ADAPTER_DOCKER_HOST) --> Line_10 $$ deferredResults.add(getHost().sendWithDeferredResult(Operation.createPatch(adapterManagementReference).setReferer(this.getUri()).setBodyNoCloning(request)).whenComplete(( o,  e) -> [FD]
+Line_11 $$ if (e != null) --> Line_12 $$ logWarning("Failed to unsubscribe for host events.") [CD]
+Line_2 $$ private DeferredResult<List<Operation>> unsubscribeHostForEvents(ContainerHostRemovalTaskState state) --> Line_16 $$ return DeferredResult.allOf(deferredResults) [CD]
+Line_3 $$ List<DeferredResult<Operation>> deferredResults = new ArrayList(state.resourceLinks.size()) --> Line_16 $$ return DeferredResult.allOf(deferredResults) [FD]

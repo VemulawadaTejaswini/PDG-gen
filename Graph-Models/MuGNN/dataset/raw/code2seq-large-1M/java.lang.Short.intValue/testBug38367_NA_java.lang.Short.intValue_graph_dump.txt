@@ -1,0 +1,7 @@
+Line_2 $$ public void testBug38367() throws Exception --> Line_3 $$ if (!versionMeetsMinimum(5, 0)) [CD]
+Line_3 $$ if (!versionMeetsMinimum(5, 0)) --> Line_4 $$ return [CD]
+Line_8 $$ DatabaseMetaData dbMeta = this.conn.getMetaData() --> Line_9 $$ this.rs = dbMeta.getProcedureColumns(this.conn.getCatalog(), null, "sptestBug38367", null) [FD]
+Line_10 $$ while (this.rs.next()) --> Line_11 $$ String columnName = this.rs.getString(4) [CD]
+Line_10 $$ while (this.rs.next()) --> Line_12 $$ Short columnNullable = new Short(this.rs.getShort(12)) [CD]
+Line_10 $$ while (this.rs.next()) --> Line_13 $$ assertTrue("Parameter " + columnName + " is not java.sql.DatabaseMetaData.procedureNullable.", columnNullable.intValue() == java.sql.DatabaseMetaData.procedureNullable) [CD]
+Line_12 $$ Short columnNullable = new Short(this.rs.getShort(12)) --> Line_13 $$ assertTrue("Parameter " + columnName + " is not java.sql.DatabaseMetaData.procedureNullable.", columnNullable.intValue() == java.sql.DatabaseMetaData.procedureNullable) [FD]

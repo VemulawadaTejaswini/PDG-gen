@@ -1,0 +1,8 @@
+Line_2 $$ public Set<String> getKnoxAudiences() --> Line_3 $$ final String rawAudiences = getProperty(SECURITY_USER_KNOX_AUDIENCES) [CD]
+Line_2 $$ public Set<String> getKnoxAudiences() --> Line_4 $$ if (StringUtils.isBlank(rawAudiences)) [CD]
+Line_3 $$ final String rawAudiences = getProperty(SECURITY_USER_KNOX_AUDIENCES) --> Line_4 $$ if (StringUtils.isBlank(rawAudiences)) [FD]
+Line_4 $$ if (StringUtils.isBlank(rawAudiences)) --> Line_5 $$ return null [CD]
+Line_4 $$ if (StringUtils.isBlank(rawAudiences)) --> Line_7 $$ final String[] audienceTokens = rawAudiences.split(",") [CD]
+Line_3 $$ final String rawAudiences = getProperty(SECURITY_USER_KNOX_AUDIENCES) --> Line_7 $$ final String[] audienceTokens = rawAudiences.split(",") [FD]
+Line_4 $$ if (StringUtils.isBlank(rawAudiences)) --> Line_8 $$ return Stream.of(audienceTokens).map(String::<>trim).filter( aud -> !StringUtils.isEmpty(aud)).collect(Collectors.toSet()) [CD]
+Line_7 $$ final String[] audienceTokens = rawAudiences.split(",") --> Line_8 $$ return Stream.of(audienceTokens).map(String::<>trim).filter( aud -> !StringUtils.isEmpty(aud)).collect(Collectors.toSet()) [FD]

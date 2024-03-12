@@ -1,0 +1,7 @@
+Line_5 $$ if (calibration.timestamp > start_time) --> Line_6 $$ final long adjusted_timestamp = ((long) (calibration.timestamp) + (estimatedInterstitialLagSeconds * 1000)) [CD]
+Line_5 $$ if (calibration.timestamp > start_time) --> Line_7 $$ final PointValueExtended this_point = new PointValueExtended((float) (adjusted_timestamp / FUZZER), (float) unitized(calibration.sgv)) [CD]
+Line_5 $$ if (calibration.timestamp > start_time) --> Line_8 $$ this_point.real_timestamp = (long) calibration.timestamp [CD]
+Line_5 $$ if (calibration.timestamp > start_time) --> Line_9 $$ calibrationValues.add(new PointValue(fuzz(adjusted_timestamp), (float) unitized(calibration.sgv))) [CD]
+Line_6 $$ final long adjusted_timestamp = ((long) (calibration.timestamp) + (estimatedInterstitialLagSeconds * 1000)) --> Line_9 $$ calibrationValues.add(new PointValue(fuzz(adjusted_timestamp), (float) unitized(calibration.sgv))) [FD]
+Line_5 $$ if (calibration.timestamp > start_time) --> Line_10 $$ if (d) [CD]
+Line_10 $$ if (d) --> Line_11 $$ Log.d(TAG, "calibration total record: " + calibration.sgv + " " + " adjusted_timestamp: " + fuzz(calibration.timestamp) + " timestamp=" + JoH.dateTimeText((long) calibration.timestamp)) [CD]

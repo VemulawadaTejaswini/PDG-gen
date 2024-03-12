@@ -1,0 +1,7 @@
+Line_2 $$ public void onSuccessNotCalledOnError() --> Line_3 $$ LongAdder invoked = new LongAdder() [CD]
+Line_2 $$ public void onSuccessNotCalledOnError() --> Line_4 $$ IllegalArgumentException err = new IllegalArgumentException("boom") [CD]
+Line_2 $$ public void onSuccessNotCalledOnError() --> Line_5 $$ StepVerifier.create(Mono.error(err).doOnSuccess( v -> invoked.increment())).expectErrorMessage("boom").verify() [CD]
+Line_4 $$ IllegalArgumentException err = new IllegalArgumentException("boom") --> Line_5 $$ StepVerifier.create(Mono.error(err).doOnSuccess( v -> invoked.increment())).expectErrorMessage("boom").verify() [FD]
+Line_3 $$ LongAdder invoked = new LongAdder() --> Line_5 $$ StepVerifier.create(Mono.error(err).doOnSuccess( v -> invoked.increment())).expectErrorMessage("boom").verify() [FD]
+Line_2 $$ public void onSuccessNotCalledOnError() --> Line_6 $$ assertEquals(0, invoked.intValue()) [CD]
+Line_3 $$ LongAdder invoked = new LongAdder() --> Line_6 $$ assertEquals(0, invoked.intValue()) [FD]

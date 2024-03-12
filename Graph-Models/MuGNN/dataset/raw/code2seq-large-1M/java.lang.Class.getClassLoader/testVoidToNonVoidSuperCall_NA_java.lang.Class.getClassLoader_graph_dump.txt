@@ -1,0 +1,6 @@
+Line_2 $$ public void testVoidToNonVoidSuperCall() throws Exception --> Line_3 $$ DynamicType.Loaded<VoidTest> loaded = new ByteBuddy().subclass(VoidTest.class).method(isDeclaredBy(VoidTest.class)).intercept(MethodDelegation.to(NonVoidTarget.class)).make().load(VoidTest.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testVoidToNonVoidSuperCall() throws Exception --> Line_4 $$ VoidTest instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testVoidToNonVoidSuperCall() throws Exception --> Line_5 $$ instance.foo() [CD]
+Line_4 $$ VoidTest instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ instance.foo() [FD]
+Line_2 $$ public void testVoidToNonVoidSuperCall() throws Exception --> Line_6 $$ instance.assertOnlyCall(FOO) [CD]
+Line_4 $$ VoidTest instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ instance.assertOnlyCall(FOO) [FD]

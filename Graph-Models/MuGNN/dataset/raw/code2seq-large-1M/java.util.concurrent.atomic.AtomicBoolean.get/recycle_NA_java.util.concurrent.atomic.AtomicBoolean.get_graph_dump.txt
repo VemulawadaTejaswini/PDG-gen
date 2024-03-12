@@ -1,0 +1,7 @@
+Line_2 $$ public void recycle(MemorySegment segment) --> Line_3 $$ int numAddedBuffers [CD]
+Line_2 $$ public void recycle(MemorySegment segment) --> Line_7 $$ inputGate.returnExclusiveSegments(Collections.singletonList(segment)) [FD]
+Line_3 $$ int numAddedBuffers --> Line_13 $$ numAddedBuffers = bufferQueue.addExclusiveBuffer(new NetworkBuffer(segment, this), numRequiredBuffers) [FD]
+Line_2 $$ public void recycle(MemorySegment segment) --> Line_15 $$ if (numAddedBuffers > 0 && unannouncedCredit.getAndAdd(numAddedBuffers) == 0) [CD]
+Line_3 $$ int numAddedBuffers --> Line_15 $$ if (numAddedBuffers > 0 && unannouncedCredit.getAndAdd(numAddedBuffers) == 0) [FD]
+Line_13 $$ numAddedBuffers = bufferQueue.addExclusiveBuffer(new NetworkBuffer(segment, this), numRequiredBuffers) --> Line_15 $$ if (numAddedBuffers > 0 && unannouncedCredit.getAndAdd(numAddedBuffers) == 0) [FD]
+Line_15 $$ if (numAddedBuffers > 0 && unannouncedCredit.getAndAdd(numAddedBuffers) == 0) --> Line_16 $$ notifyCreditAvailable() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static Path getProjectPath() --> Line_3 $$ final String targetDir = "asterix-app" [CD]
+Line_2 $$ private static Path getProjectPath() --> Line_4 $$ final BiPredicate<Path, BasicFileAttributes> matcher = ( path,  attributes) -> path.getFileName().toString().equals(targetDir) && path.toFile().isDirectory() && path.toFile().list(( d,  n) -> n.equals("pom.xml")).length == 1 [CD]
+Line_3 $$ final String targetDir = "asterix-app" --> Line_4 $$ final BiPredicate<Path, BasicFileAttributes> matcher = ( path,  attributes) -> path.getFileName().toString().equals(targetDir) && path.toFile().isDirectory() && path.toFile().list(( d,  n) -> n.equals("pom.xml")).length == 1 [FD]
+Line_2 $$ private static Path getProjectPath() --> Line_5 $$ final Path currentPath = Paths.get(System.getProperty("user.dir")) [CD]
+Line_5 $$ final Path currentPath = Paths.get(System.getProperty("user.dir")) --> Line_6 $$ try (Stream<Path> pathStream = Files.find(currentPath, 10, matcher)) [FD]
+Line_4 $$ final BiPredicate<Path, BasicFileAttributes> matcher = ( path,  attributes) -> path.getFileName().toString().equals(targetDir) && path.toFile().isDirectory() && path.toFile().list(( d,  n) -> n.equals("pom.xml")).length == 1 --> Line_6 $$ try (Stream<Path> pathStream = Files.find(currentPath, 10, matcher)) [FD]
+Line_5 $$ final Path currentPath = Paths.get(System.getProperty("user.dir")) --> Line_7 $$ return pathStream.findFirst().orElse(currentPath) [FD]
+Line_6 $$ try (Stream<Path> pathStream = Files.find(currentPath, 10, matcher)) --> Line_7 $$ return pathStream.findFirst().orElse(currentPath) [FD]

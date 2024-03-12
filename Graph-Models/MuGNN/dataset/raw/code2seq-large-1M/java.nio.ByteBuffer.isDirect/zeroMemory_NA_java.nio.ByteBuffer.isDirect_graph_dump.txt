@@ -1,0 +1,8 @@
+Line_2 $$ public static void zeroMemory(ByteBuffer buf, int off, int len) --> Line_3 $$ if (buf.isDirect()) [FD]
+Line_2 $$ public static void zeroMemory(ByteBuffer buf, int off, int len) --> Line_3 $$ if (buf.isDirect()) [CD]
+Line_3 $$ if (buf.isDirect()) --> Line_4 $$ GridUnsafe.setMemory(GridUnsafe.bufferAddress(buf) + off, len, (byte) 0) [CD]
+Line_2 $$ public static void zeroMemory(ByteBuffer buf, int off, int len) --> Line_4 $$ GridUnsafe.setMemory(GridUnsafe.bufferAddress(buf) + off, len, (byte) 0) [FD]
+Line_3 $$ if (buf.isDirect()) --> Line_6 $$ for (int i = off; i < off + len; i++) buf.put(i, (byte) 0) [CD]
+Line_6 $$ for (int i = off; i < off + len; i++) buf.put(i, (byte) 0) --> Line_7 $$ buf.put(i, (byte) 0) [FD]
+Line_6 $$ for (int i = off; i < off + len; i++) buf.put(i, (byte) 0) --> Line_7 $$ buf.put(i, (byte) 0) [CD]
+Line_2 $$ public static void zeroMemory(ByteBuffer buf, int off, int len) --> Line_7 $$ buf.put(i, (byte) 0) [FD]

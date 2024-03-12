@@ -1,0 +1,6 @@
+Line_2 $$ private void validateActiveChannels() --> Line_3 $$ final long currentTime = System.currentTimeMillis() [CD]
+Line_2 $$ private void validateActiveChannels() --> Line_4 $$ if ((currentTime - this.lastTimeoutCheck) >= this.reactorConfig.getSelectInterval()) [CD]
+Line_4 $$ if ((currentTime - this.lastTimeoutCheck) >= this.reactorConfig.getSelectInterval()) --> Line_5 $$ this.lastTimeoutCheck = currentTime [CD]
+Line_3 $$ final long currentTime = System.currentTimeMillis() --> Line_5 $$ this.lastTimeoutCheck = currentTime [FD]
+Line_6 $$ for (final SelectionKey key : this.selector.keys()) --> Line_7 $$ timeoutCheck(key, currentTime) [FD]
+Line_3 $$ final long currentTime = System.currentTimeMillis() --> Line_7 $$ timeoutCheck(key, currentTime) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public List<String> getPeople() --> Line_3 $$ log.info("Query people list") [CD]
+Line_2 $$ public List<String> getPeople() --> Line_4 $$ List<String> names = new ArrayList() [CD]
+Line_5 $$ for (WebElement row : readyElement(peopleList).findElements(By.tagName("li"))) --> Line_6 $$ String username = row.findElement(By.tagName("a")).getText().trim() [FD]
+Line_5 $$ for (WebElement row : readyElement(peopleList).findElements(By.tagName("li"))) --> Line_8 $$ for (WebElement role : row.findElements(By.className("txt--understated"))) [FD]
+Line_7 $$ String roles = "" --> Line_9 $$ roles = roles.concat(role.getText().trim() + ";") [FD]
+Line_4 $$ List<String> names = new ArrayList() --> Line_11 $$ names.add(username + "|" + roles) [FD]
+Line_2 $$ public List<String> getPeople() --> Line_13 $$ return names [CD]

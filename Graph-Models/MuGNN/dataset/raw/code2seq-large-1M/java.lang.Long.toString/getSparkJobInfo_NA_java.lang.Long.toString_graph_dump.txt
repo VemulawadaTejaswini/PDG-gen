@@ -1,0 +1,6 @@
+Line_2 $$ private SparkJobInfo getSparkJobInfo() throws HiveException --> Line_3 $$ Integer sparkJobId = jobHandle.getSparkJobIds().size() == 1 ? jobHandle.getSparkJobIds().get(0) : null [CD]
+Line_2 $$ private SparkJobInfo getSparkJobInfo() throws HiveException --> Line_4 $$ if (sparkJobId == null) [CD]
+Line_3 $$ Integer sparkJobId = jobHandle.getSparkJobIds().size() == 1 ? jobHandle.getSparkJobIds().get(0) : null --> Line_4 $$ if (sparkJobId == null) [FD]
+Line_4 $$ if (sparkJobId == null) --> Line_5 $$ return null [CD]
+Line_2 $$ private SparkJobInfo getSparkJobInfo() throws HiveException --> Line_7 $$ Future<SparkJobInfo> getJobInfo = sparkClient.run(new GetJobInfoJob(jobHandle.getClientJobId(), sparkJobId)) [CD]
+Line_7 $$ Future<SparkJobInfo> getJobInfo = sparkClient.run(new GetJobInfoJob(jobHandle.getClientJobId(), sparkJobId)) --> Line_9 $$ return getJobInfo.get(sparkClientTimeoutInSeconds, TimeUnit.SECONDS) [FD]

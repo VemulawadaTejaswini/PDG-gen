@@ -1,0 +1,8 @@
+Line_2 $$ public DeferredResult<T> execute() --> Line_3 $$ if (executed.getAndSet(true)) [CD]
+Line_3 $$ if (executed.getAndSet(true)) --> Line_4 $$ preventRetries() [CD]
+Line_3 $$ if (executed.getAndSet(true)) --> Line_5 $$ RetriableTaskException exception = new RetriableTaskException(String.format("Cannot execute task '%s': task has already been executed", taskConfiguration.getTaskId())) [CD]
+Line_3 $$ if (executed.getAndSet(true)) --> Line_6 $$ log(Level.WARNING, Utils.toString(exception)) [CD]
+Line_5 $$ RetriableTaskException exception = new RetriableTaskException(String.format("Cannot execute task '%s': task has already been executed", taskConfiguration.getTaskId())) --> Line_6 $$ log(Level.WARNING, Utils.toString(exception)) [FD]
+Line_3 $$ if (executed.getAndSet(true)) --> Line_7 $$ return DeferredResult.failed(exception) [CD]
+Line_5 $$ RetriableTaskException exception = new RetriableTaskException(String.format("Cannot execute task '%s': task has already been executed", taskConfiguration.getTaskId())) --> Line_7 $$ return DeferredResult.failed(exception) [FD]
+Line_2 $$ public DeferredResult<T> execute() --> Line_9 $$ return executeRetriableTask(0, taskConfiguration) [CD]

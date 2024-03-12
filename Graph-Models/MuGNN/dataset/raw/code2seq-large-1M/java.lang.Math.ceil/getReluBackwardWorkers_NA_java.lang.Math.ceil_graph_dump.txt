@@ -1,0 +1,6 @@
+Line_2 $$ public static ArrayList<Callable<Long>> getReluBackwardWorkers(ConvolutionParameters params) --> Line_3 $$ ArrayList<Callable<Long>> ret = new ArrayList() [CD]
+Line_2 $$ public static ArrayList<Callable<Long>> getReluBackwardWorkers(ConvolutionParameters params) --> Line_4 $$ int k = OptimizerUtils.getConstrainedNumThreads(params.numThreads) [CD]
+Line_2 $$ public static ArrayList<Callable<Long>> getReluBackwardWorkers(ConvolutionParameters params) --> Line_5 $$ int taskSize = (int) (Math.ceil((double) params.N / k)) [CD]
+Line_2 $$ public static ArrayList<Callable<Long>> getReluBackwardWorkers(ConvolutionParameters params) --> Line_6 $$ for (int i = 0; i * taskSize < params.N; i++) ret.add(new ReluBackward(i * taskSize, Math.min((i + 1) * taskSize, params.N), params)) [CD]
+Line_3 $$ ArrayList<Callable<Long>> ret = new ArrayList() --> Line_6 $$ for (int i = 0; i * taskSize < params.N; i++) ret.add(new ReluBackward(i * taskSize, Math.min((i + 1) * taskSize, params.N), params)) [FD]
+Line_2 $$ public static ArrayList<Callable<Long>> getReluBackwardWorkers(ConvolutionParameters params) --> Line_7 $$ return ret [CD]

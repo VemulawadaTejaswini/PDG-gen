@@ -1,0 +1,5 @@
+Line_2 $$ void verifyLoggedEvents(int wait, DnsEvent... expectedEvents) --> Line_3 $$ verify(mLog, timeout(wait).times(expectedEvents.length)).log(mEvCaptor.capture()) [CD]
+Line_2 $$ void verifyLoggedEvents(int wait, DnsEvent... expectedEvents) --> Line_3 $$ verify(mLog, timeout(wait).times(expectedEvents.length)).log(mEvCaptor.capture()) [FD]
+Line_4 $$ for (DnsEvent got : mEvCaptor.getAllValues()) --> Line_5 $$ OptionalInt index = IntStream.range(0, expectedEvents.length).filter( i -> eventsEqual(expectedEvents[i], got)).findFirst() [FD]
+Line_5 $$ OptionalInt index = IntStream.range(0, expectedEvents.length).filter( i -> eventsEqual(expectedEvents[i], got)).findFirst() --> Line_6 $$ index.ifPresent( i -> expectedEvents[i] = null) [FD]
+Line_5 $$ OptionalInt index = IntStream.range(0, expectedEvents.length).filter( i -> eventsEqual(expectedEvents[i], got)).findFirst() --> Line_7 $$ assertTrue(index.isPresent()) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static JsonObject extractResponse(Response response) throws StashClientException --> Line_3 $$ PeekableInputStream bodyStream = new PeekableInputStream(response.getResponseBodyAsStream()) [CD]
+Line_2 $$ private static JsonObject extractResponse(Response response) throws StashClientException --> Line_3 $$ PeekableInputStream bodyStream = new PeekableInputStream(response.getResponseBodyAsStream()) [FD]
+Line_3 $$ PeekableInputStream bodyStream = new PeekableInputStream(response.getResponseBodyAsStream()) --> Line_5 $$ if (!bodyStream.peek().isPresent()) [FD]
+Line_5 $$ if (!bodyStream.peek().isPresent()) --> Line_6 $$ return null [CD]
+Line_2 $$ private static JsonObject extractResponse(Response response) throws StashClientException --> Line_8 $$ String contentType = response.getHeader("Content-Type") [FD]
+Line_8 $$ String contentType = response.getHeader("Content-Type") --> Line_9 $$ if (!JSON.match(contentType.trim())) [FD]
+Line_12 $$ Reader body = new InputStreamReader(bodyStream) --> Line_13 $$ Object obj = Jsoner.deserialize(body) [FD]

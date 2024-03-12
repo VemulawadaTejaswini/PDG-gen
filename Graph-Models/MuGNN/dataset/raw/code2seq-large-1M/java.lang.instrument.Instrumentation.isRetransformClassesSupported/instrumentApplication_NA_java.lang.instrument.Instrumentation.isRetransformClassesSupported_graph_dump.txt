@@ -1,0 +1,8 @@
+Line_2 $$ private void instrumentApplication() throws FileNotFoundException, UnmodifiableClassException --> Line_3 $$ if (!instrumentation.isRetransformClassesSupported()) [CD]
+Line_2 $$ private void instrumentApplication() throws FileNotFoundException, UnmodifiableClassException --> Line_6 $$ instrumentation.addTransformer(this, true) [CD]
+Line_7 $$ for (Class<?> c : instrumentation.getAllLoadedClasses()) --> Line_8 $$ if (isInstrumentClass(c)) [FD]
+Line_8 $$ if (isInstrumentClass(c)) --> Line_9 $$ if (configuration.isAsyncTransformation()) [CD]
+Line_7 $$ for (Class<?> c : instrumentation.getAllLoadedClasses()) --> Line_11 $$ blockingQueue.put(c) [FD]
+Line_7 $$ for (Class<?> c : instrumentation.getAllLoadedClasses()) --> Line_20 $$ LOG.error("Could not transform " + c.getName(), e) [FD]
+Line_2 $$ private void instrumentApplication() throws FileNotFoundException, UnmodifiableClassException --> Line_25 $$ if (configuration.isAsyncTransformation() && !blockingQueue.isEmpty()) [CD]
+Line_25 $$ if (configuration.isAsyncTransformation() && !blockingQueue.isEmpty()) --> Line_26 $$ startTransformThread() [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void queueTaskOnEdt(@Nonnull DumbModeTask task, @Nullable TransactionId contextTransaction, @Nonnull Throwable trace) --> Line_3 $$ if (!addTaskToQueue(task)) [FD]
+Line_2 $$ private void queueTaskOnEdt(@Nonnull DumbModeTask task, @Nullable TransactionId contextTransaction, @Nonnull Throwable trace) --> Line_3 $$ if (!addTaskToQueue(task)) [CD]
+Line_3 $$ if (!addTaskToQueue(task)) --> Line_4 $$ return [CD]
+Line_2 $$ private void queueTaskOnEdt(@Nonnull DumbModeTask task, @Nullable TransactionId contextTransaction, @Nonnull Throwable trace) --> Line_5 $$ if (myState.get() == State.SMART || myState.get() == State.WAITING_FOR_FINISH) [CD]
+Line_5 $$ if (myState.get() == State.SMART || myState.get() == State.WAITING_FOR_FINISH) --> Line_6 $$ enterDumbMode(contextTransaction, trace) [CD]
+Line_2 $$ private void queueTaskOnEdt(@Nonnull DumbModeTask task, @Nullable TransactionId contextTransaction, @Nonnull Throwable trace) --> Line_6 $$ enterDumbMode(contextTransaction, trace) [FD]
+Line_5 $$ if (myState.get() == State.SMART || myState.get() == State.WAITING_FOR_FINISH) --> Line_7 $$ ApplicationManager.getApplication().invokeLater(this::<>startBackgroundProcess, myProject.getDisposed()) [CD]

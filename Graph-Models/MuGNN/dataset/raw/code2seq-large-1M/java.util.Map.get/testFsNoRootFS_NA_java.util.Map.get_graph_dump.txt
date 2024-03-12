@@ -1,0 +1,6 @@
+Line_2 $$ public void testFsNoRootFS() throws Exception --> Line_3 $$ SQLResponse response = execute("select fs['data']['dev'], fs['disks'] from sys.nodes") [CD]
+Line_2 $$ public void testFsNoRootFS() throws Exception --> Line_4 $$ assertThat(response.rowCount(), is(2L)) [CD]
+Line_3 $$ SQLResponse response = execute("select fs['data']['dev'], fs['disks'] from sys.nodes") --> Line_4 $$ assertThat(response.rowCount(), is(2L)) [FD]
+Line_3 $$ SQLResponse response = execute("select fs['data']['dev'], fs['disks'] from sys.nodes") --> Line_5 $$ for (Object[] row : response.rows()) [FD]
+Line_6 $$ for (Object diskDevName : (Object[]) row[0]) --> Line_12 $$ assertThat(diskDevName, is(notNullValue())) [FD]
+Line_6 $$ for (Object diskDevName : (Object[]) row[0]) --> Line_13 $$ assertThat(diskDevName, is(not("rootfs"))) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void produceOutput() throws HttpException, IOException --> Line_3 $$ for (final Iterator<Map.Entry<Integer, Http2Stream>> it = streamMap.entrySet().iterator(); it.hasNext(); ) [CD]
+Line_5 $$ final Http2Stream stream = entry.getValue() --> Line_6 $$ if (!stream.isLocalClosed() && stream.getOutputWindow().get() > 0) [FD]
+Line_6 $$ if (!stream.isLocalClosed() && stream.getOutputWindow().get() > 0) --> Line_7 $$ stream.produceOutput() [CD]
+Line_5 $$ final Http2Stream stream = entry.getValue() --> Line_7 $$ stream.produceOutput() [FD]
+Line_5 $$ final Http2Stream stream = entry.getValue() --> Line_9 $$ if (stream.isTerminated()) [FD]
+Line_9 $$ if (stream.isTerminated()) --> Line_10 $$ it.remove() [CD]
+Line_9 $$ if (stream.isTerminated()) --> Line_11 $$ stream.releaseResources() [CD]
+Line_5 $$ final Http2Stream stream = entry.getValue() --> Line_11 $$ stream.releaseResources() [FD]

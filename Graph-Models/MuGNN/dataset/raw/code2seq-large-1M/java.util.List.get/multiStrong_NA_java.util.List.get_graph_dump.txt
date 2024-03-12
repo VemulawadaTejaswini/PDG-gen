@@ -1,0 +1,7 @@
+Line_2 $$ public void multiStrong() --> Line_3 $$ setUpPrivateDatabase() [CD]
+Line_2 $$ public void multiStrong() --> Line_4 $$ History expected = history.get(history.size() - 1) [CD]
+Line_5 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction()) --> Line_6 $$ Struct row = readRow(readContext) [FD]
+Line_6 $$ Struct row = readRow(readContext) --> Line_7 $$ assertThat(row).isNotNull() [FD]
+Line_6 $$ Struct row = readRow(readContext) --> Line_8 $$ assertThat(row.getString(0)).isEqualTo(expected.value) [FD]
+Line_5 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction()) --> Line_9 $$ assertThat(readContext.getReadTimestamp()).isAtLeast(expected.timestamp) [FD]
+Line_5 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction()) --> Line_10 $$ insertAndReadAgain(readContext, readContext.getReadTimestamp(), expected.value) [FD]

@@ -1,0 +1,8 @@
+Line_3 $$ String key = groupId + ":" + artifactId + ":" + version --> Line_5 $$ key = key + ":" + classifier [FD]
+Line_3 $$ String key = groupId + ":" + artifactId + ":" + version --> Line_7 $$ Artifact a = this.artifacts.get(key) [FD]
+Line_7 $$ Artifact a = this.artifacts.get(key) --> Line_8 $$ if (a == null) [FD]
+Line_8 $$ if (a == null) --> Line_9 $$ a = new Artifact(groupId, artifactId, version, classifier) [CD]
+Line_7 $$ Artifact a = this.artifacts.get(key) --> Line_9 $$ a = new Artifact(groupId, artifactId, version, classifier) [FD]
+Line_8 $$ if (a == null) --> Line_10 $$ this.artifacts.put(key, a) [CD]
+Line_3 $$ String key = groupId + ":" + artifactId + ":" + version --> Line_10 $$ this.artifacts.put(key, a) [FD]
+Line_7 $$ Artifact a = this.artifacts.get(key) --> Line_10 $$ this.artifacts.put(key, a) [FD]

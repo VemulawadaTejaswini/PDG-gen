@@ -1,0 +1,8 @@
+Line_2 $$ public FaceGroupingSet groupFaceListOnSingleFace(List<String> images) --> Line_3 $$ List<ImageAndFace> imageAndFaces = new ArrayList() [CD]
+Line_3 $$ List<ImageAndFace> imageAndFaces = new ArrayList() --> Line_5 $$ imageAndFaces.add(new ImageAndFace(image, findSingleFace(image))) [FD]
+Line_4 $$ for (String image : images) --> Line_5 $$ imageAndFaces.add(new ImageAndFace(image, findSingleFace(image))) [FD]
+Line_2 $$ public FaceGroupingSet groupFaceListOnSingleFace(List<String> images) --> Line_7 $$ List<String> faceIds = imageAndFaces.parallelStream().map( it -> it.getFace().faceId).collect(Collectors.toList()) [CD]
+Line_3 $$ List<ImageAndFace> imageAndFaces = new ArrayList() --> Line_7 $$ List<String> faceIds = imageAndFaces.parallelStream().map( it -> it.getFace().faceId).collect(Collectors.toList()) [FD]
+Line_2 $$ public FaceGroupingSet groupFaceListOnSingleFace(List<String> images) --> Line_8 $$ FaceGrouping groupings = faceTaskBuilder.groupFaces(faceIds).withResult() [CD]
+Line_7 $$ List<String> faceIds = imageAndFaces.parallelStream().map( it -> it.getFace().faceId).collect(Collectors.toList()) --> Line_8 $$ FaceGrouping groupings = faceTaskBuilder.groupFaces(faceIds).withResult() [FD]
+Line_2 $$ public FaceGroupingSet groupFaceListOnSingleFace(List<String> images) --> Line_9 $$ return new FaceGroupingSet(imageAndFaces, groupings) [CD]

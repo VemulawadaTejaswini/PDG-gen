@@ -1,0 +1,7 @@
+Line_2 $$ private void verifyRegionValuesWithTx(boolean disableSetOpToStartTx, boolean isAccessor) --> Line_3 $$ CacheTransactionManager txMgr = basicGetCache().getCacheTransactionManager() [CD]
+Line_2 $$ private void verifyRegionValuesWithTx(boolean disableSetOpToStartTx, boolean isAccessor) --> Line_4 $$ Region<Long, String> region = basicGetCache().getRegion(Region.SEPARATOR + REGION_NAME) [CD]
+Line_3 $$ CacheTransactionManager txMgr = basicGetCache().getCacheTransactionManager() --> Line_6 $$ txMgr.begin() [FD]
+Line_4 $$ Region<Long, String> region = basicGetCache().getRegion(Region.SEPARATOR + REGION_NAME) --> Line_7 $$ Collection<String> set = region.values() [FD]
+Line_7 $$ Collection<String> set = region.values() --> Line_8 $$ set.forEach(( value) -> assertTrue(testData.values().contains(value))) [FD]
+Line_2 $$ private void verifyRegionValuesWithTx(boolean disableSetOpToStartTx, boolean isAccessor) --> Line_10 $$ validateTXManager(disableSetOpToStartTx, isAccessor) [FD]
+Line_3 $$ CacheTransactionManager txMgr = basicGetCache().getCacheTransactionManager() --> Line_11 $$ txMgr.rollback() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ protected SocketAddress getSocketAddress(String nodeId) --> Line_4 $$ if (partition.getNodeId().equals(nodeId)) [FD]
+Line_3 $$ for (RedisClusterNode partition : partitions) --> Line_4 $$ if (partition.getNodeId().equals(nodeId)) [FD]
+Line_4 $$ if (partition.getNodeId().equals(nodeId)) --> Line_5 $$ return resolve(partition.getUri()) [CD]
+Line_3 $$ for (RedisClusterNode partition : partitions) --> Line_5 $$ return resolve(partition.getUri()) [FD]
+Line_2 $$ protected SocketAddress getSocketAddress(String nodeId) --> Line_8 $$ throw new IllegalArgumentException(String.format("Cannot resolve a RedisClusterNode for nodeId %s", nodeId)) [FD]

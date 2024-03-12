@@ -1,0 +1,8 @@
+Line_2 $$ public CleanerSchedular asyncDataCleaner() --> Line_3 $$ ConditionallyClean cc = () -> true [CD]
+Line_2 $$ public CleanerSchedular asyncDataCleaner() --> Line_4 $$ BinaryOperator<ConditionallyClean> accumulator = ( cc1,  cc2) -> () -> cc1.shouldClean() && cc2.shouldClean() [CD]
+Line_2 $$ public CleanerSchedular asyncDataCleaner() --> Line_5 $$ CleanerSchedular schedular = new CleanerSchedular(dataCleaners(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) [CD]
+Line_3 $$ ConditionallyClean cc = () -> true --> Line_5 $$ CleanerSchedular schedular = new CleanerSchedular(dataCleaners(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) [FD]
+Line_4 $$ BinaryOperator<ConditionallyClean> accumulator = ( cc1,  cc2) -> () -> cc1.shouldClean() && cc2.shouldClean() --> Line_5 $$ CleanerSchedular schedular = new CleanerSchedular(dataCleaners(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) [FD]
+Line_2 $$ public CleanerSchedular asyncDataCleaner() --> Line_6 $$ schedular.schedule() [CD]
+Line_5 $$ CleanerSchedular schedular = new CleanerSchedular(dataCleaners(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) --> Line_6 $$ schedular.schedule() [FD]
+Line_2 $$ public CleanerSchedular asyncDataCleaner() --> Line_7 $$ return schedular [CD]

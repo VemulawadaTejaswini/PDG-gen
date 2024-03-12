@@ -1,0 +1,6 @@
+Line_2 $$ private Set<I_M_HU> retrieveTopLevelSourceHus(@NonNull final Set<Integer> vhuSourceIds) --> Line_3 $$ final Set<I_M_HU> topLevelSourceHus = new TreeSet(Comparator.comparing(I_M_HU::<>getM_HU_ID)) [CD]
+Line_4 $$ for (int vhuSourceId : vhuSourceIds) --> Line_5 $$ final HUTraceEventQuery query = HUTraceEventQuery.builder().type(HUTraceType.TRANSFORM_LOAD).vhuId(vhuSourceId).build() [FD]
+Line_5 $$ final HUTraceEventQuery query = HUTraceEventQuery.builder().type(HUTraceType.TRANSFORM_LOAD).vhuId(vhuSourceId).build() --> Line_6 $$ final List<HUTraceEvent> traceEvents = huTraceRepository.query(query) [FD]
+Line_7 $$ for (final HUTraceEvent traceEvent : traceEvents) --> Line_8 $$ final I_M_HU topLevelSourceHu = load(traceEvent.getTopLevelHuId(), I_M_HU.class) [FD]
+Line_3 $$ final Set<I_M_HU> topLevelSourceHus = new TreeSet(Comparator.comparing(I_M_HU::<>getM_HU_ID)) --> Line_9 $$ topLevelSourceHus.add(topLevelSourceHu) [FD]
+Line_2 $$ private Set<I_M_HU> retrieveTopLevelSourceHus(@NonNull final Set<Integer> vhuSourceIds) --> Line_12 $$ return topLevelSourceHus [CD]

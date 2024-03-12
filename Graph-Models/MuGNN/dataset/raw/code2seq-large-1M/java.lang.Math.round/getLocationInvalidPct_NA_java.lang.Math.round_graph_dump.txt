@@ -1,0 +1,5 @@
+Line_4 $$ if (this.getDataSources() == null || this.getDataSources().isEmpty()) --> Line_5 $$ _log.error("no configured data sources") [CD]
+Line_4 $$ if (this.getDataSources() == null || this.getDataSources().isEmpty()) --> Line_6 $$ return Response.ok(error("location-invalid-lat-lon-pct", "no configured data sources")).build() [CD]
+Line_2 $$ public Response getLocationInvalidPct(@PathParam("agencyId") String agencyId, @QueryParam("feedId") String feedId) --> Line_8 $$ int total = getInvalidLocation(agencyId, feedId) [FD]
+Line_2 $$ public Response getLocationInvalidPct(@PathParam("agencyId") String agencyId, @QueryParam("feedId") String feedId) --> Line_9 $$ int average = getAvgByAgency("location-invalid-lat-lon", agencyId) [FD]
+Line_10 $$ int percent = average != 0 ? (int) Math.round(((total - average) * 100.0) / average) : Integer.MAX_VALUE --> Line_12 $$ return Response.ok(ok("location-invalid-lat-lon-pct", percent)).build() [FD]

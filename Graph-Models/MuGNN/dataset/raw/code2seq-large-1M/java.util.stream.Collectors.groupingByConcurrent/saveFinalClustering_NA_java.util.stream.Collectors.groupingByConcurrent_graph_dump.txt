@@ -1,0 +1,7 @@
+Line_2 $$ protected void saveFinalClustering() --> Line_3 $$ if (clusters.size() > 0) [CD]
+Line_3 $$ if (clusters.size() > 0) --> Line_4 $$ List<? extends DataType> data = getData() [CD]
+Line_3 $$ if (clusters.size() > 0) --> Line_5 $$ assignments = assignDataToClusters(data) [CD]
+Line_4 $$ List<? extends DataType> data = getData() --> Line_5 $$ assignments = assignDataToClusters(data) [FD]
+Line_3 $$ if (clusters.size() > 0) --> Line_6 $$ clusters.forEach( cluster -> cluster.getMembers().clear()) [CD]
+Line_3 $$ if (clusters.size() > 0) --> Line_7 $$ IntStream.range(0, assignments.length).parallel().mapToObj(Integer::<>valueOf).collect(groupingByConcurrent( idx -> assignments[idx])).forEach(( clusterIdx,  clusterPoints) -> clusters.get(clusterIdx).getMembers().addAll(clusterPoints.stream().map( idx -> data.get(idx)).collect(toList()))) [CD]
+Line_4 $$ List<? extends DataType> data = getData() --> Line_7 $$ IntStream.range(0, assignments.length).parallel().mapToObj(Integer::<>valueOf).collect(groupingByConcurrent( idx -> assignments[idx])).forEach(( clusterIdx,  clusterPoints) -> clusters.get(clusterIdx).getMembers().addAll(clusterPoints.stream().map( idx -> data.get(idx)).collect(toList()))) [FD]

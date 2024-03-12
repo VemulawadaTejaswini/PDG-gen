@@ -1,0 +1,7 @@
+Line_2 $$ public void testNoPrimaryKey() throws Exception --> Line_3 $$ createTable("testnoprimarykey", "`id` INT NOT NULL," + "`t1` VARCHAR(50) NOT NULL") [CD]
+Line_2 $$ public void testNoPrimaryKey() throws Exception --> Line_4 $$ Statement stmt = sharedConnection.createStatement() [CD]
+Line_2 $$ public void testNoPrimaryKey() throws Exception --> Line_5 $$ stmt.execute("INSERT INTO testnoprimarykey VALUES (1, 't1'), (2, 't2')") [CD]
+Line_4 $$ Statement stmt = sharedConnection.createStatement() --> Line_5 $$ stmt.execute("INSERT INTO testnoprimarykey VALUES (1, 't1'), (2, 't2')") [FD]
+Line_6 $$ try (PreparedStatement preparedStatement = sharedConnection.prepareStatement("SELECT * FROM testnoprimarykey", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) --> Line_7 $$ ResultSet rs = preparedStatement.executeQuery("SELECT * FROM testnoprimarykey") [FD]
+Line_7 $$ ResultSet rs = preparedStatement.executeQuery("SELECT * FROM testnoprimarykey") --> Line_8 $$ assertTrue(rs.next()) [FD]
+Line_7 $$ ResultSet rs = preparedStatement.executeQuery("SELECT * FROM testnoprimarykey") --> Line_10 $$ rs.updateString(1, "1") [FD]

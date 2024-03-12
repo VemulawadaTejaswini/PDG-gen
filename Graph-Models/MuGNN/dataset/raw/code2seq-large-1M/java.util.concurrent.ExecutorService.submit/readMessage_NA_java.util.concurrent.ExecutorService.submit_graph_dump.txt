@@ -1,0 +1,5 @@
+Line_2 $$ public void readMessage(@Suspended final AsyncResponse ar) --> Line_3 $$ ar.register(AsyncEventResource.class) [FD]
+Line_2 $$ public void readMessage(@Suspended final AsyncResponse ar) --> Line_3 $$ ar.register(AsyncEventResource.class) [CD]
+Line_2 $$ public void readMessage(@Suspended final AsyncResponse ar) --> Line_4 $$ Executors.newSingleThreadExecutor().submit(new Runnable() [CD]
+Line_2 $$ public void readMessage(@Suspended final AsyncResponse ar) --> Line_7 $$ ar.resume(messages.take()) [FD]
+Line_2 $$ public void readMessage(@Suspended final AsyncResponse ar) --> Line_10 $$ ar.cancel() [FD]

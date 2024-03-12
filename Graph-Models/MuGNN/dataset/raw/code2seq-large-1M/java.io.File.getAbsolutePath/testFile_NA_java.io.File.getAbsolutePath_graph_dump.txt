@@ -1,0 +1,7 @@
+Line_2 $$ public void testFile() throws IOException --> Line_3 $$ File dir = createTempFile() [CD]
+Line_2 $$ public void testFile() throws IOException --> Line_4 $$ IListJet<String> sink = DistributedStream.fromSource(getInstance(), Sources.files(dir.getAbsolutePath()), false).flatMap( line -> Arrays.stream(line.split(" "))).collect(DistributedCollectors.toIList(dir.getName())) [CD]
+Line_3 $$ File dir = createTempFile() --> Line_4 $$ IListJet<String> sink = DistributedStream.fromSource(getInstance(), Sources.files(dir.getAbsolutePath()), false).flatMap( line -> Arrays.stream(line.split(" "))).collect(DistributedCollectors.toIList(dir.getName())) [FD]
+Line_2 $$ public void testFile() throws IOException --> Line_5 $$ assertEquals(10, sink.size()) [CD]
+Line_4 $$ IListJet<String> sink = DistributedStream.fromSource(getInstance(), Sources.files(dir.getAbsolutePath()), false).flatMap( line -> Arrays.stream(line.split(" "))).collect(DistributedCollectors.toIList(dir.getName())) --> Line_5 $$ assertEquals(10, sink.size()) [FD]
+Line_2 $$ public void testFile() throws IOException --> Line_6 $$ deleteTempFile(dir) [CD]
+Line_3 $$ File dir = createTempFile() --> Line_6 $$ deleteTempFile(dir) [FD]

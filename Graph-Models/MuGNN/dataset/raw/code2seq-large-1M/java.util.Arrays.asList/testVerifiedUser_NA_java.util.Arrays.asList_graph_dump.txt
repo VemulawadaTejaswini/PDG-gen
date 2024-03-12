@@ -1,0 +1,8 @@
+Line_2 $$ public void testVerifiedUser() --> Line_3 $$ UaaUser user = userDatabase.retrieveUserByName("somename", OriginKeys.UAA) [CD]
+Line_2 $$ public void testVerifiedUser() --> Line_4 $$ UaaAuthentication authentication = UaaAuthenticationTestFactory.getAuthentication(user.getId(), "somename", "comr@dstal.in", new HashSet(Arrays.asList("openid"))) [CD]
+Line_3 $$ UaaUser user = userDatabase.retrieveUserByName("somename", OriginKeys.UAA) --> Line_4 $$ UaaAuthentication authentication = UaaAuthenticationTestFactory.getAuthentication(user.getId(), "somename", "comr@dstal.in", new HashSet(Arrays.asList("openid"))) [FD]
+Line_2 $$ public void testVerifiedUser() --> Line_5 $$ UserInfoResponse userInfoResponse = endpoint.loginInfo(new OAuth2Authentication(createOauthRequest(Arrays.asList("openid")), authentication)) [CD]
+Line_2 $$ public void testVerifiedUser() --> Line_6 $$ assertEquals("somename", userInfoResponse.getUserName()) [CD]
+Line_5 $$ UserInfoResponse userInfoResponse = endpoint.loginInfo(new OAuth2Authentication(createOauthRequest(Arrays.asList("openid")), authentication)) --> Line_6 $$ assertEquals("somename", userInfoResponse.getUserName()) [FD]
+Line_2 $$ public void testVerifiedUser() --> Line_7 $$ assertTrue(userInfoResponse.isEmailVerified()) [CD]
+Line_5 $$ UserInfoResponse userInfoResponse = endpoint.loginInfo(new OAuth2Authentication(createOauthRequest(Arrays.asList("openid")), authentication)) --> Line_7 $$ assertTrue(userInfoResponse.isEmailVerified()) [FD]

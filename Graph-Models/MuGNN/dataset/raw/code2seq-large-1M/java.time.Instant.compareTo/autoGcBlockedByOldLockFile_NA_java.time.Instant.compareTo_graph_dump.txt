@@ -1,0 +1,8 @@
+Line_4 $$ FileTime lastModified = Files.getLastModifiedTime(FileUtils.toPath(logFile)) --> Line_5 $$ if (lastModified.toInstant().compareTo(getLogExpiry()) > 0) [FD]
+Line_5 $$ if (lastModified.toInstant().compareTo(getLogExpiry()) > 0) --> Line_6 $$ if (!background) [CD]
+Line_2 $$ private boolean autoGcBlockedByOldLockFile(boolean background) --> Line_6 $$ if (!background) [FD]
+Line_7 $$ try (BufferedReader reader = Files.newBufferedReader(FileUtils.toPath(logFile))) --> Line_9 $$ int len = reader.read(buf, 0, 1000) [FD]
+Line_8 $$ char[] buf = new char[1000] --> Line_9 $$ int len = reader.read(buf, 0, 1000) [FD]
+Line_10 $$ String oldError = new String(buf, 0, len) --> Line_11 $$ throw new JGitInternalException(MessageFormat.format(JGitText.get().gcLogExists, oldError, logFile)) [FD]
+Line_5 $$ if (lastModified.toInstant().compareTo(getLogExpiry()) > 0) --> Line_14 $$ return true [CD]
+Line_2 $$ private boolean autoGcBlockedByOldLockFile(boolean background) --> Line_20 $$ return false [CD]

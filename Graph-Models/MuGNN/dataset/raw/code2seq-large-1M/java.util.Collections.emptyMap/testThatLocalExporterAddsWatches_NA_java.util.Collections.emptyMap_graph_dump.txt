@@ -1,0 +1,6 @@
+Line_2 $$ public void testThatLocalExporterAddsWatches() throws Exception --> Line_3 $$ String watchId = createMonitoringWatch() [CD]
+Line_2 $$ public void testThatLocalExporterAddsWatches() throws Exception --> Line_4 $$ String body = BytesReference.bytes(jsonBuilder().startObject().startObject("transient").field("xpack.monitoring.exporters.my_local_exporter.type", "local").field("xpack.monitoring.exporters.my_local_exporter.cluster_alerts.management.enabled", true).endObject().endObject()).utf8ToString() [CD]
+Line_2 $$ public void testThatLocalExporterAddsWatches() throws Exception --> Line_5 $$ adminClient().performRequest("PUT", "_cluster/settings", Collections.emptyMap(), new StringEntity(body, ContentType.APPLICATION_JSON)) [CD]
+Line_2 $$ public void testThatLocalExporterAddsWatches() throws Exception --> Line_6 $$ assertTotalWatchCount(ClusterAlertsUtil.WATCH_IDS.length) [CD]
+Line_2 $$ public void testThatLocalExporterAddsWatches() throws Exception --> Line_7 $$ assertMonitoringWatchHasBeenOverWritten(watchId) [CD]
+Line_3 $$ String watchId = createMonitoringWatch() --> Line_7 $$ assertMonitoringWatchHasBeenOverWritten(watchId) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private BsonDocument createFilter(final String fieldName, final BsonValue value) --> Line_3 $$ if (fieldName.startsWith("$")) [FD]
+Line_2 $$ private BsonDocument createFilter(final String fieldName, final BsonValue value) --> Line_3 $$ if (fieldName.startsWith("$")) [CD]
+Line_3 $$ if (fieldName.startsWith("$")) --> Line_4 $$ return new BsonDocument("$not", new BsonDocument(fieldName, value)) [CD]
+Line_3 $$ if (fieldName.startsWith("$")) --> Line_5 $$ if (value.isDocument() || value.isRegularExpression()) [CD]
+Line_2 $$ private BsonDocument createFilter(final String fieldName, final BsonValue value) --> Line_5 $$ if (value.isDocument() || value.isRegularExpression()) [FD]
+Line_5 $$ if (value.isDocument() || value.isRegularExpression()) --> Line_6 $$ return new BsonDocument(fieldName, new BsonDocument("$not", value)) [CD]
+Line_2 $$ private BsonDocument createFilter(final String fieldName, final BsonValue value) --> Line_8 $$ return new BsonDocument(fieldName, new BsonDocument("$not", new BsonDocument("$eq", value))) [CD]

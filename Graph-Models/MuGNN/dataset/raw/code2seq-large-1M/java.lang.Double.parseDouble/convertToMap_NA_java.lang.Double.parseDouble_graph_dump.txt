@@ -1,0 +1,8 @@
+Line_2 $$ static Map<String, double[]> convertToMap(JavaRDD<String> R) --> Line_3 $$ Map<String, double[]> map = new HashMap() [CD]
+Line_2 $$ static Map<String, double[]> convertToMap(JavaRDD<String> R) --> Line_4 $$ List<String> list = R.collect() [CD]
+Line_2 $$ static Map<String, double[]> convertToMap(JavaRDD<String> R) --> Line_4 $$ List<String> list = R.collect() [FD]
+Line_5 $$ for (String r : list) --> Line_6 $$ String[] tokens = StringUtils.split(r, ",") [FD]
+Line_8 $$ for (int i = 1; i < tokens.length; i++) --> Line_9 $$ features[i - 1] = Double.parseDouble(tokens[i]) [CD]
+Line_3 $$ Map<String, double[]> map = new HashMap() --> Line_11 $$ map.put(tokens[0], features) [FD]
+Line_7 $$ double[] features = new double[tokens.length - 1] --> Line_11 $$ map.put(tokens[0], features) [FD]
+Line_2 $$ static Map<String, double[]> convertToMap(JavaRDD<String> R) --> Line_13 $$ return map [CD]

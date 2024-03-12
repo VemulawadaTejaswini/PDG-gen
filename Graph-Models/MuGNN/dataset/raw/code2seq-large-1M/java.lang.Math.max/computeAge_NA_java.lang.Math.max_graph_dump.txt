@@ -1,0 +1,6 @@
+Line_2 $$ private long computeAge(long nowMillis) --> Line_3 $$ long apparentReceivedAge = servedDate != null ? Math.max(0, receivedResponseMillis - servedDate.getTime()) : 0 [CD]
+Line_2 $$ private long computeAge(long nowMillis) --> Line_4 $$ long receivedAge = ageSeconds != -1 ? Math.max(apparentReceivedAge, TimeUnit.SECONDS.toMillis(ageSeconds)) : apparentReceivedAge [CD]
+Line_3 $$ long apparentReceivedAge = servedDate != null ? Math.max(0, receivedResponseMillis - servedDate.getTime()) : 0 --> Line_4 $$ long receivedAge = ageSeconds != -1 ? Math.max(apparentReceivedAge, TimeUnit.SECONDS.toMillis(ageSeconds)) : apparentReceivedAge [FD]
+Line_2 $$ private long computeAge(long nowMillis) --> Line_5 $$ long responseDuration = receivedResponseMillis - sentRequestMillis [CD]
+Line_2 $$ private long computeAge(long nowMillis) --> Line_6 $$ long residentDuration = nowMillis - receivedResponseMillis [CD]
+Line_2 $$ private long computeAge(long nowMillis) --> Line_7 $$ return receivedAge + responseDuration + residentDuration [CD]

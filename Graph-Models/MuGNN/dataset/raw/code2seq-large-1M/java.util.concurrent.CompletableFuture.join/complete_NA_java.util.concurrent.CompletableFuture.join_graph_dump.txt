@@ -1,0 +1,8 @@
+Line_2 $$ private void complete(Request source) --> Line_3 $$ Preconditions.checkState(!isDone(), "This Request is already completed.") [CD]
+Line_2 $$ private void complete(Request source) --> Line_4 $$ Preconditions.checkArgument(source.isDone(), "Given request is not completed.") [FD]
+Line_2 $$ private void complete(Request source) --> Line_4 $$ Preconditions.checkArgument(source.isDone(), "Given request is not completed.") [CD]
+Line_2 $$ private void complete(Request source) --> Line_5 $$ Preconditions.checkArgument(isSubRequest(source, this), "This Request is not a sub-request of the given one.") [FD]
+Line_2 $$ private void complete(Request source) --> Line_5 $$ Preconditions.checkArgument(isSubRequest(source, this), "This Request is not a sub-request of the given one.") [CD]
+Line_2 $$ private void complete(Request source) --> Line_8 $$ int offset = (int) (this.getOffset() - source.getOffset()) [FD]
+Line_8 $$ int offset = (int) (this.getOffset() - source.getOffset()) --> Line_9 $$ this.resultFuture.complete(new Result(sourceResult.getData().subSegment(offset, getLength()), true)) [FD]
+Line_7 $$ Result sourceResult = source.resultFuture.join() --> Line_9 $$ this.resultFuture.complete(new Result(sourceResult.getData().subSegment(offset, getLength()), true)) [FD]

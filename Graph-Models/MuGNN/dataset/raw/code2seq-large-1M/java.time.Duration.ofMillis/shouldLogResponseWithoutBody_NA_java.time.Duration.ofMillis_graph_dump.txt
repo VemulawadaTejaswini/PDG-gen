@@ -1,0 +1,6 @@
+Line_2 $$ void shouldLogResponseWithoutBody() throws IOException --> Line_3 $$ final String correlationId = "3881ae92-6824-11e5-921b-10ddb1ee7671" [CD]
+Line_2 $$ void shouldLogResponseWithoutBody() throws IOException --> Line_4 $$ final HttpRequest request = MockHttpRequest.create() [CD]
+Line_2 $$ void shouldLogResponseWithoutBody() throws IOException --> Line_5 $$ final HttpResponse response = MockHttpResponse.create().withOrigin(Origin.LOCAL).withStatus(400).withHeaders(MockHeaders.of("Content-Type", "application/json")) [CD]
+Line_2 $$ void shouldLogResponseWithoutBody() throws IOException --> Line_6 $$ final String http = unit.format(new SimpleCorrelation(correlationId, ofMillis(100), request, response, request, response)) [CD]
+Line_2 $$ void shouldLogResponseWithoutBody() throws IOException --> Line_7 $$ assertThat(http, is("Outgoing Response: 3881ae92-6824-11e5-921b-10ddb1ee7671\n" + "Duration: 100 ms\n" + "HTTP/1.1 400 Bad Request\n" + "Content-Type: application/json")) [CD]
+Line_6 $$ final String http = unit.format(new SimpleCorrelation(correlationId, ofMillis(100), request, response, request, response)) --> Line_7 $$ assertThat(http, is("Outgoing Response: 3881ae92-6824-11e5-921b-10ddb1ee7671\n" + "Duration: 100 ms\n" + "HTTP/1.1 400 Bad Request\n" + "Content-Type: application/json")) [FD]

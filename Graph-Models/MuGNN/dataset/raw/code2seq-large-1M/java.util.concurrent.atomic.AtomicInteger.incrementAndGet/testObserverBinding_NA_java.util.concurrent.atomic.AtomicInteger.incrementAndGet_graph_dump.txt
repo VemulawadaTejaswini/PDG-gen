@@ -1,0 +1,8 @@
+Line_2 $$ public void testObserverBinding() --> Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testObserverBinding() --> Line_4 $$ Platform.runLater(() -> [CD]
+Line_5 $$ final AtomicInteger emissionCount = new AtomicInteger(0) --> Line_6 $$ Observable<String> items = Observable.just("Alpha", "Beta", "Gamma", "Delta").doOnNext( s -> emissionCount.incrementAndGet()) [FD]
+Line_6 $$ Observable<String> items = Observable.just("Alpha", "Beta", "Gamma", "Delta").doOnNext( s -> emissionCount.incrementAndGet()) --> Line_7 $$ Binding<String> binding = JavaFxObserver.toBinding(items) [FD]
+Line_5 $$ final AtomicInteger emissionCount = new AtomicInteger(0) --> Line_8 $$ assertTrue(emissionCount.get() == 4) [FD]
+Line_7 $$ Binding<String> binding = JavaFxObserver.toBinding(items) --> Line_9 $$ assertTrue(binding.getValue().equals("Delta")) [FD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_10 $$ latch.countDown() [FD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_13 $$ latch.await() [FD]

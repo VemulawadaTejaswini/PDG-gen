@@ -1,0 +1,5 @@
+Line_2 $$ protected void sendChangeSessionId(String newSessionID, String orgSessionID) --> Line_3 $$ if (cluster.getMembers().length > 0) [CD]
+Line_2 $$ protected void sendChangeSessionId(String newSessionID, String orgSessionID) --> Line_5 $$ byte[] data = serializeSessionId(newSessionID) [FD]
+Line_6 $$ SessionMessage msg = new SessionMessageImpl(getName(), SessionMessage.EVT_CHANGE_SESSION_ID, data, orgSessionID, orgSessionID + "-" + System.currentTimeMillis()) --> Line_7 $$ msg.setTimestamp(System.currentTimeMillis()) [FD]
+Line_6 $$ SessionMessage msg = new SessionMessageImpl(getName(), SessionMessage.EVT_CHANGE_SESSION_ID, data, orgSessionID, orgSessionID + "-" + System.currentTimeMillis()) --> Line_9 $$ send(msg) [FD]
+Line_2 $$ protected void sendChangeSessionId(String newSessionID, String orgSessionID) --> Line_11 $$ log.error(sm.getString("deltaManager.unableSerializeSessionID", newSessionID), e) [FD]

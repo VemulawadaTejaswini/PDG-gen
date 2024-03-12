@@ -1,0 +1,8 @@
+Line_2 $$ public OracleResponse queryOracle(OracleRequest request) --> Line_4 $$ OracleResponse resp = new OracleResponse() [CD]
+Line_2 $$ public OracleResponse queryOracle(OracleRequest request) --> Line_6 $$ byte[] encKey = request.getEncryptedKey() [FD]
+Line_6 $$ byte[] encKey = request.getEncryptedKey() --> Line_7 $$ byte[] decKey = cipher.doFinal(encKey) [FD]
+Line_8 $$ if ((decKey.length == KEY_SIZE - 1) && decKey[0] == 0x02) --> Line_9 $$ resp.setResult(Result.VALID) [CD]
+Line_4 $$ OracleResponse resp = new OracleResponse() --> Line_9 $$ resp.setResult(Result.VALID) [FD]
+Line_8 $$ if ((decKey.length == KEY_SIZE - 1) && decKey[0] == 0x02) --> Line_11 $$ resp.setResult(Result.INVALID) [CD]
+Line_4 $$ OracleResponse resp = new OracleResponse() --> Line_11 $$ resp.setResult(Result.INVALID) [FD]
+Line_4 $$ OracleResponse resp = new OracleResponse() --> Line_16 $$ resp.setResult(Result.INVALID) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void when_batchProcessing_then_flushEverything() --> Line_3 $$ List<Object> inbox = new ArrayList() [CD]
+Line_2 $$ public void when_batchProcessing_then_flushEverything() --> Line_4 $$ inbox.addAll(eventsWithKey("a")) [CD]
+Line_3 $$ List<Object> inbox = new ArrayList() --> Line_4 $$ inbox.addAll(eventsWithKey("a")) [FD]
+Line_2 $$ public void when_batchProcessing_then_flushEverything() --> Line_5 $$ inbox.add(new Watermark(25)) [CD]
+Line_3 $$ List<Object> inbox = new ArrayList() --> Line_5 $$ inbox.add(new Watermark(25)) [FD]
+Line_2 $$ public void when_batchProcessing_then_flushEverything() --> Line_6 $$ verifyProcessor(supplier).input(inbox).expectOutput(asList(new WindowResult(1, 22, "a", 3), new Watermark(25), new WindowResult(30, 50, "a", 3))) [CD]
+Line_3 $$ List<Object> inbox = new ArrayList() --> Line_6 $$ verifyProcessor(supplier).input(inbox).expectOutput(asList(new WindowResult(1, 22, "a", 3), new Watermark(25), new WindowResult(30, 50, "a", 3))) [FD]

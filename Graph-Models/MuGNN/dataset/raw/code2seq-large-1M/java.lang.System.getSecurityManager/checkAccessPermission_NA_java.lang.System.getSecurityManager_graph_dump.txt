@@ -1,0 +1,8 @@
+Line_2 $$ private static void checkAccessPermission(Class<?> declaringClass, final int modifiers, boolean isAccessible) --> Line_3 $$ final SecurityManager securityManager = System.getSecurityManager() [CD]
+Line_2 $$ private static void checkAccessPermission(Class<?> declaringClass, final int modifiers, boolean isAccessible) --> Line_4 $$ if (securityManager != null && isAccessible) [FD]
+Line_2 $$ private static void checkAccessPermission(Class<?> declaringClass, final int modifiers, boolean isAccessible) --> Line_4 $$ if (securityManager != null && isAccessible) [CD]
+Line_4 $$ if (securityManager != null && isAccessible) --> Line_5 $$ if (((modifiers & Modifier.PRIVATE) != 0 || ((modifiers & (Modifier.PUBLIC | Modifier.PROTECTED)) == 0 && packageCanNotBeAddedAnotherClass(declaringClass))) && !GroovyObject.class.isAssignableFrom(declaringClass)) [CD]
+Line_2 $$ private static void checkAccessPermission(Class<?> declaringClass, final int modifiers, boolean isAccessible) --> Line_5 $$ if (((modifiers & Modifier.PRIVATE) != 0 || ((modifiers & (Modifier.PUBLIC | Modifier.PROTECTED)) == 0 && packageCanNotBeAddedAnotherClass(declaringClass))) && !GroovyObject.class.isAssignableFrom(declaringClass)) [FD]
+Line_3 $$ final SecurityManager securityManager = System.getSecurityManager() --> Line_6 $$ securityManager.checkPermission(REFLECT_PERMISSION) [FD]
+Line_2 $$ private static void checkAccessPermission(Class<?> declaringClass, final int modifiers, boolean isAccessible) --> Line_7 $$ if ((modifiers & (Modifier.PROTECTED)) != 0 && declaringClass.equals(ClassLoader.class)) [FD]
+Line_3 $$ final SecurityManager securityManager = System.getSecurityManager() --> Line_8 $$ securityManager.checkCreateClassLoader() [FD]

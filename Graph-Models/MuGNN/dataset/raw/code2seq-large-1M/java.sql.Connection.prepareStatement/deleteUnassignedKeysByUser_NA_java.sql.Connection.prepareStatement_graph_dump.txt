@@ -1,0 +1,7 @@
+Line_2 $$ public static void deleteUnassignedKeysByUser(Connection con, Long userId) --> Line_4 $$ PreparedStatement stmt = con.prepareStatement("delete from public_keys where (profile_id is null or profile_id not in (select profile_id from user_map where user_id=?)) and user_id=?") [FD]
+Line_4 $$ PreparedStatement stmt = con.prepareStatement("delete from public_keys where (profile_id is null or profile_id not in (select profile_id from user_map where user_id=?)) and user_id=?") --> Line_5 $$ stmt.setLong(1, userId) [FD]
+Line_2 $$ public static void deleteUnassignedKeysByUser(Connection con, Long userId) --> Line_5 $$ stmt.setLong(1, userId) [FD]
+Line_4 $$ PreparedStatement stmt = con.prepareStatement("delete from public_keys where (profile_id is null or profile_id not in (select profile_id from user_map where user_id=?)) and user_id=?") --> Line_6 $$ stmt.setLong(2, userId) [FD]
+Line_2 $$ public static void deleteUnassignedKeysByUser(Connection con, Long userId) --> Line_6 $$ stmt.setLong(2, userId) [FD]
+Line_4 $$ PreparedStatement stmt = con.prepareStatement("delete from public_keys where (profile_id is null or profile_id not in (select profile_id from user_map where user_id=?)) and user_id=?") --> Line_7 $$ stmt.execute() [FD]
+Line_4 $$ PreparedStatement stmt = con.prepareStatement("delete from public_keys where (profile_id is null or profile_id not in (select profile_id from user_map where user_id=?)) and user_id=?") --> Line_8 $$ DBUtils.closeStmt(stmt) [FD]

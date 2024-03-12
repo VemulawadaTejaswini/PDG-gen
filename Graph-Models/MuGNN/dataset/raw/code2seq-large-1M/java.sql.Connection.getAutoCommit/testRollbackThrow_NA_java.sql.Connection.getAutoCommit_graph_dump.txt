@@ -1,0 +1,8 @@
+Line_2 $$ public void testRollbackThrow() throws Exception --> Line_3 $$ RuntimeException outer = new RuntimeException("Transaction throws!") [CD]
+Line_2 $$ public void testRollbackThrow() throws Exception --> Line_4 $$ RuntimeException inner = new RuntimeException("Rollback throws!") [CD]
+Line_2 $$ public void testRollbackThrow() throws Exception --> Line_5 $$ Mockito.when(c.getAutoCommit()).thenReturn(true) [CD]
+Line_2 $$ public void testRollbackThrow() throws Exception --> Line_6 $$ Mockito.when(h.getConnection()).thenReturn(c) [CD]
+Line_2 $$ public void testRollbackThrow() throws Exception --> Line_7 $$ Mockito.when(h.rollback()).thenThrow(inner) [CD]
+Line_4 $$ RuntimeException inner = new RuntimeException("Rollback throws!") --> Line_7 $$ Mockito.when(h.rollback()).thenThrow(inner) [FD]
+Line_3 $$ RuntimeException outer = new RuntimeException("Transaction throws!") --> Line_13 $$ assertThat(e).isSameAs(outer) [FD]
+Line_4 $$ RuntimeException inner = new RuntimeException("Rollback throws!") --> Line_15 $$ assertThat(e.getSuppressed()[0]).isSameAs(inner) [FD]

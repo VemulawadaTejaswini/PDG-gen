@@ -1,0 +1,8 @@
+Line_2 $$ public VectorStore makeWriteableVectorStore() --> Line_3 $$ VectorStoreRAM outputVectors = new VectorStoreRAM(flagConfig) [CD]
+Line_2 $$ public VectorStore makeWriteableVectorStore() --> Line_4 $$ for (int i = 0; i < this.luceneUtils.getNumDocs(); ++i) [CD]
+Line_4 $$ for (int i = 0; i < this.luceneUtils.getNumDocs(); ++i) --> Line_6 $$ String externalDocId = luceneUtils.getExternalDocId(i) [FD]
+Line_6 $$ String externalDocId = luceneUtils.getExternalDocId(i) --> Line_7 $$ Vector docVector = this.docVectors.getVector(externalDocId) [FD]
+Line_3 $$ VectorStoreRAM outputVectors = new VectorStoreRAM(flagConfig) --> Line_8 $$ outputVectors.putVector(externalDocId, docVector) [FD]
+Line_6 $$ String externalDocId = luceneUtils.getExternalDocId(i) --> Line_8 $$ outputVectors.putVector(externalDocId, docVector) [FD]
+Line_7 $$ Vector docVector = this.docVectors.getVector(externalDocId) --> Line_8 $$ outputVectors.putVector(externalDocId, docVector) [FD]
+Line_2 $$ public VectorStore makeWriteableVectorStore() --> Line_15 $$ return outputVectors [CD]

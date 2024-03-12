@@ -1,0 +1,7 @@
+Line_2 $$ public void testTooMayParameters() throws Exception --> Line_3 $$ index("library",  builder -> [CD]
+Line_7 $$ try (Connection connection = esJdbc()) --> Line_8 $$ try (PreparedStatement statement = connection.prepareStatement("SELECT name FROM library WHERE page_count=?")) [FD]
+Line_8 $$ try (PreparedStatement statement = connection.prepareStatement("SELECT name FROM library WHERE page_count=?")) --> Line_9 $$ statement.setInt(1, 1072) [FD]
+Line_8 $$ try (PreparedStatement statement = connection.prepareStatement("SELECT name FROM library WHERE page_count=?")) --> Line_11 $$ statement.setInt(tooBig, 1072) [FD]
+Line_10 $$ int tooBig = randomIntBetween(2, 10) --> Line_11 $$ statement.setInt(tooBig, 1072) [FD]
+Line_8 $$ try (PreparedStatement statement = connection.prepareStatement("SELECT name FROM library WHERE page_count=?")) --> Line_14 $$ statement.setInt(tooSmall, 1072) [FD]
+Line_13 $$ int tooSmall = randomIntBetween(-10, 0) --> Line_14 $$ statement.setInt(tooSmall, 1072) [FD]

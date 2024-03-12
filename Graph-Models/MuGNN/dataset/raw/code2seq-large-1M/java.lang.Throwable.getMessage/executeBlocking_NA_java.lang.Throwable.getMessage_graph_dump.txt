@@ -1,0 +1,6 @@
+Line_2 $$ protected <T> T executeBlocking(final IOTask<T> task) --> Line_4 $$ this.task = task [FD]
+Line_6 $$ final ManagementResponseHeader header = ManagementResponseHeader.create(responseChannel.getRequestHeader()) --> Line_7 $$ final FlushableDataOutput output = responseChannel.writeMessage(header) [FD]
+Line_2 $$ protected <T> T executeBlocking(final IOTask<T> task) --> Line_9 $$ task.sendMessage(output) [FD]
+Line_7 $$ final FlushableDataOutput output = responseChannel.writeMessage(header) --> Line_9 $$ task.sendMessage(output) [FD]
+Line_7 $$ final FlushableDataOutput output = responseChannel.writeMessage(header) --> Line_14 $$ StreamUtils.safeClose(output) [FD]
+Line_2 $$ protected <T> T executeBlocking(final IOTask<T> task) --> Line_22 $$ return task.get() [FD]

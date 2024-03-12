@@ -1,0 +1,8 @@
+Line_2 $$ void refreshMarks() --> Line_3 $$ Set<Integer> selectedIndexes = support.getSelectedTimestamps() [CD]
+Line_2 $$ void refreshMarks() --> Line_4 $$ if (selectedIndexes.size() == 0 && selections.isEmpty()) [CD]
+Line_3 $$ Set<Integer> selectedIndexes = support.getSelectedTimestamps() --> Line_4 $$ if (selectedIndexes.size() == 0 && selections.isEmpty()) [FD]
+Line_4 $$ if (selectedIndexes.size() == 0 && selections.isEmpty()) --> Line_5 $$ return [CD]
+Line_2 $$ void refreshMarks() --> Line_6 $$ selections.clear() [CD]
+Line_7 $$ for (int selectedIndex : selectedIndexes) --> Line_8 $$ long time = timeline.getTimestamp(selectedIndex) [FD]
+Line_8 $$ long time = timeline.getTimestamp(selectedIndex) --> Line_9 $$ int x = Utils.checkedInt(context.getViewX(time)) [FD]
+Line_10 $$ if (x > -markExtent && x < getWidth() + markExtent) --> Line_11 $$ selections.add(x + 1) [CD]

@@ -1,0 +1,4 @@
+Line_2 $$ public <K, V> ConcurrentMap<K, V> create(CacheFactory builder) --> Line_3 $$ ReadWriteLock lock = new ReentrantReadWriteLock() [CD]
+Line_2 $$ public <K, V> ConcurrentMap<K, V> create(CacheFactory builder) --> Line_4 $$ Map<K, V> delegate = new BoundedLinkedHashMap<K, V>(AccessOrder.FIFO, builder) [CD]
+Line_2 $$ public <K, V> ConcurrentMap<K, V> create(CacheFactory builder) --> Line_5 $$ return new LockForwardingConcurrentMap<K, V>(lock.readLock(), lock.writeLock(), delegate) [CD]
+Line_3 $$ ReadWriteLock lock = new ReentrantReadWriteLock() --> Line_5 $$ return new LockForwardingConcurrentMap<K, V>(lock.readLock(), lock.writeLock(), delegate) [FD]

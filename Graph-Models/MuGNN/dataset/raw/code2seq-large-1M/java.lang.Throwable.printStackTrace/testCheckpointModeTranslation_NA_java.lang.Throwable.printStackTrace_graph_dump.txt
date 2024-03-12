@@ -1,0 +1,8 @@
+Line_4 $$ StreamExecutionEnvironment deactivated = getSimpleJob() --> Line_5 $$ for (JobVertex vertex : deactivated.getStreamGraph().getJobGraph().getVertices()) [FD]
+Line_5 $$ for (JobVertex vertex : deactivated.getStreamGraph().getJobGraph().getVertices()) --> Line_6 $$ assertEquals(CheckpointingMode.AT_LEAST_ONCE, new StreamConfig(vertex.getConfiguration()).getCheckpointMode()) [FD]
+Line_8 $$ StreamExecutionEnvironment activated = getSimpleJob() --> Line_9 $$ activated.enableCheckpointing(1000L) [FD]
+Line_8 $$ StreamExecutionEnvironment activated = getSimpleJob() --> Line_10 $$ for (JobVertex vertex : activated.getStreamGraph().getJobGraph().getVertices()) [FD]
+Line_5 $$ for (JobVertex vertex : deactivated.getStreamGraph().getJobGraph().getVertices()) --> Line_11 $$ assertEquals(CheckpointingMode.EXACTLY_ONCE, new StreamConfig(vertex.getConfiguration()).getCheckpointMode()) [FD]
+Line_13 $$ StreamExecutionEnvironment explicit = getSimpleJob() --> Line_14 $$ explicit.enableCheckpointing(1000L, CheckpointingMode.AT_LEAST_ONCE) [FD]
+Line_13 $$ StreamExecutionEnvironment explicit = getSimpleJob() --> Line_15 $$ for (JobVertex vertex : explicit.getStreamGraph().getJobGraph().getVertices()) [FD]
+Line_5 $$ for (JobVertex vertex : deactivated.getStreamGraph().getJobGraph().getVertices()) --> Line_16 $$ assertEquals(CheckpointingMode.AT_LEAST_ONCE, new StreamConfig(vertex.getConfiguration()).getCheckpointMode()) [FD]

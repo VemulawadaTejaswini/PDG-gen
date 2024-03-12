@@ -1,0 +1,8 @@
+Line_2 $$ public static List<HttpRequestInfo> withMinimalHeaders(List<HttpRequestInfo> requests) --> Line_3 $$ List<HttpRequestInfo> transformRequests = new ArrayList() [CD]
+Line_4 $$ for (HttpRequestInfo req : requests) --> Line_5 $$ Map<String, String> newHeaders = hideCommonHeaders(req.getHeaders()) [FD]
+Line_4 $$ for (HttpRequestInfo req : requests) --> Line_7 $$ HttpRequestInfo cloneReq = req.clone() [FD]
+Line_7 $$ HttpRequestInfo cloneReq = req.clone() --> Line_8 $$ cloneReq.setHeaders(hideCommonHeaders(req.getHeaders())) [FD]
+Line_4 $$ for (HttpRequestInfo req : requests) --> Line_8 $$ cloneReq.setHeaders(hideCommonHeaders(req.getHeaders())) [FD]
+Line_3 $$ List<HttpRequestInfo> transformRequests = new ArrayList() --> Line_9 $$ transformRequests.add(cloneReq) [FD]
+Line_7 $$ HttpRequestInfo cloneReq = req.clone() --> Line_9 $$ transformRequests.add(cloneReq) [FD]
+Line_2 $$ public static List<HttpRequestInfo> withMinimalHeaders(List<HttpRequestInfo> requests) --> Line_15 $$ return transformRequests [CD]

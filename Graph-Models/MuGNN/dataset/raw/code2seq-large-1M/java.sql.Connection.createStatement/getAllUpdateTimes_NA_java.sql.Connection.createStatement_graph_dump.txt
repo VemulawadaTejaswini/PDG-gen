@@ -1,0 +1,8 @@
+Line_2 $$ public long[] getAllUpdateTimes(String sessionID, String typeID, String workerID) --> Line_3 $$ String sql = "SELECT Timestamp FROM " + TABLE_NAME_UPDATES + " WHERE SessionID = '" + sessionID + "'  " + "AND TypeID = '" + typeID + "' AND workerID = '" + workerID + "';" [CD]
+Line_4 $$ try (Statement statement = connection.createStatement()) --> Line_5 $$ ResultSet rs = statement.executeQuery(sql) [FD]
+Line_3 $$ String sql = "SELECT Timestamp FROM " + TABLE_NAME_UPDATES + " WHERE SessionID = '" + sessionID + "'  " + "AND TypeID = '" + typeID + "' AND workerID = '" + workerID + "';" --> Line_5 $$ ResultSet rs = statement.executeQuery(sql) [FD]
+Line_5 $$ ResultSet rs = statement.executeQuery(sql) --> Line_7 $$ while (rs.next()) [FD]
+Line_7 $$ while (rs.next()) --> Line_8 $$ list.add(rs.getLong(1)) [CD]
+Line_6 $$ LongArrayList list = new LongArrayList() --> Line_8 $$ list.add(rs.getLong(1)) [FD]
+Line_5 $$ ResultSet rs = statement.executeQuery(sql) --> Line_8 $$ list.add(rs.getLong(1)) [FD]
+Line_6 $$ LongArrayList list = new LongArrayList() --> Line_10 $$ return list.toLongArray() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void blockOperations(long timeout, TimeUnit timeUnit, Runnable onBlocked) throws InterruptedException, TimeoutException --> Line_3 $$ if (closed) [CD]
+Line_2 $$ public void blockOperations(long timeout, TimeUnit timeUnit, Runnable onBlocked) throws InterruptedException, TimeoutException --> Line_7 $$ if (semaphore.tryAcquire(TOTAL_PERMITS, timeout, timeUnit)) [FD]
+Line_2 $$ public void blockOperations(long timeout, TimeUnit timeUnit, Runnable onBlocked) throws InterruptedException, TimeoutException --> Line_9 $$ onBlocked.run() [FD]
+Line_17 $$ final List<ActionListener<Releasable>> queuedActions --> Line_19 $$ queuedActions = delayedOperations [FD]
+Line_17 $$ final List<ActionListener<Releasable>> queuedActions --> Line_22 $$ if (queuedActions != null) [FD]
+Line_19 $$ queuedActions = delayedOperations --> Line_22 $$ if (queuedActions != null) [FD]
+Line_22 $$ if (queuedActions != null) --> Line_23 $$ threadPool.executor(ThreadPool.Names.GENERIC).execute(() -> [CD]
+Line_24 $$ for (ActionListener<Releasable> queuedAction : queuedActions) --> Line_25 $$ acquire(queuedAction, null, false) [FD]

@@ -1,0 +1,7 @@
+Line_3 $$ if (flags == null || flags.isEmpty()) --> Line_4 $$ return Collections.emptySet() [CD]
+Line_6 $$ Set<Flag> result = flagSets.get(flags) --> Line_7 $$ if (result == null) [FD]
+Line_7 $$ if (result == null) --> Line_8 $$ Set<Flag> immutable = Collections.unmodifiableSet(flags) [CD]
+Line_7 $$ if (result == null) --> Line_9 $$ Set<Flag> existing = flagSets.putIfAbsent(flags, immutable) [CD]
+Line_8 $$ Set<Flag> immutable = Collections.unmodifiableSet(flags) --> Line_9 $$ Set<Flag> existing = flagSets.putIfAbsent(flags, immutable) [FD]
+Line_7 $$ if (result == null) --> Line_10 $$ result = existing == null ? immutable : existing [CD]
+Line_6 $$ Set<Flag> result = flagSets.get(flags) --> Line_10 $$ result = existing == null ? immutable : existing [FD]

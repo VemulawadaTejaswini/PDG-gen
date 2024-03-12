@@ -1,0 +1,8 @@
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_3 $$ if (pageSize < 0) [CD]
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_3 $$ if (pageSize < 0) [FD]
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_5 $$ if (page < 0) [CD]
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_5 $$ if (page < 0) [FD]
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_7 $$ requireNonNull(query) [CD]
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_7 $$ requireNonNull(query) [FD]
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_8 $$ return listDirectories(jobSpecsDir).map(File::<>toPath).map( path -> loadJobSpec(path).map(JobSpec::<>toSummary)).filter(Optional::<>isPresent).map(Optional::<>get).skip(page * pageSize).limit(pageSize).sorted(FilesystemJobSpecDAO::<>bySpecName).collect(toList()) [CD]
+Line_2 $$ public List<JobSpecSummary> getJobSpecSummaries(int pageSize, int page, String query) --> Line_8 $$ return listDirectories(jobSpecsDir).map(File::<>toPath).map( path -> loadJobSpec(path).map(JobSpec::<>toSummary)).filter(Optional::<>isPresent).map(Optional::<>get).skip(page * pageSize).limit(pageSize).sorted(FilesystemJobSpecDAO::<>bySpecName).collect(toList()) [FD]

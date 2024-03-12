@@ -1,0 +1,6 @@
+Line_2 $$ public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) throws ErrnoException --> Line_3 $$ if (buffer.isDirect()) [FD]
+Line_2 $$ public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) throws ErrnoException --> Line_3 $$ if (buffer.isDirect()) [CD]
+Line_3 $$ if (buffer.isDirect()) --> Line_4 $$ return pwriteBytes(fd, buffer, buffer.position(), buffer.remaining(), offset) [CD]
+Line_2 $$ public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) throws ErrnoException --> Line_4 $$ return pwriteBytes(fd, buffer, buffer.position(), buffer.remaining(), offset) [FD]
+Line_3 $$ if (buffer.isDirect()) --> Line_6 $$ return pwriteBytes(fd, NioUtils.unsafeArray(buffer), NioUtils.unsafeArrayOffset(buffer) + buffer.position(), buffer.remaining(), offset) [CD]
+Line_2 $$ public int pwrite(FileDescriptor fd, ByteBuffer buffer, long offset) throws ErrnoException --> Line_6 $$ return pwriteBytes(fd, NioUtils.unsafeArray(buffer), NioUtils.unsafeArrayOffset(buffer) + buffer.position(), buffer.remaining(), offset) [FD]

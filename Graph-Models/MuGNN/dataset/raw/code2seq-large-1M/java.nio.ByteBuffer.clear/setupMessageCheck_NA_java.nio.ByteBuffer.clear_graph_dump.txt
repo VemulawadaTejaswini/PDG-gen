@@ -1,0 +1,8 @@
+Line_2 $$ private void setupMessageCheck(final long nowNs, final int activeTermId, final int termOffset) --> Line_3 $$ if (nowNs > (timeOfLastSetupNs + PUBLICATION_SETUP_TIMEOUT_NS)) [CD]
+Line_2 $$ private void setupMessageCheck(final long nowNs, final int activeTermId, final int termOffset) --> Line_3 $$ if (nowNs > (timeOfLastSetupNs + PUBLICATION_SETUP_TIMEOUT_NS)) [FD]
+Line_3 $$ if (nowNs > (timeOfLastSetupNs + PUBLICATION_SETUP_TIMEOUT_NS)) --> Line_6 $$ setupBuffer.clear() [CD]
+Line_3 $$ if (nowNs > (timeOfLastSetupNs + PUBLICATION_SETUP_TIMEOUT_NS)) --> Line_7 $$ setupHeader.activeTermId(activeTermId).termOffset(termOffset).sessionId(sessionId).streamId(streamId).initialTermId(initialTermId).termLength(termBufferLength).mtuLength(mtuLength).ttl(channelEndpoint.multicastTtl()) [CD]
+Line_2 $$ private void setupMessageCheck(final long nowNs, final int activeTermId, final int termOffset) --> Line_7 $$ setupHeader.activeTermId(activeTermId).termOffset(termOffset).sessionId(sessionId).streamId(streamId).initialTermId(initialTermId).termLength(termBufferLength).mtuLength(mtuLength).ttl(channelEndpoint.multicastTtl()) [FD]
+Line_3 $$ if (nowNs > (timeOfLastSetupNs + PUBLICATION_SETUP_TIMEOUT_NS)) --> Line_8 $$ if (SetupFlyweight.HEADER_LENGTH != channelEndpoint.send(setupBuffer)) [CD]
+Line_8 $$ if (SetupFlyweight.HEADER_LENGTH != channelEndpoint.send(setupBuffer)) --> Line_9 $$ shortSends.increment() [CD]
+Line_3 $$ if (nowNs > (timeOfLastSetupNs + PUBLICATION_SETUP_TIMEOUT_NS)) --> Line_11 $$ if (hasReceivers) [CD]

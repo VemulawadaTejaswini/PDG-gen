@@ -1,0 +1,7 @@
+Line_4 $$ final DataSource ds = (DataSource) new InitialContext().lookup("java:comp/env/jdbc/DefaultDatabase") --> Line_5 $$ final Connection c = ds.getConnection() [FD]
+Line_5 $$ final Connection c = ds.getConnection() --> Line_6 $$ final PreparedStatement ps = c.prepareStatement("UPDATE storage SET blob_column = ? WHERE id = ?") [FD]
+Line_6 $$ final PreparedStatement ps = c.prepareStatement("UPDATE storage SET blob_column = ? WHERE id = ?") --> Line_7 $$ ps.setBinaryStream(1, new ByteArrayInputStream(bytes), bytes.length) [FD]
+Line_6 $$ final PreparedStatement ps = c.prepareStatement("UPDATE storage SET blob_column = ? WHERE id = ?") --> Line_8 $$ ps.setInt(2, ((Integer) ctx.getPrimaryKey()).intValue()) [FD]
+Line_6 $$ final PreparedStatement ps = c.prepareStatement("UPDATE storage SET blob_column = ? WHERE id = ?") --> Line_9 $$ ps.executeUpdate() [FD]
+Line_6 $$ final PreparedStatement ps = c.prepareStatement("UPDATE storage SET blob_column = ? WHERE id = ?") --> Line_10 $$ ps.close() [FD]
+Line_5 $$ final Connection c = ds.getConnection() --> Line_11 $$ c.close() [FD]

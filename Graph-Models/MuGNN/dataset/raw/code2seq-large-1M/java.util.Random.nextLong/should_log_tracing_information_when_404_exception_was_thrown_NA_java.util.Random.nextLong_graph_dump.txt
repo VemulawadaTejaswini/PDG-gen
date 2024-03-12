@@ -1,0 +1,8 @@
+Line_2 $$ public void should_log_tracing_information_when_404_exception_was_thrown() throws Exception --> Line_3 $$ Long expectedTraceId = new Random().nextLong() [CD]
+Line_2 $$ public void should_log_tracing_information_when_404_exception_was_thrown() throws Exception --> Line_4 $$ whenSentToNonExistentEndpointWithTraceId(expectedTraceId) [CD]
+Line_3 $$ Long expectedTraceId = new Random().nextLong() --> Line_4 $$ whenSentToNonExistentEndpointWithTraceId(expectedTraceId) [FD]
+Line_2 $$ public void should_log_tracing_information_when_404_exception_was_thrown() throws Exception --> Line_5 $$ then(this.reporter.getSpans()).hasSize(1) [CD]
+Line_2 $$ public void should_log_tracing_information_when_404_exception_was_thrown() throws Exception --> Line_6 $$ zipkin2.Span serverSpan = this.reporter.getSpans().get(0) [CD]
+Line_2 $$ public void should_log_tracing_information_when_404_exception_was_thrown() throws Exception --> Line_7 $$ then(serverSpan.tags()).containsEntry("custom", "tag").containsEntry("http.status_code", "404") [CD]
+Line_6 $$ zipkin2.Span serverSpan = this.reporter.getSpans().get(0) --> Line_7 $$ then(serverSpan.tags()).containsEntry("custom", "tag").containsEntry("http.status_code", "404") [FD]
+Line_2 $$ public void should_log_tracing_information_when_404_exception_was_thrown() throws Exception --> Line_8 $$ then(this.tracer.currentSpan()).isNull() [CD]

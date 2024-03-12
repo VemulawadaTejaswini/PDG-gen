@@ -1,0 +1,5 @@
+Line_2 $$ protected List<SequenceDefinition> getSequences0() throws SQLException --> Line_3 $$ List<SequenceDefinition> result = new ArrayList<SequenceDefinition>() [CD]
+Line_4 $$ for (Record record : create().select(DB_SERIAL.NAME, DB_SERIAL.MAX_VAL).from(DB_SERIAL).fetch()) --> Line_5 $$ BigInteger value = defaultIfNull(record.get(DB_SERIAL.MAX_VAL, BigInteger.class), BigInteger.valueOf(Long.MAX_VALUE)) [FD]
+Line_3 $$ List<SequenceDefinition> result = new ArrayList<SequenceDefinition>() --> Line_7 $$ result.add(new DefaultSequenceDefinition(getSchemata().get(0), record.get(DB_SERIAL.NAME), type)) [FD]
+Line_4 $$ for (Record record : create().select(DB_SERIAL.NAME, DB_SERIAL.MAX_VAL).from(DB_SERIAL).fetch()) --> Line_7 $$ result.add(new DefaultSequenceDefinition(getSchemata().get(0), record.get(DB_SERIAL.NAME), type)) [FD]
+Line_2 $$ protected List<SequenceDefinition> getSequences0() throws SQLException --> Line_9 $$ return result [CD]

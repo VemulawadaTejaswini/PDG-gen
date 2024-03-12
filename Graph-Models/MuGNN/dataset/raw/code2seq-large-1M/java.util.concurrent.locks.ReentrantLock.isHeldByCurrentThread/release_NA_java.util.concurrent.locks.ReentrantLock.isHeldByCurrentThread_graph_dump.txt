@@ -1,0 +1,6 @@
+Line_2 $$ public void release() --> Line_3 $$ ReentrantLock lock = Bridge.getLock() [CD]
+Line_2 $$ public void release() --> Line_4 $$ if (lock.isHeldByCurrentThread()) [CD]
+Line_3 $$ ReentrantLock lock = Bridge.getLock() --> Line_4 $$ if (lock.isHeldByCurrentThread()) [FD]
+Line_4 $$ if (lock.isHeldByCurrentThread()) --> Line_5 $$ tearDown() [CD]
+Line_4 $$ if (lock.isHeldByCurrentThread()) --> Line_6 $$ lock.unlock() [CD]
+Line_3 $$ ReentrantLock lock = Bridge.getLock() --> Line_6 $$ lock.unlock() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testReceiveCommandResponseWithIncorrectMessageID() throws IOException --> Line_3 $$ int messageID = 123 [CD]
+Line_2 $$ public void testReceiveCommandResponseWithIncorrectMessageID() throws IOException --> Line_4 $$ int differentMessageID = 456 [CD]
+Line_2 $$ public void testReceiveCommandResponseWithIncorrectMessageID() throws IOException --> Line_5 $$ InputStream jsonReader = createMockJsonReaderForReceiveCommandResponse(differentMessageID, "result", 0) [CD]
+Line_4 $$ int differentMessageID = 456 --> Line_5 $$ InputStream jsonReader = createMockJsonReaderForReceiveCommandResponse(differentMessageID, "result", 0) [FD]
+Line_2 $$ public void testReceiveCommandResponseWithIncorrectMessageID() throws IOException --> Line_6 $$ WorkerProcessProtocol.CommandSender protocol = new WorkerProcessProtocolZero.CommandSender(dummyOutputStream, jsonReader, newTempFile(), () -> [CD]
+Line_6 $$ WorkerProcessProtocol.CommandSender protocol = new WorkerProcessProtocolZero.CommandSender(dummyOutputStream, jsonReader, newTempFile(), () -> --> Line_9 $$ protocol.receiveCommandResponse(messageID) [FD]
+Line_3 $$ int messageID = 123 --> Line_9 $$ protocol.receiveCommandResponse(messageID) [FD]
+Line_3 $$ int messageID = 123 --> Line_11 $$ assertThat(e.getMessage(), Matchers.containsString(String.format("Expected response's \"id\" value to be \"%d\"", messageID))) [FD]

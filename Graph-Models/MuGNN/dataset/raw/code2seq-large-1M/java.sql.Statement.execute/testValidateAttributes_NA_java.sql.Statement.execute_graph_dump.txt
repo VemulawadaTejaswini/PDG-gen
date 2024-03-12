@@ -1,0 +1,8 @@
+Line_2 $$ public void testValidateAttributes() throws Exception --> Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) [CD]
+Line_3 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) --> Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) [FD]
+Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) --> Line_8 $$ conn.createStatement().execute("create table IF NOT EXISTS " + tableName + " ( id char(1) NOT NULL," + " col1 integer NOT NULL," + " CONSTRAINT NAME_PK PRIMARY KEY (id, col1))" + " APPEND_ONLY_SCHEMA = true") [FD]
+Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) --> Line_13 $$ conn.createStatement().execute("create table IF NOT EXISTS " + tableName + " ( id char(1) NOT NULL," + " col1 integer NOT NULL" + " CONSTRAINT NAME_PK PRIMARY KEY (id, col1))" + " APPEND_ONLY_SCHEMA = true, UPDATE_CACHE_FREQUENCY=1000") [FD]
+Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) --> Line_14 $$ conn.createStatement().execute("create view IF NOT EXISTS " + viewName + " (val1 integer) AS SELECT * FROM " + tableName) [FD]
+Line_4 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) --> Line_15 $$ PhoenixConnection pconn = conn.unwrap(PhoenixConnection.class) [FD]
+Line_16 $$ PTable view = pconn.getTable(new PTableKey(pconn.getTenantId(), viewName)) --> Line_17 $$ assertEquals(true, view.isAppendOnlySchema()) [FD]
+Line_16 $$ PTable view = pconn.getTable(new PTableKey(pconn.getTenantId(), viewName)) --> Line_18 $$ assertEquals(1000, view.getUpdateCacheFrequency()) [FD]

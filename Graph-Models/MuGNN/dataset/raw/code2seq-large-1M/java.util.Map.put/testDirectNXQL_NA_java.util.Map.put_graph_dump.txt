@@ -1,0 +1,8 @@
+Line_4 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_5 $$ params.put("query", "select * from Document") [FD]
+Line_4 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_6 $$ params.put("pageSize", 2) [FD]
+Line_7 $$ OperationChain chain = new OperationChain("fakeChain") --> Line_9 $$ chain.add(oparams) [FD]
+Line_8 $$ OperationParameters oparams = new OperationParameters(DocumentPageProviderOperation.ID, params) --> Line_9 $$ chain.add(oparams) [FD]
+Line_3 $$ try (OperationContext ctx = new OperationContext(session)) --> Line_10 $$ PaginableDocumentModelListImpl result = (PaginableDocumentModelListImpl) service.run(ctx, chain) [FD]
+Line_7 $$ OperationChain chain = new OperationChain("fakeChain") --> Line_10 $$ PaginableDocumentModelListImpl result = (PaginableDocumentModelListImpl) service.run(ctx, chain) [FD]
+Line_10 $$ PaginableDocumentModelListImpl result = (PaginableDocumentModelListImpl) service.run(ctx, chain) --> Line_11 $$ assertEquals(2, result.getPageSize()) [FD]
+Line_10 $$ PaginableDocumentModelListImpl result = (PaginableDocumentModelListImpl) service.run(ctx, chain) --> Line_12 $$ assertEquals(2, result.getNumberOfPages()) [FD]

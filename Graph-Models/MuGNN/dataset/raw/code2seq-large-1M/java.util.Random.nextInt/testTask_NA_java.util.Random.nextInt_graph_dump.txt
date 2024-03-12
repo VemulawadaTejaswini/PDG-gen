@@ -1,0 +1,8 @@
+Line_2 $$ public void testTask() throws Exception --> Line_3 $$ String arg = DICTIONARY[new Random(System.currentTimeMillis()).nextInt(DICTIONARY.length)] [CD]
+Line_2 $$ public void testTask() throws Exception --> Line_4 $$ generateFile(TOTAL_WORDS) [CD]
+Line_2 $$ public void testTask() throws Exception --> Line_5 $$ Long genLen = igfs.info(FILE).length() [CD]
+Line_2 $$ public void testTask() throws Exception --> Line_6 $$ IgniteBiTuple<Long, Integer> taskRes = igfs.execute(new Task(), new IgfsStringDelimiterRecordResolver(" "), Collections.singleton(FILE), arg) [CD]
+Line_3 $$ String arg = DICTIONARY[new Random(System.currentTimeMillis()).nextInt(DICTIONARY.length)] --> Line_6 $$ IgniteBiTuple<Long, Integer> taskRes = igfs.execute(new Task(), new IgfsStringDelimiterRecordResolver(" "), Collections.singleton(FILE), arg) [FD]
+Line_5 $$ Long genLen = igfs.info(FILE).length() --> Line_7 $$ assert F.eq(genLen, taskRes.getKey()) [FD]
+Line_6 $$ IgniteBiTuple<Long, Integer> taskRes = igfs.execute(new Task(), new IgfsStringDelimiterRecordResolver(" "), Collections.singleton(FILE), arg) --> Line_7 $$ assert F.eq(genLen, taskRes.getKey()) [FD]
+Line_6 $$ IgniteBiTuple<Long, Integer> taskRes = igfs.execute(new Task(), new IgfsStringDelimiterRecordResolver(" "), Collections.singleton(FILE), arg) --> Line_8 $$ assert F.eq(TOTAL_WORDS, taskRes.getValue()) [FD]

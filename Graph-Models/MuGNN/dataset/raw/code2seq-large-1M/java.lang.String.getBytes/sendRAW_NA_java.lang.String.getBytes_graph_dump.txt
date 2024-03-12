@@ -1,0 +1,8 @@
+Line_2 $$ public void sendRAW(String id, String accountName, SerializableLocation[] locations) throws Exception --> Line_4 $$ if (Strings.isNullOrEmpty(accountName)) [FD]
+Line_4 $$ if (Strings.isNullOrEmpty(accountName)) --> Line_5 $$ accountName = id [CD]
+Line_2 $$ public void sendRAW(String id, String accountName, SerializableLocation[] locations) throws Exception --> Line_5 $$ accountName = id [FD]
+Line_3 $$ for (SerializableLocation loc : locations) --> Line_7 $$ String message = accountName + "/" + id + "/" + OpenGTSManager.gprmcEncode(loc) [FD]
+Line_7 $$ String message = accountName + "/" + id + "/" + OpenGTSManager.gprmcEncode(loc) --> Line_9 $$ byte[] buffer = message.getBytes() [FD]
+Line_8 $$ DatagramSocket socket = new DatagramSocket() --> Line_12 $$ socket.send(packet) [FD]
+Line_10 $$ DatagramPacket packet = new DatagramPacket(buffer, buffer.length, InetAddress.getByName(server), port) --> Line_12 $$ socket.send(packet) [FD]
+Line_8 $$ DatagramSocket socket = new DatagramSocket() --> Line_13 $$ socket.close() [FD]

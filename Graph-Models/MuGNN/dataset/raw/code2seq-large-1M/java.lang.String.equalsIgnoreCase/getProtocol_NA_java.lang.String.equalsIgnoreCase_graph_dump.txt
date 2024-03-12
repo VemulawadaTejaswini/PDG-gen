@@ -1,0 +1,6 @@
+Line_2 $$ private String getProtocol(String imageProtocol) --> Line_3 $$ String protocol = imageProtocol != null ? imageProtocol : getConfig(Config.protocol) [CD]
+Line_2 $$ private String getProtocol(String imageProtocol) --> Line_4 $$ if ("tcp".equalsIgnoreCase(protocol) || "udp".equalsIgnoreCase(protocol)) [CD]
+Line_3 $$ String protocol = imageProtocol != null ? imageProtocol : getConfig(Config.protocol) --> Line_4 $$ if ("tcp".equalsIgnoreCase(protocol) || "udp".equalsIgnoreCase(protocol)) [FD]
+Line_4 $$ if ("tcp".equalsIgnoreCase(protocol) || "udp".equalsIgnoreCase(protocol)) --> Line_5 $$ return protocol.toUpperCase() [CD]
+Line_3 $$ String protocol = imageProtocol != null ? imageProtocol : getConfig(Config.protocol) --> Line_5 $$ return protocol.toUpperCase() [FD]
+Line_3 $$ String protocol = imageProtocol != null ? imageProtocol : getConfig(Config.protocol) --> Line_7 $$ throw new IllegalArgumentException(String.format("Invalid service protocol %s specified for enricher '%s'. Must be 'tcp' or 'udp'", protocol, getName())) [FD]

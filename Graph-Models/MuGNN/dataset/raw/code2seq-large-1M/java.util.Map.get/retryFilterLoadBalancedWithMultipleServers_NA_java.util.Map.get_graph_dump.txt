@@ -1,0 +1,7 @@
+Line_2 $$ public void retryFilterLoadBalancedWithMultipleServers() --> Line_3 $$ String host = "www.retrywithloadbalancer.org" [CD]
+Line_2 $$ public void retryFilterLoadBalancedWithMultipleServers() --> Line_4 $$ testClient.get().uri("/get").header(HttpHeaders.HOST, host).exchange().expectStatus().isOk().expectBody(Map.class).consumeWith( res -> [CD]
+Line_3 $$ String host = "www.retrywithloadbalancer.org" --> Line_4 $$ testClient.get().uri("/get").header(HttpHeaders.HOST, host).exchange().expectStatus().isOk().expectBody(Map.class).consumeWith( res -> [FD]
+Line_5 $$ Map body = res.getResponseBody() --> Line_6 $$ assertThat(body).isNotNull() [FD]
+Line_5 $$ Map body = res.getResponseBody() --> Line_7 $$ Map<String, Object> headers = (Map<String, Object>) body.get("headers") [FD]
+Line_3 $$ String host = "www.retrywithloadbalancer.org" --> Line_8 $$ assertThat(headers).containsEntry("X-Forwarded-Host", host) [FD]
+Line_7 $$ Map<String, Object> headers = (Map<String, Object>) body.get("headers") --> Line_8 $$ assertThat(headers).containsEntry("X-Forwarded-Host", host) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testSysOperationsIsClearedIfNothingToFetch() throws Exception --> Line_3 $$ JobsLogs jobsLogs = new JobsLogs(() -> true) [CD]
+Line_2 $$ public void testSysOperationsIsClearedIfNothingToFetch() throws Exception --> Line_4 $$ NodeFetchOperation fetchOperation = new NodeFetchOperation(MoreExecutors.directExecutor(), jobsLogs, new JobContextService(Settings.EMPTY, clusterService, jobsLogs), new NoopCircuitBreaker("dummy")) [CD]
+Line_2 $$ public void testSysOperationsIsClearedIfNothingToFetch() throws Exception --> Line_5 $$ fetchOperation.fetch(UUID.randomUUID(), 1, null, true).get(5, TimeUnit.SECONDS) [CD]
+Line_4 $$ NodeFetchOperation fetchOperation = new NodeFetchOperation(MoreExecutors.directExecutor(), jobsLogs, new JobContextService(Settings.EMPTY, clusterService, jobsLogs), new NoopCircuitBreaker("dummy")) --> Line_5 $$ fetchOperation.fetch(UUID.randomUUID(), 1, null, true).get(5, TimeUnit.SECONDS) [FD]
+Line_2 $$ public void testSysOperationsIsClearedIfNothingToFetch() throws Exception --> Line_6 $$ assertThat(Iterables.size(jobsLogs.activeOperations()), is(0)) [CD]
+Line_3 $$ JobsLogs jobsLogs = new JobsLogs(() -> true) --> Line_6 $$ assertThat(Iterables.size(jobsLogs.activeOperations()), is(0)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testBadHandlerRequest() throws Exception --> Line_3 $$ final FaultyTestParameters parameters = new FaultyTestParameters() [CD]
+Line_2 $$ public void testBadHandlerRequest() throws Exception --> Line_4 $$ parameters.faultyJobIDPathParameter.resolve(PATH_JOB_ID) [CD]
+Line_2 $$ public void testBadHandlerRequest() throws Exception --> Line_5 $$ ((TestParameters) parameters).jobIDQueryParameter.resolve(Collections.singletonList(QUERY_JOB_ID)) [CD]
+Line_2 $$ public void testBadHandlerRequest() throws Exception --> Line_6 $$ CompletableFuture<TestResponse> response = restClient.sendRequest(serverAddress.getHostName(), serverAddress.getPort(), new TestHeaders(), parameters, new TestRequest(2)) [CD]
+Line_3 $$ final FaultyTestParameters parameters = new FaultyTestParameters() --> Line_6 $$ CompletableFuture<TestResponse> response = restClient.sendRequest(serverAddress.getHostName(), serverAddress.getPort(), new TestHeaders(), parameters, new TestRequest(2)) [FD]
+Line_6 $$ CompletableFuture<TestResponse> response = restClient.sendRequest(serverAddress.getHostName(), serverAddress.getPort(), new TestHeaders(), parameters, new TestRequest(2)) --> Line_8 $$ response.get() [FD]
+Line_13 $$ RestClientException rce = (RestClientException) t --> Line_14 $$ assertEquals(HttpResponseStatus.BAD_REQUEST, rce.getHttpResponseStatus()) [FD]

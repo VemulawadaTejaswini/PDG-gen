@@ -1,0 +1,6 @@
+Line_3 $$ try (Tx tx = tx()) --> Line_5 $$ NodeGraphFieldContainerImpl container = tx.getGraph().addFramedVertex(NodeGraphFieldContainerImpl.class) [FD]
+Line_6 $$ DateGraphField dateField = container.createDate(DATE_FIELD) --> Line_7 $$ dateField.setDate(nowEpoch) [FD]
+Line_4 $$ Long nowEpoch = System.currentTimeMillis() / 1000 --> Line_7 $$ dateField.setDate(nowEpoch) [FD]
+Line_3 $$ try (Tx tx = tx()) --> Line_8 $$ NodeGraphFieldContainerImpl otherContainer = tx.getGraph().addFramedVertex(NodeGraphFieldContainerImpl.class) [FD]
+Line_6 $$ DateGraphField dateField = container.createDate(DATE_FIELD) --> Line_9 $$ dateField.cloneTo(otherContainer) [FD]
+Line_6 $$ DateGraphField dateField = container.createDate(DATE_FIELD) --> Line_10 $$ assertThat(otherContainer.getDate(DATE_FIELD)).as("cloned field").isNotNull().isEqualToIgnoringGivenFields(dateField, "parentContainer") [FD]

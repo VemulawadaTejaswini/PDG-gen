@@ -1,0 +1,6 @@
+Line_2 $$ public void coroutine() --> Line_4 $$ Iterator<String> it = Arrays.asList("hello", "world", "take").iterator() [CD]
+Line_2 $$ public void coroutine() --> Line_5 $$ val coroutine = new Trampoline[1] [CD]
+Line_2 $$ public void coroutine() --> Line_6 $$ coroutine[0] = Trampoline.more(() -> it.hasNext() ? print(it.next(), coroutine[0]) : Trampoline.done(0)) [CD]
+Line_4 $$ Iterator<String> it = Arrays.asList("hello", "world", "take").iterator() --> Line_6 $$ coroutine[0] = Trampoline.more(() -> it.hasNext() ? print(it.next(), coroutine[0]) : Trampoline.done(0)) [FD]
+Line_2 $$ public void coroutine() --> Line_7 $$ withCoroutine(coroutine[0]) [CD]
+Line_2 $$ public void coroutine() --> Line_8 $$ assertThat(results, equalTo(Arrays.asList(0, "hello", 1, "world", 2, "take", 3, 4))) [CD]

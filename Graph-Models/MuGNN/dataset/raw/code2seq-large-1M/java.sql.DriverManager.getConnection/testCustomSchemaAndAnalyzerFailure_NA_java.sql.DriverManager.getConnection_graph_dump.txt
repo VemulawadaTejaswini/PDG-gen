@@ -1,0 +1,4 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW) + "foo", properties)) --> Line_4 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW) + "foo", properties)) --> Line_5 $$ PreparedStatement stmt = conn.prepareStatement("select x from t") [FD]
+Line_5 $$ PreparedStatement stmt = conn.prepareStatement("select x from t") --> Line_7 $$ stmt.executeQuery() [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(url(RW) + "foo", properties)) --> Line_12 $$ assertSelectNameFromSysClusterWorks(conn) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public static List<Calibration> allForSensorInLastFiveDays() --> Line_3 $$ Sensor sensor = Sensor.currentSensor() [CD]
+Line_2 $$ public static List<Calibration> allForSensorInLastFiveDays() --> Line_4 $$ if (sensor == null) [CD]
+Line_3 $$ Sensor sensor = Sensor.currentSensor() --> Line_4 $$ if (sensor == null) [FD]
+Line_4 $$ if (sensor == null) --> Line_5 $$ return null [CD]
+Line_2 $$ public static List<Calibration> allForSensorInLastFiveDays() --> Line_7 $$ return new Select().from(Calibration.class).where("Sensor = ? ", sensor.getId()).where("slope_confidence != 0").where("sensor_confidence != 0").where("timestamp > ?", (new Date().getTime() - (60000 * 60 * 24 * 5))).orderBy("timestamp desc").execute() [CD]
+Line_3 $$ Sensor sensor = Sensor.currentSensor() --> Line_7 $$ return new Select().from(Calibration.class).where("Sensor = ? ", sensor.getId()).where("slope_confidence != 0").where("sensor_confidence != 0").where("timestamp > ?", (new Date().getTime() - (60000 * 60 * 24 * 5))).orderBy("timestamp desc").execute() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testPrintStackTraceWithCause() --> Line_3 $$ Throwable throwable = newThrowable("Throwable", "A", "B") [CD]
+Line_2 $$ public void testPrintStackTraceWithCause() --> Line_4 $$ throwable.initCause(newThrowable("Cause", "A", "B", "C", "D")) [CD]
+Line_3 $$ Throwable throwable = newThrowable("Throwable", "A", "B") --> Line_4 $$ throwable.initCause(newThrowable("Cause", "A", "B", "C", "D")) [FD]
+Line_2 $$ public void testPrintStackTraceWithCause() --> Line_5 $$ assertEquals("java.lang.Throwable: Throwable\n" + "\tat ClassB.doB(ClassB.java:1)\n" + "\tat ClassA.doA(ClassA.java:0)\n" + "Caused by: java.lang.Throwable: Cause\n" + "\tat ClassD.doD(ClassD.java:3)\n" + "\tat ClassC.doC(ClassC.java:2)\n" + "\t... 2 more\n", printStackTraceToString(throwable)) [CD]
+Line_3 $$ Throwable throwable = newThrowable("Throwable", "A", "B") --> Line_5 $$ assertEquals("java.lang.Throwable: Throwable\n" + "\tat ClassB.doB(ClassB.java:1)\n" + "\tat ClassA.doA(ClassA.java:0)\n" + "Caused by: java.lang.Throwable: Cause\n" + "\tat ClassD.doD(ClassD.java:3)\n" + "\tat ClassC.doC(ClassC.java:2)\n" + "\t... 2 more\n", printStackTraceToString(throwable)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testGetAfterClose() throws Exception --> Line_3 $$ AtomicBoolean closed = new AtomicBoolean(false) [CD]
+Line_2 $$ public void testGetAfterClose() throws Exception --> Line_4 $$ ObjectFactory factory = new ObjectFactory() [CD]
+Line_3 $$ AtomicBoolean closed = new AtomicBoolean(false) --> Line_5 $$ try (T wrapper = closeableFactory.makeCloseable(factory::<>make,  toClose -> closed.set(true))) [FD]
+Line_5 $$ try (T wrapper = closeableFactory.makeCloseable(factory::<>make,  toClose -> closed.set(true))) --> Line_6 $$ wrapper.get() [FD]
+Line_5 $$ try (T wrapper = closeableFactory.makeCloseable(factory::<>make,  toClose -> closed.set(true))) --> Line_7 $$ wrapper.close() [FD]
+Line_5 $$ try (T wrapper = closeableFactory.makeCloseable(factory::<>make,  toClose -> closed.set(true))) --> Line_8 $$ wrapper.get() [FD]
+Line_3 $$ AtomicBoolean closed = new AtomicBoolean(false) --> Line_10 $$ assertTrue(closed.get()) [FD]
+Line_4 $$ ObjectFactory factory = new ObjectFactory() --> Line_11 $$ assertEquals(1, factory.getCreationCount()) [FD]

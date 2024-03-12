@@ -1,0 +1,7 @@
+Line_2 $$ public void testAccessor() throws Exception --> Line_3 $$ DynamicType.Loaded<SimpleFieldAccessor> loaded = new ByteBuddy().subclass(SimpleFieldAccessor.class).method(isDeclaredBy(SimpleFieldAccessor.class)).intercept(MethodDelegation.to(SimpleAccessorInterceptor.class)).make().load(SimpleFieldAccessor.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testAccessor() throws Exception --> Line_4 $$ SimpleFieldAccessor instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testAccessor() throws Exception --> Line_6 $$ assertThat(instance.getFoo(), is((Object) FOO)) [CD]
+Line_4 $$ SimpleFieldAccessor instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ assertThat(instance.getFoo(), is((Object) FOO)) [FD]
+Line_2 $$ public void testAccessor() throws Exception --> Line_8 $$ instance.setFoo(FOO) [CD]
+Line_4 $$ SimpleFieldAccessor instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_8 $$ instance.setFoo(FOO) [FD]
+Line_2 $$ public void testAccessor() throws Exception --> Line_9 $$ assertThat(instance.foo, is((Object) BAR)) [CD]

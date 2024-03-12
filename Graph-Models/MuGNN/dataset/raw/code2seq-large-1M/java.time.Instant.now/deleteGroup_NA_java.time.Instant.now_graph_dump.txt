@@ -1,0 +1,8 @@
+Line_2 $$ public Response deleteGroup(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_3 $$ Group group = groupDAOReadWrite.getGroup(name).orElseThrow(NotFoundException::<>new) [CD]
+Line_2 $$ public Response deleteGroup(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_3 $$ Group group = groupDAOReadWrite.getGroup(name).orElseThrow(NotFoundException::<>new) [FD]
+Line_2 $$ public Response deleteGroup(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_4 $$ groupDAOReadWrite.deleteGroup(group) [CD]
+Line_3 $$ Group group = groupDAOReadWrite.getGroup(name).orElseThrow(NotFoundException::<>new) --> Line_4 $$ groupDAOReadWrite.deleteGroup(group) [FD]
+Line_2 $$ public Response deleteGroup(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_5 $$ auditLog.recordEvent(new Event(Instant.now(), EventTag.GROUP_DELETE, automationClient.getName(), group.getName())) [CD]
+Line_2 $$ public Response deleteGroup(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_5 $$ auditLog.recordEvent(new Event(Instant.now(), EventTag.GROUP_DELETE, automationClient.getName(), group.getName())) [FD]
+Line_3 $$ Group group = groupDAOReadWrite.getGroup(name).orElseThrow(NotFoundException::<>new) --> Line_5 $$ auditLog.recordEvent(new Event(Instant.now(), EventTag.GROUP_DELETE, automationClient.getName(), group.getName())) [FD]
+Line_2 $$ public Response deleteGroup(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_6 $$ return Response.noContent().build() [CD]

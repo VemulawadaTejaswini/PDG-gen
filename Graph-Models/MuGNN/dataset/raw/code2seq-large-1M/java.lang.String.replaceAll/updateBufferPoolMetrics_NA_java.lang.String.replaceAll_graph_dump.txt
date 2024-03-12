@@ -1,0 +1,7 @@
+Line_3 $$ for (BufferPoolMXBean bufferPoolMXBean : bufferPoolMXBeanList) --> Line_4 $$ String normalizedKeyName = bufferPoolMXBean.getName().replaceAll("[^\\w]", "-") [FD]
+Line_3 $$ for (BufferPoolMXBean bufferPoolMXBean : bufferPoolMXBeanList) --> Line_5 $$ final ByteAmount memoryUsed = ByteAmount.fromBytes(bufferPoolMXBean.getMemoryUsed()) [FD]
+Line_3 $$ for (BufferPoolMXBean bufferPoolMXBean : bufferPoolMXBeanList) --> Line_6 $$ final ByteAmount totalCapacity = ByteAmount.fromBytes(bufferPoolMXBean.getTotalCapacity()) [FD]
+Line_3 $$ for (BufferPoolMXBean bufferPoolMXBean : bufferPoolMXBeanList) --> Line_7 $$ final ByteAmount count = ByteAmount.fromBytes(bufferPoolMXBean.getCount()) [FD]
+Line_5 $$ final ByteAmount memoryUsed = ByteAmount.fromBytes(bufferPoolMXBean.getMemoryUsed()) --> Line_8 $$ jvmBufferPoolMemoryUsage.safeScope(normalizedKeyName + "-memory-used").setValue(memoryUsed.asMegabytes()) [FD]
+Line_6 $$ final ByteAmount totalCapacity = ByteAmount.fromBytes(bufferPoolMXBean.getTotalCapacity()) --> Line_9 $$ jvmBufferPoolMemoryUsage.safeScope(normalizedKeyName + "-total-capacity").setValue(totalCapacity.asMegabytes()) [FD]
+Line_7 $$ final ByteAmount count = ByteAmount.fromBytes(bufferPoolMXBean.getCount()) --> Line_10 $$ jvmBufferPoolMemoryUsage.safeScope(normalizedKeyName + "-count").setValue(count.asMegabytes()) [FD]

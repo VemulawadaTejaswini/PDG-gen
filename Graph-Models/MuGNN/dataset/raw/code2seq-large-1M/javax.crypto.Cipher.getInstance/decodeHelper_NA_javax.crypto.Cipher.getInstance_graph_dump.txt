@@ -1,0 +1,6 @@
+Line_2 $$ private static String decodeHelper(String cipherText, String encryptionKey) --> Line_3 $$ if (cipherText == null || encryptionKey == null) [CD]
+Line_3 $$ if (cipherText == null || encryptionKey == null) --> Line_4 $$ return null [CD]
+Line_7 $$ Cipher aesCipher = Cipher.getInstance("AES") --> Line_8 $$ aesCipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(DigestUtils.sha256(encryptionKey), "AES"), aesCipher.getParameters()) [FD]
+Line_2 $$ private static String decodeHelper(String cipherText, String encryptionKey) --> Line_8 $$ aesCipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(DigestUtils.sha256(encryptionKey), "AES"), aesCipher.getParameters()) [FD]
+Line_7 $$ Cipher aesCipher = Cipher.getInstance("AES") --> Line_9 $$ return new String(aesCipher.doFinal(Base64.decodeBase64(cipherText)), "utf-8") [FD]
+Line_2 $$ private static String decodeHelper(String cipherText, String encryptionKey) --> Line_9 $$ return new String(aesCipher.doFinal(Base64.decodeBase64(cipherText)), "utf-8") [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Class<T> getExtensionClass() --> Line_3 $$ Class<T> extensionClass = myExtensionClass [CD]
+Line_2 $$ public Class<T> getExtensionClass() --> Line_4 $$ if (extensionClass == null) [CD]
+Line_3 $$ Class<T> extensionClass = myExtensionClass --> Line_4 $$ if (extensionClass == null) [FD]
+Line_6 $$ ClassLoader pluginClassLoader = myDescriptor.getPluginClassLoader() --> Line_7 $$ Class<T> extClass = pluginClassLoader == null ? (Class<T>) Class.forName(myClassName) : (Class<T>) Class.forName(myClassName, true, pluginClassLoader) [FD]
+Line_3 $$ Class<T> extensionClass = myExtensionClass --> Line_8 $$ myExtensionClass = extensionClass = extClass [FD]
+Line_7 $$ Class<T> extClass = pluginClassLoader == null ? (Class<T>) Class.forName(myClassName) : (Class<T>) Class.forName(myClassName, true, pluginClassLoader) --> Line_8 $$ myExtensionClass = extensionClass = extClass [FD]
+Line_2 $$ public Class<T> getExtensionClass() --> Line_13 $$ return extensionClass [CD]

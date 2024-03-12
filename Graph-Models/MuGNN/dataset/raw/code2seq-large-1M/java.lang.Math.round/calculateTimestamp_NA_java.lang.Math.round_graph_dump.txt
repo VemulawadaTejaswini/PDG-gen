@@ -1,0 +1,6 @@
+Line_2 $$ private long calculateTimestamp(long oldTimestamp, long samplesToAdd) --> Line_3 $$ long duration = Math.round(((double) (clockRate * samplesToAdd)) / sampleRate) [CD]
+Line_2 $$ private long calculateTimestamp(long oldTimestamp, long samplesToAdd) --> Line_4 $$ long timestamp = oldTimestamp + duration [CD]
+Line_2 $$ private long calculateTimestamp(long oldTimestamp, long samplesToAdd) --> Line_5 $$ if (useRtpTimestamp && timestamp > 1L << 32) [CD]
+Line_5 $$ if (useRtpTimestamp && timestamp > 1L << 32) --> Line_6 $$ timestamp -= 1L << 32 [CD]
+Line_4 $$ long timestamp = oldTimestamp + duration --> Line_6 $$ timestamp -= 1L << 32 [FD]
+Line_2 $$ private long calculateTimestamp(long oldTimestamp, long samplesToAdd) --> Line_7 $$ return timestamp [CD]

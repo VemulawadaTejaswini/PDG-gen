@@ -1,0 +1,7 @@
+Line_2 $$ public ConfigBuilder withMaxTransactionRetryTime(long value, TimeUnit unit) --> Line_3 $$ long maxRetryTimeMs = unit.toMillis(value) [CD]
+Line_2 $$ public ConfigBuilder withMaxTransactionRetryTime(long value, TimeUnit unit) --> Line_3 $$ long maxRetryTimeMs = unit.toMillis(value) [FD]
+Line_2 $$ public ConfigBuilder withMaxTransactionRetryTime(long value, TimeUnit unit) --> Line_4 $$ if (maxRetryTimeMs < 0) [CD]
+Line_3 $$ long maxRetryTimeMs = unit.toMillis(value) --> Line_4 $$ if (maxRetryTimeMs < 0) [FD]
+Line_2 $$ public ConfigBuilder withMaxTransactionRetryTime(long value, TimeUnit unit) --> Line_5 $$ throw new IllegalArgumentException(String.format("The max retry time may not be smaller than 0, but was %d %s.", value, unit)) [FD]
+Line_2 $$ public ConfigBuilder withMaxTransactionRetryTime(long value, TimeUnit unit) --> Line_7 $$ this.retrySettings = new RetrySettings(maxRetryTimeMs) [CD]
+Line_2 $$ public ConfigBuilder withMaxTransactionRetryTime(long value, TimeUnit unit) --> Line_8 $$ return this [CD]

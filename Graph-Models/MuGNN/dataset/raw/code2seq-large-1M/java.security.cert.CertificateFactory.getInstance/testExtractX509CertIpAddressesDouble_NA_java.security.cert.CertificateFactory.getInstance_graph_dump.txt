@@ -1,0 +1,6 @@
+Line_4 $$ CertificateFactory cf = CertificateFactory.getInstance("X.509") --> Line_5 $$ X509Certificate cert = (X509Certificate) cf.generateCertificate(inStream) [FD]
+Line_3 $$ try (InputStream inStream = new FileInputStream("src/test/resources/x509_altnames_doubleip.cert")) --> Line_5 $$ X509Certificate cert = (X509Certificate) cf.generateCertificate(inStream) [FD]
+Line_5 $$ X509Certificate cert = (X509Certificate) cf.generateCertificate(inStream) --> Line_6 $$ List<String> ips = Crypto.extractX509CertIPAddresses(cert) [FD]
+Line_6 $$ List<String> ips = Crypto.extractX509CertIPAddresses(cert) --> Line_7 $$ assertEquals(2, ips.size()) [FD]
+Line_6 $$ List<String> ips = Crypto.extractX509CertIPAddresses(cert) --> Line_8 $$ assertEquals(ips.get(0), "10.11.12.13") [FD]
+Line_6 $$ List<String> ips = Crypto.extractX509CertIPAddresses(cert) --> Line_9 $$ assertEquals(ips.get(1), "10.11.12.14") [FD]

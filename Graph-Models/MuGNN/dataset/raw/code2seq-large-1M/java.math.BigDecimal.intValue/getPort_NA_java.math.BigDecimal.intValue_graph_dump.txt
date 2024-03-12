@@ -1,0 +1,7 @@
+Line_2 $$ protected int getPort(int defaultPort) --> Line_3 $$ BigDecimal portConfig = (BigDecimal) thing.getConfiguration().get(MilightBindingConstants.CONFIG_CUSTOM_PORT) [CD]
+Line_2 $$ protected int getPort(int defaultPort) --> Line_4 $$ if (portConfig != null && (portConfig.intValue() < 0 || portConfig.intValue() > 65000)) [CD]
+Line_3 $$ BigDecimal portConfig = (BigDecimal) thing.getConfiguration().get(MilightBindingConstants.CONFIG_CUSTOM_PORT) --> Line_4 $$ if (portConfig != null && (portConfig.intValue() < 0 || portConfig.intValue() > 65000)) [FD]
+Line_4 $$ if (portConfig != null && (portConfig.intValue() < 0 || portConfig.intValue() > 65000)) --> Line_5 $$ updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR, "No valid port set!") [CD]
+Line_4 $$ if (portConfig != null && (portConfig.intValue() < 0 || portConfig.intValue() > 65000)) --> Line_6 $$ return 0 [CD]
+Line_2 $$ protected int getPort(int defaultPort) --> Line_8 $$ return (portConfig != null) ? portConfig.intValue() : defaultPort [CD]
+Line_3 $$ BigDecimal portConfig = (BigDecimal) thing.getConfiguration().get(MilightBindingConstants.CONFIG_CUSTOM_PORT) --> Line_8 $$ return (portConfig != null) ? portConfig.intValue() : defaultPort [FD]

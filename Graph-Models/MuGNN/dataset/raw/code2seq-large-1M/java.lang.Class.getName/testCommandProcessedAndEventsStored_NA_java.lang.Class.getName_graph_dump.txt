@@ -1,0 +1,8 @@
+Line_2 $$ public void testCommandProcessedAndEventsStored() throws InterruptedException --> Line_4 $$ testSubject.subscribe(StubCommand.class.getName(), stubHandler) [CD]
+Line_2 $$ public void testCommandProcessedAndEventsStored() throws InterruptedException --> Line_5 $$ stubHandler.setRepository(testSubject.createRepository(eventStore, new GenericAggregateFactory(StubAggregate.class))) [CD]
+Line_2 $$ public void testCommandProcessedAndEventsStored() throws InterruptedException --> Line_6 $$ for (int i = 0; i < COMMAND_COUNT; i++) [CD]
+Line_6 $$ for (int i = 0; i < COMMAND_COUNT; i++) --> Line_7 $$ CommandMessage<StubCommand> command = asCommandMessage(new StubCommand(aggregateIdentifier)) [CD]
+Line_6 $$ for (int i = 0; i < COMMAND_COUNT; i++) --> Line_8 $$ testSubject.dispatch(command) [CD]
+Line_7 $$ CommandMessage<StubCommand> command = asCommandMessage(new StubCommand(aggregateIdentifier)) --> Line_8 $$ testSubject.dispatch(command) [FD]
+Line_2 $$ public void testCommandProcessedAndEventsStored() throws InterruptedException --> Line_10 $$ eventStore.countDownLatch.await(5, TimeUnit.SECONDS) [CD]
+Line_2 $$ public void testCommandProcessedAndEventsStored() throws InterruptedException --> Line_11 $$ assertEquals("Seems that some events are not stored", 0, eventStore.countDownLatch.getCount()) [CD]

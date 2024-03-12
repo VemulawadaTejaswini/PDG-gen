@@ -1,0 +1,7 @@
+Line_2 $$ public void testSourceWithInputStream() throws Exception --> Line_3 $$ InputStream stream = new ByteArrayInputStream(book.getBytes(StandardCharsets.UTF_8)) [CD]
+Line_2 $$ public void testSourceWithInputStream() throws Exception --> Line_4 $$ Response response = client.target(generateURL("/test")).request().post(Entity.entity(new StreamSource(stream), "application/*+xml")) [CD]
+Line_2 $$ public void testSourceWithInputStream() throws Exception --> Line_5 $$ Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus()) [CD]
+Line_4 $$ Response response = client.target(generateURL("/test")).request().post(Entity.entity(new StreamSource(stream), "application/*+xml")) --> Line_5 $$ Assert.assertEquals(HttpResponseCodes.SC_OK, response.getStatus()) [FD]
+Line_2 $$ public void testSourceWithInputStream() throws Exception --> Line_6 $$ String entity = response.readEntity(String.class) [CD]
+Line_4 $$ Response response = client.target(generateURL("/test")).request().post(Entity.entity(new StreamSource(stream), "application/*+xml")) --> Line_6 $$ String entity = response.readEntity(String.class) [FD]
+Line_2 $$ public void testSourceWithInputStream() throws Exception --> Line_7 $$ Assert.assertTrue(entity.contentEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?><book><title>Monkey kingdom</title></book>")) [CD]

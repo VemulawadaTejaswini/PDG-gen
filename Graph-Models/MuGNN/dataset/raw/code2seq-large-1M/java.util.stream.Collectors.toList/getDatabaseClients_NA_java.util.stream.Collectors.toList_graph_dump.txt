@@ -1,0 +1,7 @@
+Line_2 $$ public CommandFuture<List<DatabaseClient>> getDatabaseClients() --> Line_3 $$ Command cmd = DatabaseClientCommands.clientDBList(0, 1, true) [CD]
+Line_2 $$ public CommandFuture<List<DatabaseClient>> getDatabaseClients() --> Line_4 $$ return executeAndReturnIntProperty(cmd, "count").then( count -> [CD]
+Line_3 $$ Command cmd = DatabaseClientCommands.clientDBList(0, 1, true) --> Line_4 $$ return executeAndReturnIntProperty(cmd, "count").then( count -> [FD]
+Line_6 $$ for (int i = 0; i < count; i += 200) --> Line_7 $$ futures.add(getDatabaseClients(i, 200)) [CD]
+Line_6 $$ for (int i = 0; i < count; i += 200) --> Line_7 $$ futures.add(getDatabaseClients(i, 200)) [FD]
+Line_5 $$ Collection<CommandFuture<List<DatabaseClient>>> futures = new ArrayList((count + 199) / 200) --> Line_7 $$ futures.add(getDatabaseClients(i, 200)) [FD]
+Line_5 $$ Collection<CommandFuture<List<DatabaseClient>>> futures = new ArrayList((count + 199) / 200) --> Line_9 $$ return CommandFuture.ofAll(futures) [FD]

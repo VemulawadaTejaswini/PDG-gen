@@ -1,0 +1,7 @@
+Line_2 $$ public static boolean isAllowedAnonymous(Connection connection) --> Line_4 $$ final String hostAddress = connection.getHostAddress() [FD]
+Line_2 $$ public static boolean isAllowedAnonymous(Connection connection) --> Line_5 $$ final byte[] address = connection.getAddress() [FD]
+Line_4 $$ final String hostAddress = connection.getHostAddress() --> Line_6 $$ if (blockedIPs.contains(hostAddress) || isAddressInRange(address, blockedIPs)) [FD]
+Line_5 $$ final byte[] address = connection.getAddress() --> Line_6 $$ if (blockedIPs.contains(hostAddress) || isAddressInRange(address, blockedIPs)) [FD]
+Line_6 $$ if (blockedIPs.contains(hostAddress) || isAddressInRange(address, blockedIPs)) --> Line_7 $$ return false [CD]
+Line_4 $$ final String hostAddress = connection.getHostAddress() --> Line_9 $$ return allowedAnonymIPs.isEmpty() || allowedAnonymIPs.contains(hostAddress) || isAddressInRange(address, allowedAnonymIPs) [FD]
+Line_5 $$ final byte[] address = connection.getAddress() --> Line_9 $$ return allowedAnonymIPs.isEmpty() || allowedAnonymIPs.contains(hostAddress) || isAddressInRange(address, allowedAnonymIPs) [FD]

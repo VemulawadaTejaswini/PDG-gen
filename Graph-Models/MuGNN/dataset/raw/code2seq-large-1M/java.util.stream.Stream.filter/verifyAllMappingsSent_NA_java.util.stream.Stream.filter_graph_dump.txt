@@ -1,0 +1,7 @@
+Line_2 $$ public void verifyAllMappingsSent() --> Line_3 $$ List<Matcher<Request>> unmatchedRequestMatchers = mappings.stream().map( p -> p.requestMatcher).filter( requestMatcher -> sentRequests().stream().noneMatch(requestMatcher::<>matches)).collect(toList()) [CD]
+Line_2 $$ public void verifyAllMappingsSent() --> Line_4 $$ if (!unmatchedRequestMatchers.isEmpty()) [CD]
+Line_3 $$ List<Matcher<Request>> unmatchedRequestMatchers = mappings.stream().map( p -> p.requestMatcher).filter( requestMatcher -> sentRequests().stream().noneMatch(requestMatcher::<>matches)).collect(toList()) --> Line_4 $$ if (!unmatchedRequestMatchers.isEmpty()) [FD]
+Line_4 $$ if (!unmatchedRequestMatchers.isEmpty()) --> Line_5 $$ StringBuilder errorMessage = new StringBuilder("At least one expected request was not sent: \n") [CD]
+Line_5 $$ StringBuilder errorMessage = new StringBuilder("At least one expected request was not sent: \n") --> Line_7 $$ errorMessage.append('\t').append(getDescriptionOf(unmatchedRequestMatcher)).append("\n") [FD]
+Line_6 $$ for (Matcher<Request> unmatchedRequestMatcher : unmatchedRequestMatchers) --> Line_7 $$ errorMessage.append('\t').append(getDescriptionOf(unmatchedRequestMatcher)).append("\n") [FD]
+Line_5 $$ StringBuilder errorMessage = new StringBuilder("At least one expected request was not sent: \n") --> Line_9 $$ throw new AssertionError(errorMessage.toString()) [FD]

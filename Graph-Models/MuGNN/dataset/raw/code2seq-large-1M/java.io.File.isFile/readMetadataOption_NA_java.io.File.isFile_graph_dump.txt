@@ -1,0 +1,7 @@
+Line_2 $$ private void readMetadataOption(final CommandLine cmd) throws Exception --> Line_3 $$ if (cmd.hasOption("m")) [FD]
+Line_2 $$ private void readMetadataOption(final CommandLine cmd) throws Exception --> Line_3 $$ if (cmd.hasOption("m")) [CD]
+Line_2 $$ private void readMetadataOption(final CommandLine cmd) throws Exception --> Line_4 $$ m_metadata = (File) cmd.getParsedOptionValue("m") [FD]
+Line_3 $$ if (cmd.hasOption("m")) --> Line_5 $$ if (m_metadata != null && !m_metadata.isFile()) [CD]
+Line_2 $$ private void readMetadataOption(final CommandLine cmd) throws Exception --> Line_6 $$ throw new Exception(format("The metadata option must be an existing file, '%s' does not exist", cmd.getOptionValue('m'))) [FD]
+Line_3 $$ if (cmd.hasOption("m")) --> Line_8 $$ System.out.println("metadata file  => " + m_metadata.getAbsolutePath()) [CD]
+Line_3 $$ if (cmd.hasOption("m")) --> Line_10 $$ System.out.println("metadata file  => no metadata file") [CD]

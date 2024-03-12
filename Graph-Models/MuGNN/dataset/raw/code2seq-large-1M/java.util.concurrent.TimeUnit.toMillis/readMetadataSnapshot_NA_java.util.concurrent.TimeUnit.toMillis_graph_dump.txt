@@ -1,0 +1,6 @@
+Line_2 $$ public static MetadataSnapshot readMetadataSnapshot(Path indexLocation, ShardId shardId, NodeEnvironment.ShardLocker shardLocker, Logger logger) throws IOException --> Line_3 $$ try (ShardLock lock = shardLocker.lock(shardId, TimeUnit.SECONDS.toMillis(5)); [FD]
+Line_3 $$ try (ShardLock lock = shardLocker.lock(shardId, TimeUnit.SECONDS.toMillis(5)); --> Line_5 $$ failIfCorrupted(dir, shardId) [FD]
+Line_2 $$ public static MetadataSnapshot readMetadataSnapshot(Path indexLocation, ShardId shardId, NodeEnvironment.ShardLocker shardLocker, Logger logger) throws IOException --> Line_5 $$ failIfCorrupted(dir, shardId) [FD]
+Line_2 $$ public static MetadataSnapshot readMetadataSnapshot(Path indexLocation, ShardId shardId, NodeEnvironment.ShardLocker shardLocker, Logger logger) throws IOException --> Line_9 $$ logger.info("Failed to open / find files while reading metadata snapshot") [FD]
+Line_2 $$ public static MetadataSnapshot readMetadataSnapshot(Path indexLocation, ShardId shardId, NodeEnvironment.ShardLocker shardLocker, Logger logger) throws IOException --> Line_11 $$ logger.info((Supplier<?>) () -> new ParameterizedMessage(" [FD]
+Line_2 $$ public static MetadataSnapshot readMetadataSnapshot(Path indexLocation, ShardId shardId, NodeEnvironment.ShardLocker shardLocker, Logger logger) throws IOException --> Line_13 $$ return MetadataSnapshot.EMPTY [CD]

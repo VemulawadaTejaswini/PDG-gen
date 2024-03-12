@@ -1,0 +1,8 @@
+Line_2 $$ public void errorHandlingDoFinally() --> Line_3 $$ LongAdder statsCancel = new LongAdder() [CD]
+Line_2 $$ public void errorHandlingDoFinally() --> Line_4 $$ Flux<String> flux = Flux.just("foo", "bar").doFinally( type -> [CD]
+Line_5 $$ if (type == SignalType.CANCEL) --> Line_7 $$ statsCancel.increment() [CD]
+Line_3 $$ LongAdder statsCancel = new LongAdder() --> Line_7 $$ statsCancel.increment() [FD]
+Line_2 $$ public void errorHandlingDoFinally() --> Line_10 $$ StepVerifier.create(flux).expectNext("foo").verifyComplete() [CD]
+Line_4 $$ Flux<String> flux = Flux.just("foo", "bar").doFinally( type -> --> Line_10 $$ StepVerifier.create(flux).expectNext("foo").verifyComplete() [FD]
+Line_2 $$ public void errorHandlingDoFinally() --> Line_11 $$ assertThat(statsCancel.intValue()).isEqualTo(1) [CD]
+Line_3 $$ LongAdder statsCancel = new LongAdder() --> Line_11 $$ assertThat(statsCancel.intValue()).isEqualTo(1) [FD]

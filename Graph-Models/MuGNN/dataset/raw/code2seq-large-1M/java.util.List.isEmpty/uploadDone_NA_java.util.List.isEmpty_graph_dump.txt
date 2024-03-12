@@ -1,0 +1,8 @@
+Line_2 $$ private void uploadDone(FTPTransferObject data, boolean keep) --> Line_3 $$ boolean startAnother = false [CD]
+Line_5 $$ if (transferringMap.containsKey(data.local)) --> Line_6 $$ transferringMap.remove(data.local) [CD]
+Line_7 $$ if (fifoQueue.isEmpty() == false && transferringMap.size() < numThreads) --> Line_8 $$ startAnother = true [CD]
+Line_3 $$ boolean startAnother = false --> Line_8 $$ startAnother = true [FD]
+Line_2 $$ private void uploadDone(FTPTransferObject data, boolean keep) --> Line_10 $$ if (startAnother) [CD]
+Line_10 $$ if (startAnother) --> Line_11 $$ startNextTransfer() [CD]
+Line_10 $$ if (startAnother) --> Line_12 $$ if (fifoQueue.isEmpty()) [CD]
+Line_12 $$ if (fifoQueue.isEmpty()) --> Line_13 $$ fireStateChanged(this) [CD]

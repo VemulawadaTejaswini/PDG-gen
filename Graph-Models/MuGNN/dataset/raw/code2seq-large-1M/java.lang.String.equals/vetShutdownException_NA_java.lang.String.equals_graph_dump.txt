@@ -1,0 +1,7 @@
+Line_2 $$ private void vetShutdownException(String user, SQLException e) --> Line_5 $$ assertSQLState("database shutdown, no authentication", "08006", e) [FD]
+Line_2 $$ private void vetShutdownException(String user, SQLException e) --> Line_8 $$ assertSQLState("database shutdown, authentication", "08006", e) [FD]
+Line_2 $$ private void vetShutdownException(String user, SQLException e) --> Line_11 $$ if ("TEST_DBO".equals(user)) [FD]
+Line_11 $$ if ("TEST_DBO".equals(user)) --> Line_12 $$ assertSQLState("database shutdown, SQL authorization, db owner", "08006", e) [CD]
+Line_2 $$ private void vetShutdownException(String user, SQLException e) --> Line_12 $$ assertSQLState("database shutdown, SQL authorization, db owner", "08006", e) [FD]
+Line_11 $$ if ("TEST_DBO".equals(user)) --> Line_14 $$ assertSQLState("database shutdown restriction, " + "SQL authorization, not db owner", "08004", e) [CD]
+Line_2 $$ private void vetShutdownException(String user, SQLException e) --> Line_14 $$ assertSQLState("database shutdown restriction, " + "SQL authorization, not db owner", "08004", e) [FD]

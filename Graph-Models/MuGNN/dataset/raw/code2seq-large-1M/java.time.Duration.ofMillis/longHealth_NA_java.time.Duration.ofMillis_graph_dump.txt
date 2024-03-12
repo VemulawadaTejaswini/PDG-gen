@@ -1,0 +1,6 @@
+Line_2 $$ public void longHealth() --> Line_3 $$ Map<String, ReactiveHealthIndicator> indicators = new HashMap() [CD]
+Line_2 $$ public void longHealth() --> Line_4 $$ for (int i = 0; i < 50; i++) [CD]
+Line_4 $$ for (int i = 0; i < 50; i++) --> Line_5 $$ indicators.put("test" + i, new TimeoutHealth(10000, Status.UP)) [CD]
+Line_3 $$ Map<String, ReactiveHealthIndicator> indicators = new HashMap() --> Line_5 $$ indicators.put("test" + i, new TimeoutHealth(10000, Status.UP)) [FD]
+Line_2 $$ public void longHealth() --> Line_7 $$ CompositeReactiveHealthIndicator indicator = new CompositeReactiveHealthIndicator(this.healthAggregator, new DefaultReactiveHealthIndicatorRegistry(indicators)) [CD]
+Line_2 $$ public void longHealth() --> Line_8 $$ StepVerifier.withVirtualTime(indicator::<>health).expectSubscription().thenAwait(Duration.ofMillis(10000)).consumeNextWith(( h) -> [CD]

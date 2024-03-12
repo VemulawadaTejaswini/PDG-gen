@@ -1,0 +1,7 @@
+Line_2 $$ private void validateClaims(final Jws<Claims> claims) throws ExpiredTokenException --> Line_3 $$ final Claims body = claims.getBody() [FD]
+Line_2 $$ private void validateClaims(final Jws<Claims> claims) throws ExpiredTokenException --> Line_3 $$ final Claims body = claims.getBody() [CD]
+Line_2 $$ private void validateClaims(final Jws<Claims> claims) throws ExpiredTokenException --> Line_4 $$ final long expiry = Long.valueOf(body.get("exp").toString()) [CD]
+Line_3 $$ final Claims body = claims.getBody() --> Line_4 $$ final long expiry = Long.valueOf(body.get("exp").toString()) [FD]
+Line_2 $$ private void validateClaims(final Jws<Claims> claims) throws ExpiredTokenException --> Line_5 $$ if (expiry - (System.currentTimeMillis() / 1000) < 0) [CD]
+Line_5 $$ if (expiry - (System.currentTimeMillis() / 1000) < 0) --> Line_6 $$ final long expirationDelta = ((System.currentTimeMillis() / 1000) - expiry) * 1000 [CD]
+Line_6 $$ final long expirationDelta = ((System.currentTimeMillis() / 1000) - expiry) * 1000 --> Line_7 $$ throw new ExpiredTokenException(String.format("Token expired %d milliseconds ago.", expirationDelta)) [FD]

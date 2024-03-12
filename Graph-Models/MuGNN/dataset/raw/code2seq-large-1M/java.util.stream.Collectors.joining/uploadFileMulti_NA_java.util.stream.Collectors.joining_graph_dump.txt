@@ -1,0 +1,8 @@
+Line_2 $$ public ResponseEntity<?> uploadFileMulti(@RequestParam("files") MultipartFile[] multipartFiles) --> Line_3 $$ logger.debug("Multiple file upload!") [CD]
+Line_2 $$ public ResponseEntity<?> uploadFileMulti(@RequestParam("files") MultipartFile[] multipartFiles) --> Line_4 $$ String uploadedFileName = Arrays.stream(multipartFiles).map( x -> x.getOriginalFilename()).filter( x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , ")) [FD]
+Line_2 $$ public ResponseEntity<?> uploadFileMulti(@RequestParam("files") MultipartFile[] multipartFiles) --> Line_4 $$ String uploadedFileName = Arrays.stream(multipartFiles).map( x -> x.getOriginalFilename()).filter( x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , ")) [CD]
+Line_2 $$ public ResponseEntity<?> uploadFileMulti(@RequestParam("files") MultipartFile[] multipartFiles) --> Line_5 $$ if (StringUtils.isEmpty(uploadedFileName)) [CD]
+Line_4 $$ String uploadedFileName = Arrays.stream(multipartFiles).map( x -> x.getOriginalFilename()).filter( x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , ")) --> Line_5 $$ if (StringUtils.isEmpty(uploadedFileName)) [FD]
+Line_5 $$ if (StringUtils.isEmpty(uploadedFileName)) --> Line_6 $$ return new ResponseEntity("please select a file!", HttpStatus.OK) [CD]
+Line_2 $$ public ResponseEntity<?> uploadFileMulti(@RequestParam("files") MultipartFile[] multipartFiles) --> Line_9 $$ saveUploadedFiles(Arrays.asList(multipartFiles)) [FD]
+Line_2 $$ public ResponseEntity<?> uploadFileMulti(@RequestParam("files") MultipartFile[] multipartFiles) --> Line_13 $$ return new ResponseEntity(uploadedFileName, HttpStatus.OK) [CD]

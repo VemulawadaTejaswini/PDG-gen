@@ -1,0 +1,8 @@
+Line_2 $$ private Object retryIfNeeded(Object proxy, Method method, Object[] args, Throwable actualException) throws Throwable --> Line_3 $$ if ((actualException instanceof RetryableUnavailableException)) [CD]
+Line_3 $$ if ((actualException instanceof RetryableUnavailableException)) --> Line_4 $$ RetryableUnavailableException rue = (RetryableUnavailableException) actualException [CD]
+Line_3 $$ if ((actualException instanceof RetryableUnavailableException)) --> Line_5 $$ if (BadConnectionEventListener.POOL_RECONFIGURED_ERROR_CODE.equals(rue.getErrorCode())) [CD]
+Line_4 $$ RetryableUnavailableException rue = (RetryableUnavailableException) actualException --> Line_5 $$ if (BadConnectionEventListener.POOL_RECONFIGURED_ERROR_CODE.equals(rue.getErrorCode())) [FD]
+Line_5 $$ if (BadConnectionEventListener.POOL_RECONFIGURED_ERROR_CODE.equals(rue.getErrorCode())) --> Line_6 $$ debug(" DynamicResourceReconfigurator : retryable-exception in method, retrying : " + method.getName()) [CD]
+Line_2 $$ private Object retryIfNeeded(Object proxy, Method method, Object[] args, Throwable actualException) throws Throwable --> Line_6 $$ debug(" DynamicResourceReconfigurator : retryable-exception in method, retrying : " + method.getName()) [FD]
+Line_5 $$ if (BadConnectionEventListener.POOL_RECONFIGURED_ERROR_CODE.equals(rue.getErrorCode())) --> Line_7 $$ return invoke(proxy, method, args) [CD]
+Line_2 $$ private Object retryIfNeeded(Object proxy, Method method, Object[] args, Throwable actualException) throws Throwable --> Line_7 $$ return invoke(proxy, method, args) [FD]

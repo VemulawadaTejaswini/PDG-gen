@@ -1,0 +1,8 @@
+Line_2 $$ public static Map<String, byte[]> getFiles(File apkFile, Pattern regex) throws IOException --> Line_3 $$ Map<String, byte[]> files = new LinkedHashMap() [CD]
+Line_4 $$ try (ZipFile apkZip = new ZipFile(apkFile)) --> Line_5 $$ Enumeration<? extends ZipEntry> zipEntries = apkZip.entries() [FD]
+Line_6 $$ while (zipEntries.hasMoreElements()) --> Line_7 $$ ZipEntry zipEntry = zipEntries.nextElement() [CD]
+Line_6 $$ while (zipEntries.hasMoreElements()) --> Line_8 $$ if (regex.matcher(zipEntry.getName()).matches()) [CD]
+Line_2 $$ public static Map<String, byte[]> getFiles(File apkFile, Pattern regex) throws IOException --> Line_8 $$ if (regex.matcher(zipEntry.getName()).matches()) [FD]
+Line_4 $$ try (ZipFile apkZip = new ZipFile(apkFile)) --> Line_9 $$ try (InputStream is = new BufferedInputStream(apkZip.getInputStream(zipEntry))) [FD]
+Line_3 $$ Map<String, byte[]> files = new LinkedHashMap() --> Line_10 $$ files.put(zipEntry.getName(), ByteStreams.toByteArray(is)) [FD]
+Line_2 $$ public static Map<String, byte[]> getFiles(File apkFile, Pattern regex) throws IOException --> Line_15 $$ return files [CD]

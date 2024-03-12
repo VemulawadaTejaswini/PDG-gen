@@ -1,0 +1,6 @@
+Line_2 $$ private IgniteInternalFuture<IgniteDiagnosticInfo> sendDiagnosticMessage(UUID nodeId, IgniteClosure<GridKernalContext, IgniteDiagnosticInfo> c) --> Line_4 $$ IgniteDiagnosticMessage msg = IgniteDiagnosticMessage.createRequest(marsh, c, diagFutId.getAndIncrement()) [FD]
+Line_4 $$ IgniteDiagnosticMessage msg = IgniteDiagnosticMessage.createRequest(marsh, c, diagFutId.getAndIncrement()) --> Line_5 $$ InternalDiagnosticFuture fut = new InternalDiagnosticFuture(nodeId, msg.futureId()) [FD]
+Line_5 $$ InternalDiagnosticFuture fut = new InternalDiagnosticFuture(nodeId, msg.futureId()) --> Line_6 $$ diagnosticFuturesMap().put(msg.futureId(), fut) [FD]
+Line_4 $$ IgniteDiagnosticMessage msg = IgniteDiagnosticMessage.createRequest(marsh, c, diagFutId.getAndIncrement()) --> Line_6 $$ diagnosticFuturesMap().put(msg.futureId(), fut) [FD]
+Line_2 $$ private IgniteInternalFuture<IgniteDiagnosticInfo> sendDiagnosticMessage(UUID nodeId, IgniteClosure<GridKernalContext, IgniteDiagnosticInfo> c) --> Line_7 $$ ctx.io().sendToGridTopic(nodeId, TOPIC_INTERNAL_DIAGNOSTIC, msg, GridIoPolicy.SYSTEM_POOL) [FD]
+Line_4 $$ IgniteDiagnosticMessage msg = IgniteDiagnosticMessage.createRequest(marsh, c, diagFutId.getAndIncrement()) --> Line_7 $$ ctx.io().sendToGridTopic(nodeId, TOPIC_INTERNAL_DIAGNOSTIC, msg, GridIoPolicy.SYSTEM_POOL) [FD]

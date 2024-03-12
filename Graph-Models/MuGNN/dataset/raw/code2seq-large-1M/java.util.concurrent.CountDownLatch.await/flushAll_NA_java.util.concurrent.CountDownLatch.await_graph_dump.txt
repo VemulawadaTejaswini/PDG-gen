@@ -1,0 +1,8 @@
+Line_2 $$ public static void flushAll(PrintWriter out) throws InterruptedException --> Line_3 $$ if (!ProviderConfig.IS_DOGFOOD_BUILD) [CD]
+Line_3 $$ if (!ProviderConfig.IS_DOGFOOD_BUILD) --> Line_4 $$ return [CD]
+Line_2 $$ public static void flushAll(PrintWriter out) throws InterruptedException --> Line_6 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public static void flushAll(PrintWriter out) throws InterruptedException --> Line_7 $$ Message.obtain(getHandler(), LogWriterCallback.MSG_FLUSH, Pair.create(out, latch)).sendToTarget() [FD]
+Line_2 $$ public static void flushAll(PrintWriter out) throws InterruptedException --> Line_7 $$ Message.obtain(getHandler(), LogWriterCallback.MSG_FLUSH, Pair.create(out, latch)).sendToTarget() [CD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_7 $$ Message.obtain(getHandler(), LogWriterCallback.MSG_FLUSH, Pair.create(out, latch)).sendToTarget() [FD]
+Line_2 $$ public static void flushAll(PrintWriter out) throws InterruptedException --> Line_8 $$ latch.await(2, TimeUnit.SECONDS) [CD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_8 $$ latch.await(2, TimeUnit.SECONDS) [FD]

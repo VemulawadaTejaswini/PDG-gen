@@ -1,0 +1,5 @@
+Line_2 $$ private Path gzip(Path uncompressed) throws IOException --> Line_3 $$ Path compressed = Files.createTempFile("tmp", ".gz") [CD]
+Line_3 $$ Path compressed = Files.createTempFile("tmp", ".gz") --> Line_4 $$ try (BestCompressionGZIPOutputStream gzipStream = new BestCompressionGZIPOutputStream(new BufferedOutputStream(Files.newOutputStream(compressed)), true)) [FD]
+Line_2 $$ private Path gzip(Path uncompressed) throws IOException --> Line_5 $$ Files.copy(uncompressed, gzipStream) [FD]
+Line_4 $$ try (BestCompressionGZIPOutputStream gzipStream = new BestCompressionGZIPOutputStream(new BufferedOutputStream(Files.newOutputStream(compressed)), true)) --> Line_5 $$ Files.copy(uncompressed, gzipStream) [FD]
+Line_2 $$ private Path gzip(Path uncompressed) throws IOException --> Line_7 $$ return compressed [CD]

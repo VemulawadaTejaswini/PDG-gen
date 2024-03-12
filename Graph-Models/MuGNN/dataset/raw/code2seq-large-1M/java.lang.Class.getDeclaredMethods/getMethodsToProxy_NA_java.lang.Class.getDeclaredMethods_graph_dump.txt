@@ -1,0 +1,8 @@
+Line_3 $$ for (Method method : c.getDeclaredMethods()) --> Line_4 $$ if ((method.getModifiers() & Modifier.FINAL) != 0) [FD]
+Line_4 $$ if ((method.getModifiers() & Modifier.FINAL) != 0) --> Line_5 $$ MethodSetEntry entry = new MethodSetEntry(method) [CD]
+Line_4 $$ if ((method.getModifiers() & Modifier.FINAL) != 0) --> Line_6 $$ seenFinalMethods.add(entry) [CD]
+Line_4 $$ if ((method.getModifiers() & Modifier.FINAL) != 0) --> Line_7 $$ sink.remove(entry) [CD]
+Line_3 $$ for (Method method : c.getDeclaredMethods()) --> Line_10 $$ if ((method.getModifiers() & STATIC) != 0) [FD]
+Line_3 $$ for (Method method : c.getDeclaredMethods()) --> Line_13 $$ if (!Modifier.isPublic(method.getModifiers()) && !Modifier.isProtected(method.getModifiers()) && (!sharedClassLoader || Modifier.isPrivate(method.getModifiers()))) [FD]
+Line_3 $$ for (Method method : c.getDeclaredMethods()) --> Line_16 $$ if (method.getName().equals("finalize") && method.getParameterTypes().length == 0) [FD]
+Line_26 $$ for (Class<?> i : c.getInterfaces()) --> Line_27 $$ getMethodsToProxy(sink, seenFinalMethods, i) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public long unpackMapHeader() throws IOException --> Line_3 $$ final byte markerByte = in.readByte() [CD]
+Line_2 $$ public long unpackMapHeader() throws IOException --> Line_4 $$ final byte markerHighNibble = (byte) (markerByte & 0xF0) [CD]
+Line_2 $$ public long unpackMapHeader() throws IOException --> Line_5 $$ final byte markerLowNibble = (byte) (markerByte & 0x0F) [CD]
+Line_2 $$ public long unpackMapHeader() throws IOException --> Line_6 $$ if (markerHighNibble == TINY_MAP) [CD]
+Line_4 $$ final byte markerHighNibble = (byte) (markerByte & 0xF0) --> Line_6 $$ if (markerHighNibble == TINY_MAP) [FD]
+Line_6 $$ if (markerHighNibble == TINY_MAP) --> Line_7 $$ return markerLowNibble [CD]
+Line_3 $$ final byte markerByte = in.readByte() --> Line_17 $$ throw new Unexpected("Expected a map, but got: " + toHexString(markerByte)) [FD]

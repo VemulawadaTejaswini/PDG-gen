@@ -1,0 +1,6 @@
+Line_3 $$ StringBuilder payload = new StringBuilder(e.getFormattedMessage()).append('\n') --> Line_4 $$ writeStack(e.getThrowableProxy(), "", payload) [FD]
+Line_3 $$ StringBuilder payload = new StringBuilder(e.getFormattedMessage()).append('\n') --> Line_6 $$ LogEntry.Builder builder = LogEntry.newBuilder(Payload.StringPayload.of(payload.toString().trim())).setTimestamp(e.getTimeStamp()).setSeverity(severityFor(level)) [FD]
+Line_5 $$ Level level = e.getLevel() --> Line_6 $$ LogEntry.Builder builder = LogEntry.newBuilder(Payload.StringPayload.of(payload.toString().trim())).setTimestamp(e.getTimeStamp()).setSeverity(severityFor(level)) [FD]
+Line_5 $$ Level level = e.getLevel() --> Line_7 $$ builder.addLabel(LEVEL_NAME_KEY, level.toString()).addLabel(LEVEL_VALUE_KEY, String.valueOf(level.toInt())) [FD]
+Line_9 $$ for (LoggingEnhancer enhancer : loggingEnhancers) --> Line_10 $$ enhancer.enhanceLogEntry(builder) [FD]
+Line_9 $$ for (LoggingEnhancer enhancer : loggingEnhancers) --> Line_15 $$ enhancer.enhanceLogEntry(builder, e) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testMalformedContentTypeHeader() --> Line_3 $$ final String type = randomFrom("text", "text/:ain; charset=utf-8", "text/plain\";charset=utf-8", ":", "/", "t:/plain") [CD]
+Line_2 $$ public void testMalformedContentTypeHeader() --> Line_4 $$ final RestRequest.ContentTypeHeaderException e = expectThrows(RestRequest.ContentTypeHeaderException.class, () -> [CD]
+Line_3 $$ final String type = randomFrom("text", "text/:ain; charset=utf-8", "text/plain\";charset=utf-8", ":", "/", "t:/plain") --> Line_5 $$ final Map<String, List<String>> headers = Collections.singletonMap("Content-Type", Collections.singletonList(type)) [FD]
+Line_2 $$ public void testMalformedContentTypeHeader() --> Line_8 $$ assertNotNull(e.getCause()) [CD]
+Line_2 $$ public void testMalformedContentTypeHeader() --> Line_9 $$ assertThat(e.getCause(), instanceOf(IllegalArgumentException.class)) [CD]
+Line_2 $$ public void testMalformedContentTypeHeader() --> Line_10 $$ assertThat(e.getMessage(), equalTo("java.lang.IllegalArgumentException: invalid Content-Type header [" + type + "]")) [CD]

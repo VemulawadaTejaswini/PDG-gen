@@ -1,0 +1,7 @@
+Line_2 $$ public void testAnyMethodDefinedShape() throws Exception --> Line_3 $$ Method method = GenericMethodType.class.getDeclaredMethod("foo", Exception.class) [CD]
+Line_2 $$ public void testAnyMethodDefinedShape() throws Exception --> Line_4 $$ MethodDescription methodDescription = TypeDescription.ForLoadedType.of(GenericMethodType.Inner.class).getInterfaces().getOnly().getDeclaredMethods().filter(named(FOO)).getOnly() [CD]
+Line_2 $$ public void testAnyMethodDefinedShape() throws Exception --> Line_5 $$ assertThat(ElementMatchers.anyOf(method).matches(methodDescription), is(true)) [CD]
+Line_2 $$ public void testAnyMethodDefinedShape() throws Exception --> Line_6 $$ assertThat(ElementMatchers.definedMethod(ElementMatchers.anyOf(methodDescription.asDefined())).matches(methodDescription), is(true)) [CD]
+Line_2 $$ public void testAnyMethodDefinedShape() throws Exception --> Line_7 $$ assertThat(ElementMatchers.anyOf(methodDescription.asDefined()).matches(methodDescription.asDefined()), is(true)) [CD]
+Line_2 $$ public void testAnyMethodDefinedShape() throws Exception --> Line_8 $$ assertThat(ElementMatchers.anyOf(methodDescription.asDefined()).matches(methodDescription), is(false)) [CD]
+Line_2 $$ public void testAnyMethodDefinedShape() throws Exception --> Line_9 $$ assertThat(ElementMatchers.anyOf(methodDescription).matches(methodDescription.asDefined()), is(false)) [CD]

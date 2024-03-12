@@ -1,0 +1,8 @@
+Line_3 $$ try (ShardedJedis shardedJedis = shardedJedisPool.getResource()) --> Line_4 $$ ShardedJedisPipeline pipeline = shardedJedis.pipelined() [FD]
+Line_4 $$ ShardedJedisPipeline pipeline = shardedJedis.pipelined() --> Line_6 $$ pipeline.sadd(key, value) [FD]
+Line_2 $$ public List<Object> pAddSet(String key, int seconds, String... values) --> Line_6 $$ pipeline.sadd(key, value) [FD]
+Line_5 $$ for (String value : values) --> Line_6 $$ pipeline.sadd(key, value) [FD]
+Line_4 $$ ShardedJedisPipeline pipeline = shardedJedis.pipelined() --> Line_8 $$ pipeline.expire(key, seconds) [FD]
+Line_2 $$ public List<Object> pAddSet(String key, int seconds, String... values) --> Line_8 $$ pipeline.expire(key, seconds) [FD]
+Line_4 $$ ShardedJedisPipeline pipeline = shardedJedis.pipelined() --> Line_9 $$ List<Object> result = pipeline.syncAndReturnAll() [FD]
+Line_9 $$ List<Object> result = pipeline.syncAndReturnAll() --> Line_10 $$ result.remove(result.size() - 1) [FD]

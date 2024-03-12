@@ -1,0 +1,8 @@
+Line_2 $$ private void createSample(long bytesTransfered, boolean force) --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ private void createSample(long bytesTransfered, boolean force) --> Line_4 $$ if (history.isEmpty()) [CD]
+Line_4 $$ if (history.isEmpty()) --> Line_5 $$ history.add(new Sample(bytesTransfered, now)) [CD]
+Line_4 $$ if (history.isEmpty()) --> Line_7 $$ Sample lastSample = history.getLast() [CD]
+Line_4 $$ if (history.isEmpty()) --> Line_8 $$ if (force || now - lastSample.getTimestamp() > TransferStatus.SAMPLE_INTERVAL_MILLIS) [CD]
+Line_2 $$ private void createSample(long bytesTransfered, boolean force) --> Line_8 $$ if (force || now - lastSample.getTimestamp() > TransferStatus.SAMPLE_INTERVAL_MILLIS) [FD]
+Line_7 $$ Sample lastSample = history.getLast() --> Line_8 $$ if (force || now - lastSample.getTimestamp() > TransferStatus.SAMPLE_INTERVAL_MILLIS) [FD]
+Line_8 $$ if (force || now - lastSample.getTimestamp() > TransferStatus.SAMPLE_INTERVAL_MILLIS) --> Line_9 $$ history.add(new Sample(bytesTransfered, now)) [CD]

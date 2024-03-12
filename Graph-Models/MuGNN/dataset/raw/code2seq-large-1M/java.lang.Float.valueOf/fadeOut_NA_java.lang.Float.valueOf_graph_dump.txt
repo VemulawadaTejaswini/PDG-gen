@@ -1,0 +1,8 @@
+Line_2 $$ public void fadeOut(float duration) --> Line_3 $$ long durationInMilliseconds = MathUtils.round(duration * 1000f) [CD]
+Line_2 $$ public void fadeOut(float duration) --> Line_4 $$ for (long i = 0; i < durationInMilliseconds; i += 50) [CD]
+Line_3 $$ long durationInMilliseconds = MathUtils.round(duration * 1000f) --> Line_4 $$ for (long i = 0; i < durationInMilliseconds; i += 50) [FD]
+Line_4 $$ for (long i = 0; i < durationInMilliseconds; i += 50) --> Line_5 $$ float volume = MathUtils.clamp(1f - (Float.valueOf(i) / Float.valueOf(durationInMilliseconds)), 0f, 1f) [CD]
+Line_4 $$ for (long i = 0; i < durationInMilliseconds; i += 50) --> Line_5 $$ float volume = MathUtils.clamp(1f - (Float.valueOf(i) / Float.valueOf(durationInMilliseconds)), 0f, 1f) [FD]
+Line_3 $$ long durationInMilliseconds = MathUtils.round(duration * 1000f) --> Line_5 $$ float volume = MathUtils.clamp(1f - (Float.valueOf(i) / Float.valueOf(durationInMilliseconds)), 0f, 1f) [FD]
+Line_4 $$ for (long i = 0; i < durationInMilliseconds; i += 50) --> Line_6 $$ scheduledExecutorService.schedule(new ScheduleFadeOut(volume), i, TimeUnit.MILLISECONDS) [CD]
+Line_4 $$ for (long i = 0; i < durationInMilliseconds; i += 50) --> Line_6 $$ scheduledExecutorService.schedule(new ScheduleFadeOut(volume), i, TimeUnit.MILLISECONDS) [FD]

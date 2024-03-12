@@ -1,0 +1,7 @@
+Line_2 $$ public void testThatNewSpansAreCreatedWhenNotProvidedUsingMultipleAsyncClients() throws Exception --> Line_3 $$ final WebClient client = createWebClient("/bookstore/books", openTracingClientProvider) [CD]
+Line_2 $$ public void testThatNewSpansAreCreatedWhenNotProvidedUsingMultipleAsyncClients() throws Exception --> Line_4 $$ final Collection<Response> responses = IntStream.range(0, 4).mapToObj( index -> client.async().get()).map(this::<>get).collect(Collectors.toList()) [CD]
+Line_3 $$ final WebClient client = createWebClient("/bookstore/books", openTracingClientProvider) --> Line_4 $$ final Collection<Response> responses = IntStream.range(0, 4).mapToObj( index -> client.async().get()).map(this::<>get).collect(Collectors.toList()) [FD]
+Line_5 $$ for (final Response r : responses) --> Line_6 $$ assertEquals(Status.OK.getStatusCode(), r.getStatus()) [FD]
+Line_2 $$ public void testThatNewSpansAreCreatedWhenNotProvidedUsingMultipleAsyncClients() throws Exception --> Line_8 $$ assertThat(TestSender.getAllSpans().size(), equalTo(12)) [CD]
+Line_2 $$ public void testThatNewSpansAreCreatedWhenNotProvidedUsingMultipleAsyncClients() throws Exception --> Line_9 $$ IntStream.range(0, 4).map( index -> index * 3).forEach( index -> [CD]
+Line_3 $$ final WebClient client = createWebClient("/bookstore/books", openTracingClientProvider) --> Line_12 $$ assertThat(TestSender.getAllSpans().get(index + 2).getOperationName(), equalTo("GET " + client.getCurrentURI())) [FD]

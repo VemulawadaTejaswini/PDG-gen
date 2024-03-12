@@ -1,0 +1,6 @@
+Line_2 $$ public void testCatcher() throws Throwable --> Line_3 $$ MethodHandle thrower = MethodHandles.foldArguments(MethodHandles.throwException(boolean.class, FooException.class), MethodHandles.lookup().findConstructor(FooException.class, methodType(void.class))) [CD]
+Line_2 $$ public void testCatcher() throws Throwable --> Line_4 $$ MethodHandle catcher = MethodHandles.dropArguments(MethodHandles.constant(boolean.class, true), 0, FooException.class) [CD]
+Line_2 $$ public void testCatcher() throws Throwable --> Line_5 $$ MethodHandle runCatcher = MethodHandles.catchException(thrower, FooException.class, catcher) [CD]
+Line_2 $$ public void testCatcher() throws Throwable --> Line_6 $$ boolean b = (boolean) runCatcher.invokeExact() [CD]
+Line_2 $$ public void testCatcher() throws Throwable --> Line_7 $$ AssertJUnit.assertTrue(b) [CD]
+Line_6 $$ boolean b = (boolean) runCatcher.invokeExact() --> Line_7 $$ AssertJUnit.assertTrue(b) [FD]

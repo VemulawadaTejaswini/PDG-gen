@@ -1,0 +1,8 @@
+Line_2 $$ private static Set<Path> findSourceRoots() --> Line_3 $$ Set<Path> sourceRoots = new LinkedHashSet() [CD]
+Line_2 $$ private static Set<Path> findSourceRoots() --> Line_4 $$ Set<URL> urls = ClasspathHelper.forClassLoader() [CD]
+Line_5 $$ for (URL url : urls) --> Line_6 $$ if (url.getProtocol().equals("file")) [FD]
+Line_5 $$ for (URL url : urls) --> Line_8 $$ if (url.getFile().endsWith(classesLocation)) [FD]
+Line_5 $$ for (URL url : urls) --> Line_10 $$ final File sourceRoot = new File(url.getFile().replace(classesLocation, ""), sourcesLocation) [FD]
+Line_11 $$ if (sourceRoot.exists()) --> Line_12 $$ sourceRoots.add(sourceRoot.toPath()) [CD]
+Line_3 $$ Set<Path> sourceRoots = new LinkedHashSet() --> Line_12 $$ sourceRoots.add(sourceRoot.toPath()) [FD]
+Line_2 $$ private static Set<Path> findSourceRoots() --> Line_20 $$ return sourceRoots [CD]

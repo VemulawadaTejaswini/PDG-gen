@@ -1,0 +1,5 @@
+Line_2 $$ public List<File> getServerDirs() --> Line_3 $$ File[] potentialMemberDirectories = workingDir.listFiles(File::<>isDirectory) [CD]
+Line_2 $$ public List<File> getServerDirs() --> Line_4 $$ Predicate<File> isServerDir = (File directory) -> Arrays.stream(directory.list()).anyMatch( filename -> filename.endsWith("server.pid")) [CD]
+Line_2 $$ public List<File> getServerDirs() --> Line_5 $$ return Arrays.stream(potentialMemberDirectories).filter(isServerDir).collect(Collectors.toList()) [CD]
+Line_4 $$ Predicate<File> isServerDir = (File directory) -> Arrays.stream(directory.list()).anyMatch( filename -> filename.endsWith("server.pid")) --> Line_5 $$ return Arrays.stream(potentialMemberDirectories).filter(isServerDir).collect(Collectors.toList()) [FD]
+Line_3 $$ File[] potentialMemberDirectories = workingDir.listFiles(File::<>isDirectory) --> Line_5 $$ return Arrays.stream(potentialMemberDirectories).filter(isServerDir).collect(Collectors.toList()) [FD]

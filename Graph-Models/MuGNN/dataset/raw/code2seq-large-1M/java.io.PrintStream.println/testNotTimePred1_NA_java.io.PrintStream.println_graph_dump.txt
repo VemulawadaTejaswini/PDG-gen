@@ -1,0 +1,8 @@
+Line_2 $$ public void testNotTimePred1() throws Exception --> Line_3 $$ System.out.println("testNotTimePred1") [CD]
+Line_2 $$ public void testNotTimePred1() throws Exception --> Line_4 $$ System.out.println("==================================================") [CD]
+Line_2 $$ public void testNotTimePred1() throws Exception --> Line_5 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public void testNotTimePred1() throws Exception --> Line_6 $$ JSONObject json = _compiler.compile("SELECT * " + "FROM cars " + "WHERE time NOT BEFORE 3 hours 4 min AGO") [CD]
+Line_2 $$ public void testNotTimePred1() throws Exception --> Line_7 $$ long timeStamp = Long.parseLong(json.getJSONObject("filter").getJSONObject("range").getJSONObject("time").getString("from")) [CD]
+Line_6 $$ JSONObject json = _compiler.compile("SELECT * " + "FROM cars " + "WHERE time NOT BEFORE 3 hours 4 min AGO") --> Line_7 $$ long timeStamp = Long.parseLong(json.getJSONObject("filter").getJSONObject("range").getJSONObject("time").getString("from")) [FD]
+Line_2 $$ public void testNotTimePred1() throws Exception --> Line_8 $$ long timeSpan = 3 * (60 * 60 * 1000L) + 4 * (60 * 1000L) [CD]
+Line_2 $$ public void testNotTimePred1() throws Exception --> Line_9 $$ assertTrue(now - timeStamp - timeSpan < 2) [CD]

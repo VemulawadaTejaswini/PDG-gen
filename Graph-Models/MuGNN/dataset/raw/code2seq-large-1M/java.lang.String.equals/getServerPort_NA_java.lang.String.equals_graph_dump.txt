@@ -1,0 +1,7 @@
+Line_2 $$ public int getServerPort() --> Line_3 $$ int port = super.getServerPort() [CD]
+Line_2 $$ public int getServerPort() --> Line_4 $$ String scheme = super.getScheme() [CD]
+Line_2 $$ public int getServerPort() --> Line_5 $$ if ("http".equals(scheme) && "https".equals(super.getHeader("X-Forwarded-Proto"))) [CD]
+Line_4 $$ String scheme = super.getScheme() --> Line_5 $$ if ("http".equals(scheme) && "https".equals(super.getHeader("X-Forwarded-Proto"))) [FD]
+Line_5 $$ if ("http".equals(scheme) && "https".equals(super.getHeader("X-Forwarded-Proto"))) --> Line_6 $$ port = 443 [CD]
+Line_3 $$ int port = super.getServerPort() --> Line_6 $$ port = 443 [FD]
+Line_2 $$ public int getServerPort() --> Line_8 $$ return port [CD]

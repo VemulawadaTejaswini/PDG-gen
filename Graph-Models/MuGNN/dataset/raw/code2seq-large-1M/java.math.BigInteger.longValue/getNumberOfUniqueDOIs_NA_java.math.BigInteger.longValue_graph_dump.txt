@@ -1,0 +1,5 @@
+Line_2 $$ public long getNumberOfUniqueDOIs() --> Line_3 $$ Query query = entityManager.createNativeQuery("SELECT COUNT(DISTINCT j->'workExternalIdentifierId'->>'content') FROM (SELECT json_array_elements(json_extract_path(external_ids_json, 'workExternalIdentifier')) AS j FROM work) AS a WHERE j->>'workExternalIdentifierType' = 'DOI'") [CD]
+Line_2 $$ public long getNumberOfUniqueDOIs() --> Line_4 $$ BigInteger numberOfWorksWithDOIs = (BigInteger) query.getSingleResult() [CD]
+Line_3 $$ Query query = entityManager.createNativeQuery("SELECT COUNT(DISTINCT j->'workExternalIdentifierId'->>'content') FROM (SELECT json_array_elements(json_extract_path(external_ids_json, 'workExternalIdentifier')) AS j FROM work) AS a WHERE j->>'workExternalIdentifierType' = 'DOI'") --> Line_4 $$ BigInteger numberOfWorksWithDOIs = (BigInteger) query.getSingleResult() [FD]
+Line_2 $$ public long getNumberOfUniqueDOIs() --> Line_5 $$ return numberOfWorksWithDOIs.longValue() [CD]
+Line_4 $$ BigInteger numberOfWorksWithDOIs = (BigInteger) query.getSingleResult() --> Line_5 $$ return numberOfWorksWithDOIs.longValue() [FD]

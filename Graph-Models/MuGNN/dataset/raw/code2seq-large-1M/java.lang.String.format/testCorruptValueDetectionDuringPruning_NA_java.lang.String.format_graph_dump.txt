@@ -1,0 +1,8 @@
+Line_4 $$ for (String selection : new String[] --> Line_6 $$ TestBuilder builder = testBuilder().sqlQuery("select %s from dfs.`%s`", selection, table).unOrdered().baselineColumns("date_col") [FD]
+Line_5 $$ for (Path table : new Path[] --> Line_6 $$ TestBuilder builder = testBuilder().sqlQuery("select %s from dfs.`%s`", selection, table).unOrdered().baselineColumns("date_col") [FD]
+Line_6 $$ TestBuilder builder = testBuilder().sqlQuery("select %s from dfs.`%s`", selection, table).unOrdered().baselineColumns("date_col") --> Line_7 $$ addDateBaselineValues(builder) [FD]
+Line_6 $$ TestBuilder builder = testBuilder().sqlQuery("select %s from dfs.`%s`", selection, table).unOrdered().baselineColumns("date_col") --> Line_8 $$ builder.go() [FD]
+Line_4 $$ for (String selection : new String[] --> Line_9 $$ String query = format("select %s from dfs.`%s`" + " where date_col = date '1970-01-01'", selection, table) [FD]
+Line_5 $$ for (Path table : new Path[] --> Line_9 $$ String query = format("select %s from dfs.`%s`" + " where date_col = date '1970-01-01'", selection, table) [FD]
+Line_9 $$ String query = format("select %s from dfs.`%s`" + " where date_col = date '1970-01-01'", selection, table) --> Line_10 $$ testPlanMatchingPatterns(query, new String[] [FD]
+Line_9 $$ String query = format("select %s from dfs.`%s`" + " where date_col = date '1970-01-01'", selection, table) --> Line_11 $$ testBuilder().sqlQuery(query).unOrdered().baselineColumns("date_col").baselineValues(LocalDate.of(1970, 1, 1)).go() [FD]

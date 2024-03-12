@@ -1,0 +1,6 @@
+Line_2 $$ public void testParquetWithMetadata() throws Exception --> Line_3 $$ String tableName = "alltypes_required_with_metadata" [CD]
+Line_2 $$ public void testParquetWithMetadata() throws Exception --> Line_4 $$ test("use %s", DFS_TMP_SCHEMA) [CD]
+Line_3 $$ String tableName = "alltypes_required_with_metadata" --> Line_6 $$ test("create table %s as select * from cp.`parquet/alltypes_required.parquet`", tableName) [FD]
+Line_3 $$ String tableName = "alltypes_required_with_metadata" --> Line_7 $$ test("refresh table metadata %s", tableName) [FD]
+Line_3 $$ String tableName = "alltypes_required_with_metadata" --> Line_9 $$ testPhysicalPlanSubmission(String.format("select * from table(`%s`(type=>'parquet'))", tableName), String.format("select * from table(`%s`(type=>'parquet', autoCorrectCorruptDates=>false))", tableName), String.format("select * from table(`%s`(type=>'parquet', autoCorrectCorruptDates=>true))", tableName)) [FD]
+Line_3 $$ String tableName = "alltypes_required_with_metadata" --> Line_12 $$ test("drop table if exists %s", tableName) [FD]

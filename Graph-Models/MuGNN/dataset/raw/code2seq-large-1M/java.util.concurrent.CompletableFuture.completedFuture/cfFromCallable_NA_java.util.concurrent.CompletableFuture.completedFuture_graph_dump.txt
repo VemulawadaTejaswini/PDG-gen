@@ -1,0 +1,6 @@
+Line_2 $$ public void cfFromCallable() --> Line_3 $$ val f = Future.of(CompletableFuture.completedFuture("hello world")) [CD]
+Line_2 $$ public void cfFromCallable() --> Line_4 $$ val f2 = Future.of(CompletableFuture.completedFuture("2")) [CD]
+Line_2 $$ public void cfFromCallable() --> Line_5 $$ val f3 = Future.of(CompletableFuture.completedFuture("3")) [CD]
+Line_2 $$ public void cfFromCallable() --> Line_6 $$ Future<String> result = Future.of(() -> "hello world").forEach3( a -> f2, ( a,  b) -> f3, ( v1,  v2,  v3) -> v1 + v2 + v3) [CD]
+Line_2 $$ public void cfFromCallable() --> Line_7 $$ assertThat(result.getFuture().join(), equalTo("hello world23")) [CD]
+Line_6 $$ Future<String> result = Future.of(() -> "hello world").forEach3( a -> f2, ( a,  b) -> f3, ( v1,  v2,  v3) -> v1 + v2 + v3) --> Line_7 $$ assertThat(result.getFuture().join(), equalTo("hello world23")) [FD]

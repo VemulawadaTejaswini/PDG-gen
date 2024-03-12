@@ -1,0 +1,8 @@
+Line_2 $$ public void testFileOutputStream() throws IOException --> Line_3 $$ FakeProjectFilesystem filesystem = new FakeProjectFilesystem() [CD]
+Line_2 $$ public void testFileOutputStream() throws IOException --> Line_4 $$ Path filePath = Paths.get("somefile.txt") [CD]
+Line_3 $$ FakeProjectFilesystem filesystem = new FakeProjectFilesystem() --> Line_5 $$ try (OutputStream stream = filesystem.newFileOutputStream(filePath)) [FD]
+Line_4 $$ Path filePath = Paths.get("somefile.txt") --> Line_5 $$ try (OutputStream stream = filesystem.newFileOutputStream(filePath)) [FD]
+Line_5 $$ try (OutputStream stream = filesystem.newFileOutputStream(filePath)) --> Line_6 $$ stream.write("hello world".getBytes(StandardCharsets.UTF_8)) [FD]
+Line_2 $$ public void testFileOutputStream() throws IOException --> Line_8 $$ assertEquals("hello world", filesystem.readFileIfItExists(filePath).get()) [CD]
+Line_3 $$ FakeProjectFilesystem filesystem = new FakeProjectFilesystem() --> Line_8 $$ assertEquals("hello world", filesystem.readFileIfItExists(filePath).get()) [FD]
+Line_4 $$ Path filePath = Paths.get("somefile.txt") --> Line_8 $$ assertEquals("hello world", filesystem.readFileIfItExists(filePath).get()) [FD]

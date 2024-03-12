@@ -1,0 +1,8 @@
+Line_2 $$ private Optional<SpecificationVersion> specVersionInSchema() --> Line_3 $$ Optional<SpecificationVersion> specVersion = Optional.empty() [CD]
+Line_2 $$ private Optional<SpecificationVersion> specVersionInSchema() --> Line_4 $$ if (schemaJson instanceof Map) [CD]
+Line_4 $$ if (schemaJson instanceof Map) --> Line_5 $$ Map<String, Object> schemaObj = (Map<String, Object>) schemaJson [CD]
+Line_4 $$ if (schemaJson instanceof Map) --> Line_6 $$ String metaSchemaURL = (String) schemaObj.get("$schema") [CD]
+Line_5 $$ Map<String, Object> schemaObj = (Map<String, Object>) schemaJson --> Line_6 $$ String metaSchemaURL = (String) schemaObj.get("$schema") [FD]
+Line_3 $$ Optional<SpecificationVersion> specVersion = Optional.empty() --> Line_8 $$ specVersion = Optional.ofNullable(metaSchemaURL).map((SpecificationVersion::<>getByMetaSchemaUrl)) [FD]
+Line_6 $$ String metaSchemaURL = (String) schemaObj.get("$schema") --> Line_8 $$ specVersion = Optional.ofNullable(metaSchemaURL).map((SpecificationVersion::<>getByMetaSchemaUrl)) [FD]
+Line_2 $$ private Optional<SpecificationVersion> specVersionInSchema() --> Line_13 $$ return specVersion [CD]

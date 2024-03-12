@@ -1,0 +1,6 @@
+Line_2 $$ private Memory freePage(int index) throws IOException --> Line_3 $$ final PageTableEntry pte = pageTable[index] [CD]
+Line_5 $$ if (pte.memory == null) --> Line_6 $$ return null [CD]
+Line_8 $$ if (pte.refCount > 0) --> Line_9 $$ return null [CD]
+Line_11 $$ if (log.isDebugEnabled()) --> Line_12 $$ log.debug("evicting page in file " + pte.addressSpace.file.getPath() + " at address " + ((long) pte.index << PAGE_BITS)) [CD]
+Line_13 $$ if (pte.dirty) --> Line_14 $$ syncPage(index) [CD]
+Line_2 $$ private Memory freePage(int index) throws IOException --> Line_14 $$ syncPage(index) [FD]

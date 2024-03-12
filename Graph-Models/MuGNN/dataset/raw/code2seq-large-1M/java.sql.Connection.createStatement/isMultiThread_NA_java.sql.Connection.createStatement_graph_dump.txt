@@ -1,0 +1,3 @@
+Line_2 $$ private static boolean isMultiThread(Connection conn) throws SQLException --> Line_3 $$ try (Statement stat = conn.createStatement()) [FD]
+Line_3 $$ try (Statement stat = conn.createStatement()) --> Line_4 $$ ResultSet rs = stat.executeQuery("SELECT value FROM information_schema.settings" + " WHERE name = 'MULTI_THREADED'") [FD]
+Line_4 $$ ResultSet rs = stat.executeQuery("SELECT value FROM information_schema.settings" + " WHERE name = 'MULTI_THREADED'") --> Line_5 $$ return rs.next() && !"0".equals(rs.getString(1)) [FD]

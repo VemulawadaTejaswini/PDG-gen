@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldRegisterNodeTtlCheck() throws InterruptedException, MalformedURLException --> Line_3 $$ String checkId = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void shouldRegisterNodeTtlCheck() throws InterruptedException, MalformedURLException --> Line_4 $$ client.agentClient().registerCheck(checkId, "test-validate", 30) [CD]
+Line_3 $$ String checkId = UUID.randomUUID().toString() --> Line_4 $$ client.agentClient().registerCheck(checkId, "test-validate", 30) [FD]
+Line_3 $$ String checkId = UUID.randomUUID().toString() --> Line_6 $$ HealthCheck check = client.agentClient().getChecks().get(checkId) [FD]
+Line_3 $$ String checkId = UUID.randomUUID().toString() --> Line_7 $$ assertEquals(check.getCheckId(), checkId) [FD]
+Line_6 $$ HealthCheck check = client.agentClient().getChecks().get(checkId) --> Line_7 $$ assertEquals(check.getCheckId(), checkId) [FD]
+Line_6 $$ HealthCheck check = client.agentClient().getChecks().get(checkId) --> Line_8 $$ assertEquals(check.getName(), "test-validate") [FD]
+Line_3 $$ String checkId = UUID.randomUUID().toString() --> Line_10 $$ client.agentClient().deregisterCheck(checkId) [FD]

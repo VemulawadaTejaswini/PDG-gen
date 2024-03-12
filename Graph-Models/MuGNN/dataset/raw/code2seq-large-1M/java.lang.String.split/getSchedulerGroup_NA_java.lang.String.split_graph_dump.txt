@@ -1,0 +1,5 @@
+Line_2 $$ public static String getSchedulerGroup() --> Line_3 $$ String fn = "/proc/" + Process.myPid() + "/task/" + Process.myTid() + "/cgroup" [CD]
+Line_5 $$ String cgroup = FileUtils.readTextFile(new File(fn), 1024, null) --> Line_6 $$ for (String line : cgroup.split("\n")) [FD]
+Line_6 $$ for (String line : cgroup.split("\n")) --> Line_7 $$ String[] fields = line.trim().split(":") [FD]
+Line_8 $$ if (fields.length == 3 && fields[1].equals("cpu")) --> Line_9 $$ return fields[2] [CD]
+Line_2 $$ public static String getSchedulerGroup() --> Line_14 $$ return null [CD]

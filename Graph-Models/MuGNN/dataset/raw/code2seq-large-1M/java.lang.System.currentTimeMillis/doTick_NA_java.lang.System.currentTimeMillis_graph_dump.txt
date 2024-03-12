@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized void doTick() --> Line_3 $$ int millis = (int) System.currentTimeMillis() [CD]
+Line_2 $$ public synchronized void doTick() --> Line_4 $$ if (!gameTimeProvider.isGamePausing()) [CD]
+Line_4 $$ if (!gameTimeProvider.isGamePausing()) --> Line_5 $$ int interval = millis - latestTickTime [CD]
+Line_6 $$ for (IMessage m : messages) --> Line_7 $$ if (m.ageBy(interval) > IMessage.MESSAGE_TTL) [FD]
+Line_5 $$ int interval = millis - latestTickTime --> Line_7 $$ if (m.ageBy(interval) > IMessage.MESSAGE_TTL) [FD]
+Line_7 $$ if (m.ageBy(interval) > IMessage.MESSAGE_TTL) --> Line_8 $$ while (!messages.pollLast().equals(m)) [CD]
+Line_6 $$ for (IMessage m : messages) --> Line_8 $$ while (!messages.pollLast().equals(m)) [FD]

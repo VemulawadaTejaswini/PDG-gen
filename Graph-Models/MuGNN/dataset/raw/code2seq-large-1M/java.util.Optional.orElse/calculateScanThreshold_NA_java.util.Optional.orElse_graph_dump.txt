@@ -1,0 +1,7 @@
+Line_2 $$ private double calculateScanThreshold() --> Line_3 $$ Optional<Integer> configuredThresholdPercent = SystemPropertyHelper.getProductIntegerProperty(SystemPropertyHelper.EVICTION_SCAN_THRESHOLD_PERCENT) [CD]
+Line_2 $$ private double calculateScanThreshold() --> Line_4 $$ int thresholdPercent = configuredThresholdPercent.orElse(DEFAULT_EVICTION_SCAN_THRESHOLD_PERCENT) [CD]
+Line_3 $$ Optional<Integer> configuredThresholdPercent = SystemPropertyHelper.getProductIntegerProperty(SystemPropertyHelper.EVICTION_SCAN_THRESHOLD_PERCENT) --> Line_4 $$ int thresholdPercent = configuredThresholdPercent.orElse(DEFAULT_EVICTION_SCAN_THRESHOLD_PERCENT) [FD]
+Line_2 $$ private double calculateScanThreshold() --> Line_5 $$ if (thresholdPercent < 0 || thresholdPercent > 100) [CD]
+Line_5 $$ if (thresholdPercent < 0 || thresholdPercent > 100) --> Line_6 $$ thresholdPercent = DEFAULT_EVICTION_SCAN_THRESHOLD_PERCENT [CD]
+Line_4 $$ int thresholdPercent = configuredThresholdPercent.orElse(DEFAULT_EVICTION_SCAN_THRESHOLD_PERCENT) --> Line_6 $$ thresholdPercent = DEFAULT_EVICTION_SCAN_THRESHOLD_PERCENT [FD]
+Line_2 $$ private double calculateScanThreshold() --> Line_8 $$ return (double) thresholdPercent / 100 [CD]

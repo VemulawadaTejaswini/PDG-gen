@@ -1,0 +1,7 @@
+Line_4 $$ List orders = em.createNamedQuery("findAllOrders").getResultList() --> Line_5 $$ for (Iterator it = orders.iterator(); it.hasNext(); ) [FD]
+Line_5 $$ for (Iterator it = orders.iterator(); it.hasNext(); ) --> Line_6 $$ CustomerOrder order = (CustomerOrder) it.next() [FD]
+Line_5 $$ for (Iterator it = orders.iterator(); it.hasNext(); ) --> Line_6 $$ CustomerOrder order = (CustomerOrder) it.next() [CD]
+Line_5 $$ for (Iterator it = orders.iterator(); it.hasNext(); ) --> Line_7 $$ int newDiscount = order.getDiscount() + adjustment [CD]
+Line_6 $$ CustomerOrder order = (CustomerOrder) it.next() --> Line_7 $$ int newDiscount = order.getDiscount() + adjustment [FD]
+Line_5 $$ for (Iterator it = orders.iterator(); it.hasNext(); ) --> Line_8 $$ order.setDiscount((newDiscount > 0) ? newDiscount : 0) [CD]
+Line_6 $$ CustomerOrder order = (CustomerOrder) it.next() --> Line_8 $$ order.setDiscount((newDiscount > 0) ? newDiscount : 0) [FD]

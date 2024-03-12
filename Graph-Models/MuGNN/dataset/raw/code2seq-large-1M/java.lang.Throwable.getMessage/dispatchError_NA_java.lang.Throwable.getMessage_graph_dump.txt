@@ -1,0 +1,6 @@
+Line_2 $$ public static void dispatchError(FailureCallback failure, Throwable error) --> Line_3 $$ if (Display.getInstance().isEdt()) [CD]
+Line_3 $$ if (Display.getInstance().isEdt()) --> Line_4 $$ failure.onError(failure, error, 0, error.getMessage()) [CD]
+Line_2 $$ public static void dispatchError(FailureCallback failure, Throwable error) --> Line_4 $$ failure.onError(failure, error, 0, error.getMessage()) [FD]
+Line_3 $$ if (Display.getInstance().isEdt()) --> Line_6 $$ CallbackDispatcher dispatcher = new CallbackDispatcher(failure, error) [CD]
+Line_3 $$ if (Display.getInstance().isEdt()) --> Line_7 $$ Display.getInstance().callSerially(dispatcher) [CD]
+Line_6 $$ CallbackDispatcher dispatcher = new CallbackDispatcher(failure, error) --> Line_7 $$ Display.getInstance().callSerially(dispatcher) [FD]

@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection connection = dataSource.getConnection()) --> Line_4 $$ DatabaseMetaData metaData = connection.getMetaData() [FD]
+Line_4 $$ DatabaseMetaData metaData = connection.getMetaData() --> Line_5 $$ try (ResultSet columnResultSet = metaData.getColumns(eventuateSchema.isEmpty() ? null : eventuateSchema.getEventuateDatabaseSchema(), "public", sourceTableName.toLowerCase(), null)) [FD]
+Line_5 $$ try (ResultSet columnResultSet = metaData.getColumns(eventuateSchema.isEmpty() ? null : eventuateSchema.getEventuateDatabaseSchema(), "public", sourceTableName.toLowerCase(), null)) --> Line_6 $$ while (columnResultSet.next()) [FD]
+Line_6 $$ while (columnResultSet.next()) --> Line_7 $$ columnOrders.put(columnResultSet.getString("COLUMN_NAME").toLowerCase(), columnResultSet.getInt("ORDINAL_POSITION")) [CD]
+Line_5 $$ try (ResultSet columnResultSet = metaData.getColumns(eventuateSchema.isEmpty() ? null : eventuateSchema.getEventuateDatabaseSchema(), "public", sourceTableName.toLowerCase(), null)) --> Line_7 $$ columnOrders.put(columnResultSet.getString("COLUMN_NAME").toLowerCase(), columnResultSet.getInt("ORDINAL_POSITION")) [FD]

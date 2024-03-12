@@ -1,0 +1,7 @@
+Line_2 $$ public void clearInterruptedThreads() throws Exception --> Line_3 $$ Method clearInterruptPrivate = Thread.class.getDeclaredMethod("isInterrupted", boolean.class) [CD]
+Line_2 $$ public void clearInterruptedThreads() throws Exception --> Line_4 $$ clearInterruptPrivate.setAccessible(true) [CD]
+Line_5 $$ for (Thread thread : Thread.getAllStackTraces().keySet()) --> Line_6 $$ if (thread.isInterrupted()) [FD]
+Line_6 $$ if (thread.isInterrupted()) --> Line_7 $$ System.out.println(String.format("Clearing interrupted thread: " + thread.getName())) [CD]
+Line_5 $$ for (Thread thread : Thread.getAllStackTraces().keySet()) --> Line_7 $$ System.out.println(String.format("Clearing interrupted thread: " + thread.getName())) [FD]
+Line_6 $$ if (thread.isInterrupted()) --> Line_8 $$ clearInterruptPrivate.invoke(thread, true) [CD]
+Line_5 $$ for (Thread thread : Thread.getAllStackTraces().keySet()) --> Line_8 $$ clearInterruptPrivate.invoke(thread, true) [FD]

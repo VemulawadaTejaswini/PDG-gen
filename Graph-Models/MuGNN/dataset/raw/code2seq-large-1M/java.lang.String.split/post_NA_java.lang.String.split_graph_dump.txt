@@ -1,0 +1,8 @@
+Line_2 $$ public Response post(@Context HttpHeaders h, @FormParam(OAuth2ConfigBean.GRANT_TYPE_KEY) String type) --> Line_3 $$ String[] creds = new String(Base64.decodeBase64(h.getHeaderString(HttpHeaders.AUTHORIZATION).substring("Basic ".length())), Charsets.UTF_8).split(":") [CD]
+Line_2 $$ public Response post(@Context HttpHeaders h, @FormParam(OAuth2ConfigBean.GRANT_TYPE_KEY) String type) --> Line_3 $$ String[] creds = new String(Base64.decodeBase64(h.getHeaderString(HttpHeaders.AUTHORIZATION).substring("Basic ".length())), Charsets.UTF_8).split(":") [FD]
+Line_2 $$ public Response post(@Context HttpHeaders h, @FormParam(OAuth2ConfigBean.GRANT_TYPE_KEY) String type) --> Line_4 $$ if (creds.length == 2 && creds[0].equals(CLIENT_ID) && creds[1].equals(CLIENT_SECRET)) [CD]
+Line_4 $$ if (creds.length == 2 && creds[0].equals(CLIENT_ID) && creds[1].equals(CLIENT_SECRET)) --> Line_5 $$ token = RandomStringUtils.randomAlphanumeric(16) [CD]
+Line_4 $$ if (creds.length == 2 && creds[0].equals(CLIENT_ID) && creds[1].equals(CLIENT_SECRET)) --> Line_6 $$ String tokenResponse = " [CD]
+Line_4 $$ if (creds.length == 2 && creds[0].equals(CLIENT_ID) && creds[1].equals(CLIENT_SECRET)) --> Line_8 $$ return Response.ok().entity(tokenResponse).build() [CD]
+Line_6 $$ String tokenResponse = " --> Line_8 $$ return Response.ok().entity(tokenResponse).build() [FD]
+Line_2 $$ public Response post(@Context HttpHeaders h, @FormParam(OAuth2ConfigBean.GRANT_TYPE_KEY) String type) --> Line_10 $$ return Response.status(Response.Status.FORBIDDEN).build() [CD]

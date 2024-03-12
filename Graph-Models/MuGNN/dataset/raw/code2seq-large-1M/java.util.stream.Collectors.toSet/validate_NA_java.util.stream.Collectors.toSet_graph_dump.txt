@@ -1,0 +1,8 @@
+Line_2 $$ private void validate() --> Line_3 $$ Currency currencyNominal = nominalPayment.getCurrency() [CD]
+Line_2 $$ private void validate() --> Line_4 $$ Set<Currency> currencies = periodicPayments.stream().map(CapitalIndexedBondPaymentPeriod::<>getCurrency).collect(Collectors.toSet()) [CD]
+Line_2 $$ private void validate() --> Line_5 $$ currencies.add(currencyNominal) [CD]
+Line_4 $$ Set<Currency> currencies = periodicPayments.stream().map(CapitalIndexedBondPaymentPeriod::<>getCurrency).collect(Collectors.toSet()) --> Line_5 $$ currencies.add(currencyNominal) [FD]
+Line_3 $$ Currency currencyNominal = nominalPayment.getCurrency() --> Line_5 $$ currencies.add(currencyNominal) [FD]
+Line_2 $$ private void validate() --> Line_6 $$ ArgChecker.isTrue(currencies.size() == 1, "Product must have a single currency, found: " + currencies) [CD]
+Line_4 $$ Set<Currency> currencies = periodicPayments.stream().map(CapitalIndexedBondPaymentPeriod::<>getCurrency).collect(Collectors.toSet()) --> Line_6 $$ ArgChecker.isTrue(currencies.size() == 1, "Product must have a single currency, found: " + currencies) [FD]
+Line_2 $$ private void validate() --> Line_7 $$ ArgChecker.isTrue(rateCalculation.getFirstIndexValue().isPresent(), "Rate calculation must specify first index value") [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void edtResponds(long currentMillis) --> Line_3 $$ if (myFreezeStart != 0) [CD]
+Line_3 $$ if (myFreezeStart != 0) --> Line_4 $$ if (myCurHangLogDir != mySessionLogDir && myCurHangLogDir.exists()) [CD]
+Line_4 $$ if (myCurHangLogDir != mySessionLogDir && myCurHangLogDir.exists()) --> Line_5 $$ int unresponsiveDuration = (int) (currentMillis - myFreezeStart) / 1000 [CD]
+Line_4 $$ if (myCurHangLogDir != mySessionLogDir && myCurHangLogDir.exists()) --> Line_6 $$ myCurHangLogDir.renameTo(new File(mySessionLogDir, getLogDirForHang(unresponsiveDuration))) [CD]
+Line_5 $$ int unresponsiveDuration = (int) (currentMillis - myFreezeStart) / 1000 --> Line_6 $$ myCurHangLogDir.renameTo(new File(mySessionLogDir, getLogDirForHang(unresponsiveDuration))) [FD]
+Line_4 $$ if (myCurHangLogDir != mySessionLogDir && myCurHangLogDir.exists()) --> Line_7 $$ myPublisher.uiFreezeFinished(unresponsiveDuration) [CD]
+Line_5 $$ int unresponsiveDuration = (int) (currentMillis - myFreezeStart) / 1000 --> Line_7 $$ myPublisher.uiFreezeFinished(unresponsiveDuration) [FD]

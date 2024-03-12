@@ -1,0 +1,6 @@
+Line_2 $$ public ThreadFactory build() --> Line_3 $$ String threadNamePrefixWithPoolNumber = threadNamePrefix + "-" + POOL_NUMBER.getAndIncrement() % POOL_NUMBER_MAX [CD]
+Line_2 $$ public ThreadFactory build() --> Line_4 $$ ThreadFactory result = new NamedThreadFactory(Executors.defaultThreadFactory(), threadNamePrefixWithPoolNumber) [CD]
+Line_2 $$ public ThreadFactory build() --> Line_5 $$ if (daemonThreads) [CD]
+Line_5 $$ if (daemonThreads) --> Line_6 $$ result = new DaemonThreadFactory(result) [CD]
+Line_4 $$ ThreadFactory result = new NamedThreadFactory(Executors.defaultThreadFactory(), threadNamePrefixWithPoolNumber) --> Line_6 $$ result = new DaemonThreadFactory(result) [FD]
+Line_2 $$ public ThreadFactory build() --> Line_8 $$ return result [CD]

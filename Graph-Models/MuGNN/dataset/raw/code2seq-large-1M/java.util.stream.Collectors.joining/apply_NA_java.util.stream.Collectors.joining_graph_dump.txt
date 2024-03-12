@@ -1,0 +1,8 @@
+Line_2 $$ public GatewayFilter apply(Config config) --> Line_3 $$ return ( exchange,  chain) -> [CD]
+Line_4 $$ ServerHttpRequest request = exchange.getRequest() --> Line_5 $$ addOriginalRequestUrl(exchange, request.getURI()) [FD]
+Line_4 $$ ServerHttpRequest request = exchange.getRequest() --> Line_6 $$ String path = request.getURI().getRawPath() [FD]
+Line_6 $$ String path = request.getURI().getRawPath() --> Line_7 $$ String newPath = "/" + Arrays.stream(StringUtils.tokenizeToStringArray(path, "/")).skip(config.parts).collect(Collectors.joining("/")) [FD]
+Line_7 $$ String newPath = "/" + Arrays.stream(StringUtils.tokenizeToStringArray(path, "/")).skip(config.parts).collect(Collectors.joining("/")) --> Line_8 $$ ServerHttpRequest newRequest = request.mutate().path(newPath).build() [FD]
+Line_4 $$ ServerHttpRequest request = exchange.getRequest() --> Line_8 $$ ServerHttpRequest newRequest = request.mutate().path(newPath).build() [FD]
+Line_8 $$ ServerHttpRequest newRequest = request.mutate().path(newPath).build() --> Line_9 $$ exchange.getAttributes().put(GATEWAY_REQUEST_URL_ATTR, newRequest.getURI()) [FD]
+Line_8 $$ ServerHttpRequest newRequest = request.mutate().path(newPath).build() --> Line_10 $$ return chain.filter(exchange.mutate().request(newRequest).build()) [FD]

@@ -1,0 +1,5 @@
+Line_4 $$ Long nowEpoch = fromISO8601(toISO8601(System.currentTimeMillis())) --> Line_5 $$ NodeResponse firstResponse = updateNode(FIELD_NAME, new DateFieldImpl().setDate(toISO8601(nowEpoch))) [FD]
+Line_5 $$ NodeResponse firstResponse = updateNode(FIELD_NAME, new DateFieldImpl().setDate(toISO8601(nowEpoch))) --> Line_6 $$ String oldVersion = firstResponse.getVersion() [FD]
+Line_4 $$ Long nowEpoch = fromISO8601(toISO8601(System.currentTimeMillis())) --> Line_7 $$ NodeResponse secondResponse = updateNode(FIELD_NAME, new DateFieldImpl().setDate(toISO8601(nowEpoch))) [FD]
+Line_6 $$ String oldVersion = firstResponse.getVersion() --> Line_8 $$ assertThat(secondResponse.getVersion()).as("New version number").isEqualTo(oldVersion) [FD]
+Line_7 $$ NodeResponse secondResponse = updateNode(FIELD_NAME, new DateFieldImpl().setDate(toISO8601(nowEpoch))) --> Line_8 $$ assertThat(secondResponse.getVersion()).as("New version number").isEqualTo(oldVersion) [FD]

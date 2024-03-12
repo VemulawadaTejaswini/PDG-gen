@@ -1,0 +1,7 @@
+Line_3 $$ for (ObjectPostProcessor opp : postProcessors) --> Line_4 $$ Class<?> oppClass = opp.getClass() [FD]
+Line_4 $$ Class<?> oppClass = opp.getClass() --> Line_5 $$ Class<?> oppType = GenericTypeResolver.resolveTypeArgument(oppClass, ObjectPostProcessor.class) [FD]
+Line_2 $$ public Object postProcess(Object object) --> Line_6 $$ if (oppType == null || oppType.isAssignableFrom(object.getClass())) [FD]
+Line_6 $$ if (oppType == null || oppType.isAssignableFrom(object.getClass())) --> Line_7 $$ object = opp.postProcess(object) [CD]
+Line_2 $$ public Object postProcess(Object object) --> Line_7 $$ object = opp.postProcess(object) [FD]
+Line_3 $$ for (ObjectPostProcessor opp : postProcessors) --> Line_7 $$ object = opp.postProcess(object) [FD]
+Line_2 $$ public Object postProcess(Object object) --> Line_10 $$ return object [CD]

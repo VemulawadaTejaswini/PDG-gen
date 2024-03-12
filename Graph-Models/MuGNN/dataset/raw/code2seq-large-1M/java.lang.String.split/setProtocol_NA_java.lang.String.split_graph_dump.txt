@@ -1,0 +1,7 @@
+Line_2 $$ public void setProtocol(String protocol) --> Line_3 $$ if (!TextUtils.isEmpty(protocol)) [CD]
+Line_2 $$ public void setProtocol(String protocol) --> Line_3 $$ if (!TextUtils.isEmpty(protocol)) [FD]
+Line_2 $$ public void setProtocol(String protocol) --> Line_4 $$ for (String p : protocol.split(", *")) [FD]
+Line_4 $$ for (String p : protocol.split(", *")) --> Line_5 $$ if (!p.matches("^[0-9A-Za-z!#\\$%&'\\*\\+\\-\\.\\^_`|~]+$")) [FD]
+Line_5 $$ if (!p.matches("^[0-9A-Za-z!#\\$%&'\\*\\+\\-\\.\\^_`|~]+$")) --> Line_6 $$ IllegalArgumentException e = new IllegalArgumentException("Bad protocol: " + p) [CD]
+Line_5 $$ if (!p.matches("^[0-9A-Za-z!#\\$%&'\\*\\+\\-\\.\\^_`|~]+$")) --> Line_7 $$ __log.warn(e) [CD]
+Line_6 $$ IllegalArgumentException e = new IllegalArgumentException("Bad protocol: " + p) --> Line_7 $$ __log.warn(e) [FD]

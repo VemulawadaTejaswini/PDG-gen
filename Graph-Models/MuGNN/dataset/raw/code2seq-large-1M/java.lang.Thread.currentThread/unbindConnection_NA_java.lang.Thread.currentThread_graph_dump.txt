@@ -1,0 +1,8 @@
+Line_2 $$ public void unbindConnection(Object source) throws SQLException --> Line_3 $$ if (this.tempContextMap.size() > 0) [CD]
+Line_5 $$ WrappedConnectionIgnoreClose wrappedConnection = this.tempContextMap.get(new ConnectionKey(Thread.currentThread(), source)) --> Line_6 $$ if (wrappedConnection != null) [FD]
+Line_6 $$ if (wrappedConnection != null) --> Line_7 $$ wrappedConnection.decrementUsage() [CD]
+Line_5 $$ WrappedConnectionIgnoreClose wrappedConnection = this.tempContextMap.get(new ConnectionKey(Thread.currentThread(), source)) --> Line_7 $$ wrappedConnection.decrementUsage() [FD]
+Line_6 $$ if (wrappedConnection != null) --> Line_8 $$ if (wrappedConnection.usageCount == 0) [CD]
+Line_8 $$ if (wrappedConnection.usageCount == 0) --> Line_9 $$ this.tempContextMap.remove(new ConnectionKey(Thread.currentThread(), source)) [CD]
+Line_8 $$ if (wrappedConnection.usageCount == 0) --> Line_10 $$ wrappedConnection.reallyClose() [CD]
+Line_5 $$ WrappedConnectionIgnoreClose wrappedConnection = this.tempContextMap.get(new ConnectionKey(Thread.currentThread(), source)) --> Line_10 $$ wrappedConnection.reallyClose() [FD]

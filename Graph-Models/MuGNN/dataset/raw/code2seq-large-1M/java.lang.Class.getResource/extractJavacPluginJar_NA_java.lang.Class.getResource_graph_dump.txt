@@ -1,0 +1,7 @@
+Line_2 $$ private static URL extractJavacPluginJar() --> Line_3 $$ URL resourceURL = PluginLoader.class.getResource(JAVAC_PLUGIN_JAR_RESOURCE_PATH) [CD]
+Line_2 $$ private static URL extractJavacPluginJar() --> Line_4 $$ if (resourceURL == null) [CD]
+Line_4 $$ if (resourceURL == null) --> Line_6 $$ if ("file".equals(resourceURL.getProtocol())) [CD]
+Line_6 $$ if ("file".equals(resourceURL.getProtocol())) --> Line_7 $$ return resourceURL [CD]
+Line_10 $$ File tempFile = File.createTempFile("javac-plugin", ".jar") --> Line_11 $$ tempFile.deleteOnExit() [FD]
+Line_12 $$ try (OutputStream tempFileStream = new FileOutputStream(tempFile)) --> Line_13 $$ ByteStreams.copy(resourceStream, tempFileStream) [FD]
+Line_10 $$ File tempFile = File.createTempFile("javac-plugin", ".jar") --> Line_14 $$ return tempFile.toURI().toURL() [FD]

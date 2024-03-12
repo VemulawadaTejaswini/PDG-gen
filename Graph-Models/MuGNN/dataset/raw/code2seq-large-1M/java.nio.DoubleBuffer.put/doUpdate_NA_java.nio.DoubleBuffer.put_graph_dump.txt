@@ -1,0 +1,8 @@
+Line_3 $$ for (ServerDenseDoubleRow row : rows) --> Line_4 $$ int rowId = row.getRowId() [FD]
+Line_3 $$ for (ServerDenseDoubleRow row : rows) --> Line_5 $$ if (rowId >= row.getStartCol() && rowId < row.getEndCol()) [FD]
+Line_5 $$ if (rowId >= row.getStartCol() && rowId < row.getEndCol()) --> Line_6 $$ row.tryToLockWrite() [CD]
+Line_3 $$ for (ServerDenseDoubleRow row : rows) --> Line_6 $$ row.tryToLockWrite() [FD]
+Line_3 $$ for (ServerDenseDoubleRow row : rows) --> Line_8 $$ DoubleBuffer rowData = row.getData() [FD]
+Line_8 $$ DoubleBuffer rowData = row.getData() --> Line_9 $$ rowData.put(rowId - (int) row.getStartCol(), values[rowId]) [FD]
+Line_3 $$ for (ServerDenseDoubleRow row : rows) --> Line_9 $$ rowData.put(rowId - (int) row.getStartCol(), values[rowId]) [FD]
+Line_3 $$ for (ServerDenseDoubleRow row : rows) --> Line_11 $$ row.unlockWrite() [FD]

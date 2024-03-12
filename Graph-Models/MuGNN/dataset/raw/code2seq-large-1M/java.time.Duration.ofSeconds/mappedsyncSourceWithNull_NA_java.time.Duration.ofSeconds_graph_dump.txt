@@ -1,0 +1,7 @@
+Line_2 $$ public void mappedsyncSourceWithNull() --> Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() [CD]
+Line_2 $$ public void mappedsyncSourceWithNull() --> Line_4 $$ Flux.just(1, 2).map( v -> v == 2 ? null : v).publishOn(Schedulers.fromExecutorService(exec)).subscribe(ts) [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_4 $$ Flux.just(1, 2).map( v -> v == 2 ? null : v).publishOn(Schedulers.fromExecutorService(exec)).subscribe(ts) [FD]
+Line_2 $$ public void mappedsyncSourceWithNull() --> Line_5 $$ ts.await(Duration.ofSeconds(5)) [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_5 $$ ts.await(Duration.ofSeconds(5)) [FD]
+Line_2 $$ public void mappedsyncSourceWithNull() --> Line_6 $$ ts.assertValues(1).assertError(NullPointerException.class).assertNotComplete() [CD]
+Line_3 $$ AssertSubscriber<Integer> ts = AssertSubscriber.create() --> Line_6 $$ ts.assertValues(1).assertError(NullPointerException.class).assertNotComplete() [FD]

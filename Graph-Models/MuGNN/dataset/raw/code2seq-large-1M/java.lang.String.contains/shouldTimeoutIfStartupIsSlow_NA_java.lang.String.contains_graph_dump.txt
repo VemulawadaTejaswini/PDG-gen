@@ -1,0 +1,5 @@
+Line_2 $$ public void shouldTimeoutIfStartupIsSlow() throws Exception --> Line_3 $$ ServiceHelper timeout = ServiceHelper.create(ServiceHelperTest::<>tooSlow, "test-service").conf("some.key", TEST_CONFIG_THING).args("-v").startTimeoutSeconds(1) [CD]
+Line_2 $$ public void shouldTimeoutIfStartupIsSlow() throws Exception --> Line_4 $$ Stopwatch stopwatch = Stopwatch.createStarted() [CD]
+Line_3 $$ ServiceHelper timeout = ServiceHelper.create(ServiceHelperTest::<>tooSlow, "test-service").conf("some.key", TEST_CONFIG_THING).args("-v").startTimeoutSeconds(1) --> Line_6 $$ timeout.start() [FD]
+Line_2 $$ public void shouldTimeoutIfStartupIsSlow() throws Exception --> Line_12 $$ assertThat(stopwatch.elapsed(TimeUnit.SECONDS), lessThan(3L)) [CD]
+Line_4 $$ Stopwatch stopwatch = Stopwatch.createStarted() --> Line_12 $$ assertThat(stopwatch.elapsed(TimeUnit.SECONDS), lessThan(3L)) [FD]

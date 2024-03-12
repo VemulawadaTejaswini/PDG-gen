@@ -1,0 +1,6 @@
+Line_2 $$ public void sendStartedEvent() --> Line_3 $$ if (loggingRequired()) [CD]
+Line_3 $$ if (loggingRequired()) --> Line_4 $$ logger.debug(format("Sending command '%s' with request id %d to database %s on connection [%s] to server %s", getTruncatedJsonCommand(), message.getId(), message.getNamespace().getDatabaseName(), description.getConnectionId(), description.getServerAddress())) [CD]
+Line_2 $$ public void sendStartedEvent() --> Line_6 $$ if (eventRequired()) [CD]
+Line_6 $$ if (eventRequired()) --> Line_7 $$ BsonDocument commandDocumentForEvent = (securitySensitiveCommands.contains(commandName)) ? new BsonDocument() : commandDocument [CD]
+Line_6 $$ if (eventRequired()) --> Line_8 $$ sendCommandStartedEvent(message, message.getNamespace().getDatabaseName(), commandName, commandDocumentForEvent, description, commandListener) [CD]
+Line_7 $$ BsonDocument commandDocumentForEvent = (securitySensitiveCommands.contains(commandName)) ? new BsonDocument() : commandDocument --> Line_8 $$ sendCommandStartedEvent(message, message.getNamespace().getDatabaseName(), commandName, commandDocumentForEvent, description, commandListener) [FD]

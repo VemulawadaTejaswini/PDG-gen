@@ -1,0 +1,2 @@
+Line_2 $$ public void sseAsString() --> Line_3 $$ Flux<String> result = this.webClient.get().uri("/string").accept(TEXT_EVENT_STREAM).exchange().flatMapMany( response -> response.bodyToFlux(String.class)) [CD]
+Line_2 $$ public void sseAsString() --> Line_4 $$ StepVerifier.create(result).expectNext("foo 0").expectNext("foo 1").thenCancel().verify(Duration.ofSeconds(5L)) [CD]

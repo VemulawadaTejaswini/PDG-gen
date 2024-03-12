@@ -1,0 +1,7 @@
+Line_2 $$ public void shouldSetClassLoader() --> Line_3 $$ ShadowingClassLoader classLoader = new ShadowingClassLoader(getClass().getClassLoader()) [CD]
+Line_2 $$ public void shouldSetClassLoader() --> Line_4 $$ RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig(classLoader) [CD]
+Line_2 $$ public void shouldSetClassLoader() --> Line_5 $$ Object adapter = new DirectFieldAccessor(config.getValueSerializationPair().getReader()).getPropertyValue("serializer") [CD]
+Line_2 $$ public void shouldSetClassLoader() --> Line_6 $$ Object deserializerConverter = new DirectFieldAccessor(adapter).getPropertyValue("deserializer") [CD]
+Line_2 $$ public void shouldSetClassLoader() --> Line_7 $$ Object deserializer = new DirectFieldAccessor(deserializerConverter).getPropertyValue("deserializer") [CD]
+Line_2 $$ public void shouldSetClassLoader() --> Line_8 $$ Object usedClassLoader = new DirectFieldAccessor(deserializer).getPropertyValue("classLoader") [CD]
+Line_2 $$ public void shouldSetClassLoader() --> Line_9 $$ assertThat(usedClassLoader).isSameAs(classLoader) [CD]

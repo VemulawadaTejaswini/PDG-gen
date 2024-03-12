@@ -1,0 +1,7 @@
+Line_4 $$ AbstractInputStreamContent content = ByteArrayContent.fromString("application/octet-stream", sbBatch.toString()) --> Line_5 $$ Long count = FusionTableHandler.insertRows(service, tableId, content) [FD]
+Line_5 $$ Long count = FusionTableHandler.insertRows(service, tableId, content) --> Line_6 $$ if (count != null && count.intValue() != batchSize) [FD]
+Line_6 $$ if (count != null && count.intValue() != batchSize) --> Line_7 $$ exceptions.add(new IOException("only imported " + count + " of " + batchSize + " rows")) [CD]
+Line_11 $$ if (e instanceof HttpResponseException) --> Line_12 $$ int code = ((HttpResponseException) e).getStatusCode() [CD]
+Line_11 $$ if (e instanceof HttpResponseException) --> Line_13 $$ if (code >= 400 && code < 500) [CD]
+Line_13 $$ if (code >= 400 && code < 500) --> Line_14 $$ return false [CD]
+Line_2 $$ private boolean sendBatch(int batchSize) --> Line_20 $$ return true [CD]

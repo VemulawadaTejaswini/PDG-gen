@@ -1,0 +1,6 @@
+Line_3 $$ try (ObjectStoreConnection con = store.getConnection(true, false)) --> Line_4 $$ Membership membership = con.getRoleMember(domainName, roleName, principal) [FD]
+Line_2 $$ Membership getMembership(String domainName, String roleName, String principal) --> Line_4 $$ Membership membership = con.getRoleMember(domainName, roleName, principal) [FD]
+Line_4 $$ Membership membership = con.getRoleMember(domainName, roleName, principal) --> Line_5 $$ Timestamp expiration = membership.getExpiration() [FD]
+Line_5 $$ Timestamp expiration = membership.getExpiration() --> Line_6 $$ if (expiration != null && expiration.millis() < System.currentTimeMillis()) [FD]
+Line_6 $$ if (expiration != null && expiration.millis() < System.currentTimeMillis()) --> Line_7 $$ membership.setIsMember(false) [CD]
+Line_4 $$ Membership membership = con.getRoleMember(domainName, roleName, principal) --> Line_7 $$ membership.setIsMember(false) [FD]

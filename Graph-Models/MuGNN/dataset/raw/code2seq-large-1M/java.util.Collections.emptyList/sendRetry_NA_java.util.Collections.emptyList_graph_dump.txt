@@ -1,0 +1,7 @@
+Line_2 $$ private void sendRetry(ClusterNode node, long reqId, int segmentId) --> Line_4 $$ boolean loc = node.isLocal() [FD]
+Line_5 $$ GridQueryNextPageResponse msg = new GridQueryNextPageResponse(reqId, segmentId, 0, 0, 0, 1, loc ? null : Collections.<Message>emptyList(), loc ? Collections.<Value[]>emptyList() : null, false) --> Line_10 $$ msg.retry(h2.readyTopologyVersion()) [FD]
+Line_11 $$ if (loc) --> Line_12 $$ h2.reduceQueryExecutor().onMessage(ctx.localNodeId(), msg) [CD]
+Line_5 $$ GridQueryNextPageResponse msg = new GridQueryNextPageResponse(reqId, segmentId, 0, 0, 0, 1, loc ? null : Collections.<Message>emptyList(), loc ? Collections.<Value[]>emptyList() : null, false) --> Line_12 $$ h2.reduceQueryExecutor().onMessage(ctx.localNodeId(), msg) [FD]
+Line_11 $$ if (loc) --> Line_14 $$ ctx.io().sendToGridTopic(node, GridTopic.TOPIC_QUERY, msg, QUERY_POOL) [CD]
+Line_2 $$ private void sendRetry(ClusterNode node, long reqId, int segmentId) --> Line_14 $$ ctx.io().sendToGridTopic(node, GridTopic.TOPIC_QUERY, msg, QUERY_POOL) [FD]
+Line_5 $$ GridQueryNextPageResponse msg = new GridQueryNextPageResponse(reqId, segmentId, 0, 0, 0, 1, loc ? null : Collections.<Message>emptyList(), loc ? Collections.<Value[]>emptyList() : null, false) --> Line_14 $$ ctx.io().sendToGridTopic(node, GridTopic.TOPIC_QUERY, msg, QUERY_POOL) [FD]

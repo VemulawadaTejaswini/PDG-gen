@@ -1,0 +1,5 @@
+Line_2 $$ public static Server create(final String bindAddress, final int bindPort) throws IllegalArgumentException --> Line_3 $$ if (bindPort < 0 || bindPort > MAX_PORT) [CD]
+Line_2 $$ public static Server create(final String bindAddress, final int bindPort) throws IllegalArgumentException --> Line_6 $$ final InetSocketAddress resolvedInetAddress = bindAddress == null ? new InetSocketAddress(bindPort) : new InetSocketAddress(bindAddress, bindPort) [CD]
+Line_2 $$ public static Server create(final String bindAddress, final int bindPort) throws IllegalArgumentException --> Line_7 $$ if (resolvedInetAddress.isUnresolved()) [CD]
+Line_6 $$ final InetSocketAddress resolvedInetAddress = bindAddress == null ? new InetSocketAddress(bindPort) : new InetSocketAddress(bindAddress, bindPort) --> Line_7 $$ if (resolvedInetAddress.isUnresolved()) [FD]
+Line_2 $$ public static Server create(final String bindAddress, final int bindPort) throws IllegalArgumentException --> Line_10 $$ return new Server(resolvedInetAddress) [CD]

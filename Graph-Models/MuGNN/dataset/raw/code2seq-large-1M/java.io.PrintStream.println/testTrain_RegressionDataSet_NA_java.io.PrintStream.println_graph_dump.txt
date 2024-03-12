@@ -1,0 +1,8 @@
+Line_2 $$ public void testTrain_RegressionDataSet() --> Line_3 $$ System.out.println("train") [CD]
+Line_2 $$ public void testTrain_RegressionDataSet() --> Line_4 $$ Random rand = new Random(2) [CD]
+Line_6 $$ RidgeRegression regressor = new RidgeRegression(1e-9, mode) --> Line_7 $$ regressor.train(FixedProblems.getLinearRegression(400, rand)) [FD]
+Line_4 $$ Random rand = new Random(2) --> Line_7 $$ regressor.train(FixedProblems.getLinearRegression(400, rand)) [FD]
+Line_8 $$ for (DataPointPair<Double> dpp : FixedProblems.getLinearRegression(100, new Random(3)).getAsDPPList()) --> Line_9 $$ double truth = dpp.getPair() [FD]
+Line_6 $$ RidgeRegression regressor = new RidgeRegression(1e-9, mode) --> Line_10 $$ double pred = regressor.regress(dpp.getDataPoint()) [FD]
+Line_8 $$ for (DataPointPair<Double> dpp : FixedProblems.getLinearRegression(100, new Random(3)).getAsDPPList()) --> Line_10 $$ double pred = regressor.regress(dpp.getDataPoint()) [FD]
+Line_11 $$ double relErr = (truth - pred) / truth --> Line_12 $$ assertEquals(0.0, relErr, 0.05) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ protected void fireInvitationRejectedEvent(ChatRoom sourceChatRoom, String invitee, String reason) --> Line_3 $$ ChatRoomInvitationRejectedEvent evt = new ChatRoomInvitationRejectedEvent(this, sourceChatRoom, invitee, reason, new Date(System.currentTimeMillis())) [CD]
+Line_2 $$ protected void fireInvitationRejectedEvent(ChatRoom sourceChatRoom, String invitee, String reason) --> Line_4 $$ ChatRoomInvitationRejectionListener[] listeners [CD]
+Line_4 $$ ChatRoomInvitationRejectionListener[] listeners --> Line_6 $$ listeners = invitationRejectionListeners.toArray(new ChatRoomInvitationRejectionListener[invitationRejectionListeners.size()]) [FD]
+Line_3 $$ ChatRoomInvitationRejectedEvent evt = new ChatRoomInvitationRejectedEvent(this, sourceChatRoom, invitee, reason, new Date(System.currentTimeMillis())) --> Line_8 $$ for (ChatRoomInvitationRejectionListener listener : listeners) listener.invitationRejected(evt) [FD]

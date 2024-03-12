@@ -1,0 +1,7 @@
+Line_2 $$ public void refreshPackages() --> Line_3 $$ FrameworkWiring wiring = felix.adapt(FrameworkWiring.class) [CD]
+Line_2 $$ public void refreshPackages() --> Line_4 $$ final CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void refreshPackages() --> Line_5 $$ wiring.refreshBundles(null,  event -> [CD]
+Line_4 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_8 $$ latch.countDown() [FD]
+Line_4 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_17 $$ if (!latch.await(TIMEOUT_SECONDS, TimeUnit.SECONDS)) [FD]
+Line_16 $$ long TIMEOUT_SECONDS = 60L --> Line_17 $$ if (!latch.await(TIMEOUT_SECONDS, TimeUnit.SECONDS)) [FD]
+Line_17 $$ if (!latch.await(TIMEOUT_SECONDS, TimeUnit.SECONDS)) --> Line_18 $$ log.warning("No PACKAGES_REFRESHED FrameworkEvent received within " + TIMEOUT_SECONDS + " seconds of calling FrameworkWiring.refreshBundles()") [CD]

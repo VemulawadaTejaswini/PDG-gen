@@ -1,0 +1,7 @@
+Line_3 $$ final long now = System.currentTimeMillis() --> Line_4 $$ final NameSet set = implicitFunctionCache.get(now) [FD]
+Line_4 $$ final NameSet set = implicitFunctionCache.get(now) --> Line_5 $$ for (String s : set.range(tableName, caseSensitive)) [FD]
+Line_5 $$ for (String s : set.range(tableName, caseSensitive)) --> Line_6 $$ for (Function function : schema.getFunctions(s)) [FD]
+Line_6 $$ for (Function function : schema.getFunctions(s)) --> Line_7 $$ if (function instanceof TableMacro && function.getParameters().isEmpty()) [FD]
+Line_7 $$ if (function instanceof TableMacro && function.getParameters().isEmpty()) --> Line_8 $$ final Table table = ((TableMacro) function).apply(ImmutableList.of()) [CD]
+Line_7 $$ if (function instanceof TableMacro && function.getParameters().isEmpty()) --> Line_9 $$ return tableEntry(tableName, table) [CD]
+Line_8 $$ final Table table = ((TableMacro) function).apply(ImmutableList.of()) --> Line_9 $$ return tableEntry(tableName, table) [FD]

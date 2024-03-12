@@ -1,0 +1,8 @@
+Line_2 $$ public ReactiveSeq<T> limit(final long num) --> Line_3 $$ if (this.stream instanceof Indexable) [CD]
+Line_3 $$ if (this.stream instanceof Indexable) --> Line_4 $$ Indexable<T> indexable = (Indexable) stream [CD]
+Line_3 $$ if (this.stream instanceof Indexable) --> Line_5 $$ Spliterator<T> limit = indexable.take(num) [CD]
+Line_4 $$ Indexable<T> indexable = (Indexable) stream --> Line_5 $$ Spliterator<T> limit = indexable.take(num) [FD]
+Line_2 $$ public ReactiveSeq<T> limit(final long num) --> Line_5 $$ Spliterator<T> limit = indexable.take(num) [FD]
+Line_3 $$ if (this.stream instanceof Indexable) --> Line_6 $$ return createSeq(limit, Optional.empty()) [CD]
+Line_5 $$ Spliterator<T> limit = indexable.take(num) --> Line_6 $$ return createSeq(limit, Optional.empty()) [FD]
+Line_2 $$ public ReactiveSeq<T> limit(final long num) --> Line_8 $$ return createSeq(new LimitSpliterator<T>(get(), num), reversible) [CD]

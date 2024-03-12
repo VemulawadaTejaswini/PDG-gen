@@ -1,0 +1,8 @@
+Line_2 $$ public boolean isInterClusterRequest(TransportRequest request, X509Certificate[] localCerts, X509Certificate[] peerCerts, final String principal) --> Line_3 $$ if (localCerts != null && localCerts.length > 0 && peerCerts != null && peerCerts.length > 0) [CD]
+Line_3 $$ if (localCerts != null && localCerts.length > 0 && peerCerts != null && peerCerts.length > 0) --> Line_4 $$ final byte[] localValue = localCerts[0].getExtensionValue(certOid) [CD]
+Line_3 $$ if (localCerts != null && localCerts.length > 0 && peerCerts != null && peerCerts.length > 0) --> Line_5 $$ final byte[] peerValue = peerCerts[0].getExtensionValue(certOid) [CD]
+Line_3 $$ if (localCerts != null && localCerts.length > 0 && peerCerts != null && peerCerts.length > 0) --> Line_6 $$ if (localValue != null && peerValue != null) [CD]
+Line_6 $$ if (localValue != null && peerValue != null) --> Line_7 $$ return Arrays.equals(localValue, peerValue) [CD]
+Line_4 $$ final byte[] localValue = localCerts[0].getExtensionValue(certOid) --> Line_7 $$ return Arrays.equals(localValue, peerValue) [FD]
+Line_5 $$ final byte[] peerValue = peerCerts[0].getExtensionValue(certOid) --> Line_7 $$ return Arrays.equals(localValue, peerValue) [FD]
+Line_2 $$ public boolean isInterClusterRequest(TransportRequest request, X509Certificate[] localCerts, X509Certificate[] peerCerts, final String principal) --> Line_10 $$ return false [CD]

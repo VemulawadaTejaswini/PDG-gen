@@ -1,0 +1,5 @@
+Line_2 $$ public static void awaitFullGc() --> Line_3 $$ ReferenceQueue<Object> queue = new ReferenceQueue() [CD]
+Line_2 $$ public static void awaitFullGc() --> Line_4 $$ WeakReference<Object> ref = new WeakReference(new Object(), queue) [CD]
+Line_2 $$ public static void awaitFullGc() --> Line_5 $$ GcFinalization.awaitFullGc() [CD]
+Line_4 $$ WeakReference<Object> ref = new WeakReference(new Object(), queue) --> Line_7 $$ assertSame("queue didn't return ref in time", ref, queue.remove(5000)) [FD]
+Line_3 $$ ReferenceQueue<Object> queue = new ReferenceQueue() --> Line_7 $$ assertSame("queue didn't return ref in time", ref, queue.remove(5000)) [FD]

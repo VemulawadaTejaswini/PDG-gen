@@ -1,0 +1,8 @@
+Line_2 $$ private void handleReadable(NioChannel ch) throws IOException --> Line_3 $$ ch.lastReadResult = 0 [CD]
+Line_2 $$ private void handleReadable(NioChannel ch) throws IOException --> Line_4 $$ if (ch.callback != null) [CD]
+Line_4 $$ if (ch.callback != null) --> Line_5 $$ ch.callback.handleReadable(ch) [CD]
+Line_2 $$ private void handleReadable(NioChannel ch) throws IOException --> Line_5 $$ ch.callback.handleReadable(ch) [FD]
+Line_2 $$ private void handleReadable(NioChannel ch) throws IOException --> Line_7 $$ if (ch.lastReadResult != 0 && ch.readInterest && !ch.inClosed) [CD]
+Line_7 $$ if (ch.lastReadResult != 0 && ch.readInterest && !ch.inClosed) --> Line_8 $$ log.warning("LOOP: read interest" + " after incomplete read") [CD]
+Line_7 $$ if (ch.lastReadResult != 0 && ch.readInterest && !ch.inClosed) --> Line_9 $$ ch.close() [CD]
+Line_2 $$ private void handleReadable(NioChannel ch) throws IOException --> Line_9 $$ ch.close() [FD]

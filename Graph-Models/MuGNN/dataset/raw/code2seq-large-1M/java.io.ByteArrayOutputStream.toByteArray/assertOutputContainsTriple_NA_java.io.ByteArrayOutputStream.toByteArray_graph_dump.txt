@@ -1,0 +1,6 @@
+Line_2 $$ public void assertOutputContainsTriple(final Triple expected) throws IOException --> Line_3 $$ try (final RdfStream input = new DefaultRdfStream(expected.getSubject(), of(expected)); [FD]
+Line_3 $$ try (final RdfStream input = new DefaultRdfStream(expected.getSubject(), of(expected)); --> Line_5 $$ new RdfStreamStreamingOutput(input, testNamespaces, testMediaType).write(output) [FD]
+Line_3 $$ try (final RdfStream input = new DefaultRdfStream(expected.getSubject(), of(expected)); --> Line_6 $$ try (final InputStream resultStream = new ByteArrayInputStream(output.toByteArray())) [FD]
+Line_6 $$ try (final InputStream resultStream = new ByteArrayInputStream(output.toByteArray())) --> Line_7 $$ final Model result = createDefaultModel().read(resultStream, null) [FD]
+Line_7 $$ final Model result = createDefaultModel().read(resultStream, null) --> Line_8 $$ assertTrue("Didn't find our test triple!", result.contains(result.asStatement(expected))) [FD]
+Line_2 $$ public void assertOutputContainsTriple(final Triple expected) throws IOException --> Line_8 $$ assertTrue("Didn't find our test triple!", result.contains(result.asStatement(expected))) [FD]

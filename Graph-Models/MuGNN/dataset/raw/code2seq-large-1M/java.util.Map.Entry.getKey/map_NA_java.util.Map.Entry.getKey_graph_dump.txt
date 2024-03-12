@@ -1,0 +1,6 @@
+Line_2 $$ protected void map(ImmutableBytesWritable key, Result value, Context context) throws IOException, InterruptedException --> Line_3 $$ long longRk = Bytes.toLong(value.getRow()) [FD]
+Line_2 $$ protected void map(ImmutableBytesWritable key, Result value, Context context) throws IOException, InterruptedException --> Line_3 $$ long longRk = Bytes.toLong(value.getRow()) [CD]
+Line_2 $$ protected void map(ImmutableBytesWritable key, Result value, Context context) throws IOException, InterruptedException --> Line_4 $$ for (Map.Entry<byte[], byte[]> entry : value.getFamilyMap(CHAIN_FAM).entrySet()) [FD]
+Line_2 $$ protected void map(ImmutableBytesWritable key, Result value, Context context) throws IOException, InterruptedException --> Line_7 $$ Cell c = value.getColumnCells(SORT_FAM, entry.getKey()).get(0) [FD]
+Line_7 $$ Cell c = value.getColumnCells(SORT_FAM, entry.getKey()).get(0) --> Line_8 $$ long order = Bytes.toLong(CellUtil.cloneValue(c)) [FD]
+Line_2 $$ protected void map(ImmutableBytesWritable key, Result value, Context context) throws IOException, InterruptedException --> Line_9 $$ context.write(new LinkKey(chainId, order), new LinkChain(longRk, next)) [FD]

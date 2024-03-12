@@ -1,0 +1,8 @@
+Line_2 $$ private void writeMapAndReverseMap(Map<String, UUID> data) throws IOException --> Line_3 $$ if (mapFile.exists()) [CD]
+Line_3 $$ if (mapFile.exists()) --> Line_4 $$ mapFile.delete() [CD]
+Line_2 $$ private void writeMapAndReverseMap(Map<String, UUID> data) throws IOException --> Line_5 $$ if (reverseMapFile.exists()) [CD]
+Line_5 $$ if (reverseMapFile.exists()) --> Line_6 $$ reverseMapFile.delete() [CD]
+Line_2 $$ private void writeMapAndReverseMap(Map<String, UUID> data) throws IOException --> Line_7 $$ try (ChronicleMap<String, UUID> map = ChronicleMap.of(String.class, UUID.class).averageKeySize(2).valueMarshaller(UuidMarshaller.INSTANCE).constantValueSizeBySample(UUID.randomUUID()).entries(data.size()).createPersistedTo(mapFile); [FD]
+Line_2 $$ private void writeMapAndReverseMap(Map<String, UUID> data) throws IOException --> Line_9 $$ map.putAll(data) [FD]
+Line_2 $$ private void writeMapAndReverseMap(Map<String, UUID> data) throws IOException --> Line_10 $$ Map<UUID, String> reverse = data.keySet().stream().collect(toMap( k -> data.get(k),  k -> k)) [FD]
+Line_10 $$ Map<UUID, String> reverse = data.keySet().stream().collect(toMap( k -> data.get(k),  k -> k)) --> Line_11 $$ reverseMap.putAll(reverse) [FD]

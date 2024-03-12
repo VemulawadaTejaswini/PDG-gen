@@ -1,0 +1,5 @@
+Line_2 $$ Future<Job> refreshTtl() --> Line_3 $$ Future<Job> future = Future.future() [CD]
+Line_2 $$ Future<Job> refreshTtl() --> Line_4 $$ if (this.state == JobState.ACTIVE && this.ttl > 0) [CD]
+Line_4 $$ if (this.state == JobState.ACTIVE && this.ttl > 0) --> Line_5 $$ client.zadd(RedisHelper.getStateKey(this.state), System.currentTimeMillis() + ttl, this.zid, _completer(future, this)) [CD]
+Line_3 $$ Future<Job> future = Future.future() --> Line_5 $$ client.zadd(RedisHelper.getStateKey(this.state), System.currentTimeMillis() + ttl, this.zid, _completer(future, this)) [FD]
+Line_2 $$ Future<Job> refreshTtl() --> Line_7 $$ return future [CD]

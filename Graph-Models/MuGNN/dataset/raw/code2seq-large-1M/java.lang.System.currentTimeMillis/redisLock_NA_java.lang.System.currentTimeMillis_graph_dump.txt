@@ -1,0 +1,6 @@
+Line_2 $$ public void redisLock(int i) --> Line_3 $$ RedisLock redisLock = new RedisLock(redisTemplate, "redisLock:" + i % 10, 5 * 60, 50000) [CD]
+Line_3 $$ RedisLock redisLock = new RedisLock(redisTemplate, "redisLock:" + i % 10, 5 * 60, 50000) --> Line_6 $$ if (redisLock.lock()) [FD]
+Line_6 $$ if (redisLock.lock()) --> Line_7 $$ logger.info("=" + (System.currentTimeMillis() - now)) [CD]
+Line_6 $$ if (redisLock.lock()) --> Line_8 $$ logger.info("j:" + j++) [CD]
+Line_6 $$ if (redisLock.lock()) --> Line_10 $$ logger.info("k:" + k++) [CD]
+Line_3 $$ RedisLock redisLock = new RedisLock(redisTemplate, "redisLock:" + i % 10, 5 * 60, 50000) --> Line_15 $$ redisLock.unlock() [FD]

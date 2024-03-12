@@ -1,0 +1,7 @@
+Line_2 $$ public void legacy_saml_metadata_as_xml() throws Exception --> Line_3 $$ String metadataString = new Scanner(new File("./src/main/resources/sample-okta-localhost.xml")).useDelimiter("\\Z").next() [CD]
+Line_2 $$ public void legacy_saml_metadata_as_xml() throws Exception --> Line_4 $$ System.setProperty("login.idpMetadata", metadataString) [CD]
+Line_3 $$ String metadataString = new Scanner(new File("./src/main/resources/sample-okta-localhost.xml")).useDelimiter("\\Z").next() --> Line_4 $$ System.setProperty("login.idpMetadata", metadataString) [FD]
+Line_2 $$ public void legacy_saml_metadata_as_xml() throws Exception --> Line_5 $$ System.setProperty("login.idpEntityAlias", "testIDPData") [CD]
+Line_2 $$ public void legacy_saml_metadata_as_xml() throws Exception --> Line_6 $$ context = getServletContext("default,saml,configMetadata", "login.yml", "uaa.yml", "file:./src/main/webapp/WEB-INF/spring-servlet.xml") [CD]
+Line_2 $$ public void legacy_saml_metadata_as_xml() throws Exception --> Line_7 $$ List<SamlIdentityProviderDefinition> defs = context.getBean(BootstrapSamlIdentityProviderData.class).getIdentityProviderDefinitions() [CD]
+Line_2 $$ public void legacy_saml_metadata_as_xml() throws Exception --> Line_8 $$ assertEquals(SamlIdentityProviderDefinition.MetadataLocation.DATA, findProvider(defs, "testIDPData").getType()) [CD]

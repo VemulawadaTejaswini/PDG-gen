@@ -1,0 +1,7 @@
+Line_2 $$ public double getElapsedGlobalPercent() --> Line_3 $$ long delta = (this.getGlobalStopTime().getMSTime() - this.getStartTime().getMSTime()) [CD]
+Line_2 $$ public double getElapsedGlobalPercent() --> Line_4 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public double getElapsedGlobalPercent() --> Line_5 $$ double ratio = Math.abs((now - this.getStartTime().getMSTime()) / (double) delta) [CD]
+Line_5 $$ double ratio = Math.abs((now - this.getStartTime().getMSTime()) / (double) delta) --> Line_6 $$ assert (ratio <= 1.0) : String.format("Invalid Elapsed Ratio: %f [delta=%d, now=%d, start=%d, stop=%d]", ratio, delta, now, getStartTime().getMSTime(), getGlobalStopTime().getMSTime()) [FD]
+Line_3 $$ long delta = (this.getGlobalStopTime().getMSTime() - this.getStartTime().getMSTime()) --> Line_6 $$ assert (ratio <= 1.0) : String.format("Invalid Elapsed Ratio: %f [delta=%d, now=%d, start=%d, stop=%d]", ratio, delta, now, getStartTime().getMSTime(), getGlobalStopTime().getMSTime()) [FD]
+Line_4 $$ long now = System.currentTimeMillis() --> Line_6 $$ assert (ratio <= 1.0) : String.format("Invalid Elapsed Ratio: %f [delta=%d, now=%d, start=%d, stop=%d]", ratio, delta, now, getStartTime().getMSTime(), getGlobalStopTime().getMSTime()) [FD]
+Line_2 $$ public double getElapsedGlobalPercent() --> Line_7 $$ return ratio [CD]

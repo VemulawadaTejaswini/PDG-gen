@@ -1,0 +1,7 @@
+Line_2 $$ private Optional<InetAddress> getIpFromNetworkAddressService() --> Line_3 $$ String ipAddress = networkAddressService.getPrimaryIpv4HostAddress() [CD]
+Line_2 $$ private Optional<InetAddress> getIpFromNetworkAddressService() --> Line_4 $$ if (ipAddress == null) [CD]
+Line_3 $$ String ipAddress = networkAddressService.getPrimaryIpv4HostAddress() --> Line_4 $$ if (ipAddress == null) [FD]
+Line_4 $$ if (ipAddress == null) --> Line_5 $$ logger.warn("No network interface could be found.") [CD]
+Line_4 $$ if (ipAddress == null) --> Line_6 $$ return Optional.empty() [CD]
+Line_3 $$ String ipAddress = networkAddressService.getPrimaryIpv4HostAddress() --> Line_9 $$ return Optional.of(InetAddress.getByName(ipAddress)) [FD]
+Line_3 $$ String ipAddress = networkAddressService.getPrimaryIpv4HostAddress() --> Line_11 $$ logger.warn("Configured primary IP cannot be parsed: [FD]

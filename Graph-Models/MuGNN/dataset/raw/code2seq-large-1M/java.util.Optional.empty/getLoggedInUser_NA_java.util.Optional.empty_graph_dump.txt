@@ -1,0 +1,8 @@
+Line_2 $$ public Optional<User> getLoggedInUser() --> Line_3 $$ Optional<HttpSession> session = getSession(false) [CD]
+Line_2 $$ public Optional<User> getLoggedInUser() --> Line_4 $$ if (session.isPresent()) [CD]
+Line_3 $$ Optional<HttpSession> session = getSession(false) --> Line_4 $$ if (session.isPresent()) [FD]
+Line_4 $$ if (session.isPresent()) --> Line_5 $$ User user = (User) session.get().getAttribute(SESSION_KEY_USER) [CD]
+Line_3 $$ Optional<HttpSession> session = getSession(false) --> Line_5 $$ User user = (User) session.get().getAttribute(SESSION_KEY_USER) [FD]
+Line_4 $$ if (session.isPresent()) --> Line_6 $$ return Optional.ofNullable(user) [CD]
+Line_5 $$ User user = (User) session.get().getAttribute(SESSION_KEY_USER) --> Line_6 $$ return Optional.ofNullable(user) [FD]
+Line_2 $$ public Optional<User> getLoggedInUser() --> Line_8 $$ return Optional.empty() [CD]

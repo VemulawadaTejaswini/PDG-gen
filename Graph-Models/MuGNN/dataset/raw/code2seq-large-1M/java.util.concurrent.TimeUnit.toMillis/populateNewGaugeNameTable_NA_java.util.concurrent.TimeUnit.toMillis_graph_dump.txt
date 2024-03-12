@@ -1,0 +1,8 @@
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_3 $$ startupLogger.info("populating new gauge name history table - this could take a few seconds" + " on large data sets ...") [CD]
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_4 $$ dataSource.syncTable("gauge_name", GaugeNameDao.columns) [CD]
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_5 $$ dataSource.syncIndexes("gauge_name", GaugeNameDao.indexes) [CD]
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_6 $$ dataSource.execute("truncate table gauge_name") [CD]
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_7 $$ long fixedIntervalMillis = DAYS.toMillis(1) [CD]
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_8 $$ String captureTimeSql = castUntainted("ceil(capture_time / " + fixedIntervalMillis + ".0) * " + fixedIntervalMillis) [CD]
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_9 $$ dataSource.update("insert into gauge_name (capture_time, gauge_name) select distinct " + captureTimeSql + ", gauge_name from gauge_value_rollup_4, gauge_id where" + " gauge_value_rollup_4.gauge_id = gauge_id.gauge_id") [CD]
+Line_2 $$ private void populateNewGaugeNameTable() throws SQLException --> Line_10 $$ startupLogger.info("populating new gauge name history table - complete") [CD]

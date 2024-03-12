@@ -1,0 +1,8 @@
+Line_2 $$ public void updateTextAnnotation(TextAnnotation ta) --> Line_5 $$ int id = ta.getTokenizedText().hashCode() [FD]
+Line_2 $$ public void updateTextAnnotation(TextAnnotation ta) --> Line_6 $$ byte[] bytes = serialize(ta) [FD]
+Line_4 $$ Connection connection = DBHelper.getConnection(dbFile) --> Line_7 $$ PreparedStatement stmt = connection.prepareStatement("update sentences set ta = ? where id = ?") [FD]
+Line_7 $$ PreparedStatement stmt = connection.prepareStatement("update sentences set ta = ? where id = ?") --> Line_8 $$ stmt.setBytes(1, bytes) [FD]
+Line_6 $$ byte[] bytes = serialize(ta) --> Line_8 $$ stmt.setBytes(1, bytes) [FD]
+Line_7 $$ PreparedStatement stmt = connection.prepareStatement("update sentences set ta = ? where id = ?") --> Line_9 $$ stmt.setInt(2, id) [FD]
+Line_5 $$ int id = ta.getTokenizedText().hashCode() --> Line_9 $$ stmt.setInt(2, id) [FD]
+Line_7 $$ PreparedStatement stmt = connection.prepareStatement("update sentences set ta = ? where id = ?") --> Line_10 $$ stmt.execute() [FD]

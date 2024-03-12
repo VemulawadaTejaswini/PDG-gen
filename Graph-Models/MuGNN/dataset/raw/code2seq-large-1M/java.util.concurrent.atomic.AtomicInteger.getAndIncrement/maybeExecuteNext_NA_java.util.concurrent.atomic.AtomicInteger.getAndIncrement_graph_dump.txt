@@ -1,0 +1,8 @@
+Line_2 $$ private void maybeExecuteNext() --> Line_3 $$ final int index = shardExecutionIndex.getAndIncrement() [CD]
+Line_2 $$ private void maybeExecuteNext() --> Line_4 $$ if (index < shardsIts.size()) [CD]
+Line_3 $$ final int index = shardExecutionIndex.getAndIncrement() --> Line_4 $$ if (index < shardsIts.size()) [FD]
+Line_4 $$ if (index < shardsIts.size()) --> Line_5 $$ final SearchShardIterator shardRoutings = shardsIts.get(index) [CD]
+Line_3 $$ final int index = shardExecutionIndex.getAndIncrement() --> Line_5 $$ final SearchShardIterator shardRoutings = shardsIts.get(index) [FD]
+Line_4 $$ if (index < shardsIts.size()) --> Line_6 $$ performPhaseOnShard(index, shardRoutings, shardRoutings.nextOrNull()) [CD]
+Line_3 $$ final int index = shardExecutionIndex.getAndIncrement() --> Line_6 $$ performPhaseOnShard(index, shardRoutings, shardRoutings.nextOrNull()) [FD]
+Line_5 $$ final SearchShardIterator shardRoutings = shardsIts.get(index) --> Line_6 $$ performPhaseOnShard(index, shardRoutings, shardRoutings.nextOrNull()) [FD]

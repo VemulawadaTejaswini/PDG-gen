@@ -1,0 +1,7 @@
+Line_2 $$ public int read(char[] buffer, int offset, int count) throws IOException --> Line_3 $$ Arrays.checkOffsetAndCount(buffer.length, offset, count) [CD]
+Line_2 $$ public int read(char[] buffer, int offset, int count) throws IOException --> Line_3 $$ Arrays.checkOffsetAndCount(buffer.length, offset, count) [FD]
+Line_6 $$ if (pos < this.count) --> Line_7 $$ int bytesRead = pos + count > this.count ? this.count - pos : count [CD]
+Line_6 $$ if (pos < this.count) --> Line_8 $$ System.arraycopy(this.buf, pos, buffer, offset, bytesRead) [CD]
+Line_2 $$ public int read(char[] buffer, int offset, int count) throws IOException --> Line_8 $$ System.arraycopy(this.buf, pos, buffer, offset, bytesRead) [FD]
+Line_7 $$ int bytesRead = pos + count > this.count ? this.count - pos : count --> Line_8 $$ System.arraycopy(this.buf, pos, buffer, offset, bytesRead) [FD]
+Line_6 $$ if (pos < this.count) --> Line_10 $$ return bytesRead [CD]

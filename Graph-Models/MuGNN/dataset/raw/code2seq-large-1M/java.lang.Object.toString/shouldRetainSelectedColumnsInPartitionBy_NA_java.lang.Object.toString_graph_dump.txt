@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldRetainSelectedColumnsInPartitionBy() throws Exception --> Line_3 $$ executeStatement("CREATE STREAM pageviews_by_viewtime " + "AS SELECT viewtime, pageid, userid " + "from %s " + "partition by viewtime;", pageViewStream) [CD]
+Line_2 $$ public void shouldRetainSelectedColumnsInPartitionBy() throws Exception --> Line_4 $$ final QueuedQueryMetadata queryMetadata = executeQuery("SELECT * from pageviews_by_viewtime;") [CD]
+Line_2 $$ public void shouldRetainSelectedColumnsInPartitionBy() throws Exception --> Line_5 $$ final List<Object> columns = waitForFirstRow(queryMetadata) [CD]
+Line_4 $$ final QueuedQueryMetadata queryMetadata = executeQuery("SELECT * from pageviews_by_viewtime;") --> Line_5 $$ final List<Object> columns = waitForFirstRow(queryMetadata) [FD]
+Line_2 $$ public void shouldRetainSelectedColumnsInPartitionBy() throws Exception --> Line_6 $$ assertThat(columns.get(3).toString(), startsWith("PAGE_")) [CD]
+Line_5 $$ final List<Object> columns = waitForFirstRow(queryMetadata) --> Line_6 $$ assertThat(columns.get(3).toString(), startsWith("PAGE_")) [FD]
+Line_2 $$ public void shouldRetainSelectedColumnsInPartitionBy() throws Exception --> Line_7 $$ assertThat(columns.get(4).toString(), startsWith("USER_")) [CD]
+Line_5 $$ final List<Object> columns = waitForFirstRow(queryMetadata) --> Line_7 $$ assertThat(columns.get(4).toString(), startsWith("USER_")) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void innerMonoNotCancelled() --> Line_3 $$ AtomicInteger cancelCount = new AtomicInteger() [CD]
+Line_2 $$ public void innerMonoNotCancelled() --> Line_4 $$ StepVerifier.create(Flux.range(1, 3).filterWhen( v -> Mono.just(true).doOnCancel(cancelCount::<>incrementAndGet))).expectNext(1, 2, 3).verifyComplete() [CD]
+Line_2 $$ public void innerMonoNotCancelled() --> Line_5 $$ assertThat(cancelCount.get()).isEqualTo(0) [CD]
+Line_3 $$ AtomicInteger cancelCount = new AtomicInteger() --> Line_5 $$ assertThat(cancelCount.get()).isEqualTo(0) [FD]

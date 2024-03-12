@@ -1,0 +1,8 @@
+Line_2 $$ public void onErrorDroppedLocal() --> Line_3 $$ AtomicReference<Throwable> hookState = new AtomicReference() [CD]
+Line_2 $$ public void onErrorDroppedLocal() --> Line_4 $$ Consumer<Throwable> localHook = hookState::<>set [CD]
+Line_2 $$ public void onErrorDroppedLocal() --> Line_5 $$ Context c = Context.of(Hooks.KEY_ON_ERROR_DROPPED, localHook) [CD]
+Line_4 $$ Consumer<Throwable> localHook = hookState::<>set --> Line_5 $$ Context c = Context.of(Hooks.KEY_ON_ERROR_DROPPED, localHook) [FD]
+Line_2 $$ public void onErrorDroppedLocal() --> Line_6 $$ Operators.onErrorDropped(new IllegalArgumentException("boom"), c) [CD]
+Line_5 $$ Context c = Context.of(Hooks.KEY_ON_ERROR_DROPPED, localHook) --> Line_6 $$ Operators.onErrorDropped(new IllegalArgumentException("boom"), c) [FD]
+Line_2 $$ public void onErrorDroppedLocal() --> Line_7 $$ assertThat(hookState.get()).isInstanceOf(IllegalArgumentException.class).hasMessage("boom") [CD]
+Line_3 $$ AtomicReference<Throwable> hookState = new AtomicReference() --> Line_7 $$ assertThat(hookState.get()).isInstanceOf(IllegalArgumentException.class).hasMessage("boom") [FD]

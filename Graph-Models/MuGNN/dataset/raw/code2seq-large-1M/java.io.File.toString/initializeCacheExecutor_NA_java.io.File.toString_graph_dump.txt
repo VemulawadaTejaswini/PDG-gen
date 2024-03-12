@@ -1,0 +1,7 @@
+Line_2 $$ protected ThreadPoolExecutor initializeCacheExecutor(File parent) --> Line_3 $$ final int maxNumThreads = dataset.datanode.getConf().getInt(DFSConfigKeys.DFS_DATANODE_FSDATASETCACHE_MAX_THREADS_PER_VOLUME_KEY, DFSConfigKeys.DFS_DATANODE_FSDATASETCACHE_MAX_THREADS_PER_VOLUME_DEFAULT) [CD]
+Line_2 $$ protected ThreadPoolExecutor initializeCacheExecutor(File parent) --> Line_4 $$ ThreadFactory workerFactory = new ThreadFactoryBuilder().setDaemon(true).setNameFormat("FsVolumeImplWorker-" + parent.toString() + "-%d").build() [FD]
+Line_2 $$ protected ThreadPoolExecutor initializeCacheExecutor(File parent) --> Line_4 $$ ThreadFactory workerFactory = new ThreadFactoryBuilder().setDaemon(true).setNameFormat("FsVolumeImplWorker-" + parent.toString() + "-%d").build() [CD]
+Line_2 $$ protected ThreadPoolExecutor initializeCacheExecutor(File parent) --> Line_5 $$ ThreadPoolExecutor executor = new ThreadPoolExecutor(1, maxNumThreads, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), workerFactory) [CD]
+Line_2 $$ protected ThreadPoolExecutor initializeCacheExecutor(File parent) --> Line_6 $$ executor.allowCoreThreadTimeOut(true) [CD]
+Line_5 $$ ThreadPoolExecutor executor = new ThreadPoolExecutor(1, maxNumThreads, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), workerFactory) --> Line_6 $$ executor.allowCoreThreadTimeOut(true) [FD]
+Line_2 $$ protected ThreadPoolExecutor initializeCacheExecutor(File parent) --> Line_7 $$ return executor [CD]

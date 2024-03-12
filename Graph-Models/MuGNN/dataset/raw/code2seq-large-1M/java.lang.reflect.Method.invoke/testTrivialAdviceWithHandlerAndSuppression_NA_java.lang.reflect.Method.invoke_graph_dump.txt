@@ -1,0 +1,4 @@
+Line_2 $$ public void testTrivialAdviceWithHandlerAndSuppression() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(Sample.class).visit(Advice.to(TrivialAdviceWithSuppression.class).on(named(FOO + BAZ))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testTrivialAdviceWithHandlerAndSuppression() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(FOO + BAZ).invoke(type.getDeclaredConstructor().newInstance()), is((Object) FOO)) [CD]
+Line_2 $$ public void testTrivialAdviceWithHandlerAndSuppression() throws Exception --> Line_5 $$ assertThat(type.getDeclaredField(ENTER).get(null), is((Object) 1)) [CD]
+Line_2 $$ public void testTrivialAdviceWithHandlerAndSuppression() throws Exception --> Line_6 $$ assertThat(type.getDeclaredField(EXIT).get(null), is((Object) 1)) [CD]

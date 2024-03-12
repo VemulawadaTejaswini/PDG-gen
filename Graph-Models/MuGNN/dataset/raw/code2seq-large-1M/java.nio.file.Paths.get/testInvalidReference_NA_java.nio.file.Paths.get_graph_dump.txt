@@ -1,0 +1,8 @@
+Line_2 $$ public void testInvalidReference() throws IOException, XPathExpressionException --> Line_3 $$ ImmutableList<String> lines = ImmutableList.<String>builder().add("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "<LinearLayout>", "<Button android:id=\"@+id/button1\" ", "android:layout_toLeftOf=\"@someresource/button2\" ", "android:text=\"@string/text\" />", "</LinearLayout>").build() [CD]
+Line_2 $$ public void testInvalidReference() throws IOException, XPathExpressionException --> Line_4 $$ Path resource = Paths.get("resource.xml") [CD]
+Line_2 $$ public void testInvalidReference() throws IOException, XPathExpressionException --> Line_5 $$ filesystem.writeLinesToPath(lines, resource) [CD]
+Line_3 $$ ImmutableList<String> lines = ImmutableList.<String>builder().add("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "<LinearLayout>", "<Button android:id=\"@+id/button1\" ", "android:layout_toLeftOf=\"@someresource/button2\" ", "android:text=\"@string/text\" />", "</LinearLayout>").build() --> Line_5 $$ filesystem.writeLinesToPath(lines, resource) [FD]
+Line_4 $$ Path resource = Paths.get("resource.xml") --> Line_5 $$ filesystem.writeLinesToPath(lines, resource) [FD]
+Line_2 $$ public void testInvalidReference() throws IOException, XPathExpressionException --> Line_6 $$ MiniAapt aapt = new MiniAapt(resolver, filesystem, FakeSourcePath.of(filesystem, "res"), Paths.get("R.txt"), ImmutableSet.of()) [CD]
+Line_6 $$ MiniAapt aapt = new MiniAapt(resolver, filesystem, FakeSourcePath.of(filesystem, "res"), Paths.get("R.txt"), ImmutableSet.of()) --> Line_8 $$ aapt.processXmlFile(filesystem, resource, ImmutableSet.builder()) [FD]
+Line_4 $$ Path resource = Paths.get("resource.xml") --> Line_8 $$ aapt.processXmlFile(filesystem, resource, ImmutableSet.builder()) [FD]

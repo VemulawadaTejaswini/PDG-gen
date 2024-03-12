@@ -1,0 +1,7 @@
+Line_2 $$ private void addMessageQueueClientHandlerMethods(List<String> clientHandlerMethods) --> Line_3 $$ Map<String, Set<String>> clientHandlers = parseUserMethods(clientHandlerMethods) [FD]
+Line_2 $$ private void addMessageQueueClientHandlerMethods(List<String> clientHandlerMethods) --> Line_3 $$ Map<String, Set<String>> clientHandlers = parseUserMethods(clientHandlerMethods) [CD]
+Line_3 $$ Map<String, Set<String>> clientHandlers = parseUserMethods(clientHandlerMethods) --> Line_4 $$ for (Map.Entry<String, Set<String>> clientHandler : clientHandlers.entrySet()) [FD]
+Line_6 $$ final Set<String> methodNames = clientHandler.getValue() --> Line_10 $$ final String[] names = methodNames.toArray(new String[0]) [FD]
+Line_10 $$ final String[] names = methodNames.toArray(new String[0]) --> Line_11 $$ for (InstrumentMethod method : target.getDeclaredMethods(MethodFilters.name(names))) [FD]
+Line_11 $$ for (InstrumentMethod method : target.getDeclaredMethods(MethodFilters.name(names))) --> Line_13 $$ method.addInterceptor("com.navercorp.pinpoint.plugin.user.interceptor.MQExternalClientHandlerInterceptor") [FD]
+Line_15 $$ if (logger.isWarnEnabled()) --> Line_16 $$ logger.warn("Unsupported method " + method, e) [CD]

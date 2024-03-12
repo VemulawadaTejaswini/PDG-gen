@@ -1,0 +1,8 @@
+Line_2 $$ public int receive(byte[] buf, int off, int len, int waitMillis) throws IOException --> Line_6 $$ receiveQueue.wait(waitMillis) [FD]
+Line_4 $$ if (receiveQueue.isEmpty()) --> Line_9 $$ if (receiveQueue.isEmpty()) [CD]
+Line_9 $$ if (receiveQueue.isEmpty()) --> Line_10 $$ return -1 [CD]
+Line_2 $$ public int receive(byte[] buf, int off, int len, int waitMillis) throws IOException --> Line_14 $$ int copyLength = Math.min(len, packet.getLength()) [FD]
+Line_13 $$ DatagramPacket packet = (DatagramPacket) receiveQueue.remove(0) --> Line_14 $$ int copyLength = Math.min(len, packet.getLength()) [FD]
+Line_2 $$ public int receive(byte[] buf, int off, int len, int waitMillis) throws IOException --> Line_15 $$ System.arraycopy(packet.getData(), packet.getOffset(), buf, off, copyLength) [FD]
+Line_14 $$ int copyLength = Math.min(len, packet.getLength()) --> Line_15 $$ System.arraycopy(packet.getData(), packet.getOffset(), buf, off, copyLength) [FD]
+Line_13 $$ DatagramPacket packet = (DatagramPacket) receiveQueue.remove(0) --> Line_15 $$ System.arraycopy(packet.getData(), packet.getOffset(), buf, off, copyLength) [FD]

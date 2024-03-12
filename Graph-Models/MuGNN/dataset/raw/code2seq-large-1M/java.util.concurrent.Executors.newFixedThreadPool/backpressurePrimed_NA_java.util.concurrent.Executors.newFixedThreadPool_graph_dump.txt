@@ -1,0 +1,7 @@
+Line_2 $$ public void backpressurePrimed() --> Line_4 $$ Executor exec = Executors.newFixedThreadPool(1) [CD]
+Line_2 $$ public void backpressurePrimed() --> Line_5 $$ LinkedBlockingQueue<String> blockingQueue = new LinkedBlockingQueue<String>(1) [CD]
+Line_2 $$ public void backpressurePrimed() --> Line_6 $$ diff = System.currentTimeMillis() [CD]
+Line_2 $$ public void backpressurePrimed() --> Line_7 $$ range(0, Integer.MAX_VALUE).limit(2).map( i -> i.toString()).peek( v -> diff = System.currentTimeMillis() - diff).peek(System.out::<>println).primedHotStream(exec).connect(blockingQueue).onePer(1, TimeUnit.SECONDS).forEach( c -> captured = c) [CD]
+Line_5 $$ LinkedBlockingQueue<String> blockingQueue = new LinkedBlockingQueue<String>(1) --> Line_7 $$ range(0, Integer.MAX_VALUE).limit(2).map( i -> i.toString()).peek( v -> diff = System.currentTimeMillis() - diff).peek(System.out::<>println).primedHotStream(exec).connect(blockingQueue).onePer(1, TimeUnit.SECONDS).forEach( c -> captured = c) [FD]
+Line_4 $$ Executor exec = Executors.newFixedThreadPool(1) --> Line_7 $$ range(0, Integer.MAX_VALUE).limit(2).map( i -> i.toString()).peek( v -> diff = System.currentTimeMillis() - diff).peek(System.out::<>println).primedHotStream(exec).connect(blockingQueue).onePer(1, TimeUnit.SECONDS).forEach( c -> captured = c) [FD]
+Line_2 $$ public void backpressurePrimed() --> Line_8 $$ assertThat(diff, greaterThan(500l)) [CD]

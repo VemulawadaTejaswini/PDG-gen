@@ -1,0 +1,6 @@
+Line_2 $$ public void checkIdle(long inactiveTimeNS) --> Line_3 $$ Engine engineOrNull = getEngineOrNull() [CD]
+Line_2 $$ public void checkIdle(long inactiveTimeNS) --> Line_4 $$ if (engineOrNull != null && System.nanoTime() - engineOrNull.getLastWriteNanos() >= inactiveTimeNS) [CD]
+Line_3 $$ Engine engineOrNull = getEngineOrNull() --> Line_4 $$ if (engineOrNull != null && System.nanoTime() - engineOrNull.getLastWriteNanos() >= inactiveTimeNS) [FD]
+Line_4 $$ if (engineOrNull != null && System.nanoTime() - engineOrNull.getLastWriteNanos() >= inactiveTimeNS) --> Line_5 $$ boolean wasActive = active.getAndSet(false) [CD]
+Line_4 $$ if (engineOrNull != null && System.nanoTime() - engineOrNull.getLastWriteNanos() >= inactiveTimeNS) --> Line_6 $$ if (wasActive) [CD]
+Line_6 $$ if (wasActive) --> Line_7 $$ logger.debug("shard is now inactive") [CD]

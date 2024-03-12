@@ -1,0 +1,8 @@
+Line_2 $$ private <T> Iterable<T> executeAndMap(Class<T> type, String cypher, Map<String, ?> parameters, ResponseMapper mapper) --> Line_3 $$ return session.<Iterable<T>>doInTransaction(() -> [CD]
+Line_2 $$ private <T> Iterable<T> executeAndMap(Class<T> type, String cypher, Map<String, ?> parameters, ResponseMapper mapper) --> Line_4 $$ if (type != null && session.metaData().classInfo(type.getSimpleName()) != null) [FD]
+Line_5 $$ GraphModelRequest request = new DefaultGraphModelRequest(cypher, parameters) --> Line_6 $$ try (Response<GraphModel> response = session.requestHandler().execute(request)) [FD]
+Line_2 $$ private <T> Iterable<T> executeAndMap(Class<T> type, String cypher, Map<String, ?> parameters, ResponseMapper mapper) --> Line_7 $$ return new GraphEntityMapper(session.metaData(), session.context(), session.getEntityInstantiator()).map(type, response) [FD]
+Line_6 $$ try (Response<GraphModel> response = session.requestHandler().execute(request)) --> Line_7 $$ return new GraphEntityMapper(session.metaData(), session.context(), session.getEntityInstantiator()).map(type, response) [FD]
+Line_5 $$ GraphModelRequest request = new DefaultGraphModelRequest(cypher, parameters) --> Line_11 $$ try (Response<RowModel> response = session.requestHandler().execute(request)) [FD]
+Line_2 $$ private <T> Iterable<T> executeAndMap(Class<T> type, String cypher, Map<String, ?> parameters, ResponseMapper mapper) --> Line_12 $$ return mapper.map(type, response) [FD]
+Line_6 $$ try (Response<GraphModel> response = session.requestHandler().execute(request)) --> Line_12 $$ return mapper.map(type, response) [FD]

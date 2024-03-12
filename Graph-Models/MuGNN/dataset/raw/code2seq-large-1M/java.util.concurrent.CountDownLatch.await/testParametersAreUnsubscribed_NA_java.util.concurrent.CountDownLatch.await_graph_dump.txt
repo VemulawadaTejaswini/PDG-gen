@@ -1,0 +1,7 @@
+Line_2 $$ public void testParametersAreUnsubscribed() throws InterruptedException --> Line_3 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testParametersAreUnsubscribed() throws InterruptedException --> Line_4 $$ Observable<String> params = Observable.interval(100, TimeUnit.MILLISECONDS).doOnEach(log()).map(constant("FRED")).doOnUnsubscribe(countDown(latch)) [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_4 $$ Observable<String> params = Observable.interval(100, TimeUnit.MILLISECONDS).doOnEach(log()).map(constant("FRED")).doOnUnsubscribe(countDown(latch)) [FD]
+Line_2 $$ public void testParametersAreUnsubscribed() throws InterruptedException --> Line_5 $$ db().select("select score from person where name=?").parameters(params).getAs(Integer.class).take(1).subscribe(log()) [CD]
+Line_4 $$ Observable<String> params = Observable.interval(100, TimeUnit.MILLISECONDS).doOnEach(log()).map(constant("FRED")).doOnUnsubscribe(countDown(latch)) --> Line_5 $$ db().select("select score from person where name=?").parameters(params).getAs(Integer.class).take(1).subscribe(log()) [FD]
+Line_2 $$ public void testParametersAreUnsubscribed() throws InterruptedException --> Line_6 $$ assertTrue(latch.await(TIMEOUT_SECONDS, TimeUnit.SECONDS)) [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_6 $$ assertTrue(latch.await(TIMEOUT_SECONDS, TimeUnit.SECONDS)) [FD]

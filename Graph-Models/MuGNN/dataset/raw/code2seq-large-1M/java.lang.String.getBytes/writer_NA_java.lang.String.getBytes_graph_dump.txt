@@ -1,0 +1,8 @@
+Line_2 $$ public void writer(String bucketName, String blobName) throws IOException --> Line_3 $$ BlobId blobId = BlobId.of(bucketName, blobName) [CD]
+Line_2 $$ public void writer(String bucketName, String blobName) throws IOException --> Line_3 $$ BlobId blobId = BlobId.of(bucketName, blobName) [FD]
+Line_2 $$ public void writer(String bucketName, String blobName) throws IOException --> Line_4 $$ byte[] content = "Hello, World!".getBytes(UTF_8) [CD]
+Line_2 $$ public void writer(String bucketName, String blobName) throws IOException --> Line_5 $$ BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("text/plain").build() [CD]
+Line_3 $$ BlobId blobId = BlobId.of(bucketName, blobName) --> Line_5 $$ BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("text/plain").build() [FD]
+Line_5 $$ BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("text/plain").build() --> Line_6 $$ try (WriteChannel writer = storage.writer(blobInfo)) [FD]
+Line_6 $$ try (WriteChannel writer = storage.writer(blobInfo)) --> Line_8 $$ writer.write(ByteBuffer.wrap(content, 0, content.length)) [FD]
+Line_4 $$ byte[] content = "Hello, World!".getBytes(UTF_8) --> Line_8 $$ writer.write(ByteBuffer.wrap(content, 0, content.length)) [FD]

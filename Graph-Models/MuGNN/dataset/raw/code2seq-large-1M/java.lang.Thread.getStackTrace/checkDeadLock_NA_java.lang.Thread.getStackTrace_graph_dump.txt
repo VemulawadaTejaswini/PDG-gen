@@ -1,0 +1,6 @@
+Line_2 $$ private void checkDeadLock() --> Line_3 $$ if (!(this instanceof CloseFuture || this instanceof WriteFuture || this instanceof ReadFuture || this instanceof ConnectFuture)) [CD]
+Line_3 $$ if (!(this instanceof CloseFuture || this instanceof WriteFuture || this instanceof ReadFuture || this instanceof ConnectFuture)) --> Line_4 $$ return [CD]
+Line_2 $$ private void checkDeadLock() --> Line_6 $$ StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace() [CD]
+Line_7 $$ for (StackTraceElement s : stackTrace) --> Line_8 $$ if (AbstractPollingIoProcessor.class.getName().equals(s.getClassName())) [FD]
+Line_9 $$ IllegalStateException e = new IllegalStateException("t") --> Line_10 $$ e.getStackTrace() [FD]
+Line_7 $$ for (StackTraceElement s : stackTrace) --> Line_16 $$ Class<?> cls = DefaultIoFuture.class.getClassLoader().loadClass(s.getClassName()) [FD]

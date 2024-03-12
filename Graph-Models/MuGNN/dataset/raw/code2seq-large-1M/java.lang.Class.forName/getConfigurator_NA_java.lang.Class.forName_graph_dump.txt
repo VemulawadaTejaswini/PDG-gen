@@ -1,0 +1,8 @@
+Line_2 $$ private IPackConfigurator getConfigurator(String sConfigurator) --> Line_3 $$ if (sConfigurator == null) [CD]
+Line_2 $$ private IPackConfigurator getConfigurator(String sConfigurator) --> Line_3 $$ if (sConfigurator == null) [FD]
+Line_3 $$ if (sConfigurator == null) --> Line_4 $$ return null [CD]
+Line_2 $$ private IPackConfigurator getConfigurator(String sConfigurator) --> Line_6 $$ Class<?> configuratorClass = Class.forName(sConfigurator) [FD]
+Line_6 $$ Class<?> configuratorClass = Class.forName(sConfigurator) --> Line_7 $$ if (!IPackConfigurator.class.isAssignableFrom(configuratorClass)) [FD]
+Line_2 $$ private IPackConfigurator getConfigurator(String sConfigurator) --> Line_8 $$ throw new IllegalArgumentException(String.format("Pack configurator %s must implements interface %s.", sConfigurator, IPackConfigurator.class.getName())) [FD]
+Line_6 $$ Class<?> configuratorClass = Class.forName(sConfigurator) --> Line_10 $$ return (IPackConfigurator) configuratorClass.newInstance() [FD]
+Line_2 $$ private IPackConfigurator getConfigurator(String sConfigurator) --> Line_12 $$ throw new RuntimeException(String.format("Can't initiate pack configurator %s.", sConfigurator), e) [FD]

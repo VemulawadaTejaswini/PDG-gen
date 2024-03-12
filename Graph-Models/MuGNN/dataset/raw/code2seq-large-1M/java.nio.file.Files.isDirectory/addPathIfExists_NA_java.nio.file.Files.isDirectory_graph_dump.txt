@@ -1,0 +1,7 @@
+Line_2 $$ static void addPathIfExists(Permissions policy, String configurationName, Path path, String permissions) --> Line_3 $$ if (Files.isDirectory(path)) [FD]
+Line_2 $$ static void addPathIfExists(Permissions policy, String configurationName, Path path, String permissions) --> Line_3 $$ if (Files.isDirectory(path)) [CD]
+Line_3 $$ if (Files.isDirectory(path)) --> Line_4 $$ policy.add(new FilePermission(path.toString(), permissions)) [CD]
+Line_2 $$ static void addPathIfExists(Permissions policy, String configurationName, Path path, String permissions) --> Line_4 $$ policy.add(new FilePermission(path.toString(), permissions)) [FD]
+Line_3 $$ if (Files.isDirectory(path)) --> Line_5 $$ policy.add(new FilePermission(path.toString() + path.getFileSystem().getSeparator() + "-", permissions)) [CD]
+Line_2 $$ static void addPathIfExists(Permissions policy, String configurationName, Path path, String permissions) --> Line_5 $$ policy.add(new FilePermission(path.toString() + path.getFileSystem().getSeparator() + "-", permissions)) [FD]
+Line_2 $$ static void addPathIfExists(Permissions policy, String configurationName, Path path, String permissions) --> Line_7 $$ path.getFileSystem().provider().checkAccess(path.toRealPath(), AccessMode.READ) [FD]

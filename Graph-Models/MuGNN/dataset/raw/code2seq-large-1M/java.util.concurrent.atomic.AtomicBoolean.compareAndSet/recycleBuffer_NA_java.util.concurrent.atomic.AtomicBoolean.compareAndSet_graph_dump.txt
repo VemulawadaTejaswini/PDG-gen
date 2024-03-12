@@ -1,0 +1,7 @@
+Line_2 $$ public boolean recycleBuffer(ByteBuffer parent, int startChunk, int chunkCount) --> Line_3 $$ if (parent == this.buf) [FD]
+Line_2 $$ public boolean recycleBuffer(ByteBuffer parent, int startChunk, int chunkCount) --> Line_3 $$ if (parent == this.buf) [CD]
+Line_3 $$ if (parent == this.buf) --> Line_4 $$ while (!this.allocLockStatus.compareAndSet(false, true)) [CD]
+Line_4 $$ while (!this.allocLockStatus.compareAndSet(false, true)) --> Line_5 $$ Thread.yield() [CD]
+Line_2 $$ public boolean recycleBuffer(ByteBuffer parent, int startChunk, int chunkCount) --> Line_8 $$ markChunksUnused(startChunk, chunkCount) [FD]
+Line_3 $$ if (parent == this.buf) --> Line_12 $$ return true [CD]
+Line_2 $$ public boolean recycleBuffer(ByteBuffer parent, int startChunk, int chunkCount) --> Line_14 $$ return false [CD]

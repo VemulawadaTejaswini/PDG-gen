@@ -1,0 +1,7 @@
+Line_2 $$ private static Supplier<ResultSet> getReturnResultSet(Supplier<PreparedStatement> supplier, StatementContext ctx) --> Line_3 $$ return () -> [CD]
+Line_2 $$ private static Supplier<ResultSet> getReturnResultSet(Supplier<PreparedStatement> supplier, StatementContext ctx) --> Line_4 $$ PreparedStatement stmt = supplier.get() [FD]
+Line_4 $$ PreparedStatement stmt = supplier.get() --> Line_6 $$ if (!stmt.isWrapperFor(OraclePreparedStatement.class)) [FD]
+Line_4 $$ PreparedStatement stmt = supplier.get() --> Line_9 $$ OraclePreparedStatement statement = stmt.unwrap(OraclePreparedStatement.class) [FD]
+Line_10 $$ ResultSet rs = statement.getReturnResultSet() --> Line_11 $$ if (rs != null) [FD]
+Line_11 $$ if (rs != null) --> Line_12 $$ ctx.addCleanable(rs::<>close) [CD]
+Line_2 $$ private static Supplier<ResultSet> getReturnResultSet(Supplier<PreparedStatement> supplier, StatementContext ctx) --> Line_12 $$ ctx.addCleanable(rs::<>close) [FD]

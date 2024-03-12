@@ -1,0 +1,8 @@
+Line_2 $$ public void onSubscribe(Subscription s) --> Line_3 $$ if (Operators.setOnce(S, this, s)) [CD]
+Line_2 $$ public void onSubscribe(Subscription s) --> Line_3 $$ if (Operators.setOnce(S, this, s)) [FD]
+Line_3 $$ if (Operators.setOnce(S, this, s)) --> Line_4 $$ long r = REQUESTED.getAndSet(this, 0L) [CD]
+Line_3 $$ if (Operators.setOnce(S, this, s)) --> Line_5 $$ if (r != 0L) [CD]
+Line_4 $$ long r = REQUESTED.getAndSet(this, 0L) --> Line_5 $$ if (r != 0L) [FD]
+Line_5 $$ if (r != 0L) --> Line_6 $$ requestUpstream(r, s) [CD]
+Line_4 $$ long r = REQUESTED.getAndSet(this, 0L) --> Line_6 $$ requestUpstream(r, s) [FD]
+Line_2 $$ public void onSubscribe(Subscription s) --> Line_6 $$ requestUpstream(r, s) [FD]

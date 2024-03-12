@@ -1,0 +1,7 @@
+Line_2 $$ private void scheduleReconnect() --> Line_3 $$ logger.debug("Submitting reconnect task to the executor") [CD]
+Line_2 $$ private void scheduleReconnect() --> Line_4 $$ if (!executor.isShutdown()) [CD]
+Line_4 $$ if (!executor.isShutdown()) --> Line_5 $$ executor.submit(new NamedRunnable("scheduleReconnect") [CD]
+Line_5 $$ executor.submit(new NamedRunnable("scheduleReconnect") --> Line_7 $$ if (!reconnectPending.compareAndSet(false, true)) [CD]
+Line_7 $$ if (!reconnectPending.compareAndSet(false, true)) --> Line_8 $$ logger.debug("Reconnect already scheduled") [CD]
+Line_7 $$ if (!reconnectPending.compareAndSet(false, true)) --> Line_9 $$ return [CD]
+Line_5 $$ executor.submit(new NamedRunnable("scheduleReconnect") --> Line_11 $$ webSocketRef.set(null) [CD]

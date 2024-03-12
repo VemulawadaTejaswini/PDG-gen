@@ -1,0 +1,8 @@
+Line_2 $$ public void testSuccess_InboundMessageTooLong() --> Line_3 $$ String longRequest = "HEALTH_CHECK_REQUEST HELLO" [CD]
+Line_2 $$ public void testSuccess_InboundMessageTooLong() --> Line_4 $$ assertThat(channel.writeInbound(Unpooled.wrappedBuffer(longRequest.getBytes(US_ASCII)))).isFalse() [CD]
+Line_3 $$ String longRequest = "HEALTH_CHECK_REQUEST HELLO" --> Line_4 $$ assertThat(channel.writeInbound(Unpooled.wrappedBuffer(longRequest.getBytes(US_ASCII)))).isFalse() [FD]
+Line_2 $$ public void testSuccess_InboundMessageTooLong() --> Line_5 $$ ByteBuf outputBuffer = channel.readOutbound() [CD]
+Line_2 $$ public void testSuccess_InboundMessageTooLong() --> Line_6 $$ assertThat(outputBuffer.toString(US_ASCII)).isEqualTo(PROXY_CONFIG.healthCheck.checkResponse) [CD]
+Line_5 $$ ByteBuf outputBuffer = channel.readOutbound() --> Line_6 $$ assertThat(outputBuffer.toString(US_ASCII)).isEqualTo(PROXY_CONFIG.healthCheck.checkResponse) [FD]
+Line_2 $$ public void testSuccess_InboundMessageTooLong() --> Line_7 $$ assertThat(channel.isActive()).isTrue() [CD]
+Line_2 $$ public void testSuccess_InboundMessageTooLong() --> Line_8 $$ assertThat((Object) channel.readOutbound()).isNull() [CD]

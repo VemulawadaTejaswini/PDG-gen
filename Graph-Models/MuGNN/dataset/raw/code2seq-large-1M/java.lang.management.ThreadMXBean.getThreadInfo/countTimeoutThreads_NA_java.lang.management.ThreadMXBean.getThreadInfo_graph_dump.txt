@@ -1,0 +1,8 @@
+Line_2 $$ private static int countTimeoutThreads() --> Line_3 $$ int count = 0 [CD]
+Line_2 $$ private static int countTimeoutThreads() --> Line_4 $$ String threadName = "mssql-jdbc-TimeoutTimer" [CD]
+Line_2 $$ private static int countTimeoutThreads() --> Line_5 $$ ThreadInfo[] tinfos = ManagementFactory.getThreadMXBean().getThreadInfo(ManagementFactory.getThreadMXBean().getAllThreadIds(), 0) [CD]
+Line_4 $$ String threadName = "mssql-jdbc-TimeoutTimer" --> Line_7 $$ if ((ti.getThreadName().startsWith(threadName)) && (ti.getThreadState().equals(java.lang.Thread.State.TIMED_WAITING))) [FD]
+Line_6 $$ for (ThreadInfo ti : tinfos) --> Line_7 $$ if ((ti.getThreadName().startsWith(threadName)) && (ti.getThreadState().equals(java.lang.Thread.State.TIMED_WAITING))) [FD]
+Line_7 $$ if ((ti.getThreadName().startsWith(threadName)) && (ti.getThreadState().equals(java.lang.Thread.State.TIMED_WAITING))) --> Line_8 $$ count++ [CD]
+Line_3 $$ int count = 0 --> Line_8 $$ count++ [FD]
+Line_2 $$ private static int countTimeoutThreads() --> Line_11 $$ return count [CD]

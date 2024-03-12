@@ -1,0 +1,6 @@
+Line_5 $$ Class hadb = Class.forName("org.neo4j.kernel.ha.HighlyAvailableGraphDatabase") --> Line_6 $$ boolean isSlave = hadb.isInstance(db) && !((Boolean) hadb.getMethod("isMaster").invoke(db)) [FD]
+Line_2 $$ public static boolean isWriteableInstance(GraphDatabaseAPI db) --> Line_6 $$ boolean isSlave = hadb.isInstance(db) && !((Boolean) hadb.getMethod("isMaster").invoke(db)) [FD]
+Line_7 $$ if (isSlave) --> Line_8 $$ return false [CD]
+Line_2 $$ public static boolean isWriteableInstance(GraphDatabaseAPI db) --> Line_11 $$ String role = db.execute("CALL dbms.cluster.role()").<String>columnAs("role").next() [FD]
+Line_11 $$ String role = db.execute("CALL dbms.cluster.role()").<String>columnAs("role").next() --> Line_12 $$ return role.equalsIgnoreCase("LEADER") [FD]
+Line_14 $$ if (e.getStatusCode().equalsIgnoreCase("Neo.ClientError.Procedure.ProcedureNotFound")) --> Line_15 $$ return true [CD]

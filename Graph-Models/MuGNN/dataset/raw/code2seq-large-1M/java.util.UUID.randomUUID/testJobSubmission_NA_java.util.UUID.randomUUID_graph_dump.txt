@@ -1,0 +1,8 @@
+Line_2 $$ public void testJobSubmission() throws Exception --> Line_3 $$ CompletableFuture<UUID> leaderFuture = dispatcherLeaderElectionService.isLeader(UUID.randomUUID()) [CD]
+Line_2 $$ public void testJobSubmission() throws Exception --> Line_4 $$ leaderFuture.get() [CD]
+Line_3 $$ CompletableFuture<UUID> leaderFuture = dispatcherLeaderElectionService.isLeader(UUID.randomUUID()) --> Line_4 $$ leaderFuture.get() [FD]
+Line_2 $$ public void testJobSubmission() throws Exception --> Line_5 $$ DispatcherGateway dispatcherGateway = dispatcher.getSelfGateway(DispatcherGateway.class) [CD]
+Line_2 $$ public void testJobSubmission() throws Exception --> Line_6 $$ CompletableFuture<Acknowledge> acknowledgeFuture = dispatcherGateway.submitJob(jobGraph, TIMEOUT) [CD]
+Line_2 $$ public void testJobSubmission() throws Exception --> Line_7 $$ acknowledgeFuture.get() [CD]
+Line_6 $$ CompletableFuture<Acknowledge> acknowledgeFuture = dispatcherGateway.submitJob(jobGraph, TIMEOUT) --> Line_7 $$ acknowledgeFuture.get() [FD]
+Line_2 $$ public void testJobSubmission() throws Exception --> Line_8 $$ assertTrue("jobManagerRunner was not started", dispatcherLeaderElectionService.isStarted()) [CD]

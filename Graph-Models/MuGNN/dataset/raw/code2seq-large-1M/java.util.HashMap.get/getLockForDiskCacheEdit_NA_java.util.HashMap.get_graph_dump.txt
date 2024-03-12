@@ -1,0 +1,8 @@
+Line_2 $$ private ReentrantLock getLockForDiskCacheEdit(String url) --> Line_4 $$ ReentrantLock lock = mDiskCacheEditLocks.get(url) [FD]
+Line_4 $$ ReentrantLock lock = mDiskCacheEditLocks.get(url) --> Line_5 $$ if (null == lock) [FD]
+Line_5 $$ if (null == lock) --> Line_6 $$ lock = new ReentrantLock() [CD]
+Line_4 $$ ReentrantLock lock = mDiskCacheEditLocks.get(url) --> Line_6 $$ lock = new ReentrantLock() [FD]
+Line_5 $$ if (null == lock) --> Line_7 $$ mDiskCacheEditLocks.put(url, lock) [CD]
+Line_2 $$ private ReentrantLock getLockForDiskCacheEdit(String url) --> Line_7 $$ mDiskCacheEditLocks.put(url, lock) [FD]
+Line_4 $$ ReentrantLock lock = mDiskCacheEditLocks.get(url) --> Line_7 $$ mDiskCacheEditLocks.put(url, lock) [FD]
+Line_6 $$ lock = new ReentrantLock() --> Line_7 $$ mDiskCacheEditLocks.put(url, lock) [FD]

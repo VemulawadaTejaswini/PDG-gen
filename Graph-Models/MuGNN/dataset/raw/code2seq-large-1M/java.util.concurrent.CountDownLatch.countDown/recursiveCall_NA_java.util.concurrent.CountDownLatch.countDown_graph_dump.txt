@@ -1,0 +1,6 @@
+Line_2 $$ void recursiveCall(Scheduler.Worker w, CountDownLatch latch, int data) --> Line_3 $$ if (data < 2) [FD]
+Line_2 $$ void recursiveCall(Scheduler.Worker w, CountDownLatch latch, int data) --> Line_3 $$ if (data < 2) [CD]
+Line_3 $$ if (data < 2) --> Line_4 $$ latch.countDown() [CD]
+Line_2 $$ void recursiveCall(Scheduler.Worker w, CountDownLatch latch, int data) --> Line_4 $$ latch.countDown() [FD]
+Line_3 $$ if (data < 2) --> Line_5 $$ w.schedule(() -> recursiveCall(w, latch, data + 1)) [CD]
+Line_2 $$ void recursiveCall(Scheduler.Worker w, CountDownLatch latch, int data) --> Line_5 $$ w.schedule(() -> recursiveCall(w, latch, data + 1)) [FD]

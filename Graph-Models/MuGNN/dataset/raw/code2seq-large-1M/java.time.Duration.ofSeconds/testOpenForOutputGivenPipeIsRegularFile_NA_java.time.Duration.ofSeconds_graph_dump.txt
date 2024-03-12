@@ -1,0 +1,8 @@
+Line_2 $$ public void testOpenForOutputGivenPipeIsRegularFile() throws IOException --> Line_3 $$ Environment env = TestEnvironment.newEnvironment(Settings.builder().put(Environment.PATH_HOME_SETTING.getKey(), createTempDir().toString()).build()) [CD]
+Line_2 $$ public void testOpenForOutputGivenPipeIsRegularFile() throws IOException --> Line_4 $$ Path tempFile = Files.createTempFile(env.tmpFile(), "not a named pipe", null) [CD]
+Line_3 $$ Environment env = TestEnvironment.newEnvironment(Settings.builder().put(Environment.PATH_HOME_SETTING.getKey(), createTempDir().toString()).build()) --> Line_4 $$ Path tempFile = Files.createTempFile(env.tmpFile(), "not a named pipe", null) [FD]
+Line_2 $$ public void testOpenForOutputGivenPipeIsRegularFile() throws IOException --> Line_5 $$ IOException ioe = ESTestCase.expectThrows(IOException.class, () -> NAMED_PIPE_HELPER.openNamedPipeOutputStream(tempFile, Duration.ofSeconds(1))) [CD]
+Line_4 $$ Path tempFile = Files.createTempFile(env.tmpFile(), "not a named pipe", null) --> Line_5 $$ IOException ioe = ESTestCase.expectThrows(IOException.class, () -> NAMED_PIPE_HELPER.openNamedPipeOutputStream(tempFile, Duration.ofSeconds(1))) [FD]
+Line_2 $$ public void testOpenForOutputGivenPipeIsRegularFile() throws IOException --> Line_6 $$ assertTrue(ioe.getMessage(), ioe.getMessage().contains("is not a named pipe") || ioe.getMessage().contains("The system cannot find the file specified")) [CD]
+Line_2 $$ public void testOpenForOutputGivenPipeIsRegularFile() throws IOException --> Line_7 $$ assertTrue(Files.deleteIfExists(tempFile)) [CD]
+Line_4 $$ Path tempFile = Files.createTempFile(env.tmpFile(), "not a named pipe", null) --> Line_7 $$ assertTrue(Files.deleteIfExists(tempFile)) [FD]

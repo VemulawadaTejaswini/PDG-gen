@@ -1,0 +1,8 @@
+Line_5 $$ Date published = entry.getPublishedDate() --> Line_6 $$ if (published == null) [FD]
+Line_6 $$ if (published == null) --> Line_7 $$ published = entry.getUpdatedDate() [CD]
+Line_5 $$ Date published = entry.getPublishedDate() --> Line_7 $$ published = entry.getUpdatedDate() [FD]
+Line_5 $$ Date published = entry.getPublishedDate() --> Line_9 $$ if (maxDate == null || (published != null && published.compareTo(maxDate) > 0)) [FD]
+Line_7 $$ published = entry.getUpdatedDate() --> Line_9 $$ if (maxDate == null || (published != null && published.compareTo(maxDate) > 0)) [FD]
+Line_9 $$ if (maxDate == null || (published != null && published.compareTo(maxDate) > 0)) --> Line_10 $$ LOG.info("maxDate = " + maxDate) [CD]
+Line_9 $$ if (maxDate == null || (published != null && published.compareTo(maxDate) > 0)) --> Line_11 $$ result.add(toJson(entry)) [CD]
+Line_3 $$ List<JsonObject> result = new ArrayList(entries.size()) --> Line_11 $$ result.add(toJson(entry)) [FD]

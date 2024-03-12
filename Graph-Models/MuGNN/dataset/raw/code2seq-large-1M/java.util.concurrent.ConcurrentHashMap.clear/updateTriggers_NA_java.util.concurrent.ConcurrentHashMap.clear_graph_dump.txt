@@ -1,0 +1,8 @@
+Line_5 $$ String triggerProperty = (String) properties.getProperty(APOC_TRIGGER, " --> Line_6 $$ triggers.putAll(Util.fromJson(triggerProperty, Map.class)) [FD]
+Line_2 $$ private static synchronized Map<String, Object> updateTriggers(String name, Map<String, Object> value) --> Line_8 $$ if (name != null) [FD]
+Line_8 $$ if (name != null) --> Line_9 $$ previous = (value == null) ? triggers.remove(name) : triggers.put(name, value) [CD]
+Line_7 $$ Map<String, Object> previous = null --> Line_9 $$ previous = (value == null) ? triggers.remove(name) : triggers.put(name, value) [FD]
+Line_2 $$ private static synchronized Map<String, Object> updateTriggers(String name, Map<String, Object> value) --> Line_9 $$ previous = (value == null) ? triggers.remove(name) : triggers.put(name, value) [FD]
+Line_8 $$ if (name != null) --> Line_10 $$ if (value != null || previous != null) [CD]
+Line_10 $$ if (value != null || previous != null) --> Line_11 $$ properties.setProperty(APOC_TRIGGER, Util.toJson(triggers)) [CD]
+Line_3 $$ try (Transaction tx = properties.getGraphDatabase().beginTx()) --> Line_14 $$ tx.success() [FD]

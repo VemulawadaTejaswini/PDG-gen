@@ -1,0 +1,7 @@
+Line_2 $$ boolean forTestAwaitSchedulingRun(long timeout) throws InterruptedException --> Line_3 $$ testLock.lock() [CD]
+Line_6 $$ while (!schedulingComplete) --> Line_7 $$ if (timeout == -1) [CD]
+Line_2 $$ boolean forTestAwaitSchedulingRun(long timeout) throws InterruptedException --> Line_7 $$ if (timeout == -1) [FD]
+Line_7 $$ if (timeout == -1) --> Line_8 $$ schedulingCompleteCondition.await() [CD]
+Line_7 $$ if (timeout == -1) --> Line_10 $$ success = schedulingCompleteCondition.await(timeout, TimeUnit.MILLISECONDS) [CD]
+Line_5 $$ boolean success = true --> Line_10 $$ success = schedulingCompleteCondition.await(timeout, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ boolean forTestAwaitSchedulingRun(long timeout) throws InterruptedException --> Line_10 $$ success = schedulingCompleteCondition.await(timeout, TimeUnit.MILLISECONDS) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void waitTillAccepted(YarnClient rmClient, ApplicationId appId) throws Exception --> Line_5 $$ ApplicationReport report = rmClient.getApplicationReport(appId) [FD]
+Line_5 $$ ApplicationReport report = rmClient.getApplicationReport(appId) --> Line_6 $$ while (YarnApplicationState.ACCEPTED != report.getYarnApplicationState()) [FD]
+Line_6 $$ while (YarnApplicationState.ACCEPTED != report.getYarnApplicationState()) --> Line_7 $$ if (System.currentTimeMillis() - start > 20 * 1000) [CD]
+Line_6 $$ while (YarnApplicationState.ACCEPTED != report.getYarnApplicationState()) --> Line_10 $$ Thread.sleep(200) [CD]
+Line_6 $$ while (YarnApplicationState.ACCEPTED != report.getYarnApplicationState()) --> Line_11 $$ report = rmClient.getApplicationReport(appId) [CD]
+Line_5 $$ ApplicationReport report = rmClient.getApplicationReport(appId) --> Line_11 $$ report = rmClient.getApplicationReport(appId) [FD]
+Line_2 $$ private void waitTillAccepted(YarnClient rmClient, ApplicationId appId) throws Exception --> Line_11 $$ report = rmClient.getApplicationReport(appId) [FD]
+Line_11 $$ report = rmClient.getApplicationReport(appId) --> Line_6 $$ while (YarnApplicationState.ACCEPTED != report.getYarnApplicationState()) [FD]

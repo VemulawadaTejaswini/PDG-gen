@@ -1,0 +1,8 @@
+Line_2 $$ public void testReadRetrySSLHandshake() throws IOException --> Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(1) [CD]
+Line_2 $$ public void testReadRetrySSLHandshake() throws IOException --> Line_4 $$ when(gcsChannel.read(eq(buffer))).thenThrow(new StorageException(new IOException("something", new IOException("thing", new SSLHandshakeException("connection closed due to throttling"))))).thenReturn(1) [CD]
+Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(1) --> Line_4 $$ when(gcsChannel.read(eq(buffer))).thenThrow(new StorageException(new IOException("something", new IOException("thing", new SSLHandshakeException("connection closed due to throttling"))))).thenReturn(1) [FD]
+Line_2 $$ public void testReadRetrySSLHandshake() throws IOException --> Line_5 $$ assertThat(chan.position()).isEqualTo(0L) [CD]
+Line_2 $$ public void testReadRetrySSLHandshake() throws IOException --> Line_6 $$ assertThat(chan.read(buffer)).isEqualTo(1) [CD]
+Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(1) --> Line_6 $$ assertThat(chan.read(buffer)).isEqualTo(1) [FD]
+Line_2 $$ public void testReadRetrySSLHandshake() throws IOException --> Line_7 $$ assertThat(chan.position()).isEqualTo(1L) [CD]
+Line_2 $$ public void testReadRetrySSLHandshake() throws IOException --> Line_8 $$ verify(gcsChannel, times(2)).read(any(ByteBuffer.class)) [CD]

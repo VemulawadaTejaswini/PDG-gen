@@ -1,0 +1,8 @@
+Line_2 $$ private void collectTransitiveCallees(TemplateData templateData, Set<TemplateData> visited) --> Line_3 $$ if (!visited.add(templateData)) [FD]
+Line_2 $$ private void collectTransitiveCallees(TemplateData templateData, Set<TemplateData> visited) --> Line_3 $$ if (!visited.add(templateData)) [CD]
+Line_3 $$ if (!visited.add(templateData)) --> Line_4 $$ return [CD]
+Line_2 $$ private void collectTransitiveCallees(TemplateData templateData, Set<TemplateData> visited) --> Line_7 $$ collectTransitiveCallees(getTemplateData(callee), visited) [FD]
+Line_6 $$ for (String callee : templateData.callees) --> Line_7 $$ collectTransitiveCallees(getTemplateData(callee), visited) [FD]
+Line_9 $$ for (String delCallee : templateData.delCallees) --> Line_10 $$ for (TemplateData potentialCallee : selector.delTemplateNameToValues().get(delCallee)) [FD]
+Line_10 $$ for (TemplateData potentialCallee : selector.delTemplateNameToValues().get(delCallee)) --> Line_11 $$ collectTransitiveCallees(potentialCallee, visited) [FD]
+Line_2 $$ private void collectTransitiveCallees(TemplateData templateData, Set<TemplateData> visited) --> Line_11 $$ collectTransitiveCallees(potentialCallee, visited) [FD]

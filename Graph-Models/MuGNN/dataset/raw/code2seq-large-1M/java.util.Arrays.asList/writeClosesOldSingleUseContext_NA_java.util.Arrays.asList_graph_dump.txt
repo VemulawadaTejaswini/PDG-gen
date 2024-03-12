@@ -1,0 +1,7 @@
+Line_2 $$ public void writeClosesOldSingleUseContext() throws ParseException --> Line_3 $$ ReadContext ctx = session.singleUse(TimestampBound.strong()) [CD]
+Line_2 $$ public void writeClosesOldSingleUseContext() throws ParseException --> Line_4 $$ Mockito.when(rpc.commit(Mockito.<CommitRequest>any(), Mockito.eq(options))).thenReturn(CommitResponse.newBuilder().setCommitTimestamp(Timestamps.parse("2015-10-01T10:54:20.021Z")).build()) [CD]
+Line_2 $$ public void writeClosesOldSingleUseContext() throws ParseException --> Line_5 $$ session.writeAtLeastOnce(Arrays.<Mutation>asList()) [CD]
+Line_2 $$ public void writeClosesOldSingleUseContext() throws ParseException --> Line_6 $$ expectedException.expect(IllegalStateException.class) [CD]
+Line_2 $$ public void writeClosesOldSingleUseContext() throws ParseException --> Line_7 $$ expectedException.expectMessage("invalidated") [CD]
+Line_2 $$ public void writeClosesOldSingleUseContext() throws ParseException --> Line_8 $$ ctx.read("Dummy", KeySet.all(), Arrays.asList("C")) [CD]
+Line_3 $$ ReadContext ctx = session.singleUse(TimestampBound.strong()) --> Line_8 $$ ctx.read("Dummy", KeySet.all(), Arrays.asList("C")) [FD]

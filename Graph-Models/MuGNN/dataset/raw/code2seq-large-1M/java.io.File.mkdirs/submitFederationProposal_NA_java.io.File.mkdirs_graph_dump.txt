@@ -1,0 +1,7 @@
+Line_2 $$ public boolean submitFederationProposal(FederationProposal proposal, String gitblitUrl) --> Line_3 $$ String json = JsonUtils.toJsonString(proposal) [CD]
+Line_2 $$ public boolean submitFederationProposal(FederationProposal proposal, String gitblitUrl) --> Line_3 $$ String json = JsonUtils.toJsonString(proposal) [FD]
+Line_5 $$ File proposalsFolder = getProposalsFolder() --> Line_6 $$ proposalsFolder.mkdirs() [FD]
+Line_7 $$ File file = new File(proposalsFolder, proposal.token + Constants.PROPOSAL_EXT) --> Line_8 $$ com.gitblit.utils.FileUtils.writeContent(file, json) [FD]
+Line_3 $$ String json = JsonUtils.toJsonString(proposal) --> Line_8 $$ com.gitblit.utils.FileUtils.writeContent(file, json) [FD]
+Line_2 $$ public boolean submitFederationProposal(FederationProposal proposal, String gitblitUrl) --> Line_12 $$ notificationManager.sendMailToAdministrators("Federation proposal from " + proposal.url, "Please review the proposal @ " + gitblitUrl + "/proposal/" + proposal.token) [CD]
+Line_2 $$ public boolean submitFederationProposal(FederationProposal proposal, String gitblitUrl) --> Line_13 $$ return true [CD]

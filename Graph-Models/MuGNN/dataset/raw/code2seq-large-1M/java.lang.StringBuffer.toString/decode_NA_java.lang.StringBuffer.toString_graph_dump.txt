@@ -1,0 +1,8 @@
+Line_2 $$ static int decode(char c) --> Line_3 $$ if (c >= 'A' && c <= 'Z') [CD]
+Line_3 $$ if (c >= 'A' && c <= 'Z') --> Line_4 $$ return c - 65 [CD]
+Line_3 $$ if (c >= 'A' && c <= 'Z') --> Line_5 $$ if (c >= 'a' && c <= 'z') [CD]
+Line_5 $$ if (c >= 'a' && c <= 'z') --> Line_6 $$ return c - 97 + 26 [CD]
+Line_5 $$ if (c >= 'a' && c <= 'z') --> Line_7 $$ if (c >= '0' && c <= '9') [CD]
+Line_2 $$ static int decode(char c) --> Line_7 $$ if (c >= '0' && c <= '9') [FD]
+Line_7 $$ if (c >= '0' && c <= '9') --> Line_8 $$ return c - 48 + 26 + 26 [CD]
+Line_2 $$ static int decode(char c) --> Line_18 $$ throw new RuntimeException(new StringBuffer("unexpected code: ").append(c).toString()) [FD]

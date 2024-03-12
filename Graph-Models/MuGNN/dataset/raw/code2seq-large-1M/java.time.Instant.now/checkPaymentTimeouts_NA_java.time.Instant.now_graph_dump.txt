@@ -1,0 +1,6 @@
+Line_2 $$ void checkPaymentTimeouts() --> Line_3 $$ final Instant now = Instant.now() [CD]
+Line_2 $$ void checkPaymentTimeouts() --> Line_4 $$ final List<String> itemsWithPaymentTimeouts = jdbcTemplate.queryForList(ITEMS_TIMEOUT_SQL_QUERY, String.class, from(now)) [CD]
+Line_3 $$ final Instant now = Instant.now() --> Line_4 $$ final List<String> itemsWithPaymentTimeouts = jdbcTemplate.queryForList(ITEMS_TIMEOUT_SQL_QUERY, String.class, from(now)) [FD]
+Line_2 $$ void checkPaymentTimeouts() --> Line_5 $$ log.info("Marking [CD]
+Line_3 $$ final Instant now = Instant.now() --> Line_5 $$ log.info("Marking [FD]
+Line_2 $$ void checkPaymentTimeouts() --> Line_6 $$ itemsWithPaymentTimeouts.forEach( uuid -> shopItems.markPaymentTimeout(new MarkPaymentTimeout(fromString(uuid), now))) [CD]

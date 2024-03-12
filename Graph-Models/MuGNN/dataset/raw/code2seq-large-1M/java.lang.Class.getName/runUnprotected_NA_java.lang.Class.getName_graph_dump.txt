@@ -1,0 +1,8 @@
+Line_5 $$ if (expectsException()) --> Line_6 $$ addFailure(new AssertionError("Expected exception: " + expectedException().getName())) [CD]
+Line_9 $$ if (!expectsException()) --> Line_10 $$ addFailure(actual) [CD]
+Line_8 $$ Throwable actual = e.getTargetException() --> Line_10 $$ addFailure(actual) [FD]
+Line_9 $$ if (!expectsException()) --> Line_11 $$ if (isUnexpected(actual)) [CD]
+Line_8 $$ Throwable actual = e.getTargetException() --> Line_11 $$ if (isUnexpected(actual)) [FD]
+Line_11 $$ if (isUnexpected(actual)) --> Line_12 $$ String message = "Unexpected exception, expected<" + expectedException().getName() + "> but was<" + actual.getClass().getName() + ">" [CD]
+Line_8 $$ Throwable actual = e.getTargetException() --> Line_12 $$ String message = "Unexpected exception, expected<" + expectedException().getName() + "> but was<" + actual.getClass().getName() + ">" [FD]
+Line_11 $$ if (isUnexpected(actual)) --> Line_13 $$ addFailure(new Exception(message, actual)) [CD]

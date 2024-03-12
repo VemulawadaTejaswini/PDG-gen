@@ -1,0 +1,7 @@
+Line_2 $$ private boolean runEcho() throws Exception --> Line_3 $$ ProcessBuilder pb = new ProcessBuilder("/bin/sh", "-c", "echo $var") [CD]
+Line_2 $$ private boolean runEcho() throws Exception --> Line_4 $$ pb.environment().put("var", "unix") [CD]
+Line_3 $$ ProcessBuilder pb = new ProcessBuilder("/bin/sh", "-c", "echo $var") --> Line_4 $$ pb.environment().put("var", "unix") [FD]
+Line_3 $$ ProcessBuilder pb = new ProcessBuilder("/bin/sh", "-c", "echo $var") --> Line_6 $$ Process p = pb.start() [FD]
+Line_6 $$ Process p = pb.start() --> Line_7 $$ try (BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream(), UTF_8))) [FD]
+Line_7 $$ try (BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream(), UTF_8))) --> Line_8 $$ return stdout.readLine().trim().equals("unix") && p.waitFor() == 0 [FD]
+Line_6 $$ Process p = pb.start() --> Line_8 $$ return stdout.readLine().trim().equals("unix") && p.waitFor() == 0 [FD]

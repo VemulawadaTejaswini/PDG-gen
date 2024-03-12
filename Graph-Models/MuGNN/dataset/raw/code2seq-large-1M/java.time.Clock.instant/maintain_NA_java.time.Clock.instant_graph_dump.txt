@@ -1,0 +1,5 @@
+Line_3 $$ for (Application application : controller().applications().asList()) --> Line_4 $$ for (Deployment deployment : application.deployments().values()) [FD]
+Line_4 $$ for (Deployment deployment : application.deployments().values()) --> Line_5 $$ if (deployment.zone().environment().equals(Environment.prod)) [FD]
+Line_4 $$ for (Deployment deployment : application.deployments().values()) --> Line_8 $$ if (hasExpired(controller().zoneRegistry(), deployment, clock.instant())) [FD]
+Line_3 $$ for (Application application : controller().applications().asList()) --> Line_10 $$ controller().applications().deactivate(application, deployment.zone()) [FD]
+Line_4 $$ for (Deployment deployment : application.deployments().values()) --> Line_10 $$ controller().applications().deactivate(application, deployment.zone()) [FD]

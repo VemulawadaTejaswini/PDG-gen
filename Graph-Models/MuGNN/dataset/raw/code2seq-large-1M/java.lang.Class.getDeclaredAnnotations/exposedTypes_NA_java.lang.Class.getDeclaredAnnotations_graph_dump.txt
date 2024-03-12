@@ -1,0 +1,7 @@
+Line_2 $$ private List<Class<? extends Facet>> exposedTypes(final Class<? extends Facet> root) --> Line_3 $$ List<Class<? extends Facet>> exposed = Lists.newArrayList() [CD]
+Line_2 $$ private List<Class<? extends Facet>> exposedTypes(final Class<? extends Facet> root) --> Line_4 $$ for (Class<?> type : TypeToken.of(root).getTypes().rawTypes()) [FD]
+Line_4 $$ for (Class<?> type : TypeToken.of(root).getTypes().rawTypes()) --> Line_5 $$ if (Facet.class.isAssignableFrom(type)) [FD]
+Line_4 $$ for (Class<?> type : TypeToken.of(root).getTypes().rawTypes()) --> Line_6 $$ for (Annotation annotation : type.getDeclaredAnnotations()) [FD]
+Line_6 $$ for (Annotation annotation : type.getDeclaredAnnotations()) --> Line_7 $$ if (annotation.annotationType() == Facet.Exposed.class) [FD]
+Line_3 $$ List<Class<? extends Facet>> exposed = Lists.newArrayList() --> Line_8 $$ exposed.add((Class<? extends Facet>) type) [FD]
+Line_2 $$ private List<Class<? extends Facet>> exposedTypes(final Class<? extends Facet> root) --> Line_13 $$ return exposed [CD]

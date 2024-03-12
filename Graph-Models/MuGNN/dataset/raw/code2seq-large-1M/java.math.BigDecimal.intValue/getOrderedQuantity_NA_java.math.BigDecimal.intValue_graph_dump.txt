@@ -1,0 +1,7 @@
+Line_2 $$ protected Integer getOrderedQuantity(String orderId) --> Line_3 $$ BigDecimal orderedQuantity = ZERO [CD]
+Line_2 $$ protected Integer getOrderedQuantity(String orderId) --> Line_5 $$ List<GenericValue> orderItems = getDelegator().findByAnd("OrderItem", UtilMisc.toMap("orderId", orderId, "statusId", "ITEM_APPROVED"), null, false) [FD]
+Line_3 $$ BigDecimal orderedQuantity = ZERO --> Line_7 $$ orderedQuantity = orderedQuantity.add(orderItem.getBigDecimal("quantity")) [FD]
+Line_6 $$ for (GenericValue orderItem : orderItems) --> Line_7 $$ orderedQuantity = orderedQuantity.add(orderItem.getBigDecimal("quantity")) [FD]
+Line_2 $$ protected Integer getOrderedQuantity(String orderId) --> Line_12 $$ return orderedQuantity.intValue() [CD]
+Line_3 $$ BigDecimal orderedQuantity = ZERO --> Line_12 $$ return orderedQuantity.intValue() [FD]
+Line_7 $$ orderedQuantity = orderedQuantity.add(orderItem.getBigDecimal("quantity")) --> Line_12 $$ return orderedQuantity.intValue() [FD]

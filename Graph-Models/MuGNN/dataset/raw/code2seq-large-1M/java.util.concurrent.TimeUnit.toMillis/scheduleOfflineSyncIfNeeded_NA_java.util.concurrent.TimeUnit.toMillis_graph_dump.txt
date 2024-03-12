@@ -1,0 +1,4 @@
+Line_2 $$ public static void scheduleOfflineSyncIfNeeded() --> Line_3 $$ Set<JobRequest> jobRequests = JobManager.instance().getAllJobRequestsForTag(OfflineSyncJob.TAG) [CD]
+Line_2 $$ public static void scheduleOfflineSyncIfNeeded() --> Line_4 $$ if (jobRequests.size() == 0) [CD]
+Line_3 $$ Set<JobRequest> jobRequests = JobManager.instance().getAllJobRequestsForTag(OfflineSyncJob.TAG) --> Line_4 $$ if (jobRequests.size() == 0) [FD]
+Line_4 $$ if (jobRequests.size() == 0) --> Line_5 $$ new JobRequest.Builder(OfflineSyncJob.TAG).setPeriodic(TimeUnit.MINUTES.toMillis(15), TimeUnit.MINUTES.toMillis(5)).setUpdateCurrent(false).build().schedule() [CD]

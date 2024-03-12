@@ -1,0 +1,6 @@
+Line_2 $$ public List<Task> describeTasks() --> Line_3 $$ List<String> taskArns = listTasks() [CD]
+Line_2 $$ public List<Task> describeTasks() --> Line_4 $$ if (taskArns.isEmpty()) [CD]
+Line_3 $$ List<String> taskArns = listTasks() --> Line_4 $$ if (taskArns.isEmpty()) [FD]
+Line_4 $$ if (taskArns.isEmpty()) --> Line_5 $$ return Collections.emptyList() [CD]
+Line_2 $$ public List<Task> describeTasks() --> Line_7 $$ return ecs.describeTasks(DescribeTasksRequest.builder().cluster(getCluster()).tasks(taskArns).build()).tasks() [CD]
+Line_3 $$ List<String> taskArns = listTasks() --> Line_7 $$ return ecs.describeTasks(DescribeTasksRequest.builder().cluster(getCluster()).tasks(taskArns).build()).tasks() [FD]

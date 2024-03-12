@@ -1,0 +1,7 @@
+Line_2 $$ public void testPermute() --> Line_3 $$ final RelBuilder builder = RelBuilder.create(config().build()) [CD]
+Line_2 $$ public void testPermute() --> Line_4 $$ RelNode root = builder.scan("EMP").permute(Mappings.bijection(Arrays.asList(1, 2, 0))).build() [CD]
+Line_3 $$ final RelBuilder builder = RelBuilder.create(config().build()) --> Line_4 $$ RelNode root = builder.scan("EMP").permute(Mappings.bijection(Arrays.asList(1, 2, 0))).build() [FD]
+Line_2 $$ public void testPermute() --> Line_5 $$ final String expected = "LogicalProject(JOB=[$2], EMPNO=[$0], ENAME=[$1])\n" + "  LogicalTableScan(table=[[scott, EMP]])\n" [CD]
+Line_2 $$ public void testPermute() --> Line_6 $$ assertThat(root, hasTree(expected)) [CD]
+Line_4 $$ RelNode root = builder.scan("EMP").permute(Mappings.bijection(Arrays.asList(1, 2, 0))).build() --> Line_6 $$ assertThat(root, hasTree(expected)) [FD]
+Line_5 $$ final String expected = "LogicalProject(JOB=[$2], EMPNO=[$0], ENAME=[$1])\n" + "  LogicalTableScan(table=[[scott, EMP]])\n" --> Line_6 $$ assertThat(root, hasTree(expected)) [FD]

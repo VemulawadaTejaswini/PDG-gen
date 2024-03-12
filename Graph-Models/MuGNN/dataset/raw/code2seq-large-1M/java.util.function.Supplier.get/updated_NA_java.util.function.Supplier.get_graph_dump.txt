@@ -1,0 +1,6 @@
+Line_2 $$ public void updated(K key, Supplier<V> previousValue, V newValue) --> Line_3 $$ if (accepted(EventType.UPDATED, key, previousValue.get(), newValue)) [CD]
+Line_2 $$ public void updated(K key, Supplier<V> previousValue, V newValue) --> Line_3 $$ if (accepted(EventType.UPDATED, key, previousValue.get(), newValue)) [FD]
+Line_3 $$ if (accepted(EventType.UPDATED, key, previousValue.get(), newValue)) --> Line_4 $$ StoreEvent<K, V> event = StoreEvents.updateEvent(key, previousValue.get(), newValue) [CD]
+Line_2 $$ public void updated(K key, Supplier<V> previousValue, V newValue) --> Line_4 $$ StoreEvent<K, V> event = StoreEvents.updateEvent(key, previousValue.get(), newValue) [FD]
+Line_5 $$ for (StoreEventListener<K, V> listener : listeners) --> Line_6 $$ listener.onEvent(event) [FD]
+Line_4 $$ StoreEvent<K, V> event = StoreEvents.updateEvent(key, previousValue.get(), newValue) --> Line_6 $$ listener.onEvent(event) [FD]

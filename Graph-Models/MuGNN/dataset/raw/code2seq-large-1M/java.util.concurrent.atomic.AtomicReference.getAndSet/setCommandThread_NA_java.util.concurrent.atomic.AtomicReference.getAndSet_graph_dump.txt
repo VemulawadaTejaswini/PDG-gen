@@ -1,0 +1,5 @@
+Line_2 $$ void setCommandThread(Thread thread) --> Line_3 $$ Thread old = commandThread.getAndSet(thread) [CD]
+Line_2 $$ void setCommandThread(Thread thread) --> Line_3 $$ Thread old = commandThread.getAndSet(thread) [FD]
+Line_2 $$ void setCommandThread(Thread thread) --> Line_4 $$ if (old != null) [CD]
+Line_3 $$ Thread old = commandThread.getAndSet(thread) --> Line_4 $$ if (old != null) [FD]
+Line_3 $$ Thread old = commandThread.getAndSet(thread) --> Line_5 $$ throw new IllegalStateException(String.format("Command state set twice (thread %s ->%s)", old.getName(), Thread.currentThread().getName())) [FD]

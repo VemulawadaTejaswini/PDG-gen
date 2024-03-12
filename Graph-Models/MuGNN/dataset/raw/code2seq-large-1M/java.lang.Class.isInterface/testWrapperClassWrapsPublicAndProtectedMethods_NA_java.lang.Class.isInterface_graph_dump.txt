@@ -1,0 +1,8 @@
+Line_3 $$ for (Class<?> wrapper : wrapperClasses) --> Line_4 $$ if (wrapper.isInterface()) [FD]
+Line_3 $$ for (Class<?> wrapper : wrapperClasses) --> Line_7 $$ List<Method> wrapperMethods = getPublicAndProtectedMethods(wrapper) [FD]
+Line_3 $$ for (Class<?> wrapper : wrapperClasses) --> Line_8 $$ List<Method> methodsToWrap = getPublicAndProtectedMethods(wrapper.getSuperclass()) [FD]
+Line_3 $$ for (Class<?> wrapper : wrapperClasses) --> Line_9 $$ System.out.println("verify " + wrapper.getName() + " is wrapping " + wrapper.getSuperclass().getName() + " well") [FD]
+Line_3 $$ for (Class<?> wrapper : wrapperClasses) --> Line_10 $$ String msg = wrapper.getCanonicalName() + " does not wrap method: " [FD]
+Line_11 $$ for (Method m : methodsToWrap) --> Line_12 $$ if (isMethodContained(m, methodsToIgnore)) [FD]
+Line_11 $$ for (Method m : methodsToWrap) --> Line_15 $$ assertTrue(msg + m.toString(), isMethodContained(m, wrapperMethods)) [FD]
+Line_7 $$ List<Method> wrapperMethods = getPublicAndProtectedMethods(wrapper) --> Line_15 $$ assertTrue(msg + m.toString(), isMethodContained(m, wrapperMethods)) [FD]

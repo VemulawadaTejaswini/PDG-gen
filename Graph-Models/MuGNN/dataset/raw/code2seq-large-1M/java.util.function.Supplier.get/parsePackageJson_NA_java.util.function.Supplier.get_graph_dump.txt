@@ -1,0 +1,6 @@
+Line_2 $$ public Map<String, Object> parsePackageJson(final Supplier<InputStream> supplier) --> Line_3 $$ try (InputStream is = new BufferedInputStream(supplier.get())) [FD]
+Line_4 $$ final CompressorStreamFactory compressorStreamFactory = new CompressorStreamFactory() --> Line_5 $$ try (InputStream cis = compressorStreamFactory.createCompressorInputStream(GZIP, is)) [FD]
+Line_3 $$ try (InputStream is = new BufferedInputStream(supplier.get())) --> Line_5 $$ try (InputStream cis = compressorStreamFactory.createCompressorInputStream(GZIP, is)) [FD]
+Line_6 $$ final ArchiveStreamFactory archiveFactory = new ArchiveStreamFactory() --> Line_7 $$ try (ArchiveInputStream ais = archiveFactory.createArchiveInputStream(TAR, cis)) [FD]
+Line_5 $$ try (InputStream cis = compressorStreamFactory.createCompressorInputStream(GZIP, is)) --> Line_7 $$ try (ArchiveInputStream ais = archiveFactory.createArchiveInputStream(TAR, cis)) [FD]
+Line_7 $$ try (ArchiveInputStream ais = archiveFactory.createArchiveInputStream(TAR, cis)) --> Line_8 $$ return parsePackageJsonInternal(ais) [FD]

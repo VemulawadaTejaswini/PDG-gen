@@ -1,0 +1,8 @@
+Line_2 $$ private void writeLongHeader(byte type, long val) --> Line_3 $$ if ((val & 0xFFFFFFFF00000000L) == 0) [CD]
+Line_3 $$ if ((val & 0xFFFFFFFF00000000L) == 0) --> Line_4 $$ writeIntHeader(type, (int) val) [CD]
+Line_2 $$ private void writeLongHeader(byte type, long val) --> Line_4 $$ writeIntHeader(type, (int) val) [FD]
+Line_3 $$ if ((val & 0xFFFFFFFF00000000L) == 0) --> Line_6 $$ writeHeader(ByteBufferSerializerDefs.makeHeader(type, ByteBufferSerializerDefs.SUBTYPE_LONG)) [CD]
+Line_2 $$ private void writeLongHeader(byte type, long val) --> Line_6 $$ writeHeader(ByteBufferSerializerDefs.makeHeader(type, ByteBufferSerializerDefs.SUBTYPE_LONG)) [FD]
+Line_3 $$ if ((val & 0xFFFFFFFF00000000L) == 0) --> Line_7 $$ ensureCapacity(ByteBufferSerializerDefs.SIZE_LONG) [CD]
+Line_3 $$ if ((val & 0xFFFFFFFF00000000L) == 0) --> Line_8 $$ mByteBuffer.putLong(val) [CD]
+Line_2 $$ private void writeLongHeader(byte type, long val) --> Line_8 $$ mByteBuffer.putLong(val) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void returnsTasksFromAllPages() --> Line_3 $$ ECSAsyncClient ecs = mock(FakeECSAsyncClient.class, Mockito.CALLS_REAL_METHODS) [CD]
+Line_2 $$ public void returnsTasksFromAllPages() --> Line_4 $$ TaskLister tasks = new TaskLister(ecs, CLUSTER_ARN) [CD]
+Line_2 $$ public void returnsTasksFromAllPages() --> Line_5 $$ List<ClusterSnapshot.Task> describe = tasks.describe().join() [CD]
+Line_4 $$ TaskLister tasks = new TaskLister(ecs, CLUSTER_ARN) --> Line_5 $$ List<ClusterSnapshot.Task> describe = tasks.describe().join() [FD]
+Line_2 $$ public void returnsTasksFromAllPages() --> Line_6 $$ assertThat(describe.stream().map(ClusterSnapshot.Task::<>getArn).collect(Collectors.toList()), containsInAnyOrder("1", "2", "3", "4", "5", "6")) [CD]
+Line_5 $$ List<ClusterSnapshot.Task> describe = tasks.describe().join() --> Line_6 $$ assertThat(describe.stream().map(ClusterSnapshot.Task::<>getArn).collect(Collectors.toList()), containsInAnyOrder("1", "2", "3", "4", "5", "6")) [FD]

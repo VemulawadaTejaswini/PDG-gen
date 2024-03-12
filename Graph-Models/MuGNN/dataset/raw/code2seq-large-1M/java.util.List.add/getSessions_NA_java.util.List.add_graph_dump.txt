@@ -1,0 +1,5 @@
+Line_2 $$ public TabularData getSessions() throws IOException --> Line_3 $$ List<ConnectorSession> sessions = new ArrayList() [CD]
+Line_4 $$ for (SessionID sessionID : connector.getSessions()) --> Line_5 $$ Session session = Session.lookupSession(sessionID) [FD]
+Line_3 $$ List<ConnectorSession> sessions = new ArrayList() --> Line_6 $$ sessions.add(new ConnectorSession(session, sessionExporter.getSessionName(sessionID))) [FD]
+Line_4 $$ for (SessionID sessionID : connector.getSessions()) --> Line_6 $$ sessions.add(new ConnectorSession(session, sessionExporter.getSessionName(sessionID))) [FD]
+Line_3 $$ List<ConnectorSession> sessions = new ArrayList() --> Line_9 $$ return tabularDataAdapter.fromBeanList("Sessions", "Session", "sessionID", sessions) [FD]

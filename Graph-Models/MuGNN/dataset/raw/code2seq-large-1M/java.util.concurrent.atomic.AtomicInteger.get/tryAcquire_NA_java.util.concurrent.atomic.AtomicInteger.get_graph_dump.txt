@@ -1,0 +1,8 @@
+Line_2 $$ public int tryAcquire() --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ int value = subscribedChannelsAmount.get() [CD]
+Line_3 $$ while (true) --> Line_5 $$ if (value == 0) [CD]
+Line_4 $$ int value = subscribedChannelsAmount.get() --> Line_5 $$ if (value == 0) [FD]
+Line_5 $$ if (value == 0) --> Line_6 $$ return -1 [CD]
+Line_3 $$ while (true) --> Line_8 $$ if (subscribedChannelsAmount.compareAndSet(value, value - 1)) [CD]
+Line_4 $$ int value = subscribedChannelsAmount.get() --> Line_8 $$ if (subscribedChannelsAmount.compareAndSet(value, value - 1)) [FD]
+Line_8 $$ if (subscribedChannelsAmount.compareAndSet(value, value - 1)) --> Line_9 $$ return value - 1 [CD]

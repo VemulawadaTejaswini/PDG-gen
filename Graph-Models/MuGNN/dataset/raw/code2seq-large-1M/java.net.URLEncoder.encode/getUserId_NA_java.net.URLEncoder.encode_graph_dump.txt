@@ -1,0 +1,5 @@
+Line_2 $$ private static String getUserId(String userName) --> Line_4 $$ String encodedUsername = URLEncoder.encode(userName, "UTF-8") [FD]
+Line_4 $$ String encodedUsername = URLEncoder.encode(userName, "UTF-8") --> Line_5 $$ HttpGet httpGet = new HttpGet(getUserIdUrl(encodedUsername).replace("https:", "http:")) [FD]
+Line_5 $$ HttpGet httpGet = new HttpGet(getUserIdUrl(encodedUsername).replace("https:", "http:")) --> Line_6 $$ httpGet.setConfig(RequestConfig.custom().setProxy(getBorderProxy()).build()) [FD]
+Line_5 $$ HttpGet httpGet = new HttpGet(getUserIdUrl(encodedUsername).replace("https:", "http:")) --> Line_7 $$ PageObjectLogging.logInfo("USER_ID_REQUEST", httpGet.getURI().toString()) [FD]
+Line_5 $$ HttpGet httpGet = new HttpGet(getUserIdUrl(encodedUsername).replace("https:", "http:")) --> Line_8 $$ return executeAndRetry(httpGet, extractUserId()) [FD]

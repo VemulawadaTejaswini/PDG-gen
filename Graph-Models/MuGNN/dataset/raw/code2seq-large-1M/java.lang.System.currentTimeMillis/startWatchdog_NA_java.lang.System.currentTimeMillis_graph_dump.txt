@@ -1,0 +1,8 @@
+Line_2 $$ protected void startWatchdog(long startTime) --> Line_3 $$ long destTime = startTime + ACTION_FIRERER_TIMEOUT [CD]
+Line_2 $$ protected void startWatchdog(long startTime) --> Line_4 $$ long timeUntilFreezeState = System.currentTimeMillis() - destTime [CD]
+Line_2 $$ protected void startWatchdog(long startTime) --> Line_5 $$ if (timeUntilFreezeState <= 0) [CD]
+Line_4 $$ long timeUntilFreezeState = System.currentTimeMillis() - destTime --> Line_5 $$ if (timeUntilFreezeState <= 0) [FD]
+Line_5 $$ if (timeUntilFreezeState <= 0) --> Line_6 $$ sendIsBlocking(true) [CD]
+Line_8 $$ watchdogTimerTask = new TimerTask() --> Line_10 $$ sendIsBlocking(true) [CD]
+Line_5 $$ if (timeUntilFreezeState <= 0) --> Line_13 $$ watchdogTimer.schedule(watchdogTimerTask, timeUntilFreezeState) [CD]
+Line_4 $$ long timeUntilFreezeState = System.currentTimeMillis() - destTime --> Line_13 $$ watchdogTimer.schedule(watchdogTimerTask, timeUntilFreezeState) [FD]

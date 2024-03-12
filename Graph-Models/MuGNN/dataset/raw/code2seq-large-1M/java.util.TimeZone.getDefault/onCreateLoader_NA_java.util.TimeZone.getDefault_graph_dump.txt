@@ -1,0 +1,8 @@
+Line_6 $$ DateTime startOfMonth = new DateTime(year, month, 1, 0, 0, 0, 0) --> Line_7 $$ long start = startOfMonth.minusDays(7).getMilliseconds(TimeZone.getDefault()) [FD]
+Line_6 $$ DateTime startOfMonth = new DateTime(year, month, 1, 0, 0, 0, 0) --> Line_8 $$ long end = startOfMonth.getEndOfMonth().plusDays(7).getMilliseconds(TimeZone.getDefault()) [FD]
+Line_5 $$ Uri.Builder builder = CalendarProviderProxy.INSTANCES_URI.buildUpon() --> Line_9 $$ ContentUris.appendId(builder, start) [FD]
+Line_7 $$ long start = startOfMonth.minusDays(7).getMilliseconds(TimeZone.getDefault()) --> Line_9 $$ ContentUris.appendId(builder, start) [FD]
+Line_5 $$ Uri.Builder builder = CalendarProviderProxy.INSTANCES_URI.buildUpon() --> Line_10 $$ ContentUris.appendId(builder, end) [FD]
+Line_8 $$ long end = startOfMonth.getEndOfMonth().plusDays(7).getMilliseconds(TimeZone.getDefault()) --> Line_10 $$ ContentUris.appendId(builder, end) [FD]
+Line_5 $$ Uri.Builder builder = CalendarProviderProxy.INSTANCES_URI.buildUpon() --> Line_11 $$ return new CursorLoader(getActivity(), builder.build(), null, String.format(Locale.US, CalendarContractCompat.Instances.EVENT_ID + " = %d", getArguments().getLong(DatabaseConstants.KEY_PLANID)), null, null) [FD]
+Line_2 $$ public Loader<Cursor> onCreateLoader(int id, Bundle args) --> Line_15 $$ return null [CD]

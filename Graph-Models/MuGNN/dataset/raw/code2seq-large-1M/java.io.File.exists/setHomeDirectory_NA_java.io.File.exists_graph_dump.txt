@@ -1,0 +1,7 @@
+Line_2 $$ public static void setHomeDirectory(String pathname) --> Line_3 $$ File mh = new File(pathname) [CD]
+Line_2 $$ public static void setHomeDirectory(String pathname) --> Line_4 $$ if (!mh.exists()) [CD]
+Line_3 $$ File mh = new File(pathname) --> Line_4 $$ if (!mh.exists()) [FD]
+Line_4 $$ if (!mh.exists()) --> Line_5 $$ Log.error("Error - the specified home directory does not exist (" + pathname + ")") [CD]
+Line_4 $$ if (!mh.exists()) --> Line_6 $$ if (!mh.canRead() || !mh.canWrite()) [CD]
+Line_3 $$ File mh = new File(pathname) --> Line_6 $$ if (!mh.canRead() || !mh.canWrite()) [FD]
+Line_6 $$ if (!mh.canRead() || !mh.canWrite()) --> Line_7 $$ Log.error("Error - the user running this application can not read " + "and write to the specified home directory (" + pathname + "). " + "Please grant the executing user read and write permissions.") [CD]

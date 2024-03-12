@@ -1,0 +1,8 @@
+Line_2 $$ public static byte[] getKeyValue(Jedis jedis, final byte[] key) --> Line_3 $$ Map<byte[], byte[]> fieldValueMap = jedis.hgetAll(key) [FD]
+Line_2 $$ public static byte[] getKeyValue(Jedis jedis, final byte[] key) --> Line_3 $$ Map<byte[], byte[]> fieldValueMap = jedis.hgetAll(key) [CD]
+Line_2 $$ public static byte[] getKeyValue(Jedis jedis, final byte[] key) --> Line_4 $$ List<Map.Entry<byte[], byte[]>> entries = new ArrayList<Map.Entry<byte[], byte[]>>(fieldValueMap.entrySet()) [CD]
+Line_3 $$ Map<byte[], byte[]> fieldValueMap = jedis.hgetAll(key) --> Line_4 $$ List<Map.Entry<byte[], byte[]>> entries = new ArrayList<Map.Entry<byte[], byte[]>>(fieldValueMap.entrySet()) [FD]
+Line_2 $$ public static byte[] getKeyValue(Jedis jedis, final byte[] key) --> Line_5 $$ entries.sort(( entry1,  entry2) -> (int) (ByteUtils.bytesToLong(entry1.getKey()) - ByteUtils.bytesToLong(entry2.getKey()))) [CD]
+Line_2 $$ public static byte[] getKeyValue(Jedis jedis, final byte[] key) --> Line_6 $$ if (entries.isEmpty()) [CD]
+Line_6 $$ if (entries.isEmpty()) --> Line_7 $$ return null [CD]
+Line_2 $$ public static byte[] getKeyValue(Jedis jedis, final byte[] key) --> Line_9 $$ return entries.get(entries.size() - 1).getValue() [CD]

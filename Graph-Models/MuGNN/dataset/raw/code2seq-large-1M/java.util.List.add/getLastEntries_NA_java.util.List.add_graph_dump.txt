@@ -1,0 +1,6 @@
+Line_2 $$ public List<String> getLastEntries(Feed feed) --> Line_3 $$ List<String> list = new ArrayList() [CD]
+Line_2 $$ public List<String> getLastEntries(Feed feed) --> Line_5 $$ String key = buildRedisEntryKey(feed) [FD]
+Line_4 $$ try (Jedis jedis = pool.getResource()) --> Line_6 $$ Set<String> members = jedis.smembers(key) [FD]
+Line_3 $$ List<String> list = new ArrayList() --> Line_8 $$ list.add(member) [FD]
+Line_7 $$ for (String member : members) --> Line_8 $$ list.add(member) [FD]
+Line_2 $$ public List<String> getLastEntries(Feed feed) --> Line_11 $$ return list [CD]

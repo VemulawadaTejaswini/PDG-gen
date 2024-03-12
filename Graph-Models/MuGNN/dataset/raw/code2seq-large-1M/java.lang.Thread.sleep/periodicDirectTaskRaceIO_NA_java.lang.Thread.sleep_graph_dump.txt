@@ -1,0 +1,7 @@
+Line_2 $$ public void periodicDirectTaskRaceIO() throws Exception --> Line_3 $$ final Scheduler scheduler = Schedulers.io() [CD]
+Line_2 $$ public void periodicDirectTaskRaceIO() throws Exception --> Line_4 $$ for (int i = 0; i < 100; i++) [CD]
+Line_4 $$ for (int i = 0; i < 100; i++) --> Line_5 $$ final Disposable d = scheduler.schedulePeriodicallyDirect(Functions.EMPTY_RUNNABLE, 0, 0, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ final Scheduler scheduler = Schedulers.io() --> Line_5 $$ final Disposable d = scheduler.schedulePeriodicallyDirect(Functions.EMPTY_RUNNABLE, 0, 0, TimeUnit.MILLISECONDS) [FD]
+Line_4 $$ for (int i = 0; i < 100; i++) --> Line_6 $$ Thread.sleep(1) [CD]
+Line_4 $$ for (int i = 0; i < 100; i++) --> Line_7 $$ d.dispose() [CD]
+Line_5 $$ final Disposable d = scheduler.schedulePeriodicallyDirect(Functions.EMPTY_RUNNABLE, 0, 0, TimeUnit.MILLISECONDS) --> Line_7 $$ d.dispose() [FD]

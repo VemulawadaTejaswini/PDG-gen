@@ -1,0 +1,5 @@
+Line_3 $$ Statement s = createStatement() --> Line_5 $$ s.executeUpdate("drop schema SESSION restrict") [FD]
+Line_3 $$ Statement s = createStatement() --> Line_9 $$ assertUpdateCount(s, 0, "DECLARE GLOBAL TEMPORARY TABLE SESSION.t2(c21 int) on commit delete rows not logged") [FD]
+Line_3 $$ Statement s = createStatement() --> Line_10 $$ ResultSet rs1 = s.executeQuery("select count(schemaname) from sys.sysschemas where CAST(schemaname AS VARCHAR(128)) like 'SESSION'") [FD]
+Line_10 $$ ResultSet rs1 = s.executeQuery("select count(schemaname) from sys.sysschemas where CAST(schemaname AS VARCHAR(128)) like 'SESSION'") --> Line_11 $$ JDBC.assertSingleValueResultSet(rs1, "0") [FD]
+Line_3 $$ Statement s = createStatement() --> Line_12 $$ assertUpdateCount(s, 0, "DROP TABLE SESSION.t2") [FD]

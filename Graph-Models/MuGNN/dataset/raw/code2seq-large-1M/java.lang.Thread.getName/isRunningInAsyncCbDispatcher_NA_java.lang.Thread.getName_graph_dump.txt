@@ -1,0 +1,6 @@
+Line_2 $$ private Exception isRunningInAsyncCbDispatcher() --> Line_3 $$ StackTraceElement[] stack = UnitTestUtilities.getStackTraceByName(Thread.currentThread().getName()) [CD]
+Line_4 $$ for (StackTraceElement el : stack) --> Line_5 $$ System.err.println(el) [FD]
+Line_4 $$ for (StackTraceElement el : stack) --> Line_6 $$ if (el.toString().contains("cbexec")) [FD]
+Line_6 $$ if (el.toString().contains("cbexec")) --> Line_7 $$ return null [CD]
+Line_2 $$ private Exception isRunningInAsyncCbDispatcher() --> Line_10 $$ return new Exception(String.format("Callback not executed from dispatcher:\n %s\n", Arrays.toString(stack))) [CD]
+Line_3 $$ StackTraceElement[] stack = UnitTestUtilities.getStackTraceByName(Thread.currentThread().getName()) --> Line_10 $$ return new Exception(String.format("Callback not executed from dispatcher:\n %s\n", Arrays.toString(stack))) [FD]

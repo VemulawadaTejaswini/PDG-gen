@@ -1,0 +1,5 @@
+Line_2 $$ private static Object getNumberValue(MessageAttributeValue value) --> Line_3 $$ String numberType = value.getDataType().substring(MessageAttributeDataTypes.NUMBER.length() + 1) [FD]
+Line_2 $$ private static Object getNumberValue(MessageAttributeValue value) --> Line_3 $$ String numberType = value.getDataType().substring(MessageAttributeDataTypes.NUMBER.length() + 1) [CD]
+Line_3 $$ String numberType = value.getDataType().substring(MessageAttributeDataTypes.NUMBER.length() + 1) --> Line_5 $$ Class<? extends Number> numberTypeClass = Class.forName(numberType).asSubclass(Number.class) [FD]
+Line_2 $$ private static Object getNumberValue(MessageAttributeValue value) --> Line_6 $$ return NumberUtils.parseNumber(value.getStringValue(), numberTypeClass) [FD]
+Line_2 $$ private static Object getNumberValue(MessageAttributeValue value) --> Line_8 $$ throw new MessagingException(String.format("Message attribute with value '%s' and data type '%s' could not be converted " + "into a Number because target class was not found.", value.getStringValue(), value.getDataType()), e) [FD]

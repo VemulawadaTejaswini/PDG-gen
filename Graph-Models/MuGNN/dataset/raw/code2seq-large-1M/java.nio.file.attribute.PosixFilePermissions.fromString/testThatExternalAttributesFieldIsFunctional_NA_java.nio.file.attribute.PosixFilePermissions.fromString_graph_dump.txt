@@ -1,0 +1,6 @@
+Line_2 $$ public void testThatExternalAttributesFieldIsFunctional() throws IOException --> Line_3 $$ ImmutableList<String> samplePermissions = ImmutableList.of("rwxrwxrwx", "rw-r--r--", "--x--x--x", "---------") [CD]
+Line_4 $$ for (String stringPermissions : samplePermissions) --> Line_5 $$ long permissions = MorePosixFilePermissions.toMode(PosixFilePermissions.fromString(stringPermissions)) [FD]
+Line_6 $$ try (CustomZipOutputStream out = ZipOutputStreams.newOutputStream(output, mode)) --> Line_10 $$ out.putNextEntry(entry) [FD]
+Line_6 $$ try (CustomZipOutputStream out = ZipOutputStreams.newOutputStream(output, mode)) --> Line_11 $$ out.write(new byte[0]) [FD]
+Line_13 $$ try (ZipFile in = new ZipFile(output.toFile())) --> Line_14 $$ Enumeration<ZipArchiveEntry> entries = in.getEntries() [FD]
+Line_5 $$ long permissions = MorePosixFilePermissions.toMode(PosixFilePermissions.fromString(stringPermissions)) --> Line_16 $$ assertEquals(permissions, entry.getExternalAttributes() >> 16) [FD]

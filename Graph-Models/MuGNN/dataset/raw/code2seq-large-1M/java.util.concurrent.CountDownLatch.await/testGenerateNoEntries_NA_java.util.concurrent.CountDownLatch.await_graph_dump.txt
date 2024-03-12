@@ -1,0 +1,6 @@
+Line_2 $$ public void testGenerateNoEntries() throws Exception --> Line_3 $$ Destination dest = new ActiveMQQueue(QUEUE_NAME) [CD]
+Line_2 $$ public void testGenerateNoEntries() throws Exception --> Line_4 $$ produceStringMessages(dest, false) [CD]
+Line_3 $$ Destination dest = new ActiveMQQueue(QUEUE_NAME) --> Line_4 $$ produceStringMessages(dest, false) [FD]
+Line_5 $$ try (IgniteDataStreamer<String, String> dataStreamer = grid().dataStreamer(DEFAULT_CACHE_NAME)) --> Line_6 $$ JmsStreamer<TextMessage, String, String> jmsStreamer = newJmsStreamer(TextMessage.class, dataStreamer) [FD]
+Line_3 $$ Destination dest = new ActiveMQQueue(QUEUE_NAME) --> Line_8 $$ jmsStreamer.setDestination(dest) [FD]
+Line_9 $$ CountDownLatch latch = subscribeToPutEvents(1) --> Line_11 $$ assertFalse(latch.await(3, TimeUnit.SECONDS)) [FD]

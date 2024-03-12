@@ -1,0 +1,8 @@
+Line_2 $$ protected void writeBlob(T obj, BlobContainer blobContainer, String blobName) throws IOException --> Line_3 $$ BytesReference bytes = write(obj) [CD]
+Line_2 $$ protected void writeBlob(T obj, BlobContainer blobContainer, String blobName) throws IOException --> Line_3 $$ BytesReference bytes = write(obj) [FD]
+Line_6 $$ try (OutputStreamIndexOutput indexOutput = new OutputStreamIndexOutput(resourceDesc, blobName, byteArrayOutputStream, BUFFER_SIZE)) --> Line_7 $$ CodecUtil.writeHeader(indexOutput, codec, VERSION) [FD]
+Line_3 $$ BytesReference bytes = write(obj) --> Line_12 $$ bytes.writeTo(indexOutputOutputStream) [FD]
+Line_8 $$ try (OutputStream indexOutputOutputStream = new IndexOutputOutputStream(indexOutput) --> Line_12 $$ bytes.writeTo(indexOutputOutputStream) [FD]
+Line_6 $$ try (OutputStreamIndexOutput indexOutput = new OutputStreamIndexOutput(resourceDesc, blobName, byteArrayOutputStream, BUFFER_SIZE)) --> Line_14 $$ CodecUtil.writeFooter(indexOutput) [FD]
+Line_4 $$ try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) --> Line_16 $$ BytesArray bytesArray = new BytesArray(byteArrayOutputStream.toByteArray()) [FD]
+Line_2 $$ protected void writeBlob(T obj, BlobContainer blobContainer, String blobName) throws IOException --> Line_18 $$ blobContainer.writeBlob(blobName, stream, bytesArray.length()) [FD]

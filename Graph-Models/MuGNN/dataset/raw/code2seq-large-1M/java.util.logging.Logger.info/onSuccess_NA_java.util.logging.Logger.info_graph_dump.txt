@@ -1,0 +1,8 @@
+Line_2 $$ public void onSuccess() --> Line_3 $$ if (payload != null) [CD]
+Line_5 $$ long version = AwsIotJsonDeserializer.deserializeVersion(device, getStringPayload()) --> Line_6 $$ if (version > 0) [FD]
+Line_6 $$ if (version > 0) --> Line_7 $$ LOGGER.info("Received shadow version number: " + version) [CD]
+Line_6 $$ if (version > 0) --> Line_8 $$ boolean updated = device.getLocalVersion().compareAndSet(-1, version) [CD]
+Line_5 $$ long version = AwsIotJsonDeserializer.deserializeVersion(device, getStringPayload()) --> Line_8 $$ boolean updated = device.getLocalVersion().compareAndSet(-1, version) [FD]
+Line_6 $$ if (version > 0) --> Line_9 $$ if (!updated) [CD]
+Line_8 $$ boolean updated = device.getLocalVersion().compareAndSet(-1, version) --> Line_9 $$ if (!updated) [FD]
+Line_9 $$ if (!updated) --> Line_10 $$ LOGGER.warning("Local version not updated likely because newer version recieved from shadow update") [CD]

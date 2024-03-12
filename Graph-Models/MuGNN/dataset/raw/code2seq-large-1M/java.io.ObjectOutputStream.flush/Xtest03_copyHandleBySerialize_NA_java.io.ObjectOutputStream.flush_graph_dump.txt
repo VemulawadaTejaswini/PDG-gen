@@ -1,0 +1,8 @@
+Line_5 $$ final ObjectOutputStream oos = new ObjectOutputStream(baos) --> Line_6 $$ oos.writeObject(ejbHandle) [FD]
+Line_5 $$ final ObjectOutputStream oos = new ObjectOutputStream(baos) --> Line_7 $$ oos.flush() [FD]
+Line_5 $$ final ObjectOutputStream oos = new ObjectOutputStream(baos) --> Line_8 $$ oos.close() [FD]
+Line_4 $$ final ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_9 $$ final ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()) [FD]
+Line_10 $$ final ObjectInputStream ois = new ObjectInputStream(bais) --> Line_11 $$ final Handle copy = (Handle) ois.readObject() [FD]
+Line_11 $$ final Handle copy = (Handle) ois.readObject() --> Line_12 $$ final EJBObject object = copy.getEJBObject() [FD]
+Line_12 $$ final EJBObject object = copy.getEJBObject() --> Line_13 $$ assertNotNull("The EJBObject is null", object) [FD]
+Line_12 $$ final EJBObject object = copy.getEJBObject() --> Line_14 $$ assertTrue("EJBObjects are not identical", object.isIdentical(ejbObject)) [FD]

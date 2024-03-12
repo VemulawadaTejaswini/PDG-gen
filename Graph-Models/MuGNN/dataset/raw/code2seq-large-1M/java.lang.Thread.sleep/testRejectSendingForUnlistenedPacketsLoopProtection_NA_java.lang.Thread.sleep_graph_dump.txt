@@ -1,0 +1,8 @@
+Line_2 $$ public void testRejectSendingForUnlistenedPacketsLoopProtection() throws InterruptedException --> Line_3 $$ BufferingPacketListener<RejectPacket> c1RejectListener = new BufferingPacketListener(NetworkConstants.ENetworkKey.REJECT_PACKET, new GenericDeserializer(RejectPacket.class)) [CD]
+Line_2 $$ public void testRejectSendingForUnlistenedPacketsLoopProtection() throws InterruptedException --> Line_4 $$ c1.registerListener(c1RejectListener) [CD]
+Line_2 $$ public void testRejectSendingForUnlistenedPacketsLoopProtection() throws InterruptedException --> Line_5 $$ c2.sendPacket(ENetworkKey.TEST_PACKET, new EmptyPacket()) [CD]
+Line_2 $$ public void testRejectSendingForUnlistenedPacketsLoopProtection() throws InterruptedException --> Line_6 $$ assertEquals(0, c1RejectListener.popBufferedPackets().size()) [CD]
+Line_2 $$ public void testRejectSendingForUnlistenedPacketsLoopProtection() throws InterruptedException --> Line_7 $$ Thread.sleep(50L) [CD]
+Line_2 $$ public void testRejectSendingForUnlistenedPacketsLoopProtection() throws InterruptedException --> Line_8 $$ List<RejectPacket> rejects = c1RejectListener.popBufferedPackets() [CD]
+Line_2 $$ public void testRejectSendingForUnlistenedPacketsLoopProtection() throws InterruptedException --> Line_9 $$ assertEquals(0, rejects.size()) [CD]
+Line_8 $$ List<RejectPacket> rejects = c1RejectListener.popBufferedPackets() --> Line_9 $$ assertEquals(0, rejects.size()) [FD]

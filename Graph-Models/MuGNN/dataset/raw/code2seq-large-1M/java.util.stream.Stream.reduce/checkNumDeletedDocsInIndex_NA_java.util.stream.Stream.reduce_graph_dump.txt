@@ -1,0 +1,6 @@
+Line_2 $$ public CassandraUtils checkNumDeletedDocsInIndex(Integer expectedNumDeletedDocs) --> Line_3 $$ List<Long> numDeletedDocsInEachNode = getJMXAttribute(indexBean, "NumDeletedDocs") [CD]
+Line_2 $$ public CassandraUtils checkNumDeletedDocsInIndex(Integer expectedNumDeletedDocs) --> Line_4 $$ Long totalNumDocs = numDeletedDocsInEachNode.stream().reduce(0L, ( l,  r) -> l + r) / (long) REPLICATION [CD]
+Line_3 $$ List<Long> numDeletedDocsInEachNode = getJMXAttribute(indexBean, "NumDeletedDocs") --> Line_4 $$ Long totalNumDocs = numDeletedDocsInEachNode.stream().reduce(0L, ( l,  r) -> l + r) / (long) REPLICATION [FD]
+Line_2 $$ public CassandraUtils checkNumDeletedDocsInIndex(Integer expectedNumDeletedDocs) --> Line_5 $$ assertEquals("NumDeletedDocs in index is not correct", new Long(expectedNumDeletedDocs), totalNumDocs) [CD]
+Line_4 $$ Long totalNumDocs = numDeletedDocsInEachNode.stream().reduce(0L, ( l,  r) -> l + r) / (long) REPLICATION --> Line_5 $$ assertEquals("NumDeletedDocs in index is not correct", new Long(expectedNumDeletedDocs), totalNumDocs) [FD]
+Line_2 $$ public CassandraUtils checkNumDeletedDocsInIndex(Integer expectedNumDeletedDocs) --> Line_6 $$ return this [CD]

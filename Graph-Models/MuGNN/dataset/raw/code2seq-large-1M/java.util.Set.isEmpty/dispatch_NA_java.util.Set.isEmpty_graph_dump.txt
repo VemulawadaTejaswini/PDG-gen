@@ -1,0 +1,6 @@
+Line_2 $$ public <T, C extends RedisCommand<K, V, T>> C dispatch(C command) --> Line_3 $$ if (!channels.isEmpty() || !patterns.isEmpty()) [CD]
+Line_3 $$ if (!channels.isEmpty() || !patterns.isEmpty()) --> Line_4 $$ if (!ALLOWED_COMMANDS_SUBSCRIBED.contains(command.getType().name())) [CD]
+Line_2 $$ public <T, C extends RedisCommand<K, V, T>> C dispatch(C command) --> Line_4 $$ if (!ALLOWED_COMMANDS_SUBSCRIBED.contains(command.getType().name())) [FD]
+Line_2 $$ public <T, C extends RedisCommand<K, V, T>> C dispatch(C command) --> Line_5 $$ throw new RedisException(String.format("Command %s not allowed while subscribed. Allowed commands are: %s", command.getType().name(), ALLOWED_COMMANDS_SUBSCRIBED)) [FD]
+Line_2 $$ public <T, C extends RedisCommand<K, V, T>> C dispatch(C command) --> Line_8 $$ return super.dispatch(command) [FD]
+Line_2 $$ public <T, C extends RedisCommand<K, V, T>> C dispatch(C command) --> Line_8 $$ return super.dispatch(command) [CD]

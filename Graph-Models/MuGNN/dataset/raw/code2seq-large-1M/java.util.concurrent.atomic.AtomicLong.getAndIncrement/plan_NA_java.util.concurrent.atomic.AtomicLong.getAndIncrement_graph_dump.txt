@@ -1,0 +1,7 @@
+Line_4 $$ final RecordingObserver recording = new RecordingObserver() --> Line_5 $$ final AttemptObservers observers = AttemptObservers.of(observer, recording) [FD]
+Line_5 $$ final AttemptObservers observers = AttemptObservers.of(observer, recording) --> Line_6 $$ observers.planStart(sql) [FD]
+Line_5 $$ final AttemptObservers observers = AttemptObservers.of(observer, recording) --> Line_7 $$ plan = handler.getPlan(config.cloneWithNewObserver(observers), sql, sqlNode) [FD]
+Line_9 $$ final Long handle = PREPARE_ID.getAndIncrement() --> Line_10 $$ state = ServerPreparedStatementState.newBuilder().setHandle(handle).setSqlQuery(sql).setPrepareId(context.getQueryId()).build() [FD]
+Line_9 $$ final Long handle = PREPARE_ID.getAndIncrement() --> Line_11 $$ planCache.put(handle, prepared) [FD]
+Line_8 $$ PreparedPlan prepared = new PreparedPlan(context.getQueryId(), context.getQueryUserName(), sql, plan, recording) --> Line_11 $$ planCache.put(handle, prepared) [FD]
+Line_5 $$ final AttemptObservers observers = AttemptObservers.of(observer, recording) --> Line_12 $$ observers.planCompleted(new ExecutionPlan(plan, ImmutableList.<PlanFragment>of())) [FD]

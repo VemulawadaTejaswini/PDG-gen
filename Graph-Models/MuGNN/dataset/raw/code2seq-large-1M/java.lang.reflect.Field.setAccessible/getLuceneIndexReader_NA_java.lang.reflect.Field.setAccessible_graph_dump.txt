@@ -1,0 +1,7 @@
+Line_4 $$ TokenRead tokenRead = tx.tokenRead() --> Line_5 $$ LabelSchemaDescriptor labelSchemaDescriptor = SchemaDescriptorFactory.forLabel(tokenRead.nodeLabel(label), tokenRead.propertyKey(key)) [FD]
+Line_2 $$ private SimpleIndexReader getLuceneIndexReader(String label, String key) throws IndexNotFoundKernelException --> Line_5 $$ LabelSchemaDescriptor labelSchemaDescriptor = SchemaDescriptorFactory.forLabel(tokenRead.nodeLabel(label), tokenRead.propertyKey(key)) [FD]
+Line_5 $$ LabelSchemaDescriptor labelSchemaDescriptor = SchemaDescriptorFactory.forLabel(tokenRead.nodeLabel(label), tokenRead.propertyKey(key)) --> Line_7 $$ SchemaIndexDescriptor descriptor = recordStorageEngine.storeReadLayer().indexGetForSchema(labelSchemaDescriptor) [FD]
+Line_7 $$ SchemaIndexDescriptor descriptor = recordStorageEngine.storeReadLayer().indexGetForSchema(labelSchemaDescriptor) --> Line_8 $$ IndexReader indexReader = stmt.getStoreStatement().getIndexReader(descriptor) [FD]
+Line_3 $$ try (KernelStatement stmt = (KernelStatement) tx.acquireStatement()) --> Line_8 $$ IndexReader indexReader = stmt.getStoreStatement().getIndexReader(descriptor) [FD]
+Line_8 $$ IndexReader indexReader = stmt.getStoreStatement().getIndexReader(descriptor) --> Line_9 $$ if (indexReader instanceof FusionIndexBase) [FD]
+Line_8 $$ IndexReader indexReader = stmt.getStoreStatement().getIndexReader(descriptor) --> Line_13 $$ IndexReader[] instances = (IndexReader[]) field.get(indexReader) [FD]

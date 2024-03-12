@@ -1,0 +1,8 @@
+Line_2 $$ public void bind(final HttpRequestHandler httpReqHandler, final HttpServerStatisticsHandler statisticsHandler) throws Exception --> Line_10 $$ ch.pipeline().addLast("stats", statisticsHandler) [FD]
+Line_16 $$ if (m_maxKeepAliveRequests > 0 || m_maxKeepAliveTimeout > 0) --> Line_17 $$ ch.pipeline().addLast("keepAliveHandler", new KeepAliveHandler(m_maxKeepAliveRequests, m_maxKeepAliveTimeout)) [CD]
+Line_2 $$ public void bind(final HttpRequestHandler httpReqHandler, final HttpServerStatisticsHandler statisticsHandler) throws Exception --> Line_19 $$ ch.pipeline().addLast("handler", httpReqHandler) [FD]
+Line_22 $$ if (m_config.getRvcBufSz() > 0) --> Line_23 $$ m_serverbootstrap.childOption(ChannelOption.SO_RCVBUF, (int) m_config.getRvcBufSz()) [CD]
+Line_25 $$ if (m_config.getSendBufSz() > 0) --> Line_26 $$ m_serverbootstrap.childOption(ChannelOption.SO_SNDBUF, (int) m_config.getSendBufSz()) [CD]
+Line_2 $$ public void bind(final HttpRequestHandler httpReqHandler, final HttpServerStatisticsHandler statisticsHandler) throws Exception --> Line_32 $$ m_serverbootstrap.bind(m_acceptorSocket).sync() [CD]
+Line_2 $$ public void bind(final HttpRequestHandler httpReqHandler, final HttpServerStatisticsHandler statisticsHandler) throws Exception --> Line_33 $$ if (!m_ipAddress.isLoopbackAddress() && !m_ipAddress.isAnyLocalAddress()) [CD]
+Line_33 $$ if (!m_ipAddress.isLoopbackAddress() && !m_ipAddress.isAnyLocalAddress()) --> Line_35 $$ m_serverbootstrap.bind(m_localAcceptorSocket).sync() [CD]

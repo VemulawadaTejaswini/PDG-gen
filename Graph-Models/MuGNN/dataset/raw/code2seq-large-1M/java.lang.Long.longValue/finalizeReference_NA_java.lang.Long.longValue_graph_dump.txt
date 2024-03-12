@@ -1,0 +1,6 @@
+Line_2 $$ public void finalizeReference(REXP ref) throws REngineException, REXPMismatchException --> Line_3 $$ if (ref != null && ref.isReference()) [CD]
+Line_2 $$ public void finalizeReference(REXP ref) throws REngineException, REXPMismatchException --> Line_3 $$ if (ref != null && ref.isReference()) [FD]
+Line_3 $$ if (ref != null && ref.isReference()) --> Line_4 $$ long ptr = ((Long) ((REXPReference) ref).getHandle()).longValue() [CD]
+Line_3 $$ if (ref != null && ref.isReference()) --> Line_5 $$ boolean obtainedLock = rniMutex.safeLock() [CD]
+Line_4 $$ long ptr = ((Long) ((REXPReference) ref).getHandle()).longValue() --> Line_7 $$ rni.rniRelease(ptr) [FD]
+Line_9 $$ if (obtainedLock) --> Line_10 $$ rniMutex.unlock() [CD]

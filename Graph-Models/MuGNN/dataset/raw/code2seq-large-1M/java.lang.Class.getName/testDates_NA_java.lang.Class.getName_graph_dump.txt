@@ -1,0 +1,6 @@
+Line_2 $$ public void testDates() throws IOException, ParseException --> Line_3 $$ mongoClient.getDatabase(URI.getDatabase()).getCollection(URI.getCollection()).insertOne(new Document("today", new Date())) [CD]
+Line_2 $$ public void testDates() throws IOException, ParseException --> Line_4 $$ MongoCollection<Document> outputCollection = mongoClient.getDatabase("mongo_hadoop").getCollection("datetests") [CD]
+Line_2 $$ public void testDates() throws IOException, ParseException --> Line_5 $$ PigTest.runScript("/pig/datestest.pig") [CD]
+Line_4 $$ MongoCollection<Document> outputCollection = mongoClient.getDatabase("mongo_hadoop").getCollection("datetests") --> Line_6 $$ for (Document doc : outputCollection.find()) [FD]
+Line_6 $$ for (Document doc : outputCollection.find()) --> Line_7 $$ Object today = doc.get("today") [FD]
+Line_7 $$ Object today = doc.get("today") --> Line_8 $$ assertTrue("Expected a Date, but got a " + today.getClass().getName(), today instanceof Date) [FD]

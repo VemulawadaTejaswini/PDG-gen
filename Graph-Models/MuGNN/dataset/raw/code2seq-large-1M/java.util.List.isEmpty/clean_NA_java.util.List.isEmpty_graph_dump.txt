@@ -1,0 +1,6 @@
+Line_4 $$ FileSystem fs = getMetaClient().getFs() --> Line_5 $$ List<String> partitionsToClean = FSUtils.getAllPartitionPaths(fs, getMetaClient().getBasePath(), config.shouldAssumeDatePartitioning()) [FD]
+Line_5 $$ List<String> partitionsToClean = FSUtils.getAllPartitionPaths(fs, getMetaClient().getBasePath(), config.shouldAssumeDatePartitioning()) --> Line_7 $$ if (partitionsToClean.isEmpty()) [FD]
+Line_7 $$ if (partitionsToClean.isEmpty()) --> Line_8 $$ logger.info("Nothing to clean here mom. It is already clean") [CD]
+Line_7 $$ if (partitionsToClean.isEmpty()) --> Line_9 $$ return Collections.emptyList() [CD]
+Line_5 $$ List<String> partitionsToClean = FSUtils.getAllPartitionPaths(fs, getMetaClient().getBasePath(), config.shouldAssumeDatePartitioning()) --> Line_11 $$ return cleanPartitionPaths(partitionsToClean, jsc) [FD]
+Line_2 $$ public List<HoodieCleanStat> clean(JavaSparkContext jsc) --> Line_11 $$ return cleanPartitionPaths(partitionsToClean, jsc) [FD]

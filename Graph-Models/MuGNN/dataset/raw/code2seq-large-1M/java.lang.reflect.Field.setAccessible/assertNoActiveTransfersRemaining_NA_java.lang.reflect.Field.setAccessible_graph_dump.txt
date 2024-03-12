@@ -1,0 +1,8 @@
+Line_2 $$ public void assertNoActiveTransfersRemaining() throws Exception --> Line_3 $$ Iterable<BlobTransferTarget> transferTargets = internalCluster().getInstances(BlobTransferTarget.class) [CD]
+Line_2 $$ public void assertNoActiveTransfersRemaining() throws Exception --> Line_4 $$ final Field activeTransfersField = BlobTransferTarget.class.getDeclaredField("activeTransfers") [CD]
+Line_2 $$ public void assertNoActiveTransfersRemaining() throws Exception --> Line_5 $$ activeTransfersField.setAccessible(true) [CD]
+Line_2 $$ public void assertNoActiveTransfersRemaining() throws Exception --> Line_6 $$ assertBusy(() -> [CD]
+Line_8 $$ Map<UUID, BlobTransferStatus> activeTransfers = null --> Line_10 $$ activeTransfers = (Map<UUID, BlobTransferStatus>) activeTransfersField.get(transferTarget) [FD]
+Line_7 $$ for (BlobTransferTarget transferTarget : transferTargets) --> Line_10 $$ activeTransfers = (Map<UUID, BlobTransferStatus>) activeTransfersField.get(transferTarget) [FD]
+Line_8 $$ Map<UUID, BlobTransferStatus> activeTransfers = null --> Line_11 $$ assertThat(activeTransfers.keySet(), empty()) [FD]
+Line_10 $$ activeTransfers = (Map<UUID, BlobTransferStatus>) activeTransfersField.get(transferTarget) --> Line_11 $$ assertThat(activeTransfers.keySet(), empty()) [FD]

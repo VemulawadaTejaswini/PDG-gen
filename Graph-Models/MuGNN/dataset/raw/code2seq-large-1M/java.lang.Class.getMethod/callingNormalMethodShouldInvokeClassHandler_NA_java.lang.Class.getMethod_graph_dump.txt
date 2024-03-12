@@ -1,0 +1,6 @@
+Line_2 $$ public void callingNormalMethodShouldInvokeClassHandler() throws Exception --> Line_3 $$ Class<?> exampleClass = loadClass(AnExampleClass.class) [CD]
+Line_2 $$ public void callingNormalMethodShouldInvokeClassHandler() throws Exception --> Line_4 $$ Method normalMethod = exampleClass.getMethod("normalMethod", String.class, int.class) [CD]
+Line_2 $$ public void callingNormalMethodShouldInvokeClassHandler() throws Exception --> Line_5 $$ Object exampleInstance = exampleClass.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void callingNormalMethodShouldInvokeClassHandler() throws Exception --> Line_6 $$ assertEquals("response from methodInvoked: AnExampleClass.normalMethod(java.lang.String value1, int 123)", normalMethod.invoke(exampleInstance, "value1", 123)) [CD]
+Line_5 $$ Object exampleInstance = exampleClass.getDeclaredConstructor().newInstance() --> Line_6 $$ assertEquals("response from methodInvoked: AnExampleClass.normalMethod(java.lang.String value1, int 123)", normalMethod.invoke(exampleInstance, "value1", 123)) [FD]
+Line_2 $$ public void callingNormalMethodShouldInvokeClassHandler() throws Exception --> Line_7 $$ assertThat(transcript).containsExactly("methodInvoked: AnExampleClass.__constructor__()", "methodInvoked: AnExampleClass.normalMethod(java.lang.String value1, int 123)") [CD]

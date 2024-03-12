@@ -1,0 +1,4 @@
+Line_2 $$ public void errorIsImmediate() --> Line_3 $$ Mono<String> source = Mono.<String>error(new IllegalStateException("boom")).hide() [CD]
+Line_2 $$ public void errorIsImmediate() --> Line_4 $$ Duration d = StepVerifier.create(new MonoDelayElement(source, 10, TimeUnit.SECONDS, defaultSchedulerForDelay()).log()).expectSubscription().verifyErrorMessage("boom") [CD]
+Line_2 $$ public void errorIsImmediate() --> Line_5 $$ assertThat(d).isLessThan(Duration.ofSeconds(1)) [CD]
+Line_4 $$ Duration d = StepVerifier.create(new MonoDelayElement(source, 10, TimeUnit.SECONDS, defaultSchedulerForDelay()).log()).expectSubscription().verifyErrorMessage("boom") --> Line_5 $$ assertThat(d).isLessThan(Duration.ofSeconds(1)) [FD]

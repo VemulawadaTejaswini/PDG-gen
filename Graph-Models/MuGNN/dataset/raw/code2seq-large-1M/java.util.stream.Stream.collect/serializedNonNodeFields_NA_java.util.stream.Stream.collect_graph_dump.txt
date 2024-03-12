@@ -1,0 +1,8 @@
+Line_2 $$ private Map<String, Object> serializedNonNodeFields() --> Line_3 $$ List<Field> fields = Arrays.stream(this.getClass().getDeclaredFields()).filter( f -> [CD]
+Line_2 $$ private Map<String, Object> serializedNonNodeFields() --> Line_6 $$ Map<String, Object> res = new HashMap() [CD]
+Line_7 $$ for (Field field : fields) --> Line_8 $$ field.setAccessible(true) [FD]
+Line_6 $$ Map<String, Object> res = new HashMap() --> Line_10 $$ res.put(field.getName(), field.get(this)) [FD]
+Line_7 $$ for (Field field : fields) --> Line_10 $$ res.put(field.getName(), field.get(this)) [FD]
+Line_7 $$ for (Field field : fields) --> Line_12 $$ throw new RuntimeException("Failed to read field " + field.getName() + " in node " + getNodeName()) [FD]
+Line_7 $$ for (Field field : fields) --> Line_14 $$ field.setAccessible(false) [FD]
+Line_2 $$ private Map<String, Object> serializedNonNodeFields() --> Line_16 $$ return res [CD]

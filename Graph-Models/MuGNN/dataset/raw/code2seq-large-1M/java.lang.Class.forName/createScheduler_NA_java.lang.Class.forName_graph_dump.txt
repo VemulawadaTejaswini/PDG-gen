@@ -1,0 +1,5 @@
+Line_2 $$ protected ResourceScheduler createScheduler() --> Line_3 $$ String schedulerClassName = conf.get(YarnConfiguration.RM_SCHEDULER, YarnConfiguration.DEFAULT_RM_SCHEDULER) [CD]
+Line_2 $$ protected ResourceScheduler createScheduler() --> Line_4 $$ LOG.info("Using Scheduler: " + schedulerClassName) [CD]
+Line_3 $$ String schedulerClassName = conf.get(YarnConfiguration.RM_SCHEDULER, YarnConfiguration.DEFAULT_RM_SCHEDULER) --> Line_6 $$ Class<?> schedulerClazz = Class.forName(schedulerClassName) [FD]
+Line_6 $$ Class<?> schedulerClazz = Class.forName(schedulerClassName) --> Line_7 $$ if (ResourceScheduler.class.isAssignableFrom(schedulerClazz)) [FD]
+Line_6 $$ Class<?> schedulerClazz = Class.forName(schedulerClassName) --> Line_8 $$ return (ResourceScheduler) ReflectionUtils.newInstance(schedulerClazz, this.conf) [FD]

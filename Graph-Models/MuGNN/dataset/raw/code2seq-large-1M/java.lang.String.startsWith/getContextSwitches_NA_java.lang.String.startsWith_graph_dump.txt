@@ -1,0 +1,7 @@
+Line_2 $$ public long getContextSwitches() --> Line_3 $$ List<String> procStat = FileUtil.readFile("/proc/stat") [CD]
+Line_4 $$ for (String stat : procStat) --> Line_5 $$ if (stat.startsWith("ctxt ")) [FD]
+Line_5 $$ if (stat.startsWith("ctxt ")) --> Line_6 $$ String[] ctxtArr = ParseUtil.whitespaces.split(stat) [CD]
+Line_4 $$ for (String stat : procStat) --> Line_6 $$ String[] ctxtArr = ParseUtil.whitespaces.split(stat) [FD]
+Line_5 $$ if (stat.startsWith("ctxt ")) --> Line_7 $$ if (ctxtArr.length == 2) [CD]
+Line_7 $$ if (ctxtArr.length == 2) --> Line_8 $$ return ParseUtil.parseLongOrDefault(ctxtArr[1], 0) [CD]
+Line_2 $$ public long getContextSwitches() --> Line_12 $$ return -1 [CD]

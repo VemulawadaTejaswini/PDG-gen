@@ -1,0 +1,5 @@
+Line_2 $$ public void executeShouldUseEvalInCaseNoSha1PresentForGivenScript() --> Line_3 $$ when(scriptingCommandsMock.evalSha(anyString(), any(ReturnType.class), anyInt())).thenReturn(Flux.error(new RedisSystemException("NOSCRIPT No matching script. Please use EVAL.", new Exception()))) [CD]
+Line_2 $$ public void executeShouldUseEvalInCaseNoSha1PresentForGivenScript() --> Line_4 $$ when(scriptingCommandsMock.eval(any(), any(ReturnType.class), anyInt())).thenReturn(Flux.just(ByteBuffer.wrap("FOO".getBytes()))) [CD]
+Line_2 $$ public void executeShouldUseEvalInCaseNoSha1PresentForGivenScript() --> Line_5 $$ StepVerifier.create(executor.execute(SCRIPT)).expectNext("FOO").verifyComplete() [CD]
+Line_2 $$ public void executeShouldUseEvalInCaseNoSha1PresentForGivenScript() --> Line_6 $$ verify(scriptingCommandsMock).evalSha(anyString(), any(ReturnType.class), anyInt()) [CD]
+Line_2 $$ public void executeShouldUseEvalInCaseNoSha1PresentForGivenScript() --> Line_7 $$ verify(scriptingCommandsMock).eval(any(), any(ReturnType.class), anyInt()) [CD]

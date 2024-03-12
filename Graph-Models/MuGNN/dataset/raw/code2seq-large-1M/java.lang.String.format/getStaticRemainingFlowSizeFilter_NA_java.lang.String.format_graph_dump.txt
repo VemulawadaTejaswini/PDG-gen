@@ -1,0 +1,7 @@
+Line_2 $$ private static FactorFilter<Executor, ExecutableFlow> getStaticRemainingFlowSizeFilter() --> Line_3 $$ return FactorFilter.create(STATICREMAININGFLOWSIZE_FILTER_NAME, ( filteringTarget,  referencingObject) -> [CD]
+Line_4 $$ if (null == filteringTarget) --> Line_5 $$ logger.debug(String.format("%s : filtering out the target as it is null.", STATICREMAININGFLOWSIZE_FILTER_NAME)) [CD]
+Line_4 $$ if (null == filteringTarget) --> Line_6 $$ return false [CD]
+Line_8 $$ final ExecutorInfo stats = filteringTarget.getExecutorInfo() --> Line_9 $$ if (null == stats) [FD]
+Line_9 $$ if (null == stats) --> Line_10 $$ logger.debug(String.format("%s : filtering out %s as it's stats is unavailable.", STATICREMAININGFLOWSIZE_FILTER_NAME, filteringTarget.toString())) [CD]
+Line_9 $$ if (null == stats) --> Line_11 $$ return false [CD]
+Line_8 $$ final ExecutorInfo stats = filteringTarget.getExecutorInfo() --> Line_13 $$ return stats.getRemainingFlowCapacity() > 0 [FD]

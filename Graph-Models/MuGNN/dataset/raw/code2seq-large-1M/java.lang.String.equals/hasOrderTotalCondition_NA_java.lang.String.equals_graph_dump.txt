@@ -1,0 +1,8 @@
+Line_2 $$ private static boolean hasOrderTotalCondition(GenericValue productPromo, Delegator delegator) throws GenericEntityException --> Line_3 $$ boolean hasOtCond = false [CD]
+Line_2 $$ private static boolean hasOrderTotalCondition(GenericValue productPromo, Delegator delegator) throws GenericEntityException --> Line_4 $$ List<GenericValue> productPromoConds = EntityQuery.use(delegator).from("ProductPromoCond").where("productPromoId", productPromo.get("productPromoId")).orderBy("productPromoCondSeqId").cache(true).queryList() [CD]
+Line_2 $$ private static boolean hasOrderTotalCondition(GenericValue productPromo, Delegator delegator) throws GenericEntityException --> Line_4 $$ List<GenericValue> productPromoConds = EntityQuery.use(delegator).from("ProductPromoCond").where("productPromoId", productPromo.get("productPromoId")).orderBy("productPromoCondSeqId").cache(true).queryList() [FD]
+Line_5 $$ for (GenericValue productPromoCond : productPromoConds) --> Line_6 $$ String inputParamEnumId = productPromoCond.getString("inputParamEnumId") [FD]
+Line_6 $$ String inputParamEnumId = productPromoCond.getString("inputParamEnumId") --> Line_7 $$ if ("PPIP_ORDER_TOTAL".equals(inputParamEnumId)) [FD]
+Line_7 $$ if ("PPIP_ORDER_TOTAL".equals(inputParamEnumId)) --> Line_8 $$ hasOtCond = true [CD]
+Line_3 $$ boolean hasOtCond = false --> Line_8 $$ hasOtCond = true [FD]
+Line_2 $$ private static boolean hasOrderTotalCondition(GenericValue productPromo, Delegator delegator) throws GenericEntityException --> Line_12 $$ return hasOtCond [CD]

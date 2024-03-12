@@ -1,0 +1,8 @@
+Line_2 $$ public List<DialogOccupant> getActualDialogOccupantsByDialog(String dialogId) --> Line_3 $$ List<DialogOccupant> dialogOccupantsList = Collections.emptyList() [CD]
+Line_5 $$ QueryBuilder<DialogOccupant, Long> queryBuilder = dao.queryBuilder() --> Line_6 $$ Where<DialogOccupant, Long> where = queryBuilder.where() [FD]
+Line_6 $$ Where<DialogOccupant, Long> where = queryBuilder.where() --> Line_7 $$ where.and(where.eq(DialogOccupant.Column.STATUS, DialogOccupant.Status.ACTUAL), where.eq(Dialog.Column.ID, dialogId)) [FD]
+Line_2 $$ public List<DialogOccupant> getActualDialogOccupantsByDialog(String dialogId) --> Line_7 $$ where.and(where.eq(DialogOccupant.Column.STATUS, DialogOccupant.Status.ACTUAL), where.eq(Dialog.Column.ID, dialogId)) [FD]
+Line_5 $$ QueryBuilder<DialogOccupant, Long> queryBuilder = dao.queryBuilder() --> Line_8 $$ PreparedQuery<DialogOccupant> preparedQuery = queryBuilder.prepare() [FD]
+Line_3 $$ List<DialogOccupant> dialogOccupantsList = Collections.emptyList() --> Line_9 $$ dialogOccupantsList = dao.query(preparedQuery) [FD]
+Line_8 $$ PreparedQuery<DialogOccupant> preparedQuery = queryBuilder.prepare() --> Line_9 $$ dialogOccupantsList = dao.query(preparedQuery) [FD]
+Line_2 $$ public List<DialogOccupant> getActualDialogOccupantsByDialog(String dialogId) --> Line_13 $$ return dialogOccupantsList [CD]

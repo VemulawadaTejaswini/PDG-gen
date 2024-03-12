@@ -1,0 +1,6 @@
+Line_2 $$ protected byte[] encryptSessionInfo(int encAlgorithm, byte[] key, byte[] sessionInfo) throws PGPException --> Line_4 $$ String cName = PGPUtil.getSymmetricCipherName(encAlgorithm) [FD]
+Line_2 $$ protected byte[] encryptSessionInfo(int encAlgorithm, byte[] key, byte[] sessionInfo) throws PGPException --> Line_6 $$ SecretKey sKey = new SecretKeySpec(key, PGPUtil.getSymmetricCipherName(encAlgorithm)) [FD]
+Line_5 $$ Cipher c = helper.createCipher(cName + "/CFB/NoPadding") --> Line_7 $$ c.init(Cipher.ENCRYPT_MODE, sKey, new IvParameterSpec(new byte[c.getBlockSize()])) [FD]
+Line_6 $$ SecretKey sKey = new SecretKeySpec(key, PGPUtil.getSymmetricCipherName(encAlgorithm)) --> Line_7 $$ c.init(Cipher.ENCRYPT_MODE, sKey, new IvParameterSpec(new byte[c.getBlockSize()])) [FD]
+Line_5 $$ Cipher c = helper.createCipher(cName + "/CFB/NoPadding") --> Line_8 $$ return c.doFinal(sessionInfo, 0, sessionInfo.length) [FD]
+Line_2 $$ protected byte[] encryptSessionInfo(int encAlgorithm, byte[] key, byte[] sessionInfo) throws PGPException --> Line_8 $$ return c.doFinal(sessionInfo, 0, sessionInfo.length) [FD]

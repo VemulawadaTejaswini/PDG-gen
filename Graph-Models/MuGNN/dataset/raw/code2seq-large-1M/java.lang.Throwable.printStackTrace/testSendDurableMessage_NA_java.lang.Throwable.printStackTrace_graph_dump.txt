@@ -1,0 +1,8 @@
+Line_6 $$ Session s = conn.createSession(true, Session.SESSION_TRANSACTED) --> Line_7 $$ Queue jmsQueue = s.createQueue(address.toString()) [FD]
+Line_6 $$ Session s = conn.createSession(true, Session.SESSION_TRANSACTED) --> Line_8 $$ MessageProducer p = s.createProducer(jmsQueue) [FD]
+Line_7 $$ Queue jmsQueue = s.createQueue(address.toString()) --> Line_8 $$ MessageProducer p = s.createProducer(jmsQueue) [FD]
+Line_8 $$ MessageProducer p = s.createProducer(jmsQueue) --> Line_9 $$ p.setDeliveryMode(DeliveryMode.PERSISTENT) [FD]
+Line_11 $$ for (int i = 0; i < 10; i++) --> Line_12 $$ p.send(s.createTextMessage("payload")) [CD]
+Line_8 $$ MessageProducer p = s.createProducer(jmsQueue) --> Line_12 $$ p.send(s.createTextMessage("payload")) [FD]
+Line_6 $$ Session s = conn.createSession(true, Session.SESSION_TRANSACTED) --> Line_12 $$ p.send(s.createTextMessage("payload")) [FD]
+Line_6 $$ Session s = conn.createSession(true, Session.SESSION_TRANSACTED) --> Line_14 $$ s.commit() [FD]

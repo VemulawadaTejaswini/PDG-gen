@@ -1,0 +1,6 @@
+Line_3 $$ for (Component c : this.monitorPanel.getComponents()) --> Line_4 $$ if (c instanceof DownloadMonitorPanel) [FD]
+Line_4 $$ if (c instanceof DownloadMonitorPanel) --> Line_5 $$ if (((DownloadMonitorPanel) c).thread.isAlive()) [CD]
+Line_5 $$ if (((DownloadMonitorPanel) c).thread.isAlive()) --> Line_6 $$ DownloadMonitorPanel panel = (DownloadMonitorPanel) c [CD]
+Line_5 $$ if (((DownloadMonitorPanel) c).thread.isAlive()) --> Line_7 $$ panel.cancelButtonActionPerformed(null) [CD]
+Line_6 $$ DownloadMonitorPanel panel = (DownloadMonitorPanel) c --> Line_7 $$ panel.cancelButtonActionPerformed(null) [FD]
+Line_10 $$ while (panel.thread.isAlive() && System.currentTimeMillis() - t0 < 500) --> Line_11 $$ Thread.sleep(10) [CD]

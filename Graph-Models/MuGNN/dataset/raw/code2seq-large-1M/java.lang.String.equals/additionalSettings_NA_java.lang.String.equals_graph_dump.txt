@@ -1,0 +1,7 @@
+Line_2 $$ public Settings additionalSettings() --> Line_3 $$ String discoveryType = DiscoveryModule.DISCOVERY_TYPE_SETTING.get(settings) [CD]
+Line_2 $$ public Settings additionalSettings() --> Line_4 $$ if (discoveryType.equals(AZURE)) [CD]
+Line_3 $$ String discoveryType = DiscoveryModule.DISCOVERY_TYPE_SETTING.get(settings) --> Line_4 $$ if (discoveryType.equals(AZURE)) [FD]
+Line_4 $$ if (discoveryType.equals(AZURE)) --> Line_5 $$ deprecationLogger.deprecated("using [" + DiscoveryModule.DISCOVERY_TYPE_SETTING.getKey() + "] to set hosts provider is deprecated; " + "set \"" + DiscoveryModule.DISCOVERY_HOSTS_PROVIDER_SETTING.getKey() + ": " + AZURE + "\" instead") [CD]
+Line_4 $$ if (discoveryType.equals(AZURE)) --> Line_6 $$ if (DiscoveryModule.DISCOVERY_HOSTS_PROVIDER_SETTING.exists(settings) == false) [CD]
+Line_6 $$ if (DiscoveryModule.DISCOVERY_HOSTS_PROVIDER_SETTING.exists(settings) == false) --> Line_7 $$ return Settings.builder().put(DiscoveryModule.DISCOVERY_HOSTS_PROVIDER_SETTING.getKey(), AZURE).build() [CD]
+Line_2 $$ public Settings additionalSettings() --> Line_10 $$ return Settings.EMPTY [CD]

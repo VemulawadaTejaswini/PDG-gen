@@ -1,0 +1,8 @@
+Line_4 $$ ClassLoader loader = Thread.currentThread().getContextClassLoader() --> Line_5 $$ if (loader == null) [FD]
+Line_5 $$ if (loader == null) --> Line_6 $$ loader = getClass().getClassLoader() [CD]
+Line_4 $$ ClassLoader loader = Thread.currentThread().getContextClassLoader() --> Line_6 $$ loader = getClass().getClassLoader() [FD]
+Line_2 $$ protected WebApplication createApplication(final String applicationClassName) --> Line_8 $$ final Class<?> applicationClass = Class.forName(applicationClassName, false, loader) [FD]
+Line_4 $$ ClassLoader loader = Thread.currentThread().getContextClassLoader() --> Line_8 $$ final Class<?> applicationClass = Class.forName(applicationClassName, false, loader) [FD]
+Line_6 $$ loader = getClass().getClassLoader() --> Line_8 $$ final Class<?> applicationClass = Class.forName(applicationClassName, false, loader) [FD]
+Line_8 $$ final Class<?> applicationClass = Class.forName(applicationClassName, false, loader) --> Line_9 $$ if (WebApplication.class.isAssignableFrom(applicationClass)) [FD]
+Line_8 $$ final Class<?> applicationClass = Class.forName(applicationClassName, false, loader) --> Line_10 $$ return (WebApplication) applicationClass.newInstance() [FD]

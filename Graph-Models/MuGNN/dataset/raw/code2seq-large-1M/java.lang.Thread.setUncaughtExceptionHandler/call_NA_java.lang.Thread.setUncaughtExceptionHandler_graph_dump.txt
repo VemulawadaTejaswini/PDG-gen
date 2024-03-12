@@ -1,0 +1,8 @@
+Line_2 $$ public SaturnJobReturn call() throws Exception --> Line_3 $$ Thread.currentThread().setUncaughtExceptionHandler(new UncaughtExceptionHandler() [CD]
+Line_3 $$ Thread.currentThread().setUncaughtExceptionHandler(new UncaughtExceptionHandler() --> Line_5 $$ if (e instanceof IllegalMonitorStateException || e instanceof ThreadDeath) [CD]
+Line_5 $$ if (e instanceof IllegalMonitorStateException || e instanceof ThreadDeath) --> Line_6 $$ log.warn(String.format(SaturnConstant.LOG_FORMAT_FOR_STRING, callable.getJobName(), "business thread pool maybe crashed"), e) [CD]
+Line_3 $$ Thread.currentThread().setUncaughtExceptionHandler(new UncaughtExceptionHandler() --> Line_6 $$ log.warn(String.format(SaturnConstant.LOG_FORMAT_FOR_STRING, callable.getJobName(), "business thread pool maybe crashed"), e) [FD]
+Line_5 $$ if (e instanceof IllegalMonitorStateException || e instanceof ThreadDeath) --> Line_7 $$ if (callFuture != null) [CD]
+Line_7 $$ if (callFuture != null) --> Line_8 $$ callFuture.cancel(false) [CD]
+Line_5 $$ if (e instanceof IllegalMonitorStateException || e instanceof ThreadDeath) --> Line_10 $$ log.warn(SaturnConstant.LOG_FORMAT, callable.getJobName(), "close the old business thread pool, and re-create new one") [CD]
+Line_5 $$ if (e instanceof IllegalMonitorStateException || e instanceof ThreadDeath) --> Line_11 $$ callable.getSaturnJob().getJobScheduler().reCreateExecutorService() [CD]

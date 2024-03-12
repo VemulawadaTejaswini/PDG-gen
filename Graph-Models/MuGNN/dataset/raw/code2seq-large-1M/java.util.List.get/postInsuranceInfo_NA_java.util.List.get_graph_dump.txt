@@ -1,0 +1,7 @@
+Line_2 $$ public Observable<String> postInsuranceInfo() --> Line_3 $$ RequestBuilder builder = RequestBuilder.create(String.class).requestMethod(Request.Method.POST).url(ApiConstant.API_CAR_INSURANCE).put("name", info.getName()).put("phone", info.getTelNum()).put("idCard", info.getCardId()).put("type", mInsuranceType == InsuranceType.NEW_CAR ? 1 : 2) [CD]
+Line_2 $$ public Observable<String> postInsuranceInfo() --> Line_4 $$ if (mInsuranceType == InsuranceType.NEW_CAR) [CD]
+Line_4 $$ if (mInsuranceType == InsuranceType.NEW_CAR) --> Line_5 $$ builder.put("idCardA", urls.get(0)).put("idCardB", urls.get(1)).put("invoice", urls.get(2)).put("carCertificate", urls.get(3)) [CD]
+Line_4 $$ if (mInsuranceType == InsuranceType.NEW_CAR) --> Line_7 $$ builder.put("idCardA", urls.get(0)).put("idCardB", urls.get(1)).put("vehicleLicenseA", urls.get(2)).put("vehicleLicenseB", urls.get(3)) [CD]
+Line_2 $$ public Observable<String> postInsuranceInfo() --> Line_9 $$ HttpGsonRequest<String> request = builder.build() [CD]
+Line_2 $$ public Observable<String> postInsuranceInfo() --> Line_10 $$ return RequestPool.gRequestPool.request(request).filter( response -> response != null && response.data != null).map( response -> response.data).observeOn(AndroidSchedulers.mainThread()) [CD]
+Line_9 $$ HttpGsonRequest<String> request = builder.build() --> Line_10 $$ return RequestPool.gRequestPool.request(request).filter( response -> response != null && response.data != null).map( response -> response.data).observeOn(AndroidSchedulers.mainThread()) [FD]

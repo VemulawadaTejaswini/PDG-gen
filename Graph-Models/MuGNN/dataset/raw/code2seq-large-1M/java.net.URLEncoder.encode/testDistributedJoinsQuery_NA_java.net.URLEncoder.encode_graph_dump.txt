@@ -1,0 +1,8 @@
+Line_2 $$ public void testDistributedJoinsQuery() throws Exception --> Line_3 $$ String qry = "select * from Person, \"organization\".Organization " + "where \"organization\".Organization.id = Person.orgId " + "and \"organization\".Organization.name = ?" [CD]
+Line_2 $$ public void testDistributedJoinsQuery() throws Exception --> Line_4 $$ String ret = content("person", GridRestCommand.EXECUTE_SQL_QUERY, "type", "Person", "distributedJoins", "true", "pageSize", "10", "qry", URLEncoder.encode(qry, CHARSET), "arg1", "o1") [CD]
+Line_3 $$ String qry = "select * from Person, \"organization\".Organization " + "where \"organization\".Organization.id = Person.orgId " + "and \"organization\".Organization.name = ?" --> Line_4 $$ String ret = content("person", GridRestCommand.EXECUTE_SQL_QUERY, "type", "Person", "distributedJoins", "true", "pageSize", "10", "qry", URLEncoder.encode(qry, CHARSET), "arg1", "o1") [FD]
+Line_2 $$ public void testDistributedJoinsQuery() throws Exception --> Line_5 $$ JsonNode items = jsonResponse(ret).get("items") [CD]
+Line_4 $$ String ret = content("person", GridRestCommand.EXECUTE_SQL_QUERY, "type", "Person", "distributedJoins", "true", "pageSize", "10", "qry", URLEncoder.encode(qry, CHARSET), "arg1", "o1") --> Line_5 $$ JsonNode items = jsonResponse(ret).get("items") [FD]
+Line_2 $$ public void testDistributedJoinsQuery() throws Exception --> Line_6 $$ assertEquals(2, items.size()) [CD]
+Line_5 $$ JsonNode items = jsonResponse(ret).get("items") --> Line_6 $$ assertEquals(2, items.size()) [FD]
+Line_2 $$ public void testDistributedJoinsQuery() throws Exception --> Line_7 $$ assertFalse(queryCursorFound()) [CD]

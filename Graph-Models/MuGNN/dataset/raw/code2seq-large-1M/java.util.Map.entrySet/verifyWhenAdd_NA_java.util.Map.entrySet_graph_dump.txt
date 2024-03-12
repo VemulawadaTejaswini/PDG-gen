@@ -1,0 +1,8 @@
+Line_2 $$ private void verifyWhenAdd(Map<String, String> envs) --> Line_3 $$ for (Map.Entry<String, String> entry : envs.entrySet()) [FD]
+Line_4 $$ EnvKey key = envKeyMap.get(entry.getKey()) --> Line_5 $$ if (key == null) [FD]
+Line_4 $$ EnvKey key = envKeyMap.get(entry.getKey()) --> Line_8 $$ if (key.isReadonly()) [FD]
+Line_4 $$ EnvKey key = envKeyMap.get(entry.getKey()) --> Line_9 $$ throw new IllegalOperationException(String.format("The env '%s' is readonly", key.name())) [FD]
+Line_4 $$ EnvKey key = envKeyMap.get(entry.getKey()) --> Line_11 $$ Set<String> values = key.availableValues() [FD]
+Line_11 $$ Set<String> values = key.availableValues() --> Line_12 $$ if (values == null) [FD]
+Line_11 $$ Set<String> values = key.availableValues() --> Line_15 $$ if (!values.contains(entry.getValue())) [FD]
+Line_4 $$ EnvKey key = envKeyMap.get(entry.getKey()) --> Line_16 $$ throw new IllegalOperationException(String.format("The value '%s' is not acceptable for env '%s", entry.getValue(), key.name())) [FD]

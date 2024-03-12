@@ -1,0 +1,7 @@
+Line_2 $$ public void lock() throws IllegalStateException --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ final boolean success = bytes.tryLockNanosLong(LOCK_OFFSET, lockTimeOutNS) [CD]
+Line_3 $$ while (true) --> Line_5 $$ if (success) [CD]
+Line_5 $$ if (success) --> Line_6 $$ return [CD]
+Line_3 $$ while (true) --> Line_7 $$ if (currentThread().isInterrupted()) [CD]
+Line_7 $$ if (currentThread().isInterrupted()) --> Line_10 $$ errorListener.onLockTimeout(bytes.threadIdForLockLong(LOCK_OFFSET)) [CD]
+Line_7 $$ if (currentThread().isInterrupted()) --> Line_11 $$ bytes.resetLockLong(LOCK_OFFSET) [CD]

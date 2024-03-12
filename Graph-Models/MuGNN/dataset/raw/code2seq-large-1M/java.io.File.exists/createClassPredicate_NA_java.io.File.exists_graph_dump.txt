@@ -1,0 +1,6 @@
+Line_2 $$ private Predicate<String> createClassPredicate() --> Line_3 $$ final Collection<String> classes = new HashSet() [CD]
+Line_4 $$ for (final File buildOutputDirectory : this.compiledCodeDirectories) --> Line_5 $$ if (buildOutputDirectory.exists()) [FD]
+Line_5 $$ if (buildOutputDirectory.exists()) --> Line_6 $$ final DirectoryClassPathRoot dcRoot = new DirectoryClassPathRoot(buildOutputDirectory) [CD]
+Line_5 $$ if (buildOutputDirectory.exists()) --> Line_7 $$ classes.addAll(FCollection.map(dcRoot.classNames(), toPredicate())) [CD]
+Line_6 $$ final DirectoryClassPathRoot dcRoot = new DirectoryClassPathRoot(buildOutputDirectory) --> Line_7 $$ classes.addAll(FCollection.map(dcRoot.classNames(), toPredicate())) [FD]
+Line_2 $$ private Predicate<String> createClassPredicate() --> Line_10 $$ return Prelude.or(FCollection.map(classes, Glob.toGlobPredicate())) [CD]

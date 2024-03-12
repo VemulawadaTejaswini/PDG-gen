@@ -1,0 +1,7 @@
+Line_2 $$ public void testQueryDoesNotArriveAtUnsubscribedHandler() throws Exception --> Line_3 $$ testSubject.subscribe(String.class.getName(), String.class, ( q) -> "1234") [CD]
+Line_2 $$ public void testQueryDoesNotArriveAtUnsubscribedHandler() throws Exception --> Line_4 $$ testSubject.subscribe(String.class.getName(), String.class, ( q) -> q.getPayload() + " is not here!").close() [CD]
+Line_2 $$ public void testQueryDoesNotArriveAtUnsubscribedHandler() throws Exception --> Line_5 $$ QueryMessage<String, String> testQueryMessage = new GenericQueryMessage("hello", singleStringResponse) [CD]
+Line_2 $$ public void testQueryDoesNotArriveAtUnsubscribedHandler() throws Exception --> Line_6 $$ CompletableFuture<String> result = testSubject.query(testQueryMessage).thenApply(QueryResponseMessage::<>getPayload) [CD]
+Line_5 $$ QueryMessage<String, String> testQueryMessage = new GenericQueryMessage("hello", singleStringResponse) --> Line_6 $$ CompletableFuture<String> result = testSubject.query(testQueryMessage).thenApply(QueryResponseMessage::<>getPayload) [FD]
+Line_2 $$ public void testQueryDoesNotArriveAtUnsubscribedHandler() throws Exception --> Line_7 $$ assertEquals("1234", result.get()) [CD]
+Line_6 $$ CompletableFuture<String> result = testSubject.query(testQueryMessage).thenApply(QueryResponseMessage::<>getPayload) --> Line_7 $$ assertEquals("1234", result.get()) [FD]

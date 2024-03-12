@@ -1,0 +1,7 @@
+Line_2 $$ public void jobAlreadyTerminalDoesNotSaveJobSpecification() --> Line_3 $$ final JobEntity jobEntity = Mockito.mock(JobEntity.class) [CD]
+Line_2 $$ public void jobAlreadyTerminalDoesNotSaveJobSpecification() --> Line_4 $$ final JobSpecification jobSpecification = Mockito.mock(JobSpecification.class) [CD]
+Line_2 $$ public void jobAlreadyTerminalDoesNotSaveJobSpecification() --> Line_5 $$ Mockito.when(this.jobRepository.findByUniqueId(Mockito.anyString())).thenReturn(Optional.of(jobEntity)) [CD]
+Line_2 $$ public void jobAlreadyTerminalDoesNotSaveJobSpecification() --> Line_6 $$ Mockito.when(jobEntity.isResolved()).thenReturn(false) [CD]
+Line_2 $$ public void jobAlreadyTerminalDoesNotSaveJobSpecification() --> Line_7 $$ Mockito.when(jobEntity.getStatus()).thenReturn(JobStatus.KILLED) [CD]
+Line_2 $$ public void jobAlreadyTerminalDoesNotSaveJobSpecification() --> Line_8 $$ this.jobPersistenceService.saveJobSpecification(UUID.randomUUID().toString(), jobSpecification) [CD]
+Line_2 $$ public void jobAlreadyTerminalDoesNotSaveJobSpecification() --> Line_9 $$ Mockito.verify(jobEntity, Mockito.never()).setCluster(Mockito.any(ClusterEntity.class)) [CD]

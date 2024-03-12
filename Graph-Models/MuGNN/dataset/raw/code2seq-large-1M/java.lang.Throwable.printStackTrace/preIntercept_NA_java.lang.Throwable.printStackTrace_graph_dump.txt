@@ -1,0 +1,8 @@
+Line_2 $$ public byte[] preIntercept(byte[] input, boolean isC2S) --> Line_3 $$ byte[] original = input [CD]
+Line_5 $$ PyObject someFunc = interpreter.get("preIntercept") --> Line_6 $$ if (someFunc == null) [FD]
+Line_2 $$ public byte[] preIntercept(byte[] input, boolean isC2S) --> Line_6 $$ if (someFunc == null) [FD]
+Line_6 $$ if (someFunc == null) --> Line_7 $$ return input [CD]
+Line_5 $$ PyObject someFunc = interpreter.get("preIntercept") --> Line_8 $$ PyObject result = someFunc.__call__(new PyByteArray(input), new PyBoolean(isC2S)) [FD]
+Line_8 $$ PyObject result = someFunc.__call__(new PyByteArray(input), new PyBoolean(isC2S)) --> Line_9 $$ PyByteArray array = (PyByteArray) result.__tojava__(Object.class) [FD]
+Line_11 $$ for (int i = 0; i < array.__len__(); i++) --> Line_12 $$ out[i] = (byte) array.get(i).__tojava__(Byte.class) [CD]
+Line_11 $$ for (int i = 0; i < array.__len__(); i++) --> Line_12 $$ out[i] = (byte) array.get(i).__tojava__(Byte.class) [FD]

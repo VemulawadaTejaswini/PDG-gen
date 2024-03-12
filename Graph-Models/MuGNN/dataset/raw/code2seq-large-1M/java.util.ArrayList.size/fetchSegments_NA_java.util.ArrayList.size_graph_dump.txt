@@ -1,0 +1,7 @@
+Line_2 $$ public int[] fetchSegments(String processorName) --> Line_3 $$ ArrayList<Integer> segments = mongoTemplate.trackingTokensCollection().find(eq("processorName", processorName)).sort(ascending("segment")).projection(fields(include("segment"), excludeId())).map( d -> d.get("segment", Integer.class)).into(new ArrayList()) [FD]
+Line_2 $$ public int[] fetchSegments(String processorName) --> Line_3 $$ ArrayList<Integer> segments = mongoTemplate.trackingTokensCollection().find(eq("processorName", processorName)).sort(ascending("segment")).projection(fields(include("segment"), excludeId())).map( d -> d.get("segment", Integer.class)).into(new ArrayList()) [CD]
+Line_2 $$ public int[] fetchSegments(String processorName) --> Line_4 $$ int[] ints = new int[segments.size()] [CD]
+Line_2 $$ public int[] fetchSegments(String processorName) --> Line_5 $$ for (int i = 0; i < ints.length; i++) [CD]
+Line_5 $$ for (int i = 0; i < ints.length; i++) --> Line_6 $$ ints[i] = segments.get(i) [FD]
+Line_5 $$ for (int i = 0; i < ints.length; i++) --> Line_6 $$ ints[i] = segments.get(i) [CD]
+Line_2 $$ public int[] fetchSegments(String processorName) --> Line_8 $$ return ints [CD]

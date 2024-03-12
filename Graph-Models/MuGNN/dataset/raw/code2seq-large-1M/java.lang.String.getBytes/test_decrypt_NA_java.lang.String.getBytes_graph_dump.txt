@@ -1,0 +1,7 @@
+Line_2 $$ public void test_decrypt() throws Exception --> Line_3 $$ when(kmsCryptoKeysDecrypt.execute()).thenReturn(new DecryptResponse().encodePlaintext("moo".getBytes(UTF_8))) [CD]
+Line_2 $$ public void test_decrypt() throws Exception --> Line_4 $$ byte[] plaintext = new KmsConnectionImpl("foo", "bar", retrier, kms).decrypt("key", "blah") [CD]
+Line_2 $$ public void test_decrypt() throws Exception --> Line_5 $$ verify(kmsCryptoKeys).decrypt(cryptoKeyName.capture(), decryptRequest.capture()) [CD]
+Line_2 $$ public void test_decrypt() throws Exception --> Line_6 $$ assertThat(cryptoKeyName.getValue()).isEqualTo("projects/foo/locations/global/keyRings/bar/cryptoKeys/key") [CD]
+Line_2 $$ public void test_decrypt() throws Exception --> Line_7 $$ assertThat(decryptRequest.getValue()).isEqualTo(new DecryptRequest().setCiphertext("blah")) [CD]
+Line_2 $$ public void test_decrypt() throws Exception --> Line_8 $$ assertThat(plaintext).isEqualTo("moo".getBytes(UTF_8)) [CD]
+Line_4 $$ byte[] plaintext = new KmsConnectionImpl("foo", "bar", retrier, kms).decrypt("key", "blah") --> Line_8 $$ assertThat(plaintext).isEqualTo("moo".getBytes(UTF_8)) [FD]

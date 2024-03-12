@@ -1,0 +1,8 @@
+Line_2 $$ public boolean validateConnection() --> Line_3 $$ if (reusable) [CD]
+Line_3 $$ if (reusable) --> Line_4 $$ final Endpoint endpoint = sessionRef.get() [CD]
+Line_3 $$ if (reusable) --> Line_5 $$ return endpoint != null && !endpoint.session.isClosed() [CD]
+Line_3 $$ if (reusable) --> Line_7 $$ final Endpoint endpoint = sessionRef.getAndSet(null) [CD]
+Line_3 $$ if (reusable) --> Line_8 $$ if (endpoint != null) [CD]
+Line_4 $$ final Endpoint endpoint = sessionRef.get() --> Line_8 $$ if (endpoint != null) [FD]
+Line_8 $$ if (endpoint != null) --> Line_9 $$ endpoint.session.shutdown(ShutdownType.GRACEFUL) [CD]
+Line_2 $$ public boolean validateConnection() --> Line_12 $$ return false [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static int loadESAPIPreferredJCEProvider() throws NoSuchProviderException --> Line_3 $$ String prefJCEProvider = ESAPI.securityConfiguration().getPreferredJCEProvider() [CD]
+Line_3 $$ String prefJCEProvider = ESAPI.securityConfiguration().getPreferredJCEProvider() --> Line_5 $$ if (prefJCEProvider == null || prefJCEProvider.trim().length() == 0) [FD]
+Line_5 $$ if (prefJCEProvider == null || prefJCEProvider.trim().length() == 0) --> Line_6 $$ logger.always(Logger.SECURITY_AUDIT, "No Encryptor.PreferredJCEProvider specified.") [CD]
+Line_5 $$ if (prefJCEProvider == null || prefJCEProvider.trim().length() == 0) --> Line_7 $$ return -1 [CD]
+Line_5 $$ if (prefJCEProvider == null || prefJCEProvider.trim().length() == 0) --> Line_9 $$ return insertProviderAt(prefJCEProvider, 1) [CD]
+Line_3 $$ String prefJCEProvider = ESAPI.securityConfiguration().getPreferredJCEProvider() --> Line_9 $$ return insertProviderAt(prefJCEProvider, 1) [FD]
+Line_12 $$ String msg = "failed to load *preferred* " + "JCE crypto provider, " + prefJCEProvider --> Line_13 $$ logger.always(Logger.SECURITY_AUDIT, msg) [FD]
+Line_12 $$ String msg = "failed to load *preferred* " + "JCE crypto provider, " + prefJCEProvider --> Line_14 $$ logger.error(Logger.SECURITY_FAILURE, msg) [FD]

@@ -1,0 +1,2 @@
+Line_2 $$ public CompletableFuture<Map<String, Data<Integer>>> getCurrentTxns() --> Line_3 $$ return getActiveEpoch(false).thenCompose( epoch -> store.getChildren(getEpochPath(epoch.getKey())).thenCompose( txIds -> Futures.allOfWithResults(txIds.stream().collect(Collectors.toMap( txId -> txId,  txId -> cache.getCachedData(getActiveTxPath(epoch.getKey(), txId)).exceptionally( e -> [CD]
+Line_4 $$ if (Exceptions.unwrap(e) instanceof StoreException.DataNotFoundException) --> Line_5 $$ return EMPTY_DATA [CD]

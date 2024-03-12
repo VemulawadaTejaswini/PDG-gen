@@ -1,0 +1,8 @@
+Line_2 $$ public Builder withBasicAuth(String username, String password) --> Line_3 $$ String credentials = username + ":" + password [CD]
+Line_2 $$ public Builder withBasicAuth(String username, String password) --> Line_4 $$ final String basic = "Basic " + BaseEncoding.base64().encode(credentials.getBytes()) [CD]
+Line_3 $$ String credentials = username + ":" + password --> Line_4 $$ final String basic = "Basic " + BaseEncoding.base64().encode(credentials.getBytes()) [FD]
+Line_4 $$ final String basic = "Basic " + BaseEncoding.base64().encode(credentials.getBytes()) --> Line_7 $$ Request.Builder requestBuilder = original.newBuilder().header("Authorization", basic).method(original.method(), original.body()) [FD]
+Line_6 $$ Request original = chain.request() --> Line_7 $$ Request.Builder requestBuilder = original.newBuilder().header("Authorization", basic).method(original.method(), original.body()) [FD]
+Line_7 $$ Request.Builder requestBuilder = original.newBuilder().header("Authorization", basic).method(original.method(), original.body()) --> Line_8 $$ Request request = requestBuilder.build() [FD]
+Line_8 $$ Request request = requestBuilder.build() --> Line_9 $$ return chain.proceed(request) [FD]
+Line_2 $$ public Builder withBasicAuth(String username, String password) --> Line_11 $$ return this [CD]

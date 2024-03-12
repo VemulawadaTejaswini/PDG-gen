@@ -1,0 +1,6 @@
+Line_2 $$ void enqueue(final long seqno, final boolean lastPacketInBlock, final long offsetInBlock, final Status ackStatus) --> Line_3 $$ final Packet p = new Packet(seqno, lastPacketInBlock, offsetInBlock, System.nanoTime(), ackStatus) [CD]
+Line_2 $$ void enqueue(final long seqno, final boolean lastPacketInBlock, final long offsetInBlock, final Status ackStatus) --> Line_4 $$ if (LOG.isDebugEnabled()) [CD]
+Line_4 $$ if (LOG.isDebugEnabled()) --> Line_5 $$ LOG.debug(myString + ": enqueue " + p) [CD]
+Line_8 $$ if (running) --> Line_9 $$ ackQueue.addLast(p) [CD]
+Line_3 $$ final Packet p = new Packet(seqno, lastPacketInBlock, offsetInBlock, System.nanoTime(), ackStatus) --> Line_9 $$ ackQueue.addLast(p) [FD]
+Line_8 $$ if (running) --> Line_10 $$ ackQueue.notifyAll() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ <T extends RevObject> Future<List<ObjectInfo<T>>> getObjects(final Collection<NodeRef> nodes, final BulkOpListener listener, final Class<T> type) --> Line_3 $$ checkState(isOpen(), "Database is closed") [CD]
+Line_2 $$ <T extends RevObject> Future<List<ObjectInfo<T>>> getObjects(final Collection<NodeRef> nodes, final BulkOpListener listener, final Class<T> type) --> Line_4 $$ GetObjectOp<T> getAllOp = new GetObjectOp<T>(nodes, listener, this, type) [CD]
+Line_2 $$ <T extends RevObject> Future<List<ObjectInfo<T>>> getObjects(final Collection<NodeRef> nodes, final BulkOpListener listener, final Class<T> type) --> Line_5 $$ if (Thread.currentThread().getThreadGroup().equals(resources.threadGroup)) [CD]
+Line_4 $$ GetObjectOp<T> getAllOp = new GetObjectOp<T>(nodes, listener, this, type) --> Line_7 $$ List<ObjectInfo<T>> objects = getAllOp.call() [FD]
+Line_7 $$ List<ObjectInfo<T>> objects = getAllOp.call() --> Line_8 $$ return Futures.immediateFuture(objects) [FD]
+Line_2 $$ <T extends RevObject> Future<List<ObjectInfo<T>>> getObjects(final Collection<NodeRef> nodes, final BulkOpListener listener, final Class<T> type) --> Line_14 $$ Future<List<ObjectInfo<T>>> future = resources.executor().submit(getAllOp) [CD]
+Line_4 $$ GetObjectOp<T> getAllOp = new GetObjectOp<T>(nodes, listener, this, type) --> Line_14 $$ Future<List<ObjectInfo<T>>> future = resources.executor().submit(getAllOp) [FD]
+Line_2 $$ <T extends RevObject> Future<List<ObjectInfo<T>>> getObjects(final Collection<NodeRef> nodes, final BulkOpListener listener, final Class<T> type) --> Line_15 $$ return future [CD]

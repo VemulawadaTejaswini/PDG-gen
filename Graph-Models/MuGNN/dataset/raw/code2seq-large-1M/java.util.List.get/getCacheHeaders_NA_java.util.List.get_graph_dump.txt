@@ -1,0 +1,8 @@
+Line_2 $$ private ImmutableMap<String, String> getCacheHeaders(String section, String fieldName) --> Line_3 $$ ImmutableMap.Builder<String, String> headerBuilder = ImmutableMap.builder() [CD]
+Line_2 $$ private ImmutableMap<String, String> getCacheHeaders(String section, String fieldName) --> Line_4 $$ ImmutableList<String> rawHeaders = buckConfig.getListWithoutComments(section, fieldName, ';') [CD]
+Line_2 $$ private ImmutableMap<String, String> getCacheHeaders(String section, String fieldName) --> Line_4 $$ ImmutableList<String> rawHeaders = buckConfig.getListWithoutComments(section, fieldName, ';') [FD]
+Line_5 $$ for (String rawHeader : rawHeaders) --> Line_6 $$ List<String> splitHeader = Splitter.on(':').omitEmptyStrings().trimResults().splitToList(rawHeader) [FD]
+Line_3 $$ ImmutableMap.Builder<String, String> headerBuilder = ImmutableMap.builder() --> Line_7 $$ headerBuilder.put(splitHeader.get(0), splitHeader.get(1)) [FD]
+Line_6 $$ List<String> splitHeader = Splitter.on(':').omitEmptyStrings().trimResults().splitToList(rawHeader) --> Line_7 $$ headerBuilder.put(splitHeader.get(0), splitHeader.get(1)) [FD]
+Line_2 $$ private ImmutableMap<String, String> getCacheHeaders(String section, String fieldName) --> Line_9 $$ return headerBuilder.build() [CD]
+Line_3 $$ ImmutableMap.Builder<String, String> headerBuilder = ImmutableMap.builder() --> Line_9 $$ return headerBuilder.build() [FD]

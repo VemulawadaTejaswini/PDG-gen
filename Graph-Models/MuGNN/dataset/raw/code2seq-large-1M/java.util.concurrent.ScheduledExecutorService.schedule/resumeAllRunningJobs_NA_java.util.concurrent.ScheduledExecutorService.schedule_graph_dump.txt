@@ -1,0 +1,7 @@
+Line_3 $$ for (final String id : executableManager.getAllJobIds()) --> Line_4 $$ final Output output = executableManager.getOutput(id) [FD]
+Line_3 $$ for (final String id : executableManager.getAllJobIds()) --> Line_5 $$ AbstractExecutable executable = executableManager.getJob(id) [FD]
+Line_4 $$ final Output output = executableManager.getOutput(id) --> Line_6 $$ if (output.getState() == ExecutableState.RUNNING && executable instanceof DefaultChainedExecutable) [FD]
+Line_5 $$ AbstractExecutable executable = executableManager.getJob(id) --> Line_8 $$ if (!jobLock.isLocked(getLockPath(executable.getParam(SEGMENT_ID)))) [FD]
+Line_8 $$ if (!jobLock.isLocked(getLockPath(executable.getParam(SEGMENT_ID)))) --> Line_9 $$ executableManager.resumeRunningJobForce(executable.getId()) [CD]
+Line_5 $$ AbstractExecutable executable = executableManager.getJob(id) --> Line_9 $$ executableManager.resumeRunningJobForce(executable.getId()) [FD]
+Line_8 $$ if (!jobLock.isLocked(getLockPath(executable.getParam(SEGMENT_ID)))) --> Line_10 $$ fetcherPool.schedule(fetcher, 0, TimeUnit.SECONDS) [CD]

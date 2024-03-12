@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized boolean trigger() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public synchronized boolean trigger() --> Line_4 $$ if (now >= lastExecution + interval || Platform.isFxApplicationThread()) [CD]
+Line_4 $$ if (now >= lastExecution + interval || Platform.isFxApplicationThread()) --> Line_6 $$ fnTask.run() [CD]
+Line_4 $$ if (now >= lastExecution + interval || Platform.isFxApplicationThread()) --> Line_7 $$ return true [CD]
+Line_4 $$ if (now >= lastExecution + interval || Platform.isFxApplicationThread()) --> Line_8 $$ if (lastExecution < now && !scheduled) [CD]
+Line_8 $$ if (lastExecution < now && !scheduled) --> Line_9 $$ timer.schedule(new ChildTask(), lastExecution + interval - now) [CD]
+Line_8 $$ if (lastExecution < now && !scheduled) --> Line_11 $$ return false [CD]
+Line_2 $$ public synchronized boolean trigger() --> Line_13 $$ return false [CD]

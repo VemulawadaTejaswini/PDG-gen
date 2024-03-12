@@ -1,0 +1,7 @@
+Line_2 $$ protected List<TaskRequest> filterFailedTasks(Collection<TaskRequest> original) --> Line_3 $$ if (original == null || original.isEmpty()) [CD]
+Line_2 $$ protected List<TaskRequest> filterFailedTasks(Collection<TaskRequest> original) --> Line_3 $$ if (original == null || original.isEmpty()) [FD]
+Line_3 $$ if (original == null || original.isEmpty()) --> Line_4 $$ return Collections.emptyList() [CD]
+Line_2 $$ protected List<TaskRequest> filterFailedTasks(Collection<TaskRequest> original) --> Line_5 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ protected List<TaskRequest> filterFailedTasks(Collection<TaskRequest> original) --> Line_6 $$ return original.stream().filter( t -> requestedForTasksSet.putIfAbsent(t.getId(), now) == null).collect(Collectors.toList()) [CD]
+Line_2 $$ protected List<TaskRequest> filterFailedTasks(Collection<TaskRequest> original) --> Line_6 $$ return original.stream().filter( t -> requestedForTasksSet.putIfAbsent(t.getId(), now) == null).collect(Collectors.toList()) [FD]
+Line_5 $$ long now = System.currentTimeMillis() --> Line_6 $$ return original.stream().filter( t -> requestedForTasksSet.putIfAbsent(t.getId(), now) == null).collect(Collectors.toList()) [FD]

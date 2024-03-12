@@ -1,0 +1,6 @@
+Line_2 $$ private static void copyFromJarToDirectory(String file, List<String> files, File destDir) throws IOException --> Line_3 $$ try (FileSystem fileSystem = FileSystems.newFileSystem(Paths.get(file), null)) [FD]
+Line_3 $$ try (FileSystem fileSystem = FileSystems.newFileSystem(Paths.get(file), null)) --> Line_5 $$ Path source = fileSystem.getPath(toCopy) [FD]
+Line_4 $$ for (String toCopy : files) --> Line_5 $$ Path source = fileSystem.getPath(toCopy) [FD]
+Line_6 $$ File dst = new File(destDir, toCopy) --> Line_7 $$ dst.getParentFile().mkdirs() [FD]
+Line_5 $$ Path source = fileSystem.getPath(toCopy) --> Line_8 $$ Files.copy(source, dst.toPath()) [FD]
+Line_6 $$ File dst = new File(destDir, toCopy) --> Line_8 $$ Files.copy(source, dst.toPath()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static Analyzer getAnalyzerForLocale(Locale locale) throws SQLException --> Line_3 $$ String language = locale.getLanguage() [FD]
+Line_2 $$ public static Analyzer getAnalyzerForLocale(Locale locale) throws SQLException --> Line_3 $$ String language = locale.getLanguage() [CD]
+Line_3 $$ String language = locale.getLanguage() --> Line_5 $$ Class<? extends Analyzer> analyzerClass = _analyzerClasses.get(language) [FD]
+Line_5 $$ Class<? extends Analyzer> analyzerClass = _analyzerClasses.get(language) --> Line_6 $$ if (analyzerClass == null) [FD]
+Line_6 $$ if (analyzerClass == null) --> Line_7 $$ return standardAnalyzer() [CD]
+Line_6 $$ if (analyzerClass == null) --> Line_9 $$ Constructor<? extends Analyzer> constructor = analyzerClass.getConstructor(Version.class) [CD]
+Line_5 $$ Class<? extends Analyzer> analyzerClass = _analyzerClasses.get(language) --> Line_9 $$ Constructor<? extends Analyzer> constructor = analyzerClass.getConstructor(Version.class) [FD]
+Line_6 $$ if (analyzerClass == null) --> Line_10 $$ return constructor.newInstance(currentVersion()) [CD]

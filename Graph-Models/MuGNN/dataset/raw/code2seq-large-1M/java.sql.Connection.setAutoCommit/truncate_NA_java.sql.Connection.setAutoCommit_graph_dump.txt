@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection cx = PGStorage.newConnection(dataSource)) --> Line_4 $$ cx.setAutoCommit(false) [FD]
+Line_3 $$ try (Connection cx = PGStorage.newConnection(dataSource)) --> Line_6 $$ try (Statement st = cx.createStatement()) [FD]
+Line_6 $$ try (Statement st = cx.createStatement()) --> Line_7 $$ st.execute(log(format("TRUNCATE %s", MAPPINGS), LOG)) [FD]
+Line_6 $$ try (Statement st = cx.createStatement()) --> Line_8 $$ st.execute(log(format("TRUNCATE %s", PROPS), LOG)) [FD]
+Line_6 $$ try (Statement st = cx.createStatement()) --> Line_9 $$ st.execute(log(format("TRUNCATE %s", EDGES), LOG)) [FD]
+Line_3 $$ try (Connection cx = PGStorage.newConnection(dataSource)) --> Line_10 $$ cx.commit() [FD]
+Line_3 $$ try (Connection cx = PGStorage.newConnection(dataSource)) --> Line_13 $$ cx.rollback() [FD]
+Line_3 $$ try (Connection cx = PGStorage.newConnection(dataSource)) --> Line_16 $$ cx.setAutoCommit(true) [FD]

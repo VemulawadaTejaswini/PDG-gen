@@ -1,0 +1,8 @@
+Line_2 $$ protected boolean shouldVisitSchema(String schemaName, SchemaPlus schema) --> Line_4 $$ if (schemaName == null || schemaName.isEmpty()) [FD]
+Line_4 $$ if (schemaName == null || schemaName.isEmpty()) --> Line_5 $$ return false [CD]
+Line_2 $$ protected boolean shouldVisitSchema(String schemaName, SchemaPlus schema) --> Line_7 $$ AbstractSchema drillSchema = schema.unwrap(AbstractSchema.class) [FD]
+Line_8 $$ if (!drillSchema.showInInformationSchema()) --> Line_9 $$ return false [CD]
+Line_11 $$ if (filter == null) --> Line_12 $$ return true [CD]
+Line_2 $$ protected boolean shouldVisitSchema(String schemaName, SchemaPlus schema) --> Line_14 $$ final Map<String, String> recordValues = ImmutableMap.of(CATS_COL_CATALOG_NAME, IS_CATALOG_NAME, SHRD_COL_TABLE_SCHEMA, schemaName, SCHS_COL_SCHEMA_NAME, schemaName) [FD]
+Line_14 $$ final Map<String, String> recordValues = ImmutableMap.of(CATS_COL_CATALOG_NAME, IS_CATALOG_NAME, SHRD_COL_TABLE_SCHEMA, schemaName, SCHS_COL_SCHEMA_NAME, schemaName) --> Line_15 $$ return filter.evaluate(recordValues) != Result.FALSE [FD]
+Line_2 $$ protected boolean shouldVisitSchema(String schemaName, SchemaPlus schema) --> Line_18 $$ return true [CD]

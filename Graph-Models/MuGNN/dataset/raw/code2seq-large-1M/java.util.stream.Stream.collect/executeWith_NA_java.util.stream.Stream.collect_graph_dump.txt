@@ -1,0 +1,7 @@
+Line_5 $$ for (String setSessionStatement : setSessionStatements) --> Line_6 $$ sqlExecutor.exec(setSessionStatement, session) [FD]
+Line_4 $$ Session session = sqlExecutor.newSession() --> Line_6 $$ sqlExecutor.exec(setSessionStatement, session) [FD]
+Line_2 $$ public void executeWith(List<List<String>> setSessionStatementsList, String statement, Matcher<SQLResponse> matcher) --> Line_8 $$ SQLResponse resp = sqlExecutor.exec(statement, session) [FD]
+Line_4 $$ Session session = sqlExecutor.newSession() --> Line_8 $$ SQLResponse resp = sqlExecutor.exec(statement, session) [FD]
+Line_8 $$ SQLResponse resp = sqlExecutor.exec(statement, session) --> Line_9 $$ assertThat("The query:\n\t" + statement + "\nwith session statements: [" + setSessionStatements.stream().collect(Collectors.joining(", ")) + "] must produce correct result", resp, matcher) [FD]
+Line_2 $$ public void executeWith(List<List<String>> setSessionStatementsList, String statement, Matcher<SQLResponse> matcher) --> Line_9 $$ assertThat("The query:\n\t" + statement + "\nwith session statements: [" + setSessionStatements.stream().collect(Collectors.joining(", ")) + "] must produce correct result", resp, matcher) [FD]
+Line_3 $$ for (List<String> setSessionStatements : setSessionStatementsList) --> Line_9 $$ assertThat("The query:\n\t" + statement + "\nwith session statements: [" + setSessionStatements.stream().collect(Collectors.joining(", ")) + "] must produce correct result", resp, matcher) [FD]

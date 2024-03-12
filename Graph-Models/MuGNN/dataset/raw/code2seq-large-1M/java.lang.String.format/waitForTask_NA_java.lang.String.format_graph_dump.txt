@@ -1,0 +1,5 @@
+Line_2 $$ private ResultActions waitForTask(Integer taskId) throws Exception --> Line_3 $$ MockHttpServletRequestBuilder taskRequest = MockMvcRequestBuilders.get(String.format("/tasks/%d.json", taskId)) [FD]
+Line_2 $$ private ResultActions waitForTask(Integer taskId) throws Exception --> Line_3 $$ MockHttpServletRequestBuilder taskRequest = MockMvcRequestBuilders.get(String.format("/tasks/%d.json", taskId)) [CD]
+Line_2 $$ private ResultActions waitForTask(Integer taskId) throws Exception --> Line_4 $$ while (true) [CD]
+Line_4 $$ while (true) --> Line_5 $$ Thread.sleep(100) [CD]
+Line_3 $$ MockHttpServletRequestBuilder taskRequest = MockMvcRequestBuilders.get(String.format("/tasks/%d.json", taskId)) --> Line_7 $$ return perform(taskRequest).andExpect(jsonPath("$.task.status").value(not(AsyncContext.Status.RUNNING.toString()))) [FD]

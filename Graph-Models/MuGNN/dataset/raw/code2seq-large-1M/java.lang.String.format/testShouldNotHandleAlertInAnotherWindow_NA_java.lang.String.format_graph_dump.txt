@@ -1,0 +1,8 @@
+Line_2 $$ public void testShouldNotHandleAlertInAnotherWindow() --> Line_3 $$ String pageWithOnLoad = appServer.create(new Page().withOnLoad("javascript:alert(\"onload\")").withBody("<p>Page with onload event handler</p>")) [CD]
+Line_2 $$ public void testShouldNotHandleAlertInAnotherWindow() --> Line_4 $$ driver.get(appServer.create(new Page().withBody(String.format("<a id='open-new-window' href='%s' target='newwindow'>open new window</a>", pageWithOnLoad)))) [CD]
+Line_3 $$ String pageWithOnLoad = appServer.create(new Page().withOnLoad("javascript:alert(\"onload\")").withBody("<p>Page with onload event handler</p>")) --> Line_4 $$ driver.get(appServer.create(new Page().withBody(String.format("<a id='open-new-window' href='%s' target='newwindow'>open new window</a>", pageWithOnLoad)))) [FD]
+Line_2 $$ public void testShouldNotHandleAlertInAnotherWindow() --> Line_5 $$ String mainWindow = driver.getWindowHandle() [CD]
+Line_2 $$ public void testShouldNotHandleAlertInAnotherWindow() --> Line_6 $$ Set<String> currentWindowHandles = driver.getWindowHandles() [CD]
+Line_6 $$ Set<String> currentWindowHandles = driver.getWindowHandles() --> Line_9 $$ wait.until(newWindowIsOpened(currentWindowHandles)) [FD]
+Line_10 $$ Throwable t = catchThrowable(() -> wait.until(alertIsPresent())) --> Line_11 $$ assertThat(t, instanceOf(TimeoutException.class)) [FD]
+Line_5 $$ String mainWindow = driver.getWindowHandle() --> Line_16 $$ driver.switchTo().window(mainWindow) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<Stat> exists(String path) --> Line_3 $$ if (closed.get()) [CD]
+Line_3 $$ if (closed.get()) --> Line_4 $$ return failed(new IOException("Client already closed")) [CD]
+Line_2 $$ public CompletableFuture<Stat> exists(String path) --> Line_6 $$ CompletableFuture<Stat> future = new CompletableFuture() [CD]
+Line_2 $$ public CompletableFuture<Stat> exists(String path) --> Line_7 $$ tasks.add(new ZKTask<Stat>(path, future, "exists") [CD]
+Line_7 $$ tasks.add(new ZKTask<Stat>(path, future, "exists") --> Line_9 $$ zk.exists(path, false, ( rc,  path,  ctx,  stat) -> onComplete(zk, rc, stat, false), null) [CD]
+Line_7 $$ tasks.add(new ZKTask<Stat>(path, future, "exists") --> Line_9 $$ zk.exists(path, false, ( rc,  path,  ctx,  stat) -> onComplete(zk, rc, stat, false), null) [FD]
+Line_2 $$ public CompletableFuture<Stat> exists(String path) --> Line_9 $$ zk.exists(path, false, ( rc,  path,  ctx,  stat) -> onComplete(zk, rc, stat, false), null) [FD]
+Line_2 $$ public CompletableFuture<Stat> exists(String path) --> Line_12 $$ return future [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static LanguageDetector createLanguageDetector() throws IOException --> Line_3 $$ if (languageDetector == null) [CD]
+Line_3 $$ if (languageDetector == null) --> Line_4 $$ List<LdLocale> languages = BuiltInLanguages.getLanguages().stream().filter( lc -> Language.getLanguage(lc.getLanguage()) != null).collect(Collectors.toList()) [CD]
+Line_3 $$ if (languageDetector == null) --> Line_5 $$ List<LanguageProfile> languageProfiles = new LanguageProfileReader().readBuiltIn(languages) [CD]
+Line_4 $$ List<LdLocale> languages = BuiltInLanguages.getLanguages().stream().filter( lc -> Language.getLanguage(lc.getLanguage()) != null).collect(Collectors.toList()) --> Line_5 $$ List<LanguageProfile> languageProfiles = new LanguageProfileReader().readBuiltIn(languages) [FD]
+Line_3 $$ if (languageDetector == null) --> Line_6 $$ languageDetector = LanguageDetectorBuilder.create(NgramExtractors.standard()).withProfiles(languageProfiles) [CD]
+Line_5 $$ List<LanguageProfile> languageProfiles = new LanguageProfileReader().readBuiltIn(languages) --> Line_6 $$ languageDetector = LanguageDetectorBuilder.create(NgramExtractors.standard()).withProfiles(languageProfiles) [FD]
+Line_2 $$ private static LanguageDetector createLanguageDetector() throws IOException --> Line_8 $$ return languageDetector.build() [CD]

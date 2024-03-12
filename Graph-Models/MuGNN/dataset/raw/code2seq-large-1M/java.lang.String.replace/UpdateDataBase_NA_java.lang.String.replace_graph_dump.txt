@@ -1,0 +1,7 @@
+Line_5 $$ String sqlStr = FileUtil.readStringFromFile(sqlPath) --> Line_6 $$ if (sqlStr == null || sqlStr.equals("")) [FD]
+Line_6 $$ if (sqlStr == null || sqlStr.equals("")) --> Line_7 $$ return [CD]
+Line_5 $$ String sqlStr = FileUtil.readStringFromFile(sqlPath) --> Line_9 $$ String[] allSql = sqlStr.split("\r\n") [FD]
+Line_11 $$ for (String sql : allSql) --> Line_12 $$ if (!CynthiaUtil.isNull(sql)) [FD]
+Line_12 $$ if (!CynthiaUtil.isNull(sql)) --> Line_13 $$ if (!DbPoolConnection.getInstance().executeUpdateSql(sql)) [CD]
+Line_11 $$ for (String sql : allSql) --> Line_13 $$ if (!DbPoolConnection.getInstance().executeUpdateSql(sql)) [FD]
+Line_13 $$ if (!DbPoolConnection.getInstance().executeUpdateSql(sql)) --> Line_14 $$ return [CD]

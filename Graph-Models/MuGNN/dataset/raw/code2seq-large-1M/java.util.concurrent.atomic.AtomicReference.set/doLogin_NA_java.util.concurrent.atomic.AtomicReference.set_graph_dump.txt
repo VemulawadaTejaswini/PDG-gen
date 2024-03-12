@@ -1,0 +1,8 @@
+Line_2 $$ private void doLogin(Handler<RoutingContext> handler) throws Exception --> Line_3 $$ doLoginCommon(handler) [CD]
+Line_2 $$ private void doLogin(Handler<RoutingContext> handler) throws Exception --> Line_3 $$ doLoginCommon(handler) [FD]
+Line_2 $$ private void doLogin(Handler<RoutingContext> handler) throws Exception --> Line_4 $$ testRequest(HttpMethod.POST, "/login", sendLoginRequestConsumer(),  resp -> [CD]
+Line_5 $$ String setCookie = resp.headers().get("set-cookie") --> Line_6 $$ assertNotNull(setCookie) [FD]
+Line_5 $$ String setCookie = resp.headers().get("set-cookie") --> Line_7 $$ sessionCookie.set(setCookie) [FD]
+Line_8 $$ String location = resp.headers().get("location") --> Line_9 $$ assertNotNull(location) [FD]
+Line_8 $$ String location = resp.headers().get("location") --> Line_10 $$ assertEquals("/protected/somepage", location) [FD]
+Line_2 $$ private void doLogin(Handler<RoutingContext> handler) throws Exception --> Line_12 $$ testRequest(HttpMethod.GET, "/protected/somepage",  req -> req.putHeader("cookie", sessionCookie.get()),  resp -> [CD]

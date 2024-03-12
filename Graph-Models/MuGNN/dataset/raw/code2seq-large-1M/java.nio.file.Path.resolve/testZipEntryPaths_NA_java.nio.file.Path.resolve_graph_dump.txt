@@ -1,0 +1,8 @@
+Line_3 $$ Path output = tmp.resolve("actual.zip") --> Line_7 $$ try (ZipOutputStream zout = new ZipOutputStream(Files.newOutputStream(output))) [FD]
+Line_7 $$ try (ZipOutputStream zout = new ZipOutputStream(Files.newOutputStream(output))) --> Line_8 $$ AndroidResourceOutputs.ZipBuilderVisitor visitor = new AndroidResourceOutputs.ZipBuilderVisitor(AndroidResourceOutputs.ZipBuilder.wrap(zout), tmp.resolve("foo"), "some/prefix") [FD]
+Line_8 $$ AndroidResourceOutputs.ZipBuilderVisitor visitor = new AndroidResourceOutputs.ZipBuilderVisitor(AndroidResourceOutputs.ZipBuilder.wrap(zout), tmp.resolve("foo"), "some/prefix") --> Line_9 $$ Files.walkFileTree(tmp.resolve("foo"), visitor) [FD]
+Line_8 $$ AndroidResourceOutputs.ZipBuilderVisitor visitor = new AndroidResourceOutputs.ZipBuilderVisitor(AndroidResourceOutputs.ZipBuilder.wrap(zout), tmp.resolve("foo"), "some/prefix") --> Line_10 $$ visitor.writeEntries() [FD]
+Line_3 $$ Path output = tmp.resolve("actual.zip") --> Line_13 $$ try (ZipInputStream zin = new ZipInputStream(Files.newInputStream(output))) [FD]
+Line_13 $$ try (ZipInputStream zin = new ZipInputStream(Files.newInputStream(output))) --> Line_15 $$ while ((entry = zin.getNextEntry()) != null) [FD]
+Line_12 $$ List<String> entries = new ArrayList() --> Line_16 $$ entries.add(entry.getName()) [FD]
+Line_12 $$ List<String> entries = new ArrayList() --> Line_19 $$ assertThat(entries).containsExactly("some/prefix/data1.txt", "some/prefix/bar/data2.txt") [FD]

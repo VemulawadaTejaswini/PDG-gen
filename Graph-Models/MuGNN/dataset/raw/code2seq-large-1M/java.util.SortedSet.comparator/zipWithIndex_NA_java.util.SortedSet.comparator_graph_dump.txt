@@ -1,0 +1,8 @@
+Line_2 $$ public ImmutableSortedSet<Pair<T, Integer>> zipWithIndex() --> Line_3 $$ Comparator<? super T> comparator = this.comparator() [CD]
+Line_2 $$ public ImmutableSortedSet<Pair<T, Integer>> zipWithIndex() --> Line_4 $$ if (comparator == null) [CD]
+Line_3 $$ Comparator<? super T> comparator = this.comparator() --> Line_4 $$ if (comparator == null) [FD]
+Line_4 $$ if (comparator == null) --> Line_5 $$ TreeSortedSet<Pair<T, Integer>> pairs = TreeSortedSet.newSet(Comparators.<Pair<T, Integer>, T>byFunction(Functions.<T>firstOfPair(), Comparators.<T>naturalOrder())) [CD]
+Line_4 $$ if (comparator == null) --> Line_6 $$ return Iterate.zipWithIndex(this, pairs).toImmutable() [CD]
+Line_5 $$ TreeSortedSet<Pair<T, Integer>> pairs = TreeSortedSet.newSet(Comparators.<Pair<T, Integer>, T>byFunction(Functions.<T>firstOfPair(), Comparators.<T>naturalOrder())) --> Line_6 $$ return Iterate.zipWithIndex(this, pairs).toImmutable() [FD]
+Line_2 $$ public ImmutableSortedSet<Pair<T, Integer>> zipWithIndex() --> Line_8 $$ return Iterate.zipWithIndex(this, TreeSortedSet.<Pair<T, Integer>>newSet(Comparators.byFirstOfPair(comparator))).toImmutable() [CD]
+Line_3 $$ Comparator<? super T> comparator = this.comparator() --> Line_8 $$ return Iterate.zipWithIndex(this, TreeSortedSet.<Pair<T, Integer>>newSet(Comparators.byFirstOfPair(comparator))).toImmutable() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void incrementalRecover() throws IOException --> Line_3 $$ this.indexLock.writeLock().lock() [CD]
+Line_5 $$ if (nextRecoveryPosition == null) --> Line_6 $$ if (lastRecoveryPosition == null) [CD]
+Line_6 $$ if (lastRecoveryPosition == null) --> Line_7 $$ nextRecoveryPosition = getRecoveryPosition() [CD]
+Line_6 $$ if (lastRecoveryPosition == null) --> Line_9 $$ nextRecoveryPosition = journal.getNextLocation(lastRecoveryPosition) [CD]
+Line_12 $$ while (nextRecoveryPosition != null) --> Line_15 $$ JournalCommand<?> message = load(lastRecoveryPosition) [CD]
+Line_12 $$ while (nextRecoveryPosition != null) --> Line_16 $$ process(message, lastRecoveryPosition, (IndexAware) null) [CD]
+Line_15 $$ JournalCommand<?> message = load(lastRecoveryPosition) --> Line_16 $$ process(message, lastRecoveryPosition, (IndexAware) null) [FD]
+Line_12 $$ while (nextRecoveryPosition != null) --> Line_17 $$ nextRecoveryPosition = journal.getNextLocation(lastRecoveryPosition) [CD]

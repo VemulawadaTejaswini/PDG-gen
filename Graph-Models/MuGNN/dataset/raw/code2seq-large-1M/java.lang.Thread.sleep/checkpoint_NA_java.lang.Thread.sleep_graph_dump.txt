@@ -1,0 +1,6 @@
+Line_2 $$ private void checkpoint(IRecordProcessorCheckpointer checkpointer) --> Line_3 $$ LOG.info("Checkpointing shard " + kinesisShardId) [CD]
+Line_2 $$ private void checkpoint(IRecordProcessorCheckpointer checkpointer) --> Line_4 $$ for (int i = 0; i < NUM_RETRIES; i++) [CD]
+Line_2 $$ private void checkpoint(IRecordProcessorCheckpointer checkpointer) --> Line_6 $$ checkpointer.checkpoint() [FD]
+Line_4 $$ for (int i = 0; i < NUM_RETRIES; i++) --> Line_12 $$ if (i >= (NUM_RETRIES - 1)) [FD]
+Line_12 $$ if (i >= (NUM_RETRIES - 1)) --> Line_13 $$ LOG.error("Checkpoint failed after " + (i + 1) + "attempts.", e) [CD]
+Line_12 $$ if (i >= (NUM_RETRIES - 1)) --> Line_16 $$ LOG.info("Transient issue when checkpointing - attempt " + (i + 1) + " of " + NUM_RETRIES, e) [CD]

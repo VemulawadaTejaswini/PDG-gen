@@ -1,0 +1,6 @@
+Line_2 $$ private List<UUID> getVersionsOlderThanOrEqualToMarked(final EntityCollectionManager ecm, final Id entityId, final UUID markedVersion) --> Line_3 $$ final List<UUID> versions = new ArrayList() [CD]
+Line_2 $$ private List<UUID> getVersionsOlderThanOrEqualToMarked(final EntityCollectionManager ecm, final Id entityId, final UUID markedVersion) --> Line_4 $$ ecm.getVersionsFromMaxToMin(entityId, markedVersion).take(100).forEach( mvccLogEntry -> [CD]
+Line_2 $$ private List<UUID> getVersionsOlderThanOrEqualToMarked(final EntityCollectionManager ecm, final Id entityId, final UUID markedVersion) --> Line_4 $$ ecm.getVersionsFromMaxToMin(entityId, markedVersion).take(100).forEach( mvccLogEntry -> [FD]
+Line_2 $$ private List<UUID> getVersionsOlderThanOrEqualToMarked(final EntityCollectionManager ecm, final Id entityId, final UUID markedVersion) --> Line_5 $$ if (mvccLogEntry.getVersion().timestamp() <= markedVersion.timestamp()) [FD]
+Line_3 $$ final List<UUID> versions = new ArrayList() --> Line_6 $$ versions.add(mvccLogEntry.getVersion()) [FD]
+Line_2 $$ private List<UUID> getVersionsOlderThanOrEqualToMarked(final EntityCollectionManager ecm, final Id entityId, final UUID markedVersion) --> Line_9 $$ return versions [CD]

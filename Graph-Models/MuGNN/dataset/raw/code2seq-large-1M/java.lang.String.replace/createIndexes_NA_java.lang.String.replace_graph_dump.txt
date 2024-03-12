@@ -1,0 +1,8 @@
+Line_2 $$ protected void createIndexes(Connection conn, String virtualName, String realName) throws Exception --> Line_3 $$ if (indexDDL != null && indexDDL.length > 0) [CD]
+Line_4 $$ for (String ddl : indexDDL) --> Line_5 $$ String newDDL = ddl.replace(virtualName, realName) [FD]
+Line_2 $$ protected void createIndexes(Connection conn, String virtualName, String realName) throws Exception --> Line_5 $$ String newDDL = ddl.replace(virtualName, realName) [FD]
+Line_5 $$ String newDDL = ddl.replace(virtualName, realName) --> Line_6 $$ if (!newDDL.equals(ddl)) [FD]
+Line_4 $$ for (String ddl : indexDDL) --> Line_6 $$ if (!newDDL.equals(ddl)) [FD]
+Line_6 $$ if (!newDDL.equals(ddl)) --> Line_7 $$ conn.createStatement().execute(newDDL) [CD]
+Line_5 $$ String newDDL = ddl.replace(virtualName, realName) --> Line_7 $$ conn.createStatement().execute(newDDL) [FD]
+Line_2 $$ protected void createIndexes(Connection conn, String virtualName, String realName) throws Exception --> Line_7 $$ conn.createStatement().execute(newDDL) [FD]

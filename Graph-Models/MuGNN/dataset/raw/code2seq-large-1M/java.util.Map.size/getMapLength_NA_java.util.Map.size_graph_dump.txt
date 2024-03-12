@@ -1,0 +1,5 @@
+Line_2 $$ public <K, V> int getMapLength(Map<K, V> map, ToIntFunction<K> keyLengthProvider, ToIntFunction<V> valueLengthProvider) --> Line_3 $$ if (map == null) [FD]
+Line_2 $$ public <K, V> int getMapLength(Map<K, V> map, ToIntFunction<K> keyLengthProvider, ToIntFunction<V> valueLengthProvider) --> Line_3 $$ if (map == null) [CD]
+Line_3 $$ if (map == null) --> Line_4 $$ return getCompactIntLength(0) [CD]
+Line_2 $$ public <K, V> int getMapLength(Map<K, V> map, ToIntFunction<K> keyLengthProvider, ToIntFunction<V> valueLengthProvider) --> Line_6 $$ return getCompactIntLength(map.size()) + map.entrySet().stream().mapToInt( e -> keyLengthProvider.applyAsInt(e.getKey()) + valueLengthProvider.applyAsInt(e.getValue())).sum() [FD]
+Line_2 $$ public <K, V> int getMapLength(Map<K, V> map, ToIntFunction<K> keyLengthProvider, ToIntFunction<V> valueLengthProvider) --> Line_6 $$ return getCompactIntLength(map.size()) + map.entrySet().stream().mapToInt( e -> keyLengthProvider.applyAsInt(e.getKey()) + valueLengthProvider.applyAsInt(e.getValue())).sum() [CD]

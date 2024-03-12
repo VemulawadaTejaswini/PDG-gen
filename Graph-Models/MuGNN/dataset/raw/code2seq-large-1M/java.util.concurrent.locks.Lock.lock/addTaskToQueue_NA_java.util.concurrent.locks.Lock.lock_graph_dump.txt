@@ -1,0 +1,6 @@
+Line_2 $$ public void addTaskToQueue(int jobPriority, JobKey task, int kickPriority, boolean toHead) --> Line_3 $$ this.queueLock.lock() [CD]
+Line_5 $$ int totalPriority = jobPriority + kickPriority --> Line_6 $$ LinkedList<SpawnQueueItem> queue = this.mappedQueues.computeIfAbsent(totalPriority,  i -> new LinkedList()) [FD]
+Line_7 $$ if (toHead) --> Line_8 $$ queue.addFirst(new SpawnQueueItem(task, kickPriority)) [CD]
+Line_6 $$ LinkedList<SpawnQueueItem> queue = this.mappedQueues.computeIfAbsent(totalPriority,  i -> new LinkedList()) --> Line_8 $$ queue.addFirst(new SpawnQueueItem(task, kickPriority)) [FD]
+Line_7 $$ if (toHead) --> Line_10 $$ queue.addLast(new SpawnQueueItem(task, kickPriority)) [CD]
+Line_6 $$ LinkedList<SpawnQueueItem> queue = this.mappedQueues.computeIfAbsent(totalPriority,  i -> new LinkedList()) --> Line_10 $$ queue.addLast(new SpawnQueueItem(task, kickPriority)) [FD]

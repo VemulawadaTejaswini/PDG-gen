@@ -1,0 +1,7 @@
+Line_2 $$ public void closeWithoutFlushing() throws IOException --> Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(10) [CD]
+Line_2 $$ public void closeWithoutFlushing() throws IOException --> Line_4 $$ buffer.put("abc".getBytes("UTF-8")).flip() [CD]
+Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(10) --> Line_4 $$ buffer.put("abc".getBytes("UTF-8")).flip() [FD]
+Line_2 $$ public void closeWithoutFlushing() throws IOException --> Line_5 $$ sslChannel.write(buffer) [CD]
+Line_3 $$ ByteBuffer buffer = ByteBuffer.allocate(10) --> Line_5 $$ sslChannel.write(buffer) [FD]
+Line_2 $$ public void closeWithoutFlushing() throws IOException --> Line_6 $$ sslChannel.shutdownReads() [CD]
+Line_2 $$ public void closeWithoutFlushing() throws IOException --> Line_7 $$ assertWrittenMessage("abc", CLOSE_MSG) [CD]

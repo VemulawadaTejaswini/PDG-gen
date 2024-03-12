@@ -1,0 +1,6 @@
+Line_2 $$ public void testNonFractionalTimeValues() --> Line_3 $$ final String s = randomAlphaOfLength(10) + randomTimeUnit() [CD]
+Line_2 $$ public void testNonFractionalTimeValues() --> Line_4 $$ final IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> TimeValue.parseTimeValue(s, null, "test")) [CD]
+Line_3 $$ final String s = randomAlphaOfLength(10) + randomTimeUnit() --> Line_4 $$ final IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> TimeValue.parseTimeValue(s, null, "test")) [FD]
+Line_2 $$ public void testNonFractionalTimeValues() --> Line_5 $$ assertThat(e, hasToString(containsString("failed to parse [" + s + "]"))) [CD]
+Line_2 $$ public void testNonFractionalTimeValues() --> Line_6 $$ assertThat(e, not(hasToString(containsString(FRACTIONAL_TIME_VALUES_ARE_NOT_SUPPORTED)))) [CD]
+Line_2 $$ public void testNonFractionalTimeValues() --> Line_7 $$ assertThat(e.getCause(), instanceOf(NumberFormatException.class)) [CD]

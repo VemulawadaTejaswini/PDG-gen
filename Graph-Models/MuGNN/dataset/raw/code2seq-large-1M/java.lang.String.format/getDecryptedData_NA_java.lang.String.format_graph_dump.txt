@@ -1,0 +1,7 @@
+Line_2 $$ private byte[] getDecryptedData(String keyName) --> Line_3 $$ KmsSecret secret = ofy().load().key(Key.create(getCrossTldKey(), KmsSecret.class, keyName)).now() [FD]
+Line_2 $$ private byte[] getDecryptedData(String keyName) --> Line_3 $$ KmsSecret secret = ofy().load().key(Key.create(getCrossTldKey(), KmsSecret.class, keyName)).now() [CD]
+Line_2 $$ private byte[] getDecryptedData(String keyName) --> Line_4 $$ checkState(secret != null, "Requested secret '%s' does not exist.", keyName) [FD]
+Line_2 $$ private byte[] getDecryptedData(String keyName) --> Line_4 $$ checkState(secret != null, "Requested secret '%s' does not exist.", keyName) [CD]
+Line_2 $$ private byte[] getDecryptedData(String keyName) --> Line_5 $$ String encryptedData = ofy().load().key(secret.getLatestRevision()).now().getEncryptedValue() [CD]
+Line_5 $$ String encryptedData = ofy().load().key(secret.getLatestRevision()).now().getEncryptedValue() --> Line_7 $$ return kmsConnection.decrypt(secret.getName(), encryptedData) [FD]
+Line_2 $$ private byte[] getDecryptedData(String keyName) --> Line_9 $$ throw new KeyringException(String.format("CloudKMS decrypt operation failed for secret %s", keyName), e) [FD]

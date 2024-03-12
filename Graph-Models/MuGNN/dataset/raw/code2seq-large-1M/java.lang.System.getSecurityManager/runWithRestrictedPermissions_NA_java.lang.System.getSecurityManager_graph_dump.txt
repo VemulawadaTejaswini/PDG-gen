@@ -1,0 +1,8 @@
+Line_2 $$ public static <T> T runWithRestrictedPermissions(PrivilegedExceptionAction<T> action, Permission... permissions) throws Exception --> Line_3 $$ assumeTrue("runWithRestrictedPermissions requires a SecurityManager enabled", System.getSecurityManager() != null) [CD]
+Line_2 $$ public static <T> T runWithRestrictedPermissions(PrivilegedExceptionAction<T> action, Permission... permissions) throws Exception --> Line_4 $$ AccessController.checkPermission(new SecurityPermission("createAccessControlContext")) [CD]
+Line_2 $$ public static <T> T runWithRestrictedPermissions(PrivilegedExceptionAction<T> action, Permission... permissions) throws Exception --> Line_5 $$ final PermissionCollection perms = new Permissions() [CD]
+Line_2 $$ public static <T> T runWithRestrictedPermissions(PrivilegedExceptionAction<T> action, Permission... permissions) throws Exception --> Line_6 $$ Arrays.stream(permissions).forEach(perms::<>add) [FD]
+Line_2 $$ public static <T> T runWithRestrictedPermissions(PrivilegedExceptionAction<T> action, Permission... permissions) throws Exception --> Line_6 $$ Arrays.stream(permissions).forEach(perms::<>add) [CD]
+Line_2 $$ public static <T> T runWithRestrictedPermissions(PrivilegedExceptionAction<T> action, Permission... permissions) throws Exception --> Line_7 $$ final AccessControlContext ctx = new AccessControlContext(new ProtectionDomain[] [CD]
+Line_2 $$ public static <T> T runWithRestrictedPermissions(PrivilegedExceptionAction<T> action, Permission... permissions) throws Exception --> Line_9 $$ return AccessController.doPrivileged(action, ctx) [FD]
+Line_7 $$ final AccessControlContext ctx = new AccessControlContext(new ProtectionDomain[] --> Line_9 $$ return AccessController.doPrivileged(action, ctx) [FD]

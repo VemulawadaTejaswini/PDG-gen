@@ -1,0 +1,7 @@
+Line_2 $$ public void testSuccess_transientIOException_retries() throws IOException --> Line_3 $$ writeGcsFile(gcsService, new GcsFilename("test-bucket", "results/invoice_details_2017-10_TheRegistrar_hello.csv"), "hola,mundo\n3,4".getBytes(UTF_8)) [CD]
+Line_2 $$ public void testSuccess_transientIOException_retries() throws IOException --> Line_4 $$ when(driveConnection.createFile(any(), any(), any(), any())).thenThrow(new IOException("expected")).thenReturn("success") [CD]
+Line_2 $$ public void testSuccess_transientIOException_retries() throws IOException --> Line_5 $$ action.run() [CD]
+Line_2 $$ public void testSuccess_transientIOException_retries() throws IOException --> Line_6 $$ verify(driveConnection, times(2)).createFile("invoice_details_2017-10_TheRegistrar_hello.csv", MediaType.CSV_UTF_8, "0B-12345", "hola,mundo\n3,4".getBytes(UTF_8)) [CD]
+Line_2 $$ public void testSuccess_transientIOException_retries() throws IOException --> Line_7 $$ assertThat(response.getStatus()).isEqualTo(SC_OK) [CD]
+Line_2 $$ public void testSuccess_transientIOException_retries() throws IOException --> Line_8 $$ assertThat(response.getContentType()).isEqualTo(MediaType.PLAIN_TEXT_UTF_8) [CD]
+Line_2 $$ public void testSuccess_transientIOException_retries() throws IOException --> Line_9 $$ assertThat(response.getPayload()).isEqualTo("Copied detail reports.") [CD]

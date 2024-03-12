@@ -1,0 +1,7 @@
+Line_2 $$ public MimeBodyPart toBodyPart() throws MessagingException --> Line_3 $$ MimeHeader contentHeaders = new MimeHeader() [CD]
+Line_4 $$ for (String header : mHeader.getHeaderNames()) --> Line_5 $$ if (header.toLowerCase().startsWith("content-")) [FD]
+Line_4 $$ for (String header : mHeader.getHeaderNames()) --> Line_6 $$ for (String value : mHeader.getHeader(header)) [FD]
+Line_3 $$ MimeHeader contentHeaders = new MimeHeader() --> Line_7 $$ contentHeaders.addHeader(header, value) [FD]
+Line_4 $$ for (String header : mHeader.getHeaderNames()) --> Line_7 $$ contentHeaders.addHeader(header, value) [FD]
+Line_6 $$ for (String value : mHeader.getHeader(header)) --> Line_7 $$ contentHeaders.addHeader(header, value) [FD]
+Line_2 $$ public MimeBodyPart toBodyPart() throws MessagingException --> Line_11 $$ return new MimeBodyPart(contentHeaders, getBody()) [CD]

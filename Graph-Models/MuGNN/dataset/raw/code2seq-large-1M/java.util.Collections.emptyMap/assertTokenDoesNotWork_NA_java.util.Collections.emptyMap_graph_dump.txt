@@ -1,0 +1,5 @@
+Line_2 $$ private void assertTokenDoesNotWork(String token) --> Line_3 $$ ResponseException e = expectThrows(ResponseException.class, () -> client().performRequest("GET", "_xpack/security/_authenticate", Collections.emptyMap(), new BasicHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token))) [CD]
+Line_2 $$ private void assertTokenDoesNotWork(String token) --> Line_4 $$ assertEquals(401, e.getResponse().getStatusLine().getStatusCode()) [CD]
+Line_2 $$ private void assertTokenDoesNotWork(String token) --> Line_5 $$ Response response = e.getResponse() [CD]
+Line_2 $$ private void assertTokenDoesNotWork(String token) --> Line_6 $$ assertEquals("Bearer realm=\"security\", error=\"invalid_token\", error_description=\"The access token expired\"", response.getHeader("WWW-Authenticate")) [CD]
+Line_5 $$ Response response = e.getResponse() --> Line_6 $$ assertEquals("Bearer realm=\"security\", error=\"invalid_token\", error_description=\"The access token expired\"", response.getHeader("WWW-Authenticate")) [FD]

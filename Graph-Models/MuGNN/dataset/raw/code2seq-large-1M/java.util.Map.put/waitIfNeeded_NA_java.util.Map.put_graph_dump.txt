@@ -1,0 +1,7 @@
+Line_2 $$ private void waitIfNeeded() throws InterruptedException --> Line_3 $$ if (queryRateLimiter != null) [CD]
+Line_3 $$ if (queryRateLimiter != null) --> Line_4 $$ updateGauge(Status.WAITING_FOR_RATE_LIMIT_PERMIT) [CD]
+Line_3 $$ if (queryRateLimiter != null) --> Line_5 $$ double waitTime = queryRateLimiter.acquire() [CD]
+Line_3 $$ if (queryRateLimiter != null) --> Line_6 $$ updateGauge(Status.ACQUIRED_RATE_LIMIT_PERMIT) [CD]
+Line_3 $$ if (queryRateLimiter != null) --> Line_7 $$ gaugeMap.put(LAST_RATE_LIMIT_WAIT_TIME, waitTime) [CD]
+Line_5 $$ double waitTime = queryRateLimiter.acquire() --> Line_7 $$ gaugeMap.put(LAST_RATE_LIMIT_WAIT_TIME, waitTime) [FD]
+Line_3 $$ if (queryRateLimiter != null) --> Line_9 $$ LOG.debug("No query rate limiter in effect; not waiting") [CD]

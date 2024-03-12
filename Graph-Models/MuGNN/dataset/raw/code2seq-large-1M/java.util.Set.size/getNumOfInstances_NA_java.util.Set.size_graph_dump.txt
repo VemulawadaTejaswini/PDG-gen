@@ -1,0 +1,8 @@
+Line_2 $$ private int getNumOfInstances() --> Line_3 $$ JobContext jobContext = _driver.getJobContext(TaskUtil.getNamespacedJobName(WORKFLOW, JOB)) [CD]
+Line_2 $$ private int getNumOfInstances() --> Line_4 $$ Set<String> instances = new HashSet<String>() [CD]
+Line_3 $$ JobContext jobContext = _driver.getJobContext(TaskUtil.getNamespacedJobName(WORKFLOW, JOB)) --> Line_5 $$ for (int pId : jobContext.getPartitionSet()) [FD]
+Line_4 $$ Set<String> instances = new HashSet<String>() --> Line_6 $$ instances.add(jobContext.getAssignedParticipant(pId)) [FD]
+Line_3 $$ JobContext jobContext = _driver.getJobContext(TaskUtil.getNamespacedJobName(WORKFLOW, JOB)) --> Line_6 $$ instances.add(jobContext.getAssignedParticipant(pId)) [FD]
+Line_5 $$ for (int pId : jobContext.getPartitionSet()) --> Line_6 $$ instances.add(jobContext.getAssignedParticipant(pId)) [FD]
+Line_2 $$ private int getNumOfInstances() --> Line_8 $$ return instances.size() [CD]
+Line_4 $$ Set<String> instances = new HashSet<String>() --> Line_8 $$ return instances.size() [FD]

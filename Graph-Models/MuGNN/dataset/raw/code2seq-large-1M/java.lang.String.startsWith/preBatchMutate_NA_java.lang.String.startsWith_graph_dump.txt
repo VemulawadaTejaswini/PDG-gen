@@ -1,0 +1,5 @@
+Line_2 $$ public void preBatchMutate(ObserverContext<RegionCoprocessorEnvironment> c, MiniBatchOperationInProgress<Mutation> miniBatchOp) throws HBaseIOException --> Line_4 $$ String tableName = c.getEnvironment().getRegionInfo().getTable().getNameAsString() [FD]
+Line_4 $$ String tableName = c.getEnvironment().getRegionInfo().getTable().getNameAsString() --> Line_5 $$ if (tableName.startsWith(LOCK_TEST_TABLE_PREFIX)) [FD]
+Line_5 $$ if (tableName.startsWith(LOCK_TEST_TABLE_PREFIX)) --> Line_6 $$ if (lockedTableRow) [CD]
+Line_2 $$ public void preBatchMutate(ObserverContext<RegionCoprocessorEnvironment> c, MiniBatchOperationInProgress<Mutation> miniBatchOp) throws HBaseIOException --> Line_7 $$ throw new DoNotRetryIOException("Expected lock in preBatchMutate to be exclusive, but it wasn't for row " + Bytes.toStringBinary(miniBatchOp.getOperation(0).getRow())) [FD]
+Line_5 $$ if (tableName.startsWith(LOCK_TEST_TABLE_PREFIX)) --> Line_10 $$ Thread.sleep(ROW_LOCK_WAIT_TIME + 2000) [CD]

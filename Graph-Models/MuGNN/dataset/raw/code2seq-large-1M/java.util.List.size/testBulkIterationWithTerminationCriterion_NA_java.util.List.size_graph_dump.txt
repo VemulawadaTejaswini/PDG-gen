@@ -1,0 +1,8 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_5 $$ IterativeDataSet<Integer> iteration = env.fromElements(1).iterate(100) [FD]
+Line_5 $$ IterativeDataSet<Integer> iteration = env.fromElements(1).iterate(100) --> Line_6 $$ DataSet<Integer> iterationResult = iteration.map(new AddSuperstepNumberMapper()) [FD]
+Line_6 $$ DataSet<Integer> iterationResult = iteration.map(new AddSuperstepNumberMapper()) --> Line_7 $$ DataSet<Integer> terminationCriterion = iterationResult.filter(new FilterFunction<Integer>() [FD]
+Line_7 $$ DataSet<Integer> terminationCriterion = iterationResult.filter(new FilterFunction<Integer>() --> Line_9 $$ return value < 50 [CD]
+Line_5 $$ IterativeDataSet<Integer> iteration = env.fromElements(1).iterate(100) --> Line_13 $$ iteration.closeWith(iterationResult, terminationCriterion).output(new LocalCollectionOutputFormat<Integer>(collected)) [FD]
+Line_6 $$ DataSet<Integer> iterationResult = iteration.map(new AddSuperstepNumberMapper()) --> Line_13 $$ iteration.closeWith(iterationResult, terminationCriterion).output(new LocalCollectionOutputFormat<Integer>(collected)) [FD]
+Line_7 $$ DataSet<Integer> terminationCriterion = iterationResult.filter(new FilterFunction<Integer>() --> Line_13 $$ iteration.closeWith(iterationResult, terminationCriterion).output(new LocalCollectionOutputFormat<Integer>(collected)) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_14 $$ env.execute() [FD]

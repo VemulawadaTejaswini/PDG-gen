@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized void dispose() --> Line_3 $$ if (!state.contains(State.DISPOSED)) [CD]
+Line_3 $$ if (!state.contains(State.DISPOSED)) --> Line_4 $$ if (state.contains(State.INITIALIZED)) [CD]
+Line_5 $$ for (ContextState contextState : contextStates()) --> Line_6 $$ contextState.beforeDispose(this) [FD]
+Line_3 $$ if (!state.contains(State.DISPOSED)) --> Line_9 $$ if (contextKind == ContextKind.SHARE_PARENT_RW) [CD]
+Line_9 $$ if (contextKind == ContextKind.SHARE_PARENT_RW) --> Line_10 $$ parentContext.sharedChild = null [CD]
+Line_3 $$ if (!state.contains(State.DISPOSED)) --> Line_12 $$ state = EnumSet.of(State.DISPOSED) [CD]
+Line_3 $$ if (!state.contains(State.DISPOSED)) --> Line_14 $$ this.allocationReporter.removePropertyChangeListener(ALLOCATION_ACTIVATION_LISTENER) [CD]

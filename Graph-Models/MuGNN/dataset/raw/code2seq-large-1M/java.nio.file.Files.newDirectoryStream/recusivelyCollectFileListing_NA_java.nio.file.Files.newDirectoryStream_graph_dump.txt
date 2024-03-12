@@ -1,0 +1,8 @@
+Line_2 $$ public static void recusivelyCollectFileListing(ArrayList<String> rc, Path base, Path directory) throws IOException --> Line_3 $$ try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(directory)) [FD]
+Line_4 $$ for (Path path : directoryStream) --> Line_5 $$ if (Files.isDirectory(path)) [FD]
+Line_5 $$ if (Files.isDirectory(path)) --> Line_6 $$ recusivelyCollectFileListing(rc, base, path) [CD]
+Line_2 $$ public static void recusivelyCollectFileListing(ArrayList<String> rc, Path base, Path directory) throws IOException --> Line_6 $$ recusivelyCollectFileListing(rc, base, path) [FD]
+Line_4 $$ for (Path path : directoryStream) --> Line_6 $$ recusivelyCollectFileListing(rc, base, path) [FD]
+Line_5 $$ if (Files.isDirectory(path)) --> Line_8 $$ rc.add(base.relativize(path).toString()) [CD]
+Line_2 $$ public static void recusivelyCollectFileListing(ArrayList<String> rc, Path base, Path directory) throws IOException --> Line_8 $$ rc.add(base.relativize(path).toString()) [FD]
+Line_4 $$ for (Path path : directoryStream) --> Line_8 $$ rc.add(base.relativize(path).toString()) [FD]

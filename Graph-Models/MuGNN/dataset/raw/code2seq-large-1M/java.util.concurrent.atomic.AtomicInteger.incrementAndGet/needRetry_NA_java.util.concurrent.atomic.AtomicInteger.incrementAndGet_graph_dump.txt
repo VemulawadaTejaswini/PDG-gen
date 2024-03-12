@@ -1,0 +1,6 @@
+Line_2 $$ private boolean needRetry(int code) --> Line_3 $$ boolean retryByErrorCode = code == KeeperException.Code.CONNECTIONLOSS.intValue() || code == KeeperException.Code.SESSIONMOVED.intValue() || code == KeeperException.Code.OPERATIONTIMEOUT.intValue() [CD]
+Line_2 $$ private boolean needRetry(int code) --> Line_4 $$ if (retryByErrorCode) [CD]
+Line_4 $$ if (retryByErrorCode) --> Line_5 $$ if (MAX_RETRY_COUNT <= 0 || retryCount.incrementAndGet() < MAX_RETRY_COUNT) [CD]
+Line_5 $$ if (MAX_RETRY_COUNT <= 0 || retryCount.incrementAndGet() < MAX_RETRY_COUNT) --> Line_6 $$ return true [CD]
+Line_5 $$ if (MAX_RETRY_COUNT <= 0 || retryCount.incrementAndGet() < MAX_RETRY_COUNT) --> Line_8 $$ return false [CD]
+Line_4 $$ if (retryByErrorCode) --> Line_10 $$ return false [CD]

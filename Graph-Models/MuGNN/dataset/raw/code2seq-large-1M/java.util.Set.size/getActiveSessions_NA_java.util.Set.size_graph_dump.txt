@@ -1,0 +1,6 @@
+Line_2 $$ public Collection<Session> getActiveSessions() --> Line_3 $$ Set<Session> sessions = new HashSet<Session>() [CD]
+Line_5 $$ Set<byte[]> keys = redisManager.keys(this.keySerializer.serialize(this.keyPrefix + "*")) --> Line_6 $$ if (keys != null && keys.size() > 0) [FD]
+Line_7 $$ for (byte[] key : keys) --> Line_8 $$ Session s = (Session) valueSerializer.deserialize(redisManager.get(key)) [FD]
+Line_3 $$ Set<Session> sessions = new HashSet<Session>() --> Line_9 $$ sessions.add(s) [FD]
+Line_8 $$ Session s = (Session) valueSerializer.deserialize(redisManager.get(key)) --> Line_9 $$ sessions.add(s) [FD]
+Line_2 $$ public Collection<Session> getActiveSessions() --> Line_15 $$ return sessions [CD]

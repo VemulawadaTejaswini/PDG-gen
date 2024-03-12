@@ -1,0 +1,6 @@
+Line_2 $$ public void types() throws Exception --> Line_3 $$ db.execute("CREATE (f:Foo) CREATE (b:Bar) CREATE (f)-[:Y]->(f) CREATE (f)-[:X]->(f)").close() [CD]
+Line_2 $$ public void types() throws Exception --> Line_4 $$ TestUtil.testCall(db, "MATCH (n:Foo) RETURN apoc.node.relationship.types(n) AS value", ( r) -> assertEquals(asSet("X", "Y"), asSet(((List) r.get("value")).iterator()))) [CD]
+Line_2 $$ public void types() throws Exception --> Line_5 $$ TestUtil.testCall(db, "MATCH (n:Foo) RETURN apoc.node.relationship.types(n,'X') AS value", ( r) -> assertEquals(asList("X"), r.get("value"))) [CD]
+Line_2 $$ public void types() throws Exception --> Line_6 $$ TestUtil.testCall(db, "MATCH (n:Foo) RETURN apoc.node.relationship.types(n,'X|Z') AS value", ( r) -> assertEquals(asList("X"), r.get("value"))) [CD]
+Line_2 $$ public void types() throws Exception --> Line_7 $$ TestUtil.testCall(db, "MATCH (n:Bar) RETURN apoc.node.relationship.types(n) AS value", ( r) -> assertEquals(Collections.emptyList(), r.get("value"))) [CD]
+Line_2 $$ public void types() throws Exception --> Line_8 $$ TestUtil.testCall(db, "RETURN apoc.node.relationship.types(null) AS value", ( r) -> assertEquals(null, r.get("value"))) [CD]

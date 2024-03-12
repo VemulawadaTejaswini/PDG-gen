@@ -1,0 +1,8 @@
+Line_2 $$ public void testBridgeMethodCreation() throws Exception --> Line_3 $$ Class<?> dynamicType = create(BridgeRetention.Inner.class).method(named(FOO)).intercept(new Implementation.Simple(new TextConstant(FOO), MethodReturn.REFERENCE)).make().load(getClass().getClassLoader(), ClassLoadingStrategy.Default.CHILD_FIRST).getLoaded() [CD]
+Line_2 $$ public void testBridgeMethodCreation() throws Exception --> Line_4 $$ assertEquals(String.class, dynamicType.getDeclaredMethod(FOO).getReturnType()) [CD]
+Line_2 $$ public void testBridgeMethodCreation() throws Exception --> Line_5 $$ assertThat(dynamicType.getDeclaredMethod(FOO).getGenericReturnType(), is((Type) String.class)) [CD]
+Line_2 $$ public void testBridgeMethodCreation() throws Exception --> Line_6 $$ BridgeRetention<String> bridgeRetention = (BridgeRetention<String>) dynamicType.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testBridgeMethodCreation() throws Exception --> Line_7 $$ assertThat(bridgeRetention.foo(), is(FOO)) [CD]
+Line_6 $$ BridgeRetention<String> bridgeRetention = (BridgeRetention<String>) dynamicType.getDeclaredConstructor().newInstance() --> Line_7 $$ assertThat(bridgeRetention.foo(), is(FOO)) [FD]
+Line_2 $$ public void testBridgeMethodCreation() throws Exception --> Line_8 $$ bridgeRetention.assertZeroCalls() [CD]
+Line_6 $$ BridgeRetention<String> bridgeRetention = (BridgeRetention<String>) dynamicType.getDeclaredConstructor().newInstance() --> Line_8 $$ bridgeRetention.assertZeroCalls() [FD]

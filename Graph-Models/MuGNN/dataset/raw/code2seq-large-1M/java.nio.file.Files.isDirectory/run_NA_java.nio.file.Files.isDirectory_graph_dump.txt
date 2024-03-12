@@ -1,0 +1,6 @@
+Line_2 $$ public List<String> run() --> Line_3 $$ final Path confPath = new Environment(settings, configPath).configFile().toAbsolutePath() [CD]
+Line_2 $$ public List<String> run() --> Line_4 $$ if (Files.isDirectory(confPath, LinkOption.NOFOLLOW_LINKS)) [CD]
+Line_3 $$ final Path confPath = new Environment(settings, configPath).configFile().toAbsolutePath() --> Line_4 $$ if (Files.isDirectory(confPath, LinkOption.NOFOLLOW_LINKS)) [FD]
+Line_3 $$ final Path confPath = new Environment(settings, configPath).configFile().toAbsolutePath() --> Line_5 $$ try (Stream<Path> s = Files.walk(confPath)) [FD]
+Line_5 $$ try (Stream<Path> s = Files.walk(confPath)) --> Line_6 $$ return s.distinct().map( p -> sha256(p)).collect(Collectors.toList()) [FD]
+Line_2 $$ public List<String> run() --> Line_12 $$ return Collections.emptyList() [CD]

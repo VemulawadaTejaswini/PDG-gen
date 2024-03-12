@@ -1,0 +1,6 @@
+Line_2 $$ void lowerActiveGetCount(H2ONode h2o) --> Line_5 $$ while (true) [CD]
+Line_5 $$ while (true) --> Line_6 $$ int old = _rwlock.get() [CD]
+Line_5 $$ while (true) --> Line_10 $$ if (RW_CAS(old, old - 1, "rlock-")) [CD]
+Line_6 $$ int old = _rwlock.get() --> Line_10 $$ if (RW_CAS(old, old - 1, "rlock-")) [FD]
+Line_10 $$ if (RW_CAS(old, old - 1, "rlock-")) --> Line_11 $$ if (old - 1 == 0) [CD]
+Line_10 $$ if (RW_CAS(old, old - 1, "rlock-")) --> Line_16 $$ return [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public byte[] getJpeg(boolean normalizeOrientation) --> Line_3 $$ if (normalizeOrientation) [CD]
+Line_5 $$ int orientation = getOrientation() --> Line_6 $$ if (needsNormalization(orientation)) [FD]
+Line_8 $$ Bitmap original = BitmapFactory.decodeByteArray(jpegOriginal, 0, jpegOriginal.length) --> Line_9 $$ Bitmap rotated = rotateViaMatrix(original, orientation) [FD]
+Line_5 $$ int orientation = getOrientation() --> Line_9 $$ Bitmap rotated = rotateViaMatrix(original, orientation) [FD]
+Line_9 $$ Bitmap rotated = rotateViaMatrix(original, orientation) --> Line_13 $$ exif.writeExif(rotated, baos, 100) [FD]
+Line_12 $$ ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_13 $$ exif.writeExif(rotated, baos, 100) [FD]
+Line_12 $$ ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_14 $$ jpegOriginal = baos.toByteArray() [FD]
+Line_2 $$ public byte[] getJpeg(boolean normalizeOrientation) --> Line_24 $$ return (getJpeg()) [CD]

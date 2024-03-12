@@ -1,0 +1,7 @@
+Line_2 $$ public Iterator<K> getChunkIterator() throws IOException --> Line_3 $$ return new ListIterator<K>() [CD]
+Line_9 $$ if (log.isDebugEnabled()) --> Line_10 $$ log.debug("iter: items=" + itemsRemaining + " file=" + file) [CD]
+Line_3 $$ return new ListIterator<K>() --> Line_13 $$ return itemsRemaining > 0 [CD]
+Line_17 $$ int eltLength = dis.readInt() --> Line_18 $$ byte[] bytes = LessBytes.readBytes(dis, eltLength) [FD]
+Line_20 $$ if (itemsRemaining == 0) --> Line_21 $$ dis.close() [CD]
+Line_23 $$ if (log.isDebugEnabled()) --> Line_24 $$ log.debug("iter: decoding " + bytes.length + " bytes remain=" + itemsRemaining + " from " + file) [CD]
+Line_18 $$ byte[] bytes = LessBytes.readBytes(dis, eltLength) --> Line_26 $$ return codec.decode(bytes) [FD]

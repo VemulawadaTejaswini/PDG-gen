@@ -1,0 +1,7 @@
+Line_2 $$ public void testCircularDependencyProxyDelegateNeverInitialized() --> Line_3 $$ Injector injector = Guice.createInjector(new AbstractModule() [CD]
+Line_3 $$ Injector injector = Guice.createInjector(new AbstractModule() --> Line_5 $$ bind(F.class).to(RealF.class) [CD]
+Line_3 $$ Injector injector = Guice.createInjector(new AbstractModule() --> Line_6 $$ bind(G.class).to(RealG.class) [CD]
+Line_2 $$ public void testCircularDependencyProxyDelegateNeverInitialized() --> Line_9 $$ F f = injector.getInstance(F.class) [CD]
+Line_3 $$ Injector injector = Guice.createInjector(new AbstractModule() --> Line_9 $$ F f = injector.getInstance(F.class) [FD]
+Line_2 $$ public void testCircularDependencyProxyDelegateNeverInitialized() --> Line_10 $$ assertEquals("F", f.g().f().toString()) [CD]
+Line_2 $$ public void testCircularDependencyProxyDelegateNeverInitialized() --> Line_11 $$ assertEquals("G", f.g().f().g().toString()) [CD]

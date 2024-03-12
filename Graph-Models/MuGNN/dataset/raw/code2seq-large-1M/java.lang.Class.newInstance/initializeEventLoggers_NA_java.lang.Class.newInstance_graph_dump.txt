@@ -1,0 +1,7 @@
+Line_3 $$ for (Map<String, Object> info : registerInfo) --> Line_4 $$ String className = (String) info.get(TOPOLOGY_EVENT_LOGGER_CLASS) [FD]
+Line_3 $$ for (Map<String, Object> info : registerInfo) --> Line_5 $$ Map<String, Object> arguments = (Map<String, Object>) info.get(TOPOLOGY_EVENT_LOGGER_ARGUMENTS) [FD]
+Line_6 $$ IEventLogger eventLogger --> Line_8 $$ eventLogger = (IEventLogger) Class.forName(className).newInstance() [FD]
+Line_6 $$ IEventLogger eventLogger --> Line_12 $$ eventLogger.prepare(topoConf, arguments, context) [FD]
+Line_2 $$ private void initializeEventLoggers(Map<String, Object> topoConf, TopologyContext context, List<Map<String, Object>> registerInfo) --> Line_12 $$ eventLogger.prepare(topoConf, arguments, context) [FD]
+Line_5 $$ Map<String, Object> arguments = (Map<String, Object>) info.get(TOPOLOGY_EVENT_LOGGER_ARGUMENTS) --> Line_12 $$ eventLogger.prepare(topoConf, arguments, context) [FD]
+Line_6 $$ IEventLogger eventLogger --> Line_13 $$ eventLoggers.add(eventLogger) [FD]

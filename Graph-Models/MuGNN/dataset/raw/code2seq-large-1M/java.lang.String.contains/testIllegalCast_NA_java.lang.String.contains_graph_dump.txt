@@ -1,0 +1,6 @@
+Line_2 $$ public void testIllegalCast() --> Line_3 $$ final String script = "int x;\ndef y = new HashMap();\ny['double'] = 1.0;\nx = y.get('double');\n" [CD]
+Line_2 $$ public void testIllegalCast() --> Line_4 $$ assertBytecodeExists(script, "INVOKEDYNAMIC get(Ljava/lang/Object;Ljava/lang/String;)I") [CD]
+Line_3 $$ final String script = "int x;\ndef y = new HashMap();\ny['double'] = 1.0;\nx = y.get('double');\n" --> Line_4 $$ assertBytecodeExists(script, "INVOKEDYNAMIC get(Ljava/lang/Object;Ljava/lang/String;)I") [FD]
+Line_2 $$ public void testIllegalCast() --> Line_5 $$ final Exception exception = expectScriptThrows(ClassCastException.class, () -> [CD]
+Line_3 $$ final String script = "int x;\ndef y = new HashMap();\ny['double'] = 1.0;\nx = y.get('double');\n" --> Line_6 $$ exec(script) [FD]
+Line_2 $$ public void testIllegalCast() --> Line_8 $$ assertTrue(exception.getMessage().contains("Cannot cast java.lang.Double to java.lang.Integer")) [CD]

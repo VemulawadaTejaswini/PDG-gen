@@ -1,0 +1,8 @@
+Line_2 $$ private ActionRegistry registry(List<ActionWrapper> actions, ConditionRegistry conditionRegistry, TransformRegistry transformRegistry) --> Line_3 $$ Map<String, ActionFactory> parsers = new HashMap() [CD]
+Line_4 $$ for (ActionWrapper action : actions) --> Line_5 $$ switch(action.action().type()) [FD]
+Line_3 $$ Map<String, ActionFactory> parsers = new HashMap() --> Line_7 $$ parsers.put(EmailAction.TYPE, new EmailActionFactory(settings, emailService, templateEngine, new EmailAttachmentsParser(Collections.emptyMap()))) [FD]
+Line_3 $$ Map<String, ActionFactory> parsers = new HashMap() --> Line_10 $$ parsers.put(IndexAction.TYPE, new IndexActionFactory(settings, client)) [FD]
+Line_3 $$ Map<String, ActionFactory> parsers = new HashMap() --> Line_13 $$ parsers.put(WebhookAction.TYPE, new WebhookActionFactory(settings, httpClient, new HttpRequestTemplate.Parser(authRegistry), templateEngine)) [FD]
+Line_3 $$ Map<String, ActionFactory> parsers = new HashMap() --> Line_16 $$ parsers.put(LoggingAction.TYPE, new LoggingActionFactory(settings, new MockTextTemplateEngine())) [FD]
+Line_2 $$ private ActionRegistry registry(List<ActionWrapper> actions, ConditionRegistry conditionRegistry, TransformRegistry transformRegistry) --> Line_20 $$ return new ActionRegistry(unmodifiableMap(parsers), conditionRegistry, transformRegistry, Clock.systemUTC(), licenseState) [CD]
+Line_3 $$ Map<String, ActionFactory> parsers = new HashMap() --> Line_20 $$ return new ActionRegistry(unmodifiableMap(parsers), conditionRegistry, transformRegistry, Clock.systemUTC(), licenseState) [FD]

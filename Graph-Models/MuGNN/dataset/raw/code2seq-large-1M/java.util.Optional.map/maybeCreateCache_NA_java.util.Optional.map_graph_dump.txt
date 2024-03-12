@@ -1,0 +1,8 @@
+Line_2 $$ <K, V> javax.cache.Cache<K, V> maybeCreateCache(final String name) --> Line_3 $$ if (Objects.equals(ACTIVE_SESSION_CACHE_NAME, name)) [FD]
+Line_2 $$ <K, V> javax.cache.Cache<K, V> maybeCreateCache(final String name) --> Line_3 $$ if (Objects.equals(ACTIVE_SESSION_CACHE_NAME, name)) [CD]
+Line_3 $$ if (Objects.equals(ACTIVE_SESSION_CACHE_NAME, name)) --> Line_4 $$ return cacheHelperProvider.get().maybeCreateCache(name, EternalExpiryPolicy.factoryOf()) [CD]
+Line_2 $$ <K, V> javax.cache.Cache<K, V> maybeCreateCache(final String name) --> Line_4 $$ return cacheHelperProvider.get().maybeCreateCache(name, EternalExpiryPolicy.factoryOf()) [FD]
+Line_3 $$ if (Objects.equals(ACTIVE_SESSION_CACHE_NAME, name)) --> Line_6 $$ Time timeToLive = Optional.ofNullable(System.getProperty(name + ".timeToLive")).map(Time::<>parse).orElse(defaultTimeToLive.get()) [CD]
+Line_3 $$ if (Objects.equals(ACTIVE_SESSION_CACHE_NAME, name)) --> Line_7 $$ return cacheHelperProvider.get().maybeCreateCache(name, CreatedExpiryPolicy.factoryOf(new Duration(timeToLive.getUnit(), timeToLive.getValue()))) [CD]
+Line_2 $$ <K, V> javax.cache.Cache<K, V> maybeCreateCache(final String name) --> Line_7 $$ return cacheHelperProvider.get().maybeCreateCache(name, CreatedExpiryPolicy.factoryOf(new Duration(timeToLive.getUnit(), timeToLive.getValue()))) [FD]
+Line_6 $$ Time timeToLive = Optional.ofNullable(System.getProperty(name + ".timeToLive")).map(Time::<>parse).orElse(defaultTimeToLive.get()) --> Line_7 $$ return cacheHelperProvider.get().maybeCreateCache(name, CreatedExpiryPolicy.factoryOf(new Duration(timeToLive.getUnit(), timeToLive.getValue()))) [FD]

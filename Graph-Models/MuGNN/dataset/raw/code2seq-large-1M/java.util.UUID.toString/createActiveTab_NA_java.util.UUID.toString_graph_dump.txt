@@ -1,0 +1,6 @@
+Line_2 $$ private String createActiveTab(LoggedInUser user) --> Line_3 $$ final String activeClient = UUID.randomUUID().toString() [CD]
+Line_2 $$ private String createActiveTab(LoggedInUser user) --> Line_4 $$ long timerId = vertx.setTimer(tabKeepAliveTimeout,  id -> connectedTabs.remove(activeClient)) [CD]
+Line_3 $$ final String activeClient = UUID.randomUUID().toString() --> Line_4 $$ long timerId = vertx.setTimer(tabKeepAliveTimeout,  id -> connectedTabs.remove(activeClient)) [FD]
+Line_2 $$ private String createActiveTab(LoggedInUser user) --> Line_5 $$ connectedTabs.put(activeClient, new ConnectedTab(user, timerId)) [CD]
+Line_3 $$ final String activeClient = UUID.randomUUID().toString() --> Line_5 $$ connectedTabs.put(activeClient, new ConnectedTab(user, timerId)) [FD]
+Line_2 $$ private String createActiveTab(LoggedInUser user) --> Line_6 $$ return activeClient [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void removeOldEdges(DDGDifference diff) --> Line_3 $$ List<DefUseRelation> relsToRemove = diff.getRelsToRemove() [FD]
+Line_2 $$ private void removeOldEdges(DDGDifference diff) --> Line_3 $$ List<DefUseRelation> relsToRemove = diff.getRelsToRemove() [CD]
+Line_5 $$ Node srcStatement = Neo4JDBInterface.getNodeById((Long) rel.src) --> Line_6 $$ Iterable<Relationship> rels = srcStatement.getRelationships(Direction.OUTGOING) [FD]
+Line_7 $$ for (Relationship reachRel : rels) --> Line_8 $$ if (!reachRel.getType().toString().equals(EdgeTypes.REACHES)) [FD]
+Line_7 $$ for (Relationship reachRel : rels) --> Line_10 $$ if (reachRel.getEndNode().getId() != (Long) rel.dst) [FD]
+Line_7 $$ for (Relationship reachRel : rels) --> Line_12 $$ Object var = reachRel.getProperty("var") [FD]
+Line_12 $$ Object var = reachRel.getProperty("var") --> Line_13 $$ if (var == null || !var.toString().equals(rel.symbol)) [FD]
+Line_7 $$ for (Relationship reachRel : rels) --> Line_15 $$ Neo4JDBInterface.removeEdge(reachRel.getId()) [FD]

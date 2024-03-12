@@ -1,0 +1,8 @@
+Line_2 $$ public void byteCodeFunction() throws Exception --> Line_3 $$ CompiledFunctionFactory<Function<String, String>> compiled = new FunctionCompiler<String, String>(String.class.getName()).compile("foos", "v -> v.toUpperCase()", "String", "String") [CD]
+Line_2 $$ public void byteCodeFunction() throws Exception --> Line_4 $$ FileSystemResource resource = new FileSystemResource("target/foos.fun") [CD]
+Line_2 $$ public void byteCodeFunction() throws Exception --> Line_5 $$ StreamUtils.copy(compiled.getGeneratedClassBytes(), resource.getOutputStream()) [CD]
+Line_4 $$ FileSystemResource resource = new FileSystemResource("target/foos.fun") --> Line_5 $$ StreamUtils.copy(compiled.getGeneratedClassBytes(), resource.getOutputStream()) [FD]
+Line_2 $$ public void byteCodeFunction() throws Exception --> Line_6 $$ create(EmptyConfiguration.class, "spring.cloud.function.imports.foos.location=file:./target/foos.fun") [CD]
+Line_2 $$ public void byteCodeFunction() throws Exception --> Line_7 $$ assertThat(context.getBean("foos")).isInstanceOf(Function.class) [CD]
+Line_2 $$ public void byteCodeFunction() throws Exception --> Line_8 $$ assertThat(catalog.<Function<?, ?>>lookup(Function.class, "foos")).isInstanceOf(Function.class) [CD]
+Line_2 $$ public void byteCodeFunction() throws Exception --> Line_9 $$ assertThat(inspector.getInputWrapper(catalog.lookup(Function.class, "foos"))).isEqualTo(String.class) [CD]

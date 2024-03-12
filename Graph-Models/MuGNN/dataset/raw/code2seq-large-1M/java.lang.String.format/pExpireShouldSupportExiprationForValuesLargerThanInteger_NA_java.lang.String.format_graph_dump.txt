@@ -1,0 +1,8 @@
+Line_2 $$ public void pExpireShouldSupportExiprationForValuesLargerThanInteger() --> Line_3 $$ connection.set("pexpireKey", "foo") [CD]
+Line_2 $$ public void pExpireShouldSupportExiprationForValuesLargerThanInteger() --> Line_4 $$ long millis = ((long) Integer.MAX_VALUE) + 10 [CD]
+Line_2 $$ public void pExpireShouldSupportExiprationForValuesLargerThanInteger() --> Line_5 $$ connection.pExpire("pexpireKey", millis) [CD]
+Line_4 $$ long millis = ((long) Integer.MAX_VALUE) + 10 --> Line_5 $$ connection.pExpire("pexpireKey", millis) [FD]
+Line_2 $$ public void pExpireShouldSupportExiprationForValuesLargerThanInteger() --> Line_6 $$ long ttl = connection.pTtl("pexpireKey") [CD]
+Line_2 $$ public void pExpireShouldSupportExiprationForValuesLargerThanInteger() --> Line_7 $$ assertTrue(String.format("difference between millis=%s and ttl=%s should not be greater than 20ms but is %s", millis, ttl, millis - ttl), millis - ttl < 20L) [CD]
+Line_4 $$ long millis = ((long) Integer.MAX_VALUE) + 10 --> Line_7 $$ assertTrue(String.format("difference between millis=%s and ttl=%s should not be greater than 20ms but is %s", millis, ttl, millis - ttl), millis - ttl < 20L) [FD]
+Line_6 $$ long ttl = connection.pTtl("pexpireKey") --> Line_7 $$ assertTrue(String.format("difference between millis=%s and ttl=%s should not be greater than 20ms but is %s", millis, ttl, millis - ttl), millis - ttl < 20L) [FD]

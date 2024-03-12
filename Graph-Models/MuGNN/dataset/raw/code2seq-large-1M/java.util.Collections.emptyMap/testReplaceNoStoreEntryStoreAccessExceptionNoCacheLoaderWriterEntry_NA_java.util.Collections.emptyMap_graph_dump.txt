@@ -1,0 +1,7 @@
+Line_3 $$ final FakeStore fakeStore = new FakeStore(Collections.emptyMap()) --> Line_4 $$ this.store = spy(fakeStore) [FD]
+Line_6 $$ final FakeCacheLoaderWriter fakeLoaderWriter = new FakeCacheLoaderWriter(Collections.emptyMap()) --> Line_7 $$ this.cacheLoaderWriter = spy(fakeLoaderWriter) [FD]
+Line_8 $$ final EhcacheWithLoaderWriter<String, String> ehcache = this.getEhcache(this.cacheLoaderWriter) --> Line_10 $$ ehcache.replace("key", "value") [FD]
+Line_9 $$ final InOrder ordered = inOrder(this.cacheLoaderWriter, this.resilienceStrategy) --> Line_12 $$ ordered.verify(this.resilienceStrategy).replaceFailure(eq("key"), eq("value"), any(StoreAccessException.class)) [FD]
+Line_9 $$ final InOrder ordered = inOrder(this.cacheLoaderWriter, this.resilienceStrategy) --> Line_13 $$ ordered.verify(this.cacheLoaderWriter).load("key") [FD]
+Line_6 $$ final FakeCacheLoaderWriter fakeLoaderWriter = new FakeCacheLoaderWriter(Collections.emptyMap()) --> Line_14 $$ assertThat(fakeLoaderWriter.getEntryMap().containsKey("key"), is(false)) [FD]
+Line_8 $$ final EhcacheWithLoaderWriter<String, String> ehcache = this.getEhcache(this.cacheLoaderWriter) --> Line_15 $$ validateStats(ehcache, EnumSet.of(CacheOperationOutcomes.ReplaceOutcome.FAILURE)) [FD]

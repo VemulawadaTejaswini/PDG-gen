@@ -1,0 +1,7 @@
+Line_2 $$ public void rejectedExecutionSubscribeExecutorServiceScheduler() --> Line_4 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void rejectedExecutionSubscribeExecutorServiceScheduler() --> Line_5 $$ ExecutorService executor = new ThreadPoolExecutor(1, 1, 0L, MILLISECONDS, new SynchronousQueue(), new AbortPolicy()) [CD]
+Line_5 $$ ExecutorService executor = new ThreadPoolExecutor(1, 1, 0L, MILLISECONDS, new SynchronousQueue(), new AbortPolicy()) --> Line_7 $$ executor.submit(() -> [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_9 $$ latch.await() [FD]
+Line_5 $$ ExecutorService executor = new ThreadPoolExecutor(1, 1, 0L, MILLISECONDS, new SynchronousQueue(), new AbortPolicy()) --> Line_15 $$ Mono.just(1).publishOn(fromExecutor(executor)).block() [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_21 $$ latch.countDown() [FD]
+Line_5 $$ ExecutorService executor = new ThreadPoolExecutor(1, 1, 0L, MILLISECONDS, new SynchronousQueue(), new AbortPolicy()) --> Line_22 $$ executor.shutdownNow() [FD]

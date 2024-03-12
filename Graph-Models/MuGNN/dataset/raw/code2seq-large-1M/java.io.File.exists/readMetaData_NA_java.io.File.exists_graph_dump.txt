@@ -1,0 +1,6 @@
+Line_2 $$ public static ApplicationMetaData readMetaData(File appDir) --> Line_3 $$ ApplicationMetaData defaultMetaData = new ApplicationMetaData(appDir, "n/a", "n/a", 0l, "", 0l, 0l) [CD]
+Line_2 $$ public static ApplicationMetaData readMetaData(File appDir) --> Line_4 $$ File metaFile = new File(appDir, META_FILE_NAME) [CD]
+Line_2 $$ public static ApplicationMetaData readMetaData(File appDir) --> Line_5 $$ if (!metaFile.exists()) [CD]
+Line_4 $$ File metaFile = new File(appDir, META_FILE_NAME) --> Line_5 $$ if (!metaFile.exists()) [FD]
+Line_5 $$ if (!metaFile.exists()) --> Line_6 $$ return defaultMetaData [CD]
+Line_8 $$ try (FileReader reader = new FileReader(metaFile)) --> Line_9 $$ return ApplicationMetaData.fromJsonString(IOUtils.readAll(reader)) [FD]

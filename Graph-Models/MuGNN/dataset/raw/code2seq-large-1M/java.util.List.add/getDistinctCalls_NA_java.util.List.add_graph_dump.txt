@@ -1,0 +1,8 @@
+Line_2 $$ private List<String> getDistinctCalls(Implementor implementor) --> Line_3 $$ final String relAlias = implementor.getPigRelationAlias(this) [CD]
+Line_2 $$ private List<String> getDistinctCalls(Implementor implementor) --> Line_3 $$ final String relAlias = implementor.getPigRelationAlias(this) [FD]
+Line_2 $$ private List<String> getDistinctCalls(Implementor implementor) --> Line_4 $$ final List<String> result = new ArrayList() [CD]
+Line_5 $$ for (AggregateCall aggCall : aggCalls) --> Line_6 $$ if (aggCall.isDistinct()) [FD]
+Line_5 $$ for (AggregateCall aggCall : aggCalls) --> Line_7 $$ for (int fieldIndex : aggCall.getArgList()) [FD]
+Line_7 $$ for (int fieldIndex : aggCall.getArgList()) --> Line_8 $$ String fieldName = getInputFieldName(fieldIndex) [FD]
+Line_4 $$ final List<String> result = new ArrayList() --> Line_9 $$ result.add("  " + fieldName + DISTINCT_FIELD_SUFFIX + " = DISTINCT " + relAlias + '.' + fieldName + ";\n") [FD]
+Line_2 $$ private List<String> getDistinctCalls(Implementor implementor) --> Line_13 $$ return result [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ protected void preload(String name) --> Line_3 $$ try (IgniteDataStreamer<Object, Object> streamer = ignite(0).dataStreamer(name)) [FD]
+Line_4 $$ for (int i = 0; i < 30_000; i++) --> Line_5 $$ if (i % 2 == 0) [CD]
+Line_5 $$ if (i % 2 == 0) --> Line_6 $$ streamer.addData(i, new Person(i, i + 1, String.valueOf(i), String.valueOf(i + 1), salary(i))) [CD]
+Line_3 $$ try (IgniteDataStreamer<Object, Object> streamer = ignite(0).dataStreamer(name)) --> Line_6 $$ streamer.addData(i, new Person(i, i + 1, String.valueOf(i), String.valueOf(i + 1), salary(i))) [FD]
+Line_4 $$ for (int i = 0; i < 30_000; i++) --> Line_6 $$ streamer.addData(i, new Person(i, i + 1, String.valueOf(i), String.valueOf(i + 1), salary(i))) [FD]
+Line_5 $$ if (i % 2 == 0) --> Line_8 $$ streamer.addData(i, new Organization(i, String.valueOf(i))) [CD]
+Line_3 $$ try (IgniteDataStreamer<Object, Object> streamer = ignite(0).dataStreamer(name)) --> Line_8 $$ streamer.addData(i, new Organization(i, String.valueOf(i))) [FD]
+Line_4 $$ for (int i = 0; i < 30_000; i++) --> Line_8 $$ streamer.addData(i, new Organization(i, String.valueOf(i))) [FD]

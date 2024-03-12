@@ -1,0 +1,8 @@
+Line_2 $$ public int getDefaultVarcharPrecision() --> Line_3 $$ int v = Integer.parseInt(getOptional("kylin.source.hive.default-varchar-precision", "256")) [CD]
+Line_2 $$ public int getDefaultVarcharPrecision() --> Line_4 $$ if (v < 1) [CD]
+Line_3 $$ int v = Integer.parseInt(getOptional("kylin.source.hive.default-varchar-precision", "256")) --> Line_4 $$ if (v < 1) [FD]
+Line_4 $$ if (v < 1) --> Line_5 $$ return 256 [CD]
+Line_4 $$ if (v < 1) --> Line_6 $$ if (v > 65355) [CD]
+Line_3 $$ int v = Integer.parseInt(getOptional("kylin.source.hive.default-varchar-precision", "256")) --> Line_6 $$ if (v > 65355) [FD]
+Line_6 $$ if (v > 65355) --> Line_7 $$ return 65535 [CD]
+Line_6 $$ if (v > 65355) --> Line_9 $$ return v [CD]

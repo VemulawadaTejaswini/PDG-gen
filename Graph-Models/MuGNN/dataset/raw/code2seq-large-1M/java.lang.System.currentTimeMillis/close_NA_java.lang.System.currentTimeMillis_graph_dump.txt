@@ -1,0 +1,7 @@
+Line_2 $$ public void close(Duration duration) throws InterruptedException, TimeoutException --> Line_4 $$ long deadlineMs = System.currentTimeMillis() + duration.toMillis() [FD]
+Line_2 $$ public void close(Duration duration) throws InterruptedException, TimeoutException --> Line_4 $$ long deadlineMs = System.currentTimeMillis() + duration.toMillis() [CD]
+Line_6 $$ while (numOutstanding.get() > 0) --> Line_7 $$ long waitMs = deadlineMs - System.currentTimeMillis() [CD]
+Line_6 $$ while (numOutstanding.get() > 0) --> Line_8 $$ if (waitMs <= 0) [CD]
+Line_7 $$ long waitMs = deadlineMs - System.currentTimeMillis() --> Line_8 $$ if (waitMs <= 0) [FD]
+Line_6 $$ while (numOutstanding.get() > 0) --> Line_11 $$ lock.wait(waitMs) [CD]
+Line_7 $$ long waitMs = deadlineMs - System.currentTimeMillis() --> Line_11 $$ lock.wait(waitMs) [FD]

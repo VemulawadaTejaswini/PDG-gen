@@ -1,0 +1,7 @@
+Line_2 $$ public PublicKey getPublicKey(String keyUrl) --> Line_3 $$ if (keyUrl != null && !keyUrl.isEmpty()) [FD]
+Line_2 $$ public PublicKey getPublicKey(String keyUrl) --> Line_3 $$ if (keyUrl != null && !keyUrl.isEmpty()) [CD]
+Line_2 $$ public PublicKey getPublicKey(String keyUrl) --> Line_5 $$ Map<String, Object> publicKey = client.target(keyUrl).request().get(Map.class) [FD]
+Line_6 $$ String ssoPublicKey = publicKey.get(RESPONSE_PUBLICKEY_VALUE).toString().split("----\n")[1].split("\n---")[0] --> Line_7 $$ byte[] publicBytes = decodeBase64(ssoPublicKey) [FD]
+Line_9 $$ KeyFactory keyFactory = KeyFactory.getInstance("RSA") --> Line_10 $$ PublicKey pubKey = keyFactory.generatePublic(keySpec) [FD]
+Line_8 $$ X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicBytes) --> Line_10 $$ PublicKey pubKey = keyFactory.generatePublic(keySpec) [FD]
+Line_2 $$ public PublicKey getPublicKey(String keyUrl) --> Line_16 $$ return null [CD]

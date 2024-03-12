@@ -1,0 +1,7 @@
+Line_2 $$ private long calculateBlockSizeDefault(long maxSize, int numBlocks) --> Line_3 $$ long roughBlockSize = maxSize / numBlocks [CD]
+Line_2 $$ private long calculateBlockSizeDefault(long maxSize, int numBlocks) --> Line_4 $$ int numEntries = (int) Math.ceil((1.2) * maxSize / roughBlockSize) [CD]
+Line_2 $$ private long calculateBlockSizeDefault(long maxSize, int numBlocks) --> Line_5 $$ long totalOverhead = LruBlockCache.CACHE_FIXED_OVERHEAD + ClassSize.CONCURRENT_HASHMAP + (numEntries * ClassSize.CONCURRENT_HASHMAP_ENTRY) + (LruBlockCache.DEFAULT_CONCURRENCY_LEVEL * ClassSize.CONCURRENT_HASHMAP_SEGMENT) [CD]
+Line_2 $$ private long calculateBlockSizeDefault(long maxSize, int numBlocks) --> Line_6 $$ long negateBlockSize = totalOverhead / numEntries [CD]
+Line_2 $$ private long calculateBlockSizeDefault(long maxSize, int numBlocks) --> Line_7 $$ negateBlockSize += LruCachedBlock.PER_BLOCK_OVERHEAD [CD]
+Line_6 $$ long negateBlockSize = totalOverhead / numEntries --> Line_7 $$ negateBlockSize += LruCachedBlock.PER_BLOCK_OVERHEAD [FD]
+Line_2 $$ private long calculateBlockSizeDefault(long maxSize, int numBlocks) --> Line_8 $$ return ClassSize.align((long) Math.floor((roughBlockSize - negateBlockSize) * LruBlockCache.DEFAULT_ACCEPTABLE_FACTOR)) [CD]

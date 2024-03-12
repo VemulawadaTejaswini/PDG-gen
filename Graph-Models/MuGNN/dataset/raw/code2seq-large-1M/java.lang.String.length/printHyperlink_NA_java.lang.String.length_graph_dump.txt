@@ -1,0 +1,6 @@
+Line_2 $$ private void printHyperlink(@Nonnull String text, @Nonnull ConsoleViewContentType contentType, @Nullable HyperlinkInfo info) --> Line_4 $$ Pair<String, Integer> pair = myBuffer.print(text, contentType, info) [FD]
+Line_2 $$ private void printHyperlink(@Nonnull String text, @Nonnull ConsoleViewContentType contentType, @Nullable HyperlinkInfo info) --> Line_6 $$ myContentSize += text.length() - pair.second [FD]
+Line_2 $$ private void printHyperlink(@Nonnull String text, @Nonnull ConsoleViewContentType contentType, @Nullable HyperlinkInfo info) --> Line_7 $$ if (contentType == ConsoleViewContentType.USER_INPUT && NEW_LINE_MATCHER.indexIn(text) >= 0) [FD]
+Line_7 $$ if (contentType == ConsoleViewContentType.USER_INPUT && NEW_LINE_MATCHER.indexIn(text) >= 0) --> Line_8 $$ flushDeferredUserInput() [CD]
+Line_10 $$ if (myEditor != null) --> Line_11 $$ final boolean shouldFlushNow = myBuffer.isUseCyclicBuffer() && myBuffer.getLength() >= myBuffer.getCyclicBufferSize() [CD]
+Line_10 $$ if (myEditor != null) --> Line_12 $$ addFlushRequest(new MyFlushRunnable(), shouldFlushNow ? 0 : DEFAULT_FLUSH_DELAY) [CD]

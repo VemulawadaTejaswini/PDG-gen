@@ -1,0 +1,8 @@
+Line_2 $$ void checkState() throws IllegalStateException --> Line_3 $$ final Thread currentThread = Thread.currentThread() [CD]
+Line_2 $$ void checkState() throws IllegalStateException --> Line_4 $$ Preconditions.checkState(!lockThreadIsWaitingOn.containsKey(currentThread), "Internal error: Thread should not be in a waiting thread on a lock now") [CD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_4 $$ Preconditions.checkState(!lockThreadIsWaitingOn.containsKey(currentThread), "Internal error: Thread should not be in a waiting thread on a lock now") [FD]
+Line_2 $$ void checkState() throws IllegalStateException --> Line_5 $$ if (lockOwnerThread != null) [CD]
+Line_5 $$ if (lockOwnerThread != null) --> Line_6 $$ Preconditions.checkState(lockReentranceCount >= 0, "Internal error: Lock ownership and reentrance count internal states do not match") [CD]
+Line_5 $$ if (lockOwnerThread != null) --> Line_7 $$ Preconditions.checkState(locksOwnedByThread.get(lockOwnerThread).contains(this), "Internal error: Set of locks owned by a current thread and lock " + "ownership status do not match") [CD]
+Line_5 $$ if (lockOwnerThread != null) --> Line_9 $$ Preconditions.checkState(lockReentranceCount == 0, "Internal error: Reentrance count of a non locked lock is expect to be zero") [CD]
+Line_5 $$ if (lockOwnerThread != null) --> Line_10 $$ Preconditions.checkState(!locksOwnedByThread.values().contains(this), "Internal error: Non locked lock should not be owned by any thread") [CD]

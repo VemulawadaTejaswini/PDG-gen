@@ -1,0 +1,7 @@
+Line_3 $$ if (VM.VerifyAssertions) --> Line_4 $$ VM._assert(VM.BuildForPowerPC, ERROR_MSG_WRONG_IMPLEMENTATION) [CD]
+Line_6 $$ if (traceJNI) --> Line_7 $$ VM.sysWriteln("JNI called: NewObject") [CD]
+Line_11 $$ RVMClass vmcls = java.lang.JikesRVMSupport.getTypeForClass(cls).asClass() --> Line_12 $$ if (vmcls.isAbstract() || vmcls.isInterface()) [FD]
+Line_12 $$ if (vmcls.isAbstract() || vmcls.isInterface()) --> Line_13 $$ env.recordException(new InstantiationException()) [CD]
+Line_12 $$ if (vmcls.isAbstract() || vmcls.isInterface()) --> Line_14 $$ return 0 [CD]
+Line_16 $$ Object newobj = JNIHelpers.invokeInitializer(cls, methodID, Address.zero(), false, true) --> Line_17 $$ return env.pushJNIRef(newobj) [FD]
+Line_19 $$ if (traceJNI) --> Line_20 $$ unexpected.printStackTrace(System.err) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private <C extends RedisCommand<K, V, T>, T> void writeToChannel(C command) --> Line_3 $$ QUEUE_SIZE.incrementAndGet(this) [CD]
+Line_2 $$ private <C extends RedisCommand<K, V, T>, T> void writeToChannel(C command) --> Line_4 $$ if (reliability == Reliability.AT_MOST_ONCE) [CD]
+Line_4 $$ if (reliability == Reliability.AT_MOST_ONCE) --> Line_5 $$ writeAndFlush(command).addListener(new AtMostOnceWriteListener(command)) [CD]
+Line_2 $$ private <C extends RedisCommand<K, V, T>, T> void writeToChannel(C command) --> Line_5 $$ writeAndFlush(command).addListener(new AtMostOnceWriteListener(command)) [FD]
+Line_2 $$ private <C extends RedisCommand<K, V, T>, T> void writeToChannel(C command) --> Line_7 $$ if (reliability == Reliability.AT_LEAST_ONCE) [CD]
+Line_7 $$ if (reliability == Reliability.AT_LEAST_ONCE) --> Line_8 $$ writeAndFlush(command).addListener(new RetryListener(command)) [CD]
+Line_2 $$ private <C extends RedisCommand<K, V, T>, T> void writeToChannel(C command) --> Line_8 $$ writeAndFlush(command).addListener(new RetryListener(command)) [FD]

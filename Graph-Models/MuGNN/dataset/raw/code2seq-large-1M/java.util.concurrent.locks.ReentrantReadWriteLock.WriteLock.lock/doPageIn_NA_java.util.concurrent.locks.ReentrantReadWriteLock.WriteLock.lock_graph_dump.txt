@@ -1,0 +1,8 @@
+Line_2 $$ private void doPageIn(boolean force, boolean processExpired, int maxPageSize) throws Exception --> Line_3 $$ PendingList newlyPaged = doPageInForDispatch(force, processExpired, maxPageSize) [CD]
+Line_2 $$ private void doPageIn(boolean force, boolean processExpired, int maxPageSize) throws Exception --> Line_3 $$ PendingList newlyPaged = doPageInForDispatch(force, processExpired, maxPageSize) [FD]
+Line_2 $$ private void doPageIn(boolean force, boolean processExpired, int maxPageSize) throws Exception --> Line_4 $$ pagedInPendingDispatchLock.writeLock().lock() [CD]
+Line_6 $$ if (dispatchPendingList.isEmpty()) --> Line_7 $$ dispatchPendingList.addAll(newlyPaged) [CD]
+Line_3 $$ PendingList newlyPaged = doPageInForDispatch(force, processExpired, maxPageSize) --> Line_7 $$ dispatchPendingList.addAll(newlyPaged) [FD]
+Line_9 $$ for (MessageReference qmr : newlyPaged) --> Line_10 $$ if (!dispatchPendingList.contains(qmr)) [FD]
+Line_10 $$ if (!dispatchPendingList.contains(qmr)) --> Line_11 $$ dispatchPendingList.addMessageLast(qmr) [CD]
+Line_9 $$ for (MessageReference qmr : newlyPaged) --> Line_11 $$ dispatchPendingList.addMessageLast(qmr) [FD]

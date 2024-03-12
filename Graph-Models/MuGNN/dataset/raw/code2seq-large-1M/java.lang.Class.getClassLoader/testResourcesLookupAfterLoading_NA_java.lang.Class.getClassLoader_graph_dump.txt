@@ -1,0 +1,8 @@
+Line_2 $$ public void testResourcesLookupAfterLoading() throws Exception --> Line_3 $$ assertThat(classLoader.loadClass(Foo.class.getName()).getClassLoader(), is(classLoader)) [CD]
+Line_2 $$ public void testResourcesLookupAfterLoading() throws Exception --> Line_4 $$ Enumeration<URL> enumeration = classLoader.getResources(Foo.class.getName().replace('.', '/') + CLASS_FILE) [CD]
+Line_2 $$ public void testResourcesLookupAfterLoading() throws Exception --> Line_5 $$ assertThat(enumeration.hasMoreElements(), is(true)) [CD]
+Line_2 $$ public void testResourcesLookupAfterLoading() throws Exception --> Line_6 $$ assertThat(enumeration.nextElement(), notNullValue(URL.class)) [CD]
+Line_2 $$ public void testResourcesLookupAfterLoading() throws Exception --> Line_7 $$ assertThat(enumeration.hasMoreElements(), is(expectedResourceLookup)) [CD]
+Line_2 $$ public void testResourcesLookupAfterLoading() throws Exception --> Line_8 $$ if (expectedResourceLookup) [CD]
+Line_8 $$ if (expectedResourceLookup) --> Line_9 $$ assertThat(enumeration.nextElement(), notNullValue(URL.class)) [CD]
+Line_8 $$ if (expectedResourceLookup) --> Line_10 $$ assertThat(enumeration.hasMoreElements(), is(false)) [CD]

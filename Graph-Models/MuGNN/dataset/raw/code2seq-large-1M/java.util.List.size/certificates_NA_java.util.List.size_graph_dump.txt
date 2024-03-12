@@ -1,0 +1,7 @@
+Line_2 $$ Collection<CertificateInfo> certificates(Environment environment) throws CertificateException, IOException --> Line_3 $$ final List<CertificateInfo> info = new ArrayList(caPaths.size()) [CD]
+Line_2 $$ Collection<CertificateInfo> certificates(Environment environment) throws CertificateException, IOException --> Line_5 $$ Certificate[] chain = CertUtils.readCertificates(Collections.singletonList(path), environment) [FD]
+Line_4 $$ for (String path : caPaths) --> Line_5 $$ Certificate[] chain = CertUtils.readCertificates(Collections.singletonList(path), environment) [FD]
+Line_6 $$ for (final Certificate cert : chain) --> Line_7 $$ if (cert instanceof X509Certificate) [FD]
+Line_7 $$ if (cert instanceof X509Certificate) --> Line_8 $$ info.add(new CertificateInfo(path, "PEM", null, false, (X509Certificate) cert)) [CD]
+Line_3 $$ final List<CertificateInfo> info = new ArrayList(caPaths.size()) --> Line_8 $$ info.add(new CertificateInfo(path, "PEM", null, false, (X509Certificate) cert)) [FD]
+Line_2 $$ Collection<CertificateInfo> certificates(Environment environment) throws CertificateException, IOException --> Line_12 $$ return info [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private ExecutorService makeExecutorService() --> Line_3 $$ BlockingQueue<Runnable> queue = new LinkedBlockingQueue(MAX_QUEUED_BACKUPS) [CD]
+Line_2 $$ private ExecutorService makeExecutorService() --> Line_4 $$ ThreadFactory factory = new NexusThreadFactory("dbbackup", "dbbackup") [CD]
+Line_2 $$ private ExecutorService makeExecutorService() --> Line_5 $$ ThreadPoolExecutor backing = new ThreadPoolExecutor(MAX_CONCURRENT_BACKUPS, MAX_CONCURRENT_BACKUPS, 1, TimeUnit.NANOSECONDS, queue, factory) [CD]
+Line_2 $$ private ExecutorService makeExecutorService() --> Line_6 $$ backing.allowCoreThreadTimeOut(true) [CD]
+Line_5 $$ ThreadPoolExecutor backing = new ThreadPoolExecutor(MAX_CONCURRENT_BACKUPS, MAX_CONCURRENT_BACKUPS, 1, TimeUnit.NANOSECONDS, queue, factory) --> Line_6 $$ backing.allowCoreThreadTimeOut(true) [FD]
+Line_2 $$ private ExecutorService makeExecutorService() --> Line_7 $$ return NexusExecutorService.forFixedSubject(backing, FakeAlmightySubject.TASK_SUBJECT) [CD]
+Line_5 $$ ThreadPoolExecutor backing = new ThreadPoolExecutor(MAX_CONCURRENT_BACKUPS, MAX_CONCURRENT_BACKUPS, 1, TimeUnit.NANOSECONDS, queue, factory) --> Line_7 $$ return NexusExecutorService.forFixedSubject(backing, FakeAlmightySubject.TASK_SUBJECT) [FD]

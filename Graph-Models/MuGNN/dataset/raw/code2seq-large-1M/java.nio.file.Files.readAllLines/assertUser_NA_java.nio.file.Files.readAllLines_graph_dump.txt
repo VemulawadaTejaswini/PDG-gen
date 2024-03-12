@@ -1,0 +1,8 @@
+Line_2 $$ void assertUser(String username, String password) throws IOException --> Line_3 $$ List<String> lines = Files.readAllLines(confDir.resolve("users"), StandardCharsets.UTF_8) [CD]
+Line_4 $$ for (String line : lines) --> Line_5 $$ String[] usernameHash = line.split(":", 2) [FD]
+Line_6 $$ if (usernameHash.length != 2) --> Line_7 $$ fail("Corrupted users file, line: " + line) [CD]
+Line_2 $$ void assertUser(String username, String password) throws IOException --> Line_9 $$ if (username.equals(usernameHash[0]) == false) [FD]
+Line_13 $$ SecureString expectedHash = new SecureString(password) --> Line_14 $$ assertTrue("Expected hash " + expectedHash + " for password " + password + " but got " + gotHash, Hasher.BCRYPT.verify(expectedHash, gotHash.toCharArray())) [FD]
+Line_12 $$ String gotHash = usernameHash[1] --> Line_14 $$ assertTrue("Expected hash " + expectedHash + " for password " + password + " but got " + gotHash, Hasher.BCRYPT.verify(expectedHash, gotHash.toCharArray())) [FD]
+Line_2 $$ void assertUser(String username, String password) throws IOException --> Line_17 $$ fail("Could not find username " + username + " in users file:\n" + lines.toString()) [CD]
+Line_3 $$ List<String> lines = Files.readAllLines(confDir.resolve("users"), StandardCharsets.UTF_8) --> Line_17 $$ fail("Could not find username " + username + " in users file:\n" + lines.toString()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public HTableDescriptor getTableDescriptor() --> Line_3 $$ HTableDescriptor htd = new HTableDescriptor(TableName.valueOf(getName())) [CD]
+Line_3 $$ HTableDescriptor htd = new HTableDescriptor(TableName.valueOf(getName())) --> Line_5 $$ htd.setValue(e.getKey().getLocalPart(), e.getValue().toString()) [FD]
+Line_7 $$ for (ColumnSchemaModel column : getColumns()) --> Line_8 $$ HColumnDescriptor hcd = new HColumnDescriptor(column.getName()) [FD]
+Line_7 $$ for (ColumnSchemaModel column : getColumns()) --> Line_9 $$ for (Map.Entry<QName, Object> e : column.getAny().entrySet()) [FD]
+Line_8 $$ HColumnDescriptor hcd = new HColumnDescriptor(column.getName()) --> Line_10 $$ hcd.setValue(e.getKey().getLocalPart(), e.getValue().toString()) [FD]
+Line_3 $$ HTableDescriptor htd = new HTableDescriptor(TableName.valueOf(getName())) --> Line_12 $$ htd.addFamily(hcd) [FD]
+Line_8 $$ HColumnDescriptor hcd = new HColumnDescriptor(column.getName()) --> Line_12 $$ htd.addFamily(hcd) [FD]
+Line_2 $$ public HTableDescriptor getTableDescriptor() --> Line_14 $$ return htd [CD]

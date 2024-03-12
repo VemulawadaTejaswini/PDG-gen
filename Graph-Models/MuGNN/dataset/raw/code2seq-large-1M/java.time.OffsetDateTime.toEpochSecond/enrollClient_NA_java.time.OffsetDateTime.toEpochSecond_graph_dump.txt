@@ -1,0 +1,8 @@
+Line_2 $$ protected void enrollClient(Configuration configuration, long clientId, long groupId) --> Line_3 $$ long now = OffsetDateTime.now().toEpochSecond() [CD]
+Line_2 $$ protected void enrollClient(Configuration configuration, long clientId, long groupId) --> Line_4 $$ boolean enrolled = 0 < DSL.using(configuration).fetchCount(MEMBERSHIPS, MEMBERSHIPS.GROUPID.eq(groupId).and(MEMBERSHIPS.CLIENTID.eq(clientId))) [CD]
+Line_2 $$ protected void enrollClient(Configuration configuration, long clientId, long groupId) --> Line_4 $$ boolean enrolled = 0 < DSL.using(configuration).fetchCount(MEMBERSHIPS, MEMBERSHIPS.GROUPID.eq(groupId).and(MEMBERSHIPS.CLIENTID.eq(clientId))) [FD]
+Line_2 $$ protected void enrollClient(Configuration configuration, long clientId, long groupId) --> Line_5 $$ if (enrolled) [CD]
+Line_5 $$ if (enrolled) --> Line_6 $$ return [CD]
+Line_2 $$ protected void enrollClient(Configuration configuration, long clientId, long groupId) --> Line_8 $$ DSL.using(configuration).insertInto(MEMBERSHIPS).set(MEMBERSHIPS.GROUPID, groupId).set(MEMBERSHIPS.CLIENTID, clientId).set(MEMBERSHIPS.CREATEDAT, now).set(MEMBERSHIPS.UPDATEDAT, now).execute() [CD]
+Line_2 $$ protected void enrollClient(Configuration configuration, long clientId, long groupId) --> Line_8 $$ DSL.using(configuration).insertInto(MEMBERSHIPS).set(MEMBERSHIPS.GROUPID, groupId).set(MEMBERSHIPS.CLIENTID, clientId).set(MEMBERSHIPS.CREATEDAT, now).set(MEMBERSHIPS.UPDATEDAT, now).execute() [FD]
+Line_3 $$ long now = OffsetDateTime.now().toEpochSecond() --> Line_8 $$ DSL.using(configuration).insertInto(MEMBERSHIPS).set(MEMBERSHIPS.GROUPID, groupId).set(MEMBERSHIPS.CLIENTID, clientId).set(MEMBERSHIPS.CREATEDAT, now).set(MEMBERSHIPS.UPDATEDAT, now).execute() [FD]

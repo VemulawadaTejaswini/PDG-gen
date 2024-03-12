@@ -1,0 +1,7 @@
+Line_3 $$ for (String key : timestampKeys) --> Line_4 $$ String value = get(key) [FD]
+Line_4 $$ String value = get(key) --> Line_5 $$ if (value != null && value.length() != 0) [FD]
+Line_5 $$ if (value != null && value.length() != 0) --> Line_6 $$ long ts = Long.parseLong(value) [CD]
+Line_4 $$ String value = get(key) --> Line_6 $$ long ts = Long.parseLong(value) [FD]
+Line_5 $$ if (value != null && value.length() != 0) --> Line_7 $$ if (ts > lastTimestamp) [CD]
+Line_6 $$ long ts = Long.parseLong(value) --> Line_7 $$ if (ts > lastTimestamp) [FD]
+Line_2 $$ public long getTimestamp() --> Line_13 $$ return lastTimestamp [CD]

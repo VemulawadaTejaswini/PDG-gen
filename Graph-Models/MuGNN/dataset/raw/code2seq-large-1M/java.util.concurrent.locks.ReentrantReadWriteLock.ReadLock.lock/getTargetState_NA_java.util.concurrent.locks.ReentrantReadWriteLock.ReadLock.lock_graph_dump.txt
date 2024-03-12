@@ -1,0 +1,8 @@
+Line_2 $$ public SpaceQuotaSnapshot getTargetState(TableName table, SpaceQuota spaceQuota) throws IOException --> Line_3 $$ rlock.lock() [CD]
+Line_2 $$ public SpaceQuotaSnapshot getTargetState(TableName table, SpaceQuota spaceQuota) throws IOException --> Line_5 $$ final long sizeLimitInBytes = spaceQuota.getSoftLimit() [FD]
+Line_2 $$ public SpaceQuotaSnapshot getTargetState(TableName table, SpaceQuota spaceQuota) throws IOException --> Line_7 $$ for (Entry<RegionInfo, Long> entry : filterBySubject(table)) [FD]
+Line_6 $$ long sum = 0L --> Line_8 $$ sum += entry.getValue() [FD]
+Line_6 $$ long sum = 0L --> Line_10 $$ sum += getSnapshotSizesForTable(table) [FD]
+Line_8 $$ sum += entry.getValue() --> Line_10 $$ sum += getSnapshotSizesForTable(table) [FD]
+Line_2 $$ public SpaceQuotaSnapshot getTargetState(TableName table, SpaceQuota spaceQuota) throws IOException --> Line_10 $$ sum += getSnapshotSizesForTable(table) [FD]
+Line_2 $$ public SpaceQuotaSnapshot getTargetState(TableName table, SpaceQuota spaceQuota) throws IOException --> Line_11 $$ SpaceQuotaStatus status = sum <= sizeLimitInBytes ? SpaceQuotaStatus.notInViolation() : new SpaceQuotaStatus(ProtobufUtil.toViolationPolicy(spaceQuota.getViolationPolicy())) [FD]

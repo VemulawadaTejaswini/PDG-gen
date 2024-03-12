@@ -1,0 +1,7 @@
+Line_2 $$ public boolean hasNext() --> Line_3 $$ if (iteratorNotification != null && iteratorNotification.isOnError()) [CD]
+Line_2 $$ public boolean hasNext() --> Line_6 $$ if (iteratorNotification == null) [CD]
+Line_6 $$ if (iteratorNotification == null) --> Line_15 $$ Notification<T> n = value.getAndSet(null) [CD]
+Line_6 $$ if (iteratorNotification == null) --> Line_17 $$ if (n.isOnError()) [CD]
+Line_15 $$ Notification<T> n = value.getAndSet(null) --> Line_17 $$ if (n.isOnError()) [FD]
+Line_15 $$ Notification<T> n = value.getAndSet(null) --> Line_18 $$ throw ExceptionHelper.wrapOrThrow(n.getError()) [FD]
+Line_2 $$ public boolean hasNext() --> Line_21 $$ return iteratorNotification.isOnNext() [CD]

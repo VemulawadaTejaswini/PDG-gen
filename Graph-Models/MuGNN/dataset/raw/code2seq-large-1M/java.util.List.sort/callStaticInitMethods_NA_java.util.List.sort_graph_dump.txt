@@ -1,0 +1,7 @@
+Line_2 $$ private static void callStaticInitMethods() throws InvocationTargetException, IllegalAccessException --> Line_3 $$ List<Method> inits = new ArrayList(reflections.getMethodsAnnotatedWith(StaticInit.class)) [CD]
+Line_2 $$ private static void callStaticInitMethods() throws InvocationTargetException, IllegalAccessException --> Line_4 $$ inits.sort(( o1,  o2) -> [CD]
+Line_9 $$ for (Method init : inits) --> Line_10 $$ if (!Modifier.isStatic(init.getModifiers())) [FD]
+Line_9 $$ for (Method init : inits) --> Line_11 $$ throw new CloudRuntimeException(String.format("the method[%s:%s] annotated by @StaticInit is not a static method", init.getDeclaringClass(), init.getName())) [FD]
+Line_9 $$ for (Method init : inits) --> Line_13 $$ logger.debug(String.format("calling static init method[%s:%s]", init.getDeclaringClass(), init.getName())) [FD]
+Line_9 $$ for (Method init : inits) --> Line_14 $$ init.setAccessible(true) [FD]
+Line_9 $$ for (Method init : inits) --> Line_15 $$ init.invoke(null) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void test_volatility() --> Line_3 $$ for (int i = 0; i < NB_TEST; i++) [CD]
+Line_3 $$ for (int i = 0; i < NB_TEST; i++) --> Line_4 $$ double expiryTime = VOLS.relativeTime(TEST_OPTION_EXPIRY[i]) [CD]
+Line_3 $$ for (int i = 0; i < NB_TEST; i++) --> Line_5 $$ double volExpected = SURFACE.zValue(expiryTime, Math.log(TEST_STRIKE_PRICE[i] / TEST_FUTURE_PRICE[i])) [CD]
+Line_4 $$ double expiryTime = VOLS.relativeTime(TEST_OPTION_EXPIRY[i]) --> Line_5 $$ double volExpected = SURFACE.zValue(expiryTime, Math.log(TEST_STRIKE_PRICE[i] / TEST_FUTURE_PRICE[i])) [FD]
+Line_3 $$ for (int i = 0; i < NB_TEST; i++) --> Line_6 $$ double volComputed = VOLS.volatility(TEST_OPTION_EXPIRY[i], TEST_FUTURE_EXPIRY[i], TEST_STRIKE_PRICE[i], TEST_FUTURE_PRICE[i]) [CD]
+Line_3 $$ for (int i = 0; i < NB_TEST; i++) --> Line_7 $$ assertEquals(volComputed, volExpected, TOLERANCE_VOL) [CD]
+Line_6 $$ double volComputed = VOLS.volatility(TEST_OPTION_EXPIRY[i], TEST_FUTURE_EXPIRY[i], TEST_STRIKE_PRICE[i], TEST_FUTURE_PRICE[i]) --> Line_7 $$ assertEquals(volComputed, volExpected, TOLERANCE_VOL) [FD]
+Line_5 $$ double volExpected = SURFACE.zValue(expiryTime, Math.log(TEST_STRIKE_PRICE[i] / TEST_FUTURE_PRICE[i])) --> Line_7 $$ assertEquals(volComputed, volExpected, TOLERANCE_VOL) [FD]

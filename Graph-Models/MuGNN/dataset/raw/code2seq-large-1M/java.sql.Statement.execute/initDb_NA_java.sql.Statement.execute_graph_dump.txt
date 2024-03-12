@@ -1,0 +1,6 @@
+Line_2 $$ public java.sql.Connection initDb() throws Exception --> Line_3 $$ String createStatement = "CREATE TABLE SCP_INPUT_MESSAGES (" + "id int NOT NULL GENERATED ALWAYS AS IDENTITY, " + "messageId varchar(96) NOT NULL, " + "messageCorrelationId varchar(96) NOT NULL, " + "messageContent varchar(2048) NOT NULL, " + "PRIMARY KEY (id) )" [CD]
+Line_2 $$ public java.sql.Connection initDb() throws Exception --> Line_4 $$ java.sql.Connection conn = getJDBCConnection() [CD]
+Line_3 $$ String createStatement = "CREATE TABLE SCP_INPUT_MESSAGES (" + "id int NOT NULL GENERATED ALWAYS AS IDENTITY, " + "messageId varchar(96) NOT NULL, " + "messageCorrelationId varchar(96) NOT NULL, " + "messageContent varchar(2048) NOT NULL, " + "PRIMARY KEY (id) )" --> Line_6 $$ conn.createStatement().execute(createStatement) [FD]
+Line_4 $$ java.sql.Connection conn = getJDBCConnection() --> Line_6 $$ conn.createStatement().execute(createStatement) [FD]
+Line_4 $$ java.sql.Connection conn = getJDBCConnection() --> Line_11 $$ conn.createStatement().execute("DELETE FROM SCP_INPUT_MESSAGES") [FD]
+Line_2 $$ public java.sql.Connection initDb() throws Exception --> Line_15 $$ return conn [CD]

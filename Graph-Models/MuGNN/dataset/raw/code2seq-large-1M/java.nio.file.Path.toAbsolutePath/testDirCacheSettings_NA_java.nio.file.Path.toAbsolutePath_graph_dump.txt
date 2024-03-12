@@ -1,0 +1,6 @@
+Line_2 $$ public void testDirCacheSettings() throws IOException --> Line_3 $$ ArtifactCacheBuckConfig config = createFromText("[cache]", "dir = cache_dir", "dir_mode = readonly", "dir_max_size = 1022B") [CD]
+Line_2 $$ public void testDirCacheSettings() throws IOException --> Line_4 $$ DirCacheEntry dirCacheConfig = config.getCacheEntries().getDirCacheEntries().asList().get(0) [CD]
+Line_3 $$ ArtifactCacheBuckConfig config = createFromText("[cache]", "dir = cache_dir", "dir_mode = readonly", "dir_max_size = 1022B") --> Line_4 $$ DirCacheEntry dirCacheConfig = config.getCacheEntries().getDirCacheEntries().asList().get(0) [FD]
+Line_2 $$ public void testDirCacheSettings() throws IOException --> Line_5 $$ assertThat(dirCacheConfig.getCacheDir(), Matchers.equalTo(Paths.get("cache_dir").toAbsolutePath())) [CD]
+Line_2 $$ public void testDirCacheSettings() throws IOException --> Line_6 $$ assertThat(dirCacheConfig.getCacheReadMode(), Matchers.is(CacheReadMode.READONLY)) [CD]
+Line_2 $$ public void testDirCacheSettings() throws IOException --> Line_7 $$ assertThat(dirCacheConfig.getMaxSizeBytes(), Matchers.equalTo(Optional.of(1022L))) [CD]

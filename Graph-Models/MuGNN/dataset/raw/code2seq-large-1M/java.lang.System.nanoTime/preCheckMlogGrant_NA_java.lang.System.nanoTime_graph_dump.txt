@@ -1,0 +1,8 @@
+Line_2 $$ private void preCheckMlogGrant(DataSource ds) --> Line_3 $$ JdbcTemplate jdbcTemplate = new JdbcTemplate(ds) [CD]
+Line_2 $$ private void preCheckMlogGrant(DataSource ds) --> Line_4 $$ String mlogName = "migrate" + System.nanoTime() [CD]
+Line_2 $$ private void preCheckMlogGrant(DataSource ds) --> Line_5 $$ logger.info("check mlog privileges ...") [CD]
+Line_2 $$ private void preCheckMlogGrant(DataSource ds) --> Line_6 $$ jdbcTemplate.execute("CREATE MATERIALIZED VIEW " + mlogName + " AS SELECT SYSDATE FROM DUAL") [CD]
+Line_3 $$ JdbcTemplate jdbcTemplate = new JdbcTemplate(ds) --> Line_6 $$ jdbcTemplate.execute("CREATE MATERIALIZED VIEW " + mlogName + " AS SELECT SYSDATE FROM DUAL") [FD]
+Line_2 $$ private void preCheckMlogGrant(DataSource ds) --> Line_7 $$ jdbcTemplate.execute("DROP MATERIALIZED VIEW " + mlogName) [CD]
+Line_3 $$ JdbcTemplate jdbcTemplate = new JdbcTemplate(ds) --> Line_7 $$ jdbcTemplate.execute("DROP MATERIALIZED VIEW " + mlogName) [FD]
+Line_2 $$ private void preCheckMlogGrant(DataSource ds) --> Line_8 $$ logger.info("check mlog privileges is ok") [CD]

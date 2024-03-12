@@ -1,0 +1,8 @@
+Line_2 $$ private static <T extends Reactor> void start(int port, Class<T> clazz, boolean useMultipleReactors, int subReactorSize) --> Line_9 $$ Constructor<T> constructor = clazz.getConstructor(int.class, ServerSocketChannel.class, boolean.class, boolean.class, long.class) [FD]
+Line_2 $$ private static <T extends Reactor> void start(int port, Class<T> clazz, boolean useMultipleReactors, int subReactorSize) --> Line_10 $$ mainReactor = constructor.newInstance(port, serverChannel, true, useMultipleReactors, selectTimeOut) [FD]
+Line_11 $$ if (useMultipleReactors) --> Line_13 $$ for (int i = 0; i < subReactors.length; i++) [CD]
+Line_13 $$ for (int i = 0; i < subReactors.length; i++) --> Line_14 $$ subReactors[i] = constructor.newInstance(port, serverChannel, false, useMultipleReactors, selectTimeOut) [CD]
+Line_2 $$ private static <T extends Reactor> void start(int port, Class<T> clazz, boolean useMultipleReactors, int subReactorSize) --> Line_14 $$ subReactors[i] = constructor.newInstance(port, serverChannel, false, useMultipleReactors, selectTimeOut) [FD]
+Line_2 $$ private static <T extends Reactor> void start(int port, Class<T> clazz, boolean useMultipleReactors, int subReactorSize) --> Line_20 $$ mainReactor.start() [CD]
+Line_2 $$ private static <T extends Reactor> void start(int port, Class<T> clazz, boolean useMultipleReactors, int subReactorSize) --> Line_21 $$ if (useMultipleReactors) [CD]
+Line_22 $$ for (Reactor subReactor : subReactors) --> Line_23 $$ subReactor.start() [FD]

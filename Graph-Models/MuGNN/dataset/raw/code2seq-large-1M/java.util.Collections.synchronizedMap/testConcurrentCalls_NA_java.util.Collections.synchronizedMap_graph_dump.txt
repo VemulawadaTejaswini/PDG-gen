@@ -1,0 +1,7 @@
+Line_2 $$ public void testConcurrentCalls(BoundSessionContext boundSessionContext, Product product) throws InterruptedException, ExecutionException --> Line_3 $$ Map<String, Object> storage = Collections.synchronizedMap(new HashMap<String, Object>()) [CD]
+Line_2 $$ public void testConcurrentCalls(BoundSessionContext boundSessionContext, Product product) throws InterruptedException, ExecutionException --> Line_4 $$ List<Callable<Void>> calls = new ArrayList<Callable<Void>>() [CD]
+Line_2 $$ public void testConcurrentCalls(BoundSessionContext boundSessionContext, Product product) throws InterruptedException, ExecutionException --> Line_5 $$ for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++) [CD]
+Line_5 $$ for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++) --> Line_6 $$ calls.add(new ConcurrentCall(storage, boundSessionContext, product)) [CD]
+Line_4 $$ List<Callable<Void>> calls = new ArrayList<Callable<Void>>() --> Line_6 $$ calls.add(new ConcurrentCall(storage, boundSessionContext, product)) [FD]
+Line_4 $$ List<Callable<Void>> calls = new ArrayList<Callable<Void>>() --> Line_8 $$ for (Future<Void> result : executor.invokeAll(calls)) [FD]
+Line_8 $$ for (Future<Void> result : executor.invokeAll(calls)) --> Line_9 $$ result.get() [FD]

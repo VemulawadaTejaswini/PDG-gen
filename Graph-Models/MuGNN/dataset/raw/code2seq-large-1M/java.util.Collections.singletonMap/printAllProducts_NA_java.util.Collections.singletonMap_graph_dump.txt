@@ -1,0 +1,7 @@
+Line_2 $$ public CompletionStage<ResultSummary> printAllProducts() --> Line_3 $$ String query = "MATCH (p:Product) WHERE p.id = $id RETURN p.title" [CD]
+Line_2 $$ public CompletionStage<ResultSummary> printAllProducts() --> Line_4 $$ Map<String, Object> parameters = Collections.singletonMap("id", 0) [CD]
+Line_2 $$ public CompletionStage<ResultSummary> printAllProducts() --> Line_5 $$ Session session = driver.session() [CD]
+Line_2 $$ public CompletionStage<ResultSummary> printAllProducts() --> Line_6 $$ return session.readTransactionAsync( tx -> tx.runAsync(query, parameters).thenCompose( cursor -> cursor.forEachAsync( record -> System.out.println(record.get(0).asString())))) [CD]
+Line_5 $$ Session session = driver.session() --> Line_6 $$ return session.readTransactionAsync( tx -> tx.runAsync(query, parameters).thenCompose( cursor -> cursor.forEachAsync( record -> System.out.println(record.get(0).asString())))) [FD]
+Line_3 $$ String query = "MATCH (p:Product) WHERE p.id = $id RETURN p.title" --> Line_6 $$ return session.readTransactionAsync( tx -> tx.runAsync(query, parameters).thenCompose( cursor -> cursor.forEachAsync( record -> System.out.println(record.get(0).asString())))) [FD]
+Line_4 $$ Map<String, Object> parameters = Collections.singletonMap("id", 0) --> Line_6 $$ return session.readTransactionAsync( tx -> tx.runAsync(query, parameters).thenCompose( cursor -> cursor.forEachAsync( record -> System.out.println(record.get(0).asString())))) [FD]

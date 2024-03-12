@@ -1,0 +1,6 @@
+Line_2 $$ public void testNoDefaultEncoding() throws Exception --> Line_3 $$ final Reflections reflections = new Reflections(new ConfigurationBuilder().useParallelExecutor(Runtime.getRuntime().availableProcessors()).addUrls(ClasspathHelper.forPackage("org.apache.flink")).addScanners(new MemberUsageScanner())) [CD]
+Line_4 $$ for (ForbiddenCall forbiddenCall : forbiddenCalls) --> Line_5 $$ final Set<Member> methodUsages = forbiddenCall.getUsages(reflections) [FD]
+Line_3 $$ final Reflections reflections = new Reflections(new ConfigurationBuilder().useParallelExecutor(Runtime.getRuntime().availableProcessors()).addUrls(ClasspathHelper.forPackage("org.apache.flink")).addScanners(new MemberUsageScanner())) --> Line_5 $$ final Set<Member> methodUsages = forbiddenCall.getUsages(reflections) [FD]
+Line_5 $$ final Set<Member> methodUsages = forbiddenCall.getUsages(reflections) --> Line_6 $$ methodUsages.removeAll(forbiddenCall.getExclusions()) [FD]
+Line_4 $$ for (ForbiddenCall forbiddenCall : forbiddenCalls) --> Line_6 $$ methodUsages.removeAll(forbiddenCall.getExclusions()) [FD]
+Line_5 $$ final Set<Member> methodUsages = forbiddenCall.getUsages(reflections) --> Line_7 $$ assertEquals("Unexpected calls: " + methodUsages, 0, methodUsages.size()) [FD]

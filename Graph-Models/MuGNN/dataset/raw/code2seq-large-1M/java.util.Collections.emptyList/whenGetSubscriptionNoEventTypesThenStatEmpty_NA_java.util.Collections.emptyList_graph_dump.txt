@@ -1,0 +1,7 @@
+Line_2 $$ public void whenGetSubscriptionNoEventTypesThenStatEmpty() throws Exception --> Line_3 $$ final Subscription subscription = builder().withEventType("myET").build() [CD]
+Line_2 $$ public void whenGetSubscriptionNoEventTypesThenStatEmpty() throws Exception --> Line_4 $$ when(subscriptionRepository.getSubscription(subscription.getId())).thenReturn(subscription) [CD]
+Line_3 $$ final Subscription subscription = builder().withEventType("myET").build() --> Line_4 $$ when(subscriptionRepository.getSubscription(subscription.getId())).thenReturn(subscription) [FD]
+Line_2 $$ public void whenGetSubscriptionNoEventTypesThenStatEmpty() throws Exception --> Line_5 $$ when(zkSubscriptionClient.getZkSubscriptionNode()).thenReturn(Optional.of(new ZkSubscriptionNode(Collections.emptyList(), Collections.emptyList()))) [CD]
+Line_2 $$ public void whenGetSubscriptionNoEventTypesThenStatEmpty() throws Exception --> Line_6 $$ when(eventTypeRepository.findByName("myET")).thenThrow(NoSuchEventTypeException.class) [CD]
+Line_2 $$ public void whenGetSubscriptionNoEventTypesThenStatEmpty() throws Exception --> Line_7 $$ getSubscriptionStats(subscription.getId()).andExpect(status().isNotFound()) [CD]
+Line_3 $$ final Subscription subscription = builder().withEventType("myET").build() --> Line_7 $$ getSubscriptionStats(subscription.getId()).andExpect(status().isNotFound()) [FD]

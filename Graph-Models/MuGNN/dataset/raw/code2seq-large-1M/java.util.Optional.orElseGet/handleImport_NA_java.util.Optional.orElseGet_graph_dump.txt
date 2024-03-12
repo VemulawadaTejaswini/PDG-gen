@@ -1,0 +1,7 @@
+Line_2 $$ public void handleImport(InternalActionContext ac) --> Line_4 $$ if (!ac.getUser().hasAdminRole()) [FD]
+Line_2 $$ public void handleImport(InternalActionContext ac) --> Line_8 $$ File importsDir = new File(Mesh.mesh().getOptions().getStorageOptions().getExportDirectory()) [CD]
+Line_2 $$ public void handleImport(InternalActionContext ac) --> Line_9 $$ File latestFile = Arrays.asList(importsDir.listFiles()).stream().filter( file -> file.getName().endsWith(".gz")).sorted(comparing(File::<>lastModified)).reduce(( first,  second) -> second).orElseGet(() -> null) [CD]
+Line_8 $$ File importsDir = new File(Mesh.mesh().getOptions().getStorageOptions().getExportDirectory()) --> Line_9 $$ File latestFile = Arrays.asList(importsDir.listFiles()).stream().filter( file -> file.getName().endsWith(".gz")).sorted(comparing(File::<>lastModified)).reduce(( first,  second) -> second).orElseGet(() -> null) [FD]
+Line_9 $$ File latestFile = Arrays.asList(importsDir.listFiles()).stream().filter( file -> file.getName().endsWith(".gz")).sorted(comparing(File::<>lastModified)).reduce(( first,  second) -> second).orElseGet(() -> null) --> Line_11 $$ db.importGraph(latestFile.getAbsolutePath()) [FD]
+Line_2 $$ public void handleImport(InternalActionContext ac) --> Line_12 $$ Single.just(message(ac, "import_finished")).subscribe( model -> ac.send(model, OK), ac::<>fail) [FD]
+Line_2 $$ public void handleImport(InternalActionContext ac) --> Line_14 $$ ac.fail(e) [FD]

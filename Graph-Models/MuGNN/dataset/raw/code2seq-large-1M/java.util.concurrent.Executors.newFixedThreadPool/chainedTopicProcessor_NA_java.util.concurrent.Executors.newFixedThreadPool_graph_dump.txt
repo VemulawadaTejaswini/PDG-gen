@@ -1,0 +1,8 @@
+Line_2 $$ public void chainedTopicProcessor() throws Exception --> Line_3 $$ ExecutorService es = Executors.newFixedThreadPool(2) [CD]
+Line_3 $$ ExecutorService es = Executors.newFixedThreadPool(2) --> Line_5 $$ TopicProcessor<String> bc = TopicProcessor.<String>builder().executor(es).bufferSize(16).build() [FD]
+Line_5 $$ TopicProcessor<String> bc = TopicProcessor.<String>builder().executor(es).bufferSize(16).build() --> Line_8 $$ bc.subscribe(sub("spec1", latch)) [FD]
+Line_7 $$ CountDownLatch latch = new CountDownLatch(elems) --> Line_8 $$ bc.subscribe(sub("spec1", latch)) [FD]
+Line_5 $$ TopicProcessor<String> bc = TopicProcessor.<String>builder().executor(es).bufferSize(16).build() --> Line_9 $$ Flux.range(0, elems).map( s -> "hello " + s).subscribe(bc) [FD]
+Line_6 $$ int elems = 100 --> Line_9 $$ Flux.range(0, elems).map( s -> "hello " + s).subscribe(bc) [FD]
+Line_7 $$ CountDownLatch latch = new CountDownLatch(elems) --> Line_10 $$ assertTrue(latch.await(5000, TimeUnit.MILLISECONDS)) [FD]
+Line_3 $$ ExecutorService es = Executors.newFixedThreadPool(2) --> Line_12 $$ es.shutdown() [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testEscapeProcessing() throws Exception --> Line_3 $$ String results = "select dayname (abs(now())),   -- Today    \n" + "           '1997-05-24',  -- a date                    \n" + "           '10:30:29',  -- a time                     \n" + (versionMeetsMinimum(5, 6, 4) ? "           '1997-05-24 10:30:29.123', -- a timestamp  \n" : "           '1997-05-24 10:30:29', -- a timestamp  \n") + "          ' [CD]
+Line_2 $$ public void testEscapeProcessing() throws Exception --> Line_4 $$ String exSql = "select [CD]
+Line_2 $$ public void testEscapeProcessing() throws Exception --> Line_5 $$ String escapedSql = this.conn.nativeSQL(exSql) [CD]
+Line_4 $$ String exSql = "select --> Line_5 $$ String escapedSql = this.conn.nativeSQL(exSql) [FD]
+Line_2 $$ public void testEscapeProcessing() throws Exception --> Line_6 $$ assertTrue(results.equals(escapedSql)) [CD]
+Line_3 $$ String results = "select dayname (abs(now())),   -- Today    \n" + "           '1997-05-24',  -- a date                    \n" + "           '10:30:29',  -- a time                     \n" + (versionMeetsMinimum(5, 6, 4) ? "           '1997-05-24 10:30:29.123', -- a timestamp  \n" : "           '1997-05-24 10:30:29', -- a timestamp  \n") + "          ' --> Line_6 $$ assertTrue(results.equals(escapedSql)) [FD]
+Line_5 $$ String escapedSql = this.conn.nativeSQL(exSql) --> Line_6 $$ assertTrue(results.equals(escapedSql)) [FD]

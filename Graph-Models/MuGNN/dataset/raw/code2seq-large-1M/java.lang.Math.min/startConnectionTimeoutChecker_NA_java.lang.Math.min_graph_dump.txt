@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void startConnectionTimeoutChecker(long connectionTimeout) --> Line_3 $$ this.connectionTimeout = connectionTimeout [FD]
+Line_2 $$ public synchronized void startConnectionTimeoutChecker(long connectionTimeout) --> Line_3 $$ this.connectionTimeout = connectionTimeout [CD]
+Line_2 $$ public synchronized void startConnectionTimeoutChecker(long connectionTimeout) --> Line_4 $$ if (connectionTimeout > 0 && connectCheckerTask == null) [CD]
+Line_4 $$ if (connectionTimeout > 0 && connectCheckerTask == null) --> Line_6 $$ long connectionCheckInterval = Math.min(connectionTimeout, 1000) [CD]
+Line_2 $$ public synchronized void startConnectionTimeoutChecker(long connectionTimeout) --> Line_6 $$ long connectionCheckInterval = Math.min(connectionTimeout, 1000) [FD]
+Line_8 $$ if (CONNECTION_CHECK_TASK_COUNTER == 0) --> Line_9 $$ if (ASYNC_TASKS == null || ASYNC_TASKS.isShutdown()) [CD]
+Line_9 $$ if (ASYNC_TASKS == null || ASYNC_TASKS.isShutdown()) --> Line_10 $$ ASYNC_TASKS = createExecutor() [CD]
+Line_6 $$ long connectionCheckInterval = Math.min(connectionTimeout, 1000) --> Line_15 $$ CONNECTION_CHECK_TASK_TIMER.schedule(connectCheckerTask, connectionCheckInterval, connectionCheckInterval) [FD]

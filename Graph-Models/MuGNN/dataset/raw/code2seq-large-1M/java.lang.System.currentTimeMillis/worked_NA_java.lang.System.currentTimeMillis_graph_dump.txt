@@ -1,0 +1,6 @@
+Line_2 $$ private void worked(final int processed, final boolean forced) --> Line_3 $$ if (monitoringRequested) [CD]
+Line_3 $$ if (monitoringRequested) --> Line_5 $$ final long now = System.currentTimeMillis() [CD]
+Line_3 $$ if (monitoringRequested) --> Line_6 $$ if (forced || now - lastDisplayTime > MONITORING_TIME_INTERVAL) [CD]
+Line_2 $$ private void worked(final int processed, final boolean forced) --> Line_6 $$ if (forced || now - lastDisplayTime > MONITORING_TIME_INTERVAL) [FD]
+Line_6 $$ if (forced || now - lastDisplayTime > MONITORING_TIME_INTERVAL) --> Line_8 $$ final String percent = MessageFormat.format(PERCENT_MESSAGE_FORMAT, size(alreadyProcessed + currentProgress), size(totalLength), (float) (alreadyProcessed + currentProgress) / totalLength) [CD]
+Line_8 $$ final String percent = MessageFormat.format(PERCENT_MESSAGE_FORMAT, size(alreadyProcessed + currentProgress), size(totalLength), (float) (alreadyProcessed + currentProgress) / totalLength) --> Line_10 $$ parentMonitor.setCurrentWorkDescription(MessageFormat.format(messageFormat, percent)) [FD]

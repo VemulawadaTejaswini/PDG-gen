@@ -1,0 +1,7 @@
+Line_2 $$ public void role() throws Exception --> Line_3 $$ RedisAsyncCommands<String, String> connection = sentinelClient.connect(RedisURI.Builder.redis(host, 26380).build()).async() [CD]
+Line_3 $$ RedisAsyncCommands<String, String> connection = sentinelClient.connect(RedisURI.Builder.redis(host, 26380).build()).async() --> Line_5 $$ RedisFuture<List<Object>> role = connection.role() [FD]
+Line_5 $$ RedisFuture<List<Object>> role = connection.role() --> Line_6 $$ List<Object> objects = role.get() [FD]
+Line_6 $$ List<Object> objects = role.get() --> Line_7 $$ assertThat(objects).hasSize(2) [FD]
+Line_6 $$ List<Object> objects = role.get() --> Line_8 $$ assertThat(objects.get(0)).isEqualTo("sentinel") [FD]
+Line_6 $$ List<Object> objects = role.get() --> Line_9 $$ assertThat(objects.get(1).toString()).isEqualTo("[" + MASTER_ID + "]") [FD]
+Line_3 $$ RedisAsyncCommands<String, String> connection = sentinelClient.connect(RedisURI.Builder.redis(host, 26380).build()).async() --> Line_11 $$ connection.close() [FD]

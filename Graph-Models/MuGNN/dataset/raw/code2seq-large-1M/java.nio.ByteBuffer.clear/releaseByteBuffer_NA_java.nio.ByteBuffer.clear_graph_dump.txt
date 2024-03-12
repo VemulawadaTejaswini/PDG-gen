@@ -1,0 +1,8 @@
+Line_2 $$ public void releaseByteBuffer(ByteBuffer byteBuffer) --> Line_3 $$ ThreadLocalPool<ByteBuffer> memoryPool = getByteBufferThreadLocalPool() [CD]
+Line_2 $$ public void releaseByteBuffer(ByteBuffer byteBuffer) --> Line_4 $$ if (memoryPool != null) [CD]
+Line_3 $$ ThreadLocalPool<ByteBuffer> memoryPool = getByteBufferThreadLocalPool() --> Line_4 $$ if (memoryPool != null) [FD]
+Line_4 $$ if (memoryPool != null) --> Line_5 $$ if (memoryPool.release((ByteBuffer) byteBuffer.clear())) [CD]
+Line_3 $$ ThreadLocalPool<ByteBuffer> memoryPool = getByteBufferThreadLocalPool() --> Line_5 $$ if (memoryPool.release((ByteBuffer) byteBuffer.clear())) [FD]
+Line_2 $$ public void releaseByteBuffer(ByteBuffer byteBuffer) --> Line_5 $$ if (memoryPool.release((ByteBuffer) byteBuffer.clear())) [FD]
+Line_5 $$ if (memoryPool.release((ByteBuffer) byteBuffer.clear())) --> Line_6 $$ ProbeNotifier.notifyBufferReleasedToPool(monitoringConfig, byteBuffer.capacity()) [CD]
+Line_2 $$ public void releaseByteBuffer(ByteBuffer byteBuffer) --> Line_6 $$ ProbeNotifier.notifyBufferReleasedToPool(monitoringConfig, byteBuffer.capacity()) [FD]

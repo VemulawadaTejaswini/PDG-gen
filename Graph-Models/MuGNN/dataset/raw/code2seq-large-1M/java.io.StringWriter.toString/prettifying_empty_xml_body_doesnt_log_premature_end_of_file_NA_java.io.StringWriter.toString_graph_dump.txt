@@ -1,0 +1,5 @@
+Line_2 $$ public void prettifying_empty_xml_body_doesnt_log_premature_end_of_file() --> Line_3 $$ final StringWriter writer = new StringWriter() [CD]
+Line_2 $$ public void prettifying_empty_xml_body_doesnt_log_premature_end_of_file() --> Line_4 $$ final PrintStream captor = new PrintStream(new WriterOutputStream(writer), true) [CD]
+Line_2 $$ public void prettifying_empty_xml_body_doesnt_log_premature_end_of_file() --> Line_5 $$ given().filter(new ResponseLoggingFilter(LogDetail.ALL, true, captor)).filter(( requestSpec,  responseSpec,  ctx) -> new ResponseBuilder().setStatusCode(200).setContentType(ContentType.XML).setBody("").build()).when().get("/xml-empty-body").then().statusCode(200) [CD]
+Line_2 $$ public void prettifying_empty_xml_body_doesnt_log_premature_end_of_file() --> Line_6 $$ assertThat(writer.toString(), equalTo("200" + LINE_SEPARATOR + "Content-Type: application/xml" + LINE_SEPARATOR)) [CD]
+Line_3 $$ final StringWriter writer = new StringWriter() --> Line_6 $$ assertThat(writer.toString(), equalTo("200" + LINE_SEPARATOR + "Content-Type: application/xml" + LINE_SEPARATOR)) [FD]

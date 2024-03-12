@@ -1,0 +1,8 @@
+Line_2 $$ public static String cliDependenciesExist(boolean includeGfshDependencies) --> Line_3 $$ Map<String, String> classLibraryMap = new HashMap() [CD]
+Line_2 $$ public static String cliDependenciesExist(boolean includeGfshDependencies) --> Line_4 $$ classLibraryMap.put("org.springframework.shell.core.Parser", "Spring Shell") [CD]
+Line_2 $$ public static String cliDependenciesExist(boolean includeGfshDependencies) --> Line_5 $$ classLibraryMap.put("org.springframework.shell.core.annotation.CliCommand", "Spring Shell") [CD]
+Line_2 $$ public static String cliDependenciesExist(boolean includeGfshDependencies) --> Line_6 $$ classLibraryMap.put("org.springframework.core.SpringVersion", "Spring Core") [CD]
+Line_2 $$ public static String cliDependenciesExist(boolean includeGfshDependencies) --> Line_7 $$ if (includeGfshDependencies) [CD]
+Line_7 $$ if (includeGfshDependencies) --> Line_8 $$ classLibraryMap.put("jline.console.ConsoleReader", "JLine") [CD]
+Line_2 $$ public static String cliDependenciesExist(boolean includeGfshDependencies) --> Line_10 $$ List<String> unloadableJars = classLibraryMap.entrySet().stream().filter( entry -> !canLoadClass(entry.getKey())).map(Map.Entry::<>getValue).collect(Collectors.toList()) [CD]
+Line_2 $$ public static String cliDependenciesExist(boolean includeGfshDependencies) --> Line_11 $$ return unloadableJars.isEmpty() ? null : String.join(",", unloadableJars) [CD]

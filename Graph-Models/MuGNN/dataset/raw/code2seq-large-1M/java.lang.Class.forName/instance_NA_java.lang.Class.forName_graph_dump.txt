@@ -1,0 +1,8 @@
+Line_2 $$ public <T extends Tool> T instance(String toolName, Tool outer) --> Line_3 $$ String toolClassName = getToolClassName(toolName) [CD]
+Line_2 $$ public <T extends Tool> T instance(String toolName, Tool outer) --> Line_3 $$ String toolClassName = getToolClassName(toolName) [FD]
+Line_2 $$ public <T extends Tool> T instance(String toolName, Tool outer) --> Line_4 $$ if (toolClassName == null) [CD]
+Line_3 $$ String toolClassName = getToolClassName(toolName) --> Line_4 $$ if (toolClassName == null) [FD]
+Line_4 $$ if (toolClassName == null) --> Line_5 $$ return null [CD]
+Line_3 $$ String toolClassName = getToolClassName(toolName) --> Line_8 $$ Class<T> toolClass = (Class<T>) Class.forName(toolClassName, false, loader) [FD]
+Line_8 $$ Class<T> toolClass = (Class<T>) Class.forName(toolClassName, false, loader) --> Line_9 $$ return instance(toolClass, outer) [FD]
+Line_2 $$ public <T extends Tool> T instance(String toolName, Tool outer) --> Line_9 $$ return instance(toolClass, outer) [FD]

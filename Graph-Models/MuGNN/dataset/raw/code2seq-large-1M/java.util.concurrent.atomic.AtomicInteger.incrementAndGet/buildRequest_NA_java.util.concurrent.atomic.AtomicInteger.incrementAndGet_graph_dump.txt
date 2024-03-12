@@ -1,0 +1,5 @@
+Line_2 $$ private DataUsageRequest buildRequest(DataUsageRequest request) --> Line_3 $$ long thresholdInBytes = Math.max(MIN_THRESHOLD_BYTES, request.thresholdInBytes) [CD]
+Line_2 $$ private DataUsageRequest buildRequest(DataUsageRequest request) --> Line_4 $$ if (thresholdInBytes < request.thresholdInBytes) [CD]
+Line_3 $$ long thresholdInBytes = Math.max(MIN_THRESHOLD_BYTES, request.thresholdInBytes) --> Line_4 $$ if (thresholdInBytes < request.thresholdInBytes) [FD]
+Line_4 $$ if (thresholdInBytes < request.thresholdInBytes) --> Line_5 $$ Slog.w(TAG, "Threshold was too low for " + request + ". Overriding to a safer default of " + thresholdInBytes + " bytes") [CD]
+Line_2 $$ private DataUsageRequest buildRequest(DataUsageRequest request) --> Line_7 $$ return new DataUsageRequest(mNextDataUsageRequestId.incrementAndGet(), request.template, thresholdInBytes) [CD]

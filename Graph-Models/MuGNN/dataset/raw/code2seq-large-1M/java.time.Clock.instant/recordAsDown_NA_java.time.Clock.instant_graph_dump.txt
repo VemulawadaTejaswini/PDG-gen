@@ -1,0 +1,7 @@
+Line_2 $$ private Node recordAsDown(Node node) --> Line_3 $$ if (node.history().event(History.Event.Type.down).isPresent()) [FD]
+Line_2 $$ private Node recordAsDown(Node node) --> Line_3 $$ if (node.history().event(History.Event.Type.down).isPresent()) [CD]
+Line_3 $$ if (node.history().event(History.Event.Type.down).isPresent()) --> Line_4 $$ return node [CD]
+Line_2 $$ private Node recordAsDown(Node node) --> Line_5 $$ try (Mutex lock = nodeRepository().lock(node.allocation().get().owner())) [FD]
+Line_2 $$ private Node recordAsDown(Node node) --> Line_6 $$ node = nodeRepository().getNode(node.hostname(), Node.State.active).get() [FD]
+Line_2 $$ private Node recordAsDown(Node node) --> Line_7 $$ return nodeRepository().write(node.downAt(clock.instant())) [FD]
+Line_6 $$ node = nodeRepository().getNode(node.hostname(), Node.State.active).get() --> Line_7 $$ return nodeRepository().write(node.downAt(clock.instant())) [FD]

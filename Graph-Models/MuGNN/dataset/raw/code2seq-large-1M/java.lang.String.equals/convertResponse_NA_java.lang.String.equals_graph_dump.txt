@@ -1,0 +1,5 @@
+Line_2 $$ public HttpResponse convertResponse(ServiceRequestContext ctx, Object result) throws Exception --> Line_3 $$ if (result instanceof String && "hello foo".equals(result)) [CD]
+Line_2 $$ public HttpResponse convertResponse(ServiceRequestContext ctx, Object result) throws Exception --> Line_3 $$ if (result instanceof String && "hello foo".equals(result)) [FD]
+Line_3 $$ if (result instanceof String && "hello foo".equals(result)) --> Line_4 $$ assertThat(responseCounter.getAndIncrement()).isEqualTo(2) [CD]
+Line_3 $$ if (result instanceof String && "hello foo".equals(result)) --> Line_5 $$ return HttpResponse.of(HttpStatus.OK, MediaType.PLAIN_TEXT_UTF_8, HttpData.ofUtf8((String) result)) [CD]
+Line_2 $$ public HttpResponse convertResponse(ServiceRequestContext ctx, Object result) throws Exception --> Line_7 $$ return ResponseConverterFunction.fallthrough() [CD]

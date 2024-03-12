@@ -1,0 +1,5 @@
+Line_2 $$ public void setQueryString(String qs) --> Line_3 $$ ListMultimap<String, String> params = LinkedListMultimap.create() [CD]
+Line_2 $$ public void setQueryString(String qs) --> Line_4 $$ for (String entry : Splitter.on('&').split(qs)) [FD]
+Line_4 $$ for (String entry : Splitter.on('&').split(qs)) --> Line_5 $$ List<String> kv = Splitter.on('=').limit(2).splitToList(entry) [FD]
+Line_3 $$ ListMultimap<String, String> params = LinkedListMultimap.create() --> Line_7 $$ params.put(URLDecoder.decode(kv.get(0), UTF_8.name()), kv.size() == 2 ? URLDecoder.decode(kv.get(1), UTF_8.name()) : "") [FD]
+Line_5 $$ List<String> kv = Splitter.on('=').limit(2).splitToList(entry) --> Line_7 $$ params.put(URLDecoder.decode(kv.get(0), UTF_8.name()), kv.size() == 2 ? URLDecoder.decode(kv.get(1), UTF_8.name()) : "") [FD]

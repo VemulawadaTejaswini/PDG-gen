@@ -1,0 +1,5 @@
+Line_2 $$ LogMetadata truncate(LedgerAddress upToAddress) --> Line_3 $$ Preconditions.checkState(this.enabled, "Log is not enabled. Cannot perform any modifications on it.") [CD]
+Line_2 $$ LogMetadata truncate(LedgerAddress upToAddress) --> Line_4 $$ val newLedgers = this.ledgers.stream().filter( lm -> lm.getLedgerId() >= upToAddress.getLedgerId()).collect(Collectors.toList()) [CD]
+Line_2 $$ LogMetadata truncate(LedgerAddress upToAddress) --> Line_4 $$ val newLedgers = this.ledgers.stream().filter( lm -> lm.getLedgerId() >= upToAddress.getLedgerId()).collect(Collectors.toList()) [FD]
+Line_2 $$ LogMetadata truncate(LedgerAddress upToAddress) --> Line_5 $$ return new LogMetadata(this.epoch, this.enabled, Collections.unmodifiableList(newLedgers), upToAddress, this.updateVersion.get()) [CD]
+Line_4 $$ val newLedgers = this.ledgers.stream().filter( lm -> lm.getLedgerId() >= upToAddress.getLedgerId()).collect(Collectors.toList()) --> Line_5 $$ return new LogMetadata(this.epoch, this.enabled, Collections.unmodifiableList(newLedgers), upToAddress, this.updateVersion.get()) [FD]

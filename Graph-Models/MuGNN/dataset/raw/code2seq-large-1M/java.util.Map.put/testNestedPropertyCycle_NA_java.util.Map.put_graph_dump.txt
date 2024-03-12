@@ -1,0 +1,7 @@
+Line_2 $$ public void testNestedPropertyCycle() throws Exception --> Line_3 $$ Yaml yaml = new Yaml() [CD]
+Line_2 $$ public void testNestedPropertyCycle() throws Exception --> Line_4 $$ Map<String, Object> map = yaml.loadAs("foo: bar\nspam:", Map.class) [CD]
+Line_3 $$ Yaml yaml = new Yaml() --> Line_4 $$ Map<String, Object> map = yaml.loadAs("foo: bar\nspam:", Map.class) [FD]
+Line_2 $$ public void testNestedPropertyCycle() throws Exception --> Line_5 $$ map.put("bang", Collections.singletonMap("self", map)) [CD]
+Line_2 $$ public void testNestedPropertyCycle() throws Exception --> Line_6 $$ NestedMapPropertySource properties = new NestedMapPropertySource("map", map) [CD]
+Line_2 $$ public void testNestedPropertyCycle() throws Exception --> Line_7 $$ assertEquals(map, properties.getProperty("bang.self")) [CD]
+Line_6 $$ NestedMapPropertySource properties = new NestedMapPropertySource("map", map) --> Line_7 $$ assertEquals(map, properties.getProperty("bang.self")) [FD]

@@ -1,0 +1,6 @@
+Line_6 $$ for (NetworkInterface networkInterface : interfaces) --> Line_7 $$ if (networkInterface.isLoopback() || !networkInterface.isUp()) [FD]
+Line_6 $$ for (NetworkInterface networkInterface : interfaces) --> Line_9 $$ for (InterfaceAddress address : networkInterface.getInterfaceAddresses()) [FD]
+Line_9 $$ for (InterfaceAddress address : networkInterface.getInterfaceAddresses()) --> Line_10 $$ String addr = address.getAddress().getHostAddress() [FD]
+Line_10 $$ String addr = address.getAddress().getHostAddress() --> Line_11 $$ if (addr == null || addr.isEmpty() || addr.contains(":")) [FD]
+Line_5 $$ Set<String> result = new HashSet() --> Line_13 $$ result.add(addr) [FD]
+Line_10 $$ String addr = address.getAddress().getHostAddress() --> Line_13 $$ result.add(addr) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void normalizeToUTC(ReplDBMSEvent event) throws ConsistencyException --> Line_3 $$ String dbmsType = event.getDBMSEvent().getMetadataOptionValue(ReplOptionParams.DBMS_TYPE) [CD]
+Line_2 $$ private void normalizeToUTC(ReplDBMSEvent event) throws ConsistencyException --> Line_3 $$ String dbmsType = event.getDBMSEvent().getMetadataOptionValue(ReplOptionParams.DBMS_TYPE) [FD]
+Line_2 $$ private void normalizeToUTC(ReplDBMSEvent event) throws ConsistencyException --> Line_4 $$ if ("mysql".equals(dbmsType)) [CD]
+Line_3 $$ String dbmsType = event.getDBMSEvent().getMetadataOptionValue(ReplOptionParams.DBMS_TYPE) --> Line_4 $$ if ("mysql".equals(dbmsType)) [FD]
+Line_2 $$ private void normalizeToUTC(ReplDBMSEvent event) throws ConsistencyException --> Line_5 $$ for (DBMSData data : event.getData()) [FD]
+Line_5 $$ for (DBMSData data : event.getData()) --> Line_6 $$ if (data.getOption("time_zone") == null) [FD]
+Line_6 $$ if (data.getOption("time_zone") == null) --> Line_7 $$ data.addOption("time_zone", "'+00:00'") [CD]
+Line_5 $$ for (DBMSData data : event.getData()) --> Line_7 $$ data.addOption("time_zone", "'+00:00'") [FD]

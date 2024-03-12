@@ -1,0 +1,8 @@
+Line_2 $$ public <T> Literal<T> to(Type type) --> Line_3 $$ switch(type.typeId()) [FD]
+Line_11 $$ if (((Types.TimestampType) type).shouldAdjustToUTC()) --> Line_12 $$ long timestampMicros = ChronoUnit.MICROS.between(EPOCH, OffsetDateTime.parse(value(), DateTimeFormatter.ISO_DATE_TIME)) [CD]
+Line_11 $$ if (((Types.TimestampType) type).shouldAdjustToUTC()) --> Line_13 $$ return (Literal<T>) new TimestampLiteral(timestampMicros) [CD]
+Line_11 $$ if (((Types.TimestampType) type).shouldAdjustToUTC()) --> Line_15 $$ long timestampMicros = ChronoUnit.MICROS.between(EPOCH, LocalDateTime.parse(value(), DateTimeFormatter.ISO_LOCAL_DATE_TIME).atOffset(ZoneOffset.UTC)) [CD]
+Line_11 $$ if (((Types.TimestampType) type).shouldAdjustToUTC()) --> Line_16 $$ return (Literal<T>) new TimestampLiteral(timestampMicros) [CD]
+Line_23 $$ int scale = ((Types.DecimalType) type).scale() --> Line_25 $$ if (scale == decimal.scale()) [FD]
+Line_24 $$ BigDecimal decimal = new BigDecimal(value().toString()) --> Line_25 $$ if (scale == decimal.scale()) [FD]
+Line_25 $$ if (scale == decimal.scale()) --> Line_26 $$ return (Literal<T>) new DecimalLiteral(decimal) [CD]

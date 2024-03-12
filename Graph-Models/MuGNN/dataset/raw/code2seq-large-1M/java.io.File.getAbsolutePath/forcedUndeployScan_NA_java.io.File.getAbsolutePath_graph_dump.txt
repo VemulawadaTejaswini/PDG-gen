@@ -1,0 +1,5 @@
+Line_2 $$ void forcedUndeployScan() --> Line_3 $$ if (acquireScanLock()) [CD]
+Line_8 $$ if (scanContext.registeredDeployments.containsKey(missing.getKey())) --> Line_9 $$ scanContext.registeredDeployments.remove(missing.getKey()) [CD]
+Line_12 $$ Set<String> scannedDeployments = new HashSet<String>(scanContext.registeredDeployments.keySet()) --> Line_13 $$ scannedDeployments.removeAll(scanContext.persistentDeployments) [FD]
+Line_14 $$ List<ScannerTask> scannerTasks = scanContext.scannerTasks --> Line_16 $$ scannerTasks.add(new UndeployTask(toUndeploy, deploymentDir, scanContext.scanStartTime, true)) [FD]
+Line_14 $$ List<ScannerTask> scannerTasks = scanContext.scannerTasks --> Line_19 $$ executeScannerTasks(scannerTasks, deploymentOperations, true) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void replaceContent(final ClientletResponse response, final ComponentContent content) --> Line_3 $$ if (SwingUtilities.isEventDispatchThread()) [CD]
+Line_3 $$ if (SwingUtilities.isEventDispatchThread()) --> Line_4 $$ this.replaceContentImpl(response, content) [CD]
+Line_2 $$ public void replaceContent(final ClientletResponse response, final ComponentContent content) --> Line_4 $$ this.replaceContentImpl(response, content) [FD]
+Line_3 $$ if (SwingUtilities.isEventDispatchThread()) --> Line_6 $$ final AccessControlContext context = AccessController.getContext() [CD]
+Line_3 $$ if (SwingUtilities.isEventDispatchThread()) --> Line_7 $$ SwingUtilities.invokeLater(() -> [CD]
+Line_2 $$ public void replaceContent(final ClientletResponse response, final ComponentContent content) --> Line_9 $$ FramePanel.this.replaceContentImpl(response, content) [FD]
+Line_8 $$ final PrivilegedAction<Object> action = () -> --> Line_12 $$ AccessController.doPrivileged(action, context) [FD]
+Line_6 $$ final AccessControlContext context = AccessController.getContext() --> Line_12 $$ AccessController.doPrivileged(action, context) [FD]

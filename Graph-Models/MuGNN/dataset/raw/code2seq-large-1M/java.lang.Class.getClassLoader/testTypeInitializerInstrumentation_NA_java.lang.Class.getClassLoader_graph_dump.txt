@@ -1,0 +1,5 @@
+Line_2 $$ public void testTypeInitializerInstrumentation() throws Exception --> Line_3 $$ Recorder recorder = new Recorder() [CD]
+Line_2 $$ public void testTypeInitializerInstrumentation() throws Exception --> Line_4 $$ Class<?> type = new ByteBuddy().subclass(Object.class).invokable(isTypeInitializer()).intercept(MethodDelegation.to(recorder)).make(new TypeResolutionStrategy.Active()).load(getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_3 $$ Recorder recorder = new Recorder() --> Line_4 $$ Class<?> type = new ByteBuddy().subclass(Object.class).invokable(isTypeInitializer()).intercept(MethodDelegation.to(recorder)).make(new TypeResolutionStrategy.Active()).load(getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [FD]
+Line_2 $$ public void testTypeInitializerInstrumentation() throws Exception --> Line_5 $$ assertThat(type.getDeclaredConstructor().newInstance(), instanceOf(type)) [CD]
+Line_2 $$ public void testTypeInitializerInstrumentation() throws Exception --> Line_6 $$ assertThat(recorder.counter, is(1)) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void clearTenant(String tenantId) --> Line_3 $$ String index = getIndex(tenantId) [FD]
+Line_2 $$ public void clearTenant(String tenantId) --> Line_3 $$ String index = getIndex(tenantId) [CD]
+Line_5 $$ IndicesAdminClient indices = client.admin().indices() --> Line_6 $$ boolean indexExists = indices.prepareExists(index).execute().actionGet().isExists() [FD]
+Line_3 $$ String index = getIndex(tenantId) --> Line_6 $$ boolean indexExists = indices.prepareExists(index).execute().actionGet().isExists() [FD]
+Line_7 $$ if (indexExists) --> Line_8 $$ indices.prepareDelete(index).execute().actionGet() [CD]
+Line_5 $$ IndicesAdminClient indices = client.admin().indices() --> Line_8 $$ indices.prepareDelete(index).execute().actionGet() [FD]
+Line_3 $$ String index = getIndex(tenantId) --> Line_8 $$ indices.prepareDelete(index).execute().actionGet() [FD]
+Line_3 $$ String index = getIndex(tenantId) --> Line_10 $$ knownIndices.remove(index) [FD]

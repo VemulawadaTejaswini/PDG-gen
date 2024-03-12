@@ -1,0 +1,8 @@
+Line_2 $$ public void validateClientRedirectUri(ClientDetails client) --> Line_3 $$ Set<String> uris = client.getRegisteredRedirectUri() [FD]
+Line_2 $$ public void validateClientRedirectUri(ClientDetails client) --> Line_3 $$ Set<String> uris = client.getRegisteredRedirectUri() [CD]
+Line_4 $$ for (String grant_type : Arrays.asList("authorization_code", "implicit")) --> Line_5 $$ if (client.getAuthorizedGrantTypes().contains(grant_type)) [FD]
+Line_2 $$ public void validateClientRedirectUri(ClientDetails client) --> Line_5 $$ if (client.getAuthorizedGrantTypes().contains(grant_type)) [FD]
+Line_5 $$ if (client.getAuthorizedGrantTypes().contains(grant_type)) --> Line_6 $$ if (isMissingRedirectUris(uris)) [CD]
+Line_3 $$ Set<String> uris = client.getRegisteredRedirectUri() --> Line_6 $$ if (isMissingRedirectUris(uris)) [FD]
+Line_9 $$ for (String uri : uris) --> Line_10 $$ if (!UaaUrlUtils.isValidRegisteredRedirectUrl(uri)) [FD]
+Line_9 $$ for (String uri : uris) --> Line_11 $$ throw new InvalidClientDetailsException(String.format("One of the redirect_uri is invalid: %s", uri)) [FD]

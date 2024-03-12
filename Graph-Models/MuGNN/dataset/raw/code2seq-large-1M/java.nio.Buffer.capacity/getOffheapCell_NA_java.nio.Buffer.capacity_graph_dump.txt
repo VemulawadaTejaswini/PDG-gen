@@ -1,0 +1,8 @@
+Line_2 $$ private Cell getOffheapCell(byte[] row, byte[] family, byte[] qualifier) --> Line_3 $$ KeyValue kvCell = new KeyValue(row, family, qualifier, 0L, Type.Put, row) [CD]
+Line_2 $$ private Cell getOffheapCell(byte[] row, byte[] family, byte[] qualifier) --> Line_4 $$ ByteBuffer buf = ByteBuffer.allocateDirect(kvCell.getBuffer().length) [CD]
+Line_3 $$ KeyValue kvCell = new KeyValue(row, family, qualifier, 0L, Type.Put, row) --> Line_4 $$ ByteBuffer buf = ByteBuffer.allocateDirect(kvCell.getBuffer().length) [FD]
+Line_2 $$ private Cell getOffheapCell(byte[] row, byte[] family, byte[] qualifier) --> Line_5 $$ ByteBufferUtils.copyFromArrayToBuffer(buf, kvCell.getBuffer(), 0, kvCell.getBuffer().length) [CD]
+Line_4 $$ ByteBuffer buf = ByteBuffer.allocateDirect(kvCell.getBuffer().length) --> Line_5 $$ ByteBufferUtils.copyFromArrayToBuffer(buf, kvCell.getBuffer(), 0, kvCell.getBuffer().length) [FD]
+Line_3 $$ KeyValue kvCell = new KeyValue(row, family, qualifier, 0L, Type.Put, row) --> Line_5 $$ ByteBufferUtils.copyFromArrayToBuffer(buf, kvCell.getBuffer(), 0, kvCell.getBuffer().length) [FD]
+Line_2 $$ private Cell getOffheapCell(byte[] row, byte[] family, byte[] qualifier) --> Line_6 $$ return new ByteBufferKeyValue(buf, 0, buf.capacity(), 0L) [CD]
+Line_4 $$ ByteBuffer buf = ByteBuffer.allocateDirect(kvCell.getBuffer().length) --> Line_6 $$ return new ByteBufferKeyValue(buf, 0, buf.capacity(), 0L) [FD]

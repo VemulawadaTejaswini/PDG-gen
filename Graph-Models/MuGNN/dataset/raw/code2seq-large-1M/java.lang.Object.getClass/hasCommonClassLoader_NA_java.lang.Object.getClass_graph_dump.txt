@@ -1,0 +1,8 @@
+Line_2 $$ private static boolean hasCommonClassLoader(Object obj, Iterable<?> c) --> Line_5 $$ ClassLoader ldr = obj instanceof GridPeerDeployAware ? ((GridPeerDeployAware) obj).classLoader() : detectClassLoader(obj.getClass()) [FD]
+Line_2 $$ private static boolean hasCommonClassLoader(Object obj, Iterable<?> c) --> Line_5 $$ ClassLoader ldr = obj instanceof GridPeerDeployAware ? ((GridPeerDeployAware) obj).classLoader() : detectClassLoader(obj.getClass()) [CD]
+Line_2 $$ private static boolean hasCommonClassLoader(Object obj, Iterable<?> c) --> Line_6 $$ boolean found = true [CD]
+Line_7 $$ for (Object obj2 : c) --> Line_10 $$ String clsName = obj2 instanceof GridPeerDeployAware ? ((GridPeerDeployAware) obj2).deployClass().getName() : obj2.getClass().getName() [FD]
+Line_10 $$ String clsName = obj2 instanceof GridPeerDeployAware ? ((GridPeerDeployAware) obj2).deployClass().getName() : obj2.getClass().getName() --> Line_11 $$ if (!isLoadableBy(clsName, ldr)) [FD]
+Line_11 $$ if (!isLoadableBy(clsName, ldr)) --> Line_12 $$ found = false [CD]
+Line_6 $$ boolean found = true --> Line_12 $$ found = false [FD]
+Line_2 $$ private static boolean hasCommonClassLoader(Object obj, Iterable<?> c) --> Line_16 $$ return found [CD]

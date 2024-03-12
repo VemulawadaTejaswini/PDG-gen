@@ -1,0 +1,8 @@
+Line_2 $$ protected static List<ParameterSpec> buildParamSpecs(List<? extends VariableElement> params) --> Line_3 $$ List<ParameterSpec> result = new ArrayList() [CD]
+Line_4 $$ for (VariableElement param : params) --> Line_5 $$ Builder builder = ParameterSpec.builder(TypeName.get(param.asType()), param.getSimpleName().toString()) [FD]
+Line_4 $$ for (VariableElement param : params) --> Line_6 $$ for (AnnotationMirror annotation : param.getAnnotationMirrors()) [FD]
+Line_5 $$ Builder builder = ParameterSpec.builder(TypeName.get(param.asType()), param.getSimpleName().toString()) --> Line_7 $$ builder.addAnnotation(AnnotationSpec.get(annotation)) [FD]
+Line_6 $$ for (AnnotationMirror annotation : param.getAnnotationMirrors()) --> Line_7 $$ builder.addAnnotation(AnnotationSpec.get(annotation)) [FD]
+Line_3 $$ List<ParameterSpec> result = new ArrayList() --> Line_9 $$ result.add(builder.build()) [FD]
+Line_5 $$ Builder builder = ParameterSpec.builder(TypeName.get(param.asType()), param.getSimpleName().toString()) --> Line_9 $$ result.add(builder.build()) [FD]
+Line_2 $$ protected static List<ParameterSpec> buildParamSpecs(List<? extends VariableElement> params) --> Line_11 $$ return result [CD]

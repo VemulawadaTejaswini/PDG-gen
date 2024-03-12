@@ -1,0 +1,7 @@
+Line_2 $$ private static void populatePartitions(HiveMetaStoreClient hmsc, Table table, List<String> blurbs) throws Exception --> Line_3 $$ for (int i = 0; i < nDates; ++i) [CD]
+Line_2 $$ private static void populatePartitions(HiveMetaStoreClient hmsc, Table table, List<String> blurbs) throws Exception --> Line_5 $$ StorageDescriptor sd = new StorageDescriptor(table.getSd()) [FD]
+Line_4 $$ for (String blurb : blurbs) --> Line_6 $$ List<String> values = Arrays.asList(datePrefix + i, blurb) [FD]
+Line_5 $$ StorageDescriptor sd = new StorageDescriptor(table.getSd()) --> Line_7 $$ sd.setLocation(getPartitionPath(table, values)) [FD]
+Line_2 $$ private static void populatePartitions(HiveMetaStoreClient hmsc, Table table, List<String> blurbs) throws Exception --> Line_7 $$ sd.setLocation(getPartitionPath(table, values)) [FD]
+Line_6 $$ List<String> values = Arrays.asList(datePrefix + i, blurb) --> Line_7 $$ sd.setLocation(getPartitionPath(table, values)) [FD]
+Line_2 $$ private static void populatePartitions(HiveMetaStoreClient hmsc, Table table, List<String> blurbs) throws Exception --> Line_8 $$ hmsc.add_partition(new Partition(values, dbName, tableName, 0, 0, sd, null)) [FD]

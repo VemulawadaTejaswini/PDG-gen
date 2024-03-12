@@ -1,0 +1,7 @@
+Line_2 $$ public void tell(final String message) --> Line_3 $$ final Span parent = tracer.scopeManager().active().span() [CD]
+Line_2 $$ public void tell(final String message) --> Line_4 $$ phaser.register() [CD]
+Line_2 $$ public void tell(final String message) --> Line_5 $$ executor.submit(new Runnable() [CD]
+Line_3 $$ final Span parent = tracer.scopeManager().active().span() --> Line_7 $$ try (Scope child = tracer.buildSpan("received").addReference(References.FOLLOWS_FROM, parent.context()).withTag(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CONSUMER).startActive(true)) [FD]
+Line_7 $$ try (Scope child = tracer.buildSpan("received").addReference(References.FOLLOWS_FROM, parent.context()).withTag(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CONSUMER).startActive(true)) --> Line_9 $$ child.span().log("received " + message) [FD]
+Line_5 $$ executor.submit(new Runnable() --> Line_12 $$ phaser.arriveAndAwaitAdvance() [CD]
+Line_5 $$ executor.submit(new Runnable() --> Line_13 $$ phaser.arriveAndAwaitAdvance() [CD]

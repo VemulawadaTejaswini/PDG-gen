@@ -1,0 +1,7 @@
+Line_2 $$ public TableMetadata removeSnapshotsIf(Predicate<Snapshot> removeIf) --> Line_3 $$ List<Snapshot> filtered = Lists.newArrayListWithExpectedSize(snapshots.size()) [CD]
+Line_4 $$ for (Snapshot snapshot : snapshots) --> Line_5 $$ if (snapshot.snapshotId() == currentSnapshotId || !removeIf.test(snapshot)) [FD]
+Line_2 $$ public TableMetadata removeSnapshotsIf(Predicate<Snapshot> removeIf) --> Line_5 $$ if (snapshot.snapshotId() == currentSnapshotId || !removeIf.test(snapshot)) [FD]
+Line_5 $$ if (snapshot.snapshotId() == currentSnapshotId || !removeIf.test(snapshot)) --> Line_6 $$ filtered.add(snapshot) [CD]
+Line_3 $$ List<Snapshot> filtered = Lists.newArrayListWithExpectedSize(snapshots.size()) --> Line_6 $$ filtered.add(snapshot) [FD]
+Line_4 $$ for (Snapshot snapshot : snapshots) --> Line_6 $$ filtered.add(snapshot) [FD]
+Line_2 $$ public TableMetadata removeSnapshotsIf(Predicate<Snapshot> removeIf) --> Line_9 $$ return new TableMetadata(ops, null, location, System.currentTimeMillis(), lastColumnId, schema, spec, properties, currentSnapshotId, filtered) [CD]

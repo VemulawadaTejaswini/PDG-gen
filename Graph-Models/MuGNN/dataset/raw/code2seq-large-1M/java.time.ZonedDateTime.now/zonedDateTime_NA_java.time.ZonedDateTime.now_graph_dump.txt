@@ -1,0 +1,5 @@
+Line_2 $$ public void zonedDateTime() --> Line_3 $$ ZonedDateTime dt = ZonedDateTime.now() [CD]
+Line_2 $$ public void zonedDateTime() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", dt) [CD]
+Line_3 $$ ZonedDateTime dt = ZonedDateTime.now() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", dt) [FD]
+Line_2 $$ public void zonedDateTime() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(ZonedDateTime.class).findOnly()).isEqualTo(dt) [CD]
+Line_3 $$ ZonedDateTime dt = ZonedDateTime.now() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(ZonedDateTime.class).findOnly()).isEqualTo(dt) [FD]

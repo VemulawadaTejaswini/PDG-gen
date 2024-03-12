@@ -1,0 +1,8 @@
+Line_2 $$ static Set<File> getDirectoriesToPrefetch(WorkspacePathResolver pathResolver, Collection<WildcardTargetPattern> includes, Predicate<WorkspacePath> excluded) --> Line_3 $$ Set<WorkspacePath> prefetchPaths = new HashSet() [CD]
+Line_4 $$ for (WildcardTargetPattern pattern : includes) --> Line_5 $$ WorkspacePath workspacePath = pattern.getBasePackage() [FD]
+Line_2 $$ static Set<File> getDirectoriesToPrefetch(WorkspacePathResolver pathResolver, Collection<WildcardTargetPattern> includes, Predicate<WorkspacePath> excluded) --> Line_6 $$ if (excluded.test(workspacePath)) [FD]
+Line_5 $$ WorkspacePath workspacePath = pattern.getBasePackage() --> Line_6 $$ if (excluded.test(workspacePath)) [FD]
+Line_3 $$ Set<WorkspacePath> prefetchPaths = new HashSet() --> Line_9 $$ prefetchPaths.add(workspacePath) [FD]
+Line_5 $$ WorkspacePath workspacePath = pattern.getBasePackage() --> Line_9 $$ prefetchPaths.add(workspacePath) [FD]
+Line_2 $$ static Set<File> getDirectoriesToPrefetch(WorkspacePathResolver pathResolver, Collection<WildcardTargetPattern> includes, Predicate<WorkspacePath> excluded) --> Line_11 $$ return WorkspacePathUtil.calculateMinimalWorkspacePaths(prefetchPaths).stream().map(pathResolver::<>resolveToFile).collect(Collectors.toSet()) [CD]
+Line_3 $$ Set<WorkspacePath> prefetchPaths = new HashSet() --> Line_11 $$ return WorkspacePathUtil.calculateMinimalWorkspacePaths(prefetchPaths).stream().map(pathResolver::<>resolveToFile).collect(Collectors.toSet()) [FD]

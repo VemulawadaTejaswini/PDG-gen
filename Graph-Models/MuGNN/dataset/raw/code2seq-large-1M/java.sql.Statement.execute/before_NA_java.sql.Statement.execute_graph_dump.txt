@@ -1,0 +1,7 @@
+Line_2 $$ public void before() throws SQLException --> Line_3 $$ Statement stmt = sharedConnection.createStatement() [CD]
+Line_2 $$ public void before() throws SQLException --> Line_4 $$ stmt.execute("drop table if exists tx_fore_key") [CD]
+Line_3 $$ Statement stmt = sharedConnection.createStatement() --> Line_4 $$ stmt.execute("drop table if exists tx_fore_key") [FD]
+Line_2 $$ public void before() throws SQLException --> Line_5 $$ stmt.execute("drop table if exists tx_prim_key") [CD]
+Line_3 $$ Statement stmt = sharedConnection.createStatement() --> Line_5 $$ stmt.execute("drop table if exists tx_prim_key") [FD]
+Line_2 $$ public void before() throws SQLException --> Line_6 $$ createTable("tx_prim_key", "id int not null primary key", "engine=innodb") [CD]
+Line_2 $$ public void before() throws SQLException --> Line_7 $$ createTable("tx_fore_key", "id int not null primary key, id_ref int not null, " + "foreign key (id_ref) references tx_prim_key(id) on delete restrict on update restrict", "engine=innodb") [CD]

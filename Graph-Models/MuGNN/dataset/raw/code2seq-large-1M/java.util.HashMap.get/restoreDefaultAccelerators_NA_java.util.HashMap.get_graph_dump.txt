@@ -1,0 +1,8 @@
+Line_3 $$ for (String actionId : allActionIds) --> Line_4 $$ (db.get(actionId)).put(this.accelerator, ActionProperties.getDefaultAccelerator(actionId)) [FD]
+Line_3 $$ for (String actionId : allActionIds) --> Line_5 $$ (db.get(actionId)).put(this.alt_accelerator, ActionProperties.getDefaultAlternativeAccelerator(actionId)) [FD]
+Line_2 $$ void restoreDefaultAccelerators() --> Line_7 $$ int nbRows = actionIds.length [CD]
+Line_2 $$ void restoreDefaultAccelerators() --> Line_8 $$ for (int i = 0; i < nbRows; ++i) [CD]
+Line_7 $$ int nbRows = actionIds.length --> Line_8 $$ for (int i = 0; i < nbRows; ++i) [FD]
+Line_8 $$ for (int i = 0; i < nbRows; ++i) --> Line_9 $$ data[i][ACCELERATOR_COLUMN_INDEX] = db.get(actionIds[i]).get(this.accelerator) [CD]
+Line_8 $$ for (int i = 0; i < nbRows; ++i) --> Line_10 $$ data[i][ALTERNATE_ACCELERATOR_COLUMN_INDEX] = db.get(actionIds[i]).get(this.alt_accelerator) [CD]
+Line_2 $$ void restoreDefaultAccelerators() --> Line_12 $$ ((DefaultTableModel) getModel()).fireTableDataChanged() [CD]

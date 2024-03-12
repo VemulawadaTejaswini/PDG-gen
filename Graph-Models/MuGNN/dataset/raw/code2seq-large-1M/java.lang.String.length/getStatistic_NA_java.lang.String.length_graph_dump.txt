@@ -1,0 +1,8 @@
+Line_2 $$ public String getStatistic(final Statistic statistic) --> Line_3 $$ switch(statistic.getType()) [FD]
+Line_2 $$ public String getStatistic(final Statistic statistic) --> Line_5 $$ return valueMap.containsKey(statistic) ? valueMap.get(statistic) : "0" [FD]
+Line_2 $$ public String getStatistic(final Statistic statistic) --> Line_7 $$ final String avgStrValue = valueMap.get(statistic) [FD]
+Line_7 $$ final String avgStrValue = valueMap.get(statistic) --> Line_9 $$ if (avgStrValue != null && avgStrValue.length() > 0) [FD]
+Line_8 $$ AverageBean avgBean = new AverageBean() --> Line_11 $$ avgBean = JsonUtil.deserialize(avgStrValue, AverageBean.class) [FD]
+Line_7 $$ final String avgStrValue = valueMap.get(statistic) --> Line_11 $$ avgBean = JsonUtil.deserialize(avgStrValue, AverageBean.class) [FD]
+Line_2 $$ public String getStatistic(final Statistic statistic) --> Line_13 $$ LOGGER.trace("unable to parse statistics value for stat " + statistic.toString() + ", value=" + avgStrValue) [FD]
+Line_8 $$ AverageBean avgBean = new AverageBean() --> Line_16 $$ return avgBean.getAverage().toString() [FD]

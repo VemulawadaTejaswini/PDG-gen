@@ -1,0 +1,6 @@
+Line_2 $$ public Defaults getDefaults() --> Line_3 $$ return new Defaults().withSemanticZoomLevel(0).withPreferredLayout("Hierarchy Layout").withCriteria(() -> [CD]
+Line_4 $$ Map<VertexRef, Status> resultMap = statusProvider.getStatusForVertices(this, Lists.newArrayList(this.getVertices()), new Criteria[0]) --> Line_5 $$ Optional<Map.Entry<VertexRef, Status>> max = resultMap.entrySet().stream().max(Comparator.comparing( e -> OnmsSeverity.get(e.getValue().computeStatus()))) [FD]
+Line_6 $$ if (max.isPresent()) --> Line_7 $$ return Lists.newArrayList(new VertexHopGraphProvider.DefaultVertexHopCriteria(max.get().getKey())) [CD]
+Line_6 $$ if (max.isPresent()) --> Line_8 $$ if (this.getVertexTotalCount() > 0) [CD]
+Line_8 $$ if (this.getVertexTotalCount() > 0) --> Line_9 $$ return Lists.newArrayList(new VertexHopGraphProvider.DefaultVertexHopCriteria(this.getVertices().get(0))) [CD]
+Line_8 $$ if (this.getVertexTotalCount() > 0) --> Line_11 $$ return Lists.newArrayList() [CD]

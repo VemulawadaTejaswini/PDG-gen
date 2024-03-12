@@ -1,0 +1,7 @@
+Line_2 $$ List<Node> getExposedNodes() --> Line_3 $$ List<Node> nodes = Lists.newArrayList() [CD]
+Line_2 $$ List<Node> getExposedNodes() --> Line_4 $$ Field[] fields = this.getClass().getDeclaredFields() [CD]
+Line_5 $$ for (Field f : fields) --> Line_6 $$ if (Modifier.isPublic(f.getModifiers()) && Node.class.isAssignableFrom(f.getType())) [FD]
+Line_3 $$ List<Node> nodes = Lists.newArrayList() --> Line_8 $$ nodes.add((Node) f.get(this)) [FD]
+Line_5 $$ for (Field f : fields) --> Line_8 $$ nodes.add((Node) f.get(this)) [FD]
+Line_5 $$ for (Field f : fields) --> Line_10 $$ LOG.warning("Cannot access field [" + f.getName() + "] in subgraph " + this.getClass().getSimpleName()) [FD]
+Line_2 $$ List<Node> getExposedNodes() --> Line_14 $$ return nodes [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ FlushAcknowledgement waitForFlush(String flushId, Duration timeout) --> Line_3 $$ if (cleared.get()) [CD]
+Line_3 $$ if (cleared.get()) --> Line_4 $$ return null [CD]
+Line_2 $$ FlushAcknowledgement waitForFlush(String flushId, Duration timeout) --> Line_6 $$ FlushAcknowledgementHolder holder = awaitingFlushed.computeIfAbsent(flushId, ( key) -> new FlushAcknowledgementHolder(flushId)) [CD]
+Line_2 $$ FlushAcknowledgement waitForFlush(String flushId, Duration timeout) --> Line_6 $$ FlushAcknowledgementHolder holder = awaitingFlushed.computeIfAbsent(flushId, ( key) -> new FlushAcknowledgementHolder(flushId)) [FD]
+Line_2 $$ FlushAcknowledgement waitForFlush(String flushId, Duration timeout) --> Line_8 $$ if (holder.latch.await(timeout.toMillis(), TimeUnit.MILLISECONDS)) [FD]
+Line_8 $$ if (holder.latch.await(timeout.toMillis(), TimeUnit.MILLISECONDS)) --> Line_9 $$ return holder.flushAcknowledgement [CD]
+Line_2 $$ FlushAcknowledgement waitForFlush(String flushId, Duration timeout) --> Line_14 $$ return null [CD]

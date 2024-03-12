@@ -1,0 +1,5 @@
+Line_2 $$ public void testInsertSelectStarJson() throws Exception --> Line_3 $$ ksqlContext.sql(String.format("CREATE STREAM EASYORDERS AS SELECT * FROM %s WHERE ITEMID = " + "'HELLO';", jsonStreamName)) [CD]
+Line_2 $$ public void testInsertSelectStarJson() throws Exception --> Line_4 $$ ksqlContext.sql(String.format("INSERT INTO EASYORDERS SELECT * FROM %s;", jsonStreamName)) [CD]
+Line_2 $$ public void testInsertSelectStarJson() throws Exception --> Line_5 $$ Map<String, GenericRow> easyOrdersData = testHarness.consumeData("EASYORDERS", dataProvider.schema(), dataProvider.data().size(), new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.JSON) [CD]
+Line_2 $$ public void testInsertSelectStarJson() throws Exception --> Line_6 $$ assertThat(easyOrdersData, equalTo(dataProvider.data())) [CD]
+Line_5 $$ Map<String, GenericRow> easyOrdersData = testHarness.consumeData("EASYORDERS", dataProvider.schema(), dataProvider.data().size(), new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.JSON) --> Line_6 $$ assertThat(easyOrdersData, equalTo(dataProvider.data())) [FD]

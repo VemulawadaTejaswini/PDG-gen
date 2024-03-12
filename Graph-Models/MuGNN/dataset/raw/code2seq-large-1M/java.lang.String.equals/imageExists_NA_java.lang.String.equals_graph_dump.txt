@@ -1,0 +1,8 @@
+Line_2 $$ protected Boolean imageExists(String imageName, String registryTag) --> Line_3 $$ List<Image> images = DockerClientFactory.build().listImagesCmd().exec() [CD]
+Line_2 $$ protected Boolean imageExists(String imageName, String registryTag) --> Line_4 $$ if (images.isEmpty()) [CD]
+Line_3 $$ List<Image> images = DockerClientFactory.build().listImagesCmd().exec() --> Line_4 $$ if (images.isEmpty()) [FD]
+Line_7 $$ for (Image image : images) --> Line_8 $$ if (image.getRepoTags() == null) [FD]
+Line_7 $$ for (Image image : images) --> Line_11 $$ for (String repoTag : image.getRepoTags()) [FD]
+Line_11 $$ for (String repoTag : image.getRepoTags()) --> Line_12 $$ if (repoTag.equals(imageName + ":" + registryTag)) [FD]
+Line_12 $$ if (repoTag.equals(imageName + ":" + registryTag)) --> Line_13 $$ return true [CD]
+Line_2 $$ protected Boolean imageExists(String imageName, String registryTag) --> Line_17 $$ return false [CD]

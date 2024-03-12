@@ -1,0 +1,8 @@
+Line_2 $$ public static int getProcessID(@Nonnull Process process) --> Line_3 $$ if (SystemInfo.isWindows) [CD]
+Line_2 $$ public static int getProcessID(@Nonnull Process process) --> Line_5 $$ if (process instanceof WinPtyProcess) [FD]
+Line_5 $$ if (process instanceof WinPtyProcess) --> Line_6 $$ return ((WinPtyProcess) process).getChildProcessId() [CD]
+Line_2 $$ public static int getProcessID(@Nonnull Process process) --> Line_8 $$ return WinProcessManager.getProcessId(process) [FD]
+Line_2 $$ public static int getProcessID(@Nonnull Process process) --> Line_10 $$ throw new IllegalStateException("Cannot get PID from instance of " + process.getClass() + ", OS: " + SystemInfo.OS_NAME, e) [FD]
+Line_3 $$ if (SystemInfo.isWindows) --> Line_12 $$ if (SystemInfo.isUnix) [CD]
+Line_12 $$ if (SystemInfo.isUnix) --> Line_13 $$ return UnixProcessManager.getProcessId(process) [CD]
+Line_2 $$ public static int getProcessID(@Nonnull Process process) --> Line_13 $$ return UnixProcessManager.getProcessId(process) [FD]

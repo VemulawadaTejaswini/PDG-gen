@@ -1,0 +1,8 @@
+Line_2 $$ private Map<K, V> combinedMap() --> Line_3 $$ ImmutableMap.Builder<K, V> builder = ImmutableMap.builder() [CD]
+Line_2 $$ private Map<K, V> combinedMap() --> Line_4 $$ final Set<K> keys = new LinkedHashSet<K>() [CD]
+Line_5 $$ for (Map<K, V> map : maps) --> Line_6 $$ for (Entry<K, V> entry : map.entrySet()) [FD]
+Line_4 $$ final Set<K> keys = new LinkedHashSet<K>() --> Line_7 $$ if (keys.add(entry.getKey())) [FD]
+Line_7 $$ if (keys.add(entry.getKey())) --> Line_8 $$ builder.put(entry) [CD]
+Line_3 $$ ImmutableMap.Builder<K, V> builder = ImmutableMap.builder() --> Line_8 $$ builder.put(entry) [FD]
+Line_2 $$ private Map<K, V> combinedMap() --> Line_12 $$ return builder.build() [CD]
+Line_3 $$ ImmutableMap.Builder<K, V> builder = ImmutableMap.builder() --> Line_12 $$ return builder.build() [FD]

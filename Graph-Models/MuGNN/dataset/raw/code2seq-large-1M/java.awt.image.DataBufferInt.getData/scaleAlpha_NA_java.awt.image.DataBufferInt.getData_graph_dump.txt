@@ -1,0 +1,8 @@
+Line_2 $$ public static void scaleAlpha(BufferedImage image, double alphaScale) --> Line_3 $$ int[] raw = ((DataBufferInt) image.getRaster().getDataBuffer()).getData() [FD]
+Line_2 $$ public static void scaleAlpha(BufferedImage image, double alphaScale) --> Line_3 $$ int[] raw = ((DataBufferInt) image.getRaster().getDataBuffer()).getData() [CD]
+Line_2 $$ public static void scaleAlpha(BufferedImage image, double alphaScale) --> Line_4 $$ int defined = (MathMan.clamp((int) (255 * alphaScale), 0, 255)) << 24 [CD]
+Line_2 $$ public static void scaleAlpha(BufferedImage image, double alphaScale) --> Line_5 $$ for (int i = 0; i < raw.length; i++) [CD]
+Line_5 $$ for (int i = 0; i < raw.length; i++) --> Line_6 $$ int color = raw[i] [CD]
+Line_5 $$ for (int i = 0; i < raw.length; i++) --> Line_7 $$ int alpha = ((color >> 24) & 0xFF) [CD]
+Line_4 $$ int defined = (MathMan.clamp((int) (255 * alphaScale), 0, 255)) << 24 --> Line_12 $$ raw[i] = (color & 0x00FFFFFF) + defined [FD]
+Line_7 $$ int alpha = ((color >> 24) & 0xFF) --> Line_15 $$ alpha = MathMan.clamp((int) (alpha * alphaScale), 0, 255) [FD]

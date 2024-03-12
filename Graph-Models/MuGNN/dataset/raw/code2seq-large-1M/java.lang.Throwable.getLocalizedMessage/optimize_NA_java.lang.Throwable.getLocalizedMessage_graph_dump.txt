@@ -1,0 +1,6 @@
+Line_2 $$ public JobInstance optimize(@PathVariable String cubeName, @RequestBody JobOptimizeRequest jobOptimizeRequest) --> Line_5 $$ CubeInstance cube = jobService.getCubeManager().getCube(cubeName) [FD]
+Line_5 $$ CubeInstance cube = jobService.getCubeManager().getCube(cubeName) --> Line_6 $$ if (cube == null) [FD]
+Line_2 $$ public JobInstance optimize(@PathVariable String cubeName, @RequestBody JobOptimizeRequest jobOptimizeRequest) --> Line_9 $$ logger.info("cuboid recommend:" + jobOptimizeRequest.getCuboidsRecommend()) [FD]
+Line_5 $$ CubeInstance cube = jobService.getCubeManager().getCube(cubeName) --> Line_10 $$ return jobService.submitOptimizeJob(cube, jobOptimizeRequest.getCuboidsRecommend(), submitter).getFirst() [FD]
+Line_4 $$ String submitter = SecurityContextHolder.getContext().getAuthentication().getName() --> Line_10 $$ return jobService.submitOptimizeJob(cube, jobOptimizeRequest.getCuboidsRecommend(), submitter).getFirst() [FD]
+Line_2 $$ public JobInstance optimize(@PathVariable String cubeName, @RequestBody JobOptimizeRequest jobOptimizeRequest) --> Line_10 $$ return jobService.submitOptimizeJob(cube, jobOptimizeRequest.getCuboidsRecommend(), submitter).getFirst() [FD]

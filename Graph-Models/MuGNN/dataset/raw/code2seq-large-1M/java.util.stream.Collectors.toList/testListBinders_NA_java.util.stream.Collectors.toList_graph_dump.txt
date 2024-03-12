@@ -1,0 +1,6 @@
+Line_3 $$ try (final TestBinderStoreSession session = testBinderStoreSessionSupplier.get()) --> Line_4 $$ try (final BinderStore store = session.get()) [FD]
+Line_4 $$ try (final BinderStore store = session.get()) --> Line_5 $$ store.open("wibble") [FD]
+Line_4 $$ try (final BinderStore store = session.get()) --> Line_6 $$ store.open("wobble") [FD]
+Line_3 $$ try (final TestBinderStoreSession session = testBinderStoreSessionSupplier.get()) --> Line_7 $$ try (final BinderStore store2 = session.get()) [FD]
+Line_7 $$ try (final BinderStore store2 = session.get()) --> Line_8 $$ final List<String> binderNames = store2.binderNames().sorted().collect(Collectors.toList()) [FD]
+Line_8 $$ final List<String> binderNames = store2.binderNames().sorted().collect(Collectors.toList()) --> Line_9 $$ assertEquals(Arrays.asList("wibble", "wobble"), binderNames) [FD]

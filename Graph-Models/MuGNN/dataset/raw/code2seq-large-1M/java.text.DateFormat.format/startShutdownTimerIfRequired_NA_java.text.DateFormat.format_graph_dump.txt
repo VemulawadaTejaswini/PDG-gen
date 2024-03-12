@@ -1,0 +1,8 @@
+Line_2 $$ private static void startShutdownTimerIfRequired() --> Line_3 $$ Date shutdownTime = getShutdownTime() [CD]
+Line_2 $$ private static void startShutdownTimerIfRequired() --> Line_4 $$ if (!(shutdownTime == null)) [CD]
+Line_4 $$ if (!(shutdownTime == null)) --> Line_5 $$ Utils.logToConsole(((_GatewayOnly) ? "Gateway" : "TWS") + " will be shut down at " + (new SimpleDateFormat("yyyy/MM/dd HH:mm")).format(shutdownTime)) [CD]
+Line_3 $$ Date shutdownTime = getShutdownTime() --> Line_5 $$ Utils.logToConsole(((_GatewayOnly) ? "Gateway" : "TWS") + " will be shut down at " + (new SimpleDateFormat("yyyy/MM/dd HH:mm")).format(shutdownTime)) [FD]
+Line_4 $$ if (!(shutdownTime == null)) --> Line_6 $$ _Timer.schedule(new TimerTask() [CD]
+Line_3 $$ Date shutdownTime = getShutdownTime() --> Line_6 $$ _Timer.schedule(new TimerTask() [FD]
+Line_6 $$ _Timer.schedule(new TimerTask() --> Line_8 $$ GuiExecutor.instance().execute(new StopTask(_GatewayOnly, null)) [CD]
+Line_6 $$ _Timer.schedule(new TimerTask() --> Line_9 $$ _Timer.cancel() [CD]

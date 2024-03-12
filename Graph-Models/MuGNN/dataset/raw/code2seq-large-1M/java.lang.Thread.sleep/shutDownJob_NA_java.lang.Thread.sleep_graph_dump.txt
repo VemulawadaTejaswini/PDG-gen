@@ -1,0 +1,8 @@
+Line_4 $$ if (!isLastAMRetry) --> Line_5 $$ if (((JobImpl) job).getInternalState() != JobStateInternal.REBOOT) [CD]
+Line_5 $$ if (((JobImpl) job).getInternalState() != JobStateInternal.REBOOT) --> Line_6 $$ LOG.info("We are finishing cleanly so this is the last retry") [CD]
+Line_13 $$ if (isLastAMRetry) --> Line_14 $$ if (getConfig().get(MRJobConfig.MR_JOB_END_NOTIFICATION_URL) != null) [CD]
+Line_17 $$ JobEndNotifier notifier = new JobEndNotifier() --> Line_18 $$ notifier.setConf(getConfig()) [FD]
+Line_20 $$ if (!context.hasSuccessfullyUnregistered()) --> Line_21 $$ report.setJobState(JobState.FAILED) [CD]
+Line_19 $$ JobReport report = job.getReport() --> Line_21 $$ report.setJobState(JobState.FAILED) [FD]
+Line_17 $$ JobEndNotifier notifier = new JobEndNotifier() --> Line_23 $$ notifier.notify(report) [FD]
+Line_19 $$ JobReport report = job.getReport() --> Line_23 $$ notifier.notify(report) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testUnsupportedAgg() --> Line_3 $$ GeoDistanceAggregationBuilder geo = new GeoDistanceAggregationBuilder("test_geo", new GeoPoint(0.0, 0.0)) [CD]
+Line_2 $$ public void testUnsupportedAgg() --> Line_4 $$ geo.field("foo").subAggregation(new MaxAggregationBuilder("the_max").field("max_field")).subAggregation(new AvgAggregationBuilder("the_avg").field("avg_field")) [CD]
+Line_3 $$ GeoDistanceAggregationBuilder geo = new GeoDistanceAggregationBuilder("test_geo", new GeoPoint(0.0, 0.0)) --> Line_4 $$ geo.field("foo").subAggregation(new MaxAggregationBuilder("the_max").field("max_field")).subAggregation(new AvgAggregationBuilder("the_avg").field("avg_field")) [FD]
+Line_2 $$ public void testUnsupportedAgg() --> Line_5 $$ List<QueryBuilder> filterConditions = new ArrayList() [CD]
+Line_2 $$ public void testUnsupportedAgg() --> Line_6 $$ Exception e = expectThrows(RuntimeException.class, () -> translateAggregation(geo, filterConditions, namedWriteableRegistry)) [CD]
+Line_3 $$ GeoDistanceAggregationBuilder geo = new GeoDistanceAggregationBuilder("test_geo", new GeoPoint(0.0, 0.0)) --> Line_6 $$ Exception e = expectThrows(RuntimeException.class, () -> translateAggregation(geo, filterConditions, namedWriteableRegistry)) [FD]
+Line_5 $$ List<QueryBuilder> filterConditions = new ArrayList() --> Line_6 $$ Exception e = expectThrows(RuntimeException.class, () -> translateAggregation(geo, filterConditions, namedWriteableRegistry)) [FD]
+Line_2 $$ public void testUnsupportedAgg() --> Line_7 $$ assertThat(e.getMessage(), equalTo("Unable to translate aggregation tree into Rollup.  Aggregation [test_geo] is of type " + "[GeoDistanceAggregationBuilder] which is currently unsupported.")) [CD]

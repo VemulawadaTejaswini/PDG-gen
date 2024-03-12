@@ -1,0 +1,8 @@
+Line_2 $$ public void kernelSmooth(double[] kernel) --> Line_3 $$ double[] newFrequencies = new double[frequencies.length] [CD]
+Line_2 $$ public void kernelSmooth(double[] kernel) --> Line_4 $$ int shift = (kernel.length - 1) / 2 [CD]
+Line_2 $$ public void kernelSmooth(double[] kernel) --> Line_5 $$ for (int i = 0; i < kernel.length; i++) [CD]
+Line_5 $$ for (int i = 0; i < kernel.length; i++) --> Line_6 $$ int jStart = Math.max(0, i - shift) [CD]
+Line_5 $$ for (int i = 0; i < kernel.length; i++) --> Line_7 $$ int jEnd = Math.min(frequencies.length, frequencies.length + i - shift) [CD]
+Line_5 $$ for (int i = 0; i < kernel.length; i++) --> Line_8 $$ for (int j = jStart; j < jEnd; j++) [CD]
+Line_7 $$ int jEnd = Math.min(frequencies.length, frequencies.length + i - shift) --> Line_8 $$ for (int j = jStart; j < jEnd; j++) [FD]
+Line_8 $$ for (int j = jStart; j < jEnd; j++) --> Line_9 $$ newFrequencies[j - i + shift] += kernel[i] * frequencies[j] [CD]

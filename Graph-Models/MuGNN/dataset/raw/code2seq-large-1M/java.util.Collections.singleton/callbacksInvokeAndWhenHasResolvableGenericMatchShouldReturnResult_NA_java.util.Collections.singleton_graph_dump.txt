@@ -1,0 +1,6 @@
+Line_2 $$ public void callbacksInvokeAndWhenHasResolvableGenericMatchShouldReturnResult() --> Line_3 $$ StringBuilderFactory callbackInstance = mock(StringBuilderFactory.class) [CD]
+Line_2 $$ public void callbacksInvokeAndWhenHasResolvableGenericMatchShouldReturnResult() --> Line_4 $$ StringBuilder argument = new StringBuilder("foo") [CD]
+Line_2 $$ public void callbacksInvokeAndWhenHasResolvableGenericMatchShouldReturnResult() --> Line_5 $$ given(callbackInstance.handle(any(StringBuilder.class))).willReturn(123) [CD]
+Line_2 $$ public void callbacksInvokeAndWhenHasResolvableGenericMatchShouldReturnResult() --> Line_6 $$ Stream<Integer> result = LambdaSafe.callbacks(GenericFactory.class, Collections.singleton(callbackInstance), argument).invokeAnd(( c) -> c.handle(argument)) [CD]
+Line_4 $$ StringBuilder argument = new StringBuilder("foo") --> Line_6 $$ Stream<Integer> result = LambdaSafe.callbacks(GenericFactory.class, Collections.singleton(callbackInstance), argument).invokeAnd(( c) -> c.handle(argument)) [FD]
+Line_2 $$ public void callbacksInvokeAndWhenHasResolvableGenericMatchShouldReturnResult() --> Line_7 $$ assertThat(result).containsExactly(123) [CD]

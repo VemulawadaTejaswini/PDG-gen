@@ -1,0 +1,6 @@
+Line_2 $$ public List<String> getJARFilesFromJNLPFiles() --> Line_3 $$ List<String> jarFiles = new ArrayList() [CD]
+Line_2 $$ public List<String> getJARFilesFromJNLPFiles() --> Line_4 $$ getGeneratedJNLPFiles().stream().map( jnlpFile -> jnlpFile.toPath()).forEach( jnlpPath -> [CD]
+Line_6 $$ List<String> allLines = Files.readAllLines(jnlpPath) --> Line_7 $$ allLines.stream().filter( line -> line.trim().startsWith("<jar href=")).forEach( line -> [FD]
+Line_3 $$ List<String> jarFiles = new ArrayList() --> Line_9 $$ jarFiles.add(jarFile.substring(1, jarFile.length() - 1)) [FD]
+Line_8 $$ String jarFile = line.replaceAll(JNLP_JAR_PATTERN, "$2") --> Line_9 $$ jarFiles.add(jarFile.substring(1, jarFile.length() - 1)) [FD]
+Line_2 $$ public List<String> getJARFilesFromJNLPFiles() --> Line_14 $$ return jarFiles [CD]

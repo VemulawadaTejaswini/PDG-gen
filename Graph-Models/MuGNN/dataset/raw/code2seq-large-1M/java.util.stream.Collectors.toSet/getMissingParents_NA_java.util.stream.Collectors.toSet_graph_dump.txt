@@ -1,0 +1,4 @@
+Line_2 $$ Set<GlobalId> getMissingParents() --> Line_3 $$ Set<GlobalId> result = valueObjects.keySet().stream().map( voId -> voId.getOwnerId()).filter( instanceId -> !entities.containsKey(instanceId)).collect(toSet()) [CD]
+Line_2 $$ Set<GlobalId> getMissingParents() --> Line_4 $$ result.addAll(valueObjects.keySet().stream().flatMap( voId -> voId.getParentValueObjectIds().stream()).filter( voId -> !valueObjects.containsKey(voId)).collect(toSet())) [CD]
+Line_3 $$ Set<GlobalId> result = valueObjects.keySet().stream().map( voId -> voId.getOwnerId()).filter( instanceId -> !entities.containsKey(instanceId)).collect(toSet()) --> Line_4 $$ result.addAll(valueObjects.keySet().stream().flatMap( voId -> voId.getParentValueObjectIds().stream()).filter( voId -> !valueObjects.containsKey(voId)).collect(toSet())) [FD]
+Line_2 $$ Set<GlobalId> getMissingParents() --> Line_5 $$ return result [CD]

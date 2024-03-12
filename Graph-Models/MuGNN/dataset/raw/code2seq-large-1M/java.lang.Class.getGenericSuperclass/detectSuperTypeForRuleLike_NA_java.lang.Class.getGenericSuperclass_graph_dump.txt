@@ -1,0 +1,8 @@
+Line_2 $$ public static <E> Class<E> detectSuperTypeForRuleLike(Class<?> c) --> Line_3 $$ Class<?> clazz = c [CD]
+Line_2 $$ public static <E> Class<E> detectSuperTypeForRuleLike(Class<?> c) --> Line_4 $$ for (Type type = clazz.getGenericSuperclass(); clazz != Object.class; type = clazz.getGenericSuperclass()) [CD]
+Line_3 $$ Class<?> clazz = c --> Line_4 $$ for (Type type = clazz.getGenericSuperclass(); clazz != Object.class; type = clazz.getGenericSuperclass()) [FD]
+Line_5 $$ if (type instanceof ParameterizedType) --> Line_6 $$ Type[] typeArguments = ((ParameterizedType) type).getActualTypeArguments() [CD]
+Line_5 $$ if (type instanceof ParameterizedType) --> Line_7 $$ if (typeArguments.length != 2 && typeArguments.length != 1) [CD]
+Line_6 $$ Type[] typeArguments = ((ParameterizedType) type).getActualTypeArguments() --> Line_8 $$ throw new SqlIllegalArgumentException("Unexpected number of type arguments [FD]
+Line_5 $$ if (type instanceof ParameterizedType) --> Line_10 $$ return (Class<E>) typeArguments[0] [CD]
+Line_3 $$ Class<?> clazz = c --> Line_12 $$ clazz = clazz.getSuperclass() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ List<GeneratedTask> getTasks() --> Line_3 $$ List<GeneratedTask> tasks = new ArrayList() [CD]
+Line_2 $$ List<GeneratedTask> getTasks() --> Line_4 $$ long now = System.currentTimeMillis() [CD]
+Line_5 $$ for (TaskType taskType : taskTypes) --> Line_6 $$ int numTasks = (int) (taskType.getRatioOfTasks() * minTasksPerCoreSizePerBatch / minRatio) [FD]
+Line_6 $$ int numTasks = (int) (taskType.getRatioOfTasks() * minTasksPerCoreSizePerBatch / minRatio) --> Line_7 $$ for (int t = 0; t < numTasks; t++) [FD]
+Line_7 $$ for (int t = 0; t < numTasks; t++) --> Line_8 $$ long runtime = getRuntime(taskType.minRunDurationMillis, taskType.maxRunDurationMillis) [CD]
+Line_7 $$ for (int t = 0; t < numTasks; t++) --> Line_9 $$ tasks.add(new GeneratedTask(TaskRequestProvider.getTaskRequest(taskType.coreSize, taskType.coreSize * memoryPerCore, 1), runtime, now + runtime)) [CD]
+Line_3 $$ List<GeneratedTask> tasks = new ArrayList() --> Line_9 $$ tasks.add(new GeneratedTask(TaskRequestProvider.getTaskRequest(taskType.coreSize, taskType.coreSize * memoryPerCore, 1), runtime, now + runtime)) [FD]
+Line_2 $$ List<GeneratedTask> getTasks() --> Line_12 $$ return tasks [CD]

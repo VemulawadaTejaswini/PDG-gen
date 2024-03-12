@@ -1,0 +1,7 @@
+Line_2 $$ public void testAfterDeleteAsyncSpeculativeReadWorksButSyncReadRaisesException() throws Exception --> Line_3 $$ Location data = journal.write(new String("DATA").getBytes("UTF-8"), Journal.WriteType.SYNC) [CD]
+Line_2 $$ public void testAfterDeleteAsyncSpeculativeReadWorksButSyncReadRaisesException() throws Exception --> Line_4 $$ journal.delete(data) [CD]
+Line_3 $$ Location data = journal.write(new String("DATA").getBytes("UTF-8"), Journal.WriteType.SYNC) --> Line_4 $$ journal.delete(data) [FD]
+Line_2 $$ public void testAfterDeleteAsyncSpeculativeReadWorksButSyncReadRaisesException() throws Exception --> Line_5 $$ assertEquals("DATA", journal.read(data, Journal.ReadType.ASYNC)) [CD]
+Line_3 $$ Location data = journal.write(new String("DATA").getBytes("UTF-8"), Journal.WriteType.SYNC) --> Line_5 $$ assertEquals("DATA", journal.read(data, Journal.ReadType.ASYNC)) [FD]
+Line_2 $$ public void testAfterDeleteAsyncSpeculativeReadWorksButSyncReadRaisesException() throws Exception --> Line_6 $$ journal.read(data, Journal.ReadType.SYNC) [CD]
+Line_3 $$ Location data = journal.write(new String("DATA").getBytes("UTF-8"), Journal.WriteType.SYNC) --> Line_6 $$ journal.read(data, Journal.ReadType.SYNC) [FD]

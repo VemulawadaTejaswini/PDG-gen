@@ -1,0 +1,8 @@
+Line_2 $$ private boolean tryLock0(String lockKey, int ttlSeconds) --> Line_3 $$ RedisTransaction t = redis.multi() [CD]
+Line_2 $$ private boolean tryLock0(String lockKey, int ttlSeconds) --> Line_4 $$ t.setex(lockKey, ttlSeconds, "1") [CD]
+Line_2 $$ private boolean tryLock0(String lockKey, int ttlSeconds) --> Line_4 $$ t.setex(lockKey, ttlSeconds, "1") [FD]
+Line_3 $$ RedisTransaction t = redis.multi() --> Line_4 $$ t.setex(lockKey, ttlSeconds, "1") [FD]
+Line_2 $$ private boolean tryLock0(String lockKey, int ttlSeconds) --> Line_5 $$ List<Object> result = redis.exec(t) [CD]
+Line_3 $$ RedisTransaction t = redis.multi() --> Line_5 $$ List<Object> result = redis.exec(t) [FD]
+Line_2 $$ private boolean tryLock0(String lockKey, int ttlSeconds) --> Line_6 $$ return result != null && result.size() > 0 [CD]
+Line_5 $$ List<Object> result = redis.exec(t) --> Line_6 $$ return result != null && result.size() > 0 [FD]

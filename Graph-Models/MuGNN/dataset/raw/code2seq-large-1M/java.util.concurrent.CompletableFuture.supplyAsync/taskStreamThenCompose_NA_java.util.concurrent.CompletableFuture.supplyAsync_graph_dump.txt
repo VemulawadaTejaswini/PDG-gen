@@ -1,0 +1,7 @@
+Line_2 $$ public static void taskStreamThenCompose() --> Line_3 $$ Supplier<String> taskA = () -> "hello" [CD]
+Line_2 $$ public static void taskStreamThenCompose() --> Line_4 $$ Function<String, CompletableFuture<String>> taskB = ( t) -> CompletableFuture.supplyAsync(() -> t.toUpperCase()) [CD]
+Line_2 $$ public static void taskStreamThenCompose() --> Line_5 $$ Consumer<String> taskC = ( t) -> System.out.println("consume: " + t) [CD]
+Line_2 $$ public static void taskStreamThenCompose() --> Line_6 $$ CompletableFuture.supplyAsync(taskA).thenCompose(taskB).thenAccept(taskC).join() [CD]
+Line_5 $$ Consumer<String> taskC = ( t) -> System.out.println("consume: " + t) --> Line_6 $$ CompletableFuture.supplyAsync(taskA).thenCompose(taskB).thenAccept(taskC).join() [FD]
+Line_4 $$ Function<String, CompletableFuture<String>> taskB = ( t) -> CompletableFuture.supplyAsync(() -> t.toUpperCase()) --> Line_6 $$ CompletableFuture.supplyAsync(taskA).thenCompose(taskB).thenAccept(taskC).join() [FD]
+Line_3 $$ Supplier<String> taskA = () -> "hello" --> Line_6 $$ CompletableFuture.supplyAsync(taskA).thenCompose(taskB).thenAccept(taskC).join() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ protected void updateMetrics(Map<String, Double> metrics, Optional<String> processorName, Map<String, String> tags) --> Line_3 $$ for (Map.Entry<String, Double> entry : metrics.entrySet()) [FD]
+Line_2 $$ protected void updateMetrics(Map<String, Double> metrics, Optional<String> processorName, Map<String, String> tags) --> Line_4 $$ final String metricName = buildMetricName(processorName, entry.getKey()) [FD]
+Line_4 $$ final String metricName = buildMetricName(processorName, entry.getKey()) --> Line_6 $$ if (!metricsMap.containsKey(metricName)) [FD]
+Line_6 $$ if (!metricsMap.containsKey(metricName)) --> Line_7 $$ metricsMap.put(metricName, new AtomicDouble(entry.getValue())) [CD]
+Line_4 $$ final String metricName = buildMetricName(processorName, entry.getKey()) --> Line_7 $$ metricsMap.put(metricName, new AtomicDouble(entry.getValue())) [FD]
+Line_6 $$ if (!metricsMap.containsKey(metricName)) --> Line_8 $$ metricRegistry.register(metricName, new MetricGauge(metricName, tags)) [CD]
+Line_4 $$ final String metricName = buildMetricName(processorName, entry.getKey()) --> Line_8 $$ metricRegistry.register(metricName, new MetricGauge(metricName, tags)) [FD]
+Line_4 $$ final String metricName = buildMetricName(processorName, entry.getKey()) --> Line_10 $$ metricsMap.get(metricName).set(entry.getValue()) [FD]

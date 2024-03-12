@@ -1,0 +1,8 @@
+Line_2 $$ public static FileDescriptor nCreate(String name, int size) throws ErrnoException --> Line_3 $$ TempDirectory tempDirectory = RuntimeEnvironment.getTempDirectory() [CD]
+Line_3 $$ TempDirectory tempDirectory = RuntimeEnvironment.getTempDirectory() --> Line_5 $$ File sharedMemoryFile = tempDirectory.createIfNotExists("SharedMemory").resolve("shmem-" + name).toFile() [FD]
+Line_6 $$ RandomAccessFile randomAccessFile = new RandomAccessFile(sharedMemoryFile, "rw") --> Line_7 $$ randomAccessFile.setLength(0) [FD]
+Line_6 $$ RandomAccessFile randomAccessFile = new RandomAccessFile(sharedMemoryFile, "rw") --> Line_8 $$ randomAccessFile.setLength(size) [FD]
+Line_2 $$ public static FileDescriptor nCreate(String name, int size) throws ErrnoException --> Line_8 $$ randomAccessFile.setLength(size) [FD]
+Line_5 $$ File sharedMemoryFile = tempDirectory.createIfNotExists("SharedMemory").resolve("shmem-" + name).toFile() --> Line_10 $$ filesByFd.put(randomAccessFile.getFD(), sharedMemoryFile) [FD]
+Line_6 $$ RandomAccessFile randomAccessFile = new RandomAccessFile(sharedMemoryFile, "rw") --> Line_10 $$ filesByFd.put(randomAccessFile.getFD(), sharedMemoryFile) [FD]
+Line_6 $$ RandomAccessFile randomAccessFile = new RandomAccessFile(sharedMemoryFile, "rw") --> Line_12 $$ return randomAccessFile.getFD() [FD]

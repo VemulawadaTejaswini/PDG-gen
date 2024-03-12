@@ -1,0 +1,8 @@
+Line_2 $$ public void failed(Throwable e, Description description) --> Line_3 $$ Map<Thread, StackTraceElement[]> stackTraces = Thread.getAllStackTraces() [CD]
+Line_2 $$ public void failed(Throwable e, Description description) --> Line_4 $$ StringBuilder sb = new StringBuilder("Thread dump:") [CD]
+Line_3 $$ Map<Thread, StackTraceElement[]> stackTraces = Thread.getAllStackTraces() --> Line_5 $$ for (Map.Entry<Thread, StackTraceElement[]> entry : stackTraces.entrySet()) [FD]
+Line_4 $$ StringBuilder sb = new StringBuilder("Thread dump:") --> Line_6 $$ sb.append(entry.getKey().getName()).append("\n") [FD]
+Line_4 $$ StringBuilder sb = new StringBuilder("Thread dump:") --> Line_8 $$ sb.append("  ").append(element.getClassName()).append("#").append(element.getMethodName()).append("#").append(element.getLineNumber()).append("\n") [FD]
+Line_7 $$ for (StackTraceElement element : entry.getValue()) --> Line_8 $$ sb.append("  ").append(element.getClassName()).append("#").append(element.getMethodName()).append("#").append(element.getLineNumber()).append("\n") [FD]
+Line_4 $$ StringBuilder sb = new StringBuilder("Thread dump:") --> Line_10 $$ sb.append("\n----------\n") [FD]
+Line_4 $$ StringBuilder sb = new StringBuilder("Thread dump:") --> Line_12 $$ throw new AssertionError(sb.toString()) [FD]

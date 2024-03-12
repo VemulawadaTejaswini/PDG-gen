@@ -1,0 +1,7 @@
+Line_2 $$ private static FakeFileHashCache createFromStrings(ProjectFilesystem filesystem, Map<String, String> pathsToHashes) --> Line_3 $$ Map<Path, HashCode> cachedValues = new HashMap() [CD]
+Line_2 $$ private static FakeFileHashCache createFromStrings(ProjectFilesystem filesystem, Map<String, String> pathsToHashes) --> Line_4 $$ for (Map.Entry<String, String> entry : pathsToHashes.entrySet()) [FD]
+Line_3 $$ Map<Path, HashCode> cachedValues = new HashMap() --> Line_5 $$ cachedValues.put(Paths.get(entry.getKey()), HashCode.fromString(entry.getValue())) [FD]
+Line_6 $$ if (!entry.getKey().startsWith("/")) --> Line_7 $$ cachedValues.put(filesystem.resolve(entry.getKey()), HashCode.fromString(entry.getValue())) [CD]
+Line_3 $$ Map<Path, HashCode> cachedValues = new HashMap() --> Line_7 $$ cachedValues.put(filesystem.resolve(entry.getKey()), HashCode.fromString(entry.getValue())) [FD]
+Line_2 $$ private static FakeFileHashCache createFromStrings(ProjectFilesystem filesystem, Map<String, String> pathsToHashes) --> Line_7 $$ cachedValues.put(filesystem.resolve(entry.getKey()), HashCode.fromString(entry.getValue())) [FD]
+Line_2 $$ private static FakeFileHashCache createFromStrings(ProjectFilesystem filesystem, Map<String, String> pathsToHashes) --> Line_10 $$ return new FakeFileHashCache(cachedValues) [CD]

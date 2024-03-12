@@ -1,0 +1,7 @@
+Line_2 $$ public Policy getIamPolicy(String bucket, Map<Option, ?> options) --> Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_GET_BUCKET_IAM_POLICY) [CD]
+Line_2 $$ public Policy getIamPolicy(String bucket, Map<Option, ?> options) --> Line_4 $$ Scope scope = tracer.withSpan(span) [CD]
+Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_GET_BUCKET_IAM_POLICY) --> Line_4 $$ Scope scope = tracer.withSpan(span) [FD]
+Line_2 $$ public Policy getIamPolicy(String bucket, Map<Option, ?> options) --> Line_6 $$ return storage.buckets().getIamPolicy(bucket).setUserProject(Option.USER_PROJECT.getString(options)).execute() [FD]
+Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_GET_BUCKET_IAM_POLICY) --> Line_8 $$ span.setStatus(Status.UNKNOWN.withDescription(ex.getMessage())) [FD]
+Line_4 $$ Scope scope = tracer.withSpan(span) --> Line_11 $$ scope.close() [FD]
+Line_3 $$ Span span = startSpan(HttpStorageRpcSpans.SPAN_NAME_GET_BUCKET_IAM_POLICY) --> Line_12 $$ span.end() [FD]

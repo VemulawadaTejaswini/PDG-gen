@@ -1,0 +1,8 @@
+Line_2 $$ public void testGetOverrideHierarchyIncludingInterfaces() --> Line_3 $$ final Method method = MethodUtils.getAccessibleMethod(StringParameterizedChild.class, "consume", String.class) [CD]
+Line_2 $$ public void testGetOverrideHierarchyIncludingInterfaces() --> Line_4 $$ final Iterator<MethodDescriptor> expected = Arrays.asList(new MethodDescriptor(StringParameterizedChild.class, "consume", String.class), new MethodDescriptor(GenericParent.class, "consume", GenericParent.class.getTypeParameters()[0]), new MethodDescriptor(GenericConsumer.class, "consume", GenericConsumer.class.getTypeParameters()[0])).iterator() [CD]
+Line_5 $$ for (final Method m : MethodUtils.getOverrideHierarchy(method, Interfaces.INCLUDE)) --> Line_8 $$ assertEquals(md.declaringClass, m.getDeclaringClass()) [FD]
+Line_5 $$ for (final Method m : MethodUtils.getOverrideHierarchy(method, Interfaces.INCLUDE)) --> Line_9 $$ assertEquals(md.name, m.getName()) [FD]
+Line_5 $$ for (final Method m : MethodUtils.getOverrideHierarchy(method, Interfaces.INCLUDE)) --> Line_10 $$ assertEquals(md.parameterTypes.length, m.getParameterTypes().length) [FD]
+Line_11 $$ for (int i = 0; i < md.parameterTypes.length; i++) --> Line_12 $$ assertTrue(TypeUtils.equals(md.parameterTypes[i], m.getGenericParameterTypes()[i])) [CD]
+Line_5 $$ for (final Method m : MethodUtils.getOverrideHierarchy(method, Interfaces.INCLUDE)) --> Line_12 $$ assertTrue(TypeUtils.equals(md.parameterTypes[i], m.getGenericParameterTypes()[i])) [FD]
+Line_2 $$ public void testGetOverrideHierarchyIncludingInterfaces() --> Line_15 $$ assertFalse(expected.hasNext()) [CD]

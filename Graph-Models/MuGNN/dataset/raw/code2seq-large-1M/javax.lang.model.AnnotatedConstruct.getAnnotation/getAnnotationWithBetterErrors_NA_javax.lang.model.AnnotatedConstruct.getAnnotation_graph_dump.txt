@@ -1,0 +1,8 @@
+Line_2 $$ <A extends Annotation> A getAnnotationWithBetterErrors(Class<A> annotationType) --> Line_4 $$ return underlyingConstruct.getAnnotation(annotationType) [FD]
+Line_7 $$ for (TreeBackedAnnotationMirror mirror : annotationMirrors) --> Line_8 $$ if (!mirror.getAnnotationType().asElement().getSimpleName().contentEquals(annotationType.getSimpleName())) [FD]
+Line_2 $$ <A extends Annotation> A getAnnotationWithBetterErrors(Class<A> annotationType) --> Line_8 $$ if (!mirror.getAnnotationType().asElement().getSimpleName().contentEquals(annotationType.getSimpleName())) [FD]
+Line_7 $$ for (TreeBackedAnnotationMirror mirror : annotationMirrors) --> Line_11 $$ for (TreeBackedAnnotationValue value : mirror.getElementValues().values()) [FD]
+Line_11 $$ for (TreeBackedAnnotationValue value : mirror.getElementValues().values()) --> Line_12 $$ new ArgumentCheckingValueVisitor().scan(value, problematicTypes) [FD]
+Line_6 $$ Set<String> problematicTypes = new LinkedHashSet() --> Line_12 $$ new ArgumentCheckingValueVisitor().scan(value, problematicTypes) [FD]
+Line_6 $$ Set<String> problematicTypes = new LinkedHashSet() --> Line_15 $$ throw new RuntimeException(String.format("Exception when trying to get annotation %s from element %s.  " + "These types are not available: %s", annotationType.getSimpleName(), this.toString(), problematicTypes), e) [FD]
+Line_2 $$ <A extends Annotation> A getAnnotationWithBetterErrors(Class<A> annotationType) --> Line_15 $$ throw new RuntimeException(String.format("Exception when trying to get annotation %s from element %s.  " + "These types are not available: %s", annotationType.getSimpleName(), this.toString(), problematicTypes), e) [FD]

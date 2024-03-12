@@ -1,0 +1,8 @@
+Line_2 $$ public <T> T post(String path, Object request, Type responseType) throws RepoException, ValidationException --> Line_3 $$ HttpRequestFactory requestFactory = getHttpRequestFactory(getCredentials()) [CD]
+Line_2 $$ public <T> T post(String path, Object request, Type responseType) throws RepoException, ValidationException --> Line_4 $$ GenericUrl url = new GenericUrl(URI.create(API_URL + "/" + path)) [CD]
+Line_3 $$ HttpRequestFactory requestFactory = getHttpRequestFactory(getCredentials()) --> Line_6 $$ HttpRequest httpRequest = requestFactory.buildPostRequest(url, new JsonHttpContent(JSON_FACTORY, request)) [FD]
+Line_4 $$ GenericUrl url = new GenericUrl(URI.create(API_URL + "/" + path)) --> Line_6 $$ HttpRequest httpRequest = requestFactory.buildPostRequest(url, new JsonHttpContent(JSON_FACTORY, request)) [FD]
+Line_6 $$ HttpRequest httpRequest = requestFactory.buildPostRequest(url, new JsonHttpContent(JSON_FACTORY, request)) --> Line_7 $$ HttpResponse response = httpRequest.execute() [FD]
+Line_7 $$ HttpResponse response = httpRequest.execute() --> Line_8 $$ return (T) response.parseAs(responseType) [FD]
+Line_2 $$ public <T> T post(String path, Object request, Type responseType) throws RepoException, ValidationException --> Line_8 $$ return (T) response.parseAs(responseType) [FD]
+Line_2 $$ public <T> T post(String path, Object request, Type responseType) throws RepoException, ValidationException --> Line_11 $$ throw new GitHubApiException(e.getStatusCode(), parseErrorOrIgnore(e), "POST", path, JSON_FACTORY.toPrettyString(request), e.getContent()) [FD]

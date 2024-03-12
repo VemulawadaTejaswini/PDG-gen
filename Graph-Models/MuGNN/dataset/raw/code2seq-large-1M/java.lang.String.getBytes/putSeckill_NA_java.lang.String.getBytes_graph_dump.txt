@@ -1,0 +1,8 @@
+Line_2 $$ public String putSeckill(Seckill seckill) --> Line_6 $$ String key = "seckill:" + seckill.getSeckillId() [FD]
+Line_2 $$ public String putSeckill(Seckill seckill) --> Line_7 $$ byte[] bytes = ProtostuffIOUtil.toByteArray(seckill, schema, LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE)) [FD]
+Line_4 $$ Jedis jedis = jedisPool.getResource() --> Line_9 $$ String result = jedis.setex(key.getBytes(), timeout, bytes) [FD]
+Line_8 $$ int timeout = 60 * 60 --> Line_9 $$ String result = jedis.setex(key.getBytes(), timeout, bytes) [FD]
+Line_7 $$ byte[] bytes = ProtostuffIOUtil.toByteArray(seckill, schema, LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE)) --> Line_9 $$ String result = jedis.setex(key.getBytes(), timeout, bytes) [FD]
+Line_6 $$ String key = "seckill:" + seckill.getSeckillId() --> Line_9 $$ String result = jedis.setex(key.getBytes(), timeout, bytes) [FD]
+Line_4 $$ Jedis jedis = jedisPool.getResource() --> Line_12 $$ jedis.close() [FD]
+Line_2 $$ public String putSeckill(Seckill seckill) --> Line_17 $$ return null [CD]

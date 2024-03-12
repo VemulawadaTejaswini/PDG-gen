@@ -1,0 +1,8 @@
+Line_2 $$ public void writeBlock(PeerResource resource, PeerBlock block) --> Line_3 $$ if (state == AWAITING_CONNECT) [CD]
+Line_3 $$ if (state == AWAITING_CONNECT) --> Line_4 $$ pendingConnect.append(block.toBytes(null, -1)) [CD]
+Line_2 $$ public void writeBlock(PeerResource resource, PeerBlock block) --> Line_4 $$ pendingConnect.append(block.toBytes(null, -1)) [FD]
+Line_3 $$ if (state == AWAITING_CONNECT) --> Line_5 $$ if (state == READY) [CD]
+Line_5 $$ if (state == READY) --> Line_6 $$ connection.sendChunk(block.toBytes(connection.getLocalHost(), connection.getLocalPort())) [CD]
+Line_2 $$ public void writeBlock(PeerResource resource, PeerBlock block) --> Line_6 $$ connection.sendChunk(block.toBytes(connection.getLocalHost(), connection.getLocalPort())) [FD]
+Line_5 $$ if (state == READY) --> Line_7 $$ if (state == CLOSED || state == AWAITING_CLOSE) [CD]
+Line_7 $$ if (state == CLOSED || state == AWAITING_CLOSE) --> Line_8 $$ logger.warning("Write block to closed connection: " + this) [CD]

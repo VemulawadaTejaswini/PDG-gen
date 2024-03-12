@@ -1,0 +1,8 @@
+Line_2 $$ private void rollbackInflightCommits() --> Line_3 $$ HoodieTable<T> table = HoodieTable.getHoodieTable(new HoodieTableMetaClient(jsc.hadoopConfiguration(), config.getBasePath(), true), config) [CD]
+Line_2 $$ private void rollbackInflightCommits() --> Line_4 $$ HoodieTimeline inflightTimeline = table.getCommitsTimeline().filterInflights() [CD]
+Line_3 $$ HoodieTable<T> table = HoodieTable.getHoodieTable(new HoodieTableMetaClient(jsc.hadoopConfiguration(), config.getBasePath(), true), config) --> Line_4 $$ HoodieTimeline inflightTimeline = table.getCommitsTimeline().filterInflights() [FD]
+Line_2 $$ private void rollbackInflightCommits() --> Line_5 $$ List<String> commits = inflightTimeline.getInstants().map(HoodieInstant::<>getTimestamp).collect(Collectors.toList()) [CD]
+Line_4 $$ HoodieTimeline inflightTimeline = table.getCommitsTimeline().filterInflights() --> Line_5 $$ List<String> commits = inflightTimeline.getInstants().map(HoodieInstant::<>getTimestamp).collect(Collectors.toList()) [FD]
+Line_2 $$ private void rollbackInflightCommits() --> Line_6 $$ Collections.reverse(commits) [CD]
+Line_5 $$ List<String> commits = inflightTimeline.getInstants().map(HoodieInstant::<>getTimestamp).collect(Collectors.toList()) --> Line_6 $$ Collections.reverse(commits) [FD]
+Line_7 $$ for (String commit : commits) --> Line_8 $$ rollback(commit) [FD]

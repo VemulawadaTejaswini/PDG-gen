@@ -1,0 +1,8 @@
+Line_2 $$ public static OpenSSLKey fromPrivateKey(PrivateKey key) throws InvalidKeyException --> Line_3 $$ if (key instanceof OpenSSLKeyHolder) [CD]
+Line_2 $$ public static OpenSSLKey fromPrivateKey(PrivateKey key) throws InvalidKeyException --> Line_3 $$ if (key instanceof OpenSSLKeyHolder) [FD]
+Line_3 $$ if (key instanceof OpenSSLKeyHolder) --> Line_4 $$ return ((OpenSSLKeyHolder) key).getOpenSSLKey() [CD]
+Line_2 $$ public static OpenSSLKey fromPrivateKey(PrivateKey key) throws InvalidKeyException --> Line_6 $$ if ("PKCS#8".equals(key.getFormat())) [CD]
+Line_2 $$ public static OpenSSLKey fromPrivateKey(PrivateKey key) throws InvalidKeyException --> Line_6 $$ if ("PKCS#8".equals(key.getFormat())) [FD]
+Line_6 $$ if ("PKCS#8".equals(key.getFormat())) --> Line_7 $$ return new OpenSSLKey(NativeCrypto.d2i_PKCS8_PRIV_KEY_INFO(key.getEncoded())) [CD]
+Line_2 $$ public static OpenSSLKey fromPrivateKey(PrivateKey key) throws InvalidKeyException --> Line_7 $$ return new OpenSSLKey(NativeCrypto.d2i_PKCS8_PRIV_KEY_INFO(key.getEncoded())) [FD]
+Line_2 $$ public static OpenSSLKey fromPrivateKey(PrivateKey key) throws InvalidKeyException --> Line_9 $$ throw new InvalidKeyException("Unknown key format " + key.getFormat()) [FD]

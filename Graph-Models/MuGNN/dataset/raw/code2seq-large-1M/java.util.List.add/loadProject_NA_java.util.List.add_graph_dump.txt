@@ -1,0 +1,8 @@
+Line_2 $$ private synchronized BlazeProjectData loadProject(BlazeImportSettings importSettings) throws IOException --> Line_3 $$ File file = getCacheFile(project, importSettings) [CD]
+Line_2 $$ private synchronized BlazeProjectData loadProject(BlazeImportSettings importSettings) throws IOException --> Line_3 $$ File file = getCacheFile(project, importSettings) [FD]
+Line_2 $$ private synchronized BlazeProjectData loadProject(BlazeImportSettings importSettings) throws IOException --> Line_4 $$ List<ClassLoader> classLoaders = Lists.newArrayList() [CD]
+Line_5 $$ for (BlazeSyncPlugin syncPlugin : BlazeSyncPlugin.EP_NAME.getExtensions()) --> Line_6 $$ classLoaders.add(syncPlugin.getClass().getClassLoader()) [FD]
+Line_2 $$ private synchronized BlazeProjectData loadProject(BlazeImportSettings importSettings) throws IOException --> Line_8 $$ classLoaders.add(getClass().getClassLoader()) [CD]
+Line_2 $$ private synchronized BlazeProjectData loadProject(BlazeImportSettings importSettings) throws IOException --> Line_9 $$ classLoaders.add(Thread.currentThread().getContextClassLoader()) [CD]
+Line_3 $$ File file = getCacheFile(project, importSettings) --> Line_10 $$ blazeProjectData = (BlazeProjectData) SerializationUtil.loadFromDisk(file, classLoaders) [FD]
+Line_2 $$ private synchronized BlazeProjectData loadProject(BlazeImportSettings importSettings) throws IOException --> Line_11 $$ return blazeProjectData [CD]

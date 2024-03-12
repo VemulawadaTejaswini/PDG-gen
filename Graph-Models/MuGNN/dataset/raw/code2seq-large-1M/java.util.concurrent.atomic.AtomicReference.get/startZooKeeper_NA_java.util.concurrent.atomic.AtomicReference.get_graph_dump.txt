@@ -1,0 +1,4 @@
+Line_2 $$ private void startZooKeeper() throws Exception --> Line_3 $$ Preconditions.checkState(this.zooKeeperProcess.get() == null, "ZooKeeper is already started.") [CD]
+Line_2 $$ private void startZooKeeper() throws Exception --> Line_4 $$ this.zooKeeperProcess.set(ProcessStarter.forClass(ZooKeeperServiceRunner.class).sysProp(ZooKeeperServiceRunner.PROPERTY_ZK_PORT, this.testConfig.getZkPort()).stdOut(ProcessBuilder.Redirect.to(new File(this.testConfig.getComponentOutLogPath("zk", 0)))).stdErr(ProcessBuilder.Redirect.to(new File(this.testConfig.getComponentErrLogPath("zk", 0)))).start()) [CD]
+Line_2 $$ private void startZooKeeper() throws Exception --> Line_5 $$ if (!ZooKeeperServiceRunner.waitForServerUp(this.testConfig.getZkPort())) [CD]
+Line_2 $$ private void startZooKeeper() throws Exception --> Line_8 $$ log("ZooKeeper started (Port = %s).", this.testConfig.getZkPort()) [CD]

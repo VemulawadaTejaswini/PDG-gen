@@ -1,0 +1,8 @@
+Line_2 $$ public void testSignalUpdatesLastModified() --> Line_3 $$ long lastModified = ((LastModifiedAccessor) unbounded).getLastModified() [CD]
+Line_2 $$ public void testSignalUpdatesLastModified() --> Line_4 $$ long signaledTime = -1 [CD]
+Line_2 $$ public void testSignalUpdatesLastModified() --> Line_5 $$ long spinStart = System.currentTimeMillis() [CD]
+Line_2 $$ public void testSignalUpdatesLastModified() --> Line_6 $$ while (lastModified >= signaledTime && (System.currentTimeMillis() - spinStart) <= 2000) [CD]
+Line_6 $$ while (lastModified >= signaledTime && (System.currentTimeMillis() - spinStart) <= 2000) --> Line_7 $$ ((Signalable) unbounded).signalReady() [CD]
+Line_6 $$ while (lastModified >= signaledTime && (System.currentTimeMillis() - spinStart) <= 2000) --> Line_8 $$ signaledTime = ((LastModifiedAccessor) unbounded).getLastModified() [CD]
+Line_4 $$ long signaledTime = -1 --> Line_8 $$ signaledTime = ((LastModifiedAccessor) unbounded).getLastModified() [FD]
+Line_2 $$ public void testSignalUpdatesLastModified() --> Line_10 $$ Assert.assertTrue("Signaling should update last modified time", signaledTime > lastModified) [CD]

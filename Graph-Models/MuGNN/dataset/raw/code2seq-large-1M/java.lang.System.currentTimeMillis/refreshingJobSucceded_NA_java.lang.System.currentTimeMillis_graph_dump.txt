@@ -1,0 +1,7 @@
+Line_4 $$ final RefreshDoneHandler handler = new RefreshDoneHandler(entry, materialization, job, accelerationPlugin, namespaceService, materializationStore, dependencyManager, expansionHelper) --> Line_5 $$ final RefreshDecision decision = handler.handle() [FD]
+Line_5 $$ final RefreshDecision decision = handler.handle() --> Line_6 $$ entry.setRefreshMethod(decision.getAccelerationSettings().getMethod()).setRefreshField(decision.getAccelerationSettings().getRefreshField()).setDatasetHash(decision.getDatasetHash()).setDontGiveUp(dependencyManager.dontGiveUp(entry.getId())) [FD]
+Line_11 $$ if (materialization.getState() != MaterializationState.FAILED) --> Line_12 $$ entry.setLastSuccessfulRefresh(System.currentTimeMillis()) [CD]
+Line_11 $$ if (materialization.getState() != MaterializationState.FAILED) --> Line_13 $$ if (!Iterables.isEmpty(materializationStore.getRefreshes(materialization))) [CD]
+Line_13 $$ if (!Iterables.isEmpty(materializationStore.getRefreshes(materialization))) --> Line_21 $$ materialization.setState(MaterializationState.DONE) [CD]
+Line_13 $$ if (!Iterables.isEmpty(materializationStore.getRefreshes(materialization))) --> Line_22 $$ entry.setState(ACTIVE).setNumFailures(0) [CD]
+Line_25 $$ if (materialization.getState() == MaterializationState.FAILED) --> Line_26 $$ reportFailure(entry, ACTIVE) [CD]

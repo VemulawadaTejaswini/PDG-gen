@@ -1,0 +1,5 @@
+Line_2 $$ private void decBusyThreadCount() --> Line_3 $$ final int val = busyThreadsCount.decrementAndGet() [CD]
+Line_2 $$ private void decBusyThreadCount() --> Line_4 $$ if (val < 0) [CD]
+Line_3 $$ final int val = busyThreadsCount.decrementAndGet() --> Line_4 $$ if (val < 0) [FD]
+Line_4 $$ if (val < 0) --> Line_5 $$ busyThreadsCount.compareAndSet(val, 0) [CD]
+Line_3 $$ final int val = busyThreadsCount.decrementAndGet() --> Line_5 $$ busyThreadsCount.compareAndSet(val, 0) [FD]

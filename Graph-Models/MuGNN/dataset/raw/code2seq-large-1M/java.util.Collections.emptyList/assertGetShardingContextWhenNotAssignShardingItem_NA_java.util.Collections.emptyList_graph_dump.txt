@@ -1,0 +1,6 @@
+Line_2 $$ public void assertGetShardingContextWhenNotAssignShardingItem() --> Line_3 $$ when(configService.load(false)).thenReturn(LiteJobConfiguration.newBuilder(new DataflowJobConfiguration(JobCoreConfiguration.newBuilder("test_job", "0/1 * * * * ?", 3).build(), TestDataflowJob.class.getCanonicalName(), true)).monitorExecution(false).build()) [CD]
+Line_2 $$ public void assertGetShardingContextWhenNotAssignShardingItem() --> Line_4 $$ ShardingContexts shardingContexts = executionContextService.getJobShardingContext(Collections.<Integer>emptyList()) [CD]
+Line_2 $$ public void assertGetShardingContextWhenNotAssignShardingItem() --> Line_5 $$ assertTrue(shardingContexts.getTaskId().startsWith("test_job@-@@-@READY@-@")) [CD]
+Line_4 $$ ShardingContexts shardingContexts = executionContextService.getJobShardingContext(Collections.<Integer>emptyList()) --> Line_5 $$ assertTrue(shardingContexts.getTaskId().startsWith("test_job@-@@-@READY@-@")) [FD]
+Line_2 $$ public void assertGetShardingContextWhenNotAssignShardingItem() --> Line_6 $$ assertThat(shardingContexts.getShardingTotalCount(), is(3)) [CD]
+Line_4 $$ ShardingContexts shardingContexts = executionContextService.getJobShardingContext(Collections.<Integer>emptyList()) --> Line_6 $$ assertThat(shardingContexts.getShardingTotalCount(), is(3)) [FD]

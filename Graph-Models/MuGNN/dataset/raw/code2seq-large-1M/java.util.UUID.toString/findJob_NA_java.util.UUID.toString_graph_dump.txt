@@ -1,0 +1,6 @@
+Line_2 $$ public PortabilityJob findJob(UUID jobId) --> Line_3 $$ Preconditions.checkNotNull(jobId, "Job id is null") [FD]
+Line_2 $$ public PortabilityJob findJob(UUID jobId) --> Line_3 $$ Preconditions.checkNotNull(jobId, "Job id is null") [CD]
+Line_2 $$ public PortabilityJob findJob(UUID jobId) --> Line_6 $$ TableOperation retrieve = TableOperation.retrieve(configuration.getPartitionKey(), jobId.toString(), DataWrapper.class) [FD]
+Line_5 $$ CloudTable table = tableClient.getTableReference(JOB_TABLE) --> Line_7 $$ TableResult result = table.execute(retrieve) [FD]
+Line_7 $$ TableResult result = table.execute(retrieve) --> Line_8 $$ DataWrapper wrapper = result.getResultAsType() [FD]
+Line_8 $$ DataWrapper wrapper = result.getResultAsType() --> Line_9 $$ return configuration.getMapper().readValue(wrapper.getSerialized(), PortabilityJob.class) [FD]

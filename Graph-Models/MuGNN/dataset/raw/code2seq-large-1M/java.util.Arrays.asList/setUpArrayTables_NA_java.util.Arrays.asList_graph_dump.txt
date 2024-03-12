@@ -1,0 +1,6 @@
+Line_2 $$ public void setUpArrayTables() --> Line_3 $$ transportExecutor.exec("create table any_table (" + "  id int primary key," + "  temps array(double)," + "  names array(string)," + "  tags array(string)" + ") with (number_of_replicas=0)") [CD]
+Line_2 $$ public void setUpArrayTables() --> Line_4 $$ transportExecutor.ensureGreen() [CD]
+Line_2 $$ public void setUpArrayTables() --> Line_5 $$ SQLResponse response = transportExecutor.exec("insert into any_table (id, temps, names, tags) values (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?)", new Object[] [CD]
+Line_2 $$ public void setUpArrayTables() --> Line_6 $$ assertThat(response.rowCount(), is(4L)) [CD]
+Line_5 $$ SQLResponse response = transportExecutor.exec("insert into any_table (id, temps, names, tags) values (?,?,?,?), (?,?,?,?), (?,?,?,?), (?,?,?,?)", new Object[] --> Line_6 $$ assertThat(response.rowCount(), is(4L)) [FD]
+Line_2 $$ public void setUpArrayTables() --> Line_7 $$ transportExecutor.exec("refresh table any_table") [CD]

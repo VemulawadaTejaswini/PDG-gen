@@ -1,0 +1,7 @@
+Line_6 $$ x = 1 --> Line_10 $$ return Task.fromValue(x) [FD]
+Line_2 $$ public void synchronizedMethod() --> Line_13 $$ final Task res = new SynchronizedMethodExperiment().doIt(0) [CD]
+Line_2 $$ public void synchronizedMethod() --> Line_14 $$ Method asyncMethod = Stream.of(SynchronizedMethodExperiment.class.getDeclaredMethods()).filter( m -> m.getName().startsWith("async$")).findFirst().orElse(null) [CD]
+Line_2 $$ public void synchronizedMethod() --> Line_15 $$ completeFutures() [CD]
+Line_2 $$ public void synchronizedMethod() --> Line_16 $$ assertEquals(1, res.join()) [CD]
+Line_2 $$ public void synchronizedMethod() --> Line_17 $$ assertFalse(Modifier.isSynchronized(asyncMethod.getModifiers())) [CD]
+Line_2 $$ public void synchronizedMethod() --> Line_18 $$ assertTrue(Modifier.isStatic(asyncMethod.getModifiers())) [CD]

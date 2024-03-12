@@ -1,0 +1,8 @@
+Line_2 $$ public void parallelTx() throws ExecutionException, InterruptedException --> Line_3 $$ setClock(Duration.ofSeconds(10).toMillis()) [CD]
+Line_2 $$ public void parallelTx() throws ExecutionException, InterruptedException --> Line_4 $$ SegmentAggregates aggregates = new SegmentAggregates(WireCommands.CreateSegment.IN_EVENTS_PER_SEC, 100) [CD]
+Line_2 $$ public void parallelTx() throws ExecutionException, InterruptedException --> Line_5 $$ CompletableFuture.allOf(CompletableFuture.runAsync(() -> writeTx(aggregates, 100, 0)), CompletableFuture.runAsync(() -> writeTx(aggregates, 100, 0)), CompletableFuture.runAsync(() -> writeTx(aggregates, 100, 0))).get() [CD]
+Line_4 $$ SegmentAggregates aggregates = new SegmentAggregates(WireCommands.CreateSegment.IN_EVENTS_PER_SEC, 100) --> Line_5 $$ CompletableFuture.allOf(CompletableFuture.runAsync(() -> writeTx(aggregates, 100, 0)), CompletableFuture.runAsync(() -> writeTx(aggregates, 100, 0)), CompletableFuture.runAsync(() -> writeTx(aggregates, 100, 0))).get() [FD]
+Line_2 $$ public void parallelTx() throws ExecutionException, InterruptedException --> Line_6 $$ setClock(Duration.ofSeconds(15).toMillis() + 1) [CD]
+Line_2 $$ public void parallelTx() throws ExecutionException, InterruptedException --> Line_7 $$ aggregates.update(0, 0) [CD]
+Line_4 $$ SegmentAggregates aggregates = new SegmentAggregates(WireCommands.CreateSegment.IN_EVENTS_PER_SEC, 100) --> Line_7 $$ aggregates.update(0, 0) [FD]
+Line_4 $$ SegmentAggregates aggregates = new SegmentAggregates(WireCommands.CreateSegment.IN_EVENTS_PER_SEC, 100) --> Line_8 $$ assert aggregates.getTwoMinuteRate() > 29 [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public Cursor<Record> fetchLazy(ResultSet rs, DataType<?>... types) --> Line_5 $$ ResultSetMetaData meta = rs.getMetaData() [FD]
+Line_5 $$ ResultSetMetaData meta = rs.getMetaData() --> Line_6 $$ int columns = meta.getColumnCount() [FD]
+Line_7 $$ for (int i = 0; i < types.length && i < columns; i++) --> Line_8 $$ fields[i] = field(meta.getColumnLabel(i + 1), types[i]) [CD]
+Line_5 $$ ResultSetMetaData meta = rs.getMetaData() --> Line_8 $$ fields[i] = field(meta.getColumnLabel(i + 1), types[i]) [FD]
+Line_2 $$ public Cursor<Record> fetchLazy(ResultSet rs, DataType<?>... types) --> Line_10 $$ return fetchLazy(rs, fields) [FD]
+Line_4 $$ Field<?>[] fields = new Field[types.length] --> Line_10 $$ return fetchLazy(rs, fields) [FD]

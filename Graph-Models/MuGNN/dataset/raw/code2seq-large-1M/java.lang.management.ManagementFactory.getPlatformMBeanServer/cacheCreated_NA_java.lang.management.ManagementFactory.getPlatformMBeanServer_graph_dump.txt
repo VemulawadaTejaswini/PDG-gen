@@ -1,0 +1,8 @@
+Line_2 $$ public void cacheCreated(Cache c) --> Line_3 $$ InternalCache ic = (InternalCache) c [CD]
+Line_2 $$ public void cacheCreated(Cache c) --> Line_4 $$ if (!ic.getCommonMetrics().isDisabled()) [CD]
+Line_3 $$ InternalCache ic = (InternalCache) c --> Line_4 $$ if (!ic.getCommonMetrics().isDisabled()) [FD]
+Line_4 $$ if (!ic.getCommonMetrics().isDisabled()) --> Line_5 $$ MBeanServer mbs = ManagementFactory.getPlatformMBeanServer() [CD]
+Line_4 $$ if (!ic.getCommonMetrics().isDisabled()) --> Line_6 $$ String _name = standardName(c.getCacheManager(), c) [CD]
+Line_2 $$ public void cacheCreated(Cache c) --> Line_6 $$ String _name = standardName(c.getCacheManager(), c) [FD]
+Line_5 $$ MBeanServer mbs = ManagementFactory.getPlatformMBeanServer() --> Line_8 $$ mbs.registerMBean(new CacheMXBeanImpl(ic), new ObjectName(_name)) [FD]
+Line_2 $$ public void cacheCreated(Cache c) --> Line_10 $$ log.debug("register failure, cache: " + c.getName(), ignore) [FD]

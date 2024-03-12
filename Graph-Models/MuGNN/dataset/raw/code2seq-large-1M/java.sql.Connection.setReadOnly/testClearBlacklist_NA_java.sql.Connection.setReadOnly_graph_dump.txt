@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection connection = getNewConnection(true)) --> Line_4 $$ connection.setReadOnly(true) [FD]
+Line_3 $$ try (Connection connection = getNewConnection(true)) --> Line_5 $$ int current = getServerId(connection) [FD]
+Line_5 $$ int current = getServerId(connection) --> Line_6 $$ stopProxy(current) [FD]
+Line_3 $$ try (Connection connection = getNewConnection(true)) --> Line_7 $$ Statement st = connection.createStatement() [FD]
+Line_7 $$ Statement st = connection.createStatement() --> Line_9 $$ st.execute("SELECT 1 ") [FD]
+Line_3 $$ try (Connection connection = getNewConnection(true)) --> Line_13 $$ Protocol protocol = getProtocolFromConnection(connection) [FD]
+Line_13 $$ Protocol protocol = getProtocolFromConnection(connection) --> Line_14 $$ assertTrue(protocol.getProxy().getListener().getBlacklistKeys().size() == 1) [FD]
+Line_13 $$ Protocol protocol = getProtocolFromConnection(connection) --> Line_16 $$ assertTrue(protocol.getProxy().getListener().getBlacklistKeys().size() == 0) [FD]

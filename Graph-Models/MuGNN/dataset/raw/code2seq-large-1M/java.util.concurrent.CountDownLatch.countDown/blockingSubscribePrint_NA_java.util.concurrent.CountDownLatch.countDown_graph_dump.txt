@@ -1,0 +1,5 @@
+Line_2 $$ public static <T> void blockingSubscribePrint(Observable<T> observable, String name) --> Line_3 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public static <T> void blockingSubscribePrint(Observable<T> observable, String name) --> Line_4 $$ subscribePrint(observable.finallyDo(() -> latch.countDown()), name) [FD]
+Line_2 $$ public static <T> void blockingSubscribePrint(Observable<T> observable, String name) --> Line_4 $$ subscribePrint(observable.finallyDo(() -> latch.countDown()), name) [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_4 $$ subscribePrint(observable.finallyDo(() -> latch.countDown()), name) [FD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_6 $$ latch.await() [FD]

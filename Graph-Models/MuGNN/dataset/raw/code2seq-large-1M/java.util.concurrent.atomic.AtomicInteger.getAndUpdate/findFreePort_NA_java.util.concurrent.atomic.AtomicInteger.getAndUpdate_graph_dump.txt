@@ -1,0 +1,7 @@
+Line_2 $$ private static int findFreePort(final InetAddress bindAddress) --> Line_3 $$ for (int attempt = 0; attempt < SAFE_PORTS.length * 2; ++attempt) [CD]
+Line_3 $$ for (int attempt = 0; attempt < SAFE_PORTS.length * 2; ++attempt) --> Line_4 $$ final int candidatePortIndex = nextSafePortIndex.getAndUpdate(( lastPort) -> (lastPort + 1) % SAFE_PORTS.length) [CD]
+Line_3 $$ for (int attempt = 0; attempt < SAFE_PORTS.length * 2; ++attempt) --> Line_5 $$ final int candidatePort = SAFE_PORTS[candidatePortIndex] [CD]
+Line_6 $$ try (final ServerSocket socket = new ServerSocket(candidatePort, 1, bindAddress)) --> Line_7 $$ return socket.getLocalPort() [FD]
+Line_9 $$ if (logger.isDebugEnabled()) --> Line_10 $$ logger.debug(String.format("Could not bind port %d on %s; assuming already in use.", candidatePort, bindAddress), e) [CD]
+Line_5 $$ final int candidatePort = SAFE_PORTS[candidatePortIndex] --> Line_10 $$ logger.debug(String.format("Could not bind port %d on %s; assuming already in use.", candidatePort, bindAddress), e) [FD]
+Line_2 $$ private static int findFreePort(final InetAddress bindAddress) --> Line_10 $$ logger.debug(String.format("Could not bind port %d on %s; assuming already in use.", candidatePort, bindAddress), e) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private boolean isBacklog(long now, OneMerge merge) --> Line_3 $$ double mergeMB = bytesToMB(merge.estimatedMergeBytes) [CD]
+Line_4 $$ for (MergeThread mergeThread : mergeThreads) --> Line_6 $$ if (mergeThread.isAlive() && mergeThread.merge != merge && mergeStartNS != -1 && mergeThread.merge.estimatedMergeBytes >= MIN_BIG_MERGE_MB * 1024 * 1024 && nsToSec(now - mergeStartNS) > 3.0) [FD]
+Line_6 $$ if (mergeThread.isAlive() && mergeThread.merge != merge && mergeStartNS != -1 && mergeThread.merge.estimatedMergeBytes >= MIN_BIG_MERGE_MB * 1024 * 1024 && nsToSec(now - mergeStartNS) > 3.0) --> Line_7 $$ double otherMergeMB = bytesToMB(mergeThread.merge.estimatedMergeBytes) [CD]
+Line_6 $$ if (mergeThread.isAlive() && mergeThread.merge != merge && mergeStartNS != -1 && mergeThread.merge.estimatedMergeBytes >= MIN_BIG_MERGE_MB * 1024 * 1024 && nsToSec(now - mergeStartNS) > 3.0) --> Line_8 $$ double ratio = otherMergeMB / mergeMB [CD]
+Line_6 $$ if (mergeThread.isAlive() && mergeThread.merge != merge && mergeStartNS != -1 && mergeThread.merge.estimatedMergeBytes >= MIN_BIG_MERGE_MB * 1024 * 1024 && nsToSec(now - mergeStartNS) > 3.0) --> Line_9 $$ if (ratio > 0.3 && ratio < 3.0) [CD]
+Line_9 $$ if (ratio > 0.3 && ratio < 3.0) --> Line_10 $$ return true [CD]
+Line_2 $$ private boolean isBacklog(long now, OneMerge merge) --> Line_14 $$ return false [CD]

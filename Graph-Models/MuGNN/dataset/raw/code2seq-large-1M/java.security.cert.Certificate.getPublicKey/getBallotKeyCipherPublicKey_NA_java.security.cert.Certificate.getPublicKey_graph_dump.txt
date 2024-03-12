@@ -1,0 +1,8 @@
+Line_2 $$ public Key getBallotKeyCipherPublicKey() --> Line_3 $$ if (ballotKeyCipherPublicKey == null) [CD]
+Line_3 $$ if (ballotKeyCipherPublicKey == null) --> Line_4 $$ String ballotKeyPath [CD]
+Line_4 $$ String ballotKeyPath --> Line_6 $$ ballotKeyPath = propertyConfigurationService.getConfigValue(PUBLIC_KEY_FILE_NAME) [FD]
+Line_3 $$ if (ballotKeyCipherPublicKey == null) --> Line_10 $$ if (LOG.isDebugEnabled()) [CD]
+Line_10 $$ if (LOG.isDebugEnabled()) --> Line_11 $$ LOG.debug("loadBallotEncryptionKey with ballotKeyPath : " + ballotKeyPath) [CD]
+Line_14 $$ FileInputStream fis = new FileInputStream(ballotKeyPath) --> Line_15 $$ X509Certificate x509Certificate = certificateUtils.getCertificate(fis) [FD]
+Line_15 $$ X509Certificate x509Certificate = certificateUtils.getCertificate(fis) --> Line_16 $$ ballotKeyCipherPublicKey = x509Certificate.getPublicKey() [FD]
+Line_2 $$ public Key getBallotKeyCipherPublicKey() --> Line_21 $$ return ballotKeyCipherPublicKey [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void setUpLocations() throws Exception --> Line_3 $$ transportExecutor.exec("create table locations (" + " id string primary key," + " name string," + " date timestamp," + " kind string," + " position integer," + " description string," + " race object," + " index name_description_ft using fulltext(name, description) with (analyzer='english')" + ") clustered by(id) into 2 shards with(number_of_replicas=0)") [CD]
+Line_2 $$ public void setUpLocations() throws Exception --> Line_4 $$ String insertStmt = "insert into locations " + "(id, name, date, kind, position, description, race) " + "values (?, ?, ?, ?, ?, ?, ?)" [CD]
+Line_2 $$ public void setUpLocations() throws Exception --> Line_5 $$ Object[][] rows = new Object[][] [CD]
+Line_2 $$ public void setUpLocations() throws Exception --> Line_12 $$ transportExecutor.execBulk(insertStmt, rows) [CD]
+Line_4 $$ String insertStmt = "insert into locations " + "(id, name, date, kind, position, description, race) " + "values (?, ?, ?, ?, ?, ?, ?)" --> Line_12 $$ transportExecutor.execBulk(insertStmt, rows) [FD]
+Line_5 $$ Object[][] rows = new Object[][] --> Line_12 $$ transportExecutor.execBulk(insertStmt, rows) [FD]

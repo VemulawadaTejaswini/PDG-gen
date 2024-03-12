@@ -1,0 +1,6 @@
+Line_2 $$ public void addNotification(NotificationInfo notification) --> Line_3 $$ Lock l = mBeanInfoLock.writeLock() [CD]
+Line_2 $$ public void addNotification(NotificationInfo notification) --> Line_4 $$ l.lock() [CD]
+Line_3 $$ Lock l = mBeanInfoLock.writeLock() --> Line_4 $$ l.lock() [FD]
+Line_6 $$ NotificationInfo[] results = new NotificationInfo[notifications.length + 1] --> Line_7 $$ System.arraycopy(notifications, 0, results, 0, notifications.length) [FD]
+Line_2 $$ public void addNotification(NotificationInfo notification) --> Line_8 $$ results[notifications.length] = notification [FD]
+Line_3 $$ Lock l = mBeanInfoLock.writeLock() --> Line_12 $$ l.unlock() [FD]

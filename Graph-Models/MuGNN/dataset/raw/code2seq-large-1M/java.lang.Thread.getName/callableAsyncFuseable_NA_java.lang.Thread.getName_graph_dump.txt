@@ -1,0 +1,8 @@
+Line_2 $$ public void callableAsyncFuseable() --> Line_3 $$ Scheduler s = new SingleTimedScheduler("pxsingle-") [CD]
+Line_5 $$ TestSubscriber<String> ts = new TestSubscriber() --> Line_6 $$ ts.requestedFusionMode(Fuseable.ANY) [FD]
+Line_5 $$ TestSubscriber<String> ts = new TestSubscriber() --> Line_8 $$ Px.fromCallable(() -> Thread.currentThread().getName()).subscribeOn(s).subscribe(ts) [FD]
+Line_3 $$ Scheduler s = new SingleTimedScheduler("pxsingle-") --> Line_8 $$ Px.fromCallable(() -> Thread.currentThread().getName()).subscribeOn(s).subscribe(ts) [FD]
+Line_5 $$ TestSubscriber<String> ts = new TestSubscriber() --> Line_9 $$ ts.assertFusionMode(Fuseable.ASYNC).assertTerminated(5, TimeUnit.SECONDS).assertValueCount(1).assertNoError() [FD]
+Line_7 $$ String main = Thread.currentThread().getName() --> Line_10 $$ Assert.assertNotSame(main, ts.values().get(0)) [FD]
+Line_5 $$ TestSubscriber<String> ts = new TestSubscriber() --> Line_10 $$ Assert.assertNotSame(main, ts.values().get(0)) [FD]
+Line_3 $$ Scheduler s = new SingleTimedScheduler("pxsingle-") --> Line_12 $$ s.shutdown() [FD]

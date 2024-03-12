@@ -1,0 +1,7 @@
+Line_2 $$ public void testLift() throws IOException --> Line_3 $$ final IO<String> readName = () -> new BufferedReader(new StringReader("foo")).readLine() [CD]
+Line_2 $$ public void testLift() throws IOException --> Line_4 $$ final F<String, IO<String>> upperCaseAndPrint = F1Functions.<String, IO<String>, String>o(this::<>println).f(String::<>toUpperCase) [CD]
+Line_2 $$ public void testLift() throws IOException --> Line_5 $$ final IO<String> readAndPrintUpperCasedName = IOFunctions.bind(readName, upperCaseAndPrint) [CD]
+Line_3 $$ final IO<String> readName = () -> new BufferedReader(new StringReader("foo")).readLine() --> Line_5 $$ final IO<String> readAndPrintUpperCasedName = IOFunctions.bind(readName, upperCaseAndPrint) [FD]
+Line_4 $$ final F<String, IO<String>> upperCaseAndPrint = F1Functions.<String, IO<String>, String>o(this::<>println).f(String::<>toUpperCase) --> Line_5 $$ final IO<String> readAndPrintUpperCasedName = IOFunctions.bind(readName, upperCaseAndPrint) [FD]
+Line_2 $$ public void testLift() throws IOException --> Line_6 $$ assertThat(readAndPrintUpperCasedName.run(), is("FOO")) [CD]
+Line_5 $$ final IO<String> readAndPrintUpperCasedName = IOFunctions.bind(readName, upperCaseAndPrint) --> Line_6 $$ assertThat(readAndPrintUpperCasedName.run(), is("FOO")) [FD]

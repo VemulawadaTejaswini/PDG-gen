@@ -1,0 +1,7 @@
+Line_2 $$ public void testDropCompoundIndexWhenUsingDropExisting() throws Exception --> Line_3 $$ db.execute("CREATE INDEX ON :Foo(bar,baa)").close() [CD]
+Line_2 $$ public void testDropCompoundIndexWhenUsingDropExisting() throws Exception --> Line_4 $$ testResult(db, "CALL apoc.schema.assert(null,null,true)", ( result) -> [CD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_6 $$ assertEquals("Foo", r.get("label")) [FD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_7 $$ assertEquals(expectedKeys("bar", "baa"), r.get("keys")) [FD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_8 $$ assertEquals(false, r.get("unique")) [FD]
+Line_5 $$ Map<String, Object> r = result.next() --> Line_9 $$ assertEquals("DROPPED", r.get("action")) [FD]
+Line_12 $$ List<IndexDefinition> indexes = Iterables.asList(db.schema().getIndexes()) --> Line_13 $$ assertEquals(0, indexes.size()) [FD]

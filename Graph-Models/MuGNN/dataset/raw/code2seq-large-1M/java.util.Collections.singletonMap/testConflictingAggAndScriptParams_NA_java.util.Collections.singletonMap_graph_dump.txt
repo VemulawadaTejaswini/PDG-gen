@@ -1,0 +1,7 @@
+Line_5 $$ for (int i = 0; i < 100; i++) --> Line_6 $$ indexWriter.addDocument(singleton(new SortedNumericDocValuesField("number", i))) [CD]
+Line_4 $$ try (RandomIndexWriter indexWriter = new RandomIndexWriter(random(), directory)) --> Line_6 $$ indexWriter.addDocument(singleton(new SortedNumericDocValuesField("number", i))) [FD]
+Line_3 $$ try (Directory directory = newDirectory()) --> Line_9 $$ try (IndexReader indexReader = DirectoryReader.open(directory)) [FD]
+Line_10 $$ ScriptedMetricAggregationBuilder aggregationBuilder = new ScriptedMetricAggregationBuilder(AGG_NAME) --> Line_12 $$ aggregationBuilder.params(aggParams).initScript(INIT_SCRIPT_PARAMS).mapScript(MAP_SCRIPT_PARAMS).combineScript(COMBINE_SCRIPT_PARAMS) [FD]
+Line_11 $$ Map<String, Object> aggParams = Collections.singletonMap(CONFLICTING_PARAM_NAME, "blah") --> Line_12 $$ aggregationBuilder.params(aggParams).initScript(INIT_SCRIPT_PARAMS).mapScript(MAP_SCRIPT_PARAMS).combineScript(COMBINE_SCRIPT_PARAMS) [FD]
+Line_10 $$ ScriptedMetricAggregationBuilder aggregationBuilder = new ScriptedMetricAggregationBuilder(AGG_NAME) --> Line_13 $$ search(newSearcher(indexReader, true, true), new MatchAllDocsQuery(), aggregationBuilder) [FD]
+Line_9 $$ try (IndexReader indexReader = DirectoryReader.open(directory)) --> Line_13 $$ search(newSearcher(indexReader, true, true), new MatchAllDocsQuery(), aggregationBuilder) [FD]

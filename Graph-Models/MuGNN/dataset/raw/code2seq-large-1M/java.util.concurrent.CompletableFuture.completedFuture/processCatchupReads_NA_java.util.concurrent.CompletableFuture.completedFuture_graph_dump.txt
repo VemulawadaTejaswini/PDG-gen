@@ -1,0 +1,5 @@
+Line_2 $$ private CompletableFuture<Void> processCatchupReads() --> Line_3 $$ if (!this.catchupReadsSupported) [CD]
+Line_3 $$ if (!this.catchupReadsSupported) --> Line_4 $$ return CompletableFuture.completedFuture(null) [CD]
+Line_2 $$ private CompletableFuture<Void> processCatchupReads() --> Line_6 $$ return Futures.loop(this::<>canRun, () -> this.catchupQueue.take(CATCHUP_READ_COUNT).thenComposeAsync(this::<>processCatchupReads, this.executorService), this.executorService).exceptionally( ex -> [CD]
+Line_7 $$ ex = Exceptions.unwrap(ex) --> Line_8 $$ if (ex instanceof ObjectClosedException) [FD]
+Line_8 $$ if (ex instanceof ObjectClosedException) --> Line_9 $$ return null [CD]

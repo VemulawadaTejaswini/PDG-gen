@@ -1,0 +1,7 @@
+Line_2 $$ public void testLicenseTampering() throws Exception --> Line_3 $$ final TimeValue twoHours = TimeValue.timeValueHours(2) [CD]
+Line_2 $$ public void testLicenseTampering() throws Exception --> Line_4 $$ License license = TestUtils.generateSignedLicense(twoHours, pubKeyPath, priKeyPath) [CD]
+Line_3 $$ final TimeValue twoHours = TimeValue.timeValueHours(2) --> Line_4 $$ License license = TestUtils.generateSignedLicense(twoHours, pubKeyPath, priKeyPath) [FD]
+Line_2 $$ public void testLicenseTampering() throws Exception --> Line_5 $$ final License tamperedLicense = License.builder().fromLicenseSpec(license, license.signature()).expiryDate(license.expiryDate() + 10 * 24 * 60 * 60 * 1000L).validate().build() [CD]
+Line_4 $$ License license = TestUtils.generateSignedLicense(twoHours, pubKeyPath, priKeyPath) --> Line_5 $$ final License tamperedLicense = License.builder().fromLicenseSpec(license, license.signature()).expiryDate(license.expiryDate() + 10 * 24 * 60 * 60 * 1000L).validate().build() [FD]
+Line_2 $$ public void testLicenseTampering() throws Exception --> Line_6 $$ assertFalse(LicenseVerifier.verifyLicense(tamperedLicense, Files.readAllBytes(pubKeyPath))) [CD]
+Line_5 $$ final License tamperedLicense = License.builder().fromLicenseSpec(license, license.signature()).expiryDate(license.expiryDate() + 10 * 24 * 60 * 60 * 1000L).validate().build() --> Line_6 $$ assertFalse(LicenseVerifier.verifyLicense(tamperedLicense, Files.readAllBytes(pubKeyPath))) [FD]

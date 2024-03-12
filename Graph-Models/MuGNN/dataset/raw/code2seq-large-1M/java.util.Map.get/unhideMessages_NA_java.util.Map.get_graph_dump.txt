@@ -1,0 +1,6 @@
+Line_5 $$ LocalMessage localMessage = (LocalMessage) message --> Line_6 $$ long messageId = localMessage.getId() [FD]
+Line_5 $$ LocalMessage localMessage = (LocalMessage) message --> Line_7 $$ long folderId = ((LocalFolder) localMessage.getFolder()).getId() [FD]
+Line_6 $$ long messageId = localMessage.getId() --> Line_8 $$ Long hiddenInFolder = mHiddenMessageCache.get(messageId) [FD]
+Line_8 $$ Long hiddenInFolder = mHiddenMessageCache.get(messageId) --> Line_9 $$ if (hiddenInFolder != null && hiddenInFolder.longValue() == folderId) [FD]
+Line_9 $$ if (hiddenInFolder != null && hiddenInFolder.longValue() == folderId) --> Line_10 $$ mHiddenMessageCache.remove(messageId) [CD]
+Line_6 $$ long messageId = localMessage.getId() --> Line_10 $$ mHiddenMessageCache.remove(messageId) [FD]

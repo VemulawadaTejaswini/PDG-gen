@@ -1,0 +1,8 @@
+Line_2 $$ void stopWriters() --> Line_3 $$ log.info("Stop write flag status [CD]
+Line_2 $$ void stopWriters() --> Line_4 $$ testState.stopWriteFlag.set(true) [CD]
+Line_2 $$ void stopWriters() --> Line_5 $$ log.info("Wait for writers execution to complete") [CD]
+Line_2 $$ void stopWriters() --> Line_6 $$ if (!Futures.await(Futures.allOf(testState.writersListComplete))) [CD]
+Line_6 $$ if (!Futures.await(Futures.allOf(testState.writersListComplete))) --> Line_7 $$ log.error("Writers stopped with exceptions") [CD]
+Line_2 $$ void stopWriters() --> Line_9 $$ if (testState.getWriteException.get() != null) [CD]
+Line_9 $$ if (testState.getWriteException.get() != null) --> Line_10 $$ log.info("Unable to write events:", testState.getWriteException.get()) [CD]
+Line_9 $$ if (testState.getWriteException.get() != null) --> Line_11 $$ Assert.fail("Unable to write events. Test failure") [CD]

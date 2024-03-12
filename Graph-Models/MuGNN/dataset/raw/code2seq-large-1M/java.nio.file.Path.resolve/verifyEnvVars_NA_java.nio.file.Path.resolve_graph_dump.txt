@@ -1,0 +1,6 @@
+Line_2 $$ public void verifyEnvVars() throws Exception --> Line_3 $$ Files.write(config, ImmutableList.of("secrets.my_secrets.d = secret-shared", "secrets.my_secrets.e = secret-only")) [CD]
+Line_2 $$ public void verifyEnvVars() throws Exception --> Line_4 $$ copyResource("acceptance/sh/env.dig", projectDir.resolve("workflow.dig")) [CD]
+Line_2 $$ public void verifyEnvVars() throws Exception --> Line_5 $$ CommandStatus runStatus = main("run", "-o", projectDir.toString(), "--config", config.toString(), "--project", projectDir.toString(), "-p", "cmd=" + "command-line", "-p", "outfile=" + outfile, "workflow.dig") [CD]
+Line_2 $$ public void verifyEnvVars() throws Exception --> Line_6 $$ assertThat(runStatus.errUtf8(), runStatus.code(), is(0)) [CD]
+Line_5 $$ CommandStatus runStatus = main("run", "-o", projectDir.toString(), "--config", config.toString(), "--project", projectDir.toString(), "-p", "cmd=" + "command-line", "-p", "outfile=" + outfile, "workflow.dig") --> Line_6 $$ assertThat(runStatus.errUtf8(), runStatus.code(), is(0)) [FD]
+Line_2 $$ public void verifyEnvVars() throws Exception --> Line_7 $$ assertThat(Files.readAllLines(outfile, UTF_8).get(0), is("exported 1 command-line secret-shared secret-only")) [CD]

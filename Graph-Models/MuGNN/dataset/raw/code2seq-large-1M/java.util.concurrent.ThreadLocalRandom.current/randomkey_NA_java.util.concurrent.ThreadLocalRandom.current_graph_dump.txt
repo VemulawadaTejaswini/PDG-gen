@@ -1,0 +1,8 @@
+Line_2 $$ public Observable<V> randomkey() --> Line_3 $$ Partitions partitions = getStatefulConnection().getPartitions() [CD]
+Line_2 $$ public Observable<V> randomkey() --> Line_4 $$ int index = ThreadLocalRandom.current().nextInt(partitions.size()) [CD]
+Line_3 $$ Partitions partitions = getStatefulConnection().getPartitions() --> Line_4 $$ int index = ThreadLocalRandom.current().nextInt(partitions.size()) [FD]
+Line_2 $$ public Observable<V> randomkey() --> Line_5 $$ Single<RedisClusterReactiveCommands<K, V>> connection = getConnectionReactive(partitions.getPartition(index).getNodeId()) [CD]
+Line_3 $$ Partitions partitions = getStatefulConnection().getPartitions() --> Line_5 $$ Single<RedisClusterReactiveCommands<K, V>> connection = getConnectionReactive(partitions.getPartition(index).getNodeId()) [FD]
+Line_4 $$ int index = ThreadLocalRandom.current().nextInt(partitions.size()) --> Line_5 $$ Single<RedisClusterReactiveCommands<K, V>> connection = getConnectionReactive(partitions.getPartition(index).getNodeId()) [FD]
+Line_2 $$ public Observable<V> randomkey() --> Line_6 $$ return connection.flatMapObservable(RedisKeyReactiveCommands::<>randomkey) [CD]
+Line_5 $$ Single<RedisClusterReactiveCommands<K, V>> connection = getConnectionReactive(partitions.getPartition(index).getNodeId()) --> Line_6 $$ return connection.flatMapObservable(RedisKeyReactiveCommands::<>randomkey) [FD]

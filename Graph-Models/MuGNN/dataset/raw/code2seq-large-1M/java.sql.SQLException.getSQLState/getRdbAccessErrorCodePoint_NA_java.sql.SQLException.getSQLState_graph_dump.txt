@@ -1,0 +1,8 @@
+Line_2 $$ private int getRdbAccessErrorCodePoint() --> Line_3 $$ String sqlState = databaseAccessException.getSQLState() [CD]
+Line_2 $$ private int getRdbAccessErrorCodePoint() --> Line_4 $$ if (sqlState.regionMatches(0, SQLState.DATABASE_NOT_FOUND, 0, 5)) [CD]
+Line_3 $$ String sqlState = databaseAccessException.getSQLState() --> Line_4 $$ if (sqlState.regionMatches(0, SQLState.DATABASE_NOT_FOUND, 0, 5)) [FD]
+Line_4 $$ if (sqlState.regionMatches(0, SQLState.DATABASE_NOT_FOUND, 0, 5)) --> Line_5 $$ return CodePoint.RDBNFNRM [CD]
+Line_4 $$ if (sqlState.regionMatches(0, SQLState.DATABASE_NOT_FOUND, 0, 5)) --> Line_7 $$ if (isAuthenticationException(databaseAccessException) || sqlState.regionMatches(0, SQLState.AUTH_INVALID_USER_NAME, 0, 5)) [CD]
+Line_3 $$ String sqlState = databaseAccessException.getSQLState() --> Line_7 $$ if (isAuthenticationException(databaseAccessException) || sqlState.regionMatches(0, SQLState.AUTH_INVALID_USER_NAME, 0, 5)) [FD]
+Line_7 $$ if (isAuthenticationException(databaseAccessException) || sqlState.regionMatches(0, SQLState.AUTH_INVALID_USER_NAME, 0, 5)) --> Line_8 $$ return CodePoint.RDBATHRM [CD]
+Line_7 $$ if (isAuthenticationException(databaseAccessException) || sqlState.regionMatches(0, SQLState.AUTH_INVALID_USER_NAME, 0, 5)) --> Line_10 $$ return CodePoint.RDBAFLRM [CD]

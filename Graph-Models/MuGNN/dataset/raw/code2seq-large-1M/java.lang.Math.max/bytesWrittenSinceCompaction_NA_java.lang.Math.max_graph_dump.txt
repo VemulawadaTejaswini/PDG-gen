@@ -1,0 +1,7 @@
+Line_2 $$ public long bytesWrittenSinceCompaction() --> Line_3 $$ Revision mark = client.getMark() [CD]
+Line_2 $$ public long bytesWrittenSinceCompaction() --> Line_4 $$ StateT state = getState() [CD]
+Line_2 $$ public long bytesWrittenSinceCompaction() --> Line_5 $$ long compaction = (mark == null) ? 0 : mark.asImpl().getOffsetInSegment() [CD]
+Line_3 $$ Revision mark = client.getMark() --> Line_5 $$ long compaction = (mark == null) ? 0 : mark.asImpl().getOffsetInSegment() [FD]
+Line_2 $$ public long bytesWrittenSinceCompaction() --> Line_6 $$ long current = (state == null) ? 0 : state.getRevision().asImpl().getOffsetInSegment() [CD]
+Line_4 $$ StateT state = getState() --> Line_6 $$ long current = (state == null) ? 0 : state.getRevision().asImpl().getOffsetInSegment() [FD]
+Line_2 $$ public long bytesWrittenSinceCompaction() --> Line_7 $$ return Math.max(0, current - compaction) [CD]

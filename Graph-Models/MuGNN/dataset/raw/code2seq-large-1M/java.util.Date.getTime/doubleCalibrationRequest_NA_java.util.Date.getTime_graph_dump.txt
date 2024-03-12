@@ -1,0 +1,8 @@
+Line_2 $$ private void doubleCalibrationRequest() --> Line_3 $$ UserNotification userNotification = UserNotification.lastDoubleCalibrationAlert() [CD]
+Line_2 $$ private void doubleCalibrationRequest() --> Line_4 $$ if ((userNotification == null) || (userNotification.timestamp <= ((new Date().getTime()) - (60000 * calibration_snooze)))) [CD]
+Line_4 $$ if ((userNotification == null) || (userNotification.timestamp <= ((new Date().getTime()) - (60000 * calibration_snooze)))) --> Line_5 $$ if (userNotification != null) [CD]
+Line_3 $$ UserNotification userNotification = UserNotification.lastDoubleCalibrationAlert() --> Line_5 $$ if (userNotification != null) [FD]
+Line_5 $$ if (userNotification != null) --> Line_6 $$ userNotification.delete() [CD]
+Line_3 $$ UserNotification userNotification = UserNotification.lastDoubleCalibrationAlert() --> Line_6 $$ userNotification.delete() [FD]
+Line_4 $$ if ((userNotification == null) || (userNotification.timestamp <= ((new Date().getTime()) - (60000 * calibration_snooze)))) --> Line_8 $$ UserNotification.create("Double Calibration", "double_calibration_alert", new Date().getTime()) [CD]
+Line_4 $$ if ((userNotification == null) || (userNotification.timestamp <= ((new Date().getTime()) - (60000 * calibration_snooze)))) --> Line_9 $$ String title = "Sensor is ready" [CD]

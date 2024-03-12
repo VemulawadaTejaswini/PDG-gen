@@ -1,0 +1,8 @@
+Line_2 $$ public void testTypeNameTooLong() --> Line_3 $$ String index = "text-index" [CD]
+Line_2 $$ public void testTypeNameTooLong() --> Line_4 $$ String field = "field" [CD]
+Line_2 $$ public void testTypeNameTooLong() --> Line_5 $$ String type = new String(new char[256]).replace("\0", "a") [CD]
+Line_2 $$ public void testTypeNameTooLong() --> Line_6 $$ MapperException e = expectThrows(MapperException.class, () -> [CD]
+Line_5 $$ String type = new String(new char[256]).replace("\0", "a") --> Line_7 $$ client().admin().indices().prepareCreate(index).addMapping(type, field, "type=text").execute().actionGet() [FD]
+Line_4 $$ String field = "field" --> Line_7 $$ client().admin().indices().prepareCreate(index).addMapping(type, field, "type=text").execute().actionGet() [FD]
+Line_3 $$ String index = "text-index" --> Line_7 $$ client().admin().indices().prepareCreate(index).addMapping(type, field, "type=text").execute().actionGet() [FD]
+Line_2 $$ public void testTypeNameTooLong() --> Line_9 $$ assertTrue(e.getMessage(), e.getMessage().contains("mapping type name [" + type + "] is too long; limit is length 255 but was [256]")) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testExceptionRewriting() --> Line_3 $$ SoySauce.Renderer tmpl = sauce.renderTemplate("strict_test.callsItself") [CD]
+Line_2 $$ public void testExceptionRewriting() --> Line_4 $$ SoyValueProvider intProvider = new DetachableSoyValueProvider() [CD]
+Line_4 $$ SoyValueProvider intProvider = new DetachableSoyValueProvider() --> Line_7 $$ return RenderResult.done() [CD]
+Line_3 $$ SoySauce.Renderer tmpl = sauce.renderTemplate("strict_test.callsItself") --> Line_11 $$ tmpl.setData(ImmutableMap.of("depth", 10, "p", intProvider)).render() [FD]
+Line_4 $$ SoyValueProvider intProvider = new DetachableSoyValueProvider() --> Line_11 $$ tmpl.setData(ImmutableMap.of("depth", 10, "p", intProvider)).render() [FD]
+Line_16 $$ for (int i = 2; i < 12; i++) --> Line_17 $$ assertThat(stackTrace[i].toString()).isEqualTo("strict_test.callsItself.render(strict.soy:34)") [CD]

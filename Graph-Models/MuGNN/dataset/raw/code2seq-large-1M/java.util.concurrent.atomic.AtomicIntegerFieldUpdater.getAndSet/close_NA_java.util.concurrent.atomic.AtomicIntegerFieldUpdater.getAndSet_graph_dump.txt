@@ -1,0 +1,4 @@
+Line_2 $$ public void close() throws IOException --> Line_3 $$ final int oldVal = stateUpdater.getAndSet(this, EMPTIED | CLOSED) [CD]
+Line_2 $$ public void close() throws IOException --> Line_4 $$ if (allAreClear(oldVal, CLOSED)) [CD]
+Line_3 $$ final int oldVal = stateUpdater.getAndSet(this, EMPTIED | CLOSED) --> Line_4 $$ if (allAreClear(oldVal, CLOSED)) [FD]
+Line_4 $$ if (allAreClear(oldVal, CLOSED)) --> Line_5 $$ thread.execute(ChannelListeners.getChannelListenerTask(this, closeListener)) [CD]

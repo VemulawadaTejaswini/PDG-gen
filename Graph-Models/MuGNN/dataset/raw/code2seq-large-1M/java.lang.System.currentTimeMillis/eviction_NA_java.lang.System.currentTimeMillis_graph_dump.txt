@@ -1,0 +1,7 @@
+Line_2 $$ void eviction() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ void eviction() --> Line_4 $$ List<ScheduledExecutorServiceExpiry> list = new ArrayList(cache) [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_6 $$ if (e.expireMillis < now) [FD]
+Line_6 $$ if (e.expireMillis < now) --> Line_7 $$ if (cache.remove(e)) [CD]
+Line_5 $$ for (ScheduledExecutorServiceExpiry e : list) --> Line_7 $$ if (cache.remove(e)) [FD]
+Line_7 $$ if (cache.remove(e)) --> Line_8 $$ e.cached.exec.shutdownNow() [CD]
+Line_7 $$ if (cache.remove(e)) --> Line_9 $$ all.remove(e.cached) [CD]

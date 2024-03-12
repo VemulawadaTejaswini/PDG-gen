@@ -1,0 +1,8 @@
+Line_2 $$ public List<I_M_Inventory> createInventories() --> Line_3 $$ final Map<Integer, List<I_M_HU>> topLevelHUsByWarehouseId = getTopLevelHUs().stream().collect(Collectors.groupingBy( hu -> hu.getM_Locator().getM_Warehouse_ID())) [CD]
+Line_2 $$ public List<I_M_Inventory> createInventories() --> Line_5 $$ final List<I_M_Inventory> result = new ArrayList() [CD]
+Line_3 $$ final Map<Integer, List<I_M_HU>> topLevelHUsByWarehouseId = getTopLevelHUs().stream().collect(Collectors.groupingBy( hu -> hu.getM_Locator().getM_Warehouse_ID())) --> Line_6 $$ for (final Map.Entry<Integer, List<I_M_HU>> warehouseIdAndHUs : topLevelHUsByWarehouseId.entrySet()) [FD]
+Line_7 $$ final int warehouseId = warehouseIdAndHUs.getKey() --> Line_9 $$ final List<I_M_Inventory> inventories = createInventories(warehouseId, hus) [FD]
+Line_8 $$ final List<I_M_HU> hus = warehouseIdAndHUs.getValue() --> Line_9 $$ final List<I_M_Inventory> inventories = createInventories(warehouseId, hus) [FD]
+Line_5 $$ final List<I_M_Inventory> result = new ArrayList() --> Line_10 $$ result.addAll(inventories) [FD]
+Line_9 $$ final List<I_M_Inventory> inventories = createInventories(warehouseId, hus) --> Line_10 $$ result.addAll(inventories) [FD]
+Line_2 $$ public List<I_M_Inventory> createInventories() --> Line_12 $$ return result [CD]

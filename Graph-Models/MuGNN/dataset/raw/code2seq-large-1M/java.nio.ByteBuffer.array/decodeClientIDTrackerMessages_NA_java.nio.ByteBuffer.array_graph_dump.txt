@@ -1,0 +1,4 @@
+Line_3 $$ for (EhcacheMessageType messageType : EhcacheMessageType.PASSIVE_REPLICATION_MESSAGES) --> Line_4 $$ ByteBuffer encodedBuffer = EhcacheCodec.OP_CODE_DECODER.encoder().enm("opCode", messageType).encode() [FD]
+Line_4 $$ ByteBuffer encodedBuffer = EhcacheCodec.OP_CODE_DECODER.encoder().enm("opCode", messageType).encode() --> Line_5 $$ serverCodec.decodeMessage(encodedBuffer.array()) [FD]
+Line_2 $$ public void decodeClientIDTrackerMessages() throws Exception --> Line_7 $$ verify(replicationCodec, times(EhcacheMessageType.PASSIVE_REPLICATION_MESSAGES.size())).decode(any(EhcacheMessageType.class), any(ByteBuffer.class)) [CD]
+Line_2 $$ public void decodeClientIDTrackerMessages() throws Exception --> Line_8 $$ verifyZeroInteractions(clientCodec) [CD]

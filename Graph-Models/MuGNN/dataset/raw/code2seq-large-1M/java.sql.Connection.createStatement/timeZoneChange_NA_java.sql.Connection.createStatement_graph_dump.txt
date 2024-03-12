@@ -1,0 +1,7 @@
+Line_2 $$ public void timeZoneChange() throws SQLException --> Line_3 $$ Assume.assumeTrue((isMariadbServer() && minVersion(10, 2)) || (!isMariadbServer() && minVersion(5, 7))) [CD]
+Line_4 $$ try (Connection connection = setConnection()) --> Line_5 $$ try (Statement stmt = connection.createStatement()) [FD]
+Line_5 $$ try (Statement stmt = connection.createStatement()) --> Line_6 $$ stmt.execute("drop database if exists " + MariaDbConnection.quoteIdentifier("_test_db")) [FD]
+Line_5 $$ try (Statement stmt = connection.createStatement()) --> Line_7 $$ stmt.execute("create database " + MariaDbConnection.quoteIdentifier("_test_db")) [FD]
+Line_4 $$ try (Connection connection = setConnection()) --> Line_8 $$ assertEquals(database, connection.getCatalog()) [FD]
+Line_5 $$ try (Statement stmt = connection.createStatement()) --> Line_9 $$ stmt.execute("USE " + MariaDbConnection.quoteIdentifier("_test_db")) [FD]
+Line_4 $$ try (Connection connection = setConnection()) --> Line_10 $$ assertEquals("_test_db", connection.getCatalog()) [FD]

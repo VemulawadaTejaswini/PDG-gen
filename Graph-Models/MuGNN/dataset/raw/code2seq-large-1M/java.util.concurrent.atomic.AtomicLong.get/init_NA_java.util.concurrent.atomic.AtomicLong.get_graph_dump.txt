@@ -1,0 +1,7 @@
+Line_2 $$ protected void init() --> Line_3 $$ if (currentSize.get() > 0) [CD]
+Line_3 $$ if (currentSize.get() > 0) --> Line_4 $$ if (!isOver.get()) [CD]
+Line_4 $$ if (!isOver.get()) --> Line_5 $$ if (workspaceConfiguration.getPolicyAllocation() == AllocationPolicy.OVERALLOCATE && workspaceConfiguration.getOverallocationLimit() > 0) [CD]
+Line_5 $$ if (workspaceConfiguration.getPolicyAllocation() == AllocationPolicy.OVERALLOCATE && workspaceConfiguration.getOverallocationLimit() > 0) --> Line_6 $$ currentSize.addAndGet((long) (currentSize.get() * workspaceConfiguration.getOverallocationLimit())) [CD]
+Line_5 $$ if (workspaceConfiguration.getPolicyAllocation() == AllocationPolicy.OVERALLOCATE && workspaceConfiguration.getOverallocationLimit() > 0) --> Line_7 $$ isOver.set(true) [CD]
+Line_3 $$ if (currentSize.get() > 0) --> Line_10 $$ if (workspaceConfiguration.getMaxSize() > 0 && currentSize.get() > workspaceConfiguration.getMaxSize()) [CD]
+Line_10 $$ if (workspaceConfiguration.getMaxSize() > 0 && currentSize.get() > workspaceConfiguration.getMaxSize()) --> Line_11 $$ currentSize.set(workspaceConfiguration.getMaxSize()) [CD]

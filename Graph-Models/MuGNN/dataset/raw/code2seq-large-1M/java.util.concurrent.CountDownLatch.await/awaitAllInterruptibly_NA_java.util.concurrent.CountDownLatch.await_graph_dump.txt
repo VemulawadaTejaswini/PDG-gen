@@ -1,0 +1,6 @@
+Line_2 $$ public static void awaitAllInterruptibly(IoFuture<?>... futures) throws InterruptedException --> Line_3 $$ final int len = futures.length [CD]
+Line_2 $$ public static void awaitAllInterruptibly(IoFuture<?>... futures) throws InterruptedException --> Line_4 $$ final CountDownLatch cdl = new CountDownLatch(len) [CD]
+Line_5 $$ for (IoFuture<?> future : futures) --> Line_6 $$ future.addNotifier(COUNT_DOWN_NOTIFIER, cdl) [FD]
+Line_4 $$ final CountDownLatch cdl = new CountDownLatch(len) --> Line_6 $$ future.addNotifier(COUNT_DOWN_NOTIFIER, cdl) [FD]
+Line_2 $$ public static void awaitAllInterruptibly(IoFuture<?>... futures) throws InterruptedException --> Line_8 $$ cdl.await() [CD]
+Line_4 $$ final CountDownLatch cdl = new CountDownLatch(len) --> Line_8 $$ cdl.await() [FD]

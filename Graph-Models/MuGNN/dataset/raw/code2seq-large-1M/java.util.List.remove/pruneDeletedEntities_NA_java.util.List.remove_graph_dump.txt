@@ -1,0 +1,7 @@
+Line_2 $$ public <T extends PersistentObject> List<T> pruneDeletedEntities(List<T> listToPrune) --> Line_3 $$ List<T> prunedList = new ArrayList(listToPrune) [CD]
+Line_5 $$ for (DeleteOperation deleteOperation : deleteOperations) --> Line_6 $$ if (deleteOperation.sameIdentity(potentiallyDeleted)) [FD]
+Line_4 $$ for (T potentiallyDeleted : listToPrune) --> Line_6 $$ if (deleteOperation.sameIdentity(potentiallyDeleted)) [FD]
+Line_6 $$ if (deleteOperation.sameIdentity(potentiallyDeleted)) --> Line_7 $$ prunedList.remove(potentiallyDeleted) [CD]
+Line_3 $$ List<T> prunedList = new ArrayList(listToPrune) --> Line_7 $$ prunedList.remove(potentiallyDeleted) [FD]
+Line_4 $$ for (T potentiallyDeleted : listToPrune) --> Line_7 $$ prunedList.remove(potentiallyDeleted) [FD]
+Line_2 $$ public <T extends PersistentObject> List<T> pruneDeletedEntities(List<T> listToPrune) --> Line_11 $$ return prunedList [CD]

@@ -1,0 +1,4 @@
+Line_2 $$ public boolean covers(TrackingToken other) --> Line_3 $$ Assert.isTrue(other instanceof MongoTrackingToken, () -> "Incompatible token type provided.") [CD]
+Line_2 $$ public boolean covers(TrackingToken other) --> Line_4 $$ MongoTrackingToken otherToken = (MongoTrackingToken) other [CD]
+Line_2 $$ public boolean covers(TrackingToken other) --> Line_5 $$ long oldest = this.trackedEvents.values().stream().min(Comparator.naturalOrder()).orElse(0L) [CD]
+Line_2 $$ public boolean covers(TrackingToken other) --> Line_6 $$ return otherToken.timestamp <= this.timestamp && otherToken.trackedEvents.keySet().stream().allMatch( k -> this.trackedEvents.containsKey(k) || otherToken.trackedEvents.get(k) < oldest) [CD]

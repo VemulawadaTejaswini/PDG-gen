@@ -1,0 +1,8 @@
+Line_2 $$ void inheritsTagsFromParent() throws Exception --> Line_3 $$ UniqueId rootUniqueId = UniqueId.root("segment", "template") [CD]
+Line_2 $$ void inheritsTagsFromParent() throws Exception --> Line_4 $$ UniqueId parentUniqueId = rootUniqueId.append("class", "myClass") [CD]
+Line_3 $$ UniqueId rootUniqueId = UniqueId.root("segment", "template") --> Line_4 $$ UniqueId parentUniqueId = rootUniqueId.append("class", "myClass") [FD]
+Line_2 $$ void inheritsTagsFromParent() throws Exception --> Line_5 $$ AbstractTestDescriptor parent = containerTestDescriptorWithTags(parentUniqueId, singleton(TestTag.create("foo"))) [CD]
+Line_2 $$ void inheritsTagsFromParent() throws Exception --> Line_6 $$ TestTemplateTestDescriptor testDescriptor = new TestTemplateTestDescriptor(parentUniqueId.append("tmp", "testTemplate()"), MyTestCase.class, MyTestCase.class.getDeclaredMethod("testTemplate")) [CD]
+Line_2 $$ void inheritsTagsFromParent() throws Exception --> Line_7 $$ parent.addChild(testDescriptor) [CD]
+Line_5 $$ AbstractTestDescriptor parent = containerTestDescriptorWithTags(parentUniqueId, singleton(TestTag.create("foo"))) --> Line_7 $$ parent.addChild(testDescriptor) [FD]
+Line_2 $$ void inheritsTagsFromParent() throws Exception --> Line_8 $$ assertThat(testDescriptor.getTags()).containsExactlyInAnyOrder(TestTag.create("foo"), TestTag.create("bar"), TestTag.create("baz")) [CD]

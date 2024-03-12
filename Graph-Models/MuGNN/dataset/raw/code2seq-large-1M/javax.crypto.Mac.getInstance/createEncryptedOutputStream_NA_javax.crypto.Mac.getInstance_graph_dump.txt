@@ -1,0 +1,8 @@
+Line_5 $$ Mac mac = Mac.getInstance("HmacSHA256") --> Line_6 $$ mac.init(new SecretKeySpec(masterKey, "HmacSHA256")) [FD]
+Line_5 $$ Mac mac = Mac.getInstance("HmacSHA256") --> Line_9 $$ byte[] key = mac.doFinal(random) [FD]
+Line_4 $$ byte[] random = Util.getSecretBytes(32) --> Line_9 $$ byte[] key = mac.doFinal(random) [FD]
+Line_10 $$ Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding") --> Line_11 $$ cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv)) [FD]
+Line_7 $$ FileOutputStream fileOutputStream = new FileOutputStream(file) --> Line_12 $$ fileOutputStream.write(MAGIC_BYTES) [FD]
+Line_7 $$ FileOutputStream fileOutputStream = new FileOutputStream(file) --> Line_13 $$ fileOutputStream.write(random) [FD]
+Line_4 $$ byte[] random = Util.getSecretBytes(32) --> Line_13 $$ fileOutputStream.write(random) [FD]
+Line_14 $$ CipherOutputStream outputStream = new CipherOutputStream(fileOutputStream, cipher) --> Line_15 $$ outputStream.write(MAGIC_BYTES) [FD]

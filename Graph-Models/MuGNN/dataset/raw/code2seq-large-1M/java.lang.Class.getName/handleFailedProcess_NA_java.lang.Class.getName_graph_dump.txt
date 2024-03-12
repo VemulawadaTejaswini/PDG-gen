@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<Void> handleFailedProcess(String failedHost) --> Line_3 $$ if (!transactionMetadataTasks.isReady()) [CD]
+Line_3 $$ if (!transactionMetadataTasks.isReady()) --> Line_4 $$ return Futures.failedFuture(new IllegalStateException(getClass().getName() + " not yet ready")) [CD]
+Line_2 $$ public CompletableFuture<Void> handleFailedProcess(String failedHost) --> Line_6 $$ log.info("Host= [FD]
+Line_2 $$ public CompletableFuture<Void> handleFailedProcess(String failedHost) --> Line_6 $$ log.info("Host= [CD]
+Line_2 $$ public CompletableFuture<Void> handleFailedProcess(String failedHost) --> Line_7 $$ CompletableFuture<Void> delay = Futures.delayedFuture(Duration.ofMillis(2 * maxTxnTimeoutMillis), executor) [CD]
+Line_2 $$ public CompletableFuture<Void> handleFailedProcess(String failedHost) --> Line_8 $$ return delay.thenComposeAsync( x -> withRetriesAsync(() -> sweepOrphanedTxnsWithoutDelay(failedHost), RETRYABLE_PREDICATE, Integer.MAX_VALUE, executor)) [FD]
+Line_2 $$ public CompletableFuture<Void> handleFailedProcess(String failedHost) --> Line_8 $$ return delay.thenComposeAsync( x -> withRetriesAsync(() -> sweepOrphanedTxnsWithoutDelay(failedHost), RETRYABLE_PREDICATE, Integer.MAX_VALUE, executor)) [CD]
+Line_7 $$ CompletableFuture<Void> delay = Futures.delayedFuture(Duration.ofMillis(2 * maxTxnTimeoutMillis), executor) --> Line_8 $$ return delay.thenComposeAsync( x -> withRetriesAsync(() -> sweepOrphanedTxnsWithoutDelay(failedHost), RETRYABLE_PREDICATE, Integer.MAX_VALUE, executor)) [FD]

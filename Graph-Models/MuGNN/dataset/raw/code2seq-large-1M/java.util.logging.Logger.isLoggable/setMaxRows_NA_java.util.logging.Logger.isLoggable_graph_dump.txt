@@ -1,0 +1,5 @@
+Line_2 $$ final void setMaxRows(int limit) throws SQLServerException --> Line_3 $$ if (maxRows != limit) [FD]
+Line_2 $$ final void setMaxRows(int limit) throws SQLServerException --> Line_3 $$ if (maxRows != limit) [CD]
+Line_3 $$ if (maxRows != limit) --> Line_4 $$ if (loggerExternal.isLoggable(Level.FINER) && Util.IsActivityTraceOn()) [CD]
+Line_4 $$ if (loggerExternal.isLoggable(Level.FINER) && Util.IsActivityTraceOn()) --> Line_5 $$ loggerExternal.finer(toString() + " ActivityId: " + ActivityCorrelator.getNext().toString()) [CD]
+Line_3 $$ if (maxRows != limit) --> Line_7 $$ connectionCommand("SET ROWCOUNT " + limit, "setMaxRows") [CD]

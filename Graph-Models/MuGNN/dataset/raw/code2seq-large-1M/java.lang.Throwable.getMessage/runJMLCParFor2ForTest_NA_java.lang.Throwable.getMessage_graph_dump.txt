@@ -1,0 +1,6 @@
+Line_2 $$ private void runJMLCParFor2ForTest(boolean par) throws IOException --> Line_4 $$ Connection conn = !par ? new Connection() : new Connection(ConfigType.PARALLEL_LOCAL_OR_REMOTE_PARFOR) [FD]
+Line_4 $$ Connection conn = !par ? new Connection() : new Connection(ConfigType.PARALLEL_LOCAL_OR_REMOTE_PARFOR) --> Line_8 $$ PreparedScript pscript = conn.prepareScript(script, new String[] [FD]
+Line_5 $$ String script = "  X = rand(rows=10, cols=10);" + "R = matrix(0, rows=10, cols=1)" + "parfor(i in 1:nrow(X))" + "  R[i,] = sum(X[i,])" + "print(sum(R))" --> Line_8 $$ PreparedScript pscript = conn.prepareScript(script, new String[] [FD]
+Line_8 $$ PreparedScript pscript = conn.prepareScript(script, new String[] --> Line_9 $$ pscript.executeScript() [FD]
+Line_4 $$ Connection conn = !par ? new Connection() : new Connection(ConfigType.PARALLEL_LOCAL_OR_REMOTE_PARFOR) --> Line_10 $$ conn.close() [FD]
+Line_2 $$ private void runJMLCParFor2ForTest(boolean par) throws IOException --> Line_14 $$ Assert.assertTrue(Statistics.getParforOptCount() == (par ? 1 : 0)) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testReindexWithoutAuthenticationWhenRequired() throws Exception --> Line_3 $$ ReindexRequestBuilder request = ReindexAction.INSTANCE.newRequestBuilder(client()).source("source").destination("dest").setRemoteInfo(newRemoteInfo(null, null, emptyMap())) [CD]
+Line_2 $$ public void testReindexWithoutAuthenticationWhenRequired() throws Exception --> Line_4 $$ ElasticsearchStatusException e = expectThrows(ElasticsearchStatusException.class, () -> request.get()) [CD]
+Line_3 $$ ReindexRequestBuilder request = ReindexAction.INSTANCE.newRequestBuilder(client()).source("source").destination("dest").setRemoteInfo(newRemoteInfo(null, null, emptyMap())) --> Line_4 $$ ElasticsearchStatusException e = expectThrows(ElasticsearchStatusException.class, () -> request.get()) [FD]
+Line_2 $$ public void testReindexWithoutAuthenticationWhenRequired() throws Exception --> Line_5 $$ assertEquals(RestStatus.UNAUTHORIZED, e.status()) [CD]
+Line_2 $$ public void testReindexWithoutAuthenticationWhenRequired() throws Exception --> Line_6 $$ assertThat(e.getMessage(), containsString("\"reason\":\"Authentication required\"")) [CD]
+Line_2 $$ public void testReindexWithoutAuthenticationWhenRequired() throws Exception --> Line_7 $$ assertThat(e.getMessage(), containsString("\"WWW-Authenticate\":\"Basic realm=auth-realm\"")) [CD]

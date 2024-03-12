@@ -1,0 +1,8 @@
+Line_2 $$ private LoginContext buildLoginContext() throws LoginException --> Line_3 $$ ClientLoginConfig loginConfig = new ClientLoginConfig(keyTabLocation, userPrincipal, password, loginOptions) [CD]
+Line_2 $$ private LoginContext buildLoginContext() throws LoginException --> Line_4 $$ Set<Principal> princ = new HashSet<Principal>(1) [CD]
+Line_2 $$ private LoginContext buildLoginContext() throws LoginException --> Line_5 $$ princ.add(new KerberosPrincipal(userPrincipal)) [CD]
+Line_4 $$ Set<Principal> princ = new HashSet<Principal>(1) --> Line_5 $$ princ.add(new KerberosPrincipal(userPrincipal)) [FD]
+Line_2 $$ private LoginContext buildLoginContext() throws LoginException --> Line_6 $$ Subject sub = new Subject(false, princ, new HashSet<Object>(), new HashSet<Object>()) [CD]
+Line_2 $$ private LoginContext buildLoginContext() throws LoginException --> Line_7 $$ CallbackHandler callbackHandler = new CallbackHandlerImpl(userPrincipal, password) [CD]
+Line_2 $$ private LoginContext buildLoginContext() throws LoginException --> Line_8 $$ LoginContext lc = new LoginContext("", sub, callbackHandler, loginConfig) [CD]
+Line_2 $$ private LoginContext buildLoginContext() throws LoginException --> Line_9 $$ return lc [CD]

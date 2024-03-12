@@ -1,0 +1,8 @@
+Line_2 $$ void resolvesClasspathSelectorForJarFile() throws Exception --> Line_3 $$ URL jarUrl = getClass().getResource("/vintage-testjar.jar") [CD]
+Line_2 $$ void resolvesClasspathSelectorForJarFile() throws Exception --> Line_4 $$ Path jarFile = Paths.get(jarUrl.toURI()) [CD]
+Line_3 $$ URL jarUrl = getClass().getResource("/vintage-testjar.jar") --> Line_4 $$ Path jarFile = Paths.get(jarUrl.toURI()) [FD]
+Line_2 $$ void resolvesClasspathSelectorForJarFile() throws Exception --> Line_5 $$ ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader() [CD]
+Line_4 $$ Path jarFile = Paths.get(jarUrl.toURI()) --> Line_8 $$ LauncherDiscoveryRequest discoveryRequest = request().selectors(selectClasspathRoots(singleton(jarFile))).build() [FD]
+Line_8 $$ LauncherDiscoveryRequest discoveryRequest = request().selectors(selectClasspathRoots(singleton(jarFile))).build() --> Line_9 $$ TestDescriptor engineDescriptor = discoverTests(discoveryRequest) [FD]
+Line_9 $$ TestDescriptor engineDescriptor = discoverTests(discoveryRequest) --> Line_10 $$ assertThat(engineDescriptor.getChildren()).extracting(TestDescriptor::<>getDisplayName).containsExactly("com.example.project.JUnit4Test") [FD]
+Line_5 $$ ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader() --> Line_12 $$ Thread.currentThread().setContextClassLoader(originalClassLoader) [FD]

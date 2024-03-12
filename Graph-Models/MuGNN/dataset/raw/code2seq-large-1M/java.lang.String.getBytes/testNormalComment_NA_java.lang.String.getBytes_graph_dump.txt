@@ -1,0 +1,5 @@
+Line_2 $$ public void testNormalComment() --> Line_3 $$ String sql = "select * from tbl_A, -- 单行注释\n" + "tbl_B b, #另一种单行注释\n" + " tbl_D d;" [CD]
+Line_2 $$ public void testNormalComment() --> Line_4 $$ parser.parse(sql.getBytes(), context) [CD]
+Line_3 $$ String sql = "select * from tbl_A, -- 单行注释\n" + "tbl_B b, #另一种单行注释\n" + " tbl_D d;" --> Line_4 $$ parser.parse(sql.getBytes(), context) [FD]
+Line_2 $$ public void testNormalComment() --> Line_5 $$ IntStream.range(0, context.getTableCount()).forEach( i -> System.out.println(context.getSchemaName(i) + '.' + context.getTableName(i))) [CD]
+Line_2 $$ public void testNormalComment() --> Line_6 $$ assertEquals(3, context.getTableCount()) [CD]

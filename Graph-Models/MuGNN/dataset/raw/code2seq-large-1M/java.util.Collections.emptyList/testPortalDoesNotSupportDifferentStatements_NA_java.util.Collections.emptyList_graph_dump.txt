@@ -1,0 +1,7 @@
+Line_2 $$ public void testPortalDoesNotSupportDifferentStatements() --> Line_3 $$ String query = "select * from t" [CD]
+Line_2 $$ public void testPortalDoesNotSupportDifferentStatements() --> Line_4 $$ BulkPortal p1 = new BulkPortal("P1", query, Mockito.mock(Statement.class), null, Collections.emptyList(), Collections.emptyList(), Mockito.mock(ResultSetReceiver.class), 1, Collections.emptyList(), SessionContext.create(), Mockito.mock(AbstractPortal.PortalContext.class)) [CD]
+Line_2 $$ public void testPortalDoesNotSupportDifferentStatements() --> Line_5 $$ p1.bind("S1", query, Mockito.mock(Statement.class), null, Collections.emptyList(), null) [CD]
+Line_3 $$ String query = "select * from t" --> Line_5 $$ p1.bind("S1", query, Mockito.mock(Statement.class), null, Collections.emptyList(), null) [FD]
+Line_2 $$ public void testPortalDoesNotSupportDifferentStatements() --> Line_6 $$ expectedException.expect(IllegalStateException.class) [CD]
+Line_2 $$ public void testPortalDoesNotSupportDifferentStatements() --> Line_7 $$ expectedException.expectMessage("Bulk portal doesn't expect the query to change.\n" + "Old query: select * from t\n" + "New query: QUERY CHANGED") [CD]
+Line_2 $$ public void testPortalDoesNotSupportDifferentStatements() --> Line_8 $$ p1.bind("S2", "QUERY CHANGED", Mockito.mock(Statement.class), null, Collections.emptyList(), null) [CD]

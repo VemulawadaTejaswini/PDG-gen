@@ -1,0 +1,8 @@
+Line_2 $$ protected SecretKey engineGenerateKey() --> Line_3 $$ if (uninitialised) [CD]
+Line_3 $$ if (uninitialised) --> Line_4 $$ engine.init(new KeyGenerationParameters(new SecureRandom(), defaultKeySize)) [CD]
+Line_2 $$ protected SecretKey engineGenerateKey() --> Line_7 $$ if (!keySizeSet) [CD]
+Line_7 $$ if (!keySizeSet) --> Line_8 $$ byte[] k = engine.generateKey() [CD]
+Line_7 $$ if (!keySizeSet) --> Line_9 $$ System.arraycopy(k, 0, k, 16, 8) [CD]
+Line_8 $$ byte[] k = engine.generateKey() --> Line_9 $$ System.arraycopy(k, 0, k, 16, 8) [FD]
+Line_7 $$ if (!keySizeSet) --> Line_10 $$ return new SecretKeySpec(k, algName) [CD]
+Line_7 $$ if (!keySizeSet) --> Line_12 $$ return new SecretKeySpec(engine.generateKey(), algName) [CD]

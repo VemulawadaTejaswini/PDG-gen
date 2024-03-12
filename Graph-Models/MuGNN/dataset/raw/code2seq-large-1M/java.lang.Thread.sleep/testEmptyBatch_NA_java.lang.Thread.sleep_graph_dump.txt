@@ -1,0 +1,6 @@
+Line_2 $$ public void testEmptyBatch() throws Exception --> Line_3 $$ HdfsTarget hdfsTarget = HdfsTargetUtil.newBuilder().maxFileSize(1).maxRecordsPerFile(1).dirPathTemplate(getTestDir() + "/hdfs/$ [CD]
+Line_2 $$ public void testEmptyBatch() throws Exception --> Line_4 $$ TargetRunner runner = new TargetRunner.Builder(HdfsDTarget.class, hdfsTarget).setOnRecordError(OnRecordError.STOP_PIPELINE).build() [CD]
+Line_2 $$ public void testEmptyBatch() throws Exception --> Line_5 $$ runner.runInit() [CD]
+Line_7 $$ ActiveRecordWriters activeWriters = ((HdfsTarget) runner.getStage()).getCurrentWriters() --> Line_8 $$ Assert.assertEquals(0, activeWriters.getActiveWritersCount()) [FD]
+Line_7 $$ ActiveRecordWriters activeWriters = ((HdfsTarget) runner.getStage()).getCurrentWriters() --> Line_10 $$ Assert.assertEquals(1, activeWriters.getActiveWritersCount()) [FD]
+Line_7 $$ ActiveRecordWriters activeWriters = ((HdfsTarget) runner.getStage()).getCurrentWriters() --> Line_13 $$ Assert.assertEquals(0, activeWriters.getActiveWritersCount()) [FD]

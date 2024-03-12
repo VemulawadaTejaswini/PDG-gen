@@ -1,0 +1,8 @@
+Line_2 $$ public void skipTxStartedEvent_IfGlobalTxAlreadyFailed() --> Line_3 $$ String localTxId1 = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void skipTxStartedEvent_IfGlobalTxAlreadyFailed() --> Line_4 $$ events.add(newEvent(TxStartedEvent)) [CD]
+Line_2 $$ public void skipTxStartedEvent_IfGlobalTxAlreadyFailed() --> Line_5 $$ events.add(newEvent(TxAbortedEvent)) [CD]
+Line_2 $$ public void skipTxStartedEvent_IfGlobalTxAlreadyFailed() --> Line_6 $$ TxEvent event = eventOf(TxStartedEvent, localTxId1) [CD]
+Line_3 $$ String localTxId1 = UUID.randomUUID().toString() --> Line_6 $$ TxEvent event = eventOf(TxStartedEvent, localTxId1) [FD]
+Line_2 $$ public void skipTxStartedEvent_IfGlobalTxAlreadyFailed() --> Line_7 $$ consistentService.handle(event) [CD]
+Line_6 $$ TxEvent event = eventOf(TxStartedEvent, localTxId1) --> Line_7 $$ consistentService.handle(event) [FD]
+Line_2 $$ public void skipTxStartedEvent_IfGlobalTxAlreadyFailed() --> Line_8 $$ assertThat(events.size(), is(2)) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private List<GBDevice> getDatabaseDevices() --> Line_3 $$ List<GBDevice> result = new ArrayList() [CD]
+Line_4 $$ try (DBHandler lockHandler = GBApplication.acquireDB()) --> Line_5 $$ List<Device> activeDevices = DBHelper.getActiveDevices(lockHandler.getDaoSession()) [FD]
+Line_6 $$ for (Device dbDevice : activeDevices) --> Line_7 $$ GBDevice gbDevice = toGBDevice(dbDevice) [FD]
+Line_7 $$ GBDevice gbDevice = toGBDevice(dbDevice) --> Line_8 $$ if (gbDevice != null && DeviceHelper.getInstance().getSupportedType(gbDevice)) [FD]
+Line_8 $$ if (gbDevice != null && DeviceHelper.getInstance().getSupportedType(gbDevice)) --> Line_9 $$ result.add(gbDevice) [CD]
+Line_3 $$ List<GBDevice> result = new ArrayList() --> Line_9 $$ result.add(gbDevice) [FD]
+Line_7 $$ GBDevice gbDevice = toGBDevice(dbDevice) --> Line_9 $$ result.add(gbDevice) [FD]

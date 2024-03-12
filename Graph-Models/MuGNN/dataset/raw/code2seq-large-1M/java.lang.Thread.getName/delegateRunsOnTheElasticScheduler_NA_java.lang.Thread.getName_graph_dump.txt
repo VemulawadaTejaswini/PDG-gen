@@ -1,0 +1,6 @@
+Line_2 $$ public void delegateRunsOnTheElasticScheduler() --> Line_3 $$ String currentThread = Thread.currentThread().getName() [CD]
+Line_2 $$ public void delegateRunsOnTheElasticScheduler() --> Line_4 $$ HealthIndicator delegate = () -> Health.status(Thread.currentThread().getName().equals(currentThread) ? Status.DOWN : Status.UP).build() [CD]
+Line_3 $$ String currentThread = Thread.currentThread().getName() --> Line_4 $$ HealthIndicator delegate = () -> Health.status(Thread.currentThread().getName().equals(currentThread) ? Status.DOWN : Status.UP).build() [FD]
+Line_2 $$ public void delegateRunsOnTheElasticScheduler() --> Line_5 $$ HealthIndicatorReactiveAdapter adapter = new HealthIndicatorReactiveAdapter(delegate) [CD]
+Line_2 $$ public void delegateRunsOnTheElasticScheduler() --> Line_6 $$ StepVerifier.create(adapter.health()).expectNext(Health.status(Status.UP).build()).verifyComplete() [CD]
+Line_5 $$ HealthIndicatorReactiveAdapter adapter = new HealthIndicatorReactiveAdapter(delegate) --> Line_6 $$ StepVerifier.create(adapter.health()).expectNext(Health.status(Status.UP).build()).verifyComplete() [FD]

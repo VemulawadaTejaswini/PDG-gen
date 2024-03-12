@@ -1,0 +1,6 @@
+Line_2 $$ public URL discoverResource(Method m, String uri) --> Line_3 $$ for (String s : possibleLocations(m, uri)) [FD]
+Line_3 $$ for (String s : possibleLocations(m, uri)) --> Line_5 $$ URL resource = this.getClass().getClassLoader().getResource(resourcePrefix + "/" + URLDecoder.decode(s, "UTF-8")) [FD]
+Line_5 $$ URL resource = this.getClass().getClassLoader().getResource(resourcePrefix + "/" + URLDecoder.decode(s, "UTF-8")) --> Line_6 $$ if (resource == null) [FD]
+Line_2 $$ public URL discoverResource(Method m, String uri) --> Line_7 $$ throw new IllegalArgumentException(String.format("Resource %s not found.", uri)) [FD]
+Line_5 $$ URL resource = this.getClass().getClassLoader().getResource(resourcePrefix + "/" + URLDecoder.decode(s, "UTF-8")) --> Line_9 $$ if (!new File(URLDecoder.decode(resource.getFile(), "UTF-8")).isFile()) [FD]
+Line_2 $$ public URL discoverResource(Method m, String uri) --> Line_16 $$ throw new IllegalArgumentException(String.format("Can not discover resource for method [%s] and URI [%s]", m, uri)) [FD]

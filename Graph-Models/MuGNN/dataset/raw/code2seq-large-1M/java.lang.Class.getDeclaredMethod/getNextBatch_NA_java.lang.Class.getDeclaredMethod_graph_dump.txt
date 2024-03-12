@@ -1,0 +1,8 @@
+Line_2 $$ public static Iterator<Object> getNextBatch(int id, EmbeddedSDC sdc) --> Line_3 $$ return Optional.ofNullable(sdc.getSparkProcessorAt(id)).flatMap( t -> [CD]
+Line_2 $$ public static Iterator<Object> getNextBatch(int id, EmbeddedSDC sdc) --> Line_3 $$ return Optional.ofNullable(sdc.getSparkProcessorAt(id)).flatMap( t -> [FD]
+Line_5 $$ Object processor = t.getClass().getMethod("get").invoke(t) --> Line_6 $$ final Method getBatch = processor.getClass().getDeclaredMethod(GET_BATCH) [FD]
+Line_6 $$ final Method getBatch = processor.getClass().getDeclaredMethod(GET_BATCH) --> Line_8 $$ Iterator<Object> batch = (Iterator<Object>) getBatch.invoke(processor) [FD]
+Line_5 $$ Object processor = t.getClass().getMethod("get").invoke(t) --> Line_8 $$ Iterator<Object> batch = (Iterator<Object>) getBatch.invoke(processor) [FD]
+Line_8 $$ Iterator<Object> batch = (Iterator<Object>) getBatch.invoke(processor) --> Line_9 $$ batch.forEachRemaining( record -> cloned.add(RecordCloner.clone(record))) [FD]
+Line_7 $$ List<Object> cloned = new ArrayList() --> Line_9 $$ batch.forEachRemaining( record -> cloned.add(RecordCloner.clone(record))) [FD]
+Line_7 $$ List<Object> cloned = new ArrayList() --> Line_10 $$ return Optional.of(cloned.iterator()) [FD]

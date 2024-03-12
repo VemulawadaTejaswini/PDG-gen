@@ -1,0 +1,6 @@
+Line_5 $$ TcaData tracker = new TcaData(m_agent.getAddress()) --> Line_6 $$ CompletableFuture<TcaData> future = m_locationAwareSnmpClient.walk(m_agent.getAgentConfig(), tracker).withDescription("TcaCollector for " + m_agent.getHostAddress()).withLocation(m_agent.getLocationName()).execute() [FD]
+Line_6 $$ CompletableFuture<TcaData> future = m_locationAwareSnmpClient.walk(m_agent.getAgentConfig(), tracker).withDescription("TcaCollector for " + m_agent.getHostAddress()).withLocation(m_agent.getLocationName()).execute() --> Line_8 $$ future.get() [FD]
+Line_5 $$ TcaData tracker = new TcaData(m_agent.getAddress()) --> Line_10 $$ process(tracker, builder) [FD]
+Line_4 $$ CollectionSetBuilder builder = new CollectionSetBuilder(m_agent) --> Line_10 $$ process(tracker, builder) [FD]
+Line_4 $$ CollectionSetBuilder builder = new CollectionSetBuilder(m_agent) --> Line_11 $$ return builder.build() [FD]
+Line_17 $$ if (cause != null && cause instanceof RequestTimedOutException) --> Line_19 $$ if (cause != null && cause instanceof RequestRejectedException) [CD]

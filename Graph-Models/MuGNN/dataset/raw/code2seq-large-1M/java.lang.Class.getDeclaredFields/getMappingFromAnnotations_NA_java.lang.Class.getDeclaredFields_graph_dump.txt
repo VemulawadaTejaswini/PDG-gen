@@ -1,0 +1,6 @@
+Line_2 $$ private Map<String, String> getMappingFromAnnotations(Class<T> type) --> Line_3 $$ final Map<String, String> columnToPropertyOverrides = new HashMap<String, String>() [CD]
+Line_2 $$ private Map<String, String> getMappingFromAnnotations(Class<T> type) --> Line_4 $$ for (Field field : type.getDeclaredFields()) [FD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_5 $$ if (field.isAnnotationPresent(Column.class)) [FD]
+Line_3 $$ final Map<String, String> columnToPropertyOverrides = new HashMap<String, String>() --> Line_6 $$ columnToPropertyOverrides.put(field.getAnnotation(Column.class).value(), field.getName()) [FD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_6 $$ columnToPropertyOverrides.put(field.getAnnotation(Column.class).value(), field.getName()) [FD]
+Line_2 $$ private Map<String, String> getMappingFromAnnotations(Class<T> type) --> Line_9 $$ return columnToPropertyOverrides [CD]

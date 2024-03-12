@@ -1,0 +1,8 @@
+Line_2 $$ private static void hackParent(ClassLoader defClassLoader) throws NoSuchFieldException, IllegalAccessException --> Line_3 $$ Field parentField = ClassLoader.class.getDeclaredField("parent") [CD]
+Line_2 $$ private static void hackParent(ClassLoader defClassLoader) throws NoSuchFieldException, IllegalAccessException --> Line_4 $$ parentField.setAccessible(true) [CD]
+Line_2 $$ private static void hackParent(ClassLoader defClassLoader) throws NoSuchFieldException, IllegalAccessException --> Line_5 $$ ClassLoader parent = (ClassLoader) parentField.get(defClassLoader) [CD]
+Line_2 $$ private static void hackParent(ClassLoader defClassLoader) throws NoSuchFieldException, IllegalAccessException --> Line_5 $$ ClassLoader parent = (ClassLoader) parentField.get(defClassLoader) [FD]
+Line_2 $$ private static void hackParent(ClassLoader defClassLoader) throws NoSuchFieldException, IllegalAccessException --> Line_6 $$ PatchClassLoader patchClassLoader = new PatchClassLoader(parent, defClassLoader) [CD]
+Line_2 $$ private static void hackParent(ClassLoader defClassLoader) throws NoSuchFieldException, IllegalAccessException --> Line_7 $$ parentField.set(defClassLoader, patchClassLoader) [CD]
+Line_2 $$ private static void hackParent(ClassLoader defClassLoader) throws NoSuchFieldException, IllegalAccessException --> Line_7 $$ parentField.set(defClassLoader, patchClassLoader) [FD]
+Line_6 $$ PatchClassLoader patchClassLoader = new PatchClassLoader(parent, defClassLoader) --> Line_7 $$ parentField.set(defClassLoader, patchClassLoader) [FD]

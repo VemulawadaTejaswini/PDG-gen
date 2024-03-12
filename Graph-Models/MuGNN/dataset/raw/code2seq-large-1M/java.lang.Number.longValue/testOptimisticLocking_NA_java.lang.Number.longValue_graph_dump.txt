@@ -1,0 +1,8 @@
+Line_2 $$ public void testOptimisticLocking() --> Line_3 $$ doInTransaction( session -> [CD]
+Line_4 $$ Product product = new Product() --> Line_5 $$ product.setId(1L) [FD]
+Line_4 $$ Product product = new Product() --> Line_6 $$ product.setQuantity(7L) [FD]
+Line_4 $$ Product product = new Product() --> Line_7 $$ session.persist(product) [FD]
+Line_2 $$ public void testOptimisticLocking() --> Line_9 $$ doInTransaction( session -> [CD]
+Line_4 $$ Product product = new Product() --> Line_14 $$ assertNotSame(product, otherThreadProduct) [FD]
+Line_17 $$ Product reloadedProduct = (Product) session.createQuery("from product").uniqueResult() --> Line_18 $$ assertEquals(7L, reloadedProduct.getQuantity()) [FD]
+Line_4 $$ Product product = new Product() --> Line_19 $$ assertEquals(6L, ((Number) session.createSQLQuery("select quantity from product where id = :id").setParameter("id", product.getId()).uniqueResult()).longValue()) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ private void doAssertXPackIsInstalled() --> Line_3 $$ NodesInfoResponse nodeInfos = client().admin().cluster().prepareNodesInfo().clear().setPlugins(true).get() [CD]
+Line_3 $$ NodesInfoResponse nodeInfos = client().admin().cluster().prepareNodesInfo().clear().setPlugins(true).get() --> Line_4 $$ for (NodeInfo nodeInfo : nodeInfos.getNodes()) [FD]
+Line_4 $$ for (NodeInfo nodeInfo : nodeInfos.getNodes()) --> Line_5 $$ Collection<String> pluginNames = nodeInfo.getPlugins().getPluginInfos().stream().map(PluginInfo::<>getClassname).collect(Collectors.toList()) [FD]
+Line_5 $$ Collection<String> pluginNames = nodeInfo.getPlugins().getPluginInfos().stream().map(PluginInfo::<>getClassname).collect(Collectors.toList()) --> Line_6 $$ assertThat("plugin [" + LocalStateSecurity.class.getName() + "] not found in [" + pluginNames + "]", pluginNames, hasItem(LocalStateSecurity.class.getName())) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public static void assertNNHasCheckpoints(MiniDFSCluster cluster, int nnIdx, List<Integer> txids) --> Line_3 $$ for (File nameDir : getNameNodeCurrentDirs(cluster, nnIdx)) [FD]
+Line_3 $$ for (File nameDir : getNameNodeCurrentDirs(cluster, nnIdx)) --> Line_4 $$ LOG.info("examining name dir with files: " + Joiner.on(",").join(nameDir.listFiles())) [FD]
+Line_3 $$ for (File nameDir : getNameNodeCurrentDirs(cluster, nnIdx)) --> Line_5 $$ LOG.info("Examining storage dir " + nameDir + " with contents: " + StringUtils.join(nameDir.listFiles(), ", ")) [FD]
+Line_6 $$ for (long checkpointTxId : txids) --> Line_7 $$ File image = new File(nameDir, NNStorage.getImageFileName(checkpointTxId)) [FD]
+Line_7 $$ File image = new File(nameDir, NNStorage.getImageFileName(checkpointTxId)) --> Line_8 $$ assertTrue("Expected non-empty " + image, image.length() > 0) [FD]

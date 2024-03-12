@@ -1,0 +1,8 @@
+Line_2 $$ public void testOneConnectionOpenAndClosedAfterOneUpdate() throws InterruptedException --> Line_3 $$ CountDownConnectionProvider cp = new CountDownConnectionProvider(1, 1) [CD]
+Line_2 $$ public void testOneConnectionOpenAndClosedAfterOneUpdate() throws InterruptedException --> Line_4 $$ Database db = new Database(cp) [CD]
+Line_2 $$ public void testOneConnectionOpenAndClosedAfterOneUpdate() throws InterruptedException --> Line_5 $$ db.update("update person set score=? where name=?").parameters(23, "FRED").count().toBlocking().single() [CD]
+Line_4 $$ Database db = new Database(cp) --> Line_5 $$ db.update("update person set score=? where name=?").parameters(23, "FRED").count().toBlocking().single() [FD]
+Line_2 $$ public void testOneConnectionOpenAndClosedAfterOneUpdate() throws InterruptedException --> Line_6 $$ cp.closesLatch().await(TIMEOUT_SECONDS, TimeUnit.SECONDS) [CD]
+Line_3 $$ CountDownConnectionProvider cp = new CountDownConnectionProvider(1, 1) --> Line_6 $$ cp.closesLatch().await(TIMEOUT_SECONDS, TimeUnit.SECONDS) [FD]
+Line_2 $$ public void testOneConnectionOpenAndClosedAfterOneUpdate() throws InterruptedException --> Line_7 $$ cp.getsLatch().await(TIMEOUT_SECONDS, TimeUnit.SECONDS) [CD]
+Line_3 $$ CountDownConnectionProvider cp = new CountDownConnectionProvider(1, 1) --> Line_7 $$ cp.getsLatch().await(TIMEOUT_SECONDS, TimeUnit.SECONDS) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void broadcastDrawMessage(DrawMessage msg) --> Line_3 $$ if (!BUFFER_DRAW_MESSAGES) [CD]
+Line_3 $$ if (!BUFFER_DRAW_MESSAGES) --> Line_4 $$ String msgStr = msg.toString() [CD]
+Line_2 $$ private void broadcastDrawMessage(DrawMessage msg) --> Line_4 $$ String msgStr = msg.toString() [FD]
+Line_5 $$ for (Player p : players) --> Line_6 $$ String s = String.valueOf(p.getLastReceivedMessageId()) + "," + msgStr [FD]
+Line_5 $$ for (Player p : players) --> Line_7 $$ p.sendRoomMessage(MessageType.DRAW_MESSAGE, s) [FD]
+Line_6 $$ String s = String.valueOf(p.getLastReceivedMessageId()) + "," + msgStr --> Line_7 $$ p.sendRoomMessage(MessageType.DRAW_MESSAGE, s) [FD]
+Line_2 $$ private void broadcastDrawMessage(DrawMessage msg) --> Line_11 $$ p.getBufferedDrawMessages().add(msg) [FD]
+Line_5 $$ for (Player p : players) --> Line_11 $$ p.getBufferedDrawMessages().add(msg) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ void readAndExpectPermissionError(String jdbcUrl, String tableName, int numRows) --> Line_3 $$ try (Connection conn = DriverManager.getConnection(jdbcUrl); [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(jdbcUrl); --> Line_5 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(jdbcUrl); --> Line_6 $$ readRows(stmt, tableName, numRows) [FD]
+Line_2 $$ void readAndExpectPermissionError(String jdbcUrl, String tableName, int numRows) --> Line_6 $$ readRows(stmt, tableName, numRows) [FD]
+Line_10 $$ String errorMessage = e.getMessage() --> Line_11 $$ assertTrue("Expected the error message to contain an HBase AccessDeniedException", errorMessage.contains("org.apache.hadoop.hbase.security.AccessDeniedException")) [FD]
+Line_10 $$ String errorMessage = e.getMessage() --> Line_12 $$ assertTrue("Expected message to contain " + tableName + " and READ", errorMessage.contains(tableName) && errorMessage.contains("READ")) [FD]
+Line_2 $$ void readAndExpectPermissionError(String jdbcUrl, String tableName, int numRows) --> Line_12 $$ assertTrue("Expected message to contain " + tableName + " and READ", errorMessage.contains(tableName) && errorMessage.contains("READ")) [FD]

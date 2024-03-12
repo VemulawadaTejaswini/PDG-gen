@@ -1,0 +1,7 @@
+Line_2 $$ public void testNewThreadDelegation() throws Exception --> Line_3 $$ ThreadFactory delegate = mock(ThreadFactory.class) [CD]
+Line_2 $$ public void testNewThreadDelegation() throws Exception --> Line_4 $$ when(delegate.newThread(any(Runnable.class))).thenReturn(new Thread("thread")) [CD]
+Line_2 $$ public void testNewThreadDelegation() throws Exception --> Line_5 $$ PrefixedThreadFactory factory = new PrefixedThreadFactory(delegate, "test ") [CD]
+Line_2 $$ public void testNewThreadDelegation() throws Exception --> Line_6 $$ Thread t = factory.newThread(mock(Runnable.class)) [CD]
+Line_5 $$ PrefixedThreadFactory factory = new PrefixedThreadFactory(delegate, "test ") --> Line_6 $$ Thread t = factory.newThread(mock(Runnable.class)) [FD]
+Line_2 $$ public void testNewThreadDelegation() throws Exception --> Line_7 $$ verify(delegate).newThread(any(Runnable.class)) [CD]
+Line_2 $$ public void testNewThreadDelegation() throws Exception --> Line_8 $$ assertEquals(t.getName(), "test thread") [CD]

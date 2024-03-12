@@ -1,0 +1,8 @@
+Line_2 $$ public int getRateLimitStatus() --> Line_3 $$ String json = http.getPage(TWITTER_URL + "/account/rate_limit_status.json", null, http.canAuthenticate()) [CD]
+Line_5 $$ JSONObject obj = new JSONObject(json) --> Line_6 $$ int hits = obj.getInt("remaining_hits") [FD]
+Line_7 $$ if (http instanceof URLConnectionHttpClient) --> Line_8 $$ URLConnectionHttpClient _http = (URLConnectionHttpClient) http [CD]
+Line_7 $$ if (http instanceof URLConnectionHttpClient) --> Line_9 $$ RateLimit rateLimit = new RateLimit(obj.getString("hourly_limit"), Integer.toString(hits), obj.getString("reset_time")) [CD]
+Line_5 $$ JSONObject obj = new JSONObject(json) --> Line_9 $$ RateLimit rateLimit = new RateLimit(obj.getString("hourly_limit"), Integer.toString(hits), obj.getString("reset_time")) [FD]
+Line_6 $$ int hits = obj.getInt("remaining_hits") --> Line_9 $$ RateLimit rateLimit = new RateLimit(obj.getString("hourly_limit"), Integer.toString(hits), obj.getString("reset_time")) [FD]
+Line_7 $$ if (http instanceof URLConnectionHttpClient) --> Line_10 $$ _http.rateLimits.put(KRequestType.NORMAL, rateLimit) [CD]
+Line_9 $$ RateLimit rateLimit = new RateLimit(obj.getString("hourly_limit"), Integer.toString(hits), obj.getString("reset_time")) --> Line_10 $$ _http.rateLimits.put(KRequestType.NORMAL, rateLimit) [FD]

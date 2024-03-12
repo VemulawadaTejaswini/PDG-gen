@@ -1,0 +1,8 @@
+Line_2 $$ private InputStream openFileUri(Uri uri) throws IOException --> Line_3 $$ FileInputStream fin = new FileInputStream(uri.getPath()) [FD]
+Line_2 $$ private InputStream openFileUri(Uri uri) throws IOException --> Line_3 $$ FileInputStream fin = new FileInputStream(uri.getPath()) [CD]
+Line_2 $$ private InputStream openFileUri(Uri uri) throws IOException --> Line_4 $$ int owner = FileUtils.getFileDescriptorOwner(fin.getFD()) [CD]
+Line_3 $$ FileInputStream fin = new FileInputStream(uri.getPath()) --> Line_4 $$ int owner = FileUtils.getFileDescriptorOwner(fin.getFD()) [FD]
+Line_2 $$ private InputStream openFileUri(Uri uri) throws IOException --> Line_5 $$ if (owner == -1 || owner == Process.myUid()) [CD]
+Line_5 $$ if (owner == -1 || owner == Process.myUid()) --> Line_6 $$ fin.close() [CD]
+Line_3 $$ FileInputStream fin = new FileInputStream(uri.getPath()) --> Line_6 $$ fin.close() [FD]
+Line_2 $$ private InputStream openFileUri(Uri uri) throws IOException --> Line_9 $$ return fin [CD]

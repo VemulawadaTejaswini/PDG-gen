@@ -1,0 +1,5 @@
+Line_2 $$ public String toPay(BigDecimal price) --> Line_3 $$ PayOrder order = new PayOrder("订单title", "摘要", null == price ? new BigDecimal(0.01) : price, UUID.randomUUID().toString().replace("-", ""), AliTransactionType.DIRECT) [CD]
+Line_2 $$ public String toPay(BigDecimal price) --> Line_4 $$ Map orderInfo = service.orderInfo(order) [CD]
+Line_3 $$ PayOrder order = new PayOrder("订单title", "摘要", null == price ? new BigDecimal(0.01) : price, UUID.randomUUID().toString().replace("-", ""), AliTransactionType.DIRECT) --> Line_4 $$ Map orderInfo = service.orderInfo(order) [FD]
+Line_2 $$ public String toPay(BigDecimal price) --> Line_5 $$ return service.buildRequest(orderInfo, MethodType.POST) [CD]
+Line_4 $$ Map orderInfo = service.orderInfo(order) --> Line_5 $$ return service.buildRequest(orderInfo, MethodType.POST) [FD]

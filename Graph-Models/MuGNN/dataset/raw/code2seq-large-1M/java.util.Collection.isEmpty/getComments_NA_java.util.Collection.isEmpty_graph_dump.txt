@@ -1,0 +1,6 @@
+Line_2 $$ public List<Comment> getComments(final GradebookAssignment assignment, final Collection studentIds) --> Line_3 $$ if (studentIds.isEmpty()) [CD]
+Line_2 $$ public List<Comment> getComments(final GradebookAssignment assignment, final Collection studentIds) --> Line_3 $$ if (studentIds.isEmpty()) [FD]
+Line_3 $$ if (studentIds.isEmpty()) --> Line_4 $$ return new ArrayList() [CD]
+Line_2 $$ public List<Comment> getComments(final GradebookAssignment assignment, final Collection studentIds) --> Line_6 $$ HibernateCallback<List<Comment>> hc =  session -> session.createCriteria(Comment.class).add(Restrictions.eq("gradableObject", assignment)).add(HibernateCriterionUtils.CriterionInRestrictionSplitter("studentId", studentIds)).list() [CD]
+Line_2 $$ public List<Comment> getComments(final GradebookAssignment assignment, final Collection studentIds) --> Line_6 $$ HibernateCallback<List<Comment>> hc =  session -> session.createCriteria(Comment.class).add(Restrictions.eq("gradableObject", assignment)).add(HibernateCriterionUtils.CriterionInRestrictionSplitter("studentId", studentIds)).list() [FD]
+Line_2 $$ public List<Comment> getComments(final GradebookAssignment assignment, final Collection studentIds) --> Line_7 $$ return getHibernateTemplate().execute(hc) [CD]

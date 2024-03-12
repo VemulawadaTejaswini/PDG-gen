@@ -1,0 +1,8 @@
+Line_2 $$ private static void reportStrictModeViolation(Object violationInfo) --> Line_4 $$ Field crashInfoField = violationInfo.getClass().getField("crashInfo") [FD]
+Line_4 $$ Field crashInfoField = violationInfo.getClass().getField("crashInfo") --> Line_5 $$ ApplicationErrorReport.CrashInfo crashInfo = (ApplicationErrorReport.CrashInfo) crashInfoField.get(violationInfo) [FD]
+Line_2 $$ private static void reportStrictModeViolation(Object violationInfo) --> Line_5 $$ ApplicationErrorReport.CrashInfo crashInfo = (ApplicationErrorReport.CrashInfo) crashInfoField.get(violationInfo) [FD]
+Line_6 $$ String stackTrace = crashInfo.stackTrace --> Line_7 $$ if (stackTrace == null) [FD]
+Line_7 $$ if (stackTrace == null) --> Line_8 $$ Log.d(TAG, "StrictMode violation stack trace was null.") [CD]
+Line_7 $$ if (stackTrace == null) --> Line_10 $$ Log.d(TAG, "Upload stack trace: " + stackTrace) [CD]
+Line_7 $$ if (stackTrace == null) --> Line_11 $$ JavaExceptionReporter.reportStackTrace(stackTrace) [CD]
+Line_6 $$ String stackTrace = crashInfo.stackTrace --> Line_11 $$ JavaExceptionReporter.reportStackTrace(stackTrace) [FD]

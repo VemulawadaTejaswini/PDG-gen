@@ -1,0 +1,7 @@
+Line_2 $$ public void testPrefix() --> Line_3 $$ List<String> input = asList("a", "b", "c", "d", "e") [CD]
+Line_2 $$ public void testPrefix() --> Line_4 $$ streamEx(input::<>stream,  s -> assertEquals(asList("a", "ab", "abc", "abcd", "abcde"), s.get().prefix(String::<>concat).toList())) [CD]
+Line_2 $$ public void testPrefix() --> Line_5 $$ streamEx(input::<>stream,  s -> assertEquals(Optional.of("abcd"), s.get().prefix(String::<>concat).findFirst( str -> str.length() > 3))) [CD]
+Line_2 $$ public void testPrefix() --> Line_6 $$ streamEx(() -> StreamEx.constant("a", 5),  s -> assertEquals(new HashSet(asList("a", "aa", "aaa", "aaaa", "aaaaa")), s.get().prefix(String::<>concat).toSet())) [CD]
+Line_2 $$ public void testPrefix() --> Line_7 $$ streamEx(() -> StreamEx.constant("a", 5),  s -> assertEquals(Optional.of("aaaaa"), s.get().prefix(String::<>concat).findFirst( str -> str.length() > 4))) [CD]
+Line_2 $$ public void testPrefix() --> Line_8 $$ streamEx(() -> StreamEx.constant(100L, 10000),  s -> assertEquals(5000500000L, (long) s.get().prefix(Long::<>sum).reduce(0L, Long::<>sum))) [CD]
+Line_2 $$ public void testPrefix() --> Line_9 $$ streamEx(() -> IntStreamEx.range(10000).boxed().unordered(),  s -> assertEquals(49995000, s.get().prefix(Integer::<>sum).mapToInt(Integer::<>intValue).max().getAsInt())) [CD]

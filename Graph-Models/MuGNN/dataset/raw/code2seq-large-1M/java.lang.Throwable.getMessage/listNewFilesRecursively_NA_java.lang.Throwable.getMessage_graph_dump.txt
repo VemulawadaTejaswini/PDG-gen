@@ -1,0 +1,8 @@
+Line_2 $$ public static void listNewFilesRecursively(final FileSystem destFs, Path dest, List<Path> newFiles) throws HiveException --> Line_4 $$ for (FileStatus fileStatus : destFs.listStatus(dest, FileUtils.HIDDEN_FILES_PATH_FILTER)) [FD]
+Line_4 $$ for (FileStatus fileStatus : destFs.listStatus(dest, FileUtils.HIDDEN_FILES_PATH_FILTER)) --> Line_5 $$ if (fileStatus.isDirectory()) [FD]
+Line_5 $$ if (fileStatus.isDirectory()) --> Line_6 $$ listNewFilesRecursively(destFs, fileStatus.getPath(), newFiles) [CD]
+Line_2 $$ public static void listNewFilesRecursively(final FileSystem destFs, Path dest, List<Path> newFiles) throws HiveException --> Line_6 $$ listNewFilesRecursively(destFs, fileStatus.getPath(), newFiles) [FD]
+Line_4 $$ for (FileStatus fileStatus : destFs.listStatus(dest, FileUtils.HIDDEN_FILES_PATH_FILTER)) --> Line_6 $$ listNewFilesRecursively(destFs, fileStatus.getPath(), newFiles) [FD]
+Line_5 $$ if (fileStatus.isDirectory()) --> Line_8 $$ newFiles.add(fileStatus.getPath()) [CD]
+Line_2 $$ public static void listNewFilesRecursively(final FileSystem destFs, Path dest, List<Path> newFiles) throws HiveException --> Line_8 $$ newFiles.add(fileStatus.getPath()) [FD]
+Line_4 $$ for (FileStatus fileStatus : destFs.listStatus(dest, FileUtils.HIDDEN_FILES_PATH_FILTER)) --> Line_8 $$ newFiles.add(fileStatus.getPath()) [FD]

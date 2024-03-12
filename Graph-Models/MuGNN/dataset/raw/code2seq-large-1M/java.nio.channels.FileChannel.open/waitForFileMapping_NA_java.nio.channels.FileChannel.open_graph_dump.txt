@@ -1,0 +1,6 @@
+Line_2 $$ private static MappedByteBuffer waitForFileMapping(final File cncFile, final long deadlineMs, final EpochClock epochClock) --> Line_3 $$ try (FileChannel fileChannel = FileChannel.open(cncFile.toPath(), READ, WRITE)) [FD]
+Line_3 $$ try (FileChannel fileChannel = FileChannel.open(cncFile.toPath(), READ, WRITE)) --> Line_4 $$ while (fileChannel.size() < CncFileDescriptor.CNC_VERSION_FIELD_OFFSET + SIZE_OF_INT) [FD]
+Line_4 $$ while (fileChannel.size() < CncFileDescriptor.CNC_VERSION_FIELD_OFFSET + SIZE_OF_INT) --> Line_5 $$ if (epochClock.time() > deadlineMs) [CD]
+Line_2 $$ private static MappedByteBuffer waitForFileMapping(final File cncFile, final long deadlineMs, final EpochClock epochClock) --> Line_5 $$ if (epochClock.time() > deadlineMs) [FD]
+Line_4 $$ while (fileChannel.size() < CncFileDescriptor.CNC_VERSION_FIELD_OFFSET + SIZE_OF_INT) --> Line_8 $$ sleep(IDLE_SLEEP_MS) [CD]
+Line_3 $$ try (FileChannel fileChannel = FileChannel.open(cncFile.toPath(), READ, WRITE)) --> Line_10 $$ return fileChannel.map(READ_WRITE, 0, fileChannel.size()) [FD]

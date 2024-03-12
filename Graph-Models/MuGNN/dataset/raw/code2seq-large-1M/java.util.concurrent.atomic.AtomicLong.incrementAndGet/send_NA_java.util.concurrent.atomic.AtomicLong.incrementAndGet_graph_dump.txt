@@ -1,0 +1,6 @@
+Line_2 $$ public void send(Message message) --> Line_3 $$ if (!messageQueue.offer(message)) [CD]
+Line_2 $$ public void send(Message message) --> Line_3 $$ if (!messageQueue.offer(message)) [FD]
+Line_3 $$ if (!messageQueue.offer(message)) --> Line_4 $$ lostMessages.incrementAndGet() [CD]
+Line_3 $$ if (!messageQueue.offer(message)) --> Line_5 $$ DynamicCounter.increment(MonitorConfig.builder(TagKey.LOST_COUNT).withTag(TagKey.APP, config.getApp()).withTag(TagKey.DATA_SOURCE, message.getRoutingKey()).build()) [CD]
+Line_2 $$ public void send(Message message) --> Line_5 $$ DynamicCounter.increment(MonitorConfig.builder(TagKey.LOST_COUNT).withTag(TagKey.APP, config.getApp()).withTag(TagKey.DATA_SOURCE, message.getRoutingKey()).build()) [FD]
+Line_6 $$ for (Listener listener : listeners) --> Line_7 $$ listener.lostCallback(1) [FD]

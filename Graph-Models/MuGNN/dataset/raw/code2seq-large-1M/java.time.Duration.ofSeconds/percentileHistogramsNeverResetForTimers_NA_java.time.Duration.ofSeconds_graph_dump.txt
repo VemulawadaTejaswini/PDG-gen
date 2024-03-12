@@ -1,0 +1,5 @@
+Line_2 $$ void percentileHistogramsNeverResetForTimers() --> Line_3 $$ Timer t = Timer.builder("t1").publishPercentileHistogram().distributionStatisticExpiry(Duration.ofSeconds(60)).sla(Duration.ofMillis(100)).register(registry) [CD]
+Line_2 $$ void percentileHistogramsNeverResetForTimers() --> Line_4 $$ t.record(100, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ Timer t = Timer.builder("t1").publishPercentileHistogram().distributionStatisticExpiry(Duration.ofSeconds(60)).sla(Duration.ofMillis(100)).register(registry) --> Line_4 $$ t.record(100, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ void percentileHistogramsNeverResetForTimers() --> Line_5 $$ clock.addSeconds(60) [CD]
+Line_2 $$ void percentileHistogramsNeverResetForTimers() --> Line_6 $$ assertThat(registry.scrape()).contains("t1_duration_seconds_bucket [CD]

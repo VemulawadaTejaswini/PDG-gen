@@ -1,0 +1,6 @@
+Line_2 $$ public void testTemporaryTablesCaseInsensitivity() throws Exception --> Line_3 $$ String temporaryTableName = "tEmP_InSeNSiTiVe" [CD]
+Line_2 $$ public void testTemporaryTablesCaseInsensitivity() throws Exception --> Line_4 $$ List<String> temporaryTableNames = Lists.newArrayList(temporaryTableName, temporaryTableName.toLowerCase(), temporaryTableName.toUpperCase()) [CD]
+Line_3 $$ String temporaryTableName = "tEmP_InSeNSiTiVe" --> Line_4 $$ List<String> temporaryTableNames = Lists.newArrayList(temporaryTableName, temporaryTableName.toLowerCase(), temporaryTableName.toUpperCase()) [FD]
+Line_2 $$ public void testTemporaryTablesCaseInsensitivity() throws Exception --> Line_5 $$ test("create TEMPORARY table %s as select 'A' as c1 from (values(1))", temporaryTableName) [CD]
+Line_3 $$ String temporaryTableName = "tEmP_InSeNSiTiVe" --> Line_5 $$ test("create TEMPORARY table %s as select 'A' as c1 from (values(1))", temporaryTableName) [FD]
+Line_6 $$ for (String tableName : temporaryTableNames) --> Line_7 $$ testBuilder().sqlQuery("select * from %s", tableName).unOrdered().baselineColumns("c1").baselineValues("A").go() [FD]

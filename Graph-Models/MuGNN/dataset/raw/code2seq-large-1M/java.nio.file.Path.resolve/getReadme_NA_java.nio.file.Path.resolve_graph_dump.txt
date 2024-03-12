@@ -1,0 +1,7 @@
+Line_2 $$ public static URL getReadme(Path pluginDir) --> Line_3 $$ final Path file = pluginDir.resolve("readme.html") [FD]
+Line_2 $$ public static URL getReadme(Path pluginDir) --> Line_3 $$ final Path file = pluginDir.resolve("readme.html") [CD]
+Line_2 $$ public static URL getReadme(Path pluginDir) --> Line_4 $$ if (!file.toFile().exists()) [CD]
+Line_3 $$ final Path file = pluginDir.resolve("readme.html") --> Line_4 $$ if (!file.toFile().exists()) [FD]
+Line_4 $$ if (!file.toFile().exists()) --> Line_5 $$ return null [CD]
+Line_3 $$ final Path file = pluginDir.resolve("readme.html") --> Line_8 $$ return file.toUri().toURL() [FD]
+Line_2 $$ public static URL getReadme(Path pluginDir) --> Line_10 $$ Log.warn("Unable to parse URL for readme of plugin ' [FD]

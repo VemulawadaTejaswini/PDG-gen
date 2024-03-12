@@ -1,0 +1,7 @@
+Line_3 $$ try (ZipFile apkZip = new ZipFile(apkPath.toFile())) --> Line_4 $$ byte[] data = ByteStreams.toByteArray(apkZip.getInputStream(apkZip.getEntry("AndroidManifest.xml"))) [FD]
+Line_5 $$ ByteBuffer buf = ResChunk.wrap(data) --> Line_6 $$ List<Integer> xmltreeOffsets = ChunkUtils.findChunks(buf, ResChunk.CHUNK_XML_TREE) [FD]
+Line_6 $$ List<Integer> xmltreeOffsets = ChunkUtils.findChunks(buf, ResChunk.CHUNK_XML_TREE) --> Line_7 $$ assertEquals(ImmutableList.of(0), xmltreeOffsets) [FD]
+Line_5 $$ ByteBuffer buf = ResChunk.wrap(data) --> Line_8 $$ ResourcesXml resXml = ResourcesXml.get(buf) [FD]
+Line_5 $$ ByteBuffer buf = ResChunk.wrap(data) --> Line_9 $$ assertEquals(buf.limit(), resXml.getTotalSize()) [FD]
+Line_8 $$ ResourcesXml resXml = ResourcesXml.get(buf) --> Line_9 $$ assertEquals(buf.limit(), resXml.getTotalSize()) [FD]
+Line_8 $$ ResourcesXml resXml = ResourcesXml.get(buf) --> Line_10 $$ assertArrayEquals(data, resXml.serialize()) [FD]

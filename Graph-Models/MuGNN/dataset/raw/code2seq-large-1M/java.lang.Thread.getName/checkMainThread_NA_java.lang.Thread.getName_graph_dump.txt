@@ -1,0 +1,7 @@
+Line_2 $$ public static boolean checkMainThread(Observer<?> observer) --> Line_3 $$ if (Looper.myLooper() != Looper.getMainLooper()) [CD]
+Line_3 $$ if (Looper.myLooper() != Looper.getMainLooper()) --> Line_4 $$ observer.onSubscribe(Disposables.empty()) [CD]
+Line_2 $$ public static boolean checkMainThread(Observer<?> observer) --> Line_4 $$ observer.onSubscribe(Disposables.empty()) [FD]
+Line_3 $$ if (Looper.myLooper() != Looper.getMainLooper()) --> Line_5 $$ observer.onError(new IllegalStateException("Expected to be called on the main thread but was " + Thread.currentThread().getName())) [CD]
+Line_2 $$ public static boolean checkMainThread(Observer<?> observer) --> Line_5 $$ observer.onError(new IllegalStateException("Expected to be called on the main thread but was " + Thread.currentThread().getName())) [FD]
+Line_3 $$ if (Looper.myLooper() != Looper.getMainLooper()) --> Line_6 $$ return false [CD]
+Line_2 $$ public static boolean checkMainThread(Observer<?> observer) --> Line_8 $$ return true [CD]

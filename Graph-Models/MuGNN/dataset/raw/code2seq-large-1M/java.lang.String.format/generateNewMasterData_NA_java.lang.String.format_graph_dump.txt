@@ -1,0 +1,7 @@
+Line_2 $$ private void generateNewMasterData(boolean useMaster, int startNum) throws Exception --> Line_3 $$ MysqlIsolatedServer server = useMaster ? masterServer : slaveServer [CD]
+Line_2 $$ private void generateNewMasterData(boolean useMaster, int startNum) throws Exception --> Line_4 $$ for (int i = 0; i < NEW_DATA_SIZE; i++) [CD]
+Line_4 $$ for (int i = 0; i < NEW_DATA_SIZE; i++) --> Line_5 $$ server.execute(String.format("insert into shard_1.minimal set account_id = %d, text_field='row %d'", i + startNum, i + startNum)) [CD]
+Line_3 $$ MysqlIsolatedServer server = useMaster ? masterServer : slaveServer --> Line_5 $$ server.execute(String.format("insert into shard_1.minimal set account_id = %d, text_field='row %d'", i + startNum, i + startNum)) [FD]
+Line_4 $$ for (int i = 0; i < NEW_DATA_SIZE; i++) --> Line_6 $$ if (i % 100 == 0) [CD]
+Line_6 $$ if (i % 100 == 0) --> Line_7 $$ server.execute("flush logs") [CD]
+Line_3 $$ MysqlIsolatedServer server = useMaster ? masterServer : slaveServer --> Line_7 $$ server.execute("flush logs") [FD]

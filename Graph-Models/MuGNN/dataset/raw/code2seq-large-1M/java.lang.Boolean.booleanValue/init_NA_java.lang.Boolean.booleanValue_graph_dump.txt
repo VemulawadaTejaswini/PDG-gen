@@ -1,0 +1,8 @@
+Line_2 $$ void init(long rows, int threshold, int separate, String p1, String p2) --> Line_3 $$ Preconditions.checkArgument((threshold > 0 || separate == 0) && separate < 100 && separate >= 0 && rows > 0) [CD]
+Line_2 $$ void init(long rows, int threshold, int separate, String p1, String p2) --> Line_9 $$ if (separateRows > 0) [CD]
+Line_14 $$ while (!queue.take().booleanValue()) --> Line_15 $$ for (int i = 0; i < separateBatchSize; i++) [CD]
+Line_13 $$ long separateBatchSize = thresholdRows * separateRows / primaryRows --> Line_15 $$ for (int i = 0; i < separateBatchSize; i++) [FD]
+Line_15 $$ for (int i = 0; i < separateBatchSize; i++) --> Line_16 $$ collect(prefix2, separateRowsEmitted++) [CD]
+Line_10 $$ separateRowGenerator = new Thread(new Runnable() --> Line_22 $$ for (; separateRowsEmitted < separateRows; ) [CD]
+Line_22 $$ for (; separateRowsEmitted < separateRows; ) --> Line_23 $$ collect(prefix2, separateRowsEmitted++) [CD]
+Line_9 $$ if (separateRows > 0) --> Line_28 $$ separateRowGenerator.start() [CD]

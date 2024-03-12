@@ -1,0 +1,6 @@
+Line_2 $$ private Set<ConnectionKey> getStaleConnectionKeys() --> Line_3 $$ Map<ConnectionKey, StatefulRedisConnection<K, V>> map = new HashMap(connections) [CD]
+Line_2 $$ private Set<ConnectionKey> getStaleConnectionKeys() --> Line_4 $$ Set<ConnectionKey> stale = new HashSet() [CD]
+Line_3 $$ Map<ConnectionKey, StatefulRedisConnection<K, V>> map = new HashMap(connections) --> Line_5 $$ for (ConnectionKey connectionKey : map.keySet()) [FD]
+Line_4 $$ Set<ConnectionKey> stale = new HashSet() --> Line_9 $$ stale.add(connectionKey) [FD]
+Line_5 $$ for (ConnectionKey connectionKey : map.keySet()) --> Line_9 $$ stale.add(connectionKey) [FD]
+Line_2 $$ private Set<ConnectionKey> getStaleConnectionKeys() --> Line_11 $$ return stale [CD]

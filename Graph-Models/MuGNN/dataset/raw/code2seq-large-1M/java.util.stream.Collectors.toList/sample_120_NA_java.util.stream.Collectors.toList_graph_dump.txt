@@ -1,0 +1,8 @@
+Line_2 $$ public void sample_120() throws Exception --> Line_3 $$ List<Ticket> tickets = Arrays.asList(new Ticket(), new Ticket(), new Ticket()) [CD]
+Line_2 $$ public void sample_120() throws Exception --> Line_4 $$ List<Pair<Ticket, Future<SmtpResponse>>> tasks = tickets.stream().map( ticket -> Pair.of(ticket, sendEmailAsync(ticket))).collect(toList()) [CD]
+Line_3 $$ List<Ticket> tickets = Arrays.asList(new Ticket(), new Ticket(), new Ticket()) --> Line_4 $$ List<Pair<Ticket, Future<SmtpResponse>>> tasks = tickets.stream().map( ticket -> Pair.of(ticket, sendEmailAsync(ticket))).collect(toList()) [FD]
+Line_2 $$ public void sample_120() throws Exception --> Line_5 $$ List<Ticket> failures = tasks.stream().flatMap( pair -> [CD]
+Line_4 $$ List<Pair<Ticket, Future<SmtpResponse>>> tasks = tickets.stream().map( ticket -> Pair.of(ticket, sendEmailAsync(ticket))).collect(toList()) --> Line_5 $$ List<Ticket> failures = tasks.stream().flatMap( pair -> [FD]
+Line_7 $$ Future<SmtpResponse> future = pair.getRight() --> Line_8 $$ future.get(1, TimeUnit.SECONDS) [FD]
+Line_11 $$ Ticket ticket = pair.getLeft() --> Line_12 $$ log.warn("Failed to send [FD]
+Line_11 $$ Ticket ticket = pair.getLeft() --> Line_13 $$ return Stream.of(ticket) [FD]

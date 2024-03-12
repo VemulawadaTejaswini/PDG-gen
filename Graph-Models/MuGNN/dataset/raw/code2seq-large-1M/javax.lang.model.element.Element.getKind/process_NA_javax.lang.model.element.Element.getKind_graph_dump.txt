@@ -1,0 +1,8 @@
+Line_2 $$ public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) --> Line_3 $$ Set<? extends Element> set2 = roundEnvironment.getElementsAnnotatedWith(TestHelloWorld.class) [CD]
+Line_2 $$ public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) --> Line_3 $$ Set<? extends Element> set2 = roundEnvironment.getElementsAnnotatedWith(TestHelloWorld.class) [FD]
+Line_4 $$ for (Element element : set2) --> Line_5 $$ if (element.getKind() != ElementKind.CLASS) [FD]
+Line_5 $$ if (element.getKind() != ElementKind.CLASS) --> Line_6 $$ processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "only support class") [CD]
+Line_4 $$ for (Element element : set2) --> Line_8 $$ TestHelloWorld annotation = element.getAnnotation(TestHelloWorld.class) [FD]
+Line_4 $$ for (Element element : set2) --> Line_13 $$ MethodSpec zJump = MethodSpec.methodBuilder("zJump").addModifiers(Modifier.PUBLIC, Modifier.STATIC).returns(void.class).addParameter(ClassName.get(element.asType()), "context").addParameter(Class.class, "aClass").addStatement("$T.e(\"zxt\", \"Auto created22222 by apt = [\" + $S + \"], begin first zJump \" )", classLog, annotation.value()).addStatement("context.startActivity(new android.content.Intent(context,aClass ));").build() [FD]
+Line_15 $$ JavaFile javaFile = JavaFile.builder("com.mcxtzhang", helloWorld).build() --> Line_17 $$ javaFile.writeTo(processingEnv.getFiler()) [FD]
+Line_2 $$ public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) --> Line_22 $$ return (false) [CD]

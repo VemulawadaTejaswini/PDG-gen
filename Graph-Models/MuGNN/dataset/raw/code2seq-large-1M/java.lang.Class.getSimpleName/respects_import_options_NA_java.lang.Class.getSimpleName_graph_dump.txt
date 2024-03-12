@@ -1,0 +1,7 @@
+Line_2 $$ public void respects_import_options() throws URISyntaxException --> Line_3 $$ Location jrtContainingFile = locationFactory.create(createModuleUriContaining(File.class)) [CD]
+Line_2 $$ public void respects_import_options() throws URISyntaxException --> Line_4 $$ ClassFileSource fileSource = jrtContainingFile.asClassFileSource(new ImportOptions().with( location -> !location.contains("/" + File.class.getSimpleName() + ".class"))) [CD]
+Line_2 $$ public void respects_import_options() throws URISyntaxException --> Line_5 $$ Set<URI> urisToImport = new HashSet() [CD]
+Line_2 $$ public void respects_import_options() throws URISyntaxException --> Line_6 $$ fileSource.forEach( classFileLocation -> urisToImport.add(classFileLocation.getUri())) [CD]
+Line_5 $$ Set<URI> urisToImport = new HashSet() --> Line_6 $$ fileSource.forEach( classFileLocation -> urisToImport.add(classFileLocation.getUri())) [FD]
+Line_2 $$ public void respects_import_options() throws URISyntaxException --> Line_7 $$ assertThat(urisToImport).contains(uriOf(FileReader.class)).doesNotContain(uriOf(File.class)) [CD]
+Line_5 $$ Set<URI> urisToImport = new HashSet() --> Line_7 $$ assertThat(urisToImport).contains(uriOf(FileReader.class)).doesNotContain(uriOf(File.class)) [FD]

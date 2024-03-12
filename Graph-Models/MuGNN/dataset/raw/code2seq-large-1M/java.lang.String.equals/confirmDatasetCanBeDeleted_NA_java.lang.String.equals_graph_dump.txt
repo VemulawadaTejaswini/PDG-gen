@@ -1,0 +1,6 @@
+Line_2 $$ private void confirmDatasetCanBeDeleted(TxnId txnId, String dataverseName, String datasetName) throws AlgebricksException, RemoteException --> Line_3 $$ List<Function> functions = getAllFunctions(txnId) [CD]
+Line_2 $$ private void confirmDatasetCanBeDeleted(TxnId txnId, String dataverseName, String datasetName) throws AlgebricksException, RemoteException --> Line_3 $$ List<Function> functions = getAllFunctions(txnId) [FD]
+Line_4 $$ for (Function function : functions) --> Line_5 $$ for (List<String> datasetDependency : function.getDependencies().get(0)) [FD]
+Line_2 $$ private void confirmDatasetCanBeDeleted(TxnId txnId, String dataverseName, String datasetName) throws AlgebricksException, RemoteException --> Line_6 $$ if (datasetDependency.get(0).equals(dataverseName) && datasetDependency.get(1).equals(datasetName)) [FD]
+Line_5 $$ for (List<String> datasetDependency : function.getDependencies().get(0)) --> Line_6 $$ if (datasetDependency.get(0).equals(dataverseName) && datasetDependency.get(1).equals(datasetName)) [FD]
+Line_4 $$ for (Function function : functions) --> Line_7 $$ throw new AlgebricksException("Cannot drop dataset " + dataverseName + "." + datasetName + " being used by function " + function.getDataverseName() + "." + function.getName() + "@" + function.getArity()) [FD]

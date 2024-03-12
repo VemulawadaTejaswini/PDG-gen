@@ -1,0 +1,8 @@
+Line_2 $$ public void valueUnbound(HttpSessionBindingEvent event) --> Line_3 $$ if (service == null) [CD]
+Line_3 $$ if (service == null) --> Line_4 $$ getLogger().warning("A VaadinSession instance not associated to any service is getting unbound. " + "Session destroy events will not be fired and UIs in the session will not get detached. " + "This might happen if a session is deserialized but never used before it expires.") [CD]
+Line_3 $$ if (service == null) --> Line_5 $$ if (VaadinService.getCurrentRequest() != null && getCurrent() == this) [CD]
+Line_5 $$ if (VaadinService.getCurrentRequest() != null && getCurrent() == this) --> Line_7 $$ if (getAttribute(VaadinService.PRESERVE_UNBOUND_SESSION_ATTRIBUTE) == Boolean.TRUE) [CD]
+Line_7 $$ if (getAttribute(VaadinService.PRESERVE_UNBOUND_SESSION_ATTRIBUTE) == Boolean.TRUE) --> Line_8 $$ return [CD]
+Line_5 $$ if (VaadinService.getCurrentRequest() != null && getCurrent() == this) --> Line_10 $$ if (getState() == State.OPEN) [CD]
+Line_10 $$ if (getState() == State.OPEN) --> Line_11 $$ close() [CD]
+Line_5 $$ if (VaadinService.getCurrentRequest() != null && getCurrent() == this) --> Line_14 $$ service.fireSessionDestroy(this) [CD]

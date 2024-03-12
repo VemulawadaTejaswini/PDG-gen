@@ -1,0 +1,8 @@
+Line_2 $$ public String list(@RequestParam("id") Long id, Model model) --> Line_3 $$ String hql = "select c from PartyEntity c join c.parentStructs p" + " where p.parentEntity.reference=? and p.parentEntity.partyType=2 and c.partyType.id=1" [CD]
+Line_2 $$ public String list(@RequestParam("id") Long id, Model model) --> Line_4 $$ List<PartyEntity> partyEntities = partyEntityManager.find(hql, Long.toString(id)) [FD]
+Line_2 $$ public String list(@RequestParam("id") Long id, Model model) --> Line_4 $$ List<PartyEntity> partyEntities = partyEntityManager.find(hql, Long.toString(id)) [CD]
+Line_3 $$ String hql = "select c from PartyEntity c join c.parentStructs p" + " where p.parentEntity.reference=? and p.parentEntity.partyType=2 and c.partyType.id=1" --> Line_4 $$ List<PartyEntity> partyEntities = partyEntityManager.find(hql, Long.toString(id)) [FD]
+Line_2 $$ public String list(@RequestParam("id") Long id, Model model) --> Line_5 $$ model.addAttribute("partyEntities", partyEntities) [FD]
+Line_2 $$ public String list(@RequestParam("id") Long id, Model model) --> Line_5 $$ model.addAttribute("partyEntities", partyEntities) [CD]
+Line_4 $$ List<PartyEntity> partyEntities = partyEntityManager.find(hql, Long.toString(id)) --> Line_5 $$ model.addAttribute("partyEntities", partyEntities) [FD]
+Line_2 $$ public String list(@RequestParam("id") Long id, Model model) --> Line_6 $$ return "party/admin-batch-list" [CD]

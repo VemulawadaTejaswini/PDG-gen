@@ -1,0 +1,7 @@
+Line_2 $$ String friends(Model model) --> Line_3 $$ if (!isAuthenticated()) [CD]
+Line_3 $$ if (!isAuthenticated()) --> Line_4 $$ return "redirect:/login" [CD]
+Line_2 $$ String friends(Model model) --> Line_6 $$ Map<Integer, LocalDateTime> friends = relationRepository.findByUserIdOrderByCreatedAtDesc(currentUser().getId()).stream().collect(Collectors.toMap( x -> Objects.equals(x.getOne(), currentUser().getId()) ? x.getAnother() : x.getOne(), Relation::<>getCreatedAt, ( u,  v) -> u, LinkedHashMap::<>new)) [CD]
+Line_2 $$ String friends(Model model) --> Line_7 $$ model.addAttribute("friends", friends) [FD]
+Line_2 $$ String friends(Model model) --> Line_7 $$ model.addAttribute("friends", friends) [CD]
+Line_6 $$ Map<Integer, LocalDateTime> friends = relationRepository.findByUserIdOrderByCreatedAtDesc(currentUser().getId()).stream().collect(Collectors.toMap( x -> Objects.equals(x.getOne(), currentUser().getId()) ? x.getAnother() : x.getOne(), Relation::<>getCreatedAt, ( u,  v) -> u, LinkedHashMap::<>new)) --> Line_7 $$ model.addAttribute("friends", friends) [FD]
+Line_2 $$ String friends(Model model) --> Line_8 $$ return "friends" [CD]

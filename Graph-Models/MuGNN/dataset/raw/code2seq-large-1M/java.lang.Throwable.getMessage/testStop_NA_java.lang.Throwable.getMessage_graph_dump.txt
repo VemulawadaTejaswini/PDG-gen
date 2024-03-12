@@ -1,0 +1,8 @@
+Line_2 $$ public void testStop() throws Exception --> Line_3 $$ final MqPublishPoint publishPoint = mock(MqPublishPoint.class) [CD]
+Line_2 $$ public void testStop() throws Exception --> Line_4 $$ final Producer producer = new Producer("producer", publishPoint) [CD]
+Line_2 $$ public void testStop() throws Exception --> Line_5 $$ verifyZeroInteractions(publishPoint) [CD]
+Line_2 $$ public void testStop() throws Exception --> Line_6 $$ producer.stop() [CD]
+Line_4 $$ final Producer producer = new Producer("producer", publishPoint) --> Line_6 $$ producer.stop() [FD]
+Line_2 $$ public void testStop() throws Exception --> Line_7 $$ verify(publishPoint).put(eq(Message.POISON_PILL)) [CD]
+Line_4 $$ final Producer producer = new Producer("producer", publishPoint) --> Line_9 $$ producer.send("Hello!") [FD]
+Line_2 $$ public void testStop() throws Exception --> Line_16 $$ verifyNoMoreInteractions(publishPoint) [CD]

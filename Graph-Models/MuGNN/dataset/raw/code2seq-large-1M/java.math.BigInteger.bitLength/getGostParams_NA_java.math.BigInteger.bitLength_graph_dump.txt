@@ -1,0 +1,8 @@
+Line_2 $$ public GOST3410PublicKeyAlgParameters getGostParams() --> Line_3 $$ if (gostParams == null && ecSpec instanceof ECNamedCurveSpec) [CD]
+Line_3 $$ if (gostParams == null && ecSpec instanceof ECNamedCurveSpec) --> Line_4 $$ BigInteger bX = this.ecPublicKey.getQ().getAffineXCoord().toBigInteger() [CD]
+Line_3 $$ if (gostParams == null && ecSpec instanceof ECNamedCurveSpec) --> Line_5 $$ boolean is512 = (bX.bitLength() > 256) [CD]
+Line_4 $$ BigInteger bX = this.ecPublicKey.getQ().getAffineXCoord().toBigInteger() --> Line_5 $$ boolean is512 = (bX.bitLength() > 256) [FD]
+Line_3 $$ if (gostParams == null && ecSpec instanceof ECNamedCurveSpec) --> Line_6 $$ if (is512) [CD]
+Line_6 $$ if (is512) --> Line_7 $$ this.gostParams = new GOST3410PublicKeyAlgParameters(ECGOST3410NamedCurves.getOID(((ECNamedCurveSpec) ecSpec).getName()), RosstandartObjectIdentifiers.id_tc26_gost_3411_12_512) [CD]
+Line_6 $$ if (is512) --> Line_9 $$ this.gostParams = new GOST3410PublicKeyAlgParameters(ECGOST3410NamedCurves.getOID(((ECNamedCurveSpec) ecSpec).getName()), RosstandartObjectIdentifiers.id_tc26_gost_3411_12_256) [CD]
+Line_2 $$ public GOST3410PublicKeyAlgParameters getGostParams() --> Line_12 $$ return gostParams [CD]

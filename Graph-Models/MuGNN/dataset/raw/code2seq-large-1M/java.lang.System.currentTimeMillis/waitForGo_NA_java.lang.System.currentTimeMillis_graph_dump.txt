@@ -1,0 +1,8 @@
+Line_5 $$ while (waitTime > 0L && !go) --> Line_6 $$ long elapsedTime = System.currentTimeMillis() [CD]
+Line_5 $$ while (waitTime > 0L && !go) --> Line_12 $$ elapsedTime = System.currentTimeMillis() - elapsedTime [CD]
+Line_6 $$ long elapsedTime = System.currentTimeMillis() --> Line_12 $$ elapsedTime = System.currentTimeMillis() - elapsedTime [FD]
+Line_5 $$ while (waitTime > 0L && !go) --> Line_13 $$ waitTime -= elapsedTime [CD]
+Line_4 $$ long waitTime = 20 * 1000 --> Line_13 $$ waitTime -= elapsedTime [FD]
+Line_6 $$ long elapsedTime = System.currentTimeMillis() --> Line_13 $$ waitTime -= elapsedTime [FD]
+Line_12 $$ elapsedTime = System.currentTimeMillis() - elapsedTime --> Line_13 $$ waitTime -= elapsedTime [FD]
+Line_15 $$ if (!go) --> Line_16 $$ Assert.fail("Did not get go signal within 20 seconds") [CD]

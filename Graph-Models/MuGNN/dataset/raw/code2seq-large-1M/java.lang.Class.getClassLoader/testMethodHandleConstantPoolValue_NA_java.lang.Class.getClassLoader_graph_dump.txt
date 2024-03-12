@@ -1,0 +1,3 @@
+Line_2 $$ public void testMethodHandleConstantPoolValue() throws Exception --> Line_3 $$ Class<? extends Qux> qux = new ByteBuddy().subclass(Qux.class).method(isDeclaredBy(Qux.class)).intercept(FixedValue.value(makeMethodHandle())).make().load(Qux.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testMethodHandleConstantPoolValue() throws Exception --> Line_4 $$ assertThat(qux.getDeclaredFields().length, is(0)) [CD]
+Line_2 $$ public void testMethodHandleConstantPoolValue() throws Exception --> Line_5 $$ assertThat(JavaConstant.MethodHandle.ofLoaded(qux.getDeclaredConstructor().newInstance().bar()), is(JavaConstant.MethodHandle.ofLoaded(makeMethodHandle()))) [CD]

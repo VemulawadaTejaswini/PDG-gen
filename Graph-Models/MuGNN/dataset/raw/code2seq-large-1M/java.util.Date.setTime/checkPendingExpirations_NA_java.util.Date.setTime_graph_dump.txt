@@ -1,0 +1,8 @@
+Line_2 $$ public void checkPendingExpirations() --> Line_3 $$ Date now = new Date() [CD]
+Line_2 $$ public void checkPendingExpirations() --> Line_4 $$ now.setTime(now.getTime() - requestTimeout) [CD]
+Line_3 $$ Date now = new Date() --> Line_4 $$ now.setTime(now.getTime() - requestTimeout) [FD]
+Line_5 $$ for (IQ request : pendingIQRequests.keySet()) --> Line_6 $$ Date when = pendingIQRequests.get(request) [FD]
+Line_3 $$ Date now = new Date() --> Line_7 $$ if (now.after(when)) [FD]
+Line_6 $$ Date when = pendingIQRequests.get(request) --> Line_7 $$ if (now.after(when)) [FD]
+Line_7 $$ if (now.after(when)) --> Line_8 $$ expirePendingRequest(request) [CD]
+Line_5 $$ for (IQ request : pendingIQRequests.keySet()) --> Line_8 $$ expirePendingRequest(request) [FD]

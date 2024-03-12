@@ -1,0 +1,7 @@
+Line_4 $$ Properties props = management.getProperties() --> Line_5 $$ String testProp = (String) props.get("usergrid.test") [FD]
+Line_5 $$ String testProp = (String) props.get("usergrid.test") --> Line_6 $$ if (testProp == null || !Boolean.parseBoolean(testProp)) [FD]
+Line_2 $$ public Response refresh(@QueryParam("org_name") String orgName, @QueryParam("app_name") String appName, @QueryParam("app_id") String appIdString) throws IOException, Exception --> Line_9 $$ UUID appid = UUIDUtils.tryExtractUUID(appIdString) [FD]
+Line_9 $$ UUID appid = UUIDUtils.tryExtractUUID(appIdString) --> Line_10 $$ if (appid == null) [FD]
+Line_9 $$ UUID appid = UUIDUtils.tryExtractUUID(appIdString) --> Line_13 $$ EntityManager em = this.getEmf().getEntityManager(appid) [FD]
+Line_13 $$ EntityManager em = this.getEmf().getEntityManager(appid) --> Line_14 $$ em.refreshIndex() [FD]
+Line_2 $$ public Response refresh(@QueryParam("org_name") String orgName, @QueryParam("app_name") String appName, @QueryParam("app_id") String appIdString) throws IOException, Exception --> Line_19 $$ return Response.ok().build() [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_3 $$ final String path = RepositoryPathUtils.buildZookeeperRootPath(rootPathPrefix, id) [CD]
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_3 $$ final String path = RepositoryPathUtils.buildZookeeperRootPath(rootPathPrefix, id) [FD]
+Line_3 $$ final String path = RepositoryPathUtils.buildZookeeperRootPath(rootPathPrefix, id) --> Line_5 $$ byte[] content = zooKeeper.getData(path, false, new Stat()) [FD]
+Line_5 $$ byte[] content = zooKeeper.getData(path, false, new Stat()) --> Line_6 $$ final CoordinatorRepositoryAdapter adapter = objectSerializer.deSerialize(content, CoordinatorRepositoryAdapter.class) [FD]
+Line_2 $$ public int updateStatus(String id, Integer status) --> Line_7 $$ adapter.setStatus(status) [FD]
+Line_3 $$ final String path = RepositoryPathUtils.buildZookeeperRootPath(rootPathPrefix, id) --> Line_8 $$ zooKeeper.create(path, objectSerializer.serialize(adapter), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT) [FD]

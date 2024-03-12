@@ -1,0 +1,7 @@
+Line_2 $$ public void callingMethodReturningDoubleShouldInvokeClassHandler() throws Exception --> Line_3 $$ Class<?> exampleClass = loadClass(AClassWithMethodReturningDouble.class) [CD]
+Line_2 $$ public void callingMethodReturningDoubleShouldInvokeClassHandler() throws Exception --> Line_4 $$ classHandler.valueToReturn = 456 [CD]
+Line_2 $$ public void callingMethodReturningDoubleShouldInvokeClassHandler() throws Exception --> Line_5 $$ Method normalMethod = exampleClass.getMethod("normalMethodReturningDouble", double.class) [CD]
+Line_2 $$ public void callingMethodReturningDoubleShouldInvokeClassHandler() throws Exception --> Line_6 $$ Object exampleInstance = exampleClass.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void callingMethodReturningDoubleShouldInvokeClassHandler() throws Exception --> Line_7 $$ assertEquals(456.0, normalMethod.invoke(exampleInstance, 123d)) [CD]
+Line_6 $$ Object exampleInstance = exampleClass.getDeclaredConstructor().newInstance() --> Line_7 $$ assertEquals(456.0, normalMethod.invoke(exampleInstance, 123d)) [FD]
+Line_2 $$ public void callingMethodReturningDoubleShouldInvokeClassHandler() throws Exception --> Line_8 $$ assertThat(transcript).containsExactly("methodInvoked: AClassWithMethodReturningDouble.__constructor__()", "methodInvoked: AClassWithMethodReturningDouble.normalMethodReturningDouble(double 123.0)") [CD]

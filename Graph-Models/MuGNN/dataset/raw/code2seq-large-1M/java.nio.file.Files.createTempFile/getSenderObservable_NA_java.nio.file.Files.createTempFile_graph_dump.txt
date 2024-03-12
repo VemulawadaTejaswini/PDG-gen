@@ -1,0 +1,8 @@
+Line_2 $$ protected Observable<Integer> getSenderObservable(TagList tags, Metric[] batch) --> Line_3 $$ JsonPayload payload = new UpdateRequest(tags, batch, batch.length) [CD]
+Line_2 $$ protected Observable<Integer> getSenderObservable(TagList tags, Metric[] batch) --> Line_4 $$ if (shouldDumpPayload()) [CD]
+Line_4 $$ if (shouldDumpPayload()) --> Line_5 $$ String prefix = getPayloadPrefix() [CD]
+Line_5 $$ String prefix = getPayloadPrefix() --> Line_7 $$ Path tempFile = Files.createTempFile(Paths.get(getPayloadDirectory()), prefix, ".json") [FD]
+Line_3 $$ JsonPayload payload = new UpdateRequest(tags, batch, batch.length) --> Line_8 $$ dumpPayload(tempFile.toFile(), payload) [FD]
+Line_7 $$ Path tempFile = Files.createTempFile(Paths.get(getPayloadDirectory()), prefix, ".json") --> Line_8 $$ dumpPayload(tempFile.toFile(), payload) [FD]
+Line_2 $$ protected Observable<Integer> getSenderObservable(TagList tags, Metric[] batch) --> Line_13 $$ return httpHelper.postSmile(config.getAtlasUri(), payload).map(withBookkeeping(batch.length)) [CD]
+Line_3 $$ JsonPayload payload = new UpdateRequest(tags, batch, batch.length) --> Line_13 $$ return httpHelper.postSmile(config.getAtlasUri(), payload).map(withBookkeeping(batch.length)) [FD]

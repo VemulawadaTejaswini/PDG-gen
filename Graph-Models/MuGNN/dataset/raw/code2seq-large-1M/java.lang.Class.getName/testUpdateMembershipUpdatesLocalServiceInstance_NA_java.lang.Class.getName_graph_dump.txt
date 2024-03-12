@@ -1,0 +1,7 @@
+Line_2 $$ public void testUpdateMembershipUpdatesLocalServiceInstance() --> Line_3 $$ Predicate<? super CommandMessage<?>> commandNameFilter = new CommandNameFilter(String.class.getName()) [CD]
+Line_2 $$ public void testUpdateMembershipUpdatesLocalServiceInstance() --> Line_4 $$ String commandFilterData = new XStreamSerializer().serialize(commandNameFilter, String.class).getData() [CD]
+Line_2 $$ public void testUpdateMembershipUpdatesLocalServiceInstance() --> Line_5 $$ testSubject.updateMembership(LOAD_FACTOR, commandNameFilter) [CD]
+Line_2 $$ public void testUpdateMembershipUpdatesLocalServiceInstance() --> Line_6 $$ assertEquals(Integer.toString(LOAD_FACTOR), serviceInstanceMetadata.get(LOAD_FACTOR_KEY)) [CD]
+Line_2 $$ public void testUpdateMembershipUpdatesLocalServiceInstance() --> Line_7 $$ assertEquals(commandFilterData, serviceInstanceMetadata.get(SERIALIZED_COMMAND_FILTER_KEY)) [CD]
+Line_2 $$ public void testUpdateMembershipUpdatesLocalServiceInstance() --> Line_8 $$ assertEquals(CommandNameFilter.class.getName(), serviceInstanceMetadata.get(SERIALIZED_COMMAND_FILTER_CLASS_NAME_KEY)) [CD]
+Line_2 $$ public void testUpdateMembershipUpdatesLocalServiceInstance() --> Line_9 $$ verify(consistentHashChangeListener).onConsistentHashChanged(argThat( item -> item.getMembers().stream().map(Member::<>name).anyMatch( memberName -> memberName.contains(SERVICE_INSTANCE_ID)))) [CD]

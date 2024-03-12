@@ -1,0 +1,8 @@
+Line_4 $$ MBeanServer platformMBeanServer = ManagementFactory.getPlatformMBeanServer() --> Line_5 $$ if (platformMBeanServer instanceof com.sun.jmx.mbeanserver.JmxMBeanServer) [FD]
+Line_5 $$ if (platformMBeanServer instanceof com.sun.jmx.mbeanserver.JmxMBeanServer) --> Line_6 $$ final MBeanServer interceptor = (MBeanServer) Proxy.newProxyInstance(MY_CLASSLOADER, new Class<?>[] [CD]
+Line_5 $$ if (platformMBeanServer instanceof com.sun.jmx.mbeanserver.JmxMBeanServer) --> Line_7 $$ Field interceptorField = accessible(com.sun.jmx.mbeanserver.JmxMBeanServer.class.getDeclaredField("mbsInterceptor")) [CD]
+Line_5 $$ if (platformMBeanServer instanceof com.sun.jmx.mbeanserver.JmxMBeanServer) --> Line_8 $$ this.origMBeanServer = (MBeanServer) interceptorField.get(platformMBeanServer) [CD]
+Line_4 $$ MBeanServer platformMBeanServer = ManagementFactory.getPlatformMBeanServer() --> Line_8 $$ this.origMBeanServer = (MBeanServer) interceptorField.get(platformMBeanServer) [FD]
+Line_5 $$ if (platformMBeanServer instanceof com.sun.jmx.mbeanserver.JmxMBeanServer) --> Line_9 $$ interceptorField.set(platformMBeanServer, interceptor) [CD]
+Line_4 $$ MBeanServer platformMBeanServer = ManagementFactory.getPlatformMBeanServer() --> Line_9 $$ interceptorField.set(platformMBeanServer, interceptor) [FD]
+Line_6 $$ final MBeanServer interceptor = (MBeanServer) Proxy.newProxyInstance(MY_CLASSLOADER, new Class<?>[] --> Line_9 $$ interceptorField.set(platformMBeanServer, interceptor) [FD]

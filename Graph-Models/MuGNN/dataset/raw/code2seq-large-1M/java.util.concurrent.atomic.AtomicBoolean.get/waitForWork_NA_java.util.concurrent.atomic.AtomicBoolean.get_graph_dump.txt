@@ -1,0 +1,7 @@
+Line_2 $$ private void waitForWork() --> Line_3 $$ if (!shutdownFlag.get()) [CD]
+Line_3 $$ if (!shutdownFlag.get()) --> Line_4 $$ if (retryWakeupTime != null) [CD]
+Line_4 $$ if (retryWakeupTime != null) --> Line_5 $$ while (retryWakeupTime.isAfter(Instant.now()) && !shutdownFlag.get()) [CD]
+Line_5 $$ while (retryWakeupTime.isAfter(Instant.now()) && !shutdownFlag.get()) --> Line_6 $$ LockSupport.parkUntil(this, retryWakeupTime.toEpochMilli()) [CD]
+Line_4 $$ if (retryWakeupTime != null) --> Line_10 $$ if (queue.isEmpty() && !notifyWorkFlag.get()) [CD]
+Line_10 $$ if (queue.isEmpty() && !notifyWorkFlag.get()) --> Line_12 $$ LockSupport.park(this) [CD]
+Line_2 $$ private void waitForWork() --> Line_16 $$ notifyWorkFlag.set(false) [CD]

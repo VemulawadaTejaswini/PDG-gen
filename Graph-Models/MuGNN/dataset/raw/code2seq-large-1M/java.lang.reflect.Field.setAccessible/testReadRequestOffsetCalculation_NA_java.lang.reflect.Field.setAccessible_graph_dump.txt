@@ -1,0 +1,8 @@
+Line_2 $$ public void testReadRequestOffsetCalculation() throws NoSuchFieldException, IllegalAccessException --> Line_3 $$ for (long offset = (long) (1.5 * (long) GiB_IN_BYTES); offset < maxOffset; offset += 997) [CD]
+Line_3 $$ for (long offset = (long) (1.5 * (long) GiB_IN_BYTES); offset < maxOffset; offset += 997) --> Line_4 $$ Vector<ReadOperation> operations = new Vector<ReadOperation>() [CD]
+Line_3 $$ for (long offset = (long) (1.5 * (long) GiB_IN_BYTES); offset < maxOffset; offset += 997) --> Line_5 $$ translator.translateReadRequest(count, offset, StripingPolicy.newBuilder().setStripeSize(128).setType(StripingPolicyType.STRIPING_POLICY_RAID0).setWidth(1).build(), operations) [FD]
+Line_3 $$ for (long offset = (long) (1.5 * (long) GiB_IN_BYTES); offset < maxOffset; offset += 997) --> Line_5 $$ translator.translateReadRequest(count, offset, StripingPolicy.newBuilder().setStripeSize(128).setType(StripingPolicyType.STRIPING_POLICY_RAID0).setWidth(1).build(), operations) [CD]
+Line_4 $$ Vector<ReadOperation> operations = new Vector<ReadOperation>() --> Line_5 $$ translator.translateReadRequest(count, offset, StripingPolicy.newBuilder().setStripeSize(128).setType(StripingPolicyType.STRIPING_POLICY_RAID0).setWidth(1).build(), operations) [FD]
+Line_3 $$ for (long offset = (long) (1.5 * (long) GiB_IN_BYTES); offset < maxOffset; offset += 997) --> Line_6 $$ Field reqOffset = ReadOperation.class.getDeclaredField("reqOffset") [CD]
+Line_3 $$ for (long offset = (long) (1.5 * (long) GiB_IN_BYTES); offset < maxOffset; offset += 997) --> Line_7 $$ reqOffset.setAccessible(true) [CD]
+Line_8 $$ for (ReadOperation operation : operations) --> Line_9 $$ assertTrue((Integer) reqOffset.get(operation) >= 0) [FD]

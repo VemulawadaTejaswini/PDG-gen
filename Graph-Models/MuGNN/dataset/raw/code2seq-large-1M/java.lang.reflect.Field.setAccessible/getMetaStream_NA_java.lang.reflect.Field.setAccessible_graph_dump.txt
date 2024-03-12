@@ -1,0 +1,8 @@
+Line_2 $$ private static MetaStream getMetaStream(InputStream stream) --> Line_3 $$ if (stream instanceof MetaStream) [FD]
+Line_2 $$ private static MetaStream getMetaStream(InputStream stream) --> Line_3 $$ if (stream instanceof MetaStream) [CD]
+Line_3 $$ if (stream instanceof MetaStream) --> Line_4 $$ return (MetaStream) stream [CD]
+Line_2 $$ private static MetaStream getMetaStream(InputStream stream) --> Line_6 $$ if (!(stream instanceof ByteLimitedInputStream)) [CD]
+Line_10 $$ ByteLimitedInputStream byteLimitedInputStream = (ByteLimitedInputStream) stream --> Line_11 $$ Field f = byteLimitedInputStream.getClass().getDeclaredField("wrappedStream") [FD]
+Line_11 $$ Field f = byteLimitedInputStream.getClass().getDeclaredField("wrappedStream") --> Line_12 $$ f.setAccessible(true) [FD]
+Line_11 $$ Field f = byteLimitedInputStream.getClass().getDeclaredField("wrappedStream") --> Line_13 $$ return (MetaStream) f.get(byteLimitedInputStream) [FD]
+Line_10 $$ ByteLimitedInputStream byteLimitedInputStream = (ByteLimitedInputStream) stream --> Line_13 $$ return (MetaStream) f.get(byteLimitedInputStream) [FD]

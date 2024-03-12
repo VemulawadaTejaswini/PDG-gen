@@ -1,0 +1,8 @@
+Line_2 $$ public void deletedChooseProduct(String userId) --> Line_3 $$ Map<Serializable, Object> map = redisService.getEntries(getCart(userId)) [CD]
+Line_2 $$ public void deletedChooseProduct(String userId) --> Line_3 $$ Map<Serializable, Object> map = redisService.getEntries(getCart(userId)) [FD]
+Line_2 $$ public void deletedChooseProduct(String userId) --> Line_4 $$ Set<Serializable> fields = map.keySet() [CD]
+Line_3 $$ Map<Serializable, Object> map = redisService.getEntries(getCart(userId)) --> Line_4 $$ Set<Serializable> fields = map.keySet() [FD]
+Line_5 $$ for (Serializable item : fields) --> Line_6 $$ if (item.toString().startsWith(Constant.CHOOSE)) [FD]
+Line_6 $$ if (item.toString().startsWith(Constant.CHOOSE)) --> Line_7 $$ redisService.deleteField(getCart(userId), item.toString()) [CD]
+Line_2 $$ public void deletedChooseProduct(String userId) --> Line_7 $$ redisService.deleteField(getCart(userId), item.toString()) [FD]
+Line_5 $$ for (Serializable item : fields) --> Line_7 $$ redisService.deleteField(getCart(userId), item.toString()) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public T allocate() --> Line_3 $$ int top = _top.get() [CD]
+Line_2 $$ public T allocate() --> Line_4 $$ if (top > 0 && _top.compareAndSet(top, top - 1)) [CD]
+Line_3 $$ int top = _top.get() --> Line_4 $$ if (top > 0 && _top.compareAndSet(top, top - 1)) [FD]
+Line_4 $$ if (top > 0 && _top.compareAndSet(top, top - 1)) --> Line_5 $$ return _freeStack.getAndSet(top - 1, null) [CD]
+Line_4 $$ if (top > 0 && _top.compareAndSet(top, top - 1)) --> Line_7 $$ return null [CD]

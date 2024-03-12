@@ -1,0 +1,6 @@
+Line_2 $$ public void testGrant() throws Exception --> Line_3 $$ long leaseID = leaseClient.grant(5).get().getID() [CD]
+Line_2 $$ public void testGrant() throws Exception --> Line_4 $$ PutResponse putRep = kvClient.put(KEY, VALUE, PutOption.newBuilder().withLeaseId(leaseID).build()).get() [CD]
+Line_3 $$ long leaseID = leaseClient.grant(5).get().getID() --> Line_4 $$ PutResponse putRep = kvClient.put(KEY, VALUE, PutOption.newBuilder().withLeaseId(leaseID).build()).get() [FD]
+Line_2 $$ public void testGrant() throws Exception --> Line_5 $$ test.assertEquals(kvClient.get(KEY).get().getCount(), 1) [CD]
+Line_2 $$ public void testGrant() throws Exception --> Line_6 $$ Thread.sleep(6000) [CD]
+Line_2 $$ public void testGrant() throws Exception --> Line_7 $$ test.assertEquals(kvClient.get(KEY).get().getCount(), 0) [CD]

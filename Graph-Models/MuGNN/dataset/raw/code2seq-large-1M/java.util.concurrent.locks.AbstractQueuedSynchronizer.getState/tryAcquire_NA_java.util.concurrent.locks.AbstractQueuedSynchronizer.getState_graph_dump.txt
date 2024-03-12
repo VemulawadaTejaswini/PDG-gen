@@ -1,0 +1,8 @@
+Line_2 $$ protected boolean tryAcquire(int acquires) --> Line_3 $$ int _state = getState() [CD]
+Line_2 $$ protected boolean tryAcquire(int acquires) --> Line_4 $$ if (_state == UNLOCKED) [CD]
+Line_3 $$ int _state = getState() --> Line_4 $$ if (_state == UNLOCKED) [FD]
+Line_4 $$ if (_state == UNLOCKED) --> Line_5 $$ if (compareAndSetState(_state, LOCKED)) [CD]
+Line_3 $$ int _state = getState() --> Line_5 $$ if (compareAndSetState(_state, LOCKED)) [FD]
+Line_5 $$ if (compareAndSetState(_state, LOCKED)) --> Line_6 $$ setExclusiveOwnerThread(Thread.currentThread()) [CD]
+Line_5 $$ if (compareAndSetState(_state, LOCKED)) --> Line_7 $$ return true [CD]
+Line_2 $$ protected boolean tryAcquire(int acquires) --> Line_10 $$ return false [CD]

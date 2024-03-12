@@ -1,0 +1,7 @@
+Line_2 $$ private static String determineSpringBootVersion() --> Line_3 $$ String implementationVersion = DependencyManagementPluginAction.class.getPackage().getImplementationVersion() [CD]
+Line_2 $$ private static String determineSpringBootVersion() --> Line_4 $$ if (implementationVersion != null) [CD]
+Line_4 $$ if (implementationVersion != null) --> Line_5 $$ return implementationVersion [CD]
+Line_2 $$ private static String determineSpringBootVersion() --> Line_7 $$ URL codeSourceLocation = DependencyManagementPluginAction.class.getProtectionDomain().getCodeSource().getLocation() [CD]
+Line_9 $$ URLConnection connection = codeSourceLocation.openConnection() --> Line_10 $$ if (connection instanceof JarURLConnection) [FD]
+Line_10 $$ if (connection instanceof JarURLConnection) --> Line_11 $$ return getImplementationVersion(((JarURLConnection) connection).getJarFile()) [CD]
+Line_13 $$ try (JarFile jarFile = new JarFile(new File(codeSourceLocation.toURI()))) --> Line_14 $$ return getImplementationVersion(jarFile) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void initializeListenerExecutor() --> Line_3 $$ final ThreadGroup loggerGroup = LoggingThreadGroup.createThreadGroup("Gateway Listener Group", logger) [CD]
+Line_2 $$ private void initializeListenerExecutor() --> Line_4 $$ ThreadFactory tf = new ThreadFactory() [CD]
+Line_4 $$ ThreadFactory tf = new ThreadFactory() --> Line_6 $$ Thread thread = new Thread(loggerGroup, command, "Queued Gateway Listener Thread") [CD]
+Line_4 $$ ThreadFactory tf = new ThreadFactory() --> Line_7 $$ thread.setDaemon(true) [CD]
+Line_6 $$ Thread thread = new Thread(loggerGroup, command, "Queued Gateway Listener Thread") --> Line_7 $$ thread.setDaemon(true) [FD]
+Line_4 $$ ThreadFactory tf = new ThreadFactory() --> Line_8 $$ return thread [CD]
+Line_2 $$ private void initializeListenerExecutor() --> Line_12 $$ this.executor = new ThreadPoolExecutor(1, 1, 120, TimeUnit.SECONDS, q, tf) [CD]

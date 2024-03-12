@@ -1,0 +1,8 @@
+Line_5 $$ List<ExprNodeDesc> children = Lists.newArrayList() --> Line_6 $$ children.add(column) [FD]
+Line_4 $$ ExprNodeDesc column = new ExprNodeColumnDesc(TypeInfoFactory.stringTypeInfo, "field1", null, false) --> Line_6 $$ children.add(column) [FD]
+Line_7 $$ ExprNodeGenericFuncDesc node = new ExprNodeGenericFuncDesc(TypeInfoFactory.stringTypeInfo, new GenericUDFOPNotNull(), children) --> Line_8 $$ assertNotNull(node) [FD]
+Line_7 $$ ExprNodeGenericFuncDesc node = new ExprNodeGenericFuncDesc(TypeInfoFactory.stringTypeInfo, new GenericUDFOPNotNull(), children) --> Line_9 $$ String filterExpr = SerializationUtilities.serializeExpression(node) [FD]
+Line_9 $$ String filterExpr = SerializationUtilities.serializeExpression(node) --> Line_10 $$ conf.set(TableScanDesc.FILTER_EXPR_CONF_STR, filterExpr) [FD]
+Line_11 $$ List<IndexSearchCondition> sConditions = handler.getSearchConditions(conf) --> Line_12 $$ assertEquals(sConditions.size(), 1) [FD]
+Line_11 $$ List<IndexSearchCondition> sConditions = handler.getSearchConditions(conf) --> Line_13 $$ IndexSearchCondition sc = sConditions.get(0) [FD]
+Line_13 $$ IndexSearchCondition sc = sConditions.get(0) --> Line_14 $$ new PushdownTuple(sc, handler.getPrimitiveComparison(sc.getColumnDesc().getTypeString(), sc), handler.getCompareOp(sc.getComparisonOp(), sc)) [FD]

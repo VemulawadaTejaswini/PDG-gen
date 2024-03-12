@@ -1,0 +1,5 @@
+Line_2 $$ public void testGetObjectField() throws Exception --> Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") [CD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) [FD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_11 $$ List<Integer> res = cache.query(new ScanQuery<Integer, Value>(), transformer).getAll() [FD]
+Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) --> Line_14 $$ for (int i = 0; i < 50; i++) assertEquals(i * 100, res.get(i).intValue()) [FD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_16 $$ cache.destroy() [FD]

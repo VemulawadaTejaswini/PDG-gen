@@ -1,0 +1,7 @@
+Line_2 $$ private static String getProjectId() --> Line_3 $$ String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME)) [CD]
+Line_2 $$ private static String getProjectId() --> Line_4 $$ if (projectId == null) [CD]
+Line_3 $$ String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME)) --> Line_4 $$ if (projectId == null) [FD]
+Line_4 $$ if (projectId == null) --> Line_5 $$ projectId = System.getProperty(LEGACY_PROJECT_ENV_NAME, System.getenv(LEGACY_PROJECT_ENV_NAME)) [CD]
+Line_3 $$ String projectId = System.getProperty(PROJECT_ENV_NAME, System.getenv(PROJECT_ENV_NAME)) --> Line_5 $$ projectId = System.getProperty(LEGACY_PROJECT_ENV_NAME, System.getenv(LEGACY_PROJECT_ENV_NAME)) [FD]
+Line_2 $$ private static String getProjectId() --> Line_7 $$ Preconditions.checkArgument(projectId != null, "A project ID is required.") [CD]
+Line_2 $$ private static String getProjectId() --> Line_8 $$ return projectId [CD]

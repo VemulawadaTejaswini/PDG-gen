@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldRejectExpireCommandIfJobNotFound() --> Line_3 $$ final long key = 1 [CD]
+Line_2 $$ public void shouldRejectExpireCommandIfJobNotFound() --> Line_4 $$ rule.runStreamProcessor(this::<>buildStreamProcessor) [CD]
+Line_2 $$ public void shouldRejectExpireCommandIfJobNotFound() --> Line_5 $$ rule.writeCommand(key, JobIntent.EXPIRE_LOCK, lockedJob(nowPlus(Duration.ofSeconds(30)))) [CD]
+Line_3 $$ final long key = 1 --> Line_5 $$ rule.writeCommand(key, JobIntent.EXPIRE_LOCK, lockedJob(nowPlus(Duration.ofSeconds(30)))) [FD]
+Line_2 $$ public void shouldRejectExpireCommandIfJobNotFound() --> Line_6 $$ waitForRejection(JobIntent.EXPIRE_LOCK) [CD]
+Line_2 $$ public void shouldRejectExpireCommandIfJobNotFound() --> Line_7 $$ final List<TypedRecord<JobRecord>> jobEvents = rule.events().onlyJobRecords().collect(Collectors.toList()) [CD]
+Line_2 $$ public void shouldRejectExpireCommandIfJobNotFound() --> Line_8 $$ assertThat(jobEvents).extracting( r -> r.getMetadata()).extracting( m -> m.getRecordType(),  m -> m.getIntent()).containsExactly(tuple(RecordType.COMMAND, JobIntent.EXPIRE_LOCK), tuple(RecordType.COMMAND_REJECTION, JobIntent.EXPIRE_LOCK)) [CD]
+Line_7 $$ final List<TypedRecord<JobRecord>> jobEvents = rule.events().onlyJobRecords().collect(Collectors.toList()) --> Line_8 $$ assertThat(jobEvents).extracting( r -> r.getMetadata()).extracting( m -> m.getRecordType(),  m -> m.getIntent()).containsExactly(tuple(RecordType.COMMAND, JobIntent.EXPIRE_LOCK), tuple(RecordType.COMMAND_REJECTION, JobIntent.EXPIRE_LOCK)) [FD]

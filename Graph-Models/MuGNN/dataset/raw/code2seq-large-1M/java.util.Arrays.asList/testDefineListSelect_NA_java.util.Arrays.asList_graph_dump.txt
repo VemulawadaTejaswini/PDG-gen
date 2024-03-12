@@ -1,0 +1,4 @@
+Line_2 $$ public void testDefineListSelect() throws Exception --> Line_3 $$ list = handle.createQuery("select <columns> from thing order by id").defineList("columns", Arrays.asList("id", "foo", "bar")).mapTo(Thing.class).list() [CD]
+Line_2 $$ public void testDefineListSelect() throws Exception --> Line_4 $$ assertThat(list).extracting(Thing::<>getId, Thing::<>getFoo, Thing::<>getBar, Thing::<>getBaz).containsExactly(tuple(1, "foo1", "bar1", null), tuple(2, "foo2", "bar2", null)) [CD]
+Line_2 $$ public void testDefineListSelect() throws Exception --> Line_5 $$ list = handle.createQuery("select <columns> from thing order by id").defineList("columns", Arrays.asList("id", "baz")).mapTo(Thing.class).list() [CD]
+Line_2 $$ public void testDefineListSelect() throws Exception --> Line_6 $$ assertThat(list).extracting(Thing::<>getId, Thing::<>getFoo, Thing::<>getBar, Thing::<>getBaz).containsExactly(tuple(1, null, null, "baz1"), tuple(2, null, null, "baz2")) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ protected void handleTableUpdate(TableModelEvent e) --> Line_3 $$ int dmgColumn = m_tableModel.columnFromKey(AttackTableModel.COLUMN_KEY_DMGTOT) [CD]
+Line_2 $$ protected void handleTableUpdate(TableModelEvent e) --> Line_4 $$ if ((dmgColumn == e.getColumn()) || (e.getColumn() == TableModelEvent.ALL_COLUMNS) || (e.getType() == TableModelEvent.DELETE) || (e.getType() == TableModelEvent.INSERT)) [CD]
+Line_2 $$ protected void handleTableUpdate(TableModelEvent e) --> Line_4 $$ if ((dmgColumn == e.getColumn()) || (e.getColumn() == TableModelEvent.ALL_COLUMNS) || (e.getType() == TableModelEvent.DELETE) || (e.getType() == TableModelEvent.INSERT)) [FD]
+Line_4 $$ if ((dmgColumn == e.getColumn()) || (e.getColumn() == TableModelEvent.ALL_COLUMNS) || (e.getType() == TableModelEvent.DELETE) || (e.getType() == TableModelEvent.INSERT)) --> Line_6 $$ for (int i = 0; i < m_table.getRowCount(); i++) [CD]
+Line_6 $$ for (int i = 0; i < m_table.getRowCount(); i++) --> Line_7 $$ m_totalDmg += m_tableModel.getIntAt(i, dmgColumn) [CD]
+Line_6 $$ for (int i = 0; i < m_table.getRowCount(); i++) --> Line_7 $$ m_totalDmg += m_tableModel.getIntAt(i, dmgColumn) [FD]
+Line_3 $$ int dmgColumn = m_tableModel.columnFromKey(AttackTableModel.COLUMN_KEY_DMGTOT) --> Line_7 $$ m_totalDmg += m_tableModel.getIntAt(i, dmgColumn) [FD]
+Line_4 $$ if ((dmgColumn == e.getColumn()) || (e.getColumn() == TableModelEvent.ALL_COLUMNS) || (e.getType() == TableModelEvent.DELETE) || (e.getType() == TableModelEvent.INSERT)) --> Line_9 $$ m_totalDamageLabel.setText("<html>Total Damage: <b>" + m_totalDmg + "</b></html>") [CD]

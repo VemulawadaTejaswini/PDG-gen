@@ -1,0 +1,5 @@
+Line_2 $$ PendingCheckpointStats reportPendingCheckpoint(long checkpointId, long triggerTimestamp, CheckpointProperties props) --> Line_3 $$ ConcurrentHashMap<JobVertexID, TaskStateStats> taskStateStats = createEmptyTaskStateStatsMap() [CD]
+Line_2 $$ PendingCheckpointStats reportPendingCheckpoint(long checkpointId, long triggerTimestamp, CheckpointProperties props) --> Line_4 $$ PendingCheckpointStats pending = new PendingCheckpointStats(checkpointId, triggerTimestamp, props, totalSubtaskCount, taskStateStats, new PendingCheckpointStatsCallback()) [CD]
+Line_2 $$ PendingCheckpointStats reportPendingCheckpoint(long checkpointId, long triggerTimestamp, CheckpointProperties props) --> Line_5 $$ statsReadWriteLock.lock() [CD]
+Line_4 $$ PendingCheckpointStats pending = new PendingCheckpointStats(checkpointId, triggerTimestamp, props, totalSubtaskCount, taskStateStats, new PendingCheckpointStatsCallback()) --> Line_8 $$ history.addInProgressCheckpoint(pending) [FD]
+Line_2 $$ PendingCheckpointStats reportPendingCheckpoint(long checkpointId, long triggerTimestamp, CheckpointProperties props) --> Line_13 $$ return pending [CD]

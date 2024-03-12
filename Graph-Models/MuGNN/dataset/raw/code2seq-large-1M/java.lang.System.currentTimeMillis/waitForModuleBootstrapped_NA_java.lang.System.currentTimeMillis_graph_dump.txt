@@ -1,0 +1,8 @@
+Line_2 $$ public void waitForModuleBootstrapped(String identifier, long time, TimeUnit unit) throws SiteWhereException --> Line_3 $$ String bspath = ((IConfigurableMicroservice<?>) getMicroservice()).getInstanceTenantStatePath(getTenant().getId()) + "/" + identifier + "/" + MicroserviceTenantEngine.MODULE_BOOTSTRAPPED_NAME [CD]
+Line_2 $$ public void waitForModuleBootstrapped(String identifier, long time, TimeUnit unit) throws SiteWhereException --> Line_4 $$ CuratorFramework curator = getMicroservice().getZookeeperManager().getCurator() [CD]
+Line_2 $$ public void waitForModuleBootstrapped(String identifier, long time, TimeUnit unit) throws SiteWhereException --> Line_5 $$ long deadline = System.currentTimeMillis() + unit.toMillis(time) [FD]
+Line_2 $$ public void waitForModuleBootstrapped(String identifier, long time, TimeUnit unit) throws SiteWhereException --> Line_5 $$ long deadline = System.currentTimeMillis() + unit.toMillis(time) [CD]
+Line_2 $$ public void waitForModuleBootstrapped(String identifier, long time, TimeUnit unit) throws SiteWhereException --> Line_6 $$ while ((deadline - System.currentTimeMillis()) > 0) [CD]
+Line_3 $$ String bspath = ((IConfigurableMicroservice<?>) getMicroservice()).getInstanceTenantStatePath(getTenant().getId()) + "/" + identifier + "/" + MicroserviceTenantEngine.MODULE_BOOTSTRAPPED_NAME --> Line_8 $$ if (curator.checkExists().forPath(bspath) != null) [FD]
+Line_4 $$ CuratorFramework curator = getMicroservice().getZookeeperManager().getCurator() --> Line_8 $$ if (curator.checkExists().forPath(bspath) != null) [FD]
+Line_8 $$ if (curator.checkExists().forPath(bspath) != null) --> Line_9 $$ return [CD]

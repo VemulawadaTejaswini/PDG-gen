@@ -1,0 +1,5 @@
+Line_2 $$ void percentileHistogramsNeverResetForSummaries() --> Line_3 $$ DistributionSummary s = DistributionSummary.builder("s1").publishPercentileHistogram().distributionStatisticExpiry(Duration.ofSeconds(60)).sla(100).register(registry) [CD]
+Line_2 $$ void percentileHistogramsNeverResetForSummaries() --> Line_4 $$ s.record(100) [CD]
+Line_3 $$ DistributionSummary s = DistributionSummary.builder("s1").publishPercentileHistogram().distributionStatisticExpiry(Duration.ofSeconds(60)).sla(100).register(registry) --> Line_4 $$ s.record(100) [FD]
+Line_2 $$ void percentileHistogramsNeverResetForSummaries() --> Line_5 $$ clock.addSeconds(60) [CD]
+Line_2 $$ void percentileHistogramsNeverResetForSummaries() --> Line_6 $$ assertThat(registry.scrape()).contains("s1_bucket [CD]

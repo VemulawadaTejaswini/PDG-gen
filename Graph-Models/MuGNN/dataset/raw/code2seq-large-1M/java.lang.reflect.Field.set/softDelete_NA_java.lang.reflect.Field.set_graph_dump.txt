@@ -1,0 +1,8 @@
+Line_2 $$ private void softDelete(Object entity) --> Line_4 $$ Object idval = getEOPrimaryKeyValue(entity) [FD]
+Line_4 $$ Object idval = getEOPrimaryKeyValue(entity) --> Line_5 $$ if (idval == null) [FD]
+Line_5 $$ if (idval == null) --> Line_6 $$ return [CD]
+Line_4 $$ Object idval = getEOPrimaryKeyValue(entity) --> Line_8 $$ Object eo = getEntityManager().find(eoClass, idval) [FD]
+Line_8 $$ Object eo = getEntityManager().find(eoClass, idval) --> Line_9 $$ eoSoftDeleteColumn.set(eo, new Timestamp(new Date().getTime()).toString()) [FD]
+Line_8 $$ Object eo = getEntityManager().find(eoClass, idval) --> Line_10 $$ getEntityManager().merge(eo) [FD]
+Line_4 $$ Object idval = getEOPrimaryKeyValue(entity) --> Line_11 $$ fireSoftDeleteExtension(Arrays.asList(idval), voClass) [FD]
+Line_4 $$ Object idval = getEOPrimaryKeyValue(entity) --> Line_12 $$ fireSoftDeleteExtensionByEOClass(Arrays.asList(idval), eoClass) [FD]

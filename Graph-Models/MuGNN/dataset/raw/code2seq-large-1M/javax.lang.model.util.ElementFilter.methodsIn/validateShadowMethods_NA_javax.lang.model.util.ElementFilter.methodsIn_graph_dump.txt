@@ -1,0 +1,7 @@
+Line_2 $$ private void validateShadowMethods(TypeElement elem) --> Line_3 $$ for (Element memberElement : ElementFilter.methodsIn(elem.getEnclosedElements())) [FD]
+Line_3 $$ for (Element memberElement : ElementFilter.methodsIn(elem.getEnclosedElements())) --> Line_5 $$ Implementation implementation = memberElement.getAnnotation(Implementation.class) [FD]
+Line_4 $$ ExecutableElement methodElement = (ExecutableElement) memberElement --> Line_6 $$ String methodName = methodElement.getSimpleName().toString() [FD]
+Line_6 $$ String methodName = methodElement.getSimpleName().toString() --> Line_7 $$ if (methodName.equals(CONSTRUCTOR_METHOD_NAME) || methodName.equals(STATIC_INITIALIZER_METHOD_NAME)) [FD]
+Line_7 $$ if (methodName.equals(CONSTRUCTOR_METHOD_NAME) || methodName.equals(STATIC_INITIALIZER_METHOD_NAME)) --> Line_8 $$ if (implementation == null) [CD]
+Line_8 $$ if (implementation == null) --> Line_9 $$ messager.printMessage(Kind.ERROR, "Shadow methods must be annotated @Implementation", methodElement) [CD]
+Line_4 $$ ExecutableElement methodElement = (ExecutableElement) memberElement --> Line_9 $$ messager.printMessage(Kind.ERROR, "Shadow methods must be annotated @Implementation", methodElement) [FD]

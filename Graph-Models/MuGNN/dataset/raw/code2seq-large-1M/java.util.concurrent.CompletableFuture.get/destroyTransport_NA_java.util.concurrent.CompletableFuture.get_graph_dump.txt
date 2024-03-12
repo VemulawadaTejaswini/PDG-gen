@@ -1,0 +1,7 @@
+Line_2 $$ public static void destroyTransport(Transport transport) --> Line_3 $$ if (transport != null && !transport.isStopped()) [FD]
+Line_2 $$ public static void destroyTransport(Transport transport) --> Line_3 $$ if (transport != null && !transport.isStopped()) [CD]
+Line_3 $$ if (transport != null && !transport.isStopped()) --> Line_4 $$ CompletableFuture<Void> close = new CompletableFuture() [CD]
+Line_3 $$ if (transport != null && !transport.isStopped()) --> Line_5 $$ transport.stop(close) [CD]
+Line_2 $$ public static void destroyTransport(Transport transport) --> Line_5 $$ transport.stop(close) [FD]
+Line_4 $$ CompletableFuture<Void> close = new CompletableFuture() --> Line_5 $$ transport.stop(close) [FD]
+Line_4 $$ CompletableFuture<Void> close = new CompletableFuture() --> Line_7 $$ close.get(1, TimeUnit.SECONDS) [FD]

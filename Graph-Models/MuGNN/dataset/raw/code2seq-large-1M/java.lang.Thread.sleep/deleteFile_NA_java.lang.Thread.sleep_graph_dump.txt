@@ -1,0 +1,7 @@
+Line_2 $$ public void deleteFile(String filePath) --> Line_3 $$ int retryCount = 1 [CD]
+Line_2 $$ public void deleteFile(String filePath) --> Line_4 $$ while (retryCount <= deleteFileRetryCount) [CD]
+Line_3 $$ int retryCount = 1 --> Line_4 $$ while (retryCount <= deleteFileRetryCount) [FD]
+Line_6 $$ if (writer.getFS().exists(new Path(filePath))) --> Line_7 $$ Thread.sleep(1000 * retryCount) [CD]
+Line_6 $$ if (writer.getFS().exists(new Path(filePath))) --> Line_8 $$ writer.getFS().delete(new Path(filePath), false) [CD]
+Line_6 $$ if (writer.getFS().exists(new Path(filePath))) --> Line_9 $$ ++retryCount [CD]
+Line_3 $$ int retryCount = 1 --> Line_9 $$ ++retryCount [FD]

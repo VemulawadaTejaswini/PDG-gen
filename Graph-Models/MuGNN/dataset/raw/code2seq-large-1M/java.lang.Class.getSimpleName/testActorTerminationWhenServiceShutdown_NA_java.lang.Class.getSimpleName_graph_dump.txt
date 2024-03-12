@@ -1,0 +1,6 @@
+Line_2 $$ public void testActorTerminationWhenServiceShutdown() throws Exception --> Line_3 $$ final ActorSystem rpcActorSystem = AkkaUtils.createDefaultActorSystem() [CD]
+Line_2 $$ public void testActorTerminationWhenServiceShutdown() throws Exception --> Line_4 $$ final RpcService rpcService = new AkkaRpcService(rpcActorSystem, timeout) [CD]
+Line_4 $$ final RpcService rpcService = new AkkaRpcService(rpcActorSystem, timeout) --> Line_9 $$ rpcService.stopService() [FD]
+Line_8 $$ CompletableFuture<Void> terminationFuture = rpcEndpoint.getTerminationFuture() --> Line_10 $$ terminationFuture.get(timeout.toMilliseconds(), TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ final ActorSystem rpcActorSystem = AkkaUtils.createDefaultActorSystem() --> Line_12 $$ rpcActorSystem.shutdown() [FD]
+Line_3 $$ final ActorSystem rpcActorSystem = AkkaUtils.createDefaultActorSystem() --> Line_13 $$ rpcActorSystem.awaitTermination(FutureUtils.toFiniteDuration(timeout)) [FD]

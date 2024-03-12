@@ -1,0 +1,8 @@
+Line_2 $$ private FileStatus deprecatedGetFileLinkStatusInternal(final Path f) throws IOException --> Line_3 $$ String target = FileUtil.readLink(new File(f.toString())) [FD]
+Line_2 $$ private FileStatus deprecatedGetFileLinkStatusInternal(final Path f) throws IOException --> Line_3 $$ String target = FileUtil.readLink(new File(f.toString())) [CD]
+Line_2 $$ private FileStatus deprecatedGetFileLinkStatusInternal(final Path f) throws IOException --> Line_5 $$ FileStatus fs = getFileStatus(f) [FD]
+Line_3 $$ String target = FileUtil.readLink(new File(f.toString())) --> Line_6 $$ if (target.isEmpty()) [FD]
+Line_6 $$ if (target.isEmpty()) --> Line_7 $$ return fs [CD]
+Line_5 $$ FileStatus fs = getFileStatus(f) --> Line_9 $$ return new FileStatus(fs.getLen(), false, fs.getReplication(), fs.getBlockSize(), fs.getModificationTime(), fs.getAccessTime(), fs.getPermission(), fs.getOwner(), fs.getGroup(), new Path(target), f) [FD]
+Line_3 $$ String target = FileUtil.readLink(new File(f.toString())) --> Line_11 $$ if (!target.isEmpty()) [FD]
+Line_11 $$ if (!target.isEmpty()) --> Line_12 $$ return new FileStatus(0, false, 0, 0, 0, 0, FsPermission.getDefault(), "", "", new Path(target), f) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testUDFInMergedJoin() throws Exception --> Line_3 $$ String query = "a = load 'input1';" + "b = load 'input2' using " + TestIndexableLoadFunc.class.getName() + "();" + "c = join a by $0, b by $0 using 'merge';" + "store c into 'output';" [CD]
+Line_2 $$ public void testUDFInMergedJoin() throws Exception --> Line_4 $$ PhysicalPlan pp = Util.buildPp(pigServer, query) [CD]
+Line_2 $$ public void testUDFInMergedJoin() throws Exception --> Line_5 $$ MROperPlan mrPlan = Util.buildMRPlan(pp, pc) [CD]
+Line_4 $$ PhysicalPlan pp = Util.buildPp(pigServer, query) --> Line_5 $$ MROperPlan mrPlan = Util.buildMRPlan(pp, pc) [FD]
+Line_2 $$ public void testUDFInMergedJoin() throws Exception --> Line_6 $$ MapReduceOper mrOper = mrPlan.getRoots().get(0) [CD]
+Line_5 $$ MROperPlan mrPlan = Util.buildMRPlan(pp, pc) --> Line_6 $$ MapReduceOper mrOper = mrPlan.getRoots().get(0) [FD]
+Line_2 $$ public void testUDFInMergedJoin() throws Exception --> Line_7 $$ assertTrue(mrOper.UDFs.contains(TestIndexableLoadFunc.class.getName())) [CD]

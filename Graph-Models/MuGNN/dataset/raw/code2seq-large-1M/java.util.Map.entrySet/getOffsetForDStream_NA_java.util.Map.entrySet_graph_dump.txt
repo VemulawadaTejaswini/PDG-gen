@@ -1,0 +1,6 @@
+Line_2 $$ public Map<TopicPartition, Long> getOffsetForDStream(String topic, int numberOfPartitions) --> Line_3 $$ Map<TopicPartition, Long> offsetForDStream = new HashMap() [CD]
+Line_2 $$ public Map<TopicPartition, Long> getOffsetForDStream(String topic, int numberOfPartitions) --> Line_4 $$ Map<Integer, Long> partitionsToOffset = readOffsets(numberOfPartitions) [FD]
+Line_2 $$ public Map<TopicPartition, Long> getOffsetForDStream(String topic, int numberOfPartitions) --> Line_4 $$ Map<Integer, Long> partitionsToOffset = readOffsets(numberOfPartitions) [CD]
+Line_4 $$ Map<Integer, Long> partitionsToOffset = readOffsets(numberOfPartitions) --> Line_5 $$ for (Map.Entry<Integer, Long> partitionAndOffset : partitionsToOffset.entrySet()) [FD]
+Line_3 $$ Map<TopicPartition, Long> offsetForDStream = new HashMap() --> Line_6 $$ offsetForDStream.put(new TopicPartition(topic, partitionAndOffset.getKey()), partitionAndOffset.getValue()) [FD]
+Line_2 $$ public Map<TopicPartition, Long> getOffsetForDStream(String topic, int numberOfPartitions) --> Line_8 $$ return offsetForDStream [CD]

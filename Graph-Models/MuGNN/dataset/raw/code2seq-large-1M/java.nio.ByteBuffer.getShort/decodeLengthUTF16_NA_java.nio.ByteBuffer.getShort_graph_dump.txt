@@ -1,0 +1,7 @@
+Line_2 $$ private static int decodeLengthUTF16(ByteBuffer buffer, int offset) --> Line_3 $$ int length = (buffer.getShort(offset) & 0xFFFF) [FD]
+Line_2 $$ private static int decodeLengthUTF16(ByteBuffer buffer, int offset) --> Line_3 $$ int length = (buffer.getShort(offset) & 0xFFFF) [CD]
+Line_2 $$ private static int decodeLengthUTF16(ByteBuffer buffer, int offset) --> Line_4 $$ if ((length & 0x8000) != 0) [CD]
+Line_4 $$ if ((length & 0x8000) != 0) --> Line_5 $$ length = ((length & 0x7FFF) << 16) | (buffer.getShort(offset + 2) & 0xFFFF) [CD]
+Line_3 $$ int length = (buffer.getShort(offset) & 0xFFFF) --> Line_5 $$ length = ((length & 0x7FFF) << 16) | (buffer.getShort(offset + 2) & 0xFFFF) [FD]
+Line_2 $$ private static int decodeLengthUTF16(ByteBuffer buffer, int offset) --> Line_5 $$ length = ((length & 0x7FFF) << 16) | (buffer.getShort(offset + 2) & 0xFFFF) [FD]
+Line_2 $$ private static int decodeLengthUTF16(ByteBuffer buffer, int offset) --> Line_7 $$ return length [CD]

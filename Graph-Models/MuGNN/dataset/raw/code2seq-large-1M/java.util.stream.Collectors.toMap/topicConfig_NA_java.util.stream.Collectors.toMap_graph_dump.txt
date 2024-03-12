@@ -1,0 +1,6 @@
+Line_2 $$ private Map<String, String> topicConfig(final String topicName, final boolean includeDefaults) --> Line_3 $$ final ConfigResource resource = new ConfigResource(ConfigResource.Type.TOPIC, topicName) [CD]
+Line_2 $$ private Map<String, String> topicConfig(final String topicName, final boolean includeDefaults) --> Line_4 $$ final List<ConfigResource> request = Collections.singletonList(resource) [CD]
+Line_3 $$ final ConfigResource resource = new ConfigResource(ConfigResource.Type.TOPIC, topicName) --> Line_4 $$ final List<ConfigResource> request = Collections.singletonList(resource) [FD]
+Line_3 $$ final ConfigResource resource = new ConfigResource(ConfigResource.Type.TOPIC, topicName) --> Line_6 $$ final Config config = executeWithRetries(() -> adminClient.describeConfigs(request).all()).get(resource) [FD]
+Line_4 $$ final List<ConfigResource> request = Collections.singletonList(resource) --> Line_6 $$ final Config config = executeWithRetries(() -> adminClient.describeConfigs(request).all()).get(resource) [FD]
+Line_6 $$ final Config config = executeWithRetries(() -> adminClient.describeConfigs(request).all()).get(resource) --> Line_7 $$ return config.entries().stream().filter( e -> includeDefaults || e.source().equals(ConfigEntry.ConfigSource.DYNAMIC_TOPIC_CONFIG)).collect(Collectors.toMap(ConfigEntry::<>name, ConfigEntry::<>value)) [FD]

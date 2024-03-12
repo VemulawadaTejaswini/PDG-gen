@@ -1,0 +1,8 @@
+Line_2 $$ public static <R, T> Stream<R> shortCircuitingflatMap(Stream<T> st, Function<T, Stream<R>> flatMapper) --> Line_3 $$ Spliterator<T> sourceSpliterator = st.spliterator() [FD]
+Line_2 $$ public static <R, T> Stream<R> shortCircuitingflatMap(Stream<T> st, Function<T, Stream<R>> flatMapper) --> Line_3 $$ Spliterator<T> sourceSpliterator = st.spliterator() [CD]
+Line_2 $$ public static <R, T> Stream<R> shortCircuitingflatMap(Stream<T> st, Function<T, Stream<R>> flatMapper) --> Line_4 $$ ShortCircuitFlatMapSpliterator<R, T> sinkSpliterator = new ShortCircuitFlatMapSpliterator(sourceSpliterator, flatMapper) [CD]
+Line_2 $$ public static <R, T> Stream<R> shortCircuitingflatMap(Stream<T> st, Function<T, Stream<R>> flatMapper) --> Line_5 $$ Stream<R> resultStream = StreamSupport.stream(sinkSpliterator, false) [CD]
+Line_4 $$ ShortCircuitFlatMapSpliterator<R, T> sinkSpliterator = new ShortCircuitFlatMapSpliterator(sourceSpliterator, flatMapper) --> Line_5 $$ Stream<R> resultStream = StreamSupport.stream(sinkSpliterator, false) [FD]
+Line_2 $$ public static <R, T> Stream<R> shortCircuitingflatMap(Stream<T> st, Function<T, Stream<R>> flatMapper) --> Line_6 $$ resultStream = resultStream.onClose(st::<>close).onClose(sinkSpliterator::<>close) [CD]
+Line_5 $$ Stream<R> resultStream = StreamSupport.stream(sinkSpliterator, false) --> Line_6 $$ resultStream = resultStream.onClose(st::<>close).onClose(sinkSpliterator::<>close) [FD]
+Line_2 $$ public static <R, T> Stream<R> shortCircuitingflatMap(Stream<T> st, Function<T, Stream<R>> flatMapper) --> Line_7 $$ return resultStream [CD]

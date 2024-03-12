@@ -1,0 +1,7 @@
+Line_2 $$ public void canCallSubTemplates() throws Exception --> Line_3 $$ Templates templates = Templates.templates().add("subTemplateA",  ignore -> "...").add("subTemplateB",  context -> "Your last name is " + ((Map<?, ?>) context).get("name")) [CD]
+Line_2 $$ public void canCallSubTemplates() throws Exception --> Line_4 $$ Template template = template("Hello $first$ $subTemplateA()$ $subTemplateB(name=last)$", templates) [CD]
+Line_3 $$ Templates templates = Templates.templates().add("subTemplateA",  ignore -> "...").add("subTemplateB",  context -> "Your last name is " + ((Map<?, ?>) context).get("name")) --> Line_4 $$ Template template = template("Hello $first$ $subTemplateA()$ $subTemplateB(name=last)$", templates) [FD]
+Line_2 $$ public void canCallSubTemplates() throws Exception --> Line_5 $$ String result = template.render(map("first", "Dan", "last", "Bodart")) [CD]
+Line_4 $$ Template template = template("Hello $first$ $subTemplateA()$ $subTemplateB(name=last)$", templates) --> Line_5 $$ String result = template.render(map("first", "Dan", "last", "Bodart")) [FD]
+Line_2 $$ public void canCallSubTemplates() throws Exception --> Line_6 $$ assertThat(result, Matchers.is("Hello Dan ... Your last name is Bodart")) [CD]
+Line_5 $$ String result = template.render(map("first", "Dan", "last", "Bodart")) --> Line_6 $$ assertThat(result, Matchers.is("Hello Dan ... Your last name is Bodart")) [FD]

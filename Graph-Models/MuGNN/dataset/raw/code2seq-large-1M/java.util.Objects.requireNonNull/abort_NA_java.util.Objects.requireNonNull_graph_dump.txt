@@ -1,0 +1,7 @@
+Line_2 $$ public void abort(String index, Exception cause) --> Line_3 $$ if (primaryResponse == null) [CD]
+Line_3 $$ if (primaryResponse == null) --> Line_4 $$ final BulkItemResponse.Failure failure = new BulkItemResponse.Failure(index, request.type(), request.id(), Objects.requireNonNull(cause), true) [CD]
+Line_2 $$ public void abort(String index, Exception cause) --> Line_4 $$ final BulkItemResponse.Failure failure = new BulkItemResponse.Failure(index, request.type(), request.id(), Objects.requireNonNull(cause), true) [FD]
+Line_3 $$ if (primaryResponse == null) --> Line_5 $$ setPrimaryResponse(new BulkItemResponse(id, request.opType(), failure)) [CD]
+Line_3 $$ if (primaryResponse == null) --> Line_8 $$ if (primaryResponse.isFailed() && primaryResponse.getFailure().isAborted()) [CD]
+Line_8 $$ if (primaryResponse.isFailed() && primaryResponse.getFailure().isAborted()) --> Line_9 $$ primaryResponse.getFailure().getCause().addSuppressed(cause) [CD]
+Line_2 $$ public void abort(String index, Exception cause) --> Line_9 $$ primaryResponse.getFailure().getCause().addSuppressed(cause) [FD]

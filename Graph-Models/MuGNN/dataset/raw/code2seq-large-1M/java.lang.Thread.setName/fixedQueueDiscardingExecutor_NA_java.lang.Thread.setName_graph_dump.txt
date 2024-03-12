@@ -1,0 +1,6 @@
+Line_2 $$ private static Executor fixedQueueDiscardingExecutor(int queueSize) --> Line_3 $$ final ThreadFactory threadFactory = new ThreadFactory() [CD]
+Line_3 $$ final ThreadFactory threadFactory = new ThreadFactory() --> Line_6 $$ final Thread thread = new Thread(runnable) [CD]
+Line_3 $$ final ThreadFactory threadFactory = new ThreadFactory() --> Line_7 $$ thread.setName(String.format(Locale.US, "Sentry HTTP Thread %d", count.incrementAndGet())) [CD]
+Line_6 $$ final Thread thread = new Thread(runnable) --> Line_7 $$ thread.setName(String.format(Locale.US, "Sentry HTTP Thread %d", count.incrementAndGet())) [FD]
+Line_3 $$ final ThreadFactory threadFactory = new ThreadFactory() --> Line_8 $$ return thread [CD]
+Line_2 $$ private static Executor fixedQueueDiscardingExecutor(int queueSize) --> Line_11 $$ return new ThreadPoolExecutor(0, 1, 60, SECONDS, new ArrayBlockingQueue<Runnable>(queueSize), threadFactory, new ThreadPoolExecutor.DiscardPolicy()) [CD]

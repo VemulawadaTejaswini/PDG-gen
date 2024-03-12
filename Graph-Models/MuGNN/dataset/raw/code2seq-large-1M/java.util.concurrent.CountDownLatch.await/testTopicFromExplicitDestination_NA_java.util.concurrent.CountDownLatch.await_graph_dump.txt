@@ -1,0 +1,5 @@
+Line_2 $$ public void testTopicFromExplicitDestination() throws JMSException, InterruptedException --> Line_3 $$ Destination dest = new ActiveMQTopic(TOPIC_NAME) [CD]
+Line_4 $$ try (IgniteDataStreamer<String, String> dataStreamer = grid().dataStreamer(DEFAULT_CACHE_NAME)) --> Line_5 $$ JmsStreamer<ObjectMessage, String, String> jmsStreamer = newJmsStreamer(ObjectMessage.class, dataStreamer) [FD]
+Line_3 $$ Destination dest = new ActiveMQTopic(TOPIC_NAME) --> Line_6 $$ jmsStreamer.setDestination(dest) [FD]
+Line_3 $$ Destination dest = new ActiveMQTopic(TOPIC_NAME) --> Line_9 $$ produceObjectMessages(dest, false) [FD]
+Line_7 $$ CountDownLatch latch = subscribeToPutEvents(CACHE_ENTRY_COUNT) --> Line_10 $$ latch.await(10, TimeUnit.SECONDS) [FD]

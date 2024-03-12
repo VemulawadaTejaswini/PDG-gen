@@ -1,0 +1,5 @@
+Line_5 $$ for (int i = 0; i < file.contentSize; i++) --> Line_6 $$ contents.append(i % 10) [CD]
+Line_4 $$ StringBuffer contents = new StringBuffer(file.contentSize) --> Line_6 $$ contents.append(i % 10) [FD]
+Line_2 $$ private void createFiles(GcsService gcsService) throws IOException --> Line_8 $$ try (GcsOutputChannel outputChannel = gcsService.createOrReplace(file.filename, GcsFileOptions.getDefaultInstance())) [FD]
+Line_8 $$ try (GcsOutputChannel outputChannel = gcsService.createOrReplace(file.filename, GcsFileOptions.getDefaultInstance())) --> Line_9 $$ outputChannel.write(UTF_8.encode(CharBuffer.wrap(contents.toString()))) [FD]
+Line_4 $$ StringBuffer contents = new StringBuffer(file.contentSize) --> Line_9 $$ outputChannel.write(UTF_8.encode(CharBuffer.wrap(contents.toString()))) [FD]

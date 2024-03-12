@@ -1,0 +1,8 @@
+Line_2 $$ static List<HostSpec> getCandidateHosts(HostSpec[] hostSpecs, HostRequirement targetServerType, long hostRecheckMillis) --> Line_3 $$ List<HostSpec> candidates = new ArrayList<HostSpec>(hostSpecs.length) [CD]
+Line_2 $$ static List<HostSpec> getCandidateHosts(HostSpec[] hostSpecs, HostRequirement targetServerType, long hostRecheckMillis) --> Line_4 $$ long latestAllowedUpdate = currentTimeMillis() - hostRecheckMillis [CD]
+Line_6 $$ for (HostSpec hostSpec : hostSpecs) --> Line_7 $$ HostSpecStatus hostInfo = hostStatusMap.get(hostSpec) [FD]
+Line_2 $$ static List<HostSpec> getCandidateHosts(HostSpec[] hostSpecs, HostRequirement targetServerType, long hostRecheckMillis) --> Line_8 $$ if (hostInfo == null || hostInfo.lastUpdated < latestAllowedUpdate || targetServerType.allowConnectingTo(hostInfo.status)) [FD]
+Line_8 $$ if (hostInfo == null || hostInfo.lastUpdated < latestAllowedUpdate || targetServerType.allowConnectingTo(hostInfo.status)) --> Line_9 $$ candidates.add(hostSpec) [CD]
+Line_3 $$ List<HostSpec> candidates = new ArrayList<HostSpec>(hostSpecs.length) --> Line_9 $$ candidates.add(hostSpec) [FD]
+Line_6 $$ for (HostSpec hostSpec : hostSpecs) --> Line_9 $$ candidates.add(hostSpec) [FD]
+Line_2 $$ static List<HostSpec> getCandidateHosts(HostSpec[] hostSpecs, HostRequirement targetServerType, long hostRecheckMillis) --> Line_13 $$ return candidates [CD]

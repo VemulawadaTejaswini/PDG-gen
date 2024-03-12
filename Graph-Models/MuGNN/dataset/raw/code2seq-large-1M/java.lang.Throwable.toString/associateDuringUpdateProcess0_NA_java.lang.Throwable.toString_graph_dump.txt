@@ -1,0 +1,8 @@
+Line_2 $$ private void associateDuringUpdateProcess0(final I_C_Invoice_Candidate invoiceCandidateRecord) --> Line_4 $$ final AssignableInvoiceCandidate assignableInvoiceCandidate = invoiceCandidateRepository.ofRecord(invoiceCandidateRecord) [FD]
+Line_4 $$ final AssignableInvoiceCandidate assignableInvoiceCandidate = invoiceCandidateRepository.ofRecord(invoiceCandidateRecord) --> Line_5 $$ final RefundInvoiceCandidate refundInvoiceCandidate = assignableInvoiceCandidate.getRefundInvoiceCandidate() [FD]
+Line_5 $$ final RefundInvoiceCandidate refundInvoiceCandidate = assignableInvoiceCandidate.getRefundInvoiceCandidate() --> Line_6 $$ if (refundInvoiceCandidate == null) [FD]
+Line_6 $$ if (refundInvoiceCandidate == null) --> Line_7 $$ invoiceCandidateAssignmentService.createOrFindRefundCandidateAndAssignIfFeasible(assignableInvoiceCandidate) [CD]
+Line_4 $$ final AssignableInvoiceCandidate assignableInvoiceCandidate = invoiceCandidateRepository.ofRecord(invoiceCandidateRecord) --> Line_7 $$ invoiceCandidateAssignmentService.createOrFindRefundCandidateAndAssignIfFeasible(assignableInvoiceCandidate) [FD]
+Line_6 $$ if (refundInvoiceCandidate == null) --> Line_8 $$ return [CD]
+Line_5 $$ final RefundInvoiceCandidate refundInvoiceCandidate = assignableInvoiceCandidate.getRefundInvoiceCandidate() --> Line_10 $$ invoiceCandidateRepository.save(refundInvoiceCandidate.withUpdatedMoneyAmout(assignableInvoiceCandidate)) [FD]
+Line_4 $$ final AssignableInvoiceCandidate assignableInvoiceCandidate = invoiceCandidateRepository.ofRecord(invoiceCandidateRecord) --> Line_10 $$ invoiceCandidateRepository.save(refundInvoiceCandidate.withUpdatedMoneyAmout(assignableInvoiceCandidate)) [FD]

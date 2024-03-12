@@ -1,0 +1,6 @@
+Line_2 $$ private void assertAllocationTokens(AllocationToken... expectedTokens) throws Exception --> Line_3 $$ ImmutableMap<String, AllocationToken> actualTokens = ofy().load().type(AllocationToken.class).list().stream().collect(ImmutableMap.toImmutableMap(AllocationToken::<>getToken, Function.identity())) [CD]
+Line_2 $$ private void assertAllocationTokens(AllocationToken... expectedTokens) throws Exception --> Line_4 $$ assertThat(actualTokens).hasSize(expectedTokens.length) [CD]
+Line_5 $$ for (AllocationToken expectedToken : expectedTokens) --> Line_6 $$ AllocationToken match = actualTokens.get(expectedToken.getToken()) [FD]
+Line_6 $$ AllocationToken match = actualTokens.get(expectedToken.getToken()) --> Line_7 $$ assertThat(match).isNotNull() [FD]
+Line_6 $$ AllocationToken match = actualTokens.get(expectedToken.getToken()) --> Line_8 $$ assertThat(match.getRedemptionHistoryEntry()).isEqualTo(expectedToken.getRedemptionHistoryEntry()) [FD]
+Line_5 $$ for (AllocationToken expectedToken : expectedTokens) --> Line_8 $$ assertThat(match.getRedemptionHistoryEntry()).isEqualTo(expectedToken.getRedemptionHistoryEntry()) [FD]

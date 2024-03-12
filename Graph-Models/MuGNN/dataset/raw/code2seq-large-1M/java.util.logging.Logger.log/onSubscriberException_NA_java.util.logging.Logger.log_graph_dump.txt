@@ -1,0 +1,8 @@
+Line_2 $$ protected void onSubscriberException(Throwable exception, @Nullable SubscriberExceptionContext exceptionContext) --> Line_3 $$ if (exception instanceof InterruptedException) [FD]
+Line_2 $$ protected void onSubscriberException(Throwable exception, @Nullable SubscriberExceptionContext exceptionContext) --> Line_3 $$ if (exception instanceof InterruptedException) [CD]
+Line_3 $$ if (exception instanceof InterruptedException) --> Line_4 $$ logger.log(Level.FINE, "EventBus Subscriber threw InterruptedException", exception) [CD]
+Line_2 $$ protected void onSubscriberException(Throwable exception, @Nullable SubscriberExceptionContext exceptionContext) --> Line_4 $$ logger.log(Level.FINE, "EventBus Subscriber threw InterruptedException", exception) [FD]
+Line_3 $$ if (exception instanceof InterruptedException) --> Line_5 $$ Thread.currentThread().interrupt() [CD]
+Line_3 $$ if (exception instanceof InterruptedException) --> Line_7 $$ logger.log(Level.SEVERE, "An event subscriber threw an exception", exception) [CD]
+Line_2 $$ protected void onSubscriberException(Throwable exception, @Nullable SubscriberExceptionContext exceptionContext) --> Line_7 $$ logger.log(Level.SEVERE, "An event subscriber threw an exception", exception) [FD]
+Line_3 $$ if (exception instanceof InterruptedException) --> Line_8 $$ eventBus.post(new UnexpectedThrowableEvent(exception, "An event subscriber threw an " + "exception on thread '" + Thread.currentThread().getName() + "'")) [CD]

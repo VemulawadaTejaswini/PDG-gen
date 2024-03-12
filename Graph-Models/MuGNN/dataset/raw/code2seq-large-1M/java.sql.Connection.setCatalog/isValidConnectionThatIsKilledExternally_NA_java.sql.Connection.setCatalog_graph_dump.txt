@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection connection = getNewConnection()) --> Line_4 $$ connection.setCatalog("mysql") [FD]
+Line_3 $$ try (Connection connection = getNewConnection()) --> Line_5 $$ Protocol protocol = getProtocolFromConnection(connection) [FD]
+Line_6 $$ try (Connection killerConnection = getNewConnection()) --> Line_7 $$ Statement killerStatement = killerConnection.createStatement() [FD]
+Line_5 $$ Protocol protocol = getProtocolFromConnection(connection) --> Line_8 $$ long threadId = protocol.getServerThreadId() [FD]
+Line_7 $$ Statement killerStatement = killerConnection.createStatement() --> Line_9 $$ killerStatement.execute("KILL CONNECTION " + threadId) [FD]
+Line_3 $$ try (Connection connection = getNewConnection()) --> Line_10 $$ boolean isValid = connection.isValid(0) [FD]
+Line_10 $$ boolean isValid = connection.isValid(0) --> Line_11 $$ assertFalse(isValid) [FD]

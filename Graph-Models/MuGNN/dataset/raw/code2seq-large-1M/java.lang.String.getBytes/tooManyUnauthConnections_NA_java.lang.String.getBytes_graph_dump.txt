@@ -1,0 +1,6 @@
+Line_4 $$ if (unauth_bloom == null) --> Line_5 $$ unauth_bloom = BloomFilterFactory.createAddRemove4Bit(UNAUTH_BLOOM_CHUNK) [CD]
+Line_4 $$ if (unauth_bloom == null) --> Line_6 $$ unauth_bloom_create_time = SystemTime.getCurrentTime() [CD]
+Line_2 $$ protected boolean tooManyUnauthConnections(String originator) --> Line_8 $$ int hit_count = unauth_bloom.add(originator.getBytes()) [FD]
+Line_8 $$ int hit_count = unauth_bloom.add(originator.getBytes()) --> Line_9 $$ if (hit_count >= 8) [FD]
+Line_9 $$ if (hit_count >= 8) --> Line_10 $$ Debug.out("Too many recent unauthorised connection attempts from " + originator) [CD]
+Line_9 $$ if (hit_count >= 8) --> Line_11 $$ return (true) [CD]

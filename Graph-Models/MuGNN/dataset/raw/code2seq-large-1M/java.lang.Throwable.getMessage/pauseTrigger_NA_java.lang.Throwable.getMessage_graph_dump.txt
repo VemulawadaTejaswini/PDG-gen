@@ -1,0 +1,8 @@
+Line_2 $$ public void pauseTrigger(Connection conn, TriggerKey triggerKey) throws JobPersistenceException --> Line_4 $$ String oldState = getDelegate().selectTriggerState(conn, triggerKey) [FD]
+Line_4 $$ String oldState = getDelegate().selectTriggerState(conn, triggerKey) --> Line_5 $$ if (oldState.equals(STATE_WAITING) || oldState.equals(STATE_ACQUIRED)) [FD]
+Line_5 $$ if (oldState.equals(STATE_WAITING) || oldState.equals(STATE_ACQUIRED)) --> Line_6 $$ getDelegate().updateTriggerState(conn, triggerKey, STATE_PAUSED) [CD]
+Line_2 $$ public void pauseTrigger(Connection conn, TriggerKey triggerKey) throws JobPersistenceException --> Line_6 $$ getDelegate().updateTriggerState(conn, triggerKey, STATE_PAUSED) [FD]
+Line_5 $$ if (oldState.equals(STATE_WAITING) || oldState.equals(STATE_ACQUIRED)) --> Line_7 $$ if (oldState.equals(STATE_BLOCKED)) [CD]
+Line_4 $$ String oldState = getDelegate().selectTriggerState(conn, triggerKey) --> Line_7 $$ if (oldState.equals(STATE_BLOCKED)) [FD]
+Line_7 $$ if (oldState.equals(STATE_BLOCKED)) --> Line_8 $$ getDelegate().updateTriggerState(conn, triggerKey, STATE_PAUSED_BLOCKED) [CD]
+Line_2 $$ public void pauseTrigger(Connection conn, TriggerKey triggerKey) throws JobPersistenceException --> Line_8 $$ getDelegate().updateTriggerState(conn, triggerKey, STATE_PAUSED_BLOCKED) [FD]

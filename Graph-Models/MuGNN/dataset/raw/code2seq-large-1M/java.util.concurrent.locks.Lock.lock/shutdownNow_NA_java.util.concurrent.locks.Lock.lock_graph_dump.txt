@@ -1,0 +1,8 @@
+Line_2 $$ public void shutdownNow() throws IOException --> Line_3 $$ final Lock lock = state.getStateLocker().writeLock() [CD]
+Line_2 $$ public void shutdownNow() throws IOException --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ final Lock lock = state.getStateLocker().writeLock() --> Line_4 $$ lock.lock() [FD]
+Line_6 $$ final State stateNow = state.getState() --> Line_7 $$ if (stateNow == State.STOPPED) [FD]
+Line_7 $$ if (stateNow == State.STOPPED) --> Line_8 $$ return [CD]
+Line_6 $$ final State stateNow = state.getState() --> Line_10 $$ if (stateNow == State.PAUSED) [FD]
+Line_10 $$ if (stateNow == State.PAUSED) --> Line_11 $$ resume() [CD]
+Line_3 $$ final Lock lock = state.getStateLocker().writeLock() --> Line_17 $$ lock.unlock() [FD]

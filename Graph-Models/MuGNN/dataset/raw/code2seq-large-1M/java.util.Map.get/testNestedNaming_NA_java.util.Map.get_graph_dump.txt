@@ -1,0 +1,8 @@
+Line_2 $$ public void testNestedNaming() --> Line_3 $$ ApplicationContextRunner contextRunner = new ApplicationContextRunner().withUserConfiguration(FooConfig.class).withPropertyValues("foo.bar.name:foo") [CD]
+Line_2 $$ public void testNestedNaming() --> Line_4 $$ contextRunner.run(( context) -> [CD]
+Line_6 $$ ApplicationConfigurationProperties applicationProperties = endpoint.configurationProperties() --> Line_7 $$ ConfigurationPropertiesBeanDescriptor foo = applicationProperties.getContexts().get(context.getId()).getBeans().get("foo") [FD]
+Line_7 $$ ConfigurationPropertiesBeanDescriptor foo = applicationProperties.getContexts().get(context.getId()).getBeans().get("foo") --> Line_8 $$ assertThat(foo).isNotNull() [FD]
+Line_7 $$ ConfigurationPropertiesBeanDescriptor foo = applicationProperties.getContexts().get(context.getId()).getBeans().get("foo") --> Line_9 $$ Map<String, Object> map = foo.getProperties() [FD]
+Line_9 $$ Map<String, Object> map = foo.getProperties() --> Line_10 $$ assertThat(map).isNotNull() [FD]
+Line_9 $$ Map<String, Object> map = foo.getProperties() --> Line_11 $$ assertThat(map).hasSize(2) [FD]
+Line_9 $$ Map<String, Object> map = foo.getProperties() --> Line_12 $$ assertThat(((Map<String, Object>) map.get("bar")).get("name")).isEqualTo("foo") [FD]

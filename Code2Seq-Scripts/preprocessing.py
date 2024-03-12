@@ -34,13 +34,13 @@ def copyFile(path, output_folder, file_name):
     newfile.close()
     input_file.close()
 
-RAWDATA_PATH = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/raw-data"
-OUTPUT_PATH = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-small/processed-data"
+RAWDATA_PATH = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-large/raw-methods"
+OUTPUT_PATH = "/home/tomy495/CS21MTECH12001/Research/API-misuse/Code2Seq-Data/java-large/processed-data"
 
 api_folders_list = glob.glob(RAWDATA_PATH + "/*/")
 for folder in tqdm.tqdm(api_folders_list):
     api_name = folder[folder.rindex("/", 0, len(folder) - 1) + 1 : -1]
-    print("\n\nProcessing: ", api_name, "\n")
+    #print("\n\nProcessing: ", api_name, "\n")
     OUTPUT_API_PATH = OUTPUT_PATH + "/" + api_name
     if not os.path.exists(OUTPUT_API_PATH):
         os.makedirs(OUTPUT_API_PATH)

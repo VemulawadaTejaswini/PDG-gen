@@ -1,0 +1,7 @@
+Line_2 $$ public void testStartState() throws Throwable --> Line_3 $$ host.startServiceSynchronously(service, buildValidStartupState()) [CD]
+Line_2 $$ public void testStartState() throws Throwable --> Line_4 $$ ImageDatastoreSweeperService.State savedState = host.getServiceState(ImageDatastoreSweeperService.State.class) [CD]
+Line_2 $$ public void testStartState() throws Throwable --> Line_5 $$ assertThat(savedState.taskState, notNullValue()) [CD]
+Line_2 $$ public void testStartState() throws Throwable --> Line_6 $$ assertThat(savedState.taskState.stage, is(TaskState.TaskStage.STARTED)) [CD]
+Line_2 $$ public void testStartState() throws Throwable --> Line_7 $$ assertThat(savedState.taskState.subStage, is(ImageDatastoreSweeperService.TaskState.SubStage.GET_HOST_INFO)) [CD]
+Line_2 $$ public void testStartState() throws Throwable --> Line_8 $$ assertThat(new BigDecimal(savedState.documentExpirationTimeMicros), is(closeTo(new BigDecimal(ServiceUtils.computeExpirationTime(ServiceUtils.DEFAULT_DOC_EXPIRATION_TIME_MICROS)), new BigDecimal(TimeUnit.MINUTES.toMicros(10))))) [CD]
+Line_2 $$ public void testStartState() throws Throwable --> Line_9 $$ assertThat(savedState.hostPollIntervalMilliSeconds, is(ImageDatastoreSweeperService.DEFAULT_HOST_POLL_INTERVAL)) [CD]

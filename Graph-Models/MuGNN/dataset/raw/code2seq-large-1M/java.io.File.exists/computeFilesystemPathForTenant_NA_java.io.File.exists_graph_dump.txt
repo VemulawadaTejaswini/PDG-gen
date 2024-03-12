@@ -1,0 +1,8 @@
+Line_2 $$ protected File computeFilesystemPathForTenant() --> Line_3 $$ File root = new File(getMicroservice().getInstanceSettings().getFileSystemStorageRoot()) [CD]
+Line_2 $$ protected File computeFilesystemPathForTenant() --> Line_4 $$ File tenants = new File(root, TENANTS_SUBPATH) [CD]
+Line_2 $$ protected File computeFilesystemPathForTenant() --> Line_5 $$ File tenant = new File(tenants, getTenantEngine().getTenant().getToken()) [CD]
+Line_2 $$ protected File computeFilesystemPathForTenant() --> Line_6 $$ if (!tenant.getParentFile().exists()) [CD]
+Line_5 $$ File tenant = new File(tenants, getTenantEngine().getTenant().getToken()) --> Line_6 $$ if (!tenant.getParentFile().exists()) [FD]
+Line_6 $$ if (!tenant.getParentFile().exists()) --> Line_7 $$ tenant.getParentFile().mkdirs() [CD]
+Line_5 $$ File tenant = new File(tenants, getTenantEngine().getTenant().getToken()) --> Line_7 $$ tenant.getParentFile().mkdirs() [FD]
+Line_2 $$ protected File computeFilesystemPathForTenant() --> Line_9 $$ return tenant [CD]

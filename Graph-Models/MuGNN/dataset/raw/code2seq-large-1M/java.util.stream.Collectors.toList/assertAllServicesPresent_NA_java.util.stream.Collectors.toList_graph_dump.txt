@@ -1,0 +1,3 @@
+Line_2 $$ private void assertAllServicesPresent(ApplicationContext context, ContentEngine contentEngine) --> Line_3 $$ List<Method> methods = Stream.of(ContentEngine.class.getDeclaredMethods()).filter( method -> !(method.getName().equals("close") || method.getName().equals("getName"))).collect(Collectors.toList()) [CD]
+Line_2 $$ private void assertAllServicesPresent(ApplicationContext context, ContentEngine contentEngine) --> Line_4 $$ assertThat(methods).allSatisfy( method -> [CD]
+Line_2 $$ private void assertAllServicesPresent(ApplicationContext context, ContentEngine contentEngine) --> Line_6 $$ assertThat(context.getBean(method.getReturnType())).as(method.getReturnType() + " bean").isEqualTo(method.invoke(contentEngine)) [FD]

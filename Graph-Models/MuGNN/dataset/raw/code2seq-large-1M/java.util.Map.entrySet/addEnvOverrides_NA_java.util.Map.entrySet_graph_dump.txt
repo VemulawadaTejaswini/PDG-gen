@@ -1,0 +1,8 @@
+Line_2 $$ private Config addEnvOverrides(Map<String, String> env, Config config) --> Line_3 $$ for (Map.Entry<String, String> var : env.entrySet()) [FD]
+Line_4 $$ String envKey = var.getKey() --> Line_5 $$ if (envKey.startsWith(envVarPrefix + "_")) [FD]
+Line_5 $$ if (envKey.startsWith(envVarPrefix + "_")) --> Line_6 $$ String configKey = envKey.substring(envVarPrefix.length()).toLowerCase().replaceAll("(?<!_)_(?!_(__)*([^_]|$))", ".").replaceAll("__", "_").substring(1) [CD]
+Line_4 $$ String envKey = var.getKey() --> Line_6 $$ String configKey = envKey.substring(envVarPrefix.length()).toLowerCase().replaceAll("(?<!_)_(?!_(__)*([^_]|$))", ".").replaceAll("__", "_").substring(1) [FD]
+Line_5 $$ if (envKey.startsWith(envVarPrefix + "_")) --> Line_7 $$ config = config.withValue(configKey, ConfigValueFactory.fromAnyRef(var.getValue(), "Environment variable " + envKey)) [CD]
+Line_2 $$ private Config addEnvOverrides(Map<String, String> env, Config config) --> Line_7 $$ config = config.withValue(configKey, ConfigValueFactory.fromAnyRef(var.getValue(), "Environment variable " + envKey)) [FD]
+Line_6 $$ String configKey = envKey.substring(envVarPrefix.length()).toLowerCase().replaceAll("(?<!_)_(?!_(__)*([^_]|$))", ".").replaceAll("__", "_").substring(1) --> Line_7 $$ config = config.withValue(configKey, ConfigValueFactory.fromAnyRef(var.getValue(), "Environment variable " + envKey)) [FD]
+Line_2 $$ private Config addEnvOverrides(Map<String, String> env, Config config) --> Line_10 $$ return config [CD]

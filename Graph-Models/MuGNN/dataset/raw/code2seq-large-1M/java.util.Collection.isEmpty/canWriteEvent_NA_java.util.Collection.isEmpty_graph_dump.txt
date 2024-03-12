@@ -1,0 +1,8 @@
+Line_4 $$ while (!outputBuffers.isEmpty()) --> Line_5 $$ if (!outputBuffers.peekFirst().hasRemaining()) [CD]
+Line_5 $$ if (!outputBuffers.peekFirst().hasRemaining()) --> Line_6 $$ outputBuffers.removeFirst() [CD]
+Line_4 $$ while (!outputBuffers.isEmpty()) --> Line_9 $$ long written = channel.write(outputBuffers.toArray(new ByteBuffer[outputBuffers.size()])) [CD]
+Line_4 $$ while (!outputBuffers.isEmpty()) --> Line_10 $$ if (written == 0) [CD]
+Line_9 $$ long written = channel.write(outputBuffers.toArray(new ByteBuffer[outputBuffers.size()])) --> Line_10 $$ if (written == 0) [FD]
+Line_10 $$ if (written == 0) --> Line_11 $$ connManager.interestOpsChanged(this) [CD]
+Line_2 $$ public void canWriteEvent() throws IOException --> Line_19 $$ if (outputBuffers.isEmpty()) [CD]
+Line_19 $$ if (outputBuffers.isEmpty()) --> Line_20 $$ connManager.interestOpsChanged(this) [CD]

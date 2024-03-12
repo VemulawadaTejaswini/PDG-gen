@@ -1,0 +1,8 @@
+Line_2 $$ public void testPFTableRefusesFilterCooperative() throws Exception --> Line_3 $$ final StringBuilder buf = new StringBuilder() [CD]
+Line_2 $$ public void testPFTableRefusesFilterCooperative() throws Exception --> Line_4 $$ final Table table = new BeatlesProjectableFilterableTable(buf, false) [CD]
+Line_2 $$ public void testPFTableRefusesFilterCooperative() throws Exception --> Line_5 $$ final String explain = "PLAN=EnumerableInterpreter\n" + "  BindableTableScan(table=[[s, beatles2]], filters=[[=($0, 4)]], projects=[[2]])" [CD]
+Line_2 $$ public void testPFTableRefusesFilterCooperative() throws Exception --> Line_6 $$ CalciteAssert.that().with(newSchema("s", "beatles2", table)).query("select \"k\" from \"s\".\"beatles2\" where \"i\" = 4").explainContains(explain).returnsUnordered("k=1940", "k=1942") [CD]
+Line_5 $$ final String explain = "PLAN=EnumerableInterpreter\n" + "  BindableTableScan(table=[[s, beatles2]], filters=[[=($0, 4)]], projects=[[2]])" --> Line_6 $$ CalciteAssert.that().with(newSchema("s", "beatles2", table)).query("select \"k\" from \"s\".\"beatles2\" where \"i\" = 4").explainContains(explain).returnsUnordered("k=1940", "k=1942") [FD]
+Line_4 $$ final Table table = new BeatlesProjectableFilterableTable(buf, false) --> Line_6 $$ CalciteAssert.that().with(newSchema("s", "beatles2", table)).query("select \"k\" from \"s\".\"beatles2\" where \"i\" = 4").explainContains(explain).returnsUnordered("k=1940", "k=1942") [FD]
+Line_2 $$ public void testPFTableRefusesFilterCooperative() throws Exception --> Line_7 $$ assertThat(buf.toString(), is("returnCount=4, projects=[2, 0]")) [CD]
+Line_3 $$ final StringBuilder buf = new StringBuilder() --> Line_7 $$ assertThat(buf.toString(), is("returnCount=4, projects=[2, 0]")) [FD]

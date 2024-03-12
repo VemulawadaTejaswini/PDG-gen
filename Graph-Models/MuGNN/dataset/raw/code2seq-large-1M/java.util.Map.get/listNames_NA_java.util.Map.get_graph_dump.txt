@@ -1,0 +1,3 @@
+Line_2 $$ public void listNames() throws IOException --> Line_3 $$ String responseBody = client.get().uri("/actuator/metrics").exchange().expectStatus().isOk().expectBody(String.class).returnResult().getResponseBody() [CD]
+Line_2 $$ public void listNames() throws IOException --> Line_4 $$ Map<String, List<String>> names = this.mapper.readValue(responseBody, Map.class) [CD]
+Line_2 $$ public void listNames() throws IOException --> Line_5 $$ assertThat(names.get("names")).containsOnlyOnce("jvm.memory.used") [CD]

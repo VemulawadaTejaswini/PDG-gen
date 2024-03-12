@@ -1,0 +1,8 @@
+Line_2 $$ private boolean viewBelongsToSelectedSubtreeOrItsClone(final NodeView view) --> Line_3 $$ HashSet<NodeModel> selectedNodesWithClones = new HashSet<NodeModel>() [CD]
+Line_3 $$ HashSet<NodeModel> selectedNodesWithClones = new HashSet<NodeModel>() --> Line_4 $$ for (NodeView selectedView : selection.getSelectedList()) for (NodeModel clone : selectedView.getModel().subtreeClones()) selectedNodesWithClones.add(clone) [FD]
+Line_2 $$ private boolean viewBelongsToSelectedSubtreeOrItsClone(final NodeView view) --> Line_5 $$ for (Component parent = view.getParent(); parent instanceof NodeView; parent = parent.getParent()) [CD]
+Line_2 $$ private boolean viewBelongsToSelectedSubtreeOrItsClone(final NodeView view) --> Line_5 $$ for (Component parent = view.getParent(); parent instanceof NodeView; parent = parent.getParent()) [FD]
+Line_5 $$ for (Component parent = view.getParent(); parent instanceof NodeView; parent = parent.getParent()) --> Line_6 $$ if (selectedNodesWithClones.contains(((NodeView) parent).getModel())) [CD]
+Line_3 $$ HashSet<NodeModel> selectedNodesWithClones = new HashSet<NodeModel>() --> Line_6 $$ if (selectedNodesWithClones.contains(((NodeView) parent).getModel())) [FD]
+Line_6 $$ if (selectedNodesWithClones.contains(((NodeView) parent).getModel())) --> Line_7 $$ return true [CD]
+Line_2 $$ private boolean viewBelongsToSelectedSubtreeOrItsClone(final NodeView view) --> Line_10 $$ return false [CD]

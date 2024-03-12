@@ -1,0 +1,4 @@
+Line_2 $$ private void cleanupInactiveStates() --> Line_3 $$ final Long inactiveTimeout = processContext.getProperty(INACTIVE_TIMEOUT).asTimePeriod(TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ private void cleanupInactiveStates() --> Line_4 $$ final List<String> inactiveGroups = groupStates.keySet().stream().filter( k -> k.endsWith(STATE_SUFFIX_UPDATED_AT) && (now - Long.parseLong(groupStates.get(k)) > inactiveTimeout)).map( k -> k.substring(0, k.length() - STATE_SUFFIX_UPDATED_AT.length())).collect(Collectors.toList()) [CD]
+Line_2 $$ private void cleanupInactiveStates() --> Line_5 $$ inactiveGroups.forEach( groupId -> [CD]
+Line_4 $$ final List<String> inactiveGroups = groupStates.keySet().stream().filter( k -> k.endsWith(STATE_SUFFIX_UPDATED_AT) && (now - Long.parseLong(groupStates.get(k)) > inactiveTimeout)).map( k -> k.substring(0, k.length() - STATE_SUFFIX_UPDATED_AT.length())).collect(Collectors.toList()) --> Line_5 $$ inactiveGroups.forEach( groupId -> [FD]

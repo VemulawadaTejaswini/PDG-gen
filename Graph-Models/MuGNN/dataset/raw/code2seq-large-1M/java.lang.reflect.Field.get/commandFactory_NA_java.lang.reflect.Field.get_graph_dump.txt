@@ -1,0 +1,6 @@
+Line_2 $$ public void commandFactory() throws Exception --> Line_3 $$ final CommandFactory factory = applicationContext.getBean(CommandFactory.class) [CD]
+Line_2 $$ public void commandFactory() throws Exception --> Line_4 $$ Assert.assertNotNull(factory) [CD]
+Line_2 $$ public void commandFactory() throws Exception --> Line_5 $$ final List<String> commandNames = Arrays.stream(CommandNames.class.getDeclaredFields()).filter( f -> Modifier.isStatic(f.getModifiers())).filter( f -> f.getType() == String.class).map((Field f) -> [CD]
+Line_2 $$ public void commandFactory() throws Exception --> Line_12 $$ Assert.assertEquals(Sets.newHashSet(commandNames), Sets.newHashSet(factory.getCommandNames())) [CD]
+Line_13 $$ for (String commandName : commandNames) --> Line_14 $$ final AgentCommand command = factory.get(commandName) [FD]
+Line_14 $$ final AgentCommand command = factory.get(commandName) --> Line_15 $$ Assert.assertNotNull(command) [FD]

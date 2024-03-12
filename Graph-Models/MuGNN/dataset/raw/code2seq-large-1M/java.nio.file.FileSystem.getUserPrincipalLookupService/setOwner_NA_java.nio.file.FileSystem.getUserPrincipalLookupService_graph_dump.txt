@@ -1,0 +1,6 @@
+Line_2 $$ public void setOwner(String owner) --> Line_3 $$ UserPrincipalLookupService service = path.getFileSystem().getUserPrincipalLookupService() [CD]
+Line_2 $$ public void setOwner(String owner) --> Line_4 $$ UserPrincipal principal = uncheck(() -> service.lookupPrincipalByName(owner), "While looking up user %s", owner) [FD]
+Line_2 $$ public void setOwner(String owner) --> Line_4 $$ UserPrincipal principal = uncheck(() -> service.lookupPrincipalByName(owner), "While looking up user %s", owner) [CD]
+Line_3 $$ UserPrincipalLookupService service = path.getFileSystem().getUserPrincipalLookupService() --> Line_4 $$ UserPrincipal principal = uncheck(() -> service.lookupPrincipalByName(owner), "While looking up user %s", owner) [FD]
+Line_2 $$ public void setOwner(String owner) --> Line_5 $$ uncheck(() -> Files.setOwner(path, principal)) [CD]
+Line_4 $$ UserPrincipal principal = uncheck(() -> service.lookupPrincipalByName(owner), "While looking up user %s", owner) --> Line_5 $$ uncheck(() -> Files.setOwner(path, principal)) [FD]

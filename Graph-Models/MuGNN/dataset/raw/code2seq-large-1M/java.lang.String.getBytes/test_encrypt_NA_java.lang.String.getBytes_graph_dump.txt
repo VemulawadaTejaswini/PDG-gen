@@ -1,0 +1,7 @@
+Line_2 $$ public void test_encrypt() throws Exception --> Line_3 $$ new KmsConnectionImpl("foo", "bar", retrier, kms).encrypt("key", "moo".getBytes(UTF_8)) [CD]
+Line_2 $$ public void test_encrypt() throws Exception --> Line_4 $$ verify(kmsCryptoKeyVersions).create(cryptoKeyName.capture(), cryptoKeyVersion.capture()) [CD]
+Line_2 $$ public void test_encrypt() throws Exception --> Line_5 $$ assertThat(cryptoKeyName.getValue()).isEqualTo("projects/foo/locations/global/keyRings/bar/cryptoKeys/key") [CD]
+Line_2 $$ public void test_encrypt() throws Exception --> Line_6 $$ verify(kmsCryptoKeys).updatePrimaryVersion(cryptoKeyName.capture(), updateCryptoKeyPrimaryVersionRequest.capture()) [CD]
+Line_2 $$ public void test_encrypt() throws Exception --> Line_7 $$ assertThat(cryptoKeyName.getValue()).isEqualTo("projects/foo/locations/global/keyRings/bar/cryptoKeys/key") [CD]
+Line_2 $$ public void test_encrypt() throws Exception --> Line_8 $$ assertThat(updateCryptoKeyPrimaryVersionRequest.getValue()).isEqualTo(new UpdateCryptoKeyPrimaryVersionRequest().setCryptoKeyVersionId(KmsTestHelper.DUMMY_CRYPTO_KEY_VERSION)) [CD]
+Line_2 $$ public void test_encrypt() throws Exception --> Line_9 $$ verifyEncryptKmsApiCalls("moo", "projects/foo/locations/global/keyRings/bar", "projects/foo/locations/global/keyRings/bar/cryptoKeys/key") [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void closePool() --> Line_3 $$ PoolResources pr = PoolResources.fixed("wstest", 1) [CD]
+Line_2 $$ public void closePool() --> Line_4 $$ httpServer = HttpServer.create(0).newHandler(( in,  out) -> out.sendWebsocket(( i,  o) -> o.options( opt -> opt.flushOnEach()).sendString(Mono.just("test").delayElement(Duration.ofMillis(100)).repeat()))).block(Duration.ofSeconds(30)) [CD]
+Line_2 $$ public void closePool() --> Line_5 $$ Flux<String> ws = HttpClient.create( opts -> opts.port(httpServer.address().getPort()).poolResources(pr)).ws("/").flatMapMany( in -> in.receiveWebsocket().aggregateFrames().receive().asString()) [CD]
+Line_3 $$ PoolResources pr = PoolResources.fixed("wstest", 1) --> Line_5 $$ Flux<String> ws = HttpClient.create( opts -> opts.port(httpServer.address().getPort()).poolResources(pr)).ws("/").flatMapMany( in -> in.receiveWebsocket().aggregateFrames().receive().asString()) [FD]
+Line_2 $$ public void closePool() --> Line_6 $$ StepVerifier.create(Flux.range(1, 10).concatMap( i -> ws.take(2).log())).expectNextSequence(Flux.range(1, 20).map( v -> "test").toIterable()).expectComplete().verify() [CD]
+Line_5 $$ Flux<String> ws = HttpClient.create( opts -> opts.port(httpServer.address().getPort()).poolResources(pr)).ws("/").flatMapMany( in -> in.receiveWebsocket().aggregateFrames().receive().asString()) --> Line_6 $$ StepVerifier.create(Flux.range(1, 10).concatMap( i -> ws.take(2).log())).expectNextSequence(Flux.range(1, 20).map( v -> "test").toIterable()).expectComplete().verify() [FD]
+Line_2 $$ public void closePool() --> Line_7 $$ pr.dispose() [CD]
+Line_3 $$ PoolResources pr = PoolResources.fixed("wstest", 1) --> Line_7 $$ pr.dispose() [FD]

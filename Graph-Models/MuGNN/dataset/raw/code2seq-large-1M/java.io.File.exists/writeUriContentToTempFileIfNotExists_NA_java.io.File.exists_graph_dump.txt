@@ -1,0 +1,8 @@
+Line_2 $$ private static void writeUriContentToTempFileIfNotExists(Context context, Uri uri, File tempFile) throws IOException --> Line_4 $$ if (tempFile.exists()) [FD]
+Line_4 $$ if (tempFile.exists()) --> Line_5 $$ return [CD]
+Line_2 $$ private static void writeUriContentToTempFileIfNotExists(Context context, Uri uri, File tempFile) throws IOException --> Line_8 $$ InputStream inputStream = context.getContentResolver().openInputStream(uri) [FD]
+Line_8 $$ InputStream inputStream = context.getContentResolver().openInputStream(uri) --> Line_9 $$ if (inputStream == null) [FD]
+Line_8 $$ InputStream inputStream = context.getContentResolver().openInputStream(uri) --> Line_12 $$ IOUtils.copy(inputStream, outputStream) [FD]
+Line_7 $$ FileOutputStream outputStream = new FileOutputStream(tempFile) --> Line_12 $$ IOUtils.copy(inputStream, outputStream) [FD]
+Line_7 $$ FileOutputStream outputStream = new FileOutputStream(tempFile) --> Line_13 $$ outputStream.close() [FD]
+Line_8 $$ InputStream inputStream = context.getContentResolver().openInputStream(uri) --> Line_14 $$ IOUtils.closeQuietly(inputStream) [FD]

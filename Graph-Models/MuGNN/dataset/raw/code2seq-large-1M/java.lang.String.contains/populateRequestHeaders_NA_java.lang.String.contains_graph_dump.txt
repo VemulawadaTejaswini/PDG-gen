@@ -1,0 +1,8 @@
+Line_2 $$ private void populateRequestHeaders(HttpServerRequest<ByteBuf> serverRequest, HttpClientRequest<ByteBuf> request) --> Line_3 $$ Set<String> headerNames = serverRequest.getHeaders().names() [FD]
+Line_2 $$ private void populateRequestHeaders(HttpServerRequest<ByteBuf> serverRequest, HttpClientRequest<ByteBuf> request) --> Line_3 $$ Set<String> headerNames = serverRequest.getHeaders().names() [CD]
+Line_4 $$ for (String name : headerNames) --> Line_5 $$ if (name.contains("content-length")) [FD]
+Line_4 $$ for (String name : headerNames) --> Line_8 $$ request.getHeaders().add(name, serverRequest.getHeaders().getHeader(name)) [FD]
+Line_2 $$ private void populateRequestHeaders(HttpServerRequest<ByteBuf> serverRequest, HttpClientRequest<ByteBuf> request) --> Line_8 $$ request.getHeaders().add(name, serverRequest.getHeaders().getHeader(name)) [FD]
+Line_2 $$ private void populateRequestHeaders(HttpServerRequest<ByteBuf> serverRequest, HttpClientRequest<ByteBuf> request) --> Line_10 $$ if (PROXY_REQ_ACCEPT_ENCODING != null && PROXY_REQ_ACCEPT_ENCODING.length() > 0) [CD]
+Line_10 $$ if (PROXY_REQ_ACCEPT_ENCODING != null && PROXY_REQ_ACCEPT_ENCODING.length() > 0) --> Line_11 $$ request.getHeaders().addHeader("accept-encoding", PROXY_REQ_ACCEPT_ENCODING) [CD]
+Line_2 $$ private void populateRequestHeaders(HttpServerRequest<ByteBuf> serverRequest, HttpClientRequest<ByteBuf> request) --> Line_11 $$ request.getHeaders().addHeader("accept-encoding", PROXY_REQ_ACCEPT_ENCODING) [FD]

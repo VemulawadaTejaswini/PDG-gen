@@ -1,0 +1,7 @@
+Line_2 $$ public void testLoad_FirstEventIsSnapshot() --> Line_3 $$ String identifier = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void testLoad_FirstEventIsSnapshot() --> Line_4 $$ TestAggregate aggregate = new TestAggregate(identifier) [CD]
+Line_2 $$ public void testLoad_FirstEventIsSnapshot() --> Line_5 $$ when(mockEventStore.readEvents(identifier)).thenReturn(DomainEventStream.of(new GenericDomainEventMessage("type", identifier, 10, aggregate))) [CD]
+Line_3 $$ String identifier = UUID.randomUUID().toString() --> Line_5 $$ when(mockEventStore.readEvents(identifier)).thenReturn(DomainEventStream.of(new GenericDomainEventMessage("type", identifier, 10, aggregate))) [FD]
+Line_2 $$ public void testLoad_FirstEventIsSnapshot() --> Line_6 $$ assertSame(aggregate, testSubject.load(identifier).getWrappedAggregate().getAggregateRoot()) [CD]
+Line_4 $$ TestAggregate aggregate = new TestAggregate(identifier) --> Line_6 $$ assertSame(aggregate, testSubject.load(identifier).getWrappedAggregate().getAggregateRoot()) [FD]
+Line_3 $$ String identifier = UUID.randomUUID().toString() --> Line_6 $$ assertSame(aggregate, testSubject.load(identifier).getWrappedAggregate().getAggregateRoot()) [FD]

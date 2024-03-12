@@ -1,0 +1,8 @@
+Line_2 $$ synchronized QueueStats getStatistics() --> Line_3 $$ int size = this.writes.size() [CD]
+Line_2 $$ synchronized QueueStats getStatistics() --> Line_4 $$ double fillRatio = calculateFillRatio(this.totalLength, size) [CD]
+Line_3 $$ int size = this.writes.size() --> Line_4 $$ double fillRatio = calculateFillRatio(this.totalLength, size) [FD]
+Line_2 $$ synchronized QueueStats getStatistics() --> Line_5 $$ int processingTime = this.lastDurationMillis [CD]
+Line_2 $$ synchronized QueueStats getStatistics() --> Line_6 $$ if (processingTime == 0 && size > 0) [CD]
+Line_6 $$ if (processingTime == 0 && size > 0) --> Line_7 $$ processingTime = (int) ((this.timeSupplier.get() - this.writes.peekFirst().getQueueAddedTimestamp()) / AbstractTimer.NANOS_TO_MILLIS) [CD]
+Line_5 $$ int processingTime = this.lastDurationMillis --> Line_7 $$ processingTime = (int) ((this.timeSupplier.get() - this.writes.peekFirst().getQueueAddedTimestamp()) / AbstractTimer.NANOS_TO_MILLIS) [FD]
+Line_2 $$ synchronized QueueStats getStatistics() --> Line_9 $$ return new QueueStats(size, fillRatio, processingTime) [CD]

@@ -1,0 +1,8 @@
+Line_4 $$ Settings.Builder builder = Settings.builder().put(IndexMetaData.SETTING_INDEX_UUID, "foobar").put(IndexMetaData.SETTING_VERSION_CREATED, Version.CURRENT) --> Line_5 $$ Settings settings = builder.build() [FD]
+Line_3 $$ try (NodeEnvironment env = newNodeEnvironment(Settings.builder().build())) --> Line_7 $$ Path[] paths = env.availableShardPaths(shardId) [FD]
+Line_6 $$ ShardId shardId = new ShardId("foo", "foobar", 0) --> Line_7 $$ Path[] paths = env.availableShardPaths(shardId) [FD]
+Line_7 $$ Path[] paths = env.availableShardPaths(shardId) --> Line_8 $$ Path path = randomFrom(paths) [FD]
+Line_8 $$ Path path = randomFrom(paths) --> Line_10 $$ ShardStateMetaData.FORMAT.write(new ShardStateMetaData(id, true, "0xDEADBEEF", AllocationId.newInitializing()), path) [FD]
+Line_3 $$ try (NodeEnvironment env = newNodeEnvironment(Settings.builder().build())) --> Line_11 $$ ShardPath.loadShardPath(logger, env, shardId, IndexSettingsModule.newIndexSettings(shardId.getIndex(), settings)) [FD]
+Line_6 $$ ShardId shardId = new ShardId("foo", "foobar", 0) --> Line_11 $$ ShardPath.loadShardPath(logger, env, shardId, IndexSettingsModule.newIndexSettings(shardId.getIndex(), settings)) [FD]
+Line_5 $$ Settings settings = builder.build() --> Line_11 $$ ShardPath.loadShardPath(logger, env, shardId, IndexSettingsModule.newIndexSettings(shardId.getIndex(), settings)) [FD]

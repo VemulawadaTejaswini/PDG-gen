@@ -1,0 +1,8 @@
+Line_2 $$ private boolean putAsyncToMap(int partitionId, Supplier<Data> dataSupplier) --> Line_3 $$ if (!Util.tryIncrement(numConcurrentAsyncOps, 1, JetService.MAX_PARALLEL_ASYNC_OPS)) [CD]
+Line_3 $$ if (!Util.tryIncrement(numConcurrentAsyncOps, 1, JetService.MAX_PARALLEL_ASYNC_OPS)) --> Line_4 $$ return false [CD]
+Line_2 $$ private boolean putAsyncToMap(int partitionId, Supplier<Data> dataSupplier) --> Line_6 $$ ICompletableFuture<Object> future = ((IMap) currentMap).putAsync(new SnapshotDataKey(partitionKeys[partitionId], partitionSequence), dataSupplier.get()) [FD]
+Line_2 $$ private boolean putAsyncToMap(int partitionId, Supplier<Data> dataSupplier) --> Line_6 $$ ICompletableFuture<Object> future = ((IMap) currentMap).putAsync(new SnapshotDataKey(partitionKeys[partitionId], partitionSequence), dataSupplier.get()) [CD]
+Line_2 $$ private boolean putAsyncToMap(int partitionId, Supplier<Data> dataSupplier) --> Line_8 $$ future.andThen(callback) [CD]
+Line_6 $$ ICompletableFuture<Object> future = ((IMap) currentMap).putAsync(new SnapshotDataKey(partitionKeys[partitionId], partitionSequence), dataSupplier.get()) --> Line_8 $$ future.andThen(callback) [FD]
+Line_2 $$ private boolean putAsyncToMap(int partitionId, Supplier<Data> dataSupplier) --> Line_9 $$ numActiveFlushes.incrementAndGet() [CD]
+Line_2 $$ private boolean putAsyncToMap(int partitionId, Supplier<Data> dataSupplier) --> Line_10 $$ return true [CD]

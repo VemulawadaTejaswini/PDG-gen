@@ -1,0 +1,5 @@
+Line_2 $$ public void testQueryProgress() throws Throwable --> Line_3 $$ final String SCRIPT_TEXT = "set hive.support.concurrency = false;\n" + "set hive.server2.logging.operation.level=execution;\n" + "select count(*) from " + tableName + ";\n" [CD]
+Line_2 $$ public void testQueryProgress() throws Throwable --> Line_4 $$ final String EXPECTED_PATTERN = "ELAPSED TIME" [CD]
+Line_2 $$ public void testQueryProgress() throws Throwable --> Line_5 $$ final String UNEXPECTED_PATTERN = "(?=Reducer 2\\:).*(?=Map 1\\:)" [CD]
+Line_2 $$ public void testQueryProgress() throws Throwable --> Line_6 $$ testScriptFile(SCRIPT_TEXT, getBaseArgs(miniHS2.getBaseJdbcURL()), OutStream.ERR, Arrays.asList(new Tuple(EXPECTED_PATTERN, true), new Tuple(UNEXPECTED_PATTERN, false))) [CD]
+Line_3 $$ final String SCRIPT_TEXT = "set hive.support.concurrency = false;\n" + "set hive.server2.logging.operation.level=execution;\n" + "select count(*) from " + tableName + ";\n" --> Line_6 $$ testScriptFile(SCRIPT_TEXT, getBaseArgs(miniHS2.getBaseJdbcURL()), OutStream.ERR, Arrays.asList(new Tuple(EXPECTED_PATTERN, true), new Tuple(UNEXPECTED_PATTERN, false))) [FD]

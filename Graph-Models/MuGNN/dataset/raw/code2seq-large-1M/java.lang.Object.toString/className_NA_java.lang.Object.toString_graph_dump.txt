@@ -1,0 +1,8 @@
+Line_3 $$ if (type instanceof ArrayType) --> Line_4 $$ return className(((ArrayType) type).getComponentType()) + "[]" [CD]
+Line_6 $$ if (!(type instanceof Class)) --> Line_7 $$ return type.toString() [CD]
+Line_9 $$ Class clazz = (Class) type --> Line_10 $$ if (clazz.isArray()) [FD]
+Line_10 $$ if (clazz.isArray()) --> Line_11 $$ return className(clazz.getComponentType()) + "[]" [CD]
+Line_9 $$ Class clazz = (Class) type --> Line_11 $$ return className(clazz.getComponentType()) + "[]" [FD]
+Line_9 $$ Class clazz = (Class) type --> Line_13 $$ String className = clazz.getName() [FD]
+Line_9 $$ Class clazz = (Class) type --> Line_14 $$ if (!clazz.isPrimitive() && clazz.getPackage() != null && clazz.getPackage().getName().equals("java.lang")) [FD]
+Line_14 $$ if (!clazz.isPrimitive() && clazz.getPackage() != null && clazz.getPackage().getName().equals("java.lang")) --> Line_15 $$ return className.substring("java.lang.".length()) [CD]

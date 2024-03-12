@@ -1,0 +1,5 @@
+Line_2 $$ public void immutableSortedSetWithComparator() --> Line_3 $$ Comparator<Integer> comparator = Comparator.<Integer>naturalOrder().reversed() [CD]
+Line_2 $$ public void immutableSortedSetWithComparator() --> Line_4 $$ ImmutableSortedSet<Integer> set = dbRule.getSharedHandle().createQuery("select intValue from something").mapTo(int.class).collect(ImmutableSortedSet.toImmutableSortedSet(comparator)) [CD]
+Line_3 $$ Comparator<Integer> comparator = Comparator.<Integer>naturalOrder().reversed() --> Line_4 $$ ImmutableSortedSet<Integer> set = dbRule.getSharedHandle().createQuery("select intValue from something").mapTo(int.class).collect(ImmutableSortedSet.toImmutableSortedSet(comparator)) [FD]
+Line_2 $$ public void immutableSortedSetWithComparator() --> Line_5 $$ assertThat(set).containsExactlyElementsOf(expected.stream().sorted(comparator).collect(Collectors.toList())) [CD]
+Line_3 $$ Comparator<Integer> comparator = Comparator.<Integer>naturalOrder().reversed() --> Line_5 $$ assertThat(set).containsExactlyElementsOf(expected.stream().sorted(comparator).collect(Collectors.toList())) [FD]

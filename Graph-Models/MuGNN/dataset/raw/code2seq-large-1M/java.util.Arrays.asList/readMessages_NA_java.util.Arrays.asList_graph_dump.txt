@@ -1,0 +1,5 @@
+Line_2 $$ private static void readMessages() throws InterruptedException --> Line_3 $$ KafkaConsumer<String, String> consumer = createConsumer() [CD]
+Line_2 $$ private static void readMessages() throws InterruptedException --> Line_4 $$ consumer.subscribe(Arrays.asList("normal-topic"), new MyConsumerRebalancerListener(consumer)) [CD]
+Line_3 $$ KafkaConsumer<String, String> consumer = createConsumer() --> Line_4 $$ consumer.subscribe(Arrays.asList("normal-topic"), new MyConsumerRebalancerListener(consumer)) [FD]
+Line_2 $$ private static void readMessages() throws InterruptedException --> Line_5 $$ processRecords(consumer) [CD]
+Line_3 $$ KafkaConsumer<String, String> consumer = createConsumer() --> Line_5 $$ processRecords(consumer) [FD]

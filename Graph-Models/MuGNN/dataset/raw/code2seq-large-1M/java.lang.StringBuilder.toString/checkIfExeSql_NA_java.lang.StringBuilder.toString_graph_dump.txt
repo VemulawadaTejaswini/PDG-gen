@@ -1,0 +1,7 @@
+Line_2 $$ private void checkIfExeSql(TableMapEventData tableMapEvent, StringBuilder sb, int slot) --> Line_4 $$ if (tableMapEvent.getTable().equalsIgnoreCase(migrateTask.getTable()) && tableMapEvent.getDatabase().equalsIgnoreCase(MigrateUtils.getDatabaseFromDataNode(migrateTask.getFrom()))) [FD]
+Line_3 $$ for (MigrateTask migrateTask : migrateTaskList) --> Line_4 $$ if (tableMapEvent.getTable().equalsIgnoreCase(migrateTask.getTable()) && tableMapEvent.getDatabase().equalsIgnoreCase(MigrateUtils.getDatabaseFromDataNode(migrateTask.getFrom()))) [FD]
+Line_3 $$ for (MigrateTask migrateTask : migrateTaskList) --> Line_5 $$ for (PartitionByCRC32PreSlot.Range range : migrateTask.getSlots()) [FD]
+Line_6 $$ if (range.end >= slot && range.start <= slot) --> Line_7 $$ exeSql(migrateTask, sb.toString()) [CD]
+Line_3 $$ for (MigrateTask migrateTask : migrateTaskList) --> Line_7 $$ exeSql(migrateTask, sb.toString()) [FD]
+Line_2 $$ private void checkIfExeSql(TableMapEventData tableMapEvent, StringBuilder sb, int slot) --> Line_7 $$ exeSql(migrateTask, sb.toString()) [FD]
+Line_6 $$ if (range.end >= slot && range.start <= slot) --> Line_8 $$ return [CD]

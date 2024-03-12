@@ -1,0 +1,8 @@
+Line_4 $$ Ignite ignite1 = startGrid(1) --> Line_6 $$ ignite1.compute().localDeployTask(SessionTestTask.class, SessionTestTask.class.getClassLoader()) [FD]
+Line_7 $$ for (int i = 0; i < TESTS_COUNT; i++) --> Line_8 $$ ComputeTaskFuture<?> fut = ignite1.compute().withTimeout(100000).executeAsync(SessionTestTask.class.getName(), ignite2.cluster().localNode().id()) [CD]
+Line_4 $$ Ignite ignite1 = startGrid(1) --> Line_8 $$ ComputeTaskFuture<?> fut = ignite1.compute().withTimeout(100000).executeAsync(SessionTestTask.class.getName(), ignite2.cluster().localNode().id()) [FD]
+Line_5 $$ Ignite ignite2 = startGrid(2) --> Line_8 $$ ComputeTaskFuture<?> fut = ignite1.compute().withTimeout(100000).executeAsync(SessionTestTask.class.getName(), ignite2.cluster().localNode().id()) [FD]
+Line_7 $$ for (int i = 0; i < TESTS_COUNT; i++) --> Line_9 $$ fut.getTaskSession().setAttribute(TEST_ATTR_KEY, SETS_ATTR_COUNT) [CD]
+Line_7 $$ for (int i = 0; i < TESTS_COUNT; i++) --> Line_10 $$ Integer res = (Integer) fut.get() [CD]
+Line_10 $$ Integer res = (Integer) fut.get() --> Line_11 $$ assert res != null && res.equals(SETS_ATTR_COUNT) : "Unexpected result [res=" + res + ", expected=" + SETS_ATTR_COUNT + ']' [FD]
+Line_7 $$ for (int i = 0; i < TESTS_COUNT; i++) --> Line_12 $$ info("Session attribute value was correct for test [res=" + res + ", expected=" + SETS_ATTR_COUNT + ']') [CD]

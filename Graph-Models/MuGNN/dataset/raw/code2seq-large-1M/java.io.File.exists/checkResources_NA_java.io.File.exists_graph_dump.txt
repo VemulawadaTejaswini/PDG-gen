@@ -1,0 +1,8 @@
+Line_2 $$ void checkResources(String path, String moduleAndVersion, String... paths) throws IOException --> Line_3 $$ File res = new File(path, "module-resources") [CD]
+Line_2 $$ void checkResources(String path, String moduleAndVersion, String... paths) throws IOException --> Line_4 $$ Assert.assertTrue("Resources directory missing", res.exists() && res.isDirectory()) [CD]
+Line_3 $$ File res = new File(path, "module-resources") --> Line_4 $$ Assert.assertTrue("Resources directory missing", res.exists() && res.isDirectory()) [FD]
+Line_6 $$ File f = new File(res, name) --> Line_7 $$ Assert.assertTrue("Missing resource " + name, f.isFile()) [FD]
+Line_6 $$ File f = new File(res, name) --> Line_8 $$ List<String> lines = Files.readAllLines(f.toPath(), Charset.defaultCharset()) [FD]
+Line_8 $$ List<String> lines = Files.readAllLines(f.toPath(), Charset.defaultCharset()) --> Line_9 $$ Assert.assertFalse("Missing contents resource " + name, lines.isEmpty()) [FD]
+Line_6 $$ File f = new File(res, name) --> Line_10 $$ Assert.assertEquals("Contents incorrect for resource " + name, f.getName(), lines.get(0)) [FD]
+Line_8 $$ List<String> lines = Files.readAllLines(f.toPath(), Charset.defaultCharset()) --> Line_10 $$ Assert.assertEquals("Contents incorrect for resource " + name, f.getName(), lines.get(0)) [FD]

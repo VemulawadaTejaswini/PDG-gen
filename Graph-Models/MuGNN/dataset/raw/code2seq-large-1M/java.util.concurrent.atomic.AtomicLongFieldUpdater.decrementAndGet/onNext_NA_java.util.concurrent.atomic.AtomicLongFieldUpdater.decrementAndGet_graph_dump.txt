@@ -1,0 +1,8 @@
+Line_2 $$ void onNext(T value) --> Line_3 $$ if (requested != 0L) [CD]
+Line_3 $$ if (requested != 0L) --> Line_4 $$ actual.onNext(value) [CD]
+Line_2 $$ void onNext(T value) --> Line_4 $$ actual.onNext(value) [FD]
+Line_3 $$ if (requested != 0L) --> Line_5 $$ if (requested != Long.MAX_VALUE) [CD]
+Line_5 $$ if (requested != Long.MAX_VALUE) --> Line_6 $$ REQUESTED.decrementAndGet(this) [CD]
+Line_3 $$ if (requested != 0L) --> Line_8 $$ return [CD]
+Line_2 $$ void onNext(T value) --> Line_10 $$ parent.remove(this) [CD]
+Line_2 $$ void onNext(T value) --> Line_11 $$ actual.onError(Exceptions.failWithOverflow("Can't deliver value due to lack of requests")) [CD]

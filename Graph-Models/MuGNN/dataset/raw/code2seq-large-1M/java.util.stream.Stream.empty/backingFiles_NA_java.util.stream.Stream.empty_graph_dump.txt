@@ -1,0 +1,4 @@
+Line_2 $$ private Stream<S3PropertiesFile> backingFiles() --> Line_3 $$ if (s3 == null) [CD]
+Line_3 $$ if (s3 == null) --> Line_4 $$ return Stream.empty() [CD]
+Line_3 $$ if (s3 == null) --> Line_6 $$ Stream<S3PropertiesFile> stream = s3.listObjects(bucket, nodeAccess.getId()).getObjectSummaries().stream().filter( summary -> summary.getKey().endsWith(METRICS_EXTENSION)).map( summary -> new S3PropertiesFile(s3, bucket, summary.getKey())) [CD]
+Line_3 $$ if (s3 == null) --> Line_7 $$ return stream [CD]

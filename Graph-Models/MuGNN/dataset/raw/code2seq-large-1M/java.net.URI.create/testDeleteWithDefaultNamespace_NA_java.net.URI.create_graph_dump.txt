@@ -1,0 +1,7 @@
+Line_2 $$ public void testDeleteWithDefaultNamespace() throws IOException --> Line_3 $$ Assert.assertTrue("Delete should succeed if the location matches", Datasets.delete("dataset:hive:/tmp/datasets/test")) [CD]
+Line_2 $$ public void testDeleteWithDefaultNamespace() throws IOException --> Line_4 $$ Assert.assertFalse("Delete should return false if there is no dataset", Datasets.delete("dataset:hive:/tmp/datasets/test")) [CD]
+Line_2 $$ public void testDeleteWithDefaultNamespace() throws IOException --> Line_5 $$ DatasetDescriptor doNotDelete = new DatasetDescriptor.Builder(descriptor).location(URI.create("file:/tmp/datasets/default/test")).build() [CD]
+Line_2 $$ public void testDeleteWithDefaultNamespace() throws IOException --> Line_6 $$ metastore.createTable(HiveUtils.tableForDescriptor("default", "test", doNotDelete, true)) [CD]
+Line_5 $$ DatasetDescriptor doNotDelete = new DatasetDescriptor.Builder(descriptor).location(URI.create("file:/tmp/datasets/default/test")).build() --> Line_6 $$ metastore.createTable(HiveUtils.tableForDescriptor("default", "test", doNotDelete, true)) [FD]
+Line_2 $$ public void testDeleteWithDefaultNamespace() throws IOException --> Line_7 $$ Assert.assertFalse("Delete should not find a dataset to delete", Datasets.delete("dataset:hive:/tmp/datasets/test")) [CD]
+Line_2 $$ public void testDeleteWithDefaultNamespace() throws IOException --> Line_8 $$ Assert.assertTrue("Delete should not change the dataset", metastore.exists("default", "test")) [CD]

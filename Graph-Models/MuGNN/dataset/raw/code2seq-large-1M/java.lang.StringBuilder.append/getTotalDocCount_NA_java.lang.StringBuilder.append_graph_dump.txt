@@ -1,0 +1,8 @@
+Line_2 $$ public int getTotalDocCount(String projectSlug) --> Line_3 $$ StringBuilder query = new StringBuilder() [CD]
+Line_2 $$ public int getTotalDocCount(String projectSlug) --> Line_4 $$ query.append("select count(doc) from HDocument doc ").append("where doc.projectIteration.project.slug=:projectSlug ").append("and doc.projectIteration.status <> :obsolete ").append("and doc.obsolete = false") [CD]
+Line_3 $$ StringBuilder query = new StringBuilder() --> Line_4 $$ query.append("select count(doc) from HDocument doc ").append("where doc.projectIteration.project.slug=:projectSlug ").append("and doc.projectIteration.status <> :obsolete ").append("and doc.obsolete = false") [FD]
+Line_2 $$ public int getTotalDocCount(String projectSlug) --> Line_5 $$ Query q = getSession().createQuery(query.toString()).setParameter("projectSlug", projectSlug).setParameter("obsolete", EntityStatus.OBSOLETE) [FD]
+Line_2 $$ public int getTotalDocCount(String projectSlug) --> Line_5 $$ Query q = getSession().createQuery(query.toString()).setParameter("projectSlug", projectSlug).setParameter("obsolete", EntityStatus.OBSOLETE) [CD]
+Line_3 $$ StringBuilder query = new StringBuilder() --> Line_5 $$ Query q = getSession().createQuery(query.toString()).setParameter("projectSlug", projectSlug).setParameter("obsolete", EntityStatus.OBSOLETE) [FD]
+Line_2 $$ public int getTotalDocCount(String projectSlug) --> Line_6 $$ return ((Long) q.uniqueResult()).intValue() [CD]
+Line_5 $$ Query q = getSession().createQuery(query.toString()).setParameter("projectSlug", projectSlug).setParameter("obsolete", EntityStatus.OBSOLETE) --> Line_6 $$ return ((Long) q.uniqueResult()).intValue() [FD]

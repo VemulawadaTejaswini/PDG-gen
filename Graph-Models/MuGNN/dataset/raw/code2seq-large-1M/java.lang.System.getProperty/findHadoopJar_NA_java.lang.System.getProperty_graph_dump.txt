@@ -1,0 +1,7 @@
+Line_2 $$ private String findHadoopJar() --> Line_3 $$ String classpath = System.getProperty("java.class.path") [CD]
+Line_2 $$ private String findHadoopJar() --> Line_4 $$ String trimmedClasspath = classpath.trim() [CD]
+Line_2 $$ private String findHadoopJar() --> Line_5 $$ Iterable<String> pathElements = Splitter.on(Pattern.compile("[;:]")).omitEmptyStrings().trimResults().split(trimmedClasspath) [CD]
+Line_6 $$ for (String pathElement : pathElements) --> Line_7 $$ if (Pattern.compile("(?i)hadoop").matcher(pathElement).find()) [FD]
+Line_7 $$ if (Pattern.compile("(?i)hadoop").matcher(pathElement).find()) --> Line_8 $$ return pathElement [CD]
+Line_2 $$ private String findHadoopJar() --> Line_11 $$ LOGGER.error("Hadoop not found in classpath: |" + classpath + "|") [CD]
+Line_2 $$ private String findHadoopJar() --> Line_12 $$ return null [CD]

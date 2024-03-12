@@ -1,0 +1,8 @@
+Line_4 $$ for (TableMigrateInfo table : migrateTables) --> Line_5 $$ if (!table.isError()) [FD]
+Line_5 $$ if (!table.isError()) --> Line_6 $$ List<DataNodeMigrateInfo> detailList = table.getDataNodesDetail() [CD]
+Line_4 $$ for (TableMigrateInfo table : migrateTables) --> Line_6 $$ List<DataNodeMigrateInfo> detailList = table.getDataNodesDetail() [FD]
+Line_7 $$ for (DataNodeMigrateInfo info : detailList) --> Line_8 $$ executor.execute(new DataMigrateRunner(table, info.getSrc(), info.getTarget(), table.getTableName(), info.getTempFile())) [FD]
+Line_4 $$ for (TableMigrateInfo table : migrateTables) --> Line_8 $$ executor.execute(new DataMigrateRunner(table, info.getSrc(), info.getTarget(), table.getTableName(), info.getTempFile())) [FD]
+Line_2 $$ private void migrateData() throws SQLException --> Line_12 $$ executor.shutdown() [CD]
+Line_2 $$ private void migrateData() throws SQLException --> Line_13 $$ while (true) [CD]
+Line_13 $$ while (true) --> Line_14 $$ if (executor.isTerminated()) [CD]

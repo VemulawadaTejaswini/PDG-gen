@@ -1,0 +1,8 @@
+Line_2 $$ public void login() --> Line_3 $$ Session session = Session.getActiveSession() [CD]
+Line_2 $$ public void login() --> Line_4 $$ if (activity == null) [CD]
+Line_4 $$ if (activity == null) --> Line_5 $$ return [CD]
+Line_2 $$ public void login() --> Line_6 $$ if (session != null && !session.isOpened() && !session.isClosed()) [CD]
+Line_3 $$ Session session = Session.getActiveSession() --> Line_6 $$ if (session != null && !session.isOpened() && !session.isClosed()) [FD]
+Line_6 $$ if (session != null && !session.isOpened() && !session.isClosed()) --> Line_7 $$ session.openForRead(new Session.OpenRequest(activity).setPermissions(Arrays.asList("public_profile", "email")).setCallback(statusCallback)) [CD]
+Line_3 $$ Session session = Session.getActiveSession() --> Line_7 $$ session.openForRead(new Session.OpenRequest(activity).setPermissions(Arrays.asList("public_profile", "email")).setCallback(statusCallback)) [FD]
+Line_6 $$ if (session != null && !session.isOpened() && !session.isClosed()) --> Line_9 $$ Session.openActiveSession(activity, true, Arrays.asList("public_profile", "email"), statusCallback) [CD]

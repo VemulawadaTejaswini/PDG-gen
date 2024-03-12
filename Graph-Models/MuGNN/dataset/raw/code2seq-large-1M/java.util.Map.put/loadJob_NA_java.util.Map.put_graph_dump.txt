@@ -1,0 +1,8 @@
+Line_2 $$ public static Job loadJob(CuratorFramework client, String jobName, JobFactory jobFactory) throws Exception --> Line_4 $$ byte[] definition = client.getData().forPath(Paths.build(Paths.JOBS, jobName)) [FD]
+Line_4 $$ byte[] definition = client.getData().forPath(Paths.build(Paths.JOBS, jobName)) --> Line_5 $$ Map<String, String> definitionMap = ZooKeeperUtils.bytesToMap(definition) [FD]
+Line_2 $$ public static Job loadJob(CuratorFramework client, String jobName, JobFactory jobFactory) throws Exception --> Line_6 $$ byte[] deploymentPropertiesData = client.getData().forPath(Paths.build(Paths.JOB_DEPLOYMENTS, jobName)) [FD]
+Line_7 $$ if (deploymentPropertiesData != null && deploymentPropertiesData.length > 0) --> Line_8 $$ definitionMap.put("deploymentProperties", new String(deploymentPropertiesData, "UTF-8")) [CD]
+Line_5 $$ Map<String, String> definitionMap = ZooKeeperUtils.bytesToMap(definition) --> Line_8 $$ definitionMap.put("deploymentProperties", new String(deploymentPropertiesData, "UTF-8")) [FD]
+Line_2 $$ public static Job loadJob(CuratorFramework client, String jobName, JobFactory jobFactory) throws Exception --> Line_10 $$ return jobFactory.createJob(jobName, definitionMap) [FD]
+Line_5 $$ Map<String, String> definitionMap = ZooKeeperUtils.bytesToMap(definition) --> Line_10 $$ return jobFactory.createJob(jobName, definitionMap) [FD]
+Line_2 $$ public static Job loadJob(CuratorFramework client, String jobName, JobFactory jobFactory) throws Exception --> Line_13 $$ return null [CD]

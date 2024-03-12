@@ -1,0 +1,8 @@
+Line_4 $$ final Account expected = new Account("123-45-6789", "Joe", "Cool", 40000) --> Line_6 $$ ejbObject.openAccount(expected, Boolean.FALSE) [FD]
+Line_5 $$ Account actual = new Account() --> Line_7 $$ actual = ejbObject.retreiveAccount(expected.getSsn()) [FD]
+Line_4 $$ final Account expected = new Account("123-45-6789", "Joe", "Cool", 40000) --> Line_7 $$ actual = ejbObject.retreiveAccount(expected.getSsn()) [FD]
+Line_5 $$ Account actual = new Account() --> Line_8 $$ assertNotNull("The transaction was not commited.  The record is null", actual) [FD]
+Line_7 $$ actual = ejbObject.retreiveAccount(expected.getSsn()) --> Line_8 $$ assertNotNull("The transaction was not commited.  The record is null", actual) [FD]
+Line_4 $$ final Account expected = new Account("123-45-6789", "Joe", "Cool", 40000) --> Line_9 $$ assertEquals("The transaction was not commited cleanly.", expected, actual) [FD]
+Line_5 $$ Account actual = new Account() --> Line_9 $$ assertEquals("The transaction was not commited cleanly.", expected, actual) [FD]
+Line_7 $$ actual = ejbObject.retreiveAccount(expected.getSsn()) --> Line_9 $$ assertEquals("The transaction was not commited cleanly.", expected, actual) [FD]

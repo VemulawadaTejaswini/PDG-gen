@@ -1,0 +1,7 @@
+Line_2 $$ private void reconcileApps(String volumeUuid) --> Line_3 $$ final File[] files = FileUtils.listFilesOrEmpty(Environment.getDataAppDirectory(volumeUuid)) [FD]
+Line_2 $$ private void reconcileApps(String volumeUuid) --> Line_3 $$ final File[] files = FileUtils.listFilesOrEmpty(Environment.getDataAppDirectory(volumeUuid)) [CD]
+Line_4 $$ for (File file : files) --> Line_5 $$ final boolean isPackage = (isApkFile(file) || file.isDirectory()) && !PackageInstallerService.isStageName(file.getName()) [FD]
+Line_5 $$ final boolean isPackage = (isApkFile(file) || file.isDirectory()) && !PackageInstallerService.isStageName(file.getName()) --> Line_6 $$ if (!isPackage) [FD]
+Line_4 $$ for (File file : files) --> Line_10 $$ final PackageLite pkg = PackageParser.parsePackageLite(file, PackageParser.PARSE_MUST_BE_APK) [FD]
+Line_2 $$ private void reconcileApps(String volumeUuid) --> Line_11 $$ assertPackageKnown(volumeUuid, pkg.packageName) [FD]
+Line_4 $$ for (File file : files) --> Line_15 $$ removeCodePathLI(file) [FD]

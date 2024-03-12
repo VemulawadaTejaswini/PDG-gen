@@ -1,0 +1,7 @@
+Line_2 $$ static ThreadGroup getRootThread() --> Line_3 $$ ThreadGroup root = Thread.currentThread().getThreadGroup().getParent() [CD]
+Line_2 $$ static ThreadGroup getRootThread() --> Line_4 $$ while (root.getParent() != null) [CD]
+Line_3 $$ ThreadGroup root = Thread.currentThread().getThreadGroup().getParent() --> Line_4 $$ while (root.getParent() != null) [FD]
+Line_4 $$ while (root.getParent() != null) --> Line_5 $$ root = root.getParent() [CD]
+Line_3 $$ ThreadGroup root = Thread.currentThread().getThreadGroup().getParent() --> Line_5 $$ root = root.getParent() [FD]
+Line_2 $$ static ThreadGroup getRootThread() --> Line_7 $$ return root [CD]
+Line_5 $$ root = root.getParent() --> Line_4 $$ while (root.getParent() != null) [FD]

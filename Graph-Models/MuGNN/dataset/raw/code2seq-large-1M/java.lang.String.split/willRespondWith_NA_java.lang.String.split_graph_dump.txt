@@ -1,0 +1,7 @@
+Line_3 $$ for (String rawResponse : rawResponses) --> Line_5 $$ String[] parts = rawResponse.split("\r\n\r\n", 2) [FD]
+Line_4 $$ MockResponse response = new MockResponse() --> Line_7 $$ response.setStatus(headerLines[0]) [FD]
+Line_8 $$ for (int i = 1; i < headerLines.length; ++i) --> Line_9 $$ String[] headerParts = headerLines[i].split(": ", 2) [CD]
+Line_8 $$ for (int i = 1; i < headerLines.length; ++i) --> Line_10 $$ response.addHeader(headerParts[0], headerParts[1]) [CD]
+Line_4 $$ MockResponse response = new MockResponse() --> Line_10 $$ response.addHeader(headerParts[0], headerParts[1]) [FD]
+Line_4 $$ MockResponse response = new MockResponse() --> Line_12 $$ response.setBody(parts[1]) [FD]
+Line_4 $$ MockResponse response = new MockResponse() --> Line_13 $$ server.enqueue(response) [FD]

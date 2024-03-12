@@ -1,0 +1,8 @@
+Line_2 $$ protected boolean beforeDelete() --> Line_3 $$ if (!isCostingMethod()) [CD]
+Line_3 $$ if (!isCostingMethod()) --> Line_4 $$ return true [CD]
+Line_2 $$ protected boolean beforeDelete() --> Line_6 $$ final MAcctSchema[] ass = MAcctSchema.getClientAcctSchema(getCtx(), getAD_Client_ID()) [CD]
+Line_2 $$ protected boolean beforeDelete() --> Line_7 $$ for (int i = 0; i < ass.length; i++) [CD]
+Line_7 $$ for (int i = 0; i < ass.length; i++) --> Line_8 $$ if (ass[i].getCostingMethod().equals(getCostingMethod())) [CD]
+Line_2 $$ protected boolean beforeDelete() --> Line_12 $$ final String productCategoriesUsingCostingMethod = Services.get(IQueryBL.class).createQueryBuilder(I_M_Product_Category_Acct.class).addEqualsFilter(I_M_Product_Category_Acct.COLUMN_AD_Client_ID, getAD_Client_ID()).addEqualsFilter(I_M_Product_Category_Acct.COLUMN_CostingMethod, getCostingMethod()).andCollect(I_M_Product_Category_Acct.COLUMN_M_Product_Category_ID).orderBy(I_M_Product_Category.COLUMN_Name).create().setLimit(50).listDistinct(I_M_Product_Category.COLUMNNAME_Name, String.class).stream().collect(Collectors.joining(", ")) [CD]
+Line_2 $$ protected boolean beforeDelete() --> Line_13 $$ if (!Check.isEmpty(productCategoriesUsingCostingMethod, true)) [CD]
+Line_2 $$ protected boolean beforeDelete() --> Line_16 $$ return true [CD]

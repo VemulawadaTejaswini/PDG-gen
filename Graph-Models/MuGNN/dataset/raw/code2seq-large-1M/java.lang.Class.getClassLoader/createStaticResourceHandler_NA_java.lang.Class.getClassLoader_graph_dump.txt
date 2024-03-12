@@ -1,0 +1,6 @@
+Line_2 $$ private static HttpHandler createStaticResourceHandler() --> Line_3 $$ final ResourceManager staticResources = new ClassPathResourceManager(Server.class.getClassLoader(), "static") [CD]
+Line_2 $$ private static HttpHandler createStaticResourceHandler() --> Line_4 $$ final ResourceManager cachedResources = new CachingResourceManager(100, 65536, new DirectBufferCache(1024, 10, 10480), staticResources, (int) Duration.ofDays(1).getSeconds()) [CD]
+Line_2 $$ private static HttpHandler createStaticResourceHandler() --> Line_5 $$ final ResourceHandler resourceHandler = new ResourceHandler(cachedResources) [CD]
+Line_2 $$ private static HttpHandler createStaticResourceHandler() --> Line_6 $$ resourceHandler.setWelcomeFiles("index.html") [CD]
+Line_5 $$ final ResourceHandler resourceHandler = new ResourceHandler(cachedResources) --> Line_6 $$ resourceHandler.setWelcomeFiles("index.html") [FD]
+Line_2 $$ private static HttpHandler createStaticResourceHandler() --> Line_7 $$ return resourceHandler [CD]

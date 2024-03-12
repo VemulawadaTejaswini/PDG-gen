@@ -1,0 +1,7 @@
+Line_2 $$ public void acquire(Duration timeout) --> Line_3 $$ boolean acquired [CD]
+Line_3 $$ boolean acquired --> Line_5 $$ acquired = mutex.acquire(timeout.toMillis(), TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ public void acquire(Duration timeout) --> Line_5 $$ acquired = mutex.acquire(timeout.toMillis(), TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ public void acquire(Duration timeout) --> Line_9 $$ if (!acquired) [CD]
+Line_3 $$ boolean acquired --> Line_9 $$ if (!acquired) [FD]
+Line_5 $$ acquired = mutex.acquire(timeout.toMillis(), TimeUnit.MILLISECONDS) --> Line_9 $$ if (!acquired) [FD]
+Line_2 $$ public void acquire(Duration timeout) --> Line_10 $$ throw new UncheckedTimeoutException("Timed out after waiting " + timeout.toString() + " to acquire lock '" + lockPath + "'") [FD]

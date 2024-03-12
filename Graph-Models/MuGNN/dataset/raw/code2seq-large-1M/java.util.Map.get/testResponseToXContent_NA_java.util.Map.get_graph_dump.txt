@@ -1,0 +1,7 @@
+Line_2 $$ public void testResponseToXContent() throws Exception --> Line_3 $$ GrokProcessorGetAction.Response response = new GrokProcessorGetAction.Response(TEST_PATTERNS) [CD]
+Line_3 $$ GrokProcessorGetAction.Response response = new GrokProcessorGetAction.Response(TEST_PATTERNS) --> Line_5 $$ response.toXContent(builder, ToXContent.EMPTY_PARAMS) [FD]
+Line_4 $$ try (XContentBuilder builder = JsonXContent.contentBuilder()) --> Line_5 $$ response.toXContent(builder, ToXContent.EMPTY_PARAMS) [FD]
+Line_4 $$ try (XContentBuilder builder = JsonXContent.contentBuilder()) --> Line_6 $$ Map<String, Object> converted = XContentHelper.convertToMap(BytesReference.bytes(builder), false, builder.contentType()).v2() [FD]
+Line_6 $$ Map<String, Object> converted = XContentHelper.convertToMap(BytesReference.bytes(builder), false, builder.contentType()).v2() --> Line_7 $$ Map<String, String> patterns = (Map<String, String>) converted.get("patterns") [FD]
+Line_7 $$ Map<String, String> patterns = (Map<String, String>) converted.get("patterns") --> Line_8 $$ assertThat(patterns.size(), equalTo(1)) [FD]
+Line_7 $$ Map<String, String> patterns = (Map<String, String>) converted.get("patterns") --> Line_9 $$ assertThat(patterns.get("PATTERN"), equalTo("foo")) [FD]

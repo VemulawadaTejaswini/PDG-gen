@@ -1,0 +1,7 @@
+Line_2 $$ protected void readBinaryBlockFrameFromHDFS(Path path, JobConf job, FileSystem fs, FrameBlock dest, long rlen, long clen) throws IOException, DMLRuntimeException --> Line_3 $$ int numThreads = OptimizerUtils.getParallelBinaryReadParallelism() [CD]
+Line_3 $$ int numThreads = OptimizerUtils.getParallelBinaryReadParallelism() --> Line_5 $$ ExecutorService pool = CommonThreadPool.get(numThreads) [FD]
+Line_2 $$ protected void readBinaryBlockFrameFromHDFS(Path path, JobConf job, FileSystem fs, FrameBlock dest, long rlen, long clen) throws IOException, DMLRuntimeException --> Line_7 $$ for (Path lpath : IOUtilFunctions.getSequenceFilePaths(fs, path)) tasks.add(new ReadFileTask(lpath, job, fs, dest)) [FD]
+Line_6 $$ ArrayList<ReadFileTask> tasks = new ArrayList() --> Line_7 $$ for (Path lpath : IOUtilFunctions.getSequenceFilePaths(fs, path)) tasks.add(new ReadFileTask(lpath, job, fs, dest)) [FD]
+Line_5 $$ ExecutorService pool = CommonThreadPool.get(numThreads) --> Line_8 $$ List<Future<Object>> rt = pool.invokeAll(tasks) [FD]
+Line_6 $$ ArrayList<ReadFileTask> tasks = new ArrayList() --> Line_8 $$ List<Future<Object>> rt = pool.invokeAll(tasks) [FD]
+Line_5 $$ ExecutorService pool = CommonThreadPool.get(numThreads) --> Line_9 $$ pool.shutdown() [FD]

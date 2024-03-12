@@ -1,0 +1,8 @@
+Line_2 $$ public static FileChannel createTmpFileChannel() throws IOException --> Line_3 $$ final File file = File.createTempFile("buffer-", ".dat") [CD]
+Line_2 $$ public static FileChannel createTmpFileChannel() throws IOException --> Line_4 $$ file.deleteOnExit() [CD]
+Line_3 $$ final File file = File.createTempFile("buffer-", ".dat") --> Line_4 $$ file.deleteOnExit() [FD]
+Line_2 $$ public static FileChannel createTmpFileChannel() throws IOException --> Line_5 $$ final FileChannel fileChannel = FileChannel.open(file.toPath(), CREATE, READ, WRITE) [CD]
+Line_3 $$ final File file = File.createTempFile("buffer-", ".dat") --> Line_5 $$ final FileChannel fileChannel = FileChannel.open(file.toPath(), CREATE, READ, WRITE) [FD]
+Line_2 $$ public static FileChannel createTmpFileChannel() throws IOException --> Line_6 $$ IoUtil.fill(fileChannel, 0, Configuration.MTU_LENGTH_DEFAULT, (byte) 0) [CD]
+Line_5 $$ final FileChannel fileChannel = FileChannel.open(file.toPath(), CREATE, READ, WRITE) --> Line_6 $$ IoUtil.fill(fileChannel, 0, Configuration.MTU_LENGTH_DEFAULT, (byte) 0) [FD]
+Line_2 $$ public static FileChannel createTmpFileChannel() throws IOException --> Line_7 $$ return fileChannel [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void stopWatcher() throws Exception --> Line_3 $$ assertOK(adminClient().performRequest("DELETE", "my_test_index")) [CD]
+Line_2 $$ public void stopWatcher() throws Exception --> Line_4 $$ assertBusy(() -> [CD]
+Line_6 $$ Response statsResponse = adminClient().performRequest("GET", "_xpack/watcher/stats") --> Line_7 $$ ObjectPath objectPath = ObjectPath.createFromResponse(statsResponse) [FD]
+Line_7 $$ ObjectPath objectPath = ObjectPath.createFromResponse(statsResponse) --> Line_8 $$ String state = objectPath.evaluate("stats.0.watcher_state") [FD]
+Line_17 $$ Response stopResponse = adminClient().performRequest("POST", "_xpack/watcher/_stop", Collections.emptyMap()) --> Line_18 $$ assertOK(stopResponse) [FD]
+Line_17 $$ Response stopResponse = adminClient().performRequest("POST", "_xpack/watcher/_stop", Collections.emptyMap()) --> Line_19 $$ String body = EntityUtils.toString(stopResponse.getEntity()) [FD]
+Line_19 $$ String body = EntityUtils.toString(stopResponse.getEntity()) --> Line_20 $$ assertThat(body, containsString("\"acknowledged\":true")) [FD]

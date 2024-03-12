@@ -1,0 +1,5 @@
+Line_2 $$ private static void completeFuture(CompletableFuture<Void> future) --> Line_3 $$ if (GlobalEventExecutor.INSTANCE.inEventLoop()) [CD]
+Line_3 $$ if (GlobalEventExecutor.INSTANCE.inEventLoop()) --> Line_4 $$ future.complete(null) [CD]
+Line_2 $$ private static void completeFuture(CompletableFuture<Void> future) --> Line_4 $$ future.complete(null) [FD]
+Line_3 $$ if (GlobalEventExecutor.INSTANCE.inEventLoop()) --> Line_6 $$ GlobalEventExecutor.INSTANCE.execute(() -> future.complete(null)) [CD]
+Line_2 $$ private static void completeFuture(CompletableFuture<Void> future) --> Line_6 $$ GlobalEventExecutor.INSTANCE.execute(() -> future.complete(null)) [FD]

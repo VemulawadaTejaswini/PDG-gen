@@ -1,0 +1,6 @@
+Line_2 $$ private Instant getMetricTimestamp(String[] parts) throws FormatParseException --> Line_3 $$ String value = parts[2] [CD]
+Line_3 $$ String value = parts[2] --> Line_5 $$ if (value.length() != 10 && value.length() != 13) [FD]
+Line_3 $$ String value = parts[2] --> Line_6 $$ throw new FormatParseException("Expected a timestamp length of 10 or 13, found " + value.length() + " ('" + value + "')") [FD]
+Line_3 $$ String value = parts[2] --> Line_8 $$ boolean secondResolution = value.length() == 10 [FD]
+Line_3 $$ String value = parts[2] --> Line_9 $$ long epochTime = Long.parseLong(value) [FD]
+Line_9 $$ long epochTime = Long.parseLong(value) --> Line_10 $$ return secondResolution ? Instant.ofEpochSecond(epochTime) : Instant.ofEpochMilli(epochTime) [FD]

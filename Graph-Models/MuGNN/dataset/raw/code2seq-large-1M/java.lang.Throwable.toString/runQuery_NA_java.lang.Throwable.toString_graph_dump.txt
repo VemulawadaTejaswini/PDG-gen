@@ -1,0 +1,6 @@
+Line_4 $$ OperationState opState = getStatus().getState() --> Line_5 $$ if (opState.isTerminal()) [FD]
+Line_5 $$ if (opState.isTerminal()) --> Line_6 $$ LOG.info("Not running the query. Operation is already in terminal state: " + opState + ", perhaps cancelled due to query timeout or by another thread.") [CD]
+Line_5 $$ if (opState.isTerminal()) --> Line_7 $$ return [CD]
+Line_14 $$ if ((getStatus().getState() == OperationState.CANCELED) || (getStatus().getState() == OperationState.TIMEDOUT) || (getStatus().getState() == OperationState.CLOSED) || (getStatus().getState() == OperationState.FINISHED)) --> Line_15 $$ LOG.warn("Ignore exception in terminal state", e) [CD]
+Line_14 $$ if ((getStatus().getState() == OperationState.CANCELED) || (getStatus().getState() == OperationState.TIMEDOUT) || (getStatus().getState() == OperationState.CLOSED) || (getStatus().getState() == OperationState.FINISHED)) --> Line_16 $$ return [CD]
+Line_2 $$ private void runQuery() throws HiveSQLException --> Line_25 $$ setState(OperationState.FINISHED) [CD]

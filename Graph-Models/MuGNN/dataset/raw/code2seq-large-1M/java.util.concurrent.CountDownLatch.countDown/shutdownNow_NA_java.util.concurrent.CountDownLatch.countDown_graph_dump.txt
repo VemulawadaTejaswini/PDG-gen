@@ -1,0 +1,8 @@
+Line_2 $$ public List<Runnable> shutdownNow() --> Line_4 $$ if (isTerminated()) [CD]
+Line_4 $$ if (isTerminated()) --> Line_5 $$ termination.countDown() [CD]
+Line_4 $$ if (isTerminated()) --> Line_6 $$ return emptyList() [CD]
+Line_4 $$ if (isTerminated()) --> Line_8 $$ List<Runnable> failed = new ArrayList(queue.size()) [CD]
+Line_4 $$ if (isTerminated()) --> Line_9 $$ queue.drainTo(failed) [CD]
+Line_8 $$ List<Runnable> failed = new ArrayList(queue.size()) --> Line_9 $$ queue.drainTo(failed) [FD]
+Line_10 $$ for (Thread t : liveThreads) --> Line_11 $$ t.interrupt() [FD]
+Line_4 $$ if (isTerminated()) --> Line_13 $$ return failed [CD]

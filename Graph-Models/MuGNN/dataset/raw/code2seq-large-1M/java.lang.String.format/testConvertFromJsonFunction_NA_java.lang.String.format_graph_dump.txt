@@ -1,0 +1,7 @@
+Line_2 $$ public void testConvertFromJsonFunction() throws Exception --> Line_3 $$ String table = "nan_test.csv" [CD]
+Line_2 $$ public void testConvertFromJsonFunction() throws Exception --> Line_4 $$ File file = new File(dirTestWatcher.getRootDir(), table) [CD]
+Line_2 $$ public void testConvertFromJsonFunction() throws Exception --> Line_5 $$ String csv = "col_0, [CD]
+Line_4 $$ File file = new File(dirTestWatcher.getRootDir(), table) --> Line_7 $$ FileUtils.writeStringToFile(file, csv) [FD]
+Line_5 $$ String csv = "col_0, --> Line_7 $$ FileUtils.writeStringToFile(file, csv) [FD]
+Line_3 $$ String table = "nan_test.csv" --> Line_8 $$ testBuilder().sqlQuery(String.format("select convert_fromJSON(columns[1]) as col from dfs.`%s`", table)).unOrdered().baselineColumns("col").baselineValues(mapOf("nan_col", Double.NaN)).build().run() [FD]
+Line_4 $$ File file = new File(dirTestWatcher.getRootDir(), table) --> Line_10 $$ FileUtils.deleteQuietly(file) [FD]

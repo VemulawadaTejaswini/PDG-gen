@@ -1,0 +1,7 @@
+Line_2 $$ public Collection<Owner> findByLastName(String lastName) throws DataAccessException --> Line_3 $$ Map<String, Object> params = new HashMap<String, Object>() [CD]
+Line_2 $$ public Collection<Owner> findByLastName(String lastName) throws DataAccessException --> Line_4 $$ params.put("lastName", lastName + "%") [CD]
+Line_3 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_4 $$ params.put("lastName", lastName + "%") [FD]
+Line_2 $$ public Collection<Owner> findByLastName(String lastName) throws DataAccessException --> Line_5 $$ List<Owner> owners = this.namedParameterJdbcTemplate.query("SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name like :lastName", params, BeanPropertyRowMapper.newInstance(Owner.class)) [CD]
+Line_3 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_5 $$ List<Owner> owners = this.namedParameterJdbcTemplate.query("SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name like :lastName", params, BeanPropertyRowMapper.newInstance(Owner.class)) [FD]
+Line_2 $$ public Collection<Owner> findByLastName(String lastName) throws DataAccessException --> Line_6 $$ loadOwnersPetsAndVisits(owners) [CD]
+Line_2 $$ public Collection<Owner> findByLastName(String lastName) throws DataAccessException --> Line_7 $$ return owners [CD]

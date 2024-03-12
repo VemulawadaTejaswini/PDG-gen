@@ -1,0 +1,6 @@
+Line_2 $$ public static Predicate<String> entriesIn(String filterZip) throws IOException --> Line_3 $$ ImmutableSet.Builder<String> filenames = ImmutableSet.builder() [CD]
+Line_2 $$ public static Predicate<String> entriesIn(String filterZip) throws IOException --> Line_4 $$ ZipIn zip = new ZipIn(new FileInputStream(filterZip).getChannel(), filterZip) [CD]
+Line_4 $$ ZipIn zip = new ZipIn(new FileInputStream(filterZip).getChannel(), filterZip) --> Line_5 $$ for (DirectoryEntry entry : zip.centralDirectory().list()) [FD]
+Line_3 $$ ImmutableSet.Builder<String> filenames = ImmutableSet.builder() --> Line_6 $$ filenames.add(entry.getFilename()) [FD]
+Line_2 $$ public static Predicate<String> entriesIn(String filterZip) throws IOException --> Line_8 $$ return Predicates.in(filenames.build()) [CD]
+Line_3 $$ ImmutableSet.Builder<String> filenames = ImmutableSet.builder() --> Line_8 $$ return Predicates.in(filenames.build()) [FD]

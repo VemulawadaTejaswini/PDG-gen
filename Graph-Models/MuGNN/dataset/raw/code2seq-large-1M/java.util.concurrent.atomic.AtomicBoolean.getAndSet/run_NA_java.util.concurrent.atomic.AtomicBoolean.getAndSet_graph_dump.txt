@@ -1,0 +1,5 @@
+Line_4 $$ if (extendDeadline.getAndSet(false)) --> Line_5 $$ int newDeadlineSec = computeDeadlineSeconds() [CD]
+Line_4 $$ if (extendDeadline.getAndSet(false)) --> Line_6 $$ messageDeadlineSeconds.set(newDeadlineSec) [CD]
+Line_5 $$ int newDeadlineSec = computeDeadlineSeconds() --> Line_6 $$ messageDeadlineSeconds.set(newDeadlineSec) [FD]
+Line_4 $$ if (extendDeadline.getAndSet(false)) --> Line_7 $$ extendDeadlines() [CD]
+Line_4 $$ if (extendDeadline.getAndSet(false)) --> Line_8 $$ systemExecutor.schedule(setExtendDeadline, newDeadlineSec - ackExpirationPadding.getSeconds(), TimeUnit.SECONDS) [CD]

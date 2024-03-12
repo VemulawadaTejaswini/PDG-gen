@@ -1,0 +1,7 @@
+Line_2 $$ protected void updateRequestWithCollapse(Select select, SearchRequestBuilder request) throws SqlParseException --> Line_3 $$ JsonFactory jsonFactory = new JsonFactory() [CD]
+Line_2 $$ protected void updateRequestWithCollapse(Select select, SearchRequestBuilder request) throws SqlParseException --> Line_4 $$ for (Hint hint : select.getHints()) [FD]
+Line_4 $$ for (Hint hint : select.getHints()) --> Line_5 $$ if (hint.getType() == HintType.COLLAPSE && hint.getParams() != null && 0 < hint.getParams().length) [FD]
+Line_3 $$ JsonFactory jsonFactory = new JsonFactory() --> Line_6 $$ try (JsonXContentParser parser = new JsonXContentParser(NamedXContentRegistry.EMPTY, jsonFactory.createParser(hint.getParams()[0].toString()))) [FD]
+Line_4 $$ for (Hint hint : select.getHints()) --> Line_6 $$ try (JsonXContentParser parser = new JsonXContentParser(NamedXContentRegistry.EMPTY, jsonFactory.createParser(hint.getParams()[0].toString()))) [FD]
+Line_2 $$ protected void updateRequestWithCollapse(Select select, SearchRequestBuilder request) throws SqlParseException --> Line_7 $$ request.setCollapse(CollapseBuilder.fromXContent(parser)) [FD]
+Line_6 $$ try (JsonXContentParser parser = new JsonXContentParser(NamedXContentRegistry.EMPTY, jsonFactory.createParser(hint.getParams()[0].toString()))) --> Line_7 $$ request.setCollapse(CollapseBuilder.fromXContent(parser)) [FD]

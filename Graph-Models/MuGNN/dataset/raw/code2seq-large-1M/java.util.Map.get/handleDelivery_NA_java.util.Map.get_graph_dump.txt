@@ -1,0 +1,5 @@
+Line_2 $$ public void handleDelivery(String s, com.rabbitmq.client.Envelope envelope, AMQP.BasicProperties basicProperties, byte[] bytes) throws IOException --> Line_4 $$ Map<String, Object> headers = basicProperties.getHeaders() [FD]
+Line_4 $$ Map<String, Object> headers = basicProperties.getHeaders() --> Line_5 $$ if (headers == null || !headers.containsKey(CloudBus.HEADER_MESSAGE_META_DATA)) [FD]
+Line_5 $$ if (headers == null || !headers.containsKey(CloudBus.HEADER_MESSAGE_META_DATA)) --> Line_6 $$ return [CD]
+Line_4 $$ Map<String, Object> headers = basicProperties.getHeaders() --> Line_8 $$ LongString metaData = (LongString) headers.get(CloudBus.HEADER_MESSAGE_META_DATA) [FD]
+Line_8 $$ LongString metaData = (LongString) headers.get(CloudBus.HEADER_MESSAGE_META_DATA) --> Line_9 $$ Map m = JSONObjectUtil.toObject(new String(metaData.getBytes()), LinkedHashMap.class) [FD]

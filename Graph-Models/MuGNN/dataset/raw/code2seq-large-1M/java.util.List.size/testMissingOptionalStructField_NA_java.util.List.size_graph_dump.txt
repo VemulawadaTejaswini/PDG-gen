@@ -1,0 +1,7 @@
+Line_2 $$ public void testMissingOptionalStructField() --> Line_3 $$ Schema write = new Schema(required(0, "nested", Types.StructType.of(required(2, "from_field", Types.IntegerType.get())))) [CD]
+Line_2 $$ public void testMissingOptionalStructField() --> Line_4 $$ Schema read = new Schema(required(0, "nested", Types.StructType.of(optional(1, "to_field", Types.IntegerType.get())))) [CD]
+Line_2 $$ public void testMissingOptionalStructField() --> Line_5 $$ List<String> errors = CheckCompatibility.writeCompatibilityErrors(read, write) [CD]
+Line_4 $$ Schema read = new Schema(required(0, "nested", Types.StructType.of(optional(1, "to_field", Types.IntegerType.get())))) --> Line_5 $$ List<String> errors = CheckCompatibility.writeCompatibilityErrors(read, write) [FD]
+Line_3 $$ Schema write = new Schema(required(0, "nested", Types.StructType.of(required(2, "from_field", Types.IntegerType.get())))) --> Line_5 $$ List<String> errors = CheckCompatibility.writeCompatibilityErrors(read, write) [FD]
+Line_2 $$ public void testMissingOptionalStructField() --> Line_6 $$ Assert.assertEquals("Should produce no error messages", 0, errors.size()) [CD]
+Line_5 $$ List<String> errors = CheckCompatibility.writeCompatibilityErrors(read, write) --> Line_6 $$ Assert.assertEquals("Should produce no error messages", 0, errors.size()) [FD]

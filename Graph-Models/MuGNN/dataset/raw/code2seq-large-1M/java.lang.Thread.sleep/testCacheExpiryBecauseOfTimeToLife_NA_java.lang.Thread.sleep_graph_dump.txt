@@ -1,0 +1,8 @@
+Line_2 $$ public void testCacheExpiryBecauseOfTimeToLife() throws InterruptedException --> Line_3 $$ long ttl = 5 [CD]
+Line_2 $$ public void testCacheExpiryBecauseOfTimeToLife() throws InterruptedException --> Line_4 $$ StateRepository repository = new CachingStateRepository(delegate, ttl) [CD]
+Line_2 $$ public void testCacheExpiryBecauseOfTimeToLife() throws InterruptedException --> Line_5 $$ for (int i = 0; i < 5; i++) [CD]
+Line_5 $$ for (int i = 0; i < 5; i++) --> Line_6 $$ assertTrue(repository.getFeatureState(DummyFeature.TEST).isEnabled()) [CD]
+Line_4 $$ StateRepository repository = new CachingStateRepository(delegate, ttl) --> Line_6 $$ assertTrue(repository.getFeatureState(DummyFeature.TEST).isEnabled()) [FD]
+Line_5 $$ for (int i = 0; i < 5; i++) --> Line_7 $$ Thread.sleep(ttl + 30) [CD]
+Line_2 $$ public void testCacheExpiryBecauseOfTimeToLife() throws InterruptedException --> Line_9 $$ Mockito.verify(delegate, Mockito.times(5)).getFeatureState(DummyFeature.TEST) [CD]
+Line_2 $$ public void testCacheExpiryBecauseOfTimeToLife() throws InterruptedException --> Line_10 $$ Mockito.verifyNoMoreInteractions(delegate) [CD]

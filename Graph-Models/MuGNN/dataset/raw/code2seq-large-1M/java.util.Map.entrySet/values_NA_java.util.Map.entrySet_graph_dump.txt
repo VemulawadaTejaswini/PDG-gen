@@ -1,0 +1,8 @@
+Line_2 $$ public Collection<V> values() --> Line_3 $$ Set<K> resultKeySet = new HashSet<K>() [CD]
+Line_2 $$ public Collection<V> values() --> Line_4 $$ List<V> resultValues = new LinkedList<V>() [CD]
+Line_5 $$ for (Map<K, V> curMap : this.stackList) --> Line_6 $$ for (Map.Entry<K, V> curEntry : curMap.entrySet()) [FD]
+Line_3 $$ Set<K> resultKeySet = new HashSet<K>() --> Line_7 $$ if (!resultKeySet.contains(curEntry.getKey())) [FD]
+Line_3 $$ Set<K> resultKeySet = new HashSet<K>() --> Line_8 $$ resultKeySet.add(curEntry.getKey()) [FD]
+Line_4 $$ List<V> resultValues = new LinkedList<V>() --> Line_9 $$ resultValues.add(curEntry.getValue()) [FD]
+Line_2 $$ public Collection<V> values() --> Line_13 $$ return Collections.unmodifiableCollection(resultValues) [CD]
+Line_4 $$ List<V> resultValues = new LinkedList<V>() --> Line_13 $$ return Collections.unmodifiableCollection(resultValues) [FD]

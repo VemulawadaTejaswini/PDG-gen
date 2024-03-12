@@ -1,0 +1,7 @@
+Line_3 $$ try (Git git = new Git(db)) --> Line_4 $$ git.commit().setMessage("initial commit").call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_5 $$ Ref tagRef = git.tag().setName("tag").call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_7 $$ List<String> deleted = git.tagDelete().setTags(Repository.shortenRefName(tagRef.getName())).call() [FD]
+Line_5 $$ Ref tagRef = git.tag().setName("tag").call() --> Line_7 $$ List<String> deleted = git.tagDelete().setTags(Repository.shortenRefName(tagRef.getName())).call() [FD]
+Line_7 $$ List<String> deleted = git.tagDelete().setTags(Repository.shortenRefName(tagRef.getName())).call() --> Line_8 $$ assertEquals(1, deleted.size()) [FD]
+Line_5 $$ Ref tagRef = git.tag().setName("tag").call() --> Line_9 $$ assertEquals(tagRef.getName(), deleted.get(0)) [FD]
+Line_7 $$ List<String> deleted = git.tagDelete().setTags(Repository.shortenRefName(tagRef.getName())).call() --> Line_9 $$ assertEquals(tagRef.getName(), deleted.get(0)) [FD]

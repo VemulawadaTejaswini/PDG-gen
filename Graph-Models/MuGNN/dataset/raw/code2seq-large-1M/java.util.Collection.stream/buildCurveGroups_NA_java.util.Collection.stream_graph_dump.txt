@@ -1,0 +1,6 @@
+Line_2 $$ private static ImmutableList<CurveGroupDefinition> buildCurveGroups(Map<CurveName, Set<GroupAndReference>> garMap) --> Line_3 $$ Multimap<CurveGroupName, CurveGroupEntry> groups = LinkedHashMultimap.create() [CD]
+Line_2 $$ private static ImmutableList<CurveGroupDefinition> buildCurveGroups(Map<CurveName, Set<GroupAndReference>> garMap) --> Line_4 $$ for (Map.Entry<CurveName, Set<GroupAndReference>> entry : garMap.entrySet()) [FD]
+Line_6 $$ Set<GroupAndReference> curveIds = entry.getValue() --> Line_7 $$ Map<CurveGroupName, List<GroupAndReference>> idsByGroup = curveIds.stream().collect(groupingBy( p -> p.groupName)) [FD]
+Line_7 $$ Map<CurveGroupName, List<GroupAndReference>> idsByGroup = curveIds.stream().collect(groupingBy( p -> p.groupName)) --> Line_8 $$ for (Map.Entry<CurveGroupName, List<GroupAndReference>> groupEntry : idsByGroup.entrySet()) [FD]
+Line_5 $$ CurveName curveName = entry.getKey() --> Line_11 $$ groups.put(groupName, curveGroupEntry(curveName, gars)) [FD]
+Line_2 $$ private static ImmutableList<CurveGroupDefinition> buildCurveGroups(Map<CurveName, Set<GroupAndReference>> garMap) --> Line_14 $$ return MapStream.of(groups.asMap()).map(( name,  entry) -> CurveGroupDefinition.of(name, entry, ImmutableList.of())).collect(toImmutableList()) [CD]

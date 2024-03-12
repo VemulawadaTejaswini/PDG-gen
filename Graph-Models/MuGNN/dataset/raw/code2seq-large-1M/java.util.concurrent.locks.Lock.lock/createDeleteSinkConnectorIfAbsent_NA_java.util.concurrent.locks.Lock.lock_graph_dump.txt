@@ -1,0 +1,7 @@
+Line_5 $$ String deleterConnector = jkesProperties.getClientId() + "_delete_sink" --> Line_6 $$ if (checkConnectorExists(deleterConnector)) [FD]
+Line_6 $$ if (checkConnectorExists(deleterConnector)) --> Line_7 $$ return false [CD]
+Line_8 $$ JSONObject payload = new JSONObject() --> Line_9 $$ payload.put("name", deleterConnector) [FD]
+Line_5 $$ String deleterConnector = jkesProperties.getClientId() + "_delete_sink" --> Line_9 $$ payload.put("name", deleterConnector) [FD]
+Line_8 $$ JSONObject payload = new JSONObject() --> Line_11 $$ payload.put("config", config) [FD]
+Line_10 $$ JSONObject config = ConnectorConfigTemplates.getDeleteSinkConfigTemplate() --> Line_11 $$ payload.put("config", config) [FD]
+Line_8 $$ JSONObject payload = new JSONObject() --> Line_12 $$ HTTP_CLIENT.post(getRandomUrl(), "connectors", payload) [FD]

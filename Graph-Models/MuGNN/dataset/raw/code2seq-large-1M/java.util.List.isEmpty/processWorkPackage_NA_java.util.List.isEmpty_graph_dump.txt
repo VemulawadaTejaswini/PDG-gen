@@ -1,0 +1,7 @@
+Line_2 $$ public Result processWorkPackage(final I_C_Queue_WorkPackage workpackage, final String localTrxName) --> Line_3 $$ final String modelIndexerId = getParameters().getParameterAsString(PARAMETERNAME_ModelIndexerId) [CD]
+Line_2 $$ public Result processWorkPackage(final I_C_Queue_WorkPackage workpackage, final String localTrxName) --> Line_4 $$ Check.assumeNotEmpty(modelIndexerId, "modelIndexerId is not empty") [CD]
+Line_3 $$ final String modelIndexerId = getParameters().getParameterAsString(PARAMETERNAME_ModelIndexerId) --> Line_4 $$ Check.assumeNotEmpty(modelIndexerId, "modelIndexerId is not empty") [FD]
+Line_2 $$ public Result processWorkPackage(final I_C_Queue_WorkPackage workpackage, final String localTrxName) --> Line_5 $$ final List<Object> modelsToIndex = retrieveItems(Object.class) [CD]
+Line_2 $$ public Result processWorkPackage(final I_C_Queue_WorkPackage workpackage, final String localTrxName) --> Line_6 $$ if (modelsToIndex.isEmpty()) [CD]
+Line_3 $$ final String modelIndexerId = getParameters().getParameterAsString(PARAMETERNAME_ModelIndexerId) --> Line_10 $$ final IESIndexerResult result = Services.get(IESModelIndexersRegistry.class).getModelIndexerById(modelIndexerId).addToIndex(modelsToIndex.iterator()) [FD]
+Line_15 $$ final int skipTimeoutMillis = 60 * 1000 --> Line_16 $$ throw WorkpackageSkipRequestException.createWithTimeoutAndThrowable(e.getLocalizedMessage(), skipTimeoutMillis, e) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void clearClassPath() --> Line_3 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() [CD]
+Line_2 $$ private void clearClassPath() --> Line_4 $$ if (cl instanceof CPClassLoader) [CD]
+Line_3 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() --> Line_4 $$ if (cl instanceof CPClassLoader) [FD]
+Line_4 $$ if (cl instanceof CPClassLoader) --> Line_5 $$ final ClassLoader cl2 = new CPClassLoader(cl.getParent()) [CD]
+Line_3 $$ ClassLoader cl = Thread.currentThread().getContextClassLoader() --> Line_5 $$ final ClassLoader cl2 = new CPClassLoader(cl.getParent()) [FD]
+Line_4 $$ if (cl instanceof CPClassLoader) --> Line_6 $$ AccessController.doPrivileged(new SetContextClassLoaderAction(cl2)) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testOptimize() throws IOException --> Line_3 $$ Scan scan = new Scan() [CD]
+Line_2 $$ public void testOptimize() throws IOException --> Line_4 $$ scan.addColumn(CF, ONE) [CD]
+Line_3 $$ Scan scan = new Scan() --> Line_4 $$ scan.addColumn(CF, ONE) [FD]
+Line_5 $$ try (CellGridStoreScanner scanner = new CellGridStoreScanner(scan, this.scanInfo)) --> Line_7 $$ while (scanner.next(results)) [FD]
+Line_6 $$ List<Cell> results = new ArrayList() --> Line_7 $$ while (scanner.next(results)) [FD]
+Line_6 $$ List<Cell> results = new ArrayList() --> Line_10 $$ assertEquals(4, results.size()) [FD]
+Line_11 $$ for (Cell cell : results) --> Line_12 $$ assertTrue(Bytes.equals(ONE, 0, ONE.length, cell.getQualifierArray(), cell.getQualifierOffset(), cell.getQualifierLength())) [FD]

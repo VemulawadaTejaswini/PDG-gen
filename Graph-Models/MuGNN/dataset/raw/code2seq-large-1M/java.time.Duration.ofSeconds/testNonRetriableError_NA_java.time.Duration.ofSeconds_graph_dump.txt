@@ -1,0 +1,5 @@
+Line_2 $$ public void testNonRetriableError() throws Exception --> Line_3 $$ Supplier<Backoff> s = () -> new ExponentialBackoff(Duration.ofSeconds(1), Duration.ofSeconds(10), 2.0, 0.0, 2) [CD]
+Line_2 $$ public void testNonRetriableError() throws Exception --> Line_4 $$ RemoteRetrier retrier = Mockito.spy(new RemoteRetrier(s, ( e) -> false, Retrier.ALLOW_ALL_CALLS, Mockito.mock(Sleeper.class))) [CD]
+Line_2 $$ public void testNonRetriableError() throws Exception --> Line_5 $$ when(fooMock.foo()).thenThrow(Status.Code.UNKNOWN.toStatus().asRuntimeException()) [CD]
+Line_2 $$ public void testNonRetriableError() throws Exception --> Line_6 $$ assertThrows(retrier, 1) [CD]
+Line_2 $$ public void testNonRetriableError() throws Exception --> Line_7 $$ Mockito.verify(fooMock, Mockito.times(1)).foo() [CD]

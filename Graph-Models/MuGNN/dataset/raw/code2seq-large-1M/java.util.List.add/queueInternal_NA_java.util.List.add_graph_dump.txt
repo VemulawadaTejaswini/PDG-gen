@@ -1,0 +1,8 @@
+Line_10 $$ if (writing) --> Line_11 $$ Logger.error(this, "Internal job must not be queued during writing! They should have finished before we start writing and cannot be started \"externally\"!", new Exception("error")) [CD]
+Line_10 $$ if (writing) --> Line_12 $$ queuedJobs.add(new QueuedJob(job, threadPriority)) [CD]
+Line_10 $$ if (writing) --> Line_14 $$ if (mustCheckpoint) [CD]
+Line_14 $$ if (mustCheckpoint) --> Line_15 $$ if (logMINOR) [CD]
+Line_15 $$ if (logMINOR) --> Line_16 $$ Logger.minor(this, "Delaying checkpoint...") [CD]
+Line_10 $$ if (writing) --> Line_19 $$ if (logDEBUG) [CD]
+Line_19 $$ if (logDEBUG) --> Line_20 $$ Logger.debug(this, "Running job " + job) [CD]
+Line_10 $$ if (writing) --> Line_21 $$ executor.execute(new JobRunnable(job, threadPriority, context)) [CD]

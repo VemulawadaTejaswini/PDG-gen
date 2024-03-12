@@ -1,0 +1,8 @@
+Line_2 $$ public Resource downloadFullLog(@RequestParam String cmdId, @RequestParam Integer index, HttpServletResponse httpResponse) --> Line_3 $$ Cmd cmd = cmdService.find(cmdId) [FD]
+Line_2 $$ public Resource downloadFullLog(@RequestParam String cmdId, @RequestParam Integer index, HttpServletResponse httpResponse) --> Line_3 $$ Cmd cmd = cmdService.find(cmdId) [CD]
+Line_2 $$ public Resource downloadFullLog(@RequestParam String cmdId, @RequestParam Integer index, HttpServletResponse httpResponse) --> Line_4 $$ if (cmd == null) [CD]
+Line_3 $$ Cmd cmd = cmdService.find(cmdId) --> Line_4 $$ if (cmd == null) [FD]
+Line_3 $$ Cmd cmd = cmdService.find(cmdId) --> Line_8 $$ Path filePath = Paths.get(cmd.getLogPath()) [FD]
+Line_8 $$ Path filePath = Paths.get(cmd.getLogPath()) --> Line_9 $$ FileSystemResource resource = new FileSystemResource(filePath.toFile()) [FD]
+Line_2 $$ public Resource downloadFullLog(@RequestParam String cmdId, @RequestParam Integer index, HttpServletResponse httpResponse) --> Line_10 $$ httpResponse.setHeader("Content-Disposition", String.format("attachment; filename=%s", filePath.getFileName().toString())) [FD]
+Line_8 $$ Path filePath = Paths.get(cmd.getLogPath()) --> Line_10 $$ httpResponse.setHeader("Content-Disposition", String.format("attachment; filename=%s", filePath.getFileName().toString())) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void exportTables() throws IOException --> Line_3 $$ cli.execute("mkdir -p " + exportFolder) [CD]
+Line_4 $$ for (HTableDescriptor table : allTables) --> Line_5 $$ String tName = table.getNameAsString() [FD]
+Line_5 $$ String tName = table.getNameAsString() --> Line_6 $$ if (!tName.equals(tableNameBase) && !tName.startsWith(HBaseMiniclusterHelper.SHARED_STORAGE_PREFIX)) [FD]
+Line_2 $$ public void exportTables() throws IOException --> Line_10 $$ cli.execute("hadoop fs -copyToLocal " + exportFolder + " " + exportFolder) [CD]
+Line_2 $$ public void exportTables() throws IOException --> Line_11 $$ cli.execute("tar -zcvf " + backupArchive + " --directory=" + exportFolder + " .") [CD]
+Line_2 $$ public void exportTables() throws IOException --> Line_12 $$ downloadToLocal() [CD]

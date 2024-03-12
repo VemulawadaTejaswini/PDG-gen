@@ -1,0 +1,7 @@
+Line_2 $$ private String readMessage() --> Line_3 $$ logger.trace("Waiting for message from [CD]
+Line_2 $$ private String readMessage() --> Line_4 $$ String message = conn.read() [CD]
+Line_2 $$ private String readMessage() --> Line_5 $$ if (message != null) [CD]
+Line_4 $$ String message = conn.read() --> Line_5 $$ if (message != null) [FD]
+Line_5 $$ if (message != null) --> Line_6 $$ logger.trace("FanListener for [CD]
+Line_4 $$ String message = conn.read() --> Line_6 $$ logger.trace("FanListener for [FD]
+Line_2 $$ private String readMessage() --> Line_8 $$ return message [CD]

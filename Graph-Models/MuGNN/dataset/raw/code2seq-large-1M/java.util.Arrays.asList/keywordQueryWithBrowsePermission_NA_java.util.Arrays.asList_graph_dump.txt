@@ -1,0 +1,8 @@
+Line_2 $$ public void keywordQueryWithBrowsePermission() throws Exception --> Line_3 $$ List<String> queryPath = asList("org", "foo") [CD]
+Line_2 $$ public void keywordQueryWithBrowsePermission() throws Exception --> Line_4 $$ when(securityHelper.anyPermitted(any())).thenReturn(true) [CD]
+Line_2 $$ public void keywordQueryWithBrowsePermission() throws Exception --> Line_5 $$ underTest.getByPath(repository, queryPath, MAX_NODES, "wibble") [CD]
+Line_3 $$ List<String> queryPath = asList("org", "foo") --> Line_5 $$ underTest.getByPath(repository, queryPath, MAX_NODES, "wibble") [FD]
+Line_2 $$ public void keywordQueryWithBrowsePermission() throws Exception --> Line_6 $$ verify(securityHelper).anyPermitted(any(RepositoryViewPermission.class)) [CD]
+Line_2 $$ public void keywordQueryWithBrowsePermission() throws Exception --> Line_7 $$ verify(browseNodeEntityAdapter).getByPath(db, REPOSITORY_NAME, queryPath, MAX_NODES, "asset_name_lowercase like :keyword_filter", ImmutableMap.of("keyword_filter", "%wibble%")) [CD]
+Line_3 $$ List<String> queryPath = asList("org", "foo") --> Line_7 $$ verify(browseNodeEntityAdapter).getByPath(db, REPOSITORY_NAME, queryPath, MAX_NODES, "asset_name_lowercase like :keyword_filter", ImmutableMap.of("keyword_filter", "%wibble%")) [FD]
+Line_2 $$ public void keywordQueryWithBrowsePermission() throws Exception --> Line_8 $$ verifyNoMoreInteractions(browseNodeEntityAdapter, securityHelper, selectorManager) [CD]

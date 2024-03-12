@@ -1,0 +1,8 @@
+Line_2 $$ private static void resolveCachePath(Map<String, String> cache, Sub self) --> Line_3 $$ for (String key : cache.keySet()) [FD]
+Line_3 $$ for (String key : cache.keySet()) --> Line_4 $$ if (!key.startsWith("/")) [FD]
+Line_4 $$ if (!key.startsWith("/")) --> Line_5 $$ String new_key = String.format("%s/%s", self.path, key) [CD]
+Line_3 $$ for (String key : cache.keySet()) --> Line_5 $$ String new_key = String.format("%s/%s", self.path, key) [FD]
+Line_4 $$ if (!key.startsWith("/")) --> Line_6 $$ cache.put(new_key, cache.remove(key)) [CD]
+Line_2 $$ private static void resolveCachePath(Map<String, String> cache, Sub self) --> Line_6 $$ cache.put(new_key, cache.remove(key)) [FD]
+Line_5 $$ String new_key = String.format("%s/%s", self.path, key) --> Line_6 $$ cache.put(new_key, cache.remove(key)) [FD]
+Line_3 $$ for (String key : cache.keySet()) --> Line_6 $$ cache.put(new_key, cache.remove(key)) [FD]

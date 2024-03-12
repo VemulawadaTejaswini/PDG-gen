@@ -1,0 +1,7 @@
+Line_2 $$ public MetricSampleCompleteness<G, E> completeness(long from, long to, AggregationOptions<G, E> options) --> Line_3 $$ _windowRollingLock.lock() [CD]
+Line_2 $$ public MetricSampleCompleteness<G, E> completeness(long from, long to, AggregationOptions<G, E> options) --> Line_5 $$ long fromWindowIndex = Math.max(windowIndex(from), _oldestWindowIndex) [FD]
+Line_2 $$ public MetricSampleCompleteness<G, E> completeness(long from, long to, AggregationOptions<G, E> options) --> Line_6 $$ long toWindowIndex = Math.min(windowIndex(to), _currentWindowIndex - 1) [FD]
+Line_7 $$ if (fromWindowIndex > _currentWindowIndex || toWindowIndex < _oldestWindowIndex) --> Line_8 $$ return new MetricSampleCompleteness(generation(), _windowMs) [CD]
+Line_5 $$ long fromWindowIndex = Math.max(windowIndex(from), _oldestWindowIndex) --> Line_11 $$ return _aggregatorState.completeness(fromWindowIndex, toWindowIndex, interpretAggregationOptions(options), generation()) [FD]
+Line_6 $$ long toWindowIndex = Math.min(windowIndex(to), _currentWindowIndex - 1) --> Line_11 $$ return _aggregatorState.completeness(fromWindowIndex, toWindowIndex, interpretAggregationOptions(options), generation()) [FD]
+Line_2 $$ public MetricSampleCompleteness<G, E> completeness(long from, long to, AggregationOptions<G, E> options) --> Line_11 $$ return _aggregatorState.completeness(fromWindowIndex, toWindowIndex, interpretAggregationOptions(options), generation()) [FD]

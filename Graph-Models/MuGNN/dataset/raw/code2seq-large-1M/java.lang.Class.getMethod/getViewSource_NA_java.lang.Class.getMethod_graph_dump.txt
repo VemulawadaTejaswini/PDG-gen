@@ -1,0 +1,7 @@
+Line_2 $$ public static String getViewSource(DBRProgressMonitor monitor, GenericTable view) throws DBException --> Line_3 $$ try (JDBCSession session = DBUtils.openMetaSession(monitor, view.getDataSource(), "Load view source code")) [FD]
+Line_3 $$ try (JDBCSession session = DBUtils.openMetaSession(monitor, view.getDataSource(), "Load view source code")) --> Line_4 $$ DatabaseMetaData fbMetaData = session.getOriginal().getMetaData() [FD]
+Line_4 $$ DatabaseMetaData fbMetaData = session.getOriginal().getMetaData() --> Line_5 $$ String source = (String) fbMetaData.getClass().getMethod("getViewSourceCode", String.class).invoke(fbMetaData, view.getName()) [FD]
+Line_2 $$ public static String getViewSource(DBRProgressMonitor monitor, GenericTable view) throws DBException --> Line_5 $$ String source = (String) fbMetaData.getClass().getMethod("getViewSourceCode", String.class).invoke(fbMetaData, view.getName()) [FD]
+Line_6 $$ if (CommonUtils.isEmpty(source)) --> Line_7 $$ return null [CD]
+Line_2 $$ public static String getViewSource(DBRProgressMonitor monitor, GenericTable view) throws DBException --> Line_9 $$ return getViewSourceWithHeader(monitor, view, source) [FD]
+Line_2 $$ public static String getViewSource(DBRProgressMonitor monitor, GenericTable view) throws DBException --> Line_11 $$ throw new DBException("Can't read source code of view '" + view.getName() + "'", e) [FD]

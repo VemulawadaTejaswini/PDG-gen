@@ -1,0 +1,7 @@
+Line_2 $$ public void testReferencedTypeIsLazy() throws Exception --> Line_3 $$ ClassFileLocator classFileLocator = spy(ClassFileLocator.ForClassLoader.ofClassPath()) [CD]
+Line_2 $$ public void testReferencedTypeIsLazy() throws Exception --> Line_4 $$ TypePool typePool = TypePool.Default.WithLazyResolution.of(classFileLocator) [CD]
+Line_2 $$ public void testReferencedTypeIsLazy() throws Exception --> Line_5 $$ TypePool.Resolution resolution = typePool.describe(String.class.getName()) [CD]
+Line_2 $$ public void testReferencedTypeIsLazy() throws Exception --> Line_6 $$ assertThat(resolution.resolve().getName(), CoreMatchers.is(TypeDescription.STRING.getName())) [CD]
+Line_2 $$ public void testReferencedTypeIsLazy() throws Exception --> Line_7 $$ assertThat(resolution.resolve().getSuperClass().asErasure().getName(), CoreMatchers.is(TypeDescription.OBJECT.getName())) [CD]
+Line_2 $$ public void testReferencedTypeIsLazy() throws Exception --> Line_8 $$ verify(classFileLocator).locate(String.class.getName()) [CD]
+Line_2 $$ public void testReferencedTypeIsLazy() throws Exception --> Line_9 $$ verifyNoMoreInteractions(classFileLocator) [CD]

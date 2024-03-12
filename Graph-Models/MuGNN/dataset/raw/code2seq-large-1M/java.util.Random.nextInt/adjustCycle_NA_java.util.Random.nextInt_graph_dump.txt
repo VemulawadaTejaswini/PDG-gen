@@ -1,0 +1,7 @@
+Line_2 $$ private void adjustCycle() --> Line_5 $$ double maxPerformanceChange = getCeilingDifferencePerformance(adjustCycleCount) [CD]
+Line_2 $$ private void adjustCycle() --> Line_6 $$ boolean messagesQueued = minPermitsAvailable < 2 [CD]
+Line_2 $$ private void adjustCycle() --> Line_7 $$ int newMaxInFlight = policy.calcNewMaxInFlight(maxPerformanceChange, numOk, previousNumOk, previousMaxInFlight, maxInFlightNow, messagesQueued) [CD]
+Line_5 $$ double maxPerformanceChange = getCeilingDifferencePerformance(adjustCycleCount) --> Line_7 $$ int newMaxInFlight = policy.calcNewMaxInFlight(maxPerformanceChange, numOk, previousNumOk, previousMaxInFlight, maxInFlightNow, messagesQueued) [FD]
+Line_6 $$ boolean messagesQueued = minPermitsAvailable < 2 --> Line_7 $$ int newMaxInFlight = policy.calcNewMaxInFlight(maxPerformanceChange, numOk, previousNumOk, previousMaxInFlight, maxInFlightNow, messagesQueued) [FD]
+Line_2 $$ private void adjustCycle() --> Line_9 $$ debugMessage.append("previousMaxInFlight: " + previousMaxInFlight + " maxInFlightNow: " + maxInFlightNow + " numOk: " + numOk + " " + " previousOk: " + previousNumOk + " new size is: " + newMaxInFlight) [CD]
+Line_2 $$ private void adjustCycle() --> Line_12 $$ setNewSemaphoreSize(adjustCycleCount == 1 ? SECOND_MAX_IN_FLIGHT_VALUE : newMaxInFlight) [CD]

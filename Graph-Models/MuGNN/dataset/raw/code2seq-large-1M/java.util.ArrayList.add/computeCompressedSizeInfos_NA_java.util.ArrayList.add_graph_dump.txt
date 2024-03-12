@@ -1,0 +1,8 @@
+Line_2 $$ private static CompressedSizeInfo[] computeCompressedSizeInfos(CompressedSizeEstimator estim, int clen, int k) --> Line_4 $$ ExecutorService pool = CommonThreadPool.get(k) [FD]
+Line_2 $$ private static CompressedSizeInfo[] computeCompressedSizeInfos(CompressedSizeEstimator estim, int clen, int k) --> Line_6 $$ for (int col = 0; col < clen; col++) tasks.add(new SizeEstimTask(estim, col)) [FD]
+Line_5 $$ ArrayList<SizeEstimTask> tasks = new ArrayList() --> Line_6 $$ for (int col = 0; col < clen; col++) tasks.add(new SizeEstimTask(estim, col)) [FD]
+Line_4 $$ ExecutorService pool = CommonThreadPool.get(k) --> Line_7 $$ List<Future<CompressedSizeInfo>> rtask = pool.invokeAll(tasks) [FD]
+Line_5 $$ ArrayList<SizeEstimTask> tasks = new ArrayList() --> Line_7 $$ List<Future<CompressedSizeInfo>> rtask = pool.invokeAll(tasks) [FD]
+Line_8 $$ ArrayList<CompressedSizeInfo> ret = new ArrayList() --> Line_9 $$ for (Future<CompressedSizeInfo> lrtask : rtask) ret.add(lrtask.get()) [FD]
+Line_4 $$ ExecutorService pool = CommonThreadPool.get(k) --> Line_10 $$ pool.shutdown() [FD]
+Line_8 $$ ArrayList<CompressedSizeInfo> ret = new ArrayList() --> Line_11 $$ return ret.toArray(new CompressedSizeInfo[0]) [FD]

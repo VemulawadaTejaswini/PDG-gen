@@ -1,0 +1,6 @@
+Line_2 $$ private void updateToken() throws IOException --> Line_3 $$ String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes()) [CD]
+Line_2 $$ private void updateToken() throws IOException --> Line_4 $$ Request request = new Request.Builder().url(AUTH_URL).header("Authorization", "Basic " + encodedCredentials).post(new FormBody.Builder().add("grant_type", "client_credentials").build()).build() [CD]
+Line_4 $$ Request request = new Request.Builder().url(AUTH_URL).header("Authorization", "Basic " + encodedCredentials).post(new FormBody.Builder().add("grant_type", "client_credentials").build()).build() --> Line_5 $$ try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute()) [FD]
+Line_5 $$ try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute()) --> Line_6 $$ if (!response.isSuccessful()) [FD]
+Line_5 $$ try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute()) --> Line_7 $$ throw new IOException("Error authing to Twitter: " + response.message()) [FD]
+Line_5 $$ try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute()) --> Line_9 $$ InputStream in = response.body().byteStream() [FD]

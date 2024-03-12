@@ -1,0 +1,6 @@
+Line_2 $$ public void testAutoCommitQueryMultiTables() throws Exception --> Line_3 $$ String transTableName = generateUniqueName() [CD]
+Line_2 $$ public void testAutoCommitQueryMultiTables() throws Exception --> Line_4 $$ String fullTableName = INDEX_DATA_SCHEMA + QueryConstants.NAME_SEPARATOR + transTableName [CD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_6 $$ conn.createStatement().execute("create table " + fullTableName + TestUtil.TEST_TABLE_SCHEMA + tableDDLOptions + (tableDDLOptions.length() > 0 ? "," : "") + "TRANSACTIONAL=true") [FD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_7 $$ conn.setAutoCommit(true) [FD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_8 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM " + fullTableName + " x JOIN " + fullTableName + " y ON (x.long_pk = y.int_pk)") [FD]
+Line_8 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM " + fullTableName + " x JOIN " + fullTableName + " y ON (x.long_pk = y.int_pk)") --> Line_9 $$ assertFalse(rs.next()) [FD]

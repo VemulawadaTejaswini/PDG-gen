@@ -1,0 +1,8 @@
+Line_3 $$ try (final SshClient sshClient = new SshClient(sshAddr, "admin", "admin")) --> Line_4 $$ final PrintStream pipe = sshClient.openShell() [FD]
+Line_4 $$ final PrintStream pipe = sshClient.openShell() --> Line_5 $$ pipe.println("collection:collect -l MINION org.opennms.netmgt.collectd.Jsr160Collector 127.0.0.1 port=18980") [FD]
+Line_4 $$ final PrintStream pipe = sshClient.openShell() --> Line_6 $$ pipe.println("logout") [FD]
+Line_3 $$ try (final SshClient sshClient = new SshClient(sshAddr, "admin", "admin")) --> Line_7 $$ await().atMost(1, MINUTES).until(sshClient.isShellClosedCallable()) [FD]
+Line_3 $$ try (final SshClient sshClient = new SshClient(sshAddr, "admin", "admin")) --> Line_8 $$ String shellOutput = CommandTestUtils.stripAnsiCodes(sshClient.getStdout()) [FD]
+Line_8 $$ String shellOutput = CommandTestUtils.stripAnsiCodes(sshClient.getStdout()) --> Line_9 $$ shellOutput = StringUtils.substringAfter(shellOutput, "collection:collect") [FD]
+Line_8 $$ String shellOutput = CommandTestUtils.stripAnsiCodes(sshClient.getStdout()) --> Line_10 $$ LOG.info("Collect output: [FD]
+Line_9 $$ shellOutput = StringUtils.substringAfter(shellOutput, "collection:collect") --> Line_10 $$ LOG.info("Collect output: [FD]

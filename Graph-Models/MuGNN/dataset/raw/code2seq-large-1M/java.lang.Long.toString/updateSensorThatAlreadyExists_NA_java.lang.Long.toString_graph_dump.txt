@@ -1,0 +1,8 @@
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_3 $$ when(jedisSequenceUtils.getSid(PROVIDER_ID, SENSOR_ID)).thenReturn(SID) [CD]
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_4 $$ service.registerSensorIfNeedBe(PROVIDER_ID, SENSOR_ID, SensorState.online, true) [CD]
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_5 $$ verify(jedisSequenceUtils).getSid(PROVIDER_ID, SENSOR_ID) [CD]
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_6 $$ verify(jedisSequenceUtils, times(0)).getPid(PROVIDER_ID) [CD]
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_7 $$ verify(jedisSequenceUtils, times(0)).setSid(PROVIDER_ID, SENSOR_ID) [CD]
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_8 $$ verify(jedisTemplate).hmSet(anyString(), anyMapOf(String.class, String.class)) [CD]
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_9 $$ verify(jedisTemplate, times(0)).sAdd(service.getKeysBuilder().getProviderSensorsKey(PID), SID.toString()) [CD]
+Line_2 $$ public void updateSensorThatAlreadyExists() --> Line_10 $$ verify(jedisTemplate, times(0)).sAdd(service.getKeysBuilder().getReverseSensorKey(PROVIDER_ID, SENSOR_ID), SID.toString()) [CD]

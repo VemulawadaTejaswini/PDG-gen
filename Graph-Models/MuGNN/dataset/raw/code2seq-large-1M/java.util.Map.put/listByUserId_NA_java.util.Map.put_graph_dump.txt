@@ -1,0 +1,8 @@
+Line_2 $$ public List<SysMenuPermission> listByUserId(int userId) --> Line_3 $$ Map<String, Object> params = new HashMap<String, Object>() [CD]
+Line_2 $$ public List<SysMenuPermission> listByUserId(int userId) --> Line_4 $$ params.put("userId", userId) [FD]
+Line_2 $$ public List<SysMenuPermission> listByUserId(int userId) --> Line_4 $$ params.put("userId", userId) [CD]
+Line_3 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_4 $$ params.put("userId", userId) [FD]
+Line_2 $$ public List<SysMenuPermission> listByUserId(int userId) --> Line_5 $$ List<SysMenuPermission> list = commonDAO.findByCache("select r.sysMenuPermissions from SysRole r join r.sysUsers u where u.userId=:userId and r.status=0", "SysMenuPermission.list", params) [CD]
+Line_3 $$ Map<String, Object> params = new HashMap<String, Object>() --> Line_5 $$ List<SysMenuPermission> list = commonDAO.findByCache("select r.sysMenuPermissions from SysRole r join r.sysUsers u where u.userId=:userId and r.status=0", "SysMenuPermission.list", params) [FD]
+Line_6 $$ for (SysMenuPermission sysMenuPermission : list) --> Line_7 $$ commonDAO.initializeDeep(sysMenuPermission.getSysMenuPermissions()) [FD]
+Line_2 $$ public List<SysMenuPermission> listByUserId(int userId) --> Line_9 $$ return list [CD]

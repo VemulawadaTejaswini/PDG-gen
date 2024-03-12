@@ -1,0 +1,7 @@
+Line_2 $$ public Component getApplyChangesActionComponent() --> Line_3 $$ JRootPane rootPane = WindowManager.getInstance().getFrame(myProject).getRootPane() [CD]
+Line_3 $$ JRootPane rootPane = WindowManager.getInstance().getFrame(myProject).getRootPane() --> Line_5 $$ Field f = rootPane.getClass().getDeclaredField("myToolbar") [FD]
+Line_5 $$ Field f = rootPane.getClass().getDeclaredField("myToolbar") --> Line_6 $$ f.setAccessible(true) [FD]
+Line_5 $$ Field f = rootPane.getClass().getDeclaredField("myToolbar") --> Line_7 $$ ActionToolbar toolbar = (ActionToolbar) f.get(rootPane) [FD]
+Line_3 $$ JRootPane rootPane = WindowManager.getInstance().getFrame(myProject).getRootPane() --> Line_7 $$ ActionToolbar toolbar = (ActionToolbar) f.get(rootPane) [FD]
+Line_7 $$ ActionToolbar toolbar = (ActionToolbar) f.get(rootPane) --> Line_8 $$ return Arrays.stream(toolbar.getComponent().getComponents()).filter(( component) -> component instanceof ActionButton && ((ActionButton) component).getAction() instanceof HotswapAction).findFirst().orElse(null) [FD]
+Line_2 $$ public Component getApplyChangesActionComponent() --> Line_12 $$ return null [CD]

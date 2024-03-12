@@ -1,0 +1,5 @@
+Line_2 $$ public void testParameterAnnotations() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(ParameterAnnotationSample.class).visit(Advice.to(ParameterAnnotationSample.class).on(named(FOO))).make().load(ParameterAnnotationSample.SampleParameter.class.getClassLoader(), ClassLoadingStrategy.Default.CHILD_FIRST).getLoaded() [CD]
+Line_2 $$ public void testParameterAnnotations() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethod(FOO, String.class).invoke(type.getDeclaredConstructor().newInstance(), FOO), is((Object) FOO)) [CD]
+Line_2 $$ public void testParameterAnnotations() throws Exception --> Line_5 $$ assertThat(type.getDeclaredMethod(FOO, String.class).getParameterAnnotations().length, is(1)) [CD]
+Line_2 $$ public void testParameterAnnotations() throws Exception --> Line_6 $$ assertThat(type.getDeclaredMethod(FOO, String.class).getParameterAnnotations()[0].length, is(1)) [CD]
+Line_2 $$ public void testParameterAnnotations() throws Exception --> Line_7 $$ assertThat(type.getDeclaredMethod(FOO, String.class).getParameterAnnotations()[0][0], instanceOf(ParameterAnnotationSample.SampleParameter.class)) [CD]

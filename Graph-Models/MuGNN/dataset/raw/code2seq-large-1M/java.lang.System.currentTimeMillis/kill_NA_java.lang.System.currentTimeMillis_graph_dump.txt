@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized void kill() --> Line_3 $$ if (status.getRunState() != JobStatus.KILLED) [CD]
+Line_3 $$ if (status.getRunState() != JobStatus.KILLED) --> Line_4 $$ this.status = new JobStatus(status.getJobID(), this.profile.getUser(), 0L, 0L, 0L, JobStatus.KILLED, counters) [CD]
+Line_3 $$ if (status.getRunState() != JobStatus.KILLED) --> Line_5 $$ this.finishTime = System.currentTimeMillis() [CD]
+Line_3 $$ if (status.getRunState() != JobStatus.KILLED) --> Line_6 $$ this.status.setFinishTime(this.finishTime) [CD]
+Line_7 $$ for (TaskInProgress task : tasks) --> Line_8 $$ task.kill() [FD]
+Line_3 $$ if (status.getRunState() != JobStatus.KILLED) --> Line_10 $$ garbageCollect() [CD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void testEvictValueOnRegionWithEvictionAttributes() --> Line_3 $$ region = cache.<Integer, String>createRegionFactory(RegionShortcut.REPLICATE_PERSISTENT).setDiskSynchronous(true).setDiskStoreName(diskStore.getName()).setEvictionAttributes(EvictionAttributes.createLRUEntryAttributes(MAX_ENTRIES, EvictionAction.OVERFLOW_TO_DISK)).create(REGION_NAME + 2) [CD]
+Line_2 $$ public void testEvictValueOnRegionWithEvictionAttributes() --> Line_4 $$ diskRegion = ((InternalRegion) region).getDiskRegion() [CD]
+Line_2 $$ public void testEvictValueOnRegionWithEvictionAttributes() --> Line_5 $$ IntStream.range(0, MAX_ENTRIES + 1).forEach(( i) -> region.put(i, "value")) [CD]
+Line_2 $$ public void testEvictValueOnRegionWithEvictionAttributes() --> Line_6 $$ assertThatThrownBy(() -> ((LocalRegion) region).evictValue(3)).isInstanceOf(IllegalStateException.class) [CD]

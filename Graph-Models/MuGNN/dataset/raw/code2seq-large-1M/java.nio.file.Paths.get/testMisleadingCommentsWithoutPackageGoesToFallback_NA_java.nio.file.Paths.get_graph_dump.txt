@@ -1,0 +1,8 @@
+Line_2 $$ public void testMisleadingCommentsWithoutPackageGoesToFallback() --> Line_3 $$ Path misleadingPath = Paths.get("case1/org/test/package1/Foo.java") [CD]
+Line_2 $$ public void testMisleadingCommentsWithoutPackageGoesToFallback() --> Line_4 $$ fakeProjectFilesystem.writeContentsToPath("\n" + "class Foo [CD]
+Line_3 $$ Path misleadingPath = Paths.get("case1/org/test/package1/Foo.java") --> Line_4 $$ fakeProjectFilesystem.writeContentsToPath("\n" + "class Foo [FD]
+Line_2 $$ public void testMisleadingCommentsWithoutPackageGoesToFallback() --> Line_5 $$ JavaPackageFinder parsingJavaPackageFinder = ParsingJavaPackageFinder.preparse(javaFileParser, fakeProjectFilesystem, ImmutableSortedSet.of(misleadingPath), dummyPackageFinder) [CD]
+Line_3 $$ Path misleadingPath = Paths.get("case1/org/test/package1/Foo.java") --> Line_5 $$ JavaPackageFinder parsingJavaPackageFinder = ParsingJavaPackageFinder.preparse(javaFileParser, fakeProjectFilesystem, ImmutableSortedSet.of(misleadingPath), dummyPackageFinder) [FD]
+Line_2 $$ public void testMisleadingCommentsWithoutPackageGoesToFallback() --> Line_6 $$ assertEquals("dummy", parsingJavaPackageFinder.findJavaPackage(misleadingPath)) [CD]
+Line_5 $$ JavaPackageFinder parsingJavaPackageFinder = ParsingJavaPackageFinder.preparse(javaFileParser, fakeProjectFilesystem, ImmutableSortedSet.of(misleadingPath), dummyPackageFinder) --> Line_6 $$ assertEquals("dummy", parsingJavaPackageFinder.findJavaPackage(misleadingPath)) [FD]
+Line_3 $$ Path misleadingPath = Paths.get("case1/org/test/package1/Foo.java") --> Line_6 $$ assertEquals("dummy", parsingJavaPackageFinder.findJavaPackage(misleadingPath)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private String getOutPutString() --> Line_3 $$ final StringBuilder outString = new StringBuilder() [CD]
+Line_4 $$ for (final Method outMethod : mapProperties.getClass().getMethods()) --> Line_5 $$ final boolean startsWithSet = outMethod.getName().startsWith("out") [FD]
+Line_5 $$ final boolean startsWithSet = outMethod.getName().startsWith("out") --> Line_6 $$ if (!startsWithSet) [FD]
+Line_3 $$ final StringBuilder outString = new StringBuilder() --> Line_10 $$ outString.append(outMethod.invoke(mapProperties)) [FD]
+Line_4 $$ for (final Method outMethod : mapProperties.getClass().getMethods()) --> Line_10 $$ outString.append(outMethod.invoke(mapProperties)) [FD]
+Line_4 $$ for (final Method outMethod : mapProperties.getClass().getMethods()) --> Line_12 $$ ToolLogger.error("Failed to invoke method reflectively: " + outMethod.getName(), e) [FD]
+Line_2 $$ private String getOutPutString() --> Line_15 $$ return outString.toString() [CD]
+Line_3 $$ final StringBuilder outString = new StringBuilder() --> Line_15 $$ return outString.toString() [FD]

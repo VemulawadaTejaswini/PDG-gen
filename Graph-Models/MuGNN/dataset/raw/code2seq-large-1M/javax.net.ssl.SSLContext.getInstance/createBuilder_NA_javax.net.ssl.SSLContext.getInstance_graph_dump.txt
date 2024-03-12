@@ -1,0 +1,8 @@
+Line_2 $$ public OkHttpClient.Builder createBuilder(boolean disableSslValidation) --> Line_3 $$ if (disableSslValidation) [CD]
+Line_5 $$ X509TrustManager disabledTrustManager = new DisableValidationTrustManager() --> Line_7 $$ trustManagers[0] = disabledTrustManager [FD]
+Line_8 $$ SSLContext sslContext = SSLContext.getInstance("SSL") --> Line_9 $$ sslContext.init(null, trustManagers, new java.security.SecureRandom()) [FD]
+Line_6 $$ TrustManager[] trustManagers = new TrustManager[1] --> Line_9 $$ sslContext.init(null, trustManagers, new java.security.SecureRandom()) [FD]
+Line_8 $$ SSLContext sslContext = SSLContext.getInstance("SSL") --> Line_10 $$ SSLSocketFactory disabledSSLSocketFactory = sslContext.getSocketFactory() [FD]
+Line_10 $$ SSLSocketFactory disabledSSLSocketFactory = sslContext.getSocketFactory() --> Line_11 $$ builder.sslSocketFactory(disabledSSLSocketFactory, disabledTrustManager) [FD]
+Line_5 $$ X509TrustManager disabledTrustManager = new DisableValidationTrustManager() --> Line_11 $$ builder.sslSocketFactory(disabledSSLSocketFactory, disabledTrustManager) [FD]
+Line_2 $$ public OkHttpClient.Builder createBuilder(boolean disableSslValidation) --> Line_19 $$ return builder [CD]

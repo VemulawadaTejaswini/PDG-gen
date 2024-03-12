@@ -1,0 +1,8 @@
+Line_2 $$ public void testMultimapValues_addAnotherDataSet_shouldHave2ValuesForEachKey() --> Line_3 $$ final int offset = 10 [CD]
+Line_4 $$ for (Integer i : expected) --> Line_5 $$ dbRule.getSharedHandle().execute("insert into something(name, intValue) values (?, ?)", Integer.toString(i + offset) + "asString", i) [FD]
+Line_2 $$ public void testMultimapValues_addAnotherDataSet_shouldHave2ValuesForEachKey() --> Line_7 $$ Multimap<Integer, String> result = dbRule.getSharedHandle().createQuery("select intValue, name from something").collectInto(new GenericType<Multimap<Integer, String>>() [CD]
+Line_2 $$ public void testMultimapValues_addAnotherDataSet_shouldHave2ValuesForEachKey() --> Line_9 $$ assertThat(result).hasSize(expected.size() * 2) [CD]
+Line_7 $$ Multimap<Integer, String> result = dbRule.getSharedHandle().createQuery("select intValue, name from something").collectInto(new GenericType<Multimap<Integer, String>>() --> Line_9 $$ assertThat(result).hasSize(expected.size() * 2) [FD]
+Line_2 $$ public void testMultimapValues_addAnotherDataSet_shouldHave2ValuesForEachKey() --> Line_10 $$ expected.forEach( i -> assertThat(result.apply(i)).containsOnlyElementsOf(List.of(i + "asString", (i + 10) + "asString"))) [CD]
+Line_7 $$ Multimap<Integer, String> result = dbRule.getSharedHandle().createQuery("select intValue, name from something").collectInto(new GenericType<Multimap<Integer, String>>() --> Line_10 $$ expected.forEach( i -> assertThat(result.apply(i)).containsOnlyElementsOf(List.of(i + "asString", (i + 10) + "asString"))) [FD]
+Line_4 $$ for (Integer i : expected) --> Line_10 $$ expected.forEach( i -> assertThat(result.apply(i)).containsOnlyElementsOf(List.of(i + "asString", (i + 10) + "asString"))) [FD]

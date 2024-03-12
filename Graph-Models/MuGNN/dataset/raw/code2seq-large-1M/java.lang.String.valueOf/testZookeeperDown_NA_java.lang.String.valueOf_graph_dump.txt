@@ -1,0 +1,7 @@
+Line_2 $$ public void testZookeeperDown() throws StageException --> Line_3 $$ sdcKafkaTestUtil.createTopic("testZookeeperDown", PARTITIONS, REPLICATION_FACTOR) [CD]
+Line_2 $$ public void testZookeeperDown() throws StageException --> Line_4 $$ List<KeyedMessage<String, String>> data = sdcKafkaTestUtil.produceStringMessages("testZookeeperDown", String.valueOf(0), 9) [CD]
+Line_5 $$ for (KeyedMessage<String, String> d : data) --> Line_6 $$ producer.send(d) [FD]
+Line_2 $$ public void testZookeeperDown() throws StageException --> Line_8 $$ SourceRunner sourceRunner = new SourceRunner.Builder(KafkaDSource.class).addOutputLane("lane").addConfiguration("topic", "testZookeeperDown").addConfiguration("consumerGroup", CONSUMER_GROUP).addConfiguration("zookeeperConnect", sdcKafkaTestUtil.getZkConnect()).addConfiguration("maxBatchSize", 9).addConfiguration("maxWaitTime", 1000).addConfiguration("dataFormat", DataFormat.TEXT).addConfiguration("kafkaConsumerConfigs", null).build() [CD]
+Line_2 $$ public void testZookeeperDown() throws StageException --> Line_9 $$ sourceRunner.runInit() [CD]
+Line_2 $$ public void testZookeeperDown() throws StageException --> Line_10 $$ sdcKafkaTestUtil.shutdown() [CD]
+Line_2 $$ public void testZookeeperDown() throws StageException --> Line_11 $$ sourceRunner.runProduce(null, 5) [CD]

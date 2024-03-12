@@ -1,0 +1,4 @@
+Line_2 $$ public void testCallableSuperCall() throws Exception --> Line_3 $$ DynamicType.Loaded<Bar> loaded = new ByteBuddy().subclass(Bar.class).method(isDeclaredBy(Bar.class)).intercept(MethodDelegation.to(CallableClass.class)).make().load(Bar.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testCallableSuperCall() throws Exception --> Line_4 $$ Bar instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testCallableSuperCall() throws Exception --> Line_5 $$ assertThat(instance.bar(), is(FOO)) [CD]
+Line_4 $$ Bar instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(instance.bar(), is(FOO)) [FD]

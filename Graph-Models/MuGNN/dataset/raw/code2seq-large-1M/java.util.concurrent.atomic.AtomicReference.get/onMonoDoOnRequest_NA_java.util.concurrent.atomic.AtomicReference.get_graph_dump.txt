@@ -1,0 +1,6 @@
+Line_2 $$ public void onMonoDoOnRequest() --> Line_3 $$ Mono<String> mp = Mono.just("test") [CD]
+Line_2 $$ public void onMonoDoOnRequest() --> Line_4 $$ AtomicReference<Long> ref = new AtomicReference() [CD]
+Line_2 $$ public void onMonoDoOnRequest() --> Line_5 $$ StepVerifier.create(mp.doOnRequest(ref::<>set), 0).thenAwait().thenRequest(123).expectNext("test").verifyComplete() [CD]
+Line_3 $$ Mono<String> mp = Mono.just("test") --> Line_5 $$ StepVerifier.create(mp.doOnRequest(ref::<>set), 0).thenAwait().thenRequest(123).expectNext("test").verifyComplete() [FD]
+Line_2 $$ public void onMonoDoOnRequest() --> Line_6 $$ assertThat(ref.get()).isEqualTo(123) [CD]
+Line_4 $$ AtomicReference<Long> ref = new AtomicReference() --> Line_6 $$ assertThat(ref.get()).isEqualTo(123) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void deleteConnector(String connectorName) --> Line_3 $$ if (!checkConnectorExists(connectorName)) [CD]
+Line_2 $$ public void deleteConnector(String connectorName) --> Line_3 $$ if (!checkConnectorExists(connectorName)) [FD]
+Line_2 $$ public void deleteConnector(String connectorName) --> Line_5 $$ String endpoint = "connectors/" + connectorName [CD]
+Line_2 $$ public void deleteConnector(String connectorName) --> Line_8 $$ locks.putIfAbsent(connectorName, new ReentrantLock()) [FD]
+Line_2 $$ public void deleteConnector(String connectorName) --> Line_10 $$ locks.get(connectorName).lock() [FD]
+Line_7 $$ String url = getRandomUrl() --> Line_11 $$ HTTP_CLIENT.delete(url, endpoint) [FD]
+Line_5 $$ String endpoint = "connectors/" + connectorName --> Line_11 $$ HTTP_CLIENT.delete(url, endpoint) [FD]
+Line_2 $$ public void deleteConnector(String connectorName) --> Line_13 $$ locks.get(connectorName).unlock() [FD]

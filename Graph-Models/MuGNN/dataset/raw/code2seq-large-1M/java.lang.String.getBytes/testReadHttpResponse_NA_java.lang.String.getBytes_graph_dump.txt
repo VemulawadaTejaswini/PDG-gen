@@ -1,0 +1,8 @@
+Line_2 $$ public void testReadHttpResponse() throws Exception --> Line_3 $$ String expectedResponseString = "Hello World!" [CD]
+Line_2 $$ public void testReadHttpResponse() throws Exception --> Line_4 $$ byte[] expectedBytes = expectedResponseString.getBytes() [CD]
+Line_3 $$ String expectedResponseString = "Hello World!" --> Line_4 $$ byte[] expectedBytes = expectedResponseString.getBytes() [FD]
+Line_2 $$ public void testReadHttpResponse() throws Exception --> Line_5 $$ HttpURLConnection connection = Mockito.mock(HttpURLConnection.class) [CD]
+Line_2 $$ public void testReadHttpResponse() throws Exception --> Line_6 $$ Mockito.doReturn(expectedBytes.length).when(connection).getContentLength() [CD]
+Line_7 $$ for (Integer responseCode : getAllHttpCodes()) --> Line_8 $$ Mockito.doReturn(responseCode).when(connection).getResponseCode() [FD]
+Line_9 $$ InputStream is = new ByteArrayInputStream(expectedBytes) --> Line_10 $$ Mockito.doReturn(is).when(connection).getInputStream() [FD]
+Line_4 $$ byte[] expectedBytes = expectedResponseString.getBytes() --> Line_11 $$ Assert.assertArrayEquals(expectedBytes, NetworkUtils.readHttpResponse(connection)) [FD]

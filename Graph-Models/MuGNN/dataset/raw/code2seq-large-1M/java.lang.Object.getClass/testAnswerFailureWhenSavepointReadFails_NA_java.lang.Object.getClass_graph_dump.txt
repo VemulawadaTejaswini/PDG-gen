@@ -1,0 +1,8 @@
+Line_2 $$ public void testAnswerFailureWhenSavepointReadFails() throws Exception --> Line_3 $$ JobGraph jg = createSimpleJobGraph() [CD]
+Line_2 $$ public void testAnswerFailureWhenSavepointReadFails() throws Exception --> Line_4 $$ jg.setSavepointRestoreSettings(SavepointRestoreSettings.forPath("pathThatReallyDoesNotExist...")) [CD]
+Line_3 $$ JobGraph jg = createSimpleJobGraph() --> Line_4 $$ jg.setSavepointRestoreSettings(SavepointRestoreSettings.forPath("pathThatReallyDoesNotExist...")) [FD]
+Line_2 $$ public void testAnswerFailureWhenSavepointReadFails() throws Exception --> Line_5 $$ Future<Object> submitFuture = jmGateway.ask(new JobManagerMessages.SubmitJob(jg, ListeningBehaviour.DETACHED), timeout) [CD]
+Line_2 $$ public void testAnswerFailureWhenSavepointReadFails() throws Exception --> Line_6 $$ Object result = Await.result(submitFuture, timeout) [CD]
+Line_5 $$ Future<Object> submitFuture = jmGateway.ask(new JobManagerMessages.SubmitJob(jg, ListeningBehaviour.DETACHED), timeout) --> Line_6 $$ Object result = Await.result(submitFuture, timeout) [FD]
+Line_2 $$ public void testAnswerFailureWhenSavepointReadFails() throws Exception --> Line_7 $$ assertEquals(JobManagerMessages.JobResultFailure.class, result.getClass()) [CD]
+Line_6 $$ Object result = Await.result(submitFuture, timeout) --> Line_7 $$ assertEquals(JobManagerMessages.JobResultFailure.class, result.getClass()) [FD]

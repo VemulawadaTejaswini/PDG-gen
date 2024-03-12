@@ -1,0 +1,8 @@
+Line_2 $$ private <T, A> ActiveOperation<T, A> removeUnderLock(final Integer id) --> Line_3 $$ lock.lock() [CD]
+Line_2 $$ private <T, A> ActiveOperation<T, A> removeUnderLock(final Integer id) --> Line_5 $$ final ActiveOperation<?, ?> removed = activeRequests.remove(id) [FD]
+Line_5 $$ final ActiveOperation<?, ?> removed = activeRequests.remove(id) --> Line_6 $$ if (removed != null) [FD]
+Line_6 $$ if (removed != null) --> Line_7 $$ ProtocolLogger.ROOT_LOGGER.tracef("Deregistered active operation %d", id) [CD]
+Line_2 $$ private <T, A> ActiveOperation<T, A> removeUnderLock(final Integer id) --> Line_7 $$ ProtocolLogger.ROOT_LOGGER.tracef("Deregistered active operation %d", id) [FD]
+Line_6 $$ if (removed != null) --> Line_9 $$ operationIdManager.freeBatchId(id) [CD]
+Line_2 $$ private <T, A> ActiveOperation<T, A> removeUnderLock(final Integer id) --> Line_9 $$ operationIdManager.freeBatchId(id) [FD]
+Line_6 $$ if (removed != null) --> Line_10 $$ condition.signalAll() [CD]

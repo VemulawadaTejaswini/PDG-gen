@@ -1,0 +1,7 @@
+Line_2 $$ private IJob loadLegacyTaskData(String jobPath, ZnodeJob.RootZnodeData rznd, String config, JobQueryConfig jqc) throws Exception --> Line_3 $$ List<JobTask> tasks = new ArrayList() [CD]
+Line_2 $$ private IJob loadLegacyTaskData(String jobPath, ZnodeJob.RootZnodeData rznd, String config, JobQueryConfig jqc) throws Exception --> Line_4 $$ List<String> children = spawnDataStore.getChildrenNames(jobPath + taskChildName) [CD]
+Line_2 $$ private IJob loadLegacyTaskData(String jobPath, ZnodeJob.RootZnodeData rznd, String config, JobQueryConfig jqc) throws Exception --> Line_5 $$ Collections.sort(children) [CD]
+Line_4 $$ List<String> children = spawnDataStore.getChildrenNames(jobPath + taskChildName) --> Line_5 $$ Collections.sort(children) [FD]
+Line_7 $$ String taskString = spawnDataStore.get(jobPath + taskChildName + "/" + taskId) --> Line_8 $$ JobTask task = codec.decode(JobTask.class, taskString.getBytes()) [FD]
+Line_3 $$ List<JobTask> tasks = new ArrayList() --> Line_9 $$ tasks.add(task) [FD]
+Line_2 $$ private IJob loadLegacyTaskData(String jobPath, ZnodeJob.RootZnodeData rznd, String config, JobQueryConfig jqc) throws Exception --> Line_11 $$ return new ZnodeJob(rznd, config, jqc, tasks) [CD]

@@ -1,0 +1,8 @@
+Line_3 $$ Stream.Builder<Path> collector = Stream.builder() --> Line_4 $$ collector.add(outputPathResolver.getRootPath()) [FD]
+Line_3 $$ Stream.Builder<Path> collector = Stream.builder() --> Line_5 $$ collector.add(outputPathResolver.resolvePath(path1)) [FD]
+Line_3 $$ Stream.Builder<Path> collector = Stream.builder() --> Line_6 $$ Set<Path> outputs = collector.build().collect(ImmutableSet.toImmutableSet()) [FD]
+Line_7 $$ for (Path path : outputs) --> Line_8 $$ Preconditions.checkState(!path.isAbsolute()) [FD]
+Line_6 $$ Set<Path> outputs = collector.build().collect(ImmutableSet.toImmutableSet()) --> Line_9 $$ if (shouldRecord(outputs, path)) [FD]
+Line_7 $$ for (Path path : outputs) --> Line_9 $$ if (shouldRecord(outputs, path)) [FD]
+Line_9 $$ if (shouldRecord(outputs, path)) --> Line_10 $$ buildableContext.recordArtifact(path) [CD]
+Line_7 $$ for (Path path : outputs) --> Line_10 $$ buildableContext.recordArtifact(path) [FD]

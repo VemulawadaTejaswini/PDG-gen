@@ -1,0 +1,7 @@
+Line_2 $$ static void releaseLocks(Map<Circuit, Lock> locks) --> Line_3 $$ Thread curThread = Thread.currentThread() [CD]
+Line_2 $$ static void releaseLocks(Map<Circuit, Lock> locks) --> Line_4 $$ for (Map.Entry<Circuit, Lock> entry : locks.entrySet()) [FD]
+Line_5 $$ Circuit circ = entry.getKey() --> Line_7 $$ CircuitLocker locker = circ.getLocker() [FD]
+Line_3 $$ Thread curThread = Thread.currentThread() --> Line_8 $$ if (locker.mutatingThread == curThread) [FD]
+Line_8 $$ if (locker.mutatingThread == curThread) --> Line_9 $$ locker.mutatingThread = null [CD]
+Line_8 $$ if (locker.mutatingThread == curThread) --> Line_10 $$ locker.mutatingMutator = null [CD]
+Line_6 $$ Lock lock = entry.getValue() --> Line_12 $$ lock.unlock() [FD]

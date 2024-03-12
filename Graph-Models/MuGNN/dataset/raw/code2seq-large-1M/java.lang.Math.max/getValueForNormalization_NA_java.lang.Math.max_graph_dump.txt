@@ -1,0 +1,8 @@
+Line_2 $$ public float getValueForNormalization() throws IOException --> Line_3 $$ float max = 0.0f, sum = 0.0f [CD]
+Line_4 $$ for (Weight currentWeight : weights) --> Line_5 $$ float sub = currentWeight.getValueForNormalization() [FD]
+Line_3 $$ float max = 0.0f, sum = 0.0f --> Line_6 $$ sum += sub [FD]
+Line_5 $$ float sub = currentWeight.getValueForNormalization() --> Line_6 $$ sum += sub [FD]
+Line_3 $$ float max = 0.0f, sum = 0.0f --> Line_7 $$ max = Math.max(max, sub) [FD]
+Line_5 $$ float sub = currentWeight.getValueForNormalization() --> Line_7 $$ max = Math.max(max, sub) [FD]
+Line_2 $$ public float getValueForNormalization() throws IOException --> Line_9 $$ float boost = getBoost() [CD]
+Line_2 $$ public float getValueForNormalization() throws IOException --> Line_10 $$ return (((sum - max) * tieBreakerMultiplier * tieBreakerMultiplier) + max) * boost * boost [CD]

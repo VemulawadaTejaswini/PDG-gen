@@ -1,0 +1,4 @@
+Line_2 $$ protected void engineInit(byte[] params) throws IOException --> Line_4 $$ RSASSAPSSparams pssP = RSASSAPSSparams.getInstance(params) [FD]
+Line_4 $$ RSASSAPSSparams pssP = RSASSAPSSparams.getInstance(params) --> Line_5 $$ if (!pssP.getMaskGenAlgorithm().getAlgorithm().equals(PKCSObjectIdentifiers.id_mgf1)) [FD]
+Line_4 $$ RSASSAPSSparams pssP = RSASSAPSSparams.getInstance(params) --> Line_6 $$ throw new IOException("unknown mask generation function: " + pssP.getMaskGenAlgorithm().getAlgorithm()) [FD]
+Line_4 $$ RSASSAPSSparams pssP = RSASSAPSSparams.getInstance(params) --> Line_8 $$ currentSpec = new PSSParameterSpec(MessageDigestUtils.getDigestName(pssP.getHashAlgorithm().getAlgorithm()), PSSParameterSpec.DEFAULT.getMGFAlgorithm(), new MGF1ParameterSpec(MessageDigestUtils.getDigestName(AlgorithmIdentifier.getInstance(pssP.getMaskGenAlgorithm().getParameters()).getAlgorithm())), pssP.getSaltLength().intValue(), pssP.getTrailerField().intValue()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static void executeSql(String dbName, String sql) throws SQLException --> Line_3 $$ if (sql == null) [FD]
+Line_2 $$ public static void executeSql(String dbName, String sql) throws SQLException --> Line_3 $$ if (sql == null) [CD]
+Line_3 $$ if (sql == null) --> Line_4 $$ return [CD]
+Line_2 $$ public static void executeSql(String dbName, String sql) throws SQLException --> Line_7 $$ DataSource db = DataSourceHolder.getDataSource(dbName) [FD]
+Line_8 $$ JdbcTemplate jdbcTemplate = new JdbcTemplate(db) --> Line_9 $$ jdbcTemplate.execute(sql) [FD]
+Line_2 $$ public static void executeSql(String dbName, String sql) throws SQLException --> Line_9 $$ jdbcTemplate.execute(sql) [FD]
+Line_11 $$ SQLException sqle = (SQLException) e.getCause() --> Line_12 $$ if (sqle.getErrorCode() == 1062) [FD]
+Line_12 $$ if (sqle.getErrorCode() == 1062) --> Line_13 $$ logger.info("RtExecutor retry sql:" + e.getMessage() + ":" + sql) [CD]

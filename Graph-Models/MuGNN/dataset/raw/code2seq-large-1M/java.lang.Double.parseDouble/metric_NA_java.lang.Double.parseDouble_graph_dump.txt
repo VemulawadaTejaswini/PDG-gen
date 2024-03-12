@@ -1,0 +1,8 @@
+Line_2 $$ public double metric(String name, long bucketOrd) --> Line_3 $$ DoubleHistogram state = getState(bucketOrd) [CD]
+Line_2 $$ public double metric(String name, long bucketOrd) --> Line_3 $$ DoubleHistogram state = getState(bucketOrd) [FD]
+Line_2 $$ public double metric(String name, long bucketOrd) --> Line_4 $$ if (state == null) [CD]
+Line_3 $$ DoubleHistogram state = getState(bucketOrd) --> Line_4 $$ if (state == null) [FD]
+Line_4 $$ if (state == null) --> Line_5 $$ return Double.NaN [CD]
+Line_4 $$ if (state == null) --> Line_7 $$ return state.getValueAtPercentile(Double.parseDouble(name)) [CD]
+Line_3 $$ DoubleHistogram state = getState(bucketOrd) --> Line_7 $$ return state.getValueAtPercentile(Double.parseDouble(name)) [FD]
+Line_2 $$ public double metric(String name, long bucketOrd) --> Line_7 $$ return state.getValueAtPercentile(Double.parseDouble(name)) [FD]

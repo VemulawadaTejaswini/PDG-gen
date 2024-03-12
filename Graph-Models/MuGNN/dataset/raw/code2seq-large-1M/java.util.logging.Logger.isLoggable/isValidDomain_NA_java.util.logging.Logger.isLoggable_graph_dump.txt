@@ -1,0 +1,7 @@
+Line_2 $$ boolean isValidDomain() --> Line_3 $$ if (domain != null) [CD]
+Line_3 $$ if (domain != null) --> Line_4 $$ if ((expires == null) && (maxAge == null) && logger.isLoggable(Level.INFO)) [CD]
+Line_4 $$ if ((expires == null) && (maxAge == null) && logger.isLoggable(Level.INFO)) --> Line_5 $$ logger.log(Level.INFO, "Not rejecting transient cookie that specifies domain '" + domain + "'.") [CD]
+Line_3 $$ if (domain != null) --> Line_7 $$ if (!DomainValidation.isValidCookieDomain(domain, requestHostName)) [CD]
+Line_7 $$ if (!DomainValidation.isValidCookieDomain(domain, requestHostName)) --> Line_8 $$ logger.log(Level.WARNING, "saveCookie(): Rejecting cookie with invalid domain '" + domain + "' for host '" + requestHostName + "'.") [CD]
+Line_7 $$ if (!DomainValidation.isValidCookieDomain(domain, requestHostName)) --> Line_9 $$ return false [CD]
+Line_2 $$ boolean isValidDomain() --> Line_12 $$ return true [CD]

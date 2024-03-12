@@ -1,0 +1,8 @@
+Line_2 $$ public void testDefaultTypeMismatchInView() throws Exception --> Line_3 $$ String ddl1 = "CREATE TABLE table_with_default (" + "pk INTEGER PRIMARY KEY, " + "v VARCHAR DEFAULT 'foo')" [CD]
+Line_2 $$ public void testDefaultTypeMismatchInView() throws Exception --> Line_4 $$ String ddl2 = "CREATE VIEW my_view(v2 VARCHAR DEFAULT 1) AS SELECT * FROM table_with_default" [CD]
+Line_2 $$ public void testDefaultTypeMismatchInView() throws Exception --> Line_5 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_2 $$ public void testDefaultTypeMismatchInView() throws Exception --> Line_6 $$ conn.createStatement().execute(ddl1) [CD]
+Line_3 $$ String ddl1 = "CREATE TABLE table_with_default (" + "pk INTEGER PRIMARY KEY, " + "v VARCHAR DEFAULT 'foo')" --> Line_6 $$ conn.createStatement().execute(ddl1) [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_6 $$ conn.createStatement().execute(ddl1) [FD]
+Line_4 $$ String ddl2 = "CREATE VIEW my_view(v2 VARCHAR DEFAULT 1) AS SELECT * FROM table_with_default" --> Line_8 $$ conn.createStatement().execute(ddl2) [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_8 $$ conn.createStatement().execute(ddl2) [FD]

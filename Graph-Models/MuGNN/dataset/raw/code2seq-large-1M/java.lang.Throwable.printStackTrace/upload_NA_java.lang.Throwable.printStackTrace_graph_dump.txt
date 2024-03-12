@@ -1,0 +1,7 @@
+Line_2 $$ public Result upload(@RequestParam("file") MultipartFile file) --> Line_3 $$ if (!file.isEmpty()) [CD]
+Line_2 $$ public Result upload(@RequestParam("file") MultipartFile file) --> Line_3 $$ if (!file.isEmpty()) [FD]
+Line_2 $$ public Result upload(@RequestParam("file") MultipartFile file) --> Line_5 $$ if (fileUtil.getTotalSizeOfFilesInDir(new File(siteConfig.getUploadPath() + getUsername())) + file.getSize() > getUser().getSpaceSize() * 1024 * 1024) [FD]
+Line_5 $$ if (fileUtil.getTotalSizeOfFilesInDir(new File(siteConfig.getUploadPath() + getUsername())) + file.getSize() > getUser().getSpaceSize() * 1024 * 1024) --> Line_6 $$ return Result.error("你的上传空间不够了，请用积分去用户中心兑换") [CD]
+Line_2 $$ public Result upload(@RequestParam("file") MultipartFile file) --> Line_7 $$ String requestUrl = fileUtil.uploadFile(file, FileUploadEnum.FILE, getUsername()) [FD]
+Line_7 $$ String requestUrl = fileUtil.uploadFile(file, FileUploadEnum.FILE, getUsername()) --> Line_8 $$ return Result.success(requestUrl) [FD]
+Line_2 $$ public Result upload(@RequestParam("file") MultipartFile file) --> Line_14 $$ return Result.error("文件不存在") [CD]

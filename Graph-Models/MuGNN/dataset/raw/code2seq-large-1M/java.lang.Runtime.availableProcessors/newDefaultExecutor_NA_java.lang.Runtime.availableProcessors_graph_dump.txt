@@ -1,0 +1,7 @@
+Line_2 $$ private static Executor newDefaultExecutor() --> Line_3 $$ int p = Runtime.getRuntime().availableProcessors() [CD]
+Line_2 $$ private static Executor newDefaultExecutor() --> Line_4 $$ if (p <= 1) [CD]
+Line_3 $$ int p = Runtime.getRuntime().availableProcessors() --> Line_4 $$ if (p <= 1) [FD]
+Line_4 $$ if (p <= 1) --> Line_5 $$ return new Executor() [CD]
+Line_5 $$ return new Executor() --> Line_7 $$ (new Thread(command)).start() [CD]
+Line_4 $$ if (p <= 1) --> Line_11 $$ return Executors.newScheduledThreadPool(Math.min(p, 0x7fff)) [CD]
+Line_3 $$ int p = Runtime.getRuntime().availableProcessors() --> Line_11 $$ return Executors.newScheduledThreadPool(Math.min(p, 0x7fff)) [FD]

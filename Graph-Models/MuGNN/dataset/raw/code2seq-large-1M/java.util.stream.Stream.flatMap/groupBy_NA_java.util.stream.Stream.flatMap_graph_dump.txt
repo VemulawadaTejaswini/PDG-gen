@@ -1,0 +1,8 @@
+Line_2 $$ public void groupBy() --> Line_3 $$ List<Integer> input = IntStream.range(1, 100).boxed().flatMap( i -> Collections.nCopies(i, i).stream()).collect(toList()) [CD]
+Line_2 $$ public void groupBy() --> Line_4 $$ putToSrcMap(input) [CD]
+Line_3 $$ List<Integer> input = IntStream.range(1, 100).boxed().flatMap( i -> Collections.nCopies(i, i).stream()).collect(toList()) --> Line_4 $$ putToSrcMap(input) [FD]
+Line_2 $$ public void groupBy() --> Line_5 $$ BatchStage<Entry<Integer, Long>> grouped = srcStage.groupingKey(wholeItem()).aggregate(counting()) [CD]
+Line_2 $$ public void groupBy() --> Line_6 $$ grouped.drainTo(sink) [CD]
+Line_2 $$ public void groupBy() --> Line_7 $$ execute() [CD]
+Line_2 $$ public void groupBy() --> Line_8 $$ List<Entry<Integer, Long>> expected = IntStream.range(1, 100).mapToObj( i -> entry(i, (long) i)).collect(toList()) [CD]
+Line_2 $$ public void groupBy() --> Line_9 $$ assertEquals(toBag(expected), sinkToBag()) [CD]

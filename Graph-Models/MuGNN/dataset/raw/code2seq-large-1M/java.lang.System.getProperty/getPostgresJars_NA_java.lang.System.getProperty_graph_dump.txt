@@ -1,0 +1,8 @@
+Line_2 $$ List<String> getPostgresJars() --> Line_3 $$ final String classpath = System.getProperty("java.class.path", "") [CD]
+Line_2 $$ List<String> getPostgresJars() --> Line_4 $$ final String separator = System.getProperty("path.separator") [CD]
+Line_2 $$ List<String> getPostgresJars() --> Line_5 $$ final List<String> classpathItems = Splitter.on(separator).omitEmptyStrings().trimResults().splitToList(classpath) [CD]
+Line_4 $$ final String separator = System.getProperty("path.separator") --> Line_5 $$ final List<String> classpathItems = Splitter.on(separator).omitEmptyStrings().trimResults().splitToList(classpath) [FD]
+Line_2 $$ List<String> getPostgresJars() --> Line_6 $$ List<String> postgresJars = classpathItems.parallelStream().filter(( s) -> s.endsWith(".jar")).filter(( s) -> [CD]
+Line_10 $$ try (ZipFile zf = new ZipFile(s)) --> Line_11 $$ ZipEntry entry = zf.getEntry("org/postgresql/Driver.class") [FD]
+Line_9 $$ boolean hasDriver = false --> Line_12 $$ hasDriver = entry != null [FD]
+Line_2 $$ List<String> getPostgresJars() --> Line_19 $$ return postgresJars [CD]

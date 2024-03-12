@@ -1,0 +1,5 @@
+Line_5 $$ if (isEmbededDatabase()) --> Line_6 $$ return handle.createStatement("update queued_task_locks" + " set lock_expire_time = NULL, lock_agent_id = NULL, retry_count = retry_count + 1" + " where lock_expire_time is not null" + " and lock_expire_time < :expireTime").bind("expireTime", Instant.now().getEpochSecond()).execute() [CD]
+Line_5 $$ if (isEmbededDatabase()) --> Line_8 $$ return handle.createStatement("update queued_task_locks" + " set lock_expire_time = NULL, lock_agent_id = NULL, retry_count = retry_count + 1" + " where lock_expire_time is not null" + " and lock_expire_time < " + statementUnixTimestampSql()).execute() [CD]
+Line_4 $$ int c = autoCommit(( handle,  dao) -> --> Line_11 $$ if (c > 0) [FD]
+Line_11 $$ if (c > 0) --> Line_12 $$ logger.warn(" [CD]
+Line_4 $$ int c = autoCommit(( handle,  dao) -> --> Line_12 $$ logger.warn(" [FD]

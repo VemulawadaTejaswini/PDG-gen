@@ -1,0 +1,6 @@
+Line_2 $$ public void cancelUpstreamOnceWhenRejected() --> Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() [CD]
+Line_2 $$ public void cancelUpstreamOnceWhenRejected() --> Line_4 $$ vts.dispose() [CD]
+Line_3 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.create() --> Line_4 $$ vts.dispose() [FD]
+Line_2 $$ public void cancelUpstreamOnceWhenRejected() --> Line_5 $$ AtomicLong upstreamCancelCount = new AtomicLong() [CD]
+Line_2 $$ public void cancelUpstreamOnceWhenRejected() --> Line_6 $$ Mono<String> source = Mono.just("foo").log().hide().doOnCancel(upstreamCancelCount::<>incrementAndGet) [CD]
+Line_5 $$ AtomicLong upstreamCancelCount = new AtomicLong() --> Line_12 $$ assertThat(upstreamCancelCount.get()).isEqualTo(1) [FD]

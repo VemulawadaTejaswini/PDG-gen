@@ -1,0 +1,7 @@
+Line_5 $$ final List<String> columnNames = Lists.newArrayList() --> Line_6 $$ columnNames.add("float_col") [FD]
+Line_5 $$ final List<String> columnNames = Lists.newArrayList() --> Line_7 $$ columnNames.add("double_col") [FD]
+Line_8 $$ final List<String> castTypes = Lists.newArrayList() --> Line_9 $$ castTypes.add("int") [FD]
+Line_8 $$ final List<String> castTypes = Lists.newArrayList() --> Line_10 $$ castTypes.add("bigInt") [FD]
+Line_11 $$ final String query = "select count(*) as c from dfs.tmp.table_with_float\n" + "where (cast(%1$s as %2$s) >= -255 and (%1$s <= -5)) or (%1$s <= -256)" --> Line_14 $$ testBuilder().sqlQuery(query, columnName, castType).unOrdered().baselineColumns("c").baselineValues(1L).go() [FD]
+Line_12 $$ for (String columnName : columnNames) --> Line_14 $$ testBuilder().sqlQuery(query, columnName, castType).unOrdered().baselineColumns("c").baselineValues(1L).go() [FD]
+Line_13 $$ for (String castType : castTypes) --> Line_14 $$ testBuilder().sqlQuery(query, columnName, castType).unOrdered().baselineColumns("c").baselineValues(1L).go() [FD]

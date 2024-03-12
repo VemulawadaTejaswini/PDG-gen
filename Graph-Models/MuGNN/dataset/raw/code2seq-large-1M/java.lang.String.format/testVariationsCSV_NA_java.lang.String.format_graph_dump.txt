@@ -1,0 +1,8 @@
+Line_2 $$ public void testVariationsCSV() throws Exception --> Line_3 $$ String csvTableName = genCSVTable("testVariationsCSV", "a,b", "c|d") [CD]
+Line_2 $$ public void testVariationsCSV() throws Exception --> Line_4 $$ String[] csvQueries = [CD]
+Line_3 $$ String csvTableName = genCSVTable("testVariationsCSV", "a,b", "c|d") --> Line_4 $$ String[] csvQueries = [FD]
+Line_7 $$ for (String csvQuery : csvQueries) --> Line_8 $$ testWithResult(csvQuery, listOf("a,b"), listOf("c|d")) [FD]
+Line_2 $$ public void testVariationsCSV() throws Exception --> Line_10 $$ testWithResult(format("select columns from table(%s (type => 'TeXT', fieldDelimiter => ','))", csvTableName), listOf("a", "b"), listOf("c|d")) [CD]
+Line_3 $$ String csvTableName = genCSVTable("testVariationsCSV", "a,b", "c|d") --> Line_10 $$ testWithResult(format("select columns from table(%s (type => 'TeXT', fieldDelimiter => ','))", csvTableName), listOf("a", "b"), listOf("c|d")) [FD]
+Line_2 $$ public void testVariationsCSV() throws Exception --> Line_11 $$ testWithResult(format("select columns from table(%s (type => 'TeXT', fieldDelimiter => '|'))", csvTableName), listOf("a,b"), listOf("c", "d")) [CD]
+Line_3 $$ String csvTableName = genCSVTable("testVariationsCSV", "a,b", "c|d") --> Line_11 $$ testWithResult(format("select columns from table(%s (type => 'TeXT', fieldDelimiter => '|'))", csvTableName), listOf("a,b"), listOf("c", "d")) [FD]

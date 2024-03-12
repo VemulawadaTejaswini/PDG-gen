@@ -1,0 +1,8 @@
+Line_2 $$ private boolean shouldCleanUpPendingMessage(Message pendingMsg, String currentState, Long currentStateTransitionEndTime) --> Line_3 $$ if (pendingMsg == null) [FD]
+Line_2 $$ private boolean shouldCleanUpPendingMessage(Message pendingMsg, String currentState, Long currentStateTransitionEndTime) --> Line_3 $$ if (pendingMsg == null) [CD]
+Line_3 $$ if (pendingMsg == null) --> Line_4 $$ return false [CD]
+Line_2 $$ private boolean shouldCleanUpPendingMessage(Message pendingMsg, String currentState, Long currentStateTransitionEndTime) --> Line_6 $$ if (currentState.equalsIgnoreCase(pendingMsg.getToState())) [FD]
+Line_2 $$ private boolean shouldCleanUpPendingMessage(Message pendingMsg, String currentState, Long currentStateTransitionEndTime) --> Line_6 $$ if (currentState.equalsIgnoreCase(pendingMsg.getToState())) [CD]
+Line_6 $$ if (currentState.equalsIgnoreCase(pendingMsg.getToState())) --> Line_7 $$ return System.currentTimeMillis() - currentStateTransitionEndTime > DEFAULT_OBSELETE_MSG_PURGE_DELAY [CD]
+Line_6 $$ if (currentState.equalsIgnoreCase(pendingMsg.getToState())) --> Line_9 $$ return !currentState.equalsIgnoreCase(pendingMsg.getFromState()) [CD]
+Line_2 $$ private boolean shouldCleanUpPendingMessage(Message pendingMsg, String currentState, Long currentStateTransitionEndTime) --> Line_9 $$ return !currentState.equalsIgnoreCase(pendingMsg.getFromState()) [FD]

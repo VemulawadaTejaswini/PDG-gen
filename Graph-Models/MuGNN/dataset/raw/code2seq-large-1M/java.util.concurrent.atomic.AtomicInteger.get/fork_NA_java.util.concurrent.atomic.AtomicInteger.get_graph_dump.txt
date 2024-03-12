@@ -1,0 +1,8 @@
+Line_2 $$ public PlanContext fork(Task<?> root) --> Line_3 $$ int pending [CD]
+Line_2 $$ public PlanContext fork(Task<?> root) --> Line_4 $$ while ((pending = _pending.get()) > 0) [CD]
+Line_3 $$ int pending --> Line_4 $$ while ((pending = _pending.get()) > 0) [FD]
+Line_4 $$ while ((pending = _pending.get()) > 0) --> Line_5 $$ if (_pending.compareAndSet(pending, pending + 1)) [FD]
+Line_4 $$ while ((pending = _pending.get()) > 0) --> Line_5 $$ if (_pending.compareAndSet(pending, pending + 1)) [CD]
+Line_3 $$ int pending --> Line_5 $$ if (_pending.compareAndSet(pending, pending + 1)) [FD]
+Line_5 $$ if (_pending.compareAndSet(pending, pending + 1)) --> Line_6 $$ return new PlanContext(root, _id, _engine, _taskExecutor, _timerScheduler, _planClass, _taskLogger, _relationshipsBuilder,  p -> done()) [CD]
+Line_2 $$ public PlanContext fork(Task<?> root) --> Line_9 $$ return null [CD]

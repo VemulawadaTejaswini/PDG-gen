@@ -1,0 +1,8 @@
+Line_2 $$ private void backgroundThreadCallForHealthCheck() --> Line_3 $$ LOG.verbose("Starting pings. %s", toString()) [CD]
+Line_2 $$ private void backgroundThreadCallForHealthCheck() --> Line_4 $$ List<ListenableFuture<PerServerPingData>> futures = new ArrayList() [CD]
+Line_4 $$ List<ListenableFuture<PerServerPingData>> futures = new ArrayList() --> Line_7 $$ futures.add(serverPing.getFuture()) [FD]
+Line_6 $$ ServerPing serverPing = new ServerPing(serverUri) --> Line_7 $$ futures.add(serverPing.getFuture()) [FD]
+Line_4 $$ List<ListenableFuture<PerServerPingData>> futures = new ArrayList() --> Line_10 $$ List<PerServerPingData> allServerData = Futures.allAsList(futures).get() [FD]
+Line_11 $$ LoadBalancerPingEventData.Builder eventData = LoadBalancerPingEventData.builder() --> Line_12 $$ eventData.addAllPerServerData(allServerData) [FD]
+Line_10 $$ List<PerServerPingData> allServerData = Futures.allAsList(futures).get() --> Line_12 $$ eventData.addAllPerServerData(allServerData) [FD]
+Line_11 $$ LoadBalancerPingEventData.Builder eventData = LoadBalancerPingEventData.builder() --> Line_13 $$ eventBus.post(new LoadBalancerPingEvent(eventData.build())) [FD]

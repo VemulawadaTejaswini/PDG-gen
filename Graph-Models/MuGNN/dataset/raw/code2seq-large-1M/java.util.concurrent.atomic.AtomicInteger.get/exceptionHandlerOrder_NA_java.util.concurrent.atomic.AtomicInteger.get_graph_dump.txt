@@ -1,0 +1,8 @@
+Line_2 $$ public void exceptionHandlerOrder() throws Exception --> Line_3 $$ final AggregatedHttpMessage aReq = AggregatedHttpMessage.of(HttpMethod.POST, "/1/exceptionHandlerOrder", MediaType.PLAIN_TEXT_UTF_8, "foo") [CD]
+Line_2 $$ public void exceptionHandlerOrder() throws Exception --> Line_4 $$ final AggregatedHttpMessage aRes = executeRequest(aReq) [CD]
+Line_3 $$ final AggregatedHttpMessage aReq = AggregatedHttpMessage.of(HttpMethod.POST, "/1/exceptionHandlerOrder", MediaType.PLAIN_TEXT_UTF_8, "foo") --> Line_4 $$ final AggregatedHttpMessage aRes = executeRequest(aReq) [FD]
+Line_2 $$ public void exceptionHandlerOrder() throws Exception --> Line_5 $$ assertThat(aRes.headers().status()).isEqualTo(HttpStatus.NOT_IMPLEMENTED) [CD]
+Line_4 $$ final AggregatedHttpMessage aRes = executeRequest(aReq) --> Line_5 $$ assertThat(aRes.headers().status()).isEqualTo(HttpStatus.NOT_IMPLEMENTED) [FD]
+Line_2 $$ public void exceptionHandlerOrder() throws Exception --> Line_6 $$ assertThat(aRes.content().toStringUtf8()).isEqualTo("hello foo") [CD]
+Line_4 $$ final AggregatedHttpMessage aRes = executeRequest(aReq) --> Line_6 $$ assertThat(aRes.content().toStringUtf8()).isEqualTo("hello foo") [FD]
+Line_2 $$ public void exceptionHandlerOrder() throws Exception --> Line_7 $$ assertThat(exceptionCounter.get()).isEqualTo(3) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testAsyncLogWritingAndRedoing() throws Exception --> Line_3 $$ int iterations = 10 [CD]
+Line_2 $$ public void testAsyncLogWritingAndRedoing() throws Exception --> Line_4 $$ for (int i = 0; i < iterations; i++) [CD]
+Line_3 $$ int iterations = 10 --> Line_4 $$ for (int i = 0; i < iterations; i++) [FD]
+Line_4 $$ for (int i = 0; i < iterations; i++) --> Line_5 $$ journal.write(new String("DATA" + i).getBytes("UTF-8"), Journal.WriteType.ASYNC) [CD]
+Line_2 $$ public void testAsyncLogWritingAndRedoing() throws Exception --> Line_7 $$ int i = 0 [CD]
+Line_8 $$ for (Location location : journal.redo()) --> Line_9 $$ byte[] buffer = journal.read(location, Journal.ReadType.SYNC) [FD]
+Line_4 $$ for (int i = 0; i < iterations; i++) --> Line_10 $$ assertEquals("DATA" + i++, new String(buffer, "UTF-8")) [FD]
+Line_7 $$ int i = 0 --> Line_10 $$ assertEquals("DATA" + i++, new String(buffer, "UTF-8")) [FD]

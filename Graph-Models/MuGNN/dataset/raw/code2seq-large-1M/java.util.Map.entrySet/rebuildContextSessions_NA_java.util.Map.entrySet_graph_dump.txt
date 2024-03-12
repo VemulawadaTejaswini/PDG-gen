@@ -1,0 +1,7 @@
+Line_2 $$ private void rebuildContextSessions(MySession mySession, Map<String, Serializable> contextSessionMap) --> Line_3 $$ for (Entry<String, Serializable> entry : contextSessionMap.entrySet()) [FD]
+Line_2 $$ private void rebuildContextSessions(MySession mySession, Map<String, Serializable> contextSessionMap) --> Line_5 $$ MyLittleSession contextSession = (MyLittleSession) mySession.getContextSession(contextSessionKey) [FD]
+Line_4 $$ String contextSessionKey = entry.getKey() --> Line_5 $$ MyLittleSession contextSession = (MyLittleSession) mySession.getContextSession(contextSessionKey) [FD]
+Line_7 $$ if (!(serializable instanceof Map)) --> Line_8 $$ log.warn("inner object for contextSession [" + contextSessionKey + "] should be [Map], found [" + serializable.getClass().getName() + "]") [CD]
+Line_6 $$ Serializable serializable = entry.getValue() --> Line_8 $$ log.warn("inner object for contextSession [" + contextSessionKey + "] should be [Map], found [" + serializable.getClass().getName() + "]") [FD]
+Line_5 $$ MyLittleSession contextSession = (MyLittleSession) mySession.getContextSession(contextSessionKey) --> Line_12 $$ processMLSessionMap(contextSession, contextAttributes) [FD]
+Line_11 $$ Map<String, Serializable> contextAttributes = (Map<String, Serializable>) serializable --> Line_12 $$ processMLSessionMap(contextSession, contextAttributes) [FD]

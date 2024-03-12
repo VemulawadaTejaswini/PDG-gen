@@ -1,0 +1,6 @@
+Line_2 $$ public void testErrorsOnCacheable() throws TimeoutException, CacheException --> Line_3 $$ final String value = "value to cache" [CD]
+Line_4 $$ for (Class<Throwable> exception : cacheProvidersExceptionClasses) --> Line_6 $$ doThrow(exception).when(cacheMock).get(Long.toString(id), null) [FD]
+Line_3 $$ final String value = "value to cache" --> Line_7 $$ doReturn(value).when(testDaoMock).get(id) [FD]
+Line_4 $$ for (Class<Throwable> exception : cacheProvidersExceptionClasses) --> Line_8 $$ doThrow(exception).when(cacheMock).set(eq(Long.toString(id)), anyInt(), eq(value), isNull()) [FD]
+Line_3 $$ final String value = "value to cache" --> Line_8 $$ doThrow(exception).when(cacheMock).set(eq(Long.toString(id)), anyInt(), eq(value), isNull()) [FD]
+Line_3 $$ final String value = "value to cache" --> Line_12 $$ verify(cacheMock).set(eq(Long.toString(id)), anyInt(), eq(value), isNull()) [FD]

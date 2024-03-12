@@ -1,0 +1,8 @@
+Line_2 $$ void startNewBlock(GregorianCalendar timestamp, int dataUntilNextHeader) --> Line_3 $$ GB.assertThat(timestamp != null, "Timestamp must not be null") [CD]
+Line_2 $$ void startNewBlock(GregorianCalendar timestamp, int dataUntilNextHeader) --> Line_4 $$ if (isFirstChunk()) [CD]
+Line_4 $$ if (isFirstChunk()) --> Line_7 $$ if (timestamp.getTimeInMillis() >= activityDataTimestampProgress.getTimeInMillis()) [CD]
+Line_2 $$ void startNewBlock(GregorianCalendar timestamp, int dataUntilNextHeader) --> Line_7 $$ if (timestamp.getTimeInMillis() >= activityDataTimestampProgress.getTimeInMillis()) [FD]
+Line_7 $$ if (timestamp.getTimeInMillis() >= activityDataTimestampProgress.getTimeInMillis()) --> Line_10 $$ LOG.warn("Got bogus timestamp: " + timestamp.getTime() + " that is smaller than the previous timestamp: " + activityDataTimestampProgress.getTime()) [CD]
+Line_2 $$ void startNewBlock(GregorianCalendar timestamp, int dataUntilNextHeader) --> Line_10 $$ LOG.warn("Got bogus timestamp: " + timestamp.getTime() + " that is smaller than the previous timestamp: " + activityDataTimestampProgress.getTime()) [FD]
+Line_2 $$ void startNewBlock(GregorianCalendar timestamp, int dataUntilNextHeader) --> Line_13 $$ activityDataTimestampToAck = (GregorianCalendar) timestamp.clone() [FD]
+Line_2 $$ void startNewBlock(GregorianCalendar timestamp, int dataUntilNextHeader) --> Line_15 $$ validate() [CD]

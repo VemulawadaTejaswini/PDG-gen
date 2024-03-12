@@ -1,0 +1,8 @@
+Line_2 $$ public static String safeDecodeByteArray(byte[] b, String baseCharset) --> Line_4 $$ if (baseCharset == null) [FD]
+Line_4 $$ if (baseCharset == null) --> Line_5 $$ return new String(b, StandardCharsets.ISO_8859_1) [CD]
+Line_2 $$ public static String safeDecodeByteArray(byte[] b, String baseCharset) --> Line_10 $$ CharsetDecoder decoder = Charset.forName(baseCharset).newDecoder() [FD]
+Line_10 $$ CharsetDecoder decoder = Charset.forName(baseCharset).newDecoder() --> Line_11 $$ decoder.onMalformedInput(CodingErrorAction.IGNORE) [FD]
+Line_10 $$ CharsetDecoder decoder = Charset.forName(baseCharset).newDecoder() --> Line_12 $$ decoder.onUnmappableCharacter(CodingErrorAction.IGNORE) [FD]
+Line_10 $$ CharsetDecoder decoder = Charset.forName(baseCharset).newDecoder() --> Line_13 $$ CharBuffer parsed = decoder.decode(ByteBuffer.wrap(b, 0, b.length)) [FD]
+Line_2 $$ public static String safeDecodeByteArray(byte[] b, String baseCharset) --> Line_13 $$ CharBuffer parsed = decoder.decode(ByteBuffer.wrap(b, 0, b.length)) [FD]
+Line_13 $$ CharBuffer parsed = decoder.decode(ByteBuffer.wrap(b, 0, b.length)) --> Line_14 $$ return parsed.toString() [FD]

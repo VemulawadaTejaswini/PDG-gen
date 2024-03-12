@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized void update() --> Line_3 $$ final Map<Thread, StackTraceElement[]> stackTraces = Thread.getAllStackTraces() [CD]
+Line_3 $$ final Map<Thread, StackTraceElement[]> stackTraces = Thread.getAllStackTraces() --> Line_6 $$ for (final Map.Entry<Thread, StackTraceElement[]> entry : stackTraces.entrySet()) [FD]
+Line_7 $$ final Thread thread = entry.getKey() --> Line_9 $$ if (stackTrace.length > 0 && thread.getState() == Thread.State.RUNNABLE && thread != currentThread) [FD]
+Line_10 $$ for (final StackTraceElement element : stackTrace) --> Line_11 $$ if (!isPackageExcluded(element)) [FD]
+Line_11 $$ if (!isPackageExcluded(element)) --> Line_12 $$ addSample(element) [CD]
+Line_10 $$ for (final StackTraceElement element : stackTrace) --> Line_12 $$ addSample(element) [FD]

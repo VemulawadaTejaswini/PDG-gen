@@ -1,0 +1,8 @@
+Line_2 $$ public static Stream loadStream(CuratorFramework client, String streamName, StreamFactory streamFactory) throws Exception --> Line_4 $$ byte[] definition = client.getData().forPath(Paths.build(Paths.STREAMS, streamName)) [FD]
+Line_4 $$ byte[] definition = client.getData().forPath(Paths.build(Paths.STREAMS, streamName)) --> Line_5 $$ Map<String, String> definitionMap = ZooKeeperUtils.bytesToMap(definition) [FD]
+Line_2 $$ public static Stream loadStream(CuratorFramework client, String streamName, StreamFactory streamFactory) throws Exception --> Line_6 $$ byte[] deploymentPropertiesData = client.getData().forPath(Paths.build(Paths.STREAM_DEPLOYMENTS, streamName)) [FD]
+Line_7 $$ if (deploymentPropertiesData != null && deploymentPropertiesData.length > 0) --> Line_8 $$ definitionMap.put("deploymentProperties", new String(deploymentPropertiesData, "UTF-8")) [CD]
+Line_5 $$ Map<String, String> definitionMap = ZooKeeperUtils.bytesToMap(definition) --> Line_8 $$ definitionMap.put("deploymentProperties", new String(deploymentPropertiesData, "UTF-8")) [FD]
+Line_2 $$ public static Stream loadStream(CuratorFramework client, String streamName, StreamFactory streamFactory) throws Exception --> Line_10 $$ return streamFactory.createStream(streamName, definitionMap) [FD]
+Line_5 $$ Map<String, String> definitionMap = ZooKeeperUtils.bytesToMap(definition) --> Line_10 $$ return streamFactory.createStream(streamName, definitionMap) [FD]
+Line_2 $$ public static Stream loadStream(CuratorFramework client, String streamName, StreamFactory streamFactory) throws Exception --> Line_13 $$ return null [CD]

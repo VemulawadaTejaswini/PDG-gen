@@ -1,0 +1,8 @@
+Line_2 $$ protected Value convertValue(Value convertingValue) --> Line_3 $$ checkIfValueTypeAvailable(convertingValue.type) [CD]
+Line_2 $$ protected Value convertValue(Value convertingValue) --> Line_4 $$ Value rateFrom = getFromRateValue(convertingValue.type) [CD]
+Line_2 $$ protected Value convertValue(Value convertingValue) --> Line_5 $$ Value rateTo = getToRateValue(convertingValue.type) [CD]
+Line_2 $$ protected Value convertValue(Value convertingValue) --> Line_6 $$ final BigDecimal converted = BigDecimal.valueOf(convertingValue.value).multiply(BigDecimal.valueOf(rateTo.value)).divide(BigDecimal.valueOf(rateFrom.value), RoundingMode.HALF_UP) [CD]
+Line_2 $$ protected Value convertValue(Value convertingValue) --> Line_7 $$ if (converted.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0 || converted.compareTo(BigDecimal.valueOf(Long.MIN_VALUE)) < 0) [CD]
+Line_6 $$ final BigDecimal converted = BigDecimal.valueOf(convertingValue.value).multiply(BigDecimal.valueOf(rateTo.value)).divide(BigDecimal.valueOf(rateFrom.value), RoundingMode.HALF_UP) --> Line_7 $$ if (converted.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0 || converted.compareTo(BigDecimal.valueOf(Long.MIN_VALUE)) < 0) [FD]
+Line_2 $$ protected Value convertValue(Value convertingValue) --> Line_9 $$ return Value.valueOf(rateTo.type, converted.longValue()) [CD]
+Line_6 $$ final BigDecimal converted = BigDecimal.valueOf(convertingValue.value).multiply(BigDecimal.valueOf(rateTo.value)).divide(BigDecimal.valueOf(rateFrom.value), RoundingMode.HALF_UP) --> Line_9 $$ return Value.valueOf(rateTo.type, converted.longValue()) [FD]

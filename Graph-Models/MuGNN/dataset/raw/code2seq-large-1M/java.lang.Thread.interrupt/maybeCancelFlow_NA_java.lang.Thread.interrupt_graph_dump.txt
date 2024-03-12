@@ -1,0 +1,6 @@
+Line_4 $$ if (runState == RUNNING || runState == PAUSED_AT_GO_TO) --> Line_6 $$ if ((config & CANCEL_FLOW) == 0) [CD]
+Line_6 $$ if ((config & CANCEL_FLOW) == 0) --> Line_7 $$ return [CD]
+Line_4 $$ if (runState == RUNNING || runState == PAUSED_AT_GO_TO) --> Line_10 $$ if ((config & SEND_INTERRUPT) == SEND_INTERRUPT && currentThread != null) [CD]
+Line_10 $$ if ((config & SEND_INTERRUPT) == SEND_INTERRUPT && currentThread != null) --> Line_11 $$ currentThread.interrupt() [CD]
+Line_2 $$ private void maybeCancelFlow(@RepositoryConfig final int config, final boolean scheduleRestart) --> Line_14 $$ if (!scheduleRestart && (config & RESET_TO_INITIAL_VALUE) == RESET_TO_INITIAL_VALUE) [FD]
+Line_14 $$ if (!scheduleRestart && (config & RESET_TO_INITIAL_VALUE) == RESET_TO_INITIAL_VALUE) --> Line_15 $$ setNewValueLocked(initialValue) [CD]

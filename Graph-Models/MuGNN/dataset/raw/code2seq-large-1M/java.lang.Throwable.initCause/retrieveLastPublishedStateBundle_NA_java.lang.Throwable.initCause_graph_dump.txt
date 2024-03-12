@@ -1,0 +1,7 @@
+Line_2 $$ public ClusterStateBundle retrieveLastPublishedStateBundle() throws InterruptedException --> Line_3 $$ Stat stat = new Stat() [CD]
+Line_3 $$ Stat stat = new Stat() --> Line_5 $$ byte[] data = session.getData(zooKeeperRoot + "published_state_bundle", false, stat) [FD]
+Line_6 $$ if (data != null && data.length != 0) --> Line_7 $$ EnvelopedClusterStateBundleCodec envelopedBundleCodec = new SlimeClusterStateBundleCodec() [CD]
+Line_6 $$ if (data != null && data.length != 0) --> Line_8 $$ return envelopedBundleCodec.decodeWithEnvelope(data) [CD]
+Line_7 $$ EnvelopedClusterStateBundleCodec envelopedBundleCodec = new SlimeClusterStateBundleCodec() --> Line_8 $$ return envelopedBundleCodec.decodeWithEnvelope(data) [FD]
+Line_5 $$ byte[] data = session.getData(zooKeeperRoot + "published_state_bundle", false, stat) --> Line_8 $$ return envelopedBundleCodec.decodeWithEnvelope(data) [FD]
+Line_2 $$ public ClusterStateBundle retrieveLastPublishedStateBundle() throws InterruptedException --> Line_15 $$ return ClusterStateBundle.ofBaselineOnly(AnnotatedClusterState.emptyState()) [CD]

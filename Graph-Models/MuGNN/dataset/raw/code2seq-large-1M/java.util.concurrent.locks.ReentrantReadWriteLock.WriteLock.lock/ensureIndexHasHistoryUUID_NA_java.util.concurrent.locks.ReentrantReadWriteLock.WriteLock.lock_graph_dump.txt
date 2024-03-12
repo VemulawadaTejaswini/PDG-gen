@@ -1,0 +1,5 @@
+Line_2 $$ public void ensureIndexHasHistoryUUID() throws IOException --> Line_3 $$ metadataLock.writeLock().lock() [CD]
+Line_4 $$ try (IndexWriter writer = newIndexWriter(IndexWriterConfig.OpenMode.APPEND, directory, null)) --> Line_5 $$ final Map<String, String> userData = getUserData(writer) [FD]
+Line_5 $$ final Map<String, String> userData = getUserData(writer) --> Line_6 $$ if (userData.containsKey(Engine.HISTORY_UUID_KEY) == false) [FD]
+Line_6 $$ if (userData.containsKey(Engine.HISTORY_UUID_KEY) == false) --> Line_7 $$ updateCommitData(writer, Collections.singletonMap(Engine.HISTORY_UUID_KEY, UUIDs.randomBase64UUID())) [CD]
+Line_4 $$ try (IndexWriter writer = newIndexWriter(IndexWriterConfig.OpenMode.APPEND, directory, null)) --> Line_7 $$ updateCommitData(writer, Collections.singletonMap(Engine.HISTORY_UUID_KEY, UUIDs.randomBase64UUID())) [FD]

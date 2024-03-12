@@ -1,0 +1,6 @@
+Line_2 $$ public static List<InetSocketAddress> getContactPointsWithPorts() --> Line_3 $$ String[] points = getContactPointsArray() [CD]
+Line_2 $$ public static List<InetSocketAddress> getContactPointsWithPorts() --> Line_4 $$ List<InetSocketAddress> contactPoints = new LinkedList() [CD]
+Line_5 $$ for (String point : points) --> Line_6 $$ if (!point.contains(":")) [FD]
+Line_5 $$ for (String point : points) --> Line_8 $$ String[] chunks = point.split(":") [FD]
+Line_4 $$ List<InetSocketAddress> contactPoints = new LinkedList() --> Line_10 $$ contactPoints.add(InetSocketAddress.createUnresolved(chunks[0].trim(), Integer.parseInt(chunks[1].trim()))) [FD]
+Line_2 $$ public static List<InetSocketAddress> getContactPointsWithPorts() --> Line_15 $$ return contactPoints [CD]

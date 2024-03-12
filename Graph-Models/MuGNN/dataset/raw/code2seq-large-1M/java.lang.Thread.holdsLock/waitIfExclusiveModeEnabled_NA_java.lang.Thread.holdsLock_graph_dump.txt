@@ -1,0 +1,7 @@
+Line_2 $$ public void waitIfExclusiveModeEnabled() --> Line_3 $$ if (database.getLobSession() == this) [CD]
+Line_3 $$ if (database.getLobSession() == this) --> Line_4 $$ return [CD]
+Line_2 $$ public void waitIfExclusiveModeEnabled() --> Line_6 $$ while (true) [CD]
+Line_6 $$ while (true) --> Line_7 $$ Session exclusive = database.getExclusiveSession() [CD]
+Line_6 $$ while (true) --> Line_8 $$ if (exclusive == null || exclusive == this) [CD]
+Line_6 $$ while (true) --> Line_11 $$ if (Thread.holdsLock(exclusive)) [CD]
+Line_7 $$ Session exclusive = database.getExclusiveSession() --> Line_11 $$ if (Thread.holdsLock(exclusive)) [FD]

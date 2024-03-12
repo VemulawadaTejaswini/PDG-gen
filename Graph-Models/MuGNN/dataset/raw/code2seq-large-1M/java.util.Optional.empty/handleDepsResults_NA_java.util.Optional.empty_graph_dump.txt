@@ -1,0 +1,7 @@
+Line_3 $$ for (BuildResult depResult : depResults) --> Line_4 $$ if (buildMode != BuildType.POPULATE_FROM_REMOTE_CACHE && !depResult.isSuccess()) [FD]
+Line_4 $$ if (buildMode != BuildType.POPULATE_FROM_REMOTE_CACHE && !depResult.isSuccess()) --> Line_5 $$ return Futures.immediateFuture(Optional.of(canceled(depResult.getFailure()))) [CD]
+Line_3 $$ for (BuildResult depResult : depResults) --> Line_5 $$ return Futures.immediateFuture(Optional.of(canceled(depResult.getFailure()))) [FD]
+Line_3 $$ for (BuildResult depResult : depResults) --> Line_7 $$ if (depResult.getCacheResult().orElse(CacheResult.skipped()).getType().equals(CacheResultType.MISS)) [FD]
+Line_7 $$ if (depResult.getCacheResult().orElse(CacheResult.skipped()).getType().equals(CacheResultType.MISS)) --> Line_8 $$ depsWithCacheMiss.add(depResult.getRule().getFullyQualifiedName()) [CD]
+Line_3 $$ for (BuildResult depResult : depResults) --> Line_8 $$ depsWithCacheMiss.add(depResult.getRule().getFullyQualifiedName()) [FD]
+Line_2 $$ private ListenableFuture<Optional<BuildResult>> handleDepsResults(List<BuildResult> depResults) --> Line_12 $$ return Futures.immediateFuture(Optional.empty()) [CD]

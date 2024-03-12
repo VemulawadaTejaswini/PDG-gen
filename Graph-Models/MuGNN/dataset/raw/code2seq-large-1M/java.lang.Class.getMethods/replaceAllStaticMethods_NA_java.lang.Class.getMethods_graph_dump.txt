@@ -1,0 +1,5 @@
+Line_2 $$ private void replaceAllStaticMethods(Class<?> mockClass, Class<?> target) throws IllegalArgumentException --> Line_3 $$ for (Method m : target.getMethods()) [FD]
+Line_3 $$ for (Method m : target.getMethods()) --> Line_4 $$ if (!Modifier.isStatic(m.getModifiers())) [FD]
+Line_3 $$ for (Method m : target.getMethods()) --> Line_7 $$ String desc = Type.getMethodDescriptor(m) [FD]
+Line_2 $$ private void replaceAllStaticMethods(Class<?> mockClass, Class<?> target) throws IllegalArgumentException --> Line_8 $$ addReplacementCall(new MethodCallReplacement(target.getCanonicalName().replace('.', '/'), m.getName(), desc, Opcodes.INVOKESTATIC, mockClass.getCanonicalName().replace('.', '/'), m.getName(), desc, false, false)) [FD]
+Line_3 $$ for (Method m : target.getMethods()) --> Line_8 $$ addReplacementCall(new MethodCallReplacement(target.getCanonicalName().replace('.', '/'), m.getName(), desc, Opcodes.INVOKESTATIC, mockClass.getCanonicalName().replace('.', '/'), m.getName(), desc, false, false)) [FD]

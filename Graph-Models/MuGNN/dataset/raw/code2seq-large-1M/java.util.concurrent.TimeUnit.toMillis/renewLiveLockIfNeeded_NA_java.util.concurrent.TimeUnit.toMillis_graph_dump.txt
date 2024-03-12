@@ -1,0 +1,7 @@
+Line_2 $$ private void renewLiveLockIfNeeded(final long acquiredOn) --> Line_3 $$ final long acquiredMillis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - acquiredOn) [CD]
+Line_2 $$ private void renewLiveLockIfNeeded(final long acquiredOn) --> Line_4 $$ if (acquiredMillis > this.scheduledLiveLock.renewPeriodMillis()) [CD]
+Line_3 $$ final long acquiredMillis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - acquiredOn) --> Line_4 $$ if (acquiredMillis > this.scheduledLiveLock.renewPeriodMillis()) [FD]
+Line_4 $$ if (acquiredMillis > this.scheduledLiveLock.renewPeriodMillis()) --> Line_5 $$ if (!this.scheduledLiveLock.lock().renew()) [CD]
+Line_5 $$ if (!this.scheduledLiveLock.lock().renew()) --> Line_6 $$ final IllegalStateException e = new IllegalStateException("live lock can't be renewed") [CD]
+Line_5 $$ if (!this.scheduledLiveLock.lock().renew()) --> Line_7 $$ ioCriticalErrorListener.onIOException(e, "live lock can't be renewed", null) [CD]
+Line_6 $$ final IllegalStateException e = new IllegalStateException("live lock can't be renewed") --> Line_7 $$ ioCriticalErrorListener.onIOException(e, "live lock can't be renewed", null) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testCompleteSnapshotWithNoSnapshotDirectoryFailure() throws Exception --> Line_3 $$ Path snapshotDir = new Path(root, HConstants.SNAPSHOT_DIR_NAME) [CD]
+Line_2 $$ public void testCompleteSnapshotWithNoSnapshotDirectoryFailure() throws Exception --> Line_4 $$ Path tmpDir = new Path(snapshotDir, ".tmp") [CD]
+Line_2 $$ public void testCompleteSnapshotWithNoSnapshotDirectoryFailure() throws Exception --> Line_5 $$ Path workingDir = new Path(tmpDir, "not_a_snapshot") [CD]
+Line_2 $$ public void testCompleteSnapshotWithNoSnapshotDirectoryFailure() throws Exception --> Line_6 $$ assertFalse("Already have working snapshot dir: " + workingDir + " but shouldn't. Test file leak?", fs.exists(workingDir)) [CD]
+Line_5 $$ Path workingDir = new Path(tmpDir, "not_a_snapshot") --> Line_6 $$ assertFalse("Already have working snapshot dir: " + workingDir + " but shouldn't. Test file leak?", fs.exists(workingDir)) [FD]
+Line_2 $$ public void testCompleteSnapshotWithNoSnapshotDirectoryFailure() throws Exception --> Line_7 $$ SnapshotDescription snapshot = SnapshotDescription.newBuilder().setName("snapshot").build() [CD]
+Line_7 $$ SnapshotDescription snapshot = SnapshotDescription.newBuilder().setName("snapshot").build() --> Line_9 $$ SnapshotDescriptionUtils.completeSnapshot(snapshot, root, workingDir, fs) [FD]
+Line_5 $$ Path workingDir = new Path(tmpDir, "not_a_snapshot") --> Line_9 $$ SnapshotDescriptionUtils.completeSnapshot(snapshot, root, workingDir, fs) [FD]

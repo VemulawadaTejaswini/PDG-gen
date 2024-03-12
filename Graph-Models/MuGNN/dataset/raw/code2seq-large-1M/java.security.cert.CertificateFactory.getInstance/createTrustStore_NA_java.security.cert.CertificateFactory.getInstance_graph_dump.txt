@@ -1,0 +1,8 @@
+Line_2 $$ public static KeyStore createTrustStore(String caCertData, File caCertFile) throws Exception --> Line_3 $$ try (InputStream pemInputStream = getInputStreamFromDataOrFile(caCertData, caCertFile)) [FD]
+Line_4 $$ CertificateFactory certFactory = CertificateFactory.getInstance("X509") --> Line_5 $$ X509Certificate cert = (X509Certificate) certFactory.generateCertificate(pemInputStream) [FD]
+Line_3 $$ try (InputStream pemInputStream = getInputStreamFromDataOrFile(caCertData, caCertFile)) --> Line_5 $$ X509Certificate cert = (X509Certificate) certFactory.generateCertificate(pemInputStream) [FD]
+Line_6 $$ KeyStore trustStore = KeyStore.getInstance("JKS") --> Line_7 $$ trustStore.load(null) [FD]
+Line_5 $$ X509Certificate cert = (X509Certificate) certFactory.generateCertificate(pemInputStream) --> Line_8 $$ String alias = cert.getSubjectX500Principal().getName() [FD]
+Line_6 $$ KeyStore trustStore = KeyStore.getInstance("JKS") --> Line_9 $$ trustStore.setCertificateEntry(alias, cert) [FD]
+Line_8 $$ String alias = cert.getSubjectX500Principal().getName() --> Line_9 $$ trustStore.setCertificateEntry(alias, cert) [FD]
+Line_5 $$ X509Certificate cert = (X509Certificate) certFactory.generateCertificate(pemInputStream) --> Line_9 $$ trustStore.setCertificateEntry(alias, cert) [FD]

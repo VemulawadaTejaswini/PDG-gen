@@ -1,0 +1,6 @@
+Line_3 $$ try (InMemoryArtifactCache inMemoryArtifactCache = new InMemoryArtifactCache(); --> Line_9 $$ twoLevelCache.store(ArtifactInfo.builder().addRuleKeys(dummyRuleKey).build(), BorrowablePath.notBorrowablePath(dummyFile.get())) [FD]
+Line_8 $$ LazyPath dummyFile = LazyPath.ofInstance(tmp.newFile()) --> Line_9 $$ twoLevelCache.store(ArtifactInfo.builder().addRuleKeys(dummyRuleKey).build(), BorrowablePath.notBorrowablePath(dummyFile.get())) [FD]
+Line_3 $$ try (InMemoryArtifactCache inMemoryArtifactCache = new InMemoryArtifactCache(); --> Line_10 $$ CacheResult cacheResult = Futures.getUnchecked(twoLevelCache.fetchAsync(dummyRuleKey, dummyFile)) [FD]
+Line_8 $$ LazyPath dummyFile = LazyPath.ofInstance(tmp.newFile()) --> Line_10 $$ CacheResult cacheResult = Futures.getUnchecked(twoLevelCache.fetchAsync(dummyRuleKey, dummyFile)) [FD]
+Line_10 $$ CacheResult cacheResult = Futures.getUnchecked(twoLevelCache.fetchAsync(dummyRuleKey, dummyFile)) --> Line_11 $$ assertThat(cacheResult.getType(), Matchers.equalTo(CacheResultType.HIT)) [FD]
+Line_10 $$ CacheResult cacheResult = Futures.getUnchecked(twoLevelCache.fetchAsync(dummyRuleKey, dummyFile)) --> Line_12 $$ assertThat(cacheResult.getMetadata().keySet(), Matchers.not(Matchers.contains(TwoLevelArtifactCacheDecorator.METADATA_KEY))) [FD]

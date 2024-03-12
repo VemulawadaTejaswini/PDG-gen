@@ -1,0 +1,7 @@
+Line_2 $$ public void testSelfJoins() throws IOException --> Line_3 $$ System.err.println("CURRENT: " + ClassUtil.getCurrentMethodName()) [CD]
+Line_2 $$ public void testSelfJoins() throws IOException --> Line_4 $$ Client client = getClient() [CD]
+Line_4 $$ Client client = getClient() --> Line_6 $$ client.callProcedure("InsertNewOrder", 1L, 3L, 1L) [FD]
+Line_4 $$ Client client = getClient() --> Line_7 $$ VoltTable[] results = client.callProcedure("SelfJoinTest", 1L).getResults() [FD]
+Line_9 $$ VoltTable table = results[0] --> Line_10 $$ assertTrue(table.getRowCount() == 1) [FD]
+Line_9 $$ VoltTable table = results[0] --> Line_11 $$ VoltTableRow row = table.fetchRow(0) [FD]
+Line_11 $$ VoltTableRow row = table.fetchRow(0) --> Line_12 $$ assertEquals(row.getLong("NO_D_ID"), 3) [FD]

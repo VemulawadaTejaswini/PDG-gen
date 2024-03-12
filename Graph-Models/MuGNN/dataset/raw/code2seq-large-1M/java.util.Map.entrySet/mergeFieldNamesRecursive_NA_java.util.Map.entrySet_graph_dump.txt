@@ -1,0 +1,6 @@
+Line_2 $$ private void mergeFieldNamesRecursive(Set<String> headers, Map<String, Object> doc, String prefix) --> Line_3 $$ for (Map.Entry<String, Object> field : doc.entrySet()) [FD]
+Line_4 $$ Object value = field.getValue() --> Line_5 $$ if (value instanceof Map) [FD]
+Line_5 $$ if (value instanceof Map) --> Line_6 $$ mergeFieldNamesRecursive(headers, (Map<String, Object>) value, prefix + field.getKey() + ".") [CD]
+Line_2 $$ private void mergeFieldNamesRecursive(Set<String> headers, Map<String, Object> doc, String prefix) --> Line_6 $$ mergeFieldNamesRecursive(headers, (Map<String, Object>) value, prefix + field.getKey() + ".") [FD]
+Line_5 $$ if (value instanceof Map) --> Line_8 $$ headers.add(prefix + field.getKey()) [CD]
+Line_2 $$ private void mergeFieldNamesRecursive(Set<String> headers, Map<String, Object> doc, String prefix) --> Line_8 $$ headers.add(prefix + field.getKey()) [FD]

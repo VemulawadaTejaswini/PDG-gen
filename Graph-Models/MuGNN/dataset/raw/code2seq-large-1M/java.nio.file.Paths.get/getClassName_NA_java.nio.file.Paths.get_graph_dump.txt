@@ -1,0 +1,7 @@
+Line_2 $$ private static String getClassName(File inputFile) throws FileNotFoundException --> Line_4 $$ Path myPath = Paths.get(inputFile.toURI()) [FD]
+Line_4 $$ Path myPath = Paths.get(inputFile.toURI()) --> Line_5 $$ Stream<String> lines = Files.lines(myPath) [FD]
+Line_5 $$ Stream<String> lines = Files.lines(myPath) --> Line_6 $$ Optional<String> firstClassLine = lines.filter( s -> s.startsWith(".class ")).findFirst() [FD]
+Line_5 $$ Stream<String> lines = Files.lines(myPath) --> Line_7 $$ lines.close() [FD]
+Line_11 $$ String line = firstClassLine.get() --> Line_12 $$ Matcher m = CLASS_PATTERN.matcher(line) [FD]
+Line_12 $$ Matcher m = CLASS_PATTERN.matcher(line) --> Line_13 $$ if (!m.find()) [FD]
+Line_12 $$ Matcher m = CLASS_PATTERN.matcher(line) --> Line_16 $$ return m.group(1) [FD]

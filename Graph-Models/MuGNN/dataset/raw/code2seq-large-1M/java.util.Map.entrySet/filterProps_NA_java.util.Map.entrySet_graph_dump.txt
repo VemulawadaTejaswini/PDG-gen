@@ -1,0 +1,8 @@
+Line_2 $$ private boolean filterProps(String type, Map<String, Object> props, Map<String, Number> filter) --> Line_3 $$ for (Map.Entry<String, Object> entry : props.entrySet()) [FD]
+Line_2 $$ private boolean filterProps(String type, Map<String, Object> props, Map<String, Number> filter) --> Line_7 $$ Number min = filter.getOrDefault(type + "." + entry.getKey() + ".min", filter.get(entry.getKey() + ".min")) [FD]
+Line_7 $$ Number min = filter.getOrDefault(type + "." + entry.getKey() + ".min", filter.get(entry.getKey() + ".min")) --> Line_8 $$ if (min != null && min.longValue() > value) [FD]
+Line_8 $$ if (min != null && min.longValue() > value) --> Line_9 $$ return false [CD]
+Line_2 $$ private boolean filterProps(String type, Map<String, Object> props, Map<String, Number> filter) --> Line_10 $$ Number max = filter.getOrDefault(type + "." + entry.getKey() + ".max", filter.get(entry.getKey() + ".max")) [FD]
+Line_10 $$ Number max = filter.getOrDefault(type + "." + entry.getKey() + ".max", filter.get(entry.getKey() + ".max")) --> Line_11 $$ if (max != null && max.longValue() < value) [FD]
+Line_11 $$ if (max != null && max.longValue() < value) --> Line_12 $$ return false [CD]
+Line_2 $$ private boolean filterProps(String type, Map<String, Object> props, Map<String, Number> filter) --> Line_14 $$ return true [CD]

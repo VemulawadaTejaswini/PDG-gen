@@ -1,0 +1,8 @@
+Line_3 $$ try (ResultSet rs = sharedConnection.createStatement().executeQuery("select @@named_pipe,@@socket")) --> Line_4 $$ assertTrue(rs.next()) [FD]
+Line_3 $$ try (ResultSet rs = sharedConnection.createStatement().executeQuery("select @@named_pipe,@@socket")) --> Line_5 $$ if (rs.getBoolean(1)) [FD]
+Line_5 $$ if (rs.getBoolean(1)) --> Line_6 $$ String namedPipeName = rs.getString(2) [CD]
+Line_3 $$ try (ResultSet rs = sharedConnection.createStatement().executeQuery("select @@named_pipe,@@socket")) --> Line_6 $$ String namedPipeName = rs.getString(2) [FD]
+Line_5 $$ if (rs.getBoolean(1)) --> Line_7 $$ Assume.assumeTrue(namedPipeName != null) [CD]
+Line_8 $$ try (Connection connection = setConnection("&pipe=" + namedPipeName)) --> Line_9 $$ Statement stmt = connection.createStatement() [FD]
+Line_9 $$ Statement stmt = connection.createStatement() --> Line_10 $$ try (ResultSet rs2 = stmt.executeQuery("SELECT 1")) [FD]
+Line_10 $$ try (ResultSet rs2 = stmt.executeQuery("SELECT 1")) --> Line_11 $$ assertTrue(rs2.next()) [FD]

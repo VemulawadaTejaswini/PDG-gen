@@ -1,0 +1,5 @@
+Line_2 $$ public void sourceErrorsBeforeSamplingNoEmission() --> Line_3 $$ Flux<Integer> source = Flux.just(1, 2).concatWith(Mono.error(new IllegalStateException("boom"))) [CD]
+Line_2 $$ public void sourceErrorsBeforeSamplingNoEmission() --> Line_4 $$ Duration duration = StepVerifier.create(source.sample(Duration.ofMillis(250))).verifyErrorMessage("boom") [CD]
+Line_3 $$ Flux<Integer> source = Flux.just(1, 2).concatWith(Mono.error(new IllegalStateException("boom"))) --> Line_4 $$ Duration duration = StepVerifier.create(source.sample(Duration.ofMillis(250))).verifyErrorMessage("boom") [FD]
+Line_2 $$ public void sourceErrorsBeforeSamplingNoEmission() --> Line_5 $$ assertThat(duration.toMillis()).isLessThan(250) [CD]
+Line_4 $$ Duration duration = StepVerifier.create(source.sample(Duration.ofMillis(250))).verifyErrorMessage("boom") --> Line_5 $$ assertThat(duration.toMillis()).isLessThan(250) [FD]

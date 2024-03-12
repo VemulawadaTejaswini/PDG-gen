@@ -1,0 +1,7 @@
+Line_2 $$ void finishOperationLocked(Op op) --> Line_3 $$ if (op.nesting <= 1) [CD]
+Line_3 $$ if (op.nesting <= 1) --> Line_4 $$ if (op.nesting == 1) [CD]
+Line_4 $$ if (op.nesting == 1) --> Line_5 $$ op.duration = (int) (System.currentTimeMillis() - op.time) [CD]
+Line_4 $$ if (op.nesting == 1) --> Line_6 $$ op.time += op.duration [CD]
+Line_4 $$ if (op.nesting == 1) --> Line_8 $$ Slog.w(TAG, "Finishing op nesting under-run: uid " + op.uid + " pkg " + op.packageName + " code " + op.op + " time=" + op.time + " duration=" + op.duration + " nesting=" + op.nesting) [CD]
+Line_3 $$ if (op.nesting <= 1) --> Line_10 $$ op.nesting = 0 [CD]
+Line_3 $$ if (op.nesting <= 1) --> Line_12 $$ op.nesting-- [CD]

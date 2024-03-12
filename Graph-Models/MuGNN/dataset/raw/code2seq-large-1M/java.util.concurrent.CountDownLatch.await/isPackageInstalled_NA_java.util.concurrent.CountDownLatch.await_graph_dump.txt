@@ -1,0 +1,8 @@
+Line_2 $$ boolean isPackageInstalled(@NonNull IDevice device, @NonNull String pkgName) --> Line_3 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ boolean isPackageInstalled(@NonNull IDevice device, @NonNull String pkgName) --> Line_4 $$ CollectingOutputReceiver receiver = new CollectingOutputReceiver(latch) [CD]
+Line_2 $$ boolean isPackageInstalled(@NonNull IDevice device, @NonNull String pkgName) --> Line_6 $$ device.executeShellCommand("pm path " + pkgName, receiver) [FD]
+Line_4 $$ CollectingOutputReceiver receiver = new CollectingOutputReceiver(latch) --> Line_6 $$ device.executeShellCommand("pm path " + pkgName, receiver) [FD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_7 $$ if (!latch.await(500, TimeUnit.MILLISECONDS)) [FD]
+Line_7 $$ if (!latch.await(500, TimeUnit.MILLISECONDS)) --> Line_8 $$ return false [CD]
+Line_2 $$ boolean isPackageInstalled(@NonNull IDevice device, @NonNull String pkgName) --> Line_13 $$ return !receiver.getOutput().isEmpty() [CD]
+Line_4 $$ CollectingOutputReceiver receiver = new CollectingOutputReceiver(latch) --> Line_13 $$ return !receiver.getOutput().isEmpty() [FD]

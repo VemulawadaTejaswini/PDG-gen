@@ -1,0 +1,8 @@
+Line_2 $$ public void flushAllPendingBuildRuleFinishedEvents() --> Line_3 $$ if (!allBuildRulesFinishedEventReceived) [CD]
+Line_3 $$ if (!allBuildRulesFinishedEventReceived) --> Line_4 $$ LOG.warn("flushAllPendingBuildRuleFinishedEvents(..) called without first receiving ALL_BUILD_RULES_FINISHED_EVENT") [CD]
+Line_2 $$ public void flushAllPendingBuildRuleFinishedEvents() --> Line_6 $$ if (pendingBuildRuleFinishedEvent.size() == 0) [CD]
+Line_6 $$ if (pendingBuildRuleFinishedEvent.size() == 0) --> Line_7 $$ return [CD]
+Line_2 $$ public void flushAllPendingBuildRuleFinishedEvents() --> Line_9 $$ List<TimestampedBuildRuleFinishedEvent> eventsToPublish = Lists.newArrayList() [CD]
+Line_9 $$ List<TimestampedBuildRuleFinishedEvent> eventsToPublish = Lists.newArrayList() --> Line_11 $$ eventsToPublish.addAll(pendingBuildRuleFinishedEvent) [FD]
+Line_16 $$ long elapsedMillisSinceEvent = currentTimeMillis - event.eventTimestampMillis --> Line_17 $$ if (elapsedMillisSinceEvent < cacheSynchronizationSafetyMarginMillis) [FD]
+Line_19 $$ long millisUntilCacheSynchronization = cacheSynchronizationSafetyMarginMillis - elapsedMillisSinceEvent --> Line_20 $$ threadSleep(millisUntilCacheSynchronization) [FD]

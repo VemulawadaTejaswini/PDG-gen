@@ -1,0 +1,8 @@
+Line_2 $$ public SceneVO createNewScene(String name) --> Line_3 $$ SceneVO vo = new SceneVO() [CD]
+Line_2 $$ public SceneVO createNewScene(String name) --> Line_4 $$ vo.sceneName = name [CD]
+Line_2 $$ public SceneVO createNewScene(String name) --> Line_4 $$ vo.sceneName = name [FD]
+Line_2 $$ public SceneVO createNewScene(String name) --> Line_5 $$ ProjectManager projectManager = facade.retrieveProxy(ProjectManager.NAME) [CD]
+Line_5 $$ ProjectManager projectManager = facade.retrieveProxy(ProjectManager.NAME) --> Line_7 $$ String projPath = projectManager.getCurrentProjectPath() [FD]
+Line_3 $$ SceneVO vo = new SceneVO() --> Line_9 $$ FileUtils.writeStringToFile(new File(projPath + "/scenes/" + vo.sceneName + ".dt"), vo.constructJsonString(), "utf-8") [FD]
+Line_3 $$ SceneVO vo = new SceneVO() --> Line_10 $$ projectManager.currentProjectInfoVO.scenes.add(vo) [FD]
+Line_2 $$ public SceneVO createNewScene(String name) --> Line_14 $$ return vo [CD]

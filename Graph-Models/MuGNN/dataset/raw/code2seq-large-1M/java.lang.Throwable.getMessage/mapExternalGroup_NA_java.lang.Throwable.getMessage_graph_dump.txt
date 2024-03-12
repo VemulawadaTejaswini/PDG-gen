@@ -1,0 +1,8 @@
+Line_2 $$ public ScimGroupExternalMember mapExternalGroup(@RequestBody ScimGroupExternalMember sgm) --> Line_4 $$ String displayName = sgm.getDisplayName() [FD]
+Line_2 $$ public ScimGroupExternalMember mapExternalGroup(@RequestBody ScimGroupExternalMember sgm) --> Line_5 $$ String groupId = hasText(sgm.getGroupId()) ? sgm.getGroupId() : getGroupId(displayName) [FD]
+Line_4 $$ String displayName = sgm.getDisplayName() --> Line_5 $$ String groupId = hasText(sgm.getGroupId()) ? sgm.getGroupId() : getGroupId(displayName) [FD]
+Line_2 $$ public ScimGroupExternalMember mapExternalGroup(@RequestBody ScimGroupExternalMember sgm) --> Line_6 $$ String externalGroup = hasText(sgm.getExternalGroup()) ? sgm.getExternalGroup().trim() : sgm.getExternalGroup() [FD]
+Line_2 $$ public ScimGroupExternalMember mapExternalGroup(@RequestBody ScimGroupExternalMember sgm) --> Line_7 $$ String origin = hasText(sgm.getOrigin()) ? sgm.getOrigin() : LDAP [FD]
+Line_5 $$ String groupId = hasText(sgm.getGroupId()) ? sgm.getGroupId() : getGroupId(displayName) --> Line_8 $$ return externalMembershipManager.mapExternalGroup(groupId, externalGroup, origin, IdentityZoneHolder.get().getId()) [FD]
+Line_6 $$ String externalGroup = hasText(sgm.getExternalGroup()) ? sgm.getExternalGroup().trim() : sgm.getExternalGroup() --> Line_8 $$ return externalMembershipManager.mapExternalGroup(groupId, externalGroup, origin, IdentityZoneHolder.get().getId()) [FD]
+Line_7 $$ String origin = hasText(sgm.getOrigin()) ? sgm.getOrigin() : LDAP --> Line_8 $$ return externalMembershipManager.mapExternalGroup(groupId, externalGroup, origin, IdentityZoneHolder.get().getId()) [FD]

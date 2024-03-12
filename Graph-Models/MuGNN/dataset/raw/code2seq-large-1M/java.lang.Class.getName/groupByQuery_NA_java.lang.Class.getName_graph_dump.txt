@@ -1,0 +1,8 @@
+Line_2 $$ public void groupByQuery() throws Exception --> Line_3 $$ String query = "SELECT sales_city, count(*) as cnt FROM cp.`region.json` " + "GROUP BY sales_city ORDER BY sales_city DESC LIMIT 1" [CD]
+Line_2 $$ public void groupByQuery() throws Exception --> Line_4 $$ PreparedStatement preparedStatement = createPrepareStmt(query, false, null) [CD]
+Line_3 $$ String query = "SELECT sales_city, count(*) as cnt FROM cp.`region.json` " + "GROUP BY sales_city ORDER BY sales_city DESC LIMIT 1" --> Line_4 $$ PreparedStatement preparedStatement = createPrepareStmt(query, false, null) [FD]
+Line_2 $$ public void groupByQuery() throws Exception --> Line_5 $$ List<ExpectedColumnResult> expMetadata = ImmutableList.of(new ExpectedColumnResult("sales_city", "CHARACTER VARYING", true, 65536, 65536, 0, false, String.class.getName()), new ExpectedColumnResult("cnt", "BIGINT", true, 20, 0, 0, true, Long.class.getName())) [CD]
+Line_2 $$ public void groupByQuery() throws Exception --> Line_6 $$ verifyMetadata(expMetadata, preparedStatement.getColumnsList()) [CD]
+Line_4 $$ PreparedStatement preparedStatement = createPrepareStmt(query, false, null) --> Line_6 $$ verifyMetadata(expMetadata, preparedStatement.getColumnsList()) [FD]
+Line_2 $$ public void groupByQuery() throws Exception --> Line_7 $$ testBuilder().unOrdered().preparedStatement(preparedStatement.getServerHandle()).baselineColumns("sales_city", "cnt").baselineValues("Yakima", 1L).go() [CD]
+Line_4 $$ PreparedStatement preparedStatement = createPrepareStmt(query, false, null) --> Line_7 $$ testBuilder().unOrdered().preparedStatement(preparedStatement.getServerHandle()).baselineColumns("sales_city", "cnt").baselineValues("Yakima", 1L).go() [FD]

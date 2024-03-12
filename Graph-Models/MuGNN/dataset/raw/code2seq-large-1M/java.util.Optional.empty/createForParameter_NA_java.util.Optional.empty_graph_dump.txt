@@ -1,0 +1,7 @@
+Line_2 $$ public SqlStatementParameterCustomizer createForParameter(Annotation annotation, Class<?> sqlObjectType, Method method, Parameter param, int index, Type type) --> Line_3 $$ final String rootName = ((BindRoot) annotation).value() [CD]
+Line_2 $$ public SqlStatementParameterCustomizer createForParameter(Annotation annotation, Class<?> sqlObjectType, Method method, Parameter param, int index, Type type) --> Line_4 $$ final JexlEngine engine = new JexlEngine() [CD]
+Line_2 $$ public SqlStatementParameterCustomizer createForParameter(Annotation annotation, Class<?> sqlObjectType, Method method, Parameter param, int index, Type type) --> Line_5 $$ return ( q,  root) -> q.bindNamedArgumentFinder(( name,  context) -> [CD]
+Line_4 $$ final JexlEngine engine = new JexlEngine() --> Line_6 $$ Expression e = engine.createExpression(name) [FD]
+Line_6 $$ Expression e = engine.createExpression(name) --> Line_7 $$ final Object it = e.evaluate(new MapContext(ImmutableMap.of(rootName, root))) [FD]
+Line_3 $$ final String rootName = ((BindRoot) annotation).value() --> Line_7 $$ final Object it = e.evaluate(new MapContext(ImmutableMap.of(rootName, root))) [FD]
+Line_7 $$ final Object it = e.evaluate(new MapContext(ImmutableMap.of(rootName, root))) --> Line_8 $$ statement.setObject(position, it) [FD]

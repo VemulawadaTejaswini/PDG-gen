@@ -1,0 +1,7 @@
+Line_2 $$ private void extractResultType() --> Line_3 $$ Class<?> returnClass = method.getReturnType() [CD]
+Line_2 $$ private void extractResultType() --> Line_4 $$ if (!returnClass.isAssignableFrom(RibbonRequest.class)) [CD]
+Line_3 $$ Class<?> returnClass = method.getReturnType() --> Line_4 $$ if (!returnClass.isAssignableFrom(RibbonRequest.class)) [FD]
+Line_3 $$ Class<?> returnClass = method.getReturnType() --> Line_5 $$ throw new ProxyAnnotationException(format("Method %s must return RibbonRequest<ByteBuf> type not %s", methodName(), returnClass.getSimpleName())) [FD]
+Line_2 $$ private void extractResultType() --> Line_7 $$ ParameterizedType returnType = (ParameterizedType) method.getGenericReturnType() [CD]
+Line_7 $$ ParameterizedType returnType = (ParameterizedType) method.getGenericReturnType() --> Line_8 $$ resultType = (Class<?>) returnType.getActualTypeArguments()[0] [FD]
+Line_2 $$ private void extractResultType() --> Line_9 $$ if (!ByteBuf.class.isAssignableFrom(resultType)) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void persistSnapshot(String name, String rev, String id, List<List<StageOutput>> snapshotBatches) throws PipelineRuntimeException --> Line_3 $$ DataStore dataStore = new DataStore(getPipelineSnapshotFile(name, rev, id)) [CD]
+Line_2 $$ private void persistSnapshot(String name, String rev, String id, List<List<StageOutput>> snapshotBatches) throws PipelineRuntimeException --> Line_3 $$ DataStore dataStore = new DataStore(getPipelineSnapshotFile(name, rev, id)) [FD]
+Line_3 $$ DataStore dataStore = new DataStore(getPipelineSnapshotFile(name, rev, id)) --> Line_4 $$ try (OutputStream out = dataStore.getOutputStream()) [FD]
+Line_4 $$ try (OutputStream out = dataStore.getOutputStream()) --> Line_5 $$ json.writeValue(out, new SnapshotDataJson(new SnapshotData(snapshotBatches))) [FD]
+Line_3 $$ DataStore dataStore = new DataStore(getPipelineSnapshotFile(name, rev, id)) --> Line_6 $$ dataStore.commit(out) [FD]
+Line_4 $$ try (OutputStream out = dataStore.getOutputStream()) --> Line_6 $$ dataStore.commit(out) [FD]
+Line_3 $$ DataStore dataStore = new DataStore(getPipelineSnapshotFile(name, rev, id)) --> Line_10 $$ dataStore.release() [FD]

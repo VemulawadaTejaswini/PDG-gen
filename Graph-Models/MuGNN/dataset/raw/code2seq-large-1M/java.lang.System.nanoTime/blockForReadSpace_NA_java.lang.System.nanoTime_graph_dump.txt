@@ -1,0 +1,7 @@
+Line_2 $$ int blockForReadSpace(long timeout, TimeUnit unit, int readLocation) throws TimeoutException --> Line_3 $$ final int nextReadLocation = (readLocation + 1 == dataLocator.getCapacity()) ? 0 : readLocation + 1 [CD]
+Line_2 $$ int blockForReadSpace(long timeout, TimeUnit unit, int readLocation) throws TimeoutException --> Line_4 $$ final long timeoutAt = System.nanoTime() + unit.toNanos(timeout) [FD]
+Line_2 $$ int blockForReadSpace(long timeout, TimeUnit unit, int readLocation) throws TimeoutException --> Line_4 $$ final long timeoutAt = System.nanoTime() + unit.toNanos(timeout) [CD]
+Line_2 $$ int blockForReadSpace(long timeout, TimeUnit unit, int readLocation) throws TimeoutException --> Line_5 $$ while (ringIndex.getWriterLocation() == readLocation) if (!blockAtTake(timeoutAt)) [FD]
+Line_2 $$ int blockForReadSpace(long timeout, TimeUnit unit, int readLocation) throws TimeoutException --> Line_5 $$ while (ringIndex.getWriterLocation() == readLocation) if (!blockAtTake(timeoutAt)) [CD]
+Line_4 $$ final long timeoutAt = System.nanoTime() + unit.toNanos(timeout) --> Line_5 $$ while (ringIndex.getWriterLocation() == readLocation) if (!blockAtTake(timeoutAt)) [FD]
+Line_2 $$ int blockForReadSpace(long timeout, TimeUnit unit, int readLocation) throws TimeoutException --> Line_7 $$ return nextReadLocation [CD]

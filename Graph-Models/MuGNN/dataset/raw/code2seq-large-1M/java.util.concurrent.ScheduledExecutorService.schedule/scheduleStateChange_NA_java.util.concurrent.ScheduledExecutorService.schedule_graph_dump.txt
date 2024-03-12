@@ -1,0 +1,8 @@
+Line_2 $$ public void scheduleStateChange(long delay, TimeUnit unit, ChatStateType state, ChatStateSession session) --> Line_3 $$ final Runnable task = new GoToNextState(session, state) [CD]
+Line_3 $$ final Runnable task = new GoToNextState(session, state) --> Line_5 $$ final ScheduledFuture<?> newFuture = EXECUTOR.schedule(task, delay, unit) [FD]
+Line_2 $$ public void scheduleStateChange(long delay, TimeUnit unit, ChatStateType state, ChatStateSession session) --> Line_5 $$ final ScheduledFuture<?> newFuture = EXECUTOR.schedule(task, delay, unit) [FD]
+Line_2 $$ public void scheduleStateChange(long delay, TimeUnit unit, ChatStateType state, ChatStateSession session) --> Line_6 $$ final ScheduledFuture<?> oldFuture = pendingStateChanges.put(session, newFuture) [FD]
+Line_5 $$ final ScheduledFuture<?> newFuture = EXECUTOR.schedule(task, delay, unit) --> Line_6 $$ final ScheduledFuture<?> oldFuture = pendingStateChanges.put(session, newFuture) [FD]
+Line_6 $$ final ScheduledFuture<?> oldFuture = pendingStateChanges.put(session, newFuture) --> Line_7 $$ if (oldFuture != null) [FD]
+Line_7 $$ if (oldFuture != null) --> Line_8 $$ oldFuture.cancel(false) [CD]
+Line_6 $$ final ScheduledFuture<?> oldFuture = pendingStateChanges.put(session, newFuture) --> Line_8 $$ oldFuture.cancel(false) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Iterable<ByteBuffer> drain() --> Line_3 $$ List<ByteBuffer> chunks = new ArrayList(boundaries.size()) [CD]
+Line_2 $$ public Iterable<ByteBuffer> drain() --> Line_4 $$ if (body != null) [CD]
+Line_4 $$ if (body != null) --> Line_5 $$ body.flip() [CD]
+Line_6 $$ for (int limit : boundaries) --> Line_7 $$ body.limit(limit) [FD]
+Line_3 $$ List<ByteBuffer> chunks = new ArrayList(boundaries.size()) --> Line_8 $$ chunks.add(body.slice().asReadOnlyBuffer()) [FD]
+Line_6 $$ for (int limit : boundaries) --> Line_9 $$ body.position(limit) [FD]
+Line_2 $$ public Iterable<ByteBuffer> drain() --> Line_13 $$ return chunks [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testFieldNameWithDotsConflict() throws Exception --> Line_3 $$ IndexService indexService = createIndex("test") [CD]
+Line_2 $$ public void testFieldNameWithDotsConflict() throws Exception --> Line_4 $$ DocumentMapperParser mapperParser = indexService.mapperService().documentMapperParser() [CD]
+Line_3 $$ IndexService indexService = createIndex("test") --> Line_4 $$ DocumentMapperParser mapperParser = indexService.mapperService().documentMapperParser() [FD]
+Line_2 $$ public void testFieldNameWithDotsConflict() throws Exception --> Line_5 $$ String mapping = XContentFactory.jsonBuilder().startObject().startObject("type").startObject("properties").startObject("foo").field("type", "text").endObject().startObject("foo.baz").field("type", "keyword").endObject().endObject().endObject().endObject().string() [CD]
+Line_2 $$ public void testFieldNameWithDotsConflict() throws Exception --> Line_6 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> mapperParser.parse("type", new CompressedXContent(mapping))) [CD]
+Line_4 $$ DocumentMapperParser mapperParser = indexService.mapperService().documentMapperParser() --> Line_6 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> mapperParser.parse("type", new CompressedXContent(mapping))) [FD]
+Line_2 $$ public void testFieldNameWithDotsConflict() throws Exception --> Line_7 $$ assertTrue(e.getMessage(), e.getMessage().contains("mapper [foo] of different type")) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ synchronized void recycleConnection(PooledConnection pc) --> Line_3 $$ if (activeConnections <= 0) [CD]
+Line_2 $$ synchronized void recycleConnection(PooledConnection pc) --> Line_7 $$ if (!isDisposed && activeConnections < maxConnections) [CD]
+Line_7 $$ if (!isDisposed && activeConnections < maxConnections) --> Line_8 $$ recycledConnections.add(pc) [CD]
+Line_2 $$ synchronized void recycleConnection(PooledConnection pc) --> Line_8 $$ recycledConnections.add(pc) [FD]
+Line_7 $$ if (!isDisposed && activeConnections < maxConnections) --> Line_10 $$ closeConnection(pc) [CD]
+Line_2 $$ synchronized void recycleConnection(PooledConnection pc) --> Line_10 $$ closeConnection(pc) [FD]
+Line_2 $$ synchronized void recycleConnection(PooledConnection pc) --> Line_12 $$ if (activeConnections >= maxConnections - 1) [CD]
+Line_12 $$ if (activeConnections >= maxConnections - 1) --> Line_13 $$ notifyAll() [CD]

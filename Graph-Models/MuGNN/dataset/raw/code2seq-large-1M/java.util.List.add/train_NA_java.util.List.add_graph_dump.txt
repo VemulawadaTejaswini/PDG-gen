@@ -1,0 +1,8 @@
+Line_5 $$ int leftOver = iterations % SystemInfo.LogicalCores --> Line_8 $$ if (leftOver != 0) [FD]
+Line_8 $$ if (leftOver != 0) --> Line_9 $$ futures.add(threadPool.submit(new RANSACWorker(baseRegressor, leftOver, dataSet))) [CD]
+Line_6 $$ List<Future<RANSACWorker>> futures = new ArrayList(SystemInfo.LogicalCores + 1) --> Line_9 $$ futures.add(threadPool.submit(new RANSACWorker(baseRegressor, leftOver, dataSet))) [FD]
+Line_7 $$ ExecutorService threadPool = parallel ? ParallelUtils.CACHED_THREAD_POOL : new FakeExecutor() --> Line_9 $$ futures.add(threadPool.submit(new RANSACWorker(baseRegressor, leftOver, dataSet))) [FD]
+Line_6 $$ List<Future<RANSACWorker>> futures = new ArrayList(SystemInfo.LogicalCores + 1) --> Line_10 $$ for (int i = 0; i < SystemInfo.LogicalCores; i++) futures.add(threadPool.submit(new RANSACWorker(baseRegressor, workSize, dataSet))) [FD]
+Line_7 $$ ExecutorService threadPool = parallel ? ParallelUtils.CACHED_THREAD_POOL : new FakeExecutor() --> Line_10 $$ for (int i = 0; i < SystemInfo.LogicalCores; i++) futures.add(threadPool.submit(new RANSACWorker(baseRegressor, workSize, dataSet))) [FD]
+Line_11 $$ PriorityQueue<RANSACWorker> results = new PriorityQueue(SystemInfo.LogicalCores + 1) --> Line_12 $$ for (Future<RANSACWorker> futureWorker : futures) results.add(futureWorker.get()) [FD]
+Line_11 $$ PriorityQueue<RANSACWorker> results = new PriorityQueue(SystemInfo.LogicalCores + 1) --> Line_13 $$ RANSACWorker bestResult = results.peek() [FD]

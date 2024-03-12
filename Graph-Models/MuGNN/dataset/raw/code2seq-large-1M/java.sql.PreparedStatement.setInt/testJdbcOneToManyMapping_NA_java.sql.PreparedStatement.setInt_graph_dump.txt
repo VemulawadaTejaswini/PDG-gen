@@ -1,0 +1,6 @@
+Line_2 $$ public void testJdbcOneToManyMapping() --> Line_3 $$ doInJDBC( connection -> [CD]
+Line_4 $$ try (PreparedStatement statement = connection.prepareStatement("SELECT * " + "FROM post AS p " + "JOIN post_comment AS pc ON p.id = pc.post_id " + "WHERE " + "   p.id BETWEEN ? AND ? + 1")) --> Line_5 $$ statement.setInt(1, id) [FD]
+Line_4 $$ try (PreparedStatement statement = connection.prepareStatement("SELECT * " + "FROM post AS p " + "JOIN post_comment AS pc ON p.id = pc.post_id " + "WHERE " + "   p.id BETWEEN ? AND ? + 1")) --> Line_6 $$ statement.setInt(2, id) [FD]
+Line_4 $$ try (PreparedStatement statement = connection.prepareStatement("SELECT * " + "FROM post AS p " + "JOIN post_comment AS pc ON p.id = pc.post_id " + "WHERE " + "   p.id BETWEEN ? AND ? + 1")) --> Line_7 $$ try (ResultSet resultSet = statement.executeQuery()) [FD]
+Line_7 $$ try (ResultSet resultSet = statement.executeQuery()) --> Line_8 $$ List<Post> posts = toPosts(resultSet) [FD]
+Line_8 $$ List<Post> posts = toPosts(resultSet) --> Line_9 $$ assertEquals(expectedCount, posts.size()) [FD]

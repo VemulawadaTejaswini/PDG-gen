@@ -1,0 +1,6 @@
+Line_2 $$ private static Object executeProviderCallable(Rewrite event, EvaluationContext context, ProviderCallable<Object> providerCallable) --> Line_3 $$ List<Exception> exceptions = new ArrayList<Exception>() [CD]
+Line_2 $$ private static Object executeProviderCallable(Rewrite event, EvaluationContext context, ProviderCallable<Object> providerCallable) --> Line_6 $$ return providerCallable.call(event, context, provider) [FD]
+Line_4 $$ for (ExpressionLanguageProvider provider : getProviders()) --> Line_6 $$ return providerCallable.call(event, context, provider) [FD]
+Line_3 $$ List<Exception> exceptions = new ArrayList<Exception>() --> Line_10 $$ exceptions.add(e) [FD]
+Line_13 $$ for (Exception exception : exceptions) --> Line_14 $$ log.error("DEFERRED EXCEPTION", exception) [FD]
+Line_2 $$ private static Object executeProviderCallable(Rewrite event, EvaluationContext context, ProviderCallable<Object> providerCallable) --> Line_16 $$ throw new RewriteException("No registered " + ExpressionLanguageProvider.class.getName() + " could handle the Expression [" + providerCallable.getExpression() + "]") [FD]

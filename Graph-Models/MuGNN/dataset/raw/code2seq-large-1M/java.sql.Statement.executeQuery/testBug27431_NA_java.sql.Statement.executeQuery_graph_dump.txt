@@ -1,0 +1,8 @@
+Line_2 $$ public void testBug27431() throws Exception --> Line_3 $$ createTable("bug27431", "(`ID` int(20) NOT NULL auto_increment," + "`Name` varchar(255) NOT NULL default ''," + "PRIMARY KEY  (`ID`))") [CD]
+Line_2 $$ public void testBug27431() throws Exception --> Line_4 $$ this.stmt.executeUpdate("INSERT INTO bug27431 (`ID`, `Name`) VALUES 	(1, 'Lucho'),(2, 'Lily'),(3, 'Kiro')") [CD]
+Line_2 $$ public void testBug27431() throws Exception --> Line_5 $$ Statement updStmt = this.conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE) [CD]
+Line_2 $$ public void testBug27431() throws Exception --> Line_6 $$ this.rs = updStmt.executeQuery("SELECT ID, Name FROM bug27431") [CD]
+Line_5 $$ Statement updStmt = this.conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE) --> Line_6 $$ this.rs = updStmt.executeQuery("SELECT ID, Name FROM bug27431") [FD]
+Line_2 $$ public void testBug27431() throws Exception --> Line_7 $$ while (this.rs.next()) [CD]
+Line_7 $$ while (this.rs.next()) --> Line_8 $$ this.rs.deleteRow() [CD]
+Line_2 $$ public void testBug27431() throws Exception --> Line_10 $$ assertEquals(0, getRowCount("bug27431")) [CD]

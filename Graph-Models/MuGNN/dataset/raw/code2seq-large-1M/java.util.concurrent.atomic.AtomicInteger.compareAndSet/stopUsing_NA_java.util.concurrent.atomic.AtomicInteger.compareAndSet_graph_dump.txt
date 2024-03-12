@@ -1,0 +1,8 @@
+Line_2 $$ boolean stopUsing() --> Line_3 $$ int finalState = shouldExpire() ? STATE_EXPIRED : STATE_NONE [CD]
+Line_2 $$ boolean stopUsing() --> Line_4 $$ if (!sessionState.compareAndSet(STATE_IN_USE, finalState)) [CD]
+Line_3 $$ int finalState = shouldExpire() ? STATE_EXPIRED : STATE_NONE --> Line_4 $$ if (!sessionState.compareAndSet(STATE_IN_USE, finalState)) [FD]
+Line_2 $$ boolean stopUsing() --> Line_7 $$ if (finalState == STATE_NONE) [CD]
+Line_3 $$ int finalState = shouldExpire() ? STATE_EXPIRED : STATE_NONE --> Line_7 $$ if (finalState == STATE_NONE) [FD]
+Line_7 $$ if (finalState == STATE_NONE) --> Line_8 $$ return true [CD]
+Line_2 $$ boolean stopUsing() --> Line_9 $$ expirationTracker.closeAndRestartExpiredSessionAsync(this) [CD]
+Line_2 $$ boolean stopUsing() --> Line_10 $$ return false [CD]

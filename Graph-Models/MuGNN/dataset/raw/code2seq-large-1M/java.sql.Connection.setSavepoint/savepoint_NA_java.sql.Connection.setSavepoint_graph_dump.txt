@@ -1,0 +1,7 @@
+Line_2 $$ public void savepoint(Handle handle, String name) --> Line_3 $$ final Connection conn = handle.getConnection() [CD]
+Line_2 $$ public void savepoint(Handle handle, String name) --> Line_3 $$ final Connection conn = handle.getConnection() [FD]
+Line_3 $$ final Connection conn = handle.getConnection() --> Line_5 $$ final Savepoint savepoint = conn.setSavepoint(name) [FD]
+Line_2 $$ public void savepoint(Handle handle, String name) --> Line_5 $$ final Savepoint savepoint = conn.setSavepoint(name) [FD]
+Line_2 $$ public void savepoint(Handle handle, String name) --> Line_6 $$ localStuff.get(handle).getSavepoints().put(name, savepoint) [FD]
+Line_5 $$ final Savepoint savepoint = conn.setSavepoint(name) --> Line_6 $$ localStuff.get(handle).getSavepoints().put(name, savepoint) [FD]
+Line_2 $$ public void savepoint(Handle handle, String name) --> Line_8 $$ throw new TransactionException(String.format("Unable to create savepoint '%s'", name), e) [FD]

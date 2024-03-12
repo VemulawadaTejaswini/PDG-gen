@@ -1,0 +1,4 @@
+Line_2 $$ public void neverSourceIsCancelled() --> Line_3 $$ AtomicReference<SignalType> signal = new AtomicReference() [CD]
+Line_2 $$ public void neverSourceIsCancelled() --> Line_4 $$ StepVerifier.withVirtualTime(() -> new MonoTakeUntilOther(Mono.never().doFinally(signal::<>set), Mono.delay(Duration.ofMillis(100)))).expectSubscription().expectNoEvent(Duration.ofMillis(100)).verifyComplete() [CD]
+Line_2 $$ public void neverSourceIsCancelled() --> Line_5 $$ assertThat(signal.get()).isEqualTo(SignalType.CANCEL) [CD]
+Line_3 $$ AtomicReference<SignalType> signal = new AtomicReference() --> Line_5 $$ assertThat(signal.get()).isEqualTo(SignalType.CANCEL) [FD]

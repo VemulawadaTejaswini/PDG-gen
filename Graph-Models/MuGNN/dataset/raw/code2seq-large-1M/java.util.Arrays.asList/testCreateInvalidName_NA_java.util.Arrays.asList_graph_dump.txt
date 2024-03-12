@@ -1,0 +1,5 @@
+Line_2 $$ public void testCreateInvalidName() throws Exception --> Line_3 $$ expectedException.expect(InvalidIndexNameException.class) [CD]
+Line_2 $$ public void testCreateInvalidName() throws Exception --> Line_4 $$ expectedException.expectMessage("Invalid index name [invalid/#haha], must not contain the following characters [ , \", *, \\, <, |, ,, >, /, ?]") [CD]
+Line_2 $$ public void testCreateInvalidName() throws Exception --> Line_5 $$ CreatePartitionsRequest createPartitionsRequest = new CreatePartitionsRequest(Arrays.asList("valid", "invalid/#haha"), UUID.randomUUID()) [CD]
+Line_5 $$ CreatePartitionsRequest createPartitionsRequest = new CreatePartitionsRequest(Arrays.asList("valid", "invalid/#haha"), UUID.randomUUID()) --> Line_7 $$ action.execute(createPartitionsRequest).actionGet() [FD]
+Line_11 $$ IndicesExistsResponse indicesExistsResponse = cluster().client().admin().indices().prepareExists("valid").execute().actionGet() --> Line_12 $$ assertThat(indicesExistsResponse.isExists(), is(false)) [FD]

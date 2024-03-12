@@ -1,0 +1,7 @@
+Line_2 $$ public void init() throws IOException --> Line_3 $$ if (this.initScript != null) [CD]
+Line_3 $$ if (this.initScript != null) --> Line_4 $$ String scripts = new Scanner(this.initScript.getInputStream(), "UTF-8").useDelimiter("\\A").next() [CD]
+Line_3 $$ if (this.initScript != null) --> Line_5 $$ CqlTemplate template = new CqlTemplate(this.session) [CD]
+Line_4 $$ String scripts = new Scanner(this.initScript.getInputStream(), "UTF-8").useDelimiter("\\A").next() --> Line_6 $$ for (String script : StringUtils.delimitedListToStringArray(scripts, ";", "\r\n\f")) [FD]
+Line_6 $$ for (String script : StringUtils.delimitedListToStringArray(scripts, ";", "\r\n\f")) --> Line_7 $$ if (StringUtils.hasText(script)) [FD]
+Line_7 $$ if (StringUtils.hasText(script)) --> Line_8 $$ template.execute(script + ";") [CD]
+Line_5 $$ CqlTemplate template = new CqlTemplate(this.session) --> Line_8 $$ template.execute(script + ";") [FD]

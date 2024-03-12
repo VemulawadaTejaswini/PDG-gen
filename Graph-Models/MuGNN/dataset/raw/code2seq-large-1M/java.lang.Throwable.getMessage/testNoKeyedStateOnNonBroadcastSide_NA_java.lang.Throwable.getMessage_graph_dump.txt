@@ -1,0 +1,8 @@
+Line_2 $$ public void testNoKeyedStateOnNonBroadcastSide() throws Exception --> Line_3 $$ boolean exceptionThrown = false [CD]
+Line_4 $$ try (TwoInputStreamOperatorTestHarness<String, Integer, String> testHarness = getInitializedTestHarness(new BroadcastProcessFunction<String, Integer, String>() --> Line_10 $$ getRuntimeContext().getState(valueState).value() [CD]
+Line_4 $$ try (TwoInputStreamOperatorTestHarness<String, Integer, String> testHarness = getInitializedTestHarness(new BroadcastProcessFunction<String, Integer, String>() --> Line_13 $$ testHarness.processWatermark1(new Watermark(10L)) [FD]
+Line_4 $$ try (TwoInputStreamOperatorTestHarness<String, Integer, String> testHarness = getInitializedTestHarness(new BroadcastProcessFunction<String, Integer, String>() --> Line_14 $$ testHarness.processWatermark2(new Watermark(10L)) [FD]
+Line_4 $$ try (TwoInputStreamOperatorTestHarness<String, Integer, String> testHarness = getInitializedTestHarness(new BroadcastProcessFunction<String, Integer, String>() --> Line_15 $$ testHarness.processElement1(new StreamRecord("5", 12L)) [FD]
+Line_2 $$ public void testNoKeyedStateOnNonBroadcastSide() throws Exception --> Line_20 $$ if (!exceptionThrown) [CD]
+Line_3 $$ boolean exceptionThrown = false --> Line_20 $$ if (!exceptionThrown) [FD]
+Line_20 $$ if (!exceptionThrown) --> Line_21 $$ Assert.fail("No exception thrown") [CD]

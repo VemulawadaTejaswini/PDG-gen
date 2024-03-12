@@ -1,0 +1,8 @@
+Line_2 $$ public String getConnectionURL() --> Line_3 $$ String connectionURL = (String) options.get(CONNECTION_URL) [CD]
+Line_2 $$ public String getConnectionURL() --> Line_4 $$ if (connectionURL == null || connectionURL.trim().length() == 0) [CD]
+Line_3 $$ String connectionURL = (String) options.get(CONNECTION_URL) --> Line_4 $$ if (connectionURL == null || connectionURL.trim().length() == 0) [FD]
+Line_4 $$ if (connectionURL == null || connectionURL.trim().length() == 0) --> Line_5 $$ LOGGER.error("No LDAP URL specified.") [CD]
+Line_4 $$ if (connectionURL == null || connectionURL.trim().length() == 0) --> Line_6 $$ if (!connectionURL.startsWith("ldap:") && !connectionURL.startsWith("ldaps:")) [CD]
+Line_3 $$ String connectionURL = (String) options.get(CONNECTION_URL) --> Line_6 $$ if (!connectionURL.startsWith("ldap:") && !connectionURL.startsWith("ldaps:")) [FD]
+Line_6 $$ if (!connectionURL.startsWith("ldap:") && !connectionURL.startsWith("ldaps:")) --> Line_7 $$ LOGGER.error("Invalid LDAP URL: " + connectionURL) [CD]
+Line_2 $$ public String getConnectionURL() --> Line_9 $$ return connectionURL [CD]

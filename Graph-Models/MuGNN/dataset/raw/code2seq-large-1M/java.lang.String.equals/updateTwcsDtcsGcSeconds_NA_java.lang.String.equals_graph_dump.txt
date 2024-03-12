@@ -1,0 +1,5 @@
+Line_2 $$ private void updateTwcsDtcsGcSeconds() throws Exception --> Line_3 $$ logger.info("updating gc_grace_seconds on TWCS/DTCS tables ...") [CD]
+Line_4 $$ for (TableMetadata table : session.getTables()) --> Line_5 $$ String compactionClass = table.getOptions().getCompaction().get("class") [FD]
+Line_9 $$ if (compactionClass.equals("org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy") || compactionClass.equals("org.apache.cassandra.db.compaction.DateTieredCompactionStrategy")) --> Line_10 $$ session.execute("alter table " + table.getName() + " with gc_grace_seconds = " + HOURS.toSeconds(4)) [CD]
+Line_4 $$ for (TableMetadata table : session.getTables()) --> Line_10 $$ session.execute("alter table " + table.getName() + " with gc_grace_seconds = " + HOURS.toSeconds(4)) [FD]
+Line_2 $$ private void updateTwcsDtcsGcSeconds() throws Exception --> Line_13 $$ logger.info("updating gc_grace_seconds on TWCS/DTCS tables - complete") [CD]

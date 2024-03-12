@@ -1,0 +1,7 @@
+Line_2 $$ public void testBlocking() --> Line_3 $$ TestingExecutorService es = new TestingExecutorService(Executors.newSingleThreadExecutor()) [CD]
+Line_3 $$ TestingExecutorService es = new TestingExecutorService(Executors.newSingleThreadExecutor()) --> Line_5 $$ Task<String> task = Task.blocking(() -> "from blocking", es) [FD]
+Line_5 $$ Task<String> task = Task.blocking(() -> "from blocking", es) --> Line_6 $$ runAndWait("TestTaskFactoryMethods.testBlocking", task) [FD]
+Line_5 $$ Task<String> task = Task.blocking(() -> "from blocking", es) --> Line_7 $$ assertEquals(task.get(), "from blocking") [FD]
+Line_3 $$ TestingExecutorService es = new TestingExecutorService(Executors.newSingleThreadExecutor()) --> Line_8 $$ assertEquals(es.getCount(), 1) [FD]
+Line_5 $$ Task<String> task = Task.blocking(() -> "from blocking", es) --> Line_9 $$ assertEquals(countTasks(task.getTrace()), 1) [FD]
+Line_3 $$ TestingExecutorService es = new TestingExecutorService(Executors.newSingleThreadExecutor()) --> Line_11 $$ es.shutdown() [FD]

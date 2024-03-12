@@ -1,0 +1,8 @@
+Line_3 $$ for (SqlSelect query : expr) --> Line_4 $$ String sql = query.toString() [FD]
+Line_4 $$ String sql = query.toString() --> Line_5 $$ if (sql.length() > 0) [FD]
+Line_5 $$ if (sql.length() > 0) --> Line_6 $$ sql = "(" + sql + ")" [CD]
+Line_4 $$ String sql = query.toString() --> Line_6 $$ sql = "(" + sql + ")" [FD]
+Line_4 $$ String sql = query.toString() --> Line_7 $$ union.separator(separator).append(sql) [FD]
+Line_6 $$ sql = "(" + sql + ")" --> Line_7 $$ union.separator(separator).append(sql) [FD]
+Line_2 $$ private void unionSep(String separator, SqlSelect... expr) --> Line_7 $$ union.separator(separator).append(sql) [FD]
+Line_3 $$ for (SqlSelect query : expr) --> Line_8 $$ params.addAll(query.getParams()) [FD]

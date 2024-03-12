@@ -1,0 +1,6 @@
+Line_2 $$ public void testSubmitMissingParams() throws IOException --> Line_3 $$ FormDataMultiPart form = mock(FormDataMultiPart.class) [CD]
+Line_4 $$ for (final String paramKey : requiredSubmitParamKeys) --> Line_5 $$ Set<String> keySet = requiredSubmitParamKeys.stream().filter( s -> s.equals(paramKey)).collect(Collectors.toSet()) [FD]
+Line_5 $$ Set<String> keySet = requiredSubmitParamKeys.stream().filter( s -> s.equals(paramKey)).collect(Collectors.toSet()) --> Line_7 $$ keySet.forEach( t -> map.put(t, Collections.emptyList())) [FD]
+Line_6 $$ Map<String, List<FormDataBodyPart>> map = new HashMap() --> Line_7 $$ keySet.forEach( t -> map.put(t, Collections.emptyList())) [FD]
+Line_6 $$ Map<String, List<FormDataBodyPart>> map = new HashMap() --> Line_8 $$ when(form.getFields()).thenReturn(map) [FD]
+Line_9 $$ Response response = resource.submit(form) --> Line_10 $$ assertEquals(HTTP_422, response.getStatus()) [FD]

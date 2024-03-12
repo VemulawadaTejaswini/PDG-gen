@@ -1,0 +1,6 @@
+Line_2 $$ public void test0152QueryUserAssignmentTargetRefManagerStandardQualified() throws Exception --> Line_3 $$ Session session = open() [CD]
+Line_5 $$ ObjectReferenceType ort = new ObjectReferenceType().oid("123").type(OrgType.COMPLEX_TYPE).relation(SchemaConstants.ORG_MANAGER) --> Line_6 $$ ObjectQuery query = QueryBuilder.queryFor(UserType.class, prismContext).item(F_ASSIGNMENT, AssignmentType.F_TARGET_REF).ref(ort.asReferenceValue()).build() [FD]
+Line_3 $$ Session session = open() --> Line_7 $$ RQueryImpl rQuery = (RQueryImpl) getInterpretedQuery2Whole(session, UserType.class, query, false, null) [FD]
+Line_9 $$ String expected = "select\n" + "  u.oid, u.fullObject,\n" + "  u.stringsCount,\n" + "  u.longsCount,\n" + "  u.datesCount,\n" + "  u.referencesCount,\n" + "  u.polysCount,\n" + "  u.booleansCount\n" + "from\n" + "  RUser u\n" + "    left join u.assignments a with a.assignmentOwner = :assignmentOwner\n" + "where\n" + "  (\n" + "    a.targetRef.targetOid = :targetOid and\n" + "    a.targetRef.relation in (:relation) and\n" + "    a.targetRef.type = :type\n" + "  )\n" --> Line_10 $$ assertEqualsIgnoreWhitespace(expected, real) [FD]
+Line_8 $$ String real = rQuery.getQuery().getQueryString() --> Line_10 $$ assertEqualsIgnoreWhitespace(expected, real) [FD]
+Line_3 $$ Session session = open() --> Line_15 $$ close(session) [FD]

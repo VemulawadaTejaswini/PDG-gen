@@ -1,0 +1,6 @@
+Line_2 $$ public static <T, K> Consumer<Partition<T, K, List<T>>> evictAllAndScheduleEvictWithProcess(long time, TimeUnit unit) --> Line_3 $$ long timeMs = TimeUnit.MILLISECONDS.convert(time, unit) [FD]
+Line_2 $$ public static <T, K> Consumer<Partition<T, K, List<T>>> evictAllAndScheduleEvictWithProcess(long time, TimeUnit unit) --> Line_3 $$ long timeMs = TimeUnit.MILLISECONDS.convert(time, unit) [CD]
+Line_2 $$ public static <T, K> Consumer<Partition<T, K, List<T>>> evictAllAndScheduleEvictWithProcess(long time, TimeUnit unit) --> Line_4 $$ return ( partition) -> [CD]
+Line_6 $$ List<T> tuples = partition.getContents() --> Line_8 $$ tuples.clear() [FD]
+Line_5 $$ ScheduledExecutorService ses = partition.getWindow().getScheduledExecutorService() --> Line_9 $$ ses.schedule(() -> partition.evict(), timeMs, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ long timeMs = TimeUnit.MILLISECONDS.convert(time, unit) --> Line_9 $$ ses.schedule(() -> partition.evict(), timeMs, TimeUnit.MILLISECONDS) [FD]

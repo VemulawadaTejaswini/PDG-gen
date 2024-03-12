@@ -1,0 +1,5 @@
+Line_2 $$ public void testPrintToFileWithDefaultCharset() throws IOException --> Line_3 $$ final File file = File.createTempFile(getClass().getName(), ".csv") [CD]
+Line_3 $$ final File file = File.createTempFile(getClass().getName(), ".csv") --> Line_4 $$ try (final CSVPrinter printer = CSVFormat.DEFAULT.print(file, Charset.defaultCharset())) [FD]
+Line_4 $$ try (final CSVPrinter printer = CSVFormat.DEFAULT.print(file, Charset.defaultCharset())) --> Line_5 $$ printer.printRecord("a", "b\\c") [FD]
+Line_2 $$ public void testPrintToFileWithDefaultCharset() throws IOException --> Line_7 $$ assertEquals("a,b\\c" + recordSeparator, FileUtils.readFileToString(file, Charset.defaultCharset())) [CD]
+Line_3 $$ final File file = File.createTempFile(getClass().getName(), ".csv") --> Line_7 $$ assertEquals("a,b\\c" + recordSeparator, FileUtils.readFileToString(file, Charset.defaultCharset())) [FD]

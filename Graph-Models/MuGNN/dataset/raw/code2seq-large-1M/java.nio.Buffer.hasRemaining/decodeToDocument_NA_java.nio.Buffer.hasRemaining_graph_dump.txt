@@ -1,0 +1,8 @@
+Line_2 $$ private BsonDocument decodeToDocument(final String subjectHex, final String description) --> Line_3 $$ ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(subjectHex)) [CD]
+Line_2 $$ private BsonDocument decodeToDocument(final String subjectHex, final String description) --> Line_3 $$ ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(subjectHex)) [FD]
+Line_2 $$ private BsonDocument decodeToDocument(final String subjectHex, final String description) --> Line_4 $$ BsonDocument actualDecodedDocument = new BsonDocumentCodec().decode(new BsonBinaryReader(byteBuffer), DecoderContext.builder().build()) [CD]
+Line_2 $$ private BsonDocument decodeToDocument(final String subjectHex, final String description) --> Line_5 $$ if (byteBuffer.hasRemaining()) [CD]
+Line_3 $$ ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(subjectHex)) --> Line_5 $$ if (byteBuffer.hasRemaining()) [FD]
+Line_2 $$ private BsonDocument decodeToDocument(final String subjectHex, final String description) --> Line_6 $$ throw new BsonSerializationException(format("Should have consumed all bytes, but " + byteBuffer.remaining() + " still remain in the buffer for document with description ", description)) [FD]
+Line_3 $$ ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(subjectHex)) --> Line_6 $$ throw new BsonSerializationException(format("Should have consumed all bytes, but " + byteBuffer.remaining() + " still remain in the buffer for document with description ", description)) [FD]
+Line_2 $$ private BsonDocument decodeToDocument(final String subjectHex, final String description) --> Line_8 $$ return actualDecodedDocument [CD]

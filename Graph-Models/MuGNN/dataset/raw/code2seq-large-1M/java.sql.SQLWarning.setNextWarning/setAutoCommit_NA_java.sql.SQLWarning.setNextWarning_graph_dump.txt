@@ -1,0 +1,8 @@
+Line_2 $$ public void setAutoCommit(boolean autoCommit) throws SQLException --> Line_3 $$ if (isClosed) [CD]
+Line_2 $$ public void setAutoCommit(boolean autoCommit) throws SQLException --> Line_6 $$ if (!autoCommit) [FD]
+Line_2 $$ public void setAutoCommit(boolean autoCommit) throws SQLException --> Line_6 $$ if (!autoCommit) [CD]
+Line_6 $$ if (!autoCommit) --> Line_7 $$ LOG.warn("Request to set autoCommit to false; Hive does not support autoCommit=false.") [CD]
+Line_6 $$ if (!autoCommit) --> Line_8 $$ SQLWarning warning = new SQLWarning("Hive does not support autoCommit=false") [CD]
+Line_6 $$ if (!autoCommit) --> Line_9 $$ if (warningChain == null) [CD]
+Line_9 $$ if (warningChain == null) --> Line_12 $$ warningChain.setNextWarning(warning) [CD]
+Line_8 $$ SQLWarning warning = new SQLWarning("Hive does not support autoCommit=false") --> Line_12 $$ warningChain.setNextWarning(warning) [FD]

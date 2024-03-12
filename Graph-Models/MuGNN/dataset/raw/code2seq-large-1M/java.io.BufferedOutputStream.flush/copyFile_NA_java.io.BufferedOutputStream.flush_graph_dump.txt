@@ -1,0 +1,8 @@
+Line_2 $$ protected void copyFile(final File file, final File backup) throws IOException --> Line_3 $$ final InputStream in = new BufferedInputStream(new FileInputStream(file)) [CD]
+Line_3 $$ final InputStream in = new BufferedInputStream(new FileInputStream(file)) --> Line_8 $$ StreamUtils.copyStream(in, output) [FD]
+Line_6 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) --> Line_8 $$ StreamUtils.copyStream(in, output) [FD]
+Line_6 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) --> Line_9 $$ output.flush() [FD]
+Line_5 $$ final FileOutputStream fos = new FileOutputStream(backup) --> Line_10 $$ fos.getFD().sync() [FD]
+Line_5 $$ final FileOutputStream fos = new FileOutputStream(backup) --> Line_11 $$ fos.close() [FD]
+Line_6 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) --> Line_13 $$ StreamUtils.safeClose(output) [FD]
+Line_3 $$ final InputStream in = new BufferedInputStream(new FileInputStream(file)) --> Line_16 $$ StreamUtils.safeClose(in) [FD]

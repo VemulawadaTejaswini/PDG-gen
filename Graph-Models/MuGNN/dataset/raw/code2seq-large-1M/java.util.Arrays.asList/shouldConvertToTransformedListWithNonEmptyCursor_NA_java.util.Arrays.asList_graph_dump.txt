@@ -1,0 +1,7 @@
+Line_2 $$ public void shouldConvertToTransformedListWithNonEmptyCursor() --> Line_3 $$ Transaction tx = await(session.beginTransactionAsync()) [CD]
+Line_2 $$ public void shouldConvertToTransformedListWithNonEmptyCursor() --> Line_4 $$ StatementResultCursor cursor = await(tx.runAsync("UNWIND ['a', 'b', 'c'] AS x RETURN x")) [CD]
+Line_3 $$ Transaction tx = await(session.beginTransactionAsync()) --> Line_4 $$ StatementResultCursor cursor = await(tx.runAsync("UNWIND ['a', 'b', 'c'] AS x RETURN x")) [FD]
+Line_2 $$ public void shouldConvertToTransformedListWithNonEmptyCursor() --> Line_5 $$ List<String> strings = await(cursor.listAsync( record -> record.get(0).asString() + "!")) [CD]
+Line_4 $$ StatementResultCursor cursor = await(tx.runAsync("UNWIND ['a', 'b', 'c'] AS x RETURN x")) --> Line_5 $$ List<String> strings = await(cursor.listAsync( record -> record.get(0).asString() + "!")) [FD]
+Line_2 $$ public void shouldConvertToTransformedListWithNonEmptyCursor() --> Line_6 $$ assertEquals(Arrays.asList("a!", "b!", "c!"), strings) [CD]
+Line_5 $$ List<String> strings = await(cursor.listAsync( record -> record.get(0).asString() + "!")) --> Line_6 $$ assertEquals(Arrays.asList("a!", "b!", "c!"), strings) [FD]

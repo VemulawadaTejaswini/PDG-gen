@@ -1,0 +1,6 @@
+Line_2 $$ public void testGetObjectFieldFiltered() throws Exception --> Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") [CD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) [FD]
+Line_6 $$ IgniteBiPredicate<Integer, Value> filter = new IgniteBiPredicate<Integer, Value>() --> Line_8 $$ return v.idx % 1000 == 0 [CD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_16 $$ List<Integer> res = cache.query(new ScanQuery(filter), transformer).getAll() [FD]
+Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) --> Line_19 $$ for (int i = 0; i < 5; i++) assertEquals(i * 1000, res.get(i).intValue()) [FD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_21 $$ cache.destroy() [FD]

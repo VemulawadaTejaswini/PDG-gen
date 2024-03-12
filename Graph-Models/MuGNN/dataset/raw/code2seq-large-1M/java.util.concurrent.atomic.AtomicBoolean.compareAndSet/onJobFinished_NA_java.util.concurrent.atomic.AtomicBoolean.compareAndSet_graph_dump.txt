@@ -1,0 +1,8 @@
+Line_2 $$ public void onJobFinished(SQLJob sqlJob) --> Line_3 $$ boolean allFinished = bachJob.jobFinished(sqlJob) [FD]
+Line_2 $$ public void onJobFinished(SQLJob sqlJob) --> Line_3 $$ boolean allFinished = bachJob.jobFinished(sqlJob) [CD]
+Line_2 $$ public void onJobFinished(SQLJob sqlJob) --> Line_4 $$ if (allFinished && finished.compareAndSet(false, true)) [CD]
+Line_3 $$ boolean allFinished = bachJob.jobFinished(sqlJob) --> Line_4 $$ if (allFinished && finished.compareAndSet(false, true)) [FD]
+Line_4 $$ if (allFinished && finished.compareAndSet(false, true)) --> Line_5 $$ if (!hasError) [CD]
+Line_5 $$ if (!hasError) --> Line_6 $$ LOGGER.info("all job finished  for front connection: " + session.getSource()) [CD]
+Line_5 $$ if (!hasError) --> Line_7 $$ allJobFinishedListener.onAllJobFinished(this) [CD]
+Line_5 $$ if (!hasError) --> Line_9 $$ LOGGER.info("all job finished with error for front connection: " + session.getSource()) [CD]

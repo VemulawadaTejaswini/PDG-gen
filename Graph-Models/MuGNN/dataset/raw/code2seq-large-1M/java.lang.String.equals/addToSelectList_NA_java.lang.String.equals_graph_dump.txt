@@ -1,0 +1,8 @@
+Line_3 $$ String alias = SqlValidatorUtil.getAlias(exp, -1) --> Line_4 $$ String uniqueAlias = SqlValidatorUtil.uniquify(alias, aliases, SqlValidatorUtil.EXPR_SUGGESTER) [FD]
+Line_3 $$ String alias = SqlValidatorUtil.getAlias(exp, -1) --> Line_5 $$ if (!alias.equals(uniqueAlias)) [FD]
+Line_4 $$ String uniqueAlias = SqlValidatorUtil.uniquify(alias, aliases, SqlValidatorUtil.EXPR_SUGGESTER) --> Line_5 $$ if (!alias.equals(uniqueAlias)) [FD]
+Line_5 $$ if (!alias.equals(uniqueAlias)) --> Line_6 $$ exp = SqlValidatorUtil.addAlias(exp, uniqueAlias) [CD]
+Line_4 $$ String uniqueAlias = SqlValidatorUtil.uniquify(alias, aliases, SqlValidatorUtil.EXPR_SUGGESTER) --> Line_6 $$ exp = SqlValidatorUtil.addAlias(exp, uniqueAlias) [FD]
+Line_4 $$ String uniqueAlias = SqlValidatorUtil.uniquify(alias, aliases, SqlValidatorUtil.EXPR_SUGGESTER) --> Line_8 $$ fieldList.add(Pair.of(uniqueAlias, deriveType(scope, exp))) [FD]
+Line_6 $$ exp = SqlValidatorUtil.addAlias(exp, uniqueAlias) --> Line_8 $$ fieldList.add(Pair.of(uniqueAlias, deriveType(scope, exp))) [FD]
+Line_6 $$ exp = SqlValidatorUtil.addAlias(exp, uniqueAlias) --> Line_9 $$ list.add(exp) [FD]

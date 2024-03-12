@@ -1,0 +1,6 @@
+Line_2 $$ private static String getStrFtime(final String col, final int offset) --> Line_3 $$ String ret = "strftime('%s',substr(" + col + ",0,11)||' '||substr(" + col + ",12,2)||':'||substr(" + col + ",14,2)||':'||substr(" + col + ",16,2)) - (" + offset + ")" [CD]
+Line_2 $$ private static String getStrFtime(final String col, final int offset) --> Line_4 $$ if (col.equals("created_at") || col.equals("updated_at")) [CD]
+Line_2 $$ private static String getStrFtime(final String col, final int offset) --> Line_4 $$ if (col.equals("created_at") || col.equals("updated_at")) [FD]
+Line_4 $$ if (col.equals("created_at") || col.equals("updated_at")) --> Line_5 $$ ret = "CASE WHEN (" + ret + ") IS NULL THEN strftime('%s','now') ELSE (" + ret + ") END" [CD]
+Line_3 $$ String ret = "strftime('%s',substr(" + col + ",0,11)||' '||substr(" + col + ",12,2)||':'||substr(" + col + ",14,2)||':'||substr(" + col + ",16,2)) - (" + offset + ")" --> Line_5 $$ ret = "CASE WHEN (" + ret + ") IS NULL THEN strftime('%s','now') ELSE (" + ret + ") END" [FD]
+Line_2 $$ private static String getStrFtime(final String col, final int offset) --> Line_7 $$ return ret [CD]

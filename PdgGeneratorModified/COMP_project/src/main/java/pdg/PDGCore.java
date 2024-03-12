@@ -52,26 +52,26 @@ public class PDGCore {
 			// parse the file
 			cu = JavaParser.parse(inArg);
 			inArg.close();
-			System.out.println("Input File Parsing Done");
+			// System.out.println("Input File Parsing Done");
 		} catch (Exception e) {
-			System.out.println("Syntatic Error - " + e.getMessage() + "\n");
+			System.out.println("\nSyntatic Error");
 			return false;
 		}
 
 		CodeVisitor cv = new CodeVisitor();
-		System.out.println(">>Calling astPrint");
-		cv.astPrint(cu);
-		System.out.println(">>astPrint Done");
+		// System.out.println(">>Calling astPrint");
+		// cv.astPrint(cu);
+		// System.out.println(">>astPrint Done");
 
 		// todot("stage2.dot", hrefGraph);
 
 		FileOutputStream out;
 
 		String[] ParsedName = selectedFileName.split("\\.");
-		System.out.println("***************");
-		System.out.println("Processing: " + selectedFileName + " of " + apiAndSampleName);
-		System.out.println(ParsedName[0]);
-		System.out.println("***************");
+		// System.out.println("***************");
+		// System.out.println("Processing: " + selectedFileName + " of " + apiAndSampleName);
+		// System.out.println(ParsedName[0]);
+		// System.out.println("***************");
 		File ofile = new File(outputDir + ParsedName[0] + "_" + apiAndSampleName + "_graph_dump.txt");
 		ofile.getParentFile().mkdirs(); // Will create parent directories if not exists
 		ofile.createNewFile(); // if file already exists will do nothing
@@ -101,9 +101,9 @@ public class PDGCore {
 		out.close();
 
 		// todot("stage4.dot", hrefGraph);
-		System.out.println(">>Calling printSymbolTable");
-		st.printSymbolTable();
-		System.out.println(">>printSymbolTable Done");
+		// System.out.println(">>Calling printSymbolTable");
+		// st.printSymbolTable();
+		// System.out.println(">>printSymbolTable Done");
 
 		return true;
 	}

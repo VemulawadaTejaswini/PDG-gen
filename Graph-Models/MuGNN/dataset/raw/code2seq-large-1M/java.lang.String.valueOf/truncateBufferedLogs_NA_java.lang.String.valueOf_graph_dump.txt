@@ -1,0 +1,7 @@
+Line_2 $$ public void truncateBufferedLogs(int maxRecords) --> Line_3 $$ int recordSize = getRecordCount() [CD]
+Line_2 $$ public void truncateBufferedLogs(int maxRecords) --> Line_4 $$ if (recordSize > maxRecords) [FD]
+Line_2 $$ public void truncateBufferedLogs(int maxRecords) --> Line_4 $$ if (recordSize > maxRecords) [CD]
+Line_3 $$ int recordSize = getRecordCount() --> Line_4 $$ if (recordSize > maxRecords) [FD]
+Line_4 $$ if (recordSize > maxRecords) --> Line_5 $$ String query = "DELETE FROM " + TABLE_NAME + " WHERE id IN ( SELECT id FROM " + TABLE_NAME + " ORDER BY id ASC LIMIT " + String.valueOf(recordSize - maxRecords) + ")" [CD]
+Line_4 $$ if (recordSize > maxRecords) --> Line_6 $$ db.execSQL(query) [CD]
+Line_5 $$ String query = "DELETE FROM " + TABLE_NAME + " WHERE id IN ( SELECT id FROM " + TABLE_NAME + " ORDER BY id ASC LIMIT " + String.valueOf(recordSize - maxRecords) + ")" --> Line_6 $$ db.execSQL(query) [FD]

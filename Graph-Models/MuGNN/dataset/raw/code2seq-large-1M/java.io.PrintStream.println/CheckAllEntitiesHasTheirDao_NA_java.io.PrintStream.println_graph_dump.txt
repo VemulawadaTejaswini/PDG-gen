@@ -1,0 +1,7 @@
+Line_2 $$ public void CheckAllEntitiesHasTheirDao() --> Line_3 $$ Reflections reflections = new Reflections("com.gisgraphy.domain.geoloc.entity") [CD]
+Line_2 $$ public void CheckAllEntitiesHasTheirDao() --> Line_4 $$ Set<Class<? extends GisFeature>> allClasses = reflections.getSubTypesOf(GisFeature.class) [CD]
+Line_3 $$ Reflections reflections = new Reflections("com.gisgraphy.domain.geoloc.entity") --> Line_4 $$ Set<Class<? extends GisFeature>> allClasses = reflections.getSubTypesOf(GisFeature.class) [FD]
+Line_2 $$ public void CheckAllEntitiesHasTheirDao() --> Line_5 $$ System.out.println("Found " + allClasses.size() + " entities that extends GisFeature") [CD]
+Line_6 $$ for (Class c : allClasses) --> Line_7 $$ System.out.println(c) [FD]
+Line_6 $$ for (Class c : allClasses) --> Line_9 $$ Class placetype = Class.forName("com.gisgraphy.domain.repository." + c.getSimpleName() + "Dao") [FD]
+Line_6 $$ for (Class c : allClasses) --> Line_11 $$ Assert.fail("com.gisgraphy.domain.repository." + c.getSimpleName() + "Dao doesn't exists, each entities should have their Dao") [FD]

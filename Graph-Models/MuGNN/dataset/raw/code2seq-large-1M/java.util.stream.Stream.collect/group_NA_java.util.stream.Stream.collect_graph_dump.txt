@@ -1,0 +1,6 @@
+Line_2 $$ public Map<Group, Set<File>> group() --> Line_3 $$ Map<Group, Set<File>> groups = new TreeMap<Group, Set<File>>() [CD]
+Line_2 $$ public Map<Group, Set<File>> group() --> Line_4 $$ ExecutorService workerThreadPool = Executors.newFixedThreadPool(getPreferredThreadPoolSize()) [CD]
+Line_4 $$ ExecutorService workerThreadPool = Executors.newFixedThreadPool(getPreferredThreadPoolSize()) --> Line_6 $$ workerThreadPool.submit(() -> detectGroup(f)) [FD]
+Line_3 $$ Map<Group, Set<File>> groups = new TreeMap<Group, Set<File>>() --> Line_8 $$ groups.computeIfAbsent(group.get(),  k -> new TreeSet<File>()).add(new File(file.getPath())) [FD]
+Line_4 $$ ExecutorService workerThreadPool = Executors.newFixedThreadPool(getPreferredThreadPoolSize()) --> Line_14 $$ workerThreadPool.shutdownNow() [FD]
+Line_2 $$ public Map<Group, Set<File>> group() --> Line_16 $$ return groups [CD]

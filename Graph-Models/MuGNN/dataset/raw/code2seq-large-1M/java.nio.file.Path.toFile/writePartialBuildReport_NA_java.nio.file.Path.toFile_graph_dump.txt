@@ -1,0 +1,8 @@
+Line_2 $$ private void writePartialBuildReport(BuckEventBus eventBus, Path pathToBuildReport, BuildExecutionException e) --> Line_3 $$ SourcePathResolver pathResolver = DefaultSourcePathResolver.from(new SourcePathRuleFinder(ruleResolver)) [CD]
+Line_2 $$ private void writePartialBuildReport(BuckEventBus eventBus, Path pathToBuildReport, BuildExecutionException e) --> Line_4 $$ BuildReport buildReport = new BuildReport(e.createBuildExecutionResult(), pathResolver) [FD]
+Line_2 $$ private void writePartialBuildReport(BuckEventBus eventBus, Path pathToBuildReport, BuildExecutionException e) --> Line_4 $$ BuildReport buildReport = new BuildReport(e.createBuildExecutionResult(), pathResolver) [CD]
+Line_4 $$ BuildReport buildReport = new BuildReport(e.createBuildExecutionResult(), pathResolver) --> Line_6 $$ String jsonBuildReport = buildReport.generateJsonBuildReport() [FD]
+Line_6 $$ String jsonBuildReport = buildReport.generateJsonBuildReport() --> Line_7 $$ Files.write(jsonBuildReport, pathToBuildReport.toFile(), Charsets.UTF_8) [FD]
+Line_2 $$ private void writePartialBuildReport(BuckEventBus eventBus, Path pathToBuildReport, BuildExecutionException e) --> Line_7 $$ Files.write(jsonBuildReport, pathToBuildReport.toFile(), Charsets.UTF_8) [FD]
+Line_2 $$ private void writePartialBuildReport(BuckEventBus eventBus, Path pathToBuildReport, BuildExecutionException e) --> Line_9 $$ LOG.warn(writeException, "Failed to write the build report to %s", pathToBuildReport) [FD]
+Line_2 $$ private void writePartialBuildReport(BuckEventBus eventBus, Path pathToBuildReport, BuildExecutionException e) --> Line_10 $$ eventBus.post(ThrowableConsoleEvent.create(e, "Failed writing report")) [FD]

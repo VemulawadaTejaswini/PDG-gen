@@ -1,0 +1,6 @@
+Line_2 $$ public void close() --> Line_3 $$ if (closed.getAndSet(true)) [CD]
+Line_3 $$ if (closed.getAndSet(true)) --> Line_4 $$ logger.info("Attempting to close connection again") [CD]
+Line_2 $$ public void close() --> Line_6 $$ CONNECTION_TYPE c = connectionHolder.getAndSet(null) [CD]
+Line_2 $$ public void close() --> Line_7 $$ if (c != null) [CD]
+Line_6 $$ CONNECTION_TYPE c = connectionHolder.getAndSet(null) --> Line_7 $$ if (c != null) [FD]
+Line_6 $$ CONNECTION_TYPE c = connectionHolder.getAndSet(null) --> Line_9 $$ c.getChannel().close().sync() [FD]

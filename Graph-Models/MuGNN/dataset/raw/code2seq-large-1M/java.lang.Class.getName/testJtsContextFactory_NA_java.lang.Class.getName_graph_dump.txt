@@ -1,0 +1,8 @@
+Line_2 $$ public void testJtsContextFactory() --> Line_3 $$ JtsSpatialContext ctx = (JtsSpatialContext) call("spatialContextFactory", JtsSpatialContextFactory.class.getName(), "geo", "true", "normWrapLongitude", "true", "precisionScale", "2.0", "wktShapeParserClass", CustomWktShapeParser.class.getName(), "datelineRule", "ccwRect", "validationRule", "repairConvexHull", "autoIndex", "true") [CD]
+Line_2 $$ public void testJtsContextFactory() --> Line_4 $$ assertTrue(ctx.isNormWrapLongitude()) [CD]
+Line_2 $$ public void testJtsContextFactory() --> Line_5 $$ assertEquals(2.0, ctx.getGeometryFactory().getPrecisionModel().getScale(), 0.0) [CD]
+Line_2 $$ public void testJtsContextFactory() --> Line_6 $$ assertTrue(CustomWktShapeParser.once) [CD]
+Line_2 $$ public void testJtsContextFactory() --> Line_7 $$ assertEquals(DatelineRule.ccwRect, ctx.getDatelineRule()) [CD]
+Line_2 $$ public void testJtsContextFactory() --> Line_8 $$ assertEquals(ValidationRule.repairConvexHull, ctx.getValidationRule()) [CD]
+Line_2 $$ public void testJtsContextFactory() --> Line_9 $$ ctx = (JtsSpatialContext) call("spatialContextFactory", JtsSpatialContextFactory.class.getName(), "geo", "false", "worldBounds", "ENVELOPE(-500,500,300,-300)", "normWrapLongitude", "true", "precisionScale", "2.0", "wktShapeParserClass", CustomWktShapeParser.class.getName(), "datelineRule", "ccwRect", "validationRule", "repairConvexHull", "autoIndex", "true") [CD]
+Line_2 $$ public void testJtsContextFactory() --> Line_12 $$ assertEquals(300, ctx.getWorldBounds().getMaxY(), 0.0) [CD]

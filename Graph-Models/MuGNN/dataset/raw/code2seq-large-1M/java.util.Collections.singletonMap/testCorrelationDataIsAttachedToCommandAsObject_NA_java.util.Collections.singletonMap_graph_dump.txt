@@ -1,0 +1,7 @@
+Line_2 $$ public void testCorrelationDataIsAttachedToCommandAsObject() --> Line_3 $$ UnitOfWork<CommandMessage<?>> unitOfWork = DefaultUnitOfWork.startAndGet(null) [CD]
+Line_2 $$ public void testCorrelationDataIsAttachedToCommandAsObject() --> Line_4 $$ unitOfWork.registerCorrelationDataProvider( message -> Collections.singletonMap("correlationId", "test")) [CD]
+Line_3 $$ UnitOfWork<CommandMessage<?>> unitOfWork = DefaultUnitOfWork.startAndGet(null) --> Line_4 $$ unitOfWork.registerCorrelationDataProvider( message -> Collections.singletonMap("correlationId", "test")) [FD]
+Line_2 $$ public void testCorrelationDataIsAttachedToCommandAsObject() --> Line_5 $$ testSubject.send("Hello") [CD]
+Line_2 $$ public void testCorrelationDataIsAttachedToCommandAsObject() --> Line_6 $$ verify(mockCommandBus).dispatch(argThat( x -> "test".equals(x.getMetaData().get("correlationId"))), isA(CommandCallback.class)) [CD]
+Line_2 $$ public void testCorrelationDataIsAttachedToCommandAsObject() --> Line_7 $$ CurrentUnitOfWork.clear(unitOfWork) [CD]
+Line_3 $$ UnitOfWork<CommandMessage<?>> unitOfWork = DefaultUnitOfWork.startAndGet(null) --> Line_7 $$ CurrentUnitOfWork.clear(unitOfWork) [FD]

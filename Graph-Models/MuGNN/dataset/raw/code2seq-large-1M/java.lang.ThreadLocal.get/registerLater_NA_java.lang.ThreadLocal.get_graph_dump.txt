@@ -1,0 +1,5 @@
+Line_2 $$ public static <T> void registerLater(MeterRegistry registry, MeterIdPrefix idPrefix, Class<T> type, BiFunction<MeterRegistry, MeterIdPrefix, T> factory) --> Line_3 $$ final RegistrationState registrationState = MicrometerUtil.registrationState.get() [CD]
+Line_2 $$ public static <T> void registerLater(MeterRegistry registry, MeterIdPrefix idPrefix, Class<T> type, BiFunction<MeterRegistry, MeterIdPrefix, T> factory) --> Line_4 $$ if (!registrationState.isRegistering) [CD]
+Line_4 $$ if (!registrationState.isRegistering) --> Line_5 $$ register(registry, idPrefix, type, factory) [CD]
+Line_2 $$ public static <T> void registerLater(MeterRegistry registry, MeterIdPrefix idPrefix, Class<T> type, BiFunction<MeterRegistry, MeterIdPrefix, T> factory) --> Line_5 $$ register(registry, idPrefix, type, factory) [FD]
+Line_4 $$ if (!registrationState.isRegistering) --> Line_7 $$ registrationState.pendingRegistrations.add(new PendingRegistration(registry, idPrefix, type, factory)) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private Method getReadMethod(String propertyName, Class<?> clazz) --> Line_3 $$ if (!propertyGetters.containsKey(clazz) || !propertyGetters.get(clazz).containsKey(propertyName)) [FD]
+Line_2 $$ private Method getReadMethod(String propertyName, Class<?> clazz) --> Line_3 $$ if (!propertyGetters.containsKey(clazz) || !propertyGetters.get(clazz).containsKey(propertyName)) [CD]
+Line_3 $$ if (!propertyGetters.containsKey(clazz) || !propertyGetters.get(clazz).containsKey(propertyName)) --> Line_4 $$ findGetAndCheckMethods(propertyName, clazz) [CD]
+Line_2 $$ private Method getReadMethod(String propertyName, Class<?> clazz) --> Line_4 $$ findGetAndCheckMethods(propertyName, clazz) [FD]
+Line_2 $$ private Method getReadMethod(String propertyName, Class<?> clazz) --> Line_6 $$ return propertyGetters.get(clazz).get(propertyName) [FD]
+Line_2 $$ private Method getReadMethod(String propertyName, Class<?> clazz) --> Line_6 $$ return propertyGetters.get(clazz).get(propertyName) [CD]

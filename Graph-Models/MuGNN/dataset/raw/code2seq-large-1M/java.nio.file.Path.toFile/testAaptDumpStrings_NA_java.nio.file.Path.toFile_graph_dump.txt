@@ -1,0 +1,6 @@
+Line_3 $$ try (ZipFile apkZip = new ZipFile(apkPath.toFile())) --> Line_4 $$ ByteBuffer buf = ResChunk.wrap(ByteStreams.toByteArray(apkZip.getInputStream(apkZip.getEntry("resources.arsc")))) [FD]
+Line_5 $$ ResourceTable resourceTable = ResourceTable.get(buf) --> Line_7 $$ resourceTable.dumpStrings(new PrintStream(baos)) [FD]
+Line_6 $$ ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_8 $$ String content = new String(baos.toByteArray(), Charsets.UTF_8) [FD]
+Line_9 $$ Path stringsOutput = filesystem.resolve(filesystem.getPath(APK_NAME + ".strings")) --> Line_10 $$ String expected = new String(Files.readAllBytes(stringsOutput)) [FD]
+Line_10 $$ String expected = new String(Files.readAllBytes(stringsOutput)) --> Line_11 $$ MoreAsserts.assertLargeStringsEqual(expected, content) [FD]
+Line_8 $$ String content = new String(baos.toByteArray(), Charsets.UTF_8) --> Line_11 $$ MoreAsserts.assertLargeStringsEqual(expected, content) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ final void pingUpdated(int rtt, int jitter) --> Line_3 $$ if (rtt < 0 || rtt > 10000 || jitter > 5000) [CD]
+Line_3 $$ if (rtt < 0 || rtt > 10000 || jitter > 5000) --> Line_4 $$ return [CD]
+Line_2 $$ final void pingUpdated(int rtt, int jitter) --> Line_6 $$ int newLeadTime = (int) (rtt / 2 * 1.1f + jitter * 2f + NetworkConstants.Client.LOCKSTEP_PERIOD * 1.5f) [CD]
+Line_2 $$ final void pingUpdated(int rtt, int jitter) --> Line_7 $$ if (newLeadTime > minimumLeadTimeMs) [CD]
+Line_6 $$ int newLeadTime = (int) (rtt / 2 * 1.1f + jitter * 2f + NetworkConstants.Client.LOCKSTEP_PERIOD * 1.5f) --> Line_7 $$ if (newLeadTime > minimumLeadTimeMs) [FD]
+Line_2 $$ final void pingUpdated(int rtt, int jitter) --> Line_13 $$ if (rtt > NetworkConstants.RTT_LOGGING_THRESHOLD || jitter > NetworkConstants.JITTER_LOGGING_THRESHOLD) [CD]
+Line_13 $$ if (rtt > NetworkConstants.RTT_LOGGING_THRESHOLD || jitter > NetworkConstants.JITTER_LOGGING_THRESHOLD) --> Line_14 $$ logger.info(String.format(Locale.ENGLISH, "rtt/2: %5d   jitter: %d   min lead time: %4d   lead steps: %2d", rtt / 2, jitter, minimumLeadTimeMs, leadSteps)) [CD]
+Line_2 $$ final void pingUpdated(int rtt, int jitter) --> Line_14 $$ logger.info(String.format(Locale.ENGLISH, "rtt/2: %5d   jitter: %d   min lead time: %4d   lead steps: %2d", rtt / 2, jitter, minimumLeadTimeMs, leadSteps)) [FD]

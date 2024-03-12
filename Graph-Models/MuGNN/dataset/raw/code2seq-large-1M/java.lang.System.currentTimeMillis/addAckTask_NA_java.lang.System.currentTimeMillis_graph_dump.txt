@@ -1,0 +1,6 @@
+Line_2 $$ private void addAckTask(int messageId) --> Line_3 $$ timeLine.addTimePoint("waiting-ack") [CD]
+Line_2 $$ private void addAckTask(int messageId) --> Line_4 $$ message.finalized() [CD]
+Line_2 $$ private void addAckTask(int messageId) --> Line_5 $$ AckTask task = AckTask.from(messageId).setCallback(new PushAckCallback(message, timeLine, mPushServer.getPushCenter())) [FD]
+Line_2 $$ private void addAckTask(int messageId) --> Line_5 $$ AckTask task = AckTask.from(messageId).setCallback(new PushAckCallback(message, timeLine, mPushServer.getPushCenter())) [CD]
+Line_2 $$ private void addAckTask(int messageId) --> Line_6 $$ mPushServer.getPushCenter().getAckTaskQueue().add(task, message.getTimeoutMills() - (int) (System.currentTimeMillis() - start)) [CD]
+Line_5 $$ AckTask task = AckTask.from(messageId).setCallback(new PushAckCallback(message, timeLine, mPushServer.getPushCenter())) --> Line_6 $$ mPushServer.getPushCenter().getAckTaskQueue().add(task, message.getTimeoutMills() - (int) (System.currentTimeMillis() - start)) [FD]

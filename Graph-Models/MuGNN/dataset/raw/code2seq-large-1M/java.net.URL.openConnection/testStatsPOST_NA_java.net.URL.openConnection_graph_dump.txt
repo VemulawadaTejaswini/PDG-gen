@@ -1,0 +1,7 @@
+Line_2 $$ public void testStatsPOST() throws Exception --> Line_3 $$ String statsUrl = startServer() + "/rest/v1/system/stats?active=true" [CD]
+Line_5 $$ HttpURLConnection conn = (HttpURLConnection) new URL(statsUrl).openConnection() --> Line_6 $$ conn.setRequestMethod("POST") [FD]
+Line_5 $$ HttpURLConnection conn = (HttpURLConnection) new URL(statsUrl).openConnection() --> Line_7 $$ conn.setRequestProperty(SSOConstants.X_REST_CALL.toLowerCase(), "test") [FD]
+Line_5 $$ HttpURLConnection conn = (HttpURLConnection) new URL(statsUrl).openConnection() --> Line_8 $$ conn.setDoInput(true) [FD]
+Line_5 $$ HttpURLConnection conn = (HttpURLConnection) new URL(statsUrl).openConnection() --> Line_9 $$ Assert.assertEquals(HttpURLConnection.HTTP_OK, conn.getResponseCode()) [FD]
+Line_5 $$ HttpURLConnection conn = (HttpURLConnection) new URL(statsUrl).openConnection() --> Line_10 $$ Assert.assertTrue(conn.getContentType().startsWith("application/json")) [FD]
+Line_5 $$ HttpURLConnection conn = (HttpURLConnection) new URL(statsUrl).openConnection() --> Line_11 $$ Map map = ObjectMapperFactory.get().readValue(conn.getInputStream(), Map.class) [FD]

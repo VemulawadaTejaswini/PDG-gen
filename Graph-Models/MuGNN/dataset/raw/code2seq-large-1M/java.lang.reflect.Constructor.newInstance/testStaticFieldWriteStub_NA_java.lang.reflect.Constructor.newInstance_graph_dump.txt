@@ -1,0 +1,8 @@
+Line_2 $$ public void testStaticFieldWriteStub() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(StaticFieldAccessSample.class).visit(MemberSubstitution.strict().field(named(BAR)).stub().on(named(RUN))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testStaticFieldWriteStub() throws Exception --> Line_4 $$ Object instance = type.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testStaticFieldWriteStub() throws Exception --> Line_5 $$ assertThat(type.getDeclaredField(FOO).get(null), is((Object) FOO)) [CD]
+Line_2 $$ public void testStaticFieldWriteStub() throws Exception --> Line_6 $$ assertThat(type.getDeclaredField(BAR).get(null), is((Object) BAR)) [CD]
+Line_2 $$ public void testStaticFieldWriteStub() throws Exception --> Line_7 $$ assertThat(type.getDeclaredMethod(RUN).invoke(instance), nullValue(Object.class)) [CD]
+Line_4 $$ Object instance = type.getDeclaredConstructor().newInstance() --> Line_7 $$ assertThat(type.getDeclaredMethod(RUN).invoke(instance), nullValue(Object.class)) [FD]
+Line_2 $$ public void testStaticFieldWriteStub() throws Exception --> Line_8 $$ assertThat(type.getDeclaredField(FOO).get(null), is((Object) FOO)) [CD]
+Line_2 $$ public void testStaticFieldWriteStub() throws Exception --> Line_9 $$ assertThat(type.getDeclaredField(BAR).get(null), is((Object) BAR)) [CD]

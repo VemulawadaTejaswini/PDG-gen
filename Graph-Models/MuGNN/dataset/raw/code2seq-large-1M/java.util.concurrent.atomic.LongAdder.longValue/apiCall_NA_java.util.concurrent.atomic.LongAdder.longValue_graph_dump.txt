@@ -1,0 +1,6 @@
+Line_2 $$ public void apiCall() --> Line_3 $$ LongAdder rCount = new LongAdder() [CD]
+Line_2 $$ public void apiCall() --> Line_4 $$ final Flux<Integer> source = Flux.range(1, 100).doOnRequest(rCount::<>add) [CD]
+Line_2 $$ public void apiCall() --> Line_5 $$ StepVerifier.create(source.limitRequest(3)).expectNext(1, 2, 3).verifyComplete() [CD]
+Line_4 $$ final Flux<Integer> source = Flux.range(1, 100).doOnRequest(rCount::<>add) --> Line_5 $$ StepVerifier.create(source.limitRequest(3)).expectNext(1, 2, 3).verifyComplete() [FD]
+Line_2 $$ public void apiCall() --> Line_6 $$ assertThat(rCount.longValue()).isEqualTo(3) [CD]
+Line_3 $$ LongAdder rCount = new LongAdder() --> Line_6 $$ assertThat(rCount.longValue()).isEqualTo(3) [FD]

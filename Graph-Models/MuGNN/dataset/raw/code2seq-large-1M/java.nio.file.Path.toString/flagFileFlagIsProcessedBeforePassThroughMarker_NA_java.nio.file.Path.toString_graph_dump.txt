@@ -1,0 +1,5 @@
+Line_2 $$ public void flagFileFlagIsProcessedBeforePassThroughMarker() throws Exception --> Line_3 $$ Path arg = tmp.newFile("argsfile") [CD]
+Line_2 $$ public void flagFileFlagIsProcessedBeforePassThroughMarker() throws Exception --> Line_4 $$ Files.write(arg, ImmutableList.of("arg2", "arg3")) [CD]
+Line_3 $$ Path arg = tmp.newFile("argsfile") --> Line_4 $$ Files.write(arg, ImmutableList.of("arg2", "arg3")) [FD]
+Line_2 $$ public void flagFileFlagIsProcessedBeforePassThroughMarker() throws Exception --> Line_5 $$ assertThat(BuckArgsMethods.expandAtFiles(ImmutableList.of("arg1", "--flagfile", arg.toString(), "--", "--flagfile", "foo"), ImmutableMap.of(RelativeCellName.ROOT_CELL_NAME, tmp.getRoot())), Matchers.contains("arg1", "arg2", "arg3", "--", "--flagfile", "foo")) [CD]
+Line_3 $$ Path arg = tmp.newFile("argsfile") --> Line_5 $$ assertThat(BuckArgsMethods.expandAtFiles(ImmutableList.of("arg1", "--flagfile", arg.toString(), "--", "--flagfile", "foo"), ImmutableMap.of(RelativeCellName.ROOT_CELL_NAME, tmp.getRoot())), Matchers.contains("arg1", "arg2", "arg3", "--", "--flagfile", "foo")) [FD]

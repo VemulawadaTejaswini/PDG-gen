@@ -1,0 +1,6 @@
+Line_2 $$ private void trace(final String format, final Object... params) --> Line_3 $$ if (LOG.isTraceEnabled()) [CD]
+Line_3 $$ if (LOG.isTraceEnabled()) --> Line_4 $$ final StackTraceElement[] stack = Thread.currentThread().getStackTrace() [CD]
+Line_3 $$ if (LOG.isTraceEnabled()) --> Line_5 $$ final String message = String.format(format, params) [CD]
+Line_2 $$ private void trace(final String format, final Object... params) --> Line_5 $$ final String message = String.format(format, params) [FD]
+Line_3 $$ if (LOG.isTraceEnabled()) --> Line_6 $$ LOG.trace(String.format("%s: %s", stack[2].getMethodName(), message)) [CD]
+Line_5 $$ final String message = String.format(format, params) --> Line_6 $$ LOG.trace(String.format("%s: %s", stack[2].getMethodName(), message)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testRevisionArchiveData() throws Exception --> Line_3 $$ factory.begin(() -> [CD]
+Line_6 $$ ProjectControl lock = new ProjectControl(store, stored) --> Line_7 $$ StoredRevision storedRev = lock.insertRevision(createRevision("rev1")) [FD]
+Line_6 $$ ProjectControl lock = new ProjectControl(store, stored) --> Line_8 $$ lock.insertRevisionArchiveData(storedRev.getId(), data) [FD]
+Line_4 $$ byte[] data = "archive data".getBytes(UTF_8) --> Line_8 $$ lock.insertRevisionArchiveData(storedRev.getId(), data) [FD]
+Line_7 $$ StoredRevision storedRev = lock.insertRevision(createRevision("rev1")) --> Line_8 $$ lock.insertRevisionArchiveData(storedRev.getId(), data) [FD]
+Line_4 $$ byte[] data = "archive data".getBytes(UTF_8) --> Line_11 $$ assertArrayEquals(data, store.getRevisionArchiveData(rev.getId())) [FD]
+Line_5 $$ StoredRevision rev = store.putAndLockProject(Project.of("proj1"), ( store,  stored) -> --> Line_11 $$ assertArrayEquals(data, store.getRevisionArchiveData(rev.getId())) [FD]
+Line_5 $$ StoredRevision rev = store.putAndLockProject(Project.of("proj1"), ( store,  stored) -> --> Line_12 $$ store.getRevisionArchiveData(rev.getId() + 10) [FD]

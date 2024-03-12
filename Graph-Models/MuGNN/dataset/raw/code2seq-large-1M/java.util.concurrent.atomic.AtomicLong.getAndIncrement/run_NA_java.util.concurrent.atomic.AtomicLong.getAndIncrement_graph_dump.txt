@@ -1,0 +1,5 @@
+Line_4 $$ TextMessage message = session.createTextMessage("request: message #" + messageCount.getAndIncrement()) --> Line_5 $$ message.setJMSReplyTo(tempDest) [FD]
+Line_4 $$ TextMessage message = session.createTextMessage("request: message #" + messageCount.getAndIncrement()) --> Line_6 $$ producer.send(message) [FD]
+Line_4 $$ TextMessage message = session.createTextMessage("request: message #" + messageCount.getAndIncrement()) --> Line_7 $$ LOG.info("SENDER: Message [" + message.getText() + "] has been sent.") [FD]
+Line_8 $$ Message incomingMessage = consumer.receive(timeToSleep) --> Line_9 $$ if (incomingMessage instanceof TextMessage) [FD]
+Line_9 $$ if (incomingMessage instanceof TextMessage) --> Line_17 $$ LOG.info("SENDER: Did not get a response this time") [CD]

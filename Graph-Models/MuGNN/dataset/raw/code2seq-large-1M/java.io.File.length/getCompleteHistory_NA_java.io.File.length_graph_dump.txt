@@ -1,0 +1,5 @@
+Line_2 $$ public synchronized History getCompleteHistory() throws IOException --> Line_3 $$ if (persistentHistoryFile.length() <= 0) [CD]
+Line_3 $$ if (persistentHistoryFile.length() <= 0) --> Line_4 $$ return new History(sessionHistory.sequences()) [CD]
+Line_6 $$ try (FileChannel channel = FileChannel.open(persistentHistoryFile.toPath(), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE)) --> Line_7 $$ try (FileLock lock = channel.lock()) [FD]
+Line_6 $$ try (FileChannel channel = FileChannel.open(persistentHistoryFile.toPath(), StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE)) --> Line_8 $$ History history = History.importHistory(new CloseShieldInputStream(newInputStream(channel))) [FD]
+Line_8 $$ History history = History.importHistory(new CloseShieldInputStream(newInputStream(channel))) --> Line_9 $$ history.addAll(sessionHistory.sequences()) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testInternalTableWithCustomLocation() throws Exception --> Line_3 $$ executeUpdate("CREATE DATABASE custom LOCATION '/user/hive/custom/'") [CD]
+Line_2 $$ public void testInternalTableWithCustomLocation() throws Exception --> Line_4 $$ executeUpdate("CREATE TABLE custom.tbl(id int) STORED AS AVRO LOCATION '/user/hive/tbl/'") [CD]
+Line_2 $$ public void testInternalTableWithCustomLocation() throws Exception --> Line_5 $$ HiveMetadataProcessor processor = new HiveMetadataProcessorBuilder().database("custom").table("tbl").partitions(Collections.emptyList()).build() [CD]
+Line_2 $$ public void testInternalTableWithCustomLocation() throws Exception --> Line_6 $$ processRecordsAndAssertData(processor, "custom.tbl") [CD]
+Line_5 $$ HiveMetadataProcessor processor = new HiveMetadataProcessorBuilder().database("custom").table("tbl").partitions(Collections.emptyList()).build() --> Line_6 $$ processRecordsAndAssertData(processor, "custom.tbl") [FD]
+Line_2 $$ public void testInternalTableWithCustomLocation() throws Exception --> Line_7 $$ assertTableLocation("custom.tbl", "/user/hive/tbl") [CD]

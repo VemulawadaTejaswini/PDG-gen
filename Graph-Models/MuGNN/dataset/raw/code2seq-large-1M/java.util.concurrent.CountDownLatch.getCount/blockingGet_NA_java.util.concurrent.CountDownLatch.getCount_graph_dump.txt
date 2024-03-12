@@ -1,0 +1,8 @@
+Line_2 $$ T blockingGet(long timeout, TimeUnit unit) --> Line_3 $$ if (getCount() != 0) [CD]
+Line_2 $$ T blockingGet(long timeout, TimeUnit unit) --> Line_5 $$ if (!await(timeout, unit)) [FD]
+Line_5 $$ if (!await(timeout, unit)) --> Line_6 $$ dispose() [CD]
+Line_2 $$ T blockingGet(long timeout, TimeUnit unit) --> Line_14 $$ Throwable ex = error [CD]
+Line_2 $$ T blockingGet(long timeout, TimeUnit unit) --> Line_15 $$ if (ex != null) [CD]
+Line_14 $$ Throwable ex = error --> Line_15 $$ if (ex != null) [FD]
+Line_14 $$ Throwable ex = error --> Line_16 $$ throw ExceptionHelper.wrapOrThrow(ex) [FD]
+Line_2 $$ T blockingGet(long timeout, TimeUnit unit) --> Line_18 $$ return value [CD]

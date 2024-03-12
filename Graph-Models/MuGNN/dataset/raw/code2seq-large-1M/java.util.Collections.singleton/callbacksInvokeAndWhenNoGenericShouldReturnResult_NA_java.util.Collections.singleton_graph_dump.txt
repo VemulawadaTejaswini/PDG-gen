@@ -1,0 +1,6 @@
+Line_2 $$ public void callbacksInvokeAndWhenNoGenericShouldReturnResult() --> Line_3 $$ NonGenericFactory callbackInstance = mock(NonGenericFactory.class) [CD]
+Line_2 $$ public void callbacksInvokeAndWhenNoGenericShouldReturnResult() --> Line_4 $$ String argument = "foo" [CD]
+Line_2 $$ public void callbacksInvokeAndWhenNoGenericShouldReturnResult() --> Line_5 $$ given(callbackInstance.handle("foo")).willReturn(123) [CD]
+Line_2 $$ public void callbacksInvokeAndWhenNoGenericShouldReturnResult() --> Line_6 $$ Stream<Integer> result = LambdaSafe.callbacks(NonGenericFactory.class, Collections.singleton(callbackInstance), argument).invokeAnd(( c) -> c.handle(argument)) [CD]
+Line_4 $$ String argument = "foo" --> Line_6 $$ Stream<Integer> result = LambdaSafe.callbacks(NonGenericFactory.class, Collections.singleton(callbackInstance), argument).invokeAnd(( c) -> c.handle(argument)) [FD]
+Line_2 $$ public void callbacksInvokeAndWhenNoGenericShouldReturnResult() --> Line_7 $$ assertThat(result).containsExactly(123) [CD]

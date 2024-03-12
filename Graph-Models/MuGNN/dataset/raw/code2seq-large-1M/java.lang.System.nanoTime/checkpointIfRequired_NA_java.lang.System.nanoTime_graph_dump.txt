@@ -1,0 +1,8 @@
+Line_2 $$ public void checkpointIfRequired() --> Line_3 $$ if (fileLockMethod != FileLock.LOCK_SERIALIZED || readOnly || !reconnectChangePending || closing) [CD]
+Line_3 $$ if (fileLockMethod != FileLock.LOCK_SERIALIZED || readOnly || !reconnectChangePending || closing) --> Line_4 $$ return [CD]
+Line_2 $$ public void checkpointIfRequired() --> Line_6 $$ long now = System.nanoTime() [CD]
+Line_2 $$ public void checkpointIfRequired() --> Line_7 $$ if (now > reconnectCheckNext + reconnectCheckDelayNs) [CD]
+Line_6 $$ long now = System.nanoTime() --> Line_7 $$ if (now > reconnectCheckNext + reconnectCheckDelayNs) [FD]
+Line_7 $$ if (now > reconnectCheckNext + reconnectCheckDelayNs) --> Line_8 $$ if (SysProperties.CHECK && checkpointAllowed < 0) [CD]
+Line_8 $$ if (SysProperties.CHECK && checkpointAllowed < 0) --> Line_9 $$ DbException.throwInternalError("" + checkpointAllowed) [CD]
+Line_12 $$ if (checkpointAllowed > 0) --> Line_13 $$ return [CD]

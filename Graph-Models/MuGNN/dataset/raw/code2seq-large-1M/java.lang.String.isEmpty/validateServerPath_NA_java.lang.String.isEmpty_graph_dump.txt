@@ -1,0 +1,8 @@
+Line_2 $$ public static String validateServerPath(String path) --> Line_4 $$ if (path.isEmpty()) [FD]
+Line_4 $$ if (path.isEmpty()) --> Line_5 $$ return null [CD]
+Line_6 $$ URI uri = new URI(path) --> Line_7 $$ boolean validScheme = uri.getScheme().equals("https") || (uri.getScheme().equals("http") && uri.getHost().equals("localhost")) [FD]
+Line_7 $$ boolean validScheme = uri.getScheme().equals("https") || (uri.getScheme().equals("http") && uri.getHost().equals("localhost")) --> Line_8 $$ if (validScheme && uri.getPath().startsWith(HTTP_PATH_PREFIX + HTTP_PROJECT_PATH)) [FD]
+Line_6 $$ URI uri = new URI(path) --> Line_8 $$ if (validScheme && uri.getPath().startsWith(HTTP_PATH_PREFIX + HTTP_PROJECT_PATH)) [FD]
+Line_8 $$ if (validScheme && uri.getPath().startsWith(HTTP_PATH_PREFIX + HTTP_PROJECT_PATH)) --> Line_9 $$ return uri.getHost() [CD]
+Line_6 $$ URI uri = new URI(path) --> Line_9 $$ return uri.getHost() [FD]
+Line_8 $$ if (validScheme && uri.getPath().startsWith(HTTP_PATH_PREFIX + HTTP_PROJECT_PATH)) --> Line_11 $$ return null [CD]

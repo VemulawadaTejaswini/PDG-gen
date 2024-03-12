@@ -1,0 +1,7 @@
+Line_2 $$ public void testUpload() throws Exception --> Line_3 $$ Path dir = Files.createTempDirectory(AfcClientTest.class.getSimpleName()) [CD]
+Line_5 $$ Path foo = Files.createDirectory(dir.resolve("foo")) --> Line_6 $$ Path bar = Files.createDirectory(foo.resolve("bar")) [FD]
+Line_6 $$ Path bar = Files.createDirectory(foo.resolve("bar")) --> Line_7 $$ Path wooz = Files.createFile(bar.resolve("wooz")) [FD]
+Line_5 $$ Path foo = Files.createDirectory(dir.resolve("foo")) --> Line_8 $$ Files.createSymbolicLink(foo.resolve("rooz"), foo.relativize(wooz)) [FD]
+Line_7 $$ Path wooz = Files.createFile(bar.resolve("wooz")) --> Line_8 $$ Files.createSymbolicLink(foo.resolve("rooz"), foo.relativize(wooz)) [FD]
+Line_5 $$ Path foo = Files.createDirectory(dir.resolve("foo")) --> Line_10 $$ client.upload(foo.toFile(), "/baz") [FD]
+Line_11 $$ StringWriter sw = new StringWriter() --> Line_13 $$ assertEquals("baz/\n" + "  foo/\n" + "    bar/\n" + "      wooz 0 (S_IFREG)\n" + "    rooz -> bar/wooz\n", sw.toString()) [FD]

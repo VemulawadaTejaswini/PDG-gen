@@ -1,0 +1,8 @@
+Line_2 $$ public long valueAsLong() --> Line_3 $$ if (INTEGER == valueType) [CD]
+Line_3 $$ if (INTEGER == valueType) --> Line_4 $$ return _intValue [CD]
+Line_3 $$ if (INTEGER == valueType) --> Line_5 $$ if (DOUBLE == valueType) [CD]
+Line_5 $$ if (DOUBLE == valueType) --> Line_6 $$ if (Long.MIN_VALUE > _doubleValue || _doubleValue > Long.MAX_VALUE) [CD]
+Line_6 $$ if (Long.MIN_VALUE > _doubleValue || _doubleValue > Long.MAX_VALUE) --> Line_7 $$ throwNumberFormatException("a long", "overflowing double value " + _doubleValue) [CD]
+Line_5 $$ if (DOUBLE == valueType) --> Line_9 $$ return (long) _doubleValue [CD]
+Line_5 $$ if (DOUBLE == valueType) --> Line_10 $$ if (STRING == valueType) [CD]
+Line_10 $$ if (STRING == valueType) --> Line_11 $$ return Long.parseLong(_stringValue) [CD]

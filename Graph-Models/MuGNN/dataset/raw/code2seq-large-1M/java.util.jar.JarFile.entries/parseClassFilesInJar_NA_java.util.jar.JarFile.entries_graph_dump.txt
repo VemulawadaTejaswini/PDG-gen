@@ -1,0 +1,8 @@
+Line_2 $$ public static Map<String, CompiledClass> parseClassFilesInJar(File jar) --> Line_3 $$ Map<String, CompiledClass> result = new HashMap<String, CompiledClass>() [CD]
+Line_5 $$ JarFile jarfile = new JarFile(jar) --> Line_6 $$ for (Enumeration<JarEntry> entries = jarfile.entries(); entries.hasMoreElements(); ) [FD]
+Line_5 $$ JarFile jarfile = new JarFile(jar) --> Line_10 $$ CompiledClass parsed = CompiledClass.getInstance(jarfile.getInputStream(entry)) [FD]
+Line_10 $$ CompiledClass parsed = CompiledClass.getInstance(jarfile.getInputStream(entry)) --> Line_11 $$ if (!parsed.isInterface()) [FD]
+Line_11 $$ if (!parsed.isInterface()) --> Line_12 $$ result.put(parsed.fullyQualifiedName(), parsed) [CD]
+Line_3 $$ Map<String, CompiledClass> result = new HashMap<String, CompiledClass>() --> Line_12 $$ result.put(parsed.fullyQualifiedName(), parsed) [FD]
+Line_10 $$ CompiledClass parsed = CompiledClass.getInstance(jarfile.getInputStream(entry)) --> Line_12 $$ result.put(parsed.fullyQualifiedName(), parsed) [FD]
+Line_2 $$ public static Map<String, CompiledClass> parseClassFilesInJar(File jar) --> Line_23 $$ return result [CD]

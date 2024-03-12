@@ -1,0 +1,6 @@
+Line_2 $$ public ShortDirectPCM changeFrequency(float rate) --> Line_3 $$ ByteBuffer samples = getSample((int) (sampleRate / rate)) [CD]
+Line_2 $$ public ShortDirectPCM changeFrequency(float rate) --> Line_4 $$ int start = (Math.min((int) ((long) this.start / rate / this.sampleRate), samples.limit() / 2 - 1) / channels) * channels [CD]
+Line_3 $$ ByteBuffer samples = getSample((int) (sampleRate / rate)) --> Line_4 $$ int start = (Math.min((int) ((long) this.start / rate / this.sampleRate), samples.limit() / 2 - 1) / channels) * channels [FD]
+Line_2 $$ public ShortDirectPCM changeFrequency(float rate) --> Line_5 $$ int len = (Math.min((int) ((long) this.len / rate / this.sampleRate), samples.limit() / 2 - start) / channels) * channels [CD]
+Line_3 $$ ByteBuffer samples = getSample((int) (sampleRate / rate)) --> Line_5 $$ int len = (Math.min((int) ((long) this.len / rate / this.sampleRate), samples.limit() / 2 - start) / channels) * channels [FD]
+Line_2 $$ public ShortDirectPCM changeFrequency(float rate) --> Line_6 $$ return new ShortDirectPCM(channels, sampleRate, start, len, samples) [CD]

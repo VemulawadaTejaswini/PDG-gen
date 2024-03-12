@@ -1,0 +1,6 @@
+Line_2 $$ private ImmutableList<Path> getContents(Path root) throws IOException --> Line_3 $$ DirectoryStream.Filter<? super Path> skipIgnoredFilter =  input -> !isIgnored(relativize(input)) [CD]
+Line_2 $$ private ImmutableList<Path> getContents(Path root) throws IOException --> Line_4 $$ DirectoryStream.Filter<? super Path> doNotSkipFilter =  input -> true [CD]
+Line_2 $$ private ImmutableList<Path> getContents(Path root) throws IOException --> Line_5 $$ DirectoryStream.Filter<? super Path> filter = skipIgnored ? skipIgnoredFilter : doNotSkipFilter [CD]
+Line_2 $$ private ImmutableList<Path> getContents(Path root) throws IOException --> Line_6 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(root, filter)) [FD]
+Line_5 $$ DirectoryStream.Filter<? super Path> filter = skipIgnored ? skipIgnoredFilter : doNotSkipFilter --> Line_6 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(root, filter)) [FD]
+Line_6 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(root, filter)) --> Line_7 $$ return FluentIterable.from(stream).toSortedList(Comparator.naturalOrder()) [FD]

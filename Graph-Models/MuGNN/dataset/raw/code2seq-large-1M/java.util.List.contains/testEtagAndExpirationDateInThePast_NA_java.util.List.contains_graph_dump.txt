@@ -1,0 +1,8 @@
+Line_2 $$ public void testEtagAndExpirationDateInThePast() throws Exception --> Line_3 $$ String lastModifiedDate = formatDate(-2, TimeUnit.HOURS) [CD]
+Line_2 $$ public void testEtagAndExpirationDateInThePast() throws Exception --> Line_4 $$ RecordedRequest conditionalRequest = assertConditionallyCached(new MockResponse().addHeader("ETag: v1").addHeader("Last-Modified: " + lastModifiedDate).addHeader("Expires: " + formatDate(-1, TimeUnit.HOURS))) [CD]
+Line_2 $$ public void testEtagAndExpirationDateInThePast() throws Exception --> Line_5 $$ List<String> headers = conditionalRequest.getHeaders() [CD]
+Line_4 $$ RecordedRequest conditionalRequest = assertConditionallyCached(new MockResponse().addHeader("ETag: v1").addHeader("Last-Modified: " + lastModifiedDate).addHeader("Expires: " + formatDate(-1, TimeUnit.HOURS))) --> Line_5 $$ List<String> headers = conditionalRequest.getHeaders() [FD]
+Line_2 $$ public void testEtagAndExpirationDateInThePast() throws Exception --> Line_6 $$ assertTrue(headers.contains("If-None-Match: v1")) [CD]
+Line_5 $$ List<String> headers = conditionalRequest.getHeaders() --> Line_6 $$ assertTrue(headers.contains("If-None-Match: v1")) [FD]
+Line_2 $$ public void testEtagAndExpirationDateInThePast() throws Exception --> Line_7 $$ assertTrue(headers.contains("If-Modified-Since: " + lastModifiedDate)) [CD]
+Line_5 $$ List<String> headers = conditionalRequest.getHeaders() --> Line_7 $$ assertTrue(headers.contains("If-Modified-Since: " + lastModifiedDate)) [FD]

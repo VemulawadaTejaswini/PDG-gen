@@ -1,0 +1,7 @@
+Line_2 $$ public void rollbackFile() throws IOException --> Line_3 $$ File file = this.temp.newFile("rollback-file.sql") [CD]
+Line_2 $$ public void rollbackFile() throws IOException --> Line_4 $$ this.contextRunner.withUserConfiguration(EmbeddedDataSourceConfiguration.class).withPropertyValues("spring.liquibase.rollbackFile:" + file.getAbsolutePath()).run(( context) -> [CD]
+Line_3 $$ File file = this.temp.newFile("rollback-file.sql") --> Line_4 $$ this.contextRunner.withUserConfiguration(EmbeddedDataSourceConfiguration.class).withPropertyValues("spring.liquibase.rollbackFile:" + file.getAbsolutePath()).run(( context) -> [FD]
+Line_3 $$ File file = this.temp.newFile("rollback-file.sql") --> Line_7 $$ assertThat(actualFile).isEqualTo(file).exists() [FD]
+Line_6 $$ File actualFile = (File) ReflectionTestUtils.getField(liquibase, "rollbackFile") --> Line_7 $$ assertThat(actualFile).isEqualTo(file).exists() [FD]
+Line_3 $$ File file = this.temp.newFile("rollback-file.sql") --> Line_8 $$ String content = new String(FileCopyUtils.copyToByteArray(file)) [FD]
+Line_8 $$ String content = new String(FileCopyUtils.copyToByteArray(file)) --> Line_9 $$ assertThat(content).contains("DROP TABLE PUBLIC.customer;") [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public int sendto(FileDescriptor fd, ByteBuffer buffer, int flags, InetAddress inetAddress, int port) throws ErrnoException, SocketException --> Line_3 $$ if (buffer.isDirect()) [FD]
+Line_2 $$ public int sendto(FileDescriptor fd, ByteBuffer buffer, int flags, InetAddress inetAddress, int port) throws ErrnoException, SocketException --> Line_3 $$ if (buffer.isDirect()) [CD]
+Line_3 $$ if (buffer.isDirect()) --> Line_4 $$ return sendtoBytes(fd, buffer, buffer.position(), buffer.remaining(), flags, inetAddress, port) [CD]
+Line_2 $$ public int sendto(FileDescriptor fd, ByteBuffer buffer, int flags, InetAddress inetAddress, int port) throws ErrnoException, SocketException --> Line_4 $$ return sendtoBytes(fd, buffer, buffer.position(), buffer.remaining(), flags, inetAddress, port) [FD]
+Line_3 $$ if (buffer.isDirect()) --> Line_6 $$ return sendtoBytes(fd, NioUtils.unsafeArray(buffer), NioUtils.unsafeArrayOffset(buffer) + buffer.position(), buffer.remaining(), flags, inetAddress, port) [CD]
+Line_2 $$ public int sendto(FileDescriptor fd, ByteBuffer buffer, int flags, InetAddress inetAddress, int port) throws ErrnoException, SocketException --> Line_6 $$ return sendtoBytes(fd, NioUtils.unsafeArray(buffer), NioUtils.unsafeArrayOffset(buffer) + buffer.position(), buffer.remaining(), flags, inetAddress, port) [FD]

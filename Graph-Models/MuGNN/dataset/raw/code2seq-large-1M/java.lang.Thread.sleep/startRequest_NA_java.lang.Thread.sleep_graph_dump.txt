@@ -1,0 +1,8 @@
+Line_2 $$ public void startRequest(OSDRequest rq) --> Line_3 $$ Auth authData = rq.getRPCRequest().getHeader().getRequestHeader().getAuthData() [CD]
+Line_2 $$ public void startRequest(OSDRequest rq) --> Line_3 $$ Auth authData = rq.getRPCRequest().getHeader().getRequestHeader().getAuthData() [FD]
+Line_2 $$ public void startRequest(OSDRequest rq) --> Line_4 $$ if (master.getConfig().getAdminPassword().length() > 0 && !master.getConfig().getAdminPassword().equals(authData.getAuthPasswd())) [CD]
+Line_3 $$ Auth authData = rq.getRPCRequest().getHeader().getRequestHeader().getAuthData() --> Line_4 $$ if (master.getConfig().getAdminPassword().length() > 0 && !master.getConfig().getAdminPassword().equals(authData.getAuthPasswd())) [FD]
+Line_4 $$ if (master.getConfig().getAdminPassword().length() > 0 && !master.getConfig().getAdminPassword().equals(authData.getAuthPasswd())) --> Line_5 $$ rq.sendError(ErrorType.ERRNO, POSIXErrno.POSIX_ERROR_EACCES, "this operation requires an admin password") [CD]
+Line_2 $$ public void startRequest(OSDRequest rq) --> Line_5 $$ rq.sendError(ErrorType.ERRNO, POSIXErrno.POSIX_ERROR_EACCES, "this operation requires an admin password") [FD]
+Line_4 $$ if (master.getConfig().getAdminPassword().length() > 0 && !master.getConfig().getAdminPassword().equals(authData.getAuthPasswd())) --> Line_6 $$ return [CD]
+Line_2 $$ public void startRequest(OSDRequest rq) --> Line_9 $$ rq.sendSuccess(null, null) [FD]

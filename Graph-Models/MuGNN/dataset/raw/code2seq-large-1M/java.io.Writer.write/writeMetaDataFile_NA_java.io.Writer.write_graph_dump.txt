@@ -1,0 +1,8 @@
+Line_2 $$ public static void writeMetaDataFile(String mtdfile, ValueType vt, ValueType[] schema, DataType dt, MatrixCharacteristics mc, OutputInfo outinfo, FileFormatProperties formatProperties) throws IOException --> Line_3 $$ Path path = new Path(mtdfile) [CD]
+Line_2 $$ public static void writeMetaDataFile(String mtdfile, ValueType vt, ValueType[] schema, DataType dt, MatrixCharacteristics mc, OutputInfo outinfo, FileFormatProperties formatProperties) throws IOException --> Line_4 $$ FileSystem fs = IOUtilFunctions.getFileSystem(path) [CD]
+Line_3 $$ Path path = new Path(mtdfile) --> Line_4 $$ FileSystem fs = IOUtilFunctions.getFileSystem(path) [FD]
+Line_4 $$ FileSystem fs = IOUtilFunctions.getFileSystem(path) --> Line_5 $$ try (BufferedWriter br = new BufferedWriter(new OutputStreamWriter(fs.create(path, true)))) [FD]
+Line_3 $$ Path path = new Path(mtdfile) --> Line_5 $$ try (BufferedWriter br = new BufferedWriter(new OutputStreamWriter(fs.create(path, true)))) [FD]
+Line_2 $$ public static void writeMetaDataFile(String mtdfile, ValueType vt, ValueType[] schema, DataType dt, MatrixCharacteristics mc, OutputInfo outinfo, FileFormatProperties formatProperties) throws IOException --> Line_6 $$ String mtd = metaDataToString(vt, schema, dt, mc, outinfo, formatProperties) [FD]
+Line_5 $$ try (BufferedWriter br = new BufferedWriter(new OutputStreamWriter(fs.create(path, true)))) --> Line_7 $$ br.write(mtd) [FD]
+Line_6 $$ String mtd = metaDataToString(vt, schema, dt, mc, outinfo, formatProperties) --> Line_7 $$ br.write(mtd) [FD]

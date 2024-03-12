@@ -1,0 +1,8 @@
+Line_2 $$ private void backupUserFiles(Map<Path, Path> userFiles, RestoreScript restoreScript) throws IOException --> Line_3 $$ Path userDirectory = backupDirectory.resolve(USER_FILES_DIRECTORY) [CD]
+Line_2 $$ private void backupUserFiles(Map<Path, Path> userFiles, RestoreScript restoreScript) throws IOException --> Line_4 $$ Files.createDirectories(userDirectory) [CD]
+Line_3 $$ Path userDirectory = backupDirectory.resolve(USER_FILES_DIRECTORY) --> Line_4 $$ Files.createDirectories(userDirectory) [FD]
+Line_2 $$ private void backupUserFiles(Map<Path, Path> userFiles, RestoreScript restoreScript) throws IOException --> Line_5 $$ for (Map.Entry<Path, Path> userFileEntry : userFiles.entrySet()) [FD]
+Line_3 $$ Path userDirectory = backupDirectory.resolve(USER_FILES_DIRECTORY) --> Line_8 $$ Path destination = userDirectory.resolve(userFile.getFileName()) [FD]
+Line_8 $$ Path destination = userDirectory.resolve(userFile.getFileName()) --> Line_9 $$ moveFileOrDirectory(userFile, destination) [FD]
+Line_2 $$ private void backupUserFiles(Map<Path, Path> userFiles, RestoreScript restoreScript) throws IOException --> Line_10 $$ restoreScript.addUserFile(originalFile.toFile(), destination.toFile()) [FD]
+Line_8 $$ Path destination = userDirectory.resolve(userFile.getFileName()) --> Line_10 $$ restoreScript.addUserFile(originalFile.toFile(), destination.toFile()) [FD]

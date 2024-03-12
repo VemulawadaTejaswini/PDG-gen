@@ -1,0 +1,6 @@
+Line_2 $$ private <T> T find(Class<T> type, UUID jobId, String tableName) --> Line_4 $$ CloudTable table = tableClient.getTableReference(tableName) [FD]
+Line_2 $$ private <T> T find(Class<T> type, UUID jobId, String tableName) --> Line_5 $$ TableOperation retrieve = TableOperation.retrieve(configuration.getPartitionKey(), jobId.toString(), DataWrapper.class) [FD]
+Line_4 $$ CloudTable table = tableClient.getTableReference(tableName) --> Line_6 $$ TableResult result = table.execute(retrieve) [FD]
+Line_6 $$ TableResult result = table.execute(retrieve) --> Line_7 $$ DataWrapper wrapper = result.getResultAsType() [FD]
+Line_2 $$ private <T> T find(Class<T> type, UUID jobId, String tableName) --> Line_8 $$ return configuration.getMapper().readValue(wrapper.getSerialized(), type) [FD]
+Line_7 $$ DataWrapper wrapper = result.getResultAsType() --> Line_8 $$ return configuration.getMapper().readValue(wrapper.getSerialized(), type) [FD]

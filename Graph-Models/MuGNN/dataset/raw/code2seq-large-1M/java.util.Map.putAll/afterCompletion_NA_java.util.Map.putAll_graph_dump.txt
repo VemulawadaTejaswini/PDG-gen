@@ -1,0 +1,6 @@
+Line_2 $$ public void afterCompletion(int status) --> Line_3 $$ this.currentTx = null [CD]
+Line_2 $$ public void afterCompletion(int status) --> Line_4 $$ if (status == Status.STATUS_COMMITTED || status == Status.STATUS_COMMITTING) [CD]
+Line_4 $$ if (status == Status.STATUS_COMMITTED || status == Status.STATUS_COMMITTING) --> Line_5 $$ this.commitedMap.putAll(this.transactionalMap) [CD]
+Line_4 $$ if (status == Status.STATUS_COMMITTED || status == Status.STATUS_COMMITTING) --> Line_6 $$ this.transactionalMap.clear() [CD]
+Line_4 $$ if (status == Status.STATUS_COMMITTED || status == Status.STATUS_COMMITTING) --> Line_7 $$ if (status == Status.STATUS_ROLLEDBACK || status == Status.STATUS_ROLLING_BACK) [CD]
+Line_7 $$ if (status == Status.STATUS_ROLLEDBACK || status == Status.STATUS_ROLLING_BACK) --> Line_8 $$ this.transactionalMap.clear() [CD]

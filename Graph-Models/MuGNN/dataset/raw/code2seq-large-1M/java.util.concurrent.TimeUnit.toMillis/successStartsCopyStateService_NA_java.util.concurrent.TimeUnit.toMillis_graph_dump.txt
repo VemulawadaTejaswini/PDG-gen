@@ -1,0 +1,8 @@
+Line_2 $$ public void successStartsCopyStateService() throws Throwable --> Line_3 $$ startClusters() [CD]
+Line_2 $$ public void successStartsCopyStateService() throws Throwable --> Line_4 $$ CopyStateTriggerTaskService.State state = destinationCluster.callServiceSynchronously(CopyStateTriggerTaskFactoryService.SELF_LINK, startState, CopyStateTriggerTaskService.State.class) [CD]
+Line_2 $$ public void successStartsCopyStateService() throws Throwable --> Line_5 $$ ServiceHostUtils.waitForServiceState(CopyStateTriggerTaskService.State.class, state.documentSelfLink, (CopyStateTriggerTaskService.State result) -> result.triggersSuccess > 0, destinationCluster.getHosts()[0], TimeUnit.SECONDS.toMillis(1), 10, null) [CD]
+Line_2 $$ public void successStartsCopyStateService() throws Throwable --> Line_6 $$ NodeGroupBroadcastResponse response = destinationCluster.sendBroadcastQueryAndWait(generateQueryCopyStateTaskQuery()) [CD]
+Line_2 $$ public void successStartsCopyStateService() throws Throwable --> Line_7 $$ List<CopyStateTaskService.State> documents = QueryTaskUtils.getBroadcastQueryDocuments(CopyStateTaskService.State.class, response) [CD]
+Line_6 $$ NodeGroupBroadcastResponse response = destinationCluster.sendBroadcastQueryAndWait(generateQueryCopyStateTaskQuery()) --> Line_7 $$ List<CopyStateTaskService.State> documents = QueryTaskUtils.getBroadcastQueryDocuments(CopyStateTaskService.State.class, response) [FD]
+Line_2 $$ public void successStartsCopyStateService() throws Throwable --> Line_8 $$ assertThat(documents.size(), is(greaterThanOrEqualTo(1))) [CD]
+Line_2 $$ public void successStartsCopyStateService() throws Throwable --> Line_9 $$ assertThat(copyStateHasCorrectValues(documents.get(0), state), is(true)) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private Map<Key<? extends T>, Provider<? extends T>> createProviderMap(Collection<T> objects) --> Line_3 $$ Map<Key<? extends T>, Provider<? extends T>> keyProviderMap = new LinkedHashMap() [CD]
+Line_4 $$ for (T object : objects) --> Line_5 $$ Class<? extends T> objectType = (Class<? extends T>) object.getClass() [FD]
+Line_3 $$ Map<Key<? extends T>, Provider<? extends T>> keyProviderMap = new LinkedHashMap() --> Line_6 $$ keyProviderMap.put(Key.get(objectType, String.valueOf(incrementer.getAndIncrement())), createInstanceProvider(object)) [FD]
+Line_5 $$ Class<? extends T> objectType = (Class<? extends T>) object.getClass() --> Line_6 $$ keyProviderMap.put(Key.get(objectType, String.valueOf(incrementer.getAndIncrement())), createInstanceProvider(object)) [FD]
+Line_4 $$ for (T object : objects) --> Line_6 $$ keyProviderMap.put(Key.get(objectType, String.valueOf(incrementer.getAndIncrement())), createInstanceProvider(object)) [FD]
+Line_2 $$ private Map<Key<? extends T>, Provider<? extends T>> createProviderMap(Collection<T> objects) --> Line_8 $$ return keyProviderMap [CD]

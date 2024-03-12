@@ -1,0 +1,8 @@
+Line_3 $$ try (Git git = new Git(db)) --> Line_4 $$ Ref sideBranch = prepareSuccessfulMerge(git) [FD]
+Line_4 $$ Ref sideBranch = prepareSuccessfulMerge(git) --> Line_5 $$ git.merge().include(sideBranch).setStrategy(MergeStrategy.RESOLVE).setMessage("user message").setInsertChangeId(true).call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_5 $$ git.merge().include(sideBranch).setStrategy(MergeStrategy.RESOLVE).setMessage("user message").setInsertChangeId(true).call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_7 $$ Iterator<RevCommit> it = git.log().call().iterator() [FD]
+Line_7 $$ Iterator<RevCommit> it = git.log().call().iterator() --> Line_8 $$ RevCommit newHead = it.next() [FD]
+Line_8 $$ RevCommit newHead = it.next() --> Line_9 $$ String commitMessage = newHead.getFullMessage() [FD]
+Line_9 $$ String commitMessage = newHead.getFullMessage() --> Line_10 $$ assertTrue(commitMessage.startsWith("user message\n\n")) [FD]
+Line_9 $$ String commitMessage = newHead.getFullMessage() --> Line_11 $$ assertTrue(Pattern.compile("\nChange-Id: I[0-9a-fA-F] [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testBWCShardLockObtainFailedException() throws IOException --> Line_3 $$ ShardId shardId = new ShardId("foo", "_na_", 1) [CD]
+Line_2 $$ public void testBWCShardLockObtainFailedException() throws IOException --> Line_4 $$ ShardLockObtainFailedException orig = new ShardLockObtainFailedException(shardId, "boom") [CD]
+Line_2 $$ public void testBWCShardLockObtainFailedException() throws IOException --> Line_5 $$ Exception ex = serialize((Exception) orig, randomFrom(Version.V_5_0_0, Version.V_5_0_1)) [CD]
+Line_2 $$ public void testBWCShardLockObtainFailedException() throws IOException --> Line_6 $$ assertThat(ex, instanceOf(NotSerializableExceptionWrapper.class)) [CD]
+Line_5 $$ Exception ex = serialize((Exception) orig, randomFrom(Version.V_5_0_0, Version.V_5_0_1)) --> Line_6 $$ assertThat(ex, instanceOf(NotSerializableExceptionWrapper.class)) [FD]
+Line_2 $$ public void testBWCShardLockObtainFailedException() throws IOException --> Line_7 $$ assertEquals("shard_lock_obtain_failed_exception: [foo][1]: boom", ex.getMessage()) [CD]
+Line_5 $$ Exception ex = serialize((Exception) orig, randomFrom(Version.V_5_0_0, Version.V_5_0_1)) --> Line_7 $$ assertEquals("shard_lock_obtain_failed_exception: [foo][1]: boom", ex.getMessage()) [FD]

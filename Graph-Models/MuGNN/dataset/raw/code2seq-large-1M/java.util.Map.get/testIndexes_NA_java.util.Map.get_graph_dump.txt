@@ -1,0 +1,8 @@
+Line_2 $$ public void testIndexes() --> Line_3 $$ db.execute("CREATE INDEX ON :Foo(bar)").close() [CD]
+Line_4 $$ try (Transaction tx = db.beginTx()) --> Line_6 $$ tx.success() [FD]
+Line_2 $$ public void testIndexes() --> Line_8 $$ testResult(db, "CALL apoc.schema.nodes()", ( result) -> [CD]
+Line_9 $$ Map<String, Object> r = result.next() --> Line_10 $$ assertEquals(":Foo(bar)", r.get("name")) [FD]
+Line_9 $$ Map<String, Object> r = result.next() --> Line_11 $$ assertEquals("ONLINE", r.get("status")) [FD]
+Line_9 $$ Map<String, Object> r = result.next() --> Line_12 $$ assertEquals("Foo", r.get("label")) [FD]
+Line_9 $$ Map<String, Object> r = result.next() --> Line_13 $$ assertEquals("INDEX", r.get("type")) [FD]
+Line_9 $$ Map<String, Object> r = result.next() --> Line_14 $$ assertEquals("bar", ((List<String>) r.get("properties")).get(0)) [FD]

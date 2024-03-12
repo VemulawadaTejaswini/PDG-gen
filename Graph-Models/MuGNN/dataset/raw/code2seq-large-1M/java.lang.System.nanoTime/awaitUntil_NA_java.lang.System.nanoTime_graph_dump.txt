@@ -1,0 +1,8 @@
+Line_2 $$ public boolean awaitUntil(long until) throws InterruptedException --> Line_3 $$ long now [CD]
+Line_2 $$ public boolean awaitUntil(long until) throws InterruptedException --> Line_4 $$ while (until > (now = System.nanoTime()) && !isSignalled()) [CD]
+Line_3 $$ long now --> Line_4 $$ while (until > (now = System.nanoTime()) && !isSignalled()) [FD]
+Line_4 $$ while (until > (now = System.nanoTime()) && !isSignalled()) --> Line_5 $$ checkInterrupted() [CD]
+Line_4 $$ while (until > (now = System.nanoTime()) && !isSignalled()) --> Line_6 $$ long delta = until - now [CD]
+Line_4 $$ while (until > (now = System.nanoTime()) && !isSignalled()) --> Line_7 $$ LockSupport.parkNanos(delta) [CD]
+Line_6 $$ long delta = until - now --> Line_7 $$ LockSupport.parkNanos(delta) [FD]
+Line_2 $$ public boolean awaitUntil(long until) throws InterruptedException --> Line_9 $$ return checkAndClear() [CD]

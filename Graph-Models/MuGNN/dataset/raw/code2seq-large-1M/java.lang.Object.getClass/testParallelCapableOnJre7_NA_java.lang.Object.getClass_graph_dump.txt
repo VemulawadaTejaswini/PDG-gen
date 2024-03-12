@@ -1,0 +1,8 @@
+Line_2 $$ public void testParallelCapableOnJre7() --> Line_3 $$ if (!JreCompat.isJre7Available()) [CD]
+Line_3 $$ if (!JreCompat.isJre7Available()) --> Line_4 $$ return [CD]
+Line_7 $$ Tomcat tomcat = getTomcatInstance() --> Line_8 $$ Context ctx = tomcat.addContext("", null) [FD]
+Line_9 $$ WebappLoader webappLoader = new WebappLoader() --> Line_10 $$ webappLoader.setLoaderClass(PARALLEL_CLASSLOADER) [FD]
+Line_8 $$ Context ctx = tomcat.addContext("", null) --> Line_11 $$ ctx.setLoader(webappLoader) [FD]
+Line_9 $$ WebappLoader webappLoader = new WebappLoader() --> Line_11 $$ ctx.setLoader(webappLoader) [FD]
+Line_7 $$ Tomcat tomcat = getTomcatInstance() --> Line_12 $$ tomcat.start() [FD]
+Line_8 $$ Context ctx = tomcat.addContext("", null) --> Line_13 $$ ClassLoader classloader = ctx.getLoader().getClassLoader() [FD]

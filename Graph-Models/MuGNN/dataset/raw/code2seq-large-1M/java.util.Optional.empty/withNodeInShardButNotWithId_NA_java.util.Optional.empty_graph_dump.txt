@@ -1,0 +1,8 @@
+Line_2 $$ public <T> Optional<ClusterManager.NodeResult<T>> withNodeInShardButNotWithId(final Map<String, String> shard, final Predicate<ClusterNode> exclude, final Consumer<ClusterNode> registerNodeUse, final Function<ClusterNode.Group, T> fn) --> Line_4 $$ final Optional<ClusterNode> n = registry.get().getNodeInShardButNotWithId(shard, exclude) [FD]
+Line_4 $$ final Optional<ClusterNode> n = registry.get().getNodeInShardButNotWithId(shard, exclude) --> Line_5 $$ if (!n.isPresent()) [FD]
+Line_5 $$ if (!n.isPresent()) --> Line_6 $$ return Optional.empty() [CD]
+Line_4 $$ final Optional<ClusterNode> n = registry.get().getNodeInShardButNotWithId(shard, exclude) --> Line_8 $$ ClusterNode node = n.get() [FD]
+Line_2 $$ public <T> Optional<ClusterManager.NodeResult<T>> withNodeInShardButNotWithId(final Map<String, String> shard, final Predicate<ClusterNode> exclude, final Consumer<ClusterNode> registerNodeUse, final Function<ClusterNode.Group, T> fn) --> Line_9 $$ registerNodeUse.accept(node) [FD]
+Line_8 $$ ClusterNode node = n.get() --> Line_9 $$ registerNodeUse.accept(node) [FD]
+Line_2 $$ public <T> Optional<ClusterManager.NodeResult<T>> withNodeInShardButNotWithId(final Map<String, String> shard, final Predicate<ClusterNode> exclude, final Consumer<ClusterNode> registerNodeUse, final Function<ClusterNode.Group, T> fn) --> Line_10 $$ return Optional.of(new ClusterManager.NodeResult<T>(fn.apply(node.useDefaultGroup()), node)) [FD]
+Line_8 $$ ClusterNode node = n.get() --> Line_10 $$ return Optional.of(new ClusterManager.NodeResult<T>(fn.apply(node.useDefaultGroup()), node)) [FD]

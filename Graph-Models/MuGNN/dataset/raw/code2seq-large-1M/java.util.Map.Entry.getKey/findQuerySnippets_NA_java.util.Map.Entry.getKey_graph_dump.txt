@@ -1,0 +1,8 @@
+Line_2 $$ private static Set<QueryPart> findQuerySnippets(Properties properties) --> Line_3 $$ Set<QueryPart> pieces = new HashSet() [CD]
+Line_2 $$ private static Set<QueryPart> findQuerySnippets(Properties properties) --> Line_4 $$ for (Map.Entry<String, Object> k : properties.listProperties().entrySet()) [FD]
+Line_5 $$ String key = k.getKey() --> Line_6 $$ if (!key.startsWith(QUERYPREFIX)) [FD]
+Line_5 $$ String key = k.getKey() --> Line_9 $$ String name = key.substring(QUERYPREFIX.length()) [FD]
+Line_9 $$ String name = key.substring(QUERYPREFIX.length()) --> Line_10 $$ if (hasDots(name)) [FD]
+Line_2 $$ private static Set<QueryPart> findQuerySnippets(Properties properties) --> Line_13 $$ String index = properties.getString("defidx." + name) [FD]
+Line_3 $$ Set<QueryPart> pieces = new HashSet() --> Line_14 $$ pieces.add(new QueryPart(k.getValue().toString(), index)) [FD]
+Line_2 $$ private static Set<QueryPart> findQuerySnippets(Properties properties) --> Line_16 $$ return pieces [CD]

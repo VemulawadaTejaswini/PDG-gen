@@ -1,0 +1,6 @@
+Line_2 $$ public void testBinaryBuildWithTimeout() --> Line_3 $$ server.expect().post().delay(200).withPath("/oapi/v1/namespaces/ns1/buildconfigs/bc2/instantiatebinary?commit=").andReturn(201, new BuildBuilder().withNewMetadata().withName("bc2").endMetadata().build()).once() [CD]
+Line_2 $$ public void testBinaryBuildWithTimeout() --> Line_4 $$ OpenShiftClient client = server.getOpenshiftClient() [CD]
+Line_2 $$ public void testBinaryBuildWithTimeout() --> Line_5 $$ InputStream dummy = new ByteArrayInputStream("".getBytes()) [CD]
+Line_5 $$ InputStream dummy = new ByteArrayInputStream("".getBytes()) --> Line_7 $$ client.buildConfigs().inNamespace("ns1").withName("bc2").instantiateBinary().withTimeout(100, TimeUnit.MILLISECONDS).fromInputStream(dummy) [FD]
+Line_4 $$ OpenShiftClient client = server.getOpenshiftClient() --> Line_7 $$ client.buildConfigs().inNamespace("ns1").withName("bc2").instantiateBinary().withTimeout(100, TimeUnit.MILLISECONDS).fromInputStream(dummy) [FD]
+Line_2 $$ public void testBinaryBuildWithTimeout() --> Line_12 $$ fail("Expected exception") [CD]

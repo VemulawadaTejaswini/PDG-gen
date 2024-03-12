@@ -1,0 +1,5 @@
+Line_2 $$ public void pingNotAllowedInSubscriptionState() throws Exception --> Line_3 $$ pubsub.subscribe(channel).get() [CD]
+Line_2 $$ public void pingNotAllowedInSubscriptionState() throws Exception --> Line_4 $$ assertThatThrownBy(() -> pubsub.ping().get()).isInstanceOf(RedisException.class).hasMessageContaining("not allowed") [CD]
+Line_2 $$ public void pingNotAllowedInSubscriptionState() throws Exception --> Line_5 $$ pubsub.unsubscribe(channel) [CD]
+Line_2 $$ public void pingNotAllowedInSubscriptionState() throws Exception --> Line_6 $$ Wait.untilTrue(() -> channels.size() == 2).waitOrTimeout() [CD]
+Line_2 $$ public void pingNotAllowedInSubscriptionState() throws Exception --> Line_7 $$ assertThat(pubsub.ping().get()).isEqualTo("PONG") [CD]

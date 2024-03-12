@@ -1,0 +1,8 @@
+Line_2 $$ public void testCleanFilterEnvironment() throws IOException, GitAPIException --> Line_3 $$ writeTrashFile(".gitattributes", "*.txt filter=tstFilter") [CD]
+Line_2 $$ public void testCleanFilterEnvironment() throws IOException, GitAPIException --> Line_4 $$ writeTrashFile("src/a.txt", "foo") [CD]
+Line_2 $$ public void testCleanFilterEnvironment() throws IOException, GitAPIException --> Line_5 $$ File script = writeTempFile("echo $GIT_DIR; echo 1 >xyz") [CD]
+Line_6 $$ try (Git git = new Git(db)) --> Line_7 $$ StoredConfig config = git.getRepository().getConfig() [FD]
+Line_7 $$ StoredConfig config = git.getRepository().getConfig() --> Line_8 $$ config.setString("filter", "tstFilter", "clean", "sh " + slashify(script.getPath())) [FD]
+Line_5 $$ File script = writeTempFile("echo $GIT_DIR; echo 1 >xyz") --> Line_8 $$ config.setString("filter", "tstFilter", "clean", "sh " + slashify(script.getPath())) [FD]
+Line_7 $$ StoredConfig config = git.getRepository().getConfig() --> Line_9 $$ config.save() [FD]
+Line_6 $$ try (Git git = new Git(db)) --> Line_10 $$ git.add().addFilepattern("src/a.txt").call() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ private void initiateSessionShutdown() --> Line_3 $$ if (this.sessionShutdownCallback != null) [CD]
+Line_3 $$ if (this.sessionShutdownCallback != null) --> Line_4 $$ final Set<SelectionKey> keys = this.selector.keys() [CD]
+Line_5 $$ for (final SelectionKey key : keys) --> Line_6 $$ final InternalChannel channel = (InternalChannel) key.attachment() [FD]
+Line_6 $$ final InternalChannel channel = (InternalChannel) key.attachment() --> Line_7 $$ if (channel instanceof InternalDataChannel) [FD]
+Line_7 $$ if (channel instanceof InternalDataChannel) --> Line_8 $$ this.sessionShutdownCallback.execute((InternalDataChannel) channel) [CD]

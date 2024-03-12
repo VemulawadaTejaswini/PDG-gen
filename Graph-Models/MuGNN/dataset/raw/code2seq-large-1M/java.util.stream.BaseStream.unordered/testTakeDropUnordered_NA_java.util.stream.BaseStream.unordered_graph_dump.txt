@@ -1,0 +1,7 @@
+Line_2 $$ public void testTakeDropUnordered() --> Line_3 $$ repeat(10,  n -> withRandom( rnd -> [CD]
+Line_4 $$ List<Boolean> data = IntStreamEx.of(rnd, n * 100, 0, rnd.nextInt(10) + 2).mapToObj( x -> x != 0).toList() --> Line_5 $$ List<Boolean> sorted = StreamEx.of(data).sorted().toList() [FD]
+Line_4 $$ List<Boolean> data = IntStreamEx.of(rnd, n * 100, 0, rnd.nextInt(10) + 2).mapToObj( x -> x != 0).toList() --> Line_6 $$ data.stream().unordered() [FD]
+Line_5 $$ List<Boolean> sorted = StreamEx.of(data).sorted().toList() --> Line_13 $$ assertEquals(sorted, dropNone) [FD]
+Line_12 $$ List<Boolean> dropNone = s.get().dropWhile( b -> false).sorted().toList() --> Line_13 $$ assertEquals(sorted, dropNone) [FD]
+Line_5 $$ List<Boolean> sorted = StreamEx.of(data).sorted().toList() --> Line_15 $$ assertEquals(sorted, takeAll) [FD]
+Line_14 $$ List<Boolean> takeAll = s.get().takeWhileInclusive( b -> true).sorted().toList() --> Line_15 $$ assertEquals(sorted, takeAll) [FD]

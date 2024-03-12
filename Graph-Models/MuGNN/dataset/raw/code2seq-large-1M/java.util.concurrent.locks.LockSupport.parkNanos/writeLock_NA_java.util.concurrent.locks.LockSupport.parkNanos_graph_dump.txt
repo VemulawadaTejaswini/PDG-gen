@@ -1,0 +1,7 @@
+Line_2 $$ public void writeLock() --> Line_3 $$ checkWriteThreadAccess() [CD]
+Line_2 $$ public void writeLock() --> Line_7 $$ for (int iter = 0; ; iter++) [CD]
+Line_7 $$ for (int iter = 0; ; iter++) --> Line_8 $$ if (areAllReadersIdle()) [CD]
+Line_7 $$ for (int iter = 0; ; iter++) --> Line_12 $$ if (iter > SPIN_TO_WAIT_FOR_LOCK) [FD]
+Line_7 $$ for (int iter = 0; ; iter++) --> Line_12 $$ if (iter > SPIN_TO_WAIT_FOR_LOCK) [CD]
+Line_12 $$ if (iter > SPIN_TO_WAIT_FOR_LOCK) --> Line_13 $$ LockSupport.parkNanos(this, 1000000) [CD]
+Line_12 $$ if (iter > SPIN_TO_WAIT_FOR_LOCK) --> Line_15 $$ Thread.yield() [CD]

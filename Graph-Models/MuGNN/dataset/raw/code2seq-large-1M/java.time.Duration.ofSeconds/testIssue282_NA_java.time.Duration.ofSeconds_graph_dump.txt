@@ -1,0 +1,7 @@
+Line_2 $$ public void testIssue282() --> Line_3 $$ NettyContext server = HttpServer.create( options -> options.compression(2048).port(0)).newHandler(( req,  res) -> res.sendString(Mono.just("testtesttesttesttest"))).block(Duration.ofSeconds(30)) [CD]
+Line_2 $$ public void testIssue282() --> Line_4 $$ Mono<String> response = HttpClient.create(server.address().getPort()).get("/").flatMap( res -> res.receive().aggregate().asString()) [CD]
+Line_3 $$ NettyContext server = HttpServer.create( options -> options.compression(2048).port(0)).newHandler(( req,  res) -> res.sendString(Mono.just("testtesttesttesttest"))).block(Duration.ofSeconds(30)) --> Line_4 $$ Mono<String> response = HttpClient.create(server.address().getPort()).get("/").flatMap( res -> res.receive().aggregate().asString()) [FD]
+Line_2 $$ public void testIssue282() --> Line_5 $$ StepVerifier.create(response).expectNextMatches( s -> "testtesttesttesttest".equals(s)).expectComplete().verify() [CD]
+Line_4 $$ Mono<String> response = HttpClient.create(server.address().getPort()).get("/").flatMap( res -> res.receive().aggregate().asString()) --> Line_5 $$ StepVerifier.create(response).expectNextMatches( s -> "testtesttesttesttest".equals(s)).expectComplete().verify() [FD]
+Line_2 $$ public void testIssue282() --> Line_6 $$ server.dispose() [CD]
+Line_3 $$ NettyContext server = HttpServer.create( options -> options.compression(2048).port(0)).newHandler(( req,  res) -> res.sendString(Mono.just("testtesttesttesttest"))).block(Duration.ofSeconds(30)) --> Line_6 $$ server.dispose() [FD]

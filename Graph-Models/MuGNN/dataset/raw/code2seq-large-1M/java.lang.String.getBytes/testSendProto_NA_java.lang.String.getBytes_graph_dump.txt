@@ -1,0 +1,8 @@
+Line_2 $$ public void testSendProto() throws Exception --> Line_3 $$ byte[] pingProto = "PING\r\n".getBytes() [CD]
+Line_2 $$ public void testSendProto() throws Exception --> Line_4 $$ int len = pingProto.length [CD]
+Line_5 $$ try (ConnectionImpl conn = spy(new ConnectionImpl(defaultOptions()))) --> Line_6 $$ conn.setOutputStream(bwMock) [FD]
+Line_5 $$ try (ConnectionImpl conn = spy(new ConnectionImpl(defaultOptions()))) --> Line_7 $$ conn.sendProto(pingProto, len) [FD]
+Line_3 $$ byte[] pingProto = "PING\r\n".getBytes() --> Line_7 $$ conn.sendProto(pingProto, len) [FD]
+Line_4 $$ int len = pingProto.length --> Line_7 $$ conn.sendProto(pingProto, len) [FD]
+Line_3 $$ byte[] pingProto = "PING\r\n".getBytes() --> Line_8 $$ verify(bwMock, atLeast(1)).write(pingProto, 0, len) [FD]
+Line_4 $$ int len = pingProto.length --> Line_8 $$ verify(bwMock, atLeast(1)).write(pingProto, 0, len) [FD]

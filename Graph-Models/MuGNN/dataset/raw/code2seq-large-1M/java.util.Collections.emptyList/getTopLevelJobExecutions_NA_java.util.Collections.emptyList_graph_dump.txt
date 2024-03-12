@@ -1,0 +1,6 @@
+Line_2 $$ public List<JobExecution> getTopLevelJobExecutions(int start, int count) --> Line_3 $$ if (start <= 0) [CD]
+Line_2 $$ public List<JobExecution> getTopLevelJobExecutions(int start, int count) --> Line_3 $$ if (start <= 0) [FD]
+Line_3 $$ if (start <= 0) --> Line_4 $$ return getJdbcTemplate().query(allExecutionsPagingQueryProvider.generateFirstPageQuery(count), new JobExecutionRowMapper()) [CD]
+Line_2 $$ public List<JobExecution> getTopLevelJobExecutions(int start, int count) --> Line_4 $$ return getJdbcTemplate().query(allExecutionsPagingQueryProvider.generateFirstPageQuery(count), new JobExecutionRowMapper()) [FD]
+Line_2 $$ public List<JobExecution> getTopLevelJobExecutions(int start, int count) --> Line_7 $$ Long startAfterValue = getJdbcTemplate().queryForObject(allExecutionsPagingQueryProvider.generateJumpToItemQuery(start, count), Long.class) [FD]
+Line_2 $$ public List<JobExecution> getTopLevelJobExecutions(int start, int count) --> Line_8 $$ return getJdbcTemplate().query(allExecutionsPagingQueryProvider.generateRemainingPagesQuery(count), new JobExecutionRowMapper(), startAfterValue) [FD]

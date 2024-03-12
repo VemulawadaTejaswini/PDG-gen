@@ -1,0 +1,7 @@
+Line_2 $$ void subscribe(CoreSubscriber<? super T> s) --> Line_3 $$ RefCountInner<T> inner = new RefCountInner(s, this) [CD]
+Line_2 $$ void subscribe(CoreSubscriber<? super T> s) --> Line_4 $$ int subCount = SUBSCRIBERS.incrementAndGet(this) [CD]
+Line_2 $$ void subscribe(CoreSubscriber<? super T> s) --> Line_5 $$ parent.source.subscribe(inner) [CD]
+Line_3 $$ RefCountInner<T> inner = new RefCountInner(s, this) --> Line_5 $$ parent.source.subscribe(inner) [FD]
+Line_2 $$ void subscribe(CoreSubscriber<? super T> s) --> Line_6 $$ if (subCount == n) [CD]
+Line_4 $$ int subCount = SUBSCRIBERS.incrementAndGet(this) --> Line_6 $$ if (subCount == n) [FD]
+Line_6 $$ if (subCount == n) --> Line_7 $$ parent.source.connect(this) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void bandwidthTestZ() throws IOException --> Line_3 $$ int count = 2 << 10 [CD]
+Line_2 $$ public void bandwidthTestZ() throws IOException --> Line_4 $$ int size = 50 << 10 [CD]
+Line_2 $$ public void bandwidthTestZ() throws IOException --> Line_5 $$ File file3 = new File("bandwidthTest" + System.nanoTime() + ".Z.deleteme") [CD]
+Line_2 $$ public void bandwidthTestZ() throws IOException --> Line_6 $$ file3.deleteOnExit() [CD]
+Line_5 $$ File file3 = new File("bandwidthTest" + System.nanoTime() + ".Z.deleteme") --> Line_6 $$ file3.deleteOnExit() [FD]
+Line_5 $$ File file3 = new File("bandwidthTest" + System.nanoTime() + ".Z.deleteme") --> Line_7 $$ try (ChronicleMap<CharSequence, CharSequence> map = ChronicleMapBuilder.of(CharSequence.class, CharSequence.class).entries(count * 3 / 2).averageValueSize(size / 4).valueMarshaller(DeflatorStringMarshaller.INSTANCE).putReturnsNull(true).createPersistedTo(file3)) [FD]
+Line_3 $$ int count = 2 << 10 --> Line_9 $$ doTest(count, size, map) [FD]
+Line_4 $$ int size = 50 << 10 --> Line_9 $$ doTest(count, size, map) [FD]

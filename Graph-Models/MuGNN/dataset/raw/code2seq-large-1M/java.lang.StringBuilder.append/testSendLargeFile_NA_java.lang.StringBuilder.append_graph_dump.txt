@@ -1,0 +1,8 @@
+Line_2 $$ private static void testSendLargeFile(SiteToSiteClient client) throws IOException --> Line_3 $$ testSendIgnoreProxyError(client,  transaction -> [FD]
+Line_2 $$ private static void testSendLargeFile(SiteToSiteClient client) throws IOException --> Line_3 $$ testSendIgnoreProxyError(client,  transaction -> [CD]
+Line_5 $$ final int contentSize = 10_000 --> Line_7 $$ for (int i = 0; i < contentSize; i++) [FD]
+Line_7 $$ for (int i = 0; i < contentSize; i++) --> Line_8 $$ sb.append("a") [CD]
+Line_6 $$ final StringBuilder sb = new StringBuilder(contentSize) --> Line_8 $$ sb.append("a") [FD]
+Line_6 $$ final StringBuilder sb = new StringBuilder(contentSize) --> Line_10 $$ DataPacket packet = new DataPacketBuilder().contents(sb.toString()).attr("Client attr 1", "Client attr 1 value").attr("Client attr 2", "Client attr 2 value").build() [FD]
+Line_10 $$ DataPacket packet = new DataPacketBuilder().contents(sb.toString()).attr("Client attr 1", "Client attr 1 value").attr("Client attr 2", "Client attr 2 value").build() --> Line_11 $$ transaction.send(packet) [FD]
+Line_12 $$ long written = ((Peer) transaction.getCommunicant()).getCommunicationsSession().getBytesWritten() --> Line_13 $$ logger.info(" [FD]

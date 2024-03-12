@@ -1,0 +1,5 @@
+Line_2 $$ public void zonedDateTimeLosesZone() --> Line_3 $$ ZonedDateTime dt = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/Denver")) [CD]
+Line_2 $$ public void zonedDateTimeLosesZone() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", dt) [CD]
+Line_3 $$ ZonedDateTime dt = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/Denver")) --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", dt) [FD]
+Line_2 $$ public void zonedDateTimeLosesZone() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(ZonedDateTime.class).findOnly().isEqual(dt)).isTrue() [CD]
+Line_3 $$ ZonedDateTime dt = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/Denver")) --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(ZonedDateTime.class).findOnly().isEqual(dt)).isTrue() [FD]

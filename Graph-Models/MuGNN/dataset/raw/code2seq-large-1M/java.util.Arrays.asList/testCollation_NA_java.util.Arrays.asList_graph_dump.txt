@@ -1,0 +1,6 @@
+Line_2 $$ public void testCollation() --> Line_3 $$ checkMinServerVersion(3.4) [CD]
+Line_2 $$ public void testCollation() --> Line_4 $$ getDs().save(asList(new User("john doe", new Date()), new User("John Doe", new Date()))) [CD]
+Line_2 $$ public void testCollation() --> Line_5 $$ Query query = getDs().find(User.class).field("name").equal("john doe") [CD]
+Line_2 $$ public void testCollation() --> Line_6 $$ AggregationPipeline pipeline = getDs().createAggregation(User.class).match(query) [CD]
+Line_2 $$ public void testCollation() --> Line_7 $$ Assert.assertEquals(1, count(pipeline.aggregate(User.class))) [CD]
+Line_2 $$ public void testCollation() --> Line_8 $$ Assert.assertEquals(2, count(pipeline.aggregate(User.class, builder().collation(Collation.builder().locale("en").collationStrength(CollationStrength.SECONDARY).build()).build()))) [CD]

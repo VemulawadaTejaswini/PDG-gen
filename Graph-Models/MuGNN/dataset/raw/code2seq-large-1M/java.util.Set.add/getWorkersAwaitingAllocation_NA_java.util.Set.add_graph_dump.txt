@@ -1,0 +1,7 @@
+Line_2 $$ Set<HeronWorker> getWorkersAwaitingAllocation() --> Line_3 $$ Set<HeronWorker> workersAwaitingAllocation = new HashSet() [CD]
+Line_4 $$ for (Integer id : containerPlans.keySet()) --> Line_5 $$ if (multiKeyWorkerMap.lookupByWorkerId(id).isPresent()) [FD]
+Line_3 $$ Set<HeronWorker> workersAwaitingAllocation = new HashSet() --> Line_8 $$ workersAwaitingAllocation.add(new HeronWorker(id, containerPlans.get(id).getRequiredResource())) [FD]
+Line_4 $$ for (Integer id : containerPlans.keySet()) --> Line_8 $$ workersAwaitingAllocation.add(new HeronWorker(id, containerPlans.get(id).getRequiredResource())) [FD]
+Line_2 $$ Set<HeronWorker> getWorkersAwaitingAllocation() --> Line_10 $$ LOG.info("Number of workers awaiting allocation: " + workersAwaitingAllocation.size()) [CD]
+Line_3 $$ Set<HeronWorker> workersAwaitingAllocation = new HashSet() --> Line_10 $$ LOG.info("Number of workers awaiting allocation: " + workersAwaitingAllocation.size()) [FD]
+Line_2 $$ Set<HeronWorker> getWorkersAwaitingAllocation() --> Line_11 $$ return workersAwaitingAllocation [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ static void onStart(long listenerId, long spPointer, int parentSpId) throws SQLException --> Line_3 $$ SavepointListener listener = (SavepointListener) s_listeners.get(new Long(listenerId)) [CD]
+Line_2 $$ static void onStart(long listenerId, long spPointer, int parentSpId) throws SQLException --> Line_4 $$ if (listener != null) [CD]
+Line_3 $$ SavepointListener listener = (SavepointListener) s_listeners.get(new Long(listenerId)) --> Line_4 $$ if (listener != null) [FD]
+Line_4 $$ if (listener != null) --> Line_5 $$ listener.onStart(Backend.getSession(), new PgSavepoint(spPointer), PgSavepoint.forId(parentSpId)) [CD]
+Line_3 $$ SavepointListener listener = (SavepointListener) s_listeners.get(new Long(listenerId)) --> Line_5 $$ listener.onStart(Backend.getSession(), new PgSavepoint(spPointer), PgSavepoint.forId(parentSpId)) [FD]
+Line_2 $$ static void onStart(long listenerId, long spPointer, int parentSpId) throws SQLException --> Line_5 $$ listener.onStart(Backend.getSession(), new PgSavepoint(spPointer), PgSavepoint.forId(parentSpId)) [FD]

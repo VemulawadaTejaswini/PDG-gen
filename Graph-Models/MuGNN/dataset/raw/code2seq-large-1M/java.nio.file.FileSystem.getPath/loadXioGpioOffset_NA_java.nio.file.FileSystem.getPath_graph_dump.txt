@@ -1,0 +1,7 @@
+Line_2 $$ private synchronized void loadXioGpioOffset() --> Line_3 $$ if (!xioGpioOffsetLoaded) [CD]
+Line_3 $$ if (!xioGpioOffsetLoaded) --> Line_4 $$ Path gpio_sysfs_dir = FileSystems.getDefault().getPath("/sys/class/gpio") [CD]
+Line_6 $$ for (Path p : dirs) --> Line_7 $$ if (Files.lines(p.resolve("label")).filter( line -> line.equals("pcf8574a")).count() > 0) [FD]
+Line_7 $$ if (Files.lines(p.resolve("label")).filter( line -> line.equals("pcf8574a")).count() > 0) --> Line_8 $$ String dir_name = p.getFileName().toString() [CD]
+Line_6 $$ for (Path p : dirs) --> Line_8 $$ String dir_name = p.getFileName().toString() [FD]
+Line_7 $$ if (Files.lines(p.resolve("label")).filter( line -> line.equals("pcf8574a")).count() > 0) --> Line_9 $$ xioGpioOffset = Integer.parseInt(dir_name.replace("gpiochip", "")) [CD]
+Line_8 $$ String dir_name = p.getFileName().toString() --> Line_9 $$ xioGpioOffset = Integer.parseInt(dir_name.replace("gpiochip", "")) [FD]

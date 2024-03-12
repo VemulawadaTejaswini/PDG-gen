@@ -1,0 +1,8 @@
+Line_3 $$ try (Git git = new Git(db)) --> Line_4 $$ RevCommit sideCommit = prepareRevert(git) [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_5 $$ RevertCommand revert = git.revert() [FD]
+Line_5 $$ RevertCommand revert = git.revert() --> Line_6 $$ RevCommit newHead = revert.include(sideCommit.getId()).call() [FD]
+Line_4 $$ RevCommit sideCommit = prepareRevert(git) --> Line_6 $$ RevCommit newHead = revert.include(sideCommit.getId()).call() [FD]
+Line_6 $$ RevCommit newHead = revert.include(sideCommit.getId()).call() --> Line_7 $$ assertNull(newHead) [FD]
+Line_5 $$ RevertCommand revert = git.revert() --> Line_8 $$ MergeResult result = revert.getFailingResult() [FD]
+Line_8 $$ MergeResult result = revert.getFailingResult() --> Line_9 $$ assertEquals(MergeStatus.CONFLICTING, result.getMergeStatus()) [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_12 $$ git.reset().setMode(ResetType.MIXED).setRef("HEAD").call() [FD]

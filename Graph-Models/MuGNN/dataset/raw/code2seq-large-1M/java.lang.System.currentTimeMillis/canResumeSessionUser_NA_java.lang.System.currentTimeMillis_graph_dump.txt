@@ -1,0 +1,8 @@
+Line_2 $$ protected boolean canResumeSessionUser(HttpServletRequest request, SessionUser su) --> Line_3 $$ if (su.participanId.isAnonymous()) [CD]
+Line_3 $$ if (su.participanId.isAnonymous()) --> Line_4 $$ return false [CD]
+Line_2 $$ protected boolean canResumeSessionUser(HttpServletRequest request, SessionUser su) --> Line_5 $$ if (su.rememberMe) [FD]
+Line_2 $$ protected boolean canResumeSessionUser(HttpServletRequest request, SessionUser su) --> Line_5 $$ if (su.rememberMe) [CD]
+Line_5 $$ if (su.rememberMe) --> Line_6 $$ long nowTime = System.currentTimeMillis() [CD]
+Line_5 $$ if (su.rememberMe) --> Line_7 $$ return nowTime - su.lastLoginTime < USER_SESSION_LIFETIME [CD]
+Line_5 $$ if (su.rememberMe) --> Line_9 $$ return (su.transientSessionId != null) && su.transientSessionId.equals(getTransientSessionId(request)) [CD]
+Line_2 $$ protected boolean canResumeSessionUser(HttpServletRequest request, SessionUser su) --> Line_9 $$ return (su.transientSessionId != null) && su.transientSessionId.equals(getTransientSessionId(request)) [FD]

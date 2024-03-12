@@ -1,0 +1,4 @@
+Line_2 $$ public List<VisibleVertex> getNotFocusedVertices() --> Line_3 $$ final List<FocusedVertex> focusedVertices = getFocusedVertices() [CD]
+Line_2 $$ public List<VisibleVertex> getNotFocusedVertices() --> Line_4 $$ final List<VisibleVertex> notFocusedVertices = getVisibleVertices().stream().filter( visibleVertex -> !focusedVertices.stream().filter( focusedVertex -> focusedVertex.getLabel().equals(visibleVertex.getLabel())).findAny().isPresent()).collect(Collectors.toList()) [CD]
+Line_3 $$ final List<FocusedVertex> focusedVertices = getFocusedVertices() --> Line_5 $$ !focusedVertices.stream().filter( focusedVertex -> focusedVertex.getLabel().equals(visibleVertex.getLabel())).findAny().isPresent() [FD]
+Line_2 $$ public List<VisibleVertex> getNotFocusedVertices() --> Line_6 $$ return notFocusedVertices [CD]

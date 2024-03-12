@@ -1,0 +1,4 @@
+Line_5 $$ if (entry == null) --> Line_6 $$ return [CD]
+Line_8 $$ if (pcapCurrent != null) --> Line_9 $$ Logger.log(this, Severity.Error, "Cannot start a new Live PCAP session while performing a Live PCAP session.") [CD]
+Line_8 $$ if (pcapCurrent != null) --> Line_10 $$ return [CD]
+Line_13 $$ final String nameDumpFile = Configuration.getPreferenceString(Configuration.Fields.DIR_LIVE_CAPTURE) + File.separator + Instant.now().atZone(ZoneId.of("Z")).format(DateTimeFormatter.ISO_INSTANT).replaceAll("\\D", "_") + ".pcap" --> Line_14 $$ pcapCurrent = new LivePCAPImport(Paths.get(nameDumpFile), entry.getDevice(), GrassMarlinFx.getRunningFingerprints(), () -> document.get().getLogicalGraph().refresh()) [FD]

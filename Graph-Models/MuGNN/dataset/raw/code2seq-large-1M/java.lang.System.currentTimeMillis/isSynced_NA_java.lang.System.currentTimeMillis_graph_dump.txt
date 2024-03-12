@@ -1,0 +1,8 @@
+Line_2 $$ boolean isSynced() throws Exception --> Line_3 $$ EthSyncing ethSyncing = web3j.ethSyncing().send() [CD]
+Line_2 $$ boolean isSynced() throws Exception --> Line_4 $$ if (ethSyncing.isSyncing()) [CD]
+Line_3 $$ EthSyncing ethSyncing = web3j.ethSyncing().send() --> Line_4 $$ if (ethSyncing.isSyncing()) [FD]
+Line_4 $$ if (ethSyncing.isSyncing()) --> Line_5 $$ return false [CD]
+Line_4 $$ if (ethSyncing.isSyncing()) --> Line_7 $$ EthBlock ethBlock = web3j.ethGetBlockByNumber(DefaultBlockParameterName.LATEST, false).send() [CD]
+Line_4 $$ if (ethSyncing.isSyncing()) --> Line_8 $$ long timestamp = ethBlock.getBlock().getTimestamp().longValueExact() * 1000 [CD]
+Line_7 $$ EthBlock ethBlock = web3j.ethGetBlockByNumber(DefaultBlockParameterName.LATEST, false).send() --> Line_8 $$ long timestamp = ethBlock.getBlock().getTimestamp().longValueExact() * 1000 [FD]
+Line_4 $$ if (ethSyncing.isSyncing()) --> Line_9 $$ return System.currentTimeMillis() - syncThreshold < timestamp [CD]

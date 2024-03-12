@@ -1,0 +1,6 @@
+Line_2 $$ public CompletableFuture<Void> sweepFailedProcesses(Supplier<Set<String>> activeHosts) --> Line_3 $$ if (!transactionMetadataTasks.isReady()) [CD]
+Line_3 $$ if (!transactionMetadataTasks.isReady()) --> Line_4 $$ return Futures.failedFuture(new IllegalStateException(getClass().getName() + " not yet ready")) [CD]
+Line_2 $$ public CompletableFuture<Void> sweepFailedProcesses(Supplier<Set<String>> activeHosts) --> Line_6 $$ CompletableFuture<Set<String>> hostsOwningTxns = withRetriesAsync(streamMetadataStore::<>listHostsOwningTxn, RETRYABLE_PREDICATE, Integer.MAX_VALUE, executor) [CD]
+Line_2 $$ public CompletableFuture<Void> sweepFailedProcesses(Supplier<Set<String>> activeHosts) --> Line_7 $$ return hostsOwningTxns.thenComposeAsync( index -> [CD]
+Line_6 $$ CompletableFuture<Set<String>> hostsOwningTxns = withRetriesAsync(streamMetadataStore::<>listHostsOwningTxn, RETRYABLE_PREDICATE, Integer.MAX_VALUE, executor) --> Line_7 $$ return hostsOwningTxns.thenComposeAsync( index -> [FD]
+Line_2 $$ public CompletableFuture<Void> sweepFailedProcesses(Supplier<Set<String>> activeHosts) --> Line_8 $$ index.removeAll(activeHosts.get()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static void checkSignificantTermsAggregationCorrect(ESIntegTestCase testCase) --> Line_3 $$ SearchResponse response = client().prepareSearch(INDEX_NAME).setTypes(DOC_TYPE).addAggregation(terms("class").field(CLASS_FIELD).subAggregation(significantTerms("sig_terms").field(TEXT_FIELD))).execute().actionGet() [CD]
+Line_2 $$ private static void checkSignificantTermsAggregationCorrect(ESIntegTestCase testCase) --> Line_4 $$ assertSearchResponse(response) [CD]
+Line_2 $$ private static void checkSignificantTermsAggregationCorrect(ESIntegTestCase testCase) --> Line_5 $$ StringTerms classes = response.getAggregations().get("class") [CD]
+Line_2 $$ private static void checkSignificantTermsAggregationCorrect(ESIntegTestCase testCase) --> Line_6 $$ Assert.assertThat(classes.getBuckets().size(), equalTo(2)) [CD]
+Line_10 $$ SignificantTerms agg = (SignificantTerms) aggs.get("sig_terms") --> Line_11 $$ Assert.assertThat(agg.getBuckets().size(), equalTo(1)) [FD]
+Line_10 $$ SignificantTerms agg = (SignificantTerms) aggs.get("sig_terms") --> Line_12 $$ SignificantTerms.Bucket sigBucket = agg.iterator().next() [FD]
+Line_12 $$ SignificantTerms.Bucket sigBucket = agg.iterator().next() --> Line_13 $$ String term = sigBucket.getKeyAsString() [FD]
+Line_13 $$ String term = sigBucket.getKeyAsString() --> Line_15 $$ Assert.assertTrue(term.equals(classTerm)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private boolean taskHeartbeat0(int siteId, Integer queueId, long taskLockId, String agentId, int lockSeconds) --> Line_3 $$ return autoCommit(( handle,  dao) -> [CD]
+Line_5 $$ if (isEmbededDatabase()) --> Line_6 $$ lockExpireTimeSql = Long.toString(Instant.now().getEpochSecond() + lockSeconds) [CD]
+Line_4 $$ String lockExpireTimeSql --> Line_6 $$ lockExpireTimeSql = Long.toString(Instant.now().getEpochSecond() + lockSeconds) [FD]
+Line_5 $$ if (isEmbededDatabase()) --> Line_8 $$ lockExpireTimeSql = statementUnixTimestampSql() + " + " + Integer.toString(lockSeconds) [CD]
+Line_4 $$ String lockExpireTimeSql --> Line_8 $$ lockExpireTimeSql = statementUnixTimestampSql() + " + " + Integer.toString(lockSeconds) [FD]
+Line_6 $$ lockExpireTimeSql = Long.toString(Instant.now().getEpochSecond() + lockSeconds) --> Line_8 $$ lockExpireTimeSql = statementUnixTimestampSql() + " + " + Integer.toString(lockSeconds) [FD]
+Line_2 $$ private boolean taskHeartbeat0(int siteId, Integer queueId, long taskLockId, String agentId, int lockSeconds) --> Line_8 $$ lockExpireTimeSql = statementUnixTimestampSql() + " + " + Integer.toString(lockSeconds) [FD]
+Line_2 $$ private boolean taskHeartbeat0(int siteId, Integer queueId, long taskLockId, String agentId, int lockSeconds) --> Line_10 $$ return handle.createStatement("update queued_task_locks" + " set lock_expire_time = " + lockExpireTimeSql + " where id = :id" + " and lock_agent_id = :agentId" + " and coalesce(site_id, (select site_id from queue_settings where id = :queueId)) = :siteId").bind("expireTime", Instant.now().getEpochSecond() + lockSeconds).bind("id", taskLockId).bind("agentId", agentId).bind("queueId", queueId).bind("siteId", siteId).execute() [FD]

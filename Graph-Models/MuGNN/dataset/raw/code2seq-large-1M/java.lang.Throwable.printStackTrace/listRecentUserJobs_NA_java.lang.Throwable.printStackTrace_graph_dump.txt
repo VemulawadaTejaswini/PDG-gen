@@ -1,0 +1,8 @@
+Line_2 $$ public List<BdaJob> listRecentUserJobs(String email) --> Line_3 $$ BdaJob entity = new BdaJob() [CD]
+Line_2 $$ public List<BdaJob> listRecentUserJobs(String email) --> Line_4 $$ entity.setAccount(email) [CD]
+Line_2 $$ public List<BdaJob> listRecentUserJobs(String email) --> Line_4 $$ entity.setAccount(email) [FD]
+Line_3 $$ BdaJob entity = new BdaJob() --> Line_4 $$ entity.setAccount(email) [FD]
+Line_3 $$ BdaJob entity = new BdaJob() --> Line_6 $$ List<BdaJob> list = SecureDao.listAll(entity, "order by last_submit_time desc limit 100") [FD]
+Line_7 $$ for (BdaJob temp : list) --> Line_8 $$ syncDatabase(temp) [FD]
+Line_6 $$ List<BdaJob> list = SecureDao.listAll(entity, "order by last_submit_time desc limit 100") --> Line_10 $$ logger.info("recent user job size: " + list.size()) [FD]
+Line_2 $$ public List<BdaJob> listRecentUserJobs(String email) --> Line_15 $$ return null [CD]

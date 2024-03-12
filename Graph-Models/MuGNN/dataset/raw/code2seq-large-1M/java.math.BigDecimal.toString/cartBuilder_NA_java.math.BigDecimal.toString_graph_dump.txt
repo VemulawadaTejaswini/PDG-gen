@@ -1,0 +1,8 @@
+Line_2 $$ Cart.Builder cartBuilder() --> Line_3 $$ Cart.Builder builder = Cart.newBuilder().setCurrencyCode(currencyCode).setTotalPrice(totalPrice.toString()).setLineItems(lineItems) [CD]
+Line_2 $$ Cart.Builder cartBuilder() --> Line_4 $$ if (taxPrice != null) [CD]
+Line_4 $$ if (taxPrice != null) --> Line_5 $$ builder.addLineItem(LineItem.newBuilder().setCurrencyCode(currencyCode).setDescription("Tax").setRole(LineItem.Role.TAX).setTotalPrice(taxPrice.toString()).build()) [CD]
+Line_3 $$ Cart.Builder builder = Cart.newBuilder().setCurrencyCode(currencyCode).setTotalPrice(totalPrice.toString()).setLineItems(lineItems) --> Line_5 $$ builder.addLineItem(LineItem.newBuilder().setCurrencyCode(currencyCode).setDescription("Tax").setRole(LineItem.Role.TAX).setTotalPrice(taxPrice.toString()).build()) [FD]
+Line_2 $$ Cart.Builder cartBuilder() --> Line_7 $$ if (shippingPrice != null) [CD]
+Line_7 $$ if (shippingPrice != null) --> Line_8 $$ builder.addLineItem(LineItem.newBuilder().setCurrencyCode(currencyCode).setDescription("Shipping").setRole(LineItem.Role.SHIPPING).setTotalPrice(shippingPrice.toString()).build()) [CD]
+Line_3 $$ Cart.Builder builder = Cart.newBuilder().setCurrencyCode(currencyCode).setTotalPrice(totalPrice.toString()).setLineItems(lineItems) --> Line_8 $$ builder.addLineItem(LineItem.newBuilder().setCurrencyCode(currencyCode).setDescription("Shipping").setRole(LineItem.Role.SHIPPING).setTotalPrice(shippingPrice.toString()).build()) [FD]
+Line_2 $$ Cart.Builder cartBuilder() --> Line_10 $$ return builder [CD]

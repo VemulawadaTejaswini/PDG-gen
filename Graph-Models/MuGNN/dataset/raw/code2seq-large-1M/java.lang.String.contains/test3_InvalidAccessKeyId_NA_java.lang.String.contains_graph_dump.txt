@@ -1,0 +1,7 @@
+Line_2 $$ public void test3_InvalidAccessKeyId() throws ClientException --> Line_3 $$ DefaultAcsClient client = new DefaultAcsClient(DefaultProfile.getProfile()) [CD]
+Line_2 $$ public void test3_InvalidAccessKeyId() throws ClientException --> Line_4 $$ AcsRequest request = new DescribeRegionsRequest() [CD]
+Line_3 $$ DefaultAcsClient client = new DefaultAcsClient(DefaultProfile.getProfile()) --> Line_6 $$ HttpResponse response = client.doAction(request, "cn-beijing", new Credential("testid", "testsecret")) [FD]
+Line_4 $$ AcsRequest request = new DescribeRegionsRequest() --> Line_6 $$ HttpResponse response = client.doAction(request, "cn-beijing", new Credential("testid", "testsecret")) [FD]
+Line_6 $$ HttpResponse response = client.doAction(request, "cn-beijing", new Credential("testid", "testsecret")) --> Line_7 $$ assertNotNull(response) [FD]
+Line_6 $$ HttpResponse response = client.doAction(request, "cn-beijing", new Credential("testid", "testsecret")) --> Line_8 $$ assertEquals(404, response.getStatus()) [FD]
+Line_6 $$ HttpResponse response = client.doAction(request, "cn-beijing", new Credential("testid", "testsecret")) --> Line_9 $$ assertTrue(new String(response.getHttpContent(), "UTF-8").contains("<Code>InvalidAccessKeyId.NotFound</Code>")) [FD]

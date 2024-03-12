@@ -1,0 +1,7 @@
+Line_2 $$ public void testGetLiveChannelHistory() --> Line_3 $$ final String liveChannel = "normal-get-live-channel-history" [CD]
+Line_5 $$ CreateLiveChannelRequest createLiveChannelRequest = new CreateLiveChannelRequest(bucketName, liveChannel) --> Line_6 $$ ossClient.createLiveChannel(createLiveChannelRequest) [FD]
+Line_3 $$ final String liveChannel = "normal-get-live-channel-history" --> Line_9 $$ List<LiveRecord> liveRecords = ossClient.getLiveChannelHistory(bucketName, liveChannel) [FD]
+Line_9 $$ List<LiveRecord> liveRecords = ossClient.getLiveChannelHistory(bucketName, liveChannel) --> Line_10 $$ Assert.assertTrue(liveRecords.size() >= 1) [FD]
+Line_11 $$ for (LiveRecord liveRecord : liveRecords) --> Line_12 $$ Assert.assertTrue(dateAfterValidator(liveRecord.getStartDate())) [FD]
+Line_11 $$ for (LiveRecord liveRecord : liveRecords) --> Line_13 $$ Assert.assertTrue(dateAfterValidator(liveRecord.getEndDate())) [FD]
+Line_11 $$ for (LiveRecord liveRecord : liveRecords) --> Line_14 $$ Assert.assertTrue(liveRecord.getRemoteAddress().length() >= new String("0.0.0.0:0").length()) [FD]

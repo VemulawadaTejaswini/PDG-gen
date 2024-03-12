@@ -1,0 +1,6 @@
+Line_2 $$ public void testMapPersonTs() throws IOException, ParseException --> Line_3 $$ CsvMapper<AddressBookProtos.Person> csvMapper = CsvMapperFactory.newInstance().useAsm(false).newBuilder(AddressBookProtos.Person.class).addMapping("name").addMapping("ts", new DateFormatProperty("yyyyMMdd")).mapper() [CD]
+Line_2 $$ public void testMapPersonTs() throws IOException, ParseException --> Line_4 $$ AddressBookProtos.Person person = csvMapper.iterator(new StringReader("arnaud,20170607")).next() [CD]
+Line_2 $$ public void testMapPersonTs() throws IOException, ParseException --> Line_5 $$ assertEquals("arnaud", person.getName()) [CD]
+Line_4 $$ AddressBookProtos.Person person = csvMapper.iterator(new StringReader("arnaud,20170607")).next() --> Line_5 $$ assertEquals("arnaud", person.getName()) [FD]
+Line_2 $$ public void testMapPersonTs() throws IOException, ParseException --> Line_6 $$ assertEquals(new SimpleDateFormat("yyyyMMdd").parse("20170607").getTime(), person.getTs().getSeconds() * 1000) [CD]
+Line_4 $$ AddressBookProtos.Person person = csvMapper.iterator(new StringReader("arnaud,20170607")).next() --> Line_6 $$ assertEquals(new SimpleDateFormat("yyyyMMdd").parse("20170607").getTime(), person.getTs().getSeconds() * 1000) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void httpConnectionRespondWithPayload() throws Exception --> Line_3 $$ HttpConnection connection = new HttpConnection(this.request, this.response) [CD]
+Line_2 $$ public void httpConnectionRespondWithPayload() throws Exception --> Line_4 $$ connection.waitForResponse() [CD]
+Line_3 $$ HttpConnection connection = new HttpConnection(this.request, this.response) --> Line_4 $$ connection.waitForResponse() [FD]
+Line_2 $$ public void httpConnectionRespondWithPayload() throws Exception --> Line_5 $$ connection.respond(new HttpTunnelPayload(1, ByteBuffer.wrap("hello".getBytes()))) [CD]
+Line_3 $$ HttpConnection connection = new HttpConnection(this.request, this.response) --> Line_5 $$ connection.respond(new HttpTunnelPayload(1, ByteBuffer.wrap("hello".getBytes()))) [FD]
+Line_2 $$ public void httpConnectionRespondWithPayload() throws Exception --> Line_6 $$ assertThat(this.servletResponse.getStatus()).isEqualTo(200) [CD]
+Line_2 $$ public void httpConnectionRespondWithPayload() throws Exception --> Line_7 $$ assertThat(this.servletResponse.getContentAsString()).isEqualTo("hello") [CD]
+Line_2 $$ public void httpConnectionRespondWithPayload() throws Exception --> Line_8 $$ assertThat(this.servletResponse.getHeader(SEQ_HEADER)).isEqualTo("1") [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static RelNode parseQuery(HiveConf conf, String viewQuery) --> Line_4 $$ final ASTNode node = ParseUtils.parse(viewQuery) [FD]
+Line_2 $$ private static RelNode parseQuery(HiveConf conf, String viewQuery) --> Line_5 $$ final QueryState qs = new QueryState.Builder().withHiveConf(conf).build() [FD]
+Line_7 $$ Context ctx = new Context(conf) --> Line_8 $$ ctx.setIsLoadingMaterializedView(true) [FD]
+Line_6 $$ CalcitePlanner analyzer = new CalcitePlanner(qs) --> Line_9 $$ analyzer.initCtx(ctx) [FD]
+Line_7 $$ Context ctx = new Context(conf) --> Line_9 $$ analyzer.initCtx(ctx) [FD]
+Line_6 $$ CalcitePlanner analyzer = new CalcitePlanner(qs) --> Line_10 $$ analyzer.init(false) [FD]
+Line_6 $$ CalcitePlanner analyzer = new CalcitePlanner(qs) --> Line_11 $$ return analyzer.genLogicalPlan(node) [FD]
+Line_4 $$ final ASTNode node = ParseUtils.parse(viewQuery) --> Line_11 $$ return analyzer.genLogicalPlan(node) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Collection<Locator> getLocators(long shard) throws IOException --> Line_3 $$ Timer.Context ctx = Instrumentation.getReadTimerContext(CassandraModel.CF_METRICS_LOCATOR_NAME) [CD]
+Line_2 $$ public Collection<Locator> getLocators(long shard) throws IOException --> Line_5 $$ RowQuery<Long, Locator> query = AstyanaxIO.getKeyspace().prepareQuery(CassandraModel.CF_METRICS_LOCATOR).getKey(shard) [FD]
+Line_6 $$ if (LOG.isTraceEnabled()) --> Line_7 $$ LOG.trace("ALocatorIO.getLocators() executing: select * from \"" + CassandraModel.KEYSPACE + "\"." + CassandraModel.CF_METRICS_LOCATOR_NAME + " where key=" + Long.toString(shard)) [CD]
+Line_2 $$ public Collection<Locator> getLocators(long shard) throws IOException --> Line_7 $$ LOG.trace("ALocatorIO.getLocators() executing: select * from \"" + CassandraModel.KEYSPACE + "\"." + CassandraModel.CF_METRICS_LOCATOR_NAME + " where key=" + Long.toString(shard)) [FD]
+Line_5 $$ RowQuery<Long, Locator> query = AstyanaxIO.getKeyspace().prepareQuery(CassandraModel.CF_METRICS_LOCATOR).getKey(shard) --> Line_8 $$ return query.execute().getResult().getColumnNames() [FD]
+Line_2 $$ public Collection<Locator> getLocators(long shard) throws IOException --> Line_14 $$ LOG.error("Connection exception during getLocators(" + Long.toString(shard) + ")", ex) [FD]
+Line_3 $$ Timer.Context ctx = Instrumentation.getReadTimerContext(CassandraModel.CF_METRICS_LOCATOR_NAME) --> Line_17 $$ ctx.stop() [FD]

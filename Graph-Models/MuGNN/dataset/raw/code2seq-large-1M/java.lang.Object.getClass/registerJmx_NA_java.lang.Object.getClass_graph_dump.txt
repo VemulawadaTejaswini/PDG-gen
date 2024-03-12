@@ -1,0 +1,6 @@
+Line_4 $$ if (isNotifyPool()) --> Line_5 $$ if (getCompositeType() != null) [CD]
+Line_5 $$ if (getCompositeType() != null) --> Line_6 $$ ObjectName oname = getObjectName(getClass(), poolName) [CD]
+Line_5 $$ if (getCompositeType() != null) --> Line_7 $$ if (mbeans.putIfAbsent(poolName, this) == null) [CD]
+Line_7 $$ if (mbeans.putIfAbsent(poolName, this) == null) --> Line_8 $$ ManagementFactory.getPlatformMBeanServer().registerMBean(this, oname) [CD]
+Line_6 $$ ObjectName oname = getObjectName(getClass(), poolName) --> Line_8 $$ ManagementFactory.getPlatformMBeanServer().registerMBean(this, oname) [FD]
+Line_5 $$ if (getCompositeType() != null) --> Line_11 $$ log.warn(SlowQueryReport.class.getName() + "- No JMX support, composite type was not found.") [CD]

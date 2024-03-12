@@ -1,0 +1,8 @@
+Line_2 $$ public void registerAtTheSameTime() throws InterruptedException --> Line_3 $$ final GridRegistry registry = DefaultGridRegistry.newInstance(new Hub(new GridHubConfiguration())) [CD]
+Line_2 $$ public void registerAtTheSameTime() throws InterruptedException --> Line_4 $$ final CountDownLatch latch = new CountDownLatch(TOTAL_THREADS) [CD]
+Line_6 $$ for (int i = 0; i < TOTAL_THREADS; i++) --> Line_7 $$ new Thread(() -> [CD]
+Line_3 $$ final GridRegistry registry = DefaultGridRegistry.newInstance(new Hub(new GridHubConfiguration())) --> Line_8 $$ registry.add(new BaseRemoteProxy(req, registry)) [FD]
+Line_4 $$ final CountDownLatch latch = new CountDownLatch(TOTAL_THREADS) --> Line_9 $$ latch.countDown() [FD]
+Line_4 $$ final CountDownLatch latch = new CountDownLatch(TOTAL_THREADS) --> Line_12 $$ latch.await() [FD]
+Line_3 $$ final GridRegistry registry = DefaultGridRegistry.newInstance(new Hub(new GridHubConfiguration())) --> Line_13 $$ assertEquals(registry.getAllProxies().size(), 1) [FD]
+Line_3 $$ final GridRegistry registry = DefaultGridRegistry.newInstance(new Hub(new GridHubConfiguration())) --> Line_15 $$ registry.stop() [FD]

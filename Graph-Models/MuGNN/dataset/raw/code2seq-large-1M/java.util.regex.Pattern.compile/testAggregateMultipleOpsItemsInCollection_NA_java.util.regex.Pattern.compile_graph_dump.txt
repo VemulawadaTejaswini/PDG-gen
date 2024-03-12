@@ -1,0 +1,7 @@
+Line_2 $$ public void testAggregateMultipleOpsItemsInCollection() --> Line_3 $$ coll.insert(new MockObject("string1", 1)) [CD]
+Line_2 $$ public void testAggregateMultipleOpsItemsInCollection() --> Line_4 $$ coll.insert(new MockObject("string2", 2)) [CD]
+Line_2 $$ public void testAggregateMultipleOpsItemsInCollection() --> Line_5 $$ AggregationResult<MockObject> result = coll.aggregate(new Aggregation<MockObject>(MockObject.class, new BasicDBObject("$match", new BasicDBObject("string", Pattern.compile("string1"))))) [CD]
+Line_2 $$ public void testAggregateMultipleOpsItemsInCollection() --> Line_6 $$ Assert.assertEquals(1, result.results().size()) [CD]
+Line_2 $$ public void testAggregateMultipleOpsItemsInCollection() --> Line_7 $$ Assert.assertEquals(1, result.results().get(0).integer.intValue()) [CD]
+Line_2 $$ public void testAggregateMultipleOpsItemsInCollection() --> Line_8 $$ result = coll.aggregate(new Aggregation<MockObject>(MockObject.class, new BasicDBObject("$match", new BasicDBObject("string", Pattern.compile(".*"))), new BasicDBObject("$match", new BasicDBObject("integer", new BasicDBObject("$gt", new Integer(1)))))) [CD]
+Line_2 $$ public void testAggregateMultipleOpsItemsInCollection() --> Line_9 $$ Assert.assertEquals(1, result.results().size()) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private int distributeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_3 $$ WM_LOG.info("Distributing " + count + " among " + speculativeTasks.size() + " levels" + (failedUpdate == null ? "" : "; on failure")) [CD]
+Line_2 $$ private int distributeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_4 $$ Iterator<Entry<Integer, TreeSet<TaskInfo>>> iterator = speculativeTasks.entrySet().iterator() [CD]
+Line_2 $$ private int distributeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_5 $$ int remainingCount = count [CD]
+Line_2 $$ private int distributeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_6 $$ while (remainingCount > 0 && iterator.hasNext()) [CD]
+Line_6 $$ while (remainingCount > 0 && iterator.hasNext()) --> Line_7 $$ remainingCount = handleUpdateForSinglePriorityLevel(remainingCount, iterator, failedUpdate, toUpdate, true) [CD]
+Line_5 $$ int remainingCount = count --> Line_7 $$ remainingCount = handleUpdateForSinglePriorityLevel(remainingCount, iterator, failedUpdate, toUpdate, true) [FD]
+Line_2 $$ private int distributeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_7 $$ remainingCount = handleUpdateForSinglePriorityLevel(remainingCount, iterator, failedUpdate, toUpdate, true) [FD]
+Line_2 $$ private int distributeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_9 $$ return count - remainingCount [CD]

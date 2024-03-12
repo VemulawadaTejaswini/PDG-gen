@@ -1,0 +1,8 @@
+Line_2 $$ public void testPutWithStorageTypeFunc() --> Line_3 $$ final String bucketName = "bucket-with-storage-type-func" [CD]
+Line_3 $$ final String bucketName = "bucket-with-storage-type-func" --> Line_6 $$ AccessControlList returnedAcl = ossClient.getBucketAcl(bucketName) [FD]
+Line_6 $$ AccessControlList returnedAcl = ossClient.getBucketAcl(bucketName) --> Line_7 $$ Set<Grant> grants = returnedAcl.getGrants() [FD]
+Line_7 $$ Set<Grant> grants = returnedAcl.getGrants() --> Line_8 $$ Assert.assertEquals(0, grants.size()) [FD]
+Line_3 $$ final String bucketName = "bucket-with-storage-type-func" --> Line_9 $$ BucketList buckets = ossClient.listBuckets(bucketName, "", 100) [FD]
+Line_9 $$ BucketList buckets = ossClient.listBuckets(bucketName, "", 100) --> Line_10 $$ Assert.assertEquals(1, buckets.getBucketList().size()) [FD]
+Line_9 $$ BucketList buckets = ossClient.listBuckets(bucketName, "", 100) --> Line_11 $$ Assert.assertEquals(StorageClass.IA, buckets.getBucketList().get(0).getStorageClass()) [FD]
+Line_3 $$ final String bucketName = "bucket-with-storage-type-func" --> Line_15 $$ ossClient.deleteBucket(bucketName) [FD]

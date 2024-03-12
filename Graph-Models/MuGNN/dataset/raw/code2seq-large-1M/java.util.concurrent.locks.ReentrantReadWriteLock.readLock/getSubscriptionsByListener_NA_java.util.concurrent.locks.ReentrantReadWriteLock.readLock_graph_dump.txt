@@ -1,0 +1,7 @@
+Line_2 $$ private Subscription[] getSubscriptionsByListener(Object listener) --> Line_3 $$ Subscription[] subscriptions [CD]
+Line_2 $$ private Subscription[] getSubscriptionsByListener(Object listener) --> Line_4 $$ ReadLock readLock = readWriteLock.readLock() [CD]
+Line_4 $$ ReadLock readLock = readWriteLock.readLock() --> Line_6 $$ readLock.lock() [FD]
+Line_3 $$ Subscription[] subscriptions --> Line_7 $$ subscriptions = subscriptionsPerListener.get(listener.getClass()) [FD]
+Line_2 $$ private Subscription[] getSubscriptionsByListener(Object listener) --> Line_7 $$ subscriptions = subscriptionsPerListener.get(listener.getClass()) [FD]
+Line_4 $$ ReadLock readLock = readWriteLock.readLock() --> Line_9 $$ readLock.unlock() [FD]
+Line_2 $$ private Subscription[] getSubscriptionsByListener(Object listener) --> Line_11 $$ return subscriptions [CD]

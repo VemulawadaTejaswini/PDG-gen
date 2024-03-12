@@ -1,0 +1,6 @@
+Line_2 $$ public Merger<String, GenericRow> getMerger() --> Line_3 $$ return ( key,  aggRowOne,  aggRowTwo) -> [CD]
+Line_7 $$ if (aggRowOne.getColumns().get(value) == null) --> Line_8 $$ mergedRow.getColumns().set(columnIndex, aggRowTwo.getColumns().get(value)) [CD]
+Line_5 $$ GenericRow mergedRow = new GenericRow(columns) --> Line_8 $$ mergedRow.getColumns().set(columnIndex, aggRowTwo.getColumns().get(value)) [FD]
+Line_7 $$ if (aggRowOne.getColumns().get(value) == null) --> Line_10 $$ mergedRow.getColumns().set(columnIndex, aggRowOne.getColumns().get(value)) [CD]
+Line_5 $$ GenericRow mergedRow = new GenericRow(columns) --> Line_10 $$ mergedRow.getColumns().set(columnIndex, aggRowOne.getColumns().get(value)) [FD]
+Line_5 $$ GenericRow mergedRow = new GenericRow(columns) --> Line_13 $$ mergedRow.getColumns().set(functionIndex, ksqlAggregateFunction.getMerger().apply(key, aggRowOne.getColumns().get(functionIndex), aggRowTwo.getColumns().get(functionIndex))) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private int retrieveSessionVariableFromServer(Connection tmpConnection, String variable) throws SQLException --> Line_3 $$ Statement statement = tmpConnection.createStatement() [FD]
+Line_2 $$ private int retrieveSessionVariableFromServer(Connection tmpConnection, String variable) throws SQLException --> Line_3 $$ Statement statement = tmpConnection.createStatement() [CD]
+Line_3 $$ Statement statement = tmpConnection.createStatement() --> Line_4 $$ try (ResultSet resultSet = statement.executeQuery("SHOW STATUS LIKE '" + variable + "'")) [FD]
+Line_4 $$ try (ResultSet resultSet = statement.executeQuery("SHOW STATUS LIKE '" + variable + "'")) --> Line_5 $$ if (resultSet.next()) [FD]
+Line_5 $$ if (resultSet.next()) --> Line_6 $$ return resultSet.getInt(2) [CD]
+Line_4 $$ try (ResultSet resultSet = statement.executeQuery("SHOW STATUS LIKE '" + variable + "'")) --> Line_6 $$ return resultSet.getInt(2) [FD]

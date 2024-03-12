@@ -1,0 +1,6 @@
+Line_2 $$ static void closeDirectBuffer(MappedByteBuffer mbb) --> Line_4 $$ java.lang.reflect.Method cleaner = mbb.getClass().getMethod("cleaner") [FD]
+Line_4 $$ java.lang.reflect.Method cleaner = mbb.getClass().getMethod("cleaner") --> Line_5 $$ cleaner.setAccessible(true) [FD]
+Line_6 $$ java.lang.reflect.Method clean = Class.forName("sun.misc.Cleaner").getMethod("clean") --> Line_7 $$ clean.setAccessible(true) [FD]
+Line_6 $$ java.lang.reflect.Method clean = Class.forName("sun.misc.Cleaner").getMethod("clean") --> Line_8 $$ clean.invoke(cleaner.invoke(mbb)) [FD]
+Line_4 $$ java.lang.reflect.Method cleaner = mbb.getClass().getMethod("cleaner") --> Line_8 $$ clean.invoke(cleaner.invoke(mbb)) [FD]
+Line_2 $$ static void closeDirectBuffer(MappedByteBuffer mbb) --> Line_8 $$ clean.invoke(cleaner.invoke(mbb)) [FD]

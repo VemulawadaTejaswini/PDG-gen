@@ -1,0 +1,7 @@
+Line_2 $$ public TokenValidation checkScopesWithin(Collection<String> scopes) --> Line_3 $$ getScopes().ifPresent( tokenScopes -> [CD]
+Line_2 $$ public TokenValidation checkScopesWithin(Collection<String> scopes) --> Line_4 $$ Set<Pattern> scopePatterns = UaaStringUtils.constructWildcards(scopes) [FD]
+Line_4 $$ Set<Pattern> scopePatterns = UaaStringUtils.constructWildcards(scopes) --> Line_5 $$ List<String> missingScopes = tokenScopes.stream().filter( s -> !scopePatterns.stream().anyMatch( p -> p.matcher(s).matches())).collect(Collectors.toList()) [FD]
+Line_5 $$ List<String> missingScopes = tokenScopes.stream().filter( s -> !scopePatterns.stream().anyMatch( p -> p.matcher(s).matches())).collect(Collectors.toList()) --> Line_6 $$ if (!missingScopes.isEmpty()) [FD]
+Line_6 $$ if (!missingScopes.isEmpty()) --> Line_7 $$ validationErrors.add(new InvalidTokenException("Some scopes have been revoked: " + missingScopes.stream().collect(Collectors.joining(" ")))) [CD]
+Line_5 $$ List<String> missingScopes = tokenScopes.stream().filter( s -> !scopePatterns.stream().anyMatch( p -> p.matcher(s).matches())).collect(Collectors.toList()) --> Line_7 $$ validationErrors.add(new InvalidTokenException("Some scopes have been revoked: " + missingScopes.stream().collect(Collectors.joining(" ")))) [FD]
+Line_2 $$ public TokenValidation checkScopesWithin(Collection<String> scopes) --> Line_10 $$ return this [CD]

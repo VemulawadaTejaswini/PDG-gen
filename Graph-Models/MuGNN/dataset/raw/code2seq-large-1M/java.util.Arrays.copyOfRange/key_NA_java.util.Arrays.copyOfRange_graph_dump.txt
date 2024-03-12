@@ -1,0 +1,6 @@
+Line_2 $$ byte[] key(ChunkInfo chunkInfo) --> Line_3 $$ byte[] chunkEncryptionKey = chunkInfo.getChunkEncryptionKey().toByteArray() [FD]
+Line_2 $$ byte[] key(ChunkInfo chunkInfo) --> Line_3 $$ byte[] chunkEncryptionKey = chunkInfo.getChunkEncryptionKey().toByteArray() [CD]
+Line_2 $$ byte[] key(ChunkInfo chunkInfo) --> Line_4 $$ if (chunkEncryptionKey.length != 0x11 || chunkEncryptionKey[0] != 0x01) [CD]
+Line_3 $$ byte[] chunkEncryptionKey = chunkInfo.getChunkEncryptionKey().toByteArray() --> Line_5 $$ throw new IllegalArgumentException("unsupported key type: 0x" + Hex.toHexString(chunkEncryptionKey)) [FD]
+Line_2 $$ byte[] key(ChunkInfo chunkInfo) --> Line_7 $$ return Arrays.copyOfRange(chunkEncryptionKey, 1, chunkEncryptionKey.length) [CD]
+Line_3 $$ byte[] chunkEncryptionKey = chunkInfo.getChunkEncryptionKey().toByteArray() --> Line_7 $$ return Arrays.copyOfRange(chunkEncryptionKey, 1, chunkEncryptionKey.length) [FD]

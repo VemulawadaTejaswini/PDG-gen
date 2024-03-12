@@ -1,0 +1,5 @@
+Line_2 $$ public boolean putIfAbsent(String key, V value) --> Line_4 $$ Bson query = Filters.eq(DrillMongoConstants.ID, key) [FD]
+Line_2 $$ public boolean putIfAbsent(String key, V value) --> Line_5 $$ Bson update = Updates.set(pKey, bytes(value)) [FD]
+Line_4 $$ Bson query = Filters.eq(DrillMongoConstants.ID, key) --> Line_6 $$ UpdateResult updateResult = collection.updateOne(query, update, new UpdateOptions().upsert(true)) [FD]
+Line_5 $$ Bson update = Updates.set(pKey, bytes(value)) --> Line_6 $$ UpdateResult updateResult = collection.updateOne(query, update, new UpdateOptions().upsert(true)) [FD]
+Line_6 $$ UpdateResult updateResult = collection.updateOne(query, update, new UpdateOptions().upsert(true)) --> Line_7 $$ return updateResult.getModifiedCount() == 1 [FD]

@@ -1,0 +1,8 @@
+Line_4 $$ if (!curatorFramework.getZookeeperClient().isConnected()) --> Line_5 $$ return [CD]
+Line_7 $$ if (curatorFramework.checkExists().forPath(SaturnSelfNodePath.SATURN_CONSOLE_DASHBOARD_LEADER_HOST) != null) --> Line_8 $$ byte[] bytes = curatorFramework.getData().forPath(SaturnSelfNodePath.SATURN_CONSOLE_DASHBOARD_LEADER_HOST) [CD]
+Line_7 $$ if (curatorFramework.checkExists().forPath(SaturnSelfNodePath.SATURN_CONSOLE_DASHBOARD_LEADER_HOST) != null) --> Line_9 $$ if (bytes != null) [CD]
+Line_8 $$ byte[] bytes = curatorFramework.getData().forPath(SaturnSelfNodePath.SATURN_CONSOLE_DASHBOARD_LEADER_HOST) --> Line_9 $$ if (bytes != null) [FD]
+Line_9 $$ if (bytes != null) --> Line_10 $$ String data = new String(bytes, "UTF-8") [CD]
+Line_9 $$ if (bytes != null) --> Line_11 $$ if (data.equals(hostValue)) [CD]
+Line_10 $$ String data = new String(bytes, "UTF-8") --> Line_11 $$ if (data.equals(hostValue)) [FD]
+Line_11 $$ if (data.equals(hostValue)) --> Line_12 $$ curatorFramework.delete().guaranteed().deletingChildrenIfNeeded().forPath(SaturnSelfNodePath.SATURN_CONSOLE_DASHBOARD_LEADER_HOST) [CD]

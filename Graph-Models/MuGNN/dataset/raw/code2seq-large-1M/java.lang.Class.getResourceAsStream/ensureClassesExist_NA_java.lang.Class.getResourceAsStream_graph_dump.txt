@@ -1,0 +1,6 @@
+Line_4 $$ JarInputStream jis = new JarInputStream(is) --> Line_7 $$ while ((je = jis.getNextJarEntry()) != null) [FD]
+Line_8 $$ String entryName = je.getName() --> Line_9 $$ if (entryName.endsWith(".class")) [FD]
+Line_8 $$ String entryName = je.getName() --> Line_10 $$ String className = "L" + entryName.substring(0, entryName.indexOf('.')) + ";" [FD]
+Line_6 $$ Set<String> jarClasses = new HashSet<String>() --> Line_11 $$ jarClasses.add(className) [FD]
+Line_6 $$ Set<String> jarClasses = new HashSet<String>() --> Line_14 $$ !jarClasses.contains(l) [FD]
+Line_15 $$ String msg = "Classes in " + configResPath + " don't exist: " + Arrays.toString(nonExistentClasses.toArray()) --> Line_16 $$ assertEquals(msg, 0, nonExistentClasses.size()) [FD]

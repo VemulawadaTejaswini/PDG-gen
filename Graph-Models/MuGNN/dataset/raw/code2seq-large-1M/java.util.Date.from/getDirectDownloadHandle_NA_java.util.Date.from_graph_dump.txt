@@ -1,0 +1,7 @@
+Line_2 $$ public Optional<DirectDownloadHandle> getDirectDownloadHandle(String key) --> Line_3 $$ GeneratePresignedUrlRequest req = new GeneratePresignedUrlRequest(bucket, key) [CD]
+Line_2 $$ public Optional<DirectDownloadHandle> getDirectDownloadHandle(String key) --> Line_4 $$ req.setExpiration(Date.from(Instant.now().plusSeconds(10 * 60))) [CD]
+Line_3 $$ GeneratePresignedUrlRequest req = new GeneratePresignedUrlRequest(bucket, key) --> Line_4 $$ req.setExpiration(Date.from(Instant.now().plusSeconds(10 * 60))) [FD]
+Line_2 $$ public Optional<DirectDownloadHandle> getDirectDownloadHandle(String key) --> Line_5 $$ String url = client.generatePresignedUrl(req).toString() [CD]
+Line_3 $$ GeneratePresignedUrlRequest req = new GeneratePresignedUrlRequest(bucket, key) --> Line_5 $$ String url = client.generatePresignedUrl(req).toString() [FD]
+Line_2 $$ public Optional<DirectDownloadHandle> getDirectDownloadHandle(String key) --> Line_6 $$ return Optional.of(DirectDownloadHandle.of(url)) [CD]
+Line_5 $$ String url = client.generatePresignedUrl(req).toString() --> Line_6 $$ return Optional.of(DirectDownloadHandle.of(url)) [FD]

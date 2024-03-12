@@ -1,0 +1,6 @@
+Line_2 $$ private long getOwnerQuotaInfo(OwnerType ownerType, QuotaInfo quotaInfo, String id, long defaultValue) throws DatabaseException --> Line_4 $$ byte[] key = BabuDBStorageHelper.createOwnerQuotaInfoKey(ownerType, id, quotaInfo) [FD]
+Line_4 $$ byte[] key = BabuDBStorageHelper.createOwnerQuotaInfoKey(ownerType, id, quotaInfo) --> Line_5 $$ byte[] value = database.lookup(VOLUME_INDEX, key, null).get() [FD]
+Line_5 $$ byte[] value = database.lookup(VOLUME_INDEX, key, null).get() --> Line_6 $$ if (value == null) [FD]
+Line_2 $$ private long getOwnerQuotaInfo(OwnerType ownerType, QuotaInfo quotaInfo, String id, long defaultValue) throws DatabaseException --> Line_6 $$ if (value == null) [FD]
+Line_6 $$ if (value == null) --> Line_7 $$ return defaultValue [CD]
+Line_6 $$ if (value == null) --> Line_9 $$ return Long.valueOf(new String(value)) [CD]

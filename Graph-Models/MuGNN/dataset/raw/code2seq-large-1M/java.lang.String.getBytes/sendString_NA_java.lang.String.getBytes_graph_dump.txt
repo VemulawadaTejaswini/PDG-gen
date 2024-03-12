@@ -1,0 +1,8 @@
+Line_2 $$ private void sendString(UsbDeviceConnection conn, int index, String string) --> Line_3 $$ byte[] buffer = (string + "\0").getBytes() [CD]
+Line_2 $$ private void sendString(UsbDeviceConnection conn, int index, String string) --> Line_4 $$ int len = conn.controlTransfer(UsbConstants.USB_DIR_OUT | UsbConstants.USB_TYPE_VENDOR, UsbAccessoryConstants.ACCESSORY_SEND_STRING, 0, index, buffer, buffer.length, 10000) [CD]
+Line_2 $$ private void sendString(UsbDeviceConnection conn, int index, String string) --> Line_4 $$ int len = conn.controlTransfer(UsbConstants.USB_DIR_OUT | UsbConstants.USB_TYPE_VENDOR, UsbAccessoryConstants.ACCESSORY_SEND_STRING, 0, index, buffer, buffer.length, 10000) [FD]
+Line_3 $$ byte[] buffer = (string + "\0").getBytes() --> Line_4 $$ int len = conn.controlTransfer(UsbConstants.USB_DIR_OUT | UsbConstants.USB_TYPE_VENDOR, UsbAccessoryConstants.ACCESSORY_SEND_STRING, 0, index, buffer, buffer.length, 10000) [FD]
+Line_2 $$ private void sendString(UsbDeviceConnection conn, int index, String string) --> Line_5 $$ if (len != buffer.length) [CD]
+Line_4 $$ int len = conn.controlTransfer(UsbConstants.USB_DIR_OUT | UsbConstants.USB_TYPE_VENDOR, UsbAccessoryConstants.ACCESSORY_SEND_STRING, 0, index, buffer, buffer.length, 10000) --> Line_5 $$ if (len != buffer.length) [FD]
+Line_5 $$ if (len != buffer.length) --> Line_6 $$ mLogger.logError("Failed to send string " + index + ": \"" + string + "\"") [CD]
+Line_5 $$ if (len != buffer.length) --> Line_8 $$ mLogger.log("Sent string " + index + ": \"" + string + "\"") [CD]

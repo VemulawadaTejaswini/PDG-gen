@@ -1,0 +1,8 @@
+Line_2 $$ public void assertSessionsAvailableWithin(int timeoutSeconds) throws InterruptedException --> Line_3 $$ long deadline = System.currentTimeMillis() + 1000 * timeoutSeconds [CD]
+Line_2 $$ public void assertSessionsAvailableWithin(int timeoutSeconds) throws InterruptedException --> Line_4 $$ while (System.currentTimeMillis() < deadline) [CD]
+Line_3 $$ long deadline = System.currentTimeMillis() + 1000 * timeoutSeconds --> Line_4 $$ while (System.currentTimeMillis() < deadline) [FD]
+Line_4 $$ while (System.currentTimeMillis() < deadline) --> Line_5 $$ if (sessionsAreAvailable) [CD]
+Line_5 $$ if (sessionsAreAvailable) --> Line_6 $$ return [CD]
+Line_4 $$ while (System.currentTimeMillis() < deadline) --> Line_8 $$ Thread.sleep(100) [CD]
+Line_2 $$ public void assertSessionsAvailableWithin(int timeoutSeconds) throws InterruptedException --> Line_10 $$ lastExceptionFromDriver.printStackTrace() [CD]
+Line_2 $$ public void assertSessionsAvailableWithin(int timeoutSeconds) throws InterruptedException --> Line_11 $$ fail("sessions did not become available from the driver after the db restart within the specified " + "timeout. Last failure was: " + lastExceptionFromDriver.getMessage()) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void waitForViewAndFinalCheckInProgress(int viewId) throws InterruptedException --> Line_3 $$ int sleeps = 0 [CD]
+Line_2 $$ private void waitForViewAndFinalCheckInProgress(int viewId) throws InterruptedException --> Line_4 $$ while (!gmsJoinLeave.isStopping() && (gmsJoinLeave.getView().getViewId() == viewId)) [CD]
+Line_4 $$ while (!gmsJoinLeave.isStopping() && (gmsJoinLeave.getView().getViewId() == viewId)) --> Line_5 $$ if (sleeps++ > 20) [CD]
+Line_3 $$ int sleeps = 0 --> Line_5 $$ if (sleeps++ > 20) [FD]
+Line_5 $$ if (sleeps++ > 20) --> Line_6 $$ System.out.println("view requests: " + gmsJoinLeave.getViewRequests()) [CD]
+Line_5 $$ if (sleeps++ > 20) --> Line_7 $$ System.out.println("current view: " + gmsJoinLeave.getView()) [CD]
+Line_4 $$ while (!gmsJoinLeave.isStopping() && (gmsJoinLeave.getView().getViewId() == viewId)) --> Line_10 $$ Thread.sleep(1000) [CD]
+Line_4 $$ while (!gmsJoinLeave.isStopping() && (gmsJoinLeave.getView().getViewId() == viewId)) --> Line_11 $$ System.out.println("Empty sleeps " + sleeps + " stopping: " + gmsJoinLeave.isStopping()) [CD]

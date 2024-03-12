@@ -1,0 +1,5 @@
+Line_2 $$ public void test() throws SQLException --> Line_3 $$ for (int i = 0; i < 2; i++) [CD]
+Line_4 $$ try (Connection connection = DriverManager.getConnection("jdbc:arjuna:java:/comp/env/jdbc/" + DB_USER1, DB_USER1, DB_USER1)) --> Line_5 $$ PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM pg_stat_activity") [FD]
+Line_5 $$ PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM pg_stat_activity") --> Line_6 $$ ResultSet resultSet = statement.executeQuery() [FD]
+Line_6 $$ ResultSet resultSet = statement.executeQuery() --> Line_7 $$ if (!resultSet.next() || resultSet.getLong(1) != 1) [FD]
+Line_7 $$ if (!resultSet.next() || resultSet.getLong(1) != 1) --> Line_8 $$ fail() [CD]

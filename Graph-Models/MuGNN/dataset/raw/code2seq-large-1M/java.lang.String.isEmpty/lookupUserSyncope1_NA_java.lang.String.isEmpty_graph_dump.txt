@@ -1,0 +1,8 @@
+Line_2 $$ private UserPrincipal lookupUserSyncope1(String username) --> Line_3 $$ HttpGet request = new HttpGet(address + "/users?username=" + username) [CD]
+Line_2 $$ private UserPrincipal lookupUserSyncope1(String username) --> Line_4 $$ request.setHeader("Content-Type", "application/xml") [CD]
+Line_3 $$ HttpGet request = new HttpGet(address + "/users?username=" + username) --> Line_4 $$ request.setHeader("Content-Type", "application/xml") [FD]
+Line_3 $$ HttpGet request = new HttpGet(address + "/users?username=" + username) --> Line_6 $$ HttpResponse response = client.execute(request) [FD]
+Line_6 $$ HttpResponse response = client.execute(request) --> Line_7 $$ String responseTO = EntityUtils.toString(response.getEntity()) [FD]
+Line_7 $$ String responseTO = EntityUtils.toString(response.getEntity()) --> Line_8 $$ if (responseTO != null && !responseTO.isEmpty()) [FD]
+Line_8 $$ if (responseTO != null && !responseTO.isEmpty()) --> Line_9 $$ return new UserPrincipal(username) [CD]
+Line_2 $$ private UserPrincipal lookupUserSyncope1(String username) --> Line_14 $$ return null [CD]

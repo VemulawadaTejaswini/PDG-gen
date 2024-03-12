@@ -1,0 +1,8 @@
+Line_2 $$ private static File getShell() --> Line_3 $$ final String shell = System.getenv("SHELL") [CD]
+Line_2 $$ private static File getShell() --> Line_4 $$ if (shell != null && (shell.contains("bash") || shell.contains("zsh"))) [CD]
+Line_3 $$ final String shell = System.getenv("SHELL") --> Line_4 $$ if (shell != null && (shell.contains("bash") || shell.contains("zsh"))) [FD]
+Line_4 $$ if (shell != null && (shell.contains("bash") || shell.contains("zsh"))) --> Line_5 $$ File file = new File(shell) [CD]
+Line_4 $$ if (shell != null && (shell.contains("bash") || shell.contains("zsh"))) --> Line_6 $$ if (file.isAbsolute() && file.isFile() && file.canExecute()) [CD]
+Line_5 $$ File file = new File(shell) --> Line_6 $$ if (file.isAbsolute() && file.isFile() && file.canExecute()) [FD]
+Line_6 $$ if (file.isAbsolute() && file.isFile() && file.canExecute()) --> Line_7 $$ return file [CD]
+Line_2 $$ private static File getShell() --> Line_10 $$ return null [CD]

@@ -1,0 +1,8 @@
+Line_4 $$ Cipher cipher = Cipher.getInstance(t.algorithm) --> Line_5 $$ cipher.init(Cipher.DECRYPT_MODE, t.key, t.params) [FD]
+Line_4 $$ Cipher cipher = Cipher.getInstance(t.algorithm) --> Line_6 $$ cipher.updateAAD(t.aad) [FD]
+Line_10 $$ CipherOutputStream cos = new CipherOutputStream(os, cipher) --> Line_11 $$ cos.write(ct) [FD]
+Line_7 $$ byte[] ct = Arrays.copyOf(t.ct, t.ct.length) --> Line_11 $$ cos.write(ct) [FD]
+Line_10 $$ CipherOutputStream cos = new CipherOutputStream(os, cipher) --> Line_13 $$ cos.close() [FD]
+Line_9 $$ ByteArrayOutputStream os = new ByteArrayOutputStream() --> Line_14 $$ byte[] decrypted = os.toByteArray() [FD]
+Line_15 $$ if (decrypted.length > 0) --> Line_16 $$ fail("this should fail; decrypted:" + TestUtil.bytesToHex(decrypted) + " pt: " + TestUtil.bytesToHex(t.pt)) [CD]
+Line_14 $$ byte[] decrypted = os.toByteArray() --> Line_16 $$ fail("this should fail; decrypted:" + TestUtil.bytesToHex(decrypted) + " pt: " + TestUtil.bytesToHex(t.pt)) [FD]

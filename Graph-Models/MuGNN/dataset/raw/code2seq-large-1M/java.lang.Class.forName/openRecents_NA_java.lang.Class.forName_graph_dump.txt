@@ -1,0 +1,8 @@
+Line_4 $$ Class serviceManagerClass = Class.forName("android.os.ServiceManager") --> Line_5 $$ Method getService = serviceManagerClass.getMethod("getService", String.class) [FD]
+Line_4 $$ Class serviceManagerClass = Class.forName("android.os.ServiceManager") --> Line_6 $$ IBinder retbinder = (IBinder) getService.invoke(serviceManagerClass, "statusbar") [FD]
+Line_6 $$ IBinder retbinder = (IBinder) getService.invoke(serviceManagerClass, "statusbar") --> Line_7 $$ Class statusBarClass = Class.forName(retbinder.getInterfaceDescriptor()) [FD]
+Line_7 $$ Class statusBarClass = Class.forName(retbinder.getInterfaceDescriptor()) --> Line_8 $$ Object statusBarObject = statusBarClass.getClasses()[0].getMethod("asInterface", IBinder.class).invoke(null, new Object[] [FD]
+Line_7 $$ Class statusBarClass = Class.forName(retbinder.getInterfaceDescriptor()) --> Line_9 $$ Method clearAll = statusBarClass.getMethod("toggleRecentApps") [FD]
+Line_9 $$ Method clearAll = statusBarClass.getMethod("toggleRecentApps") --> Line_10 $$ clearAll.setAccessible(true) [FD]
+Line_9 $$ Method clearAll = statusBarClass.getMethod("toggleRecentApps") --> Line_11 $$ clearAll.invoke(statusBarObject) [FD]
+Line_2 $$ public static void openRecents(Context context) --> Line_13 $$ Toast.makeText(context, "Sorry! Your device doesn't support this!", Toast.LENGTH_SHORT).show() [FD]

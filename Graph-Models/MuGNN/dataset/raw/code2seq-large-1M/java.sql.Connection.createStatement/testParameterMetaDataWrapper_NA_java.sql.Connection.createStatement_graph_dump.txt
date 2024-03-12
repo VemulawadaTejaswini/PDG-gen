@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection con = DriverManager.getConnection(connectionString); --> Line_5 $$ stmt.executeUpdate("create table " + tableName + " (col1 int identity(1,1) primary key)") [FD]
+Line_3 $$ try (Connection con = DriverManager.getConnection(connectionString); --> Line_8 $$ try (PreparedStatement pstmt = con.prepareStatement(query)) [FD]
+Line_7 $$ String query = "SELECT * from " + tableName + " where col1 = ?" --> Line_8 $$ try (PreparedStatement pstmt = con.prepareStatement(query)) [FD]
+Line_8 $$ try (PreparedStatement pstmt = con.prepareStatement(query)) --> Line_9 $$ ParameterMetaData parameterMetaData = pstmt.getParameterMetaData() [FD]
+Line_9 $$ ParameterMetaData parameterMetaData = pstmt.getParameterMetaData() --> Line_10 $$ assertTrue(parameterMetaData.isWrapperFor(ParameterMetaData.class)) [FD]
+Line_9 $$ ParameterMetaData parameterMetaData = pstmt.getParameterMetaData() --> Line_11 $$ assertSame(parameterMetaData, parameterMetaData.unwrap(ParameterMetaData.class)) [FD]
+Line_3 $$ try (Connection con = DriverManager.getConnection(connectionString); --> Line_14 $$ Utils.dropTableIfExists(tableName, stmt) [FD]

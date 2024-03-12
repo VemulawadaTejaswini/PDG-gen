@@ -1,0 +1,5 @@
+Line_2 $$ public void unicodeSurrogatePairLiteralInGrammar() throws Exception --> Line_3 $$ String grammarText = "grammar Unicode;\n" + "r : 'hello' WORLD;\n" + "WORLD : ('\\uD83C\\uDF0D' | '\\uD83C\\uDF0E' | '\\uD83C\\uDF0F' );\n" + "WS : [ \\t\\r\\n]+ -> skip;\n" [CD]
+Line_2 $$ public void unicodeSurrogatePairLiteralInGrammar() throws Exception --> Line_4 $$ String inputText = new StringBuilder("hello ").appendCodePoint(0x1F30E).toString() [CD]
+Line_2 $$ public void unicodeSurrogatePairLiteralInGrammar() throws Exception --> Line_5 $$ assertEquals("(r:1 " + inputText + ")", parseTreeForGrammarWithInput(grammarText, "r", inputText)) [CD]
+Line_3 $$ String grammarText = "grammar Unicode;\n" + "r : 'hello' WORLD;\n" + "WORLD : ('\\uD83C\\uDF0D' | '\\uD83C\\uDF0E' | '\\uD83C\\uDF0F' );\n" + "WS : [ \\t\\r\\n]+ -> skip;\n" --> Line_5 $$ assertEquals("(r:1 " + inputText + ")", parseTreeForGrammarWithInput(grammarText, "r", inputText)) [FD]
+Line_4 $$ String inputText = new StringBuilder("hello ").appendCodePoint(0x1F30E).toString() --> Line_5 $$ assertEquals("(r:1 " + inputText + ")", parseTreeForGrammarWithInput(grammarText, "r", inputText)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void bindCertPathStore() --> Line_3 $$ if (signerInfoStoreType.equalsIgnoreCase("memory")) [CD]
+Line_3 $$ if (signerInfoStoreType.equalsIgnoreCase("memory")) --> Line_4 $$ bind(CertPathStore.class).to(MemoryStore.class).in(Singleton.class) [CD]
+Line_3 $$ if (signerInfoStoreType.equalsIgnoreCase("memory")) --> Line_5 $$ if (signerInfoStoreType.equalsIgnoreCase("file")) [CD]
+Line_5 $$ if (signerInfoStoreType.equalsIgnoreCase("file")) --> Line_6 $$ bind(CertPathStore.class).to(FileSignerInfoStore.class).in(Singleton.class) [CD]
+Line_5 $$ if (signerInfoStoreType.equalsIgnoreCase("file")) --> Line_7 $$ if (signerInfoStoreType.equalsIgnoreCase("mongodb")) [CD]
+Line_7 $$ if (signerInfoStoreType.equalsIgnoreCase("mongodb")) --> Line_8 $$ MongoDbProvider mongoDbProvider = getMongoDbProvider() [CD]
+Line_7 $$ if (signerInfoStoreType.equalsIgnoreCase("mongodb")) --> Line_9 $$ bind(CertPathStore.class).toInstance(mongoDbProvider.provideMongoDbStore()) [CD]
+Line_8 $$ MongoDbProvider mongoDbProvider = getMongoDbProvider() --> Line_9 $$ bind(CertPathStore.class).toInstance(mongoDbProvider.provideMongoDbStore()) [FD]

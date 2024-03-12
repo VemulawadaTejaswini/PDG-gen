@@ -1,0 +1,7 @@
+Line_2 $$ public RowTraversal rowTraversal(long offset, long count) --> Line_3 $$ DPRowSpliterator.DPLoader[] loaders = new DPRowSpliterator.DPLoader[columns.size()] [CD]
+Line_2 $$ public RowTraversal rowTraversal(long offset, long count) --> Line_4 $$ for (int colId = 0; colId < columns.size(); colId++) [CD]
+Line_4 $$ for (int colId = 0; colId < columns.size(); colId++) --> Line_5 $$ loaders[colId] = columns.get(colId).getDPLoader() [CD]
+Line_4 $$ for (int colId = 0; colId < columns.size(); colId++) --> Line_5 $$ loaders[colId] = columns.get(colId).getDPLoader() [FD]
+Line_2 $$ public RowTraversal rowTraversal(long offset, long count) --> Line_7 $$ return new RowTraversal() [CD]
+Line_7 $$ return new RowTraversal() --> Line_9 $$ return StreamSupport.stream(new DPRowSpliterator(offset, offset + count, loaders), false) [CD]
+Line_7 $$ return new RowTraversal() --> Line_12 $$ return new DPRowSpliterator(offset, offset + count, loaders) [CD]

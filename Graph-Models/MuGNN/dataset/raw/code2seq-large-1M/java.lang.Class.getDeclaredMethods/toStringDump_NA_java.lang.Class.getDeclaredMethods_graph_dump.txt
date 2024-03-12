@@ -1,0 +1,7 @@
+Line_5 $$ for (Method m : this.getClass().getDeclaredMethods()) --> Line_6 $$ if (!m.getName().startsWith("get")) [FD]
+Line_5 $$ for (Method m : this.getClass().getDeclaredMethods()) --> Line_8 $$ if (m.getReturnType() != Integer.TYPE && m.getReturnType() != Float.TYPE) [FD]
+Line_5 $$ for (Method m : this.getClass().getDeclaredMethods()) --> Line_10 $$ if (m.getParameterTypes().length != 0) [FD]
+Line_5 $$ for (Method m : this.getClass().getDeclaredMethods()) --> Line_12 $$ Object value = m.invoke(this, new Object[0]) [FD]
+Line_4 $$ StringBuilder b = new StringBuilder() --> Line_13 $$ b.append(m.getName().substring(3, 4).toLowerCase() + m.getName().substring(4) + ": " + value + "\n") [FD]
+Line_5 $$ for (Method m : this.getClass().getDeclaredMethods()) --> Line_13 $$ b.append(m.getName().substring(3, 4).toLowerCase() + m.getName().substring(4) + ": " + value + "\n") [FD]
+Line_4 $$ StringBuilder b = new StringBuilder() --> Line_15 $$ return b.toString() [FD]

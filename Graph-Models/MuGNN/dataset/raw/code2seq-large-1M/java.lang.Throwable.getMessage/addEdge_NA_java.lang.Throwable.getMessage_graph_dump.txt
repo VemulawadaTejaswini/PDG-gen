@@ -1,0 +1,8 @@
+Line_2 $$ public Edge addEdge(final Object id, final Vertex outVertex, final Vertex inVertex, final String label) --> Line_3 $$ if (label == null) [FD]
+Line_2 $$ public Edge addEdge(final Object id, final Vertex outVertex, final Vertex inVertex, final String label) --> Line_3 $$ if (label == null) [CD]
+Line_2 $$ public Edge addEdge(final Object id, final Vertex outVertex, final Vertex inVertex, final String label) --> Line_5 $$ Value outVertexValue = ((SailVertex) outVertex).getRawVertex() [CD]
+Line_2 $$ public Edge addEdge(final Object id, final Vertex outVertex, final Vertex inVertex, final String label) --> Line_6 $$ Value inVertexValue = ((SailVertex) inVertex).getRawVertex() [CD]
+Line_2 $$ public Edge addEdge(final Object id, final Vertex outVertex, final Vertex inVertex, final String label) --> Line_7 $$ if (!(outVertexValue instanceof Resource)) [CD]
+Line_2 $$ public Edge addEdge(final Object id, final Vertex outVertex, final Vertex inVertex, final String label) --> Line_8 $$ throw new IllegalArgumentException(outVertex.toString() + " is not a legal URI or blank node") [FD]
+Line_2 $$ public Edge addEdge(final Object id, final Vertex outVertex, final Vertex inVertex, final String label) --> Line_11 $$ URI labelURI = new URIImpl(this.expandPrefix(label)) [FD]
+Line_12 $$ Statement statement = new StatementImpl((Resource) outVertexValue, labelURI, inVertexValue) --> Line_13 $$ SailHelper.addStatement(statement, this.sailConnection.get()) [FD]

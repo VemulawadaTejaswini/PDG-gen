@@ -1,0 +1,8 @@
+Line_2 $$ private Rectangle2D calculateTrimRectangle(@NotNull String xmlDrawable) --> Line_3 $$ ListenableFuture<BufferedImage> futureImage = myContext.renderDrawable(xmlDrawable, SIZE_FULL_BLEED_DP) [CD]
+Line_2 $$ private Rectangle2D calculateTrimRectangle(@NotNull String xmlDrawable) --> Line_3 $$ ListenableFuture<BufferedImage> futureImage = myContext.renderDrawable(xmlDrawable, SIZE_FULL_BLEED_DP) [FD]
+Line_2 $$ private Rectangle2D calculateTrimRectangle(@NotNull String xmlDrawable) --> Line_4 $$ ListenableFuture<Rectangle2D> rectangleFuture = Futures.transform(futureImage, (BufferedImage image) -> [CD]
+Line_3 $$ ListenableFuture<BufferedImage> futureImage = myContext.renderDrawable(xmlDrawable, SIZE_FULL_BLEED_DP) --> Line_4 $$ ListenableFuture<Rectangle2D> rectangleFuture = Futures.transform(futureImage, (BufferedImage image) -> [FD]
+Line_5 $$ Rectangle bounds = ImageUtils.getCropBounds(image, ImageUtils.TRANSPARENCY_FILTER, null) --> Line_6 $$ if (bounds == null) [FD]
+Line_6 $$ if (bounds == null) --> Line_7 $$ return IMAGE_SIZE_FULL_BLEED_DP [CD]
+Line_5 $$ Rectangle bounds = ImageUtils.getCropBounds(image, ImageUtils.TRANSPARENCY_FILTER, null) --> Line_11 $$ return new Rectangle2D.Double(bounds.getX() / width, bounds.getY() / height, bounds.getWidth() / width, bounds.getHeight() / height) [FD]
+Line_4 $$ ListenableFuture<Rectangle2D> rectangleFuture = Futures.transform(futureImage, (BufferedImage image) -> --> Line_14 $$ return rectangleFuture.get() [FD]

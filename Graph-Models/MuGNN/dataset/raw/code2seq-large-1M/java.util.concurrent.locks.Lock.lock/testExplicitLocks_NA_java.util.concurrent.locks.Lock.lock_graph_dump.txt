@@ -1,0 +1,7 @@
+Line_2 $$ public void testExplicitLocks() throws Exception --> Line_4 $$ startGrid() [CD]
+Line_6 $$ IgniteCache<Object, Object> cache = jcache() --> Line_7 $$ Lock lock = cache.lock(1) [FD]
+Line_7 $$ Lock lock = cache.lock(1) --> Line_8 $$ lock.lock() [FD]
+Line_6 $$ IgniteCache<Object, Object> cache = jcache() --> Line_9 $$ assertNull(cache.getAndPut(1, "key1")) [FD]
+Line_6 $$ IgniteCache<Object, Object> cache = jcache() --> Line_10 $$ assertEquals("key1", cache.getAndPut(1, "key2")) [FD]
+Line_6 $$ IgniteCache<Object, Object> cache = jcache() --> Line_11 $$ assertEquals("key2", cache.get(1)) [FD]
+Line_7 $$ Lock lock = cache.lock(1) --> Line_12 $$ lock.unlock() [FD]

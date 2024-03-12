@@ -1,0 +1,8 @@
+Line_2 $$ private int getPort() --> Line_3 $$ String portAsString = getContext().getProject().getProperties().getProperty(VERTX_HEALTH_PORT) [CD]
+Line_2 $$ private int getPort() --> Line_4 $$ if (portAsString != null && !portAsString.trim().isEmpty()) [CD]
+Line_3 $$ String portAsString = getContext().getProject().getProperties().getProperty(VERTX_HEALTH_PORT) --> Line_4 $$ if (portAsString != null && !portAsString.trim().isEmpty()) [FD]
+Line_3 $$ String portAsString = getContext().getProject().getProperties().getProperty(VERTX_HEALTH_PORT) --> Line_6 $$ int port = Integer.valueOf(portAsString.trim()) [FD]
+Line_6 $$ int port = Integer.valueOf(portAsString.trim()) --> Line_7 $$ if (port <= 0) [FD]
+Line_7 $$ if (port <= 0) --> Line_8 $$ return -1 [CD]
+Line_7 $$ if (port <= 0) --> Line_10 $$ return port [CD]
+Line_2 $$ private int getPort() --> Line_17 $$ return Configs.asInt(getConfig(VertxHealthCheckEnricher.Config.port)) [CD]

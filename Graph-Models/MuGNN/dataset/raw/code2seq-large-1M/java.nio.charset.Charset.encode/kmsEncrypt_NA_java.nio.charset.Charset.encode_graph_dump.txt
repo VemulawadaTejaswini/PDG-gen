@@ -1,0 +1,6 @@
+Line_2 $$ private String kmsEncrypt(String value) --> Line_3 $$ String kmsKeyId = context.getSecrets().getSecret("aws.emr.kms_key_id") [CD]
+Line_2 $$ private String kmsEncrypt(String value) --> Line_4 $$ EncryptResult result = kms.encrypt(new EncryptRequest().withKeyId(kmsKeyId).withPlaintext(UTF_8.encode(value))) [FD]
+Line_2 $$ private String kmsEncrypt(String value) --> Line_4 $$ EncryptResult result = kms.encrypt(new EncryptRequest().withKeyId(kmsKeyId).withPlaintext(UTF_8.encode(value))) [CD]
+Line_3 $$ String kmsKeyId = context.getSecrets().getSecret("aws.emr.kms_key_id") --> Line_4 $$ EncryptResult result = kms.encrypt(new EncryptRequest().withKeyId(kmsKeyId).withPlaintext(UTF_8.encode(value))) [FD]
+Line_2 $$ private String kmsEncrypt(String value) --> Line_5 $$ return base64(result.getCiphertextBlob()) [CD]
+Line_4 $$ EncryptResult result = kms.encrypt(new EncryptRequest().withKeyId(kmsKeyId).withPlaintext(UTF_8.encode(value))) --> Line_5 $$ return base64(result.getCiphertextBlob()) [FD]

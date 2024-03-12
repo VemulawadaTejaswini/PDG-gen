@@ -1,0 +1,6 @@
+Line_2 $$ public void cancelsOther() --> Line_3 $$ AtomicBoolean cancelled = new AtomicBoolean() [CD]
+Line_2 $$ public void cancelsOther() --> Line_4 $$ Flux<Integer> when = Flux.range(1, 10).doOnCancel(() -> cancelled.set(true)) [CD]
+Line_3 $$ AtomicBoolean cancelled = new AtomicBoolean() --> Line_4 $$ Flux<Integer> when = Flux.range(1, 10).doOnCancel(() -> cancelled.set(true)) [FD]
+Line_2 $$ public void cancelsOther() --> Line_5 $$ StepVerifier.create(Flux.just(1).repeatWhen( other -> when)).thenCancel().verify() [CD]
+Line_2 $$ public void cancelsOther() --> Line_6 $$ assertThat(cancelled.get()).isTrue() [CD]
+Line_3 $$ AtomicBoolean cancelled = new AtomicBoolean() --> Line_6 $$ assertThat(cancelled.get()).isTrue() [FD]

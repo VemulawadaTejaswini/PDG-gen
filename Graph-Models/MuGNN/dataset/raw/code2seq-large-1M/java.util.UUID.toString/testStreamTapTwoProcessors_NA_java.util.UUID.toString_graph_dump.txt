@@ -1,0 +1,7 @@
+Line_2 $$ public void testStreamTapTwoProcessors() --> Line_3 $$ String data = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void testStreamTapTwoProcessors() --> Line_4 $$ stream("dataSender", sources.http() + XD_DELIMITER + processors.transform().expression("payload.toUpperCase()").label("label1") + XD_DELIMITER + processors.transform().expression("payload.substring(3)").label("label2") + XD_DELIMITER + sinks.log()) [CD]
+Line_2 $$ public void testStreamTapTwoProcessors() --> Line_5 $$ stream(sources.tap("dataSender").label("label2") + XD_TAP_DELIMITER + sinks.file()) [CD]
+Line_2 $$ public void testStreamTapTwoProcessors() --> Line_6 $$ sources.httpSource("dataSender").postData(data) [CD]
+Line_3 $$ String data = UUID.randomUUID().toString() --> Line_6 $$ sources.httpSource("dataSender").postData(data) [FD]
+Line_2 $$ public void testStreamTapTwoProcessors() --> Line_7 $$ assertValid(data.toUpperCase().substring(3), sinks.file()) [CD]
+Line_3 $$ String data = UUID.randomUUID().toString() --> Line_7 $$ assertValid(data.toUpperCase().substring(3), sinks.file()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testBulkInsert() throws SQLException --> Line_3 $$ Statement s = createStatement() [CD]
+Line_2 $$ public void testBulkInsert() throws SQLException --> Line_4 $$ for (int addOrReplace = 0; addOrReplace < 2; addOrReplace++) [CD]
+Line_4 $$ for (int addOrReplace = 0; addOrReplace < 2; addOrReplace++) --> Line_5 $$ assertStatementError(LANG_FK_VIOLATION, s, "call SYSCS_UTIL.SYSCS_IMPORT_TABLE (" + "    'APP' , 'T_D_R' , '" + expImpDataFile + "'," + "    null, null , null, " + addOrReplace + ")") [CD]
+Line_3 $$ Statement s = createStatement() --> Line_5 $$ assertStatementError(LANG_FK_VIOLATION, s, "call SYSCS_UTIL.SYSCS_IMPORT_TABLE (" + "    'APP' , 'T_D_R' , '" + expImpDataFile + "'," + "    null, null , null, " + addOrReplace + ")") [FD]
+Line_4 $$ for (int addOrReplace = 0; addOrReplace < 2; addOrReplace++) --> Line_6 $$ s.executeUpdate("set constraints c_d_r deferred") [CD]
+Line_3 $$ Statement s = createStatement() --> Line_6 $$ s.executeUpdate("set constraints c_d_r deferred") [FD]
+Line_4 $$ for (int addOrReplace = 0; addOrReplace < 2; addOrReplace++) --> Line_7 $$ assertStatementError(LANG_DEFERRED_FK_CONSTRAINT_T, s, "call SYSCS_UTIL.SYSCS_IMPORT_TABLE (" + "    'APP' , 'T_D_R' , '" + expImpDataFile + "'," + "    null, null , null, " + addOrReplace + ")") [CD]
+Line_3 $$ Statement s = createStatement() --> Line_7 $$ assertStatementError(LANG_DEFERRED_FK_CONSTRAINT_T, s, "call SYSCS_UTIL.SYSCS_IMPORT_TABLE (" + "    'APP' , 'T_D_R' , '" + expImpDataFile + "'," + "    null, null , null, " + addOrReplace + ")") [FD]

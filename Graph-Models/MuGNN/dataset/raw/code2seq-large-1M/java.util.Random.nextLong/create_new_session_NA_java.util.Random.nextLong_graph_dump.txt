@@ -1,0 +1,7 @@
+Line_2 $$ private void create_new_session(ChannelHandlerContext ctx, long message_id) --> Line_3 $$ Random rnd = new Random() [CD]
+Line_2 $$ private void create_new_session(ChannelHandlerContext ctx, long message_id) --> Line_4 $$ unique_session = rnd.nextLong() [CD]
+Line_3 $$ Random rnd = new Random() --> Line_4 $$ unique_session = rnd.nextLong() [FD]
+Line_2 $$ private void create_new_session(ChannelHandlerContext ctx, long message_id) --> Line_5 $$ new_session_created newSessionCreated = new new_session_created(message_id, unique_session, ServerSaltStore.getInstance().getServerSalt(tlContext.getAuthKeyId())) [CD]
+Line_2 $$ private void create_new_session(ChannelHandlerContext ctx, long message_id) --> Line_6 $$ ctx.writeAndFlush(encryptRpc(newSessionCreated, getMessageSeqNo(true), generateMessageId(false))) [FD]
+Line_2 $$ private void create_new_session(ChannelHandlerContext ctx, long message_id) --> Line_6 $$ ctx.writeAndFlush(encryptRpc(newSessionCreated, getMessageSeqNo(true), generateMessageId(false))) [CD]
+Line_5 $$ new_session_created newSessionCreated = new new_session_created(message_id, unique_session, ServerSaltStore.getInstance().getServerSalt(tlContext.getAuthKeyId())) --> Line_6 $$ ctx.writeAndFlush(encryptRpc(newSessionCreated, getMessageSeqNo(true), generateMessageId(false))) [FD]

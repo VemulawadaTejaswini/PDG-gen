@@ -1,0 +1,8 @@
+Line_2 $$ public boolean getConcurrentInstallEnabled(Optional<BuckEventBus> eventBus) --> Line_3 $$ ConcurrentInstall state = delegate.getEnum("install", "concurrent_install", ConcurrentInstall.class).orElse(CONCURRENT_INSTALL_DEFAULT) [CD]
+Line_2 $$ public boolean getConcurrentInstallEnabled(Optional<BuckEventBus> eventBus) --> Line_4 $$ if (state == ConcurrentInstall.EXPERIMENT) [CD]
+Line_4 $$ if (state == ConcurrentInstall.EXPERIMENT) --> Line_5 $$ state = RandomizedTrial.getGroupStable("concurrent_install", ConcurrentInstall.class) [CD]
+Line_4 $$ if (state == ConcurrentInstall.EXPERIMENT) --> Line_6 $$ ExperimentEvent event = new ExperimentEvent("concurrent_install", state.toString(), "", null, null) [CD]
+Line_4 $$ if (state == ConcurrentInstall.EXPERIMENT) --> Line_7 $$ eventBus.ifPresent(( bus) -> bus.post(event)) [CD]
+Line_2 $$ public boolean getConcurrentInstallEnabled(Optional<BuckEventBus> eventBus) --> Line_7 $$ eventBus.ifPresent(( bus) -> bus.post(event)) [FD]
+Line_6 $$ ExperimentEvent event = new ExperimentEvent("concurrent_install", state.toString(), "", null, null) --> Line_7 $$ eventBus.ifPresent(( bus) -> bus.post(event)) [FD]
+Line_2 $$ public boolean getConcurrentInstallEnabled(Optional<BuckEventBus> eventBus) --> Line_9 $$ return state.equals(ConcurrentInstall.ENABLED) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ protected PageEvictionTracker createPageEvictionTracker(DataRegionConfiguration plc, PageMemory pageMem) --> Line_3 $$ if (plc.getPageEvictionMode() == DataPageEvictionMode.DISABLED || plc.isPersistenceEnabled()) [FD]
+Line_2 $$ protected PageEvictionTracker createPageEvictionTracker(DataRegionConfiguration plc, PageMemory pageMem) --> Line_3 $$ if (plc.getPageEvictionMode() == DataPageEvictionMode.DISABLED || plc.isPersistenceEnabled()) [CD]
+Line_3 $$ if (plc.getPageEvictionMode() == DataPageEvictionMode.DISABLED || plc.isPersistenceEnabled()) --> Line_4 $$ return new NoOpPageEvictionTracker() [CD]
+Line_2 $$ protected PageEvictionTracker createPageEvictionTracker(DataRegionConfiguration plc, PageMemory pageMem) --> Line_5 $$ assert pageMem instanceof PageMemoryNoStoreImpl : pageMem.getClass() [FD]
+Line_2 $$ protected PageEvictionTracker createPageEvictionTracker(DataRegionConfiguration plc, PageMemory pageMem) --> Line_6 $$ PageMemoryNoStoreImpl pageMem0 = (PageMemoryNoStoreImpl) pageMem [CD]
+Line_2 $$ protected PageEvictionTracker createPageEvictionTracker(DataRegionConfiguration plc, PageMemory pageMem) --> Line_7 $$ if (Boolean.getBoolean("override.fair.fifo.page.eviction.tracker")) [CD]
+Line_7 $$ if (Boolean.getBoolean("override.fair.fifo.page.eviction.tracker")) --> Line_8 $$ return new FairFifoPageEvictionTracker(pageMem0, plc, cctx) [CD]
+Line_2 $$ protected PageEvictionTracker createPageEvictionTracker(DataRegionConfiguration plc, PageMemory pageMem) --> Line_9 $$ switch(plc.getPageEvictionMode()) [FD]

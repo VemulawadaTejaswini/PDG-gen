@@ -1,0 +1,6 @@
+Line_2 $$ public List findBySpaceOnly(final String pageSpace, final String pageName) --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_5 $$ HibernateCallback callback = new HibernateCallback() --> Line_7 $$ return session.createCriteria(PagePresence.class).add(Expression.eq("pagespace", pageSpace)).add(Expression.not(Expression.eq("pagename", pageName))).addOrder(Order.desc("lastseen")).list() [FD]
+Line_5 $$ HibernateCallback callback = new HibernateCallback() --> Line_7 $$ return session.createCriteria(PagePresence.class).add(Expression.eq("pagespace", pageSpace)).add(Expression.not(Expression.eq("pagename", pageName))).addOrder(Order.desc("lastseen")).list() [CD]
+Line_2 $$ public List findBySpaceOnly(final String pageSpace, final String pageName) --> Line_7 $$ return session.createCriteria(PagePresence.class).add(Expression.eq("pagespace", pageSpace)).add(Expression.not(Expression.eq("pagename", pageName))).addOrder(Order.desc("lastseen")).list() [FD]
+Line_5 $$ HibernateCallback callback = new HibernateCallback() --> Line_10 $$ List l = (List) getHibernateTemplate().execute(callback) [FD]
+Line_3 $$ long start = System.currentTimeMillis() --> Line_15 $$ TimeLogger.printTimer("PagePresenceDaoImpl.findBySpaceOnly: " + pageSpace + " :" + pageName, start, finish) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static long parseSecondNano(String secondNano) throws IllegalArgumentException --> Line_3 $$ String[] parts = secondNano.split("\\.") [CD]
+Line_2 $$ public static long parseSecondNano(String secondNano) throws IllegalArgumentException --> Line_3 $$ String[] parts = secondNano.split("\\.") [FD]
+Line_2 $$ public static long parseSecondNano(String secondNano) throws IllegalArgumentException --> Line_4 $$ if (parts.length == 1) [CD]
+Line_4 $$ if (parts.length == 1) --> Line_5 $$ return toLongWithRange("second", parts[0], Long.MIN_VALUE / MICROS_PER_SECOND, Long.MAX_VALUE / MICROS_PER_SECOND) * MICROS_PER_SECOND [CD]
+Line_4 $$ if (parts.length == 1) --> Line_6 $$ if (parts.length == 2) [CD]
+Line_6 $$ if (parts.length == 2) --> Line_7 $$ long seconds = parts[0].equals("") ? 0L : toLongWithRange("second", parts[0], Long.MIN_VALUE / MICROS_PER_SECOND, Long.MAX_VALUE / MICROS_PER_SECOND) [CD]
+Line_6 $$ if (parts.length == 2) --> Line_8 $$ long nanos = toLongWithRange("nanosecond", parts[1], 0L, 999999999L) [CD]
+Line_6 $$ if (parts.length == 2) --> Line_9 $$ return seconds * MICROS_PER_SECOND + nanos / 1000L [CD]

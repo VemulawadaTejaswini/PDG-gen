@@ -1,0 +1,1 @@
+Line_2 $$ public Map<String, Map<MetricType, Long>> getReadMetrics() --> Line_3 $$ return mutationState.getReadMetricQueue() != null ? mutationState.getReadMetricQueue().aggregate() : Collections.<String, Map<MetricType, Long>>emptyMap() [CD]

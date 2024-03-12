@@ -1,0 +1,7 @@
+Line_3 $$ for (CrosstoolRelease crosstool : crosstoolReleases) --> Line_4 $$ for (CToolchain toolchain : crosstool.getToolchainList()) [FD]
+Line_4 $$ for (CToolchain toolchain : crosstool.getToolchainList()) --> Line_5 $$ assertThat(toolchain.getCxxBuiltinIncludeDirectoryList()).isNotEmpty() [FD]
+Line_4 $$ for (CToolchain toolchain : crosstool.getToolchainList()) --> Line_6 $$ for (String flag : toolchain.getUnfilteredCxxFlagList()) [FD]
+Line_6 $$ for (String flag : toolchain.getUnfilteredCxxFlagList()) --> Line_7 $$ if (!flag.equals("-isystem")) [FD]
+Line_7 $$ if (!flag.equals("-isystem")) --> Line_8 $$ assertThat(toolchain.getCxxBuiltinIncludeDirectoryList()).doesNotContain(flag) [CD]
+Line_6 $$ for (String flag : toolchain.getUnfilteredCxxFlagList()) --> Line_8 $$ assertThat(toolchain.getCxxBuiltinIncludeDirectoryList()).doesNotContain(flag) [FD]
+Line_4 $$ for (CToolchain toolchain : crosstool.getToolchainList()) --> Line_8 $$ assertThat(toolchain.getCxxBuiltinIncludeDirectoryList()).doesNotContain(flag) [FD]

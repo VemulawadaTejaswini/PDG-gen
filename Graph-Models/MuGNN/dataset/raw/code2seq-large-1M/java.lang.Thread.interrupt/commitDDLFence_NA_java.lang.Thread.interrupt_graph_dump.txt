@@ -1,0 +1,6 @@
+Line_2 $$ public void commitDDLFence(PTable dataTable) throws SQLException --> Line_3 $$ byte[] key = dataTable.getName().getBytes() [FD]
+Line_2 $$ public void commitDDLFence(PTable dataTable) throws SQLException --> Line_3 $$ byte[] key = dataTable.getName().getBytes() [CD]
+Line_3 $$ byte[] key = dataTable.getName().getBytes() --> Line_5 $$ FenceWait fenceWait = VisibilityFence.prepareWait(key, txServiceClient) [FD]
+Line_5 $$ FenceWait fenceWait = VisibilityFence.prepareWait(key, txServiceClient) --> Line_6 $$ fenceWait.await(10000, TimeUnit.MILLISECONDS) [FD]
+Line_7 $$ if (logger.isInfoEnabled()) --> Line_8 $$ logger.info("Added write fence at ~" + getCurrentTransaction().getReadPointer()) [CD]
+Line_2 $$ public void commitDDLFence(PTable dataTable) throws SQLException --> Line_14 $$ throw new SQLExceptionInfo.Builder(SQLExceptionCode.TX_UNABLE_TO_GET_WRITE_FENCE).setSchemaName(dataTable.getSchemaName().getString()).setTableName(dataTable.getTableName().getString()).build().buildException() [FD]

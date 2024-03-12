@@ -1,0 +1,4 @@
+Line_4 $$ ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest().withQueueUrl(queueURL).withVisibilityTimeout(visibilityTimeout).withMaxNumberOfMessages(batchSize) --> Line_5 $$ ReceiveMessageResult result = client.receiveMessage(receiveMessageRequest) [FD]
+Line_5 $$ ReceiveMessageResult result = client.receiveMessage(receiveMessageRequest) --> Line_6 $$ List<Message> messages = result.getMessages().stream().map( msg -> new Message(msg.getMessageId(), msg.getBody(), msg.getReceiptHandle())).collect(Collectors.toList()) [FD]
+Line_6 $$ List<Message> messages = result.getMessages().stream().map( msg -> new Message(msg.getMessageId(), msg.getBody(), msg.getReceiptHandle())).collect(Collectors.toList()) --> Line_7 $$ Monitors.recordEventQueueMessagesProcessed(QUEUE_TYPE, this.queueName, messages.size()) [FD]
+Line_2 $$ List<Message> receiveMessages() --> Line_13 $$ return new ArrayList() [CD]

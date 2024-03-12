@@ -1,0 +1,7 @@
+Line_2 $$ public static byte[] readBlobFully(BlobContainer container, String name, int length) throws IOException --> Line_3 $$ byte[] data = new byte[length] [CD]
+Line_2 $$ public static byte[] readBlobFully(BlobContainer container, String name, int length) throws IOException --> Line_4 $$ try (InputStream inputStream = container.readBlob(name)) [FD]
+Line_4 $$ try (InputStream inputStream = container.readBlob(name)) --> Line_5 $$ assertThat(inputStream.read(data), equalTo(length)) [FD]
+Line_3 $$ byte[] data = new byte[length] --> Line_5 $$ assertThat(inputStream.read(data), equalTo(length)) [FD]
+Line_2 $$ public static byte[] readBlobFully(BlobContainer container, String name, int length) throws IOException --> Line_5 $$ assertThat(inputStream.read(data), equalTo(length)) [FD]
+Line_4 $$ try (InputStream inputStream = container.readBlob(name)) --> Line_6 $$ assertThat(inputStream.read(), equalTo(-1)) [FD]
+Line_2 $$ public static byte[] readBlobFully(BlobContainer container, String name, int length) throws IOException --> Line_8 $$ return data [CD]

@@ -1,0 +1,8 @@
+Line_3 $$ try (ObjectInputStream ois = new ObjectInputStream(new ByteBufInputStream(buffer))) --> Line_4 $$ Object obj = ois.readObject() [FD]
+Line_4 $$ Object obj = ois.readObject() --> Line_6 $$ throw new ClassCastException("Read object expected to be of type Throwable, " + "actual type is " + obj.getClass() + ".") [FD]
+Line_5 $$ if (!(obj instanceof Throwable)) --> Line_8 $$ if (buffer.readBoolean()) [CD]
+Line_2 $$ static ErrorResponse readFrom(ByteBuf buffer) throws Exception --> Line_8 $$ if (buffer.readBoolean()) [FD]
+Line_8 $$ if (buffer.readBoolean()) --> Line_9 $$ InputChannelID receiverId = InputChannelID.fromByteBuf(buffer) [CD]
+Line_2 $$ static ErrorResponse readFrom(ByteBuf buffer) throws Exception --> Line_9 $$ InputChannelID receiverId = InputChannelID.fromByteBuf(buffer) [FD]
+Line_8 $$ if (buffer.readBoolean()) --> Line_10 $$ return new ErrorResponse((Throwable) obj, receiverId) [CD]
+Line_8 $$ if (buffer.readBoolean()) --> Line_12 $$ return new ErrorResponse((Throwable) obj) [CD]

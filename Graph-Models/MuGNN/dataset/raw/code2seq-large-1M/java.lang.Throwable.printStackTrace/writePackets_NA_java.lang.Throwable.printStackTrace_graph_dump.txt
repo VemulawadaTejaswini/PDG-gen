@@ -1,0 +1,7 @@
+Line_2 $$ private void writePackets(Thread thisThread) --> Line_3 $$ while (!this.done && this.writerThread == thisThread) [CD]
+Line_3 $$ while (!this.done && this.writerThread == thisThread) --> Line_4 $$ Packet packet = nextPacket() [CD]
+Line_3 $$ while (!this.done && this.writerThread == thisThread) --> Line_5 $$ if (packet != null && !done && this.writerThread == thisThread) [CD]
+Line_4 $$ Packet packet = nextPacket() --> Line_7 $$ byte[] st = packet.toBytes() [FD]
+Line_7 $$ byte[] st = packet.toBytes() --> Line_8 $$ writer.write(st) [FD]
+Line_4 $$ Packet packet = nextPacket() --> Line_10 $$ connection.notifySendSuccessful(packet) [FD]
+Line_13 $$ if (!done && this.writerThread == thisThread) --> Line_14 $$ connection.handleReadWriteError(e) [CD]

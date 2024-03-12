@@ -1,0 +1,7 @@
+Line_2 $$ public void fluxCanBeEnforcedToDispatchValuesHavingDistinctKeys() --> Line_3 $$ Flux<Integer> s = Flux.fromIterable(Arrays.asList(1, 2, 3, 1, 2, 3, 4)) [CD]
+Line_2 $$ public void fluxCanBeEnforcedToDispatchValuesHavingDistinctKeys() --> Line_4 $$ MonoProcessor<List<Integer>> tap = s.distinct( it -> it % 3).collectList().toProcessor() [CD]
+Line_3 $$ Flux<Integer> s = Flux.fromIterable(Arrays.asList(1, 2, 3, 1, 2, 3, 4)) --> Line_4 $$ MonoProcessor<List<Integer>> tap = s.distinct( it -> it % 3).collectList().toProcessor() [FD]
+Line_2 $$ public void fluxCanBeEnforcedToDispatchValuesHavingDistinctKeys() --> Line_5 $$ tap.subscribe() [CD]
+Line_4 $$ MonoProcessor<List<Integer>> tap = s.distinct( it -> it % 3).collectList().toProcessor() --> Line_5 $$ tap.subscribe() [FD]
+Line_2 $$ public void fluxCanBeEnforcedToDispatchValuesHavingDistinctKeys() --> Line_6 $$ assertThat(tap.block()).containsExactly(1, 2, 3) [CD]
+Line_4 $$ MonoProcessor<List<Integer>> tap = s.distinct( it -> it % 3).collectList().toProcessor() --> Line_6 $$ assertThat(tap.block()).containsExactly(1, 2, 3) [FD]

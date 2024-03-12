@@ -1,0 +1,5 @@
+Line_2 $$ private void complete() --> Line_3 $$ final int totalObjects = objectCount.incrementAndGet() [CD]
+Line_2 $$ private void complete() --> Line_4 $$ if (totalObjects % (limiter.getRate() * 10) == 0) [CD]
+Line_4 $$ if (totalObjects % (limiter.getRate() * 10) == 0) --> Line_5 $$ final long duration = currentTimeMillis() - startTime [CD]
+Line_4 $$ if (totalObjects % (limiter.getRate() * 10) == 0) --> Line_6 $$ System.out.printf("Generated %d objects in %d seconds (%.1f objects/sec)\n", totalObjects, duration / 1000, 1000. * totalObjects / duration) [CD]
+Line_3 $$ final int totalObjects = objectCount.incrementAndGet() --> Line_6 $$ System.out.printf("Generated %d objects in %d seconds (%.1f objects/sec)\n", totalObjects, duration / 1000, 1000. * totalObjects / duration) [FD]

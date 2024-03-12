@@ -1,0 +1,7 @@
+Line_2 $$ public void testStructReadReordering() --> Line_3 $$ Schema read = new Schema(required(0, "nested", Types.StructType.of(required(1, "field_a", Types.IntegerType.get()), required(2, "field_b", Types.IntegerType.get())))) [CD]
+Line_2 $$ public void testStructReadReordering() --> Line_4 $$ Schema write = new Schema(required(0, "nested", Types.StructType.of(required(2, "field_b", Types.IntegerType.get()), required(1, "field_a", Types.IntegerType.get())))) [CD]
+Line_2 $$ public void testStructReadReordering() --> Line_5 $$ List<String> errors = CheckCompatibility.readCompatibilityErrors(read, write) [CD]
+Line_3 $$ Schema read = new Schema(required(0, "nested", Types.StructType.of(required(1, "field_a", Types.IntegerType.get()), required(2, "field_b", Types.IntegerType.get())))) --> Line_5 $$ List<String> errors = CheckCompatibility.readCompatibilityErrors(read, write) [FD]
+Line_4 $$ Schema write = new Schema(required(0, "nested", Types.StructType.of(required(2, "field_b", Types.IntegerType.get()), required(1, "field_a", Types.IntegerType.get())))) --> Line_5 $$ List<String> errors = CheckCompatibility.readCompatibilityErrors(read, write) [FD]
+Line_2 $$ public void testStructReadReordering() --> Line_6 $$ Assert.assertEquals("Should produce no error messages", 0, errors.size()) [CD]
+Line_5 $$ List<String> errors = CheckCompatibility.readCompatibilityErrors(read, write) --> Line_6 $$ Assert.assertEquals("Should produce no error messages", 0, errors.size()) [FD]

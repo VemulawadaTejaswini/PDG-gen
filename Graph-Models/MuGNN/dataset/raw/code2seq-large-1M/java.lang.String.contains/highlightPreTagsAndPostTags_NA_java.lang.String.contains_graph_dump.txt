@@ -1,0 +1,6 @@
+Line_2 $$ public void highlightPreTagsAndPostTags() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_3 $$ String query = String.format("select  " + "* from %s/phrase " + "where phrase like 'fox' " + "order by _score", TEST_INDEX_PHRASE) [CD]
+Line_2 $$ public void highlightPreTagsAndPostTags() throws IOException, SqlParseException, SQLFeatureNotSupportedException --> Line_4 $$ SearchHits hits = query(query) [CD]
+Line_3 $$ String query = String.format("select  " + "* from %s/phrase " + "where phrase like 'fox' " + "order by _score", TEST_INDEX_PHRASE) --> Line_4 $$ SearchHits hits = query(query) [FD]
+Line_5 $$ for (SearchHit hit : hits) --> Line_6 $$ HighlightField phrase = hit.getHighlightFields().get("phrase") [FD]
+Line_6 $$ HighlightField phrase = hit.getHighlightFields().get("phrase") --> Line_7 $$ String highlightPhrase = phrase.getFragments()[0].string() [FD]
+Line_7 $$ String highlightPhrase = phrase.getFragments()[0].string() --> Line_8 $$ Assert.assertTrue(highlightPhrase.contains("<b>fox</b>")) [FD]

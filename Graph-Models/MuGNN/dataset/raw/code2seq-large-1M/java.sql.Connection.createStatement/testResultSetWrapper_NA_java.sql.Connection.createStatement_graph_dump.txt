@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection con = DriverManager.getConnection(connectionString); --> Line_5 $$ stmt.executeUpdate("create table " + tableName + " (col1 int, col2 text, col3 int identity(1,1) primary key)") [FD]
+Line_3 $$ try (Connection con = DriverManager.getConnection(connectionString); --> Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from " + tableName)) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from " + tableName)) --> Line_7 $$ assertTrue(rs.isWrapperFor(ResultSet.class)) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from " + tableName)) --> Line_8 $$ assertTrue(rs.isWrapperFor(ISQLServerResultSet.class)) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from " + tableName)) --> Line_9 $$ assertSame(rs, rs.unwrap(ResultSet.class)) [FD]
+Line_6 $$ try (ResultSet rs = stmt.executeQuery("select * from " + tableName)) --> Line_10 $$ assertSame(rs, rs.unwrap(ISQLServerResultSet.class)) [FD]
+Line_3 $$ try (Connection con = DriverManager.getConnection(connectionString); --> Line_12 $$ Utils.dropTableIfExists(tableName, stmt) [FD]

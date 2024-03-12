@@ -1,0 +1,7 @@
+Line_2 $$ private ApplicationMetaData readMetaDataFromLiveApp(ZKLiveApp liveApp) --> Line_3 $$ String metaDataString = liveApp.getData(ConfigCurator.META_ZK_PATH) [FD]
+Line_2 $$ private ApplicationMetaData readMetaDataFromLiveApp(ZKLiveApp liveApp) --> Line_3 $$ String metaDataString = liveApp.getData(ConfigCurator.META_ZK_PATH) [CD]
+Line_2 $$ private ApplicationMetaData readMetaDataFromLiveApp(ZKLiveApp liveApp) --> Line_4 $$ if (metaDataString == null || metaDataString.isEmpty()) [CD]
+Line_3 $$ String metaDataString = liveApp.getData(ConfigCurator.META_ZK_PATH) --> Line_4 $$ if (metaDataString == null || metaDataString.isEmpty()) [FD]
+Line_4 $$ if (metaDataString == null || metaDataString.isEmpty()) --> Line_5 $$ return null [CD]
+Line_2 $$ private ApplicationMetaData readMetaDataFromLiveApp(ZKLiveApp liveApp) --> Line_7 $$ return ApplicationMetaData.fromJsonString(liveApp.getData(ConfigCurator.META_ZK_PATH)) [FD]
+Line_2 $$ private ApplicationMetaData readMetaDataFromLiveApp(ZKLiveApp liveApp) --> Line_7 $$ return ApplicationMetaData.fromJsonString(liveApp.getData(ConfigCurator.META_ZK_PATH)) [CD]

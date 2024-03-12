@@ -1,0 +1,7 @@
+Line_2 $$ public void normalCancel() --> Line_3 $$ AtomicBoolean cancelCheck = new AtomicBoolean(false) [CD]
+Line_2 $$ public void normalCancel() --> Line_4 $$ StepVerifier.create(Mono.just(1).hide().doOnCancel(() -> cancelCheck.set(true)).doFinally(this)).expectNoFusionSupport().expectNext(1).thenCancel().verify() [CD]
+Line_3 $$ AtomicBoolean cancelCheck = new AtomicBoolean(false) --> Line_4 $$ StepVerifier.create(Mono.just(1).hide().doOnCancel(() -> cancelCheck.set(true)).doFinally(this)).expectNoFusionSupport().expectNext(1).thenCancel().verify() [FD]
+Line_2 $$ public void normalCancel() --> Line_5 $$ assertEquals("expected doFinally to be invoked exactly once", 1, calls) [CD]
+Line_2 $$ public void normalCancel() --> Line_6 $$ assertEquals(SignalType.CANCEL, signalType) [CD]
+Line_2 $$ public void normalCancel() --> Line_7 $$ assertTrue("expected tested mono to be cancelled", cancelCheck.get()) [CD]
+Line_3 $$ AtomicBoolean cancelCheck = new AtomicBoolean(false) --> Line_7 $$ assertTrue("expected tested mono to be cancelled", cancelCheck.get()) [FD]

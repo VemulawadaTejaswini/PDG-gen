@@ -1,0 +1,8 @@
+Line_2 $$ public void JAR_location_as_ClassFileSource() throws IOException --> Line_3 $$ JarFile jar = new TestJarFile().withEntry(classFileResource(getClass())).withEntry(classFileResource(Location.class)).create() [CD]
+Line_2 $$ public void JAR_location_as_ClassFileSource() throws IOException --> Line_4 $$ ClassFileSource source = Location.of(new File(jar.getName()).toURI()).asClassFileSource(new ImportOptions()) [CD]
+Line_2 $$ public void JAR_location_as_ClassFileSource() throws IOException --> Line_5 $$ List<List<Byte>> importedFiles = new ArrayList() [CD]
+Line_6 $$ for (ClassFileLocation location : source) --> Line_7 $$ try (InputStream s = location.openStream()) [FD]
+Line_5 $$ List<List<Byte>> importedFiles = new ArrayList() --> Line_8 $$ importedFiles.add(asList(toByteArray(s))) [FD]
+Line_7 $$ try (InputStream s = location.openStream()) --> Line_8 $$ importedFiles.add(asList(toByteArray(s))) [FD]
+Line_2 $$ public void JAR_location_as_ClassFileSource() throws IOException --> Line_11 $$ assertThat(importedFiles).as("Imported Files as byte arrays").contains(asList(toByteArray(streamOfClass(getClass()))), asList(toByteArray(streamOfClass(Location.class)))) [CD]
+Line_5 $$ List<List<Byte>> importedFiles = new ArrayList() --> Line_11 $$ assertThat(importedFiles).as("Imported Files as byte arrays").contains(asList(toByteArray(streamOfClass(getClass()))), asList(toByteArray(streamOfClass(Location.class)))) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void checkUnlocked(IgniteCache<Integer, String> cache, Integer key) throws IgniteCheckedException --> Line_3 $$ assert !cache.isLocalLocked(key, true) [FD]
+Line_2 $$ private void checkUnlocked(IgniteCache<Integer, String> cache, Integer key) throws IgniteCheckedException --> Line_4 $$ if (partitioned()) [CD]
+Line_4 $$ if (partitioned()) --> Line_5 $$ for (int i = 0; i < 200; i++) if (cache.isLocalLocked(key, false)) [CD]
+Line_2 $$ private void checkUnlocked(IgniteCache<Integer, String> cache, Integer key) throws IgniteCheckedException --> Line_5 $$ for (int i = 0; i < 200; i++) if (cache.isLocalLocked(key, false)) [FD]
+Line_5 $$ for (int i = 0; i < 200; i++) if (cache.isLocalLocked(key, false)) --> Line_12 $$ return [CD]
+Line_2 $$ private void checkUnlocked(IgniteCache<Integer, String> cache, Integer key) throws IgniteCheckedException --> Line_14 $$ assertFalse("Key locked [key=" + key + ", entries=" + entries(key) + "]", cache.isLocalLocked(key, false)) [CD]
+Line_2 $$ private void checkUnlocked(IgniteCache<Integer, String> cache, Integer key) throws IgniteCheckedException --> Line_14 $$ assertFalse("Key locked [key=" + key + ", entries=" + entries(key) + "]", cache.isLocalLocked(key, false)) [FD]

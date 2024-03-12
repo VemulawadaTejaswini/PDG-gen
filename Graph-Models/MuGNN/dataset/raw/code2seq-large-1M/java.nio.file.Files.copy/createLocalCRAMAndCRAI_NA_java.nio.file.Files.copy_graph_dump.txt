@@ -1,0 +1,8 @@
+Line_2 $$ private void createLocalCRAMAndCRAI(final File inputCRAM, final File reference, final File outputCRAM, final File outputCRAI) throws IOException --> Line_3 $$ Files.copy(inputCRAM.toPath(), outputCRAM.toPath(), StandardCopyOption.REPLACE_EXISTING) [CD]
+Line_2 $$ private void createLocalCRAMAndCRAI(final File inputCRAM, final File reference, final File outputCRAM, final File outputCRAI) throws IOException --> Line_3 $$ Files.copy(inputCRAM.toPath(), outputCRAM.toPath(), StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_2 $$ private void createLocalCRAMAndCRAI(final File inputCRAM, final File reference, final File outputCRAM, final File outputCRAI) throws IOException --> Line_4 $$ SAMFileHeader samHeader = null [CD]
+Line_2 $$ private void createLocalCRAMAndCRAI(final File inputCRAM, final File reference, final File outputCRAM, final File outputCRAI) throws IOException --> Line_5 $$ try (SamReader reader = SamReaderFactory.makeDefault().referenceSequence(reference).open(inputCRAM)) [FD]
+Line_4 $$ SAMFileHeader samHeader = null --> Line_6 $$ samHeader = reader.getFileHeader() [FD]
+Line_5 $$ try (SamReader reader = SamReaderFactory.makeDefault().referenceSequence(reference).open(inputCRAM)) --> Line_6 $$ samHeader = reader.getFileHeader() [FD]
+Line_9 $$ CRAMCRAIIndexer craiIndexer = new CRAMCRAIIndexer(bos, samHeader) --> Line_10 $$ craiIndexer.writeIndex(new SeekableFileStream(outputCRAM), bos) [FD]
+Line_8 $$ try (FileOutputStream bos = new FileOutputStream(outputCRAI)) --> Line_10 $$ craiIndexer.writeIndex(new SeekableFileStream(outputCRAM), bos) [FD]

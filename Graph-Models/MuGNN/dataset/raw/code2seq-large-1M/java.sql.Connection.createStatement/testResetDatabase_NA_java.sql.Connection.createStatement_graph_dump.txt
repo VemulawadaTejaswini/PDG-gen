@@ -1,0 +1,8 @@
+Line_3 $$ try (MariaDbPoolDataSource pool = new MariaDbPoolDataSource(connUri + "&maxPoolSize=1")) --> Line_4 $$ try (Connection connection = pool.getConnection()) [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_5 $$ Statement statement = connection.createStatement() [FD]
+Line_5 $$ Statement statement = connection.createStatement() --> Line_6 $$ statement.execute("CREATE DATABASE IF NOT EXISTS testingReset") [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_7 $$ connection.setCatalog("testingReset") [FD]
+Line_3 $$ try (MariaDbPoolDataSource pool = new MariaDbPoolDataSource(connUri + "&maxPoolSize=1")) --> Line_9 $$ try (Connection connection = pool.getConnection()) [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_10 $$ assertEquals(database, connection.getCatalog()) [FD]
+Line_4 $$ try (Connection connection = pool.getConnection()) --> Line_11 $$ Statement statement = connection.createStatement() [FD]
+Line_5 $$ Statement statement = connection.createStatement() --> Line_12 $$ statement.execute("DROP DATABASE testingReset") [FD]

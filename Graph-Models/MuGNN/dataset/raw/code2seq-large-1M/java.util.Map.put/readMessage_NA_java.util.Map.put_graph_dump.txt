@@ -1,0 +1,7 @@
+Line_2 $$ public String readMessage(ConsumerConnector consumer) --> Line_3 $$ Map<String, Integer> topicCountMap = new HashMap<String, Integer>() [CD]
+Line_2 $$ public String readMessage(ConsumerConnector consumer) --> Line_4 $$ topicCountMap.put(topic, new Integer(1)) [CD]
+Line_3 $$ Map<String, Integer> topicCountMap = new HashMap<String, Integer>() --> Line_4 $$ topicCountMap.put(topic, new Integer(1)) [FD]
+Line_2 $$ public String readMessage(ConsumerConnector consumer) --> Line_5 $$ KafkaStream<String, String> messageStream = consumer.createMessageStreamsByFilter(new Whitelist(topic), 1, new StringDecoder(null), new StringDecoder(null)).get(0) [FD]
+Line_2 $$ public String readMessage(ConsumerConnector consumer) --> Line_5 $$ KafkaStream<String, String> messageStream = consumer.createMessageStreamsByFilter(new Whitelist(topic), 1, new StringDecoder(null), new StringDecoder(null)).get(0) [CD]
+Line_2 $$ public String readMessage(ConsumerConnector consumer) --> Line_6 $$ return messageStream.iterator().next().message() [CD]
+Line_5 $$ KafkaStream<String, String> messageStream = consumer.createMessageStreamsByFilter(new Whitelist(topic), 1, new StringDecoder(null), new StringDecoder(null)).get(0) --> Line_6 $$ return messageStream.iterator().next().message() [FD]

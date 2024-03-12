@@ -1,0 +1,7 @@
+Line_2 $$ public void has_ip_flags() --> Line_3 $$ final Set<QueryFlag> flags = Sets.newHashSet(QueryFlag.REVERSE_DOMAIN) [CD]
+Line_4 $$ for (final Query.MatchOperation matchOperation : Query.MatchOperation.values()) --> Line_5 $$ if (matchOperation.getQueryFlag() != null) [FD]
+Line_5 $$ if (matchOperation.getQueryFlag() != null) --> Line_6 $$ flags.add(matchOperation.getQueryFlag()) [CD]
+Line_3 $$ final Set<QueryFlag> flags = Sets.newHashSet(QueryFlag.REVERSE_DOMAIN) --> Line_6 $$ flags.add(matchOperation.getQueryFlag()) [FD]
+Line_4 $$ for (final Query.MatchOperation matchOperation : Query.MatchOperation.values()) --> Line_6 $$ flags.add(matchOperation.getQueryFlag()) [FD]
+Line_9 $$ for (final QueryFlag queryFlag : flags) --> Line_10 $$ for (final String flag : queryFlag.getFlags()) [FD]
+Line_10 $$ for (final String flag : queryFlag.getFlags()) --> Line_11 $$ parse((flag.length() == 1 ? "-" : "--") + flag + " 10.0.0.0") [FD]

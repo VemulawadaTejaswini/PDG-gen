@@ -1,0 +1,8 @@
+Line_2 $$ public void testRequiredContent() --> Line_3 $$ Exception e = expectThrows(ElasticsearchParseException.class, () -> new ContentRestRequest("", emptyMap()).requiredContent()) [CD]
+Line_2 $$ public void testRequiredContent() --> Line_4 $$ assertEquals("request body is required", e.getMessage()) [CD]
+Line_2 $$ public void testRequiredContent() --> Line_5 $$ assertEquals(new BytesArray("stuff"), new ContentRestRequest("stuff", emptyMap()).requiredContent()) [CD]
+Line_2 $$ public void testRequiredContent() --> Line_6 $$ assertEquals(new BytesArray("stuff"), new ContentRestRequest("stuff", MapBuilder.<String, String>newMapBuilder().put("source", "stuff2").put("source_content_type", "application/json").immutableMap()).requiredContent()) [CD]
+Line_2 $$ public void testRequiredContent() --> Line_7 $$ e = expectThrows(ElasticsearchParseException.class, () -> new ContentRestRequest("", MapBuilder.<String, String>newMapBuilder().put("source", " [CD]
+Line_2 $$ public void testRequiredContent() --> Line_8 $$ assertEquals("request body is required", e.getMessage()) [CD]
+Line_2 $$ public void testRequiredContent() --> Line_9 $$ e = expectThrows(IllegalStateException.class, () -> new ContentRestRequest("test", null, Collections.emptyMap()).requiredContent()) [CD]
+Line_2 $$ public void testRequiredContent() --> Line_10 $$ assertEquals("unknown content type", e.getMessage()) [CD]

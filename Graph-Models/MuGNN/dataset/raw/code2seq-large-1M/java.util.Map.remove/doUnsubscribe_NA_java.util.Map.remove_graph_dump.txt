@@ -1,0 +1,7 @@
+Line_2 $$ void doUnsubscribe(Subscription subscription) --> Line_3 $$ String subscriptionId = idForSubscription(subscription) [FD]
+Line_2 $$ void doUnsubscribe(Subscription subscription) --> Line_3 $$ String subscriptionId = idForSubscription(subscription) [CD]
+Line_2 $$ void doUnsubscribe(Subscription subscription) --> Line_4 $$ SubscriptionRecord subscriptionRecord [CD]
+Line_4 $$ SubscriptionRecord subscriptionRecord --> Line_6 $$ subscriptionRecord = subscriptions.remove(subscriptionId) [FD]
+Line_3 $$ String subscriptionId = idForSubscription(subscription) --> Line_6 $$ subscriptionRecord = subscriptions.remove(subscriptionId) [FD]
+Line_7 $$ if (subscriptionRecord != null && state == State.ACTIVE) --> Line_8 $$ transport.send(new OperationClientMessage.Stop(subscriptionId)) [CD]
+Line_10 $$ if (subscriptions.isEmpty()) --> Line_11 $$ startInactivityTimer() [CD]

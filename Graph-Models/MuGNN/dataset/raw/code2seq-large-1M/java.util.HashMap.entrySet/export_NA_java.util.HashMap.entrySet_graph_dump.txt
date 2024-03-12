@@ -1,0 +1,7 @@
+Line_2 $$ public final HashMap<String, Object> export() --> Line_3 $$ HashMap<String, Object> toExport = new HashMap<String, Object>(payload) [CD]
+Line_5 $$ if (entry.getValue() instanceof CouchbaseDocument) --> Line_6 $$ toExport.put(entry.getKey(), ((CouchbaseDocument) entry.getValue()).export()) [CD]
+Line_3 $$ HashMap<String, Object> toExport = new HashMap<String, Object>(payload) --> Line_6 $$ toExport.put(entry.getKey(), ((CouchbaseDocument) entry.getValue()).export()) [FD]
+Line_5 $$ if (entry.getValue() instanceof CouchbaseDocument) --> Line_7 $$ if (entry.getValue() instanceof CouchbaseList) [CD]
+Line_7 $$ if (entry.getValue() instanceof CouchbaseList) --> Line_8 $$ toExport.put(entry.getKey(), ((CouchbaseList) entry.getValue()).export()) [CD]
+Line_3 $$ HashMap<String, Object> toExport = new HashMap<String, Object>(payload) --> Line_8 $$ toExport.put(entry.getKey(), ((CouchbaseList) entry.getValue()).export()) [FD]
+Line_2 $$ public final HashMap<String, Object> export() --> Line_11 $$ return toExport [CD]

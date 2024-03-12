@@ -1,0 +1,7 @@
+Line_2 $$ private long detectDelta(long elapsedMsFromPrevTick, long absVal, AtomicLong cnt) --> Line_3 $$ long cpPagesChange = absVal - cnt.getAndSet(absVal) [CD]
+Line_2 $$ private long detectDelta(long elapsedMsFromPrevTick, long absVal, AtomicLong cnt) --> Line_3 $$ long cpPagesChange = absVal - cnt.getAndSet(absVal) [FD]
+Line_2 $$ private long detectDelta(long elapsedMsFromPrevTick, long absVal, AtomicLong cnt) --> Line_4 $$ if (cpPagesChange < 0) [CD]
+Line_3 $$ long cpPagesChange = absVal - cnt.getAndSet(absVal) --> Line_4 $$ if (cpPagesChange < 0) [FD]
+Line_4 $$ if (cpPagesChange < 0) --> Line_5 $$ cpPagesChange = 0 [CD]
+Line_3 $$ long cpPagesChange = absVal - cnt.getAndSet(absVal) --> Line_5 $$ cpPagesChange = 0 [FD]
+Line_2 $$ private long detectDelta(long elapsedMsFromPrevTick, long absVal, AtomicLong cnt) --> Line_6 $$ return (cpPagesChange * 1000) / elapsedMsFromPrevTick [CD]

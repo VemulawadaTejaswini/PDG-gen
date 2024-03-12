@@ -1,0 +1,6 @@
+Line_2 $$ public void testMapWithNullSchema() throws IOException --> Line_3 $$ Schema recursiveSchema = new Schema.Parser().parse(getClass().getResourceAsStream("schema.json")) [CD]
+Line_2 $$ public void testMapWithNullSchema() throws IOException --> Line_4 $$ RecordSchema recordASchema = AvroTypeUtil.createSchema(recursiveSchema.getTypes().get(0)) [CD]
+Line_3 $$ Schema recursiveSchema = new Schema.Parser().parse(getClass().getResourceAsStream("schema.json")) --> Line_4 $$ RecordSchema recordASchema = AvroTypeUtil.createSchema(recursiveSchema.getTypes().get(0)) [FD]
+Line_5 $$ try (DataFileStream<GenericRecord> r = new DataFileStream(getClass().getResourceAsStream("data.avro"), new GenericDatumReader())) --> Line_6 $$ GenericRecord n = r.next() [FD]
+Line_6 $$ GenericRecord n = r.next() --> Line_7 $$ AvroTypeUtil.convertAvroRecordToMap(n, recordASchema, StandardCharsets.UTF_8) [FD]
+Line_4 $$ RecordSchema recordASchema = AvroTypeUtil.createSchema(recursiveSchema.getTypes().get(0)) --> Line_7 $$ AvroTypeUtil.convertAvroRecordToMap(n, recordASchema, StandardCharsets.UTF_8) [FD]

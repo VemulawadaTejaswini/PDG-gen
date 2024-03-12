@@ -1,0 +1,5 @@
+Line_2 $$ public void canGetLastModifiedTimeIfNoHeader() throws GenieException --> Line_3 $$ final long time = Instant.now().toEpochMilli() - 1 [CD]
+Line_2 $$ public void canGetLastModifiedTimeIfNoHeader() throws GenieException --> Line_4 $$ this.server.expect(MockRestRequestMatchers.requestTo(TEST_URL)).andExpect(MockRestRequestMatchers.method(HttpMethod.HEAD)).andRespond(MockRestResponseCreators.withSuccess()) [CD]
+Line_2 $$ public void canGetLastModifiedTimeIfNoHeader() throws GenieException --> Line_5 $$ Assert.assertTrue(this.httpFileTransfer.getLastModifiedTime(TEST_URL) > time) [CD]
+Line_2 $$ public void canGetLastModifiedTimeIfNoHeader() throws GenieException --> Line_6 $$ Mockito.verify(this.registry, Mockito.times(1)).timer(HttpFileTransferImpl.GET_LAST_MODIFIED_TIMER_NAME, MetricsUtils.newSuccessTagsSet()) [CD]
+Line_2 $$ public void canGetLastModifiedTimeIfNoHeader() throws GenieException --> Line_7 $$ Mockito.verify(this.metadataTimer, Mockito.times(1)).record(Mockito.anyLong(), Mockito.eq(TimeUnit.NANOSECONDS)) [CD]

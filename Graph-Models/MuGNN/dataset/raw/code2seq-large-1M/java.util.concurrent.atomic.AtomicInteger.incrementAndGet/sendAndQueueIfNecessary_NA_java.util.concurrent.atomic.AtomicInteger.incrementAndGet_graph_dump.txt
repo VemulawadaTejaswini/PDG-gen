@@ -1,0 +1,7 @@
+Line_2 $$ private void sendAndQueueIfNecessary(final ItemWrapper<W> itemWrapper) --> Line_4 $$ final ProcessResult processResult = itemProcessor.process(itemWrapper.getWorkItem()) [FD]
+Line_4 $$ final ProcessResult processResult = itemProcessor.process(itemWrapper.getWorkItem()) --> Line_5 $$ if (processResult == ProcessResult.SUCCESS) [FD]
+Line_5 $$ if (processResult == ProcessResult.SUCCESS) --> Line_6 $$ logAndStatUpdateForSuccess(itemWrapper) [CD]
+Line_2 $$ private void sendAndQueueIfNecessary(final ItemWrapper<W> itemWrapper) --> Line_6 $$ logAndStatUpdateForSuccess(itemWrapper) [FD]
+Line_5 $$ if (processResult == ProcessResult.SUCCESS) --> Line_7 $$ if (processResult == ProcessResult.RETRY || processResult == ProcessResult.NOOP) [CD]
+Line_7 $$ if (processResult == ProcessResult.RETRY || processResult == ProcessResult.NOOP) --> Line_8 $$ preQueueFallback.incrementAndGet() [CD]
+Line_2 $$ private void sendAndQueueIfNecessary(final ItemWrapper<W> itemWrapper) --> Line_10 $$ submitToQueue(itemWrapper) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ protected void execute(DataSource ds, List<String> sql) throws SQLException --> Line_3 $$ try (Connection conn = ds.getConnection()) [FD]
+Line_3 $$ try (Connection conn = ds.getConnection()) --> Line_5 $$ try (Statement stmt = conn.createStatement()) [FD]
+Line_5 $$ try (Statement stmt = conn.createStatement()) --> Line_6 $$ stmt.executeUpdate(s) [FD]
+Line_4 $$ for (String s : sql) --> Line_6 $$ stmt.executeUpdate(s) [FD]
+Line_5 $$ try (Statement stmt = conn.createStatement()) --> Line_7 $$ stmt.close() [FD]
+Line_3 $$ try (Connection conn = ds.getConnection()) --> Line_10 $$ conn.commit() [FD]

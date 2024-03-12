@@ -1,0 +1,8 @@
+Line_2 $$ public ByteBuffer readRemotePage(String mapName, ByteBuffer key, boolean last) --> Line_3 $$ int id = session.getNextId() [CD]
+Line_3 $$ int id = session.getNextId() --> Line_5 $$ session.traceOperation("COMMAND_STORAGE_READ_PAGE", id) [FD]
+Line_3 $$ int id = session.getNextId() --> Line_6 $$ transfer.writeRequestHeader(id, Session.COMMAND_STORAGE_READ_PAGE) [FD]
+Line_2 $$ public ByteBuffer readRemotePage(String mapName, ByteBuffer key, boolean last) --> Line_7 $$ transfer.writeString(mapName).writeByteBuffer(key.slice()).writeBoolean(last) [FD]
+Line_3 $$ int id = session.getNextId() --> Line_17 $$ transfer.addAsyncCallback(id, ac) [FD]
+Line_8 $$ AsyncCallback<ByteBuffer> ac = new AsyncCallback<ByteBuffer>() --> Line_17 $$ transfer.addAsyncCallback(id, ac) [FD]
+Line_8 $$ AsyncCallback<ByteBuffer> ac = new AsyncCallback<ByteBuffer>() --> Line_19 $$ return ac.getResult() [FD]
+Line_2 $$ public ByteBuffer readRemotePage(String mapName, ByteBuffer key, boolean last) --> Line_23 $$ return null [CD]

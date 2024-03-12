@@ -1,0 +1,7 @@
+Line_2 $$ public void getEndpointsShouldAddCloudFoundryHealthExtension() --> Line_3 $$ load(TestConfiguration.class, ( discoverer) -> [CD]
+Line_4 $$ Collection<ExposableWebEndpoint> endpoints = discoverer.getEndpoints() --> Line_5 $$ assertThat(endpoints.size()).isEqualTo(2) [FD]
+Line_6 $$ for (ExposableWebEndpoint endpoint : endpoints) --> Line_7 $$ if (endpoint.getId().equals("health")) [FD]
+Line_7 $$ if (endpoint.getId().equals("health")) --> Line_8 $$ WebOperation operation = findMainReadOperation(endpoint) [CD]
+Line_6 $$ for (ExposableWebEndpoint endpoint : endpoints) --> Line_8 $$ WebOperation operation = findMainReadOperation(endpoint) [FD]
+Line_7 $$ if (endpoint.getId().equals("health")) --> Line_9 $$ assertThat(operation.invoke(new InvocationContext(mock(SecurityContext.class), Collections.emptyMap()))).isEqualTo("cf") [CD]
+Line_8 $$ WebOperation operation = findMainReadOperation(endpoint) --> Line_9 $$ assertThat(operation.invoke(new InvocationContext(mock(SecurityContext.class), Collections.emptyMap()))).isEqualTo("cf") [FD]

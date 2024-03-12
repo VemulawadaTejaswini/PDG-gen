@@ -1,0 +1,8 @@
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_3 $$ createIndex("test", client().admin().indices().prepareCreate("test").addMapping("type", "_source", "enabled=false", "field1", "type=keyword").addMapping("queries", "query", "type=percolator")) [CD]
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_4 $$ client().prepareIndex("test", "queries", "1").setSource(jsonBuilder().startObject().field("query", matchAllQuery()).endObject()).get() [CD]
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_5 $$ client().prepareIndex("test", "type", "1").setSource(" [CD]
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_6 $$ client().admin().indices().prepareRefresh().get() [CD]
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_7 $$ logger.info("percolating empty doc with source disabled") [CD]
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_8 $$ Throwable e = expectThrows(SearchPhaseExecutionException.class, () -> [CD]
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_11 $$ assertThat(e, instanceOf(IllegalArgumentException.class)) [CD]
+Line_2 $$ public void testPercolatorQueryExistingDocumentSourceDisabled() throws Exception --> Line_12 $$ assertThat(e.getMessage(), containsString("source disabled")) [CD]

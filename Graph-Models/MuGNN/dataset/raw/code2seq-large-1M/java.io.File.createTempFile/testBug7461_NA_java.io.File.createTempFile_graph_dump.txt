@@ -1,0 +1,7 @@
+Line_2 $$ public void testBug7461() throws Exception --> Line_3 $$ String tableName = "testBug7461" [CD]
+Line_3 $$ String tableName = "testBug7461" --> Line_5 $$ createTable(tableName, "(field1 varchar(4))") [FD]
+Line_6 $$ File tempFile = File.createTempFile("mysql-test", ".txt") --> Line_7 $$ tempFile.deleteOnExit() [FD]
+Line_8 $$ FileOutputStream fOut = new FileOutputStream(tempFile) --> Line_9 $$ fOut.write("abcdefghijklmnop".getBytes()) [FD]
+Line_8 $$ FileOutputStream fOut = new FileOutputStream(tempFile) --> Line_10 $$ fOut.close() [FD]
+Line_6 $$ File tempFile = File.createTempFile("mysql-test", ".txt") --> Line_12 $$ this.stmt.executeQuery("LOAD DATA LOCAL INFILE '" + tempFile.toString() + "' INTO TABLE " + tableName) [FD]
+Line_3 $$ String tableName = "testBug7461" --> Line_17 $$ dropTable(tableName) [FD]

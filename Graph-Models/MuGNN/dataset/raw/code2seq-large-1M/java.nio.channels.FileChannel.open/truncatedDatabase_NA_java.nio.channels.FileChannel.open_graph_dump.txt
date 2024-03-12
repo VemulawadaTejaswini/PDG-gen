@@ -1,0 +1,5 @@
+Line_2 $$ public void truncatedDatabase() throws Exception --> Line_3 $$ db.put(Revision.INIT, randomCommitId()) [CD]
+Line_2 $$ public void truncatedDatabase() throws Exception --> Line_4 $$ db.close() [CD]
+Line_5 $$ try (FileChannel f = FileChannel.open(new File(tmpDir.getRoot(), "commit_ids.dat").toPath(), StandardOpenOption.APPEND)) --> Line_6 $$ assertThat(f.size()).isEqualTo(24) [FD]
+Line_5 $$ try (FileChannel f = FileChannel.open(new File(tmpDir.getRoot(), "commit_ids.dat").toPath(), StandardOpenOption.APPEND)) --> Line_7 $$ f.truncate(23) [FD]
+Line_2 $$ public void truncatedDatabase() throws Exception --> Line_9 $$ assertThatThrownBy(() -> new CommitIdDatabase(tmpDir.getRoot())).isInstanceOf(StorageException.class).hasMessageContaining("incorrect file length") [CD]

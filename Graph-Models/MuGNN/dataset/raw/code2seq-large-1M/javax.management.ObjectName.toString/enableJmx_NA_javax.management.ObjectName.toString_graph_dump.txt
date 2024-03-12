@@ -1,0 +1,7 @@
+Line_2 $$ private void enableJmx() --> Line_3 $$ BrokerService broker = getBrokerService() [CD]
+Line_2 $$ private void enableJmx() --> Line_4 $$ if (broker.isUseJmx()) [CD]
+Line_3 $$ BrokerService broker = getBrokerService() --> Line_4 $$ if (broker.isUseJmx()) [FD]
+Line_4 $$ if (broker.isUseJmx()) --> Line_5 $$ VirtualDestinationSelectorCacheView view = new VirtualDestinationSelectorCacheView(this) [CD]
+Line_3 $$ BrokerService broker = getBrokerService() --> Line_7 $$ objectName = BrokerMBeanSupport.createVirtualDestinationSelectorCacheName(broker.getBrokerObjectName(), "plugin", "virtualDestinationCache") [FD]
+Line_5 $$ VirtualDestinationSelectorCacheView view = new VirtualDestinationSelectorCacheView(this) --> Line_9 $$ AnnotatedMBean.registerMBean(broker.getManagementContext(), view, objectName) [FD]
+Line_3 $$ BrokerService broker = getBrokerService() --> Line_9 $$ AnnotatedMBean.registerMBean(broker.getManagementContext(), view, objectName) [FD]

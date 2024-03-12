@@ -1,0 +1,7 @@
+Line_2 $$ public static void installMacShortcuts() --> Line_3 $$ log.info("Installing mac shortcuts...") [CD]
+Line_5 $$ String s = "do shell script \"java -jar " + DataSources.LAUNCHER_FILE() + "\"" --> Line_6 $$ java.nio.file.Files.write(Paths.get(DataSources.MAC_INSTALL_APPLESCRIPT()), s.getBytes()) [FD]
+Line_7 $$ File appDir = new File(DataSources.MAC_APP_LOCATION()) --> Line_8 $$ if (appDir.exists()) [FD]
+Line_8 $$ if (appDir.exists()) --> Line_9 $$ FileUtils.deleteDirectory(appDir) [CD]
+Line_7 $$ File appDir = new File(DataSources.MAC_APP_LOCATION()) --> Line_9 $$ FileUtils.deleteDirectory(appDir) [FD]
+Line_11 $$ String cmd = "osacompile -o " + DataSources.MAC_APP_LOCATION() + " " + DataSources.MAC_INSTALL_APPLESCRIPT() --> Line_13 $$ Process p = Runtime.getRuntime().exec(cmd) [FD]
+Line_13 $$ Process p = Runtime.getRuntime().exec(cmd) --> Line_14 $$ p.waitFor() [FD]

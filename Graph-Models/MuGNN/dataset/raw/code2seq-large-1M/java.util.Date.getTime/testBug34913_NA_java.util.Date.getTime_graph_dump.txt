@@ -1,0 +1,8 @@
+Line_2 $$ public void testBug34913() throws Exception --> Line_3 $$ Timestamp ts = new Timestamp(new Date(109, 5, 1).getTime()) [CD]
+Line_2 $$ public void testBug34913() throws Exception --> Line_4 $$ this.pstmt = ((com.mysql.jdbc.Connection) this.conn).serverPrepareStatement("SELECT 'abcdefghij', ?") [CD]
+Line_2 $$ public void testBug34913() throws Exception --> Line_5 $$ this.pstmt.setTimestamp(1, ts) [CD]
+Line_3 $$ Timestamp ts = new Timestamp(new Date(109, 5, 1).getTime()) --> Line_5 $$ this.pstmt.setTimestamp(1, ts) [FD]
+Line_2 $$ public void testBug34913() throws Exception --> Line_6 $$ this.rs = this.pstmt.executeQuery() [CD]
+Line_2 $$ public void testBug34913() throws Exception --> Line_7 $$ this.rs.next() [CD]
+Line_2 $$ public void testBug34913() throws Exception --> Line_8 $$ assertTrue(this.rs.getTimestamp(2).getMonth() == 5) [CD]
+Line_2 $$ public void testBug34913() throws Exception --> Line_9 $$ assertTrue(this.rs.getTimestamp(2).getDate() == 1) [CD]

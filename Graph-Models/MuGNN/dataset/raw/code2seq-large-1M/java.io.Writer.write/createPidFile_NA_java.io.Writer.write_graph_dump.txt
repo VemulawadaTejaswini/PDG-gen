@@ -1,0 +1,8 @@
+Line_2 $$ private void createPidFile() throws IOException --> Line_3 $$ if (workerOptions.pidFile == null) [CD]
+Line_3 $$ if (workerOptions.pidFile == null) --> Line_4 $$ return [CD]
+Line_2 $$ private void createPidFile() throws IOException --> Line_6 $$ final Path pidFile = getFileSystem().getPath(workerOptions.pidFile) [CD]
+Line_6 $$ final Path pidFile = getFileSystem().getPath(workerOptions.pidFile) --> Line_7 $$ try (Writer writer = new OutputStreamWriter(pidFile.getOutputStream(), StandardCharsets.UTF_8)) [FD]
+Line_7 $$ try (Writer writer = new OutputStreamWriter(pidFile.getOutputStream(), StandardCharsets.UTF_8)) --> Line_8 $$ writer.write(Integer.toString(ProcessUtils.getpid())) [FD]
+Line_7 $$ try (Writer writer = new OutputStreamWriter(pidFile.getOutputStream(), StandardCharsets.UTF_8)) --> Line_9 $$ writer.write("\n") [FD]
+Line_2 $$ private void createPidFile() throws IOException --> Line_11 $$ Runtime.getRuntime().addShutdownHook(new Thread() [CD]
+Line_6 $$ final Path pidFile = getFileSystem().getPath(workerOptions.pidFile) --> Line_14 $$ pidFile.delete() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testStartFromStream() throws Exception --> Line_3 $$ String cfg = "examples/config/example-cache.xml" [CD]
+Line_2 $$ public void testStartFromStream() throws Exception --> Line_4 $$ URL cfgLocation = U.resolveIgniteUrl(cfg) [CD]
+Line_3 $$ String cfg = "examples/config/example-cache.xml" --> Line_4 $$ URL cfgLocation = U.resolveIgniteUrl(cfg) [FD]
+Line_4 $$ URL cfgLocation = U.resolveIgniteUrl(cfg) --> Line_5 $$ try (Ignite grid = Ignition.start(new FileInputStream(cfgLocation.getFile()))) [FD]
+Line_5 $$ try (Ignite grid = Ignition.start(new FileInputStream(cfgLocation.getFile()))) --> Line_6 $$ grid.cache(DEFAULT_CACHE_NAME).put("1", "1") [FD]
+Line_5 $$ try (Ignite grid = Ignition.start(new FileInputStream(cfgLocation.getFile()))) --> Line_7 $$ assert grid.cache(DEFAULT_CACHE_NAME).get("1").equals("1") [FD]
+Line_4 $$ URL cfgLocation = U.resolveIgniteUrl(cfg) --> Line_8 $$ IgniteConfiguration icfg = Ignition.loadSpringBean(new FileInputStream(cfgLocation.getFile()), "ignite.cfg") [FD]
+Line_8 $$ IgniteConfiguration icfg = Ignition.loadSpringBean(new FileInputStream(cfgLocation.getFile()), "ignite.cfg") --> Line_9 $$ assert icfg.getCacheConfiguration()[0].getAtomicityMode() == CacheAtomicityMode.ATOMIC [FD]

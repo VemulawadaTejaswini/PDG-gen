@@ -1,0 +1,5 @@
+Line_2 $$ private void setupContainerNetworkConnectivity(ContainerName containerName) throws IOException --> Line_3 $$ if (!docker.networkNATed()) [CD]
+Line_3 $$ if (!docker.networkNATed()) --> Line_4 $$ InetAddress hostDefaultGateway = DockerNetworkCreator.getDefaultGatewayLinux(true) [CD]
+Line_3 $$ if (!docker.networkNATed()) --> Line_5 $$ executeCommandInNetworkNamespace(containerName, "route", "-A", "inet6", "add", "default", "gw", hostDefaultGateway.getHostAddress(), "dev", "eth1") [CD]
+Line_2 $$ private void setupContainerNetworkConnectivity(ContainerName containerName) throws IOException --> Line_5 $$ executeCommandInNetworkNamespace(containerName, "route", "-A", "inet6", "add", "default", "gw", hostDefaultGateway.getHostAddress(), "dev", "eth1") [FD]
+Line_4 $$ InetAddress hostDefaultGateway = DockerNetworkCreator.getDefaultGatewayLinux(true) --> Line_5 $$ executeCommandInNetworkNamespace(containerName, "route", "-A", "inet6", "add", "default", "gw", hostDefaultGateway.getHostAddress(), "dev", "eth1") [FD]

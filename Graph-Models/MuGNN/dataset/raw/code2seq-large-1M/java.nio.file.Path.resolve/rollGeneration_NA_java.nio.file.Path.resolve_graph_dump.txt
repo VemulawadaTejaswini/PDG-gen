@@ -1,0 +1,6 @@
+Line_5 $$ final TranslogReader reader = current.closeIntoReader() --> Line_6 $$ readers.add(reader) [FD]
+Line_7 $$ final Path checkpoint = location.resolve(CHECKPOINT_FILE_NAME) --> Line_8 $$ assert Checkpoint.read(checkpoint).generation == current.getGeneration() [FD]
+Line_7 $$ final Path checkpoint = location.resolve(CHECKPOINT_FILE_NAME) --> Line_10 $$ Files.copy(checkpoint, generationCheckpoint) [FD]
+Line_9 $$ final Path generationCheckpoint = location.resolve(getCommitCheckpointFileName(current.getGeneration())) --> Line_10 $$ Files.copy(checkpoint, generationCheckpoint) [FD]
+Line_9 $$ final Path generationCheckpoint = location.resolve(getCommitCheckpointFileName(current.getGeneration())) --> Line_11 $$ IOUtils.fsync(generationCheckpoint, false) [FD]
+Line_9 $$ final Path generationCheckpoint = location.resolve(getCommitCheckpointFileName(current.getGeneration())) --> Line_12 $$ IOUtils.fsync(generationCheckpoint.getParent(), true) [FD]

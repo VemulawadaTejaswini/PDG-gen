@@ -1,0 +1,8 @@
+Line_2 $$ public void getEmptyEventsToRetry() --> Line_3 $$ final long limit = 100 [CD]
+Line_2 $$ public void getEmptyEventsToRetry() --> Line_4 $$ when(zSetOperations.rangeByScore(eq("push:pending:events"), eq(0d), any(Double.class), eq(0l), eq(limit))).thenReturn(Collections.<String>emptySet()) [CD]
+Line_3 $$ final long limit = 100 --> Line_4 $$ when(zSetOperations.rangeByScore(eq("push:pending:events"), eq(0d), any(Double.class), eq(0l), eq(limit))).thenReturn(Collections.<String>emptySet()) [FD]
+Line_2 $$ public void getEmptyEventsToRetry() --> Line_5 $$ final List<NotificationRetryEvent> retryEvents = repository.getEventsToRetry(System.currentTimeMillis(), limit) [CD]
+Line_3 $$ final long limit = 100 --> Line_5 $$ final List<NotificationRetryEvent> retryEvents = repository.getEventsToRetry(System.currentTimeMillis(), limit) [FD]
+Line_2 $$ public void getEmptyEventsToRetry() --> Line_6 $$ verify(eventParser, times(0)).unmarshall(any(String.class)) [CD]
+Line_2 $$ public void getEmptyEventsToRetry() --> Line_7 $$ Assert.assertTrue(CollectionUtils.isEmpty(retryEvents)) [CD]
+Line_5 $$ final List<NotificationRetryEvent> retryEvents = repository.getEventsToRetry(System.currentTimeMillis(), limit) --> Line_7 $$ Assert.assertTrue(CollectionUtils.isEmpty(retryEvents)) [FD]

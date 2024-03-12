@@ -1,0 +1,8 @@
+Line_2 $$ protected IOException expect(String expect, int ch) throws IOException --> Line_3 $$ if (ch < 0) [CD]
+Line_2 $$ protected IOException expect(String expect, int ch) throws IOException --> Line_3 $$ if (ch < 0) [FD]
+Line_3 $$ if (ch < 0) --> Line_4 $$ return error("expected " + expect + " at end of file") [CD]
+Line_8 $$ int offset = _offset --> Line_9 $$ String context = buildDebugContext(_buffer, 0, _length, offset) [FD]
+Line_10 $$ Object obj = readObject() --> Line_11 $$ if (obj != null) [FD]
+Line_11 $$ if (obj != null) --> Line_12 $$ return error("expected " + expect + " at 0x" + Integer.toHexString(ch & 0xff) + " " + obj.getClass().getName() + " (" + obj + ")" + "\n  " + context + "") [CD]
+Line_10 $$ Object obj = readObject() --> Line_12 $$ return error("expected " + expect + " at 0x" + Integer.toHexString(ch & 0xff) + " " + obj.getClass().getName() + " (" + obj + ")" + "\n  " + context + "") [FD]
+Line_11 $$ if (obj != null) --> Line_14 $$ return error("expected " + expect + " at 0x" + Integer.toHexString(ch & 0xff) + " null") [CD]

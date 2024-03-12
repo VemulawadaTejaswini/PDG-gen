@@ -1,0 +1,8 @@
+Line_5 $$ String matrixMetaFile = getMatrixMetaFile() --> Line_6 $$ String tmpFile = getTmpMatrixMetaFile(matrixMetaFile) [FD]
+Line_7 $$ Path tmpPath = new Path(writeDir, tmpFile) --> Line_8 $$ FSDataOutputStream outputStream = fs.create(tmpPath) [FD]
+Line_2 $$ public void writeMatrixMeta(AMMatrixMetaManager matrixMetaManager) throws IOException --> Line_9 $$ matrixMetaManager.serialize(outputStream) [FD]
+Line_8 $$ FSDataOutputStream outputStream = fs.create(tmpPath) --> Line_9 $$ matrixMetaManager.serialize(outputStream) [FD]
+Line_8 $$ FSDataOutputStream outputStream = fs.create(tmpPath) --> Line_10 $$ outputStream.close() [FD]
+Line_7 $$ Path tmpPath = new Path(writeDir, tmpFile) --> Line_12 $$ HdfsUtil.rename(tmpPath, matrixFilePath, fs) [FD]
+Line_11 $$ Path matrixFilePath = new Path(writeDir, matrixMetaFile) --> Line_12 $$ HdfsUtil.rename(tmpPath, matrixFilePath, fs) [FD]
+Line_13 $$ if (lastMatrixMetaFilePath != null) --> Line_14 $$ fs.delete(lastMatrixMetaFilePath, false) [CD]

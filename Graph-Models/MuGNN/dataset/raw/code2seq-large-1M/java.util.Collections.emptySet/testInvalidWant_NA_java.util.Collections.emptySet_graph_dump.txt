@@ -1,0 +1,8 @@
+Line_2 $$ public void testInvalidWant() throws Exception --> Line_3 $$ ObjectId id = new ObjectInserter.Formatter().idFor(Constants.OBJ_BLOB, "testInvalidWant".getBytes(CHARSET)) [CD]
+Line_2 $$ public void testInvalidWant() throws Exception --> Line_4 $$ Repository dst = createBareRepository() [CD]
+Line_4 $$ Repository dst = createBareRepository() --> Line_5 $$ try (Transport t = Transport.open(dst, remoteURI); [FD]
+Line_3 $$ ObjectId id = new ObjectInserter.Formatter().idFor(Constants.OBJ_BLOB, "testInvalidWant".getBytes(CHARSET)) --> Line_7 $$ Ref want = new ObjectIdRef.Unpeeled(Ref.Storage.NETWORK, id.name(), id) [FD]
+Line_5 $$ try (Transport t = Transport.open(dst, remoteURI); --> Line_8 $$ c.fetch(NullProgressMonitor.INSTANCE, Collections.singleton(want), Collections.<ObjectId>emptySet()) [FD]
+Line_7 $$ Ref want = new ObjectIdRef.Unpeeled(Ref.Storage.NETWORK, id.name(), id) --> Line_8 $$ c.fetch(NullProgressMonitor.INSTANCE, Collections.singleton(want), Collections.<ObjectId>emptySet()) [FD]
+Line_3 $$ ObjectId id = new ObjectInserter.Formatter().idFor(Constants.OBJ_BLOB, "testInvalidWant".getBytes(CHARSET)) --> Line_9 $$ fail("Server accepted want " + id.name()) [FD]
+Line_3 $$ ObjectId id = new ObjectInserter.Formatter().idFor(Constants.OBJ_BLOB, "testInvalidWant".getBytes(CHARSET)) --> Line_11 $$ assertEquals("want " + id.name() + " not valid", err.getMessage()) [FD]

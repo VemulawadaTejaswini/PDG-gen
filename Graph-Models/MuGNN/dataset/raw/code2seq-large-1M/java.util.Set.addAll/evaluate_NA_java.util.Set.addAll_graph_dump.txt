@@ -1,0 +1,5 @@
+Line_6 $$ SortedSet<String> packagesOfAllowedAccessors = packagesOf(specification.allowedAccessors) --> Line_7 $$ packagesOfAllowedAccessors.addAll(packagesOfOwnLayer) [FD]
+Line_5 $$ SortedSet<String> packagesOfOwnLayer = packagesOf(specification.layerName) --> Line_7 $$ packagesOfAllowedAccessors.addAll(packagesOfOwnLayer) [FD]
+Line_5 $$ SortedSet<String> packagesOfOwnLayer = packagesOf(specification.layerName) --> Line_8 $$ EvaluationResult partial = classes().that().resideInAnyPackage(toArray(packagesOfOwnLayer)).should(onlyHaveDependentsWhere(originPackageMatchesIfDependencyIsRelevant(packagesOfAllowedAccessors))).evaluate(classes) [FD]
+Line_6 $$ SortedSet<String> packagesOfAllowedAccessors = packagesOf(specification.allowedAccessors) --> Line_8 $$ EvaluationResult partial = classes().that().resideInAnyPackage(toArray(packagesOfOwnLayer)).should(onlyHaveDependentsWhere(originPackageMatchesIfDependencyIsRelevant(packagesOfAllowedAccessors))).evaluate(classes) [FD]
+Line_3 $$ EvaluationResult result = new EvaluationResult(this, Priority.MEDIUM) --> Line_9 $$ result.add(partial) [FD]

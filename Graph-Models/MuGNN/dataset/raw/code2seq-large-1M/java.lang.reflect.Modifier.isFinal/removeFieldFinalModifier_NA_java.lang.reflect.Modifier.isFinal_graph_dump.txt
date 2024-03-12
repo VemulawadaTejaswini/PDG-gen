@@ -1,0 +1,8 @@
+Line_2 $$ public static void removeFieldFinalModifier(final Field field) --> Line_3 $$ Validate.isTrue(field != null, "The field must not be null") [CD]
+Line_2 $$ public static void removeFieldFinalModifier(final Field field) --> Line_5 $$ if (Modifier.isFinal(field.getModifiers())) [FD]
+Line_5 $$ if (Modifier.isFinal(field.getModifiers())) --> Line_6 $$ final Field modifiersField = Field.class.getDeclaredField("modifiers") [CD]
+Line_5 $$ if (Modifier.isFinal(field.getModifiers())) --> Line_7 $$ final boolean doForceAccess = !modifiersField.isAccessible() [CD]
+Line_5 $$ if (Modifier.isFinal(field.getModifiers())) --> Line_8 $$ if (doForceAccess) [CD]
+Line_8 $$ if (doForceAccess) --> Line_9 $$ modifiersField.setAccessible(true) [CD]
+Line_2 $$ public static void removeFieldFinalModifier(final Field field) --> Line_12 $$ modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL) [FD]
+Line_14 $$ if (doForceAccess) --> Line_15 $$ modifiersField.setAccessible(false) [CD]

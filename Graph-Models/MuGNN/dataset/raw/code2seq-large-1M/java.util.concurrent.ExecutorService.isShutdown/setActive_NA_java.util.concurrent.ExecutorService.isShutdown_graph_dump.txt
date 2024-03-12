@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized void setActive(boolean active) --> Line_3 $$ if (active) [CD]
+Line_3 $$ if (active) --> Line_4 $$ if (heartbeatExecutor == null || heartbeatExecutor.isShutdown()) [CD]
+Line_4 $$ if (heartbeatExecutor == null || heartbeatExecutor.isShutdown()) --> Line_5 $$ heartbeatExecutor = Executors.newSingleThreadScheduledExecutor() [CD]
+Line_4 $$ if (heartbeatExecutor == null || heartbeatExecutor.isShutdown()) --> Line_6 $$ heartbeatExecutor.scheduleWithFixedDelay(heartbeatRunnable, 0, period, TimeUnit.SECONDS) [CD]
+Line_3 $$ if (active) --> Line_8 $$ if (heartbeatExecutor != null && !heartbeatExecutor.isShutdown()) [CD]
+Line_8 $$ if (heartbeatExecutor != null && !heartbeatExecutor.isShutdown()) --> Line_9 $$ heartbeatExecutor.shutdownNow() [CD]

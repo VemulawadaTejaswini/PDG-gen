@@ -1,0 +1,7 @@
+Line_3 $$ try (Ignite ignite = G.start(getConfiguration("grid" + id))) --> Line_4 $$ String id8 = U.id8(ignite.cluster().localNode().id()) [FD]
+Line_5 $$ String logPath = "work/log/ignite-" + id8 + ".log" --> Line_6 $$ File logFile = U.resolveIgnitePath(logPath) [FD]
+Line_6 $$ File logFile = U.resolveIgnitePath(logPath) --> Line_7 $$ assertNotNull("Failed to resolve path: " + logPath, logFile) [FD]
+Line_6 $$ File logFile = U.resolveIgnitePath(logPath) --> Line_8 $$ assertTrue("Log file does not exist: " + logFile, logFile.exists()) [FD]
+Line_6 $$ File logFile = U.resolveIgnitePath(logPath) --> Line_9 $$ String logContent = U.readFileToString(logFile.getAbsolutePath(), "UTF-8") [FD]
+Line_9 $$ String logContent = U.readFileToString(logFile.getAbsolutePath(), "UTF-8") --> Line_10 $$ assertTrue("Log file does not contain it's node ID: " + logFile, logContent.contains(">>> Local node [ID=" + id8.toUpperCase())) [FD]
+Line_4 $$ String id8 = U.id8(ignite.cluster().localNode().id()) --> Line_10 $$ assertTrue("Log file does not contain it's node ID: " + logFile, logContent.contains(">>> Local node [ID=" + id8.toUpperCase())) [FD]

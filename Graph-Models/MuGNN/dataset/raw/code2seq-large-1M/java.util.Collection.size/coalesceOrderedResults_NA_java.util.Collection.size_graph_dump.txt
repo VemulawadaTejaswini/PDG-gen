@@ -1,0 +1,7 @@
+Line_2 $$ private Collection coalesceOrderedResults(Collection<Collection> results, ExecutionContext context, CompiledSelect cs, int limit) --> Line_3 $$ List<Collection> sortedResults = new ArrayList<Collection>(results.size()) [CD]
+Line_2 $$ private Collection coalesceOrderedResults(Collection<Collection> results, ExecutionContext context, CompiledSelect cs, int limit) --> Line_3 $$ List<Collection> sortedResults = new ArrayList<Collection>(results.size()) [FD]
+Line_4 $$ for (Object o : results) --> Line_5 $$ if (o instanceof Collection) [FD]
+Line_5 $$ if (o instanceof Collection) --> Line_6 $$ sortedResults.add((Collection) o) [CD]
+Line_3 $$ List<Collection> sortedResults = new ArrayList<Collection>(results.size()) --> Line_6 $$ sortedResults.add((Collection) o) [FD]
+Line_2 $$ private Collection coalesceOrderedResults(Collection<Collection> results, ExecutionContext context, CompiledSelect cs, int limit) --> Line_9 $$ return new NWayMergeResults(sortedResults, cs.isDistinct(), limit, cs.getOrderByAttrs(), context, cs.getElementTypeForOrderByQueries()) [CD]
+Line_2 $$ private Collection coalesceOrderedResults(Collection<Collection> results, ExecutionContext context, CompiledSelect cs, int limit) --> Line_9 $$ return new NWayMergeResults(sortedResults, cs.isDistinct(), limit, cs.getOrderByAttrs(), context, cs.getElementTypeForOrderByQueries()) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void recalcEventCount(Collection<Integer> userids) --> Line_3 $$ if (userids.isEmpty()) [CD]
+Line_2 $$ public void recalcEventCount(Collection<Integer> userids) --> Line_3 $$ if (userids.isEmpty()) [FD]
+Line_3 $$ if (userids.isEmpty()) --> Line_4 $$ return [CD]
+Line_2 $$ public void recalcEventCount(Collection<Integer> userids) --> Line_6 $$ namedJdbcTemplate.update("UPDATE users SET unread_events = (SELECT count(*) FROM user_events WHERE unread AND userid=users.id) WHERE users.id IN (:list)", ImmutableMap.of("list", userids)) [CD]
+Line_2 $$ public void recalcEventCount(Collection<Integer> userids) --> Line_6 $$ namedJdbcTemplate.update("UPDATE users SET unread_events = (SELECT count(*) FROM user_events WHERE unread AND userid=users.id) WHERE users.id IN (:list)", ImmutableMap.of("list", userids)) [FD]

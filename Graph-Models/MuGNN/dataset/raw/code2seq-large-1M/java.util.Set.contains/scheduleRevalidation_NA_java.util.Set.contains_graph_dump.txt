@@ -1,0 +1,8 @@
+Line_2 $$ void scheduleRevalidation(final String cacheKey, final Runnable command) --> Line_4 $$ if (!pendingRequest.contains(cacheKey)) [FD]
+Line_4 $$ if (!pendingRequest.contains(cacheKey)) --> Line_5 $$ final int consecutiveFailedAttempts = failureCache.getCount(cacheKey) [CD]
+Line_2 $$ void scheduleRevalidation(final String cacheKey, final Runnable command) --> Line_5 $$ final int consecutiveFailedAttempts = failureCache.getCount(cacheKey) [FD]
+Line_4 $$ if (!pendingRequest.contains(cacheKey)) --> Line_6 $$ final TimeValue executionTime = schedulingStrategy.schedule(consecutiveFailedAttempts) [CD]
+Line_5 $$ final int consecutiveFailedAttempts = failureCache.getCount(cacheKey) --> Line_6 $$ final TimeValue executionTime = schedulingStrategy.schedule(consecutiveFailedAttempts) [FD]
+Line_2 $$ void scheduleRevalidation(final String cacheKey, final Runnable command) --> Line_8 $$ scheduledExecutor.schedule(command, executionTime) [FD]
+Line_6 $$ final TimeValue executionTime = schedulingStrategy.schedule(consecutiveFailedAttempts) --> Line_8 $$ scheduledExecutor.schedule(command, executionTime) [FD]
+Line_2 $$ void scheduleRevalidation(final String cacheKey, final Runnable command) --> Line_9 $$ pendingRequest.add(cacheKey) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void addLeasesToRenew(Collection<T> newLeases) --> Line_3 $$ verifyNotNull(newLeases, "newLeases cannot be null") [CD]
+Line_2 $$ public void addLeasesToRenew(Collection<T> newLeases) --> Line_3 $$ verifyNotNull(newLeases, "newLeases cannot be null") [FD]
+Line_4 $$ for (T lease : newLeases) --> Line_5 $$ if (lease.getLastCounterIncrementNanos() == null) [FD]
+Line_5 $$ if (lease.getLastCounterIncrementNanos() == null) --> Line_6 $$ LOG.info(String.format("addLeasesToRenew ignoring lease with key %s because it does not have lastRenewalNanos set", lease.getLeaseKey())) [CD]
+Line_4 $$ for (T lease : newLeases) --> Line_6 $$ LOG.info(String.format("addLeasesToRenew ignoring lease with key %s because it does not have lastRenewalNanos set", lease.getLeaseKey())) [FD]
+Line_4 $$ for (T lease : newLeases) --> Line_9 $$ T authoritativeLease = lease.copy() [FD]
+Line_9 $$ T authoritativeLease = lease.copy() --> Line_10 $$ authoritativeLease.setConcurrencyToken(UUID.randomUUID()) [FD]
+Line_9 $$ T authoritativeLease = lease.copy() --> Line_11 $$ ownedLeases.put(authoritativeLease.getLeaseKey(), authoritativeLease) [FD]

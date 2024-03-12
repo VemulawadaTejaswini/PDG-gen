@@ -1,0 +1,7 @@
+Line_2 $$ private static Fiber getCurrentFiber() --> Line_3 $$ final Thread currentThread = Thread.currentThread() [CD]
+Line_2 $$ private static Fiber getCurrentFiber() --> Line_4 $$ if (FiberForkJoinScheduler.isFiberThread(currentThread)) [CD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_4 $$ if (FiberForkJoinScheduler.isFiberThread(currentThread)) [FD]
+Line_4 $$ if (FiberForkJoinScheduler.isFiberThread(currentThread)) --> Line_5 $$ return FiberForkJoinScheduler.getTargetFiber(currentThread) [CD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_5 $$ return FiberForkJoinScheduler.getTargetFiber(currentThread) [FD]
+Line_4 $$ if (FiberForkJoinScheduler.isFiberThread(currentThread)) --> Line_7 $$ final Strand s = currentStrand.get() [CD]
+Line_4 $$ if (FiberForkJoinScheduler.isFiberThread(currentThread)) --> Line_8 $$ return s instanceof Fiber ? (Fiber) s : null [CD]

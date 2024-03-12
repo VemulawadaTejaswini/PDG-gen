@@ -1,0 +1,8 @@
+Line_2 $$ protected void sendHello(Session session) throws InterruptedException --> Line_3 $$ report(getLabel(), () -> concatReportMessage("send hello to ", session.remoteNodeId), VerboseLevel.BASE) [CD]
+Line_2 $$ protected void sendHello(Session session) throws InterruptedException --> Line_4 $$ session.state = Session.HELLO [CD]
+Line_2 $$ protected void sendHello(Session session) throws InterruptedException --> Line_5 $$ Binder binder = Binder.fromKeysValues("data", myNodeInfo.getNumber()) [CD]
+Line_2 $$ protected void sendHello(Session session) throws InterruptedException --> Line_6 $$ Block block = new Block(myNodeInfo.getNumber(), session.remoteNodeId, new Random().nextInt(Integer.MAX_VALUE), PacketTypes.HELLO, session.address, session.port, Boss.pack(binder)) [CD]
+Line_5 $$ Binder binder = Binder.fromKeysValues("data", myNodeInfo.getNumber()) --> Line_6 $$ Block block = new Block(myNodeInfo.getNumber(), session.remoteNodeId, new Random().nextInt(Integer.MAX_VALUE), PacketTypes.HELLO, session.address, session.port, Boss.pack(binder)) [FD]
+Line_2 $$ protected void sendHello(Session session) throws InterruptedException --> Line_7 $$ sendBlock(block, session) [CD]
+Line_2 $$ protected void sendHello(Session session) throws InterruptedException --> Line_7 $$ sendBlock(block, session) [FD]
+Line_6 $$ Block block = new Block(myNodeInfo.getNumber(), session.remoteNodeId, new Random().nextInt(Integer.MAX_VALUE), PacketTypes.HELLO, session.address, session.port, Boss.pack(binder)) --> Line_7 $$ sendBlock(block, session) [FD]

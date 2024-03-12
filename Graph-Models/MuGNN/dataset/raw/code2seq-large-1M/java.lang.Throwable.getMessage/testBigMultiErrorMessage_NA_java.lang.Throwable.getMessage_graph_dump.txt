@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection connection = setBlankConnection("&allowMultiQueries=true&useServerPrepStmts=false")) --> Line_4 $$ executeBigBatchWithException(connection) [FD]
+Line_7 $$ if (isMariadbServer() && minVersion(10, 2)) --> Line_8 $$ assertTrue("message : " + sqle.getCause().getCause().getMessage(), sqle.getCause().getCause().getMessage().contains("INSERT INTO testErrorMessage(test, test2) values (?, ?)")) [CD]
+Line_7 $$ if (isMariadbServer() && minVersion(10, 2)) --> Line_10 $$ if (!sharedOptions().useBatchMultiSend) [CD]
+Line_10 $$ if (!sharedOptions().useBatchMultiSend) --> Line_11 $$ assertTrue("message : " + sqle.getCause().getCause().getMessage(), sqle.getCause().getCause().getMessage().contains("INSERT INTO testErrorMessage(test, test2) " + "values (?, ?), parameters ['more than 10 characters to provoc error',200]")) [CD]
+Line_10 $$ if (!sharedOptions().useBatchMultiSend) --> Line_13 $$ assertTrue("message : " + sqle.getCause().getCause().getMessage(), sqle.getCause().getCause().getMessage().contains("INSERT INTO testErrorMessage(test, test2) values " + "('more than 10 characters to provoc error', 200)")) [CD]

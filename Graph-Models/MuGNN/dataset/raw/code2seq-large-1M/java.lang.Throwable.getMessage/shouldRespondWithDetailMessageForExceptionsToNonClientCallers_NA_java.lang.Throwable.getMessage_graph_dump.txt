@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldRespondWithDetailMessageForExceptionsToNonClientCallers() throws Exception --> Line_3 $$ RuntimeException exception = new RuntimeException("expected") [CD]
+Line_2 $$ public void shouldRespondWithDetailMessageForExceptionsToNonClientCallers() throws Exception --> Line_4 $$ when(endpoint.invoke(any(RequestContext.class))).thenReturn(future) [CD]
+Line_2 $$ public void shouldRespondWithDetailMessageForExceptionsToNonClientCallers() throws Exception --> Line_5 $$ future.completeExceptionally(exception) [CD]
+Line_3 $$ RuntimeException exception = new RuntimeException("expected") --> Line_5 $$ future.completeExceptionally(exception) [FD]
+Line_2 $$ public void shouldRespondWithDetailMessageForExceptionsToNonClientCallers() throws Exception --> Line_6 $$ handler.handle(ongoingRequest, requestContext, endpoint) [CD]
+Line_2 $$ public void shouldRespondWithDetailMessageForExceptionsToNonClientCallers() throws Exception --> Line_7 $$ verify(ongoingRequest).reply(messageArgumentCaptor.capture()) [CD]
+Line_2 $$ public void shouldRespondWithDetailMessageForExceptionsToNonClientCallers() throws Exception --> Line_8 $$ assertThat(messageArgumentCaptor.getValue().status().reasonPhrase(), containsString(exception.getMessage())) [CD]
+Line_3 $$ RuntimeException exception = new RuntimeException("expected") --> Line_8 $$ assertThat(messageArgumentCaptor.getValue().status().reasonPhrase(), containsString(exception.getMessage())) [FD]

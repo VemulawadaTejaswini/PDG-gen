@@ -1,0 +1,8 @@
+Line_3 $$ try (Session session = neo4j.driver().session()) --> Line_5 $$ StatementResult result = session.run(query) [FD]
+Line_4 $$ String query = "UNWIND [1, 2, 3, 4, 0] AS x RETURN 10 / x" --> Line_5 $$ StatementResult result = session.run(query) [FD]
+Line_5 $$ StatementResult result = session.run(query) --> Line_7 $$ result.consume() [FD]
+Line_5 $$ StatementResult result = session.run(query) --> Line_12 $$ assertFalse(result.hasNext()) [FD]
+Line_5 $$ StatementResult result = session.run(query) --> Line_13 $$ assertEquals(emptyList(), result.list()) [FD]
+Line_5 $$ StatementResult result = session.run(query) --> Line_14 $$ ResultSummary summary = result.summary() [FD]
+Line_4 $$ String query = "UNWIND [1, 2, 3, 4, 0] AS x RETURN 10 / x" --> Line_15 $$ assertEquals(query, summary.statement().text()) [FD]
+Line_14 $$ ResultSummary summary = result.summary() --> Line_15 $$ assertEquals(query, summary.statement().text()) [FD]

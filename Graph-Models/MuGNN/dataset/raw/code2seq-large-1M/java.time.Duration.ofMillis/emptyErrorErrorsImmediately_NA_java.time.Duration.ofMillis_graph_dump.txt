@@ -1,0 +1,7 @@
+Line_2 $$ public void emptyErrorErrorsImmediately() --> Line_3 $$ Flux<Long> source = Flux.error(new IllegalStateException("boom")) [CD]
+Line_2 $$ public void emptyErrorErrorsImmediately() --> Line_4 $$ Flux<Long> test = source.delaySequence(Duration.ofMillis(1000)) [CD]
+Line_3 $$ Flux<Long> source = Flux.error(new IllegalStateException("boom")) --> Line_4 $$ Flux<Long> test = source.delaySequence(Duration.ofMillis(1000)) [FD]
+Line_2 $$ public void emptyErrorErrorsImmediately() --> Line_5 $$ Duration took = StepVerifier.create(test).expectSubscription().expectErrorMessage("boom").verify() [CD]
+Line_4 $$ Flux<Long> test = source.delaySequence(Duration.ofMillis(1000)) --> Line_5 $$ Duration took = StepVerifier.create(test).expectSubscription().expectErrorMessage("boom").verify() [FD]
+Line_2 $$ public void emptyErrorErrorsImmediately() --> Line_6 $$ assertThat(took.toMillis()).as("errors immediately").isLessThan(50) [CD]
+Line_5 $$ Duration took = StepVerifier.create(test).expectSubscription().expectErrorMessage("boom").verify() --> Line_6 $$ assertThat(took.toMillis()).as("errors immediately").isLessThan(50) [FD]

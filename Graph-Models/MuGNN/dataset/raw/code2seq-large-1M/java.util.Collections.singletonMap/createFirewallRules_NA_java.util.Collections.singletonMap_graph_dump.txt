@@ -1,0 +1,8 @@
+Line_2 $$ public void createFirewallRules(Set<Integer> tcpPorts, Set<Integer> udpPorts, String directory) --> Line_3 $$ StringBuilder ipTablesRuleBuilder = new StringBuilder() [CD]
+Line_3 $$ StringBuilder ipTablesRuleBuilder = new StringBuilder() --> Line_5 $$ ipTablesRuleBuilder.append(StrSubstitutor.replace(TCP_PORT_FIREWALL_TEMPLATE, Collections.singletonMap(PORT_SUBSITUTION_KEY, tcpPort.toString()))).append("\n") [FD]
+Line_4 $$ for (Integer tcpPort : tcpPorts) --> Line_5 $$ ipTablesRuleBuilder.append(StrSubstitutor.replace(TCP_PORT_FIREWALL_TEMPLATE, Collections.singletonMap(PORT_SUBSITUTION_KEY, tcpPort.toString()))).append("\n") [FD]
+Line_3 $$ StringBuilder ipTablesRuleBuilder = new StringBuilder() --> Line_8 $$ ipTablesRuleBuilder.append(StrSubstitutor.replace(UDP_PORT_FIREWALL_TEMPLATE, Collections.singletonMap(PORT_SUBSITUTION_KEY, udpPort.toString()))).append("\n") [FD]
+Line_7 $$ for (Integer udpPort : udpPorts) --> Line_8 $$ ipTablesRuleBuilder.append(StrSubstitutor.replace(UDP_PORT_FIREWALL_TEMPLATE, Collections.singletonMap(PORT_SUBSITUTION_KEY, udpPort.toString()))).append("\n") [FD]
+Line_2 $$ public void createFirewallRules(Set<Integer> tcpPorts, Set<Integer> udpPorts, String directory) --> Line_11 $$ File fireRuleFile = new File(directory, FIREWALL_RULE_FILENAME) [CD]
+Line_11 $$ File fireRuleFile = new File(directory, FIREWALL_RULE_FILENAME) --> Line_13 $$ FileUtils.writeStringToFile(fireRuleFile, ipTablesRuleBuilder.toString()) [FD]
+Line_3 $$ StringBuilder ipTablesRuleBuilder = new StringBuilder() --> Line_13 $$ FileUtils.writeStringToFile(fireRuleFile, ipTablesRuleBuilder.toString()) [FD]

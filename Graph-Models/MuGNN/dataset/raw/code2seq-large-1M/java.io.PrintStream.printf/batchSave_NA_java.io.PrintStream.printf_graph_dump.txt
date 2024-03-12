@@ -1,0 +1,5 @@
+Line_2 $$ private static <T> void batchSave(Class<T> clazz) --> Line_3 $$ System.out.printf("Re-saving %s entities.\n", clazz.getSimpleName()) [FD]
+Line_2 $$ private static <T> void batchSave(Class<T> clazz) --> Line_3 $$ System.out.printf("Re-saving %s entities.\n", clazz.getSimpleName()) [CD]
+Line_2 $$ private static <T> void batchSave(Class<T> clazz) --> Line_4 $$ for (final Iterable<Key<T>> batch : partition(ofy().load().type(clazz).ancestor(getCrossTldKey()).keys().list(), BATCH_SIZE)) [FD]
+Line_4 $$ for (final Iterable<Key<T>> batch : partition(ofy().load().type(clazz).ancestor(getCrossTldKey()).keys().list(), BATCH_SIZE)) --> Line_5 $$ ofy().save().entities(ofy().load().keys(batch).values()) [FD]
+Line_4 $$ for (final Iterable<Key<T>> batch : partition(ofy().load().type(clazz).ancestor(getCrossTldKey()).keys().list(), BATCH_SIZE)) --> Line_6 $$ System.out.printf("Re-saved entities batch: %s.\n", batch) [FD]

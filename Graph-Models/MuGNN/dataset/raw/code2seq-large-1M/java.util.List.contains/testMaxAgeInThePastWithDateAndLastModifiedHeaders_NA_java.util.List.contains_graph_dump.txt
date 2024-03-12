@@ -1,0 +1,6 @@
+Line_2 $$ public void testMaxAgeInThePastWithDateAndLastModifiedHeaders() throws Exception --> Line_3 $$ String lastModifiedDate = formatDate(-2, TimeUnit.HOURS) [CD]
+Line_2 $$ public void testMaxAgeInThePastWithDateAndLastModifiedHeaders() throws Exception --> Line_4 $$ RecordedRequest conditionalRequest = assertConditionallyCached(new MockResponse().addHeader("Date: " + formatDate(-120, TimeUnit.SECONDS)).addHeader("Last-Modified: " + lastModifiedDate).addHeader("Cache-Control: max-age=60")) [CD]
+Line_2 $$ public void testMaxAgeInThePastWithDateAndLastModifiedHeaders() throws Exception --> Line_5 $$ List<String> headers = conditionalRequest.getHeaders() [CD]
+Line_4 $$ RecordedRequest conditionalRequest = assertConditionallyCached(new MockResponse().addHeader("Date: " + formatDate(-120, TimeUnit.SECONDS)).addHeader("Last-Modified: " + lastModifiedDate).addHeader("Cache-Control: max-age=60")) --> Line_5 $$ List<String> headers = conditionalRequest.getHeaders() [FD]
+Line_2 $$ public void testMaxAgeInThePastWithDateAndLastModifiedHeaders() throws Exception --> Line_6 $$ assertTrue(headers.contains("If-Modified-Since: " + lastModifiedDate)) [CD]
+Line_5 $$ List<String> headers = conditionalRequest.getHeaders() --> Line_6 $$ assertTrue(headers.contains("If-Modified-Since: " + lastModifiedDate)) [FD]

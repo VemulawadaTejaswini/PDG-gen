@@ -1,0 +1,8 @@
+Line_2 $$ private void runBackgroundStreamProcessing(String streamName, SerializedRequestHandler<TestEvent> requestHandler, AtomicBoolean stop) --> Line_3 $$ CompletableFuture.runAsync(() -> [CD]
+Line_2 $$ private void runBackgroundStreamProcessing(String streamName, SerializedRequestHandler<TestEvent> requestHandler, AtomicBoolean stop) --> Line_4 $$ while (!stop.get()) [FD]
+Line_4 $$ while (!stop.get()) --> Line_5 $$ TestEvent event = new TestEvent("scope", streamName, 0) [CD]
+Line_4 $$ while (!stop.get()) --> Line_6 $$ event.complete() [CD]
+Line_5 $$ TestEvent event = new TestEvent("scope", streamName, 0) --> Line_6 $$ event.complete() [FD]
+Line_4 $$ while (!stop.get()) --> Line_7 $$ Futures.await(requestHandler.process(event)) [CD]
+Line_2 $$ private void runBackgroundStreamProcessing(String streamName, SerializedRequestHandler<TestEvent> requestHandler, AtomicBoolean stop) --> Line_7 $$ Futures.await(requestHandler.process(event)) [FD]
+Line_5 $$ TestEvent event = new TestEvent("scope", streamName, 0) --> Line_7 $$ Futures.await(requestHandler.process(event)) [FD]

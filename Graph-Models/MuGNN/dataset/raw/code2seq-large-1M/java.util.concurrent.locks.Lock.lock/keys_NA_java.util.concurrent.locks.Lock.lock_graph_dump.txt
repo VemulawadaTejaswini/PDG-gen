@@ -1,0 +1,8 @@
+Line_2 $$ public Set<byte[]> keys() --> Line_3 $$ resetDbLock.readLock().lock() [CD]
+Line_5 $$ if (logger.isTraceEnabled()) --> Line_6 $$ logger.trace("~> LevelDbDataSource.keys(): " + name) [CD]
+Line_7 $$ try (DBIterator iterator = db.iterator()) --> Line_9 $$ for (iterator.seekToFirst(); iterator.hasNext(); iterator.next()) [FD]
+Line_9 $$ for (iterator.seekToFirst(); iterator.hasNext(); iterator.next()) --> Line_10 $$ result.add(iterator.peekNext().getKey()) [CD]
+Line_8 $$ Set<byte[]> result = new HashSet() --> Line_10 $$ result.add(iterator.peekNext().getKey()) [FD]
+Line_7 $$ try (DBIterator iterator = db.iterator()) --> Line_10 $$ result.add(iterator.peekNext().getKey()) [FD]
+Line_12 $$ if (logger.isTraceEnabled()) --> Line_13 $$ logger.trace("<~ LevelDbDataSource.keys(): " + name + ", " + result.size()) [CD]
+Line_8 $$ Set<byte[]> result = new HashSet() --> Line_13 $$ logger.trace("<~ LevelDbDataSource.keys(): " + name + ", " + result.size()) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void scheduleToReconnect() --> Line_3 $$ if (NettyService.isConnectAlreadyScheduled == true) [CD]
+Line_3 $$ if (NettyService.isConnectAlreadyScheduled == true) --> Line_4 $$ return [CD]
+Line_2 $$ public void scheduleToReconnect() --> Line_6 $$ if (INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF < INTERVAL_RECONNECT_MAXIMUM) [CD]
+Line_6 $$ if (INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF < INTERVAL_RECONNECT_MAXIMUM) --> Line_7 $$ INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF += new Random().nextInt(1000) [CD]
+Line_6 $$ if (INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF < INTERVAL_RECONNECT_MAXIMUM) --> Line_8 $$ LogByCodeLab.i(String.format("%s.scheduleToReconnect() delay: %dsec", NettyService.class.getSimpleName(), INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF / 1000)) [CD]
+Line_6 $$ if (INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF < INTERVAL_RECONNECT_MAXIMUM) --> Line_9 $$ ServiceUtil.startSchedule(this, NettyIntent.ACTION_CONNECT_SESSION, INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF) [CD]
+Line_6 $$ if (INTERVAL_RECONNECT_EXPONENTIAL_BACKOFF < INTERVAL_RECONNECT_MAXIMUM) --> Line_11 $$ NettyService.isConnectAlreadyScheduled = true [CD]

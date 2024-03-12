@@ -1,0 +1,8 @@
+Line_2 $$ public void testFixedDelayPeriodicTaskIsCancelledByShutdown() throws InterruptedException --> Line_3 $$ ExecutorService worker = Executors.newSingleThreadExecutor() [CD]
+Line_5 $$ PartitionedScheduledExecutor executor = new PartitionedScheduledExecutor(scheduler, worker) --> Line_6 $$ ScheduledFuture<?> future = executor.scheduleWithFixedDelay(() -> Assert.fail("Should not run!"), 2, 1, MINUTES) [FD]
+Line_5 $$ PartitionedScheduledExecutor executor = new PartitionedScheduledExecutor(scheduler, worker) --> Line_7 $$ executor.shutdown() [FD]
+Line_5 $$ PartitionedScheduledExecutor executor = new PartitionedScheduledExecutor(scheduler, worker) --> Line_8 $$ assertThat(executor.awaitTermination(30, SECONDS), is(true)) [FD]
+Line_5 $$ PartitionedScheduledExecutor executor = new PartitionedScheduledExecutor(scheduler, worker) --> Line_9 $$ assertThat(executor.isShutdown(), is(true)) [FD]
+Line_5 $$ PartitionedScheduledExecutor executor = new PartitionedScheduledExecutor(scheduler, worker) --> Line_10 $$ assertThat(executor.isTerminated(), is(true)) [FD]
+Line_6 $$ ScheduledFuture<?> future = executor.scheduleWithFixedDelay(() -> Assert.fail("Should not run!"), 2, 1, MINUTES) --> Line_11 $$ assertThat(future.isCancelled(), is(true)) [FD]
+Line_3 $$ ExecutorService worker = Executors.newSingleThreadExecutor() --> Line_13 $$ worker.shutdown() [FD]

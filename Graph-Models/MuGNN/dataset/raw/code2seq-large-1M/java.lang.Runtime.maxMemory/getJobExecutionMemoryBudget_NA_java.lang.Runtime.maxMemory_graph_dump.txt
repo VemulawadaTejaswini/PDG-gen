@@ -1,0 +1,5 @@
+Line_2 $$ public long getJobExecutionMemoryBudget() --> Line_3 $$ final long jobExecutionMemory = Runtime.getRuntime().maxMemory() - getBufferCacheSize() - getMemoryComponentGlobalBudget() [CD]
+Line_2 $$ public long getJobExecutionMemoryBudget() --> Line_4 $$ if (jobExecutionMemory <= 0) [CD]
+Line_3 $$ final long jobExecutionMemory = Runtime.getRuntime().maxMemory() - getBufferCacheSize() - getMemoryComponentGlobalBudget() --> Line_4 $$ if (jobExecutionMemory <= 0) [FD]
+Line_4 $$ if (jobExecutionMemory <= 0) --> Line_5 $$ final String msg = String.format("Invalid node memory configuration, more memory budgeted than available in JVM. Runtime max memory:" + " (%d), Buffer cache memory (%d), memory component global budget (%d)", Runtime.getRuntime().maxMemory(), getBufferCacheSize(), getMemoryComponentGlobalBudget()) [CD]
+Line_2 $$ public long getJobExecutionMemoryBudget() --> Line_8 $$ return jobExecutionMemory [CD]

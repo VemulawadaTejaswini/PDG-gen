@@ -1,0 +1,6 @@
+Line_2 $$ public void hookOnNext(T t) --> Line_3 $$ if (notCancelled() && wasCallPermitted()) [CD]
+Line_3 $$ if (notCancelled() && wasCallPermitted()) --> Line_4 $$ if (firstEvent.getAndSet(false) || rateLimiter.getPermission(rateLimiter.getRateLimiterConfig().getTimeoutDuration())) [CD]
+Line_4 $$ if (firstEvent.getAndSet(false) || rateLimiter.getPermission(rateLimiter.getRateLimiterConfig().getTimeoutDuration())) --> Line_5 $$ actual.onNext(t) [CD]
+Line_2 $$ public void hookOnNext(T t) --> Line_5 $$ actual.onNext(t) [FD]
+Line_4 $$ if (firstEvent.getAndSet(false) || rateLimiter.getPermission(rateLimiter.getRateLimiterConfig().getTimeoutDuration())) --> Line_7 $$ cancel() [CD]
+Line_4 $$ if (firstEvent.getAndSet(false) || rateLimiter.getPermission(rateLimiter.getRateLimiterConfig().getTimeoutDuration())) --> Line_8 $$ actual.onError(rateLimitExceededException()) [CD]

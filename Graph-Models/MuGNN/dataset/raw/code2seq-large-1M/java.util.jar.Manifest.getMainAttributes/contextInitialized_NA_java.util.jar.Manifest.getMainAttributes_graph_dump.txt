@@ -1,0 +1,8 @@
+Line_2 $$ public void contextInitialized(ServletContextEvent servletContextEvent) --> Line_4 $$ InputStream inputStream = servletContextEvent.getServletContext().getResourceAsStream("/META-INF/MANIFEST.MF") [FD]
+Line_5 $$ Manifest manifest = new Manifest(inputStream) --> Line_6 $$ TF_ATTRIBUTES = manifest.getMainAttributes() [FD]
+Line_8 $$ String date = TF_ATTRIBUTES.getValue("Implementation-Build-Date") --> Line_10 $$ if (date != null) [FD]
+Line_10 $$ if (date != null) --> Line_11 $$ SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss") [CD]
+Line_11 $$ SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss") --> Line_13 $$ MANIFEST_BUILD_DATE = dt.parse(date) [FD]
+Line_8 $$ String date = TF_ATTRIBUTES.getValue("Implementation-Build-Date") --> Line_13 $$ MANIFEST_BUILD_DATE = dt.parse(date) [FD]
+Line_7 $$ String version = TF_ATTRIBUTES.getValue("Implementation-Version") --> Line_20 $$ if (version != null) [FD]
+Line_20 $$ if (version != null) --> Line_22 $$ log.info("Application version set to: " + MANIFEST_BUILD_NUMBER) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void addTriggersForTable(final String table) throws SQLException --> Line_3 $$ final List<Trigger> triggers = m_triggerDao.getTriggersForTable(table.toLowerCase()) [CD]
+Line_2 $$ private void addTriggersForTable(final String table) throws SQLException --> Line_3 $$ final List<Trigger> triggers = m_triggerDao.getTriggersForTable(table.toLowerCase()) [FD]
+Line_4 $$ for (final Trigger trigger : triggers) --> Line_5 $$ m_out.print("    - checking trigger '" + trigger.getName() + "' on this table... ") [FD]
+Line_4 $$ for (final Trigger trigger : triggers) --> Line_6 $$ if (!trigger.isOnDatabase(getConnection())) [FD]
+Line_6 $$ if (!trigger.isOnDatabase(getConnection())) --> Line_7 $$ trigger.addToDatabase(getConnection()) [CD]
+Line_4 $$ for (final Trigger trigger : triggers) --> Line_7 $$ trigger.addToDatabase(getConnection()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private String buildReadMethod(PropertyDescriptor pd) --> Line_3 $$ String readMethod = String.format("%s.%s()", SOURCE, pd.getReadMethod().getName()) [FD]
+Line_2 $$ private String buildReadMethod(PropertyDescriptor pd) --> Line_3 $$ String readMethod = String.format("%s.%s()", SOURCE, pd.getReadMethod().getName()) [CD]
+Line_2 $$ private String buildReadMethod(PropertyDescriptor pd) --> Line_4 $$ ToStringMethod toStringMethod = getAnnotation(pd, ToStringMethod.class) [FD]
+Line_2 $$ private String buildReadMethod(PropertyDescriptor pd) --> Line_4 $$ ToStringMethod toStringMethod = getAnnotation(pd, ToStringMethod.class) [CD]
+Line_2 $$ private String buildReadMethod(PropertyDescriptor pd) --> Line_5 $$ if (toStringMethod != null) [CD]
+Line_5 $$ if (toStringMethod != null) --> Line_6 $$ readMethod = String.format("%s==null?null:%s.%s()", readMethod, readMethod, toStringMethod.value()) [CD]
+Line_3 $$ String readMethod = String.format("%s.%s()", SOURCE, pd.getReadMethod().getName()) --> Line_6 $$ readMethod = String.format("%s==null?null:%s.%s()", readMethod, readMethod, toStringMethod.value()) [FD]
+Line_2 $$ private String buildReadMethod(PropertyDescriptor pd) --> Line_8 $$ return readMethod [CD]

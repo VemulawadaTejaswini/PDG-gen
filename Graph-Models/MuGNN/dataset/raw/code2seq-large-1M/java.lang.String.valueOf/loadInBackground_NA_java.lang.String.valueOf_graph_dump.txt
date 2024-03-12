@@ -1,0 +1,7 @@
+Line_2 $$ public SimpleMergeCursor loadInBackground() --> Line_3 $$ Cursor comment = getContext().getContentResolver().query(Comments.COMMENTS_WITH_PROFILE, CommentsAdapter.PROJECTION, Tables.COMMENTS + "." + CommentColumns.ID + "=?", new String[] [CD]
+Line_2 $$ public SimpleMergeCursor loadInBackground() --> Line_4 $$ Cursor replies = getContext().getContentResolver().query(Comments.withParent(commentId), CommentsAdapter.PROJECTION, null, null, CommentColumns.CREATED_AT + " DESC") [CD]
+Line_2 $$ public SimpleMergeCursor loadInBackground() --> Line_5 $$ addNotificationUri(DatabaseUtils.getNotificationUri(comment)) [CD]
+Line_3 $$ Cursor comment = getContext().getContentResolver().query(Comments.COMMENTS_WITH_PROFILE, CommentsAdapter.PROJECTION, Tables.COMMENTS + "." + CommentColumns.ID + "=?", new String[] --> Line_5 $$ addNotificationUri(DatabaseUtils.getNotificationUri(comment)) [FD]
+Line_2 $$ public SimpleMergeCursor loadInBackground() --> Line_6 $$ addNotificationUri(DatabaseUtils.getNotificationUri(replies)) [CD]
+Line_4 $$ Cursor replies = getContext().getContentResolver().query(Comments.withParent(commentId), CommentsAdapter.PROJECTION, null, null, CommentColumns.CREATED_AT + " DESC") --> Line_6 $$ addNotificationUri(DatabaseUtils.getNotificationUri(replies)) [FD]
+Line_2 $$ public SimpleMergeCursor loadInBackground() --> Line_7 $$ return new SimpleMergeCursor(comment, replies) [CD]

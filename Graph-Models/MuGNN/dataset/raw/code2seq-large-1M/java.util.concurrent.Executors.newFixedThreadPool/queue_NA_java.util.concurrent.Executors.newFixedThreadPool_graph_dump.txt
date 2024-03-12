@@ -1,0 +1,6 @@
+Line_2 $$ public void queue() --> Line_3 $$ Queue<String> transferQueue = QueueFactories.<String>boundedQueue(4).build() [CD]
+Line_2 $$ public void queue() --> Line_4 $$ new LazyReact(Executors.newFixedThreadPool(4)).generate(() -> "data").map( d -> "emitted on " + Thread.currentThread().getId()).peek(System.out::<>println).peek( d -> transferQueue.offer(d)).run() [CD]
+Line_3 $$ Queue<String> transferQueue = QueueFactories.<String>boundedQueue(4).build() --> Line_4 $$ new LazyReact(Executors.newFixedThreadPool(4)).generate(() -> "data").map( d -> "emitted on " + Thread.currentThread().getId()).peek(System.out::<>println).peek( d -> transferQueue.offer(d)).run() [FD]
+Line_2 $$ public void queue() --> Line_5 $$ transferQueue.stream().map( e -> "Consumed on " + Thread.currentThread().getId()).runFuture(Executors.newFixedThreadPool(1),  s -> s.forEach(System.out::<>println)) [CD]
+Line_3 $$ Queue<String> transferQueue = QueueFactories.<String>boundedQueue(4).build() --> Line_5 $$ transferQueue.stream().map( e -> "Consumed on " + Thread.currentThread().getId()).runFuture(Executors.newFixedThreadPool(1),  s -> s.forEach(System.out::<>println)) [FD]
+Line_2 $$ public void queue() --> Line_6 $$ while (true) [CD]

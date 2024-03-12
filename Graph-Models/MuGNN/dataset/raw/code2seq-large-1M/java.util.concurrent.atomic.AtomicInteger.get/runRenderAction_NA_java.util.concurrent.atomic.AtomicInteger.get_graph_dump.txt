@@ -1,0 +1,6 @@
+Line_4 $$ if (ourTimeoutExceptionCounter.get() > 3) --> Line_5 $$ ourRenderingExecutor.submit(() -> ourTimeoutExceptionCounter.set(0)).get(50, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ public static <T> T runRenderAction(@NotNull Callable<T> callable) throws Exception --> Line_7 $$ T result = ourRenderingExecutor.submit(callable).get(ourRenderThreadTimeoutMs, TimeUnit.MILLISECONDS) [FD]
+Line_12 $$ Thread renderingThread = ourRenderingThread.get() --> Line_14 $$ if (renderingThread != null) [FD]
+Line_14 $$ if (renderingThread != null) --> Line_15 $$ timeoutException.setStackTrace(renderingThread.getStackTrace()) [CD]
+Line_13 $$ TimeoutException timeoutException = new TimeoutException("Preview timed out while rendering the layout.\n" + "This typically happens when there is an infinite loop or unbounded recursion in one of the custom views.") --> Line_15 $$ timeoutException.setStackTrace(renderingThread.getStackTrace()) [FD]
+Line_12 $$ Thread renderingThread = ourRenderingThread.get() --> Line_15 $$ timeoutException.setStackTrace(renderingThread.getStackTrace()) [FD]

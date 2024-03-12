@@ -1,0 +1,8 @@
+Line_2 $$ static List<Artifact> dependencyList(Path pomXml) --> Line_3 $$ Objects.requireNonNull(pomXml, "pom.xml path is null") [CD]
+Line_2 $$ static List<Artifact> dependencyList(Path pomXml) --> Line_3 $$ Objects.requireNonNull(pomXml, "pom.xml path is null") [FD]
+Line_5 $$ Path outputFile = Files.createTempFile("deps", ".txt") --> Line_6 $$ String cmd = String.format("%s dependency:list -DincludeScope=test -DoutputFile=%s", getMvnCommand(), outputFile) [FD]
+Line_2 $$ static List<Artifact> dependencyList(Path pomXml) --> Line_7 $$ File workingDirectory = pomXml.toAbsolutePath().getParent().toFile() [FD]
+Line_6 $$ String cmd = String.format("%s dependency:list -DincludeScope=test -DoutputFile=%s", getMvnCommand(), outputFile) --> Line_8 $$ int result = Runtime.getRuntime().exec(cmd, null, workingDirectory).waitFor() [FD]
+Line_7 $$ File workingDirectory = pomXml.toAbsolutePath().getParent().toFile() --> Line_8 $$ int result = Runtime.getRuntime().exec(cmd, null, workingDirectory).waitFor() [FD]
+Line_8 $$ int result = Runtime.getRuntime().exec(cmd, null, workingDirectory).waitFor() --> Line_9 $$ if (result != 0) [FD]
+Line_5 $$ Path outputFile = Files.createTempFile("deps", ".txt") --> Line_11 $$ return readDependencyList(outputFile) [FD]

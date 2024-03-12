@@ -1,0 +1,6 @@
+Line_2 $$ private void checkForAddedTenants(Set<TenantName> newTenants) --> Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(globalComponentRegistry.getConfigserverConfig().numParallelTenantLoaders()) [CD]
+Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(globalComponentRegistry.getConfigserverConfig().numParallelTenantLoaders()) --> Line_5 $$ executor.execute(() -> createTenant(tenantName)) [FD]
+Line_4 $$ for (TenantName tenantName : newTenants) --> Line_5 $$ executor.execute(() -> createTenant(tenantName)) [FD]
+Line_2 $$ private void checkForAddedTenants(Set<TenantName> newTenants) --> Line_7 $$ executor.shutdown() [CD]
+Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(globalComponentRegistry.getConfigserverConfig().numParallelTenantLoaders()) --> Line_7 $$ executor.shutdown() [FD]
+Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(globalComponentRegistry.getConfigserverConfig().numParallelTenantLoaders()) --> Line_9 $$ executor.awaitTermination(365, TimeUnit.DAYS) [FD]

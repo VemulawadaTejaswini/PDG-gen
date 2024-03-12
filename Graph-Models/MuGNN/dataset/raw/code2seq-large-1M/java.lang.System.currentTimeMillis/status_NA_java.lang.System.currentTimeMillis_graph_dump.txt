@@ -1,0 +1,8 @@
+Line_2 $$ public Status status() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public Status status() --> Line_4 $$ if (issueDate > now) [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_4 $$ if (issueDate > now) [FD]
+Line_4 $$ if (issueDate > now) --> Line_5 $$ return Status.INVALID [CD]
+Line_4 $$ if (issueDate > now) --> Line_6 $$ if (expiryDate < now) [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_6 $$ if (expiryDate < now) [FD]
+Line_6 $$ if (expiryDate < now) --> Line_7 $$ return Status.EXPIRED [CD]
+Line_2 $$ public Status status() --> Line_9 $$ return Status.ACTIVE [CD]

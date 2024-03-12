@@ -1,0 +1,6 @@
+Line_2 $$ public void saveRetainMessage(String tenant, PublishMessage pm) --> Line_4 $$ String topic = pm.getTopicName() [FD]
+Line_2 $$ public void saveRetainMessage(String tenant, PublishMessage pm) --> Line_5 $$ Buffer pmBytes = encoder.enc(pm) [FD]
+Line_2 $$ public void saveRetainMessage(String tenant, PublishMessage pm) --> Line_6 $$ JsonObject request = new JsonObject().put("topic", topic).put("tenant", tenant).put("message", pmBytes.getBytes()) [FD]
+Line_4 $$ String topic = pm.getTopicName() --> Line_6 $$ JsonObject request = new JsonObject().put("topic", topic).put("tenant", tenant).put("message", pmBytes.getBytes()) [FD]
+Line_5 $$ Buffer pmBytes = encoder.enc(pm) --> Line_6 $$ JsonObject request = new JsonObject().put("topic", topic).put("tenant", tenant).put("message", pmBytes.getBytes()) [FD]
+Line_6 $$ JsonObject request = new JsonObject().put("topic", topic).put("tenant", tenant).put("message", pmBytes.getBytes()) --> Line_7 $$ vertx.eventBus().publish(StoreVerticle.ADDRESS, request, new DeliveryOptions().addHeader("command", "saveRetainMessage")) [FD]

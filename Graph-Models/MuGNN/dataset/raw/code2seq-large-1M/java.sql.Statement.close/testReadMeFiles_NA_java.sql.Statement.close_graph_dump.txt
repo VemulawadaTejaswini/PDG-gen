@@ -1,0 +1,8 @@
+Line_2 $$ public void testReadMeFiles() throws SQLException, IOException --> Line_3 $$ Statement s = createStatement() [CD]
+Line_2 $$ public void testReadMeFiles() throws SQLException, IOException --> Line_4 $$ s.close() [CD]
+Line_3 $$ Statement s = createStatement() --> Line_4 $$ s.close() [FD]
+Line_2 $$ public void testReadMeFiles() throws SQLException, IOException --> Line_5 $$ TestConfiguration currentConfig = TestConfiguration.getCurrent() [CD]
+Line_2 $$ public void testReadMeFiles() throws SQLException, IOException --> Line_6 $$ String dbPath = currentConfig.getDatabasePath(currentConfig.getDefaultDatabaseName()) [CD]
+Line_5 $$ TestConfiguration currentConfig = TestConfiguration.getCurrent() --> Line_6 $$ String dbPath = currentConfig.getDatabasePath(currentConfig.getDefaultDatabaseName()) [FD]
+Line_6 $$ String dbPath = currentConfig.getDatabasePath(currentConfig.getDefaultDatabaseName()) --> Line_11 $$ lookForReadmeFile(dbPath, false) [FD]
+Line_6 $$ String dbPath = currentConfig.getDatabasePath(currentConfig.getDefaultDatabaseName()) --> Line_17 $$ lookForReadmeFile(dbPath, true) [FD]

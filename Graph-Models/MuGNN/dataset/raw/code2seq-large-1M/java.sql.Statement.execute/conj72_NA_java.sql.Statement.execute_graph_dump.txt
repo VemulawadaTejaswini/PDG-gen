@@ -1,0 +1,6 @@
+Line_3 $$ try (Connection connection = setConnection("&tinyInt1isBit=true")) --> Line_4 $$ connection.createStatement().execute("insert into conj72 values(1)") [FD]
+Line_3 $$ try (Connection connection = setConnection("&tinyInt1isBit=true")) --> Line_5 $$ ResultSet rs = connection.getMetaData().getColumns(connection.getCatalog(), null, "conj72", null) [FD]
+Line_5 $$ ResultSet rs = connection.getMetaData().getColumns(connection.getCatalog(), null, "conj72", null) --> Line_6 $$ assertTrue(rs.next()) [FD]
+Line_5 $$ ResultSet rs = connection.getMetaData().getColumns(connection.getCatalog(), null, "conj72", null) --> Line_7 $$ assertEquals(rs.getInt("DATA_TYPE"), Types.BIT) [FD]
+Line_3 $$ try (Connection connection = setConnection("&tinyInt1isBit=true")) --> Line_8 $$ ResultSet rs1 = connection.createStatement().executeQuery("select * from conj72") [FD]
+Line_8 $$ ResultSet rs1 = connection.createStatement().executeQuery("select * from conj72") --> Line_9 $$ assertEquals(rs1.getMetaData().getColumnType(1), Types.BIT) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public String getEmail() --> Line_3 $$ String value = getUserName() [CD]
+Line_2 $$ public String getEmail() --> Line_4 $$ if (!value.contains("@")) [CD]
+Line_3 $$ String value = getUserName() --> Line_4 $$ if (!value.contains("@")) [FD]
+Line_4 $$ if (!value.contains("@")) --> Line_5 $$ value = value + "@test.org" [CD]
+Line_3 $$ String value = getUserName() --> Line_5 $$ value = value + "@test.org" [FD]
+Line_2 $$ public String getEmail() --> Line_7 $$ return environment.getProperty("uaa.test.email", value) [CD]
+Line_3 $$ String value = getUserName() --> Line_7 $$ return environment.getProperty("uaa.test.email", value) [FD]
+Line_5 $$ value = value + "@test.org" --> Line_7 $$ return environment.getProperty("uaa.test.email", value) [FD]

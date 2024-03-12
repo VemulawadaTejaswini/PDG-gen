@@ -1,0 +1,7 @@
+Line_2 $$ public Endpoint getServicesEndpoint() --> Line_3 $$ final int servicePort = HiveConf.getIntVar(conf, ConfVars.LLAP_DAEMON_WEB_PORT) [CD]
+Line_2 $$ public Endpoint getServicesEndpoint() --> Line_4 $$ final boolean isSSL = HiveConf.getBoolVar(conf, ConfVars.LLAP_DAEMON_WEB_SSL) [CD]
+Line_2 $$ public Endpoint getServicesEndpoint() --> Line_5 $$ final String scheme = isSSL ? "https" : "http" [CD]
+Line_2 $$ public Endpoint getServicesEndpoint() --> Line_6 $$ final URL serviceURL [CD]
+Line_6 $$ final URL serviceURL --> Line_8 $$ serviceURL = new URL(scheme, hostname, servicePort, "") [FD]
+Line_6 $$ final URL serviceURL --> Line_9 $$ return RegistryTypeUtils.webEndpoint(IPC_SERVICES, serviceURL.toURI()) [FD]
+Line_8 $$ serviceURL = new URL(scheme, hostname, servicePort, "") --> Line_9 $$ return RegistryTypeUtils.webEndpoint(IPC_SERVICES, serviceURL.toURI()) [FD]

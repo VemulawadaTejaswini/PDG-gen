@@ -1,0 +1,6 @@
+Line_2 $$ public void returnsContainerInstancesFromAllPages() --> Line_3 $$ ECSAsyncClient ecs = mock(FakeECSAsyncClient.class, Mockito.CALLS_REAL_METHODS) [CD]
+Line_2 $$ public void returnsContainerInstancesFromAllPages() --> Line_4 $$ ContainerInstanceLister containerInstances = new ContainerInstanceLister(ecs, CLUSTER_1) [CD]
+Line_2 $$ public void returnsContainerInstancesFromAllPages() --> Line_5 $$ List<ClusterSnapshot.ContainerInstance> describe = containerInstances.describe().join() [CD]
+Line_4 $$ ContainerInstanceLister containerInstances = new ContainerInstanceLister(ecs, CLUSTER_1) --> Line_5 $$ List<ClusterSnapshot.ContainerInstance> describe = containerInstances.describe().join() [FD]
+Line_2 $$ public void returnsContainerInstancesFromAllPages() --> Line_6 $$ assertThat(describe.stream().map(ClusterSnapshot.ContainerInstance::<>getArn).collect(Collectors.toList()), containsInAnyOrder("1", "2", "3", "4", "5", "6")) [CD]
+Line_5 $$ List<ClusterSnapshot.ContainerInstance> describe = containerInstances.describe().join() --> Line_6 $$ assertThat(describe.stream().map(ClusterSnapshot.ContainerInstance::<>getArn).collect(Collectors.toList()), containsInAnyOrder("1", "2", "3", "4", "5", "6")) [FD]

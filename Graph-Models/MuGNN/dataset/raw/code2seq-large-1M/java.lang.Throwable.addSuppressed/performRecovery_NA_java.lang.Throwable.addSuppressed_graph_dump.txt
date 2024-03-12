@@ -1,0 +1,6 @@
+Line_2 $$ private boolean performRecovery() --> Line_3 $$ Preconditions.checkState(state() == State.STARTING || (state() == State.RUNNING && isOffline()), "Invalid State for recovery.") [CD]
+Line_2 $$ private boolean performRecovery() --> Line_4 $$ this.operationProcessor.getMetrics().operationLogInit() [CD]
+Line_2 $$ private boolean performRecovery() --> Line_5 $$ Timer timer = new Timer() [CD]
+Line_8 $$ RecoveryProcessor p = new RecoveryProcessor(this.metadata, this.durableDataLog, this.memoryStateUpdater) --> Line_9 $$ int recoveredItemCount = p.performRecovery() [FD]
+Line_9 $$ int recoveredItemCount = p.performRecovery() --> Line_10 $$ this.operationProcessor.getMetrics().operationsCompleted(recoveredItemCount, timer.getElapsed()) [FD]
+Line_5 $$ Timer timer = new Timer() --> Line_10 $$ this.operationProcessor.getMetrics().operationsCompleted(recoveredItemCount, timer.getElapsed()) [FD]

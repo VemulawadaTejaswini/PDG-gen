@@ -1,0 +1,8 @@
+Line_2 $$ void initializeWorkQueues() throws IOException --> Line_3 $$ if (storesToCompact.isEmpty()) [CD]
+Line_3 $$ if (storesToCompact.isEmpty()) --> Line_4 $$ connection.getTable(tableName).getDescriptor().getColumnFamilyNames().forEach( a -> storesToCompact.add(Bytes.toString(a))) [CD]
+Line_3 $$ if (storesToCompact.isEmpty()) --> Line_5 $$ LOG.info("No family specified, will execute for all families") [CD]
+Line_2 $$ void initializeWorkQueues() throws IOException --> Line_7 $$ LOG.info("Initializing compaction queues for table:  " + tableName + " with cf: " + storesToCompact) [CD]
+Line_2 $$ void initializeWorkQueues() throws IOException --> Line_8 $$ List<HRegionLocation> regionLocations = connection.getRegionLocator(tableName).getAllRegionLocations() [CD]
+Line_9 $$ for (HRegionLocation location : regionLocations) --> Line_10 $$ Optional<MajorCompactionRequest> request = MajorCompactionRequest.newRequest(connection.getConfiguration(), location.getRegion(), storesToCompact, timestamp) [FD]
+Line_10 $$ Optional<MajorCompactionRequest> request = MajorCompactionRequest.newRequest(connection.getConfiguration(), location.getRegion(), storesToCompact, timestamp) --> Line_11 $$ request.ifPresent( majorCompactionRequest -> clusterCompactionQueues.addToCompactionQueue(location.getServerName(), majorCompactionRequest)) [FD]
+Line_9 $$ for (HRegionLocation location : regionLocations) --> Line_11 $$ request.ifPresent( majorCompactionRequest -> clusterCompactionQueues.addToCompactionQueue(location.getServerName(), majorCompactionRequest)) [FD]

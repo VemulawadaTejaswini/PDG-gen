@@ -1,0 +1,5 @@
+Line_2 $$ public void prefetchMaxRequestsUnbounded() --> Line_3 $$ AtomicLong initialRequest = new AtomicLong() [CD]
+Line_2 $$ public void prefetchMaxRequestsUnbounded() --> Line_4 $$ StepVerifier.create(Flux.range(1, 10).doOnRequest( r -> initialRequest.compareAndSet(0L, r)).groupBy( i -> i % 5, Integer.MAX_VALUE).concatMap( v -> v)).expectNextCount(10).verifyComplete() [CD]
+Line_3 $$ AtomicLong initialRequest = new AtomicLong() --> Line_4 $$ StepVerifier.create(Flux.range(1, 10).doOnRequest( r -> initialRequest.compareAndSet(0L, r)).groupBy( i -> i % 5, Integer.MAX_VALUE).concatMap( v -> v)).expectNextCount(10).verifyComplete() [FD]
+Line_2 $$ public void prefetchMaxRequestsUnbounded() --> Line_5 $$ assertThat(initialRequest.get()).isEqualTo(Long.MAX_VALUE) [CD]
+Line_3 $$ AtomicLong initialRequest = new AtomicLong() --> Line_5 $$ assertThat(initialRequest.get()).isEqualTo(Long.MAX_VALUE) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static byte[] getDataToWriteToZooKeeper(Map<String, Integer> existingLabels) --> Line_3 $$ VisibilityLabelsRequest.Builder visReqBuilder = VisibilityLabelsRequest.newBuilder() [CD]
+Line_2 $$ public static byte[] getDataToWriteToZooKeeper(Map<String, Integer> existingLabels) --> Line_4 $$ for (Entry<String, Integer> entry : existingLabels.entrySet()) [FD]
+Line_5 $$ VisibilityLabel.Builder visLabBuilder = VisibilityLabel.newBuilder() --> Line_6 $$ visLabBuilder.setLabel(ByteString.copyFrom(Bytes.toBytes(entry.getKey()))) [FD]
+Line_5 $$ VisibilityLabel.Builder visLabBuilder = VisibilityLabel.newBuilder() --> Line_7 $$ visLabBuilder.setOrdinal(entry.getValue()) [FD]
+Line_3 $$ VisibilityLabelsRequest.Builder visReqBuilder = VisibilityLabelsRequest.newBuilder() --> Line_8 $$ visReqBuilder.addVisLabel(visLabBuilder.build()) [FD]
+Line_5 $$ VisibilityLabel.Builder visLabBuilder = VisibilityLabel.newBuilder() --> Line_8 $$ visReqBuilder.addVisLabel(visLabBuilder.build()) [FD]
+Line_2 $$ public static byte[] getDataToWriteToZooKeeper(Map<String, Integer> existingLabels) --> Line_10 $$ return ProtobufUtil.prependPBMagic(visReqBuilder.build().toByteArray()) [CD]
+Line_3 $$ VisibilityLabelsRequest.Builder visReqBuilder = VisibilityLabelsRequest.newBuilder() --> Line_10 $$ return ProtobufUtil.prependPBMagic(visReqBuilder.build().toByteArray()) [FD]

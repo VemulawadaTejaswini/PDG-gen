@@ -1,0 +1,8 @@
+Line_2 $$ protected final void assertReadMessage(ByteBuffer dst, String... message) --> Line_3 $$ StringBuffer stringBuffer = new StringBuffer() [CD]
+Line_3 $$ StringBuffer stringBuffer = new StringBuffer() --> Line_5 $$ stringBuffer.append(messageString) [FD]
+Line_4 $$ for (String messageString : message) --> Line_5 $$ stringBuffer.append(messageString) [FD]
+Line_2 $$ protected final void assertReadMessage(ByteBuffer dst, String... message) --> Line_7 $$ dst.flip() [FD]
+Line_2 $$ protected final void assertReadMessage(ByteBuffer dst, String... message) --> Line_7 $$ dst.flip() [CD]
+Line_2 $$ protected final void assertReadMessage(ByteBuffer dst, String... message) --> Line_8 $$ assertEquals(stringBuffer.toString(), Buffers.getModifiedUtf8(dst)) [FD]
+Line_2 $$ protected final void assertReadMessage(ByteBuffer dst, String... message) --> Line_8 $$ assertEquals(stringBuffer.toString(), Buffers.getModifiedUtf8(dst)) [CD]
+Line_3 $$ StringBuffer stringBuffer = new StringBuffer() --> Line_8 $$ assertEquals(stringBuffer.toString(), Buffers.getModifiedUtf8(dst)) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testSecureSettingConflict() --> Line_3 $$ Setting<SecureString> setting = SecureSetting.secureString("something.secure", null) [CD]
+Line_2 $$ public void testSecureSettingConflict() --> Line_4 $$ Settings settings = Settings.builder().put("something.secure", "notreallysecure").build() [CD]
+Line_2 $$ public void testSecureSettingConflict() --> Line_5 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> setting.get(settings)) [CD]
+Line_3 $$ Setting<SecureString> setting = SecureSetting.secureString("something.secure", null) --> Line_5 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> setting.get(settings)) [FD]
+Line_4 $$ Settings settings = Settings.builder().put("something.secure", "notreallysecure").build() --> Line_5 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> setting.get(settings)) [FD]
+Line_2 $$ public void testSecureSettingConflict() --> Line_6 $$ assertTrue(e.getMessage().contains("must be stored inside the Elasticsearch keystore")) [CD]

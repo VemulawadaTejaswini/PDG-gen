@@ -1,0 +1,8 @@
+Line_2 $$ public String putFile(String filePath) throws Exception --> Line_3 $$ String fileName = filePath.substring(filePath.lastIndexOf("/") + 1) [FD]
+Line_2 $$ public String putFile(String filePath) throws Exception --> Line_3 $$ String fileName = filePath.substring(filePath.lastIndexOf("/") + 1) [CD]
+Line_2 $$ public String putFile(String filePath) throws Exception --> Line_4 $$ if (!minioClient.bucketExists(bucketName)) [CD]
+Line_4 $$ if (!minioClient.bucketExists(bucketName)) --> Line_5 $$ minioClient.makeBucket(bucketName) [CD]
+Line_2 $$ public String putFile(String filePath) throws Exception --> Line_7 $$ minioClient.putObject(bucketName, fileName, filePath) [FD]
+Line_2 $$ public String putFile(String filePath) throws Exception --> Line_7 $$ minioClient.putObject(bucketName, fileName, filePath) [CD]
+Line_3 $$ String fileName = filePath.substring(filePath.lastIndexOf("/") + 1) --> Line_7 $$ minioClient.putObject(bucketName, fileName, filePath) [FD]
+Line_2 $$ public String putFile(String filePath) throws Exception --> Line_8 $$ return S3_PROTOCOL + ENDPOINT + "/" + bucketName + "/" + fileName + "?accessKey=" + ACCESS_KEY + "&secretKey=" + SECRET_KEY [CD]

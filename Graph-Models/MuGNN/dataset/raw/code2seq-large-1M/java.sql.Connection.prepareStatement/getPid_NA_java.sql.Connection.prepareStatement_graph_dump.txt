@@ -1,0 +1,4 @@
+Line_2 $$ private static int getPid(Connection conn) throws SQLException --> Line_3 $$ try (PreparedStatement stmt = conn.prepareStatement("select sid from v$session where audsid = userenv('sessionid')")) [FD]
+Line_3 $$ try (PreparedStatement stmt = conn.prepareStatement("select sid from v$session where audsid = userenv('sessionid')")) --> Line_4 $$ try (ResultSet res = stmt.executeQuery()) [FD]
+Line_4 $$ try (ResultSet res = stmt.executeQuery()) --> Line_5 $$ res.next() [FD]
+Line_4 $$ try (ResultSet res = stmt.executeQuery()) --> Line_6 $$ return res.getInt(1) [FD]

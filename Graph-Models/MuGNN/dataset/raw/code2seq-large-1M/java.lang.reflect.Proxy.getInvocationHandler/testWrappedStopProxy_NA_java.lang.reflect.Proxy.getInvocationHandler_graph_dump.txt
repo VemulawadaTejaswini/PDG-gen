@@ -1,0 +1,8 @@
+Line_2 $$ public void testWrappedStopProxy() throws IOException --> Line_3 $$ StoppedProtocol wrappedProxy = RPC.getProxy(StoppedProtocol.class, StoppedProtocol.versionID, null, conf) [CD]
+Line_2 $$ public void testWrappedStopProxy() throws IOException --> Line_4 $$ StoppedInvocationHandler invocationHandler = (StoppedInvocationHandler) Proxy.getInvocationHandler(wrappedProxy) [CD]
+Line_2 $$ public void testWrappedStopProxy() throws IOException --> Line_5 $$ StoppedProtocol proxy = (StoppedProtocol) RetryProxy.create(StoppedProtocol.class, wrappedProxy, RetryPolicies.RETRY_FOREVER) [CD]
+Line_2 $$ public void testWrappedStopProxy() throws IOException --> Line_6 $$ assertEquals(0, invocationHandler.getCloseCalled()) [CD]
+Line_4 $$ StoppedInvocationHandler invocationHandler = (StoppedInvocationHandler) Proxy.getInvocationHandler(wrappedProxy) --> Line_6 $$ assertEquals(0, invocationHandler.getCloseCalled()) [FD]
+Line_2 $$ public void testWrappedStopProxy() throws IOException --> Line_7 $$ RPC.stopProxy(proxy) [CD]
+Line_2 $$ public void testWrappedStopProxy() throws IOException --> Line_8 $$ assertEquals(1, invocationHandler.getCloseCalled()) [CD]
+Line_4 $$ StoppedInvocationHandler invocationHandler = (StoppedInvocationHandler) Proxy.getInvocationHandler(wrappedProxy) --> Line_8 $$ assertEquals(1, invocationHandler.getCloseCalled()) [FD]

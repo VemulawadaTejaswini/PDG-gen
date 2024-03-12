@@ -1,0 +1,7 @@
+Line_2 $$ private ESBulkBuilder addDocToDeleteToESBuilder(ESBulkBuilder bbuilder, Map<String, Set<String>> vmap) --> Line_3 $$ for (Map.Entry<String, Set<String>> et : vmap.entrySet()) [FD]
+Line_4 $$ String voName = et.getKey() --> Line_5 $$ IndexerInfo info = voClassToIndexerMapping.get(voName) [FD]
+Line_5 $$ IndexerInfo info = voClassToIndexerMapping.get(voName) --> Line_6 $$ if (info == null) [FD]
+Line_9 $$ Set<String> uuids = et.getValue() --> Line_10 $$ if (!uuids.isEmpty()) [FD]
+Line_2 $$ private ESBulkBuilder addDocToDeleteToESBuilder(ESBulkBuilder bbuilder, Map<String, Set<String>> vmap) --> Line_12 $$ bbuilder.addDeleteBulk(info.inventoryName.toLowerCase(), info.inventoryName, uuid) [FD]
+Line_11 $$ for (String uuid : uuids) --> Line_12 $$ bbuilder.addDeleteBulk(info.inventoryName.toLowerCase(), info.inventoryName, uuid) [FD]
+Line_2 $$ private ESBulkBuilder addDocToDeleteToESBuilder(ESBulkBuilder bbuilder, Map<String, Set<String>> vmap) --> Line_16 $$ return bbuilder [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private boolean isG1GCEnabled() --> Line_3 $$ final String argline = System.getProperty("tests.jvm.argline") [CD]
+Line_2 $$ private boolean isG1GCEnabled() --> Line_4 $$ final boolean g1GCEnabled = flagIsEnabled(argline, "UseG1GC") [CD]
+Line_3 $$ final String argline = System.getProperty("tests.jvm.argline") --> Line_4 $$ final boolean g1GCEnabled = flagIsEnabled(argline, "UseG1GC") [FD]
+Line_2 $$ private boolean isG1GCEnabled() --> Line_5 $$ final boolean versionIsAtLeastJava9 = JavaVersion.current().compareTo(JavaVersion.parse("9")) >= 0 [CD]
+Line_2 $$ private boolean isG1GCEnabled() --> Line_6 $$ final boolean noOtherCollectorSpecified = argline == null || (!flagIsEnabled(argline, "UseParNewGC") && !flagIsEnabled(argline, "UseParallelGC") && !flagIsEnabled(argline, "UseParallelOldGC") && !flagIsEnabled(argline, "UseSerialGC") && !flagIsEnabled(argline, "UseConcMarkSweepGC")) [CD]
+Line_3 $$ final String argline = System.getProperty("tests.jvm.argline") --> Line_6 $$ final boolean noOtherCollectorSpecified = argline == null || (!flagIsEnabled(argline, "UseParNewGC") && !flagIsEnabled(argline, "UseParallelGC") && !flagIsEnabled(argline, "UseParallelOldGC") && !flagIsEnabled(argline, "UseSerialGC") && !flagIsEnabled(argline, "UseConcMarkSweepGC")) [FD]
+Line_2 $$ private boolean isG1GCEnabled() --> Line_7 $$ return g1GCEnabled || (versionIsAtLeastJava9 && noOtherCollectorSpecified) [CD]

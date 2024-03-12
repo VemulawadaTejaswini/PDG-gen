@@ -1,0 +1,8 @@
+Line_2 $$ public void testDuplicateAlias() throws Exception --> Line_3 $$ client().admin().indices().preparePutTemplate("template_1").setPatterns(Collections.singletonList("te*")).addAlias(new Alias("my_alias").filter(termQuery("field", "value1"))).addAlias(new Alias("my_alias").filter(termQuery("field", "value2"))).get() [CD]
+Line_2 $$ public void testDuplicateAlias() throws Exception --> Line_4 $$ GetIndexTemplatesResponse response = client().admin().indices().prepareGetTemplates("template_1").get() [CD]
+Line_2 $$ public void testDuplicateAlias() throws Exception --> Line_5 $$ assertThat(response.getIndexTemplates().size(), equalTo(1)) [CD]
+Line_4 $$ GetIndexTemplatesResponse response = client().admin().indices().prepareGetTemplates("template_1").get() --> Line_5 $$ assertThat(response.getIndexTemplates().size(), equalTo(1)) [FD]
+Line_2 $$ public void testDuplicateAlias() throws Exception --> Line_6 $$ assertThat(response.getIndexTemplates().get(0).getAliases().size(), equalTo(1)) [CD]
+Line_4 $$ GetIndexTemplatesResponse response = client().admin().indices().prepareGetTemplates("template_1").get() --> Line_6 $$ assertThat(response.getIndexTemplates().get(0).getAliases().size(), equalTo(1)) [FD]
+Line_2 $$ public void testDuplicateAlias() throws Exception --> Line_7 $$ assertThat(response.getIndexTemplates().get(0).getAliases().get("my_alias").filter().string(), containsString("\"value1\"")) [CD]
+Line_4 $$ GetIndexTemplatesResponse response = client().admin().indices().prepareGetTemplates("template_1").get() --> Line_7 $$ assertThat(response.getIndexTemplates().get(0).getAliases().get("my_alias").filter().string(), containsString("\"value1\"")) [FD]

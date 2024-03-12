@@ -1,0 +1,6 @@
+Line_2 $$ public void streamClosedOnCancelSlowPathConditional() --> Line_3 $$ AtomicInteger closed = new AtomicInteger() [CD]
+Line_2 $$ public void streamClosedOnCancelSlowPathConditional() --> Line_4 $$ Stream<String> source = Stream.of("foo", "bar", "baz").onClose(closed::<>incrementAndGet) [CD]
+Line_2 $$ public void streamClosedOnCancelSlowPathConditional() --> Line_5 $$ StepVerifier.create(Flux.fromStream(source).filter( i -> true), 0).thenRequest(1).expectNext("foo").thenCancel().verify() [CD]
+Line_4 $$ Stream<String> source = Stream.of("foo", "bar", "baz").onClose(closed::<>incrementAndGet) --> Line_5 $$ StepVerifier.create(Flux.fromStream(source).filter( i -> true), 0).thenRequest(1).expectNext("foo").thenCancel().verify() [FD]
+Line_2 $$ public void streamClosedOnCancelSlowPathConditional() --> Line_6 $$ assertThat(closed.get()).isEqualTo(1) [CD]
+Line_3 $$ AtomicInteger closed = new AtomicInteger() --> Line_6 $$ assertThat(closed.get()).isEqualTo(1) [FD]

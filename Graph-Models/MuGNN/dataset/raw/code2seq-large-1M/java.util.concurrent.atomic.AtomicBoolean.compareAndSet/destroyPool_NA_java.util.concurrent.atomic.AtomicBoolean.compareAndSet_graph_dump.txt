@@ -1,0 +1,7 @@
+Line_2 $$ public void destroyPool() --> Line_3 $$ if (this.inited.compareAndSet(true, false)) [CD]
+Line_3 $$ if (this.inited.compareAndSet(true, false)) --> Line_4 $$ this.logger.info("destroy LinkPool.") [CD]
+Line_5 $$ for (BasicFuture<RsfChannel> future : channelMap.values()) --> Line_6 $$ if (future == null) [FD]
+Line_5 $$ for (BasicFuture<RsfChannel> future : channelMap.values()) --> Line_8 $$ if (!future.isDone()) [FD]
+Line_8 $$ if (!future.isDone()) --> Line_9 $$ future.failed(new IllegalStateException("the pool destroy.")) [CD]
+Line_5 $$ for (BasicFuture<RsfChannel> future : channelMap.values()) --> Line_9 $$ future.failed(new IllegalStateException("the pool destroy.")) [FD]
+Line_5 $$ for (BasicFuture<RsfChannel> future : channelMap.values()) --> Line_12 $$ future.get().close() [FD]

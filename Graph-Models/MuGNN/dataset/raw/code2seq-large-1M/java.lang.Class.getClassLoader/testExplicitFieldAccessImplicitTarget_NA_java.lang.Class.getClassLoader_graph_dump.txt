@@ -1,0 +1,8 @@
+Line_2 $$ public void testExplicitFieldAccessImplicitTarget() throws Exception --> Line_3 $$ DynamicType.Loaded<ExplicitInherited> loaded = new ByteBuddy().subclass(ExplicitInherited.class).method(isDeclaredBy(ExplicitInherited.class)).intercept(MethodDelegation.withDefaultConfiguration().withBinders(FieldProxy.Binder.install(Get.class, Set.class)).to(Swap.class)).make().load(ExplicitInherited.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testExplicitFieldAccessImplicitTarget() throws Exception --> Line_4 $$ ExplicitInherited explicitInherited = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testExplicitFieldAccessImplicitTarget() throws Exception --> Line_5 $$ assertThat(((Explicit) explicitInherited).foo, is(FOO)) [CD]
+Line_2 $$ public void testExplicitFieldAccessImplicitTarget() throws Exception --> Line_6 $$ assertThat(explicitInherited.foo, is(QUX)) [CD]
+Line_2 $$ public void testExplicitFieldAccessImplicitTarget() throws Exception --> Line_7 $$ explicitInherited.swap() [CD]
+Line_4 $$ ExplicitInherited explicitInherited = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_7 $$ explicitInherited.swap() [FD]
+Line_2 $$ public void testExplicitFieldAccessImplicitTarget() throws Exception --> Line_8 $$ assertThat(((Explicit) explicitInherited).foo, is(FOO)) [CD]
+Line_2 $$ public void testExplicitFieldAccessImplicitTarget() throws Exception --> Line_9 $$ assertThat(explicitInherited.foo, is(QUX + BAR)) [CD]

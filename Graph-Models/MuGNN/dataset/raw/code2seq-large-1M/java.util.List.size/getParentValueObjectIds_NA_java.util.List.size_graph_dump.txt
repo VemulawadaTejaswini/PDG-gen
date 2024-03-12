@@ -1,0 +1,6 @@
+Line_2 $$ public Set<ValueObjectId> getParentValueObjectIds() --> Line_3 $$ List<String> segments = segments() [CD]
+Line_2 $$ public Set<ValueObjectId> getParentValueObjectIds() --> Line_4 $$ if (segments.size() == 1) [CD]
+Line_3 $$ List<String> segments = segments() --> Line_4 $$ if (segments.size() == 1) [FD]
+Line_4 $$ if (segments.size() == 1) --> Line_5 $$ return Collections.emptySet() [CD]
+Line_2 $$ public Set<ValueObjectId> getParentValueObjectIds() --> Line_7 $$ return segments.stream().limit(segments.size() - 1).map( s -> new ValueObjectId(this.getTypeName(), ownerId, s)).collect(Collectors.toSet()) [CD]
+Line_3 $$ List<String> segments = segments() --> Line_7 $$ return segments.stream().limit(segments.size() - 1).map( s -> new ValueObjectId(this.getTypeName(), ownerId, s)).collect(Collectors.toSet()) [FD]

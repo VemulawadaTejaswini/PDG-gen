@@ -1,0 +1,5 @@
+Line_2 $$ public void sendFileChunkedOffset() throws IOException, URISyntaxException --> Line_3 $$ Path largeFile = Paths.get(getClass().getResource("/largeFile.txt").toURI()) [CD]
+Line_2 $$ public void sendFileChunkedOffset() throws IOException, URISyntaxException --> Line_4 $$ long fileSize = Files.size(largeFile) [CD]
+Line_3 $$ Path largeFile = Paths.get(getClass().getResource("/largeFile.txt").toURI()) --> Line_4 $$ long fileSize = Files.size(largeFile) [FD]
+Line_2 $$ public void sendFileChunkedOffset() throws IOException, URISyntaxException --> Line_5 $$ assertSendFile( out -> out.sendFileChunked(largeFile, 1024, fileSize - 1024), false,  body -> assertThat(body).startsWith("<- 1024 mark here").endsWith("End of File")) [CD]
+Line_3 $$ Path largeFile = Paths.get(getClass().getResource("/largeFile.txt").toURI()) --> Line_5 $$ assertSendFile( out -> out.sendFileChunked(largeFile, 1024, fileSize - 1024), false,  body -> assertThat(body).startsWith("<- 1024 mark here").endsWith("End of File")) [FD]

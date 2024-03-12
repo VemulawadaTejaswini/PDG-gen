@@ -1,0 +1,6 @@
+Line_2 $$ public void waitForRegion(Region region, long timeout) throws InterruptedException --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ public void waitForRegion(Region region, long timeout) throws InterruptedException --> Line_5 $$ while (!recoveredRegions.contains(region)) [FD]
+Line_5 $$ while (!recoveredRegions.contains(region)) --> Line_6 $$ long remaining = timeout - (System.currentTimeMillis() - start) [CD]
+Line_5 $$ while (!recoveredRegions.contains(region)) --> Line_7 $$ assertTrue("Timeout waiting for region recovery", remaining > 0) [CD]
+Line_5 $$ while (!recoveredRegions.contains(region)) --> Line_8 $$ this.wait(remaining) [CD]
+Line_6 $$ long remaining = timeout - (System.currentTimeMillis() - start) --> Line_8 $$ this.wait(remaining) [FD]

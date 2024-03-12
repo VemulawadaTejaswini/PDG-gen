@@ -1,0 +1,7 @@
+Line_2 $$ public static BufferedImage readPdfPageAsImage(File pdfFile, int pageNumber) --> Line_3 $$ if (pageNumber < 1) [CD]
+Line_2 $$ public static BufferedImage readPdfPageAsImage(File pdfFile, int pageNumber) --> Line_3 $$ if (pageNumber < 1) [FD]
+Line_6 $$ RandomAccessFile raf = new RandomAccessFile(pdfFile, "r") --> Line_7 $$ FileChannel channel = raf.getChannel() [FD]
+Line_7 $$ FileChannel channel = raf.getChannel() --> Line_8 $$ ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size()) [FD]
+Line_9 $$ PDFFile pdf = new PDFFile(buf) --> Line_10 $$ BufferedImage image = readPage(pdf, pageNumber) [FD]
+Line_2 $$ public static BufferedImage readPdfPageAsImage(File pdfFile, int pageNumber) --> Line_10 $$ BufferedImage image = readPage(pdf, pageNumber) [FD]
+Line_6 $$ RandomAccessFile raf = new RandomAccessFile(pdfFile, "r") --> Line_11 $$ raf.close() [FD]

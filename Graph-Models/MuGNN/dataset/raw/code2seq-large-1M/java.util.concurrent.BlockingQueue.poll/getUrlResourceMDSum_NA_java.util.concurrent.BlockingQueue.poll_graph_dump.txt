@@ -1,0 +1,8 @@
+Line_2 $$ public BigInteger getUrlResourceMDSum(final String url) throws Exception --> Line_3 $$ final Connection c = transport.connect("localhost", PORT).get(10, TimeUnit.SECONDS) [CD]
+Line_2 $$ public BigInteger getUrlResourceMDSum(final String url) throws Exception --> Line_5 $$ final HttpRequestPacket request = HttpRequestPacket.builder().uri(url).method(Method.GET).protocol(Protocol.HTTP_1_1).header("Host", "localhost:" + PORT).build() [FD]
+Line_3 $$ final Connection c = transport.connect("localhost", PORT).get(10, TimeUnit.SECONDS) --> Line_6 $$ c.write(request) [FD]
+Line_5 $$ final HttpRequestPacket request = HttpRequestPacket.builder().uri(url).method(Method.GET).protocol(Protocol.HTTP_1_1).header("Host", "localhost:" + PORT).build() --> Line_6 $$ c.write(request) [FD]
+Line_7 $$ final Future<File> result = resultQueue.poll(60, TimeUnit.SECONDS) --> Line_8 $$ if (result == null) [FD]
+Line_7 $$ final Future<File> result = resultQueue.poll(60, TimeUnit.SECONDS) --> Line_11 $$ final File fResult = result.get(60, TimeUnit.SECONDS) [FD]
+Line_11 $$ final File fResult = result.get(60, TimeUnit.SECONDS) --> Line_12 $$ return getMDSum(fResult) [FD]
+Line_3 $$ final Connection c = transport.connect("localhost", PORT).get(10, TimeUnit.SECONDS) --> Line_14 $$ c.close() [FD]

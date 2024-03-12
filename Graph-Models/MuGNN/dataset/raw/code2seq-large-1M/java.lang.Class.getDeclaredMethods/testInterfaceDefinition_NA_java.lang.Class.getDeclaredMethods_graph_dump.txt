@@ -1,0 +1,8 @@
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_3 $$ Class<? extends SimpleInterface> type = new ByteBuddy().makeInterface(SimpleInterface.class).defineMethod(FOO, void.class, Visibility.PUBLIC).withParameters(Void.class).withoutCode().make().load(getClass().getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_4 $$ assertThat(type.getDeclaredMethods().length, is(1)) [CD]
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_5 $$ assertThat(type.getDeclaredMethod(FOO, Void.class), notNullValue(Method.class)) [CD]
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_6 $$ assertThat(type.getDeclaredConstructors().length, is(0)) [CD]
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_7 $$ assertThat(SimpleInterface.class.isAssignableFrom(type), is(true)) [CD]
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_8 $$ assertThat(type, not(CoreMatchers.<Class<?>>is(SimpleInterface.class))) [CD]
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_9 $$ assertThat(type.isInterface(), is(true)) [CD]
+Line_2 $$ public void testInterfaceDefinition() throws Exception --> Line_10 $$ assertThat(type.isAnnotation(), is(false)) [CD]

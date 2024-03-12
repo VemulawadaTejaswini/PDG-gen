@@ -1,0 +1,8 @@
+Line_4 $$ if (!freePages.isEmpty()) --> Line_5 $$ return freePages.remove(freePages.size() - 1) [CD]
+Line_9 $$ for (; activePagePointer < activePagesEnd; activePagePointer++) --> Line_10 $$ final PageTableEntry pte = activePages[activePagePointer] [CD]
+Line_9 $$ for (; activePagePointer < activePagesEnd; activePagePointer++) --> Line_11 $$ final Memory freePage = pte.addressSpace.freePage(pte.index) [CD]
+Line_9 $$ for (; activePagePointer < activePagesEnd; activePagePointer++) --> Line_12 $$ if (freePage != null) [CD]
+Line_11 $$ final Memory freePage = pte.addressSpace.freePage(pte.index) --> Line_12 $$ if (freePage != null) [FD]
+Line_12 $$ if (freePage != null) --> Line_14 $$ if (activePagePointer > activePages.length / 5) [CD]
+Line_14 $$ if (activePagePointer > activePages.length / 5) --> Line_15 $$ activePages.notify() [CD]
+Line_12 $$ if (freePage != null) --> Line_17 $$ return freePage [CD]

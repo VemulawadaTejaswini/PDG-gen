@@ -1,0 +1,5 @@
+Line_2 $$ private <T> CompletableFuture<T> nullIfDisposed(Supplier<CompletableFuture<T>> supplier) --> Line_3 $$ lock.readLock().lock() [CD]
+Line_2 $$ private <T> CompletableFuture<T> nullIfDisposed(Supplier<CompletableFuture<T>> supplier) --> Line_4 $$ if (disposed) [CD]
+Line_4 $$ if (disposed) --> Line_5 $$ lock.readLock().unlock() [CD]
+Line_4 $$ if (disposed) --> Line_6 $$ return CompletableFuture.completedFuture(null) [CD]
+Line_2 $$ private <T> CompletableFuture<T> nullIfDisposed(Supplier<CompletableFuture<T>> supplier) --> Line_9 $$ return supplier.get() [FD]

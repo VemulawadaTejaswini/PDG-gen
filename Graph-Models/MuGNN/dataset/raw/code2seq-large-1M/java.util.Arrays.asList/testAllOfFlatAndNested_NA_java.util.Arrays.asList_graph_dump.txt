@@ -1,0 +1,7 @@
+Line_3 $$ for (String path : Arrays.asList("./src/test/resources/allOf-properties-ext-ref/models/swagger.json", "./src/test/resources/allOf-properties-ext-ref/swagger.json")) --> Line_4 $$ Swagger swagger = new SwaggerParser().read(path) [FD]
+Line_4 $$ Swagger swagger = new SwaggerParser().read(path) --> Line_5 $$ assertEquals(3, swagger.getDefinitions().size()) [FD]
+Line_4 $$ Swagger swagger = new SwaggerParser().read(path) --> Line_6 $$ ComposedModel composedModel = (ComposedModel) swagger.getDefinitions().get("record") [FD]
+Line_6 $$ ComposedModel composedModel = (ComposedModel) swagger.getDefinitions().get("record") --> Line_7 $$ assertEquals(((RefModel) composedModel.getParent()).getSimpleRef(), "pet") [FD]
+Line_6 $$ ComposedModel composedModel = (ComposedModel) swagger.getDefinitions().get("record") --> Line_8 $$ Map<String, Property> props = composedModel.getChild().getProperties() [FD]
+Line_8 $$ Map<String, Property> props = composedModel.getChild().getProperties() --> Line_9 $$ assertEquals(((RefProperty) props.get("mother")).getSimpleRef(), "pet") [FD]
+Line_8 $$ Map<String, Property> props = composedModel.getChild().getProperties() --> Line_10 $$ assertEquals(((RefProperty) ((ArrayProperty) props.get("siblings")).getItems()).getSimpleRef(), "pet") [FD]

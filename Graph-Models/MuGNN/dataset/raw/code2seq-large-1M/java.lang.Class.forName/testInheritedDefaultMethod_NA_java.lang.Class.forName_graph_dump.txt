@@ -1,0 +1,7 @@
+Line_2 $$ public void testInheritedDefaultMethod() throws Exception --> Line_3 $$ DynamicType.Loaded<?> loaded = new ByteBuddy().subclass(Class.forName(SINGLE_DEFAULT_METHOD_CLASS)).method(not(isDeclaredBy(Object.class))).intercept(SuperMethodCall.INSTANCE).make().load(Class.forName(SINGLE_DEFAULT_METHOD_CLASS).getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testInheritedDefaultMethod() throws Exception --> Line_4 $$ assertThat(loaded.getLoaded().getDeclaredMethods().length, is(1)) [CD]
+Line_2 $$ public void testInheritedDefaultMethod() throws Exception --> Line_5 $$ Method method = loaded.getLoaded().getDeclaredMethod(FOO) [CD]
+Line_2 $$ public void testInheritedDefaultMethod() throws Exception --> Line_6 $$ Object instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testInheritedDefaultMethod() throws Exception --> Line_7 $$ assertThat(method.invoke(instance), is((Object) FOO)) [CD]
+Line_5 $$ Method method = loaded.getLoaded().getDeclaredMethod(FOO) --> Line_7 $$ assertThat(method.invoke(instance), is((Object) FOO)) [FD]
+Line_6 $$ Object instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_7 $$ assertThat(method.invoke(instance), is((Object) FOO)) [FD]

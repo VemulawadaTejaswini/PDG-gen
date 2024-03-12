@@ -1,0 +1,8 @@
+Line_2 $$ private static long minTranslogGenUsedInRecovery(Path translogPath) throws IOException --> Line_3 $$ try (NIOFSDirectory directory = new NIOFSDirectory(translogPath.getParent().resolve("index"))) [FD]
+Line_3 $$ try (NIOFSDirectory directory = new NIOFSDirectory(translogPath.getParent().resolve("index"))) --> Line_4 $$ List<IndexCommit> commits = DirectoryReader.listCommits(directory) [FD]
+Line_4 $$ List<IndexCommit> commits = DirectoryReader.listCommits(directory) --> Line_5 $$ final String translogUUID = commits.get(commits.size() - 1).getUserData().get(Translog.TRANSLOG_UUID_KEY) [FD]
+Line_2 $$ private static long minTranslogGenUsedInRecovery(Path translogPath) throws IOException --> Line_6 $$ long globalCheckpoint = Translog.readGlobalCheckpoint(translogPath, translogUUID) [FD]
+Line_5 $$ final String translogUUID = commits.get(commits.size() - 1).getUserData().get(Translog.TRANSLOG_UUID_KEY) --> Line_6 $$ long globalCheckpoint = Translog.readGlobalCheckpoint(translogPath, translogUUID) [FD]
+Line_4 $$ List<IndexCommit> commits = DirectoryReader.listCommits(directory) --> Line_7 $$ IndexCommit recoveringCommit = CombinedDeletionPolicy.findSafeCommitPoint(commits, globalCheckpoint) [FD]
+Line_6 $$ long globalCheckpoint = Translog.readGlobalCheckpoint(translogPath, translogUUID) --> Line_7 $$ IndexCommit recoveringCommit = CombinedDeletionPolicy.findSafeCommitPoint(commits, globalCheckpoint) [FD]
+Line_7 $$ IndexCommit recoveringCommit = CombinedDeletionPolicy.findSafeCommitPoint(commits, globalCheckpoint) --> Line_8 $$ return Long.parseLong(recoveringCommit.getUserData().get(Translog.TRANSLOG_GENERATION_KEY)) [FD]

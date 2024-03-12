@@ -1,0 +1,8 @@
+Line_6 $$ Ignite g = startGrid() --> Line_7 $$ IgniteCache<Integer, Integer> c = g.cache(DEFAULT_CACHE_NAME) [FD]
+Line_6 $$ Ignite g = startGrid() --> Line_8 $$ IgniteDataStreamer<Integer, Integer> ldr = g.dataStreamer(DEFAULT_CACHE_NAME) [FD]
+Line_8 $$ IgniteDataStreamer<Integer, Integer> ldr = g.dataStreamer(DEFAULT_CACHE_NAME) --> Line_9 $$ ldr.perNodeBufferSize(10) [FD]
+Line_8 $$ IgniteDataStreamer<Integer, Integer> ldr = g.dataStreamer(DEFAULT_CACHE_NAME) --> Line_10 $$ for (int i = 0; i < 9; i++) ldr.addData(i, i) [FD]
+Line_7 $$ IgniteCache<Integer, Integer> c = g.cache(DEFAULT_CACHE_NAME) --> Line_11 $$ assertTrue(c.localSize() == 0) [FD]
+Line_8 $$ IgniteDataStreamer<Integer, Integer> ldr = g.dataStreamer(DEFAULT_CACHE_NAME) --> Line_12 $$ ldr.tryFlush() [FD]
+Line_7 $$ IgniteCache<Integer, Integer> c = g.cache(DEFAULT_CACHE_NAME) --> Line_14 $$ assertEquals(9, c.size()) [FD]
+Line_8 $$ IgniteDataStreamer<Integer, Integer> ldr = g.dataStreamer(DEFAULT_CACHE_NAME) --> Line_15 $$ ldr.close(false) [FD]

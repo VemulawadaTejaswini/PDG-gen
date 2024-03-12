@@ -1,0 +1,6 @@
+Line_8 $$ final String playedBy = entry.getValue() --> Line_9 $$ if (playedBy == null) [FD]
+Line_9 $$ if (playedBy == null) --> Line_10 $$ return Optional.empty() [CD]
+Line_8 $$ final String playedBy = entry.getValue() --> Line_12 $$ if (!playedBy.equals(serverMessenger.getLocalNode().getName())) [FD]
+Line_12 $$ if (!playedBy.equals(serverMessenger.getLocalNode().getName())) --> Line_13 $$ serverMessenger.getNodes().stream().filter( node -> node.getName().equals(playedBy)).findAny().ifPresent( node -> remotePlayers.put(entry.getKey(), node)) [CD]
+Line_8 $$ final String playedBy = entry.getValue() --> Line_13 $$ serverMessenger.getNodes().stream().filter( node -> node.getName().equals(playedBy)).findAny().ifPresent( node -> remotePlayers.put(entry.getKey(), node)) [FD]
+Line_6 $$ final Map<String, INode> remotePlayers = new HashMap() --> Line_13 $$ serverMessenger.getNodes().stream().filter( node -> node.getName().equals(playedBy)).findAny().ifPresent( node -> remotePlayers.put(entry.getKey(), node)) [FD]

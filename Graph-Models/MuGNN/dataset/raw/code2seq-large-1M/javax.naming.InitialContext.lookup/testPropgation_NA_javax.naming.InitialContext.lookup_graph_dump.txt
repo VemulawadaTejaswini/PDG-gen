@@ -1,0 +1,8 @@
+Line_2 $$ public void testPropgation() throws TestFailureException --> Line_3 $$ if (inheritedDelegate == null) [CD]
+Line_3 $$ if (inheritedDelegate == null) --> Line_4 $$ return [CD]
+Line_7 $$ final InitialContext ctx = new InitialContext() --> Line_8 $$ Assert.assertNotNull("The InitialContext is null", ctx) [FD]
+Line_7 $$ final InitialContext ctx = new InitialContext() --> Line_9 $$ final EntityManager em = (EntityManager) ctx.lookup("java:comp/env/persistence/ExtendedTestContext") [FD]
+Line_9 $$ final EntityManager em = (EntityManager) ctx.lookup("java:comp/env/persistence/ExtendedTestContext") --> Line_10 $$ Assert.assertNotNull("The EntityManager is null", em) [FD]
+Line_9 $$ final EntityManager em = (EntityManager) ctx.lookup("java:comp/env/persistence/ExtendedTestContext") --> Line_11 $$ em.getFlushMode() [FD]
+Line_9 $$ final EntityManager em = (EntityManager) ctx.lookup("java:comp/env/persistence/ExtendedTestContext") --> Line_12 $$ final EntityManager delegate = (EntityManager) em.getDelegate() [FD]
+Line_12 $$ final EntityManager delegate = (EntityManager) em.getDelegate() --> Line_13 $$ Assert.assertSame("Extended entity manager delegate should be the same instance that was found last time", inheritedDelegate, delegate) [FD]

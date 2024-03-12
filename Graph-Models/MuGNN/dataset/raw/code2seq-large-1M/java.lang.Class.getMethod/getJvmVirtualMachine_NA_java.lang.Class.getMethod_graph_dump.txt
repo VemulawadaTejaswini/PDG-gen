@@ -1,0 +1,7 @@
+Line_2 $$ public static synchronized Object getJvmVirtualMachine() throws Exception --> Line_3 $$ if (jvmVirtualMachine == null) [CD]
+Line_3 $$ if (jvmVirtualMachine == null) --> Line_4 $$ final Class<?> virtualMachineClass = findVirtualMachineClass() [CD]
+Line_3 $$ if (jvmVirtualMachine == null) --> Line_5 $$ final Method attachMethod = virtualMachineClass.getMethod("attach", String.class) [CD]
+Line_4 $$ final Class<?> virtualMachineClass = findVirtualMachineClass() --> Line_5 $$ final Method attachMethod = virtualMachineClass.getMethod("attach", String.class) [FD]
+Line_3 $$ if (jvmVirtualMachine == null) --> Line_6 $$ final String pid = PID.getPID() [CD]
+Line_6 $$ final String pid = PID.getPID() --> Line_8 $$ jvmVirtualMachine = invoke(attachMethod, null, pid) [FD]
+Line_2 $$ public static synchronized Object getJvmVirtualMachine() throws Exception --> Line_13 $$ return jvmVirtualMachine [CD]

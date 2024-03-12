@@ -1,0 +1,6 @@
+Line_2 $$ public void testNoCurrentUser() throws Exception --> Line_3 $$ ThreadContext threadContext = new ThreadContext(Settings.EMPTY) [CD]
+Line_2 $$ public void testNoCurrentUser() throws Exception --> Line_4 $$ IngestDocument ingestDocument = new IngestDocument(new HashMap(), new HashMap()) [CD]
+Line_2 $$ public void testNoCurrentUser() throws Exception --> Line_5 $$ SetSecurityUserProcessor processor = new SetSecurityUserProcessor("_tag", threadContext, "_field", EnumSet.allOf(Property.class)) [CD]
+Line_2 $$ public void testNoCurrentUser() throws Exception --> Line_6 $$ IllegalStateException e = expectThrows(IllegalStateException.class, () -> processor.execute(ingestDocument)) [CD]
+Line_4 $$ IngestDocument ingestDocument = new IngestDocument(new HashMap(), new HashMap()) --> Line_6 $$ IllegalStateException e = expectThrows(IllegalStateException.class, () -> processor.execute(ingestDocument)) [FD]
+Line_2 $$ public void testNoCurrentUser() throws Exception --> Line_7 $$ assertThat(e.getMessage(), equalTo("No user authenticated, only use this processor via authenticated user")) [CD]

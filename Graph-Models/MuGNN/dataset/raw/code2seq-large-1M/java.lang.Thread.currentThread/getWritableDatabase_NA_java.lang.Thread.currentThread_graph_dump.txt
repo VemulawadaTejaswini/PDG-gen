@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized Database getWritableDatabase() --> Line_3 $$ if (writeOnMainThread != AccessThreadConstraint.NONE) [CD]
+Line_3 $$ if (writeOnMainThread != AccessThreadConstraint.NONE) --> Line_4 $$ if (Looper.getMainLooper().getThread() == Thread.currentThread()) [CD]
+Line_4 $$ if (Looper.getMainLooper().getThread() == Thread.currentThread()) --> Line_5 $$ if (writeOnMainThread == AccessThreadConstraint.FATAL) [CD]
+Line_5 $$ if (writeOnMainThread == AccessThreadConstraint.FATAL) --> Line_8 $$ Log.w(TAG, "Writing things must run in background") [CD]
+Line_2 $$ public synchronized Database getWritableDatabase() --> Line_12 $$ if (!migrationCompleted) [CD]
+Line_12 $$ if (!migrationCompleted) --> Line_13 $$ onMigrate(db) [CD]
+Line_2 $$ public synchronized Database getWritableDatabase() --> Line_16 $$ return db [CD]

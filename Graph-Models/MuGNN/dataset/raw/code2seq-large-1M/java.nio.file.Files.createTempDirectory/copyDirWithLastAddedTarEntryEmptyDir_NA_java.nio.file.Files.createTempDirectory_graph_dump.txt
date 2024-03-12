@@ -1,0 +1,8 @@
+Line_3 $$ Path localDir = Files.createTempDirectory(null) --> Line_4 $$ localDir.toFile().deleteOnExit() [FD]
+Line_3 $$ Path localDir = Files.createTempDirectory(null) --> Line_5 $$ Files.createDirectory(localDir.resolve("b")) [FD]
+Line_3 $$ Path localDir = Files.createTempDirectory(null) --> Line_6 $$ Path dirWithFile = Files.createDirectory(localDir.resolve("a")) [FD]
+Line_6 $$ Path dirWithFile = Files.createDirectory(localDir.resolve("a")) --> Line_7 $$ Files.createFile(dirWithFile.resolve("file")) [FD]
+Line_8 $$ CreateContainerResponse container = dockerRule.getClient().createContainerCmd("busybox").withCmd("sleep", "9999").exec() --> Line_9 $$ dockerRule.getClient().startContainerCmd(container.getId()).exec() [FD]
+Line_8 $$ CreateContainerResponse container = dockerRule.getClient().createContainerCmd("busybox").withCmd("sleep", "9999").exec() --> Line_10 $$ dockerRule.getClient().copyArchiveToContainerCmd(container.getId()).withHostResource(localDir.toString()).exec() [FD]
+Line_3 $$ Path localDir = Files.createTempDirectory(null) --> Line_10 $$ dockerRule.getClient().copyArchiveToContainerCmd(container.getId()).withHostResource(localDir.toString()).exec() [FD]
+Line_3 $$ Path localDir = Files.createTempDirectory(null) --> Line_11 $$ FileUtils.deleteDirectory(localDir.toFile()) [FD]

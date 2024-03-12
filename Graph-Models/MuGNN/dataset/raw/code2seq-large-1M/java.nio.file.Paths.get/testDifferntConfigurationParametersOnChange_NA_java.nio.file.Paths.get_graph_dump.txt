@@ -1,0 +1,8 @@
+Line_3 $$ try (ExcelDataSource ds = new ExcelDataSource()) --> Line_4 $$ DataSourceConfiguration storedConfiguration = ds.getConfiguration() [FD]
+Line_4 $$ DataSourceConfiguration storedConfiguration = ds.getConfiguration() --> Line_5 $$ assertEquals(storedConfiguration.getParameters(), storedConfiguration.getParameters()) [FD]
+Line_3 $$ try (ExcelDataSource ds = new ExcelDataSource()) --> Line_7 $$ ds.setLocation(newLocation) [FD]
+Line_6 $$ Path newLocation = Paths.get("new/file/path/location") --> Line_7 $$ ds.setLocation(newLocation) [FD]
+Line_3 $$ try (ExcelDataSource ds = new ExcelDataSource()) --> Line_8 $$ assertThat(ds.getConfiguration().getParameters(), not(equalTo(storedConfiguration.getParameters()))) [FD]
+Line_4 $$ DataSourceConfiguration storedConfiguration = ds.getConfiguration() --> Line_8 $$ assertThat(ds.getConfiguration().getParameters(), not(equalTo(storedConfiguration.getParameters()))) [FD]
+Line_6 $$ Path newLocation = Paths.get("new/file/path/location") --> Line_9 $$ assertEquals(newLocation.toString(), ds.getConfiguration().getParameters().get("excel.fileLocation")) [FD]
+Line_3 $$ try (ExcelDataSource ds = new ExcelDataSource()) --> Line_9 $$ assertEquals(newLocation.toString(), ds.getConfiguration().getParameters().get("excel.fileLocation")) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testCreateRuleOnDifferentTopicThanIncomingData() throws Exception --> Line_3 $$ execute("create table other_topic_raw_table (data int)") [CD]
+Line_2 $$ public void testCreateRuleOnDifferentTopicThanIncomingData() throws Exception --> Line_4 $$ execute(String.format(Locale.ENGLISH, "create ingest rule another_topic_rule on %s where topic = '%s' into %s", INGESTION_SOURCE_ID, "other_topic", "other_topic_raw_table")) [CD]
+Line_2 $$ public void testCreateRuleOnDifferentTopicThanIncomingData() throws Exception --> Line_5 $$ assertBusy(() -> assertThat(existingRulesOnIngestValue.contains("another_topic_rule"), is(true)), 5, TimeUnit.SECONDS) [CD]
+Line_2 $$ public void testCreateRuleOnDifferentTopicThanIncomingData() throws Exception --> Line_6 $$ execute("select * from other_topic_raw_table order by data desc") [CD]
+Line_2 $$ public void testCreateRuleOnDifferentTopicThanIncomingData() throws Exception --> Line_7 $$ assertThat(response.rowCount(), is(0L)) [CD]

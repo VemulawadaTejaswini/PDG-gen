@@ -1,0 +1,8 @@
+Line_2 $$ protected void updateConnectionState(Connection con, SQLException e) --> Line_3 $$ if (connection == null) [CD]
+Line_2 $$ protected void updateConnectionState(Connection con, SQLException e) --> Line_5 $$ con.close() [FD]
+Line_2 $$ protected void updateConnectionState(Connection con, SQLException e) --> Line_10 $$ if (e == null) [FD]
+Line_10 $$ if (e == null) --> Line_14 $$ if (createdConnection && isRecoverableError(e)) [CD]
+Line_2 $$ protected void updateConnectionState(Connection con, SQLException e) --> Line_14 $$ if (createdConnection && isRecoverableError(e)) [FD]
+Line_14 $$ if (createdConnection && isRecoverableError(e)) --> Line_15 $$ if (reconnectDelay == 0) [CD]
+Line_14 $$ if (createdConnection && isRecoverableError(e)) --> Line_18 $$ if (nextReconnectAttempt < System.currentTimeMillis()) [CD]
+Line_18 $$ if (nextReconnectAttempt < System.currentTimeMillis()) --> Line_19 $$ nextReconnectAttempt = System.currentTimeMillis() + reconnectDelay [CD]

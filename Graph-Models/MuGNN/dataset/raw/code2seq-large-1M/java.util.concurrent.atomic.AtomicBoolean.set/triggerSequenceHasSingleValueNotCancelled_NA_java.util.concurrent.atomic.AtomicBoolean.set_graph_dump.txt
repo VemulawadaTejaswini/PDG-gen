@@ -1,0 +1,5 @@
+Line_2 $$ public void triggerSequenceHasSingleValueNotCancelled() --> Line_3 $$ AtomicBoolean triggerCancelled = new AtomicBoolean() [CD]
+Line_2 $$ public void triggerSequenceHasSingleValueNotCancelled() --> Line_4 $$ StepVerifier.create(Flux.just("foo").delayUntil( a -> Mono.just(1).doOnCancel(() -> triggerCancelled.set(true)))).expectNext("foo").verifyComplete() [CD]
+Line_3 $$ AtomicBoolean triggerCancelled = new AtomicBoolean() --> Line_4 $$ StepVerifier.create(Flux.just("foo").delayUntil( a -> Mono.just(1).doOnCancel(() -> triggerCancelled.set(true)))).expectNext("foo").verifyComplete() [FD]
+Line_2 $$ public void triggerSequenceHasSingleValueNotCancelled() --> Line_5 $$ assertThat(triggerCancelled.get()).isFalse() [CD]
+Line_3 $$ AtomicBoolean triggerCancelled = new AtomicBoolean() --> Line_5 $$ assertThat(triggerCancelled.get()).isFalse() [FD]

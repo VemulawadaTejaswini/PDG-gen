@@ -1,0 +1,8 @@
+Line_2 $$ protected void cleanup(Mapper<LongWritable, Text, LongWritable, BytesWritable>.Context<LongWritable, Text, LongWritable, BytesWritable> context) throws IOException, InterruptedException --> Line_3 $$ System.out.println("Cleaing up mapper, seen " + this.tweetWordMap.entrySet().size() + " time slots") [CD]
+Line_8 $$ final ByteArrayOutputStream outarr = new ByteArrayOutputStream() --> Line_9 $$ IOUtils.writeBinary(outarr, map) [FD]
+Line_8 $$ final ByteArrayOutputStream outarr = new ByteArrayOutputStream() --> Line_10 $$ final byte[] arr = outarr.toByteArray() [FD]
+Line_2 $$ protected void cleanup(Mapper<LongWritable, Text, LongWritable, BytesWritable>.Context<LongWritable, Text, LongWritable, BytesWritable> context) throws IOException, InterruptedException --> Line_12 $$ context.write(END_TIME, toWrite) [FD]
+Line_11 $$ final BytesWritable toWrite = new BytesWritable(arr) --> Line_12 $$ context.write(END_TIME, toWrite) [FD]
+Line_2 $$ protected void cleanup(Mapper<LongWritable, Text, LongWritable, BytesWritable>.Context<LongWritable, Text, LongWritable, BytesWritable> context) throws IOException, InterruptedException --> Line_13 $$ context.write(new LongWritable(time), toWrite) [FD]
+Line_11 $$ final BytesWritable toWrite = new BytesWritable(arr) --> Line_13 $$ context.write(new LongWritable(time), toWrite) [FD]
+Line_2 $$ protected void cleanup(Mapper<LongWritable, Text, LongWritable, BytesWritable>.Context<LongWritable, Text, LongWritable, BytesWritable> context) throws IOException, InterruptedException --> Line_14 $$ context.getCounter(TextEntryType.ACUAL_EMITS).increment(1) [FD]

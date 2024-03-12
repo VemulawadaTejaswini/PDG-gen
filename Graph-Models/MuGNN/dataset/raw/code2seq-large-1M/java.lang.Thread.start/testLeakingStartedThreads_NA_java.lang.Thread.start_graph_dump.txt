@@ -1,0 +1,6 @@
+Line_2 $$ public void testLeakingStartedThreads() --> Line_3 $$ final AtomicInteger finalizedThreadsCount = new AtomicInteger() [CD]
+Line_2 $$ public void testLeakingStartedThreads() --> Line_4 $$ for (int i = 0; true; i++) [CD]
+Line_3 $$ final AtomicInteger finalizedThreadsCount = new AtomicInteger() --> Line_6 $$ newThread(finalizedThreadsCount, 1024 << i).start() [FD]
+Line_2 $$ public void testLeakingStartedThreads() --> Line_11 $$ FinalizationTester.induceFinalization() [CD]
+Line_2 $$ public void testLeakingStartedThreads() --> Line_12 $$ assertTrue("Started threads were never finalized!", finalizedThreadsCount.get() > 0) [CD]
+Line_3 $$ final AtomicInteger finalizedThreadsCount = new AtomicInteger() --> Line_12 $$ assertTrue("Started threads were never finalized!", finalizedThreadsCount.get() > 0) [FD]

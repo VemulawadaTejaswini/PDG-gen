@@ -1,0 +1,8 @@
+Line_4 $$ Session session = getSession() --> Line_5 $$ if (session != null) [FD]
+Line_5 $$ if (session != null) --> Line_6 $$ BoundStatement bound = preparedStatementMap.get("resource_history.insert").bind().setLong(0, resourceId).setLong(1, System.currentTimeMillis()).setString(2, event).setString(3, login).setString(4, message) [CD]
+Line_2 $$ public boolean saveResourceHistory(long resourceId, String event, String login, String message) throws ScyllaInteractionException --> Line_6 $$ BoundStatement bound = preparedStatementMap.get("resource_history.insert").bind().setLong(0, resourceId).setLong(1, System.currentTimeMillis()).setString(2, event).setString(3, login).setString(4, message) [FD]
+Line_5 $$ if (session != null) --> Line_7 $$ session.executeAsync(bound) [CD]
+Line_4 $$ Session session = getSession() --> Line_7 $$ session.executeAsync(bound) [FD]
+Line_6 $$ BoundStatement bound = preparedStatementMap.get("resource_history.insert").bind().setLong(0, resourceId).setLong(1, System.currentTimeMillis()).setString(2, event).setString(3, login).setString(4, message) --> Line_7 $$ session.executeAsync(bound) [FD]
+Line_5 $$ if (session != null) --> Line_8 $$ return true [CD]
+Line_5 $$ if (session != null) --> Line_10 $$ return false [CD]

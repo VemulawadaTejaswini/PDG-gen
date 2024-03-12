@@ -1,0 +1,8 @@
+Line_2 $$ private synchronized void dispatchChunk() --> Line_3 $$ if (cancelled) [CD]
+Line_3 $$ if (cancelled) --> Line_4 $$ return [CD]
+Line_7 $$ Chunk chunk = chunks.remove() --> Line_8 $$ if (chunk == completionChunk) [FD]
+Line_8 $$ if (chunk == completionChunk) --> Line_9 $$ responseStream.onCompleted() [CD]
+Line_8 $$ if (chunk == completionChunk) --> Line_11 $$ responseStream.onNext(chunk.toResponse()) [CD]
+Line_7 $$ Chunk chunk = chunks.remove() --> Line_11 $$ responseStream.onNext(chunk.toResponse()) [FD]
+Line_15 $$ if (Status.fromThrowable(e).getCode() == Status.CANCELLED.getCode()) --> Line_16 $$ chunks.clear() [CD]
+Line_15 $$ if (Status.fromThrowable(e).getCode() == Status.CANCELLED.getCode()) --> Line_18 $$ responseStream.onError(e) [CD]

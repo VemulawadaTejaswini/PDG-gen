@@ -1,0 +1,7 @@
+Line_2 $$ public boolean isReady(boolean attempt) --> Line_3 $$ if (attempt && myStateLock.isLocked()) [FD]
+Line_2 $$ public boolean isReady(boolean attempt) --> Line_3 $$ if (attempt && myStateLock.isLocked()) [CD]
+Line_3 $$ if (attempt && myStateLock.isLocked()) --> Line_4 $$ return false [CD]
+Line_2 $$ public boolean isReady(boolean attempt) --> Line_5 $$ Boolean ready = checkValue(() -> Boolean.valueOf(isIdle() && !hasPendingWork() && !isNodeActionsPending()), attempt) [FD]
+Line_2 $$ public boolean isReady(boolean attempt) --> Line_5 $$ Boolean ready = checkValue(() -> Boolean.valueOf(isIdle() && !hasPendingWork() && !isNodeActionsPending()), attempt) [CD]
+Line_2 $$ public boolean isReady(boolean attempt) --> Line_6 $$ return ready != null && ready.booleanValue() [CD]
+Line_5 $$ Boolean ready = checkValue(() -> Boolean.valueOf(isIdle() && !hasPendingWork() && !isNodeActionsPending()), attempt) --> Line_6 $$ return ready != null && ready.booleanValue() [FD]

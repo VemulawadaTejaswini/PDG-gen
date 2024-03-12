@@ -1,0 +1,6 @@
+Line_2 $$ public void testPipeToIdenticalTypePrimitive() throws Exception --> Line_3 $$ DynamicType.Loaded<Baz> loaded = new ByteBuddy().subclass(Baz.class).method(isDeclaredBy(Baz.class)).intercept(MethodDelegation.withDefaultConfiguration().withBinders(Pipe.Binder.install(ForwardingType.class)).to(new PrimitiveForwardingInterceptor(new Baz()))).make().load(Baz.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testPipeToIdenticalTypePrimitive() throws Exception --> Line_4 $$ Baz instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testPipeToIdenticalTypePrimitive() throws Exception --> Line_5 $$ assertThat(instance.foo(BAZ), is(BAZ * 2L)) [CD]
+Line_4 $$ Baz instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(instance.foo(BAZ), is(BAZ * 2L)) [FD]
+Line_2 $$ public void testPipeToIdenticalTypePrimitive() throws Exception --> Line_6 $$ instance.assertZeroCalls() [CD]
+Line_4 $$ Baz instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ instance.assertZeroCalls() [FD]

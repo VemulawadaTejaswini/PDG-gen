@@ -1,0 +1,6 @@
+Line_2 $$ protected Result check() throws Exception --> Line_3 $$ final long usableSpace = f.getUsableSpace() [CD]
+Line_2 $$ protected Result check() throws Exception --> Line_4 $$ if (usableSpace < minSpaceThreshold) [CD]
+Line_3 $$ final long usableSpace = f.getUsableSpace() --> Line_4 $$ if (usableSpace < minSpaceThreshold) [FD]
+Line_4 $$ if (usableSpace < minSpaceThreshold) --> Line_5 $$ return Result.healthy(usableSpace + ": bytes remain at " + f.getAbsolutePath()) [CD]
+Line_4 $$ if (usableSpace < minSpaceThreshold) --> Line_7 $$ return Result.unhealthy(format("Out of disk space: only %s bytes remain in %s. The threshold for this warning is: %s", usableSpace, f.getAbsolutePath(), minSpaceThreshold)) [CD]
+Line_3 $$ final long usableSpace = f.getUsableSpace() --> Line_7 $$ return Result.unhealthy(format("Out of disk space: only %s bytes remain in %s. The threshold for this warning is: %s", usableSpace, f.getAbsolutePath(), minSpaceThreshold)) [FD]

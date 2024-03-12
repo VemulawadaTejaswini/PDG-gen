@@ -1,0 +1,8 @@
+Line_2 $$ private synchronized Map<String, T> data() --> Line_3 $$ if (data == null || reloadOnChange) [CD]
+Line_3 $$ if (data == null || reloadOnChange) --> Line_4 $$ if (!dataPath.toFile().exists()) [CD]
+Line_4 $$ if (!dataPath.toFile().exists()) --> Line_5 $$ logger.warn(name + " file " + dataPath.toAbsolutePath() + " not found") [CD]
+Line_4 $$ if (!dataPath.toFile().exists()) --> Line_6 $$ if (data == null) [CD]
+Line_4 $$ if (!dataPath.toFile().exists()) --> Line_10 $$ if (dataFileTimestamp >= dataPath.toFile().lastModified()) [CD]
+Line_10 $$ if (dataFileTimestamp >= dataPath.toFile().lastModified()) --> Line_11 $$ logger.debug(name + " are up to date") [CD]
+Line_10 $$ if (dataFileTimestamp >= dataPath.toFile().lastModified()) --> Line_13 $$ logger.debug("loading " + name + " from " + dataPath.toAbsolutePath()) [CD]
+Line_2 $$ private synchronized Map<String, T> data() --> Line_25 $$ return data [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testNotSupportedUpgrade() throws IOException --> Line_3 $$ IndexService indexService = createIndex("test") [CD]
+Line_2 $$ public void testNotSupportedUpgrade() throws IOException --> Line_4 $$ DocumentMapperParser parser = indexService.mapperService().documentMapperParser() [CD]
+Line_3 $$ IndexService indexService = createIndex("test") --> Line_4 $$ DocumentMapperParser parser = indexService.mapperService().documentMapperParser() [FD]
+Line_2 $$ public void testNotSupportedUpgrade() throws IOException --> Line_5 $$ String mapping = XContentFactory.jsonBuilder().startObject().startObject("type").startObject("properties").startObject("field").field("type", "string").field("index", "not_analyzed").field("analyzer", "keyword").endObject().endObject().endObject().endObject().string() [CD]
+Line_2 $$ public void testNotSupportedUpgrade() throws IOException --> Line_6 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> parser.parse("type", new CompressedXContent(mapping))) [CD]
+Line_4 $$ DocumentMapperParser parser = indexService.mapperService().documentMapperParser() --> Line_6 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> parser.parse("type", new CompressedXContent(mapping))) [FD]
+Line_2 $$ public void testNotSupportedUpgrade() throws IOException --> Line_7 $$ assertThat(e.getMessage(), containsString("The [string] type is removed in 5.0")) [CD]

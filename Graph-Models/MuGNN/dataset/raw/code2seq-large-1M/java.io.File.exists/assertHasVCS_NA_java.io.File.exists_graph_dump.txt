@@ -1,0 +1,7 @@
+Line_2 $$ private void assertHasVCS(String type, String projectRoot, String... ignores) throws IOException --> Line_3 $$ assertThat(new File(projectRoot + "/." + type).exists(), is(true)) [CD]
+Line_2 $$ private void assertHasVCS(String type, String projectRoot, String... ignores) throws IOException --> Line_4 $$ assertThat(new File(projectRoot + "/." + type + "ignore").exists(), is(true)) [CD]
+Line_2 $$ private void assertHasVCS(String type, String projectRoot, String... ignores) throws IOException --> Line_5 $$ String content = readFile(projectRoot + "/." + type + "ignore") [CD]
+Line_2 $$ private void assertHasVCS(String type, String projectRoot, String... ignores) throws IOException --> Line_6 $$ assertThat(content, containsString("*.class")) [CD]
+Line_5 $$ String content = readFile(projectRoot + "/." + type + "ignore") --> Line_6 $$ assertThat(content, containsString("*.class")) [FD]
+Line_5 $$ String content = readFile(projectRoot + "/." + type + "ignore") --> Line_8 $$ assertThat(content, containsString(ignore)) [FD]
+Line_7 $$ for (String ignore : ignores) --> Line_8 $$ assertThat(content, containsString(ignore)) [FD]

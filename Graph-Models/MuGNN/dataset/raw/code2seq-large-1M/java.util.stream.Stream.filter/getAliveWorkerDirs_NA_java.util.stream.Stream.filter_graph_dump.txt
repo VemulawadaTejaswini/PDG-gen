@@ -1,0 +1,7 @@
+Line_2 $$ public SortedSet<String> getAliveWorkerDirs() throws Exception --> Line_3 $$ Set<String> aliveIds = getAliveIds(Time.currentTimeSecs()) [CD]
+Line_2 $$ public SortedSet<String> getAliveWorkerDirs() throws Exception --> Line_4 $$ Set<File> logDirs = getAllWorkerDirs() [CD]
+Line_2 $$ public SortedSet<String> getAliveWorkerDirs() throws Exception --> Line_5 $$ Map<String, File> idToDir = identifyWorkerLogDirs(logDirs) [CD]
+Line_4 $$ Set<File> logDirs = getAllWorkerDirs() --> Line_5 $$ Map<String, File> idToDir = identifyWorkerLogDirs(logDirs) [FD]
+Line_2 $$ public SortedSet<String> getAliveWorkerDirs() throws Exception --> Line_6 $$ return idToDir.entrySet().stream().filter( entry -> aliveIds.contains(entry.getKey())).map(Unchecked.function( entry -> entry.getValue().getCanonicalPath())).collect(toCollection(TreeSet::<>new)) [CD]
+Line_5 $$ Map<String, File> idToDir = identifyWorkerLogDirs(logDirs) --> Line_6 $$ return idToDir.entrySet().stream().filter( entry -> aliveIds.contains(entry.getKey())).map(Unchecked.function( entry -> entry.getValue().getCanonicalPath())).collect(toCollection(TreeSet::<>new)) [FD]
+Line_3 $$ Set<String> aliveIds = getAliveIds(Time.currentTimeSecs()) --> Line_6 $$ return idToDir.entrySet().stream().filter( entry -> aliveIds.contains(entry.getKey())).map(Unchecked.function( entry -> entry.getValue().getCanonicalPath())).collect(toCollection(TreeSet::<>new)) [FD]

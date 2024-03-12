@@ -1,0 +1,8 @@
+Line_2 $$ private static Map<String, ? extends CodeGenerator> createCodeWriterMap() --> Line_3 $$ final Map<String, CodeGenerator> map = Maps.newLinkedHashMap() [CD]
+Line_2 $$ private static Map<String, ? extends CodeGenerator> createCodeWriterMap() --> Line_4 $$ final Collection<CodeGenerator> generators = ServiceLoaderUtils.load(CodeGenerator.class) [CD]
+Line_5 $$ for (final CodeGenerator generator : generators) --> Line_6 $$ final Class<? extends Annotation> annotation = generator.getAnnotation() [FD]
+Line_6 $$ final Class<? extends Annotation> annotation = generator.getAnnotation() --> Line_7 $$ final String annotationName = annotation.getName() [FD]
+Line_3 $$ final Map<String, CodeGenerator> map = Maps.newLinkedHashMap() --> Line_8 $$ map.put(annotationName, generator) [FD]
+Line_7 $$ final String annotationName = annotation.getName() --> Line_8 $$ map.put(annotationName, generator) [FD]
+Line_5 $$ for (final CodeGenerator generator : generators) --> Line_8 $$ map.put(annotationName, generator) [FD]
+Line_2 $$ private static Map<String, ? extends CodeGenerator> createCodeWriterMap() --> Line_10 $$ return map [CD]

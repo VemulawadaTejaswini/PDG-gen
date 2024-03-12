@@ -1,0 +1,8 @@
+Line_2 $$ void assertLinesMatchUsingFastForwardMarkerWithTooLowLimitFails() --> Line_3 $$ List<String> expected = Arrays.asList("first line", ">> 1 >>") [CD]
+Line_2 $$ void assertLinesMatchUsingFastForwardMarkerWithTooLowLimitFails() --> Line_4 $$ List<String> actual = Arrays.asList("first line", "skipped", "last line") [CD]
+Line_2 $$ void assertLinesMatchUsingFastForwardMarkerWithTooLowLimitFails() --> Line_5 $$ Error error = assertThrows(AssertionFailedError.class, () -> assertLinesMatch(expected, actual)) [CD]
+Line_3 $$ List<String> expected = Arrays.asList("first line", ">> 1 >>") --> Line_5 $$ Error error = assertThrows(AssertionFailedError.class, () -> assertLinesMatch(expected, actual)) [FD]
+Line_4 $$ List<String> actual = Arrays.asList("first line", "skipped", "last line") --> Line_5 $$ Error error = assertThrows(AssertionFailedError.class, () -> assertLinesMatch(expected, actual)) [FD]
+Line_2 $$ void assertLinesMatchUsingFastForwardMarkerWithTooLowLimitFails() --> Line_6 $$ List<String> expectedErrorMessageLines = Arrays.asList("terminal fast-forward(1) error: fast-forward(2) expected ==> expected: <first line", ">> 1 >>> but was: <first line", "skipped", "last line>") [CD]
+Line_2 $$ void assertLinesMatchUsingFastForwardMarkerWithTooLowLimitFails() --> Line_12 $$ assertLinesMatch(expectedErrorMessageLines, Arrays.asList(error.getMessage().split("\\R"))) [CD]
+Line_6 $$ List<String> expectedErrorMessageLines = Arrays.asList("terminal fast-forward(1) error: fast-forward(2) expected ==> expected: <first line", ">> 1 >>> but was: <first line", "skipped", "last line>") --> Line_12 $$ assertLinesMatch(expectedErrorMessageLines, Arrays.asList(error.getMessage().split("\\R"))) [FD]

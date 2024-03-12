@@ -1,0 +1,5 @@
+Line_2 $$ public void localDateTime() --> Line_3 $$ LocalDateTime d = LocalDateTime.now() [CD]
+Line_2 $$ public void localDateTime() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", d) [CD]
+Line_3 $$ LocalDateTime d = LocalDateTime.now() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", d) [FD]
+Line_2 $$ public void localDateTime() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(LocalDateTime.class).findOnly()).isEqualTo(d) [CD]
+Line_3 $$ LocalDateTime d = LocalDateTime.now() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(LocalDateTime.class).findOnly()).isEqualTo(d) [FD]

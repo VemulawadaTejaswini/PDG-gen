@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldNotInjectIfConfigUuidDoesNotMatch() --> Line_3 $$ ImmutableCapabilities config = new ImmutableCapabilities("browserName", "chrome", "chrome_binary", "binary", GridNodeConfiguration.CONFIG_UUID_CAPABILITY, "uuid") [CD]
+Line_2 $$ public void shouldNotInjectIfConfigUuidDoesNotMatch() --> Line_4 $$ ImmutableCapabilities caps = new ImmutableCapabilities("browserName", "chrome", CAPABILITY, ImmutableMap.of("binary", "cheese"), GridNodeConfiguration.CONFIG_UUID_CAPABILITY, "123") [CD]
+Line_2 $$ public void shouldNotInjectIfConfigUuidDoesNotMatch() --> Line_5 $$ Capabilities seen = new ChromeMutator(config).apply(caps) [CD]
+Line_4 $$ ImmutableCapabilities caps = new ImmutableCapabilities("browserName", "chrome", CAPABILITY, ImmutableMap.of("binary", "cheese"), GridNodeConfiguration.CONFIG_UUID_CAPABILITY, "123") --> Line_5 $$ Capabilities seen = new ChromeMutator(config).apply(caps) [FD]
+Line_2 $$ public void shouldNotInjectIfConfigUuidDoesNotMatch() --> Line_6 $$ Map<String, Object> options = (Map<String, Object>) seen.getCapability(CAPABILITY) [CD]
+Line_5 $$ Capabilities seen = new ChromeMutator(config).apply(caps) --> Line_6 $$ Map<String, Object> options = (Map<String, Object>) seen.getCapability(CAPABILITY) [FD]
+Line_2 $$ public void shouldNotInjectIfConfigUuidDoesNotMatch() --> Line_7 $$ assertEquals(options.get("binary"), "cheese") [CD]
+Line_6 $$ Map<String, Object> options = (Map<String, Object>) seen.getCapability(CAPABILITY) --> Line_7 $$ assertEquals(options.get("binary"), "cheese") [FD]

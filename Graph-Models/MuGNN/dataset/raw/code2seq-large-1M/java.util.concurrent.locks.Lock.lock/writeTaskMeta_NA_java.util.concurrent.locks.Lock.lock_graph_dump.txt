@@ -1,0 +1,8 @@
+Line_5 $$ String taskMetaFile = getTaskMetaFile() --> Line_6 $$ String tmpFile = getTaskMetaTmpeFile(taskMetaFile) [FD]
+Line_7 $$ Path tmpPath = new Path(writeDir, tmpFile) --> Line_8 $$ FSDataOutputStream outputStream = fs.create(tmpPath) [FD]
+Line_2 $$ public void writeTaskMeta(AMTaskManager taskManager) throws IOException --> Line_9 $$ taskManager.serialize(outputStream) [FD]
+Line_8 $$ FSDataOutputStream outputStream = fs.create(tmpPath) --> Line_9 $$ taskManager.serialize(outputStream) [FD]
+Line_8 $$ FSDataOutputStream outputStream = fs.create(tmpPath) --> Line_10 $$ outputStream.close() [FD]
+Line_7 $$ Path tmpPath = new Path(writeDir, tmpFile) --> Line_12 $$ HdfsUtil.rename(tmpPath, taskMetaFilePath, fs) [FD]
+Line_11 $$ Path taskMetaFilePath = new Path(writeDir, taskMetaFile) --> Line_12 $$ HdfsUtil.rename(tmpPath, taskMetaFilePath, fs) [FD]
+Line_13 $$ if (lasttaskMetaFilePath != null) --> Line_14 $$ fs.delete(lasttaskMetaFilePath, false) [CD]

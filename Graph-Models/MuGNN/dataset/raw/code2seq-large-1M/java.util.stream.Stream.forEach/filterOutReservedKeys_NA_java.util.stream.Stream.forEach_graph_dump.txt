@@ -1,0 +1,8 @@
+Line_2 $$ private static void filterOutReservedKeys(final BsonDocument content, final RequestContext context) --> Line_3 $$ final HashSet<String> keysToRemove = new HashSet() [CD]
+Line_2 $$ private static void filterOutReservedKeys(final BsonDocument content, final RequestContext context) --> Line_4 $$ content.keySet().stream().filter( key -> key.startsWith("_") && !key.equals(_ID)).forEach( key -> [FD]
+Line_2 $$ private static void filterOutReservedKeys(final BsonDocument content, final RequestContext context) --> Line_4 $$ content.keySet().stream().filter( key -> key.startsWith("_") && !key.equals(_ID)).forEach( key -> [CD]
+Line_3 $$ final HashSet<String> keysToRemove = new HashSet() --> Line_5 $$ keysToRemove.add(key) [FD]
+Line_2 $$ private static void filterOutReservedKeys(final BsonDocument content, final RequestContext context) --> Line_7 $$ keysToRemove.stream().map( keyToRemove -> [CD]
+Line_3 $$ final HashSet<String> keysToRemove = new HashSet() --> Line_7 $$ keysToRemove.stream().map( keyToRemove -> [FD]
+Line_2 $$ private static void filterOutReservedKeys(final BsonDocument content, final RequestContext context) --> Line_8 $$ content.remove(keyToRemove) [FD]
+Line_2 $$ private static void filterOutReservedKeys(final BsonDocument content, final RequestContext context) --> Line_11 $$ context.addWarning("Reserved field " + keyToRemove + " was filtered out from the request") [FD]

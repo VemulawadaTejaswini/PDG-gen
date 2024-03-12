@@ -1,0 +1,5 @@
+Line_2 $$ public void reducesFutureInts() throws ExecutionException, InterruptedException --> Line_3 $$ ExecutorService threadPool = Executors.newFixedThreadPool(10) [CD]
+Line_2 $$ public void reducesFutureInts() throws ExecutionException, InterruptedException --> Line_4 $$ final CompletableFuture<Optional<Integer>> collected = IntStream.range(1, 1000).parallel().mapToObj( i -> CompletableFuture.supplyAsync(() -> [CD]
+Line_3 $$ ExecutorService threadPool = Executors.newFixedThreadPool(10) --> Line_4 $$ final CompletableFuture<Optional<Integer>> collected = IntStream.range(1, 1000).parallel().mapToObj( i -> CompletableFuture.supplyAsync(() -> [FD]
+Line_2 $$ public void reducesFutureInts() throws ExecutionException, InterruptedException --> Line_12 $$ assertThat(collected.get().get(), equalTo(499500)) [CD]
+Line_4 $$ final CompletableFuture<Optional<Integer>> collected = IntStream.range(1, 1000).parallel().mapToObj( i -> CompletableFuture.supplyAsync(() -> --> Line_12 $$ assertThat(collected.get().get(), equalTo(499500)) [FD]

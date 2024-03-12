@@ -1,0 +1,7 @@
+Line_2 $$ public static Response getStatus(StateStore stateStore, String podInstanceName) --> Line_4 $$ Optional<Collection<TaskInfoAndStatus>> podTasks = GroupedTasks.create(stateStore).getPodInstanceTasks(podInstanceName) [FD]
+Line_4 $$ Optional<Collection<TaskInfoAndStatus>> podTasks = GroupedTasks.create(stateStore).getPodInstanceTasks(podInstanceName) --> Line_5 $$ if (!podTasks.isPresent()) [FD]
+Line_5 $$ if (!podTasks.isPresent()) --> Line_6 $$ return podNotFoundResponse(podInstanceName) [CD]
+Line_2 $$ public static Response getStatus(StateStore stateStore, String podInstanceName) --> Line_6 $$ return podNotFoundResponse(podInstanceName) [FD]
+Line_2 $$ public static Response getStatus(StateStore stateStore, String podInstanceName) --> Line_8 $$ return jsonOkResponse(getPodInstanceStatusJson(stateStore, podInstanceName, podTasks.get())) [FD]
+Line_4 $$ Optional<Collection<TaskInfoAndStatus>> podTasks = GroupedTasks.create(stateStore).getPodInstanceTasks(podInstanceName) --> Line_8 $$ return jsonOkResponse(getPodInstanceStatusJson(stateStore, podInstanceName, podTasks.get())) [FD]
+Line_2 $$ public static Response getStatus(StateStore stateStore, String podInstanceName) --> Line_10 $$ LOGGER.error(String.format("Failed to fetch status for pod '%s'", podInstanceName), e) [FD]

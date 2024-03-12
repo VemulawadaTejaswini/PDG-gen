@@ -1,0 +1,8 @@
+Line_2 $$ private static void updateJobOverview(File webOverviewDir, File webDir) --> Line_3 $$ try (JsonGenerator gen = jacksonFactory.createGenerator(HistoryServer.createOrGetFile(webDir, JobsOverviewHeaders.URL))) [FD]
+Line_2 $$ private static void updateJobOverview(File webOverviewDir, File webDir) --> Line_4 $$ File[] overviews = new File(webOverviewDir.getPath()).listFiles() [FD]
+Line_4 $$ File[] overviews = new File(webOverviewDir.getPath()).listFiles() --> Line_5 $$ if (overviews != null) [FD]
+Line_5 $$ if (overviews != null) --> Line_6 $$ Collection<JobDetails> allJobs = new ArrayList(overviews.length) [CD]
+Line_7 $$ for (File overview : overviews) --> Line_8 $$ MultipleJobsDetails subJobs = mapper.readValue(overview, MultipleJobsDetails.class) [FD]
+Line_6 $$ Collection<JobDetails> allJobs = new ArrayList(overviews.length) --> Line_9 $$ allJobs.addAll(subJobs.getJobs()) [FD]
+Line_5 $$ if (overviews != null) --> Line_11 $$ mapper.writeValue(gen, new MultipleJobsDetails(allJobs)) [CD]
+Line_3 $$ try (JsonGenerator gen = jacksonFactory.createGenerator(HistoryServer.createOrGetFile(webDir, JobsOverviewHeaders.URL))) --> Line_11 $$ mapper.writeValue(gen, new MultipleJobsDetails(allJobs)) [FD]

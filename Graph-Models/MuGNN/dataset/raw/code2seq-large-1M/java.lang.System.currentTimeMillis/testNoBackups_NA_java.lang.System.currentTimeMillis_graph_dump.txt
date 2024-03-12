@@ -1,0 +1,6 @@
+Line_2 $$ public void testNoBackups() throws Exception --> Line_3 $$ final ServerName sn = ServerName.valueOf("localhost", 1234, System.currentTimeMillis()) [CD]
+Line_2 $$ public void testNoBackups() throws Exception --> Line_4 $$ final MasterAddressTracker addressTracker = setupMasterTracker(sn, 1772) [CD]
+Line_3 $$ final ServerName sn = ServerName.valueOf("localhost", 1234, System.currentTimeMillis()) --> Line_4 $$ final MasterAddressTracker addressTracker = setupMasterTracker(sn, 1772) [FD]
+Line_4 $$ final MasterAddressTracker addressTracker = setupMasterTracker(sn, 1772) --> Line_6 $$ assertEquals("Should receive 0 for backup not found.", 0, addressTracker.getBackupMasterInfoPort(ServerName.valueOf("doesnotexist.example.com", 1234, System.currentTimeMillis()))) [FD]
+Line_4 $$ final MasterAddressTracker addressTracker = setupMasterTracker(sn, 1772) --> Line_8 $$ assertTrue("Couldn't clean up master", MasterAddressTracker.deleteIfEquals(addressTracker.getWatcher(), sn.toString())) [FD]
+Line_3 $$ final ServerName sn = ServerName.valueOf("localhost", 1234, System.currentTimeMillis()) --> Line_8 $$ assertTrue("Couldn't clean up master", MasterAddressTracker.deleteIfEquals(addressTracker.getWatcher(), sn.toString())) [FD]

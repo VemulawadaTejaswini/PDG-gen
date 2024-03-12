@@ -1,0 +1,8 @@
+Line_2 $$ protected static HiveDecimal getDecimal(boolean isDictionaryEncoding, int index) --> Line_3 $$ int decimalVal = index % 100 [CD]
+Line_2 $$ protected static HiveDecimal getDecimal(boolean isDictionaryEncoding, int index) --> Line_4 $$ String decimalStr = (decimalVal < 10) ? "0" + String.valueOf(decimalVal) : String.valueOf(decimalVal) [CD]
+Line_3 $$ int decimalVal = index % 100 --> Line_4 $$ String decimalStr = (decimalVal < 10) ? "0" + String.valueOf(decimalVal) : String.valueOf(decimalVal) [FD]
+Line_2 $$ protected static HiveDecimal getDecimal(boolean isDictionaryEncoding, int index) --> Line_5 $$ int intVal = (isDictionaryEncoding) ? index % UNIQUE_NUM : index / 100 [CD]
+Line_2 $$ protected static HiveDecimal getDecimal(boolean isDictionaryEncoding, int index) --> Line_6 $$ String d = String.valueOf(intVal) + "." + decimalStr [CD]
+Line_5 $$ int intVal = (isDictionaryEncoding) ? index % UNIQUE_NUM : index / 100 --> Line_6 $$ String d = String.valueOf(intVal) + "." + decimalStr [FD]
+Line_2 $$ protected static HiveDecimal getDecimal(boolean isDictionaryEncoding, int index) --> Line_7 $$ return HiveDecimal.create(d) [CD]
+Line_6 $$ String d = String.valueOf(intVal) + "." + decimalStr --> Line_7 $$ return HiveDecimal.create(d) [FD]

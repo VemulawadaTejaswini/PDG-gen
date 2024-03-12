@@ -1,0 +1,8 @@
+Line_2 $$ private void removeLRU() --> Line_3 $$ final OrderedValue ordVal = this.timedSet.first() [CD]
+Line_2 $$ private void removeLRU() --> Line_4 $$ if (ordVal != null) [CD]
+Line_3 $$ final OrderedValue ordVal = this.timedSet.first() --> Line_4 $$ if (ordVal != null) [FD]
+Line_4 $$ if (ordVal != null) --> Line_5 $$ this.removalEvent.fireEvent(new RemovalEvent(this, ordVal.value)) [CD]
+Line_4 $$ if (ordVal != null) --> Line_6 $$ if (this.timedSet.remove(ordVal)) [CD]
+Line_3 $$ final OrderedValue ordVal = this.timedSet.first() --> Line_6 $$ if (this.timedSet.remove(ordVal)) [FD]
+Line_6 $$ if (this.timedSet.remove(ordVal)) --> Line_7 $$ this.cacheMap.remove(ordVal.key) [CD]
+Line_6 $$ if (this.timedSet.remove(ordVal)) --> Line_8 $$ this.currentSize -= ordVal.approximateSize [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private String generateToken() --> Line_3 $$ byte[] salt = new byte[32] [CD]
+Line_2 $$ private String generateToken() --> Line_4 $$ RAND.nextBytes(salt) [CD]
+Line_3 $$ byte[] salt = new byte[32] --> Line_4 $$ RAND.nextBytes(salt) [FD]
+Line_2 $$ private String generateToken() --> Line_5 $$ String saltPlusToken = BASE64.encodeToString(salt) + "." + Long.toString(System.currentTimeMillis()) [CD]
+Line_3 $$ byte[] salt = new byte[32] --> Line_5 $$ String saltPlusToken = BASE64.encodeToString(salt) + "." + Long.toString(System.currentTimeMillis()) [FD]
+Line_2 $$ private String generateToken() --> Line_6 $$ String signature = BASE64.encodeToString(mac.doFinal(saltPlusToken.getBytes())) [CD]
+Line_5 $$ String saltPlusToken = BASE64.encodeToString(salt) + "." + Long.toString(System.currentTimeMillis()) --> Line_6 $$ String signature = BASE64.encodeToString(mac.doFinal(saltPlusToken.getBytes())) [FD]
+Line_2 $$ private String generateToken() --> Line_7 $$ return saltPlusToken + "." + signature [CD]

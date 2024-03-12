@@ -1,0 +1,8 @@
+Line_2 $$ public void testDecorateSupplierWithCache() --> Line_3 $$ javax.cache.Cache<String, String> cache = mock(javax.cache.Cache.class) [CD]
+Line_2 $$ public void testDecorateSupplierWithCache() --> Line_4 $$ given(cache.containsKey("testKey")).willReturn(true) [CD]
+Line_2 $$ public void testDecorateSupplierWithCache() --> Line_5 $$ given(cache.get("testKey")).willReturn("Hello from cache") [CD]
+Line_2 $$ public void testDecorateSupplierWithCache() --> Line_6 $$ Function<String, String> cachedFunction = Decorators.ofSupplier(() -> "Hello world").withCache(Cache.of(cache)).decorate() [CD]
+Line_2 $$ public void testDecorateSupplierWithCache() --> Line_7 $$ String value = cachedFunction.apply("testKey") [CD]
+Line_6 $$ Function<String, String> cachedFunction = Decorators.ofSupplier(() -> "Hello world").withCache(Cache.of(cache)).decorate() --> Line_7 $$ String value = cachedFunction.apply("testKey") [FD]
+Line_2 $$ public void testDecorateSupplierWithCache() --> Line_8 $$ assertThat(value).isEqualTo("Hello from cache") [CD]
+Line_7 $$ String value = cachedFunction.apply("testKey") --> Line_8 $$ assertThat(value).isEqualTo("Hello from cache") [FD]

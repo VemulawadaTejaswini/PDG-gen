@@ -1,0 +1,8 @@
+Line_2 $$ private void collectDependenciesFromArtifact(Path path) throws IOException --> Line_3 $$ try (BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(path))) [FD]
+Line_3 $$ try (BufferedInputStream bis = new BufferedInputStream(Files.newInputStream(path))) --> Line_4 $$ Dependencies deps = Dependencies.parseFrom(bis) [FD]
+Line_4 $$ Dependencies deps = Dependencies.parseFrom(bis) --> Line_5 $$ if (!deps.hasRuleLabel()) [FD]
+Line_4 $$ Dependencies deps = Dependencies.parseFrom(bis) --> Line_8 $$ for (Dependency dep : deps.getDependencyList()) [FD]
+Line_8 $$ for (Dependency dep : deps.getDependencyList()) --> Line_9 $$ if (dep.getKind() == Kind.EXPLICIT || dep.getKind() == Kind.IMPLICIT || dep.getKind() == Kind.INCOMPLETE) [FD]
+Line_9 $$ if (dep.getKind() == Kind.EXPLICIT || dep.getKind() == Kind.IMPLICIT || dep.getKind() == Kind.INCOMPLETE) --> Line_10 $$ requiredClasspath.add(Paths.get(dep.getPath())) [CD]
+Line_8 $$ for (Dependency dep : deps.getDependencyList()) --> Line_10 $$ requiredClasspath.add(Paths.get(dep.getPath())) [FD]
+Line_2 $$ private void collectDependenciesFromArtifact(Path path) throws IOException --> Line_14 $$ throw new IOException(String.format("error reading deps artifact: %s", path), e) [FD]

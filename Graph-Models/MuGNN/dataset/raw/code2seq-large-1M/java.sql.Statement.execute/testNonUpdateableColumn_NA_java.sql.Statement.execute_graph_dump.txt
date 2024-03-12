@@ -1,0 +1,4 @@
+Line_2 $$ public void testNonUpdateableColumn() throws SQLException --> Line_3 $$ Statement statement = sharedConnection.createStatement() [CD]
+Line_2 $$ public void testNonUpdateableColumn() throws SQLException --> Line_4 $$ statement.execute("create or replace view vendor_code_test_view as select *," + " 1 as derived_column_that_does_no_exist from vendor_code_test") [CD]
+Line_3 $$ Statement statement = sharedConnection.createStatement() --> Line_4 $$ statement.execute("create or replace view vendor_code_test_view as select *," + " 1 as derived_column_that_does_no_exist from vendor_code_test") [FD]
+Line_3 $$ Statement statement = sharedConnection.createStatement() --> Line_6 $$ statement.executeQuery("UPDATE vendor_code_test_view SET derived_column_that_does_no_exist = 1") [FD]

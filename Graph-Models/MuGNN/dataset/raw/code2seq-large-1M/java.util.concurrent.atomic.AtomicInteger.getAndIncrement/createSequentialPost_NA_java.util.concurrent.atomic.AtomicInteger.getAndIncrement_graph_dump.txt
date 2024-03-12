@@ -1,0 +1,7 @@
+Line_2 $$ public static Content createSequentialPost(User author) --> Line_3 $$ int postId = idSequence.getAndIncrement() [CD]
+Line_2 $$ public static Content createSequentialPost(User author) --> Line_4 $$ Content newPost = new Content(author, "message-" + postId, null) [CD]
+Line_2 $$ public static Content createSequentialPost(User author) --> Line_5 $$ ObjectId fakeId = new ObjectId(postId, 0, 0) [CD]
+Line_2 $$ public static Content createSequentialPost(User author) --> Line_6 $$ newPost.toDBObject().put(Content.ID_KEY, fakeId) [CD]
+Line_5 $$ ObjectId fakeId = new ObjectId(postId, 0, 0) --> Line_6 $$ newPost.toDBObject().put(Content.ID_KEY, fakeId) [FD]
+Line_4 $$ Content newPost = new Content(author, "message-" + postId, null) --> Line_6 $$ newPost.toDBObject().put(Content.ID_KEY, fakeId) [FD]
+Line_2 $$ public static Content createSequentialPost(User author) --> Line_7 $$ return newPost [CD]

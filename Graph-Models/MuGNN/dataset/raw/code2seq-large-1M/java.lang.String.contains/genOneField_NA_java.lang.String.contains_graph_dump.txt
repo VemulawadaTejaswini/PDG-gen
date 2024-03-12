@@ -1,0 +1,7 @@
+Line_4 $$ String clzName = clz.clsVarName + "." --> Line_5 $$ if (content.contains(clzName)) [FD]
+Line_5 $$ if (content.contains(clzName)) --> Line_6 $$ String fieldName = LetterUtil.getSubString(content, clzName).split(" ")[0] [CD]
+Line_4 $$ String clzName = clz.clsVarName + "." --> Line_6 $$ String fieldName = LetterUtil.getSubString(content, clzName).split(" ")[0] [FD]
+Line_5 $$ if (content.contains(clzName)) --> Line_7 $$ if (!containsField(clz, fieldName)) [CD]
+Line_6 $$ String fieldName = LetterUtil.getSubString(content, clzName).split(" ")[0] --> Line_7 $$ if (!containsField(clz, fieldName)) [FD]
+Line_7 $$ if (!containsField(clz, fieldName)) --> Line_8 $$ String value = TypeFinder.findTypeByAttrName(attrStr) [CD]
+Line_7 $$ if (!containsField(clz, fieldName)) --> Line_9 $$ clz.fields.add(new SimpleField(value, fieldName)) [CD]

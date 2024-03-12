@@ -1,0 +1,6 @@
+Line_2 $$ private void assertPercentile(LazyHistogram lazyHistogram, int num, double percentile) --> Line_3 $$ long low = (long) Math.floor(num * percentile * 0.99 / (100 * 1000)) * 1000 [CD]
+Line_2 $$ private void assertPercentile(LazyHistogram lazyHistogram, int num, double percentile) --> Line_4 $$ long high = (long) Math.ceil(num * percentile * 1.01 / (100 * 1000)) * 1000 [CD]
+Line_2 $$ private void assertPercentile(LazyHistogram lazyHistogram, int num, double percentile) --> Line_5 $$ assertThat(lazyHistogram.getValueAtPercentile(percentile)).isBetween(low, high) [CD]
+Line_2 $$ private void assertPercentile(LazyHistogram lazyHistogram, int num, double percentile) --> Line_5 $$ assertThat(lazyHistogram.getValueAtPercentile(percentile)).isBetween(low, high) [FD]
+Line_3 $$ long low = (long) Math.floor(num * percentile * 0.99 / (100 * 1000)) * 1000 --> Line_5 $$ assertThat(lazyHistogram.getValueAtPercentile(percentile)).isBetween(low, high) [FD]
+Line_4 $$ long high = (long) Math.ceil(num * percentile * 1.01 / (100 * 1000)) * 1000 --> Line_5 $$ assertThat(lazyHistogram.getValueAtPercentile(percentile)).isBetween(low, high) [FD]

@@ -1,0 +1,8 @@
+Line_5 $$ JarFile jarFile = new JarFile(jar) --> Line_7 $$ ZipEntry entry = jarFile.getJarEntry(path) [FD]
+Line_11 $$ File f = new File(destination, path.replace('/', '-')) --> Line_12 $$ f.deleteOnExit() [FD]
+Line_5 $$ JarFile jarFile = new JarFile(jar) --> Line_13 $$ try (InputStream inputStream = jarFile.getInputStream(entry)) [FD]
+Line_13 $$ try (InputStream inputStream = jarFile.getInputStream(entry)) --> Line_14 $$ Files.copy(inputStream, f.toPath(), StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_11 $$ File f = new File(destination, path.replace('/', '-')) --> Line_14 $$ Files.copy(inputStream, f.toPath(), StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_3 $$ ImmutableMap.Builder<String, File> map = ImmutableMap.builder() --> Line_16 $$ map.put(deriveQualifiedClassName(path), f) [FD]
+Line_11 $$ File f = new File(destination, path.replace('/', '-')) --> Line_16 $$ map.put(deriveQualifiedClassName(path), f) [FD]
+Line_3 $$ ImmutableMap.Builder<String, File> map = ImmutableMap.builder() --> Line_21 $$ return map.build() [FD]

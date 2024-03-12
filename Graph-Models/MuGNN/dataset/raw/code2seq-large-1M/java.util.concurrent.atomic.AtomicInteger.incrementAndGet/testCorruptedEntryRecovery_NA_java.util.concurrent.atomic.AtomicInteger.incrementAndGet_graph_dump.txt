@@ -1,0 +1,7 @@
+Line_3 $$ File file = getPersistenceFile() --> Line_4 $$ try (ChronicleMap<Integer, LongValue> map = ChronicleMap.of(Integer.class, LongValue.class).entries(1).createPersistedTo(file)) [FD]
+Line_8 $$ try (ExternalMapQueryContext<Integer, LongValue, ?> c = map.queryContext(1)) --> Line_9 $$ c.updateLock().lock() [FD]
+Line_8 $$ try (ExternalMapQueryContext<Integer, LongValue, ?> c = map.queryContext(1)) --> Line_10 $$ MapEntry<Integer, LongValue> entry = c.entry() [FD]
+Line_19 $$ AtomicInteger corruptionCounter = new AtomicInteger(0) --> Line_20 $$ ChronicleHashCorruption.Listener corruptionListener =  corruption -> corruptionCounter.incrementAndGet() [FD]
+Line_3 $$ File file = getPersistenceFile() --> Line_21 $$ try (ChronicleMap<Integer, LongValue> ignore = ChronicleMap.of(Integer.class, LongValue.class).entries(1).createOrRecoverPersistedTo(file, true, corruptionListener)) [FD]
+Line_20 $$ ChronicleHashCorruption.Listener corruptionListener =  corruption -> corruptionCounter.incrementAndGet() --> Line_21 $$ try (ChronicleMap<Integer, LongValue> ignore = ChronicleMap.of(Integer.class, LongValue.class).entries(1).createOrRecoverPersistedTo(file, true, corruptionListener)) [FD]
+Line_19 $$ AtomicInteger corruptionCounter = new AtomicInteger(0) --> Line_23 $$ assertTrue(corruptionCounter.get() > 0) [FD]

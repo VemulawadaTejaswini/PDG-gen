@@ -1,0 +1,8 @@
+Line_2 $$ public void updateAssignment(ResourcesStateMap pendingAssignment) --> Line_3 $$ Map<String, Integer> newParticipantUsage = ResourceUsageCalculator.getResourceUsage(pendingAssignment, _partitionWeightProvider) [CD]
+Line_2 $$ public void updateAssignment(ResourcesStateMap pendingAssignment) --> Line_3 $$ Map<String, Integer> newParticipantUsage = ResourceUsageCalculator.getResourceUsage(pendingAssignment, _partitionWeightProvider) [FD]
+Line_3 $$ Map<String, Integer> newParticipantUsage = ResourceUsageCalculator.getResourceUsage(pendingAssignment, _partitionWeightProvider) --> Line_4 $$ for (String participant : newParticipantUsage.keySet()) [FD]
+Line_4 $$ for (String participant : newParticipantUsage.keySet()) --> Line_5 $$ if (!_pendingUsage.containsKey(participant)) [FD]
+Line_5 $$ if (!_pendingUsage.containsKey(participant)) --> Line_6 $$ _pendingUsage.put(participant, 0) [CD]
+Line_4 $$ for (String participant : newParticipantUsage.keySet()) --> Line_6 $$ _pendingUsage.put(participant, 0) [FD]
+Line_4 $$ for (String participant : newParticipantUsage.keySet()) --> Line_8 $$ _pendingUsage.put(participant, _pendingUsage.get(participant) + newParticipantUsage.get(participant)) [FD]
+Line_3 $$ Map<String, Integer> newParticipantUsage = ResourceUsageCalculator.getResourceUsage(pendingAssignment, _partitionWeightProvider) --> Line_8 $$ _pendingUsage.put(participant, _pendingUsage.get(participant) + newParticipantUsage.get(participant)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public BatchManagementGrpc.BatchManagementImplBase getTenantImplementation(StreamObserver<?> observer) --> Line_3 $$ String tenantId = TenantTokenServerInterceptor.TENANT_ID_KEY.get() [CD]
+Line_2 $$ public BatchManagementGrpc.BatchManagementImplBase getTenantImplementation(StreamObserver<?> observer) --> Line_4 $$ if (tenantId == null) [CD]
+Line_3 $$ String tenantId = TenantTokenServerInterceptor.TENANT_ID_KEY.get() --> Line_4 $$ if (tenantId == null) [FD]
+Line_3 $$ String tenantId = TenantTokenServerInterceptor.TENANT_ID_KEY.get() --> Line_8 $$ IBatchOperationsTenantEngine engine = getMicroservice().assureTenantEngineAvailable(UUID.fromString(tenantId)) [FD]
+Line_8 $$ IBatchOperationsTenantEngine engine = getMicroservice().assureTenantEngineAvailable(UUID.fromString(tenantId)) --> Line_9 $$ UserContextManager.setCurrentTenant(engine.getTenant()) [FD]
+Line_8 $$ IBatchOperationsTenantEngine engine = getMicroservice().assureTenantEngineAvailable(UUID.fromString(tenantId)) --> Line_10 $$ return engine.getBatchManagementImpl() [FD]
+Line_2 $$ public BatchManagementGrpc.BatchManagementImplBase getTenantImplementation(StreamObserver<?> observer) --> Line_12 $$ observer.onError(GrpcUtils.convertServerException(e)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testCCLNotNeutral() --> Line_3 $$ locator.setNeutralContextClassLoader(false) [CD]
+Line_2 $$ public void testCCLNotNeutral() --> Line_4 $$ ServiceHandle<?> handle = locator.getServiceHandle(CCLChangingService.class) [CD]
+Line_2 $$ public void testCCLNotNeutral() --> Line_5 $$ ClassLoader cclClassLoader = new MyClassLoader() [CD]
+Line_2 $$ public void testCCLNotNeutral() --> Line_6 $$ Thread.currentThread().setContextClassLoader(cclClassLoader) [CD]
+Line_5 $$ ClassLoader cclClassLoader = new MyClassLoader() --> Line_6 $$ Thread.currentThread().setContextClassLoader(cclClassLoader) [FD]
+Line_5 $$ ClassLoader cclClassLoader = new MyClassLoader() --> Line_10 $$ Assert.assertNotSame(cclClassLoader, currentCCL) [FD]
+Line_9 $$ ClassLoader currentCCL = Thread.currentThread().getContextClassLoader() --> Line_10 $$ Assert.assertNotSame(cclClassLoader, currentCCL) [FD]
+Line_9 $$ ClassLoader currentCCL = Thread.currentThread().getContextClassLoader() --> Line_12 $$ Assert.assertNotSame(currentCCL, Thread.currentThread().getContextClassLoader()) [FD]

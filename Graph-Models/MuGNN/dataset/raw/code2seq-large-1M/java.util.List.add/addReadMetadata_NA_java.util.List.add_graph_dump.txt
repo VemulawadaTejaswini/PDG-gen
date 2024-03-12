@@ -1,0 +1,5 @@
+Line_5 $$ final Metadata metadata = MavenModels.readMetadata(entry.getValue().openInputStream()) --> Line_6 $$ if (metadata == null) [FD]
+Line_6 $$ if (metadata == null) --> Line_7 $$ log.debug("Corrupted repository metadata: [CD]
+Line_3 $$ final String origin = entry.getKey().getName() + " @ " + mavenPath.getPath() --> Line_7 $$ log.debug("Corrupted repository metadata: [FD]
+Line_6 $$ if (metadata == null) --> Line_8 $$ return [CD]
+Line_3 $$ final String origin = entry.getKey().getName() + " @ " + mavenPath.getPath() --> Line_12 $$ log.debug("Error downloading repository metadata: [FD]

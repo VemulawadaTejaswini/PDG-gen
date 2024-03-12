@@ -1,0 +1,8 @@
+Line_2 $$ boolean validateAccess(String hostname, String remoteAddr) --> Line_4 $$ InetAddress addr = InetAddress.getByName(remoteAddr) [FD]
+Line_4 $$ InetAddress addr = InetAddress.getByName(remoteAddr) --> Line_5 $$ String remoteHostname = addr.getHostName() [FD]
+Line_2 $$ boolean validateAccess(String hostname, String remoteAddr) --> Line_6 $$ if (Objects.equals(hostname, remoteHostname)) [FD]
+Line_5 $$ String remoteHostname = addr.getHostName() --> Line_6 $$ if (Objects.equals(hostname, remoteHostname)) [FD]
+Line_6 $$ if (Objects.equals(hostname, remoteHostname)) --> Line_7 $$ return true [CD]
+Line_2 $$ boolean validateAccess(String hostname, String remoteAddr) --> Line_9 $$ Node node = nodeRepository.getNode(hostname).orElseThrow(() -> new RuntimeException("Unable to find node " + hostname)) [FD]
+Line_9 $$ Node node = nodeRepository.getNode(hostname).orElseThrow(() -> new RuntimeException("Unable to find node " + hostname)) --> Line_10 $$ return node.parentHostname().map( parent -> Objects.equals(parent, remoteHostname)).orElse(false) [FD]
+Line_5 $$ String remoteHostname = addr.getHostName() --> Line_10 $$ return node.parentHostname().map( parent -> Objects.equals(parent, remoteHostname)).orElse(false) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ static void writeShortLittleEndian(byte[] dest, int destOff, int value) --> Line_3 $$ short s = (short) value [CD]
+Line_2 $$ static void writeShortLittleEndian(byte[] dest, int destOff, int value) --> Line_4 $$ if (NATIVE_BYTE_ORDER == ByteOrder.BIG_ENDIAN) [CD]
+Line_4 $$ if (NATIVE_BYTE_ORDER == ByteOrder.BIG_ENDIAN) --> Line_5 $$ s = Short.reverseBytes(s) [CD]
+Line_3 $$ short s = (short) value --> Line_5 $$ s = Short.reverseBytes(s) [FD]
+Line_2 $$ static void writeShortLittleEndian(byte[] dest, int destOff, int value) --> Line_7 $$ writeShort(dest, destOff, s) [FD]
+Line_2 $$ static void writeShortLittleEndian(byte[] dest, int destOff, int value) --> Line_7 $$ writeShort(dest, destOff, s) [CD]
+Line_3 $$ short s = (short) value --> Line_7 $$ writeShort(dest, destOff, s) [FD]
+Line_5 $$ s = Short.reverseBytes(s) --> Line_7 $$ writeShort(dest, destOff, s) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public List<Contact> createContactsWithRolesFromJson(JSONObject object) --> Line_4 $$ JSONObject firstRecord = extractFirstRecord(object) [FD]
+Line_4 $$ JSONObject firstRecord = extractFirstRecord(object) --> Line_5 $$ JSONObject contactRoles = firstRecord.optJSONObject("Membership_Contact_Roles__r") [FD]
+Line_5 $$ JSONObject contactRoles = firstRecord.optJSONObject("Membership_Contact_Roles__r") --> Line_6 $$ List<JSONObject> objectsList = extractObjectListFromRecords(contactRoles) [FD]
+Line_6 $$ List<JSONObject> objectsList = extractObjectListFromRecords(contactRoles) --> Line_7 $$ return objectsList.stream().map( e -> mapperFacade.map(e, Contact.class)).collect(Collectors.toList()) [FD]

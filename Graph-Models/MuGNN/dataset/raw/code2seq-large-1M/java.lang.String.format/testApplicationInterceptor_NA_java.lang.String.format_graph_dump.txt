@@ -1,0 +1,8 @@
+Line_2 $$ public void testApplicationInterceptor() throws IOException --> Line_3 $$ final Request request = new Request.Builder().url(url).build() [CD]
+Line_2 $$ public void testApplicationInterceptor() throws IOException --> Line_4 $$ OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(new CurlInterceptor(logger)).cookieJar(getCookieJar()).build() [CD]
+Line_2 $$ public void testApplicationInterceptor() throws IOException --> Line_5 $$ okHttpClient.newCall(request).execute() [CD]
+Line_4 $$ OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(new CurlInterceptor(logger)).cookieJar(getCookieJar()).build() --> Line_5 $$ okHttpClient.newCall(request).execute() [FD]
+Line_3 $$ final Request request = new Request.Builder().url(url).build() --> Line_5 $$ okHttpClient.newCall(request).execute() [FD]
+Line_2 $$ public void testApplicationInterceptor() throws IOException --> Line_6 $$ final String expectedCurl = String.format("curl -X GET \"%s\"", url) [CD]
+Line_2 $$ public void testApplicationInterceptor() throws IOException --> Line_7 $$ verify(logger).log(expectedCurl) [CD]
+Line_6 $$ final String expectedCurl = String.format("curl -X GET \"%s\"", url) --> Line_7 $$ verify(logger).log(expectedCurl) [FD]

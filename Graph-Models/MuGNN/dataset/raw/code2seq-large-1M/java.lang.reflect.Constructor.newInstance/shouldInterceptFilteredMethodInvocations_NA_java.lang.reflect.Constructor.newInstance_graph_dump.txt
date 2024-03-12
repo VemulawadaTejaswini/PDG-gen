@@ -1,0 +1,7 @@
+Line_2 $$ public void shouldInterceptFilteredMethodInvocations() throws Exception --> Line_3 $$ setClassLoader(new SandboxClassLoader(configureBuilder().addInterceptedMethod(new MethodRef(AClassToForget.class, "forgettableMethod")).build())) [CD]
+Line_2 $$ public void shouldInterceptFilteredMethodInvocations() throws Exception --> Line_4 $$ Class<?> theClass = loadClass(AClassThatRefersToAForgettableClass.class) [CD]
+Line_2 $$ public void shouldInterceptFilteredMethodInvocations() throws Exception --> Line_5 $$ Object instance = theClass.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void shouldInterceptFilteredMethodInvocations() throws Exception --> Line_6 $$ Object output = theClass.getMethod("interactWithForgettableClass").invoke(shadow.directlyOn(instance, (Class<Object>) theClass)) [CD]
+Line_5 $$ Object instance = theClass.getDeclaredConstructor().newInstance() --> Line_6 $$ Object output = theClass.getMethod("interactWithForgettableClass").invoke(shadow.directlyOn(instance, (Class<Object>) theClass)) [FD]
+Line_2 $$ public void shouldInterceptFilteredMethodInvocations() throws Exception --> Line_7 $$ assertEquals("null, get this!", output) [CD]
+Line_6 $$ Object output = theClass.getMethod("interactWithForgettableClass").invoke(shadow.directlyOn(instance, (Class<Object>) theClass)) --> Line_7 $$ assertEquals("null, get this!", output) [FD]

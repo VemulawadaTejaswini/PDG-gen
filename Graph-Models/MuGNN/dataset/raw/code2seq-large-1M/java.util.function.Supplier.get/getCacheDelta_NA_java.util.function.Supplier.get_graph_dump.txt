@@ -1,0 +1,8 @@
+Line_2 $$ public int getCacheDelta(int storedPreInsertion, int size, @Nullable FluidStack remainder) --> Line_3 $$ if (getAccessType() == AccessType.INSERT) [CD]
+Line_3 $$ if (getAccessType() == AccessType.INSERT) --> Line_4 $$ return 0 [CD]
+Line_2 $$ public int getCacheDelta(int storedPreInsertion, int size, @Nullable FluidStack remainder) --> Line_6 $$ int inserted = remainder == null ? size : (size - remainder.amount) [CD]
+Line_2 $$ public int getCacheDelta(int storedPreInsertion, int size, @Nullable FluidStack remainder) --> Line_7 $$ if (voidExcess.get() && storedPreInsertion + inserted > getCapacity()) [CD]
+Line_7 $$ if (voidExcess.get() && storedPreInsertion + inserted > getCapacity()) --> Line_8 $$ inserted = getCapacity() - storedPreInsertion [CD]
+Line_6 $$ int inserted = remainder == null ? size : (size - remainder.amount) --> Line_8 $$ inserted = getCapacity() - storedPreInsertion [FD]
+Line_2 $$ public int getCacheDelta(int storedPreInsertion, int size, @Nullable FluidStack remainder) --> Line_8 $$ inserted = getCapacity() - storedPreInsertion [FD]
+Line_2 $$ public int getCacheDelta(int storedPreInsertion, int size, @Nullable FluidStack remainder) --> Line_10 $$ return inserted [CD]

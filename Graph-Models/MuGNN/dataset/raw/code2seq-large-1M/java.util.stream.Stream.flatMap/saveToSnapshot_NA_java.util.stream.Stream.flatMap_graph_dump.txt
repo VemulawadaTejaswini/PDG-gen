@@ -1,0 +1,8 @@
+Line_2 $$ public boolean saveToSnapshot() --> Line_3 $$ if (!emitFromTraverser(traverser)) [CD]
+Line_3 $$ if (!emitFromTraverser(traverser)) --> Line_4 $$ return false [CD]
+Line_2 $$ public boolean saveToSnapshot() --> Line_6 $$ if (snapshotTraverser == null) [CD]
+Line_6 $$ if (snapshotTraverser == null) --> Line_7 $$ Stream<Entry<BroadcastKey<TopicPartition>, long[]>> snapshotStream = offsets.entrySet().stream().flatMap( entry -> IntStream.range(0, entry.getValue().length).filter( partition -> entry.getValue()[partition] >= 0).mapToObj( partition -> [CD]
+Line_8 $$ TopicPartition key = new TopicPartition(entry.getKey(), partition) --> Line_10 $$ long watermark = watermarkSourceUtil.getWatermark(currentAssignment.get(key)) [FD]
+Line_8 $$ TopicPartition key = new TopicPartition(entry.getKey(), partition) --> Line_11 $$ return entry(broadcastKey(key), new long[] [FD]
+Line_6 $$ if (snapshotTraverser == null) --> Line_13 $$ snapshotTraverser = traverseStream(snapshotStream).onFirstNull(() -> snapshotTraverser = null) [CD]
+Line_2 $$ public boolean saveToSnapshot() --> Line_15 $$ return emitFromTraverserToSnapshot(snapshotTraverser) [CD]

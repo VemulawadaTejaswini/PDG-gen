@@ -1,0 +1,7 @@
+Line_4 $$ List<Long> chromosomeKeys = gaGrid.getPopulationKeys() --> Line_5 $$ Boolean boolValue = this.ignite.compute().execute(new FitnessTask(this.gaConfig), chromosomeKeys) [FD]
+Line_6 $$ IgniteCache<Long, Chromosome> populationCache = ignite.cache(GAGridConstants.POPULATION_CACHE) --> Line_8 $$ QueryCursor<List<?>> cursor = populationCache.query(new SqlFieldsQuery(sql)) [FD]
+Line_8 $$ QueryCursor<List<?>> cursor = populationCache.query(new SqlFieldsQuery(sql)) --> Line_9 $$ List<List<?>> res = cursor.getAll() [FD]
+Line_10 $$ Long count = new Long(0) --> Line_12 $$ count = (Long) row.get(0) [FD]
+Line_11 $$ for (List row : res) --> Line_12 $$ count = (Long) row.get(0) [FD]
+Line_10 $$ Long count = new Long(0) --> Line_14 $$ assertEquals(500, count.longValue()) [FD]
+Line_12 $$ count = (Long) row.get(0) --> Line_14 $$ assertEquals(500, count.longValue()) [FD]

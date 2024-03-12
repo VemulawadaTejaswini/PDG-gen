@@ -1,0 +1,8 @@
+Line_2 $$ private Set<InternalDistributedMember> getAllRecipients(InternalCache cache, Map map) --> Line_3 $$ Set recipients = new ObjectOpenHashSet() [CD]
+Line_2 $$ private Set<InternalDistributedMember> getAllRecipients(InternalCache cache, Map map) --> Line_4 $$ for (Object pr : map.keySet()) [FD]
+Line_2 $$ private Set<InternalDistributedMember> getAllRecipients(InternalCache cache, Map map) --> Line_5 $$ PartitionedRegion partitionedRegion = (PartitionedRegion) cache.getRegion((String) pr) [FD]
+Line_5 $$ PartitionedRegion partitionedRegion = (PartitionedRegion) cache.getRegion((String) pr) --> Line_6 $$ if (partitionedRegion != null && partitionedRegion.getRegionAdvisor() != null) [FD]
+Line_6 $$ if (partitionedRegion != null && partitionedRegion.getRegionAdvisor() != null) --> Line_7 $$ recipients.addAll(partitionedRegion.getRegionAdvisor().adviseDataStore()) [CD]
+Line_3 $$ Set recipients = new ObjectOpenHashSet() --> Line_7 $$ recipients.addAll(partitionedRegion.getRegionAdvisor().adviseDataStore()) [FD]
+Line_5 $$ PartitionedRegion partitionedRegion = (PartitionedRegion) cache.getRegion((String) pr) --> Line_7 $$ recipients.addAll(partitionedRegion.getRegionAdvisor().adviseDataStore()) [FD]
+Line_2 $$ private Set<InternalDistributedMember> getAllRecipients(InternalCache cache, Map map) --> Line_10 $$ return recipients [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public SnapshotInfo getInfo(String name, String rev, String id) throws PipelineException --> Line_3 $$ synchronized (lockCache.getLock(name)) [FD]
+Line_2 $$ public SnapshotInfo getInfo(String name, String rev, String id) throws PipelineException --> Line_5 $$ File infoFile = getPipelineSnapshotInfoFile(name, rev, id) [FD]
+Line_5 $$ File infoFile = getPipelineSnapshotInfoFile(name, rev, id) --> Line_6 $$ if (infoFile.exists()) [FD]
+Line_7 $$ try (InputStream in = new FileInputStream(infoFile)) --> Line_8 $$ SnapshotInfoJson snapshotInfoJsonBean = json.readValue(in, SnapshotInfoJson.class) [FD]
+Line_6 $$ if (infoFile.exists()) --> Line_14 $$ return null [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public String signString(String stringToSign, String accessKeySecret) --> Line_6 $$ byte[] keySpec = DatatypeConverter.parseBase64Binary(accessKeySecret) [FD]
+Line_5 $$ KeyFactory kf = KeyFactory.getInstance("RSA") --> Line_7 $$ PrivateKey privateKey = kf.generatePrivate(new PKCS8EncodedKeySpec(keySpec)) [FD]
+Line_4 $$ Signature rsaSign = Signature.getInstance("SHA256withRSA") --> Line_8 $$ rsaSign.initSign(privateKey) [FD]
+Line_7 $$ PrivateKey privateKey = kf.generatePrivate(new PKCS8EncodedKeySpec(keySpec)) --> Line_8 $$ rsaSign.initSign(privateKey) [FD]
+Line_4 $$ Signature rsaSign = Signature.getInstance("SHA256withRSA") --> Line_9 $$ rsaSign.update(stringToSign.getBytes(ENCODING)) [FD]
+Line_2 $$ public String signString(String stringToSign, String accessKeySecret) --> Line_9 $$ rsaSign.update(stringToSign.getBytes(ENCODING)) [FD]
+Line_4 $$ Signature rsaSign = Signature.getInstance("SHA256withRSA") --> Line_10 $$ byte[] sign = rsaSign.sign() [FD]
+Line_10 $$ byte[] sign = rsaSign.sign() --> Line_11 $$ String signature = new String(DatatypeConverter.printBase64Binary(sign)) [FD]

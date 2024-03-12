@@ -1,0 +1,5 @@
+Line_2 $$ public Optional<OperatorBackPressureStats> getOperatorBackPressureStats(ExecutionJobVertex vertex) --> Line_4 $$ final OperatorBackPressureStats stats = operatorStatsCache.getIfPresent(vertex) [FD]
+Line_4 $$ final OperatorBackPressureStats stats = operatorStatsCache.getIfPresent(vertex) --> Line_5 $$ if (stats == null || backPressureStatsRefreshInterval <= System.currentTimeMillis() - stats.getEndTimestamp()) [FD]
+Line_5 $$ if (stats == null || backPressureStatsRefreshInterval <= System.currentTimeMillis() - stats.getEndTimestamp()) --> Line_6 $$ triggerStackTraceSampleInternal(vertex) [CD]
+Line_2 $$ public Optional<OperatorBackPressureStats> getOperatorBackPressureStats(ExecutionJobVertex vertex) --> Line_6 $$ triggerStackTraceSampleInternal(vertex) [FD]
+Line_4 $$ final OperatorBackPressureStats stats = operatorStatsCache.getIfPresent(vertex) --> Line_8 $$ return Optional.ofNullable(stats) [FD]

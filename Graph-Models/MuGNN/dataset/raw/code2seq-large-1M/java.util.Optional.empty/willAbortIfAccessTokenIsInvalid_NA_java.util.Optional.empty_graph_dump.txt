@@ -1,0 +1,5 @@
+Line_2 $$ public void willAbortIfAccessTokenIsInvalid() throws Exception --> Line_3 $$ when(request.getHeader(AUTHORIZATION)).thenReturn("Bearer invalid") [CD]
+Line_2 $$ public void willAbortIfAccessTokenIsInvalid() throws Exception --> Line_4 $$ when(securityTokens.findUsernameByAccessToken("invalid")).thenReturn(Optional.empty()) [CD]
+Line_2 $$ public void willAbortIfAccessTokenIsInvalid() throws Exception --> Line_5 $$ securityInterceptor.filter(context) [CD]
+Line_2 $$ public void willAbortIfAccessTokenIsInvalid() throws Exception --> Line_6 $$ verify(identity, never()).tryLogin() [CD]
+Line_2 $$ public void willAbortIfAccessTokenIsInvalid() throws Exception --> Line_7 $$ verify(context).abortWith(any(Response.class)) [CD]

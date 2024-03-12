@@ -1,0 +1,7 @@
+Line_2 $$ X509Certificate generateX509Certificate(Pkcs10Csr csr, String remoteHostname) --> Line_3 $$ verifyCertificateCommonName(csr.getSubject(), remoteHostname) [FD]
+Line_2 $$ X509Certificate generateX509Certificate(Pkcs10Csr csr, String remoteHostname) --> Line_3 $$ verifyCertificateCommonName(csr.getSubject(), remoteHostname) [CD]
+Line_2 $$ X509Certificate generateX509Certificate(Pkcs10Csr csr, String remoteHostname) --> Line_4 $$ verifyCertificateExtensions(csr) [FD]
+Line_2 $$ X509Certificate generateX509Certificate(Pkcs10Csr csr, String remoteHostname) --> Line_4 $$ verifyCertificateExtensions(csr) [CD]
+Line_2 $$ X509Certificate generateX509Certificate(Pkcs10Csr csr, String remoteHostname) --> Line_5 $$ Instant now = clock.instant() [CD]
+Line_2 $$ X509Certificate generateX509Certificate(Pkcs10Csr csr, String remoteHostname) --> Line_7 $$ return X509CertificateBuilder.fromCsr(csr, issuer, now, now.plus(CERTIFICATE_EXPIRATION), caPrivateKey, SIGNER_ALGORITHM, now.toEpochMilli()).setBasicConstraints(true, false).build() [FD]
+Line_5 $$ Instant now = clock.instant() --> Line_7 $$ return X509CertificateBuilder.fromCsr(csr, issuer, now, now.plus(CERTIFICATE_EXPIRATION), caPrivateKey, SIGNER_ALGORITHM, now.toEpochMilli()).setBasicConstraints(true, false).build() [FD]

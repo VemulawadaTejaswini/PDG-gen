@@ -1,0 +1,8 @@
+Line_3 $$ try (JMXConnector connector = getConnector(JMX_CONNECTION_URL)) --> Line_4 $$ MBeanServerConnection connection = connector.getMBeanServerConnection() [FD]
+Line_4 $$ MBeanServerConnection connection = connector.getMBeanServerConnection() --> Line_5 $$ ObjectInstance mBeanInstance = getProbeMBeanInstance(connection) [FD]
+Line_4 $$ MBeanServerConnection connection = connector.getMBeanServerConnection() --> Line_6 $$ Object o = connection.invoke(mBeanInstance.getObjectName(), name, params, signature) [FD]
+Line_2 $$ public static JsonObject invokeMBeanOperation(String name, Object[] params, String[] signature) throws Exception --> Line_6 $$ Object o = connection.invoke(mBeanInstance.getObjectName(), name, params, signature) [FD]
+Line_5 $$ ObjectInstance mBeanInstance = getProbeMBeanInstance(connection) --> Line_6 $$ Object o = connection.invoke(mBeanInstance.getObjectName(), name, params, signature) [FD]
+Line_6 $$ Object o = connection.invoke(mBeanInstance.getObjectName(), name, params, signature) --> Line_7 $$ CharArrayReader arrayReader = new CharArrayReader(o.toString().toCharArray()) [FD]
+Line_7 $$ CharArrayReader arrayReader = new CharArrayReader(o.toString().toCharArray()) --> Line_8 $$ JsonReader reader = Json.createReader(arrayReader) [FD]
+Line_8 $$ JsonReader reader = Json.createReader(arrayReader) --> Line_9 $$ return reader.readObject() [FD]

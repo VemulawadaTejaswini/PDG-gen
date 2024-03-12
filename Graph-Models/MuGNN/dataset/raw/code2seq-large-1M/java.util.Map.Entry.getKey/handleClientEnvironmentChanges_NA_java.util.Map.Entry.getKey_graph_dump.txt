@@ -1,0 +1,8 @@
+Line_2 $$ private void handleClientEnvironmentChanges() --> Line_3 $$ Iterable<SkyKey> deletedKeys = Sets.difference(previousClientEnvironment, clientEnv.get().keySet()).stream().map(ClientEnvironmentFunction::<>key).collect(ImmutableList.toImmutableList()) [CD]
+Line_2 $$ private void handleClientEnvironmentChanges() --> Line_4 $$ recordingDiffer.invalidate(deletedKeys) [CD]
+Line_3 $$ Iterable<SkyKey> deletedKeys = Sets.difference(previousClientEnvironment, clientEnv.get().keySet()).stream().map(ClientEnvironmentFunction::<>key).collect(ImmutableList.toImmutableList()) --> Line_4 $$ recordingDiffer.invalidate(deletedKeys) [FD]
+Line_2 $$ private void handleClientEnvironmentChanges() --> Line_5 $$ previousClientEnvironment = clientEnv.get().keySet() [CD]
+Line_2 $$ private void handleClientEnvironmentChanges() --> Line_6 $$ ImmutableMap.Builder<SkyKey, SkyValue> newValuesBuilder = ImmutableMap.builder() [CD]
+Line_6 $$ ImmutableMap.Builder<SkyKey, SkyValue> newValuesBuilder = ImmutableMap.builder() --> Line_8 $$ newValuesBuilder.put(ClientEnvironmentFunction.key(entry.getKey()), new ClientEnvironmentValue(entry.getValue())) [FD]
+Line_2 $$ private void handleClientEnvironmentChanges() --> Line_10 $$ recordingDiffer.inject(newValuesBuilder.build()) [CD]
+Line_6 $$ ImmutableMap.Builder<SkyKey, SkyValue> newValuesBuilder = ImmutableMap.builder() --> Line_10 $$ recordingDiffer.inject(newValuesBuilder.build()) [FD]

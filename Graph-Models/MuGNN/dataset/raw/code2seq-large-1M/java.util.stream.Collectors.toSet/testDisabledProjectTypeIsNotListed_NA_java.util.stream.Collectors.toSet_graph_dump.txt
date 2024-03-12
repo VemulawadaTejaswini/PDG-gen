@@ -1,0 +1,6 @@
+Line_5 $$ Map<String, InputComponent<?, ?>> inputs = wizard.getInputs() --> Line_6 $$ Assert.assertThat(inputs.get("type"), instanceOf(UISelectOne.class)) [FD]
+Line_5 $$ Map<String, InputComponent<?, ?>> inputs = wizard.getInputs() --> Line_7 $$ UISelectOne<ProjectType> projectTypes = (UISelectOne<ProjectType>) inputs.get("type") [FD]
+Line_7 $$ UISelectOne<ProjectType> projectTypes = (UISelectOne<ProjectType>) inputs.get("type") --> Line_8 $$ List<ProjectType> list = Lists.toList(projectTypes.getValueChoices()) [FD]
+Line_8 $$ List<ProjectType> list = Lists.toList(projectTypes.getValueChoices()) --> Line_9 $$ Assert.assertEquals(2, list.size()) [FD]
+Line_8 $$ List<ProjectType> list = Lists.toList(projectTypes.getValueChoices()) --> Line_10 $$ Set<String> typeNames = list.stream().map( type -> type.getType()).collect(Collectors.toSet()) [FD]
+Line_10 $$ Set<String> typeNames = list.stream().map( type -> type.getType()).collect(Collectors.toSet()) --> Line_11 $$ Assert.assertThat(typeNames, hasItems("mock", "mock-stacks-disabled")) [FD]

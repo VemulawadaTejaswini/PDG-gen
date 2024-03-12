@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized Collection<Integer> getErrorShards() --> Line_3 $$ SortedSet<Integer> errorShards = new TreeSet<Integer>() [CD]
+Line_4 $$ for (Lock lock : locks.values()) --> Line_5 $$ if (lock.getLockState() == LockState.ERROR) [FD]
+Line_5 $$ if (lock.getLockState() == LockState.ERROR) --> Line_6 $$ errorShards.add(lock.getShard()) [CD]
+Line_3 $$ SortedSet<Integer> errorShards = new TreeSet<Integer>() --> Line_6 $$ errorShards.add(lock.getShard()) [FD]
+Line_4 $$ for (Lock lock : locks.values()) --> Line_6 $$ errorShards.add(lock.getShard()) [FD]
+Line_2 $$ public synchronized Collection<Integer> getErrorShards() --> Line_9 $$ return errorShards [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public IngestStats stats() --> Line_3 $$ Map<String, StatsHolder> statsHolderPerPipeline = this.statsHolderPerPipeline [CD]
+Line_2 $$ public IngestStats stats() --> Line_4 $$ Map<String, IngestStats.Stats> statsPerPipeline = new HashMap(statsHolderPerPipeline.size()) [CD]
+Line_3 $$ Map<String, StatsHolder> statsHolderPerPipeline = this.statsHolderPerPipeline --> Line_4 $$ Map<String, IngestStats.Stats> statsPerPipeline = new HashMap(statsHolderPerPipeline.size()) [FD]
+Line_3 $$ Map<String, StatsHolder> statsHolderPerPipeline = this.statsHolderPerPipeline --> Line_5 $$ for (Map.Entry<String, StatsHolder> entry : statsHolderPerPipeline.entrySet()) [FD]
+Line_4 $$ Map<String, IngestStats.Stats> statsPerPipeline = new HashMap(statsHolderPerPipeline.size()) --> Line_6 $$ statsPerPipeline.put(entry.getKey(), entry.getValue().createStats()) [FD]
+Line_2 $$ public IngestStats stats() --> Line_8 $$ return new IngestStats(totalStats.createStats(), statsPerPipeline) [CD]

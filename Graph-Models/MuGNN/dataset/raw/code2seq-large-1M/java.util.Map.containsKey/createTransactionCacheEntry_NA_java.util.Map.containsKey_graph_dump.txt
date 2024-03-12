@@ -1,0 +1,6 @@
+Line_4 $$ if (this.use_caching && !this.cache_procXref.containsKey(proc_key)) --> Line_5 $$ this.cache_procXref.put(proc_key, new HashSet<TransactionCacheEntry>()) [CD]
+Line_9 $$ if (this.use_caching) --> Line_10 $$ this.cache_procXref.get(proc_key).add(txn_entry) [CD]
+Line_12 $$ if (trace.val) --> Line_13 $$ LOG.trace("New " + txn_entry) [CD]
+Line_3 $$ final int txn_weight = (this.use_txn_weights ? txn_trace.getWeight() : 1) --> Line_14 $$ this.txn_ctr.addAndGet(txn_weight) [FD]
+Line_3 $$ final int txn_weight = (this.use_txn_weights ? txn_trace.getWeight() : 1) --> Line_15 $$ this.histogram_procs.put(proc_key, txn_weight) [FD]
+Line_3 $$ final int txn_weight = (this.use_txn_weights ? txn_trace.getWeight() : 1) --> Line_16 $$ this.histogram_sp_procs.put(proc_key, txn_weight) [FD]

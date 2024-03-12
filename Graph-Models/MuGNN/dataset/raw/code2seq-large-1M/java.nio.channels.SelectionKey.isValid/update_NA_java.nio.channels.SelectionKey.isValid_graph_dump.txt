@@ -1,0 +1,8 @@
+Line_2 $$ public SelectionKey update() --> Line_3 $$ if (this.selectionKey.isValid()) [CD]
+Line_3 $$ if (this.selectionKey.isValid()) --> Line_4 $$ if (isCanceling()) [CD]
+Line_4 $$ if (isCanceling()) --> Line_5 $$ Context.getCurrentLogger().log(Level.FINER, "Cancelling of the selection key requested") [CD]
+Line_4 $$ if (isCanceling()) --> Line_6 $$ this.selectionKey.cancel() [CD]
+Line_9 $$ if (Context.getCurrentLogger().isLoggable(Level.FINEST)) --> Line_10 $$ Context.getCurrentLogger().log(Level.FINEST, "Update key (old | new) : " + SelectionRegistration.getName(this.selectionKey.interestOps()) + " | " + SelectionRegistration.getName(getInterestOperations())) [CD]
+Line_3 $$ if (this.selectionKey.isValid()) --> Line_19 $$ Context.getCurrentLogger().log(Level.FINE, "Invalid key detected, registering again") [CD]
+Line_3 $$ if (this.selectionKey.isValid()) --> Line_20 $$ this.selectionKey = register(this.selectionKey.selector()) [CD]
+Line_2 $$ public SelectionKey update() --> Line_22 $$ return this.selectionKey [CD]

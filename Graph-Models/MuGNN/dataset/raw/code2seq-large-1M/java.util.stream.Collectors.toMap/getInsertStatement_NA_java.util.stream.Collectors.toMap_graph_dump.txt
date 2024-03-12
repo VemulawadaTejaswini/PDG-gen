@@ -1,0 +1,8 @@
+Line_2 $$ public Query getInsertStatement(Edge element) --> Line_3 $$ JdbcSchema.Row row = toRow(element) [FD]
+Line_2 $$ public Query getInsertStatement(Edge element) --> Line_3 $$ JdbcSchema.Row row = toRow(element) [CD]
+Line_2 $$ public Query getInsertStatement(Edge element) --> Line_4 $$ if (row == null) [CD]
+Line_3 $$ JdbcSchema.Row row = toRow(element) --> Line_4 $$ if (row == null) [FD]
+Line_4 $$ if (row == null) --> Line_5 $$ return null [CD]
+Line_2 $$ public Query getInsertStatement(Edge element) --> Line_6 $$ Map<Field<Object>, Object> fields = row.getFields().entrySet().stream().collect(Collectors.toMap(( entry) -> field(entry.getKey()), Map.Entry::<>getValue)) [CD]
+Line_3 $$ JdbcSchema.Row row = toRow(element) --> Line_6 $$ Map<Field<Object>, Object> fields = row.getFields().entrySet().stream().collect(Collectors.toMap(( entry) -> field(entry.getKey()), Map.Entry::<>getValue)) [FD]
+Line_2 $$ public Query getInsertStatement(Edge element) --> Line_7 $$ return DSL.insertInto(table(getTable())).set(fields) [CD]

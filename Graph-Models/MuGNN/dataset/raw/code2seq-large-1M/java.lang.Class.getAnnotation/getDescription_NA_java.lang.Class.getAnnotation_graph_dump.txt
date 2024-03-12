@@ -1,0 +1,6 @@
+Line_2 $$ public Description getDescription() --> Line_3 $$ Description suiteDescription = Description.createSuiteDescription(testClass) [CD]
+Line_2 $$ public Description getDescription() --> Line_4 $$ ChildCount childCountAnnotation = testClass.getAnnotation(ChildCount.class) [CD]
+Line_2 $$ public Description getDescription() --> Line_5 $$ int childCount = Optional.ofNullable(childCountAnnotation).map(ChildCount::<>value).orElse(0) [CD]
+Line_2 $$ public Description getDescription() --> Line_6 $$ range(0, childCount).mapToObj( index -> Description.createTestDescription(testClass, "Test #" + index)).forEach(suiteDescription::<>addChild) [CD]
+Line_5 $$ int childCount = Optional.ofNullable(childCountAnnotation).map(ChildCount::<>value).orElse(0) --> Line_6 $$ range(0, childCount).mapToObj( index -> Description.createTestDescription(testClass, "Test #" + index)).forEach(suiteDescription::<>addChild) [FD]
+Line_2 $$ public Description getDescription() --> Line_7 $$ return suiteDescription [CD]

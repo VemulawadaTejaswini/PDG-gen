@@ -1,0 +1,8 @@
+Line_2 $$ protected void parseXForwarded() --> Line_3 $$ if (Play.configuration.containsKey("XForwardedSupport") && headers.get("x-forwarded-for") != null) [CD]
+Line_3 $$ if (Play.configuration.containsKey("XForwardedSupport") && headers.get("x-forwarded-for") != null) --> Line_4 $$ if (!("all".equals(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1"))) && !Arrays.asList(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1").split(",")).contains(remoteAddress)) [CD]
+Line_4 $$ if (!("all".equals(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1"))) && !Arrays.asList(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1").split(",")).contains(remoteAddress)) --> Line_7 $$ secure = isRequestSecure() [CD]
+Line_4 $$ if (!("all".equals(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1"))) && !Arrays.asList(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1").split(",")).contains(remoteAddress)) --> Line_8 $$ if (Play.configuration.containsKey("XForwardedHost")) [CD]
+Line_8 $$ if (Play.configuration.containsKey("XForwardedHost")) --> Line_10 $$ if (headers.get("x-forwarded-host") != null) [CD]
+Line_10 $$ if (headers.get("x-forwarded-host") != null) --> Line_11 $$ host = headers.get("x-forwarded-host").value() [CD]
+Line_4 $$ if (!("all".equals(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1"))) && !Arrays.asList(Play.configuration.getProperty("XForwardedSupport", "127.0.0.1").split(",")).contains(remoteAddress)) --> Line_13 $$ if (headers.get("x-forwarded-for") != null) [CD]
+Line_13 $$ if (headers.get("x-forwarded-for") != null) --> Line_14 $$ remoteAddress = headers.get("x-forwarded-for").value() [CD]

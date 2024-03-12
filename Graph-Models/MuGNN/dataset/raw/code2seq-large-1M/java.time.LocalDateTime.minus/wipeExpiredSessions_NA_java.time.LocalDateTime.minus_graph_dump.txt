@@ -1,0 +1,5 @@
+Line_2 $$ private void wipeExpiredSessions() --> Line_3 $$ final LocalDateTime pin = LocalDateTime.now().minus(6, ChronoUnit.DAYS) [CD]
+Line_2 $$ private void wipeExpiredSessions() --> Line_4 $$ final Set<String> expiredSessionsIds = this.sessions.sessionOlderThan(pin) [CD]
+Line_3 $$ final LocalDateTime pin = LocalDateTime.now().minus(6, ChronoUnit.DAYS) --> Line_4 $$ final Set<String> expiredSessionsIds = this.sessions.sessionOlderThan(pin) [FD]
+Line_5 $$ for (String expiredSession : expiredSessionsIds) --> Line_6 $$ this.sessions.removeDurableSession(expiredSession) [FD]
+Line_5 $$ for (String expiredSession : expiredSessionsIds) --> Line_7 $$ this.subscriptionsStore.wipeSubscriptions(expiredSession) [FD]

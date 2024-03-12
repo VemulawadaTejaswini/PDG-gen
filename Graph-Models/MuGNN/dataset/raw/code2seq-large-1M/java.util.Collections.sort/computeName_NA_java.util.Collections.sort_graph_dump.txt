@@ -1,0 +1,7 @@
+Line_2 $$ private String computeName(Set<String> domains) --> Line_4 $$ List<String> domainList = Lists.newArrayList(domains) [FD]
+Line_4 $$ List<String> domainList = Lists.newArrayList(domains) --> Line_5 $$ Collections.sort(domainList) [FD]
+Line_4 $$ List<String> domainList = Lists.newArrayList(domains) --> Line_6 $$ String prefix = domainList.get(0) [FD]
+Line_7 $$ MessageDigest md5 = MessageDigest.getInstance("MD5") --> Line_9 $$ md5.update(domain.getBytes("UTF-8")) [FD]
+Line_8 $$ for (String domain : domainList) --> Line_9 $$ md5.update(domain.getBytes("UTF-8")) [FD]
+Line_7 $$ MessageDigest md5 = MessageDigest.getInstance("MD5") --> Line_10 $$ md5.update((byte) 10) [FD]
+Line_7 $$ MessageDigest md5 = MessageDigest.getInstance("MD5") --> Line_12 $$ return prefix + "-" + new String(Hex.encodeHex(md5.digest())) [FD]

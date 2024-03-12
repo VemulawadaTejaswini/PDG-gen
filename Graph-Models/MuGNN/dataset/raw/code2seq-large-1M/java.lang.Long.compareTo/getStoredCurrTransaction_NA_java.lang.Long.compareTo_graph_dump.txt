@@ -1,0 +1,8 @@
+Line_2 $$ private Long getStoredCurrTransaction() --> Line_3 $$ Long ret = INIT_TXID [CD]
+Line_4 $$ for (TransactionalState state : _states) --> Line_5 $$ Long curr = (Long) state.getData(CURRENT_TX) [FD]
+Line_5 $$ Long curr = (Long) state.getData(CURRENT_TX) --> Line_6 $$ if (curr != null && curr.compareTo(ret) > 0) [FD]
+Line_3 $$ Long ret = INIT_TXID --> Line_6 $$ if (curr != null && curr.compareTo(ret) > 0) [FD]
+Line_6 $$ if (curr != null && curr.compareTo(ret) > 0) --> Line_7 $$ ret = curr [CD]
+Line_3 $$ Long ret = INIT_TXID --> Line_7 $$ ret = curr [FD]
+Line_5 $$ Long curr = (Long) state.getData(CURRENT_TX) --> Line_7 $$ ret = curr [FD]
+Line_2 $$ private Long getStoredCurrTransaction() --> Line_10 $$ return ret [CD]

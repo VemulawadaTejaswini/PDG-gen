@@ -1,0 +1,4 @@
+Line_2 $$ public void logging_is_applied_when_using_non_static_response_specifications() --> Line_3 $$ final StringWriter writer = new StringWriter() [CD]
+Line_2 $$ public void logging_is_applied_when_using_non_static_response_specifications() --> Line_4 $$ final PrintStream captor = new PrintStream(new WriterOutputStream(writer), true) [CD]
+Line_4 $$ final PrintStream captor = new PrintStream(new WriterOutputStream(writer), true) --> Line_6 $$ RestAssured.given().config(RestAssured.config().logConfig(LogConfig.logConfig().defaultStream(captor).and().enableLoggingOfRequestAndResponseIfValidationFails())).param("firstName", "John").param("lastName", "Doe").when().get("/greet").then().spec(new ResponseSpecBuilder().expectStatusCode(400).build()) [FD]
+Line_3 $$ final StringWriter writer = new StringWriter() --> Line_9 $$ assertThat(writer.toString(), not(isEmptyOrNullString())) [FD]

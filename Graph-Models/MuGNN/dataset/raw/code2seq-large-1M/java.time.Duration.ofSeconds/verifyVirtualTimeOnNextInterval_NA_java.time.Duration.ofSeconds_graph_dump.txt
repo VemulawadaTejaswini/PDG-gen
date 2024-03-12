@@ -1,0 +1,6 @@
+Line_2 $$ public void verifyVirtualTimeOnNextInterval() --> Line_3 $$ Duration r [CD]
+Line_2 $$ public void verifyVirtualTimeOnNextInterval() --> Line_4 $$ r = StepVerifier.withVirtualTime(() -> Flux.interval(Duration.ofSeconds(3)).map( d -> "t" + d)).thenAwait(Duration.ofSeconds(3)).expectNext("t0").thenAwait(Duration.ofSeconds(3)).expectNext("t1").thenAwait(Duration.ofSeconds(3)).expectNext("t2").thenCancel().verify() [CD]
+Line_3 $$ Duration r --> Line_4 $$ r = StepVerifier.withVirtualTime(() -> Flux.interval(Duration.ofSeconds(3)).map( d -> "t" + d)).thenAwait(Duration.ofSeconds(3)).expectNext("t0").thenAwait(Duration.ofSeconds(3)).expectNext("t1").thenAwait(Duration.ofSeconds(3)).expectNext("t2").thenCancel().verify() [FD]
+Line_2 $$ public void verifyVirtualTimeOnNextInterval() --> Line_5 $$ assertThat(r.minus(Duration.ofSeconds(9)).toMillis()).isNegative() [CD]
+Line_3 $$ Duration r --> Line_5 $$ assertThat(r.minus(Duration.ofSeconds(9)).toMillis()).isNegative() [FD]
+Line_4 $$ r = StepVerifier.withVirtualTime(() -> Flux.interval(Duration.ofSeconds(3)).map( d -> "t" + d)).thenAwait(Duration.ofSeconds(3)).expectNext("t0").thenAwait(Duration.ofSeconds(3)).expectNext("t1").thenAwait(Duration.ofSeconds(3)).expectNext("t2").thenCancel().verify() --> Line_5 $$ assertThat(r.minus(Duration.ofSeconds(9)).toMillis()).isNegative() [FD]

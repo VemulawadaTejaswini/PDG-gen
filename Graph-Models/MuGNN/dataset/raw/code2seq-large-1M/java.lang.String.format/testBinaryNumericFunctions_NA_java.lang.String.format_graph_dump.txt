@@ -1,0 +1,6 @@
+Line_2 $$ public void testBinaryNumericFunctions() throws Exception --> Line_3 $$ final List<String> binaryFunctions = Lists.newArrayList("+", "-", "*") [CD]
+Line_2 $$ public void testBinaryNumericFunctions() throws Exception --> Line_4 $$ new TestBuilder(allocator).sqlQuery("select stars, review_count from " + PARQUET_TABLE).unOrdered().baselineColumns("stars", "review_count").baselineValues(4.5f, 11).baselineValues(3.5f, 22).baselineValues(5.0f, 33).baselineValues(4.5f, 11).baselineValues(1f, 1).go() [CD]
+Line_2 $$ public void testBinaryNumericFunctions() throws Exception --> Line_5 $$ final String exprs = " cast((stars %s review_count) as double), cast((stars %s stars) as double), cast((review_count %s review_count) as double) " [CD]
+Line_6 $$ for (String s : binaryFunctions) --> Line_7 $$ String elasticQuery = String.format("select " + exprs + " from %s", s, s, s, ELASTIC_TABLE) [FD]
+Line_7 $$ String elasticQuery = String.format("select " + exprs + " from %s", s, s, s, ELASTIC_TABLE) --> Line_8 $$ testBuilder().sqlQuery(elasticQuery).unOrdered().sqlBaselineQuery(String.format("select " + exprs + " from %s", s, s, s, PARQUET_TABLE)).go() [FD]
+Line_6 $$ for (String s : binaryFunctions) --> Line_8 $$ testBuilder().sqlQuery(elasticQuery).unOrdered().sqlBaselineQuery(String.format("select " + exprs + " from %s", s, s, s, PARQUET_TABLE)).go() [FD]

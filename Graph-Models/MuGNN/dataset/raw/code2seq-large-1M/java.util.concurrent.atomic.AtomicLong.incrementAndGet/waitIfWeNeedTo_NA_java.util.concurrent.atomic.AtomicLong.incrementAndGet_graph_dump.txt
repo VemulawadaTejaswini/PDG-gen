@@ -1,0 +1,6 @@
+Line_2 $$ public BcrypWaitingResource waitIfWeNeedTo() throws AuthenticationServiceException --> Line_3 $$ long request = counter.incrementAndGet() [CD]
+Line_5 $$ if (exchange != null) --> Line_6 $$ BcrypWaitingResource resource = exchange.poll(timeoutMs, TimeUnit.MILLISECONDS) [CD]
+Line_5 $$ if (exchange != null) --> Line_7 $$ if (resource == null) [CD]
+Line_6 $$ BcrypWaitingResource resource = exchange.poll(timeoutMs, TimeUnit.MILLISECONDS) --> Line_7 $$ if (resource == null) [FD]
+Line_7 $$ if (resource == null) --> Line_10 $$ return resource [CD]
+Line_5 $$ if (exchange != null) --> Line_13 $$ return new BcrypWaitingResource(null, "Request nr:" + request) [CD]

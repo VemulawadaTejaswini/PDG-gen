@@ -1,0 +1,8 @@
+Line_2 $$ public void testPutWithPipelineFactoryError() throws Exception --> Line_3 $$ BytesReference source = BytesReference.bytes(jsonBuilder().startObject().field("description", "my_pipeline").startArray("processors").startObject().startObject("test").field("unused", ":sad_face:").endObject().endObject().endArray().endObject()) [CD]
+Line_2 $$ public void testPutWithPipelineFactoryError() throws Exception --> Line_4 $$ PutPipelineRequest putPipelineRequest = new PutPipelineRequest("_id2", source, XContentType.JSON) [CD]
+Line_2 $$ public void testPutWithPipelineFactoryError() throws Exception --> Line_5 $$ Exception e = expectThrows(ElasticsearchParseException.class, () -> client().admin().cluster().putPipeline(putPipelineRequest).actionGet()) [CD]
+Line_4 $$ PutPipelineRequest putPipelineRequest = new PutPipelineRequest("_id2", source, XContentType.JSON) --> Line_5 $$ Exception e = expectThrows(ElasticsearchParseException.class, () -> client().admin().cluster().putPipeline(putPipelineRequest).actionGet()) [FD]
+Line_2 $$ public void testPutWithPipelineFactoryError() throws Exception --> Line_6 $$ assertThat(e.getMessage(), equalTo("processor [test] doesn't support one or more provided configuration parameters [unused]")) [CD]
+Line_2 $$ public void testPutWithPipelineFactoryError() throws Exception --> Line_7 $$ GetPipelineResponse response = client().admin().cluster().prepareGetPipeline("_id2").get() [CD]
+Line_2 $$ public void testPutWithPipelineFactoryError() throws Exception --> Line_8 $$ assertFalse(response.isFound()) [CD]
+Line_7 $$ GetPipelineResponse response = client().admin().cluster().prepareGetPipeline("_id2").get() --> Line_8 $$ assertFalse(response.isFound()) [FD]

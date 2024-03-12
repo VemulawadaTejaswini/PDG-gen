@@ -1,0 +1,7 @@
+Line_2 $$ public void testSendTimeout() throws Exception --> Line_3 $$ assumeFalse(isWindowsEnvironment()) [CD]
+Line_4 $$ try (SiteToSiteClient client = getDefaultBuilder().timeout(1, TimeUnit.SECONDS).portName("input-timeout").build()) --> Line_5 $$ final Transaction transaction = client.createTransaction(TransferDirection.SEND) [FD]
+Line_5 $$ final Transaction transaction = client.createTransaction(TransferDirection.SEND) --> Line_6 $$ assertNotNull(transaction) [FD]
+Line_5 $$ final Transaction transaction = client.createTransaction(TransferDirection.SEND) --> Line_9 $$ transaction.send(packet) [FD]
+Line_7 $$ DataPacket packet = new DataPacketBuilder().contents("Example contents from client.").attr("Client attr 1", "Client attr 1 value").attr("Client attr 2", "Client attr 2 value").build() --> Line_9 $$ transaction.send(packet) [FD]
+Line_5 $$ final Transaction transaction = client.createTransaction(TransferDirection.SEND) --> Line_11 $$ transaction.confirm() [FD]
+Line_5 $$ final Transaction transaction = client.createTransaction(TransferDirection.SEND) --> Line_17 $$ completeShouldFail(transaction) [FD]

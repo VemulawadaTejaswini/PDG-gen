@@ -1,0 +1,7 @@
+Line_2 $$ public void testBadWriteSchema() throws IOException --> Line_3 $$ final File file = temp.newFile("test.parquet") [CD]
+Line_2 $$ public void testBadWriteSchema() throws IOException --> Line_4 $$ file.delete() [CD]
+Line_3 $$ final File file = temp.newFile("test.parquet") --> Line_4 $$ file.delete() [FD]
+Line_2 $$ public void testBadWriteSchema() throws IOException --> Line_5 $$ TestUtils.assertThrows("Should reject a schema with an empty group", InvalidSchemaException.class, new Callable<Void>() [CD]
+Line_3 $$ final File file = temp.newFile("test.parquet") --> Line_7 $$ ExampleParquetWriter.builder(new Path(file.toString())).withType(Types.buildMessage().addField(new GroupType(REQUIRED, "invalid_group")).named("invalid_message")).build() [FD]
+Line_2 $$ public void testBadWriteSchema() throws IOException --> Line_11 $$ Assert.assertFalse("Should not create a file when schema is rejected", file.exists()) [CD]
+Line_3 $$ final File file = temp.newFile("test.parquet") --> Line_11 $$ Assert.assertFalse("Should not create a file when schema is rejected", file.exists()) [FD]

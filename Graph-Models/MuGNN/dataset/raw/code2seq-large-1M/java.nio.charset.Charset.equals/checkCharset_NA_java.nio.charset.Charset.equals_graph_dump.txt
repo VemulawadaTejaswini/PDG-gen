@@ -1,0 +1,8 @@
+Line_2 $$ public void checkCharset(String expression, Charset expectedCharset) --> Line_3 $$ for (String sql : buildQueries(expression)) [FD]
+Line_3 $$ for (String sql : buildQueries(expression)) --> Line_4 $$ RelDataType actualType = getColumnType(sql) [FD]
+Line_4 $$ RelDataType actualType = getColumnType(sql) --> Line_5 $$ Charset actualCharset = actualType.getCharset() [FD]
+Line_2 $$ public void checkCharset(String expression, Charset expectedCharset) --> Line_6 $$ if (!expectedCharset.equals(actualCharset)) [FD]
+Line_5 $$ Charset actualCharset = actualType.getCharset() --> Line_6 $$ if (!expectedCharset.equals(actualCharset)) [FD]
+Line_6 $$ if (!expectedCharset.equals(actualCharset)) --> Line_7 $$ fail("\n" + "Expected=" + expectedCharset.name() + "\n" + "  actual=" + actualCharset.name()) [CD]
+Line_2 $$ public void checkCharset(String expression, Charset expectedCharset) --> Line_7 $$ fail("\n" + "Expected=" + expectedCharset.name() + "\n" + "  actual=" + actualCharset.name()) [FD]
+Line_5 $$ Charset actualCharset = actualType.getCharset() --> Line_7 $$ fail("\n" + "Expected=" + expectedCharset.name() + "\n" + "  actual=" + actualCharset.name()) [FD]

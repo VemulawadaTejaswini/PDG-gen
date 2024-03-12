@@ -1,0 +1,5 @@
+Line_2 $$ public static Validator createFileExistsAndReadableValidator() --> Line_3 $$ return ( subject,  input,  context) -> [CD]
+Line_4 $$ final String substituted --> Line_6 $$ substituted = context.newPropertyValue(input).evaluateAttributeExpressions().getValue() [FD]
+Line_10 $$ final File file = new File(substituted) --> Line_11 $$ final boolean valid = file.exists() && file.canRead() [FD]
+Line_12 $$ final String explanation = valid ? null : "File " + file + " does not exist or cannot be read" --> Line_13 $$ return new ValidationResult.Builder().subject(subject).input(input).valid(valid).explanation(explanation).build() [FD]
+Line_11 $$ final boolean valid = file.exists() && file.canRead() --> Line_13 $$ return new ValidationResult.Builder().subject(subject).input(input).valid(valid).explanation(explanation).build() [FD]

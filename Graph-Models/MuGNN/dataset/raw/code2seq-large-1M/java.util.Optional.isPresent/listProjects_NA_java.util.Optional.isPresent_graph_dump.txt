@@ -1,0 +1,6 @@
+Line_2 $$ public CompletableFuture<List<ProjectDto>> listProjects(@Param("status") Optional<String> status) --> Line_3 $$ if (status.isPresent()) [CD]
+Line_2 $$ public CompletableFuture<List<ProjectDto>> listProjects(@Param("status") Optional<String> status) --> Line_3 $$ if (status.isPresent()) [FD]
+Line_3 $$ if (status.isPresent()) --> Line_4 $$ checkStatusArgument(status.get()) [CD]
+Line_2 $$ public CompletableFuture<List<ProjectDto>> listProjects(@Param("status") Optional<String> status) --> Line_4 $$ checkStatusArgument(status.get()) [FD]
+Line_3 $$ if (status.isPresent()) --> Line_5 $$ return CompletableFuture.supplyAsync(() -> projectManager().listRemoved().stream().map(ProjectDto::<>new).collect(toImmutableList())) [CD]
+Line_2 $$ public CompletableFuture<List<ProjectDto>> listProjects(@Param("status") Optional<String> status) --> Line_7 $$ return CompletableFuture.supplyAsync(() -> projectManager().list().values().stream().map(DtoConverter::<>convert).collect(toImmutableList())) [CD]

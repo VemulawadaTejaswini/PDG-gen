@@ -1,0 +1,7 @@
+Line_3 $$ for (MemberName member : NullnessPropagationTransfer.NULL_IMPLIES_TRUE_PARAMETERS.keySet()) --> Line_4 $$ ImmutableSet<Integer> nullParameters = NullnessPropagationTransfer.NULL_IMPLIES_TRUE_PARAMETERS.get(member) [FD]
+Line_4 $$ ImmutableSet<Integer> nullParameters = NullnessPropagationTransfer.NULL_IMPLIES_TRUE_PARAMETERS.get(member) --> Line_5 $$ assertWithMessage(member.clazz + "#" + member.member + "()").that(nullParameters).isNotEmpty() [FD]
+Line_7 $$ for (Method method : loadClass(member.clazz).getMethods()) --> Line_8 $$ if (!method.getName().equals(member.member)) [FD]
+Line_6 $$ int found = 0 --> Line_11 $$ ++found [FD]
+Line_7 $$ for (Method method : loadClass(member.clazz).getMethods()) --> Line_13 $$ assertThat(invokeWithSingleNullArgument(method, nullParam)).isEqualTo(Boolean.TRUE) [FD]
+Line_12 $$ for (int nullParam : nullParameters) --> Line_13 $$ assertThat(invokeWithSingleNullArgument(method, nullParam)).isEqualTo(Boolean.TRUE) [FD]
+Line_6 $$ int found = 0 --> Line_16 $$ assertWithMessage(member.clazz + "#" + member.member + "()").that(found).isGreaterThan(0) [FD]

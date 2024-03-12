@@ -1,0 +1,5 @@
+Line_2 $$ public void willAbortIfAuthorizationCodeIsInvalid() throws Exception --> Line_3 $$ when(request.getParameter(OAuth.OAUTH_CODE)).thenReturn("invalidAuthCode") [CD]
+Line_2 $$ public void willAbortIfAuthorizationCodeIsInvalid() throws Exception --> Line_4 $$ when(securityTokens.findUsernameForAuthorizationCode("invalidAuthCode")).thenReturn(Optional.empty()) [CD]
+Line_2 $$ public void willAbortIfAuthorizationCodeIsInvalid() throws Exception --> Line_5 $$ securityInterceptor.filter(context) [CD]
+Line_2 $$ public void willAbortIfAuthorizationCodeIsInvalid() throws Exception --> Line_6 $$ verify(identity, never()).tryLogin() [CD]
+Line_2 $$ public void willAbortIfAuthorizationCodeIsInvalid() throws Exception --> Line_7 $$ verify(context).abortWith(any(Response.class)) [CD]

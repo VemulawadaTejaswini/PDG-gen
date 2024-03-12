@@ -1,0 +1,7 @@
+Line_2 $$ public <T> T coreSafeCall(final String taskName, final Callable<T> task) --> Line_3 $$ SpoutSnapshotLock lock = getSnapshotLock() [CD]
+Line_2 $$ public <T> T coreSafeCall(final String taskName, final Callable<T> task) --> Line_4 $$ lock.coreReadLock(taskName) [CD]
+Line_2 $$ public <T> T coreSafeCall(final String taskName, final Callable<T> task) --> Line_4 $$ lock.coreReadLock(taskName) [FD]
+Line_3 $$ SpoutSnapshotLock lock = getSnapshotLock() --> Line_4 $$ lock.coreReadLock(taskName) [FD]
+Line_2 $$ public <T> T coreSafeCall(final String taskName, final Callable<T> task) --> Line_7 $$ return task.call() [FD]
+Line_3 $$ SpoutSnapshotLock lock = getSnapshotLock() --> Line_13 $$ lock.coreReadUnlock(taskName) [FD]
+Line_2 $$ public <T> T coreSafeCall(final String taskName, final Callable<T> task) --> Line_13 $$ lock.coreReadUnlock(taskName) [FD]

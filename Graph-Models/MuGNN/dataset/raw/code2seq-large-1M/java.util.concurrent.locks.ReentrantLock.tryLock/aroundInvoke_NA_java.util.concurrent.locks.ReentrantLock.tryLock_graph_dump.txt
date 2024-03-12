@@ -1,0 +1,8 @@
+Line_2 $$ public Object aroundInvoke(InvocationContext invocation) throws Exception --> Line_3 $$ Synchronized sa = invocation.getTarget().getClass().getAnnotation(Synchronized.class) [FD]
+Line_2 $$ public Object aroundInvoke(InvocationContext invocation) throws Exception --> Line_3 $$ Synchronized sa = invocation.getTarget().getClass().getAnnotation(Synchronized.class) [CD]
+Line_2 $$ public Object aroundInvoke(InvocationContext invocation) throws Exception --> Line_4 $$ long timeout = sa.timeout() != 0 ? sa.timeout() : defaultTimeout [CD]
+Line_2 $$ public Object aroundInvoke(InvocationContext invocation) throws Exception --> Line_5 $$ log.debug("trying the lock") [CD]
+Line_2 $$ public Object aroundInvoke(InvocationContext invocation) throws Exception --> Line_6 $$ if (lock.tryLock(timeout, TimeUnit.MILLISECONDS)) [CD]
+Line_4 $$ long timeout = sa.timeout() != 0 ? sa.timeout() : defaultTimeout --> Line_6 $$ if (lock.tryLock(timeout, TimeUnit.MILLISECONDS)) [FD]
+Line_2 $$ public Object aroundInvoke(InvocationContext invocation) throws Exception --> Line_9 $$ return invocation.proceed() [FD]
+Line_2 $$ public Object aroundInvoke(InvocationContext invocation) throws Exception --> Line_15 $$ throw new LockTimeoutException("could not acquire lock on @Synchronized component with class " + invocation.getTarget().getClass().getName() + " before executing method " + invocation.getMethod()) [FD]

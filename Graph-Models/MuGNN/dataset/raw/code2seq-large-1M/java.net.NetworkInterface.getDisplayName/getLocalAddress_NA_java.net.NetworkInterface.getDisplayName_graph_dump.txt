@@ -1,0 +1,8 @@
+Line_2 $$ public InetAddress getLocalAddress(NetworkInterface networkInterface, boolean isIPv6, InetAddress remoteAddress) --> Line_3 $$ for (InetAddress localAddress : getInetAddresses(networkInterface)) [FD]
+Line_2 $$ public InetAddress getLocalAddress(NetworkInterface networkInterface, boolean isIPv6, InetAddress remoteAddress) --> Line_4 $$ if (isIPv6 && localAddress instanceof Inet6Address) [FD]
+Line_3 $$ for (InetAddress localAddress : getInetAddresses(networkInterface)) --> Line_4 $$ if (isIPv6 && localAddress instanceof Inet6Address) [FD]
+Line_4 $$ if (isIPv6 && localAddress instanceof Inet6Address) --> Line_5 $$ return localAddress [CD]
+Line_3 $$ for (InetAddress localAddress : getInetAddresses(networkInterface)) --> Line_6 $$ if (!isIPv6 && localAddress instanceof Inet4Address) [FD]
+Line_2 $$ public InetAddress getLocalAddress(NetworkInterface networkInterface, boolean isIPv6, InetAddress remoteAddress) --> Line_6 $$ if (!isIPv6 && localAddress instanceof Inet4Address) [FD]
+Line_6 $$ if (!isIPv6 && localAddress instanceof Inet4Address) --> Line_7 $$ return localAddress [CD]
+Line_2 $$ public InetAddress getLocalAddress(NetworkInterface networkInterface, boolean isIPv6, InetAddress remoteAddress) --> Line_9 $$ throw new IllegalStateException("Can't find any IPv4 or IPv6 address on interface: " + networkInterface.getDisplayName()) [FD]

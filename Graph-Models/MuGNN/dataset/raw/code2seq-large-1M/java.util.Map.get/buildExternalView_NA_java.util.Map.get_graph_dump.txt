@@ -1,0 +1,8 @@
+Line_2 $$ private ExternalView buildExternalView(String tableName, FakePropertyStore propertyStore, Map<Integer, List<String>> partitionToServerMapping, List<String> segmentList) throws Exception --> Line_3 $$ ExternalView externalView = new ExternalView(tableName) [CD]
+Line_5 $$ LLCSegmentName llcSegmentName = new LLCSegmentName(segmentName) --> Line_6 $$ int partitionId = llcSegmentName.getPartitionId() [FD]
+Line_2 $$ private ExternalView buildExternalView(String tableName, FakePropertyStore propertyStore, Map<Integer, List<String>> partitionToServerMapping, List<String> segmentList) throws Exception --> Line_7 $$ for (String server : partitionToServerMapping.get(partitionId)) [FD]
+Line_6 $$ int partitionId = llcSegmentName.getPartitionId() --> Line_7 $$ for (String server : partitionToServerMapping.get(partitionId)) [FD]
+Line_3 $$ ExternalView externalView = new ExternalView(tableName) --> Line_8 $$ externalView.setState(segmentName, server, "ONLINE") [FD]
+Line_4 $$ for (String segmentName : segmentList) --> Line_8 $$ externalView.setState(segmentName, server, "ONLINE") [FD]
+Line_7 $$ for (String server : partitionToServerMapping.get(partitionId)) --> Line_8 $$ externalView.setState(segmentName, server, "ONLINE") [FD]
+Line_2 $$ private ExternalView buildExternalView(String tableName, FakePropertyStore propertyStore, Map<Integer, List<String>> partitionToServerMapping, List<String> segmentList) throws Exception --> Line_11 $$ return externalView [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private synchronized Future<BulkResponse> submitBatch() --> Line_4 $$ final int batchableSize = Math.min(batchSize, unsentRecords.size()) [CD]
+Line_2 $$ private synchronized Future<BulkResponse> submitBatch() --> Line_5 $$ final List<R> batch = new ArrayList(batchableSize) [CD]
+Line_2 $$ private synchronized Future<BulkResponse> submitBatch() --> Line_6 $$ for (int i = 0; i < batchableSize; i++) [CD]
+Line_4 $$ final int batchableSize = Math.min(batchSize, unsentRecords.size()) --> Line_6 $$ for (int i = 0; i < batchableSize; i++) [FD]
+Line_6 $$ for (int i = 0; i < batchableSize; i++) --> Line_7 $$ batch.add(unsentRecords.removeFirst()) [CD]
+Line_5 $$ final List<R> batch = new ArrayList(batchableSize) --> Line_7 $$ batch.add(unsentRecords.removeFirst()) [FD]
+Line_2 $$ private synchronized Future<BulkResponse> submitBatch() --> Line_10 $$ return executor.submit(new BulkTask(batch)) [CD]

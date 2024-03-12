@@ -1,0 +1,6 @@
+Line_2 $$ protected boolean isMigrationNeeded(Key<FeedbackSession> sessionKey) --> Line_3 $$ FeedbackSession session = ofy().load().key(sessionKey).now() [FD]
+Line_2 $$ protected boolean isMigrationNeeded(Key<FeedbackSession> sessionKey) --> Line_3 $$ FeedbackSession session = ofy().load().key(sessionKey).now() [CD]
+Line_3 $$ FeedbackSession session = ofy().load().key(sessionKey).now() --> Line_5 $$ Field followingCourseTimeZoneField = session.getClass().getDeclaredField("wasFollowingCourseTimeZone") [FD]
+Line_5 $$ Field followingCourseTimeZoneField = session.getClass().getDeclaredField("wasFollowingCourseTimeZone") --> Line_6 $$ followingCourseTimeZoneField.setAccessible(true) [FD]
+Line_5 $$ Field followingCourseTimeZoneField = session.getClass().getDeclaredField("wasFollowingCourseTimeZone") --> Line_7 $$ return !followingCourseTimeZoneField.getBoolean(session) [FD]
+Line_3 $$ FeedbackSession session = ofy().load().key(sessionKey).now() --> Line_7 $$ return !followingCourseTimeZoneField.getBoolean(session) [FD]

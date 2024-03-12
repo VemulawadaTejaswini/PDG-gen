@@ -1,0 +1,8 @@
+Line_2 $$ public void testNegativeUDFForwardingLoadCasterWithMultipleParams() throws Exception --> Line_3 $$ File inputfile = Util.createFile(new String[] [CD]
+Line_2 $$ public void testNegativeUDFForwardingLoadCasterWithMultipleParams() throws Exception --> Line_4 $$ pig.registerQuery("A = load '" + inputfile.toString() + "' using PigStorage() as (a1:bytearray);\n") [CD]
+Line_3 $$ File inputfile = Util.createFile(new String[] --> Line_4 $$ pig.registerQuery("A = load '" + inputfile.toString() + "' using PigStorage() as (a1:bytearray);\n") [FD]
+Line_2 $$ public void testNegativeUDFForwardingLoadCasterWithMultipleParams() throws Exception --> Line_5 $$ pig.registerQuery("B = load '" + inputfile.toString() + "' using org.apache.pig.test.TestLineageFindRelVisitor$SillyLoaderWithLoadCasterWithExtraConstructor2() as (b1:bytearray);\n") [CD]
+Line_3 $$ File inputfile = Util.createFile(new String[] --> Line_5 $$ pig.registerQuery("B = load '" + inputfile.toString() + "' using org.apache.pig.test.TestLineageFindRelVisitor$SillyLoaderWithLoadCasterWithExtraConstructor2() as (b1:bytearray);\n") [FD]
+Line_2 $$ public void testNegativeUDFForwardingLoadCasterWithMultipleParams() throws Exception --> Line_6 $$ pig.registerQuery("C = join A by a1, B by b1;\n") [CD]
+Line_2 $$ public void testNegativeUDFForwardingLoadCasterWithMultipleParams() throws Exception --> Line_7 $$ pig.registerQuery("D = FOREACH C GENERATE TOTUPLE(a1,b1) as tupleD;\n") [CD]
+Line_2 $$ public void testNegativeUDFForwardingLoadCasterWithMultipleParams() throws Exception --> Line_8 $$ pig.registerQuery("E = FOREACH D GENERATE (chararray) tupleD.a1;\n") [CD]

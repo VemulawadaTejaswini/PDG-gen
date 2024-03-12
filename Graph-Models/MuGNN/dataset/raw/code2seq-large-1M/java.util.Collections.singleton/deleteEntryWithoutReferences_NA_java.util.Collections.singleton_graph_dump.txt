@@ -1,0 +1,8 @@
+Line_3 $$ Delete delete = new Delete(table) --> Line_5 $$ delete.setWhere(whereString) [FD]
+Line_4 $$ String whereString = table.getPrimaryColumn().getQuotedName() + " = ?" --> Line_5 $$ delete.setWhere(whereString) [FD]
+Line_3 $$ Delete delete = new Delete(table) --> Line_6 $$ String sql = delete.getStatement() [FD]
+Line_7 $$ if (logger.isLogEnabled()) --> Line_8 $$ logger.logSQL(sql, Collections.singleton(id)) [CD]
+Line_6 $$ String sql = delete.getStatement() --> Line_8 $$ logger.logSQL(sql, Collections.singleton(id)) [FD]
+Line_6 $$ String sql = delete.getStatement() --> Line_10 $$ try (PreparedStatement ps = sqlConnection.prepareStatement(sql)) [FD]
+Line_10 $$ try (PreparedStatement ps = sqlConnection.prepareStatement(sql)) --> Line_11 $$ setFieldValue(ps, 1, table.getPrimaryColumn(), id) [FD]
+Line_10 $$ try (PreparedStatement ps = sqlConnection.prepareStatement(sql)) --> Line_12 $$ ps.execute() [FD]

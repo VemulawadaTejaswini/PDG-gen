@@ -1,0 +1,7 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_5 $$ DataSet<String> bcData = env.fromElements(SUFFIX) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_6 $$ DataSet<String> inData = env.fromElements(TEST_DATA) [FD]
+Line_5 $$ DataSet<String> bcData = env.fromElements(SUFFIX) --> Line_8 $$ inData.cross(inData).with(new SuffixCross()).withBroadcastSet(bcData, BC_VAR_NAME).output(new LocalCollectionOutputFormat<String>(result)) [FD]
+Line_6 $$ DataSet<String> inData = env.fromElements(TEST_DATA) --> Line_8 $$ inData.cross(inData).with(new SuffixCross()).withBroadcastSet(bcData, BC_VAR_NAME).output(new LocalCollectionOutputFormat<String>(result)) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.createCollectionsEnvironment() --> Line_9 $$ env.execute() [FD]
+Line_7 $$ List<String> result = new ArrayList<String>() --> Line_10 $$ assertEquals(TEST_DATA.length * TEST_DATA.length, result.size()) [FD]
+Line_11 $$ for (String s : result) --> Line_12 $$ assertTrue(s.indexOf(SUFFIX) == 2) [FD]

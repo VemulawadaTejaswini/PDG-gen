@@ -1,0 +1,8 @@
+Line_2 $$ public void testVersionedTypeInstanceCreation() --> Line_3 $$ handle = builder.newInstance("hello-service").version("2.0").name("hello2").build() [CD]
+Line_2 $$ public void testVersionedTypeInstanceCreation() --> Line_4 $$ handle.publish() [CD]
+Line_2 $$ public void testVersionedTypeInstanceCreation() --> Line_5 $$ String filter = format("(instance.name=%s)", "hello2") [CD]
+Line_2 $$ public void testVersionedTypeInstanceCreation() --> Line_6 $$ osgiHelper.waitForService(HelloService.class, filter, 1000) [CD]
+Line_5 $$ String filter = format("(instance.name=%s)", "hello2") --> Line_6 $$ osgiHelper.waitForService(HelloService.class, filter, 1000) [FD]
+Line_2 $$ public void testVersionedTypeInstanceCreation() --> Line_7 $$ HelloService service = osgiHelper.getServiceObject(HelloService.class, filter) [CD]
+Line_5 $$ String filter = format("(instance.name=%s)", "hello2") --> Line_7 $$ HelloService service = osgiHelper.getServiceObject(HelloService.class, filter) [FD]
+Line_2 $$ public void testVersionedTypeInstanceCreation() --> Line_8 $$ assertEquals(service.hello("Guillaume"), "Hello2 Guillaume") [CD]

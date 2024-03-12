@@ -1,0 +1,5 @@
+Line_2 $$ public void testSQL4() throws SearchParseException --> Line_3 $$ SearchCondition<Condition> filter = parser.parse("(name==test,level==18);(name==test1,level!=19)") [CD]
+Line_2 $$ public void testSQL4() throws SearchParseException --> Line_4 $$ String sql = SearchUtils.toSQL(filter, "table") [CD]
+Line_3 $$ SearchCondition<Condition> filter = parser.parse("(name==test,level==18);(name==test1,level!=19)") --> Line_4 $$ String sql = SearchUtils.toSQL(filter, "table") [FD]
+Line_2 $$ public void testSQL4() throws SearchParseException --> Line_5 $$ assertTrue(("SELECT * FROM table WHERE ((name = 'test') OR (level = '18'))" + " AND ((name = 'test1') OR (level <> '19'))").equals(sql) || ("SELECT * FROM table WHERE ((name = 'test1') OR (level <> '19'))" + " AND ((name = 'test') OR (level = '18'))").equals(sql)) [CD]
+Line_4 $$ String sql = SearchUtils.toSQL(filter, "table") --> Line_5 $$ assertTrue(("SELECT * FROM table WHERE ((name = 'test') OR (level = '18'))" + " AND ((name = 'test1') OR (level <> '19'))").equals(sql) || ("SELECT * FROM table WHERE ((name = 'test1') OR (level <> '19'))" + " AND ((name = 'test') OR (level = '18'))").equals(sql)) [FD]

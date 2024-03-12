@@ -1,0 +1,7 @@
+Line_2 $$ public static List<Treatments> latestForGraphSystime(int number, double startTime, double endTime) --> Line_3 $$ fixUpTable() [CD]
+Line_2 $$ public static List<Treatments> latestForGraphSystime(int number, double startTime, double endTime) --> Line_4 $$ DecimalFormat df = new DecimalFormat("#") [CD]
+Line_2 $$ public static List<Treatments> latestForGraphSystime(int number, double startTime, double endTime) --> Line_5 $$ df.setMaximumFractionDigits(1) [CD]
+Line_4 $$ DecimalFormat df = new DecimalFormat("#") --> Line_5 $$ df.setMaximumFractionDigits(1) [FD]
+Line_2 $$ public static List<Treatments> latestForGraphSystime(int number, double startTime, double endTime) --> Line_6 $$ return new Select().from(Treatments.class).where("systimestamp >= ? and systimestamp <= ?", df.format(startTime), df.format(endTime)).orderBy("systimestamp asc").limit(number).execute() [FD]
+Line_2 $$ public static List<Treatments> latestForGraphSystime(int number, double startTime, double endTime) --> Line_6 $$ return new Select().from(Treatments.class).where("systimestamp >= ? and systimestamp <= ?", df.format(startTime), df.format(endTime)).orderBy("systimestamp asc").limit(number).execute() [CD]
+Line_4 $$ DecimalFormat df = new DecimalFormat("#") --> Line_6 $$ return new Select().from(Treatments.class).where("systimestamp >= ? and systimestamp <= ?", df.format(startTime), df.format(endTime)).orderBy("systimestamp asc").limit(number).execute() [FD]

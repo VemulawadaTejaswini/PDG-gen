@@ -1,0 +1,7 @@
+Line_2 $$ private List<Given> loadGivens(Map testCase) throws IOException --> Line_3 $$ List<Given> givens = Lists.newArrayList() [CD]
+Line_2 $$ private List<Given> loadGivens(Map testCase) throws IOException --> Line_4 $$ Iterable given = checkInstanceOf("given", testCase.get("given"), Iterable.class) [CD]
+Line_2 $$ private List<Given> loadGivens(Map testCase) throws IOException --> Line_4 $$ Iterable given = checkInstanceOf("given", testCase.get("given"), Iterable.class) [FD]
+Line_5 $$ for (Object g : given) --> Line_6 $$ Map<String, ?> given1 = (Map<String, ?>) checkInstanceOf("given", g, Map.class) [FD]
+Line_2 $$ private List<Given> loadGivens(Map testCase) throws IOException --> Line_8 $$ throw new IllegalArgumentException(String.format("can't load %s: a given has no properties at all", testCase)) [FD]
+Line_3 $$ List<Given> givens = Lists.newArrayList() --> Line_11 $$ givens.add(findLoader(given1, firstKey).load(given1)) [FD]
+Line_2 $$ private List<Given> loadGivens(Map testCase) throws IOException --> Line_13 $$ return givens [CD]

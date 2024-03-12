@@ -1,0 +1,6 @@
+Line_2 $$ public void testServerArrayElementProjection2() throws SQLException --> Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) [CD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_5 $$ conn.createStatement().execute("CREATE TABLE t(a INTEGER PRIMARY KEY, arr INTEGER ARRAY)") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_6 $$ ResultSet rs = conn.createStatement().executeQuery("EXPLAIN SELECT arr, arr[1] from t") [FD]
+Line_6 $$ ResultSet rs = conn.createStatement().executeQuery("EXPLAIN SELECT arr, arr[1] from t") --> Line_7 $$ assertFalse(QueryUtil.getExplainPlan(rs).contains("    SERVER ARRAY ELEMENT PROJECTION")) [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_9 $$ conn.createStatement().execute("DROP TABLE IF EXISTS t") [FD]
+Line_3 $$ Connection conn = DriverManager.getConnection(getUrl()) --> Line_10 $$ conn.close() [FD]

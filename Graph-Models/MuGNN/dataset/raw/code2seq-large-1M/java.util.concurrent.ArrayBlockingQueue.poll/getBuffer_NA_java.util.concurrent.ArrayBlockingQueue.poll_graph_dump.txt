@@ -1,0 +1,8 @@
+Line_2 $$ private Buffer getBuffer(int len) --> Line_3 $$ Buffer buffer = pool.poll() [CD]
+Line_2 $$ private Buffer getBuffer(int len) --> Line_4 $$ if (buffer == null) [CD]
+Line_3 $$ Buffer buffer = pool.poll() --> Line_4 $$ if (buffer == null) [FD]
+Line_4 $$ if (buffer == null) --> Line_5 $$ buffer = new Buffer() [CD]
+Line_3 $$ Buffer buffer = pool.poll() --> Line_5 $$ buffer = new Buffer() [FD]
+Line_2 $$ private Buffer getBuffer(int len) --> Line_6 $$ if (buffer.buf == null || buffer.buf.length < len) [CD]
+Line_6 $$ if (buffer.buf == null || buffer.buf.length < len) --> Line_7 $$ buffer.buf = new byte[len] [CD]
+Line_2 $$ private Buffer getBuffer(int len) --> Line_8 $$ return buffer [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void validateConfigs(long timeoutMillis) throws PipelineException --> Line_3 $$ changeState(PreviewStatus.VALIDATING, null) [CD]
+Line_6 $$ List<Issue> stageIssues = previewPipeline.validateConfigs() --> Line_7 $$ PreviewStatus status = stageIssues.size() == 0 ? PreviewStatus.VALID : PreviewStatus.INVALID [FD]
+Line_7 $$ PreviewStatus status = stageIssues.size() == 0 ? PreviewStatus.VALID : PreviewStatus.INVALID --> Line_8 $$ changeState(status, new PreviewOutputImpl(status, new Issues(stageIssues), null, null)) [FD]
+Line_10 $$ if (e.getErrorCode() == ContainerError.CONTAINER_0165) --> Line_11 $$ changeState(PreviewStatus.INVALID, new PreviewOutputImpl(PreviewStatus.INVALID, e.getIssues(), null, e.toString())) [CD]
+Line_10 $$ if (e.getErrorCode() == ContainerError.CONTAINER_0165) --> Line_13 $$ changeState(PreviewStatus.VALIDATION_ERROR, new PreviewOutputImpl(PreviewStatus.VALIDATION_ERROR, null, null, e.toString())) [CD]

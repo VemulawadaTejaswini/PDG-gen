@@ -1,0 +1,7 @@
+Line_2 $$ public void testThreadPools() throws Exception --> Line_3 $$ Configuration configuration = new XmlConfiguration(this.getClass().getResource("/configs/thread-pools.xml")) [CD]
+Line_2 $$ public void testThreadPools() throws Exception --> Line_4 $$ final CacheManager cacheManager = CacheManagerBuilder.newCacheManager(configuration) [CD]
+Line_3 $$ Configuration configuration = new XmlConfiguration(this.getClass().getResource("/configs/thread-pools.xml")) --> Line_4 $$ final CacheManager cacheManager = CacheManagerBuilder.newCacheManager(configuration) [FD]
+Line_2 $$ public void testThreadPools() throws Exception --> Line_5 $$ cacheManager.init() [CD]
+Line_4 $$ final CacheManager cacheManager = CacheManagerBuilder.newCacheManager(configuration) --> Line_5 $$ cacheManager.init() [FD]
+Line_4 $$ final CacheManager cacheManager = CacheManagerBuilder.newCacheManager(configuration) --> Line_7 $$ Cache<String, String> cache = cacheManager.createCache("testThreadPools", newCacheConfigurationBuilder(String.class, String.class, heap(10)).add(new DefaultCacheLoaderWriterConfiguration(ThreadRememberingLoaderWriter.class)).add(newUnBatchedWriteBehindConfiguration().useThreadPool("small")).build()) [FD]
+Line_4 $$ final CacheManager cacheManager = CacheManagerBuilder.newCacheManager(configuration) --> Line_12 $$ cacheManager.close() [FD]

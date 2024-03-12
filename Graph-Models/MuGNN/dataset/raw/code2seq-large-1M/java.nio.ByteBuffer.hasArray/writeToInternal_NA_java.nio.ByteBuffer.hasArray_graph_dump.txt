@@ -1,0 +1,8 @@
+Line_2 $$ void writeToInternal(OutputStream out, int sourceOffset, int numberToWrite) throws IOException --> Line_3 $$ if (buffer.hasArray()) [CD]
+Line_3 $$ if (buffer.hasArray()) --> Line_4 $$ int bufferOffset = buffer.arrayOffset() + buffer.position() + sourceOffset [CD]
+Line_3 $$ if (buffer.hasArray()) --> Line_5 $$ out.write(buffer.array(), bufferOffset, numberToWrite) [CD]
+Line_2 $$ void writeToInternal(OutputStream out, int sourceOffset, int numberToWrite) throws IOException --> Line_5 $$ out.write(buffer.array(), bufferOffset, numberToWrite) [FD]
+Line_4 $$ int bufferOffset = buffer.arrayOffset() + buffer.position() + sourceOffset --> Line_5 $$ out.write(buffer.array(), bufferOffset, numberToWrite) [FD]
+Line_3 $$ if (buffer.hasArray()) --> Line_6 $$ return [CD]
+Line_2 $$ void writeToInternal(OutputStream out, int sourceOffset, int numberToWrite) throws IOException --> Line_8 $$ ByteBufferWriter.write(slice(sourceOffset, sourceOffset + numberToWrite), out) [FD]
+Line_2 $$ void writeToInternal(OutputStream out, int sourceOffset, int numberToWrite) throws IOException --> Line_8 $$ ByteBufferWriter.write(slice(sourceOffset, sourceOffset + numberToWrite), out) [CD]

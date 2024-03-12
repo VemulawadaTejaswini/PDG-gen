@@ -1,0 +1,7 @@
+Line_2 $$ public void beforeTransactionCompletion(Transaction tx) --> Line_3 $$ if (applyInterceptor.get()) [CD]
+Line_3 $$ if (applyInterceptor.get()) --> Line_4 $$ LOGGER.info("Fetch Repository from another transaction") [CD]
+Line_3 $$ if (applyInterceptor.get()) --> Line_5 $$ assertFalse(getSessionFactory().getCache().containsEntity(Repository.class, 1L)) [CD]
+Line_3 $$ if (applyInterceptor.get()) --> Line_6 $$ executeSync(() -> [CD]
+Line_7 $$ Session _session = getSessionFactory().openSession() --> Line_8 $$ Repository repository = (Repository) _session.get(Repository.class, 1L) [FD]
+Line_7 $$ Session _session = getSessionFactory().openSession() --> Line_10 $$ _session.close() [FD]
+Line_3 $$ if (applyInterceptor.get()) --> Line_13 $$ assertTrue(getSessionFactory().getCache().containsEntity(Repository.class, 1L)) [CD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void testPrimitiveGeometry() throws Exception --> Line_3 $$ IgniteCache<Long, Geometry> cache = createCache("geom", true, Long.class, Geometry.class) [CD]
+Line_5 $$ WKTReader r = new WKTReader() --> Line_6 $$ for (long i = 0; i < 100; i++) cache.put(i, r.read("POINT(" + i + " " + i + ")")) [FD]
+Line_5 $$ WKTReader r = new WKTReader() --> Line_7 $$ String plan = cache.query(new SqlFieldsQuery("explain select _key from Geometry where _val && ?").setArgs(r.read("POLYGON((5 70, 5 80, 30 80, 30 70, 5 70))")).setLocal(true)).getAll().get(0).get(0).toString().toLowerCase() [FD]
+Line_7 $$ String plan = cache.query(new SqlFieldsQuery("explain select _key from Geometry where _val && ?").setArgs(r.read("POLYGON((5 70, 5 80, 30 80, 30 70, 5 70))")).setLocal(true)).getAll().get(0).get(0).toString().toLowerCase() --> Line_8 $$ assertTrue("__ explain: " + plan, plan.contains("_val_idx")) [FD]

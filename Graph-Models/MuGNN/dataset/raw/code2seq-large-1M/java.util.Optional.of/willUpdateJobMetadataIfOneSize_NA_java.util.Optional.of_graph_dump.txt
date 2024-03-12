@@ -1,0 +1,7 @@
+Line_2 $$ public void willUpdateJobMetadataIfOneSize() throws GenieException --> Line_3 $$ final JobEntity jobEntity = Mockito.mock(JobEntity.class) [CD]
+Line_2 $$ public void willUpdateJobMetadataIfOneSize() throws GenieException --> Line_4 $$ Mockito.when(jobEntity.getStatus()).thenReturn(JobStatus.FAILED) [CD]
+Line_2 $$ public void willUpdateJobMetadataIfOneSize() throws GenieException --> Line_5 $$ Mockito.when(this.jobRepository.findByUniqueId(JOB_1_ID)).thenReturn(Optional.of(jobEntity)) [CD]
+Line_2 $$ public void willUpdateJobMetadataIfOneSize() throws GenieException --> Line_6 $$ Mockito.when(jobEntity.getExitCode()).thenReturn(Optional.of(1)) [CD]
+Line_2 $$ public void willUpdateJobMetadataIfOneSize() throws GenieException --> Line_7 $$ this.jobPersistenceService.setJobCompletionInformation(JOB_1_ID, 0, JobStatus.FAILED, "k", null, 100L) [CD]
+Line_2 $$ public void willUpdateJobMetadataIfOneSize() throws GenieException --> Line_8 $$ Mockito.verify(jobEntity, Mockito.times(1)).setStdErrSize(100L) [CD]
+Line_2 $$ public void willUpdateJobMetadataIfOneSize() throws GenieException --> Line_9 $$ Mockito.verify(jobEntity, Mockito.times(1)).setStdOutSize(null) [CD]

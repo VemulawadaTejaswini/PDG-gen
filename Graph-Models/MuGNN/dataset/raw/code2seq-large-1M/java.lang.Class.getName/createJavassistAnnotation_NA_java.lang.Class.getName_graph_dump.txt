@@ -1,0 +1,8 @@
+Line_2 $$ public static javassist.bytecode.annotation.Annotation createJavassistAnnotation(java.lang.annotation.Annotation annotation, ConstPool cp) --> Line_4 $$ javassist.bytecode.annotation.Annotation newAnnotation = new Annotation(annotation.annotationType().getName(), cp) [FD]
+Line_2 $$ public static javassist.bytecode.annotation.Annotation createJavassistAnnotation(java.lang.annotation.Annotation annotation, ConstPool cp) --> Line_5 $$ for (Method m : annotation.annotationType().getDeclaredMethods()) [FD]
+Line_5 $$ for (Method m : annotation.annotationType().getDeclaredMethods()) --> Line_6 $$ Object val = m.invoke(annotation) [FD]
+Line_2 $$ public static javassist.bytecode.annotation.Annotation createJavassistAnnotation(java.lang.annotation.Annotation annotation, ConstPool cp) --> Line_6 $$ Object val = m.invoke(annotation) [FD]
+Line_4 $$ javassist.bytecode.annotation.Annotation newAnnotation = new Annotation(annotation.annotationType().getName(), cp) --> Line_7 $$ newAnnotation.addMemberValue(m.getName(), createMemberValue(m.getReturnType(), val, cp)) [FD]
+Line_5 $$ for (Method m : annotation.annotationType().getDeclaredMethods()) --> Line_7 $$ newAnnotation.addMemberValue(m.getName(), createMemberValue(m.getReturnType(), val, cp)) [FD]
+Line_6 $$ Object val = m.invoke(annotation) --> Line_7 $$ newAnnotation.addMemberValue(m.getName(), createMemberValue(m.getReturnType(), val, cp)) [FD]
+Line_2 $$ public static javassist.bytecode.annotation.Annotation createJavassistAnnotation(java.lang.annotation.Annotation annotation, ConstPool cp) --> Line_7 $$ newAnnotation.addMemberValue(m.getName(), createMemberValue(m.getReturnType(), val, cp)) [FD]

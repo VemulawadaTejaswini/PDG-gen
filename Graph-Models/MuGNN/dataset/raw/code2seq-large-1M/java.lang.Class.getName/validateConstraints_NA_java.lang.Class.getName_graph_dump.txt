@@ -1,0 +1,7 @@
+Line_2 $$ public void validateConstraints() throws Exception --> Line_3 $$ gfsh.executeAndAssertThat("create region --name=/FOO --type=REPLICATE" + " --key-constraint=" + TestConstraint.class.getName() + " --value-constraint=" + TestConstraint.class.getName()).statusIsSuccess() [CD]
+Line_2 $$ public void validateConstraints() throws Exception --> Line_4 $$ Region foo = server.getCache().getRegion("/FOO") [CD]
+Line_2 $$ public void validateConstraints() throws Exception --> Line_5 $$ assertThat(foo.getAttributes().getKeyConstraint().getName()).isEqualTo(TestConstraint.class.getName()) [CD]
+Line_4 $$ Region foo = server.getCache().getRegion("/FOO") --> Line_5 $$ assertThat(foo.getAttributes().getKeyConstraint().getName()).isEqualTo(TestConstraint.class.getName()) [FD]
+Line_2 $$ public void validateConstraints() throws Exception --> Line_6 $$ assertThat(foo.getAttributes().getValueConstraint().getName()).isEqualTo(TestConstraint.class.getName()) [CD]
+Line_4 $$ Region foo = server.getCache().getRegion("/FOO") --> Line_6 $$ assertThat(foo.getAttributes().getValueConstraint().getName()).isEqualTo(TestConstraint.class.getName()) [FD]
+Line_2 $$ public void validateConstraints() throws Exception --> Line_7 $$ gfsh.executeAndAssertThat("destroy region --name=/FOO").statusIsSuccess() [CD]

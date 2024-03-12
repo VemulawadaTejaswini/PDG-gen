@@ -1,0 +1,6 @@
+Line_2 $$ public Response cancelFailHost(@QueryParam("id") String hostUuids, @QueryParam("user") String user, @QueryParam("token") String token, @QueryParam("sudo") String sudo) throws Exception --> Line_4 $$ if (!permissionsManager.adminAction(user, token, sudo)) [FD]
+Line_4 $$ if (!permissionsManager.adminAction(user, token, sudo)) --> Line_5 $$ return Response.status(Response.Status.UNAUTHORIZED).entity("insufficient privileges").build() [CD]
+Line_2 $$ public Response cancelFailHost(@QueryParam("id") String hostUuids, @QueryParam("user") String user, @QueryParam("token") String token, @QueryParam("sudo") String sudo) throws Exception --> Line_7 $$ hostFailWorker.removeHostsForFailure(hostUuids) [FD]
+Line_8 $$ JSONObject json = new JSONObject() --> Line_9 $$ json.put("success", hostUuids.split(",").length) [FD]
+Line_2 $$ public Response cancelFailHost(@QueryParam("id") String hostUuids, @QueryParam("user") String user, @QueryParam("token") String token, @QueryParam("sudo") String sudo) throws Exception --> Line_9 $$ json.put("success", hostUuids.split(",").length) [FD]
+Line_8 $$ JSONObject json = new JSONObject() --> Line_10 $$ return Response.ok(json.toString()).build() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static GapAwareTrackingToken newInstance(@JsonProperty("index") long index, @JsonProperty("gaps") Collection<Long> gaps) --> Line_3 $$ if (gaps.isEmpty()) [CD]
+Line_2 $$ public static GapAwareTrackingToken newInstance(@JsonProperty("index") long index, @JsonProperty("gaps") Collection<Long> gaps) --> Line_3 $$ if (gaps.isEmpty()) [FD]
+Line_3 $$ if (gaps.isEmpty()) --> Line_4 $$ return new GapAwareTrackingToken(index, Collections.emptySortedSet()) [CD]
+Line_2 $$ public static GapAwareTrackingToken newInstance(@JsonProperty("index") long index, @JsonProperty("gaps") Collection<Long> gaps) --> Line_6 $$ SortedSet<Long> gapSet = new TreeSet(gaps) [CD]
+Line_2 $$ public static GapAwareTrackingToken newInstance(@JsonProperty("index") long index, @JsonProperty("gaps") Collection<Long> gaps) --> Line_7 $$ Assert.isTrue(gapSet.last() < index, () -> String.format("Gap indices [%s] should all be smaller than head index [%d]", gaps, index)) [CD]
+Line_2 $$ public static GapAwareTrackingToken newInstance(@JsonProperty("index") long index, @JsonProperty("gaps") Collection<Long> gaps) --> Line_7 $$ Assert.isTrue(gapSet.last() < index, () -> String.format("Gap indices [%s] should all be smaller than head index [%d]", gaps, index)) [FD]
+Line_6 $$ SortedSet<Long> gapSet = new TreeSet(gaps) --> Line_7 $$ Assert.isTrue(gapSet.last() < index, () -> String.format("Gap indices [%s] should all be smaller than head index [%d]", gaps, index)) [FD]
+Line_2 $$ public static GapAwareTrackingToken newInstance(@JsonProperty("index") long index, @JsonProperty("gaps") Collection<Long> gaps) --> Line_8 $$ return new GapAwareTrackingToken(index, gapSet) [CD]

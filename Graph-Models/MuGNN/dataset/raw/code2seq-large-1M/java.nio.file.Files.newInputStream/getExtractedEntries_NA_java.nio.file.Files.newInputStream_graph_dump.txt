@@ -1,0 +1,6 @@
+Line_2 $$ private static List<NameAndContent> getExtractedEntries(Path zipFile) throws IOException --> Line_3 $$ List<NameAndContent> entries = new ArrayList() [CD]
+Line_2 $$ private static List<NameAndContent> getExtractedEntries(Path zipFile) throws IOException --> Line_4 $$ try (ZipInputStream in = new ZipInputStream(Files.newInputStream(zipFile))) [FD]
+Line_4 $$ try (ZipInputStream in = new ZipInputStream(Files.newInputStream(zipFile))) --> Line_5 $$ for (ZipEntry entry = in.getNextEntry(); entry != null; entry = in.getNextEntry()) [FD]
+Line_3 $$ List<NameAndContent> entries = new ArrayList() --> Line_6 $$ entries.add(new NameAndContent(entry.getName(), ByteStreams.toByteArray(in))) [FD]
+Line_4 $$ try (ZipInputStream in = new ZipInputStream(Files.newInputStream(zipFile))) --> Line_6 $$ entries.add(new NameAndContent(entry.getName(), ByteStreams.toByteArray(in))) [FD]
+Line_2 $$ private static List<NameAndContent> getExtractedEntries(Path zipFile) throws IOException --> Line_9 $$ return entries [CD]

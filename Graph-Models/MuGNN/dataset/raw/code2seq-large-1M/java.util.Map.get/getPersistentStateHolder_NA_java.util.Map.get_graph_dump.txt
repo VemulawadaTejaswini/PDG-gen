@@ -1,0 +1,8 @@
+Line_3 $$ Tuple result = knownHolders.get(name) --> Line_4 $$ if (result == null) [FD]
+Line_4 $$ if (result == null) --> Line_5 $$ StateHolder<K, V> holder = new TransientStateHolder() [CD]
+Line_4 $$ if (result == null) --> Line_6 $$ result = knownHolders.putIfAbsent(name, new Tuple(nextIndex.getAndIncrement(), holder)) [CD]
+Line_3 $$ Tuple result = knownHolders.get(name) --> Line_6 $$ result = knownHolders.putIfAbsent(name, new Tuple(nextIndex.getAndIncrement(), holder)) [FD]
+Line_4 $$ if (result == null) --> Line_7 $$ if (result == null) [CD]
+Line_3 $$ Tuple result = knownHolders.get(name) --> Line_7 $$ if (result == null) [FD]
+Line_6 $$ result = knownHolders.putIfAbsent(name, new Tuple(nextIndex.getAndIncrement(), holder)) --> Line_7 $$ if (result == null) [FD]
+Line_7 $$ if (result == null) --> Line_8 $$ return holder [CD]

@@ -1,0 +1,6 @@
+Line_3 $$ if (StringUtils.length(entry.getDescription()) > MAX_DESCRIPTION_LENGTH) --> Line_4 $$ return Optional.of("Glossary description too long, maximum " + MAX_LENGTH_CHAR + " character") [CD]
+Line_6 $$ if (StringUtils.length(entry.getPos()) > MAX_LENGTH_CHAR) --> Line_7 $$ return Optional.of("Glossary part of speech too long, maximum " + MAX_LENGTH_CHAR + " character") [CD]
+Line_9 $$ Optional<GlossaryTerm> srcTerm = getSourceTerm(entry) --> Line_10 $$ if (!srcTerm.isPresent()) [FD]
+Line_10 $$ if (!srcTerm.isPresent()) --> Line_11 $$ return Optional.of("No source term (" + entry.getSrcLang() + ") found in Glossary entry.") [CD]
+Line_9 $$ Optional<GlossaryTerm> srcTerm = getSourceTerm(entry) --> Line_13 $$ if (StringUtils.isBlank(srcTerm.get().getContent())) [FD]
+Line_13 $$ if (StringUtils.isBlank(srcTerm.get().getContent())) --> Line_14 $$ return Optional.of("Source term content cannot be empty.") [CD]

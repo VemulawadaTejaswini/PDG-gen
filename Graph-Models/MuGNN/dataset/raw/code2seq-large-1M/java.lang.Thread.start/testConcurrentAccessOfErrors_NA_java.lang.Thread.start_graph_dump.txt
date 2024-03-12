@@ -1,0 +1,6 @@
+Line_2 $$ public void testConcurrentAccessOfErrors() throws InterruptedException --> Line_3 $$ MultiException me = new MultiException(new IllegalStateException("Initial Exception")) [CD]
+Line_2 $$ public void testConcurrentAccessOfErrors() throws InterruptedException --> Line_4 $$ Thread t = new Thread(new ExceptionChangerRunner(20, me)) [CD]
+Line_2 $$ public void testConcurrentAccessOfErrors() throws InterruptedException --> Line_5 $$ t.start() [CD]
+Line_4 $$ Thread t = new Thread(new ExceptionChangerRunner(20, me)) --> Line_5 $$ t.start() [FD]
+Line_3 $$ MultiException me = new MultiException(new IllegalStateException("Initial Exception")) --> Line_6 $$ for (Throwable th : me.getErrors()) [FD]
+Line_6 $$ for (Throwable th : me.getErrors()) --> Line_8 $$ Assert.assertNotNull(th) [FD]

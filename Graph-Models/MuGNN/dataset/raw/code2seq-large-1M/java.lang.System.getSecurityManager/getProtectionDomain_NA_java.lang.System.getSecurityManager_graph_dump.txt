@@ -1,0 +1,6 @@
+Line_2 $$ public ProtectionDomain getProtectionDomain() --> Line_3 $$ SecurityManager security = System.getSecurityManager() [CD]
+Line_2 $$ public ProtectionDomain getProtectionDomain() --> Line_4 $$ if (security != null) [CD]
+Line_3 $$ SecurityManager security = System.getSecurityManager() --> Line_4 $$ if (security != null) [FD]
+Line_4 $$ if (security != null) --> Line_5 $$ security.checkPermission(new RuntimePermission("getProtectionDomain")) [CD]
+Line_3 $$ SecurityManager security = System.getSecurityManager() --> Line_5 $$ security.checkPermission(new RuntimePermission("getProtectionDomain")) [FD]
+Line_2 $$ public ProtectionDomain getProtectionDomain() --> Line_7 $$ return pd == null ? StaticData.unknownProtectionDomain : pd [CD]

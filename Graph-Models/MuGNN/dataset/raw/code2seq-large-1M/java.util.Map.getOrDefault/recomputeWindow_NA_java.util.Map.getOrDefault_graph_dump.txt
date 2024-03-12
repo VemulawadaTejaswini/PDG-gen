@@ -1,0 +1,7 @@
+Line_2 $$ private Map<K, A> recomputeWindow(long frameTs) --> Line_3 $$ Map<K, A> window = new HashMap() [CD]
+Line_2 $$ private Map<K, A> recomputeWindow(long frameTs) --> Line_4 $$ for (long ts = frameTs - winPolicy.windowSize() + winPolicy.frameSize(); ts <= frameTs; ts += winPolicy.frameSize()) [CD]
+Line_2 $$ private Map<K, A> recomputeWindow(long frameTs) --> Line_4 $$ for (long ts = frameTs - winPolicy.windowSize() + winPolicy.frameSize(); ts <= frameTs; ts += winPolicy.frameSize()) [FD]
+Line_4 $$ for (long ts = frameTs - winPolicy.windowSize() + winPolicy.frameSize(); ts <= frameTs; ts += winPolicy.frameSize()) --> Line_5 $$ tsToKeyToAcc.getOrDefault(ts, emptyMap()).forEach(( key,  currAcc) -> combineFn.accept(window.computeIfAbsent(key,  k -> aggrOp.createFn().get()), currAcc)) [CD]
+Line_4 $$ for (long ts = frameTs - winPolicy.windowSize() + winPolicy.frameSize(); ts <= frameTs; ts += winPolicy.frameSize()) --> Line_5 $$ tsToKeyToAcc.getOrDefault(ts, emptyMap()).forEach(( key,  currAcc) -> combineFn.accept(window.computeIfAbsent(key,  k -> aggrOp.createFn().get()), currAcc)) [FD]
+Line_3 $$ Map<K, A> window = new HashMap() --> Line_5 $$ tsToKeyToAcc.getOrDefault(ts, emptyMap()).forEach(( key,  currAcc) -> combineFn.accept(window.computeIfAbsent(key,  k -> aggrOp.createFn().get()), currAcc)) [FD]
+Line_2 $$ private Map<K, A> recomputeWindow(long frameTs) --> Line_7 $$ return window [CD]

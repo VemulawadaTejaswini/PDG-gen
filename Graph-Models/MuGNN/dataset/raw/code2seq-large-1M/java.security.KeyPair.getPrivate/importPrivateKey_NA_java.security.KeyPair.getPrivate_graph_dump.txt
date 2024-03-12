@@ -1,0 +1,8 @@
+Line_2 $$ public void importPrivateKey(BurpCertificate certificate, String filename) --> Line_3 $$ setStatus("Importing private key...") [CD]
+Line_2 $$ public void importPrivateKey(BurpCertificate certificate, String filename) --> Line_4 $$ BufferedReader br [CD]
+Line_4 $$ BufferedReader br --> Line_6 $$ br = new BufferedReader(new FileReader(filename)) [FD]
+Line_7 $$ PEMParser pp = new PEMParser(br) --> Line_8 $$ PEMKeyPair pemKeyPair = (PEMKeyPair) pp.readObject() [FD]
+Line_8 $$ PEMKeyPair pemKeyPair = (PEMKeyPair) pp.readObject() --> Line_9 $$ KeyPair kp = new JcaPEMKeyConverter().getKeyPair(pemKeyPair) [FD]
+Line_7 $$ PEMParser pp = new PEMParser(br) --> Line_10 $$ pp.close() [FD]
+Line_2 $$ public void importPrivateKey(BurpCertificate certificate, String filename) --> Line_13 $$ certificate.setPrivateKey(kp.getPrivate()) [FD]
+Line_9 $$ KeyPair kp = new JcaPEMKeyConverter().getKeyPair(pemKeyPair) --> Line_13 $$ certificate.setPrivateKey(kp.getPrivate()) [FD]

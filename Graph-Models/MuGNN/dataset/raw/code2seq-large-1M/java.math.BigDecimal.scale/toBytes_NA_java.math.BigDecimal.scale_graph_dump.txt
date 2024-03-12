@@ -1,0 +1,7 @@
+Line_2 $$ public ByteBuffer toBytes(BigDecimal value, Schema schema, LogicalType type) --> Line_3 $$ int scale = ((LogicalTypes.Decimal) type).getScale() [CD]
+Line_2 $$ public ByteBuffer toBytes(BigDecimal value, Schema schema, LogicalType type) --> Line_4 $$ if (scale != value.scale()) [FD]
+Line_2 $$ public ByteBuffer toBytes(BigDecimal value, Schema schema, LogicalType type) --> Line_4 $$ if (scale != value.scale()) [CD]
+Line_3 $$ int scale = ((LogicalTypes.Decimal) type).getScale() --> Line_4 $$ if (scale != value.scale()) [FD]
+Line_2 $$ public ByteBuffer toBytes(BigDecimal value, Schema schema, LogicalType type) --> Line_5 $$ throw new AvroTypeException("Cannot encode decimal with scale " + value.scale() + " as scale " + scale) [FD]
+Line_2 $$ public ByteBuffer toBytes(BigDecimal value, Schema schema, LogicalType type) --> Line_7 $$ return ByteBuffer.wrap(value.unscaledValue().toByteArray()) [FD]
+Line_2 $$ public ByteBuffer toBytes(BigDecimal value, Schema schema, LogicalType type) --> Line_7 $$ return ByteBuffer.wrap(value.unscaledValue().toByteArray()) [CD]

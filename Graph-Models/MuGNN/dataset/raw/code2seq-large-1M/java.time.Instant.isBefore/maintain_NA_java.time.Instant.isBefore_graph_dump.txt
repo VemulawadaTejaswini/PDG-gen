@@ -1,0 +1,8 @@
+Line_6 $$ if (!throttle(node)) --> Line_7 $$ nodeRepository().fail(node.hostname(), Agent.system, reason) [CD]
+Line_11 $$ for (Node node : determineActiveNodeDownStatus()) --> Line_12 $$ Instant graceTimeEnd = node.history().event(History.Event.Type.down).get().at().plus(downTimeLimit) [FD]
+Line_12 $$ Instant graceTimeEnd = node.history().event(History.Event.Type.down).get().at().plus(downTimeLimit) --> Line_13 $$ if (graceTimeEnd.isBefore(clock.instant()) && !applicationSuspended(node) && failAllowedFor(node.type())) [FD]
+Line_11 $$ for (Node node : determineActiveNodeDownStatus()) --> Line_13 $$ if (graceTimeEnd.isBefore(clock.instant()) && !applicationSuspended(node) && failAllowedFor(node.type())) [FD]
+Line_13 $$ if (graceTimeEnd.isBefore(clock.instant()) && !applicationSuspended(node) && failAllowedFor(node.type())) --> Line_14 $$ if (!throttle(node)) [CD]
+Line_11 $$ for (Node node : determineActiveNodeDownStatus()) --> Line_14 $$ if (!throttle(node)) [FD]
+Line_14 $$ if (!throttle(node)) --> Line_15 $$ failActive(node, "Node has been down longer than " + downTimeLimit) [CD]
+Line_11 $$ for (Node node : determineActiveNodeDownStatus()) --> Line_15 $$ failActive(node, "Node has been down longer than " + downTimeLimit) [FD]

@@ -1,0 +1,5 @@
+Line_5 $$ AtomicInteger i = new AtomicInteger(0) --> Line_6 $$ Flux<Integer> source = Flux.defer(() -> Flux.just(i.incrementAndGet())).cache(Duration.ofMillis(2000)) [FD]
+Line_6 $$ Flux<Integer> source = Flux.defer(() -> Flux.just(i.incrementAndGet())).cache(Duration.ofMillis(2000)) --> Line_7 $$ StepVerifier.create(source).expectNext(1).verifyComplete() [FD]
+Line_6 $$ Flux<Integer> source = Flux.defer(() -> Flux.just(i.incrementAndGet())).cache(Duration.ofMillis(2000)) --> Line_8 $$ StepVerifier.create(source).expectNext(1).verifyComplete() [FD]
+Line_4 $$ VirtualTimeScheduler vts = VirtualTimeScheduler.getOrSet() --> Line_9 $$ vts.advanceTimeBy(Duration.ofSeconds(3)) [FD]
+Line_6 $$ Flux<Integer> source = Flux.defer(() -> Flux.just(i.incrementAndGet())).cache(Duration.ofMillis(2000)) --> Line_10 $$ StepVerifier.create(source).expectNext(2).verifyComplete() [FD]

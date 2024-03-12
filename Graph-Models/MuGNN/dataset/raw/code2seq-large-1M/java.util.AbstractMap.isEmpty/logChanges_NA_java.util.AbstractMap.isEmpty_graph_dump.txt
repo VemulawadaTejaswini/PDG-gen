@@ -1,0 +1,8 @@
+Line_2 $$ public void logChanges(TreeMap<Long, InternalRequest> requests) --> Line_3 $$ if (requests.isEmpty()) [FD]
+Line_2 $$ public void logChanges(TreeMap<Long, InternalRequest> requests) --> Line_3 $$ if (requests.isEmpty()) [CD]
+Line_3 $$ if (requests.isEmpty()) --> Line_4 $$ if (!emptyLogged) [CD]
+Line_4 $$ if (!emptyLogged) --> Line_5 $$ log.finest("No more pending requests currently.") [CD]
+Line_3 $$ if (requests.isEmpty()) --> Line_10 $$ InternalRequest r = requests.firstEntry().getValue() [CD]
+Line_2 $$ public void logChanges(TreeMap<Long, InternalRequest> requests) --> Line_10 $$ InternalRequest r = requests.firstEntry().getValue() [FD]
+Line_3 $$ if (requests.isEmpty()) --> Line_11 $$ if (lastTimeoutLogged == null || !lastTimeoutLogged.equals(r)) [CD]
+Line_11 $$ if (lastTimeoutLogged == null || !lastTimeoutLogged.equals(r)) --> Line_13 $$ log.finest("Next operation to possibly timeout will do so at " + r.getTimeoutTime()) [CD]

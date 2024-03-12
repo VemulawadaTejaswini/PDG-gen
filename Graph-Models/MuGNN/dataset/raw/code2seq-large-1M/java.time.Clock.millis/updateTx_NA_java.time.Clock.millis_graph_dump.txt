@@ -1,0 +1,8 @@
+Line_2 $$ void updateTx(long dataSize, int numOfEvents, long txnCreationTime) --> Line_3 $$ long durationInMillis = CLOCK.get().millis() - txnCreationTime [CD]
+Line_2 $$ void updateTx(long dataSize, int numOfEvents, long txnCreationTime) --> Line_4 $$ if (durationInMillis < TICK_INTERVAL) [CD]
+Line_3 $$ long durationInMillis = CLOCK.get().millis() - txnCreationTime --> Line_4 $$ if (durationInMillis < TICK_INTERVAL) [FD]
+Line_4 $$ if (durationInMillis < TICK_INTERVAL) --> Line_5 $$ update(dataSize, numOfEvents) [CD]
+Line_2 $$ void updateTx(long dataSize, int numOfEvents, long txnCreationTime) --> Line_5 $$ update(dataSize, numOfEvents) [FD]
+Line_4 $$ if (durationInMillis < TICK_INTERVAL) --> Line_8 $$ int amortizedNumOfEvents = (int) (numOfEvents * TICK_INTERVAL) / (int) durationInMillis [CD]
+Line_4 $$ if (durationInMillis < TICK_INTERVAL) --> Line_9 $$ update((dataSize * TICK_INTERVAL) / durationInMillis, amortizedNumOfEvents) [CD]
+Line_8 $$ int amortizedNumOfEvents = (int) (numOfEvents * TICK_INTERVAL) / (int) durationInMillis --> Line_9 $$ update((dataSize * TICK_INTERVAL) / durationInMillis, amortizedNumOfEvents) [FD]

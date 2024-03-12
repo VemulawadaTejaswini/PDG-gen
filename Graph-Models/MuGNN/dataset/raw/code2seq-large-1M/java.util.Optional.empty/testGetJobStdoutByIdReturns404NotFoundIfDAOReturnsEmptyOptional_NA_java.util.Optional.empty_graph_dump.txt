@@ -1,0 +1,7 @@
+Line_2 $$ public void testGetJobStdoutByIdReturns404NotFoundIfDAOReturnsEmptyOptional() throws IOException --> Line_3 $$ final JobDAO jobDAO = mock(JobDAO.class) [CD]
+Line_2 $$ public void testGetJobStdoutByIdReturns404NotFoundIfDAOReturnsEmptyOptional() throws IOException --> Line_4 $$ when(jobDAO.getStdout(any())).thenReturn(Optional.empty()) [CD]
+Line_2 $$ public void testGetJobStdoutByIdReturns404NotFoundIfDAOReturnsEmptyOptional() throws IOException --> Line_5 $$ final JobResource jobResource = resourceThatUses(jobDAO) [CD]
+Line_2 $$ public void testGetJobStdoutByIdReturns404NotFoundIfDAOReturnsEmptyOptional() throws IOException --> Line_6 $$ final Response jobStdoutResponse = jobResource.fetchJobStdoutById(TestHelpers.generateSecureSecurityContext(), TestHelpers.generateJobId()) [CD]
+Line_5 $$ final JobResource jobResource = resourceThatUses(jobDAO) --> Line_6 $$ final Response jobStdoutResponse = jobResource.fetchJobStdoutById(TestHelpers.generateSecureSecurityContext(), TestHelpers.generateJobId()) [FD]
+Line_2 $$ public void testGetJobStdoutByIdReturns404NotFoundIfDAOReturnsEmptyOptional() throws IOException --> Line_7 $$ assertThat(jobStdoutResponse.getStatus()).isEqualTo(NOT_FOUND) [CD]
+Line_6 $$ final Response jobStdoutResponse = jobResource.fetchJobStdoutById(TestHelpers.generateSecureSecurityContext(), TestHelpers.generateJobId()) --> Line_7 $$ assertThat(jobStdoutResponse.getStatus()).isEqualTo(NOT_FOUND) [FD]

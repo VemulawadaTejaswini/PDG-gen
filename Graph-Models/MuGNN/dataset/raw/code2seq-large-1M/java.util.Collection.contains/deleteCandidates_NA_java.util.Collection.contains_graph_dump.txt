@@ -1,0 +1,7 @@
+Line_2 $$ private void deleteCandidates(List<Long> deletionCandidates, Collection<Long> referencedLedgerIds, Context context) --> Line_4 $$ if (referencedLedgerIds.contains(ledgerId)) [FD]
+Line_3 $$ for (long ledgerId : deletionCandidates) --> Line_4 $$ if (referencedLedgerIds.contains(ledgerId)) [FD]
+Line_4 $$ if (referencedLedgerIds.contains(ledgerId)) --> Line_5 $$ output("Not deleting Ledger %d because is is now referenced.", ledgerId) [CD]
+Line_3 $$ for (long ledgerId : deletionCandidates) --> Line_5 $$ output("Not deleting Ledger %d because is is now referenced.", ledgerId) [FD]
+Line_3 $$ for (long ledgerId : deletionCandidates) --> Line_9 $$ context.logFactory.getBookKeeperClient().deleteLedger(ledgerId) [FD]
+Line_3 $$ for (long ledgerId : deletionCandidates) --> Line_10 $$ output("Deleted Ledger %d.", ledgerId) [FD]
+Line_3 $$ for (long ledgerId : deletionCandidates) --> Line_12 $$ output("FAILED to delete Ledger %d: %s.", ledgerId, ex.getMessage()) [FD]

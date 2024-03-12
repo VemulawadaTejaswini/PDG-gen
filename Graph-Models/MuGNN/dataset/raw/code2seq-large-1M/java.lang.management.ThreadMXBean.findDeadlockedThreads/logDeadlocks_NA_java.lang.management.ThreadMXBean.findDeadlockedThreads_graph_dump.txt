@@ -1,0 +1,7 @@
+Line_2 $$ public static void logDeadlocks() --> Line_3 $$ long[] deadlockIDs = ManagementFactory.getThreadMXBean().findDeadlockedThreads() [CD]
+Line_2 $$ public static void logDeadlocks() --> Line_4 $$ if (deadlockIDs == null) [CD]
+Line_3 $$ long[] deadlockIDs = ManagementFactory.getThreadMXBean().findDeadlockedThreads() --> Line_4 $$ if (deadlockIDs == null) [FD]
+Line_4 $$ if (deadlockIDs == null) --> Line_5 $$ return [CD]
+Line_2 $$ public static void logDeadlocks() --> Line_6 $$ ThreadInfo[] infos = ManagementFactory.getThreadMXBean().getThreadInfo(deadlockIDs, true, true) [CD]
+Line_3 $$ long[] deadlockIDs = ManagementFactory.getThreadMXBean().findDeadlockedThreads() --> Line_6 $$ ThreadInfo[] infos = ManagementFactory.getThreadMXBean().getThreadInfo(deadlockIDs, true, true) [FD]
+Line_7 $$ for (ThreadInfo ti : infos) --> Line_8 $$ ConcurrentLog.warn("DEADLOCKREPORT", ti.toString()) [FD]

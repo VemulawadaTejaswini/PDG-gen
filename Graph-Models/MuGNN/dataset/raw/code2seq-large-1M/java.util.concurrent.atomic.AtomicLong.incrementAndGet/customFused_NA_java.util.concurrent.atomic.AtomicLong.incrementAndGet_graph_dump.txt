@@ -1,0 +1,5 @@
+Line_2 $$ public void customFused() --> Line_3 $$ AtomicLong counter = new AtomicLong(2) [CD]
+Line_2 $$ public void customFused() --> Line_4 $$ StepVerifier.create(Flux.range(0, 1000).index(( i,  v) -> Tuples.of("#" + (i + 1), v))).expectFusion().expectNext(Tuples.of("#1", 0)).expectNextMatches( t -> t.getT1().equals("#" + (t.getT2() + 1))).thenConsumeWhile( t -> t.getT1().equals("#" + (t.getT2() + 1)),  it -> counter.incrementAndGet()).expectComplete().verify() [CD]
+Line_3 $$ AtomicLong counter = new AtomicLong(2) --> Line_4 $$ StepVerifier.create(Flux.range(0, 1000).index(( i,  v) -> Tuples.of("#" + (i + 1), v))).expectFusion().expectNext(Tuples.of("#1", 0)).expectNextMatches( t -> t.getT1().equals("#" + (t.getT2() + 1))).thenConsumeWhile( t -> t.getT1().equals("#" + (t.getT2() + 1)),  it -> counter.incrementAndGet()).expectComplete().verify() [FD]
+Line_2 $$ public void customFused() --> Line_5 $$ assertThat(counter.get()).isEqualTo(1000) [CD]
+Line_3 $$ AtomicLong counter = new AtomicLong(2) --> Line_5 $$ assertThat(counter.get()).isEqualTo(1000) [FD]

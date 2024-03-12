@@ -1,0 +1,7 @@
+Line_2 $$ public void testBodyWithXContent() throws Exception --> Line_3 $$ XContentType type = randomFrom(XContentType.JSON, XContentType.YAML) [CD]
+Line_2 $$ public void testBodyWithXContent() throws Exception --> Line_4 $$ HttpRequestTemplate template = HttpRequestTemplate.builder("_host", 1234).body(XContentBuilder.builder(type.xContent()).startObject().endObject()).build() [CD]
+Line_3 $$ XContentType type = randomFrom(XContentType.JSON, XContentType.YAML) --> Line_4 $$ HttpRequestTemplate template = HttpRequestTemplate.builder("_host", 1234).body(XContentBuilder.builder(type.xContent()).startObject().endObject()).build() [FD]
+Line_2 $$ public void testBodyWithXContent() throws Exception --> Line_5 $$ HttpRequest request = template.render(new MockTextTemplateEngine(), emptyMap()) [CD]
+Line_4 $$ HttpRequestTemplate template = HttpRequestTemplate.builder("_host", 1234).body(XContentBuilder.builder(type.xContent()).startObject().endObject()).build() --> Line_5 $$ HttpRequest request = template.render(new MockTextTemplateEngine(), emptyMap()) [FD]
+Line_2 $$ public void testBodyWithXContent() throws Exception --> Line_6 $$ assertThat(request.headers, hasEntry(HttpHeaders.Names.CONTENT_TYPE, type.mediaType())) [CD]
+Line_3 $$ XContentType type = randomFrom(XContentType.JSON, XContentType.YAML) --> Line_6 $$ assertThat(request.headers, hasEntry(HttpHeaders.Names.CONTENT_TYPE, type.mediaType())) [FD]

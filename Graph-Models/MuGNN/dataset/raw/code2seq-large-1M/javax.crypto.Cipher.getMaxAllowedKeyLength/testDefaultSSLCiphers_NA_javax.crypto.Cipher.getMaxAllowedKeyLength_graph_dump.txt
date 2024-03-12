@@ -1,0 +1,7 @@
+Line_2 $$ public void testDefaultSSLCiphers() throws Exception --> Line_3 $$ assertThat(XPackSettings.DEFAULT_CIPHERS, hasItem("TLS_RSA_WITH_AES_128_CBC_SHA")) [CD]
+Line_2 $$ public void testDefaultSSLCiphers() throws Exception --> Line_4 $$ final boolean useAES256 = Cipher.getMaxAllowedKeyLength("AES") > 128 [CD]
+Line_2 $$ public void testDefaultSSLCiphers() throws Exception --> Line_5 $$ if (useAES256) [CD]
+Line_5 $$ if (useAES256) --> Line_6 $$ logger.info("AES 256 is available") [CD]
+Line_5 $$ if (useAES256) --> Line_7 $$ assertThat(XPackSettings.DEFAULT_CIPHERS, hasItem("TLS_RSA_WITH_AES_256_CBC_SHA")) [CD]
+Line_5 $$ if (useAES256) --> Line_9 $$ logger.info("AES 256 is not available") [CD]
+Line_5 $$ if (useAES256) --> Line_10 $$ assertThat(XPackSettings.DEFAULT_CIPHERS, not(hasItem("TLS_RSA_WITH_AES_256_CBC_SHA"))) [CD]

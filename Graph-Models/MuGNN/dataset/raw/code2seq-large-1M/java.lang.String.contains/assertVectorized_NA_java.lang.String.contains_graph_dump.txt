@@ -1,0 +1,7 @@
+Line_2 $$ void assertVectorized(boolean vectorized, String query) throws Exception --> Line_3 $$ List<String> rs = runStatementOnDriver("EXPLAIN VECTORIZATION DETAIL " + query) [CD]
+Line_4 $$ for (String line : rs) --> Line_5 $$ if (line != null && line.contains("Execution mode: vectorized")) [FD]
+Line_5 $$ if (line != null && line.contains("Execution mode: vectorized")) --> Line_6 $$ Assert.assertTrue("Was vectorized when it wasn't expected", vectorized) [CD]
+Line_2 $$ void assertVectorized(boolean vectorized, String query) throws Exception --> Line_6 $$ Assert.assertTrue("Was vectorized when it wasn't expected", vectorized) [FD]
+Line_5 $$ if (line != null && line.contains("Execution mode: vectorized")) --> Line_7 $$ return [CD]
+Line_2 $$ void assertVectorized(boolean vectorized, String query) throws Exception --> Line_10 $$ Assert.assertTrue("Din't find expected 'vectorized' in plan", !vectorized) [FD]
+Line_2 $$ void assertVectorized(boolean vectorized, String query) throws Exception --> Line_10 $$ Assert.assertTrue("Din't find expected 'vectorized' in plan", !vectorized) [CD]

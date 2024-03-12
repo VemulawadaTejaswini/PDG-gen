@@ -1,0 +1,6 @@
+Line_2 $$ public void testTimeStampOffsetNowUseServer() throws SQLException --> Line_3 $$ Assume.assumeFalse("true".equals(System.getenv("AURORA"))) [CD]
+Line_4 $$ try (Connection connection = setConnection("&serverTimezone=Europe/Paris")) --> Line_6 $$ PreparedStatement st = connection.prepareStatement("SELECT NOW()") [FD]
+Line_6 $$ PreparedStatement st = connection.prepareStatement("SELECT NOW()") --> Line_7 $$ ResultSet rs = st.executeQuery() [FD]
+Line_7 $$ ResultSet rs = st.executeQuery() --> Line_8 $$ assertTrue(rs.next()) [FD]
+Line_5 $$ Timestamp currentTimeParis = new Timestamp(System.currentTimeMillis()) --> Line_10 $$ long timeDifference = currentTimeParis.getTime() - offset - rs.getTimestamp(1).getTime() [FD]
+Line_7 $$ ResultSet rs = st.executeQuery() --> Line_10 $$ long timeDifference = currentTimeParis.getTime() - offset - rs.getTimestamp(1).getTime() [FD]

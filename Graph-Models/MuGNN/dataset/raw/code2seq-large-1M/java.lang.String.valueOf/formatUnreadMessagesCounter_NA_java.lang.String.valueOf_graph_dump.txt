@@ -1,0 +1,8 @@
+Line_2 $$ public static String formatUnreadMessagesCounter(int count) --> Line_3 $$ if (count > 0) [FD]
+Line_2 $$ public static String formatUnreadMessagesCounter(int count) --> Line_3 $$ if (count > 0) [CD]
+Line_3 $$ if (count > 0) --> Line_4 $$ if (count > 999) [CD]
+Line_2 $$ public static String formatUnreadMessagesCounter(int count) --> Line_4 $$ if (count > 999) [FD]
+Line_4 $$ if (count > 999) --> Line_5 $$ return (count / 1000) + "." + ((count % 1000) / 100) + "K" [CD]
+Line_4 $$ if (count > 999) --> Line_7 $$ return String.valueOf(count) [CD]
+Line_2 $$ public static String formatUnreadMessagesCounter(int count) --> Line_7 $$ return String.valueOf(count) [FD]
+Line_3 $$ if (count > 0) --> Line_10 $$ return null [CD]

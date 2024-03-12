@@ -1,0 +1,5 @@
+Line_2 $$ public void defaultFusedConditional() --> Line_3 $$ AtomicLong counter = new AtomicLong(2) [CD]
+Line_2 $$ public void defaultFusedConditional() --> Line_4 $$ StepVerifier.create(Flux.range(0, 1000).index().filter( it -> true)).expectFusion().expectNext(Tuples.of(0L, 0)).expectNextMatches( t -> t.getT1() == t.getT2().longValue()).thenConsumeWhile( t -> t.getT1() == t.getT2().longValue(),  it -> counter.incrementAndGet()).expectComplete().verify() [CD]
+Line_3 $$ AtomicLong counter = new AtomicLong(2) --> Line_4 $$ StepVerifier.create(Flux.range(0, 1000).index().filter( it -> true)).expectFusion().expectNext(Tuples.of(0L, 0)).expectNextMatches( t -> t.getT1() == t.getT2().longValue()).thenConsumeWhile( t -> t.getT1() == t.getT2().longValue(),  it -> counter.incrementAndGet()).expectComplete().verify() [FD]
+Line_2 $$ public void defaultFusedConditional() --> Line_5 $$ assertThat(counter.get()).isEqualTo(1000) [CD]
+Line_3 $$ AtomicLong counter = new AtomicLong(2) --> Line_5 $$ assertThat(counter.get()).isEqualTo(1000) [FD]

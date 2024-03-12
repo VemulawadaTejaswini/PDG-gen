@@ -1,0 +1,7 @@
+Line_2 $$ private TimeBucketMetadata getTimeBucket(double timestamp) --> Line_3 $$ timeBucketsRWLock.readLock().lock() [CD]
+Line_2 $$ private TimeBucketMetadata getTimeBucket(double timestamp) --> Line_5 $$ double bucket = getBucketMapping(timestamp) [FD]
+Line_5 $$ double bucket = getBucketMapping(timestamp) --> Line_6 $$ if (!timeBucketsMap.containsKey(bucket)) [FD]
+Line_6 $$ if (!timeBucketsMap.containsKey(bucket)) --> Line_7 $$ if (null == timeBucketsMap.putIfAbsent(bucket, new TimeBucketMetadata(bucket, bucket + timeBucketIntervalSec))) [CD]
+Line_5 $$ double bucket = getBucketMapping(timestamp) --> Line_7 $$ if (null == timeBucketsMap.putIfAbsent(bucket, new TimeBucketMetadata(bucket, bucket + timeBucketIntervalSec))) [FD]
+Line_7 $$ if (null == timeBucketsMap.putIfAbsent(bucket, new TimeBucketMetadata(bucket, bucket + timeBucketIntervalSec))) --> Line_8 $$ timeBucketCount.incrementAndGet() [CD]
+Line_5 $$ double bucket = getBucketMapping(timestamp) --> Line_11 $$ return timeBucketsMap.get(bucket) [FD]

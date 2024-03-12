@@ -1,0 +1,7 @@
+Line_2 $$ private void checkIllegallyRequestedNextPage(MotionEvent event) --> Line_3 $$ int swipeThreshold = 25 [CD]
+Line_2 $$ private void checkIllegallyRequestedNextPage(MotionEvent event) --> Line_4 $$ if (event.getAction() == MotionEvent.ACTION_MOVE && Math.abs(event.getX() - currentTouchDownX) >= swipeThreshold) [FD]
+Line_2 $$ private void checkIllegallyRequestedNextPage(MotionEvent event) --> Line_4 $$ if (event.getAction() == MotionEvent.ACTION_MOVE && Math.abs(event.getX() - currentTouchDownX) >= swipeThreshold) [CD]
+Line_4 $$ if (event.getAction() == MotionEvent.ACTION_MOVE && Math.abs(event.getX() - currentTouchDownX) >= swipeThreshold) --> Line_5 $$ if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >= ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) [CD]
+Line_5 $$ if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >= ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) --> Line_6 $$ illegallyRequestedNextPageLastCalled = System.currentTimeMillis() [CD]
+Line_5 $$ if (System.currentTimeMillis() - illegallyRequestedNextPageLastCalled >= ON_ILLEGALLY_REQUESTED_NEXT_PAGE_MAX_INTERVAL) --> Line_7 $$ if (nextPageRequestedListener != null) [CD]
+Line_7 $$ if (nextPageRequestedListener != null) --> Line_8 $$ nextPageRequestedListener.onIllegallyRequestedNextPage() [CD]

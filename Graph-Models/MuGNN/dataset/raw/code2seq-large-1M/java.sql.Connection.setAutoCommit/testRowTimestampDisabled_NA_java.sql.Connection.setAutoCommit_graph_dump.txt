@@ -1,0 +1,8 @@
+Line_2 $$ public void testRowTimestampDisabled() throws SQLException --> Line_3 $$ String tableName = generateUniqueName() [CD]
+Line_2 $$ public void testRowTimestampDisabled() throws SQLException --> Line_4 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) [CD]
+Line_4 $$ Properties props = PropertiesUtil.deepCopy(TEST_PROPERTIES) --> Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) [FD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) --> Line_6 $$ conn.setAutoCommit(false) [FD]
+Line_5 $$ try (Connection conn = DriverManager.getConnection(getUrl(), props)) --> Line_7 $$ Statement stmt = conn.createStatement() [FD]
+Line_7 $$ Statement stmt = conn.createStatement() --> Line_9 $$ stmt.execute("CREATE TABLE " + tableName + "(k VARCHAR, v VARCHAR, d DATE NOT NULL, CONSTRAINT PK PRIMARY KEY(k,d ROW_TIMESTAMP)) TRANSACTIONAL=true," + tableDDLOptions) [FD]
+Line_7 $$ Statement stmt = conn.createStatement() --> Line_14 $$ stmt.execute("CREATE TABLE " + tableName + "(k VARCHAR, v VARCHAR, d DATE NOT NULL, CONSTRAINT PK PRIMARY KEY(k,d ROW_TIMESTAMP))") [FD]
+Line_7 $$ Statement stmt = conn.createStatement() --> Line_16 $$ stmt.execute("ALTER TABLE " + tableName + " SET TRANSACTIONAL=true") [FD]

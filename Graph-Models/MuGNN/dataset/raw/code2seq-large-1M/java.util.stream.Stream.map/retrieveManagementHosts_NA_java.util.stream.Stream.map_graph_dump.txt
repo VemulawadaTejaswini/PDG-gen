@@ -1,0 +1,8 @@
+Line_2 $$ private void retrieveManagementHosts(State currentState, Set<String> hostLinks) --> Line_3 $$ OperationJoin.create(hostLinks.stream().map( hostLink -> HostUtils.getCloudStoreHelper(this).createGet(hostLink))).setCompletion(( ops,  failures) -> [FD]
+Line_2 $$ private void retrieveManagementHosts(State currentState, Set<String> hostLinks) --> Line_3 $$ OperationJoin.create(hostLinks.stream().map( hostLink -> HostUtils.getCloudStoreHelper(this).createGet(hostLink))).setCompletion(( ops,  failures) -> [CD]
+Line_4 $$ if (failures != null && failures.size() > 0) --> Line_5 $$ failTask(failures) [CD]
+Line_4 $$ if (failures != null && failures.size() > 0) --> Line_6 $$ return [CD]
+Line_9 $$ for (Operation getOperation : ops.values()) --> Line_10 $$ HostService.State host = getOperation.getBody(HostService.State.class) [FD]
+Line_8 $$ Map<String, HostService.State> hosts = new HashMap() --> Line_11 $$ hosts.put(host.documentSelfLink, host) [FD]
+Line_2 $$ private void retrieveManagementHosts(State currentState, Set<String> hostLinks) --> Line_13 $$ retrieveVms(currentState, hosts) [FD]
+Line_8 $$ Map<String, HostService.State> hosts = new HashMap() --> Line_13 $$ retrieveVms(currentState, hosts) [FD]

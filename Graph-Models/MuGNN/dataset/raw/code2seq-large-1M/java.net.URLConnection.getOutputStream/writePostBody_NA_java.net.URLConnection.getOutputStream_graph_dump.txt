@@ -1,0 +1,8 @@
+Line_2 $$ private static void writePostBody(HttpURLConnection conn, Map<String, String> parameters) throws IOException --> Line_3 $$ try (OutputStream os = conn.getOutputStream()) [FD]
+Line_2 $$ private static void writePostBody(HttpURLConnection conn, Map<String, String> parameters) throws IOException --> Line_5 $$ List<String> kvpairs = parameters.entrySet().stream().filter(( e) -> (e.getValue() != null)).map(( e) -> (escaper.escape(e.getKey()) + "=" + escaper.escape(e.getValue()))).collect(Collectors.toList()) [FD]
+Line_4 $$ Escaper escaper = UrlEscapers.urlFormParameterEscaper() --> Line_5 $$ List<String> kvpairs = parameters.entrySet().stream().filter(( e) -> (e.getValue() != null)).map(( e) -> (escaper.escape(e.getKey()) + "=" + escaper.escape(e.getValue()))).collect(Collectors.toList()) [FD]
+Line_5 $$ List<String> kvpairs = parameters.entrySet().stream().filter(( e) -> (e.getValue() != null)).map(( e) -> (escaper.escape(e.getKey()) + "=" + escaper.escape(e.getValue()))).collect(Collectors.toList()) --> Line_6 $$ String content = AMPERSAND_JOINER.join(kvpairs) [FD]
+Line_6 $$ String content = AMPERSAND_JOINER.join(kvpairs) --> Line_7 $$ log.info("First [FD]
+Line_3 $$ try (OutputStream os = conn.getOutputStream()) --> Line_8 $$ os.write(content.getBytes()) [FD]
+Line_6 $$ String content = AMPERSAND_JOINER.join(kvpairs) --> Line_8 $$ os.write(content.getBytes()) [FD]
+Line_3 $$ try (OutputStream os = conn.getOutputStream()) --> Line_9 $$ os.flush() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static <T> Throwable terminate(AtomicReferenceFieldUpdater<T, Throwable> field, T instance) --> Line_3 $$ Throwable current = field.get(instance) [FD]
+Line_2 $$ public static <T> Throwable terminate(AtomicReferenceFieldUpdater<T, Throwable> field, T instance) --> Line_3 $$ Throwable current = field.get(instance) [CD]
+Line_2 $$ public static <T> Throwable terminate(AtomicReferenceFieldUpdater<T, Throwable> field, T instance) --> Line_4 $$ if (current != TERMINATED) [CD]
+Line_3 $$ Throwable current = field.get(instance) --> Line_4 $$ if (current != TERMINATED) [FD]
+Line_4 $$ if (current != TERMINATED) --> Line_5 $$ current = field.getAndSet(instance, TERMINATED) [CD]
+Line_3 $$ Throwable current = field.get(instance) --> Line_5 $$ current = field.getAndSet(instance, TERMINATED) [FD]
+Line_2 $$ public static <T> Throwable terminate(AtomicReferenceFieldUpdater<T, Throwable> field, T instance) --> Line_5 $$ current = field.getAndSet(instance, TERMINATED) [FD]
+Line_2 $$ public static <T> Throwable terminate(AtomicReferenceFieldUpdater<T, Throwable> field, T instance) --> Line_7 $$ return current [CD]

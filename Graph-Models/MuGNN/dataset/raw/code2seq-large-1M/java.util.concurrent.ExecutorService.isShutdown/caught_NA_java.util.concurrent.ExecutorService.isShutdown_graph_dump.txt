@@ -1,0 +1,7 @@
+Line_2 $$ public void caught(Channel channel, Throwable exception) throws RemotingException --> Line_3 $$ ExecutorService cexecutor = executor [CD]
+Line_2 $$ public void caught(Channel channel, Throwable exception) throws RemotingException --> Line_4 $$ if (cexecutor == null || cexecutor.isShutdown()) [CD]
+Line_3 $$ ExecutorService cexecutor = executor --> Line_4 $$ if (cexecutor == null || cexecutor.isShutdown()) [FD]
+Line_4 $$ if (cexecutor == null || cexecutor.isShutdown()) --> Line_5 $$ cexecutor = SHARED_EXECUTOR [CD]
+Line_3 $$ ExecutorService cexecutor = executor --> Line_5 $$ cexecutor = SHARED_EXECUTOR [FD]
+Line_3 $$ ExecutorService cexecutor = executor --> Line_8 $$ cexecutor.execute(new ChannelEventRunnable(channel, handler, ChannelState.CAUGHT, exception)) [FD]
+Line_5 $$ cexecutor = SHARED_EXECUTOR --> Line_8 $$ cexecutor.execute(new ChannelEventRunnable(channel, handler, ChannelState.CAUGHT, exception)) [FD]

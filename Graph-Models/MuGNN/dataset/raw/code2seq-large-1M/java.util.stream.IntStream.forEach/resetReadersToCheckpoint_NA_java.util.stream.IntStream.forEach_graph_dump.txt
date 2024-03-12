@@ -1,0 +1,7 @@
+Line_2 $$ public void resetReadersToCheckpoint() --> Line_3 $$ Map<Segment, Long> positions = new HashMap() [CD]
+Line_2 $$ public void resetReadersToCheckpoint() --> Line_4 $$ IntStream.of(2).forEach( segNum -> positions.put(new Segment(SCOPE, "s1", segNum), 10L)) [CD]
+Line_3 $$ Map<Segment, Long> positions = new HashMap() --> Line_4 $$ IntStream.of(2).forEach( segNum -> positions.put(new Segment(SCOPE, "s1", segNum), 10L)) [FD]
+Line_2 $$ public void resetReadersToCheckpoint() --> Line_5 $$ Checkpoint checkpoint = new CheckpointImpl("testChkPoint", positions) [CD]
+Line_2 $$ public void resetReadersToCheckpoint() --> Line_6 $$ readerGroup.resetReaderGroup(ReaderGroupConfig.builder().startFromCheckpoint(checkpoint).build()) [CD]
+Line_5 $$ Checkpoint checkpoint = new CheckpointImpl("testChkPoint", positions) --> Line_6 $$ readerGroup.resetReaderGroup(ReaderGroupConfig.builder().startFromCheckpoint(checkpoint).build()) [FD]
+Line_2 $$ public void resetReadersToCheckpoint() --> Line_7 $$ verify(synchronizer, times(1)).updateStateUnconditionally(any(Update.class)) [CD]

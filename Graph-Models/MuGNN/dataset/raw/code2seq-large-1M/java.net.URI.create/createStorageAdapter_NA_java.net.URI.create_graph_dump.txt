@@ -1,0 +1,6 @@
+Line_2 $$ public Storage createStorageAdapter() --> Line_3 $$ URI uri = URI.create(endpoint) [CD]
+Line_2 $$ public Storage createStorageAdapter() --> Line_4 $$ S3Config s3Config = new S3Config(uri) [CD]
+Line_2 $$ public Storage createStorageAdapter() --> Line_5 $$ s3Config = s3Config.withIdentity(config.getAccessKey()).withSecretKey(config.getSecretKey()).withRetryEnabled(false).withInitialRetryDelay(1).withProperty("com.sun.jersey.client.property.connectTimeout", 100) [CD]
+Line_4 $$ S3Config s3Config = new S3Config(uri) --> Line_5 $$ s3Config = s3Config.withIdentity(config.getAccessKey()).withSecretKey(config.getSecretKey()).withRetryEnabled(false).withInitialRetryDelay(1).withProperty("com.sun.jersey.client.property.connectTimeout", 100) [FD]
+Line_2 $$ public Storage createStorageAdapter() --> Line_6 $$ S3JerseyClient client = new S3ClientWrapper(s3Config, filesystemS3) [CD]
+Line_2 $$ public Storage createStorageAdapter() --> Line_7 $$ return new AsyncStorageWrapper(new RollingStorage(new ExtendedS3Storage(client, config)), this.storageExecutor) [CD]

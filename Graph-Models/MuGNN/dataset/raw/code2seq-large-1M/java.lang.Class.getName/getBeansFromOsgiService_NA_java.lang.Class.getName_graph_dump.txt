@@ -1,0 +1,8 @@
+Line_2 $$ private <T> List<T> getBeansFromOsgiService(Class<T> type) --> Line_3 $$ List<T> list = new ArrayList() [CD]
+Line_2 $$ private <T> List<T> getBeansFromOsgiService(Class<T> type) --> Line_5 $$ ServiceReference<?>[] refs = context.getServiceReferences(type.getName(), null) [FD]
+Line_5 $$ ServiceReference<?>[] refs = context.getServiceReferences(type.getName(), null) --> Line_6 $$ if (refs != null) [FD]
+Line_7 $$ for (ServiceReference<?> r : refs) --> Line_8 $$ if (type == ClassLoader.class && checkCompatibleLocators && !PropertyUtils.isTrue(r.getProperty(COMPATIBLE_LOCATOR_PROP))) [FD]
+Line_3 $$ List<T> list = new ArrayList() --> Line_11 $$ list.add(type.cast(context.getService(r))) [FD]
+Line_2 $$ private <T> List<T> getBeansFromOsgiService(Class<T> type) --> Line_11 $$ list.add(type.cast(context.getService(r))) [FD]
+Line_7 $$ for (ServiceReference<?> r : refs) --> Line_11 $$ list.add(type.cast(context.getService(r))) [FD]
+Line_2 $$ private <T> List<T> getBeansFromOsgiService(Class<T> type) --> Line_17 $$ return list [CD]

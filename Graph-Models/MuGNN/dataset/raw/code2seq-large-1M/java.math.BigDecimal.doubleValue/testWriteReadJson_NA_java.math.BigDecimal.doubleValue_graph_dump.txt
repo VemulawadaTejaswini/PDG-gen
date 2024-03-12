@@ -1,0 +1,8 @@
+Line_2 $$ public void testWriteReadJson() throws Exception --> Line_3 $$ String tableName = "jsonWithDecimals" [CD]
+Line_3 $$ String tableName = "jsonWithDecimals" --> Line_7 $$ test("create table dfs.tmp.%s as\n" + "select cast('%s' as decimal(36, 9)) dec36", tableName, bigDecimalValue) [FD]
+Line_6 $$ String bigDecimalValue = "987654321987654321987654321.987654321" --> Line_7 $$ test("create table dfs.tmp.%s as\n" + "select cast('%s' as decimal(36, 9)) dec36", tableName, bigDecimalValue) [FD]
+Line_3 $$ String tableName = "jsonWithDecimals" --> Line_8 $$ String json = FileUtils.readFileToString(Paths.get(dirTestWatcher.getDfsTestTmpDir().getPath(), tableName, "0_0_0.json").toFile()) [FD]
+Line_8 $$ String json = FileUtils.readFileToString(Paths.get(dirTestWatcher.getDfsTestTmpDir().getPath(), tableName, "0_0_0.json").toFile()) --> Line_9 $$ Assert.assertThat(json, CoreMatchers.containsString(bigDecimalValue)) [FD]
+Line_6 $$ String bigDecimalValue = "987654321987654321987654321.987654321" --> Line_9 $$ Assert.assertThat(json, CoreMatchers.containsString(bigDecimalValue)) [FD]
+Line_3 $$ String tableName = "jsonWithDecimals" --> Line_10 $$ testBuilder().sqlQuery("select dec36 from dfs.tmp.%s", tableName).unOrdered().baselineColumns("dec36").baselineValues(new BigDecimal(bigDecimalValue).doubleValue()).go() [FD]
+Line_3 $$ String tableName = "jsonWithDecimals" --> Line_13 $$ test("drop table if exists dfs.tmp.%s", tableName) [FD]

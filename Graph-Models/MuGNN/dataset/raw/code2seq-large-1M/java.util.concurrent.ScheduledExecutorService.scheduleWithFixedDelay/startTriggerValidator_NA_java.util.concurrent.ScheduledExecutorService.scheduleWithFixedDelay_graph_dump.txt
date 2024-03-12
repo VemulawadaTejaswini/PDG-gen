@@ -1,0 +1,8 @@
+Line_2 $$ void startTriggerValidator(long triggerValidationIntervalMs) --> Line_3 $$ if (scheduledExecutorService == null) [CD]
+Line_3 $$ if (scheduledExecutorService == null) --> Line_4 $$ scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryBuilder().setDaemon(true).setNameFormat("TriggerValidator").build()) [CD]
+Line_3 $$ if (scheduledExecutorService == null) --> Line_5 $$ Runnable triggerValidatorRunnable = getTriggerValidatorRunnable() [CD]
+Line_3 $$ if (scheduledExecutorService == null) --> Line_6 $$ scheduledExecutorService.scheduleWithFixedDelay(triggerValidatorRunnable, triggerValidationIntervalMs, triggerValidationIntervalMs, TimeUnit.MILLISECONDS) [CD]
+Line_5 $$ Runnable triggerValidatorRunnable = getTriggerValidatorRunnable() --> Line_6 $$ scheduledExecutorService.scheduleWithFixedDelay(triggerValidatorRunnable, triggerValidationIntervalMs, triggerValidationIntervalMs, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ void startTriggerValidator(long triggerValidationIntervalMs) --> Line_6 $$ scheduledExecutorService.scheduleWithFixedDelay(triggerValidatorRunnable, triggerValidationIntervalMs, triggerValidationIntervalMs, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ if (scheduledExecutorService == null) --> Line_7 $$ LOG.info("Started trigger validator with interval: [CD]
+Line_2 $$ void startTriggerValidator(long triggerValidationIntervalMs) --> Line_7 $$ LOG.info("Started trigger validator with interval: [FD]

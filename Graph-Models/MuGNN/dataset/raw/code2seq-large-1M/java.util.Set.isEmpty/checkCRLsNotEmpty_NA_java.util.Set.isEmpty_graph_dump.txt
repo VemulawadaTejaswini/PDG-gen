@@ -1,0 +1,8 @@
+Line_2 $$ static void checkCRLsNotEmpty(Set crls, Object cert) throws AnnotatedException --> Line_3 $$ if (crls.isEmpty()) [FD]
+Line_2 $$ static void checkCRLsNotEmpty(Set crls, Object cert) throws AnnotatedException --> Line_3 $$ if (crls.isEmpty()) [CD]
+Line_3 $$ if (crls.isEmpty()) --> Line_4 $$ if (cert instanceof X509AttributeCertificate) [CD]
+Line_2 $$ static void checkCRLsNotEmpty(Set crls, Object cert) throws AnnotatedException --> Line_4 $$ if (cert instanceof X509AttributeCertificate) [FD]
+Line_4 $$ if (cert instanceof X509AttributeCertificate) --> Line_5 $$ X509AttributeCertificate aCert = (X509AttributeCertificate) cert [CD]
+Line_5 $$ X509AttributeCertificate aCert = (X509AttributeCertificate) cert --> Line_6 $$ throw new AnnotatedException("No CRLs found for issuer \"" + aCert.getIssuer().getPrincipals()[0] + "\"") [FD]
+Line_4 $$ if (cert instanceof X509AttributeCertificate) --> Line_8 $$ X509Certificate xCert = (X509Certificate) cert [CD]
+Line_8 $$ X509Certificate xCert = (X509Certificate) cert --> Line_9 $$ throw new AnnotatedException("No CRLs found for issuer \"" + RFC4519Style.INSTANCE.toString(PrincipalUtils.getIssuerPrincipal(xCert)) + "\"") [FD]

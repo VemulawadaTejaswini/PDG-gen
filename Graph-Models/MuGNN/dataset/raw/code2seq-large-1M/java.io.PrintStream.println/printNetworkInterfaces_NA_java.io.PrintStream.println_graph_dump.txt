@@ -1,0 +1,8 @@
+Line_2 $$ private static void printNetworkInterfaces(NetworkIF[] networkIFs) --> Line_3 $$ System.out.println("Network interfaces:") [CD]
+Line_4 $$ for (NetworkIF net : networkIFs) --> Line_5 $$ System.out.format(" Name: %s (%s)%n", net.getName(), net.getDisplayName()) [FD]
+Line_4 $$ for (NetworkIF net : networkIFs) --> Line_6 $$ System.out.format("   MAC Address: %s %n", net.getMacaddr()) [FD]
+Line_4 $$ for (NetworkIF net : networkIFs) --> Line_7 $$ System.out.format("   MTU: %s, Speed: %s %n", net.getMTU(), FormatUtil.formatValue(net.getSpeed(), "bps")) [FD]
+Line_4 $$ for (NetworkIF net : networkIFs) --> Line_8 $$ System.out.format("   IPv4: %s %n", Arrays.toString(net.getIPv4addr())) [FD]
+Line_4 $$ for (NetworkIF net : networkIFs) --> Line_9 $$ System.out.format("   IPv6: %s %n", Arrays.toString(net.getIPv6addr())) [FD]
+Line_4 $$ for (NetworkIF net : networkIFs) --> Line_10 $$ boolean hasData = net.getBytesRecv() > 0 || net.getBytesSent() > 0 || net.getPacketsRecv() > 0 || net.getPacketsSent() > 0 [FD]
+Line_4 $$ for (NetworkIF net : networkIFs) --> Line_11 $$ System.out.format("   Traffic: received %s/%s%s; transmitted %s/%s%s %n", hasData ? net.getPacketsRecv() + " packets" : "?", hasData ? FormatUtil.formatBytes(net.getBytesRecv()) : "?", hasData ? " (" + net.getInErrors() + " err)" : "", hasData ? net.getPacketsSent() + " packets" : "?", hasData ? FormatUtil.formatBytes(net.getBytesSent()) : "?", hasData ? " (" + net.getOutErrors() + " err)" : "") [FD]

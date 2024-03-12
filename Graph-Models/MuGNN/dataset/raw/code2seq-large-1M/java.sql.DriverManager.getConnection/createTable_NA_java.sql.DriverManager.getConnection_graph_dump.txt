@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getJdbcUrl()); --> Line_5 $$ stmt.execute("DROP TABLE IF EXISTS " + tableName) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getJdbcUrl()); --> Line_6 $$ stmt.execute("CREATE TABLE " + tableName + " (TENANT_ID VARCHAR NOT NULL, PK1 VARCHAR NOT NULL, V1 VARCHAR CONSTRAINT PK PRIMARY KEY(TENANT_ID, PK1)) MULTI_TENANT=true") [FD]
+Line_8 $$ String view1DDL = "CREATE VIEW " + tableName + "_view AS SELECT * FROM " + tableName --> Line_9 $$ tenant1Conn.createStatement().execute(view1DDL) [FD]
+Line_7 $$ try (Connection tenant1Conn = getTenantConnection("tenant1")) --> Line_9 $$ tenant1Conn.createStatement().execute(view1DDL) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getJdbcUrl()); --> Line_11 $$ conn.commit() [FD]

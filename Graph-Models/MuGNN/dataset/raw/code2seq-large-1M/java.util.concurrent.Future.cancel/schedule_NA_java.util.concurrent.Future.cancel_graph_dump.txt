@@ -1,0 +1,6 @@
+Line_2 $$ public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) --> Line_3 $$ if (shutdown) [CD]
+Line_3 $$ if (shutdown) --> Line_6 $$ ScheduledFuture<V> scheduled = scheduler.schedule(worker, callable, delay, unit) [CD]
+Line_2 $$ public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) --> Line_6 $$ ScheduledFuture<V> scheduled = scheduler.schedule(worker, callable, delay, unit) [FD]
+Line_3 $$ if (shutdown) --> Line_7 $$ if (shutdown && scheduled.cancel(false)) [CD]
+Line_6 $$ ScheduledFuture<V> scheduled = scheduler.schedule(worker, callable, delay, unit) --> Line_7 $$ if (shutdown && scheduled.cancel(false)) [FD]
+Line_7 $$ if (shutdown && scheduled.cancel(false)) --> Line_10 $$ return scheduled [CD]

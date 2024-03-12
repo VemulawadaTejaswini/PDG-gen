@@ -1,0 +1,5 @@
+Line_2 $$ public static String replaceDynamicNamespaces(String expression, Map<String, String> namespaces) --> Line_3 $$ String expressionResult = expression [CD]
+Line_2 $$ public static String replaceDynamicNamespaces(String expression, Map<String, String> namespaces) --> Line_4 $$ for (Entry<String, String> namespaceEntry : namespaces.entrySet()) [FD]
+Line_3 $$ String expressionResult = expression --> Line_5 $$ if (expressionResult.contains(DYNAMIC_NS_START + namespaceEntry.getValue() + DYNAMIC_NS_END)) [FD]
+Line_3 $$ String expressionResult = expression --> Line_6 $$ expressionResult = expressionResult.replaceAll("\\" + DYNAMIC_NS_START + namespaceEntry.getValue().replace(".", "\\.") + "\\" + DYNAMIC_NS_END, namespaceEntry.getKey() + ":") [FD]
+Line_2 $$ public static String replaceDynamicNamespaces(String expression, Map<String, String> namespaces) --> Line_9 $$ return expressionResult [CD]

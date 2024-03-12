@@ -1,0 +1,8 @@
+Line_2 $$ public void testDisabledAggsDynamicScripts() --> Line_3 $$ assertAcked(client().admin().cluster().preparePutStoredScript().setLang(GroovyScriptEngineService.NAME).setId("script1").setContent(new BytesArray(" [CD]
+Line_2 $$ public void testDisabledAggsDynamicScripts() --> Line_4 $$ client().prepareIndex("test", "scriptTest", "1").setSource(" [CD]
+Line_2 $$ public void testDisabledAggsDynamicScripts() --> Line_5 $$ refresh() [CD]
+Line_2 $$ public void testDisabledAggsDynamicScripts() --> Line_6 $$ SearchResponse searchResponse = client().prepareSearch("test").setSource(new SearchSourceBuilder().aggregation(AggregationBuilders.terms("test").script(new Script(ScriptType.STORED, GroovyScriptEngineService.NAME, "script1", Collections.emptyMap())))).get() [CD]
+Line_2 $$ public void testDisabledAggsDynamicScripts() --> Line_7 $$ assertHitCount(searchResponse, 1) [CD]
+Line_6 $$ SearchResponse searchResponse = client().prepareSearch("test").setSource(new SearchSourceBuilder().aggregation(AggregationBuilders.terms("test").script(new Script(ScriptType.STORED, GroovyScriptEngineService.NAME, "script1", Collections.emptyMap())))).get() --> Line_7 $$ assertHitCount(searchResponse, 1) [FD]
+Line_2 $$ public void testDisabledAggsDynamicScripts() --> Line_8 $$ assertThat(searchResponse.getAggregations().get("test"), notNullValue()) [CD]
+Line_6 $$ SearchResponse searchResponse = client().prepareSearch("test").setSource(new SearchSourceBuilder().aggregation(AggregationBuilders.terms("test").script(new Script(ScriptType.STORED, GroovyScriptEngineService.NAME, "script1", Collections.emptyMap())))).get() --> Line_8 $$ assertThat(searchResponse.getAggregations().get("test"), notNullValue()) [FD]

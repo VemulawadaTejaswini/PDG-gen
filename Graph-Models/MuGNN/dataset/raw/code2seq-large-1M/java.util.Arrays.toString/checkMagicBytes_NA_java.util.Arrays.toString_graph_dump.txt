@@ -1,0 +1,6 @@
+Line_2 $$ private static void checkMagicBytes(FileStatus status, byte[] data, int offset) throws IOException --> Line_3 $$ for (int i = 0, v = offset; i < MAGIC_LENGTH; i++, v++) [CD]
+Line_3 $$ for (int i = 0, v = offset; i < MAGIC_LENGTH; i++, v++) --> Line_4 $$ if (ParquetFileWriter.MAGIC[i] != data[v]) [CD]
+Line_4 $$ if (ParquetFileWriter.MAGIC[i] != data[v]) --> Line_5 $$ byte[] magic = ArrayUtils.subarray(data, offset, offset + MAGIC_LENGTH) [CD]
+Line_2 $$ private static void checkMagicBytes(FileStatus status, byte[] data, int offset) throws IOException --> Line_5 $$ byte[] magic = ArrayUtils.subarray(data, offset, offset + MAGIC_LENGTH) [FD]
+Line_2 $$ private static void checkMagicBytes(FileStatus status, byte[] data, int offset) throws IOException --> Line_6 $$ throw new IOException(status.getPath() + " is not a Parquet file. expected magic number at tail " + Arrays.toString(ParquetFileWriter.MAGIC) + " but found " + Arrays.toString(magic)) [FD]
+Line_5 $$ byte[] magic = ArrayUtils.subarray(data, offset, offset + MAGIC_LENGTH) --> Line_6 $$ throw new IOException(status.getPath() + " is not a Parquet file. expected magic number at tail " + Arrays.toString(ParquetFileWriter.MAGIC) + " but found " + Arrays.toString(magic)) [FD]

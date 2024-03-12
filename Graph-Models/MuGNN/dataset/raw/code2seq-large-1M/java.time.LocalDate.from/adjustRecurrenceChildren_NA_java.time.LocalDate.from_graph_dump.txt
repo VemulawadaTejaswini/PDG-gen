@@ -1,0 +1,6 @@
+Line_2 $$ private List<VDisplayable<?>> adjustRecurrenceChildren(Temporal startRecurrence, Temporal startOriginalRecurrence) --> Line_3 $$ return getVComponentOriginal().recurrenceChildren().stream().map( v -> [CD]
+Line_2 $$ private List<VDisplayable<?>> adjustRecurrenceChildren(Temporal startRecurrence, Temporal startOriginalRecurrence) --> Line_4 $$ Period dayShift = Period.between(LocalDate.from(startOriginalRecurrence), (LocalDate.from(v.getRecurrenceId().getValue()))) [FD]
+Line_2 $$ private List<VDisplayable<?>> adjustRecurrenceChildren(Temporal startRecurrence, Temporal startOriginalRecurrence) --> Line_5 $$ Temporal newRecurreneId = startRecurrence.plus(dayShift) [FD]
+Line_4 $$ Period dayShift = Period.between(LocalDate.from(startOriginalRecurrence), (LocalDate.from(v.getRecurrenceId().getValue()))) --> Line_5 $$ Temporal newRecurreneId = startRecurrence.plus(dayShift) [FD]
+Line_7 $$ VDisplayable<?> vCopy = v.getClass().newInstance() --> Line_8 $$ v.copyChildrenInto(vCopy) [FD]
+Line_7 $$ VDisplayable<?> vCopy = v.getClass().newInstance() --> Line_9 $$ vCopy.setRecurrenceId(new RecurrenceId(newRecurreneId)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ void onSentToBackground(final boolean onTesting) --> Line_3 $$ if (mConnections.isEmpty()) [CD]
+Line_3 $$ if (mConnections.isEmpty()) --> Line_4 $$ return [CD]
+Line_5 $$ mDelayedClearer = new Runnable() --> Line_7 $$ Log.i(TAG, "Release moderate connections: %d", mConnections.size()) [CD]
+Line_5 $$ mDelayedClearer = new Runnable() --> Line_8 $$ if (!onTesting) [CD]
+Line_2 $$ void onSentToBackground(final boolean onTesting) --> Line_8 $$ if (!onTesting) [FD]
+Line_8 $$ if (!onTesting) --> Line_9 $$ RecordHistogram.recordCountHistogram("Android.ModerateBindingCount", mConnections.size()) [CD]
+Line_5 $$ mDelayedClearer = new Runnable() --> Line_11 $$ removeAllConnections() [CD]
+Line_2 $$ void onSentToBackground(final boolean onTesting) --> Line_14 $$ LauncherThread.postDelayed(mDelayedClearer, MODERATE_BINDING_POOL_CLEARER_DELAY_MILLIS) [CD]

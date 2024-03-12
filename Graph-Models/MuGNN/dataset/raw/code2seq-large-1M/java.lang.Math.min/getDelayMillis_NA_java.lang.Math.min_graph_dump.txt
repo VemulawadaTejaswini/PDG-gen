@@ -1,0 +1,7 @@
+Line_2 $$ int getDelayMillis() --> Line_3 $$ QueueStats stats = this.getQueueStats.get() [CD]
+Line_2 $$ int getDelayMillis() --> Line_4 $$ double fillRatioAdj = MathHelpers.minMax(1 - stats.getAverageItemFillRatio(), 0, 1) [CD]
+Line_3 $$ QueueStats stats = this.getQueueStats.get() --> Line_4 $$ double fillRatioAdj = MathHelpers.minMax(1 - stats.getAverageItemFillRatio(), 0, 1) [FD]
+Line_2 $$ int getDelayMillis() --> Line_5 $$ int delayMillis = (int) Math.round(stats.getExpectedProcessingTimeMillis() * fillRatioAdj) [CD]
+Line_3 $$ QueueStats stats = this.getQueueStats.get() --> Line_5 $$ int delayMillis = (int) Math.round(stats.getExpectedProcessingTimeMillis() * fillRatioAdj) [FD]
+Line_2 $$ int getDelayMillis() --> Line_6 $$ return Math.min(delayMillis, MAX_BATCHING_DELAY_MILLIS) [CD]
+Line_5 $$ int delayMillis = (int) Math.round(stats.getExpectedProcessingTimeMillis() * fillRatioAdj) --> Line_6 $$ return Math.min(delayMillis, MAX_BATCHING_DELAY_MILLIS) [FD]

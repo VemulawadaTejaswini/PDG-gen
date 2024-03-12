@@ -1,0 +1,8 @@
+Line_2 $$ private Expression getVar(final Expression var) --> Line_3 $$ final MethodInvocation mi = as(var, MethodInvocation.class) [FD]
+Line_2 $$ private Expression getVar(final Expression var) --> Line_3 $$ final MethodInvocation mi = as(var, MethodInvocation.class) [CD]
+Line_2 $$ private Expression getVar(final Expression var) --> Line_4 $$ if (var instanceof Name) [FD]
+Line_2 $$ private Expression getVar(final Expression var) --> Line_4 $$ if (var instanceof Name) [CD]
+Line_4 $$ if (var instanceof Name) --> Line_5 $$ return var [CD]
+Line_4 $$ if (var instanceof Name) --> Line_6 $$ if (mi != null && hasType(mi.getExpression(), "java.lang.StringBuffer", "java.lang.StringBuilder") && Arrays.asList("append", "appendCodePoint", "delete", "deleteCharAt", "insert", "replace", "reverse").contains(mi.getName().getIdentifier())) [CD]
+Line_6 $$ if (mi != null && hasType(mi.getExpression(), "java.lang.StringBuffer", "java.lang.StringBuilder") && Arrays.asList("append", "appendCodePoint", "delete", "deleteCharAt", "insert", "replace", "reverse").contains(mi.getName().getIdentifier())) --> Line_7 $$ return getVar(mi.getExpression()) [CD]
+Line_2 $$ private Expression getVar(final Expression var) --> Line_9 $$ return null [CD]

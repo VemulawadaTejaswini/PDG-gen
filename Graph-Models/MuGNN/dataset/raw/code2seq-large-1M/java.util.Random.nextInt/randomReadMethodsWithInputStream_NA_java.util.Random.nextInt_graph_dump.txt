@@ -1,0 +1,8 @@
+Line_2 $$ public static int randomReadMethodsWithInputStream(InputStream is) throws Exception --> Line_3 $$ int i = r.nextInt(2) [CD]
+Line_2 $$ public static int randomReadMethodsWithInputStream(InputStream is) throws Exception --> Line_4 $$ byte[] b = new byte[12] [CD]
+Line_2 $$ public static int randomReadMethodsWithInputStream(InputStream is) throws Exception --> Line_7 $$ return (is.read() == -1) ? -1 : 1 [FD]
+Line_2 $$ public static int randomReadMethodsWithInputStream(InputStream is) throws Exception --> Line_9 $$ return is.read(b) [FD]
+Line_4 $$ byte[] b = new byte[12] --> Line_9 $$ return is.read(b) [FD]
+Line_2 $$ public static int randomReadMethodsWithInputStream(InputStream is) throws Exception --> Line_12 $$ return is.read(b, num, num + r.nextInt(5)) [FD]
+Line_4 $$ byte[] b = new byte[12] --> Line_12 $$ return is.read(b, num, num + r.nextInt(5)) [FD]
+Line_11 $$ int num = r.nextInt(5) --> Line_12 $$ return is.read(b, num, num + r.nextInt(5)) [FD]

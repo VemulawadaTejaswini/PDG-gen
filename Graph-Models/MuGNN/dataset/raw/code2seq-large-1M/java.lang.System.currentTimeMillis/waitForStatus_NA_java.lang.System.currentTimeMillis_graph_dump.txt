@@ -1,0 +1,6 @@
+Line_6 $$ while (status != m_status && waitTime > 0) --> Line_7 $$ m_statusLock.wait(waitTime) [CD]
+Line_5 $$ long waitTime = timeout --> Line_7 $$ m_statusLock.wait(waitTime) [FD]
+Line_6 $$ while (status != m_status && waitTime > 0) --> Line_8 $$ long now = System.currentTimeMillis() [CD]
+Line_6 $$ while (status != m_status && waitTime > 0) --> Line_9 $$ waitTime -= (now - last) [CD]
+Line_5 $$ long waitTime = timeout --> Line_9 $$ waitTime -= (now - last) [FD]
+Line_9 $$ waitTime -= (now - last) --> Line_7 $$ m_statusLock.wait(waitTime) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void waitForLeader(long timeout) throws TimeoutException --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ public void waitForLeader(long timeout) throws TimeoutException --> Line_4 $$ long curTimeout [CD]
+Line_2 $$ public void waitForLeader(long timeout) throws TimeoutException --> Line_5 $$ while (!isLeader() && (curTimeout = timeout - System.currentTimeMillis() + start) > 0) [CD]
+Line_4 $$ long curTimeout --> Line_5 $$ while (!isLeader() && (curTimeout = timeout - System.currentTimeMillis() + start) > 0) [FD]
+Line_3 $$ long start = System.currentTimeMillis() --> Line_5 $$ while (!isLeader() && (curTimeout = timeout - System.currentTimeMillis() + start) > 0) [FD]
+Line_5 $$ while (!isLeader() && (curTimeout = timeout - System.currentTimeMillis() + start) > 0) --> Line_8 $$ lock.wait(curTimeout) [FD]
+Line_4 $$ long curTimeout --> Line_8 $$ lock.wait(curTimeout) [FD]
+Line_2 $$ public void waitForLeader(long timeout) throws TimeoutException --> Line_13 $$ if (!isLeader()) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void setGroup(String group) --> Line_3 $$ UserPrincipalLookupService service = path.getFileSystem().getUserPrincipalLookupService() [CD]
+Line_2 $$ public void setGroup(String group) --> Line_4 $$ GroupPrincipal principal = uncheck(() -> service.lookupPrincipalByGroupName(group), "while looking up group %s", group) [FD]
+Line_2 $$ public void setGroup(String group) --> Line_4 $$ GroupPrincipal principal = uncheck(() -> service.lookupPrincipalByGroupName(group), "while looking up group %s", group) [CD]
+Line_3 $$ UserPrincipalLookupService service = path.getFileSystem().getUserPrincipalLookupService() --> Line_4 $$ GroupPrincipal principal = uncheck(() -> service.lookupPrincipalByGroupName(group), "while looking up group %s", group) [FD]
+Line_2 $$ public void setGroup(String group) --> Line_5 $$ uncheck(() -> Files.getFileAttributeView(path, PosixFileAttributeView.class).setGroup(principal)) [CD]
+Line_4 $$ GroupPrincipal principal = uncheck(() -> service.lookupPrincipalByGroupName(group), "while looking up group %s", group) --> Line_5 $$ uncheck(() -> Files.getFileAttributeView(path, PosixFileAttributeView.class).setGroup(principal)) [FD]

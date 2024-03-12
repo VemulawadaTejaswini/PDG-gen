@@ -1,0 +1,6 @@
+Line_2 $$ public FSDataOutputStream append(Path f, int bufferSize, Progressable progress) throws IOException --> Line_3 $$ FileData data = getFileData(f) [FD]
+Line_2 $$ public FSDataOutputStream append(Path f, int bufferSize, Progressable progress) throws IOException --> Line_3 $$ FileData data = getFileData(f) [CD]
+Line_2 $$ public FSDataOutputStream append(Path f, int bufferSize, Progressable progress) throws IOException --> Line_4 $$ if (data.getStatus().getPermission().getUserAction() == FsAction.READ) [CD]
+Line_3 $$ FileData data = getFileData(f) --> Line_4 $$ if (data.getStatus().getPermission().getUserAction() == FsAction.READ) [FD]
+Line_2 $$ public FSDataOutputStream append(Path f, int bufferSize, Progressable progress) throws IOException --> Line_5 $$ throw HDFSExceptionHelpers.segmentSealedException(f.getName()) [FD]
+Line_2 $$ public FSDataOutputStream append(Path f, int bufferSize, Progressable progress) throws IOException --> Line_7 $$ return new FSDataOutputStream(data.contents, null, data.contents.size()) [CD]

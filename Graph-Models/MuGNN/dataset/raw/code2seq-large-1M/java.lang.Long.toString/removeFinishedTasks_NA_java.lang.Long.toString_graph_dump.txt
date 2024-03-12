@@ -1,0 +1,7 @@
+Line_2 $$ private static void removeFinishedTasks() --> Line_3 $$ long count = 0 [CD]
+Line_4 $$ for (MyAsyncTask<?, ?, ?> launched : launchedTasks) --> Line_5 $$ if (launched.getStatus() == MyAsyncTask.Status.FINISHED) [FD]
+Line_5 $$ if (launched.getStatus() == MyAsyncTask.Status.FINISHED) --> Line_6 $$ if (MyLog.isVerboseEnabled()) [CD]
+Line_6 $$ if (MyLog.isVerboseEnabled()) --> Line_7 $$ MyLog.v(TAG, Long.toString(++count) + ". Removing finished " + launched) [CD]
+Line_3 $$ long count = 0 --> Line_7 $$ MyLog.v(TAG, Long.toString(++count) + ". Removing finished " + launched) [FD]
+Line_5 $$ if (launched.getStatus() == MyAsyncTask.Status.FINISHED) --> Line_9 $$ launchedTasks.remove(launched) [CD]
+Line_4 $$ for (MyAsyncTask<?, ?, ?> launched : launchedTasks) --> Line_9 $$ launchedTasks.remove(launched) [FD]

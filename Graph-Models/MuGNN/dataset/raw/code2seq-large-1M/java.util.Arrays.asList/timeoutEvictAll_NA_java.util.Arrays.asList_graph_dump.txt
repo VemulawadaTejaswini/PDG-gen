@@ -1,0 +1,8 @@
+Line_2 $$ public void timeoutEvictAll() --> Line_3 $$ TestScheduler scheduler = new TestScheduler() [CD]
+Line_2 $$ public void timeoutEvictAll() --> Line_4 $$ TestSubscriber<Integer> ts = Flowable.range(1, 5).compose(FlowableTransformers.<Integer>onBackpressureTimeout(1, TimeUnit.SECONDS, scheduler, this)).test(0) [CD]
+Line_3 $$ TestScheduler scheduler = new TestScheduler() --> Line_4 $$ TestSubscriber<Integer> ts = Flowable.range(1, 5).compose(FlowableTransformers.<Integer>onBackpressureTimeout(1, TimeUnit.SECONDS, scheduler, this)).test(0) [FD]
+Line_2 $$ public void timeoutEvictAll() --> Line_5 $$ scheduler.advanceTimeBy(1, TimeUnit.MINUTES) [CD]
+Line_3 $$ TestScheduler scheduler = new TestScheduler() --> Line_5 $$ scheduler.advanceTimeBy(1, TimeUnit.MINUTES) [FD]
+Line_2 $$ public void timeoutEvictAll() --> Line_6 $$ ts.requestMore(1).assertResult() [CD]
+Line_4 $$ TestSubscriber<Integer> ts = Flowable.range(1, 5).compose(FlowableTransformers.<Integer>onBackpressureTimeout(1, TimeUnit.SECONDS, scheduler, this)).test(0) --> Line_6 $$ ts.requestMore(1).assertResult() [FD]
+Line_2 $$ public void timeoutEvictAll() --> Line_7 $$ Assert.assertEquals(Arrays.asList(1, 2, 3, 4, 5), evicted) [CD]

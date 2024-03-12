@@ -1,0 +1,3 @@
+Line_2 $$ public void testAddChildTypePointingToAlreadyExistingType() throws Exception --> Line_3 $$ createIndex("test", Settings.EMPTY, "type", "field", "type=keyword") [CD]
+Line_2 $$ public void testAddChildTypePointingToAlreadyExistingType() throws Exception --> Line_4 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> client().admin().indices().preparePutMapping("test").setType("child").setSource("_parent", "type=type").get()) [CD]
+Line_2 $$ public void testAddChildTypePointingToAlreadyExistingType() throws Exception --> Line_5 $$ assertThat(e.getMessage(), equalTo("can't add a _parent field that points to an already existing type, that isn't already a parent")) [CD]

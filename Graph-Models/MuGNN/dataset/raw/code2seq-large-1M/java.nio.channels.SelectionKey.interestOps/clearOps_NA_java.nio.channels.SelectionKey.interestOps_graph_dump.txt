@@ -1,0 +1,7 @@
+Line_2 $$ void clearOps(final SelectionKey key, final int ops) --> Line_3 $$ if (currentThread() == this || !OLD_LOCKING) [CD]
+Line_2 $$ void clearOps(final SelectionKey key, final int ops) --> Line_6 $$ key.interestOps(key.interestOps() & ~ops) [FD]
+Line_3 $$ if (currentThread() == this || !OLD_LOCKING) --> Line_11 $$ final SynchTask task = new SynchTask() [CD]
+Line_3 $$ if (currentThread() == this || !OLD_LOCKING) --> Line_12 $$ queueTask(task) [CD]
+Line_11 $$ final SynchTask task = new SynchTask() --> Line_12 $$ queueTask(task) [FD]
+Line_2 $$ void clearOps(final SelectionKey key, final int ops) --> Line_16 $$ key.interestOps(key.interestOps() & ~ops) [FD]
+Line_11 $$ final SynchTask task = new SynchTask() --> Line_20 $$ task.done() [FD]

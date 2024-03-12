@@ -1,0 +1,8 @@
+Line_2 $$ protected long consumeAsMuchAsPossibleImpl(long limit) --> Line_3 $$ long currentTimeNanos = timeMeter.currentTimeNanos() [CD]
+Line_2 $$ protected long consumeAsMuchAsPossibleImpl(long limit) --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ long currentTimeNanos = timeMeter.currentTimeNanos() --> Line_6 $$ state.refillAllBandwidth(bandwidths, currentTimeNanos) [FD]
+Line_2 $$ protected long consumeAsMuchAsPossibleImpl(long limit) --> Line_8 $$ long toConsume = Math.min(limit, availableToConsume) [FD]
+Line_7 $$ long availableToConsume = state.getAvailableTokens(bandwidths) --> Line_8 $$ long toConsume = Math.min(limit, availableToConsume) [FD]
+Line_8 $$ long toConsume = Math.min(limit, availableToConsume) --> Line_9 $$ if (toConsume == 0) [FD]
+Line_9 $$ if (toConsume == 0) --> Line_10 $$ return 0 [CD]
+Line_8 $$ long toConsume = Math.min(limit, availableToConsume) --> Line_12 $$ state.consume(bandwidths, toConsume) [FD]

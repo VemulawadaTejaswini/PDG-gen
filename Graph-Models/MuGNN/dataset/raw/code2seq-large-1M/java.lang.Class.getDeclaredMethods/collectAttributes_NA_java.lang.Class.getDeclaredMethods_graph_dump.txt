@@ -1,0 +1,8 @@
+Line_2 $$ private static <T extends Annotation> void collectAttributes(T ann, Map<String, Object> attributes) --> Line_3 $$ Method[] methods = ann.annotationType().getDeclaredMethods() [FD]
+Line_2 $$ private static <T extends Annotation> void collectAttributes(T ann, Map<String, Object> attributes) --> Line_3 $$ Method[] methods = ann.annotationType().getDeclaredMethods() [CD]
+Line_4 $$ for (Method method : methods) --> Line_5 $$ if (method.getParameterTypes().length == 0 && method.getReturnType() != void.class) [FD]
+Line_4 $$ for (Method method : methods) --> Line_7 $$ Object value = method.invoke(ann) [FD]
+Line_2 $$ private static <T extends Annotation> void collectAttributes(T ann, Map<String, Object> attributes) --> Line_7 $$ Object value = method.invoke(ann) [FD]
+Line_2 $$ private static <T extends Annotation> void collectAttributes(T ann, Map<String, Object> attributes) --> Line_8 $$ attributes.put(resolveName(method), value) [FD]
+Line_7 $$ Object value = method.invoke(ann) --> Line_8 $$ attributes.put(resolveName(method), value) [FD]
+Line_4 $$ for (Method method : methods) --> Line_8 $$ attributes.put(resolveName(method), value) [FD]

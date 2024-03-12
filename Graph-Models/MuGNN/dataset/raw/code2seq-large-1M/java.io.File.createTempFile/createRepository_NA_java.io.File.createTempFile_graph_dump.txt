@@ -1,0 +1,8 @@
+Line_2 $$ private static File createRepository() throws IOException, GitAPIException --> Line_3 $$ File dir = File.createTempFile("gitinit", ".test") [CD]
+Line_2 $$ private static File createRepository() throws IOException, GitAPIException --> Line_4 $$ if (!dir.delete()) [CD]
+Line_3 $$ File dir = File.createTempFile("gitinit", ".test") --> Line_4 $$ if (!dir.delete()) [FD]
+Line_2 $$ private static File createRepository() throws IOException, GitAPIException --> Line_7 $$ Git.init().setDirectory(dir).call() [CD]
+Line_3 $$ File dir = File.createTempFile("gitinit", ".test") --> Line_7 $$ Git.init().setDirectory(dir).call() [FD]
+Line_3 $$ File dir = File.createTempFile("gitinit", ".test") --> Line_8 $$ try (Repository repository = FileRepositoryBuilder.create(new File(dir.getAbsolutePath(), ".git"))) [FD]
+Line_8 $$ try (Repository repository = FileRepositoryBuilder.create(new File(dir.getAbsolutePath(), ".git"))) --> Line_9 $$ System.out.println("Created a new repository at " + repository.getDirectory()) [FD]
+Line_2 $$ private static File createRepository() throws IOException, GitAPIException --> Line_11 $$ return dir [CD]

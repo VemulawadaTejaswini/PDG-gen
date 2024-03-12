@@ -1,0 +1,4 @@
+Line_2 $$ private Instant getPrefetchTime(Instant expiration) --> Line_3 $$ Instant oneHourFromNow = Instant.now().plus(Duration.ofHours(1)) [CD]
+Line_2 $$ private Instant getPrefetchTime(Instant expiration) --> Line_4 $$ return expiration == null ? oneHourFromNow : ComparableUtils.minimum(oneHourFromNow, expiration.minus(Duration.ofMinutes(15))) [CD]
+Line_2 $$ private Instant getPrefetchTime(Instant expiration) --> Line_4 $$ return expiration == null ? oneHourFromNow : ComparableUtils.minimum(oneHourFromNow, expiration.minus(Duration.ofMinutes(15))) [FD]
+Line_3 $$ Instant oneHourFromNow = Instant.now().plus(Duration.ofHours(1)) --> Line_4 $$ return expiration == null ? oneHourFromNow : ComparableUtils.minimum(oneHourFromNow, expiration.minus(Duration.ofMinutes(15))) [FD]

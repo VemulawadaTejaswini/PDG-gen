@@ -1,0 +1,8 @@
+Line_2 $$ private void prepareDatabase(String sqlFile, DbImportConfiguration dbImportConfiguration) throws Exception --> Line_3 $$ URL sqlUrl = Objects.requireNonNull(ResourceUtil.getResource(getClass(), "dbimport/" + sqlFile + ".sql")) [CD]
+Line_2 $$ private void prepareDatabase(String sqlFile, DbImportConfiguration dbImportConfiguration) throws Exception --> Line_4 $$ Class.forName(dbImportConfiguration.getDriver()).newInstance() [FD]
+Line_2 $$ private void prepareDatabase(String sqlFile, DbImportConfiguration dbImportConfiguration) throws Exception --> Line_4 $$ Class.forName(dbImportConfiguration.getDriver()).newInstance() [CD]
+Line_2 $$ private void prepareDatabase(String sqlFile, DbImportConfiguration dbImportConfiguration) throws Exception --> Line_5 $$ try (Connection connection = DriverManager.getConnection(dbImportConfiguration.getUrl())) [FD]
+Line_5 $$ try (Connection connection = DriverManager.getConnection(dbImportConfiguration.getUrl())) --> Line_6 $$ try (Statement stmt = connection.createStatement()) [FD]
+Line_3 $$ URL sqlUrl = Objects.requireNonNull(ResourceUtil.getResource(getClass(), "dbimport/" + sqlFile + ".sql")) --> Line_7 $$ for (String sql : SQLReader.statements(sqlUrl, ";")) [FD]
+Line_6 $$ try (Statement stmt = connection.createStatement()) --> Line_8 $$ stmt.execute(sql) [FD]
+Line_7 $$ for (String sql : SQLReader.statements(sqlUrl, ";")) --> Line_8 $$ stmt.execute(sql) [FD]

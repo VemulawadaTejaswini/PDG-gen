@@ -1,0 +1,6 @@
+Line_2 $$ private void testKeyProvider(KeyProvider keyProvider) --> Line_4 $$ Key key = keyProvider.getKey(alias) [FD]
+Line_3 $$ for (String alias : keyAliasPassword.keySet()) --> Line_4 $$ Key key = keyProvider.getKey(alias) [FD]
+Line_4 $$ Key key = keyProvider.getKey(alias) --> Line_5 $$ initializeForKey(key) [FD]
+Line_6 $$ String expected = "some text here " + alias --> Line_7 $$ byte[] cipherText = encryptor.encrypt(expected.getBytes(Charsets.UTF_8)) [FD]
+Line_7 $$ byte[] cipherText = encryptor.encrypt(expected.getBytes(Charsets.UTF_8)) --> Line_8 $$ byte[] clearText = decryptor.decrypt(cipherText) [FD]
+Line_6 $$ String expected = "some text here " + alias --> Line_9 $$ Assert.assertEquals(expected, new String(clearText, Charsets.UTF_8)) [FD]

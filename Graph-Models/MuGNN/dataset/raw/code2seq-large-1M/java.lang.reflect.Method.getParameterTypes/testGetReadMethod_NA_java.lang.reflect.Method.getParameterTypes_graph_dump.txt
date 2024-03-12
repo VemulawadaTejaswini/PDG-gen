@@ -1,0 +1,5 @@
+Line_2 $$ public void testGetReadMethod() --> Line_3 $$ Method method = descriptor.getReadMethod() [CD]
+Line_2 $$ public void testGetReadMethod() --> Line_4 $$ assertEquals(1, method.getParameterTypes().length) [CD]
+Line_3 $$ Method method = descriptor.getReadMethod() --> Line_4 $$ assertEquals(1, method.getParameterTypes().length) [FD]
+Line_2 $$ public void testGetReadMethod() --> Line_5 $$ assertTrue(Arrays.equals(new Class[] [CD]
+Line_3 $$ Method method = descriptor.getReadMethod() --> Line_5 $$ assertTrue(Arrays.equals(new Class[] [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testLongExpiration() throws Exception --> Line_3 $$ MemcachedClient client = bootstrapClient() [CD]
+Line_2 $$ public void testLongExpiration() throws Exception --> Line_4 $$ client.add("newKey", (int) System.currentTimeMillis() - 60 * 1000, "newValue") [CD]
+Line_3 $$ MemcachedClient client = bootstrapClient() --> Line_4 $$ client.add("newKey", (int) System.currentTimeMillis() - 60 * 1000, "newValue") [FD]
+Line_2 $$ public void testLongExpiration() throws Exception --> Line_5 $$ Thread.sleep(15 * 1000) [CD]
+Line_2 $$ public void testLongExpiration() throws Exception --> Line_6 $$ assertEquals("newValue", client.get("newKey")) [CD]
+Line_3 $$ MemcachedClient client = bootstrapClient() --> Line_6 $$ assertEquals("newValue", client.get("newKey")) [FD]

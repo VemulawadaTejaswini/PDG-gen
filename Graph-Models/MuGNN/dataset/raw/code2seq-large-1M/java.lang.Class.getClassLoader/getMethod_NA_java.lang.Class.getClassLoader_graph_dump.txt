@@ -1,0 +1,7 @@
+Line_2 $$ private static Method getMethod(Class<?> mbean, String method, String... params) --> Line_4 $$ final ClassLoader loader = mbean.getClassLoader() [FD]
+Line_6 $$ for (int i = 0; i < params.length; i++) --> Line_7 $$ paramClasses[i] = primitives.get(params[i]) [CD]
+Line_6 $$ for (int i = 0; i < params.length; i++) --> Line_8 $$ if (paramClasses[i] == null) [CD]
+Line_8 $$ if (paramClasses[i] == null) --> Line_9 $$ paramClasses[i] = Class.forName(params[i], false, loader) [CD]
+Line_4 $$ final ClassLoader loader = mbean.getClassLoader() --> Line_9 $$ paramClasses[i] = Class.forName(params[i], false, loader) [FD]
+Line_2 $$ private static Method getMethod(Class<?> mbean, String method, String... params) --> Line_11 $$ return mbean.getMethod(method, paramClasses) [FD]
+Line_5 $$ final Class<?>[] paramClasses = new Class<?>[params.length] --> Line_11 $$ return mbean.getMethod(method, paramClasses) [FD]

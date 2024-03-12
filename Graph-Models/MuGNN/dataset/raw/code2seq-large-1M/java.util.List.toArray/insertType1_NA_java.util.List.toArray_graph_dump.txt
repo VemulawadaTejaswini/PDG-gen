@@ -1,0 +1,8 @@
+Line_2 $$ private void insertType1(List<String> values1, List<String> values2) throws Exception --> Line_3 $$ XContentBuilder source = jsonBuilder().startObject().array("field1", values1.toArray()).startArray("nested1") [FD]
+Line_2 $$ private void insertType1(List<String> values1, List<String> values2) throws Exception --> Line_3 $$ XContentBuilder source = jsonBuilder().startObject().array("field1", values1.toArray()).startArray("nested1") [CD]
+Line_4 $$ for (String value1 : values2) --> Line_5 $$ source.startObject().field("field2", value1).endObject() [FD]
+Line_3 $$ XContentBuilder source = jsonBuilder().startObject().array("field1", values1.toArray()).startArray("nested1") --> Line_5 $$ source.startObject().field("field2", value1).endObject() [FD]
+Line_2 $$ private void insertType1(List<String> values1, List<String> values2) throws Exception --> Line_7 $$ source.endArray().endObject() [CD]
+Line_3 $$ XContentBuilder source = jsonBuilder().startObject().array("field1", values1.toArray()).startArray("nested1") --> Line_7 $$ source.endArray().endObject() [FD]
+Line_2 $$ private void insertType1(List<String> values1, List<String> values2) throws Exception --> Line_8 $$ indexRandom(false, client().prepareIndex("idx", "type1").setRouting("1").setSource(source)) [CD]
+Line_3 $$ XContentBuilder source = jsonBuilder().startObject().array("field1", values1.toArray()).startArray("nested1") --> Line_8 $$ indexRandom(false, client().prepareIndex("idx", "type1").setRouting("1").setSource(source)) [FD]

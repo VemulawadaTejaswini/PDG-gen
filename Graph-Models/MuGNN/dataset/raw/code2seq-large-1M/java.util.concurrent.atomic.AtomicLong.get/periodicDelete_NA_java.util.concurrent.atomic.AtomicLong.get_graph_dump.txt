@@ -1,0 +1,6 @@
+Line_2 $$ protected void periodicDelete() --> Line_3 $$ long now = timeService.getCurrentTimeMillis() [CD]
+Line_2 $$ protected void periodicDelete() --> Line_4 $$ long lastCheck = lastDelete.get() [CD]
+Line_2 $$ protected void periodicDelete() --> Line_5 $$ if (now - lastCheck > timeBetweenDeleteMillis && lastDelete.compareAndSet(lastCheck, now)) [CD]
+Line_4 $$ long lastCheck = lastDelete.get() --> Line_5 $$ if (now - lastCheck > timeBetweenDeleteMillis && lastDelete.compareAndSet(lastCheck, now)) [FD]
+Line_3 $$ long now = timeService.getCurrentTimeMillis() --> Line_5 $$ if (now - lastCheck > timeBetweenDeleteMillis && lastDelete.compareAndSet(lastCheck, now)) [FD]
+Line_5 $$ if (now - lastCheck > timeBetweenDeleteMillis && lastDelete.compareAndSet(lastCheck, now)) --> Line_6 $$ getJdbcTemplate().update("delete from sec_audit where created < ?", new Timestamp(System.currentTimeMillis() - saveDataPeriodMillis)) [CD]

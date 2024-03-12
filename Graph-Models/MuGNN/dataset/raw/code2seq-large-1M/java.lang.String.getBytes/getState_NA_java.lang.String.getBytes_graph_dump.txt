@@ -1,0 +1,7 @@
+Line_2 $$ public StateMap getState(final String componentId) throws IOException --> Line_3 $$ return withConnection( redisConnection -> [CD]
+Line_2 $$ public StateMap getState(final String componentId) throws IOException --> Line_4 $$ final byte[] key = getComponentKey(componentId).getBytes(StandardCharsets.UTF_8) [FD]
+Line_4 $$ final byte[] key = getComponentKey(componentId).getBytes(StandardCharsets.UTF_8) --> Line_5 $$ final byte[] value = redisConnection.get(key) [FD]
+Line_5 $$ final byte[] value = redisConnection.get(key) --> Line_6 $$ final RedisStateMap stateMap = serDe.deserialize(value) [FD]
+Line_6 $$ final RedisStateMap stateMap = serDe.deserialize(value) --> Line_7 $$ if (stateMap == null) [FD]
+Line_7 $$ if (stateMap == null) --> Line_8 $$ return new RedisStateMap.Builder().encodingVersion(ENCODING_VERSION).build() [CD]
+Line_7 $$ if (stateMap == null) --> Line_10 $$ return stateMap [CD]

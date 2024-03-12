@@ -1,0 +1,8 @@
+Line_2 $$ public Job findJobByTaskId(String aTaskId) --> Line_3 $$ Map<String, String> params = Collections.singletonMap("id", aTaskId) [CD]
+Line_2 $$ public Job findJobByTaskId(String aTaskId) --> Line_3 $$ Map<String, String> params = Collections.singletonMap("id", aTaskId) [FD]
+Line_2 $$ public Job findJobByTaskId(String aTaskId) --> Line_4 $$ List<Job> list = jdbc.query("select * from job j where j.id = (select job_id from task_execution jt where jt.id=:id)", params, this::<>jobRowMappper) [CD]
+Line_3 $$ Map<String, String> params = Collections.singletonMap("id", aTaskId) --> Line_4 $$ List<Job> list = jdbc.query("select * from job j where j.id = (select job_id from task_execution jt where jt.id=:id)", params, this::<>jobRowMappper) [FD]
+Line_2 $$ public Job findJobByTaskId(String aTaskId) --> Line_5 $$ Assert.isTrue(list.size() < 2, "expecting 1 result, got: " + list.size()) [CD]
+Line_4 $$ List<Job> list = jdbc.query("select * from job j where j.id = (select job_id from task_execution jt where jt.id=:id)", params, this::<>jobRowMappper) --> Line_5 $$ Assert.isTrue(list.size() < 2, "expecting 1 result, got: " + list.size()) [FD]
+Line_2 $$ public Job findJobByTaskId(String aTaskId) --> Line_6 $$ return list.size() == 1 ? list.get(0) : null [CD]
+Line_4 $$ List<Job> list = jdbc.query("select * from job j where j.id = (select job_id from task_execution jt where jt.id=:id)", params, this::<>jobRowMappper) --> Line_6 $$ return list.size() == 1 ? list.get(0) : null [FD]

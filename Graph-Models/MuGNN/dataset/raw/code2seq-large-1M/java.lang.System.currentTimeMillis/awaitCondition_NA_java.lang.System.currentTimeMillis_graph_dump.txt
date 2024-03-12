@@ -1,0 +1,7 @@
+Line_2 $$ public static void awaitCondition(BooleanSupplier condition, long value, TimeUnit unit) --> Line_3 $$ long deadline = System.currentTimeMillis() + unit.toMillis(value) [FD]
+Line_2 $$ public static void awaitCondition(BooleanSupplier condition, long value, TimeUnit unit) --> Line_3 $$ long deadline = System.currentTimeMillis() + unit.toMillis(value) [CD]
+Line_2 $$ public static void awaitCondition(BooleanSupplier condition, long value, TimeUnit unit) --> Line_4 $$ while (!condition.getAsBoolean()) [FD]
+Line_2 $$ public static void awaitCondition(BooleanSupplier condition, long value, TimeUnit unit) --> Line_4 $$ while (!condition.getAsBoolean()) [CD]
+Line_4 $$ while (!condition.getAsBoolean()) --> Line_5 $$ if (System.currentTimeMillis() > deadline) [CD]
+Line_3 $$ long deadline = System.currentTimeMillis() + unit.toMillis(value) --> Line_5 $$ if (System.currentTimeMillis() > deadline) [FD]
+Line_5 $$ if (System.currentTimeMillis() > deadline) --> Line_6 $$ fail("Condition was not met in time") [CD]

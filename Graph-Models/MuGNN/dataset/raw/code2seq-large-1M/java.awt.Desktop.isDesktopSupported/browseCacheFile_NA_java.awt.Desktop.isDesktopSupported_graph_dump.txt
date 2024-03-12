@@ -1,0 +1,6 @@
+Line_2 $$ private static void browseCacheFile(URL url) --> Line_3 $$ if (Desktop.isDesktopSupported()) [CD]
+Line_2 $$ private static void browseCacheFile(URL url) --> Line_4 $$ try (InputStream in = new BufferedInputStream(url.openStream())) [FD]
+Line_5 $$ Path path = Files.createTempFile("_tmp", ".html") --> Line_6 $$ path.toFile().deleteOnExit() [FD]
+Line_4 $$ try (InputStream in = new BufferedInputStream(url.openStream())) --> Line_7 $$ Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_5 $$ Path path = Files.createTempFile("_tmp", ".html") --> Line_7 $$ Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_5 $$ Path path = Files.createTempFile("_tmp", ".html") --> Line_8 $$ Desktop.getDesktop().browse(path.toUri()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static final void waitForRemoteBackup(ClientSessionFactory sessionFactory, int seconds) --> Line_3 $$ ClientSessionFactoryInternal factoryInternal = (ClientSessionFactoryInternal) sessionFactory [CD]
+Line_2 $$ public static final void waitForRemoteBackup(ClientSessionFactory sessionFactory, int seconds) --> Line_4 $$ final long toWait = seconds * 1000 [CD]
+Line_2 $$ public static final void waitForRemoteBackup(ClientSessionFactory sessionFactory, int seconds) --> Line_5 $$ final long time = System.currentTimeMillis() [CD]
+Line_2 $$ public static final void waitForRemoteBackup(ClientSessionFactory sessionFactory, int seconds) --> Line_6 $$ while (true) [CD]
+Line_6 $$ while (true) --> Line_7 $$ if (factoryInternal.getBackupConnector() != null) [CD]
+Line_3 $$ ClientSessionFactoryInternal factoryInternal = (ClientSessionFactoryInternal) sessionFactory --> Line_7 $$ if (factoryInternal.getBackupConnector() != null) [FD]
+Line_6 $$ while (true) --> Line_10 $$ if (System.currentTimeMillis() > (time + toWait)) [CD]
+Line_10 $$ if (System.currentTimeMillis() > (time + toWait)) --> Line_11 $$ fail("Backup wasn't located") [CD]

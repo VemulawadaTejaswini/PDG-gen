@@ -1,0 +1,7 @@
+Line_2 $$ public SNMPSetting getHostSetting(String dbgroup, String host) --> Line_3 $$ if ((dbgroup == null || dbgroup.isEmpty()) && (host == null || host.isEmpty())) [FD]
+Line_2 $$ public SNMPSetting getHostSetting(String dbgroup, String host) --> Line_3 $$ if ((dbgroup == null || dbgroup.isEmpty()) && (host == null || host.isEmpty())) [CD]
+Line_3 $$ if ((dbgroup == null || dbgroup.isEmpty()) && (host == null || host.isEmpty())) --> Line_4 $$ return this.siteSetting [CD]
+Line_2 $$ public SNMPSetting getHostSetting(String dbgroup, String host) --> Line_5 $$ if (this.hostSettings.containsKey(dbgroup + "|" + host)) [CD]
+Line_5 $$ if (this.hostSettings.containsKey(dbgroup + "|" + host)) --> Line_6 $$ return this.hostSettings.get(dbgroup + "|" + host) [CD]
+Line_5 $$ if (this.hostSettings.containsKey(dbgroup + "|" + host)) --> Line_8 $$ return getGroupSetting(dbgroup) [CD]
+Line_2 $$ public SNMPSetting getHostSetting(String dbgroup, String host) --> Line_8 $$ return getGroupSetting(dbgroup) [FD]

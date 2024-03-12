@@ -1,0 +1,4 @@
+Line_2 $$ private void orderConfirmed(RoutingContext routingContext, JsonObject order, Span parentSpan) --> Line_3 $$ logger.fine("Order confirmed") [CD]
+Line_2 $$ private void orderConfirmed(RoutingContext routingContext, JsonObject order, Span parentSpan) --> Line_4 $$ try (Span orderConfirmedSpan = tracer.buildSpan("OrderConfirmed").addReference(io.opentracing.References.FOLLOWS_FROM, parentSpan.context()).start()) [FD]
+Line_4 $$ try (Span orderConfirmedSpan = tracer.buildSpan("OrderConfirmed").addReference(io.opentracing.References.FOLLOWS_FROM, parentSpan.context()).start()) --> Line_5 $$ tracer.inject(orderConfirmedSpan.context(), Format.Builtin.TEXT_MAP, new VertxMessageInjectAdapter(order)) [FD]
+Line_2 $$ private void orderConfirmed(RoutingContext routingContext, JsonObject order, Span parentSpan) --> Line_6 $$ routingContext.vertx().eventBus().publish("Orders.confirmed", order) [FD]

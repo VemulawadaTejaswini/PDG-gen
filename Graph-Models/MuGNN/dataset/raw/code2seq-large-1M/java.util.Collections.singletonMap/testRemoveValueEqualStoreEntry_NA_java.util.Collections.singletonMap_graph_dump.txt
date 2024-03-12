@@ -1,0 +1,4 @@
+Line_3 $$ FakeStore fakeStore = new FakeStore(Collections.singletonMap("key", "value")) --> Line_4 $$ this.store = spy(fakeStore) [FD]
+Line_5 $$ Ehcache<String, String> ehcache = this.getEhcache() --> Line_6 $$ assertTrue(ehcache.remove("key", "value")) [FD]
+Line_3 $$ FakeStore fakeStore = new FakeStore(Collections.singletonMap("key", "value")) --> Line_9 $$ assertThat(fakeStore.getEntryMap().containsKey("key"), is(false)) [FD]
+Line_5 $$ Ehcache<String, String> ehcache = this.getEhcache() --> Line_10 $$ validateStats(ehcache, EnumSet.of(CacheOperationOutcomes.ConditionalRemoveOutcome.SUCCESS)) [FD]

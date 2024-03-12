@@ -1,0 +1,7 @@
+Line_2 $$ public StreamConsumer newInstance(final String streamId) --> Line_3 $$ final StreamConsumer consumer = new UselessStreamConsumer(streamId) [CD]
+Line_2 $$ public StreamConsumer newInstance(final String streamId) --> Line_4 $$ final ScheduledFuture<?> future = executor.scheduleWithFixedDelay(new ConsumerRunner(consumer), 0L, 10L, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ public StreamConsumer newInstance(final String streamId) --> Line_5 $$ consumerMap.put(consumer, future) [CD]
+Line_3 $$ final StreamConsumer consumer = new UselessStreamConsumer(streamId) --> Line_5 $$ consumerMap.put(consumer, future) [FD]
+Line_4 $$ final ScheduledFuture<?> future = executor.scheduleWithFixedDelay(new ConsumerRunner(consumer), 0L, 10L, TimeUnit.MILLISECONDS) --> Line_5 $$ consumerMap.put(consumer, future) [FD]
+Line_2 $$ public StreamConsumer newInstance(final String streamId) --> Line_6 $$ LOGGER.info("Added consumer: " + consumer) [CD]
+Line_2 $$ public StreamConsumer newInstance(final String streamId) --> Line_7 $$ return consumer [CD]

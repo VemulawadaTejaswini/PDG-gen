@@ -1,0 +1,8 @@
+Line_2 $$ public static void setMetaData(DataSource dataSource, GlobalConfiguration globalConfig) --> Line_3 $$ try (Connection connection = dataSource.getConnection()) [FD]
+Line_3 $$ try (Connection connection = dataSource.getConnection()) --> Line_4 $$ String jdbcUrl = connection.getMetaData().getURL() [FD]
+Line_2 $$ public static void setMetaData(DataSource dataSource, GlobalConfiguration globalConfig) --> Line_5 $$ globalConfig.setSqlKeywords(connection.getMetaData().getSQLKeywords()) [FD]
+Line_3 $$ try (Connection connection = dataSource.getConnection()) --> Line_5 $$ globalConfig.setSqlKeywords(connection.getMetaData().getSQLKeywords()) [FD]
+Line_2 $$ public static void setMetaData(DataSource dataSource, GlobalConfiguration globalConfig) --> Line_6 $$ if (globalConfig.getDbType() == null) [FD]
+Line_6 $$ if (globalConfig.getDbType() == null) --> Line_7 $$ globalConfig.setDbTypeOfJdbcUrl(jdbcUrl) [CD]
+Line_2 $$ public static void setMetaData(DataSource dataSource, GlobalConfiguration globalConfig) --> Line_7 $$ globalConfig.setDbTypeOfJdbcUrl(jdbcUrl) [FD]
+Line_4 $$ String jdbcUrl = connection.getMetaData().getURL() --> Line_7 $$ globalConfig.setDbTypeOfJdbcUrl(jdbcUrl) [FD]

@@ -1,0 +1,5 @@
+Line_4 $$ String now = Long.toString(System.currentTimeMillis()) --> Line_5 $$ spawnDataStore.put(SpawnDataStoreKeys.SPAWN_JOB_CONFIG_HEARTBEAT_PATH, now) [FD]
+Line_6 $$ String received = spawnDataStore.get(SpawnDataStoreKeys.SPAWN_JOB_CONFIG_HEARTBEAT_PATH) --> Line_7 $$ if (Objects.equals(received, now)) [FD]
+Line_4 $$ String now = Long.toString(System.currentTimeMillis()) --> Line_7 $$ if (Objects.equals(received, now)) [FD]
+Line_7 $$ if (Objects.equals(received, now)) --> Line_8 $$ SpawnMetrics.jobTaskUpdateHeartbeatSuccessMeter.mark() [CD]
+Line_7 $$ if (Objects.equals(received, now)) --> Line_10 $$ SpawnMetrics.jobTaskUpdateHeartbeatFailureCounter.inc() [CD]

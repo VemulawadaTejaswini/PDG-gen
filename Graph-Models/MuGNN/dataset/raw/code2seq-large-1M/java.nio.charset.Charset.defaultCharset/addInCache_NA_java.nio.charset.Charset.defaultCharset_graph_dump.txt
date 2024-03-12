@@ -1,0 +1,8 @@
+Line_2 $$ public <T> void addInCache(Response<T> response, byte[] rawResponse) --> Line_3 $$ String cacheKey = urlToKey(response.raw().request().url().url()) [FD]
+Line_2 $$ public <T> void addInCache(Response<T> response, byte[] rawResponse) --> Line_3 $$ String cacheKey = urlToKey(response.raw().request().url().url()) [CD]
+Line_2 $$ public <T> void addInCache(Response<T> response, byte[] rawResponse) --> Line_4 $$ memoryCache.put(cacheKey, rawResponse) [FD]
+Line_2 $$ public <T> void addInCache(Response<T> response, byte[] rawResponse) --> Line_4 $$ memoryCache.put(cacheKey, rawResponse) [CD]
+Line_3 $$ String cacheKey = urlToKey(response.raw().request().url().url()) --> Line_4 $$ memoryCache.put(cacheKey, rawResponse) [FD]
+Line_2 $$ public <T> void addInCache(Response<T> response, byte[] rawResponse) --> Line_6 $$ DiskLruCache.Editor editor = diskCache.edit(urlToKey(response.raw().request().url().url())) [FD]
+Line_6 $$ DiskLruCache.Editor editor = diskCache.edit(urlToKey(response.raw().request().url().url())) --> Line_7 $$ editor.set(0, new String(rawResponse, Charset.defaultCharset())) [FD]
+Line_6 $$ DiskLruCache.Editor editor = diskCache.edit(urlToKey(response.raw().request().url().url())) --> Line_8 $$ editor.commit() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testAddToRepositoryAddsInCache() throws Exception --> Line_3 $$ final Repository<StubAggregate> repository = testSubject.createRepository(mockEventStore, new GenericAggregateFactory(StubAggregate.class), snapshotTriggerDefinition, ClasspathParameterResolverFactory.forClass(StubAggregate.class)) [CD]
+Line_2 $$ public void testAddToRepositoryAddsInCache() throws Exception --> Line_4 $$ when(mockCommandHandler.handle(eq(mockCommandMessage))).thenAnswer( invocationOnMock -> [CD]
+Line_5 $$ Aggregate<StubAggregate> aggregate = repository.newInstance(() -> new StubAggregate(aggregateIdentifier)) --> Line_6 $$ aggregate.execute(StubAggregate::<>doSomething) [FD]
+Line_5 $$ Aggregate<StubAggregate> aggregate = repository.newInstance(() -> new StubAggregate(aggregateIdentifier)) --> Line_7 $$ return aggregate.invoke(Function.identity()) [FD]
+Line_2 $$ public void testAddToRepositoryAddsInCache() throws Exception --> Line_9 $$ testSubject.onEvent(commandHandlingEntry, 0, true) [CD]
+Line_2 $$ public void testAddToRepositoryAddsInCache() throws Exception --> Line_10 $$ verify(mockEventStore, never()).readEvents(eq(aggregateIdentifier)) [CD]
+Line_2 $$ public void testAddToRepositoryAddsInCache() throws Exception --> Line_11 $$ verify(mockEventStore, never()).readEvents(eq(aggregateIdentifier)) [CD]
+Line_2 $$ public void testAddToRepositoryAddsInCache() throws Exception --> Line_12 $$ verify(mockEventStore).publish(Matchers.<DomainEventMessage<?>[]>anyVararg()) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public Observable<Message> subscribeToMessages(Conversation conversation) --> Line_3 $$ List<Message> messages1 = converMessages.get(conversation.getId()) [CD]
+Line_2 $$ public Observable<Message> subscribeToMessages(Conversation conversation) --> Line_3 $$ List<Message> messages1 = converMessages.get(conversation.getId()) [FD]
+Line_2 $$ public Observable<Message> subscribeToMessages(Conversation conversation) --> Line_4 $$ List<Message> messages = messages1 == null ? new ArrayList() : messages1 [CD]
+Line_2 $$ public Observable<Message> subscribeToMessages(Conversation conversation) --> Line_5 $$ Observable<Message> messageObservable = Observable.interval(new Random().nextInt(2000), TimeUnit.MILLISECONDS).map( i -> messages.get(i.intValue())).take(messages.size()) [CD]
+Line_4 $$ List<Message> messages = messages1 == null ? new ArrayList() : messages1 --> Line_5 $$ Observable<Message> messageObservable = Observable.interval(new Random().nextInt(2000), TimeUnit.MILLISECONDS).map( i -> messages.get(i.intValue())).take(messages.size()) [FD]
+Line_2 $$ public Observable<Message> subscribeToMessages(Conversation conversation) --> Line_6 $$ return getPublisher(conversation).mergeWith(messageObservable) [CD]
+Line_2 $$ public Observable<Message> subscribeToMessages(Conversation conversation) --> Line_6 $$ return getPublisher(conversation).mergeWith(messageObservable) [FD]
+Line_5 $$ Observable<Message> messageObservable = Observable.interval(new Random().nextInt(2000), TimeUnit.MILLISECONDS).map( i -> messages.get(i.intValue())).take(messages.size()) --> Line_6 $$ return getPublisher(conversation).mergeWith(messageObservable) [FD]

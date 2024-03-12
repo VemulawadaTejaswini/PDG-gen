@@ -1,0 +1,6 @@
+Line_2 $$ private synchronized Either<R, ListenableFuture<Void>> requestResource() --> Line_3 $$ Optional<R> resource = obtainResource() [CD]
+Line_2 $$ private synchronized Either<R, ListenableFuture<Void>> requestResource() --> Line_4 $$ if (resource.isPresent()) [CD]
+Line_3 $$ Optional<R> resource = obtainResource() --> Line_4 $$ if (resource.isPresent()) [FD]
+Line_4 $$ if (resource.isPresent()) --> Line_5 $$ return Either.ofLeft(resource.get()) [CD]
+Line_3 $$ Optional<R> resource = obtainResource() --> Line_5 $$ return Either.ofLeft(resource.get()) [FD]
+Line_2 $$ private synchronized Either<R, ListenableFuture<Void>> requestResource() --> Line_7 $$ return Either.ofRight(scheduleNewResourceRequest()) [CD]

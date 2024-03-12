@@ -1,0 +1,8 @@
+Line_2 $$ public void testQueryContextParsingObjectHavingNULL() throws Exception --> Line_3 $$ XContentBuilder builder = jsonBuilder().startObject().nullField("context").field("boost", 10).field("prefix", true).endObject() [CD]
+Line_2 $$ public void testQueryContextParsingObjectHavingNULL() throws Exception --> Line_4 $$ XContentParser parser = createParser(JsonXContent.jsonXContent, builder.bytes()) [CD]
+Line_3 $$ XContentBuilder builder = jsonBuilder().startObject().nullField("context").field("boost", 10).field("prefix", true).endObject() --> Line_4 $$ XContentParser parser = createParser(JsonXContent.jsonXContent, builder.bytes()) [FD]
+Line_2 $$ public void testQueryContextParsingObjectHavingNULL() throws Exception --> Line_5 $$ CategoryContextMapping mapping = ContextBuilder.category("cat").build() [CD]
+Line_2 $$ public void testQueryContextParsingObjectHavingNULL() throws Exception --> Line_6 $$ Exception e = expectThrows(ElasticsearchParseException.class, () -> mapping.parseQueryContext(createParseContext(parser))) [CD]
+Line_5 $$ CategoryContextMapping mapping = ContextBuilder.category("cat").build() --> Line_6 $$ Exception e = expectThrows(ElasticsearchParseException.class, () -> mapping.parseQueryContext(createParseContext(parser))) [FD]
+Line_4 $$ XContentParser parser = createParser(JsonXContent.jsonXContent, builder.bytes()) --> Line_6 $$ Exception e = expectThrows(ElasticsearchParseException.class, () -> mapping.parseQueryContext(createParseContext(parser))) [FD]
+Line_2 $$ public void testQueryContextParsingObjectHavingNULL() throws Exception --> Line_7 $$ assertEquals("category context must be a string, number or boolean", e.getMessage()) [CD]

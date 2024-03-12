@@ -1,0 +1,6 @@
+Line_2 $$ private void writeToFile(T obj) throws IOException --> Line_4 $$ ByteBuffer bytes = ByteBuffer.wrap(mapper.writeValueAsBytes(obj)) [FD]
+Line_4 $$ ByteBuffer bytes = ByteBuffer.wrap(mapper.writeValueAsBytes(obj)) --> Line_5 $$ ByteBuffer length = ByteBuffer.allocate(4).putInt(bytes.array().length) [FD]
+Line_5 $$ ByteBuffer length = ByteBuffer.allocate(4).putInt(bytes.array().length) --> Line_8 $$ length.flip() [FD]
+Line_5 $$ ByteBuffer length = ByteBuffer.allocate(4).putInt(bytes.array().length) --> Line_9 $$ channel.write(length) [FD]
+Line_4 $$ ByteBuffer bytes = ByteBuffer.wrap(mapper.writeValueAsBytes(obj)) --> Line_10 $$ channel.write(bytes) [FD]
+Line_4 $$ ByteBuffer bytes = ByteBuffer.wrap(mapper.writeValueAsBytes(obj)) --> Line_11 $$ filesize += 4 + bytes.array().length [FD]

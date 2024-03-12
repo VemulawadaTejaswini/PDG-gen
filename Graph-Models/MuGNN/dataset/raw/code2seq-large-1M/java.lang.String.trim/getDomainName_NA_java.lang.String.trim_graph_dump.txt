@@ -1,0 +1,8 @@
+Line_2 $$ public String getDomainName() --> Line_3 $$ char[] buffer = new char[256] [CD]
+Line_2 $$ public String getDomainName() --> Line_4 $$ IntByReference bufferSize = new IntByReference(buffer.length) [CD]
+Line_2 $$ public String getDomainName() --> Line_5 $$ if (!Kernel32.INSTANCE.GetComputerNameEx(COMPUTER_NAME_DNS_DOMAIN_FULLY_QUALIFIED, buffer, bufferSize)) [CD]
+Line_3 $$ char[] buffer = new char[256] --> Line_5 $$ if (!Kernel32.INSTANCE.GetComputerNameEx(COMPUTER_NAME_DNS_DOMAIN_FULLY_QUALIFIED, buffer, bufferSize)) [FD]
+Line_4 $$ IntByReference bufferSize = new IntByReference(buffer.length) --> Line_5 $$ if (!Kernel32.INSTANCE.GetComputerNameEx(COMPUTER_NAME_DNS_DOMAIN_FULLY_QUALIFIED, buffer, bufferSize)) [FD]
+Line_5 $$ if (!Kernel32.INSTANCE.GetComputerNameEx(COMPUTER_NAME_DNS_DOMAIN_FULLY_QUALIFIED, buffer, bufferSize)) --> Line_6 $$ LOG.error("Failed to get dns domain name. Error code: [CD]
+Line_5 $$ if (!Kernel32.INSTANCE.GetComputerNameEx(COMPUTER_NAME_DNS_DOMAIN_FULLY_QUALIFIED, buffer, bufferSize)) --> Line_7 $$ return "" [CD]
+Line_2 $$ public String getDomainName() --> Line_9 $$ return new String(buffer).trim() [CD]

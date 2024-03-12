@@ -1,0 +1,4 @@
+Line_2 $$ public static boolean isNonceValid(String nonce, String secretKey, long lifespan) throws Exception --> Line_4 $$ String decodedNonce = new String(Base64.decode(nonce)) [FD]
+Line_4 $$ String decodedNonce = new String(Base64.decode(nonce)) --> Line_5 $$ long nonceTimeMS = Long.parseLong(decodedNonce.substring(0, decodedNonce.indexOf(':'))) [FD]
+Line_4 $$ String decodedNonce = new String(Base64.decode(nonce)) --> Line_6 $$ if (decodedNonce.equals(nonceTimeMS + ":" + DigestUtils.toMd5(nonceTimeMS + ":" + secretKey))) [FD]
+Line_6 $$ if (decodedNonce.equals(nonceTimeMS + ":" + DigestUtils.toMd5(nonceTimeMS + ":" + secretKey))) --> Line_7 $$ return lifespan > (System.currentTimeMillis() - nonceTimeMS) [CD]

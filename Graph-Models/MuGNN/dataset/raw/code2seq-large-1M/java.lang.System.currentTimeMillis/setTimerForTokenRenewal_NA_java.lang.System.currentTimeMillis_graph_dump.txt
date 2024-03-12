@@ -1,0 +1,7 @@
+Line_2 $$ protected void setTimerForTokenRenewal(DelegationTokenToRenew token) throws IOException --> Line_3 $$ long expiresIn = token.expirationDate - System.currentTimeMillis() [CD]
+Line_2 $$ protected void setTimerForTokenRenewal(DelegationTokenToRenew token) throws IOException --> Line_4 $$ long renewIn = token.expirationDate - expiresIn / 10 [CD]
+Line_2 $$ protected void setTimerForTokenRenewal(DelegationTokenToRenew token) throws IOException --> Line_5 $$ TimerTask tTask = new RenewalTimerTask(token) [CD]
+Line_2 $$ protected void setTimerForTokenRenewal(DelegationTokenToRenew token) throws IOException --> Line_6 $$ token.setTimerTask(tTask) [FD]
+Line_2 $$ protected void setTimerForTokenRenewal(DelegationTokenToRenew token) throws IOException --> Line_6 $$ token.setTimerTask(tTask) [CD]
+Line_5 $$ TimerTask tTask = new RenewalTimerTask(token) --> Line_6 $$ token.setTimerTask(tTask) [FD]
+Line_2 $$ protected void setTimerForTokenRenewal(DelegationTokenToRenew token) throws IOException --> Line_7 $$ renewalTimer.schedule(token.timerTask, new Date(renewIn)) [CD]

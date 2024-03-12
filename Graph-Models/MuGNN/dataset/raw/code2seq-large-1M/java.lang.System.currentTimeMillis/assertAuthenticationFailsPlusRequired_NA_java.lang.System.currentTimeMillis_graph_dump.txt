@@ -1,0 +1,6 @@
+Line_2 $$ protected static void assertAuthenticationFailsPlusRequired() --> Line_3 $$ final long startTime = System.currentTimeMillis() [CD]
+Line_9 $$ Throwable cause = e.getCause() --> Line_10 $$ assertThat("ConnectionException was expected as a cause when SASL authentication fails", cause, is(instanceOf(ConnectException.class))) [FD]
+Line_9 $$ Throwable cause = e.getCause() --> Line_11 $$ Throwable saslException = cause.getCause() [FD]
+Line_11 $$ Throwable saslException = cause.getCause() --> Line_12 $$ assertThat("An unexpected second Exception cause came when authentication failed", saslException, is(instanceOf(SaslException.class))) [FD]
+Line_11 $$ Throwable saslException = cause.getCause() --> Line_13 $$ final String saslExceptionMsg = saslException.getMessage() [FD]
+Line_13 $$ final String saslExceptionMsg = saslException.getMessage() --> Line_14 $$ assertThat("SASL Error message should contain reason of failure (channel binding configuration).", saslExceptionMsg, allOf(containsString("ELY05166"), containsString(ScramServerErrorCode.SERVER_DOES_SUPPORT_CHANNEL_BINDING.getText()))) [FD]

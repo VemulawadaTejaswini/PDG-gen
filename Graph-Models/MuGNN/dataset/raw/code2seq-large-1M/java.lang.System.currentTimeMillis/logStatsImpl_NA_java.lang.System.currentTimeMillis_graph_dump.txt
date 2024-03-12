@@ -1,0 +1,8 @@
+Line_2 $$ private void logStatsImpl() --> Line_3 $$ if (!logStats) [CD]
+Line_3 $$ if (!logStats) --> Line_4 $$ return [CD]
+Line_2 $$ private void logStatsImpl() --> Line_5 $$ if (stats.passed % 10000 == 0 && stats.passed > stats.checkpoint) [CD]
+Line_5 $$ if (stats.passed % 10000 == 0 && stats.passed > stats.checkpoint) --> Line_6 $$ long cur = System.currentTimeMillis() [CD]
+Line_5 $$ if (stats.passed % 10000 == 0 && stats.passed > stats.checkpoint) --> Line_7 $$ logger.info("Validating storage " + HashUtil.shortHash(stateAddressOrHash) + ": running for " + ((cur - stats.startedAt) / 1000) + " sec, " + stats.passed + " passed, " + String.format("%.2f nodes/sec", (double) (stats.passed - stats.checkpoint) / (cur - stats.updatedAt) * 1000)) [CD]
+Line_5 $$ if (stats.passed % 10000 == 0 && stats.passed > stats.checkpoint) --> Line_8 $$ stats.checkpoint = stats.passed [CD]
+Line_5 $$ if (stats.passed % 10000 == 0 && stats.passed > stats.checkpoint) --> Line_9 $$ stats.updatedAt = cur [CD]
+Line_6 $$ long cur = System.currentTimeMillis() --> Line_9 $$ stats.updatedAt = cur [FD]

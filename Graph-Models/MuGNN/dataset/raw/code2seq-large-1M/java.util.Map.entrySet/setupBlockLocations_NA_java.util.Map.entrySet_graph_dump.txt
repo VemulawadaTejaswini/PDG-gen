@@ -1,0 +1,5 @@
+Line_2 $$ private void setupBlockLocations(String resource, Map<Integer, List<String>> locationMap) throws IOException --> Line_3 $$ for (Map.Entry<Integer, List<String>> entry : locationMap.entrySet()) [FD]
+Line_2 $$ private void setupBlockLocations(String resource, Map<Integer, List<String>> locationMap) throws IOException --> Line_4 $$ String path = TerrapinUtil.helixResourceToHdfsDir(resource) + String.format("/%s", TerrapinUtil.formatPartitionName(entry.getKey())) [FD]
+Line_6 $$ String[] hostsArray = new String[entry.getValue().size()] --> Line_7 $$ entry.getValue().toArray(hostsArray) [FD]
+Line_5 $$ BlockLocation[] locations = new BlockLocation[1] --> Line_9 $$ when(mockDfsClient.getBlockLocations(eq(path), eq(0L), eq(1000L))).thenReturn(locations) [FD]
+Line_4 $$ String path = TerrapinUtil.helixResourceToHdfsDir(resource) + String.format("/%s", TerrapinUtil.formatPartitionName(entry.getKey())) --> Line_9 $$ when(mockDfsClient.getBlockLocations(eq(path), eq(0L), eq(1000L))).thenReturn(locations) [FD]

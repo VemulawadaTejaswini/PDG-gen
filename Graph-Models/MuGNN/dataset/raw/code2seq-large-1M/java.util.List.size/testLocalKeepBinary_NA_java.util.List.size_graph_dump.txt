@@ -1,0 +1,7 @@
+Line_2 $$ public void testLocalKeepBinary() throws Exception --> Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") [CD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) [FD]
+Line_6 $$ Collection<List<Integer>> lists = grid().compute().broadcast(new IgniteCallable<List<Integer>>() --> Line_9 $$ IgniteClosure<Cache.Entry<Integer, BinaryObject>, Integer> transformer = new IgniteClosure<Cache.Entry<Integer, BinaryObject>, Integer>() [CD]
+Line_6 $$ Collection<List<Integer>> lists = grid().compute().broadcast(new IgniteCallable<List<Integer>>() --> Line_14 $$ return ignite.cache("test-cache").withKeepBinary().query(new ScanQuery<Integer, BinaryObject>().setLocal(true), transformer).getAll() [CD]
+Line_6 $$ Collection<List<Integer>> lists = grid().compute().broadcast(new IgniteCallable<List<Integer>>() --> Line_17 $$ List<Integer> res = new ArrayList(F.flatCollections(lists)) [FD]
+Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) --> Line_20 $$ for (int i = 0; i < 50; i++) assertEquals(i * 100, res.get(i).intValue()) [FD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_22 $$ cache.destroy() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void respectRetryAfter() --> Line_3 $$ final HttpClient client = retryingHttpClientOf(RetryStrategy.onServerErrorStatus()) [CD]
+Line_2 $$ public void respectRetryAfter() --> Line_4 $$ final Stopwatch sw = Stopwatch.createStarted() [CD]
+Line_2 $$ public void respectRetryAfter() --> Line_5 $$ final AggregatedHttpMessage res = client.get("/retry-after-1-second").aggregate().join() [CD]
+Line_3 $$ final HttpClient client = retryingHttpClientOf(RetryStrategy.onServerErrorStatus()) --> Line_5 $$ final AggregatedHttpMessage res = client.get("/retry-after-1-second").aggregate().join() [FD]
+Line_2 $$ public void respectRetryAfter() --> Line_6 $$ assertThat(res.content().toStringUtf8()).isEqualTo("Succeeded after retry") [CD]
+Line_5 $$ final AggregatedHttpMessage res = client.get("/retry-after-1-second").aggregate().join() --> Line_6 $$ assertThat(res.content().toStringUtf8()).isEqualTo("Succeeded after retry") [FD]
+Line_2 $$ public void respectRetryAfter() --> Line_7 $$ assertThat(sw.elapsed(TimeUnit.MILLISECONDS)).isGreaterThanOrEqualTo((long) (TimeUnit.SECONDS.toMillis(oneSecForRetryAfter) * 0.9)) [CD]
+Line_4 $$ final Stopwatch sw = Stopwatch.createStarted() --> Line_7 $$ assertThat(sw.elapsed(TimeUnit.MILLISECONDS)).isGreaterThanOrEqualTo((long) (TimeUnit.SECONDS.toMillis(oneSecForRetryAfter) * 0.9)) [FD]

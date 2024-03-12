@@ -1,0 +1,8 @@
+Line_2 $$ public static BigDecimal getOrderItemInvoicedQuantity(GenericValue orderItem) --> Line_3 $$ BigDecimal invoiced = BigDecimal.ZERO [CD]
+Line_2 $$ public static BigDecimal getOrderItemInvoicedQuantity(GenericValue orderItem) --> Line_5 $$ List<GenericValue> billings = orderItem.getRelated("OrderItemBilling", null, null, false) [FD]
+Line_6 $$ for (GenericValue billing : billings) --> Line_7 $$ BigDecimal quantity = billing.getBigDecimal("quantity") [FD]
+Line_7 $$ BigDecimal quantity = billing.getBigDecimal("quantity") --> Line_8 $$ if (quantity != null) [FD]
+Line_8 $$ if (quantity != null) --> Line_9 $$ invoiced = invoiced.add(quantity) [CD]
+Line_3 $$ BigDecimal invoiced = BigDecimal.ZERO --> Line_9 $$ invoiced = invoiced.add(quantity) [FD]
+Line_7 $$ BigDecimal quantity = billing.getBigDecimal("quantity") --> Line_9 $$ invoiced = invoiced.add(quantity) [FD]
+Line_2 $$ public static BigDecimal getOrderItemInvoicedQuantity(GenericValue orderItem) --> Line_15 $$ return invoiced [CD]

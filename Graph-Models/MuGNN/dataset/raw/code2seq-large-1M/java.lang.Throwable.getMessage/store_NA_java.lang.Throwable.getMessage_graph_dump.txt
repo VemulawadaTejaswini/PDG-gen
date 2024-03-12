@@ -1,0 +1,7 @@
+Line_2 $$ public void store(Configuration conf) throws BackupException --> Line_3 $$ byte[] data = backupImage.toProto().toByteArray() [CD]
+Line_2 $$ public void store(Configuration conf) throws BackupException --> Line_4 $$ Path manifestFilePath = new Path(HBackupFileSystem.getBackupPath(backupImage.getRootDir(), backupImage.getBackupId()), MANIFEST_FILE_NAME) [CD]
+Line_4 $$ Path manifestFilePath = new Path(HBackupFileSystem.getBackupPath(backupImage.getRootDir(), backupImage.getBackupId()), MANIFEST_FILE_NAME) --> Line_5 $$ try (FSDataOutputStream out = manifestFilePath.getFileSystem(conf).create(manifestFilePath, true)) [FD]
+Line_2 $$ public void store(Configuration conf) throws BackupException --> Line_5 $$ try (FSDataOutputStream out = manifestFilePath.getFileSystem(conf).create(manifestFilePath, true)) [FD]
+Line_5 $$ try (FSDataOutputStream out = manifestFilePath.getFileSystem(conf).create(manifestFilePath, true)) --> Line_6 $$ out.write(data) [FD]
+Line_3 $$ byte[] data = backupImage.toProto().toByteArray() --> Line_6 $$ out.write(data) [FD]
+Line_2 $$ public void store(Configuration conf) throws BackupException --> Line_10 $$ LOG.info("Manifest file stored to " + manifestFilePath) [CD]

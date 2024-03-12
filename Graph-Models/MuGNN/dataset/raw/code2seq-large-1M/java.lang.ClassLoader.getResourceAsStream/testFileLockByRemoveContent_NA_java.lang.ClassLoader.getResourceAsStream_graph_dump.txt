@@ -1,0 +1,6 @@
+Line_4 $$ final byte[] deploymentHash = repository.addContentToExploded(repository.addContent(null), Collections.singletonList(new ExplodedContent("overlay.xhtml", stream)), true) --> Line_5 $$ Assert.assertTrue(repository.hasContent(deploymentHash)) [FD]
+Line_6 $$ ExecutorService executor = Executors.newFixedThreadPool(2) --> Line_7 $$ Future deletion = executor.submit(() -> [FD]
+Line_6 $$ ExecutorService executor = Executors.newFixedThreadPool(2) --> Line_11 $$ Future<InputStream> result = executor.submit(() -> repository.readContent(deploymentHash, "overlay.xhtml")) [FD]
+Line_4 $$ final byte[] deploymentHash = repository.addContentToExploded(repository.addContent(null), Collections.singletonList(new ExplodedContent("overlay.xhtml", stream)), true) --> Line_11 $$ Future<InputStream> result = executor.submit(() -> repository.readContent(deploymentHash, "overlay.xhtml")) [FD]
+Line_7 $$ Future deletion = executor.submit(() -> --> Line_12 $$ deletion.get(EXECUTION_TIMEOUT, TimeUnit.MILLISECONDS) [FD]
+Line_11 $$ Future<InputStream> result = executor.submit(() -> repository.readContent(deploymentHash, "overlay.xhtml")) --> Line_14 $$ result.get(EXECUTION_TIMEOUT, TimeUnit.MILLISECONDS) [FD]

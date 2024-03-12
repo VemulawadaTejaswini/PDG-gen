@@ -1,0 +1,5 @@
+Line_2 $$ public Object toJson() --> Line_3 $$ if (isArray()) [CD]
+Line_3 $$ if (isArray()) --> Line_4 $$ return new JsonArray(getArray().stream().map( rp -> rp.toJson()).collect(Collectors.toList())) [CD]
+Line_3 $$ if (isArray()) --> Line_5 $$ if (isObject()) [CD]
+Line_5 $$ if (isObject()) --> Line_6 $$ return ((Map<String, RequestParameter>) value).entrySet().stream().collect(Collector.of(JsonObject::<>new, ( j,  e) -> j.put(e.getKey(), e.getValue().toJson()), JsonObject::<>mergeIn)) [CD]
+Line_5 $$ if (isObject()) --> Line_8 $$ return value [CD]

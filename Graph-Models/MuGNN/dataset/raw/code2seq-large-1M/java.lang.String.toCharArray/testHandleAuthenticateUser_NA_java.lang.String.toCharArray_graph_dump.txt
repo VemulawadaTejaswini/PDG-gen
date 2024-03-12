@@ -1,0 +1,8 @@
+Line_2 $$ public void testHandleAuthenticateUser() throws Exception --> Line_3 $$ UserId aggregateIdentifier = new UserId() [CD]
+Line_2 $$ public void testHandleAuthenticateUser() throws Exception --> Line_4 $$ UserEntry userEntry = new UserEntry() [CD]
+Line_2 $$ public void testHandleAuthenticateUser() throws Exception --> Line_5 $$ userEntry.setUsername("buyer1") [CD]
+Line_2 $$ public void testHandleAuthenticateUser() throws Exception --> Line_6 $$ userEntry.setIdentifier(aggregateIdentifier.toString()) [CD]
+Line_3 $$ UserId aggregateIdentifier = new UserId() --> Line_6 $$ userEntry.setIdentifier(aggregateIdentifier.toString()) [FD]
+Line_2 $$ public void testHandleAuthenticateUser() throws Exception --> Line_7 $$ userEntry.setName("Buyer One") [CD]
+Line_2 $$ public void testHandleAuthenticateUser() throws Exception --> Line_8 $$ Mockito.when(userQueryRepository.findByUsername("buyer1")).thenReturn(userEntry) [CD]
+Line_2 $$ public void testHandleAuthenticateUser() throws Exception --> Line_9 $$ fixture.given(new UserCreatedEvent(aggregateIdentifier, "Buyer 1", "buyer1", DigestUtils.sha1("buyer1"))).when(new AuthenticateUserCommand("buyer1", "buyer1".toCharArray())).expectEvents(new UserAuthenticatedEvent(aggregateIdentifier)) [CD]

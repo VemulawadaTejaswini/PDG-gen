@@ -1,0 +1,7 @@
+Line_2 $$ public static AsynchronousChannelGroup newChannelGroup() throws IOException --> Line_3 $$ final AtomicInteger counter = new AtomicInteger() [CD]
+Line_2 $$ public static AsynchronousChannelGroup newChannelGroup() throws IOException --> Line_4 $$ ExecutorService transportExec = Executors.newFixedThreadPool(16, (Runnable r) -> [CD]
+Line_5 $$ Thread t = new Thread(r) --> Line_6 $$ t.setDaemon(true) [FD]
+Line_5 $$ Thread t = new Thread(r) --> Line_7 $$ t.setName("Transport-Thread-" + counter.incrementAndGet()) [FD]
+Line_3 $$ final AtomicInteger counter = new AtomicInteger() --> Line_7 $$ t.setName("Transport-Thread-" + counter.incrementAndGet()) [FD]
+Line_2 $$ public static AsynchronousChannelGroup newChannelGroup() throws IOException --> Line_10 $$ return AsynchronousChannelGroup.withCachedThreadPool(transportExec, 1) [CD]
+Line_4 $$ ExecutorService transportExec = Executors.newFixedThreadPool(16, (Runnable r) -> --> Line_10 $$ return AsynchronousChannelGroup.withCachedThreadPool(transportExec, 1) [FD]

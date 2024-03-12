@@ -1,0 +1,8 @@
+Line_2 $$ public void verifyExportForFullyDefinedRule() --> Line_3 $$ final CsvService csvService = new CsvServiceImpl(createNiceMock(RuleValidator.class)) [CD]
+Line_2 $$ public void verifyExportForFullyDefinedRule() --> Line_4 $$ final Rule rule = new RuleBuilder().withName("dummy").withProtocol("tcp,udp,icmp").withDstPort("80,1234").withDstAddress("8.8.8.8").withSrcPort("55555").withSrcAddress("10.0.0.1").withExporterFilter("categoryName = 'Databases'").build() [CD]
+Line_2 $$ public void verifyExportForFullyDefinedRule() --> Line_5 $$ final String response = csvService.createCSV(Lists.newArrayList(rule)) [CD]
+Line_4 $$ final Rule rule = new RuleBuilder().withName("dummy").withProtocol("tcp,udp,icmp").withDstPort("80,1234").withDstAddress("8.8.8.8").withSrcPort("55555").withSrcAddress("10.0.0.1").withExporterFilter("categoryName = 'Databases'").build() --> Line_5 $$ final String response = csvService.createCSV(Lists.newArrayList(rule)) [FD]
+Line_2 $$ public void verifyExportForFullyDefinedRule() --> Line_6 $$ final String[] rows = response.split("\n") [CD]
+Line_5 $$ final String response = csvService.createCSV(Lists.newArrayList(rule)) --> Line_6 $$ final String[] rows = response.split("\n") [FD]
+Line_2 $$ public void verifyExportForFullyDefinedRule() --> Line_7 $$ assertThat(rows.length, is(2)) [CD]
+Line_2 $$ public void verifyExportForFullyDefinedRule() --> Line_8 $$ assertThat(rows[1], is("dummy;tcp,udp,icmp;10.0.0.1;55555;8.8.8.8;80,1234;categoryName = 'Databases'")) [CD]

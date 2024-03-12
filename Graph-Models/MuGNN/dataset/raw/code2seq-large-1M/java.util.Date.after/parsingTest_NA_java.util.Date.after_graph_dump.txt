@@ -1,0 +1,7 @@
+Line_3 $$ for (ScheduledBackupType type : testedTypes) --> Line_4 $$ String desc = type.getDescription() [FD]
+Line_3 $$ for (ScheduledBackupType type : testedTypes) --> Line_5 $$ String currBackup = type.generateCurrentName(true) [FD]
+Line_3 $$ for (ScheduledBackupType type : testedTypes) --> Line_6 $$ assertEquals("current " + desc + " backup should be valid name", true, type.isValidName(currBackup)) [FD]
+Line_5 $$ String currBackup = type.generateCurrentName(true) --> Line_6 $$ assertEquals("current " + desc + " backup should be valid name", true, type.isValidName(currBackup)) [FD]
+Line_3 $$ for (ScheduledBackupType type : testedTypes) --> Line_7 $$ Date date = type.parseDateFromName(currBackup) [FD]
+Line_5 $$ String currBackup = type.generateCurrentName(true) --> Line_7 $$ Date date = type.parseDateFromName(currBackup) [FD]
+Line_7 $$ Date date = type.parseDateFromName(currBackup) --> Line_8 $$ assertEquals("parsed " + desc + " backup date should be after start date", true, date.after(backupsValidStartDate)) [FD]

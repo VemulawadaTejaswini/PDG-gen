@@ -1,0 +1,7 @@
+Line_2 $$ public List<Artwork> getArtwork(int id, String category, Locale locale) throws Exception --> Line_3 $$ Cache cache = Cache.getCache(getName(), CacheType.Weekly) [CD]
+Line_2 $$ public List<Artwork> getArtwork(int id, String category, Locale locale) throws Exception --> Line_4 $$ Object json = cache.json(category + '/' + id,  s -> getResource(s)).expire(Cache.ONE_WEEK).get() [CD]
+Line_3 $$ Cache cache = Cache.getCache(getName(), CacheType.Weekly) --> Line_4 $$ Object json = cache.json(category + '/' + id,  s -> getResource(s)).expire(Cache.ONE_WEEK).get() [FD]
+Line_2 $$ public List<Artwork> getArtwork(int id, String category, Locale locale) throws Exception --> Line_5 $$ return asMap(json).entrySet().stream().flatMap( type -> [CD]
+Line_4 $$ Object json = cache.json(category + '/' + id,  s -> getResource(s)).expire(Cache.ONE_WEEK).get() --> Line_5 $$ return asMap(json).entrySet().stream().flatMap( type -> [FD]
+Line_11 $$ String season = getString(it, "season") --> Line_13 $$ return new Artwork(Stream.of(type.getKey(), season, discType), new URL(url), language, likes) [FD]
+Line_12 $$ String discType = getString(it, "disc_type") --> Line_13 $$ return new Artwork(Stream.of(type.getKey(), season, discType), new URL(url), language, likes) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void fetchAndValidateRows(List<Partition> partitions, BatchTransactionId txnID, BitSet seenRows) --> Line_4 $$ BatchReadOnlyTransaction batchTxnOnEachWorker = client.batchReadOnlyTransaction(txnID) [FD]
+Line_4 $$ BatchReadOnlyTransaction batchTxnOnEachWorker = client.batchReadOnlyTransaction(txnID) --> Line_5 $$ try (ResultSet result = batchTxnOnEachWorker.execute(p)) [FD]
+Line_3 $$ for (Partition p : partitions) --> Line_5 $$ try (ResultSet result = batchTxnOnEachWorker.execute(p)) [FD]
+Line_5 $$ try (ResultSet result = batchTxnOnEachWorker.execute(p)) --> Line_6 $$ validate(result, seenRows) [FD]
+Line_2 $$ private void fetchAndValidateRows(List<Partition> partitions, BatchTransactionId txnID, BitSet seenRows) --> Line_6 $$ validate(result, seenRows) [FD]
+Line_2 $$ private void fetchAndValidateRows(List<Partition> partitions, BatchTransactionId txnID, BitSet seenRows) --> Line_9 $$ assertThat(seenRows.nextClearBit(0)).isEqualTo(numRows) [FD]
+Line_2 $$ private void fetchAndValidateRows(List<Partition> partitions, BatchTransactionId txnID, BitSet seenRows) --> Line_9 $$ assertThat(seenRows.nextClearBit(0)).isEqualTo(numRows) [CD]

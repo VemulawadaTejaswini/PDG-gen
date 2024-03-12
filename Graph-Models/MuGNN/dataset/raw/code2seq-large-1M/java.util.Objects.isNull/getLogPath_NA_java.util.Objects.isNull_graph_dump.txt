@@ -1,0 +1,7 @@
+Line_2 $$ public String getLogPath() --> Line_3 $$ if (Objects.isNull(logPath)) [CD]
+Line_3 $$ if (Objects.isNull(logPath)) --> Line_4 $$ Optional<String> linuxHome = Optional.ofNullable(System.getenv("HOME")) [CD]
+Line_3 $$ if (Objects.isNull(logPath)) --> Line_5 $$ Optional<String> windowsHome = Optional.ofNullable(System.getenv("USERPROFILE")) [CD]
+Line_3 $$ if (Objects.isNull(logPath)) --> Line_6 $$ Stream.<Optional<String>>of(linuxHome, windowsHome).filter(Optional::<>isPresent).map(Optional::<>get).map(Paths::<>get).findFirst().ifPresent( path -> logPath = path.resolve(configDirName).resolve("log").toString()) [CD]
+Line_4 $$ Optional<String> linuxHome = Optional.ofNullable(System.getenv("HOME")) --> Line_6 $$ Stream.<Optional<String>>of(linuxHome, windowsHome).filter(Optional::<>isPresent).map(Optional::<>get).map(Paths::<>get).findFirst().ifPresent( path -> logPath = path.resolve(configDirName).resolve("log").toString()) [FD]
+Line_5 $$ Optional<String> windowsHome = Optional.ofNullable(System.getenv("USERPROFILE")) --> Line_6 $$ Stream.<Optional<String>>of(linuxHome, windowsHome).filter(Optional::<>isPresent).map(Optional::<>get).map(Paths::<>get).findFirst().ifPresent( path -> logPath = path.resolve(configDirName).resolve("log").toString()) [FD]
+Line_2 $$ public String getLogPath() --> Line_8 $$ return logPath [CD]

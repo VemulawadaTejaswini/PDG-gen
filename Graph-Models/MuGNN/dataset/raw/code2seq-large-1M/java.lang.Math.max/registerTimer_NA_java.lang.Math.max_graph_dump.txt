@@ -1,0 +1,6 @@
+Line_2 $$ public ScheduledFuture<?> registerTimer(long timestamp, ProcessingTimeCallback target) --> Line_3 $$ long delay = Math.max(timestamp - getCurrentProcessingTime(), 0) [CD]
+Line_3 $$ long delay = Math.max(timestamp - getCurrentProcessingTime(), 0) --> Line_5 $$ return timerService.schedule(new TriggerTask(status, task, checkpointLock, target, timestamp), delay, TimeUnit.MILLISECONDS) [FD]
+Line_7 $$ final int status = this.status.get() --> Line_8 $$ if (status == STATUS_QUIESCED) [FD]
+Line_8 $$ if (status == STATUS_QUIESCED) --> Line_9 $$ return new NeverCompleteFuture(delay) [CD]
+Line_8 $$ if (status == STATUS_QUIESCED) --> Line_10 $$ if (status == STATUS_SHUTDOWN) [CD]
+Line_7 $$ final int status = this.status.get() --> Line_10 $$ if (status == STATUS_SHUTDOWN) [FD]

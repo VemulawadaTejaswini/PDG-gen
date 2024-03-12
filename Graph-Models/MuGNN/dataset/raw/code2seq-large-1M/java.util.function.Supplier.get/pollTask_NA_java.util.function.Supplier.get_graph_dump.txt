@@ -1,0 +1,6 @@
+Line_2 $$ private static <T> void pollTask(Supplier<T> pollingTask, CompletableFuture<T> resultFuture) --> Line_4 $$ T result = pollingTask.get() [FD]
+Line_4 $$ T result = pollingTask.get() --> Line_5 $$ if (result != null) [FD]
+Line_5 $$ if (result != null) --> Line_6 $$ resultFuture.complete(result) [CD]
+Line_2 $$ private static <T> void pollTask(Supplier<T> pollingTask, CompletableFuture<T> resultFuture) --> Line_6 $$ resultFuture.complete(result) [FD]
+Line_4 $$ T result = pollingTask.get() --> Line_6 $$ resultFuture.complete(result) [FD]
+Line_2 $$ private static <T> void pollTask(Supplier<T> pollingTask, CompletableFuture<T> resultFuture) --> Line_9 $$ resultFuture.completeExceptionally(ex) [FD]

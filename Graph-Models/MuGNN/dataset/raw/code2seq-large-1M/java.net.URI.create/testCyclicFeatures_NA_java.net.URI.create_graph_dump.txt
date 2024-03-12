@@ -1,0 +1,8 @@
+Line_2 $$ public void testCyclicFeatures() throws Exception --> Line_3 $$ FeaturesServiceConfig cfg = new FeaturesServiceConfig() [CD]
+Line_2 $$ public void testCyclicFeatures() throws Exception --> Line_4 $$ BundleInstallSupport installSupport = EasyMock.niceMock(BundleInstallSupport.class) [CD]
+Line_2 $$ public void testCyclicFeatures() throws Exception --> Line_5 $$ EasyMock.replay(installSupport) [CD]
+Line_2 $$ public void testCyclicFeatures() throws Exception --> Line_6 $$ final FeaturesServiceImpl impl = new FeaturesServiceImpl(new Storage(), null, null, this.resolver, installSupport, null, cfg) [CD]
+Line_2 $$ public void testCyclicFeatures() throws Exception --> Line_7 $$ impl.addRepository(URI.create("custom:cycle/a-references-b.xml")) [CD]
+Line_6 $$ final FeaturesServiceImpl impl = new FeaturesServiceImpl(new Storage(), null, null, this.resolver, installSupport, null, cfg) --> Line_7 $$ impl.addRepository(URI.create("custom:cycle/a-references-b.xml")) [FD]
+Line_2 $$ public void testCyclicFeatures() throws Exception --> Line_8 $$ impl.getFeatureCache() [CD]
+Line_6 $$ final FeaturesServiceImpl impl = new FeaturesServiceImpl(new Storage(), null, null, this.resolver, installSupport, null, cfg) --> Line_8 $$ impl.getFeatureCache() [FD]

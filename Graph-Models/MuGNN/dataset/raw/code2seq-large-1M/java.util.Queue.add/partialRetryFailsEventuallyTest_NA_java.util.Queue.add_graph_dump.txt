@@ -1,0 +1,7 @@
+Line_2 $$ public void partialRetryFailsEventuallyTest() --> Line_3 $$ RpcExpectation rpcExpectation = RpcExpectation.create().addEntry("key1", Code.DEADLINE_EXCEEDED) [CD]
+Line_2 $$ public void partialRetryFailsEventuallyTest() --> Line_4 $$ for (int i = 0; i < MAX_ATTEMPTS; i++) [CD]
+Line_4 $$ for (int i = 0; i < MAX_ATTEMPTS; i++) --> Line_5 $$ service.expectations.add(rpcExpectation) [CD]
+Line_2 $$ public void partialRetryFailsEventuallyTest() --> Line_7 $$ ApiFuture<Void> result1 = bulkMutations.add(RowMutation.create(TABLE_ID, "key1")) [CD]
+Line_2 $$ public void partialRetryFailsEventuallyTest() --> Line_8 $$ verifyError(result1, StatusCode.Code.DEADLINE_EXCEEDED) [CD]
+Line_7 $$ ApiFuture<Void> result1 = bulkMutations.add(RowMutation.create(TABLE_ID, "key1")) --> Line_8 $$ verifyError(result1, StatusCode.Code.DEADLINE_EXCEEDED) [FD]
+Line_2 $$ public void partialRetryFailsEventuallyTest() --> Line_9 $$ service.verifyOk() [CD]

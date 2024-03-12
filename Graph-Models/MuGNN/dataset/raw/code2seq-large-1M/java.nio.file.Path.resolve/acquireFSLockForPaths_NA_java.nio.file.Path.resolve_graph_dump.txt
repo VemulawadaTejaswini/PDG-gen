@@ -1,0 +1,7 @@
+Line_2 $$ public static void acquireFSLockForPaths(IndexSettings indexSettings, Path... shardPaths) throws IOException --> Line_3 $$ Lock[] locks = new Lock[shardPaths.length] [CD]
+Line_2 $$ public static void acquireFSLockForPaths(IndexSettings indexSettings, Path... shardPaths) throws IOException --> Line_4 $$ Directory[] dirs = new Directory[shardPaths.length] [CD]
+Line_6 $$ for (int i = 0; i < shardPaths.length; i++) --> Line_7 $$ Path p = shardPaths[i].resolve("index") [CD]
+Line_6 $$ for (int i = 0; i < shardPaths.length; i++) --> Line_8 $$ dirs[i] = new SimpleFSDirectory(p, indexSettings.getValue(FsDirectoryService.INDEX_LOCK_FACTOR_SETTING)) [CD]
+Line_2 $$ public static void acquireFSLockForPaths(IndexSettings indexSettings, Path... shardPaths) throws IOException --> Line_8 $$ dirs[i] = new SimpleFSDirectory(p, indexSettings.getValue(FsDirectoryService.INDEX_LOCK_FACTOR_SETTING)) [FD]
+Line_3 $$ Lock[] locks = new Lock[shardPaths.length] --> Line_16 $$ IOUtils.closeWhileHandlingException(locks) [FD]
+Line_4 $$ Directory[] dirs = new Directory[shardPaths.length] --> Line_17 $$ IOUtils.closeWhileHandlingException(dirs) [FD]

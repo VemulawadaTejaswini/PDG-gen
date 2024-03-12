@@ -1,0 +1,3 @@
+Line_2 $$ public void testArrayIndexedReadMethod() throws Exception --> Line_3 $$ final IndexedPropertyDescriptor descriptor = (IndexedPropertyDescriptor) propertyUtilsBean.getPropertyDescriptor(bean, "stringArray") [CD]
+Line_2 $$ public void testArrayIndexedReadMethod() throws Exception --> Line_4 $$ assertNotNull("No Array Indexed Read Method", descriptor.getIndexedReadMethod()) [CD]
+Line_3 $$ final IndexedPropertyDescriptor descriptor = (IndexedPropertyDescriptor) propertyUtilsBean.getPropertyDescriptor(bean, "stringArray") --> Line_4 $$ assertNotNull("No Array Indexed Read Method", descriptor.getIndexedReadMethod()) [FD]

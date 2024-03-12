@@ -1,0 +1,8 @@
+Line_2 $$ boolean readDigest(Object key, Fingerprint fingerprint) --> Line_3 $$ long stamp = readWriteLock.readLock() [CD]
+Line_2 $$ boolean readDigest(Object key, Fingerprint fingerprint) --> Line_5 $$ int index = findKeyReadLocked(key) [FD]
+Line_5 $$ int index = findKeyReadLocked(key) --> Line_6 $$ if (index >= 0) [FD]
+Line_6 $$ if (index >= 0) --> Line_7 $$ fingerprint.addBytes(bytes, index * digestSize, digestSize) [CD]
+Line_2 $$ boolean readDigest(Object key, Fingerprint fingerprint) --> Line_7 $$ fingerprint.addBytes(bytes, index * digestSize, digestSize) [FD]
+Line_6 $$ if (index >= 0) --> Line_8 $$ return true [CD]
+Line_6 $$ if (index >= 0) --> Line_10 $$ return false [CD]
+Line_3 $$ long stamp = readWriteLock.readLock() --> Line_13 $$ readWriteLock.unlockRead(stamp) [FD]

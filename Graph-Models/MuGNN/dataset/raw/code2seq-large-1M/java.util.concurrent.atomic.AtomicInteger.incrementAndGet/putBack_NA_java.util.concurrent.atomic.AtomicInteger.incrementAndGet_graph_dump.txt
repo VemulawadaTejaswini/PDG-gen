@@ -1,0 +1,8 @@
+Line_2 $$ private void putBack(TaskStatusEvent event) --> Line_3 $$ final JobId key = event.getStatus().getJob().getId() [FD]
+Line_2 $$ private void putBack(TaskStatusEvent event) --> Line_3 $$ final JobId key = event.getStatus().getJob().getId() [CD]
+Line_2 $$ private void putBack(TaskStatusEvent event) --> Line_4 $$ final Deque<TaskStatusEvent> queue = getDeque(key) [CD]
+Line_3 $$ final JobId key = event.getStatus().getJob().getId() --> Line_4 $$ final Deque<TaskStatusEvent> queue = getDeque(key) [FD]
+Line_4 $$ final Deque<TaskStatusEvent> queue = getDeque(key) --> Line_6 $$ if (queue.size() >= MAX_QUEUE_SIZE) [FD]
+Line_6 $$ if (queue.size() >= MAX_QUEUE_SIZE) --> Line_7 $$ return [CD]
+Line_4 $$ final Deque<TaskStatusEvent> queue = getDeque(key) --> Line_9 $$ queue.push(event) [FD]
+Line_2 $$ private void putBack(TaskStatusEvent event) --> Line_9 $$ queue.push(event) [FD]

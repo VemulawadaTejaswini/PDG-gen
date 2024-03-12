@@ -1,0 +1,7 @@
+Line_6 $$ if (conn.isDynamicPartitioning()) --> Line_7 $$ List<String> partNames = new ArrayList(recordWriter.getPartitions()) [CD]
+Line_6 $$ if (conn.isDynamicPartitioning()) --> Line_8 $$ conn.getMSC().addDynamicPartitions(txnToWriteId.getTxnId(), txnToWriteId.getWriteId(), conn.database, conn.table, partNames, DataOperationType.INSERT) [CD]
+Line_7 $$ List<String> partNames = new ArrayList(recordWriter.getPartitions()) --> Line_8 $$ conn.getMSC().addDynamicPartitions(txnToWriteId.getTxnId(), txnToWriteId.getWriteId(), conn.database, conn.table, partNames, DataOperationType.INSERT) [FD]
+Line_5 $$ TxnToWriteId txnToWriteId = txnToWriteIds.get(currentTxnIndex) --> Line_8 $$ conn.getMSC().addDynamicPartitions(txnToWriteId.getTxnId(), txnToWriteId.getWriteId(), conn.database, conn.table, partNames, DataOperationType.INSERT) [FD]
+Line_5 $$ TxnToWriteId txnToWriteId = txnToWriteIds.get(currentTxnIndex) --> Line_12 $$ conn.getMSC().commitTxn(txnToWriteId.getTxnId()) [FD]
+Line_13 $$ if (currentTxnIndex + 1 < txnToWriteIds.size()) --> Line_14 $$ minTxnId.set(txnToWriteIds.get(currentTxnIndex + 1).getTxnId()) [CD]
+Line_13 $$ if (currentTxnIndex + 1 < txnToWriteIds.size()) --> Line_16 $$ minTxnId.set(-1) [CD]

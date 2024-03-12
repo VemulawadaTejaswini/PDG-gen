@@ -1,0 +1,7 @@
+Line_2 $$ private void awaitLatch(Publisher<?> tail, CountDownLatch latch) throws Exception --> Line_3 $$ if (tail != null) [FD]
+Line_2 $$ private void awaitLatch(Publisher<?> tail, CountDownLatch latch) throws Exception --> Line_3 $$ if (tail != null) [CD]
+Line_3 $$ if (tail != null) --> Line_4 $$ Flux.from(tail).subscribe( d -> latch.countDown(), null, latch::<>countDown) [CD]
+Line_2 $$ private void awaitLatch(Publisher<?> tail, CountDownLatch latch) throws Exception --> Line_4 $$ Flux.from(tail).subscribe( d -> latch.countDown(), null, latch::<>countDown) [FD]
+Line_2 $$ private void awaitLatch(Publisher<?> tail, CountDownLatch latch) throws Exception --> Line_6 $$ if (!latch.await(10, TimeUnit.SECONDS)) [FD]
+Line_2 $$ private void awaitLatch(Publisher<?> tail, CountDownLatch latch) throws Exception --> Line_6 $$ if (!latch.await(10, TimeUnit.SECONDS)) [CD]
+Line_2 $$ private void awaitLatch(Publisher<?> tail, CountDownLatch latch) throws Exception --> Line_7 $$ throw new Exception("Never completed: (" + latch.getCount() + ") ") [FD]

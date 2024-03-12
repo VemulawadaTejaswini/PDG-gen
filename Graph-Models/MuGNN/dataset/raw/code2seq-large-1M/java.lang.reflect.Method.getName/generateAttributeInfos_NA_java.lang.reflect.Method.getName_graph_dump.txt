@@ -1,0 +1,8 @@
+Line_2 $$ public static ArrayList<MBeanAttributeInfo> generateAttributeInfos(final Collection<Method> methodSet, final boolean read, final boolean write) --> Line_3 $$ final ArrayList<MBeanAttributeInfo> infos = new ArrayList<MBeanAttributeInfo>() [CD]
+Line_5 $$ for (final Method m : methodSet) --> Line_6 $$ final String methodName = m.getName() [FD]
+Line_6 $$ final String methodName = m.getName() --> Line_7 $$ assert (read || (write && methodName.startsWith(SET))) [FD]
+Line_5 $$ for (final Method m : methodSet) --> Line_8 $$ final MBeanAttributeInfo info = new MBeanAttributeInfo(getAttributeName(m), m.getReturnType().getName(), methodName, read, write, methodName.startsWith("is")) [FD]
+Line_6 $$ final String methodName = m.getName() --> Line_8 $$ final MBeanAttributeInfo info = new MBeanAttributeInfo(getAttributeName(m), m.getReturnType().getName(), methodName, read, write, methodName.startsWith("is")) [FD]
+Line_3 $$ final ArrayList<MBeanAttributeInfo> infos = new ArrayList<MBeanAttributeInfo>() --> Line_9 $$ infos.add(info) [FD]
+Line_8 $$ final MBeanAttributeInfo info = new MBeanAttributeInfo(getAttributeName(m), m.getReturnType().getName(), methodName, read, write, methodName.startsWith("is")) --> Line_9 $$ infos.add(info) [FD]
+Line_2 $$ public static ArrayList<MBeanAttributeInfo> generateAttributeInfos(final Collection<Method> methodSet, final boolean read, final boolean write) --> Line_11 $$ return (infos) [CD]

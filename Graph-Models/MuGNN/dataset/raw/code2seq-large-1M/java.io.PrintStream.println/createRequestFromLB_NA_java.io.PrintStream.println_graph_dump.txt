@@ -1,0 +1,4 @@
+Line_2 $$ public static Observable<String> createRequestFromLB(Observable<MembershipEvent<Host>> eurekaHostSource) --> Line_3 $$ return LoadBalancers.fromHostSource(eurekaHostSource.map( hostEvent -> [CD]
+Line_2 $$ public static Observable<String> createRequestFromLB(Observable<MembershipEvent<Host>> eurekaHostSource) --> Line_3 $$ return LoadBalancers.fromHostSource(eurekaHostSource.map( hostEvent -> [FD]
+Line_5 $$ Host host = hostEvent.getClient() --> Line_6 $$ HttpClient<ByteBuf, ByteBuf> client = RxNetty.createHttpClient(host.getHostName(), host.getPort()) [FD]
+Line_6 $$ HttpClient<ByteBuf, ByteBuf> client = RxNetty.createHttpClient(host.getHostName(), host.getPort()) --> Line_9 $$ client.submit(HttpClientRequest.createGet("/")).flatMap((Func1<HttpClientResponse<ByteBuf>, Observable<ByteBuf>>)  response -> [FD]

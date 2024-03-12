@@ -1,0 +1,5 @@
+Line_2 $$ public void testCronExpression() throws InterruptedException, ExecutionException --> Line_3 $$ RScheduledExecutorService executor = redisson.getExecutorService("test") [CD]
+Line_2 $$ public void testCronExpression() throws InterruptedException, ExecutionException --> Line_4 $$ executor.schedule(new ScheduledRunnableTask("executed"), CronSchedule.of("0/2 * * * * ?”")) [CD]
+Line_3 $$ RScheduledExecutorService executor = redisson.getExecutorService("test") --> Line_4 $$ executor.schedule(new ScheduledRunnableTask("executed"), CronSchedule.of("0/2 * * * * ?”")) [FD]
+Line_2 $$ public void testCronExpression() throws InterruptedException, ExecutionException --> Line_5 $$ Thread.sleep(4200) [CD]
+Line_2 $$ public void testCronExpression() throws InterruptedException, ExecutionException --> Line_6 $$ assertThat(redisson.getAtomicLong("executed").get()).isEqualTo(2) [CD]

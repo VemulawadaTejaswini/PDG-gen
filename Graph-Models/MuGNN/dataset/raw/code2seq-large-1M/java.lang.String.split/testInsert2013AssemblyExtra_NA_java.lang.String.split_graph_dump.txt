@@ -1,0 +1,7 @@
+Line_2 $$ public void testInsert2013AssemblyExtra() throws Exception --> Line_3 $$ File f = new File("/data/openleg_member_data/2013_assembly_extra.csv") [CD]
+Line_2 $$ public void testInsert2013AssemblyExtra() throws Exception --> Line_4 $$ List<String> lines = FileUtils.readLines(f) [CD]
+Line_3 $$ File f = new File("/data/openleg_member_data/2013_assembly_extra.csv") --> Line_4 $$ List<String> lines = FileUtils.readLines(f) [FD]
+Line_5 $$ for (String line : lines) --> Line_6 $$ String[] parts = line.split(",") [FD]
+Line_7 $$ String fullName = (parts[0] + ((!parts[1].isEmpty()) ? (" " + parts[1]) : "") + " " + parts[2] + " " + parts[3]).trim() --> Line_8 $$ logger.debug("Inserting: [FD]
+Line_9 $$ Object[] personParams = --> Line_10 $$ Integer personID = jdbc.queryForObject("INSERT INTO person (prefix, full_name, first_name, middle_name, last_name, suffix) " + "VALUES ('Assemblymember',?,?,?,?,?) RETURNING id", personParams, new SingleColumnRowMapper<Integer>()) [FD]
+Line_11 $$ Integer memberID = jdbc.queryForObject("INSERT INTO member (person_id, chamber, incumbent, full_name) " + "VALUES (?,'assembly', false, ?) RETURNING id", new Object[] --> Line_12 $$ jdbc.update("INSERT INTO session_member (member_id, lbdc_short_name, session_year, district_code) VALUES (?,?,?,?)", memberID, parts[5].trim(), 2013, Integer.parseInt(parts[4])) [FD]

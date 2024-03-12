@@ -1,0 +1,7 @@
+Line_2 $$ public void testUpdateHandlerFailing() --> Line_3 $$ SubscriptionQueryMessage<String, List<String>, String> queryMessage = new GenericSubscriptionQueryMessage("axonFrameworkCR", "subscribableChatMessages", ResponseTypes.multipleInstancesOf(String.class), ResponseTypes.instanceOf(String.class)) [CD]
+Line_2 $$ public void testUpdateHandlerFailing() --> Line_4 $$ UpdateHandler<List<String>, String> updateHandler = mock(UpdateHandler.class) [CD]
+Line_2 $$ public void testUpdateHandlerFailing() --> Line_5 $$ doThrow(new RuntimeException()).when(updateHandler).onInitialResult(any()) [CD]
+Line_2 $$ public void testUpdateHandlerFailing() --> Line_6 $$ queryBus.subscriptionQuery(queryMessage, updateHandler) [CD]
+Line_2 $$ public void testUpdateHandlerFailing() --> Line_7 $$ assertTrue(chatQueryHandler.emitter.emit("Update")) [CD]
+Line_2 $$ public void testUpdateHandlerFailing() --> Line_8 $$ verify(updateHandler).onInitialResult(Arrays.asList("Message1", "Message2", "Message3")) [CD]
+Line_2 $$ public void testUpdateHandlerFailing() --> Line_9 $$ verify(updateHandler).onUpdate("Update") [CD]

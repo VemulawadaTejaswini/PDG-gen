@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldMapNewPartitionWhenEndIsReached() throws Exception --> Line_3 $$ Store<SmallObject> store = Store.of(SmallObject.class).from(storeFile.getPath()) [CD]
+Line_2 $$ public void shouldMapNewPartitionWhenEndIsReached() throws Exception --> Line_4 $$ List<SmallObject> collect = rangeClosed(0, 1_000_000).mapToObj(SmallObject::<>new).collect(Collectors.toList()) [CD]
+Line_2 $$ public void shouldMapNewPartitionWhenEndIsReached() throws Exception --> Line_5 $$ collect.forEach(store::<>put) [CD]
+Line_4 $$ List<SmallObject> collect = rangeClosed(0, 1_000_000).mapToObj(SmallObject::<>new).collect(Collectors.toList()) --> Line_5 $$ collect.forEach(store::<>put) [FD]
+Line_2 $$ public void shouldMapNewPartitionWhenEndIsReached() throws Exception --> Line_6 $$ assertThat(store.all().collect(Collectors.toList()).size(), is(collect.size())) [CD]
+Line_4 $$ List<SmallObject> collect = rangeClosed(0, 1_000_000).mapToObj(SmallObject::<>new).collect(Collectors.toList()) --> Line_6 $$ assertThat(store.all().collect(Collectors.toList()).size(), is(collect.size())) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void failAllParts_holdingLock(Throwable e) --> Line_4 $$ ArrayList<ResponseContentPart> failedParts = new ArrayList(responseContentQueue) [CD]
+Line_2 $$ private void failAllParts_holdingLock(Throwable e) --> Line_5 $$ responseContentQueue.clear() [CD]
+Line_2 $$ private void failAllParts_holdingLock(Throwable e) --> Line_6 $$ RuntimeException failReason = new RuntimeException("Failing due to earlier ServletOutputStream write failure", e) [CD]
+Line_2 $$ private void failAllParts_holdingLock(Throwable e) --> Line_7 $$ Consumer<ResponseContentPart> failCompletionHandler =  responseContentPart -> runCompletionHandler_logOnExceptions(() -> responseContentPart.handler.failed(failReason)) [CD]
+Line_6 $$ RuntimeException failReason = new RuntimeException("Failing due to earlier ServletOutputStream write failure", e) --> Line_7 $$ Consumer<ResponseContentPart> failCompletionHandler =  responseContentPart -> runCompletionHandler_logOnExceptions(() -> responseContentPart.handler.failed(failReason)) [FD]
+Line_2 $$ private void failAllParts_holdingLock(Throwable e) --> Line_8 $$ executor.execute(() -> failedParts.forEach(failCompletionHandler)) [CD]
+Line_4 $$ ArrayList<ResponseContentPart> failedParts = new ArrayList(responseContentQueue) --> Line_8 $$ executor.execute(() -> failedParts.forEach(failCompletionHandler)) [FD]
+Line_7 $$ Consumer<ResponseContentPart> failCompletionHandler =  responseContentPart -> runCompletionHandler_logOnExceptions(() -> responseContentPart.handler.failed(failReason)) --> Line_8 $$ executor.execute(() -> failedParts.forEach(failCompletionHandler)) [FD]

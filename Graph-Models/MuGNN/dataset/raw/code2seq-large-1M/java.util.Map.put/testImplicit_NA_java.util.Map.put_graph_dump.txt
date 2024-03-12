@@ -1,0 +1,8 @@
+Line_7 $$ IgniteCache<Integer, Integer> cache = grid(0).cache(DEFAULT_CACHE_NAME) --> Line_8 $$ for (int i = 0; i < 30; i++) cache.put(i, i) [FD]
+Line_8 $$ for (int i = 0; i < 30; i++) cache.put(i, i) --> Line_10 $$ for (int i = 30; i < 60; i++) batch.put(i, i) [FD]
+Line_9 $$ Map<Integer, Integer> batch = new HashMap() --> Line_10 $$ for (int i = 30; i < 60; i++) batch.put(i, i) [FD]
+Line_7 $$ IgniteCache<Integer, Integer> cache = grid(0).cache(DEFAULT_CACHE_NAME) --> Line_11 $$ cache.putAll(batch) [FD]
+Line_9 $$ Map<Integer, Integer> batch = new HashMap() --> Line_11 $$ cache.putAll(batch) [FD]
+Line_10 $$ for (int i = 30; i < 60; i++) batch.put(i, i) --> Line_12 $$ for (int i = 0; i < 60; i++) assertEquals(i, (int) cache.get(i)) [FD]
+Line_8 $$ for (int i = 0; i < 30; i++) cache.put(i, i) --> Line_12 $$ for (int i = 0; i < 60; i++) assertEquals(i, (int) cache.get(i)) [FD]
+Line_7 $$ IgniteCache<Integer, Integer> cache = grid(0).cache(DEFAULT_CACHE_NAME) --> Line_12 $$ for (int i = 0; i < 60; i++) assertEquals(i, (int) cache.get(i)) [FD]

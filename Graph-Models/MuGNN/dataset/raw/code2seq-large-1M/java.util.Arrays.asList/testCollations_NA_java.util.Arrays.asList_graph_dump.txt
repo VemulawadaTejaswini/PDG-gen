@@ -1,0 +1,8 @@
+Line_2 $$ public void testCollations() --> Line_3 $$ checkMinServerVersion(3.4) [CD]
+Line_2 $$ public void testCollations() --> Line_4 $$ getMorphia().map(ContainsRenamedFields.class) [CD]
+Line_2 $$ public void testCollations() --> Line_5 $$ getDs().save(asList(new ContainsRenamedFields("first", "last"), new ContainsRenamedFields("First", "Last"))) [CD]
+Line_2 $$ public void testCollations() --> Line_6 $$ Query query = getDs().find(ContainsRenamedFields.class).field("last_name").equal("last") [CD]
+Line_2 $$ public void testCollations() --> Line_7 $$ assertEquals(1, query.asList().size()) [CD]
+Line_2 $$ public void testCollations() --> Line_8 $$ assertEquals(2, query.asList(new FindOptions().collation(builder().locale("en").collationStrength(CollationStrength.SECONDARY).build())).size()) [CD]
+Line_2 $$ public void testCollations() --> Line_9 $$ assertEquals(1, query.count()) [CD]
+Line_2 $$ public void testCollations() --> Line_10 $$ assertEquals(2, query.count(new CountOptions().collation(builder().locale("en").collationStrength(CollationStrength.SECONDARY).build()))) [CD]

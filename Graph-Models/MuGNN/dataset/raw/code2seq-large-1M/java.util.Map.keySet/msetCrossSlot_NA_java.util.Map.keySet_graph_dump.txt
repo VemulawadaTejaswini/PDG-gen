@@ -1,0 +1,8 @@
+Line_2 $$ public void msetCrossSlot() throws Exception --> Line_3 $$ Map<String, String> mset = prepareMset() [CD]
+Line_2 $$ public void msetCrossSlot() throws Exception --> Line_4 $$ String result = syncCommands.mset(mset) [CD]
+Line_3 $$ Map<String, String> mset = prepareMset() --> Line_4 $$ String result = syncCommands.mset(mset) [FD]
+Line_2 $$ public void msetCrossSlot() throws Exception --> Line_5 $$ assertThat(result).isEqualTo("OK") [CD]
+Line_4 $$ String result = syncCommands.mset(mset) --> Line_5 $$ assertThat(result).isEqualTo("OK") [FD]
+Line_3 $$ Map<String, String> mset = prepareMset() --> Line_6 $$ for (String mykey : mset.keySet()) [FD]
+Line_6 $$ for (String mykey : mset.keySet()) --> Line_7 $$ String s1 = syncCommands.get(mykey) [FD]
+Line_7 $$ String s1 = syncCommands.get(mykey) --> Line_8 $$ assertThat(s1).isEqualTo("value-" + mykey) [FD]

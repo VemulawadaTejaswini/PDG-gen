@@ -1,0 +1,6 @@
+Line_2 $$ public void onMessage(Message message) --> Line_3 $$ logger.invocationDetailsReceived() [CD]
+Line_5 $$ String data = ((TextMessage) message).getText() --> Line_6 $$ List<NodeDetails> items = mapper.readValue(data, new TypeReference<List<NodeDetails>>() [FD]
+Line_6 $$ List<NodeDetails> items = mapper.readValue(data, new TypeReference<List<NodeDetails>>() --> Line_8 $$ List<Event> events = items.stream().filter( nd -> nd.isInitial()).map(InvocationAlertsPublisherMDB::<>toEvent).collect(Collectors.toList()) [FD]
+Line_8 $$ List<Event> events = items.stream().filter( nd -> nd.isInitial()).map(InvocationAlertsPublisherMDB::<>toEvent).collect(Collectors.toList()) --> Line_9 $$ if (!events.isEmpty()) [FD]
+Line_9 $$ if (!events.isEmpty()) --> Line_10 $$ publisher.publish(events) [CD]
+Line_8 $$ List<Event> events = items.stream().filter( nd -> nd.isInitial()).map(InvocationAlertsPublisherMDB::<>toEvent).collect(Collectors.toList()) --> Line_10 $$ publisher.publish(events) [FD]

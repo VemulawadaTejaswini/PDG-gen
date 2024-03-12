@@ -1,0 +1,8 @@
+Line_2 $$ private boolean recoverProducerAudit() throws IOException --> Line_3 $$ boolean requiresReplay = true [CD]
+Line_2 $$ private boolean recoverProducerAudit() throws IOException --> Line_4 $$ if (metadata.producerSequenceIdTrackerLocation != null) [CD]
+Line_6 $$ KahaProducerAuditCommand audit = (KahaProducerAuditCommand) load(metadata.producerSequenceIdTrackerLocation) --> Line_7 $$ ObjectInputStream objectIn = new ObjectInputStream(audit.getAudit().newInput()) [FD]
+Line_7 $$ ObjectInputStream objectIn = new ObjectInputStream(audit.getAudit().newInput()) --> Line_10 $$ metadata.producerSequenceIdTracker = (ActiveMQMessageAuditNoSync) objectIn.readObject() [FD]
+Line_9 $$ int maxAuditDepth = getFailoverProducersAuditDepth() --> Line_11 $$ metadata.producerSequenceIdTracker.setAuditDepth(maxAuditDepth) [FD]
+Line_8 $$ int maxNumProducers = getMaxFailoverProducersToTrack() --> Line_12 $$ metadata.producerSequenceIdTracker.setMaximumNumberOfProducersToTrack(maxNumProducers) [FD]
+Line_3 $$ boolean requiresReplay = true --> Line_13 $$ requiresReplay = false [FD]
+Line_2 $$ private boolean recoverProducerAudit() throws IOException --> Line_18 $$ return requiresReplay [CD]

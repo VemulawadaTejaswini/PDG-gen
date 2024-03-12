@@ -1,0 +1,5 @@
+Line_2 $$ public List<SPluginInformation> getPluginInformationFromJar(Path file) throws PluginException, FileNotFoundException, IOException, JAXBException --> Line_3 $$ try (JarFile jarFile = new JarFile(file.toFile())) [FD]
+Line_3 $$ try (JarFile jarFile = new JarFile(file.toFile())) --> Line_4 $$ ZipEntry entry = jarFile.getEntry("plugin/plugin.xml") [FD]
+Line_2 $$ public List<SPluginInformation> getPluginInformationFromJar(Path file) throws PluginException, FileNotFoundException, IOException, JAXBException --> Line_6 $$ throw new PluginException("No plugin/plugin.xml found in " + file.getFileName().toString()) [FD]
+Line_3 $$ try (JarFile jarFile = new JarFile(file.toFile())) --> Line_8 $$ InputStream pluginStream = jarFile.getInputStream(entry) [FD]
+Line_8 $$ InputStream pluginStream = jarFile.getInputStream(entry) --> Line_9 $$ return getPluginInformationFromPluginFile(pluginStream) [FD]

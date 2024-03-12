@@ -1,0 +1,6 @@
+Line_2 $$ public void enableRead() --> Line_3 $$ final Lock lock = this.keyLock [CD]
+Line_2 $$ public void enableRead() --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ final Lock lock = this.keyLock --> Line_4 $$ lock.lock() [FD]
+Line_6 $$ SelectionKey key = this.processKey --> Line_7 $$ key.interestOps(key.interestOps() | SelectionKey.OP_READ) [FD]
+Line_3 $$ final Lock lock = this.keyLock --> Line_9 $$ lock.unlock() [FD]
+Line_2 $$ public void enableRead() --> Line_11 $$ processKey.selector().wakeup() [CD]

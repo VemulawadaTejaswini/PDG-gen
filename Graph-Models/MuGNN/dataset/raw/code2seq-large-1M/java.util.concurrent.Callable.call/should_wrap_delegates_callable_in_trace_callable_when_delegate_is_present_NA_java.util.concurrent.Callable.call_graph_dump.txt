@@ -1,0 +1,8 @@
+Line_2 $$ public void should_wrap_delegates_callable_in_trace_callable_when_delegate_is_present() throws Exception --> Line_3 $$ HystrixPlugins.getInstance().registerConcurrencyStrategy(new MyHystrixConcurrencyStrategy()) [CD]
+Line_2 $$ public void should_wrap_delegates_callable_in_trace_callable_when_delegate_is_present() throws Exception --> Line_4 $$ SleuthHystrixConcurrencyStrategy strategy = new SleuthHystrixConcurrencyStrategy(this.tracing, new DefaultSpanNamer()) [CD]
+Line_2 $$ public void should_wrap_delegates_callable_in_trace_callable_when_delegate_is_present() throws Exception --> Line_5 $$ Callable<String> callable = strategy.wrapCallable(() -> "hello") [CD]
+Line_4 $$ SleuthHystrixConcurrencyStrategy strategy = new SleuthHystrixConcurrencyStrategy(this.tracing, new DefaultSpanNamer()) --> Line_5 $$ Callable<String> callable = strategy.wrapCallable(() -> "hello") [FD]
+Line_2 $$ public void should_wrap_delegates_callable_in_trace_callable_when_delegate_is_present() throws Exception --> Line_6 $$ then(callable).isInstanceOf(TraceCallable.class) [CD]
+Line_5 $$ Callable<String> callable = strategy.wrapCallable(() -> "hello") --> Line_6 $$ then(callable).isInstanceOf(TraceCallable.class) [FD]
+Line_2 $$ public void should_wrap_delegates_callable_in_trace_callable_when_delegate_is_present() throws Exception --> Line_7 $$ then(callable.call()).isEqualTo("executed_custom_callable") [CD]
+Line_5 $$ Callable<String> callable = strategy.wrapCallable(() -> "hello") --> Line_7 $$ then(callable.call()).isEqualTo("executed_custom_callable") [FD]

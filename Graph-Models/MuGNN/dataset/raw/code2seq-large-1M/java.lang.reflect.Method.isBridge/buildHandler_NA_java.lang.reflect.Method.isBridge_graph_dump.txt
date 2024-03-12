@@ -1,0 +1,7 @@
+Line_2 $$ public Optional<Handler> buildHandler(Class<?> sqlObjectType, Method method) --> Line_3 $$ if (!method.isBridge()) [FD]
+Line_2 $$ public Optional<Handler> buildHandler(Class<?> sqlObjectType, Method method) --> Line_3 $$ if (!method.isBridge()) [CD]
+Line_3 $$ if (!method.isBridge()) --> Line_4 $$ return Optional.empty() [CD]
+Line_2 $$ public Optional<Handler> buildHandler(Class<?> sqlObjectType, Method method) --> Line_6 $$ return Stream.of(sqlObjectType.getMethods()).filter( candidate -> !candidate.isBridge() && Objects.equals(candidate.getName(), method.getName()) && candidate.getParameterCount() == method.getParameterCount()).filter( candidate -> [FD]
+Line_2 $$ public Optional<Handler> buildHandler(Class<?> sqlObjectType, Method method) --> Line_6 $$ return Stream.of(sqlObjectType.getMethods()).filter( candidate -> !candidate.isBridge() && Objects.equals(candidate.getName(), method.getName()) && candidate.getParameterCount() == method.getParameterCount()).filter( candidate -> [CD]
+Line_2 $$ public Optional<Handler> buildHandler(Class<?> sqlObjectType, Method method) --> Line_8 $$ Class<?>[] methodParamTypes = method.getParameterTypes() [FD]
+Line_2 $$ public Optional<Handler> buildHandler(Class<?> sqlObjectType, Method method) --> Line_9 $$ return IntStream.range(0, method.getParameterCount()).allMatch( i -> methodParamTypes[i].isAssignableFrom(candidateParamTypes[i])) [FD]

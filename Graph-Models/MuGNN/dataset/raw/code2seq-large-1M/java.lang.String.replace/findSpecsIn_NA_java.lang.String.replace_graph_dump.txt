@@ -1,0 +1,8 @@
+Line_2 $$ public static List<RestxSpec> findSpecsIn(String location) throws IOException --> Line_3 $$ RestxSpecLoader loader = new RestxSpecLoader(Factory.getInstance()) [CD]
+Line_2 $$ public static List<RestxSpec> findSpecsIn(String location) throws IOException --> Line_4 $$ Set<String> specResources = new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage(location)).setScanners(new ResourcesScanner()).filterInputsBy(new FilterBuilder().includePackage(location.replace('/', '.'))).build().getResources(Pattern.compile(".*\\.spec\\.yaml")) [FD]
+Line_2 $$ public static List<RestxSpec> findSpecsIn(String location) throws IOException --> Line_4 $$ Set<String> specResources = new ConfigurationBuilder().setUrls(ClasspathHelper.forPackage(location)).setScanners(new ResourcesScanner()).filterInputsBy(new FilterBuilder().includePackage(location.replace('/', '.'))).build().getResources(Pattern.compile(".*\\.spec\\.yaml")) [CD]
+Line_2 $$ public static List<RestxSpec> findSpecsIn(String location) throws IOException --> Line_5 $$ List<RestxSpec> loaded = Lists.newArrayList() [CD]
+Line_5 $$ List<RestxSpec> loaded = Lists.newArrayList() --> Line_7 $$ loaded.add(loader.load(specResource)) [FD]
+Line_3 $$ RestxSpecLoader loader = new RestxSpecLoader(Factory.getInstance()) --> Line_7 $$ loaded.add(loader.load(specResource)) [FD]
+Line_6 $$ for (String specResource : specResources) --> Line_7 $$ loaded.add(loader.load(specResource)) [FD]
+Line_2 $$ public static List<RestxSpec> findSpecsIn(String location) throws IOException --> Line_9 $$ return loaded [CD]

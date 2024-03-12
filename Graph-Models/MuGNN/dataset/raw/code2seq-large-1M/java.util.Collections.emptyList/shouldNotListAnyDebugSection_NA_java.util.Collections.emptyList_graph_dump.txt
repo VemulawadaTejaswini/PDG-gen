@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_3 $$ CommandSender sender = mock(CommandSender.class) [CD]
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_4 $$ given(permissionsManager.hasPermission(eq(sender), any(PermissionNode.class))).willReturn(false) [CD]
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_5 $$ command.executeCommand(sender, emptyList()) [CD]
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_6 $$ verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(any(Class.class)) [CD]
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_7 $$ verify(permissionsManager, atLeast(MIN_DEBUG_SECTIONS)).hasPermission(eq(sender), any(DebugSectionPermissions.class)) [CD]
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_8 $$ ArgumentCaptor<String> strCaptor = ArgumentCaptor.forClass(String.class) [CD]
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_9 $$ verify(sender, times(3)).sendMessage(strCaptor.capture()) [CD]
+Line_2 $$ public void shouldNotListAnyDebugSection() --> Line_10 $$ assertThat(strCaptor.getAllValues(), contains(equalTo(ChatColor.BLUE + "AuthMe debug utils"), equalTo("Sections available to you:"), containsString("You don't have permission to view any debug section"))) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void loadPage(final int filePosition) --> Line_3 $$ final int page = filePosition & PAGE_MASK [CD]
+Line_2 $$ private void loadPage(final int filePosition) --> Line_4 $$ if (page == mCurrentPage) [CD]
+Line_3 $$ final int page = filePosition & PAGE_MASK --> Line_4 $$ if (page == mCurrentPage) [FD]
+Line_4 $$ if (page == mCurrentPage) --> Line_5 $$ return [CD]
+Line_3 $$ final int page = filePosition & PAGE_MASK --> Line_8 $$ mRandomAccessFile.seek(page) [FD]
+Line_9 $$ final int readLength = Math.min(mFileLength - page, PAGE_SIZE) --> Line_10 $$ mRandomAccessFile.readFully(mBuffer, 0, readLength) [FD]

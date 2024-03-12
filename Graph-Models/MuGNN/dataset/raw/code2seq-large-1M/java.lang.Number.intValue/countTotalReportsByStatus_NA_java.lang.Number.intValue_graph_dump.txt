@@ -1,0 +1,7 @@
+Line_2 $$ private int countTotalReportsByStatus(PostReportStatus status, int... forumIds) --> Line_3 $$ Criteria criteria = session.createCriteria(PostReport.class).add(Restrictions.eq("status", status)).setProjection(Projections.rowCount()) [FD]
+Line_2 $$ private int countTotalReportsByStatus(PostReportStatus status, int... forumIds) --> Line_3 $$ Criteria criteria = session.createCriteria(PostReport.class).add(Restrictions.eq("status", status)).setProjection(Projections.rowCount()) [CD]
+Line_2 $$ private int countTotalReportsByStatus(PostReportStatus status, int... forumIds) --> Line_4 $$ if (!ArrayUtils.isEmpty(forumIds)) [FD]
+Line_2 $$ private int countTotalReportsByStatus(PostReportStatus status, int... forumIds) --> Line_4 $$ if (!ArrayUtils.isEmpty(forumIds)) [CD]
+Line_4 $$ if (!ArrayUtils.isEmpty(forumIds)) --> Line_5 $$ criteria.createAlias("post", "post").add(Restrictions.in("post.forum.id", this.primitiveToWrapper(forumIds))) [CD]
+Line_2 $$ private int countTotalReportsByStatus(PostReportStatus status, int... forumIds) --> Line_5 $$ criteria.createAlias("post", "post").add(Restrictions.in("post.forum.id", this.primitiveToWrapper(forumIds))) [FD]
+Line_2 $$ private int countTotalReportsByStatus(PostReportStatus status, int... forumIds) --> Line_7 $$ return ((Number) criteria.uniqueResult()).intValue() [CD]

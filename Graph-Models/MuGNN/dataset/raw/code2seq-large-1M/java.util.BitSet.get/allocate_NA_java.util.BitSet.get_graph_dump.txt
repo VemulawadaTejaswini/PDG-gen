@@ -1,0 +1,7 @@
+Line_2 $$ void allocate(int pageId) --> Line_3 $$ int idx = pageId - getPos() [CD]
+Line_2 $$ void allocate(int pageId) --> Line_4 $$ if (idx >= 0 && !used.get(idx)) [CD]
+Line_3 $$ int idx = pageId - getPos() --> Line_4 $$ if (idx >= 0 && !used.get(idx)) [FD]
+Line_4 $$ if (idx >= 0 && !used.get(idx)) --> Line_5 $$ used.set(idx) [CD]
+Line_3 $$ int idx = pageId - getPos() --> Line_5 $$ used.set(idx) [FD]
+Line_4 $$ if (idx >= 0 && !used.get(idx)) --> Line_6 $$ store.logUndo(this, data) [CD]
+Line_4 $$ if (idx >= 0 && !used.get(idx)) --> Line_7 $$ store.update(this) [CD]

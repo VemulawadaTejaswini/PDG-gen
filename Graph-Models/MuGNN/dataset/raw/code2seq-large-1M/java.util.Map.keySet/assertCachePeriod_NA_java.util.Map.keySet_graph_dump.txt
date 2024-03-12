@@ -1,0 +1,6 @@
+Line_2 $$ private void assertCachePeriod(AssertableWebApplicationContext context) --> Line_3 $$ Map<String, Object> handlerMap = getHandlerMap(context.getBean("resourceHandlerMapping", HandlerMapping.class)) [CD]
+Line_2 $$ private void assertCachePeriod(AssertableWebApplicationContext context) --> Line_3 $$ Map<String, Object> handlerMap = getHandlerMap(context.getBean("resourceHandlerMapping", HandlerMapping.class)) [FD]
+Line_2 $$ private void assertCachePeriod(AssertableWebApplicationContext context) --> Line_4 $$ assertThat(handlerMap).hasSize(2) [CD]
+Line_5 $$ for (Object handler : handlerMap.keySet()) --> Line_6 $$ if (handler instanceof ResourceHttpRequestHandler) [FD]
+Line_6 $$ if (handler instanceof ResourceHttpRequestHandler) --> Line_7 $$ assertThat(((ResourceHttpRequestHandler) handler).getCacheSeconds()).isEqualTo(-1) [CD]
+Line_6 $$ if (handler instanceof ResourceHttpRequestHandler) --> Line_8 $$ assertThat(((ResourceHttpRequestHandler) handler).getCacheControl()).isEqualToComparingFieldByField(CacheControl.maxAge(5, TimeUnit.SECONDS)) [CD]

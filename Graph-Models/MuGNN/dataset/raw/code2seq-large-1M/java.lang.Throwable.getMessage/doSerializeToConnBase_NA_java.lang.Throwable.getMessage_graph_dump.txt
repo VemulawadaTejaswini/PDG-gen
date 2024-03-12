@@ -1,0 +1,8 @@
+Line_2 $$ protected static Object doSerializeToConnBase(RBaseNode node, Object object, int connIndex, int type) --> Line_3 $$ try (RConnection openConn = RConnection.fromIndex(connIndex).forceOpen(type != RSerialize.XDR ? "wt" : "wb")) [FD]
+Line_3 $$ try (RConnection openConn = RConnection.fromIndex(connIndex).forceOpen(type != RSerialize.XDR ? "wt" : "wb")) --> Line_4 $$ if (!openConn.canWrite()) [FD]
+Line_2 $$ protected static Object doSerializeToConnBase(RBaseNode node, Object object, int connIndex, int type) --> Line_5 $$ throw node.error(RError.Message.CONNECTION_NOT_OPEN_WRITE) [FD]
+Line_3 $$ try (RConnection openConn = RConnection.fromIndex(connIndex).forceOpen(type != RSerialize.XDR ? "wt" : "wb")) --> Line_7 $$ if (type == RSerialize.XDR && openConn.isTextMode()) [FD]
+Line_2 $$ protected static Object doSerializeToConnBase(RBaseNode node, Object object, int connIndex, int type) --> Line_8 $$ throw node.error(RError.Message.BINARY_CONNECTION_REQUIRED) [FD]
+Line_3 $$ try (RConnection openConn = RConnection.fromIndex(connIndex).forceOpen(type != RSerialize.XDR ? "wt" : "wb")) --> Line_10 $$ RSerialize.serialize(openConn, object, type, RSerialize.DEFAULT_VERSION, null) [FD]
+Line_2 $$ protected static Object doSerializeToConnBase(RBaseNode node, Object object, int connIndex, int type) --> Line_10 $$ RSerialize.serialize(openConn, object, type, RSerialize.DEFAULT_VERSION, null) [FD]
+Line_2 $$ protected static Object doSerializeToConnBase(RBaseNode node, Object object, int connIndex, int type) --> Line_13 $$ throw node.error(RError.Message.GENERIC, ex.getMessage()) [FD]

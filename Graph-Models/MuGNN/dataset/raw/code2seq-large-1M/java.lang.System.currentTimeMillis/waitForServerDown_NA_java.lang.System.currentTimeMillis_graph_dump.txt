@@ -1,0 +1,8 @@
+Line_2 $$ private static boolean waitForServerDown(int port, long timeout) --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ private static boolean waitForServerDown(int port, long timeout) --> Line_4 $$ while (true) [CD]
+Line_6 $$ Socket sock = new Socket("localhost", port) --> Line_8 $$ OutputStream outstream = sock.getOutputStream() [FD]
+Line_8 $$ OutputStream outstream = sock.getOutputStream() --> Line_9 $$ outstream.write("stat".getBytes()) [FD]
+Line_8 $$ OutputStream outstream = sock.getOutputStream() --> Line_10 $$ outstream.flush() [FD]
+Line_6 $$ Socket sock = new Socket("localhost", port) --> Line_12 $$ sock.close() [FD]
+Line_4 $$ while (true) --> Line_17 $$ if (System.currentTimeMillis() > start + timeout) [CD]
+Line_2 $$ private static boolean waitForServerDown(int port, long timeout) --> Line_25 $$ return false [CD]

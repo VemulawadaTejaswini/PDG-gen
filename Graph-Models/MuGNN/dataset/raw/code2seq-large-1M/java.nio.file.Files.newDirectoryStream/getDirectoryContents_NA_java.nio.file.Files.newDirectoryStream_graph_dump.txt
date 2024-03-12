@@ -1,0 +1,4 @@
+Line_2 $$ public ImmutableCollection<Path> getDirectoryContents(Path pathToUse) throws IOException --> Line_3 $$ Path path = getPathForRelativePath(pathToUse) [FD]
+Line_2 $$ public ImmutableCollection<Path> getDirectoryContents(Path pathToUse) throws IOException --> Line_3 $$ Path path = getPathForRelativePath(pathToUse) [CD]
+Line_3 $$ Path path = getPathForRelativePath(pathToUse) --> Line_4 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) [FD]
+Line_4 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) --> Line_5 $$ return FluentIterable.from(stream).filter( input -> !isIgnored(relativize(input))).transform( absolutePath -> MorePaths.relativize(projectRoot, absolutePath)).toSortedList(Comparator.naturalOrder()) [FD]

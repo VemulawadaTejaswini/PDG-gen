@@ -1,0 +1,8 @@
+Line_2 $$ public void healthWhenConnectionSucceedsShouldReturnUpWithVersion() --> Line_3 $$ Connection connection = mock(Connection.class) [CD]
+Line_2 $$ public void healthWhenConnectionSucceedsShouldReturnUpWithVersion() --> Line_4 $$ given(this.channel.getConnection()).willReturn(connection) [CD]
+Line_2 $$ public void healthWhenConnectionSucceedsShouldReturnUpWithVersion() --> Line_5 $$ given(connection.getServerProperties()).willReturn(Collections.singletonMap("version", "123")) [CD]
+Line_2 $$ public void healthWhenConnectionSucceedsShouldReturnUpWithVersion() --> Line_6 $$ Health health = new RabbitHealthIndicator(this.rabbitTemplate).health() [CD]
+Line_2 $$ public void healthWhenConnectionSucceedsShouldReturnUpWithVersion() --> Line_7 $$ assertThat(health.getStatus()).isEqualTo(Status.UP) [CD]
+Line_6 $$ Health health = new RabbitHealthIndicator(this.rabbitTemplate).health() --> Line_7 $$ assertThat(health.getStatus()).isEqualTo(Status.UP) [FD]
+Line_2 $$ public void healthWhenConnectionSucceedsShouldReturnUpWithVersion() --> Line_8 $$ assertThat(health.getDetails()).containsEntry("version", "123") [CD]
+Line_6 $$ Health health = new RabbitHealthIndicator(this.rabbitTemplate).health() --> Line_8 $$ assertThat(health.getDetails()).containsEntry("version", "123") [FD]

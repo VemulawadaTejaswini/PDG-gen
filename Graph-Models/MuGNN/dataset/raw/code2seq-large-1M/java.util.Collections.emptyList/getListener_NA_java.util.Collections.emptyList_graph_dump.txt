@@ -1,0 +1,8 @@
+Line_2 $$ private IWearableListener getListener(String packageName, String action, Uri uri) --> Line_4 $$ List<IWearableListener> l = new ArrayList<IWearableListener>(listeners.containsKey(packageName) ? listeners.get(packageName) : Collections.<IWearableListener>emptyList()) [FD]
+Line_5 $$ Intent intent = new Intent(action) --> Line_6 $$ intent.setPackage(packageName) [FD]
+Line_2 $$ private IWearableListener getListener(String packageName, String action, Uri uri) --> Line_6 $$ intent.setPackage(packageName) [FD]
+Line_5 $$ Intent intent = new Intent(action) --> Line_7 $$ intent.setData(uri) [FD]
+Line_2 $$ private IWearableListener getListener(String packageName, String action, Uri uri) --> Line_7 $$ intent.setData(uri) [FD]
+Line_4 $$ List<IWearableListener> l = new ArrayList<IWearableListener>(listeners.containsKey(packageName) ? listeners.get(packageName) : Collections.<IWearableListener>emptyList()) --> Line_8 $$ l.add(RemoteListenerProxy.get(context, intent, IWearableListener.class, "com.google.android.gms.wearable.BIND_LISTENER")) [FD]
+Line_5 $$ Intent intent = new Intent(action) --> Line_8 $$ l.add(RemoteListenerProxy.get(context, intent, IWearableListener.class, "com.google.android.gms.wearable.BIND_LISTENER")) [FD]
+Line_4 $$ List<IWearableListener> l = new ArrayList<IWearableListener>(listeners.containsKey(packageName) ? listeners.get(packageName) : Collections.<IWearableListener>emptyList()) --> Line_9 $$ return MultiListenerProxy.get(IWearableListener.class, l) [FD]

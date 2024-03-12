@@ -1,0 +1,7 @@
+Line_2 $$ public void testSearchPathBackwardsCompatibleLookup() throws Exception --> Line_3 $$ Statement stmt = con.createStatement() [CD]
+Line_9 $$ TypeInfo typeInfo = con.getTypeInfo() --> Line_10 $$ int OID = typeInfo.getPGType("x") [FD]
+Line_3 $$ Statement stmt = con.createStatement() --> Line_11 $$ ResultSet rs = stmt.executeQuery("SELECT oid FROM pg_type WHERE typname = 'x' ORDER BY oid DESC LIMIT 1") [FD]
+Line_11 $$ ResultSet rs = stmt.executeQuery("SELECT oid FROM pg_type WHERE typname = 'x' ORDER BY oid DESC LIMIT 1") --> Line_12 $$ assertTrue(rs.next()) [FD]
+Line_10 $$ int OID = typeInfo.getPGType("x") --> Line_13 $$ assertEquals(OID, rs.getInt(1)) [FD]
+Line_11 $$ ResultSet rs = stmt.executeQuery("SELECT oid FROM pg_type WHERE typname = 'x' ORDER BY oid DESC LIMIT 1") --> Line_13 $$ assertEquals(OID, rs.getInt(1)) [FD]
+Line_11 $$ ResultSet rs = stmt.executeQuery("SELECT oid FROM pg_type WHERE typname = 'x' ORDER BY oid DESC LIMIT 1") --> Line_14 $$ assertTrue(!rs.next()) [FD]

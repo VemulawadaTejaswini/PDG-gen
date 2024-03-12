@@ -1,0 +1,6 @@
+Line_2 $$ public void testResolveMultiValuedAttributeFromConnection() throws Exception --> Line_3 $$ LdapMetaDataResolver resolver = new LdapMetaDataResolver(Settings.builder().putList("metadata", "objectClass").build(), true) [CD]
+Line_4 $$ try (LDAPConnection ldapConnection = setupOpenLdapConnection()) --> Line_5 $$ final Map<String, Object> map = resolve(ldapConnection, resolver) [FD]
+Line_3 $$ LdapMetaDataResolver resolver = new LdapMetaDataResolver(Settings.builder().putList("metadata", "objectClass").build(), true) --> Line_5 $$ final Map<String, Object> map = resolve(ldapConnection, resolver) [FD]
+Line_5 $$ final Map<String, Object> map = resolve(ldapConnection, resolver) --> Line_6 $$ assertThat(map.size(), equalTo(1)) [FD]
+Line_5 $$ final Map<String, Object> map = resolve(ldapConnection, resolver) --> Line_7 $$ assertThat(map.get("objectClass"), instanceOf(List.class)) [FD]
+Line_5 $$ final Map<String, Object> map = resolve(ldapConnection, resolver) --> Line_8 $$ assertThat((List<?>) map.get("objectClass"), contains("top", "posixAccount", "inetOrgPerson")) [FD]

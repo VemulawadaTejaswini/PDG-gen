@@ -1,0 +1,5 @@
+Line_2 $$ private String wrapProjection(String projection) --> Line_3 $$ if (projection.indexOf("select") == -1) [FD]
+Line_2 $$ private String wrapProjection(String projection) --> Line_3 $$ if (projection.indexOf("select") == -1) [CD]
+Line_3 $$ if (projection.indexOf("select") == -1) --> Line_4 $$ return ROW_COUNT [CD]
+Line_3 $$ if (projection.indexOf("select") == -1) --> Line_6 $$ return projection.replace("select", "select count(") + ") " [CD]
+Line_2 $$ private String wrapProjection(String projection) --> Line_6 $$ return projection.replace("select", "select count(") + ") " [FD]

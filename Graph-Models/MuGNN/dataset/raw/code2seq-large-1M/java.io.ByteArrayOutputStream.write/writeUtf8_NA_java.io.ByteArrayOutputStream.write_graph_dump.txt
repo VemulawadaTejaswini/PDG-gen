@@ -1,0 +1,7 @@
+Line_2 $$ private static void writeUtf8(long codepoint, ByteArrayOutputStream buf, long mask) --> Line_3 $$ if ((codepoint & mask) == 0) [CD]
+Line_3 $$ if ((codepoint & mask) == 0) --> Line_4 $$ buf.write((byte) ((mask << 1) | codepoint)) [CD]
+Line_2 $$ private static void writeUtf8(long codepoint, ByteArrayOutputStream buf, long mask) --> Line_4 $$ buf.write((byte) ((mask << 1) | codepoint)) [FD]
+Line_3 $$ if ((codepoint & mask) == 0) --> Line_6 $$ writeUtf8(codepoint >> 6, buf, mask >> (2 - ((mask >> 6) & 0x1))) [CD]
+Line_2 $$ private static void writeUtf8(long codepoint, ByteArrayOutputStream buf, long mask) --> Line_6 $$ writeUtf8(codepoint >> 6, buf, mask >> (2 - ((mask >> 6) & 0x1))) [FD]
+Line_3 $$ if ((codepoint & mask) == 0) --> Line_7 $$ buf.write((byte) (0x80 | (codepoint & 0x3f))) [CD]
+Line_2 $$ private static void writeUtf8(long codepoint, ByteArrayOutputStream buf, long mask) --> Line_7 $$ buf.write((byte) (0x80 | (codepoint & 0x3f))) [FD]

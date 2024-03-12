@@ -1,0 +1,8 @@
+Line_2 $$ public boolean setProjectHook(int projectId, String hookUrl, boolean pushEvents, boolean tagPushEvents) --> Line_4 $$ List<GitlabProjectHook> hooks = api.getProjectHooks(projectId) [FD]
+Line_4 $$ List<GitlabProjectHook> hooks = api.getProjectHooks(projectId) --> Line_5 $$ if (hooks != null) [FD]
+Line_6 $$ for (GitlabProjectHook hook : hooks) --> Line_7 $$ if (hook != null && hook.getUrl() != null && hook.getUrl().equalsIgnoreCase(hookUrl)) [FD]
+Line_2 $$ public boolean setProjectHook(int projectId, String hookUrl, boolean pushEvents, boolean tagPushEvents) --> Line_7 $$ if (hook != null && hook.getUrl() != null && hook.getUrl().equalsIgnoreCase(hookUrl)) [FD]
+Line_7 $$ if (hook != null && hook.getUrl() != null && hook.getUrl().equalsIgnoreCase(hookUrl)) --> Line_8 $$ api.deleteProjectHook(hook) [CD]
+Line_6 $$ for (GitlabProjectHook hook : hooks) --> Line_8 $$ api.deleteProjectHook(hook) [FD]
+Line_2 $$ public boolean setProjectHook(int projectId, String hookUrl, boolean pushEvents, boolean tagPushEvents) --> Line_16 $$ return api.addProjectHook(projectId, hookUrl, pushEvents, false, false, tagPushEvents, false) != null [FD]
+Line_2 $$ public boolean setProjectHook(int projectId, String hookUrl, boolean pushEvents, boolean tagPushEvents) --> Line_20 $$ return false [CD]

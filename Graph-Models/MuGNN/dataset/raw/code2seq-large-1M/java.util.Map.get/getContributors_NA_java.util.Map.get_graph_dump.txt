@@ -1,0 +1,8 @@
+Line_2 $$ private List<String> getContributors() --> Line_3 $$ Object contributors = packageJson.get(CONTRIBUTORS) [CD]
+Line_2 $$ private List<String> getContributors() --> Line_4 $$ if (contributors instanceof List) [CD]
+Line_3 $$ Object contributors = packageJson.get(CONTRIBUTORS) --> Line_4 $$ if (contributors instanceof List) [FD]
+Line_4 $$ if (contributors instanceof List) --> Line_5 $$ return ((List<Object>) contributors).stream().map(this::<>extractPersonInfo).filter(Objects::<>nonNull).collect(toList()) [CD]
+Line_4 $$ if (contributors instanceof List) --> Line_6 $$ if (contributors instanceof Map || contributors instanceof String) [CD]
+Line_6 $$ if (contributors instanceof Map || contributors instanceof String) --> Line_7 $$ return singletonList(extractPersonInfo(contributors)) [CD]
+Line_3 $$ Object contributors = packageJson.get(CONTRIBUTORS) --> Line_7 $$ return singletonList(extractPersonInfo(contributors)) [FD]
+Line_6 $$ if (contributors instanceof Map || contributors instanceof String) --> Line_9 $$ return null [CD]

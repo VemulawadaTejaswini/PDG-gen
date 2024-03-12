@@ -1,0 +1,8 @@
+Line_4 $$ final PageFile pageFile = getPageFile() --> Line_5 $$ pageFile.load() [FD]
+Line_4 $$ final PageFile pageFile = getPageFile() --> Line_6 $$ pageFile.tx().execute(new Transaction.Closure<IOException>() [FD]
+Line_6 $$ pageFile.tx().execute(new Transaction.Closure<IOException>() --> Line_8 $$ destinations = new BTreeIndex<String, StoredDestination>(pageFile, tx.allocate().getPageId()) [FD]
+Line_6 $$ pageFile.tx().execute(new Transaction.Closure<IOException>() --> Line_9 $$ destinations.setKeyMarshaller(StringMarshaller.INSTANCE) [CD]
+Line_6 $$ pageFile.tx().execute(new Transaction.Closure<IOException>() --> Line_10 $$ destinations.setValueMarshaller(new StoredDestinationMarshaller()) [CD]
+Line_6 $$ pageFile.tx().execute(new Transaction.Closure<IOException>() --> Line_11 $$ destinations.load(tx) [FD]
+Line_6 $$ pageFile.tx().execute(new Transaction.Closure<IOException>() --> Line_11 $$ destinations.load(tx) [CD]
+Line_4 $$ final PageFile pageFile = getPageFile() --> Line_14 $$ pageFile.flush() [FD]

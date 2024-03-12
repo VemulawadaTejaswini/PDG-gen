@@ -1,0 +1,8 @@
+Line_2 $$ void ensureDone() --> Line_3 $$ boolean aborted = false [CD]
+Line_5 $$ if (!responseSent) --> Line_6 $$ aborted = true [CD]
+Line_3 $$ boolean aborted = false --> Line_6 $$ aborted = true [FD]
+Line_5 $$ if (!responseSent) --> Line_9 $$ notifyAll() [CD]
+Line_2 $$ void ensureDone() --> Line_12 $$ if (aborted && DEBUG >= 1) [CD]
+Line_3 $$ boolean aborted = false --> Line_12 $$ if (aborted && DEBUG >= 1) [FD]
+Line_6 $$ aborted = true --> Line_12 $$ if (aborted && DEBUG >= 1) [FD]
+Line_12 $$ if (aborted && DEBUG >= 1) --> Line_13 $$ logger.error("request not handled successfully") [CD]

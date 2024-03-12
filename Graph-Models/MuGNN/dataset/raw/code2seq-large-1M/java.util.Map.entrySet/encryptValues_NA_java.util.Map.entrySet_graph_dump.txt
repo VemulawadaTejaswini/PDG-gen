@@ -1,0 +1,6 @@
+Line_2 $$ private ImmutableMap<String, EncryptResponse> encryptValues(Map<String, byte[]> keyValues) throws IOException --> Line_3 $$ ImmutableMap.Builder<String, EncryptResponse> encryptedValues = new ImmutableMap.Builder() [CD]
+Line_2 $$ private ImmutableMap<String, EncryptResponse> encryptValues(Map<String, byte[]> keyValues) throws IOException --> Line_4 $$ for (Map.Entry<String, byte[]> entry : keyValues.entrySet()) [FD]
+Line_3 $$ ImmutableMap.Builder<String, EncryptResponse> encryptedValues = new ImmutableMap.Builder() --> Line_6 $$ encryptedValues.put(secretName, kmsConnection.encrypt(secretName, entry.getValue())) [FD]
+Line_5 $$ String secretName = entry.getKey() --> Line_6 $$ encryptedValues.put(secretName, kmsConnection.encrypt(secretName, entry.getValue())) [FD]
+Line_2 $$ private ImmutableMap<String, EncryptResponse> encryptValues(Map<String, byte[]> keyValues) throws IOException --> Line_8 $$ return encryptedValues.build() [CD]
+Line_3 $$ ImmutableMap.Builder<String, EncryptResponse> encryptedValues = new ImmutableMap.Builder() --> Line_8 $$ return encryptedValues.build() [FD]

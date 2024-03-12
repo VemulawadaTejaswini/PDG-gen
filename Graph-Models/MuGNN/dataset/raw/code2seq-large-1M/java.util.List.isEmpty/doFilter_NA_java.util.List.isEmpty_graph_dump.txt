@@ -1,0 +1,8 @@
+Line_2 $$ public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws ServletException, IOException --> Line_3 $$ if (!(request instanceof HttpServletRequest) || !(response instanceof HttpServletResponse)) [CD]
+Line_2 $$ public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws ServletException, IOException --> Line_6 $$ HttpSession session = ((HttpServletRequest) request).getSession() [CD]
+Line_2 $$ public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws ServletException, IOException --> Line_7 $$ if (this.authorizedUsers.isEmpty()) [CD]
+Line_7 $$ if (this.authorizedUsers.isEmpty()) --> Line_9 $$ if (!this.authorizedUsers.contains(((String) session.getAttribute(CASFilter.CAS_FILTER_USER)))) [CD]
+Line_6 $$ HttpSession session = ((HttpServletRequest) request).getSession() --> Line_9 $$ if (!this.authorizedUsers.contains(((String) session.getAttribute(CASFilter.CAS_FILTER_USER)))) [FD]
+Line_6 $$ HttpSession session = ((HttpServletRequest) request).getSession() --> Line_10 $$ throw new ServletException(FILTER_NAME + ": user " + session.getAttribute(CASFilter.CAS_FILTER_USER) + " not authorized.") [FD]
+Line_2 $$ public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws ServletException, IOException --> Line_12 $$ fc.doFilter(request, response) [CD]
+Line_2 $$ public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc) throws ServletException, IOException --> Line_12 $$ fc.doFilter(request, response) [FD]

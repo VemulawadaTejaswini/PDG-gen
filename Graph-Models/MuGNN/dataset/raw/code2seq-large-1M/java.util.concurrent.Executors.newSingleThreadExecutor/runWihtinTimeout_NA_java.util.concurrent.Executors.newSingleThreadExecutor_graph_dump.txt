@@ -1,0 +1,8 @@
+Line_2 $$ protected static void runWihtinTimeout(long timeout, TimeUnit unit, String warn, Runnable runnable) throws InterruptedException --> Line_3 $$ ExecutorService executor = Executors.newSingleThreadExecutor() [CD]
+Line_3 $$ ExecutorService executor = Executors.newSingleThreadExecutor() --> Line_5 $$ Future<?> future = executor.submit(runnable::<>run) [FD]
+Line_3 $$ ExecutorService executor = Executors.newSingleThreadExecutor() --> Line_6 $$ executor.shutdown() [FD]
+Line_5 $$ Future<?> future = executor.submit(runnable::<>run) --> Line_9 $$ future.get(timeout, unit) [FD]
+Line_2 $$ protected static void runWihtinTimeout(long timeout, TimeUnit unit, String warn, Runnable runnable) throws InterruptedException --> Line_9 $$ future.get(timeout, unit) [FD]
+Line_2 $$ protected static void runWihtinTimeout(long timeout, TimeUnit unit, String warn, Runnable runnable) throws InterruptedException --> Line_11 $$ log.warn(warn) [FD]
+Line_5 $$ Future<?> future = executor.submit(runnable::<>run) --> Line_12 $$ future.get() [FD]
+Line_3 $$ ExecutorService executor = Executors.newSingleThreadExecutor() --> Line_18 $$ executor.shutdownNow() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static <R> R runInTransaction(Supplier<R> supplier) --> Line_3 $$ boolean startTransaction = !isTransactionActiveOrMarkedRollback() [CD]
+Line_2 $$ public static <R> R runInTransaction(Supplier<R> supplier) --> Line_4 $$ if (startTransaction) [CD]
+Line_4 $$ if (startTransaction) --> Line_5 $$ if (!startTransaction()) [CD]
+Line_2 $$ public static <R> R runInTransaction(Supplier<R> supplier) --> Line_9 $$ boolean completedAbruptly = true [CD]
+Line_2 $$ public static <R> R runInTransaction(Supplier<R> supplier) --> Line_11 $$ R result = supplier.get() [FD]
+Line_9 $$ boolean completedAbruptly = true --> Line_12 $$ completedAbruptly = false [FD]
+Line_16 $$ if (completedAbruptly) --> Line_17 $$ setTransactionRollbackOnly() [CD]
+Line_20 $$ if (startTransaction) --> Line_21 $$ commitOrRollbackTransaction() [CD]

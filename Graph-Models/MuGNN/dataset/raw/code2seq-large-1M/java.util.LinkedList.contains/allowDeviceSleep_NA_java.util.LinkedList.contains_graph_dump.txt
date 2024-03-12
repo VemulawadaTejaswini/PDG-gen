@@ -1,0 +1,8 @@
+Line_2 $$ private void allowDeviceSleep(@Nullable String completedUtteranceId) --> Line_3 $$ if (mWakeLock != null && mWakeLock.isHeld()) [CD]
+Line_3 $$ if (mWakeLock != null && mWakeLock.isHeld()) --> Line_4 $$ boolean isRecent = mRecentUtteranceIds.contains(completedUtteranceId) [CD]
+Line_2 $$ private void allowDeviceSleep(@Nullable String completedUtteranceId) --> Line_4 $$ boolean isRecent = mRecentUtteranceIds.contains(completedUtteranceId) [FD]
+Line_3 $$ if (mWakeLock != null && mWakeLock.isHeld()) --> Line_5 $$ boolean isLast = mRecentUtteranceIds.size() > 0 && mRecentUtteranceIds.getLast().equals(completedUtteranceId) [CD]
+Line_2 $$ private void allowDeviceSleep(@Nullable String completedUtteranceId) --> Line_5 $$ boolean isLast = mRecentUtteranceIds.size() > 0 && mRecentUtteranceIds.getLast().equals(completedUtteranceId) [FD]
+Line_3 $$ if (mWakeLock != null && mWakeLock.isHeld()) --> Line_6 $$ if (completedUtteranceId == null || isLast || !isRecent) [CD]
+Line_4 $$ boolean isRecent = mRecentUtteranceIds.contains(completedUtteranceId) --> Line_6 $$ if (completedUtteranceId == null || isLast || !isRecent) [FD]
+Line_6 $$ if (completedUtteranceId == null || isLast || !isRecent) --> Line_7 $$ mWakeLock.release() [CD]

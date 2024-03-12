@@ -1,0 +1,6 @@
+Line_5 $$ if (this.startingThread.isAlive()) --> Line_6 $$ int thisTimeToLive = (int) (this.getTimeoutInMilliseconds() - now + this.getRealStartTime()) + MAX_WAIT_FOR_DEAD_TRANSACTION [CD]
+Line_5 $$ if (this.startingThread.isAlive()) --> Line_7 $$ int timeToWait = Math.max(10, Math.min(threadTxTimeToLive, thisTimeToLive)) [CD]
+Line_2 $$ private void waitUntilDone(long now, int threadTxTimeToLive) --> Line_7 $$ int timeToWait = Math.max(10, Math.min(threadTxTimeToLive, thisTimeToLive)) [FD]
+Line_6 $$ int thisTimeToLive = (int) (this.getTimeoutInMilliseconds() - now + this.getRealStartTime()) + MAX_WAIT_FOR_DEAD_TRANSACTION --> Line_7 $$ int timeToWait = Math.max(10, Math.min(threadTxTimeToLive, thisTimeToLive)) [FD]
+Line_5 $$ if (this.startingThread.isAlive()) --> Line_8 $$ this.txObjects.wait(timeToWait) [CD]
+Line_7 $$ int timeToWait = Math.max(10, Math.min(threadTxTimeToLive, thisTimeToLive)) --> Line_8 $$ this.txObjects.wait(timeToWait) [FD]

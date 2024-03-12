@@ -1,0 +1,8 @@
+Line_2 $$ public void orderInEventSourcedAggregate() --> Line_3 $$ Repository<MyAggregate> repository = configuration.repository(MyAggregate.class) [CD]
+Line_2 $$ public void orderInEventSourcedAggregate() --> Line_4 $$ configuration.commandGateway().sendAndWait(command) [CD]
+Line_2 $$ public void orderInEventSourcedAggregate() --> Line_5 $$ UnitOfWork unitOfWork = DefaultUnitOfWork.startAndGet(GenericCommandMessage.asCommandMessage("loading")) [CD]
+Line_2 $$ public void orderInEventSourcedAggregate() --> Line_6 $$ MyAggregate loadedAggregate = repository.load(aggregateIdentifier).invoke(Function.identity()) [CD]
+Line_2 $$ public void orderInEventSourcedAggregate() --> Line_7 $$ unitOfWork.commit() [CD]
+Line_5 $$ UnitOfWork unitOfWork = DefaultUnitOfWork.startAndGet(GenericCommandMessage.asCommandMessage("loading")) --> Line_7 $$ unitOfWork.commit() [FD]
+Line_2 $$ public void orderInEventSourcedAggregate() --> Line_8 $$ assertEquals(expectedDescriptions(command), loadedAggregate.getHandledCommands()) [CD]
+Line_6 $$ MyAggregate loadedAggregate = repository.load(aggregateIdentifier).invoke(Function.identity()) --> Line_8 $$ assertEquals(expectedDescriptions(command), loadedAggregate.getHandledCommands()) [FD]

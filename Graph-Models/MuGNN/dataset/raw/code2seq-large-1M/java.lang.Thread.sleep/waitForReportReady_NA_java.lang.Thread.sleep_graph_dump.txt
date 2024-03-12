@@ -1,0 +1,8 @@
+Line_2 $$ public boolean waitForReportReady() throws InterruptedException, ApiException_Exception --> Line_3 $$ ReportJobStatus status = reportService.getReportJobStatus(reportJobId) [CD]
+Line_2 $$ public boolean waitForReportReady() throws InterruptedException, ApiException_Exception --> Line_4 $$ while (status == ReportJobStatus.IN_PROGRESS) [CD]
+Line_3 $$ ReportJobStatus status = reportService.getReportJobStatus(reportJobId) --> Line_4 $$ while (status == ReportJobStatus.IN_PROGRESS) [FD]
+Line_4 $$ while (status == ReportJobStatus.IN_PROGRESS) --> Line_5 $$ Thread.sleep(SLEEP_TIMER) [CD]
+Line_4 $$ while (status == ReportJobStatus.IN_PROGRESS) --> Line_6 $$ status = reportService.getReportJobStatus(reportJobId) [CD]
+Line_3 $$ ReportJobStatus status = reportService.getReportJobStatus(reportJobId) --> Line_6 $$ status = reportService.getReportJobStatus(reportJobId) [FD]
+Line_2 $$ public boolean waitForReportReady() throws InterruptedException, ApiException_Exception --> Line_8 $$ return status == ReportJobStatus.COMPLETED [CD]
+Line_6 $$ status = reportService.getReportJobStatus(reportJobId) --> Line_4 $$ while (status == ReportJobStatus.IN_PROGRESS) [FD]

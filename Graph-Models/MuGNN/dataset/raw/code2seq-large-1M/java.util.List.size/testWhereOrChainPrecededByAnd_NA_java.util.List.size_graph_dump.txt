@@ -1,0 +1,5 @@
+Line_2 $$ public void testWhereOrChainPrecededByAnd() --> Line_3 $$ List<String> customers = streams.streamAll(em, Customer.class).where(( c) -> (c.getCountry().equals("UK") && c.getName().equals("Dave")) || c.getName().equals("Bob")).select( c -> c.getName()).toList() [CD]
+Line_2 $$ public void testWhereOrChainPrecededByAnd() --> Line_4 $$ assertEquals("SELECT A.name FROM Customer A WHERE A.country <> 'UK' AND A.name = 'Bob' OR A.country = 'UK' AND A.name = 'Dave' OR A.country = 'UK' AND A.name <> 'Dave' AND A.name = 'Bob'", query) [CD]
+Line_2 $$ public void testWhereOrChainPrecededByAnd() --> Line_5 $$ assertEquals(2, customers.size()) [CD]
+Line_2 $$ public void testWhereOrChainPrecededByAnd() --> Line_6 $$ Assert.assertTrue(customers.contains("Dave")) [CD]
+Line_2 $$ public void testWhereOrChainPrecededByAnd() --> Line_7 $$ Assert.assertTrue(customers.contains("Bob")) [CD]

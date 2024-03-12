@@ -1,0 +1,4 @@
+Line_2 $$ public Set<TenantName> removeUnusedTenants() --> Line_3 $$ Set<TenantName> tenantsToBeDeleted = tenantRepository.getAllTenantNames().stream().filter( tenantName -> activeApplications(tenantName).isEmpty()).filter( tenantName -> !tenantName.equals(TenantName.defaultName())).collect(Collectors.toSet()) [CD]
+Line_2 $$ public Set<TenantName> removeUnusedTenants() --> Line_5 $$ tenantsToBeDeleted.forEach(tenantRepository::<>deleteTenant) [CD]
+Line_3 $$ Set<TenantName> tenantsToBeDeleted = tenantRepository.getAllTenantNames().stream().filter( tenantName -> activeApplications(tenantName).isEmpty()).filter( tenantName -> !tenantName.equals(TenantName.defaultName())).collect(Collectors.toSet()) --> Line_5 $$ tenantsToBeDeleted.forEach(tenantRepository::<>deleteTenant) [FD]
+Line_2 $$ public Set<TenantName> removeUnusedTenants() --> Line_6 $$ return tenantsToBeDeleted [CD]

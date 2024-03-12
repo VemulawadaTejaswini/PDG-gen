@@ -1,0 +1,4 @@
+Line_3 $$ if (field == null || field instanceof Enum || ImmutablePropertyUtils.isBuiltinImmutable(field.getClass().getName())) --> Line_4 $$ return field [CD]
+Line_5 $$ if (field instanceof Collection) --> Line_6 $$ return DefaultGroovyMethods.asImmutable((Collection) field) [CD]
+Line_7 $$ if (getAnnotationByName(field, "groovy.transform.Immutable") != null) --> Line_8 $$ return field [CD]
+Line_9 $$ final String typeName = field.getClass().getName() --> Line_10 $$ throw new RuntimeException(createErrorMessage(className, fieldName, typeName, "constructing")) [FD]

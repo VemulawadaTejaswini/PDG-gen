@@ -1,0 +1,7 @@
+Line_2 $$ private String pidFilePath(ServerType serverType, int port) --> Line_3 $$ String dir = serverWorkingDir(serverType, port) [FD]
+Line_2 $$ private String pidFilePath(ServerType serverType, int port) --> Line_3 $$ String dir = serverWorkingDir(serverType, port) [CD]
+Line_2 $$ private String pidFilePath(ServerType serverType, int port) --> Line_4 $$ String user = System.getenv("USER") [CD]
+Line_2 $$ private String pidFilePath(ServerType serverType, int port) --> Line_5 $$ String pidFile = String.format("%s/hbase-%s-%s.pid", dir, user, serverType.fullName) [CD]
+Line_3 $$ String dir = serverWorkingDir(serverType, port) --> Line_5 $$ String pidFile = String.format("%s/hbase-%s-%s.pid", dir, user, serverType.fullName) [FD]
+Line_4 $$ String user = System.getenv("USER") --> Line_5 $$ String pidFile = String.format("%s/hbase-%s-%s.pid", dir, user, serverType.fullName) [FD]
+Line_2 $$ private String pidFilePath(ServerType serverType, int port) --> Line_6 $$ return pidFile [CD]

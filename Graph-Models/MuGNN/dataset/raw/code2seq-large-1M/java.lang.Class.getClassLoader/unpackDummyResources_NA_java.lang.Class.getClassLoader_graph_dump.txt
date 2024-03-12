@@ -1,0 +1,7 @@
+Line_2 $$ public static void unpackDummyResources(String prefix, Path output) throws IOException --> Line_3 $$ ClassPath classPath = ClassPath.from(TestData.class.getClassLoader()) [CD]
+Line_2 $$ public static void unpackDummyResources(String prefix, Path output) throws IOException --> Line_4 $$ Map<String, URL> files = classPath.getResources().stream().filter( info -> info.getResourceName().startsWith(prefix)).collect(Collectors.toMap( info -> info.getResourceName().substring(prefix.length()), ClassPath.ResourceInfo::<>url)) [FD]
+Line_2 $$ public static void unpackDummyResources(String prefix, Path output) throws IOException --> Line_4 $$ Map<String, URL> files = classPath.getResources().stream().filter( info -> info.getResourceName().startsWith(prefix)).collect(Collectors.toMap( info -> info.getResourceName().substring(prefix.length()), ClassPath.ResourceInfo::<>url)) [CD]
+Line_2 $$ public static void unpackDummyResources(String prefix, Path output) throws IOException --> Line_5 $$ files.forEach(( name,  url) -> [CD]
+Line_2 $$ public static void unpackDummyResources(String prefix, Path output) throws IOException --> Line_6 $$ Path file = output.resolve(name) [FD]
+Line_7 $$ try (InputStream is = url.openStream()) --> Line_8 $$ Files.copy(is, file) [FD]
+Line_6 $$ Path file = output.resolve(name) --> Line_8 $$ Files.copy(is, file) [FD]

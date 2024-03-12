@@ -1,0 +1,8 @@
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_5 $$ Files.write(workdir.resolve("excluded"), "some content".getBytes()) [CD]
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_6 $$ repo().withWorkTree(workdir).add().files("excluded").run() [CD]
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_7 $$ repo().withWorkTree(workdir).simpleCommand("commit", "-m", "first commit") [CD]
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_8 $$ Files.delete(workdir.resolve("excluded")) [CD]
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_9 $$ destinationFiles = Glob.createGlob(ImmutableList.of("**"), ImmutableList.of("excluded")) [CD]
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_10 $$ thrown.expect(EmptyChangeException.class) [CD]
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_11 $$ thrown.expectMessage("empty change") [CD]
+Line_2 $$ public void processEmptyCommitWithExcludes() throws Exception --> Line_12 $$ process(newWriter(), new DummyRevision("origin_ref")) [CD]

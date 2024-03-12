@@ -1,0 +1,8 @@
+Line_2 $$ protected X509CertificateWrapper getKeyWrapper(final PreparedUpdate update, final UpdateContext updateContext, final String keyId) --> Line_4 $$ final RpslObject object = rpslObjectDao.getByKey(ObjectType.KEY_CERT, keyId) [FD]
+Line_4 $$ final RpslObject object = rpslObjectDao.getByKey(ObjectType.KEY_CERT, keyId) --> Line_5 $$ return X509CertificateWrapper.parse(object) [FD]
+Line_2 $$ protected X509CertificateWrapper getKeyWrapper(final PreparedUpdate update, final UpdateContext updateContext, final String keyId) --> Line_7 $$ updateContext.addMessage(update, UpdateMessages.keyNotFound(keyId)) [FD]
+Line_2 $$ protected X509CertificateWrapper getKeyWrapper(final PreparedUpdate update, final UpdateContext updateContext, final String keyId) --> Line_8 $$ log(update, String.format("Unable to find %s: %s", keyId, e.getMessage())) [FD]
+Line_2 $$ protected X509CertificateWrapper getKeyWrapper(final PreparedUpdate update, final UpdateContext updateContext, final String keyId) --> Line_10 $$ updateContext.addMessage(update, UpdateMessages.keyInvalid(keyId)) [FD]
+Line_2 $$ protected X509CertificateWrapper getKeyWrapper(final PreparedUpdate update, final UpdateContext updateContext, final String keyId) --> Line_11 $$ log(update, String.format("Unable to parse %s for X509 signature: %s", keyId, e.getMessage())) [FD]
+Line_2 $$ protected X509CertificateWrapper getKeyWrapper(final PreparedUpdate update, final UpdateContext updateContext, final String keyId) --> Line_12 $$ logException(update, e) [FD]
+Line_2 $$ protected X509CertificateWrapper getKeyWrapper(final PreparedUpdate update, final UpdateContext updateContext, final String keyId) --> Line_14 $$ return null [CD]

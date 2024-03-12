@@ -1,0 +1,6 @@
+Line_2 $$ private void slowAcquireReadLock(int readerId) --> Line_3 $$ globalSync.acquireShared(readerId) [FD]
+Line_2 $$ private void slowAcquireReadLock(int readerId) --> Line_3 $$ globalSync.acquireShared(readerId) [CD]
+Line_2 $$ private void slowAcquireReadLock(int readerId) --> Line_4 $$ if (globalSync.mustReadLockLocally()) [CD]
+Line_4 $$ if (globalSync.mustReadLockLocally()) --> Line_5 $$ localSyncs[readerId].tryAcquireSharedDeGlobalize() [CD]
+Line_4 $$ if (globalSync.mustReadLockLocally()) --> Line_6 $$ localSyncs[(readerId + 1) & LOCK_MASK].tryDeglobalize() [CD]
+Line_4 $$ if (globalSync.mustReadLockLocally()) --> Line_7 $$ globalSync.releaseShared(PREPARING_TO_GO_LOCAL) [CD]

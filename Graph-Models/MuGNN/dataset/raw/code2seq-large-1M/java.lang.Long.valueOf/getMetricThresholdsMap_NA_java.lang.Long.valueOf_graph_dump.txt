@@ -1,0 +1,8 @@
+Line_2 $$ public static Map<String, Double> getMetricThresholdsMap(List<MetricFunction> metricFunctions) --> Line_3 $$ Map<String, Double> metricThresholds = new HashMap() [CD]
+Line_4 $$ for (MetricFunction metricFunction : metricFunctions) --> Line_5 $$ String derivedMetricExpression = metricFunction.getMetricName() [FD]
+Line_5 $$ String derivedMetricExpression = metricFunction.getMetricName() --> Line_6 $$ String metricId = derivedMetricExpression.replaceAll(MetricConfigBean.DERIVED_METRIC_ID_PREFIX, "") [FD]
+Line_6 $$ String metricId = derivedMetricExpression.replaceAll(MetricConfigBean.DERIVED_METRIC_ID_PREFIX, "") --> Line_7 $$ MetricConfigDTO metricConfig = DAO_REGISTRY.getMetricConfigDAO().findById(Long.valueOf(metricId)) [FD]
+Line_3 $$ Map<String, Double> metricThresholds = new HashMap() --> Line_8 $$ metricThresholds.put(derivedMetricExpression, metricConfig.getRollupThreshold()) [FD]
+Line_5 $$ String derivedMetricExpression = metricFunction.getMetricName() --> Line_8 $$ metricThresholds.put(derivedMetricExpression, metricConfig.getRollupThreshold()) [FD]
+Line_7 $$ MetricConfigDTO metricConfig = DAO_REGISTRY.getMetricConfigDAO().findById(Long.valueOf(metricId)) --> Line_8 $$ metricThresholds.put(derivedMetricExpression, metricConfig.getRollupThreshold()) [FD]
+Line_2 $$ public static Map<String, Double> getMetricThresholdsMap(List<MetricFunction> metricFunctions) --> Line_10 $$ return metricThresholds [CD]

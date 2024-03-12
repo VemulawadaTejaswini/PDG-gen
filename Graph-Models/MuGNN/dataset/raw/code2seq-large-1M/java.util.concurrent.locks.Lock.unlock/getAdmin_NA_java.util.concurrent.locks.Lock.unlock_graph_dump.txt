@@ -1,0 +1,6 @@
+Line_2 $$ public Admin getAdmin() throws IOException --> Line_3 $$ ConnectionInfo connInfo = getCurrentConnection() [CD]
+Line_2 $$ public Admin getAdmin() throws IOException --> Line_4 $$ if (connInfo.admin == null) [CD]
+Line_4 $$ if (connInfo.admin == null) --> Line_5 $$ Lock lock = locker.acquireLock(getEffectiveUser()) [CD]
+Line_7 $$ if (connInfo.admin == null) --> Line_8 $$ connInfo.admin = connInfo.connection.getAdmin() [CD]
+Line_5 $$ Lock lock = locker.acquireLock(getEffectiveUser()) --> Line_11 $$ lock.unlock() [FD]
+Line_2 $$ public Admin getAdmin() throws IOException --> Line_14 $$ return connInfo.admin [CD]

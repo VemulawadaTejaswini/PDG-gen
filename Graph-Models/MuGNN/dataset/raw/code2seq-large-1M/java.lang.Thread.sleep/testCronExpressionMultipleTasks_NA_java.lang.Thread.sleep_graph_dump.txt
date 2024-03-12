@@ -1,0 +1,8 @@
+Line_2 $$ public void testCronExpressionMultipleTasks() throws InterruptedException, ExecutionException --> Line_3 $$ RScheduledExecutorService executor = redisson.getExecutorService("test") [CD]
+Line_2 $$ public void testCronExpressionMultipleTasks() throws InterruptedException, ExecutionException --> Line_4 $$ executor.schedule(new ScheduledRunnableTask("executed1"), CronSchedule.of("0/5 * * * * ?")) [CD]
+Line_3 $$ RScheduledExecutorService executor = redisson.getExecutorService("test") --> Line_4 $$ executor.schedule(new ScheduledRunnableTask("executed1"), CronSchedule.of("0/5 * * * * ?")) [FD]
+Line_2 $$ public void testCronExpressionMultipleTasks() throws InterruptedException, ExecutionException --> Line_5 $$ executor.schedule(new ScheduledRunnableTask("executed2"), CronSchedule.of("0/1 * * * * ?")) [CD]
+Line_3 $$ RScheduledExecutorService executor = redisson.getExecutorService("test") --> Line_5 $$ executor.schedule(new ScheduledRunnableTask("executed2"), CronSchedule.of("0/1 * * * * ?")) [FD]
+Line_2 $$ public void testCronExpressionMultipleTasks() throws InterruptedException, ExecutionException --> Line_6 $$ Thread.sleep(30000) [CD]
+Line_2 $$ public void testCronExpressionMultipleTasks() throws InterruptedException, ExecutionException --> Line_7 $$ assertThat(redisson.getAtomicLong("executed1").get()).isEqualTo(6) [CD]
+Line_2 $$ public void testCronExpressionMultipleTasks() throws InterruptedException, ExecutionException --> Line_8 $$ assertThat(redisson.getAtomicLong("executed2").get()).isEqualTo(30) [CD]

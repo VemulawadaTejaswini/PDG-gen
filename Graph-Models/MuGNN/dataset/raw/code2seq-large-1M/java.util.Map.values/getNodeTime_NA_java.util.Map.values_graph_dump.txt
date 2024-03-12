@@ -1,0 +1,8 @@
+Line_2 $$ private static long getNodeTime(Map<String, Long> timings, List<ProfileResult> children) --> Line_3 $$ long nodeTime = 0 [CD]
+Line_2 $$ private static long getNodeTime(Map<String, Long> timings, List<ProfileResult> children) --> Line_4 $$ for (long time : timings.values()) [FD]
+Line_3 $$ long nodeTime = 0 --> Line_5 $$ nodeTime += time [FD]
+Line_4 $$ for (long time : timings.values()) --> Line_5 $$ nodeTime += time [FD]
+Line_3 $$ long nodeTime = 0 --> Line_8 $$ nodeTime += getNodeTime(child.getTimeBreakdown(), child.getProfiledChildren()) [FD]
+Line_5 $$ nodeTime += time --> Line_8 $$ nodeTime += getNodeTime(child.getTimeBreakdown(), child.getProfiledChildren()) [FD]
+Line_7 $$ for (ProfileResult child : children) --> Line_8 $$ nodeTime += getNodeTime(child.getTimeBreakdown(), child.getProfiledChildren()) [FD]
+Line_2 $$ private static long getNodeTime(Map<String, Long> timings, List<ProfileResult> children) --> Line_10 $$ return nodeTime [CD]

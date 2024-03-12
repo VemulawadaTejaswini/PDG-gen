@@ -1,0 +1,7 @@
+Line_2 $$ void postDiscoveryFiltersAreStoredInDiscoveryRequest() --> Line_3 $$ LauncherDiscoveryRequest discoveryRequest = request().filters(new PostDiscoveryFilterStub("postFilter1"), new PostDiscoveryFilterStub("postFilter2")).build() [CD]
+Line_2 $$ void postDiscoveryFiltersAreStoredInDiscoveryRequest() --> Line_4 $$ List<String> filterStrings = discoveryRequest.getPostDiscoveryFilters().stream().map(PostDiscoveryFilter::<>toString).collect(toList()) [CD]
+Line_3 $$ LauncherDiscoveryRequest discoveryRequest = request().filters(new PostDiscoveryFilterStub("postFilter1"), new PostDiscoveryFilterStub("postFilter2")).build() --> Line_4 $$ List<String> filterStrings = discoveryRequest.getPostDiscoveryFilters().stream().map(PostDiscoveryFilter::<>toString).collect(toList()) [FD]
+Line_2 $$ void postDiscoveryFiltersAreStoredInDiscoveryRequest() --> Line_5 $$ assertThat(filterStrings).hasSize(2) [CD]
+Line_4 $$ List<String> filterStrings = discoveryRequest.getPostDiscoveryFilters().stream().map(PostDiscoveryFilter::<>toString).collect(toList()) --> Line_5 $$ assertThat(filterStrings).hasSize(2) [FD]
+Line_2 $$ void postDiscoveryFiltersAreStoredInDiscoveryRequest() --> Line_6 $$ assertThat(filterStrings).contains("postFilter1", "postFilter2") [CD]
+Line_4 $$ List<String> filterStrings = discoveryRequest.getPostDiscoveryFilters().stream().map(PostDiscoveryFilter::<>toString).collect(toList()) --> Line_6 $$ assertThat(filterStrings).contains("postFilter1", "postFilter2") [FD]

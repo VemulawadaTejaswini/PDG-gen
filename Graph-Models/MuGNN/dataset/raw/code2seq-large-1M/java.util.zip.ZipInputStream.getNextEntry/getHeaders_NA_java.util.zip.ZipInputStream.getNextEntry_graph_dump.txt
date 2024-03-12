@@ -1,0 +1,8 @@
+Line_2 $$ private Map<String, String> getHeaders(StreamProvider provider) throws IOException --> Line_3 $$ try (ZipInputStream zis = new ZipInputStream(provider.open())) [FD]
+Line_3 $$ try (ZipInputStream zis = new ZipInputStream(provider.open())) --> Line_5 $$ while ((entry = zis.getNextEntry()) != null) [FD]
+Line_6 $$ if (MANIFEST_NAME.equals(entry.getName())) --> Line_7 $$ Attributes attributes = new Manifest(zis).getMainAttributes() [CD]
+Line_6 $$ if (MANIFEST_NAME.equals(entry.getName())) --> Line_8 $$ Map<String, String> headers = new HashMap() [CD]
+Line_7 $$ Attributes attributes = new Manifest(zis).getMainAttributes() --> Line_9 $$ for (Map.Entry attr : attributes.entrySet()) [FD]
+Line_8 $$ Map<String, String> headers = new HashMap() --> Line_10 $$ headers.put(attr.getKey().toString(), attr.getValue().toString()) [FD]
+Line_6 $$ if (MANIFEST_NAME.equals(entry.getName())) --> Line_12 $$ return headers [CD]
+Line_2 $$ private Map<String, String> getHeaders(StreamProvider provider) throws IOException --> Line_16 $$ throw new IllegalArgumentException("Resource " + provider.getUrl() + " does not contain a manifest") [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private String getPrincipal(Subject subject) --> Line_3 $$ Set<Principal> principals = (Set<Principal>) subject.getPrincipals() [FD]
+Line_2 $$ private String getPrincipal(Subject subject) --> Line_3 $$ Set<Principal> principals = (Set<Principal>) subject.getPrincipals() [CD]
+Line_2 $$ private String getPrincipal(Subject subject) --> Line_4 $$ if (principals == null || principals.size() < 1) [CD]
+Line_3 $$ Set<Principal> principals = (Set<Principal>) subject.getPrincipals() --> Line_4 $$ if (principals == null || principals.size() < 1) [FD]
+Line_4 $$ if (principals == null || principals.size() < 1) --> Line_5 $$ LOG.info("No principal found in login subject") [CD]
+Line_4 $$ if (principals == null || principals.size() < 1) --> Line_6 $$ return null [CD]
+Line_2 $$ private String getPrincipal(Subject subject) --> Line_8 $$ return ((Principal) (principals.toArray()[0])).getName() [CD]
+Line_3 $$ Set<Principal> principals = (Set<Principal>) subject.getPrincipals() --> Line_8 $$ return ((Principal) (principals.toArray()[0])).getName() [FD]

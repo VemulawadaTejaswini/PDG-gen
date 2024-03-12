@@ -1,0 +1,8 @@
+Line_2 $$ public static ArrayList<StreamElement> getMostRecentValueFor(String virtual_sensor_name) --> Line_3 $$ StringBuilder query = new StringBuilder("select * from ").append(virtual_sensor_name).append(" where timed = (select max(timed) from ").append(virtual_sensor_name).append(")") [FD]
+Line_2 $$ public static ArrayList<StreamElement> getMostRecentValueFor(String virtual_sensor_name) --> Line_3 $$ StringBuilder query = new StringBuilder("select * from ").append(virtual_sensor_name).append(" where timed = (select max(timed) from ").append(virtual_sensor_name).append(")") [CD]
+Line_2 $$ public static ArrayList<StreamElement> getMostRecentValueFor(String virtual_sensor_name) --> Line_4 $$ ArrayList<StreamElement> toReturn = new ArrayList<StreamElement>() [CD]
+Line_3 $$ StringBuilder query = new StringBuilder("select * from ").append(virtual_sensor_name).append(" where timed = (select max(timed) from ").append(virtual_sensor_name).append(")") --> Line_6 $$ DataEnumerator result = Main.getStorage(virtual_sensor_name).executeQuery(query, true) [FD]
+Line_2 $$ public static ArrayList<StreamElement> getMostRecentValueFor(String virtual_sensor_name) --> Line_6 $$ DataEnumerator result = Main.getStorage(virtual_sensor_name).executeQuery(query, true) [FD]
+Line_6 $$ DataEnumerator result = Main.getStorage(virtual_sensor_name).executeQuery(query, true) --> Line_7 $$ while (result.hasMoreElements()) toReturn.add(result.nextElement()) [FD]
+Line_4 $$ ArrayList<StreamElement> toReturn = new ArrayList<StreamElement>() --> Line_7 $$ while (result.hasMoreElements()) toReturn.add(result.nextElement()) [FD]
+Line_2 $$ public static ArrayList<StreamElement> getMostRecentValueFor(String virtual_sensor_name) --> Line_13 $$ return toReturn [CD]

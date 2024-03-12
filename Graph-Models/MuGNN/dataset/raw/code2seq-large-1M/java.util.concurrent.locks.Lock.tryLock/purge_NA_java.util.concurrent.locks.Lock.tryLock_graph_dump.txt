@@ -1,0 +1,6 @@
+Line_2 $$ public void purge() --> Line_3 $$ if (purgeLock.tryLock()) [CD]
+Line_5 $$ while (true) --> Line_6 $$ Reference<V> ref = (Reference<V>) staleRefQueue.poll() [CD]
+Line_5 $$ while (true) --> Line_7 $$ if (ref == null) [CD]
+Line_6 $$ Reference<V> ref = (Reference<V>) staleRefQueue.poll() --> Line_7 $$ if (ref == null) [FD]
+Line_5 $$ while (true) --> Line_10 $$ referenceCache.remove(getReferenceKey(ref), ref) [CD]
+Line_6 $$ Reference<V> ref = (Reference<V>) staleRefQueue.poll() --> Line_10 $$ referenceCache.remove(getReferenceKey(ref), ref) [FD]

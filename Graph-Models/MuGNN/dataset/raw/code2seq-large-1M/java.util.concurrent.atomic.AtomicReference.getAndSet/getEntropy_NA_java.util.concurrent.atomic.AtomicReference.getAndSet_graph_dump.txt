@@ -1,0 +1,8 @@
+Line_2 $$ public byte[] getEntropy() --> Line_3 $$ byte[] seed = (byte[]) entropy.getAndSet(null) [CD]
+Line_2 $$ public byte[] getEntropy() --> Line_4 $$ if (seed == null || seed.length != byteLength) [CD]
+Line_4 $$ if (seed == null || seed.length != byteLength) --> Line_5 $$ seed = baseRandom.generateSeed(byteLength) [CD]
+Line_3 $$ byte[] seed = (byte[]) entropy.getAndSet(null) --> Line_5 $$ seed = baseRandom.generateSeed(byteLength) [FD]
+Line_4 $$ if (seed == null || seed.length != byteLength) --> Line_7 $$ scheduled.set(false) [CD]
+Line_2 $$ public byte[] getEntropy() --> Line_9 $$ if (!scheduled.getAndSet(true)) [CD]
+Line_9 $$ if (!scheduled.getAndSet(true)) --> Line_10 $$ new Thread(new EntropyGatherer(byteLength)).start() [CD]
+Line_2 $$ public byte[] getEntropy() --> Line_12 $$ return seed [CD]

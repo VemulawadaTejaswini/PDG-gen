@@ -1,0 +1,8 @@
+Line_2 $$ private void assertTopicContentsEventually(Map<String, String> expectedMap, boolean assertPartitionEqualsKey) --> Line_5 $$ for (int totalRecords = 0; totalRecords < expectedMap.size() && System.nanoTime() < timeLimit; ) [FD]
+Line_5 $$ for (int totalRecords = 0; totalRecords < expectedMap.size() && System.nanoTime() < timeLimit; ) --> Line_6 $$ ConsumerRecords<String, String> records = consumer.poll(100) [CD]
+Line_3 $$ try (KafkaConsumer<String, String> consumer = createConsumer(brokerConnectionString, topic)) --> Line_6 $$ ConsumerRecords<String, String> records = consumer.poll(100) [FD]
+Line_2 $$ private void assertTopicContentsEventually(Map<String, String> expectedMap, boolean assertPartitionEqualsKey) --> Line_8 $$ assertEquals(expectedMap.get(record.key()), record.value()) [FD]
+Line_7 $$ for (ConsumerRecord<String, String> record : records) --> Line_8 $$ assertEquals(expectedMap.get(record.key()), record.value()) [FD]
+Line_9 $$ if (assertPartitionEqualsKey) --> Line_10 $$ assertEquals(Integer.parseInt(record.key()), record.partition()) [CD]
+Line_7 $$ for (ConsumerRecord<String, String> record : records) --> Line_10 $$ assertEquals(Integer.parseInt(record.key()), record.partition()) [FD]
+Line_5 $$ for (int totalRecords = 0; totalRecords < expectedMap.size() && System.nanoTime() < timeLimit; ) --> Line_12 $$ totalRecords++ [FD]

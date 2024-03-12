@@ -1,0 +1,5 @@
+Line_2 $$ private void skipCurrentCommit() --> Line_3 $$ List<String> nextFile = Blobs.readLines(context().blobStore(), REBASE_NEXT_BLOB) [CD]
+Line_3 $$ List<String> nextFile = Blobs.readLines(context().blobStore(), REBASE_NEXT_BLOB) --> Line_5 $$ String idx = nextFile.get(0) [FD]
+Line_6 $$ String blobName = REBASE_BLOB_PREFIX + idx --> Line_7 $$ context().blobStore().removeBlob(blobName) [FD]
+Line_5 $$ String idx = nextFile.get(0) --> Line_8 $$ int newIdx = Integer.parseInt(idx) + 1 [FD]
+Line_8 $$ int newIdx = Integer.parseInt(idx) + 1 --> Line_9 $$ Blobs.putBlob(context().blobStore(), REBASE_NEXT_BLOB, String.valueOf(newIdx)) [FD]

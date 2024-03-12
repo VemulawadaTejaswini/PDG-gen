@@ -1,0 +1,5 @@
+Line_2 $$ public void testDeletedNameserver_found_loggedInAsAdmin() throws Exception --> Line_3 $$ when(sessionUtils.checkRegistrarConsoleLogin(request, adminUserAuthInfo)).thenReturn(true) [CD]
+Line_2 $$ public void testDeletedNameserver_found_loggedInAsAdmin() throws Exception --> Line_4 $$ when(sessionUtils.getRegistrarClientId(request)).thenReturn("irrelevant") [CD]
+Line_2 $$ public void testDeletedNameserver_found_loggedInAsAdmin() throws Exception --> Line_5 $$ newRdapNameserverAction("nsdeleted.cat.lol", Optional.empty(), Optional.of(true), AuthResult.create(AuthLevel.USER, adminUserAuthInfo)).run() [CD]
+Line_2 $$ public void testDeletedNameserver_found_loggedInAsAdmin() throws Exception --> Line_6 $$ assertThat(JSONValue.parse(response.getPayload())).isEqualTo(generateExpectedJsonWithTopLevelEntries("nsdeleted.cat.lol", ImmutableMap.of("HANDLE", "A-ROID", "ADDRESSTYPE", "v4", "ADDRESS", "1.2.3.4", "STATUS", "inactive"), "rdap_host.json")) [CD]
+Line_2 $$ public void testDeletedNameserver_found_loggedInAsAdmin() throws Exception --> Line_7 $$ assertThat(response.getStatus()).isEqualTo(200) [CD]

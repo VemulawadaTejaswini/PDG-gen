@@ -1,0 +1,6 @@
+Line_2 $$ public void testBuild_withTypeInitialization() --> Line_3 $$ HollowReadStateEngine readEngine = new HollowReadStateEngineBuilder(Arrays.<Class<?>>asList(String.class, Long.class)).add("foo").add(3L).build() [CD]
+Line_2 $$ public void testBuild_withTypeInitialization() --> Line_4 $$ assertEquals("Should have both types", new HashSet<String>(Arrays.asList(String.class.getSimpleName(), Long.class.getSimpleName())), new HashSet<String>(readEngine.getAllTypes())) [CD]
+Line_2 $$ public void testBuild_withTypeInitialization() --> Line_5 $$ assertEquals("Should have one String", 1, readEngine.getTypeDataAccess(String.class.getSimpleName()).getTypeState().getPopulatedOrdinals().cardinality()) [CD]
+Line_2 $$ public void testBuild_withTypeInitialization() --> Line_6 $$ assertEquals("The one String should be foo", "foo", new GenericHollowObject(readEngine, String.class.getSimpleName(), 0).getString("value")) [CD]
+Line_2 $$ public void testBuild_withTypeInitialization() --> Line_7 $$ assertEquals("Should have one Long", 1, readEngine.getTypeDataAccess(Long.class.getSimpleName()).getTypeState().getPopulatedOrdinals().cardinality()) [CD]
+Line_2 $$ public void testBuild_withTypeInitialization() --> Line_8 $$ assertEquals("The one Long should be 3L", 3L, new GenericHollowObject(readEngine, Long.class.getSimpleName(), 0).getLong("value")) [CD]

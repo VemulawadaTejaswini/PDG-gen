@@ -1,0 +1,5 @@
+Line_3 $$ for (ClusterNode n : ignite().cluster().forClients().nodes()) --> Line_4 $$ if (n.isLocal()) [FD]
+Line_3 $$ for (ClusterNode n : ignite().cluster().forClients().nodes()) --> Line_6 $$ for (String addr : n.addresses()) [FD]
+Line_6 $$ for (String addr : n.addresses()) --> Line_7 $$ if (!addr.equals("127.0.0.1") && !addr.equals("localhost") && !addr.equals("172.17.0.1")) [FD]
+Line_7 $$ if (!addr.equals("127.0.0.1") && !addr.equals("localhost") && !addr.equals("172.17.0.1")) --> Line_8 $$ println("Found remote node: " + addr) [CD]
+Line_7 $$ if (!addr.equals("127.0.0.1") && !addr.equals("localhost") && !addr.equals("172.17.0.1")) --> Line_9 $$ return addr [CD]

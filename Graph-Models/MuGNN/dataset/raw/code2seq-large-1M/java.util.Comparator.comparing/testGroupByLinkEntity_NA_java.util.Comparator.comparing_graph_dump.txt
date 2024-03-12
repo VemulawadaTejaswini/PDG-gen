@@ -1,0 +1,7 @@
+Line_2 $$ public void testGroupByLinkEntity() --> Line_3 $$ List<Pair<Customer, Long>> results = streams.streamAll(em, Sale.class).group( s -> s.getCustomer(), ( c,  stream) -> stream.count()).toList() [CD]
+Line_2 $$ public void testGroupByLinkEntity() --> Line_4 $$ results.sort(Comparator.<Pair<Customer, Long>, Long>comparing( group -> group.getTwo()).thenComparing( group -> group.getOne().getName())) [CD]
+Line_2 $$ public void testGroupByLinkEntity() --> Line_5 $$ assertEquals(4, results.size()) [CD]
+Line_2 $$ public void testGroupByLinkEntity() --> Line_6 $$ assertEquals("Dave", results.get(0).getOne().getName()) [CD]
+Line_2 $$ public void testGroupByLinkEntity() --> Line_7 $$ assertEquals(2, (long) results.get(2).getTwo()) [CD]
+Line_2 $$ public void testGroupByLinkEntity() --> Line_8 $$ assertEquals("Alice", results.get(2).getOne().getName()) [CD]
+Line_2 $$ public void testGroupByLinkEntity() --> Line_9 $$ assertEquals("SELECT A.customer, COUNT(A) FROM Sale A GROUP BY A.customer", query) [CD]

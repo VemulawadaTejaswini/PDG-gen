@@ -1,0 +1,7 @@
+Line_2 $$ public void testGateway_FireAndForgetWithoutRetryScheduler() --> Line_3 $$ final Object metaTest = new Object() [CD]
+Line_2 $$ public void testGateway_FireAndForgetWithoutRetryScheduler() --> Line_4 $$ CommandGatewayFactory testSubject = new CommandGatewayFactory(mockCommandBus) [CD]
+Line_2 $$ public void testGateway_FireAndForgetWithoutRetryScheduler() --> Line_5 $$ CompleteGateway gateway = testSubject.createGateway(CompleteGateway.class) [CD]
+Line_4 $$ CommandGatewayFactory testSubject = new CommandGatewayFactory(mockCommandBus) --> Line_5 $$ CompleteGateway gateway = testSubject.createGateway(CompleteGateway.class) [FD]
+Line_2 $$ public void testGateway_FireAndForgetWithoutRetryScheduler() --> Line_6 $$ gateway.fireAndForget("Command", MetaData.from(singletonMap("otherKey", "otherVal")), metaTest, "value") [CD]
+Line_3 $$ final Object metaTest = new Object() --> Line_6 $$ gateway.fireAndForget("Command", MetaData.from(singletonMap("otherKey", "otherVal")), metaTest, "value") [FD]
+Line_2 $$ public void testGateway_FireAndForgetWithoutRetryScheduler() --> Line_7 $$ verify(mockCommandBus).dispatch(argThat( x -> x.getMetaData().get("test") == metaTest && "otherVal".equals(x.getMetaData().get("otherKey")) && "value".equals(x.getMetaData().get("key")))) [CD]

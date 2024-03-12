@@ -1,0 +1,8 @@
+Line_2 $$ public void testIntLocking() throws Exception --> Line_3 $$ GridTestUtils.runMultiThreaded(new Runnable() [CD]
+Line_3 $$ GridTestUtils.runMultiThreaded(new Runnable() --> Line_10 $$ for (int i = 0; i < STRIPE_COUNT * 10000; i++) [CD]
+Line_10 $$ for (int i = 0; i < STRIPE_COUNT * 10000; i++) --> Line_11 $$ lock.lock(i) [CD]
+Line_10 $$ for (int i = 0; i < STRIPE_COUNT * 10000; i++) --> Line_11 $$ lock.lock(i) [FD]
+Line_14 $$ for (int lockNum = 0; lockNum < STRIPE_COUNT; lockNum++) if (((ReentrantLock) lock.getLock(lockNum)).isHeldByCurrentThread()) --> Line_15 $$ holdCnt++ [CD]
+Line_13 $$ int holdCnt = 0 --> Line_15 $$ holdCnt++ [FD]
+Line_13 $$ int holdCnt = 0 --> Line_16 $$ assertEquals(1, holdCnt) [FD]
+Line_10 $$ for (int i = 0; i < STRIPE_COUNT * 10000; i++) --> Line_18 $$ lock.unlock(i) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public HTableDescriptor getTableDescriptor(byte[] tableName) throws SQLException --> Line_3 $$ HTableInterface htable = getTable(tableName) [FD]
+Line_2 $$ public HTableDescriptor getTableDescriptor(byte[] tableName) throws SQLException --> Line_3 $$ HTableInterface htable = getTable(tableName) [CD]
+Line_3 $$ HTableInterface htable = getTable(tableName) --> Line_5 $$ return htable.getTableDescriptor() [FD]
+Line_7 $$ if (e instanceof org.apache.hadoop.hbase.TableNotFoundException || e.getCause() instanceof org.apache.hadoop.hbase.TableNotFoundException) --> Line_8 $$ byte[][] schemaAndTableName = new byte[2][] [CD]
+Line_7 $$ if (e instanceof org.apache.hadoop.hbase.TableNotFoundException || e.getCause() instanceof org.apache.hadoop.hbase.TableNotFoundException) --> Line_9 $$ SchemaUtil.getVarChars(tableName, schemaAndTableName) [CD]
+Line_2 $$ public HTableDescriptor getTableDescriptor(byte[] tableName) throws SQLException --> Line_9 $$ SchemaUtil.getVarChars(tableName, schemaAndTableName) [FD]
+Line_8 $$ byte[][] schemaAndTableName = new byte[2][] --> Line_9 $$ SchemaUtil.getVarChars(tableName, schemaAndTableName) [FD]
+Line_3 $$ HTableInterface htable = getTable(tableName) --> Line_14 $$ Closeables.closeQuietly(htable) [FD]

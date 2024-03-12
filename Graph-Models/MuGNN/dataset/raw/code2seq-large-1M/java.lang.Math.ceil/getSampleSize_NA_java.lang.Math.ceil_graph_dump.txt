@@ -1,0 +1,4 @@
+Line_2 $$ private static int getSampleSize(int inWidth, int inHeight, int outWidth, int outHeight) --> Line_3 $$ int maxIntegerFactor = (int) Math.ceil(Math.max(inHeight / (float) outHeight, inWidth / (float) outWidth)) [CD]
+Line_2 $$ private static int getSampleSize(int inWidth, int inHeight, int outWidth, int outHeight) --> Line_4 $$ int lesserOrEqualSampleSize = Math.max(1, Integer.highestOneBit(maxIntegerFactor)) [CD]
+Line_3 $$ int maxIntegerFactor = (int) Math.ceil(Math.max(inHeight / (float) outHeight, inWidth / (float) outWidth)) --> Line_4 $$ int lesserOrEqualSampleSize = Math.max(1, Integer.highestOneBit(maxIntegerFactor)) [FD]
+Line_2 $$ private static int getSampleSize(int inWidth, int inHeight, int outWidth, int outHeight) --> Line_5 $$ return lesserOrEqualSampleSize << (lesserOrEqualSampleSize < maxIntegerFactor ? 1 : 0) [CD]

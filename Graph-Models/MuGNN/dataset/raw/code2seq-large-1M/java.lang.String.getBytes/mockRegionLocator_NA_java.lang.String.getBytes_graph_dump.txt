@@ -1,0 +1,8 @@
+Line_2 $$ private RegionLocator mockRegionLocator(String... regionNames) throws IOException --> Line_3 $$ RegionLocator mockedTable = Mockito.mock(RegionLocator.class) [CD]
+Line_2 $$ private RegionLocator mockRegionLocator(String... regionNames) throws IOException --> Line_4 $$ when(mockedTable.getName()).thenReturn(TableName.valueOf("sizeTestTable")) [CD]
+Line_2 $$ private RegionLocator mockRegionLocator(String... regionNames) throws IOException --> Line_5 $$ List<HRegionLocation> regionLocations = new ArrayList(regionNames.length) [CD]
+Line_2 $$ private RegionLocator mockRegionLocator(String... regionNames) throws IOException --> Line_6 $$ when(mockedTable.getAllRegionLocations()).thenReturn(regionLocations) [CD]
+Line_5 $$ List<HRegionLocation> regionLocations = new ArrayList(regionNames.length) --> Line_6 $$ when(mockedTable.getAllRegionLocations()).thenReturn(regionLocations) [FD]
+Line_7 $$ for (String regionName : regionNames) --> Line_9 $$ when(info.getRegionName()).thenReturn(regionName.getBytes()) [FD]
+Line_5 $$ List<HRegionLocation> regionLocations = new ArrayList(regionNames.length) --> Line_10 $$ regionLocations.add(new HRegionLocation(info, sn)) [FD]
+Line_2 $$ private RegionLocator mockRegionLocator(String... regionNames) throws IOException --> Line_12 $$ return mockedTable [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public List getAllItems(final Long questionPoolId) --> Line_3 $$ final HibernateCallback<List> hcb =  session -> [CD]
+Line_4 $$ Query q = session.createQuery("select ab from ItemData ab, QuestionPoolItemData qpi where ab.itemId=qpi.itemId and qpi.questionPoolId = :id order by ab.itemId") --> Line_5 $$ q.setLong("id", questionPoolId.longValue()) [FD]
+Line_2 $$ public List getAllItems(final Long questionPoolId) --> Line_5 $$ q.setLong("id", questionPoolId.longValue()) [FD]
+Line_4 $$ Query q = session.createQuery("select ab from ItemData ab, QuestionPoolItemData qpi where ab.itemId=qpi.itemId and qpi.questionPoolId = :id order by ab.itemId") --> Line_6 $$ return q.list() [FD]
+Line_2 $$ public List getAllItems(final Long questionPoolId) --> Line_8 $$ List list = getHibernateTemplate().execute(hcb) [CD]
+Line_3 $$ final HibernateCallback<List> hcb =  session -> --> Line_8 $$ List list = getHibernateTemplate().execute(hcb) [FD]
+Line_2 $$ public List getAllItems(final Long questionPoolId) --> Line_9 $$ return list [CD]

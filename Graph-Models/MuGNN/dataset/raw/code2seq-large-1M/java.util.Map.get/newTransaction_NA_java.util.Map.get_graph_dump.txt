@@ -1,0 +1,7 @@
+Line_3 $$ for (String id : mapKeysInCurrentTx) --> Line_4 $$ Object o = map.get(id) [FD]
+Line_4 $$ Object o = map.get(id) --> Line_6 $$ if (o instanceof Vertex) [FD]
+Line_6 $$ if (o instanceof Vertex) --> Line_7 $$ Vertex v = (Vertex) o [CD]
+Line_6 $$ if (o instanceof Vertex) --> Line_8 $$ map.put(id, v.getId()) [CD]
+Line_3 $$ for (String id : mapKeysInCurrentTx) --> Line_8 $$ map.put(id, v.getId()) [FD]
+Line_7 $$ Vertex v = (Vertex) o --> Line_8 $$ map.put(id, v.getId()) [FD]
+Line_2 $$ public void newTransaction() --> Line_11 $$ mapKeysInCurrentTx.clear() [CD]

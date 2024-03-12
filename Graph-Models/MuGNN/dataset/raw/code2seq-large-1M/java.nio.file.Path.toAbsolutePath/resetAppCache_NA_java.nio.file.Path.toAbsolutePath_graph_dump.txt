@@ -1,0 +1,8 @@
+Line_2 $$ private void resetAppCache(Path dir) throws IOException --> Line_4 $$ log(LOG_DEBUG, "(Re)Creating cache for " + getJarFile() + " in " + dir.toAbsolutePath()) [FD]
+Line_2 $$ private void resetAppCache(Path dir) throws IOException --> Line_5 $$ final Path lockFile = dir.resolve(LOCK_FILE_NAME) [FD]
+Line_2 $$ private void resetAppCache(Path dir) throws IOException --> Line_6 $$ try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir)) [FD]
+Line_5 $$ final Path lockFile = dir.resolve(LOCK_FILE_NAME) --> Line_8 $$ if (!lockFile.equals(f)) [FD]
+Line_7 $$ for (Path f : ds) --> Line_8 $$ if (!lockFile.equals(f)) [FD]
+Line_8 $$ if (!lockFile.equals(f)) --> Line_9 $$ delete(f) [CD]
+Line_7 $$ for (Path f : ds) --> Line_9 $$ delete(f) [FD]
+Line_2 $$ private void resetAppCache(Path dir) throws IOException --> Line_13 $$ throw new IOException("Exception while clearing app cache directory " + dir.toAbsolutePath(), e) [FD]

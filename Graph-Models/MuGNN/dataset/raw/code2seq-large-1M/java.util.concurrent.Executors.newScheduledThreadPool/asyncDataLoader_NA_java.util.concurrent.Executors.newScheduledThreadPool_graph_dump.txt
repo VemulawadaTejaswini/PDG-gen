@@ -1,0 +1,8 @@
+Line_2 $$ public LoaderSchedular asyncDataLoader() --> Line_3 $$ ConditionallyLoad cc = () -> true [CD]
+Line_2 $$ public LoaderSchedular asyncDataLoader() --> Line_4 $$ BinaryOperator<ConditionallyLoad> accumulator = ( cc1,  cc2) -> () -> cc1.shouldLoad() && cc2.shouldLoad() [CD]
+Line_2 $$ public LoaderSchedular asyncDataLoader() --> Line_5 $$ LoaderSchedular schedular = new LoaderSchedular(dataLoaders(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) [CD]
+Line_3 $$ ConditionallyLoad cc = () -> true --> Line_5 $$ LoaderSchedular schedular = new LoaderSchedular(dataLoaders(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) [FD]
+Line_4 $$ BinaryOperator<ConditionallyLoad> accumulator = ( cc1,  cc2) -> () -> cc1.shouldLoad() && cc2.shouldLoad() --> Line_5 $$ LoaderSchedular schedular = new LoaderSchedular(dataLoaders(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) [FD]
+Line_2 $$ public LoaderSchedular asyncDataLoader() --> Line_6 $$ schedular.schedule() [CD]
+Line_5 $$ LoaderSchedular schedular = new LoaderSchedular(dataLoaders(), Executors.newScheduledThreadPool(schedularThreads), bus, predicates.stream().reduce(cc, accumulator)) --> Line_6 $$ schedular.schedule() [FD]
+Line_2 $$ public LoaderSchedular asyncDataLoader() --> Line_7 $$ return schedular [CD]

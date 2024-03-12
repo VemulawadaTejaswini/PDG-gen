@@ -1,0 +1,7 @@
+Line_7 $$ if (manifest.getAttributes(entryName) != null || manifest.getAttributes("./" + entryName) != null || manifest.getAttributes('/' + entryName) != null) --> Line_8 $$ inManifest = true [CD]
+Line_5 $$ boolean inManifest = false --> Line_8 $$ inManifest = true [FD]
+Line_9 $$ if (allSigned == true && inManifest == false && entryName.toUpperCase().startsWith("META-INF/") == false) --> Line_10 $$ return false [CD]
+Line_11 $$ if (inManifest) --> Line_12 $$ Certificate[] certs = makeCerts == false ? jarEntry.getCertificates() : getCertificates(jarEntry) [CD]
+Line_11 $$ if (inManifest) --> Line_13 $$ boolean isSigned = certs != null && certs.length > 0 [CD]
+Line_11 $$ if (inManifest) --> Line_14 $$ if (isSigned == false || pubKey != null && findKeyInCertificates(pubKey, certs) == false) [CD]
+Line_14 $$ if (isSigned == false || pubKey != null && findKeyInCertificates(pubKey, certs) == false) --> Line_15 $$ return false [CD]

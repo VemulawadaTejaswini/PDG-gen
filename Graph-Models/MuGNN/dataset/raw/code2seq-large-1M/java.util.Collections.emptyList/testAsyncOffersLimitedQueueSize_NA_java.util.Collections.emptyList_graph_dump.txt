@@ -1,0 +1,8 @@
+Line_2 $$ public void testAsyncOffersLimitedQueueSize() throws InterruptedException --> Line_3 $$ when(mockMesosEventClient.offers(any())).thenReturn(OfferResponse.processed(Collections.emptyList())) [CD]
+Line_2 $$ public void testAsyncOffersLimitedQueueSize() throws InterruptedException --> Line_4 $$ when(mockMesosEventClient.getUnexpectedResources(any())).thenReturn(UnexpectedResourcesResponse.processed(Collections.emptyList())) [CD]
+Line_2 $$ public void testAsyncOffersLimitedQueueSize() throws InterruptedException --> Line_5 $$ processor.setOfferQueueSize(10).start() [CD]
+Line_2 $$ public void testAsyncOffersLimitedQueueSize() throws InterruptedException --> Line_6 $$ Set<String> sentOfferIds = sendOffers(THREAD_COUNT, OFFERS_PER_THREAD) [CD]
+Line_2 $$ public void testAsyncOffersLimitedQueueSize() throws InterruptedException --> Line_7 $$ verify(mockMesosEventClient, atLeastOnce()).offers(any()) [CD]
+Line_2 $$ public void testAsyncOffersLimitedQueueSize() throws InterruptedException --> Line_8 $$ verify(mockMesosEventClient, atMost(sentOfferIds.size() - 1)).offers(any()) [CD]
+Line_6 $$ Set<String> sentOfferIds = sendOffers(THREAD_COUNT, OFFERS_PER_THREAD) --> Line_8 $$ verify(mockMesosEventClient, atMost(sentOfferIds.size() - 1)).offers(any()) [FD]
+Line_2 $$ public void testAsyncOffersLimitedQueueSize() throws InterruptedException --> Line_9 $$ verify(mockSchedulerDriver, atLeastOnce()).declineOffer(any(), any()) [CD]

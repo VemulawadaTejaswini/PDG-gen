@@ -1,0 +1,8 @@
+Line_3 $$ try (DurableDataLog log = createDurableDataLog()) --> Line_4 $$ log.initialize(TIMEOUT) [FD]
+Line_3 $$ try (DurableDataLog log = createDurableDataLog()) --> Line_5 $$ populate(log, getWriteCount()) [FD]
+Line_3 $$ try (DurableDataLog log = createDurableDataLog()) --> Line_6 $$ CloseableIterator<DurableDataLog.ReadItem, DurableDataLogException> reader = log.getReader() [FD]
+Line_6 $$ CloseableIterator<DurableDataLog.ReadItem, DurableDataLogException> reader = log.getReader() --> Line_7 $$ DurableDataLog.ReadItem firstItem = reader.getNext() [FD]
+Line_7 $$ DurableDataLog.ReadItem firstItem = reader.getNext() --> Line_8 $$ Assert.assertNotNull("Nothing read before modification.", firstItem) [FD]
+Line_3 $$ try (DurableDataLog log = createDurableDataLog()) --> Line_9 $$ log.append(new ByteArraySegment("foo".getBytes()), TIMEOUT).join() [FD]
+Line_6 $$ CloseableIterator<DurableDataLog.ReadItem, DurableDataLogException> reader = log.getReader() --> Line_10 $$ DurableDataLog.ReadItem secondItem = reader.getNext() [FD]
+Line_10 $$ DurableDataLog.ReadItem secondItem = reader.getNext() --> Line_11 $$ Assert.assertNotNull("Nothing read after modification.", secondItem) [FD]

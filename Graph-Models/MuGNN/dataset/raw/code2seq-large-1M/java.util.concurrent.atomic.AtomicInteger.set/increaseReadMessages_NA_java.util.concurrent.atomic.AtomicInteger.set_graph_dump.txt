@@ -1,0 +1,5 @@
+Line_2 $$ public final void increaseReadMessages(long currentTime) --> Line_5 $$ idleCountForBoth.set(0) [CD]
+Line_2 $$ public final void increaseReadMessages(long currentTime) --> Line_6 $$ idleCountForRead.set(0) [CD]
+Line_2 $$ public final void increaseReadMessages(long currentTime) --> Line_7 $$ if (getService() instanceof AbstractIoService) [CD]
+Line_7 $$ if (getService() instanceof AbstractIoService) --> Line_8 $$ ((AbstractIoService) getService()).getStatistics().increaseReadMessages(currentTime) [CD]
+Line_2 $$ public final void increaseReadMessages(long currentTime) --> Line_8 $$ ((AbstractIoService) getService()).getStatistics().increaseReadMessages(currentTime) [FD]

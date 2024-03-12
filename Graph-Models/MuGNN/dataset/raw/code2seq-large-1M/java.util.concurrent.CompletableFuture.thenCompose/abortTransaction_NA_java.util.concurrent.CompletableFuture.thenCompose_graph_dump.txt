@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<TxnStatus> abortTransaction(final int epoch, final UUID txId) --> Line_3 $$ return verifyLegalState().thenCompose( v -> checkTransactionStatus(txId)).thenApply( x -> [CD]
+Line_2 $$ public CompletableFuture<TxnStatus> abortTransaction(final int epoch, final UUID txId) --> Line_3 $$ return verifyLegalState().thenCompose( v -> checkTransactionStatus(txId)).thenApply( x -> [FD]
+Line_2 $$ public CompletableFuture<TxnStatus> abortTransaction(final int epoch, final UUID txId) --> Line_11 $$ throw StoreException.create(StoreException.Type.ILLEGAL_STATE, "Stream: " + getName() + " Transaction: " + txId.toString() + " State: " + x.name()) [FD]
+Line_2 $$ public CompletableFuture<TxnStatus> abortTransaction(final int epoch, final UUID txId) --> Line_14 $$ throw StoreException.create(StoreException.Type.DATA_NOT_FOUND, "Stream: " + getName() + " Transaction: " + txId.toString()) [FD]
+Line_17 $$ if (x.equals(TxnStatus.ABORTING)) --> Line_18 $$ return createCompletedTxEntry(txId, TxnStatus.ABORTED, System.currentTimeMillis()) [CD]
+Line_2 $$ public CompletableFuture<TxnStatus> abortTransaction(final int epoch, final UUID txId) --> Line_18 $$ return createCompletedTxEntry(txId, TxnStatus.ABORTED, System.currentTimeMillis()) [FD]
+Line_17 $$ if (x.equals(TxnStatus.ABORTING)) --> Line_20 $$ return CompletableFuture.completedFuture(null) [CD]
+Line_2 $$ public CompletableFuture<TxnStatus> abortTransaction(final int epoch, final UUID txId) --> Line_22 $$ removeActiveTxEntry(epoch, txId) [FD]

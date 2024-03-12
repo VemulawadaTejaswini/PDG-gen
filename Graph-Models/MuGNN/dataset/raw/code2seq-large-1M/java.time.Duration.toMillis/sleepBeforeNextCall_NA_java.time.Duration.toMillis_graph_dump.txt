@@ -1,0 +1,6 @@
+Line_2 $$ private void sleepBeforeNextCall() throws InterruptedException --> Line_3 $$ if (lastSuccessfulCall == null) [CD]
+Line_3 $$ if (lastSuccessfulCall == null) --> Line_4 $$ return [CD]
+Line_2 $$ private void sleepBeforeNextCall() throws InterruptedException --> Line_6 $$ long timeSinceLastCall = Duration.between(lastSuccessfulCall, Instant.now()).abs().toMillis() [CD]
+Line_2 $$ private void sleepBeforeNextCall() throws InterruptedException --> Line_7 $$ if (timeSinceLastCall < idleMillisBetweenCalls) [CD]
+Line_6 $$ long timeSinceLastCall = Duration.between(lastSuccessfulCall, Instant.now()).abs().toMillis() --> Line_7 $$ if (timeSinceLastCall < idleMillisBetweenCalls) [FD]
+Line_7 $$ if (timeSinceLastCall < idleMillisBetweenCalls) --> Line_8 $$ Thread.sleep(idleMillisBetweenCalls - timeSinceLastCall) [CD]

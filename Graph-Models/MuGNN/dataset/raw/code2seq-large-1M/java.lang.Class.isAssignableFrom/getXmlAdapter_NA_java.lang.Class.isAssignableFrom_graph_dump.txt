@@ -1,0 +1,8 @@
+Line_2 $$ protected static XmlAdapterWrapper getXmlAdapter(Class<?> baseType, Annotation[] annotations) --> Line_3 $$ if (baseType.isAnnotationPresent(XmlJavaTypeAdapter.class)) [FD]
+Line_2 $$ protected static XmlAdapterWrapper getXmlAdapter(Class<?> baseType, Annotation[] annotations) --> Line_3 $$ if (baseType.isAnnotationPresent(XmlJavaTypeAdapter.class)) [CD]
+Line_2 $$ protected static XmlAdapterWrapper getXmlAdapter(Class<?> baseType, Annotation[] annotations) --> Line_4 $$ XmlJavaTypeAdapter xmlJavaTypeAdapter = FindAnnotation.findAnnotation(baseType, annotations, XmlJavaTypeAdapter.class) [FD]
+Line_5 $$ Class<? extends XmlAdapter> adapterClass = xmlJavaTypeAdapter.value() --> Line_6 $$ ParameterizedType xmlAdapterType = ParameterizedType.class.cast(adapterClass.getGenericSuperclass()) [FD]
+Line_7 $$ Class<?> boundType = Types.getArgumentType(xmlAdapterType, 1) --> Line_8 $$ if (boundType.isAssignableFrom(baseType)) [FD]
+Line_2 $$ protected static XmlAdapterWrapper getXmlAdapter(Class<?> baseType, Annotation[] annotations) --> Line_8 $$ if (boundType.isAssignableFrom(baseType)) [FD]
+Line_5 $$ Class<? extends XmlAdapter> adapterClass = xmlJavaTypeAdapter.value() --> Line_11 $$ return new XmlAdapterWrapper(adapterClass.newInstance(), valueType) [FD]
+Line_2 $$ protected static XmlAdapterWrapper getXmlAdapter(Class<?> baseType, Annotation[] annotations) --> Line_17 $$ return null [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private boolean isRunningWithCmdline(String comm, String cmdline) --> Line_3 $$ String shell = "ps -fC " + comm + " | grep \"" + cmdline + "\" | wc -l" [CD]
+Line_3 $$ String shell = "ps -fC " + comm + " | grep \"" + cmdline + "\" | wc -l" --> Line_5 $$ String count = RuntimeHelper.exec(1000, "/bin/sh", "-c", shell) [FD]
+Line_6 $$ if (log.isDebugEnable()) --> Line_7 $$ log.debug(this, "shell exec: " + shell + "  \t\t Shell result:" + JSONHelper.toString(count)) [CD]
+Line_5 $$ String count = RuntimeHelper.exec(1000, "/bin/sh", "-c", shell) --> Line_7 $$ log.debug(this, "shell exec: " + shell + "  \t\t Shell result:" + JSONHelper.toString(count)) [FD]
+Line_5 $$ String count = RuntimeHelper.exec(1000, "/bin/sh", "-c", shell) --> Line_9 $$ return count != null && !"0".equals(trim(count)) [FD]

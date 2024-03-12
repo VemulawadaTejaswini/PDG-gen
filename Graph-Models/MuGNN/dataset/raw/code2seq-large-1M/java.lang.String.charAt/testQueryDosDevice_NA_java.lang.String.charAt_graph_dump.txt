@@ -1,0 +1,8 @@
+Line_2 $$ public void testQueryDosDevice() --> Line_3 $$ Collection<String> logicalDrives = Kernel32Util.getLogicalDriveStrings() [CD]
+Line_4 $$ for (String lpszDeviceName : logicalDrives) --> Line_5 $$ if (lpszDeviceName.charAt(lpszDeviceName.length() - 1) == File.separatorChar) [FD]
+Line_5 $$ if (lpszDeviceName.charAt(lpszDeviceName.length() - 1) == File.separatorChar) --> Line_6 $$ lpszDeviceName = lpszDeviceName.substring(0, lpszDeviceName.length() - 1) [CD]
+Line_4 $$ for (String lpszDeviceName : logicalDrives) --> Line_6 $$ lpszDeviceName = lpszDeviceName.substring(0, lpszDeviceName.length() - 1) [FD]
+Line_4 $$ for (String lpszDeviceName : logicalDrives) --> Line_8 $$ Collection<String> devices = Kernel32Util.queryDosDevice(lpszDeviceName, WinBase.MAX_PATH) [FD]
+Line_6 $$ lpszDeviceName = lpszDeviceName.substring(0, lpszDeviceName.length() - 1) --> Line_8 $$ Collection<String> devices = Kernel32Util.queryDosDevice(lpszDeviceName, WinBase.MAX_PATH) [FD]
+Line_8 $$ Collection<String> devices = Kernel32Util.queryDosDevice(lpszDeviceName, WinBase.MAX_PATH) --> Line_9 $$ assertTrue("No devices for " + lpszDeviceName, devices.size() > 0) [FD]
+Line_10 $$ for (String name : devices) --> Line_11 $$ assertTrue("Empty device name for " + lpszDeviceName, name.length() > 0) [FD]

@@ -1,0 +1,8 @@
+Line_4 $$ RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean() --> Line_5 $$ Field jvm = runtime.getClass().getDeclaredField("jvm") [FD]
+Line_5 $$ Field jvm = runtime.getClass().getDeclaredField("jvm") --> Line_6 $$ jvm.setAccessible(true) [FD]
+Line_5 $$ Field jvm = runtime.getClass().getDeclaredField("jvm") --> Line_7 $$ VMManagement mgmt = (VMManagement) jvm.get(runtime) [FD]
+Line_4 $$ RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean() --> Line_7 $$ VMManagement mgmt = (VMManagement) jvm.get(runtime) [FD]
+Line_7 $$ VMManagement mgmt = (VMManagement) jvm.get(runtime) --> Line_8 $$ Method pidMethod = mgmt.getClass().getDeclaredMethod("getProcessId") [FD]
+Line_8 $$ Method pidMethod = mgmt.getClass().getDeclaredMethod("getProcessId") --> Line_9 $$ pidMethod.setAccessible(true) [FD]
+Line_8 $$ Method pidMethod = mgmt.getClass().getDeclaredMethod("getProcessId") --> Line_10 $$ int pid = (Integer) pidMethod.invoke(mgmt) [FD]
+Line_7 $$ VMManagement mgmt = (VMManagement) jvm.get(runtime) --> Line_10 $$ int pid = (Integer) pidMethod.invoke(mgmt) [FD]

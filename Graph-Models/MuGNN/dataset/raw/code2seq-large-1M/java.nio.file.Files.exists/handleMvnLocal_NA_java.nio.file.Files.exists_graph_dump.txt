@@ -1,0 +1,8 @@
+Line_2 $$ private MagicCommandOutcomeItem handleMvnLocal() --> Line_3 $$ String localRepo = BeakerxSystemProperty.getHomeUser() + "/.m2/repository" [CD]
+Line_2 $$ private MagicCommandOutcomeItem handleMvnLocal() --> Line_4 $$ if (Files.exists(Paths.get(localRepo))) [CD]
+Line_3 $$ String localRepo = BeakerxSystemProperty.getHomeUser() + "/.m2/repository" --> Line_4 $$ if (Files.exists(Paths.get(localRepo))) [FD]
+Line_4 $$ if (Files.exists(Paths.get(localRepo))) --> Line_5 $$ ClasspathAddMvnMagicCommand mvnMagicCommand = MagicCommandTypesFactory.getClasspathAddMvnMagicCommand(kernel) [CD]
+Line_5 $$ ClasspathAddMvnMagicCommand mvnMagicCommand = MagicCommandTypesFactory.getClasspathAddMvnMagicCommand(kernel) --> Line_7 $$ String result = mvnMagicCommand.addRepo(MVN_LOCAL, new File(localRepo).toURI().toURL().toString()) [FD]
+Line_7 $$ String result = mvnMagicCommand.addRepo(MVN_LOCAL, new File(localRepo).toURI().toURL().toString()) --> Line_8 $$ return createResult(result) [FD]
+Line_2 $$ private MagicCommandOutcomeItem handleMvnLocal() --> Line_13 $$ return new MagicCommandOutput(Status.OK, String.format("Warning: directory %s not found", localRepo)) [CD]
+Line_3 $$ String localRepo = BeakerxSystemProperty.getHomeUser() + "/.m2/repository" --> Line_13 $$ return new MagicCommandOutput(Status.OK, String.format("Warning: directory %s not found", localRepo)) [FD]

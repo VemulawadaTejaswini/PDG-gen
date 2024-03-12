@@ -1,0 +1,5 @@
+Line_2 $$ public static <T> T await(long timeout, TimeUnit unit, RedisFuture<T> cmd) --> Line_4 $$ if (!cmd.await(timeout, unit)) [FD]
+Line_4 $$ if (!cmd.await(timeout, unit)) --> Line_5 $$ cmd.cancel(true) [CD]
+Line_2 $$ public static <T> T await(long timeout, TimeUnit unit, RedisFuture<T> cmd) --> Line_5 $$ cmd.cancel(true) [FD]
+Line_2 $$ public static <T> T await(long timeout, TimeUnit unit, RedisFuture<T> cmd) --> Line_6 $$ throw ExceptionFactory.createTimeoutException(timeout, unit) [FD]
+Line_2 $$ public static <T> T await(long timeout, TimeUnit unit, RedisFuture<T> cmd) --> Line_8 $$ return cmd.get() [FD]

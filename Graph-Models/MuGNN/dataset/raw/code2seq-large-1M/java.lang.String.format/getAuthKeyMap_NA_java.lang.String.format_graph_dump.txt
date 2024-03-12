@@ -1,0 +1,5 @@
+Line_2 $$ public Map<String, BaragonAuthKey> getAuthKeyMap() --> Line_3 $$ Map<String, BaragonAuthKey> keyMap = Maps.newHashMap() [CD]
+Line_4 $$ for (String node : getChildren(AUTH_KEYS_PATH)) --> Line_5 $$ final Optional<BaragonAuthKey> maybeAuthKey = readFromZk(String.format(AUTH_KEY_PATH, node), BaragonAuthKey.class) [FD]
+Line_6 $$ if (maybeAuthKey.isPresent()) --> Line_7 $$ keyMap.put(maybeAuthKey.get().getValue(), maybeAuthKey.get()) [CD]
+Line_3 $$ Map<String, BaragonAuthKey> keyMap = Maps.newHashMap() --> Line_7 $$ keyMap.put(maybeAuthKey.get().getValue(), maybeAuthKey.get()) [FD]
+Line_2 $$ public Map<String, BaragonAuthKey> getAuthKeyMap() --> Line_10 $$ return keyMap [CD]

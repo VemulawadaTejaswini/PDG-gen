@@ -1,0 +1,4 @@
+Line_2 $$ public void testHelpFromPattern() throws Exception --> Line_3 $$ JmxCollector jc = new JmxCollector("\n---\nrules:\n- pattern: `^(hadoop)<service=DataNode, name=DataNodeActivity-ams-hdd001-50010><>replaceBlockOpMinTime:`\n  name: foo\n  help: bar $1".replace('`', '"')).register(registry) [CD]
+Line_3 $$ JmxCollector jc = new JmxCollector("\n---\nrules:\n- pattern: `^(hadoop)<service=DataNode, name=DataNodeActivity-ams-hdd001-50010><>replaceBlockOpMinTime:`\n  name: foo\n  help: bar $1".replace('`', '"')).register(registry) --> Line_4 $$ for (Collector.MetricFamilySamples mfs : jc.collect()) [FD]
+Line_5 $$ if (mfs.name.equals("foo") && mfs.help.equals("bar hadoop")) --> Line_6 $$ return [CD]
+Line_2 $$ public void testHelpFromPattern() throws Exception --> Line_9 $$ fail("MetricFamilySamples foo with help 'bar hadoop' not found.") [CD]

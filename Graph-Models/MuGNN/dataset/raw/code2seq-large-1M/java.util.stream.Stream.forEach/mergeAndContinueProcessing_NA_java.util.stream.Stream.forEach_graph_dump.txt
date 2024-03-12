@@ -1,0 +1,7 @@
+Line_2 $$ public void mergeAndContinueProcessing() --> Line_3 $$ SimpleReactStream<String> stage1 = new SimpleReact().<Integer>ofAsync(() -> 1, () -> 2, () -> 3).then( it -> "*" + it) [CD]
+Line_2 $$ public void mergeAndContinueProcessing() --> Line_4 $$ SimpleReactStream<String> stage2 = new SimpleReact().<Integer>ofAsync(() -> 4, () -> 5, () -> 6).then( it -> "*" + it) [CD]
+Line_2 $$ public void mergeAndContinueProcessing() --> Line_5 $$ List<String> result = stage1.merge(stage2).then( it -> it + "*").block() [CD]
+Line_3 $$ SimpleReactStream<String> stage1 = new SimpleReact().<Integer>ofAsync(() -> 1, () -> 2, () -> 3).then( it -> "*" + it) --> Line_5 $$ List<String> result = stage1.merge(stage2).then( it -> it + "*").block() [FD]
+Line_4 $$ SimpleReactStream<String> stage2 = new SimpleReact().<Integer>ofAsync(() -> 4, () -> 5, () -> 6).then( it -> "*" + it) --> Line_5 $$ List<String> result = stage1.merge(stage2).then( it -> it + "*").block() [FD]
+Line_2 $$ public void mergeAndContinueProcessing() --> Line_6 $$ result.stream().forEach( it -> assertThat(it, endsWith("*"))) [CD]
+Line_5 $$ List<String> result = stage1.merge(stage2).then( it -> it + "*").block() --> Line_6 $$ result.stream().forEach( it -> assertThat(it, endsWith("*"))) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void testMasterOnlyNodeCanStart() --> Line_3 $$ List<DiscoveryNode.Role> roles = Collections.singletonList(randomFrom(DiscoveryNode.Role.MASTER, DiscoveryNode.Role.INGEST)) [CD]
+Line_2 $$ public void testMasterOnlyNodeCanStart() --> Line_4 $$ ClusterState state = ClusterState.builder(new ClusterName("my-cluster")).nodes(new DiscoveryNodes.Builder().masterNodeId("node_1").localNodeId("node_1").add(new DiscoveryNode("node_1", ESTestCase.buildNewFakeTransportAddress(), Collections.emptyMap(), new HashSet(roles), Version.CURRENT))).build() [CD]
+Line_2 $$ public void testMasterOnlyNodeCanStart() --> Line_5 $$ lifeCycleService.clusterChanged(new ClusterChangedEvent("test", state, state)) [CD]
+Line_2 $$ public void testMasterOnlyNodeCanStart() --> Line_6 $$ assertThat(lifeCycleService.getState(), is(WatcherState.STARTED)) [CD]

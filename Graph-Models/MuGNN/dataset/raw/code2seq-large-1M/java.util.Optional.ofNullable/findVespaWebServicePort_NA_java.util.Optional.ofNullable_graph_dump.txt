@@ -1,0 +1,7 @@
+Line_2 $$ private static int findVespaWebServicePort() --> Line_3 $$ Optional<String> vespaWebServicePortString = Optional.ofNullable(System.getenv("VESPA_WEB_SERVICE_PORT")) [CD]
+Line_2 $$ private static int findVespaWebServicePort() --> Line_4 $$ if (!vespaWebServicePortString.isPresent() || vespaWebServicePortString.get().trim().isEmpty()) [CD]
+Line_3 $$ Optional<String> vespaWebServicePortString = Optional.ofNullable(System.getenv("VESPA_WEB_SERVICE_PORT")) --> Line_4 $$ if (!vespaWebServicePortString.isPresent() || vespaWebServicePortString.get().trim().isEmpty()) [FD]
+Line_4 $$ if (!vespaWebServicePortString.isPresent() || vespaWebServicePortString.get().trim().isEmpty()) --> Line_5 $$ log.info("VESPA_WEB_SERVICE_PORT not set, using 8080") [CD]
+Line_4 $$ if (!vespaWebServicePortString.isPresent() || vespaWebServicePortString.get().trim().isEmpty()) --> Line_6 $$ return 8080 [CD]
+Line_3 $$ Optional<String> vespaWebServicePortString = Optional.ofNullable(System.getenv("VESPA_WEB_SERVICE_PORT")) --> Line_9 $$ return Integer.parseInt(vespaWebServicePortString.get()) [FD]
+Line_3 $$ Optional<String> vespaWebServicePortString = Optional.ofNullable(System.getenv("VESPA_WEB_SERVICE_PORT")) --> Line_11 $$ throw new IllegalArgumentException("VESPA_WEB_SERVICE_PORT must be an integer, was '" + vespaWebServicePortString.get() + "'") [FD]

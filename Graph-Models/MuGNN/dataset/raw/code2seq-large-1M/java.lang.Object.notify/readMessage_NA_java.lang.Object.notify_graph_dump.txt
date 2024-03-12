@@ -1,0 +1,6 @@
+Line_2 $$ public ReplicationMessage readMessage() throws ClassNotFoundException, IOException --> Line_3 $$ checkSocketConnection() [CD]
+Line_2 $$ public ReplicationMessage readMessage() throws ClassNotFoundException, IOException --> Line_4 $$ ReplicationMessage msg = (ReplicationMessage) socketConn.readMessage() [CD]
+Line_2 $$ public ReplicationMessage readMessage() throws ClassNotFoundException, IOException --> Line_5 $$ if (msg.getType() == ReplicationMessage.TYPE_PONG) [CD]
+Line_4 $$ ReplicationMessage msg = (ReplicationMessage) socketConn.readMessage() --> Line_5 $$ if (msg.getType() == ReplicationMessage.TYPE_PONG) [FD]
+Line_5 $$ if (msg.getType() == ReplicationMessage.TYPE_PONG) --> Line_10 $$ return readMessage() [CD]
+Line_5 $$ if (msg.getType() == ReplicationMessage.TYPE_PONG) --> Line_12 $$ return msg [CD]

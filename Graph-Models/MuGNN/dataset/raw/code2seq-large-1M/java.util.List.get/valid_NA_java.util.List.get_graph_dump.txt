@@ -1,0 +1,8 @@
+Line_2 $$ public void valid() throws Throwable --> Line_3 $$ Assume.assumeTrue(isValid) [CD]
+Line_2 $$ public void valid() throws Throwable --> Line_4 $$ advice.cacheUpdateMulti(pjp, returnValue) [CD]
+Line_2 $$ public void valid() throws Throwable --> Line_5 $$ for (int i = 0; i < cacheKeys.length; i++) [CD]
+Line_5 $$ for (int i = 0; i < cacheKeys.length; i++) --> Line_6 $$ if (advice.getCacheBase().getMethodToCache(pjp).getAnnotation(UpdateMultiCache.class).option().overwriteNoNulls()) [CD]
+Line_5 $$ for (int i = 0; i < cacheKeys.length; i++) --> Line_7 $$ verify(cache).setSilently(eq(cacheKeys[i]), eq(EXPIRATION), eq(expectedValue.get(i)), any(SerializationType.class)) [FD]
+Line_5 $$ for (int i = 0; i < cacheKeys.length; i++) --> Line_8 $$ if (advice.getCacheBase().getMethodToCache(pjp).getAnnotation(UpdateMultiCache.class).option().addNullsToCache() && expectedValue.get(i) instanceof PertinentNegativeNull) [FD]
+Line_5 $$ for (int i = 0; i < cacheKeys.length; i++) --> Line_9 $$ verify(cache).addSilently(eq(cacheKeys[i]), eq(EXPIRATION), eq(expectedValue.get(i)), any(SerializationType.class)) [FD]
+Line_5 $$ for (int i = 0; i < cacheKeys.length; i++) --> Line_11 $$ verify(cache).setSilently(eq(cacheKeys[i]), eq(EXPIRATION), eq(expectedValue.get(i)), any(SerializationType.class)) [FD]

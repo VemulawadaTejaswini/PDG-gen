@@ -1,0 +1,7 @@
+Line_4 $$ while (true) --> Line_5 $$ byte[] buf = new byte[1024] [CD]
+Line_4 $$ while (true) --> Line_6 $$ int len = pipedInputStream.read(buf) [CD]
+Line_5 $$ byte[] buf = new byte[1024] --> Line_6 $$ int len = pipedInputStream.read(buf) [FD]
+Line_4 $$ while (true) --> Line_7 $$ session.sendMessage(new TextMessage(new String(buf, 0, len))) [CD]
+Line_4 $$ while (true) --> Line_8 $$ if (len == 0) [CD]
+Line_6 $$ int len = pipedInputStream.read(buf) --> Line_8 $$ if (len == 0) [FD]
+Line_8 $$ if (len == 0) --> Line_9 $$ stopRun() [CD]

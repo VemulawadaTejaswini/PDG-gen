@@ -1,0 +1,8 @@
+Line_2 $$ public void subscribeActual(final Observer<? super T> subscriber) --> Line_3 $$ lock.lock() [CD]
+Line_2 $$ public void subscribeActual(final Observer<? super T> subscriber) --> Line_4 $$ if (subscriptionCount.incrementAndGet() == 1) [CD]
+Line_4 $$ if (subscriptionCount.incrementAndGet() == 1) --> Line_5 $$ final AtomicBoolean writeLocked = new AtomicBoolean(true) [CD]
+Line_2 $$ public void subscribeActual(final Observer<? super T> subscriber) --> Line_7 $$ source.connect(onSubscribe(subscriber, writeLocked)) [FD]
+Line_5 $$ final AtomicBoolean writeLocked = new AtomicBoolean(true) --> Line_7 $$ source.connect(onSubscribe(subscriber, writeLocked)) [FD]
+Line_5 $$ final AtomicBoolean writeLocked = new AtomicBoolean(true) --> Line_9 $$ if (writeLocked.get()) [FD]
+Line_9 $$ if (writeLocked.get()) --> Line_10 $$ lock.unlock() [CD]
+Line_2 $$ public void subscribeActual(final Observer<? super T> subscriber) --> Line_15 $$ doSubscribe(subscriber, baseDisposable) [FD]

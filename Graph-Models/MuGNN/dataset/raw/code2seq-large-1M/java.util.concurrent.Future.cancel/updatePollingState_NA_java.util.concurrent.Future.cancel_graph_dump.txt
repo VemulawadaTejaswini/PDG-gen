@@ -1,0 +1,8 @@
+Line_2 $$ private void updatePollingState() --> Line_3 $$ boolean isPolling = future != null [CD]
+Line_2 $$ private void updatePollingState() --> Line_4 $$ if (isPolling && listeners.isEmpty()) [CD]
+Line_3 $$ boolean isPolling = future != null --> Line_4 $$ if (isPolling && listeners.isEmpty()) [FD]
+Line_4 $$ if (isPolling && listeners.isEmpty()) --> Line_5 $$ future.cancel(true) [CD]
+Line_4 $$ if (isPolling && listeners.isEmpty()) --> Line_7 $$ return [CD]
+Line_2 $$ private void updatePollingState() --> Line_9 $$ if (!isPolling && !listeners.isEmpty()) [CD]
+Line_3 $$ boolean isPolling = future != null --> Line_9 $$ if (!isPolling && !listeners.isEmpty()) [FD]
+Line_9 $$ if (!isPolling && !listeners.isEmpty()) --> Line_10 $$ future = scheduler.scheduleWithFixedDelay(pollingRunnable, 0, 2, TimeUnit.SECONDS) [CD]

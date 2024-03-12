@@ -1,0 +1,6 @@
+Line_2 $$ private synchronized void maybeSchedulePingServerTask(int delta) --> Line_3 $$ maybeStopPingServerTask() [CD]
+Line_2 $$ private synchronized void maybeSchedulePingServerTask(int delta) --> Line_4 $$ if (pingInterval > 0) [CD]
+Line_4 $$ if (pingInterval > 0) --> Line_5 $$ int nextPingIn = pingInterval - delta [CD]
+Line_4 $$ if (pingInterval > 0) --> Line_6 $$ LOGGER.fine("Scheduling ServerPingTask in " + nextPingIn + " seconds (pingInterval=" + pingInterval + ", delta=" + delta + ")") [CD]
+Line_4 $$ if (pingInterval > 0) --> Line_7 $$ nextAutomaticPing = schedule(pingServerRunnable, nextPingIn, TimeUnit.SECONDS) [CD]
+Line_5 $$ int nextPingIn = pingInterval - delta --> Line_7 $$ nextAutomaticPing = schedule(pingServerRunnable, nextPingIn, TimeUnit.SECONDS) [FD]

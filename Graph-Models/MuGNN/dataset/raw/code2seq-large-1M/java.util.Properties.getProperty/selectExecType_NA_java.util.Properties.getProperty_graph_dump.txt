@@ -1,0 +1,8 @@
+Line_2 $$ public static ExecType selectExecType(Properties properties) throws PigException --> Line_3 $$ ServiceLoader<ExecType> frameworkLoader = ServiceLoader.load(ExecType.class) [CD]
+Line_4 $$ for (ExecType execType : frameworkLoader) --> Line_6 $$ if (execType.accepts(properties)) [FD]
+Line_2 $$ public static ExecType selectExecType(Properties properties) throws PigException --> Line_6 $$ if (execType.accepts(properties)) [FD]
+Line_6 $$ if (execType.accepts(properties)) --> Line_7 $$ log.info("Picked " + execType + " as the ExecType") [CD]
+Line_6 $$ if (execType.accepts(properties)) --> Line_8 $$ return getSingleton(execType) [CD]
+Line_4 $$ for (ExecType execType : frameworkLoader) --> Line_8 $$ return getSingleton(execType) [FD]
+Line_6 $$ if (execType.accepts(properties)) --> Line_10 $$ log.debug("Cannot pick " + execType + " as the ExecType") [CD]
+Line_2 $$ public static ExecType selectExecType(Properties properties) throws PigException --> Line_13 $$ throw new PigException("Unknown exec type: " + properties.getProperty("exectype"), 2040) [FD]

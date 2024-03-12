@@ -1,0 +1,8 @@
+Line_2 $$ private <I, O> O executeWithRetry(Function<I, O> function, I input) throws TransactionFailureException, InterruptedException --> Line_3 $$ int retries = 0 [CD]
+Line_2 $$ private <I, O> O executeWithRetry(Function<I, O> function, I input) throws TransactionFailureException, InterruptedException --> Line_4 $$ while (true) [CD]
+Line_2 $$ private <I, O> O executeWithRetry(Function<I, O> function, I input) throws TransactionFailureException, InterruptedException --> Line_6 $$ return executeOnce(function, input) [FD]
+Line_3 $$ int retries = 0 --> Line_8 $$ long delay = retryStrategy.nextRetry(e, ++retries) [FD]
+Line_8 $$ long delay = retryStrategy.nextRetry(e, ++retries) --> Line_9 $$ if (delay < 0) [FD]
+Line_8 $$ long delay = retryStrategy.nextRetry(e, ++retries) --> Line_12 $$ if (delay > 0) [FD]
+Line_12 $$ if (delay > 0) --> Line_13 $$ TimeUnit.MILLISECONDS.sleep(delay) [CD]
+Line_8 $$ long delay = retryStrategy.nextRetry(e, ++retries) --> Line_13 $$ TimeUnit.MILLISECONDS.sleep(delay) [FD]

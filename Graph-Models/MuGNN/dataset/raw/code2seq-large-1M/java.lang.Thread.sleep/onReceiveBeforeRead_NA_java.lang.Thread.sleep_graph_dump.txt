@@ -1,0 +1,5 @@
+Line_4 $$ String requestMessageId = requestMessage.getMessageID() --> Line_5 $$ Assert.hasLength(requestMessageId, "No Message-ID found on request message [" + requestMessage + "]") [FD]
+Line_12 $$ SearchTerm searchTerm = new HeaderTerm(MailTransportConstants.HEADER_IN_REPLY_TO, requestMessageId) --> Line_13 $$ Message[] responses = folder.search(searchTerm) [FD]
+Line_14 $$ if (responses.length > 0) --> Line_15 $$ if (responses.length > 1) [CD]
+Line_15 $$ if (responses.length > 1) --> Line_16 $$ logger.warn("Received more than one response for request with ID [" + requestMessageId + "]") [CD]
+Line_20 $$ if (deleteAfterReceive) --> Line_21 $$ responseMessage.setFlag(Flags.Flag.DELETED, true) [CD]

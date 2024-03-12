@@ -1,0 +1,7 @@
+Line_2 $$ public static <T> Predicate<T> memoizePredicate(final Predicate<T> p, final Cacheable<Boolean> cache) --> Line_3 $$ final Function<T, Boolean> memoised = memoizeFunction((Function<T, Boolean>)  t -> p.test(t), cache) [FD]
+Line_2 $$ public static <T> Predicate<T> memoizePredicate(final Predicate<T> p, final Cacheable<Boolean> cache) --> Line_3 $$ final Function<T, Boolean> memoised = memoizeFunction((Function<T, Boolean>)  t -> p.test(t), cache) [CD]
+Line_2 $$ public static <T> Predicate<T> memoizePredicate(final Predicate<T> p, final Cacheable<Boolean> cache) --> Line_4 $$ LazyImmutable<Boolean> nullR = LazyImmutable.def() [CD]
+Line_2 $$ public static <T> Predicate<T> memoizePredicate(final Predicate<T> p, final Cacheable<Boolean> cache) --> Line_5 $$ return ( t) -> t == null ? nullR.computeIfAbsent(() -> p.test(null)) : memoised.apply(t) [FD]
+Line_2 $$ public static <T> Predicate<T> memoizePredicate(final Predicate<T> p, final Cacheable<Boolean> cache) --> Line_5 $$ return ( t) -> t == null ? nullR.computeIfAbsent(() -> p.test(null)) : memoised.apply(t) [CD]
+Line_4 $$ LazyImmutable<Boolean> nullR = LazyImmutable.def() --> Line_5 $$ return ( t) -> t == null ? nullR.computeIfAbsent(() -> p.test(null)) : memoised.apply(t) [FD]
+Line_3 $$ final Function<T, Boolean> memoised = memoizeFunction((Function<T, Boolean>)  t -> p.test(t), cache) --> Line_5 $$ return ( t) -> t == null ? nullR.computeIfAbsent(() -> p.test(null)) : memoised.apply(t) [FD]

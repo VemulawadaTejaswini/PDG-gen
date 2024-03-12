@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void shutdownImmediately() --> Line_3 $$ if (!this.isShutdown) [CD]
+Line_3 $$ if (!this.isShutdown) --> Line_4 $$ final Thread runner = this.taskRunnerThread [CD]
+Line_3 $$ if (!this.isShutdown) --> Line_5 $$ this.isShutdown = true [CD]
+Line_3 $$ if (!this.isShutdown) --> Line_6 $$ if (runner != null && runner.isAlive()) [CD]
+Line_4 $$ final Thread runner = this.taskRunnerThread --> Line_6 $$ if (runner != null && runner.isAlive()) [FD]
+Line_6 $$ if (runner != null && runner.isAlive()) --> Line_7 $$ runner.interrupt() [CD]
+Line_4 $$ final Thread runner = this.taskRunnerThread --> Line_7 $$ runner.interrupt() [FD]
+Line_3 $$ if (!this.isShutdown) --> Line_9 $$ this.taskQueue.cancelAllTasks() [CD]

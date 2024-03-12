@@ -1,0 +1,8 @@
+Line_2 $$ private static void copyProject(String projectName, Path destination) throws IOException, URISyntaxException --> Line_3 $$ Path projectPathInResources = Paths.get(Resources.getResource(PROJECTS_PATH_IN_RESOURCES + projectName).toURI()) [CD]
+Line_2 $$ private static void copyProject(String projectName, Path destination) throws IOException, URISyntaxException --> Line_4 $$ new DirectoryWalker(projectPathInResources).filterRoot().walk( path -> [CD]
+Line_2 $$ private static void copyProject(String projectName, Path destination) throws IOException, URISyntaxException --> Line_5 $$ Path destPath = destination.resolve(projectPathInResources.relativize(path)) [FD]
+Line_3 $$ Path projectPathInResources = Paths.get(Resources.getResource(PROJECTS_PATH_IN_RESOURCES + projectName).toURI()) --> Line_5 $$ Path destPath = destination.resolve(projectPathInResources.relativize(path)) [FD]
+Line_6 $$ if (Files.isDirectory(path)) --> Line_7 $$ Files.createDirectory(destPath) [CD]
+Line_5 $$ Path destPath = destination.resolve(projectPathInResources.relativize(path)) --> Line_7 $$ Files.createDirectory(destPath) [FD]
+Line_6 $$ if (Files.isDirectory(path)) --> Line_9 $$ Files.copy(path, destPath) [CD]
+Line_5 $$ Path destPath = destination.resolve(projectPathInResources.relativize(path)) --> Line_9 $$ Files.copy(path, destPath) [FD]

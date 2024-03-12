@@ -1,0 +1,7 @@
+Line_2 $$ public void onSuccess() --> Line_3 $$ int currentNumOfAttempts = numOfAttempts.get() [CD]
+Line_2 $$ public void onSuccess() --> Line_4 $$ if (currentNumOfAttempts > 0) [CD]
+Line_3 $$ int currentNumOfAttempts = numOfAttempts.get() --> Line_4 $$ if (currentNumOfAttempts > 0) [FD]
+Line_4 $$ if (currentNumOfAttempts > 0) --> Line_5 $$ succeededAfterRetryCounter.increment() [CD]
+Line_4 $$ if (currentNumOfAttempts > 0) --> Line_6 $$ Throwable throwable = Option.of(lastException.get()).getOrElse(lastRuntimeException.get()) [CD]
+Line_4 $$ if (currentNumOfAttempts > 0) --> Line_7 $$ publishRetryEvent(() -> new RetryOnSuccessEvent(getName(), currentNumOfAttempts, throwable)) [CD]
+Line_4 $$ if (currentNumOfAttempts > 0) --> Line_9 $$ succeededWithoutRetryCounter.increment() [CD]

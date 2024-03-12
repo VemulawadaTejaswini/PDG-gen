@@ -1,0 +1,4 @@
+Line_3 $$ try (final RdfStream input = new DefaultRdfStream(createResource().asNode(), of(create(createResource().asNode(), createURI("info:testPredicate"), createTypedLiteral(0).asNode()))); --> Line_5 $$ new RdfStreamStreamingOutput(input, testNamespaces, testMediaType).write(output) [FD]
+Line_3 $$ try (final RdfStream input = new DefaultRdfStream(createResource().asNode(), of(create(createResource().asNode(), createURI("info:testPredicate"), createTypedLiteral(0).asNode()))); --> Line_6 $$ try (final InputStream resultStream = new ByteArrayInputStream(output.toByteArray())) [FD]
+Line_6 $$ try (final InputStream resultStream = new ByteArrayInputStream(output.toByteArray())) --> Line_7 $$ final Model result = createDefaultModel().read(resultStream, null) [FD]
+Line_7 $$ final Model result = createDefaultModel().read(resultStream, null) --> Line_8 $$ assertTrue(result.contains(null, createProperty("info:testPredicate"), createTypedLiteral(0))) [FD]

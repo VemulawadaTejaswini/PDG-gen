@@ -1,0 +1,7 @@
+Line_2 $$ public void testGetTableTypes() throws Exception --> Line_3 $$ index("test1",  body -> body.field("name", "bob")) [CD]
+Line_2 $$ public void testGetTableTypes() throws Exception --> Line_4 $$ index("test2",  body -> body.field("name", "bob")) [CD]
+Line_5 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_7 $$ h2.createStatement().executeUpdate("RUNSCRIPT FROM 'classpath:/setup_mock_metadata_get_table_types.sql'") [FD]
+Line_5 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_8 $$ CheckedSupplier<ResultSet, SQLException> all = () -> h2.createStatement().executeQuery("SELECT '" + clusterName() + "' AS TABLE_CAT, * FROM mock") [FD]
+Line_8 $$ CheckedSupplier<ResultSet, SQLException> all = () -> h2.createStatement().executeQuery("SELECT '" + clusterName() + "' AS TABLE_CAT, * FROM mock") --> Line_9 $$ assertResultSets(all.get(), es.getMetaData().getTables("%", "%", "%", new String[] [FD]
+Line_5 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_9 $$ assertResultSets(all.get(), es.getMetaData().getTables("%", "%", "%", new String[] [FD]
+Line_5 $$ try (Connection h2 = LocalH2.anonymousDb(); --> Line_10 $$ assertResultSets(h2.createStatement().executeQuery("SELECT '" + clusterName() + "' AS TABLE_CAT, * FROM mock WHERE TABLE_NAME = 'test1'"), es.getMetaData().getTables("%", "%", "test1", new String[] [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private FileInputSplit createInputSplit(String content) throws IOException --> Line_3 $$ File tempFile = File.createTempFile("test_contents", "tmp") [CD]
+Line_2 $$ private FileInputSplit createInputSplit(String content) throws IOException --> Line_4 $$ tempFile.deleteOnExit() [CD]
+Line_3 $$ File tempFile = File.createTempFile("test_contents", "tmp") --> Line_4 $$ tempFile.deleteOnExit() [FD]
+Line_5 $$ try (FileWriter wrt = new FileWriter(tempFile)) --> Line_6 $$ wrt.write(content) [FD]
+Line_2 $$ private FileInputSplit createInputSplit(String content) throws IOException --> Line_6 $$ wrt.write(content) [FD]
+Line_2 $$ private FileInputSplit createInputSplit(String content) throws IOException --> Line_8 $$ return new FileInputSplit(0, new Path(tempFile.toURI().toString()), 0, tempFile.length(), new String[] [CD]
+Line_3 $$ File tempFile = File.createTempFile("test_contents", "tmp") --> Line_8 $$ return new FileInputSplit(0, new Path(tempFile.toURI().toString()), 0, tempFile.length(), new String[] [FD]

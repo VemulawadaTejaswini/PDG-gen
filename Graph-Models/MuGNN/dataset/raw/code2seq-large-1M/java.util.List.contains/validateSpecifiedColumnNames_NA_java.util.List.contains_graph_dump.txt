@@ -1,0 +1,6 @@
+Line_2 $$ private void validateSpecifiedColumnNames(List<String> specifiedCols) throws SemanticException --> Line_3 $$ List<String> tableCols = Utilities.getColumnNamesFromFieldSchema(tbl.getCols()) [CD]
+Line_3 $$ List<String> tableCols = Utilities.getColumnNamesFromFieldSchema(tbl.getCols()) --> Line_5 $$ if (!tableCols.contains(sc.toLowerCase())) [FD]
+Line_4 $$ for (String sc : specifiedCols) --> Line_5 $$ if (!tableCols.contains(sc.toLowerCase())) [FD]
+Line_5 $$ if (!tableCols.contains(sc.toLowerCase())) --> Line_6 $$ String msg = "'" + sc + "' (possible columns are " + tableCols.toString() + ")" [CD]
+Line_3 $$ List<String> tableCols = Utilities.getColumnNamesFromFieldSchema(tbl.getCols()) --> Line_6 $$ String msg = "'" + sc + "' (possible columns are " + tableCols.toString() + ")" [FD]
+Line_6 $$ String msg = "'" + sc + "' (possible columns are " + tableCols.toString() + ")" --> Line_7 $$ throw new SemanticException(ErrorMsg.INVALID_COLUMN.getMsg(msg)) [FD]

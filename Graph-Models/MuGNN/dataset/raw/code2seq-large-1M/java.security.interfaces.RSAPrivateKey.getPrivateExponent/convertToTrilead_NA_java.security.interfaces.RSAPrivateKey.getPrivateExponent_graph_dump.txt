@@ -1,0 +1,8 @@
+Line_2 $$ public static Object convertToTrilead(PrivateKey priv, PublicKey pub) --> Line_3 $$ if (priv instanceof RSAPrivateKey) [FD]
+Line_2 $$ public static Object convertToTrilead(PrivateKey priv, PublicKey pub) --> Line_3 $$ if (priv instanceof RSAPrivateKey) [CD]
+Line_3 $$ if (priv instanceof RSAPrivateKey) --> Line_4 $$ return new com.trilead.ssh2.signature.RSAPrivateKey(((RSAPrivateKey) priv).getPrivateExponent(), ((RSAPublicKey) pub).getPublicExponent(), ((RSAPrivateKey) priv).getModulus()) [CD]
+Line_3 $$ if (priv instanceof RSAPrivateKey) --> Line_5 $$ if (priv instanceof DSAPrivateKey) [CD]
+Line_2 $$ public static Object convertToTrilead(PrivateKey priv, PublicKey pub) --> Line_5 $$ if (priv instanceof DSAPrivateKey) [FD]
+Line_5 $$ if (priv instanceof DSAPrivateKey) --> Line_6 $$ DSAParams dp = ((DSAPrivateKey) priv).getParams() [CD]
+Line_5 $$ if (priv instanceof DSAPrivateKey) --> Line_7 $$ return new com.trilead.ssh2.signature.DSAPrivateKey(dp.getP(), dp.getQ(), dp.getG(), ((DSAPublicKey) pub).getY(), ((DSAPrivateKey) priv).getX()) [CD]
+Line_6 $$ DSAParams dp = ((DSAPrivateKey) priv).getParams() --> Line_7 $$ return new com.trilead.ssh2.signature.DSAPrivateKey(dp.getP(), dp.getQ(), dp.getG(), ((DSAPublicKey) pub).getY(), ((DSAPrivateKey) priv).getX()) [FD]

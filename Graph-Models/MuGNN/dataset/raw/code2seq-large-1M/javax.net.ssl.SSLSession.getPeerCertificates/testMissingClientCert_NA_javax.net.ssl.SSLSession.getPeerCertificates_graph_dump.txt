@@ -1,0 +1,8 @@
+Line_2 $$ public void testMissingClientCert() throws Exception --> Line_3 $$ SSLSession sslSession = mock(SSLSession.class) [CD]
+Line_2 $$ public void testMissingClientCert() throws Exception --> Line_4 $$ when(sslSession.getPeerCertificates()).thenReturn(new Certificate[0]) [CD]
+Line_2 $$ public void testMissingClientCert() throws Exception --> Line_5 $$ ConnectionProperties connectionProperties = new ConnectionProperties(InetAddresses.forString("127.0.0.1"), Protocol.POSTGRES, sslSession) [CD]
+Line_2 $$ public void testMissingClientCert() throws Exception --> Line_6 $$ ClientCertAuth clientCertAuth = new ClientCertAuth( userName -> exampleUser) [CD]
+Line_2 $$ public void testMissingClientCert() throws Exception --> Line_7 $$ expectedException.expectMessage("Client certificate authentication failed for user \"example.com\"") [CD]
+Line_2 $$ public void testMissingClientCert() throws Exception --> Line_8 $$ clientCertAuth.authenticate("example.com", null, connectionProperties) [CD]
+Line_6 $$ ClientCertAuth clientCertAuth = new ClientCertAuth( userName -> exampleUser) --> Line_8 $$ clientCertAuth.authenticate("example.com", null, connectionProperties) [FD]
+Line_5 $$ ConnectionProperties connectionProperties = new ConnectionProperties(InetAddresses.forString("127.0.0.1"), Protocol.POSTGRES, sslSession) --> Line_8 $$ clientCertAuth.authenticate("example.com", null, connectionProperties) [FD]

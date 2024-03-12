@@ -1,0 +1,4 @@
+Line_4 $$ Cache<Long, String> cache = cacheManager.createCache("clustered-cache", config) --> Line_5 $$ CompletableFuture<Void> future = CompletableFuture.runAsync(() -> ThreadLocalRandom.current().longs().forEach( value -> cache.put(value, Long.toString(value)))) [FD]
+Line_5 $$ CompletableFuture<Void> future = CompletableFuture.runAsync(() -> ThreadLocalRandom.current().longs().forEach( value -> cache.put(value, Long.toString(value)))) --> Line_8 $$ future.get(5000, TimeUnit.MILLISECONDS) [FD]
+Line_4 $$ Cache<Long, String> cache = cacheManager.createCache("clustered-cache", config) --> Line_16 $$ cache.get(1L) [FD]
+Line_13 $$ CompletableFuture<Void> getSucceededFuture = CompletableFuture.runAsync(() -> --> Line_22 $$ getSucceededFuture.get(20000, TimeUnit.MILLISECONDS) [FD]

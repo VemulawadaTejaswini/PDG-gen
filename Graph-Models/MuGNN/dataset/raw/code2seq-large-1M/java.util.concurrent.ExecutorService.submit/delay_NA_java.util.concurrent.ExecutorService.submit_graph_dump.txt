@@ -1,0 +1,6 @@
+Line_2 $$ public final <T> Future<T> delay(final T value) --> Line_3 $$ final Promise<T> promise = new Promise<T>() [CD]
+Line_2 $$ public final <T> Future<T> delay(final T value) --> Line_4 $$ executor.submit(() -> [CD]
+Line_3 $$ final Promise<T> promise = new Promise<T>() --> Line_7 $$ promise.become(Future.value(value)) [FD]
+Line_2 $$ public final <T> Future<T> delay(final T value) --> Line_7 $$ promise.become(Future.value(value)) [FD]
+Line_3 $$ final Promise<T> promise = new Promise<T>() --> Line_10 $$ promise.become(Future.exception(new Exception("interrupted"))) [FD]
+Line_2 $$ public final <T> Future<T> delay(final T value) --> Line_13 $$ return promise [CD]

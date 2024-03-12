@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldBeThreadSafe() --> Line_3 $$ final TopkDistinctKudaf<Integer> intTopkDistinctKudaf = TopKDistinctTestUtils.getTopKDistinctKudaf(12, Schema.INT32_SCHEMA) [CD]
+Line_2 $$ public void shouldBeThreadSafe() --> Line_4 $$ final List<Integer> values = ImmutableList.of(10, 30, 45, 10, 50, 60, 20, 70, 80, 35, 25) [CD]
+Line_2 $$ public void shouldBeThreadSafe() --> Line_5 $$ final Object[] result = IntStream.range(0, 4).parallel().mapToObj( threadNum -> [CD]
+Line_6 $$ Integer[] aggregate = new Integer[] --> Line_8 $$ aggregate = intTopkDistinctKudaf.aggregate(value + threadNum, aggregate) [FD]
+Line_3 $$ final TopkDistinctKudaf<Integer> intTopkDistinctKudaf = TopKDistinctTestUtils.getTopKDistinctKudaf(12, Schema.INT32_SCHEMA) --> Line_8 $$ aggregate = intTopkDistinctKudaf.aggregate(value + threadNum, aggregate) [FD]
+Line_3 $$ final TopkDistinctKudaf<Integer> intTopkDistinctKudaf = TopKDistinctTestUtils.getTopKDistinctKudaf(12, Schema.INT32_SCHEMA) --> Line_11 $$ intTopkDistinctKudaf.getMerger().apply("blah", agg1, agg2) [FD]
+Line_2 $$ public void shouldBeThreadSafe() --> Line_12 $$ assertThat(result, is(new Object[] [CD]
+Line_5 $$ final Object[] result = IntStream.range(0, 4).parallel().mapToObj( threadNum -> --> Line_12 $$ assertThat(result, is(new Object[] [FD]

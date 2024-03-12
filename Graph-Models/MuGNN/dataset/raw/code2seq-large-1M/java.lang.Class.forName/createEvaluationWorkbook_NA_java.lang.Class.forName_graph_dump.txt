@@ -1,0 +1,8 @@
+Line_2 $$ private static EvaluationWorkbook createEvaluationWorkbook(Workbook wb) --> Line_3 $$ if (wb instanceof HSSFWorkbook) [CD]
+Line_2 $$ private static EvaluationWorkbook createEvaluationWorkbook(Workbook wb) --> Line_3 $$ if (wb instanceof HSSFWorkbook) [FD]
+Line_3 $$ if (wb instanceof HSSFWorkbook) --> Line_4 $$ return HSSFEvaluationWorkbook.create((HSSFWorkbook) wb) [CD]
+Line_7 $$ Class<?> evalWB = Class.forName("org.apache.poi.xssf.usermodel.XSSFEvaluationWorkbook") --> Line_9 $$ Method createM = evalWB.getDeclaredMethod("create", xssfWB) [FD]
+Line_8 $$ Class<?> xssfWB = Class.forName("org.apache.poi.xssf.usermodel.XSSFWorkbook") --> Line_9 $$ Method createM = evalWB.getDeclaredMethod("create", xssfWB) [FD]
+Line_9 $$ Method createM = evalWB.getDeclaredMethod("create", xssfWB) --> Line_10 $$ return (EvaluationWorkbook) createM.invoke(null, wb) [FD]
+Line_2 $$ private static EvaluationWorkbook createEvaluationWorkbook(Workbook wb) --> Line_10 $$ return (EvaluationWorkbook) createM.invoke(null, wb) [FD]
+Line_2 $$ private static EvaluationWorkbook createEvaluationWorkbook(Workbook wb) --> Line_12 $$ throw new IllegalArgumentException("Unexpected workbook type (" + wb.getClass().getName() + ") - check for poi-ooxml and poi-ooxml schemas jar in the classpath", e) [FD]

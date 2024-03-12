@@ -1,0 +1,7 @@
+Line_2 $$ void shouldRemoveHeaderByValue() --> Line_3 $$ final HeaderFilter unit = removeHeaders(( name,  value) -> "Alice".equals(value)) [CD]
+Line_2 $$ void shouldRemoveHeaderByValue() --> Line_4 $$ final Map<String, List<String>> filtered = unit.filter(MockHeaders.of("name", "Alice", "name", "Bob")) [CD]
+Line_3 $$ final HeaderFilter unit = removeHeaders(( name,  value) -> "Alice".equals(value)) --> Line_4 $$ final Map<String, List<String>> filtered = unit.filter(MockHeaders.of("name", "Alice", "name", "Bob")) [FD]
+Line_2 $$ void shouldRemoveHeaderByValue() --> Line_5 $$ assertThat(filtered, not(hasEntry("name", singletonList("Alice")))) [CD]
+Line_4 $$ final Map<String, List<String>> filtered = unit.filter(MockHeaders.of("name", "Alice", "name", "Bob")) --> Line_5 $$ assertThat(filtered, not(hasEntry("name", singletonList("Alice")))) [FD]
+Line_2 $$ void shouldRemoveHeaderByValue() --> Line_6 $$ assertThat(filtered, hasEntry("name", singletonList("Bob"))) [CD]
+Line_4 $$ final Map<String, List<String>> filtered = unit.filter(MockHeaders.of("name", "Alice", "name", "Bob")) --> Line_6 $$ assertThat(filtered, hasEntry("name", singletonList("Bob"))) [FD]

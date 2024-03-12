@@ -1,0 +1,7 @@
+Line_2 $$ V getSafe(Object key, int hash) --> Line_3 $$ readLock().lock() [CD]
+Line_2 $$ V getSafe(Object key, int hash) --> Line_5 $$ HashEntry<K, V> e = getFirst(hash) [FD]
+Line_6 $$ while (e != null) --> Line_7 $$ if (e.hash == hash && key.equals(e.key)) [CD]
+Line_2 $$ V getSafe(Object key, int hash) --> Line_7 $$ if (e.hash == hash && key.equals(e.key)) [FD]
+Line_7 $$ if (e.hash == hash && key.equals(e.key)) --> Line_8 $$ return e.val [CD]
+Line_6 $$ while (e != null) --> Line_9 $$ e = e.next [CD]
+Line_9 $$ e = e.next --> Line_6 $$ while (e != null) [FD]

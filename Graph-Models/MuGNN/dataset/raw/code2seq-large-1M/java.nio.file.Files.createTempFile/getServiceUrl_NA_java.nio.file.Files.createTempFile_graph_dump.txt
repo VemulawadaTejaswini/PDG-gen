@@ -1,0 +1,7 @@
+Line_2 $$ private static URL getServiceUrl() throws IOException --> Line_3 $$ if (service == null && !SauceDriver.shouldUseSauce()) [CD]
+Line_3 $$ if (service == null && !SauceDriver.shouldUseSauce()) --> Line_4 $$ Path logFile = Files.createTempFile("chromedriver", ".log") [CD]
+Line_3 $$ if (service == null && !SauceDriver.shouldUseSauce()) --> Line_5 $$ service = new ChromeDriverService.Builder().withVerbose(true).withLogFile(logFile.toFile()).build() [CD]
+Line_4 $$ Path logFile = Files.createTempFile("chromedriver", ".log") --> Line_5 $$ service = new ChromeDriverService.Builder().withVerbose(true).withLogFile(logFile.toFile()).build() [FD]
+Line_3 $$ if (service == null && !SauceDriver.shouldUseSauce()) --> Line_6 $$ LOG.info("chromedriver will log to " + logFile) [CD]
+Line_3 $$ if (service == null && !SauceDriver.shouldUseSauce()) --> Line_12 $$ Runtime.getRuntime().addShutdownHook(new Thread(() -> service.stop())) [CD]
+Line_2 $$ private static URL getServiceUrl() throws IOException --> Line_14 $$ return service.getUrl() [CD]

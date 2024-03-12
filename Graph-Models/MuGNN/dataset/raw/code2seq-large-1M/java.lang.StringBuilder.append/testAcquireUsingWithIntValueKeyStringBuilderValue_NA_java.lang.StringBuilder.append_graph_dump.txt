@@ -1,0 +1,5 @@
+Line_2 $$ public void testAcquireUsingWithIntValueKeyStringBuilderValue() throws IOException --> Line_3 $$ ChronicleMapBuilder<IntValue, StringBuilder> builder = ChronicleMapBuilder.of(IntValue.class, StringBuilder.class).entries(1) [CD]
+Line_4 $$ try (ChronicleMap<IntValue, StringBuilder> map = newInstance(builder)) --> Line_8 $$ try (net.openhft.chronicle.core.io.Closeable c = map.acquireContext(key, using)) [FD]
+Line_7 $$ StringBuilder using = new StringBuilder() --> Line_8 $$ try (net.openhft.chronicle.core.io.Closeable c = map.acquireContext(key, using)) [FD]
+Line_7 $$ StringBuilder using = new StringBuilder() --> Line_9 $$ using.append("Hello") [FD]
+Line_4 $$ try (ChronicleMap<IntValue, StringBuilder> map = newInstance(builder)) --> Line_11 $$ assertEquals("Hello", map.get(key).toString()) [FD]

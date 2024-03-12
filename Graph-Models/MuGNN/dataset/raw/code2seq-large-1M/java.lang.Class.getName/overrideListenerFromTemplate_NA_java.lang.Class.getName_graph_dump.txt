@@ -1,0 +1,6 @@
+Line_2 $$ public void overrideListenerFromTemplate() throws Exception --> Line_3 $$ gfsh.executeAndAssertThat("create region --name=/TEMPLATE --type=PARTITION_REDUNDANT" + " --cache-listener=" + TestCacheListener.class.getName()).statusIsSuccess() [CD]
+Line_2 $$ public void overrideListenerFromTemplate() throws Exception --> Line_4 $$ gfsh.executeAndAssertThat("create region --name=/COPY --template-region=/TEMPLATE" + " --cache-listener=" + AnotherTestCacheListener.class.getName()).statusIsSuccess() [CD]
+Line_2 $$ public void overrideListenerFromTemplate() throws Exception --> Line_5 $$ server1.getVM().invoke(() -> [CD]
+Line_6 $$ Region copy = ClusterStartupRule.getCache().getRegion("/COPY") --> Line_7 $$ assertThat(Arrays.stream(copy.getAttributes().getCacheListeners()).map( c -> c.getClass().getName()).collect(Collectors.toSet())).containsExactly(AnotherTestCacheListener.class.getName()) [FD]
+Line_2 $$ public void overrideListenerFromTemplate() throws Exception --> Line_9 $$ gfsh.executeAndAssertThat("destroy region --name=/COPY").statusIsSuccess() [CD]
+Line_2 $$ public void overrideListenerFromTemplate() throws Exception --> Line_10 $$ gfsh.executeAndAssertThat("destroy region --name=/TEMPLATE").statusIsSuccess() [CD]

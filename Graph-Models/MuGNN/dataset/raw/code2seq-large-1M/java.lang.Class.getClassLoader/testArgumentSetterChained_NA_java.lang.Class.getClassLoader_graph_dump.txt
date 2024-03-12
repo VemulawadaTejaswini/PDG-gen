@@ -1,0 +1,5 @@
+Line_2 $$ public void testArgumentSetterChained() throws Exception --> Line_3 $$ Class<? extends SampleArgumentSetter> loaded = new ByteBuddy().subclass(SampleArgumentSetter.class).method(named(BAR)).intercept(FieldAccessor.ofField(FOO).setsArgumentAt(0).andThen(FixedValue.value(BAR))).make().load(SampleArgumentSetter.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testArgumentSetterChained() throws Exception --> Line_4 $$ SampleArgumentSetter sampleArgumentSetter = loaded.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testArgumentSetterChained() throws Exception --> Line_5 $$ assertThat(sampleArgumentSetter.bar(FOO), is((Object) BAR)) [CD]
+Line_4 $$ SampleArgumentSetter sampleArgumentSetter = loaded.getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(sampleArgumentSetter.bar(FOO), is((Object) BAR)) [FD]
+Line_2 $$ public void testArgumentSetterChained() throws Exception --> Line_6 $$ assertThat(sampleArgumentSetter.foo, is((Object) FOO)) [CD]

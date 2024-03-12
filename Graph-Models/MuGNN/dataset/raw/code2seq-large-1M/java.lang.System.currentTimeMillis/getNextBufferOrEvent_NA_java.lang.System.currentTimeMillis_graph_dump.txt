@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<BufferOrEvent> getNextBufferOrEvent() throws IOException, InterruptedException --> Line_4 $$ if (barrierGens[currentChannel].isNextBarrier()) [CD]
+Line_4 $$ if (barrierGens[currentChannel].isNextBarrier()) --> Line_5 $$ return Optional.of(new BufferOrEvent(new CheckpointBarrier(++currentBarriers[currentChannel], System.currentTimeMillis(), CheckpointOptions.forCheckpointWithDefaultLocation()), currentChannel)) [CD]
+Line_4 $$ if (barrierGens[currentChannel].isNextBarrier()) --> Line_7 $$ Buffer buffer = bufferPools[currentChannel].requestBuffer() [CD]
+Line_4 $$ if (barrierGens[currentChannel].isNextBarrier()) --> Line_8 $$ buffer.getMemorySegment().putLong(0, c++) [CD]
+Line_7 $$ Buffer buffer = bufferPools[currentChannel].requestBuffer() --> Line_8 $$ buffer.getMemorySegment().putLong(0, c++) [FD]
+Line_4 $$ if (barrierGens[currentChannel].isNextBarrier()) --> Line_9 $$ return Optional.of(new BufferOrEvent(buffer, currentChannel)) [CD]

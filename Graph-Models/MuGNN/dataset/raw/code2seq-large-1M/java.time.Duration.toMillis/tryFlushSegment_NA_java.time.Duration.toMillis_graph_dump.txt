@@ -1,0 +1,6 @@
+Line_2 $$ private <T extends Throwable> FlushResult tryFlushSegment(SegmentAggregator aggregator, Supplier<T> exceptionProvider) --> Line_4 $$ FlushResult flushResult = aggregator.flush(TIMEOUT).get(TIMEOUT.toMillis(), TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ private <T extends Throwable> FlushResult tryFlushSegment(SegmentAggregator aggregator, Supplier<T> exceptionProvider) --> Line_5 $$ T expectedException = exceptionProvider.get() [FD]
+Line_5 $$ T expectedException = exceptionProvider.get() --> Line_6 $$ Assert.assertNull("Expected an exception but none got thrown.", expectedException) [FD]
+Line_4 $$ FlushResult flushResult = aggregator.flush(TIMEOUT).get(TIMEOUT.toMillis(), TimeUnit.MILLISECONDS) --> Line_7 $$ Assert.assertNotNull("Expected a FlushResult.", flushResult) [FD]
+Line_2 $$ private <T extends Throwable> FlushResult tryFlushSegment(SegmentAggregator aggregator, Supplier<T> exceptionProvider) --> Line_11 $$ T expectedException = exceptionProvider.get() [FD]
+Line_5 $$ T expectedException = exceptionProvider.get() --> Line_12 $$ Assert.assertEquals("Unexpected exception or no exception got thrown.", expectedException, ex) [FD]

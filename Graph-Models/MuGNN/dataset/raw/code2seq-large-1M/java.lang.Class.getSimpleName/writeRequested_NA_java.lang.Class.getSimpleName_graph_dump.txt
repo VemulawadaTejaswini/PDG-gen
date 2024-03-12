@@ -1,0 +1,7 @@
+Line_2 $$ public void writeRequested(ChannelHandlerContext ctx, MessageEvent event) throws Exception --> Line_3 $$ PowerManager.WakeLock wakeLock = WakeLockWrapper.getWakeLockInstance(mContext, ChannelEncoder.class.getSimpleName()) [CD]
+Line_2 $$ public void writeRequested(ChannelHandlerContext ctx, MessageEvent event) throws Exception --> Line_4 $$ wakeLock.acquire() [CD]
+Line_2 $$ public void writeRequested(ChannelHandlerContext ctx, MessageEvent event) throws Exception --> Line_6 $$ String jsonString = event.getMessage().toString() [FD]
+Line_6 $$ String jsonString = event.getMessage().toString() --> Line_7 $$ LogByCodeLab.i(String.format("WRITE [%s]", jsonString)) [FD]
+Line_8 $$ ChannelBuffer cb = new BigEndianHeapChannelBuffer(24) --> Line_9 $$ cb.writeBytes(new byte[24]) [FD]
+Line_2 $$ public void writeRequested(ChannelHandlerContext ctx, MessageEvent event) throws Exception --> Line_10 $$ Channels.write(ctx, event.getFuture(), cb) [FD]
+Line_8 $$ ChannelBuffer cb = new BigEndianHeapChannelBuffer(24) --> Line_10 $$ Channels.write(ctx, event.getFuture(), cb) [FD]

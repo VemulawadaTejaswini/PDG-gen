@@ -1,0 +1,7 @@
+Line_2 $$ public static void waitUntil(String message, BooleanSupplier condition, int timeoutSeconds) --> Line_3 $$ final long timeout = System.currentTimeMillis() + (timeoutSeconds * 1000L) [CD]
+Line_2 $$ public static void waitUntil(String message, BooleanSupplier condition, int timeoutSeconds) --> Line_4 $$ while (System.currentTimeMillis() < timeout) [CD]
+Line_3 $$ final long timeout = System.currentTimeMillis() + (timeoutSeconds * 1000L) --> Line_4 $$ while (System.currentTimeMillis() < timeout) [FD]
+Line_4 $$ while (System.currentTimeMillis() < timeout) --> Line_5 $$ if (condition.getAsBoolean()) [CD]
+Line_2 $$ public static void waitUntil(String message, BooleanSupplier condition, int timeoutSeconds) --> Line_5 $$ if (condition.getAsBoolean()) [FD]
+Line_5 $$ if (condition.getAsBoolean()) --> Line_6 $$ return [CD]
+Line_2 $$ public static void waitUntil(String message, BooleanSupplier condition, int timeoutSeconds) --> Line_14 $$ fail("Timed out for: " + message) [CD]

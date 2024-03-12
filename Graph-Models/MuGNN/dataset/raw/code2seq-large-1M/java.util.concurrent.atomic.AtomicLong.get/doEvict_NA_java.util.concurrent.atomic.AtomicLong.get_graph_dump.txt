@@ -1,0 +1,8 @@
+Line_2 $$ private Action doEvict(Event<T> event) --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ long curVal = currentCount.get() [CD]
+Line_3 $$ while (true) --> Line_5 $$ if (curVal > threshold) [CD]
+Line_4 $$ long curVal = currentCount.get() --> Line_5 $$ if (curVal > threshold) [FD]
+Line_5 $$ if (curVal > threshold) --> Line_6 $$ if (currentCount.compareAndSet(curVal, curVal - 1)) [CD]
+Line_4 $$ long curVal = currentCount.get() --> Line_6 $$ if (currentCount.compareAndSet(curVal, curVal - 1)) [FD]
+Line_6 $$ if (currentCount.compareAndSet(curVal, curVal - 1)) --> Line_7 $$ return Action.EXPIRE [CD]
+Line_2 $$ private Action doEvict(Event<T> event) --> Line_13 $$ return Action.PROCESS [CD]

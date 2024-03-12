@@ -1,0 +1,6 @@
+Line_4 $$ int questionNumber --> Line_6 $$ questionNumber = Integer.parseInt(comment.feedbackQuestionId) [FD]
+Line_10 $$ String sessionKey = makeSessionKey(comment.feedbackSessionName, comment.courseId) --> Line_11 $$ String questionKey = makeQuestionKey(sessionKey, questionNumber) [FD]
+Line_4 $$ int questionNumber --> Line_11 $$ String questionKey = makeQuestionKey(sessionKey, questionNumber) [FD]
+Line_6 $$ questionNumber = Integer.parseInt(comment.feedbackQuestionId) --> Line_11 $$ String questionKey = makeQuestionKey(sessionKey, questionNumber) [FD]
+Line_2 $$ private void injectRealIdsIntoResponseComments(Collection<FeedbackResponseCommentAttributes> responseComments, Map<String, String> questionIdMap) --> Line_12 $$ comment.feedbackQuestionId = questionIdMap.get(questionKey) [FD]
+Line_11 $$ String questionKey = makeQuestionKey(sessionKey, questionNumber) --> Line_12 $$ comment.feedbackQuestionId = questionIdMap.get(questionKey) [FD]

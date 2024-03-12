@@ -1,0 +1,8 @@
+Line_2 $$ static void downloadToFile(final String uri, final FileOutputStream os, final CloseableHttpClient client) throws IOException --> Line_3 $$ try (CloseableHttpResponse response = client.execute(newHttpGetRequest(uri))) [FD]
+Line_3 $$ try (CloseableHttpResponse response = client.execute(newHttpGetRequest(uri))) --> Line_4 $$ final int statusCode = response.getStatusLine().getStatusCode() [FD]
+Line_4 $$ final int statusCode = response.getStatusLine().getStatusCode() --> Line_5 $$ if (statusCode != HttpStatus.SC_OK) [FD]
+Line_4 $$ final int statusCode = response.getStatusLine().getStatusCode() --> Line_6 $$ throw new IOException(String.format("unexpected status code (%d)", statusCode)) [FD]
+Line_3 $$ try (CloseableHttpResponse response = client.execute(newHttpGetRequest(uri))) --> Line_8 $$ final HttpEntity entity = response.getEntity() [FD]
+Line_8 $$ final HttpEntity entity = response.getEntity() --> Line_9 $$ if (entity == null) [FD]
+Line_2 $$ static void downloadToFile(final String uri, final FileOutputStream os, final CloseableHttpClient client) throws IOException --> Line_12 $$ os.getChannel().transferFrom(Channels.newChannel(entity.getContent()), 0L, Long.MAX_VALUE) [FD]
+Line_8 $$ final HttpEntity entity = response.getEntity() --> Line_12 $$ os.getChannel().transferFrom(Channels.newChannel(entity.getContent()), 0L, Long.MAX_VALUE) [FD]

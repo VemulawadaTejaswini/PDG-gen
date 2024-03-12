@@ -1,0 +1,4 @@
+Line_2 $$ public static List<MigrateTask> queryAllTask(String basePath, List<String> dataHost) throws Exception --> Line_3 $$ List<MigrateTask> resutlList = new ArrayList() [CD]
+Line_4 $$ for (String dataHostName : dataHost) --> Line_5 $$ if ("_prepare".equals(dataHostName) || "_commit".equals(dataHostName) || "_clean".equals(dataHostName)) [FD]
+Line_3 $$ List<MigrateTask> resutlList = new ArrayList() --> Line_7 $$ resutlList.addAll(JSON.parseArray(new String(ZKUtils.getConnection().getData().forPath(basePath + "/" + dataHostName), "UTF-8"), MigrateTask.class)) [FD]
+Line_2 $$ public static List<MigrateTask> queryAllTask(String basePath, List<String> dataHost) throws Exception --> Line_9 $$ return resutlList [CD]

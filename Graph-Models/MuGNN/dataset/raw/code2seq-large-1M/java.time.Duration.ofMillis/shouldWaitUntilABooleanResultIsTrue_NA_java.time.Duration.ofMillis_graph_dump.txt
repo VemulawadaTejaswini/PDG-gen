@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldWaitUntilABooleanResultIsTrue() throws InterruptedException --> Line_3 $$ when(mockClock.laterBy(0L)).thenReturn(2L) [CD]
+Line_2 $$ public void shouldWaitUntilABooleanResultIsTrue() throws InterruptedException --> Line_4 $$ when(mockClock.isNowBefore(2L)).thenReturn(true) [CD]
+Line_2 $$ public void shouldWaitUntilABooleanResultIsTrue() throws InterruptedException --> Line_5 $$ when(mockCondition.apply(mockDriver)).thenReturn(false, false, true) [CD]
+Line_2 $$ public void shouldWaitUntilABooleanResultIsTrue() throws InterruptedException --> Line_6 $$ Wait<WebDriver> wait = new FluentWait(mockDriver, mockClock, mockSleeper).withTimeout(Duration.ofMillis(0)).pollingEvery(Duration.ofSeconds(2)).ignoring(NoSuchElementException.class, NoSuchFrameException.class) [CD]
+Line_2 $$ public void shouldWaitUntilABooleanResultIsTrue() throws InterruptedException --> Line_7 $$ assertEquals(true, wait.until(mockCondition)) [CD]
+Line_2 $$ public void shouldWaitUntilABooleanResultIsTrue() throws InterruptedException --> Line_8 $$ verify(mockSleeper, times(2)).sleep(Duration.ofSeconds(2)) [CD]

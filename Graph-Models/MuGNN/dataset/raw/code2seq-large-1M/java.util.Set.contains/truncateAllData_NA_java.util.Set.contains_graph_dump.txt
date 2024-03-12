@@ -1,0 +1,8 @@
+Line_3 $$ for (String tableName : session.getAllTableNames()) --> Line_4 $$ if (!keepTableNames.contains(tableName)) [FD]
+Line_4 $$ if (!keepTableNames.contains(tableName)) --> Line_5 $$ startupLogger.info("truncating [CD]
+Line_3 $$ for (String tableName : session.getAllTableNames()) --> Line_5 $$ startupLogger.info("truncating [FD]
+Line_4 $$ if (!keepTableNames.contains(tableName)) --> Line_6 $$ session.updateSchemaWithRetry("truncate table " + tableName) [CD]
+Line_2 $$ public boolean truncateAllData(@SuppressWarnings("unused") List<String> args) throws Exception --> Line_9 $$ session.updateSchemaWithRetry("drop table if exists v09_agent_check") [CD]
+Line_2 $$ public boolean truncateAllData(@SuppressWarnings("unused") List<String> args) throws Exception --> Line_10 $$ session.updateSchemaWithRetry("drop table if exists v09_last_capture_time") [CD]
+Line_2 $$ public boolean truncateAllData(@SuppressWarnings("unused") List<String> args) throws Exception --> Line_11 $$ startupLogger.info("NOTE: by default, Cassandra snapshots tables when they are truncated," + " so in order to free up disk space you will need to clear those snapshots, e.g." + " with \"nodetool clearsnapshot [CD]
+Line_2 $$ public boolean truncateAllData(@SuppressWarnings("unused") List<String> args) throws Exception --> Line_12 $$ return true [CD]

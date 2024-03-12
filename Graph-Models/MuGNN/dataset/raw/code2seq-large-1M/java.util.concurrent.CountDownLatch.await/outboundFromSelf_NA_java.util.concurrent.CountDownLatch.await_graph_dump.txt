@@ -1,0 +1,5 @@
+Line_2 $$ public void outboundFromSelf() throws Exception --> Line_3 $$ this.context = SpringApplication.run(OutboundMessageHandlerConfiguration.class, "--debug=true", "--spring.cloud.bus.id=foo") [CD]
+Line_2 $$ public void outboundFromSelf() throws Exception --> Line_4 $$ this.context.publishEvent(new RefreshRemoteApplicationEvent(this, "foo", null)) [CD]
+Line_2 $$ public void outboundFromSelf() throws Exception --> Line_5 $$ OutboundMessageHandlerConfiguration outbound = this.context.getBean(OutboundMessageHandlerConfiguration.class) [CD]
+Line_2 $$ public void outboundFromSelf() throws Exception --> Line_6 $$ outbound.latch.await(2000L, TimeUnit.MILLISECONDS) [CD]
+Line_2 $$ public void outboundFromSelf() throws Exception --> Line_7 $$ assertNotNull("message was null", outbound.message) [CD]

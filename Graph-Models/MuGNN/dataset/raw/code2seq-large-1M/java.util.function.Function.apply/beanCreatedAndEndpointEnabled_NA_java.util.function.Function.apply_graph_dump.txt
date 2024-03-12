@@ -1,0 +1,5 @@
+Line_2 $$ private <T> void beanCreatedAndEndpointEnabled(String beanName, Class<T> type, Function<T, Object> function, String... properties) --> Line_3 $$ try (ConfigurableApplicationContext context = getApplicationContext(Config.class, properties)) [FD]
+Line_2 $$ private <T> void beanCreatedAndEndpointEnabled(String beanName, Class<T> type, Function<T, Object> function, String... properties) --> Line_4 $$ assertThat("bean was not created", context.containsBeanDefinition(beanName), equalTo(true)) [FD]
+Line_2 $$ private <T> void beanCreatedAndEndpointEnabled(String beanName, Class<T> type, Function<T, Object> function, String... properties) --> Line_5 $$ Object endpoint = context.getBean(beanName, type) [FD]
+Line_2 $$ private <T> void beanCreatedAndEndpointEnabled(String beanName, Class<T> type, Function<T, Object> function, String... properties) --> Line_6 $$ Object result = function.apply((T) endpoint) [FD]
+Line_6 $$ Object result = function.apply((T) endpoint) --> Line_7 $$ assertThat("result is wrong type", result, is(not(instanceOf(ResponseEntity.class)))) [FD]

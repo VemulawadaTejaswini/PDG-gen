@@ -1,0 +1,6 @@
+Line_2 $$ public static int writeEmptyTranslog(Path filename, String translogUUID) throws IOException --> Line_3 $$ final BytesRef translogRef = new BytesRef(translogUUID) [CD]
+Line_2 $$ public static int writeEmptyTranslog(Path filename, String translogUUID) throws IOException --> Line_4 $$ try (FileChannel fc = FileChannel.open(filename, StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE_NEW); [FD]
+Line_4 $$ try (FileChannel fc = FileChannel.open(filename, StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE_NEW); --> Line_6 $$ TranslogWriter.writeHeader(out, translogRef) [FD]
+Line_3 $$ final BytesRef translogRef = new BytesRef(translogUUID) --> Line_6 $$ TranslogWriter.writeHeader(out, translogRef) [FD]
+Line_4 $$ try (FileChannel fc = FileChannel.open(filename, StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE_NEW); --> Line_7 $$ fc.force(true) [FD]
+Line_2 $$ public static int writeEmptyTranslog(Path filename, String translogUUID) throws IOException --> Line_9 $$ return TranslogWriter.getHeaderLength(translogRef.length) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public Collection<ItemStack> getStacks() --> Line_3 $$ IItemRepository repository = getRepositoryFromSupplier() [CD]
+Line_2 $$ public Collection<ItemStack> getStacks() --> Line_4 $$ if (repository == null) [CD]
+Line_3 $$ IItemRepository repository = getRepositoryFromSupplier() --> Line_4 $$ if (repository == null) [FD]
+Line_4 $$ if (repository == null) --> Line_5 $$ return Collections.emptyList() [CD]
+Line_2 $$ public Collection<ItemStack> getStacks() --> Line_7 $$ return repository.getAllItems().stream().map( r -> ItemHandlerHelper.copyStackWithSize(r.itemPrototype, r.count)).collect(Collectors.toList()) [CD]
+Line_3 $$ IItemRepository repository = getRepositoryFromSupplier() --> Line_7 $$ return repository.getAllItems().stream().map( r -> ItemHandlerHelper.copyStackWithSize(r.itemPrototype, r.count)).collect(Collectors.toList()) [FD]

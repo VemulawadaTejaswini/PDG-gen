@@ -1,0 +1,7 @@
+Line_2 $$ private void deleteCategories() --> Line_3 $$ if (mDeleteCategoryIdList.size() > 0) [CD]
+Line_3 $$ if (mDeleteCategoryIdList.size() > 0) --> Line_4 $$ mRxCategory.refreshCategories().observeOn(Schedulers.io()).subscribe( categories -> [CD]
+Line_5 $$ for (int id : mDeleteCategoryIdList) --> Line_6 $$ mRxPhotoNote.findByCategoryId(id, ComparatorFactory.FACTORY_NOT_SORT).subscribe( photoNoteList -> [FD]
+Line_7 $$ for (PhotoNote photoNote : photoNoteList) --> Line_8 $$ FilePathUtils.deleteAllFiles(photoNote.getPhotoName()) [FD]
+Line_5 $$ for (int id : mDeleteCategoryIdList) --> Line_10 $$ mRxPhotoNote.deletePhotoNotes(photoNoteList, id).subscribe(( photoNoteList2 -> [FD]
+Line_5 $$ for (int id : mDeleteCategoryIdList) --> Line_13 $$ mRxCategory.delete(id).subscribe( categories2 -> mHandler.sendEmptyMessage(1), ( throwable -> YLog.e(throwable))) [FD]
+Line_3 $$ if (mDeleteCategoryIdList.size() > 0) --> Line_17 $$ mHandler.sendEmptyMessage(MESSAGE_DELETE_NONE) [CD]

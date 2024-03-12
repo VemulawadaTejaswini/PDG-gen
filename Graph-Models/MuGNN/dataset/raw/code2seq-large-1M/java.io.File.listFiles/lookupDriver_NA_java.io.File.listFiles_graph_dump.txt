@@ -1,0 +1,7 @@
+Line_3 $$ File[] files = (File[]) ArrayUtils.addAll(new File(databaseTemplateDir, "lib").listFiles(), cg.getServerConfigurator().getServerLibDir().listFiles()) --> Line_8 $$ if (files != null) [FD]
+Line_9 $$ for (File file : files) --> Line_10 $$ if (file.getName().endsWith("jar")) [FD]
+Line_7 $$ List<URL> urlsList = new ArrayList() --> Line_12 $$ urlsList.add(new URL("jar:file:" + file.getPath() + "!/")) [FD]
+Line_9 $$ for (File file : files) --> Line_12 $$ urlsList.add(new URL("jar:file:" + file.getPath() + "!/")) [FD]
+Line_9 $$ for (File file : files) --> Line_13 $$ log.debug("Added " + file.getPath()) [FD]
+Line_7 $$ List<URL> urlsList = new ArrayList() --> Line_20 $$ URLClassLoader ucl = new URLClassLoader(urlsList.toArray(new URL[0])) [FD]
+Line_20 $$ URLClassLoader ucl = new URLClassLoader(urlsList.toArray(new URL[0])) --> Line_22 $$ return (Driver) Class.forName(classname, true, ucl).newInstance() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void fromRequestWithHeaders_sets_user_id_to_null_if_passed_null_or_empty_userIdHeaderKeys_list() --> Line_3 $$ String traceId = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void fromRequestWithHeaders_sets_user_id_to_null_if_passed_null_or_empty_userIdHeaderKeys_list() --> Line_4 $$ given(request.getHeader(TraceHeaders.TRACE_ID)).willReturn(traceId) [CD]
+Line_3 $$ String traceId = UUID.randomUUID().toString() --> Line_4 $$ given(request.getHeader(TraceHeaders.TRACE_ID)).willReturn(traceId) [FD]
+Line_2 $$ public void fromRequestWithHeaders_sets_user_id_to_null_if_passed_null_or_empty_userIdHeaderKeys_list() --> Line_5 $$ List<List<String>> badLists = Arrays.asList(null, Collections.<String>emptyList()) [CD]
+Line_6 $$ for (List<String> badList : badLists) --> Line_7 $$ Span result = HttpRequestTracingUtils.fromRequestWithHeaders(request, badList) [FD]
+Line_3 $$ String traceId = UUID.randomUUID().toString() --> Line_8 $$ assertThat(result.getTraceId()).isEqualTo(traceId) [FD]
+Line_7 $$ Span result = HttpRequestTracingUtils.fromRequestWithHeaders(request, badList) --> Line_8 $$ assertThat(result.getTraceId()).isEqualTo(traceId) [FD]
+Line_7 $$ Span result = HttpRequestTracingUtils.fromRequestWithHeaders(request, badList) --> Line_9 $$ assertThat(result.getUserId()).isNull() [FD]

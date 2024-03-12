@@ -1,0 +1,8 @@
+Line_2 $$ private Stream<T> fetchAllDescendants(T parent, HierarchicalDataProvider<T, ?> dataProvider) --> Line_3 $$ List<T> children = dataProvider.fetchChildren(new HierarchicalQuery(null, parent)).collect(Collectors.toList()) [CD]
+Line_2 $$ private Stream<T> fetchAllDescendants(T parent, HierarchicalDataProvider<T, ?> dataProvider) --> Line_3 $$ List<T> children = dataProvider.fetchChildren(new HierarchicalQuery(null, parent)).collect(Collectors.toList()) [FD]
+Line_2 $$ private Stream<T> fetchAllDescendants(T parent, HierarchicalDataProvider<T, ?> dataProvider) --> Line_4 $$ if (children.isEmpty()) [CD]
+Line_3 $$ List<T> children = dataProvider.fetchChildren(new HierarchicalQuery(null, parent)).collect(Collectors.toList()) --> Line_4 $$ if (children.isEmpty()) [FD]
+Line_4 $$ if (children.isEmpty()) --> Line_5 $$ return Stream.empty() [CD]
+Line_2 $$ private Stream<T> fetchAllDescendants(T parent, HierarchicalDataProvider<T, ?> dataProvider) --> Line_7 $$ return children.stream().flatMap( child -> Stream.concat(Stream.of(child), fetchAllDescendants(child, dataProvider))) [CD]
+Line_2 $$ private Stream<T> fetchAllDescendants(T parent, HierarchicalDataProvider<T, ?> dataProvider) --> Line_7 $$ return children.stream().flatMap( child -> Stream.concat(Stream.of(child), fetchAllDescendants(child, dataProvider))) [FD]
+Line_3 $$ List<T> children = dataProvider.fetchChildren(new HierarchicalQuery(null, parent)).collect(Collectors.toList()) --> Line_7 $$ return children.stream().flatMap( child -> Stream.concat(Stream.of(child), fetchAllDescendants(child, dataProvider))) [FD]

@@ -1,0 +1,6 @@
+Line_8 $$ String path = entry.getKey() --> Line_9 $$ int lastDot = path.lastIndexOf('.') [FD]
+Line_8 $$ String path = entry.getKey() --> Line_10 $$ String prefix = lastDot == -1 ? path : path.substring(lastDot + 1) [FD]
+Line_7 $$ DbEntity dbEntity = entry.getValue() --> Line_11 $$ ObjectId objectId = createObjectId(row, dbEntity.getName(), dbEntity.getPrimaryKeys(), prefix + '.', false) [FD]
+Line_11 $$ ObjectId objectId = createObjectId(row, dbEntity.getName(), dbEntity.getPrimaryKeys(), prefix + '.', false) --> Line_12 $$ if (objectId != null) [FD]
+Line_12 $$ if (objectId != null) --> Line_13 $$ context.getObjectStore().markFlattenedPath(object.getObjectId(), path) [CD]
+Line_8 $$ String path = entry.getKey() --> Line_13 $$ context.getObjectStore().markFlattenedPath(object.getObjectId(), path) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public DataFrameRecord<T> getNext() throws DataCorruptionException --> Line_3 $$ Exceptions.checkNotClosed(this.closed, closed) [CD]
+Line_7 $$ if (!this.dataFrameInputStream.beginRecord()) --> Line_8 $$ return null [CD]
+Line_10 $$ T logItem = this.serializer.deserialize(this.dataFrameInputStream) --> Line_12 $$ long seqNo = logItem.getSequenceNumber() [FD]
+Line_12 $$ long seqNo = logItem.getSequenceNumber() --> Line_13 $$ if (seqNo <= this.lastReadSequenceNumber) [FD]
+Line_12 $$ long seqNo = logItem.getSequenceNumber() --> Line_14 $$ throw new DataCorruptionException(String.format("Invalid Operation Sequence Number. Expected: larger than %d, found: %d.", this.lastReadSequenceNumber, seqNo)) [FD]
+Line_12 $$ long seqNo = logItem.getSequenceNumber() --> Line_16 $$ this.lastReadSequenceNumber = seqNo [FD]

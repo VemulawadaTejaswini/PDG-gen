@@ -1,0 +1,8 @@
+Line_2 $$ public Optional<? extends RestxPrincipal> authenticate(String name, String passwordHash, ImmutableMap<String, ?> principalData) --> Line_3 $$ boolean rememberMe = Boolean.valueOf((String) principalData.get("rememberMe")) [FD]
+Line_2 $$ public Optional<? extends RestxPrincipal> authenticate(String name, String passwordHash, ImmutableMap<String, ?> principalData) --> Line_3 $$ boolean rememberMe = Boolean.valueOf((String) principalData.get("rememberMe")) [CD]
+Line_2 $$ public Optional<? extends RestxPrincipal> authenticate(String name, String passwordHash, ImmutableMap<String, ?> principalData) --> Line_4 $$ Optional<? extends RestxPrincipal> u = users.findAndCheckCredentials(name, passwordHash) [FD]
+Line_2 $$ public Optional<? extends RestxPrincipal> authenticate(String name, String passwordHash, ImmutableMap<String, ?> principalData) --> Line_4 $$ Optional<? extends RestxPrincipal> u = users.findAndCheckCredentials(name, passwordHash) [CD]
+Line_2 $$ public Optional<? extends RestxPrincipal> authenticate(String name, String passwordHash, ImmutableMap<String, ?> principalData) --> Line_5 $$ if (u.isPresent()) [CD]
+Line_4 $$ Optional<? extends RestxPrincipal> u = users.findAndCheckCredentials(name, passwordHash) --> Line_5 $$ if (u.isPresent()) [FD]
+Line_5 $$ if (u.isPresent()) --> Line_6 $$ RestxSession.current().expires(rememberMe ? Duration.standardDays(securitySettings.rememberMeDuration()) : Duration.ZERO) [CD]
+Line_2 $$ public Optional<? extends RestxPrincipal> authenticate(String name, String passwordHash, ImmutableMap<String, ?> principalData) --> Line_8 $$ return u [CD]

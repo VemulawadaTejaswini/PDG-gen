@@ -1,0 +1,8 @@
+Line_2 $$ protected void updatePseudorangeResidualTab(double[] residuals, double timeInSeconds) --> Line_3 $$ double timeSinceLastMeasurement = timeInSeconds - mInitialTimeSeconds [CD]
+Line_2 $$ protected void updatePseudorangeResidualTab(double[] residuals, double timeInSeconds) --> Line_4 $$ for (int i = 1; i <= GpsNavigationMessageStore.MAX_NUMBER_OF_SATELLITES; i++) [CD]
+Line_4 $$ for (int i = 1; i <= GpsNavigationMessageStore.MAX_NUMBER_OF_SATELLITES; i++) --> Line_5 $$ if (!Double.isNaN(residuals[i - 1])) [CD]
+Line_5 $$ if (!Double.isNaN(residuals[i - 1])) --> Line_6 $$ mDataSetManager.addValue(PR_RESIDUAL_TAB, GnssStatus.CONSTELLATION_GPS, i, timeSinceLastMeasurement, residuals[i - 1]) [CD]
+Line_4 $$ for (int i = 1; i <= GpsNavigationMessageStore.MAX_NUMBER_OF_SATELLITES; i++) --> Line_6 $$ mDataSetManager.addValue(PR_RESIDUAL_TAB, GnssStatus.CONSTELLATION_GPS, i, timeSinceLastMeasurement, residuals[i - 1]) [FD]
+Line_3 $$ double timeSinceLastMeasurement = timeInSeconds - mInitialTimeSeconds --> Line_6 $$ mDataSetManager.addValue(PR_RESIDUAL_TAB, GnssStatus.CONSTELLATION_GPS, i, timeSinceLastMeasurement, residuals[i - 1]) [FD]
+Line_2 $$ protected void updatePseudorangeResidualTab(double[] residuals, double timeInSeconds) --> Line_9 $$ mDataSetManager.fillInDiscontinuity(PR_RESIDUAL_TAB, timeSinceLastMeasurement) [CD]
+Line_3 $$ double timeSinceLastMeasurement = timeInSeconds - mInitialTimeSeconds --> Line_9 $$ mDataSetManager.fillInDiscontinuity(PR_RESIDUAL_TAB, timeSinceLastMeasurement) [FD]

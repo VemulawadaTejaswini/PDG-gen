@@ -1,0 +1,8 @@
+Line_2 $$ public boolean waitUntilStarted(long timeout) --> Line_3 $$ boolean waitSucceeded = isStarted() [CD]
+Line_2 $$ public boolean waitUntilStarted(long timeout) --> Line_4 $$ long expiration = Math.max(0, timeout + System.currentTimeMillis()) [CD]
+Line_2 $$ public boolean waitUntilStarted(long timeout) --> Line_5 $$ while (!isStarted() && !stopped.get() && !waitSucceeded && expiration > System.currentTimeMillis()) [CD]
+Line_3 $$ boolean waitSucceeded = isStarted() --> Line_5 $$ while (!isStarted() && !stopped.get() && !waitSucceeded && expiration > System.currentTimeMillis()) [FD]
+Line_7 $$ if (getStartException() != null) --> Line_8 $$ return waitSucceeded [CD]
+Line_3 $$ boolean waitSucceeded = isStarted() --> Line_10 $$ waitSucceeded = startedLatch.await(100L, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ public boolean waitUntilStarted(long timeout) --> Line_14 $$ return waitSucceeded [CD]
+Line_10 $$ waitSucceeded = startedLatch.await(100L, TimeUnit.MILLISECONDS) --> Line_5 $$ while (!isStarted() && !stopped.get() && !waitSucceeded && expiration > System.currentTimeMillis()) [FD]

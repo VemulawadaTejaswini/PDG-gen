@@ -1,0 +1,6 @@
+Line_2 $$ public Client elasticsearchClient() --> Line_3 $$ Settings settings = ImmutableSettings.settingsBuilder().put("client.transport.ignore_cluster_name", true).put("cluster.name", "elasticsearch").build() [CD]
+Line_2 $$ public Client elasticsearchClient() --> Line_4 $$ TransportClient tc = new TransportClient(settings) [CD]
+Line_5 $$ for (String elasticSearchHost : configurationContext.getElasticSearchHosts()) --> Line_6 $$ String[] elements = elasticSearchHost.split(":") [FD]
+Line_4 $$ TransportClient tc = new TransportClient(settings) --> Line_7 $$ tc.addTransportAddress(new InetSocketTransportAddress(elements[0], Integer.parseInt(elements[1]))) [FD]
+Line_2 $$ public Client elasticsearchClient() --> Line_9 $$ log.debug("Creating Spring Bean for elasticsearchClient") [CD]
+Line_2 $$ public Client elasticsearchClient() --> Line_10 $$ return tc [CD]

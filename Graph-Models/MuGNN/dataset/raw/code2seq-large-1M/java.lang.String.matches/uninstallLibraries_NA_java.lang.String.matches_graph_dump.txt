@@ -1,0 +1,7 @@
+Line_2 $$ public Response uninstallLibraries(List<String> libraryList) throws IOException --> Line_3 $$ String runtimeDir = runtimeInfo.getRuntimeDir() [CD]
+Line_4 $$ for (String libraryId : libraryList) --> Line_5 $$ if (!libraryId.matches("[a-zA-Z0-9_-]+")) [FD]
+Line_4 $$ for (String libraryId : libraryList) --> Line_6 $$ throw new RuntimeException(Utils.format(ContainerError.CONTAINER_01301.getMessage(), libraryId)) [FD]
+Line_8 $$ File libraryDirectory = new File(runtimeDir + STREAMSETS_LIBS_PATH + libraryId) --> Line_9 $$ if (libraryDirectory.exists()) [FD]
+Line_9 $$ if (libraryDirectory.exists()) --> Line_10 $$ FileUtils.deleteDirectory(libraryDirectory) [CD]
+Line_8 $$ File libraryDirectory = new File(runtimeDir + STREAMSETS_LIBS_PATH + libraryId) --> Line_10 $$ FileUtils.deleteDirectory(libraryDirectory) [FD]
+Line_2 $$ public Response uninstallLibraries(List<String> libraryList) throws IOException --> Line_13 $$ return Response.ok().build() [CD]

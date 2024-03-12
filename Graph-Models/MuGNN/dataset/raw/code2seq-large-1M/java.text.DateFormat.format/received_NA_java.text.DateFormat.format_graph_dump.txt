@@ -1,0 +1,8 @@
+Line_2 $$ public static void received(Channel channel, Response response) --> Line_4 $$ DefaultFuture future = FUTURES.remove(response.getId()) [FD]
+Line_4 $$ DefaultFuture future = FUTURES.remove(response.getId()) --> Line_5 $$ if (future != null) [FD]
+Line_5 $$ if (future != null) --> Line_6 $$ future.doReceived(response) [CD]
+Line_4 $$ DefaultFuture future = FUTURES.remove(response.getId()) --> Line_6 $$ future.doReceived(response) [FD]
+Line_2 $$ public static void received(Channel channel, Response response) --> Line_6 $$ future.doReceived(response) [FD]
+Line_5 $$ if (future != null) --> Line_8 $$ logger.warn("The timeout response finally returned at " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())) + ", response " + response + (channel == null ? "" : ", channel: " + channel.getLocalAddress() + " -> " + channel.getRemoteAddress())) [CD]
+Line_2 $$ public static void received(Channel channel, Response response) --> Line_8 $$ logger.warn("The timeout response finally returned at " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())) + ", response " + response + (channel == null ? "" : ", channel: " + channel.getLocalAddress() + " -> " + channel.getRemoteAddress())) [FD]
+Line_2 $$ public static void received(Channel channel, Response response) --> Line_11 $$ CHANNELS.remove(response.getId()) [FD]

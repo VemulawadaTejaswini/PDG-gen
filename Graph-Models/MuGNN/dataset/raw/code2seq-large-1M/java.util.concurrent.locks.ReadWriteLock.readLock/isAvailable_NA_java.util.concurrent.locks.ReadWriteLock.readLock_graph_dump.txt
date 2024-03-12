@@ -1,0 +1,5 @@
+Line_2 $$ private AgentResult isAvailable() --> Line_3 $$ Lock readLock = shuttingDownLock.readLock() [CD]
+Line_2 $$ private AgentResult isAvailable() --> Line_4 $$ if (!readLock.tryLock()) [CD]
+Line_3 $$ Lock readLock = shuttingDownLock.readLock() --> Line_4 $$ if (!readLock.tryLock()) [FD]
+Line_4 $$ if (!readLock.tryLock()) --> Line_5 $$ return ImmutableAgentResult.builder().shuttingDown(true).build() [CD]
+Line_3 $$ Lock readLock = shuttingDownLock.readLock() --> Line_10 $$ readLock.unlock() [FD]

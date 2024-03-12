@@ -1,0 +1,8 @@
+Line_2 $$ public void shutdown() --> Line_3 $$ if (!isShutdown.compareAndSet(false, true)) [CD]
+Line_3 $$ if (!isShutdown.compareAndSet(false, true)) --> Line_4 $$ return [CD]
+Line_2 $$ public void shutdown() --> Line_6 $$ ShutdownHookUtil.removeShutdownHook(shutdownHook, getClass().getSimpleName(), LOG) [CD]
+Line_8 $$ if (LOG.isDebugEnabled()) --> Line_9 $$ LOG.debug("Shutting down I/O manager.") [CD]
+Line_11 $$ for (WriterThread wt : writers) --> Line_13 $$ wt.shutdown() [FD]
+Line_18 $$ for (ReaderThread rt : readers) --> Line_20 $$ rt.shutdown() [FD]
+Line_11 $$ for (WriterThread wt : writers) --> Line_27 $$ wt.join() [FD]
+Line_18 $$ for (ReaderThread rt : readers) --> Line_30 $$ rt.join() [FD]

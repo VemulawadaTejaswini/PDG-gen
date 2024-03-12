@@ -1,0 +1,8 @@
+Line_2 $$ public void testInvalidDateHeader() --> Line_3 $$ HttpServletResponse servResp = mock(HttpServletResponse.class) [CD]
+Line_2 $$ public void testInvalidDateHeader() --> Line_4 $$ SecurityWrapperResponse resp = new SecurityWrapperResponse(servResp) [CD]
+Line_2 $$ public void testInvalidDateHeader() --> Line_5 $$ long currentTime = System.currentTimeMillis() [CD]
+Line_2 $$ public void testInvalidDateHeader() --> Line_6 $$ resp.addDateHeader("Foo\\r\\n", currentTime) [CD]
+Line_4 $$ SecurityWrapperResponse resp = new SecurityWrapperResponse(servResp) --> Line_6 $$ resp.addDateHeader("Foo\\r\\n", currentTime) [FD]
+Line_5 $$ long currentTime = System.currentTimeMillis() --> Line_6 $$ resp.addDateHeader("Foo\\r\\n", currentTime) [FD]
+Line_2 $$ public void testInvalidDateHeader() --> Line_7 $$ verify(servResp, times(0)).addDateHeader("Foo", currentTime) [CD]
+Line_5 $$ long currentTime = System.currentTimeMillis() --> Line_7 $$ verify(servResp, times(0)).addDateHeader("Foo", currentTime) [FD]

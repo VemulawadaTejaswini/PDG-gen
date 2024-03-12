@@ -1,0 +1,8 @@
+Line_2 $$ public void executeMultikeyCommandShouldRunCommandAcrossCluster() --> Line_3 $$ ArgumentCaptor<byte[]> captor = ArgumentCaptor.forClass(byte[].class) [CD]
+Line_2 $$ public void executeMultikeyCommandShouldRunCommandAcrossCluster() --> Line_4 $$ when(con1.bloodAndAshes(captor.capture())).thenReturn("rand").thenReturn("egwene") [CD]
+Line_2 $$ public void executeMultikeyCommandShouldRunCommandAcrossCluster() --> Line_5 $$ when(con2.bloodAndAshes(any(byte[].class))).thenReturn("mat") [CD]
+Line_2 $$ public void executeMultikeyCommandShouldRunCommandAcrossCluster() --> Line_6 $$ when(con3.bloodAndAshes(any(byte[].class))).thenReturn("perrin") [CD]
+Line_2 $$ public void executeMultikeyCommandShouldRunCommandAcrossCluster() --> Line_7 $$ MultiNodeResult<String> result = executor.executeMultiKeyCommand(MULTIKEY_CALLBACK, new HashSet(Arrays.asList("key-1".getBytes(), "key-2".getBytes(), "key-3".getBytes(), "key-9".getBytes()))) [CD]
+Line_2 $$ public void executeMultikeyCommandShouldRunCommandAcrossCluster() --> Line_8 $$ assertThat(result.resultsAsList(), hasItems("rand", "mat", "perrin", "egwene")) [CD]
+Line_7 $$ MultiNodeResult<String> result = executor.executeMultiKeyCommand(MULTIKEY_CALLBACK, new HashSet(Arrays.asList("key-1".getBytes(), "key-2".getBytes(), "key-3".getBytes(), "key-9".getBytes()))) --> Line_8 $$ assertThat(result.resultsAsList(), hasItems("rand", "mat", "perrin", "egwene")) [FD]
+Line_2 $$ public void executeMultikeyCommandShouldRunCommandAcrossCluster() --> Line_9 $$ assertThat(captor.getAllValues().size(), is(2)) [CD]

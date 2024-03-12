@@ -1,0 +1,7 @@
+Line_4 $$ ActiveTxnRecord txnRecord = ActiveTxnRecord.parse(data.getData()) --> Line_6 $$ TxnStatus status = txnRecord.getTxnStatus() [FD]
+Line_4 $$ ActiveTxnRecord txnRecord = ActiveTxnRecord.parse(data.getData()) --> Line_9 $$ return sealActiveTx(epoch, txId, commit, txnRecord, dataVersion).thenApply( y -> new SimpleEntry(commit ? TxnStatus.COMMITTING : TxnStatus.ABORTING, epoch)) [FD]
+Line_5 $$ int dataVersion = version.isPresent() ? version.get() : data.getVersion() --> Line_9 $$ return sealActiveTx(epoch, txId, commit, txnRecord, dataVersion).thenApply( y -> new SimpleEntry(commit ? TxnStatus.COMMITTING : TxnStatus.ABORTING, epoch)) [FD]
+Line_12 $$ if (commit) --> Line_13 $$ return CompletableFuture.completedFuture(new SimpleEntry(status, epoch)) [CD]
+Line_6 $$ TxnStatus status = txnRecord.getTxnStatus() --> Line_15 $$ throw StoreException.create(StoreException.Type.ILLEGAL_STATE, "Stream: " + getName() + " Transaction: " + txId.toString() + " State: " + status.name()) [FD]
+Line_6 $$ TxnStatus status = txnRecord.getTxnStatus() --> Line_20 $$ throw StoreException.create(StoreException.Type.ILLEGAL_STATE, "Stream: " + getName() + " Transaction: " + txId.toString() + " State: " + status.name()) [FD]
+Line_19 $$ if (commit) --> Line_22 $$ return CompletableFuture.completedFuture(new SimpleEntry(status, epoch)) [CD]

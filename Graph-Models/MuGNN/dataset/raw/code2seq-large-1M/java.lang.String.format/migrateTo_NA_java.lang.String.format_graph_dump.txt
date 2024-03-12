@@ -1,0 +1,4 @@
+Line_2 $$ public void migrateTo(int newVersion) --> Line_4 $$ for (int v = db.getVersion() + 1; v <= newVersion; v++) [FD]
+Line_4 $$ for (int v = db.getVersion() + 1; v <= newVersion; v++) --> Line_5 $$ String fname = String.format(Locale.US, "/migrations/%02d.sql", v) [FD]
+Line_4 $$ for (int v = db.getVersion() + 1; v <= newVersion; v++) --> Line_5 $$ String fname = String.format(Locale.US, "/migrations/%02d.sql", v) [CD]
+Line_5 $$ String fname = String.format(Locale.US, "/migrations/%02d.sql", v) --> Line_6 $$ for (String command : SQLParser.parse(open(fname))) db.execute(command) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public BigDecimal getTotalCost() --> Line_3 $$ BigDecimal cost = BigDecimal.ZERO [CD]
+Line_4 $$ for (ResourceAssignment assignment : myAssignments) --> Line_5 $$ int taskDuration = assignment.getTask().getDuration().getLength() [FD]
+Line_4 $$ for (ResourceAssignment assignment : myAssignments) --> Line_6 $$ BigDecimal assignmentCost = new BigDecimal(taskDuration * assignment.getLoad() / 100).multiply(getStandardPayRate()) [FD]
+Line_3 $$ BigDecimal cost = BigDecimal.ZERO --> Line_7 $$ cost = cost.add(assignmentCost) [FD]
+Line_6 $$ BigDecimal assignmentCost = new BigDecimal(taskDuration * assignment.getLoad() / 100).multiply(getStandardPayRate()) --> Line_7 $$ cost = cost.add(assignmentCost) [FD]
+Line_2 $$ public BigDecimal getTotalCost() --> Line_9 $$ return cost [CD]

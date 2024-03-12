@@ -1,0 +1,8 @@
+Line_2 $$ public void addDataPoint(long timestamp, List<Double> values) --> Line_3 $$ if (timestamp < startTime || timestamp > endTime) [CD]
+Line_3 $$ if (timestamp < startTime || timestamp > endTime) --> Line_4 $$ LOG.warn("timestamp<startTime or timestamp>endTime, ignore this datapoint." + timestamp + "," + startTime + ":" + endTime) [CD]
+Line_3 $$ if (timestamp < startTime || timestamp > endTime) --> Line_5 $$ return [CD]
+Line_2 $$ public void addDataPoint(long timestamp, List<Double> values) --> Line_7 $$ int located = (int) ((timestamp - startTime) / interval) [CD]
+Line_2 $$ public void addDataPoint(long timestamp, List<Double> values) --> Line_8 $$ int index = 0 [CD]
+Line_8 $$ int index = 0 --> Line_10 $$ double[] timeSeriesValues = aggregatedValues.get(index) [FD]
+Line_9 $$ for (Double src : values) --> Line_11 $$ timeSeriesValues[located] += src [FD]
+Line_8 $$ int index = 0 --> Line_12 $$ index++ [FD]

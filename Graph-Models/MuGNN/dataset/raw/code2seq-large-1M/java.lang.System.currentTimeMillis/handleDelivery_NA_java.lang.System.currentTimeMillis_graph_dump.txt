@@ -1,0 +1,7 @@
+Line_5 $$ if (conf.basicPropertiesConfig.setAMQPMessageProperties) --> Line_6 $$ if (conf.basicPropertiesConfig.setCurrentTime) [CD]
+Line_6 $$ if (conf.basicPropertiesConfig.setCurrentTime) --> Line_7 $$ builder.timestamp(new Date(System.currentTimeMillis())) [CD]
+Line_5 $$ if (conf.basicPropertiesConfig.setAMQPMessageProperties) --> Line_9 $$ properties = builder.build() [CD]
+Line_4 $$ AMQP.BasicProperties properties = null --> Line_9 $$ properties = builder.build() [FD]
+Line_4 $$ AMQP.BasicProperties properties = null --> Line_11 $$ this.rabbitCxnManager.getChannel().basicPublish(exchange.name, exchange.routingKey.isEmpty() ? conf.queue.name : exchange.routingKey, conf.mandatory, properties, data) [FD]
+Line_9 $$ properties = builder.build() --> Line_11 $$ this.rabbitCxnManager.getChannel().basicPublish(exchange.name, exchange.routingKey.isEmpty() ? conf.queue.name : exchange.routingKey, conf.mandatory, properties, data) [FD]
+Line_2 $$ private void handleDelivery(byte[] data) throws IOException --> Line_11 $$ this.rabbitCxnManager.getChannel().basicPublish(exchange.name, exchange.routingKey.isEmpty() ? conf.queue.name : exchange.routingKey, conf.mandatory, properties, data) [FD]

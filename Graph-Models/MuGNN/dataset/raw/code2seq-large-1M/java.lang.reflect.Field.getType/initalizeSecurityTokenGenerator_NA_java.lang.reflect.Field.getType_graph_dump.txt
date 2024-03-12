@@ -1,0 +1,7 @@
+Line_2 $$ private void initalizeSecurityTokenGenerator() throws IllegalAccessException --> Line_3 $$ final SecurityTokenGeneratorHolder instance = SecurityTokenGeneratorHolder.getInstance() [CD]
+Line_2 $$ private void initalizeSecurityTokenGenerator() throws IllegalAccessException --> Line_4 $$ final Field[] fields = instance.getClass().getDeclaredFields() [CD]
+Line_3 $$ final SecurityTokenGeneratorHolder instance = SecurityTokenGeneratorHolder.getInstance() --> Line_4 $$ final Field[] fields = instance.getClass().getDeclaredFields() [FD]
+Line_5 $$ for (final Field field : fields) --> Line_6 $$ if (field.getType().isAssignableFrom(SecurityTokenGenerator.class)) [FD]
+Line_5 $$ for (final Field field : fields) --> Line_7 $$ field.setAccessible(true) [FD]
+Line_5 $$ for (final Field field : fields) --> Line_8 $$ field.set(instance, new SecurityTokenGenerator()) [FD]
+Line_3 $$ final SecurityTokenGeneratorHolder instance = SecurityTokenGeneratorHolder.getInstance() --> Line_8 $$ field.set(instance, new SecurityTokenGenerator()) [FD]

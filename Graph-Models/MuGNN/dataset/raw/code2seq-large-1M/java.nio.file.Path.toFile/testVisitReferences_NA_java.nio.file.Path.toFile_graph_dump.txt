@@ -1,0 +1,4 @@
+Line_3 $$ try (ZipFile apkZip = new ZipFile(apkPath.toFile())) --> Line_4 $$ ByteBuffer buf = ResChunk.wrap(ByteStreams.toByteArray(apkZip.getInputStream(apkZip.getEntry("AndroidManifest.xml")))) [FD]
+Line_6 $$ ResourcesXml xml = ResourcesXml.get(buf) --> Line_7 $$ xml.visitReferences( i -> refs.add(String.format("0x%08x", i))) [FD]
+Line_5 $$ List<String> refs = new ArrayList() --> Line_7 $$ xml.visitReferences( i -> refs.add(String.format("0x%08x", i))) [FD]
+Line_5 $$ List<String> refs = new ArrayList() --> Line_8 $$ assertEquals(ImmutableList.of("0x0101020c", "0x01010270", "0x01010003", "0x01010001", "0x01010002", "0x0101000f", "0x01010025", "0x01010010", "0x7f040001", "0x7f020001", "0x7f050001", "0x7f050002", "0x7f030000"), refs) [FD]

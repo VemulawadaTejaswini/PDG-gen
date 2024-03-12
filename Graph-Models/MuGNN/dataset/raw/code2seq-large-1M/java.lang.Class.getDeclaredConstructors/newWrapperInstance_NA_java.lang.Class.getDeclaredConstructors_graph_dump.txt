@@ -1,0 +1,7 @@
+Line_2 $$ private static Object newWrapperInstance(@Nonnull Class<?> wrapperClass, @Nonnull String value) --> Line_3 $$ for (Constructor<?> constructor : wrapperClass.getDeclaredConstructors()) [FD]
+Line_3 $$ for (Constructor<?> constructor : wrapperClass.getDeclaredConstructors()) --> Line_4 $$ if (isPublic(constructor.getModifiers())) [FD]
+Line_4 $$ if (isPublic(constructor.getModifiers())) --> Line_5 $$ Class<?>[] parameterTypes = constructor.getParameterTypes() [CD]
+Line_3 $$ for (Constructor<?> constructor : wrapperClass.getDeclaredConstructors()) --> Line_5 $$ Class<?>[] parameterTypes = constructor.getParameterTypes() [FD]
+Line_4 $$ if (isPublic(constructor.getModifiers())) --> Line_6 $$ if (parameterTypes.length == 1 && parameterTypes[0] == String.class) [CD]
+Line_3 $$ for (Constructor<?> constructor : wrapperClass.getDeclaredConstructors()) --> Line_8 $$ return constructor.newInstance(value.trim()) [FD]
+Line_2 $$ private static Object newWrapperInstance(@Nonnull Class<?> wrapperClass, @Nonnull String value) --> Line_8 $$ return constructor.newInstance(value.trim()) [FD]

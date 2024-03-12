@@ -1,0 +1,5 @@
+Line_5 $$ Class<?> layerType = Class.forName("java.lang.ModuleLayer") --> Line_7 $$ for (Object rawModule : (Set<?>) layerType.getMethod("modules").invoke(layerType.getMethod("boot").invoke(null))) [FD]
+Line_7 $$ for (Object rawModule : (Set<?>) layerType.getMethod("modules").invoke(layerType.getMethod("boot").invoke(null))) --> Line_8 $$ ClassFileLocator classFileLocator = ForModule.of(JavaModule.of(rawModule)) [FD]
+Line_6 $$ Method getPackages = JavaType.MODULE.load().getMethod("getPackages") --> Line_9 $$ for (Object packageName : (Set<?>) getPackages.invoke(rawModule, NO_ARGUMENTS)) [FD]
+Line_7 $$ for (Object rawModule : (Set<?>) layerType.getMethod("modules").invoke(layerType.getMethod("boot").invoke(null))) --> Line_9 $$ for (Object packageName : (Set<?>) getPackages.invoke(rawModule, NO_ARGUMENTS)) [FD]
+Line_4 $$ Map<String, ClassFileLocator> bootModules = new HashMap<String, ClassFileLocator>() --> Line_10 $$ bootModules.put((String) packageName, classFileLocator) [FD]

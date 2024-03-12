@@ -1,0 +1,7 @@
+Line_2 $$ protected final <T> T retry(Callable<T> callable) --> Line_3 $$ final Callable<T> wrapper = () -> [CD]
+Line_2 $$ protected final <T> T retry(Callable<T> callable) --> Line_5 $$ return callable.call() [FD]
+Line_2 $$ protected final <T> T retry(Callable<T> callable) --> Line_12 $$ final RetryConfig config = new RetryConfigBuilder().retryOnAnyException().withMaxNumberOfTries(30).withDelayBetweenTries(10, ChronoUnit.SECONDS).withFixedBackoff().build() [CD]
+Line_2 $$ protected final <T> T retry(Callable<T> callable) --> Line_13 $$ final CallResults<Object> results = new CallExecutor(config).execute(wrapper) [CD]
+Line_3 $$ final Callable<T> wrapper = () -> --> Line_13 $$ final CallResults<Object> results = new CallExecutor(config).execute(wrapper) [FD]
+Line_2 $$ protected final <T> T retry(Callable<T> callable) --> Line_14 $$ return (T) results.getResult() [CD]
+Line_13 $$ final CallResults<Object> results = new CallExecutor(config).execute(wrapper) --> Line_14 $$ return (T) results.getResult() [FD]

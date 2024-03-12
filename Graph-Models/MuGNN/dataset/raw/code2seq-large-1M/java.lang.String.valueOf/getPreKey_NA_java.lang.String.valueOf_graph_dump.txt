@@ -1,0 +1,7 @@
+Line_2 $$ public PreKeyRecord getPreKey(int keyId) --> Line_3 $$ SQLiteDatabase database = databaseHelper.getReadableDatabase() [CD]
+Line_3 $$ SQLiteDatabase database = databaseHelper.getReadableDatabase() --> Line_4 $$ try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?", new String[] [FD]
+Line_2 $$ public PreKeyRecord getPreKey(int keyId) --> Line_4 $$ try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?", new String[] [FD]
+Line_4 $$ try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?", new String[] --> Line_5 $$ if (cursor != null && cursor.moveToFirst()) [FD]
+Line_4 $$ try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?", new String[] --> Line_7 $$ ECPublicKey publicKey = Curve.decodePoint(Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(PUBLIC_KEY))), 0) [FD]
+Line_4 $$ try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?", new String[] --> Line_8 $$ ECPrivateKey privateKey = Curve.decodePrivatePoint(Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(PRIVATE_KEY)))) [FD]
+Line_2 $$ public PreKeyRecord getPreKey(int keyId) --> Line_15 $$ return null [CD]

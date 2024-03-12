@@ -1,0 +1,7 @@
+Line_2 $$ public LogLevel getObservationLevel(String observerIdentifier) --> Line_3 $$ readLock.lock() [CD]
+Line_2 $$ public LogLevel getObservationLevel(String observerIdentifier) --> Line_5 $$ if (!observerLookup.containsKey(observerIdentifier)) [FD]
+Line_2 $$ public LogLevel getObservationLevel(String observerIdentifier) --> Line_8 $$ final LogObserver observer = observerLookup.get(observerIdentifier) [FD]
+Line_9 $$ for (final LogLevel logLevel : LogLevel.values()) --> Line_10 $$ final Collection<LogObserver> levelObservers = observers.get(logLevel) [FD]
+Line_10 $$ final Collection<LogObserver> levelObservers = observers.get(logLevel) --> Line_11 $$ if (levelObservers != null && levelObservers.contains(observer)) [FD]
+Line_8 $$ final LogObserver observer = observerLookup.get(observerIdentifier) --> Line_11 $$ if (levelObservers != null && levelObservers.contains(observer)) [FD]
+Line_11 $$ if (levelObservers != null && levelObservers.contains(observer)) --> Line_12 $$ return logLevel [CD]

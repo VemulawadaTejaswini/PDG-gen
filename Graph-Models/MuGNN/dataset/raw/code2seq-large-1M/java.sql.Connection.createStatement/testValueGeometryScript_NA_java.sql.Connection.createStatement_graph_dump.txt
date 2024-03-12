@@ -1,0 +1,8 @@
+Line_2 $$ private void testValueGeometryScript() throws SQLException --> Line_3 $$ ValueGeometry valueGeometry = ValueGeometry.get("POINT(1 1 5)") [CD]
+Line_4 $$ try (Connection conn = getConnection(URL)) --> Line_5 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT " + valueGeometry.getSQL()) [FD]
+Line_3 $$ ValueGeometry valueGeometry = ValueGeometry.get("POINT(1 1 5)") --> Line_5 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT " + valueGeometry.getSQL()) [FD]
+Line_5 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT " + valueGeometry.getSQL()) --> Line_6 $$ assertTrue(rs.next()) [FD]
+Line_5 $$ ResultSet rs = conn.createStatement().executeQuery("SELECT " + valueGeometry.getSQL()) --> Line_7 $$ Object obj = rs.getObject(1) [FD]
+Line_7 $$ Object obj = rs.getObject(1) --> Line_8 $$ ValueGeometry g = ValueGeometry.getFromGeometry(obj) [FD]
+Line_3 $$ ValueGeometry valueGeometry = ValueGeometry.get("POINT(1 1 5)") --> Line_9 $$ assertTrue("got: " + g + " exp: " + valueGeometry, valueGeometry.equals(g)) [FD]
+Line_8 $$ ValueGeometry g = ValueGeometry.getFromGeometry(obj) --> Line_9 $$ assertTrue("got: " + g + " exp: " + valueGeometry, valueGeometry.equals(g)) [FD]

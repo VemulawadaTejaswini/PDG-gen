@@ -1,0 +1,7 @@
+Line_2 $$ public void testMapOptional() throws Exception --> Line_3 $$ final Handle h = db.getSharedHandle() [CD]
+Line_2 $$ public void testMapOptional() throws Exception --> Line_4 $$ h.execute("insert into something(intValue, name) values(1, 'Duke')") [CD]
+Line_3 $$ final Handle h = db.getSharedHandle() --> Line_4 $$ h.execute("insert into something(intValue, name) values(1, 'Duke')") [FD]
+Line_2 $$ public void testMapOptional() throws Exception --> Line_5 $$ h.execute("insert into something(intValue, name) values(null, null)") [CD]
+Line_3 $$ final Handle h = db.getSharedHandle() --> Line_5 $$ h.execute("insert into something(intValue, name) values(null, null)") [FD]
+Line_2 $$ public void testMapOptional() throws Exception --> Line_6 $$ assertThat(h.createQuery("select * from something order by id").map(ConstructorMapper.of(OptionalBean.class)).list()).extracting("intValue", "name").containsExactly(tuple(OptionalInt.of(1), Optional.of("Duke")), tuple(OptionalInt.empty(), Optional.empty())) [CD]
+Line_3 $$ final Handle h = db.getSharedHandle() --> Line_6 $$ assertThat(h.createQuery("select * from something order by id").map(ConstructorMapper.of(OptionalBean.class)).list()).extracting("intValue", "name").containsExactly(tuple(OptionalInt.of(1), Optional.of("Duke")), tuple(OptionalInt.empty(), Optional.empty())) [FD]

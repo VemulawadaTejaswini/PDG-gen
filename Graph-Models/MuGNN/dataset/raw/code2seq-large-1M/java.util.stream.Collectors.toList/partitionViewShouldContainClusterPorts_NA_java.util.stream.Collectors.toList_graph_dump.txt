@@ -1,0 +1,7 @@
+Line_2 $$ public void partitionViewShouldContainClusterPorts() throws Exception --> Line_3 $$ StatefulRedisClusterConnection<String, String> connection = redisClient.connect() [CD]
+Line_2 $$ public void partitionViewShouldContainClusterPorts() throws Exception --> Line_4 $$ List<Integer> ports = connection.getPartitions().stream().map( redisClusterNode -> redisClusterNode.getUri().getPort()).collect(Collectors.toList()) [CD]
+Line_3 $$ StatefulRedisClusterConnection<String, String> connection = redisClient.connect() --> Line_4 $$ List<Integer> ports = connection.getPartitions().stream().map( redisClusterNode -> redisClusterNode.getUri().getPort()).collect(Collectors.toList()) [FD]
+Line_2 $$ public void partitionViewShouldContainClusterPorts() throws Exception --> Line_5 $$ connection.close() [CD]
+Line_3 $$ StatefulRedisClusterConnection<String, String> connection = redisClient.connect() --> Line_5 $$ connection.close() [FD]
+Line_2 $$ public void partitionViewShouldContainClusterPorts() throws Exception --> Line_6 $$ assertThat(ports).contains(CLUSTER_PORT_SSL_1, CLUSTER_PORT_SSL_2, CLUSTER_PORT_SSL_3) [CD]
+Line_4 $$ List<Integer> ports = connection.getPartitions().stream().map( redisClusterNode -> redisClusterNode.getUri().getPort()).collect(Collectors.toList()) --> Line_6 $$ assertThat(ports).contains(CLUSTER_PORT_SSL_1, CLUSTER_PORT_SSL_2, CLUSTER_PORT_SSL_3) [FD]

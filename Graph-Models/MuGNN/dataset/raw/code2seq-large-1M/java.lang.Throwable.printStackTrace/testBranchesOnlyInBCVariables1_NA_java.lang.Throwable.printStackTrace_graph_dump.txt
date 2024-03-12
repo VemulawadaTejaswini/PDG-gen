@@ -1,0 +1,7 @@
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_5 $$ env.setParallelism(100) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_6 $$ DataSet<Long> input = env.generateSequence(1, 10) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_7 $$ DataSet<Long> bc_input = env.generateSequence(1, 10) [FD]
+Line_7 $$ DataSet<Long> bc_input = env.generateSequence(1, 10) --> Line_8 $$ input.map(new IdentityMapper<Long>()).withBroadcastSet(bc_input, "name1").map(new IdentityMapper<Long>()).withBroadcastSet(bc_input, "name2").output(new DiscardingOutputFormat<Long>()) [FD]
+Line_6 $$ DataSet<Long> input = env.generateSequence(1, 10) --> Line_8 $$ input.map(new IdentityMapper<Long>()).withBroadcastSet(bc_input, "name1").map(new IdentityMapper<Long>()).withBroadcastSet(bc_input, "name2").output(new DiscardingOutputFormat<Long>()) [FD]
+Line_4 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_9 $$ Plan plan = env.createProgramPlan() [FD]
+Line_9 $$ Plan plan = env.createProgramPlan() --> Line_10 $$ compileNoStats(plan) [FD]

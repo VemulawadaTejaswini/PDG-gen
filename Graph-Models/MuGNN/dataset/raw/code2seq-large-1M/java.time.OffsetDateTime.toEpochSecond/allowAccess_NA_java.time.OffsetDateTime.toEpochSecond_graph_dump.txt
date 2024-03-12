@@ -1,0 +1,8 @@
+Line_2 $$ protected void allowAccess(Configuration configuration, long secretId, long groupId) --> Line_3 $$ long now = OffsetDateTime.now().toEpochSecond() [CD]
+Line_2 $$ protected void allowAccess(Configuration configuration, long secretId, long groupId) --> Line_4 $$ boolean assigned = 0 < DSL.using(configuration).fetchCount(ACCESSGRANTS, ACCESSGRANTS.SECRETID.eq(secretId).and(ACCESSGRANTS.GROUPID.eq(groupId))) [CD]
+Line_2 $$ protected void allowAccess(Configuration configuration, long secretId, long groupId) --> Line_4 $$ boolean assigned = 0 < DSL.using(configuration).fetchCount(ACCESSGRANTS, ACCESSGRANTS.SECRETID.eq(secretId).and(ACCESSGRANTS.GROUPID.eq(groupId))) [FD]
+Line_2 $$ protected void allowAccess(Configuration configuration, long secretId, long groupId) --> Line_5 $$ if (assigned) [CD]
+Line_5 $$ if (assigned) --> Line_6 $$ return [CD]
+Line_2 $$ protected void allowAccess(Configuration configuration, long secretId, long groupId) --> Line_8 $$ DSL.using(configuration).insertInto(ACCESSGRANTS).set(ACCESSGRANTS.SECRETID, secretId).set(ACCESSGRANTS.GROUPID, groupId).set(ACCESSGRANTS.CREATEDAT, now).set(ACCESSGRANTS.UPDATEDAT, now).execute() [CD]
+Line_2 $$ protected void allowAccess(Configuration configuration, long secretId, long groupId) --> Line_8 $$ DSL.using(configuration).insertInto(ACCESSGRANTS).set(ACCESSGRANTS.SECRETID, secretId).set(ACCESSGRANTS.GROUPID, groupId).set(ACCESSGRANTS.CREATEDAT, now).set(ACCESSGRANTS.UPDATEDAT, now).execute() [FD]
+Line_3 $$ long now = OffsetDateTime.now().toEpochSecond() --> Line_8 $$ DSL.using(configuration).insertInto(ACCESSGRANTS).set(ACCESSGRANTS.SECRETID, secretId).set(ACCESSGRANTS.GROUPID, groupId).set(ACCESSGRANTS.CREATEDAT, now).set(ACCESSGRANTS.UPDATEDAT, now).execute() [FD]

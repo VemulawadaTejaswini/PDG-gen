@@ -1,0 +1,8 @@
+Line_2 $$ public Map<Long, ItemGradingData> getItemGradingMap(final Long assessmentGradingId) --> Line_3 $$ final HibernateCallback<List<ItemGradingData>> hcb =  session -> [CD]
+Line_4 $$ Query q = session.createQuery("from ItemGradingData i where i.assessmentGradingId = :id") --> Line_5 $$ q.setLong("id", assessmentGradingId) [FD]
+Line_2 $$ public Map<Long, ItemGradingData> getItemGradingMap(final Long assessmentGradingId) --> Line_5 $$ q.setLong("id", assessmentGradingId) [FD]
+Line_4 $$ Query q = session.createQuery("from ItemGradingData i where i.assessmentGradingId = :id") --> Line_6 $$ return q.list() [FD]
+Line_2 $$ public Map<Long, ItemGradingData> getItemGradingMap(final Long assessmentGradingId) --> Line_8 $$ List<ItemGradingData> itemGradingList = getHibernateTemplate().execute(hcb) [CD]
+Line_3 $$ final HibernateCallback<List<ItemGradingData>> hcb =  session -> --> Line_8 $$ List<ItemGradingData> itemGradingList = getHibernateTemplate().execute(hcb) [FD]
+Line_2 $$ public Map<Long, ItemGradingData> getItemGradingMap(final Long assessmentGradingId) --> Line_9 $$ return itemGradingList.stream().collect(Collectors.toMap(ItemGradingData::<>getItemGradingId,  p -> p)) [CD]
+Line_8 $$ List<ItemGradingData> itemGradingList = getHibernateTemplate().execute(hcb) --> Line_9 $$ return itemGradingList.stream().collect(Collectors.toMap(ItemGradingData::<>getItemGradingId,  p -> p)) [FD]

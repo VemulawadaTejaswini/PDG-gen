@@ -1,0 +1,7 @@
+Line_2 $$ public <T> JournalMetadata<T> readMetadata(String name) throws JournalException --> Line_3 $$ File dir = new File(getJournalBase(), name) [CD]
+Line_2 $$ public <T> JournalMetadata<T> readMetadata(String name) throws JournalException --> Line_4 $$ if (dir.exists()) [CD]
+Line_3 $$ File dir = new File(getJournalBase(), name) --> Line_4 $$ if (dir.exists()) [FD]
+Line_4 $$ if (dir.exists()) --> Line_5 $$ File metaFile = new File(dir, FILE_NAME) [CD]
+Line_4 $$ if (dir.exists()) --> Line_6 $$ if (!metaFile.exists()) [CD]
+Line_5 $$ File metaFile = new File(dir, FILE_NAME) --> Line_6 $$ if (!metaFile.exists()) [FD]
+Line_2 $$ public <T> JournalMetadata<T> readMetadata(String name) throws JournalException --> Line_13 $$ return null [CD]

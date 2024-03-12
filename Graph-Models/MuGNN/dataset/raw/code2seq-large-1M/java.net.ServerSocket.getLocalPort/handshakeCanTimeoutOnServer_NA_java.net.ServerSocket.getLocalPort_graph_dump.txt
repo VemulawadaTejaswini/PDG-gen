@@ -1,0 +1,8 @@
+Line_2 $$ public void handshakeCanTimeoutOnServer() throws Throwable --> Line_3 $$ this.serverSocket = this.socketCreator.createServerSocket(0, 0, this.localHost) [CD]
+Line_2 $$ public void handshakeCanTimeoutOnServer() throws Throwable --> Line_4 $$ this.serverThread = startServer(this.serverSocket, 1000) [CD]
+Line_2 $$ public void handshakeCanTimeoutOnServer() throws Throwable --> Line_5 $$ int serverPort = this.serverSocket.getLocalPort() [CD]
+Line_2 $$ public void handshakeCanTimeoutOnServer() throws Throwable --> Line_6 $$ Socket socket = new Socket() [CD]
+Line_2 $$ public void handshakeCanTimeoutOnServer() throws Throwable --> Line_7 $$ socket.connect(new InetSocketAddress(localHost, serverPort)) [CD]
+Line_6 $$ Socket socket = new Socket() --> Line_7 $$ socket.connect(new InetSocketAddress(localHost, serverPort)) [FD]
+Line_2 $$ public void handshakeCanTimeoutOnServer() throws Throwable --> Line_8 $$ await().atMost(5, TimeUnit.SECONDS).until(() -> assertFalse(serverThread.isAlive())) [CD]
+Line_2 $$ public void handshakeCanTimeoutOnServer() throws Throwable --> Line_9 $$ assertNotNull(serverException) [CD]

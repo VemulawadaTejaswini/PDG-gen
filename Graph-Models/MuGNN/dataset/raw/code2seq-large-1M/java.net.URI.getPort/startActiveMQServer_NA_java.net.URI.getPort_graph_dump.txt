@@ -1,0 +1,8 @@
+Line_4 $$ String activemqBindAddress = getParameters().get(Util.ACTIVEMQ_BIND_ADDRESS) --> Line_5 $$ if (activemqBindAddress == null) [FD]
+Line_8 $$ URI givenURI = new URI(activemqBindAddress) --> Line_9 $$ int initAMQPort = givenURI.getPort() [FD]
+Line_9 $$ int initAMQPort = givenURI.getPort() --> Line_10 $$ while (!Util.isPortAvailable(initAMQPort)) [FD]
+Line_10 $$ while (!Util.isPortAvailable(initAMQPort)) --> Line_11 $$ initAMQPort++ [CD]
+Line_9 $$ int initAMQPort = givenURI.getPort() --> Line_11 $$ initAMQPort++ [FD]
+Line_8 $$ URI givenURI = new URI(activemqBindAddress) --> Line_13 $$ URI dynamicURL = new URI(givenURI.getScheme(), givenURI.getUserInfo(), givenURI.getHost(), initAMQPort, givenURI.getPath(), givenURI.getQuery(), givenURI.getFragment()) [FD]
+Line_13 $$ URI dynamicURL = new URI(givenURI.getScheme(), givenURI.getUserInfo(), givenURI.getHost(), initAMQPort, givenURI.getPath(), givenURI.getQuery(), givenURI.getFragment()) --> Line_15 $$ log.info("Starting ActiveMQ with dynamic bind address: " + dynamicURL.toString()) [FD]
+Line_13 $$ URI dynamicURL = new URI(givenURI.getScheme(), givenURI.getUserInfo(), givenURI.getHost(), initAMQPort, givenURI.getPath(), givenURI.getQuery(), givenURI.getFragment()) --> Line_18 $$ broker.addConnector(dynamicURL.toString()) [FD]

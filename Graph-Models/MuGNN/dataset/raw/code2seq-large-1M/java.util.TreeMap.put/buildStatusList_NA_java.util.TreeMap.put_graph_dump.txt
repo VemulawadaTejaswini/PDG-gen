@@ -1,0 +1,8 @@
+Line_2 $$ private static List<Status> buildStatusList() --> Line_3 $$ TreeMap<Integer, Status> canonicalizer = new TreeMap<Integer, Status>() [CD]
+Line_3 $$ TreeMap<Integer, Status> canonicalizer = new TreeMap<Integer, Status>() --> Line_5 $$ Status replaced = canonicalizer.put(code.value(), new Status(code, null)) [FD]
+Line_4 $$ for (CanonicalCode code : CanonicalCode.values()) --> Line_5 $$ Status replaced = canonicalizer.put(code.value(), new Status(code, null)) [FD]
+Line_5 $$ Status replaced = canonicalizer.put(code.value(), new Status(code, null)) --> Line_6 $$ if (replaced != null) [FD]
+Line_5 $$ Status replaced = canonicalizer.put(code.value(), new Status(code, null)) --> Line_7 $$ throw new IllegalStateException("Code value duplication between " + replaced.getCanonicalCode().name() + " & " + code.name()) [FD]
+Line_4 $$ for (CanonicalCode code : CanonicalCode.values()) --> Line_7 $$ throw new IllegalStateException("Code value duplication between " + replaced.getCanonicalCode().name() + " & " + code.name()) [FD]
+Line_2 $$ private static List<Status> buildStatusList() --> Line_10 $$ return Collections.unmodifiableList(new ArrayList<Status>(canonicalizer.values())) [CD]
+Line_3 $$ TreeMap<Integer, Status> canonicalizer = new TreeMap<Integer, Status>() --> Line_10 $$ return Collections.unmodifiableList(new ArrayList<Status>(canonicalizer.values())) [FD]

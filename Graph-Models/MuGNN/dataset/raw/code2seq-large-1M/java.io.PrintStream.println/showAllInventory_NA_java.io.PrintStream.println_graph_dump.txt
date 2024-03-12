@@ -1,0 +1,8 @@
+Line_2 $$ private void showAllInventory() throws DatabaseException --> Line_3 $$ Cursor cursor = myDbs.getInventoryDB().openCursor(null, null) [CD]
+Line_2 $$ private void showAllInventory() throws DatabaseException --> Line_4 $$ DatabaseEntry foundKey = new DatabaseEntry() [CD]
+Line_2 $$ private void showAllInventory() throws DatabaseException --> Line_5 $$ DatabaseEntry foundData = new DatabaseEntry() [CD]
+Line_3 $$ Cursor cursor = myDbs.getInventoryDB().openCursor(null, null) --> Line_7 $$ while (cursor.getNext(foundKey, foundData, LockMode.DEFAULT) == OperationStatus.SUCCESS) [FD]
+Line_7 $$ while (cursor.getNext(foundKey, foundData, LockMode.DEFAULT) == OperationStatus.SUCCESS) --> Line_8 $$ Inventory theInventory = (Inventory) inventoryBinding.entryToObject(foundData) [CD]
+Line_7 $$ while (cursor.getNext(foundKey, foundData, LockMode.DEFAULT) == OperationStatus.SUCCESS) --> Line_9 $$ displayInventoryRecord(foundKey, theInventory) [CD]
+Line_8 $$ Inventory theInventory = (Inventory) inventoryBinding.entryToObject(foundData) --> Line_9 $$ displayInventoryRecord(foundKey, theInventory) [FD]
+Line_3 $$ Cursor cursor = myDbs.getInventoryDB().openCursor(null, null) --> Line_16 $$ cursor.close() [FD]

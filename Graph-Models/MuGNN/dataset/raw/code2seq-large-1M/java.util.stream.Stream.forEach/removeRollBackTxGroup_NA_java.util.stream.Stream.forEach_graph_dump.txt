@@ -1,0 +1,8 @@
+Line_2 $$ public Boolean removeRollBackTxGroup() --> Line_3 $$ final Set<String> keys = redisTemplate.keys(Constant.REDIS_KEYS) [CD]
+Line_2 $$ public Boolean removeRollBackTxGroup() --> Line_4 $$ keys.parallelStream().forEach( key -> [CD]
+Line_3 $$ final Set<String> keys = redisTemplate.keys(Constant.REDIS_KEYS) --> Line_4 $$ keys.parallelStream().forEach( key -> [FD]
+Line_5 $$ final Map<Object, TxTransactionItem> entries = redisTemplate.opsForHash().entries(key) --> Line_6 $$ final Collection<TxTransactionItem> values = entries.values() [FD]
+Line_6 $$ final Collection<TxTransactionItem> values = entries.values() --> Line_7 $$ final Optional<TxTransactionItem> any = values.stream().filter( item -> item.getRole() == TransactionRoleEnum.START.getCode() && item.getStatus() == TransactionStatusEnum.ROLLBACK.getCode()).findAny() [FD]
+Line_7 $$ final Optional<TxTransactionItem> any = values.stream().filter( item -> item.getRole() == TransactionRoleEnum.START.getCode() && item.getStatus() == TransactionStatusEnum.ROLLBACK.getCode()).findAny() --> Line_8 $$ if (any.isPresent()) [FD]
+Line_8 $$ if (any.isPresent()) --> Line_9 $$ redisTemplate.delete(key) [CD]
+Line_2 $$ public Boolean removeRollBackTxGroup() --> Line_12 $$ return true [CD]

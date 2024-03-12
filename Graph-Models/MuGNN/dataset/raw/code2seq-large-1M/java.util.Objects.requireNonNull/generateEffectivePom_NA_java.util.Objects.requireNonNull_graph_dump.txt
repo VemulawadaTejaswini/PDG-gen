@@ -1,0 +1,8 @@
+Line_2 $$ private static Path generateEffectivePom(Path pomXml) --> Line_4 $$ Objects.requireNonNull(pomXml, "pom.xml path is null") [FD]
+Line_2 $$ private static Path generateEffectivePom(Path pomXml) --> Line_6 $$ LOG.info(String.format("Emit effective pom for %s to %s", pomXml, effectivePom)) [FD]
+Line_5 $$ Path effectivePom = Files.createTempFile("effective-pom", ".xml") --> Line_6 $$ LOG.info(String.format("Emit effective pom for %s to %s", pomXml, effectivePom)) [FD]
+Line_5 $$ Path effectivePom = Files.createTempFile("effective-pom", ".xml") --> Line_7 $$ String cmd = String.format("%s help:effective-pom -Doutput=%s", InferConfig.getMvnCommand(), effectivePom) [FD]
+Line_2 $$ private static Path generateEffectivePom(Path pomXml) --> Line_8 $$ File workingDirectory = pomXml.toAbsolutePath().getParent().toFile() [FD]
+Line_7 $$ String cmd = String.format("%s help:effective-pom -Doutput=%s", InferConfig.getMvnCommand(), effectivePom) --> Line_9 $$ int result = Runtime.getRuntime().exec(cmd, null, workingDirectory).waitFor() [FD]
+Line_8 $$ File workingDirectory = pomXml.toAbsolutePath().getParent().toFile() --> Line_9 $$ int result = Runtime.getRuntime().exec(cmd, null, workingDirectory).waitFor() [FD]
+Line_9 $$ int result = Runtime.getRuntime().exec(cmd, null, workingDirectory).waitFor() --> Line_10 $$ if (result != 0) [FD]

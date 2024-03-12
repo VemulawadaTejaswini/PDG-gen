@@ -1,0 +1,6 @@
+Line_3 $$ try (Connection connection = setConnection("&useCompression=" + compression)) --> Line_4 $$ Statement stmt = connection.createStatement() [FD]
+Line_4 $$ Statement stmt = connection.createStatement() --> Line_5 $$ stmt.execute("TRUNCATE BufferTest") [FD]
+Line_3 $$ try (Connection connection = setConnection("&useCompression=" + compression)) --> Line_6 $$ PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO BufferTest VALUES (?)") [FD]
+Line_6 $$ PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO BufferTest VALUES (?)") --> Line_7 $$ preparedStatement.setString(1, new String(arr)) [FD]
+Line_6 $$ PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO BufferTest VALUES (?)") --> Line_8 $$ preparedStatement.execute() [FD]
+Line_2 $$ private void sendByteBufferData(boolean compression, char[] arr) throws SQLException --> Line_9 $$ checkResult(arr) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ static <T> T instantiate(final Class<T> expectedType, final String defaultImpl) throws Exception --> Line_3 $$ final SecurityManager sm = System.getSecurityManager() [CD]
+Line_2 $$ static <T> T instantiate(final Class<T> expectedType, final String defaultImpl) throws Exception --> Line_4 $$ if (sm != null) [CD]
+Line_3 $$ final SecurityManager sm = System.getSecurityManager() --> Line_4 $$ if (sm != null) [FD]
+Line_4 $$ if (sm != null) --> Line_5 $$ return AccessController.doPrivileged(new PrivilegedExceptionAction<T>() [CD]
+Line_5 $$ return AccessController.doPrivileged(new PrivilegedExceptionAction<T>() --> Line_7 $$ return instantiateInternal(expectedType, defaultImpl) [CD]
+Line_2 $$ static <T> T instantiate(final Class<T> expectedType, final String defaultImpl) throws Exception --> Line_7 $$ return instantiateInternal(expectedType, defaultImpl) [FD]
+Line_4 $$ if (sm != null) --> Line_11 $$ return instantiateInternal(expectedType, defaultImpl) [CD]
+Line_2 $$ static <T> T instantiate(final Class<T> expectedType, final String defaultImpl) throws Exception --> Line_11 $$ return instantiateInternal(expectedType, defaultImpl) [FD]

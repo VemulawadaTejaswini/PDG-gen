@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized SuspendStatus suspendCommands(long timeout, String lockOwner, String message) --> Line_3 $$ BlockingQueue<AdminCommandLock.SuspendStatus> suspendStatusQ = new ArrayBlockingQueue<AdminCommandLock.SuspendStatus>(1) [CD]
+Line_2 $$ public synchronized SuspendStatus suspendCommands(long timeout, String lockOwner, String message) --> Line_4 $$ if (suspendCommandsLockThread != null && suspendCommandsLockThread.isAlive()) [CD]
+Line_4 $$ if (suspendCommandsLockThread != null && suspendCommandsLockThread.isAlive()) --> Line_5 $$ return SuspendStatus.ILLEGALSTATE [CD]
+Line_2 $$ public synchronized SuspendStatus suspendCommands(long timeout, String lockOwner, String message) --> Line_16 $$ suspendCommandsLockThread.start() [CD]
+Line_2 $$ public synchronized SuspendStatus suspendCommands(long timeout, String lockOwner, String message) --> Line_17 $$ SuspendStatus suspendStatus = queueTake(suspendStatusQ) [CD]
+Line_3 $$ BlockingQueue<AdminCommandLock.SuspendStatus> suspendStatusQ = new ArrayBlockingQueue<AdminCommandLock.SuspendStatus>(1) --> Line_17 $$ SuspendStatus suspendStatus = queueTake(suspendStatusQ) [FD]
+Line_2 $$ public synchronized SuspendStatus suspendCommands(long timeout, String lockOwner, String message) --> Line_18 $$ return suspendStatus [CD]

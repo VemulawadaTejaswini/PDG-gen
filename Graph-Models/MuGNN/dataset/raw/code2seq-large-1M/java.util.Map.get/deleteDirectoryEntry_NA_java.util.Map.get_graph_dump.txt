@@ -1,0 +1,7 @@
+Line_4 $$ List<DirectoryDeleteConstraint> deleteConstraints = currentDirectoryInfo.getDeleteConstraints() --> Line_5 $$ if (deleteConstraints != null && !deleteConstraints.isEmpty()) [FD]
+Line_6 $$ for (DirectoryDeleteConstraint deleteConstraint : deleteConstraints) --> Line_7 $$ if (!deleteConstraint.canDelete(dirService, entryId)) [FD]
+Line_7 $$ if (!deleteConstraint.canDelete(dirService, entryId)) --> Line_8 $$ facesMessages.add(StatusMessage.Severity.ERROR, messages.get("feedback.directory.deleteEntry.constraintError")) [CD]
+Line_7 $$ if (!deleteConstraint.canDelete(dirService, entryId)) --> Line_9 $$ return [CD]
+Line_3 $$ String dirName = currentDirectoryInfo.getName() --> Line_13 $$ try (Session dirSession = dirService.open(dirName)) [FD]
+Line_13 $$ try (Session dirSession = dirService.open(dirName)) --> Line_15 $$ dirSession.deleteEntry(entryId) [FD]
+Line_3 $$ String dirName = currentDirectoryInfo.getName() --> Line_17 $$ Events.instance().raiseEvent(EventNames.DIRECTORY_CHANGED, dirName) [FD]

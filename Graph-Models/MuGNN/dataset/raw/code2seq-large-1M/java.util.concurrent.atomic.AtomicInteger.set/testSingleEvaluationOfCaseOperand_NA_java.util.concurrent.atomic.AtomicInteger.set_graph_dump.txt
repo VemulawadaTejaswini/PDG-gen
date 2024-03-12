@@ -1,0 +1,8 @@
+Line_2 $$ public void testSingleEvaluationOfCaseOperand() throws SQLException --> Line_3 $$ setAutoCommit(false) [CD]
+Line_2 $$ public void testSingleEvaluationOfCaseOperand() throws SQLException --> Line_4 $$ Statement s = createStatement() [CD]
+Line_2 $$ public void testSingleEvaluationOfCaseOperand() throws SQLException --> Line_5 $$ s.execute("create function count_me(x int) returns int " + "language java parameter style java external name '" + getClass().getName() + ".countMe' no sql deterministic") [CD]
+Line_4 $$ Statement s = createStatement() --> Line_5 $$ s.execute("create function count_me(x int) returns int " + "language java parameter style java external name '" + getClass().getName() + ".countMe' no sql deterministic") [FD]
+Line_2 $$ public void testSingleEvaluationOfCaseOperand() throws SQLException --> Line_6 $$ callCount.set(0) [CD]
+Line_2 $$ public void testSingleEvaluationOfCaseOperand() throws SQLException --> Line_7 $$ JDBC.assertUnorderedResultSet(s.executeQuery("select case count_me(x) when 1 then 'one' when 2 then 'two' " + "when 3 then 'three' end from (values 1, 2, 3) v(x)"), new String[][] [CD]
+Line_4 $$ Statement s = createStatement() --> Line_7 $$ JDBC.assertUnorderedResultSet(s.executeQuery("select case count_me(x) when 1 then 'one' when 2 then 'two' " + "when 3 then 'three' end from (values 1, 2, 3) v(x)"), new String[][] [FD]
+Line_2 $$ public void testSingleEvaluationOfCaseOperand() throws SQLException --> Line_8 $$ assertEquals(3, callCount.get()) [CD]

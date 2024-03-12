@@ -1,0 +1,7 @@
+Line_3 $$ try (Git git = new Git(db)) --> Line_4 $$ RevCommit sideCommit = prepareCherryPick(git) [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_5 $$ CherryPickResult result = git.cherryPick().include(sideCommit.getId()).call() [FD]
+Line_4 $$ RevCommit sideCommit = prepareCherryPick(git) --> Line_5 $$ CherryPickResult result = git.cherryPick().include(sideCommit.getId()).call() [FD]
+Line_5 $$ CherryPickResult result = git.cherryPick().include(sideCommit.getId()).call() --> Line_6 $$ assertEquals(CherryPickStatus.CONFLICTING, result.getStatus()) [FD]
+Line_4 $$ RevCommit sideCommit = prepareCherryPick(git) --> Line_10 $$ assertEquals(sideCommit.getId(), db.readCherryPickHead()) [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_13 $$ git.add().addFilepattern("a").call() [FD]
+Line_3 $$ try (Git git = new Git(db)) --> Line_15 $$ git.commit().setOnly("a").setMessage("resolve").call() [FD]

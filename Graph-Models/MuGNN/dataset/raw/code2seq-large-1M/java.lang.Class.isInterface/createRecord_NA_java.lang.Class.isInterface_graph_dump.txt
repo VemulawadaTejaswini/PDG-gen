@@ -1,0 +1,8 @@
+Line_2 $$ public static <E> E createRecord(Class<E> type, Schema schema) --> Line_3 $$ if (isGeneric(type) && !type.isInterface()) [FD]
+Line_2 $$ public static <E> E createRecord(Class<E> type, Schema schema) --> Line_3 $$ if (isGeneric(type) && !type.isInterface()) [CD]
+Line_3 $$ if (isGeneric(type) && !type.isInterface()) --> Line_4 $$ if (GenericData.Record.class.equals(type)) [CD]
+Line_2 $$ public static <E> E createRecord(Class<E> type, Schema schema) --> Line_4 $$ if (GenericData.Record.class.equals(type)) [FD]
+Line_2 $$ public static <E> E createRecord(Class<E> type, Schema schema) --> Line_5 $$ return (E) GenericData.get().newRecord(null, schema) [FD]
+Line_3 $$ if (isGeneric(type) && !type.isInterface()) --> Line_7 $$ return (E) ReflectData.newInstance(type, schema) [CD]
+Line_2 $$ public static <E> E createRecord(Class<E> type, Schema schema) --> Line_7 $$ return (E) ReflectData.newInstance(type, schema) [FD]
+Line_2 $$ public static <E> E createRecord(Class<E> type, Schema schema) --> Line_9 $$ return null [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public CompletableFuture<Void> shutdown() --> Line_3 $$ CompletableFuture<Void> result = new CompletableFuture<Void>() [CD]
+Line_2 $$ public CompletableFuture<Void> shutdown() --> Line_4 $$ if (!this.sender.isStopped()) [CD]
+Line_4 $$ if (!this.sender.isStopped()) --> Line_5 $$ this.sender.shutdown() [CD]
+Line_2 $$ public CompletableFuture<Void> shutdown() --> Line_7 $$ if (!this.cluster.isShutdown()) [CD]
+Line_7 $$ if (!this.cluster.isShutdown()) --> Line_8 $$ return this.cluster.shutdown() [CD]
+Line_7 $$ if (!this.cluster.isShutdown()) --> Line_10 $$ result.completeExceptionally(new IllegalStateException("Cluster transport alredy stopped")) [CD]
+Line_3 $$ CompletableFuture<Void> result = new CompletableFuture<Void>() --> Line_10 $$ result.completeExceptionally(new IllegalStateException("Cluster transport alredy stopped")) [FD]
+Line_7 $$ if (!this.cluster.isShutdown()) --> Line_11 $$ return result [CD]

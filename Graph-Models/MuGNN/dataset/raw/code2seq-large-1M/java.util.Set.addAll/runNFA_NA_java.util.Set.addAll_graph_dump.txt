@@ -1,0 +1,6 @@
+Line_2 $$ public <T> Collection<Map<String, List<T>>> runNFA(NFA<T> nfa, List<StreamRecord<T>> inputs) --> Line_3 $$ Set<Map<String, List<T>>> actualPatterns = new HashSet() [CD]
+Line_2 $$ public <T> Collection<Map<String, List<T>>> runNFA(NFA<T> nfa, List<StreamRecord<T>> inputs) --> Line_5 $$ Collection<Map<String, List<T>>> matchedPatterns = nfa.process(streamEvent.getValue(), streamEvent.getTimestamp()).f0 [FD]
+Line_4 $$ for (StreamRecord<T> streamEvent : inputs) --> Line_5 $$ Collection<Map<String, List<T>>> matchedPatterns = nfa.process(streamEvent.getValue(), streamEvent.getTimestamp()).f0 [FD]
+Line_3 $$ Set<Map<String, List<T>>> actualPatterns = new HashSet() --> Line_6 $$ actualPatterns.addAll(matchedPatterns) [FD]
+Line_5 $$ Collection<Map<String, List<T>>> matchedPatterns = nfa.process(streamEvent.getValue(), streamEvent.getTimestamp()).f0 --> Line_6 $$ actualPatterns.addAll(matchedPatterns) [FD]
+Line_2 $$ public <T> Collection<Map<String, List<T>>> runNFA(NFA<T> nfa, List<StreamRecord<T>> inputs) --> Line_8 $$ return actualPatterns [CD]

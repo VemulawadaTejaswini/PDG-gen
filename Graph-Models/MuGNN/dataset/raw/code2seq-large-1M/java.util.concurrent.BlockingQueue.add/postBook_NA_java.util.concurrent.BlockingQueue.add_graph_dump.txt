@@ -1,0 +1,6 @@
+Line_2 $$ public Boolean postBook(@DefaultValue("0") @QueryParam("total") int total, String bookName) --> Line_3 $$ final BroadcastProcess broadcastProcess = new BroadcastProcess(total, bookName) [CD]
+Line_2 $$ public Boolean postBook(@DefaultValue("0") @QueryParam("total") int total, String bookName) --> Line_4 $$ processQueue.add(broadcastProcess) [CD]
+Line_3 $$ final BroadcastProcess broadcastProcess = new BroadcastProcess(total, bookName) --> Line_4 $$ processQueue.add(broadcastProcess) [FD]
+Line_2 $$ public Boolean postBook(@DefaultValue("0") @QueryParam("total") int total, String bookName) --> Line_5 $$ Executors.newSingleThreadExecutor().execute(broadcastProcess) [CD]
+Line_3 $$ final BroadcastProcess broadcastProcess = new BroadcastProcess(total, bookName) --> Line_5 $$ Executors.newSingleThreadExecutor().execute(broadcastProcess) [FD]
+Line_2 $$ public Boolean postBook(@DefaultValue("0") @QueryParam("total") int total, String bookName) --> Line_6 $$ return true [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ private long checkPoolStarvation(ThreadPoolExecutor exec, long lastCompletedCnt, String pool) --> Line_3 $$ long completedCnt = exec.getCompletedTaskCount() [FD]
+Line_2 $$ private long checkPoolStarvation(ThreadPoolExecutor exec, long lastCompletedCnt, String pool) --> Line_3 $$ long completedCnt = exec.getCompletedTaskCount() [CD]
+Line_2 $$ private long checkPoolStarvation(ThreadPoolExecutor exec, long lastCompletedCnt, String pool) --> Line_4 $$ if (exec.getPoolSize() == exec.getActiveCount() && completedCnt == lastCompletedCnt && !exec.getQueue().isEmpty()) [FD]
+Line_2 $$ private long checkPoolStarvation(ThreadPoolExecutor exec, long lastCompletedCnt, String pool) --> Line_4 $$ if (exec.getPoolSize() == exec.getActiveCount() && completedCnt == lastCompletedCnt && !exec.getQueue().isEmpty()) [CD]
+Line_4 $$ if (exec.getPoolSize() == exec.getActiveCount() && completedCnt == lastCompletedCnt && !exec.getQueue().isEmpty()) --> Line_5 $$ LT.warn(log, "Possible thread pool starvation detected (no task completed in last " + interval + "ms, is " + pool + " thread pool size large enough?)") [CD]
+Line_2 $$ private long checkPoolStarvation(ThreadPoolExecutor exec, long lastCompletedCnt, String pool) --> Line_6 $$ return completedCnt [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testGetEntries() throws Exception --> Line_3 $$ Query query = CacheUtils.getQueryService().newQuery("select distinct * from /Portfolios.entries where value.ID = 1 and key = '1'") [CD]
+Line_2 $$ public void testGetEntries() throws Exception --> Line_4 $$ Collection result = (Collection) query.execute() [CD]
+Line_3 $$ Query query = CacheUtils.getQueryService().newQuery("select distinct * from /Portfolios.entries where value.ID = 1 and key = '1'") --> Line_4 $$ Collection result = (Collection) query.execute() [FD]
+Line_2 $$ public void testGetEntries() throws Exception --> Line_5 $$ Region.Entry entry = (Region.Entry) result.iterator().next() [CD]
+Line_4 $$ Collection result = (Collection) query.execute() --> Line_5 $$ Region.Entry entry = (Region.Entry) result.iterator().next() [FD]
+Line_2 $$ public void testGetEntries() throws Exception --> Line_6 $$ if (!entry.getKey().equals("1") || ((Portfolio) entry.getValue()).getID() != 1) [CD]
+Line_6 $$ if (!entry.getKey().equals("1") || ((Portfolio) entry.getValue()).getID() != 1) --> Line_7 $$ fail(query.getQueryString()) [CD]
+Line_3 $$ Query query = CacheUtils.getQueryService().newQuery("select distinct * from /Portfolios.entries where value.ID = 1 and key = '1'") --> Line_7 $$ fail(query.getQueryString()) [FD]

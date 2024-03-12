@@ -1,0 +1,7 @@
+Line_2 $$ public static int getNumPreferredPartitions(MatrixCharacteristics mc) --> Line_3 $$ if (!mc.dimsKnown()) [FD]
+Line_2 $$ public static int getNumPreferredPartitions(MatrixCharacteristics mc) --> Line_3 $$ if (!mc.dimsKnown()) [CD]
+Line_3 $$ if (!mc.dimsKnown()) --> Line_4 $$ return SparkExecutionContext.getDefaultParallelism(true) [CD]
+Line_2 $$ public static int getNumPreferredPartitions(MatrixCharacteristics mc) --> Line_5 $$ double hdfsBlockSize = InfrastructureAnalyzer.getHDFSBlockSize() [CD]
+Line_2 $$ public static int getNumPreferredPartitions(MatrixCharacteristics mc) --> Line_6 $$ double matrixPSize = OptimizerUtils.estimatePartitionedSizeExactSparsity(mc) [FD]
+Line_2 $$ public static int getNumPreferredPartitions(MatrixCharacteristics mc) --> Line_6 $$ double matrixPSize = OptimizerUtils.estimatePartitionedSizeExactSparsity(mc) [CD]
+Line_2 $$ public static int getNumPreferredPartitions(MatrixCharacteristics mc) --> Line_7 $$ return (int) Math.max(Math.ceil(matrixPSize / hdfsBlockSize), 1) [CD]

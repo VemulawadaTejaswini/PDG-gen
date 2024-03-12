@@ -1,0 +1,7 @@
+Line_2 $$ public void registerForStaticDataCleanup(Class<?> clazz) --> Line_3 $$ for (Method method : clazz.getMethods()) [FD]
+Line_3 $$ for (Method method : clazz.getMethods()) --> Line_4 $$ if (method.isAnnotationPresent(StaticDataCleanup.class)) [FD]
+Line_3 $$ for (Method method : clazz.getMethods()) --> Line_5 $$ if (!(Modifier.isStatic(method.getModifiers()) && Modifier.isPublic(method.getModifiers()))) [FD]
+Line_3 $$ for (Method method : clazz.getMethods()) --> Line_6 $$ throw new RuntimeException("Method " + method.getName() + " in class " + clazz.getName() + "should be public and static as it is annotated with  ") [FD]
+Line_2 $$ public void registerForStaticDataCleanup(Class<?> clazz) --> Line_6 $$ throw new RuntimeException("Method " + method.getName() + " in class " + clazz.getName() + "should be public and static as it is annotated with  ") [FD]
+Line_3 $$ for (Method method : clazz.getMethods()) --> Line_8 $$ LOG.debug("Method " + method.getName() + " in class " + method.getDeclaringClass() + " registered for static data cleanup") [FD]
+Line_3 $$ for (Method method : clazz.getMethods()) --> Line_9 $$ instance.cleanupMethods.add(method) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ private static <T> Constructor<T> findConstructor(Class<T> clazz, Object[] params) --> Line_3 $$ for (Constructor<?> constructor : clazz.getConstructors()) [FD]
+Line_3 $$ for (Constructor<?> constructor : clazz.getConstructors()) --> Line_4 $$ Class<?>[] paramTypes = constructor.getParameterTypes() [FD]
+Line_4 $$ Class<?>[] paramTypes = constructor.getParameterTypes() --> Line_5 $$ if (matches(paramTypes, params)) [FD]
+Line_2 $$ private static <T> Constructor<T> findConstructor(Class<T> clazz, Object[] params) --> Line_5 $$ if (matches(paramTypes, params)) [FD]
+Line_5 $$ if (matches(paramTypes, params)) --> Line_6 $$ Constructor<T> rval = (Constructor<T>) constructor [CD]
+Line_5 $$ if (matches(paramTypes, params)) --> Line_7 $$ return rval [CD]
+Line_2 $$ private static <T> Constructor<T> findConstructor(Class<T> clazz, Object[] params) --> Line_10 $$ throw new IllegalStateException("No appropriate constructor found for " + clazz.getCanonicalName()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void refreshPackages(Collection<Bundle> bundles) throws InterruptedException --> Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void refreshPackages(Collection<Bundle> bundles) throws InterruptedException --> Line_4 $$ FrameworkWiring fw = systemBundleContext.getBundle().adapt(FrameworkWiring.class) [CD]
+Line_2 $$ public void refreshPackages(Collection<Bundle> bundles) throws InterruptedException --> Line_5 $$ fw.refreshBundles(bundles, (FrameworkListener)  event -> [FD]
+Line_2 $$ public void refreshPackages(Collection<Bundle> bundles) throws InterruptedException --> Line_5 $$ fw.refreshBundles(bundles, (FrameworkListener)  event -> [CD]
+Line_6 $$ if (event.getType() == FrameworkEvent.ERROR) --> Line_7 $$ LOGGER.error("Framework error", event.getThrowable()) [CD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_9 $$ latch.countDown() [FD]
+Line_2 $$ public void refreshPackages(Collection<Bundle> bundles) throws InterruptedException --> Line_11 $$ latch.await() [CD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_11 $$ latch.await() [FD]

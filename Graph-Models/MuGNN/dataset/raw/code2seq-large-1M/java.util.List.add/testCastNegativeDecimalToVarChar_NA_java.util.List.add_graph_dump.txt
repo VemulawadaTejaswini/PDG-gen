@@ -1,0 +1,4 @@
+Line_6 $$ final List<String> columnNames = Lists.newArrayList() --> Line_7 $$ columnNames.add("decimal9_col") [FD]
+Line_6 $$ final List<String> columnNames = Lists.newArrayList() --> Line_8 $$ columnNames.add("decimal18_col") [FD]
+Line_9 $$ final String query = "select count(*) as c from dfs.tmp.table_with_decimal\n" + "where (cast(%1$s as varchar) = '-124' and (%1$s <= -5)) or (%1$s <= -256)" --> Line_11 $$ testBuilder().sqlQuery(query, colName).unOrdered().baselineColumns("c").baselineValues(1L).go() [FD]
+Line_10 $$ for (String colName : columnNames) --> Line_11 $$ testBuilder().sqlQuery(query, colName).unOrdered().baselineColumns("c").baselineValues(1L).go() [FD]

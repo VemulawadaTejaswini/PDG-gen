@@ -1,0 +1,6 @@
+Line_3 $$ try (InputStream uploadStream = Files.newInputStream(TestResources.getApiImagesLoadTestTarball())) --> Line_4 $$ dockerRule.getClient().loadImageCmd(uploadStream).exec() [FD]
+Line_2 $$ public void loadImageFromTar() throws Exception --> Line_9 $$ final Image image = findImageWithId(expectedImageId, dockerRule.getClient().listImagesCmd().exec()) [CD]
+Line_2 $$ public void loadImageFromTar() throws Exception --> Line_10 $$ assertThat("Can't find expected image after loading from a tar archive!", image, notNullValue()) [CD]
+Line_9 $$ final Image image = findImageWithId(expectedImageId, dockerRule.getClient().listImagesCmd().exec()) --> Line_10 $$ assertThat("Can't find expected image after loading from a tar archive!", image, notNullValue()) [FD]
+Line_2 $$ public void loadImageFromTar() throws Exception --> Line_11 $$ assertThat("Image after loading from a tar archive has wrong tags!", asList(image.getRepoTags()), equalTo(singletonList("docker-java/load:1.0"))) [CD]
+Line_9 $$ final Image image = findImageWithId(expectedImageId, dockerRule.getClient().listImagesCmd().exec()) --> Line_11 $$ assertThat("Image after loading from a tar archive has wrong tags!", asList(image.getRepoTags()), equalTo(singletonList("docker-java/load:1.0"))) [FD]

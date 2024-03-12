@@ -1,0 +1,7 @@
+Line_2 $$ public static void checkLeaks() throws InterruptedException --> Line_3 $$ for (int i = 0; count.get() != 0 && i < 50; i++) [CD]
+Line_3 $$ for (int i = 0; count.get() != 0 && i < 50; i++) --> Line_4 $$ WeakReference reference = new WeakReference(new Object()) [CD]
+Line_3 $$ for (int i = 0; count.get() != 0 && i < 50; i++) --> Line_5 $$ while (reference.get() != null) [CD]
+Line_4 $$ WeakReference reference = new WeakReference(new Object()) --> Line_5 $$ while (reference.get() != null) [FD]
+Line_5 $$ while (reference.get() != null) --> Line_6 $$ System.gc() [CD]
+Line_5 $$ while (reference.get() != null) --> Line_7 $$ Thread.sleep(100) [CD]
+Line_2 $$ public static void checkLeaks() throws InterruptedException --> Line_10 $$ Assert.assertEquals(0, count.get()) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void visitNoValueConstant(String name, boolean defined) --> Line_3 $$ if (booleanConstants.contains(name)) [CD]
+Line_2 $$ public void visitNoValueConstant(String name, boolean defined) --> Line_3 $$ if (booleanConstants.contains(name)) [FD]
+Line_3 $$ if (booleanConstants.contains(name)) --> Line_4 $$ flags.addConstant(new Constant(name, "#if defined(" + name + ")")) [CD]
+Line_3 $$ if (booleanConstants.contains(name)) --> Line_6 $$ flags.addConstant(new Constant(name + "_DEFINED", "#if defined(" + name + ")")) [CD]
+Line_3 $$ if (booleanConstants.contains(name)) --> Line_7 $$ if (!defined) [CD]
+Line_2 $$ public void visitNoValueConstant(String name, boolean defined) --> Line_7 $$ if (!defined) [FD]
+Line_7 $$ if (!defined) --> Line_8 $$ constants.addConstant(new Constant(name, "0")) [CD]
+Line_7 $$ if (!defined) --> Line_10 $$ System.err.println("Unexpected undefined StackWalk constant: " + name + ". Not included in blob.") [CD]

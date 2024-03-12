@@ -1,0 +1,6 @@
+Line_2 $$ private int getInt(Schema schema, String name) --> Line_3 $$ Object obj = schema.getObjectProp(name) [FD]
+Line_2 $$ private int getInt(Schema schema, String name) --> Line_3 $$ Object obj = schema.getObjectProp(name) [CD]
+Line_2 $$ private int getInt(Schema schema, String name) --> Line_4 $$ if (obj instanceof Integer) [CD]
+Line_3 $$ Object obj = schema.getObjectProp(name) --> Line_4 $$ if (obj instanceof Integer) [FD]
+Line_4 $$ if (obj instanceof Integer) --> Line_5 $$ return (Integer) obj [CD]
+Line_3 $$ Object obj = schema.getObjectProp(name) --> Line_7 $$ throw new IllegalArgumentException("Expected int " + name + ": " + (obj == null ? "null" : obj + ":" + obj.getClass().getSimpleName())) [FD]

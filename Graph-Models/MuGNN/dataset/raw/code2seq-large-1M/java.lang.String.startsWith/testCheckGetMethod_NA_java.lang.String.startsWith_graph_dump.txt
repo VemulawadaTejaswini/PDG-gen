@@ -1,0 +1,6 @@
+Line_2 $$ public void testCheckGetMethod() --> Line_3 $$ Method[] methods = URL.class.getDeclaredMethods() [CD]
+Line_4 $$ for (Method m : methods) --> Line_5 $$ if (m.getName().startsWith("get") && m.getParameterTypes().length > 0) [FD]
+Line_5 $$ if (m.getName().startsWith("get") && m.getParameterTypes().length > 0) --> Line_6 $$ if (m.getReturnType().isPrimitive()) [CD]
+Line_4 $$ for (Method m : methods) --> Line_6 $$ if (m.getReturnType().isPrimitive()) [FD]
+Line_6 $$ if (m.getReturnType().isPrimitive()) --> Line_7 $$ fail(String.format("URL.%s should not return primitive type", m.getName())) [CD]
+Line_4 $$ for (Method m : methods) --> Line_7 $$ fail(String.format("URL.%s should not return primitive type", m.getName())) [FD]

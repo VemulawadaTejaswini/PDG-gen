@@ -1,0 +1,6 @@
+Line_2 $$ public DecodedJWT getToken() throws IOException --> Line_3 $$ rlock.lock() [CD]
+Line_5 $$ if (token.isPresent()) --> Line_6 $$ Instant triggerRefresh = token.get().getExpiresAt().toInstant().minusSeconds(this.ttl.getSeconds()) [CD]
+Line_5 $$ if (token.isPresent()) --> Line_7 $$ if (triggerRefresh.isAfter(Instant.now())) [CD]
+Line_6 $$ Instant triggerRefresh = token.get().getExpiresAt().toInstant().minusSeconds(this.ttl.getSeconds()) --> Line_7 $$ if (triggerRefresh.isAfter(Instant.now())) [FD]
+Line_7 $$ if (triggerRefresh.isAfter(Instant.now())) --> Line_8 $$ return token.get() [CD]
+Line_2 $$ public DecodedJWT getToken() throws IOException --> Line_14 $$ return refreshToken() [CD]

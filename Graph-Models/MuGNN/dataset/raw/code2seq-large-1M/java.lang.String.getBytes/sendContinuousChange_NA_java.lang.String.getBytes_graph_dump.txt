@@ -1,0 +1,8 @@
+Line_2 $$ public void sendContinuousChange(TDRevision rev) --> Line_3 $$ Map<String, Object> changeDict = changesDictForRevision(rev) [CD]
+Line_2 $$ public void sendContinuousChange(TDRevision rev) --> Line_3 $$ Map<String, Object> changeDict = changesDictForRevision(rev) [FD]
+Line_3 $$ Map<String, Object> changeDict = changesDictForRevision(rev) --> Line_5 $$ String jsonString = TDServer.getObjectMapper().writeValueAsString(changeDict) [FD]
+Line_6 $$ if (callbackBlock != null) --> Line_7 $$ byte[] json = (jsonString + "\n").getBytes() [CD]
+Line_6 $$ if (callbackBlock != null) --> Line_8 $$ OutputStream os = connection.getResponseOutputStream() [CD]
+Line_8 $$ OutputStream os = connection.getResponseOutputStream() --> Line_10 $$ os.write(json) [FD]
+Line_7 $$ byte[] json = (jsonString + "\n").getBytes() --> Line_10 $$ os.write(json) [FD]
+Line_8 $$ OutputStream os = connection.getResponseOutputStream() --> Line_11 $$ os.flush() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public IMetadataNode waitForMetadataNode(long waitFor, TimeUnit timeUnit) throws InterruptedException --> Line_4 $$ long timeToWait = TimeUnit.MILLISECONDS.convert(waitFor, timeUnit) [FD]
+Line_5 $$ while (metadataNode == null && timeToWait > 0) --> Line_6 $$ long startTime = System.currentTimeMillis() [CD]
+Line_5 $$ while (metadataNode == null && timeToWait > 0) --> Line_7 $$ wait(timeToWait) [CD]
+Line_4 $$ long timeToWait = TimeUnit.MILLISECONDS.convert(waitFor, timeUnit) --> Line_7 $$ wait(timeToWait) [FD]
+Line_5 $$ while (metadataNode == null && timeToWait > 0) --> Line_8 $$ timeToWait -= System.currentTimeMillis() - startTime [CD]
+Line_4 $$ long timeToWait = TimeUnit.MILLISECONDS.convert(waitFor, timeUnit) --> Line_8 $$ timeToWait -= System.currentTimeMillis() - startTime [FD]
+Line_6 $$ long startTime = System.currentTimeMillis() --> Line_8 $$ timeToWait -= System.currentTimeMillis() - startTime [FD]
+Line_8 $$ timeToWait -= System.currentTimeMillis() - startTime --> Line_7 $$ wait(timeToWait) [FD]

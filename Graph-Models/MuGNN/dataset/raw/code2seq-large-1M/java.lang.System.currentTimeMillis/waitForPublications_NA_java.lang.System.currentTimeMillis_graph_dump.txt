@@ -1,0 +1,7 @@
+Line_2 $$ public void waitForPublications(long timeOutInMs) --> Line_3 $$ long start = System.currentTimeMillis() [CD]
+Line_2 $$ public void waitForPublications(long timeOutInMs) --> Line_4 $$ while (issuedPublications.size() > 0 && System.currentTimeMillis() - start < timeOutInMs) [CD]
+Line_5 $$ for (IMessagePublication pub : issuedPublications) --> Line_6 $$ if (pub.isFinished()) [FD]
+Line_6 $$ if (pub.isFinished()) --> Line_7 $$ issuedPublications.remove(pub) [CD]
+Line_5 $$ for (IMessagePublication pub : issuedPublications) --> Line_7 $$ issuedPublications.remove(pub) [FD]
+Line_2 $$ public void waitForPublications(long timeOutInMs) --> Line_10 $$ if (issuedPublications.size() > 0) [CD]
+Line_10 $$ if (issuedPublications.size() > 0) --> Line_11 $$ fail("Issued publications did not finish within specified timeout of " + timeOutInMs + " ms") [CD]

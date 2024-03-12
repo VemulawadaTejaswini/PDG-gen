@@ -1,0 +1,7 @@
+Line_2 $$ private void loadRegisteredScriptExtensions() --> Line_3 $$ if (scriptExtensions.isEmpty()) [CD]
+Line_3 $$ if (scriptExtensions.isEmpty()) --> Line_4 $$ scriptExtensions.add(getScriptExtension().substring(2)) [CD]
+Line_3 $$ if (scriptExtensions.isEmpty()) --> Line_5 $$ Path classpath = getClasspath() != null ? getClasspath() : new Path(getProject()) [CD]
+Line_3 $$ if (scriptExtensions.isEmpty()) --> Line_6 $$ final String[] pe = classpath.list() [CD]
+Line_7 $$ try (GroovyClassLoader loader = new GroovyClassLoader(getClass().getClassLoader())) --> Line_9 $$ loader.addClasspath(file) [FD]
+Line_8 $$ for (String file : pe) --> Line_9 $$ loader.addClasspath(file) [FD]
+Line_7 $$ try (GroovyClassLoader loader = new GroovyClassLoader(getClass().getClassLoader())) --> Line_11 $$ scriptExtensions.addAll(SourceExtensionHandler.getRegisteredExtensions(loader)) [FD]

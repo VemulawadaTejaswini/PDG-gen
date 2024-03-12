@@ -1,0 +1,6 @@
+Line_4 $$ ServiceIdActivation serviceIds = index.getServiceIds() --> Line_5 $$ Set<ServiceDate> serviceDates = _calendarService.getServiceDatesForServiceIds(serviceIds) [FD]
+Line_5 $$ Set<ServiceDate> serviceDates = _calendarService.getServiceDatesForServiceIds(serviceIds) --> Line_6 $$ if (!serviceDates.contains(date)) [FD]
+Line_4 $$ ServiceIdActivation serviceIds = index.getServiceIds() --> Line_8 $$ Date serviceDate = date.getAsDate(serviceIds.getTimeZone()) [FD]
+Line_8 $$ Date serviceDate = date.getAsDate(serviceIds.getTimeZone()) --> Line_14 $$ InstanceState state = new InstanceState(serviceDate.getTime(), entry.getFrequency()) [FD]
+Line_15 $$ StopTimeInstance sti = new StopTimeInstance(stopTime, state) --> Line_16 $$ frequenciesByRouteCollectionId.get(routeCollectionId).add(sti) [FD]
+Line_13 $$ AgencyAndId routeCollectionId = trip.getRouteCollection().getId() --> Line_16 $$ frequenciesByRouteCollectionId.get(routeCollectionId).add(sti) [FD]

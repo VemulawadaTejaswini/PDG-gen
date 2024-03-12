@@ -1,0 +1,7 @@
+Line_8 $$ File oldFile = new File(oldFileName) --> Line_10 $$ if (!oldFile.equals(newFile)) [FD]
+Line_9 $$ File newFile = new File(newFileName) --> Line_10 $$ if (!oldFile.equals(newFile)) [FD]
+Line_10 $$ if (!oldFile.equals(newFile)) --> Line_11 $$ env.renameDatabase(txn, oldFileName, null, newFileName) [CD]
+Line_2 $$ public static boolean renameDatabase(Environment env, Transaction txn, String oldFileName, String oldDbName, String newFileName, String newDbName) throws DatabaseException --> Line_11 $$ env.renameDatabase(txn, oldFileName, null, newFileName) [FD]
+Line_2 $$ public static boolean renameDatabase(Environment env, Transaction txn, String oldFileName, String oldDbName, String newFileName, String newDbName) throws DatabaseException --> Line_13 $$ if (oldDbName != null && !oldDbName.equals(newDbName)) [FD]
+Line_13 $$ if (oldDbName != null && !oldDbName.equals(newDbName)) --> Line_14 $$ env.renameDatabase(txn, newFileName, oldDbName, newDbName) [CD]
+Line_2 $$ public static boolean renameDatabase(Environment env, Transaction txn, String oldFileName, String oldDbName, String newFileName, String newDbName) throws DatabaseException --> Line_14 $$ env.renameDatabase(txn, newFileName, oldDbName, newDbName) [FD]

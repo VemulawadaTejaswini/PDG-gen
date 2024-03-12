@@ -1,0 +1,8 @@
+Line_4 $$ DmnDeployment deployment = dmnRepositoryService.createDeployment().name("Deployment 1").addInputStream("test.txt", new ByteArrayInputStream("Test content".getBytes())).deploy() --> Line_5 $$ HttpGet httpGet = new HttpGet(SERVER_URL_PREFIX + DmnRestUrls.createRelativeResourceUrl(DmnRestUrls.URL_DEPLOYMENT_RESOURCE_CONTENT, deployment.getId(), "test.txt")) [FD]
+Line_5 $$ HttpGet httpGet = new HttpGet(SERVER_URL_PREFIX + DmnRestUrls.createRelativeResourceUrl(DmnRestUrls.URL_DEPLOYMENT_RESOURCE_CONTENT, deployment.getId(), "test.txt")) --> Line_6 $$ httpGet.addHeader(new BasicHeader(HttpHeaders.ACCEPT, "text/plain")) [FD]
+Line_5 $$ HttpGet httpGet = new HttpGet(SERVER_URL_PREFIX + DmnRestUrls.createRelativeResourceUrl(DmnRestUrls.URL_DEPLOYMENT_RESOURCE_CONTENT, deployment.getId(), "test.txt")) --> Line_7 $$ CloseableHttpResponse response = executeRequest(httpGet, HttpStatus.SC_OK) [FD]
+Line_7 $$ CloseableHttpResponse response = executeRequest(httpGet, HttpStatus.SC_OK) --> Line_8 $$ String responseAsString = IOUtils.toString(response.getEntity().getContent()) [FD]
+Line_7 $$ CloseableHttpResponse response = executeRequest(httpGet, HttpStatus.SC_OK) --> Line_9 $$ closeResponse(response) [FD]
+Line_8 $$ String responseAsString = IOUtils.toString(response.getEntity().getContent()) --> Line_10 $$ assertNotNull(responseAsString) [FD]
+Line_8 $$ String responseAsString = IOUtils.toString(response.getEntity().getContent()) --> Line_11 $$ assertEquals("Test content", responseAsString) [FD]
+Line_4 $$ DmnDeployment deployment = dmnRepositoryService.createDeployment().name("Deployment 1").addInputStream("test.txt", new ByteArrayInputStream("Test content".getBytes())).deploy() --> Line_15 $$ dmnRepositoryService.deleteDeployment(deployment.getId()) [FD]

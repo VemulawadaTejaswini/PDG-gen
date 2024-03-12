@@ -1,0 +1,7 @@
+Line_2 $$ public void _testMergeJoin() --> Line_3 $$ IgniteCache<Integer, Org> c = ignite(CLIENT).getOrCreateCache(cacheConfig("org", true, Integer.class, Org.class)) [CD]
+Line_6 $$ List<List<?>> plan = c.query(new SqlFieldsQuery("explain " + qry).setEnforceJoinOrder(true)).getAll() --> Line_8 $$ String map0 = (String) plan.get(0).get(0) [FD]
+Line_6 $$ List<List<?>> plan = c.query(new SqlFieldsQuery("explain " + qry).setEnforceJoinOrder(true)).getAll() --> Line_9 $$ String map1 = (String) plan.get(1).get(0) [FD]
+Line_6 $$ List<List<?>> plan = c.query(new SqlFieldsQuery("explain " + qry).setEnforceJoinOrder(true)).getAll() --> Line_10 $$ String rdc = (String) plan.get(2).get(0) [FD]
+Line_8 $$ String map0 = (String) plan.get(0).get(0) --> Line_11 $$ assertTrue(map0.contains("ORDER BY")) [FD]
+Line_9 $$ String map1 = (String) plan.get(1).get(0) --> Line_12 $$ assertTrue(map1.contains("ORDER BY")) [FD]
+Line_10 $$ String rdc = (String) plan.get(2).get(0) --> Line_13 $$ assertEquals(3, rdc.split("merge_sorted").length) [FD]

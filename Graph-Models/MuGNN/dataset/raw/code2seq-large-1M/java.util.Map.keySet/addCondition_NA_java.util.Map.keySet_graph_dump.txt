@@ -1,0 +1,7 @@
+Line_2 $$ public void addCondition(Map map) --> Line_3 $$ for (Object columnName : map.keySet()) [FD]
+Line_2 $$ public void addCondition(Map map) --> Line_4 $$ if (map.get(columnName) == null) [FD]
+Line_3 $$ for (Object columnName : map.keySet()) --> Line_4 $$ if (map.get(columnName) == null) [FD]
+Line_4 $$ if (map.get(columnName) == null) --> Line_5 $$ logger.error(columnName + " 数据库查询条件值为空。") [CD]
+Line_4 $$ if (map.get(columnName) == null) --> Line_7 $$ getListCondition().add(new AndCondition(columnName.toString(), ConditionOperator.EQ, map.get(columnName).toString())) [CD]
+Line_3 $$ for (Object columnName : map.keySet()) --> Line_7 $$ getListCondition().add(new AndCondition(columnName.toString(), ConditionOperator.EQ, map.get(columnName).toString())) [FD]
+Line_2 $$ public void addCondition(Map map) --> Line_7 $$ getListCondition().add(new AndCondition(columnName.toString(), ConditionOperator.EQ, map.get(columnName).toString())) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void fail(Object msgId) --> Line_3 $$ Long batchId = _msgIdToBatchId.remove((Long) msgId) [CD]
+Line_2 $$ public void fail(Object msgId) --> Line_4 $$ FinishCondition cond = _finishConditions.remove(batchId) [CD]
+Line_3 $$ Long batchId = _msgIdToBatchId.remove((Long) msgId) --> Line_4 $$ FinishCondition cond = _finishConditions.remove(batchId) [FD]
+Line_2 $$ public void fail(Object msgId) --> Line_5 $$ if (cond != null) [CD]
+Line_4 $$ FinishCondition cond = _finishConditions.remove(batchId) --> Line_5 $$ if (cond != null) [FD]
+Line_5 $$ if (cond != null) --> Line_6 $$ _delegate.fail(cond.msgId) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void batchIssue() throws InterruptedException --> Line_3 $$ Queue<String> queue = QueueFactories.<String>unboundedQueue().build() [CD]
+Line_2 $$ public void batchIssue() throws InterruptedException --> Line_4 $$ new Thread(() -> [CD]
+Line_5 $$ for (int i = 0; i < 10; i++) --> Line_6 $$ queue.offer("New message " + i) [CD]
+Line_3 $$ Queue<String> queue = QueueFactories.<String>unboundedQueue().build() --> Line_6 $$ queue.offer("New message " + i) [FD]
+Line_5 $$ for (int i = 0; i < 10; i++) --> Line_7 $$ sleep(10000) [CD]
+Line_2 $$ public void batchIssue() throws InterruptedException --> Line_10 $$ queue.stream().groupedBySizeAndTime(10, 500, TimeUnit.MILLISECONDS).to( s -> new LazyReact(ThreadPools.getSequential()).fromStream(s)).async().peek(System.out::<>println).run() [CD]
+Line_3 $$ Queue<String> queue = QueueFactories.<String>unboundedQueue().build() --> Line_10 $$ queue.stream().groupedBySizeAndTime(10, 500, TimeUnit.MILLISECONDS).to( s -> new LazyReact(ThreadPools.getSequential()).fromStream(s)).async().peek(System.out::<>println).run() [FD]
+Line_2 $$ public void batchIssue() throws InterruptedException --> Line_11 $$ while (true) [CD]

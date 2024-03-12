@@ -1,0 +1,8 @@
+Line_2 $$ private static void updateAlbumsList() --> Line_4 $$ TreeMap<String, List<Song>> albumMap = new TreeMap(songs.stream().filter( song -> song.getAlbum() != null).collect(Collectors.groupingBy(Song::<>getAlbum))) [CD]
+Line_2 $$ private static void updateAlbumsList() --> Line_5 $$ int id = 0 [CD]
+Line_4 $$ TreeMap<String, List<Song>> albumMap = new TreeMap(songs.stream().filter( song -> song.getAlbum() != null).collect(Collectors.groupingBy(Song::<>getAlbum))) --> Line_6 $$ for (Map.Entry<String, List<Song>> entry : albumMap.entrySet()) [FD]
+Line_7 $$ ArrayList<Song> songs = new ArrayList() --> Line_8 $$ songs.addAll(entry.getValue()) [FD]
+Line_7 $$ ArrayList<Song> songs = new ArrayList() --> Line_9 $$ TreeMap<String, List<Song>> artistMap = new TreeMap(songs.stream().filter( song -> song.getArtist() != null).collect(Collectors.groupingBy(Song::<>getArtist))) [FD]
+Line_9 $$ TreeMap<String, List<Song>> artistMap = new TreeMap(songs.stream().filter( song -> song.getArtist() != null).collect(Collectors.groupingBy(Song::<>getArtist))) --> Line_10 $$ for (Map.Entry<String, List<Song>> e : artistMap.entrySet()) [FD]
+Line_11 $$ ArrayList<Song> albumSongs = new ArrayList() --> Line_13 $$ albumSongs.addAll(e.getValue()) [FD]
+Line_5 $$ int id = 0 --> Line_14 $$ albums.add(new Album(id++, entry.getKey(), artist, albumSongs)) [FD]

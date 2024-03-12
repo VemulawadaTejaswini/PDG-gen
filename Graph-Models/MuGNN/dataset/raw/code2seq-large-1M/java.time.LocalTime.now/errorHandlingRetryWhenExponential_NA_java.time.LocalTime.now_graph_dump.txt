@@ -1,0 +1,4 @@
+Line_2 $$ public void errorHandlingRetryWhenExponential() --> Line_3 $$ Flux<String> flux = Flux.<String>error(new IllegalArgumentException()).retryWhen( companion -> companion.doOnNext( s -> System.out.println(s + " at " + LocalTime.now())).zipWith(Flux.range(1, 4), ( error,  index) -> [CD]
+Line_5 $$ if (index < 4) --> Line_6 $$ return index [CD]
+Line_2 $$ public void errorHandlingRetryWhenExponential() --> Line_12 $$ StepVerifier.create(flux).verifyError(IllegalArgumentException.class) [CD]
+Line_3 $$ Flux<String> flux = Flux.<String>error(new IllegalArgumentException()).retryWhen( companion -> companion.doOnNext( s -> System.out.println(s + " at " + LocalTime.now())).zipWith(Flux.range(1, 4), ( error,  index) -> --> Line_12 $$ StepVerifier.create(flux).verifyError(IllegalArgumentException.class) [FD]

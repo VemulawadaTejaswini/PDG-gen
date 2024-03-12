@@ -1,0 +1,7 @@
+Line_4 $$ String configDirString = System.getProperty(SystemPropertyConstants.INSTANCE_ROOT_PROPERTY) --> Line_5 $$ if (!ok(configDirString)) [FD]
+Line_7 $$ File configDir = new File(new File(configDirString), "config") --> Line_8 $$ if (!configDir.isDirectory()) [FD]
+Line_7 $$ File configDir = new File(new File(configDirString), "config") --> Line_9 $$ throw new PidException(strings.get("bad_config_dir", configDir)) [FD]
+Line_10 $$ File pidFile = new File(configDir, "pid") --> Line_11 $$ if (pidFile.exists()) [FD]
+Line_11 $$ if (pidFile.exists()) --> Line_12 $$ if (!pidFile.delete() || pidFile.exists()) [CD]
+Line_10 $$ File pidFile = new File(configDir, "pid") --> Line_12 $$ if (!pidFile.delete() || pidFile.exists()) [FD]
+Line_10 $$ File pidFile = new File(configDir, "pid") --> Line_13 $$ throw new PidException(strings.get("cant_delete_pid_file", pidFile)) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void testBigBadFile() throws IOException --> Line_3 $$ ClassLoader cloader = Thread.currentThread().getContextClassLoader() [CD]
+Line_2 $$ public void testBigBadFile() throws IOException --> Line_4 $$ InputStream istream = cloader.getResourceAsStream("big-bad.csv") [CD]
+Line_3 $$ ClassLoader cloader = Thread.currentThread().getContextClassLoader() --> Line_4 $$ InputStream istream = cloader.getResourceAsStream("big-bad.csv") [FD]
+Line_2 $$ public void testBigBadFile() throws IOException --> Line_5 $$ CSVReader reader = new CSVReader(new InputStreamReader(istream), 65536, "big-bad.csv") [CD]
+Line_5 $$ CSVReader reader = new CSVReader(new InputStreamReader(istream), 65536, "big-bad.csv") --> Line_7 $$ String[] row = reader.next() [FD]
+Line_5 $$ CSVReader reader = new CSVReader(new InputStreamReader(istream), 65536, "big-bad.csv") --> Line_8 $$ while (reader.next() != null) [FD]

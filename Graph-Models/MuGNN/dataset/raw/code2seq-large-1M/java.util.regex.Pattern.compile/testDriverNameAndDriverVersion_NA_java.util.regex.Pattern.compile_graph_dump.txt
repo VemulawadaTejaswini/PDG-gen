@@ -1,0 +1,6 @@
+Line_3 $$ try (DBConnection conn = new DBConnection(connectionString)) --> Line_4 $$ DatabaseMetaData metaData = conn.getMetaData() [FD]
+Line_5 $$ Pattern p = Pattern.compile(driverNamePattern) --> Line_6 $$ Matcher m = p.matcher(metaData.getDriverName()) [FD]
+Line_4 $$ DatabaseMetaData metaData = conn.getMetaData() --> Line_6 $$ Matcher m = p.matcher(metaData.getDriverName()) [FD]
+Line_6 $$ Matcher m = p.matcher(metaData.getDriverName()) --> Line_7 $$ assertTrue(m.find(), "Driver name is not a correct format! ") [FD]
+Line_4 $$ DatabaseMetaData metaData = conn.getMetaData() --> Line_8 $$ String[] parts = metaData.getDriverVersion().split("\\.") [FD]
+Line_9 $$ if (parts.length != 4) --> Line_10 $$ assertTrue(true, "Driver version number should be four parts! ") [CD]

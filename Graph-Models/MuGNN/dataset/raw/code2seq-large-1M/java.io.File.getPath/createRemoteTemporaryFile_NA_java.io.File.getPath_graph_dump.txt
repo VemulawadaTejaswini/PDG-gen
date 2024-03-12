@@ -1,0 +1,8 @@
+Line_2 $$ private boolean createRemoteTemporaryFile() throws IOException, TimeoutException, AdbCommandRejectedException, SyncException --> Line_3 $$ File file = FileUtil.createTempFile(myRemotePath, "", true) [CD]
+Line_5 $$ SyncService sync = myDevice.getSyncService() --> Line_6 $$ if (sync == null) [FD]
+Line_3 $$ File file = FileUtil.createTempFile(myRemotePath, "", true) --> Line_10 $$ LOGGER.trace(String.format("Device \"%s\": Uploading temporary file \"%s\" to remote file \"%s\"", getDeviceTraceInfo(myDevice), file, myRemotePath)) [FD]
+Line_5 $$ SyncService sync = myDevice.getSyncService() --> Line_11 $$ sync.pushFile(file.getPath(), myRemotePath, SyncService.getNullProgressMonitor()) [FD]
+Line_3 $$ File file = FileUtil.createTempFile(myRemotePath, "", true) --> Line_11 $$ sync.pushFile(file.getPath(), myRemotePath, SyncService.getNullProgressMonitor()) [FD]
+Line_5 $$ SyncService sync = myDevice.getSyncService() --> Line_14 $$ sync.close() [FD]
+Line_3 $$ File file = FileUtil.createTempFile(myRemotePath, "", true) --> Line_18 $$ FileUtil.delete(file) [FD]
+Line_3 $$ File file = FileUtil.createTempFile(myRemotePath, "", true) --> Line_20 $$ LOGGER.warn(String.format("Device \"%s\": Error deleting temporary file \"%s\"", getDeviceTraceInfo(myDevice), file), e) [FD]

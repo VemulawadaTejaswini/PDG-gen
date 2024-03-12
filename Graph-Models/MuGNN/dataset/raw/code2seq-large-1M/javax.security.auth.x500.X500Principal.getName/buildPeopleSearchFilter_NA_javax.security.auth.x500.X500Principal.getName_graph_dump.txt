@@ -1,0 +1,7 @@
+Line_2 $$ private Filter buildPeopleSearchFilter(X509Certificate certificate) --> Line_3 $$ String certSubjectName = certificate.getSubjectX500Principal().getName() [CD]
+Line_2 $$ private Filter buildPeopleSearchFilter(X509Certificate certificate) --> Line_3 $$ String certSubjectName = certificate.getSubjectX500Principal().getName() [FD]
+Line_5 $$ LdapName ldapDN = new LdapName(certSubjectName) --> Line_7 $$ for (Rdn rdn : ldapDN.getRdns()) [FD]
+Line_6 $$ Map<String, Object> subs = new HashMap<String, Object>() --> Line_8 $$ subs.put(rdn.getType().toLowerCase(), rdn.getValue()) [FD]
+Line_7 $$ for (Rdn rdn : ldapDN.getRdns()) --> Line_8 $$ subs.put(rdn.getType().toLowerCase(), rdn.getValue()) [FD]
+Line_10 $$ StrSubstitutor sub = new StrSubstitutor(subs) --> Line_11 $$ String filterStr = sub.replace(ldapSearchConfiguration.getUserSearchFilter()) [FD]
+Line_11 $$ String filterStr = sub.replace(ldapSearchConfiguration.getUserSearchFilter()) --> Line_12 $$ return Filter.create(filterStr) [FD]

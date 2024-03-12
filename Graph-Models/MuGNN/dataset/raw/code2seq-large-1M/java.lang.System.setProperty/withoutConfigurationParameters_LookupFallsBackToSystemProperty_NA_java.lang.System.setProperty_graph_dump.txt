@@ -1,0 +1,7 @@
+Line_2 $$ void withoutConfigurationParameters_LookupFallsBackToSystemProperty() --> Line_3 $$ System.setProperty(FOO, BAR) [CD]
+Line_5 $$ TestEngineSpy engine = new TestEngineSpy() --> Line_6 $$ DefaultLauncher launcher = createLauncher(engine) [FD]
+Line_6 $$ DefaultLauncher launcher = createLauncher(engine) --> Line_7 $$ launcher.execute(request().build()) [FD]
+Line_8 $$ ConfigurationParameters configurationParameters = engine.requestForExecution.getConfigurationParameters() --> Line_9 $$ assertThat(configurationParameters.size()).isEqualTo(0) [FD]
+Line_8 $$ ConfigurationParameters configurationParameters = engine.requestForExecution.getConfigurationParameters() --> Line_10 $$ Optional<String> optionalFoo = configurationParameters.get(FOO) [FD]
+Line_10 $$ Optional<String> optionalFoo = configurationParameters.get(FOO) --> Line_11 $$ assertTrue(optionalFoo.isPresent(), "foo should have been picked up via system property") [FD]
+Line_10 $$ Optional<String> optionalFoo = configurationParameters.get(FOO) --> Line_12 $$ assertEquals(BAR, optionalFoo.get(), "foo property") [FD]

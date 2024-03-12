@@ -1,0 +1,8 @@
+Line_2 $$ public byte[] mangle(byte[] input, boolean isC2S) --> Line_3 $$ byte[] original = input [CD]
+Line_6 $$ PyObject someFunc = interpreter.get("mangle") --> Line_7 $$ if (someFunc == null) [FD]
+Line_2 $$ public byte[] mangle(byte[] input, boolean isC2S) --> Line_7 $$ if (someFunc == null) [FD]
+Line_7 $$ if (someFunc == null) --> Line_8 $$ return input [CD]
+Line_6 $$ PyObject someFunc = interpreter.get("mangle") --> Line_9 $$ PyObject result = someFunc.__call__(new PyByteArray(input), new PyBoolean(isC2S)) [FD]
+Line_9 $$ PyObject result = someFunc.__call__(new PyByteArray(input), new PyBoolean(isC2S)) --> Line_10 $$ PyByteArray array = (PyByteArray) result.__tojava__(Object.class) [FD]
+Line_12 $$ for (int i = 0; i < array.__len__(); i++) --> Line_13 $$ out[i] = (byte) array.get(i).__tojava__(Byte.class) [CD]
+Line_12 $$ for (int i = 0; i < array.__len__(); i++) --> Line_13 $$ out[i] = (byte) array.get(i).__tojava__(Byte.class) [FD]

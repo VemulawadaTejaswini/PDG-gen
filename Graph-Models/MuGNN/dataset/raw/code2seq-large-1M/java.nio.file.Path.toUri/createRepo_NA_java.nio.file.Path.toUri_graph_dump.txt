@@ -1,0 +1,8 @@
+Line_2 $$ private void createRepo(String prefix, String version, String repo) throws Exception --> Line_3 $$ Path repoFile = getBwcIndicesPath().resolve(prefix + "-" + version + ".zip") [CD]
+Line_2 $$ private void createRepo(String prefix, String version, String repo) throws Exception --> Line_4 $$ URI repoFileUri = repoFile.toUri() [CD]
+Line_3 $$ Path repoFile = getBwcIndicesPath().resolve(prefix + "-" + version + ".zip") --> Line_4 $$ URI repoFileUri = repoFile.toUri() [FD]
+Line_2 $$ private void createRepo(String prefix, String version, String repo) throws Exception --> Line_5 $$ URI repoJarUri = new URI("jar:" + repoFileUri.toString() + "!/repo/") [CD]
+Line_4 $$ URI repoFileUri = repoFile.toUri() --> Line_5 $$ URI repoJarUri = new URI("jar:" + repoFileUri.toString() + "!/repo/") [FD]
+Line_2 $$ private void createRepo(String prefix, String version, String repo) throws Exception --> Line_7 $$ assertAcked(client().admin().cluster().preparePutRepository(repo).setType("url").setSettings(Settings.builder().put("url", repoJarUri.toString()))) [CD]
+Line_2 $$ private void createRepo(String prefix, String version, String repo) throws Exception --> Line_7 $$ assertAcked(client().admin().cluster().preparePutRepository(repo).setType("url").setSettings(Settings.builder().put("url", repoJarUri.toString()))) [FD]
+Line_5 $$ URI repoJarUri = new URI("jar:" + repoFileUri.toString() + "!/repo/") --> Line_7 $$ assertAcked(client().admin().cluster().preparePutRepository(repo).setType("url").setSettings(Settings.builder().put("url", repoJarUri.toString()))) [FD]

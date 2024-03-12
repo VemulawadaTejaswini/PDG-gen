@@ -1,0 +1,5 @@
+Line_4 $$ if (connection.getBlockingCallFailoverTimeout() < 0) --> Line_5 $$ while (failingOver) [CD]
+Line_5 $$ while (failingOver) --> Line_6 $$ failoverCondition.await() [CD]
+Line_4 $$ if (connection.getBlockingCallFailoverTimeout() < 0) --> Line_8 $$ if (!ConcurrentUtil.await(failoverCondition, connection.getBlockingCallFailoverTimeout())) [CD]
+Line_8 $$ if (!ConcurrentUtil.await(failoverCondition, connection.getBlockingCallFailoverTimeout())) --> Line_9 $$ logger.debug(timeoutMsg) [CD]
+Line_2 $$ private void waitForFailOver(String timeoutMsg) --> Line_9 $$ logger.debug(timeoutMsg) [FD]

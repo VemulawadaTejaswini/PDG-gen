@@ -1,0 +1,7 @@
+Line_3 $$ for (String key : sCache.keySet()) --> Line_4 $$ WeakReference<WorkerHandler> ref = sCache.get(key) [FD]
+Line_4 $$ WeakReference<WorkerHandler> ref = sCache.get(key) --> Line_5 $$ WorkerHandler handler = ref.get() [FD]
+Line_5 $$ WorkerHandler handler = ref.get() --> Line_6 $$ if (handler != null && handler.getThread().isAlive()) [FD]
+Line_6 $$ if (handler != null && handler.getThread().isAlive()) --> Line_7 $$ handler.getThread().interrupt() [CD]
+Line_5 $$ WorkerHandler handler = ref.get() --> Line_7 $$ handler.getThread().interrupt() [FD]
+Line_4 $$ WeakReference<WorkerHandler> ref = sCache.get(key) --> Line_9 $$ ref.clear() [FD]
+Line_2 $$ public static void destroy() --> Line_11 $$ sCache.clear() [CD]

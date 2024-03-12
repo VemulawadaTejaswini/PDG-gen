@@ -1,0 +1,7 @@
+Line_2 $$ public void onEnter() --> Line_3 $$ final long timeToWaitMillis = getParameters().commitTimeoutMillis - (System.currentTimeMillis() - lastCommitSupplier.getAsLong()) [CD]
+Line_2 $$ public void onEnter() --> Line_4 $$ uncommittedOffsets = uncommittedOffsetsSupplier.get() [CD]
+Line_2 $$ public void onEnter() --> Line_5 $$ if (!uncommittedOffsets.isEmpty() && timeToWaitMillis > 0) [CD]
+Line_5 $$ if (!uncommittedOffsets.isEmpty() && timeToWaitMillis > 0) --> Line_6 $$ scheduleTask(() -> switchState(new CleanupState()), timeToWaitMillis, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ final long timeToWaitMillis = getParameters().commitTimeoutMillis - (System.currentTimeMillis() - lastCommitSupplier.getAsLong()) --> Line_6 $$ scheduleTask(() -> switchState(new CleanupState()), timeToWaitMillis, TimeUnit.MILLISECONDS) [FD]
+Line_5 $$ if (!uncommittedOffsets.isEmpty() && timeToWaitMillis > 0) --> Line_13 $$ reactOnTopologyChange() [CD]
+Line_5 $$ if (!uncommittedOffsets.isEmpty() && timeToWaitMillis > 0) --> Line_15 $$ switchState(new CleanupState()) [CD]

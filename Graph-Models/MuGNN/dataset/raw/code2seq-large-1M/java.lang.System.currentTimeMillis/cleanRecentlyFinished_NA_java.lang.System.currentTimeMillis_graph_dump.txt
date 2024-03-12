@@ -1,0 +1,8 @@
+Line_2 $$ private void cleanRecentlyFinished() --> Line_3 $$ final long cleanupThreshold = System.currentTimeMillis() - RECENTLY_FINISHED_TIME_TO_LIVE [CD]
+Line_2 $$ private void cleanRecentlyFinished() --> Line_4 $$ final ArrayList<Integer> executionToKill = new ArrayList() [CD]
+Line_3 $$ final long cleanupThreshold = System.currentTimeMillis() - RECENTLY_FINISHED_TIME_TO_LIVE --> Line_6 $$ if (flow.getEndTime() < cleanupThreshold) [FD]
+Line_5 $$ for (final ExecutableFlow flow : FlowRunnerManager.this.recentlyFinishedFlows.values()) --> Line_6 $$ if (flow.getEndTime() < cleanupThreshold) [FD]
+Line_6 $$ if (flow.getEndTime() < cleanupThreshold) --> Line_7 $$ executionToKill.add(flow.getExecutionId()) [CD]
+Line_4 $$ final ArrayList<Integer> executionToKill = new ArrayList() --> Line_7 $$ executionToKill.add(flow.getExecutionId()) [FD]
+Line_5 $$ for (final ExecutableFlow flow : FlowRunnerManager.this.recentlyFinishedFlows.values()) --> Line_7 $$ executionToKill.add(flow.getExecutionId()) [FD]
+Line_10 $$ for (final Integer id : executionToKill) --> Line_12 $$ FlowRunnerManager.this.recentlyFinishedFlows.remove(id) [FD]

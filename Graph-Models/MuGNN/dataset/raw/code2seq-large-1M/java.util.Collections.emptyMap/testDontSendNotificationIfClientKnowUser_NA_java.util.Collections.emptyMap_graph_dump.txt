@@ -1,0 +1,8 @@
+Line_2 $$ public void testDontSendNotificationIfClientKnowUser() throws UnsupportedEncodingException --> Line_3 $$ ClientDetailsEntity testClient = new ClientDetailsEntity(clientId) [CD]
+Line_2 $$ public void testDontSendNotificationIfClientKnowUser() throws UnsupportedEncodingException --> Line_4 $$ when(mock_userConnectionDao.findByProviderIdAndProviderUserIdAndIdType(anyString(), anyString(), anyString())).thenReturn(null) [CD]
+Line_2 $$ public void testDontSendNotificationIfClientKnowUser() throws UnsupportedEncodingException --> Line_5 $$ when(mock_clientDetailsEntityCacheManager.retrieveByIdP(anyString())).thenReturn(testClient) [CD]
+Line_3 $$ ClientDetailsEntity testClient = new ClientDetailsEntity(clientId) --> Line_5 $$ when(mock_clientDetailsEntityCacheManager.retrieveByIdP(anyString())).thenReturn(testClient) [FD]
+Line_2 $$ public void testDontSendNotificationIfClientKnowUser() throws UnsupportedEncodingException --> Line_6 $$ when(mock_orcidOauth2TokenDetailService.doesClientKnowUser(anyString(), anyString())).thenReturn(true) [CD]
+Line_2 $$ public void testDontSendNotificationIfClientKnowUser() throws UnsupportedEncodingException --> Line_7 $$ institutionalSignInManager.createUserConnectionAndNotify("idType", "remoteUserId", "displayName", "providerId", userOrcid, Collections.<String, String>emptyMap()) [CD]
+Line_2 $$ public void testDontSendNotificationIfClientKnowUser() throws UnsupportedEncodingException --> Line_8 $$ verify(mock_userConnectionDao, times(1)).persist(any()) [CD]
+Line_2 $$ public void testDontSendNotificationIfClientKnowUser() throws UnsupportedEncodingException --> Line_9 $$ verify(mock_notificationManager, never()).sendAcknowledgeMessage(userOrcid, clientId) [CD]

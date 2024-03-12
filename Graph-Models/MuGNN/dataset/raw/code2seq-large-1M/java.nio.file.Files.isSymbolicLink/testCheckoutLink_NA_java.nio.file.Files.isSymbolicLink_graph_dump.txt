@@ -1,0 +1,7 @@
+Line_2 $$ public void testCheckoutLink() throws Exception --> Line_3 $$ Assume.assumeTrue(FS.DETECTED.supportsSymlinks()) [CD]
+Line_5 $$ Path path = writeLink("a", "link_a") --> Line_6 $$ assertTrue(Files.isSymbolicLink(path)) [FD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_7 $$ git.add().addFilepattern(".").call() [FD]
+Line_4 $$ try (Git git = new Git(db)) --> Line_8 $$ git.commit().setMessage("commit link a").call() [FD]
+Line_5 $$ Path path = writeLink("a", "link_a") --> Line_11 $$ assertFalse(Files.isSymbolicLink(path)) [FD]
+Line_5 $$ Path path = writeLink("a", "link_a") --> Line_13 $$ assertEquals("link_a", FileUtils.readSymLink(path.toFile())) [FD]
+Line_5 $$ Path path = writeLink("a", "link_a") --> Line_14 $$ assertTrue(Files.isSymbolicLink(path)) [FD]

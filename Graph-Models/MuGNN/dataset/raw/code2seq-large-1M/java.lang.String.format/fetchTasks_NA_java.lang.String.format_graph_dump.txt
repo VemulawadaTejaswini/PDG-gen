@@ -1,0 +1,8 @@
+Line_2 $$ public Collection<Protos.TaskInfo> fetchTasks() throws StateStoreException --> Line_3 $$ Collection<Protos.TaskInfo> taskInfos = new ArrayList() [CD]
+Line_4 $$ for (String taskName : fetchTaskNames()) --> Line_5 $$ Optional<Protos.TaskInfo> taskInfoOptional = fetchTask(taskName) [FD]
+Line_5 $$ Optional<Protos.TaskInfo> taskInfoOptional = fetchTask(taskName) --> Line_6 $$ if (taskInfoOptional.isPresent()) [FD]
+Line_6 $$ if (taskInfoOptional.isPresent()) --> Line_7 $$ taskInfos.add(taskInfoOptional.get()) [CD]
+Line_3 $$ Collection<Protos.TaskInfo> taskInfos = new ArrayList() --> Line_7 $$ taskInfos.add(taskInfoOptional.get()) [FD]
+Line_5 $$ Optional<Protos.TaskInfo> taskInfoOptional = fetchTask(taskName) --> Line_7 $$ taskInfos.add(taskInfoOptional.get()) [FD]
+Line_4 $$ for (String taskName : fetchTaskNames()) --> Line_9 $$ throw new StateStoreException(Reason.NOT_FOUND, String.format("Expected task named %s to be present when retrieving all tasks", taskName)) [FD]
+Line_2 $$ public Collection<Protos.TaskInfo> fetchTasks() throws StateStoreException --> Line_12 $$ return taskInfos [CD]

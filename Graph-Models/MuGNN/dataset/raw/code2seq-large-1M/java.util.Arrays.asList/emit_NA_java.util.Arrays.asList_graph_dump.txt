@@ -1,0 +1,6 @@
+Line_2 $$ public void emit(SocketIO socket, String event, IOAcknowledge ack, Object... args) --> Line_4 $$ JSONObject json = new JSONObject().put("name", event).put("args", new JSONArray(Arrays.asList(args))) [FD]
+Line_2 $$ public void emit(SocketIO socket, String event, IOAcknowledge ack, Object... args) --> Line_5 $$ IOMessage message = new IOMessage(IOMessage.TYPE_EVENT, socket.getNamespace(), json.toString()) [FD]
+Line_4 $$ JSONObject json = new JSONObject().put("name", event).put("args", new JSONArray(Arrays.asList(args))) --> Line_5 $$ IOMessage message = new IOMessage(IOMessage.TYPE_EVENT, socket.getNamespace(), json.toString()) [FD]
+Line_5 $$ IOMessage message = new IOMessage(IOMessage.TYPE_EVENT, socket.getNamespace(), json.toString()) --> Line_6 $$ synthesizeAck(message, ack) [FD]
+Line_2 $$ public void emit(SocketIO socket, String event, IOAcknowledge ack, Object... args) --> Line_6 $$ synthesizeAck(message, ack) [FD]
+Line_5 $$ IOMessage message = new IOMessage(IOMessage.TYPE_EVENT, socket.getNamespace(), json.toString()) --> Line_7 $$ sendPlain(message.toString()) [FD]

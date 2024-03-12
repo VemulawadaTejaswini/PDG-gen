@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection connection = setConnection()) --> Line_4 $$ try (Statement stmt = connection.createStatement()) [FD]
+Line_6 $$ SecurityManager securityManager = System.getSecurityManager() --> Line_7 $$ if (securityManager != null) [FD]
+Line_6 $$ SecurityManager securityManager = System.getSecurityManager() --> Line_9 $$ securityManager.checkPermission(sqlPermission) [FD]
+Line_5 $$ SQLPermission sqlPermission = new SQLPermission("callAbort") --> Line_9 $$ securityManager.checkPermission(sqlPermission) [FD]
+Line_3 $$ try (Connection connection = setConnection()) --> Line_16 $$ connection.abort(executor) [FD]
+Line_15 $$ Executor executor = Runnable::<>run --> Line_16 $$ connection.abort(executor) [FD]
+Line_3 $$ try (Connection connection = setConnection()) --> Line_17 $$ assertTrue(connection.isClosed()) [FD]
+Line_4 $$ try (Statement stmt = connection.createStatement()) --> Line_19 $$ stmt.executeQuery("SELECT 1") [FD]

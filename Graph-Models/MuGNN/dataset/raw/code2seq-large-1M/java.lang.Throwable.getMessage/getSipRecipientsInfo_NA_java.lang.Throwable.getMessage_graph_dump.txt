@@ -1,0 +1,7 @@
+Line_2 $$ public List<SipRecipientInfo> getSipRecipientsInfo() --> Line_3 $$ List<SipRecipientInfo> sri = super.getSipRecipientsInfo() [CD]
+Line_2 $$ public List<SipRecipientInfo> getSipRecipientsInfo() --> Line_4 $$ if (!sipRecipientsInfoAdded) [CD]
+Line_4 $$ if (!sipRecipientsInfoAdded) --> Line_5 $$ String header = (getHeaders() == null) ? null : getHeaders().getValues(HeaderConstants.HEADER_VIA) [CD]
+Line_4 $$ if (!sipRecipientsInfoAdded) --> Line_6 $$ if (header != null) [CD]
+Line_5 $$ String header = (getHeaders() == null) ? null : getHeaders().getValues(HeaderConstants.HEADER_VIA) --> Line_6 $$ if (header != null) [FD]
+Line_3 $$ List<SipRecipientInfo> sri = super.getSipRecipientsInfo() --> Line_8 $$ sri.addAll(new SipRecipientInfoReader(header).readValues()) [FD]
+Line_2 $$ public List<SipRecipientInfo> getSipRecipientsInfo() --> Line_16 $$ return sri [CD]

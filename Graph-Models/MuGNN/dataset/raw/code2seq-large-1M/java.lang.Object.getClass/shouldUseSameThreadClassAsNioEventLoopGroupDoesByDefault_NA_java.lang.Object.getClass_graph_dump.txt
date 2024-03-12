@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldUseSameThreadClassAsNioEventLoopGroupDoesByDefault() throws Exception --> Line_3 $$ NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup(1) [CD]
+Line_2 $$ public void shouldUseSameThreadClassAsNioEventLoopGroupDoesByDefault() throws Exception --> Line_4 $$ eventLoopGroup = EventLoopGroupFactory.newEventLoopGroup(1) [CD]
+Line_3 $$ NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup(1) --> Line_6 $$ Thread defaultThread = getThread(nioEventLoopGroup) [FD]
+Line_6 $$ Thread defaultThread = getThread(nioEventLoopGroup) --> Line_8 $$ assertEquals(defaultThread.getClass(), driverThread.getClass().getSuperclass()) [FD]
+Line_7 $$ Thread driverThread = getThread(eventLoopGroup) --> Line_8 $$ assertEquals(defaultThread.getClass(), driverThread.getClass().getSuperclass()) [FD]
+Line_6 $$ Thread defaultThread = getThread(nioEventLoopGroup) --> Line_9 $$ assertEquals(defaultThread.getPriority(), driverThread.getPriority()) [FD]
+Line_7 $$ Thread driverThread = getThread(eventLoopGroup) --> Line_9 $$ assertEquals(defaultThread.getPriority(), driverThread.getPriority()) [FD]
+Line_3 $$ NioEventLoopGroup nioEventLoopGroup = new NioEventLoopGroup(1) --> Line_11 $$ shutdown(nioEventLoopGroup) [FD]

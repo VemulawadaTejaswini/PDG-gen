@@ -1,0 +1,6 @@
+Line_3 $$ try (Transaction tx = getDatabase().beginTx()) --> Line_5 $$ tx.success() [FD]
+Line_8 $$ Node event = getDatabase().findNode(Label.label("Event"), "id", 123) --> Line_9 $$ Node instant = event.getSingleRelationship(RelationshipType.withName("OCCURED_ON"), Direction.OUTGOING).getEndNode() [FD]
+Line_10 $$ Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC")) --> Line_11 $$ int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH) [FD]
+Line_11 $$ int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH) --> Line_12 $$ assertEquals(instant.getProperty("value"), dayOfMonth) [FD]
+Line_9 $$ Node instant = event.getSingleRelationship(RelationshipType.withName("OCCURED_ON"), Direction.OUTGOING).getEndNode() --> Line_12 $$ assertEquals(instant.getProperty("value"), dayOfMonth) [FD]
+Line_3 $$ try (Transaction tx = getDatabase().beginTx()) --> Line_13 $$ tx.success() [FD]

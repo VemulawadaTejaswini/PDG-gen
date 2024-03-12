@@ -1,0 +1,7 @@
+Line_2 $$ public void testAccelerateEndpoint() throws Exception --> Line_3 $$ String status = s3.getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest.builder().bucket(US_BUCKET_NAME).build()).statusString() [CD]
+Line_2 $$ public void testAccelerateEndpoint() throws Exception --> Line_4 $$ if (status == null || !status.equals("Enabled")) [CD]
+Line_3 $$ String status = s3.getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest.builder().bucket(US_BUCKET_NAME).build()).statusString() --> Line_4 $$ if (status == null || !status.equals("Enabled")) [FD]
+Line_4 $$ if (status == null || !status.equals("Enabled")) --> Line_5 $$ enableAccelerateOnBucket() [CD]
+Line_2 $$ public void testAccelerateEndpoint() throws Exception --> Line_7 $$ File uploadFile = new RandomTempFile(KEY_NAME, 1000) [CD]
+Line_2 $$ public void testAccelerateEndpoint() throws Exception --> Line_8 $$ accelerateClient.putObject(PutObjectRequest.builder().bucket(US_BUCKET_NAME).key(KEY_NAME).build(), RequestBody.fromFile(uploadFile)) [CD]
+Line_7 $$ File uploadFile = new RandomTempFile(KEY_NAME, 1000) --> Line_8 $$ accelerateClient.putObject(PutObjectRequest.builder().bucket(US_BUCKET_NAME).key(KEY_NAME).build(), RequestBody.fromFile(uploadFile)) [FD]

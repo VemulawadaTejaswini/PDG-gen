@@ -1,0 +1,7 @@
+Line_2 $$ public static Callable<Boolean> attemptFailure(String endpoint, Id attemptId) --> Line_3 $$ return () -> [CD]
+Line_2 $$ public static Callable<Boolean> attemptFailure(String endpoint, Id attemptId) --> Line_4 $$ CommandStatus attemptsStatus = attempts(endpoint, attemptId) [FD]
+Line_4 $$ CommandStatus attemptsStatus = attempts(endpoint, attemptId) --> Line_5 $$ String output = attemptsStatus.outUtf8() [FD]
+Line_5 $$ String output = attemptsStatus.outUtf8() --> Line_6 $$ if (output.contains("status: error")) [FD]
+Line_6 $$ if (output.contains("status: error")) --> Line_7 $$ return true [CD]
+Line_5 $$ String output = attemptsStatus.outUtf8() --> Line_9 $$ if (!output.contains("status: running")) [FD]
+Line_9 $$ if (!output.contains("status: running")) --> Line_10 $$ fail() [CD]

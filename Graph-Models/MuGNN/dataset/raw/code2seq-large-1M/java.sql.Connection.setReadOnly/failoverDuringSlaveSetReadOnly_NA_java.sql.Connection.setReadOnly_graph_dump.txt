@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection connection = getNewConnection("&socketTimeout=3000", true)) --> Line_4 $$ connection.setReadOnly(true) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&socketTimeout=3000", true)) --> Line_5 $$ int slaveServerId = getServerId(connection) [FD]
+Line_5 $$ int slaveServerId = getServerId(connection) --> Line_6 $$ stopProxy(slaveServerId, 2000) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&socketTimeout=3000", true)) --> Line_7 $$ connection.setReadOnly(false) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&socketTimeout=3000", true)) --> Line_8 $$ int masterServerId = getServerId(connection) [FD]
+Line_3 $$ try (Connection connection = getNewConnection("&socketTimeout=3000", true)) --> Line_10 $$ assertFalse(connection.isReadOnly()) [FD]
+Line_2 $$ public void failoverDuringSlaveSetReadOnly() throws Throwable --> Line_12 $$ Thread.sleep(2500) [CD]

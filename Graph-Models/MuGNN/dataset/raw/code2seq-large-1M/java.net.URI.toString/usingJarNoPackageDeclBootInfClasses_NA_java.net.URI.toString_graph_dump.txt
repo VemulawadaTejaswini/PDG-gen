@@ -1,0 +1,6 @@
+Line_2 $$ public void usingJarNoPackageDeclBootInfClasses() throws Exception --> Line_3 $$ ClassDescriptor t1 = compile("TestX", "public class TestX [CD]
+Line_2 $$ public void usingJarNoPackageDeclBootInfClasses() throws Exception --> Line_4 $$ File jar = JarBuilder.create().addEntryWithPrefix("BOOT-INF/classes/", t1).getJar() [CD]
+Line_2 $$ public void usingJarNoPackageDeclBootInfClasses() throws Exception --> Line_5 $$ assertJarContents(jar, "BOOT-INF/classes/", t1) [CD]
+Line_2 $$ public void usingJarNoPackageDeclBootInfClasses() throws Exception --> Line_6 $$ CompilationResult result = new RuntimeJavaCompiler().compile("A", "public class A [CD]
+Line_2 $$ public void usingJarNoPackageDeclBootInfClasses() throws Exception --> Line_7 $$ assertTrue("Should be no problems: " + result.getCompilationMessages(), result.getCompilationMessages().isEmpty()) [CD]
+Line_8 $$ try (URLClassLoader cl = new TestClassLoader(t1, descriptorFromResult(result))) --> Line_9 $$ Class<?> class1 = cl.loadClass("A") [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public ResponseBuilder evaluatePreconditions() --> Line_3 $$ List<String> ifMatch = headers.getRequestHeader(HttpHeaders.IF_MATCH) [CD]
+Line_2 $$ public ResponseBuilder evaluatePreconditions() --> Line_4 $$ if (ifMatch != null) [CD]
+Line_3 $$ List<String> ifMatch = headers.getRequestHeader(HttpHeaders.IF_MATCH) --> Line_4 $$ if (ifMatch != null) [FD]
+Line_5 $$ for (String value : ifMatch) --> Line_6 $$ if (!"*".equals(value)) [FD]
+Line_6 $$ if (!"*".equals(value)) --> Line_7 $$ return Response.status(Response.Status.PRECONDITION_FAILED).tag(EntityTag.valueOf(value)) [CD]
+Line_5 $$ for (String value : ifMatch) --> Line_7 $$ return Response.status(Response.Status.PRECONDITION_FAILED).tag(EntityTag.valueOf(value)) [FD]
+Line_2 $$ public ResponseBuilder evaluatePreconditions() --> Line_11 $$ return null [CD]

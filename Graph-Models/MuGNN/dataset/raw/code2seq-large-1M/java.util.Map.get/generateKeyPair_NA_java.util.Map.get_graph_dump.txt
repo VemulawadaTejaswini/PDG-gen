@@ -1,0 +1,6 @@
+Line_2 $$ public KeyPair generateKeyPair() --> Line_3 $$ if (group == null) [CD]
+Line_3 $$ if (group == null) --> Line_4 $$ final String curveName = SIZE_TO_CURVE_NAME.get(DEFAULT_KEY_SIZE) [CD]
+Line_3 $$ if (group == null) --> Line_5 $$ group = OpenSSLECGroupContext.getCurveByName(curveName) [CD]
+Line_4 $$ final String curveName = SIZE_TO_CURVE_NAME.get(DEFAULT_KEY_SIZE) --> Line_5 $$ group = OpenSSLECGroupContext.getCurveByName(curveName) [FD]
+Line_2 $$ public KeyPair generateKeyPair() --> Line_7 $$ final OpenSSLKey key = new OpenSSLKey(NativeCrypto.EC_KEY_generate_key(group.getContext())) [CD]
+Line_2 $$ public KeyPair generateKeyPair() --> Line_8 $$ return new KeyPair(new OpenSSLECPublicKey(group, key), new OpenSSLECPrivateKey(group, key)) [CD]

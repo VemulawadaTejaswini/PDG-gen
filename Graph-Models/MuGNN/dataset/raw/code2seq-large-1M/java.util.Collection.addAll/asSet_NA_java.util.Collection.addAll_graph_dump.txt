@@ -1,0 +1,6 @@
+Line_2 $$ public static <X, CX extends Collection<X>> Lens.Simple<CX, Set<X>> asSet(Function<? super CX, ? extends CX> copyFn) --> Line_3 $$ return simpleLens(HashSet::<>new, ( xsL,  xsS) -> [CD]
+Line_4 $$ Set<X> missing = new HashSet(xsS) --> Line_5 $$ missing.removeAll(xsL) [FD]
+Line_2 $$ public static <X, CX extends Collection<X>> Lens.Simple<CX, Set<X>> asSet(Function<? super CX, ? extends CX> copyFn) --> Line_6 $$ CX updated = copyFn.apply(xsL) [FD]
+Line_6 $$ CX updated = copyFn.apply(xsL) --> Line_7 $$ updated.addAll(missing) [FD]
+Line_4 $$ Set<X> missing = new HashSet(xsS) --> Line_7 $$ updated.addAll(missing) [FD]
+Line_6 $$ CX updated = copyFn.apply(xsL) --> Line_8 $$ updated.retainAll(xsS) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public Response quiesceCluster(@QueryParam("quiesce") String quiesce, @QueryParam("user") String user, @QueryParam("token") String token, @QueryParam("sudo") String sudo) --> Line_4 $$ if (permissionsManager.adminAction(user, token, sudo)) [FD]
+Line_4 $$ if (permissionsManager.adminAction(user, token, sudo)) --> Line_5 $$ boolean quiesced = systemManager.quiesceCluster(quiesce.equals("1"), user) [CD]
+Line_2 $$ public Response quiesceCluster(@QueryParam("quiesce") String quiesce, @QueryParam("user") String user, @QueryParam("token") String token, @QueryParam("sudo") String sudo) --> Line_5 $$ boolean quiesced = systemManager.quiesceCluster(quiesce.equals("1"), user) [FD]
+Line_4 $$ if (permissionsManager.adminAction(user, token, sudo)) --> Line_6 $$ String json = Jackson.defaultMapper().createObjectNode().put("quiesced", (quiesced ? "1" : "0")).toString() [CD]
+Line_4 $$ if (permissionsManager.adminAction(user, token, sudo)) --> Line_7 $$ return Response.ok(json).build() [CD]
+Line_6 $$ String json = Jackson.defaultMapper().createObjectNode().put("quiesced", (quiesced ? "1" : "0")).toString() --> Line_7 $$ return Response.ok(json).build() [FD]
+Line_4 $$ if (permissionsManager.adminAction(user, token, sudo)) --> Line_9 $$ return Response.status(Response.Status.FORBIDDEN).build() [CD]

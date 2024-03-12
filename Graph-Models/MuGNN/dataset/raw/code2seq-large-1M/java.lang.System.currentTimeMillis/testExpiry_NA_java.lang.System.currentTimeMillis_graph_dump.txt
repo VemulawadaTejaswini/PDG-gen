@@ -1,0 +1,5 @@
+Line_2 $$ public void testExpiry() --> Line_3 $$ final java.util.Date d = new java.util.Date(System.currentTimeMillis() - (86400 * 1000)) [CD]
+Line_2 $$ public void testExpiry() --> Line_4 $$ final Job j = Job.newBuilder().setName("foo").setVersion("1").setImage("foobar").setExpires(d).build() [CD]
+Line_3 $$ final java.util.Date d = new java.util.Date(System.currentTimeMillis() - (86400 * 1000)) --> Line_4 $$ final Job j = Job.newBuilder().setName("foo").setVersion("1").setImage("foobar").setExpires(d).build() [FD]
+Line_2 $$ public void testExpiry() --> Line_5 $$ assertThat(validator.validate(j), contains(startsWith("Job expires in the past"))) [CD]
+Line_4 $$ final Job j = Job.newBuilder().setName("foo").setVersion("1").setImage("foobar").setExpires(d).build() --> Line_5 $$ assertThat(validator.validate(j), contains(startsWith("Job expires in the past"))) [FD]

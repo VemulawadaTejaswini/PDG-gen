@@ -1,0 +1,5 @@
+Line_2 $$ private boolean isRolloutAllowed(double rolloutPercentage) --> Line_3 $$ String plainGuid = payloadDataManager.getWallet().getGuid().replace("-", "") [CD]
+Line_2 $$ private boolean isRolloutAllowed(double rolloutPercentage) --> Line_4 $$ byte[] guidHashBytes = Sha256Hash.hash(Hex.encode(plainGuid.getBytes())) [CD]
+Line_3 $$ String plainGuid = payloadDataManager.getWallet().getGuid().replace("-", "") --> Line_4 $$ byte[] guidHashBytes = Sha256Hash.hash(Hex.encode(plainGuid.getBytes())) [FD]
+Line_2 $$ private boolean isRolloutAllowed(double rolloutPercentage) --> Line_5 $$ int unsignedByte = guidHashBytes[0] & 0xff [CD]
+Line_2 $$ private boolean isRolloutAllowed(double rolloutPercentage) --> Line_6 $$ return ((unsignedByte + 1.0) / 256.0) <= rolloutPercentage [CD]

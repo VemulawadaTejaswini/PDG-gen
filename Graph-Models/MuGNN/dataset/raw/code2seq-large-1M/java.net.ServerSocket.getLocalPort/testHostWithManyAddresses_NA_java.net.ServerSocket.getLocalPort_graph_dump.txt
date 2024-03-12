@@ -1,0 +1,7 @@
+Line_2 $$ public void testHostWithManyAddresses() throws SQLException, IOException, InterruptedException --> Line_3 $$ CountDownLatch connectionAccepted = new CountDownLatch(1) [CD]
+Line_3 $$ CountDownLatch connectionAccepted = new CountDownLatch(1) --> Line_4 $$ try (ServerSocket sock = createServerSocket(connectionAccepted)) [FD]
+Line_5 $$ String[] addrs = --> Line_6 $$ JdbcThinTcpIo jdbcThinTcpIo = createTcpIo(addrs, sock.getLocalPort()) [FD]
+Line_4 $$ try (ServerSocket sock = createServerSocket(connectionAccepted)) --> Line_6 $$ JdbcThinTcpIo jdbcThinTcpIo = createTcpIo(addrs, sock.getLocalPort()) [FD]
+Line_6 $$ JdbcThinTcpIo jdbcThinTcpIo = createTcpIo(addrs, sock.getLocalPort()) --> Line_8 $$ jdbcThinTcpIo.start(500) [FD]
+Line_3 $$ CountDownLatch connectionAccepted = new CountDownLatch(1) --> Line_9 $$ assertTrue(connectionAccepted.await(1000, TimeUnit.MILLISECONDS)) [FD]
+Line_6 $$ JdbcThinTcpIo jdbcThinTcpIo = createTcpIo(addrs, sock.getLocalPort()) --> Line_11 $$ jdbcThinTcpIo.close() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ IgniteLock getSyncLock(String name, Object key) --> Line_3 $$ int hash = Objects.hash(name, key) [FD]
+Line_2 $$ IgniteLock getSyncLock(String name, Object key) --> Line_3 $$ int hash = Objects.hash(name, key) [CD]
+Line_2 $$ IgniteLock getSyncLock(String name, Object key) --> Line_4 $$ final int idx = hash % getLocksCount() [CD]
+Line_2 $$ IgniteLock getSyncLock(String name, Object key) --> Line_5 $$ return locks.computeIfAbsent(idx,  i -> ignite.reentrantLock(SPRING_LOCK_NAME_PREFIX + idx, true, false, true)) [CD]
+Line_4 $$ final int idx = hash % getLocksCount() --> Line_5 $$ return locks.computeIfAbsent(idx,  i -> ignite.reentrantLock(SPRING_LOCK_NAME_PREFIX + idx, true, false, true)) [FD]

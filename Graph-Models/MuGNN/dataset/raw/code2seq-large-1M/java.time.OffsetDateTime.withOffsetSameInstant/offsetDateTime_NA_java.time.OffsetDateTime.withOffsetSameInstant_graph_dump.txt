@@ -1,0 +1,5 @@
+Line_2 $$ public void offsetDateTime() --> Line_3 $$ OffsetDateTime dt = OffsetDateTime.now().withOffsetSameInstant(ZoneOffset.UTC) [CD]
+Line_2 $$ public void offsetDateTime() --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", dt) [CD]
+Line_3 $$ OffsetDateTime dt = OffsetDateTime.now().withOffsetSameInstant(ZoneOffset.UTC) --> Line_4 $$ h.execute("insert into stuff(ts) values (?)", dt) [FD]
+Line_2 $$ public void offsetDateTime() --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(OffsetDateTime.class).findOnly()).isEqualTo(dt) [CD]
+Line_3 $$ OffsetDateTime dt = OffsetDateTime.now().withOffsetSameInstant(ZoneOffset.UTC) --> Line_5 $$ assertThat(h.createQuery("select ts from stuff").mapTo(OffsetDateTime.class).findOnly()).isEqualTo(dt) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void rebuildPathById(final int id) --> Line_3 $$ final List<Category> categories = this.getChildren(id) [CD]
+Line_2 $$ public void rebuildPathById(final int id) --> Line_3 $$ final List<Category> categories = this.getChildren(id) [FD]
+Line_4 $$ for (final Category entity : categories) --> Line_5 $$ final String path = this.getPath(entity.getParentId(), entity.getId()) [FD]
+Line_4 $$ for (final Category entity : categories) --> Line_6 $$ this.updateHasChild(entity.getParentId(), path.split(",").length > 1) [FD]
+Line_5 $$ final String path = this.getPath(entity.getParentId(), entity.getId()) --> Line_6 $$ this.updateHasChild(entity.getParentId(), path.split(",").length > 1) [FD]
+Line_5 $$ final String path = this.getPath(entity.getParentId(), entity.getId()) --> Line_7 $$ this.updatePath(entity.getId(), path) [FD]
+Line_4 $$ for (final Category entity : categories) --> Line_7 $$ this.updatePath(entity.getId(), path) [FD]
+Line_4 $$ for (final Category entity : categories) --> Line_8 $$ this.rebuildPathById(entity.getId()) [FD]

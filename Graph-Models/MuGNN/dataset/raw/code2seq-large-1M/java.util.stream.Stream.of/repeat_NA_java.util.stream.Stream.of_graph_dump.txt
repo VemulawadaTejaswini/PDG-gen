@@ -1,0 +1,4 @@
+Line_2 $$ public Stream<JobInfo> repeat(@Name("name") String name, @Name("kernelTransaction") String statement, @Name("rate") long rate) --> Line_3 $$ JobInfo info = schedule(name, () -> Iterators.count(db.execute(statement)), 0, rate) [FD]
+Line_2 $$ public Stream<JobInfo> repeat(@Name("name") String name, @Name("kernelTransaction") String statement, @Name("rate") long rate) --> Line_3 $$ JobInfo info = schedule(name, () -> Iterators.count(db.execute(statement)), 0, rate) [CD]
+Line_2 $$ public Stream<JobInfo> repeat(@Name("name") String name, @Name("kernelTransaction") String statement, @Name("rate") long rate) --> Line_4 $$ return Stream.of(info) [CD]
+Line_3 $$ JobInfo info = schedule(name, () -> Iterators.count(db.execute(statement)), 0, rate) --> Line_4 $$ return Stream.of(info) [FD]

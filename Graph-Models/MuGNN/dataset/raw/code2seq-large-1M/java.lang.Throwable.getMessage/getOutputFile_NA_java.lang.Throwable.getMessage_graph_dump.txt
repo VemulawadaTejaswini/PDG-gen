@@ -1,0 +1,5 @@
+Line_2 $$ private Path getOutputFile(String targetName) --> Line_4 $$ ProcessResult buildResult = workspace.runBuckCommand("targets", targetName, "--show-full-output", "--json") [FD]
+Line_4 $$ ProcessResult buildResult = workspace.runBuckCommand("targets", targetName, "--show-full-output", "--json") --> Line_5 $$ buildResult.assertSuccess() [FD]
+Line_4 $$ ProcessResult buildResult = workspace.runBuckCommand("targets", targetName, "--show-full-output", "--json") --> Line_6 $$ JsonNode jsonNode = ObjectMappers.READER.readTree(buildResult.getStdout()).get(0) [FD]
+Line_6 $$ JsonNode jsonNode = ObjectMappers.READER.readTree(buildResult.getStdout()).get(0) --> Line_7 $$ assert jsonNode.has("buck.outputPath") [FD]
+Line_6 $$ JsonNode jsonNode = ObjectMappers.READER.readTree(buildResult.getStdout()).get(0) --> Line_8 $$ return Paths.get(jsonNode.get("buck.outputPath").asText()) [FD]

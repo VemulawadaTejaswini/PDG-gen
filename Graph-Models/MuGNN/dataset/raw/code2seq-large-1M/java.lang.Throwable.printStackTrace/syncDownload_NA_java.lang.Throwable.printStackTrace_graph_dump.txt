@@ -1,0 +1,8 @@
+Line_2 $$ public DownloadResponse syncDownload(String localPath) --> Line_3 $$ File localFile = newFile(localPath + SUFIX_TMP) [CD]
+Line_2 $$ public DownloadResponse syncDownload(String localPath) --> Line_4 $$ DownloadResponse downloadResponse = new DownloadResponse() [CD]
+Line_2 $$ public DownloadResponse syncDownload(String localPath) --> Line_5 $$ bindOkHttpClient() [CD]
+Line_7 $$ Response result = mOkHttpClient.newCall(mRequestBuilder.build()).execute() --> Line_8 $$ File resultFile = writeStream2File(result, localFile, mIsAppend, null) ? new File(localPath) : localFile [FD]
+Line_3 $$ File localFile = newFile(localPath + SUFIX_TMP) --> Line_8 $$ File resultFile = writeStream2File(result, localFile, mIsAppend, null) ? new File(localPath) : localFile [FD]
+Line_4 $$ DownloadResponse downloadResponse = new DownloadResponse() --> Line_9 $$ downloadResponse = new DownloadResponse(resultFile, result.headers(), result.code(), result.message()) [FD]
+Line_7 $$ Response result = mOkHttpClient.newCall(mRequestBuilder.build()).execute() --> Line_9 $$ downloadResponse = new DownloadResponse(resultFile, result.headers(), result.code(), result.message()) [FD]
+Line_2 $$ public DownloadResponse syncDownload(String localPath) --> Line_13 $$ return downloadResponse [CD]

@@ -1,0 +1,7 @@
+Line_3 $$ for (Record record : records) --> Line_4 $$ String line = record.writeLineString(modelDataFile) [FD]
+Line_2 $$ protected void writeRecords(OutputStream outStream, List<Record> records) throws DataFileException --> Line_6 $$ outStream.write(line.getBytes()) [FD]
+Line_4 $$ String line = record.writeLineString(modelDataFile) --> Line_6 $$ outStream.write(line.getBytes()) [FD]
+Line_3 $$ for (Record record : records) --> Line_10 $$ if (UtilValidate.isNotEmpty(record.getChildRecords())) [FD]
+Line_10 $$ if (UtilValidate.isNotEmpty(record.getChildRecords())) --> Line_11 $$ writeRecords(outStream, record.getChildRecords()) [CD]
+Line_2 $$ protected void writeRecords(OutputStream outStream, List<Record> records) throws DataFileException --> Line_11 $$ writeRecords(outStream, record.getChildRecords()) [FD]
+Line_3 $$ for (Record record : records) --> Line_11 $$ writeRecords(outStream, record.getChildRecords()) [FD]

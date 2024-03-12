@@ -1,0 +1,6 @@
+Line_2 $$ private Map<String, Map<String, Object>> requestSchemaFields() throws SolrServerException, IOException --> Line_3 $$ SchemaRepresentation schema = new SchemaRequest().process(resource.getSolrClient(COLLECTION_NAME), COLLECTION_NAME).getSchemaRepresentation() [CD]
+Line_2 $$ private Map<String, Map<String, Object>> requestSchemaFields() throws SolrServerException, IOException --> Line_4 $$ Map<String, Map<String, Object>> fields = new LinkedHashMap() [CD]
+Line_3 $$ SchemaRepresentation schema = new SchemaRequest().process(resource.getSolrClient(COLLECTION_NAME), COLLECTION_NAME).getSchemaRepresentation() --> Line_5 $$ for (Map<String, Object> field : schema.getFields()) [FD]
+Line_4 $$ Map<String, Map<String, Object>> fields = new LinkedHashMap() --> Line_6 $$ fields.put(field.get("name").toString(), field) [FD]
+Line_5 $$ for (Map<String, Object> field : schema.getFields()) --> Line_6 $$ fields.put(field.get("name").toString(), field) [FD]
+Line_2 $$ private Map<String, Map<String, Object>> requestSchemaFields() throws SolrServerException, IOException --> Line_8 $$ return fields [CD]

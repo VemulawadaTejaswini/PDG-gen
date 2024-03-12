@@ -1,0 +1,8 @@
+Line_2 $$ public ServletContextLocator getServletContextLocator() --> Line_3 $$ final Object bean = applicationContext.containsBean(SAKAI_SCL) ? applicationContext.getBean(SAKAI_SCL) : null [CD]
+Line_2 $$ public ServletContextLocator getServletContextLocator() --> Line_4 $$ final Method[] locateContext = new Method[1] [CD]
+Line_3 $$ final Object bean = applicationContext.containsBean(SAKAI_SCL) ? applicationContext.getBean(SAKAI_SCL) : null --> Line_6 $$ locateContext[0] = bean == null ? null : bean.getClass().getMethod("locateContext", new Class[] [FD]
+Line_2 $$ public ServletContextLocator getServletContextLocator() --> Line_10 $$ return new ServletContextLocator() [CD]
+Line_10 $$ return new ServletContextLocator() --> Line_12 $$ if (locateContext[0] != null) [CD]
+Line_12 $$ if (locateContext[0] != null) --> Line_13 $$ return (ServletContext) JDKReflectiveCache.invokeMethod(locateContext[0], bean, new Object[] [CD]
+Line_3 $$ final Object bean = applicationContext.containsBean(SAKAI_SCL) ? applicationContext.getBean(SAKAI_SCL) : null --> Line_13 $$ return (ServletContext) JDKReflectiveCache.invokeMethod(locateContext[0], bean, new Object[] [FD]
+Line_12 $$ if (locateContext[0] != null) --> Line_15 $$ return null [CD]

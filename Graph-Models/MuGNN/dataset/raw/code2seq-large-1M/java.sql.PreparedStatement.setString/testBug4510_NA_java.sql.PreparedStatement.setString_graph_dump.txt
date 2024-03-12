@@ -1,0 +1,8 @@
+Line_2 $$ public void testBug4510() throws Exception --> Line_3 $$ if (isRunningOnJdk131()) [CD]
+Line_3 $$ if (isRunningOnJdk131()) --> Line_4 $$ return [CD]
+Line_10 $$ PreparedStatement p = this.conn.prepareStatement("insert into testBug4510 (field2) values (?)", Statement.RETURN_GENERATED_KEYS) --> Line_11 $$ p.setString(1, "blah") [FD]
+Line_10 $$ PreparedStatement p = this.conn.prepareStatement("insert into testBug4510 (field2) values (?)", Statement.RETURN_GENERATED_KEYS) --> Line_12 $$ p.executeUpdate() [FD]
+Line_10 $$ PreparedStatement p = this.conn.prepareStatement("insert into testBug4510 (field2) values (?)", Statement.RETURN_GENERATED_KEYS) --> Line_13 $$ ResultSet genKeysRs = p.getGeneratedKeys() [FD]
+Line_13 $$ ResultSet genKeysRs = p.getGeneratedKeys() --> Line_14 $$ genKeysRs.next() [FD]
+Line_13 $$ ResultSet genKeysRs = p.getGeneratedKeys() --> Line_15 $$ System.out.println("Id: " + genKeysRs.getInt(1)) [FD]
+Line_13 $$ ResultSet genKeysRs = p.getGeneratedKeys() --> Line_16 $$ genKeysRs.close() [FD]

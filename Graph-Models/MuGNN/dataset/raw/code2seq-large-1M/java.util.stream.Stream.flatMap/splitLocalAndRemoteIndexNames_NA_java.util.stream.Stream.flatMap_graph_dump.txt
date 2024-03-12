@@ -1,0 +1,7 @@
+Line_2 $$ ResolvedIndices splitLocalAndRemoteIndexNames(String... indices) --> Line_3 $$ final Map<String, List<String>> map = super.groupClusterIndices(indices,  exists -> false) [FD]
+Line_2 $$ ResolvedIndices splitLocalAndRemoteIndexNames(String... indices) --> Line_3 $$ final Map<String, List<String>> map = super.groupClusterIndices(indices,  exists -> false) [CD]
+Line_2 $$ ResolvedIndices splitLocalAndRemoteIndexNames(String... indices) --> Line_4 $$ final List<String> local = map.remove(LOCAL_CLUSTER_GROUP_KEY) [CD]
+Line_3 $$ final Map<String, List<String>> map = super.groupClusterIndices(indices,  exists -> false) --> Line_4 $$ final List<String> local = map.remove(LOCAL_CLUSTER_GROUP_KEY) [FD]
+Line_2 $$ ResolvedIndices splitLocalAndRemoteIndexNames(String... indices) --> Line_5 $$ final List<String> remote = map.entrySet().stream().flatMap( e -> e.getValue().stream().map( v -> e.getKey() + REMOTE_CLUSTER_INDEX_SEPARATOR + v)).collect(Collectors.toList()) [CD]
+Line_3 $$ final Map<String, List<String>> map = super.groupClusterIndices(indices,  exists -> false) --> Line_5 $$ final List<String> remote = map.entrySet().stream().flatMap( e -> e.getValue().stream().map( v -> e.getKey() + REMOTE_CLUSTER_INDEX_SEPARATOR + v)).collect(Collectors.toList()) [FD]
+Line_2 $$ ResolvedIndices splitLocalAndRemoteIndexNames(String... indices) --> Line_6 $$ return new ResolvedIndices(local == null ? Collections.emptyList() : local, remote) [CD]

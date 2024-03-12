@@ -1,0 +1,8 @@
+Line_2 $$ private ResponseStatus modifyMovieList(SessionToken sessionToken, String listId, Integer movieId, String operation) --> Line_3 $$ ApiUrl apiUrl = new ApiUrl(TMDB_METHOD_LIST, listId, operation) [CD]
+Line_2 $$ private ResponseStatus modifyMovieList(SessionToken sessionToken, String listId, Integer movieId, String operation) --> Line_4 $$ apiUrl.addParam(TmdbAccount.PARAM_SESSION, sessionToken) [CD]
+Line_2 $$ private ResponseStatus modifyMovieList(SessionToken sessionToken, String listId, Integer movieId, String operation) --> Line_4 $$ apiUrl.addParam(TmdbAccount.PARAM_SESSION, sessionToken) [FD]
+Line_3 $$ ApiUrl apiUrl = new ApiUrl(TMDB_METHOD_LIST, listId, operation) --> Line_4 $$ apiUrl.addParam(TmdbAccount.PARAM_SESSION, sessionToken) [FD]
+Line_2 $$ private ResponseStatus modifyMovieList(SessionToken sessionToken, String listId, Integer movieId, String operation) --> Line_5 $$ String jsonBody = Utils.convertToJson(jsonMapper, Collections.singletonMap("media_id", movieId + "")) [CD]
+Line_2 $$ private ResponseStatus modifyMovieList(SessionToken sessionToken, String listId, Integer movieId, String operation) --> Line_6 $$ return mapJsonResult(apiUrl, ResponseStatus.class, jsonBody) [CD]
+Line_3 $$ ApiUrl apiUrl = new ApiUrl(TMDB_METHOD_LIST, listId, operation) --> Line_6 $$ return mapJsonResult(apiUrl, ResponseStatus.class, jsonBody) [FD]
+Line_5 $$ String jsonBody = Utils.convertToJson(jsonMapper, Collections.singletonMap("media_id", movieId + "")) --> Line_6 $$ return mapJsonResult(apiUrl, ResponseStatus.class, jsonBody) [FD]

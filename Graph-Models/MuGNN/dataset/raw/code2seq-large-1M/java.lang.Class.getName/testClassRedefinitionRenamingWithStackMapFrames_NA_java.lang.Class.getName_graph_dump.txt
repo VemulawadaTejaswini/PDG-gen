@@ -1,0 +1,6 @@
+Line_2 $$ public void testClassRedefinitionRenamingWithStackMapFrames() throws Exception --> Line_3 $$ assertThat(ByteBuddyAgent.install(), instanceOf(Instrumentation.class)) [CD]
+Line_2 $$ public void testClassRedefinitionRenamingWithStackMapFrames() throws Exception --> Line_4 $$ ClassReloadingStrategy classReloadingStrategy = ClassReloadingStrategy.fromInstalledAgent() [CD]
+Line_2 $$ public void testClassRedefinitionRenamingWithStackMapFrames() throws Exception --> Line_5 $$ Bar bar = new Bar() [CD]
+Line_2 $$ public void testClassRedefinitionRenamingWithStackMapFrames() throws Exception --> Line_6 $$ new ByteBuddy().redefine(Qux.class).name(Bar.class.getName()).make().load(Bar.class.getClassLoader(), classReloadingStrategy) [CD]
+Line_5 $$ Bar bar = new Bar() --> Line_8 $$ assertThat(bar.foo(), is(BAR)) [FD]
+Line_5 $$ Bar bar = new Bar() --> Line_11 $$ assertThat(bar.foo(), is(FOO)) [FD]

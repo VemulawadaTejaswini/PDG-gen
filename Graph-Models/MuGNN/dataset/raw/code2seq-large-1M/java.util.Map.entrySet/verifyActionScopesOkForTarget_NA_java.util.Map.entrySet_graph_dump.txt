@@ -1,0 +1,8 @@
+Line_2 $$ protected void verifyActionScopesOkForTarget(Map<String, Map<String, Object>> actions) --> Line_3 $$ for (Map.Entry<String, Map<String, Object>> entry : actions.entrySet()) [FD]
+Line_4 $$ String scope = entry.getKey() --> Line_5 $$ if (!target.isValidActionScope(grammar.type, scope)) [FD]
+Line_5 $$ if (!target.isValidActionScope(grammar.type, scope)) --> Line_6 $$ Map<String, Object> scopeActions = entry.getValue() [CD]
+Line_5 $$ if (!target.isValidActionScope(grammar.type, scope)) --> Line_7 $$ GrammarAST actionAST = (GrammarAST) scopeActions.values().iterator().next() [CD]
+Line_6 $$ Map<String, Object> scopeActions = entry.getValue() --> Line_7 $$ GrammarAST actionAST = (GrammarAST) scopeActions.values().iterator().next() [FD]
+Line_5 $$ if (!target.isValidActionScope(grammar.type, scope)) --> Line_8 $$ ErrorManager.grammarError(ErrorManager.MSG_INVALID_ACTION_SCOPE, grammar, actionAST.getToken(), scope, grammar.getGrammarTypeString()) [CD]
+Line_4 $$ String scope = entry.getKey() --> Line_8 $$ ErrorManager.grammarError(ErrorManager.MSG_INVALID_ACTION_SCOPE, grammar, actionAST.getToken(), scope, grammar.getGrammarTypeString()) [FD]
+Line_7 $$ GrammarAST actionAST = (GrammarAST) scopeActions.values().iterator().next() --> Line_8 $$ ErrorManager.grammarError(ErrorManager.MSG_INVALID_ACTION_SCOPE, grammar, actionAST.getToken(), scope, grammar.getGrammarTypeString()) [FD]

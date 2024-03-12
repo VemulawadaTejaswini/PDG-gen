@@ -1,0 +1,8 @@
+Line_2 $$ public void getGetLongRange() throws IOException --> Line_3 $$ final StringBuffer buf = new StringBuffer() [CD]
+Line_2 $$ public void getGetLongRange() throws IOException --> Line_4 $$ while (buf.length() < 9000) [CD]
+Line_3 $$ final StringBuffer buf = new StringBuffer() --> Line_4 $$ while (buf.length() < 9000) [FD]
+Line_4 $$ while (buf.length() < 9000) --> Line_5 $$ buf.append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") [CD]
+Line_3 $$ final StringBuffer buf = new StringBuffer() --> Line_5 $$ buf.append("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") [FD]
+Line_2 $$ public void getGetLongRange() throws IOException --> Line_7 $$ final InputStream in = new ByteArrayInputStream(buf.toString().getBytes()) [CD]
+Line_3 $$ final StringBuffer buf = new StringBuffer() --> Line_7 $$ final InputStream in = new ByteArrayInputStream(buf.toString().getBytes()) [FD]
+Line_8 $$ try (final RangeRequestInputStream out = new RangeRequestInputStream(in, 0L, 9000)) --> Line_9 $$ assertEquals(9000, IOUtils.toString(out, UTF_8).length()) [FD]

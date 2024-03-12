@@ -1,0 +1,6 @@
+Line_2 $$ public void send(String from, String to, byte[] payload, Topic[] topics, int ttl, int workToProve) --> Line_3 $$ String[] topicsS = new String[topics.length] [CD]
+Line_2 $$ public void send(String from, String to, byte[] payload, Topic[] topics, int ttl, int workToProve) --> Line_4 $$ for (int i = 0; i < topics.length; i++) [CD]
+Line_4 $$ for (int i = 0; i < topics.length; i++) --> Line_5 $$ topicsS[i] = topics[i].getOriginalTopic() [CD]
+Line_2 $$ public void send(String from, String to, byte[] payload, Topic[] topics, int ttl, int workToProve) --> Line_7 $$ SimpleResponse res = sendJson(new JsonRpcRequest("shh_post", new MessageParams(new String(payload), add0X(to), add0X(from), topicsS, ttl, workToProve)), SimpleResponse.class) [CD]
+Line_2 $$ public void send(String from, String to, byte[] payload, Topic[] topics, int ttl, int workToProve) --> Line_7 $$ SimpleResponse res = sendJson(new JsonRpcRequest("shh_post", new MessageParams(new String(payload), add0X(to), add0X(from), topicsS, ttl, workToProve)), SimpleResponse.class) [FD]
+Line_2 $$ public void send(String from, String to, byte[] payload, Topic[] topics, int ttl, int workToProve) --> Line_8 $$ if (!"true".equals(res.result)) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void unboundedDownstreamRequest() --> Line_3 $$ LongAdder rCount = new LongAdder() [CD]
+Line_2 $$ public void unboundedDownstreamRequest() --> Line_4 $$ final Flux<Integer> source = Flux.range(1, 100).doOnRequest(rCount::<>add) [CD]
+Line_2 $$ public void unboundedDownstreamRequest() --> Line_5 $$ Flux<Integer> test = new FluxLimitRequest(source, 3) [CD]
+Line_2 $$ public void unboundedDownstreamRequest() --> Line_6 $$ StepVerifier.create(test, Long.MAX_VALUE).expectNext(1, 2, 3).verifyComplete() [CD]
+Line_5 $$ Flux<Integer> test = new FluxLimitRequest(source, 3) --> Line_6 $$ StepVerifier.create(test, Long.MAX_VALUE).expectNext(1, 2, 3).verifyComplete() [FD]
+Line_2 $$ public void unboundedDownstreamRequest() --> Line_7 $$ assertThat(rCount.longValue()).as("total request should match the limitRequest").isEqualTo(3) [CD]
+Line_3 $$ LongAdder rCount = new LongAdder() --> Line_7 $$ assertThat(rCount.longValue()).as("total request should match the limitRequest").isEqualTo(3) [FD]

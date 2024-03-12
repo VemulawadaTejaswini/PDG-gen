@@ -1,0 +1,7 @@
+Line_2 $$ private void breakFromAppend(ByteBuf out) --> Line_3 $$ if (bytesLeftInBlock != 0) [CD]
+Line_3 $$ if (bytesLeftInBlock != 0) --> Line_4 $$ writeMessage(new Padding(bytesLeftInBlock - TYPE_PLUS_LENGTH_SIZE), out) [CD]
+Line_2 $$ private void breakFromAppend(ByteBuf out) --> Line_4 $$ writeMessage(new Padding(bytesLeftInBlock - TYPE_PLUS_LENGTH_SIZE), out) [FD]
+Line_3 $$ if (bytesLeftInBlock != 0) --> Line_5 $$ Session session = setupSegments.get(segmentBeingAppendedTo) [CD]
+Line_3 $$ if (bytesLeftInBlock != 0) --> Line_6 $$ writeMessage(new AppendBlockEnd(session.id, currentBlockSize - bytesLeftInBlock, null, session.eventCount, session.lastEventNumber, 0L), out) [CD]
+Line_2 $$ private void breakFromAppend(ByteBuf out) --> Line_6 $$ writeMessage(new AppendBlockEnd(session.id, currentBlockSize - bytesLeftInBlock, null, session.eventCount, session.lastEventNumber, 0L), out) [FD]
+Line_3 $$ if (bytesLeftInBlock != 0) --> Line_9 $$ session.eventCount = 0 [CD]

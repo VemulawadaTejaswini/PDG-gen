@@ -1,0 +1,8 @@
+Line_2 $$ private void updateTenantListVisibilityFromProviderResources(final String providerId, final String tenantId, final boolean listVisible) --> Line_3 $$ if (StringUtils.hasText(tenantId)) [FD]
+Line_2 $$ private void updateTenantListVisibilityFromProviderResources(final String providerId, final String tenantId, final boolean listVisible) --> Line_3 $$ if (StringUtils.hasText(tenantId)) [CD]
+Line_3 $$ if (StringUtils.hasText(tenantId)) --> Line_4 $$ final List<String> collections = Arrays.asList("alert", "component", "sensor", "user") [CD]
+Line_3 $$ if (StringUtils.hasText(tenantId)) --> Line_5 $$ if (listVisible) [CD]
+Line_5 $$ if (listVisible) --> Line_6 $$ mongoOps.getCollection("provider").update(new BasicDBObject("_id", providerId), new BasicDBObject("$push", new BasicDBObject("tenantsListVisible", tenantId))) [CD]
+Line_7 $$ for (final String collection : collections) --> Line_8 $$ mongoOps.getCollection(collection).updateMulti(new BasicDBObject("providerId", providerId), new BasicDBObject("$push", new BasicDBObject("tenantsListVisible", tenantId))) [FD]
+Line_5 $$ if (listVisible) --> Line_11 $$ mongoOps.getCollection("provider").update(new BasicDBObject("_id", providerId), new BasicDBObject("$pull", new BasicDBObject("tenantsListVisible", tenantId))) [CD]
+Line_7 $$ for (final String collection : collections) --> Line_13 $$ mongoOps.getCollection(collection).updateMulti(new BasicDBObject("providerId", providerId), new BasicDBObject("$pull", new BasicDBObject("tenantsListVisible", tenantId))) [FD]

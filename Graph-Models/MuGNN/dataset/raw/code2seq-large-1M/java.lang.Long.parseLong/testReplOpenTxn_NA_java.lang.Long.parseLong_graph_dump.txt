@@ -1,0 +1,8 @@
+Line_2 $$ public void testReplOpenTxn() throws Exception --> Line_3 $$ int numTxn = 50000 [CD]
+Line_2 $$ public void testReplOpenTxn() throws Exception --> Line_4 $$ String[] output = TxnDbUtil.queryToString(conf, "select ntxn_next from NEXT_TXN_ID").split("\n") [CD]
+Line_2 $$ public void testReplOpenTxn() throws Exception --> Line_5 $$ long startTxnId = Long.parseLong(output[1].trim()) [CD]
+Line_2 $$ public void testReplOpenTxn() throws Exception --> Line_6 $$ List<Long> txnList = replOpenTxnForTest(startTxnId, numTxn, "default.*") [CD]
+Line_5 $$ long startTxnId = Long.parseLong(output[1].trim()) --> Line_6 $$ List<Long> txnList = replOpenTxnForTest(startTxnId, numTxn, "default.*") [FD]
+Line_3 $$ int numTxn = 50000 --> Line_6 $$ List<Long> txnList = replOpenTxnForTest(startTxnId, numTxn, "default.*") [FD]
+Line_6 $$ List<Long> txnList = replOpenTxnForTest(startTxnId, numTxn, "default.*") --> Line_7 $$ assert (txnList.size() == numTxn) [FD]
+Line_2 $$ public void testReplOpenTxn() throws Exception --> Line_8 $$ txnHandler.abortTxns(new AbortTxnsRequest(txnList)) [CD]

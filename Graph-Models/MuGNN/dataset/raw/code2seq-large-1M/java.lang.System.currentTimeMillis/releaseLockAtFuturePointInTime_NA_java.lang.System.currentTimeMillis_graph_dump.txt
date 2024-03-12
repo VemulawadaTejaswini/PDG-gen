@@ -1,0 +1,8 @@
+Line_2 $$ private void releaseLockAtFuturePointInTime(final int secondsToWait) --> Line_3 $$ this.lockReleaserThread = new Thread(new Runnable() [CD]
+Line_3 $$ this.lockReleaserThread = new Thread(new Runnable() --> Line_5 $$ long startTime = System.currentTimeMillis() [CD]
+Line_3 $$ this.lockReleaserThread = new Thread(new Runnable() --> Line_6 $$ while (System.currentTimeMillis() - startTime < secondsToWait) [CD]
+Line_2 $$ private void releaseLockAtFuturePointInTime(final int secondsToWait) --> Line_6 $$ while (System.currentTimeMillis() - startTime < secondsToWait) [FD]
+Line_8 $$ long millisLeftToWait = (secondsToWait - (System.currentTimeMillis() - startTime)) * 1000L --> Line_9 $$ Thread.sleep(millisLeftToWait) [FD]
+Line_3 $$ this.lockReleaserThread = new Thread(new Runnable() --> Line_13 $$ logger.warn("Releasing lock on database table") [CD]
+Line_3 $$ this.lockReleaserThread = new Thread(new Runnable() --> Line_14 $$ TestClientPortalTimeoutDuringDatabaseOperation.this.getRemoteSlaveVm().executeMethod("serverReleaseLockOnOrder") [CD]
+Line_2 $$ private void releaseLockAtFuturePointInTime(final int secondsToWait) --> Line_17 $$ this.lockReleaserThread.start() [CD]

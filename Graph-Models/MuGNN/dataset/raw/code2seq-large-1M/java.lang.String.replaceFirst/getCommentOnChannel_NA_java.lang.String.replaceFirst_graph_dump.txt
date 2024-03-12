@@ -1,0 +1,7 @@
+Line_2 $$ private List<Comment> getCommentOnChannel(List<Token> refChannel) --> Line_3 $$ List<Comment> comments = new ArrayList() [CD]
+Line_4 $$ for (Token refTok : refChannel) --> Line_5 $$ String text = refTok.getText() [FD]
+Line_5 $$ String text = refTok.getText() --> Line_6 $$ if (text == null) [FD]
+Line_5 $$ String text = refTok.getText() --> Line_9 $$ text = text.replaceFirst("^#", "") [FD]
+Line_3 $$ List<Comment> comments = new ArrayList() --> Line_10 $$ comments.add(new Comment(text, new SourceLocation(refTok.getLine(), refTok.getCharPositionInLine()))) [FD]
+Line_4 $$ for (Token refTok : refChannel) --> Line_10 $$ comments.add(new Comment(text, new SourceLocation(refTok.getLine(), refTok.getCharPositionInLine()))) [FD]
+Line_2 $$ private List<Comment> getCommentOnChannel(List<Token> refChannel) --> Line_12 $$ return comments [CD]

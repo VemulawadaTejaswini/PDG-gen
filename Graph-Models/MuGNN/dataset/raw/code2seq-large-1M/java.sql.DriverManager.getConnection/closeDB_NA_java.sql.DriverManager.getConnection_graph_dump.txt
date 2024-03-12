@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection connection = DriverManager.getConnection(connectionUrl)) --> Line_4 $$ DatabaseMetaData metaData = connection.getMetaData() [FD]
+Line_4 $$ DatabaseMetaData metaData = connection.getMetaData() --> Line_5 $$ String quote = metaData.getIdentifierQuoteString() [FD]
+Line_3 $$ try (Connection connection = DriverManager.getConnection(connectionUrl)) --> Line_6 $$ try (Statement statement = connection.createStatement()) [FD]
+Line_6 $$ try (Statement statement = connection.createStatement()) --> Line_8 $$ statement.execute("Drop table " + TABLE_NAME) [FD]
+Line_6 $$ try (Statement statement = connection.createStatement()) --> Line_12 $$ statement.execute("Drop table " + quote + TABLE_NAME + quote) [FD]

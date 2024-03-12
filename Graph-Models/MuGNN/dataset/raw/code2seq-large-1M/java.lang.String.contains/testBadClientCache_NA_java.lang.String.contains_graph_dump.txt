@@ -1,0 +1,5 @@
+Line_2 $$ public void testBadClientCache() throws Exception --> Line_3 $$ S3ClientCache s3cc = new S3ClientCache(credentials) [CD]
+Line_2 $$ public void testBadClientCache() throws Exception --> Line_4 $$ S3Client notAnAWSEndpoint = S3Client.builder().credentialsProvider(StaticCredentialsProvider.create(credentials)).endpointOverride(new URI("i.am.an.invalid.aws.endpoint.com")).build() [CD]
+Line_3 $$ S3ClientCache s3cc = new S3ClientCache(credentials) --> Line_6 $$ s3cc.useClient(notAnAWSEndpoint, Region.US_EAST_2) [FD]
+Line_4 $$ S3Client notAnAWSEndpoint = S3Client.builder().credentialsProvider(StaticCredentialsProvider.create(credentials)).endpointOverride(new URI("i.am.an.invalid.aws.endpoint.com")).build() --> Line_6 $$ s3cc.useClient(notAnAWSEndpoint, Region.US_EAST_2) [FD]
+Line_2 $$ public void testBadClientCache() throws Exception --> Line_11 $$ fail("Expected exception to be thrown") [CD]

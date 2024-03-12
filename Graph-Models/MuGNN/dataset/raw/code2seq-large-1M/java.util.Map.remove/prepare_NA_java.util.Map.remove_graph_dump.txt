@@ -1,0 +1,8 @@
+Line_2 $$ public static ExecutionPlan prepare(String statement, Oid[] argTypes) throws SQLException --> Line_3 $$ Object key = (argTypes == null) ? (Object) statement : (Object) new PlanKey(statement, argTypes) [CD]
+Line_2 $$ public static ExecutionPlan prepare(String statement, Oid[] argTypes) throws SQLException --> Line_4 $$ ExecutionPlan plan = (ExecutionPlan) s_planCache.remove(key) [CD]
+Line_3 $$ Object key = (argTypes == null) ? (Object) statement : (Object) new PlanKey(statement, argTypes) --> Line_4 $$ ExecutionPlan plan = (ExecutionPlan) s_planCache.remove(key) [FD]
+Line_2 $$ public static ExecutionPlan prepare(String statement, Oid[] argTypes) throws SQLException --> Line_5 $$ if (plan == null) [CD]
+Line_4 $$ ExecutionPlan plan = (ExecutionPlan) s_planCache.remove(key) --> Line_5 $$ if (plan == null) [FD]
+Line_4 $$ ExecutionPlan plan = (ExecutionPlan) s_planCache.remove(key) --> Line_7 $$ plan = new ExecutionPlan(key, _prepare(System.identityHashCode(Thread.currentThread()), statement, argTypes)) [FD]
+Line_2 $$ public static ExecutionPlan prepare(String statement, Oid[] argTypes) throws SQLException --> Line_7 $$ plan = new ExecutionPlan(key, _prepare(System.identityHashCode(Thread.currentThread()), statement, argTypes)) [FD]
+Line_2 $$ public static ExecutionPlan prepare(String statement, Oid[] argTypes) throws SQLException --> Line_10 $$ return plan [CD]

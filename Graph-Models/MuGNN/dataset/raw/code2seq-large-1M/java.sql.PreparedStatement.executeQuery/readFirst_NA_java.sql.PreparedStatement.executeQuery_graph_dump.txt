@@ -1,0 +1,8 @@
+Line_2 $$ public T readFirst(Connection connection, P p) throws SQLException --> Line_3 $$ PreparedStatement preparedStatement = queryPreparer.prepare(connection).bind(p) [FD]
+Line_2 $$ public T readFirst(Connection connection, P p) throws SQLException --> Line_3 $$ PreparedStatement preparedStatement = queryPreparer.prepare(connection).bind(p) [CD]
+Line_3 $$ PreparedStatement preparedStatement = queryPreparer.prepare(connection).bind(p) --> Line_5 $$ ResultSet rs = preparedStatement.executeQuery() [FD]
+Line_5 $$ ResultSet rs = preparedStatement.executeQuery() --> Line_7 $$ if (rs.next()) [FD]
+Line_7 $$ if (rs.next()) --> Line_8 $$ return mapper.map(rs) [CD]
+Line_5 $$ ResultSet rs = preparedStatement.executeQuery() --> Line_8 $$ return mapper.map(rs) [FD]
+Line_5 $$ ResultSet rs = preparedStatement.executeQuery() --> Line_12 $$ safeClose(rs) [FD]
+Line_3 $$ PreparedStatement preparedStatement = queryPreparer.prepare(connection).bind(p) --> Line_15 $$ safeClose(preparedStatement) [FD]

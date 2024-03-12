@@ -1,0 +1,6 @@
+Line_2 $$ private synchronized void startScheduleIfNotStarted() --> Line_3 $$ if (executor == null) [CD]
+Line_3 $$ if (executor == null) --> Line_4 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryBuilder().setDaemon(true).setNameFormat("session-state-update-%d").build()) [CD]
+Line_3 $$ if (executor == null) --> Line_5 $$ executor.scheduleWithFixedDelay(() -> backgroundUpdateAll(), 1, 1, TimeUnit.SECONDS) [CD]
+Line_4 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryBuilder().setDaemon(true).setNameFormat("session-state-update-%d").build()) --> Line_5 $$ executor.scheduleWithFixedDelay(() -> backgroundUpdateAll(), 1, 1, TimeUnit.SECONDS) [FD]
+Line_3 $$ if (executor == null) --> Line_6 $$ this.executor = executor [CD]
+Line_4 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor(new ThreadFactoryBuilder().setDaemon(true).setNameFormat("session-state-update-%d").build()) --> Line_6 $$ this.executor = executor [FD]

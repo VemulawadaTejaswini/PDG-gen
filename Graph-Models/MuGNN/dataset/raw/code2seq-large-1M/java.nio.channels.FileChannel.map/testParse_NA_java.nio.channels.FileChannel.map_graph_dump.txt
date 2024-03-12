@@ -1,0 +1,7 @@
+Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve("libfoo.so"))) --> Line_4 $$ MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size()) [FD]
+Line_5 $$ Elf elf = new Elf(buffer) --> Line_6 $$ ElfSection stringTable = elf.getMandatorySectionByName(channel.toString(), ".dynstr").getSection() [FD]
+Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve("libfoo.so"))) --> Line_6 $$ ElfSection stringTable = elf.getMandatorySectionByName(channel.toString(), ".dynstr").getSection() [FD]
+Line_5 $$ Elf elf = new Elf(buffer) --> Line_7 $$ ElfSection section = elf.getMandatorySectionByName(channel.toString(), ".dynamic").getSection() [FD]
+Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve("libfoo.so"))) --> Line_7 $$ ElfSection section = elf.getMandatorySectionByName(channel.toString(), ".dynamic").getSection() [FD]
+Line_6 $$ ElfSection stringTable = elf.getMandatorySectionByName(channel.toString(), ".dynstr").getSection() --> Line_9 $$ assertThat(stringTable.lookupString(dynamicSection.lookup(ElfDynamicSection.DTag.DT_NEEDED).orElseThrow(AssertionError::<>new)), Matchers.equalTo("libc.so.6")) [FD]
+Line_8 $$ ElfDynamicSection dynamicSection = ElfDynamicSection.parse(ElfHeader.EIClass.ELFCLASS64, section.body) --> Line_9 $$ assertThat(stringTable.lookupString(dynamicSection.lookup(ElfDynamicSection.DTag.DT_NEEDED).orElseThrow(AssertionError::<>new)), Matchers.equalTo("libc.so.6")) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testDeleteUnknownJar() throws Exception --> Line_3 $$ final HandlerRequest<EmptyRequestBody, JarDeleteMessageParameters> request = createRequest("doesnotexist.jar") [CD]
+Line_3 $$ final HandlerRequest<EmptyRequestBody, JarDeleteMessageParameters> request = createRequest("doesnotexist.jar") --> Line_5 $$ jarDeleteHandler.handleRequest(request, restfulGateway).get() [FD]
+Line_7 $$ final Throwable throwable = ExceptionUtils.stripCompletionException(e.getCause()) --> Line_8 $$ assertThat(throwable, instanceOf(RestHandlerException.class)) [FD]
+Line_9 $$ final RestHandlerException restHandlerException = (RestHandlerException) throwable --> Line_10 $$ assertThat(restHandlerException.getMessage(), containsString("File doesnotexist.jar does not exist in")) [FD]
+Line_9 $$ final RestHandlerException restHandlerException = (RestHandlerException) throwable --> Line_11 $$ assertThat(restHandlerException.getHttpResponseStatus(), equalTo(HttpResponseStatus.BAD_REQUEST)) [FD]

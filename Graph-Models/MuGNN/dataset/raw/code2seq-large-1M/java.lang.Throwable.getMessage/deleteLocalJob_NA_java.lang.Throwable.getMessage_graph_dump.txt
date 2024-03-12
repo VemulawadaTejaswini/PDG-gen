@@ -1,0 +1,8 @@
+Line_2 $$ private boolean deleteLocalJob(ClientJob clientJob) --> Line_4 $$ if (!scheduler.delete(clientJob)) [FD]
+Line_4 $$ if (!scheduler.delete(clientJob)) --> Line_5 $$ return false [CD]
+Line_2 $$ private boolean deleteLocalJob(ClientJob clientJob) --> Line_6 $$ BasicDBObject condition = BuildMongoDBData.getDeleteJobBasicDBObject(clientJob) [FD]
+Line_2 $$ private boolean deleteLocalJob(ClientJob clientJob) --> Line_7 $$ if (clientJob.isRecoverJobFromDB()) [FD]
+Line_7 $$ if (clientJob.isRecoverJobFromDB()) --> Line_8 $$ if (!MongoDBUtil.INSTANCE.delete(condition, DBTableInfo.TBL_CLOVER_JOB)) [CD]
+Line_6 $$ BasicDBObject condition = BuildMongoDBData.getDeleteJobBasicDBObject(clientJob) --> Line_8 $$ if (!MongoDBUtil.INSTANCE.delete(condition, DBTableInfo.TBL_CLOVER_JOB)) [FD]
+Line_8 $$ if (!MongoDBUtil.INSTANCE.delete(condition, DBTableInfo.TBL_CLOVER_JOB)) --> Line_9 $$ return false [CD]
+Line_2 $$ private boolean deleteLocalJob(ClientJob clientJob) --> Line_18 $$ return true [CD]

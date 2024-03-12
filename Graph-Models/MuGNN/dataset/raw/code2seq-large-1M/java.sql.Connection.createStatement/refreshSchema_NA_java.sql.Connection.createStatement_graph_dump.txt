@@ -1,0 +1,8 @@
+Line_2 $$ private boolean refreshSchema(BigDecimal scnDecimal, SchemaAndTable schemaAndTable) throws SQLException --> Line_4 $$ if (!tableSchemaLastUpdate.containsKey(schemaAndTable) || scnDecimal.compareTo(tableSchemaLastUpdate.get(schemaAndTable)) > 0) [FD]
+Line_4 $$ if (!tableSchemaLastUpdate.containsKey(schemaAndTable) || scnDecimal.compareTo(tableSchemaLastUpdate.get(schemaAndTable)) > 0) --> Line_5 $$ if (containerized) [CD]
+Line_6 $$ try (Statement switchToPdb = connection.createStatement()) --> Line_7 $$ switchToPdb.execute("ALTER SESSION SET CONTAINER = " + configBean.pdb) [FD]
+Line_4 $$ if (!tableSchemaLastUpdate.containsKey(schemaAndTable) || scnDecimal.compareTo(tableSchemaLastUpdate.get(schemaAndTable)) > 0) --> Line_10 $$ tableSchemas.put(schemaAndTable, getTableSchema(schemaAndTable)) [CD]
+Line_2 $$ private boolean refreshSchema(BigDecimal scnDecimal, SchemaAndTable schemaAndTable) throws SQLException --> Line_10 $$ tableSchemas.put(schemaAndTable, getTableSchema(schemaAndTable)) [FD]
+Line_4 $$ if (!tableSchemaLastUpdate.containsKey(schemaAndTable) || scnDecimal.compareTo(tableSchemaLastUpdate.get(schemaAndTable)) > 0) --> Line_11 $$ tableSchemaLastUpdate.put(schemaAndTable, scnDecimal) [CD]
+Line_2 $$ private boolean refreshSchema(BigDecimal scnDecimal, SchemaAndTable schemaAndTable) throws SQLException --> Line_11 $$ tableSchemaLastUpdate.put(schemaAndTable, scnDecimal) [FD]
+Line_4 $$ if (!tableSchemaLastUpdate.containsKey(schemaAndTable) || scnDecimal.compareTo(tableSchemaLastUpdate.get(schemaAndTable)) > 0) --> Line_12 $$ return true [CD]

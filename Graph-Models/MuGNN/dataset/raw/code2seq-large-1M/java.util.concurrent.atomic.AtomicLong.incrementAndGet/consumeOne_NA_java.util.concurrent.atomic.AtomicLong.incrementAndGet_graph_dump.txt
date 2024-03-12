@@ -1,0 +1,8 @@
+Line_2 $$ private boolean consumeOne(final byte[] body) --> Line_6 $$ final AsyncFuture<Void> future = schema.consume(body) [FD]
+Line_7 $$ if (enablePeriodicCommit) --> Line_8 $$ outstandingConsumptionRequests.incrementAndGet() [CD]
+Line_7 $$ if (enablePeriodicCommit) --> Line_9 $$ future.onFinished(() -> [CD]
+Line_6 $$ final AsyncFuture<Void> future = schema.consume(body) --> Line_9 $$ future.onFinished(() -> [FD]
+Line_10 $$ long value = outstandingConsumptionRequests.decrementAndGet() --> Line_11 $$ if (value == 0) [FD]
+Line_11 $$ if (value == 0) --> Line_12 $$ coordinator.commitConsumerOffsets() [CD]
+Line_6 $$ final AsyncFuture<Void> future = schema.consume(body) --> Line_16 $$ future.onDone(consumptionContext) [FD]
+Line_5 $$ final FutureReporter.Context consumptionContext = reporter.reportConsumption() --> Line_16 $$ future.onDone(consumptionContext) [FD]

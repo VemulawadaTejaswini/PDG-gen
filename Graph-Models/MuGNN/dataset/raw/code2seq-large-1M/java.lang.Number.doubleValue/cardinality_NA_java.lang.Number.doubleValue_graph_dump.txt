@@ -1,0 +1,6 @@
+Line_2 $$ private double cardinality(Lattice lattice, Lattice.Column column) --> Line_3 $$ final String sql = lattice.countSql(ImmutableBitSet.of(column.ordinal)) [FD]
+Line_2 $$ private double cardinality(Lattice lattice, Lattice.Column column) --> Line_3 $$ final String sql = lattice.countSql(ImmutableBitSet.of(column.ordinal)) [CD]
+Line_2 $$ private double cardinality(Lattice lattice, Lattice.Column column) --> Line_4 $$ final Table table = new MaterializationService.DefaultTableFactory().createTable(lattice.rootSchema, sql, ImmutableList.<String>of()) [CD]
+Line_3 $$ final String sql = lattice.countSql(ImmutableBitSet.of(column.ordinal)) --> Line_4 $$ final Table table = new MaterializationService.DefaultTableFactory().createTable(lattice.rootSchema, sql, ImmutableList.<String>of()) [FD]
+Line_2 $$ private double cardinality(Lattice lattice, Lattice.Column column) --> Line_5 $$ final Object[] values = Iterables.getOnlyElement(((ScannableTable) table).scan(null)) [CD]
+Line_2 $$ private double cardinality(Lattice lattice, Lattice.Column column) --> Line_6 $$ return ((Number) values[0]).doubleValue() [CD]

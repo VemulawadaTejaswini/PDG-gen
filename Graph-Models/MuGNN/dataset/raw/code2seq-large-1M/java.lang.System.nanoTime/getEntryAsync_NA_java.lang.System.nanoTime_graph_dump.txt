@@ -1,0 +1,8 @@
+Line_7 $$ final K key0 = keepBinary ? (K) ctx.toCacheKeyObject(key) : key --> Line_8 $$ IgniteInternalFuture<EntryGetResult> fut = (IgniteInternalFuture<EntryGetResult>) getAsync(key0, !keepBinary, true) [FD]
+Line_6 $$ final boolean keepBinary = ctx.keepBinary() --> Line_8 $$ IgniteInternalFuture<EntryGetResult> fut = (IgniteInternalFuture<EntryGetResult>) getAsync(key0, !keepBinary, true) [FD]
+Line_7 $$ final K key0 = keepBinary ? (K) ctx.toCacheKeyObject(key) : key --> Line_13 $$ K key = keepBinary ? (K) ctx.unwrapBinaryIfNeeded(key0, true, false) : key0 [FD]
+Line_15 $$ if (intercept) --> Line_16 $$ V val0 = (V) ctx.config().getInterceptor().onGet(key, t != null ? val.getValue() : null) [CD]
+Line_13 $$ K key = keepBinary ? (K) ctx.unwrapBinaryIfNeeded(key0, true, false) : key0 --> Line_16 $$ V val0 = (V) ctx.config().getInterceptor().onGet(key, t != null ? val.getValue() : null) [FD]
+Line_15 $$ if (intercept) --> Line_17 $$ return val0 != null ? new CacheEntryImplEx(key, val0, t != null ? t.version() : null) : null [CD]
+Line_15 $$ if (intercept) --> Line_19 $$ return val [CD]
+Line_22 $$ if (statsEnabled) --> Line_23 $$ fut.listen(new UpdateGetTimeStatClosure<EntryGetResult>(metrics0(), start)) [CD]

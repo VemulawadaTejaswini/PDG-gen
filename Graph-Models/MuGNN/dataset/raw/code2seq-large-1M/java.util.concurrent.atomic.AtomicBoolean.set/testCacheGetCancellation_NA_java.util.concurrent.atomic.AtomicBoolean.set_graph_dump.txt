@@ -1,0 +1,7 @@
+Line_2 $$ public void testCacheGetCancellation() throws Exception --> Line_3 $$ when(mFileCache.getResource(mCacheKey)).thenReturn(mBinaryResource) [CD]
+Line_2 $$ public void testCacheGetCancellation() throws Exception --> Line_4 $$ Task<EncodedImage> readTask = mBufferedDiskCache.get(mCacheKey, mIsCancelled) [CD]
+Line_2 $$ public void testCacheGetCancellation() throws Exception --> Line_5 $$ mIsCancelled.set(true) [CD]
+Line_2 $$ public void testCacheGetCancellation() throws Exception --> Line_6 $$ mReadPriorityExecutor.runUntilIdle() [CD]
+Line_2 $$ public void testCacheGetCancellation() throws Exception --> Line_7 $$ verify(mFileCache, never()).getResource(mCacheKey) [CD]
+Line_2 $$ public void testCacheGetCancellation() throws Exception --> Line_8 $$ assertTrue(isTaskCancelled(readTask)) [CD]
+Line_4 $$ Task<EncodedImage> readTask = mBufferedDiskCache.get(mCacheKey, mIsCancelled) --> Line_8 $$ assertTrue(isTaskCancelled(readTask)) [FD]

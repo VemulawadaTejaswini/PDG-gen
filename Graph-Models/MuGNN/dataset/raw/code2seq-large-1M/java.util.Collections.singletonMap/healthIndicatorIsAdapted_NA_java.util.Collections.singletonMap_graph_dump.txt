@@ -1,0 +1,5 @@
+Line_2 $$ public void healthIndicatorIsAdapted() --> Line_3 $$ ReactiveHealthIndicatorRegistry registry = this.factory.createReactiveHealthIndicatorRegistry(Collections.singletonMap("test", () -> Mono.just(UP)), Collections.singletonMap("regular", () -> DOWN)) [CD]
+Line_2 $$ public void healthIndicatorIsAdapted() --> Line_4 $$ assertThat(registry.getAll()).containsOnlyKeys("test", "regular") [CD]
+Line_3 $$ ReactiveHealthIndicatorRegistry registry = this.factory.createReactiveHealthIndicatorRegistry(Collections.singletonMap("test", () -> Mono.just(UP)), Collections.singletonMap("regular", () -> DOWN)) --> Line_4 $$ assertThat(registry.getAll()).containsOnlyKeys("test", "regular") [FD]
+Line_2 $$ public void healthIndicatorIsAdapted() --> Line_5 $$ StepVerifier.create(registry.get("regular").health()).consumeNextWith(( h) -> [CD]
+Line_3 $$ ReactiveHealthIndicatorRegistry registry = this.factory.createReactiveHealthIndicatorRegistry(Collections.singletonMap("test", () -> Mono.just(UP)), Collections.singletonMap("regular", () -> DOWN)) --> Line_5 $$ StepVerifier.create(registry.get("regular").health()).consumeNextWith(( h) -> [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void invalidJavacopts() throws Exception --> Line_3 $$ addSourceLines("Hello.java", "class Hello [CD]
+Line_2 $$ public void invalidJavacopts() throws Exception --> Line_4 $$ optionsBuilder.addAllJavacOpts(ImmutableList.of("-NOT_AN_OPTION")) [CD]
+Line_2 $$ public void invalidJavacopts() throws Exception --> Line_5 $$ optionsBuilder.addSources(ImmutableList.copyOf(Iterables.transform(sources, TO_STRING))) [CD]
+Line_2 $$ public void invalidJavacopts() throws Exception --> Line_6 $$ StringWriter errOutput = new StringWriter() [CD]
+Line_7 $$ try (JavacTurbine turbine = new JavacTurbine(new PrintWriter(errOutput, true), optionsBuilder.build())) --> Line_8 $$ assertThat(turbine.compile()).isEqualTo(Result.ERROR) [FD]
+Line_2 $$ public void invalidJavacopts() throws Exception --> Line_10 $$ assertThat(errOutput.toString()).contains("invalid flag: -NOT_AN_OPTION") [CD]
+Line_6 $$ StringWriter errOutput = new StringWriter() --> Line_10 $$ assertThat(errOutput.toString()).contains("invalid flag: -NOT_AN_OPTION") [FD]

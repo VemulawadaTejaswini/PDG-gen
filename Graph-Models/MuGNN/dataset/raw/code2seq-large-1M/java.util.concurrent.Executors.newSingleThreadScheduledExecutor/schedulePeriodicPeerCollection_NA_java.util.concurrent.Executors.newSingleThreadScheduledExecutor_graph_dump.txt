@@ -1,0 +1,5 @@
+Line_2 $$ private void schedulePeriodicPeerCollection(IRuntimeLifecycleBinder lifecycleBinder) --> Line_3 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor( r -> new Thread(r, "lsd-peer-source")) [CD]
+Line_2 $$ private void schedulePeriodicPeerCollection(IRuntimeLifecycleBinder lifecycleBinder) --> Line_4 $$ executor.scheduleWithFixedDelay(this::<>collectPeers, 1, 1, TimeUnit.SECONDS) [CD]
+Line_3 $$ ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor( r -> new Thread(r, "lsd-peer-source")) --> Line_4 $$ executor.scheduleWithFixedDelay(this::<>collectPeers, 1, 1, TimeUnit.SECONDS) [FD]
+Line_2 $$ private void schedulePeriodicPeerCollection(IRuntimeLifecycleBinder lifecycleBinder) --> Line_5 $$ lifecycleBinder.onShutdown(LifecycleBinding.bind(executor::<>shutdownNow).description("Shutdown LSD peer collection").build()) [FD]
+Line_2 $$ private void schedulePeriodicPeerCollection(IRuntimeLifecycleBinder lifecycleBinder) --> Line_5 $$ lifecycleBinder.onShutdown(LifecycleBinding.bind(executor::<>shutdownNow).description("Shutdown LSD peer collection").build()) [CD]

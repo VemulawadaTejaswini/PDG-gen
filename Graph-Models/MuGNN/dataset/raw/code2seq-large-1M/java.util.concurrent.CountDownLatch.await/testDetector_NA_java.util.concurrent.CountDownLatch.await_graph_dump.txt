@@ -1,0 +1,5 @@
+Line_2 $$ public void testDetector() throws InterruptedException --> Line_3 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testDetector() throws InterruptedException --> Line_4 $$ Observable.range(1, 10).doOnUnsubscribe(countDown(latch)).take(1).toBlocking().single() [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_4 $$ Observable.range(1, 10).doOnUnsubscribe(countDown(latch)).take(1).toBlocking().single() [FD]
+Line_2 $$ public void testDetector() throws InterruptedException --> Line_5 $$ assertTrue(latch.await(TIMEOUT_SECONDS, TimeUnit.SECONDS)) [CD]
+Line_3 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_5 $$ assertTrue(latch.await(TIMEOUT_SECONDS, TimeUnit.SECONDS)) [FD]

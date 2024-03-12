@@ -1,0 +1,8 @@
+Line_2 $$ private static int readPort(Path portFilePath) throws IOException --> Line_3 $$ ByteBuffer buf = ByteBuffer.allocate(Integer.BYTES) [CD]
+Line_2 $$ private static int readPort(Path portFilePath) throws IOException --> Line_4 $$ try (ReadableByteChannel ch = Files.newByteChannel(portFilePath, StandardOpenOption.READ)) [FD]
+Line_4 $$ try (ReadableByteChannel ch = Files.newByteChannel(portFilePath, StandardOpenOption.READ)) --> Line_5 $$ if (ch.read(buf) == Integer.BYTES) [FD]
+Line_3 $$ ByteBuffer buf = ByteBuffer.allocate(Integer.BYTES) --> Line_5 $$ if (ch.read(buf) == Integer.BYTES) [FD]
+Line_5 $$ if (ch.read(buf) == Integer.BYTES) --> Line_6 $$ buf.flip() [CD]
+Line_3 $$ ByteBuffer buf = ByteBuffer.allocate(Integer.BYTES) --> Line_6 $$ buf.flip() [FD]
+Line_5 $$ if (ch.read(buf) == Integer.BYTES) --> Line_7 $$ return buf.getInt() [CD]
+Line_3 $$ ByteBuffer buf = ByteBuffer.allocate(Integer.BYTES) --> Line_7 $$ return buf.getInt() [FD]

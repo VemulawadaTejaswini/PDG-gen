@@ -1,0 +1,6 @@
+Line_5 $$ if (!leaderExists.get()) --> Line_6 $$ return [CD]
+Line_8 $$ byte[] leaderId = ZKUtil.getData(watcher, leaderZNode) --> Line_9 $$ if (leaderId != null && Bytes.equals(nodeId, leaderId)) [FD]
+Line_9 $$ if (leaderId != null && Bytes.equals(nodeId, leaderId)) --> Line_10 $$ LOG.info("Stepping down as leader") [CD]
+Line_9 $$ if (leaderId != null && Bytes.equals(nodeId, leaderId)) --> Line_11 $$ ZKUtil.deleteNodeFailSilent(watcher, leaderZNode) [CD]
+Line_9 $$ if (leaderId != null && Bytes.equals(nodeId, leaderId)) --> Line_12 $$ leaderExists.set(false) [CD]
+Line_9 $$ if (leaderId != null && Bytes.equals(nodeId, leaderId)) --> Line_14 $$ LOG.info("Not current leader, no need to step down") [CD]

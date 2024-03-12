@@ -1,0 +1,7 @@
+Line_3 $$ try (Statement stmt = conn.createStatement()) --> Line_4 $$ try (ResultSet rs = stmt.executeQuery("SELECT age FROM Person ORDER BY id desc")) [FD]
+Line_4 $$ try (ResultSet rs = stmt.executeQuery("SELECT age FROM Person ORDER BY id desc")) --> Line_5 $$ assertEquals(1, rs.getMetaData().getColumnCount()) [FD]
+Line_6 $$ for (int i = 0; i < vals.length; i++) --> Line_7 $$ assertTrue("Result set must have " + vals.length + " rows, got " + i, rs.next()) [CD]
+Line_4 $$ try (ResultSet rs = stmt.executeQuery("SELECT age FROM Person ORDER BY id desc")) --> Line_7 $$ assertTrue("Result set must have " + vals.length + " rows, got " + i, rs.next()) [FD]
+Line_6 $$ for (int i = 0; i < vals.length; i++) --> Line_8 $$ assertEquals(vals[i], rs.getInt(1)) [CD]
+Line_4 $$ try (ResultSet rs = stmt.executeQuery("SELECT age FROM Person ORDER BY id desc")) --> Line_8 $$ assertEquals(vals[i], rs.getInt(1)) [FD]
+Line_4 $$ try (ResultSet rs = stmt.executeQuery("SELECT age FROM Person ORDER BY id desc")) --> Line_10 $$ assertFalse("Result set must have exactly " + vals.length + " rows", rs.next()) [FD]

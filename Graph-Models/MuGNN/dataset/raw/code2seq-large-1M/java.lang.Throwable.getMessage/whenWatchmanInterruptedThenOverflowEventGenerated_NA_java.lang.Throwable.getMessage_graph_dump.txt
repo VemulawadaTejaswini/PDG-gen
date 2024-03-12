@@ -1,0 +1,5 @@
+Line_2 $$ public void whenWatchmanInterruptedThenOverflowEventGenerated() throws IOException --> Line_3 $$ String message = "Boo!" [CD]
+Line_2 $$ public void whenWatchmanInterruptedThenOverflowEventGenerated() throws IOException --> Line_4 $$ WatchmanWatcher watcher = createWatcher(eventBus, new FakeWatchmanClient(0, ImmutableMap.of(FAKE_UUID_QUERY, ImmutableMap.of()), new InterruptedException(message)), 10000) [CD]
+Line_4 $$ WatchmanWatcher watcher = createWatcher(eventBus, new FakeWatchmanClient(0, ImmutableMap.of(FAKE_UUID_QUERY, ImmutableMap.of()), new InterruptedException(message)), 10000) --> Line_7 $$ watcher.postEvents(BuckEventBusForTests.newInstance(FakeClock.doNotCare()), WatchmanWatcher.FreshInstanceAction.NONE) [FD]
+Line_3 $$ String message = "Boo!" --> Line_10 $$ assertEquals("Should be test interruption.", e.getMessage(), message) [FD]
+Line_2 $$ public void whenWatchmanInterruptedThenOverflowEventGenerated() throws IOException --> Line_12 $$ assertThat(eventBuffer.getOnlyEvent(), instanceOf(WatchmanOverflowEvent.class)) [CD]

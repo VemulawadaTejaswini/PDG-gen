@@ -1,0 +1,5 @@
+Line_5 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_6 $$ DataSet<Pojo2> input1 = env.fromElements(new Pojo2()) [FD]
+Line_5 $$ ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment() --> Line_7 $$ DataSet<Pojo3> input2 = env.fromElements(new Pojo3()) [FD]
+Line_4 $$ final Partitioner<Long> partitioner = new TestPartitionerLong() --> Line_9 $$ input1.coGroup(input2).where(new Pojo2KeySelector()).equalTo(new Pojo3KeySelector()).withPartitioner(partitioner) [FD]
+Line_6 $$ DataSet<Pojo2> input1 = env.fromElements(new Pojo2()) --> Line_9 $$ input1.coGroup(input2).where(new Pojo2KeySelector()).equalTo(new Pojo3KeySelector()).withPartitioner(partitioner) [FD]
+Line_7 $$ DataSet<Pojo3> input2 = env.fromElements(new Pojo3()) --> Line_9 $$ input1.coGroup(input2).where(new Pojo2KeySelector()).equalTo(new Pojo3KeySelector()).withPartitioner(partitioner) [FD]

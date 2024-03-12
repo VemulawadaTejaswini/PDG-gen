@@ -1,0 +1,5 @@
+Line_2 $$ private static void completeFutureExceptionally(CompletableFuture<Void> future, Throwable cause) --> Line_3 $$ if (GlobalEventExecutor.INSTANCE.inEventLoop()) [CD]
+Line_3 $$ if (GlobalEventExecutor.INSTANCE.inEventLoop()) --> Line_4 $$ future.completeExceptionally(cause) [CD]
+Line_2 $$ private static void completeFutureExceptionally(CompletableFuture<Void> future, Throwable cause) --> Line_4 $$ future.completeExceptionally(cause) [FD]
+Line_3 $$ if (GlobalEventExecutor.INSTANCE.inEventLoop()) --> Line_6 $$ GlobalEventExecutor.INSTANCE.execute(() -> future.completeExceptionally(cause)) [CD]
+Line_2 $$ private static void completeFutureExceptionally(CompletableFuture<Void> future, Throwable cause) --> Line_6 $$ GlobalEventExecutor.INSTANCE.execute(() -> future.completeExceptionally(cause)) [FD]

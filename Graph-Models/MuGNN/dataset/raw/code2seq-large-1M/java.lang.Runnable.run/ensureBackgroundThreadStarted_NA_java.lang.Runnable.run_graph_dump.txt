@@ -1,0 +1,8 @@
+Line_2 $$ private void ensureBackgroundThreadStarted(@Nonnull Runnable action) --> Line_3 $$ Semaphore started = new Semaphore() [CD]
+Line_2 $$ private void ensureBackgroundThreadStarted(@Nonnull Runnable action) --> Line_4 $$ started.down() [CD]
+Line_3 $$ Semaphore started = new Semaphore() --> Line_4 $$ started.down() [FD]
+Line_2 $$ private void ensureBackgroundThreadStarted(@Nonnull Runnable action) --> Line_5 $$ ApplicationManager.getApplication().executeOnPooledThread(() -> ProgressManager.getInstance().runProcess(() -> [CD]
+Line_3 $$ Semaphore started = new Semaphore() --> Line_6 $$ started.up() [FD]
+Line_2 $$ private void ensureBackgroundThreadStarted(@Nonnull Runnable action) --> Line_7 $$ action.run() [FD]
+Line_2 $$ private void ensureBackgroundThreadStarted(@Nonnull Runnable action) --> Line_9 $$ started.waitFor() [CD]
+Line_3 $$ Semaphore started = new Semaphore() --> Line_9 $$ started.waitFor() [FD]

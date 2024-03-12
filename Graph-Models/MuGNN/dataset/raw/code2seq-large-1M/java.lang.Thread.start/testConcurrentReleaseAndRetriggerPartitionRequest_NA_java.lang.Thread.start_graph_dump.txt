@@ -1,0 +1,8 @@
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_3 $$ final SingleInputGate gate = new SingleInputGate("test task name", new JobID(), new IntermediateDataSetID(), ResultPartitionType.PIPELINED, 0, 1, mock(TaskActions.class), UnregisteredMetricGroups.createUnregisteredTaskMetricGroup().getIOMetricGroup(), true) [CD]
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_4 $$ ResultPartitionManager partitionManager = mock(ResultPartitionManager.class) [CD]
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_5 $$ when(partitionManager.createSubpartitionView(any(ResultPartitionID.class), anyInt(), any(BufferAvailabilityListener.class))).thenAnswer(new Answer<ResultSubpartitionView>() [CD]
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_12 $$ gate.setInputChannel(new IntermediateResultPartitionID(), channel) [CD]
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_29 $$ requester.start() [CD]
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_30 $$ releaser.start() [CD]
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_31 $$ releaser.join() [CD]
+Line_2 $$ public void testConcurrentReleaseAndRetriggerPartitionRequest() throws Exception --> Line_32 $$ requester.join() [CD]

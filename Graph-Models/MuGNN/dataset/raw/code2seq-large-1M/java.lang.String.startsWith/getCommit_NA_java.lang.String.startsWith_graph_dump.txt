@@ -1,0 +1,7 @@
+Line_2 $$ public BuildCause.CommitInfo getCommit() --> Line_3 $$ final String[] buildParams = StringUtils.split(this.item.getParams(), "\n") [CD]
+Line_2 $$ public BuildCause.CommitInfo getCommit() --> Line_4 $$ String branch = "" [CD]
+Line_5 $$ for (final String buildParam : buildParams) --> Line_6 $$ if (buildParam.startsWith("BRANCH=")) [FD]
+Line_6 $$ if (buildParam.startsWith("BRANCH=")) --> Line_7 $$ branch = StringUtils.split(buildParam, "=")[1] [CD]
+Line_4 $$ String branch = "" --> Line_7 $$ branch = StringUtils.split(buildParam, "=")[1] [FD]
+Line_5 $$ for (final String buildParam : buildParams) --> Line_7 $$ branch = StringUtils.split(buildParam, "=")[1] [FD]
+Line_2 $$ public BuildCause.CommitInfo getCommit() --> Line_10 $$ return new BuildCause.CommitInfo("Queued: " + this.item.getWhy(), this.item.getInQueueForString(), branch) [CD]

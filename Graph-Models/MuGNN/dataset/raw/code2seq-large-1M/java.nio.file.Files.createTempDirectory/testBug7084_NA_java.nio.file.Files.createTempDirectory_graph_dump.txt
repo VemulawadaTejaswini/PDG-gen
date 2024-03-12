@@ -1,0 +1,8 @@
+Line_2 $$ public void testBug7084() throws IOException --> Line_3 $$ Path flatRepo = Files.createTempDirectory("flat-repo") [CD]
+Line_3 $$ Path flatRepo = Files.createTempDirectory("flat-repo") --> Line_5 $$ RepositoryManager repositoryManager = CeylonUtils.repoManager().systemRepo("../dist/dist/repo").userRepos(Arrays.asList("flat:" + flatRepo.toAbsolutePath().toString())).buildManager() [FD]
+Line_5 $$ RepositoryManager repositoryManager = CeylonUtils.repoManager().systemRepo("../dist/dist/repo").userRepos(Arrays.asList("flat:" + flatRepo.toAbsolutePath().toString())).buildManager() --> Line_6 $$ File artifact = repositoryManager.getArtifact(null, "ceylon.collection", "1.3.2") [FD]
+Line_6 $$ File artifact = repositoryManager.getArtifact(null, "ceylon.collection", "1.3.2") --> Line_7 $$ Assert.assertNotNull(artifact) [FD]
+Line_6 $$ File artifact = repositoryManager.getArtifact(null, "ceylon.collection", "1.3.2") --> Line_8 $$ Files.copy(artifact.toPath(), flatRepo.resolve("ceylon.collection-1.3.2.jar")) [FD]
+Line_3 $$ Path flatRepo = Files.createTempDirectory("flat-repo") --> Line_8 $$ Files.copy(artifact.toPath(), flatRepo.resolve("ceylon.collection-1.3.2.jar")) [FD]
+Line_9 $$ ModuleLoader moduleLoader = new FlatpathModuleLoader(repositoryManager, null, Collections.<String, String>emptyMap(), true) --> Line_11 $$ moduleLoader.loadModule("ceylon.collection", "1.3.2") [FD]
+Line_3 $$ Path flatRepo = Files.createTempDirectory("flat-repo") --> Line_16 $$ IOUtils.deleteRecursively(flatRepo.toFile()) [FD]

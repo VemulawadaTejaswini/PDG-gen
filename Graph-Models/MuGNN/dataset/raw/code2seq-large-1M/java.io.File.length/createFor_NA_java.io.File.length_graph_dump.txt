@@ -1,0 +1,8 @@
+Line_2 $$ public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull File file) throws IOException --> Line_4 $$ if (file.length() <= IV_LENGTH + MAC_LENGTH) [FD]
+Line_2 $$ public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull File file) throws IOException --> Line_7 $$ verifyMac(attachmentSecret, file) [FD]
+Line_8 $$ FileInputStream fileStream = new FileInputStream(file) --> Line_10 $$ readFully(fileStream, ivBytes) [FD]
+Line_9 $$ byte[] ivBytes = new byte[IV_LENGTH] --> Line_10 $$ readFully(fileStream, ivBytes) [FD]
+Line_11 $$ Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding") --> Line_13 $$ cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv) [FD]
+Line_12 $$ IvParameterSpec iv = new IvParameterSpec(ivBytes) --> Line_13 $$ cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv) [FD]
+Line_2 $$ public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull File file) throws IOException --> Line_13 $$ cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv) [FD]
+Line_2 $$ public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull File file) throws IOException --> Line_14 $$ return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher) [FD]

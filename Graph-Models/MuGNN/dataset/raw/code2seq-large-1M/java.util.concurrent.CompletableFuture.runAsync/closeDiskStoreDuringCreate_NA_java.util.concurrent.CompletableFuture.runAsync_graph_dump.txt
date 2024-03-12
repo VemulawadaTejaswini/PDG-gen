@@ -1,0 +1,6 @@
+Line_2 $$ public void closeDiskStoreDuringCreate() throws InterruptedException --> Line_3 $$ testRegion.getAttributesMutator().setCacheWriter(blockingWriter) [CD]
+Line_2 $$ public void closeDiskStoreDuringCreate() throws InterruptedException --> Line_4 $$ Future<Void> asyncCreate = CompletableFuture.runAsync(() -> testRegion.put("newKey", "value")) [CD]
+Line_2 $$ public void closeDiskStoreDuringCreate() throws InterruptedException --> Line_5 $$ blockingWriter.awaitCreateInProgress() [CD]
+Line_2 $$ public void closeDiskStoreDuringCreate() throws InterruptedException --> Line_6 $$ cache.closeDiskStores() [CD]
+Line_2 $$ public void closeDiskStoreDuringCreate() throws InterruptedException --> Line_7 $$ blockingWriter.allowCreates() [CD]
+Line_2 $$ public void closeDiskStoreDuringCreate() throws InterruptedException --> Line_8 $$ assertThatThrownBy(asyncCreate::<>get).hasRootCauseInstanceOf(CacheClosedException.class).hasMessageContaining("The disk store is closed") [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public int getTotalDocCount() --> Line_3 $$ String query = "select count(doc) from HDocument doc " + "where doc.projectIteration.status <> :obsolete " + "and doc.projectIteration.project.status <> :obsolete " + "and doc.obsolete = false" [CD]
+Line_2 $$ public int getTotalDocCount() --> Line_4 $$ Query q = getSession().createQuery(query).setParameter("obsolete", EntityStatus.OBSOLETE) [CD]
+Line_3 $$ String query = "select count(doc) from HDocument doc " + "where doc.projectIteration.status <> :obsolete " + "and doc.projectIteration.project.status <> :obsolete " + "and doc.obsolete = false" --> Line_4 $$ Query q = getSession().createQuery(query).setParameter("obsolete", EntityStatus.OBSOLETE) [FD]
+Line_2 $$ public int getTotalDocCount() --> Line_5 $$ return ((Long) q.uniqueResult()).intValue() [CD]
+Line_4 $$ Query q = getSession().createQuery(query).setParameter("obsolete", EntityStatus.OBSOLETE) --> Line_5 $$ return ((Long) q.uniqueResult()).intValue() [FD]

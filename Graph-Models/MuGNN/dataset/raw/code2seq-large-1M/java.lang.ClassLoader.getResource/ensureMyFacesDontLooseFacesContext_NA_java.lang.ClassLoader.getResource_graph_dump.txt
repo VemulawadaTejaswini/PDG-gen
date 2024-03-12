@@ -1,0 +1,7 @@
+Line_2 $$ private void ensureMyFacesDontLooseFacesContext(final StandardContext standardContext) --> Line_3 $$ for (final Container w : standardContext.findChildren()) [FD]
+Line_3 $$ for (final Container w : standardContext.findChildren()) --> Line_4 $$ if (!Wrapper.class.isInstance(w)) [FD]
+Line_3 $$ for (final Container w : standardContext.findChildren()) --> Line_7 $$ final Wrapper wrapper = Wrapper.class.cast(w) [FD]
+Line_8 $$ if ("FacesServlet".equals(wrapper.getName()) && "javax.faces.webapp.FacesServlet".equals(wrapper.getServletClass())) --> Line_9 $$ final ClassLoader loader = standardContext.getLoader().getClassLoader() [CD]
+Line_2 $$ private void ensureMyFacesDontLooseFacesContext(final StandardContext standardContext) --> Line_9 $$ final ClassLoader loader = standardContext.getLoader().getClassLoader() [FD]
+Line_9 $$ final ClassLoader loader = standardContext.getLoader().getClassLoader() --> Line_11 $$ if (Files.toFile(loader.getResource("javax/faces/webapp/FacesServlet.class")).getName().startsWith("myfaces")) [FD]
+Line_9 $$ final ClassLoader loader = standardContext.getLoader().getClassLoader() --> Line_12 $$ loader.loadClass("org.apache.tomee.myfaces.TomEEWorkaroundFacesServlet") [FD]

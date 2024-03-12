@@ -1,0 +1,4 @@
+Line_2 $$ public void testGroupByMixKeyAggregate() --> Line_3 $$ List<Pair<String, Long>> results = streams.streamAll(em, Sale.class).group( s -> new Pair<String, Integer>(s.getCustomer().getName(), s.getCustomer().getSalary()), ( c,  stream) -> c.getTwo() + stream.count()).select( group -> new Pair(group.getOne().getOne(), group.getTwo())).toList() [CD]
+Line_2 $$ public void testGroupByMixKeyAggregate() --> Line_4 $$ results.sort(Comparator.comparing( group -> group.getOne())) [CD]
+Line_2 $$ public void testGroupByMixKeyAggregate() --> Line_5 $$ assertEquals(new Pair("Alice", 202l), results.get(0)) [CD]
+Line_2 $$ public void testGroupByMixKeyAggregate() --> Line_6 $$ assertEquals("SELECT A.customer.name, A.customer.salary + COUNT(A) FROM org.jinq.hibernate.test.entities.Sale A GROUP BY A.customer.name, A.customer.salary", query) [CD]

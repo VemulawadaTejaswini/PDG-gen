@@ -1,0 +1,7 @@
+Line_2 $$ protected void postProcessDelete() --> Line_3 $$ Delete delete = new Delete(table) [CD]
+Line_2 $$ protected void postProcessDelete() --> Line_4 $$ String wheres = table.getColumns().stream().filter( col -> Model.MAIN_KEY.equals(col.getKey())).map( col -> col.getQuotedName() + " = ?").collect(Collectors.joining(" AND ")) [CD]
+Line_2 $$ protected void postProcessDelete() --> Line_5 $$ delete.setWhere(wheres) [CD]
+Line_3 $$ Delete delete = new Delete(table) --> Line_5 $$ delete.setWhere(wheres) [FD]
+Line_4 $$ String wheres = table.getColumns().stream().filter( col -> Model.MAIN_KEY.equals(col.getKey())).map( col -> col.getQuotedName() + " = ?").collect(Collectors.joining(" AND ")) --> Line_5 $$ delete.setWhere(wheres) [FD]
+Line_2 $$ protected void postProcessDelete() --> Line_6 $$ deleteSqlMap.put(tableName, delete.getStatement()) [CD]
+Line_3 $$ Delete delete = new Delete(table) --> Line_6 $$ deleteSqlMap.put(tableName, delete.getStatement()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private File getBrokenFile(int truncByte) throws IOException --> Line_3 $$ final FileChannel stream = FileChannel.open(new File(TEST_DATA_DIR + "/test_samfile_version_1pt5.bam").toPath()) [CD]
+Line_2 $$ private File getBrokenFile(int truncByte) throws IOException --> Line_4 $$ final File breakingFile = File.createTempFile("trunc", ".bam") [CD]
+Line_2 $$ private File getBrokenFile(int truncByte) throws IOException --> Line_5 $$ breakingFile.deleteOnExit() [CD]
+Line_4 $$ final File breakingFile = File.createTempFile("trunc", ".bam") --> Line_5 $$ breakingFile.deleteOnExit() [FD]
+Line_2 $$ private File getBrokenFile(int truncByte) throws IOException --> Line_6 $$ FileChannel.open(breakingFile.toPath(), StandardOpenOption.WRITE).transferFrom(stream, 0, stream.size() - truncByte) [CD]
+Line_3 $$ final FileChannel stream = FileChannel.open(new File(TEST_DATA_DIR + "/test_samfile_version_1pt5.bam").toPath()) --> Line_6 $$ FileChannel.open(breakingFile.toPath(), StandardOpenOption.WRITE).transferFrom(stream, 0, stream.size() - truncByte) [FD]
+Line_4 $$ final File breakingFile = File.createTempFile("trunc", ".bam") --> Line_6 $$ FileChannel.open(breakingFile.toPath(), StandardOpenOption.WRITE).transferFrom(stream, 0, stream.size() - truncByte) [FD]
+Line_2 $$ private File getBrokenFile(int truncByte) throws IOException --> Line_7 $$ return breakingFile [CD]

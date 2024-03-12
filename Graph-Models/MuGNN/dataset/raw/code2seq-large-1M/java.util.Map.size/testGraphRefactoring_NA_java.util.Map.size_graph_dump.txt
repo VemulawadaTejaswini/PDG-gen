@@ -1,0 +1,6 @@
+Line_2 $$ public void testGraphRefactoring() --> Line_3 $$ String refactorQuery = "MATCH (a:Event) \n" + "WHERE exists(a.address) AND NOT exists(a.latitude)\n" + "WITH a LIMIT 1000\n" + "CALL apoc.spatial.geocodeOnce(a.address) YIELD location \n" + "SET a.latitude = location.latitude\n" + "SET a.longitude = location.longitude" [CD]
+Line_2 $$ public void testGraphRefactoring() --> Line_4 $$ testCallEmpty(db, refactorQuery, null) [CD]
+Line_3 $$ String refactorQuery = "MATCH (a:Event) \n" + "WHERE exists(a.address) AND NOT exists(a.latitude)\n" + "WITH a LIMIT 1000\n" + "CALL apoc.spatial.geocodeOnce(a.address) YIELD location \n" + "SET a.latitude = location.latitude\n" + "SET a.longitude = location.longitude" --> Line_4 $$ testCallEmpty(db, refactorQuery, null) [FD]
+Line_2 $$ public void testGraphRefactoring() --> Line_5 $$ String query = "WITH point( [CD]
+Line_2 $$ public void testGraphRefactoring() --> Line_6 $$ testCallCount(db, query, null, spaceNodes.size()) [CD]
+Line_5 $$ String query = "WITH point( --> Line_6 $$ testCallCount(db, query, null, spaceNodes.size()) [FD]

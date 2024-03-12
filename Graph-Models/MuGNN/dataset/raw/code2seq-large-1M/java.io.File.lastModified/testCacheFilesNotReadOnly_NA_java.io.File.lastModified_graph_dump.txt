@@ -1,0 +1,8 @@
+Line_2 $$ public void testCacheFilesNotReadOnly() throws Exception --> Line_3 $$ stat.setFilesReadOnly(false) [CD]
+Line_2 $$ public void testCacheFilesNotReadOnly() throws Exception --> Line_4 $$ stat.setWebRoot("src/test/filesystemwebroot") [CD]
+Line_2 $$ public void testCacheFilesNotReadOnly() throws Exception --> Line_5 $$ long modified = Utils.secondsFactor(new File("src/test/filesystemwebroot", "fspage.html").lastModified()) [CD]
+Line_2 $$ public void testCacheFilesNotReadOnly() throws Exception --> Line_6 $$ testRequest(HttpMethod.GET, "/fspage.html", null,  res -> [CD]
+Line_5 $$ long modified = Utils.secondsFactor(new File("src/test/filesystemwebroot", "fspage.html").lastModified()) --> Line_8 $$ assertEquals(modified, toDateTime(lastModified)) [FD]
+Line_7 $$ String lastModified = res.headers().get("last-modified") --> Line_8 $$ assertEquals(modified, toDateTime(lastModified)) [FD]
+Line_2 $$ public void testCacheFilesNotReadOnly() throws Exception --> Line_10 $$ testRequest(HttpMethod.GET, "/fspage.html",  req -> req.putHeader("if-modified-since", dateTimeFormatter.format(modified)), null, 304, "Not Modified", null) [CD]
+Line_5 $$ long modified = Utils.secondsFactor(new File("src/test/filesystemwebroot", "fspage.html").lastModified()) --> Line_10 $$ testRequest(HttpMethod.GET, "/fspage.html",  req -> req.putHeader("if-modified-since", dateTimeFormatter.format(modified)), null, 304, "Not Modified", null) [FD]

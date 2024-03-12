@@ -1,0 +1,8 @@
+Line_2 $$ static X500Name toX500Name(Principal principal) --> Line_3 $$ if (principal == null) [FD]
+Line_2 $$ static X500Name toX500Name(Principal principal) --> Line_3 $$ if (principal == null) [CD]
+Line_3 $$ if (principal == null) --> Line_4 $$ return null [CD]
+Line_3 $$ if (principal == null) --> Line_5 $$ if (principal instanceof X500Principal) [CD]
+Line_2 $$ static X500Name toX500Name(Principal principal) --> Line_5 $$ if (principal instanceof X500Principal) [FD]
+Line_5 $$ if (principal instanceof X500Principal) --> Line_6 $$ return X500Name.getInstance(((X500Principal) principal).getEncoded()) [CD]
+Line_5 $$ if (principal instanceof X500Principal) --> Line_8 $$ return new X500Name(principal.getName()) [CD]
+Line_2 $$ static X500Name toX500Name(Principal principal) --> Line_8 $$ return new X500Name(principal.getName()) [FD]

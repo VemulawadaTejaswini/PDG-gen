@@ -1,0 +1,4 @@
+Line_2 $$ public void create_maintainer_invalid_source_in_data() throws Exception --> Line_3 $$ rpslObjectUpdateDao.createObject(RpslObject.parse(PERSON_ANY1_TEST)) [CD]
+Line_2 $$ public void create_maintainer_invalid_source_in_data() throws Exception --> Line_4 $$ final String mntnerInvalidSource = MNTNER_TEST_MNTNER.replaceAll("source:\\s+TEST", "source: invalid") [CD]
+Line_2 $$ public void create_maintainer_invalid_source_in_data() throws Exception --> Line_5 $$ String response = RestTest.target(getPort(), "whois/syncupdates/test?" + "DATA=" + SyncUpdateUtils.encode(mntnerInvalidSource + "\npassword: emptypassword")).request().get(String.class) [CD]
+Line_2 $$ public void create_maintainer_invalid_source_in_data() throws Exception --> Line_6 $$ assertThat(response, containsString("Error:   Unrecognized source: INVALID")) [CD]

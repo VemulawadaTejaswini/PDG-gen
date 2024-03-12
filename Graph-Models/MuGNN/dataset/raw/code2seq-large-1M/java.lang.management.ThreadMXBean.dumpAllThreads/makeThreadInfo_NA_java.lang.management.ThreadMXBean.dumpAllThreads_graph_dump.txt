@@ -1,0 +1,6 @@
+Line_2 $$ private static List<ThreadData> makeThreadInfo() --> Line_3 $$ final Map<Long, ThreadData> returnData = new TreeMap() [CD]
+Line_2 $$ private static List<ThreadData> makeThreadInfo() --> Line_4 $$ final ThreadInfo[] threads = ManagementFactory.getThreadMXBean().dumpAllThreads(true, true) [CD]
+Line_3 $$ final Map<Long, ThreadData> returnData = new TreeMap() --> Line_6 $$ returnData.put(threadInfo.getThreadId(), new ThreadData("thread-" + Long.toString(threadInfo.getThreadId()), threadInfo.getThreadName(), threadInfo.getThreadState().toString().toLowerCase(), JavaHelper.threadInfoToString(threadInfo))) [FD]
+Line_5 $$ for (final ThreadInfo threadInfo : threads) --> Line_6 $$ returnData.put(threadInfo.getThreadId(), new ThreadData("thread-" + Long.toString(threadInfo.getThreadId()), threadInfo.getThreadName(), threadInfo.getThreadState().toString().toLowerCase(), JavaHelper.threadInfoToString(threadInfo))) [FD]
+Line_2 $$ private static List<ThreadData> makeThreadInfo() --> Line_8 $$ return Collections.unmodifiableList(new ArrayList(returnData.values())) [CD]
+Line_3 $$ final Map<Long, ThreadData> returnData = new TreeMap() --> Line_8 $$ return Collections.unmodifiableList(new ArrayList(returnData.values())) [FD]

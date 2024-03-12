@@ -1,0 +1,7 @@
+Line_2 $$ private void notifyParentTask(ExtensibilitySubscriptionCallback body) --> Line_3 $$ body.replyPayload.customProperties = body.replyPayload.customProperties != null ? body.replyPayload.customProperties : new HashMap() [CD]
+Line_2 $$ private void notifyParentTask(ExtensibilitySubscriptionCallback body) --> Line_4 $$ if (body.errorMessage != null && !body.errorMessage.isEmpty()) [CD]
+Line_4 $$ if (body.errorMessage != null && !body.errorMessage.isEmpty()) --> Line_5 $$ body.replyPayload.customProperties.put(EXTENSIBILITY_ERROR_MESSAGE, body.errorMessage) [CD]
+Line_2 $$ private void notifyParentTask(ExtensibilitySubscriptionCallback body) --> Line_7 $$ body.replyPayload.customProperties.put(constructExtensibilityKey(body), Boolean.TRUE.toString()) [FD]
+Line_2 $$ private void notifyParentTask(ExtensibilitySubscriptionCallback body) --> Line_7 $$ body.replyPayload.customProperties.put(constructExtensibilityKey(body), Boolean.TRUE.toString()) [CD]
+Line_2 $$ private void notifyParentTask(ExtensibilitySubscriptionCallback body) --> Line_8 $$ sendRequest(Operation.createPatch(UriUtils.buildUri(getHost(), body.serviceTaskCallback.serviceSelfLink)).setReferer(getHost().getUri()).setBody(body.replyPayload).setCompletion(( o,  e) -> [CD]
+Line_9 $$ if (e != null) --> Line_10 $$ getHost().log(Level.SEVERE, String.format("Notification to [%s] failed. Error: %s", body.serviceTaskCallback.serviceSelfLink, e.getMessage())) [CD]

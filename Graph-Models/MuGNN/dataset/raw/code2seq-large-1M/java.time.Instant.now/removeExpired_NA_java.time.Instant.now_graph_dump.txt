@@ -1,0 +1,5 @@
+Line_2 $$ public void removeExpired() --> Line_3 $$ final Set<String> reapable = sessions.entrySet().stream().filter( e -> e.getValue().getExpires().isPresent()).filter( e -> e.getValue().getExpires().get().isBefore(now())).map(Map.Entry::<>getKey).collect(toSet()) [CD]
+Line_2 $$ public void removeExpired() --> Line_4 $$ reapable.forEach( key -> [CD]
+Line_5 $$ final FedoraSession s = sessions.get(key) --> Line_6 $$ if (s != null) [FD]
+Line_5 $$ final FedoraSession s = sessions.get(key) --> Line_8 $$ s.expire() [FD]
+Line_5 $$ final FedoraSession s = sessions.get(key) --> Line_10 $$ LOGGER.error("Got exception rolling back expired session [FD]

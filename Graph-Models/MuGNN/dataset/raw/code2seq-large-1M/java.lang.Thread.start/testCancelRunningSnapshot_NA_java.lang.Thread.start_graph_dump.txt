@@ -1,0 +1,6 @@
+Line_2 $$ public void testCancelRunningSnapshot() throws Exception --> Line_3 $$ setupRocksKeyedStateBackend() [CD]
+Line_6 $$ Thread asyncSnapshotThread = new Thread(snapshot) --> Line_7 $$ asyncSnapshotThread.start() [FD]
+Line_5 $$ RunnableFuture<SnapshotResult<KeyedStateHandle>> snapshot = keyedStateBackend.snapshot(0L, 0L, testStreamFactory, CheckpointOptions.forCheckpointWithDefaultLocation()) --> Line_11 $$ snapshot.cancel(true) [FD]
+Line_13 $$ for (BlockingCheckpointOutputStream stream : testStreamFactory.getAllCreatedStreams()) --> Line_14 $$ assertTrue(stream.isClosed()) [FD]
+Line_5 $$ RunnableFuture<SnapshotResult<KeyedStateHandle>> snapshot = keyedStateBackend.snapshot(0L, 0L, testStreamFactory, CheckpointOptions.forCheckpointWithDefaultLocation()) --> Line_18 $$ snapshot.get() [FD]
+Line_6 $$ Thread asyncSnapshotThread = new Thread(snapshot) --> Line_22 $$ asyncSnapshotThread.join() [FD]

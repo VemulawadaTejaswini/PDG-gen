@@ -1,0 +1,6 @@
+Line_3 $$ try (BytesStreamOutput out = new BytesStreamOutput()) --> Line_6 $$ out.writeNamedWriteable(namedWriteableIn) [FD]
+Line_5 $$ TestNamedWriteable namedWriteableIn = new TestNamedWriteable(randomAlphaOfLengthBetween(1, 10), randomAlphaOfLengthBetween(1, 10)) --> Line_6 $$ out.writeNamedWriteable(namedWriteableIn) [FD]
+Line_3 $$ try (BytesStreamOutput out = new BytesStreamOutput()) --> Line_7 $$ byte[] bytes = BytesReference.toBytes(out.bytes()) [FD]
+Line_7 $$ byte[] bytes = BytesReference.toBytes(out.bytes()) --> Line_8 $$ try (StreamInput in = new NamedWriteableAwareStreamInput(StreamInput.wrap(bytes), namedWriteableRegistry)) [FD]
+Line_8 $$ try (StreamInput in = new NamedWriteableAwareStreamInput(StreamInput.wrap(bytes), namedWriteableRegistry)) --> Line_9 $$ assertEquals(in.available(), bytes.length) [FD]
+Line_8 $$ try (StreamInput in = new NamedWriteableAwareStreamInput(StreamInput.wrap(bytes), namedWriteableRegistry)) --> Line_10 $$ in.readNamedWriteable(BaseNamedWriteable.class) [FD]

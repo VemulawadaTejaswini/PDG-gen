@@ -1,0 +1,8 @@
+Line_2 $$ void recordingStopped(final long recordingId, final long position) --> Line_3 $$ final int offset = recordingDescriptorOffset(recordingId) + RecordingDescriptorHeaderDecoder.BLOCK_LENGTH [FD]
+Line_2 $$ void recordingStopped(final long recordingId, final long position) --> Line_3 $$ final int offset = recordingDescriptorOffset(recordingId) + RecordingDescriptorHeaderDecoder.BLOCK_LENGTH [CD]
+Line_2 $$ void recordingStopped(final long recordingId, final long position) --> Line_4 $$ final long stopPosition = nativeOrder() == BYTE_ORDER ? position : Long.reverseBytes(position) [FD]
+Line_2 $$ void recordingStopped(final long recordingId, final long position) --> Line_4 $$ final long stopPosition = nativeOrder() == BYTE_ORDER ? position : Long.reverseBytes(position) [CD]
+Line_2 $$ void recordingStopped(final long recordingId, final long position) --> Line_5 $$ fieldAccessBuffer.putLongVolatile(offset + stopPositionEncodingOffset(), stopPosition) [CD]
+Line_4 $$ final long stopPosition = nativeOrder() == BYTE_ORDER ? position : Long.reverseBytes(position) --> Line_5 $$ fieldAccessBuffer.putLongVolatile(offset + stopPositionEncodingOffset(), stopPosition) [FD]
+Line_2 $$ void recordingStopped(final long recordingId, final long position) --> Line_6 $$ if (fileSyncLevel > 0) [CD]
+Line_6 $$ if (fileSyncLevel > 0) --> Line_7 $$ catalogByteBuffer.force() [CD]

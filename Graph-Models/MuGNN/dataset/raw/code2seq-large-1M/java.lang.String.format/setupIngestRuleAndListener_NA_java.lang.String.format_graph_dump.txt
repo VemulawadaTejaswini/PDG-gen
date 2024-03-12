@@ -1,0 +1,8 @@
+Line_2 $$ public void setupIngestRuleAndListener() --> Line_3 $$ execute(String.format(Locale.ENGLISH, "create table %s (data int)", TARGET_TABLE)) [CD]
+Line_2 $$ public void setupIngestRuleAndListener() --> Line_4 $$ execute(String.format(Locale.ENGLISH, "create ingest rule %s on %s where topic = ? into %s", UNDER_TEST_INGEST_RULE_NAME, INGESTION_SOURCE_ID, TARGET_TABLE), new Object[] [CD]
+Line_2 $$ public void setupIngestRuleAndListener() --> Line_5 $$ ingestionService = internalCluster().getInstance(IngestionService.class) [CD]
+Line_2 $$ public void setupIngestRuleAndListener() --> Line_7 $$ ruleListener.registerListener() [CD]
+Line_15 $$ Integer nextValue = dataSource.next() --> Line_17 $$ ruleListener.ingestData(DATA_TOPIC, nextValue) [FD]
+Line_15 $$ Integer nextValue = dataSource.next() --> Line_18 $$ lastProducedData.set(nextValue) [FD]
+Line_16 $$ Set<Tuple<Predicate<Row>, IngestRule>> listenerReceivedRules = ruleListener.predicateAndIngestRulesReference.get() --> Line_19 $$ listenerReceivedRules.stream().map( tuple -> tuple.v2().getName()).collect(toCollection(() -> existingRulesOnIngestValue)) [FD]
+Line_2 $$ public void setupIngestRuleAndListener() --> Line_26 $$ dataIngestionThread.start() [CD]

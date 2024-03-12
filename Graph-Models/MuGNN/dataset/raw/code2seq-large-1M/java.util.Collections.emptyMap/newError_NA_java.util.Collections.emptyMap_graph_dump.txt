@@ -1,0 +1,5 @@
+Line_2 $$ private static Response newError(final RestStatus status, final String message) --> Line_5 $$ builder.startObject().startObject("error").field("code", status.getStatus()).field("message", message).startArray("errors").startObject().field("domain", "global").field("reason", status.toString()).field("message", message).endObject().endArray().endObject().endObject() [FD]
+Line_4 $$ try (XContentBuilder builder = jsonBuilder()) --> Line_5 $$ builder.startObject().startObject("error").field("code", status.getStatus()).field("message", message).startArray("errors").startObject().field("domain", "global").field("reason", status.toString()).field("message", message).endObject().endArray().endObject().endObject() [FD]
+Line_3 $$ try (ByteArrayOutputStream out = new ByteArrayOutputStream()) --> Line_6 $$ BytesReference.bytes(builder).writeTo(out) [FD]
+Line_4 $$ try (XContentBuilder builder = jsonBuilder()) --> Line_6 $$ BytesReference.bytes(builder).writeTo(out) [FD]
+Line_3 $$ try (ByteArrayOutputStream out = new ByteArrayOutputStream()) --> Line_8 $$ return new Response(status, emptyMap(), XContentType.JSON.mediaType(), out.toByteArray()) [FD]

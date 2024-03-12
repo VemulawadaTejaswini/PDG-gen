@@ -1,0 +1,7 @@
+Line_3 $$ try (Graph g = new Graph()) --> Line_4 $$ g.importGraphDef(graphDef) [FD]
+Line_2 $$ private static float[] executeInceptionGraph(byte[] graphDef, Tensor image) --> Line_4 $$ g.importGraphDef(graphDef) [FD]
+Line_2 $$ private static float[] executeInceptionGraph(byte[] graphDef, Tensor image) --> Line_5 $$ try (Session s = new Session(g); [FD]
+Line_5 $$ try (Session s = new Session(g); --> Line_7 $$ final long[] rshape = result.shape() [FD]
+Line_5 $$ try (Session s = new Session(g); --> Line_8 $$ if (result.numDimensions() != 2 || rshape[0] != 1) [FD]
+Line_7 $$ final long[] rshape = result.shape() --> Line_9 $$ throw new RuntimeException(String.format("Expected model to produce a [1 N] shaped tensor where N is the number of labels, instead it produced one with shape %s", Arrays.toString(rshape))) [FD]
+Line_5 $$ try (Session s = new Session(g); --> Line_12 $$ return result.copyTo(new float[1][nlabels])[0] [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public BaragonServiceStatus getMasterServiceStatus() --> Line_3 $$ if (leaderLatch.hasLeadership()) [CD]
+Line_3 $$ if (leaderLatch.hasLeadership()) --> Line_4 $$ return getServiceStatus() [CD]
+Line_7 $$ String leaderUri = leaderLatch.getLeader().getId() --> Line_8 $$ Response response = httpClient.prepareGet(String.format("%s/status", leaderUri)).execute().get() [FD]
+Line_8 $$ Response response = httpClient.prepareGet(String.format("%s/status", leaderUri)).execute().get() --> Line_9 $$ return objectMapper.readValue(response.getResponseBody(), BaragonServiceStatus.class) [FD]

@@ -1,0 +1,8 @@
+Line_4 $$ ZMQ.Context context = ZMQ.context(1) --> Line_5 $$ ZMQ.Socket publisher = context.socket(ZMQ.PUB) [FD]
+Line_5 $$ ZMQ.Socket publisher = context.socket(ZMQ.PUB) --> Line_6 $$ publisher.bind(addr) [FD]
+Line_2 $$ public boolean send(String addr, String msg, String topic) --> Line_6 $$ publisher.bind(addr) [FD]
+Line_2 $$ public boolean send(String addr, String msg, String topic) --> Line_7 $$ String newMsg = topic.getBytes() + " " + msg [FD]
+Line_5 $$ ZMQ.Socket publisher = context.socket(ZMQ.PUB) --> Line_8 $$ publisher.send(newMsg.getBytes(), ZMQ.NOBLOCK) [FD]
+Line_7 $$ String newMsg = topic.getBytes() + " " + msg --> Line_8 $$ publisher.send(newMsg.getBytes(), ZMQ.NOBLOCK) [FD]
+Line_5 $$ ZMQ.Socket publisher = context.socket(ZMQ.PUB) --> Line_9 $$ publisher.close() [FD]
+Line_4 $$ ZMQ.Context context = ZMQ.context(1) --> Line_10 $$ context.term() [FD]

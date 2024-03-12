@@ -1,0 +1,7 @@
+Line_2 $$ private void queryManagementVm(HostService.State hostState) --> Line_3 $$ QueryTask queryTask = QueryTask.Builder.createDirectTask().setQuery(QueryTask.Query.Builder.create().addKindFieldClause(VmService.State.class).addFieldClause(VmService.State.FIELD_NAME_HOST_SERVICE_LINK, hostState.documentSelfLink).build()).build() [CD]
+Line_2 $$ private void queryManagementVm(HostService.State hostState) --> Line_4 $$ Operation.createPost(UriUtils.buildBroadcastRequestUri(UriUtils.buildUri(getHost(), ServiceUriPaths.CORE_LOCAL_QUERY_TASKS), ServiceUriPaths.DEFAULT_NODE_SELECTOR)).setBody(queryTask).setCompletion(( o,  e) -> [CD]
+Line_5 $$ if (e != null) --> Line_6 $$ failTask(e) [CD]
+Line_5 $$ if (e != null) --> Line_7 $$ return [CD]
+Line_11 $$ Set<String> vmServiceLinks = QueryTaskUtils.getBroadcastQueryDocumentLinks(rsp) --> Line_12 $$ checkState(vmServiceLinks.size() == 1) [FD]
+Line_2 $$ private void queryManagementVm(HostService.State hostState) --> Line_13 $$ queryManagementContainers(hostState, vmServiceLinks.iterator().next()) [FD]
+Line_11 $$ Set<String> vmServiceLinks = QueryTaskUtils.getBroadcastQueryDocumentLinks(rsp) --> Line_13 $$ queryManagementContainers(hostState, vmServiceLinks.iterator().next()) [FD]

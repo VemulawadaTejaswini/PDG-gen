@@ -1,0 +1,7 @@
+Line_2 $$ static Boolean safeStringToBoolean(SystemSetting setting, String value) --> Line_3 $$ if (value.equalsIgnoreCase("true")) [FD]
+Line_2 $$ static Boolean safeStringToBoolean(SystemSetting setting, String value) --> Line_3 $$ if (value.equalsIgnoreCase("true")) [CD]
+Line_3 $$ if (value.equalsIgnoreCase("true")) --> Line_4 $$ return true [CD]
+Line_3 $$ if (value.equalsIgnoreCase("true")) --> Line_5 $$ if (value.equalsIgnoreCase("false")) [CD]
+Line_2 $$ static Boolean safeStringToBoolean(SystemSetting setting, String value) --> Line_5 $$ if (value.equalsIgnoreCase("false")) [FD]
+Line_5 $$ if (value.equalsIgnoreCase("false")) --> Line_6 $$ return false [CD]
+Line_2 $$ static Boolean safeStringToBoolean(SystemSetting setting, String value) --> Line_8 $$ throw new IllegalStateException("Environment variable '" + setting.environmentVariable() + "' or system property '" + setting.property() + "' was defined as '" + value + "', but should be 'false' or 'true'") [FD]

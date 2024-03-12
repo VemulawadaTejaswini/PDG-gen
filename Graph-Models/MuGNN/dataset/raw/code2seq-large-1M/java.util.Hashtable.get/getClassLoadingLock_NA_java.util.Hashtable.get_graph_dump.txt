@@ -1,0 +1,8 @@
+Line_4 $$ if (isParallelCapable) --> Line_5 $$ if (classNameBasedLock == null) [CD]
+Line_3 $$ Object lock = this --> Line_14 $$ lock = (null != wf) ? wf.get() : null [FD]
+Line_3 $$ Object lock = this --> Line_15 $$ if (lock == null) [FD]
+Line_14 $$ lock = (null != wf) ? wf.get() : null --> Line_15 $$ if (lock == null) [FD]
+Line_15 $$ if (lock == null) --> Line_16 $$ lock = new ClassNameBasedLock() [CD]
+Line_3 $$ Object lock = this --> Line_16 $$ lock = new ClassNameBasedLock() [FD]
+Line_14 $$ lock = (null != wf) ? wf.get() : null --> Line_16 $$ lock = new ClassNameBasedLock() [FD]
+Line_15 $$ if (lock == null) --> Line_17 $$ classNameBasedLock.put(className, new ClassNameLockRef(lock, className, classNameBasedLock)) [CD]

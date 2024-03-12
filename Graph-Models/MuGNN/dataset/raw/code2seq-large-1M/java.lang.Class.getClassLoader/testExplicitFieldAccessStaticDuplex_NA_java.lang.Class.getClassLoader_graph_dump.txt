@@ -1,0 +1,6 @@
+Line_2 $$ public void testExplicitFieldAccessStaticDuplex() throws Exception --> Line_3 $$ DynamicType.Loaded<ExplicitStatic> loaded = new ByteBuddy().subclass(ExplicitStatic.class).method(isDeclaredBy(ExplicitStatic.class)).intercept(MethodDelegation.withDefaultConfiguration().withBinders(FieldProxy.Binder.install(GetSet.class)).to(SwapDuplex.class)).make().load(ExplicitStatic.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testExplicitFieldAccessStaticDuplex() throws Exception --> Line_4 $$ ExplicitStatic explicit = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testExplicitFieldAccessStaticDuplex() throws Exception --> Line_5 $$ assertThat(ExplicitStatic.foo, is(FOO)) [CD]
+Line_2 $$ public void testExplicitFieldAccessStaticDuplex() throws Exception --> Line_6 $$ explicit.swap() [CD]
+Line_4 $$ ExplicitStatic explicit = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ explicit.swap() [FD]
+Line_2 $$ public void testExplicitFieldAccessStaticDuplex() throws Exception --> Line_7 $$ assertThat(ExplicitStatic.foo, is(FOO + BAR)) [CD]

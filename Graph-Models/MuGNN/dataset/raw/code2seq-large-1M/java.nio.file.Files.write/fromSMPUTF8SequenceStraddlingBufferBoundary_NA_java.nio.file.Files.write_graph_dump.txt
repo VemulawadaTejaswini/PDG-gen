@@ -1,0 +1,8 @@
+Line_2 $$ public void fromSMPUTF8SequenceStraddlingBufferBoundary() throws Exception --> Line_3 $$ Path p = folder.newFile().toPath() [CD]
+Line_2 $$ public void fromSMPUTF8SequenceStraddlingBufferBoundary() throws Exception --> Line_4 $$ Files.write(p, "hello 🌎".getBytes(StandardCharsets.UTF_8)) [CD]
+Line_3 $$ Path p = folder.newFile().toPath() --> Line_4 $$ Files.write(p, "hello 🌎".getBytes(StandardCharsets.UTF_8)) [FD]
+Line_3 $$ Path p = folder.newFile().toPath() --> Line_5 $$ try (SeekableByteChannel c = Files.newByteChannel(p)) [FD]
+Line_5 $$ try (SeekableByteChannel c = Files.newByteChannel(p)) --> Line_6 $$ CharStream s = CharStreams.fromChannel(c, 8, CodingErrorAction.REPLACE, "foo") [FD]
+Line_6 $$ CharStream s = CharStreams.fromChannel(c, 8, CodingErrorAction.REPLACE, "foo") --> Line_8 $$ assertEquals(7, s.size()) [FD]
+Line_6 $$ CharStream s = CharStreams.fromChannel(c, 8, CodingErrorAction.REPLACE, "foo") --> Line_9 $$ assertEquals(0, s.index()) [FD]
+Line_6 $$ CharStream s = CharStreams.fromChannel(c, 8, CodingErrorAction.REPLACE, "foo") --> Line_10 $$ assertEquals("hello 🌎", s.toString()) [FD]

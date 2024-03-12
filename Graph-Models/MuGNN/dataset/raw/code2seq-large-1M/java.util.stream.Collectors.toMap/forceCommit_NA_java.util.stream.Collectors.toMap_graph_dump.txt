@@ -1,0 +1,7 @@
+Line_2 $$ protected void forceCommit() --> Line_3 $$ log.info("Force commit after a move") [CD]
+Line_2 $$ protected void forceCommit() --> Line_4 $$ Map<TopicPartition, OffsetAndMetadata> offsets = topicPartitions.stream().collect(toMap( tp -> tp,  tp -> new OffsetAndMetadata(consumer.position(tp)))) [CD]
+Line_2 $$ protected void forceCommit() --> Line_5 $$ consumer.commitSync(offsets) [CD]
+Line_4 $$ Map<TopicPartition, OffsetAndMetadata> offsets = topicPartitions.stream().collect(toMap( tp -> tp,  tp -> new OffsetAndMetadata(consumer.position(tp)))) --> Line_5 $$ consumer.commitSync(offsets) [FD]
+Line_2 $$ protected void forceCommit() --> Line_6 $$ offsets.forEach(( topicPartition,  offset) -> lastCommittedOffsets.put(topicPartition, offset.offset())) [CD]
+Line_4 $$ Map<TopicPartition, OffsetAndMetadata> offsets = topicPartitions.stream().collect(toMap( tp -> tp,  tp -> new OffsetAndMetadata(consumer.position(tp)))) --> Line_6 $$ offsets.forEach(( topicPartition,  offset) -> lastCommittedOffsets.put(topicPartition, offset.offset())) [FD]
+Line_2 $$ protected void forceCommit() --> Line_8 $$ lastOffsets.clear() [CD]

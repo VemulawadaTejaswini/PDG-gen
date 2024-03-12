@@ -1,0 +1,8 @@
+Line_2 $$ public void testEmptyCollectionOnParallelUserTask() --> Line_3 $$ if (processEngineConfiguration.getHistoryLevel().isAtLeast(HistoryLevel.AUDIT)) [CD]
+Line_3 $$ if (processEngineConfiguration.getHistoryLevel().isAtLeast(HistoryLevel.AUDIT)) --> Line_4 $$ Map<String, Object> vars = new HashMap<String, Object>() [CD]
+Line_3 $$ if (processEngineConfiguration.getHistoryLevel().isAtLeast(HistoryLevel.AUDIT)) --> Line_5 $$ vars.put("messages", Collections.EMPTY_LIST) [CD]
+Line_4 $$ Map<String, Object> vars = new HashMap<String, Object>() --> Line_5 $$ vars.put("messages", Collections.EMPTY_LIST) [FD]
+Line_3 $$ if (processEngineConfiguration.getHistoryLevel().isAtLeast(HistoryLevel.AUDIT)) --> Line_6 $$ ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("parallelUserTaskMi", vars) [CD]
+Line_4 $$ Map<String, Object> vars = new HashMap<String, Object>() --> Line_6 $$ ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("parallelUserTaskMi", vars) [FD]
+Line_3 $$ if (processEngineConfiguration.getHistoryLevel().isAtLeast(HistoryLevel.AUDIT)) --> Line_7 $$ assertEquals(1L, historyService.createHistoricProcessInstanceQuery().processInstanceId(processInstance.getId()).finished().count()) [CD]
+Line_6 $$ ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("parallelUserTaskMi", vars) --> Line_7 $$ assertEquals(1L, historyService.createHistoricProcessInstanceQuery().processInstanceId(processInstance.getId()).finished().count()) [FD]

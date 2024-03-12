@@ -1,0 +1,7 @@
+Line_2 $$ public void statusForUnknownComponentInstanceReturnNull() --> Line_3 $$ CompositeHealthIndicator compositeIndicator = new CompositeHealthIndicator(new OrderedHealthAggregator(), new DefaultHealthIndicatorRegistry(Collections.singletonMap("sub", () -> Health.down().build()))) [CD]
+Line_2 $$ public void statusForUnknownComponentInstanceReturnNull() --> Line_4 $$ HealthEndpoint endpoint = new HealthEndpoint(createHealthIndicator(Collections.singletonMap("test", compositeIndicator))) [CD]
+Line_3 $$ CompositeHealthIndicator compositeIndicator = new CompositeHealthIndicator(new OrderedHealthAggregator(), new DefaultHealthIndicatorRegistry(Collections.singletonMap("sub", () -> Health.down().build()))) --> Line_4 $$ HealthEndpoint endpoint = new HealthEndpoint(createHealthIndicator(Collections.singletonMap("test", compositeIndicator))) [FD]
+Line_2 $$ public void statusForUnknownComponentInstanceReturnNull() --> Line_5 $$ Health health = endpoint.healthForComponentInstance("test", "does-not-exist") [CD]
+Line_4 $$ HealthEndpoint endpoint = new HealthEndpoint(createHealthIndicator(Collections.singletonMap("test", compositeIndicator))) --> Line_5 $$ Health health = endpoint.healthForComponentInstance("test", "does-not-exist") [FD]
+Line_2 $$ public void statusForUnknownComponentInstanceReturnNull() --> Line_6 $$ assertThat(health).isNull() [CD]
+Line_5 $$ Health health = endpoint.healthForComponentInstance("test", "does-not-exist") --> Line_6 $$ assertThat(health).isNull() [FD]

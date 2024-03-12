@@ -1,0 +1,7 @@
+Line_3 $$ for (ObjectName name : broker.getManagementContext().queryNames(null, null)) --> Line_5 $$ String type = name.getKeyProperty("destinationType") [FD]
+Line_5 $$ String type = name.getKeyProperty("destinationType") --> Line_6 $$ if (type != null && type.equals("Queue")) [FD]
+Line_6 $$ if (type != null && type.equals("Queue")) --> Line_7 $$ assertEquals(JMXSupport.encodeObjectNamePart(((ActiveMQQueue) createDestination()).getPhysicalName()), name.getKeyProperty("destinationName")) [CD]
+Line_3 $$ for (ObjectName name : broker.getManagementContext().queryNames(null, null)) --> Line_7 $$ assertEquals(JMXSupport.encodeObjectNamePart(((ActiveMQQueue) createDestination()).getPhysicalName()), name.getKeyProperty("destinationName")) [FD]
+Line_6 $$ if (type != null && type.equals("Queue")) --> Line_8 $$ LOG.info("found mbbean " + name) [CD]
+Line_6 $$ if (type != null && type.equals("Queue")) --> Line_9 $$ return [CD]
+Line_2 $$ private void verifyPresenceOfQueueMbean() throws Exception --> Line_12 $$ fail("expected to find matching queue mbean for: " + createDestination()) [CD]

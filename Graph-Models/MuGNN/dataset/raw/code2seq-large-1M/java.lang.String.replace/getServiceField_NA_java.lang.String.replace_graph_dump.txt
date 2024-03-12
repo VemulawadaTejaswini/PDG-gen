@@ -1,0 +1,5 @@
+Line_2 $$ private Field getServiceField(String name) --> Line_3 $$ String reducedName = name.replace("-", "").replace("_", "") [FD]
+Line_2 $$ private Field getServiceField(String name) --> Line_3 $$ String reducedName = name.replace("-", "").replace("_", "") [CD]
+Line_2 $$ private Field getServiceField(String name) --> Line_4 $$ Optional<Field> matchingField = Arrays.stream(Services.class.getDeclaredFields()).filter( f -> f.getName().equalsIgnoreCase(reducedName)).findFirst() [CD]
+Line_3 $$ String reducedName = name.replace("-", "").replace("_", "") --> Line_4 $$ Optional<Field> matchingField = Arrays.stream(Services.class.getDeclaredFields()).filter( f -> f.getName().equalsIgnoreCase(reducedName)).findFirst() [FD]
+Line_2 $$ private Field getServiceField(String name) --> Line_5 $$ return matchingField.orElseThrow(() -> new HalException(Problem.Severity.FATAL, "Unknown service " + reducedName)) [CD]

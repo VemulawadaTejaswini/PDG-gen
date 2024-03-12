@@ -1,0 +1,8 @@
+Line_4 $$ final String indexUUID = "0xDEADBEEF" --> Line_5 $$ Settings.Builder builder = Settings.builder().put(IndexMetaData.SETTING_INDEX_UUID, indexUUID).put(IndexMetaData.SETTING_VERSION_CREATED, Version.CURRENT) [FD]
+Line_5 $$ Settings.Builder builder = Settings.builder().put(IndexMetaData.SETTING_INDEX_UUID, indexUUID).put(IndexMetaData.SETTING_VERSION_CREATED, Version.CURRENT) --> Line_6 $$ Settings settings = builder.build() [FD]
+Line_3 $$ try (NodeEnvironment env = newNodeEnvironment(Settings.builder().build())) --> Line_8 $$ Path[] paths = env.availableShardPaths(shardId) [FD]
+Line_7 $$ ShardId shardId = new ShardId("foo", indexUUID, 0) --> Line_8 $$ Path[] paths = env.availableShardPaths(shardId) [FD]
+Line_8 $$ Path[] paths = env.availableShardPaths(shardId) --> Line_11 $$ ShardStateMetaData.FORMAT.write(new ShardStateMetaData(id, true, indexUUID, AllocationId.newInitializing()), paths) [FD]
+Line_3 $$ try (NodeEnvironment env = newNodeEnvironment(Settings.builder().build())) --> Line_12 $$ ShardPath.loadShardPath(logger, env, shardId, IndexSettingsModule.newIndexSettings(shardId.getIndex(), settings)) [FD]
+Line_7 $$ ShardId shardId = new ShardId("foo", indexUUID, 0) --> Line_12 $$ ShardPath.loadShardPath(logger, env, shardId, IndexSettingsModule.newIndexSettings(shardId.getIndex(), settings)) [FD]
+Line_6 $$ Settings settings = builder.build() --> Line_12 $$ ShardPath.loadShardPath(logger, env, shardId, IndexSettingsModule.newIndexSettings(shardId.getIndex(), settings)) [FD]

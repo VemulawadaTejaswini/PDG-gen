@@ -1,0 +1,4 @@
+Line_2 $$ private CompletableFuture<Void> handleHostRemoved(Host host) --> Line_3 $$ return Futures.allOf(sweepers.stream().map( sweeper -> [CD]
+Line_4 $$ if (sweeper.isReady()) --> Line_5 $$ return RetryHelper.withIndefiniteRetriesAsync(() -> sweeper.handleFailedProcess(host.getHostId()),  e -> log.warn(e.getMessage()), executor) [CD]
+Line_2 $$ private CompletableFuture<Void> handleHostRemoved(Host host) --> Line_5 $$ return RetryHelper.withIndefiniteRetriesAsync(() -> sweeper.handleFailedProcess(host.getHostId()),  e -> log.warn(e.getMessage()), executor) [FD]
+Line_4 $$ if (sweeper.isReady()) --> Line_7 $$ return CompletableFuture.completedFuture((Void) null) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private List<String> getAllCheckerClassNames() --> Line_3 $$ ArrayList<String> checkerClassNames = new ArrayList() [CD]
+Line_5 $$ final JarInputStream checkerJarIs = new JarInputStream(new FileInputStream(checkerJar)) --> Line_7 $$ while ((entry = checkerJarIs.getNextEntry()) != null) [FD]
+Line_8 $$ final String name = entry.getName() --> Line_9 $$ if (name.startsWith(CHECKER_BASE_DIR_NAME) && name.endsWith("Checker.class")) [FD]
+Line_3 $$ ArrayList<String> checkerClassNames = new ArrayList() --> Line_10 $$ checkerClassNames.add(PluginUtil.join(".", name.substring(0, name.length() - ".class".length()).split("/"))) [FD]
+Line_8 $$ final String name = entry.getName() --> Line_10 $$ checkerClassNames.add(PluginUtil.join(".", name.substring(0, name.length() - ".class".length()).split("/"))) [FD]
+Line_5 $$ final JarInputStream checkerJarIs = new JarInputStream(new FileInputStream(checkerJar)) --> Line_13 $$ checkerJarIs.close() [FD]
+Line_2 $$ private List<String> getAllCheckerClassNames() --> Line_17 $$ return checkerClassNames [CD]

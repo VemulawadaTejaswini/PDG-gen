@@ -1,0 +1,7 @@
+Line_2 $$ public static void throwDirectly(String name) throws Throwable --> Line_3 $$ String dotSeparatedClassName = name.replace("/", ".") [FD]
+Line_2 $$ public static void throwDirectly(String name) throws Throwable --> Line_3 $$ String dotSeparatedClassName = name.replace("/", ".") [CD]
+Line_2 $$ public static void throwDirectly(String name) throws Throwable --> Line_4 $$ Class<?> p = Class.forName(dotSeparatedClassName, false, ClassLoader.getSystemClassLoader()) [CD]
+Line_3 $$ String dotSeparatedClassName = name.replace("/", ".") --> Line_4 $$ Class<?> p = Class.forName(dotSeparatedClassName, false, ClassLoader.getSystemClassLoader()) [FD]
+Line_2 $$ public static void throwDirectly(String name) throws Throwable --> Line_5 $$ if (Throwable.class.isAssignableFrom(p)) [CD]
+Line_4 $$ Class<?> p = Class.forName(dotSeparatedClassName, false, ClassLoader.getSystemClassLoader()) --> Line_5 $$ if (Throwable.class.isAssignableFrom(p)) [FD]
+Line_4 $$ Class<?> p = Class.forName(dotSeparatedClassName, false, ClassLoader.getSystemClassLoader()) --> Line_6 $$ throw (Throwable) p.newInstance() [FD]

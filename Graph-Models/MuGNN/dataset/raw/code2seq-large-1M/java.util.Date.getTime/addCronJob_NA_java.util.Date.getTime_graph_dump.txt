@@ -1,0 +1,8 @@
+Line_3 $$ Date nextTriggerTime = CronExpressionUtils.getNextTriggerTime(jobPo.getCronExpression()) --> Line_4 $$ if (nextTriggerTime != null) [FD]
+Line_4 $$ if (nextTriggerTime != null) --> Line_5 $$ if (appContext.getRepeatJobQueue().getJob(jobPo.getTaskTrackerNodeGroup(), jobPo.getTaskId()) != null) [CD]
+Line_4 $$ if (nextTriggerTime != null) --> Line_8 $$ appContext.getCronJobQueue().add(jobPo) [CD]
+Line_4 $$ if (nextTriggerTime != null) --> Line_9 $$ if (JobUtils.isRelyOnPrevCycle(jobPo)) [CD]
+Line_9 $$ if (JobUtils.isRelyOnPrevCycle(jobPo)) --> Line_10 $$ if (appContext.getExecutingJobQueue().getJob(jobPo.getTaskTrackerNodeGroup(), jobPo.getTaskId()) == null) [CD]
+Line_10 $$ if (appContext.getExecutingJobQueue().getJob(jobPo.getTaskTrackerNodeGroup(), jobPo.getTaskId()) == null) --> Line_11 $$ jobPo.setTriggerTime(nextTriggerTime.getTime()) [CD]
+Line_3 $$ Date nextTriggerTime = CronExpressionUtils.getNextTriggerTime(jobPo.getCronExpression()) --> Line_11 $$ jobPo.setTriggerTime(nextTriggerTime.getTime()) [FD]
+Line_9 $$ if (JobUtils.isRelyOnPrevCycle(jobPo)) --> Line_21 $$ appContext.getNonRelyOnPrevCycleJobScheduler().addScheduleJobForOneHour(jobPo) [CD]

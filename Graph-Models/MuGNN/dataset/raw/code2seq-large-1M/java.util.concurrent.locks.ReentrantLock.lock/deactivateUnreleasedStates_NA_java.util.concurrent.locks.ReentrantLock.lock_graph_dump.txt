@@ -1,0 +1,7 @@
+Line_2 $$ synchronized void deactivateUnreleasedStates() --> Line_3 $$ for (int i = numThreadStatesActive; i < threadStates.length; i++) [CD]
+Line_3 $$ for (int i = numThreadStatesActive; i < threadStates.length; i++) --> Line_4 $$ final ThreadState threadState = threadStates[i] [CD]
+Line_3 $$ for (int i = numThreadStatesActive; i < threadStates.length; i++) --> Line_5 $$ threadState.lock() [CD]
+Line_4 $$ final ThreadState threadState = threadStates[i] --> Line_5 $$ threadState.lock() [FD]
+Line_4 $$ final ThreadState threadState = threadStates[i] --> Line_7 $$ threadState.deactivate() [FD]
+Line_4 $$ final ThreadState threadState = threadStates[i] --> Line_9 $$ threadState.unlock() [FD]
+Line_2 $$ synchronized void deactivateUnreleasedStates() --> Line_12 $$ notifyAll() [CD]

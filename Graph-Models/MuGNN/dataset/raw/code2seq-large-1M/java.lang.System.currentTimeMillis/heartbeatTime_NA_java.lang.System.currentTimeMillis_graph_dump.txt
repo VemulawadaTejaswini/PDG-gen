@@ -1,0 +1,6 @@
+Line_2 $$ private long heartbeatTime() --> Line_3 $$ int quorumIndex = quorumIndex() [CD]
+Line_2 $$ private long heartbeatTime() --> Line_4 $$ if (quorumIndex >= 0) [CD]
+Line_3 $$ int quorumIndex = quorumIndex() --> Line_4 $$ if (quorumIndex >= 0) [FD]
+Line_4 $$ if (quorumIndex >= 0) --> Line_5 $$ return context.getClusterState().getActiveMemberStates(( m1,  m2) -> Long.compare(m2.getHeartbeatTime(), m1.getHeartbeatTime())).get(quorumIndex).getHeartbeatTime() [CD]
+Line_3 $$ int quorumIndex = quorumIndex() --> Line_5 $$ return context.getClusterState().getActiveMemberStates(( m1,  m2) -> Long.compare(m2.getHeartbeatTime(), m1.getHeartbeatTime())).get(quorumIndex).getHeartbeatTime() [FD]
+Line_2 $$ private long heartbeatTime() --> Line_7 $$ return System.currentTimeMillis() [CD]

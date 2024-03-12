@@ -1,0 +1,7 @@
+Line_2 $$ public static String unQuoteString(DBPDataSource dataSource, String string) --> Line_3 $$ if (string.length() > 1 && string.charAt(0) == '\'' && string.charAt(string.length() - 1) == '\'') [FD]
+Line_2 $$ public static String unQuoteString(DBPDataSource dataSource, String string) --> Line_3 $$ if (string.length() > 1 && string.charAt(0) == '\'' && string.charAt(string.length() - 1) == '\'') [CD]
+Line_3 $$ if (string.length() > 1 && string.charAt(0) == '\'' && string.charAt(string.length() - 1) == '\'') --> Line_4 $$ SQLDialect dialect = dataSource instanceof SQLDataSource ? ((SQLDataSource) dataSource).getSQLDialect() : BasicSQLDialect.INSTANCE [CD]
+Line_3 $$ if (string.length() > 1 && string.charAt(0) == '\'' && string.charAt(string.length() - 1) == '\'') --> Line_5 $$ return dialect.unEscapeString(string.substring(1, string.length() - 1)) [CD]
+Line_4 $$ SQLDialect dialect = dataSource instanceof SQLDataSource ? ((SQLDataSource) dataSource).getSQLDialect() : BasicSQLDialect.INSTANCE --> Line_5 $$ return dialect.unEscapeString(string.substring(1, string.length() - 1)) [FD]
+Line_2 $$ public static String unQuoteString(DBPDataSource dataSource, String string) --> Line_5 $$ return dialect.unEscapeString(string.substring(1, string.length() - 1)) [FD]
+Line_2 $$ public static String unQuoteString(DBPDataSource dataSource, String string) --> Line_7 $$ return string [CD]

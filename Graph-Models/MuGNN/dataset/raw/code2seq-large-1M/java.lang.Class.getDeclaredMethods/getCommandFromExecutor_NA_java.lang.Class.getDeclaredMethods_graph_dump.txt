@@ -1,0 +1,5 @@
+Line_2 $$ private Class<? extends Command> getCommandFromExecutor(Class<?> commandExecutorClz) --> Line_3 $$ Method[] methods = commandExecutorClz.getDeclaredMethods() [FD]
+Line_2 $$ private Class<? extends Command> getCommandFromExecutor(Class<?> commandExecutorClz) --> Line_3 $$ Method[] methods = commandExecutorClz.getDeclaredMethods() [CD]
+Line_4 $$ for (Method method : methods) --> Line_5 $$ Class<?>[] exeParams = method.getParameterTypes() [FD]
+Line_4 $$ for (Method method : methods) --> Line_6 $$ if (CoreConstant.EXE_METHOD.equals(method.getName()) && exeParams.length == 1 && Command.class.isAssignableFrom(exeParams[0]) && !method.isBridge()) [FD]
+Line_4 $$ for (Method method : methods) --> Line_7 $$ commandHub.getResponseRepository().put(exeParams[0], method.getReturnType()) [FD]

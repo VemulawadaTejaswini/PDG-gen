@@ -1,0 +1,4 @@
+Line_2 $$ CompletableFuture<Void> createSegmentIndexIfAbsent(Data<Integer> data) --> Line_3 $$ return store.checkExists(segmentPath).thenCompose( exists -> [CD]
+Line_4 $$ if (!exists) --> Line_5 $$ return store.deletePath(segmentIndexPath, false).thenCompose( v -> store.createZNodeIfNotExist(segmentIndexPath, data.getData())) [CD]
+Line_2 $$ CompletableFuture<Void> createSegmentIndexIfAbsent(Data<Integer> data) --> Line_5 $$ return store.deletePath(segmentIndexPath, false).thenCompose( v -> store.createZNodeIfNotExist(segmentIndexPath, data.getData())) [FD]
+Line_4 $$ if (!exists) --> Line_7 $$ return CompletableFuture.completedFuture(null) [CD]

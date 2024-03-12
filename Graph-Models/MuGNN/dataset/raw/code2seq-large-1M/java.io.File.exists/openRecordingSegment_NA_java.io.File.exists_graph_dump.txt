@@ -1,0 +1,6 @@
+Line_2 $$ private void openRecordingSegment() --> Line_3 $$ final String segmentFileName = segmentFileName(recordingId, segmentFileIndex) [CD]
+Line_2 $$ private void openRecordingSegment() --> Line_4 $$ final File segmentFile = new File(archiveDir, segmentFileName) [CD]
+Line_2 $$ private void openRecordingSegment() --> Line_5 $$ if (!segmentFile.exists()) [CD]
+Line_4 $$ final File segmentFile = new File(archiveDir, segmentFileName) --> Line_5 $$ if (!segmentFile.exists()) [FD]
+Line_4 $$ final File segmentFile = new File(archiveDir, segmentFileName) --> Line_8 $$ try (FileChannel channel = FileChannel.open(segmentFile.toPath(), FILE_OPTIONS, NO_ATTRIBUTES)) [FD]
+Line_8 $$ try (FileChannel channel = FileChannel.open(segmentFile.toPath(), FILE_OPTIONS, NO_ATTRIBUTES)) --> Line_9 $$ mappedSegmentBuffer = channel.map(READ_ONLY, 0, segmentLength) [FD]

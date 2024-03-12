@@ -1,0 +1,7 @@
+Line_2 $$ public Object nullSafeGet(ResultSet rs, String[] names, Object o) throws HibernateException, SQLException --> Line_3 $$ String val = (String) StringType.INSTANCE.nullSafeGet(rs, names[0]) [FD]
+Line_2 $$ public Object nullSafeGet(ResultSet rs, String[] names, Object o) throws HibernateException, SQLException --> Line_3 $$ String val = (String) StringType.INSTANCE.nullSafeGet(rs, names[0]) [CD]
+Line_2 $$ public Object nullSafeGet(ResultSet rs, String[] names, Object o) throws HibernateException, SQLException --> Line_4 $$ if (val == null || val.length() == 0 || !val.contains("|")) [CD]
+Line_3 $$ String val = (String) StringType.INSTANCE.nullSafeGet(rs, names[0]) --> Line_4 $$ if (val == null || val.length() == 0 || !val.contains("|")) [FD]
+Line_4 $$ if (val == null || val.length() == 0 || !val.contains("|")) --> Line_5 $$ return new Blob() [CD]
+Line_2 $$ public Object nullSafeGet(ResultSet rs, String[] names, Object o) throws HibernateException, SQLException --> Line_7 $$ return new Blob(val.split("[|]")[0], val.split("[|]")[1]) [CD]
+Line_3 $$ String val = (String) StringType.INSTANCE.nullSafeGet(rs, names[0]) --> Line_7 $$ return new Blob(val.split("[|]")[0], val.split("[|]")[1]) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void callbacksInvokeAndWhenReturnNullShouldReturnResult() --> Line_3 $$ StringFactory callbackInstance = mock(StringFactory.class) [CD]
+Line_2 $$ public void callbacksInvokeAndWhenReturnNullShouldReturnResult() --> Line_4 $$ String argument = "foo" [CD]
+Line_2 $$ public void callbacksInvokeAndWhenReturnNullShouldReturnResult() --> Line_5 $$ given(callbackInstance.handle("foo")).willReturn(null) [CD]
+Line_2 $$ public void callbacksInvokeAndWhenReturnNullShouldReturnResult() --> Line_6 $$ Stream<Integer> result = LambdaSafe.callbacks(GenericFactory.class, Collections.singleton(callbackInstance), argument).invokeAnd(( c) -> c.handle(argument)) [CD]
+Line_4 $$ String argument = "foo" --> Line_6 $$ Stream<Integer> result = LambdaSafe.callbacks(GenericFactory.class, Collections.singleton(callbackInstance), argument).invokeAnd(( c) -> c.handle(argument)) [FD]
+Line_2 $$ public void callbacksInvokeAndWhenReturnNullShouldReturnResult() --> Line_7 $$ assertThat(result).containsExactly((Integer) null) [CD]

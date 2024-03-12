@@ -1,0 +1,7 @@
+Line_2 $$ protected long reserveAndCalculateTimeToSleepImpl(long tokensToConsume, long waitIfBusyNanosLimit) --> Line_3 $$ long currentTimeNanos = timeMeter.currentTimeNanos() [CD]
+Line_2 $$ protected long reserveAndCalculateTimeToSleepImpl(long tokensToConsume, long waitIfBusyNanosLimit) --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ long currentTimeNanos = timeMeter.currentTimeNanos() --> Line_6 $$ state.refillAllBandwidth(bandwidths, currentTimeNanos) [FD]
+Line_2 $$ protected long reserveAndCalculateTimeToSleepImpl(long tokensToConsume, long waitIfBusyNanosLimit) --> Line_7 $$ long nanosToCloseDeficit = state.calculateDelayNanosAfterWillBePossibleToConsume(bandwidths, tokensToConsume, currentTimeNanos) [FD]
+Line_3 $$ long currentTimeNanos = timeMeter.currentTimeNanos() --> Line_7 $$ long nanosToCloseDeficit = state.calculateDelayNanosAfterWillBePossibleToConsume(bandwidths, tokensToConsume, currentTimeNanos) [FD]
+Line_8 $$ if (nanosToCloseDeficit == Long.MAX_VALUE || nanosToCloseDeficit > waitIfBusyNanosLimit) --> Line_9 $$ return Long.MAX_VALUE [CD]
+Line_2 $$ protected long reserveAndCalculateTimeToSleepImpl(long tokensToConsume, long waitIfBusyNanosLimit) --> Line_11 $$ state.consume(bandwidths, tokensToConsume) [FD]

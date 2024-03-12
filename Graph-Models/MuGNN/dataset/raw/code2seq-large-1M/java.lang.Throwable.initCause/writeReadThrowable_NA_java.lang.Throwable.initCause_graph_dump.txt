@@ -1,0 +1,8 @@
+Line_3 $$ for (WireType wireType : new WireType[] --> Line_4 $$ Wire wire = wireType.apply(Bytes.allocateElasticDirect()) [FD]
+Line_5 $$ Throwable message = new Throwable("message") --> Line_6 $$ message.initCause(new Throwable("cause")) [FD]
+Line_5 $$ Throwable message = new Throwable("message") --> Line_7 $$ wire.getValueOut().object(message) [FD]
+Line_4 $$ Wire wire = wireType.apply(Bytes.allocateElasticDirect()) --> Line_7 $$ wire.getValueOut().object(message) [FD]
+Line_4 $$ Wire wire = wireType.apply(Bytes.allocateElasticDirect()) --> Line_8 $$ Throwable t = (Throwable) wire.getValueIn().object() [FD]
+Line_8 $$ Throwable t = (Throwable) wire.getValueIn().object() --> Line_9 $$ assertEquals("message", t.getMessage()) [FD]
+Line_8 $$ Throwable t = (Throwable) wire.getValueIn().object() --> Line_10 $$ assertEquals("net.openhft.chronicle.wire.ThrowableTest.writeReadThrowable(ThrowableTest.java:17)", t.getStackTrace()[0].toString()) [FD]
+Line_4 $$ Wire wire = wireType.apply(Bytes.allocateElasticDirect()) --> Line_11 $$ wire.bytes().release() [FD]

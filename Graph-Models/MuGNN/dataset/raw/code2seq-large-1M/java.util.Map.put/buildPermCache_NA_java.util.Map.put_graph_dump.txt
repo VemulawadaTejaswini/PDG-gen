@@ -1,0 +1,6 @@
+Line_2 $$ public Map<String, Long> buildPermCache(String tenantId) --> Line_3 $$ Map<String, Long> permCache = new HashMap<String, Long>() [CD]
+Line_2 $$ public Map<String, Long> buildPermCache(String tenantId) --> Line_4 $$ List<Map<String, Object>> list = jdbcTemplate.queryForList("select id,code from auth_perm where tenant_id=?", tenantId) [FD]
+Line_2 $$ public Map<String, Long> buildPermCache(String tenantId) --> Line_4 $$ List<Map<String, Object>> list = jdbcTemplate.queryForList("select id,code from auth_perm where tenant_id=?", tenantId) [CD]
+Line_3 $$ Map<String, Long> permCache = new HashMap<String, Long>() --> Line_6 $$ permCache.put((String) map.get("code"), (Long) map.get("id")) [FD]
+Line_5 $$ for (Map<String, Object> map : list) --> Line_6 $$ permCache.put((String) map.get("code"), (Long) map.get("id")) [FD]
+Line_2 $$ public Map<String, Long> buildPermCache(String tenantId) --> Line_8 $$ return permCache [CD]

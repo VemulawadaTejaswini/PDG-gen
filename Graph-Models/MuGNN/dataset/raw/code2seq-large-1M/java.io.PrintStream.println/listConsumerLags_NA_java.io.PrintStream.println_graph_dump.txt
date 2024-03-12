@@ -1,0 +1,6 @@
+Line_2 $$ protected void listConsumerLags() throws Exception --> Line_3 $$ List<String> names = manager.listAll() [CD]
+Line_4 $$ for (String name : names) --> Line_6 $$ for (String group : manager.listConsumerGroups(name)) [FD]
+Line_4 $$ for (String name : names) --> Line_8 $$ List<LogLag> lags = manager.getLagPerPartition(name, group) [FD]
+Line_6 $$ for (String group : manager.listConsumerGroups(name)) --> Line_8 $$ List<LogLag> lags = manager.getLagPerPartition(name, group) [FD]
+Line_9 $$ int i = 0 --> Line_11 $$ System.out.println(String.format(" partition: %d, position: %d, end: %d, lag: %d", i++, lag.lower(), lag.upper(), lag.lag())) [FD]
+Line_10 $$ for (LogLag lag : lags) --> Line_11 $$ System.out.println(String.format(" partition: %d, position: %d, end: %d, lag: %d", i++, lag.lower(), lag.upper(), lag.lag())) [FD]

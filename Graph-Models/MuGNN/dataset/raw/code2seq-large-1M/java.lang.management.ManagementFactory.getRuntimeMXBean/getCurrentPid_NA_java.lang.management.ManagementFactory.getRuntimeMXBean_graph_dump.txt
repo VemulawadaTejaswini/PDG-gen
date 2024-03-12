@@ -1,0 +1,8 @@
+Line_4 $$ RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean() --> Line_5 $$ Field jvmField = runtimeMXBean.getClass().getDeclaredField("jvm") [FD]
+Line_5 $$ Field jvmField = runtimeMXBean.getClass().getDeclaredField("jvm") --> Line_6 $$ jvmField.setAccessible(true) [FD]
+Line_5 $$ Field jvmField = runtimeMXBean.getClass().getDeclaredField("jvm") --> Line_7 $$ VMManagement vmManagement = (VMManagement) jvmField.get(runtimeMXBean) [FD]
+Line_4 $$ RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean() --> Line_7 $$ VMManagement vmManagement = (VMManagement) jvmField.get(runtimeMXBean) [FD]
+Line_7 $$ VMManagement vmManagement = (VMManagement) jvmField.get(runtimeMXBean) --> Line_8 $$ Method getProcessIdMethod = vmManagement.getClass().getDeclaredMethod("getProcessId") [FD]
+Line_8 $$ Method getProcessIdMethod = vmManagement.getClass().getDeclaredMethod("getProcessId") --> Line_9 $$ getProcessIdMethod.setAccessible(true) [FD]
+Line_8 $$ Method getProcessIdMethod = vmManagement.getClass().getDeclaredMethod("getProcessId") --> Line_10 $$ return (Integer) getProcessIdMethod.invoke(vmManagement) [FD]
+Line_7 $$ VMManagement vmManagement = (VMManagement) jvmField.get(runtimeMXBean) --> Line_10 $$ return (Integer) getProcessIdMethod.invoke(vmManagement) [FD]

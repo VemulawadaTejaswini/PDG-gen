@@ -1,0 +1,7 @@
+Line_2 $$ public VDisplayable<?> recurrenceParent() --> Line_3 $$ if (getParent() != null && (getRecurrenceId() != null)) [CD]
+Line_3 $$ if (getParent() != null && (getRecurrenceId() != null)) --> Line_4 $$ UniqueIdentifier myUid = getUniqueIdentifier() [CD]
+Line_3 $$ if (getParent() != null && (getRecurrenceId() != null)) --> Line_5 $$ Optional<VDisplayable> recurrenceParent = calendarList().stream().map( c -> (VDisplayable) c).filter( c -> !(c == this)).filter( c -> c.getUniqueIdentifier().equals(myUid)).filter( c -> c.getRecurrenceId() == null).findAny() [CD]
+Line_4 $$ UniqueIdentifier myUid = getUniqueIdentifier() --> Line_5 $$ Optional<VDisplayable> recurrenceParent = calendarList().stream().map( c -> (VDisplayable) c).filter( c -> !(c == this)).filter( c -> c.getUniqueIdentifier().equals(myUid)).filter( c -> c.getRecurrenceId() == null).findAny() [FD]
+Line_3 $$ if (getParent() != null && (getRecurrenceId() != null)) --> Line_6 $$ return (recurrenceParent.isPresent()) ? recurrenceParent.get() : null [CD]
+Line_5 $$ Optional<VDisplayable> recurrenceParent = calendarList().stream().map( c -> (VDisplayable) c).filter( c -> !(c == this)).filter( c -> c.getUniqueIdentifier().equals(myUid)).filter( c -> c.getRecurrenceId() == null).findAny() --> Line_6 $$ return (recurrenceParent.isPresent()) ? recurrenceParent.get() : null [FD]
+Line_3 $$ if (getParent() != null && (getRecurrenceId() != null)) --> Line_8 $$ return null [CD]

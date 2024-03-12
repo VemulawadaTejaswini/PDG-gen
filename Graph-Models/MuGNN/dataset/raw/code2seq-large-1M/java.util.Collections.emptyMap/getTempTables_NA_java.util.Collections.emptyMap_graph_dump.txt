@@ -1,0 +1,7 @@
+Line_2 $$ private static Map<String, Map<String, Table>> getTempTables(String msg) --> Line_3 $$ SessionState ss = SessionState.get() [CD]
+Line_2 $$ private static Map<String, Map<String, Table>> getTempTables(String msg) --> Line_4 $$ if (ss == null) [CD]
+Line_3 $$ SessionState ss = SessionState.get() --> Line_4 $$ if (ss == null) [FD]
+Line_4 $$ if (ss == null) --> Line_5 $$ LOG.warn("No current SessionState, skipping temp tables for " + msg) [CD]
+Line_4 $$ if (ss == null) --> Line_6 $$ return Collections.emptyMap() [CD]
+Line_2 $$ private static Map<String, Map<String, Table>> getTempTables(String msg) --> Line_8 $$ return ss.getTempTables() [CD]
+Line_3 $$ SessionState ss = SessionState.get() --> Line_8 $$ return ss.getTempTables() [FD]

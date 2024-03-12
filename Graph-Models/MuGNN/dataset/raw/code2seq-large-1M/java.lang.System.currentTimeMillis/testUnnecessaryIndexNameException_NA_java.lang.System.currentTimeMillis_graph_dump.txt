@@ -1,0 +1,6 @@
+Line_6 $$ RangeKeyClass keyObject = new RangeKeyClass() --> Line_7 $$ keyObject.setKey(hashKey) [FD]
+Line_5 $$ long hashKey = System.currentTimeMillis() --> Line_7 $$ keyObject.setKey(hashKey) [FD]
+Line_6 $$ RangeKeyClass keyObject = new RangeKeyClass() --> Line_8 $$ DynamoDbQueryExpression<RangeKeyClass> queryExpression = new DynamoDbQueryExpression<RangeKeyClass>().withHashKeyValues(keyObject) [FD]
+Line_8 $$ DynamoDbQueryExpression<RangeKeyClass> queryExpression = new DynamoDbQueryExpression<RangeKeyClass>().withHashKeyValues(keyObject) --> Line_9 $$ queryExpression.withRangeKeyCondition("rangeKey", Condition.builder().comparisonOperator(ComparisonOperator.GT.toString()).attributeValueList(AttributeValue.builder().n("1.0").build()).build()).withLimit(11).withIndexName("some_index") [FD]
+Line_4 $$ DynamoDbMapper mapper = new DynamoDbMapper(dynamo) --> Line_10 $$ mapper.query(RangeKeyClass.class, queryExpression) [FD]
+Line_8 $$ DynamoDbQueryExpression<RangeKeyClass> queryExpression = new DynamoDbQueryExpression<RangeKeyClass>().withHashKeyValues(keyObject) --> Line_10 $$ mapper.query(RangeKeyClass.class, queryExpression) [FD]

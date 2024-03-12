@@ -1,0 +1,7 @@
+Line_2 $$ private void seekOffset() --> Line_3 $$ String strOffset = inner.logProcessorConf.getProperty(Constants.LOG_OFFSET) [CD]
+Line_3 $$ String strOffset = inner.logProcessorConf.getProperty(Constants.LOG_OFFSET) --> Line_14 $$ for (String pair : StringUtils.split(strOffset, ",")) [FD]
+Line_14 $$ for (String pair : StringUtils.split(strOffset, ",")) --> Line_15 $$ String[] val = StringUtils.split(pair, "->") [FD]
+Line_16 $$ long offset = Long.parseLong(val[1]) --> Line_17 $$ consumer.seek(topicPartitionMap.get(StringUtils.joinWith("_", inner.dbusDsConf.getTopic(), val[0])), offset) [FD]
+Line_2 $$ private void seekOffset() --> Line_21 $$ consumer.seekToEnd(topicMap.get(inner.dbusDsConf.getControlTopic())) [CD]
+Line_2 $$ private void seekOffset() --> Line_22 $$ inner.logProcessorConf.setProperty(Constants.LOG_OFFSET, "none") [CD]
+Line_2 $$ private void seekOffset() --> Line_23 $$ inner.zkHelper.saveLogProcessorConf(inner.logProcessorConf) [CD]

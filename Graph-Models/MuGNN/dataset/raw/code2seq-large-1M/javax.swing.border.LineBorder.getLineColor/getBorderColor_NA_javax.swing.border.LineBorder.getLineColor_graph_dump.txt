@@ -1,0 +1,7 @@
+Line_2 $$ private static Color getBorderColor(@Nonnull Border value) --> Line_3 $$ if (value instanceof LineBorder) [CD]
+Line_2 $$ private static Color getBorderColor(@Nonnull Border value) --> Line_3 $$ if (value instanceof LineBorder) [FD]
+Line_3 $$ if (value instanceof LineBorder) --> Line_4 $$ return ((LineBorder) value).getLineColor() [CD]
+Line_3 $$ if (value instanceof LineBorder) --> Line_5 $$ if (value instanceof CustomLineBorder) [CD]
+Line_2 $$ private static Color getBorderColor(@Nonnull Border value) --> Line_5 $$ if (value instanceof CustomLineBorder) [FD]
+Line_2 $$ private static Color getBorderColor(@Nonnull Border value) --> Line_7 $$ return (Color) ReflectionUtil.findField(CustomLineBorder.class, Color.class, "myColor").get(value) [FD]
+Line_2 $$ private static Color getBorderColor(@Nonnull Border value) --> Line_11 $$ return null [CD]

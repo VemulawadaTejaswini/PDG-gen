@@ -1,0 +1,5 @@
+Line_2 $$ public void referencingGeneratedClass() --> Line_3 $$ JavaFileObject bazFileObject = JavaFileObjects.forSourceLines("foo.bar.Baz", "package foo.bar;", "", "import com.google.auto.value.AutoValue;", "", "@AutoValue", "public abstract class Baz [CD]
+Line_2 $$ public void referencingGeneratedClass() --> Line_4 $$ JavaFileObject barFileObject = JavaFileObjects.forSourceLines("foo.bar.Bar", "package foo.bar;", "", "import com.google.auto.value.AutoValue;", "", "@" + Foo.class.getCanonicalName(), "public abstract class Bar [CD]
+Line_2 $$ public void referencingGeneratedClass() --> Line_5 $$ Compilation compilation = javac().withProcessors(new AutoValueProcessor(), new FooProcessor()).withOptions("-Xlint:-processing", "-implicit:none").compile(bazFileObject, barFileObject) [CD]
+Line_2 $$ public void referencingGeneratedClass() --> Line_6 $$ assertThat(compilation).succeededWithoutWarnings() [CD]
+Line_5 $$ Compilation compilation = javac().withProcessors(new AutoValueProcessor(), new FooProcessor()).withOptions("-Xlint:-processing", "-implicit:none").compile(bazFileObject, barFileObject) --> Line_6 $$ assertThat(compilation).succeededWithoutWarnings() [FD]

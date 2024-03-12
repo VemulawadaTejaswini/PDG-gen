@@ -1,0 +1,7 @@
+Line_3 $$ for (String licenseArtifactName : getLicenseArtifactNames()) --> Line_4 $$ final File licenseFile = new File(FileUtil.joinPath(getInstallerDir(), pathToLicensingFiles(), licenseArtifactName)) [FD]
+Line_4 $$ final File licenseFile = new File(FileUtil.joinPath(getInstallerDir(), pathToLicensingFiles(), licenseArtifactName)) --> Line_6 $$ for (String line : FileUtils.readLines(licenseFile, StandardCharsets.UTF_8)) [FD]
+Line_6 $$ for (String line : FileUtils.readLines(licenseFile, StandardCharsets.UTF_8)) --> Line_7 $$ if (line.matches("^\\s*MISSING:.*")) [FD]
+Line_7 $$ if (line.matches("^\\s*MISSING:.*")) --> Line_8 $$ badLines.add(line.trim()) [CD]
+Line_5 $$ List<String> badLines = new ArrayList() --> Line_8 $$ badLines.add(line.trim()) [FD]
+Line_6 $$ for (String line : FileUtils.readLines(licenseFile, StandardCharsets.UTF_8)) --> Line_8 $$ badLines.add(line.trim()) [FD]
+Line_5 $$ List<String> badLines = new ArrayList() --> Line_11 $$ Assert.assertEquals("Missing licenses in " + licenseFile + ": " + badLines, 0, badLines.size()) [FD]

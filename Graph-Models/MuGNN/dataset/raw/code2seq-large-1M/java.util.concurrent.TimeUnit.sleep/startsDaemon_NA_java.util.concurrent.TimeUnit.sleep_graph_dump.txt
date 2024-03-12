@@ -1,0 +1,7 @@
+Line_3 $$ try (final StartsDockerDaemon start = new StartsDockerDaemon(Profile.EMPTY)) --> Line_4 $$ final Talk talk = StartsDaemonITCase.talk(start) [FD]
+Line_4 $$ final Talk talk = StartsDaemonITCase.talk(start) --> Line_5 $$ MatcherAssert.assertThat(talk.read(), XhtmlMatchers.hasXPaths("/talk/daemon[started and dir]", "/talk/daemon[ends-with(started,'Z')]")) [FD]
+Line_4 $$ final Talk talk = StartsDaemonITCase.talk(start) --> Line_6 $$ final String dir = talk.read().xpath("/talk/daemon/dir/text()").get(0) [FD]
+Line_7 $$ final ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_9 $$ new Shell.Safe(new TalkShells(talk.read()).get()).exec(String.format("cat %s/stdout", dir), new NullInputStream(0L), baos, baos) [FD]
+Line_4 $$ final Talk talk = StartsDaemonITCase.talk(start) --> Line_9 $$ new Shell.Safe(new TalkShells(talk.read()).get()).exec(String.format("cat %s/stdout", dir), new NullInputStream(0L), baos, baos) [FD]
+Line_6 $$ final String dir = talk.read().xpath("/talk/daemon/dir/text()").get(0) --> Line_9 $$ new Shell.Safe(new TalkShells(talk.read()).get()).exec(String.format("cat %s/stdout", dir), new NullInputStream(0L), baos, baos) [FD]
+Line_7 $$ final ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_10 $$ MatcherAssert.assertThat(baos.toString(CharEncoding.UTF_8), Matchers.allOf(Matchers.containsString("+ set -o pipefail"), Matchers.containsString("+ date"), Matchers.containsString("+ ls -al"), Matchers.containsString("182f61268e6e6e6cd1a547be31fd8583"))) [FD]

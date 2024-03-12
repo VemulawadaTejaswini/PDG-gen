@@ -1,0 +1,7 @@
+Line_2 $$ private OidcService getServiceWithOidcSupportAndCustomExpiration(final int duration, final TimeUnit units) throws Exception --> Line_3 $$ final OidcIdentityProvider provider = mock(OidcIdentityProvider.class) [CD]
+Line_2 $$ private OidcService getServiceWithOidcSupportAndCustomExpiration(final int duration, final TimeUnit units) throws Exception --> Line_4 $$ when(provider.isOidcEnabled()).thenReturn(true) [CD]
+Line_2 $$ private OidcService getServiceWithOidcSupportAndCustomExpiration(final int duration, final TimeUnit units) throws Exception --> Line_5 $$ when(provider.exchangeAuthorizationCode(any())).then( invocation -> UUID.randomUUID().toString()) [CD]
+Line_2 $$ private OidcService getServiceWithOidcSupportAndCustomExpiration(final int duration, final TimeUnit units) throws Exception --> Line_6 $$ final OidcService service = new OidcService(provider, duration, units) [CD]
+Line_2 $$ private OidcService getServiceWithOidcSupportAndCustomExpiration(final int duration, final TimeUnit units) throws Exception --> Line_7 $$ assertTrue(service.isOidcEnabled()) [CD]
+Line_6 $$ final OidcService service = new OidcService(provider, duration, units) --> Line_7 $$ assertTrue(service.isOidcEnabled()) [FD]
+Line_2 $$ private OidcService getServiceWithOidcSupportAndCustomExpiration(final int duration, final TimeUnit units) throws Exception --> Line_8 $$ return service [CD]

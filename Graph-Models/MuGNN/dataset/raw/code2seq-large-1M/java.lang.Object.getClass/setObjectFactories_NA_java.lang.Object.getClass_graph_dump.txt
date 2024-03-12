@@ -1,0 +1,8 @@
+Line_3 $$ for (final Object objectFactory : objectFactories) --> Line_4 $$ final Class<?> objectFactoryClass = objectFactory.getClass() [FD]
+Line_4 $$ final Class<?> objectFactoryClass = objectFactory.getClass() --> Line_5 $$ if (_registeredClassesCache.contains(objectFactoryClass)) [FD]
+Line_4 $$ final Class<?> objectFactoryClass = objectFactory.getClass() --> Line_8 $$ if (!objectFactoryClass.isAnnotationPresent(XmlRegistry.class) && (objectFactoryClass.getSuperclass() != null && !objectFactoryClass.getSuperclass().isAnnotationPresent(XmlRegistry.class))) [FD]
+Line_4 $$ final Class<?> objectFactoryClass = objectFactory.getClass() --> Line_9 $$ throw new JAXBException(String.format("Object Factory <%s> Is Not Annotated With @XmlRegistry", objectFactoryClass)) [FD]
+Line_4 $$ final Class<?> objectFactoryClass = objectFactory.getClass() --> Line_11 $$ final XmlSchema xmlSchema = objectFactoryClass.getSuperclass().getPackage().getAnnotation(XmlSchema.class) [FD]
+Line_4 $$ final Class<?> objectFactoryClass = objectFactory.getClass() --> Line_13 $$ throw new JAXBException(String.format("Failed to Detect Schema Namespace for Object Factory <%s>", objectFactoryClass)) [FD]
+Line_3 $$ for (final Object objectFactory : objectFactories) --> Line_15 $$ scanObjectFactory(objectFactory, true) [FD]
+Line_4 $$ final Class<?> objectFactoryClass = objectFactory.getClass() --> Line_16 $$ _registeredClassesCache.add(objectFactoryClass) [FD]

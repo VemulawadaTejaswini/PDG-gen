@@ -1,0 +1,8 @@
+Line_2 $$ protected <U, W extends Tuple> JinqStream<W> groupToTuple(Select<T, U> select, AggregateGroup<U, T, ?>[] aggregates) --> Line_3 $$ Map<U, List<T>> groups = collect(Collectors.groupingBy( in -> select.select(in))) [CD]
+Line_2 $$ protected <U, W extends Tuple> JinqStream<W> groupToTuple(Select<T, U> select, AggregateGroup<U, T, ?>[] aggregates) --> Line_3 $$ Map<U, List<T>> groups = collect(Collectors.groupingBy( in -> select.select(in))) [FD]
+Line_2 $$ protected <U, W extends Tuple> JinqStream<W> groupToTuple(Select<T, U> select, AggregateGroup<U, T, ?>[] aggregates) --> Line_4 $$ final Stream.Builder<W> streamBuilder = Stream.builder() [CD]
+Line_3 $$ Map<U, List<T>> groups = collect(Collectors.groupingBy( in -> select.select(in))) --> Line_5 $$ for (Map.Entry<U, List<T>> entry : groups.entrySet()) [FD]
+Line_4 $$ final Stream.Builder<W> streamBuilder = Stream.builder() --> Line_9 $$ streamBuilder.accept(Tuple.createTuple(groupAggregates)) [FD]
+Line_6 $$ Object[] groupAggregates = new Object[aggregates.length + 1] --> Line_9 $$ streamBuilder.accept(Tuple.createTuple(groupAggregates)) [FD]
+Line_2 $$ protected <U, W extends Tuple> JinqStream<W> groupToTuple(Select<T, U> select, AggregateGroup<U, T, ?>[] aggregates) --> Line_11 $$ return (JinqStream<W>) wrap(streamBuilder.build()) [CD]
+Line_4 $$ final Stream.Builder<W> streamBuilder = Stream.builder() --> Line_11 $$ return (JinqStream<W>) wrap(streamBuilder.build()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private synchronized void maybeStartReceiveThread() --> Line_3 $$ if (receiveThread == null) [CD]
+Line_3 $$ if (receiveThread == null) --> Line_4 $$ if ((socket != null) && !closed && (transferHandler != null)) [CD]
+Line_5 $$ receiveThread = new Thread() --> Line_7 $$ RTPConnectorInputStream.this.runInReceiveThread() [CD]
+Line_4 $$ if ((socket != null) && !closed && (transferHandler != null)) --> Line_10 $$ receiveThread.setDaemon(true) [CD]
+Line_4 $$ if ((socket != null) && !closed && (transferHandler != null)) --> Line_11 $$ receiveThread.setName(RTPConnectorInputStream.class.getName() + ".receiveThread") [CD]
+Line_4 $$ if ((socket != null) && !closed && (transferHandler != null)) --> Line_12 $$ setThreadPriority(receiveThread, MediaThread.getNetworkPriority()) [CD]
+Line_4 $$ if ((socket != null) && !closed && (transferHandler != null)) --> Line_13 $$ receiveThread.start() [CD]
+Line_3 $$ if (receiveThread == null) --> Line_16 $$ notifyAll() [CD]

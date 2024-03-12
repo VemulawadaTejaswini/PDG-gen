@@ -1,0 +1,7 @@
+Line_2 $$ public void testEnabledCipherSuites() throws Exception --> Line_3 $$ pubsub.close() [CD]
+Line_2 $$ public void testEnabledCipherSuites() throws Exception --> Line_4 $$ final String[] defaultCiphers = SSLContext.getDefault().getDefaultSSLParameters().getCipherSuites() [CD]
+Line_2 $$ public void testEnabledCipherSuites() throws Exception --> Line_5 $$ final List<String> nonGcmCiphers = Stream.of(defaultCiphers).filter( cipher -> !cipher.contains("GCM")).collect(Collectors.toList()) [CD]
+Line_4 $$ final String[] defaultCiphers = SSLContext.getDefault().getDefaultSSLParameters().getCipherSuites() --> Line_5 $$ final List<String> nonGcmCiphers = Stream.of(defaultCiphers).filter( cipher -> !cipher.contains("GCM")).collect(Collectors.toList()) [FD]
+Line_2 $$ public void testEnabledCipherSuites() throws Exception --> Line_6 $$ pubsub = Pubsub.builder().maxConnections(CONCURRENCY).credential(CREDENTIAL).enabledCipherSuites(nonGcmCiphers).build() [CD]
+Line_5 $$ final List<String> nonGcmCiphers = Stream.of(defaultCiphers).filter( cipher -> !cipher.contains("GCM")).collect(Collectors.toList()) --> Line_6 $$ pubsub = Pubsub.builder().maxConnections(CONCURRENCY).credential(CREDENTIAL).enabledCipherSuites(nonGcmCiphers).build() [FD]
+Line_2 $$ public void testEnabledCipherSuites() throws Exception --> Line_7 $$ testCreateGetListDeleteTopics(pubsub) [CD]

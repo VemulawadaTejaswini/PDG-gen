@@ -1,0 +1,6 @@
+Line_2 $$ private static boolean taskExists(Path dir, String workflowName) throws IOException --> Line_3 $$ Pattern namePattern = Pattern.compile(Pattern.quote("+" + workflowName) + "[\\+\\^].*\\.yml") [CD]
+Line_2 $$ private static boolean taskExists(Path dir, String workflowName) throws IOException --> Line_4 $$ try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir,  f -> Files.isRegularFile(f))) [FD]
+Line_3 $$ Pattern namePattern = Pattern.compile(Pattern.quote("+" + workflowName) + "[\\+\\^].*\\.yml") --> Line_6 $$ if (namePattern.matcher(file.getFileName().toString()).matches()) [FD]
+Line_5 $$ for (Path file : ds) --> Line_6 $$ if (namePattern.matcher(file.getFileName().toString()).matches()) [FD]
+Line_6 $$ if (namePattern.matcher(file.getFileName().toString()).matches()) --> Line_7 $$ return true [CD]
+Line_2 $$ private static boolean taskExists(Path dir, String workflowName) throws IOException --> Line_11 $$ return false [CD]

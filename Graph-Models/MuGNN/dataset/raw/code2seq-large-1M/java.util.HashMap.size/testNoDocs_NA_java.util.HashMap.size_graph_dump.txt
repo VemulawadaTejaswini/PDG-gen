@@ -1,0 +1,7 @@
+Line_3 $$ try (Directory directory = newDirectory()) --> Line_6 $$ try (IndexReader indexReader = DirectoryReader.open(directory)) [FD]
+Line_7 $$ ScriptedMetricAggregationBuilder aggregationBuilder = new ScriptedMetricAggregationBuilder(AGG_NAME) --> Line_8 $$ aggregationBuilder.mapScript(MAP_SCRIPT) [FD]
+Line_7 $$ ScriptedMetricAggregationBuilder aggregationBuilder = new ScriptedMetricAggregationBuilder(AGG_NAME) --> Line_9 $$ ScriptedMetric scriptedMetric = search(newSearcher(indexReader, true, true), new MatchAllDocsQuery(), aggregationBuilder) [FD]
+Line_6 $$ try (IndexReader indexReader = DirectoryReader.open(directory)) --> Line_9 $$ ScriptedMetric scriptedMetric = search(newSearcher(indexReader, true, true), new MatchAllDocsQuery(), aggregationBuilder) [FD]
+Line_9 $$ ScriptedMetric scriptedMetric = search(newSearcher(indexReader, true, true), new MatchAllDocsQuery(), aggregationBuilder) --> Line_10 $$ assertEquals(AGG_NAME, scriptedMetric.getName()) [FD]
+Line_9 $$ ScriptedMetric scriptedMetric = search(newSearcher(indexReader, true, true), new MatchAllDocsQuery(), aggregationBuilder) --> Line_11 $$ assertNotNull(scriptedMetric.aggregation()) [FD]
+Line_9 $$ ScriptedMetric scriptedMetric = search(newSearcher(indexReader, true, true), new MatchAllDocsQuery(), aggregationBuilder) --> Line_12 $$ assertEquals(0, ((HashMap<Object, String>) scriptedMetric.aggregation()).size()) [FD]

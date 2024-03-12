@@ -1,0 +1,8 @@
+Line_2 $$ ASN1Primitive toASN1Primitive(boolean includeChecksum) --> Line_3 $$ DEROctetString checksumEncodable = includeChecksum ? new DEROctetString(checksum()) : null [CD]
+Line_2 $$ ASN1Primitive toASN1Primitive(boolean includeChecksum) --> Line_4 $$ ASN1Integer flagsEncodable = flags.map(ASN1Integer::<>new).orElse(null) [CD]
+Line_2 $$ ASN1Primitive toASN1Primitive(boolean includeChecksum) --> Line_5 $$ ASN1EncodableVector vector = DER.vector(new DERUTF8String(name), DER.toSet(keys), DER.toSet(serviceKeyIDs), checksumEncodable, flagsEncodable, signatureInfo.orElse(null)) [CD]
+Line_3 $$ DEROctetString checksumEncodable = includeChecksum ? new DEROctetString(checksum()) : null --> Line_5 $$ ASN1EncodableVector vector = DER.vector(new DERUTF8String(name), DER.toSet(keys), DER.toSet(serviceKeyIDs), checksumEncodable, flagsEncodable, signatureInfo.orElse(null)) [FD]
+Line_4 $$ ASN1Integer flagsEncodable = flags.map(ASN1Integer::<>new).orElse(null) --> Line_5 $$ ASN1EncodableVector vector = DER.vector(new DERUTF8String(name), DER.toSet(keys), DER.toSet(serviceKeyIDs), checksumEncodable, flagsEncodable, signatureInfo.orElse(null)) [FD]
+Line_2 $$ ASN1Primitive toASN1Primitive(boolean includeChecksum) --> Line_6 $$ DERSequence sequence = new DERSequence(vector) [CD]
+Line_2 $$ ASN1Primitive toASN1Primitive(boolean includeChecksum) --> Line_7 $$ return DER.toApplicationSpecific(APPLICATION_TAG, sequence) [CD]
+Line_6 $$ DERSequence sequence = new DERSequence(vector) --> Line_7 $$ return DER.toApplicationSpecific(APPLICATION_TAG, sequence) [FD]

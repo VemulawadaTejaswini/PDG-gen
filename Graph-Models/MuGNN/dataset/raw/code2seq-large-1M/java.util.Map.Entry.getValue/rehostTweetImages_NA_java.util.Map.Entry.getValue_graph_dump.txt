@@ -1,0 +1,5 @@
+Line_2 $$ private Multimap<String, RehostedImageEntity> rehostTweetImages(Tweet tweet) --> Line_3 $$ Multimap<String, RehostedImageEntity> result = HashMultimap.create() [CD]
+Line_2 $$ private Multimap<String, RehostedImageEntity> rehostTweetImages(Tweet tweet) --> Line_5 $$ for (Map.Entry<String, Collection<String>> entry : tweet.getImageEntities().asMap().entrySet()) [FD]
+Line_6 $$ for (String originalUrl : entry.getValue()) --> Line_7 $$ String rehostedImageUrl = imgurConnector.reuploadImage(originalUrl) [FD]
+Line_3 $$ Multimap<String, RehostedImageEntity> result = HashMultimap.create() --> Line_8 $$ result.put(entry.getKey(), new RehostedImageEntity(originalUrl, rehostedImageUrl)) [FD]
+Line_2 $$ private Multimap<String, RehostedImageEntity> rehostTweetImages(Tweet tweet) --> Line_14 $$ return result [CD]

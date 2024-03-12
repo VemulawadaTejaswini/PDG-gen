@@ -1,0 +1,8 @@
+Line_2 $$ public boolean unlock() --> Line_3 $$ verifyConversationContextActive() [CD]
+Line_2 $$ public boolean unlock() --> Line_4 $$ if (!concurrencyLock.isLocked()) [CD]
+Line_4 $$ if (!concurrencyLock.isLocked()) --> Line_5 $$ return true [CD]
+Line_2 $$ public boolean unlock() --> Line_7 $$ if (concurrencyLock.isHeldByCurrentThread()) [CD]
+Line_7 $$ if (concurrencyLock.isHeldByCurrentThread()) --> Line_8 $$ concurrencyLock.unlock() [CD]
+Line_7 $$ if (concurrencyLock.isHeldByCurrentThread()) --> Line_9 $$ ConversationLogger.LOG.conversationUnlocked(this) [CD]
+Line_7 $$ if (concurrencyLock.isHeldByCurrentThread()) --> Line_11 $$ ConversationLogger.LOG.illegalConversationUnlockAttempt(this, "not owner") [CD]
+Line_2 $$ public boolean unlock() --> Line_13 $$ return !concurrencyLock.isLocked() [CD]

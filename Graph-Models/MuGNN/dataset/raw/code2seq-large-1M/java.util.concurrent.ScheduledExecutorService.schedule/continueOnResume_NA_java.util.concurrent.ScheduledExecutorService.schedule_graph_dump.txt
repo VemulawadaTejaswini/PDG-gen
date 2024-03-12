@@ -1,0 +1,8 @@
+Line_2 $$ private void continueOnResume() --> Line_3 $$ if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) [CD]
+Line_3 $$ if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) --> Line_4 $$ if (null != mLocationManager.getProvider(LocationManager.NETWORK_PROVIDER)) [CD]
+Line_4 $$ if (null != mLocationManager.getProvider(LocationManager.NETWORK_PROVIDER)) --> Line_5 $$ mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, POLLING_FREQ, MIN_DISTANCE, mLocationListener) [CD]
+Line_3 $$ if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) --> Line_7 $$ if (null != mLocationManager.getProvider(LocationManager.GPS_PROVIDER)) [CD]
+Line_7 $$ if (null != mLocationManager.getProvider(LocationManager.GPS_PROVIDER)) --> Line_8 $$ mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, POLLING_FREQ, MIN_DISTANCE, mLocationListener) [CD]
+Line_3 $$ if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) --> Line_10 $$ Executors.newScheduledThreadPool(1).schedule(new Runnable() [CD]
+Line_10 $$ Executors.newScheduledThreadPool(1).schedule(new Runnable() --> Line_12 $$ Log.i(TAG, "location updates cancelled") [CD]
+Line_10 $$ Executors.newScheduledThreadPool(1).schedule(new Runnable() --> Line_13 $$ mLocationManager.removeUpdates(mLocationListener) [CD]

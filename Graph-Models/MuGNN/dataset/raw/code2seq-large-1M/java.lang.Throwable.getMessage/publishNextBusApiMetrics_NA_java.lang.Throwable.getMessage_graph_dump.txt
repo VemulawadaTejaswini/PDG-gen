@@ -1,0 +1,7 @@
+Line_2 $$ public void publishNextBusApiMetrics() --> Line_3 $$ double metric = 1 [CD]
+Line_5 $$ JsonObject agencyList = getJsonObject(nextbus_api_url) --> Line_6 $$ JsonObject agency = (JsonObject) agencyList.get("agency") [FD]
+Line_6 $$ JsonObject agency = (JsonObject) agencyList.get("agency") --> Line_7 $$ if (agency.get("title").getAsString().equalsIgnoreCase("WMATA")) [FD]
+Line_7 $$ if (agency.get("title").getAsString().equalsIgnoreCase("WMATA")) --> Line_8 $$ metric = 0 [CD]
+Line_3 $$ double metric = 1 --> Line_8 $$ metric = 0 [FD]
+Line_3 $$ double metric = 1 --> Line_10 $$ publishMetric(MetricName.NextBusApiErrorResponse, StandardUnit.Count, metric) [FD]
+Line_8 $$ metric = 0 --> Line_10 $$ publishMetric(MetricName.NextBusApiErrorResponse, StandardUnit.Count, metric) [FD]

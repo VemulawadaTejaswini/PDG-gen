@@ -1,0 +1,6 @@
+Line_2 $$ public List<String> getListOfQueues() --> Line_3 $$ logger.trace("getListOfQueues ") [CD]
+Line_2 $$ public List<String> getListOfQueues() --> Line_4 $$ Statement select = QueryBuilder.select().all().from(TABLE_QUEUES) [CD]
+Line_2 $$ public List<String> getListOfQueues() --> Line_5 $$ ResultSet rs = cassandraClient.getApplicationSession().execute(select) [CD]
+Line_4 $$ Statement select = QueryBuilder.select().all().from(TABLE_QUEUES) --> Line_5 $$ ResultSet rs = cassandraClient.getApplicationSession().execute(select) [FD]
+Line_2 $$ public List<String> getListOfQueues() --> Line_6 $$ return rs.all().stream().map( row -> row.getString(COLUMN_QUEUE_NAME)).collect(Collectors.toList()) [CD]
+Line_5 $$ ResultSet rs = cassandraClient.getApplicationSession().execute(select) --> Line_6 $$ return rs.all().stream().map( row -> row.getString(COLUMN_QUEUE_NAME)).collect(Collectors.toList()) [FD]

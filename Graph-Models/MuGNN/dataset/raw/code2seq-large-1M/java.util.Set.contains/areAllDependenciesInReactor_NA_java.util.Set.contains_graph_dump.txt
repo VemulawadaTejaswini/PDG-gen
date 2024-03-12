@@ -1,0 +1,8 @@
+Line_2 $$ private boolean areAllDependenciesInReactor(Collection<MavenProject> projects, Collection<Dependency> dependencies) --> Line_3 $$ Set<String> projectKeys = getReactorProjectKeys(projects) [CD]
+Line_2 $$ private boolean areAllDependenciesInReactor(Collection<MavenProject> projects, Collection<Dependency> dependencies) --> Line_3 $$ Set<String> projectKeys = getReactorProjectKeys(projects) [FD]
+Line_4 $$ for (Dependency dependency : dependencies) --> Line_5 $$ org.eclipse.aether.artifact.Artifact a = dependency.getArtifact() [FD]
+Line_5 $$ org.eclipse.aether.artifact.Artifact a = dependency.getArtifact() --> Line_6 $$ String key = ArtifactUtils.key(a.getGroupId(), a.getArtifactId(), a.getVersion()) [FD]
+Line_3 $$ Set<String> projectKeys = getReactorProjectKeys(projects) --> Line_7 $$ if (!projectKeys.contains(key)) [FD]
+Line_6 $$ String key = ArtifactUtils.key(a.getGroupId(), a.getArtifactId(), a.getVersion()) --> Line_7 $$ if (!projectKeys.contains(key)) [FD]
+Line_7 $$ if (!projectKeys.contains(key)) --> Line_8 $$ return false [CD]
+Line_2 $$ private boolean areAllDependenciesInReactor(Collection<MavenProject> projects, Collection<Dependency> dependencies) --> Line_11 $$ return true [CD]

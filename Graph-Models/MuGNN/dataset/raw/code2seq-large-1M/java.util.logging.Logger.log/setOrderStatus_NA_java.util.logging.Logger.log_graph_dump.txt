@@ -1,0 +1,8 @@
+Line_2 $$ public void setOrderStatus(@PathParam("orderId") int orderId, String newStatus) --> Line_3 $$ logger.log(Level.INFO, "Order id: [CD]
+Line_2 $$ public void setOrderStatus(@PathParam("orderId") int orderId, String newStatus) --> Line_5 $$ order = this.find(orderId) [FD]
+Line_6 $$ if (order != null) --> Line_7 $$ logger.log(Level.FINEST, "Updating order [CD]
+Line_6 $$ if (order != null) --> Line_8 $$ OrderStatus oStatus = statusBean.find(new Integer(newStatus)) [CD]
+Line_6 $$ if (order != null) --> Line_9 $$ order.setOrderStatus(oStatus) [CD]
+Line_8 $$ OrderStatus oStatus = statusBean.find(new Integer(newStatus)) --> Line_9 $$ order.setOrderStatus(oStatus) [FD]
+Line_6 $$ if (order != null) --> Line_10 $$ em.merge(order) [CD]
+Line_6 $$ if (order != null) --> Line_11 $$ logger.info("Order Updated!") [CD]

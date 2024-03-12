@@ -1,0 +1,8 @@
+Line_4 $$ InetAddress ia = InetAddress.getByName(address) --> Line_5 $$ PingResult pingResult = Ping.onAddress(ia).setTimeOutMillis(timeOutMillis).doPing() [FD]
+Line_5 $$ PingResult pingResult = Ping.onAddress(ia).setTimeOutMillis(timeOutMillis).doPing() --> Line_6 $$ if (pingResult.isReachable) [FD]
+Line_6 $$ if (pingResult.isReachable) --> Line_7 $$ Device device = new Device(ia) [CD]
+Line_6 $$ if (pingResult.isReachable) --> Line_8 $$ device.mac = ARPInfo.getMACFromIPAddress(ia.getHostAddress()) [CD]
+Line_4 $$ InetAddress ia = InetAddress.getByName(address) --> Line_8 $$ device.mac = ARPInfo.getMACFromIPAddress(ia.getHostAddress()) [FD]
+Line_6 $$ if (pingResult.isReachable) --> Line_9 $$ device.time = pingResult.timeTaken [CD]
+Line_6 $$ if (pingResult.isReachable) --> Line_10 $$ subnetDeviceFound(device) [CD]
+Line_7 $$ Device device = new Device(ia) --> Line_10 $$ subnetDeviceFound(device) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static Optional<User> checkSingleFuzzyUserSearchResult(Collection<User> users, CommandContext context, String term, boolean includeBots) --> Line_3 $$ List<User> found = fuzzyUserSearch(users, term, includeBots) [CD]
+Line_2 $$ public static Optional<User> checkSingleFuzzyUserSearchResult(Collection<User> users, CommandContext context, String term, boolean includeBots) --> Line_3 $$ List<User> found = fuzzyUserSearch(users, term, includeBots) [FD]
+Line_3 $$ List<User> found = fuzzyUserSearch(users, term, includeBots) --> Line_4 $$ switch(found.size()) [FD]
+Line_2 $$ public static Optional<User> checkSingleFuzzyUserSearchResult(Collection<User> users, CommandContext context, String term, boolean includeBots) --> Line_6 $$ context.reply(context.i18nFormat("fuzzyNothingFound", term)) [FD]
+Line_3 $$ List<User> found = fuzzyUserSearch(users, term, includeBots) --> Line_9 $$ return Optional.of(found.get(0)) [FD]
+Line_2 $$ public static Optional<User> checkSingleFuzzyUserSearchResult(Collection<User> users, CommandContext context, String term, boolean includeBots) --> Line_11 $$ context.reply(context.i18n("fuzzyMultiple") + "\n" + formatFuzzyUserResult(found, FUZZY_RESULT_LIMIT, 1900)) [FD]
+Line_3 $$ List<User> found = fuzzyUserSearch(users, term, includeBots) --> Line_11 $$ context.reply(context.i18n("fuzzyMultiple") + "\n" + formatFuzzyUserResult(found, FUZZY_RESULT_LIMIT, 1900)) [FD]

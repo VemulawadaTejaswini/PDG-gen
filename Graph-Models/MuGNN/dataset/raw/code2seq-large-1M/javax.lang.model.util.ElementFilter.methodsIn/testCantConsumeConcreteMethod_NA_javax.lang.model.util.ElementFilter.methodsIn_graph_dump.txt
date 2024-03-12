@@ -1,0 +1,6 @@
+Line_5 $$ TypeElement autoValueClass = context.autoValueClass() --> Line_6 $$ for (ExecutableElement method : ElementFilter.methodsIn(autoValueClass.getEnclosedElements())) [FD]
+Line_6 $$ for (ExecutableElement method : ElementFilter.methodsIn(autoValueClass.getEnclosedElements())) --> Line_7 $$ if (method.getSimpleName().contentEquals("frob")) [FD]
+Line_7 $$ if (method.getSimpleName().contentEquals("frob")) --> Line_8 $$ return ImmutableSet.of(method) [CD]
+Line_6 $$ for (ExecutableElement method : ElementFilter.methodsIn(autoValueClass.getEnclosedElements())) --> Line_8 $$ return ImmutableSet.of(method) [FD]
+Line_2 $$ public void testCantConsumeConcreteMethod() throws Exception --> Line_14 $$ JavaFileObject impl = JavaFileObjects.forSourceLines("foo.bar.Baz", "package foo.bar;", "import com.google.auto.value.AutoValue;", "@AutoValue public abstract class Baz [CD]
+Line_2 $$ public void testCantConsumeConcreteMethod() throws Exception --> Line_15 $$ assertThat(impl).processedWith(new AutoValueProcessor(ImmutableList.of(new ConsumeConcreteMethod()))).failsToCompile().withErrorContaining("wants to consume a method that is not one of the abstract methods in this class").in(impl).onLine(3).and().withErrorContaining("frob").in(impl).onLine(3) [CD]

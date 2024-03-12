@@ -1,0 +1,8 @@
+Line_3 $$ try (Connection connection = getNewConnection(false)) --> Line_4 $$ Statement stmt = connection.createStatement() [FD]
+Line_4 $$ Statement stmt = connection.createStatement() --> Line_5 $$ stmt.execute("drop table  if exists auroraReadSlave" + jobId) [FD]
+Line_4 $$ Statement stmt = connection.createStatement() --> Line_6 $$ stmt.execute("create table auroraReadSlave" + jobId + " (id int not null primary key auto_increment, test VARCHAR(10))") [FD]
+Line_3 $$ try (Connection connection = getNewConnection(false)) --> Line_8 $$ connection.setReadOnly(true) [FD]
+Line_4 $$ Statement stmt = connection.createStatement() --> Line_9 $$ ResultSet rs = stmt.executeQuery("Select count(*) from auroraReadSlave" + jobId) [FD]
+Line_9 $$ ResultSet rs = stmt.executeQuery("Select count(*) from auroraReadSlave" + jobId) --> Line_10 $$ assertTrue(rs.next()) [FD]
+Line_3 $$ try (Connection connection = getNewConnection(false)) --> Line_11 $$ connection.setReadOnly(false) [FD]
+Line_4 $$ Statement stmt = connection.createStatement() --> Line_12 $$ stmt.execute("drop table  if exists auroraReadSlave" + jobId) [FD]

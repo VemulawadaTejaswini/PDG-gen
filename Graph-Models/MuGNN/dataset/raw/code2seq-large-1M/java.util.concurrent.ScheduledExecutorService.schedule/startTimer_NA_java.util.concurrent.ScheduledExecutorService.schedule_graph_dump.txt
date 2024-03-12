@@ -1,0 +1,5 @@
+Line_2 $$ private <T> CompletableFuture<T> startTimer(Long timeout) --> Line_3 $$ CompletableFuture<T> timeoutFuture = new CompletableFuture<T>() [CD]
+Line_2 $$ private <T> CompletableFuture<T> startTimer(Long timeout) --> Line_4 $$ timerExecutor.schedule(() -> timeoutFuture.completeExceptionally(new TimeoutException()), timeout, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ private <T> CompletableFuture<T> startTimer(Long timeout) --> Line_4 $$ timerExecutor.schedule(() -> timeoutFuture.completeExceptionally(new TimeoutException()), timeout, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ CompletableFuture<T> timeoutFuture = new CompletableFuture<T>() --> Line_4 $$ timerExecutor.schedule(() -> timeoutFuture.completeExceptionally(new TimeoutException()), timeout, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ private <T> CompletableFuture<T> startTimer(Long timeout) --> Line_5 $$ return timeoutFuture [CD]

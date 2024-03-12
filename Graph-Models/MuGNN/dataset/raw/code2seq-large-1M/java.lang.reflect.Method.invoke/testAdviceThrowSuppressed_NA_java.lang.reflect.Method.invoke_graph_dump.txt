@@ -1,0 +1,5 @@
+Line_2 $$ public void testAdviceThrowSuppressed() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(TracableSample.class).visit(Advice.to(ThrowSuppressed.class).on(named(FOO))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testAdviceThrowSuppressed() throws Exception --> Line_4 $$ type.getDeclaredMethod(FOO).invoke(type.getDeclaredConstructor().newInstance()) [CD]
+Line_2 $$ public void testAdviceThrowSuppressed() throws Exception --> Line_5 $$ assertThat(type.getDeclaredField(ENTER).get(null), is((Object) 1)) [CD]
+Line_2 $$ public void testAdviceThrowSuppressed() throws Exception --> Line_6 $$ assertThat(type.getDeclaredField(INSIDE).get(null), is((Object) 1)) [CD]
+Line_2 $$ public void testAdviceThrowSuppressed() throws Exception --> Line_7 $$ assertThat(type.getDeclaredField(EXIT).get(null), is((Object) 1)) [CD]

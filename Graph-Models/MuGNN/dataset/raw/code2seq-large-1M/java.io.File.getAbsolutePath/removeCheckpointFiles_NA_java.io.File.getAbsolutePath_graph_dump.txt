@@ -1,0 +1,7 @@
+Line_5 $$ boolean rmvdStart = !startFile.exists() || startFile.delete() --> Line_7 $$ boolean fail = !rmvdStart || !rmvdEnd [FD]
+Line_6 $$ boolean rmvdEnd = !endFile.exists() || endFile.delete() --> Line_7 $$ boolean fail = !rmvdStart || !rmvdEnd [FD]
+Line_8 $$ if (fail) --> Line_9 $$ U.warn(log, "Failed to remove stale checkpoint files [startFile=" + startFile.getAbsolutePath() + ", endFile=" + endFile.getAbsolutePath() + ']') [CD]
+Line_8 $$ if (fail) --> Line_10 $$ if (histMap.size() > 2 * maxCpHistMemSize) [CD]
+Line_10 $$ if (histMap.size() > 2 * maxCpHistMemSize) --> Line_11 $$ U.error(log, "Too many stale checkpoint entries in the map, will truncate WAL archive anyway.") [CD]
+Line_10 $$ if (histMap.size() > 2 * maxCpHistMemSize) --> Line_12 $$ fail = false [CD]
+Line_7 $$ boolean fail = !rmvdStart || !rmvdEnd --> Line_12 $$ fail = false [FD]

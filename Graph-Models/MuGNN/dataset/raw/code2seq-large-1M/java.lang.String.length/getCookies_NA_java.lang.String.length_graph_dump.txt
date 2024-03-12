@@ -1,0 +1,8 @@
+Line_2 $$ public Set<Cookie> getCookies() --> Line_3 $$ if (cookies == null) [CD]
+Line_3 $$ if (cookies == null) --> Line_4 $$ String header = headers.get(HttpHeaderNames.COOKIE) [CD]
+Line_3 $$ if (cookies == null) --> Line_5 $$ if (header == null || header.length() == 0) [CD]
+Line_4 $$ String header = headers.get(HttpHeaderNames.COOKIE) --> Line_5 $$ if (header == null || header.length() == 0) [FD]
+Line_5 $$ if (header == null || header.length() == 0) --> Line_6 $$ cookies = Collections.emptySet() [CD]
+Line_5 $$ if (header == null || header.length() == 0) --> Line_8 $$ cookies = ServerCookieDecoder.STRICT.decode(header) [CD]
+Line_4 $$ String header = headers.get(HttpHeaderNames.COOKIE) --> Line_8 $$ cookies = ServerCookieDecoder.STRICT.decode(header) [FD]
+Line_2 $$ public Set<Cookie> getCookies() --> Line_11 $$ return cookies [CD]

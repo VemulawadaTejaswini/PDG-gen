@@ -1,0 +1,8 @@
+Line_3 $$ for (AssociationValue associationValue : associationValues) --> Line_4 $$ String key = cacheKey(associationValue, sagaType) [FD]
+Line_2 $$ protected void addCachedAssociations(Iterable<AssociationValue> associationValues, String sagaIdentifier, Class<?> sagaType) --> Line_4 $$ String key = cacheKey(associationValue, sagaType) [FD]
+Line_4 $$ String key = cacheKey(associationValue, sagaType) --> Line_5 $$ Set<String> identifiers = associationsCache.get(key) [FD]
+Line_5 $$ Set<String> identifiers = associationsCache.get(key) --> Line_6 $$ if (identifiers != null && identifiers.add(sagaIdentifier)) [FD]
+Line_2 $$ protected void addCachedAssociations(Iterable<AssociationValue> associationValues, String sagaIdentifier, Class<?> sagaType) --> Line_6 $$ if (identifiers != null && identifiers.add(sagaIdentifier)) [FD]
+Line_6 $$ if (identifiers != null && identifiers.add(sagaIdentifier)) --> Line_7 $$ associationsCache.put(key, identifiers) [CD]
+Line_4 $$ String key = cacheKey(associationValue, sagaType) --> Line_7 $$ associationsCache.put(key, identifiers) [FD]
+Line_5 $$ Set<String> identifiers = associationsCache.get(key) --> Line_7 $$ associationsCache.put(key, identifiers) [FD]

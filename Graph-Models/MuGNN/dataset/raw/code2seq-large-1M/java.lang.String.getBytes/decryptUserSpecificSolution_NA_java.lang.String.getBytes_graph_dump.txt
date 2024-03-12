@@ -1,0 +1,6 @@
+Line_2 $$ public static String decryptUserSpecificSolution(String userNameKey, String encryptedSolution) throws GeneralSecurityException, Exception --> Line_4 $$ String key = createUserSpecificEncryptionKey(userNameKey) [FD]
+Line_4 $$ String key = createUserSpecificEncryptionKey(userNameKey) --> Line_5 $$ byte[] raw = key.getBytes(Charset.forName("US-ASCII")) [FD]
+Line_10 $$ Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding") --> Line_11 $$ cipher.init(Cipher.DECRYPT_MODE, skeySpec, new IvParameterSpec(new byte[16])) [FD]
+Line_9 $$ SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES") --> Line_11 $$ cipher.init(Cipher.DECRYPT_MODE, skeySpec, new IvParameterSpec(new byte[16])) [FD]
+Line_10 $$ Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding") --> Line_12 $$ byte[] original = cipher.doFinal(Base64.decodeBase64(encryptedSolution)) [FD]
+Line_2 $$ public static String decryptUserSpecificSolution(String userNameKey, String encryptedSolution) throws GeneralSecurityException, Exception --> Line_12 $$ byte[] original = cipher.doFinal(Base64.decodeBase64(encryptedSolution)) [FD]

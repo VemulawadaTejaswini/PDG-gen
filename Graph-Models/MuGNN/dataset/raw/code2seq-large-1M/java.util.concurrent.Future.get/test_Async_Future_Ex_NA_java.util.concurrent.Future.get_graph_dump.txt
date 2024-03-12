@@ -1,0 +1,7 @@
+Line_8 $$ int requestId = 2 --> Line_9 $$ Person ret = demoProxy.get(requestId) [FD]
+Line_9 $$ Person ret = demoProxy.get(requestId) --> Line_10 $$ Assert.assertEquals(null, ret) [FD]
+Line_9 $$ Person ret = demoProxy.get(requestId) --> Line_12 $$ ret = pFuture.get(1000, TimeUnit.MICROSECONDS) [FD]
+Line_11 $$ Future<Person> pFuture = RpcContext.getContext().getFuture() --> Line_12 $$ ret = pFuture.get(1000, TimeUnit.MICROSECONDS) [FD]
+Line_8 $$ int requestId = 2 --> Line_13 $$ Assert.assertEquals(requestId, ret.getId()) [FD]
+Line_9 $$ Person ret = demoProxy.get(requestId) --> Line_13 $$ Assert.assertEquals(requestId, ret.getId()) [FD]
+Line_12 $$ ret = pFuture.get(1000, TimeUnit.MICROSECONDS) --> Line_13 $$ Assert.assertEquals(requestId, ret.getId()) [FD]

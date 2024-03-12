@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized void publish(T event) --> Line_3 $$ if (events.size() >= archiveSize) [CD]
+Line_3 $$ if (events.size() >= archiveSize) --> Line_4 $$ events.poll() [CD]
+Line_2 $$ public synchronized void publish(T event) --> Line_6 $$ events.offer(new IndexedEvent(event)) [CD]
+Line_2 $$ public synchronized void publish(T event) --> Line_7 $$ notifyNewEvent() [CD]
+Line_8 $$ for (EventStream<T> eventStream : pipedStreams) --> Line_9 $$ eventStream.publish(event) [FD]
+Line_2 $$ public synchronized void publish(T event) --> Line_9 $$ eventStream.publish(event) [FD]

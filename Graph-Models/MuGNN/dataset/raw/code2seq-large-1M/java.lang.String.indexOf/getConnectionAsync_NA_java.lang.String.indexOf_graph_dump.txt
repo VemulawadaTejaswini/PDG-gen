@@ -1,0 +1,8 @@
+Line_4 $$ PooledConnection pc = borrowConnection(0, null, null) --> Line_5 $$ if (pc != null) [FD]
+Line_5 $$ if (pc != null) --> Line_6 $$ return new ConnectionFuture(pc) [CD]
+Line_2 $$ public Future<Connection> getConnectionAsync() throws SQLException --> Line_13 $$ if (idle instanceof FairBlockingQueue<?>) [CD]
+Line_13 $$ if (idle instanceof FairBlockingQueue<?>) --> Line_14 $$ Future<PooledConnection> pcf = ((FairBlockingQueue<PooledConnection>) idle).pollAsync() [CD]
+Line_13 $$ if (idle instanceof FairBlockingQueue<?>) --> Line_15 $$ return new ConnectionFuture(pcf) [CD]
+Line_13 $$ if (idle instanceof FairBlockingQueue<?>) --> Line_16 $$ if (idle instanceof MultiLockFairBlockingQueue<?>) [CD]
+Line_16 $$ if (idle instanceof MultiLockFairBlockingQueue<?>) --> Line_17 $$ Future<PooledConnection> pcf = ((MultiLockFairBlockingQueue<PooledConnection>) idle).pollAsync() [CD]
+Line_16 $$ if (idle instanceof MultiLockFairBlockingQueue<?>) --> Line_18 $$ return new ConnectionFuture(pcf) [CD]

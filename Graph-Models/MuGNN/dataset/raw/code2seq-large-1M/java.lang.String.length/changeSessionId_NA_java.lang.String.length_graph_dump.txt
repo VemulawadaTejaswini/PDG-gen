@@ -1,0 +1,8 @@
+Line_2 $$ public void changeSessionId(String newSessionId) --> Line_3 $$ if (requestedSessionId != null && requestedSessionId.length() > 0) [CD]
+Line_2 $$ public void changeSessionId(String newSessionId) --> Line_6 $$ if (context != null && !context.getServletContext().getEffectiveSessionTrackingModes().contains(SessionTrackingMode.COOKIE)) [CD]
+Line_6 $$ if (context != null && !context.getServletContext().getEffectiveSessionTrackingModes().contains(SessionTrackingMode.COOKIE)) --> Line_7 $$ return [CD]
+Line_2 $$ public void changeSessionId(String newSessionId) --> Line_9 $$ if (response != null) [CD]
+Line_9 $$ if (response != null) --> Line_10 $$ Cookie newCookie = ApplicationSessionCookieConfig.createSessionCookie(context, newSessionId, isSecure()) [CD]
+Line_2 $$ public void changeSessionId(String newSessionId) --> Line_10 $$ Cookie newCookie = ApplicationSessionCookieConfig.createSessionCookie(context, newSessionId, isSecure()) [FD]
+Line_9 $$ if (response != null) --> Line_11 $$ response.addSessionCookieInternal(newCookie) [CD]
+Line_10 $$ Cookie newCookie = ApplicationSessionCookieConfig.createSessionCookie(context, newSessionId, isSecure()) --> Line_11 $$ response.addSessionCookieInternal(newCookie) [FD]

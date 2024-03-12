@@ -1,0 +1,5 @@
+Line_2 $$ Optional<String> deleteJobAsync(BaseDatastoreService datastore, String jobId, boolean force) --> Line_3 $$ for (String mrShardedJobId : getPossibleIdsForPipelineJob(datastore, jobId)) [FD]
+Line_3 $$ for (String mrShardedJobId : getPossibleIdsForPipelineJob(datastore, jobId)) --> Line_4 $$ if (!ShardedJobServiceFactory.getShardedJobService().cleanupJob(mrShardedJobId)) [FD]
+Line_4 $$ if (!ShardedJobServiceFactory.getShardedJobService().cleanupJob(mrShardedJobId)) --> Line_5 $$ return Optional.of(String.format("Skipping; job %s is in running state", mrShardedJobId)) [CD]
+Line_3 $$ for (String mrShardedJobId : getPossibleIdsForPipelineJob(datastore, jobId)) --> Line_5 $$ return Optional.of(String.format("Skipping; job %s is in running state", mrShardedJobId)) [FD]
+Line_2 $$ Optional<String> deleteJobAsync(BaseDatastoreService datastore, String jobId, boolean force) --> Line_9 $$ PipelineManager.deletePipelineRecords(jobId, force, true) [FD]

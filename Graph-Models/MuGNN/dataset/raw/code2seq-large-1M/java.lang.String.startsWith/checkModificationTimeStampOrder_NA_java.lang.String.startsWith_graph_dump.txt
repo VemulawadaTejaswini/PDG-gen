@@ -1,0 +1,8 @@
+Line_2 $$ private void checkModificationTimeStampOrder(String... pathes) throws IOException --> Line_3 $$ long lastMod = Long.MIN_VALUE [CD]
+Line_4 $$ for (String p : pathes) --> Line_5 $$ boolean strong = p.startsWith("<") [FD]
+Line_4 $$ for (String p : pathes) --> Line_6 $$ boolean fixed = p.charAt(strong ? 1 : 0) == '*' [FD]
+Line_4 $$ for (String p : pathes) --> Line_7 $$ p = p.substring((strong ? 1 : 0) + (fixed ? 1 : 0)) [FD]
+Line_4 $$ for (String p : pathes) --> Line_8 $$ long curMod = fixed ? Long.valueOf(p).longValue() : FS.DETECTED.lastModified(new File(db.getWorkTree(), p)) [FD]
+Line_7 $$ p = p.substring((strong ? 1 : 0) + (fixed ? 1 : 0)) --> Line_8 $$ long curMod = fixed ? Long.valueOf(p).longValue() : FS.DETECTED.lastModified(new File(db.getWorkTree(), p)) [FD]
+Line_9 $$ if (strong) --> Line_10 $$ assertTrue("path " + p + " is not younger than predecesssor", curMod > lastMod) [CD]
+Line_9 $$ if (strong) --> Line_12 $$ assertTrue("path " + p + " is older than predecesssor", curMod >= lastMod) [CD]

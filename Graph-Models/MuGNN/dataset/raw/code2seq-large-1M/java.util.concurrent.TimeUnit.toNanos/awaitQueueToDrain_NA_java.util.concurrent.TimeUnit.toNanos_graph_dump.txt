@@ -1,0 +1,8 @@
+Line_2 $$ private boolean awaitQueueToDrain(int timeout, TimeUnit unit) --> Line_3 $$ final long parkTime = unit.toNanos(timeout) / 20 [CD]
+Line_2 $$ private boolean awaitQueueToDrain(int timeout, TimeUnit unit) --> Line_3 $$ final long parkTime = unit.toNanos(timeout) / 20 [FD]
+Line_2 $$ private boolean awaitQueueToDrain(int timeout, TimeUnit unit) --> Line_4 $$ int attempt = 0 [CD]
+Line_2 $$ private boolean awaitQueueToDrain(int timeout, TimeUnit unit) --> Line_5 $$ while (dispatching.get() && ++attempt < 20) [CD]
+Line_4 $$ int attempt = 0 --> Line_5 $$ while (dispatching.get() && ++attempt < 20) [FD]
+Line_5 $$ while (dispatching.get() && ++attempt < 20) --> Line_6 $$ LockSupport.parkNanos(parkTime) [CD]
+Line_3 $$ final long parkTime = unit.toNanos(timeout) / 20 --> Line_6 $$ LockSupport.parkNanos(parkTime) [FD]
+Line_2 $$ private boolean awaitQueueToDrain(int timeout, TimeUnit unit) --> Line_8 $$ return buffer.isEmpty() [CD]

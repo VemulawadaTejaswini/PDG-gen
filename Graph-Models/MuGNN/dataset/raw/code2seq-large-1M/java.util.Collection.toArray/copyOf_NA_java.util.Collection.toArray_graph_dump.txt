@@ -1,0 +1,8 @@
+Line_2 $$ public static <E> List<E> copyOf(Collection<? extends E> elements) --> Line_3 $$ if (elements instanceof ImmutableNullableList || elements instanceof ImmutableList || elements == SINGLETON_NULL) [CD]
+Line_3 $$ if (elements instanceof ImmutableNullableList || elements instanceof ImmutableList || elements == SINGLETON_NULL) --> Line_4 $$ return (List<E>) elements [CD]
+Line_6 $$ for (E object : elements) --> Line_7 $$ if (object == null) [FD]
+Line_7 $$ if (object == null) --> Line_8 $$ final Object[] objects = elements.toArray() [CD]
+Line_2 $$ public static <E> List<E> copyOf(Collection<? extends E> elements) --> Line_8 $$ final Object[] objects = elements.toArray() [FD]
+Line_7 $$ if (object == null) --> Line_9 $$ return new ImmutableNullableList<E>((E[]) objects) [CD]
+Line_2 $$ public static <E> List<E> copyOf(Collection<? extends E> elements) --> Line_12 $$ return ImmutableList.copyOf(elements) [FD]
+Line_2 $$ public static <E> List<E> copyOf(Collection<? extends E> elements) --> Line_12 $$ return ImmutableList.copyOf(elements) [CD]

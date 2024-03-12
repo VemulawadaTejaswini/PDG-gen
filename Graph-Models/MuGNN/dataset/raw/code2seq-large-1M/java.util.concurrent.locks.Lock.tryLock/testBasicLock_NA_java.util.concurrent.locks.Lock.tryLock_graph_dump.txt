@@ -1,0 +1,8 @@
+Line_2 $$ public void testBasicLock() throws Exception --> Line_3 $$ IgniteCache<Integer, String> cache = ignite.cache(DEFAULT_CACHE_NAME) [CD]
+Line_2 $$ public void testBasicLock() throws Exception --> Line_4 $$ Lock lock = cache.lock(1) [CD]
+Line_3 $$ IgniteCache<Integer, String> cache = ignite.cache(DEFAULT_CACHE_NAME) --> Line_4 $$ Lock lock = cache.lock(1) [FD]
+Line_4 $$ Lock lock = cache.lock(1) --> Line_5 $$ assert lock.tryLock() [FD]
+Line_3 $$ IgniteCache<Integer, String> cache = ignite.cache(DEFAULT_CACHE_NAME) --> Line_6 $$ assert cache.isLocalLocked(1, false) [FD]
+Line_2 $$ public void testBasicLock() throws Exception --> Line_7 $$ lock.unlock() [CD]
+Line_4 $$ Lock lock = cache.lock(1) --> Line_7 $$ lock.unlock() [FD]
+Line_3 $$ IgniteCache<Integer, String> cache = ignite.cache(DEFAULT_CACHE_NAME) --> Line_8 $$ assert !cache.isLocalLocked(1, false) [FD]

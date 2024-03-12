@@ -1,0 +1,8 @@
+Line_2 $$ public String getProfileUrl(final OAuth2AccessToken accessToken, final OkConfiguration configuration) --> Line_3 $$ String baseParams = "application_key=" + configuration.getPublicKey() + "&format=json" + "&method=users.getCurrentUser" [FD]
+Line_2 $$ public String getProfileUrl(final OAuth2AccessToken accessToken, final OkConfiguration configuration) --> Line_3 $$ String baseParams = "application_key=" + configuration.getPublicKey() + "&format=json" + "&method=users.getCurrentUser" [CD]
+Line_2 $$ public String getProfileUrl(final OAuth2AccessToken accessToken, final OkConfiguration configuration) --> Line_4 $$ final String finalSign [CD]
+Line_2 $$ public String getProfileUrl(final OAuth2AccessToken accessToken, final OkConfiguration configuration) --> Line_6 $$ final String preSign = getMD5SignAsHexString(accessToken.getAccessToken() + configuration.getSecret()) [FD]
+Line_4 $$ final String finalSign --> Line_7 $$ finalSign = getMD5SignAsHexString(baseParams.replaceAll("&", "") + preSign) [FD]
+Line_3 $$ String baseParams = "application_key=" + configuration.getPublicKey() + "&format=json" + "&method=users.getCurrentUser" --> Line_7 $$ finalSign = getMD5SignAsHexString(baseParams.replaceAll("&", "") + preSign) [FD]
+Line_2 $$ public String getProfileUrl(final OAuth2AccessToken accessToken, final OkConfiguration configuration) --> Line_12 $$ return API_BASE_URL + baseParams + "&access_token=" + accessToken.getAccessToken() + "&sig=" + finalSign [FD]
+Line_2 $$ public String getProfileUrl(final OAuth2AccessToken accessToken, final OkConfiguration configuration) --> Line_12 $$ return API_BASE_URL + baseParams + "&access_token=" + accessToken.getAccessToken() + "&sig=" + finalSign [CD]

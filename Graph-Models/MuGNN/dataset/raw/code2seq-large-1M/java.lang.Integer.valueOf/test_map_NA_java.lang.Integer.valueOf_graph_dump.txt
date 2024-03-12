@@ -1,0 +1,7 @@
+Line_2 $$ public void test_map() --> Line_3 $$ ValueWithFailures<List<String>> base = ValueWithFailures.of(ImmutableList.of("1", "2"), ImmutableList.of(FAILURE1)) [CD]
+Line_2 $$ public void test_map() --> Line_4 $$ ValueWithFailures<List<Integer>> test = base.map( list -> list.stream().map( s -> Integer.valueOf(s)).collect(toImmutableList())) [CD]
+Line_3 $$ ValueWithFailures<List<String>> base = ValueWithFailures.of(ImmutableList.of("1", "2"), ImmutableList.of(FAILURE1)) --> Line_4 $$ ValueWithFailures<List<Integer>> test = base.map( list -> list.stream().map( s -> Integer.valueOf(s)).collect(toImmutableList())) [FD]
+Line_2 $$ public void test_map() --> Line_5 $$ assertEquals(test.getValue(), ImmutableList.of(Integer.valueOf(1), Integer.valueOf(2))) [CD]
+Line_4 $$ ValueWithFailures<List<Integer>> test = base.map( list -> list.stream().map( s -> Integer.valueOf(s)).collect(toImmutableList())) --> Line_5 $$ assertEquals(test.getValue(), ImmutableList.of(Integer.valueOf(1), Integer.valueOf(2))) [FD]
+Line_2 $$ public void test_map() --> Line_6 $$ assertEquals(test.getFailures(), ImmutableList.of(FAILURE1)) [CD]
+Line_4 $$ ValueWithFailures<List<Integer>> test = base.map( list -> list.stream().map( s -> Integer.valueOf(s)).collect(toImmutableList())) --> Line_6 $$ assertEquals(test.getFailures(), ImmutableList.of(FAILURE1)) [FD]

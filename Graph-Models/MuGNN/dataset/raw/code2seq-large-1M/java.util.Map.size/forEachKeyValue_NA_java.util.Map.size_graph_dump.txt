@@ -1,0 +1,7 @@
+Line_2 $$ public static <K, V> void forEachKeyValue(Map<K, V> map, Procedure2<? super K, ? super V> procedure, int minForkSize, int taskCount, Executor executor) --> Line_3 $$ if (map.size() > minForkSize) [FD]
+Line_2 $$ public static <K, V> void forEachKeyValue(Map<K, V> map, Procedure2<? super K, ? super V> procedure, int minForkSize, int taskCount, Executor executor) --> Line_3 $$ if (map.size() > minForkSize) [CD]
+Line_3 $$ if (map.size() > minForkSize) --> Line_4 $$ Procedure<Pair<K, V>> pairProcedure = new PairProcedure<K, V>(procedure) [CD]
+Line_3 $$ if (map.size() > minForkSize) --> Line_5 $$ ParallelIterate.forEachInListOnExecutor(MapIterate.toListOfPairs(map), new PassThruProcedureFactory<Procedure<Pair<K, V>>>(pairProcedure), new PassThruCombiner<Procedure<Pair<K, V>>>(), minForkSize, taskCount, executor) [CD]
+Line_2 $$ public static <K, V> void forEachKeyValue(Map<K, V> map, Procedure2<? super K, ? super V> procedure, int minForkSize, int taskCount, Executor executor) --> Line_5 $$ ParallelIterate.forEachInListOnExecutor(MapIterate.toListOfPairs(map), new PassThruProcedureFactory<Procedure<Pair<K, V>>>(pairProcedure), new PassThruCombiner<Procedure<Pair<K, V>>>(), minForkSize, taskCount, executor) [FD]
+Line_3 $$ if (map.size() > minForkSize) --> Line_7 $$ MapIterate.forEachKeyValue(map, procedure) [CD]
+Line_2 $$ public static <K, V> void forEachKeyValue(Map<K, V> map, Procedure2<? super K, ? super V> procedure, int minForkSize, int taskCount, Executor executor) --> Line_7 $$ MapIterate.forEachKeyValue(map, procedure) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void frameworkClassesExistAndCanBeLoaded() throws IOException, ClassNotFoundException --> Line_3 $$ List<String> lines = ConfigurationLoader.load(Configuration.FRAMEWORK_CLASSES_PATH) [CD]
+Line_2 $$ public void frameworkClassesExistAndCanBeLoaded() throws IOException, ClassNotFoundException --> Line_4 $$ URL jarURL = FrameworkJarBuilderTest.class.getResource(SmaliClassLoader.FRAMEWORK_STUBS_JAR) [CD]
+Line_2 $$ public void frameworkClassesExistAndCanBeLoaded() throws IOException, ClassNotFoundException --> Line_5 $$ URLClassLoader jarLoader = new URLClassLoader(new URL[] [CD]
+Line_6 $$ for (String line : lines) --> Line_7 $$ String internalName = line.substring(0, line.indexOf(':')) [FD]
+Line_7 $$ String internalName = line.substring(0, line.indexOf(':')) --> Line_8 $$ if (internalName.startsWith("Ljava/") || internalName.startsWith("Lsun/security/")) [FD]
+Line_7 $$ String internalName = line.substring(0, line.indexOf(':')) --> Line_11 $$ String sourceName = ClassNameUtils.internalToSource(internalName) [FD]
+Line_5 $$ URLClassLoader jarLoader = new URLClassLoader(new URL[] --> Line_12 $$ jarLoader.loadClass(sourceName) [FD]
+Line_11 $$ String sourceName = ClassNameUtils.internalToSource(internalName) --> Line_12 $$ jarLoader.loadClass(sourceName) [FD]

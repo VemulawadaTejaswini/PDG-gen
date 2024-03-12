@@ -1,0 +1,6 @@
+Line_2 $$ void deleteOldTraces() --> Line_3 $$ if (!projectFilesystem.exists(logDirectoryPath)) [CD]
+Line_3 $$ if (!projectFilesystem.exists(logDirectoryPath)) --> Line_4 $$ return [CD]
+Line_2 $$ void deleteOldTraces() --> Line_6 $$ Path traceDirectory = projectFilesystem.getPathForRelativePath(logDirectoryPath) [CD]
+Line_6 $$ Path traceDirectory = projectFilesystem.getPathForRelativePath(logDirectoryPath) --> Line_8 $$ for (Path path : PathListing.listMatchingPathsWithFilters(traceDirectory, "build.*.trace", PathListing.GET_PATH_MODIFIED_TIME, PathListing.FilterMode.EXCLUDE, Optional.of(config.getMaxTraces()), Optional.empty())) [FD]
+Line_8 $$ for (Path path : PathListing.listMatchingPathsWithFilters(traceDirectory, "build.*.trace", PathListing.GET_PATH_MODIFIED_TIME, PathListing.FilterMode.EXCLUDE, Optional.of(config.getMaxTraces()), Optional.empty())) --> Line_9 $$ projectFilesystem.deleteFileAtPath(path) [FD]
+Line_6 $$ Path traceDirectory = projectFilesystem.getPathForRelativePath(logDirectoryPath) --> Line_12 $$ LOG.error(e, "Couldn't list paths in trace directory %s", traceDirectory) [FD]

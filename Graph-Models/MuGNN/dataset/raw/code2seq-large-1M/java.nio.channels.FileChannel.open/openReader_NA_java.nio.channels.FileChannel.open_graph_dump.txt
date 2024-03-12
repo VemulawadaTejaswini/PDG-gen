@@ -1,0 +1,8 @@
+Line_2 $$ TranslogReader openReader(Path path, Checkpoint checkpoint) throws IOException --> Line_3 $$ FileChannel channel = FileChannel.open(path, StandardOpenOption.READ) [CD]
+Line_2 $$ TranslogReader openReader(Path path, Checkpoint checkpoint) throws IOException --> Line_3 $$ FileChannel channel = FileChannel.open(path, StandardOpenOption.READ) [FD]
+Line_2 $$ TranslogReader openReader(Path path, Checkpoint checkpoint) throws IOException --> Line_5 $$ assert Translog.parseIdFromFileName(path) == checkpoint.generation : "expected generation: " + Translog.parseIdFromFileName(path) + " but got: " + checkpoint.generation [FD]
+Line_3 $$ FileChannel channel = FileChannel.open(path, StandardOpenOption.READ) --> Line_6 $$ TranslogReader reader = TranslogReader.open(channel, path, checkpoint, translogUUID) [FD]
+Line_2 $$ TranslogReader openReader(Path path, Checkpoint checkpoint) throws IOException --> Line_6 $$ TranslogReader reader = TranslogReader.open(channel, path, checkpoint, translogUUID) [FD]
+Line_3 $$ FileChannel channel = FileChannel.open(path, StandardOpenOption.READ) --> Line_7 $$ channel = null [FD]
+Line_3 $$ FileChannel channel = FileChannel.open(path, StandardOpenOption.READ) --> Line_10 $$ IOUtils.close(channel) [FD]
+Line_7 $$ channel = null --> Line_10 $$ IOUtils.close(channel) [FD]

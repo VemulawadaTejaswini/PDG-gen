@@ -1,0 +1,8 @@
+Line_2 $$ public void testResourcesScanner() --> Line_3 $$ Predicate<String> filter = new FilterBuilder().include(".*\\.xml").exclude(".*testModel-reflections\\.xml") [CD]
+Line_2 $$ public void testResourcesScanner() --> Line_4 $$ Reflections reflections = new Reflections(new ConfigurationBuilder().filterInputsBy(filter).setScanners(new ResourcesScanner()).setUrls(asList(ClasspathHelper.forClass(TestModel.class)))) [CD]
+Line_3 $$ Predicate<String> filter = new FilterBuilder().include(".*\\.xml").exclude(".*testModel-reflections\\.xml") --> Line_4 $$ Reflections reflections = new Reflections(new ConfigurationBuilder().filterInputsBy(filter).setScanners(new ResourcesScanner()).setUrls(asList(ClasspathHelper.forClass(TestModel.class)))) [FD]
+Line_2 $$ public void testResourcesScanner() --> Line_5 $$ Set<String> resolved = reflections.getResources(Pattern.compile(".*resource1-reflections\\.xml")) [CD]
+Line_2 $$ public void testResourcesScanner() --> Line_6 $$ assertThat(resolved, are("META-INF/reflections/resource1-reflections.xml")) [CD]
+Line_5 $$ Set<String> resolved = reflections.getResources(Pattern.compile(".*resource1-reflections\\.xml")) --> Line_6 $$ assertThat(resolved, are("META-INF/reflections/resource1-reflections.xml")) [FD]
+Line_2 $$ public void testResourcesScanner() --> Line_7 $$ Set<String> resources = reflections.getStore().get(index(ResourcesScanner.class)).keySet() [CD]
+Line_2 $$ public void testResourcesScanner() --> Line_8 $$ assertThat(resources, are("resource1-reflections.xml", "resource2-reflections.xml")) [CD]

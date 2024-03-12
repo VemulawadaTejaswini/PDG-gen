@@ -1,0 +1,7 @@
+Line_2 $$ public Result<?> getSchemas(final String name, final int offset, final int limit) --> Line_3 $$ if (limit < 1 || limit > 1000) [CD]
+Line_3 $$ if (limit < 1 || limit > 1000) --> Line_4 $$ return Result.problem(Problem.valueOf(Response.Status.BAD_REQUEST, "'limit' parameter should have value from 1 to 1000")) [CD]
+Line_2 $$ public Result<?> getSchemas(final String name, final int offset, final int limit) --> Line_6 $$ if (offset < 0) [FD]
+Line_2 $$ public Result<?> getSchemas(final String name, final int offset, final int limit) --> Line_6 $$ if (offset < 0) [CD]
+Line_6 $$ if (offset < 0) --> Line_7 $$ return Result.problem(Problem.valueOf(Response.Status.BAD_REQUEST, "'offset' parameter can't be lower than 0")) [CD]
+Line_2 $$ public Result<?> getSchemas(final String name, final int offset, final int limit) --> Line_9 $$ return Result.ok(paginationService.paginate(offset, limit, String.format("/event-types/%s/schemas", name), ( o,  l) -> schemaRepository.getSchemas(name, o, l), () -> schemaRepository.getSchemasCount(name))) [FD]
+Line_2 $$ public Result<?> getSchemas(final String name, final int offset, final int limit) --> Line_9 $$ return Result.ok(paginationService.paginate(offset, limit, String.format("/event-types/%s/schemas", name), ( o,  l) -> schemaRepository.getSchemas(name, o, l), () -> schemaRepository.getSchemasCount(name))) [CD]

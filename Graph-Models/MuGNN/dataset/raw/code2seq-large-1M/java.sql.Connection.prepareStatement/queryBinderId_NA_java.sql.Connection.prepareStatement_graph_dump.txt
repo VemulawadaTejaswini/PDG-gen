@@ -1,0 +1,7 @@
+Line_2 $$ private long queryBinderId() throws SQLException --> Line_3 $$ final String sql = "SELECT id FROM " + PostgresBinderStore.MEWBASE_BINDER_TABLE_NAME + " WHERE name = ?" [CD]
+Line_3 $$ final String sql = "SELECT id FROM " + PostgresBinderStore.MEWBASE_BINDER_TABLE_NAME + " WHERE name = ?" --> Line_4 $$ try (final PreparedStatement statement = connection.prepareStatement(sql)) [FD]
+Line_4 $$ try (final PreparedStatement statement = connection.prepareStatement(sql)) --> Line_5 $$ statement.setString(1, name) [FD]
+Line_4 $$ try (final PreparedStatement statement = connection.prepareStatement(sql)) --> Line_6 $$ try (final ResultSet rs = statement.executeQuery()) [FD]
+Line_6 $$ try (final ResultSet rs = statement.executeQuery()) --> Line_7 $$ if (rs.next()) [FD]
+Line_7 $$ if (rs.next()) --> Line_8 $$ return rs.getLong(1) [CD]
+Line_6 $$ try (final ResultSet rs = statement.executeQuery()) --> Line_8 $$ return rs.getLong(1) [FD]

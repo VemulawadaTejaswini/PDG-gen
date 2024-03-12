@@ -1,0 +1,8 @@
+Line_2 $$ private void checkRegionConsistencyConcurrently(final List<CheckRegionConsistencyWorkItem> workItems) throws IOException, KeeperException, InterruptedException --> Line_3 $$ if (workItems.isEmpty()) [CD]
+Line_2 $$ private void checkRegionConsistencyConcurrently(final List<CheckRegionConsistencyWorkItem> workItems) throws IOException, KeeperException, InterruptedException --> Line_3 $$ if (workItems.isEmpty()) [FD]
+Line_3 $$ if (workItems.isEmpty()) --> Line_4 $$ return [CD]
+Line_2 $$ private void checkRegionConsistencyConcurrently(final List<CheckRegionConsistencyWorkItem> workItems) throws IOException, KeeperException, InterruptedException --> Line_6 $$ List<Future<Void>> workFutures = executor.invokeAll(workItems) [CD]
+Line_2 $$ private void checkRegionConsistencyConcurrently(final List<CheckRegionConsistencyWorkItem> workItems) throws IOException, KeeperException, InterruptedException --> Line_6 $$ List<Future<Void>> workFutures = executor.invokeAll(workItems) [FD]
+Line_7 $$ for (Future<Void> f : workFutures) --> Line_9 $$ f.get() [FD]
+Line_12 $$ if (e1.getCause() instanceof IOException) --> Line_14 $$ if (e1.getCause() instanceof KeeperException) [CD]
+Line_14 $$ if (e1.getCause() instanceof KeeperException) --> Line_16 $$ if (e1.getCause() instanceof InterruptedException) [CD]

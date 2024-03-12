@@ -1,0 +1,8 @@
+Line_2 $$ private void printAppInfo() --> Line_3 $$ String sparkMaster = hiveConf.get("spark.master") [CD]
+Line_2 $$ private void printAppInfo() --> Line_4 $$ if (sparkMaster != null && sparkMaster.startsWith("yarn")) [CD]
+Line_3 $$ String sparkMaster = hiveConf.get("spark.master") --> Line_4 $$ if (sparkMaster != null && sparkMaster.startsWith("yarn")) [FD]
+Line_4 $$ if (sparkMaster != null && sparkMaster.startsWith("yarn")) --> Line_5 $$ String appID = sparkJobStatus.getAppID() [CD]
+Line_4 $$ if (sparkMaster != null && sparkMaster.startsWith("yarn")) --> Line_6 $$ if (appID != null) [CD]
+Line_5 $$ String appID = sparkJobStatus.getAppID() --> Line_6 $$ if (appID != null) [FD]
+Line_6 $$ if (appID != null) --> Line_7 $$ console.printInfo("Running with YARN Application = " + appID) [CD]
+Line_6 $$ if (appID != null) --> Line_8 $$ console.printInfo("Kill Command = " + HiveConf.getVar(hiveConf, HiveConf.ConfVars.YARNBIN) + " application -kill " + appID) [CD]

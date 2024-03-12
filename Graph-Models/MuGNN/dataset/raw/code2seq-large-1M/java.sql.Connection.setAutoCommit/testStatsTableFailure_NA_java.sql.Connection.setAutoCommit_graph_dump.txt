@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(sqlExecutor.jdbcUrl())) --> Line_4 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(sqlExecutor.jdbcUrl())) --> Line_5 $$ conn.createStatement().executeUpdate("create table t (a integer not null, b string) " + "with (number_of_replicas = 0)") [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(sqlExecutor.jdbcUrl())) --> Line_10 $$ conn.prepareStatement(stmtStr).execute() [FD]
+Line_8 $$ final String stmtStr = "insert into t(a,b) values(null, '" + uniqueId + "')" --> Line_10 $$ conn.prepareStatement(stmtStr).execute() [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(sqlExecutor.jdbcUrl())) --> Line_13 $$ assertJobLogContains(conn, new String[] [FD]

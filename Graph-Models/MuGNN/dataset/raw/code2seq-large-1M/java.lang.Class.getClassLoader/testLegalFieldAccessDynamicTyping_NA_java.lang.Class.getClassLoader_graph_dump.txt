@@ -1,0 +1,6 @@
+Line_2 $$ public void testLegalFieldAccessDynamicTyping() throws Exception --> Line_3 $$ DynamicType.Loaded<SimpleStaticField> loaded = new ByteBuddy().subclass(SimpleStaticField.class).method(isDeclaredBy(SimpleStaticField.class)).intercept(MethodDelegation.to(DynamicInterceptor.class)).make().load(SimpleStaticField.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testLegalFieldAccessDynamicTyping() throws Exception --> Line_4 $$ SimpleStaticField instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testLegalFieldAccessDynamicTyping() throws Exception --> Line_6 $$ assertThat(instance.foo(), is((Object) FOO)) [CD]
+Line_4 $$ SimpleStaticField instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_6 $$ assertThat(instance.foo(), is((Object) FOO)) [FD]
+Line_2 $$ public void testLegalFieldAccessDynamicTyping() throws Exception --> Line_8 $$ assertThat(instance.foo(), is((Object) BAR)) [CD]
+Line_4 $$ SimpleStaticField instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_8 $$ assertThat(instance.foo(), is((Object) BAR)) [FD]

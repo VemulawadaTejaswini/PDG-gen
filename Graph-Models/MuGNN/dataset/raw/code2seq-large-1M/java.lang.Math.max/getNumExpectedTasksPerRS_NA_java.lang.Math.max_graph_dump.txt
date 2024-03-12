@@ -1,0 +1,6 @@
+Line_2 $$ private int getNumExpectedTasksPerRS(int numTasks) --> Line_3 $$ int availableRSs = 1 [CD]
+Line_3 $$ int availableRSs = 1 --> Line_6 $$ availableRSs = Math.max(availableRSs, (regionServers == null) ? 0 : regionServers.size()) [FD]
+Line_5 $$ List<String> regionServers = ZKUtil.listChildrenNoWatch(watcher, watcher.znodePaths.rsZNode) --> Line_6 $$ availableRSs = Math.max(availableRSs, (regionServers == null) ? 0 : regionServers.size()) [FD]
+Line_2 $$ private int getNumExpectedTasksPerRS(int numTasks) --> Line_10 $$ int expectedTasksPerRS = (numTasks / availableRSs) + ((numTasks % availableRSs == 0) ? 0 : 1) [CD]
+Line_2 $$ private int getNumExpectedTasksPerRS(int numTasks) --> Line_11 $$ return Math.max(1, expectedTasksPerRS) [CD]
+Line_10 $$ int expectedTasksPerRS = (numTasks / availableRSs) + ((numTasks % availableRSs == 0) ? 0 : 1) --> Line_11 $$ return Math.max(1, expectedTasksPerRS) [FD]

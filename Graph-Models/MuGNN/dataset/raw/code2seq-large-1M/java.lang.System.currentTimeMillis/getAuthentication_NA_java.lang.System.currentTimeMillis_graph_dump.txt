@@ -1,0 +1,6 @@
+Line_2 $$ public SitewhereAuthentication getAuthentication() throws SiteWhereException --> Line_3 $$ if ((System.currentTimeMillis() - lastGenerated) > (RENEW_INTERVAL_SEC * 1000)) [CD]
+Line_3 $$ if ((System.currentTimeMillis() - lastGenerated) > (RENEW_INTERVAL_SEC * 1000)) --> Line_4 $$ String jwt = tokenManagement.generateToken(user, SYSTEM_USER_TOKEN_EXPIRATION_IN_MINS) [CD]
+Line_3 $$ if ((System.currentTimeMillis() - lastGenerated) > (RENEW_INTERVAL_SEC * 1000)) --> Line_5 $$ SitewhereUserDetails details = new SitewhereUserDetails(user, auths) [CD]
+Line_3 $$ if ((System.currentTimeMillis() - lastGenerated) > (RENEW_INTERVAL_SEC * 1000)) --> Line_6 $$ this.last = new SitewhereAuthentication(details, jwt) [CD]
+Line_3 $$ if ((System.currentTimeMillis() - lastGenerated) > (RENEW_INTERVAL_SEC * 1000)) --> Line_7 $$ this.lastGenerated = System.currentTimeMillis() [CD]
+Line_2 $$ public SitewhereAuthentication getAuthentication() throws SiteWhereException --> Line_9 $$ return this.last [CD]

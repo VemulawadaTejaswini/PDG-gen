@@ -1,0 +1,8 @@
+Line_2 $$ static int getAdjustedTTL(int ttl, long captureTime, Clock clock) --> Line_3 $$ if (ttl == 0) [FD]
+Line_2 $$ static int getAdjustedTTL(int ttl, long captureTime, Clock clock) --> Line_3 $$ if (ttl == 0) [CD]
+Line_3 $$ if (ttl == 0) --> Line_4 $$ return 0 [CD]
+Line_2 $$ static int getAdjustedTTL(int ttl, long captureTime, Clock clock) --> Line_6 $$ long captureTimeAgoSeconds = MILLISECONDS.toSeconds(clock.currentTimeMillis() - captureTime) [FD]
+Line_2 $$ static int getAdjustedTTL(int ttl, long captureTime, Clock clock) --> Line_6 $$ long captureTimeAgoSeconds = MILLISECONDS.toSeconds(clock.currentTimeMillis() - captureTime) [CD]
+Line_2 $$ static int getAdjustedTTL(int ttl, long captureTime, Clock clock) --> Line_7 $$ int adjustedTTL = Ints.saturatedCast(ttl - captureTimeAgoSeconds) [CD]
+Line_2 $$ static int getAdjustedTTL(int ttl, long captureTime, Clock clock) --> Line_8 $$ return Math.max(adjustedTTL, 60) [CD]
+Line_7 $$ int adjustedTTL = Ints.saturatedCast(ttl - captureTimeAgoSeconds) --> Line_8 $$ return Math.max(adjustedTTL, 60) [FD]

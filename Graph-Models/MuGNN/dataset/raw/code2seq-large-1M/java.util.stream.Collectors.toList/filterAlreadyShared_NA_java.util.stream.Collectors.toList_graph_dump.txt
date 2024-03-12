@@ -1,0 +1,8 @@
+Line_2 $$ private List<ShareResDTO> filterAlreadyShared(Long resourceId, List<ShareResDTO> requestList) --> Line_3 $$ Set<String> emails = alreadySharedCache.get(resourceId) [CD]
+Line_2 $$ private List<ShareResDTO> filterAlreadyShared(Long resourceId, List<ShareResDTO> requestList) --> Line_3 $$ Set<String> emails = alreadySharedCache.get(resourceId) [FD]
+Line_2 $$ private List<ShareResDTO> filterAlreadyShared(Long resourceId, List<ShareResDTO> requestList) --> Line_4 $$ if (emails == null) [CD]
+Line_3 $$ Set<String> emails = alreadySharedCache.get(resourceId) --> Line_4 $$ if (emails == null) [FD]
+Line_4 $$ if (emails == null) --> Line_5 $$ return requestList [CD]
+Line_2 $$ private List<ShareResDTO> filterAlreadyShared(Long resourceId, List<ShareResDTO> requestList) --> Line_7 $$ return requestList.stream().filter( e -> !emails.contains(e.getEmail())).collect(Collectors.toList()) [CD]
+Line_2 $$ private List<ShareResDTO> filterAlreadyShared(Long resourceId, List<ShareResDTO> requestList) --> Line_7 $$ return requestList.stream().filter( e -> !emails.contains(e.getEmail())).collect(Collectors.toList()) [FD]
+Line_3 $$ Set<String> emails = alreadySharedCache.get(resourceId) --> Line_7 $$ return requestList.stream().filter( e -> !emails.contains(e.getEmail())).collect(Collectors.toList()) [FD]

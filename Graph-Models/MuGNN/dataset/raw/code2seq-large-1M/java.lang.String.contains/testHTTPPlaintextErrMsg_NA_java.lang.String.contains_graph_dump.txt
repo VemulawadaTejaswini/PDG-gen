@@ -1,0 +1,3 @@
+Line_4 $$ final Settings settings = Settings.builder().put("searchguard.ssl.http.keystore_filepath", FileHelper.getAbsoluteFilePathFromClassPath("node-0-keystore.jks")).put("searchguard.ssl.http.truststore_filepath", FileHelper.getAbsoluteFilePathFromClassPath("truststore.jks")).put("searchguard.ssl.http.enabled", true).build() --> Line_5 $$ setup(settings) [FD]
+Line_6 $$ RestHelper rh = nonSslRestHelper() --> Line_7 $$ rh.executeGetRequest("", encodeBasicHeader("worf", "worf")) [FD]
+Line_10 $$ String log = FileUtils.readFileToString(new File("unittest.log"), StandardCharsets.UTF_8) --> Line_11 $$ Assert.assertTrue(log.contains("speaks http plaintext instead of ssl, will close the channel")) [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public List<TemplateType> getDistinctTemplateTypes(long hopID, int refAt, boolean exclInvalOuter) --> Line_3 $$ if (!contains(hopID)) [CD]
+Line_2 $$ public List<TemplateType> getDistinctTemplateTypes(long hopID, int refAt, boolean exclInvalOuter) --> Line_3 $$ if (!contains(hopID)) [FD]
+Line_3 $$ if (!contains(hopID)) --> Line_4 $$ return Collections.emptyList() [CD]
+Line_2 $$ public List<TemplateType> getDistinctTemplateTypes(long hopID, int refAt, boolean exclInvalOuter) --> Line_5 $$ return _plans.get(hopID).stream().filter( p -> p.isPlanRef(refAt) && (!exclInvalOuter || p.type != TemplateType.OUTER || p.isValid())).map( p -> p.type).distinct().collect(Collectors.toList()) [CD]
+Line_2 $$ public List<TemplateType> getDistinctTemplateTypes(long hopID, int refAt, boolean exclInvalOuter) --> Line_5 $$ return _plans.get(hopID).stream().filter( p -> p.isPlanRef(refAt) && (!exclInvalOuter || p.type != TemplateType.OUTER || p.isValid())).map( p -> p.type).distinct().collect(Collectors.toList()) [FD]

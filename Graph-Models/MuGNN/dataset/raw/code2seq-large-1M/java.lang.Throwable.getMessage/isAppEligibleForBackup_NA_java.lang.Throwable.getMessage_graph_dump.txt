@@ -1,0 +1,6 @@
+Line_2 $$ public boolean isAppEligibleForBackup(String packageName) --> Line_3 $$ mContext.enforceCallingOrSelfPermission(android.Manifest.permission.BACKUP, "isAppEligibleForBackup") [CD]
+Line_2 $$ public boolean isAppEligibleForBackup(String packageName) --> Line_5 $$ PackageInfo packageInfo = mPackageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES) [FD]
+Line_6 $$ if (!appIsEligibleForBackup(packageInfo.applicationInfo) || appIsStopped(packageInfo.applicationInfo)) --> Line_7 $$ return false [CD]
+Line_9 $$ IBackupTransport transport = getTransport(mCurrentTransport) --> Line_10 $$ if (transport != null) [FD]
+Line_9 $$ IBackupTransport transport = getTransport(mCurrentTransport) --> Line_12 $$ return transport.isAppEligibleForBackup(packageInfo, appGetsFullBackup(packageInfo)) [FD]
+Line_5 $$ PackageInfo packageInfo = mPackageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES) --> Line_12 $$ return transport.isAppEligibleForBackup(packageInfo, appGetsFullBackup(packageInfo)) [FD]

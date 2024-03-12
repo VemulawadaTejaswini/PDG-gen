@@ -1,0 +1,5 @@
+Line_2 $$ public void testTypeInitializer() throws Exception --> Line_3 $$ ClassLoader classLoader = new ByteArrayClassLoader(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassFileExtraction.of(Bar.class)) [CD]
+Line_2 $$ public void testTypeInitializer() throws Exception --> Line_4 $$ Class<?> type = createPlain().invokable(isTypeInitializer()).intercept(MethodCall.invoke(Bar.class.getDeclaredMethod("invoke"))).make().load(classLoader, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testTypeInitializer() throws Exception --> Line_5 $$ assertThat(type.getDeclaredConstructor().newInstance(), notNullValue(Object.class)) [CD]
+Line_2 $$ public void testTypeInitializer() throws Exception --> Line_6 $$ Class<?> foo = classLoader.loadClass(Bar.class.getName()) [CD]
+Line_2 $$ public void testTypeInitializer() throws Exception --> Line_7 $$ assertThat(foo.getDeclaredField(FOO).get(null), is((Object) FOO)) [CD]

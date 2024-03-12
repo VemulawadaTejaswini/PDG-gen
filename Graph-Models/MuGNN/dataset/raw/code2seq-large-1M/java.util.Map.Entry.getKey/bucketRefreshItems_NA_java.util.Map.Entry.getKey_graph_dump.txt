@@ -1,0 +1,5 @@
+Line_2 $$ private void bucketRefreshItems(ImmutableSetMultimap<String, RefreshItem> refreshItemsByTld) --> Line_3 $$ for (Map.Entry<String, Collection<RefreshItem>> tldRefreshItemsEntry : refreshItemsByTld.asMap().entrySet()) [FD]
+Line_5 $$ int numPublishLocks = Registry.get(tld).getNumDnsPublishLocks() --> Line_6 $$ if (numPublishLocks <= 1) [FD]
+Line_6 $$ if (numPublishLocks <= 1) --> Line_7 $$ enqueueUpdates(tld, 1, 1, tldRefreshItemsEntry.getValue()) [CD]
+Line_6 $$ if (numPublishLocks <= 1) --> Line_9 $$ tldRefreshItemsEntry.getValue().stream().collect(toImmutableSetMultimap( refreshItem -> getLockIndex(tld, numPublishLocks, refreshItem),  refreshItem -> refreshItem)).asMap().entrySet().forEach( entry -> enqueueUpdates(tld, entry.getKey(), numPublishLocks, entry.getValue())) [CD]
+Line_5 $$ int numPublishLocks = Registry.get(tld).getNumDnsPublishLocks() --> Line_9 $$ tldRefreshItemsEntry.getValue().stream().collect(toImmutableSetMultimap( refreshItem -> getLockIndex(tld, numPublishLocks, refreshItem),  refreshItem -> refreshItem)).asMap().entrySet().forEach( entry -> enqueueUpdates(tld, entry.getKey(), numPublishLocks, entry.getValue())) [FD]

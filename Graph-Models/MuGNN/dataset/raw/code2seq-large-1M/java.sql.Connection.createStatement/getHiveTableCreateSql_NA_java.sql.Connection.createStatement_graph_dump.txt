@@ -1,0 +1,8 @@
+Line_2 $$ private static String getHiveTableCreateSql(Connection connection, String tableName) throws Exception --> Line_3 $$ try (Statement statement = connection.createStatement()) [FD]
+Line_3 $$ try (Statement statement = connection.createStatement()) --> Line_4 $$ ResultSet resultSet = statement.executeQuery(String.format("SHOW CREATE TABLE %s", tableName)) [FD]
+Line_2 $$ private static String getHiveTableCreateSql(Connection connection, String tableName) throws Exception --> Line_4 $$ ResultSet resultSet = statement.executeQuery(String.format("SHOW CREATE TABLE %s", tableName)) [FD]
+Line_4 $$ ResultSet resultSet = statement.executeQuery(String.format("SHOW CREATE TABLE %s", tableName)) --> Line_6 $$ while (resultSet.next()) [FD]
+Line_6 $$ while (resultSet.next()) --> Line_7 $$ createTable += resultSet.getString(1) + "\n" [CD]
+Line_5 $$ String createTable = "" --> Line_7 $$ createTable += resultSet.getString(1) + "\n" [FD]
+Line_4 $$ ResultSet resultSet = statement.executeQuery(String.format("SHOW CREATE TABLE %s", tableName)) --> Line_7 $$ createTable += resultSet.getString(1) + "\n" [FD]
+Line_4 $$ ResultSet resultSet = statement.executeQuery(String.format("SHOW CREATE TABLE %s", tableName)) --> Line_9 $$ resultSet.close() [FD]

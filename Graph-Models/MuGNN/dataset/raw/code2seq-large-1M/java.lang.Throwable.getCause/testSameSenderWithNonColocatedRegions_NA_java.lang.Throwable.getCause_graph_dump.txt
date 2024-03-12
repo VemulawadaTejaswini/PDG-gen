@@ -1,0 +1,7 @@
+Line_2 $$ public void testSameSenderWithNonColocatedRegions() throws Exception --> Line_3 $$ IgnoredException.addIgnoredException("cannot have the same parallel async") [CD]
+Line_2 $$ public void testSameSenderWithNonColocatedRegions() throws Exception --> Line_4 $$ Integer lnPort = (Integer) vm0.invoke(() -> AsyncEventQueueTestBase.createFirstLocatorWithDSId(1)) [CD]
+Line_2 $$ public void testSameSenderWithNonColocatedRegions() throws Exception --> Line_5 $$ vm1.invoke(() -> AsyncEventQueueTestBase.createCache(lnPort)) [CD]
+Line_4 $$ Integer lnPort = (Integer) vm0.invoke(() -> AsyncEventQueueTestBase.createFirstLocatorWithDSId(1)) --> Line_5 $$ vm1.invoke(() -> AsyncEventQueueTestBase.createCache(lnPort)) [FD]
+Line_2 $$ public void testSameSenderWithNonColocatedRegions() throws Exception --> Line_6 $$ vm1.invoke(() -> AsyncEventQueueTestBase.createAsyncEventQueue("ln", true, 100, 100, false, false, null, false)) [CD]
+Line_2 $$ public void testSameSenderWithNonColocatedRegions() throws Exception --> Line_7 $$ vm1.invoke(() -> AsyncEventQueueTestBase.createPartitionedRegionWithAsyncEventQueue(getTestMethodName() + "_PR1", "ln", isOffHeap())) [CD]
+Line_12 $$ if (!(e.getCause() instanceof IllegalStateException) || !(e.getCause().getMessage().contains("cannot have the same parallel async event queue id"))) --> Line_13 $$ Assert.fail("Expected IllegalStateException", e) [CD]

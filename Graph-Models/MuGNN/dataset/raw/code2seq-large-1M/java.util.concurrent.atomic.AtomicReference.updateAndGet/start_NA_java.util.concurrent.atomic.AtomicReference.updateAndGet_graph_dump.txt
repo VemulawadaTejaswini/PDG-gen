@@ -1,0 +1,5 @@
+Line_2 $$ public void start(Supplier<CompletableFuture<T>> supplier, Predicate<T> termination, ScheduledExecutorService executor) --> Line_3 $$ futureRef.updateAndGet( previous -> [CD]
+Line_2 $$ public void start(Supplier<CompletableFuture<T>> supplier, Predicate<T> termination, ScheduledExecutorService executor) --> Line_7 $$ return Futures.loop(() -> !done.get() && !cancelled.get(), () -> Futures.delayedFuture(() -> supplier.get().thenAccept( r -> [FD]
+Line_2 $$ public void start(Supplier<CompletableFuture<T>> supplier, Predicate<T> termination, ScheduledExecutorService executor) --> Line_9 $$ done.set(termination.test(r)) [FD]
+Line_11 $$ if (done.get()) --> Line_12 $$ return result.get() [CD]
+Line_2 $$ public void start(Supplier<CompletableFuture<T>> supplier, Predicate<T> termination, ScheduledExecutorService executor) --> Line_18 $$ started.complete(null) [CD]

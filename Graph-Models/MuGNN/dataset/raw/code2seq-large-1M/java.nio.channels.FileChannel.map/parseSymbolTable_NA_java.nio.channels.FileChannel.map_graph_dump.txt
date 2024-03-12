@@ -1,0 +1,3 @@
+Line_2 $$ private ElfSymbolTable parseSymbolTable(String file) throws IOException --> Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve(file))) [FD]
+Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve(file))) --> Line_4 $$ MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size()) [FD]
+Line_5 $$ Elf elf = new Elf(buffer) --> Line_6 $$ return ElfSymbolTable.parse(elf.header.ei_class, elf.getSectionByName(".symtab").orElseThrow(RuntimeException::<>new).getSection().body) [FD]

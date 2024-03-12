@@ -1,0 +1,5 @@
+Line_2 $$ public void insertTotalNumberOfMessagesIntoTheLoadTestQueue() throws InterruptedException --> Line_3 $$ CountDownLatch countDownLatch = new CountDownLatch(TOTAL_BATCHES) [CD]
+Line_2 $$ public void insertTotalNumberOfMessagesIntoTheLoadTestQueue() throws InterruptedException --> Line_4 $$ for (int batch = 0; batch < TOTAL_BATCHES; batch++) [CD]
+Line_4 $$ for (int batch = 0; batch < TOTAL_BATCHES; batch++) --> Line_5 $$ this.taskExecutor.execute(new QueueMessageSender(this.stackResourceRegistry.lookupPhysicalResourceId("LoadTestQueue"), this.amazonSqsClient, countDownLatch)) [CD]
+Line_2 $$ public void insertTotalNumberOfMessagesIntoTheLoadTestQueue() throws InterruptedException --> Line_7 $$ countDownLatch.await() [CD]
+Line_3 $$ CountDownLatch countDownLatch = new CountDownLatch(TOTAL_BATCHES) --> Line_7 $$ countDownLatch.await() [FD]

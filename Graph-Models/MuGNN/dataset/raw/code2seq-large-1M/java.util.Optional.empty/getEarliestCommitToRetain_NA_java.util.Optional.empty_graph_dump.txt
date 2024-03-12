@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<HoodieInstant> getEarliestCommitToRetain() --> Line_3 $$ Optional<HoodieInstant> earliestCommitToRetain = Optional.empty() [CD]
+Line_2 $$ public Optional<HoodieInstant> getEarliestCommitToRetain() --> Line_4 $$ int commitsRetained = config.getCleanerCommitsRetained() [CD]
+Line_2 $$ public Optional<HoodieInstant> getEarliestCommitToRetain() --> Line_5 $$ if (config.getCleanerPolicy() == HoodieCleaningPolicy.KEEP_LATEST_COMMITS && commitTimeline.countInstants() > commitsRetained) [CD]
+Line_5 $$ if (config.getCleanerPolicy() == HoodieCleaningPolicy.KEEP_LATEST_COMMITS && commitTimeline.countInstants() > commitsRetained) --> Line_6 $$ earliestCommitToRetain = commitTimeline.nthInstant(commitTimeline.countInstants() - commitsRetained) [CD]
+Line_3 $$ Optional<HoodieInstant> earliestCommitToRetain = Optional.empty() --> Line_6 $$ earliestCommitToRetain = commitTimeline.nthInstant(commitTimeline.countInstants() - commitsRetained) [FD]
+Line_2 $$ public Optional<HoodieInstant> getEarliestCommitToRetain() --> Line_8 $$ return earliestCommitToRetain [CD]

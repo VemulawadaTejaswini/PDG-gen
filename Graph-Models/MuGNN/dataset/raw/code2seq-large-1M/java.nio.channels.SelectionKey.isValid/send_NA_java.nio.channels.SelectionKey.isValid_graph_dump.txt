@@ -1,0 +1,7 @@
+Line_2 $$ private void send(SocketChannel channel, RCONPacket packet) --> Line_3 $$ if (!channel.keyFor(this.selector).isValid()) [FD]
+Line_2 $$ private void send(SocketChannel channel, RCONPacket packet) --> Line_3 $$ if (!channel.keyFor(this.selector).isValid()) [CD]
+Line_3 $$ if (!channel.keyFor(this.selector).isValid()) --> Line_4 $$ return [CD]
+Line_2 $$ private void send(SocketChannel channel, RCONPacket packet) --> Line_7 $$ List<RCONPacket> queue = sendQueues.computeIfAbsent(channel,  k -> new ArrayList()) [FD]
+Line_7 $$ List<RCONPacket> queue = sendQueues.computeIfAbsent(channel,  k -> new ArrayList()) --> Line_8 $$ queue.add(packet) [FD]
+Line_2 $$ private void send(SocketChannel channel, RCONPacket packet) --> Line_8 $$ queue.add(packet) [FD]
+Line_2 $$ private void send(SocketChannel channel, RCONPacket packet) --> Line_10 $$ this.selector.wakeup() [CD]

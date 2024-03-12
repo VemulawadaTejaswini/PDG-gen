@@ -1,0 +1,8 @@
+Line_2 $$ private Collection<GridNearTxLocal> nearTxs(long duration) --> Line_3 $$ final long start = System.currentTimeMillis() [CD]
+Line_2 $$ private Collection<GridNearTxLocal> nearTxs(long duration) --> Line_4 $$ IgniteClosure<IgniteInternalTx, GridNearTxLocal> c = new IgniteClosure<IgniteInternalTx, GridNearTxLocal>() [CD]
+Line_4 $$ IgniteClosure<IgniteInternalTx, GridNearTxLocal> c = new IgniteClosure<IgniteInternalTx, GridNearTxLocal>() --> Line_6 $$ return ((GridNearTxLocal) tx) [CD]
+Line_9 $$ IgnitePredicate<IgniteInternalTx> pred = new IgnitePredicate<IgniteInternalTx>() --> Line_11 $$ return tx.local() && tx.near() && start - tx.startTime() >= duration [FD]
+Line_9 $$ IgnitePredicate<IgniteInternalTx> pred = new IgnitePredicate<IgniteInternalTx>() --> Line_11 $$ return tx.local() && tx.near() && start - tx.startTime() >= duration [CD]
+Line_4 $$ IgniteClosure<IgniteInternalTx, GridNearTxLocal> c = new IgniteClosure<IgniteInternalTx, GridNearTxLocal>() --> Line_11 $$ return tx.local() && tx.near() && start - tx.startTime() >= duration [FD]
+Line_2 $$ private Collection<GridNearTxLocal> nearTxs(long duration) --> Line_14 $$ return F.viewReadOnly(gridKernalCtx.cache().context().tm().activeTransactions(), c, pred) [CD]
+Line_4 $$ IgniteClosure<IgniteInternalTx, GridNearTxLocal> c = new IgniteClosure<IgniteInternalTx, GridNearTxLocal>() --> Line_14 $$ return F.viewReadOnly(gridKernalCtx.cache().context().tm().activeTransactions(), c, pred) [FD]

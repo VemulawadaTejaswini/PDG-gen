@@ -1,0 +1,8 @@
+Line_2 $$ public AuthenticationMechanism.AuthenticationMechanismOutcome authenticate(HttpServerExchange hse, SecurityContext sc) --> Line_3 $$ Account sa = idm.verify(username, new PasswordCredential(pwd.toCharArray())) [CD]
+Line_2 $$ public AuthenticationMechanism.AuthenticationMechanismOutcome authenticate(HttpServerExchange hse, SecurityContext sc) --> Line_4 $$ if (sa != null) [CD]
+Line_3 $$ Account sa = idm.verify(username, new PasswordCredential(pwd.toCharArray())) --> Line_4 $$ if (sa != null) [FD]
+Line_4 $$ if (sa != null) --> Line_5 $$ sc.authenticationComplete(sa, "IdentityAuthenticationManager", false) [CD]
+Line_2 $$ public AuthenticationMechanism.AuthenticationMechanismOutcome authenticate(HttpServerExchange hse, SecurityContext sc) --> Line_5 $$ sc.authenticationComplete(sa, "IdentityAuthenticationManager", false) [FD]
+Line_3 $$ Account sa = idm.verify(username, new PasswordCredential(pwd.toCharArray())) --> Line_5 $$ sc.authenticationComplete(sa, "IdentityAuthenticationManager", false) [FD]
+Line_4 $$ if (sa != null) --> Line_6 $$ return AuthenticationMechanism.AuthenticationMechanismOutcome.AUTHENTICATED [CD]
+Line_4 $$ if (sa != null) --> Line_8 $$ return AuthenticationMechanism.AuthenticationMechanismOutcome.NOT_ATTEMPTED [CD]

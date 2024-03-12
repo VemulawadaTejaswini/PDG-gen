@@ -1,0 +1,7 @@
+Line_2 $$ public Map<String, TaskState> getJobStates() --> Line_3 $$ Map<String, TaskState> jobStates = new HashMap<String, TaskState>() [CD]
+Line_2 $$ public Map<String, TaskState> getJobStates() --> Line_4 $$ Map<String, String> stateFieldMap = _record.getMapField(WorkflowContextProperties.JOB_STATES.name()) [CD]
+Line_2 $$ public Map<String, TaskState> getJobStates() --> Line_5 $$ if (stateFieldMap != null) [CD]
+Line_4 $$ Map<String, String> stateFieldMap = _record.getMapField(WorkflowContextProperties.JOB_STATES.name()) --> Line_5 $$ if (stateFieldMap != null) [FD]
+Line_4 $$ Map<String, String> stateFieldMap = _record.getMapField(WorkflowContextProperties.JOB_STATES.name()) --> Line_6 $$ for (Map.Entry<String, String> state : stateFieldMap.entrySet()) [FD]
+Line_3 $$ Map<String, TaskState> jobStates = new HashMap<String, TaskState>() --> Line_7 $$ jobStates.put(state.getKey(), TaskState.valueOf(state.getValue())) [FD]
+Line_2 $$ public Map<String, TaskState> getJobStates() --> Line_10 $$ return jobStates [CD]

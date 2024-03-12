@@ -1,0 +1,6 @@
+Line_2 $$ protected void lock(Lock lock, int timeoutMilliseconds) throws RouterException --> Line_4 $$ log.finest("Trying to obtain lock with timeout milliseconds '" + timeoutMilliseconds + "': " + lock.getClass().getSimpleName()) [FD]
+Line_2 $$ protected void lock(Lock lock, int timeoutMilliseconds) throws RouterException --> Line_5 $$ if (lock.tryLock(timeoutMilliseconds, TimeUnit.MILLISECONDS)) [FD]
+Line_5 $$ if (lock.tryLock(timeoutMilliseconds, TimeUnit.MILLISECONDS)) --> Line_6 $$ log.finest("Acquired router lock: " + lock.getClass().getSimpleName()) [CD]
+Line_2 $$ protected void lock(Lock lock, int timeoutMilliseconds) throws RouterException --> Line_6 $$ log.finest("Acquired router lock: " + lock.getClass().getSimpleName()) [FD]
+Line_2 $$ protected void lock(Lock lock, int timeoutMilliseconds) throws RouterException --> Line_8 $$ throw new RouterException("Router wasn't available exclusively after waiting " + timeoutMilliseconds + "ms, lock failed: " + lock.getClass().getSimpleName()) [FD]
+Line_2 $$ protected void lock(Lock lock, int timeoutMilliseconds) throws RouterException --> Line_11 $$ throw new RouterException("Interruption while waiting for exclusive access: " + lock.getClass().getSimpleName(), ex) [FD]

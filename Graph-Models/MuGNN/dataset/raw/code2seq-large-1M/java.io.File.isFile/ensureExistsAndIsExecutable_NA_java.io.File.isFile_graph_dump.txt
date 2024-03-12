@@ -1,0 +1,8 @@
+Line_2 $$ private static File ensureExistsAndIsExecutable(File path, String exeName) throws WizardException --> Line_3 $$ File executable = new File(path, exeName) [CD]
+Line_2 $$ private static File ensureExistsAndIsExecutable(File path, String exeName) throws WizardException --> Line_4 $$ if (!executable.isFile()) [CD]
+Line_3 $$ File executable = new File(path, exeName) --> Line_4 $$ if (!executable.isFile()) [FD]
+Line_3 $$ File executable = new File(path, exeName) --> Line_5 $$ throw new WizardException("HAXM installer executable is missing: " + executable.getAbsolutePath()) [FD]
+Line_4 $$ if (!executable.isFile()) --> Line_6 $$ if (executable.canExecute() || executable.setExecutable(true)) [CD]
+Line_3 $$ File executable = new File(path, exeName) --> Line_6 $$ if (executable.canExecute() || executable.setExecutable(true)) [FD]
+Line_6 $$ if (executable.canExecute() || executable.setExecutable(true)) --> Line_7 $$ return executable [CD]
+Line_3 $$ File executable = new File(path, exeName) --> Line_9 $$ throw new WizardException("Unable to set execute permission bit on HAXM installer executable: " + executable.getAbsolutePath()) [FD]

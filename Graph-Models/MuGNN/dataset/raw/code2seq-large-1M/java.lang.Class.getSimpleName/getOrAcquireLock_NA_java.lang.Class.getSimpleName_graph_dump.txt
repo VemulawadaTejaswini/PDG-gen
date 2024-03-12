@@ -1,0 +1,8 @@
+Line_2 $$ private final ILock getOrAcquireLock() --> Line_3 $$ assertNotClosed() [CD]
+Line_2 $$ private final ILock getOrAcquireLock() --> Line_4 $$ if (_lock == null) [CD]
+Line_4 $$ if (_lock == null) --> Line_5 $$ final IQueryFilter<ET> filter = createFilter() [CD]
+Line_4 $$ if (_lock == null) --> Line_6 $$ final LockOwner lockOwner = LockOwner.newOwner(getClass().getSimpleName()) [CD]
+Line_4 $$ if (_lock == null) --> Line_7 $$ _lock = lockManager.lock().setOwner(lockOwner).setAutoCleanup(true).setFailIfNothingLocked(false).setSetRecordsByFilter(eventTypeClass, filter).acquire() [CD]
+Line_5 $$ final IQueryFilter<ET> filter = createFilter() --> Line_7 $$ _lock = lockManager.lock().setOwner(lockOwner).setAutoCleanup(true).setFailIfNothingLocked(false).setSetRecordsByFilter(eventTypeClass, filter).acquire() [FD]
+Line_6 $$ final LockOwner lockOwner = LockOwner.newOwner(getClass().getSimpleName()) --> Line_7 $$ _lock = lockManager.lock().setOwner(lockOwner).setAutoCleanup(true).setFailIfNothingLocked(false).setSetRecordsByFilter(eventTypeClass, filter).acquire() [FD]
+Line_2 $$ private final ILock getOrAcquireLock() --> Line_9 $$ return _lock [CD]

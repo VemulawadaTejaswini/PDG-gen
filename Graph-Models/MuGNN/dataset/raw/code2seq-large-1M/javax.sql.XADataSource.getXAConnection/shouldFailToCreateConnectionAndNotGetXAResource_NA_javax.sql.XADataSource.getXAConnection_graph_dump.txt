@@ -1,0 +1,5 @@
+Line_2 $$ public void shouldFailToCreateConnectionAndNotGetXAResource() throws SQLException --> Line_3 $$ given(this.xaDataSource.getXAConnection()).willThrow(new SQLException("Test exception")) [CD]
+Line_2 $$ public void shouldFailToCreateConnectionAndNotGetXAResource() throws SQLException --> Line_4 $$ XAResource[] xaResources = this.recoveryHelper.getXAResources() [CD]
+Line_2 $$ public void shouldFailToCreateConnectionAndNotGetXAResource() throws SQLException --> Line_5 $$ assertThat(xaResources.length).isEqualTo(0) [CD]
+Line_2 $$ public void shouldFailToCreateConnectionAndNotGetXAResource() throws SQLException --> Line_6 $$ verify(this.xaDataSource, times(1)).getXAConnection() [CD]
+Line_2 $$ public void shouldFailToCreateConnectionAndNotGetXAResource() throws SQLException --> Line_7 $$ verify(this.xaConnection, never()).getXAResource() [CD]

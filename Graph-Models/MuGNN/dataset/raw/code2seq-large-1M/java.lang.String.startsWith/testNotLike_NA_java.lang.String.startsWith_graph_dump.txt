@@ -1,0 +1,5 @@
+Line_2 $$ public void testNotLike() throws Exception --> Line_3 $$ List<GenericValue> nodes = EntityQuery.use(delegator).from("TestingNode").where(EntityCondition.makeCondition("description", EntityOperator.NOT_LIKE, "root%")).queryList() [CD]
+Line_2 $$ public void testNotLike() throws Exception --> Line_4 $$ assertNotNull("Found nodes", nodes) [CD]
+Line_3 $$ List<GenericValue> nodes = EntityQuery.use(delegator).from("TestingNode").where(EntityCondition.makeCondition("description", EntityOperator.NOT_LIKE, "root%")).queryList() --> Line_4 $$ assertNotNull("Found nodes", nodes) [FD]
+Line_5 $$ for (GenericValue product : nodes) --> Line_6 $$ String nodeId = product.getString("description") [FD]
+Line_6 $$ String nodeId = product.getString("description") --> Line_8 $$ assertFalse("No nodes starting w/ root", nodeId.startsWith("root")) [FD]

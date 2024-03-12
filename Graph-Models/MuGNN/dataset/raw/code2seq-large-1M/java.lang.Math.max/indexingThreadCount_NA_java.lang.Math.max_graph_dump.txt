@@ -1,0 +1,7 @@
+Line_2 $$ public static int indexingThreadCount() --> Line_3 $$ int threadsCount = Registry.intValue("caches.indexerThreadsCount") [CD]
+Line_2 $$ public static int indexingThreadCount() --> Line_4 $$ if (threadsCount <= 0) [CD]
+Line_3 $$ int threadsCount = Registry.intValue("caches.indexerThreadsCount") --> Line_4 $$ if (threadsCount <= 0) [FD]
+Line_4 $$ if (threadsCount <= 0) --> Line_5 $$ int coresToLeaveForOtherActivity = ApplicationManager.getApplication().isUnitTestMode() ? 0 : 1 [CD]
+Line_4 $$ if (threadsCount <= 0) --> Line_6 $$ threadsCount = Math.max(1, Math.min(PROC_COUNT - coresToLeaveForOtherActivity, 4)) [CD]
+Line_3 $$ int threadsCount = Registry.intValue("caches.indexerThreadsCount") --> Line_6 $$ threadsCount = Math.max(1, Math.min(PROC_COUNT - coresToLeaveForOtherActivity, 4)) [FD]
+Line_2 $$ public static int indexingThreadCount() --> Line_8 $$ return threadsCount [CD]

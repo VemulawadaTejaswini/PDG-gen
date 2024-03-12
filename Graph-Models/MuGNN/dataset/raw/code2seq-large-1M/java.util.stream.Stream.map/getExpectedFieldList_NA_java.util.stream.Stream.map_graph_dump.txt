@@ -1,0 +1,8 @@
+Line_2 $$ private List<String> getExpectedFieldList() --> Line_3 $$ final List<String> expectedFieldList = Arrays.stream(enumType.getEnumConstants()).filter( enumField -> enumField.getSubEntityAttributes().isEmpty()).map( enumField -> [CD]
+Line_5 $$ if (enumField.isMap()) --> Line_6 $$ return enumFieldName + FieldNameProvider.SUB_ATTRIBUTE_SEPERATOR + "keyName" [CD]
+Line_2 $$ private List<String> getExpectedFieldList() --> Line_10 $$ final List<String> expectedSubFieldList = Arrays.stream(enumType.getEnumConstants()).filter( enumField -> !enumField.getSubEntityAttributes().isEmpty()).flatMap( enumField -> [CD]
+Line_11 $$ final List<String> subEntity = enumField.getSubEntityAttributes().stream().map( fieldName -> enumField.name().toLowerCase() + FieldNameProvider.SUB_ATTRIBUTE_SEPERATOR + fieldName).collect(Collectors.toList()) --> Line_12 $$ return subEntity.stream() [FD]
+Line_2 $$ private List<String> getExpectedFieldList() --> Line_14 $$ expectedFieldList.addAll(expectedSubFieldList) [CD]
+Line_3 $$ final List<String> expectedFieldList = Arrays.stream(enumType.getEnumConstants()).filter( enumField -> enumField.getSubEntityAttributes().isEmpty()).map( enumField -> --> Line_14 $$ expectedFieldList.addAll(expectedSubFieldList) [FD]
+Line_10 $$ final List<String> expectedSubFieldList = Arrays.stream(enumType.getEnumConstants()).filter( enumField -> !enumField.getSubEntityAttributes().isEmpty()).flatMap( enumField -> --> Line_14 $$ expectedFieldList.addAll(expectedSubFieldList) [FD]
+Line_2 $$ private List<String> getExpectedFieldList() --> Line_15 $$ return expectedFieldList [CD]

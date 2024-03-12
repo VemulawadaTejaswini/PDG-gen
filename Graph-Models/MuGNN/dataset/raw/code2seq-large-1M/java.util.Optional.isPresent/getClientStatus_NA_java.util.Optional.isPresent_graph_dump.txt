@@ -1,0 +1,8 @@
+Line_2 $$ public ClientStatusResponse getClientStatus() --> Line_3 $$ if (deregisterStubStep.isRunning() || deregisterStubStep.isComplete()) [CD]
+Line_3 $$ if (deregisterStubStep.isRunning() || deregisterStubStep.isComplete()) --> Line_4 $$ return ClientStatusResponse.uninstalled() [CD]
+Line_3 $$ if (deregisterStubStep.isRunning() || deregisterStubStep.isComplete()) --> Line_5 $$ if (uninstallDeadlineMillis.isPresent() && timeFetcher.getCurrentTimeMillis() > uninstallDeadlineMillis.get()) [CD]
+Line_5 $$ if (uninstallDeadlineMillis.isPresent() && timeFetcher.getCurrentTimeMillis() > uninstallDeadlineMillis.get()) --> Line_6 $$ Optional<Plan> deployPlan = getPlans().stream().filter( plan -> plan.isDeployPlan()).findAny() [CD]
+Line_5 $$ if (uninstallDeadlineMillis.isPresent() && timeFetcher.getCurrentTimeMillis() > uninstallDeadlineMillis.get()) --> Line_7 $$ logger.error("Failed to complete uninstall within [CD]
+Line_6 $$ Optional<Plan> deployPlan = getPlans().stream().filter( plan -> plan.isDeployPlan()).findAny() --> Line_7 $$ logger.error("Failed to complete uninstall within [FD]
+Line_5 $$ if (uninstallDeadlineMillis.isPresent() && timeFetcher.getCurrentTimeMillis() > uninstallDeadlineMillis.get()) --> Line_8 $$ return ClientStatusResponse.uninstalled() [CD]
+Line_5 $$ if (uninstallDeadlineMillis.isPresent() && timeFetcher.getCurrentTimeMillis() > uninstallDeadlineMillis.get()) --> Line_10 $$ return ClientStatusResponse.running() [CD]

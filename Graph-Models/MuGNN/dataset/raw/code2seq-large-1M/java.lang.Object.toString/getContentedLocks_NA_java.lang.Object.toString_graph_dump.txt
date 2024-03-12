@@ -1,0 +1,7 @@
+Line_2 $$ public List<Map<String, Object>> getContentedLocks(ObjectName objectName, @Name("minWaitTime") Long minwaittime) --> Line_3 $$ CompositeData[] clocks = invoke(objectName, JMX_CONTENDED_LOCKS_KEY, new Long[] [FD]
+Line_2 $$ public List<Map<String, Object>> getContentedLocks(ObjectName objectName, @Name("minWaitTime") Long minwaittime) --> Line_3 $$ CompositeData[] clocks = invoke(objectName, JMX_CONTENDED_LOCKS_KEY, new Long[] [CD]
+Line_2 $$ public List<Map<String, Object>> getContentedLocks(ObjectName objectName, @Name("minWaitTime") Long minwaittime) --> Line_4 $$ List<Map<String, Object>> lockInfos = new ArrayList(clocks.length) [CD]
+Line_5 $$ for (CompositeData cs : clocks) --> Line_6 $$ Map<String, Object> m = map(JMX_ITEM_DESCRIPTION, cs.get(JMX_ITEM_DESCRIPTION).toString(), JMX_ITEM_RESOURCE_ID, cs.get(JMX_ITEM_RESOURCE_ID).toString(), JMX_ITEM_RESOURCE_TYPE, cs.get(JMX_ITEM_RESOURCE_TYPE).toString()) [FD]
+Line_4 $$ List<Map<String, Object>> lockInfos = new ArrayList(clocks.length) --> Line_7 $$ lockInfos.add(m) [FD]
+Line_6 $$ Map<String, Object> m = map(JMX_ITEM_DESCRIPTION, cs.get(JMX_ITEM_DESCRIPTION).toString(), JMX_ITEM_RESOURCE_ID, cs.get(JMX_ITEM_RESOURCE_ID).toString(), JMX_ITEM_RESOURCE_TYPE, cs.get(JMX_ITEM_RESOURCE_TYPE).toString()) --> Line_7 $$ lockInfos.add(m) [FD]
+Line_2 $$ public List<Map<String, Object>> getContentedLocks(ObjectName objectName, @Name("minWaitTime") Long minwaittime) --> Line_9 $$ return lockInfos [CD]

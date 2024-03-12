@@ -1,0 +1,7 @@
+Line_2 $$ void enforceObjectMaxSizeLimit() --> Line_3 $$ long limit = maxSize / OBJECT_MAX_SIZE_FACTOR [CD]
+Line_2 $$ void enforceObjectMaxSizeLimit() --> Line_4 $$ if (limit > Integer.MAX_VALUE) [CD]
+Line_3 $$ long limit = maxSize / OBJECT_MAX_SIZE_FACTOR --> Line_4 $$ if (limit > Integer.MAX_VALUE) [FD]
+Line_4 $$ if (limit > Integer.MAX_VALUE) --> Line_5 $$ return [CD]
+Line_2 $$ void enforceObjectMaxSizeLimit() --> Line_7 $$ if (objectMaxSize > limit) [CD]
+Line_3 $$ long limit = maxSize / OBJECT_MAX_SIZE_FACTOR --> Line_7 $$ if (objectMaxSize > limit) [FD]
+Line_7 $$ if (objectMaxSize > limit) --> Line_8 $$ log.warn(sm.getString("cache.objectMaxSizeTooBig", Integer.valueOf(objectMaxSize / 1024), Integer.valueOf((int) limit / 1024))) [CD]

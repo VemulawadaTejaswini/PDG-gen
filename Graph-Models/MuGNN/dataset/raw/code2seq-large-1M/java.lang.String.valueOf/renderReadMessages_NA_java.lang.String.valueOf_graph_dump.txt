@@ -1,0 +1,8 @@
+Line_2 $$ private SafeHtml renderReadMessages(final int total) --> Line_3 $$ final SafeHtmlBuilder html = new SafeHtmlBuilder() [CD]
+Line_2 $$ private SafeHtml renderReadMessages(final int total) --> Line_4 $$ html.appendHtmlConstant(String.valueOf(total)) [FD]
+Line_2 $$ private SafeHtml renderReadMessages(final int total) --> Line_4 $$ html.appendHtmlConstant(String.valueOf(total)) [CD]
+Line_3 $$ final SafeHtmlBuilder html = new SafeHtmlBuilder() --> Line_4 $$ html.appendHtmlConstant(String.valueOf(total)) [FD]
+Line_2 $$ private SafeHtml renderReadMessages(final int total) --> Line_5 $$ html.appendHtmlConstant(" " + messages.msgs()) [CD]
+Line_3 $$ final SafeHtmlBuilder html = new SafeHtmlBuilder() --> Line_5 $$ html.appendHtmlConstant(" " + messages.msgs()) [FD]
+Line_2 $$ private SafeHtml renderReadMessages(final int total) --> Line_6 $$ return html.toSafeHtml() [CD]
+Line_3 $$ final SafeHtmlBuilder html = new SafeHtmlBuilder() --> Line_6 $$ return html.toSafeHtml() [FD]

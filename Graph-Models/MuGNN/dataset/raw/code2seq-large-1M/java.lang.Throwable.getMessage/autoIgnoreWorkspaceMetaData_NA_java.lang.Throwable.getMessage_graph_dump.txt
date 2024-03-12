@@ -1,0 +1,7 @@
+Line_2 $$ private static void autoIgnoreWorkspaceMetaData(File gitDir) --> Line_3 $$ java.nio.file.Path workspaceRoot = ResourcesPlugin.getWorkspace().getRoot().getLocation().toFile().toPath() [CD]
+Line_2 $$ private static void autoIgnoreWorkspaceMetaData(File gitDir) --> Line_4 $$ try (Repository r = FileRepositoryBuilder.create(gitDir)) [FD]
+Line_4 $$ try (Repository r = FileRepositoryBuilder.create(gitDir)) --> Line_5 $$ if (!r.isBare() && workspaceRoot.startsWith(r.getWorkTree().toPath())) [FD]
+Line_3 $$ java.nio.file.Path workspaceRoot = ResourcesPlugin.getWorkspace().getRoot().getLocation().toFile().toPath() --> Line_5 $$ if (!r.isBare() && workspaceRoot.startsWith(r.getWorkTree().toPath())) [FD]
+Line_5 $$ if (!r.isBare() && workspaceRoot.startsWith(r.getWorkTree().toPath())) --> Line_6 $$ Collection<IPath> ignoredPaths = buildIgnoredPathsList(workspaceRoot, ".metadata", ".recommenders") [CD]
+Line_3 $$ java.nio.file.Path workspaceRoot = ResourcesPlugin.getWorkspace().getRoot().getLocation().toFile().toPath() --> Line_6 $$ Collection<IPath> ignoredPaths = buildIgnoredPathsList(workspaceRoot, ".metadata", ".recommenders") [FD]
+Line_5 $$ if (!r.isBare() && workspaceRoot.startsWith(r.getWorkTree().toPath())) --> Line_10 $$ JobUtil.scheduleUserJob(new IgnoreOperation(ignoredPaths), CoreText.ConnectProviderOperation_autoIgnoreMetaData, JobFamilies.AUTO_IGNORE) [CD]

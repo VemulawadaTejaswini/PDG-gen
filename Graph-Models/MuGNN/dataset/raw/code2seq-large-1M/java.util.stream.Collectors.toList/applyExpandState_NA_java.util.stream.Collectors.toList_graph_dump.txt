@@ -1,0 +1,7 @@
+Line_2 $$ private void applyExpandState(com.google.common.collect.Table<Long, Optional<Long>, Boolean> collapseState, List<BusinessServiceRow> rows) --> Line_4 $$ Boolean wasCollapsed = collapseState.get(row.getBusinessService().getId(), Optional.ofNullable(row.getParentBusinessServiceId())) [FD]
+Line_3 $$ for (BusinessServiceRow row : rows) --> Line_4 $$ Boolean wasCollapsed = collapseState.get(row.getBusinessService().getId(), Optional.ofNullable(row.getParentBusinessServiceId())) [FD]
+Line_3 $$ for (BusinessServiceRow row : rows) --> Line_5 $$ setCollapsed(row.getRowId(), wasCollapsed != null ? wasCollapsed : true) [FD]
+Line_3 $$ for (BusinessServiceRow row : rows) --> Line_6 $$ if (hasChildren(row.getRowId())) [FD]
+Line_6 $$ if (hasChildren(row.getRowId())) --> Line_7 $$ applyExpandState(collapseState, getChildren(row.getRowId()).stream().map( itemId -> getItem(itemId).getBean()).collect(Collectors.toList())) [CD]
+Line_2 $$ private void applyExpandState(com.google.common.collect.Table<Long, Optional<Long>, Boolean> collapseState, List<BusinessServiceRow> rows) --> Line_7 $$ applyExpandState(collapseState, getChildren(row.getRowId()).stream().map( itemId -> getItem(itemId).getBean()).collect(Collectors.toList())) [FD]
+Line_3 $$ for (BusinessServiceRow row : rows) --> Line_7 $$ applyExpandState(collapseState, getChildren(row.getRowId()).stream().map( itemId -> getItem(itemId).getBean()).collect(Collectors.toList())) [FD]

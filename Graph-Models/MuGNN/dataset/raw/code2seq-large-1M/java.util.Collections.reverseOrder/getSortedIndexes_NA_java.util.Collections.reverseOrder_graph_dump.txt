@@ -1,0 +1,6 @@
+Line_4 $$ for (Table catalog_tbl : this.keySet()) --> Line_5 $$ for (Entry index : this.get(catalog_tbl)) [FD]
+Line_6 $$ Double weight = index.getWeight() --> Line_7 $$ if (!sorted.containsKey(weight)) [FD]
+Line_7 $$ if (!sorted.containsKey(weight)) --> Line_8 $$ sorted.put(weight, new HashSet<Entry>()) [CD]
+Line_6 $$ Double weight = index.getWeight() --> Line_8 $$ sorted.put(weight, new HashSet<Entry>()) [FD]
+Line_6 $$ Double weight = index.getWeight() --> Line_10 $$ sorted.get(weight).add(index) [FD]
+Line_6 $$ Double weight = index.getWeight() --> Line_15 $$ ret.addAll(sorted.get(weight)) [FD]

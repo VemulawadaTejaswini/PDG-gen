@@ -1,0 +1,5 @@
+Line_4 $$ EntityDefinition ed = EntityDefinitionManager.getEntityByServiceName("TestLogAPIEntity") --> Line_5 $$ List<GroupbyKeyValue> result = client.aggregate(table, ed, scan, Arrays.asList("cluster", "datacenter"), Arrays.asList(AggregateFunctionType.avg), Arrays.asList("field2")).getKeyValues() [FD]
+Line_6 $$ if (LOG.isDebugEnabled()) --> Line_7 $$ LOG.debug("AVG") [CD]
+Line_5 $$ List<GroupbyKeyValue> result = client.aggregate(table, ed, scan, Arrays.asList("cluster", "datacenter"), Arrays.asList(AggregateFunctionType.avg), Arrays.asList("field2")).getKeyValues() --> Line_8 $$ logGroupbyKeyValue(result) [FD]
+Line_5 $$ List<GroupbyKeyValue> result = client.aggregate(table, ed, scan, Arrays.asList("cluster", "datacenter"), Arrays.asList(AggregateFunctionType.avg), Arrays.asList("field2")).getKeyValues() --> Line_9 $$ Assert.assertNotNull(result) [FD]
+Line_5 $$ List<GroupbyKeyValue> result = client.aggregate(table, ed, scan, Arrays.asList("cluster", "datacenter"), Arrays.asList(AggregateFunctionType.avg), Arrays.asList("field2")).getKeyValues() --> Line_10 $$ Assert.assertTrue(result.size() > 0) [FD]

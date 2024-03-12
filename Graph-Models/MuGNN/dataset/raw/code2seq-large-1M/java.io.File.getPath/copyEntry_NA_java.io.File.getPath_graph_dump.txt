@@ -1,0 +1,8 @@
+Line_3 $$ String file = new File(getAbsolutePath(path), archiveName).getPath() --> Line_4 $$ if (!checkEntry(entryName, file)) [FD]
+Line_7 $$ try (ZipFile srcArchive = new ZipFile(new File(source))) --> Line_8 $$ ZipEntry entry = srcArchive.getEntry(entryName) [FD]
+Line_7 $$ try (ZipFile srcArchive = new ZipFile(new File(source))) --> Line_10 $$ try (InputStream in = srcArchive.getInputStream(entry)) [FD]
+Line_3 $$ String file = new File(getAbsolutePath(path), archiveName).getPath() --> Line_11 $$ ZipOutputStream out = mapArchiveStreams.get(file) [FD]
+Line_11 $$ ZipOutputStream out = mapArchiveStreams.get(file) --> Line_12 $$ out.putNextEntry(new ZipEntry(entryName)) [FD]
+Line_10 $$ try (InputStream in = srcArchive.getInputStream(entry)) --> Line_13 $$ InterpreterUtil.copyStream(in, out) [FD]
+Line_11 $$ ZipOutputStream out = mapArchiveStreams.get(file) --> Line_13 $$ InterpreterUtil.copyStream(in, out) [FD]
+Line_17 $$ String message = "Cannot copy entry " + entryName + " from " + source + " to " + file --> Line_18 $$ DecompilerContext.getLogger().writeMessage(message, ex) [FD]

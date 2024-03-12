@@ -1,0 +1,8 @@
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_3 $$ List<Pair<String, Object>> sales = streams.streamAll(em, Customer.class).where( c -> JinqStream.from(c.getSales()).join( s -> JinqStream.from(s.getLineorders())).where( p -> p.getTwo().getItem().getName().equals("Widgets")).count() > 0).select(( c,  source) -> new Pair<String, Object>(c.getName(), source.stream(Customer.class).where( c2 -> c2.getSalary() > c.getSalary()).count())).sortedBy( pair -> pair.getOne()).toList() [CD]
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_4 $$ assertEquals("SELECT B.name, (SELECT COUNT(A) FROM org.jinq.hibernate.test.entities.Customer A WHERE A.salary > B.salary) FROM org.jinq.hibernate.test.entities.Customer B WHERE (SELECT COUNT(1) FROM B.sales C JOIN C.lineorders D WHERE D.item.name = 'Widgets') > 0 ORDER BY B.name ASC", query) [CD]
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_5 $$ assertEquals("Alice", sales.get(0).getOne()) [CD]
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_6 $$ assertEquals("Carol", sales.get(1).getOne()) [CD]
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_7 $$ assertEquals("Eve", sales.get(2).getOne()) [CD]
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_8 $$ assertEquals(3, ((Number) sales.get(0).getTwo()).longValue()) [CD]
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_9 $$ assertEquals(2, ((Number) sales.get(1).getTwo()).longValue()) [CD]
+Line_2 $$ public void testSubQueryWithSelectSourceAndWhere() --> Line_10 $$ assertEquals(4, ((Number) sales.get(2).getTwo()).longValue()) [CD]

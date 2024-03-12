@@ -1,0 +1,7 @@
+Line_2 $$ private void log(Level level, @Nullable Throwable cause, String msg) --> Line_3 $$ StackTraceElement callerFrame = Arrays.stream(new Exception().getStackTrace()).filter( frame -> !frame.getClassName().equals(FormattingLogger.class.getName())).findFirst().get() [CD]
+Line_2 $$ private void log(Level level, @Nullable Throwable cause, String msg) --> Line_4 $$ if (cause == null) [CD]
+Line_2 $$ private void log(Level level, @Nullable Throwable cause, String msg) --> Line_4 $$ if (cause == null) [FD]
+Line_4 $$ if (cause == null) --> Line_5 $$ logger.logp(level, callerFrame.getClassName(), callerFrame.getMethodName(), msg) [CD]
+Line_2 $$ private void log(Level level, @Nullable Throwable cause, String msg) --> Line_5 $$ logger.logp(level, callerFrame.getClassName(), callerFrame.getMethodName(), msg) [FD]
+Line_4 $$ if (cause == null) --> Line_7 $$ logger.logp(level, callerFrame.getClassName(), callerFrame.getMethodName(), msg, cause) [CD]
+Line_2 $$ private void log(Level level, @Nullable Throwable cause, String msg) --> Line_7 $$ logger.logp(level, callerFrame.getClassName(), callerFrame.getMethodName(), msg, cause) [FD]

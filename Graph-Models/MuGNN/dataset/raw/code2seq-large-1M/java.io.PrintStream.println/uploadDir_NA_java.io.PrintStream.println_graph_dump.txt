@@ -1,0 +1,8 @@
+Line_2 $$ public static void uploadDir(String dir_path, String bucket_name, String key_prefix, boolean recursive, boolean pause) --> Line_3 $$ System.out.println("directory: " + dir_path + (recursive ? " (recursive)" : "") + (pause ? " (pause)" : "")) [CD]
+Line_2 $$ public static void uploadDir(String dir_path, String bucket_name, String key_prefix, boolean recursive, boolean pause) --> Line_4 $$ TransferManager xfer_mgr = TransferManagerBuilder.standard().build() [CD]
+Line_4 $$ TransferManager xfer_mgr = TransferManagerBuilder.standard().build() --> Line_6 $$ MultipleFileUpload xfer = xfer_mgr.uploadDirectory(bucket_name, key_prefix, new File(dir_path), recursive) [FD]
+Line_2 $$ public static void uploadDir(String dir_path, String bucket_name, String key_prefix, boolean recursive, boolean pause) --> Line_6 $$ MultipleFileUpload xfer = xfer_mgr.uploadDirectory(bucket_name, key_prefix, new File(dir_path), recursive) [FD]
+Line_6 $$ MultipleFileUpload xfer = xfer_mgr.uploadDirectory(bucket_name, key_prefix, new File(dir_path), recursive) --> Line_7 $$ XferMgrProgress.showTransferProgress(xfer) [FD]
+Line_6 $$ MultipleFileUpload xfer = xfer_mgr.uploadDirectory(bucket_name, key_prefix, new File(dir_path), recursive) --> Line_8 $$ XferMgrProgress.waitForCompletion(xfer) [FD]
+Line_2 $$ public static void uploadDir(String dir_path, String bucket_name, String key_prefix, boolean recursive, boolean pause) --> Line_13 $$ xfer_mgr.shutdownNow() [CD]
+Line_4 $$ TransferManager xfer_mgr = TransferManagerBuilder.standard().build() --> Line_13 $$ xfer_mgr.shutdownNow() [FD]

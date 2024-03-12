@@ -1,0 +1,7 @@
+Line_2 $$ private Map<Long, List<TestAgentStatDataPoint>> getExpectedDataPointSlotMap(TimeWindow timeWindow, List<TestAgentStatDataPoint> dataPoints) --> Line_3 $$ Map<Long, List<TestAgentStatDataPoint>> slotMap = new HashMap() [CD]
+Line_3 $$ Map<Long, List<TestAgentStatDataPoint>> slotMap = new HashMap() --> Line_5 $$ slotMap.put(timeslotTimestamp, new ArrayList<TestAgentStatDataPoint>()) [FD]
+Line_4 $$ for (long timeslotTimestamp : timeWindow) --> Line_5 $$ slotMap.put(timeslotTimestamp, new ArrayList<TestAgentStatDataPoint>()) [FD]
+Line_7 $$ for (TestAgentStatDataPoint dataPoint : dataPoints) --> Line_8 $$ slotMap.get(timeWindow.refineTimestamp(dataPoint.getTimestamp())).add(dataPoint) [FD]
+Line_3 $$ Map<Long, List<TestAgentStatDataPoint>> slotMap = new HashMap() --> Line_8 $$ slotMap.get(timeWindow.refineTimestamp(dataPoint.getTimestamp())).add(dataPoint) [FD]
+Line_2 $$ private Map<Long, List<TestAgentStatDataPoint>> getExpectedDataPointSlotMap(TimeWindow timeWindow, List<TestAgentStatDataPoint> dataPoints) --> Line_8 $$ slotMap.get(timeWindow.refineTimestamp(dataPoint.getTimestamp())).add(dataPoint) [FD]
+Line_2 $$ private Map<Long, List<TestAgentStatDataPoint>> getExpectedDataPointSlotMap(TimeWindow timeWindow, List<TestAgentStatDataPoint> dataPoints) --> Line_10 $$ return slotMap [CD]

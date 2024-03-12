@@ -1,0 +1,8 @@
+Line_2 $$ private void copyDirs(File src, File dst) throws MigrationException --> Line_3 $$ if (!dst.mkdirs()) [CD]
+Line_2 $$ private void copyDirs(File src, File dst) throws MigrationException --> Line_3 $$ if (!dst.mkdirs()) [FD]
+Line_2 $$ private void copyDirs(File src, File dst) throws MigrationException --> Line_6 $$ for (File f : src.listFiles()) [FD]
+Line_6 $$ for (File f : src.listFiles()) --> Line_7 $$ if (f.isDirectory()) [FD]
+Line_7 $$ if (f.isDirectory()) --> Line_8 $$ copyDirs(f, new File(dst, f.getName())) [CD]
+Line_6 $$ for (File f : src.listFiles()) --> Line_8 $$ copyDirs(f, new File(dst, f.getName())) [FD]
+Line_7 $$ if (f.isDirectory()) --> Line_9 $$ if (!FileStorageUtils.copyFile(f, new File(dst, f.getName()))) [CD]
+Line_6 $$ for (File f : src.listFiles()) --> Line_9 $$ if (!FileStorageUtils.copyFile(f, new File(dst, f.getName()))) [FD]

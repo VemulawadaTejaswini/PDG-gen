@@ -1,0 +1,8 @@
+Line_2 $$ private float fixDividerLocation(float location) --> Line_3 $$ int totalSize = getViewSize() [CD]
+Line_2 $$ private float fixDividerLocation(float location) --> Line_4 $$ if (totalSize <= 0) [CD]
+Line_3 $$ int totalSize = getViewSize() --> Line_4 $$ if (totalSize <= 0) [FD]
+Line_4 $$ if (totalSize <= 0) --> Line_5 $$ return 0.5F [CD]
+Line_2 $$ private float fixDividerLocation(float location) --> Line_6 $$ int leftSize = Math.max((int) (totalSize * location), leftComponent == null || !leftComponent.isVisible() ? 0 : getDimensionSize(leftComponent.getMinimumSize())) [CD]
+Line_2 $$ private float fixDividerLocation(float location) --> Line_7 $$ leftSize = Math.min(leftSize, totalSize - (rightComponent == null || !rightComponent.isVisible() ? 0 : getDimensionSize(rightComponent.getMinimumSize()))) [CD]
+Line_6 $$ int leftSize = Math.max((int) (totalSize * location), leftComponent == null || !leftComponent.isVisible() ? 0 : getDimensionSize(leftComponent.getMinimumSize())) --> Line_7 $$ leftSize = Math.min(leftSize, totalSize - (rightComponent == null || !rightComponent.isVisible() ? 0 : getDimensionSize(rightComponent.getMinimumSize()))) [FD]
+Line_2 $$ private float fixDividerLocation(float location) --> Line_8 $$ return (float) leftSize / totalSize [CD]

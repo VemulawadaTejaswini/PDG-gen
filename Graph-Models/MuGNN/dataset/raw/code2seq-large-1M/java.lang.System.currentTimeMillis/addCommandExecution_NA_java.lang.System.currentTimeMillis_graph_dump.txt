@@ -1,0 +1,8 @@
+Line_5 $$ for (final CommandExecution existingCommandExecution : commandExecutions) --> Line_6 $$ if (System.currentTimeMillis() - existingCommandExecution.getStartTime() > 8000) [FD]
+Line_6 $$ if (System.currentTimeMillis() - existingCommandExecution.getStartTime() > 8000) --> Line_7 $$ expiredCommandExecutions.add(existingCommandExecution) [CD]
+Line_4 $$ final List<CommandExecution> expiredCommandExecutions = new ArrayList<CommandExecution>() --> Line_7 $$ expiredCommandExecutions.add(existingCommandExecution) [FD]
+Line_5 $$ for (final CommandExecution existingCommandExecution : commandExecutions) --> Line_7 $$ expiredCommandExecutions.add(existingCommandExecution) [FD]
+Line_10 $$ for (final CommandExecution expiredCommandExecution : expiredCommandExecutions) --> Line_11 $$ ((CommandResultFuture) expiredCommandExecution.getFuture()).set(new CommandResult()) [FD]
+Line_10 $$ for (final CommandExecution expiredCommandExecution : expiredCommandExecutions) --> Line_12 $$ removeCommandExecution(expiredCommandExecution) [FD]
+Line_2 $$ private void addCommandExecution(final CommandExecution commandExecution) --> Line_14 $$ commandExecutions.add(commandExecution) [FD]
+Line_2 $$ private void addCommandExecution(final CommandExecution commandExecution) --> Line_15 $$ network.addCommandListener(commandExecution.getCommandListener()) [FD]

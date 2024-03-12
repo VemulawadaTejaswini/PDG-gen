@@ -1,0 +1,8 @@
+Line_2 $$ protected Statement methodBlock(FrameworkMethod method) --> Line_3 $$ if (GraphicsEnvironment.isHeadless()) [CD]
+Line_3 $$ if (GraphicsEnvironment.isHeadless()) --> Line_4 $$ return falseAssumption("headless environment") [CD]
+Line_2 $$ protected Statement methodBlock(FrameworkMethod method) --> Line_6 $$ Method methodFromClassLoader [CD]
+Line_8 $$ ClassLoader ideClassLoader = IdeTestApplication.getInstance().getIdeClassLoader() --> Line_9 $$ Thread.currentThread().setContextClassLoader(ideClassLoader) [FD]
+Line_8 $$ ClassLoader ideClassLoader = IdeTestApplication.getInstance().getIdeClassLoader() --> Line_10 $$ myTestClass = new TestClass(ideClassLoader.loadClass(getTestClass().getJavaClass().getName())) [FD]
+Line_6 $$ Method methodFromClassLoader --> Line_11 $$ methodFromClassLoader = myTestClass.getJavaClass().getMethod(method.getName()) [FD]
+Line_2 $$ protected Statement methodBlock(FrameworkMethod method) --> Line_11 $$ methodFromClassLoader = myTestClass.getJavaClass().getMethod(method.getName()) [FD]
+Line_2 $$ protected Statement methodBlock(FrameworkMethod method) --> Line_15 $$ return super.methodBlock(new FrameworkMethod(methodFromClassLoader)) [CD]

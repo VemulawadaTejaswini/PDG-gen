@@ -1,0 +1,8 @@
+Line_2 $$ public int requeuePendingTasks() throws Exception --> Line_3 $$ long threshold = System.currentTimeMillis() - taskRequeueTimeout [CD]
+Line_2 $$ public int requeuePendingTasks() throws Exception --> Line_4 $$ List<WorkflowDef> workflowDefs = metadata.getAll() [CD]
+Line_2 $$ public int requeuePendingTasks() throws Exception --> Line_5 $$ int count = 0 [CD]
+Line_6 $$ for (WorkflowDef workflowDef : workflowDefs) --> Line_7 $$ List<Workflow> workflows = executor.getRunningWorkflows(workflowDef.getName()) [FD]
+Line_5 $$ int count = 0 --> Line_9 $$ count += requeuePendingTasks(workflow, threshold) [FD]
+Line_8 $$ for (Workflow workflow : workflows) --> Line_9 $$ count += requeuePendingTasks(workflow, threshold) [FD]
+Line_3 $$ long threshold = System.currentTimeMillis() - taskRequeueTimeout --> Line_9 $$ count += requeuePendingTasks(workflow, threshold) [FD]
+Line_2 $$ public int requeuePendingTasks() throws Exception --> Line_12 $$ return count [CD]

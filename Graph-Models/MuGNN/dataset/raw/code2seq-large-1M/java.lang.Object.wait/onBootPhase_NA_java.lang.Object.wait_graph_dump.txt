@@ -1,0 +1,8 @@
+Line_2 $$ public void onBootPhase(int phase) --> Line_3 $$ if (phase == PHASE_WAIT_FOR_DEFAULT_DISPLAY) [CD]
+Line_2 $$ public void onBootPhase(int phase) --> Line_3 $$ if (phase == PHASE_WAIT_FOR_DEFAULT_DISPLAY) [FD]
+Line_6 $$ while (mLogicalDisplays.get(Display.DEFAULT_DISPLAY) == null) --> Line_7 $$ long delay = timeout - SystemClock.uptimeMillis() [CD]
+Line_6 $$ while (mLogicalDisplays.get(Display.DEFAULT_DISPLAY) == null) --> Line_8 $$ if (delay <= 0) [CD]
+Line_7 $$ long delay = timeout - SystemClock.uptimeMillis() --> Line_8 $$ if (delay <= 0) [FD]
+Line_6 $$ while (mLogicalDisplays.get(Display.DEFAULT_DISPLAY) == null) --> Line_11 $$ if (DEBUG) [CD]
+Line_11 $$ if (DEBUG) --> Line_12 $$ Slog.d(TAG, "waitForDefaultDisplay: waiting, timeout=" + delay) [CD]
+Line_7 $$ long delay = timeout - SystemClock.uptimeMillis() --> Line_15 $$ mSyncRoot.wait(delay) [FD]

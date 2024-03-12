@@ -1,0 +1,6 @@
+Line_2 $$ public float getFloatValueByUID(long uid, String column) --> Line_3 $$ Lock lock = globalLock.readLock() [CD]
+Line_3 $$ Lock lock = globalLock.readLock() --> Line_5 $$ lock.lock() [FD]
+Line_2 $$ public float getFloatValueByUID(long uid, String column) --> Line_6 $$ if (!uidToArrayIndex.containsKey(uid)) [FD]
+Line_6 $$ if (!uidToArrayIndex.containsKey(uid)) --> Line_7 $$ return Float.MIN_VALUE [CD]
+Line_2 $$ public float getFloatValueByUID(long uid, String column) --> Line_9 $$ return ((ActivityFloatValues) getActivityValues(column)).getFloatValue(uidToArrayIndex.get(uid)) [FD]
+Line_3 $$ Lock lock = globalLock.readLock() --> Line_11 $$ lock.unlock() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testWriteWithBlankObject() throws IOException --> Line_3 $$ final Stream<Triple> triples = of(create(createResource().asNode(), createURI("info:testPredicate"), createResource().asNode())) [CD]
+Line_4 $$ try (final RdfStream input = new DefaultRdfStream(createResource().asNode(), triples); --> Line_6 $$ new RdfStreamStreamingOutput(input, testNamespaces, testMediaType).write(output) [FD]
+Line_4 $$ try (final RdfStream input = new DefaultRdfStream(createResource().asNode(), triples); --> Line_7 $$ try (final InputStream resultStream = new ByteArrayInputStream(output.toByteArray())) [FD]
+Line_7 $$ try (final InputStream resultStream = new ByteArrayInputStream(output.toByteArray())) --> Line_8 $$ final Model result = createDefaultModel().read(resultStream, null) [FD]
+Line_8 $$ final Model result = createDefaultModel().read(resultStream, null) --> Line_9 $$ assertTrue(result.contains(null, createProperty("info:testPredicate"), (RDFNode) null)) [FD]

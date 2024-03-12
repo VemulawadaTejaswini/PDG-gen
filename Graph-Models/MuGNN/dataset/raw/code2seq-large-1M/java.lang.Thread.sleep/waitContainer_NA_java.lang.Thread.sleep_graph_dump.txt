@@ -1,0 +1,8 @@
+Line_2 $$ public ContainerExit waitContainer(final String containerId) throws DockerException, InterruptedException --> Line_3 $$ while (true) [CD]
+Line_3 $$ while (true) --> Line_4 $$ final ContainerInfo info = inspectContainer(containerId) [CD]
+Line_2 $$ public ContainerExit waitContainer(final String containerId) throws DockerException, InterruptedException --> Line_4 $$ final ContainerInfo info = inspectContainer(containerId) [FD]
+Line_3 $$ while (true) --> Line_5 $$ if (!info.state().running()) [CD]
+Line_4 $$ final ContainerInfo info = inspectContainer(containerId) --> Line_5 $$ if (!info.state().running()) [FD]
+Line_5 $$ if (!info.state().running()) --> Line_6 $$ return ContainerExit.create(info.state().exitCode()) [CD]
+Line_4 $$ final ContainerInfo info = inspectContainer(containerId) --> Line_6 $$ return ContainerExit.create(info.state().exitCode()) [FD]
+Line_3 $$ while (true) --> Line_8 $$ Thread.sleep(WAIT_INSPECT_INTERVAL_MILLIS) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private static void fixStickyAlt(@Nonnull AWTEvent e) --> Line_3 $$ if (Registry.is("actionSystem.win.suppressAlt.new")) [CD]
+Line_3 $$ if (Registry.is("actionSystem.win.suppressAlt.new")) --> Line_4 $$ if (UIUtil.isUnderWindowsLookAndFeel() && e instanceof InputEvent && (((InputEvent) e).getModifiers() & (InputEvent.ALT_MASK | InputEvent.ALT_DOWN_MASK)) != 0 && !(e instanceof KeyEvent && ((KeyEvent) e).getKeyCode() == KeyEvent.VK_ALT)) [CD]
+Line_6 $$ if (FieldHolder.ourStickyAltField != null) --> Line_7 $$ FieldHolder.ourStickyAltField.set(null, true) [CD]
+Line_3 $$ if (Registry.is("actionSystem.win.suppressAlt.new")) --> Line_13 $$ if (SystemInfo.isWinXpOrNewer && !SystemInfo.isWinVistaOrNewer && e instanceof KeyEvent && ((KeyEvent) e).getKeyCode() == KeyEvent.VK_ALT) [CD]
+Line_13 $$ if (SystemInfo.isWinXpOrNewer && !SystemInfo.isWinVistaOrNewer && e instanceof KeyEvent && ((KeyEvent) e).getKeyCode() == KeyEvent.VK_ALT) --> Line_14 $$ ((KeyEvent) e).consume() [CD]

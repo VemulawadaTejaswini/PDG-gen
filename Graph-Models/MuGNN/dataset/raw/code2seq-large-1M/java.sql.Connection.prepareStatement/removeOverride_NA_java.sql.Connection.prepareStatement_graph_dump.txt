@@ -1,0 +1,7 @@
+Line_4 $$ try (Connection sqlConnection = sqlService.getConnection()) --> Line_5 $$ try (PreparedStatement statement = sqlConnection.prepareStatement(statementString)) [FD]
+Line_3 $$ String statementString = "DELETE FROM " + Constants.DB_TABLE_OVERRIDE + " WHERE " + Constants.OVERRIDE_GROUP_ID + " = ? AND " + Constants.OVERRIDE_CLASS_NAME + " = ? AND " + Constants.OVERRIDE_METHOD_NAME + " = ?" --> Line_5 $$ try (PreparedStatement statement = sqlConnection.prepareStatement(statementString)) [FD]
+Line_5 $$ try (PreparedStatement statement = sqlConnection.prepareStatement(statementString)) --> Line_6 $$ statement.setInt(1, groupId) [FD]
+Line_5 $$ try (PreparedStatement statement = sqlConnection.prepareStatement(statementString)) --> Line_7 $$ statement.setString(2, className) [FD]
+Line_5 $$ try (PreparedStatement statement = sqlConnection.prepareStatement(statementString)) --> Line_8 $$ statement.setString(3, methodName) [FD]
+Line_5 $$ try (PreparedStatement statement = sqlConnection.prepareStatement(statementString)) --> Line_9 $$ statement.executeUpdate() [FD]
+Line_5 $$ try (PreparedStatement statement = sqlConnection.prepareStatement(statementString)) --> Line_10 $$ statement.close() [FD]

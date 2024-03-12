@@ -1,0 +1,8 @@
+Line_2 $$ public double getMedianAbsoluteDeviation() --> Line_3 $$ final double median = getMedian() [CD]
+Line_2 $$ public double getMedianAbsoluteDeviation() --> Line_4 $$ final Histogram<Double> deviations = new Histogram() [CD]
+Line_5 $$ for (final Bin<K> bin : values()) --> Line_6 $$ final double dev = abs(bin.getIdValue() - median) [FD]
+Line_4 $$ final Histogram<Double> deviations = new Histogram() --> Line_7 $$ deviations.increment(dev, bin.getValue()) [FD]
+Line_6 $$ final double dev = abs(bin.getIdValue() - median) --> Line_7 $$ deviations.increment(dev, bin.getValue()) [FD]
+Line_5 $$ for (final Bin<K> bin : values()) --> Line_7 $$ deviations.increment(dev, bin.getValue()) [FD]
+Line_2 $$ public double getMedianAbsoluteDeviation() --> Line_9 $$ return deviations.getMedian() [CD]
+Line_4 $$ final Histogram<Double> deviations = new Histogram() --> Line_9 $$ return deviations.getMedian() [FD]

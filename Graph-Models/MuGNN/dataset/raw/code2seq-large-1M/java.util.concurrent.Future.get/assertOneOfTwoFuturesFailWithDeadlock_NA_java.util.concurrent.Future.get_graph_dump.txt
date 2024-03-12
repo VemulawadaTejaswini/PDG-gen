@@ -1,0 +1,7 @@
+Line_2 $$ private static boolean assertOneOfTwoFuturesFailWithDeadlock(Future<Void> future1, Future<Void> future2) throws Exception --> Line_3 $$ boolean firstFailed = false [CD]
+Line_2 $$ private static boolean assertOneOfTwoFuturesFailWithDeadlock(Future<Void> future1, Future<Void> future2) throws Exception --> Line_5 $$ assertNull(future1.get(20, TimeUnit.SECONDS)) [FD]
+Line_3 $$ boolean firstFailed = false --> Line_8 $$ firstFailed = true [FD]
+Line_2 $$ private static boolean assertOneOfTwoFuturesFailWithDeadlock(Future<Void> future1, Future<Void> future2) throws Exception --> Line_11 $$ assertNull(future2.get(20, TimeUnit.SECONDS)) [FD]
+Line_3 $$ boolean firstFailed = false --> Line_13 $$ assertFalse("Both futures failed, ", firstFailed) [FD]
+Line_8 $$ firstFailed = true --> Line_13 $$ assertFalse("Both futures failed, ", firstFailed) [FD]
+Line_2 $$ private static boolean assertOneOfTwoFuturesFailWithDeadlock(Future<Void> future1, Future<Void> future2) throws Exception --> Line_16 $$ return firstFailed [CD]

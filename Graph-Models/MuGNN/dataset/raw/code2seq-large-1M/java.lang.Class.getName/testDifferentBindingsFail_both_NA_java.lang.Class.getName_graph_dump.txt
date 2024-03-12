@@ -1,0 +1,7 @@
+Line_2 $$ public void testDifferentBindingsFail_both() --> Line_3 $$ Module module = new AbstractModule() [CD]
+Line_3 $$ Module module = new AbstractModule() --> Line_5 $$ OptionalBinder.newOptionalBinder(binder(), String.class).setDefault().toInstance("a") [CD]
+Line_3 $$ Module module = new AbstractModule() --> Line_6 $$ OptionalBinder.newOptionalBinder(binder(), String.class).setDefault().toInstance("b") [CD]
+Line_3 $$ Module module = new AbstractModule() --> Line_7 $$ OptionalBinder.newOptionalBinder(binder(), String.class).setBinding().toInstance("b") [CD]
+Line_3 $$ Module module = new AbstractModule() --> Line_8 $$ OptionalBinder.newOptionalBinder(binder(), String.class).setBinding().toInstance("c") [CD]
+Line_3 $$ Module module = new AbstractModule() --> Line_12 $$ Guice.createInjector(module) [FD]
+Line_3 $$ Module module = new AbstractModule() --> Line_16 $$ assertContains(ce.getMessage(), "1) A binding to java.lang.String annotated with @" + RealOptionalBinder.Default.class.getName() + " was already configured at " + module.getClass().getName() + ".configure(", "at " + module.getClass().getName() + ".configure(", "2) A binding to java.lang.String annotated with @" + RealOptionalBinder.Actual.class.getName() + " was already configured at " + module.getClass().getName() + ".configure(", "at " + module.getClass().getName() + ".configure(") [FD]

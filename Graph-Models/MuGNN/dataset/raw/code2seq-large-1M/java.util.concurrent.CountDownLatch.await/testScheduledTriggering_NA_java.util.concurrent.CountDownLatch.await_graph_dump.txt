@@ -1,0 +1,6 @@
+Line_2 $$ public void testScheduledTriggering() throws InterruptedException --> Line_3 $$ int triggerCount = randomIntBetween(2, 4) [CD]
+Line_2 $$ public void testScheduledTriggering() throws InterruptedException --> Line_4 $$ CountDownLatch latch = new CountDownLatch(triggerCount) [CD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(triggerCount) --> Line_5 $$ try (MlDailyMaintenanceService service = createService(latch, client)) [FD]
+Line_5 $$ try (MlDailyMaintenanceService service = createService(latch, client)) --> Line_6 $$ service.start() [FD]
+Line_4 $$ CountDownLatch latch = new CountDownLatch(triggerCount) --> Line_7 $$ latch.await(5, TimeUnit.SECONDS) [FD]
+Line_2 $$ public void testScheduledTriggering() throws InterruptedException --> Line_9 $$ verify(client, Mockito.atLeast(triggerCount - 1)).execute(same(DeleteExpiredDataAction.INSTANCE), any(), any()) [CD]

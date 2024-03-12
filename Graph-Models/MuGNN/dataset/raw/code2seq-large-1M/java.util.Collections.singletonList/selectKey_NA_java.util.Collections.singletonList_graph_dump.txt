@@ -1,0 +1,7 @@
+Line_2 $$ public SchemaKStream selectKey(final Field newKeyField, boolean updateRowKey) --> Line_3 $$ if (keyField != null && keyField.name().equals(newKeyField.name())) [FD]
+Line_2 $$ public SchemaKStream selectKey(final Field newKeyField, boolean updateRowKey) --> Line_3 $$ if (keyField != null && keyField.name().equals(newKeyField.name())) [CD]
+Line_3 $$ if (keyField != null && keyField.name().equals(newKeyField.name())) --> Line_4 $$ return this [CD]
+Line_2 $$ public SchemaKStream selectKey(final Field newKeyField, boolean updateRowKey) --> Line_6 $$ KStream keyedKStream = kstream.filter(( key,  value) -> value != null && extractColumn(newKeyField, value) != null).selectKey(( key,  value) -> extractColumn(newKeyField, value).toString()).mapValues(( key,  row) -> [FD]
+Line_2 $$ public SchemaKStream selectKey(final Field newKeyField, boolean updateRowKey) --> Line_6 $$ KStream keyedKStream = kstream.filter(( key,  value) -> value != null && extractColumn(newKeyField, value) != null).selectKey(( key,  value) -> extractColumn(newKeyField, value).toString()).mapValues(( key,  row) -> [CD]
+Line_7 $$ if (updateRowKey) --> Line_8 $$ row.getColumns().set(SchemaUtil.ROWKEY_NAME_INDEX, key) [CD]
+Line_2 $$ public SchemaKStream selectKey(final Field newKeyField, boolean updateRowKey) --> Line_12 $$ return new SchemaKStream(schema, keyedKStream, newKeyField, Collections.singletonList(this), Type.REKEY, functionRegistry, schemaRegistryClient) [CD]

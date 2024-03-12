@@ -1,0 +1,6 @@
+Line_2 $$ public void testExecuteSingleUploadBlobSizeTooLarge() --> Line_3 $$ final long blobSize = ByteSizeUnit.GB.toBytes(randomIntBetween(6, 10)) [CD]
+Line_2 $$ public void testExecuteSingleUploadBlobSizeTooLarge() --> Line_4 $$ final S3BlobStore blobStore = mock(S3BlobStore.class) [CD]
+Line_2 $$ public void testExecuteSingleUploadBlobSizeTooLarge() --> Line_5 $$ final S3BlobContainer blobContainer = new S3BlobContainer(mock(BlobPath.class), blobStore) [CD]
+Line_2 $$ public void testExecuteSingleUploadBlobSizeTooLarge() --> Line_6 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> blobContainer.executeSingleUpload(blobStore, randomAlphaOfLengthBetween(1, 10), null, blobSize)) [CD]
+Line_3 $$ final long blobSize = ByteSizeUnit.GB.toBytes(randomIntBetween(6, 10)) --> Line_6 $$ IllegalArgumentException e = expectThrows(IllegalArgumentException.class, () -> blobContainer.executeSingleUpload(blobStore, randomAlphaOfLengthBetween(1, 10), null, blobSize)) [FD]
+Line_2 $$ public void testExecuteSingleUploadBlobSizeTooLarge() --> Line_7 $$ assertEquals("Upload request size [" + blobSize + "] can't be larger than 5gb", e.getMessage()) [CD]

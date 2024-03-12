@@ -1,0 +1,8 @@
+Line_2 $$ private void onTimeout() --> Line_3 $$ if (state != State.DONE) [CD]
+Line_3 $$ if (state != State.DONE) --> Line_4 $$ reqCtx.setTimedOut() [CD]
+Line_3 $$ if (state != State.DONE) --> Line_5 $$ final Runnable requestTimeoutHandler = reqCtx.requestTimeoutHandler() [CD]
+Line_3 $$ if (state != State.DONE) --> Line_6 $$ if (requestTimeoutHandler != null) [CD]
+Line_5 $$ final Runnable requestTimeoutHandler = reqCtx.requestTimeoutHandler() --> Line_6 $$ if (requestTimeoutHandler != null) [FD]
+Line_6 $$ if (requestTimeoutHandler != null) --> Line_7 $$ requestTimeoutHandler.run() [CD]
+Line_5 $$ final Runnable requestTimeoutHandler = reqCtx.requestTimeoutHandler() --> Line_7 $$ requestTimeoutHandler.run() [FD]
+Line_6 $$ if (requestTimeoutHandler != null) --> Line_9 $$ failAndRespond(RequestTimeoutException.get(), SERVICE_UNAVAILABLE_MESSAGE, Http2Error.INTERNAL_ERROR) [CD]

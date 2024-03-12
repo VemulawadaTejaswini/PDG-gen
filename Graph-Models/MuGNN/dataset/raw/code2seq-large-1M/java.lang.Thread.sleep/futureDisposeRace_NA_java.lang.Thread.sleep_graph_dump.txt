@@ -1,0 +1,6 @@
+Line_2 $$ public void futureDisposeRace() throws Exception --> Line_3 $$ SharedScheduler scheduler = new SharedScheduler(Schedulers.computation()) [CD]
+Line_3 $$ SharedScheduler scheduler = new SharedScheduler(Schedulers.computation()) --> Line_5 $$ Worker w = scheduler.createWorker() [FD]
+Line_6 $$ for (int i = 0; i < 1000; i++) --> Line_7 $$ w.schedule(this) [CD]
+Line_5 $$ Worker w = scheduler.createWorker() --> Line_7 $$ w.schedule(this) [FD]
+Line_9 $$ while (calls != 1000) --> Line_10 $$ Thread.sleep(100) [CD]
+Line_3 $$ SharedScheduler scheduler = new SharedScheduler(Schedulers.computation()) --> Line_13 $$ scheduler.shutdown() [FD]

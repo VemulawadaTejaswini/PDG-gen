@@ -1,0 +1,8 @@
+Line_2 $$ public Response deleteClient(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_3 $$ Client client = clientDAOReadWrite.getClient(name).orElseThrow(NotFoundException::<>new) [CD]
+Line_2 $$ public Response deleteClient(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_3 $$ Client client = clientDAOReadWrite.getClient(name).orElseThrow(NotFoundException::<>new) [FD]
+Line_2 $$ public Response deleteClient(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_4 $$ clientDAOReadWrite.deleteClient(client) [CD]
+Line_3 $$ Client client = clientDAOReadWrite.getClient(name).orElseThrow(NotFoundException::<>new) --> Line_4 $$ clientDAOReadWrite.deleteClient(client) [FD]
+Line_2 $$ public Response deleteClient(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_5 $$ auditLog.recordEvent(new Event(Instant.now(), EventTag.CLIENT_DELETE, automationClient.getName(), client.getName())) [CD]
+Line_2 $$ public Response deleteClient(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_5 $$ auditLog.recordEvent(new Event(Instant.now(), EventTag.CLIENT_DELETE, automationClient.getName(), client.getName())) [FD]
+Line_3 $$ Client client = clientDAOReadWrite.getClient(name).orElseThrow(NotFoundException::<>new) --> Line_5 $$ auditLog.recordEvent(new Event(Instant.now(), EventTag.CLIENT_DELETE, automationClient.getName(), client.getName())) [FD]
+Line_2 $$ public Response deleteClient(@Auth AutomationClient automationClient, @PathParam("name") String name) --> Line_6 $$ return Response.noContent().build() [CD]

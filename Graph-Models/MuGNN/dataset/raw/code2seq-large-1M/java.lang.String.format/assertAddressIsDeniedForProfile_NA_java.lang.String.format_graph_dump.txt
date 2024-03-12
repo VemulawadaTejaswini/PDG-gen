@@ -1,0 +1,6 @@
+Line_3 $$ for (String inetAddress : inetAddresses) --> Line_4 $$ String message = String.format(Locale.ROOT, "Expected address %s to be denied", inetAddress) [FD]
+Line_3 $$ for (String inetAddress : inetAddresses) --> Line_5 $$ InetAddress address = InetAddresses.forString(inetAddress) [FD]
+Line_4 $$ String message = String.format(Locale.ROOT, "Expected address %s to be denied", inetAddress) --> Line_6 $$ assertFalse(message, ipFilter.accept(profile, new InetSocketAddress(address, 0))) [FD]
+Line_2 $$ private void assertAddressIsDeniedForProfile(String profile, String... inetAddresses) --> Line_6 $$ assertFalse(message, ipFilter.accept(profile, new InetSocketAddress(address, 0))) [FD]
+Line_5 $$ InetAddress address = InetAddresses.forString(inetAddress) --> Line_8 $$ verify(auditTrail).connectionDenied(eq(address), eq(profile), ruleCaptor.capture()) [FD]
+Line_2 $$ private void assertAddressIsDeniedForProfile(String profile, String... inetAddresses) --> Line_8 $$ verify(auditTrail).connectionDenied(eq(address), eq(profile), ruleCaptor.capture()) [FD]

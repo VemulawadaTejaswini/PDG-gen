@@ -1,0 +1,6 @@
+Line_2 $$ public void testSwitchingZones_When_HostsConfigured() throws Exception --> Line_3 $$ Set<String> hosts = new HashSet(Arrays.asList("localhost", "testsomeother.ip.com")) [CD]
+Line_2 $$ public void testSwitchingZones_When_HostsConfigured() throws Exception --> Line_4 $$ getWebApplicationContext().getBean(IdentityZoneResolvingFilter.class).setDefaultInternalHostnames(hosts) [CD]
+Line_3 $$ Set<String> hosts = new HashSet(Arrays.asList("localhost", "testsomeother.ip.com")) --> Line_4 $$ getWebApplicationContext().getBean(IdentityZoneResolvingFilter.class).setDefaultInternalHostnames(hosts) [FD]
+Line_2 $$ public void testSwitchingZones_When_HostsConfigured() throws Exception --> Line_5 $$ getMockMvc().perform(get("/login").header("Host", "testsomeother.ip.com")).andExpect(status().isOk()) [CD]
+Line_2 $$ public void testSwitchingZones_When_HostsConfigured() throws Exception --> Line_6 $$ getMockMvc().perform(get("/login").header("Host", "localhost")).andExpect(status().isOk()) [CD]
+Line_2 $$ public void testSwitchingZones_When_HostsConfigured() throws Exception --> Line_7 $$ getMockMvc().perform(get("/login").header("Host", "testsomeother2.ip.com")).andExpect(status().isNotFound()) [CD]

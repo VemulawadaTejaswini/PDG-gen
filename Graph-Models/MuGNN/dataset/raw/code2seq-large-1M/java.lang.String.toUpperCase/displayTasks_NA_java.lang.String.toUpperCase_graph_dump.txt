@@ -1,0 +1,8 @@
+Line_2 $$ protected void displayTasks(Job job, String type, String state) throws IOException, InterruptedException --> Line_3 $$ TaskReport[] reports = null [CD]
+Line_2 $$ protected void displayTasks(Job job, String type, String state) throws IOException, InterruptedException --> Line_4 $$ reports = job.getTaskReports(TaskType.valueOf(type.toUpperCase())) [CD]
+Line_2 $$ protected void displayTasks(Job job, String type, String state) throws IOException, InterruptedException --> Line_4 $$ reports = job.getTaskReports(TaskType.valueOf(type.toUpperCase())) [FD]
+Line_3 $$ TaskReport[] reports = null --> Line_4 $$ reports = job.getTaskReports(TaskType.valueOf(type.toUpperCase())) [FD]
+Line_5 $$ for (TaskReport report : reports) --> Line_6 $$ TIPStatus status = report.getCurrentStatus() [FD]
+Line_2 $$ protected void displayTasks(Job job, String type, String state) throws IOException, InterruptedException --> Line_7 $$ if ((state.equalsIgnoreCase("pending") && status == TIPStatus.PENDING) || (state.equalsIgnoreCase("running") && status == TIPStatus.RUNNING) || (state.equalsIgnoreCase("completed") && status == TIPStatus.COMPLETE) || (state.equalsIgnoreCase("failed") && status == TIPStatus.FAILED) || (state.equalsIgnoreCase("killed") && status == TIPStatus.KILLED)) [FD]
+Line_7 $$ if ((state.equalsIgnoreCase("pending") && status == TIPStatus.PENDING) || (state.equalsIgnoreCase("running") && status == TIPStatus.RUNNING) || (state.equalsIgnoreCase("completed") && status == TIPStatus.COMPLETE) || (state.equalsIgnoreCase("failed") && status == TIPStatus.FAILED) || (state.equalsIgnoreCase("killed") && status == TIPStatus.KILLED)) --> Line_8 $$ printTaskAttempts(report) [CD]
+Line_5 $$ for (TaskReport report : reports) --> Line_8 $$ printTaskAttempts(report) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ void updateOrCreateItemAsBlocked(UUID uuid, Instant when, Instant paymentTimeoutDate) --> Line_3 $$ final int affectedRows = jdbcTemplate.update(UPDATE_BOUGHT_ITEM_SQL, from(paymentTimeoutDate), uuid) [FD]
+Line_2 $$ void updateOrCreateItemAsBlocked(UUID uuid, Instant when, Instant paymentTimeoutDate) --> Line_3 $$ final int affectedRows = jdbcTemplate.update(UPDATE_BOUGHT_ITEM_SQL, from(paymentTimeoutDate), uuid) [CD]
+Line_2 $$ void updateOrCreateItemAsBlocked(UUID uuid, Instant when, Instant paymentTimeoutDate) --> Line_4 $$ if (affectedRows == 0) [CD]
+Line_3 $$ final int affectedRows = jdbcTemplate.update(UPDATE_BOUGHT_ITEM_SQL, from(paymentTimeoutDate), uuid) --> Line_4 $$ if (affectedRows == 0) [FD]
+Line_4 $$ if (affectedRows == 0) --> Line_5 $$ jdbcTemplate.update(INSERT_BOUGHT_ITEM_SQL, uuid, from(when), from(paymentTimeoutDate)) [CD]
+Line_2 $$ void updateOrCreateItemAsBlocked(UUID uuid, Instant when, Instant paymentTimeoutDate) --> Line_5 $$ jdbcTemplate.update(INSERT_BOUGHT_ITEM_SQL, uuid, from(when), from(paymentTimeoutDate)) [FD]

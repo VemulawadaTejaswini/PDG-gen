@@ -1,0 +1,7 @@
+Line_2 $$ public void testInterceptorWithChainProceeding() --> Line_3 $$ commandGateway.sendAndWait(asCommandMessage(new CreateMyAggregateCommand("id"))) [CD]
+Line_2 $$ public void testInterceptorWithChainProceeding() --> Line_4 $$ commandGateway.sendAndWait(asCommandMessage(new ClearMyAggregateStateCommand("id", true))) [CD]
+Line_2 $$ public void testInterceptorWithChainProceeding() --> Line_5 $$ ArgumentCaptor<EventMessage<?>> eventCaptor = ArgumentCaptor.forClass(EventMessage.class) [CD]
+Line_2 $$ public void testInterceptorWithChainProceeding() --> Line_6 $$ verify(eventStore, times(3)).publish(eventCaptor.capture()) [CD]
+Line_2 $$ public void testInterceptorWithChainProceeding() --> Line_7 $$ assertEquals(new MyAggregateCreatedEvent("id"), eventCaptor.getAllValues().get(0).getPayload()) [CD]
+Line_2 $$ public void testInterceptorWithChainProceeding() --> Line_8 $$ assertEquals(new AnyCommandInterceptedEvent(ClearMyAggregateStateCommand.class.getName()), eventCaptor.getAllValues().get(1).getPayload()) [CD]
+Line_2 $$ public void testInterceptorWithChainProceeding() --> Line_9 $$ assertEquals(new MyAggregateStateClearedEvent("id"), eventCaptor.getAllValues().get(2).getPayload()) [CD]

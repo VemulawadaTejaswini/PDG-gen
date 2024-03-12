@@ -1,0 +1,7 @@
+Line_4 $$ Plan plan = getTestPlanRightStatic(Optimizer.HINT_LOCAL_STRATEGY_HASH_BUILD_FIRST) --> Line_5 $$ OptimizedPlan oPlan = compileNoStats(plan) [FD]
+Line_5 $$ OptimizedPlan oPlan = compileNoStats(plan) --> Line_6 $$ OptimizerPlanNodeResolver resolver = getOptimizerPlanNodeResolver(oPlan) [FD]
+Line_6 $$ OptimizerPlanNodeResolver resolver = getOptimizerPlanNodeResolver(oPlan) --> Line_7 $$ DualInputPlanNode innerJoin = resolver.getNode("DummyJoiner") [FD]
+Line_7 $$ DualInputPlanNode innerJoin = resolver.getNode("DummyJoiner") --> Line_8 $$ assertEquals(DriverStrategy.HYBRIDHASH_BUILD_FIRST, innerJoin.getDriverStrategy()) [FD]
+Line_7 $$ DualInputPlanNode innerJoin = resolver.getNode("DummyJoiner") --> Line_9 $$ assertEquals(TempMode.NONE, innerJoin.getInput1().getTempMode()) [FD]
+Line_7 $$ DualInputPlanNode innerJoin = resolver.getNode("DummyJoiner") --> Line_10 $$ assertEquals(TempMode.CACHED, innerJoin.getInput2().getTempMode()) [FD]
+Line_5 $$ OptimizedPlan oPlan = compileNoStats(plan) --> Line_11 $$ new JobGraphGenerator().compileJobGraph(oPlan) [FD]

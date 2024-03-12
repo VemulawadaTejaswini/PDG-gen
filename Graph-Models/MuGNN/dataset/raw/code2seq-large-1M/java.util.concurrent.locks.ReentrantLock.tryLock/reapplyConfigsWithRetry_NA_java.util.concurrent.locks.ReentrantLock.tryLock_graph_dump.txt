@@ -1,0 +1,5 @@
+Line_2 $$ private void reapplyConfigsWithRetry() --> Line_3 $$ Callable<Void> callable = new Callable<Void>() [CD]
+Line_3 $$ Callable<Void> callable = new Callable<Void>() --> Line_5 $$ if (!agentLock.tryLock(agentLockTimeoutMs, TimeUnit.MILLISECONDS)) [CD]
+Line_5 $$ if (!agentLock.tryLock(agentLockTimeoutMs, TimeUnit.MILLISECONDS)) --> Line_6 $$ LOG.warn("Failed to acquire lock for config reapply") [CD]
+Line_2 $$ private void reapplyConfigsWithRetry() --> Line_17 $$ Retryer<Void> retryer = RetryerBuilder.<Void>newBuilder().retryIfException().withStopStrategy(StopStrategies.stopAfterAttempt(configuration.getMaxReapplyConfigAttempts())).withWaitStrategy(WaitStrategies.exponentialWait(1, TimeUnit.SECONDS)).build() [CD]
+Line_3 $$ Callable<Void> callable = new Callable<Void>() --> Line_19 $$ retryer.call(callable) [FD]

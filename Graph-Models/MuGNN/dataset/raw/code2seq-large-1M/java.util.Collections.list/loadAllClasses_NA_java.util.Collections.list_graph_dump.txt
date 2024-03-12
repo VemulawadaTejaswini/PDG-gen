@@ -1,0 +1,8 @@
+Line_2 $$ private static ImmutableMap<String, ClassNode> loadAllClasses(String zipFileName) throws IOException --> Line_3 $$ ImmutableMap.Builder<String, ClassNode> allClassesBuilder = ImmutableMap.builder() [CD]
+Line_4 $$ try (ZipFile inJar = new ZipFile(zipFileName)) --> Line_5 $$ for (ZipEntry entry : Collections.list(inJar.entries())) [FD]
+Line_4 $$ try (ZipFile inJar = new ZipFile(zipFileName)) --> Line_12 $$ byte[] rawClass = ByteStreams.toByteArray(inJar.getInputStream(entry)) [FD]
+Line_13 $$ ClassNode klass = new ClassNode() --> Line_14 $$ new ClassReader(rawClass).accept(klass, ClassReader.EXPAND_FRAMES) [FD]
+Line_3 $$ ImmutableMap.Builder<String, ClassNode> allClassesBuilder = ImmutableMap.builder() --> Line_15 $$ allClassesBuilder.put(klass.name, klass) [FD]
+Line_13 $$ ClassNode klass = new ClassNode() --> Line_15 $$ allClassesBuilder.put(klass.name, klass) [FD]
+Line_2 $$ private static ImmutableMap<String, ClassNode> loadAllClasses(String zipFileName) throws IOException --> Line_18 $$ return allClassesBuilder.build() [CD]
+Line_3 $$ ImmutableMap.Builder<String, ClassNode> allClassesBuilder = ImmutableMap.builder() --> Line_18 $$ return allClassesBuilder.build() [FD]

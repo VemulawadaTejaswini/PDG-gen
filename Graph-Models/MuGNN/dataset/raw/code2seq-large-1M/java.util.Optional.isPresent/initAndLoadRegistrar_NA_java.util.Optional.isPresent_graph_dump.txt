@@ -1,0 +1,8 @@
+Line_2 $$ private Registrar initAndLoadRegistrar() --> Line_3 $$ if (!clientId.isPresent()) [CD]
+Line_3 $$ if (!clientId.isPresent()) --> Line_4 $$ respondToBadRequest("Error creating Google Groups, missing parameter: clientId") [CD]
+Line_2 $$ private Registrar initAndLoadRegistrar() --> Line_6 $$ Optional<Registrar> registrar = Registrar.loadByClientId(clientId.get()) [CD]
+Line_2 $$ private Registrar initAndLoadRegistrar() --> Line_7 $$ if (!registrar.isPresent()) [CD]
+Line_6 $$ Optional<Registrar> registrar = Registrar.loadByClientId(clientId.get()) --> Line_7 $$ if (!registrar.isPresent()) [FD]
+Line_7 $$ if (!registrar.isPresent()) --> Line_8 $$ respondToBadRequest(String.format("Error creating Google Groups; could not find registrar with id %s", clientId.get())) [CD]
+Line_2 $$ private Registrar initAndLoadRegistrar() --> Line_10 $$ return registrar.get() [CD]
+Line_6 $$ Optional<Registrar> registrar = Registrar.loadByClientId(clientId.get()) --> Line_10 $$ return registrar.get() [FD]

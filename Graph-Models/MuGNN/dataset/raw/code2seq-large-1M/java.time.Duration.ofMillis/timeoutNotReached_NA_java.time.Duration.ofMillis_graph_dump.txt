@@ -1,0 +1,7 @@
+Line_2 $$ public void timeoutNotReached() --> Line_3 $$ Map<String, ReactiveHealthIndicator> indicators = new HashMap() [CD]
+Line_2 $$ public void timeoutNotReached() --> Line_4 $$ indicators.put("slow", new TimeoutHealth(10000, Status.UP)) [CD]
+Line_3 $$ Map<String, ReactiveHealthIndicator> indicators = new HashMap() --> Line_4 $$ indicators.put("slow", new TimeoutHealth(10000, Status.UP)) [FD]
+Line_2 $$ public void timeoutNotReached() --> Line_5 $$ indicators.put("fast", new TimeoutHealth(10, Status.UP)) [CD]
+Line_3 $$ Map<String, ReactiveHealthIndicator> indicators = new HashMap() --> Line_5 $$ indicators.put("fast", new TimeoutHealth(10, Status.UP)) [FD]
+Line_2 $$ public void timeoutNotReached() --> Line_6 $$ CompositeReactiveHealthIndicator indicator = new CompositeReactiveHealthIndicator(this.healthAggregator, new DefaultReactiveHealthIndicatorRegistry(indicators)).timeoutStrategy(20000, null) [CD]
+Line_2 $$ public void timeoutNotReached() --> Line_7 $$ StepVerifier.withVirtualTime(indicator::<>health).expectSubscription().thenAwait(Duration.ofMillis(10000)).consumeNextWith(( h) -> [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public LinkRelevance nextURL(boolean asyncLoad) throws FrontierPersistentException, DataNotFoundException --> Line_3 $$ Context timerContext = selectTimer.time() [CD]
+Line_2 $$ public LinkRelevance nextURL(boolean asyncLoad) throws FrontierPersistentException, DataNotFoundException --> Line_5 $$ LinkRelevance link = scheduler.nextLink(asyncLoad) [FD]
+Line_5 $$ LinkRelevance link = scheduler.nextLink(asyncLoad) --> Line_6 $$ if (link == null) [FD]
+Line_6 $$ if (link == null) --> Line_7 $$ if (scheduler.hasPendingLinks()) [CD]
+Line_5 $$ LinkRelevance link = scheduler.nextLink(asyncLoad) --> Line_13 $$ frontier.delete(link) [FD]
+Line_5 $$ LinkRelevance link = scheduler.nextLink(asyncLoad) --> Line_14 $$ schedulerLog.printf("%d\t%.5f\t%s\n", System.currentTimeMillis(), link.getRelevance(), link.getURL().toString()) [FD]
+Line_3 $$ Context timerContext = selectTimer.time() --> Line_17 $$ timerContext.stop() [FD]

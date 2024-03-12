@@ -1,0 +1,8 @@
+Line_2 $$ void afterCompletion(Task task) --> Line_3 $$ boolean delayable = schedule(task) [FD]
+Line_2 $$ void afterCompletion(Task task) --> Line_3 $$ boolean delayable = schedule(task) [CD]
+Line_2 $$ void afterCompletion(Task task) --> Line_4 $$ DrainStatus status = drainStatus.get() [CD]
+Line_2 $$ void afterCompletion(Task task) --> Line_5 $$ if (status.shouldDrainBuffers(delayable)) [CD]
+Line_4 $$ DrainStatus status = drainStatus.get() --> Line_5 $$ if (status.shouldDrainBuffers(delayable)) [FD]
+Line_3 $$ boolean delayable = schedule(task) --> Line_5 $$ if (status.shouldDrainBuffers(delayable)) [FD]
+Line_5 $$ if (status.shouldDrainBuffers(delayable)) --> Line_6 $$ tryToDrainBuffers() [CD]
+Line_2 $$ void afterCompletion(Task task) --> Line_8 $$ notifyListener() [CD]

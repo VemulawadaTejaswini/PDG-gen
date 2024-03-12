@@ -1,0 +1,7 @@
+Line_2 $$ private void executeValidationQuery(List<ConfigIssue> issues, Source.Context context, Statement statement, String preparedQuery) --> Line_3 $$ try (ResultSet rs = statement.executeQuery(preparedQuery)) [FD]
+Line_2 $$ private void executeValidationQuery(List<ConfigIssue> issues, Source.Context context, Statement statement, String preparedQuery) --> Line_4 $$ validateResultSetMetadata(issues, context, rs) [FD]
+Line_3 $$ try (ResultSet rs = statement.executeQuery(preparedQuery)) --> Line_4 $$ validateResultSetMetadata(issues, context, rs) [FD]
+Line_6 $$ String formattedError = JdbcUtil.formatSqlException(e) --> Line_7 $$ LOG.error(formattedError) [FD]
+Line_6 $$ String formattedError = JdbcUtil.formatSqlException(e) --> Line_8 $$ LOG.debug(formattedError, e) [FD]
+Line_2 $$ private void executeValidationQuery(List<ConfigIssue> issues, Source.Context context, Statement statement, String preparedQuery) --> Line_9 $$ issues.add(context.createConfigIssue(Groups.JDBC.name(), QUERY, JdbcErrors.JDBC_34, preparedQuery, formattedError)) [FD]
+Line_6 $$ String formattedError = JdbcUtil.formatSqlException(e) --> Line_9 $$ issues.add(context.createConfigIssue(Groups.JDBC.name(), QUERY, JdbcErrors.JDBC_34, preparedQuery, formattedError)) [FD]

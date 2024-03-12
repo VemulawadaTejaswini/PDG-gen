@@ -1,0 +1,7 @@
+Line_2 $$ public ReadOnlyStringMap rawContextData() --> Line_3 $$ final ReadOnlyThreadContextMap map = ThreadContext.getThreadContextMap() [CD]
+Line_2 $$ public ReadOnlyStringMap rawContextData() --> Line_4 $$ if (map instanceof ReadOnlyStringMap) [CD]
+Line_3 $$ final ReadOnlyThreadContextMap map = ThreadContext.getThreadContextMap() --> Line_4 $$ if (map instanceof ReadOnlyStringMap) [FD]
+Line_4 $$ if (map instanceof ReadOnlyStringMap) --> Line_5 $$ return (ReadOnlyStringMap) map [CD]
+Line_2 $$ public ReadOnlyStringMap rawContextData() --> Line_7 $$ final Map<String, String> copy = ThreadContext.getImmutableContext() [CD]
+Line_2 $$ public ReadOnlyStringMap rawContextData() --> Line_8 $$ return copy.isEmpty() ? ContextDataFactory.emptyFrozenContextData() : new JdkMapAdapterStringMap(copy) [CD]
+Line_7 $$ final Map<String, String> copy = ThreadContext.getImmutableContext() --> Line_8 $$ return copy.isEmpty() ? ContextDataFactory.emptyFrozenContextData() : new JdkMapAdapterStringMap(copy) [FD]

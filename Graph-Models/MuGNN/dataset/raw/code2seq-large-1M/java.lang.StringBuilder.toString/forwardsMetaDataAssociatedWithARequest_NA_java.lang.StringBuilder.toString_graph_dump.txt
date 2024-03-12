@@ -1,0 +1,5 @@
+Line_3 $$ try (NewSessionPayload payload = NewSessionPayload.create(ImmutableMap.of("desiredCapabilities", ImmutableMap.of(), "cloud:user", "bob", "cloud:key", "there is no cake"))) --> Line_5 $$ payload.writeTo(toParse) [FD]
+Line_4 $$ StringBuilder toParse = new StringBuilder() --> Line_5 $$ payload.writeTo(toParse) [FD]
+Line_4 $$ StringBuilder toParse = new StringBuilder() --> Line_6 $$ Map<String, Object> seen = new Json().toType(toParse.toString(), MAP_TYPE) [FD]
+Line_6 $$ Map<String, Object> seen = new Json().toType(toParse.toString(), MAP_TYPE) --> Line_7 $$ assertEquals("bob", seen.get("cloud:user")) [FD]
+Line_6 $$ Map<String, Object> seen = new Json().toType(toParse.toString(), MAP_TYPE) --> Line_8 $$ assertEquals("there is no cake", seen.get("cloud:key")) [FD]

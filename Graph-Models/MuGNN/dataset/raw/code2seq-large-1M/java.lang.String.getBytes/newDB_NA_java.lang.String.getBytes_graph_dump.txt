@@ -1,0 +1,7 @@
+Line_2 $$ private ByteStore newDB(String name) throws RocksDBException --> Line_3 $$ if (inMemory) [CD]
+Line_3 $$ if (inMemory) --> Line_4 $$ return new MapStore(name) [CD]
+Line_3 $$ if (inMemory) --> Line_6 $$ final ColumnFamilyDescriptor columnFamilyDescriptor = new ColumnFamilyDescriptor(name.getBytes(UTF_8)) [CD]
+Line_2 $$ private ByteStore newDB(String name) throws RocksDBException --> Line_6 $$ final ColumnFamilyDescriptor columnFamilyDescriptor = new ColumnFamilyDescriptor(name.getBytes(UTF_8)) [FD]
+Line_3 $$ if (inMemory) --> Line_7 $$ ColumnFamilyHandle handle = db.createColumnFamily(columnFamilyDescriptor) [CD]
+Line_6 $$ final ColumnFamilyDescriptor columnFamilyDescriptor = new ColumnFamilyDescriptor(name.getBytes(UTF_8)) --> Line_7 $$ ColumnFamilyHandle handle = db.createColumnFamily(columnFamilyDescriptor) [FD]
+Line_3 $$ if (inMemory) --> Line_8 $$ return new RocksDBStore(name, columnFamilyDescriptor, handle, db, stripeCount) [CD]

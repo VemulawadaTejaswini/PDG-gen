@@ -1,0 +1,5 @@
+Line_2 $$ public void testOpenedServerChannelRejected() throws IOException --> Line_3 $$ InetSocketAddress address = mock(InetSocketAddress.class) [CD]
+Line_2 $$ public void testOpenedServerChannelRejected() throws IOException --> Line_4 $$ when(rawChannelFactory.openNioServerSocketChannel(same(address))).thenReturn(rawServerChannel) [CD]
+Line_2 $$ public void testOpenedServerChannelRejected() throws IOException --> Line_5 $$ doThrow(new IllegalStateException()).when(acceptingSelector).scheduleForRegistration(any()) [CD]
+Line_2 $$ public void testOpenedServerChannelRejected() throws IOException --> Line_6 $$ expectThrows(IllegalStateException.class, () -> channelFactory.openNioServerSocketChannel(address, acceptingSelectorSupplier)) [CD]
+Line_2 $$ public void testOpenedServerChannelRejected() throws IOException --> Line_7 $$ assertFalse(rawServerChannel.isOpen()) [CD]

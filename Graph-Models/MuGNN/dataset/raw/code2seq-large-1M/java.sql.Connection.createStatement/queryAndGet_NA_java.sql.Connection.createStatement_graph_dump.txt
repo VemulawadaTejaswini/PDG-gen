@@ -1,0 +1,7 @@
+Line_3 $$ try (Statement statement = connection.createStatement()) --> Line_4 $$ ResultSet rs = statement.executeQuery(sql) [FD]
+Line_2 $$ private <T> T queryAndGet(String sql, int columnIndex) --> Line_4 $$ ResultSet rs = statement.executeQuery(sql) [FD]
+Line_4 $$ ResultSet rs = statement.executeQuery(sql) --> Line_5 $$ if (!rs.next()) [FD]
+Line_5 $$ if (!rs.next()) --> Line_6 $$ return null [CD]
+Line_4 $$ ResultSet rs = statement.executeQuery(sql) --> Line_7 $$ byte[] bytes = rs.getBytes(columnIndex) [FD]
+Line_2 $$ private <T> T queryAndGet(String sql, int columnIndex) --> Line_7 $$ byte[] bytes = rs.getBytes(columnIndex) [FD]
+Line_7 $$ byte[] bytes = rs.getBytes(columnIndex) --> Line_8 $$ return deserialize(bytes) [FD]

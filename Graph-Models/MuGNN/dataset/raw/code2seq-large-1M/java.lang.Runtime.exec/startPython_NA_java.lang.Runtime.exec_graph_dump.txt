@@ -1,0 +1,8 @@
+Line_2 $$ private void startPython(String tmpPath, String args) throws IOException --> Line_3 $$ String pythonBinaryPath = config.getString(PythonOptions.PYTHON_BINARY_PATH) [CD]
+Line_3 $$ String pythonBinaryPath = config.getString(PythonOptions.PYTHON_BINARY_PATH) --> Line_5 $$ Runtime.getRuntime().exec(pythonBinaryPath) [FD]
+Line_2 $$ private void startPython(String tmpPath, String args) throws IOException --> Line_9 $$ process = Runtime.getRuntime().exec(pythonBinaryPath + " -B " + tmpPath + FLINK_PYTHON_PLAN_NAME + args) [CD]
+Line_2 $$ private void startPython(String tmpPath, String args) throws IOException --> Line_10 $$ new Thread(new StreamPrinter(process.getInputStream())).start() [CD]
+Line_2 $$ private void startPython(String tmpPath, String args) throws IOException --> Line_11 $$ new Thread(new StreamPrinter(process.getErrorStream())).start() [CD]
+Line_2 $$ private void startPython(String tmpPath, String args) throws IOException --> Line_13 $$ server.setSoTimeout(50) [CD]
+Line_2 $$ private void startPython(String tmpPath, String args) throws IOException --> Line_14 $$ process.getOutputStream().write("plan\n".getBytes(ConfigConstants.DEFAULT_CHARSET)) [CD]
+Line_2 $$ private void startPython(String tmpPath, String args) throws IOException --> Line_15 $$ process.getOutputStream().flush() [CD]

@@ -1,0 +1,5 @@
+Line_4 $$ Class<?> clazz = Thread.currentThread().getContextClassLoader().loadClass("org.apache.commons.beanutils.PropertyUtils") --> Line_5 $$ Method method = clazz.getMethod("getPropertyDescriptor", Object.class, String.class) [FD]
+Line_2 $$ public static Method getReadMethod(Object bean, String name) --> Line_6 $$ Object descriptor = method.invoke(null, bean, name) [FD]
+Line_6 $$ Object descriptor = method.invoke(null, bean, name) --> Line_7 $$ if (descriptor == null) [FD]
+Line_4 $$ Class<?> clazz = Thread.currentThread().getContextClassLoader().loadClass("org.apache.commons.beanutils.PropertyUtils") --> Line_10 $$ method = clazz.getMethod("getReadMethod", PropertyDescriptor.class) [FD]
+Line_6 $$ Object descriptor = method.invoke(null, bean, name) --> Line_11 $$ return (Method) method.invoke(null, descriptor) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ private void checkViewName() --> Line_3 $$ String viewName = getSpecAnnotation().viewName().trim() [CD]
+Line_2 $$ private void checkViewName() --> Line_4 $$ if (viewName.toLowerCase().startsWith("sqlite_")) [CD]
+Line_3 $$ String viewName = getSpecAnnotation().viewName().trim() --> Line_4 $$ if (viewName.toLowerCase().startsWith("sqlite_")) [FD]
+Line_4 $$ if (viewName.toLowerCase().startsWith("sqlite_")) --> Line_5 $$ logError("View names cannot start with 'sqlite_'; such names are reserved for internal use", getModelSpecElement()) [CD]
+Line_4 $$ if (viewName.toLowerCase().startsWith("sqlite_")) --> Line_7 $$ SqlUtils.checkIdentifier(viewName, "view", this, getModelSpecElement(), utils) [CD]
+Line_3 $$ String viewName = getSpecAnnotation().viewName().trim() --> Line_7 $$ SqlUtils.checkIdentifier(viewName, "view", this, getModelSpecElement(), utils) [FD]

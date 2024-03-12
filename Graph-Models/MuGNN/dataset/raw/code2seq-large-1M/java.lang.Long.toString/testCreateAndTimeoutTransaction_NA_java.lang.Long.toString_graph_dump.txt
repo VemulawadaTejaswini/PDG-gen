@@ -1,0 +1,8 @@
+Line_2 $$ public void testCreateAndTimeoutTransaction() throws IOException, InterruptedException --> Line_3 $$ final long testTimeout = min(500, REAP_INTERVAL / 2) [CD]
+Line_2 $$ public void testCreateAndTimeoutTransaction() throws IOException, InterruptedException --> Line_4 $$ System.setProperty(TIMEOUT_SYSTEM_PROPERTY, Long.toString(testTimeout)) [CD]
+Line_3 $$ final long testTimeout = min(500, REAP_INTERVAL / 2) --> Line_4 $$ System.setProperty(TIMEOUT_SYSTEM_PROPERTY, Long.toString(testTimeout)) [FD]
+Line_2 $$ public void testCreateAndTimeoutTransaction() throws IOException, InterruptedException --> Line_5 $$ final String location = createTransaction() [CD]
+Line_6 $$ try (CloseableHttpResponse resp = execute(new HttpGet(location))) --> Line_7 $$ assertEquals(OK.getStatusCode(), getStatus(resp)) [FD]
+Line_6 $$ try (CloseableHttpResponse resp = execute(new HttpGet(location))) --> Line_8 $$ assertTrue(stream(resp.getHeaders(LINK)).anyMatch( i -> i.getValue().contains("<" + serverAddress + ">;rel=\"canonical\""))) [FD]
+Line_6 $$ try (CloseableHttpResponse resp = execute(new HttpGet(location))) --> Line_9 $$ consume(resp.getEntity()) [FD]
+Line_2 $$ public void testCreateAndTimeoutTransaction() throws IOException, InterruptedException --> Line_11 $$ sleep(REAP_INTERVAL * 2) [CD]

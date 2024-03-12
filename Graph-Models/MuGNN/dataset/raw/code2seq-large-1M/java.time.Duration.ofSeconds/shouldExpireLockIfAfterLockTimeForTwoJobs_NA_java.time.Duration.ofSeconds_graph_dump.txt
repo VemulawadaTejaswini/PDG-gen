@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldExpireLockIfAfterLockTimeForTwoJobs() --> Line_3 $$ rule.getClock().pinCurrentTime() [CD]
+Line_2 $$ public void shouldExpireLockIfAfterLockTimeForTwoJobs() --> Line_4 $$ rule.runStreamProcessor( e -> new JobExpireLockStreamProcessor().createStreamProcessor(e)) [CD]
+Line_2 $$ public void shouldExpireLockIfAfterLockTimeForTwoJobs() --> Line_5 $$ rule.writeEvent(1, JobIntent.LOCKED, job()) [CD]
+Line_2 $$ public void shouldExpireLockIfAfterLockTimeForTwoJobs() --> Line_6 $$ rule.writeEvent(2, JobIntent.LOCKED, job()) [CD]
+Line_2 $$ public void shouldExpireLockIfAfterLockTimeForTwoJobs() --> Line_7 $$ rule.getClock().addTime(JobQueueManagerService.LOCK_EXPIRATION_INTERVAL.plus(Duration.ofSeconds(1))) [CD]
+Line_2 $$ public void shouldExpireLockIfAfterLockTimeForTwoJobs() --> Line_8 $$ final List<TypedRecord<JobRecord>> expirationEvents = doRepeatedly(() -> rule.events().onlyJobRecords().withIntent(JobIntent.EXPIRE_LOCK).collect(Collectors.toList())).until( l -> l.size() == 2) [CD]
+Line_2 $$ public void shouldExpireLockIfAfterLockTimeForTwoJobs() --> Line_9 $$ assertThat(expirationEvents).extracting("key").containsExactlyInAnyOrder(1L, 2L) [CD]
+Line_8 $$ final List<TypedRecord<JobRecord>> expirationEvents = doRepeatedly(() -> rule.events().onlyJobRecords().withIntent(JobIntent.EXPIRE_LOCK).collect(Collectors.toList())).until( l -> l.size() == 2) --> Line_9 $$ assertThat(expirationEvents).extracting("key").containsExactlyInAnyOrder(1L, 2L) [FD]

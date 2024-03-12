@@ -1,0 +1,8 @@
+Line_2 $$ public void testAddKVColumnToExistingFamily() throws Throwable --> Line_3 $$ String tenantId = getOrganizationId() [CD]
+Line_2 $$ public void testAddKVColumnToExistingFamily() throws Throwable --> Line_4 $$ String tableName = generateUniqueName() [CD]
+Line_2 $$ public void testAddKVColumnToExistingFamily() throws Throwable --> Line_5 $$ initATableValues(tableName, tenantId, getDefaultSplits(tenantId), null, null, getUrl(), null) [CD]
+Line_4 $$ String tableName = generateUniqueName() --> Line_5 $$ initATableValues(tableName, tenantId, getDefaultSplits(tenantId), null, null, getUrl(), null) [FD]
+Line_3 $$ String tenantId = getOrganizationId() --> Line_5 $$ initATableValues(tableName, tenantId, getDefaultSplits(tenantId), null, null, getUrl(), null) [FD]
+Line_6 $$ try (Connection conn1 = DriverManager.getConnection(getUrl())) --> Line_7 $$ conn1.createStatement().executeUpdate("ALTER TABLE " + tableName + " ADD z_integer integer") [FD]
+Line_6 $$ try (Connection conn1 = DriverManager.getConnection(getUrl())) --> Line_9 $$ assertTrue(conn1.prepareStatement(query).executeQuery().next()) [FD]
+Line_8 $$ String query = "SELECT z_integer FROM " + tableName --> Line_9 $$ assertTrue(conn1.prepareStatement(query).executeQuery().next()) [FD]

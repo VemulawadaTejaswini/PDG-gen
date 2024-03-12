@@ -1,0 +1,6 @@
+Line_2 $$ public InputStream establishSharedSession(String sharedSessionName) throws IOException --> Line_3 $$ if (logger.isInfoEnabled()) [CD]
+Line_3 $$ if (logger.isInfoEnabled()) --> Line_4 $$ logger.info(ROPUtil.getLogConnect(url, username, true, sharedSessionName)) [CD]
+Line_2 $$ public InputStream establishSharedSession(String sharedSessionName) throws IOException --> Line_4 $$ logger.info(ROPUtil.getLogConnect(url, username, true, sharedSessionName)) [FD]
+Line_2 $$ public InputStream establishSharedSession(String sharedSessionName) throws IOException --> Line_7 $$ ContentResponse response = httpClient.newRequest(url).method(HttpMethod.POST).param(ROPConstants.OPERATION_PARAMETER, ROPConstants.ESTABLISH_SHARED_SESSION_OPERATION).param(ROPConstants.SESSION_NAME_PARAMETER, sharedSessionName).timeout(readTimeout, TimeUnit.SECONDS).send() [FD]
+Line_7 $$ ContentResponse response = httpClient.newRequest(url).method(HttpMethod.POST).param(ROPConstants.OPERATION_PARAMETER, ROPConstants.ESTABLISH_SHARED_SESSION_OPERATION).param(ROPConstants.SESSION_NAME_PARAMETER, sharedSessionName).timeout(readTimeout, TimeUnit.SECONDS).send() --> Line_8 $$ return new ByteArrayInputStream(response.getContent()) [FD]
+Line_10 $$ if (e instanceof InterruptedException) --> Line_11 $$ Thread.currentThread().interrupt() [CD]

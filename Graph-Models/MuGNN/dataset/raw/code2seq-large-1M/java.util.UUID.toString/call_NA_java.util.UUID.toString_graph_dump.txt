@@ -1,0 +1,7 @@
+Line_2 $$ public Boolean call() throws Exception --> Line_3 $$ Lock lock = lockManager.createLock(application, entity.toString()) [CD]
+Line_2 $$ public Boolean call() throws Exception --> Line_4 $$ boolean locked = lock.tryLock(0, TimeUnit.MILLISECONDS) [CD]
+Line_3 $$ Lock lock = lockManager.createLock(application, entity.toString()) --> Line_4 $$ boolean locked = lock.tryLock(0, TimeUnit.MILLISECONDS) [FD]
+Line_2 $$ public Boolean call() throws Exception --> Line_5 $$ if (locked) [CD]
+Line_5 $$ if (locked) --> Line_6 $$ lock.unlock() [CD]
+Line_3 $$ Lock lock = lockManager.createLock(application, entity.toString()) --> Line_6 $$ lock.unlock() [FD]
+Line_2 $$ public Boolean call() throws Exception --> Line_8 $$ return locked [CD]

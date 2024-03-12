@@ -1,0 +1,6 @@
+Line_3 $$ final FakeStore fakeStore = new FakeStore(Collections.singletonMap("key", "oldValue")) --> Line_4 $$ this.store = spy(fakeStore) [FD]
+Line_6 $$ final FakeCacheLoaderWriter fakeWriter = new FakeCacheLoaderWriter(Collections.singletonMap("key", "oldValue")) --> Line_7 $$ this.cacheLoaderWriter = spy(fakeWriter) [FD]
+Line_9 $$ final EhcacheWithLoaderWriter<String, String> ehcache = this.getEhcache(this.cacheLoaderWriter) --> Line_12 $$ ehcache.remove("key") [FD]
+Line_10 $$ final InOrder ordered = inOrder(this.cacheLoaderWriter, this.resilienceStrategy) --> Line_17 $$ ordered.verify(this.resilienceStrategy).removeFailure(eq("key"), any(StoreAccessException.class)) [FD]
+Line_10 $$ final InOrder ordered = inOrder(this.cacheLoaderWriter, this.resilienceStrategy) --> Line_18 $$ ordered.verify(this.cacheLoaderWriter).delete(eq("key")) [FD]
+Line_9 $$ final EhcacheWithLoaderWriter<String, String> ehcache = this.getEhcache(this.cacheLoaderWriter) --> Line_19 $$ validateStats(ehcache, EnumSet.of(CacheOperationOutcomes.RemoveOutcome.FAILURE)) [FD]

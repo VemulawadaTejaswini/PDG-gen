@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<SimpleLock> lock(LockConfiguration lockConfiguration) --> Line_3 $$ Instant now = now() [CD]
+Line_2 $$ public Optional<SimpleLock> lock(LockConfiguration lockConfiguration) --> Line_4 $$ if (lockConfiguration.getLockAtLeastUntil().isAfter(now)) [CD]
+Line_2 $$ public Optional<SimpleLock> lock(LockConfiguration lockConfiguration) --> Line_4 $$ if (lockConfiguration.getLockAtLeastUntil().isAfter(now)) [FD]
+Line_3 $$ Instant now = now() --> Line_4 $$ if (lockConfiguration.getLockAtLeastUntil().isAfter(now)) [FD]
+Line_2 $$ public Optional<SimpleLock> lock(LockConfiguration lockConfiguration) --> Line_8 $$ String nodePath = getNodePath(lockConfiguration) [FD]
+Line_8 $$ String nodePath = getNodePath(lockConfiguration) --> Line_9 $$ client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(nodePath) [FD]

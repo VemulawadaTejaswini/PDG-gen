@@ -1,0 +1,7 @@
+Line_2 $$ private static MemoryLayout getMemoryLayout() --> Line_3 $$ String enabled = System.getProperty("hbase.memorylayout.use.unsafe") [CD]
+Line_2 $$ private static MemoryLayout getMemoryLayout() --> Line_4 $$ if (UnsafeAvailChecker.isAvailable() && (enabled == null || Boolean.parseBoolean(enabled))) [CD]
+Line_3 $$ String enabled = System.getProperty("hbase.memorylayout.use.unsafe") --> Line_4 $$ if (UnsafeAvailChecker.isAvailable() && (enabled == null || Boolean.parseBoolean(enabled))) [FD]
+Line_4 $$ if (UnsafeAvailChecker.isAvailable() && (enabled == null || Boolean.parseBoolean(enabled))) --> Line_5 $$ LOG.debug("Using Unsafe to estimate memory layout") [CD]
+Line_4 $$ if (UnsafeAvailChecker.isAvailable() && (enabled == null || Boolean.parseBoolean(enabled))) --> Line_6 $$ return new UnsafeLayout() [CD]
+Line_2 $$ private static MemoryLayout getMemoryLayout() --> Line_8 $$ LOG.debug("Not using Unsafe to estimate memory layout") [CD]
+Line_2 $$ private static MemoryLayout getMemoryLayout() --> Line_9 $$ return new MemoryLayout() [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testCannotAcquireClient() throws Exception --> Line_3 $$ when(clientPool.acquire()).thenReturn(Futures.<AsyncSSLClient>immediateFailedFuture(new Exception("foo"))) [CD]
+Line_2 $$ public void testCannotAcquireClient() throws Exception --> Line_4 $$ ClientProxyImpl<AsyncSSLClient> proxy = new ClientProxyImpl(executor, typeLiteral, clientPool) [CD]
+Line_4 $$ ClientProxyImpl<AsyncSSLClient> proxy = new ClientProxyImpl(executor, typeLiteral, clientPool) --> Line_6 $$ performEchoCall(proxy.get(), "foobar") [FD]
+Line_2 $$ public void testCannotAcquireClient() throws Exception --> Line_11 $$ verify(clientPool).acquire() [CD]
+Line_2 $$ public void testCannotAcquireClient() throws Exception --> Line_12 $$ verifyNoMoreInteractions(clientPool) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ void writeLogItem(String formattedItem) throws IOException --> Line_3 $$ final FileOutputStream fos = new FileOutputStream(file, true) [CD]
+Line_2 $$ void writeLogItem(String formattedItem) throws IOException --> Line_4 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) [CD]
+Line_4 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) --> Line_6 $$ output.write(formattedItem.getBytes(StandardCharsets.UTF_8)) [FD]
+Line_2 $$ void writeLogItem(String formattedItem) throws IOException --> Line_6 $$ output.write(formattedItem.getBytes(StandardCharsets.UTF_8)) [FD]
+Line_4 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) --> Line_7 $$ output.write(LINE_TERMINATOR) [FD]
+Line_4 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) --> Line_8 $$ output.flush() [FD]
+Line_3 $$ final FileOutputStream fos = new FileOutputStream(file, true) --> Line_9 $$ fos.getFD().sync() [FD]
+Line_4 $$ final BufferedOutputStream output = new BufferedOutputStream(fos) --> Line_11 $$ IoUtils.safeClose(output) [FD]

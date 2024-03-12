@@ -1,0 +1,7 @@
+Line_2 $$ private boolean isClean(Git git, String label) --> Line_3 $$ StatusCommand status = git.status() [FD]
+Line_2 $$ private boolean isClean(Git git, String label) --> Line_3 $$ StatusCommand status = git.status() [CD]
+Line_2 $$ private boolean isClean(Git git, String label) --> Line_5 $$ BranchTrackingStatus trackingStatus = BranchTrackingStatus.of(git.getRepository(), label) [FD]
+Line_5 $$ BranchTrackingStatus trackingStatus = BranchTrackingStatus.of(git.getRepository(), label) --> Line_6 $$ boolean isBranchAhead = trackingStatus != null && trackingStatus.getAheadCount() > 0 [FD]
+Line_3 $$ StatusCommand status = git.status() --> Line_7 $$ return status.call().isClean() && !isBranchAhead [FD]
+Line_6 $$ boolean isBranchAhead = trackingStatus != null && trackingStatus.getAheadCount() > 0 --> Line_7 $$ return status.call().isClean() && !isBranchAhead [FD]
+Line_9 $$ String message = "Could not execute status command on local repository. Cause: (" + e.getClass().getSimpleName() + ") " + e.getMessage() --> Line_10 $$ warn(message, e) [FD]

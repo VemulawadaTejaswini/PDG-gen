@@ -1,0 +1,8 @@
+Line_2 $$ public EventRoute getRoute(final long backgroundThreadId, final Level level) --> Line_3 $$ if (level.isLessSpecificThan(thresholdLevel)) [FD]
+Line_2 $$ public EventRoute getRoute(final long backgroundThreadId, final Level level) --> Line_3 $$ if (level.isLessSpecificThan(thresholdLevel)) [CD]
+Line_3 $$ if (level.isLessSpecificThan(thresholdLevel)) --> Line_4 $$ if (discardCount.getAndIncrement() == 0) [CD]
+Line_4 $$ if (discardCount.getAndIncrement() == 0) --> Line_5 $$ LOGGER.warn("Async queue is full, discarding event with level [CD]
+Line_2 $$ public EventRoute getRoute(final long backgroundThreadId, final Level level) --> Line_5 $$ LOGGER.warn("Async queue is full, discarding event with level [FD]
+Line_3 $$ if (level.isLessSpecificThan(thresholdLevel)) --> Line_7 $$ return EventRoute.DISCARD [CD]
+Line_2 $$ public EventRoute getRoute(final long backgroundThreadId, final Level level) --> Line_9 $$ return super.getRoute(backgroundThreadId, level) [FD]
+Line_2 $$ public EventRoute getRoute(final long backgroundThreadId, final Level level) --> Line_9 $$ return super.getRoute(backgroundThreadId, level) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private boolean isHealthy() --> Line_3 $$ if (enableHealthCheck) [CD]
+Line_3 $$ if (enableHealthCheck) --> Line_4 $$ final long now = System.currentTimeMillis() [CD]
+Line_3 $$ if (enableHealthCheck) --> Line_5 $$ if (spillsAssignedSinceLastCheck >= healthCheckSpills || lastChecked + healthCheckInterval > now) [CD]
+Line_5 $$ if (spillsAssignedSinceLastCheck >= healthCheckSpills || lastChecked + healthCheckInterval > now) --> Line_6 $$ final long available = disk.getFreeSpace() [CD]
+Line_5 $$ if (spillsAssignedSinceLastCheck >= healthCheckSpills || lastChecked + healthCheckInterval > now) --> Line_7 $$ if (available < threshold) [CD]
+Line_6 $$ final long available = disk.getFreeSpace() --> Line_7 $$ if (available < threshold) [FD]
+Line_7 $$ if (available < threshold) --> Line_8 $$ return false [CD]
+Line_2 $$ private boolean isHealthy() --> Line_14 $$ return true [CD]

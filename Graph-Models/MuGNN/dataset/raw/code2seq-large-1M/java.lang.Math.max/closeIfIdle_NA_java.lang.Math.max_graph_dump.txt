@@ -1,0 +1,7 @@
+Line_2 $$ boolean closeIfIdle(long idleTimeout) --> Line_3 $$ if (closeReason != null) [CD]
+Line_3 $$ if (closeReason != null) --> Line_4 $$ return true [CD]
+Line_2 $$ boolean closeIfIdle(long idleTimeout) --> Line_5 $$ long lastMsgTime = Math.max(Math.max(lastMsgSndTime, lastMsgRcvTime), createTs) [CD]
+Line_2 $$ boolean closeIfIdle(long idleTimeout) --> Line_6 $$ if (lastMsgTime + idleTimeout < System.currentTimeMillis() && pendingReqs.isEmpty()) [CD]
+Line_6 $$ if (lastMsgTime + idleTimeout < System.currentTimeMillis() && pendingReqs.isEmpty()) --> Line_7 $$ close(CONN_IDLE, true) [CD]
+Line_6 $$ if (lastMsgTime + idleTimeout < System.currentTimeMillis() && pendingReqs.isEmpty()) --> Line_8 $$ return true [CD]
+Line_2 $$ boolean closeIfIdle(long idleTimeout) --> Line_10 $$ return false [CD]

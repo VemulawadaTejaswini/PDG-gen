@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldForwardToManagementForTwoFactor() --> Line_3 $$ given(commonService.getProperty(SecuritySettings.PASSWORD_HASH)).willReturn(HashAlgorithm.TWO_FACTOR) [CD]
+Line_2 $$ public void shouldForwardToManagementForTwoFactor() --> Line_4 $$ Player player = mockPlayerWithName("test2") [CD]
+Line_2 $$ public void shouldForwardToManagementForTwoFactor() --> Line_5 $$ command.executeCommand(player, Collections.emptyList()) [CD]
+Line_4 $$ Player player = mockPlayerWithName("test2") --> Line_5 $$ command.executeCommand(player, Collections.emptyList()) [FD]
+Line_2 $$ public void shouldForwardToManagementForTwoFactor() --> Line_6 $$ verify(registrationCaptchaManager).isCaptchaRequired("test2") [CD]
+Line_2 $$ public void shouldForwardToManagementForTwoFactor() --> Line_7 $$ verify(management).performRegister(eq(RegistrationMethod.TWO_FACTOR_REGISTRATION), argThat(hasEqualValuesOnAllFields(TwoFactorRegisterParams.of(player)))) [CD]
+Line_4 $$ Player player = mockPlayerWithName("test2") --> Line_7 $$ verify(management).performRegister(eq(RegistrationMethod.TWO_FACTOR_REGISTRATION), argThat(hasEqualValuesOnAllFields(TwoFactorRegisterParams.of(player)))) [FD]
+Line_2 $$ public void shouldForwardToManagementForTwoFactor() --> Line_8 $$ verifyZeroInteractions(emailService) [CD]

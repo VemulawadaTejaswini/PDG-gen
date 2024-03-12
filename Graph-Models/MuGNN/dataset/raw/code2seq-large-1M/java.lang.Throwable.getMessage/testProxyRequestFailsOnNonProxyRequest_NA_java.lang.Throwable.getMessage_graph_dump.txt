@@ -1,0 +1,7 @@
+Line_2 $$ public void testProxyRequestFailsOnNonProxyRequest() --> Line_3 $$ TransportRequest request = TransportRequest.Empty.INSTANCE [CD]
+Line_2 $$ public void testProxyRequestFailsOnNonProxyRequest() --> Line_4 $$ User user = new User("test user", "role") [CD]
+Line_2 $$ public void testProxyRequestFailsOnNonProxyRequest() --> Line_5 $$ IllegalStateException illegalStateException = expectThrows(IllegalStateException.class, () -> authorize(createAuthentication(user), TransportActionProxy.getProxyAction("indices:some/action"), request)) [CD]
+Line_3 $$ TransportRequest request = TransportRequest.Empty.INSTANCE --> Line_5 $$ IllegalStateException illegalStateException = expectThrows(IllegalStateException.class, () -> authorize(createAuthentication(user), TransportActionProxy.getProxyAction("indices:some/action"), request)) [FD]
+Line_4 $$ User user = new User("test user", "role") --> Line_5 $$ IllegalStateException illegalStateException = expectThrows(IllegalStateException.class, () -> authorize(createAuthentication(user), TransportActionProxy.getProxyAction("indices:some/action"), request)) [FD]
+Line_2 $$ public void testProxyRequestFailsOnNonProxyRequest() --> Line_6 $$ assertThat(illegalStateException.getMessage(), startsWith("originalRequest is not a proxy request: [org.elasticsearch.transport.TransportRequest$")) [CD]
+Line_2 $$ public void testProxyRequestFailsOnNonProxyRequest() --> Line_7 $$ assertThat(illegalStateException.getMessage(), endsWith("] but action: [internal:transport/proxy/indices:some/action] is a proxy action")) [CD]

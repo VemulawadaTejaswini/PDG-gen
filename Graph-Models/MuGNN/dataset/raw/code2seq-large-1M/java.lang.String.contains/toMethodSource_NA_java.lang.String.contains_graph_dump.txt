@@ -1,0 +1,8 @@
+Line_2 $$ private static MethodSource toMethodSource(Class<?> testClass, String methodName) --> Line_3 $$ if (methodName.contains("[") && methodName.endsWith("]")) [FD]
+Line_2 $$ private static MethodSource toMethodSource(Class<?> testClass, String methodName) --> Line_3 $$ if (methodName.contains("[") && methodName.endsWith("]")) [CD]
+Line_3 $$ if (methodName.contains("[") && methodName.endsWith("]")) --> Line_4 $$ return toMethodSource(testClass, methodName.substring(0, methodName.indexOf("["))) [CD]
+Line_2 $$ private static MethodSource toMethodSource(Class<?> testClass, String methodName) --> Line_4 $$ return toMethodSource(testClass, methodName.substring(0, methodName.indexOf("["))) [FD]
+Line_3 $$ if (methodName.contains("[") && methodName.endsWith("]")) --> Line_6 $$ List<Method> methods = findMethods(testClass, where(Method::<>getName, isEqual(methodName))) [CD]
+Line_2 $$ private static MethodSource toMethodSource(Class<?> testClass, String methodName) --> Line_6 $$ List<Method> methods = findMethods(testClass, where(Method::<>getName, isEqual(methodName))) [FD]
+Line_3 $$ if (methodName.contains("[") && methodName.endsWith("]")) --> Line_7 $$ return (methods.size() == 1) ? MethodSource.from(getOnlyElement(methods)) : null [CD]
+Line_6 $$ List<Method> methods = findMethods(testClass, where(Method::<>getName, isEqual(methodName))) --> Line_7 $$ return (methods.size() == 1) ? MethodSource.from(getOnlyElement(methods)) : null [FD]

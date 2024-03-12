@@ -1,0 +1,8 @@
+Line_2 $$ private void startOfflineDownload() --> Line_3 $$ String getLatestUrl = Constants.Url.URL_LATEST [CD]
+Line_2 $$ private void startOfflineDownload() --> Line_4 $$ String todayUrl = Constants.Url.URLDEFORE + DateUtils.getCurrentDate(DateUtils.YYYYMMDD) [CD]
+Line_2 $$ private void startOfflineDownload() --> Line_5 $$ String yesterdayUrl = Constants.Url.URLDEFORE + DateUtils.getYesterdayDate(DateUtils.YYYYMMDD) [CD]
+Line_2 $$ private void startOfflineDownload() --> Line_6 $$ String theDayBeforeYesterdayUrl = Constants.Url.URLDEFORE + DateUtils.getTheDayBeforeYesterday(DateUtils.YYYYMMDD) [CD]
+Line_2 $$ private void startOfflineDownload() --> Line_7 $$ String[] urls = [CD]
+Line_8 $$ for (String url : urls) --> Line_9 $$ ResponseListener listener = url.equals(getLatestUrl) ? this : null [FD]
+Line_3 $$ String getLatestUrl = Constants.Url.URL_LATEST --> Line_9 $$ ResponseListener listener = url.equals(getLatestUrl) ? this : null [FD]
+Line_8 $$ for (String url : urls) --> Line_10 $$ new OfflineDownloadTask(this, listener).executeOnExecutor(MyAsyncTask.DOWNLOAD_THREAD_POOL_EXECUTOR, url) [FD]

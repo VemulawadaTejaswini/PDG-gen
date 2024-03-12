@@ -1,0 +1,7 @@
+Line_2 $$ private synchronized int addSQLs() throws SQLException --> Line_3 $$ getConnectionIfNeeded() [CD]
+Line_2 $$ private synchronized int addSQLs() throws SQLException --> Line_4 $$ if (countPreparedStatement == null) [CD]
+Line_4 $$ if (countPreparedStatement == null) --> Line_5 $$ countPreparedStatement = connection.prepareStatement("insert into cluster_counts values (?,?,?,unix_timestamp()) on duplicate key update count=?+exp(-(greatest(unix_timestamp()-t,0)/?))*count,t=unix_timestamp()") [CD]
+Line_2 $$ private synchronized int addSQLs() throws SQLException --> Line_6 $$ int added = 0 [CD]
+Line_6 $$ int added = 0 --> Line_15 $$ added++ [FD]
+Line_2 $$ private synchronized int addSQLs() throws SQLException --> Line_18 $$ logger.info("Added " + added + " sql inserts to run ") [CD]
+Line_2 $$ private synchronized int addSQLs() throws SQLException --> Line_20 $$ return added [CD]

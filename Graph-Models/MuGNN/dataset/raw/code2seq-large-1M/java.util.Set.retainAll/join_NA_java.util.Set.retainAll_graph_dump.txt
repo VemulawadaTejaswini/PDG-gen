@@ -1,0 +1,8 @@
+Line_2 $$ static UsageInfo join(Collection<UsageInfo> uis) --> Line_3 $$ Set<Integer> initializedInRelevantBranch = new LinkedHashSet() [CD]
+Line_4 $$ for (UsageInfo ui : uis) --> Line_5 $$ if (ui.reachable) [FD]
+Line_5 $$ if (ui.reachable) --> Line_6 $$ initializedInRelevantBranch = ui.initializedIdentifiers [CD]
+Line_3 $$ Set<Integer> initializedInRelevantBranch = new LinkedHashSet() --> Line_6 $$ initializedInRelevantBranch = ui.initializedIdentifiers [FD]
+Line_2 $$ static UsageInfo join(Collection<UsageInfo> uis) --> Line_10 $$ UsageInfo result = new UsageInfo(LinkedHashMultimap.create(), new LinkedHashSet(), initializedInRelevantBranch, false) [CD]
+Line_4 $$ for (UsageInfo ui : uis) --> Line_14 $$ if (ui.reachable) [FD]
+Line_14 $$ if (ui.reachable) --> Line_15 $$ result.initializedIdentifiers.retainAll(ui.initializedIdentifiers) [CD]
+Line_2 $$ static UsageInfo join(Collection<UsageInfo> uis) --> Line_19 $$ return result [CD]

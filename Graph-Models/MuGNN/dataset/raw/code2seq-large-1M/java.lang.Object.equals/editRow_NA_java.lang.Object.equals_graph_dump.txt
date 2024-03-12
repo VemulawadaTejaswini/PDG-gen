@@ -1,0 +1,8 @@
+Line_2 $$ public void editRow(int rowNumber) throws IllegalStateException, IllegalArgumentException --> Line_3 $$ if (!isEnabled()) [CD]
+Line_2 $$ public void editRow(int rowNumber) throws IllegalStateException, IllegalArgumentException --> Line_6 $$ T beanToEdit = getParent().getDataCommunicator().fetchItemsWithRange(rowNumber, 1).stream().findFirst().orElseThrow(() -> new IllegalArgumentException("Row number " + rowNumber + "did not yield any item from data provider")) [FD]
+Line_2 $$ public void editRow(int rowNumber) throws IllegalStateException, IllegalArgumentException --> Line_6 $$ T beanToEdit = getParent().getDataCommunicator().fetchItemsWithRange(rowNumber, 1).stream().findFirst().orElseThrow(() -> new IllegalArgumentException("Row number " + rowNumber + "did not yield any item from data provider")) [CD]
+Line_2 $$ public void editRow(int rowNumber) throws IllegalStateException, IllegalArgumentException --> Line_7 $$ if (!beanToEdit.equals(edited)) [CD]
+Line_6 $$ T beanToEdit = getParent().getDataCommunicator().fetchItemsWithRange(rowNumber, 1).stream().findFirst().orElseThrow(() -> new IllegalArgumentException("Row number " + rowNumber + "did not yield any item from data provider")) --> Line_7 $$ if (!beanToEdit.equals(edited)) [FD]
+Line_7 $$ if (!beanToEdit.equals(edited)) --> Line_8 $$ if (isBuffered() && edited != null) [CD]
+Line_8 $$ if (isBuffered() && edited != null) --> Line_11 $$ rpc.bind(rowNumber) [CD]
+Line_2 $$ public void editRow(int rowNumber) throws IllegalStateException, IllegalArgumentException --> Line_11 $$ rpc.bind(rowNumber) [FD]

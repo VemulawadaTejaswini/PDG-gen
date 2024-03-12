@@ -1,0 +1,7 @@
+Line_2 $$ static Collection<Scenario.Type> getScenarios(EnvStore envStore) --> Line_3 $$ Collection<String> rawVals = Splitter.on(',').trimResults().splitToList(envStore.getOptional(SCENARIOS_ENV_KEY, Scenario.Type.YAML.toString())) [CD]
+Line_2 $$ static Collection<Scenario.Type> getScenarios(EnvStore envStore) --> Line_3 $$ Collection<String> rawVals = Splitter.on(',').trimResults().splitToList(envStore.getOptional(SCENARIOS_ENV_KEY, Scenario.Type.YAML.toString())) [FD]
+Line_2 $$ static Collection<Scenario.Type> getScenarios(EnvStore envStore) --> Line_4 $$ Collection<Scenario.Type> scenarios = new ArrayList() [CD]
+Line_4 $$ Collection<Scenario.Type> scenarios = new ArrayList() --> Line_7 $$ scenarios.add(Scenario.Type.valueOf(rawVal.toUpperCase())) [FD]
+Line_5 $$ for (String rawVal : rawVals) --> Line_7 $$ scenarios.add(Scenario.Type.valueOf(rawVal.toUpperCase())) [FD]
+Line_5 $$ for (String rawVal : rawVals) --> Line_9 $$ throw new IllegalArgumentException(String.format("Unable to parse %s value '%s'. Expected one of: %s", SCENARIOS_ENV_KEY, rawVal, Arrays.asList(Scenario.Type.values()))) [FD]
+Line_2 $$ static Collection<Scenario.Type> getScenarios(EnvStore envStore) --> Line_12 $$ return scenarios [CD]

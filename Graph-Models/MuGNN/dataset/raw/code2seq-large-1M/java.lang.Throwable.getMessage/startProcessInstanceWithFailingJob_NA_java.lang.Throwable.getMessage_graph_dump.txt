@@ -1,0 +1,8 @@
+Line_2 $$ private ProcessInstance startProcessInstanceWithFailingJob() --> Line_3 $$ ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("exceptionInJobExecution") [CD]
+Line_2 $$ private ProcessInstance startProcessInstanceWithFailingJob() --> Line_4 $$ Job timerJob = managementService.createTimerJobQuery().processInstanceId(processInstance.getId()).singleResult() [CD]
+Line_3 $$ ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("exceptionInJobExecution") --> Line_4 $$ Job timerJob = managementService.createTimerJobQuery().processInstanceId(processInstance.getId()).singleResult() [FD]
+Line_2 $$ private ProcessInstance startProcessInstanceWithFailingJob() --> Line_5 $$ assertNotNull("No job found for process instance", timerJob) [CD]
+Line_4 $$ Job timerJob = managementService.createTimerJobQuery().processInstanceId(processInstance.getId()).singleResult() --> Line_5 $$ assertNotNull("No job found for process instance", timerJob) [FD]
+Line_4 $$ Job timerJob = managementService.createTimerJobQuery().processInstanceId(processInstance.getId()).singleResult() --> Line_7 $$ managementService.moveTimerToExecutableJob(timerJob.getId()) [FD]
+Line_4 $$ Job timerJob = managementService.createTimerJobQuery().processInstanceId(processInstance.getId()).singleResult() --> Line_8 $$ managementService.executeJob(timerJob.getId()) [FD]
+Line_2 $$ private ProcessInstance startProcessInstanceWithFailingJob() --> Line_13 $$ return processInstance [CD]

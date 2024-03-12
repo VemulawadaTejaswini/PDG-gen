@@ -1,0 +1,6 @@
+Line_2 $$ private void updateBatchInternal(Map<byte[], byte[]> rows) throws IOException --> Line_4 $$ for (Map.Entry<byte[], byte[]> entry : rows.entrySet()) [FD]
+Line_5 $$ if (entry.getValue() == null) --> Line_6 $$ batch.delete(entry.getKey()) [CD]
+Line_3 $$ try (WriteBatch batch = db.createWriteBatch()) --> Line_6 $$ batch.delete(entry.getKey()) [FD]
+Line_5 $$ if (entry.getValue() == null) --> Line_8 $$ batch.put(entry.getKey(), entry.getValue()) [CD]
+Line_3 $$ try (WriteBatch batch = db.createWriteBatch()) --> Line_8 $$ batch.put(entry.getKey(), entry.getValue()) [FD]
+Line_3 $$ try (WriteBatch batch = db.createWriteBatch()) --> Line_11 $$ db.write(batch) [FD]

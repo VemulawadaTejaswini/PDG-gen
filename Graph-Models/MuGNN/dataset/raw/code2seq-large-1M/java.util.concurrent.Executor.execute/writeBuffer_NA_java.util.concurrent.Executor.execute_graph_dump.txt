@@ -1,0 +1,7 @@
+Line_2 $$ public void writeBuffer(ByteBuffer buf, CompletionHandler handler) --> Line_3 $$ boolean thisThreadShouldWrite = false [CD]
+Line_5 $$ if (state == State.FINISHED_OR_ERROR) --> Line_6 $$ executor.execute(() -> handler.failed(new IllegalStateException("ContentChannel already closed."))) [CD]
+Line_2 $$ public void writeBuffer(ByteBuffer buf, CompletionHandler handler) --> Line_6 $$ executor.execute(() -> handler.failed(new IllegalStateException("ContentChannel already closed."))) [FD]
+Line_5 $$ if (state == State.FINISHED_OR_ERROR) --> Line_7 $$ return [CD]
+Line_3 $$ boolean thisThreadShouldWrite = false --> Line_19 $$ thisThreadShouldWrite = true [FD]
+Line_2 $$ public void writeBuffer(ByteBuffer buf, CompletionHandler handler) --> Line_26 $$ if (thisThreadShouldWrite) [CD]
+Line_26 $$ if (thisThreadShouldWrite) --> Line_27 $$ writeBuffersInQueueToOutputStream() [CD]

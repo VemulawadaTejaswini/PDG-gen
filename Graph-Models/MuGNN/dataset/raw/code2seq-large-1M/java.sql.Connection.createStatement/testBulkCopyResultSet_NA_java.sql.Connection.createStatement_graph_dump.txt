@@ -1,0 +1,8 @@
+Line_2 $$ private void testBulkCopyResultSet(boolean setSelectMethod, Integer resultSetType, Integer resultSetConcurrency) throws SQLException --> Line_3 $$ setupVariation() [CD]
+Line_2 $$ private void testBulkCopyResultSet(boolean setSelectMethod, Integer resultSetType, Integer resultSetConcurrency) throws SQLException --> Line_4 $$ try (Connection connnection = DriverManager.getConnection(connectionString + (setSelectMethod ? ";selectMethod=cursor;" : "")); [FD]
+Line_4 $$ try (Connection connnection = DriverManager.getConnection(connectionString + (setSelectMethod ? ";selectMethod=cursor;" : "")); --> Line_6 $$ ResultSet rs = statement.executeQuery("select * from " + tableSrc.getEscapedTableName()) [FD]
+Line_7 $$ SQLServerBulkCopy bcOperation = new SQLServerBulkCopy(connection) --> Line_8 $$ bcOperation.setDestinationTableName(tableDest.getEscapedTableName()) [FD]
+Line_7 $$ SQLServerBulkCopy bcOperation = new SQLServerBulkCopy(connection) --> Line_9 $$ bcOperation.writeToServer(rs) [FD]
+Line_6 $$ ResultSet rs = statement.executeQuery("select * from " + tableSrc.getEscapedTableName()) --> Line_9 $$ bcOperation.writeToServer(rs) [FD]
+Line_7 $$ SQLServerBulkCopy bcOperation = new SQLServerBulkCopy(connection) --> Line_10 $$ bcOperation.close() [FD]
+Line_2 $$ private void testBulkCopyResultSet(boolean setSelectMethod, Integer resultSetType, Integer resultSetConcurrency) throws SQLException --> Line_13 $$ terminateVariation() [CD]

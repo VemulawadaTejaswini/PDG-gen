@@ -1,0 +1,5 @@
+Line_2 $$ public void testInsertSelectWithFilterJson() throws Exception --> Line_3 $$ ksqlContext.sql(String.format("CREATE STREAM BIGORDERS_json AS SELECT * FROM %s WHERE ORDERUNITS > " + "100000;", jsonStreamName)) [CD]
+Line_2 $$ public void testInsertSelectWithFilterJson() throws Exception --> Line_4 $$ ksqlContext.sql(String.format("INSERT INTO BIGORDERS_json SELECT * FROM %s WHERE ORDERUNITS > 40;" + "", jsonStreamName)) [CD]
+Line_2 $$ public void testInsertSelectWithFilterJson() throws Exception --> Line_5 $$ Map<String, GenericRow> results = testHarness.consumeData("BIGORDERS_json", dataProvider.schema(), 4, new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.JSON) [CD]
+Line_2 $$ public void testInsertSelectWithFilterJson() throws Exception --> Line_6 $$ Assert.assertEquals(4, results.size()) [CD]
+Line_5 $$ Map<String, GenericRow> results = testHarness.consumeData("BIGORDERS_json", dataProvider.schema(), 4, new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.JSON) --> Line_6 $$ Assert.assertEquals(4, results.size()) [FD]

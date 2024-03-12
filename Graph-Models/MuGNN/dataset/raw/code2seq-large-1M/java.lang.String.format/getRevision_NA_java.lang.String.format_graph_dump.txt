@@ -1,0 +1,5 @@
+Line_2 $$ public GitRevision getRevision() throws RepoException, ValidationException --> Line_3 $$ int latestPatchSet = GitRepoType.getGerritPatchSets(repository, url, changeNumber).lastEntry().getKey() [CD]
+Line_2 $$ public GitRevision getRevision() throws RepoException, ValidationException --> Line_4 $$ if (patchSet == null) [CD]
+Line_4 $$ if (patchSet == null) --> Line_6 $$ if (latestPatchSet > patchSet) [CD]
+Line_6 $$ if (latestPatchSet > patchSet) --> Line_7 $$ generalOptions.console().warnFmt(String.format("Change %s has more patch sets after Patch Set %s. Latest is Patch Set %s." + " Not all changes might be migrated", changeNumber, patchSet, latestPatchSet)) [CD]
+Line_2 $$ public GitRevision getRevision() throws RepoException, ValidationException --> Line_9 $$ return GitRepoType.GERRIT.resolveRef(repository, url, String.format("refs/changes/%02d/%d", changeNumber % 100, changeNumber) + "/" + patchSet, generalOptions) [CD]

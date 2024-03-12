@@ -1,0 +1,8 @@
+Line_2 $$ public Observable<List<Product>> searchFor(@NonNull String searchQueryText) --> Line_3 $$ if (searchQueryText == null) [FD]
+Line_2 $$ public Observable<List<Product>> searchFor(@NonNull String searchQueryText) --> Line_3 $$ if (searchQueryText == null) [CD]
+Line_3 $$ if (searchQueryText == null) --> Line_4 $$ return Observable.error(new NullPointerException("SearchQueryText == null")) [CD]
+Line_2 $$ public Observable<List<Product>> searchFor(@NonNull String searchQueryText) --> Line_6 $$ if (searchQueryText.length() == 0) [FD]
+Line_2 $$ public Observable<List<Product>> searchFor(@NonNull String searchQueryText) --> Line_6 $$ if (searchQueryText.length() == 0) [CD]
+Line_6 $$ if (searchQueryText.length() == 0) --> Line_7 $$ return Observable.error(new IllegalArgumentException("SearchQueryTest is blank")) [CD]
+Line_2 $$ public Observable<List<Product>> searchFor(@NonNull String searchQueryText) --> Line_9 $$ return backend.getAllProducts().delay(1000, TimeUnit.MILLISECONDS).flatMap(Observable::<>fromIterable).filter( product -> isProductMatchingSearchCriteria(product, searchQueryText)).toList().toObservable() [FD]
+Line_2 $$ public Observable<List<Product>> searchFor(@NonNull String searchQueryText) --> Line_9 $$ return backend.getAllProducts().delay(1000, TimeUnit.MILLISECONDS).flatMap(Observable::<>fromIterable).filter( product -> isProductMatchingSearchCriteria(product, searchQueryText)).toList().toObservable() [CD]

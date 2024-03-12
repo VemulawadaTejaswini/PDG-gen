@@ -1,0 +1,6 @@
+Line_2 $$ public void testShardSizeIsZero() --> Line_3 $$ final int size = 100 [CD]
+Line_2 $$ public void testShardSizeIsZero() --> Line_4 $$ final int shardSize = 0 [CD]
+Line_2 $$ public void testShardSizeIsZero() --> Line_5 $$ IllegalArgumentException exception = expectThrows(IllegalArgumentException.class, () -> client().prepareSearch("idx").addAggregation(geohashGrid("geohashgrid").field("location").size(size).shardSize(shardSize)).execute().actionGet()) [CD]
+Line_4 $$ final int shardSize = 0 --> Line_5 $$ IllegalArgumentException exception = expectThrows(IllegalArgumentException.class, () -> client().prepareSearch("idx").addAggregation(geohashGrid("geohashgrid").field("location").size(size).shardSize(shardSize)).execute().actionGet()) [FD]
+Line_3 $$ final int size = 100 --> Line_5 $$ IllegalArgumentException exception = expectThrows(IllegalArgumentException.class, () -> client().prepareSearch("idx").addAggregation(geohashGrid("geohashgrid").field("location").size(size).shardSize(shardSize)).execute().actionGet()) [FD]
+Line_2 $$ public void testShardSizeIsZero() --> Line_6 $$ assertThat(exception.getMessage(), containsString("[shardSize] must be greater than 0. Found [0] in [geohashgrid]")) [CD]

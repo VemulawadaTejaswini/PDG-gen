@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldSetDisabledAndNotRunIfNoDownloadsInDatabase() --> Line_3 $$ testee.historyCheckEnabled = true [CD]
+Line_2 $$ public void shouldSetDisabledAndNotRunIfNoDownloadsInDatabase() --> Line_4 $$ testee.lastDownload = Instant.now() [CD]
+Line_2 $$ public void shouldSetDisabledAndNotRunIfNoDownloadsInDatabase() --> Line_5 $$ List<FileDownloadStatus> statuses = Collections.singletonList(FileDownloadStatus.REQUESTED) [CD]
+Line_2 $$ public void shouldSetDisabledAndNotRunIfNoDownloadsInDatabase() --> Line_6 $$ when(downloadRepository.findByStatusInAndTimeAfterOrderByTimeDesc(eq(statuses), any())).thenReturn(Collections.emptyList()) [CD]
+Line_5 $$ List<FileDownloadStatus> statuses = Collections.singletonList(FileDownloadStatus.REQUESTED) --> Line_6 $$ when(downloadRepository.findByStatusInAndTimeAfterOrderByTimeDesc(eq(statuses), any())).thenReturn(Collections.emptyList()) [FD]
+Line_2 $$ public void shouldSetDisabledAndNotRunIfNoDownloadsInDatabase() --> Line_7 $$ testee.checkStatus(statuses, 10000, StatusCheckType.HISTORY) [CD]
+Line_5 $$ List<FileDownloadStatus> statuses = Collections.singletonList(FileDownloadStatus.REQUESTED) --> Line_7 $$ testee.checkStatus(statuses, 10000, StatusCheckType.HISTORY) [FD]
+Line_2 $$ public void shouldSetDisabledAndNotRunIfNoDownloadsInDatabase() --> Line_8 $$ assertThat(testee.historyCheckEnabled).isFalse() [CD]

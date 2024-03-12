@@ -1,0 +1,6 @@
+Line_2 $$ public void loadDataInfileEmpty() throws SQLException, IOException --> Line_3 $$ File temp = File.createTempFile("validateInfile", ".tmp") [CD]
+Line_5 $$ Statement st = sharedConnection.createStatement() --> Line_6 $$ st.execute("LOAD DATA LOCAL INFILE '" + temp.getAbsolutePath().replace('\\', '/') + "' INTO TABLE ldinfile") [FD]
+Line_3 $$ File temp = File.createTempFile("validateInfile", ".tmp") --> Line_6 $$ st.execute("LOAD DATA LOCAL INFILE '" + temp.getAbsolutePath().replace('\\', '/') + "' INTO TABLE ldinfile") [FD]
+Line_5 $$ Statement st = sharedConnection.createStatement() --> Line_7 $$ try (ResultSet rs = st.executeQuery("SELECT * FROM ldinfile")) [FD]
+Line_7 $$ try (ResultSet rs = st.executeQuery("SELECT * FROM ldinfile")) --> Line_8 $$ assertFalse(rs.next()) [FD]
+Line_3 $$ File temp = File.createTempFile("validateInfile", ".tmp") --> Line_11 $$ temp.delete() [FD]

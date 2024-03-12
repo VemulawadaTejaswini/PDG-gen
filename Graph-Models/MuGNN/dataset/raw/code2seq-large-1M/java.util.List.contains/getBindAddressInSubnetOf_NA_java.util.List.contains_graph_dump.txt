@@ -1,0 +1,7 @@
+Line_4 $$ for (NetworkInterface iface : networkInterfaces) --> Line_5 $$ for (InterfaceAddress ifaceAddress : getInterfaceAddresses(iface)) [FD]
+Line_5 $$ for (InterfaceAddress ifaceAddress : getInterfaceAddresses(iface)) --> Line_7 $$ if (ifaceAddress == null || !bindAddresses.contains(ifaceAddress.getAddress())) [FD]
+Line_2 $$ protected InetAddress getBindAddressInSubnetOf(InetAddress inetAddress) --> Line_11 $$ if (isInSubnet(inetAddress.getAddress(), ifaceAddress.getAddress().getAddress(), ifaceAddress.getNetworkPrefixLength())) [FD]
+Line_5 $$ for (InterfaceAddress ifaceAddress : getInterfaceAddresses(iface)) --> Line_11 $$ if (isInSubnet(inetAddress.getAddress(), ifaceAddress.getAddress().getAddress(), ifaceAddress.getNetworkPrefixLength())) [FD]
+Line_11 $$ if (isInSubnet(inetAddress.getAddress(), ifaceAddress.getAddress().getAddress(), ifaceAddress.getNetworkPrefixLength())) --> Line_12 $$ return ifaceAddress.getAddress() [CD]
+Line_5 $$ for (InterfaceAddress ifaceAddress : getInterfaceAddresses(iface)) --> Line_12 $$ return ifaceAddress.getAddress() [FD]
+Line_2 $$ protected InetAddress getBindAddressInSubnetOf(InetAddress inetAddress) --> Line_17 $$ return null [CD]

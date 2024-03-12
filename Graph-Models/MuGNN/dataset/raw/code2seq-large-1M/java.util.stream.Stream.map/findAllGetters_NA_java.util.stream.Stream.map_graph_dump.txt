@@ -1,0 +1,6 @@
+Line_2 $$ private void findAllGetters(Class currentGetterSource) --> Line_3 $$ Class clazz = currentGetterSource [CD]
+Line_2 $$ private void findAllGetters(Class currentGetterSource) --> Line_4 $$ while (clazz != null && clazz != Object.class) [CD]
+Line_3 $$ Class clazz = currentGetterSource --> Line_5 $$ context.addTypeSubstitutions(clazz) [FD]
+Line_3 $$ Class clazz = currentGetterSource --> Line_6 $$ Arrays.stream(clazz.getDeclaredMethods()).filter( method -> isGetter(method) && !method.isBridge()).filter( method -> !isOverridden(method, getters)).map( getter -> createJaversGetter(getter, context)).forEach(getters::<>add) [FD]
+Line_3 $$ Class clazz = currentGetterSource --> Line_7 $$ Arrays.stream(clazz.getInterfaces()).forEach(this::<>findAllGetters) [FD]
+Line_3 $$ Class clazz = currentGetterSource --> Line_8 $$ clazz = clazz.getSuperclass() [FD]

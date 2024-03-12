@@ -1,0 +1,8 @@
+Line_2 $$ public void runImpl() --> Line_3 $$ this.self = Thread.currentThread() [CD]
+Line_2 $$ public void runImpl() --> Line_4 $$ if (debug.val) [CD]
+Line_4 $$ if (debug.val) --> Line_5 $$ LOG.debug(String.format("Invoking HStoreSite status monitor thread [interval=%d, kill=%s]", this.interval, hstore_conf.site.status_kill_if_hung)) [CD]
+Line_9 $$ if (hstore_conf.site.status_kill_if_hung && this.last_completed != null && this.last_completed == completed && siteDebug.getInflightTxnCount() > 0) --> Line_10 $$ String msg = String.format("HStoreSite #%d is hung! Killing the cluster!", hstore_site.getSiteId()) [CD]
+Line_9 $$ if (hstore_conf.site.status_kill_if_hung && this.last_completed != null && this.last_completed == completed && siteDebug.getInflightTxnCount() > 0) --> Line_11 $$ LOG.fatal(msg) [CD]
+Line_10 $$ String msg = String.format("HStoreSite #%d is hung! Killing the cluster!", hstore_site.getSiteId()) --> Line_11 $$ LOG.fatal(msg) [FD]
+Line_9 $$ if (hstore_conf.site.status_kill_if_hung && this.last_completed != null && this.last_completed == completed && siteDebug.getInflightTxnCount() > 0) --> Line_12 $$ this.hstore_site.getCoordinator().shutdownCluster(new RuntimeException(msg)) [CD]
+Line_8 $$ int completed = TransactionCounter.COMPLETED.get() --> Line_14 $$ this.last_completed = completed [FD]

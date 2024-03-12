@@ -1,0 +1,6 @@
+Line_2 $$ public void testArray() throws Exception --> Line_3 $$ Class<?> dynamicType = new ByteBuddy().redefine(sample).visit(Advice.to(AdviceVariableAccessTest.class).on(named(READ).or(named(WRITE)))).make().load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testArray() throws Exception --> Line_4 $$ Object instance = dynamicType.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testArray() throws Exception --> Line_5 $$ assertThat(dynamicType.getDeclaredMethod(WRITE, type).invoke(instance, value), nullValue(Object.class)) [CD]
+Line_4 $$ Object instance = dynamicType.getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(dynamicType.getDeclaredMethod(WRITE, type).invoke(instance, value), nullValue(Object.class)) [FD]
+Line_2 $$ public void testArray() throws Exception --> Line_6 $$ assertThat(dynamicType.getDeclaredMethod(READ).invoke(instance), is(value)) [CD]
+Line_4 $$ Object instance = dynamicType.getDeclaredConstructor().newInstance() --> Line_6 $$ assertThat(dynamicType.getDeclaredMethod(READ).invoke(instance), is(value)) [FD]

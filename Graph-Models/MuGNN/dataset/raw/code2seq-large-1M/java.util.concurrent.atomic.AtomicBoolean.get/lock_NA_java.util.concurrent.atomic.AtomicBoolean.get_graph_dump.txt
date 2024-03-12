@@ -1,0 +1,8 @@
+Line_2 $$ private void lock(boolean writeLock) --> Line_3 $$ if (writeLock) [CD]
+Line_3 $$ if (writeLock) --> Line_4 $$ busyLock.writeLock() [CD]
+Line_3 $$ if (writeLock) --> Line_6 $$ busyLock.readLock() [CD]
+Line_2 $$ private void lock(boolean writeLock) --> Line_7 $$ if (closed.get() || cancelled) [CD]
+Line_7 $$ if (closed.get() || cancelled) --> Line_8 $$ unlock(writeLock) [CD]
+Line_2 $$ private void lock(boolean writeLock) --> Line_8 $$ unlock(writeLock) [FD]
+Line_7 $$ if (closed.get() || cancelled) --> Line_9 $$ if (disconnectErr != null) [CD]
+Line_7 $$ if (closed.get() || cancelled) --> Line_11 $$ closedException() [CD]

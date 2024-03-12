@@ -1,0 +1,8 @@
+Line_4 $$ GridCacheContext<K, V> cctx = cacheContext(ctx) --> Line_5 $$ final IgniteCache cache = cctx.kernalContext().cache().jcache(cctx.name()) [FD]
+Line_6 $$ if (internal) --> Line_7 $$ if (e.isFiltered()) [CD]
+Line_7 $$ if (e.isFiltered()) --> Line_8 $$ return Collections.emptyList() [CD]
+Line_7 $$ if (e.isFiltered()) --> Line_10 $$ return F.<CacheEntryEvent<? extends K, ? extends V>>asList(new CacheContinuousQueryEvent<K, V>(cache, cctx, e)) [CD]
+Line_12 $$ if (e.updateCounter() == -1L) --> Line_13 $$ return !e.isFiltered() ? F.<CacheEntryEvent<? extends K, ? extends V>>asList(new CacheContinuousQueryEvent<K, V>(cache, cctx, e)) : Collections.<CacheEntryEvent<? extends K, ? extends V>>emptyList() [CD]
+Line_15 $$ CacheContinuousQueryPartitionRecovery rec = getOrCreatePartitionRecovery(ctx, e.partition(), e.topologyVersion()) --> Line_16 $$ return rec.collectEntries(e, cctx, cache) [FD]
+Line_4 $$ GridCacheContext<K, V> cctx = cacheContext(ctx) --> Line_16 $$ return rec.collectEntries(e, cctx, cache) [FD]
+Line_5 $$ final IgniteCache cache = cctx.kernalContext().cache().jcache(cctx.name()) --> Line_16 $$ return rec.collectEntries(e, cctx, cache) [FD]

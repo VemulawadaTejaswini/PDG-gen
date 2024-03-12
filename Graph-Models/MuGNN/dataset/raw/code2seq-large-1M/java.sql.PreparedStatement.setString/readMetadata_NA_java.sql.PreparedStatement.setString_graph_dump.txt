@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized Optional<String> readMetadata(BuildTarget buildTarget, String key) --> Line_4 $$ selectStmt.setString(1, cellRelativeName(buildTarget)) [FD]
+Line_2 $$ public synchronized Optional<String> readMetadata(BuildTarget buildTarget, String key) --> Line_5 $$ selectStmt.setString(2, key) [FD]
+Line_6 $$ try (ResultSet rs = selectStmt.executeQuery()) --> Line_7 $$ if (!rs.next()) [FD]
+Line_7 $$ if (!rs.next()) --> Line_8 $$ return Optional.empty() [CD]
+Line_6 $$ try (ResultSet rs = selectStmt.executeQuery()) --> Line_10 $$ String value = rs.getString(1) [FD]
+Line_10 $$ String value = rs.getString(1) --> Line_11 $$ return Optional.of(value) [FD]

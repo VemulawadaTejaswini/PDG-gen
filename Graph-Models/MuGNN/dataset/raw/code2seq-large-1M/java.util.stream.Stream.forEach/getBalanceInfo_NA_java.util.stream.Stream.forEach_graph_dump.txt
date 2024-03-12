@@ -1,0 +1,7 @@
+Line_4 $$ final ExchangeHttpResponse response = sendAuthenticatedRequestToExchange("balances", null) --> Line_6 $$ final BitfinexBalances allAccountBalances = gson.fromJson(response.getPayload(), BitfinexBalances.class) [FD]
+Line_8 $$ if (allAccountBalances != null) --> Line_9 $$ allAccountBalances.stream().filter( accountBalance -> accountBalance.type.equalsIgnoreCase("exchange")).forEach( accountBalance -> [CD]
+Line_10 $$ if (accountBalance.currency.equalsIgnoreCase("usd")) --> Line_11 $$ balancesAvailable.put("USD", accountBalance.available) [CD]
+Line_7 $$ final HashMap<String, BigDecimal> balancesAvailable = new HashMap() --> Line_11 $$ balancesAvailable.put("USD", accountBalance.available) [FD]
+Line_10 $$ if (accountBalance.currency.equalsIgnoreCase("usd")) --> Line_12 $$ if (accountBalance.currency.equalsIgnoreCase("btc")) [CD]
+Line_12 $$ if (accountBalance.currency.equalsIgnoreCase("btc")) --> Line_13 $$ balancesAvailable.put("BTC", accountBalance.available) [CD]
+Line_7 $$ final HashMap<String, BigDecimal> balancesAvailable = new HashMap() --> Line_13 $$ balancesAvailable.put("BTC", accountBalance.available) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void testInputStreamExceptionReportsToLoadBalancer() throws IOException --> Line_3 $$ EasyMock.expect(mockBufferedSource.inputStream()).andReturn(mockInputStream).once() [CD]
+Line_2 $$ public void testInputStreamExceptionReportsToLoadBalancer() throws IOException --> Line_4 $$ EasyMock.expect(mockInputStream.read()).andThrow(new IOException()).once() [CD]
+Line_2 $$ public void testInputStreamExceptionReportsToLoadBalancer() throws IOException --> Line_5 $$ mockLoadBalancer.reportRequestException(EasyMock.eq(SERVER)) [CD]
+Line_2 $$ public void testInputStreamExceptionReportsToLoadBalancer() throws IOException --> Line_6 $$ EasyMock.expectLastCall().once() [CD]
+Line_2 $$ public void testInputStreamExceptionReportsToLoadBalancer() throws IOException --> Line_7 $$ replayAll() [CD]
+Line_8 $$ try (LoadBalancedHttpResponse response = new LoadBalancedHttpResponse(SERVER, mockLoadBalancer, this.response)) --> Line_9 $$ response.getBody().read() [FD]
+Line_2 $$ public void testInputStreamExceptionReportsToLoadBalancer() throws IOException --> Line_11 $$ verifyAll() [CD]

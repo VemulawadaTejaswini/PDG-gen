@@ -1,0 +1,6 @@
+Line_2 $$ public void testWriteWithNamespace() throws IOException --> Line_3 $$ final Map<String, String> namespaces = new HashMap() [CD]
+Line_2 $$ public void testWriteWithNamespace() throws IOException --> Line_4 $$ namespaces.put("a", "info:a") [CD]
+Line_3 $$ final Map<String, String> namespaces = new HashMap() --> Line_4 $$ namespaces.put("a", "info:a") [FD]
+Line_5 $$ try (final RdfStream input = new DefaultRdfStream(triple.getSubject(), of(triple)); --> Line_7 $$ new RdfStreamStreamingOutput(input, namespaces, TURTLE_TYPE).write(output) [FD]
+Line_5 $$ try (final RdfStream input = new DefaultRdfStream(triple.getSubject(), of(triple)); --> Line_8 $$ final String s = output.toString("UTF-8") [FD]
+Line_8 $$ final String s = output.toString("UTF-8") --> Line_9 $$ assertTrue(s.replaceAll("\\s+", " ").contains("@prefix a: <info:a>")) [FD]

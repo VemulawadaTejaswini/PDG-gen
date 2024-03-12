@@ -1,0 +1,8 @@
+Line_2 $$ public void testExcludeHasPreferenceSingle() --> Line_3 $$ String excluded = randomFrom(AuditLevel.values()).toString().toLowerCase(Locale.ROOT) [CD]
+Line_2 $$ public void testExcludeHasPreferenceSingle() --> Line_4 $$ EnumSet<AuditLevel> enumSet = AuditLevel.parse(Collections.singletonList("_all"), Collections.singletonList(excluded)) [CD]
+Line_3 $$ String excluded = randomFrom(AuditLevel.values()).toString().toLowerCase(Locale.ROOT) --> Line_4 $$ EnumSet<AuditLevel> enumSet = AuditLevel.parse(Collections.singletonList("_all"), Collections.singletonList(excluded)) [FD]
+Line_2 $$ public void testExcludeHasPreferenceSingle() --> Line_5 $$ EnumSet<AuditLevel> expected = EnumSet.allOf(AuditLevel.class) [CD]
+Line_2 $$ public void testExcludeHasPreferenceSingle() --> Line_6 $$ expected.remove(AuditLevel.valueOf(excluded.toUpperCase(Locale.ROOT))) [CD]
+Line_3 $$ String excluded = randomFrom(AuditLevel.values()).toString().toLowerCase(Locale.ROOT) --> Line_6 $$ expected.remove(AuditLevel.valueOf(excluded.toUpperCase(Locale.ROOT))) [FD]
+Line_2 $$ public void testExcludeHasPreferenceSingle() --> Line_7 $$ assertThat(enumSet, equalTo(expected)) [CD]
+Line_4 $$ EnumSet<AuditLevel> enumSet = AuditLevel.parse(Collections.singletonList("_all"), Collections.singletonList(excluded)) --> Line_7 $$ assertThat(enumSet, equalTo(expected)) [FD]

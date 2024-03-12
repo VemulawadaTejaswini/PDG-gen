@@ -1,0 +1,7 @@
+Line_2 $$ public void checkForDisconnectedMonitors() --> Line_3 $$ LOG.debug("Checking for disconnected monitors: disconnectedTimeout = [CD]
+Line_5 $$ final Date now = m_timeKeeper.getCurrentDate() --> Line_6 $$ final Date earliestAcceptable = new Date(now.getTime() - m_disconnectedTimeout) [FD]
+Line_12 $$ final Collection<OnmsLocationMonitor> monitors = m_locMonDao.findMatching(criteria) --> Line_13 $$ LOG.debug("Found [FD]
+Line_14 $$ for (final OnmsLocationMonitor monitor : monitors) --> Line_15 $$ LOG.debug("Monitor [FD]
+Line_14 $$ for (final OnmsLocationMonitor monitor : monitors) --> Line_16 $$ monitor.setStatus(MonitorStatus.DISCONNECTED) [FD]
+Line_14 $$ for (final OnmsLocationMonitor monitor : monitors) --> Line_17 $$ m_locMonDao.update(monitor) [FD]
+Line_14 $$ for (final OnmsLocationMonitor monitor : monitors) --> Line_18 $$ sendDisconnectedEvent(monitor) [FD]

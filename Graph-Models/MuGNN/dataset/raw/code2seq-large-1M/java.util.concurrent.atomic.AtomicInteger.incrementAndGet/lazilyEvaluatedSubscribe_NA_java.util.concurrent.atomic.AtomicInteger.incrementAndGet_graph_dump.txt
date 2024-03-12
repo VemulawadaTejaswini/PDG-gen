@@ -1,0 +1,7 @@
+Line_2 $$ public void lazilyEvaluatedSubscribe() --> Line_3 $$ AtomicInteger count = new AtomicInteger() [CD]
+Line_2 $$ public void lazilyEvaluatedSubscribe() --> Line_4 $$ Flux<Object> error = Flux.error(() -> new IllegalStateException("boom" + count.incrementAndGet())) [CD]
+Line_3 $$ AtomicInteger count = new AtomicInteger() --> Line_4 $$ Flux<Object> error = Flux.error(() -> new IllegalStateException("boom" + count.incrementAndGet())) [FD]
+Line_2 $$ public void lazilyEvaluatedSubscribe() --> Line_5 $$ assertThat(count).as("no op before subscribe").hasValue(0) [CD]
+Line_3 $$ AtomicInteger count = new AtomicInteger() --> Line_5 $$ assertThat(count).as("no op before subscribe").hasValue(0) [FD]
+Line_2 $$ public void lazilyEvaluatedSubscribe() --> Line_6 $$ StepVerifier.create(error.retry(3)).verifyErrorMessage("boom4") [CD]
+Line_4 $$ Flux<Object> error = Flux.error(() -> new IllegalStateException("boom" + count.incrementAndGet())) --> Line_6 $$ StepVerifier.create(error.retry(3)).verifyErrorMessage("boom4") [FD]

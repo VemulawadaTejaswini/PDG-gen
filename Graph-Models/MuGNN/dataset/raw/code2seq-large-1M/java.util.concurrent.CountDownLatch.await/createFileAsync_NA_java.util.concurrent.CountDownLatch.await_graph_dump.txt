@@ -1,0 +1,8 @@
+Line_2 $$ private IgniteInternalFuture<Void> createFileAsync(final IgfsPath path, final CountDownLatch writeStartLatch) --> Line_3 $$ return GridTestUtils.runAsync(new Callable<Void>() [CD]
+Line_3 $$ return GridTestUtils.runAsync(new Callable<Void>() --> Line_5 $$ IgniteFileSystem igfs = attacker.fileSystem(IGFS_NAME) [CD]
+Line_5 $$ IgniteFileSystem igfs = attacker.fileSystem(IGFS_NAME) --> Line_6 $$ try (IgfsOutputStream out = igfs.create(path, true)) [FD]
+Line_2 $$ private IgniteInternalFuture<Void> createFileAsync(final IgfsPath path, final CountDownLatch writeStartLatch) --> Line_6 $$ try (IgfsOutputStream out = igfs.create(path, true)) [FD]
+Line_2 $$ private IgniteInternalFuture<Void> createFileAsync(final IgfsPath path, final CountDownLatch writeStartLatch) --> Line_7 $$ writeStartLatch.await() [FD]
+Line_6 $$ try (IgfsOutputStream out = igfs.create(path, true)) --> Line_8 $$ out.write(new byte[1024]) [FD]
+Line_6 $$ try (IgfsOutputStream out = igfs.create(path, true)) --> Line_9 $$ out.flush() [FD]
+Line_3 $$ return GridTestUtils.runAsync(new Callable<Void>() --> Line_11 $$ return null [CD]

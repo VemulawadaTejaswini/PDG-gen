@@ -1,0 +1,8 @@
+Line_2 $$ public Set<KeyOperation> getKeyOps() --> Line_3 $$ List<String> result = (List<String>) getKeyProperties().get("key_ops") [CD]
+Line_2 $$ public Set<KeyOperation> getKeyOps() --> Line_4 $$ if (result == null) [CD]
+Line_3 $$ List<String> result = (List<String>) getKeyProperties().get("key_ops") --> Line_4 $$ if (result == null) [FD]
+Line_4 $$ if (result == null) --> Line_5 $$ result = Collections.emptyList() [CD]
+Line_3 $$ List<String> result = (List<String>) getKeyProperties().get("key_ops") --> Line_5 $$ result = Collections.emptyList() [FD]
+Line_2 $$ public Set<KeyOperation> getKeyOps() --> Line_7 $$ return result.stream().map( o -> KeyOperation.valueOf(o)).collect(Collectors.toSet()) [CD]
+Line_3 $$ List<String> result = (List<String>) getKeyProperties().get("key_ops") --> Line_7 $$ return result.stream().map( o -> KeyOperation.valueOf(o)).collect(Collectors.toSet()) [FD]
+Line_5 $$ result = Collections.emptyList() --> Line_7 $$ return result.stream().map( o -> KeyOperation.valueOf(o)).collect(Collectors.toSet()) [FD]

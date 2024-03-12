@@ -1,0 +1,8 @@
+Line_2 $$ public void invalidateTriggeredByEviction() throws LegalSPITesterException --> Line_3 $$ tier = factory.newCachingTier(5L) [CD]
+Line_5 $$ final AtomicBoolean invalidated = new AtomicBoolean(false) --> Line_6 $$ invalidated.set(true) [FD]
+Line_7 $$ for (int i = 0; i < 20; i++) --> Line_8 $$ final K key = factory.createKey(i ^ 3) [CD]
+Line_7 $$ for (int i = 0; i < 20; i++) --> Line_9 $$ final V value = factory.createValue(i ^ 5) [CD]
+Line_7 $$ for (int i = 0; i < 20; i++) --> Line_10 $$ tier.getOrComputeIfAbsent(key,  k -> wrap(value)) [CD]
+Line_8 $$ final K key = factory.createKey(i ^ 3) --> Line_10 $$ tier.getOrComputeIfAbsent(key,  k -> wrap(value)) [FD]
+Line_9 $$ final V value = factory.createValue(i ^ 5) --> Line_10 $$ tier.getOrComputeIfAbsent(key,  k -> wrap(value)) [FD]
+Line_5 $$ final AtomicBoolean invalidated = new AtomicBoolean(false) --> Line_12 $$ assertThat(invalidated.get(), is(true)) [FD]

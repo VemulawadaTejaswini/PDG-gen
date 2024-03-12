@@ -1,0 +1,8 @@
+Line_2 $$ public List<Integer> deleteCommentEvents(Collection<Integer> comments) --> Line_3 $$ if (comments.isEmpty()) [CD]
+Line_2 $$ public List<Integer> deleteCommentEvents(Collection<Integer> comments) --> Line_3 $$ if (comments.isEmpty()) [FD]
+Line_3 $$ if (comments.isEmpty()) --> Line_4 $$ return ImmutableList.of() [CD]
+Line_2 $$ public List<Integer> deleteCommentEvents(Collection<Integer> comments) --> Line_6 $$ List<Integer> affectedUsers = namedJdbcTemplate.queryForList("SELECT DISTINCT (userid) FROM user_events " + "WHERE comment_id IN (:list) AND type in ('REPLY', 'WATCH', 'REF')", ImmutableMap.of("list", comments), Integer.class) [CD]
+Line_2 $$ public List<Integer> deleteCommentEvents(Collection<Integer> comments) --> Line_6 $$ List<Integer> affectedUsers = namedJdbcTemplate.queryForList("SELECT DISTINCT (userid) FROM user_events " + "WHERE comment_id IN (:list) AND type in ('REPLY', 'WATCH', 'REF')", ImmutableMap.of("list", comments), Integer.class) [FD]
+Line_2 $$ public List<Integer> deleteCommentEvents(Collection<Integer> comments) --> Line_7 $$ namedJdbcTemplate.update("DELETE FROM user_events WHERE comment_id IN (:list) AND type in ('REPLY', 'WATCH', 'REF')", ImmutableMap.of("list", comments)) [CD]
+Line_2 $$ public List<Integer> deleteCommentEvents(Collection<Integer> comments) --> Line_7 $$ namedJdbcTemplate.update("DELETE FROM user_events WHERE comment_id IN (:list) AND type in ('REPLY', 'WATCH', 'REF')", ImmutableMap.of("list", comments)) [FD]
+Line_2 $$ public List<Integer> deleteCommentEvents(Collection<Integer> comments) --> Line_8 $$ return affectedUsers [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void clearNotRunningPod(PodList podList) throws K8sDriverException --> Line_3 $$ if (podList == null || podList.getItems() == null || podList.getItems().size() == 0) [CD]
+Line_2 $$ public void clearNotRunningPod(PodList podList) throws K8sDriverException --> Line_3 $$ if (podList == null || podList.getItems() == null || podList.getItems().size() == 0) [FD]
+Line_3 $$ if (podList == null || podList.getItems() == null || podList.getItems().size() == 0) --> Line_4 $$ return [CD]
+Line_2 $$ public void clearNotRunningPod(PodList podList) throws K8sDriverException --> Line_6 $$ for (Pod pod : podList.getItems()) [FD]
+Line_6 $$ for (Pod pod : podList.getItems()) --> Line_7 $$ String status = PodUtils.getPodStatus(pod) [FD]
+Line_7 $$ String status = PodUtils.getPodStatus(pod) --> Line_8 $$ if (!StringUtils.isBlank(status) && ("Terminating".equals(status) || "Succeeded".equals(status) || "Failed".equals(status))) [FD]
+Line_8 $$ if (!StringUtils.isBlank(status) && ("Terminating".equals(status) || "Succeeded".equals(status) || "Failed".equals(status))) --> Line_9 $$ deletePod(pod.getMetadata().getName()) [CD]
+Line_6 $$ for (Pod pod : podList.getItems()) --> Line_9 $$ deletePod(pod.getMetadata().getName()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testPrivateUpgradesWithMissingCheckpointDependenciesAreIllegal() --> Line_3 $$ List<Checkpoint> checkpoints = ImmutableList.of(new org.sonatype.nexus.upgrade.example.CheckpointFoo()) [CD]
+Line_2 $$ public void testPrivateUpgradesWithMissingCheckpointDependenciesAreIllegal() --> Line_4 $$ List<Upgrade> upgrades = ImmutableList.of(new org.sonatype.nexus.upgrade.bad.UpgradePrivateModel_1_2(Providers.of(mock(DatabaseInstance.class)))) [CD]
+Line_2 $$ public void testPrivateUpgradesWithMissingCheckpointDependenciesAreIllegal() --> Line_5 $$ UpgradeManager upgradeManager = createUpgradeManager(checkpoints, upgrades) [CD]
+Line_3 $$ List<Checkpoint> checkpoints = ImmutableList.of(new org.sonatype.nexus.upgrade.example.CheckpointFoo()) --> Line_5 $$ UpgradeManager upgradeManager = createUpgradeManager(checkpoints, upgrades) [FD]
+Line_2 $$ public void testPrivateUpgradesWithMissingCheckpointDependenciesAreIllegal() --> Line_6 $$ thrown.expect(IllegalStateException.class) [CD]
+Line_2 $$ public void testPrivateUpgradesWithMissingCheckpointDependenciesAreIllegal() --> Line_7 $$ thrown.expectMessage("Found 2 problem(s) with upgrades:" + lineSeparator() + "Upgrade step org.sonatype.nexus.upgrade.bad.UpgradePrivateModel_1_2 " + "has undeclared model dependencies: [foo]" + lineSeparator() + "Upgrade step org.sonatype.nexus.upgrade.bad.UpgradePrivateModel_1_2 " + "does not trigger a checkpoint") [CD]
+Line_2 $$ public void testPrivateUpgradesWithMissingCheckpointDependenciesAreIllegal() --> Line_8 $$ upgradeManager.selectUpgrades(ImmutableMap.of()) [CD]
+Line_5 $$ UpgradeManager upgradeManager = createUpgradeManager(checkpoints, upgrades) --> Line_8 $$ upgradeManager.selectUpgrades(ImmutableMap.of()) [FD]

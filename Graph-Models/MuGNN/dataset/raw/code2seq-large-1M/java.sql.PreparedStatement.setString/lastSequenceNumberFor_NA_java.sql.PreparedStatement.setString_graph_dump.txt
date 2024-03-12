@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_3 $$ String sql = "SELECT max(" + schema.sequenceNumberColumn() + ") FROM " + schema.domainEventTable() + " WHERE " + schema.aggregateIdentifierColumn() + " = ?" [CD]
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_4 $$ return Optional.ofNullable(transactionManager.fetchInTransaction(() -> executeQuery(getConnection(),  connection -> [CD]
+Line_3 $$ String sql = "SELECT max(" + schema.sequenceNumberColumn() + ") FROM " + schema.domainEventTable() + " WHERE " + schema.aggregateIdentifierColumn() + " = ?" --> Line_5 $$ PreparedStatement stmt = connection.prepareStatement(sql) [FD]
+Line_5 $$ PreparedStatement stmt = connection.prepareStatement(sql) --> Line_6 $$ stmt.setString(1, aggregateIdentifier) [FD]
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_6 $$ stmt.setString(1, aggregateIdentifier) [FD]
+Line_2 $$ public Optional<Long> lastSequenceNumberFor(String aggregateIdentifier) --> Line_8 $$ new EventStoreException(format("Failed to read events for aggregate [%s]", aggregateIdentifier), e) [FD]

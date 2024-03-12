@@ -1,0 +1,7 @@
+Line_2 $$ public void testCompilerOptimization() throws Exception --> Line_3 $$ String sequenceName = generateSequenceNameWithSchema() [CD]
+Line_2 $$ public void testCompilerOptimization() throws Exception --> Line_4 $$ String tableName = generateTableNameWithSchema() [CD]
+Line_2 $$ public void testCompilerOptimization() throws Exception --> Line_5 $$ conn.createStatement().execute("CREATE SEQUENCE " + sequenceName + " START WITH 3 INCREMENT BY 2") [CD]
+Line_2 $$ public void testCompilerOptimization() throws Exception --> Line_6 $$ conn.createStatement().execute("CREATE TABLE " + tableName + " (k INTEGER NOT NULL PRIMARY KEY, v1 VARCHAR, v2 VARCHAR) IMMUTABLE_ROWS=true") [CD]
+Line_2 $$ public void testCompilerOptimization() throws Exception --> Line_7 $$ conn.createStatement().execute("CREATE INDEX " + generateUniqueName() + " ON " + tableName + "(v1) INCLUDE (v2)") [CD]
+Line_2 $$ public void testCompilerOptimization() throws Exception --> Line_8 $$ PhoenixStatement stmt = conn.createStatement().unwrap(PhoenixStatement.class) [CD]
+Line_2 $$ public void testCompilerOptimization() throws Exception --> Line_9 $$ stmt.optimizeQuery("SELECT k, NEXT VALUE FOR " + sequenceName + " FROM " + tableName + " WHERE v1 = 'bar'") [CD]

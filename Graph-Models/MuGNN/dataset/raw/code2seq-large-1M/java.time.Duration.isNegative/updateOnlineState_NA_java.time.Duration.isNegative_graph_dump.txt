@@ -1,0 +1,8 @@
+Line_2 $$ protected void updateOnlineState() --> Line_3 $$ ThingStatus status = thing.getStatus() [CD]
+Line_2 $$ protected void updateOnlineState() --> Line_4 $$ if (status == ONLINE && unansweredPings < MAX_UNANSWERED_PINGS && MESSAGE_TIMEOUT.minus(durationSinceLastSeen()).isNegative()) [CD]
+Line_4 $$ if (status == ONLINE && unansweredPings < MAX_UNANSWERED_PINGS && MESSAGE_TIMEOUT.minus(durationSinceLastSeen()).isNegative()) --> Line_5 $$ ping() [CD]
+Line_4 $$ if (status == ONLINE && unansweredPings < MAX_UNANSWERED_PINGS && MESSAGE_TIMEOUT.minus(durationSinceLastSeen()).isNegative()) --> Line_7 $$ if (status == ONLINE && unansweredPings >= MAX_UNANSWERED_PINGS) [CD]
+Line_7 $$ if (status == ONLINE && unansweredPings >= MAX_UNANSWERED_PINGS) --> Line_8 $$ updateStatus(OFFLINE, getThingStatusDetail()) [CD]
+Line_7 $$ if (status == ONLINE && unansweredPings >= MAX_UNANSWERED_PINGS) --> Line_10 $$ if (status == OFFLINE) [CD]
+Line_3 $$ ThingStatus status = thing.getStatus() --> Line_10 $$ if (status == OFFLINE) [FD]
+Line_10 $$ if (status == OFFLINE) --> Line_11 $$ ping() [CD]

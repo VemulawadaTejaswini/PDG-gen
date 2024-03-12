@@ -1,0 +1,7 @@
+Line_2 $$ void schedule() --> Line_3 $$ if (scheduled.compareAndSet(false, true)) [CD]
+Line_3 $$ if (scheduled.compareAndSet(false, true)) --> Line_4 $$ long delay = Math.max(0, quietPeriod.get() - (System.currentTimeMillis() - latestContainer.get().timestamp)) [CD]
+Line_3 $$ if (scheduled.compareAndSet(false, true)) --> Line_5 $$ logger.info("Scheduling deployments to new container(s) in [CD]
+Line_4 $$ long delay = Math.max(0, quietPeriod.get() - (System.currentTimeMillis() - latestContainer.get().timestamp)) --> Line_5 $$ logger.info("Scheduling deployments to new container(s) in [FD]
+Line_3 $$ if (scheduled.compareAndSet(false, true)) --> Line_6 $$ executorService.schedule(this, delay, TimeUnit.MILLISECONDS) [CD]
+Line_4 $$ long delay = Math.max(0, quietPeriod.get() - (System.currentTimeMillis() - latestContainer.get().timestamp)) --> Line_6 $$ executorService.schedule(this, delay, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ if (scheduled.compareAndSet(false, true)) --> Line_8 $$ logger.trace("Container deployment already scheduled") [CD]

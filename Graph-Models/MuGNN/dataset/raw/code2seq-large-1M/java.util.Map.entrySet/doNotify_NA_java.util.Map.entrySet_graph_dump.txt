@@ -1,0 +1,6 @@
+Line_4 $$ Map<File, Long> result = doScan(entry.getKey()) --> Line_5 $$ List<FileChangeEvent> currentDiff = doDiff(result, entry.getValue().currentFileState) [FD]
+Line_5 $$ List<FileChangeEvent> currentDiff = doDiff(result, entry.getValue().currentFileState) --> Line_6 $$ if (!currentDiff.isEmpty()) [FD]
+Line_6 $$ if (!currentDiff.isEmpty()) --> Line_7 $$ entry.getValue().currentFileState = result [CD]
+Line_4 $$ Map<File, Long> result = doScan(entry.getKey()) --> Line_7 $$ entry.getValue().currentFileState = result [FD]
+Line_8 $$ for (FileChangeCallback callback : entry.getValue().callbacks) --> Line_9 $$ invokeCallback(callback, currentDiff) [FD]
+Line_5 $$ List<FileChangeEvent> currentDiff = doDiff(result, entry.getValue().currentFileState) --> Line_9 $$ invokeCallback(callback, currentDiff) [FD]

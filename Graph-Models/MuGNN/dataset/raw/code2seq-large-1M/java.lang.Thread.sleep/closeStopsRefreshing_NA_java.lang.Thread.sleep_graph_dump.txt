@@ -1,0 +1,6 @@
+Line_2 $$ public void closeStopsRefreshing() throws InterruptedException --> Line_3 $$ final CountableFuture cf = new CountableFuture() [CD]
+Line_2 $$ public void closeStopsRefreshing() throws InterruptedException --> Line_4 $$ final AsyncTimerVisitor visitor = Mockito.mock(AsyncTimerVisitor.class) [CD]
+Line_3 $$ final CountableFuture cf = new CountableFuture() --> Line_5 $$ try (final AsyncTimer timer = createTimer(cf, TIME_UNIT, 2 * TIME_UNIT, visitor)) [FD]
+Line_5 $$ try (final AsyncTimer timer = createTimer(cf, TIME_UNIT, 2 * TIME_UNIT, visitor)) --> Line_8 $$ timer.close() [FD]
+Line_3 $$ final CountableFuture cf = new CountableFuture() --> Line_11 $$ Assert.assertThat(cf.getNumCalls(), IsEqual.equalTo(1)) [FD]
+Line_5 $$ try (final AsyncTimer timer = createTimer(cf, TIME_UNIT, 2 * TIME_UNIT, visitor)) --> Line_12 $$ Assert.assertThat(timer.isStopped(), IsEqual.equalTo(true)) [FD]

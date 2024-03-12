@@ -1,0 +1,6 @@
+Line_2 $$ private void cleanupWhenSafe() --> Line_3 $$ if (isEDTRunning()) [CD]
+Line_3 $$ if (isEDTRunning()) --> Line_4 $$ final AtomicReference<Thread> edt = new AtomicReference<Thread>() [CD]
+Line_6 $$ SwingUtilities.invokeAndWait(new Runnable() --> Line_8 $$ edt.set(Thread.currentThread()) [CD]
+Line_4 $$ final AtomicReference<Thread> edt = new AtomicReference<Thread>() --> Line_8 $$ edt.set(Thread.currentThread()) [FD]
+Line_4 $$ final AtomicReference<Thread> edt = new AtomicReference<Thread>() --> Line_11 $$ edt.get().join() [FD]
+Line_2 $$ private void cleanupWhenSafe() --> Line_15 $$ stop() [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testByteBufferReuse() throws IOException --> Line_3 $$ byte[] someBytes = Bytes.toBytes("some bytes") [CD]
+Line_2 $$ public void testByteBufferReuse() throws IOException --> Line_4 $$ ByteBuffer bb = ByteBuffer.allocate(someBytes.length) [CD]
+Line_2 $$ public void testByteBufferReuse() throws IOException --> Line_5 $$ ByteBuffer bbToReuse = write(bb, someBytes) [CD]
+Line_4 $$ ByteBuffer bb = ByteBuffer.allocate(someBytes.length) --> Line_5 $$ ByteBuffer bbToReuse = write(bb, someBytes) [FD]
+Line_3 $$ byte[] someBytes = Bytes.toBytes("some bytes") --> Line_5 $$ ByteBuffer bbToReuse = write(bb, someBytes) [FD]
+Line_2 $$ public void testByteBufferReuse() throws IOException --> Line_6 $$ bbToReuse = write(bbToReuse, Bytes.toBytes("less")) [CD]
+Line_5 $$ ByteBuffer bbToReuse = write(bb, someBytes) --> Line_6 $$ bbToReuse = write(bbToReuse, Bytes.toBytes("less")) [FD]
+Line_2 $$ public void testByteBufferReuse() throws IOException --> Line_7 $$ assertTrue(bb == bbToReuse) [CD]

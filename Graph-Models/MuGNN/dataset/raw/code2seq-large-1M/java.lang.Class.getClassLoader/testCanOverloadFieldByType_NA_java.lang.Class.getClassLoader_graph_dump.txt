@@ -1,0 +1,7 @@
+Line_2 $$ public void testCanOverloadFieldByType() throws Exception --> Line_3 $$ Class<?> type = createPlain().defineField(QUX, String.class, Ownership.STATIC, Visibility.PUBLIC).value(FOO).defineField(QUX, long.class, Ownership.STATIC, Visibility.PUBLIC).value(42L).make().load(getClass().getClassLoader(), ClassLoadingStrategy.Default.CHILD_FIRST).getLoaded() [CD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_5 $$ if (field.getType() == String.class) [FD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_6 $$ assertThat(field.getName(), is(QUX)) [FD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_7 $$ assertThat(field.get(null), is((Object) FOO)) [FD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_8 $$ if (field.getType() == long.class) [FD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_9 $$ assertThat(field.getName(), is(QUX)) [FD]
+Line_4 $$ for (Field field : type.getDeclaredFields()) --> Line_10 $$ assertThat(field.get(null), is((Object) 42L)) [FD]

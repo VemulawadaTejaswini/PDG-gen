@@ -1,0 +1,7 @@
+Line_2 $$ public void usingJarNoPackageDeclNestedBootInfLib() throws Exception --> Line_3 $$ ClassDescriptor t1 = compile("TestX", "public class TestX [CD]
+Line_2 $$ public void usingJarNoPackageDeclNestedBootInfLib() throws Exception --> Line_4 $$ File jar = JarBuilder.create().addEntry(t1).getJar() [CD]
+Line_2 $$ public void usingJarNoPackageDeclNestedBootInfLib() throws Exception --> Line_5 $$ assertJarContents(jar, t1) [CD]
+Line_2 $$ public void usingJarNoPackageDeclNestedBootInfLib() throws Exception --> Line_6 $$ File jar2 = JarBuilder.create().addEntry("BOOT-INF/lib/inner.jar", jar).getJar() [CD]
+Line_2 $$ public void usingJarNoPackageDeclNestedBootInfLib() throws Exception --> Line_7 $$ CompilationResult result = new RuntimeJavaCompiler().compile("A", "public class A [CD]
+Line_2 $$ public void usingJarNoPackageDeclNestedBootInfLib() throws Exception --> Line_8 $$ assertTrue("Should be no problems: " + result.getCompilationMessages(), result.getCompilationMessages().isEmpty()) [CD]
+Line_9 $$ try (URLClassLoader cl = new TestClassLoader(t1, descriptorFromResult(result))) --> Line_10 $$ Class<?> class1 = cl.loadClass("A") [FD]

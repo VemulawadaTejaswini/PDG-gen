@@ -1,0 +1,8 @@
+Line_2 $$ private void refresh() --> Line_3 $$ Map<String, List<String>> tableToBrokerListMap = evReader.getTableToBrokersMap() [CD]
+Line_2 $$ private void refresh() --> Line_4 $$ tableToBrokerListMapRef.set(tableToBrokerListMap) [CD]
+Line_3 $$ Map<String, List<String>> tableToBrokerListMap = evReader.getTableToBrokersMap() --> Line_4 $$ tableToBrokerListMapRef.set(tableToBrokerListMap) [FD]
+Line_2 $$ private void refresh() --> Line_5 $$ Set<String> brokerSet = new HashSet() [CD]
+Line_3 $$ Map<String, List<String>> tableToBrokerListMap = evReader.getTableToBrokersMap() --> Line_6 $$ for (List<String> brokerList : tableToBrokerListMap.values()) [FD]
+Line_5 $$ Set<String> brokerSet = new HashSet() --> Line_7 $$ brokerSet.addAll(brokerList) [FD]
+Line_6 $$ for (List<String> brokerList : tableToBrokerListMap.values()) --> Line_7 $$ brokerSet.addAll(brokerList) [FD]
+Line_2 $$ private void refresh() --> Line_9 $$ allBrokerListRef.set(new ArrayList(brokerSet)) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public long threadLocalIncrement() --> Line_3 $$ long val = VAL.get() [CD]
+Line_2 $$ public long threadLocalIncrement() --> Line_4 $$ if ((val & (BATCH_SIZE - 1)) == 0) [CD]
+Line_4 $$ if ((val & (BATCH_SIZE - 1)) == 0) --> Line_5 $$ val = atomic.addAndGet(BATCH_SIZE) [CD]
+Line_3 $$ long val = VAL.get() --> Line_5 $$ val = atomic.addAndGet(BATCH_SIZE) [FD]
+Line_2 $$ public long threadLocalIncrement() --> Line_6 $$ VAL.set(++val) [CD]
+Line_3 $$ long val = VAL.get() --> Line_6 $$ VAL.set(++val) [FD]
+Line_5 $$ val = atomic.addAndGet(BATCH_SIZE) --> Line_6 $$ VAL.set(++val) [FD]
+Line_2 $$ public long threadLocalIncrement() --> Line_7 $$ return val [CD]

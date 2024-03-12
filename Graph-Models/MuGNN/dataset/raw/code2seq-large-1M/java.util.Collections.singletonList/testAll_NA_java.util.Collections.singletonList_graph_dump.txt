@@ -1,0 +1,8 @@
+Line_2 $$ public void testAll() --> Line_3 $$ MetaData.Builder mdBuilder = MetaData.builder().put(indexBuilder("testXXX")).put(indexBuilder("testXYY")).put(indexBuilder("testYYY")) [CD]
+Line_2 $$ public void testAll() --> Line_4 $$ ClusterState state = ClusterState.builder(new ClusterName("_name")).metaData(mdBuilder).build() [CD]
+Line_3 $$ MetaData.Builder mdBuilder = MetaData.builder().put(indexBuilder("testXXX")).put(indexBuilder("testXYY")).put(indexBuilder("testYYY")) --> Line_4 $$ ClusterState state = ClusterState.builder(new ClusterName("_name")).metaData(mdBuilder).build() [FD]
+Line_2 $$ public void testAll() --> Line_5 $$ IndexNameExpressionResolver.WildcardExpressionResolver resolver = new IndexNameExpressionResolver.WildcardExpressionResolver() [CD]
+Line_2 $$ public void testAll() --> Line_6 $$ IndexNameExpressionResolver.Context context = new IndexNameExpressionResolver.Context(state, IndicesOptions.lenientExpandOpen()) [CD]
+Line_2 $$ public void testAll() --> Line_7 $$ assertThat(newHashSet(resolver.resolve(context, Collections.singletonList("_all"))), equalTo(newHashSet("testXXX", "testXYY", "testYYY"))) [CD]
+Line_5 $$ IndexNameExpressionResolver.WildcardExpressionResolver resolver = new IndexNameExpressionResolver.WildcardExpressionResolver() --> Line_7 $$ assertThat(newHashSet(resolver.resolve(context, Collections.singletonList("_all"))), equalTo(newHashSet("testXXX", "testXYY", "testYYY"))) [FD]
+Line_6 $$ IndexNameExpressionResolver.Context context = new IndexNameExpressionResolver.Context(state, IndicesOptions.lenientExpandOpen()) --> Line_7 $$ assertThat(newHashSet(resolver.resolve(context, Collections.singletonList("_all"))), equalTo(newHashSet("testXXX", "testXYY", "testYYY"))) [FD]

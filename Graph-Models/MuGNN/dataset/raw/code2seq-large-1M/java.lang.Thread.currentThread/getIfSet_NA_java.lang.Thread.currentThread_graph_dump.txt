@@ -1,0 +1,8 @@
+Line_2 $$ public static InternalThreadLocalMap getIfSet() --> Line_3 $$ Thread thread = Thread.currentThread() [CD]
+Line_2 $$ public static InternalThreadLocalMap getIfSet() --> Line_4 $$ if (thread instanceof InternalThread) [CD]
+Line_3 $$ Thread thread = Thread.currentThread() --> Line_4 $$ if (thread instanceof InternalThread) [FD]
+Line_4 $$ if (thread instanceof InternalThread) --> Line_5 $$ return ((InternalThread) thread).threadLocalMap() [CD]
+Line_2 $$ public static InternalThreadLocalMap getIfSet() --> Line_7 $$ if (thread instanceof InternalForkJoinWorkerThread) [CD]
+Line_3 $$ Thread thread = Thread.currentThread() --> Line_7 $$ if (thread instanceof InternalForkJoinWorkerThread) [FD]
+Line_7 $$ if (thread instanceof InternalForkJoinWorkerThread) --> Line_8 $$ return ((InternalForkJoinWorkerThread) thread).threadLocalMap() [CD]
+Line_2 $$ public static InternalThreadLocalMap getIfSet() --> Line_10 $$ return slowThreadLocalMap.get() [CD]

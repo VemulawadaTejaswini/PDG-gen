@@ -1,0 +1,6 @@
+Line_4 $$ for (AppLogLine appLog : appLogLines) --> Line_5 $$ String logMsg = appLog.getLogMessage() [FD]
+Line_5 $$ String logMsg = appLog.getLogMessage() --> Line_6 $$ boolean isNotTeammatesLog = !logMsg.contains("TEAMMATESLOG") [FD]
+Line_5 $$ String logMsg = appLog.getLogMessage() --> Line_7 $$ boolean isLogFromAdminActivityLogPage = logMsg.contains("adminActivityLogPage") [FD]
+Line_6 $$ boolean isNotTeammatesLog = !logMsg.contains("TEAMMATESLOG") --> Line_8 $$ if (isNotTeammatesLog || isLogFromAdminActivityLogPage) [FD]
+Line_7 $$ boolean isLogFromAdminActivityLogPage = logMsg.contains("adminActivityLogPage") --> Line_8 $$ if (isNotTeammatesLog || isLogFromAdminActivityLogPage) [FD]
+Line_4 $$ for (AppLogLine appLog : appLogLines) --> Line_11 $$ ActivityLogEntry activityLogEntry = ActivityLogEntry.buildFromAppLog(appLog) [FD]

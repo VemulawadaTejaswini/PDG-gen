@@ -1,0 +1,6 @@
+Line_2 $$ public static List<String> getValues(UriInfo uriInfo, String key, List<String> defaultValue) --> Line_3 $$ if (hasKey(uriInfo, key)) [FD]
+Line_2 $$ public static List<String> getValues(UriInfo uriInfo, String key, List<String> defaultValue) --> Line_3 $$ if (hasKey(uriInfo, key)) [CD]
+Line_3 $$ if (hasKey(uriInfo, key)) --> Line_4 $$ final Set<String> uniqueValues = uriInfo.getQueryParameters().get(key).stream().map( g -> g != null ? g.trim() : g).filter( g -> g != null).collect(Collectors.toSet()) [CD]
+Line_2 $$ public static List<String> getValues(UriInfo uriInfo, String key, List<String> defaultValue) --> Line_4 $$ final Set<String> uniqueValues = uriInfo.getQueryParameters().get(key).stream().map( g -> g != null ? g.trim() : g).filter( g -> g != null).collect(Collectors.toSet()) [FD]
+Line_3 $$ if (hasKey(uriInfo, key)) --> Line_5 $$ return new ArrayList(uniqueValues) [CD]
+Line_2 $$ public static List<String> getValues(UriInfo uriInfo, String key, List<String> defaultValue) --> Line_7 $$ return defaultValue [CD]

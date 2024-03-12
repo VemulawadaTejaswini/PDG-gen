@@ -1,0 +1,7 @@
+Line_2 $$ public void testPostWithHeader() throws Exception --> Line_3 $$ router.route().handler(CookieHandler.create()) [CD]
+Line_2 $$ public void testPostWithHeader() throws Exception --> Line_4 $$ router.route().handler(CSRFHandler.create("Abracadabra")) [CD]
+Line_2 $$ public void testPostWithHeader() throws Exception --> Line_5 $$ router.route().handler( rc -> rc.response().end()) [CD]
+Line_2 $$ public void testPostWithHeader() throws Exception --> Line_6 $$ testRequest(HttpMethod.GET, "/", null,  resp -> [CD]
+Line_7 $$ List<String> cookies = resp.headers().getAll("set-cookie") --> Line_8 $$ String cookie = cookies.get(0) [FD]
+Line_8 $$ String cookie = cookies.get(0) --> Line_9 $$ tmpCookie = cookie.substring(cookie.indexOf('=') + 1, cookie.indexOf(';')) [FD]
+Line_2 $$ public void testPostWithHeader() throws Exception --> Line_11 $$ testRequest(HttpMethod.POST, "/",  req -> req.putHeader(CSRFHandler.DEFAULT_HEADER_NAME, tmpCookie), null, 200, "OK", null) [CD]

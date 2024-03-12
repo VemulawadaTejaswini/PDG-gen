@@ -1,0 +1,6 @@
+Line_2 $$ private void truncateTranslogs(Path directory) throws Exception --> Line_3 $$ Path[] files = FileSystemUtils.files(directory, "translog-*") [CD]
+Line_2 $$ private void truncateTranslogs(Path directory) throws Exception --> Line_3 $$ Path[] files = FileSystemUtils.files(directory, "translog-*") [FD]
+Line_4 $$ for (Path file : files) --> Line_5 $$ try (FileChannel f = FileChannel.open(file, StandardOpenOption.READ, StandardOpenOption.WRITE)) [FD]
+Line_5 $$ try (FileChannel f = FileChannel.open(file, StandardOpenOption.READ, StandardOpenOption.WRITE)) --> Line_6 $$ long prevSize = f.size() [FD]
+Line_5 $$ try (FileChannel f = FileChannel.open(file, StandardOpenOption.READ, StandardOpenOption.WRITE)) --> Line_9 $$ f.truncate(newSize) [FD]
+Line_7 $$ long newSize = prevSize - randomIntBetween(1, (int) prevSize / 2) --> Line_9 $$ f.truncate(newSize) [FD]

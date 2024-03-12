@@ -1,0 +1,7 @@
+Line_2 $$ private void deleteTempPacksIdx() --> Line_3 $$ Path packDir = repo.getObjectDatabase().getPackDirectory().toPath() [CD]
+Line_2 $$ private void deleteTempPacksIdx() --> Line_4 $$ Instant threshold = Instant.now().minus(1, ChronoUnit.DAYS) [CD]
+Line_3 $$ Path packDir = repo.getObjectDatabase().getPackDirectory().toPath() --> Line_5 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(packDir, "gc_*_tmp")) [FD]
+Line_5 $$ try (DirectoryStream<Path> stream = Files.newDirectoryStream(packDir, "gc_*_tmp")) --> Line_6 $$ stream.forEach( t -> [FD]
+Line_8 $$ Instant lastModified = Files.getLastModifiedTime(t).toInstant() --> Line_9 $$ if (lastModified.isBefore(threshold)) [FD]
+Line_4 $$ Instant threshold = Instant.now().minus(1, ChronoUnit.DAYS) --> Line_9 $$ if (lastModified.isBefore(threshold)) [FD]
+Line_9 $$ if (lastModified.isBefore(threshold)) --> Line_10 $$ Files.deleteIfExists(t) [CD]

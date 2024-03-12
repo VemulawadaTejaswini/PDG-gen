@@ -1,0 +1,4 @@
+Line_2 $$ public void viewSchemaWhenSelectFieldsInDef_SelectFieldsInView() throws Exception --> Line_3 $$ final String viewName = generateViewName() [CD]
+Line_3 $$ final String viewName = generateViewName() --> Line_6 $$ createViewHelper(null, viewName, TEMP_SCHEMA, "(id, name, bday)", "SELECT " + "cast(`employee_id` as integer), " + "cast(`full_name` as varchar(100)), " + "cast(`birth_date` as date) " + "FROM cp.`employee.json`") [FD]
+Line_3 $$ final String viewName = generateViewName() --> Line_7 $$ testBuilder().sqlQuery(String.format("DESCRIBE `%s`", viewName)).unOrdered().baselineColumns("COLUMN_NAME", "DATA_TYPE", "IS_NULLABLE").baselineValues("id", "INTEGER", "YES").baselineValues("name", "CHARACTER VARYING", "YES").baselineValues("bday", "DATE", "YES").go() [FD]
+Line_3 $$ final String viewName = generateViewName() --> Line_9 $$ dropViewHelper(TEMP_SCHEMA, viewName, TEMP_SCHEMA) [FD]

@@ -1,0 +1,8 @@
+Line_5 $$ HugeBufferProducer p = new HugeBufferProducer(new File(w.getLocation(), JournalConfiguration.FILE_NAME)) --> Line_7 $$ p.write(channel) [FD]
+Line_4 $$ MockByteChannel channel = new MockByteChannel() --> Line_7 $$ p.write(channel) [FD]
+Line_6 $$ HugeBufferConsumer c = new HugeBufferConsumer(new File(w.getLocation(), "_remote")) --> Line_8 $$ c.read(channel) [FD]
+Line_4 $$ MockByteChannel channel = new MockByteChannel() --> Line_8 $$ c.read(channel) [FD]
+Line_6 $$ HugeBufferConsumer c = new HugeBufferConsumer(new File(w.getLocation(), "_remote")) --> Line_9 $$ try (JournalWriter w2 = getFactory().writer(new JournalMetadata(c.getHb(), "xyz"))) [FD]
+Line_9 $$ try (JournalWriter w2 = getFactory().writer(new JournalMetadata(c.getHb(), "xyz"))) --> Line_10 $$ Assert.assertTrue(w.getMetadata().isCompatible(w2.getMetadata(), false)) [FD]
+Line_5 $$ HugeBufferProducer p = new HugeBufferProducer(new File(w.getLocation(), JournalConfiguration.FILE_NAME)) --> Line_12 $$ p.free() [FD]
+Line_6 $$ HugeBufferConsumer c = new HugeBufferConsumer(new File(w.getLocation(), "_remote")) --> Line_13 $$ c.free() [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private void updateColumn(String logMsg, AActivity activity, String tableName, String column, boolean ignoreError) --> Line_3 $$ String sql = "" [CD]
+Line_3 $$ String sql = "" --> Line_5 $$ sql = "UPDATE " + tableName + " SET " + column + "=" + activity.getActor().actorId + " WHERE " + column + "=" + activity.getObjActor().actorId [FD]
+Line_2 $$ private void updateColumn(String logMsg, AActivity activity, String tableName, String column, boolean ignoreError) --> Line_5 $$ sql = "UPDATE " + tableName + " SET " + column + "=" + activity.getActor().actorId + " WHERE " + column + "=" + activity.getObjActor().actorId [FD]
+Line_3 $$ String sql = "" --> Line_6 $$ myContext.getDatabase().execSQL(sql) [FD]
+Line_5 $$ sql = "UPDATE " + tableName + " SET " + column + "=" + activity.getActor().actorId + " WHERE " + column + "=" + activity.getObjActor().actorId --> Line_6 $$ myContext.getDatabase().execSQL(sql) [FD]
+Line_2 $$ private void updateColumn(String logMsg, AActivity activity, String tableName, String column, boolean ignoreError) --> Line_8 $$ if (!ignoreError) [FD]
+Line_8 $$ if (!ignoreError) --> Line_9 $$ logger.logProgress("Error: " + e.getMessage() + ", SQL:" + sql) [CD]
+Line_8 $$ if (!ignoreError) --> Line_10 $$ MyLog.e(this, logMsg + ", SQL:" + sql, e) [CD]

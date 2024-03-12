@@ -1,0 +1,7 @@
+Line_4 $$ if (sharedClassLoader != null) --> Line_5 $$ ClassLoader loader = parent != null ? parent : sharedClassLoader [CD]
+Line_4 $$ if (sharedClassLoader != null) --> Line_6 $$ loader.getClass().getMethod("addDexPath", String.class).invoke(loader, result.getPath()) [CD]
+Line_5 $$ ClassLoader loader = parent != null ? parent : sharedClassLoader --> Line_6 $$ loader.getClass().getMethod("addDexPath", String.class).invoke(loader, result.getPath()) [FD]
+Line_2 $$ private ClassLoader generateClassLoader(File result, File dexCache, ClassLoader parent) --> Line_6 $$ loader.getClass().getMethod("addDexPath", String.class).invoke(loader, result.getPath()) [FD]
+Line_4 $$ if (sharedClassLoader != null) --> Line_7 $$ return loader [CD]
+Line_4 $$ if (sharedClassLoader != null) --> Line_9 $$ return (ClassLoader) Class.forName("dalvik.system.DexClassLoader").getConstructor(String.class, String.class, String.class, ClassLoader.class).newInstance(result.getPath(), dexCache.getAbsolutePath(), null, parent) [CD]
+Line_2 $$ private ClassLoader generateClassLoader(File result, File dexCache, ClassLoader parent) --> Line_9 $$ return (ClassLoader) Class.forName("dalvik.system.DexClassLoader").getConstructor(String.class, String.class, String.class, ClassLoader.class).newInstance(result.getPath(), dexCache.getAbsolutePath(), null, parent) [FD]

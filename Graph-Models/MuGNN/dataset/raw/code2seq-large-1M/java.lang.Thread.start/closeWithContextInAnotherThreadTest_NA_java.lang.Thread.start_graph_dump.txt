@@ -1,0 +1,8 @@
+Line_2 $$ public void closeWithContextInAnotherThreadTest() throws InterruptedException --> Line_4 $$ ChronicleMap<Integer, Integer> map = ChronicleMap.of(Integer.class, Integer.class).entries(1).create() [CD]
+Line_2 $$ public void closeWithContextInAnotherThreadTest() throws InterruptedException --> Line_5 $$ Object lock = new Object() [CD]
+Line_2 $$ public void closeWithContextInAnotherThreadTest() throws InterruptedException --> Line_6 $$ CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_8 $$ new Thread() --> Line_10 $$ ExternalMapQueryContext<Integer, Integer, ?> cxt = map.queryContext(1) [CD]
+Line_8 $$ new Thread() --> Line_11 $$ latch.countDown() [CD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_11 $$ latch.countDown() [FD]
+Line_10 $$ ExternalMapQueryContext<Integer, Integer, ?> cxt = map.queryContext(1) --> Line_13 $$ cxt.close() [FD]
+Line_6 $$ CountDownLatch latch = new CountDownLatch(1) --> Line_17 $$ latch.await() [FD]

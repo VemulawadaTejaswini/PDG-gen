@@ -1,0 +1,6 @@
+Line_2 $$ private JedisPool buildSentinelPool(String masterName, ConnectionInfo connectionInfo, JedisPoolConfig config) --> Line_3 $$ logger.info("Building JedisSentinelPool, on sentinel sentinelHosts:" + Arrays.toString(sentinelHostAndPorts) + ", masterName is " + masterName) [CD]
+Line_2 $$ private JedisPool buildSentinelPool(String masterName, ConnectionInfo connectionInfo, JedisPoolConfig config) --> Line_4 $$ HostAndPort[] sentinelAddresses = new HostAndPort[sentinelHostAndPorts.length] [CD]
+Line_2 $$ private JedisPool buildSentinelPool(String masterName, ConnectionInfo connectionInfo, JedisPoolConfig config) --> Line_5 $$ for (int i = 0; i < sentinelHostAndPorts.length; i++) [CD]
+Line_5 $$ for (int i = 0; i < sentinelHostAndPorts.length; i++) --> Line_6 $$ String[] hostPort = sentinelHostAndPorts[i].split(":") [CD]
+Line_5 $$ for (int i = 0; i < sentinelHostAndPorts.length; i++) --> Line_7 $$ sentinelAddresses[i] = new HostAndPort(hostPort[0], Integer.parseInt(hostPort[1])) [CD]
+Line_2 $$ private JedisPool buildSentinelPool(String masterName, ConnectionInfo connectionInfo, JedisPoolConfig config) --> Line_9 $$ return new JedisSentinelPool(poolName, sentinelAddresses, masterName, connectionInfo, config) [CD]

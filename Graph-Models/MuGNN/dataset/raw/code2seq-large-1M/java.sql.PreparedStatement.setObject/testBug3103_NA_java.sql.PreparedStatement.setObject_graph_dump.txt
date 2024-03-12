@@ -1,0 +1,7 @@
+Line_5 $$ if (versionMeetsMinimum(5, 6, 4)) --> Line_6 $$ this.stmt.executeUpdate("CREATE TABLE testBug3103 (field1 DATETIME(3))") [CD]
+Line_5 $$ if (versionMeetsMinimum(5, 6, 4)) --> Line_8 $$ this.stmt.executeUpdate("CREATE TABLE testBug3103 (field1 DATETIME)") [CD]
+Line_10 $$ PreparedStatement pStmt = this.conn.prepareStatement("INSERT INTO testBug3103 VALUES (?)") --> Line_12 $$ pStmt.setObject(1, utilDate) [FD]
+Line_11 $$ java.util.Date utilDate = new java.util.Date() --> Line_12 $$ pStmt.setObject(1, utilDate) [FD]
+Line_10 $$ PreparedStatement pStmt = this.conn.prepareStatement("INSERT INTO testBug3103 VALUES (?)") --> Line_13 $$ pStmt.executeUpdate() [FD]
+Line_11 $$ java.util.Date utilDate = new java.util.Date() --> Line_17 $$ assertTrue("Dates not equal", (utilDate.getMonth() == retrUtilDate.getMonth()) && (utilDate.getDate() == retrUtilDate.getDate()) && (utilDate.getYear() == retrUtilDate.getYear()) && (utilDate.getHours() == retrUtilDate.getHours()) && (utilDate.getMinutes() == retrUtilDate.getMinutes()) && (utilDate.getSeconds() == retrUtilDate.getSeconds())) [FD]
+Line_16 $$ java.util.Date retrUtilDate = new java.util.Date(this.rs.getTimestamp(1).getTime()) --> Line_17 $$ assertTrue("Dates not equal", (utilDate.getMonth() == retrUtilDate.getMonth()) && (utilDate.getDate() == retrUtilDate.getDate()) && (utilDate.getYear() == retrUtilDate.getYear()) && (utilDate.getHours() == retrUtilDate.getHours()) && (utilDate.getMinutes() == retrUtilDate.getMinutes()) && (utilDate.getSeconds() == retrUtilDate.getSeconds())) [FD]

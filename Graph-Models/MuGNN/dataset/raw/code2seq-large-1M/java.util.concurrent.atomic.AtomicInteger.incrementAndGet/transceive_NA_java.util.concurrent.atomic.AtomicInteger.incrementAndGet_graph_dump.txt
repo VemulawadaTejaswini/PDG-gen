@@ -1,0 +1,8 @@
+Line_2 $$ public void transceive(List<ByteBuffer> request, Callback<List<ByteBuffer>> callback) --> Line_3 $$ int serial = serialGenerator.incrementAndGet() [CD]
+Line_3 $$ int serial = serialGenerator.incrementAndGet() --> Line_6 $$ requests.put(serial, callback) [FD]
+Line_2 $$ public void transceive(List<ByteBuffer> request, Callback<List<ByteBuffer>> callback) --> Line_6 $$ requests.put(serial, callback) [FD]
+Line_7 $$ if (LOG.isDebugEnabled()) --> Line_8 $$ LOG.debug("send message, serial: " + serial + ", channel: " + channel) [CD]
+Line_5 $$ NettyDataPack dataPack = new NettyDataPack(serial, request) --> Line_10 $$ NettyDataPack.writeDataPack(getChannel(), dataPack) [FD]
+Line_12 $$ if (LOG.isDebugEnabled()) --> Line_13 $$ LOG.debug("write Data error, serial: " + serial + ", channel: " + channel + " due to:", e) [CD]
+Line_3 $$ int serial = serialGenerator.incrementAndGet() --> Line_15 $$ requests.remove(serial) [FD]
+Line_2 $$ public void transceive(List<ByteBuffer> request, Callback<List<ByteBuffer>> callback) --> Line_16 $$ callback.handleError(e) [FD]

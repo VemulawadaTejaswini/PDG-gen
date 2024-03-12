@@ -1,0 +1,6 @@
+Line_2 $$ public final Flux<IN> forceShutdown() --> Line_3 $$ int t = terminated [CD]
+Line_2 $$ public final Flux<IN> forceShutdown() --> Line_4 $$ if (t != FORCED_SHUTDOWN && TERMINATED.compareAndSet(this, t, FORCED_SHUTDOWN)) [CD]
+Line_3 $$ int t = terminated --> Line_4 $$ if (t != FORCED_SHUTDOWN && TERMINATED.compareAndSet(this, t, FORCED_SHUTDOWN)) [FD]
+Line_4 $$ if (t != FORCED_SHUTDOWN && TERMINATED.compareAndSet(this, t, FORCED_SHUTDOWN)) --> Line_5 $$ executor.shutdownNow() [CD]
+Line_4 $$ if (t != FORCED_SHUTDOWN && TERMINATED.compareAndSet(this, t, FORCED_SHUTDOWN)) --> Line_6 $$ requestTaskExecutor.shutdownNow() [CD]
+Line_2 $$ public final Flux<IN> forceShutdown() --> Line_8 $$ return drain() [CD]

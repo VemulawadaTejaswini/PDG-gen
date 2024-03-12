@@ -1,0 +1,5 @@
+Line_2 $$ public static FileInputStream getShareDeleteFileInputStream(File f) throws IOException --> Line_3 $$ if (!Shell.WINDOWS) [CD]
+Line_3 $$ if (!Shell.WINDOWS) --> Line_4 $$ return new FileInputStream(f) [CD]
+Line_3 $$ if (!Shell.WINDOWS) --> Line_6 $$ FileDescriptor fd = Windows.createFile(f.getAbsolutePath(), Windows.GENERIC_READ, Windows.FILE_SHARE_READ | Windows.FILE_SHARE_WRITE | Windows.FILE_SHARE_DELETE, Windows.OPEN_EXISTING) [CD]
+Line_2 $$ public static FileInputStream getShareDeleteFileInputStream(File f) throws IOException --> Line_6 $$ FileDescriptor fd = Windows.createFile(f.getAbsolutePath(), Windows.GENERIC_READ, Windows.FILE_SHARE_READ | Windows.FILE_SHARE_WRITE | Windows.FILE_SHARE_DELETE, Windows.OPEN_EXISTING) [FD]
+Line_3 $$ if (!Shell.WINDOWS) --> Line_7 $$ return new FileInputStream(fd) [CD]

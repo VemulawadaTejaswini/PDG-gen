@@ -1,0 +1,8 @@
+Line_2 $$ public void clientBuilderFieldsHaveBeanEquivalents() throws Exception --> Line_3 $$ AwsClientBuilder<TestClientBuilder, TestClient> builder = testClientBuilder() [CD]
+Line_2 $$ public void clientBuilderFieldsHaveBeanEquivalents() throws Exception --> Line_4 $$ BeanInfo beanInfo = Introspector.getBeanInfo(builder.getClass()) [CD]
+Line_3 $$ AwsClientBuilder<TestClientBuilder, TestClient> builder = testClientBuilder() --> Line_4 $$ BeanInfo beanInfo = Introspector.getBeanInfo(builder.getClass()) [FD]
+Line_2 $$ public void clientBuilderFieldsHaveBeanEquivalents() throws Exception --> Line_5 $$ Method[] clientBuilderMethods = AwsClientBuilder.class.getDeclaredMethods() [CD]
+Line_2 $$ public void clientBuilderFieldsHaveBeanEquivalents() throws Exception --> Line_6 $$ Arrays.stream(clientBuilderMethods).filter( m -> !m.isSynthetic()).forEach( builderMethod -> [CD]
+Line_4 $$ BeanInfo beanInfo = Introspector.getBeanInfo(builder.getClass()) --> Line_8 $$ Optional<PropertyDescriptor> propertyForMethod = Arrays.stream(beanInfo.getPropertyDescriptors()).filter( property -> property.getName().equals(propertyName)).findFirst() [FD]
+Line_7 $$ String propertyName = builderMethod.getName() --> Line_8 $$ Optional<PropertyDescriptor> propertyForMethod = Arrays.stream(beanInfo.getPropertyDescriptors()).filter( property -> property.getName().equals(propertyName)).findFirst() [FD]
+Line_8 $$ Optional<PropertyDescriptor> propertyForMethod = Arrays.stream(beanInfo.getPropertyDescriptors()).filter( property -> property.getName().equals(propertyName)).findFirst() --> Line_9 $$ assertThat(propertyForMethod).as(propertyName + " property").hasValueSatisfying( property -> [FD]

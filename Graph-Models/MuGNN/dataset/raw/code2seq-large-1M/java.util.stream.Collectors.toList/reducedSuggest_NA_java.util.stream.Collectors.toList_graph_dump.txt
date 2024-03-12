@@ -1,0 +1,5 @@
+Line_2 $$ private Suggest reducedSuggest(AtomicArray<SearchPhaseResult> results) --> Line_3 $$ Map<String, List<Suggest.Suggestion<CompletionSuggestion.Entry>>> groupedSuggestion = new HashMap() [CD]
+Line_2 $$ private Suggest reducedSuggest(AtomicArray<SearchPhaseResult> results) --> Line_4 $$ for (SearchPhaseResult entry : results.asList()) [FD]
+Line_4 $$ for (SearchPhaseResult entry : results.asList()) --> Line_5 $$ for (Suggest.Suggestion<?> suggestion : entry.queryResult().suggest()) [FD]
+Line_5 $$ for (Suggest.Suggestion<?> suggestion : entry.queryResult().suggest()) --> Line_6 $$ List<Suggest.Suggestion<CompletionSuggestion.Entry>> suggests = groupedSuggestion.computeIfAbsent(suggestion.getName(),  s -> new ArrayList()) [FD]
+Line_2 $$ private Suggest reducedSuggest(AtomicArray<SearchPhaseResult> results) --> Line_10 $$ return new Suggest(groupedSuggestion.values().stream().map(CompletionSuggestion::<>reduceTo).collect(Collectors.toList())) [CD]

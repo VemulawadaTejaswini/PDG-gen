@@ -1,0 +1,6 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl()); --> Line_5 $$ conn.setAutoCommit(true) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl()); --> Line_6 $$ stmt.execute(String.format(ddlFormat, dataTableName)) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl()); --> Line_7 $$ stmt.executeUpdate("UPSERT INTO " + dataTableName + " VALUES (1, 'v1')") [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl()); --> Line_8 $$ stmt.executeUpdate("UPSERT INTO " + dataTableName + " VALUES (2, null)") [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl()); --> Line_9 $$ TestUtil.doMajorCompaction(conn, dataTableName) [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl()); --> Line_10 $$ ensureNullsStoredCorrectly(conn) [FD]

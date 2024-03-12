@@ -1,0 +1,7 @@
+Line_2 $$ void drainOnReadIfNeeded(int bufferIndex, long writeCount) --> Line_3 $$ final long pending = (writeCount - readBufferDrainAtWriteCount[bufferIndex].get()) [CD]
+Line_2 $$ void drainOnReadIfNeeded(int bufferIndex, long writeCount) --> Line_4 $$ final boolean delayable = (pending < READ_BUFFER_THRESHOLD) [CD]
+Line_2 $$ void drainOnReadIfNeeded(int bufferIndex, long writeCount) --> Line_5 $$ final DrainStatus status = drainStatus.get() [CD]
+Line_2 $$ void drainOnReadIfNeeded(int bufferIndex, long writeCount) --> Line_6 $$ if (status.shouldDrainBuffers(delayable)) [CD]
+Line_5 $$ final DrainStatus status = drainStatus.get() --> Line_6 $$ if (status.shouldDrainBuffers(delayable)) [FD]
+Line_4 $$ final boolean delayable = (pending < READ_BUFFER_THRESHOLD) --> Line_6 $$ if (status.shouldDrainBuffers(delayable)) [FD]
+Line_6 $$ if (status.shouldDrainBuffers(delayable)) --> Line_7 $$ tryToDrainBuffers() [CD]

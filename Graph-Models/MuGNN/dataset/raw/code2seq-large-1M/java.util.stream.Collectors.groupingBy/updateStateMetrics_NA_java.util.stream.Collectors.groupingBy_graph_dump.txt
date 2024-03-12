@@ -1,0 +1,7 @@
+Line_2 $$ private void updateStateMetrics(List<Node> nodes) --> Line_3 $$ Map<Node.State, List<Node>> nodesByState = nodes.stream().collect(Collectors.groupingBy(Node::<>state)) [CD]
+Line_2 $$ private void updateStateMetrics(List<Node> nodes) --> Line_3 $$ Map<Node.State, List<Node>> nodesByState = nodes.stream().collect(Collectors.groupingBy(Node::<>state)) [FD]
+Line_3 $$ Map<Node.State, List<Node>> nodesByState = nodes.stream().collect(Collectors.groupingBy(Node::<>state)) --> Line_5 $$ List<Node> nodesInState = nodesByState.getOrDefault(state, new ArrayList()) [FD]
+Line_4 $$ for (Node.State state : Node.State.values()) --> Line_5 $$ List<Node> nodesInState = nodesByState.getOrDefault(state, new ArrayList()) [FD]
+Line_5 $$ List<Node> nodesInState = nodesByState.getOrDefault(state, new ArrayList()) --> Line_6 $$ long size = nodesInState.stream().filter( node -> node.type() == NodeType.tenant).count() [FD]
+Line_6 $$ long size = nodesInState.stream().filter( node -> node.type() == NodeType.tenant).count() --> Line_7 $$ metric.set("hostedVespa." + state.name() + "Hosts", size, null) [FD]
+Line_4 $$ for (Node.State state : Node.State.values()) --> Line_7 $$ metric.set("hostedVespa." + state.name() + "Hosts", size, null) [FD]

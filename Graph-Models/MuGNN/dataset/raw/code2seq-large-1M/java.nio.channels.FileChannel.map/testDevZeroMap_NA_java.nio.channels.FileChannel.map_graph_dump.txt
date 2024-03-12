@@ -1,0 +1,7 @@
+Line_2 $$ public void testDevZeroMap() throws Exception --> Line_3 $$ RandomAccessFile raf = new RandomAccessFile("/dev/zero", "r") [CD]
+Line_3 $$ RandomAccessFile raf = new RandomAccessFile("/dev/zero", "r") --> Line_5 $$ MappedByteBuffer mbb = raf.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, 65536) [FD]
+Line_6 $$ byte[] buf1 = new byte[65536] --> Line_7 $$ Arrays.fill(buf1, (byte) 1) [FD]
+Line_5 $$ MappedByteBuffer mbb = raf.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, 65536) --> Line_8 $$ mbb.get(buf1) [FD]
+Line_6 $$ byte[] buf1 = new byte[65536] --> Line_8 $$ mbb.get(buf1) [FD]
+Line_9 $$ for (int i = 0; i < 65536; i++) --> Line_10 $$ assertEquals((byte) 0, buf1[i]) [CD]
+Line_3 $$ RandomAccessFile raf = new RandomAccessFile("/dev/zero", "r") --> Line_13 $$ raf.close() [FD]

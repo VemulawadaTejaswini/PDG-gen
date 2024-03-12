@@ -1,0 +1,8 @@
+Line_2 $$ public void handleAllAlarms(List<AlarmWrapper> alarms) --> Line_3 $$ final Set<String> reductionKeysFromGivenAlarms = new HashSet(alarms.size()) [CD]
+Line_2 $$ public void handleAllAlarms(List<AlarmWrapper> alarms) --> Line_3 $$ final Set<String> reductionKeysFromGivenAlarms = new HashSet(alarms.size()) [FD]
+Line_2 $$ public void handleAllAlarms(List<AlarmWrapper> alarms) --> Line_4 $$ m_rwLock.writeLock().lock() [CD]
+Line_6 $$ for (AlarmWrapper alarm : alarms) --> Line_7 $$ updateAndPropagateVertex(m_g, m_g.getVertexByReductionKey(alarm.getReductionKey()), alarm.getStatus()) [FD]
+Line_3 $$ final Set<String> reductionKeysFromGivenAlarms = new HashSet(alarms.size()) --> Line_8 $$ reductionKeysFromGivenAlarms.add(alarm.getReductionKey()) [FD]
+Line_6 $$ for (AlarmWrapper alarm : alarms) --> Line_8 $$ reductionKeysFromGivenAlarms.add(alarm.getReductionKey()) [FD]
+Line_3 $$ final Set<String> reductionKeysFromGivenAlarms = new HashSet(alarms.size()) --> Line_10 $$ for (String missingReductionKey : Sets.difference(m_g.getReductionKeys(), reductionKeysFromGivenAlarms)) [FD]
+Line_10 $$ for (String missingReductionKey : Sets.difference(m_g.getReductionKeys(), reductionKeysFromGivenAlarms)) --> Line_11 $$ updateAndPropagateVertex(m_g, m_g.getVertexByReductionKey(missingReductionKey), Status.INDETERMINATE) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ Pair<TerrapinClient, TerrapinClient> getClientTuple(RequestOptions options) --> Line_3 $$ if (primaryClient == null || secondaryClient == null) [CD]
+Line_3 $$ if (primaryClient == null || secondaryClient == null) --> Line_4 $$ return new ImmutablePair(primaryClient == null ? secondaryClient : primaryClient, null) [CD]
+Line_2 $$ Pair<TerrapinClient, TerrapinClient> getClientTuple(RequestOptions options) --> Line_6 $$ boolean primaryFirst = Math.random() < 0.5 [CD]
+Line_2 $$ Pair<TerrapinClient, TerrapinClient> getClientTuple(RequestOptions options) --> Line_7 $$ final TerrapinClient firstClient = options.selectionPolicy == SelectionPolicy.PRIMARY_FIRST ? primaryClient : (primaryFirst ? primaryClient : secondaryClient) [CD]
+Line_2 $$ Pair<TerrapinClient, TerrapinClient> getClientTuple(RequestOptions options) --> Line_8 $$ final TerrapinClient secondClient = firstClient == primaryClient ? secondaryClient : primaryClient [CD]
+Line_2 $$ Pair<TerrapinClient, TerrapinClient> getClientTuple(RequestOptions options) --> Line_9 $$ return new ImmutablePair(firstClient, secondClient) [CD]

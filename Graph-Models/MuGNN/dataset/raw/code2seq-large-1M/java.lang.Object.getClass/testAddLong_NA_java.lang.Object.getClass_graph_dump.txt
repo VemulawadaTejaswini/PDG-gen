@@ -1,0 +1,8 @@
+Line_2 $$ public void testAddLong() throws InterruptedException, ExecutionException --> Line_3 $$ Long sb = 1l [CD]
+Line_2 $$ public void testAddLong() throws InterruptedException, ExecutionException --> Line_4 $$ RSetReactive<Long> set = redisson.getSet("simple_longs") [CD]
+Line_2 $$ public void testAddLong() throws InterruptedException, ExecutionException --> Line_5 $$ sync(set.add(sb)) [CD]
+Line_4 $$ RSetReactive<Long> set = redisson.getSet("simple_longs") --> Line_5 $$ sync(set.add(sb)) [FD]
+Line_3 $$ Long sb = 1l --> Line_5 $$ sync(set.add(sb)) [FD]
+Line_4 $$ RSetReactive<Long> set = redisson.getSet("simple_longs") --> Line_6 $$ for (Long l : sync(set)) [FD]
+Line_3 $$ Long sb = 1l --> Line_7 $$ Assert.assertEquals(sb.getClass(), l.getClass()) [FD]
+Line_6 $$ for (Long l : sync(set)) --> Line_7 $$ Assert.assertEquals(sb.getClass(), l.getClass()) [FD]

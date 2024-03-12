@@ -1,0 +1,6 @@
+Line_2 $$ void log(boolean readOnly, Throwable error, String methodName, String[] methodSignature, Object... methodParams) --> Line_3 $$ final String userId = securityIdentitySupplier != null ? securityIdentitySupplier.get().getPrincipal().getName() : null [CD]
+Line_2 $$ void log(boolean readOnly, Throwable error, String methodName, String[] methodSignature, Object... methodParams) --> Line_4 $$ if (WildFlySecurityManager.isChecking()) [CD]
+Line_4 $$ if (WildFlySecurityManager.isChecking()) --> Line_5 $$ doPrivileged(new LogAction(userId, auditLogger, readOnly, error, methodName, methodSignature, methodParams)) [CD]
+Line_4 $$ if (WildFlySecurityManager.isChecking()) --> Line_7 $$ LogAction.doLog(userId, auditLogger, readOnly, error, methodName, methodSignature, methodParams) [CD]
+Line_3 $$ final String userId = securityIdentitySupplier != null ? securityIdentitySupplier.get().getPrincipal().getName() : null --> Line_7 $$ LogAction.doLog(userId, auditLogger, readOnly, error, methodName, methodSignature, methodParams) [FD]
+Line_2 $$ void log(boolean readOnly, Throwable error, String methodName, String[] methodSignature, Object... methodParams) --> Line_7 $$ LogAction.doLog(userId, auditLogger, readOnly, error, methodName, methodSignature, methodParams) [FD]

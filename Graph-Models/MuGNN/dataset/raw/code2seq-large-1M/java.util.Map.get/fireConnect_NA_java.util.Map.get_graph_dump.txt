@@ -1,0 +1,7 @@
+Line_2 $$ public void fireConnect(InetSocketAddress addr) --> Line_3 $$ if (maps.get(addr) == Status.CONNECTED) [CD]
+Line_2 $$ public void fireConnect(InetSocketAddress addr) --> Line_3 $$ if (maps.get(addr) == Status.CONNECTED) [FD]
+Line_3 $$ if (maps.get(addr) == Status.CONNECTED) --> Line_4 $$ return [CD]
+Line_2 $$ public void fireConnect(InetSocketAddress addr) --> Line_6 $$ if (maps.putIfAbsent(addr, Status.CONNECTED) == null || maps.replace(addr, Status.DISCONNECTED, Status.CONNECTED)) [CD]
+Line_2 $$ public void fireConnect(InetSocketAddress addr) --> Line_6 $$ if (maps.putIfAbsent(addr, Status.CONNECTED) == null || maps.replace(addr, Status.DISCONNECTED, Status.CONNECTED)) [FD]
+Line_7 $$ for (ConnectionListener listener : listenersMap.values()) --> Line_8 $$ listener.onConnect(addr) [FD]
+Line_2 $$ public void fireConnect(InetSocketAddress addr) --> Line_8 $$ listener.onConnect(addr) [FD]

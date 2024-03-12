@@ -1,0 +1,7 @@
+Line_2 $$ public Response healthCheck(@QueryParam("retries") @DefaultValue("3") int retries, @QueryParam("details") @DefaultValue("false") boolean details) --> Line_4 $$ HealthCheckResult result = systemManager.healthCheck(retries) [FD]
+Line_5 $$ if (details) --> Line_6 $$ return Response.ok(CodecJSON.encodeString(result)).build() [CD]
+Line_4 $$ HealthCheckResult result = systemManager.healthCheck(retries) --> Line_6 $$ return Response.ok(CodecJSON.encodeString(result)).build() [FD]
+Line_5 $$ if (details) --> Line_8 $$ return Response.ok(String.valueOf(result.isEverythingOK())).build() [CD]
+Line_4 $$ HealthCheckResult result = systemManager.healthCheck(retries) --> Line_8 $$ return Response.ok(String.valueOf(result.isEverythingOK())).build() [FD]
+Line_11 $$ String err = "Error running health check: " + e.getMessage() --> Line_12 $$ log.error(err, e) [FD]
+Line_11 $$ String err = "Error running health check: " + e.getMessage() --> Line_13 $$ return Response.serverError().entity(err).build() [FD]

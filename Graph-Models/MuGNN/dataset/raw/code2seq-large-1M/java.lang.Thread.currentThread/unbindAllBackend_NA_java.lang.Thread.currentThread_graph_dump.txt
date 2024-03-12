@@ -1,0 +1,7 @@
+Line_2 $$ public void unbindAllBackend() --> Line_3 $$ final MycatReactorThread reactor = (MycatReactorThread) Thread.currentThread() [CD]
+Line_2 $$ public void unbindAllBackend() --> Line_4 $$ backendMap.forEach(( key,  value) -> [CD]
+Line_5 $$ if (value != null) --> Line_6 $$ value.forEach( mySQLSession -> [CD]
+Line_7 $$ MycatSession mycatSession = mySQLSession.getMycatSession() --> Line_8 $$ if (null != mycatSession) [FD]
+Line_8 $$ if (null != mycatSession) --> Line_9 $$ mycatSession.curBackend = null [CD]
+Line_3 $$ final MycatReactorThread reactor = (MycatReactorThread) Thread.currentThread() --> Line_12 $$ reactor.addMySQLSession(mySQLSession.getMySQLMetaBean(), mySQLSession) [FD]
+Line_2 $$ public void unbindAllBackend() --> Line_16 $$ backendMap.clear() [CD]

@@ -1,0 +1,3 @@
+Line_3 $$ Session s = HibHelper.getSessionFactory().openSession() --> Line_4 $$ List<Requests> r = (List<Requests>) s.createQuery("from Requests where original_str like :term or data_str like :term2 order by id desc").setParameter("term", "%" + query + "%").setParameter("term2", "%" + query + "%").list() [FD]
+Line_6 $$ for (Requests q : r) --> Line_7 $$ list.add(new LogEntry((long) q.getId(), q.getSrcIp(), q.getSrcPort(), q.getDstIp(), q.getDstPort(), q.getDirection(), q.getDate(), q.getBytes())) [FD]
+Line_3 $$ Session s = HibHelper.getSessionFactory().openSession() --> Line_9 $$ s.close() [FD]

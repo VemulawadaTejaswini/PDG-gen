@@ -1,0 +1,8 @@
+Line_2 $$ public ImmutableMap<String, ImmutableList<String>> getQueryParams() --> Line_3 $$ if (queryParams == null) [CD]
+Line_3 $$ if (queryParams == null) --> Line_4 $$ Map<String, String[]> parameterMap = getParameterMap() [CD]
+Line_3 $$ if (queryParams == null) --> Line_5 $$ ImmutableMap.Builder<String, ImmutableList<String>> paramsBuilder = ImmutableMap.builder() [CD]
+Line_4 $$ Map<String, String[]> parameterMap = getParameterMap() --> Line_6 $$ for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) [FD]
+Line_5 $$ ImmutableMap.Builder<String, ImmutableList<String>> paramsBuilder = ImmutableMap.builder() --> Line_7 $$ paramsBuilder.put(entry.getKey(), ImmutableList.copyOf(entry.getValue())) [FD]
+Line_3 $$ if (queryParams == null) --> Line_9 $$ queryParams = paramsBuilder.build() [CD]
+Line_5 $$ ImmutableMap.Builder<String, ImmutableList<String>> paramsBuilder = ImmutableMap.builder() --> Line_9 $$ queryParams = paramsBuilder.build() [FD]
+Line_2 $$ public ImmutableMap<String, ImmutableList<String>> getQueryParams() --> Line_11 $$ return queryParams [CD]

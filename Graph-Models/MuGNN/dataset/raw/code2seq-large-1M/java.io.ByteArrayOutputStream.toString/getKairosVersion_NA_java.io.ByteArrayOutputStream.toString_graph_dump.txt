@@ -1,0 +1,5 @@
+Line_4 $$ HttpGet get = new HttpGet(m_remoteUrl + "/api/v1/version") --> Line_5 $$ try (CloseableHttpResponse response = m_client.execute(get)) [FD]
+Line_6 $$ ByteArrayOutputStream bout = new ByteArrayOutputStream() --> Line_7 $$ response.getEntity().writeTo(bout) [FD]
+Line_5 $$ try (CloseableHttpResponse response = m_client.execute(get)) --> Line_7 $$ response.getEntity().writeTo(bout) [FD]
+Line_6 $$ ByteArrayOutputStream bout = new ByteArrayOutputStream() --> Line_8 $$ JSONObject respJson = new JSONObject(bout.toString("UTF-8")) [FD]
+Line_8 $$ JSONObject respJson = new JSONObject(bout.toString("UTF-8")) --> Line_9 $$ logger.info("Connecting to remote Kairos version: " + respJson.getString("version")) [FD]

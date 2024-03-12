@@ -1,0 +1,7 @@
+Line_2 $$ public AuthAccessToken authAccessToken(String code) --> Line_3 $$ String url = AUTH_ACCESS_TOKEN_URL + "&appid=" + wechat.getAppId() + "&secret=" + wechat.getAppSecret() + "&code=" + code [CD]
+Line_2 $$ public AuthAccessToken authAccessToken(String code) --> Line_4 $$ Map<String, Object> resp = doGet(url) [CD]
+Line_3 $$ String url = AUTH_ACCESS_TOKEN_URL + "&appid=" + wechat.getAppId() + "&secret=" + wechat.getAppSecret() + "&code=" + code --> Line_4 $$ Map<String, Object> resp = doGet(url) [FD]
+Line_2 $$ public AuthAccessToken authAccessToken(String code) --> Line_5 $$ AuthAccessToken token = Jsons.DEFAULT.fromJson(Jsons.DEFAULT.toJson(resp), AuthAccessToken.class) [CD]
+Line_4 $$ Map<String, Object> resp = doGet(url) --> Line_5 $$ AuthAccessToken token = Jsons.DEFAULT.fromJson(Jsons.DEFAULT.toJson(resp), AuthAccessToken.class) [FD]
+Line_2 $$ public AuthAccessToken authAccessToken(String code) --> Line_6 $$ token.setExpiredAt(System.currentTimeMillis() + token.getExpire() * 1000) [CD]
+Line_2 $$ public AuthAccessToken authAccessToken(String code) --> Line_7 $$ return token [CD]

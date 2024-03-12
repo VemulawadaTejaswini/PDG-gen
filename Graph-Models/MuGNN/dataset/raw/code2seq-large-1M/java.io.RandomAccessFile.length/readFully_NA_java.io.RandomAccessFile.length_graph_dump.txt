@@ -1,0 +1,8 @@
+Line_2 $$ public byte[] readFully() throws IOException --> Line_3 $$ long length = raf.length() [CD]
+Line_2 $$ public byte[] readFully() throws IOException --> Line_4 $$ if (length > Integer.MAX_VALUE) [CD]
+Line_3 $$ long length = raf.length() --> Line_4 $$ if (length > Integer.MAX_VALUE) [FD]
+Line_3 $$ long length = raf.length() --> Line_5 $$ throw new IOException(String.format(Locale.US, "file[%s] too large to read fully: %d bytes", fileName, length)) [FD]
+Line_2 $$ public byte[] readFully() throws IOException --> Line_7 $$ byte[] data = new byte[(int) length] [CD]
+Line_2 $$ public byte[] readFully() throws IOException --> Line_8 $$ raf.readFully(data) [CD]
+Line_7 $$ byte[] data = new byte[(int) length] --> Line_8 $$ raf.readFully(data) [FD]
+Line_2 $$ public byte[] readFully() throws IOException --> Line_9 $$ return data [CD]

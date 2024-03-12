@@ -1,0 +1,7 @@
+Line_2 $$ public Set<TopicPartition> getAllSubscribedPartitions(KafkaConsumer<?, ?> consumer) --> Line_3 $$ topics.clear() [CD]
+Line_2 $$ public Set<TopicPartition> getAllSubscribedPartitions(KafkaConsumer<?, ?> consumer) --> Line_4 $$ Set<TopicPartition> allPartitions = new HashSet() [CD]
+Line_2 $$ public Set<TopicPartition> getAllSubscribedPartitions(KafkaConsumer<?, ?> consumer) --> Line_5 $$ for (Map.Entry<String, List<PartitionInfo>> entry : consumer.listTopics().entrySet()) [FD]
+Line_4 $$ Set<TopicPartition> allPartitions = new HashSet() --> Line_8 $$ allPartitions.add(new TopicPartition(partitionInfo.topic(), partitionInfo.partition())) [FD]
+Line_7 $$ for (PartitionInfo partitionInfo : entry.getValue()) --> Line_8 $$ allPartitions.add(new TopicPartition(partitionInfo.topic(), partitionInfo.partition())) [FD]
+Line_7 $$ for (PartitionInfo partitionInfo : entry.getValue()) --> Line_9 $$ topics.add(partitionInfo.topic()) [FD]
+Line_2 $$ public Set<TopicPartition> getAllSubscribedPartitions(KafkaConsumer<?, ?> consumer) --> Line_13 $$ return allPartitions [CD]

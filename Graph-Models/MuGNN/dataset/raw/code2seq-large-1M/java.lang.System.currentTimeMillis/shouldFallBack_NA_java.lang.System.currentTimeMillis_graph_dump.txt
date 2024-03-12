@@ -1,0 +1,8 @@
+Line_2 $$ private boolean shouldFallBack() --> Line_3 $$ long secondsSinceFailedOver = (System.currentTimeMillis() - this.masterFailTimeMillis) / 1000 [CD]
+Line_2 $$ private boolean shouldFallBack() --> Line_4 $$ if (secondsSinceFailedOver >= this.secondsBeforeRetryMaster) [CD]
+Line_3 $$ long secondsSinceFailedOver = (System.currentTimeMillis() - this.masterFailTimeMillis) / 1000 --> Line_4 $$ if (secondsSinceFailedOver >= this.secondsBeforeRetryMaster) [FD]
+Line_4 $$ if (secondsSinceFailedOver >= this.secondsBeforeRetryMaster) --> Line_5 $$ this.masterFailTimeMillis = System.currentTimeMillis() [CD]
+Line_4 $$ if (secondsSinceFailedOver >= this.secondsBeforeRetryMaster) --> Line_6 $$ return true [CD]
+Line_4 $$ if (secondsSinceFailedOver >= this.secondsBeforeRetryMaster) --> Line_7 $$ if (this.queriesBeforeRetryMaster != 0 && this.queriesIssuedFailedOver >= this.queriesBeforeRetryMaster) [CD]
+Line_7 $$ if (this.queriesBeforeRetryMaster != 0 && this.queriesIssuedFailedOver >= this.queriesBeforeRetryMaster) --> Line_8 $$ return true [CD]
+Line_2 $$ private boolean shouldFallBack() --> Line_10 $$ return false [CD]

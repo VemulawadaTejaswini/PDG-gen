@@ -1,0 +1,6 @@
+Line_2 $$ public LoginContext createLoginContext(String realm, Subject subject, CallbackHandler handler) throws LoginException --> Line_3 $$ final Thread currentThread = Thread.currentThread() [CD]
+Line_2 $$ public LoginContext createLoginContext(String realm, Subject subject, CallbackHandler handler) throws LoginException --> Line_4 $$ final ClassLoader cl = currentThread.getContextClassLoader() [CD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_4 $$ final ClassLoader cl = currentThread.getContextClassLoader() [FD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_6 $$ currentThread.setContextClassLoader(ProxyLoginModule.class.getClassLoader()) [FD]
+Line_3 $$ final Thread currentThread = Thread.currentThread() --> Line_14 $$ currentThread.setContextClassLoader(cl) [FD]
+Line_4 $$ final ClassLoader cl = currentThread.getContextClassLoader() --> Line_14 $$ currentThread.setContextClassLoader(cl) [FD]

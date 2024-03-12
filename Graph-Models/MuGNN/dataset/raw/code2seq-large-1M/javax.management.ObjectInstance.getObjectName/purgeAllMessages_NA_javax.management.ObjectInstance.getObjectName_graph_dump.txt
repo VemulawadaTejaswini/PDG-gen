@@ -1,0 +1,4 @@
+Line_2 $$ public void purgeAllMessages() throws IOException, Exception --> Line_3 $$ List<ObjectInstance> queueList = JmxMBeansUtil.queryMBeans(createJmxConnection(), "type=Broker,brokerName=localbroker,destinationType=Queue,destinationName=*") [CD]
+Line_4 $$ for (ObjectInstance oi : queueList) --> Line_5 $$ ObjectName queueName = oi.getObjectName() [FD]
+Line_5 $$ ObjectName queueName = oi.getObjectName() --> Line_6 $$ LOG.info("Purging all messages in queue: " + queueName.getKeyProperty("Destination")) [FD]
+Line_5 $$ ObjectName queueName = oi.getObjectName() --> Line_7 $$ createJmxConnection().invoke(queueName, "purge", new Object[] [FD]

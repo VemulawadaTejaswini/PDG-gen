@@ -1,0 +1,4 @@
+Line_2 $$ public void chained2() --> Line_3 $$ new SimpleReact().ofAsync(() -> 1, () -> 2).then(this::<>throwException).then( i -> i + 2).onFail(IOException.class,  e -> shouldNeverBeCalled.incrementAndGet()).onFail(RuntimeException.class,  e -> shouldBeCalled.incrementAndGet()).onFail(ClosedQueueException.class,  e -> shouldNeverBeReached.incrementAndGet()).block() [CD]
+Line_2 $$ public void chained2() --> Line_4 $$ assertThat(shouldNeverBeCalled.get(), equalTo(0)) [CD]
+Line_2 $$ public void chained2() --> Line_5 $$ assertThat(shouldBeCalled.get(), equalTo(2)) [CD]
+Line_2 $$ public void chained2() --> Line_6 $$ assertThat(shouldNeverBeReached.get(), equalTo(0)) [CD]

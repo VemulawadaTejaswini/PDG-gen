@@ -1,0 +1,4 @@
+Line_2 $$ public void getAuditsByDate() throws Exception --> Line_3 $$ auditEventRepository.save(auditEvent) [CD]
+Line_2 $$ public void getAuditsByDate() throws Exception --> Line_4 $$ String fromDate = SAMPLE_TIMESTAMP.minusSeconds(SECONDS_PER_DAY).toString().substring(0, 10) [CD]
+Line_2 $$ public void getAuditsByDate() throws Exception --> Line_5 $$ String toDate = SAMPLE_TIMESTAMP.plusSeconds(SECONDS_PER_DAY).toString().substring(0, 10) [CD]
+Line_2 $$ public void getAuditsByDate() throws Exception --> Line_6 $$ restAuditMockMvc.perform(get("/management/audits?fromDate=" + fromDate + "&toDate=" + toDate)).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL))) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void writeToFile() --> Line_3 $$ final String dirPath = getFilePath() [CD]
+Line_4 $$ for (String domainName : counter.keySet()) --> Line_5 $$ DomainMetrics domainMetrics = getMetrics(domainName) [FD]
+Line_6 $$ Long epoch = System.currentTimeMillis() --> Line_7 $$ String filepath = dirPath + domainName + "_" + Long.toString(epoch) + ".json" [FD]
+Line_7 $$ String filepath = dirPath + domainName + "_" + Long.toString(epoch) + ".json" --> Line_9 $$ Path path = Paths.get(filepath) [FD]
+Line_9 $$ Path path = Paths.get(filepath) --> Line_10 $$ Files.write(path, JSON.bytes(domainMetrics)) [FD]
+Line_5 $$ DomainMetrics domainMetrics = getMetrics(domainName) --> Line_10 $$ Files.write(path, JSON.bytes(domainMetrics)) [FD]
+Line_4 $$ for (String domainName : counter.keySet()) --> Line_12 $$ counter.remove(domainName) [FD]

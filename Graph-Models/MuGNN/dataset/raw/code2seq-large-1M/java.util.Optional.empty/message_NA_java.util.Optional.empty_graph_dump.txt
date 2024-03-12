@@ -1,0 +1,8 @@
+Line_2 $$ static Optional<byte[]> message(PublicKeyInfo signer, Digest digest) --> Line_4 $$ PublicKeyInfo info = new PublicKeyInfo(signer.service(), signer.type(), signer.key(), signer.buildAndTime(), Optional.empty(), Optional.empty()) [FD]
+Line_4 $$ PublicKeyInfo info = new PublicKeyInfo(signer.service(), signer.type(), signer.key(), signer.buildAndTime(), Optional.empty(), Optional.empty()) --> Line_5 $$ byte[] encoded = info.getEncoded() [FD]
+Line_2 $$ static Optional<byte[]> message(PublicKeyInfo signer, Digest digest) --> Line_6 $$ byte[] message = new byte[digest.getDigestSize()] [FD]
+Line_2 $$ static Optional<byte[]> message(PublicKeyInfo signer, Digest digest) --> Line_7 $$ digest.update(encoded, 0, encoded.length) [FD]
+Line_5 $$ byte[] encoded = info.getEncoded() --> Line_7 $$ digest.update(encoded, 0, encoded.length) [FD]
+Line_2 $$ static Optional<byte[]> message(PublicKeyInfo signer, Digest digest) --> Line_8 $$ digest.doFinal(message, 0) [FD]
+Line_6 $$ byte[] message = new byte[digest.getDigestSize()] --> Line_8 $$ digest.doFinal(message, 0) [FD]
+Line_6 $$ byte[] message = new byte[digest.getDigestSize()] --> Line_9 $$ return Optional.ofNullable(message) [FD]

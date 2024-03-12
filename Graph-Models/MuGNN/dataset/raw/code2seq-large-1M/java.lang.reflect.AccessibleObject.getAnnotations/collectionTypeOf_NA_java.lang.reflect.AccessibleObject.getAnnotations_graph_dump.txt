@@ -1,0 +1,7 @@
+Line_2 $$ public static Class<?> collectionTypeOf(Field field) --> Line_3 $$ Annotation[] annotations = field.getAnnotations() [FD]
+Line_2 $$ public static Class<?> collectionTypeOf(Field field) --> Line_3 $$ Annotation[] annotations = field.getAnnotations() [CD]
+Line_2 $$ public static Class<?> collectionTypeOf(Field field) --> Line_4 $$ Annotation annotation = Arrays.stream(annotations).filter( a -> "CollectionType".equals(a.annotationType().getName().substring(a.annotationType().getName().lastIndexOf(".") + 1))).findFirst().get() [CD]
+Line_3 $$ Annotation[] annotations = field.getAnnotations() --> Line_4 $$ Annotation annotation = Arrays.stream(annotations).filter( a -> "CollectionType".equals(a.annotationType().getName().substring(a.annotationType().getName().lastIndexOf(".") + 1))).findFirst().get() [FD]
+Line_4 $$ Annotation annotation = Arrays.stream(annotations).filter( a -> "CollectionType".equals(a.annotationType().getName().substring(a.annotationType().getName().lastIndexOf(".") + 1))).findFirst().get() --> Line_6 $$ Method m = annotation.annotationType().getMethod("value") [FD]
+Line_6 $$ Method m = annotation.annotationType().getMethod("value") --> Line_7 $$ Class<?> value = (Class<?>) m.invoke(annotation, (Object[]) null) [FD]
+Line_4 $$ Annotation annotation = Arrays.stream(annotations).filter( a -> "CollectionType".equals(a.annotationType().getName().substring(a.annotationType().getName().lastIndexOf(".") + 1))).findFirst().get() --> Line_7 $$ Class<?> value = (Class<?>) m.invoke(annotation, (Object[]) null) [FD]

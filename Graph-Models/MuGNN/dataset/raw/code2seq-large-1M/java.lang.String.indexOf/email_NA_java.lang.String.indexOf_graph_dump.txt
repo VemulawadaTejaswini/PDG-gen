@@ -1,0 +1,8 @@
+Line_2 $$ public Map<String, String> email(@Name("email_address") final String value) --> Line_3 $$ if (value == null || value.indexOf('@') == -1) [FD]
+Line_2 $$ public Map<String, String> email(@Name("email_address") final String value) --> Line_3 $$ if (value == null || value.indexOf('@') == -1) [CD]
+Line_3 $$ if (value == null || value.indexOf('@') == -1) --> Line_4 $$ return null [CD]
+Line_7 $$ InternetAddress addr = new InternetAddress(value) --> Line_8 $$ String rawAddr = addr.getAddress() [FD]
+Line_8 $$ String rawAddr = addr.getAddress() --> Line_9 $$ int idx = rawAddr.indexOf('@') [FD]
+Line_7 $$ InternetAddress addr = new InternetAddress(value) --> Line_10 $$ return (Map) Util.map("personal", addr.getPersonal(), "user", rawAddr.substring(0, idx), "domain", rawAddr.substring(idx + 1)) [FD]
+Line_8 $$ String rawAddr = addr.getAddress() --> Line_10 $$ return (Map) Util.map("personal", addr.getPersonal(), "user", rawAddr.substring(0, idx), "domain", rawAddr.substring(idx + 1)) [FD]
+Line_9 $$ int idx = rawAddr.indexOf('@') --> Line_10 $$ return (Map) Util.map("personal", addr.getPersonal(), "user", rawAddr.substring(0, idx), "domain", rawAddr.substring(idx + 1)) [FD]

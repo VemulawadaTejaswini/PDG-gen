@@ -1,0 +1,5 @@
+Line_2 $$ public void metricTagValuesAreDeduplicated() --> Line_3 $$ this.registry.counter("cache", "host", "1", "region", "east", "result", "hit") [CD]
+Line_2 $$ public void metricTagValuesAreDeduplicated() --> Line_4 $$ this.registry.counter("cache", "host", "1", "region", "east", "result", "miss") [CD]
+Line_2 $$ public void metricTagValuesAreDeduplicated() --> Line_5 $$ MetricsEndpoint.MetricResponse response = this.endpoint.metric("cache", Collections.singletonList("host:1")) [CD]
+Line_2 $$ public void metricTagValuesAreDeduplicated() --> Line_6 $$ assertThat(response.getAvailableTags().stream().filter(( t) -> t.getTag().equals("region")).flatMap(( t) -> t.getValues().stream())).containsExactly("east") [CD]
+Line_5 $$ MetricsEndpoint.MetricResponse response = this.endpoint.metric("cache", Collections.singletonList("host:1")) --> Line_6 $$ assertThat(response.getAvailableTags().stream().filter(( t) -> t.getTag().equals("region")).flatMap(( t) -> t.getValues().stream())).containsExactly("east") [FD]

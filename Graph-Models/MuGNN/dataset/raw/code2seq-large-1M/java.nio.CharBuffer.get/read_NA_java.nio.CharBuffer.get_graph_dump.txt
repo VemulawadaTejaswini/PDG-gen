@@ -1,0 +1,8 @@
+Line_2 $$ protected synchronized int read(long timeout, boolean isPeek) throws IOException --> Line_3 $$ int res = wait(readBuffer, timeout) [FD]
+Line_2 $$ protected synchronized int read(long timeout, boolean isPeek) throws IOException --> Line_3 $$ int res = wait(readBuffer, timeout) [CD]
+Line_2 $$ protected synchronized int read(long timeout, boolean isPeek) throws IOException --> Line_4 $$ if (res >= 0) [CD]
+Line_3 $$ int res = wait(readBuffer, timeout) --> Line_4 $$ if (res >= 0) [FD]
+Line_4 $$ if (res >= 0) --> Line_5 $$ res = isPeek ? readBuffer.get(readBuffer.position()) : readBuffer.get() [CD]
+Line_3 $$ int res = wait(readBuffer, timeout) --> Line_5 $$ res = isPeek ? readBuffer.get(readBuffer.position()) : readBuffer.get() [FD]
+Line_2 $$ protected synchronized int read(long timeout, boolean isPeek) throws IOException --> Line_7 $$ rewind(readBuffer, writeBuffer) [CD]
+Line_2 $$ protected synchronized int read(long timeout, boolean isPeek) throws IOException --> Line_8 $$ return res [CD]

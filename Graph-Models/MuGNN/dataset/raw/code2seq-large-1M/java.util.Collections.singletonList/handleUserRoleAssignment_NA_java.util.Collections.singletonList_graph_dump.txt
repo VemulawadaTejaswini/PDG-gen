@@ -1,0 +1,5 @@
+Line_2 $$ private DeferredResult<Void> handleUserRoleAssignment(AuthRole role) --> Line_3 $$ if (role != AuthRole.CLOUD_ADMIN) [FD]
+Line_2 $$ private DeferredResult<Void> handleUserRoleAssignment(AuthRole role) --> Line_3 $$ if (role != AuthRole.CLOUD_ADMIN) [CD]
+Line_3 $$ if (role != AuthRole.CLOUD_ADMIN) --> Line_4 $$ return DeferredResult.failed(new LocalizableValidationException(ROLE_NOT_SUPPORTED_MESSAGE, ROLE_NOT_SUPPORTED_MESSAGE_CODE, role.name())) [CD]
+Line_2 $$ private DeferredResult<Void> handleUserRoleAssignment(AuthRole role) --> Line_4 $$ return DeferredResult.failed(new LocalizableValidationException(ROLE_NOT_SUPPORTED_MESSAGE, ROLE_NOT_SUPPORTED_MESSAGE_CODE, role.name())) [FD]
+Line_2 $$ private DeferredResult<Void> handleUserRoleAssignment(AuthRole role) --> Line_6 $$ return PrincipalUtil.getOrCreateUser(service, principalId).thenCompose( user -> UserGroupsUpdater.create().setService(service).setGroupLink(AuthUtil.CLOUD_ADMINS_USER_GROUP_LINK).setUsersToAdd(Collections.singletonList(principalId)).update()) [CD]

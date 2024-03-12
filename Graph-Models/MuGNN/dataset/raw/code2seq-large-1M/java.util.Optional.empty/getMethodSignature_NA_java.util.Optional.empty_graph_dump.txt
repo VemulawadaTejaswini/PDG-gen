@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<FunctionSignature> getMethodSignature(Type owner, String methodName, List<Type> arguments) --> Line_4 $$ Class<?> methodOwnerClass = owner.getTypeClass() [FD]
+Line_2 $$ public Optional<FunctionSignature> getMethodSignature(Type owner, String methodName, List<Type> arguments) --> Line_5 $$ Class<?>[] params = arguments.stream().map(Type::<>getTypeClass).toArray(Class<?>[]::<>new) [FD]
+Line_4 $$ Class<?> methodOwnerClass = owner.getTypeClass() --> Line_6 $$ Method method = MethodUtils.getMatchingAccessibleMethod(methodOwnerClass, methodName, params) [FD]
+Line_2 $$ public Optional<FunctionSignature> getMethodSignature(Type owner, String methodName, List<Type> arguments) --> Line_6 $$ Method method = MethodUtils.getMatchingAccessibleMethod(methodOwnerClass, methodName, params) [FD]
+Line_5 $$ Class<?>[] params = arguments.stream().map(Type::<>getTypeClass).toArray(Class<?>[]::<>new) --> Line_6 $$ Method method = MethodUtils.getMatchingAccessibleMethod(methodOwnerClass, methodName, params) [FD]
+Line_6 $$ Method method = MethodUtils.getMatchingAccessibleMethod(methodOwnerClass, methodName, params) --> Line_7 $$ return Optional.of(ReflectionObjectToSignatureMapper.fromMethod(method)) [FD]

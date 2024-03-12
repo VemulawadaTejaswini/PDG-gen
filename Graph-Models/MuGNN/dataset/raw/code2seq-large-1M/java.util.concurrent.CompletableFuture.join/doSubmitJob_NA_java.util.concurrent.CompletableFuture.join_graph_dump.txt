@@ -1,0 +1,7 @@
+Line_2 $$ private void doSubmitJob(DAG dag, JobConfig config) --> Line_3 $$ CompletableFuture<Void> submitFuture = new CompletableFuture() [CD]
+Line_2 $$ private void doSubmitJob(DAG dag, JobConfig config) --> Line_4 $$ SubmitJobCallback callback = new SubmitJobCallback(submitFuture, dag, config) [CD]
+Line_2 $$ private void doSubmitJob(DAG dag, JobConfig config) --> Line_5 $$ invokeSubmitJob(serializationService().toData(dag), config).andThen(callback) [FD]
+Line_2 $$ private void doSubmitJob(DAG dag, JobConfig config) --> Line_5 $$ invokeSubmitJob(serializationService().toData(dag), config).andThen(callback) [CD]
+Line_4 $$ SubmitJobCallback callback = new SubmitJobCallback(submitFuture, dag, config) --> Line_5 $$ invokeSubmitJob(serializationService().toData(dag), config).andThen(callback) [FD]
+Line_2 $$ private void doSubmitJob(DAG dag, JobConfig config) --> Line_6 $$ submitFuture.join() [CD]
+Line_3 $$ CompletableFuture<Void> submitFuture = new CompletableFuture() --> Line_6 $$ submitFuture.join() [FD]

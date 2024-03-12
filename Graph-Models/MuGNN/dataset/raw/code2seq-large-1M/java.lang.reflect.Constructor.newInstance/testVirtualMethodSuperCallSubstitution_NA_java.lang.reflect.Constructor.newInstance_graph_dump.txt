@@ -1,0 +1,4 @@
+Line_2 $$ public void testVirtualMethodSuperCallSubstitution() throws Exception --> Line_3 $$ Class<?> type = new ByteBuddy().redefine(VirtualMethodCallSubstitutionSample.Extension.class).visit(MemberSubstitution.strict().method(named(FOO)).onSuperCall().stub().on(named(RUN))).make().load(new ByteArrayClassLoader(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassFileExtraction.of(VirtualMethodCallSubstitutionSample.class)), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testVirtualMethodSuperCallSubstitution() throws Exception --> Line_4 $$ Object instance = type.getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testVirtualMethodSuperCallSubstitution() throws Exception --> Line_5 $$ assertThat(type.getDeclaredMethod(RUN).invoke(instance), is((Object) 2)) [CD]
+Line_4 $$ Object instance = type.getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(type.getDeclaredMethod(RUN).invoke(instance), is((Object) 2)) [FD]

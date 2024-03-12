@@ -1,0 +1,4 @@
+Line_2 $$ public void testArgument() throws Exception --> Line_3 $$ Class<? extends FooQux> fooQux = new ByteBuddy().subclass(FooQux.class).method(isDeclaredBy(FooQux.class)).intercept(FixedValue.argument(1)).make().load(FooQux.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER).getLoaded() [CD]
+Line_2 $$ public void testArgument() throws Exception --> Line_4 $$ assertThat(fooQux.getDeclaredFields().length, is(0)) [CD]
+Line_2 $$ public void testArgument() throws Exception --> Line_5 $$ assertThat(fooQux.getDeclaredMethods().length, is(1)) [CD]
+Line_2 $$ public void testArgument() throws Exception --> Line_6 $$ assertThat(fooQux.getDeclaredMethod(BAR, Integer.class, String.class).invoke(fooQux.getDeclaredConstructor().newInstance(), 0, BAR), is((Object) BAR)) [CD]

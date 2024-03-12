@@ -1,0 +1,6 @@
+Line_2 $$ public void testInvalidAccessUseStringForIndexOnArrayWithAnyType() throws Exception --> Line_3 $$ Connection connection = setupConnectionWithNestedTable() [CD]
+Line_2 $$ public void testInvalidAccessUseStringForIndexOnArrayWithAnyType() throws Exception --> Line_4 $$ final Statement statement = connection.createStatement() [CD]
+Line_3 $$ Connection connection = setupConnectionWithNestedTable() --> Line_4 $$ final Statement statement = connection.createStatement() [FD]
+Line_4 $$ final Statement statement = connection.createStatement() --> Line_7 $$ statement.executeQuery(sql) [FD]
+Line_6 $$ final String sql = "select \"ID\", \"MAPFIELD\"," + " \"NESTEDMAPFIELD\", \"ARRAYFIELD\" " + "from \"s\".\"nested\" " + "where CAST(\"ARRAYFIELD\"['a'] AS INTEGER) = 200" --> Line_7 $$ statement.executeQuery(sql) [FD]
+Line_10 $$ Throwable e2 = e.getCause() --> Line_11 $$ assertThat(e2, is(instanceOf(CalciteContextException.class))) [FD]

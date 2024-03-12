@@ -1,0 +1,6 @@
+Line_3 $$ try (final Connection connection = DriverManager.getConnection(CONN_STRING)) --> Line_4 $$ assertThat(connection.isClosed(), is(false)) [FD]
+Line_3 $$ try (final Connection connection = DriverManager.getConnection(CONN_STRING)) --> Line_5 $$ try (final ResultSet resultSet = connection.getMetaData().getCatalogs()) [FD]
+Line_5 $$ try (final ResultSet resultSet = connection.getMetaData().getCatalogs()) --> Line_6 $$ final ResultSetMetaData metaData = resultSet.getMetaData() [FD]
+Line_5 $$ try (final ResultSet resultSet = connection.getMetaData().getCatalogs()) --> Line_7 $$ assertFalse("unexpected populated resultSet", resultSet.next()) [FD]
+Line_6 $$ final ResultSetMetaData metaData = resultSet.getMetaData() --> Line_8 $$ assertEquals(1, metaData.getColumnCount()) [FD]
+Line_6 $$ final ResultSetMetaData metaData = resultSet.getMetaData() --> Line_9 $$ assertEquals(TABLE_CAT, metaData.getColumnName(1)) [FD]

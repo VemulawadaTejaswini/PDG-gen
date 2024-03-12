@@ -1,0 +1,8 @@
+Line_2 $$ public void fixturePreviousInvoices() --> Line_3 $$ List<Invoice> invoices = Fixture.from(Invoice.class).gimme(3, "previousInvoices") [CD]
+Line_2 $$ public void fixturePreviousInvoices() --> Line_4 $$ assertNotNull("Invoice list should not be null", invoices) [CD]
+Line_2 $$ public void fixturePreviousInvoices() --> Line_5 $$ assertTrue("Invoice list should not be empty", !invoices.isEmpty()) [CD]
+Line_2 $$ public void fixturePreviousInvoices() --> Line_6 $$ Calendar calendar = DateTimeUtils.toCalendar("2011-04-01", new SimpleDateFormat("yyyy-MM-dd")) [CD]
+Line_6 $$ Calendar calendar = DateTimeUtils.toCalendar("2011-04-01", new SimpleDateFormat("yyyy-MM-dd")) --> Line_8 $$ assertEquals("Calendar should be equal", calendar, invoice.getDueDate()) [FD]
+Line_7 $$ for (Invoice invoice : invoices) --> Line_8 $$ assertEquals("Calendar should be equal", calendar, invoice.getDueDate()) [FD]
+Line_6 $$ Calendar calendar = DateTimeUtils.toCalendar("2011-04-01", new SimpleDateFormat("yyyy-MM-dd")) --> Line_9 $$ calendar.add(Calendar.MONTH, -1) [FD]
+Line_7 $$ for (Invoice invoice : invoices) --> Line_10 $$ assertTrue("Invoice ammout should be within range", invoice.getAmmount().compareTo(new BigDecimal("45.89")) >= 0 && invoice.getAmmount().compareTo(new BigDecimal("58.67")) <= 0) [FD]

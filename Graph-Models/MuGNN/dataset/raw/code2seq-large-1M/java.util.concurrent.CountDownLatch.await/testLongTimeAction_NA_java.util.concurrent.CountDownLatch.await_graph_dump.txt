@@ -1,0 +1,7 @@
+Line_2 $$ public void testLongTimeAction() throws InterruptedException --> Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) [CD]
+Line_2 $$ public void testLongTimeAction() throws InterruptedException --> Line_4 $$ LongTimeAction action = new LongTimeAction(latch) [CD]
+Line_2 $$ public void testLongTimeAction() throws InterruptedException --> Line_5 $$ Observable.just(1).buffer(10, TimeUnit.MILLISECONDS, 10).subscribe(action) [CD]
+Line_4 $$ LongTimeAction action = new LongTimeAction(latch) --> Line_5 $$ Observable.just(1).buffer(10, TimeUnit.MILLISECONDS, 10).subscribe(action) [FD]
+Line_2 $$ public void testLongTimeAction() throws InterruptedException --> Line_6 $$ latch.await() [CD]
+Line_3 $$ final CountDownLatch latch = new CountDownLatch(1) --> Line_6 $$ latch.await() [FD]
+Line_2 $$ public void testLongTimeAction() throws InterruptedException --> Line_7 $$ assertFalse(action.fail) [CD]

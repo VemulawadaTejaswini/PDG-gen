@@ -1,0 +1,7 @@
+Line_3 $$ if (!"<init>".equals(name)) --> Line_4 $$ String methodNameAndDesc = name + desc [CD]
+Line_3 $$ if (!"<init>".equals(name)) --> Line_5 $$ if (!implementedMethods.contains(methodNameAndDesc)) [CD]
+Line_4 $$ String methodNameAndDesc = name + desc --> Line_5 $$ if (!implementedMethods.contains(methodNameAndDesc)) [FD]
+Line_5 $$ if (!implementedMethods.contains(methodNameAndDesc)) --> Line_6 $$ if ((access & Access.ABSTRACT) != 0) [CD]
+Line_6 $$ if ((access & Access.ABSTRACT) != 0) --> Line_7 $$ generateMethodImplementation(className, access, name, desc, signature, exceptions) [CD]
+Line_5 $$ if (!implementedMethods.contains(methodNameAndDesc)) --> Line_9 $$ implementedMethods.add(methodNameAndDesc) [CD]
+Line_4 $$ String methodNameAndDesc = name + desc --> Line_9 $$ implementedMethods.add(methodNameAndDesc) [FD]

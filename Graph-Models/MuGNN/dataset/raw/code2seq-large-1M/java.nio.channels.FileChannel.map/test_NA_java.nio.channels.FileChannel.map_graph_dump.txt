@@ -1,0 +1,7 @@
+Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve("libfoo.so"))) --> Line_4 $$ MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size()) [FD]
+Line_5 $$ Elf elf = new Elf(buffer) --> Line_6 $$ ElfSection stringTable = elf.getMandatorySectionByName(channel.toString(), ".dynstr").getSection() [FD]
+Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve("libfoo.so"))) --> Line_6 $$ ElfSection stringTable = elf.getMandatorySectionByName(channel.toString(), ".dynstr").getSection() [FD]
+Line_5 $$ Elf elf = new Elf(buffer) --> Line_7 $$ ElfSection section = elf.getMandatorySectionByName(channel.toString(), ".gnu.version_d").getSection() [FD]
+Line_3 $$ try (FileChannel channel = FileChannel.open(workspace.resolve("libfoo.so"))) --> Line_7 $$ ElfSection section = elf.getMandatorySectionByName(channel.toString(), ".gnu.version_d").getSection() [FD]
+Line_6 $$ ElfSection stringTable = elf.getMandatorySectionByName(channel.toString(), ".dynstr").getSection() --> Line_11 $$ assertThat(stringTable.lookupString(verDef.entries.get(0).getSecond().get(0).vda_name), Matchers.equalTo("libfoo.so")) [FD]
+Line_6 $$ ElfSection stringTable = elf.getMandatorySectionByName(channel.toString(), ".dynstr").getSection() --> Line_12 $$ assertThat(stringTable.lookupString(verDef.entries.get(1).getSecond().get(0).vda_name), Matchers.equalTo("VERS_1.0")) [FD]

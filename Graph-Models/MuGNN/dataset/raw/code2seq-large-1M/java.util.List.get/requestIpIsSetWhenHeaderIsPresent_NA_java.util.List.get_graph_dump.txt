@@ -1,0 +1,8 @@
+Line_2 $$ public void requestIpIsSetWhenHeaderIsPresent() throws Exception --> Line_3 $$ RequestEntity<?> request = RequestEntity.get(new URI(createUrl("/starter.zip"))).header("X-FORWARDED-FOR", "10.0.0.123").build() [CD]
+Line_2 $$ public void requestIpIsSetWhenHeaderIsPresent() throws Exception --> Line_4 $$ getRestTemplate().exchange(request, String.class) [CD]
+Line_3 $$ RequestEntity<?> request = RequestEntity.get(new URI(createUrl("/starter.zip"))).header("X-FORWARDED-FOR", "10.0.0.123").build() --> Line_4 $$ getRestTemplate().exchange(request, String.class) [FD]
+Line_2 $$ public void requestIpIsSetWhenHeaderIsPresent() throws Exception --> Line_5 $$ assertThat(this.statsMockController.stats).as("No stat got generated").hasSize(1) [CD]
+Line_2 $$ public void requestIpIsSetWhenHeaderIsPresent() throws Exception --> Line_6 $$ StatsMockController.Content content = this.statsMockController.stats.get(0) [CD]
+Line_2 $$ public void requestIpIsSetWhenHeaderIsPresent() throws Exception --> Line_7 $$ JsonNode json = parseJson(content.json) [CD]
+Line_2 $$ public void requestIpIsSetWhenHeaderIsPresent() throws Exception --> Line_8 $$ assertThat(json.get("requestIp").textValue()).as("Wrong requestIp").isEqualTo("10.0.0.123") [CD]
+Line_7 $$ JsonNode json = parseJson(content.json) --> Line_8 $$ assertThat(json.get("requestIp").textValue()).as("Wrong requestIp").isEqualTo("10.0.0.123") [FD]

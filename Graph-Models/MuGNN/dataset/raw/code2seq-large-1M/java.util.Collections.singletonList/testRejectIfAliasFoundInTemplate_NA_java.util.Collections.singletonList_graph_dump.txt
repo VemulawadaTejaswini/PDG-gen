@@ -1,0 +1,5 @@
+Line_2 $$ public void testRejectIfAliasFoundInTemplate() throws Exception --> Line_3 $$ client().admin().indices().preparePutTemplate("logs").setPatterns(Collections.singletonList("logs-*")).addAlias(new Alias("logs-write")).get() [CD]
+Line_2 $$ public void testRejectIfAliasFoundInTemplate() throws Exception --> Line_4 $$ assertAcked(client().admin().indices().prepareCreate("logs-000001").get()) [CD]
+Line_2 $$ public void testRejectIfAliasFoundInTemplate() throws Exception --> Line_5 $$ ensureYellow("logs-write") [CD]
+Line_2 $$ public void testRejectIfAliasFoundInTemplate() throws Exception --> Line_6 $$ final IllegalArgumentException error = expectThrows(IllegalArgumentException.class, () -> client().admin().indices().prepareRolloverIndex("logs-write").addMaxIndexSizeCondition(new ByteSizeValue(1)).get()) [CD]
+Line_2 $$ public void testRejectIfAliasFoundInTemplate() throws Exception --> Line_7 $$ assertThat(error.getMessage(), equalTo("Rollover alias [logs-write] can point to multiple indices, found duplicated alias [[logs-write]] in index template [logs]")) [CD]

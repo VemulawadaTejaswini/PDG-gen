@@ -1,0 +1,8 @@
+Line_2 $$ private void subscribe0(Subscriber<? super T> subscriber, EventExecutor executor, boolean withPooledObjects) --> Line_3 $$ final DownstreamSubscription<T> subscription = new DownstreamSubscription(this, subscriber, processor, executor, withPooledObjects, lastStream) [CD]
+Line_2 $$ private void subscribe0(Subscriber<? super T> subscriber, EventExecutor executor, boolean withPooledObjects) --> Line_4 $$ if (!subscriptionUpdater.compareAndSet(this, null, subscription)) [CD]
+Line_3 $$ final DownstreamSubscription<T> subscription = new DownstreamSubscription(this, subscriber, processor, executor, withPooledObjects, lastStream) --> Line_4 $$ if (!subscriptionUpdater.compareAndSet(this, null, subscription)) [FD]
+Line_4 $$ if (!subscriptionUpdater.compareAndSet(this, null, subscription)) --> Line_5 $$ failLateSubscriber(executor, subscriber, this.subscription.subscriber()) [CD]
+Line_2 $$ private void subscribe0(Subscriber<? super T> subscriber, EventExecutor executor, boolean withPooledObjects) --> Line_5 $$ failLateSubscriber(executor, subscriber, this.subscription.subscriber()) [FD]
+Line_4 $$ if (!subscriptionUpdater.compareAndSet(this, null, subscription)) --> Line_6 $$ return [CD]
+Line_2 $$ private void subscribe0(Subscriber<? super T> subscriber, EventExecutor executor, boolean withPooledObjects) --> Line_8 $$ processor.subscribe(subscription) [CD]
+Line_3 $$ final DownstreamSubscription<T> subscription = new DownstreamSubscription(this, subscriber, processor, executor, withPooledObjects, lastStream) --> Line_8 $$ processor.subscribe(subscription) [FD]

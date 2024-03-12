@@ -1,0 +1,5 @@
+Line_2 $$ private void extractConfigSettings(Artifact artifact) throws IOException --> Line_3 $$ try (JarFile configSettings = new JarFile(artifact.getFile())) [FD]
+Line_3 $$ try (JarFile configSettings = new JarFile(artifact.getFile())) --> Line_4 $$ Enumeration<JarEntry> entries = configSettings.entries() [FD]
+Line_5 $$ while (entries.hasMoreElements()) --> Line_6 $$ JarEntry jarFileEntry = entries.nextElement() [CD]
+Line_5 $$ while (entries.hasMoreElements()) --> Line_7 $$ if (!jarFileEntry.isDirectory() && jarFileEntry.getName().startsWith("bin") && !jarFileEntry.getName().endsWith(".properties")) [CD]
+Line_3 $$ try (JarFile configSettings = new JarFile(artifact.getFile())) --> Line_9 $$ copyInputStreamToFile(configSettings.getInputStream(jarFileEntry), fileToCreate) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public static <V> V blockingGet(CompletionStage<V> stage, Runnable interruptHandler) --> Line_3 $$ EventLoopGroupFactory.assertNotInEventLoopThread() [CD]
+Line_2 $$ public static <V> V blockingGet(CompletionStage<V> stage, Runnable interruptHandler) --> Line_4 $$ Future<V> future = stage.toCompletableFuture() [CD]
+Line_2 $$ public static <V> V blockingGet(CompletionStage<V> stage, Runnable interruptHandler) --> Line_4 $$ Future<V> future = stage.toCompletableFuture() [FD]
+Line_2 $$ public static <V> V blockingGet(CompletionStage<V> stage, Runnable interruptHandler) --> Line_5 $$ boolean interrupted = false [CD]
+Line_4 $$ Future<V> future = stage.toCompletableFuture() --> Line_9 $$ return future.get() [FD]
+Line_5 $$ boolean interrupted = false --> Line_11 $$ interrupted = true [FD]
+Line_2 $$ public static <V> V blockingGet(CompletionStage<V> stage, Runnable interruptHandler) --> Line_12 $$ safeRun(interruptHandler) [FD]
+Line_18 $$ if (interrupted) --> Line_19 $$ Thread.currentThread().interrupt() [CD]

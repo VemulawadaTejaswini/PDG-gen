@@ -1,0 +1,7 @@
+Line_2 $$ private void emitUmsData(Tuple input, Map<String, List<RecordWrapper>> tableDatasMap) throws Exception --> Line_3 $$ for (Map.Entry<String, List<RecordWrapper>> entry : tableDatasMap.entrySet()) [FD]
+Line_6 $$ if (DbusDatasourceType.stringEqual(inner.logProcessorConf.getProperty("log.type"), DbusDatasourceType.LOG_UMS)) --> Line_7 $$ host = entry.getValue().get(0).getRecordMap().get("umsSource") [CD]
+Line_5 $$ String host = vals[0] --> Line_7 $$ host = entry.getValue().get(0).getRecordMap().get("umsSource") [FD]
+Line_5 $$ String host = vals[0] --> Line_9 $$ DbusMessage ums = buildUms(entry.getValue(), vals[1], vals[2], vals[3], Long.parseLong(vals[4]), host) [FD]
+Line_7 $$ host = entry.getValue().get(0).getRecordMap().get("umsSource") --> Line_9 $$ DbusMessage ums = buildUms(entry.getValue(), vals[1], vals[2], vals[3], Long.parseLong(vals[4]), host) [FD]
+Line_2 $$ private void emitUmsData(Tuple input, Map<String, List<RecordWrapper>> tableDatasMap) throws Exception --> Line_11 $$ collector.emit("umsStream", input, new Values(inner.activeTableToTopicMap.get(tableKey), tableKey, ums, Constants.EMIT_DATA_TYPE_NORMAL)) [FD]
+Line_10 $$ String tableKey = StringUtils.joinWith("|", vals[1], vals[2], vals[3], vals[4]) --> Line_11 $$ collector.emit("umsStream", input, new Values(inner.activeTableToTopicMap.get(tableKey), tableKey, ums, Constants.EMIT_DATA_TYPE_NORMAL)) [FD]

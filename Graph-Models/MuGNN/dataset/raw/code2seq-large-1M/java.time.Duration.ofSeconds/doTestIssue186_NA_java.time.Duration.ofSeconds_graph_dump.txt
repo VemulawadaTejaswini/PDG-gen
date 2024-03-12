@@ -1,0 +1,4 @@
+Line_2 $$ private void doTestIssue186(HttpClient client) --> Line_3 $$ Mono<String> content = client.post("/",  req -> req.failOnClientError(false).sendString(Mono.just("bodysample"))).flatMap( res -> res.receive().aggregate().asString()) [FD]
+Line_2 $$ private void doTestIssue186(HttpClient client) --> Line_3 $$ Mono<String> content = client.post("/",  req -> req.failOnClientError(false).sendString(Mono.just("bodysample"))).flatMap( res -> res.receive().aggregate().asString()) [CD]
+Line_2 $$ private void doTestIssue186(HttpClient client) --> Line_4 $$ StepVerifier.create(content).expectComplete().verify(Duration.ofSeconds(30)) [CD]
+Line_3 $$ Mono<String> content = client.post("/",  req -> req.failOnClientError(false).sendString(Mono.just("bodysample"))).flatMap( res -> res.receive().aggregate().asString()) --> Line_4 $$ StepVerifier.create(content).expectComplete().verify(Duration.ofSeconds(30)) [FD]

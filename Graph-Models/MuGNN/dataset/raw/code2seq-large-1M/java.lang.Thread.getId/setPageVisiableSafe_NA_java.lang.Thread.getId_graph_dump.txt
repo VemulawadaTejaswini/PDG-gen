@@ -1,0 +1,8 @@
+Line_2 $$ private void setPageVisiableSafe() --> Line_3 $$ long currentThreadId = Thread.currentThread().getId() [CD]
+Line_2 $$ private void setPageVisiableSafe() --> Line_4 $$ long mainThreadId = mActivity.getMainLooper().getThread().getId() [CD]
+Line_2 $$ private void setPageVisiableSafe() --> Line_5 $$ if (currentThreadId == mainThreadId) [CD]
+Line_3 $$ long currentThreadId = Thread.currentThread().getId() --> Line_5 $$ if (currentThreadId == mainThreadId) [FD]
+Line_4 $$ long mainThreadId = mActivity.getMainLooper().getThread().getId() --> Line_5 $$ if (currentThreadId == mainThreadId) [FD]
+Line_5 $$ if (currentThreadId == mainThreadId) --> Line_6 $$ setPageVisiable() [CD]
+Line_5 $$ if (currentThreadId == mainThreadId) --> Line_8 $$ mActivity.post(new Runnable() [CD]
+Line_8 $$ mActivity.post(new Runnable() --> Line_10 $$ setPageVisiable() [CD]

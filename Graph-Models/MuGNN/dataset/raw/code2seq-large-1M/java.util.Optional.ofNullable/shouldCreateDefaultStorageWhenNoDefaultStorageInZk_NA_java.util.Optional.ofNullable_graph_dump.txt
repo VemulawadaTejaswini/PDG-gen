@@ -1,0 +1,6 @@
+Line_2 $$ public void shouldCreateDefaultStorageWhenNoDefaultStorageInZk() throws Exception --> Line_3 $$ Mockito.when(dataBuilder.forPath(StorageService.ZK_TIMELINES_DEFAULT_STORAGE)).thenReturn(null) [CD]
+Line_2 $$ public void shouldCreateDefaultStorageWhenNoDefaultStorageInZk() throws Exception --> Line_4 $$ Mockito.when(environment.getProperty("nakadi.timelines.storage.default")).thenReturn("default") [CD]
+Line_2 $$ public void shouldCreateDefaultStorageWhenNoDefaultStorageInZk() throws Exception --> Line_5 $$ Mockito.when(storageDbRepository.getStorage("default")).thenReturn(Optional.ofNullable(null)) [CD]
+Line_2 $$ public void shouldCreateDefaultStorageWhenNoDefaultStorageInZk() throws Exception --> Line_6 $$ final DefaultStorage defaultStorage = new NakadiConfig().defaultStorage(storageDbRepository, environment, zooKeeperHolder) [CD]
+Line_2 $$ public void shouldCreateDefaultStorageWhenNoDefaultStorageInZk() throws Exception --> Line_7 $$ Assert.assertEquals("default", defaultStorage.getStorage().getId()) [CD]
+Line_6 $$ final DefaultStorage defaultStorage = new NakadiConfig().defaultStorage(storageDbRepository, environment, zooKeeperHolder) --> Line_7 $$ Assert.assertEquals("default", defaultStorage.getStorage().getId()) [FD]

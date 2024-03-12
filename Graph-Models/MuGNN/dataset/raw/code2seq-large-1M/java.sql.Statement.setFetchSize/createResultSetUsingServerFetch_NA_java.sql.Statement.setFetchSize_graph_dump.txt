@@ -1,0 +1,7 @@
+Line_2 $$ private ResultSetInternalMethods createResultSetUsingServerFetch(String sql) throws SQLException --> Line_4 $$ java.sql.PreparedStatement pStmt = this.connection.prepareStatement(sql, this.resultSetType, this.resultSetConcurrency) [FD]
+Line_4 $$ java.sql.PreparedStatement pStmt = this.connection.prepareStatement(sql, this.resultSetType, this.resultSetConcurrency) --> Line_5 $$ pStmt.setFetchSize(this.fetchSize) [FD]
+Line_6 $$ if (this.maxRows > -1) --> Line_7 $$ pStmt.setMaxRows(this.maxRows) [CD]
+Line_4 $$ java.sql.PreparedStatement pStmt = this.connection.prepareStatement(sql, this.resultSetType, this.resultSetConcurrency) --> Line_7 $$ pStmt.setMaxRows(this.maxRows) [FD]
+Line_4 $$ java.sql.PreparedStatement pStmt = this.connection.prepareStatement(sql, this.resultSetType, this.resultSetConcurrency) --> Line_10 $$ pStmt.execute() [FD]
+Line_11 $$ ResultSetInternalMethods rs = ((com.mysql.jdbc.StatementImpl) pStmt).getResultSetInternal() --> Line_12 $$ rs.setStatementUsedForFetchingRows((com.mysql.jdbc.PreparedStatement) pStmt) [FD]
+Line_11 $$ ResultSetInternalMethods rs = ((com.mysql.jdbc.StatementImpl) pStmt).getResultSetInternal() --> Line_13 $$ this.results = rs [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ void shouldOnlyFilterHeaderIfBothNameAndValueApply() --> Line_3 $$ final HeaderFilter unit = HeaderFilters.replaceHeaders(( name,  value) -> "name".equals(name) && "Alice".equals(value), "<secret>") [CD]
+Line_2 $$ void shouldOnlyFilterHeaderIfBothNameAndValueApply() --> Line_4 $$ assertThat(unit.filter(MockHeaders.of("name", "Alice")), hasEntry("name", singletonList("<secret>"))) [CD]
+Line_3 $$ final HeaderFilter unit = HeaderFilters.replaceHeaders(( name,  value) -> "name".equals(name) && "Alice".equals(value), "<secret>") --> Line_4 $$ assertThat(unit.filter(MockHeaders.of("name", "Alice")), hasEntry("name", singletonList("<secret>"))) [FD]
+Line_2 $$ void shouldOnlyFilterHeaderIfBothNameAndValueApply() --> Line_5 $$ assertThat(unit.filter(MockHeaders.of("name", "Bob")), hasEntry("name", singletonList("Bob"))) [CD]
+Line_3 $$ final HeaderFilter unit = HeaderFilters.replaceHeaders(( name,  value) -> "name".equals(name) && "Alice".equals(value), "<secret>") --> Line_5 $$ assertThat(unit.filter(MockHeaders.of("name", "Bob")), hasEntry("name", singletonList("Bob"))) [FD]

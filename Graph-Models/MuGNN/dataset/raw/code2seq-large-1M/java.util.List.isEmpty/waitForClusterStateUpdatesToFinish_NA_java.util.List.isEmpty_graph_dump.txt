@@ -1,0 +1,8 @@
+Line_2 $$ private void waitForClusterStateUpdatesToFinish() throws Exception --> Line_3 $$ assertBusy(() -> [CD]
+Line_5 $$ Response response = adminClient().performRequest("GET", "_cluster/pending_tasks") --> Line_6 $$ List<?> tasks = (List<?>) entityAsMap(response).get("tasks") [FD]
+Line_6 $$ List<?> tasks = (List<?>) entityAsMap(response).get("tasks") --> Line_7 $$ if (false == tasks.isEmpty()) [FD]
+Line_7 $$ if (false == tasks.isEmpty()) --> Line_8 $$ StringBuilder message = new StringBuilder("there are still running tasks:") [CD]
+Line_8 $$ StringBuilder message = new StringBuilder("there are still running tasks:") --> Line_10 $$ message.append('\n').append(task.toString()) [FD]
+Line_9 $$ for (Object task : tasks) --> Line_10 $$ message.append('\n').append(task.toString()) [FD]
+Line_7 $$ if (false == tasks.isEmpty()) --> Line_12 $$ fail(message.toString()) [CD]
+Line_8 $$ StringBuilder message = new StringBuilder("there are still running tasks:") --> Line_12 $$ fail(message.toString()) [FD]

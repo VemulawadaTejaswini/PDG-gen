@@ -1,0 +1,8 @@
+Line_2 $$ public void pacedCall(Runnable call, Runnable orElse) --> Line_3 $$ long now = timeSource.getTimeMillis() [CD]
+Line_2 $$ public void pacedCall(Runnable call, Runnable orElse) --> Line_4 $$ long end = nextLogTime.get() [CD]
+Line_2 $$ public void pacedCall(Runnable call, Runnable orElse) --> Line_5 $$ if (now >= end && nextLogTime.compareAndSet(end, now + delay)) [CD]
+Line_4 $$ long end = nextLogTime.get() --> Line_5 $$ if (now >= end && nextLogTime.compareAndSet(end, now + delay)) [FD]
+Line_5 $$ if (now >= end && nextLogTime.compareAndSet(end, now + delay)) --> Line_6 $$ call.run() [CD]
+Line_2 $$ public void pacedCall(Runnable call, Runnable orElse) --> Line_6 $$ call.run() [FD]
+Line_5 $$ if (now >= end && nextLogTime.compareAndSet(end, now + delay)) --> Line_8 $$ orElse.run() [CD]
+Line_2 $$ public void pacedCall(Runnable call, Runnable orElse) --> Line_8 $$ orElse.run() [FD]

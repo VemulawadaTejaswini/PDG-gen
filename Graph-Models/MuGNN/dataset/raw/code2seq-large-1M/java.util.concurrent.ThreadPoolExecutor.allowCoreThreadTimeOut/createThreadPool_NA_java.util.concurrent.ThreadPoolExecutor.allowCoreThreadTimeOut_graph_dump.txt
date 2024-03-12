@@ -1,0 +1,8 @@
+Line_2 $$ private ExecutorService createThreadPool() --> Line_3 $$ int maxThreads = 256 [CD]
+Line_2 $$ private ExecutorService createThreadPool() --> Line_4 $$ int coreThreads = 128 [CD]
+Line_2 $$ private ExecutorService createThreadPool() --> Line_5 $$ long keepAliveTime = 60 [CD]
+Line_2 $$ private ExecutorService createThreadPool() --> Line_6 $$ BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<Runnable>(maxThreads * HConstants.DEFAULT_HBASE_CLIENT_MAX_TOTAL_TASKS) [CD]
+Line_2 $$ private ExecutorService createThreadPool() --> Line_7 $$ ThreadPoolExecutor tpe = new ThreadPoolExecutor(coreThreads, maxThreads, keepAliveTime, TimeUnit.SECONDS, workQueue, Threads.newDaemonThreadFactory(toString() + "-shared")) [CD]
+Line_2 $$ private ExecutorService createThreadPool() --> Line_8 $$ tpe.allowCoreThreadTimeOut(true) [CD]
+Line_7 $$ ThreadPoolExecutor tpe = new ThreadPoolExecutor(coreThreads, maxThreads, keepAliveTime, TimeUnit.SECONDS, workQueue, Threads.newDaemonThreadFactory(toString() + "-shared")) --> Line_8 $$ tpe.allowCoreThreadTimeOut(true) [FD]
+Line_2 $$ private ExecutorService createThreadPool() --> Line_9 $$ return tpe [CD]

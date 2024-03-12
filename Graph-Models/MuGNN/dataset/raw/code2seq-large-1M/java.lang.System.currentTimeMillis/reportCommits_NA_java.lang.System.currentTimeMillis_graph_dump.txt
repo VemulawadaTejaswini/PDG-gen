@@ -1,0 +1,6 @@
+Line_2 $$ public synchronized void reportCommits(Set<Adaptor> commits) --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_4 $$ for (Adaptor a : commits) --> Line_5 $$ if (status.containsKey(a)) [FD]
+Line_5 $$ if (status.containsKey(a)) --> Line_6 $$ status.get(a).lastCommitTime = now [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_6 $$ status.get(a).lastCommitTime = now [FD]
+Line_4 $$ for (Adaptor a : commits) --> Line_6 $$ status.get(a).lastCommitTime = now [FD]
+Line_5 $$ if (status.containsKey(a)) --> Line_8 $$ log.warn("saw commit for adaptor " + a + " before seeing sends") [CD]

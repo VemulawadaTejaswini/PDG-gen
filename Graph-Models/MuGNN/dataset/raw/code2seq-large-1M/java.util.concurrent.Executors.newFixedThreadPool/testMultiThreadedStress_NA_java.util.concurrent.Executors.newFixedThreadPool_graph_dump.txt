@@ -1,0 +1,7 @@
+Line_2 $$ public void testMultiThreadedStress() throws InterruptedException, ExecutionException --> Line_3 $$ ExecutorService service = Executors.newFixedThreadPool(50) [CD]
+Line_2 $$ public void testMultiThreadedStress() throws InterruptedException, ExecutionException --> Line_4 $$ List<Future<?>> futures = new ArrayList() [CD]
+Line_2 $$ public void testMultiThreadedStress() throws InterruptedException, ExecutionException --> Line_5 $$ for (int threadId = 0; threadId < 50; threadId++) [CD]
+Line_5 $$ for (int threadId = 0; threadId < 50; threadId++) --> Line_6 $$ futures.add(service.submit(new RandomDataPump(threadId))) [CD]
+Line_4 $$ List<Future<?>> futures = new ArrayList() --> Line_6 $$ futures.add(service.submit(new RandomDataPump(threadId))) [FD]
+Line_3 $$ ExecutorService service = Executors.newFixedThreadPool(50) --> Line_6 $$ futures.add(service.submit(new RandomDataPump(threadId))) [FD]
+Line_8 $$ for (Future<?> future : futures) --> Line_9 $$ future.get() [FD]

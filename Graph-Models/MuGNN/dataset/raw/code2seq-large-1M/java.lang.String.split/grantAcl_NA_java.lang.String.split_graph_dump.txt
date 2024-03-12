@@ -1,0 +1,8 @@
+Line_2 $$ public boolean grantAcl(S3Object object) throws ServiceException, InterruptedException --> Line_3 $$ if (Strings.isNullOrEmpty(s3Acl)) [CD]
+Line_3 $$ if (Strings.isNullOrEmpty(s3Acl)) --> Line_4 $$ return true [CD]
+Line_2 $$ public boolean grantAcl(S3Object object) throws ServiceException, InterruptedException --> Line_6 $$ for (int i = 0; i < s3AclRetries; ++i) [CD]
+Line_2 $$ public boolean grantAcl(S3Object object) throws ServiceException, InterruptedException --> Line_8 $$ AccessControlList acl = s3Service.getObjectAcl(object.getBucketName(), object.getKey()) [FD]
+Line_8 $$ AccessControlList acl = s3Service.getObjectAcl(object.getBucketName(), object.getKey()) --> Line_10 $$ acl.grantPermission(new CanonicalGrantee(id), Permission.PERMISSION_READ) [FD]
+Line_8 $$ AccessControlList acl = s3Service.getObjectAcl(object.getBucketName(), object.getKey()) --> Line_12 $$ s3Service.putObjectAcl(object.getBucketName(), object.getKey(), acl) [FD]
+Line_2 $$ public boolean grantAcl(S3Object object) throws ServiceException, InterruptedException --> Line_12 $$ s3Service.putObjectAcl(object.getBucketName(), object.getKey(), acl) [FD]
+Line_2 $$ public boolean grantAcl(S3Object object) throws ServiceException, InterruptedException --> Line_19 $$ return false [CD]

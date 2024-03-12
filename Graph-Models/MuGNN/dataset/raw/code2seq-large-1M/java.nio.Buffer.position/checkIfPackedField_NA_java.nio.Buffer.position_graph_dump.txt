@@ -1,0 +1,7 @@
+Line_2 $$ private void checkIfPackedField() throws IOException --> Line_3 $$ if (packedLimit == 0 && getTagWireType(lastTag) == WIRETYPE_LENGTH_DELIMITED) [CD]
+Line_3 $$ if (packedLimit == 0 && getTagWireType(lastTag) == WIRETYPE_LENGTH_DELIMITED) --> Line_4 $$ final int length = readRawVarint32() [CD]
+Line_3 $$ if (packedLimit == 0 && getTagWireType(lastTag) == WIRETYPE_LENGTH_DELIMITED) --> Line_5 $$ if (length < 0) [CD]
+Line_4 $$ final int length = readRawVarint32() --> Line_5 $$ if (length < 0) [FD]
+Line_3 $$ if (packedLimit == 0 && getTagWireType(lastTag) == WIRETYPE_LENGTH_DELIMITED) --> Line_7 $$ if (buffer.position() + length > buffer.limit()) [CD]
+Line_3 $$ if (packedLimit == 0 && getTagWireType(lastTag) == WIRETYPE_LENGTH_DELIMITED) --> Line_9 $$ this.packedLimit = buffer.position() + length [CD]
+Line_4 $$ final int length = readRawVarint32() --> Line_9 $$ this.packedLimit = buffer.position() + length [FD]

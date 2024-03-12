@@ -1,0 +1,6 @@
+Line_2 $$ public void registerAdminPagesWithClasspathScan() --> Line_3 $$ List<Class<? extends Annotation>> annotationList = getAdminPageAnnotations() [CD]
+Line_2 $$ public void registerAdminPagesWithClasspathScan() --> Line_4 $$ ClasspathScanner cs = new ClasspathScanner(getAdminPagesPackagesToScan(), annotationList) [CD]
+Line_4 $$ ClasspathScanner cs = new ClasspathScanner(getAdminPagesPackagesToScan(), annotationList) --> Line_5 $$ for (Class<?> baseServerAdminPageClass : cs.getClasses()) [FD]
+Line_5 $$ for (Class<?> baseServerAdminPageClass : cs.getClasses()) --> Line_6 $$ if (derivedFromAbstractBaseServePageInfo(baseServerAdminPageClass) || implementsAdminPageInfo(baseServerAdminPageClass)) [FD]
+Line_5 $$ for (Class<?> baseServerAdminPageClass : cs.getClasses()) --> Line_8 $$ add((AdminPageInfo) (injector == null ? baseServerAdminPageClass.newInstance() : injector.getInstance(baseServerAdminPageClass))) [FD]
+Line_5 $$ for (Class<?> baseServerAdminPageClass : cs.getClasses()) --> Line_10 $$ LOG.warn(String.format("Exception registering %s admin page", baseServerAdminPageClass.getName()), e) [FD]

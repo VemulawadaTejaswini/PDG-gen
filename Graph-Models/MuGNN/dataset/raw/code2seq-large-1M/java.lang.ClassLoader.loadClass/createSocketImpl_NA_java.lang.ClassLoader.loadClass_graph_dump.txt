@@ -1,0 +1,6 @@
+Line_2 $$ public SocketImpl createSocketImpl() --> Line_3 $$ if (Coroutine.getActiveCoroutine() == null) [CD]
+Line_3 $$ if (Coroutine.getActiveCoroutine() == null) --> Line_4 $$ log.warn("we are not in coroutine so we turn to java build-in socket implement!") [CD]
+Line_6 $$ Class<?> socketImpClz = Thread.currentThread().getContextClassLoader().loadClass("java.net.SocksSocketImpl") --> Line_7 $$ Constructor<SocketImpl> socketConstructor = (Constructor<SocketImpl>) socketImpClz.getDeclaredConstructor() [FD]
+Line_7 $$ Constructor<SocketImpl> socketConstructor = (Constructor<SocketImpl>) socketImpClz.getDeclaredConstructor() --> Line_8 $$ socketConstructor.setAccessible(true) [FD]
+Line_7 $$ Constructor<SocketImpl> socketConstructor = (Constructor<SocketImpl>) socketImpClz.getDeclaredConstructor() --> Line_9 $$ return socketConstructor.newInstance() [FD]
+Line_2 $$ public SocketImpl createSocketImpl() --> Line_16 $$ return new NginxClojureSocketImpl() [CD]

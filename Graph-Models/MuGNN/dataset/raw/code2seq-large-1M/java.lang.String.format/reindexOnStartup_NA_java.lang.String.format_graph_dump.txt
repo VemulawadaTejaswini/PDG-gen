@@ -1,0 +1,7 @@
+Line_2 $$ protected void reindexOnStartup() --> Line_3 $$ boolean reindexOnStartup = Boolean.parseBoolean(Framework.getProperty(REINDEX_ON_STARTUP_PROPERTY, "false")) [CD]
+Line_2 $$ protected void reindexOnStartup() --> Line_4 $$ if (!reindexOnStartup) [CD]
+Line_3 $$ boolean reindexOnStartup = Boolean.parseBoolean(Framework.getProperty(REINDEX_ON_STARTUP_PROPERTY, "false")) --> Line_4 $$ if (!reindexOnStartup) [FD]
+Line_4 $$ if (!reindexOnStartup) --> Line_5 $$ return [CD]
+Line_7 $$ for (String repositoryName : esa.getInitializedRepositories()) --> Line_8 $$ log.warn(String.format("Indexing repository: %s on startup", repositoryName)) [FD]
+Line_7 $$ for (String repositoryName : esa.getInitializedRepositories()) --> Line_9 $$ runReindexingWorker(repositoryName, "SELECT ecm:uuid FROM Document") [FD]
+Line_7 $$ for (String repositoryName : esa.getInitializedRepositories()) --> Line_17 $$ log.warn(String.format("Indexation of repository %s not finished after %d s, continuing in background", repositoryName, REINDEX_TIMEOUT)) [FD]

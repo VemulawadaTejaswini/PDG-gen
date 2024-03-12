@@ -1,0 +1,7 @@
+Line_2 $$ protected void scrubClass(final Class<?> testCaseClass) throws IllegalAccessException --> Line_3 $$ final Field[] fields = getClass().getDeclaredFields() [CD]
+Line_4 $$ for (Field field : fields) --> Line_5 $$ if (!field.getType().isPrimitive() && !Modifier.isStatic(field.getModifiers())) [FD]
+Line_4 $$ for (Field field : fields) --> Line_7 $$ field.setAccessible(true) [FD]
+Line_4 $$ for (Field field : fields) --> Line_8 $$ field.set(this, null) [FD]
+Line_5 $$ if (!field.getType().isPrimitive() && !Modifier.isStatic(field.getModifiers())) --> Line_12 $$ if (field.get(this) != null) [CD]
+Line_4 $$ for (Field field : fields) --> Line_12 $$ if (field.get(this) != null) [FD]
+Line_12 $$ if (field.get(this) != null) --> Line_13 $$ android.util.Log.d("TestCase", "Error: Could not nullify field!") [CD]

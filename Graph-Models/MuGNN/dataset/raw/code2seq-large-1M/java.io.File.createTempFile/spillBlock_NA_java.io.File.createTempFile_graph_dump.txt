@@ -1,0 +1,8 @@
+Line_4 $$ if (tmpFile == null) --> Line_5 $$ tmpFile = File.createTempFile("RowContainer", ".tmp", new File("/tmp")) [CD]
+Line_4 $$ if (tmpFile == null) --> Line_6 $$ LOG.info("RowContainer created temp file " + tmpFile.getAbsolutePath()) [CD]
+Line_4 $$ if (tmpFile == null) --> Line_7 $$ tmpFile.deleteOnExit() [CD]
+Line_2 $$ private void spillBlock(Row[] block) throws HiveException --> Line_11 $$ byte[] buf = serialize(block) [FD]
+Line_12 $$ long offset = rFile.length() --> Line_14 $$ rFile.seek(offset) [FD]
+Line_11 $$ byte[] buf = serialize(block) --> Line_15 $$ rFile.write(buf) [FD]
+Line_12 $$ long offset = rFile.length() --> Line_16 $$ addBlockMetadata(offset, len) [FD]
+Line_13 $$ long len = buf.length --> Line_16 $$ addBlockMetadata(offset, len) [FD]

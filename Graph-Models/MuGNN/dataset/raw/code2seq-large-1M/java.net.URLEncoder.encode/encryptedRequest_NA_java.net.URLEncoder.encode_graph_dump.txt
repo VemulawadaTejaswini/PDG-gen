@@ -1,0 +1,8 @@
+Line_2 $$ private static String encryptedRequest(String text) --> Line_3 $$ String secKey = createSecretKey(16) [CD]
+Line_2 $$ private static String encryptedRequest(String text) --> Line_4 $$ String encText = aesEncrypt(aesEncrypt(text, nonce), secKey) [CD]
+Line_2 $$ private static String encryptedRequest(String text) --> Line_4 $$ String encText = aesEncrypt(aesEncrypt(text, nonce), secKey) [FD]
+Line_3 $$ String secKey = createSecretKey(16) --> Line_4 $$ String encText = aesEncrypt(aesEncrypt(text, nonce), secKey) [FD]
+Line_2 $$ private static String encryptedRequest(String text) --> Line_5 $$ String encSecKey = rsaEncrypt(secKey, pubKey, modulus) [CD]
+Line_3 $$ String secKey = createSecretKey(16) --> Line_5 $$ String encSecKey = rsaEncrypt(secKey, pubKey, modulus) [FD]
+Line_4 $$ String encText = aesEncrypt(aesEncrypt(text, nonce), secKey) --> Line_8 $$ return "params=" + URLEncoder.encode(encText, "UTF-8") + "&encSecKey=" + URLEncoder.encode(encSecKey, "UTF-8") [FD]
+Line_5 $$ String encSecKey = rsaEncrypt(secKey, pubKey, modulus) --> Line_8 $$ return "params=" + URLEncoder.encode(encText, "UTF-8") + "&encSecKey=" + URLEncoder.encode(encSecKey, "UTF-8") [FD]

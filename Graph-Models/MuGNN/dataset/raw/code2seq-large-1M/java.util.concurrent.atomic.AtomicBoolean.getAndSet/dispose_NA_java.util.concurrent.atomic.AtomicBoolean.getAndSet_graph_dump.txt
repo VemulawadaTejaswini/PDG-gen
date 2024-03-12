@@ -1,0 +1,8 @@
+Line_2 $$ public Future<?> dispose() --> Line_3 $$ if (isDisposed.getAndSet(true)) [CD]
+Line_3 $$ if (isDisposed.getAndSet(true)) --> Line_5 $$ return Futures.immediateFailedFuture(new IllegalStateException("RenderTask was already disposed")) [CD]
+Line_2 $$ public Future<?> dispose() --> Line_7 $$ FutureTask<Void> disposeTask = new FutureTask(() -> [CD]
+Line_9 $$ ImmutableList<ListenableFuture<?>> currentRunningFutures --> Line_11 $$ currentRunningFutures = ImmutableList.copyOf(myRunningFutures) [FD]
+Line_9 $$ ImmutableList<ListenableFuture<?>> currentRunningFutures --> Line_14 $$ Futures.successfulAsList(currentRunningFutures).get(5, TimeUnit.SECONDS) [FD]
+Line_11 $$ currentRunningFutures = ImmutableList.copyOf(myRunningFutures) --> Line_14 $$ Futures.successfulAsList(currentRunningFutures).get(5, TimeUnit.SECONDS) [FD]
+Line_2 $$ public Future<?> dispose() --> Line_30 $$ new Thread(disposeTask, "RenderTask dispose thread").start() [CD]
+Line_2 $$ public Future<?> dispose() --> Line_31 $$ return disposeTask [CD]

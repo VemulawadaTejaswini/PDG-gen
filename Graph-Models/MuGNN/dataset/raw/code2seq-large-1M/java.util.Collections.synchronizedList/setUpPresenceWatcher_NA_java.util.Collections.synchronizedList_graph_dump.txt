@@ -1,0 +1,8 @@
+Line_2 $$ private void setUpPresenceWatcher(final AtomicReference<String> serverIdentity) --> Line_3 $$ final List<List<String>> queryList = Collections.synchronizedList(new LinkedList<List<String>>()) [CD]
+Line_2 $$ private void setUpPresenceWatcher(final AtomicReference<String> serverIdentity) --> Line_4 $$ final Timer presenceWatcher = new Timer() [CD]
+Line_2 $$ private void setUpPresenceWatcher(final AtomicReference<String> serverIdentity) --> Line_5 $$ irc.addListener(new PresenceReplyListener(presenceWatcher, queryList)) [CD]
+Line_2 $$ private void setUpPresenceWatcher(final AtomicReference<String> serverIdentity) --> Line_6 $$ final PresenceWatcherTask task = new PresenceWatcherTask(this.nickWatchList, queryList, serverIdentity) [CD]
+Line_2 $$ private void setUpPresenceWatcher(final AtomicReference<String> serverIdentity) --> Line_7 $$ presenceWatcher.schedule(task, INITIAL_PRESENCE_WATCHER_DELAY, PRESENCE_WATCHER_PERIOD) [CD]
+Line_4 $$ final Timer presenceWatcher = new Timer() --> Line_7 $$ presenceWatcher.schedule(task, INITIAL_PRESENCE_WATCHER_DELAY, PRESENCE_WATCHER_PERIOD) [FD]
+Line_6 $$ final PresenceWatcherTask task = new PresenceWatcherTask(this.nickWatchList, queryList, serverIdentity) --> Line_7 $$ presenceWatcher.schedule(task, INITIAL_PRESENCE_WATCHER_DELAY, PRESENCE_WATCHER_PERIOD) [FD]
+Line_2 $$ private void setUpPresenceWatcher(final AtomicReference<String> serverIdentity) --> Line_8 $$ LOGGER.trace("Basic Poller presence watcher set up.") [CD]

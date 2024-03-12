@@ -1,0 +1,7 @@
+Line_2 $$ private CompletableFuture<TxnStatus> checkTransactionStatus(final int epoch, final UUID txId) --> Line_3 $$ return verifyLegalState().thenCompose( v -> getActiveTx(epoch, txId).handle(( ok,  ex) -> [CD]
+Line_2 $$ private CompletableFuture<TxnStatus> checkTransactionStatus(final int epoch, final UUID txId) --> Line_3 $$ return verifyLegalState().thenCompose( v -> getActiveTx(epoch, txId).handle(( ok,  ex) -> [FD]
+Line_4 $$ if (ex != null && Exceptions.unwrap(ex) instanceof DataNotFoundException) --> Line_5 $$ return TxnStatus.UNKNOWN [CD]
+Line_4 $$ if (ex != null && Exceptions.unwrap(ex) instanceof DataNotFoundException) --> Line_6 $$ if (ex != null) [CD]
+Line_11 $$ if (x.equals(TxnStatus.UNKNOWN)) --> Line_12 $$ return getCompletedTxnStatus(txId) [CD]
+Line_2 $$ private CompletableFuture<TxnStatus> checkTransactionStatus(final int epoch, final UUID txId) --> Line_12 $$ return getCompletedTxnStatus(txId) [FD]
+Line_11 $$ if (x.equals(TxnStatus.UNKNOWN)) --> Line_14 $$ return CompletableFuture.completedFuture(x) [CD]

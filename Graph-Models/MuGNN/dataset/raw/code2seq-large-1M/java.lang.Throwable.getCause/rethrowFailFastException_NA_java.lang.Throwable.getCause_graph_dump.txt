@@ -1,0 +1,7 @@
+Line_2 $$ private void rethrowFailFastException(ResultRecorder resultRecorder, Throwable t) --> Line_4 $$ Throwable cause = t.getCause() == null ? t : t.getCause() [FD]
+Line_3 $$ for (Class<? extends Throwable> exceptionType : failFastExceptions) --> Line_5 $$ if (exceptionType.isAssignableFrom(cause.getClass())) [FD]
+Line_4 $$ Throwable cause = t.getCause() == null ? t : t.getCause() --> Line_5 $$ if (exceptionType.isAssignableFrom(cause.getClass())) [FD]
+Line_5 $$ if (exceptionType.isAssignableFrom(cause.getClass())) --> Line_6 $$ FailFastException failFastException = new FailFastException("An exception was thrown in a @FailFast fixture", t) [CD]
+Line_5 $$ if (exceptionType.isAssignableFrom(cause.getClass())) --> Line_7 $$ resultRecorder.recordFailFastException(failFastException) [CD]
+Line_2 $$ private void rethrowFailFastException(ResultRecorder resultRecorder, Throwable t) --> Line_7 $$ resultRecorder.recordFailFastException(failFastException) [FD]
+Line_6 $$ FailFastException failFastException = new FailFastException("An exception was thrown in a @FailFast fixture", t) --> Line_7 $$ resultRecorder.recordFailFastException(failFastException) [FD]

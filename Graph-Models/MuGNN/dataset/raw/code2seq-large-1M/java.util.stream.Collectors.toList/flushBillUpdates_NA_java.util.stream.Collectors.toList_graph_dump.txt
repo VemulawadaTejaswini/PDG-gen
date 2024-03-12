@@ -1,0 +1,7 @@
+Line_2 $$ protected void flushBillUpdates() --> Line_3 $$ if (billIngestCache.getSize() > 0) [CD]
+Line_3 $$ if (billIngestCache.getSize() > 0) --> Line_4 $$ logger.info("Flushing [CD]
+Line_3 $$ if (billIngestCache.getSize() > 0) --> Line_5 $$ billIngestCache.getCurrentCache().forEach( entry -> billDataService.saveBill(entry.getLeft(), entry.getRight(), false)) [CD]
+Line_3 $$ if (billIngestCache.getSize() > 0) --> Line_6 $$ logger.debug("Broadcasting bill updates...") [CD]
+Line_3 $$ if (billIngestCache.getSize() > 0) --> Line_7 $$ List<Bill> bills = billIngestCache.getCurrentCache().stream().map( entry -> entry.getLeft()).collect(Collectors.toList()) [CD]
+Line_3 $$ if (billIngestCache.getSize() > 0) --> Line_8 $$ eventBus.post(new BulkBillUpdateEvent(bills, LocalDateTime.now())) [CD]
+Line_3 $$ if (billIngestCache.getSize() > 0) --> Line_9 $$ billIngestCache.clearCache() [CD]

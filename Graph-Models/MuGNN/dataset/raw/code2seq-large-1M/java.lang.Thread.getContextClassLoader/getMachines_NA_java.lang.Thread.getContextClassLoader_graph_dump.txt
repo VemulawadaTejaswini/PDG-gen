@@ -1,0 +1,7 @@
+Line_2 $$ static synchronized Iterable<? extends FactoryMachine> getMachines() --> Line_3 $$ ClassLoader classLoader = Thread.currentThread().getContextClassLoader() [CD]
+Line_2 $$ static synchronized Iterable<? extends FactoryMachine> getMachines() --> Line_4 $$ if (classLoader == null) [CD]
+Line_2 $$ static synchronized Iterable<? extends FactoryMachine> getMachines() --> Line_7 $$ Iterable<? extends FactoryMachine> factoryMachines = serviceLoaderMachines.get(classLoader) [CD]
+Line_2 $$ static synchronized Iterable<? extends FactoryMachine> getMachines() --> Line_8 $$ if (factoryMachines == null) [CD]
+Line_13 $$ if (e.getMessage().endsWith("not found") || e.getMessage().indexOf("java.lang.NoClassDefFoundError") != -1) --> Line_14 $$ String resources = "" [CD]
+Line_14 $$ String resources = "" --> Line_16 $$ resources = "\n\n\t\t>> If the problem persists, check these resources:" + "\n\t\t\t- " + Joiner.on("\n\t\t\t- ").join(Iterators.forEnumeration(classLoader.getResources("META-INF/services/restx.factory.FactoryMachine"))) [FD]
+Line_2 $$ static synchronized Iterable<? extends FactoryMachine> getMachines() --> Line_25 $$ return factoryMachines [CD]

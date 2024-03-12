@@ -1,0 +1,7 @@
+Line_2 $$ private void fillTestData(Ignite ig) --> Line_3 $$ try (IgniteDataStreamer<Object, Object> s = ig.dataStreamer(TEST_CACHE_NAME)) [FD]
+Line_4 $$ for (int i = 0; i < 50_000; i++) --> Line_5 $$ BinaryObject bo = ig.binary().builder("TestIndexObject").setField("a", i, Object.class).setField("b", String.valueOf(i), Object.class).build() [FD]
+Line_4 $$ for (int i = 0; i < 50_000; i++) --> Line_5 $$ BinaryObject bo = ig.binary().builder("TestIndexObject").setField("a", i, Object.class).setField("b", String.valueOf(i), Object.class).build() [CD]
+Line_2 $$ private void fillTestData(Ignite ig) --> Line_5 $$ BinaryObject bo = ig.binary().builder("TestIndexObject").setField("a", i, Object.class).setField("b", String.valueOf(i), Object.class).build() [FD]
+Line_4 $$ for (int i = 0; i < 50_000; i++) --> Line_6 $$ s.addData(i, bo) [FD]
+Line_4 $$ for (int i = 0; i < 50_000; i++) --> Line_6 $$ s.addData(i, bo) [CD]
+Line_3 $$ try (IgniteDataStreamer<Object, Object> s = ig.dataStreamer(TEST_CACHE_NAME)) --> Line_6 $$ s.addData(i, bo) [FD]

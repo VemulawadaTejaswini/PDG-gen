@@ -1,0 +1,8 @@
+Line_2 $$ public <ReturnT> ReturnT updateState(UpdateGeneratorFunction<StateT, ReturnT> updateGenerator) --> Line_3 $$ AtomicReference<ReturnT> result = new AtomicReference() [CD]
+Line_2 $$ public <ReturnT> ReturnT updateState(UpdateGeneratorFunction<StateT, ReturnT> updateGenerator) --> Line_4 $$ conditionallyWrite( state -> [CD]
+Line_3 $$ AtomicReference<ReturnT> result = new AtomicReference() --> Line_6 $$ result.set(updateGenerator.apply(state, update)) [FD]
+Line_2 $$ public <ReturnT> ReturnT updateState(UpdateGeneratorFunction<StateT, ReturnT> updateGenerator) --> Line_6 $$ result.set(updateGenerator.apply(state, update)) [FD]
+Line_5 $$ List<Update<StateT>> update = new ArrayList() --> Line_6 $$ result.set(updateGenerator.apply(state, update)) [FD]
+Line_5 $$ List<Update<StateT>> update = new ArrayList() --> Line_7 $$ return update.isEmpty() ? null : new UpdateOrInit(update) [FD]
+Line_2 $$ public <ReturnT> ReturnT updateState(UpdateGeneratorFunction<StateT, ReturnT> updateGenerator) --> Line_9 $$ return result.get() [CD]
+Line_3 $$ AtomicReference<ReturnT> result = new AtomicReference() --> Line_9 $$ return result.get() [FD]

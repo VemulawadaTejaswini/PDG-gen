@@ -1,0 +1,6 @@
+Line_2 $$ public void interceptRequest(IHttpRequest theRequest) --> Line_3 $$ String authorizationUnescaped = StringUtils.defaultString(myUsername) + ":" + StringUtils.defaultString(myPassword) [CD]
+Line_2 $$ public void interceptRequest(IHttpRequest theRequest) --> Line_4 $$ String encoded [CD]
+Line_4 $$ String encoded --> Line_6 $$ encoded = Base64.encodeBase64String(authorizationUnescaped.getBytes("ISO-8859-1")) [FD]
+Line_3 $$ String authorizationUnescaped = StringUtils.defaultString(myUsername) + ":" + StringUtils.defaultString(myPassword) --> Line_6 $$ encoded = Base64.encodeBase64String(authorizationUnescaped.getBytes("ISO-8859-1")) [FD]
+Line_2 $$ public void interceptRequest(IHttpRequest theRequest) --> Line_10 $$ theRequest.addHeader(Constants.HEADER_AUTHORIZATION, ("Basic " + encoded)) [CD]
+Line_2 $$ public void interceptRequest(IHttpRequest theRequest) --> Line_10 $$ theRequest.addHeader(Constants.HEADER_AUTHORIZATION, ("Basic " + encoded)) [FD]

@@ -1,0 +1,3 @@
+Line_2 $$ private Collection<String> getCacheNames(final String tenant) --> Line_3 $$ final String tenantWithDelimiter = tenant + TENANT_CACHE_DELIMITER [CD]
+Line_2 $$ private Collection<String> getCacheNames(final String tenant) --> Line_4 $$ return delegate.getCacheNames().parallelStream().filter( cacheName -> cacheName.startsWith(tenantWithDelimiter)).map( cacheName -> cacheName.substring(tenantWithDelimiter.length())).collect(Collectors.toList()) [CD]
+Line_3 $$ final String tenantWithDelimiter = tenant + TENANT_CACHE_DELIMITER --> Line_4 $$ return delegate.getCacheNames().parallelStream().filter( cacheName -> cacheName.startsWith(tenantWithDelimiter)).map( cacheName -> cacheName.substring(tenantWithDelimiter.length())).collect(Collectors.toList()) [FD]

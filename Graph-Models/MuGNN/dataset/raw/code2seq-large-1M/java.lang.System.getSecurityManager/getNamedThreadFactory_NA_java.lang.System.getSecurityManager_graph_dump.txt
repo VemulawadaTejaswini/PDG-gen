@@ -1,0 +1,6 @@
+Line_2 $$ public static ThreadFactory getNamedThreadFactory(final String prefix) --> Line_3 $$ SecurityManager s = System.getSecurityManager() [CD]
+Line_2 $$ public static ThreadFactory getNamedThreadFactory(final String prefix) --> Line_4 $$ final ThreadGroup threadGroup = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup() [CD]
+Line_3 $$ SecurityManager s = System.getSecurityManager() --> Line_4 $$ final ThreadGroup threadGroup = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup() [FD]
+Line_2 $$ public static ThreadFactory getNamedThreadFactory(final String prefix) --> Line_5 $$ return new ThreadFactory() [CD]
+Line_5 $$ return new ThreadFactory() --> Line_10 $$ final String name = prefix + "-pool" + poolNumber + "-t" + threadNumber.getAndIncrement() [CD]
+Line_5 $$ return new ThreadFactory() --> Line_11 $$ return new Thread(group, r, name) [CD]

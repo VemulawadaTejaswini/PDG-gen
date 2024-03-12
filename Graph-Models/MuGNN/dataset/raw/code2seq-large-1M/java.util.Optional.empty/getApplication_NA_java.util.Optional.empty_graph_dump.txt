@@ -1,0 +1,7 @@
+Line_2 $$ private Application getApplication(Tenant tenant, ApplicationId applicationId) --> Line_3 $$ long sessionId = getSessionIdForApplication(tenant, applicationId) [CD]
+Line_2 $$ private Application getApplication(Tenant tenant, ApplicationId applicationId) --> Line_3 $$ long sessionId = getSessionIdForApplication(tenant, applicationId) [FD]
+Line_2 $$ private Application getApplication(Tenant tenant, ApplicationId applicationId) --> Line_4 $$ RemoteSession session = tenant.getRemoteSessionRepo().getSession(sessionId, 0) [CD]
+Line_2 $$ private Application getApplication(Tenant tenant, ApplicationId applicationId) --> Line_4 $$ RemoteSession session = tenant.getRemoteSessionRepo().getSession(sessionId, 0) [FD]
+Line_3 $$ long sessionId = getSessionIdForApplication(tenant, applicationId) --> Line_4 $$ RemoteSession session = tenant.getRemoteSessionRepo().getSession(sessionId, 0) [FD]
+Line_2 $$ private Application getApplication(Tenant tenant, ApplicationId applicationId) --> Line_5 $$ return session.ensureApplicationLoaded().getForVersionOrLatest(Optional.empty(), clock.instant()) [CD]
+Line_4 $$ RemoteSession session = tenant.getRemoteSessionRepo().getSession(sessionId, 0) --> Line_5 $$ return session.ensureApplicationLoaded().getForVersionOrLatest(Optional.empty(), clock.instant()) [FD]

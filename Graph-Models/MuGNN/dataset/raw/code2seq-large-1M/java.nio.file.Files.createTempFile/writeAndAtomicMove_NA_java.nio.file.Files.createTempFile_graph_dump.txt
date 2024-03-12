@@ -1,0 +1,8 @@
+Line_2 $$ public static void writeAndAtomicMove(Path targetName, Consumer<PrintWriter> write) throws IOException --> Line_3 $$ Path tempFile = Files.createTempFile(targetName.getParent(), targetName.getFileName().toString(), ".tmp") [CD]
+Line_2 $$ public static void writeAndAtomicMove(Path targetName, Consumer<PrintWriter> write) throws IOException --> Line_3 $$ Path tempFile = Files.createTempFile(targetName.getParent(), targetName.getFileName().toString(), ".tmp") [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(targetName.getParent(), targetName.getFileName().toString(), ".tmp") --> Line_4 $$ try (PrintWriter statusWriter = new PrintWriter(Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8))) [FD]
+Line_2 $$ public static void writeAndAtomicMove(Path targetName, Consumer<PrintWriter> write) throws IOException --> Line_5 $$ write.accept(statusWriter) [FD]
+Line_4 $$ try (PrintWriter statusWriter = new PrintWriter(Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8))) --> Line_5 $$ write.accept(statusWriter) [FD]
+Line_4 $$ try (PrintWriter statusWriter = new PrintWriter(Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8))) --> Line_6 $$ statusWriter.close() [FD]
+Line_3 $$ Path tempFile = Files.createTempFile(targetName.getParent(), targetName.getFileName().toString(), ".tmp") --> Line_7 $$ Files.move(tempFile, targetName, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_2 $$ public static void writeAndAtomicMove(Path targetName, Consumer<PrintWriter> write) throws IOException --> Line_7 $$ Files.move(tempFile, targetName, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING) [FD]

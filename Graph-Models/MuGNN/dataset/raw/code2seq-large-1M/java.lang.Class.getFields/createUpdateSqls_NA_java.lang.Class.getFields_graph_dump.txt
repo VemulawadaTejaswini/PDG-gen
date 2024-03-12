@@ -1,0 +1,6 @@
+Line_7 $$ final String fieldName = field.getName() --> Line_8 $$ if (!fieldName.endsWith(SUFFIX_AD_Reference_ID)) [FD]
+Line_7 $$ final String fieldName = field.getName() --> Line_12 $$ final String prefix = fieldName.substring(0, fieldName.length() - SUFFIX_AD_Reference_ID.length()) [FD]
+Line_12 $$ final String prefix = fieldName.substring(0, fieldName.length() - SUFFIX_AD_Reference_ID.length()) --> Line_13 $$ final Map<String, String> name2value = extractNameAndValueForPrefix(prefix, classFields) [FD]
+Line_3 $$ final List<String> updateSqls = new ArrayList() --> Line_14 $$ updateSqls.add("\n\n-- " + prefix) [FD]
+Line_3 $$ final List<String> updateSqls = new ArrayList() --> Line_15 $$ updateSqls.addAll(createUpdateSqls(adReferenceId, name2value)) [FD]
+Line_11 $$ final int adReferenceId = getFieldValueAsInt(field) --> Line_15 $$ updateSqls.addAll(createUpdateSqls(adReferenceId, name2value)) [FD]

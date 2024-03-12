@@ -1,0 +1,8 @@
+Line_2 $$ private void pinWatcherUpdated(PinWatcher pinWatcher) --> Line_3 $$ updateState() [CD]
+Line_2 $$ private void pinWatcherUpdated(PinWatcher pinWatcher) --> Line_4 $$ EventBus.getDefault().post(new PinChangedMessage(pinWatcher.pin)) [CD]
+Line_2 $$ private void pinWatcherUpdated(PinWatcher pinWatcher) --> Line_5 $$ if (waitingForPinWatchersForBackgroundUpdate != null) [CD]
+Line_5 $$ if (waitingForPinWatchersForBackgroundUpdate != null) --> Line_6 $$ waitingForPinWatchersForBackgroundUpdate.remove(pinWatcher) [CD]
+Line_2 $$ private void pinWatcherUpdated(PinWatcher pinWatcher) --> Line_6 $$ waitingForPinWatchersForBackgroundUpdate.remove(pinWatcher) [FD]
+Line_5 $$ if (waitingForPinWatchersForBackgroundUpdate != null) --> Line_7 $$ if (waitingForPinWatchersForBackgroundUpdate.isEmpty()) [CD]
+Line_7 $$ if (waitingForPinWatchersForBackgroundUpdate.isEmpty()) --> Line_8 $$ Logger.i(TAG, "All watchers updated, removing wakelock") [CD]
+Line_7 $$ if (waitingForPinWatchersForBackgroundUpdate.isEmpty()) --> Line_10 $$ manageLock(false) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public static List<Footer> readAllFootersInParallel(final Configuration configuration, List<FileStatus> partFiles, final boolean skipRowGroups) throws IOException --> Line_3 $$ List<Callable<Footer>> footers = new ArrayList<Callable<Footer>>() [CD]
+Line_3 $$ List<Callable<Footer>> footers = new ArrayList<Callable<Footer>>() --> Line_5 $$ footers.add(new Callable<Footer>() [FD]
+Line_4 $$ for (final FileStatus currentFile : partFiles) --> Line_8 $$ return new Footer(currentFile.getPath(), readFooter(configuration, currentFile, filter(skipRowGroups))) [FD]
+Line_2 $$ public static List<Footer> readAllFootersInParallel(final Configuration configuration, List<FileStatus> partFiles, final boolean skipRowGroups) throws IOException --> Line_8 $$ return new Footer(currentFile.getPath(), readFooter(configuration, currentFile, filter(skipRowGroups))) [FD]
+Line_3 $$ List<Callable<Footer>> footers = new ArrayList<Callable<Footer>>() --> Line_16 $$ return runAllInParallel(configuration.getInt(PARQUET_READ_PARALLELISM, 5), footers) [FD]
+Line_2 $$ public static List<Footer> readAllFootersInParallel(final Configuration configuration, List<FileStatus> partFiles, final boolean skipRowGroups) throws IOException --> Line_16 $$ return runAllInParallel(configuration.getInt(PARQUET_READ_PARALLELISM, 5), footers) [FD]

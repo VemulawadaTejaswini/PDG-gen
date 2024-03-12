@@ -1,0 +1,7 @@
+Line_2 $$ public void testUnfencedRemoteGateway() throws Exception --> Line_3 $$ final UUID initialFencingToken = UUID.randomUUID() [CD]
+Line_2 $$ public void testUnfencedRemoteGateway() throws Exception --> Line_4 $$ final String value = "foobar" [CD]
+Line_2 $$ public void testUnfencedRemoteGateway() throws Exception --> Line_5 $$ final FencedTestingEndpoint fencedTestingEndpoint = new FencedTestingEndpoint(rpcService, value, initialFencingToken) [CD]
+Line_5 $$ final FencedTestingEndpoint fencedTestingEndpoint = new FencedTestingEndpoint(rpcService, value, initialFencingToken) --> Line_7 $$ fencedTestingEndpoint.start() [FD]
+Line_5 $$ final FencedTestingEndpoint fencedTestingEndpoint = new FencedTestingEndpoint(rpcService, value, initialFencingToken) --> Line_8 $$ FencedTestingGateway unfencedGateway = rpcService.connect(fencedTestingEndpoint.getAddress(), FencedTestingGateway.class).get(timeout.toMilliseconds(), TimeUnit.MILLISECONDS) [FD]
+Line_5 $$ final FencedTestingEndpoint fencedTestingEndpoint = new FencedTestingEndpoint(rpcService, value, initialFencingToken) --> Line_21 $$ fencedTestingEndpoint.shutDown() [FD]
+Line_5 $$ final FencedTestingEndpoint fencedTestingEndpoint = new FencedTestingEndpoint(rpcService, value, initialFencingToken) --> Line_22 $$ fencedTestingEndpoint.getTerminationFuture().get(timeout.toMilliseconds(), TimeUnit.MILLISECONDS) [FD]

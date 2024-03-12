@@ -1,0 +1,6 @@
+Line_2 $$ Set<Path> workspaceClassPath() --> Line_3 $$ if (Files.exists(workspaceRoot.resolve("WORKSPACE"))) [CD]
+Line_3 $$ if (Files.exists(workspaceRoot.resolve("WORKSPACE"))) --> Line_4 $$ Path bazelBin = workspaceRoot.resolve("bazel-bin") [CD]
+Line_3 $$ if (Files.exists(workspaceRoot.resolve("WORKSPACE"))) --> Line_5 $$ if (Files.exists(bazelBin) && Files.isSymbolicLink(bazelBin)) [CD]
+Line_4 $$ Path bazelBin = workspaceRoot.resolve("bazel-bin") --> Line_5 $$ if (Files.exists(bazelBin) && Files.isSymbolicLink(bazelBin)) [FD]
+Line_5 $$ if (Files.exists(bazelBin) && Files.isSymbolicLink(bazelBin)) --> Line_6 $$ return bazelOutputDirectories(bazelBin).collect(Collectors.toSet()) [CD]
+Line_4 $$ Path bazelBin = workspaceRoot.resolve("bazel-bin") --> Line_6 $$ return bazelOutputDirectories(bazelBin).collect(Collectors.toSet()) [FD]

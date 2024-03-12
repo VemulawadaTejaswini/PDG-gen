@@ -1,0 +1,6 @@
+Line_2 $$ public void testLocalIndexCreationWithDefaultFamilyOption() throws Exception --> Line_3 $$ Connection conn1 = DriverManager.getConnection(getUrl()) [CD]
+Line_3 $$ Connection conn1 = DriverManager.getConnection(getUrl()) --> Line_5 $$ Statement statement = conn1.createStatement() [FD]
+Line_5 $$ Statement statement = conn1.createStatement() --> Line_6 $$ statement.execute("create table example (id integer not null,fn varchar," + "\"ln\" varchar constraint pk primary key(id)) DEFAULT_COLUMN_FAMILY='F'") [FD]
+Line_5 $$ Statement statement = conn1.createStatement() --> Line_8 $$ statement.execute("create local index my_idx on example (fn) DEFAULT_COLUMN_FAMILY='F'") [FD]
+Line_5 $$ Statement statement = conn1.createStatement() --> Line_13 $$ statement.execute("create local index my_idx on example (fn)") [FD]
+Line_3 $$ Connection conn1 = DriverManager.getConnection(getUrl()) --> Line_15 $$ conn1.close() [FD]

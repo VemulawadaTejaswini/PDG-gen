@@ -1,0 +1,6 @@
+Line_2 $$ private void waitForMonitoringTemplates() throws Exception --> Line_3 $$ assertBusy(() -> [CD]
+Line_4 $$ final Map<String, Object> templates = toMap(client().performRequest("GET", "/_template/.monitoring-*")) --> Line_5 $$ assertThat(templates.size(), greaterThanOrEqualTo(MonitoringTemplateUtils.TEMPLATE_IDS.length)) [FD]
+Line_6 $$ for (final String templateId : MonitoringTemplateUtils.TEMPLATE_IDS) --> Line_7 $$ final String templateName = MonitoringTemplateUtils.templateName(templateId) [FD]
+Line_4 $$ final Map<String, Object> templates = toMap(client().performRequest("GET", "/_template/.monitoring-*")) --> Line_8 $$ final Map<String, Object> template = (Map<String, Object>) templates.get(templateName) [FD]
+Line_7 $$ final String templateName = MonitoringTemplateUtils.templateName(templateId) --> Line_8 $$ final Map<String, Object> template = (Map<String, Object>) templates.get(templateName) [FD]
+Line_8 $$ final Map<String, Object> template = (Map<String, Object>) templates.get(templateName) --> Line_9 $$ assertThat(template.get("version"), is(MonitoringTemplateUtils.LAST_UPDATED_VERSION)) [FD]

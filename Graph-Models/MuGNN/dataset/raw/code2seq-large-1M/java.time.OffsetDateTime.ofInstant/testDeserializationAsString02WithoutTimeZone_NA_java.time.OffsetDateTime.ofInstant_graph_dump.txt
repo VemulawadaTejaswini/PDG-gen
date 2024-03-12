@@ -1,0 +1,8 @@
+Line_2 $$ public void testDeserializationAsString02WithoutTimeZone() throws Exception --> Line_3 $$ OffsetDateTime date = OffsetDateTime.ofInstant(Instant.ofEpochSecond(123456789L, 183917322), Z2) [CD]
+Line_2 $$ public void testDeserializationAsString02WithoutTimeZone() throws Exception --> Line_4 $$ this.mapper.configure(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE, true) [CD]
+Line_2 $$ public void testDeserializationAsString02WithoutTimeZone() throws Exception --> Line_5 $$ OffsetDateTime value = this.mapper.readValue('"' + FORMATTER.format(date) + '"', OffsetDateTime.class) [CD]
+Line_3 $$ OffsetDateTime date = OffsetDateTime.ofInstant(Instant.ofEpochSecond(123456789L, 183917322), Z2) --> Line_5 $$ OffsetDateTime value = this.mapper.readValue('"' + FORMATTER.format(date) + '"', OffsetDateTime.class) [FD]
+Line_2 $$ public void testDeserializationAsString02WithoutTimeZone() throws Exception --> Line_6 $$ assertNotNull("The value should not be null.", value) [CD]
+Line_2 $$ public void testDeserializationAsString02WithoutTimeZone() throws Exception --> Line_7 $$ assertIsEqual(date, value) [CD]
+Line_3 $$ OffsetDateTime date = OffsetDateTime.ofInstant(Instant.ofEpochSecond(123456789L, 183917322), Z2) --> Line_7 $$ assertIsEqual(date, value) [FD]
+Line_2 $$ public void testDeserializationAsString02WithoutTimeZone() throws Exception --> Line_8 $$ assertEquals("The time zone is not correct.", ZoneOffset.UTC, value.getOffset()) [CD]

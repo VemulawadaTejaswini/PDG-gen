@@ -1,0 +1,6 @@
+Line_2 $$ public CertificateSerializedPayload generateCertificate(CsrSerializedPayload csrPayload, @Context HttpServletRequest req) --> Line_4 $$ InetAddress addr = InetAddress.getByName(req.getRemoteAddr()) [FD]
+Line_4 $$ InetAddress addr = InetAddress.getByName(req.getRemoteAddr()) --> Line_5 $$ String remoteHostname = addr.getHostName() [FD]
+Line_6 $$ Pkcs10Csr csr = csrPayload.csr --> Line_8 $$ X509Certificate certificate = certificateSigner.generateX509Certificate(csr, remoteHostname) [FD]
+Line_5 $$ String remoteHostname = addr.getHostName() --> Line_8 $$ X509Certificate certificate = certificateSigner.generateX509Certificate(csr, remoteHostname) [FD]
+Line_2 $$ public CertificateSerializedPayload generateCertificate(CsrSerializedPayload csrPayload, @Context HttpServletRequest req) --> Line_17 $$ String message = "Failed to resolve remote address " + req.getRemoteAddr() + ", must resolve to match value in Common Name" [FD]
+Line_17 $$ String message = "Failed to resolve remote address " + req.getRemoteAddr() + ", must resolve to match value in Common Name" --> Line_18 $$ log.log(LogLevel.ERROR, message) [FD]

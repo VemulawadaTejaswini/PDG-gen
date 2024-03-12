@@ -1,0 +1,7 @@
+Line_2 $$ public long acquiredPages() --> Line_3 $$ long total = 0 [CD]
+Line_4 $$ for (Segment seg : segments) --> Line_5 $$ seg.readLock().lock() [FD]
+Line_4 $$ for (Segment seg : segments) --> Line_7 $$ if (seg.closed) [FD]
+Line_3 $$ long total = 0 --> Line_9 $$ total += seg.acquiredPages() [FD]
+Line_4 $$ for (Segment seg : segments) --> Line_9 $$ total += seg.acquiredPages() [FD]
+Line_4 $$ for (Segment seg : segments) --> Line_11 $$ seg.readLock().unlock() [FD]
+Line_2 $$ public long acquiredPages() --> Line_14 $$ return total [CD]

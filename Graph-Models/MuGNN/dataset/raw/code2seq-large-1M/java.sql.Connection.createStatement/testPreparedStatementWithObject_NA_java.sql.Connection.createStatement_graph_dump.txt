@@ -1,0 +1,7 @@
+Line_3 $$ try (Statement stmt = con.createStatement()) --> Line_4 $$ stmt.execute("CREATE TEMP TABLE testinet (ip inet)") [FD]
+Line_6 $$ try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO testinet VALUES (?)")) --> Line_7 $$ pstmt.setObject(1, "192.168.1.1") [FD]
+Line_6 $$ try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO testinet VALUES (?)")) --> Line_8 $$ pstmt.addBatch() [FD]
+Line_6 $$ try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO testinet VALUES (?)")) --> Line_9 $$ pstmt.execute() [FD]
+Line_3 $$ try (Statement stmt = con.createStatement()) --> Line_12 $$ try (ResultSet rs = stmt.executeQuery("SELECT * FROM testinet")) [FD]
+Line_12 $$ try (ResultSet rs = stmt.executeQuery("SELECT * FROM testinet")) --> Line_13 $$ assertTrue(rs.next()) [FD]
+Line_12 $$ try (ResultSet rs = stmt.executeQuery("SELECT * FROM testinet")) --> Line_14 $$ assertEquals("192.168.1.1", rs.getString(1)) [FD]

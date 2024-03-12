@@ -1,0 +1,8 @@
+Line_2 $$ public void writeTimestamp(boolean isNull) throws IOException --> Line_3 $$ TimeStampWriter ts = writer.timeStamp(fieldName) [CD]
+Line_2 $$ public void writeTimestamp(boolean isNull) throws IOException --> Line_4 $$ if (!isNull) [FD]
+Line_2 $$ public void writeTimestamp(boolean isNull) throws IOException --> Line_4 $$ if (!isNull) [CD]
+Line_3 $$ TimeStampWriter ts = writer.timeStamp(fieldName) --> Line_8 $$ ts.writeTimeStamp(dt.getMillis()) [FD]
+Line_7 $$ DateTime dt = new DateTime(parser.getLongValue(), org.joda.time.DateTimeZone.UTC) --> Line_8 $$ ts.writeTimeStamp(dt.getMillis()) [FD]
+Line_11 $$ OffsetDateTime originalDateTime = OffsetDateTime.parse(parser.getValueAsString(), DateUtility.isoFormatTimeStamp) --> Line_12 $$ OffsetDateTime utcDateTime = OffsetDateTime.of(originalDateTime.toLocalDateTime(), ZoneOffset.UTC) [FD]
+Line_3 $$ TimeStampWriter ts = writer.timeStamp(fieldName) --> Line_13 $$ ts.writeTimeStamp(utcDateTime.toInstant().toEpochMilli()) [FD]
+Line_12 $$ OffsetDateTime utcDateTime = OffsetDateTime.of(originalDateTime.toLocalDateTime(), ZoneOffset.UTC) --> Line_13 $$ ts.writeTimeStamp(utcDateTime.toInstant().toEpochMilli()) [FD]

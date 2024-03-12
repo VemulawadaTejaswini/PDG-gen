@@ -1,0 +1,6 @@
+Line_2 $$ public void scheduleRunAsync(Runnable runnable, long delayMillis) --> Line_3 $$ checkNotNull(runnable, "runnable") [FD]
+Line_2 $$ public void scheduleRunAsync(Runnable runnable, long delayMillis) --> Line_3 $$ checkNotNull(runnable, "runnable") [CD]
+Line_2 $$ public void scheduleRunAsync(Runnable runnable, long delayMillis) --> Line_4 $$ checkArgument(delayMillis >= 0, "delay must be zero or greater") [CD]
+Line_2 $$ public void scheduleRunAsync(Runnable runnable, long delayMillis) --> Line_5 $$ if (isLocal) [CD]
+Line_5 $$ if (isLocal) --> Line_6 $$ long atTimeNanos = delayMillis == 0 ? 0 : System.nanoTime() + (delayMillis * 1_000_000) [CD]
+Line_5 $$ if (isLocal) --> Line_7 $$ tell(new RunAsync(runnable, atTimeNanos)) [CD]

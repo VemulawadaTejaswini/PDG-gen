@@ -1,0 +1,8 @@
+Line_2 $$ public Collection<V> notNullValues() --> Line_3 $$ final Collection<V> values = ContainerUtil.newArrayList(myMap.values()) [CD]
+Line_2 $$ public Collection<V> notNullValues() --> Line_4 $$ for (Iterator<V> iterator = values.iterator(); iterator.hasNext(); ) [CD]
+Line_3 $$ final Collection<V> values = ContainerUtil.newArrayList(myMap.values()) --> Line_4 $$ for (Iterator<V> iterator = values.iterator(); iterator.hasNext(); ) [FD]
+Line_4 $$ for (Iterator<V> iterator = values.iterator(); iterator.hasNext(); ) --> Line_5 $$ if (iterator.next() == FAKE_NULL()) [FD]
+Line_4 $$ for (Iterator<V> iterator = values.iterator(); iterator.hasNext(); ) --> Line_5 $$ if (iterator.next() == FAKE_NULL()) [CD]
+Line_5 $$ if (iterator.next() == FAKE_NULL()) --> Line_6 $$ iterator.remove() [CD]
+Line_4 $$ for (Iterator<V> iterator = values.iterator(); iterator.hasNext(); ) --> Line_6 $$ iterator.remove() [FD]
+Line_2 $$ public Collection<V> notNullValues() --> Line_9 $$ return values [CD]

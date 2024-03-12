@@ -1,0 +1,8 @@
+Line_2 $$ private void checkReplTxnForTest(Long startTxnId, Long endTxnId, String replPolicy, List<Long> targetTxnId) throws Exception --> Line_3 $$ String[] output = TxnDbUtil.queryToString(conf, "select RTM_TARGET_TXN_ID from REPL_TXN_MAP where " + " RTM_SRC_TXN_ID >=  " + startTxnId + "and RTM_SRC_TXN_ID <=  " + endTxnId + " and RTM_REPL_POLICY = \'" + replPolicy + "\'").split("\n") [CD]
+Line_2 $$ private void checkReplTxnForTest(Long startTxnId, Long endTxnId, String replPolicy, List<Long> targetTxnId) throws Exception --> Line_4 $$ assertEquals(output.length - 1, targetTxnId.size()) [CD]
+Line_2 $$ private void checkReplTxnForTest(Long startTxnId, Long endTxnId, String replPolicy, List<Long> targetTxnId) throws Exception --> Line_4 $$ assertEquals(output.length - 1, targetTxnId.size()) [FD]
+Line_2 $$ private void checkReplTxnForTest(Long startTxnId, Long endTxnId, String replPolicy, List<Long> targetTxnId) throws Exception --> Line_5 $$ for (int idx = 1; idx < output.length; idx++) [CD]
+Line_5 $$ for (int idx = 1; idx < output.length; idx++) --> Line_6 $$ long txnId = Long.parseLong(output[idx].trim()) [CD]
+Line_5 $$ for (int idx = 1; idx < output.length; idx++) --> Line_7 $$ assertEquals(txnId, targetTxnId.get(idx - 1).longValue()) [CD]
+Line_6 $$ long txnId = Long.parseLong(output[idx].trim()) --> Line_7 $$ assertEquals(txnId, targetTxnId.get(idx - 1).longValue()) [FD]
+Line_2 $$ private void checkReplTxnForTest(Long startTxnId, Long endTxnId, String replPolicy, List<Long> targetTxnId) throws Exception --> Line_7 $$ assertEquals(txnId, targetTxnId.get(idx - 1).longValue()) [FD]

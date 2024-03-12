@@ -1,0 +1,6 @@
+Line_2 $$ public Encryptor createEncryptor(Configuration conf, FileEncryptionInfo feInfo, DFSClient client) throws IOException --> Line_4 $$ KeyVersion decryptedKey = (KeyVersion) decryptEncryptedDataEncryptionKeyMethod.invoke(client, feInfo) [FD]
+Line_2 $$ public Encryptor createEncryptor(Configuration conf, FileEncryptionInfo feInfo, DFSClient client) throws IOException --> Line_5 $$ CryptoCodec cryptoCodec = CryptoCodec.getInstance(conf, feInfo.getCipherSuite()) [FD]
+Line_5 $$ CryptoCodec cryptoCodec = CryptoCodec.getInstance(conf, feInfo.getCipherSuite()) --> Line_6 $$ Encryptor encryptor = cryptoCodec.createEncryptor() [FD]
+Line_6 $$ Encryptor encryptor = cryptoCodec.createEncryptor() --> Line_7 $$ encryptor.init(decryptedKey.getMaterial(), feInfo.getIV()) [FD]
+Line_4 $$ KeyVersion decryptedKey = (KeyVersion) decryptEncryptedDataEncryptionKeyMethod.invoke(client, feInfo) --> Line_7 $$ encryptor.init(decryptedKey.getMaterial(), feInfo.getIV()) [FD]
+Line_2 $$ public Encryptor createEncryptor(Configuration conf, FileEncryptionInfo feInfo, DFSClient client) throws IOException --> Line_7 $$ encryptor.init(decryptedKey.getMaterial(), feInfo.getIV()) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public Optional<Double> hitRate() --> Line_3 $$ Optional<Long> requestCount = getRequestCount() [CD]
+Line_2 $$ public Optional<Double> hitRate() --> Line_4 $$ if (requestCount.isPresent()) [CD]
+Line_3 $$ Optional<Long> requestCount = getRequestCount() --> Line_4 $$ if (requestCount.isPresent()) [FD]
+Line_4 $$ if (requestCount.isPresent()) --> Line_5 $$ return Optional.of((requestCount.get() == 0) ? 1.0 : (double) getHitCount().get() / requestCount.get()) [CD]
+Line_3 $$ Optional<Long> requestCount = getRequestCount() --> Line_5 $$ return Optional.of((requestCount.get() == 0) ? 1.0 : (double) getHitCount().get() / requestCount.get()) [FD]
+Line_2 $$ public Optional<Double> hitRate() --> Line_7 $$ return Optional.empty() [CD]

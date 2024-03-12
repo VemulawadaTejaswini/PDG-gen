@@ -1,0 +1,8 @@
+Line_2 $$ private void bindDeltaStore() --> Line_3 $$ if (deltaStoreType.equalsIgnoreCase("memory")) [CD]
+Line_3 $$ if (deltaStoreType.equalsIgnoreCase("memory")) --> Line_4 $$ bind(DeltaStore.class).to(MemoryDeltaStore.class).in(Singleton.class) [CD]
+Line_3 $$ if (deltaStoreType.equalsIgnoreCase("memory")) --> Line_5 $$ if (deltaStoreType.equalsIgnoreCase("file")) [CD]
+Line_5 $$ if (deltaStoreType.equalsIgnoreCase("file")) --> Line_6 $$ bind(DeltaStore.class).to(FileDeltaStore.class).in(Singleton.class) [CD]
+Line_5 $$ if (deltaStoreType.equalsIgnoreCase("file")) --> Line_7 $$ if (deltaStoreType.equalsIgnoreCase("mongodb")) [CD]
+Line_7 $$ if (deltaStoreType.equalsIgnoreCase("mongodb")) --> Line_8 $$ MongoDbProvider mongoDbProvider = getMongoDbProvider() [CD]
+Line_7 $$ if (deltaStoreType.equalsIgnoreCase("mongodb")) --> Line_9 $$ bind(DeltaStore.class).toInstance(mongoDbProvider.provideMongoDbDeltaStore()) [CD]
+Line_8 $$ MongoDbProvider mongoDbProvider = getMongoDbProvider() --> Line_9 $$ bind(DeltaStore.class).toInstance(mongoDbProvider.provideMongoDbDeltaStore()) [FD]

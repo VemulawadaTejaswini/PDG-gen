@@ -1,0 +1,7 @@
+Line_2 $$ public void testSignalJobNoExists() throws Exception --> Line_9 $$ jobDefinitionServiceTestHelper.createJobDefinition(ACTIVITI_XML_TEST_RECEIVE_TASK_WITH_CLASSPATH) [CD]
+Line_2 $$ public void testSignalJobNoExists() throws Exception --> Line_10 $$ Job job = jobService.createAndStartJob(jobServiceTestHelper.createJobCreateRequest(TEST_ACTIVITI_NAMESPACE_CD, TEST_ACTIVITI_JOB_NAME)) [CD]
+Line_10 $$ Job job = jobService.createAndStartJob(jobServiceTestHelper.createJobCreateRequest(TEST_ACTIVITI_NAMESPACE_CD, TEST_ACTIVITI_JOB_NAME)) --> Line_12 $$ Job jobGet = jobService.getJob(job.getId(), false) [FD]
+Line_12 $$ Job jobGet = jobService.getJob(job.getId(), false) --> Line_13 $$ assertEquals(JobStatusEnum.RUNNING, jobGet.getStatus()) [FD]
+Line_12 $$ Job jobGet = jobService.getJob(job.getId(), false) --> Line_14 $$ assertEquals("receivetask1", jobGet.getCurrentWorkflowStep().getId()) [FD]
+Line_10 $$ Job job = jobService.createAndStartJob(jobServiceTestHelper.createJobCreateRequest(TEST_ACTIVITI_NAMESPACE_CD, TEST_ACTIVITI_JOB_NAME)) --> Line_15 $$ jobService.signalJob(new JobSignalRequest(job.getId(), "receivetask_does_not_exist", null, null)) [FD]
+Line_10 $$ Job job = jobService.createAndStartJob(jobServiceTestHelper.createJobCreateRequest(TEST_ACTIVITI_NAMESPACE_CD, TEST_ACTIVITI_JOB_NAME)) --> Line_18 $$ assertEquals(String.format("No job found for matching job id: \"%s\" and receive task id: \"%s\".", job.getId(), "receivetask_does_not_exist"), ex.getMessage()) [FD]

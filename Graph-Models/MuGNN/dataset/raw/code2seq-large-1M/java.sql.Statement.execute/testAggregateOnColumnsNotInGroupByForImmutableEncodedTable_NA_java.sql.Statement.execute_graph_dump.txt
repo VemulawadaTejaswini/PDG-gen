@@ -1,0 +1,8 @@
+Line_2 $$ public void testAggregateOnColumnsNotInGroupByForImmutableEncodedTable() throws Exception --> Line_3 $$ String tableName = generateUniqueName() [CD]
+Line_2 $$ public void testAggregateOnColumnsNotInGroupByForImmutableEncodedTable() throws Exception --> Line_4 $$ String ddl = "CREATE IMMUTABLE TABLE  " + tableName + "  (a_string varchar not null, col1 integer, col2 integer" + "  CONSTRAINT pk PRIMARY KEY (a_string))" [CD]
+Line_2 $$ public void testAggregateOnColumnsNotInGroupByForImmutableEncodedTable() throws Exception --> Line_5 $$ String query = "SELECT col1, max(a_string) from " + tableName + " group by col2" [CD]
+Line_4 $$ String ddl = "CREATE IMMUTABLE TABLE  " + tableName + "  (a_string varchar not null, col1 integer, col2 integer" + "  CONSTRAINT pk PRIMARY KEY (a_string))" --> Line_7 $$ conn.createStatement().execute(ddl) [FD]
+Line_6 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_7 $$ conn.createStatement().execute(ddl) [FD]
+Line_6 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_9 $$ PreparedStatement statement = conn.prepareStatement(query) [FD]
+Line_5 $$ String query = "SELECT col1, max(a_string) from " + tableName + " group by col2" --> Line_9 $$ PreparedStatement statement = conn.prepareStatement(query) [FD]
+Line_9 $$ PreparedStatement statement = conn.prepareStatement(query) --> Line_10 $$ statement.executeQuery() [FD]

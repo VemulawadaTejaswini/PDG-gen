@@ -1,0 +1,6 @@
+Line_2 $$ public void happyPath() --> Line_3 $$ ThingKey thing1Key = new ThingKey("foo1", "bar1") [CD]
+Line_2 $$ public void happyPath() --> Line_4 $$ ThingKey thing3Key = new ThingKey("foo3", "bar3") [CD]
+Line_2 $$ public void happyPath() --> Line_5 $$ List<Thing> list = handle.createQuery("select id, foo from thing where (foo, bar) in (<keys>)").bindBeanList("keys", Arrays.asList(thing1Key, thing3Key), Arrays.asList("foo", "bar")).mapTo(Thing.class).list() [CD]
+Line_3 $$ ThingKey thing1Key = new ThingKey("foo1", "bar1") --> Line_5 $$ List<Thing> list = handle.createQuery("select id, foo from thing where (foo, bar) in (<keys>)").bindBeanList("keys", Arrays.asList(thing1Key, thing3Key), Arrays.asList("foo", "bar")).mapTo(Thing.class).list() [FD]
+Line_4 $$ ThingKey thing3Key = new ThingKey("foo3", "bar3") --> Line_5 $$ List<Thing> list = handle.createQuery("select id, foo from thing where (foo, bar) in (<keys>)").bindBeanList("keys", Arrays.asList(thing1Key, thing3Key), Arrays.asList("foo", "bar")).mapTo(Thing.class).list() [FD]
+Line_2 $$ public void happyPath() --> Line_6 $$ assertThat(list).extracting(Thing::<>getId, Thing::<>getFoo, Thing::<>getBar, Thing::<>getBaz).containsExactly(tuple(1, "foo1", null, null), tuple(3, "foo3", null, null)) [CD]

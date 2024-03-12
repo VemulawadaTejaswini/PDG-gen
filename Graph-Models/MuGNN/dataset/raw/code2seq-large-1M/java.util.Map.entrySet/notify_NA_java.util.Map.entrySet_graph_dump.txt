@@ -1,0 +1,6 @@
+Line_2 $$ public void notify(String address, Map<String, Object> values) --> Line_3 $$ KuraPayload payload = new KuraPayload() [CD]
+Line_2 $$ public void notify(String address, Map<String, Object> values) --> Line_4 $$ payload.setTimestamp(new Date()) [CD]
+Line_3 $$ KuraPayload payload = new KuraPayload() --> Line_4 $$ payload.setTimestamp(new Date()) [FD]
+Line_2 $$ public void notify(String address, Map<String, Object> values) --> Line_5 $$ for (Entry<String, Object> entry : values.entrySet()) [FD]
+Line_3 $$ KuraPayload payload = new KuraPayload() --> Line_6 $$ payload.addMetric(entry.getKey(), entry.getValue()) [FD]
+Line_3 $$ KuraPayload payload = new KuraPayload() --> Line_9 $$ cloudClient.publish(this.options.getTopic() + "/" + address, payload, 0, false) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void connectionWillAttemptToReconnectWhenItIsDropped() throws InterruptedException --> Line_3 $$ final CountDownLatch connectionLatch = new CountDownLatch(1) [CD]
+Line_2 $$ public void connectionWillAttemptToReconnectWhenItIsDropped() throws InterruptedException --> Line_4 $$ final CountDownLatch reconnectionLatch = new CountDownLatch(1) [CD]
+Line_6 $$ TcpClient tcpClient = TcpClient.create( opts -> opts.host("localhost").port(abortServerPort).disablePool()) --> Line_7 $$ Mono<? extends NettyContext> handler = tcpClient.newHandler(( in,  out) -> [FD]
+Line_3 $$ final CountDownLatch connectionLatch = new CountDownLatch(1) --> Line_9 $$ connectionLatch.countDown() [FD]
+Line_7 $$ Mono<? extends NettyContext> handler = tcpClient.newHandler(( in,  out) -> --> Line_13 $$ handler.log().block(Duration.ofSeconds(30)).onClose().then(handler.doOnSuccess( s -> reconnectionLatch.countDown())).block(Duration.ofSeconds(30)) [FD]
+Line_4 $$ final CountDownLatch reconnectionLatch = new CountDownLatch(1) --> Line_13 $$ handler.log().block(Duration.ofSeconds(30)).onClose().then(handler.doOnSuccess( s -> reconnectionLatch.countDown())).block(Duration.ofSeconds(30)) [FD]
+Line_3 $$ final CountDownLatch connectionLatch = new CountDownLatch(1) --> Line_14 $$ assertTrue("Initial connection is made", connectionLatch.await(5, TimeUnit.SECONDS)) [FD]
+Line_4 $$ final CountDownLatch reconnectionLatch = new CountDownLatch(1) --> Line_15 $$ assertTrue("A reconnect attempt was made", reconnectionLatch.await(5, TimeUnit.SECONDS)) [FD]

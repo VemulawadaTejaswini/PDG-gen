@@ -1,0 +1,8 @@
+Line_2 $$ public void factoryReturnsNull() --> Line_3 $$ AssertSubscriber<Object> ts = AssertSubscriber.create() [CD]
+Line_2 $$ public void factoryReturnsNull() --> Line_4 $$ AtomicInteger cleanup = new AtomicInteger() [CD]
+Line_2 $$ public void factoryReturnsNull() --> Line_5 $$ Flux.<Integer, Integer>using(() -> 1,  r -> null, cleanup::<>set, false).subscribe(ts) [CD]
+Line_3 $$ AssertSubscriber<Object> ts = AssertSubscriber.create() --> Line_5 $$ Flux.<Integer, Integer>using(() -> 1,  r -> null, cleanup::<>set, false).subscribe(ts) [FD]
+Line_2 $$ public void factoryReturnsNull() --> Line_6 $$ ts.assertNoValues().assertNotComplete().assertError(NullPointerException.class) [CD]
+Line_3 $$ AssertSubscriber<Object> ts = AssertSubscriber.create() --> Line_6 $$ ts.assertNoValues().assertNotComplete().assertError(NullPointerException.class) [FD]
+Line_2 $$ public void factoryReturnsNull() --> Line_7 $$ Assert.assertEquals(1, cleanup.get()) [CD]
+Line_4 $$ AtomicInteger cleanup = new AtomicInteger() --> Line_7 $$ Assert.assertEquals(1, cleanup.get()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ void onContactRenamed(String name) --> Line_3 $$ if (name.equals(contact.getName())) [FD]
+Line_2 $$ void onContactRenamed(String name) --> Line_3 $$ if (name.equals(contact.getName())) [CD]
+Line_3 $$ if (name.equals(contact.getName())) --> Line_4 $$ if (name.isEmpty()) [CD]
+Line_2 $$ void onContactRenamed(String name) --> Line_4 $$ if (name.isEmpty()) [FD]
+Line_4 $$ if (name.isEmpty()) --> Line_5 $$ getView().showToast(R.string.contacts_rename_invalid_name, ToastCustom.TYPE_ERROR) [CD]
+Line_4 $$ if (name.isEmpty()) --> Line_7 $$ getView().showProgressDialog() [CD]
+Line_4 $$ if (name.isEmpty()) --> Line_8 $$ getCompositeDisposable().add(contactsDataManager.renameContact(contact.getId(), name).doAfterTerminate(() -> getView().dismissProgressDialog()).subscribe(() -> [CD]
+Line_2 $$ void onContactRenamed(String name) --> Line_8 $$ getCompositeDisposable().add(contactsDataManager.renameContact(contact.getId(), name).doAfterTerminate(() -> getView().dismissProgressDialog()).subscribe(() -> [FD]

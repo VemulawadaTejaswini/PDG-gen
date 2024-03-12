@@ -1,0 +1,8 @@
+Line_2 $$ private static void useThirdPartySubscriber() --> Line_3 $$ System.out.println("running AutoPagination - using third party subscriber...\n") [CD]
+Line_2 $$ private static void useThirdPartySubscriber() --> Line_4 $$ DynamoDBAsyncClient asyncClient = DynamoDBAsyncClient.create() [CD]
+Line_2 $$ private static void useThirdPartySubscriber() --> Line_5 $$ ListTablesPublisher publisher = asyncClient.listTablesPaginator(ListTablesRequest.builder().build()) [CD]
+Line_4 $$ DynamoDBAsyncClient asyncClient = DynamoDBAsyncClient.create() --> Line_5 $$ ListTablesPublisher publisher = asyncClient.listTablesPaginator(ListTablesRequest.builder().build()) [FD]
+Line_2 $$ private static void useThirdPartySubscriber() --> Line_6 $$ List<String> tables = Flowable.fromPublisher(publisher).flatMapIterable(ListTablesResponse::<>tableNames).toList().blockingGet() [CD]
+Line_5 $$ ListTablesPublisher publisher = asyncClient.listTablesPaginator(ListTablesRequest.builder().build()) --> Line_6 $$ List<String> tables = Flowable.fromPublisher(publisher).flatMapIterable(ListTablesResponse::<>tableNames).toList().blockingGet() [FD]
+Line_2 $$ private static void useThirdPartySubscriber() --> Line_7 $$ System.out.println(tables) [CD]
+Line_6 $$ List<String> tables = Flowable.fromPublisher(publisher).flatMapIterable(ListTablesResponse::<>tableNames).toList().blockingGet() --> Line_7 $$ System.out.println(tables) [FD]

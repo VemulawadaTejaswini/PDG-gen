@@ -1,0 +1,7 @@
+Line_3 $$ try (Button button = new Button(1, GpioPullUpDown.PULL_UP)) --> Line_4 $$ button.whenPressed(() -> Logger.info("Pressed")) [FD]
+Line_3 $$ try (Button button = new Button(1, GpioPullUpDown.PULL_UP)) --> Line_5 $$ button.whenReleased(() -> Logger.info("Released")) [FD]
+Line_3 $$ try (Button button = new Button(1, GpioPullUpDown.PULL_UP)) --> Line_6 $$ button.addListener(( event) -> Logger.info("valueChanged( [FD]
+Line_7 $$ ScheduledExecutorService executor = Executors.newScheduledThreadPool(1) --> Line_8 $$ ScheduledFuture<?> future = executor.scheduleAtFixedRate(() -> button.valueChanged(new DigitalInputEvent(button.getGpio(), System.currentTimeMillis(), System.nanoTime(), (i++ % 2) == 0)), 500, 500, TimeUnit.MILLISECONDS) [FD]
+Line_3 $$ try (Button button = new Button(1, GpioPullUpDown.PULL_UP)) --> Line_8 $$ ScheduledFuture<?> future = executor.scheduleAtFixedRate(() -> button.valueChanged(new DigitalInputEvent(button.getGpio(), System.currentTimeMillis(), System.nanoTime(), (i++ % 2) == 0)), 500, 500, TimeUnit.MILLISECONDS) [FD]
+Line_8 $$ ScheduledFuture<?> future = executor.scheduleAtFixedRate(() -> button.valueChanged(new DigitalInputEvent(button.getGpio(), System.currentTimeMillis(), System.nanoTime(), (i++ % 2) == 0)), 500, 500, TimeUnit.MILLISECONDS) --> Line_10 $$ future.cancel(true) [FD]
+Line_7 $$ ScheduledExecutorService executor = Executors.newScheduledThreadPool(1) --> Line_11 $$ executor.shutdownNow() [FD]

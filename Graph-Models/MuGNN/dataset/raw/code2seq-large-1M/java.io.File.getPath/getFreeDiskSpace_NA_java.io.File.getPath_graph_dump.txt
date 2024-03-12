@@ -1,0 +1,8 @@
+Line_2 $$ public static long getFreeDiskSpace() --> Line_3 $$ long freeSpace = 0L [CD]
+Line_2 $$ public static long getFreeDiskSpace() --> Line_4 $$ if (isSDCardExist()) [CD]
+Line_6 $$ File e = Environment.getExternalStorageDirectory() --> Line_7 $$ StatFs stat = new StatFs(e.getPath()) [FD]
+Line_7 $$ StatFs stat = new StatFs(e.getPath()) --> Line_8 $$ long blockSize = (long) stat.getBlockSize() [FD]
+Line_7 $$ StatFs stat = new StatFs(e.getPath()) --> Line_9 $$ long availableBlocks = (long) stat.getAvailableBlocks() [FD]
+Line_3 $$ long freeSpace = 0L --> Line_10 $$ freeSpace = availableBlocks * blockSize / 1024L [FD]
+Line_4 $$ if (isSDCardExist()) --> Line_14 $$ return freeSpace [CD]
+Line_4 $$ if (isSDCardExist()) --> Line_16 $$ return -1L [CD]

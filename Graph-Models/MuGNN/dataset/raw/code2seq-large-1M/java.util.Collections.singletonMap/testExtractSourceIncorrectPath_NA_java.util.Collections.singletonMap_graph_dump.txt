@@ -1,0 +1,8 @@
+Line_2 $$ public void testExtractSourceIncorrectPath() --> Line_3 $$ FieldHitExtractor fe = new FieldHitExtractor("a.b.c.d", false) [CD]
+Line_2 $$ public void testExtractSourceIncorrectPath() --> Line_4 $$ Object value = randomNonNullValue() [CD]
+Line_2 $$ public void testExtractSourceIncorrectPath() --> Line_5 $$ Map<String, Object> map = singletonMap("a", singletonMap("b", singletonMap("c", value))) [CD]
+Line_4 $$ Object value = randomNonNullValue() --> Line_5 $$ Map<String, Object> map = singletonMap("a", singletonMap("b", singletonMap("c", value))) [FD]
+Line_2 $$ public void testExtractSourceIncorrectPath() --> Line_6 $$ SqlException ex = expectThrows(SqlException.class, () -> fe.extractFromSource(map)) [CD]
+Line_3 $$ FieldHitExtractor fe = new FieldHitExtractor("a.b.c.d", false) --> Line_6 $$ SqlException ex = expectThrows(SqlException.class, () -> fe.extractFromSource(map)) [FD]
+Line_5 $$ Map<String, Object> map = singletonMap("a", singletonMap("b", singletonMap("c", value))) --> Line_6 $$ SqlException ex = expectThrows(SqlException.class, () -> fe.extractFromSource(map)) [FD]
+Line_2 $$ public void testExtractSourceIncorrectPath() --> Line_7 $$ assertThat(ex.getMessage(), is("Cannot extract value [a.b.c.d] from source")) [CD]

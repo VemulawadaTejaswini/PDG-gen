@@ -1,0 +1,7 @@
+Line_2 $$ private void processDelayedRecords() --> Line_3 $$ DelayedRecord dr = null [CD]
+Line_2 $$ private void processDelayedRecords() --> Line_4 $$ while (!writerStatus.compareAndSet(0, 3)) [CD]
+Line_4 $$ while (!writerStatus.compareAndSet(0, 3)) --> Line_5 $$ LockSupport.parkNanos(this, 600) [CD]
+Line_3 $$ DelayedRecord dr = null --> Line_8 $$ while ((dr = delayedRecords.poll()) != null) [FD]
+Line_8 $$ while ((dr = delayedRecords.poll()) != null) --> Line_9 $$ if (dr.duration == -1) [CD]
+Line_9 $$ if (dr.duration == -1) --> Line_10 $$ processEntry(dr.blockName) [CD]
+Line_9 $$ if (dr.duration == -1) --> Line_12 $$ processExit(dr.blockName, dr.duration) [CD]

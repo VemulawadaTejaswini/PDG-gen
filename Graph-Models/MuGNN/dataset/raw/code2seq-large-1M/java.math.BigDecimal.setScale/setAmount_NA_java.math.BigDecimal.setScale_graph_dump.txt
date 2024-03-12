@@ -1,0 +1,8 @@
+Line_2 $$ public void setAmount(BigDecimal LineNetAmt, BigDecimal PriceList, BigDecimal Qty) --> Line_4 $$ int precision = MCurrency.getStdPrecision(p_po.getCtx(), getC_Currency_ID()) [CD]
+Line_2 $$ public void setAmount(BigDecimal LineNetAmt, BigDecimal PriceList, BigDecimal Qty) --> Line_5 $$ if (PriceList != null && Qty != null) [CD]
+Line_5 $$ if (PriceList != null && Qty != null) --> Line_6 $$ m_ListAmt = PriceList.multiply(Qty).setScale(precision, RoundingMode.HALF_UP) [CD]
+Line_4 $$ int precision = MCurrency.getStdPrecision(p_po.getCtx(), getC_Currency_ID()) --> Line_6 $$ m_ListAmt = PriceList.multiply(Qty).setScale(precision, RoundingMode.HALF_UP) [FD]
+Line_2 $$ public void setAmount(BigDecimal LineNetAmt, BigDecimal PriceList, BigDecimal Qty) --> Line_6 $$ m_ListAmt = PriceList.multiply(Qty).setScale(precision, RoundingMode.HALF_UP) [FD]
+Line_2 $$ public void setAmount(BigDecimal LineNetAmt, BigDecimal PriceList, BigDecimal Qty) --> Line_7 $$ if (m_ListAmt.compareTo(Env.ZERO) == 0) [CD]
+Line_2 $$ public void setAmount(BigDecimal LineNetAmt, BigDecimal PriceList, BigDecimal Qty) --> Line_9 $$ m_DiscountAmt = m_ListAmt.subtract(m_LineNetAmt) [CD]
+Line_2 $$ public void setAmount(BigDecimal LineNetAmt, BigDecimal PriceList, BigDecimal Qty) --> Line_10 $$ setAmount(m_ListAmt, m_DiscountAmt) [CD]

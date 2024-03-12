@@ -1,0 +1,1 @@
+Line_2 $$ public CompletableFuture<Integer> getNumberOfOngoingTransactions() --> Line_3 $$ return store.getChildren(activeTxRoot).thenCompose( list -> Futures.allOfWithResults(list.stream().map( epoch -> getNumberOfOngoingTransactions(Integer.parseInt(epoch))).collect(Collectors.toList()))).thenApply( list -> list.stream().reduce(0, Integer::<>sum)) [CD]

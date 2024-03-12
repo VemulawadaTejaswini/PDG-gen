@@ -1,0 +1,8 @@
+Line_2 $$ public void testLimitBeyondRowCount() throws Exception --> Line_3 $$ List<QueryDataBatch> results = testSqlWithResults("SELECT * FROM cp.`parquet/tpch/nation/01.parquet` LIMIT 100") [CD]
+Line_2 $$ public void testLimitBeyondRowCount() throws Exception --> Line_4 $$ int recordsInOutput = 0 [CD]
+Line_4 $$ int recordsInOutput = 0 --> Line_6 $$ recordsInOutput += batch.getHeader().getDef().getRecordCount() [FD]
+Line_5 $$ for (QueryDataBatch batch : results) --> Line_6 $$ recordsInOutput += batch.getHeader().getDef().getRecordCount() [FD]
+Line_5 $$ for (QueryDataBatch batch : results) --> Line_7 $$ batch.release() [FD]
+Line_2 $$ public void testLimitBeyondRowCount() throws Exception --> Line_9 $$ assertTrue(String.format("Number of records in output is wrong: expected=%d, actual=%s", 9, recordsInOutput), 9 == recordsInOutput) [CD]
+Line_4 $$ int recordsInOutput = 0 --> Line_9 $$ assertTrue(String.format("Number of records in output is wrong: expected=%d, actual=%s", 9, recordsInOutput), 9 == recordsInOutput) [FD]
+Line_6 $$ recordsInOutput += batch.getHeader().getDef().getRecordCount() --> Line_9 $$ assertTrue(String.format("Number of records in output is wrong: expected=%d, actual=%s", 9, recordsInOutput), 9 == recordsInOutput) [FD]

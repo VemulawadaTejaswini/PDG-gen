@@ -1,0 +1,8 @@
+Line_2 $$ public void testDynamicTimeout() throws Exception --> Line_3 $$ final SleepService.Iface client = new ClientBuilder(server.uri(BINARY, "/sleep")).decorator(RpcRequest.class, RpcResponse.class, clientDecorator).defaultResponseTimeout(Duration.ofSeconds(1)).build(SleepService.Iface.class) [CD]
+Line_2 $$ public void testDynamicTimeout() throws Exception --> Line_4 $$ final long delay = 1500 [CD]
+Line_2 $$ public void testDynamicTimeout() throws Exception --> Line_5 $$ final Stopwatch sw = Stopwatch.createStarted() [CD]
+Line_2 $$ public void testDynamicTimeout() throws Exception --> Line_6 $$ client.sleep(delay) [CD]
+Line_4 $$ final long delay = 1500 --> Line_6 $$ client.sleep(delay) [FD]
+Line_2 $$ public void testDynamicTimeout() throws Exception --> Line_7 $$ assertThat(sw.elapsed(TimeUnit.MILLISECONDS)).isGreaterThanOrEqualTo(delay) [CD]
+Line_4 $$ final long delay = 1500 --> Line_7 $$ assertThat(sw.elapsed(TimeUnit.MILLISECONDS)).isGreaterThanOrEqualTo(delay) [FD]
+Line_5 $$ final Stopwatch sw = Stopwatch.createStarted() --> Line_7 $$ assertThat(sw.elapsed(TimeUnit.MILLISECONDS)).isGreaterThanOrEqualTo(delay) [FD]

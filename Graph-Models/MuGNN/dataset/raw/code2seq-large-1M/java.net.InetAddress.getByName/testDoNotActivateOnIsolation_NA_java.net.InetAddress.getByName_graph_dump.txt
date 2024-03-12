@@ -1,0 +1,8 @@
+Line_2 $$ public void testDoNotActivateOnIsolation() throws Exception --> Line_3 $$ AssertionLoggerHandler.startCapture() [CD]
+Line_5 $$ ServerLocator locator = getServerLocator() --> Line_16 $$ ClientSessionFactory sf = addSessionFactory(locator.createSessionFactory()) [FD]
+Line_16 $$ ClientSessionFactory sf = addSessionFactory(locator.createSessionFactory()) --> Line_17 $$ ClientSession session = createSession(sf, false, true, true) [FD]
+Line_17 $$ ClientSession session = createSession(sf, false, true, true) --> Line_18 $$ session.createQueue(FailoverTestBase.ADDRESS, FailoverTestBase.ADDRESS, null, true) [FD]
+Line_17 $$ ClientSession session = createSession(sf, false, true, true) --> Line_20 $$ crash(false, true, session) [FD]
+Line_21 $$ for (int i = 0; i < 1000 && !backupServer.isStarted(); i++) --> Line_22 $$ Thread.sleep(10) [CD]
+Line_21 $$ for (int i = 0; i < 1000 && !backupServer.isStarted(); i++) --> Line_27 $$ for (int i = 0; i < 1000 && backupServer.getServer().getReplicationEndpoint() != null && !backupServer.getServer().getReplicationEndpoint().isStarted(); i++) [FD]
+Line_27 $$ for (int i = 0; i < 1000 && backupServer.getServer().getReplicationEndpoint() != null && !backupServer.getServer().getReplicationEndpoint().isStarted(); i++) --> Line_28 $$ Thread.sleep(10) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testTransferNonHttpRequest_concurrentUseBlocks() throws Exception --> Line_3 $$ Callable<Boolean> callable = new Callable<Boolean>() [CD]
+Line_3 $$ Callable<Boolean> callable = new Callable<Boolean>() --> Line_5 $$ ExecutorService executor = Executors.newSingleThreadExecutor() [CD]
+Line_5 $$ ExecutorService executor = Executors.newSingleThreadExecutor() --> Line_7 $$ Future<Boolean> future = executor.submit(ServletScopes.transferRequest(FALSE_CALLABLE)) [FD]
+Line_7 $$ Future<Boolean> future = executor.submit(ServletScopes.transferRequest(FALSE_CALLABLE)) --> Line_9 $$ return future.get(100, TimeUnit.MILLISECONDS) [FD]
+Line_5 $$ ExecutorService executor = Executors.newSingleThreadExecutor() --> Line_14 $$ executor.shutdownNow() [FD]
+Line_2 $$ public void testTransferNonHttpRequest_concurrentUseBlocks() throws Exception --> Line_18 $$ ImmutableMap<Key<?>, Object> seedMap = ImmutableMap.of() [CD]
+Line_2 $$ public void testTransferNonHttpRequest_concurrentUseBlocks() throws Exception --> Line_19 $$ assertTrue(ServletScopes.scopeRequest(callable, seedMap).call()) [CD]
+Line_3 $$ Callable<Boolean> callable = new Callable<Boolean>() --> Line_19 $$ assertTrue(ServletScopes.scopeRequest(callable, seedMap).call()) [FD]

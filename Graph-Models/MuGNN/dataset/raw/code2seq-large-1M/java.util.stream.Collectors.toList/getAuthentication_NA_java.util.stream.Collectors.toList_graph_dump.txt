@@ -1,0 +1,7 @@
+Line_2 $$ public Authentication getAuthentication(String token) --> Line_3 $$ Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody() [CD]
+Line_2 $$ public Authentication getAuthentication(String token) --> Line_3 $$ Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody() [FD]
+Line_2 $$ public Authentication getAuthentication(String token) --> Line_4 $$ Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(",")).map(SimpleGrantedAuthority::<>new).collect(Collectors.toList()) [CD]
+Line_3 $$ Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody() --> Line_4 $$ Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(",")).map(SimpleGrantedAuthority::<>new).collect(Collectors.toList()) [FD]
+Line_2 $$ public Authentication getAuthentication(String token) --> Line_5 $$ User principal = new User(claims.getSubject(), "", authorities) [CD]
+Line_3 $$ Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody() --> Line_5 $$ User principal = new User(claims.getSubject(), "", authorities) [FD]
+Line_2 $$ public Authentication getAuthentication(String token) --> Line_6 $$ return new UsernamePasswordAuthenticationToken(principal, token, authorities) [CD]

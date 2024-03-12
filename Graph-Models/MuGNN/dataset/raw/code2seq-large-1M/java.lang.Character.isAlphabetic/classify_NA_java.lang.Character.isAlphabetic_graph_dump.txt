@@ -1,0 +1,8 @@
+Line_3 $$ if (c == '_') --> Line_4 $$ return TokenType.TEXT.ordinal() [CD]
+Line_5 $$ if (Character.isAlphabetic(c) || Character.isDigit(c)) --> Line_6 $$ return TokenType.TEXT.ordinal() [CD]
+Line_5 $$ if (Character.isAlphabetic(c) || Character.isDigit(c)) --> Line_7 $$ if (Character.isWhitespace(c)) [CD]
+Line_7 $$ if (Character.isWhitespace(c)) --> Line_8 $$ return TokenType.WHITESPACE.ordinal() [CD]
+Line_7 $$ if (Character.isWhitespace(c)) --> Line_10 $$ Character.UnicodeBlock block = Character.UnicodeBlock.of(c) [CD]
+Line_7 $$ if (Character.isWhitespace(c)) --> Line_11 $$ if (!Character.isISOControl(c) && c != KeyEvent.CHAR_UNDEFINED && block != null && block != Character.UnicodeBlock.SPECIALS) [CD]
+Line_11 $$ if (!Character.isISOControl(c) && c != KeyEvent.CHAR_UNDEFINED && block != null && block != Character.UnicodeBlock.SPECIALS) --> Line_12 $$ return TokenType.PUNCTUATION.ordinal() [CD]
+Line_11 $$ if (!Character.isISOControl(c) && c != KeyEvent.CHAR_UNDEFINED && block != null && block != Character.UnicodeBlock.SPECIALS) --> Line_14 $$ return TokenType.UNPRINTABLE.ordinal() [CD]

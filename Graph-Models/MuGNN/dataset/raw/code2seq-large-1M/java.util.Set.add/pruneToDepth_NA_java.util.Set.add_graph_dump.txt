@@ -1,0 +1,7 @@
+Line_2 $$ public RecalDatumNode<T> pruneToDepth(final int maxDepth) --> Line_3 $$ if (maxDepth < 1) [FD]
+Line_2 $$ public RecalDatumNode<T> pruneToDepth(final int maxDepth) --> Line_3 $$ if (maxDepth < 1) [CD]
+Line_3 $$ if (maxDepth < 1) --> Line_6 $$ final Set<RecalDatumNode<T>> subPruned = new HashSet<RecalDatumNode<T>>(getNumSubnodes()) [CD]
+Line_3 $$ if (maxDepth < 1) --> Line_7 $$ if (maxDepth > 1) [CD]
+Line_2 $$ public RecalDatumNode<T> pruneToDepth(final int maxDepth) --> Line_7 $$ if (maxDepth > 1) [FD]
+Line_6 $$ final Set<RecalDatumNode<T>> subPruned = new HashSet<RecalDatumNode<T>>(getNumSubnodes()) --> Line_8 $$ for (final RecalDatumNode<T> sub : subnodes) subPruned.add(sub.pruneToDepth(maxDepth - 1)) [FD]
+Line_3 $$ if (maxDepth < 1) --> Line_9 $$ return new RecalDatumNode<T>(getRecalDatum(), fixedPenalty, subPruned) [CD]

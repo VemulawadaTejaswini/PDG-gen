@@ -1,0 +1,8 @@
+Line_2 $$ public void testContainsKeyEmptyStoreAccessException() throws Exception --> Line_3 $$ final FakeStore realStore = new FakeStore(Collections.<String, String>emptyMap()) [CD]
+Line_2 $$ public void testContainsKeyEmptyStoreAccessException() throws Exception --> Line_4 $$ this.store = spy(realStore) [CD]
+Line_3 $$ final FakeStore realStore = new FakeStore(Collections.<String, String>emptyMap()) --> Line_4 $$ this.store = spy(realStore) [FD]
+Line_2 $$ public void testContainsKeyEmptyStoreAccessException() throws Exception --> Line_5 $$ doThrow(new StoreAccessException("")).when(this.store).containsKey("key") [CD]
+Line_2 $$ public void testContainsKeyEmptyStoreAccessException() throws Exception --> Line_6 $$ final Ehcache<String, String> ehcache = this.getEhcache() [CD]
+Line_2 $$ public void testContainsKeyEmptyStoreAccessException() throws Exception --> Line_7 $$ ehcache.containsKey("key") [CD]
+Line_6 $$ final Ehcache<String, String> ehcache = this.getEhcache() --> Line_7 $$ ehcache.containsKey("key") [FD]
+Line_2 $$ public void testContainsKeyEmptyStoreAccessException() throws Exception --> Line_8 $$ verify(this.resilienceStrategy).containsKeyFailure(eq("key"), any(StoreAccessException.class)) [CD]

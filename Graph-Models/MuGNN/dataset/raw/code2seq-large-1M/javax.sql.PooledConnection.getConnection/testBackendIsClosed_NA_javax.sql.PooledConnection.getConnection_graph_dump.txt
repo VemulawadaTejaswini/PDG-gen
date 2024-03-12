@@ -1,0 +1,5 @@
+Line_4 $$ PooledConnection pc = getPooledConnection() --> Line_5 $$ con = pc.getConnection() [FD]
+Line_9 $$ Connection adminCon = TestUtil.openPrivilegedDB() --> Line_11 $$ Statement statement = adminCon.createStatement() [FD]
+Line_11 $$ Statement statement = adminCon.createStatement() --> Line_12 $$ statement.executeQuery("SELECT pg_terminate_backend(" + pid + ")") [FD]
+Line_9 $$ Connection adminCon = TestUtil.openPrivilegedDB() --> Line_14 $$ TestUtil.closeDB(adminCon) [FD]
+Line_11 $$ Statement statement = adminCon.createStatement() --> Line_18 $$ statement.executeQuery("SELECT 1") [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public int getAppendBlockSize() --> Line_3 $$ long numInflight = lastAppendNumber.get() - lastAckNumber.get() [CD]
+Line_2 $$ public int getAppendBlockSize() --> Line_4 $$ if (numInflight <= 1) [CD]
+Line_3 $$ long numInflight = lastAppendNumber.get() - lastAckNumber.get() --> Line_4 $$ if (numInflight <= 1) [FD]
+Line_4 $$ if (numInflight <= 1) --> Line_5 $$ return 0 [CD]
+Line_2 $$ public int getAppendBlockSize() --> Line_7 $$ return (int) MathHelpers.minMax((long) (TARGET_BATCH_TIME_MILLIS / millisBetweenAppends.getCurrentValue() * eventSize.getCurrentValue()), 0, MAX_BATCH_SIZE) [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ private void waitForEvents(CustomContainerLauncher containerLauncher, int expectedNumEvents) throws InterruptedException --> Line_3 $$ int timeOut = 0 [CD]
+Line_2 $$ private void waitForEvents(CustomContainerLauncher containerLauncher, int expectedNumEvents) throws InterruptedException --> Line_4 $$ while (containerLauncher.numEventsProcessing.get() < expectedNumEvents && timeOut++ < 20) [CD]
+Line_3 $$ int timeOut = 0 --> Line_4 $$ while (containerLauncher.numEventsProcessing.get() < expectedNumEvents && timeOut++ < 20) [FD]
+Line_4 $$ while (containerLauncher.numEventsProcessing.get() < expectedNumEvents && timeOut++ < 20) --> Line_5 $$ LOG.info("Waiting for number of events to become " + expectedNumEvents + ". It is now " + containerLauncher.numEventsProcessing.get()) [CD]
+Line_4 $$ while (containerLauncher.numEventsProcessing.get() < expectedNumEvents && timeOut++ < 20) --> Line_6 $$ Thread.sleep(1000) [CD]
+Line_2 $$ private void waitForEvents(CustomContainerLauncher containerLauncher, int expectedNumEvents) throws InterruptedException --> Line_8 $$ Assert.assertEquals(expectedNumEvents, containerLauncher.numEventsProcessing.get()) [FD]
+Line_2 $$ private void waitForEvents(CustomContainerLauncher containerLauncher, int expectedNumEvents) throws InterruptedException --> Line_8 $$ Assert.assertEquals(expectedNumEvents, containerLauncher.numEventsProcessing.get()) [CD]

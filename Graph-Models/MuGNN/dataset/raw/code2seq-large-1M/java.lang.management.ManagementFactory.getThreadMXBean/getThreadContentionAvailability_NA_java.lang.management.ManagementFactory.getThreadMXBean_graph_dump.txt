@@ -1,0 +1,8 @@
+Line_2 $$ private static Availability getThreadContentionAvailability() --> Line_3 $$ ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean() [CD]
+Line_2 $$ private static Availability getThreadContentionAvailability() --> Line_4 $$ if (!threadMXBean.isThreadContentionMonitoringSupported()) [CD]
+Line_3 $$ ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean() --> Line_4 $$ if (!threadMXBean.isThreadContentionMonitoringSupported()) [FD]
+Line_4 $$ if (!threadMXBean.isThreadContentionMonitoringSupported()) --> Line_5 $$ return Availability.newBuilder().setAvailable(false).setReason("java.lang.management.ThreadMXBean" + ".isThreadContentionMonitoringSupported() returned false").build() [CD]
+Line_2 $$ private static Availability getThreadContentionAvailability() --> Line_7 $$ if (!threadMXBean.isThreadContentionMonitoringEnabled()) [CD]
+Line_3 $$ ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean() --> Line_7 $$ if (!threadMXBean.isThreadContentionMonitoringEnabled()) [FD]
+Line_7 $$ if (!threadMXBean.isThreadContentionMonitoringEnabled()) --> Line_8 $$ return Availability.newBuilder().setAvailable(false).setReason("java.lang.management.ThreadMXBean" + ".isThreadContentionMonitoringEnabled() returned false").build() [CD]
+Line_2 $$ private static Availability getThreadContentionAvailability() --> Line_10 $$ return Availability.newBuilder().setAvailable(true).build() [CD]

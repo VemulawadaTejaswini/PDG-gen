@@ -1,0 +1,8 @@
+Line_2 $$ public void multiExactStaleness() --> Line_3 $$ setUpPrivateDatabase() [CD]
+Line_2 $$ public void multiExactStaleness() --> Line_4 $$ long deadlineNanoTime = System.nanoTime() + TimeUnit.MINUTES.toNanos(1) [CD]
+Line_2 $$ public void multiExactStaleness() --> Line_5 $$ long stalenessNanos = 1 + deadlineNanoTime - history.get(0).minCommitNanoTime [CD]
+Line_5 $$ long stalenessNanos = 1 + deadlineNanoTime - history.get(0).minCommitNanoTime --> Line_6 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction(TimestampBound.ofExactStaleness(stalenessNanos, TimeUnit.NANOSECONDS))) [FD]
+Line_6 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction(TimestampBound.ofExactStaleness(stalenessNanos, TimeUnit.NANOSECONDS))) --> Line_7 $$ Struct row = readRow(readContext) [FD]
+Line_7 $$ Struct row = readRow(readContext) --> Line_8 $$ assertThat(row).isNull() [FD]
+Line_6 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction(TimestampBound.ofExactStaleness(stalenessNanos, TimeUnit.NANOSECONDS))) --> Line_9 $$ assertThat(readContext.getReadTimestamp().toSqlTimestamp()).isLessThan(history.get(0).timestamp.toSqlTimestamp()) [FD]
+Line_6 $$ try (ReadOnlyTransaction readContext = client.readOnlyTransaction(TimestampBound.ofExactStaleness(stalenessNanos, TimeUnit.NANOSECONDS))) --> Line_10 $$ insertAndReadAgain(readContext, readContext.getReadTimestamp(), null) [FD]

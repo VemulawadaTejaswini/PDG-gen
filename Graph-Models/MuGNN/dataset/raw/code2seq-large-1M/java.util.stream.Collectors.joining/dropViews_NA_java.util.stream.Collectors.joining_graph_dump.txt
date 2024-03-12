@@ -1,0 +1,5 @@
+Line_2 $$ public void dropViews() --> Line_3 $$ execute("SELECT table_schema || '.' || table_name FROM information_schema.views") [CD]
+Line_2 $$ public void dropViews() --> Line_4 $$ if (response.rows().length > 0) [CD]
+Line_4 $$ if (response.rows().length > 0) --> Line_5 $$ String views = Stream.of(response.rows()).map( row -> String.valueOf(row[0])).collect(Collectors.joining(", ")) [CD]
+Line_4 $$ if (response.rows().length > 0) --> Line_6 $$ execute(String.format("DROP VIEW %s", views)) [CD]
+Line_5 $$ String views = Stream.of(response.rows()).map( row -> String.valueOf(row[0])).collect(Collectors.joining(", ")) --> Line_6 $$ execute(String.format("DROP VIEW %s", views)) [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void createMissingRolesWithPermissions(Map<RoleAndPermission, Set<Permission>> rolesWithPermissions) --> Line_3 $$ Set<String> currentRoles = findAllRolesAndRelatedPermission().keySet() [CD]
+Line_2 $$ public void createMissingRolesWithPermissions(Map<RoleAndPermission, Set<Permission>> rolesWithPermissions) --> Line_4 $$ for (Entry<RoleAndPermission, Set<Permission>> kv : rolesWithPermissions.entrySet()) [FD]
+Line_3 $$ Set<String> currentRoles = findAllRolesAndRelatedPermission().keySet() --> Line_6 $$ if (!currentRoles.contains(rp.getRoleName())) [FD]
+Line_5 $$ RoleAndPermission rp = kv.getKey() --> Line_6 $$ if (!currentRoles.contains(rp.getRoleName())) [FD]
+Line_6 $$ if (!currentRoles.contains(rp.getRoleName())) --> Line_7 $$ queries.createFullRole(rp.getRoleName(), rp.getRemovable(), rp.getHidden(), rp.getHidden()) [CD]
+Line_5 $$ RoleAndPermission rp = kv.getKey() --> Line_7 $$ queries.createFullRole(rp.getRoleName(), rp.getRemovable(), rp.getHidden(), rp.getHidden()) [FD]
+Line_5 $$ RoleAndPermission rp = kv.getKey() --> Line_9 $$ updatePermissionsToRole(new Role(rp.getRoleName()), kv.getValue()) [FD]

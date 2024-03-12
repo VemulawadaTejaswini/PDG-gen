@@ -1,0 +1,7 @@
+Line_2 $$ public void sample_80() throws Exception --> Line_3 $$ CompletableFuture<Long> timeFuture = CompletableFuture.completedFuture(System.currentTimeMillis()) [CD]
+Line_2 $$ public void sample_80() throws Exception --> Line_4 $$ CompletableFuture<ZoneId> zoneFuture = CompletableFuture.completedFuture(ZoneId.of("GMT")) [CD]
+Line_2 $$ public void sample_80() throws Exception --> Line_5 $$ CompletableFuture<Instant> instantFuture = timeFuture.thenApply( time -> Instant.ofEpochMilli(time)) [CD]
+Line_3 $$ CompletableFuture<Long> timeFuture = CompletableFuture.completedFuture(System.currentTimeMillis()) --> Line_5 $$ CompletableFuture<Instant> instantFuture = timeFuture.thenApply( time -> Instant.ofEpochMilli(time)) [FD]
+Line_2 $$ public void sample_80() throws Exception --> Line_6 $$ CompletableFuture<ZonedDateTime> zdtFuture = instantFuture.thenCombine(zoneFuture, ( instant,  zoneId) -> ZonedDateTime.ofInstant(instant, zoneId)) [CD]
+Line_5 $$ CompletableFuture<Instant> instantFuture = timeFuture.thenApply( time -> Instant.ofEpochMilli(time)) --> Line_6 $$ CompletableFuture<ZonedDateTime> zdtFuture = instantFuture.thenCombine(zoneFuture, ( instant,  zoneId) -> ZonedDateTime.ofInstant(instant, zoneId)) [FD]
+Line_4 $$ CompletableFuture<ZoneId> zoneFuture = CompletableFuture.completedFuture(ZoneId.of("GMT")) --> Line_6 $$ CompletableFuture<ZonedDateTime> zdtFuture = instantFuture.thenCombine(zoneFuture, ( instant,  zoneId) -> ZonedDateTime.ofInstant(instant, zoneId)) [FD]

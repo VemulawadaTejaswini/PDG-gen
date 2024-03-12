@@ -1,0 +1,7 @@
+Line_2 $$ public static String datePeriod(LocalDate start, LocalDate end) --> Line_3 $$ int months = Math.toIntExact(MONTHS.between(start, end.plusDays(3))) [FD]
+Line_2 $$ public static String datePeriod(LocalDate start, LocalDate end) --> Line_3 $$ int months = Math.toIntExact(MONTHS.between(start, end.plusDays(3))) [CD]
+Line_2 $$ public static String datePeriod(LocalDate start, LocalDate end) --> Line_4 $$ if (months > 0) [CD]
+Line_3 $$ int months = Math.toIntExact(MONTHS.between(start, end.plusDays(3))) --> Line_4 $$ if (months > 0) [FD]
+Line_4 $$ if (months > 0) --> Line_5 $$ return Tenor.of(Period.ofMonths((int) months)).normalized().toString() [CD]
+Line_4 $$ if (months > 0) --> Line_7 $$ return Tenor.of(Period.ofDays((int) start.until(end, ChronoUnit.DAYS))).toString() [CD]
+Line_2 $$ public static String datePeriod(LocalDate start, LocalDate end) --> Line_7 $$ return Tenor.of(Period.ofDays((int) start.until(end, ChronoUnit.DAYS))).toString() [FD]

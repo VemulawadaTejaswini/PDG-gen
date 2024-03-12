@@ -1,0 +1,5 @@
+Line_2 $$ public UserDetailsBuilder roles(String... roles) --> Line_3 $$ List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(roles.length) [CD]
+Line_4 $$ for (String role : roles) --> Line_5 $$ Assert.isTrue(!role.startsWith("ROLE_"), role + " cannot start with ROLE_ (it is automatically added)") [FD]
+Line_3 $$ List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(roles.length) --> Line_6 $$ authorities.add(new SimpleGrantedAuthority("ROLE_" + role)) [FD]
+Line_2 $$ public UserDetailsBuilder roles(String... roles) --> Line_8 $$ return authorities(authorities) [CD]
+Line_3 $$ List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(roles.length) --> Line_8 $$ return authorities(authorities) [FD]

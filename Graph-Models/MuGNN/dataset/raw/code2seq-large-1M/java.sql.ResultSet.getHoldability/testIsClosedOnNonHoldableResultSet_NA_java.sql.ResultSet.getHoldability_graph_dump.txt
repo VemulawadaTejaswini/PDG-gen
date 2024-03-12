@@ -1,0 +1,8 @@
+Line_2 $$ public void testIsClosedOnNonHoldableResultSet() throws SQLException --> Line_3 $$ getConnection().setAutoCommit(false) [CD]
+Line_2 $$ public void testIsClosedOnNonHoldableResultSet() throws SQLException --> Line_4 $$ getConnection().setHoldability(ResultSet.CLOSE_CURSORS_AT_COMMIT) [CD]
+Line_2 $$ public void testIsClosedOnNonHoldableResultSet() throws SQLException --> Line_5 $$ ResultSet rs = createStatement().executeQuery("SELECT TABLENAME FROM SYS.SYSTABLES") [CD]
+Line_2 $$ public void testIsClosedOnNonHoldableResultSet() throws SQLException --> Line_6 $$ assertEquals("ResultSet shouldn't be holdable", ResultSet.CLOSE_CURSORS_AT_COMMIT, rs.getHoldability()) [CD]
+Line_5 $$ ResultSet rs = createStatement().executeQuery("SELECT TABLENAME FROM SYS.SYSTABLES") --> Line_6 $$ assertEquals("ResultSet shouldn't be holdable", ResultSet.CLOSE_CURSORS_AT_COMMIT, rs.getHoldability()) [FD]
+Line_2 $$ public void testIsClosedOnNonHoldableResultSet() throws SQLException --> Line_7 $$ commit() [CD]
+Line_2 $$ public void testIsClosedOnNonHoldableResultSet() throws SQLException --> Line_8 $$ assertTrue("Commit should have closed the ResultSet", rs.isClosed()) [CD]
+Line_5 $$ ResultSet rs = createStatement().executeQuery("SELECT TABLENAME FROM SYS.SYSTABLES") --> Line_8 $$ assertTrue("Commit should have closed the ResultSet", rs.isClosed()) [FD]

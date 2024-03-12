@@ -1,0 +1,5 @@
+Line_2 $$ public void nodeDisconnected(RemotingConnection conn, String nodeID, String scaleDownTargetNodeID) --> Line_3 $$ if (logger.isTraceEnabled()) [CD]
+Line_3 $$ if (logger.isTraceEnabled()) --> Line_4 $$ logger.trace("Disconnect being called on client:" + " server locator = " + serverLocator + " notifying node " + nodeID + " as down", new Exception("trace")) [CD]
+Line_2 $$ public void nodeDisconnected(RemotingConnection conn, String nodeID, String scaleDownTargetNodeID) --> Line_6 $$ serverLocator.notifyNodeDown(System.currentTimeMillis(), nodeID) [FD]
+Line_2 $$ public void nodeDisconnected(RemotingConnection conn, String nodeID, String scaleDownTargetNodeID) --> Line_6 $$ serverLocator.notifyNodeDown(System.currentTimeMillis(), nodeID) [CD]
+Line_2 $$ public void nodeDisconnected(RemotingConnection conn, String nodeID, String scaleDownTargetNodeID) --> Line_7 $$ closeExecutor.execute(new CloseRunnable(conn, scaleDownTargetNodeID)) [CD]

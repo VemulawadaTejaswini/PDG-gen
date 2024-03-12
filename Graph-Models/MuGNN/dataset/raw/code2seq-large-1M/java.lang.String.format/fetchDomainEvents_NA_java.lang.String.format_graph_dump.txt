@@ -1,0 +1,3 @@
+Line_2 $$ protected List<? extends DomainEventData<?>> fetchDomainEvents(String aggregateIdentifier, long firstSequenceNumber, int batchSize) --> Line_3 $$ Transaction tx = transactionManager.startTransaction() [CD]
+Line_2 $$ protected List<? extends DomainEventData<?>> fetchDomainEvents(String aggregateIdentifier, long firstSequenceNumber, int batchSize) --> Line_5 $$ return executeQuery(getConnection(),  connection -> readEventData(connection, aggregateIdentifier, firstSequenceNumber, batchSize), listResults(this::<>getDomainEventData),  e -> new EventStoreException(format("Failed to read events for aggregate [%s]", aggregateIdentifier), e)) [FD]
+Line_3 $$ Transaction tx = transactionManager.startTransaction() --> Line_7 $$ tx.commit() [FD]

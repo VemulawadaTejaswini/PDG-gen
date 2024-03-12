@@ -1,0 +1,8 @@
+Line_2 $$ public long getEffectiveSyncFrequencyMillis() --> Line_3 $$ long effectiveSyncFrequencySeconds = getSyncFrequencySeconds() [CD]
+Line_2 $$ public long getEffectiveSyncFrequencyMillis() --> Line_4 $$ if (effectiveSyncFrequencySeconds <= 0) [CD]
+Line_3 $$ long effectiveSyncFrequencySeconds = getSyncFrequencySeconds() --> Line_4 $$ if (effectiveSyncFrequencySeconds <= 0) [FD]
+Line_4 $$ if (effectiveSyncFrequencySeconds <= 0) --> Line_5 $$ effectiveSyncFrequencySeconds = MyPreferences.getSyncFrequencySeconds() [CD]
+Line_3 $$ long effectiveSyncFrequencySeconds = getSyncFrequencySeconds() --> Line_5 $$ effectiveSyncFrequencySeconds = MyPreferences.getSyncFrequencySeconds() [FD]
+Line_2 $$ public long getEffectiveSyncFrequencyMillis() --> Line_7 $$ return TimeUnit.SECONDS.toMillis(effectiveSyncFrequencySeconds) [CD]
+Line_3 $$ long effectiveSyncFrequencySeconds = getSyncFrequencySeconds() --> Line_7 $$ return TimeUnit.SECONDS.toMillis(effectiveSyncFrequencySeconds) [FD]
+Line_5 $$ effectiveSyncFrequencySeconds = MyPreferences.getSyncFrequencySeconds() --> Line_7 $$ return TimeUnit.SECONDS.toMillis(effectiveSyncFrequencySeconds) [FD]

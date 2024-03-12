@@ -1,0 +1,6 @@
+Line_2 $$ private List<Class<? extends TypeSerializer>> loadSerializerList(String[] serializers) --> Line_3 $$ final List<Class<? extends TypeSerializer>> typeSerializers = new ArrayList<Class<? extends TypeSerializer>>() [CD]
+Line_2 $$ private List<Class<? extends TypeSerializer>> loadSerializerList(String[] serializers) --> Line_4 $$ final ClassLoader classLoader = mContext.getClass().getClassLoader() [CD]
+Line_5 $$ for (String serializer : serializers) --> Line_7 $$ Class serializerClass = Class.forName(serializer.trim(), false, classLoader) [FD]
+Line_8 $$ if (ReflectionUtils.isTypeSerializer(serializerClass)) --> Line_9 $$ typeSerializers.add(serializerClass) [CD]
+Line_3 $$ final List<Class<? extends TypeSerializer>> typeSerializers = new ArrayList<Class<? extends TypeSerializer>>() --> Line_9 $$ typeSerializers.add(serializerClass) [FD]
+Line_2 $$ private List<Class<? extends TypeSerializer>> loadSerializerList(String[] serializers) --> Line_15 $$ return typeSerializers [CD]

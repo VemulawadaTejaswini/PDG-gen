@@ -1,0 +1,8 @@
+Line_2 $$ public void stop() --> Line_3 $$ if (this.status.compareAndSet(Status.ACTIVE, Status.STOPPING)) [CD]
+Line_3 $$ if (this.status.compareAndSet(Status.ACTIVE, Status.STOPPING)) --> Line_4 $$ final RequestListener local = this.requestListener [CD]
+Line_3 $$ if (this.status.compareAndSet(Status.ACTIVE, Status.STOPPING)) --> Line_5 $$ if (local != null) [CD]
+Line_4 $$ final RequestListener local = this.requestListener --> Line_5 $$ if (local != null) [FD]
+Line_4 $$ final RequestListener local = this.requestListener --> Line_7 $$ local.terminate() [FD]
+Line_3 $$ if (this.status.compareAndSet(Status.ACTIVE, Status.STOPPING)) --> Line_12 $$ this.workerThreads.interrupt() [CD]
+Line_3 $$ if (this.status.compareAndSet(Status.ACTIVE, Status.STOPPING)) --> Line_13 $$ this.listenerExecutorService.shutdown() [CD]
+Line_3 $$ if (this.status.compareAndSet(Status.ACTIVE, Status.STOPPING)) --> Line_14 $$ this.workerExecutorService.shutdown() [CD]

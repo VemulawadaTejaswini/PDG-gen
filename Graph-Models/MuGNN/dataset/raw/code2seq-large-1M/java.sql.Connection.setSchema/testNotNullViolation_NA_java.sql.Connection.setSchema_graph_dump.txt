@@ -1,0 +1,7 @@
+Line_3 $$ try (Connection conn = getConnection()) --> Line_4 $$ conn.setSchema("PUBLIC") [FD]
+Line_3 $$ try (Connection conn = getConnection()) --> Line_5 $$ try (Statement stmt = conn.createStatement()) [FD]
+Line_5 $$ try (Statement stmt = conn.createStatement()) --> Line_6 $$ stmt.execute("CREATE TABLE nulltest(id INT PRIMARY KEY, name CHAR NOT NULL)") [FD]
+Line_8 $$ checkErrorState(new IgniteCallable<Void>() --> Line_10 $$ stmt.execute("INSERT INTO nulltest(id, name) VALUES (1, NULLIF('a', 'a'))") [CD]
+Line_5 $$ try (Statement stmt = conn.createStatement()) --> Line_10 $$ stmt.execute("INSERT INTO nulltest(id, name) VALUES (1, NULLIF('a', 'a'))") [FD]
+Line_8 $$ checkErrorState(new IgniteCallable<Void>() --> Line_11 $$ return null [CD]
+Line_5 $$ try (Statement stmt = conn.createStatement()) --> Line_15 $$ stmt.execute("DROP TABLE nulltest") [FD]

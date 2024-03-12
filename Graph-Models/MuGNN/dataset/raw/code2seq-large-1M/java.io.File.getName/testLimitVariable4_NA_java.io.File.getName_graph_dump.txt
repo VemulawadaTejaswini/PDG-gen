@@ -1,0 +1,6 @@
+Line_2 $$ public void testLimitVariable4() throws IOException --> Line_3 $$ String query = "a = load '" + inputFile.getName() + "' as (x:int, y:int);" + "b = group a all;" + "c = foreach b generate COUNT(a) as sum;" + "d = order a by $0 DESC;" + "e = filter d by $0 != 4;" + "f = limit e c.sum/2;" [CD]
+Line_6 $$ HashSet<String> disabledOptimizerRules = new HashSet<String>() --> Line_7 $$ disabledOptimizerRules.add("PushUpFilter") [FD]
+Line_6 $$ HashSet<String> disabledOptimizerRules = new HashSet<String>() --> Line_8 $$ pigServer.getPigContext().getProperties().setProperty(PigImplConstants.PIG_OPTIMIZER_RULES_KEY, ObjectSerializer.serialize(disabledOptimizerRules)) [FD]
+Line_3 $$ String query = "a = load '" + inputFile.getName() + "' as (x:int, y:int);" + "b = group a all;" + "c = foreach b generate COUNT(a) as sum;" + "d = order a by $0 DESC;" + "e = filter d by $0 != 4;" + "f = limit e c.sum/2;" --> Line_9 $$ Util.registerMultiLineQuery(pigServer, query) [FD]
+Line_10 $$ Iterator<Tuple> it = pigServer.openIterator("f") --> Line_12 $$ Util.checkQueryOutputs(it, expectedRes) [FD]
+Line_11 $$ List<Tuple> expectedRes = Util.getTuplesFromConstantTupleStrings(new String[] --> Line_12 $$ Util.checkQueryOutputs(it, expectedRes) [FD]

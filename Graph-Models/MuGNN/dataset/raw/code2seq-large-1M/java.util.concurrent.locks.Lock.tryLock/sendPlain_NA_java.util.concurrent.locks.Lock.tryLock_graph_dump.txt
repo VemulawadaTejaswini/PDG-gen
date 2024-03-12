@@ -1,0 +1,8 @@
+Line_2 $$ public void sendPlain(IgfsMessage msg) throws IgniteCheckedException --> Line_3 $$ if (!busyLock.readLock().tryLock()) [CD]
+Line_2 $$ public void sendPlain(IgfsMessage msg) throws IgniteCheckedException --> Line_8 $$ assert msg.command() == IgfsIpcCommand.WRITE_BLOCK [FD]
+Line_10 $$ byte[] hdr = IgfsMarshaller.createHeader(-1, IgfsIpcCommand.WRITE_BLOCK) --> Line_11 $$ U.longToBytes(req.streamId(), hdr, 12) [FD]
+Line_9 $$ IgfsStreamControlRequest req = (IgfsStreamControlRequest) msg --> Line_11 $$ U.longToBytes(req.streamId(), hdr, 12) [FD]
+Line_10 $$ byte[] hdr = IgfsMarshaller.createHeader(-1, IgfsIpcCommand.WRITE_BLOCK) --> Line_12 $$ U.intToBytes(req.length(), hdr, 20) [FD]
+Line_9 $$ IgfsStreamControlRequest req = (IgfsStreamControlRequest) msg --> Line_12 $$ U.intToBytes(req.length(), hdr, 20) [FD]
+Line_10 $$ byte[] hdr = IgfsMarshaller.createHeader(-1, IgfsIpcCommand.WRITE_BLOCK) --> Line_14 $$ out.write(hdr) [FD]
+Line_9 $$ IgfsStreamControlRequest req = (IgfsStreamControlRequest) msg --> Line_15 $$ out.write(req.data(), (int) req.position(), req.length()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private Thread createSenderThread(String identifier) --> Line_3 $$ return new Thread("AsyncChannelSenderThread(" + identifier + ")") [CD]
+Line_3 $$ return new Thread("AsyncChannelSenderThread(" + identifier + ")") --> Line_5 $$ while (!isClosed()) [CD]
+Line_5 $$ while (!isClosed()) --> Line_6 $$ PacketWithKey packetWithKey = null [CD]
+Line_6 $$ PacketWithKey packetWithKey = null --> Line_8 $$ packetWithKey = sendBuffer.take() [FD]
+Line_5 $$ while (!isClosed()) --> Line_11 $$ if (packetWithKey != null) [CD]
+Line_6 $$ PacketWithKey packetWithKey = null --> Line_11 $$ if (packetWithKey != null) [FD]
+Line_8 $$ packetWithKey = sendBuffer.take() --> Line_11 $$ if (packetWithKey != null) [FD]
+Line_11 $$ if (packetWithKey != null) --> Line_12 $$ sendPacket(packetWithKey.key, packetWithKey.packet) [CD]

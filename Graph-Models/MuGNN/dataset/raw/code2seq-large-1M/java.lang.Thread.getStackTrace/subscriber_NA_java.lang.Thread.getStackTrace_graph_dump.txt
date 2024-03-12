@@ -1,0 +1,8 @@
+Line_2 $$ protected void subscriber(String topic, byte[] message) --> Line_3 $$ String msg = new String(message) [CD]
+Line_2 $$ protected void subscriber(String topic, byte[] message) --> Line_4 $$ StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace() [CD]
+Line_2 $$ protected void subscriber(String topic, byte[] message) --> Line_5 $$ for (int i = 2; i < 6; i++) [CD]
+Line_5 $$ for (int i = 2; i < 6; i++) --> Line_6 $$ String className = stackTraceElements[i].getClassName() [CD]
+Line_5 $$ for (int i = 2; i < 6; i++) --> Line_7 $$ if (className.contains(RedisPubSubProvider.class.getName())) [CD]
+Line_3 $$ String msg = new String(message) --> Line_8 $$ msg += "/redis" [FD]
+Line_2 $$ protected void subscriber(String topic, byte[] message) --> Line_12 $$ messages.add(topic + "=" + msg) [CD]
+Line_2 $$ protected void subscriber(String topic, byte[] message) --> Line_13 $$ messageReceivedLatch.countDown() [CD]

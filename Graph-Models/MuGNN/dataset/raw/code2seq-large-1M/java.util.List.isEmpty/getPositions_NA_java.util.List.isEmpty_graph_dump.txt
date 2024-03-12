@@ -1,0 +1,7 @@
+Line_2 $$ public List<Position> getPositions() --> Line_3 $$ if (lastScannedPositionId == null) [CD]
+Line_3 $$ if (lastScannedPositionId == null) --> Line_4 $$ List<Long> latestPositionId = entityManager.get().createQuery("SELECT MAX(d.latestPosition.id) FROM Device d WHERE d.latestPosition IS NOT NULL", Long.class).setFlushMode(FlushModeType.COMMIT).getResultList() [CD]
+Line_3 $$ if (lastScannedPositionId == null) --> Line_5 $$ if (latestPositionId.isEmpty() || latestPositionId.get(0) == null) [CD]
+Line_5 $$ if (latestPositionId.isEmpty() || latestPositionId.get(0) == null) --> Line_6 $$ return Collections.emptyList() [CD]
+Line_5 $$ if (latestPositionId.isEmpty() || latestPositionId.get(0) == null) --> Line_8 $$ lastScannedPositionId = latestPositionId.get(0) [CD]
+Line_2 $$ public List<Position> getPositions() --> Line_11 $$ List<Position> positions = entityManager.get().createQuery("SELECT p FROM Position p INNER JOIN p.device d WHERE p.id > :from ORDER BY d.id, p.time ASC", Position.class).setFlushMode(FlushModeType.COMMIT).setParameter("from", lastScannedPositionId).getResultList() [CD]
+Line_2 $$ public List<Position> getPositions() --> Line_12 $$ return positions [CD]

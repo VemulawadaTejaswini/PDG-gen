@@ -1,0 +1,8 @@
+Line_2 $$ private int revokeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_3 $$ WM_LOG.info("Revoking " + count + " from " + guaranteedTasks.size() + " levels" + (failedUpdate == null ? "" : "; on failure")) [CD]
+Line_2 $$ private int revokeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_4 $$ int remainingCount = count [CD]
+Line_2 $$ private int revokeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_5 $$ Iterator<Entry<Integer, TreeSet<TaskInfo>>> iterator = guaranteedTasks.descendingMap().entrySet().iterator() [CD]
+Line_2 $$ private int revokeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_6 $$ while (remainingCount > 0 && iterator.hasNext()) [CD]
+Line_6 $$ while (remainingCount > 0 && iterator.hasNext()) --> Line_7 $$ remainingCount = handleUpdateForSinglePriorityLevel(remainingCount, iterator, failedUpdate, toUpdate, false) [CD]
+Line_4 $$ int remainingCount = count --> Line_7 $$ remainingCount = handleUpdateForSinglePriorityLevel(remainingCount, iterator, failedUpdate, toUpdate, false) [FD]
+Line_2 $$ private int revokeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_7 $$ remainingCount = handleUpdateForSinglePriorityLevel(remainingCount, iterator, failedUpdate, toUpdate, false) [FD]
+Line_2 $$ private int revokeGuaranteed(int count, TaskInfo failedUpdate, List<TaskInfo> toUpdate) --> Line_9 $$ return count - remainingCount [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public static void unacknowledgeAll() throws SQLException --> Line_3 $$ final DBUtils d = new DBUtils(EventFactory.class) [CD]
+Line_5 $$ Connection conn = DataSourceFactory.getInstance().getConnection() --> Line_6 $$ d.watch(conn) [FD]
+Line_5 $$ Connection conn = DataSourceFactory.getInstance().getConnection() --> Line_7 $$ PreparedStatement stmt = conn.prepareStatement("UPDATE EVENTS SET EVENTACKUSER=NULL, EVENTACKTIME=NULL WHERE EVENTACKUSER IS NOT NULL") [FD]
+Line_7 $$ PreparedStatement stmt = conn.prepareStatement("UPDATE EVENTS SET EVENTACKUSER=NULL, EVENTACKTIME=NULL WHERE EVENTACKUSER IS NOT NULL") --> Line_8 $$ d.watch(stmt) [FD]
+Line_7 $$ PreparedStatement stmt = conn.prepareStatement("UPDATE EVENTS SET EVENTACKUSER=NULL, EVENTACKTIME=NULL WHERE EVENTACKUSER IS NOT NULL") --> Line_9 $$ stmt.executeUpdate() [FD]

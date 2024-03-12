@@ -1,0 +1,7 @@
+Line_2 $$ protected void sendLogDataBatch(Map<TailFile, List<Map>> serverlogs) --> Line_3 $$ DataCollector dc = (DataCollector) ConfigurationManager.getInstance().getComponent("collectclient", DataCollector.class.getName()) [CD]
+Line_2 $$ protected void sendLogDataBatch(Map<TailFile, List<Map>> serverlogs) --> Line_4 $$ for (Entry<TailFile, List<Map>> en : serverlogs.entrySet()) [FD]
+Line_5 $$ TailFile tf = en.getKey() --> Line_7 $$ CollectDataFrame frame = new CollectDataFrame(tf.getServerId(), tf.getAppId(), tf.getPath()) [FD]
+Line_7 $$ CollectDataFrame frame = new CollectDataFrame(tf.getServerId(), tf.getAppId(), tf.getPath()) --> Line_8 $$ frame.setAppgroup(System.getProperty("JAppGroup")) [FD]
+Line_7 $$ CollectDataFrame frame = new CollectDataFrame(tf.getServerId(), tf.getAppId(), tf.getPath()) --> Line_10 $$ frame.append(Integer.parseInt(m.get("_lnum")), m.get("content"), Long.parseLong(m.get("_timestamp"))) [FD]
+Line_9 $$ for (Map<String, String> m : data) --> Line_10 $$ frame.append(Integer.parseInt(m.get("_lnum")), m.get("content"), Long.parseLong(m.get("_timestamp"))) [FD]
+Line_7 $$ CollectDataFrame frame = new CollectDataFrame(tf.getServerId(), tf.getAppId(), tf.getPath()) --> Line_12 $$ dc.submit(frame) [FD]

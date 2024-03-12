@@ -1,0 +1,6 @@
+Line_2 $$ public void writeByteData(int register, byte b) throws RuntimeIOException --> Line_3 $$ I2CWriteByteData request = new I2CWriteByteData(controller, address, register, b, UUID.randomUUID().toString()) [CD]
+Line_2 $$ public void writeByteData(int register, byte b) throws RuntimeIOException --> Line_4 $$ Response response = deviceFactory.getProtocolHandler().request(request) [CD]
+Line_3 $$ I2CWriteByteData request = new I2CWriteByteData(controller, address, register, b, UUID.randomUUID().toString()) --> Line_4 $$ Response response = deviceFactory.getProtocolHandler().request(request) [FD]
+Line_2 $$ public void writeByteData(int register, byte b) throws RuntimeIOException --> Line_5 $$ if (response.getStatus() != Response.Status.OK) [CD]
+Line_4 $$ Response response = deviceFactory.getProtocolHandler().request(request) --> Line_5 $$ if (response.getStatus() != Response.Status.OK) [FD]
+Line_4 $$ Response response = deviceFactory.getProtocolHandler().request(request) --> Line_6 $$ throw new RuntimeIOException("Error in I2C writeByte: " + response.getDetail()) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ protected void capture(long minMCTFirstLSN, boolean sharp) throws HyracksDataException --> Line_3 $$ ILogManager logMgr = txnSubsystem.getLogManager() [CD]
+Line_2 $$ protected void capture(long minMCTFirstLSN, boolean sharp) throws HyracksDataException --> Line_4 $$ ITransactionManager txnMgr = txnSubsystem.getTransactionManager() [CD]
+Line_2 $$ protected void capture(long minMCTFirstLSN, boolean sharp) throws HyracksDataException --> Line_5 $$ Checkpoint checkpointObject = new Checkpoint(logMgr.getAppendLSN(), minMCTFirstLSN, txnMgr.getMaxTxnId(), System.currentTimeMillis(), sharp, StorageConstants.VERSION) [CD]
+Line_3 $$ ILogManager logMgr = txnSubsystem.getLogManager() --> Line_5 $$ Checkpoint checkpointObject = new Checkpoint(logMgr.getAppendLSN(), minMCTFirstLSN, txnMgr.getMaxTxnId(), System.currentTimeMillis(), sharp, StorageConstants.VERSION) [FD]
+Line_4 $$ ITransactionManager txnMgr = txnSubsystem.getTransactionManager() --> Line_5 $$ Checkpoint checkpointObject = new Checkpoint(logMgr.getAppendLSN(), minMCTFirstLSN, txnMgr.getMaxTxnId(), System.currentTimeMillis(), sharp, StorageConstants.VERSION) [FD]
+Line_2 $$ protected void capture(long minMCTFirstLSN, boolean sharp) throws HyracksDataException --> Line_6 $$ persist(checkpointObject) [CD]
+Line_5 $$ Checkpoint checkpointObject = new Checkpoint(logMgr.getAppendLSN(), minMCTFirstLSN, txnMgr.getMaxTxnId(), System.currentTimeMillis(), sharp, StorageConstants.VERSION) --> Line_6 $$ persist(checkpointObject) [FD]
+Line_2 $$ protected void capture(long minMCTFirstLSN, boolean sharp) throws HyracksDataException --> Line_7 $$ cleanup() [CD]

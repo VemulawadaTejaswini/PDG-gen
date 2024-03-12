@@ -1,0 +1,8 @@
+Line_2 $$ private int waitForAllThreadsToStart(JobRunnable jobRunnable, int poolThreadCount) --> Line_3 $$ int currentId = jobRunnable.threadStartCount.incrementAndGet() [CD]
+Line_2 $$ private int waitForAllThreadsToStart(JobRunnable jobRunnable, int poolThreadCount) --> Line_4 $$ LOG.info("Waiting for other threads with thread id: " + currentId) [CD]
+Line_3 $$ int currentId = jobRunnable.threadStartCount.incrementAndGet() --> Line_6 $$ if (currentId > poolThreadCount) [FD]
+Line_2 $$ private int waitForAllThreadsToStart(JobRunnable jobRunnable, int poolThreadCount) --> Line_6 $$ if (currentId > poolThreadCount) [FD]
+Line_6 $$ if (currentId > poolThreadCount) --> Line_7 $$ LOG.info("Waking up all threads: " + currentId) [CD]
+Line_6 $$ if (currentId > poolThreadCount) --> Line_9 $$ this.lock.notifyAll() [CD]
+Line_6 $$ if (currentId > poolThreadCount) --> Line_11 $$ while (!started) [CD]
+Line_2 $$ private int waitForAllThreadsToStart(JobRunnable jobRunnable, int poolThreadCount) --> Line_19 $$ return currentId [CD]

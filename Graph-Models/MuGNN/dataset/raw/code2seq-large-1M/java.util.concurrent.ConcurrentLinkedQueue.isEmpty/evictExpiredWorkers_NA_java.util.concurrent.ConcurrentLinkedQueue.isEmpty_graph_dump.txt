@@ -1,0 +1,8 @@
+Line_2 $$ void evictExpiredWorkers() --> Line_3 $$ if (!expiringWorkerQueue.isEmpty()) [CD]
+Line_3 $$ if (!expiringWorkerQueue.isEmpty()) --> Line_4 $$ long currentTimestamp = now() [CD]
+Line_4 $$ long currentTimestamp = now() --> Line_6 $$ if (threadWorker.getExpirationTime() <= currentTimestamp) [FD]
+Line_5 $$ for (ThreadWorker threadWorker : expiringWorkerQueue) --> Line_6 $$ if (threadWorker.getExpirationTime() <= currentTimestamp) [FD]
+Line_6 $$ if (threadWorker.getExpirationTime() <= currentTimestamp) --> Line_7 $$ if (expiringWorkerQueue.remove(threadWorker)) [CD]
+Line_5 $$ for (ThreadWorker threadWorker : expiringWorkerQueue) --> Line_7 $$ if (expiringWorkerQueue.remove(threadWorker)) [FD]
+Line_7 $$ if (expiringWorkerQueue.remove(threadWorker)) --> Line_8 $$ allWorkers.remove(threadWorker) [CD]
+Line_5 $$ for (ThreadWorker threadWorker : expiringWorkerQueue) --> Line_8 $$ allWorkers.remove(threadWorker) [FD]

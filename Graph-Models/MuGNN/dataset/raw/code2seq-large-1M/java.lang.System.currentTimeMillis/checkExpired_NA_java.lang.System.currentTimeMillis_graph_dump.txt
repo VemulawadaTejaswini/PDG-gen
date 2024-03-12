@@ -1,0 +1,8 @@
+Line_2 $$ public void checkExpired() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ public void checkExpired() --> Line_4 $$ long lastCheck = lastExpiredCheck.get() [CD]
+Line_2 $$ public void checkExpired() --> Line_5 $$ if ((now - lastCheck) > getExpirationCheckInterval() && lastExpiredCheck.compareAndSet(lastCheck, now)) [CD]
+Line_4 $$ long lastCheck = lastExpiredCheck.get() --> Line_5 $$ if ((now - lastCheck) > getExpirationCheckInterval() && lastExpiredCheck.compareAndSet(lastCheck, now)) [FD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_5 $$ if ((now - lastCheck) > getExpirationCheckInterval() && lastExpiredCheck.compareAndSet(lastCheck, now)) [FD]
+Line_5 $$ if ((now - lastCheck) > getExpirationCheckInterval() && lastExpiredCheck.compareAndSet(lastCheck, now)) --> Line_6 $$ if (runDeleteExpired(now)) [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_6 $$ if (runDeleteExpired(now)) [FD]
+Line_6 $$ if (runDeleteExpired(now)) --> Line_7 $$ lastExpiredCheck.set(0) [CD]

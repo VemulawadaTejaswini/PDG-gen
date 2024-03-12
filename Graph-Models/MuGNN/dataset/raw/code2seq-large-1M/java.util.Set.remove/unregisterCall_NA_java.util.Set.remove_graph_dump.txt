@@ -1,0 +1,8 @@
+Line_2 $$ private <CALL> void unregisterCall(Map<OperationName, Set<CALL>> registry, OperationName operationName, CALL call) --> Line_4 $$ Set<CALL> calls = registry.get(operationName) [FD]
+Line_4 $$ Set<CALL> calls = registry.get(operationName) --> Line_5 $$ if (calls == null || !calls.remove(call)) [FD]
+Line_2 $$ private <CALL> void unregisterCall(Map<OperationName, Set<CALL>> registry, OperationName operationName, CALL call) --> Line_5 $$ if (calls == null || !calls.remove(call)) [FD]
+Line_4 $$ Set<CALL> calls = registry.get(operationName) --> Line_8 $$ if (calls.isEmpty()) [FD]
+Line_8 $$ if (calls.isEmpty()) --> Line_9 $$ registry.remove(operationName) [CD]
+Line_2 $$ private <CALL> void unregisterCall(Map<OperationName, Set<CALL>> registry, OperationName operationName, CALL call) --> Line_9 $$ registry.remove(operationName) [FD]
+Line_2 $$ private <CALL> void unregisterCall(Map<OperationName, Set<CALL>> registry, OperationName operationName, CALL call) --> Line_12 $$ if (activeCallCount.decrementAndGet() == 0) [CD]
+Line_12 $$ if (activeCallCount.decrementAndGet() == 0) --> Line_13 $$ notifyIdleResource() [CD]

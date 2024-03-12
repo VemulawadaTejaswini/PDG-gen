@@ -1,0 +1,8 @@
+Line_2 $$ protected static void waitForStatusCode(URI uri, Map<String, String> headers, int expectedStatusCode, int count) throws Exception --> Line_3 $$ long toFinish = System.currentTimeMillis() + STATE_CHANGE_WAIT_POLLING_PERIOD_MILLIS * count [CD]
+Line_2 $$ protected static void waitForStatusCode(URI uri, Map<String, String> headers, int expectedStatusCode, int count) throws Exception --> Line_4 $$ while (System.currentTimeMillis() <= toFinish) [CD]
+Line_3 $$ long toFinish = System.currentTimeMillis() + STATE_CHANGE_WAIT_POLLING_PERIOD_MILLIS * count --> Line_4 $$ while (System.currentTimeMillis() <= toFinish) [FD]
+Line_2 $$ protected static void waitForStatusCode(URI uri, Map<String, String> headers, int expectedStatusCode, int count) throws Exception --> Line_6 $$ SimpleHttpsClient.HttpResponse httpResponse = SimpleHttpsClient.execute(SimpleHttpsClient.HttpMethod.GET, uri.toString(), null, headers, getUnsecuredSSLSocketFactory()) [FD]
+Line_2 $$ protected static void waitForStatusCode(URI uri, Map<String, String> headers, int expectedStatusCode, int count) throws Exception --> Line_7 $$ if (expectedStatusCode == httpResponse.statusCode) [FD]
+Line_7 $$ if (expectedStatusCode == httpResponse.statusCode) --> Line_8 $$ return [CD]
+Line_4 $$ while (System.currentTimeMillis() <= toFinish) --> Line_12 $$ Thread.sleep(STATE_CHANGE_WAIT_POLLING_PERIOD_MILLIS) [CD]
+Line_2 $$ protected static void waitForStatusCode(URI uri, Map<String, String> headers, int expectedStatusCode, int count) throws Exception --> Line_14 $$ throw new RuntimeException(String.format("Failed waiting for status code %s at %s", expectedStatusCode, uri)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void listsOfListsAreSanitized() --> Line_3 $$ load(( context,  properties) -> [CD]
+Line_4 $$ Map<String, Object> nestedProperties = properties.getBeans().get("testProperties").getProperties() --> Line_5 $$ assertThat(nestedProperties.get("listOfListItems")).isInstanceOf(List.class) [FD]
+Line_4 $$ Map<String, Object> nestedProperties = properties.getBeans().get("testProperties").getProperties() --> Line_6 $$ List<List<Object>> listOfLists = (List<List<Object>>) nestedProperties.get("listOfListItems") [FD]
+Line_6 $$ List<List<Object>> listOfLists = (List<List<Object>>) nestedProperties.get("listOfListItems") --> Line_7 $$ assertThat(listOfLists).hasSize(1) [FD]
+Line_6 $$ List<List<Object>> listOfLists = (List<List<Object>>) nestedProperties.get("listOfListItems") --> Line_8 $$ List<Object> list = listOfLists.get(0) [FD]
+Line_8 $$ List<Object> list = listOfLists.get(0) --> Line_9 $$ assertThat(list).hasSize(1) [FD]
+Line_8 $$ List<Object> list = listOfLists.get(0) --> Line_10 $$ Map<String, Object> item = (Map<String, Object>) list.get(0) [FD]
+Line_10 $$ Map<String, Object> item = (Map<String, Object>) list.get(0) --> Line_11 $$ assertThat(item.get("somePassword")).isEqualTo("******") [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public CompletionStage<?> broadcast(OutboundSseEvent event) --> Line_3 $$ assertNotClosed() [CD]
+Line_2 $$ public CompletionStage<?> broadcast(OutboundSseEvent event) --> Line_4 $$ final Collection<CompletableFuture<?>> futures = new ArrayList() [CD]
+Line_4 $$ final Collection<CompletableFuture<?>> futures = new ArrayList() --> Line_7 $$ futures.add(sink.send(event).toCompletableFuture()) [FD]
+Line_5 $$ for (SseEventSink sink : subscribers) --> Line_7 $$ futures.add(sink.send(event).toCompletableFuture()) [FD]
+Line_2 $$ public CompletionStage<?> broadcast(OutboundSseEvent event) --> Line_7 $$ futures.add(sink.send(event).toCompletableFuture()) [FD]
+Line_5 $$ for (SseEventSink sink : subscribers) --> Line_9 $$ exceptioner.accept(sink, ex) [FD]
+Line_2 $$ public CompletionStage<?> broadcast(OutboundSseEvent event) --> Line_12 $$ return CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()])) [CD]
+Line_4 $$ final Collection<CompletableFuture<?>> futures = new ArrayList() --> Line_12 $$ return CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()])) [FD]

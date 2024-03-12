@@ -1,0 +1,7 @@
+Line_2 $$ public void onNextFailureSafe() --> Line_3 $$ AtomicReference<Throwable> onError = new AtomicReference<Throwable>() [CD]
+Line_3 $$ AtomicReference<Throwable> onError = new AtomicReference<Throwable>() --> Line_5 $$ SafeObserver<String> safeObserver = new SafeObserver<String>(OBSERVER_ONNEXT_FAIL(onError)) [FD]
+Line_5 $$ SafeObserver<String> safeObserver = new SafeObserver<String>(OBSERVER_ONNEXT_FAIL(onError)) --> Line_6 $$ safeObserver.onSubscribe(Disposables.empty()) [FD]
+Line_5 $$ SafeObserver<String> safeObserver = new SafeObserver<String>(OBSERVER_ONNEXT_FAIL(onError)) --> Line_7 $$ safeObserver.onNext("one") [FD]
+Line_3 $$ AtomicReference<Throwable> onError = new AtomicReference<Throwable>() --> Line_8 $$ assertNotNull(onError.get()) [FD]
+Line_3 $$ AtomicReference<Throwable> onError = new AtomicReference<Throwable>() --> Line_9 $$ assertTrue(onError.get() instanceof SafeObserverTestException) [FD]
+Line_3 $$ AtomicReference<Throwable> onError = new AtomicReference<Throwable>() --> Line_10 $$ assertEquals("onNextFail", onError.get().getMessage()) [FD]

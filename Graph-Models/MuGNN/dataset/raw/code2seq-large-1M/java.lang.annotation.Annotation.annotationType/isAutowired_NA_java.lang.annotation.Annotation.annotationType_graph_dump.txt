@@ -1,0 +1,7 @@
+Line_3 $$ for (Annotation declaredAnnotation : declaredAnnotations) --> Line_4 $$ Class<?> annotationType = declaredAnnotation.annotationType() [FD]
+Line_4 $$ Class<?> annotationType = declaredAnnotation.annotationType() --> Line_5 $$ if (annotationType.getName().endsWith(".Autowired")) [FD]
+Line_5 $$ if (annotationType.getName().endsWith(".Autowired")) --> Line_6 $$ Boolean required = invokePublicIfAvailable(annotationType, declaredAnnotation, "required", NO_PARAMETERS) [CD]
+Line_4 $$ Class<?> annotationType = declaredAnnotation.annotationType() --> Line_6 $$ Boolean required = invokePublicIfAvailable(annotationType, declaredAnnotation, "required", NO_PARAMETERS) [FD]
+Line_3 $$ for (Annotation declaredAnnotation : declaredAnnotations) --> Line_6 $$ Boolean required = invokePublicIfAvailable(annotationType, declaredAnnotation, "required", NO_PARAMETERS) [FD]
+Line_5 $$ if (annotationType.getName().endsWith(".Autowired")) --> Line_7 $$ return required != null && required ? KindOfInjectionPoint.Required : KindOfInjectionPoint.Optional [CD]
+Line_2 $$ private static KindOfInjectionPoint isAutowired(@Nonnull Annotation[] declaredAnnotations) --> Line_10 $$ return KindOfInjectionPoint.NotAnnotated [CD]

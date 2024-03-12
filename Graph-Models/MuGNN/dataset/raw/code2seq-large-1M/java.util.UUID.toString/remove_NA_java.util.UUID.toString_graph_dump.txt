@@ -1,0 +1,7 @@
+Line_2 $$ private void remove(UUID jobId, String tableName) throws IOException --> Line_4 $$ CloudTable table = tableClient.getTableReference(tableName) [FD]
+Line_2 $$ private void remove(UUID jobId, String tableName) throws IOException --> Line_5 $$ TableOperation retrieve = TableOperation.retrieve(configuration.getPartitionKey(), jobId.toString(), DataWrapper.class) [FD]
+Line_4 $$ CloudTable table = tableClient.getTableReference(tableName) --> Line_6 $$ TableResult result = table.execute(retrieve) [FD]
+Line_6 $$ TableResult result = table.execute(retrieve) --> Line_7 $$ DataWrapper wrapper = result.getResultAsType() [FD]
+Line_7 $$ DataWrapper wrapper = result.getResultAsType() --> Line_8 $$ TableOperation delete = TableOperation.delete(wrapper) [FD]
+Line_4 $$ CloudTable table = tableClient.getTableReference(tableName) --> Line_9 $$ table.execute(delete) [FD]
+Line_8 $$ TableOperation delete = TableOperation.delete(wrapper) --> Line_9 $$ table.execute(delete) [FD]

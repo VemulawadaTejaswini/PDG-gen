@@ -1,0 +1,6 @@
+Line_2 $$ private DescriptorDigest getDiffId(Path layerFile) throws IOException --> Line_3 $$ CountingDigestOutputStream diffIdCaptureOutputStream = new CountingDigestOutputStream(ByteStreams.nullOutputStream()) [CD]
+Line_2 $$ private DescriptorDigest getDiffId(Path layerFile) throws IOException --> Line_4 $$ try (InputStream fileInputStream = new BufferedInputStream(Files.newInputStream(layerFile)); [FD]
+Line_4 $$ try (InputStream fileInputStream = new BufferedInputStream(Files.newInputStream(layerFile)); --> Line_6 $$ ByteStreams.copy(decompressorStream, diffIdCaptureOutputStream) [FD]
+Line_3 $$ CountingDigestOutputStream diffIdCaptureOutputStream = new CountingDigestOutputStream(ByteStreams.nullOutputStream()) --> Line_6 $$ ByteStreams.copy(decompressorStream, diffIdCaptureOutputStream) [FD]
+Line_2 $$ private DescriptorDigest getDiffId(Path layerFile) throws IOException --> Line_8 $$ return diffIdCaptureOutputStream.toBlobDescriptor().getDigest() [CD]
+Line_3 $$ CountingDigestOutputStream diffIdCaptureOutputStream = new CountingDigestOutputStream(ByteStreams.nullOutputStream()) --> Line_8 $$ return diffIdCaptureOutputStream.toBlobDescriptor().getDigest() [FD]

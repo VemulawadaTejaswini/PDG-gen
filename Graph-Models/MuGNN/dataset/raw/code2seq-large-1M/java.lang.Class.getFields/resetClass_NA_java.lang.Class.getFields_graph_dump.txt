@@ -1,0 +1,6 @@
+Line_2 $$ private void resetClass(Class<?> clazz) --> Line_3 $$ for (Field field : clazz.getFields()) [FD]
+Line_3 $$ for (Field field : clazz.getFields()) --> Line_4 $$ Class<?> type = field.getType() [FD]
+Line_3 $$ for (Field field : clazz.getFields()) --> Line_5 $$ if (Modifier.isStatic(field.getModifiers()) && !type.isPrimitive() && !type.equals(String.class) && !type.equals(ReportType.class)) [FD]
+Line_4 $$ Class<?> type = field.getType() --> Line_5 $$ if (Modifier.isStatic(field.getModifiers()) && !type.isPrimitive() && !type.equals(String.class) && !type.equals(ReportType.class)) [FD]
+Line_3 $$ for (Field field : clazz.getFields()) --> Line_7 $$ setFinalStatic(field, null) [FD]
+Line_3 $$ for (Field field : clazz.getFields()) --> Line_9 $$ reporter.reportWarning(this, Report.newBuilder(REPORT_CANNOT_RESET_FIELD).error(e).messageParam(field.getName(), e.getMessage())) [FD]

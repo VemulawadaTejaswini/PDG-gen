@@ -1,0 +1,7 @@
+Line_2 $$ public void testStreamLabel() --> Line_3 $$ String data = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void testStreamLabel() --> Line_4 $$ stream("dataSender", sources.http() + XD_DELIMITER + processors.transform().expression("payload.toUpperCase()").label("ds1") + XD_DELIMITER + processors.transform().expression("payload.substring(3)") + XD_DELIMITER + sinks.log()) [CD]
+Line_2 $$ public void testStreamLabel() --> Line_5 $$ stream(sources.tap("dataSender").label("ds1") + XD_TAP_DELIMITER + sinks.file()) [CD]
+Line_2 $$ public void testStreamLabel() --> Line_6 $$ sources.httpSource("dataSender").postData(data) [CD]
+Line_3 $$ String data = UUID.randomUUID().toString() --> Line_6 $$ sources.httpSource("dataSender").postData(data) [FD]
+Line_2 $$ public void testStreamLabel() --> Line_7 $$ assertValid(data.toUpperCase(), sinks.file()) [CD]
+Line_3 $$ String data = UUID.randomUUID().toString() --> Line_7 $$ assertValid(data.toUpperCase(), sinks.file()) [FD]

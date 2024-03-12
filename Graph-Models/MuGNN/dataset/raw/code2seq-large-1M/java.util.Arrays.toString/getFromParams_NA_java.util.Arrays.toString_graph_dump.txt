@@ -1,0 +1,8 @@
+Line_2 $$ public MarkovGraph getFromParams(Long txn_id, int base_partition, Object[] params, Procedure catalog_proc) --> Line_4 $$ MarkovGraph m = this.getOrCreate(base_partition, catalog_proc, true) [FD]
+Line_2 $$ public MarkovGraph getFromParams(Long txn_id, int base_partition, Object[] params, Procedure catalog_proc) --> Line_4 $$ MarkovGraph m = this.getOrCreate(base_partition, catalog_proc, true) [CD]
+Line_2 $$ public MarkovGraph getFromParams(Long txn_id, int base_partition, Object[] params, Procedure catalog_proc) --> Line_5 $$ if (m == null) [CD]
+Line_4 $$ MarkovGraph m = this.getOrCreate(base_partition, catalog_proc, true) --> Line_5 $$ if (m == null) [FD]
+Line_5 $$ if (m == null) --> Line_6 $$ LOG.warn(String.format("Failed to find MarkovGraph for %s txn #%d [base_partition=%d, params=%s]", catalog_proc.getName(), txn_id, base_partition, Arrays.toString(params))) [CD]
+Line_2 $$ public MarkovGraph getFromParams(Long txn_id, int base_partition, Object[] params, Procedure catalog_proc) --> Line_6 $$ LOG.warn(String.format("Failed to find MarkovGraph for %s txn #%d [base_partition=%d, params=%s]", catalog_proc.getName(), txn_id, base_partition, Arrays.toString(params))) [FD]
+Line_5 $$ if (m == null) --> Line_7 $$ LOG.warn("MarkovGraphsContainer Dump:\n" + this) [CD]
+Line_2 $$ public MarkovGraph getFromParams(Long txn_id, int base_partition, Object[] params, Procedure catalog_proc) --> Line_9 $$ return (m) [CD]

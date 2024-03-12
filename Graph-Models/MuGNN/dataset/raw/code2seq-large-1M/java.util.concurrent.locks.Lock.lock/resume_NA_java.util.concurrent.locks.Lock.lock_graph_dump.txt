@@ -1,0 +1,6 @@
+Line_2 $$ public void resume() --> Line_3 $$ final Lock lock = state.getStateLocker().writeLock() [CD]
+Line_2 $$ public void resume() --> Line_4 $$ lock.lock() [CD]
+Line_3 $$ final Lock lock = state.getStateLocker().writeLock() --> Line_4 $$ lock.lock() [FD]
+Line_6 $$ if (state.getState() != State.PAUSED) --> Line_7 $$ LOGGER.log(Level.WARNING, LogMessages.WARNING_GRIZZLY_TRANSPORT_NOT_PAUSE_STATE_EXCEPTION()) [CD]
+Line_6 $$ if (state.getState() != State.PAUSED) --> Line_8 $$ return [CD]
+Line_3 $$ final Lock lock = state.getStateLocker().writeLock() --> Line_15 $$ lock.unlock() [FD]

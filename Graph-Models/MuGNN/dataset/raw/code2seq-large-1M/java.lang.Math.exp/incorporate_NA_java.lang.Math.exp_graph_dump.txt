@@ -1,0 +1,8 @@
+Line_2 $$ EstimateVector incorporate(float newProgress, long newAtTime) --> Line_3 $$ if (newAtTime <= atTime || newProgress < basedOnProgress) [CD]
+Line_3 $$ if (newAtTime <= atTime || newProgress < basedOnProgress) --> Line_4 $$ return this [CD]
+Line_2 $$ EstimateVector incorporate(float newProgress, long newAtTime) --> Line_6 $$ double oldWeighting = value < 0.0 ? 0.0 : Math.exp(((double) (newAtTime - atTime)) / lambda) [CD]
+Line_2 $$ EstimateVector incorporate(float newProgress, long newAtTime) --> Line_7 $$ double newRead = (newProgress - basedOnProgress) / (newAtTime - atTime) [CD]
+Line_2 $$ EstimateVector incorporate(float newProgress, long newAtTime) --> Line_8 $$ if (smoothedValue == SmoothedValue.TIME_PER_UNIT_PROGRESS) [CD]
+Line_8 $$ if (smoothedValue == SmoothedValue.TIME_PER_UNIT_PROGRESS) --> Line_9 $$ newRead = 1.0 / newRead [CD]
+Line_7 $$ double newRead = (newProgress - basedOnProgress) / (newAtTime - atTime) --> Line_9 $$ newRead = 1.0 / newRead [FD]
+Line_2 $$ EstimateVector incorporate(float newProgress, long newAtTime) --> Line_11 $$ return new EstimateVector(value * oldWeighting + newRead * (1.0 - oldWeighting), newProgress, newAtTime) [CD]

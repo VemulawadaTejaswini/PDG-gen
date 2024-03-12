@@ -1,0 +1,8 @@
+Line_2 $$ static <T> Supplier<CompletionStage<T>> decorateCompletionStage(RateLimiter rateLimiter, Supplier<CompletionStage<T>> supplier) --> Line_3 $$ return () -> [CD]
+Line_2 $$ static <T> Supplier<CompletionStage<T>> decorateCompletionStage(RateLimiter rateLimiter, Supplier<CompletionStage<T>> supplier) --> Line_6 $$ waitForPermission(rateLimiter) [FD]
+Line_2 $$ static <T> Supplier<CompletionStage<T>> decorateCompletionStage(RateLimiter rateLimiter, Supplier<CompletionStage<T>> supplier) --> Line_7 $$ supplier.get().whenComplete(( result,  throwable) -> [FD]
+Line_8 $$ if (throwable != null) --> Line_9 $$ promise.completeExceptionally(throwable) [CD]
+Line_4 $$ final CompletableFuture<T> promise = new CompletableFuture() --> Line_9 $$ promise.completeExceptionally(throwable) [FD]
+Line_8 $$ if (throwable != null) --> Line_11 $$ promise.complete(result) [CD]
+Line_4 $$ final CompletableFuture<T> promise = new CompletableFuture() --> Line_11 $$ promise.complete(result) [FD]
+Line_4 $$ final CompletableFuture<T> promise = new CompletableFuture() --> Line_15 $$ promise.completeExceptionally(throwable) [FD]

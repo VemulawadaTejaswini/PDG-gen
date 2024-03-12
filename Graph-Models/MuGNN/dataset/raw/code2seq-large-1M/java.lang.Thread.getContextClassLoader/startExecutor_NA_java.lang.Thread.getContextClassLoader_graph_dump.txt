@@ -1,0 +1,5 @@
+Line_2 $$ private void startExecutor() throws Exception --> Line_3 $$ ClassLoader oldCL = Thread.currentThread().getContextClassLoader() [CD]
+Line_2 $$ private void startExecutor() throws Exception --> Line_4 $$ Thread.currentThread().setContextClassLoader(executorClassLoader) [CD]
+Line_6 $$ Class<?> startExecutorClass = getSaturnExecutorClass() --> Line_7 $$ saturnExecutor = startExecutorClass.getMethod("buildExecutor", String.class, String.class, ClassLoader.class, ClassLoader.class).invoke(null, namespace, executorName, executorClassLoader, jobClassLoader) [FD]
+Line_6 $$ Class<?> startExecutorClass = getSaturnExecutorClass() --> Line_8 $$ startExecutorClass.getMethod("execute").invoke(saturnExecutor) [FD]
+Line_3 $$ ClassLoader oldCL = Thread.currentThread().getContextClassLoader() --> Line_10 $$ Thread.currentThread().setContextClassLoader(oldCL) [FD]

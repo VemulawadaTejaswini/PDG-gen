@@ -1,0 +1,6 @@
+Line_2 $$ public boolean matchRemoteEvent(final TenantAwareEvent tenantAwareEvent) --> Line_3 $$ if (!(tenantAwareEvent instanceof RemoteIdEvent) || entityClass == null || entityIds == null) [CD]
+Line_3 $$ if (!(tenantAwareEvent instanceof RemoteIdEvent) || entityClass == null || entityIds == null) --> Line_4 $$ return false [CD]
+Line_2 $$ public boolean matchRemoteEvent(final TenantAwareEvent tenantAwareEvent) --> Line_6 $$ final RemoteIdEvent remoteIdEvent = (RemoteIdEvent) tenantAwareEvent [CD]
+Line_6 $$ final RemoteIdEvent remoteIdEvent = (RemoteIdEvent) tenantAwareEvent --> Line_8 $$ final Class<?> remoteEntityClass = Class.forName(remoteIdEvent.getEntityClass()) [FD]
+Line_8 $$ final Class<?> remoteEntityClass = Class.forName(remoteIdEvent.getEntityClass()) --> Line_9 $$ return entityClass.isAssignableFrom(remoteEntityClass) && entityIds.contains(remoteIdEvent.getEntityId()) [FD]
+Line_6 $$ final RemoteIdEvent remoteIdEvent = (RemoteIdEvent) tenantAwareEvent --> Line_9 $$ return entityClass.isAssignableFrom(remoteEntityClass) && entityIds.contains(remoteIdEvent.getEntityId()) [FD]

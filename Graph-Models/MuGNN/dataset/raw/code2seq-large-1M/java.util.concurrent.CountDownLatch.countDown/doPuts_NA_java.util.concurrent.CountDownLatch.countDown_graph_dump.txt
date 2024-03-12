@@ -1,0 +1,7 @@
+Line_2 $$ private void doPuts(CacheManagerBuilder<PersistentCacheManager> clusteredCacheManagerBuilder, CountDownLatch syncLatch) --> Line_3 $$ try (PersistentCacheManager cacheManager = clusteredCacheManagerBuilder.build(true)) [FD]
+Line_2 $$ private void doPuts(CacheManagerBuilder<PersistentCacheManager> clusteredCacheManagerBuilder, CountDownLatch syncLatch) --> Line_5 $$ syncLatch.countDown() [FD]
+Line_3 $$ try (PersistentCacheManager cacheManager = clusteredCacheManagerBuilder.build(true)) --> Line_6 $$ Cache<Long, String> cache = cacheManager.createCache("clustered-cache", config) [FD]
+Line_7 $$ for (long i = 0; i < MAX_PUTS; i++) --> Line_8 $$ if (i % 1000 == 0) [CD]
+Line_7 $$ for (long i = 0; i < MAX_PUTS; i++) --> Line_14 $$ cache.put(i, LARGE_VALUE) [FD]
+Line_7 $$ for (long i = 0; i < MAX_PUTS; i++) --> Line_14 $$ cache.put(i, LARGE_VALUE) [CD]
+Line_6 $$ Cache<Long, String> cache = cacheManager.createCache("clustered-cache", config) --> Line_14 $$ cache.put(i, LARGE_VALUE) [FD]

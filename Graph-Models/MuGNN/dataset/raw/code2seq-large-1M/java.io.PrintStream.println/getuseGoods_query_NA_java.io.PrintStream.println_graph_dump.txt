@@ -1,0 +1,8 @@
+Line_2 $$ public List getuseGoods_query() --> Line_3 $$ session = MySession.openSession() [CD]
+Line_2 $$ public List getuseGoods_query() --> Line_4 $$ String sql = "select * from tb_goods where id in (select goodsid from tb_getuse group by goodsid)" [CD]
+Line_2 $$ public List getuseGoods_query() --> Line_5 $$ List list = null [CD]
+Line_4 $$ String sql = "select * from tb_goods where id in (select goodsid from tb_getuse group by goodsid)" --> Line_7 $$ SQLQuery query = session.createSQLQuery(sql) [FD]
+Line_7 $$ SQLQuery query = session.createSQLQuery(sql) --> Line_8 $$ query.addEntity("goods", GoodsForm.class) [FD]
+Line_5 $$ List list = null --> Line_9 $$ list = query.list() [FD]
+Line_7 $$ SQLQuery query = session.createSQLQuery(sql) --> Line_9 $$ list = query.list() [FD]
+Line_2 $$ public List getuseGoods_query() --> Line_13 $$ return list [CD]

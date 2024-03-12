@@ -1,0 +1,7 @@
+Line_2 $$ public void indexTask(Task task) --> Line_4 $$ String id = task.getTaskId() [FD]
+Line_5 $$ TaskSummary summary = new TaskSummary(task) --> Line_6 $$ byte[] doc = objectMapper.writeValueAsBytes(summary) [FD]
+Line_7 $$ UpdateRequest req = new UpdateRequest(indexName, TASK_DOC_TYPE, id) --> Line_8 $$ req.doc(doc) [FD]
+Line_6 $$ byte[] doc = objectMapper.writeValueAsBytes(summary) --> Line_8 $$ req.doc(doc) [FD]
+Line_7 $$ UpdateRequest req = new UpdateRequest(indexName, TASK_DOC_TYPE, id) --> Line_9 $$ req.upsert(doc) [FD]
+Line_6 $$ byte[] doc = objectMapper.writeValueAsBytes(summary) --> Line_9 $$ req.upsert(doc) [FD]
+Line_7 $$ UpdateRequest req = new UpdateRequest(indexName, TASK_DOC_TYPE, id) --> Line_10 $$ updateWithRetry(req, "Index task into doc_type of task") [FD]

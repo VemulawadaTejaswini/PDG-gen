@@ -1,0 +1,7 @@
+Line_2 $$ public void received(String key, byte[] message) throws SiteWhereException --> Line_3 $$ GTenantModelUpdate update = KafkaModelMarshaler.parseTenantModelUpdateMessage(message) [FD]
+Line_2 $$ public void received(String key, byte[] message) throws SiteWhereException --> Line_3 $$ GTenantModelUpdate update = KafkaModelMarshaler.parseTenantModelUpdateMessage(message) [CD]
+Line_2 $$ public void received(String key, byte[] message) throws SiteWhereException --> Line_4 $$ if (update.getType() == GTenantModelUpdateType.TENANTMODEL_TENANT_ADDED) [CD]
+Line_3 $$ GTenantModelUpdate update = KafkaModelMarshaler.parseTenantModelUpdateMessage(message) --> Line_4 $$ if (update.getType() == GTenantModelUpdateType.TENANTMODEL_TENANT_ADDED) [FD]
+Line_4 $$ if (update.getType() == GTenantModelUpdateType.TENANTMODEL_TENANT_ADDED) --> Line_5 $$ ITenant tenant = TenantModelConverter.asApiTenant(update.getTenant()) [CD]
+Line_3 $$ GTenantModelUpdate update = KafkaModelMarshaler.parseTenantModelUpdateMessage(message) --> Line_5 $$ ITenant tenant = TenantModelConverter.asApiTenant(update.getTenant()) [FD]
+Line_4 $$ if (update.getType() == GTenantModelUpdateType.TENANTMODEL_TENANT_ADDED) --> Line_6 $$ executor.execute(new TenantBootstrapper(tenant)) [CD]

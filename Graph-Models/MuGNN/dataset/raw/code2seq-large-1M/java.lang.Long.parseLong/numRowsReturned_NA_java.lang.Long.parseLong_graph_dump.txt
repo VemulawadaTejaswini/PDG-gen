@@ -1,0 +1,8 @@
+Line_2 $$ private long numRowsReturned(CommonConstants.Helix.TableType tableType) throws Exception --> Line_3 $$ org.json.JSONObject response = postQuery("select count(*) from '" + TABLE_NAME + "_" + tableType + "'") [CD]
+Line_2 $$ private long numRowsReturned(CommonConstants.Helix.TableType tableType) throws Exception --> Line_4 $$ if (response.get("numDocsScanned").equals(new Integer(0))) [CD]
+Line_3 $$ org.json.JSONObject response = postQuery("select count(*) from '" + TABLE_NAME + "_" + tableType + "'") --> Line_4 $$ if (response.get("numDocsScanned").equals(new Integer(0))) [FD]
+Line_4 $$ if (response.get("numDocsScanned").equals(new Integer(0))) --> Line_5 $$ return 0 [CD]
+Line_4 $$ if (response.get("numDocsScanned").equals(new Integer(0))) --> Line_7 $$ String pinotValue = ((org.json.JSONArray) response.get("aggregationResults")).getJSONObject(0).get("value").toString() [CD]
+Line_3 $$ org.json.JSONObject response = postQuery("select count(*) from '" + TABLE_NAME + "_" + tableType + "'") --> Line_7 $$ String pinotValue = ((org.json.JSONArray) response.get("aggregationResults")).getJSONObject(0).get("value").toString() [FD]
+Line_4 $$ if (response.get("numDocsScanned").equals(new Integer(0))) --> Line_8 $$ return Long.parseLong(pinotValue) [CD]
+Line_7 $$ String pinotValue = ((org.json.JSONArray) response.get("aggregationResults")).getJSONObject(0).get("value").toString() --> Line_8 $$ return Long.parseLong(pinotValue) [FD]

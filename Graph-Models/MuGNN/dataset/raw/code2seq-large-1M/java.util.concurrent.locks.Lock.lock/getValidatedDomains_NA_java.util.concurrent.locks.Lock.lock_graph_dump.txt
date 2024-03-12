@@ -1,0 +1,8 @@
+Line_2 $$ public Collection<String> getValidatedDomains(StreamID streamID) --> Line_3 $$ Lock lock = CacheFactory.getLock(streamID, validatedDomainsCache) [CD]
+Line_2 $$ public Collection<String> getValidatedDomains(StreamID streamID) --> Line_3 $$ Lock lock = CacheFactory.getLock(streamID, validatedDomainsCache) [FD]
+Line_3 $$ Lock lock = CacheFactory.getLock(streamID, validatedDomainsCache) --> Line_5 $$ lock.lock() [FD]
+Line_2 $$ public Collection<String> getValidatedDomains(StreamID streamID) --> Line_6 $$ Set<String> validatedDomains = validatedDomainsCache.get(streamID) [FD]
+Line_6 $$ Set<String> validatedDomains = validatedDomainsCache.get(streamID) --> Line_7 $$ if (validatedDomains == null) [FD]
+Line_7 $$ if (validatedDomains == null) --> Line_8 $$ return Collections.emptyList() [CD]
+Line_6 $$ Set<String> validatedDomains = validatedDomainsCache.get(streamID) --> Line_10 $$ return Collections.unmodifiableCollection(validatedDomains) [FD]
+Line_3 $$ Lock lock = CacheFactory.getLock(streamID, validatedDomainsCache) --> Line_12 $$ lock.unlock() [FD]

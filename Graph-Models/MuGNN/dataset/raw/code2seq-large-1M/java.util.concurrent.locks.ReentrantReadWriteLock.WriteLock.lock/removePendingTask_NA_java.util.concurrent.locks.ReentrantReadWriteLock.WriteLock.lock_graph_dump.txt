@@ -1,0 +1,5 @@
+Line_2 $$ private void removePendingTask(TaskInfo taskInfo) --> Line_3 $$ writeLock.lock() [CD]
+Line_5 $$ Priority priority = taskInfo.priority --> Line_6 $$ List<TaskInfo> taskInfoList = pendingTasks.get(priority) [FD]
+Line_6 $$ List<TaskInfo> taskInfoList = pendingTasks.get(priority) --> Line_7 $$ if (taskInfoList == null || taskInfoList.isEmpty() || !taskInfoList.remove(taskInfo)) [FD]
+Line_2 $$ private void removePendingTask(TaskInfo taskInfo) --> Line_7 $$ if (taskInfoList == null || taskInfoList.isEmpty() || !taskInfoList.remove(taskInfo)) [FD]
+Line_7 $$ if (taskInfoList == null || taskInfoList.isEmpty() || !taskInfoList.remove(taskInfo)) --> Line_8 $$ LOG.warn("Could not find task: " + taskInfo.task + " in pending list, at priority: " + priority) [CD]

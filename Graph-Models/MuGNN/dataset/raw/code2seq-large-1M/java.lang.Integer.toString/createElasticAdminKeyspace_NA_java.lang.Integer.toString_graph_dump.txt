@@ -1,0 +1,6 @@
+Line_4 $$ Map<String, String> replication = new HashMap<String, String>() --> Line_5 $$ replication.put("class", NetworkTopologyStrategy.class.getName()) [FD]
+Line_4 $$ Map<String, String> replication = new HashMap<String, String>() --> Line_6 $$ replication.put(DatabaseDescriptor.getLocalDataCenter(), Integer.toString(getLocalDataCenterSize())) [FD]
+Line_4 $$ Map<String, String> replication = new HashMap<String, String>() --> Line_7 $$ String createKeyspace = String.format(Locale.ROOT, "CREATE KEYSPACE IF NOT EXISTS \"%s\" WITH replication = %s;", elasticAdminKeyspaceName, FBUtilities.json(replication).replaceAll("\"", "'")) [FD]
+Line_7 $$ String createKeyspace = String.format(Locale.ROOT, "CREATE KEYSPACE IF NOT EXISTS \"%s\" WITH replication = %s;", elasticAdminKeyspaceName, FBUtilities.json(replication).replaceAll("\"", "'")) --> Line_8 $$ logger.info(createKeyspace) [FD]
+Line_7 $$ String createKeyspace = String.format(Locale.ROOT, "CREATE KEYSPACE IF NOT EXISTS \"%s\" WITH replication = %s;", elasticAdminKeyspaceName, FBUtilities.json(replication).replaceAll("\"", "'")) --> Line_9 $$ process(ConsistencyLevel.LOCAL_ONE, ClientState.forInternalCalls(), createKeyspace) [FD]
+Line_2 $$ Void createElasticAdminKeyspace() --> Line_14 $$ return null [CD]

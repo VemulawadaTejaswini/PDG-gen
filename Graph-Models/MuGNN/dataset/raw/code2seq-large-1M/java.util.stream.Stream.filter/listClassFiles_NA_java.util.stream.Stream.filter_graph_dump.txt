@@ -1,0 +1,7 @@
+Line_2 $$ void listClassFiles(Path path) --> Line_3 $$ try (Stream<Path> paths = Files.list(path).filter( filePath -> !filePath.endsWith("module-info.class"))) [FD]
+Line_7 $$ URL fileUrl = filePath.toUri().toURL() --> Line_8 $$ if (fileUrl.getFile().endsWith(".class")) [FD]
+Line_9 $$ InputStream is = Files.newInputStream(filePath) --> Line_10 $$ Entry entry = examineClassFile(is, fileUrl) [FD]
+Line_7 $$ URL fileUrl = filePath.toUri().toURL() --> Line_10 $$ Entry entry = examineClassFile(is, fileUrl) [FD]
+Line_12 $$ for (ClassListener listener : listeners) --> Line_13 $$ listener.scanComplete(entry) [FD]
+Line_5 $$ if (Files.isRegularFile(filePath)) --> Line_20 $$ if (Files.isDirectory(filePath)) [CD]
+Line_20 $$ if (Files.isDirectory(filePath)) --> Line_21 $$ listClassFiles(filePath) [CD]

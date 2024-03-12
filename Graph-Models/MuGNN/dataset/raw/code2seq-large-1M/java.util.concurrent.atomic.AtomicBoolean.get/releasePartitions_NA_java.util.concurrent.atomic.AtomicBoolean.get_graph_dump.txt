@@ -1,0 +1,7 @@
+Line_4 $$ if (!runningFlag.get() || isPaused()) --> Line_5 $$ if (LOGGER.isInfoEnabled()) [CD]
+Line_5 $$ if (LOGGER.isInfoEnabled()) --> Line_6 $$ LOGGER.info(m_config.getGroupId() + " is not runnable, no need to release partitions.") [CD]
+Line_4 $$ if (!runningFlag.get() || isPaused()) --> Line_7 $$ return false [CD]
+Line_2 $$ public boolean releasePartitions(String topic, int count) --> Line_9 $$ Set<Integer> toRelease = m_zkCoordinator.getToReleasePartitions(topic, count) [FD]
+Line_10 $$ if (LOGGER.isInfoEnabled()) --> Line_11 $$ LOGGER.info("Try to release " + count + " partitions for " + topic + " in rebalance.") [CD]
+Line_13 $$ TopicAndPartition key = new TopicAndPartition(topic, partition) --> Line_14 $$ PartitionReader preader = m_partitionMap.get(key) [FD]
+Line_14 $$ PartitionReader preader = m_partitionMap.get(key) --> Line_15 $$ preader.setToRelease() [FD]

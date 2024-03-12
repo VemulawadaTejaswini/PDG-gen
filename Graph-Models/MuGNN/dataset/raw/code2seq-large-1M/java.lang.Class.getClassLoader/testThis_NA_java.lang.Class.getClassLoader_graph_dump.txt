@@ -1,0 +1,4 @@
+Line_2 $$ public void testThis() throws Exception --> Line_3 $$ DynamicType.Loaded<Foo> loaded = new ByteBuddy().subclass(Foo.class).method(isDeclaredBy(Foo.class)).intercept(MethodDelegation.to(Bar.class)).make().load(Foo.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testThis() throws Exception --> Line_4 $$ Foo instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testThis() throws Exception --> Line_5 $$ assertThat(instance.foo(), is((Object) instance)) [CD]
+Line_4 $$ Foo instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(instance.foo(), is((Object) instance)) [FD]

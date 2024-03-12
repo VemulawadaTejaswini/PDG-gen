@@ -1,0 +1,6 @@
+Line_2 $$ public ExecutorService getBackendTaskExecutor() --> Line_3 $$ ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("BackendWorker" + "-%d").build() [CD]
+Line_2 $$ public ExecutorService getBackendTaskExecutor() --> Line_4 $$ int poolBufferSize = Math.max(configuration.getBackgroundWorkersQueueSize(), 1) [CD]
+Line_2 $$ public ExecutorService getBackendTaskExecutor() --> Line_5 $$ final ArrayBlockingQueue<Runnable> workQueue = new ArrayBlockingQueue(poolBufferSize) [CD]
+Line_2 $$ public ExecutorService getBackendTaskExecutor() --> Line_6 $$ if (!DefaultMetricRegistry.REGISTRY.getGauges().containsKey(MetricRegistry.name(ApiFeService.class, "work-queue"))) [CD]
+Line_5 $$ final ArrayBlockingQueue<Runnable> workQueue = new ArrayBlockingQueue(poolBufferSize) --> Line_7 $$ workQueue.size() [FD]
+Line_2 $$ public ExecutorService getBackendTaskExecutor() --> Line_9 $$ return new TaskCommandExecutorService(configuration.getBackgroundWorkers(), configuration.getBackgroundWorkers(), 0L, TimeUnit.MILLISECONDS, workQueue, threadFactory) [CD]

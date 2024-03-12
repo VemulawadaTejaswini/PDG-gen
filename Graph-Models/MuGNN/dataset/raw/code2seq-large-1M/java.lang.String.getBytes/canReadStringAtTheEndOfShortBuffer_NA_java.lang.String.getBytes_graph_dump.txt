@@ -1,0 +1,7 @@
+Line_2 $$ public void canReadStringAtTheEndOfShortBuffer() throws IOException, InterruptedException --> Line_3 $$ String largeString = "\"abcdefghijklmnopq\"" [CD]
+Line_2 $$ public void canReadStringAtTheEndOfShortBuffer() throws IOException, InterruptedException --> Line_4 $$ byte[] bytes = largeString.getBytes() [CD]
+Line_3 $$ String largeString = "\"abcdefghijklmnopq\"" --> Line_4 $$ byte[] bytes = largeString.getBytes() [FD]
+Line_2 $$ public void canReadStringAtTheEndOfShortBuffer() throws IOException, InterruptedException --> Line_5 $$ DslJson<Object> json = new DslJson<Object>() [CD]
+Line_5 $$ DslJson<Object> json = new DslJson<Object>() --> Line_7 $$ json.deserialize(String.class, bytes, bytes.length - 1) [FD]
+Line_4 $$ byte[] bytes = largeString.getBytes() --> Line_7 $$ json.deserialize(String.class, bytes, bytes.length - 1) [FD]
+Line_5 $$ DslJson<Object> json = new DslJson<Object>() --> Line_13 $$ json.deserialize(String.class, new ByteArrayInputStream(bytes, 0, bytes.length - 1), new byte[64]) [FD]

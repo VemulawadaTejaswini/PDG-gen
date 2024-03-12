@@ -1,0 +1,7 @@
+Line_2 $$ public Response refreshMetricConfigCache() --> Line_3 $$ final LoadingCache<MetricDataset, MetricConfigDTO> cache = CACHE_INSTANCE.getMetricConfigCache() [CD]
+Line_2 $$ public Response refreshMetricConfigCache() --> Line_4 $$ List<String> datasets = CACHE_INSTANCE.getDatasetsCache().getDatasets() [CD]
+Line_6 $$ EXECUTOR_SERVICE.submit(new Runnable() --> Line_8 $$ List<MetricConfigDTO> metricConfigs = DAO_REGISTRY.getMetricConfigDAO().findByDataset(dataset) [CD]
+Line_5 $$ for (final String dataset : datasets) --> Line_8 $$ List<MetricConfigDTO> metricConfigs = DAO_REGISTRY.getMetricConfigDAO().findByDataset(dataset) [FD]
+Line_3 $$ final LoadingCache<MetricDataset, MetricConfigDTO> cache = CACHE_INSTANCE.getMetricConfigCache() --> Line_10 $$ cache.refresh(new MetricDataset(metricConfig.getName(), metricConfig.getDataset())) [FD]
+Line_9 $$ for (MetricConfigDTO metricConfig : metricConfigs) --> Line_10 $$ cache.refresh(new MetricDataset(metricConfig.getName(), metricConfig.getDataset())) [FD]
+Line_2 $$ public Response refreshMetricConfigCache() --> Line_15 $$ return Response.ok().build() [CD]

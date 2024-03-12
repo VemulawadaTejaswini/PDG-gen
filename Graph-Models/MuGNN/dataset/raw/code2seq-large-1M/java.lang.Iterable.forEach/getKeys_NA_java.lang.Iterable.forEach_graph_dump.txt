@@ -1,0 +1,7 @@
+Line_2 $$ public Set<String> getKeys(boolean child) --> Line_3 $$ Set<String> keys = new LinkedHashSet() [CD]
+Line_2 $$ public Set<String> getKeys(boolean child) --> Line_4 $$ this.entrySet().forEach( entry -> [CD]
+Line_3 $$ Set<String> keys = new LinkedHashSet() --> Line_5 $$ keys.add(entry.getKey()) [FD]
+Line_6 $$ if (entry.getValue() instanceof ConfigSection) --> Line_7 $$ if (child) [CD]
+Line_7 $$ if (child) --> Line_8 $$ ((ConfigSection) entry.getValue()).getKeys(true).forEach( childKey -> keys.add(entry.getKey() + "." + childKey)) [CD]
+Line_3 $$ Set<String> keys = new LinkedHashSet() --> Line_8 $$ ((ConfigSection) entry.getValue()).getKeys(true).forEach( childKey -> keys.add(entry.getKey() + "." + childKey)) [FD]
+Line_2 $$ public Set<String> getKeys(boolean child) --> Line_11 $$ return keys [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ public static Map<String, String> readMetaDataFile(final File directory, final String rrdName) --> Line_3 $$ final File metaFile = new File(directory + File.separator + rrdName + ".meta") [CD]
+Line_3 $$ final File metaFile = new File(directory + File.separator + rrdName + ".meta") --> Line_5 $$ final Properties props = s_cache.getProperties(metaFile) [FD]
+Line_5 $$ final Properties props = s_cache.getProperties(metaFile) --> Line_7 $$ for (final Map.Entry<Object, Object> entry : props.entrySet()) [FD]
+Line_6 $$ final Map<String, String> ret = new HashMap<String, String>() --> Line_9 $$ ret.put(entry.getKey().toString(), value == null ? null : value.toString()) [FD]
+Line_8 $$ final Object value = entry.getValue() --> Line_9 $$ ret.put(entry.getKey().toString(), value == null ? null : value.toString()) [FD]
+Line_3 $$ final File metaFile = new File(directory + File.separator + rrdName + ".meta") --> Line_13 $$ LOG.warn("Failed to retrieve metadata from [FD]
+Line_2 $$ public static Map<String, String> readMetaDataFile(final File directory, final String rrdName) --> Line_15 $$ return Collections.emptyMap() [CD]

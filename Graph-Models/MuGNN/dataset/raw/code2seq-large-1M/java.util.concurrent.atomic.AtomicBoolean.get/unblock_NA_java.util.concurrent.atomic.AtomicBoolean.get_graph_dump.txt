@@ -1,0 +1,7 @@
+Line_2 $$ private final void unblock() --> Line_3 $$ if (this.canceled == false && this.abortInvoked.get() == false) [CD]
+Line_3 $$ if (this.canceled == false && this.abortInvoked.get() == false) --> Line_4 $$ if (this.unblockInvoked.compareAndSet(false, true)) [CD]
+Line_4 $$ if (this.unblockInvoked.compareAndSet(false, true)) --> Line_5 $$ if (debug.val) [CD]
+Line_5 $$ if (debug.val) --> Line_6 $$ LOG.debug(String.format("%s - Invoking %s.unblockCallback() [hashCode=%d]", this.ts, this.getClass().getSimpleName(), this.hashCode())) [CD]
+Line_4 $$ if (this.unblockInvoked.compareAndSet(false, true)) --> Line_7 $$ this.unblockCallback() [CD]
+Line_4 $$ if (this.unblockInvoked.compareAndSet(false, true)) --> Line_8 $$ this.unblockFinished = true [CD]
+Line_4 $$ if (this.unblockInvoked.compareAndSet(false, true)) --> Line_10 $$ String msg = String.format("%s - Tried to invoke %s.unblockCallback() twice [hashCode=%d]", this.ts, this.getClass().getSimpleName(), this.hashCode()) [CD]

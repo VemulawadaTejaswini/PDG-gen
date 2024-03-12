@@ -1,0 +1,7 @@
+Line_4 $$ String toHash = knownHash.getKey() --> Line_8 $$ byte[] bytesToHash = toHash.getBytes(StandardCharsets.UTF_8) [FD]
+Line_9 $$ InputStream toHashInputStream = new ByteArrayInputStream(bytesToHash) --> Line_10 $$ ByteStreams.copy(toHashInputStream, countingDigestOutputStream) [FD]
+Line_7 $$ CountingDigestOutputStream countingDigestOutputStream = new CountingDigestOutputStream(underlyingOutputStream) --> Line_10 $$ ByteStreams.copy(toHashInputStream, countingDigestOutputStream) [FD]
+Line_5 $$ String expectedHash = knownHash.getValue() --> Line_11 $$ BlobDescriptor expectedBlobDescriptor = new BlobDescriptor(bytesToHash.length, DescriptorDigest.fromHash(expectedHash)) [FD]
+Line_11 $$ BlobDescriptor expectedBlobDescriptor = new BlobDescriptor(bytesToHash.length, DescriptorDigest.fromHash(expectedHash)) --> Line_12 $$ Assert.assertEquals(expectedBlobDescriptor, countingDigestOutputStream.toBlobDescriptor()) [FD]
+Line_7 $$ CountingDigestOutputStream countingDigestOutputStream = new CountingDigestOutputStream(underlyingOutputStream) --> Line_12 $$ Assert.assertEquals(expectedBlobDescriptor, countingDigestOutputStream.toBlobDescriptor()) [FD]
+Line_7 $$ CountingDigestOutputStream countingDigestOutputStream = new CountingDigestOutputStream(underlyingOutputStream) --> Line_13 $$ Assert.assertEquals(bytesToHash.length, countingDigestOutputStream.getTotalBytes()) [FD]

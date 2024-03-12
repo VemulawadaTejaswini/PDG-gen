@@ -1,0 +1,5 @@
+Line_2 $$ protected void doPublish() --> Line_3 $$ publisher.setName(nameSocket.getValue().get()) [CD]
+Line_2 $$ protected void doPublish() --> Line_4 $$ D data = dataSocket.getValue().get() [CD]
+Line_2 $$ protected void doPublish() --> Line_5 $$ Map<String, Object> dataMap = valueMethodStream().map( m -> Pair.of(m.getAnnotation(PublishValue.class).key(), get(m, converter.apply(data)))).collect(Collectors.toMap(Pair::<>getLeft, Pair::<>getRight)) [CD]
+Line_4 $$ D data = dataSocket.getValue().get() --> Line_5 $$ Map<String, Object> dataMap = valueMethodStream().map( m -> Pair.of(m.getAnnotation(PublishValue.class).key(), get(m, converter.apply(data)))).collect(Collectors.toMap(Pair::<>getLeft, Pair::<>getRight)) [FD]
+Line_2 $$ protected void doPublish() --> Line_6 $$ publisher.publish(dataMap) [CD]

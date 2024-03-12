@@ -1,0 +1,6 @@
+Line_4 $$ SecurityContext secContext = SecurityContext.getCurrent() --> Line_5 $$ Set ps = secContext.getPrincipalSet() [FD]
+Line_6 $$ for (Object principal : ps) --> Line_7 $$ if (principal instanceof Group) [FD]
+Line_7 $$ if (principal instanceof Group) --> Line_8 $$ Group group = (Group) principal [CD]
+Line_7 $$ if (principal instanceof Group) --> Line_9 $$ if (group.getName().equals(AdminConstants.DOMAIN_ADMIN_GROUP_NAME)) [CD]
+Line_8 $$ Group group = (Group) principal --> Line_9 $$ if (group.getName().equals(AdminConstants.DOMAIN_ADMIN_GROUP_NAME)) [FD]
+Line_9 $$ if (group.getName().equals(AdminConstants.DOMAIN_ADMIN_GROUP_NAME)) --> Line_10 $$ return true [CD]

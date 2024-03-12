@@ -1,0 +1,7 @@
+Line_2 $$ static Map<String, Object> augmentPathProperty(Map<String, Object> properties, File rcaConfig) --> Line_3 $$ for (Map.Entry<String, Object> entry : properties.entrySet()) [FD]
+Line_4 $$ if ((entry.getKey().equals(PROP_PATH) || entry.getKey().endsWith(PROP_PATH_POSTFIX)) && entry.getValue() instanceof String) --> Line_5 $$ File path = new File(entry.getValue().toString()) [CD]
+Line_4 $$ if ((entry.getKey().equals(PROP_PATH) || entry.getKey().endsWith(PROP_PATH_POSTFIX)) && entry.getValue() instanceof String) --> Line_6 $$ if (!path.isAbsolute()) [CD]
+Line_5 $$ File path = new File(entry.getValue().toString()) --> Line_6 $$ if (!path.isAbsolute()) [FD]
+Line_6 $$ if (!path.isAbsolute()) --> Line_7 $$ properties.put(entry.getKey(), rcaConfig.getParent() + File.separator + path) [CD]
+Line_2 $$ static Map<String, Object> augmentPathProperty(Map<String, Object> properties, File rcaConfig) --> Line_7 $$ properties.put(entry.getKey(), rcaConfig.getParent() + File.separator + path) [FD]
+Line_2 $$ static Map<String, Object> augmentPathProperty(Map<String, Object> properties, File rcaConfig) --> Line_11 $$ return properties [CD]

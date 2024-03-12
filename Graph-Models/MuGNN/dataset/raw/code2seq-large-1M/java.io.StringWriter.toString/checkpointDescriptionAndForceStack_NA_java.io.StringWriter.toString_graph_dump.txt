@@ -1,0 +1,8 @@
+Line_2 $$ public void checkpointDescriptionAndForceStack() --> Line_3 $$ StringWriter sw = new StringWriter() [CD]
+Line_2 $$ public void checkpointDescriptionAndForceStack() --> Line_4 $$ Flux<Integer> tested = Flux.range(1, 10).map( i -> i < 3 ? i : null).filter( i -> i % 2 == 0).checkpoint("foo", true).doOnError( t -> t.printStackTrace(new PrintWriter(sw))) [CD]
+Line_2 $$ public void checkpointDescriptionAndForceStack() --> Line_5 $$ StepVerifier.create(tested).expectNext(2).verifyError() [CD]
+Line_4 $$ Flux<Integer> tested = Flux.range(1, 10).map( i -> i < 3 ? i : null).filter( i -> i % 2 == 0).checkpoint("foo", true).doOnError( t -> t.printStackTrace(new PrintWriter(sw))) --> Line_5 $$ StepVerifier.create(tested).expectNext(2).verifyError() [FD]
+Line_2 $$ public void checkpointDescriptionAndForceStack() --> Line_6 $$ String debugStack = sw.toString() [CD]
+Line_3 $$ StringWriter sw = new StringWriter() --> Line_6 $$ String debugStack = sw.toString() [FD]
+Line_2 $$ public void checkpointDescriptionAndForceStack() --> Line_7 $$ assertThat(debugStack).contains("Assembly trace from producer [reactor.core.publisher.FluxFilterFuseable], described as [foo] :") [CD]
+Line_6 $$ String debugStack = sw.toString() --> Line_7 $$ assertThat(debugStack).contains("Assembly trace from producer [reactor.core.publisher.FluxFilterFuseable], described as [foo] :") [FD]

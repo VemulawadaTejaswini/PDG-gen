@@ -1,0 +1,7 @@
+Line_2 $$ public static ApiException tfaRequired() --> Line_3 $$ final ErrorEnvelope envelope = ErrorEnvelope.builder().ksrCode(ErrorEnvelope.TFA_REQUIRED).httpCode(403).errorMessages(Collections.singletonList("Two-factor authentication required.")).build() [CD]
+Line_2 $$ public static ApiException tfaRequired() --> Line_4 $$ final ResponseBody body = ResponseBody.create(null, new Gson().toJson(envelope)) [CD]
+Line_3 $$ final ErrorEnvelope envelope = ErrorEnvelope.builder().ksrCode(ErrorEnvelope.TFA_REQUIRED).httpCode(403).errorMessages(Collections.singletonList("Two-factor authentication required.")).build() --> Line_4 $$ final ResponseBody body = ResponseBody.create(null, new Gson().toJson(envelope)) [FD]
+Line_2 $$ public static ApiException tfaRequired() --> Line_5 $$ final retrofit2.Response<Observable<User>> response = retrofit2.Response.error(envelope.httpCode(), body) [CD]
+Line_4 $$ final ResponseBody body = ResponseBody.create(null, new Gson().toJson(envelope)) --> Line_5 $$ final retrofit2.Response<Observable<User>> response = retrofit2.Response.error(envelope.httpCode(), body) [FD]
+Line_3 $$ final ErrorEnvelope envelope = ErrorEnvelope.builder().ksrCode(ErrorEnvelope.TFA_REQUIRED).httpCode(403).errorMessages(Collections.singletonList("Two-factor authentication required.")).build() --> Line_5 $$ final retrofit2.Response<Observable<User>> response = retrofit2.Response.error(envelope.httpCode(), body) [FD]
+Line_2 $$ public static ApiException tfaRequired() --> Line_6 $$ return new ApiException(envelope, response) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void rebuildAllPath() --> Line_3 $$ final List<Category> categories = this.getAll() [CD]
+Line_2 $$ public void rebuildAllPath() --> Line_4 $$ final List<Category> roots = categories.stream().filter( cate -> cate.getParentId().equals(0)).collect(Collectors.toList()) [CD]
+Line_3 $$ final List<Category> categories = this.getAll() --> Line_4 $$ final List<Category> roots = categories.stream().filter( cate -> cate.getParentId().equals(0)).collect(Collectors.toList()) [FD]
+Line_5 $$ for (final Category root : roots) --> Line_6 $$ root.setPath(root.getId().toString()) [FD]
+Line_3 $$ final List<Category> categories = this.getAll() --> Line_7 $$ this.rebuildPath(categories, root) [FD]
+Line_5 $$ for (final Category root : roots) --> Line_7 $$ this.rebuildPath(categories, root) [FD]
+Line_2 $$ public void rebuildAllPath() --> Line_9 $$ this.dao.batchUpdate(categories) [CD]
+Line_3 $$ final List<Category> categories = this.getAll() --> Line_9 $$ this.dao.batchUpdate(categories) [FD]

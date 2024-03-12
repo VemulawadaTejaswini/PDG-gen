@@ -1,0 +1,6 @@
+Line_2 $$ private void deleteScheduledActions(final JpaRollout rollout, final Slice<JpaAction> scheduledActions) --> Line_3 $$ final boolean hasScheduledActions = scheduledActions.getNumberOfElements() > 0 [CD]
+Line_2 $$ private void deleteScheduledActions(final JpaRollout rollout, final Slice<JpaAction> scheduledActions) --> Line_3 $$ final boolean hasScheduledActions = scheduledActions.getNumberOfElements() > 0 [FD]
+Line_2 $$ private void deleteScheduledActions(final JpaRollout rollout, final Slice<JpaAction> scheduledActions) --> Line_4 $$ if (hasScheduledActions) [CD]
+Line_6 $$ final Iterable<JpaAction> iterable = scheduledActions::<>iterator --> Line_7 $$ final List<Long> actionIds = StreamSupport.stream(iterable.spliterator(), false).map(Action::<>getId).collect(Collectors.toList()) [FD]
+Line_7 $$ final List<Long> actionIds = StreamSupport.stream(iterable.spliterator(), false).map(Action::<>getId).collect(Collectors.toList()) --> Line_8 $$ actionRepository.deleteByIdIn(actionIds) [FD]
+Line_2 $$ private void deleteScheduledActions(final JpaRollout rollout, final Slice<JpaAction> scheduledActions) --> Line_11 $$ LOGGER.error("Exception during deletion of actions of rollout [FD]

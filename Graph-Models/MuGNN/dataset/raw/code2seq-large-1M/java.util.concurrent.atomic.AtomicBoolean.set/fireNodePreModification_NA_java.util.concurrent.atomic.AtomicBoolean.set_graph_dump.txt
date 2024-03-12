@@ -1,0 +1,8 @@
+Line_2 $$ boolean fireNodePreModification(NodeInfoImpl old, NodeInfoImpl curr) --> Line_3 $$ AtomicBoolean cancel = new AtomicBoolean(false) [CD]
+Line_2 $$ boolean fireNodePreModification(NodeInfoImpl old, NodeInfoImpl curr) --> Line_4 $$ NodeEvent ne = NodeEvent.builder().canceller(() -> cancel.set(true)).action(NodeEvent.Action.PRE_UPDATE).old(old).current(curr).build() [FD]
+Line_2 $$ boolean fireNodePreModification(NodeInfoImpl old, NodeInfoImpl curr) --> Line_4 $$ NodeEvent ne = NodeEvent.builder().canceller(() -> cancel.set(true)).action(NodeEvent.Action.PRE_UPDATE).old(old).current(curr).build() [CD]
+Line_3 $$ AtomicBoolean cancel = new AtomicBoolean(false) --> Line_4 $$ NodeEvent ne = NodeEvent.builder().canceller(() -> cancel.set(true)).action(NodeEvent.Action.PRE_UPDATE).old(old).current(curr).build() [FD]
+Line_2 $$ boolean fireNodePreModification(NodeInfoImpl old, NodeInfoImpl curr) --> Line_5 $$ fireNodeEventSync(ne) [CD]
+Line_4 $$ NodeEvent ne = NodeEvent.builder().canceller(() -> cancel.set(true)).action(NodeEvent.Action.PRE_UPDATE).old(old).current(curr).build() --> Line_5 $$ fireNodeEventSync(ne) [FD]
+Line_2 $$ boolean fireNodePreModification(NodeInfoImpl old, NodeInfoImpl curr) --> Line_6 $$ return cancel.get() [CD]
+Line_3 $$ AtomicBoolean cancel = new AtomicBoolean(false) --> Line_6 $$ return cancel.get() [FD]

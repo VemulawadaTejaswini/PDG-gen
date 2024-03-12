@@ -1,0 +1,6 @@
+Line_2 $$ protected void onCharacteristicWrite(final BluetoothGatt gatt, final BluetoothGattCharacteristic characteristic) --> Line_3 $$ final byte[] buffer = mOutgoingBuffer [CD]
+Line_2 $$ protected void onCharacteristicWrite(final BluetoothGatt gatt, final BluetoothGattCharacteristic characteristic) --> Line_4 $$ if (mBufferOffset == buffer.length) [CD]
+Line_4 $$ if (mBufferOffset == buffer.length) --> Line_7 $$ final int length = Math.min(buffer.length - mBufferOffset, MAX_PACKET_SIZE) [CD]
+Line_4 $$ if (mBufferOffset == buffer.length) --> Line_8 $$ getApi().enqueue(BleProfileApi.Request.newWriteRequest(mRXCharacteristic, buffer, mBufferOffset, length)) [CD]
+Line_3 $$ final byte[] buffer = mOutgoingBuffer --> Line_8 $$ getApi().enqueue(BleProfileApi.Request.newWriteRequest(mRXCharacteristic, buffer, mBufferOffset, length)) [FD]
+Line_7 $$ final int length = Math.min(buffer.length - mBufferOffset, MAX_PACKET_SIZE) --> Line_8 $$ getApi().enqueue(BleProfileApi.Request.newWriteRequest(mRXCharacteristic, buffer, mBufferOffset, length)) [FD]

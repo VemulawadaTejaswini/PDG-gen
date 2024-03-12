@@ -1,0 +1,8 @@
+Line_2 $$ private <T> void callPostDeserializeMethods(T object, Class<?> clazz) throws SerializationException --> Line_3 $$ Class<?> currentClass = clazz [CD]
+Line_2 $$ private <T> void callPostDeserializeMethods(T object, Class<?> clazz) throws SerializationException --> Line_4 $$ while (currentClass != null && !currentClass.equals(Object.class)) [CD]
+Line_3 $$ Class<?> currentClass = clazz --> Line_4 $$ while (currentClass != null && !currentClass.equals(Object.class)) [FD]
+Line_3 $$ Class<?> currentClass = clazz --> Line_5 $$ for (Method method : ClassReflection.getDeclaredMethods(currentClass)) [FD]
+Line_5 $$ for (Method method : ClassReflection.getDeclaredMethods(currentClass)) --> Line_6 $$ if (method.isAnnotationPresent(PostDeserialize.class)) [FD]
+Line_5 $$ for (Method method : ClassReflection.getDeclaredMethods(currentClass)) --> Line_8 $$ method.invoke(object) [FD]
+Line_2 $$ private <T> void callPostDeserializeMethods(T object, Class<?> clazz) throws SerializationException --> Line_8 $$ method.invoke(object) [FD]
+Line_3 $$ Class<?> currentClass = clazz --> Line_14 $$ currentClass = currentClass.getSuperclass() [FD]

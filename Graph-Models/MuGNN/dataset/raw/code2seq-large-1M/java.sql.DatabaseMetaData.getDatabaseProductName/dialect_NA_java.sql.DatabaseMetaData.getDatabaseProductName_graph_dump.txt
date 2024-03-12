@@ -1,0 +1,7 @@
+Line_2 $$ private DatabaseMetadataDialect dialect(Connection conn) --> Line_4 $$ String dbProductName = conn.getMetaData().getDatabaseProductName() [FD]
+Line_4 $$ String dbProductName = conn.getMetaData().getDatabaseProductName() --> Line_5 $$ if ("Oracle".equals(dbProductName)) [FD]
+Line_5 $$ if ("Oracle".equals(dbProductName)) --> Line_6 $$ return new OracleMetadataDialect() [CD]
+Line_4 $$ String dbProductName = conn.getMetaData().getDatabaseProductName() --> Line_7 $$ if (dbProductName.startsWith("DB2/")) [FD]
+Line_7 $$ if (dbProductName.startsWith("DB2/")) --> Line_8 $$ return new DB2MetadataDialect() [CD]
+Line_4 $$ String dbProductName = conn.getMetaData().getDatabaseProductName() --> Line_9 $$ if ("MySQL".equals(dbProductName)) [FD]
+Line_9 $$ if ("MySQL".equals(dbProductName)) --> Line_10 $$ return new MySQLMetadataDialect() [CD]

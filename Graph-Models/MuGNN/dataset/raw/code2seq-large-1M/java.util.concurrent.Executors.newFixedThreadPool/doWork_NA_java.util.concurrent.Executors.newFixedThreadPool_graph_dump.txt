@@ -1,0 +1,8 @@
+Line_8 $$ for (int i = 0; i < numThreads; i++) --> Line_9 $$ futures[i] = executor.submit(new Worker(start)) [CD]
+Line_5 $$ ExecutorService executor = Executors.newFixedThreadPool(numThreads) --> Line_9 $$ futures[i] = executor.submit(new Worker(start)) [FD]
+Line_11 $$ boolean failure = false --> Line_15 $$ failure |= (future.get(timeout, TimeUnit.MILLISECONDS).equals(EXIT_FAILURE)) [FD]
+Line_13 $$ for (Future<?> future : futures) --> Line_15 $$ failure |= (future.get(timeout, TimeUnit.MILLISECONDS).equals(EXIT_FAILURE)) [FD]
+Line_14 $$ long timeout = start + WORKER_THREADS_TIMEOUT_SEC * 1000 - System.currentTimeMillis() --> Line_15 $$ failure |= (future.get(timeout, TimeUnit.MILLISECONDS).equals(EXIT_FAILURE)) [FD]
+Line_5 $$ ExecutorService executor = Executors.newFixedThreadPool(numThreads) --> Line_22 $$ executor.shutdown() [FD]
+Line_23 $$ if (failure) --> Line_24 $$ return EXIT_FAILURE [CD]
+Line_26 $$ long timeTaken = System.currentTimeMillis() - start --> Line_34 $$ System.out.println(String.format("RESULT [%s=%s, %s=%s, %s=%s, %s=%s, %s=%s, " + "total_time_ms=%s]", NUM_PROCS_OPTION.getOpt(), numProcs, STATE_SIZE_OPTION.getOpt(), stateSize, SYNC_OPTION.getOpt(), syncType, NUM_THREADS_OPTION.getOpt(), numThreads, NUM_WALS_OPTION.getOpt(), numWals, timeTaken)) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public void prefetchMaxTranslatesToUnboundedRequest() --> Line_3 $$ AtomicLong requested = new AtomicLong() [CD]
+Line_2 $$ public void prefetchMaxTranslatesToUnboundedRequest() --> Line_4 $$ StepVerifier.create(Flux.just(1, 2, 3).hide().doOnRequest(requested::<>set).concatMap( i -> Flux.range(0, i), Integer.MAX_VALUE)).expectNext(0, 0, 1, 0, 1, 2).verifyComplete() [CD]
+Line_2 $$ public void prefetchMaxTranslatesToUnboundedRequest() --> Line_5 $$ assertThat(requested.get()).isNotEqualTo(Integer.MAX_VALUE).isEqualTo(Long.MAX_VALUE) [CD]
+Line_3 $$ AtomicLong requested = new AtomicLong() --> Line_5 $$ assertThat(requested.get()).isNotEqualTo(Integer.MAX_VALUE).isEqualTo(Long.MAX_VALUE) [FD]

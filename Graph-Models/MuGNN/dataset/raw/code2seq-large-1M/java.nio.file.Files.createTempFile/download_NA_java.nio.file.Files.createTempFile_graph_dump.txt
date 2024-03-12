@@ -1,0 +1,7 @@
+Line_2 $$ protected File download(Exception previousExceptionNotUsed) throws Exception --> Line_3 $$ URL url = createUrl(getUrl()) [CD]
+Line_2 $$ protected File download(Exception previousExceptionNotUsed) throws Exception --> Line_4 $$ Path path = Files.createTempFile("download-", null) [CD]
+Line_3 $$ URL url = createUrl(getUrl()) --> Line_5 $$ try (InputStream is = url.openStream()) [FD]
+Line_5 $$ try (InputStream is = url.openStream()) --> Line_6 $$ Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_4 $$ Path path = Files.createTempFile("download-", null) --> Line_6 $$ Files.copy(is, path, StandardCopyOption.REPLACE_EXISTING) [FD]
+Line_2 $$ protected File download(Exception previousExceptionNotUsed) throws Exception --> Line_8 $$ return path.toFile() [CD]
+Line_4 $$ Path path = Files.createTempFile("download-", null) --> Line_8 $$ return path.toFile() [FD]

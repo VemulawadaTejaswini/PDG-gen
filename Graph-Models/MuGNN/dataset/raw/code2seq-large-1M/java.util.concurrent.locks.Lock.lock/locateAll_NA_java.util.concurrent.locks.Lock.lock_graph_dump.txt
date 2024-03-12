@@ -1,0 +1,8 @@
+Line_2 $$ public static <T> List<Class<? extends T>> locateAll(Class<T> factoryClass, String factoryId) --> Line_3 $$ LOCK.readLock().lock() [CD]
+Line_2 $$ public static <T> List<Class<? extends T>> locateAll(Class<T> factoryClass, String factoryId) --> Line_6 $$ List<Callable<Class>> l = FACTORIES.get(factoryId) [FD]
+Line_6 $$ List<Callable<Class>> l = FACTORIES.get(factoryId) --> Line_7 $$ if (l != null) [FD]
+Line_8 $$ for (Callable<Class> i : l) --> Line_10 $$ Class c = i.call() [FD]
+Line_2 $$ public static <T> List<Class<? extends T>> locateAll(Class<T> factoryClass, String factoryId) --> Line_11 $$ if (c != null && factoryClass.isAssignableFrom(c)) [FD]
+Line_10 $$ Class c = i.call() --> Line_11 $$ if (c != null && factoryClass.isAssignableFrom(c)) [FD]
+Line_11 $$ if (c != null && factoryClass.isAssignableFrom(c)) --> Line_12 $$ classes.add(c) [CD]
+Line_10 $$ Class c = i.call() --> Line_12 $$ classes.add(c) [FD]

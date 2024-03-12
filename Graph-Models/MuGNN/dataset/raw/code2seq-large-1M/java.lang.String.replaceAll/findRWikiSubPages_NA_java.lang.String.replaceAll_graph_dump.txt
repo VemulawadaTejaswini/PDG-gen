@@ -1,0 +1,5 @@
+Line_2 $$ public List findRWikiSubPages(final String globalParentPageName) --> Line_3 $$ HibernateCallback<List> callback =  session -> [CD]
+Line_2 $$ public List findRWikiSubPages(final String globalParentPageName) --> Line_4 $$ String search = globalParentPageName.replaceAll("([A%_])", "A$1") [FD]
+Line_4 $$ String search = globalParentPageName.replaceAll("([A%_])", "A$1") --> Line_5 $$ return session.createQuery("from RWikiCurrentObjectImpl as r where r.name like concat( :search , '%' ) escape 'A' order by name asc").setString("search", search).list() [FD]
+Line_2 $$ public List findRWikiSubPages(final String globalParentPageName) --> Line_7 $$ return new ListProxy(getHibernateTemplate().execute(callback), this) [CD]
+Line_3 $$ HibernateCallback<List> callback =  session -> --> Line_7 $$ return new ListProxy(getHibernateTemplate().execute(callback), this) [FD]

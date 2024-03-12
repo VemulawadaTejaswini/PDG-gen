@@ -1,0 +1,6 @@
+Line_2 $$ private int getPacketLength() throws IOException --> Line_3 $$ readIntoBuffer(lenBuf, 0, lenBuf.length) [CD]
+Line_2 $$ private int getPacketLength() throws IOException --> Line_4 $$ final long len = (lenBuf[0] << 24 & 0xff000000L | lenBuf[1] << 16 & 0x00ff0000L | lenBuf[2] << 8 & 0x0000ff00L | lenBuf[3] & 0x000000ffL) [CD]
+Line_2 $$ private int getPacketLength() throws IOException --> Line_5 $$ if (len > SFTPPacket.MAX_SIZE) [CD]
+Line_4 $$ final long len = (lenBuf[0] << 24 & 0xff000000L | lenBuf[1] << 16 & 0x00ff0000L | lenBuf[2] << 8 & 0x0000ff00L | lenBuf[3] & 0x000000ffL) --> Line_5 $$ if (len > SFTPPacket.MAX_SIZE) [FD]
+Line_4 $$ final long len = (lenBuf[0] << 24 & 0xff000000L | lenBuf[1] << 16 & 0x00ff0000L | lenBuf[2] << 8 & 0x0000ff00L | lenBuf[3] & 0x000000ffL) --> Line_6 $$ throw new SSHException(String.format("Indicated packet length %d too large", len)) [FD]
+Line_2 $$ private int getPacketLength() throws IOException --> Line_8 $$ return (int) len [CD]

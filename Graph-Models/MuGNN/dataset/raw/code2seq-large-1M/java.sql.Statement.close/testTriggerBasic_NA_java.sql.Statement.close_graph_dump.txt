@@ -1,0 +1,8 @@
+Line_2 $$ public void testTriggerBasic() throws SQLException --> Line_3 $$ Statement s = createStatement() [CD]
+Line_3 $$ Statement s = createStatement() --> Line_6 $$ s.executeUpdate("CREATE TABLE Trigger_t1 " + "(c1 INTEGER NOT NULL GENERATED ALWAYS " + "AS IDENTITY (START WITH 1, INCREMENT BY 1), " + "max_size INTEGER NOT NULL, " + "CONSTRAINT c1_pk PRIMARY KEY (c1))") [FD]
+Line_3 $$ Statement s = createStatement() --> Line_7 $$ s.executeUpdate("CREATE TABLE Trigger_t2 " + "(c1 INTEGER DEFAULT 0 NOT NULL)") [FD]
+Line_3 $$ Statement s = createStatement() --> Line_8 $$ s.executeUpdate("CREATE TRIGGER gls_blt_trg " + "AFTER INSERT ON Trigger_t1 FOR EACH ROW MODE DB2SQL " + "INSERT INTO Trigger_t2(c1) " + "VALUES ( (select max(c1) from Trigger_t1))") [FD]
+Line_3 $$ Statement s = createStatement() --> Line_9 $$ s.executeUpdate("INSERT INTO Trigger_t1(max_size) " + "VALUES(20)") [FD]
+Line_3 $$ Statement s = createStatement() --> Line_14 $$ s.executeUpdate("INSERT INTO Trigger_t1(max_size) " + "VALUES(20)") [FD]
+Line_2 $$ public void testTriggerBasic() throws SQLException --> Line_17 $$ s.close() [CD]
+Line_3 $$ Statement s = createStatement() --> Line_17 $$ s.close() [FD]

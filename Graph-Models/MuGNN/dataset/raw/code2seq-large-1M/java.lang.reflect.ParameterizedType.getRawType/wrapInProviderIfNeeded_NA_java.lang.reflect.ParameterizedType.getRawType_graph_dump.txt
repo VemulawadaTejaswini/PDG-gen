@@ -1,0 +1,7 @@
+Line_2 $$ public static Object wrapInProviderIfNeeded(@Nonnull Type type, @Nonnull final Object value) --> Line_3 $$ if (INJECT_CLASS != null && type instanceof ParameterizedType && !(value instanceof Provider)) [CD]
+Line_3 $$ if (INJECT_CLASS != null && type instanceof ParameterizedType && !(value instanceof Provider)) --> Line_4 $$ Type parameterizedType = ((ParameterizedType) type).getRawType() [CD]
+Line_3 $$ if (INJECT_CLASS != null && type instanceof ParameterizedType && !(value instanceof Provider)) --> Line_5 $$ if (parameterizedType == Provider.class) [CD]
+Line_4 $$ Type parameterizedType = ((ParameterizedType) type).getRawType() --> Line_5 $$ if (parameterizedType == Provider.class) [FD]
+Line_6 $$ return new Provider<Object>() --> Line_8 $$ return value [CD]
+Line_3 $$ if (INJECT_CLASS != null && type instanceof ParameterizedType && !(value instanceof Provider)) --> Line_12 $$ if (INSTANCE_CLASS != null && parameterizedType == Instance.class) [CD]
+Line_2 $$ public static Object wrapInProviderIfNeeded(@Nonnull Type type, @Nonnull final Object value) --> Line_17 $$ return value [CD]

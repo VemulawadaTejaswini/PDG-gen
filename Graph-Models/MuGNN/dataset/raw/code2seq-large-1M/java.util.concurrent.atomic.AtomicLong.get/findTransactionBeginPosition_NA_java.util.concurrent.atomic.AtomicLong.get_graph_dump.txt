@@ -1,0 +1,8 @@
+Line_5 $$ mysqlConnection.seek(entryPosition.getJournalName(), 4L, new SinkFunction<LogEvent>() --> Line_9 $$ CanalEntry.Entry entry = parseAndProfilingIfNecessary(event, true) [FD]
+Line_10 $$ if (entry == null) --> Line_11 $$ return true [CD]
+Line_3 $$ final AtomicLong preTransactionStartPosition = new AtomicLong(0L) --> Line_14 $$ preTransactionStartPosition.set(entry.getHeader().getLogfileOffset()) [FD]
+Line_16 $$ if (entry.getHeader().getLogfileOffset() >= entryPosition.getPosition()) --> Line_17 $$ return false [CD]
+Line_5 $$ mysqlConnection.seek(entryPosition.getJournalName(), 4L, new SinkFunction<LogEvent>() --> Line_24 $$ return running [CD]
+Line_3 $$ final AtomicLong preTransactionStartPosition = new AtomicLong(0L) --> Line_27 $$ if (preTransactionStartPosition.get() > entryPosition.getPosition()) [FD]
+Line_27 $$ if (preTransactionStartPosition.get() > entryPosition.getPosition()) --> Line_28 $$ logger.error("preTransactionEndPosition greater than startPosition from zk or localconf, maybe lost data") [CD]
+Line_3 $$ final AtomicLong preTransactionStartPosition = new AtomicLong(0L) --> Line_31 $$ return preTransactionStartPosition.get() [FD]

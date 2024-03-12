@@ -1,0 +1,8 @@
+Line_2 $$ public void testXaRollbackBeforeDb() throws Exception --> Line_3 $$ assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric")) [CD]
+Line_2 $$ public void testXaRollbackBeforeDb() throws Exception --> Line_4 $$ String xml = "<?xml version=\"1.0\"?><partner id=\"0\"><date>200911150927</date><code>500</code><time>8732</time></partner>" [CD]
+Line_2 $$ public void testXaRollbackBeforeDb() throws Exception --> Line_5 $$ template.sendBody("activemq:queue:partners", xml) [CD]
+Line_4 $$ String xml = "<?xml version=\"1.0\"?><partner id=\"0\"><date>200911150927</date><code>500</code><time>8732</time></partner>" --> Line_5 $$ template.sendBody("activemq:queue:partners", xml) [FD]
+Line_2 $$ public void testXaRollbackBeforeDb() throws Exception --> Line_6 $$ Thread.sleep(15000) [CD]
+Line_2 $$ public void testXaRollbackBeforeDb() throws Exception --> Line_7 $$ assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric")) [CD]
+Line_2 $$ public void testXaRollbackBeforeDb() throws Exception --> Line_8 $$ String dlq = consumer.receiveBodyNoWait("activemq:queue:ActiveMQ.DLQ", String.class) [CD]
+Line_2 $$ public void testXaRollbackBeforeDb() throws Exception --> Line_9 $$ assertNotNull("Should not lose message", dlq) [CD]

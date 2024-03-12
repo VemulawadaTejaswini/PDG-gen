@@ -1,0 +1,8 @@
+Line_2 $$ public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException --> Line_3 $$ request.getHeaders().add("Content-Encoding", "gzip") [FD]
+Line_2 $$ public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException --> Line_3 $$ request.getHeaders().add("Content-Encoding", "gzip") [CD]
+Line_2 $$ public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException --> Line_4 $$ ByteArrayOutputStream gzipped = new ByteArrayOutputStream() [CD]
+Line_5 $$ try (GZIPOutputStream compressor = new GZIPOutputStream(gzipped)) --> Line_6 $$ compressor.write(body) [FD]
+Line_2 $$ public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException --> Line_6 $$ compressor.write(body) [FD]
+Line_2 $$ public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException --> Line_8 $$ return execution.execute(request, gzipped.toByteArray()) [FD]
+Line_2 $$ public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException --> Line_8 $$ return execution.execute(request, gzipped.toByteArray()) [CD]
+Line_4 $$ ByteArrayOutputStream gzipped = new ByteArrayOutputStream() --> Line_8 $$ return execution.execute(request, gzipped.toByteArray()) [FD]

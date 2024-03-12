@@ -1,0 +1,8 @@
+Line_2 $$ public void testUpdateEventNotPostedIfTransactionFails() --> Line_3 $$ final String specifiedTagId = UUID.randomUUID().toString() [CD]
+Line_2 $$ public void testUpdateEventNotPostedIfTransactionFails() --> Line_4 $$ tagCollectionStorage.setIdProvider(() -> specifiedTagId) [CD]
+Line_2 $$ public void testUpdateEventNotPostedIfTransactionFails() --> Line_5 $$ final Event createEvent = mock(Event.class) [CD]
+Line_2 $$ public void testUpdateEventNotPostedIfTransactionFails() --> Line_6 $$ when(tagCollectionsEventTrackingService.newEvent("tags.new.collection", "/tagcollections/" + specifiedTagId, true)).thenReturn(createEvent) [CD]
+Line_2 $$ public void testUpdateEventNotPostedIfTransactionFails() --> Line_7 $$ final TagCollection tagCollection = newPersistentTagCollection("1") [CD]
+Line_2 $$ public void testUpdateEventNotPostedIfTransactionFails() --> Line_8 $$ forceErrorOnDBPreparedStatementCreation() [CD]
+Line_7 $$ final TagCollection tagCollection = newPersistentTagCollection("1") --> Line_10 $$ tagCollectionStorage.updateTagCollection(tagCollection) [FD]
+Line_2 $$ public void testUpdateEventNotPostedIfTransactionFails() --> Line_15 $$ verify(tagCollectionsEventTrackingService, never()).post(argThatMatchesAnyOf(NULL, argHasProperty("event", equalTo("tags.update.collection")))) [CD]

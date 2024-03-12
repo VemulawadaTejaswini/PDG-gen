@@ -1,0 +1,7 @@
+Line_4 $$ if (ThreadUtil.pool == null) --> Line_5 $$ int max_threads = ThreadUtil.getMaxGlobalThreads() [CD]
+Line_4 $$ if (ThreadUtil.pool == null) --> Line_6 $$ if (debug.val) [CD]
+Line_6 $$ if (debug.val) --> Line_7 $$ LOG.debug("Creating new fixed thread pool [num_threads=" + max_threads + "]") [CD]
+Line_4 $$ if (ThreadUtil.pool == null) --> Line_8 $$ ThreadUtil.pool = Executors.newFixedThreadPool(max_threads, factory) [CD]
+Line_5 $$ int max_threads = ThreadUtil.getMaxGlobalThreads() --> Line_8 $$ ThreadUtil.pool = Executors.newFixedThreadPool(max_threads, factory) [FD]
+Line_2 $$ public static <R extends Runnable> void runGlobalPool(final Collection<R> runnables) --> Line_11 $$ ThreadUtil.run(runnables, ThreadUtil.pool, false) [FD]
+Line_2 $$ public static <R extends Runnable> void runGlobalPool(final Collection<R> runnables) --> Line_11 $$ ThreadUtil.run(runnables, ThreadUtil.pool, false) [CD]

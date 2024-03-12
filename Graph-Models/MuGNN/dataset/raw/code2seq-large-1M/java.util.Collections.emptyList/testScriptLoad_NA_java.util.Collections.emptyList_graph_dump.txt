@@ -1,0 +1,7 @@
+Line_2 $$ public void testScriptLoad() --> Line_3 $$ sync(redisson.getBucket("foo").set("bar")) [CD]
+Line_2 $$ public void testScriptLoad() --> Line_4 $$ String r = sync(redisson.getScript().scriptLoad("return redis.call('get', 'foo')")) [CD]
+Line_2 $$ public void testScriptLoad() --> Line_5 $$ Assert.assertEquals("282297a0228f48cd3fc6a55de6316f31422f5d17", r) [CD]
+Line_4 $$ String r = sync(redisson.getScript().scriptLoad("return redis.call('get', 'foo')")) --> Line_5 $$ Assert.assertEquals("282297a0228f48cd3fc6a55de6316f31422f5d17", r) [FD]
+Line_2 $$ public void testScriptLoad() --> Line_6 $$ String r1 = sync(redisson.getScript().<String>evalSha(RScript.Mode.READ_ONLY, "282297a0228f48cd3fc6a55de6316f31422f5d17", RScript.ReturnType.VALUE, Collections.emptyList())) [CD]
+Line_2 $$ public void testScriptLoad() --> Line_7 $$ Assert.assertEquals("bar", r1) [CD]
+Line_6 $$ String r1 = sync(redisson.getScript().<String>evalSha(RScript.Mode.READ_ONLY, "282297a0228f48cd3fc6a55de6316f31422f5d17", RScript.ReturnType.VALUE, Collections.emptyList())) --> Line_7 $$ Assert.assertEquals("bar", r1) [FD]

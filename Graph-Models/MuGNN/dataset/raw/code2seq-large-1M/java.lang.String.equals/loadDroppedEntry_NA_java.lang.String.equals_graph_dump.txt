@@ -1,0 +1,7 @@
+Line_3 $$ if (do_uber_debug) --> Line_4 $$ JConfig.log().logDebug("Dropping (action): " + auctionURL) [CD]
+Line_5 $$ String aucId = auctionServerManager.getServer().stripId(auctionURL) --> Line_6 $$ if (EntryFactory.isInvalid(interactive, aucId)) [FD]
+Line_5 $$ String aucId = auctionServerManager.getServer().stripId(auctionURL) --> Line_8 $$ AuctionEntry aeNew = entryFactory.conditionallyAddEntry(interactive, aucId, label) [FD]
+Line_9 $$ if (aeNew == null) --> Line_10 $$ if (lastSeen == null || !aucId.equals(lastSeen)) [CD]
+Line_5 $$ String aucId = auctionServerManager.getServer().stripId(auctionURL) --> Line_10 $$ if (lastSeen == null || !aucId.equals(lastSeen)) [FD]
+Line_10 $$ if (lastSeen == null || !aucId.equals(lastSeen)) --> Line_11 $$ JConfig.log().logDebug("Not loaded (" + aucId + ").") [CD]
+Line_9 $$ if (aeNew == null) --> Line_15 $$ lastSeen = aeNew.getIdentifier() [CD]

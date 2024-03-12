@@ -1,0 +1,8 @@
+Line_2 $$ public void testBatchPagingIterator() throws Exception --> Line_3 $$ Iterable<Row> rows = RowGenerator.range(0, 3) [CD]
+Line_2 $$ public void testBatchPagingIterator() throws Exception --> Line_4 $$ List<Object[]> expectedResult = StreamSupport.stream(rows.spliterator(), false).map(Row::<>materialize).collect(Collectors.toList()) [CD]
+Line_3 $$ Iterable<Row> rows = RowGenerator.range(0, 3) --> Line_4 $$ List<Object[]> expectedResult = StreamSupport.stream(rows.spliterator(), false).map(Row::<>materialize).collect(Collectors.toList()) [FD]
+Line_2 $$ public void testBatchPagingIterator() throws Exception --> Line_5 $$ BatchIteratorTester tester = new BatchIteratorTester(() -> [CD]
+Line_6 $$ PassThroughPagingIterator<Integer, Row> pagingIterator = PassThroughPagingIterator.repeatable() --> Line_7 $$ pagingIterator.merge(Collections.singletonList(new KeyIterable(0, rows))) [FD]
+Line_2 $$ public void testBatchPagingIterator() throws Exception --> Line_11 $$ tester.verifyResultAndEdgeCaseBehaviour(expectedResult) [CD]
+Line_5 $$ BatchIteratorTester tester = new BatchIteratorTester(() -> --> Line_11 $$ tester.verifyResultAndEdgeCaseBehaviour(expectedResult) [FD]
+Line_4 $$ List<Object[]> expectedResult = StreamSupport.stream(rows.spliterator(), false).map(Row::<>materialize).collect(Collectors.toList()) --> Line_11 $$ tester.verifyResultAndEdgeCaseBehaviour(expectedResult) [FD]

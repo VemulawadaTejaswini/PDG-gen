@@ -1,0 +1,4 @@
+Line_2 $$ public void testInvalidUpdateOnClosedIndex() --> Line_3 $$ createIndex("test") [CD]
+Line_2 $$ public void testInvalidUpdateOnClosedIndex() --> Line_4 $$ assertAcked(client().admin().indices().prepareClose("test").get()) [CD]
+Line_2 $$ public void testInvalidUpdateOnClosedIndex() --> Line_5 $$ IllegalArgumentException exception = expectThrows(IllegalArgumentException.class, () -> client().admin().indices().prepareUpdateSettings("test").setSettings(Settings.builder().put("index.analysis.char_filter.invalid_char.type", "invalid")).get()) [CD]
+Line_2 $$ public void testInvalidUpdateOnClosedIndex() --> Line_6 $$ assertEquals(exception.getMessage(), "Unknown char_filter type [invalid] for [invalid_char]") [CD]

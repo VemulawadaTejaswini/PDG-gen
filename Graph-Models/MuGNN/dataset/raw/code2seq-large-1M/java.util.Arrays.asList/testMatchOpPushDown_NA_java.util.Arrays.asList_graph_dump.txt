@@ -1,0 +1,8 @@
+Line_2 $$ public void testMatchOpPushDown() throws Exception --> Line_3 $$ String q = query + "b = filter a by name matches 'foo*';" + "store b into 'out';" [CD]
+Line_2 $$ public void testMatchOpPushDown() throws Exception --> Line_4 $$ test(q, Arrays.asList("name"), "(name matches 'foo*')", null) [CD]
+Line_3 $$ String q = query + "b = filter a by name matches 'foo*';" + "store b into 'out';" --> Line_4 $$ test(q, Arrays.asList("name"), "(name matches 'foo*')", null) [FD]
+Line_2 $$ public void testMatchOpPushDown() throws Exception --> Line_5 $$ q = query + "b = filter a by name matches 'foo*';" + "store b into 'out';" [CD]
+Line_3 $$ String q = query + "b = filter a by name matches 'foo*';" + "store b into 'out';" --> Line_5 $$ q = query + "b = filter a by name matches 'foo*';" + "store b into 'out';" [FD]
+Line_2 $$ public void testMatchOpPushDown() throws Exception --> Line_6 $$ test(q, Arrays.asList("srcid"), null, "(name matches 'foo*')") [CD]
+Line_3 $$ String q = query + "b = filter a by name matches 'foo*';" + "store b into 'out';" --> Line_6 $$ test(q, Arrays.asList("srcid"), null, "(name matches 'foo*')") [FD]
+Line_5 $$ q = query + "b = filter a by name matches 'foo*';" + "store b into 'out';" --> Line_6 $$ test(q, Arrays.asList("srcid"), null, "(name matches 'foo*')") [FD]

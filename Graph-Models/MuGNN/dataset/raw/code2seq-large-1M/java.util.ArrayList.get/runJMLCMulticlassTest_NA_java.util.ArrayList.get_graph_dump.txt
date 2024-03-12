@@ -1,0 +1,7 @@
+Line_3 $$ TestConfiguration config = getTestConfiguration(TEST_NAME) --> Line_4 $$ loadTestConfiguration(config) [FD]
+Line_5 $$ ArrayList<double[][]> Xset = generateInputs(nRuns, rows, cols, sparse ? sparsity2 : sparsity1, 7) --> Line_6 $$ ArrayList<double[][]> Yset = execDMLScriptviaJMLC(Xset, flags) [FD]
+Line_5 $$ ArrayList<double[][]> Xset = generateInputs(nRuns, rows, cols, sparse ? sparsity2 : sparsity1, 7) --> Line_8 $$ writeInputMatrix("X", Xset.get(0), true) [FD]
+Line_7 $$ MatrixBlock mb = DataConverter.readMatrixFromHDFS(SCRIPT_DIR + TEST_DIR + MODEL_FILE, InputInfo.TextCellInputInfo, rows, cols, 1000, 1000) --> Line_9 $$ writeInputMatrix("W", DataConverter.convertToDoubleMatrix(mb), true) [FD]
+Line_14 $$ HashMap<CellIndex, Double> rfile = readRMatrixFromFS("predicted_y") --> Line_15 $$ double[][] expected = TestUtils.convertHashMapToDoubleArray(rfile, rows, 1) [FD]
+Line_15 $$ double[][] expected = TestUtils.convertHashMapToDoubleArray(rfile, rows, 1) --> Line_16 $$ for (int i = 0; i < nRuns; i++) TestUtils.compareMatrices(expected, Yset.get(i), rows, 1, eps) [FD]
+Line_6 $$ ArrayList<double[][]> Yset = execDMLScriptviaJMLC(Xset, flags) --> Line_16 $$ for (int i = 0; i < nRuns; i++) TestUtils.compareMatrices(expected, Yset.get(i), rows, 1, eps) [FD]

@@ -1,0 +1,6 @@
+Line_2 $$ public void timeout() --> Line_3 $$ ScheduledExecutorService exec = Executors.newScheduledThreadPool(1) [CD]
+Line_3 $$ ScheduledExecutorService exec = Executors.newScheduledThreadPool(1) --> Line_5 $$ Future<Integer> f = exec.schedule(() -> 1, 1500, TimeUnit.MILLISECONDS) [FD]
+Line_6 $$ TestSubscriber<Integer> ts = new TestSubscriber() --> Line_7 $$ new PublisherFuture(f, 500, TimeUnit.MILLISECONDS).subscribe(ts) [FD]
+Line_6 $$ TestSubscriber<Integer> ts = new TestSubscriber() --> Line_8 $$ ts.await() [FD]
+Line_6 $$ TestSubscriber<Integer> ts = new TestSubscriber() --> Line_9 $$ ts.assertNoValues().assertError(TimeoutException.class).assertNotComplete() [FD]
+Line_3 $$ ScheduledExecutorService exec = Executors.newScheduledThreadPool(1) --> Line_11 $$ exec.shutdown() [FD]

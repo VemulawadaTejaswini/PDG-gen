@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldTrackResponsePayloadSize() throws Exception --> Line_3 $$ Route<AsyncHandler<Response<ByteString>>> testRoute = Route.sync("GET", "/foo/<name>",  context -> Response.forPayload(ByteString.encodeUtf8(context.pathArgs().get("name")))) [CD]
+Line_2 $$ public void shouldTrackResponsePayloadSize() throws Exception --> Line_4 $$ Route<AsyncHandler<Response<ByteString>>> trackedRoute = withResponsePayloadSizeHistogram(testRoute) [CD]
+Line_3 $$ Route<AsyncHandler<Response<ByteString>>> testRoute = Route.sync("GET", "/foo/<name>",  context -> Response.forPayload(ByteString.encodeUtf8(context.pathArgs().get("name")))) --> Line_4 $$ Route<AsyncHandler<Response<ByteString>>> trackedRoute = withResponsePayloadSizeHistogram(testRoute) [FD]
+Line_2 $$ public void shouldTrackResponsePayloadSize() throws Exception --> Line_5 $$ RequestContext context = mock(RequestContext.class) [CD]
+Line_2 $$ public void shouldTrackResponsePayloadSize() throws Exception --> Line_6 $$ when(context.pathArgs()).thenReturn(Collections.singletonMap("name", "bar")) [CD]
+Line_2 $$ public void shouldTrackResponsePayloadSize() throws Exception --> Line_7 $$ trackedRoute.handler().invoke(context).toCompletableFuture().get() [CD]
+Line_4 $$ Route<AsyncHandler<Response<ByteString>>> trackedRoute = withResponsePayloadSizeHistogram(testRoute) --> Line_7 $$ trackedRoute.handler().invoke(context).toCompletableFuture().get() [FD]
+Line_2 $$ public void shouldTrackResponsePayloadSize() throws Exception --> Line_8 $$ assertThat(registry.getHistograms().keySet(), containsInAnyOrder(hasProperty("tags", allOf(hasEntry("service", "example"), hasEntry("what", "endpoint-response-size"), hasEntry("endpoint", "GET:/foo/<name>"))))) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void testCreatedStartStage() throws Throwable --> Line_3 $$ ImageReplicatorService.State startState = buildValidStartupState(ImageReplicatorService.TaskState.TaskStage.CREATED) [CD]
+Line_2 $$ public void testCreatedStartStage() throws Throwable --> Line_4 $$ host.startServiceSynchronously(service, startState) [CD]
+Line_3 $$ ImageReplicatorService.State startState = buildValidStartupState(ImageReplicatorService.TaskState.TaskStage.CREATED) --> Line_4 $$ host.startServiceSynchronously(service, startState) [FD]
+Line_2 $$ public void testCreatedStartStage() throws Throwable --> Line_5 $$ ImageReplicatorService.State savedState = host.getServiceState(ImageReplicatorService.State.class) [CD]
+Line_2 $$ public void testCreatedStartStage() throws Throwable --> Line_6 $$ assertThat(savedState.taskInfo, notNullValue()) [CD]
+Line_2 $$ public void testCreatedStartStage() throws Throwable --> Line_7 $$ assertThat(savedState.taskInfo.stage, is(ImageReplicatorService.TaskState.TaskStage.STARTED)) [CD]
+Line_2 $$ public void testCreatedStartStage() throws Throwable --> Line_8 $$ assertThat(savedState.taskInfo.subStage, is(ImageReplicatorService.TaskState.SubStage.TRIGGER_COPIES)) [CD]
+Line_2 $$ public void testCreatedStartStage() throws Throwable --> Line_9 $$ assertThat(new BigDecimal(savedState.documentExpirationTimeMicros), is(closeTo(new BigDecimal(ServiceUtils.computeExpirationTime(ServiceUtils.DEFAULT_DOC_EXPIRATION_TIME_MICROS)), new BigDecimal(TimeUnit.MINUTES.toMicros(10))))) [CD]

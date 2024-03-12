@@ -1,0 +1,8 @@
+Line_2 $$ public synchronized void flushConfirmations() --> Line_3 $$ if (resendCache != null && receivedBytes != 0) [CD]
+Line_3 $$ if (resendCache != null && receivedBytes != 0) --> Line_5 $$ final Packet confirmed = new PacketsConfirmedMessage(lastConfirmedCommandID.get()) [CD]
+Line_3 $$ if (resendCache != null && receivedBytes != 0) --> Line_6 $$ confirmed.setChannelID(id) [CD]
+Line_5 $$ final Packet confirmed = new PacketsConfirmedMessage(lastConfirmedCommandID.get()) --> Line_6 $$ confirmed.setChannelID(id) [FD]
+Line_3 $$ if (resendCache != null && receivedBytes != 0) --> Line_7 $$ if (logger.isTraceEnabled()) [CD]
+Line_7 $$ if (logger.isTraceEnabled()) --> Line_8 $$ logger.trace("RemotingConnectionID=" + (connection == null ? "NULL" : connection.getID()) + " ChannelImpl::flushConfirmation flushing confirmation " + confirmed) [CD]
+Line_3 $$ if (resendCache != null && receivedBytes != 0) --> Line_10 $$ doWrite(confirmed) [CD]
+Line_5 $$ final Packet confirmed = new PacketsConfirmedMessage(lastConfirmedCommandID.get()) --> Line_10 $$ doWrite(confirmed) [FD]

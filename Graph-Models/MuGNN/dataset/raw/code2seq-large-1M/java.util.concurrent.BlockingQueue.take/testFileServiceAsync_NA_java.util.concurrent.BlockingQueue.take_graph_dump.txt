@@ -1,0 +1,6 @@
+Line_2 $$ public void testFileServiceAsync() throws Exception --> Line_3 $$ final FileService.AsyncIface client = Clients.newClient(clientFactory(), getURI(Handlers.FILE), Handlers.FILE.asyncIface(), clientOptions) [CD]
+Line_2 $$ public void testFileServiceAsync() throws Exception --> Line_4 $$ final BlockingQueue<Object> resQueue = new LinkedBlockingQueue() [CD]
+Line_2 $$ public void testFileServiceAsync() throws Exception --> Line_5 $$ client.create("test", new RequestQueuingCallback(resQueue)) [CD]
+Line_3 $$ final FileService.AsyncIface client = Clients.newClient(clientFactory(), getURI(Handlers.FILE), Handlers.FILE.asyncIface(), clientOptions) --> Line_5 $$ client.create("test", new RequestQueuingCallback(resQueue)) [FD]
+Line_2 $$ public void testFileServiceAsync() throws Exception --> Line_6 $$ assertThat(resQueue.take()).isInstanceOf(FileServiceException.class) [CD]
+Line_4 $$ final BlockingQueue<Object> resQueue = new LinkedBlockingQueue() --> Line_6 $$ assertThat(resQueue.take()).isInstanceOf(FileServiceException.class) [FD]

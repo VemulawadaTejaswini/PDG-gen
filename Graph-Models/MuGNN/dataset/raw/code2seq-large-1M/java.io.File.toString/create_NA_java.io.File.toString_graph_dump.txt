@@ -1,0 +1,7 @@
+Line_2 $$ static TestTable create(File temp, String name, Schema schema, PartitionSpec spec) --> Line_3 $$ TestTableOperations ops = new TestTableOperations(name) [CD]
+Line_2 $$ static TestTable create(File temp, String name, Schema schema, PartitionSpec spec) --> Line_4 $$ if (ops.current() != null) [CD]
+Line_3 $$ TestTableOperations ops = new TestTableOperations(name) --> Line_4 $$ if (ops.current() != null) [FD]
+Line_2 $$ static TestTable create(File temp, String name, Schema schema, PartitionSpec spec) --> Line_7 $$ ops.commit(null, TableMetadata.newTableMetadata(ops, schema, spec, temp.toString())) [FD]
+Line_2 $$ static TestTable create(File temp, String name, Schema schema, PartitionSpec spec) --> Line_7 $$ ops.commit(null, TableMetadata.newTableMetadata(ops, schema, spec, temp.toString())) [CD]
+Line_3 $$ TestTableOperations ops = new TestTableOperations(name) --> Line_7 $$ ops.commit(null, TableMetadata.newTableMetadata(ops, schema, spec, temp.toString())) [FD]
+Line_2 $$ static TestTable create(File temp, String name, Schema schema, PartitionSpec spec) --> Line_8 $$ return new TestTable(ops, name) [CD]

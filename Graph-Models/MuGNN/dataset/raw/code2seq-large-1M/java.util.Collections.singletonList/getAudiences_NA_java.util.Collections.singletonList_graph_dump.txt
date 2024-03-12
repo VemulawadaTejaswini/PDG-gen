@@ -1,0 +1,8 @@
+Line_2 $$ public List<String> getAudiences() --> Line_3 $$ Object audiences = getClaim(JwtConstants.CLAIM_AUDIENCE) [CD]
+Line_2 $$ public List<String> getAudiences() --> Line_4 $$ if (audiences instanceof List<?>) [CD]
+Line_3 $$ Object audiences = getClaim(JwtConstants.CLAIM_AUDIENCE) --> Line_4 $$ if (audiences instanceof List<?>) [FD]
+Line_4 $$ if (audiences instanceof List<?>) --> Line_5 $$ return CastUtils.cast((List<?>) audiences) [CD]
+Line_4 $$ if (audiences instanceof List<?>) --> Line_6 $$ if (audiences instanceof String) [CD]
+Line_3 $$ Object audiences = getClaim(JwtConstants.CLAIM_AUDIENCE) --> Line_6 $$ if (audiences instanceof String) [FD]
+Line_6 $$ if (audiences instanceof String) --> Line_7 $$ return Collections.singletonList((String) audiences) [CD]
+Line_2 $$ public List<String> getAudiences() --> Line_9 $$ return Collections.emptyList() [CD]

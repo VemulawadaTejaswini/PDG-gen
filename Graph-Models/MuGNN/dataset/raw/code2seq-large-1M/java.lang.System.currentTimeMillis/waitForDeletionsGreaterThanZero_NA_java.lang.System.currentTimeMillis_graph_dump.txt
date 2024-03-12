@@ -1,0 +1,8 @@
+Line_4 $$ while ((numDeletions <= 0) && (waitTime > 0L)) --> Line_5 $$ long currentTime = System.currentTimeMillis() [CD]
+Line_4 $$ while ((numDeletions <= 0) && (waitTime > 0L)) --> Line_6 $$ lock.wait(waitTime) [CD]
+Line_2 $$ public static int waitForDeletionsGreaterThanZero(long waitTime) throws InterruptedException --> Line_6 $$ lock.wait(waitTime) [FD]
+Line_4 $$ while ((numDeletions <= 0) && (waitTime > 0L)) --> Line_7 $$ long elapsedTime = System.currentTimeMillis() - currentTime [CD]
+Line_4 $$ while ((numDeletions <= 0) && (waitTime > 0L)) --> Line_8 $$ waitTime -= elapsedTime [CD]
+Line_2 $$ public static int waitForDeletionsGreaterThanZero(long waitTime) throws InterruptedException --> Line_8 $$ waitTime -= elapsedTime [FD]
+Line_7 $$ long elapsedTime = System.currentTimeMillis() - currentTime --> Line_8 $$ waitTime -= elapsedTime [FD]
+Line_8 $$ waitTime -= elapsedTime --> Line_6 $$ lock.wait(waitTime) [FD]

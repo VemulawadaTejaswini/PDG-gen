@@ -1,0 +1,8 @@
+Line_2 $$ public void clear() throws CacheException --> Line_3 $$ logger.debug("clear cache") [CD]
+Line_2 $$ public void clear() throws CacheException --> Line_4 $$ Set<byte[]> keys = null [CD]
+Line_4 $$ Set<byte[]> keys = null --> Line_6 $$ keys = redisManager.keys(keySerializer.serialize(this.keyPrefix + "*")) [FD]
+Line_2 $$ public void clear() throws CacheException --> Line_10 $$ if (keys == null || keys.size() == 0) [CD]
+Line_4 $$ Set<byte[]> keys = null --> Line_10 $$ if (keys == null || keys.size() == 0) [FD]
+Line_6 $$ keys = redisManager.keys(keySerializer.serialize(this.keyPrefix + "*")) --> Line_10 $$ if (keys == null || keys.size() == 0) [FD]
+Line_10 $$ if (keys == null || keys.size() == 0) --> Line_11 $$ return [CD]
+Line_13 $$ for (byte[] key : keys) --> Line_14 $$ redisManager.del(key) [FD]

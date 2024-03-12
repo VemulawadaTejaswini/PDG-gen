@@ -1,0 +1,7 @@
+Line_2 $$ public int update(final Collection<T> records, final boolean forceSync) throws IOException --> Line_3 $$ if (!recovered) [CD]
+Line_2 $$ public int update(final Collection<T> records, final boolean forceSync) throws IOException --> Line_6 $$ journalReadLock.lock() [CD]
+Line_2 $$ public int update(final Collection<T> records, final boolean forceSync) throws IOException --> Line_8 $$ journal.update(records, recordLookup) [FD]
+Line_9 $$ if (forceSync) --> Line_10 $$ journal.fsync() [CD]
+Line_9 $$ if (forceSync) --> Line_11 $$ syncListener.onSync(PARTITION_INDEX) [CD]
+Line_2 $$ public int update(final Collection<T> records, final boolean forceSync) throws IOException --> Line_13 $$ snapshot.update(records) [FD]
+Line_2 $$ public int update(final Collection<T> records, final boolean forceSync) throws IOException --> Line_17 $$ return PARTITION_INDEX [CD]

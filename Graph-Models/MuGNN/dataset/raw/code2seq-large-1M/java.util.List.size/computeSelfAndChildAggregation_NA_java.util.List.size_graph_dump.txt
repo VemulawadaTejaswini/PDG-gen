@@ -1,0 +1,7 @@
+Line_2 $$ private void computeSelfAndChildAggregation() --> Line_3 $$ this.mustAggregate = isAggregationCandidate() && (this.parent == null || !this.parent.isPartOfAggregation()) [CD]
+Line_2 $$ private void computeSelfAndChildAggregation() --> Line_4 $$ if (this.children != null) [CD]
+Line_4 $$ if (this.children != null) --> Line_5 $$ for (int i = 0; i < children.size(); i++) [CD]
+Line_5 $$ for (int i = 0; i < children.size(); i++) --> Line_6 $$ ExplicitJoinClause child = this.children.get(i) [CD]
+Line_5 $$ for (int i = 0; i < children.size(); i++) --> Line_6 $$ ExplicitJoinClause child = this.children.get(i) [FD]
+Line_5 $$ for (int i = 0; i < children.size(); i++) --> Line_7 $$ child.computeSelfAndChildAggregation() [CD]
+Line_6 $$ ExplicitJoinClause child = this.children.get(i) --> Line_7 $$ child.computeSelfAndChildAggregation() [FD]

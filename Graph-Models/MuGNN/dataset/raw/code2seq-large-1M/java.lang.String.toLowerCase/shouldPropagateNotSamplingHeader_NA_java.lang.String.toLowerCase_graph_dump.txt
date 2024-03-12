@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldPropagateNotSamplingHeader(ResponseEntityProvider provider) --> Line_3 $$ Span span = this.tracer.nextSpan(TraceContextOrSamplingFlags.create(SamplingFlags.NOT_SAMPLED)).name("foo").start() [CD]
+Line_3 $$ Span span = this.tracer.nextSpan(TraceContextOrSamplingFlags.create(SamplingFlags.NOT_SAMPLED)).name("foo").start() --> Line_4 $$ try (Tracer.SpanInScope ws = this.tracer.withSpanInScope(span)) [FD]
+Line_2 $$ public void shouldPropagateNotSamplingHeader(ResponseEntityProvider provider) --> Line_5 $$ ResponseEntity<Map<String, String>> response = provider.get(this) [FD]
+Line_5 $$ ResponseEntity<Map<String, String>> response = provider.get(this) --> Line_6 $$ then(response.getBody().get(TRACE_ID_NAME.toLowerCase())).isNotNull() [FD]
+Line_5 $$ ResponseEntity<Map<String, String>> response = provider.get(this) --> Line_7 $$ then(response.getBody().get(SAMPLED_NAME.toLowerCase())).isEqualTo("0") [FD]
+Line_3 $$ Span span = this.tracer.nextSpan(TraceContextOrSamplingFlags.create(SamplingFlags.NOT_SAMPLED)).name("foo").start() --> Line_9 $$ span.finish() [FD]
+Line_2 $$ public void shouldPropagateNotSamplingHeader(ResponseEntityProvider provider) --> Line_11 $$ then(this.reporter.getSpans()).isEmpty() [CD]
+Line_2 $$ public void shouldPropagateNotSamplingHeader(ResponseEntityProvider provider) --> Line_12 $$ then(Tracing.current().tracer().currentSpan()).isNull() [CD]

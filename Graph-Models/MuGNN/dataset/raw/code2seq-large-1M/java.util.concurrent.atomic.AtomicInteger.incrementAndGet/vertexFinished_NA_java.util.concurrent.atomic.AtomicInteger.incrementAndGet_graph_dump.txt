@@ -1,0 +1,7 @@
+Line_2 $$ void vertexFinished() --> Line_3 $$ final int numFinished = verticesFinished.incrementAndGet() [CD]
+Line_2 $$ void vertexFinished() --> Line_4 $$ if (numFinished == numVerticesTotal) [CD]
+Line_3 $$ final int numFinished = verticesFinished.incrementAndGet() --> Line_4 $$ if (numFinished == numVerticesTotal) [FD]
+Line_4 $$ if (numFinished == numVerticesTotal) --> Line_5 $$ if (state == JobStatus.RUNNING) [CD]
+Line_7 $$ for (ExecutionJobVertex ejv : verticesInCreationOrder) --> Line_8 $$ ejv.getJobVertex().finalizeOnMaster(getUserClassLoader()) [FD]
+Line_5 $$ if (state == JobStatus.RUNNING) --> Line_15 $$ if (transitionState(JobStatus.RUNNING, JobStatus.FINISHED)) [CD]
+Line_15 $$ if (transitionState(JobStatus.RUNNING, JobStatus.FINISHED)) --> Line_16 $$ onTerminalState(JobStatus.FINISHED) [CD]

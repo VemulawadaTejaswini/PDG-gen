@@ -1,0 +1,8 @@
+Line_4 $$ RandomAccessFile raf = new RandomAccessFile(pdfFile, "r") --> Line_5 $$ FileChannel channel = raf.getChannel() [FD]
+Line_5 $$ FileChannel channel = raf.getChannel() --> Line_6 $$ ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size()) [FD]
+Line_7 $$ PDFFile pdf = new PDFFile(buf) --> Line_9 $$ for (int pageNumber = 1; pageNumber <= pdf.getNumPages(); ++pageNumber) [FD]
+Line_9 $$ for (int pageNumber = 1; pageNumber <= pdf.getNumPages(); ++pageNumber) --> Line_10 $$ images.add(readPage(pdf, pageNumber)) [CD]
+Line_9 $$ for (int pageNumber = 1; pageNumber <= pdf.getNumPages(); ++pageNumber) --> Line_10 $$ images.add(readPage(pdf, pageNumber)) [FD]
+Line_8 $$ List<BufferedImage> images = new ArrayList<BufferedImage>() --> Line_10 $$ images.add(readPage(pdf, pageNumber)) [FD]
+Line_7 $$ PDFFile pdf = new PDFFile(buf) --> Line_10 $$ images.add(readPage(pdf, pageNumber)) [FD]
+Line_4 $$ RandomAccessFile raf = new RandomAccessFile(pdfFile, "r") --> Line_12 $$ raf.close() [FD]

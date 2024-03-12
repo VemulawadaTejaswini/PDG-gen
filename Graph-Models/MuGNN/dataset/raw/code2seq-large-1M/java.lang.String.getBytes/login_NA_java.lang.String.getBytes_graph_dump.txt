@@ -1,0 +1,7 @@
+Line_2 $$ public static Single<XAccountTokenDTO> login(String login, String pass) --> Line_3 $$ SettingsManager.setSyncAllAccounts(true) [CD]
+Line_2 $$ public static Single<XAccountTokenDTO> login(String login, String pass) --> Line_4 $$ String credentials = login + ":" + pass [CD]
+Line_2 $$ public static Single<XAccountTokenDTO> login(String login, String pass) --> Line_5 $$ byte[] data = credentials.getBytes() [CD]
+Line_4 $$ String credentials = login + ":" + pass --> Line_5 $$ byte[] data = credentials.getBytes() [FD]
+Line_2 $$ public static Single<XAccountTokenDTO> login(String login, String pass) --> Line_6 $$ String encodedCredentials = Base64.encodeToString(data, Base64.NO_WRAP) [CD]
+Line_5 $$ byte[] data = credentials.getBytes() --> Line_6 $$ String encodedCredentials = Base64.encodeToString(data, Base64.NO_WRAP) [FD]
+Line_2 $$ public static Single<XAccountTokenDTO> login(String login, String pass) --> Line_7 $$ return HttpApiManager.getXabberApi().login("Basic " + encodedCredentials, new Source(getSource())) [CD]

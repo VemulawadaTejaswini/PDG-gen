@@ -1,0 +1,7 @@
+Line_2 $$ public void sort() --> Line_3 $$ Map<String, HostInventory> hosts = candidates.stream().collect(Collectors.toMap(HostInventory::<>getUuid, ( candidate) -> candidate)) [CD]
+Line_2 $$ public void sort() --> Line_4 $$ List<String> sortedHostUuids = findLeastVmHost(candidates.stream().map(HostInventory::<>getUuid).collect(Collectors.toList())) [CD]
+Line_2 $$ public void sort() --> Line_5 $$ candidates.clear() [CD]
+Line_2 $$ public void sort() --> Line_6 $$ sortedHostUuids.forEach( huuid -> candidates.add(hosts.get(huuid))) [CD]
+Line_4 $$ List<String> sortedHostUuids = findLeastVmHost(candidates.stream().map(HostInventory::<>getUuid).collect(Collectors.toList())) --> Line_6 $$ sortedHostUuids.forEach( huuid -> candidates.add(hosts.get(huuid))) [FD]
+Line_3 $$ Map<String, HostInventory> hosts = candidates.stream().collect(Collectors.toMap(HostInventory::<>getUuid, ( candidate) -> candidate)) --> Line_6 $$ sortedHostUuids.forEach( huuid -> candidates.add(hosts.get(huuid))) [FD]
+Line_2 $$ public void sort() --> Line_7 $$ logger.debug(String.format("Sorted by LeastVmPreferred the hosts %s", candidates.stream().map( c -> c.getUuid()).collect(Collectors.toList()))) [CD]

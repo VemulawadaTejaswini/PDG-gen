@@ -1,0 +1,8 @@
+Line_2 $$ public boolean setUnqueued() --> Line_3 $$ if (!queueState.compareAndSet(QueueState.QUEUED, QueueState.UNQUEUED)) [CD]
+Line_3 $$ if (!queueState.compareAndSet(QueueState.QUEUED, QueueState.UNQUEUED)) --> Line_4 $$ boolean success = false [CD]
+Line_3 $$ if (!queueState.compareAndSet(QueueState.QUEUED, QueueState.UNQUEUED)) --> Line_5 $$ while (!success) [CD]
+Line_4 $$ boolean success = false --> Line_5 $$ while (!success) [FD]
+Line_5 $$ while (!success) --> Line_6 $$ QueueState oldState = queueState.get() [CD]
+Line_4 $$ boolean success = false --> Line_13 $$ success = queueState.compareAndSet(QueueState.QUEUED, QueueState.UNQUEUED) [FD]
+Line_2 $$ public boolean setUnqueued() --> Line_20 $$ return true [CD]
+Line_13 $$ success = queueState.compareAndSet(QueueState.QUEUED, QueueState.UNQUEUED) --> Line_5 $$ while (!success) [FD]

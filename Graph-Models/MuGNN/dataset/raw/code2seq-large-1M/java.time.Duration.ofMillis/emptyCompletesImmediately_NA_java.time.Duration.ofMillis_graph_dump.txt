@@ -1,0 +1,7 @@
+Line_2 $$ public void emptyCompletesImmediately() --> Line_3 $$ Flux<Long> source = Flux.empty() [CD]
+Line_2 $$ public void emptyCompletesImmediately() --> Line_4 $$ Flux<Long> test = source.delaySequence(Duration.ofMillis(1000)) [CD]
+Line_3 $$ Flux<Long> source = Flux.empty() --> Line_4 $$ Flux<Long> test = source.delaySequence(Duration.ofMillis(1000)) [FD]
+Line_2 $$ public void emptyCompletesImmediately() --> Line_5 $$ Duration took = StepVerifier.create(test).expectComplete().verify() [CD]
+Line_4 $$ Flux<Long> test = source.delaySequence(Duration.ofMillis(1000)) --> Line_5 $$ Duration took = StepVerifier.create(test).expectComplete().verify() [FD]
+Line_2 $$ public void emptyCompletesImmediately() --> Line_6 $$ assertThat(took.toMillis()).as("completes immediately").isLessThan(50) [CD]
+Line_5 $$ Duration took = StepVerifier.create(test).expectComplete().verify() --> Line_6 $$ assertThat(took.toMillis()).as("completes immediately").isLessThan(50) [FD]

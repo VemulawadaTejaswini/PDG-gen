@@ -1,0 +1,7 @@
+Line_2 $$ public CloseableIterator<Tuple> ascendingIterator(Key key, long snapshotId) --> Line_4 $$ IndexRecord indexRecord = index.get(key) [FD]
+Line_4 $$ IndexRecord indexRecord = index.get(key) --> Line_5 $$ if (indexRecord == null) [FD]
+Line_5 $$ if (indexRecord == null) --> Line_6 $$ return new CloseableIterator.Wrapper<Tuple>(Collections.<Tuple>emptyIterator()) [CD]
+Line_4 $$ IndexRecord indexRecord = index.get(key) --> Line_8 $$ TupleBlock startTupleBlock = readTupleBlock(indexRecord.blockOffset(), indexRecord.blockSize()) [FD]
+Line_8 $$ TupleBlock startTupleBlock = readTupleBlock(indexRecord.blockOffset(), indexRecord.blockSize()) --> Line_9 $$ Iterator<Tuple> startRecordIterator = startTupleBlock.ascendingIterator(key) [FD]
+Line_2 $$ public CloseableIterator<Tuple> ascendingIterator(Key key, long snapshotId) --> Line_9 $$ Iterator<Tuple> startRecordIterator = startTupleBlock.ascendingIterator(key) [FD]
+Line_4 $$ IndexRecord indexRecord = index.get(key) --> Line_10 $$ long nextBlockOffset = indexRecord.blockOffset() + indexRecord.blockSize() + Sizes.INT_SIZE [FD]

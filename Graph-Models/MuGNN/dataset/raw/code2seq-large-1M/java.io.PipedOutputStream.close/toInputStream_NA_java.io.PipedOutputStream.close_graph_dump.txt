@@ -1,0 +1,7 @@
+Line_2 $$ public static InputStream toInputStream(Flowable<Buffer> stream, Vertx vertx) throws IOException --> Line_3 $$ PipedInputStream pis = new PipedInputStream() [CD]
+Line_2 $$ public static InputStream toInputStream(Flowable<Buffer> stream, Vertx vertx) throws IOException --> Line_4 $$ PipedOutputStream pos = new PipedOutputStream(pis) [CD]
+Line_2 $$ public static InputStream toInputStream(Flowable<Buffer> stream, Vertx vertx) throws IOException --> Line_5 $$ stream.map(Buffer::<>getBytes).observeOn(RxHelper.blockingScheduler(vertx.getDelegate(), false)).doOnComplete(() -> [FD]
+Line_2 $$ public static InputStream toInputStream(Flowable<Buffer> stream, Vertx vertx) throws IOException --> Line_5 $$ stream.map(Buffer::<>getBytes).observeOn(RxHelper.blockingScheduler(vertx.getDelegate(), false)).doOnComplete(() -> [CD]
+Line_4 $$ PipedOutputStream pos = new PipedOutputStream(pis) --> Line_7 $$ pos.close() [FD]
+Line_4 $$ PipedOutputStream pos = new PipedOutputStream(pis) --> Line_13 $$ pos.write(buf) [FD]
+Line_2 $$ public static InputStream toInputStream(Flowable<Buffer> stream, Vertx vertx) throws IOException --> Line_20 $$ return pis [CD]

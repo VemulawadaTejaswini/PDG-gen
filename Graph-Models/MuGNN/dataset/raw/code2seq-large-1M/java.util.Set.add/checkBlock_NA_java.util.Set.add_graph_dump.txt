@@ -1,0 +1,8 @@
+Line_2 $$ protected ClusterBlockException checkBlock(IndicesAliasesRequest request, ClusterState state) --> Line_3 $$ Set<String> indices = Sets.newHashSet() [CD]
+Line_2 $$ protected ClusterBlockException checkBlock(IndicesAliasesRequest request, ClusterState state) --> Line_4 $$ for (AliasActions aliasAction : request.aliasActions()) [FD]
+Line_4 $$ for (AliasActions aliasAction : request.aliasActions()) --> Line_5 $$ for (String index : aliasAction.indices()) [FD]
+Line_3 $$ Set<String> indices = Sets.newHashSet() --> Line_6 $$ indices.add(index) [FD]
+Line_5 $$ for (String index : aliasAction.indices()) --> Line_6 $$ indices.add(index) [FD]
+Line_2 $$ protected ClusterBlockException checkBlock(IndicesAliasesRequest request, ClusterState state) --> Line_9 $$ return state.blocks().indicesBlockedException(ClusterBlockLevel.METADATA_WRITE, indices.toArray(new String[indices.size()])) [FD]
+Line_2 $$ protected ClusterBlockException checkBlock(IndicesAliasesRequest request, ClusterState state) --> Line_9 $$ return state.blocks().indicesBlockedException(ClusterBlockLevel.METADATA_WRITE, indices.toArray(new String[indices.size()])) [CD]
+Line_3 $$ Set<String> indices = Sets.newHashSet() --> Line_9 $$ return state.blocks().indicesBlockedException(ClusterBlockLevel.METADATA_WRITE, indices.toArray(new String[indices.size()])) [FD]

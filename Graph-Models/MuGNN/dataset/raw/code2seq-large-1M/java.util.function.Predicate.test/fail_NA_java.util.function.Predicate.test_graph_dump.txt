@@ -1,0 +1,6 @@
+Line_2 $$ public void fail(Throwable cause) --> Line_3 $$ super.fail(cause) [FD]
+Line_2 $$ public void fail(Throwable cause) --> Line_3 $$ super.fail(cause) [CD]
+Line_2 $$ public void fail(Throwable cause) --> Line_4 $$ if (!CLOSED_PREDICATE.test(cause)) [FD]
+Line_2 $$ public void fail(Throwable cause) --> Line_4 $$ if (!CLOSED_PREDICATE.test(cause)) [CD]
+Line_4 $$ if (!CLOSED_PREDICATE.test(cause)) --> Line_5 $$ CommandRequest request = CommandRequest.builder().withSession(this.request.session()).withSequence(this.request.sequence()).withCommand(new NoOpCommand()).build() [CD]
+Line_4 $$ if (!CLOSED_PREDICATE.test(cause)) --> Line_6 $$ context.executor().execute(() -> submit(new CommandAttempt(sequence, this.attempt + 1, request, future))) [CD]

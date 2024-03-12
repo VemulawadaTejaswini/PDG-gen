@@ -1,0 +1,6 @@
+Line_2 $$ private static <T extends EntityResponse> T waitFor(long nanos, InvokeFuture<T> future) throws EntityException, TimeoutException --> Line_3 $$ boolean interrupted = false [CD]
+Line_2 $$ private static <T extends EntityResponse> T waitFor(long nanos, InvokeFuture<T> future) throws EntityException, TimeoutException --> Line_4 $$ long deadlineTimeout = System.nanoTime() + nanos [CD]
+Line_2 $$ private static <T extends EntityResponse> T waitFor(long nanos, InvokeFuture<T> future) throws EntityException, TimeoutException --> Line_9 $$ return future.getWithTimeout(timeRemaining, NANOSECONDS) [FD]
+Line_8 $$ long timeRemaining = deadlineTimeout - System.nanoTime() --> Line_9 $$ return future.getWithTimeout(timeRemaining, NANOSECONDS) [FD]
+Line_3 $$ boolean interrupted = false --> Line_11 $$ interrupted = true [FD]
+Line_15 $$ if (interrupted) --> Line_16 $$ Thread.currentThread().interrupt() [CD]

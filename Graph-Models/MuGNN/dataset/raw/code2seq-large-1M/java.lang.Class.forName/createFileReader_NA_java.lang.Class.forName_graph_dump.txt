@@ -1,0 +1,6 @@
+Line_2 $$ private FileReader createFileReader(Path file, String offset) throws IOException --> Line_3 $$ if (readerType.equalsIgnoreCase(Configs.SEQ)) [CD]
+Line_3 $$ if (readerType.equalsIgnoreCase(Configs.SEQ)) --> Line_4 $$ return new SequenceFileReader(this.hdfs, file, conf, offset) [CD]
+Line_2 $$ private FileReader createFileReader(Path file, String offset) throws IOException --> Line_6 $$ if (readerType.equalsIgnoreCase(Configs.TEXT)) [CD]
+Line_6 $$ if (readerType.equalsIgnoreCase(Configs.TEXT)) --> Line_7 $$ return new TextFileReader(this.hdfs, file, conf, offset) [CD]
+Line_10 $$ Class<?> clsType = Class.forName(readerType) --> Line_11 $$ Constructor<?> constructor = clsType.getConstructor(FileSystem.class, Path.class, Map.class, String.class) [FD]
+Line_2 $$ private FileReader createFileReader(Path file, String offset) throws IOException --> Line_12 $$ return (FileReader) constructor.newInstance(this.hdfs, file, conf, offset) [FD]

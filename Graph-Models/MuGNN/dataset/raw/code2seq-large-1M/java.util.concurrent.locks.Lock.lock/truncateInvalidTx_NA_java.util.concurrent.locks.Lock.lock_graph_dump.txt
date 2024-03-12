@@ -1,0 +1,7 @@
+Line_2 $$ public boolean truncateInvalidTx(Set<Long> invalidTxIds) --> Line_3 $$ txMetricsCollector.rate("truncateInvalidTx") [CD]
+Line_2 $$ public boolean truncateInvalidTx(Set<Long> invalidTxIds) --> Line_4 $$ Stopwatch timer = new Stopwatch().start() [CD]
+Line_2 $$ public boolean truncateInvalidTx(Set<Long> invalidTxIds) --> Line_5 $$ this.logReadLock.lock() [CD]
+Line_7 $$ boolean success --> Line_10 $$ success = doTruncateInvalidTx(invalidTxIds) [FD]
+Line_2 $$ public boolean truncateInvalidTx(Set<Long> invalidTxIds) --> Line_10 $$ success = doTruncateInvalidTx(invalidTxIds) [FD]
+Line_2 $$ public boolean truncateInvalidTx(Set<Long> invalidTxIds) --> Line_12 $$ appendToLog(TransactionEdit.createTruncateInvalidTx(invalidTxIds)) [FD]
+Line_4 $$ Stopwatch timer = new Stopwatch().start() --> Line_13 $$ txMetricsCollector.histogram("truncateInvalidTx.latency", (int) timer.elapsedMillis()) [FD]

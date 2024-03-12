@@ -1,0 +1,7 @@
+Line_2 $$ ByteBuffer poll() --> Line_3 $$ if (currentBuf != null && currentBuf.remaining() > 0) [CD]
+Line_3 $$ if (currentBuf != null && currentBuf.remaining() > 0) --> Line_4 $$ return currentBuf [CD]
+Line_2 $$ ByteBuffer poll() --> Line_5 $$ int current = readPointer.getAndIncrement() [CD]
+Line_2 $$ ByteBuffer poll() --> Line_6 $$ currentBuf = toWrite.getAndSet(current & (toWrite.length() - 1), null) [CD]
+Line_2 $$ ByteBuffer poll() --> Line_7 $$ if (currentBuf == null) [CD]
+Line_7 $$ if (currentBuf == null) --> Line_9 $$ selector.interestOpsChanged(this) [CD]
+Line_2 $$ ByteBuffer poll() --> Line_11 $$ return currentBuf [CD]

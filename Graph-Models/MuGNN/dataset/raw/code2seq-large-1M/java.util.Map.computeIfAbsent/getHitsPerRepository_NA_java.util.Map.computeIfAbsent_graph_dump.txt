@@ -1,0 +1,7 @@
+Line_2 $$ private Map<String, List<String>> getHitsPerRepository() --> Line_3 $$ Map<String, List<String>> ret = new HashMap() [CD]
+Line_4 $$ for (SearchHit hit : getResponse().getHits()) --> Line_5 $$ String repoName = getRepoForIndex(hit.getIndex()) [FD]
+Line_3 $$ Map<String, List<String>> ret = new HashMap() --> Line_6 $$ List<String> docIds = ret.computeIfAbsent(repoName,  k -> new ArrayList()) [FD]
+Line_5 $$ String repoName = getRepoForIndex(hit.getIndex()) --> Line_6 $$ List<String> docIds = ret.computeIfAbsent(repoName,  k -> new ArrayList()) [FD]
+Line_6 $$ List<String> docIds = ret.computeIfAbsent(repoName,  k -> new ArrayList()) --> Line_7 $$ docIds.add(hit.getId()) [FD]
+Line_4 $$ for (SearchHit hit : getResponse().getHits()) --> Line_7 $$ docIds.add(hit.getId()) [FD]
+Line_2 $$ private Map<String, List<String>> getHitsPerRepository() --> Line_9 $$ return ret [CD]

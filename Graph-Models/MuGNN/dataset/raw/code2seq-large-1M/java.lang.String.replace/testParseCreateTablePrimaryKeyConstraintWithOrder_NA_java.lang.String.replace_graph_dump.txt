@@ -1,0 +1,7 @@
+Line_3 $$ for (String order : new String[] --> Line_4 $$ String s = "create table core.entity_history_archive (id CHAR(15), name VARCHAR(150), constraint pk primary key (id $ [FD]
+Line_5 $$ CreateTableStatement stmt = (CreateTableStatement) new SQLParser((s)).parseStatement() --> Line_6 $$ PrimaryKeyConstraint pkConstraint = stmt.getPrimaryKeyConstraint() [FD]
+Line_6 $$ PrimaryKeyConstraint pkConstraint = stmt.getPrimaryKeyConstraint() --> Line_7 $$ List<Pair<ColumnName, SortOrder>> columns = pkConstraint.getColumnNames() [FD]
+Line_7 $$ List<Pair<ColumnName, SortOrder>> columns = pkConstraint.getColumnNames() --> Line_8 $$ assertEquals(2, columns.size()) [FD]
+Line_3 $$ for (String order : new String[] --> Line_10 $$ assertEquals(SortOrder.fromDDLValue(order), pkConstraint.getColumnWithSortOrder(pair.getFirst()).getSecond()) [FD]
+Line_6 $$ PrimaryKeyConstraint pkConstraint = stmt.getPrimaryKeyConstraint() --> Line_10 $$ assertEquals(SortOrder.fromDDLValue(order), pkConstraint.getColumnWithSortOrder(pair.getFirst()).getSecond()) [FD]
+Line_9 $$ for (Pair<ColumnName, SortOrder> pair : columns) --> Line_10 $$ assertEquals(SortOrder.fromDDLValue(order), pkConstraint.getColumnWithSortOrder(pair.getFirst()).getSecond()) [FD]

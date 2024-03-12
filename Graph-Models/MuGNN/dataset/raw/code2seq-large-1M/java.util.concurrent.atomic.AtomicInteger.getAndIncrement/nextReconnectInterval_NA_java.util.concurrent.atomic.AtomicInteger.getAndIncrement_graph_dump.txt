@@ -1,0 +1,8 @@
+Line_2 $$ private long nextReconnectInterval() --> Line_3 $$ int exponentOfTwo = currentReconnectAttempt.getAndIncrement() [CD]
+Line_2 $$ private long nextReconnectInterval() --> Line_4 $$ if (exponentOfTwo > maxIntervalExponent) [CD]
+Line_3 $$ int exponentOfTwo = currentReconnectAttempt.getAndIncrement() --> Line_4 $$ if (exponentOfTwo > maxIntervalExponent) [FD]
+Line_4 $$ if (exponentOfTwo > maxIntervalExponent) --> Line_5 $$ exponentOfTwo = maxIntervalExponent [CD]
+Line_3 $$ int exponentOfTwo = currentReconnectAttempt.getAndIncrement() --> Line_5 $$ exponentOfTwo = maxIntervalExponent [FD]
+Line_2 $$ private long nextReconnectInterval() --> Line_6 $$ long ret = reconnectInterval * (1 << exponentOfTwo) [CD]
+Line_2 $$ private long nextReconnectInterval() --> Line_7 $$ logger.debug("Current reconnect backoff is " + ret + " milliseconds (T" + exponentOfTwo + ")") [CD]
+Line_2 $$ private long nextReconnectInterval() --> Line_8 $$ return ret [CD]

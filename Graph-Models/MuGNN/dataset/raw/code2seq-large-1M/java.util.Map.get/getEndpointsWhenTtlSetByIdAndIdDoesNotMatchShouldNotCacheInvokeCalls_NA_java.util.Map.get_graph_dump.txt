@@ -1,0 +1,5 @@
+Line_2 $$ public void getEndpointsWhenTtlSetByIdAndIdDoesNotMatchShouldNotCacheInvokeCalls() --> Line_3 $$ load(TestEndpointConfiguration.class, ( context) -> [CD]
+Line_4 $$ TestEndpointDiscoverer discoverer = new TestEndpointDiscoverer(context, ( endpointId) -> (endpointId.equals("foo") ? 500L : 0L)) --> Line_5 $$ Map<String, TestExposableEndpoint> endpoints = mapEndpoints(discoverer.getEndpoints()) [FD]
+Line_5 $$ Map<String, TestExposableEndpoint> endpoints = mapEndpoints(discoverer.getEndpoints()) --> Line_6 $$ assertThat(endpoints).containsOnlyKeys("test") [FD]
+Line_5 $$ Map<String, TestExposableEndpoint> endpoints = mapEndpoints(discoverer.getEndpoints()) --> Line_7 $$ Map<Method, TestOperation> operations = mapOperations(endpoints.get("test")) [FD]
+Line_7 $$ Map<Method, TestOperation> operations = mapOperations(endpoints.get("test")) --> Line_8 $$ operations.values().forEach(( operation) -> assertThat(operation.getInvoker()).isNotInstanceOf(CachingOperationInvoker.class)) [FD]

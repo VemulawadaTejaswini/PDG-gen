@@ -1,0 +1,8 @@
+Line_2 $$ static void scan(Class<?> clazz) --> Line_3 $$ for (Method m : clazz.getMethods()) [FD]
+Line_2 $$ static void scan(Class<?> clazz) --> Line_4 $$ if (m.getDeclaringClass() == clazz) [FD]
+Line_3 $$ for (Method m : clazz.getMethods()) --> Line_4 $$ if (m.getDeclaringClass() == clazz) [FD]
+Line_4 $$ if (m.getDeclaringClass() == clazz) --> Line_5 $$ if ((m.getModifiers() & Modifier.STATIC) == 0) [CD]
+Line_3 $$ for (Method m : clazz.getMethods()) --> Line_5 $$ if ((m.getModifiers() & Modifier.STATIC) == 0) [FD]
+Line_5 $$ if ((m.getModifiers() & Modifier.STATIC) == 0) --> Line_6 $$ if ((m.getModifiers() & (Modifier.PUBLIC | Modifier.FINAL)) == Modifier.PUBLIC) [CD]
+Line_3 $$ for (Method m : clazz.getMethods()) --> Line_6 $$ if ((m.getModifiers() & (Modifier.PUBLIC | Modifier.FINAL)) == Modifier.PUBLIC) [FD]
+Line_6 $$ if ((m.getModifiers() & (Modifier.PUBLIC | Modifier.FINAL)) == Modifier.PUBLIC) --> Line_7 $$ fail("Not final: " + m) [CD]

@@ -1,0 +1,6 @@
+Line_3 $$ Cache cache = getCache() --> Line_4 $$ Region region = cache.getRegion(REGION_NAME) [FD]
+Line_4 $$ Region region = cache.getRegion(REGION_NAME) --> Line_5 $$ region.put("key1", new TestObject("field1Value", "field2Value")) [FD]
+Line_3 $$ Cache cache = getCache() --> Line_6 $$ LuceneService luceneService = LuceneServiceProvider.get(cache) [FD]
+Line_6 $$ LuceneService luceneService = LuceneServiceProvider.get(cache) --> Line_7 $$ luceneService.waitUntilFlushed(INDEX_NAME, REGION_NAME, 1, TimeUnit.MINUTES) [FD]
+Line_6 $$ LuceneService luceneService = LuceneServiceProvider.get(cache) --> Line_8 $$ LuceneQuery<Object, Object> query = luceneService.createLuceneQueryFactory().create(INDEX_NAME, REGION_NAME, "field1:field1Value", "field1") [FD]
+Line_8 $$ LuceneQuery<Object, Object> query = luceneService.createLuceneQueryFactory().create(INDEX_NAME, REGION_NAME, "field1:field1Value", "field1") --> Line_9 $$ assertEquals(Collections.singletonList("key1"), query.findKeys()) [FD]

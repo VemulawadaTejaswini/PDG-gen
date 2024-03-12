@@ -1,0 +1,5 @@
+Line_2 $$ public byte[] getContractInStorage(HashId contractId) --> Line_3 $$ return protect(() -> [CD]
+Line_2 $$ public byte[] getContractInStorage(HashId contractId) --> Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("" + "SELECT bin_data FROM contract_storage " + "WHERE hash_id=?", contractId.getDigest()))) [FD]
+Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("" + "SELECT bin_data FROM contract_storage " + "WHERE hash_id=?", contractId.getDigest()))) --> Line_5 $$ if (rs == null) [FD]
+Line_5 $$ if (rs == null) --> Line_6 $$ return null [CD]
+Line_4 $$ try (ResultSet rs = inPool( db -> db.queryRow("" + "SELECT bin_data FROM contract_storage " + "WHERE hash_id=?", contractId.getDigest()))) --> Line_7 $$ return rs.getBytes(1) [FD]

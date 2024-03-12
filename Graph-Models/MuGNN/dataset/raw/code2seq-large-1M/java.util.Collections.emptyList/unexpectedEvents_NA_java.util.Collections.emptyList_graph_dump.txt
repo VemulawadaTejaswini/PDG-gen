@@ -1,0 +1,5 @@
+Line_2 $$ private List<DomainEventMessage<?>> unexpectedEvents() --> Line_3 $$ if (events == null) [CD]
+Line_3 $$ if (events == null) --> Line_4 $$ if (expectedVersion >= actualVersion) [CD]
+Line_4 $$ if (expectedVersion >= actualVersion) --> Line_5 $$ return Collections.emptyList() [CD]
+Line_3 $$ if (events == null) --> Line_7 $$ events = eventStore.readEvents(aggregateIdentifier, expectedVersion + 1).asStream().filter( event -> event.getSequenceNumber() <= actualVersion).collect(toList()) [CD]
+Line_2 $$ private List<DomainEventMessage<?>> unexpectedEvents() --> Line_9 $$ return events [CD]

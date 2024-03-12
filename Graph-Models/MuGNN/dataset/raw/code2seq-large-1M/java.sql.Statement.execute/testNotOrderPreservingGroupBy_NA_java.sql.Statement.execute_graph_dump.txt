@@ -1,0 +1,5 @@
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_4 $$ conn.createStatement().execute("CREATE TABLE test (\n" + "            pk1 INTEGER NOT NULL,\n" + "            pk2 INTEGER NOT NULL,\n" + "            pk3 INTEGER NOT NULL,\n" + "            pk4 INTEGER NOT NULL,\n" + "            v1 INTEGER,\n" + "            CONSTRAINT pk PRIMARY KEY (\n" + "               pk1,\n" + "               pk2,\n" + "               pk3,\n" + "               pk4\n" + "             )\n" + "         )") [FD]
+Line_3 $$ try (Connection conn = DriverManager.getConnection(getUrl())) --> Line_8 $$ QueryPlan plan = getQueryPlan(conn, query) [FD]
+Line_7 $$ for (String query : queries) --> Line_8 $$ QueryPlan plan = getQueryPlan(conn, query) [FD]
+Line_8 $$ QueryPlan plan = getQueryPlan(conn, query) --> Line_9 $$ assertFalse((index + 1) + ") " + queries[index], plan.getOrderBy().getOrderByExpressions().isEmpty()) [FD]
+Line_6 $$ int index = 0 --> Line_10 $$ index++ [FD]

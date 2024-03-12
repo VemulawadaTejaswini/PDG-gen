@@ -1,0 +1,8 @@
+Line_2 $$ public static PartConnection connectScorePages(SortedMap<Integer, Page> pages) --> Line_3 $$ Set<List<Candidate>> sequences = new LinkedHashSet<List<Candidate>>() [CD]
+Line_2 $$ public static PartConnection connectScorePages(SortedMap<Integer, Page> pages) --> Line_4 $$ for (Entry<Integer, Page> entry : pages.entrySet()) [FD]
+Line_5 $$ Page page = entry.getValue() --> Line_7 $$ List<LogicalPart> partList = page.getLogicalParts() [FD]
+Line_7 $$ List<LogicalPart> partList = page.getLogicalParts() --> Line_8 $$ if (partList != null) [FD]
+Line_6 $$ List<Candidate> parts = new ArrayList<Candidate>() --> Line_10 $$ parts.add(new LogicalPartCandidate(logicalPart, page)) [FD]
+Line_3 $$ Set<List<Candidate>> sequences = new LinkedHashSet<List<Candidate>>() --> Line_13 $$ sequences.add(parts) [FD]
+Line_6 $$ List<Candidate> parts = new ArrayList<Candidate>() --> Line_13 $$ sequences.add(parts) [FD]
+Line_2 $$ public static PartConnection connectScorePages(SortedMap<Integer, Page> pages) --> Line_15 $$ return new PartConnection(sequences) [CD]

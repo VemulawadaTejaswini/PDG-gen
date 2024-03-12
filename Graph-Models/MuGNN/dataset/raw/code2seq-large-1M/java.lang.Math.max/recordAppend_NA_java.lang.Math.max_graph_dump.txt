@@ -1,0 +1,8 @@
+Line_2 $$ public void recordAppend(long eventNumber, int size) --> Line_3 $$ long now = Math.max(lastAppendTime.get(), clock.get()) [CD]
+Line_2 $$ public void recordAppend(long eventNumber, int size) --> Line_4 $$ long last = lastAppendTime.getAndSet(now) [CD]
+Line_3 $$ long now = Math.max(lastAppendTime.get(), clock.get()) --> Line_4 $$ long last = lastAppendTime.getAndSet(now) [FD]
+Line_2 $$ public void recordAppend(long eventNumber, int size) --> Line_5 $$ lastAppendNumber.set(eventNumber) [FD]
+Line_2 $$ public void recordAppend(long eventNumber, int size) --> Line_5 $$ lastAppendNumber.set(eventNumber) [CD]
+Line_2 $$ public void recordAppend(long eventNumber, int size) --> Line_6 $$ millisBetweenAppends.addNewSample(now - last) [CD]
+Line_2 $$ public void recordAppend(long eventNumber, int size) --> Line_7 $$ eventSize.addNewSample(size) [FD]
+Line_2 $$ public void recordAppend(long eventNumber, int size) --> Line_7 $$ eventSize.addNewSample(size) [CD]

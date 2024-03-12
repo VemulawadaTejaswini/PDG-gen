@@ -1,0 +1,5 @@
+Line_2 $$ private CompletableFuture<Void> addHistoryIndexRecord(final int newEpoch, final int historyOffset) --> Line_3 $$ return getHistoryIndex().thenCompose( indexTable -> [CD]
+Line_4 $$ final Optional<HistoryIndexRecord> lastRecord = HistoryIndexRecord.readLatestRecord(indexTable.getData()) --> Line_5 $$ if (lastRecord.isPresent() && lastRecord.get().getEpoch() == newEpoch) [FD]
+Line_5 $$ if (lastRecord.isPresent() && lastRecord.get().getEpoch() == newEpoch) --> Line_6 $$ return CompletableFuture.completedFuture(null) [CD]
+Line_2 $$ private CompletableFuture<Void> addHistoryIndexRecord(final int newEpoch, final int historyOffset) --> Line_8 $$ final byte[] updatedTable = TableHelper.updateHistoryIndex(indexTable.getData(), historyOffset) [FD]
+Line_9 $$ final Data<T> updated = new Data(updatedTable, indexTable.getVersion()) --> Line_10 $$ return updateHistoryIndex(updated) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void asyncRetry() --> Line_3 $$ Flux<Integer> p [CD]
+Line_2 $$ public void asyncRetry() --> Line_4 $$ AtomicBoolean error = new AtomicBoolean() [CD]
+Line_2 $$ public void asyncRetry() --> Line_5 $$ p = Flux.range(1, 5).subscribeOn(Schedulers.parallel()).log("publish").publish().refCount(1).doOnNext( v -> [CD]
+Line_3 $$ Flux<Integer> p --> Line_5 $$ p = Flux.range(1, 5).subscribeOn(Schedulers.parallel()).log("publish").publish().refCount(1).doOnNext( v -> [FD]
+Line_4 $$ AtomicBoolean error = new AtomicBoolean() --> Line_6 $$ if (v > 1 && error.compareAndSet(false, true)) [FD]
+Line_2 $$ public void asyncRetry() --> Line_10 $$ StepVerifier.create(p).expectNext(1, 1, 2, 3, 4, 5).verifyComplete() [CD]
+Line_3 $$ Flux<Integer> p --> Line_10 $$ StepVerifier.create(p).expectNext(1, 1, 2, 3, 4, 5).verifyComplete() [FD]
+Line_5 $$ p = Flux.range(1, 5).subscribeOn(Schedulers.parallel()).log("publish").publish().refCount(1).doOnNext( v -> --> Line_10 $$ StepVerifier.create(p).expectNext(1, 1, 2, 3, 4, 5).verifyComplete() [FD]

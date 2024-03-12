@@ -1,0 +1,7 @@
+Line_2 $$ public void findCommandsInMDB() --> Line_3 $$ log.info("[TrafficActivationSpec] findCommandsInMDB()") [CD]
+Line_4 $$ for (Method method : beanClass.getMethods()) --> Line_5 $$ if (method.isAnnotationPresent(TrafficCommand.class)) [FD]
+Line_4 $$ for (Method method : beanClass.getMethods()) --> Line_6 $$ TrafficCommand tCommand = method.getAnnotation(TrafficCommand.class) [FD]
+Line_4 $$ for (Method method : beanClass.getMethods()) --> Line_7 $$ commands.put(tCommand.name(), method) [FD]
+Line_2 $$ public void findCommandsInMDB() --> Line_10 $$ if (commands.isEmpty()) [CD]
+Line_10 $$ if (commands.isEmpty()) --> Line_11 $$ log.info("No command annotations in MDB.") [CD]
+Line_12 $$ for (Method m : commands.values()) --> Line_13 $$ for (Class c : m.getParameterTypes()) if (c != String.class) [FD]

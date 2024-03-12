@@ -1,0 +1,6 @@
+Line_2 $$ public Class<? extends Service> serviceClass() --> Line_3 $$ ServiceConfiguration cfg = dep.configuration() [CD]
+Line_2 $$ public Class<? extends Service> serviceClass() --> Line_4 $$ if (cfg instanceof LazyServiceConfiguration) [CD]
+Line_3 $$ ServiceConfiguration cfg = dep.configuration() --> Line_4 $$ if (cfg instanceof LazyServiceConfiguration) [FD]
+Line_4 $$ if (cfg instanceof LazyServiceConfiguration) --> Line_5 $$ String clsName = ((LazyServiceConfiguration) cfg).serviceClassName() [CD]
+Line_5 $$ String clsName = ((LazyServiceConfiguration) cfg).serviceClassName() --> Line_7 $$ return (Class<? extends Service>) Class.forName(clsName) [FD]
+Line_4 $$ if (cfg instanceof LazyServiceConfiguration) --> Line_12 $$ return dep.configuration().getService().getClass() [CD]

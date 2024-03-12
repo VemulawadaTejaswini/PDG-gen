@@ -1,0 +1,6 @@
+Line_2 $$ public void testCallable() throws Exception --> Line_3 $$ Traceable traceable = new Traceable() [CD]
+Line_2 $$ public void testCallable() throws Exception --> Line_4 $$ DynamicType.Loaded<SimpleStringMethod> loaded = new ByteBuddy().subclass(SimpleStringMethod.class).method(isDeclaredBy(SimpleStringMethod.class)).intercept(MethodCall.call(traceable)).make().load(SimpleStringMethod.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_3 $$ Traceable traceable = new Traceable() --> Line_4 $$ DynamicType.Loaded<SimpleStringMethod> loaded = new ByteBuddy().subclass(SimpleStringMethod.class).method(isDeclaredBy(SimpleStringMethod.class)).intercept(MethodCall.call(traceable)).make().load(SimpleStringMethod.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [FD]
+Line_2 $$ public void testCallable() throws Exception --> Line_5 $$ assertThat(loaded.getLoaded().getDeclaredConstructor().newInstance().foo(), is(FOO)) [CD]
+Line_2 $$ public void testCallable() throws Exception --> Line_6 $$ traceable.assertOnlyCall(FOO) [CD]
+Line_3 $$ Traceable traceable = new Traceable() --> Line_6 $$ traceable.assertOnlyCall(FOO) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void flushAll() --> Line_3 $$ if (!useBulk) [CD]
+Line_2 $$ public void flushAll() --> Line_6 $$ Map<TableName, List<Increment>> incrementMap = bulkIncrementer.getIncrements(rowKeyDistributorByHashPrefix) [CD]
+Line_6 $$ Map<TableName, List<Increment>> incrementMap = bulkIncrementer.getIncrements(rowKeyDistributorByHashPrefix) --> Line_7 $$ for (Map.Entry<TableName, List<Increment>> e : incrementMap.entrySet()) [FD]
+Line_10 $$ if (logger.isDebugEnabled()) --> Line_11 $$ logger.debug("flush [CD]
+Line_8 $$ TableName tableName = e.getKey() --> Line_11 $$ logger.debug("flush [FD]
+Line_9 $$ List<Increment> increments = e.getValue() --> Line_11 $$ logger.debug("flush [FD]
+Line_8 $$ TableName tableName = e.getKey() --> Line_13 $$ hbaseTemplate.increment(tableName, increments) [FD]
+Line_9 $$ List<Increment> increments = e.getValue() --> Line_13 $$ hbaseTemplate.increment(tableName, increments) [FD]

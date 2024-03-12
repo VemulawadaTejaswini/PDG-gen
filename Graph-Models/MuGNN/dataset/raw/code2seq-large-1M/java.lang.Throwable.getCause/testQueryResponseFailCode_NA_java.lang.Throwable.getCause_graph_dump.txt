@@ -1,0 +1,8 @@
+Line_4 $$ CacheConfiguration<Integer, Integer> cfg = new CacheConfiguration(DEFAULT_CACHE_NAME) --> Line_5 $$ cfg.setSqlFunctionClasses(Functions.class) [FD]
+Line_4 $$ CacheConfiguration<Integer, Integer> cfg = new CacheConfiguration(DEFAULT_CACHE_NAME) --> Line_6 $$ cfg.setIndexedTypes(Integer.class, Integer.class) [FD]
+Line_4 $$ CacheConfiguration<Integer, Integer> cfg = new CacheConfiguration(DEFAULT_CACHE_NAME) --> Line_7 $$ cfg.setName("test") [FD]
+Line_3 $$ try (Ignite client = startGrid("client")) --> Line_8 $$ IgniteCache<Integer, Integer> cache = client.getOrCreateCache(cfg) [FD]
+Line_4 $$ CacheConfiguration<Integer, Integer> cfg = new CacheConfiguration(DEFAULT_CACHE_NAME) --> Line_8 $$ IgniteCache<Integer, Integer> cache = client.getOrCreateCache(cfg) [FD]
+Line_8 $$ IgniteCache<Integer, Integer> cache = client.getOrCreateCache(cfg) --> Line_9 $$ cache.put(1, 1) [FD]
+Line_8 $$ IgniteCache<Integer, Integer> cache = client.getOrCreateCache(cfg) --> Line_10 $$ QueryCursor<List<?>> qry = cache.query(new SqlFieldsQuery("select fail() from Integer")) [FD]
+Line_10 $$ QueryCursor<List<?>> qry = cache.query(new SqlFieldsQuery("select fail() from Integer")) --> Line_12 $$ qry.getAll() [FD]

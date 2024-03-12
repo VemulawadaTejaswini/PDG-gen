@@ -1,0 +1,8 @@
+Line_2 $$ protected void completeCompaction(Collection<HStoreFile> compactedFiles) throws IOException --> Line_3 $$ this.storeSize.set(0L) [CD]
+Line_2 $$ protected void completeCompaction(Collection<HStoreFile> compactedFiles) throws IOException --> Line_4 $$ this.totalUncompressedBytes.set(0L) [CD]
+Line_5 $$ for (HStoreFile hsf : this.storeEngine.getStoreFileManager().getStorefiles()) --> Line_6 $$ StoreFileReader r = hsf.getReader() [FD]
+Line_6 $$ StoreFileReader r = hsf.getReader() --> Line_7 $$ if (r == null) [FD]
+Line_7 $$ if (r == null) --> Line_8 $$ LOG.warn("StoreFile [CD]
+Line_5 $$ for (HStoreFile hsf : this.storeEngine.getStoreFileManager().getStorefiles()) --> Line_8 $$ LOG.warn("StoreFile [FD]
+Line_6 $$ StoreFileReader r = hsf.getReader() --> Line_11 $$ this.storeSize.addAndGet(r.length()) [FD]
+Line_6 $$ StoreFileReader r = hsf.getReader() --> Line_12 $$ this.totalUncompressedBytes.addAndGet(r.getTotalUncompressedBytes()) [FD]

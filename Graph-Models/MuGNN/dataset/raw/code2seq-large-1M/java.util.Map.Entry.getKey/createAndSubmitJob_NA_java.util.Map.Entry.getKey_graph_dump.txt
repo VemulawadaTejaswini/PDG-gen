@@ -1,0 +1,7 @@
+Line_2 $$ private Job createAndSubmitJob(final Configuration configuration) throws IOException, InterruptedException --> Line_3 $$ return mapReduceConfig.getUGI().doAs((PrivilegedExceptionAction<Job>) () -> [CD]
+Line_2 $$ private Job createAndSubmitJob(final Configuration configuration) throws IOException, InterruptedException --> Line_4 $$ Callable<Job> jobCreator = ReflectionUtils.newInstance(jobConfig.getJobCreator(), configuration) [FD]
+Line_4 $$ Callable<Job> jobCreator = ReflectionUtils.newInstance(jobConfig.getJobCreator(), configuration) --> Line_5 $$ Job job = jobCreator.call() [FD]
+Line_6 $$ if (LOG.isTraceEnabled()) --> Line_7 $$ LOG.trace("Using the following configuration object for mapreduce job.") [CD]
+Line_5 $$ Job job = jobCreator.call() --> Line_12 $$ job.submit() [FD]
+Line_13 $$ if (waitForCompletition) --> Line_14 $$ job.waitForCompletion(true) [CD]
+Line_5 $$ Job job = jobCreator.call() --> Line_14 $$ job.waitForCompletion(true) [FD]

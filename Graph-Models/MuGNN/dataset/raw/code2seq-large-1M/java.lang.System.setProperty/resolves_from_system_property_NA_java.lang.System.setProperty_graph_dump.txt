@@ -1,0 +1,6 @@
+Line_2 $$ public void resolves_from_system_property() throws MalformedURLException --> Line_3 $$ String classPath = createClassPathProperty("/some/path/classes", "/other/lib/some.jar", "/more/classes", "/my/.m2/repo/greatlib.jar") [CD]
+Line_2 $$ public void resolves_from_system_property() throws MalformedURLException --> Line_4 $$ System.setProperty(JAVA_CLASS_PATH_PROP, classPath) [CD]
+Line_2 $$ public void resolves_from_system_property() throws MalformedURLException --> Line_5 $$ String bootstrapClassPath = createClassPathProperty("/some/bootstrap/classes", "/more/bootstrap/bootlib.jar") [CD]
+Line_2 $$ public void resolves_from_system_property() throws MalformedURLException --> Line_6 $$ System.setProperty(JAVA_BOOT_PATH_PROP, bootstrapClassPath) [CD]
+Line_2 $$ public void resolves_from_system_property() throws MalformedURLException --> Line_7 $$ UrlSource urlSource = UrlSource.From.classPathSystemProperties() [CD]
+Line_2 $$ public void resolves_from_system_property() throws MalformedURLException --> Line_8 $$ assertThat(urlSource).containsOnly(new URL("file:/some/path/classes/"), new URL("jar:file:/other/lib/some.jar!/"), new URL("file:/more/classes/"), new URL("jar:file:/my/.m2/repo/greatlib.jar!/"), new URL("file:/some/bootstrap/classes/"), new URL("jar:file:/more/bootstrap/bootlib.jar!/")) [CD]

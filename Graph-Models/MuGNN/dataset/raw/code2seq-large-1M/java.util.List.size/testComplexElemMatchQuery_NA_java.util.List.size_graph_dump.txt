@@ -1,0 +1,7 @@
+Line_2 $$ public void testComplexElemMatchQuery() --> Line_3 $$ Keyword oscar = new Keyword("Oscar", 42) [CD]
+Line_2 $$ public void testComplexElemMatchQuery() --> Line_4 $$ getDs().save(new PhotoWithKeywords(oscar, new Keyword("Jim", 12))) [CD]
+Line_2 $$ public void testComplexElemMatchQuery() --> Line_5 $$ assertNull(getDs().find(PhotoWithKeywords.class).field("keywords").elemMatch(getDs().find(Keyword.class).filter("keyword = ", "Oscar").filter("score = ", 12)).get()) [CD]
+Line_2 $$ public void testComplexElemMatchQuery() --> Line_6 $$ List<PhotoWithKeywords> keywords = getDs().find(PhotoWithKeywords.class).field("keywords").elemMatch(getDs().find(Keyword.class).filter("score > ", 20).filter("score < ", 100)).asList() [CD]
+Line_2 $$ public void testComplexElemMatchQuery() --> Line_7 $$ assertEquals(1, keywords.size()) [CD]
+Line_2 $$ public void testComplexElemMatchQuery() --> Line_8 $$ assertEquals(oscar, keywords.get(0).keywords.get(0)) [CD]
+Line_3 $$ Keyword oscar = new Keyword("Oscar", 42) --> Line_8 $$ assertEquals(oscar, keywords.get(0).keywords.get(0)) [FD]

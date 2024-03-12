@@ -1,0 +1,8 @@
+Line_2 $$ public int numDiffer(OutputTrace<?> other) --> Line_3 $$ int num = 0 [CD]
+Line_4 $$ for (Integer statement : trace.keySet()) --> Line_5 $$ if (other.trace.containsKey(statement)) [FD]
+Line_4 $$ for (Integer statement : trace.keySet()) --> Line_6 $$ for (Integer var : trace.get(statement).keySet()) [FD]
+Line_6 $$ for (Integer var : trace.get(statement).keySet()) --> Line_7 $$ if (trace.get(statement).get(var).differs(other.trace.get(statement).get(var))) [FD]
+Line_4 $$ for (Integer statement : trace.keySet()) --> Line_7 $$ if (trace.get(statement).get(var).differs(other.trace.get(statement).get(var))) [FD]
+Line_7 $$ if (trace.get(statement).get(var).differs(other.trace.get(statement).get(var))) --> Line_8 $$ num++ [CD]
+Line_3 $$ int num = 0 --> Line_8 $$ num++ [FD]
+Line_2 $$ public int numDiffer(OutputTrace<?> other) --> Line_12 $$ return num [CD]

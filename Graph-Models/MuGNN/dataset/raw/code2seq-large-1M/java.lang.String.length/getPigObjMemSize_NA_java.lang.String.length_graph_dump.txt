@@ -1,0 +1,8 @@
+Line_2 $$ public static long getPigObjMemSize(Object o) --> Line_3 $$ switch(DataType.findType(o)) [FD]
+Line_12 $$ String s = (String) o --> Line_13 $$ return roundToEight((s.length() * 2) + 38) [FD]
+Line_17 $$ Tuple t = (Tuple) o --> Line_18 $$ return t.getMemorySize() [FD]
+Line_22 $$ DataBag b = (DataBag) o --> Line_23 $$ return b.getMemorySize() [FD]
+Line_33 $$ Map<String, Object> m = (Map<String, Object>) o --> Line_34 $$ Iterator<Map.Entry<String, Object>> i = m.entrySet().iterator() [FD]
+Line_36 $$ while (i.hasNext()) --> Line_37 $$ Entry<String, Object> entry = i.next() [CD]
+Line_36 $$ while (i.hasNext()) --> Line_38 $$ sum += getMapEntrySize(entry.getKey(), entry.getValue()) [CD]
+Line_35 $$ long sum = 0 --> Line_38 $$ sum += getMapEntrySize(entry.getKey(), entry.getValue()) [FD]

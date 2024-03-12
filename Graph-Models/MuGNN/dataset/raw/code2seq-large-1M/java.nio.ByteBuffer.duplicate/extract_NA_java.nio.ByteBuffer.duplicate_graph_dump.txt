@@ -1,0 +1,8 @@
+Line_2 $$ public List<MemoryFile> extract() throws IOException --> Line_3 $$ List<MemoryFile> vfs = new ArrayList<MemoryFile>() [CD]
+Line_2 $$ public List<MemoryFile> extract() throws IOException --> Line_4 $$ ZipInputStream zipInputStream = new ZipInputStream(new ByteBufferInputStream(data.duplicate())) [CD]
+Line_2 $$ public List<MemoryFile> extract() throws IOException --> Line_5 $$ ZipEntry zipEntry [CD]
+Line_4 $$ ZipInputStream zipInputStream = new ZipInputStream(new ByteBufferInputStream(data.duplicate())) --> Line_7 $$ while ((zipEntry = zipInputStream.getNextEntry()) != null) [FD]
+Line_4 $$ ZipInputStream zipInputStream = new ZipInputStream(new ByteBufferInputStream(data.duplicate())) --> Line_12 $$ buffer.transferFully(zipInputStream) [FD]
+Line_3 $$ List<MemoryFile> vfs = new ArrayList<MemoryFile>() --> Line_13 $$ vfs.add(new MemoryFile(zipEntry.getName(), buffer.getByteBuffer())) [FD]
+Line_4 $$ ZipInputStream zipInputStream = new ZipInputStream(new ByteBufferInputStream(data.duplicate())) --> Line_16 $$ zipInputStream.close() [FD]
+Line_2 $$ public List<MemoryFile> extract() throws IOException --> Line_18 $$ return vfs [CD]

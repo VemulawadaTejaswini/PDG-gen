@@ -1,0 +1,7 @@
+Line_2 $$ public void testInvalidSource() throws Exception --> Line_3 $$ List<String> invalidList = Arrays.asList(" [CD]
+Line_4 $$ for (String invalidContent : invalidList) --> Line_6 $$ if (invalidContent != null) [FD]
+Line_6 $$ if (invalidContent != null) --> Line_7 $$ byte[] bytes = invalidContent.getBytes("UTF-8") [CD]
+Line_4 $$ for (String invalidContent : invalidList) --> Line_7 $$ byte[] bytes = invalidContent.getBytes("UTF-8") [FD]
+Line_6 $$ if (invalidContent != null) --> Line_8 $$ ImportExportJsonHelper.readFrom((new ByteArrayInputStream(bytes)), null) [CD]
+Line_6 $$ if (invalidContent != null) --> Line_10 $$ ImportExportJsonHelper.readFrom(null, null) [CD]
+Line_14 $$ boolean isExpectedException = e instanceof SubscriptionExtractor.InvalidSourceException --> Line_15 $$ assertTrue("\"" + e.getClass().getSimpleName() + "\" is not the expected exception", isExpectedException) [FD]

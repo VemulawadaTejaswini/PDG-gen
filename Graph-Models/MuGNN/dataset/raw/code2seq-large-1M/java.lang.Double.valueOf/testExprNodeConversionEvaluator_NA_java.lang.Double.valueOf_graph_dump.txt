@@ -1,0 +1,7 @@
+Line_4 $$ ExprNodeDesc col1desc = new ExprNodeColumnDesc(col1Type, "col1", "", false) --> Line_5 $$ ExprNodeDesc col11desc = getListIndexNode(col1desc, 1) [FD]
+Line_5 $$ ExprNodeDesc col11desc = getListIndexNode(col1desc, 1) --> Line_6 $$ ExprNodeDesc func1 = TypeCheckProcFactory.DefaultExprProcessor.getFuncExprNodeDesc(serdeConstants.DOUBLE_TYPE_NAME, col11desc) [FD]
+Line_6 $$ ExprNodeDesc func1 = TypeCheckProcFactory.DefaultExprProcessor.getFuncExprNodeDesc(serdeConstants.DOUBLE_TYPE_NAME, col11desc) --> Line_7 $$ ExprNodeEvaluator eval = ExprNodeEvaluatorFactory.get(func1) [FD]
+Line_7 $$ ExprNodeEvaluator eval = ExprNodeEvaluatorFactory.get(func1) --> Line_8 $$ ObjectInspector resultOI = eval.initialize(r.oi) [FD]
+Line_7 $$ ExprNodeEvaluator eval = ExprNodeEvaluatorFactory.get(func1) --> Line_9 $$ Object resultO = eval.evaluate(r.o) [FD]
+Line_9 $$ Object resultO = eval.evaluate(r.o) --> Line_10 $$ assertEquals(Double.valueOf("1"), ObjectInspectorUtils.copyToStandardObject(resultO, resultOI, ObjectInspectorCopyOption.JAVA)) [FD]
+Line_8 $$ ObjectInspector resultOI = eval.initialize(r.oi) --> Line_10 $$ assertEquals(Double.valueOf("1"), ObjectInspectorUtils.copyToStandardObject(resultO, resultOI, ObjectInspectorCopyOption.JAVA)) [FD]

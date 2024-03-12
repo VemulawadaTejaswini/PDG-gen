@@ -1,0 +1,6 @@
+Line_2 $$ public void restartConnector(String connectorName) --> Line_3 $$ String endpoint = "connectors/" + connectorName + "/restart" [CD]
+Line_2 $$ public void restartConnector(String connectorName) --> Line_6 $$ locks.putIfAbsent(connectorName, new ReentrantLock()) [FD]
+Line_2 $$ public void restartConnector(String connectorName) --> Line_8 $$ locks.get(connectorName).lock() [FD]
+Line_5 $$ String url = getRandomUrl() --> Line_9 $$ HTTP_CLIENT.post(url, endpoint, null) [FD]
+Line_3 $$ String endpoint = "connectors/" + connectorName + "/restart" --> Line_9 $$ HTTP_CLIENT.post(url, endpoint, null) [FD]
+Line_2 $$ public void restartConnector(String connectorName) --> Line_11 $$ locks.get(connectorName).unlock() [FD]

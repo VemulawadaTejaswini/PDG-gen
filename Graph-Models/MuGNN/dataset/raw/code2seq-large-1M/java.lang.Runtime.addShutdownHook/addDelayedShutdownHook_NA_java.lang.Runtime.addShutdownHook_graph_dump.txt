@@ -1,0 +1,8 @@
+Line_2 $$ static void addDelayedShutdownHook(final String serviceName, final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit) --> Line_3 $$ Runtime.getRuntime().addShutdownHook(new Thread(() -> [CD]
+Line_2 $$ static void addDelayedShutdownHook(final String serviceName, final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit) --> Line_5 $$ service.shutdown() [FD]
+Line_2 $$ static void addDelayedShutdownHook(final String serviceName, final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit) --> Line_6 $$ if (!service.awaitTermination(terminationTimeout, timeUnit)) [FD]
+Line_6 $$ if (!service.awaitTermination(terminationTimeout, timeUnit)) --> Line_7 $$ Twitter.getLogger().d(Twitter.TAG, serviceName + " did not shutdown in the" + " allocated time. Requesting immediate shutdown.") [CD]
+Line_6 $$ if (!service.awaitTermination(terminationTimeout, timeUnit)) --> Line_8 $$ service.shutdownNow() [CD]
+Line_2 $$ static void addDelayedShutdownHook(final String serviceName, final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit) --> Line_8 $$ service.shutdownNow() [FD]
+Line_2 $$ static void addDelayedShutdownHook(final String serviceName, final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit) --> Line_11 $$ Twitter.getLogger().d(Twitter.TAG, String.format(Locale.US, "Interrupted while waiting for %s to shut down." + " Requesting immediate shutdown.", serviceName)) [FD]
+Line_2 $$ static void addDelayedShutdownHook(final String serviceName, final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit) --> Line_12 $$ service.shutdownNow() [FD]

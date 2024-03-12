@@ -1,0 +1,8 @@
+Line_2 $$ private static BytesKey calculateKeyHash(SecureString key) --> Line_3 $$ MessageDigest messageDigest = MessageDigests.sha256() [CD]
+Line_2 $$ private static BytesKey calculateKeyHash(SecureString key) --> Line_4 $$ BytesRefBuilder b = new BytesRefBuilder() [CD]
+Line_4 $$ BytesRefBuilder b = new BytesRefBuilder() --> Line_6 $$ b.copyChars(key) [FD]
+Line_2 $$ private static BytesKey calculateKeyHash(SecureString key) --> Line_6 $$ b.copyChars(key) [FD]
+Line_4 $$ BytesRefBuilder b = new BytesRefBuilder() --> Line_7 $$ BytesRef bytesRef = b.toBytesRef() [FD]
+Line_3 $$ MessageDigest messageDigest = MessageDigests.sha256() --> Line_9 $$ messageDigest.update(bytesRef.bytes, bytesRef.offset, bytesRef.length) [FD]
+Line_3 $$ MessageDigest messageDigest = MessageDigests.sha256() --> Line_10 $$ return new BytesKey(Arrays.copyOfRange(messageDigest.digest(), 0, 8)) [FD]
+Line_4 $$ BytesRefBuilder b = new BytesRefBuilder() --> Line_15 $$ Arrays.fill(b.bytes(), (byte) 0x00) [FD]

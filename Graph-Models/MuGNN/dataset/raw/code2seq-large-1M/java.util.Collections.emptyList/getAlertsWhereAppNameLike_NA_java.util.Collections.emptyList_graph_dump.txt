@@ -1,0 +1,8 @@
+Line_2 $$ public List<AnomalyFunctionDTO> getAlertsWhereAppNameLike(@QueryParam("appname") String appname) --> Line_3 $$ List<AlertConfigDTO> alerts = Collections.emptyList() [CD]
+Line_2 $$ public List<AnomalyFunctionDTO> getAlertsWhereAppNameLike(@QueryParam("appname") String appname) --> Line_4 $$ if (StringUtils.isNotBlank(appname)) [CD]
+Line_2 $$ public List<AnomalyFunctionDTO> getAlertsWhereAppNameLike(@QueryParam("appname") String appname) --> Line_4 $$ if (StringUtils.isNotBlank(appname)) [FD]
+Line_4 $$ if (StringUtils.isNotBlank(appname)) --> Line_5 $$ alerts = alertConfigDAO.findWhereApplicationLike("%" + appname + "%") [CD]
+Line_3 $$ List<AlertConfigDTO> alerts = Collections.emptyList() --> Line_5 $$ alerts = alertConfigDAO.findWhereApplicationLike("%" + appname + "%") [FD]
+Line_2 $$ public List<AnomalyFunctionDTO> getAlertsWhereAppNameLike(@QueryParam("appname") String appname) --> Line_7 $$ return getFunctionsFromAlertConfigs(alerts) [CD]
+Line_3 $$ List<AlertConfigDTO> alerts = Collections.emptyList() --> Line_7 $$ return getFunctionsFromAlertConfigs(alerts) [FD]
+Line_5 $$ alerts = alertConfigDAO.findWhereApplicationLike("%" + appname + "%") --> Line_7 $$ return getFunctionsFromAlertConfigs(alerts) [FD]

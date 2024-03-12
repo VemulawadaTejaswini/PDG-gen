@@ -1,0 +1,8 @@
+Line_2 $$ protected void dropConstraints(Connection con, String tableName) throws Exception --> Line_3 $$ List<String> names = new ArrayList(3) [CD]
+Line_2 $$ protected void dropConstraints(Connection con, String tableName) throws Exception --> Line_4 $$ try (Statement select = con.createStatement()) [FD]
+Line_4 $$ try (Statement select = con.createStatement()) --> Line_5 $$ try (ResultSet rs = select.executeQuery("SELECT t0.name " + "FROM sysobjects t0, sysconstraints t1, sysobjects t2 " + "WHERE t0.id = t1.constrid and t1.tableid = t2.id and t2.name = '" + tableName + "'")) [FD]
+Line_5 $$ try (ResultSet rs = select.executeQuery("SELECT t0.name " + "FROM sysobjects t0, sysconstraints t1, sysobjects t2 " + "WHERE t0.id = t1.constrid and t1.tableid = t2.id and t2.name = '" + tableName + "'")) --> Line_6 $$ while (rs.next()) [FD]
+Line_6 $$ while (rs.next()) --> Line_7 $$ names.add(rs.getString("name")) [CD]
+Line_3 $$ List<String> names = new ArrayList(3) --> Line_7 $$ names.add(rs.getString("name")) [FD]
+Line_5 $$ try (ResultSet rs = select.executeQuery("SELECT t0.name " + "FROM sysobjects t0, sysconstraints t1, sysobjects t2 " + "WHERE t0.id = t1.constrid and t1.tableid = t2.id and t2.name = '" + tableName + "'")) --> Line_7 $$ names.add(rs.getString("name")) [FD]
+Line_2 $$ protected void dropConstraints(Connection con, String tableName) throws Exception --> Line_12 $$ executeDDL(con, "alter table " + tableName + " drop constraint " + name) [FD]

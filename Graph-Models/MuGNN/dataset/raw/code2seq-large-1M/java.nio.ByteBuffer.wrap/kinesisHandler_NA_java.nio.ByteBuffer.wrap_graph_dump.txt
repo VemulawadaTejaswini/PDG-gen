@@ -1,0 +1,8 @@
+Line_2 $$ public void kinesisHandler(KinesisEvent event, Context context) --> Line_3 $$ logger = context.getLogger() [FD]
+Line_2 $$ public void kinesisHandler(KinesisEvent event, Context context) --> Line_3 $$ logger = context.getLogger() [CD]
+Line_2 $$ public void kinesisHandler(KinesisEvent event, Context context) --> Line_4 $$ setup() [CD]
+Line_2 $$ public void kinesisHandler(KinesisEvent event, Context context) --> Line_5 $$ for (KinesisEvent.KinesisEventRecord rec : event.getRecords()) [FD]
+Line_5 $$ for (KinesisEvent.KinesisEventRecord rec : event.getRecords()) --> Line_7 $$ String msg = new String(rec.getKinesis().getData().array()) + "\n" [FD]
+Line_7 $$ String msg = new String(rec.getKinesis().getData().array()) + "\n" --> Line_8 $$ Record deliveryStreamRecord = new Record().withData(ByteBuffer.wrap(msg.getBytes())) [FD]
+Line_8 $$ Record deliveryStreamRecord = new Record().withData(ByteBuffer.wrap(msg.getBytes())) --> Line_9 $$ PutRecordRequest putRecordRequest = new PutRecordRequest().withDeliveryStreamName(deliveryStreamName).withRecord(deliveryStreamRecord) [FD]
+Line_9 $$ PutRecordRequest putRecordRequest = new PutRecordRequest().withDeliveryStreamName(deliveryStreamName).withRecord(deliveryStreamRecord) --> Line_11 $$ firehoseClient.putRecord(putRecordRequest) [FD]

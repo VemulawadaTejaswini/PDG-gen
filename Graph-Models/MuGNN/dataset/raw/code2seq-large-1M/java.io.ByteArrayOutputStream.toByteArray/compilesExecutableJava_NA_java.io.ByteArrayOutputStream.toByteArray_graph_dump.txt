@@ -1,0 +1,7 @@
+Line_2 $$ public void compilesExecutableJava() throws Exception --> Line_3 $$ final ByteArrayOutputStream baos = new ByteArrayOutputStream() [CD]
+Line_2 $$ public void compilesExecutableJava() throws Exception --> Line_4 $$ final Program program = new Program(new InputOf(new JoinedText("\n", "object car as Serializable:", "  Integer @vin", "  String name():", "    \"Mercedes-Benz\"").asString()),  s -> new OutputTo(baos)) [CD]
+Line_2 $$ public void compilesExecutableJava() throws Exception --> Line_5 $$ program.compile() [CD]
+Line_4 $$ final Program program = new Program(new InputOf(new JoinedText("\n", "object car as Serializable:", "  Integer @vin", "  String name():", "    \"Mercedes-Benz\"").asString()),  s -> new OutputTo(baos)) --> Line_5 $$ program.compile() [FD]
+Line_6 $$ try (final GroovyClassLoader loader = new GroovyClassLoader()) --> Line_7 $$ final Class<?> type = loader.parseClass(new GroovyCodeSource(new TextOf(baos.toByteArray()).asString(), "car", GroovyShell.DEFAULT_CODE_BASE)) [FD]
+Line_3 $$ final ByteArrayOutputStream baos = new ByteArrayOutputStream() --> Line_7 $$ final Class<?> type = loader.parseClass(new GroovyCodeSource(new TextOf(baos.toByteArray()).asString(), "car", GroovyShell.DEFAULT_CODE_BASE)) [FD]
+Line_7 $$ final Class<?> type = loader.parseClass(new GroovyCodeSource(new TextOf(baos.toByteArray()).asString(), "car", GroovyShell.DEFAULT_CODE_BASE)) --> Line_8 $$ MatcherAssert.assertThat(type.getMethod("name").invoke(type.getConstructor(Integer.class).newInstance(0)), Matchers.equalTo("Mercedes-Benz")) [FD]

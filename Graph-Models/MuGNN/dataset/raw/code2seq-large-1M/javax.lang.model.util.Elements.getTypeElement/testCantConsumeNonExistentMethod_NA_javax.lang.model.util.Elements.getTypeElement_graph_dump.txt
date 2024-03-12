@@ -1,0 +1,6 @@
+Line_5 $$ Elements elementUtils = context.processingEnvironment().getElementUtils() --> Line_6 $$ TypeElement javaLangInteger = elementUtils.getTypeElement(Integer.class.getName()) [FD]
+Line_7 $$ for (ExecutableElement method : ElementFilter.methodsIn(javaLangInteger.getEnclosedElements())) --> Line_8 $$ if (method.getSimpleName().contentEquals("intValue")) [FD]
+Line_8 $$ if (method.getSimpleName().contentEquals("intValue")) --> Line_9 $$ return ImmutableSet.of(method) [CD]
+Line_7 $$ for (ExecutableElement method : ElementFilter.methodsIn(javaLangInteger.getEnclosedElements())) --> Line_9 $$ return ImmutableSet.of(method) [FD]
+Line_2 $$ public void testCantConsumeNonExistentMethod() throws Exception --> Line_15 $$ JavaFileObject impl = JavaFileObjects.forSourceLines("foo.bar.Baz", "package foo.bar;", "import com.google.auto.value.AutoValue;", "@AutoValue public abstract class Baz [CD]
+Line_2 $$ public void testCantConsumeNonExistentMethod() throws Exception --> Line_16 $$ assertThat(impl).processedWith(new AutoValueProcessor(ImmutableList.of(new ConsumeBogusMethod()))).failsToCompile().withErrorContaining("wants to consume a method that is not one of the abstract methods in this class").in(impl).onLine(3).and().withErrorContaining("intValue").in(impl).onLine(3) [CD]

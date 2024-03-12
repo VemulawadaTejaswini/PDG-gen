@@ -1,0 +1,7 @@
+Line_2 $$ public void testWeakReference() throws Exception --> Line_3 $$ final ClassLoader origContextClassLoader = Thread.currentThread().getContextClassLoader() [CD]
+Line_5 $$ ClassReloader componentLoader = new ClassReloader(origContextClassLoader) --> Line_6 $$ Thread.currentThread().setContextClassLoader(componentLoader) [FD]
+Line_3 $$ final ClassLoader origContextClassLoader = Thread.currentThread().getContextClassLoader() --> Line_7 $$ Thread.currentThread().setContextClassLoader(origContextClassLoader) [FD]
+Line_5 $$ ClassReloader componentLoader = new ClassReloader(origContextClassLoader) --> Line_9 $$ componentLoader = null [FD]
+Line_8 $$ final WeakReference<ClassLoader> ref = new WeakReference<ClassLoader>(componentLoader) --> Line_10 $$ forceGarbageCollection(ref) [FD]
+Line_8 $$ final WeakReference<ClassLoader> ref = new WeakReference<ClassLoader>(componentLoader) --> Line_11 $$ assertNull(ref.get()) [FD]
+Line_3 $$ final ClassLoader origContextClassLoader = Thread.currentThread().getContextClassLoader() --> Line_13 $$ Thread.currentThread().setContextClassLoader(origContextClassLoader) [FD]

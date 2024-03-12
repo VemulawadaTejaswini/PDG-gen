@@ -1,0 +1,7 @@
+Line_2 $$ public static int putByte(ByteBuffer buf, int offset, byte b) --> Line_3 $$ if (buf.isDirect()) [FD]
+Line_2 $$ public static int putByte(ByteBuffer buf, int offset, byte b) --> Line_3 $$ if (buf.isDirect()) [CD]
+Line_3 $$ if (buf.isDirect()) --> Line_4 $$ theUnsafe.putByte(((DirectBuffer) buf).address() + offset, b) [CD]
+Line_2 $$ public static int putByte(ByteBuffer buf, int offset, byte b) --> Line_4 $$ theUnsafe.putByte(((DirectBuffer) buf).address() + offset, b) [FD]
+Line_3 $$ if (buf.isDirect()) --> Line_6 $$ theUnsafe.putByte(buf.array(), BYTE_ARRAY_BASE_OFFSET + buf.arrayOffset() + offset, b) [CD]
+Line_2 $$ public static int putByte(ByteBuffer buf, int offset, byte b) --> Line_6 $$ theUnsafe.putByte(buf.array(), BYTE_ARRAY_BASE_OFFSET + buf.arrayOffset() + offset, b) [FD]
+Line_2 $$ public static int putByte(ByteBuffer buf, int offset, byte b) --> Line_8 $$ return offset + 1 [CD]

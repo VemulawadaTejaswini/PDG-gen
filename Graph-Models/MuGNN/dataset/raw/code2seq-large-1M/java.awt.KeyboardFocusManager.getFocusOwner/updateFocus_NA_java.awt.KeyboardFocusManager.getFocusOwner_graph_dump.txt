@@ -1,0 +1,7 @@
+Line_2 $$ private void updateFocus(TabSelectTrigger trigger) --> Line_3 $$ if (isEnabled() && properties.getFocusable() && getTabbedPanel() != null && getTabbedPanel().getProperties().getTabSelectTrigger() == trigger) [CD]
+Line_3 $$ if (isEnabled() && properties.getFocusable() && getTabbedPanel() != null && getTabbedPanel().getProperties().getTabSelectTrigger() == trigger) --> Line_4 $$ Component focusedComponent = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner() [CD]
+Line_3 $$ if (isEnabled() && properties.getFocusable() && getTabbedPanel() != null && getTabbedPanel().getProperties().getTabSelectTrigger() == trigger) --> Line_5 $$ if (focusedComponent instanceof TitledTab && ((TitledTab) focusedComponent).getTabbedPanel() == getTabbedPanel()) [CD]
+Line_5 $$ if (focusedComponent instanceof TitledTab && ((TitledTab) focusedComponent).getTabbedPanel() == getTabbedPanel()) --> Line_6 $$ requestFocusInWindow() [CD]
+Line_5 $$ if (focusedComponent instanceof TitledTab && ((TitledTab) focusedComponent).getTabbedPanel() == getTabbedPanel()) --> Line_7 $$ if (isSelected() || TabbedUtils.getParentTabbedPanel(focusedComponent) != getTabbedPanel()) [CD]
+Line_4 $$ Component focusedComponent = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner() --> Line_7 $$ if (isSelected() || TabbedUtils.getParentTabbedPanel(focusedComponent) != getTabbedPanel()) [FD]
+Line_7 $$ if (isSelected() || TabbedUtils.getParentTabbedPanel(focusedComponent) != getTabbedPanel()) --> Line_8 $$ requestFocusInWindow() [CD]

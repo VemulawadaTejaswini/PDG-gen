@@ -1,0 +1,5 @@
+Line_3 $$ for (String eName : new ArrayList<String>(resourceNames)) --> Line_4 $$ if (eName.endsWith(".class")) [FD]
+Line_3 $$ for (String eName : new ArrayList<String>(resourceNames)) --> Line_5 $$ final String cName = eName.substring(0, eName.length() - ".class".length()).replace('/', '.') [FD]
+Line_6 $$ final int lastDotIdx = cName.lastIndexOf('.') --> Line_7 $$ final String pkg = (lastDotIdx > 0) ? cName.substring(0, lastDotIdx) : "" [FD]
+Line_7 $$ final String pkg = (lastDotIdx > 0) ? cName.substring(0, lastDotIdx) : "" --> Line_8 $$ if (isCompileHighOptLevel(cName) || preloadPackages.contains(cName) || preloadPackages.contains(pkg)) [FD]
+Line_8 $$ if (isCompileHighOptLevel(cName) || preloadPackages.contains(cName) || preloadPackages.contains(pkg)) --> Line_9 $$ loadClass(cName, true) [CD]

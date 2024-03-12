@@ -1,0 +1,8 @@
+Line_2 $$ public void testShutdownButNonTerminatedExecutorRejectsJob() throws InterruptedException --> Line_3 $$ BlockingQueue<Runnable> queue = new LinkedBlockingQueue() [CD]
+Line_2 $$ public void testShutdownButNonTerminatedExecutorRejectsJob() throws InterruptedException --> Line_4 $$ ExecutorService service = Executors.newSingleThreadExecutor() [CD]
+Line_6 $$ PartitionedOrderedExecutor executor = new PartitionedOrderedExecutor(queue, service) --> Line_8 $$ executor.execute(semaphore::<>acquireUninterruptibly) [FD]
+Line_6 $$ PartitionedOrderedExecutor executor = new PartitionedOrderedExecutor(queue, service) --> Line_9 $$ executor.shutdown() [FD]
+Line_6 $$ PartitionedOrderedExecutor executor = new PartitionedOrderedExecutor(queue, service) --> Line_11 $$ executor.execute(() -> [FD]
+Line_7 $$ final Semaphore semaphore = new Semaphore(0) --> Line_17 $$ semaphore.release() [FD]
+Line_6 $$ PartitionedOrderedExecutor executor = new PartitionedOrderedExecutor(queue, service) --> Line_18 $$ assertThat(executor.awaitTermination(2, MINUTES), is(true)) [FD]
+Line_4 $$ ExecutorService service = Executors.newSingleThreadExecutor() --> Line_20 $$ service.shutdown() [FD]

@@ -1,0 +1,8 @@
+Line_3 $$ for (final JdbcTemplate jdbcTemplate : jdbcTemplates) --> Line_4 $$ if (jdbcTemplate == null) [FD]
+Line_3 $$ for (final JdbcTemplate jdbcTemplate : jdbcTemplates) --> Line_8 $$ sanityCheck(jdbcTemplate) [FD]
+Line_13 $$ final List<String> statements = Lists.newArrayList() --> Line_14 $$ statements.add("SET FOREIGN_KEY_CHECKS = 0") [FD]
+Line_13 $$ final List<String> statements = Lists.newArrayList() --> Line_15 $$ statements.addAll(Lists.transform(jdbcTemplate.queryForList("SHOW TABLES", String.class),  table -> String.format("TRUNCATE TABLE %s", table))) [FD]
+Line_3 $$ for (final JdbcTemplate jdbcTemplate : jdbcTemplates) --> Line_15 $$ statements.addAll(Lists.transform(jdbcTemplate.queryForList("SHOW TABLES", String.class),  table -> String.format("TRUNCATE TABLE %s", table))) [FD]
+Line_13 $$ final List<String> statements = Lists.newArrayList() --> Line_16 $$ statements.add("SET FOREIGN_KEY_CHECKS = 1") [FD]
+Line_3 $$ for (final JdbcTemplate jdbcTemplate : jdbcTemplates) --> Line_17 $$ jdbcTemplate.batchUpdate(statements.toArray(new String[statements.size()])) [FD]
+Line_13 $$ final List<String> statements = Lists.newArrayList() --> Line_17 $$ jdbcTemplate.batchUpdate(statements.toArray(new String[statements.size()])) [FD]

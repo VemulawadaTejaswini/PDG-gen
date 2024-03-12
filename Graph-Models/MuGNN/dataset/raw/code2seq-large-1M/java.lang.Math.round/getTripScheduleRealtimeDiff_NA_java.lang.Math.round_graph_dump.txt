@@ -1,0 +1,6 @@
+Line_4 $$ if (this.getDataSources() == null || this.getDataSources().isEmpty()) --> Line_5 $$ _log.error("no configured data sources") [CD]
+Line_4 $$ if (this.getDataSources() == null || this.getDataSources().isEmpty()) --> Line_6 $$ return Response.ok(error("trip-schedule-realtime-diff-pct", "no configured data sources")).build() [CD]
+Line_2 $$ public Response getTripScheduleRealtimeDiff(@PathParam("agencyId") String agencyId, @QueryParam("feedId") String feedId, @QueryParam("routeId") String routeId) --> Line_8 $$ int scheduledTrips = getScheduledTrips(agencyId, routeId) [FD]
+Line_2 $$ public Response getTripScheduleRealtimeDiff(@PathParam("agencyId") String agencyId, @QueryParam("feedId") String feedId, @QueryParam("routeId") String routeId) --> Line_9 $$ int validRealtimeTrips = getValidRealtimeTripIds(agencyId, feedId).size() [FD]
+Line_2 $$ public Response getTripScheduleRealtimeDiff(@PathParam("agencyId") String agencyId, @QueryParam("feedId") String feedId, @QueryParam("routeId") String routeId) --> Line_11 $$ int average = getAvgByAgency("trip-schedule-realtime-diff", agencyId) [FD]
+Line_12 $$ int percent = average != 0 ? (int) Math.round(((diff - average) * 100.0) / average) : Integer.MAX_VALUE --> Line_14 $$ return Response.ok(ok("trip-schedule-realtime-diff-pct", percent)).build() [FD]

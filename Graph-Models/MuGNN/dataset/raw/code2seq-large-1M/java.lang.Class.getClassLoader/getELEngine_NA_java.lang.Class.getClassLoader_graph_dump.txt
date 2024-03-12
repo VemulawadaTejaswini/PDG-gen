@@ -1,0 +1,8 @@
+Line_2 $$ private ELEngine getELEngine() --> Line_3 $$ if (elEngine == null) [CD]
+Line_3 $$ if (elEngine == null) --> Line_4 $$ if (ELExpressionFactory.isSupported()) [CD]
+Line_4 $$ if (ELExpressionFactory.isSupported()) --> Line_5 $$ if (RuntimeUtils.isOSGi()) [CD]
+Line_5 $$ if (RuntimeUtils.isOSGi()) --> Line_6 $$ ClassLoader classLoader = getClass().getClassLoader() [CD]
+Line_5 $$ if (RuntimeUtils.isOSGi()) --> Line_7 $$ return new TcclELEngine(ELExpressionFactory.newInstance(classLoader), classLoader) [CD]
+Line_5 $$ if (RuntimeUtils.isOSGi()) --> Line_9 $$ return new DefaultELEngine(ELExpressionFactory.newInstance()) [CD]
+Line_4 $$ if (ELExpressionFactory.isSupported()) --> Line_12 $$ return new NoopELEngine() [CD]
+Line_3 $$ if (elEngine == null) --> Line_15 $$ return elEngine [CD]

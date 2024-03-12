@@ -1,0 +1,5 @@
+Line_2 $$ public Document[] write(final Path path) throws IOException, ClassNotFoundException --> Line_3 $$ try (final InputStream fis = Files.newInputStream(path); [FD]
+Line_3 $$ try (final InputStream fis = Files.newInputStream(path); --> Line_5 $$ final SolrInputDocument inputDocument = (SolrInputDocument) in.readObject() [FD]
+Line_3 $$ try (final InputStream fis = Files.newInputStream(path); --> Line_6 $$ in.close() [FD]
+Line_5 $$ final SolrInputDocument inputDocument = (SolrInputDocument) in.readObject() --> Line_7 $$ final Document[] documents = inputDocument.getFieldValues(fields.forPath()).stream().map( p -> new Document(inputDocument.getFieldValue(fields.forId()).toString(), null, Paths.get(p.toString()), null)).toArray(Document[]::<>new) [FD]
+Line_5 $$ final SolrInputDocument inputDocument = (SolrInputDocument) in.readObject() --> Line_8 $$ write(documents[0], inputDocument) [FD]

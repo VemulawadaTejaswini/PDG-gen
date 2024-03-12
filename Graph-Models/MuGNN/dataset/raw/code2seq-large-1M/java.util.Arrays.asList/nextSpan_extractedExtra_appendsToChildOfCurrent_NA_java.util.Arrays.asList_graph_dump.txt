@@ -1,0 +1,4 @@
+Line_2 $$ public void nextSpan_extractedExtra_appendsToChildOfCurrent() --> Line_3 $$ Span parent = tracer.toSpan(tracer.newTrace().context().toBuilder().extra(asList(1L)).build()) [CD]
+Line_2 $$ public void nextSpan_extractedExtra_appendsToChildOfCurrent() --> Line_4 $$ TraceContextOrSamplingFlags extracted = TraceContextOrSamplingFlags.create(SamplingFlags.EMPTY).toBuilder().addExtra(2L).build() [CD]
+Line_3 $$ Span parent = tracer.toSpan(tracer.newTrace().context().toBuilder().extra(asList(1L)).build()) --> Line_5 $$ try (SpanInScope ws = tracer.withSpanInScope(parent)) [FD]
+Line_4 $$ TraceContextOrSamplingFlags extracted = TraceContextOrSamplingFlags.create(SamplingFlags.EMPTY).toBuilder().addExtra(2L).build() --> Line_6 $$ assertThat(tracer.nextSpan(extracted).context().extra()).containsExactly(1L, 2L) [FD]

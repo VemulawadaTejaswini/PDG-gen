@@ -1,0 +1,6 @@
+Line_2 $$ public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) --> Line_3 $$ if (shutdown) [CD]
+Line_3 $$ if (shutdown) --> Line_6 $$ ScheduledFuture<?> scheduled = scheduler.scheduleAtFixedRate(worker, command, initialDelay, period, unit) [CD]
+Line_2 $$ public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) --> Line_6 $$ ScheduledFuture<?> scheduled = scheduler.scheduleAtFixedRate(worker, command, initialDelay, period, unit) [FD]
+Line_3 $$ if (shutdown) --> Line_7 $$ if (shutdown && scheduled.cancel(false)) [CD]
+Line_6 $$ ScheduledFuture<?> scheduled = scheduler.scheduleAtFixedRate(worker, command, initialDelay, period, unit) --> Line_7 $$ if (shutdown && scheduled.cancel(false)) [FD]
+Line_7 $$ if (shutdown && scheduled.cancel(false)) --> Line_10 $$ return scheduled [CD]

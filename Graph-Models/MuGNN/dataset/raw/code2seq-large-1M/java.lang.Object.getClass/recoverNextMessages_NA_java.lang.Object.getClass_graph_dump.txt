@@ -1,0 +1,8 @@
+Line_6 $$ if (pastLackBatch) --> Line_7 $$ Object msg = entry.getValue() [CD]
+Line_6 $$ if (pastLackBatch) --> Line_8 $$ lastBatchId = entry.getKey() [CD]
+Line_6 $$ if (pastLackBatch) --> Line_9 $$ if (msg.getClass() == MessageId.class) [CD]
+Line_7 $$ Object msg = entry.getValue() --> Line_9 $$ if (msg.getClass() == MessageId.class) [FD]
+Line_2 $$ public void recoverNextMessages(int maxReturned, MessageRecoveryListener listener) throws Exception --> Line_10 $$ listener.recoverMessageReference((MessageId) msg) [FD]
+Line_2 $$ public void recoverNextMessages(int maxReturned, MessageRecoveryListener listener) throws Exception --> Line_12 $$ listener.recoverMessage((Message) msg) [FD]
+Line_6 $$ if (pastLackBatch) --> Line_15 $$ pastLackBatch = entry.getKey().equals(lastBatchId) [CD]
+Line_4 $$ boolean pastLackBatch = lastBatchId == null --> Line_15 $$ pastLackBatch = entry.getKey().equals(lastBatchId) [FD]

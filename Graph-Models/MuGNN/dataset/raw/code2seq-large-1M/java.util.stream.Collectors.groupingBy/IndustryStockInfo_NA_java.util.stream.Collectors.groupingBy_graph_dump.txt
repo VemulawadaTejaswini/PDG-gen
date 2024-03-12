@@ -1,0 +1,7 @@
+Line_2 $$ public void IndustryStockInfo() throws RemoteException --> Line_3 $$ CommissionIndustryCollector collector = new CommissionIndustryCollector() [CD]
+Line_2 $$ public void IndustryStockInfo() throws RemoteException --> Line_4 $$ IndustryToStocksMapper mapper = new IndustryToStocksMapper() [CD]
+Line_2 $$ public void IndustryStockInfo() throws RemoteException --> Line_5 $$ Map<Industry, List<Stock>> res = collector.get().parallelStream().map(mapper).flatMap(Collection::<>stream).collect(Collectors.groupingBy(Stock::<>getIndustry)) [CD]
+Line_4 $$ IndustryToStocksMapper mapper = new IndustryToStocksMapper() --> Line_5 $$ Map<Industry, List<Stock>> res = collector.get().parallelStream().map(mapper).flatMap(Collection::<>stream).collect(Collectors.groupingBy(Stock::<>getIndustry)) [FD]
+Line_3 $$ CommissionIndustryCollector collector = new CommissionIndustryCollector() --> Line_5 $$ Map<Industry, List<Stock>> res = collector.get().parallelStream().map(mapper).flatMap(Collection::<>stream).collect(Collectors.groupingBy(Stock::<>getIndustry)) [FD]
+Line_5 $$ Map<Industry, List<Stock>> res = collector.get().parallelStream().map(mapper).flatMap(Collection::<>stream).collect(Collectors.groupingBy(Stock::<>getIndustry)) --> Line_6 $$ for (Map.Entry<Industry, List<Stock>> entry : res.entrySet()) [FD]
+Line_7 $$ for (Stock stock : entry.getValue()) --> Line_8 $$ System.out.println(entry.getKey().getIndustryName() + " -> " + stock.getStockName()) [FD]

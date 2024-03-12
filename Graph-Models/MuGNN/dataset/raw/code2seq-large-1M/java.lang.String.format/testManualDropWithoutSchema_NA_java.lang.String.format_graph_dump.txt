@@ -1,0 +1,5 @@
+Line_2 $$ public void testManualDropWithoutSchema() throws Exception --> Line_3 $$ String temporaryTableName = "temporary_table_to_drop_without_schema" [CD]
+Line_2 $$ public void testManualDropWithoutSchema() throws Exception --> Line_4 $$ test("create TEMPORARY table %s as select 'A' as c1 from (values(1))", temporaryTableName) [CD]
+Line_3 $$ String temporaryTableName = "temporary_table_to_drop_without_schema" --> Line_4 $$ test("create TEMPORARY table %s as select 'A' as c1 from (values(1))", temporaryTableName) [FD]
+Line_2 $$ public void testManualDropWithoutSchema() throws Exception --> Line_5 $$ testBuilder().sqlQuery("drop table %s", temporaryTableName).unOrdered().baselineColumns("ok", "summary").baselineValues(true, String.format("Temporary table [%s] dropped", temporaryTableName)).go() [CD]
+Line_3 $$ String temporaryTableName = "temporary_table_to_drop_without_schema" --> Line_5 $$ testBuilder().sqlQuery("drop table %s", temporaryTableName).unOrdered().baselineColumns("ok", "summary").baselineValues(true, String.format("Temporary table [%s] dropped", temporaryTableName)).go() [FD]

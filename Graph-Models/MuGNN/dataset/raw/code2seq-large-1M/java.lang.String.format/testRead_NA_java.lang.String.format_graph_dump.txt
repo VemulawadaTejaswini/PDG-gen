@@ -1,0 +1,8 @@
+Line_2 $$ public void testRead() throws Exception --> Line_3 $$ List<QueryDataBatch> results = testSqlWithResults(String.format("SELECT count(*) FROM dfs.`%s`", dataFile.getPath())) [CD]
+Line_2 $$ public void testRead() throws Exception --> Line_4 $$ RecordBatchLoader batchLoader = new RecordBatchLoader(getAllocator()) [CD]
+Line_4 $$ RecordBatchLoader batchLoader = new RecordBatchLoader(getAllocator()) --> Line_6 $$ batchLoader.load(batch.getHeader().getDef(), batch.getData()) [FD]
+Line_5 $$ for (QueryDataBatch batch : results) --> Line_6 $$ batchLoader.load(batch.getHeader().getDef(), batch.getData()) [FD]
+Line_4 $$ RecordBatchLoader batchLoader = new RecordBatchLoader(getAllocator()) --> Line_7 $$ if (batchLoader.getRecordCount() <= 0) [FD]
+Line_4 $$ RecordBatchLoader batchLoader = new RecordBatchLoader(getAllocator()) --> Line_10 $$ NullableBigIntVector countV = batchLoader.getValueAccessorById(NullableBigIntVector.class, 0).getValueVector() [FD]
+Line_4 $$ RecordBatchLoader batchLoader = new RecordBatchLoader(getAllocator()) --> Line_12 $$ batchLoader.clear() [FD]
+Line_5 $$ for (QueryDataBatch batch : results) --> Line_13 $$ batch.release() [FD]

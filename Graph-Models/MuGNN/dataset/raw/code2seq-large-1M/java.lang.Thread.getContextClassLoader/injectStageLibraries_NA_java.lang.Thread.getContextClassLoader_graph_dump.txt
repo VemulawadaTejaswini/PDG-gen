@@ -1,0 +1,6 @@
+Line_2 $$ private void injectStageLibraries(ClassLoader containerCL, List<ClassLoader> stageLibrariesCLs) --> Line_3 $$ ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader() [CD]
+Line_2 $$ private void injectStageLibraries(ClassLoader containerCL, List<ClassLoader> stageLibrariesCLs) --> Line_5 $$ Thread.currentThread().setContextClassLoader(containerCL) [FD]
+Line_2 $$ private void injectStageLibraries(ClassLoader containerCL, List<ClassLoader> stageLibrariesCLs) --> Line_6 $$ Class<?> runtimeModuleClz = Class.forName("com.streamsets.datacollector.main.RuntimeModule", true, containerCL) [FD]
+Line_6 $$ Class<?> runtimeModuleClz = Class.forName("com.streamsets.datacollector.main.RuntimeModule", true, containerCL) --> Line_7 $$ Method setStageLibraryClassLoadersMethod = runtimeModuleClz.getMethod("setStageLibraryClassLoaders", List.class) [FD]
+Line_2 $$ private void injectStageLibraries(ClassLoader containerCL, List<ClassLoader> stageLibrariesCLs) --> Line_8 $$ setStageLibraryClassLoadersMethod.invoke(null, stageLibrariesCLs) [FD]
+Line_3 $$ ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader() --> Line_13 $$ Thread.currentThread().setContextClassLoader(originalClassLoader) [FD]

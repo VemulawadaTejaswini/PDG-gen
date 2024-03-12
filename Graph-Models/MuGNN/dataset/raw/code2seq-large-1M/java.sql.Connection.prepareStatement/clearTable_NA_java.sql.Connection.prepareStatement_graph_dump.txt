@@ -1,0 +1,4 @@
+Line_3 $$ try (Connection conn = connection()) --> Line_4 $$ try (PreparedStatement stmt = conn.prepareStatement("drop table " + tblName)) [FD]
+Line_3 $$ try (Connection conn = connection()) --> Line_5 $$ if (!conn.getMetaData().getDatabaseProductName().equals("Apache Ignite")) [FD]
+Line_5 $$ if (!conn.getMetaData().getDatabaseProductName().equals("Apache Ignite")) --> Line_6 $$ stmt.executeUpdate() [CD]
+Line_4 $$ try (PreparedStatement stmt = conn.prepareStatement("drop table " + tblName)) --> Line_6 $$ stmt.executeUpdate() [FD]

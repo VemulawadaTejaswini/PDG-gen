@@ -1,0 +1,7 @@
+Line_2 $$ public Optional<P> authenticate(JwtContext context) throws AuthenticationException --> Line_3 $$ final Timer.Context timer = gets.time() [CD]
+Line_2 $$ public Optional<P> authenticate(JwtContext context) throws AuthenticationException --> Line_5 $$ final SimpleEntry<JwtContext, Optional<P>> cacheEntry = cache.getIfPresent(context.getJwt()) [FD]
+Line_2 $$ public Optional<P> authenticate(JwtContext context) throws AuthenticationException --> Line_10 $$ final Optional<P> principal = authenticator.authenticate(context) [FD]
+Line_10 $$ final Optional<P> principal = authenticator.authenticate(context) --> Line_11 $$ if (principal.isPresent()) [FD]
+Line_11 $$ if (principal.isPresent()) --> Line_12 $$ cache.put(context.getJwt(), new SimpleEntry(context, principal)) [CD]
+Line_2 $$ public Optional<P> authenticate(JwtContext context) throws AuthenticationException --> Line_12 $$ cache.put(context.getJwt(), new SimpleEntry(context, principal)) [FD]
+Line_3 $$ final Timer.Context timer = gets.time() --> Line_16 $$ timer.stop() [FD]

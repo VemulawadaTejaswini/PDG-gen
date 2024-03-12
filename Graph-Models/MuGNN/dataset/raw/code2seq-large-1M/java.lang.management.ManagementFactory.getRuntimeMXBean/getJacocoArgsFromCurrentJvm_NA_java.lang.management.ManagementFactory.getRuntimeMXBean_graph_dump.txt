@@ -1,0 +1,8 @@
+Line_2 $$ private static List<String> getJacocoArgsFromCurrentJvm() --> Line_3 $$ RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean() [CD]
+Line_2 $$ private static List<String> getJacocoArgsFromCurrentJvm() --> Line_4 $$ List<String> arguments = runtimeMXBean.getInputArguments() [CD]
+Line_3 $$ RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean() --> Line_4 $$ List<String> arguments = runtimeMXBean.getInputArguments() [FD]
+Line_2 $$ private static List<String> getJacocoArgsFromCurrentJvm() --> Line_5 $$ List<String> jacocoArgs = Lists.newArrayList() [CD]
+Line_6 $$ for (String argument : arguments) --> Line_7 $$ if (argument.startsWith("-javaagent:") && argument.contains("jacoco")) [FD]
+Line_7 $$ if (argument.startsWith("-javaagent:") && argument.contains("jacoco")) --> Line_8 $$ jacocoArgs.add(argument + ",inclbootstrapclasses=true,includes=org.glowroot.*") [CD]
+Line_5 $$ List<String> jacocoArgs = Lists.newArrayList() --> Line_8 $$ jacocoArgs.add(argument + ",inclbootstrapclasses=true,includes=org.glowroot.*") [FD]
+Line_2 $$ private static List<String> getJacocoArgsFromCurrentJvm() --> Line_12 $$ return jacocoArgs [CD]

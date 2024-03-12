@@ -1,0 +1,7 @@
+Line_2 $$ public List<EventRule> getEventRules(User user) throws AccessDeniedException --> Line_3 $$ if (user.getId() > 0) [CD]
+Line_2 $$ public List<EventRule> getEventRules(User user) throws AccessDeniedException --> Line_3 $$ if (user.getId() > 0) [FD]
+Line_3 $$ if (user.getId() > 0) --> Line_4 $$ checkAccess(user) [CD]
+Line_2 $$ public List<EventRule> getEventRules(User user) throws AccessDeniedException --> Line_4 $$ checkAccess(user) [FD]
+Line_3 $$ if (user.getId() > 0) --> Line_5 $$ return new ArrayList(entityManager.get().createQuery("SELECT x FROM EventRule x WHERE x.user = :user", EventRule.class).setParameter("user", user).getResultList()) [CD]
+Line_2 $$ public List<EventRule> getEventRules(User user) throws AccessDeniedException --> Line_5 $$ return new ArrayList(entityManager.get().createQuery("SELECT x FROM EventRule x WHERE x.user = :user", EventRule.class).setParameter("user", user).getResultList()) [FD]
+Line_3 $$ if (user.getId() > 0) --> Line_7 $$ return Collections.emptyList() [CD]

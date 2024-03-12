@@ -1,0 +1,6 @@
+Line_2 $$ public void testChainedAgent() throws Exception --> Line_3 $$ assertThat(ByteBuddyAgent.install(), instanceOf(Instrumentation.class)) [CD]
+Line_2 $$ public void testChainedAgent() throws Exception --> Line_4 $$ AgentBuilder agentBuilder = new AgentBuilder.Default().with(poolStrategy).ignore(none()).type(ElementMatchers.is(Qux.class), ElementMatchers.is(classLoader)).transform(new QuxTransformer()) [CD]
+Line_2 $$ public void testChainedAgent() throws Exception --> Line_5 $$ ClassFileTransformer firstTransformer = agentBuilder.installOnByteBuddyAgent() [CD]
+Line_2 $$ public void testChainedAgent() throws Exception --> Line_6 $$ ClassFileTransformer secondTransformer = agentBuilder.installOnByteBuddyAgent() [CD]
+Line_5 $$ ClassFileTransformer firstTransformer = agentBuilder.installOnByteBuddyAgent() --> Line_11 $$ ByteBuddyAgent.getInstrumentation().removeTransformer(firstTransformer) [FD]
+Line_6 $$ ClassFileTransformer secondTransformer = agentBuilder.installOnByteBuddyAgent() --> Line_12 $$ ByteBuddyAgent.getInstrumentation().removeTransformer(secondTransformer) [FD]

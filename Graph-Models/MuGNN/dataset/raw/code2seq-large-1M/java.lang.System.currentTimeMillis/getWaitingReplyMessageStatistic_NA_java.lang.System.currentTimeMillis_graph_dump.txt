@@ -1,0 +1,7 @@
+Line_2 $$ public List<WaitingReplyMessageStatistic> getWaitingReplyMessageStatistic() --> Line_3 $$ List<WaitingReplyMessageStatistic> ret = new ArrayList<WaitingReplyMessageStatistic>() [CD]
+Line_2 $$ public List<WaitingReplyMessageStatistic> getWaitingReplyMessageStatistic() --> Line_4 $$ long currentTime = System.currentTimeMillis() [CD]
+Line_5 $$ for (Envelope e : envelopes.values()) --> Line_6 $$ for (Message msg : e.getRequests()) [FD]
+Line_6 $$ for (Message msg : e.getRequests()) --> Line_7 $$ WaitingReplyMessageStatistic statistic = new WaitingReplyMessageStatistic(msg.getClass().getName(), currentTime - msg.getCreatedTime(), msg.getId(), msg.getServiceId()) [FD]
+Line_3 $$ List<WaitingReplyMessageStatistic> ret = new ArrayList<WaitingReplyMessageStatistic>() --> Line_8 $$ ret.add(statistic) [FD]
+Line_7 $$ WaitingReplyMessageStatistic statistic = new WaitingReplyMessageStatistic(msg.getClass().getName(), currentTime - msg.getCreatedTime(), msg.getId(), msg.getServiceId()) --> Line_8 $$ ret.add(statistic) [FD]
+Line_2 $$ public List<WaitingReplyMessageStatistic> getWaitingReplyMessageStatistic() --> Line_11 $$ return ret [CD]

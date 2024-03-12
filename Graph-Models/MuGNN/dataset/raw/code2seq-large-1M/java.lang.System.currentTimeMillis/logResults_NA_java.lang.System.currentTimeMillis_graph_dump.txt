@@ -1,0 +1,6 @@
+Line_2 $$ protected void logResults() --> Line_3 $$ long now = System.currentTimeMillis() [CD]
+Line_2 $$ protected void logResults() --> Line_4 $$ if (now > lastLogTime + logInterval) [CD]
+Line_3 $$ long now = System.currentTimeMillis() --> Line_4 $$ if (now > lastLogTime + logInterval) [FD]
+Line_4 $$ if (now > lastLogTime + logInterval) --> Line_6 $$ int total = this.insertsQueued + this.updatesAndTerminatesQueued [CD]
+Line_4 $$ if (now > lastLogTime + logInterval) --> Line_7 $$ int done = this.processedInserts.get() + this.processedUpdatesAndTerminates.get() [CD]
+Line_4 $$ if (now > lastLogTime + logInterval) --> Line_8 $$ SingleQueueExecutor.logger.info("Processed " + done + " of " + total + " tasks. " + (total - done) + " still in queue.") [CD]

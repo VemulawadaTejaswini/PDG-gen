@@ -1,0 +1,8 @@
+Line_3 $$ BlazeProjectData blazeProjectData = BlazeProjectDataManager.getInstance(project).getBlazeProjectData() --> Line_4 $$ if (blazeProjectData == null) [FD]
+Line_4 $$ if (blazeProjectData == null) --> Line_5 $$ return null [CD]
+Line_9 $$ AndroidResourceModuleRegistry registry = AndroidResourceModuleRegistry.getInstance(project) --> Line_10 $$ TargetIdeInfo target = blazeProjectData.targetMap.get(registry.getTargetKey(module)) [FD]
+Line_11 $$ if (target == null || target.javaIdeInfo == null) --> Line_12 $$ return null [CD]
+Line_15 $$ List<LibraryArtifact> jarsToSearch = Lists.newArrayList(target.javaIdeInfo.jars) --> Line_16 $$ jarsToSearch.addAll(TransitiveDependencyMap.getInstance(project).getTransitiveDependencies(target.key).stream().map(targetMap::<>get).filter(Objects::<>nonNull).flatMap(BlazeClassJarProvider::<>getNonResourceJars).collect(Collectors.toList())) [FD]
+Line_8 $$ ArtifactLocationDecoder decoder = blazeProjectData.artifactLocationDecoder --> Line_22 $$ File classJarFile = decoder.decode(jar.classJar) [FD]
+Line_17 $$ List<File> missingClassJars = Lists.newArrayList() --> Line_26 $$ missingClassJars.add(classJarFile) [FD]
+Line_17 $$ List<File> missingClassJars = Lists.newArrayList() --> Line_35 $$ maybeRefreshJars(missingClassJars, pendingJarsRefresh) [FD]

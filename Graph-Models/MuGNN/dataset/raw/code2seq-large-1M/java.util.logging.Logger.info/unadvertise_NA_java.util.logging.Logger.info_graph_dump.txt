@@ -1,0 +1,8 @@
+Line_2 $$ public void unadvertise(String name, String address, int port) --> Line_3 $$ AgentClient client = this.agentClientInjector.getValue() [CD]
+Line_2 $$ public void unadvertise(String name, String address, int port) --> Line_4 $$ Registration r = new Registration("consul", name, address, port, "") [CD]
+Line_2 $$ public void unadvertise(String name, String address, int port) --> Line_5 $$ this.advertisements.stream().filter( e -> e.equals(r)).forEach( e -> [CD]
+Line_4 $$ Registration r = new Registration("consul", name, address, port, "") --> Line_5 $$ this.advertisements.stream().filter( e -> e.equals(r)).forEach( e -> [FD]
+Line_3 $$ AgentClient client = this.agentClientInjector.getValue() --> Line_8 $$ client.deregister(serviceId) [FD]
+Line_6 $$ String serviceId = serviceId(e) --> Line_8 $$ client.deregister(serviceId) [FD]
+Line_2 $$ public void unadvertise(String name, String address, int port) --> Line_10 $$ this.advertisements.removeIf( e -> e.equals(r)) [CD]
+Line_4 $$ Registration r = new Registration("consul", name, address, port, "") --> Line_10 $$ this.advertisements.removeIf( e -> e.equals(r)) [FD]

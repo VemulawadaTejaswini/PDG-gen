@@ -1,0 +1,6 @@
+Line_2 $$ public static Comparator<String> randomOrder() --> Line_3 $$ ThreadLocalRandom r = ThreadLocalRandom.current() [CD]
+Line_2 $$ public static Comparator<String> randomOrder() --> Line_4 $$ int x = r.nextInt(), y = r.nextInt() [CD]
+Line_3 $$ ThreadLocalRandom r = ThreadLocalRandom.current() --> Line_4 $$ int x = r.nextInt(), y = r.nextInt() [FD]
+Line_2 $$ public static Comparator<String> randomOrder() --> Line_5 $$ boolean b = r.nextBoolean() [CD]
+Line_3 $$ ThreadLocalRandom r = ThreadLocalRandom.current() --> Line_5 $$ boolean b = r.nextBoolean() [FD]
+Line_2 $$ public static Comparator<String> randomOrder() --> Line_6 $$ return Comparator.comparingInt((String s) -> s.hashCode() ^ x).thenComparingInt( s -> s.length() ^ y).thenComparing(b ? Comparator.naturalOrder() : Comparator.reverseOrder()) [CD]

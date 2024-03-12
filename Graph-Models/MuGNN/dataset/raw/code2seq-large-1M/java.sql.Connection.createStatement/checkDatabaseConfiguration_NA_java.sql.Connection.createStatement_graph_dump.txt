@@ -1,0 +1,7 @@
+Line_2 $$ protected void checkDatabaseConfiguration(Connection connection) throws SQLException --> Line_3 $$ try (Statement stmt = connection.createStatement()) [FD]
+Line_5 $$ if (log.isTraceEnabled()) --> Line_6 $$ log.trace("SQL: " + sql) [CD]
+Line_3 $$ try (Statement stmt = connection.createStatement()) --> Line_8 $$ try (ResultSet rs = stmt.executeQuery(sql)) [FD]
+Line_4 $$ String sql = "SELECT is_read_committed_snapshot_on FROM sys.databases WHERE name = db_name()" --> Line_8 $$ try (ResultSet rs = stmt.executeQuery(sql)) [FD]
+Line_8 $$ try (ResultSet rs = stmt.executeQuery(sql)) --> Line_9 $$ if (!rs.next()) [FD]
+Line_8 $$ try (ResultSet rs = stmt.executeQuery(sql)) --> Line_12 $$ int on = rs.getInt(1) [FD]
+Line_12 $$ int on = rs.getInt(1) --> Line_13 $$ if (on != 1) [FD]

@@ -1,0 +1,4 @@
+Line_2 $$ public Iterable<KeyColumnUsage> keyColumnUsage() --> Line_3 $$ return primaryKeys.stream().filter( tableInfo -> !IGNORED_SCHEMAS.contains(tableInfo.ident().schema())).flatMap( tableInfo -> [CD]
+Line_4 $$ List<ColumnIdent> pks = tableInfo.primaryKey() --> Line_5 $$ PrimitiveIterator.OfInt ids = IntStream.range(1, pks.size() + 1).iterator() [FD]
+Line_4 $$ List<ColumnIdent> pks = tableInfo.primaryKey() --> Line_7 $$ return pks.stream().map( pk -> new KeyColumnUsage(ident, pk, ids.next())) [FD]
+Line_5 $$ PrimitiveIterator.OfInt ids = IntStream.range(1, pks.size() + 1).iterator() --> Line_7 $$ return pks.stream().map( pk -> new KeyColumnUsage(ident, pk, ids.next())) [FD]

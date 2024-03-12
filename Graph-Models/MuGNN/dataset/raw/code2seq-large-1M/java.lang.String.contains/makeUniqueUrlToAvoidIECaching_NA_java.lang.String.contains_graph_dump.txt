@@ -1,0 +1,6 @@
+Line_2 $$ protected String makeUniqueUrlToAvoidIECaching(String url, long unique) --> Line_3 $$ if (url.contains("timestamp=")) [FD]
+Line_2 $$ protected String makeUniqueUrlToAvoidIECaching(String url, long unique) --> Line_3 $$ if (url.contains("timestamp=")) [CD]
+Line_3 $$ if (url.contains("timestamp=")) --> Line_4 $$ return url.replaceFirst("(.*)(timestamp=)(.*)([&#].*)", "$1$2" + unique + "$4").replaceFirst("(.*)(timestamp=)(.*)$", "$1$2" + unique) [CD]
+Line_2 $$ protected String makeUniqueUrlToAvoidIECaching(String url, long unique) --> Line_4 $$ return url.replaceFirst("(.*)(timestamp=)(.*)([&#].*)", "$1$2" + unique + "$4").replaceFirst("(.*)(timestamp=)(.*)$", "$1$2" + unique) [FD]
+Line_3 $$ if (url.contains("timestamp=")) --> Line_6 $$ return url.contains("?") ? url + "&timestamp=" + unique : url + "?timestamp=" + unique [CD]
+Line_2 $$ protected String makeUniqueUrlToAvoidIECaching(String url, long unique) --> Line_6 $$ return url.contains("?") ? url + "&timestamp=" + unique : url + "?timestamp=" + unique [FD]

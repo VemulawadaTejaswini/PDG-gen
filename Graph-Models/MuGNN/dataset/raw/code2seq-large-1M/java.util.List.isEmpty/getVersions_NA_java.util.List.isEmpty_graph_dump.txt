@@ -1,0 +1,6 @@
+Line_2 $$ public List<SelectableVersion> getVersions() --> Line_3 $$ if (projectVersions.isEmpty() && StringUtils.isNotEmpty(projectSlug)) [CD]
+Line_3 $$ if (projectVersions.isEmpty() && StringUtils.isNotEmpty(projectSlug)) --> Line_4 $$ List<HProjectIteration> versions = projectIterationDAO.getByProjectSlug(projectSlug, EntityStatus.ACTIVE, EntityStatus.READONLY) [CD]
+Line_5 $$ for (HProjectIteration version : versions) --> Line_6 $$ if (!isVersionInGroup(version.getId())) [FD]
+Line_6 $$ if (!isVersionInGroup(version.getId())) --> Line_7 $$ projectVersions.add(new SelectableVersion(projectSlug, version.getSlug(), version.getProjectType(), false)) [CD]
+Line_5 $$ for (HProjectIteration version : versions) --> Line_7 $$ projectVersions.add(new SelectableVersion(projectSlug, version.getSlug(), version.getProjectType(), false)) [FD]
+Line_2 $$ public List<SelectableVersion> getVersions() --> Line_11 $$ return projectVersions [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ static long nextEventNumberFromPath(final Path channelPath) throws IOException --> Line_3 $$ AtomicLong currentlyMostRecent = new AtomicLong() [CD]
+Line_2 $$ static long nextEventNumberFromPath(final Path channelPath) throws IOException --> Line_4 $$ return Files.list(channelPath).filter( f -> [CD]
+Line_2 $$ static long nextEventNumberFromPath(final Path channelPath) throws IOException --> Line_4 $$ return Files.list(channelPath).filter( f -> [FD]
+Line_3 $$ AtomicLong currentlyMostRecent = new AtomicLong() --> Line_6 $$ if (f.toFile().getName().chars().allMatch( x -> Character.isDigit(x)) && f.toFile().lastModified() >= currentlyMostRecent.get()) [FD]
+Line_6 $$ if (f.toFile().getName().chars().allMatch( x -> Character.isDigit(x)) && f.toFile().lastModified() >= currentlyMostRecent.get()) --> Line_7 $$ currentlyMostRecent.set(f.toFile().lastModified()) [CD]
+Line_3 $$ AtomicLong currentlyMostRecent = new AtomicLong() --> Line_7 $$ currentlyMostRecent.set(f.toFile().lastModified()) [FD]
+Line_6 $$ if (f.toFile().getName().chars().allMatch( x -> Character.isDigit(x)) && f.toFile().lastModified() >= currentlyMostRecent.get()) --> Line_8 $$ return true [CD]
+Line_6 $$ if (f.toFile().getName().chars().allMatch( x -> Character.isDigit(x)) && f.toFile().lastModified() >= currentlyMostRecent.get()) --> Line_10 $$ return false [CD]

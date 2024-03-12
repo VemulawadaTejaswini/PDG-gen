@@ -1,0 +1,5 @@
+Line_2 $$ private boolean isOverdelivery() --> Line_3 $$ final I_M_ShipmentSchedule shipmentSchedule = load(shipmentScheduleId, I_M_ShipmentSchedule.class) [CD]
+Line_2 $$ private boolean isOverdelivery() --> Line_4 $$ final BigDecimal qtyPickedPlanned = Services.get(IPackagingDAO.class).retrieveQtyPickedPlannedOrNull(shipmentSchedule) [CD]
+Line_2 $$ private boolean isOverdelivery() --> Line_5 $$ final BigDecimal qtytoDeliver = shipmentSchedule.getQtyToDeliver().subtract(qtyPickedPlanned == null ? BigDecimal.ZERO : qtyPickedPlanned) [CD]
+Line_2 $$ private boolean isOverdelivery() --> Line_6 $$ return qtyCU.compareTo(qtytoDeliver) > 0 [CD]
+Line_5 $$ final BigDecimal qtytoDeliver = shipmentSchedule.getQtyToDeliver().subtract(qtyPickedPlanned == null ? BigDecimal.ZERO : qtyPickedPlanned) --> Line_6 $$ return qtyCU.compareTo(qtytoDeliver) > 0 [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ public void onPartitionsRevoked(Collection<TopicPartition> partitions) --> Line_3 $$ Collection<LogPartition> revoked = partitions.stream().map( tp -> LogPartition.of(ns.getLogName(tp.topic()), tp.partition())).collect(Collectors.toList()) [CD]
+Line_2 $$ public void onPartitionsRevoked(Collection<TopicPartition> partitions) --> Line_3 $$ Collection<LogPartition> revoked = partitions.stream().map( tp -> LogPartition.of(ns.getLogName(tp.topic()), tp.partition())).collect(Collectors.toList()) [FD]
+Line_2 $$ public void onPartitionsRevoked(Collection<TopicPartition> partitions) --> Line_4 $$ log.info(String.format("Rebalance revoked: %s", revoked)) [CD]
+Line_3 $$ Collection<LogPartition> revoked = partitions.stream().map( tp -> LogPartition.of(ns.getLogName(tp.topic()), tp.partition())).collect(Collectors.toList()) --> Line_4 $$ log.info(String.format("Rebalance revoked: %s", revoked)) [FD]
+Line_2 $$ public void onPartitionsRevoked(Collection<TopicPartition> partitions) --> Line_6 $$ if (listener != null) [CD]
+Line_6 $$ if (listener != null) --> Line_7 $$ listener.onPartitionsRevoked(revoked) [CD]
+Line_3 $$ Collection<LogPartition> revoked = partitions.stream().map( tp -> LogPartition.of(ns.getLogName(tp.topic()), tp.partition())).collect(Collectors.toList()) --> Line_7 $$ listener.onPartitionsRevoked(revoked) [FD]

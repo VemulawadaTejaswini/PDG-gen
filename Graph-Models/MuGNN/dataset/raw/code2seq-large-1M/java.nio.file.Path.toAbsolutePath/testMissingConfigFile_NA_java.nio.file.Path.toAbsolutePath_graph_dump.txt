@@ -1,0 +1,7 @@
+Line_2 $$ public void testMissingConfigFile() --> Line_3 $$ final Path configDir = getDataPath("does_not_exist") [CD]
+Line_2 $$ public void testMissingConfigFile() --> Line_4 $$ final Settings settings = Settings.builder().put(Environment.PATH_CONF_SETTING.getKey(), configDir.toAbsolutePath()).put(Environment.PATH_HOME_SETTING.getKey(), createTempDir().toString()).build() [CD]
+Line_3 $$ final Path configDir = getDataPath("does_not_exist") --> Line_4 $$ final Settings settings = Settings.builder().put(Environment.PATH_CONF_SETTING.getKey(), configDir.toAbsolutePath()).put(Environment.PATH_HOME_SETTING.getKey(), createTempDir().toString()).build() [FD]
+Line_2 $$ public void testMissingConfigFile() --> Line_5 $$ final Environment environment = new Environment(settings) [CD]
+Line_2 $$ public void testMissingConfigFile() --> Line_6 $$ UserException e = expectThrows(UserException.class, () -> LogConfigurator.configure(environment)) [CD]
+Line_5 $$ final Environment environment = new Environment(settings) --> Line_6 $$ UserException e = expectThrows(UserException.class, () -> LogConfigurator.configure(environment)) [FD]
+Line_2 $$ public void testMissingConfigFile() --> Line_7 $$ assertThat(e, hasToString(containsString("no log4j2.properties found; tried"))) [CD]

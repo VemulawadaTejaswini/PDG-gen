@@ -1,0 +1,6 @@
+Line_2 $$ private void runCurrentAnnotationTest() --> Line_3 $$ Annotation[] annotations [CD]
+Line_3 $$ Annotation[] annotations --> Line_5 $$ annotations = getClass().getMethod(testName.getMethodName()).getAnnotations() [FD]
+Line_2 $$ private void runCurrentAnnotationTest() --> Line_9 $$ if (annotations.length != 2) [CD]
+Line_9 $$ if (annotations.length != 2) --> Line_10 $$ fail("There should only be one non @Test annotation on the test method") [CD]
+Line_2 $$ private void runCurrentAnnotationTest() --> Line_12 $$ Annotation ann = annotations[0].annotationType() == Test.class ? annotations[1] : annotations[0] [CD]
+Line_2 $$ private void runCurrentAnnotationTest() --> Line_13 $$ assertThat(createClassWithAnnotation(ann).getAnnotation(ann.annotationType())).isEqualTo(ann) [CD]

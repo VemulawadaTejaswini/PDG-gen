@@ -1,0 +1,8 @@
+Line_2 $$ public IStatus getBestStatus(final int severity, final int errorCount, final String multipleErrorsDescriptionFormat) --> Line_3 $$ final IStatus[] statuses = getStatuses(severity) [FD]
+Line_2 $$ public IStatus getBestStatus(final int severity, final int errorCount, final String multipleErrorsDescriptionFormat) --> Line_3 $$ final IStatus[] statuses = getStatuses(severity) [CD]
+Line_2 $$ public IStatus getBestStatus(final int severity, final int errorCount, final String multipleErrorsDescriptionFormat) --> Line_4 $$ if (statuses.length == 0) [CD]
+Line_4 $$ if (statuses.length == 0) --> Line_5 $$ return new Status(severity, TFSCommonClientPlugin.PLUGIN_ID, 0, Messages.getString("NonFatalCommandHelper.UnspecifiedErrorMoreInfoInLog"), null) [CD]
+Line_4 $$ if (statuses.length == 0) --> Line_7 $$ if (statuses.length == 1) [CD]
+Line_7 $$ if (statuses.length == 1) --> Line_8 $$ return statuses[0] [CD]
+Line_7 $$ if (statuses.length == 1) --> Line_10 $$ return new MultiStatus(TFSCommonClientPlugin.PLUGIN_ID, 0, statuses, MessageFormat.format(multipleErrorsDescriptionFormat, errorCount), null) [CD]
+Line_2 $$ public IStatus getBestStatus(final int severity, final int errorCount, final String multipleErrorsDescriptionFormat) --> Line_10 $$ return new MultiStatus(TFSCommonClientPlugin.PLUGIN_ID, 0, statuses, MessageFormat.format(multipleErrorsDescriptionFormat, errorCount), null) [FD]

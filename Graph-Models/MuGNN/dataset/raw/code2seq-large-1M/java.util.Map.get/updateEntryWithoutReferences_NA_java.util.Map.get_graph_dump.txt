@@ -1,0 +1,8 @@
+Line_3 $$ String id = docModel.getId() --> Line_5 $$ Map<String, Object> map = data.get(id) [FD]
+Line_5 $$ Map<String, Object> map = data.get(id) --> Line_6 $$ if (map == null) [FD]
+Line_4 $$ DataModel dataModel = docModel.getDataModel(directory.getSchema()) --> Line_11 $$ if (!dataModel.isDirty(fieldName) || fieldName.equals(getIdField())) [FD]
+Line_9 $$ for (String fieldName : getDirectory().schemaSet) --> Line_11 $$ if (!dataModel.isDirty(fieldName) || fieldName.equals(getIdField())) [FD]
+Line_5 $$ Map<String, Object> map = data.get(id) --> Line_17 $$ map.put(fieldName, dataModel.getData(fieldName)) [FD]
+Line_9 $$ for (String fieldName : getDirectory().schemaSet) --> Line_17 $$ map.put(fieldName, dataModel.getData(fieldName)) [FD]
+Line_4 $$ DataModel dataModel = docModel.getDataModel(directory.getSchema()) --> Line_17 $$ map.put(fieldName, dataModel.getData(fieldName)) [FD]
+Line_4 $$ DataModel dataModel = docModel.getDataModel(directory.getSchema()) --> Line_19 $$ dataModel.getDirtyFields().clear() [FD]

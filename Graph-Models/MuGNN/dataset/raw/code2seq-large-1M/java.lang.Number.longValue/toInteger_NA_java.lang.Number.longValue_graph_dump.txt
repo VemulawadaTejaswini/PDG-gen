@@ -1,0 +1,8 @@
+Line_4 $$ Number longValue = Long.decode(t.text) --> Line_5 $$ long lv = longValue.longValue() [FD]
+Line_5 $$ long lv = longValue.longValue() --> Line_6 $$ if (0 != ((lv < 0 ? ~lv : lv) & ~((1L << 51) - 1))) [FD]
+Line_6 $$ if (0 != ((lv < 0 ? ~lv : lv) & ~((1L << 51) - 1))) --> Line_7 $$ mq.addMessage(MessageType.UNREPRESENTABLE_INTEGER_LITERAL, t.pos, MessagePart.Factory.valueOf(t.text)) [CD]
+Line_6 $$ if (0 != ((lv < 0 ? ~lv : lv) & ~((1L << 51) - 1))) --> Line_8 $$ double dv = lv [CD]
+Line_6 $$ if (0 != ((lv < 0 ? ~lv : lv) & ~((1L << 51) - 1))) --> Line_9 $$ return (long) dv [CD]
+Line_14 $$ BigInteger bi = new BigInteger(p.a, p.b) --> Line_15 $$ if (bi.compareTo(MIN_REPRESENTABLE) < 0 || bi.compareTo(MAX_REPRESENTABLE) > 0) [FD]
+Line_15 $$ if (bi.compareTo(MIN_REPRESENTABLE) < 0 || bi.compareTo(MAX_REPRESENTABLE) > 0) --> Line_16 $$ mq.addMessage(MessageType.UNREPRESENTABLE_INTEGER_LITERAL, t.pos, MessagePart.Factory.valueOf(t.text)) [CD]
+Line_14 $$ BigInteger bi = new BigInteger(p.a, p.b) --> Line_18 $$ return bi.longValue() [FD]

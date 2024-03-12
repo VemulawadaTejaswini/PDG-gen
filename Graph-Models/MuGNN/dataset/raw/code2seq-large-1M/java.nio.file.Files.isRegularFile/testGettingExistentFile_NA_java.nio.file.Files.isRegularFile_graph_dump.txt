@@ -1,0 +1,6 @@
+Line_3 $$ try (LocalFsContentsProvider provider = new LocalFsContentsProvider(new DefaultProjectFilesystemFactory(), cacheRootDir)) --> Line_7 $$ provider.writeFileAndGetInputStream(entry, targetAbsPath) [FD]
+Line_9 $$ Path anotherAbsPath = cacheRootDir.resolve("slicespin.file.txt") --> Line_10 $$ Assert.assertFalse(Files.isRegularFile(anotherAbsPath)) [FD]
+Line_3 $$ try (LocalFsContentsProvider provider = new LocalFsContentsProvider(new DefaultProjectFilesystemFactory(), cacheRootDir)) --> Line_11 $$ provider.materializeFileContentsAsync(entry, anotherAbsPath).get(FUTURE_GET_TIMEOUT_SECONDS, TimeUnit.SECONDS) [FD]
+Line_9 $$ Path anotherAbsPath = cacheRootDir.resolve("slicespin.file.txt") --> Line_11 $$ provider.materializeFileContentsAsync(entry, anotherAbsPath).get(FUTURE_GET_TIMEOUT_SECONDS, TimeUnit.SECONDS) [FD]
+Line_9 $$ Path anotherAbsPath = cacheRootDir.resolve("slicespin.file.txt") --> Line_12 $$ Assert.assertTrue(Files.isRegularFile(anotherAbsPath)) [FD]
+Line_9 $$ Path anotherAbsPath = cacheRootDir.resolve("slicespin.file.txt") --> Line_13 $$ Assert.assertThat(FILE_CONTENTS, Matchers.equalTo(Files.readAllBytes(anotherAbsPath))) [FD]

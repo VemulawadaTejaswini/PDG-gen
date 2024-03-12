@@ -1,0 +1,5 @@
+Line_2 $$ protected ListenableFuture<Boolean> createNode(String path, byte[] data, boolean isEphemeral) --> Line_3 $$ final SettableFuture<Boolean> result = SettableFuture.create() [CD]
+Line_2 $$ protected ListenableFuture<Boolean> createNode(String path, byte[] data, boolean isEphemeral) --> Line_5 $$ client.create().withMode(isEphemeral ? CreateMode.EPHEMERAL : CreateMode.PERSISTENT).forPath(path, data) [FD]
+Line_3 $$ final SettableFuture<Boolean> result = SettableFuture.create() --> Line_7 $$ safeSetFuture(result, true) [FD]
+Line_3 $$ final SettableFuture<Boolean> result = SettableFuture.create() --> Line_9 $$ safeSetException(result, new RuntimeException("Could not createNode:", e)) [FD]
+Line_2 $$ protected ListenableFuture<Boolean> createNode(String path, byte[] data, boolean isEphemeral) --> Line_11 $$ return result [CD]

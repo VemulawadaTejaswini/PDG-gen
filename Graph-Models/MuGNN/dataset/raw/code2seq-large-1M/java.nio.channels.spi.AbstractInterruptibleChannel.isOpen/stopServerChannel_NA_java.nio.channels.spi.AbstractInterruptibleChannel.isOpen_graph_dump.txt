@@ -1,0 +1,7 @@
+Line_2 $$ public void stopServerChannel(boolean clusterServer) --> Line_3 $$ ServerSocketChannel socketChannel = clusterServer ? clusterServerSocketChannel : proxyServerSocketChannel [CD]
+Line_2 $$ public void stopServerChannel(boolean clusterServer) --> Line_4 $$ if (socketChannel != null && socketChannel.isOpen()) [CD]
+Line_3 $$ ServerSocketChannel socketChannel = clusterServer ? clusterServerSocketChannel : proxyServerSocketChannel --> Line_4 $$ if (socketChannel != null && socketChannel.isOpen()) [FD]
+Line_4 $$ if (socketChannel != null && socketChannel.isOpen()) --> Line_5 $$ logger.warn("ServerSocketChannel close, [CD]
+Line_3 $$ ServerSocketChannel socketChannel = clusterServer ? clusterServerSocketChannel : proxyServerSocketChannel --> Line_5 $$ logger.warn("ServerSocketChannel close, [FD]
+Line_3 $$ ServerSocketChannel socketChannel = clusterServer ? clusterServerSocketChannel : proxyServerSocketChannel --> Line_7 $$ socketChannel.close() [FD]
+Line_3 $$ ServerSocketChannel socketChannel = clusterServer ? clusterServerSocketChannel : proxyServerSocketChannel --> Line_9 $$ logger.warn("ServerSocketChannel close error, [FD]

@@ -1,0 +1,7 @@
+Line_2 $$ int getRunningActivityCount() --> Line_3 $$ AtomicInteger count = new AtomicInteger(0) [CD]
+Line_4 $$ for (WeakReference<Activity> activityWeakReference : mRunningActivities) --> Line_5 $$ if (activityWeakReference == null) [FD]
+Line_4 $$ for (WeakReference<Activity> activityWeakReference : mRunningActivities) --> Line_7 $$ Activity activity = activityWeakReference.get() [FD]
+Line_7 $$ Activity activity = activityWeakReference.get() --> Line_8 $$ if (activity == null) [FD]
+Line_3 $$ AtomicInteger count = new AtomicInteger(0) --> Line_10 $$ count.set(count.incrementAndGet()) [FD]
+Line_2 $$ int getRunningActivityCount() --> Line_12 $$ return count.get() [CD]
+Line_3 $$ AtomicInteger count = new AtomicInteger(0) --> Line_12 $$ return count.get() [FD]

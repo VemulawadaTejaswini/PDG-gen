@@ -1,0 +1,8 @@
+Line_2 $$ public void onRequestTimeoutChange(long newRequestTimeoutMillis) --> Line_3 $$ cancelTimeout() [CD]
+Line_2 $$ public void onRequestTimeoutChange(long newRequestTimeoutMillis) --> Line_4 $$ if (newRequestTimeoutMillis > 0 && state != State.DONE) [CD]
+Line_4 $$ if (newRequestTimeoutMillis > 0 && state != State.DONE) --> Line_5 $$ final long passedTimeMillis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTimeNanos) [CD]
+Line_4 $$ if (newRequestTimeoutMillis > 0 && state != State.DONE) --> Line_6 $$ if (passedTimeMillis < newRequestTimeoutMillis) [CD]
+Line_5 $$ final long passedTimeMillis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTimeNanos) --> Line_6 $$ if (passedTimeMillis < newRequestTimeoutMillis) [FD]
+Line_2 $$ public void onRequestTimeoutChange(long newRequestTimeoutMillis) --> Line_6 $$ if (passedTimeMillis < newRequestTimeoutMillis) [FD]
+Line_6 $$ if (passedTimeMillis < newRequestTimeoutMillis) --> Line_7 $$ timeoutFuture = ctx.channel().eventLoop().schedule(this::<>onTimeout, newRequestTimeoutMillis - passedTimeMillis, TimeUnit.MILLISECONDS) [CD]
+Line_6 $$ if (passedTimeMillis < newRequestTimeoutMillis) --> Line_9 $$ onTimeout() [CD]

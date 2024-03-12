@@ -1,0 +1,4 @@
+Line_2 $$ public void testLongValue() throws Exception --> Line_3 $$ DynamicType.Loaded<LongMethod> loaded = new ByteBuddy().subclass(LongMethod.class).method(isDeclaredBy(LongMethod.class)).intercept(MethodDelegation.to(new Interceptor(0L))).make().load(LongMethod.class.getClassLoader(), ClassLoadingStrategy.Default.WRAPPER) [CD]
+Line_2 $$ public void testLongValue() throws Exception --> Line_4 $$ LongMethod instance = loaded.getLoaded().getDeclaredConstructor().newInstance() [CD]
+Line_2 $$ public void testLongValue() throws Exception --> Line_5 $$ assertThat(instance.foo(), is(0L)) [CD]
+Line_4 $$ LongMethod instance = loaded.getLoaded().getDeclaredConstructor().newInstance() --> Line_5 $$ assertThat(instance.foo(), is(0L)) [FD]

@@ -1,0 +1,6 @@
+Line_4 $$ PinLaterEnqueueRequest enqueueRequest = new PinLaterEnqueueRequest() --> Line_5 $$ enqueueRequest.setQueueName("nonexistent_queue") [FD]
+Line_4 $$ PinLaterEnqueueRequest enqueueRequest = new PinLaterEnqueueRequest() --> Line_6 $$ enqueueRequest.addToJobs(new PinLaterJob(ByteBuffer.wrap("job_body".getBytes()))) [FD]
+Line_4 $$ PinLaterEnqueueRequest enqueueRequest = new PinLaterEnqueueRequest() --> Line_7 $$ getBackend().enqueueJobs(enqueueRequest).get() [FD]
+Line_9 $$ if (e instanceof PinLaterException) --> Line_10 $$ Assert.assertEquals(ErrorCode.QUEUE_NOT_FOUND, ((PinLaterException) e).getErrorCode()) [CD]
+Line_9 $$ if (e instanceof PinLaterException) --> Line_11 $$ return [CD]
+Line_2 $$ public void testQueueDoesNotExistEnqueue() --> Line_14 $$ Assert.fail() [CD]

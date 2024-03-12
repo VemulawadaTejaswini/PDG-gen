@@ -1,0 +1,6 @@
+Line_2 $$ protected boolean currentThreadShouldBeStopped() --> Line_3 $$ if (threadRenewalDelay >= 0 && Thread.currentThread() instanceof TaskThread) [CD]
+Line_3 $$ if (threadRenewalDelay >= 0 && Thread.currentThread() instanceof TaskThread) --> Line_4 $$ TaskThread currentTaskThread = (TaskThread) Thread.currentThread() [CD]
+Line_3 $$ if (threadRenewalDelay >= 0 && Thread.currentThread() instanceof TaskThread) --> Line_5 $$ if (currentTaskThread.getCreationTime() < this.lastContextStoppedTime.longValue()) [CD]
+Line_4 $$ TaskThread currentTaskThread = (TaskThread) Thread.currentThread() --> Line_5 $$ if (currentTaskThread.getCreationTime() < this.lastContextStoppedTime.longValue()) [FD]
+Line_5 $$ if (currentTaskThread.getCreationTime() < this.lastContextStoppedTime.longValue()) --> Line_6 $$ return true [CD]
+Line_2 $$ protected boolean currentThreadShouldBeStopped() --> Line_9 $$ return false [CD]

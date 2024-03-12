@@ -1,0 +1,7 @@
+Line_4 $$ WMIObjectCollectorSink sink = new WMIObjectCollectorSink(monitor, getService()) --> Line_5 $$ getService().enumInstances("__NAMESPACE", sink, WMIConstants.WBEM_FLAG_SHALLOW) [FD]
+Line_4 $$ WMIObjectCollectorSink sink = new WMIObjectCollectorSink(monitor, getService()) --> Line_6 $$ sink.waitForFinish() [FD]
+Line_4 $$ WMIObjectCollectorSink sink = new WMIObjectCollectorSink(monitor, getService()) --> Line_8 $$ for (WMIObject object : sink.getObjectList()) [FD]
+Line_8 $$ for (WMIObject object : sink.getObjectList()) --> Line_9 $$ String nsName = CommonUtils.toString(object.getValue("Name")) [FD]
+Line_7 $$ List<WMINamespace> children = new ArrayList() --> Line_10 $$ children.add(new WMINamespace(this, dataSource, nsName, null)) [FD]
+Line_8 $$ for (WMIObject object : sink.getObjectList()) --> Line_11 $$ object.release() [FD]
+Line_7 $$ List<WMINamespace> children = new ArrayList() --> Line_13 $$ DBUtils.orderObjects(children) [FD]

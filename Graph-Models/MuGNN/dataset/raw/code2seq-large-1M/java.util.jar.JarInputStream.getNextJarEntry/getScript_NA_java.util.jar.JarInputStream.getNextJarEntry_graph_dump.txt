@@ -1,0 +1,7 @@
+Line_3 $$ try (JarInputStream jar = new JarInputStream(new ByteArrayInputStream(bundle.get()), true)) --> Line_4 $$ for (JarEntry f = jar.getNextJarEntry(); f != null; f = jar.getNextJarEntry()) [FD]
+Line_2 $$ public String getScript(String name) throws Exception --> Line_5 $$ if (f.isDirectory() || !f.getName().startsWith(name) || !f.getName().substring(name.length()).equals(".groovy")) [FD]
+Line_7 $$ ByteBufferOutputStream buffer = new ByteBufferOutputStream(f.getSize() > 0 ? f.getSize() : 8192) --> Line_8 $$ buffer.transferFully(jar) [FD]
+Line_3 $$ try (JarInputStream jar = new JarInputStream(new ByteArrayInputStream(bundle.get()), true)) --> Line_8 $$ buffer.transferFully(jar) [FD]
+Line_3 $$ try (JarInputStream jar = new JarInputStream(new ByteArrayInputStream(bundle.get()), true)) --> Line_9 $$ jar.closeEntry() [FD]
+Line_10 $$ Certificate[] certificates = f.getCertificates() --> Line_12 $$ throw new SecurityException("BAD certificate: " + asList(certificates)) [FD]
+Line_7 $$ ByteBufferOutputStream buffer = new ByteBufferOutputStream(f.getSize() > 0 ? f.getSize() : 8192) --> Line_14 $$ return UTF_8.decode(buffer.getByteBuffer()).toString() [FD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void regex() --> Line_3 $$ Map<String, Object> map = new HashMap() [CD]
+Line_2 $$ public void regex() --> Line_4 $$ map.put("food", null) [CD]
+Line_3 $$ Map<String, Object> map = new HashMap() --> Line_4 $$ map.put("food", null) [FD]
+Line_2 $$ public void regex() --> Line_5 $$ EnvironmentEndpointWebIntegrationTests.context.getEnvironment().getPropertySources().addFirst(new MapPropertySource("null-value", map)) [CD]
+Line_2 $$ public void regex() --> Line_6 $$ client.get().uri("/actuator/env?pattern=foo.*").exchange().expectStatus().isOk().expectBody().jsonPath(forProperty("test", "foo")).isEqualTo("bar").jsonPath(forProperty("test", "fool")).isEqualTo("baz") [CD]

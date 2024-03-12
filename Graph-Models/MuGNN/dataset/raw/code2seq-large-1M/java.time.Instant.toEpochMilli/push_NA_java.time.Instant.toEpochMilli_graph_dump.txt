@@ -1,0 +1,4 @@
+Line_2 $$ public void push() throws Exception --> Line_3 $$ doAnswer( invocation -> [CD]
+Line_4 $$ final AsyncMethodCallback<TCommit> callback = invocation.getArgument(7) --> Line_5 $$ callback.onComplete(new TCommit(new TRevision(1), new TAuthor("name", "name@sample.com"), TIMESTAMP, "summary", new Comment("detail"), ImmutableList.of())) [FD]
+Line_2 $$ public void push() throws Exception --> Line_8 $$ assertThat(client.push("project", "repo", new Revision(1), new Author("name", "name@sample.com"), "summary", "detail", Markup.PLAINTEXT, ImmutableList.of(Change.ofTextUpsert("/a.txt", "hello"))).get()).isEqualTo(new Commit(new Revision(1), new Author("name", "name@sample.com"), Instant.parse(TIMESTAMP).toEpochMilli(), "summary", "detail", Markup.PLAINTEXT)) [CD]
+Line_2 $$ public void push() throws Exception --> Line_9 $$ verify(iface).push(eq("project"), eq("repo"), any(), any(), eq("summary"), any(), any(), any()) [CD]

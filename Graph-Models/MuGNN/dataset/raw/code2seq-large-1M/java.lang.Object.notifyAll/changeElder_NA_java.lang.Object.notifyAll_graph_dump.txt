@@ -1,0 +1,8 @@
+Line_2 $$ private void changeElder(InternalDistributedMember newElder) --> Line_4 $$ if (newElder != null && this.localAddress != null && !this.localAddress.equals(newElder)) [FD]
+Line_4 $$ if (newElder != null && this.localAddress != null && !this.localAddress.equals(newElder)) --> Line_5 $$ if (this.localAddress.equals(this.elder)) [CD]
+Line_5 $$ if (this.localAddress.equals(this.elder)) --> Line_6 $$ if (logger.isDebugEnabled()) [CD]
+Line_6 $$ if (logger.isDebugEnabled()) --> Line_7 $$ logger.debug("changeElder found this VM to be the elder and is taking an early out") [CD]
+Line_5 $$ if (this.localAddress.equals(this.elder)) --> Line_9 $$ return [CD]
+Line_2 $$ private void changeElder(InternalDistributedMember newElder) --> Line_12 $$ this.elder = newElder [FD]
+Line_13 $$ if (this.waitingForElderChange) --> Line_14 $$ this.waitingForElderChange = false [CD]
+Line_13 $$ if (this.waitingForElderChange) --> Line_15 $$ this.elderMonitor.notifyAll() [CD]

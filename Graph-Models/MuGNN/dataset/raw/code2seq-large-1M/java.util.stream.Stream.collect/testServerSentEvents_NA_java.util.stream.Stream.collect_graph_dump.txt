@@ -1,0 +1,8 @@
+Line_2 $$ public void testServerSentEvents() --> Line_3 $$ Iterable<Integer> ints = createIntRange(5) [CD]
+Line_2 $$ public void testServerSentEvents() --> Line_4 $$ EmbeddedApp.fromHandler( ctx -> [CD]
+Line_3 $$ Iterable<Integer> ints = createIntRange(5) --> Line_5 $$ Observable<Integer> observable = Observable.from(ints) [FD]
+Line_5 $$ Observable<Integer> observable = Observable.from(ints) --> Line_6 $$ Publisher<Integer> publisher = RxReactiveStreams.toPublisher(observable) [FD]
+Line_6 $$ Publisher<Integer> publisher = RxReactiveStreams.toPublisher(observable) --> Line_7 $$ ctx.render(ServerSentEvents.serverSentEvents(publisher,  e -> e.event("counter").data("event " + e.getItem()))) [FD]
+Line_9 $$ ReceivedResponse response = httpClient.get() --> Line_10 $$ Assert.assertEquals("text/event-stream;charset=UTF-8", response.getHeaders().get("Content-Type")) [FD]
+Line_11 $$ String expectedOutput = Arrays.asList(0, 1, 2, 3, 4).stream().map( i -> "event: counter\ndata: event " + i + "\n").collect(joining("\n")) + "\n" --> Line_12 $$ Assert.assertEquals(expectedOutput, response.getBody().getText()) [FD]
+Line_9 $$ ReceivedResponse response = httpClient.get() --> Line_12 $$ Assert.assertEquals(expectedOutput, response.getBody().getText()) [FD]

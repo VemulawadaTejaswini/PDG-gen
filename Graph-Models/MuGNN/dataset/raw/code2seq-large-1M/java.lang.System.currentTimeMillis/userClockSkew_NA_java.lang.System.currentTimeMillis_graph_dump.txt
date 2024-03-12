@@ -1,0 +1,8 @@
+Line_2 $$ static long userClockSkew() --> Line_3 $$ long newDelta = System.currentTimeMillis() - JVM.monotonicTimeMillis() [CD]
+Line_2 $$ static long userClockSkew() --> Line_4 $$ long oldDelta = userClockOffset - monotonicClockOffset [CD]
+Line_2 $$ static long userClockSkew() --> Line_5 $$ long skew = newDelta - oldDelta [CD]
+Line_2 $$ static long userClockSkew() --> Line_6 $$ if (Math.abs(skew) < SKEW_THRESHOLD) [CD]
+Line_5 $$ long skew = newDelta - oldDelta --> Line_6 $$ if (Math.abs(skew) < SKEW_THRESHOLD) [FD]
+Line_6 $$ if (Math.abs(skew) < SKEW_THRESHOLD) --> Line_7 $$ skew = 0 [CD]
+Line_5 $$ long skew = newDelta - oldDelta --> Line_7 $$ skew = 0 [FD]
+Line_2 $$ static long userClockSkew() --> Line_10 $$ return skew [CD]

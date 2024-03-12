@@ -1,0 +1,8 @@
+Line_2 $$ public void takePhoto(View view) --> Line_3 $$ Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE) [CD]
+Line_2 $$ public void takePhoto(View view) --> Line_4 $$ if (intent.resolveActivity(getPackageManager()) != null) [CD]
+Line_3 $$ Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE) --> Line_4 $$ if (intent.resolveActivity(getPackageManager()) != null) [FD]
+Line_4 $$ if (intent.resolveActivity(getPackageManager()) != null) --> Line_5 $$ File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES) [CD]
+Line_5 $$ File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES) --> Line_7 $$ File file = File.createTempFile("IMG_", ".jpg", storageDir) [FD]
+Line_7 $$ File file = File.createTempFile("IMG_", ".jpg", storageDir) --> Line_8 $$ mUriPhotoTaken = Uri.fromFile(file) [FD]
+Line_3 $$ Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE) --> Line_9 $$ intent.putExtra(MediaStore.EXTRA_OUTPUT, mUriPhotoTaken) [FD]
+Line_3 $$ Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE) --> Line_10 $$ startActivityForResult(intent, REQUEST_TAKE_PHOTO) [FD]

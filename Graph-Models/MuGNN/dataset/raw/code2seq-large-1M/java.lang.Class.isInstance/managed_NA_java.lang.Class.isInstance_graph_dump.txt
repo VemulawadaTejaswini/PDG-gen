@@ -1,0 +1,6 @@
+Line_2 $$ public DataSource managed(final String name, final CommonDataSource ds) --> Line_3 $$ final TransactionManager transactionManager = OpenEJB.getTransactionManager() [CD]
+Line_2 $$ public DataSource managed(final String name, final CommonDataSource ds) --> Line_4 $$ if (XADataSource.class.isInstance(ds)) [CD]
+Line_2 $$ public DataSource managed(final String name, final CommonDataSource ds) --> Line_4 $$ if (XADataSource.class.isInstance(ds)) [FD]
+Line_2 $$ public DataSource managed(final String name, final CommonDataSource ds) --> Line_5 $$ return new ManagedXADataSource(XADataSource.class.cast(ds), transactionManager, SystemInstance.get().getComponent(TransactionSynchronizationRegistry.class)) [FD]
+Line_2 $$ public DataSource managed(final String name, final CommonDataSource ds) --> Line_7 $$ return new ManagedDataSource(DataSource.class.cast(ds), transactionManager, SystemInstance.get().getComponent(TransactionSynchronizationRegistry.class)) [CD]
+Line_2 $$ public DataSource managed(final String name, final CommonDataSource ds) --> Line_7 $$ return new ManagedDataSource(DataSource.class.cast(ds), transactionManager, SystemInstance.get().getComponent(TransactionSynchronizationRegistry.class)) [FD]

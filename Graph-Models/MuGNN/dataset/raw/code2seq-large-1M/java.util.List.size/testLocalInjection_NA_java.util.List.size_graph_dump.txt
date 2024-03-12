@@ -1,0 +1,7 @@
+Line_2 $$ public void testLocalInjection() throws Exception --> Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") [CD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) [FD]
+Line_6 $$ Collection<List<Boolean>> lists = grid().compute().broadcast(new IgniteCallable<List<Boolean>>() --> Line_9 $$ IgniteClosure<Cache.Entry<Integer, Value>, Boolean> transformer = new IgniteClosure<Cache.Entry<Integer, Value>, Boolean>() [CD]
+Line_6 $$ Collection<List<Boolean>> lists = grid().compute().broadcast(new IgniteCallable<List<Boolean>>() --> Line_15 $$ return ignite.cache("test-cache").query(new ScanQuery<Integer, Value>().setLocal(true), transformer).getAll() [CD]
+Line_6 $$ Collection<List<Boolean>> lists = grid().compute().broadcast(new IgniteCallable<List<Boolean>>() --> Line_18 $$ List<Boolean> res = new ArrayList(F.flatCollections(lists)) [FD]
+Line_5 $$ for (int i = 0; i < 50; i++) cache.put(i, new Value("str" + i, i * 100)) --> Line_20 $$ for (int i = 0; i < 50; i++) assertEquals(Boolean.TRUE, res.get(i)) [FD]
+Line_3 $$ IgniteCache<Integer, Value> cache = grid().createCache("test-cache") --> Line_22 $$ cache.destroy() [FD]

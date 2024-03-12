@@ -1,0 +1,7 @@
+Line_2 $$ private boolean retry() --> Line_3 $$ int attempt = retryAttempt.get() [CD]
+Line_2 $$ private boolean retry() --> Line_4 $$ while (attempt < maxCount && !retryAttempt.compareAndSet(attempt, attempt + 1)) [CD]
+Line_3 $$ int attempt = retryAttempt.get() --> Line_4 $$ while (attempt < maxCount && !retryAttempt.compareAndSet(attempt, attempt + 1)) [FD]
+Line_4 $$ while (attempt < maxCount && !retryAttempt.compareAndSet(attempt, attempt + 1)) --> Line_5 $$ attempt = retryAttempt.get() [CD]
+Line_3 $$ int attempt = retryAttempt.get() --> Line_5 $$ attempt = retryAttempt.get() [FD]
+Line_2 $$ private boolean retry() --> Line_7 $$ return attempt < maxCount [CD]
+Line_5 $$ attempt = retryAttempt.get() --> Line_4 $$ while (attempt < maxCount && !retryAttempt.compareAndSet(attempt, attempt + 1)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ public float[][] getTransitionMatrix(int phone, int[] pdfs) --> Line_3 $$ float[][] transitionMatrix = new float[4][4] [CD]
+Line_2 $$ public float[][] getTransitionMatrix(int phone, int[] pdfs) --> Line_4 $$ Arrays.fill(transitionMatrix[3], LogMath.LOG_ZERO) [CD]
+Line_2 $$ public float[][] getTransitionMatrix(int phone, int[] pdfs) --> Line_5 $$ for (HmmState state : phoneStates.get(phone)) [FD]
+Line_5 $$ for (HmmState state : phoneStates.get(phone)) --> Line_6 $$ int stateId = state.getId() [FD]
+Line_8 $$ Triple triple = new Triple(phone, stateId, pdfs[stateId]) --> Line_9 $$ int i = transitionStates.get(triple) [FD]
+Line_5 $$ for (HmmState state : phoneStates.get(phone)) --> Line_10 $$ for (Integer j : state.getTransitions()) transitionMatrix[stateId][j] = logProbabilities[i++] [FD]
+Line_9 $$ int i = transitionStates.get(triple) --> Line_10 $$ for (Integer j : state.getTransitions()) transitionMatrix[stateId][j] = logProbabilities[i++] [FD]
+Line_2 $$ public float[][] getTransitionMatrix(int phone, int[] pdfs) --> Line_12 $$ return transitionMatrix [CD]

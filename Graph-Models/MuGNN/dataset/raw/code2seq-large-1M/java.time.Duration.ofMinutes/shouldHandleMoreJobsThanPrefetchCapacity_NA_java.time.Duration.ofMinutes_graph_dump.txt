@@ -1,0 +1,8 @@
+Line_2 $$ public void shouldHandleMoreJobsThanPrefetchCapacity() --> Line_3 $$ final int subscriptionCapacity = 16 [CD]
+Line_2 $$ public void shouldHandleMoreJobsThanPrefetchCapacity() --> Line_4 $$ for (int i = 0; i < subscriptionCapacity + 1; i++) [CD]
+Line_4 $$ for (int i = 0; i < subscriptionCapacity + 1; i++) --> Line_5 $$ createJobOfType("foo") [CD]
+Line_2 $$ public void shouldHandleMoreJobsThanPrefetchCapacity() --> Line_7 $$ final RecordingJobHandler jobHandler = new RecordingJobHandler() [CD]
+Line_2 $$ public void shouldHandleMoreJobsThanPrefetchCapacity() --> Line_8 $$ subscriptionClient.newJobSubscription().jobType("foo").handler(jobHandler).lockTime(Duration.ofMinutes(5)).lockOwner("test").open() [CD]
+Line_7 $$ final RecordingJobHandler jobHandler = new RecordingJobHandler() --> Line_8 $$ subscriptionClient.newJobSubscription().jobType("foo").handler(jobHandler).lockTime(Duration.ofMinutes(5)).lockOwner("test").open() [FD]
+Line_2 $$ public void shouldHandleMoreJobsThanPrefetchCapacity() --> Line_9 $$ TestUtil.waitUntil(() -> jobHandler.getHandledJobs().size() > subscriptionCapacity) [CD]
+Line_7 $$ final RecordingJobHandler jobHandler = new RecordingJobHandler() --> Line_9 $$ TestUtil.waitUntil(() -> jobHandler.getHandledJobs().size() > subscriptionCapacity) [FD]

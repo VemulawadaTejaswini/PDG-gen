@@ -1,0 +1,5 @@
+Line_3 $$ try (JMXConnector con = connectJmx(server)) --> Line_4 $$ MBeanServerConnection beans = con.getMBeanServerConnection() [FD]
+Line_4 $$ MBeanServerConnection beans = con.getMBeanServerConnection() --> Line_5 $$ Object uptime = beans.getAttribute(ObjectName.getInstance("java.lang", "type", "Runtime"), "Uptime") [FD]
+Line_5 $$ Object uptime = beans.getAttribute(ObjectName.getInstance("java.lang", "type", "Runtime"), "Uptime") --> Line_6 $$ assertThat(uptime, instanceOf(Long.class)) [FD]
+Line_4 $$ MBeanServerConnection beans = con.getMBeanServerConnection() --> Line_7 $$ Object enqueueCount = beans.getAttribute(ObjectName.getInstance("io.digdag.core.workflow", "name", "TaskQueueDispatcher"), "EnqueueCount") [FD]
+Line_7 $$ Object enqueueCount = beans.getAttribute(ObjectName.getInstance("io.digdag.core.workflow", "name", "TaskQueueDispatcher"), "EnqueueCount") --> Line_8 $$ assertThat(enqueueCount, is(0L)) [FD]

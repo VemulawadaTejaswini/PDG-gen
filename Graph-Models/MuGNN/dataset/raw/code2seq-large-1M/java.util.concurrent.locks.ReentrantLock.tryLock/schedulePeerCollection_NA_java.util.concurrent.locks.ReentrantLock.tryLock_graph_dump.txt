@@ -1,0 +1,7 @@
+Line_2 $$ private void schedulePeerCollection() --> Line_3 $$ if (lock.tryLock()) [CD]
+Line_5 $$ if (futureOptional.get() != null) --> Line_6 $$ Future<?> future = futureOptional.get() [CD]
+Line_5 $$ if (futureOptional.get() != null) --> Line_7 $$ if (future.isDone()) [CD]
+Line_6 $$ Future<?> future = futureOptional.get() --> Line_7 $$ if (future.isDone()) [FD]
+Line_6 $$ Future<?> future = futureOptional.get() --> Line_9 $$ future.get() [FD]
+Line_7 $$ if (future.isDone()) --> Line_13 $$ futureOptional.set(null) [CD]
+Line_16 $$ if (futureOptional.get() == null) --> Line_17 $$ futureOptional.set(executor.submit(() -> collectPeers(peers::<>add))) [CD]

@@ -1,0 +1,6 @@
+Line_2 $$ public Set<Integer> retriveOrderCreatedByUserIds(@NonNull final Collection<Integer> orderIds) --> Line_3 $$ if (orderIds.isEmpty()) [CD]
+Line_2 $$ public Set<Integer> retriveOrderCreatedByUserIds(@NonNull final Collection<Integer> orderIds) --> Line_3 $$ if (orderIds.isEmpty()) [FD]
+Line_3 $$ if (orderIds.isEmpty()) --> Line_4 $$ return ImmutableSet.of() [CD]
+Line_2 $$ public Set<Integer> retriveOrderCreatedByUserIds(@NonNull final Collection<Integer> orderIds) --> Line_6 $$ final List<Integer> userIds = Services.get(IQueryBL.class).createQueryBuilder(I_C_Order.class).addInArrayFilter(I_C_Order.COLUMNNAME_C_Order_ID, orderIds).create().listDistinct(I_C_Order.COLUMNNAME_CreatedBy, Integer.class) [CD]
+Line_2 $$ public Set<Integer> retriveOrderCreatedByUserIds(@NonNull final Collection<Integer> orderIds) --> Line_6 $$ final List<Integer> userIds = Services.get(IQueryBL.class).createQueryBuilder(I_C_Order.class).addInArrayFilter(I_C_Order.COLUMNNAME_C_Order_ID, orderIds).create().listDistinct(I_C_Order.COLUMNNAME_CreatedBy, Integer.class) [FD]
+Line_2 $$ public Set<Integer> retriveOrderCreatedByUserIds(@NonNull final Collection<Integer> orderIds) --> Line_7 $$ return ImmutableSet.copyOf(userIds) [CD]

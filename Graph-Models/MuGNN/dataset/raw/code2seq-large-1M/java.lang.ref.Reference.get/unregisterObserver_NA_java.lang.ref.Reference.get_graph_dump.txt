@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized void unregisterObserver(ObserverClass theObserver) --> Line_3 $$ List<WeakReference<ObserverClass>> toRemove = new LinkedList<WeakReference<ObserverClass>>() [CD]
+Line_4 $$ for (WeakReference<ObserverClass> observerRef : observers) --> Line_5 $$ ObserverClass observer = observerRef.get() [FD]
+Line_6 $$ if (observer == null || observer == theObserver) --> Line_7 $$ toRemove.add(observerRef) [CD]
+Line_3 $$ List<WeakReference<ObserverClass>> toRemove = new LinkedList<WeakReference<ObserverClass>>() --> Line_7 $$ toRemove.add(observerRef) [FD]
+Line_4 $$ for (WeakReference<ObserverClass> observerRef : observers) --> Line_7 $$ toRemove.add(observerRef) [FD]
+Line_2 $$ public synchronized void unregisterObserver(ObserverClass theObserver) --> Line_10 $$ this.observers.removeAll(toRemove) [CD]
+Line_3 $$ List<WeakReference<ObserverClass>> toRemove = new LinkedList<WeakReference<ObserverClass>>() --> Line_10 $$ this.observers.removeAll(toRemove) [FD]

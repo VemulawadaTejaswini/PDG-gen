@@ -1,0 +1,6 @@
+Line_2 $$ public List<Integer> getSpoutTasks() --> Line_3 $$ if (this.spoutTasks == null) [CD]
+Line_3 $$ if (this.spoutTasks == null) --> Line_4 $$ this.spoutTasks = new ArrayList() [CD]
+Line_5 $$ for (TopologyAPI.Spout spout : this.getTopology().getSpoutsList()) --> Line_6 $$ for (TopologyAPI.OutputStream outputStream : spout.getOutputsList()) [FD]
+Line_6 $$ for (TopologyAPI.OutputStream outputStream : spout.getOutputsList()) --> Line_7 $$ List<Integer> spoutTaskIds = this.getComponentToTaskIds().get(outputStream.getStream().getComponentName()) [FD]
+Line_7 $$ List<Integer> spoutTaskIds = this.getComponentToTaskIds().get(outputStream.getStream().getComponentName()) --> Line_8 $$ this.spoutTasks.addAll(spoutTaskIds) [FD]
+Line_2 $$ public List<Integer> getSpoutTasks() --> Line_12 $$ return this.spoutTasks [CD]

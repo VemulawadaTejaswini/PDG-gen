@@ -1,0 +1,8 @@
+Line_2 $$ public static void runOnMainSync(@NonNull final Runnable runnable) --> Line_3 $$ if (isMainThread()) [CD]
+Line_3 $$ if (isMainThread()) --> Line_4 $$ runnable.run() [CD]
+Line_2 $$ public static void runOnMainSync(@NonNull final Runnable runnable) --> Line_4 $$ runnable.run() [FD]
+Line_3 $$ if (isMainThread()) --> Line_6 $$ final CountDownLatch sync = new CountDownLatch(1) [CD]
+Line_3 $$ if (isMainThread()) --> Line_7 $$ runOnMain(() -> [CD]
+Line_2 $$ public static void runOnMainSync(@NonNull final Runnable runnable) --> Line_9 $$ runnable.run() [FD]
+Line_6 $$ final CountDownLatch sync = new CountDownLatch(1) --> Line_11 $$ sync.countDown() [FD]
+Line_6 $$ final CountDownLatch sync = new CountDownLatch(1) --> Line_15 $$ sync.await() [FD]

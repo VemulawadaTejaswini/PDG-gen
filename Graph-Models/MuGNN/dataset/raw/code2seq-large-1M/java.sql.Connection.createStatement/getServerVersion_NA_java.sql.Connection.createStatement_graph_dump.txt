@@ -1,0 +1,5 @@
+Line_2 $$ static Version getServerVersion(Connection cx) throws SQLException --> Line_3 $$ try (Statement st = cx.createStatement()) [FD]
+Line_3 $$ try (Statement st = cx.createStatement()) --> Line_4 $$ try (ResultSet rs = st.executeQuery("SHOW server_version")) [FD]
+Line_4 $$ try (ResultSet rs = st.executeQuery("SHOW server_version")) --> Line_5 $$ Preconditions.checkState(rs.next(), "Query 'SHOW server_version' did not produce a result") [FD]
+Line_4 $$ try (ResultSet rs = st.executeQuery("SHOW server_version")) --> Line_6 $$ final String v = rs.getString(1) [FD]
+Line_6 $$ final String v = rs.getString(1) --> Line_7 $$ return getVersionFromQueryResult(v) [FD]

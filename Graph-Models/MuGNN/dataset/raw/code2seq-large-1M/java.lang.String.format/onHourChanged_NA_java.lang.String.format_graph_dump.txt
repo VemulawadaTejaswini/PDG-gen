@@ -1,0 +1,6 @@
+Line_2 $$ public void onHourChanged(int oldValue, int newValue) --> Line_3 $$ int oldHour = mTimePicker.is24Hour() || mIsAm ? oldValue : oldValue + 12 [CD]
+Line_2 $$ public void onHourChanged(int oldValue, int newValue) --> Line_4 $$ mHour = String.format(mIsLeadingZero ? FORMAT : FORMAT_NO_LEADING_ZERO, !mTimePicker.is24Hour() && newValue == 0 ? 12 : newValue) [CD]
+Line_2 $$ public void onHourChanged(int oldValue, int newValue) --> Line_6 $$ invalidate(0, 0, mHeaderRealWidth, mHeaderRealHeight) [CD]
+Line_2 $$ public void onHourChanged(int oldValue, int newValue) --> Line_7 $$ if (mOnTimeChangedListener != null) [CD]
+Line_7 $$ if (mOnTimeChangedListener != null) --> Line_8 $$ mOnTimeChangedListener.onTimeChanged(oldHour, getMinute(), getHour(), getMinute()) [CD]
+Line_3 $$ int oldHour = mTimePicker.is24Hour() || mIsAm ? oldValue : oldValue + 12 --> Line_8 $$ mOnTimeChangedListener.onTimeChanged(oldHour, getMinute(), getHour(), getMinute()) [FD]

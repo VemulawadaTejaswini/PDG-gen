@@ -1,0 +1,6 @@
+Line_2 $$ public PriorityQueue<KafkaBroker> getBrokerQueue() --> Line_3 $$ PriorityQueue<KafkaBroker> brokerQueue = new PriorityQueue(new KafkaBroker.KafkaBrokerComparator()) [CD]
+Line_5 $$ KafkaBroker broker = entry.getValue() --> Line_6 $$ BrokerStats latestStats = broker.getLatestStats() [FD]
+Line_6 $$ BrokerStats latestStats = broker.getLatestStats() --> Line_7 $$ if (latestStats == null || latestStats.getHasFailure() || System.currentTimeMillis() - latestStats.getTimestamp() > 240000) [FD]
+Line_3 $$ PriorityQueue<KafkaBroker> brokerQueue = new PriorityQueue(new KafkaBroker.KafkaBrokerComparator()) --> Line_10 $$ brokerQueue.add(broker) [FD]
+Line_5 $$ KafkaBroker broker = entry.getValue() --> Line_10 $$ brokerQueue.add(broker) [FD]
+Line_2 $$ public PriorityQueue<KafkaBroker> getBrokerQueue() --> Line_12 $$ return brokerQueue [CD]

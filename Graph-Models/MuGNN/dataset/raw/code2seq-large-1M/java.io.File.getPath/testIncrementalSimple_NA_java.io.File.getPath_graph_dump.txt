@@ -1,0 +1,7 @@
+Line_2 $$ public void testIncrementalSimple() throws IOException --> Line_3 $$ File partitionDir = InputFormatTestUtil.prepareDataset(basePath, 10, "100") [CD]
+Line_2 $$ public void testIncrementalSimple() throws IOException --> Line_4 $$ InputFormatTestUtil.commit(basePath, "100") [CD]
+Line_2 $$ public void testIncrementalSimple() throws IOException --> Line_5 $$ FileInputFormat.setInputPaths(jobConf, partitionDir.getPath()) [CD]
+Line_3 $$ File partitionDir = InputFormatTestUtil.prepareDataset(basePath, 10, "100") --> Line_5 $$ FileInputFormat.setInputPaths(jobConf, partitionDir.getPath()) [FD]
+Line_2 $$ public void testIncrementalSimple() throws IOException --> Line_6 $$ InputFormatTestUtil.setupIncremental(jobConf, "100", 1) [CD]
+Line_2 $$ public void testIncrementalSimple() throws IOException --> Line_7 $$ FileStatus[] files = inputFormat.listStatus(jobConf) [CD]
+Line_2 $$ public void testIncrementalSimple() throws IOException --> Line_8 $$ assertEquals("We should exclude commit 100 when returning incremental pull with start commit time as " + "100", 0, files.length) [CD]

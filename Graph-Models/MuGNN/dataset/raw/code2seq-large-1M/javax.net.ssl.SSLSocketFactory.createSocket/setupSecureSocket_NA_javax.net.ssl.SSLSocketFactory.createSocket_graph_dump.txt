@@ -1,0 +1,7 @@
+Line_2 $$ public void setupSecureSocket(SSLSocketFactory sslSocketFactory, boolean tlsTolerant) throws IOException --> Line_3 $$ unverifiedSocket = (SSLSocket) sslSocketFactory.createSocket(socket, address.uriHost, address.uriPort, true) [FD]
+Line_2 $$ public void setupSecureSocket(SSLSocketFactory sslSocketFactory, boolean tlsTolerant) throws IOException --> Line_4 $$ if (tlsTolerant) [CD]
+Line_6 $$ Class<?> socketClass = unverifiedSocket.getClass() --> Line_7 $$ socketClass.getMethod("setEnabledCompressionMethods", String[].class).invoke(unverifiedSocket, new Object[] [FD]
+Line_6 $$ Class<?> socketClass = unverifiedSocket.getClass() --> Line_8 $$ socketClass.getMethod("setUseSessionTickets", boolean.class).invoke(unverifiedSocket, true) [FD]
+Line_6 $$ Class<?> socketClass = unverifiedSocket.getClass() --> Line_9 $$ socketClass.getMethod("setHostname", String.class).invoke(unverifiedSocket, address.socketHost) [FD]
+Line_4 $$ if (tlsTolerant) --> Line_14 $$ unverifiedSocket.setEnabledProtocols(new String[] [CD]
+Line_2 $$ public void setupSecureSocket(SSLSocketFactory sslSocketFactory, boolean tlsTolerant) throws IOException --> Line_16 $$ unverifiedSocket.startHandshake() [CD]

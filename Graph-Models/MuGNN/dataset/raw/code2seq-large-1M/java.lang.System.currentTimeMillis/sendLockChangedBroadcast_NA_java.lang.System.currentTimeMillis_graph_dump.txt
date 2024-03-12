@@ -1,0 +1,4 @@
+Line_2 $$ void sendLockChangedBroadcast(boolean state) --> Line_3 $$ long oldIdent = Binder.clearCallingIdentity() [CD]
+Line_2 $$ void sendLockChangedBroadcast(boolean state) --> Line_5 $$ Intent intent = new Intent(UpdateLock.UPDATE_LOCK_CHANGED).putExtra(UpdateLock.NOW_IS_CONVENIENT, state).putExtra(UpdateLock.TIMESTAMP, System.currentTimeMillis()).addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT) [FD]
+Line_5 $$ Intent intent = new Intent(UpdateLock.UPDATE_LOCK_CHANGED).putExtra(UpdateLock.NOW_IS_CONVENIENT, state).putExtra(UpdateLock.TIMESTAMP, System.currentTimeMillis()).addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT) --> Line_6 $$ mContext.sendStickyBroadcastAsUser(intent, UserHandle.ALL) [FD]
+Line_3 $$ long oldIdent = Binder.clearCallingIdentity() --> Line_8 $$ Binder.restoreCallingIdentity(oldIdent) [FD]

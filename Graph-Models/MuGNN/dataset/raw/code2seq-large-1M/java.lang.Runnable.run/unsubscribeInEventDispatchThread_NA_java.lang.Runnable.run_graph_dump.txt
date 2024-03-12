@@ -1,0 +1,8 @@
+Line_2 $$ public static Disposable unsubscribeInEventDispatchThread(final Runnable unsubscribe) --> Line_3 $$ return Disposables.fromRunnable(() -> [CD]
+Line_4 $$ if (Platform.isFxApplicationThread()) --> Line_5 $$ unsubscribe.run() [CD]
+Line_2 $$ public static Disposable unsubscribeInEventDispatchThread(final Runnable unsubscribe) --> Line_5 $$ unsubscribe.run() [FD]
+Line_4 $$ if (Platform.isFxApplicationThread()) --> Line_7 $$ final Scheduler.Worker inner = JavaFxScheduler.platform().createWorker() [CD]
+Line_4 $$ if (Platform.isFxApplicationThread()) --> Line_8 $$ inner.schedule(() -> [CD]
+Line_7 $$ final Scheduler.Worker inner = JavaFxScheduler.platform().createWorker() --> Line_8 $$ inner.schedule(() -> [FD]
+Line_2 $$ public static Disposable unsubscribeInEventDispatchThread(final Runnable unsubscribe) --> Line_9 $$ unsubscribe.run() [FD]
+Line_7 $$ final Scheduler.Worker inner = JavaFxScheduler.platform().createWorker() --> Line_10 $$ inner.dispose() [FD]

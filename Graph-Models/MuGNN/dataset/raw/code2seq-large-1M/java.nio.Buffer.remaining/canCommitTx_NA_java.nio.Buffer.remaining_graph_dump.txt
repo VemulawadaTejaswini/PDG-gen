@@ -1,0 +1,8 @@
+Line_2 $$ public TBoolean canCommitTx(TTransaction tx, Set<ByteBuffer> changes) throws TException --> Line_3 $$ Set<byte[]> changeIds = Sets.newHashSet() [CD]
+Line_4 $$ for (ByteBuffer bb : changes) --> Line_5 $$ byte[] changeId = new byte[bb.remaining()] [FD]
+Line_4 $$ for (ByteBuffer bb : changes) --> Line_6 $$ bb.get(changeId) [FD]
+Line_5 $$ byte[] changeId = new byte[bb.remaining()] --> Line_6 $$ bb.get(changeId) [FD]
+Line_3 $$ Set<byte[]> changeIds = Sets.newHashSet() --> Line_7 $$ changeIds.add(changeId) [FD]
+Line_5 $$ byte[] changeId = new byte[bb.remaining()] --> Line_7 $$ changeIds.add(changeId) [FD]
+Line_3 $$ Set<byte[]> changeIds = Sets.newHashSet() --> Line_10 $$ return new TBoolean(txManager.canCommit(TransactionConverterUtils.unwrap(tx), changeIds)) [FD]
+Line_2 $$ public TBoolean canCommitTx(TTransaction tx, Set<ByteBuffer> changes) throws TException --> Line_10 $$ return new TBoolean(txManager.canCommit(TransactionConverterUtils.unwrap(tx), changeIds)) [FD]

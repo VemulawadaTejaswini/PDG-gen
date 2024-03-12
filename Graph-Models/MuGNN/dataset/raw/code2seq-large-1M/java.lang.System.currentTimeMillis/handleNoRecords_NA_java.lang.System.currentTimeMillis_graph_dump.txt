@@ -1,0 +1,8 @@
+Line_2 $$ private void handleNoRecords(long startTimeMillis) --> Line_3 $$ LOG.debug("Kinesis didn't return any records for shard " + shardInfo.getShardId()) [CD]
+Line_2 $$ private void handleNoRecords(long startTimeMillis) --> Line_4 $$ long sleepTimeMillis = streamConfig.getIdleTimeInMilliseconds() - (System.currentTimeMillis() - startTimeMillis) [CD]
+Line_2 $$ private void handleNoRecords(long startTimeMillis) --> Line_5 $$ if (sleepTimeMillis > 0) [CD]
+Line_4 $$ long sleepTimeMillis = streamConfig.getIdleTimeInMilliseconds() - (System.currentTimeMillis() - startTimeMillis) --> Line_5 $$ if (sleepTimeMillis > 0) [FD]
+Line_5 $$ if (sleepTimeMillis > 0) --> Line_6 $$ sleepTimeMillis = Math.max(sleepTimeMillis, streamConfig.getIdleTimeInMilliseconds()) [CD]
+Line_4 $$ long sleepTimeMillis = streamConfig.getIdleTimeInMilliseconds() - (System.currentTimeMillis() - startTimeMillis) --> Line_6 $$ sleepTimeMillis = Math.max(sleepTimeMillis, streamConfig.getIdleTimeInMilliseconds()) [FD]
+Line_4 $$ long sleepTimeMillis = streamConfig.getIdleTimeInMilliseconds() - (System.currentTimeMillis() - startTimeMillis) --> Line_9 $$ Thread.sleep(sleepTimeMillis) [FD]
+Line_6 $$ sleepTimeMillis = Math.max(sleepTimeMillis, streamConfig.getIdleTimeInMilliseconds()) --> Line_9 $$ Thread.sleep(sleepTimeMillis) [FD]

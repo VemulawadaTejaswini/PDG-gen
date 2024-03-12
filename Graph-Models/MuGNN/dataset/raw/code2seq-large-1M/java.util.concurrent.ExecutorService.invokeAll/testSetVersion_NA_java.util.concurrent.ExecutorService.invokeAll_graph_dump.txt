@@ -1,0 +1,8 @@
+Line_2 $$ public void testSetVersion() throws Exception --> Line_3 $$ Callable<Boolean> task1 = createTask(API_VERSION_0_9_1, false) [CD]
+Line_2 $$ public void testSetVersion() throws Exception --> Line_4 $$ Callable<Boolean> task2 = createTask(CURRENT_API_VERSION, false) [CD]
+Line_2 $$ public void testSetVersion() throws Exception --> Line_5 $$ List<Future<Boolean>> futures = executor.invokeAll(Arrays.asList(task1, task2)) [CD]
+Line_3 $$ Callable<Boolean> task1 = createTask(API_VERSION_0_9_1, false) --> Line_5 $$ List<Future<Boolean>> futures = executor.invokeAll(Arrays.asList(task1, task2)) [FD]
+Line_4 $$ Callable<Boolean> task2 = createTask(CURRENT_API_VERSION, false) --> Line_5 $$ List<Future<Boolean>> futures = executor.invokeAll(Arrays.asList(task1, task2)) [FD]
+Line_2 $$ public void testSetVersion() throws Exception --> Line_6 $$ assertEquals(2, futures.size()) [CD]
+Line_5 $$ List<Future<Boolean>> futures = executor.invokeAll(Arrays.asList(task1, task2)) --> Line_6 $$ assertEquals(2, futures.size()) [FD]
+Line_7 $$ for (Future<Boolean> future : futures) --> Line_8 $$ assertTrue("Version holder should work OK!", future.get(2, TimeUnit.SECONDS)) [FD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static void ignoreUserSpecifiedNodeLabelParameter(String[] argArray, boolean autoNodeLabeling) --> Line_3 $$ for (int i = 0; i < argArray.length; i++) [CD]
+Line_3 $$ for (int i = 0; i < argArray.length; i++) --> Line_4 $$ if (argArray[i] == null) [CD]
+Line_3 $$ for (int i = 0; i < argArray.length; i++) --> Line_7 $$ if (autoNodeLabeling) [CD]
+Line_7 $$ if (autoNodeLabeling) --> Line_8 $$ if (argArray[i].equals(SparkJobArg.SPARK_CONF_PREFIX.sparkParamName) && argArray[i + 1].startsWith(SPARK_EXECUTOR_NODE_LABEL_EXP)) [CD]
+Line_8 $$ if (argArray[i].equals(SparkJobArg.SPARK_CONF_PREFIX.sparkParamName) && argArray[i + 1].startsWith(SPARK_EXECUTOR_NODE_LABEL_EXP)) --> Line_9 $$ logger.info("Azbakan auto-sets node label expression. Ignore user param: " + argArray[i] + " " + argArray[i + 1]) [CD]
+Line_8 $$ if (argArray[i].equals(SparkJobArg.SPARK_CONF_PREFIX.sparkParamName) && argArray[i + 1].startsWith(SPARK_EXECUTOR_NODE_LABEL_EXP)) --> Line_10 $$ argArray[i] = null [CD]
+Line_8 $$ if (argArray[i].equals(SparkJobArg.SPARK_CONF_PREFIX.sparkParamName) && argArray[i + 1].startsWith(SPARK_EXECUTOR_NODE_LABEL_EXP)) --> Line_11 $$ argArray[++i] = null [CD]
+Line_3 $$ for (int i = 0; i < argArray.length; i++) --> Line_11 $$ argArray[++i] = null [FD]

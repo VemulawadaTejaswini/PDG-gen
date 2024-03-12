@@ -1,0 +1,7 @@
+Line_2 $$ public void distinctDefaultErrorDoesntRetainObjects() throws InterruptedException --> Line_3 $$ Foo.finalized.set(0) [CD]
+Line_2 $$ public void distinctDefaultErrorDoesntRetainObjects() throws InterruptedException --> Line_4 $$ Flux<Foo> test = Flux.range(1, 100).map( i -> new Foo(i)).concatWith(Mono.error(new IllegalStateException("boom"))).distinct() [CD]
+Line_2 $$ public void distinctDefaultErrorDoesntRetainObjects() throws InterruptedException --> Line_5 $$ StepVerifier.create(test).expectNextCount(100).verifyErrorMessage("boom") [CD]
+Line_4 $$ Flux<Foo> test = Flux.range(1, 100).map( i -> new Foo(i)).concatWith(Mono.error(new IllegalStateException("boom"))).distinct() --> Line_5 $$ StepVerifier.create(test).expectNextCount(100).verifyErrorMessage("boom") [FD]
+Line_2 $$ public void distinctDefaultErrorDoesntRetainObjects() throws InterruptedException --> Line_6 $$ System.gc() [CD]
+Line_2 $$ public void distinctDefaultErrorDoesntRetainObjects() throws InterruptedException --> Line_7 $$ Thread.sleep(500) [CD]
+Line_2 $$ public void distinctDefaultErrorDoesntRetainObjects() throws InterruptedException --> Line_8 $$ assertThat(Foo.finalized.longValue()).as("none retained after error").isEqualTo(100) [CD]

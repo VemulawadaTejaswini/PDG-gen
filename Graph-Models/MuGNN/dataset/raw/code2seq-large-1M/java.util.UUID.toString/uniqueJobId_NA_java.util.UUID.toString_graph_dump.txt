@@ -1,0 +1,7 @@
+Line_2 $$ private String uniqueJobId() --> Line_3 $$ String suffix = "_" + UUID.randomUUID().toString() [CD]
+Line_2 $$ private String uniqueJobId() --> Line_4 $$ String prefix = "digdag" + "_s" + request.getSiteId() + "_p_" + truncate(request.getProjectName().or(""), 256) + "_w_" + truncate(request.getWorkflowName(), 256) + "_t_" + request.getTaskId() + "_a_" + request.getAttemptId() [CD]
+Line_2 $$ private String uniqueJobId() --> Line_5 $$ int maxPrefixLength = MAX_JOB_ID_LENGTH - suffix.length() [CD]
+Line_3 $$ String suffix = "_" + UUID.randomUUID().toString() --> Line_5 $$ int maxPrefixLength = MAX_JOB_ID_LENGTH - suffix.length() [FD]
+Line_2 $$ private String uniqueJobId() --> Line_6 $$ return truncate(prefix, maxPrefixLength) + suffix [CD]
+Line_4 $$ String prefix = "digdag" + "_s" + request.getSiteId() + "_p_" + truncate(request.getProjectName().or(""), 256) + "_w_" + truncate(request.getWorkflowName(), 256) + "_t_" + request.getTaskId() + "_a_" + request.getAttemptId() --> Line_6 $$ return truncate(prefix, maxPrefixLength) + suffix [FD]
+Line_5 $$ int maxPrefixLength = MAX_JOB_ID_LENGTH - suffix.length() --> Line_6 $$ return truncate(prefix, maxPrefixLength) + suffix [FD]

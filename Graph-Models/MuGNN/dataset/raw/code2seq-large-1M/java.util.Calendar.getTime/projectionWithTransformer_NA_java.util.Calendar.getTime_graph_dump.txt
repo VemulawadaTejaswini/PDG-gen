@@ -1,0 +1,8 @@
+Line_2 $$ public void projectionWithTransformer() --> Line_3 $$ EntityManager em = emf.createEntityManager() [CD]
+Line_2 $$ public void projectionWithTransformer() --> Line_4 $$ inTransaction(em,  tx -> [CD]
+Line_3 $$ EntityManager em = emf.createEntityManager() --> Line_4 $$ inTransaction(em,  tx -> [FD]
+Line_3 $$ EntityManager em = emf.createEntityManager() --> Line_5 $$ FullTextEntityManager ftem = Search.getFullTextEntityManager(em) [FD]
+Line_5 $$ FullTextEntityManager ftem = Search.getFullTextEntityManager(em) --> Line_6 $$ QueryBuilder qb = ftem.getSearchFactory().buildQueryBuilder().forEntity(VideoGame.class).get() [FD]
+Line_5 $$ FullTextEntityManager ftem = Search.getFullTextEntityManager(em) --> Line_7 $$ FullTextQuery query = ftem.createFullTextQuery(qb.keyword().onField("tags").matching("round-based").createQuery(), VideoGame.class).setProjection("title", "publisher.name", "release").setResultTransformer(new BasicTransformerAdapter() [FD]
+Line_2 $$ public void projectionWithTransformer() --> Line_17 $$ em.close() [CD]
+Line_3 $$ EntityManager em = emf.createEntityManager() --> Line_17 $$ em.close() [FD]

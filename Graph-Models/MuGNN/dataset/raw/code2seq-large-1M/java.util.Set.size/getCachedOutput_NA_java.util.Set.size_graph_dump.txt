@@ -1,0 +1,7 @@
+Line_2 $$ private RuleOutput getCachedOutput(Assignment input) --> Line_3 $$ if (cache == null) [CD]
+Line_3 $$ if (cache == null) --> Line_4 $$ return rule.getOutput(new Assignment(input, filledSlots)) [CD]
+Line_3 $$ if (cache == null) --> Line_5 $$ if (input.size() > variables.size()) [CD]
+Line_2 $$ private RuleOutput getCachedOutput(Assignment input) --> Line_5 $$ if (input.size() > variables.size()) [FD]
+Line_5 $$ if (input.size() > variables.size()) --> Line_6 $$ input = input.getTrimmed(variables) [CD]
+Line_2 $$ private RuleOutput getCachedOutput(Assignment input) --> Line_6 $$ input = input.getTrimmed(variables) [FD]
+Line_2 $$ private RuleOutput getCachedOutput(Assignment input) --> Line_8 $$ return cache.computeIfAbsent(new Assignment(input, filledSlots),  a -> rule.getOutput(a)) [CD]

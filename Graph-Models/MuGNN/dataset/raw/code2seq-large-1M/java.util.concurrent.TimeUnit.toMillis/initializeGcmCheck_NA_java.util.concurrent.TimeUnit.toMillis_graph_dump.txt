@@ -1,0 +1,4 @@
+Line_2 $$ private void initializeGcmCheck() --> Line_3 $$ if (TextSecurePreferences.isPushRegistered(this)) [CD]
+Line_3 $$ if (TextSecurePreferences.isPushRegistered(this)) --> Line_4 $$ long nextSetTime = TextSecurePreferences.getGcmRegistrationIdLastSetTime(this) + TimeUnit.HOURS.toMillis(6) [CD]
+Line_3 $$ if (TextSecurePreferences.isPushRegistered(this)) --> Line_5 $$ if (TextSecurePreferences.getGcmRegistrationId(this) == null || nextSetTime <= System.currentTimeMillis()) [CD]
+Line_5 $$ if (TextSecurePreferences.getGcmRegistrationId(this) == null || nextSetTime <= System.currentTimeMillis()) --> Line_6 $$ this.jobManager.add(new GcmRefreshJob(this)) [CD]

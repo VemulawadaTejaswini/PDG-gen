@@ -1,0 +1,7 @@
+Line_2 $$ private static Map<String, SmaliFile> parseFramework() --> Line_3 $$ Map<String, SmaliFile> frameworkFiles = new HashMap() [CD]
+Line_2 $$ private static Map<String, SmaliFile> parseFramework() --> Line_4 $$ List<String> frameworkClassesCfg = ConfigurationLoader.load(Configuration.FRAMEWORK_CLASSES_PATH) [CD]
+Line_2 $$ private static Map<String, SmaliFile> parseFramework() --> Line_5 $$ Set<String> safeFrameworkClasses = new HashSet(ConfigurationLoader.load(Configuration.SAFE_FRAMEWORK_CLASSES_PATH)) [CD]
+Line_6 $$ for (String line : frameworkClassesCfg) --> Line_7 $$ String[] parts = line.split(":") [FD]
+Line_5 $$ Set<String> safeFrameworkClasses = new HashSet(ConfigurationLoader.load(Configuration.SAFE_FRAMEWORK_CLASSES_PATH)) --> Line_12 $$ smaliFile.setIsSafeFramework(safeFrameworkClasses.contains(className)) [FD]
+Line_3 $$ Map<String, SmaliFile> frameworkFiles = new HashMap() --> Line_13 $$ frameworkFiles.put(smaliFile.getClassName(), smaliFile) [FD]
+Line_2 $$ private static Map<String, SmaliFile> parseFramework() --> Line_15 $$ return frameworkFiles [CD]

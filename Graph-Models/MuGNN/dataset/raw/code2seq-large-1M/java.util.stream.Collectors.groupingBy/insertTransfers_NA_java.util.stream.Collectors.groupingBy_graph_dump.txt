@@ -1,0 +1,6 @@
+Line_2 $$ void insertTransfers() --> Line_3 $$ departureTimelineNodes.asMap().forEach(( toStopId,  timelineNodesWithTripId) -> [CD]
+Line_4 $$ final Map<String, List<TimelineNodeIdWithTripId>> departureTimelineNodesByRoute = departureTimelineNodes.get(toStopId).stream().collect(Collectors.groupingBy( t -> t.routeId)) --> Line_5 $$ departureTimelineNodesByRoute.forEach(( toRouteId,  timelineNodesByRoute) -> [FD]
+Line_7 $$ final Optional<Transfer> withinStationTransfer = transfers.getTransfersToStop(toStopId, toRouteId).stream().filter( t -> t.from_stop_id.equals(toStopId)).findAny() --> Line_8 $$ if (!withinStationTransfer.isPresent()) [FD]
+Line_8 $$ if (!withinStationTransfer.isPresent()) --> Line_9 $$ insertInboundTransfers(toStopId, null, 0, timeNodes) [CD]
+Line_6 $$ NavigableSet<Fun.Tuple2<Integer, Integer>> timeNodes = sorted(timelineNodesByRoute) --> Line_9 $$ insertInboundTransfers(toStopId, null, 0, timeNodes) [FD]
+Line_6 $$ NavigableSet<Fun.Tuple2<Integer, Integer>> timeNodes = sorted(timelineNodesByRoute) --> Line_12 $$ insertInboundTransfers(transfer.from_stop_id, transfer.from_route_id, transfer.min_transfer_time, timeNodes) [FD]

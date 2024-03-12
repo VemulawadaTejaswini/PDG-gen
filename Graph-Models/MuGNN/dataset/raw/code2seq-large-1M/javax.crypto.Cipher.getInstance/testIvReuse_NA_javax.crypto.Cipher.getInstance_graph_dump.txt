@@ -1,0 +1,6 @@
+Line_4 $$ Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding") --> Line_5 $$ cipher.init(Cipher.ENCRYPT_MODE, test.key, test.parameters) [FD]
+Line_4 $$ Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding") --> Line_6 $$ cipher.updateAAD(test.aad) [FD]
+Line_4 $$ Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding") --> Line_7 $$ byte[] ct1 = cipher.doFinal(test.pt) [FD]
+Line_4 $$ Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding") --> Line_9 $$ byte[] ct2 = cipher.doFinal(test.pt) [FD]
+Line_7 $$ byte[] ct1 = cipher.doFinal(test.pt) --> Line_10 $$ fail("It should not possible to reuse an IV." + " ct1:" + TestUtil.bytesToHex(ct1) + " ct2:" + TestUtil.bytesToHex(ct2)) [FD]
+Line_9 $$ byte[] ct2 = cipher.doFinal(test.pt) --> Line_10 $$ fail("It should not possible to reuse an IV." + " ct1:" + TestUtil.bytesToHex(ct1) + " ct2:" + TestUtil.bytesToHex(ct2)) [FD]

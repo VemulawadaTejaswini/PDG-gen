@@ -1,0 +1,6 @@
+Line_2 $$ public void incrementOutputWriterFailures() --> Line_3 $$ int failuresCount = failuresCounter.incrementAndGet() [CD]
+Line_2 $$ public void incrementOutputWriterFailures() --> Line_4 $$ if (failuresCount >= maxFailures) [CD]
+Line_3 $$ int failuresCount = failuresCounter.incrementAndGet() --> Line_4 $$ if (failuresCount >= maxFailures) [FD]
+Line_4 $$ if (failuresCount >= maxFailures) --> Line_5 $$ disabledUntil = System.currentTimeMillis() + disableDurationInMillis [CD]
+Line_4 $$ if (failuresCount >= maxFailures) --> Line_6 $$ failuresCounter.set(0) [CD]
+Line_4 $$ if (failuresCount >= maxFailures) --> Line_7 $$ logger.warning("Too many exceptions, disable writer until " + new Timestamp(disabledUntil)) [CD]

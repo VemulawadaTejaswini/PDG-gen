@@ -1,0 +1,8 @@
+Line_2 $$ private void syncToAllocationBacking(Backing backing) --> Line_3 $$ Allocation allocation = (Allocation) backing.lock(ACCESS_ALLOCATION) [CD]
+Line_2 $$ private void syncToAllocationBacking(Backing backing) --> Line_3 $$ Allocation allocation = (Allocation) backing.lock(ACCESS_ALLOCATION) [FD]
+Line_2 $$ private void syncToAllocationBacking(Backing backing) --> Line_4 $$ ByteBuffer pixels = ByteBuffer.allocateDirect(getSize()) [CD]
+Line_2 $$ private void syncToAllocationBacking(Backing backing) --> Line_5 $$ allocation.copyTo(pixels.array()) [CD]
+Line_3 $$ Allocation allocation = (Allocation) backing.lock(ACCESS_ALLOCATION) --> Line_5 $$ allocation.copyTo(pixels.array()) [FD]
+Line_4 $$ ByteBuffer pixels = ByteBuffer.allocateDirect(getSize()) --> Line_5 $$ allocation.copyTo(pixels.array()) [FD]
+Line_2 $$ private void syncToAllocationBacking(Backing backing) --> Line_6 $$ mTexture.allocateWithPixels(pixels, mDimensions[0], mDimensions[1]) [CD]
+Line_4 $$ ByteBuffer pixels = ByteBuffer.allocateDirect(getSize()) --> Line_6 $$ mTexture.allocateWithPixels(pixels, mDimensions[0], mDimensions[1]) [FD]

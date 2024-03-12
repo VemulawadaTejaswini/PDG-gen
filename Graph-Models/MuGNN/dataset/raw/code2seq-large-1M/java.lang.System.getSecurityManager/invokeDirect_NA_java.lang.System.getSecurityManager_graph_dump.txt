@@ -1,0 +1,8 @@
+Line_2 $$ public Object invokeDirect(Method method, Object target, Object[] params) throws Exception --> Line_3 $$ if (System.getSecurityManager() != null) [CD]
+Line_3 $$ if (System.getSecurityManager() != null) --> Line_4 $$ Actions actions = (Actions) m_actions.get() [CD]
+Line_3 $$ if (System.getSecurityManager() != null) --> Line_5 $$ actions.set(Actions.INVOKE_DIRECTMETHOD_ACTION, method, target, params) [CD]
+Line_4 $$ Actions actions = (Actions) m_actions.get() --> Line_5 $$ actions.set(Actions.INVOKE_DIRECTMETHOD_ACTION, method, target, params) [FD]
+Line_2 $$ public Object invokeDirect(Method method, Object target, Object[] params) throws Exception --> Line_5 $$ actions.set(Actions.INVOKE_DIRECTMETHOD_ACTION, method, target, params) [FD]
+Line_4 $$ Actions actions = (Actions) m_actions.get() --> Line_7 $$ return AccessController.doPrivileged(actions, m_acc) [FD]
+Line_3 $$ if (System.getSecurityManager() != null) --> Line_12 $$ return method.invoke(target, params) [CD]
+Line_2 $$ public Object invokeDirect(Method method, Object target, Object[] params) throws Exception --> Line_12 $$ return method.invoke(target, params) [FD]

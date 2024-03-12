@@ -1,0 +1,6 @@
+Line_2 $$ public boolean trigger(Job job) --> Line_3 $$ log.log(LogLevel.INFO, String.format("Triggering %s: %s", job, job.triggering)) [CD]
+Line_2 $$ public boolean trigger(Job job) --> Line_3 $$ log.log(LogLevel.INFO, String.format("Triggering %s: %s", job, job.triggering)) [FD]
+Line_2 $$ public boolean trigger(Job job) --> Line_5 $$ buildService.trigger(job) [FD]
+Line_2 $$ public boolean trigger(Job job) --> Line_6 $$ applications().lockOrThrow(job.applicationId(),  application -> applications().store(application.withJobTriggering(job.jobType, job.triggering))) [FD]
+Line_10 $$ if (e instanceof NoSuchElementException || e instanceof IllegalArgumentException) --> Line_11 $$ applications().lockOrThrow(job.applicationId(),  application -> applications().store(application.withProjectId(OptionalLong.empty()))) [CD]
+Line_2 $$ public boolean trigger(Job job) --> Line_11 $$ applications().lockOrThrow(job.applicationId(),  application -> applications().store(application.withProjectId(OptionalLong.empty()))) [FD]

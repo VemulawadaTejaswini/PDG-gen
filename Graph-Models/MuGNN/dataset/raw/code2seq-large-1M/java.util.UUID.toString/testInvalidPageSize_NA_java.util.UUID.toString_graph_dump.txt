@@ -1,0 +1,7 @@
+Line_2 $$ public void testInvalidPageSize() --> Line_3 $$ Response response = getTenants(Optional.of(UUID.randomUUID().toString()), Optional.of(200)) [CD]
+Line_2 $$ public void testInvalidPageSize() --> Line_4 $$ assertThat(response.getStatus(), is(400)) [CD]
+Line_3 $$ Response response = getTenants(Optional.of(UUID.randomUUID().toString()), Optional.of(200)) --> Line_4 $$ assertThat(response.getStatus(), is(400)) [FD]
+Line_2 $$ public void testInvalidPageSize() --> Line_5 $$ ApiError errors = response.readEntity(ApiError.class) [CD]
+Line_3 $$ Response response = getTenants(Optional.of(UUID.randomUUID().toString()), Optional.of(200)) --> Line_5 $$ ApiError errors = response.readEntity(ApiError.class) [FD]
+Line_2 $$ public void testInvalidPageSize() --> Line_6 $$ assertThat(errors.getCode(), Matchers.is("InvalidPageSize")) [CD]
+Line_2 $$ public void testInvalidPageSize() --> Line_7 $$ assertThat(errors.getMessage(), Matchers.is("The page size '200' is not between '1' and '100'")) [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ public void testMultithreadedXmlParsing() throws InterruptedException, ExecutionException --> Line_3 $$ Callable<Configuration> parserTask = () -> new XmlConfiguration(XmlConfigurationTest.class.getResource("/configs/one-cache.xml")) [CD]
+Line_2 $$ public void testMultithreadedXmlParsing() throws InterruptedException, ExecutionException --> Line_4 $$ ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()) [CD]
+Line_4 $$ ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()) --> Line_6 $$ for (Future<Configuration> c : service.invokeAll(nCopies(10, parserTask))) [FD]
+Line_6 $$ for (Future<Configuration> c : service.invokeAll(nCopies(10, parserTask))) --> Line_7 $$ assertThat(c.get(), IsNull.notNullValue()) [FD]
+Line_4 $$ ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()) --> Line_10 $$ service.shutdown() [FD]

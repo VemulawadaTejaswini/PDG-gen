@@ -1,0 +1,7 @@
+Line_2 $$ public void doFuzzTest() throws InterruptedException, ExecutionException --> Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(THREADS) [CD]
+Line_2 $$ public void doFuzzTest() throws InterruptedException, ExecutionException --> Line_4 $$ int[] iterations = range(0, THREADS).map( i -> ITERATIONS).toArray() [CD]
+Line_2 $$ public void doFuzzTest() throws InterruptedException, ExecutionException --> Line_6 $$ List<Callable<Void>> tasks = range(0, THREADS).mapToObj( i -> (Callable<Void>) () -> this.task(iterations[i])).collect(toList()) [CD]
+Line_2 $$ public void doFuzzTest() throws InterruptedException, ExecutionException --> Line_7 $$ waitForIt(executor.invokeAll(tasks)) [CD]
+Line_3 $$ ExecutorService executor = Executors.newFixedThreadPool(THREADS) --> Line_7 $$ waitForIt(executor.invokeAll(tasks)) [FD]
+Line_6 $$ List<Callable<Void>> tasks = range(0, THREADS).mapToObj( i -> (Callable<Void>) () -> this.task(iterations[i])).collect(toList()) --> Line_7 $$ waitForIt(executor.invokeAll(tasks)) [FD]
+Line_2 $$ public void doFuzzTest() throws InterruptedException, ExecutionException --> Line_8 $$ assertThat(counter).isEqualTo((THREADS - 1) * ITERATIONS + SHORT_ITERATION) [CD]

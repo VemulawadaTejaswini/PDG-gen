@@ -1,0 +1,5 @@
+Line_2 $$ private RegistrationState setStoredRegistrationState(RegistrationState state) --> Line_3 $$ if ((RegistrationState.GCM_REGISTRATING != state) && (RegistrationState.SERVER_REGISTRATING != state) && (RegistrationState.SERVER_UNREGISTRATING != state)) [CD]
+Line_3 $$ if ((RegistrationState.GCM_REGISTRATING != state) && (RegistrationState.SERVER_REGISTRATING != state) && (RegistrationState.SERVER_UNREGISTRATING != state)) --> Line_4 $$ if (!getGcmSharedPreferences().edit().putInt(PREFS_PUSHER_REGISTRATION_STATUS, state.ordinal()).commit()) [CD]
+Line_2 $$ private RegistrationState setStoredRegistrationState(RegistrationState state) --> Line_4 $$ if (!getGcmSharedPreferences().edit().putInt(PREFS_PUSHER_REGISTRATION_STATUS, state.ordinal()).commit()) [FD]
+Line_4 $$ if (!getGcmSharedPreferences().edit().putInt(PREFS_PUSHER_REGISTRATION_STATUS, state.ordinal()).commit()) --> Line_5 $$ Log.e(LOG_TAG, "## setStoredRegistrationState() : commit failed") [CD]
+Line_2 $$ private RegistrationState setStoredRegistrationState(RegistrationState state) --> Line_8 $$ return state [CD]

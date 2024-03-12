@@ -1,0 +1,8 @@
+Line_2 $$ public void propagates_sampledFalse() throws Exception --> Line_3 $$ close() [CD]
+Line_2 $$ public void propagates_sampledFalse() throws Exception --> Line_4 $$ httpTracing = HttpTracing.create(tracingBuilder(Sampler.NEVER_SAMPLE).build()) [CD]
+Line_2 $$ public void propagates_sampledFalse() throws Exception --> Line_5 $$ client = newClient(server.getPort()) [CD]
+Line_2 $$ public void propagates_sampledFalse() throws Exception --> Line_6 $$ server.enqueue(new MockResponse()) [CD]
+Line_2 $$ public void propagates_sampledFalse() throws Exception --> Line_7 $$ get(client, "/foo") [CD]
+Line_2 $$ public void propagates_sampledFalse() throws Exception --> Line_8 $$ RecordedRequest request = server.takeRequest() [CD]
+Line_2 $$ public void propagates_sampledFalse() throws Exception --> Line_9 $$ assertThat(request.getHeaders().toMultimap()).containsKeys("x-b3-traceId", "x-b3-spanId").doesNotContainKey("x-b3-parentSpanId").containsEntry("x-b3-sampled", asList("0")) [CD]
+Line_8 $$ RecordedRequest request = server.takeRequest() --> Line_9 $$ assertThat(request.getHeaders().toMultimap()).containsKeys("x-b3-traceId", "x-b3-spanId").doesNotContainKey("x-b3-parentSpanId").containsEntry("x-b3-sampled", asList("0")) [FD]

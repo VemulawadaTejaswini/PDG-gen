@@ -1,0 +1,7 @@
+Line_2 $$ private void prepareMetadataConnection() throws SQLException, ReplicatorException --> Line_3 $$ if (metadataConnection == null) [CD]
+Line_3 $$ if (metadataConnection == null) --> Line_4 $$ metadataConnection = dataSourceImpl.getConnection() [CD]
+Line_2 $$ private void prepareMetadataConnection() throws SQLException, ReplicatorException --> Line_5 $$ long currentTime = System.currentTimeMillis() [CD]
+Line_2 $$ private void prepareMetadataConnection() throws SQLException, ReplicatorException --> Line_6 $$ if (lastConnectionTime == 0) [CD]
+Line_6 $$ if (lastConnectionTime == 0) --> Line_8 $$ if (reconnectTimeoutInSeconds > 0 && currentTime - lastConnectionTime > reconnectTimeoutInSeconds * 1000) [CD]
+Line_8 $$ if (reconnectTimeoutInSeconds > 0 && currentTime - lastConnectionTime > reconnectTimeoutInSeconds * 1000) --> Line_9 $$ dataSourceImpl.releaseConnection(metadataConnection) [CD]
+Line_8 $$ if (reconnectTimeoutInSeconds > 0 && currentTime - lastConnectionTime > reconnectTimeoutInSeconds * 1000) --> Line_10 $$ metadataConnection = dataSourceImpl.getConnection() [CD]

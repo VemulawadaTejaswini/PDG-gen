@@ -1,0 +1,7 @@
+Line_2 $$ public synchronized StorageSummary writeRecord(final ProvenanceEventRecord record) throws IOException --> Line_3 $$ if (isDirty()) [CD]
+Line_2 $$ public synchronized StorageSummary writeRecord(final ProvenanceEventRecord record) throws IOException --> Line_7 $$ final long recordIdentifier = record.getEventId() == -1L ? idGenerator.getAndIncrement() : record.getEventId() [FD]
+Line_7 $$ final long recordIdentifier = record.getEventId() == -1L ? idGenerator.getAndIncrement() : record.getEventId() --> Line_9 $$ ensureStreamState(recordIdentifier, startBytes) [FD]
+Line_8 $$ final long startBytes = byteCountingOut.getBytesWritten() --> Line_9 $$ ensureStreamState(recordIdentifier, startBytes) [FD]
+Line_2 $$ public synchronized StorageSummary writeRecord(final ProvenanceEventRecord record) throws IOException --> Line_10 $$ writeRecord(record, recordIdentifier, out) [FD]
+Line_7 $$ final long recordIdentifier = record.getEventId() == -1L ? idGenerator.getAndIncrement() : record.getEventId() --> Line_10 $$ writeRecord(record, recordIdentifier, out) [FD]
+Line_14 $$ final TocWriter tocWriter = getTocWriter() --> Line_15 $$ final Integer blockIndex = tocWriter == null ? null : tocWriter.getCurrentBlockIndex() [FD]

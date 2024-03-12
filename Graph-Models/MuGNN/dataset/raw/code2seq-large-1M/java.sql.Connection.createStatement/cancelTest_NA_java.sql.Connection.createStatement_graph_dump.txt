@@ -1,0 +1,4 @@
+Line_3 $$ try (Connection tmpConnection = openNewConnection(connUri, new Properties())) --> Line_4 $$ Statement stmt = tmpConnection.createStatement() [FD]
+Line_5 $$ ExecutorService exec = Executors.newFixedThreadPool(1) --> Line_6 $$ exec.execute(new CancelThread(stmt)) [FD]
+Line_4 $$ Statement stmt = tmpConnection.createStatement() --> Line_7 $$ stmt.execute("select * from information_schema.columns as c1,  information_schema.tables, information_schema.tables as t2") [FD]
+Line_5 $$ ExecutorService exec = Executors.newFixedThreadPool(1) --> Line_8 $$ exec.shutdown() [FD]

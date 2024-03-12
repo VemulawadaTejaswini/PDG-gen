@@ -1,0 +1,7 @@
+Line_7 $$ while (iter.hasNext()) --> Line_8 $$ Map.Entry<String, TraceState> entry = iter.next() [CD]
+Line_7 $$ while (iter.hasNext()) --> Line_9 $$ TraceState ts = entry.getValue() [CD]
+Line_7 $$ while (iter.hasNext()) --> Line_10 $$ if (ts.getExpire() > 0 && ts.getExpire() < timestamp) [CD]
+Line_9 $$ TraceState ts = entry.getValue() --> Line_10 $$ if (ts.getExpire() > 0 && ts.getExpire() < timestamp) [FD]
+Line_10 $$ if (ts.getExpire() > 0 && ts.getExpire() < timestamp) --> Line_11 $$ if (log.isLoggable(Level.FINEST)) [CD]
+Line_11 $$ if (log.isLoggable(Level.FINEST)) --> Line_12 $$ log.finest("Expired trace state = " + ts + " id = " + entry.getKey()) [CD]
+Line_10 $$ if (ts.getExpire() > 0 && ts.getExpire() < timestamp) --> Line_14 $$ iter.remove() [CD]

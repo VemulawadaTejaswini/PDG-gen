@@ -1,0 +1,5 @@
+Line_2 $$ public void testPositionAfterDate() throws InterruptedException --> Line_3 $$ runShouldFail(String.format("position %s --log-name %s --group anotherGroup --after-date %s", getManagerOptions(), LOG_NAME, Instant.now().plus(1, ChronoUnit.HOURS))) [CD]
+Line_2 $$ public void testPositionAfterDate() throws InterruptedException --> Line_4 $$ run(String.format("position %s --log-name %s --group anotherGroup --after-date %s", getManagerOptions(), LOG_NAME, Instant.ofEpochMilli(Watermark.ofValue(targetRecord.watermark).getTimestamp()))) [CD]
+Line_5 $$ try (LogTailer<Record> tailer = getManager().createTailer("anotherGroup", LOG_NAME)) --> Line_6 $$ LogRecord<Record> rec = tailer.read(DEF_TIMEOUT) [FD]
+Line_6 $$ LogRecord<Record> rec = tailer.read(DEF_TIMEOUT) --> Line_7 $$ assertNotNull(rec) [FD]
+Line_6 $$ LogRecord<Record> rec = tailer.read(DEF_TIMEOUT) --> Line_8 $$ assertEquals(targetRecord, rec.message()) [FD]

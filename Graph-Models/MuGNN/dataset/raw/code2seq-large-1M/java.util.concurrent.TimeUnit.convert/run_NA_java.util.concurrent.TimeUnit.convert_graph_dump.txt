@@ -1,0 +1,8 @@
+Line_6 $$ while (open.get() && (t < deadlineMs)) --> Line_7 $$ t = TimeUnit.MILLISECONDS.convert(System.nanoTime(), TimeUnit.NANOSECONDS) [CD]
+Line_5 $$ long t = TimeUnit.MILLISECONDS.convert(System.nanoTime(), TimeUnit.NANOSECONDS) --> Line_7 $$ t = TimeUnit.MILLISECONDS.convert(System.nanoTime(), TimeUnit.NANOSECONDS) [FD]
+Line_6 $$ while (open.get() && (t < deadlineMs)) --> Line_8 $$ long toWait = Math.max(1, deadlineMs - t) [CD]
+Line_6 $$ while (open.get() && (t < deadlineMs)) --> Line_9 $$ wait(toWait) [CD]
+Line_8 $$ long toWait = Math.max(1, deadlineMs - t) --> Line_9 $$ wait(toWait) [FD]
+Line_24 $$ Listener<OutboundBatchTask<R, Result>> completionListener = onCompleted --> Line_25 $$ if (completionListener != null) [FD]
+Line_25 $$ if (completionListener != null) --> Line_26 $$ completionListener.invoke(this) [CD]
+Line_24 $$ Listener<OutboundBatchTask<R, Result>> completionListener = onCompleted --> Line_26 $$ completionListener.invoke(this) [FD]

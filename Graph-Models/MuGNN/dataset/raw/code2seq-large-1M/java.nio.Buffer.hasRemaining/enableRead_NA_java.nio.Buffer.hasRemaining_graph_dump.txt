@@ -1,0 +1,6 @@
+Line_2 $$ public void enableRead(boolean enable) --> Line_3 $$ final Thread waiter [CD]
+Line_6 $$ if (readWaiter == null || !readEnabled || !((readBuffer.hasRemaining() && readBuffer.limit() != readBuffer.capacity()) || eof)) --> Line_7 $$ return [CD]
+Line_3 $$ final Thread waiter --> Line_9 $$ waiter = readWaiter [FD]
+Line_2 $$ public void enableRead(boolean enable) --> Line_11 $$ LockSupport.unpark(waiter) [CD]
+Line_3 $$ final Thread waiter --> Line_11 $$ LockSupport.unpark(waiter) [FD]
+Line_9 $$ waiter = readWaiter --> Line_11 $$ LockSupport.unpark(waiter) [FD]

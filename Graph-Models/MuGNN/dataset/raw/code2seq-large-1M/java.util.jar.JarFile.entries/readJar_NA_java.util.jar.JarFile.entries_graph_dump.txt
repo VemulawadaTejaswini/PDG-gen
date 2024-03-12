@@ -1,0 +1,7 @@
+Line_2 $$ static Map<String, byte[]> readJar(String path) throws IOException --> Line_3 $$ Map<String, byte[]> classes = new HashMap() [CD]
+Line_4 $$ try (JarFile jf = new JarFile(path)) --> Line_5 $$ Enumeration<JarEntry> entries = jf.entries() [FD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_7 $$ JarEntry je = entries.nextElement() [CD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_8 $$ if (!je.getName().endsWith(".class")) [CD]
+Line_6 $$ while (entries.hasMoreElements()) --> Line_11 $$ classes.put(je.getName(), ByteStreams.toByteArray(jf.getInputStream(je))) [CD]
+Line_4 $$ try (JarFile jf = new JarFile(path)) --> Line_11 $$ classes.put(je.getName(), ByteStreams.toByteArray(jf.getInputStream(je))) [FD]
+Line_2 $$ static Map<String, byte[]> readJar(String path) throws IOException --> Line_14 $$ return classes [CD]

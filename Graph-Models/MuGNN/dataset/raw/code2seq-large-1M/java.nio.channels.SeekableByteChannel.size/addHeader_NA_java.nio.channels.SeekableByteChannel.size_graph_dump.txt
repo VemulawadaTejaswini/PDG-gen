@@ -1,0 +1,8 @@
+Line_2 $$ private static SeekableByteChannel addHeader(SeekableByteChannel input) --> Line_4 $$ int total = (int) input.size() [FD]
+Line_5 $$ final String comment = "@HD\tVN:1.0  SO:unsorted\n" + "@SQ\tSN:chr1\tLN:101\n" + "@SQ\tSN:chr2\tLN:101\n" + "@SQ\tSN:chr3\tLN:101\n" + "@RG\tID:0\tSM:JP was here\n" --> Line_6 $$ byte[] commentBuf = comment.getBytes() [FD]
+Line_7 $$ ByteBuffer buf = ByteBuffer.allocate(total + commentBuf.length) --> Line_8 $$ buf.put(commentBuf) [FD]
+Line_6 $$ byte[] commentBuf = comment.getBytes() --> Line_8 $$ buf.put(commentBuf) [FD]
+Line_2 $$ private static SeekableByteChannel addHeader(SeekableByteChannel input) --> Line_9 $$ input.position(0) [FD]
+Line_2 $$ private static SeekableByteChannel addHeader(SeekableByteChannel input) --> Line_10 $$ while (input.read(buf) > 0) [FD]
+Line_7 $$ ByteBuffer buf = ByteBuffer.allocate(total + commentBuf.length) --> Line_10 $$ while (input.read(buf) > 0) [FD]
+Line_7 $$ ByteBuffer buf = ByteBuffer.allocate(total + commentBuf.length) --> Line_12 $$ buf.flip() [FD]

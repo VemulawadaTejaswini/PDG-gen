@@ -1,0 +1,7 @@
+Line_2 $$ private static void issueLintWarningsForProblematicEscapes(Token<JsTokenType> t, MessageQueue mq) --> Line_3 $$ String body = t.text.substring(1, t.text.length() - 1) [CD]
+Line_2 $$ private static void issueLintWarningsForProblematicEscapes(Token<JsTokenType> t, MessageQueue mq) --> Line_4 $$ for (int i = -1; (i = body.indexOf('\\', i + 1)) >= 0; ++i) [CD]
+Line_3 $$ String body = t.text.substring(1, t.text.length() - 1) --> Line_4 $$ for (int i = -1; (i = body.indexOf('\\', i + 1)) >= 0; ++i) [FD]
+Line_4 $$ for (int i = -1; (i = body.indexOf('\\', i + 1)) >= 0; ++i) --> Line_5 $$ char next = body.charAt(i + 1) [CD]
+Line_3 $$ String body = t.text.substring(1, t.text.length() - 1) --> Line_5 $$ char next = body.charAt(i + 1) [FD]
+Line_2 $$ private static void issueLintWarningsForProblematicEscapes(Token<JsTokenType> t, MessageQueue mq) --> Line_29 $$ mq.addMessage(MessageType.AMBIGUOUS_ESCAPE_SEQUENCE, t.pos, MessagePart.Factory.valueOf("\\" + next)) [FD]
+Line_2 $$ private static void issueLintWarningsForProblematicEscapes(Token<JsTokenType> t, MessageQueue mq) --> Line_49 $$ mq.addMessage(MessageType.REDUNDANT_ESCAPE_SEQUENCE, t.pos, MessagePart.Factory.valueOf("\\" + next)) [FD]

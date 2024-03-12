@@ -1,0 +1,6 @@
+Line_2 $$ public void onOpen() --> Line_3 $$ File lastDir = new File(configuration.getString(Settings.LAST_DIR_KEY, ".")) [CD]
+Line_2 $$ public void onOpen() --> Line_4 $$ File selectedFile = messageHandler.chooseFile().withTitle(Message.GENERIC_OPEN.format()).withExtensionFilter(new FileFilter(Message.FILETYPE_JAVA_ARCHIVE_CLASS_FILE.format(), "*.jar", "*.class"), true).withInitialDirectory(lastDir).promptSingle() [CD]
+Line_3 $$ File lastDir = new File(configuration.getString(Settings.LAST_DIR_KEY, ".")) --> Line_4 $$ File selectedFile = messageHandler.chooseFile().withTitle(Message.GENERIC_OPEN.format()).withExtensionFilter(new FileFilter(Message.FILETYPE_JAVA_ARCHIVE_CLASS_FILE.format(), "*.jar", "*.class"), true).withInitialDirectory(lastDir).promptSingle() [FD]
+Line_2 $$ public void onOpen() --> Line_5 $$ if (selectedFile != null) [CD]
+Line_5 $$ if (selectedFile != null) --> Line_6 $$ configuration.setProperty(Settings.LAST_DIR_KEY, selectedFile.getParent()) [CD]
+Line_5 $$ if (selectedFile != null) --> Line_7 $$ openedFileController.openFile(selectedFile) [CD]

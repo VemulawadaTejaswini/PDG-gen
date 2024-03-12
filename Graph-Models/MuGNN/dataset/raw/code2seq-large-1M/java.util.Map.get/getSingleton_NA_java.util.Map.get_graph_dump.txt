@@ -1,0 +1,8 @@
+Line_5 $$ String key = group_address + ":" + group_port + ":" + control_port --> Line_6 $$ SSDPCore singleton = (SSDPCore) singletons.get(key) [FD]
+Line_6 $$ SSDPCore singleton = (SSDPCore) singletons.get(key) --> Line_7 $$ if (singleton == null) [FD]
+Line_7 $$ if (singleton == null) --> Line_8 $$ singleton = new SSDPCore(adapter, group_address, group_port, control_port, selected_interfaces) [CD]
+Line_6 $$ SSDPCore singleton = (SSDPCore) singletons.get(key) --> Line_8 $$ singleton = new SSDPCore(adapter, group_address, group_port, control_port, selected_interfaces) [FD]
+Line_7 $$ if (singleton == null) --> Line_9 $$ singletons.put(key, singleton) [CD]
+Line_5 $$ String key = group_address + ":" + group_port + ":" + control_port --> Line_9 $$ singletons.put(key, singleton) [FD]
+Line_6 $$ SSDPCore singleton = (SSDPCore) singletons.get(key) --> Line_9 $$ singletons.put(key, singleton) [FD]
+Line_8 $$ singleton = new SSDPCore(adapter, group_address, group_port, control_port, selected_interfaces) --> Line_9 $$ singletons.put(key, singleton) [FD]

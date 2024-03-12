@@ -1,0 +1,8 @@
+Line_2 $$ public void onAdminCommandEvent(String name, GfSseInboundEvent event) --> Line_4 $$ AdminCommandState acs = event.getData(AdminCommandState.class, "application/json") [FD]
+Line_5 $$ String id = acs.getId() --> Line_6 $$ if (StringUtils.ok(id)) [FD]
+Line_6 $$ if (StringUtils.ok(id)) --> Line_7 $$ if (terse) [CD]
+Line_7 $$ if (terse) --> Line_8 $$ rac.closeSse(id, ActionReport.ExitCode.SUCCESS) [CD]
+Line_5 $$ String id = acs.getId() --> Line_8 $$ rac.closeSse(id, ActionReport.ExitCode.SUCCESS) [FD]
+Line_7 $$ if (terse) --> Line_10 $$ rac.closeSse(strings.get("detach.jobid", id), ActionReport.ExitCode.SUCCESS) [CD]
+Line_5 $$ String id = acs.getId() --> Line_10 $$ rac.closeSse(strings.get("detach.jobid", id), ActionReport.ExitCode.SUCCESS) [FD]
+Line_6 $$ if (StringUtils.ok(id)) --> Line_13 $$ logger.log(Level.SEVERE, strings.getString("detach.noid", "Command was started but id was not retrieved. Can not detach.")) [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private static Availability getThreadCpuTimeAvailability() --> Line_3 $$ ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean() [CD]
+Line_2 $$ private static Availability getThreadCpuTimeAvailability() --> Line_4 $$ if (!threadMXBean.isThreadCpuTimeSupported()) [CD]
+Line_3 $$ ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean() --> Line_4 $$ if (!threadMXBean.isThreadCpuTimeSupported()) [FD]
+Line_4 $$ if (!threadMXBean.isThreadCpuTimeSupported()) --> Line_5 $$ return Availability.newBuilder().setAvailable(false).setReason("java.lang.management.ThreadMXBean" + ".isThreadCpuTimeSupported() returned false").build() [CD]
+Line_2 $$ private static Availability getThreadCpuTimeAvailability() --> Line_7 $$ if (!threadMXBean.isThreadCpuTimeEnabled()) [CD]
+Line_3 $$ ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean() --> Line_7 $$ if (!threadMXBean.isThreadCpuTimeEnabled()) [FD]
+Line_7 $$ if (!threadMXBean.isThreadCpuTimeEnabled()) --> Line_8 $$ return Availability.newBuilder().setAvailable(false).setReason("java.lang.management.ThreadMXBean" + ".isThreadCpuTimeEnabled() returned false").build() [CD]
+Line_2 $$ private static Availability getThreadCpuTimeAvailability() --> Line_10 $$ return Availability.newBuilder().setAvailable(true).build() [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ private long getPingInterval(long txnLeaseMillis) --> Line_3 $$ double pingInterval = txnLeaseMillis * PING_INTERVAL_FACTOR [CD]
+Line_2 $$ private long getPingInterval(long txnLeaseMillis) --> Line_4 $$ if (pingInterval < TimeUnit.SECONDS.toMillis(5)) [CD]
+Line_3 $$ double pingInterval = txnLeaseMillis * PING_INTERVAL_FACTOR --> Line_4 $$ if (pingInterval < TimeUnit.SECONDS.toMillis(5)) [FD]
+Line_4 $$ if (pingInterval < TimeUnit.SECONDS.toMillis(5)) --> Line_5 $$ log.warn("Transaction ping interval is less than 10 seconds(lower bound)") [CD]
+Line_2 $$ private long getPingInterval(long txnLeaseMillis) --> Line_7 $$ return Math.max(TimeUnit.SECONDS.toMillis(5), (long) pingInterval) [CD]

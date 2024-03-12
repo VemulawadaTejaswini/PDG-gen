@@ -1,0 +1,6 @@
+Line_2 $$ private static byte[][] resource(String path, String status, String contentType) --> Line_3 $$ byte[] bodyTmp = null [CD]
+Line_2 $$ private static byte[][] resource(String path, String status, String contentType) --> Line_4 $$ byte[] contentTmp = null [CD]
+Line_2 $$ private static byte[][] resource(String path, String status, String contentType) --> Line_5 $$ try (InputStream inputStream = HttpServer.class.getResourceAsStream(path)) [FD]
+Line_3 $$ byte[] bodyTmp = null --> Line_6 $$ bodyTmp = IOUtils.toByteArray(inputStream) [FD]
+Line_4 $$ byte[] contentTmp = null --> Line_7 $$ contentTmp = new String("HTTP/1.1 " + status + "\n" + "Content-Length: " + bodyTmp.length + "\n" + (contentType == null ? "" : "Content-Type: " + contentType + "\n") + "Expires: Sun, 09 Feb 2116 01:01:01 GMT\n" + "Connection: close\n\n").getBytes("utf-8") [FD]
+Line_2 $$ private static byte[][] resource(String path, String status, String contentType) --> Line_12 $$ return new byte[][] [CD]

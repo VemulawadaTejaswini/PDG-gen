@@ -1,0 +1,8 @@
+Line_2 $$ List<LoggingEnhancer> getEnhancers() --> Line_3 $$ String list = getProperty(ENHANCERS_TAG) [CD]
+Line_3 $$ String list = getProperty(ENHANCERS_TAG) --> Line_6 $$ if (list != null) [FD]
+Line_6 $$ if (list != null) --> Line_7 $$ String[] items = list.split(",") [CD]
+Line_3 $$ String list = getProperty(ENHANCERS_TAG) --> Line_7 $$ String[] items = list.split(",") [FD]
+Line_8 $$ for (String e_name : items) --> Line_9 $$ Class<? extends LoggingEnhancer> clz = (Class<? extends LoggingEnhancer>) ClassLoader.getSystemClassLoader().loadClass(e_name) [FD]
+Line_5 $$ List<LoggingEnhancer> enhancers = new ArrayList() --> Line_10 $$ enhancers.add(clz.newInstance()) [FD]
+Line_9 $$ Class<? extends LoggingEnhancer> clz = (Class<? extends LoggingEnhancer>) ClassLoader.getSystemClassLoader().loadClass(e_name) --> Line_10 $$ enhancers.add(clz.newInstance()) [FD]
+Line_2 $$ List<LoggingEnhancer> getEnhancers() --> Line_16 $$ return Collections.emptyList() [CD]

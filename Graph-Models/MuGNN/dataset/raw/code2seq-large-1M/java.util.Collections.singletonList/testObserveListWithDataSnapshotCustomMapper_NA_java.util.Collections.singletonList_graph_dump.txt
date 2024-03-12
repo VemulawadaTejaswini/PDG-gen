@@ -1,0 +1,8 @@
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_3 $$ Function<DataSnapshot, ChildData> mapper = (Function<DataSnapshot, ChildData>) mock(Function.class) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_4 $$ doReturn(childData).when(mapper).apply(eq(dataSnapshot)) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_5 $$ TestSubscriber<List<ChildData>> testObserver = RxFirebaseDatabase.observeValueEvent(query, DataSnapshotMapper.listOf(ChildData.class, mapper)).test() [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_6 $$ ArgumentCaptor<ValueEventListener> argument = ArgumentCaptor.forClass(ValueEventListener.class) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_7 $$ verify(query).addValueEventListener(argument.capture()) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_8 $$ argument.getValue().onDataChange(dataSnapshot) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_9 $$ verify(mapper).apply(dataSnapshot) [CD]
+Line_2 $$ public void testObserveListWithDataSnapshotCustomMapper() throws Exception --> Line_10 $$ testObserver.assertNoErrors().assertValueCount(1).assertValueSet(Collections.singletonList(childDataList)).assertNotComplete().dispose() [CD]

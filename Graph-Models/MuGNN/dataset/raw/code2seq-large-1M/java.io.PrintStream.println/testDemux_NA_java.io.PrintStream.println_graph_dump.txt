@@ -1,0 +1,7 @@
+Line_7 $$ MiniDFSCluster dfs = new MiniDFSCluster(conf, NUM_HADOOP_SLAVES, true, null) --> Line_8 $$ FileSystem fileSys = dfs.getFileSystem() [FD]
+Line_8 $$ FileSystem fileSys = dfs.getFileSystem() --> Line_9 $$ MiniMRCluster mr = new MiniMRCluster(NUM_HADOOP_SLAVES, fileSys.getUri().toString(), 1) [FD]
+Line_5 $$ Configuration conf = new Configuration() --> Line_10 $$ writeASinkFile(conf, fileSys, DEMUX_INPUT_PATH, LINES) [FD]
+Line_8 $$ FileSystem fileSys = dfs.getFileSystem() --> Line_10 $$ writeASinkFile(conf, fileSys, DEMUX_INPUT_PATH, LINES) [FD]
+Line_8 $$ FileSystem fileSys = dfs.getFileSystem() --> Line_11 $$ System.out.println("wrote " + fileSys.getFileStatus(DEMUX_INPUT_PATH).getLen() + " bytes of temp test data") [FD]
+Line_9 $$ MiniMRCluster mr = new MiniMRCluster(NUM_HADOOP_SLAVES, fileSys.getUri().toString(), 1) --> Line_13 $$ runDemux(mr.createJobConf(), DEMUX_INPUT_PATH, DEMUX_OUTPUT_PATH) [FD]
+Line_8 $$ FileSystem fileSys = dfs.getFileSystem() --> Line_15 $$ long bytes = fileSys.getContentSummary(DEMUX_OUTPUT_PATH).getLength() [FD]

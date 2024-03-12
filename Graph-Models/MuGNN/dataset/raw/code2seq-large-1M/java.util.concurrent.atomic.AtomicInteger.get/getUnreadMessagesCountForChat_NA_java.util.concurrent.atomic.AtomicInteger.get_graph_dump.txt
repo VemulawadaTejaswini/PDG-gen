@@ -1,0 +1,5 @@
+Line_2 $$ public int getUnreadMessagesCountForChat(@Nonnull Entity chat) --> Line_4 $$ final AtomicInteger counterByChat = countersByChats.get(chat) [FD]
+Line_4 $$ final AtomicInteger counterByChat = countersByChats.get(chat) --> Line_5 $$ if (counterByChat == null) [FD]
+Line_5 $$ if (counterByChat == null) --> Line_6 $$ return 0 [CD]
+Line_5 $$ if (counterByChat == null) --> Line_8 $$ return counterByChat.get() [CD]
+Line_4 $$ final AtomicInteger counterByChat = countersByChats.get(chat) --> Line_8 $$ return counterByChat.get() [FD]

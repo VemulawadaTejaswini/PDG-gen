@@ -1,0 +1,6 @@
+Line_2 $$ public List<Candidate> retrieveGroup(final Integer groupId) --> Line_3 $$ if (groupId == null) [CD]
+Line_2 $$ public List<Candidate> retrieveGroup(final Integer groupId) --> Line_3 $$ if (groupId == null) [FD]
+Line_3 $$ if (groupId == null) --> Line_4 $$ return ImmutableList.of() [CD]
+Line_2 $$ public List<Candidate> retrieveGroup(final Integer groupId) --> Line_6 $$ final IQueryBL queryBL = Services.get(IQueryBL.class) [CD]
+Line_2 $$ public List<Candidate> retrieveGroup(final Integer groupId) --> Line_7 $$ return queryBL.createQueryBuilder(I_MD_Candidate.class).addOnlyActiveRecordsFilter().addEqualsFilter(I_MD_Candidate.COLUMN_MD_Candidate_GroupId, groupId).orderBy().addColumn(I_MD_Candidate.COLUMN_MD_Candidate_ID).endOrderBy().create().stream().map( r -> fromCandidateRecord(r).get()).collect(Collectors.toList()) [CD]
+Line_2 $$ public List<Candidate> retrieveGroup(final Integer groupId) --> Line_7 $$ return queryBL.createQueryBuilder(I_MD_Candidate.class).addOnlyActiveRecordsFilter().addEqualsFilter(I_MD_Candidate.COLUMN_MD_Candidate_GroupId, groupId).orderBy().addColumn(I_MD_Candidate.COLUMN_MD_Candidate_ID).endOrderBy().create().stream().map( r -> fromCandidateRecord(r).get()).collect(Collectors.toList()) [FD]

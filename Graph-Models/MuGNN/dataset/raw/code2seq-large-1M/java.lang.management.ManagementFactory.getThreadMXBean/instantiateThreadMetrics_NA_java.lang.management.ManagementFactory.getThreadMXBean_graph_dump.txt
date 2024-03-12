@@ -1,0 +1,5 @@
+Line_2 $$ private static void instantiateThreadMetrics(MetricGroup metrics) --> Line_3 $$ final ThreadMXBean mxBean = ManagementFactory.getThreadMXBean() [CD]
+Line_2 $$ private static void instantiateThreadMetrics(MetricGroup metrics) --> Line_4 $$ metrics.<Integer, Gauge<Integer>>gauge("Count", new Gauge<Integer>() [CD]
+Line_2 $$ private static void instantiateThreadMetrics(MetricGroup metrics) --> Line_4 $$ metrics.<Integer, Gauge<Integer>>gauge("Count", new Gauge<Integer>() [FD]
+Line_4 $$ metrics.<Integer, Gauge<Integer>>gauge("Count", new Gauge<Integer>() --> Line_6 $$ return mxBean.getThreadCount() [CD]
+Line_3 $$ final ThreadMXBean mxBean = ManagementFactory.getThreadMXBean() --> Line_6 $$ return mxBean.getThreadCount() [FD]

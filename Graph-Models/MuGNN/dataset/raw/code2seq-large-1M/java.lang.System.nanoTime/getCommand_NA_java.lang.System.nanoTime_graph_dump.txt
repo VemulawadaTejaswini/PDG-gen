@@ -1,0 +1,8 @@
+Line_2 $$ private Command getCommand(final String commandId, final String jobId) throws GenieException --> Line_3 $$ final long start = System.nanoTime() [CD]
+Line_2 $$ private Command getCommand(final String commandId, final String jobId) throws GenieException --> Line_4 $$ final Set<Tag> tags = Sets.newHashSet() [CD]
+Line_2 $$ private Command getCommand(final String commandId, final String jobId) throws GenieException --> Line_6 $$ log.info("Selecting command for job [FD]
+Line_2 $$ private Command getCommand(final String commandId, final String jobId) throws GenieException --> Line_7 $$ final Command command = this.commandPersistenceService.getCommand(commandId) [FD]
+Line_2 $$ private Command getCommand(final String commandId, final String jobId) throws GenieException --> Line_8 $$ log.info("Selected command [FD]
+Line_4 $$ final Set<Tag> tags = Sets.newHashSet() --> Line_9 $$ MetricsUtils.addSuccessTags(tags) [FD]
+Line_4 $$ final Set<Tag> tags = Sets.newHashSet() --> Line_12 $$ MetricsUtils.addFailureTagsWithException(tags, t) [FD]
+Line_4 $$ final Set<Tag> tags = Sets.newHashSet() --> Line_15 $$ this.registry.timer(SELECT_COMMAND_TIMER_NAME, tags).record(System.nanoTime() - start, TimeUnit.NANOSECONDS) [FD]

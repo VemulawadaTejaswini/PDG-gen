@@ -1,0 +1,7 @@
+Line_2 $$ public void testAbsentSourceInStaging() throws Exception --> Line_3 $$ Path staging = hadoopToJavaPath(getDrillbitContext().getRemoteFunctionRegistry().getStagingArea()) [CD]
+Line_2 $$ public void testAbsentSourceInStaging() throws Exception --> Line_4 $$ copyJar(jarsDir.toPath(), staging, defaultBinaryJar) [CD]
+Line_3 $$ Path staging = hadoopToJavaPath(getDrillbitContext().getRemoteFunctionRegistry().getStagingArea()) --> Line_4 $$ copyJar(jarsDir.toPath(), staging, defaultBinaryJar) [FD]
+Line_2 $$ public void testAbsentSourceInStaging() throws Exception --> Line_5 $$ String summary = String.format("File %s does not exist on file system %s", staging.resolve(defaultSourceJar).toUri().getPath(), fsUri) [CD]
+Line_3 $$ Path staging = hadoopToJavaPath(getDrillbitContext().getRemoteFunctionRegistry().getStagingArea()) --> Line_5 $$ String summary = String.format("File %s does not exist on file system %s", staging.resolve(defaultSourceJar).toUri().getPath(), fsUri) [FD]
+Line_2 $$ public void testAbsentSourceInStaging() throws Exception --> Line_6 $$ testBuilder().sqlQuery("create function using jar '%s'", defaultBinaryJar).unOrdered().baselineColumns("ok", "summary").baselineValues(false, summary).go() [CD]
+Line_5 $$ String summary = String.format("File %s does not exist on file system %s", staging.resolve(defaultSourceJar).toUri().getPath(), fsUri) --> Line_6 $$ testBuilder().sqlQuery("create function using jar '%s'", defaultBinaryJar).unOrdered().baselineColumns("ok", "summary").baselineValues(false, summary).go() [FD]

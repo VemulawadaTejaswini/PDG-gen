@@ -1,0 +1,7 @@
+Line_2 $$ public Set<RemoteRouter> lookupAll(String userId) --> Line_3 $$ String key = CacheKeys.getUserRouteKey(userId) [FD]
+Line_2 $$ public Set<RemoteRouter> lookupAll(String userId) --> Line_3 $$ String key = CacheKeys.getUserRouteKey(userId) [CD]
+Line_2 $$ public Set<RemoteRouter> lookupAll(String userId) --> Line_4 $$ Map<String, ClientLocation> values = cacheManager.hgetAll(key, ClientLocation.class) [CD]
+Line_3 $$ String key = CacheKeys.getUserRouteKey(userId) --> Line_4 $$ Map<String, ClientLocation> values = cacheManager.hgetAll(key, ClientLocation.class) [FD]
+Line_2 $$ public Set<RemoteRouter> lookupAll(String userId) --> Line_5 $$ if (values == null || values.isEmpty()) [CD]
+Line_5 $$ if (values == null || values.isEmpty()) --> Line_6 $$ return Collections.emptySet() [CD]
+Line_2 $$ public Set<RemoteRouter> lookupAll(String userId) --> Line_7 $$ return values.values().stream().map(RemoteRouter::<>new).collect(Collectors.toSet()) [CD]

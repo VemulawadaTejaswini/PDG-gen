@@ -1,0 +1,8 @@
+Line_2 $$ public void testSuccess_proxyHeaderPresent_singleFrame() --> Line_3 $$ header = String.format(HEADER_TEMPLATE, 4, "172.0.0.1", "255.255.255.255", "234", "123") [CD]
+Line_2 $$ public void testSuccess_proxyHeaderPresent_singleFrame() --> Line_4 $$ String message = "some message" [CD]
+Line_2 $$ public void testSuccess_proxyHeaderPresent_singleFrame() --> Line_5 $$ assertThat(channel.writeInbound(Unpooled.wrappedBuffer((header + message).getBytes(UTF_8)))).isTrue() [CD]
+Line_2 $$ public void testSuccess_proxyHeaderPresent_singleFrame() --> Line_6 $$ assertThat(((ByteBuf) channel.readInbound()).toString(UTF_8)).isEqualTo(message) [CD]
+Line_4 $$ String message = "some message" --> Line_6 $$ assertThat(((ByteBuf) channel.readInbound()).toString(UTF_8)).isEqualTo(message) [FD]
+Line_2 $$ public void testSuccess_proxyHeaderPresent_singleFrame() --> Line_7 $$ assertThat(channel.attr(REMOTE_ADDRESS_KEY).get()).isEqualTo("172.0.0.1") [CD]
+Line_2 $$ public void testSuccess_proxyHeaderPresent_singleFrame() --> Line_8 $$ assertThat(channel.pipeline().get(ProxyProtocolHandler.class)).isNull() [CD]
+Line_2 $$ public void testSuccess_proxyHeaderPresent_singleFrame() --> Line_9 $$ assertThat(channel.isActive()).isTrue() [CD]

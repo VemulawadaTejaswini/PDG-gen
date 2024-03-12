@@ -1,0 +1,8 @@
+Line_2 $$ public void checkRecordLimit(Communication communication) --> Line_3 $$ if (recordLimit == null) [CD]
+Line_3 $$ if (recordLimit == null) --> Line_4 $$ return [CD]
+Line_2 $$ public void checkRecordLimit(Communication communication) --> Line_6 $$ long errorNumber = CommunicationTool.getTotalErrorRecords(communication) [FD]
+Line_2 $$ public void checkRecordLimit(Communication communication) --> Line_6 $$ long errorNumber = CommunicationTool.getTotalErrorRecords(communication) [CD]
+Line_2 $$ public void checkRecordLimit(Communication communication) --> Line_7 $$ if (recordLimit < errorNumber) [CD]
+Line_6 $$ long errorNumber = CommunicationTool.getTotalErrorRecords(communication) --> Line_7 $$ if (recordLimit < errorNumber) [FD]
+Line_7 $$ if (recordLimit < errorNumber) --> Line_8 $$ LOG.debug(String.format("Error-limit set to %d, error count check.", recordLimit)) [CD]
+Line_6 $$ long errorNumber = CommunicationTool.getTotalErrorRecords(communication) --> Line_9 $$ throw DataXException.asDataXException(FrameworkErrorCode.PLUGIN_DIRTY_DATA_LIMIT_EXCEED, String.format("脏数据条数检查不通过，限制是[%d]条，但实际上捕获了[%d]条.", recordLimit, errorNumber)) [FD]

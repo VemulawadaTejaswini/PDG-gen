@@ -1,0 +1,8 @@
+Line_2 $$ public void testMutationOfPKInTenantTablesNotAllowed() throws Exception --> Line_3 $$ Properties props = new Properties() [CD]
+Line_2 $$ public void testMutationOfPKInTenantTablesNotAllowed() throws Exception --> Line_4 $$ props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(nextTimestamp())) [CD]
+Line_3 $$ Properties props = new Properties() --> Line_4 $$ props.setProperty(PhoenixRuntime.CURRENT_SCN_ATTRIB, Long.toString(nextTimestamp())) [FD]
+Line_2 $$ public void testMutationOfPKInTenantTablesNotAllowed() throws Exception --> Line_5 $$ Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL, props) [CD]
+Line_3 $$ Properties props = new Properties() --> Line_5 $$ Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL, props) [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL, props) --> Line_8 $$ conn.createStatement().execute("alter table " + TENANT_TABLE_NAME + " add new_tenant_pk char(1) primary key") [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL, props) --> Line_14 $$ conn.createStatement().execute("alter table " + TENANT_TABLE_NAME + " drop column id") [FD]
+Line_5 $$ Connection conn = DriverManager.getConnection(PHOENIX_JDBC_TENANT_SPECIFIC_URL, props) --> Line_20 $$ conn.close() [FD]

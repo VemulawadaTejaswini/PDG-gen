@@ -1,0 +1,8 @@
+Line_3 $$ if (type == null) --> Line_4 $$ mErrorReporter.abortWithError("generateClass was invoked with null type", null) [CD]
+Line_3 $$ if (type == null) --> Line_5 $$ return null [CD]
+Line_11 $$ if (ifaceToImpl == null) --> Line_12 $$ mErrorReporter.abortWithError("generateClass was invoked with null iface", type) [CD]
+Line_11 $$ if (ifaceToImpl == null) --> Line_13 $$ return null [CD]
+Line_16 $$ github.tornaco.apigen.service.github.bean.BuildHostInfo info = retrieveBuildInfo() --> Line_18 $$ TypeSpec.Builder subClass = TypeSpec.classBuilder(className).addModifiers(PUBLIC).addField(String.class, "BUILD_HOST_NAME", Modifier.STATIC, Modifier.FINAL, Modifier.PUBLIC).addStaticBlock(CodeBlock.of("BUILD_HOST_NAME = $S;\n", info.getHostName())).addField(String.class, "BUILD_FINGER_PRINT", Modifier.STATIC, Modifier.FINAL, Modifier.PUBLIC).addStaticBlock(CodeBlock.of("BUILD_FINGER_PRINT = $S;\n", UUID.randomUUID().toString())).addField(String.class, "BUILD_DATE", Modifier.STATIC, Modifier.FINAL, Modifier.PUBLIC).addStaticBlock(CodeBlock.of("BUILD_DATE = $S;\n", info.getDate())) [FD]
+Line_19 $$ if (isFinal) --> Line_20 $$ subClass.addModifiers(FINAL) [CD]
+Line_15 $$ String pkg = CompilerUtil.packageNameOf(type) --> Line_21 $$ JavaFile javaFile = JavaFile.builder(pkg, subClass.build()).addFileComment(SettingsProvider.FILE_COMMENT).skipJavaLangImports(true).build() [FD]
+Line_21 $$ JavaFile javaFile = JavaFile.builder(pkg, subClass.build()).addFileComment(SettingsProvider.FILE_COMMENT).skipJavaLangImports(true).build() --> Line_22 $$ return javaFile.toString() [FD]

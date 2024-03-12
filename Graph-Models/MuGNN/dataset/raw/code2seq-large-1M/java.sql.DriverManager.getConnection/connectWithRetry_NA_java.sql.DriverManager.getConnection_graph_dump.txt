@@ -1,0 +1,8 @@
+Line_2 $$ public static Connection connectWithRetry(String connectionString, long waitWindow, int maxRetries) throws SQLException --> Line_3 $$ for (int failures = 0; ; failures++) [CD]
+Line_2 $$ public static Connection connectWithRetry(String connectionString, long waitWindow, int maxRetries) throws SQLException --> Line_5 $$ Connection conn = DriverManager.getConnection(connectionString) [FD]
+Line_3 $$ for (int failures = 0; ; failures++) --> Line_8 $$ if (failures >= maxRetries) [FD]
+Line_2 $$ public static Connection connectWithRetry(String connectionString, long waitWindow, int maxRetries) throws SQLException --> Line_8 $$ if (failures >= maxRetries) [FD]
+Line_8 $$ if (failures >= maxRetries) --> Line_9 $$ LOG.error("Error during JDBC connection.", e) [CD]
+Line_2 $$ public static Connection connectWithRetry(String connectionString, long waitWindow, int maxRetries) throws SQLException --> Line_12 $$ long waitTime = Utilities.getRandomWaitTime(waitWindow, failures, randGen) [FD]
+Line_3 $$ for (int failures = 0; ; failures++) --> Line_12 $$ long waitTime = Utilities.getRandomWaitTime(waitWindow, failures, randGen) [FD]
+Line_12 $$ long waitTime = Utilities.getRandomWaitTime(waitWindow, failures, randGen) --> Line_14 $$ Thread.sleep(waitTime) [FD]

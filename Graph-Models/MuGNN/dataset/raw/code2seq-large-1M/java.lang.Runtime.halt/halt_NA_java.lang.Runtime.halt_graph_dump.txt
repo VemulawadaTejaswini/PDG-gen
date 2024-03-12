@@ -1,0 +1,8 @@
+Line_2 $$ public static void halt(int status, String msg) throws HaltException --> Line_3 $$ LOG.info("Halt with status " + status + " Message: " + msg) [CD]
+Line_2 $$ public static void halt(int status, String msg) throws HaltException --> Line_4 $$ if (systemHaltDisabled) [CD]
+Line_4 $$ if (systemHaltDisabled) --> Line_5 $$ HaltException ee = new HaltException(status, msg) [CD]
+Line_4 $$ if (systemHaltDisabled) --> Line_6 $$ LOG.fatal("Halt called", ee) [CD]
+Line_5 $$ HaltException ee = new HaltException(status, msg) --> Line_6 $$ LOG.fatal("Halt called", ee) [FD]
+Line_4 $$ if (systemHaltDisabled) --> Line_7 $$ if (null == firstHaltException) [CD]
+Line_2 $$ public static void halt(int status, String msg) throws HaltException --> Line_12 $$ Runtime.getRuntime().halt(status) [FD]
+Line_2 $$ public static void halt(int status, String msg) throws HaltException --> Line_12 $$ Runtime.getRuntime().halt(status) [CD]

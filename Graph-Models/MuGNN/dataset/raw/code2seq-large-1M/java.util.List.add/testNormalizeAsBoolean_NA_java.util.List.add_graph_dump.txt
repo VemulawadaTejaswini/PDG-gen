@@ -1,0 +1,4 @@
+Line_2 $$ public void testNormalizeAsBoolean() throws Exception --> Line_3 $$ db.execute("CREATE ( [CD]
+Line_2 $$ public void testNormalizeAsBoolean() throws Exception --> Line_4 $$ testResult(db, "MATCH (n) CALL apoc.refactor.normalizeAsBoolean(n,'prop',['Y','Yes'],['NO']) WITH n ORDER BY n.id RETURN n.prop AS prop", ( r) -> [CD]
+Line_5 $$ List<Boolean> result = new ArrayList() --> Line_6 $$ while (r.hasNext()) result.add((Boolean) r.next().get("prop")) [FD]
+Line_5 $$ List<Boolean> result = new ArrayList() --> Line_7 $$ assertThat(result, equalTo(Arrays.asList(true, true, false, null))) [FD]

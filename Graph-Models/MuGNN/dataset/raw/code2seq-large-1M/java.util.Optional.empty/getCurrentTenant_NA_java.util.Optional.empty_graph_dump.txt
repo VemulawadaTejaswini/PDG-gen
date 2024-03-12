@@ -1,0 +1,6 @@
+Line_2 $$ public static Optional<String> getCurrentTenant() --> Line_3 $$ final UserDetails userDetails = getCurrentUser() [CD]
+Line_2 $$ public static Optional<String> getCurrentTenant() --> Line_4 $$ if (!(userDetails instanceof UserPrincipal)) [CD]
+Line_4 $$ if (!(userDetails instanceof UserPrincipal)) --> Line_5 $$ return Optional.empty() [CD]
+Line_2 $$ public static Optional<String> getCurrentTenant() --> Line_7 $$ final UserPrincipal userPrincipal = (UserPrincipal) userDetails [CD]
+Line_2 $$ public static Optional<String> getCurrentTenant() --> Line_8 $$ return Optional.of(userPrincipal.getTenant().trim()) [CD]
+Line_7 $$ final UserPrincipal userPrincipal = (UserPrincipal) userDetails --> Line_8 $$ return Optional.of(userPrincipal.getTenant().trim()) [FD]

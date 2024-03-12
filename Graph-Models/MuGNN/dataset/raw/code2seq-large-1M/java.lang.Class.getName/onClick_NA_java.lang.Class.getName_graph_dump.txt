@@ -1,0 +1,6 @@
+Line_2 $$ public void onClick(final View v) --> Line_4 $$ Bundle buyIntentBundle = mService.getBuyIntent(3, getActivity().getPackageName(), ((SkuDetails) v.getTag()).getSku(), INAPP, null) [FD]
+Line_4 $$ Bundle buyIntentBundle = mService.getBuyIntent(3, getActivity().getPackageName(), ((SkuDetails) v.getTag()).getSku(), INAPP, null) --> Line_5 $$ if (buyIntentBundle.getInt(RESPONSE_CODE) == BILLING_RESPONSE_RESULT_OK) [FD]
+Line_5 $$ if (buyIntentBundle.getInt(RESPONSE_CODE) == BILLING_RESPONSE_RESULT_OK) --> Line_6 $$ PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT") [CD]
+Line_4 $$ Bundle buyIntentBundle = mService.getBuyIntent(3, getActivity().getPackageName(), ((SkuDetails) v.getTag()).getSku(), INAPP, null) --> Line_6 $$ PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT") [FD]
+Line_5 $$ if (buyIntentBundle.getInt(RESPONSE_CODE) == BILLING_RESPONSE_RESULT_OK) --> Line_8 $$ getActivity().startIntentSenderForResult(pendingIntent.getIntentSender(), ConstantUtils.INTENT_RESULT_CODE, new Intent(), 0, 0, 0) [CD]
+Line_6 $$ PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT") --> Line_8 $$ getActivity().startIntentSenderForResult(pendingIntent.getIntentSender(), ConstantUtils.INTENT_RESULT_CODE, new Intent(), 0, 0, 0) [FD]

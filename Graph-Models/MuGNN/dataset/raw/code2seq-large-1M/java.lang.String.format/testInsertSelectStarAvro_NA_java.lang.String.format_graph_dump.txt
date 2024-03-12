@@ -1,0 +1,5 @@
+Line_2 $$ public void testInsertSelectStarAvro() throws Exception --> Line_3 $$ ksqlContext.sql(String.format("CREATE STREAM EASYORDERS AS SELECT * FROM %s WHERE ITEMID = " + "'HELLO';", avroStreamName)) [CD]
+Line_2 $$ public void testInsertSelectStarAvro() throws Exception --> Line_4 $$ ksqlContext.sql(String.format("INSERT INTO EASYORDERS SELECT * FROM %s;", avroStreamName)) [CD]
+Line_2 $$ public void testInsertSelectStarAvro() throws Exception --> Line_5 $$ Map<String, GenericRow> easyOrdersData = testHarness.consumeData("EASYORDERS", dataProvider.schema(), dataProvider.data().size(), new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.AVRO) [CD]
+Line_2 $$ public void testInsertSelectStarAvro() throws Exception --> Line_6 $$ assertThat(easyOrdersData, equalTo(dataProvider.data())) [CD]
+Line_5 $$ Map<String, GenericRow> easyOrdersData = testHarness.consumeData("EASYORDERS", dataProvider.schema(), dataProvider.data().size(), new StringDeserializer(), IntegrationTestHarness.RESULTS_POLL_MAX_TIME_MS, DataSource.DataSourceSerDe.AVRO) --> Line_6 $$ assertThat(easyOrdersData, equalTo(dataProvider.data())) [FD]

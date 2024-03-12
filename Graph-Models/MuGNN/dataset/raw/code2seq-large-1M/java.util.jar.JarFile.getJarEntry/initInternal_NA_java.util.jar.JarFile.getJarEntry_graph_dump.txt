@@ -1,0 +1,7 @@
+Line_3 $$ try (JarFile warFile = new JarFile(getBase())) --> Line_4 $$ JarEntry jarFileInWar = warFile.getJarEntry(archivePath) [FD]
+Line_3 $$ try (JarFile warFile = new JarFile(getBase())) --> Line_5 $$ InputStream jarFileIs = warFile.getInputStream(jarFileInWar) [FD]
+Line_6 $$ try (JarInputStream jarIs = new JarInputStream(jarFileIs)) --> Line_7 $$ JarEntry entry = jarIs.getNextJarEntry() [FD]
+Line_8 $$ while (entry != null) --> Line_9 $$ getJarFileEntries().put(entry.getName(), entry) [CD]
+Line_8 $$ while (entry != null) --> Line_10 $$ entry = jarIs.getNextJarEntry() [CD]
+Line_6 $$ try (JarInputStream jarIs = new JarInputStream(jarFileIs)) --> Line_10 $$ entry = jarIs.getNextJarEntry() [FD]
+Line_6 $$ try (JarInputStream jarIs = new JarInputStream(jarFileIs)) --> Line_12 $$ setManifest(jarIs.getManifest()) [FD]

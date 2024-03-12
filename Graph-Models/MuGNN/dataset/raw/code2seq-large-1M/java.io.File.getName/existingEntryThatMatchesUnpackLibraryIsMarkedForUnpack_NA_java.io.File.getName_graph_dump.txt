@@ -1,0 +1,8 @@
+Line_3 $$ File library = createLibrary() --> Line_5 $$ this.testJarFile.addFile("WEB-INF/lib/" + library.getName(), library) [FD]
+Line_8 $$ Repackager repackager = new Repackager(source) --> Line_9 $$ repackager.setLayout(new Layouts.War()) [FD]
+Line_8 $$ Repackager repackager = new Repackager(source) --> Line_10 $$ repackager.repackage(dest, ( callback) -> callback.library(new Library(library, LibraryScope.COMPILE, true))) [FD]
+Line_7 $$ File dest = this.temporaryFolder.newFile("dest.war") --> Line_10 $$ repackager.repackage(dest, ( callback) -> callback.library(new Library(library, LibraryScope.COMPILE, true))) [FD]
+Line_7 $$ File dest = this.temporaryFolder.newFile("dest.war") --> Line_11 $$ assertThat(getEntryNames(dest)).containsSubsequence("org/springframework/boot/loader/", "WEB-INF/classes/com/example/Application.class", "WEB-INF/lib/" + library.getName()) [FD]
+Line_3 $$ File library = createLibrary() --> Line_11 $$ assertThat(getEntryNames(dest)).containsSubsequence("org/springframework/boot/loader/", "WEB-INF/classes/com/example/Application.class", "WEB-INF/lib/" + library.getName()) [FD]
+Line_7 $$ File dest = this.temporaryFolder.newFile("dest.war") --> Line_12 $$ JarEntry unpackLibrary = getEntry(dest, "WEB-INF/lib/" + library.getName()) [FD]
+Line_3 $$ File library = createLibrary() --> Line_12 $$ JarEntry unpackLibrary = getEntry(dest, "WEB-INF/lib/" + library.getName()) [FD]

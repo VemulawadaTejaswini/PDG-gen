@@ -1,0 +1,8 @@
+Line_2 $$ public Response postAlias(@QueryParam("pairs") KVPairs kv, @QueryParam("user") String user, @QueryParam("token") String token) --> Line_3 $$ if (!kv.hasKey("name") || !kv.hasKey("jobs")) [CD]
+Line_2 $$ public Response postAlias(@QueryParam("pairs") KVPairs kv, @QueryParam("user") String user, @QueryParam("token") String token) --> Line_3 $$ if (!kv.hasKey("name") || !kv.hasKey("jobs")) [FD]
+Line_3 $$ if (!kv.hasKey("name") || !kv.hasKey("jobs")) --> Line_4 $$ return Response.serverError().entity("must supply alias name and jobs").build() [CD]
+Line_2 $$ public Response postAlias(@QueryParam("pairs") KVPairs kv, @QueryParam("user") String user, @QueryParam("token") String token) --> Line_7 $$ List<String> jobs = Lists.newArrayList(Splitter.on(',').split(kv.getValue("jobs"))) [FD]
+Line_7 $$ List<String> jobs = Lists.newArrayList(Splitter.on(',').split(kv.getValue("jobs"))) --> Line_8 $$ aliasManager.addAlias(kv.getValue("name"), jobs) [FD]
+Line_2 $$ public Response postAlias(@QueryParam("pairs") KVPairs kv, @QueryParam("user") String user, @QueryParam("token") String token) --> Line_8 $$ aliasManager.addAlias(kv.getValue("name"), jobs) [FD]
+Line_2 $$ public Response postAlias(@QueryParam("pairs") KVPairs kv, @QueryParam("user") String user, @QueryParam("token") String token) --> Line_9 $$ log.info("user action from [FD]
+Line_2 $$ public Response postAlias(@QueryParam("pairs") KVPairs kv, @QueryParam("user") String user, @QueryParam("token") String token) --> Line_10 $$ return Response.ok().entity(new JSONObject().put("name", kv.getValue("name")).put("jobs", new JSONArray(jobs)).toString()).build() [FD]

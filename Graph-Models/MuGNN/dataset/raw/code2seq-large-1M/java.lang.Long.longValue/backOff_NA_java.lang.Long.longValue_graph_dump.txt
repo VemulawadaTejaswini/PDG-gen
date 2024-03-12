@@ -1,0 +1,8 @@
+Line_2 $$ public void backOff(final HttpRoute route) --> Line_4 $$ final int curr = connPerRoute.getMaxPerRoute(route) [FD]
+Line_2 $$ public void backOff(final HttpRoute route) --> Line_5 $$ final Long lastUpdate = getLastUpdate(lastRouteBackoffs, route) [FD]
+Line_5 $$ final Long lastUpdate = getLastUpdate(lastRouteBackoffs, route) --> Line_7 $$ if (now - lastUpdate.longValue() < coolDown) [FD]
+Line_7 $$ if (now - lastUpdate.longValue() < coolDown) --> Line_8 $$ return [CD]
+Line_2 $$ public void backOff(final HttpRoute route) --> Line_10 $$ connPerRoute.setMaxPerRoute(route, getBackedOffPoolSize(curr)) [FD]
+Line_4 $$ final int curr = connPerRoute.getMaxPerRoute(route) --> Line_10 $$ connPerRoute.setMaxPerRoute(route, getBackedOffPoolSize(curr)) [FD]
+Line_2 $$ public void backOff(final HttpRoute route) --> Line_11 $$ lastRouteBackoffs.put(route, Long.valueOf(now)) [FD]
+Line_6 $$ final long now = clock.getCurrentTime() --> Line_11 $$ lastRouteBackoffs.put(route, Long.valueOf(now)) [FD]

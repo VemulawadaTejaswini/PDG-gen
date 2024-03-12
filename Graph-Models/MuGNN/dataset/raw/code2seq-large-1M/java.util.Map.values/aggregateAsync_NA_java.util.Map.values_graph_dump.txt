@@ -1,0 +1,8 @@
+Line_2 $$ protected static RedisFuture<Long> aggregateAsync(Map<?, ? extends CompletionStage<Long>> executions) --> Line_3 $$ return new PipelinedRedisFuture(executions,  objectPipelinedRedisFuture -> [CD]
+Line_2 $$ protected static RedisFuture<Long> aggregateAsync(Map<?, ? extends CompletionStage<Long>> executions) --> Line_5 $$ for (CompletionStage<Long> future : executions.values()) [FD]
+Line_5 $$ for (CompletionStage<Long> future : executions.values()) --> Line_6 $$ Long value = execute(() -> future.toCompletableFuture().get()) [FD]
+Line_6 $$ Long value = execute(() -> future.toCompletableFuture().get()) --> Line_7 $$ if (value != null) [FD]
+Line_7 $$ if (value != null) --> Line_8 $$ result.getAndAdd(value) [CD]
+Line_4 $$ AtomicLong result = new AtomicLong() --> Line_8 $$ result.getAndAdd(value) [FD]
+Line_6 $$ Long value = execute(() -> future.toCompletableFuture().get()) --> Line_8 $$ result.getAndAdd(value) [FD]
+Line_4 $$ AtomicLong result = new AtomicLong() --> Line_11 $$ return result.get() [FD]

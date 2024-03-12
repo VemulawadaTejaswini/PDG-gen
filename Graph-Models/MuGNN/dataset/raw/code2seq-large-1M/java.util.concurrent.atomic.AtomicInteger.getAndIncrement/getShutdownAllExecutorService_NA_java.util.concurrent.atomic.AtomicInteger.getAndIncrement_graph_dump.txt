@@ -1,0 +1,8 @@
+Line_2 $$ private ExecutorService getShutdownAllExecutorService(int size) --> Line_3 $$ final ThreadGroup threadGroup = LoggingThreadGroup.createThreadGroup("ShutdownAllGroup", logger) [CD]
+Line_2 $$ private ExecutorService getShutdownAllExecutorService(int size) --> Line_4 $$ ThreadFactory threadFactory = new ThreadFactory() [CD]
+Line_4 $$ ThreadFactory threadFactory = new ThreadFactory() --> Line_7 $$ Thread thread = new Thread(threadGroup, runnable, "ShutdownAll-" + this.threadCount.getAndIncrement()) [CD]
+Line_4 $$ ThreadFactory threadFactory = new ThreadFactory() --> Line_8 $$ thread.setDaemon(true) [CD]
+Line_7 $$ Thread thread = new Thread(threadGroup, runnable, "ShutdownAll-" + this.threadCount.getAndIncrement()) --> Line_8 $$ thread.setDaemon(true) [FD]
+Line_4 $$ ThreadFactory threadFactory = new ThreadFactory() --> Line_9 $$ return thread [CD]
+Line_2 $$ private ExecutorService getShutdownAllExecutorService(int size) --> Line_12 $$ return Executors.newFixedThreadPool(shutdownAllPoolSize == -1 ? size : shutdownAllPoolSize, threadFactory) [CD]
+Line_4 $$ ThreadFactory threadFactory = new ThreadFactory() --> Line_12 $$ return Executors.newFixedThreadPool(shutdownAllPoolSize == -1 ? size : shutdownAllPoolSize, threadFactory) [FD]

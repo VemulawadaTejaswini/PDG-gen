@@ -1,0 +1,7 @@
+Line_5 $$ Message message = new Message(getBareJID(1)) --> Line_6 $$ message.setBody("Group chat invitation!") [FD]
+Line_5 $$ Message message = new Message(getBareJID(1)) --> Line_7 $$ message.addExtension(invitation) [FD]
+Line_4 $$ GroupChatInvitation invitation = new GroupChatInvitation("test@" + getChatDomain()) --> Line_7 $$ message.addExtension(invitation) [FD]
+Line_5 $$ Message message = new Message(getBareJID(1)) --> Line_8 $$ getConnection(0).sendStanza(message) [FD]
+Line_10 $$ Message result = (Message) collector.pollResult() --> Line_11 $$ assertNotNull("Message not delivered correctly.", result) [FD]
+Line_10 $$ Message result = (Message) collector.pollResult() --> Line_12 $$ GroupChatInvitation resultInvite = (GroupChatInvitation) result.getExtension("x", "jabber:x:conference") [FD]
+Line_12 $$ GroupChatInvitation resultInvite = (GroupChatInvitation) result.getExtension("x", "jabber:x:conference") --> Line_13 $$ assertEquals("Invitation not to correct room", "test@" + getChatDomain(), resultInvite.getRoomAddress()) [FD]

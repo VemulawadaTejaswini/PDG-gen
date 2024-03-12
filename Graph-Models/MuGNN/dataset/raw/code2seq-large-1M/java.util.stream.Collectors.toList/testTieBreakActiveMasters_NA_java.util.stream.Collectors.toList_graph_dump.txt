@@ -1,0 +1,8 @@
+Line_2 $$ public void testTieBreakActiveMasters() --> Line_3 $$ List<DiscoveryNode> nodes = generateRandomCandidates().stream().map(MasterCandidate::<>getNode).collect(Collectors.toList()) [CD]
+Line_2 $$ public void testTieBreakActiveMasters() --> Line_4 $$ DiscoveryNode bestMaster = electMasterService().tieBreakActiveMasters(nodes) [CD]
+Line_3 $$ List<DiscoveryNode> nodes = generateRandomCandidates().stream().map(MasterCandidate::<>getNode).collect(Collectors.toList()) --> Line_4 $$ DiscoveryNode bestMaster = electMasterService().tieBreakActiveMasters(nodes) [FD]
+Line_5 $$ for (DiscoveryNode node : nodes) --> Line_6 $$ if (node.equals(bestMaster) == false) [FD]
+Line_4 $$ DiscoveryNode bestMaster = electMasterService().tieBreakActiveMasters(nodes) --> Line_6 $$ if (node.equals(bestMaster) == false) [FD]
+Line_6 $$ if (node.equals(bestMaster) == false) --> Line_7 $$ assertTrue(bestMaster.getId().compareTo(node.getId()) < 0) [CD]
+Line_4 $$ DiscoveryNode bestMaster = electMasterService().tieBreakActiveMasters(nodes) --> Line_7 $$ assertTrue(bestMaster.getId().compareTo(node.getId()) < 0) [FD]
+Line_5 $$ for (DiscoveryNode node : nodes) --> Line_7 $$ assertTrue(bestMaster.getId().compareTo(node.getId()) < 0) [FD]

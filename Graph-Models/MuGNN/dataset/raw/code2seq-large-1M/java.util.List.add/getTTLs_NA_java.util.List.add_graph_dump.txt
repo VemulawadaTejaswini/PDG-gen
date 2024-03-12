@@ -1,0 +1,7 @@
+Line_2 $$ private List<Integer> getTTLs() throws Exception --> Line_3 $$ List<Integer> rollupExpirationHours = Lists.newArrayList(configRepository.getCentralStorageConfig().rollupExpirationHours()) [CD]
+Line_2 $$ private List<Integer> getTTLs() throws Exception --> Line_4 $$ rollupExpirationHours.add(0, rollupExpirationHours.get(0)) [CD]
+Line_3 $$ List<Integer> rollupExpirationHours = Lists.newArrayList(configRepository.getCentralStorageConfig().rollupExpirationHours()) --> Line_4 $$ rollupExpirationHours.add(0, rollupExpirationHours.get(0)) [FD]
+Line_2 $$ private List<Integer> getTTLs() throws Exception --> Line_5 $$ List<Integer> ttls = new ArrayList() [CD]
+Line_5 $$ List<Integer> ttls = new ArrayList() --> Line_7 $$ ttls.add(Ints.saturatedCast(HOURS.toSeconds(expirationHours))) [FD]
+Line_6 $$ for (long expirationHours : rollupExpirationHours) --> Line_7 $$ ttls.add(Ints.saturatedCast(HOURS.toSeconds(expirationHours))) [FD]
+Line_2 $$ private List<Integer> getTTLs() throws Exception --> Line_9 $$ return ttls [CD]

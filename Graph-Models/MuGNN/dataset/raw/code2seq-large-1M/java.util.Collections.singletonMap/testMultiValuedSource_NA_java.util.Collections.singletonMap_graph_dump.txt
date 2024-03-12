@@ -1,0 +1,8 @@
+Line_2 $$ public void testMultiValuedSource() --> Line_3 $$ FieldHitExtractor fe = new FieldHitExtractor("a", false) [CD]
+Line_2 $$ public void testMultiValuedSource() --> Line_4 $$ Object value = randomValue() [CD]
+Line_2 $$ public void testMultiValuedSource() --> Line_5 $$ Map<String, Object> map = singletonMap("a", asList(value, value)) [CD]
+Line_4 $$ Object value = randomValue() --> Line_5 $$ Map<String, Object> map = singletonMap("a", asList(value, value)) [FD]
+Line_2 $$ public void testMultiValuedSource() --> Line_6 $$ SqlException ex = expectThrows(SqlException.class, () -> fe.extractFromSource(map)) [CD]
+Line_3 $$ FieldHitExtractor fe = new FieldHitExtractor("a", false) --> Line_6 $$ SqlException ex = expectThrows(SqlException.class, () -> fe.extractFromSource(map)) [FD]
+Line_5 $$ Map<String, Object> map = singletonMap("a", asList(value, value)) --> Line_6 $$ SqlException ex = expectThrows(SqlException.class, () -> fe.extractFromSource(map)) [FD]
+Line_2 $$ public void testMultiValuedSource() --> Line_7 $$ assertThat(ex.getMessage(), is("Arrays (returned by [a]) are not supported")) [CD]

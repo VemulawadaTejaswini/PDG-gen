@@ -1,0 +1,6 @@
+Line_2 $$ public MappedByteBuffer getBuffer(long offset) --> Line_3 $$ if (offset > cachedBufferLo && offset + 1 < cachedBufferHi) [CD]
+Line_3 $$ if (offset > cachedBufferLo && offset + 1 < cachedBufferHi) --> Line_4 $$ cachedBuffer.position((int) (offset - cachedBufferLo - 1)) [CD]
+Line_3 $$ if (offset > cachedBufferLo && offset + 1 < cachedBufferHi) --> Line_6 $$ cachedBuffer = getBufferInternal(offset, 1) [CD]
+Line_2 $$ public MappedByteBuffer getBuffer(long offset) --> Line_6 $$ cachedBuffer = getBufferInternal(offset, 1) [FD]
+Line_3 $$ if (offset > cachedBufferLo && offset + 1 < cachedBufferHi) --> Line_9 $$ cachedAddress = ByteBuffers.getAddress(cachedBuffer) [CD]
+Line_2 $$ public MappedByteBuffer getBuffer(long offset) --> Line_12 $$ return cachedBuffer [CD]

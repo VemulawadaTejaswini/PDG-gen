@@ -1,0 +1,6 @@
+Line_2 $$ private void sendUpdates() throws Exception --> Line_3 $$ log.info("sendUpdates") [CD]
+Line_2 $$ private void sendUpdates() throws Exception --> Line_4 $$ String sql = "SELECT rt.AD_Table_ID, rt.ReplicationType, t.TableName, rt.AD_ReplicationTable_ID " + "FROM AD_ReplicationTable rt" + " INNER JOIN AD_Table t ON (rt.AD_Table_ID=t.AD_Table_ID) " + "WHERE rt.IsActive='Y' AND t.IsActive='Y'" + " AND AD_ReplicationStrategy_ID=?" + " AND rt.ReplicationType='R' " + "ORDER BY t.LoadSeq" [CD]
+Line_2 $$ private void sendUpdates() throws Exception --> Line_7 $$ RowSet rowset = getRowSet(sql, new Object[] [CD]
+Line_4 $$ String sql = "SELECT rt.AD_Table_ID, rt.ReplicationType, t.TableName, rt.AD_ReplicationTable_ID " + "FROM AD_ReplicationTable rt" + " INNER JOIN AD_Table t ON (rt.AD_Table_ID=t.AD_Table_ID) " + "WHERE rt.IsActive='Y' AND t.IsActive='Y'" + " AND AD_ReplicationStrategy_ID=?" + " AND rt.ReplicationType='R' " + "ORDER BY t.LoadSeq" --> Line_7 $$ RowSet rowset = getRowSet(sql, new Object[] [FD]
+Line_7 $$ RowSet rowset = getRowSet(sql, new Object[] --> Line_9 $$ while (rowset.next()) sendUpdatesTable(rowset.getInt(1), rowset.getString(3), rowset.getInt(4)) [FD]
+Line_7 $$ RowSet rowset = getRowSet(sql, new Object[] --> Line_10 $$ rowset.close() [FD]

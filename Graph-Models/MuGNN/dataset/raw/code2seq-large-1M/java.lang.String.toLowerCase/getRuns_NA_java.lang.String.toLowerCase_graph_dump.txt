@@ -1,0 +1,7 @@
+Line_2 $$ public Collection<Run> getRuns(String commitId) --> Line_3 $$ SearchResponse response = getRequest(DAO_INDEX_KEY, DAO_TYPE_KEY).setQuery(termQuery("commitId", commitId.toLowerCase())).setSize(MAX_RESULT_SIZE).execute().actionGet() [CD]
+Line_2 $$ public Collection<Run> getRuns(String commitId) --> Line_3 $$ SearchResponse response = getRequest(DAO_INDEX_KEY, DAO_TYPE_KEY).setQuery(termQuery("commitId", commitId.toLowerCase())).setSize(MAX_RESULT_SIZE).execute().actionGet() [FD]
+Line_2 $$ public Collection<Run> getRuns(String commitId) --> Line_4 $$ Collection<Run> runs = new LinkedList<Run>() [CD]
+Line_3 $$ SearchResponse response = getRequest(DAO_INDEX_KEY, DAO_TYPE_KEY).setQuery(termQuery("commitId", commitId.toLowerCase())).setSize(MAX_RESULT_SIZE).execute().actionGet() --> Line_5 $$ for (SearchHit hit : response.getHits().hits()) [FD]
+Line_4 $$ Collection<Run> runs = new LinkedList<Run>() --> Line_6 $$ runs.add(toRun(hit)) [FD]
+Line_5 $$ for (SearchHit hit : response.getHits().hits()) --> Line_6 $$ runs.add(toRun(hit)) [FD]
+Line_2 $$ public Collection<Run> getRuns(String commitId) --> Line_8 $$ return runs [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ private ClientSession newSession() --> Line_3 $$ ClientSession session = new ClientSession(clientId, transport.client(), selector, ioContext, connectionStrategy, sessionTimeout, unstabilityTimeout) [CD]
+Line_2 $$ private ClientSession newSession() --> Line_4 $$ if (changeListener != null) [CD]
+Line_4 $$ if (changeListener != null) --> Line_5 $$ changeListener.close() [CD]
+Line_2 $$ private ClientSession newSession() --> Line_6 $$ changeListener = session.onStateChange(this::<>onStateChange) [CD]
+Line_3 $$ ClientSession session = new ClientSession(clientId, transport.client(), selector, ioContext, connectionStrategy, sessionTimeout, unstabilityTimeout) --> Line_6 $$ changeListener = session.onStateChange(this::<>onStateChange) [FD]
+Line_2 $$ private ClientSession newSession() --> Line_7 $$ eventListeners.forEach( l -> l.register(session)) [CD]
+Line_3 $$ ClientSession session = new ClientSession(clientId, transport.client(), selector, ioContext, connectionStrategy, sessionTimeout, unstabilityTimeout) --> Line_7 $$ eventListeners.forEach( l -> l.register(session)) [FD]
+Line_2 $$ private ClientSession newSession() --> Line_8 $$ return session [CD]

@@ -1,0 +1,8 @@
+Line_2 $$ public void resume() throws EventException --> Line_3 $$ if (!m_isPaused.get()) [CD]
+Line_3 $$ if (!m_isPaused.get()) --> Line_4 $$ logger.error("InboundFileChannel " + getBeanName() + " could not be resumed. It is already in resume state", "InboundFileChannel" + ".pause()") [CD]
+Line_3 $$ if (!m_isPaused.get()) --> Line_5 $$ return [CD]
+Line_2 $$ public void resume() throws EventException --> Line_7 $$ if (m_isPaused.get() && !m_shutdownStatus.get()) [CD]
+Line_7 $$ if (m_isPaused.get() && !m_shutdownStatus.get()) --> Line_8 $$ m_isPaused.set(false) [CD]
+Line_7 $$ if (m_isPaused.get() && !m_shutdownStatus.get()) --> Line_9 $$ if (m_resumeCount.addAndGet(1) < 0) [CD]
+Line_9 $$ if (m_resumeCount.addAndGet(1) < 0) --> Line_10 $$ m_resumeCount.set(0) [CD]
+Line_7 $$ if (m_isPaused.get() && !m_shutdownStatus.get()) --> Line_12 $$ m_pt.interrupt() [CD]

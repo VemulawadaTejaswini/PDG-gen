@@ -1,0 +1,8 @@
+Line_3 $$ Set<String> fileNames = TextAnalyzer.getFileNames(path) --> Line_4 $$ Map<String, AtomicInteger> frequency = TextAnalyzer.frequency(fileNames) [FD]
+Line_4 $$ Map<String, AtomicInteger> frequency = TextAnalyzer.frequency(fileNames) --> Line_6 $$ LOGGER.debug("需要检查单词个数：" + frequency.keySet().size()) [FD]
+Line_4 $$ Map<String, AtomicInteger> frequency = TextAnalyzer.frequency(fileNames) --> Line_7 $$ frequency.keySet().forEach( key -> [FD]
+Line_8 $$ if (!dic.contains(new Word(key.toLowerCase(), ""))) --> Line_9 $$ unknown.put(key, frequency.get(key)) [CD]
+Line_5 $$ Map<String, AtomicInteger> unknown = new HashMap() --> Line_9 $$ unknown.put(key, frequency.get(key)) [FD]
+Line_4 $$ Map<String, AtomicInteger> frequency = TextAnalyzer.frequency(fileNames) --> Line_9 $$ unknown.put(key, frequency.get(key)) [FD]
+Line_5 $$ Map<String, AtomicInteger> unknown = new HashMap() --> Line_12 $$ LOGGER.debug("未知的单词个数：" + unknown.size()) [FD]
+Line_5 $$ Map<String, AtomicInteger> unknown = new HashMap() --> Line_14 $$ List<Map.Entry<String, AtomicInteger>> result = unknown.entrySet().stream().filter( entry -> entry.getKey().length() > 2).sorted(( a,  b) -> b.getValue().get() - a.getValue().get()).collect(Collectors.toList()) [FD]

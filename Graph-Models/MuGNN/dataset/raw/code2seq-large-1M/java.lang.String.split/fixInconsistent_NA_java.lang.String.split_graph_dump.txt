@@ -1,0 +1,8 @@
+Line_2 $$ public void fixInconsistent() throws IOException --> Line_3 $$ if (ifFix == true) [CD]
+Line_4 $$ for (String segFullName : inconsistentHTables) --> Line_5 $$ String[] sepNameList = segFullName.split(",") [FD]
+Line_6 $$ HTableDescriptor desc = hbaseAdmin.getTableDescriptor(TableName.valueOf(sepNameList[0])) --> Line_7 $$ logger.info("Change the host of htable " + sepNameList[0] + "belonging to cube " + sepNameList[1] + " from " + desc.getValue(IRealizationConstants.HTableTag) + " to " + dstCfg.getMetadataUrlPrefix()) [FD]
+Line_6 $$ HTableDescriptor desc = hbaseAdmin.getTableDescriptor(TableName.valueOf(sepNameList[0])) --> Line_9 $$ desc.setValue(IRealizationConstants.HTableTag, dstCfg.getMetadataUrlPrefix()) [FD]
+Line_6 $$ HTableDescriptor desc = hbaseAdmin.getTableDescriptor(TableName.valueOf(sepNameList[0])) --> Line_10 $$ hbaseAdmin.modifyTable(sepNameList[0], desc) [FD]
+Line_3 $$ if (ifFix == true) --> Line_14 $$ logger.info("------ Inconsistent HTables Needed To Be Fixed ------") [CD]
+Line_15 $$ for (String hTable : inconsistentHTables) --> Line_16 $$ String[] sepNameList = hTable.split(",") [FD]
+Line_3 $$ if (ifFix == true) --> Line_19 $$ logger.info("----------------------------------------------------") [CD]

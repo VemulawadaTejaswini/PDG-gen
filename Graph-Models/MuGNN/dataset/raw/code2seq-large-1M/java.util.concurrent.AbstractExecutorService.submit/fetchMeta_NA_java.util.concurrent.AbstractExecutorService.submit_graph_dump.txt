@@ -1,0 +1,7 @@
+Line_2 $$ private void fetchMeta(boolean forced) --> Line_4 $$ if (!forced && metaReads.size() < batchedReadsThreshold) [FD]
+Line_4 $$ if (!forced && metaReads.size() < batchedReadsThreshold) --> Line_5 $$ return [CD]
+Line_7 $$ while (!metaReads.isEmpty()) --> Line_8 $$ Set<Locator> batch = new HashSet<Locator>() [CD]
+Line_7 $$ while (!metaReads.isEmpty()) --> Line_9 $$ for (int i = 0; !metaReads.isEmpty() && i < batchedReadsThreshold; i++) [CD]
+Line_9 $$ for (int i = 0; !metaReads.isEmpty() && i < batchedReadsThreshold; i++) --> Line_10 $$ batch.add(metaReads.poll()) [CD]
+Line_8 $$ Set<Locator> batch = new HashSet<Locator>() --> Line_10 $$ batch.add(metaReads.poll()) [FD]
+Line_7 $$ while (!metaReads.isEmpty()) --> Line_12 $$ readThreadPoolExecutor.submit(new BatchedMetaReadsRunnable(batch)) [CD]

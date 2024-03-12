@@ -1,0 +1,8 @@
+Line_2 $$ public void testMultipleObserverNotificationTimeout() throws InterruptedException --> Line_3 $$ SUCCESSION_OF_EVENTS.clear() [CD]
+Line_6 $$ CountDownLatch countdown = new CountDownLatch(2) --> Line_7 $$ container.event().select(CountDownLatch.class).fireAsync(countdown, NotificationOptions.of(WeldNotificationOptions.TIMEOUT, 2000l)).exceptionally((Throwable t) -> [FD]
+Line_4 $$ try (WeldContainer container = new Weld().initialize()) --> Line_7 $$ container.event().select(CountDownLatch.class).fireAsync(countdown, NotificationOptions.of(WeldNotificationOptions.TIMEOUT, 2000l)).exceptionally((Throwable t) -> [FD]
+Line_5 $$ BlockingQueue<Throwable> synchronizer = new LinkedBlockingQueue() --> Line_9 $$ synchronizer.add(t) [FD]
+Line_5 $$ BlockingQueue<Throwable> synchronizer = new LinkedBlockingQueue() --> Line_12 $$ Throwable fromSynchronizer = synchronizer.poll(5, TimeUnit.SECONDS) [FD]
+Line_12 $$ Throwable fromSynchronizer = synchronizer.poll(5, TimeUnit.SECONDS) --> Line_13 $$ Assert.assertNotNull(fromSynchronizer) [FD]
+Line_12 $$ Throwable fromSynchronizer = synchronizer.poll(5, TimeUnit.SECONDS) --> Line_14 $$ Assert.assertTrue(fromSynchronizer.getCause().toString().contains(TimeoutException.class.getSimpleName())) [FD]
+Line_6 $$ CountDownLatch countdown = new CountDownLatch(2) --> Line_15 $$ countdown.await() [FD]

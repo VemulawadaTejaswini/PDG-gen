@@ -1,0 +1,8 @@
+Line_2 $$ private void processResponseForConnectionHeader() throws IOException --> Line_3 $$ if (!waitingConnectionHeaderResponse) [CD]
+Line_3 $$ if (!waitingConnectionHeaderResponse) --> Line_4 $$ return [CD]
+Line_7 $$ byte[] buff = new byte[len] --> Line_8 $$ int readSize = this.in.read(buff) [FD]
+Line_9 $$ if (LOG.isDebugEnabled()) --> Line_10 $$ LOG.debug("Length of response for connection header:" + readSize) [CD]
+Line_7 $$ byte[] buff = new byte[len] --> Line_12 $$ RPCProtos.ConnectionHeaderResponse connectionHeaderResponse = RPCProtos.ConnectionHeaderResponse.parseFrom(buff) [FD]
+Line_12 $$ RPCProtos.ConnectionHeaderResponse connectionHeaderResponse = RPCProtos.ConnectionHeaderResponse.parseFrom(buff) --> Line_13 $$ if (connectionHeaderResponse.hasCryptoCipherMeta()) [FD]
+Line_13 $$ if (connectionHeaderResponse.hasCryptoCipherMeta()) --> Line_14 $$ negotiateCryptoAes(connectionHeaderResponse.getCryptoCipherMeta()) [CD]
+Line_12 $$ RPCProtos.ConnectionHeaderResponse connectionHeaderResponse = RPCProtos.ConnectionHeaderResponse.parseFrom(buff) --> Line_14 $$ negotiateCryptoAes(connectionHeaderResponse.getCryptoCipherMeta()) [FD]

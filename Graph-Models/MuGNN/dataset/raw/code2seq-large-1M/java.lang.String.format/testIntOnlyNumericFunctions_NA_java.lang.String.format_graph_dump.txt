@@ -1,0 +1,5 @@
+Line_2 $$ public void testIntOnlyNumericFunctions() throws Exception --> Line_3 $$ final String exprs = " cast(%s(review_count, cast(stars as integer)) as double), cast(%s(review_count, review_count) as double) " [CD]
+Line_2 $$ public void testIntOnlyNumericFunctions() throws Exception --> Line_4 $$ final List<String> intOnlyFuncs = Lists.newArrayList("mod") [CD]
+Line_5 $$ for (String s : intOnlyFuncs) --> Line_6 $$ String elasticQuery = String.format("select " + exprs + " from %s", s, s, ELASTIC_TABLE) [FD]
+Line_6 $$ String elasticQuery = String.format("select " + exprs + " from %s", s, s, ELASTIC_TABLE) --> Line_7 $$ testBuilder().sqlQuery(elasticQuery).unOrdered().sqlBaselineQuery(String.format("select " + exprs + " from %s", s, s, PARQUET_TABLE)).go() [FD]
+Line_5 $$ for (String s : intOnlyFuncs) --> Line_7 $$ testBuilder().sqlQuery(elasticQuery).unOrdered().sqlBaselineQuery(String.format("select " + exprs + " from %s", s, s, PARQUET_TABLE)).go() [FD]

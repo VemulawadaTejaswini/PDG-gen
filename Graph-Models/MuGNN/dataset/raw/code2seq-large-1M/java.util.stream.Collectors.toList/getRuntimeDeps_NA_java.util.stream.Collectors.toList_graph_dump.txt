@@ -1,0 +1,7 @@
+Line_2 $$ public Stream<BuildTarget> getRuntimeDeps(SourcePathRuleFinder ruleFinder) --> Line_3 $$ if (binary.get() instanceof HasAppleDebugSymbolDeps) [CD]
+Line_3 $$ if (binary.get() instanceof HasAppleDebugSymbolDeps) --> Line_4 $$ List<BuildRule> symbolDeps = ((HasAppleDebugSymbolDeps) binary.get()).getAppleDebugSymbolDeps().collect(Collectors.toList()) [CD]
+Line_3 $$ if (binary.get() instanceof HasAppleDebugSymbolDeps) --> Line_5 $$ if (!symbolDeps.isEmpty()) [CD]
+Line_4 $$ List<BuildRule> symbolDeps = ((HasAppleDebugSymbolDeps) binary.get()).getAppleDebugSymbolDeps().collect(Collectors.toList()) --> Line_5 $$ if (!symbolDeps.isEmpty()) [FD]
+Line_5 $$ if (!symbolDeps.isEmpty()) --> Line_6 $$ return Stream.concat(Stream.of(binary.get()), symbolDeps.stream()).map(BuildRule::<>getBuildTarget) [CD]
+Line_4 $$ List<BuildRule> symbolDeps = ((HasAppleDebugSymbolDeps) binary.get()).getAppleDebugSymbolDeps().collect(Collectors.toList()) --> Line_6 $$ return Stream.concat(Stream.of(binary.get()), symbolDeps.stream()).map(BuildRule::<>getBuildTarget) [FD]
+Line_2 $$ public Stream<BuildTarget> getRuntimeDeps(SourcePathRuleFinder ruleFinder) --> Line_9 $$ return Stream.empty() [CD]
