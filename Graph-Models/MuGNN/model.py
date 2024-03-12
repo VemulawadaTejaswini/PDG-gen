@@ -59,7 +59,6 @@ class GINConv(MessagePassing):
     def update(self, aggr_out):
         return self.mlp(aggr_out)
 
-
 class GCNConv(MessagePassing):
 
     def __init__(self, emb_dim, aggr = "add"):
@@ -113,7 +112,6 @@ class GCNConv(MessagePassing):
 
     def message(self, x_j, edge_attr, norm):
         return norm.view(-1, 1) * (x_j + edge_attr)
-
 
 class GATConv(MessagePassing):
     def __init__(self, emb_dim, heads=2, negative_slope=0.2, aggr = "add"):
@@ -175,7 +173,6 @@ class GATConv(MessagePassing):
 
         return aggr_out
 
-
 class GraphSAGEConv(MessagePassing):
     def __init__(self, emb_dim, aggr = "mean"):
         super(GraphSAGEConv, self).__init__()
@@ -212,8 +209,6 @@ class GraphSAGEConv(MessagePassing):
     def update(self, aggr_out):
         return F.normalize(aggr_out, p = 2, dim = -1)
 
-
-
 class GNN(torch.nn.Module):
     """
     
@@ -230,7 +225,7 @@ class GNN(torch.nn.Module):
         node representations
 
     """
-    def __init__(self, num_layer, emb_dim, JK = "last", drop_ratio = 0, gnn_type = "gin"):
+    def __init__(self, num_layer, emb_dim, JK = "last", drop_ratio = 0, gnn_type = "gin", device = torch.device('cpu')):
         super(GNN, self).__init__()
         self.num_layer = num_layer
         self.drop_ratio = drop_ratio
@@ -261,13 +256,17 @@ class GNN(torch.nn.Module):
         self.batch_norms = torch.nn.ModuleList()
         for layer in range(num_layer):
             self.batch_norms.append(torch.nn.BatchNorm1d(emb_dim))
+            
+        self.device = device
 
     #def forward(self, x, edge_index, edge_attr):
     def forward(self, *argv):
-        if len(argv) == 3:
-            x, edge_index, edge_attr = argv[0], argv[1], argv[2]
-        elif len(argv) == 1:
-            data = argv[0]
+        if len(argv) == 4:
+            x, edge_index, edge_attr, pooling_needed = argv[0], argv[1], argv[2], argv[3]
+        elif len(argv) == 3:
+            x, edge_index, edge_attr, pooling_needed = argv[0], argv[1], argv[2], False
+        elif len(argv) == 2:
+            data, pooling_needed = argv[0], argv[1]
             x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
         else:
             raise ValueError("unmatched number of arguments.")
@@ -298,7 +297,13 @@ class GNN(torch.nn.Module):
             h_list = [h.unsqueeze_(0) for h in h_list]
             node_representation = torch.sum(torch.cat(h_list, dim = 0), dim = 0)[0]
 
-        return node_representation
+        # Pooling is added in case needed
+        if(pooling_needed):
+            batch = torch.zeros(x.size(0), dtype=torch.long).to(self.device)
+            hg = global_mean_pool(node_representation, batch = batch)
+            return hg
+        else:
+            return node_representation
 
 
 class GNN_graphpred(torch.nn.Module):

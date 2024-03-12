@@ -1,0 +1,8 @@
+Line_2 $$ InputStream createInputStream(FileInfo fi) throws IOException, MalformedURLException --> Line_3 $$ return new URL(fi.url + fi.fileName).openStream() [CD]
+Line_3 $$ return new URL(fi.url + fi.fileName).openStream() --> Line_4 $$ File f = new File(fi.directory + fi.fileName) [CD]
+Line_3 $$ return new URL(fi.url + fi.fileName).openStream() --> Line_5 $$ if (f == null || f.isDirectory()) [CD]
+Line_4 $$ File f = new File(fi.directory + fi.fileName) --> Line_5 $$ if (f == null || f.isDirectory()) [FD]
+Line_5 $$ if (f == null || f.isDirectory()) --> Line_6 $$ InputStream is = new FileInputStream(f) [CD]
+Line_5 $$ if (f == null || f.isDirectory()) --> Line_7 $$ if (fi.compression >= FileInfo.LZW) [CD]
+Line_6 $$ InputStream is = new FileInputStream(f) --> Line_7 $$ if (fi.compression >= FileInfo.LZW) [FD]
+Line_5 $$ if (f == null || f.isDirectory()) --> Line_8 $$ return is [CD]

@@ -1,0 +1,5 @@
+Line_2 $$ protected static String encodePassword(String raw_password) throws DatabaseException --> Line_3 $$ String clean_password = validatePassword(raw_password) [CD]
+Line_2 $$ protected static String encodePassword(String raw_password) throws DatabaseException --> Line_3 $$ String clean_password = validatePassword(raw_password) [FD]
+Line_5 $$ MessageDigest md = MessageDigest.getInstance(DEFAULT_PASSWORD_DIGEST) --> Line_6 $$ md.update(clean_password.getBytes(DEFAULT_PASSWORD_ENCODING)) [FD]
+Line_3 $$ String clean_password = validatePassword(raw_password) --> Line_6 $$ md.update(clean_password.getBytes(DEFAULT_PASSWORD_ENCODING)) [FD]
+Line_5 $$ MessageDigest md = MessageDigest.getInstance(DEFAULT_PASSWORD_DIGEST) --> Line_7 $$ String digest = new String(Base64.encodeBase64(md.digest())) [FD]

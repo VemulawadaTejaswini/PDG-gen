@@ -1,0 +1,7 @@
+Line_2 $$ public static JuneClass loadClass(Map<String, Entity> globals, String packageName, String baseClassName) --> Line_5 $$ String resourceName = (packageName.length() > 0 ? packageName.replace('.', '/') + "/" : "") + baseClassName.replace('.', '$') + ".class" [FD]
+Line_7 $$ if (url != null) --> Line_8 $$ ClassBuilder builder = new ClassBuilder(globals) [CD]
+Line_7 $$ if (url != null) --> Line_9 $$ InputStream stream = url.openStream() [CD]
+Line_8 $$ ClassBuilder builder = new ClassBuilder(globals) --> Line_11 $$ new ClassReader(new BufferedInputStream(stream)).accept(builder, ClassReader.SKIP_CODE) [FD]
+Line_9 $$ InputStream stream = url.openStream() --> Line_13 $$ stream.close() [FD]
+Line_7 $$ if (url != null) --> Line_15 $$ $class = builder.$class [CD]
+Line_7 $$ if (url != null) --> Line_16 $$ $class.loaded = true [CD]

@@ -1,0 +1,7 @@
+Line_2 $$ protected void doPost(final String url, final InputStream data) throws WebServiceException --> Line_3 $$ final HttpPost method = new HttpPost(url) [CD]
+Line_2 $$ protected void doPost(final String url, final InputStream data) throws WebServiceException --> Line_4 $$ method.setEntity(new InputStreamEntity(data, -1)) [CD]
+Line_3 $$ final HttpPost method = new HttpPost(url) --> Line_4 $$ method.setEntity(new InputStreamEntity(data, -1)) [FD]
+Line_3 $$ final HttpPost method = new HttpPost(url) --> Line_6 $$ final HttpResponse response = this.httpClient.execute(method) [FD]
+Line_6 $$ final HttpResponse response = this.httpClient.execute(method) --> Line_7 $$ final String responseString = response.getEntity() != null ? EntityUtils.toString(response.getEntity()) : "" [FD]
+Line_6 $$ final HttpResponse response = this.httpClient.execute(method) --> Line_8 $$ final int statusCode = response.getStatusLine().getStatusCode() [FD]
+Line_21 $$ String em = "web service returned unknown status '" + statusCode + "', response was: " + responseString --> Line_22 $$ this.log.error(em) [FD]

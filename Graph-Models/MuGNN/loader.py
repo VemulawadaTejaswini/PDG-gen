@@ -1,5 +1,7 @@
 import os
+import gc
 import glob
+import math
 import torch
 import pickle
 import collections
@@ -399,13 +401,15 @@ def get_nodes_edges(inTextFile, add_reverse_edges = False):
   return nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name
 
 #Set GPU
-os.environ["CUDA_VISIBLE_DEVICES"] = "1,2,3"
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+#device = torch.device("cpu")
 
 # Initialize the models
 codebert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
 codebert_model = AutoModel.from_pretrained("microsoft/codebert-base")
 codebert_model = codebert_model.to(device)
+codebert_model.eval()
 
 def get_node_embedding_from_codebert(nodes):
     list_of_embeddings = []
@@ -417,8 +421,65 @@ def get_node_embedding_from_codebert(nodes):
         tokens_ids = tokens_ids.to(device)
         context_embeddings = codebert_model(tokens_ids[None,:])
         cls_token_embedding = context_embeddings.last_hidden_state[0,0,:]
-        list_of_embeddings.append(cls_token_embedding)
+        list_of_embeddings.append(cls_token_embedding.to("cpu"))
+        del tokens_ids
+        del context_embeddings
+        del cls_token_embedding
+    gc.collect()
+    torch.cuda.empty_cache()
     return torch.stack(list_of_embeddings)
+
+def get_node_embedding_from_codebert_with_batching(nodes, batch_size = 8):
+    list_of_embeddings = []
+    code_lines = []
+    for code_line in nodes.keys():
+        code_line = code_line.split("$$")[1].strip()
+        code_lines.append(code_line)
+    batches = []
+    batch_length  = int(math.ceil(len(code_lines) / batch_size))
+    starting_index = 0
+    for i in range(1, batch_length + 1):
+        current_batch = code_lines[starting_index: min(len(code_lines), i*batch_size)]
+        starting_index = min(len(code_lines), i*batch_size)
+        batches.append(current_batch)
+        
+    for batch in batches:
+        batch_tokens = codebert_tokenizer.batch_encode_plus(batch, 
+                                                       return_tensors='pt',
+                                                       padding='max_length', 
+                                                       truncation=True, 
+                                                       max_length=512)
+        batch_token_ids, attention_masks = batch_tokens["input_ids"], batch_tokens["attention_mask"]
+        batch_token_ids = batch_token_ids.to(device)
+        attention_masks = attention_masks.to(device)
+        context_embeddings = codebert_model(batch_token_ids, attention_masks)
+        cls_token_embedding = context_embeddings.last_hidden_state[:,0,:]
+        list_of_tensors = [cls_token_embedding[i, :] for i in range(cls_token_embedding.size()[0])]
+        list_of_embeddings.extend(list_of_tensors)
+        del attention_masks
+        del batch_token_ids
+        del context_embeddings
+        del cls_token_embedding
+        gc.collect()
+        torch.cuda.empty_cache()
+    return torch.stack(list_of_embeddings)
+
+def downsample(datapoints, pdg_folder_path):
+    positive_points, negative_points = [], []
+    for data in datapoints:
+        id1, id2, label = data.strip().split("\t")
+        pdg_code_1_path = pdg_folder_path + "/" + id1 + "_NA_NA_graph_dump.txt"
+        pdg_code_2_path = pdg_folder_path + "/" + id2 + "_NA_NA_graph_dump.txt"
+        if int(label) == 1:
+            if os.path.exists(pdg_code_1_path) and os.path.exists(pdg_code_2_path): 
+                positive_points.append([id1, id2, label])
+        else:
+            if os.path.exists(pdg_code_1_path) and os.path.exists(pdg_code_2_path):
+                negative_points.append([id1, id2, label])
+    print("Positive points: {} and Negative points: {}".format(len(positive_points), len(negative_points)))
+    min_of_pos_neg = min(len(positive_points), len(negative_points))
+    balanced_dataset = positive_points[:min_of_pos_neg] + negative_points[:min_of_pos_neg]
+    return balanced_dataset
 
 class MoleculeDataset(InMemoryDataset):
     def __init__(self,
@@ -472,7 +533,7 @@ class MoleculeDataset(InMemoryDataset):
 
     @property
     def processed_file_names(self):
-        return 'geometric_data_processed_new_code2seq_and_ck.pt'
+        return 'geometric_data_processed_clone_detection.pt'
 
     def download(self):
         raise NotImplementedError('Must indicate valid location of raw data. '
@@ -613,6 +674,62 @@ class MoleculeDataset(InMemoryDataset):
                     data_list.append(data)
                     count += 1
         
+        elif self.dataset in ["clone-detection"] :
+            input_folder_path = ""
+            for folder_path in self.raw_paths:
+                if self.dataset in folder_path:
+                    input_folder_path = folder_path
+                    break
+            print("\nProcessing: {}\n".format(input_folder_path))
+            files = glob.glob(os.path.join(input_folder_path, '*.txt'))
+            print("\nNumber of files: {}\n".format(len(files)))
+            for file in tqdm.tqdm(files):
+                try:
+                    nodes_dict, edge_indices_FD, edge_indices_CD, edge_indices, edge_type, file_name = get_nodes_edges(file, add_reverse_edges = True)
+                except Exception as e:
+                    print("\nError: ", e)
+                    continue
+                    
+                if(len(nodes_dict) == 0):
+                    print("\nNo Data: ", file)
+                    continue
+                #print(nodes_dict, edge_indices_CD, edge_indices_FD, edge_type)
+
+                # Node feature matrix with shape [num_nodes, num_node_features]=(N, 768).
+                try:
+                    with torch.no_grad():
+                        CodeEmbedding = get_node_embedding_from_codebert(nodes_dict)
+                except Exception as e :
+                    print("\nError: ", e)
+                    print(nodes_dict)
+                    continue
+                #print(CodeEmbedding.shape)
+
+                # FIXING DATA FOTMATS AND SHAPE
+                x = CodeEmbedding.clone().detach()
+                # print(x.shape)
+  
+                # data.y: Target to train against (may have arbitrary shape),
+                # graph-level targets of shape [1, *]
+                file_name = file[file.rindex("/", 0, len(file) - 1) + 1 : -4]
+                id = int(file_name.split("_")[0])
+                y = torch.tensor([1], dtype=torch.long)
+                #print(type(y))
+
+                # edge_index (LongTensor, optional) – Graph connectivity in COO format with shape [2, num_edges]
+                edge_index_CD = torch.tensor(edge_indices_CD, dtype=torch.long).t().contiguous()
+                edge_index_FD = torch.tensor(edge_indices_FD, dtype=torch.long).t().contiguous()
+                edge_index = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+                edge_attr = torch.tensor(edge_type, dtype=torch.long).t().contiguous()
+                #print(edge_index_CD, edge_index_FD, edge_index, edge_type)
+  
+                data = Data(edge_index=edge_index, edge_attr=edge_attr, x=x)
+                data.id = torch.tensor([id])
+                data.y = y
+                # data.num_nodes = len(nodes_dict)
+                # data.api = file_name
+                data_list.append(data)
+
         else:
             raise ValueError('Invalid dataset name')
 
@@ -623,12 +740,6 @@ class MoleculeDataset(InMemoryDataset):
 
         if self.pre_transform is not None:
             data_list = [self.pre_transform(data) for data in data_list]
-
-        # write data_smiles_list in processed paths
-        # data_smiles_series = pd.Series(data_smiles_list)
-        # data_smiles_series.to_csv(os.path.join(self.processed_dir,
-        #                                        'smiles.csv'), index=False,
-        #                           header=False)
 
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[0])

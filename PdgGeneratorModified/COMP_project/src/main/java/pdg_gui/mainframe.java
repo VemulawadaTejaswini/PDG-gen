@@ -164,8 +164,8 @@ public class mainframe {
             String generateFor = "code2seq"; // "code2seq" or "ck" or "crypto-api" or "codenet" or "perturbed-code" or
                                              // "big-code-bench"
             if (isOnlyFile) {
-                outputFolder = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\PdgGeneratorModified\\test_folder\\";
-                String file = "D:\\IIT Hyderabad\\Research\\API misuse prediction\\Repository\\Code_kernel_data\\after_relabeling\\ExecutorService.submit\\sample-0\\0.java";
+                outputFolder = "/home/tejaswini/Desktop/pdgtool/PDG-gen/PdgGeneratorModified/test_folder";
+                String file = "/home/tejaswini/Desktop/pdgtool/PDG-gen/Benchmarks/CodeNet/processed_data_for_pdg/p02388/s000569210.java"; 
                 String apiName = "ExecutorService.submit";
                 String sampleName = "sample-0";
                 obj.methods(file, apiName, sampleName);

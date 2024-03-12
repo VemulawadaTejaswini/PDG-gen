@@ -1,0 +1,7 @@
+Line_3 $$ String path --> Line_4 $$ path = jarPath.substring(0, jarPath.lastIndexOf("lib/")) [FD]
+Line_8 $$ JarFile jar = new JarFile(jarPath) --> Line_9 $$ Enumeration<JarEntry> entries = jar.entries() [FD]
+Line_10 $$ while (entries.hasMoreElements()) --> Line_11 $$ JarEntry entry = entries.nextElement() [CD]
+Line_10 $$ while (entries.hasMoreElements()) --> Line_12 $$ String jarEntry = entry.getName() [CD]
+Line_10 $$ while (entries.hasMoreElements()) --> Line_13 $$ if (jarEntry.startsWith(jarEntryStart)) [CD]
+Line_8 $$ JarFile jar = new JarFile(jarPath) --> Line_14 $$ ZipEntry ze = jar.getEntry(jarEntry) [FD]
+Line_8 $$ JarFile jar = new JarFile(jarPath) --> Line_16 $$ IOUtils.copy(jar.getInputStream(ze), new FileOutputStream(bin)) [FD]
