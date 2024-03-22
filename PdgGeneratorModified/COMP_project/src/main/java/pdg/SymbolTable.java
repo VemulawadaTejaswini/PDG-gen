@@ -829,6 +829,20 @@ class SymbolTable {
 
                 return  new ReturnObject(returnString);
             }
+            nodeToSend = getExpressionNode(node);
+            for(Node child: node.getChildrenNodes()){
+                if(child.getClass().equals(com.github.javaparser.ast.expr.NameExpr.class)){
+                    String variable = child.toString();
+                    for(int i1 = scopes.size() - 1; i1 >= 0; i1--) {
+                        ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
+                        for (VarChanges aVc : vc)
+                            if (aVc.getVar().equals(variable))
+                                addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out);
+                                }
+
+
+                }
+            }
         //     nodeToSend = addNodeAndEdgeToGraph(node, hrefGraph, previousNode, false, out);
         //     int counter=0;
         //     for(Node child: node.getChildrenNodes()){
@@ -841,13 +855,13 @@ class SymbolTable {
         //                     else
         //                         lastScope.varAccesses.add(new VarChanges(nodeToSend, childNode.toString()));
     
-        //                     String variable = childNode.toString();
-        //                     for(int i1 = scopes.size() - 1; i1 >= 0; i1--) {
-        //                         ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
-        //                         for (VarChanges aVc : vc)
-        //                             if (aVc.getVar().equals(variable))
-        //                                 addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out);
-        //                         }
+                            // String variable = childNode.toString();
+                            // for(int i1 = scopes.size() - 1; i1 >= 0; i1--) {
+                            //     ArrayList<VarChanges> vc = scopes.get(i1).varChanges;
+                            //     for (VarChanges aVc : vc)
+                            //         if (aVc.getVar().equals(variable))
+                            //             addEdgeBetweenNodes(aVc.getGraphNode(), nodeToSend, "FD", hrefGraph, out);
+                            //     }
         //                     }
         //                 }
         //         counter++;
