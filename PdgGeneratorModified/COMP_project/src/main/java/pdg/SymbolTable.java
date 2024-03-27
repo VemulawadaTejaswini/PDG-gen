@@ -827,6 +827,7 @@ class SymbolTable {
                     returnString = returnString.concat("in Method:"+lastMethod.Name+" are not declared");
                 }
 
+
                 return  new ReturnObject(returnString);
             }
             nodeToSend = getExpressionNode(node);
